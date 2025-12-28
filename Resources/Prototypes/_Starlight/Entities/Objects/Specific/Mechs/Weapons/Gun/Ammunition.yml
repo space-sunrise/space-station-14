@@ -1,0 +1,25 @@
+- type: entity
+  id: MechCartridge
+  abstract: true
+
+- type: entity
+  id: ShellShotgunMechIncendiary
+  parent: [ShellShotgunIncendiary, MechCartridge]
+  components:
+    - type: CartridgeAmmo
+      deleteOnSpawn: true
+
+- type: entity
+  id: ShellShotgunMech
+  parent: [ShellShotgun, MechCartridge]
+  components:
+    - type: CartridgeAmmo
+      deleteOnSpawn: true
+
+
+- type: entity
+  id: CartridgeHeavyRifleRFMJMech
+  parent: [CartridgeHeavyRifleRFMJ, MechCartridge]
+  components:
+    - type: CartridgeAmmo
+      deleteOnSpawn: true

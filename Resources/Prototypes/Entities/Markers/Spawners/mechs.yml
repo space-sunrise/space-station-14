@@ -48,7 +48,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit
         state: honker
   - type: ConditionalSpawner
     prototypes:
@@ -63,7 +63,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit
         state: honker
   - type: ConditionalSpawner
     prototypes:
@@ -133,7 +133,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit # Sunrise-edit
         state: marauder
   - type: ConditionalSpawner
     prototypes:
@@ -148,7 +148,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit
         state: marauder
   - type: ConditionalSpawner
     prototypes:
@@ -191,7 +191,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit
         state: seraph
   - type: ConditionalSpawner
     prototypes:
@@ -206,7 +206,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit
         state: seraph
   - type: ConditionalSpawner
     prototypes:
@@ -249,7 +249,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit
         state: mauler
   - type: ConditionalSpawner
     prototypes:
@@ -264,7 +264,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit
         state: mauler
   - type: ConditionalSpawner
     prototypes:

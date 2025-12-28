@@ -3,6 +3,7 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Damage;
 using Content.Shared.Damage.ForceSay;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Emoting;
 using Content.Shared.Hands;
 using Content.Shared.Interaction;
@@ -58,6 +59,13 @@ public partial class MobStateSystem
             args.Cancelled = true;
     }
 
+    private void Down(EntityUid target)
+    {
+        _standing.Down(target);
+        var ev = new DropHandItemsEvent();
+        RaiseLocalEvent(target, ref ev);
+    }
+
     private void CheckConcious(Entity<MobStateComponent> ent, ref ConsciousAttemptEvent args)
     {
         switch (ent.Comp.CurrentState)
@@ -102,23 +110,35 @@ public partial class MobStateSystem
         switch (state)
         {
             case MobState.Alive:
+            {
                 _standing.Stand(target);
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Alive);
                 break;
+            }
             case MobState.Critical:
+            {
+                Down(target);
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Critical);
                 _standing.Down(target);
                 break;
+            }
             case MobState.Dead:
+            {
                 EnsureComp<CollisionWakeComponent>(target);
+                Down(target);
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Dead);
                 _standing.Down(target);
                 break;
+            }
             case MobState.Invalid:
+            {
                 //unused;
                 break;
+            }
             default:
+            {
                 throw new NotImplementedException();
+            }
         }
     }
 

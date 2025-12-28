@@ -1,19 +1,99 @@
 - type: entity
   parent: [ BaseCartridge, BaseMajorContraband ]
-  id: CartridgeAntiMateriel
+  id: CartridgeAntiMaterielPenetrator # Sunrise-Edit
   name: cartridge (.60 anti-materiel)
+  description: A high-power cartridge used by high-precision rifles.
   components:
   - type: Tag
     tags:
     - CartridgeAntiMateriel
-  - type: HitScanCartridgeAmmo
-    hitscan: AntiMaterielBulletTrace
+  - type: CartridgeAmmo
+    proto: AntiMaterielBulletTrace
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
+  # sunrise-start
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/12.7x99.rsi
     layers:
     - state: base
-      map: ["enum.AmmoVisualLayers.Base"]
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#9b0000"
+  # sunrise-end
   - type: Appearance
   - type: SpentAmmoVisuals
   - type: StaticPrice
     price: 20
+
+# Sunrise-start
+- type: entity
+  parent: [ BaseCartridge, BaseMajorContraband ]
+  id: CartridgeAntiMateriel
+  name: cartridge (15mm anti-materiel)
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeAntiMateriel
+  - type: CartridgeAmmo
+    proto: BulletAntiMateriel
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/12.7x99.rsi
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#7f009b50"
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 20
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 25
+
+- type: entity
+  parent: CartridgeAntiMateriel
+  id: CartridgeAntiMaterielFrag
+  name: cartridge (15mm frag)
+  components:
+  - type: CartridgeAmmo
+    proto: BulletAntiMaterielFrag
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#7ea53b"
+
+- type: entity
+  parent: CartridgeAntiMateriel
+  id: CartridgeAntiMaterielBlast
+  name: cartridge (15mm blast)
+  components:
+  - type: CartridgeAmmo
+    proto: BulletAntiMaterielBlast
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#8d6425"
+
+- type: entity
+  parent: CartridgeAntiMateriel
+  id: CartridgeAntiMaterielEmp
+  name: cartridge (15mm emp)
+  components:
+  - type: CartridgeAmmo
+    proto: BulletAntiMaterielEMP
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#005396"
+# Sunrise-end

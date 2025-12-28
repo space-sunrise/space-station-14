@@ -88,8 +88,10 @@
       types:
         Blunt: 0.1
   - type: Bloodstream
-    bloodMaxVolume: 50
-    bloodReagent: Honk
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Honk
+        Quantity: 50
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepClown

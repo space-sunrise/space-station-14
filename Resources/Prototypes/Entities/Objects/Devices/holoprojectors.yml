@@ -44,6 +44,7 @@
   components:
   - type: HolosignProjector
     chargeUse: 240
+    countPerTileLimit: 2   # Sunrise - Added
   - type: ItemSlots
     slots:
       cell_slot:
@@ -62,6 +63,7 @@
   - type: HolosignProjector
     signProto: HoloPeel
     chargeUse: 240
+    countPerTileLimit: 2   # Sunrise - Added
   - type: Sprite
     sprite: Objects/Devices/Holoprojectors/peel.rsi
     state: icon
@@ -82,6 +84,7 @@
   - type: HolosignProjector
     signProto: HoloFan
     chargeUse: 120
+    countPerTileLimit: 2   # Sunrise - Added
   - type: Sprite
     sprite: Objects/Devices/Holoprojectors/atmos.rsi
     state: icon
@@ -128,7 +131,10 @@
   components:
     - type: HolosignProjector
       signProto: HolosignForcefield
-      chargeUse: 120
+      # Sunrise - Start
+      chargeUse: 350
+      countPerTileLimit: 1
+      # Sunrise - End
     - type: Sprite
       sprite: Objects/Devices/Holoprojectors/field.rsi
       state: icon
@@ -157,6 +163,7 @@
     - type: HolosignProjector
       signProto: HolosignSecurity
       chargeUse: 90
+      countPerTileLimit: 2   # Sunrise - Added
     - type: Sprite
       sprite: Objects/Devices/Holoprojectors/security.rsi
       state: icon

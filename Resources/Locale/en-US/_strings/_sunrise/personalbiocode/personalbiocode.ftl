@@ -1,0 +1,1 @@
+biocode-equip-failure = Your DNA is not recognized, access denied

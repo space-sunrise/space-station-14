@@ -2,6 +2,7 @@
 
 uplink-core-extraction-toolbox-name = Core Extraction Toolbox
 uplink-core-extraction-toolbox-desc = A toolbox containing everything you need to remove a nuclear bomb's plutonium core. Instructions not included.
+uplink-exploding-syndicate-empbomb-desc = A big, anchored EMP bomb that cripples electronics if not defused in time. Adjustable timer with a minimum setting of 180 seconds; perfect for knocking out infrastructure.
 
 ## Magazines
 
@@ -19,6 +20,8 @@ uplink-magazine-bulldog-uraniumslug-desc = Shotgun magazine with 8 shells filled
 uplink-magazine-bulldog-uranium-desc = Shotgun magazine with 8 shells filled with uranium pellet. Compatible with the Bulldog.
 uplink-pistol-magnum-magazine-name = Магазин для Deagle
 uplink-pistol-magnum-magazine-desc = 7-зарядный однорядный магазин для пистолета. Содержит патроны SP. Совместим с "Диглом".
+uplink-pistoltec9-magazine-name = магазин Tac-Tec (.20 безгильзовый)
+uplink-pistoltec9-magazine-desc = Кустарный пистолетный магазин на 20 патронов,под калибр, используемый агентами синдиката.
 ## Misc
 
 uplink-music-boombox-name = Музыкальный набор синдиката
@@ -32,12 +35,14 @@ uplink-syndie-nvd-name = ПНВ Синдиката
 uplink-syndie-nvd-desc = Качественно исполненый прибор ночного видения, производства компании "Горлакс секьюрити", использует красные линзы для улучшения видимости в условиях низкой освещенности.
 uplink-syndie-thermal-name = оптический термальный Визор
 uplink-syndie-thermal-desc = Компактный термальный сканер. Его визор оборудован системой свой-чужой. Идеально подходит для выявления и уничтожения сотрудников NanoTrasen.
+uplink-thermal-desc = Компактный термальный сканер. Идеально подходит для выявления секретов сотрудников NanoTrasen за стенами.
 uplink-clothing-backpack-syndie-name = Рюкзак Синдиката
 uplink-hardsuit-syndie-commander-name = скафандр Командира Синдиката
 uplink-hardsuit-syndie-commander-desc = Скафандр предназначеный для командиров отрядов Горлекса.
 uplink-hardsuit-syndie-medic-name = скафандр Медика Синдиката
 uplink-hardsuit-syndie-medic-desc = Скафандр предназначеный для боевых врачей отрядов Горлекса.
-
+uplink-50blessing-name = Подарочный набор 50 благословений
+uplink-50blessing-desc = Для агентов, которые хотят скрыть свою личность стильно, с любовью от Егора Семёнова
 ## Weapon
 
 uplink-clothing-backpack-syndie-aj100-name = Набор ПП AJ-100
@@ -51,7 +56,11 @@ uplink-weapon-syndie-laser-minigun-name = UVL-21 «Виверна»
 uplink-weapon-syndie-laser-gun-name = S-13 «Чёрная мамба»
 uplink-deagle-name = пистолет «Desert Eagle»
 uplink-deagle-desc = Cерьёзный аргумент в споре. Выгравировано: Мир благодаря превосходящей огневой мощи".
+uplink-pistoltec9-name = Tac-Tec
+uplink-pistoltec9-desc = Очень дешёвый в производстве и очень простой в использовании, надёжный как SKM-24.
 
+uplink-goldendeagle-name = Золотой Десерт Игл
+uplink-goldendeagle-desc = "Использует патрон "магнум" 45-го калибра, Выгравировано: Все, что у меня осталось от него в памяти — это два позолоченных Desert Eagle 45-го калибра"
 ## Cyborgs
 
 uplink-reinforcement-radio-syndicate-cyborg-assault-name = Телепорт подкрепления боевого борга синдиката
@@ -93,10 +102,10 @@ uplink-cluster-mini-bomb-name = Cluster Minibomb
 uplink-cluster-mini-bomb-desc = If you don't care about accuracy, then this choice is for you.
 
 uplink-mech-teleporter-heavy-name = Heavy Mech teleporter
-uplink-mech-teleporter-heavy-desc = Contains Cybersan heavy armored mech with integrated chainsword, Ultra AC-2, LBX AC 10 "Scattershot", BRM-6 Missile Rack and P-X Tesla Cannon.
+uplink-mech-teleporter-heavy-desc = Contains Cybersun heavy armored mech with integrated chainsword, Ultra AC-2, LBX AC 10 "Scattershot", BRM-6 Missile Rack and P-X Tesla Cannon.
 
 uplink-mech-teleporter-assault-name = Assault Mech teleporter
-uplink-mech-teleporter-assault-desc = Contains Cybersan lightly armored mech with integrated chainsword, LBX AC 10 "Scattershot", SRM-8 Light Missile Rack and P-X Tesla Cannon.
+uplink-mech-teleporter-assault-desc = Contains Cybersun lightly armored mech with integrated chainsword, LBX AC 10 "Scattershot", SRM-8 Light Missile Rack and P-X Tesla Cannon.
 
 
 uplink-ammo-crate-ammokit-bundle-name = Syndicate super ammo bundle
@@ -137,3 +146,4 @@ uplink-energy-dome-desc = A personal shield generator that protects the wearer f
 
 uplink-syndicate-teleporter-name = Hand syndicate teleporter
 uplink-syndicate-teleporter-desc = An experimental hand teleporting device. Teleports its owner forward in a small area. Be careful not to end up in the wall.
+

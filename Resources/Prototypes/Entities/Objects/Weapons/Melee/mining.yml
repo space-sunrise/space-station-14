@@ -26,7 +26,7 @@
       groups:
         Brute: 10
       types:
-        Structural: 30
+        Structural: 25
   - type: Item
     size: Normal
     shape:
@@ -163,7 +163,7 @@
       types:
         Blunt: 6
         Slash: 2
-        Structural: 30
+        Structural: 25
   - type: GunRequiresWield
   - type: DisarmMalus
   - type: Prying
@@ -260,3 +260,79 @@
         Blunt: 2
         Slash: 6
         Structural: 20
+
+# Sunrise-start
+- type: entity
+  parent: [ WeaponCrusher, BaseSecurityCargoContraband]
+  id: WeaponCrusherBroadAxe
+  name: crusher broad-axe
+  description: An early design of the proto-kinetic accelerator, in broad-axe form. Provides better healing without exchange for less charged damage.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Melee/crusher_broadaxe.rsi
+    state: icon
+  - type: Item
+    size: Ginormous
+    sprite: _Sunrise/Objects/Weapons/Melee/crusher_broadaxe-inhands.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Melee/crusher_broadaxe.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: UseDelay
+    delay: 0.9
+  - type: BasicEntityAmmoProvider
+    proto: BulletCharge
+    capacity: 1
+    count: 1
+  - type: LeechOnMarker
+    leech:
+      groups:
+        Brute: -20
+      types:
+        Heat: -5
+        Bloodloss: -5
+        Mangleness: -5
+  - type: Tag
+    tags:
+      - Pickaxe
+  - type: MeleeWeapon
+    attackRate: 1
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 4
+        Slash: 6
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 4
+        Slash: 6
+        Structural: 30
+
+- type: entity
+  name: M.O.L.E gauntlet
+  parent: BaseItem
+  id: WeaponGauntletDrill
+  description: A robust piece of salvage equipment. The drill is ready to pierce the heavens
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Melee/moledrill.rsi
+    state: icon
+  - type: Item
+    size: Large
+  - type: MeleeWeapon
+    autoAttack: true
+    angle: 0
+    wideAnimationRotation: -90
+    soundHit:
+      path: "/Audio/Items/drill_use.ogg"
+    attackRate: 5
+    damage:
+      groups:
+        Brute: 9
+      types:
+        Structural: 25
+    bluntStaminaDamageFactor: 1.5
+# Sunrise-end

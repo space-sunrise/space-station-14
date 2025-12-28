@@ -144,6 +144,9 @@ construction-graph-tag-sun-glasses = солнцезащитные очки
 construction-graph-tag-flash = флешер
 # Скафандры
 construction-graph-tag-spationaut-hardsuit = скафандр космонавта
+construction-graph-tag-mining-hardsuit = шахтёрский скафандр
+construction-graph-tag-nvd = ПНВ
+construction-graph-tag-mining-goliath-hardsuit = шахтёрский скафандр голиафа
 # Электроника
 construction-graph-tag-freezer-electronics = электроника морозильника
 construction-graph-tag-door-electronics-circuit-board = плата электроники двери
@@ -198,6 +201,8 @@ construction-graph-tag-dried-cannabis-vita = сушеная каннабис в�
 construction-graph-tag-nanopaste = нанопаста
 construction-graph-tag-blue-crystal = синий кристалл
 construction-graph-tag-crystallite = кристаллит
+construction-graph-tag-doubloon = дублон
+construction-graph-tag-credit = кредит
 construction-graph-tag-suntick = сантики
 construction-graph-tag-runic-metal = рунический металл
 # Мебель

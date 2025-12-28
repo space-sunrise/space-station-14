@@ -4,111 +4,144 @@
   suffix: Filled
   parent: Medkit
   components:
-  - type: StorageFill
-    contents:
-      - id: Brutepack
-      - id: Ointment
-      - id: Gauze
-      - id: PillCanisterTricordrazine
-      # see https://github.com/tgstation/blob/master/code/game/objects/items/storage/firstaid.dm for example contents
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Brutepack
+        - id: Ointment
+        - id: Gauze
+        - id: PillCanisterTricordrazine
+        - id: AmpulaTric # Sunrise-Edit
+          amount: 2 # Sunrise-Edit
+        # see https://github.com/tgstation/blob/master/code/game/objects/items/storage/firstaid.dm for example contents
 
 - type: entity
   id: MedkitBurnFilled
   suffix: Filled
   parent: MedkitBurn
   components:
-  - type: StorageFill
-    contents:
-      - id: Ointment
-        amount: 2
-      - id: PillCanisterKelotane
-      - id: PillCanisterDermaline
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Ointment
+          amount: 2
+        - id: PillCanisterKelotane
+        - id: PillCanisterDermaline
+        - id: AmpulaDerm # Sunrise-Edit
+          amount: 2 # Sunrise-Edit
 
 - type: entity
   id: MedkitBruteFilled
   suffix: Filled
   parent: MedkitBrute
   components:
-  - type: StorageFill
-    contents:
-      - id: Brutepack
-      - id: Gauze
-      - id: PillCanisterIron
-      - id: PillCanisterCopper
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Brutepack
+        - id: Gauze
+        - id: PillCanisterIron
+        - id: PillCanisterCopper
+        - id: AmpulaBica # Sunrise-Edit
+          amount: 2 # Sunrise-Edit
 
 - type: entity
   id: MedkitToxinFilled
   suffix: Filled
   parent: MedkitToxin
   components:
-  - type: StorageFill
-    contents:
-      - id: SyringeIpecac
-      - id: SyringeEthylredoxrazine
-      - id: AntiPoisonMedipen
-      - id: PillCanisterDylovene
-      - id: PillCanisterCharcoal
-      - id: CoalAutoInjector
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SyringeIpecac
+        - id: SyringeEthylredoxrazine
+        - id: AntiPoisonMedipen
+        - id: PillCanisterDylovene
+        - id: PillCanisterCharcoal
+        - id: CoalAutoInjector
+        - id: AmpulaDylo # Sunrise-Edit
+          amount: 2 # Sunrise-Edit
 
 - type: entity
   id: MedkitOxygenFilled
   suffix: Filled
   parent: MedkitO2
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingMaskBreathMedical
-      - id: EmergencyOxygenTankFilled
-      - id: EmergencyMedipen
-      - id: SyringeInaprovaline
-      - id: PillCanisterDexalin
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreathMedical
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: SyringeInaprovaline
+        - id: PillCanisterDexalin
+        - id: AmpulaDexa # Sunrise-Edit
+          amount: 2 # Sunrise-Edit
 
 - type: entity
   id: MedkitRadiationFilled
   suffix: Filled
   parent: MedkitRadiation
   components:
-  - type: StorageFill
-    contents:
-      - id: SyringePhalanximine
-      - id: RadAutoInjector
-      - id: PillCanisterPotassiumIodide
-      - id: PillCanisterHyronalin
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SyringePhalanximine
+        - id: RadAutoInjector
+        - id: PillCanisterPotassiumIodide
+        - id: PillCanisterHyronalin
+        - id: AmpulaHyro # Sunrise-Edit
+          amount: 2 # Sunrise-Edit
 
 - type: entity
   id: MedkitAdvancedFilled
   suffix: Filled
   parent: MedkitAdvanced
   components:
-  - type: StorageFill
-    contents:
-      - id: MedicatedSuture
-      - id: RegenerativeMesh
-      - id: Bloodpack
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedicatedSuture
+        - id: RegenerativeMesh
+        - id: Bloodpack
+          amount: 2
+        - id: AmpulaBica # Sunrise-Edit
+          amount: 1 # Sunrise-Edit
+        - id: AmpulaDerm # Sunrise-Edit
+          amount: 1 # Sunrise-Edit
 
 - type: entity
   id: MedkitCombatFilled
   suffix: Filled
   parent: MedkitCombat
   components:
-  - type: StorageFill
-    contents:
-      - id: MedicatedSuture
-      - id: RegenerativeMesh
-      - id: SyringeEphedrine
-      - id: SyringeSaline
-      - id: BruteAutoInjector
-      - id: BurnAutoInjector
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedicatedSuture
+        - id: RegenerativeMesh
+        - id: SyringeEphedrine
+        - id: SyringeSaline
+        - id: BruteAutoInjector
+        - id: BurnAutoInjector
 
 - type: entity
   id: StimkitFilled
   suffix: Stimkit, Filled
   parent: Medkit
   components:
-  - type: StorageFill
-    contents:
-      - id: StimpackMini
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: StimpackMini
         amount: 6
 
 #Sunrse-start
@@ -121,5 +154,4 @@
     contents:
       - id: StimpackMiniNT
         amount: 6
-
 #Sunrse-end

@@ -3,7 +3,7 @@ Project-Condor:
   project: 2
   inbox: Inbox
   labels:
-    "W: In Progress": "В Прогрессе"
+    "W: In Progress": "In Progress"
     "W: Discussion": "Design and Discussion"
     "W: Backlog": "Backlog"
-    "W: Next": "Следующее"
+    "W: Next": "Next"

@@ -24,9 +24,9 @@
         variation: 0.250
     activatedDamage:
       types:
-        Slash: 20
-        Heat: 20
-        Structural: 20
+        Slash: 26
+        Heat: 26
+        Structural: 30
   - type: ItemToggleActiveSound
     activeSound:
       path: /Audio/Weapons/ebladehum.ogg
@@ -61,7 +61,7 @@
     size: Small
     sprite: Objects/Weapons/Melee/e_sword_double-inhands.rsi
   - type: Reflect
-    reflectProb: 0.50
+    reflectProb: 1
     reflects:
       - Energy
   - type: Blocking

@@ -6,7 +6,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 4
 
 - type: entity
@@ -17,7 +16,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 10
 
 - type: entity
@@ -28,7 +26,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 10
 
 - type: entity
@@ -65,7 +62,7 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 100
   - type: BatteryWeaponFireModes
@@ -82,8 +79,9 @@
         - yellow
         - red
         - gamma
+        - delta
+        - epsilon
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 20
   - type: MagazineVisuals
     magState: laser_cyborg
@@ -136,10 +134,12 @@
       reagents:
       - ReagentId: Epinephrine
         Quantity: 0.4
-  - type: Hypospray
-    onlyAffectsMobs: true
-    injectOnly: true
-    transferAmount: 5 #Sunrise-End
+  - type: Injector
+    solutionName: hypospray
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
+    currentTransferAmount: 5 #Sunrise-End
   - type: UseDelay
     delay: 1
 
@@ -166,9 +166,6 @@
       Quantity: 0.1
     - ReagentId: ChloralHydrate
       Quantity: 2
-  - type: Hypospray
-    onlyAffectsMobs: true
-    injectOnly: true
 
 - type: entity
   parent: HypoBorgStandard
@@ -200,9 +197,6 @@
     - ReagentId: Dermaline
       Quantity: 1
     keepSolution: false
-  - type: Hypospray
-    onlyAffectsMobs: true
-    injectOnly: true
   - type: BorgHypospray
 
 - type: entity
@@ -253,11 +247,8 @@
     - ReagentId: Saline
       Quantity: 1
     - ReagentId: Phalanximine
-      Quantity: 0.5   
+      Quantity: 0.5
     keepSolution: false
-  - type: Hypospray
-    onlyAffectsMobs: true
-    injectOnly: true
   - type: BorgHypospray
 
 - type: entity
@@ -315,9 +306,7 @@
       Quantity: 2
     - ReagentId: DexalinPlus
       Quantity: 2
-  - type: Hypospray
-    onlyAffectsMobs: true
-    injectOnly: true
+  - type: BorgHypospray
 
 - type: entity
   name: gorlax robot hypospray
@@ -345,64 +334,7 @@
         Quantity: 0.1
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: true
-    doAfterTime: 0.1 #Sunrise-Edit
-    injectOnly: true
-
-- type: entity
-  name: robot china lake
-  parent: WeaponLauncherChinaLake
-  id: WeaponLauncherChinaLakeBorg
-  description: PLOOP
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Gun
-    fireRate: 1
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
-  - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
-    proto: GrenadeFragTimer
-    fireCost: 1000
-  - type: Battery
-    maxCharge: 10000
-    startingCharge: 10000
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 25
-  - type: AmmoCounter
-
-- type: entity
-  id: FireExtinguisherBorg
-  name: fire extinguisher borg
-  description: fire extinguisher borg
-  parent: FireExtinguisher
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: SolutionRegeneration
-      solution: spray
-      generated:
-        reagents:
-        - ReagentId: Water
-          Quantity: 2
-
-- type: entity
-  id: SprayBottleSpaceCleanerBorg
-  name: space cleaner
-  description: BLAM!-brand non-foaming space cleaner!
-  parent: SprayBottleSpaceCleaner
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: SolutionRegeneration
-    solution: spray
-    generated:
-      reagents:
-      - ReagentId: SpaceCleaner
-        Quantity: 2
+  - type: BorgHypospray
 
 - type: entity
   name: borg crowbar
@@ -520,12 +452,26 @@
         maxVol: 500
 
 - type: entity
+  name: advanced borg welder
+  parent: WelderBorg
+  id: WelderBorgAdvanced
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tool
+    speedModifier: 1.3
+  - type: SolutionRegeneration
+    solution: Welder
+    generated:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 1 # Sunrise-Edit
+
+- type: entity
   name: cyborg disabler machine gun
   parent: WeaponDisablerSMG
   id: WeaponDisablerSMGBorg
   components:
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 30
 
 - type: entity
@@ -551,14 +497,13 @@
     - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: HitscanBatteryAmmoProvider #ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider #ProjectileBatteryAmmoProvider
     proto: Pulse
     fireCost: 200
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 30
 
 - type: entity
@@ -589,14 +534,13 @@
         volume: -1
     availableModes:
     - FullAuto
-  - type: HitscanBatteryAmmoProvider
-    proto: RedLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
+  - type: BatteryAmmoProvider
+    proto: RedLaser # Sunrise-TODO: ????? ????? ???????? ??? ?????? ?????
     fireCost: 50
   - type: Battery
     maxCharge: 10000
     startingCharge: 10000
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 30
   - type: AmmoCounter
 
@@ -629,16 +573,14 @@
         volume: 10
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletRifleTraceSP
     fireCost: 50
   - type: Battery
     maxCharge: 10000
     startingCharge: 10000
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 250
-    autoRechargePause: true
     autoRechargePauseTime: 10
 
 - type: entity
@@ -658,16 +600,14 @@
       - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/Bauer127/bauer127_shot.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeAntiMateriel
     fireCost: 500
   - type: Battery
     maxCharge: 4000
     startingCharge: 4000
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 250
-    autoRechargePause: true
     autoRechargePauseTime: 20
   - type: AmmoCounter
 
@@ -697,16 +637,14 @@
     burstCooldown: 1.15
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: GrenadeFragTimer
     fireCost: 250
   - type: Battery
     maxCharge: 1500
     startingCharge: 1500
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 125
-    autoRechargePause: true
     autoRechargePauseTime: 20
   - type: AmmoCounter
 
@@ -739,14 +677,13 @@
     - FullAuto
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletPistolTraceSP
     fireCost: 50
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 25
   - type: AmmoCounter
 
@@ -773,42 +710,11 @@
         Quantity: 0.2
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: true
-    injectOnly: true
-
-- type: entity
-  name: the saboteur's communications jammer
-  parent: BaseItem
-  id: RadioJammerBorg
-  components:
-  - type: Sprite
-    sprite: Objects/Devices/jammer.rsi
-    state: jammer
-  - type: RadioJammer
-    settings:
-    - wattage: 1
-      range: 2.5
-      message: radio-jammer-component-set-message-low
-      name: radio-jammer-component-setting-low
-    - wattage: 2
-      range: 6
-      message: radio-jammer-component-set-message-medium
-      name: radio-jammer-component-setting-medium
-    - wattage: 12
-      range: 12
-      message: radio-jammer-component-set-message-high
-      name: radio-jammer-component-setting-high
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-  - type: ContainerContainer
-    containers:
-      cell_slot: !type:ContainerSlot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellRobotTool
+  - type: Injector
+    solutionName: hypospray
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
 
 - type: entity
   parent: HandheldCrewMonitor
@@ -896,9 +802,157 @@
         Quantity: 0.1
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: true
-    injectOnly: true
+
+- type: entity
+  name: Borg heavy laser cannon
+  parent: BaseWeaponBatterySmall
+  id: WeaponHeavyLaserBorg
+  description: Borg Heavy Laser Gun is a high-output directed-energy system built for sustained combat operations. Its capacitors deliver concentrated thermal pulses capable of breaching reinforced materials, while the internal cooling assembly allows continuous firing without performance decay. The weapon integrates directly with borg power systems, removing the need for traditional ammunition and ensuring uninterrupted operational efficiency.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: BatteryAmmoProvider
+    proto: RedHeavyLaser #no levelcode system, because I give em disablersmg
+    fireCost: 100
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: BatterySelfRecharger
+    autoRechargeRate: 25 # 40 seconds full recharge.
+  - type: MagazineVisuals
+    magState: laser_cyborg
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: Glock-22B Auto
+  parent: BaseItem
+  id: WeaponPistolG22AutoBorg
+  description: Designed by Nanotrasen’s Small Arms Division for direct use in borg units. The Glock-22B Auto is an automatic sidearm adapted for synthetic systems. It offers stable operation, reduced maintenance, and reliable performance during continuous firing.
+  suffix: Sunrise, Security
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22/big.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 1.25
+    angleDecay: 0.5
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      collection: glock22
+  - type: BatteryAmmoProvider
+    proto: BulletPistolTraceRubber
+    fireCost: 100
+  - type: BatteryWeaponFireModes # No AP, or Uranium rounds because can be created roundstart.
+    fireModes:
+    - proto: BulletPistolTraceRubber
+      fireCost: 100
+    - proto: BulletPistolTraceSP
+      fireCost: 100
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - blue
+        - violet
+        - yellow
+        - red
+        - gamma
+        - delta
+        - epsilon
+    - proto: BulletPistolTraceHP
+      fireCost: 100
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - blue
+        - violet
+        - yellow
+        - red
+        - gamma
+        - delta
+        - epsilon
+    - proto: BulletPistolTraceFMJ
+      fireCost: 100
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - blue
+        - violet
+        - yellow
+        - red
+        - gamma
+        - delta
+        - epsilon
+  - type: Battery
+    maxCharge: 1600
+    startingCharge: 1600
+  - type: BatterySelfRecharger
+    autoRechargeRate: 50 # 32 seconds full recharge.
+    autoRechargePauseTime: 5
+  - type: AmmoCounter
+
+- type: entity
+  name: Lecter-B
+  parent: BaseItem
+  id: WeaponRifleLecterB
+  description: Designed for integration into borg combat units, the Lecter-B is a gas-operated rifle refit from its organic-use counterpart. Operating in semi or full automatic modes, it maintains consistent accuracy, stable recoil behavior, and high stopping power under automated firing routines. Its reinforced internals and simplified maintenance pathways allow continuous operation in environments that would quickly degrade standard rifles.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Rifles/lecter.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    minAngle: 2 # Idk. Seems unbalanced. Need to test in-game.
+    maxAngle: 50
+    angleIncrease: 1.75
+    angleDecay: 15
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+      - SemiAuto
+    soundGunshot:
+      collection: galil
+  - type: BatteryAmmoProvider
+    proto: BulletRifleTraceSP
+    fireCost: 100
+  - type: BatteryWeaponFireModes # No AP, or Uranium rounds for balance reasons. Also no Levelcode system, and rubber bullets, because fck em.
+    fireModes:
+    - proto: BulletRifleTraceSP
+      fireCost: 100
+    - proto: BulletRifleTraceHP
+      fireCost: 100
+    - proto: BulletRifleTraceFMJ
+      fireCost: 100
+  - type: Battery
+    maxCharge: 2600
+    startingCharge: 2600
+  - type: BatterySelfRecharger
+    autoRechargeRate: 65 # 40 seconds full recharge.
+    autoRechargePauseTime: 5
+  - type: AmmoCounter
 
 - type: entity
   name: service cyborg dispenser (soda)
@@ -1040,3 +1094,17 @@
     examinableWhileClosed: true
   - type: SolutionItemStatus
     solution: drink
+
+- type: entity
+  id: FireExtinguisherBorg
+  name: fire extinguisher borg
+  description: fire extinguisher borg
+  parent: FireExtinguisher
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SolutionRegeneration
+      solution: spray
+      generated:
+        reagents:
+        - ReagentId: Water
+          Quantity: 2

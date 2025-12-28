@@ -256,7 +256,7 @@
   id: ClothingHeadHelmetHardsuitPirateCapSun
   categories: [ HideSpawnMenu ]
   name: pirate captain's hardsuit helmet
-  suffix: Pirate, Sunrise
+  suffix: Pirate
   description: A special hardsuit helmet, made for the captain of a pirate ship.
   components:
   - type: Sprite
@@ -277,20 +277,61 @@
   - type: EyeProtection
 
 - type: entity
-  parent: ClothingHeadHardsuitBase
-  id: ClothingHeadHelmetHardsuitPirateSun
+  parent: ClothingHeadHelmetHardsuitPirateCapSun
+  id: ClothingHeadHelmetHardsuitPirate
   categories: [ HideSpawnMenu ]
   name: pirate hardsuit helmet
-  suffix: Pirate, Sunrise
-  description: A special hardsuit helmet, made for Scooner.
+  suffix: Pirate
+  description: A special hardsuit helmet, made for pirate.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Head/Hardsuits/piratebasichelm.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/piratecaptainhelm.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Head/Hardsuits/piratebasichelm.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.3
-    lowPressureMultiplier: 1000
+    sprite: _Sunrise/Clothing/Head/Hardsuits/piratecaptainhelm.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitPirateCapSun
+  id: ClothingHeadHelmetHardsuitPrivateer
+  categories: [ HideSpawnMenu ]
+  name: freelance hardsuit helmet
+  suffix: Pirate
+  description: A special hardsuit helmet, made for pirate.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/privateer.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/privateer.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: on-equipped-HELMET # Always on, cause infitity NVD
+        shader: unshaded
+  - type: StaticPrice
+    price: 1000
+  - type: Appearance
+  - type: UseDelay
+    delay: 3.0
+  - type: ToggleClothing
+    action: NVDToggleAction
+    mustEquip: true
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionPirate
+  - type: ItemToggle
+    predictable: false
+    onUse: false
+    canActivateInhand: false
+    soundActivate:
+      path: /Audio/_Sunrise/Items/Goggles/activate.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+  - type: FireProtection
+    reduction: 0.9
   - type: Armor
     modifiers:
       coefficients:
@@ -298,8 +339,8 @@
         Slash: 0.85
         Piercing: 0.85
         Heat: 0.85
-  - type: FlashImmunity
-  - type: EyeProtection
+        Radiation: 0.9
+        Caustic: 0.9
 
 - type: entity
   parent: ClothingHeadHardsuitBase #[ ClothingHeadSuitWithLightBase ]
@@ -326,3 +367,160 @@
         Piercing: 0.8
   - type: FlashImmunity
   - type: EyeProtection
+
+#Goliath Hardsuit
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetHardsuitSalvageGoliath
+  name: goliath hardsuit helmet
+  description: A sturdy hardsuit helmet plated with chitin and studded with several goliath eyes; its old lamp has been swapped for night-vision optics.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/goliathhelm.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+      - state: equipped-head-light
+        shader: unshaded
+      head-vox:
+      - state: equipped-head-light-vox
+        shader: unshaded
+      head-reptilian:
+      - state: equipped-head-light-reptilian
+        shader: unshaded
+      head-dog:
+      - state: equipped-head-light-dog
+        shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+      head-vox:
+      - state: equipped-head-vox
+      - state: equipped-head-unshaded-vox
+        shader: unshaded
+      head-reptilian:
+      - state: equipped-head-reptilian
+      - state: equipped-head-unshaded-reptilian
+        shader: unshaded
+      head-dog:
+      - state: equipped-head-dog
+      - state: equipped-head-unshaded-dog
+        shader: unshaded
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: Appearance
+  - type: UseDelay
+    delay: 3
+  - type: ToggleClothing
+    action: NVDToggleAction
+    mustEquip: true
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionSyndie
+  - type: PowerCellDraw
+    drawRate: 2
+    useCharge: 20
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: BatterySelfRecharger
+    autoRechargeRate: 6
+    autoRechargePauseTime: 1
+  - type: ItemToggle
+    predictable: false
+    onUse: false
+    canActivateInhand: false
+    soundActivate:
+      path: /Audio/_Sunrise/Items/Goggles/activate.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+  - type: ToggleCellDraw
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+
+##Modsuits
+#№Modsuit commaid
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetModsuitCommaid
+  name: commaid hardsuit helmet
+  description: A robust helmet for special operations.
+  suffix: Modsuit
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Sunrise/Modsuits/Clothing/Head/Qillu/commaid.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+
+#№Modsuit passenger
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetCommonModsuit
+  name: passenger hardsuit helmet
+  description: A robust helmet for special operations.
+  suffix: Modsuit
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Sunrise/Modsuits/Clothing/Head/passenger.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+
+#№Modsuit representative
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetRepresentativeModsuit
+  name: representative hardsuit helmet
+  description: A robust helmet for special operations.
+  suffix: Modsuit
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Sunrise/Modsuits/Clothing/Head/Qillu/representative.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+
+#№Modsuit blueshield
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetBlueshieldModsuit
+  name: blueshield hardsuit helmet
+  description: A robust helmet for special operations.
+  suffix: Modsuit
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Sunrise/Modsuits/Clothing/Head/Qillu/blueshield.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 10000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8

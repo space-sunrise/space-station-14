@@ -7,8 +7,6 @@
   - type: Tag
     tags:
     - CartridgeLightRifle
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletLightRifleTraceSP
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/7.62x39.rsi # Sunrise-Edit
     scale: 0.60, 0.60 # Sunrise-Added
@@ -23,8 +21,8 @@
   name: cartridge (.30 rifle SP)
   parent: BaseCartridgeLightRifleSP
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletLightRifleTraceSP
+  - type: CartridgeAmmo
+    proto: BulletLightRifleTraceSP
   - type: Sprite
     layers:
       - state: base
@@ -38,8 +36,8 @@
   name: cartridge (.30 rifle HP)
   parent: BaseCartridgeLightRifleSP
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletLightRifleTraceHP
+  - type: CartridgeAmmo
+    proto: BulletLightRifleTraceHP
   - type: Sprite
     layers:
       - state: base
@@ -53,8 +51,8 @@
   name: cartridge (.30 rifle FMJ)
   parent: BaseCartridgeLightRifleSP
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletLightRifleTraceFMJ
+  - type: CartridgeAmmo
+    proto: BulletLightRifleTraceFMJ
   - type: Sprite
     layers:
       - state: base
@@ -68,8 +66,8 @@
   name: cartridge (.30 rifle AP)
   parent: BaseCartridgeLightRifleSP
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletLightRifleTraceAP
+  - type: CartridgeAmmo
+    proto: BulletLightRifleTraceAP
   - type: Sprite
     layers:
       - state: base
@@ -83,8 +81,8 @@
   name: cartridge (.30 rifle practice)
   parent: BaseCartridgeLightRifleSP
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletLightRifleTracePractice
+  - type: CartridgeAmmo
+    proto: BulletLightRifleTracePractice
   - type: Sprite
     layers:
       - state: base
@@ -98,8 +96,8 @@
   name: cartridge (.30 rifle incendiary)
   parent: BaseCartridgeLightRifleSP
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletLightRifleTraceIncendiary
+  - type: CartridgeAmmo
+    proto: BulletLightRifleIncendiary
   - type: Sprite
     layers:
       - state: base
@@ -113,8 +111,8 @@
   name: cartridge (.30 rifle uranium)
   parent: BaseCartridgeLightRifleSP
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletLightRifleTraceUranium
+  - type: CartridgeAmmo
+    proto: BulletLightRifleTraceUranium
   - type: Sprite
     layers:
       - state: base

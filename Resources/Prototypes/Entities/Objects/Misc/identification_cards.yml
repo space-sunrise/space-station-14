@@ -16,12 +16,14 @@
     sound:
       path: /Audio/_Sunrise/Items/Handling/ID/drop.ogg
   # Sunrise added end
+  # Sunrise-Start
   - type: Sprite
-    sprite: Objects/Misc/id_cards.rsi
+    sprite: &id-rsi _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
   - type: Clothing
     slots:
     - idcard
-    sprite: Objects/Misc/id_cards.rsi
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
+  # Sunrise-End
   - type: Item
     size: Small
     heldPrefix: default
@@ -44,12 +46,14 @@
   id: PassengerIDCard
   name: passenger ID card
   components:
+  # Sunrise-Start
   - type: Sprite
-    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
     - state: default
     - sprite: &icon-rsi Interface/Misc/job_icons.rsi
-      offset: &icon-offset -0.09375, 0.0625 #3 pixels left, 2 pixels up
+      offset: &icon-offset -0.19, 0
+  # Sunrise-End
       state: Passenger
   - type: PresetIdCard
     job: Passenger
@@ -61,13 +65,14 @@
   id: CaptainIDCard
   name: captain ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: gold
-    - state: stripe_top
+    - state: department-side
       color: "#1b67a5"
-    - state: stripe_bottom
-      color: "#0e4069"
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Captain
@@ -89,13 +94,15 @@
   id: HoPIDCard
   name: head of personnel ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: silver
-    - state: stripe_top
+    - state: department-side
       color: &color-service-top "#639137"
-    - state: stripe_bottom
-      color: &color-service-bottom "#446326"
+    - state: department-side-extra-gold
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: HeadOfPersonnel
@@ -109,13 +116,15 @@
   id: CEIDCard
   name: chief engineer ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: silver
-    - state: stripe_top
+    - state: department-side
       color: &color-engineering-top "#ffa62b"
-    - state: stripe_bottom
-      color: &color-engineering-bottom "#bc5b00"
+    - state: department-side-extra-gold
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ChiefEngineer
@@ -129,13 +138,15 @@
   id: CMOIDCard
   name: chief medical officer ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: silver
-    - state: stripe_top
+    - state: department-side
       color: &color-medical-top "#68aed6"
-    - state: stripe_bottom
-      color: &color-medical-bottom "#325f7a"
+    - state: department-side-extra-gold
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ChiefMedicalOfficer
@@ -149,13 +160,15 @@
   id: RDIDCard
   name: research director ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: silver
-    - state: stripe_top
+    - state: department-side
       color: &color-science-top "#a53aaa"
-    - state: stripe_bottom
-      color: &color-science-bottom "#652368"
+    - state: department-side-extra-gold
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ResearchDirector
@@ -169,13 +182,15 @@
   id: HoSIDCard
   name: head of security ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: silver
-    - state: stripe_top
+    - state: department-side
       color: &color-security-top "#cb0000"
-    - state: stripe_bottom
-      color: &color-security-bottom "#830000"
+    - state: department-side-extra-gold
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: HeadOfSecurity
@@ -189,13 +204,15 @@
   id: QuartermasterIDCard
   name: quartermaster ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: silver
-    - state: stripe_top
+    - state: department-side
       color: &color-supply-top "#b18644"
-    - state: stripe_bottom
-      color: &color-supply-bottom "#5b4523"
+    - state: department-side-extra-gold
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: QuarterMaster
@@ -211,13 +228,14 @@
   id: TechnicalAssistantIDCard
   name: technical assistant ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-engineering-top
-    - state: stripe_bottom
-      color: *color-engineering-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: TechnicalAssistant
@@ -229,13 +247,14 @@
   id: EngineeringIDCard
   name: engineer ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-engineering-top
-    - state: stripe_bottom
-      color: *color-engineering-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: StationEngineer
@@ -247,13 +266,14 @@
   id: AtmosIDCard
   name: atmospheric technician ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-engineering-top
-    - state: stripe_bottom
-      color: *color-engineering-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: AtmosphericTechnician
@@ -265,13 +285,14 @@
   id: SeniorEngineerIDCard
   name: senior engineer ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-engineering-top
-    - state: stripe_bottom
-      color: *color-engineering-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SeniorEngineer
@@ -283,13 +304,14 @@
   id: MedicalInternIDCard
   name: medical intern ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-medical-top
-    - state: stripe_bottom
-      color: *color-medical-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: MedicalIntern
@@ -301,13 +323,14 @@
   id: MedicalIDCard
   name: medical ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-medical-top
-    - state: stripe_bottom
-      color: *color-medical-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: MedicalDoctor
@@ -319,13 +342,14 @@
   id: ParamedicIDCard
   name: paramedic ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-medical-top
-    - state: stripe_bottom
-      color: *color-medical-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Paramedic
@@ -337,13 +361,14 @@
   id: ChemistIDCard
   name: chemist ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-medical-top
-    - state: stripe_bottom
-      color: *color-medical-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Chemist
@@ -355,13 +380,14 @@
   id: PsychologistIDCard
   name: psychologist ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-medical-top
-    - state: stripe_bottom
-      color: *color-medical-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Psychologist
@@ -373,13 +399,14 @@
   id: SeniorPhysicianIDCard
   name: senior physician ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-medical-top
-    - state: stripe_bottom
-      color: *color-medical-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SeniorPhysician
@@ -391,13 +418,14 @@
   id: ResearchAssistantIDCard
   name: research assistant ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-science-top
-    - state: stripe_bottom
-      color: *color-science-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ResearchAssistant
@@ -409,13 +437,14 @@
   id: ResearchIDCard
   name: research ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-science-top
-    - state: stripe_bottom
-      color: *color-science-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Scientist
@@ -427,13 +456,14 @@
   id: SeniorResearcherIDCard
   name: senior researcher ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-science-top
-    - state: stripe_bottom
-      color: *color-science-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SeniorResearcher
@@ -445,14 +475,14 @@
   id: SecurityCadetIDCard
   name: security cadet ID card
   components:
+  # Sunrise-Start
   - type: Sprite
-    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-security-top
-    - state: stripe_bottom
-      color: *color-security-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SecurityCadet
@@ -464,13 +494,14 @@
   id: SecurityIDCard
   name: security ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-security-top
-    - state: stripe_bottom
-      color: *color-security-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SecurityOfficer
@@ -482,13 +513,14 @@
   id: WardenIDCard
   name: warden ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-security-top
-    - state: stripe_bottom
-      color: *color-security-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Warden
@@ -500,13 +532,14 @@
   id: DetectiveIDCard
   name: detective ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-security-top
-    - state: stripe_bottom
-      color: *color-security-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Detective
@@ -518,13 +551,14 @@
   id: BrigmedicIDCard
   name: brigmedic ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-security-top
-    - state: stripe_bottom
-      color: *color-security-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Brigmedic
@@ -538,13 +572,14 @@
   id: SeniorOfficerIDCard
   name: senior officer ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-security-top
-    - state: stripe_bottom
-      color: *color-security-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SeniorOfficer
@@ -556,13 +591,14 @@
   id: ServiceWorkerIDCard
   name: service worker ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ServiceWorker
@@ -574,10 +610,13 @@
   id: ClownIDCard
   name: clown ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_clown
+    - state: clown-side
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Clown
@@ -589,13 +628,14 @@
   id: MimeIDCard
   name: mime ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: "#2d2d2d"
-    - state: stripe_bottom
-      color: "#1d1d1d"
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Mime
@@ -607,13 +647,14 @@
   id: MusicianIDCard
   name: musician ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: "#6f56b8"
-    - state: stripe_bottom
-      color: "#524089"
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Musician
@@ -625,13 +666,14 @@
   id: ChaplainIDCard
   name: chaplain ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Chaplain
@@ -643,13 +685,14 @@
   id: JanitorIDCard
   name: janitor ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Janitor
@@ -661,13 +704,14 @@
   id: BartenderIDCard
   name: bartender ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Bartender
@@ -679,13 +723,14 @@
   id: PunPunIDCard
   name: pun pun ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Bartender
@@ -701,13 +746,14 @@
   id: ChefIDCard
   name: chef ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Chef
@@ -719,13 +765,14 @@
   id: BotanistIDCard
   name: botanist ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Botanist
@@ -737,13 +784,14 @@
   id: LibrarianIDCard
   name: librarian ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Librarian
@@ -755,13 +803,14 @@
   id: LawyerIDCard
   name: lawyer ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Lawyer
@@ -773,13 +822,14 @@
   id: ReporterIDCard
   name: reporter ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Reporter
@@ -791,37 +841,34 @@
   id: BoxerIDCard
   name: boxer ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Boxer
-  - type: PresetIdCard
-    job: Boxer
 
 - type: entity
   parent: IDCardStandard
   id: ZookeeperIDCard
   name: zookeeper ID card
   components:
+  # Sunrise-Start
   - type: Sprite
-    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Zookeeper
-  - type: PresetIdCard
-    job: Zookeeper
 
 #Supply
 
@@ -830,14 +877,14 @@
   id: CargoIDCard
   name: cargo ID card
   components:
+  # Sunrise-Start
   - type: Sprite
-    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-supply-top
-    - state: stripe_bottom
-      color: *color-supply-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: CargoTechnician
@@ -849,14 +896,14 @@
   id: SalvageIDCard
   name: salvage ID card
   components:
+  # Sunrise-Start
   - type: Sprite
-    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: *color-supply-top
-    - state: stripe_bottom
-      color: *color-supply-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ShaftMiner
@@ -872,7 +919,7 @@
   description: A generically printed ID card for scummy prisoners.
   components:
   - type: Sprite
-    sprite: Objects/Misc/id_cards.rsi
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
     layers:
     - state: orange
     - sprite: *icon-rsi
@@ -909,14 +956,14 @@
   name: cluwne ID card
   suffix: Unremoveable
   components:
+  # Sunrise-Start
   - type: Sprite
-    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
     - state: default
-    - state: stripe_top
+    - state: department-side
       color: "#5dc574"
-    - state: stripe_bottom
-      color: "#3f9b53"
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Cluwne
@@ -931,6 +978,7 @@
   name: visitor ID card
   components:
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: default
     - sprite: *icon-rsi
@@ -945,25 +993,14 @@
 #Antags
 
 - type: entity
-  name: passenger ID card
-  parent: [IDCardStandard, BaseChameleon]
+  parent: [PassengerIDCard, BaseChameleon]
   id: AgentIDCard
   suffix: Agent
   components:
-  - type: PresetIdCard
-    job: Passenger
-    setAccess: false
   - type: Access
     tags:
     - Maintenance
     - SyndicateAgent
-  - type: Sprite
-    sprite: _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
-    layers:
-    - state: default
-    - sprite: *icon-rsi
-      offset: *icon-offset
-      state: Passenger
   - type: AgentIDCard
   - type: UIRequiresLock
   - type: ActivatableUI
@@ -990,7 +1027,6 @@
   # Sunrise-End
 
 - type: entity
-  name: passenger ID card
   parent: AgentIDCard
   id: NukieAgentIDCard
   suffix: Nukie
@@ -1006,13 +1042,14 @@
   id: SyndicateIDCard
   name: syndicate ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: black
-    - state: stripe_top
+    - state: department-side
       color: &color-syndicate-top "#e80c0c"
-    - state: stripe_bottom
-      color: &color-syndicate-bottom "#960606"
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Syndicate
@@ -1028,13 +1065,14 @@
   id: SyndiOperativeIDCard
   name: syndicate operative ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: black
-    - state: stripe_top
+    - state: department-side
       color: *color-syndicate-top
-    - state: stripe_bottom
-      color: *color-syndicate-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SyndicateOperative
@@ -1045,13 +1083,14 @@
   id: SyndiCorpsmanIDCard
   name: syndicate corpsman ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: black
-    - state: stripe_top
+    - state: department-side
       color: *color-syndicate-top
-    - state: stripe_bottom
-      color: *color-syndicate-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SyndicateCorpsman
@@ -1061,13 +1100,14 @@
   id: SyndiCommanderIDCard
   name: syndicate commander ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: black
-    - state: stripe_top
+    - state: department-side
       color: *color-syndicate-top
-    - state: stripe_bottom
-      color: *color-syndicate-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SyndicateCommander
@@ -1078,6 +1118,7 @@
   name: pirate ID card
   components:
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: pirate
   - type: Item
@@ -1089,10 +1130,24 @@
 
 - type: entity
   parent: IDCardStandard
+  id: XenoborgIDCard
+  name: xenoborg ID card
+  components:
+  - type: Sprite
+    sprite: *id-rsi
+    layers:
+    - state: default
+  - type: Access
+    tags:
+    - Xenoborg
+
+- type: entity
+  parent: IDCardStandard
   id: WizardIDCard
   name: wizard ID card
   components:
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: wizard
     - sprite: *icon-rsi
@@ -1113,13 +1168,15 @@
   id: CentcomIDCard
   name: command officer ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
-    - state: centcom
-    - state: stripe_top
+    - state: blue
+    - state: department-side
       color: &color-centcomm-top "#134975"
-    - state: stripe_bottom
-      color: &color-centcomm-bottom "#0d304d"
+    - state: department-side-extra-gold
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Nanotrasen
@@ -1133,13 +1190,14 @@
   id: ERTLeaderIDCard
   name: ERT leader ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
     - state: gold
-    - state: stripe_top
+    - state: department-side
       color: *color-centcomm-top
-    - state: stripe_bottom
-      color: *color-centcomm-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ERTLeader
@@ -1153,13 +1211,14 @@
   id: ERTChaplainIDCard
   name: ERT chaplain ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
-    - state: centcom
-    - state: stripe_top
+    - state: blue
+    - state: department-side
       color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ERTChaplain
@@ -1173,13 +1232,14 @@
   id: ERTEngineerIDCard
   name: ERT engineer ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
-    - state: centcom
-    - state: stripe_top
+    - state: blue
+    - state: department-side
       color: *color-engineering-top
-    - state: stripe_bottom
-      color: *color-engineering-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ERTEngineer
@@ -1193,13 +1253,14 @@
   id: ERTJanitorIDCard
   name: ERT janitor ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
-    - state: centcom
-    - state: stripe_top
+    - state: blue
+    - state: department-side
       color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ERTJanitor
@@ -1213,13 +1274,14 @@
   id: ERTMedicIDCard
   name: ERT medic ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
-    - state: centcom
-    - state: stripe_top
+    - state: blue
+    - state: department-side
       color: *color-medical-top
-    - state: stripe_bottom
-      color: *color-medical-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ERTMedical
@@ -1233,13 +1295,14 @@
   id: ERTSecurityIDCard
   name: ERT security ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
-    - state: centcom
-    - state: stripe_top
+    - state: blue
+    - state: department-side
       color: *color-security-top
-    - state: stripe_bottom
-      color: *color-security-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ERTSecurity
@@ -1253,13 +1316,14 @@
   id: CentcomIDCardDeathsquad
   name: death squad ID card
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
-    - state: centcom
-    - state: stripe_top
+    - state: blue
+    - state: department-side
       color: *color-centcomm-top
-    - state: stripe_bottom
-      color: *color-centcomm-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: DeathSquad
@@ -1272,13 +1336,14 @@
   name: CBURN ID card
   suffix: CBURN
   components:
+  # Sunrise-Start
   - type: Sprite
+    sprite: *id-rsi
     layers:
-    - state: centcom
-    - state: stripe_top
+    - state: blue
+    - state: department-side
       color: *color-centcomm-top
-    - state: stripe_bottom
-      color: *color-centcomm-bottom
+  # Sunrise-End
     - sprite: *icon-rsi
       offset: *icon-offset
       state: CBURN
@@ -1294,15 +1359,17 @@
   suffix: Admin
   description: An ID card that gives you access beyond your wildest dreams.
   components:
+  # Sunrise-Start
   - type: Sprite
-    sprite: Objects/Misc/id_cards.rsi
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
-    - state: admin
+    - state: green
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Admin
   - type: Clothing
-    sprite: Objects/Misc/id_cards.rsi
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+  # Sunrise-Start
   - type: Item
     heldPrefix: green
   - type: IdCard

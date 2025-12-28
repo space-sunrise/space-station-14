@@ -33,7 +33,7 @@
     magState: disable
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 50
   - type: BatteryWeaponFireModes
@@ -75,11 +75,9 @@
   - type: Item
     storedOffset: 1,-5
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 15
-    autoRechargePause: true
     autoRechargePauseTime: 10
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 50
   - type: BatteryWeaponFireModes
@@ -93,11 +91,12 @@
       conditions:
       - !type:AlertLevelCondition
         alertLevels:
-        - blue
         - violet
         - yellow
         - red
         - gamma
+        - epsilon
+        - delta
     - proto: RedLaserBeam
       fireCost: 66.6
       magState: lethal
@@ -108,6 +107,8 @@
         - yellow
         - red
         - gamma
+        - epsilon
+        - delta
 
 - type: entity
   name: X-01 multiphase energy gun
@@ -139,13 +140,13 @@
     magState: disable
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
-    fireCost: 40
+    fireCost: 50
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: DisablerBolt
-      fireCost: 40
+      fireCost: 50
       magState: disable
       visualState: disable-unshaded
     - proto: RedLaserBeam
@@ -153,15 +154,19 @@
       magState: kill
       visualState: kill-unshaded
     - proto: DestroyBeam
-      fireCost: 750
+      fireCost: 250
       magState: destroy
       visualState: destroy-unshaded
       conditions:
       - !type:AlertLevelCondition
         alertLevels:
+        - violet
+        - yellow
         - gamma
+        - epsilon
+        - delta
     - proto: EmpPulse
-      fireCost: 600
+      fireCost: 300
       magState: ion
       visualState: ion-unshaded
       conditions:
@@ -171,14 +176,21 @@
         - yellow
         - red
         - gamma
+        - epsilon
+        - delta
+        - blue
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: Battery
     maxCharge: 1500
     startingCharge: 1500
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 10
-    autoRechargePause: true
-    autoRechargePauseTime: 15
+    autoRechargeRate: 12
+    autoRechargePauseTime: 30
   - type: Tag
     tags:
     - HighRiskItem
@@ -189,13 +201,12 @@
     stealGroup: WeaponEnergyGunMultiphase
 
 - type: entity
-  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband ]
+  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband ]
   id: WeaponIonRifle
   name: ion rifle
-  suffix: Ion Centcomm
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Battery/ion_rifle.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -205,19 +216,19 @@
   - type: Item
     size: Ginormous
   - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
     quickEquip: false
     slots:
     - Back
+    - SuitStorage
   - type: Gun
-    fireRate: 0.6
+    fireRate: 0.5
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 40 #25sec+60Sec Pause
-    autoRechargePause: true
+    autoRechargeRate: 2
     autoRechargePauseTime: 60
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: EmpPulse
-    fireCost: 250
+    fireCost: 125
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -228,7 +239,7 @@
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 8
-    pvsIncrease: 0.5
+    pvsIncrease: 0.8
 
 - type: entity
   parent: [BaseWeaponBattery, BaseSecurityContraband ]
@@ -250,11 +261,9 @@
   - type: Gun
     fireRate: 0.6
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 40 #100sec+60Sec Pause
-    autoRechargePause: true
+    autoRechargeRate: 2
     autoRechargePauseTime: 60
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: EmpPulse
     fireCost: 250
   - type: MagazineVisuals
@@ -282,7 +291,7 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: IgnitionRedLaser
     fireCost: 62.5
   - type: StaticPrice
@@ -303,7 +312,7 @@
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DecloneBolt
     fireCost: 200
   - type: MagazineVisuals
@@ -332,13 +341,12 @@
     shape:
     - 0, 0, 1, 1
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 200
   - type: MagazineVisuals
     magState: stun
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: TaserBolt
     fireCost: 100
   - type: BatteryWeaponFireModes
@@ -377,7 +385,7 @@
     magState: disable
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 75
   - type: BatteryWeaponFireModes
@@ -415,8 +423,8 @@
     slots:
     - Back
   - type: Gun
-    fireRate: 0.1
-  - type: HitscanBatteryAmmoProvider
+    fireRate: 0.2
+  - type: BatteryAmmoProvider
     proto: SniperBolt
     fireCost: 100
   - type: MagazineVisuals
@@ -427,8 +435,8 @@
   - type: GunRequiresWield
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 5
-    pvsIncrease: 0.3
+    maxOffset: 8
+    pvsIncrease: 0.8
 
 - type: entity
   name: ANNIHILATOR
@@ -449,7 +457,7 @@
     magState: destroy
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DestroyBeam
     fireCost: 100
   - type: BatteryWeaponFireModes
@@ -462,7 +470,6 @@
     maxCharge: 2000
     startingCharge: 2000
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 500
 
 - type: entity
@@ -481,13 +488,11 @@
       - state: mag-unshaded-4
         map: ["enum.GunVisualLayers.MagUnshaded"]
         shader: unshaded
-    - type: ProjectileBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       proto: ProjectilePolyboltJohnToe
       fireCost: 200
     - type: BatterySelfRecharger
-      autoRecharge: true
       autoRechargeRate: 40 #every 5 seconds another becomes toe.
-      autoRechargePause: false
     - type: MagazineVisuals
       magState: mag
       steps: 5

@@ -5,15 +5,15 @@
   prototype: MobTajaran
   bodyTypes:
   - TajaranNormal
-#  - TajaranSlim
+  # - TajaranCurved
+  # - TajaranSlim
   markingLimits: MobTajaranMarkingLimits
   dollPrototype: MobTajaranDummy
   skinColoration: Hues
-  # SUNRISE-TODO: Сделать локализированые имена
-  maleFirstNames: NamesFirstMale # FirstMaleTajaran
-  femaleFirstNames: NamesFirstFemale # FirstFemaleTajaran
-  maleLastNames: NamesLast # TajaranLast
-  femaleLastNames: NamesLast # TajaranLast
+  maleFirstNames: names_tajaran_male
+  femaleFirstNames: names_tajaran_female
+  maleLastNames: names_tajaran_last
+  femaleLastNames: names_tajaran_last
   naming: firstlast
   youngAge: 23
   oldAge: 46
@@ -40,6 +40,27 @@
     RLeg: MobTajaranRLeg
     LFoot: MobTajaranLFoot
     RFoot: MobTajaranRFoot
+    Tail: MobTajaranTail
+    HeadTop: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+
+- type: bodyType
+  id: TajaranCurved
+  name: body-curved
+  sprites:
+    Head: MobTajaranHead
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Chest: MobTajaranTorso
+    Eyes: MobTajaranEyes
+    LArm: MobTajaranLArm
+    RArm: MobTajaranRArm
+    LHand: MobTajaranLHand
+    RHand: MobTajaranRHand
+    LLeg: MobTajaranLLegCurved
+    RLeg: MobTajaranRLegCurved
+    LFoot: MobTajaranLFootCurved
+    RFoot: MobTajaranRFootCurved
     Tail: MobTajaranTail
     HeadTop: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
@@ -254,3 +275,27 @@
   baseSprite:
     sprite: Mobs/Species/Slim/tajaran.rsi
     state: r_foot_slim
+
+- type: humanoidBaseSprite
+  id: MobTajaranLLegCurved
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
+    state: l_leg_curved
+
+- type: humanoidBaseSprite
+  id: MobTajaranLFootCurved
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
+    state: l_foot_curved
+
+- type: humanoidBaseSprite
+  id: MobTajaranRLegCurved
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
+    state: r_leg_curved
+
+- type: humanoidBaseSprite
+  id: MobTajaranRFootCurved
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
+    state: r_foot_curved

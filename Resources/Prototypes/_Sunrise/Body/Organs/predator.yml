@@ -7,7 +7,6 @@
   - type: Sprite
     sprite: _Sunrise/Mobs/Species/Predator/organs.rsi
   - type: Organ
-  - type: Food
   - type: Extractable
     grindableSolutionName: organ
   - type: SolutionContainerManager

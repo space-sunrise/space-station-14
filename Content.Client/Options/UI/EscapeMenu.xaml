@@ -8,7 +8,7 @@
     <BoxContainer Orientation="Vertical" SeparationOverride="4" MinWidth="150">
         <ui:VoteCallMenuButton />
         <!-- Sunrise-Start -->
-        <Button Access="Public" Name="RoadmapButton" Text="{Loc 'ui-roadmap'}" StyleClasses="Caution" />
+        <Button Access="Public" Name="RoadmapButton" Text="{Loc 'ui-roadmap'}" />
         <Button Access="Public" Name="DonateButton" Text="{Loc 'ui-escape-donate'}" />
         <Button Access="Public" Name="ReplaysButton" Text="{Loc 'ui-escape-replays'}" />
         <!-- Sunrise-End -->

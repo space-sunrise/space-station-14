@@ -2,6 +2,7 @@ using Content.Server.Popups;
 using Content.Shared._Sunrise.DamageOverlay;
 using Content.Shared._Sunrise.Helpers;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
 using Robust.Shared.Map;

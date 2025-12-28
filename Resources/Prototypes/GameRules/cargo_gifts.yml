@@ -216,22 +216,3 @@
       SecurityRestraints: 2
       SecurityNonLethal: 2
       SecurityNonlethalThrowables: 1
-
-#Sunrise-start
-- type: entity
-  id: GiftsAncientGuns
-  parent: CargoGiftsBase
-  components:
-  - type: StationEvent
-    weight: 2
-    duration: 60
-    earliestStart: 6 #Nuke Ops Moments
-    minimumPlayers: 50
-  - type: CargoGiftsRule
-    description: cargo-gift-security-guns
-    dest: cargo-gift-dest-sec
-    gifts:
-      SecurityMosin: 3
-      SecurityArmor: 4
-      SecurityAmmunitionSmallLightRifle: 2
-#Sunrise-end

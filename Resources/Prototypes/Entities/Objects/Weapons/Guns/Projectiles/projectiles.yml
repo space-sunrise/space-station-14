@@ -178,6 +178,11 @@
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
     - state: uranium
+      shader: unshaded
+ # - type: PointLight // Too resource intensive for what little effect it has, one day...
+ #   enabled: true
+ #   color: "#059919"
+ #   radius: 2.0
   - type: Projectile
     damage:
       types:
@@ -234,11 +239,11 @@
     sprintSpeedModifier: 0.5
 
 - type: entity
-  parent: BulletTaser
-  id: BulletTaserSuper
-  categories: [ HideSpawnMenu ]
   name: taser bolt
+  id: BulletTaserSuper
   description: If you can see this, you've probably been stun-meta'd
+  parent: BulletTaser
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     noRot: true
@@ -383,11 +388,9 @@
     - EmitterBolt
   - type: TimedDespawn
     lifetime: 3
-  # Sunrise-Start
   - type: Reflective
     reflective:
     - Energy
-  # Sunrise-End
 
 - type: entity
   name: watcher bolt
@@ -551,11 +554,11 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 15
+        Blunt: 25
         Structural: 30
   # Short lifespan
   - type: TimedDespawn
-    lifetime: 0.22 # roughly 5.5 tiles
+    lifetime: 0.275 # roughly 6.5 tiles
   - type: GatheringProjectile
 
 - type: entity
@@ -608,8 +611,8 @@
         - MobState
     damage:
       types:
-        Blunt: 18
-        Slash: 4
+        Blunt: 20
+        Slash: 5
   - type: Projectile
     impactEffect: BulletImpactEffectKinetic
     damage:
@@ -836,7 +839,7 @@
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
-      - state: smallfrag
+      - state: frag
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
@@ -844,7 +847,6 @@
     intensitySlope: 1
     totalIntensity: 4 # 60 total damage to distribute over tiles
     maxTileBreak: 1
-    canCreateVacuum: False
   - type: PointLight
     radius: 3.5
     color: orange
@@ -871,7 +873,7 @@
     damage: 80
 
 - type: entity
-  id: BulletGrenadeBlastContact
+  id: BulletGrenadeBlast
   name: blast grenade
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -889,7 +891,7 @@
     canCreateVacuum: false
 
 - type: entity
-  id: BulletGrenadeFlashContact
+  id: BulletGrenadeFlash
   name: flash grenade
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -905,7 +907,7 @@
   - type: DeleteOnTrigger
 
 - type: entity
-  id: BulletGrenadeFragContact
+  id: BulletGrenadeFrag
   name: frag grenade
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -959,17 +961,17 @@
     tileBreakScale: 0.01
 
 - type: entity
-  id: BulletGrenadeEMPContact
-  name: contact EMP grenade
+  id: BulletGrenadeEMP
+  name: EMP rocket
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
-      - state: grenade #Sunrise-edit
+      - state: frag
   - type: EmpOnTrigger
-    range: 10  # 5 Sunrise-edit
+    range: 5
     energyConsumption: 50000
     disableDuration: 10
   - type: Ammo
@@ -978,7 +980,6 @@
     radius: 3.5
     color: blue
     energy: 0.5
-  - type: DeleteOnTrigger #Sunrise-edit
 
 - type: entity
   id: BulletCap
@@ -1125,6 +1126,17 @@
     - type: GrapplingProjectile
 
 - type: entity
+  parent: GrapplingHook
+  id: StickyHandPalm
+  name: sticky hand palm
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Launchers/sticky_hand.rsi
+  - type: Ammo
+    muzzleFlash: null
+
+- type: entity
   name : disabler bolt smg
   id: BulletDisablerSmg
   parent: BaseBullet
@@ -1261,9 +1273,6 @@
   - type: EmbeddableProjectile
   - type: Projectile
     deleteOnCollide: false
-    damage:
-      types:
-        Shock: 20 # Sunrise-Edit
     soundHit:
       path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
   - type: LightningArcShooter
@@ -1316,7 +1325,42 @@
     impactEffect: BulletImpactEffectOrangeDisabler
     damage:
       types:
-        Heat: 13
+        Heat: 20
+
+- type: entity
+  name: destroying bolt
+  id: BulletLaserDestroy
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: heavylaser
+      shader: unshaded
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.3,0.15,0.3"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+      fly-by: *flybyfixture
+  - type: Ammo
+  - type: Projectile
+    impactEffect: BulletImpactEffectOrangeDisabler
+    damage:
+      types:
+        Heat: 50
 
 - type: entity
   name: wide laser barrage
@@ -1400,263 +1444,43 @@
         mask:
         - Opaque
 
-# SUNRISE
-
 - type: entity
-  id: BulletPlasma
   parent: BaseBullet
+  id: EnergyCrossbowBolt
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    noRot: false
-    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
-    layers:
-    - state: arcane_barrage
-      shader: unshaded
-  - type: Projectile
-    impactEffect: BulletImpactEffectKinetic
-    damage:
-      types:
-        Heat: 14
-        Slash: 14
-        Structural: 35
-    penetrationThreshold: 800
-    penetrationDamageTypeRequirement:
-    - Structural
-  - type: Ammo
-    muzzleFlash: HitscanEffect
-  - type: TimedDespawn
-    lifetime: 0.35
-  - type: PointLight
-    radius: 2.5
-    color: "#dd16d395"
-    energy: 0.5
-  - type: GatheringProjectile
-
-- type: entity
-  name: wide plasma barrage
-  id: BulletPlasmaSpread
-  categories: [ HideSpawnMenu ]
-  parent: BulletPlasma
-  components:
-  - type: ProjectileSpread
-    proto: BulletPlasma
-    count: 3
-    spread: 25
-
-- type: entity
-  name : syndie plasma
-  id: BulletSyndiPlasma
-  parent: BaseBullet
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Reflective
-    reflective:
-    - Energy
-  - type: FlyBySound
-    sound:
-      collection: EnergyMiss
-      params:
-        volume: 5
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/red_projectile.rsi
-    layers:
-    - state: omnilaser
-      shader: unshaded
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      projectile:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.15,-0.3,0.15,0.3"
-        hard: false
-        mask:
-        - Impassable
-        - BulletImpassable
-      fly-by: *flybyfixture
-  - type: Ammo
-  - type: StaminaDamageOnCollide
-    damage: 1
-  - type: Projectile
-    impactEffect: BulletImpactEffectSyndiPlasma
-    damage:
-      types:
-        Heat: 12
-    soundHit:
-      collection: WeakHit
-
-- type: entity
-  name : syndie plasma
-  id: BulletSyndiPlasma2
-  parent: BaseBullet
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Reflective
-    reflective:
-    - Energy
-  - type: FlyBySound
-    sound:
-      collection: EnergyMiss
-      params:
-        volume: 5
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/red_projectile.rsi
-    layers:
-    - state: omnilaser
-      shader: unshaded
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      projectile:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.15,-0.3,0.15,0.3"
-        hard: false
-        mask:
-        - Impassable
-        - BulletImpassable
-      fly-by: *flybyfixture
-  - type: Ammo
-  - type: StaminaDamageOnCollide
-    damage: 1
-  - type: Projectile
-    impactEffect: BulletImpactEffectSyndiPlasma
-    damage:
-      types:
-        Heat: 8
-    soundHit:
-      collection: WeakHit
-
-- type: entity
-  name : syndie plasma
-  id: BulletSyndiPlasma3
-  parent: BaseBullet
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Reflective
-    reflective:
-    - Energy
-  - type: FlyBySound
-    sound:
-      collection: EnergyMiss
-      params:
-        volume: 5
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/big_red_projectile.rsi
-    layers:
-    - state: omnilaser
-      shader: unshaded
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      projectile:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.15,-0.3,0.15,0.3"
-        hard: false
-        mask:
-        - Impassable
-        - BulletImpassable
-      fly-by: *flybyfixture
-  - type: Ammo
-  - type: StaminaDamageOnCollide
-    damage: 1
-  - type: Projectile
-    impactEffect: BulletImpactEffectSyndiPlasma
-    damage:
-      types:
-        Heat: 20
-    soundHit:
-      collection: WeakHit
-
-- type: entity
   name: energy bolt
-  id: BulletEnergyGunLaser
-  parent: BaseBullet
-  categories: [ HideSpawnMenu ]
+  description: This'll hurt.
   components:
   - type: Reflective
     reflective:
-    - Energy
-  - type: FlyBySound
-    sound:
-      collection: EnergyMiss
-      params:
-        volume: 5
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
-    layers:
-    - state: omnilaser_greyscale
-      shader: unshaded
-      color: red
+    - NonEnergy
   - type: Ammo
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      projectile:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.2,-0.2,0.2,0.2"
-        hard: false
-        mask:
-        - Opaque
-      fly-by: *flybyfixture
-  - type: Projectile
-    impactEffect: BulletImpactEffectRedDisabler
-    damage:
-      types:
-        Heat: 20 # Slightly more damage than the 17heat from the Captain's Hitscan lasgun
-    soundHit:
-      collection: WeakHit
-
-- type: entity
-  id: BulletRocketNT
-  name: rocket
-  parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
-  components:
+    muzzleFlash: null
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
-    - state: frag
-  - type: ExplodeOnTrigger
-  - type: Explosive
-    explosionType: Default
-    totalIntensity: 150
-    intensitySlope: 5
-    maxIntensity: 10
-    tileBreakScale: 0
-  - type: PointLight
-    radius: 3.5
-    color: orange
-    energy: 0.5
-
-- type: entity
-  id: BaseBulletGrenade
-  parent: BaseItem
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    layers:
-    - state: grenade
+    - state: crossbowbolt
+      shader: unshaded
   - type: Projectile
     damage:
       types:
-        Blunt: 5
-    deleteOnCollide: false
-  - type: StartTimerOnShoot
-  - type: TimerTrigger
-    delay: 2
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.25,-0.25,0.25,0.25"
-        density: 50
-        mask:
-        - ItemMask
-        restitution: 0.05
-        friction: 0.5
+        Piercing: 2
+  - type: StunOnCollide #somewhat mirror to taser stats, meant to be tot 'sidegrade'
+    stunAmount: 0
+    knockdownAmount: 2.5
+    slowdownAmount: 2.5
+    walkSpeedModifier: 0.2
+    sprintSpeedModifier: 0.2
+    drop: false
+  - type: StaminaDamageOnCollide #additional stam damage to make repeated pushups less of a viable counter
+    damage: 45
+  - type: SolutionContainerManager
+    solutions:
+      bolt:
+        maxVol: 1.5
+        reagents:
+        - ReagentId: Toxin
+          Quantity: 1.5
+  - type: SolutionInjectOnProjectileHit
+    transferAmount: 1.5
+    solution: bolt

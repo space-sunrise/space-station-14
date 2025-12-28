@@ -9,7 +9,7 @@
     noRot: True
   - type: Sprite
     noRot: True
-    sprite: Objects/Devices/pinpointer.rsi
+    sprite: _Sunrise/Objects/Devices/pinpointer.rsi # Sunrise-Edit
     layers:
     - state: pinpointer
       map: ["enum.PinpointerLayers.Base"]
@@ -18,10 +18,10 @@
       shader: unshaded
       visible: false
   - type: Icon
-    sprite: Objects/Devices/pinpointer.rsi
+    sprite: _Sunrise/Objects/Devices/pinpointer.rsi # Sunrise-Edit
     state: pinpointer
   - type: Item
-    sprite: Objects/Devices/pinpointer.rsi
+    sprite: _Sunrise/Objects/Devices/pinpointer.rsi # Sunrise-Edit
     inhandVisuals:
       left:
       - state: inhand-left-base
@@ -94,6 +94,12 @@
   - type: Pinpointer
     component: NukeDisk
     targetName: nuclear authentication disk
+  # Sunrise-start
+  - type: Clothing
+    quickEquip: true
+    slots:
+    - neck
+  # Sunrise-end
 
 - type: entity
   name: universal pinpointer
@@ -196,5 +202,5 @@
   - type: Icon
     state: pinpointer-station
   - type: Pinpointer
-    component: XenoborgMothership
+    component: MothershipCore
     targetName: the Mothership

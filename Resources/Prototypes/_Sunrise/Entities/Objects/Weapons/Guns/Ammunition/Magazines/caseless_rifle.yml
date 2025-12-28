@@ -4,3 +4,46 @@
   components:
   - type: BallisticAmmoProvider
     capacity: 20
+
+- type: entity
+  parent: BaseMagazinePistolCaselessRifleExtended
+  id: MagazinePistolSubMachineGunCaseless
+  name: Tec9Magazine
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/mp38.rsi
+    scale: 0.90, 0.70
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazinePistolSubMachineGunCaselessExtended
+  name: extended magazine (caseless)
+  parent: BaseMagazineLightRifle
+  components:
+  - type: Tag
+    tags:
+      - MagazineCaselessRifle
+  - type: BallisticAmmoProvider
+    proto: CartridgeCaselessRifle
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeCaselessRifle
+    capacity: 35
+  - type: Item
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/IAR-52mag.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: Appearance

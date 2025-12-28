@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "license": "CC-BY-SA-3.0",
-  "copyright": "Made by borkroman for Sunries",
+  "license": "CC-BY-SA-4.0",
+  "copyright": "Made by borkroman and by (Discord) bulbo44kkey for Sunries",
   "size": {
     "x": 32,
     "y": 32
@@ -34,6 +34,120 @@
     {
       "name": "spitter",
       "directions": 4
+	},
+    {
+      "name": "alt_queen_tail",
+      "directions": 4
+	},
+    {
+      "name": "boiler_tail",
+      "directions": 4
+	},
+    {
+      "name": "carrier_tail",
+      "directions": 4
+	},
+    {
+      "name": "cougar_tail",
+      "directions": 4
+	},
+    {
+      "name": "crusher_tail",
+      "directions": 4
+	},
+    {
+	  "name": "tail_wagging",
+	  "directions": 4,
+      "delays": [
+        [
+          0.3,
+          0.17,
+          0.15,
+          0.15,
+          0.1,
+          0.05,
+          0.1,
+          0.15,
+          0.15,
+          0.17,
+          0.3,
+          0.17,
+          0.15,
+          0.15,
+          0.1,
+          0.05,
+          0.1,
+          0.15,
+          0.15,
+          0.2
+        ],
+        [
+          0.3,
+          0.17,
+          0.15,
+          0.15,
+          0.1,
+          0.05,
+          0.1,
+          0.15,
+          0.15,
+          0.17,
+          0.3,
+          0.17,
+          0.15,
+          0.15,
+          0.1,
+          0.05,
+          0.1,
+          0.15,
+          0.15,
+          0.2
+        ],
+        [
+          0.3,
+          0.17,
+          0.15,
+          0.15,
+          0.1,
+          0.05,
+          0.1,
+          0.15,
+          0.15,
+          0.17,
+          0.3,
+          0.17,
+          0.15,
+          0.15,
+          0.1,
+          0.05,
+          0.1,
+          0.15,
+          0.15,
+          0.2
+        ],
+        [
+          0.3,
+          0.17,
+          0.15,
+          0.15,
+          0.1,
+          0.05,
+          0.1,
+          0.15,
+          0.15,
+          0.17,
+          0.3,
+          0.17,
+          0.15,
+          0.15,
+          0.1,
+          0.05,
+          0.1,
+          0.15,
+          0.15,
+          0.2
+        ]
+     ]
     }
   ]
 }

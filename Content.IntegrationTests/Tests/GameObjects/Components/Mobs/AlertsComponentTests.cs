@@ -47,7 +47,6 @@ namespace Content.IntegrationTests.Tests.GameObjects.Components.Mobs
                 alertsSystem.ShowAlert(playerUid, "Debug1");
                 alertsSystem.ShowAlert(playerUid, "Debug2");
 
-                alerts = alertsSystem.GetActiveAlerts(playerUid);
                 Assert.That(alerts, Has.Count.EqualTo(alertCount + 2));
             });
 

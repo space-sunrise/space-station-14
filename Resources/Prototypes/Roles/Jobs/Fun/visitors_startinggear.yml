@@ -1841,9 +1841,12 @@
     belt: ClothingBeltUtility
     ears: ClothingHeadsetFreelance
     pocket1: WeaponPistolFlintlock
-    pocket2: HandheldGPSBasic
+    pocket2: PinpointerPirate # Sunrise-edit
   inhand:
     - Cutlass
+  storage:
+    back:
+    - Doubloon5
 
 - type: startingGear
   id: PirateScoonerAltB
@@ -1864,6 +1867,7 @@
   id: PirateScoonerAltD
   parent: PirateScoonerAltA
   equipment:
+    id: PiratePDAMusic # Sunrise-added
     head: ClothingHeadHatPirateTricord
     pocket1: WeaponRevolverPirate
 

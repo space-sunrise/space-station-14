@@ -1,185 +1,158 @@
 {
-    "version": 1,
-    "license": "CLA",
-    "copyright": "© SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt, IDs were redesigned by Gardsnake.",
-    "size": {
-        "x": 32,
-        "y": 32
+  "version": 1,
+  "license": "CLA",
+  "copyright": "© SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt, made for Space Sunrise by gardsnake (Github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "default"
     },
-    "states": [
-        {
-            "name": "default"
-        },
-        {
-            "name": "adj-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "adj-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "default-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "default-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "silver"
-        },
-        {
-            "name": "gold"
-        },
-        {
-            "name": "silver-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "silver-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "idadjutant"
-        },
-        {
-            "name": "idbarber"
-        },
-        {
-            "name": "idblueshield"
-        },
-        {
-            "name": "idstationminer"
-        },
-        {
-            "name": "idpatologoanatom"
-        },
-        {
-            "name": "idguardian-space-prison"
-        },
-        {
-            "name": "idheadofprison-space-prison"
-        },
-        {
-            "name": "idprisoner-space-prison"
-        },
-        {
-            "name": "idprisonpilot-space-prison"
-        },
-        {
-            "name": "idcard_captain"
-        },
-        {
-            "name": "idcard_crew"
-        },
-        {
-            "name": "idcard_officer"
-        },
-        {
-            "name": "idcard_officer_alt"
-        },
-        {
-            "name": "idcard_soldier"
-        },
-        {
-            "name": "orange-space-prison"
-        },
-        {
-            "name": "ntr-operator"
-        },
-        {
-            "name": "ntr-captain"
-        },
-        {
-            "name": "prisoner-space-prison"
-        },
-        {
-            "name": "ussp"
-        },
-        {
-            "name": "idmail"
-        },
-        {
-            "name": "idmusician"
-        },
-        {
-            "name": "idpassenger"
-        },
-        {
-            "name": "idsecuritypilot"
-        },
-        {
-            "name": "idmime"
-        },
-        {
-            "name": "idbrigmedic"
-        },
-        {
-            "name": "ert_engineer"
-        },
-        {
-            "name": "ert_janitor"
-        },
-        {
-            "name": "ert_medic"
-        },
-        {
-            "name": "ert_security"
-        },
-        {
-            "name": "idintern-cadet"
-        },
-        {
-            "name": "idintern-med"
-        },
-        {
-            "name": "idintern-sci"
-        },
-        {
-            "name": "idintern-service"
-        },
-        {
-            "name": "idintern-tech"
-        },
-        {
-            "name": "idengineer-space-prison"
-        },
-        {
-            "name": "idscientist-space-prison"
-        },
-        {
-            "name": "iddoctor-space-prison"
-        },
-        {
-            "name": "idchef-space-prison"
-        },
-        {
-            "name": "idworker-space-prison"
-        },
-        {
-            "name": "idinspector-space-prison"
-        },
-        {
-            "name": "idcommaid"
-        },
-        {
-            "name": "abductor"
-        },
-        {
-            "name": "idmagistrat"
-        },
-        {
-            "name": "idiaa"
-        },
-        {
-            "name": "stripe_bottom"
-        },
-        {
-            "name": "stripe_top"
-        },
-        {
-            "name": "centcom"
-        }
-    ]
+    {
+      "name": "default-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "default-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "silver"
+    },
+    {
+      "name": "silver-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "silver-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "gold"
+    },
+    {
+      "name": "gold-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "gold-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "blue"
+    },
+    {
+      "name": "blue-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "blue-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "black"
+    },
+    {
+      "name": "black-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "black-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "orange"
+    },
+    {
+      "name": "orange-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "orange-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "orange-space-prison"
+    },
+    {
+      "name": "dark-orange-space-prison"
+    },
+    {
+      "name": "idinspector-space-prison"
+    },
+    {
+      "name": "prisoner-space-prison"
+    },
+    {
+      "name": "stripe_top"
+    },
+    {
+      "name": "stripe_bottom"
+    },
+    {
+      "name": "admin"
+    },
+    {
+      "name": "admin-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "admin-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "green"
+    },
+    {
+      "name": "green-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "green-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "space-prison"
+    },
+    {
+      "name": "space-prison-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "space-prison-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "icon-captain"
+    },
+    {
+      "name": "wizard"
+    },
+    {
+      "name": "pirate"
+    },
+    {
+      "name": "ussp"
+    },
+    {
+      "name": "abductor"
+    },
+    {
+      "name": "clown-side"
+    },
+    {
+      "name": "department-side"
+    },
+    {
+      "name": "department-side-extra"
+    },
+    {
+      "name": "department-side-extra-gold"
+    },
+    {
+      "name": "department-side-extra-gold-ussp"
+    }
+  ]
 }

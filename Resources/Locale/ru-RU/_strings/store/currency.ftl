@@ -15,3 +15,5 @@ store-currency-display-stolen-essence = Украденная эссенция
 store-currency-display-silicon-memory = Память
 store-currency-display-wizcoin = Маг₭øин™
 store-currency-display-evolutionpoints = Очки эволюции
+store-currency-display-doubloon = ДБ
+store-currency-display-credit = кредиты

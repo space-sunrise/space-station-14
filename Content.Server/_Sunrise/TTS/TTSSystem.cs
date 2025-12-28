@@ -18,6 +18,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared.Chat;
 
 namespace Content.Server._Sunrise.TTS;
 

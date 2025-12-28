@@ -8,9 +8,10 @@
   blacklist:
     components:
     - Ghost
-    - Jump
     - Flip
-    - Fall
+    statusEffects:
+    - StatusEffectJump
+    - StatusEffectFall
   popupMessages: ["animations-msg-flip"]
   animation: true
 
@@ -24,9 +25,10 @@
   blacklist:
     components:
     - Ghost
-    - Jump
     - Flip
-    - Fall
+    statusEffects:
+    - StatusEffectJump
+    - StatusEffectFall
   popupMessages: ["animations-msg-jump"]
   animation: true
 
@@ -40,9 +42,10 @@
   blacklist:
     components:
     - Ghost
-    - Jump
     - Flip
-    - Fall
+    statusEffects:
+    - StatusEffectJump
+    - StatusEffectFall
   popupMessages: ["animations-msg-dance"]
   animation: true
 
@@ -56,9 +59,10 @@
   blacklist:
     components:
     - Ghost
-    - Jump
     - Flip
-    - Fall
+    statusEffects:
+    - StatusEffectJump
+    - StatusEffectFall
   animation: true
 
 - type: emote

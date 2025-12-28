@@ -62,6 +62,13 @@
       - WeaponMinigunMG100
 
 - type: entity
+  id: PowerpackMinigunMG100Incendiary
+  parent: PowerpackMinigunMG100
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleIncendiary
+
+- type: entity
   id: BasePowerpackMG100
   parent: BaseItem
   abstract: true
@@ -113,9 +120,9 @@
     - 0,0,6,4
   - type: Gun
     minAngle: 5
-    maxAngle: 90
-    angleIncrease: 2.5
-    angleDecay: 30
+    maxAngle: 80
+    angleIncrease: 1.5
+    angleDecay: 40
     fireRate: 8
     selectedMode: FullAuto
     availableModes:
@@ -170,8 +177,8 @@
     whitelist:
       tags:
       - CartridgeLightRifle
-    proto: CartridgeLightRifleSP
-    capacity: 1000
+    proto: CartridgeLightRifleFMJ
+    capacity: 1200
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
@@ -181,6 +188,9 @@
     - 0,0,6,4
   - type: ExplosionResistance
     damageCoefficient: 0.1
+  - type: StorageFill
+    contents:
+      - id: CrazyGlue
   - type: ItemSlots
     slots:
       weapon_slot:

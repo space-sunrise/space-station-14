@@ -6,7 +6,7 @@
   abstract: true
   components:
   - type: Interactions
-  - type: ResomiSkill
+  # - type: JumpSkill
   - type: DamageVisuals
     thresholds: [ 10, 30, 50, 70]
     targetLayers:
@@ -27,7 +27,7 @@
       Burn:
         sprite: _Sunrise/Mobs/Effects/Resomi/burn_damage.rsi
   - type: FireVisuals
-    sprite: Mobs/Effects/onfire.rsi
+    sprite: _Sunrise/Mobs/Effects/onfire.rsi
     normalState: Resomi_minor_burning
     alternateState: Resomi_burning
   - type: HumanoidAppearance
@@ -60,12 +60,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      70: Critical
-      140: Dead
+      75: Critical
+      150: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      40: 0.7
-      55: 0.5
+      50: 0.7
+      60: 0.5
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
@@ -75,16 +75,19 @@
       types:
         Slash: 5
   - type: Temperature
-    heatDamageThreshold: 313
-    coldDamageThreshold: 230
     currentTemperature: 310.15
     specificHeat: 42
+  - type: TemperatureDamage
+    heatDamageThreshold: 313
+    coldDamageThreshold: 230
     coldDamage:
       types:
         Cold : 0.1 #per second, scales with temperature & other constants
     heatDamage:
       types:
         Heat : 1.5 #per second, scales with temperature & other constants
+  - type: Carriable
+    requiresNestingMob: true
   - type: InteractionPopup
     successChance: 0.9
     interactSuccessString: petting-success-monkey
@@ -95,7 +98,12 @@
     interactFailureSound:
       path: /Audio/Items/wirecutter.ogg
   - type: Hands
-    handDisplacement:
+    leftHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: _Sunrise/Mobs/Species/Resomi/displacement.rsi
+          state: inHand
+    rightHandDisplacement:
       sizeMaps:
         32:
           sprite: _Sunrise/Mobs/Species/Resomi/displacement.rsi
@@ -234,9 +242,12 @@
       Male: UnisexResomi
       Female: UnisexResomi
       Unsexed: UnisexResomi
+  - type: TypingIndicator
+    proto: resomi
   - type: Speech
     speechVerb: Resomi
-    allowedEmotes: ['Chirp', 'Hisses', 'Growl', 'Scree', 'Call', 'Squawk']
+    speechSounds: UnisexResomi
+    allowedEmotes: ['Hisses', 'Growl', 'Scree', 'Call', 'Squawk', 'Trill', 'Chirp']
   - type: Tag
     tags:
     - CanPilot

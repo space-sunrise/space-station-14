@@ -70,13 +70,16 @@ namespace Content.Client.Voting
 
             _netManager.RegisterNetMessage<MsgVoteData>(ReceiveVoteData);
             _netManager.RegisterNetMessage<MsgVoteCanCall>(ReceiveVoteCanCall);
+            // Sunrise-Start
             _netManager.RegisterNetMessage<RequestVoteMusicDisableOptionMessage>(OnRequestVoteMusicDisableOption);
             _netManager.RegisterNetMessage<VoteMusicDisableOptionMessage>();
             _cfg.OnValueChanged(SunriseCCVars.VoteMusicDisable, OnVoteMusicDisableOptionChanged);
+            // Sunrise-End
 
             _client.RunLevelChanged += ClientOnRunLevelChanged;
         }
 
+        // Sunrise-Start
         private void OnRequestVoteMusicDisableOption(RequestVoteMusicDisableOptionMessage _)
         {
             var message = new VoteMusicDisableOptionMessage
@@ -94,6 +97,7 @@ namespace Content.Client.Voting
             };
             _netManager.ClientSendMessage(message);
         }
+        // Sunrise-End
 
         private void ClientOnRunLevelChanged(object? sender, RunLevelChangedEventArgs e)
         {
@@ -180,7 +184,7 @@ namespace Content.Client.Voting
                 {
                     Entries = message.Options
                         .Select(c => new VoteEntry(c.name))
-                        .ToArray(),
+                        .ToArray()
                 };
 
                 existingVote = vote;

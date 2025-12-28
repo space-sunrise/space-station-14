@@ -1,0 +1,36 @@
+- type: entity
+  parent: BaseDice
+  id: hyperDice
+  name: Hyper Dice
+  description: A customizable multidimensional singular hypercube for numerical generation. The latest technology in board games. One cube to rule them all.
+  components:
+  - type: Dice
+    IsNotStandardDice: true
+    sides: 1000
+    currentValue: 1000
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/dice.rsi
+    state: icon
+    scale: 0.65,0.65
+  - type: CollisionWake
+    enabled: false
+  - type: Fixtures
+    fixtures:
+      slips:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        layer:
+        - LowImpassable
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        density: 30
+        mask:
+        - ItemMask
+  - type: UserInterface
+    interfaces:
+      enum.ChangeDiceUiKey.Key:
+        type: ChangeDiceUserInterface

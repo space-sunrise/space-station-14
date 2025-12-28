@@ -64,9 +64,10 @@
       gas_tank: !type:ContainerSlot
 
 - type: entity
-  name: pie cannon
   parent: BaseStorageItem
   id: LauncherCreamPie
+  name: pie cannon
+  suffix: Empty
   description: Load cream pie for optimal results.
   components:
   - type: Sprite
@@ -127,14 +128,13 @@
     soundEmpty:
       path: /Audio/Items/hiss.ogg
     clumsyProof: true
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: FoodPieBananaCream
     fireCost: 30
   - type: Battery
     maxCharge: 90
     startingCharge: 90
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 1
   - type: AmmoCounter
   - type: Item
@@ -159,7 +159,7 @@
       - SyringeGunAmmo
   - type: Gun
     fireRate: 1
-    selectedMode: FullAuto #Sunrise-Edit
+    selectedMode: FullAuto
     availableModes:
     - SemiAuto
     - FullAuto
@@ -173,7 +173,11 @@
   - type: Item
     size: Large
     shape:
-    - 0,0,2,1
+    # sunrise-start
+    - 0,0,2,0
+    - 0,1,0,1
+    storedOffset: -5,-5
+    # sunrise-end
   - type: ContainerContainer
     containers:
       storagebase: !type:Container

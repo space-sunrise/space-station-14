@@ -1,6 +1,7 @@
 using Content.Server._Sunrise.NoEmotions;
 using Content.Server.Chat.Systems;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;

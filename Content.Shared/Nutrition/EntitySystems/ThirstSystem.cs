@@ -16,6 +16,7 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Damage;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 

@@ -23,6 +23,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Containers;
 using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server._Sunrise.Execution;
 
@@ -289,7 +291,7 @@ public sealed class ExecutionSystem : EntitySystem
         if (!TryComp<MeleeWeaponComponent>(weapon, out var melee) && melee!.Damage.GetTotal() > 0.0f)
             return;
 
-        _damageableSystem.TryChangeDamage(victim, melee.Damage * DamageModifier, true, useVariance: false, useModifier: false);
+        _damageableSystem.ChangeDamage(victim, melee.Damage * DamageModifier, true, useVariance: false, ignoreGlobalModifiers: true);
         _audioSystem.PlayEntity(melee.HitSound, Filter.Pvs(weapon), weapon, true, AudioParams.Default);
 
         if (attacker == victim)
@@ -414,7 +416,7 @@ public sealed class ExecutionSystem : EntitySystem
         }
 
         // Gun successfully fired, deal damage
-        _damageableSystem.TryChangeDamage(victim, damage * DamageModifier, true, useVariance: false, useModifier: false);
+        _damageableSystem.ChangeDamage(victim, damage * DamageModifier, true, useVariance: false, ignoreGlobalModifiers: true);
         _audioSystem.PlayEntity(component.SoundGunshot, Filter.Pvs(weapon), weapon, false, AudioParams.Default);
 
         // Popups

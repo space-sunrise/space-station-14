@@ -604,6 +604,8 @@
     AntimovLawset: 0.25
     NutimovLawset: 0.5
     Ninja: 0.25
+    MothershipCoreLawset: 0.25
+    XenoborgLawset: 0.25
 
 - type: siliconLaw
   id: Sec1

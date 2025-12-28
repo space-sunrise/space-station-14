@@ -19,7 +19,6 @@
   roles:
   - Bartender
   - Botanist
-  - Boxer
   - Chaplain
   - Chef
   - Clown
@@ -31,7 +30,6 @@
   - Passenger
   - Reporter
   - Visitor
-  - Zookeeper
   - ServiceWorker
   - Barber # Sunrise-Roles
   - ComMaid  # Sunrise-Lust edit
@@ -164,9 +162,7 @@
   color: "#7f7f7f" # Sunrise edit
   weight: 5  # Sunrise-weights
   roles:
-  - Boxer
   - Reporter
-  - Zookeeper
   - Psychologist
   - Barber  # Sunrise-Roles
   primary: false

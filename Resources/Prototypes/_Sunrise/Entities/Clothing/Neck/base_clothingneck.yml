@@ -1,0 +1,10 @@
+- type: entity
+  abstract: true
+  parent: ClothingNeckBase
+  id: ClothingCloakBase
+  components:
+  - type: Tag
+    tags:
+    - OpenNeck # INTERACTIONS
+    - ClothMade
+    - WhitelistChameleon

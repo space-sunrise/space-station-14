@@ -58,7 +58,7 @@
           Caustic: 0.75
 
 - type: entity
-  parent: [ClothingOuterArmorBasic, ClothingOuterStorageBase, BaseSecurityCommandContraband]
+  parent: ClothingOuterArmorCaptainCarapace
   id: ClothingOuterCoatCaptain
   name: captain's jacket
   description: Captain's formal jacket, inlaid with gold.
@@ -67,13 +67,6 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/captain.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/captain.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.65
-        Heat: 0.8
   # SUNRISE EDIT
   - type: Tag
     tags:
@@ -81,6 +74,17 @@
     - NudeBottom  # INTERACTIONS
     - WhitelistChameleon
   # SUNRISE EDIT
+
+- type: entity
+  parent: ClothingOuterCoatCaptain
+  id: ClothingOuterCoatCaptainOvercoat
+  name: captain's overcoat
+  description: Made specifically to the measurements of the current captain and made by the best seamstresses at NanoTrasen.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/cpt.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/cpt.rsi
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -383,27 +387,6 @@
   # SUNRISE EDIT
 
 - type: entity
-  parent: [ClothingOuterArmorBasic, ClothingOuterStorageBase, BaseSecurityCommandContraband]
-  id: ClothingOuterCoatCaptainOvercoat
-  name: captain's overcoat
-  description: Made specifically to the measurements of the current captain and made by the best seamstresses at NanoTrasen.
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/Coats/cpt.rsi
-  - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/Coats/cpt.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.65
-        Heat: 0.7
-  - type: ExplosionResistance
-    damageCoefficient: 0.65
-  - type: GroupExamine
-
-- type: entity
   parent: ClothingOuterCoatHoSTrench
   id: ClothingOuterCoatUSSPOvercoatBlack
   name: USSP armored overcoat
@@ -554,4 +537,42 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/sportsmans.rsi
 
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingNavalJacket
+  name: Naval Jacket
+  description: Dark blue waterproof jacket with reflective details.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/naval-jacket.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: icon-unshaded
+      shader: shaded
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/naval-jacket.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+      - state: equipped-OUTERCLOTHING-unshaded
+        shader: unshaded
+      - state: equipped-OUTERCLOTHING-unshaded
+        shader: shaded
+  - type: Reflect
+    reflectProb: 0.02
+    reflects:
+    - Energy
+    reflectingInHands: false
 
+- type: entity
+  parent: ClothingOuterCoatDetectiveLoadout
+  id: ClothingOuterDiscoAssBlazerDetective
+  name: disco ass blazer detective
+  description: Looks like someone skinned this blazer off some long extinct disco-animal. It has an enigmatic white rectangle on the back and the right sleeve.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi

@@ -41,7 +41,7 @@
     slots: [ Eyes ]
   - type: PowerCellDraw
     drawRate: 3.5
-    useRate: 20
+    useCharge: 20
   - type: ItemToggle
     predictable: false # issues between ToggleCellDraw and ItemToggleActiveSound
     onUse: false
@@ -62,6 +62,9 @@
   - type: HideLayerClothing
     layers:
       Hair: HEAD
+  - type: Tag
+    tags:
+    - NightVisionDevice
 
 - type: entity
   name: NVD Security
@@ -116,6 +119,9 @@
         visible: false
         shader: unshaded
         map: [ "light" ]
+  - type: PowerCellDraw
+    drawRate: 2
+    useCharge: 10
   - type: ShowSyndicateIcons
   - type: ComponentToggler
     parent: true
@@ -140,9 +146,12 @@
         map: [ "light" ]
   - type: PowerCellDraw
     drawRate: 5
-    useRate: 50
+    useCharge: 50
   - type: ComponentToggler
     parent: true
     components:
       - type: NightVision
         effect: EffectNightVisionHandcraft
+  - type: Tag
+    tags:
+    - NVDHandcrafted

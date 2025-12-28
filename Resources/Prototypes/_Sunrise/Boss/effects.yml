@@ -24,10 +24,7 @@
       - Hellspawn
       - GlassBeaker
       - DrinkBottle
-      - DrinkGlass
       - DrinkCan
-      - DrinkCup
-      - DrinkSpaceGlue
   - type: Fixtures
     fixtures:
       fix:
@@ -71,10 +68,6 @@
       - Hellspawn
       - GlassBeaker
       - DrinkBottle
-      - DrinkGlass
-      - DrinkCan
-      - DrinkCup
-      - DrinkSpaceGlue
   - type: Fixtures
     fixtures:
       fix:

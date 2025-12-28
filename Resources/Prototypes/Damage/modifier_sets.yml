@@ -192,16 +192,6 @@
     Heat: 3
 
 - type: damageModifierSet
-  id: HardLightBarrier
-  coefficients:
-    Heat: 0.8
-    Blunt: 0.8
-    Slash: 0.8
-    Piercing: 0.8
-    Cold: 0.8
-    Shock: 1.6
-
-- type: damageModifierSet
   id: Scale # Skin tougher, bones weaker, strong stomachs, cold-blooded (kindof)
   coefficients:
     Cold: 1.3
@@ -235,7 +225,7 @@
     Poison: 0.0
     Radiation: 0.0
 
-# immune to everything except physical and heat damage
+# immune to everything except physical and heat damage; vulnerable to holy damage because they're undead, but not as vulnerable as a ghost or demon would be
 - type: damageModifierSet
   id: Skeleton
   coefficients:
@@ -248,6 +238,7 @@
     Asphyxiation: 0.0
     Bloodloss: 0.0
     Cellular: 0.0
+    Holy: 0.5
   flatReductions:
     Blunt: 5
 
@@ -349,127 +340,3 @@
   coefficients:
     Heat: 1.15
     Cold: 0.85
-
-# terminator's flesh damage set
-- type: damageModifierSet
-  id: CyberneticFlesh
-  coefficients:
-    Blunt: 0.2
-    Slash: 0.2
-    Piercing: 0.1
-    # fire and lasers burn it good
-    Heat: 1.0
-    # zap
-    Shock: 1.5
-    Cold: 0.25
-    Caustic: 0.25
-    # doesnt have organs to poison
-    Poison: 0.0
-    Cellular: 0.0
-
-# terminator's endoskeleton damage set
-- type: damageModifierSet
-  id: Cybernetic
-  coefficients:
-    # bonk
-    Blunt: 1.0
-    # alloy too hard to cut or shoot
-    Slash: 0.0
-    Piercing: 0.0
-    # no burning anymore
-    Heat: 0.0
-    # zap zap
-    Shock: 2.5
-    Cold: 0.0
-    Caustic: 0.0
-    Poison: 0.0
-    Cellular: 0.0
-  flatReductions:
-    # can't punch the endoskeleton to death
-    Blunt: 5
-
-# Mech armor
-- type: damageModifierSet
-  id: ThinArmor
-  coefficients:
-    Blunt: 0.8
-    Slash: 0.8
-    Piercing: 0.9
-    Shock: 2
-    Heat: 0.8
-  flatReductions:
-    Blunt: 2
-    Heat: 1
-
-- type: damageModifierSet
-  id: LightArmor
-  coefficients:
-    Blunt: 0.75
-    Slash: 0.75
-    Piercing: 0.7
-    Shock: 2.75
-    Heat: 0.7
-    Structural: 0.55
-  flatReductions:
-    Blunt: 5
-    Heat: 5
-
-- type: damageModifierSet
-  id: MediumArmorNT
-  coefficients:
-    Blunt: 0.6
-    Slash: 0.6
-    Piercing: 0.5
-    Shock: 3.75
-    Heat: 0.8
-    Structural: 0.45
-  flatReductions:
-    Blunt: 5
-    Heat: 6
-    Slash: 5
-    Piercing: 3
-
-- type: damageModifierSet
-  id: HeavyArmorNT
-  coefficients:
-    Blunt: 0.5
-    Slash: 0.5
-    Piercing: 0.3
-    Shock: 4.5
-    Heat: 0.75
-    Structural: 0.4
-  flatReductions:
-    Blunt: 7
-    Heat: 8
-    Slash: 7
-    Piercing: 5
-
-- type: damageModifierSet
-  id: MediumArmorSyndi #35 35 50 -400 20
-  coefficients:
-    Blunt: 0.65
-    Slash: 0.65
-    Piercing: 0.5
-    Shock: 3.75
-    Heat: 0.8
-    Structural: 0.45
-  flatReductions:
-    Blunt: 5
-    Heat: 5
-    Slash: 5
-    Piercing: 4
-
-- type: damageModifierSet
-  id: HeavyArmorSyndi #45 45 6 -500 25
-  coefficients:
-    Blunt: 0.55
-    Slash: 0.55
-    Piercing: 0.4
-    Shock: 4.5
-    Heat: 0.75
-    Structural: 0.4
-  flatReductions:
-    Blunt: 7
-    Heat: 7
-    Slash: 7
-    Piercing: 6

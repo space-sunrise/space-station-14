@@ -84,7 +84,7 @@
         staminaMultiplier: 100
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 4
+    maxOffset: 5
     pvsIncrease: 0.5
   # Sunrise end
 
@@ -109,10 +109,6 @@
   - type: StaticPrice
     price: 10000
   # Sunrise start
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 4
-    pvsIncrease: 0.4
   - type: SpeedModifiedOnWield
     walkModifier: 0.85
     sprintModifier: 0.85
@@ -153,13 +149,12 @@
     - type: ContainerContainer
       containers:
         ballistic-ammo: !type:Container
-    - type: HitscanBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       proto: BulletRifleTraceSP
       fireCost: 100
     - type: Battery
       maxCharge: 10000
       startingCharge: 10000
     - type: BatterySelfRecharger
-      autoRecharge: true
       autoRechargeRate: 100 # Sunrise-Edit
     - type: AmmoCounter

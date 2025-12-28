@@ -90,10 +90,10 @@
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
           tags:
-            - PowerCage # Sunrise-edit
-  - type: HitscanBatteryAmmoProvider
-    proto: RedLightLaser
-    fireCost: 30 # Sunrise-edit #changed from 50 to 30
+            - PowerCell
+  - type: BatteryAmmoProvider
+    proto: RedShuttleMediumLaser #RedLightLaser
+    fireCost: 20 # Sunrise-edit
 
 - type: entity
   id: ShuttleGunPerforator
@@ -147,7 +147,7 @@
         whitelist:
           tags:
             - PowerCage
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedShuttleLaser
     fireCost: 150
 
@@ -408,3 +408,553 @@
   - type: DeviceLinkSink
     ports:
     - Trigger
+
+# Sunrise-start
+# region Auto-Links
+- type: entity
+  id: SignalButtonLongbow
+  parent: SignalButton
+  name: Longbow 127 Fire Button
+  suffix: Autolink
+  components:
+    - type: AutoLinkTransmitter
+      channel: Longbow
+
+- type: entity
+  id: SignalButtonVympel
+  parent: SignalButton
+  name: Vympel 127-2 Fire Button
+  suffix: Autolink
+  components:
+    - type: AutoLinkTransmitter
+      channel: Vympel
+
+- type: entity
+  id: SignalButtonQuadling
+  parent: SignalButton
+  name: Quadling 127-4 Fire Button
+  suffix: Autolink
+  components:
+    - type: AutoLinkTransmitter
+      channel: Quadling
+
+- type: entity
+  id: SignalButtonSquall
+  parent: SignalButton
+  name: Squall 308 Fire Button
+  suffix: Autolink
+  components:
+    - type: AutoLinkTransmitter
+      channel: Squall
+
+# region ---- Autocannon ----
+# naming: BAL (Ballistic) + calliber + Name
+# example: BAL-152 "Molot"
+
+- type: entity
+  id: ShuttleGunLongbow
+  parent: [ShuttleGunBase, ConstructibleMachine]
+  name: BAL-127 "Longbow"
+  description: A powerful stationary heavy autocanon. A cartridge is required for use.
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal-127.rsi
+    scale: 1.1, 1.1
+    layers:
+    - state: bal-127
+    - state: mag-7
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      gun_magazine: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    minAngle: 1
+    maxAngle: 3
+    projectileSpeed: 50
+    fireRate: 0.8
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/Bauer127/bauer127_shot.ogg
+      params:
+        pitch: 1.1
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: Machine
+    board: ShuttleGunLongbowCircuitboard
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineBauer127
+        insertSound:
+          path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+          params:
+            pitch: 2
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: AutoLinkReceiver
+    channel: Longbow
+
+- type: entity
+  id: ShuttleGunVympel
+  parent: [ShuttleGunBase, ConstructibleMachine]
+  name: BAL-127-2 "Vympel"
+  description: A powerful stationary twin heavy autocanon. A cartridge is required for use.
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal-127-2.rsi
+    scale: 1.05, 1.05
+    layers:
+    - state: bal-127-2
+    - state: mag-14
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      gun_magazine: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    selectedMode: Burst
+    availableModes:
+    - Burst
+    - FullAuto
+    burstFireRate: 5
+    shotsPerBurst: 6
+    burstCooldown: 1
+    minAngle: 3
+    maxAngle: 20
+    angleIncrease: 1
+    angleDecay: 20
+    projectileSpeed: 35
+    fireRate: 2.5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        pitch: 1.2
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: Machine
+    board: ShuttleGunVympelCircuitboard
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeAntiMateriel
+    capacity: 30
+    proto: Null
+    soundInsert:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: MagazineVisuals
+    magState: mag
+    steps: 15
+    zeroVisible: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.75,-0.45,0.75,0.45"
+        density: 125
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: AutoLinkReceiver
+    channel: Vympel
+
+- type: entity
+  id: ShuttleGunQuadling
+  parent: [ShuttleGunBase, ConstructibleMachine]
+  name: BAL-127-4 "Quadling"
+  description: THE POWER OF ELEVE... ahem, four barrels. Stationary quad heavy autocanon.
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal-127-4.rsi
+    scale: 1.05, 1.05
+    layers:
+    - state: bal-127
+    - state: mag-13
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      gun_magazine: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - Burst
+    - FullAuto
+    burstFireRate: 10
+    shotsPerBurst: 8
+    burstCooldown: 2
+    minAngle: 4
+    maxAngle: 25
+    angleIncrease: 1
+    angleDecay: 25
+    projectileSpeed: 32
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
+      params:
+        pitch: 1.9
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: Machine
+    board: ShuttleGunQuadlingCircuitboard
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeAntiMateriel
+    capacity: 90
+    proto: null
+    soundInsert:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: MagazineVisuals
+    magState: mag
+    steps: 14
+    zeroVisible: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.9,-0.45,0.9,0.45"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: AutoLinkReceiver
+    channel: Quadling
+
+- type: entity
+  id: ShuttleGunSquall
+  parent: [ShuttleGunBase, ConstructibleMachine]
+  name: BAL-308 "Squall"
+  description: A powerful stationary minigun. A cartridge is required for use.
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal-308.rsi
+    layers:
+    - state: bal-308
+    - state: mag-13
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      gun_magazine: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - Burst
+    - FullAuto
+    projectileSpeed: 30
+    fireRate: 12
+    burstFireRate: 25
+    shotsPerBurst: 20
+    burstCooldown: 1.5
+    minAngle: 6
+    maxAngle: 50
+    angleIncrease: 0.75
+    angleDecay: 50
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/HMGs/minigun_shot.ogg
+      params:
+        pitch: 0.8
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: Machine
+    board: ShuttleGunSquallCircuitboard
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 14
+    zeroVisible: false
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineMachineGunHeavyRifle
+        insertSound:
+          path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+          params:
+            pitch: 2
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: AutoLinkReceiver
+    channel: Squall
+
+# region ---- Lasers ----
+- type: entity
+  id: ShuttleGunBeamstormMachineGun
+  parent: [ ShuttleGunBase, ConstructibleMachine]
+  name: LSE-800c "Beamstorm machine gun"
+  description: Advance stationary laser unit. Effective against live targets and electronics. Uses the power cage to fire, and has an extremely high rate of fire.
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/laser.rsi
+    layers:
+    - state: lse-800c
+    - state: mag-unshaded-9
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 10
+    useKey: false
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 10
+    zeroVisible: true
+  - type: Machine
+    board: ShuttleGunBeamstormMachineGunCircuitboard
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCage
+  - type: BatteryAmmoProvider
+    proto: RedShuttleMediumLaser
+    fireCost: 30
+
+# TSL Tesla
+- type: entity
+  id: ShuttleGunTeslaOrion
+  parent: [ ShuttleGunBase, ConstructibleMachine]
+  name: TSL-200c "Orion"
+  description: Hi-tech stationary energy unit based on the principle of an experimental Tesla engine.. Effective against electronics. Uses the power cage to fire tesla or ion bolt.
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/tesla.rsi
+    layers:
+    - state: tsl-200c
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 0.6
+    projectileSpeed: 28
+    useKey: false
+    soundGunshot:
+      path: /Audio/Effects/Lightning/lightningshock.ogg
+      params:
+        variation: 0.2
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Machine
+    board: ShuttleGunTeslaOrionCircuitboard
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCage
+  - type: BatteryAmmoProvider
+    proto: TeslaGunBullet
+    fireCost: 400
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: TeslaGunBullet
+      fireCost: 400
+    - proto: BulletEMPMedium
+      fireCost: 500
+  - type: AmbientSound
+    enabled: true
+    sound:
+      path: /Audio/Effects/tesla.ogg
+    range: 5
+    volume: -13
+
+- type: entity
+  id: ShuttleGunTeslaHyperion
+  parent: [ ShuttleGunBase, ConstructibleMachine]
+  name: TSL-300c "Hyperion"
+  description: Hi-tech stationary energy unit based on the principle of an experimental Tesla engine.. Effective against electronics. Uses the power cage to fire tesla or ion bolt.
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/tesla-2.rsi
+    layers:
+    - state: tsl-300c
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 0.4
+    projectileSpeed: 27
+    useKey: false
+    soundGunshot:
+      path: /Audio/Effects/Lightning/lightningshock.ogg
+      params:
+        variation: 0.2
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Machine
+    board: ShuttleGunTeslaHyperionCircuitboard
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCage
+  - type: BatteryAmmoProvider
+    proto: TeslaGunBulletLarge
+    fireCost: 900
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: TeslaGunBulletLarge
+      fireCost: 900
+    - proto: BulletEMPLarge
+      fireCost: 1000
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.9,0.45,0.9"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: AmbientSound
+    enabled: true
+    sound:
+      path: /Audio/Effects/tesla.ogg
+    range: 5
+    volume: -8
+# Sunrise-end

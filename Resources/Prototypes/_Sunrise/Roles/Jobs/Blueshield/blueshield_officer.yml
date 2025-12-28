@@ -51,4 +51,4 @@
     gloves: ClothingHandsGlovesCombat
   storage:
     back:
-    - HandheldBSOCrewMonitor
+    # - HandheldBSOCrewMonitor

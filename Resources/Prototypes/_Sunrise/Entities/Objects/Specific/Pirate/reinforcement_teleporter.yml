@@ -1,0 +1,61 @@
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  abstract: true
+  id: ReinforcementTeleport
+  name: syndicate reinforcement radio
+  description: Call in a syndicate agent of questionable quality, instantly! Only basic equipment provided.
+  components:
+    - type: Sprite
+      layers:
+        - sprite: /Textures/_Sunrise/Effects/teleports_effect.rsi
+          state: redportin
+          shader: unshaded
+      netsync: false
+      drawdepth: Effects
+    - type: PointLight
+      color: "#FF0000"
+    - type: EmitSoundOnSpawn
+      sound:
+        path: /Audio/_Sunrise/Effects/electrical_short_circuit2.ogg
+    - type: TimedDespawn
+      lifetime: 90
+    - type: EvaporationSparkle
+    - type: Transform
+      noRot: true
+      anchored: true
+    - type: UserInterface
+      interfaces:
+        enum.GhostRoleRadioUiKey.Key:
+          type: GhostRoleRadioBoundUserInterface
+    - type: ActivatableUI
+      key: enum.GhostRoleRadioUiKey.Key
+    - type: EmitSoundOnUse
+      sound: /Audio/_Sunrise/Misc/emergency_meeting.ogg
+
+- type: entity
+  parent: ReinforcementTeleport
+  id: ReinforcementPirateScooner
+  name: human teleportation
+  description: Call in a freelancer of questionable quality, instantly! Basic pirate equipment provided.
+  suffix: Pirate
+  components:
+  - type: GhostRole
+    name: ghost-role-information-pirate-name
+    description: ghost-role-information-pirate-description
+    rules: ghost-role-information-rules-team-antagonist
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: ScoonerReinforcementSpawner
+
+- type: entity
+  parent: ReinforcementPirateScooner
+  id: ReinforcementPirateScoonerEVA
+  name: human teleportation
+  description: Call in a freelancer of questionable quality, instantly! Basic rookie-pirate equipment provided.
+  suffix: Pirate, EVA
+  components:
+  - type: GhostRoleMobSpawner
+    prototype: OldScoonerReinforcementSpawner

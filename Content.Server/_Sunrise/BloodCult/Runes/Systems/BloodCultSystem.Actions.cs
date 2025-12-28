@@ -381,7 +381,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                     if (!_entityManager.TryGetComponent<StackComponent>(material, out var stackNew))
                         return;
 
-                    stackNew.Count = count;
+                    _stack.SetCount((material, stackNew), count);
 
                     _popupSystem.PopupEntity(Loc.GetString($"Пласталь превращается в {MetaData(material).EntityName}!"),
                         args.Performer,

@@ -100,21 +100,6 @@
         - ReagentId: TranexamicAcid #Sunrise-Edit
           Quantity: 3 #Sunrise-Edit
 
-- type: entity
-  id: PatchViagra
-  name: Viarga patch
-  parent: BasePatch
-  components:
-  - type: Sprite
-    state: bandaid-clown
-  - type: SolutionContainerManager
-    solutions:
-      patch:
-        maxVol: 20
-        reagents:
-        - ReagentId: Aphrodisiac
-          Quantity: 20
-
 
 - type: entity
   id: PatchMedical
@@ -177,6 +162,32 @@
     whitelist:
       tags:
       - Patch
+
+- type: entity
+  name: patch pack
+  parent: PatchPack
+  id: PatchPackBrute
+  suffix: Brute
+  components:
+  - type: Label
+    currentLabel: brute patch
+  - type: StorageFill
+    contents:
+    - id: PatchBrute
+      amount: 5
+
+- type: entity
+  name: patch pack
+  parent: PatchPack
+  id: PatchPackHeat
+  suffix: Heat
+  components:
+  - type: Label
+    currentLabel: Heat patch
+  - type: StorageFill
+    contents:
+    - id: PatchBurn
+      amount: 5
 
 - type: entity
   name: bluespace drug storage

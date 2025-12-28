@@ -8,7 +8,8 @@ using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
-using Robust.Shared.Prototypes; // 🌟Starlight🌟
+using Robust.Shared.Prototypes;
+using Content.Shared.Emp; // 🌟Starlight🌟
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -30,25 +31,29 @@ public abstract partial class SharedGunSystem
         SubscribeLocalEvent<BallisticAmmoProviderComponent, InteractUsingEvent>(OnBallisticInteractUsing);
         SubscribeLocalEvent<BallisticAmmoProviderComponent, AfterInteractEvent>(OnBallisticAfterInteract);
         SubscribeLocalEvent<BallisticAmmoProviderComponent, AmmoFillDoAfterEvent>(OnBallisticAmmoFillDoAfter);
-        //SubscribeLocalEvent<BallisticAmmoProviderComponent, UseInHandEvent>(OnBallisticUse); // Sunrise-Edit
+        // SubscribeLocalEvent<BallisticAmmoProviderComponent, UseInHandEvent>(OnBallisticUse); // Sunrise edit
+        SubscribeLocalEvent<BallisticAmmoSelfRefillerComponent, MapInitEvent>(OnBallisticRefillerMapInit);
+        SubscribeLocalEvent<BallisticAmmoSelfRefillerComponent, EmpPulseEvent>(OnRefillerEmpPulsed);
     }
 
+    private void OnBallisticRefillerMapInit(Entity<BallisticAmmoSelfRefillerComponent> entity, ref MapInitEvent args)
+    {
+        entity.Comp.NextAutoRefill = Timing.CurTime + entity.Comp.AutoRefillRate;
+    }
     // Sunrise-Start
     // private void OnBallisticUse(EntityUid uid, BallisticAmmoProviderComponent component, UseInHandEvent args)
     // {
     //     if (args.Handled)
     //         return;
-    //
+
     //     ManualCycle(uid, component, TransformSystem.GetMapCoordinates(uid), args.User);
     //     args.Handled = true;
     // }
-
     public void BallisticAmmoCockGun(EntityUid user, EntityUid uid, BallisticAmmoProviderComponent component)
     {
         ManualCycle(uid, component, TransformSystem.GetMapCoordinates(uid), user);
     }
     // Sunrise-End
-
     private void OnBallisticInteractUsing(EntityUid uid, BallisticAmmoProviderComponent component, InteractUsingEvent args)
     {
         if (args.Handled)
@@ -162,8 +167,6 @@ public abstract partial class SharedGunSystem
                 Del(ent.Value);
         }
 
-        UpdateBallisticAppearance(args.Target.Value, component);
-        UpdateAmmoCount(args.Target.Value);
         // repeat if there is more space in the target and more ammo to fill
         var moreSpace = target.Entities.Count + target.UnspawnedCount < target.Capacity;
         var moreAmmo = component.Entities.Count + component.UnspawnedCount > 0;
@@ -330,6 +333,73 @@ public abstract partial class SharedGunSystem
         args.Capacity = component.Capacity;
     }
 
+    /// <summary>
+    /// Causes <paramref name="entity"/> to pause its refilling for either at least <paramref name="overridePauseDuration"/>
+    /// (if not null) or the entity's <see cref="BallisticAmmoSelfRefillerComponent.AutoRefillPauseDuration"/>. If the
+    /// entity's next refill would occur after the pause duration, this function has no effect.
+    /// </summary>
+    public void PauseSelfRefill(
+        Entity<BallisticAmmoSelfRefillerComponent> entity,
+        TimeSpan? overridePauseDuration = null
+    )
+    {
+        if (overridePauseDuration == null && !entity.Comp.FiringPausesAutoRefill)
+            return;
+
+        var nextRefillByPause = Timing.CurTime + (overridePauseDuration ?? entity.Comp.AutoRefillPauseDuration);
+        if (nextRefillByPause > entity.Comp.NextAutoRefill)
+        {
+            entity.Comp.NextAutoRefill = nextRefillByPause;
+            DirtyField(entity.AsNullable(), nameof(BallisticAmmoSelfRefillerComponent.NextAutoRefill));
+        }
+    }
+
+    /// <summary>
+    /// Returns true if the given <paramref name="entity"/>'s ballistic ammunition is full, false otherwise.
+    /// </summary>
+    public bool IsFull(Entity<BallisticAmmoProviderComponent> entity)
+    {
+        return GetBallisticShots(entity.Comp) >= entity.Comp.Capacity;
+    }
+
+    /// <summary>
+    /// Returns whether or not <paramref name="inserted"/> can be inserted into <paramref name="entity"/>, based on
+    /// available space and whitelists.
+    /// </summary>
+    public bool CanInsertBallistic(Entity<BallisticAmmoProviderComponent> entity, EntityUid inserted)
+    {
+        return !_whitelistSystem.IsWhitelistFailOrNull(entity.Comp.Whitelist, inserted) &&
+               !IsFull(entity);
+    }
+
+    /// <summary>
+    /// Attempts to insert <paramref name="inserted"/> into <paramref name="entity"/> as ammunition. Returns true on
+    /// success, false otherwise.
+    /// </summary>
+    public bool TryBallisticInsert(
+        Entity<BallisticAmmoProviderComponent> entity,
+        EntityUid inserted,
+        EntityUid? user,
+        bool suppressInsertionSound = false
+    )
+    {
+        if (!CanInsertBallistic(entity, inserted))
+            return false;
+
+        entity.Comp.Entities.Add(inserted);
+        Containers.Insert(inserted, entity.Comp.Container);
+        if (!suppressInsertionSound)
+        {
+            Audio.PlayPredicted(entity.Comp.SoundInsert, entity, user);
+        }
+
+        UpdateBallisticAppearance(entity, entity.Comp);
+        UpdateAmmoCount(entity);
+        DirtyField(entity.AsNullable(), nameof(BallisticAmmoProviderComponent.Entities));
+
+        return true;
+    }
+
     public void UpdateBallisticAppearance(EntityUid uid, BallisticAmmoProviderComponent component)
     {
         if (!Timing.IsFirstTimePredicted || !TryComp<AppearanceComponent>(uid, out var appearance))
@@ -348,6 +418,70 @@ public abstract partial class SharedGunSystem
         UpdateBallisticAppearance(entity.Owner, entity.Comp);
         UpdateAmmoCount(entity.Owner);
         Dirty(entity);
+    }
+
+    private void OnRefillerEmpPulsed(Entity<BallisticAmmoSelfRefillerComponent> entity, ref EmpPulseEvent args)
+    {
+        if (!entity.Comp.AffectedByEmp)
+            return;
+
+        PauseSelfRefill(entity, args.Duration);
+    }
+
+    private void UpdateBallistic(float frameTime)
+    {
+        var query = EntityQueryEnumerator<BallisticAmmoSelfRefillerComponent, BallisticAmmoProviderComponent>();
+        while (query.MoveNext(out var uid, out var refiller, out var ammo))
+        {
+            BallisticSelfRefillerUpdate((uid, ammo, refiller));
+        }
+    }
+
+    private void BallisticSelfRefillerUpdate(
+        Entity<BallisticAmmoProviderComponent, BallisticAmmoSelfRefillerComponent> entity
+    )
+    {
+        var ammo = entity.Comp1;
+        var refiller = entity.Comp2;
+        if (Timing.CurTime < refiller.NextAutoRefill)
+            return;
+
+        refiller.NextAutoRefill += refiller.AutoRefillRate;
+        DirtyField(entity, refiller, nameof(BallisticAmmoSelfRefillerComponent.NextAutoRefill));
+
+        if (!refiller.AutoRefill || IsFull(entity))
+            return;
+
+        if (refiller.AmmoProto is not { } refillerAmmoProto)
+        {
+            // No ammo proto on the refiller, so just increment the unspawned count on the provider
+            // if it has an ammo proto.
+            if (ammo.Proto is null)
+            {
+                Log.Error(
+                    $"Neither of {entity}'s {nameof(BallisticAmmoSelfRefillerComponent)}'s or {nameof(BallisticAmmoProviderComponent)}'s ammunition protos is specified. This is a configuration error as it means {nameof(BallisticAmmoSelfRefillerComponent)} cannot do anything.");
+                return;
+            }
+
+            SetBallisticUnspawned(entity, ammo.UnspawnedCount + 1);
+        }
+        else if (ammo.Proto == refillerAmmoProto)
+        {
+            // The ammo proto on the refiller and the provider match. Add an unspawned ammo.
+            SetBallisticUnspawned(entity, ammo.UnspawnedCount + 1);
+        }
+        else
+        {
+            // Can't use unspawned ammo, so spawn an entity and try to insert it.
+            var ammoEntity = PredictedSpawnAttachedTo(refiller.AmmoProto, Transform(entity).Coordinates);
+            var insertSucceeded = TryBallisticInsert(entity, ammoEntity, null, suppressInsertionSound: true);
+            if (!insertSucceeded)
+            {
+                PredictedQueueDel(ammoEntity);
+                Log.Error(
+                    $"Failed to insert ammo {ammoEntity} into non-full {entity}. This is a configuration error. Is the {nameof(BallisticAmmoSelfRefillerComponent)}'s {nameof(BallisticAmmoSelfRefillerComponent.AmmoProto)} incorrect for the {nameof(BallisticAmmoProviderComponent)}'s {nameof(BallisticAmmoProviderComponent.Whitelist)}?");
+            }
+        }
     }
 }
 

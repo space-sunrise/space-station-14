@@ -10,8 +10,9 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda
+  # Sunrise-Start
   - type: Sprite
-    sprite: Objects/Devices/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: "pda"
@@ -19,12 +20,13 @@
       map: [ "enum.PdaVisualLayers.Flashlight" ]
       shader: "unshaded"
       visible: false
-    - state: "id_overlay"
+    - state: "id_inserted"
       map: [ "enum.PdaVisualLayers.IdLight" ]
       shader: "unshaded"
       visible: false
   - type: Icon
-    sprite: Objects/Devices/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  # Sunrise-End
     state: pda
   - type: Pda
     paiSlot:
@@ -134,8 +136,9 @@
   id: BaseWidePDA
   abstract: true
   components:
+  # Sunrise-Start
   - type: Sprite
-    sprite: Objects/Devices/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi # Sunrise-Edit
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: "pda"
@@ -143,10 +146,11 @@
       map: [ "enum.PdaVisualLayers.Flashlight" ]
       shader: "unshaded"
       visible: false
-    - state: "id_overlay_wide"
+    - state: "id_inserted_wide"
       map: [ "enum.PdaVisualLayers.IdLight" ]
       shader: "unshaded"
       visible: false
+  # Sunrise-End
 
 - type: entity
   parent: BasePDA
@@ -186,7 +190,7 @@
   - type: Pda
     id: PassengerIDCard
   - type: PdaBorderColor
-    borderColor: "#717059"
+    borderColor: "#627350" # Sunrise-Edit
 
 - type: entity
   parent: BasePDA
@@ -201,9 +205,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-interntech
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#949137"
+    borderColor: "#627350"
+    accentVColor: "#cc5200"
+  # Sunrise-End
   - type: Icon
     state: pda-interntech
 
@@ -220,9 +226,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-internmed
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#447987"
+    borderColor: "#627350"
+    accentVColor: "#2f6e67"
+  # Sunrise-End
   - type: Icon
     state: pda-internmed
   - type: GuideHelp
@@ -242,9 +250,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-interncadet
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#A32D26"
+    borderColor: "#627350"
+    accentVColor: "#cc3d3d"
+  # Sunrise-End
   - type: Icon
     state: pda-interncadet
 
@@ -261,9 +271,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-internsci
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#8900c9"
+    borderColor: "#627350"
+    accentVColor: "#7a2699"
+  # Sunrise-End
   - type: Icon
     state: pda-internsci
 
@@ -280,9 +292,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-internservice
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#00cc35"
+    borderColor: "#627350"
+    accentVColor: "#198019"
+  # Sunrise-End
   - type: Icon
     state: pda-internservice
 
@@ -299,8 +313,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-cook
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
+    borderColor: "#a3b2cc"
+    accentVColor: "#198019"
+  # Sunrise-End
   - type: Icon
     state: pda-cook
   - type: ReplacementAccent # for random sentience event
@@ -319,9 +336,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-hydro
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#44843c"
-    accentVColor: "#00cc35"
+    borderColor: "#55804d"
+    accentVColor: "#6dcc3d"
+  # Sunrise-End
   - type: Icon
     state: pda-hydro
 # Sunrise-Start
@@ -357,8 +376,10 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-clown
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#C18199"
+    borderColor: "#b36bb3"
+  # Sunrise-End
   - type: Icon
     state: pda-clown
   - type: Slippery # secretly made of bananium
@@ -437,9 +458,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-mime
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentHColor: "#333333"
+    borderColor: "#2e4259"
+    accentVColor: "#a3b2cc"
+    accentHColor: "#a3b2cc"
+  # Sunrise-End
   - type: Icon
     state: pda-mime
   - type: Muted # for random sentience event
@@ -457,8 +481,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-chaplain
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#333333"
+    borderColor: "#616266"
+    accentVColor: "#198019"
+  # Sunrise-End
   - type: Icon
     state: pda-chaplain
 
@@ -492,9 +519,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-qm
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#e39751"
-    accentVColor: "#a23e3e"
+    borderColor: "#996e2e"
+    accentVColor: "#7a2699"
+    accentHColor: "#99461d"
+  # Sunrise-End
   - type: Icon
     state: pda-qm
   - type: CartridgeLoader
@@ -518,8 +548,10 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-cargo
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#e39751"
+    borderColor: "#996e2e"
+  # Sunrise-End
   - type: Icon
     state: pda-cargo
 
@@ -536,9 +568,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-miner
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#af9366"
-    accentVColor: "#8900c9"
+    borderColor: "#996e2e"
+    accentVColor: "#7a2699"
+  # Sunrise-End
   - type: Icon
     state: pda-miner
   - type: CartridgeLoader
@@ -563,8 +597,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-bartender
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#333333"
+    borderColor: "#616266"
+    accentVColor: "#198019"
+    accentHColor: "#a3b2cc"
+  # Sunrise-End
   - type: Icon
     state: pda-bartender
 
@@ -587,8 +625,10 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-library
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#858585"
+    borderColor: "#616266"
+  # Sunrise-End
   - type: Icon
     state: pda-library
   # Sunrise-start
@@ -627,8 +667,10 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-lawyer
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#6f6192"
+    borderColor: "#665c99"
+  # Sunrise-End
   - type: Icon
     state: pda-lawyer
 
@@ -656,8 +698,10 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-janitor
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#5D2D56"
+    borderColor: "#7a2699"
+  # Sunrise-End
   - type: Icon
     state: pda-janitor
 
@@ -680,8 +724,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-captain
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#7C5D00"
+    borderColor: "#e6bd45"
+    accentVColor: "#4b78a6"
+    accentHColor: "#4b78a6"
+  # Sunrise-End
   - type: Icon
     state: pda-captain
 
@@ -704,9 +752,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-hop
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#789876"
-    accentHColor: "#447987"
+    borderColor: "#627350"
+    accentVColor: "#4b78a6"
+    accentHColor: "#4b78a6"
+  # Sunrise-End
   - type: Icon
     state: pda-hop
 
@@ -729,9 +780,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-ce
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#949137"
-    accentHColor: "#447987"
+    borderColor: "#deb63d"
+    accentVColor: "#cc5200"
+    accentHColor: "#2990cc"
+  # Sunrise-End
   - type: Icon
     state: pda-ce
 
@@ -748,9 +802,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-engineer
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#949137"
-    accentVColor: "#A32D26"
+    borderColor: "#deb63d"
+    accentVColor: "#cc5200"
+  # Sunrise-End
   - type: Icon
     state: pda-engineer
 
@@ -773,10 +829,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-cmo
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentHColor: "#447987"
-    accentVColor: "#447987"
+    borderColor: "#a3b2cc"
+    accentVColor: "#2f6e67"
+    accentHColor: "#2f6e67"
+  # Sunrise-End
   - type: Icon
     state: pda-cmo
 
@@ -793,9 +851,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-medical
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#447987"
+    borderColor: "#a3b2cc"
+    accentVColor: "#2f6e67"
+  # Sunrise-End
   - type: Icon
     state: pda-medical
   - type: GuideHelp
@@ -826,9 +886,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-paramedic
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#2a4b5b"
+    borderColor: "#a3b2cc"
+    accentVColor: "#2f6e67"
+  # Sunrise-End
   - type: Icon
     state: pda-paramedic
 
@@ -845,9 +907,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-chemistry
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#B34200"
+    borderColor: "#a3b2cc"
+    accentVColor: "#d95e00"
+  # Sunrise-End
   - type: Icon
     state: pda-chemistry
 
@@ -870,10 +934,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-rd
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentHColor: "#447987"
-    accentVColor: "#8900c9"
+    borderColor: "#a3b2cc"
+    accentVColor: "#7a2699"
+    accentHColor: "#7a2699"
+  # Sunrise-End
   - type: Icon
     state: pda-rd
 
@@ -890,9 +956,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-science
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#8900c9"
+    borderColor: "#a3b2cc"
+    accentVColor: "#7a2699"
+  # Sunrise-End
   - type: Icon
     state: pda-science
 
@@ -915,9 +983,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-hos
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentHColor: "#447987"
+    borderColor: "#637199"
+    accentVColor: "#cc3d3d"
+    accentHColor: "#cc3d3d"
+  # Sunrise-End
   - type: Icon
     state: pda-hos
   - type: CartridgeLoader
@@ -942,9 +1013,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-warden
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentVColor: "#949137"
+    borderColor: "#637199"
+    accentVColor: "#cc3d3d"
+    accentHColor: "#a3b2cc"
+  # Sunrise-End
   - type: Icon
     state: pda-warden
 
@@ -961,8 +1035,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-security
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#A32D26"
+    borderColor: "#637199"
+    accentVColor: "#cc3d3d"
+  # Sunrise-End
   - type: Icon
     state: pda-security
 
@@ -985,8 +1062,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-centcom
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#00842e"
+    borderColor: "#29722e"
+    accentVColor: "#e6bd45"
+    accentHColor: "#e6bd45"
+  # Sunrise-End
   - type: Icon
     state: pda-centcom
   - type: CartridgeLoader
@@ -1014,8 +1095,12 @@
       whitelist:
         tags:
         - Write
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#00842e"
+    borderColor: "#29722e"
+    accentVColor: "#e6bd45"
+    accentHColor: "#e6bd45"
+  # Sunrise-End
   - type: Icon
     state: pda-centcom
 
@@ -1047,6 +1132,13 @@
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
+  # sunrise-start
+  - type: Instrument
+    allowPercussion: true
+    allowProgramChange: true
+    respectMidiLimits: false
+    handheld: true
+  # sunrise-end
 
 - type: entity
   parent: CentcomPDA
@@ -1055,6 +1147,17 @@
   components:
   - type: Pda
     id: CentcomIDCardDeathsquad
+  # Sunrise-Start
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-deathsquad
+  - type: PdaBorderColor
+    borderColor: "#2e4259"
+    accentVColor: "#cc3d3d"
+    accentHColor: "#cc3d3d"
+  # Sunrise-End
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1072,8 +1175,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-musician
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#333333"
+    borderColor: "#616266"
+    accentVColor: "#7a2699"
+  # Sunrise-End
   - type: Icon
     state: pda-musician
   - type: Instrument
@@ -1106,9 +1212,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-atmos
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#949137"
-    accentVColor: "#447987"
+    borderColor: "#deb63d"
+    accentVColor: "#2990cc"
+  # Sunrise-End
   - type: Icon
     state: pda-atmos
 
@@ -1125,8 +1233,10 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-clear
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#288e4d"
+    borderColor: "#446544"
+  # Sunrise-End
   - type: Icon
     state: pda-clear
 
@@ -1153,8 +1263,10 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-syndi
+  # Sunrise-Start
   - type: PdaBorderColor
     borderColor: "#891417"
+  # Sunrise-End
   - type: Icon
     state: pda-syndi
   - type: CartridgeLoader
@@ -1176,6 +1288,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-syndi-operative
+  # Sunrise-Start
+  - type: PdaBorderColor
+    borderColor: "#891417"
+    accentHColor: "#a3b2cc"
+  # Sunrise-End
   - type: Icon
     state: pda-syndi-operative
 
@@ -1192,6 +1309,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-syndi-corpsman
+  # Sunrise-Start
+  - type: PdaBorderColor
+    borderColor: "#891417"
+    accentVColor: "#a3b2cc"
+  # Sunrise-End
   - type: Icon
     state: pda-syndi-corpsman
   - type: CartridgeLoader
@@ -1214,6 +1336,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-syndi-commander
+  # Sunrise-Start
+  - type: PdaBorderColor
+    borderColor: "#891417"
+    accentVColor: "#a3b2cc"
+    accentHColor: "#a3b2cc"
+  # Sunrise-End
   - type: Icon
     state: pda-syndi-commander
 
@@ -1231,10 +1359,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-ert
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentHColor: "#447987"
-    accentVColor: "#447987"
+    borderColor: "#cc3d3d"
+    accentVColor: "#637199"
+    accentHColor: "#637199"
+  # Sunrise-End
   - type: Icon
     state: pda-ert
   - type: CartridgeLoader
@@ -1307,10 +1437,12 @@
   components:
   - type: Pda
     id: CBURNIDcard
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentHColor: "#447987"
-    accentVColor: "#447987"
+    borderColor: "#cc3d3d"
+    accentVColor: "#637199"
+    accentHColor: "#637199"
+  # Sunrise-End
 
 - type: entity
   parent: BasePDA
@@ -1325,9 +1457,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-medical
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#447987"
+    borderColor: "#a3b2cc"
+    accentVColor: "#2f6e67"
+  # Sunrise-End
   - type: Icon
     state: pda-medical
 
@@ -1350,8 +1484,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-reporter
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#3f3f74"
+    borderColor: "#616266"
+    accentVColor: "#198019"
+  # Sunrise-End
   - type: Icon
     state: pda-reporter
 
@@ -1368,8 +1505,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-zookeeper
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#ffe685"
+    borderColor: "#627350"
+    accentVColor: "#ccaf3d"
+  # Sunrise-End
   - type: Icon
     state: pda-zookeeper
 
@@ -1386,9 +1526,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-boxer
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#333333"
-    accentVColor: "#390504"
+    borderColor: "#616266"
+    accentVColor: "#cc3d3d"
+  # Sunrise-End
   - type: Icon
     state: pda-boxer
 
@@ -1405,8 +1547,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-detective
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#774705"
+    borderColor: "#637199"
+    accentVColor: "#99461d"
+    accentHColor: "#cc3d3d"
+  # Sunrise-End
   - type: Icon
     state: pda-detective
   - type: CartridgeLoader
@@ -1431,10 +1577,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-brigmedic
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentHColor: "#d7d7d0"
-    accentVColor: "#d7d7d0"
+    borderColor: "#637199"
+    accentVColor: "#cc3d3d"
+    accentHColor: "#a3b2cc"
+  # Sunrise-End
   - type: Icon
     state: pda-brigmedic
   - type: CartridgeLoader
@@ -1467,8 +1615,10 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-cluwne
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#1c8f4d"
+    borderColor: "#b36bb3"
+  # Sunrise-End
   - type: Icon
     state: pda-cluwne
   - type: Unremoveable
@@ -1486,9 +1636,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-seniorengineer
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#949137"
-    accentVColor: "#CD6900"
+    borderColor: "#deb63d"
+    accentVColor: "#7a2699"
+    accentHColor: "#7a2699"
+  # Sunrise-End
   - type: Icon
     state: pda-seniorengineer
 
@@ -1505,10 +1658,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-seniorresearcher
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentHColor: "#8900c9"
-    accentVColor: "#8900c9"
+    borderColor: "#a3b2cc"
+    accentVColor: "#2990cc"
+    accentHColor: "#cc5200"
+  # Sunrise-End
   - type: Icon
     state: pda-seniorresearcher
 
@@ -1525,10 +1680,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-seniorphysician
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentHColor: "#447987"
-    accentVColor: "#B34200"
+    borderColor: "#a3b2cc"
+    accentVColor: "#d95e00"
+    accentHColor: "#2f6e67"
+  # Sunrise-End
   - type: Icon
     state: pda-seniorphysician
 
@@ -1545,9 +1702,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-seniorofficer
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentVColor: "#DFDFDF"
+    borderColor: "#637199"
+    accentVColor: "#a3b2cc"
+    accentHColor: "#cc3d3d"
+  # Sunrise-End
   - type: Icon
     state: pda-seniorofficer
 
@@ -1564,9 +1724,12 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-seniorcourier
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#e39751"
-    accentVColor: "#DFDFDF"
+    borderColor: "#996e2e"
+    accentVColor: "#a3b2cc"
+    accentHColor: "#7a2699"
+  # Sunrise-End
   - type: Icon
     state: pda-seniorcourier
 
@@ -1583,8 +1746,19 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-pirate
+  # Sunrise-Start
+  - type: PdaBorderColor
+    borderColor: "#333333"
+  # Sunrise-End
   - type: Icon
     state: pda-pirate
+  - type: CartridgeLoader
+    preinstalled:
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NavigatorCartridge
+    - AstroNavCartridge
+  # Sunrise-end
 
 - type: entity
   parent: [BasePDA, SelectableLock]
@@ -1642,8 +1816,10 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-wizard
+  # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#7F3300"
+    borderColor: "#baa882"
+  # Sunrise-End
   - type: Icon
     state: pda-wizard
 

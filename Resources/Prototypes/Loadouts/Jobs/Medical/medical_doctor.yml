@@ -164,3 +164,19 @@
   id: MedicalEyePatchHud
   equipment:
     eyes: ClothingEyesEyepatchHudMedical
+
+#sunrise-start
+# ID
+- type: loadout
+  id: MedicalPDA
+  equipment:
+    id: MedicalPDA
+
+- type: loadout
+  id: SeniorPhysicianPDA
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorPhysician
+  equipment:
+    id: SeniorPhysicianPDA
+#sunrise-end

@@ -18,9 +18,11 @@ public sealed class SlippingTest : MovementTest
         await SpawnTarget("TrashBananaPeel");
 
         var modifier = Comp<MovementSpeedModifierComponent>(Player).SprintSpeedModifier;
-        // Sunrise: Ввиду бхоп системы, скорость не ровно 1, а может быть чуть больше.
+        // Sunrise-Start
+        // Ввиду бхоп системы, скорость не ровно 1, а может быть чуть больше.
         // Assert.That(modifier, Is.EqualTo(1), "Player is not moving at full speed.");
-        Assert.That(Math.Abs(modifier - 1), Is.LessThan(0.1f)); // Sunrise-add
+        Assert.That(Math.Abs(modifier - 1), Is.LessThan(0.1f));
+        // Sunrise-End
 
         // Player is to the left of the banana peel.
         Assert.That(Delta(), Is.GreaterThan(0.5f));

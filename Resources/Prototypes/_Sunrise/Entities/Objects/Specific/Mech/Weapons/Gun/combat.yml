@@ -16,7 +16,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/HMGs/minigun_shot.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeRifleSP
     fireCost: 5
   - type: Appearance
@@ -43,7 +43,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeHeavyRifleRFMJ
     fireCost: 8
   - type: Appearance
@@ -74,7 +74,7 @@
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
       params:
         volume: -3
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeRifleHeavyFMJ
     fireCost: 8
   - type: Appearance
@@ -101,7 +101,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CannonBall
     fireCost: 150
   - type: Appearance
@@ -117,8 +117,8 @@
   parent: [ BaseMechWeaponRange, CombatMechEquipment ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Specific/Mech/mecha_piratecannon.rsi
-    state: mecha_piratecannon
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_blunderbuss.rsi
+    state: mecha_blunderbuss
   - type: Gun
     minAngle: -10
     maxAngle: 15
@@ -128,9 +128,36 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CannonBallGrapeshot
     fireCost: 75
+  - type: Appearance
+  - type: AmmoCounter
+  - type: StaticPrice
+    price: 2000
+
+- type: entity
+  id: WeaponMechCombatPirateGrapeshotMini
+  name: Mounted BlunderBuss
+  description: An ancient big blunderbuss gun given new life as a mech-mounted gun
+  suffix: Mech Weapon, Gun, Combat, Pirate
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_blunderbuss.rsi
+    state: mecha_blunderbuss
+  - type: Gun
+    minAngle: -10
+    maxAngle: 15
+    fireRate: 0.65
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+  - type: BatteryAmmoProvider
+    proto: CannonBallGrapeshotMini
+    fireCost: 25
   - type: Appearance
   - type: AmmoCounter
   - type: StaticPrice
@@ -155,7 +182,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CannonBallGlassshot
     fireCost: 75
   - type: Appearance
@@ -186,7 +213,7 @@
       collection: syndi_plasma
       params:
         volume: -1
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 25
   - type: Appearance
@@ -211,7 +238,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: GrenadeFragTimer
     fireCost: 250
   - type: Appearance

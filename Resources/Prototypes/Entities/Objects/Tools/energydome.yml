@@ -32,7 +32,7 @@
     domePrototype: EnergyDomeSmallRed
   - type: PowerCellDraw
     drawRate: 0
-    useRate: 0
+    useCharge: 0
   - type: UseDelay
     delay: 10.0
 
@@ -84,7 +84,7 @@
     canDeviceNetworkUse: true
   - type: PowerCellDraw
     drawRate: 0
-    useRate: 0
+    useCharge: 0
   - type: UseDelay
     delay: 10.0
   - type: DeviceNetwork
@@ -146,7 +146,6 @@
         !type:CableDeviceNode
         nodeGroupID: MVPower
   - type: BatterySelfRecharger
-    autoRecharge: false # true only when active
     autoRechargeRate: -800   #<- discharge per second while active
   - type: Damageable
     damageContainer: Inorganic

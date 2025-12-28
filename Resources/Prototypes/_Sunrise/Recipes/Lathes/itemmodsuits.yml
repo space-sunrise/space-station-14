@@ -1,0 +1,25 @@
+#Комплект улучшения
+- type: entity
+  name: modsuit core
+  parent: BaseItem
+  id: ModsuitCore
+  description: A core designed for activation mod-costumes.
+  suffix: Modsuit
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: _Sunrise/Modsuits/Other/core.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - ModsuitCore
+
+#Рецепт
+- type: latheRecipe
+  id: ModsuitCore
+  result: ModsuitCore
+  completetime: 5
+  materials:
+    Steel: 2000
+    Plasma: 1500

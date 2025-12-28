@@ -25,7 +25,7 @@
     EnergyMagnumStealObjective: 0.5
     # Sunrise-Start
     PlutoniumCoreStealObjective: 0.5
-    #MultiphaseEnergygunStealObjective: 1 # Sunrise-Edit: ОСЩ больше не появляется на станции
+    MultiphaseEnergygunStealObjective: 1
     CMOAdvancedDefibrillatorStealObjective: 1
     HandheldFaxStealObjective: 1
     # Sunrise-End
@@ -43,7 +43,8 @@
   id: TraitorObjectiveGroupState
   weights:
     EscapeShuttleObjective: 1
-    DieObjective: 0.05
+    DieObjective: 0.2
+    #HijackShuttleObjective: 0.02
 
 - type: weightedRandom
   id: TraitorObjectiveGroupSocial
