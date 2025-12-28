@@ -784,6 +784,7 @@
   description: A device used to rapidly pipe things.
   components:
   - type: RCD
+    IsRPD: true
     availablePrototypes:
     - PipeFourway
     - PipeStraight

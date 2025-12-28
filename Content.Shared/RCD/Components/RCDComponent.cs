@@ -33,6 +33,14 @@ public sealed partial class RCDComponent : Component
     [DataField, AutoNetworkedField]
     public ProtoId<RCDPrototype> ProtoId { get; set; } = "Invalid";
 
+    // Starlight Start: RPD
+    /// <summary>
+    /// Indicates whether this is an RPD
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool IsRPD;
+    // Starlight End
+
     /// <summary>
     /// The direction constructed entities will face upon spawning
     /// </summary>
