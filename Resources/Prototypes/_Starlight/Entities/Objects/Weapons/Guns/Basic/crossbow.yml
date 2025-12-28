@@ -4,6 +4,14 @@
   parent: [ WeaponEnergyCrossbowBase, BaseSyndicateContraband ]
   description: Fires low-damage kinetic bolts at a short range.
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/large_crossbow.rsi
+    layers:
+    - state: icon
+      map: [ "icon" ]
+    - state: animation-icon
+      visible: false
+      map: [ "empty-icon" ]
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Basic/large_crossbow.rsi
     quickEquip: false

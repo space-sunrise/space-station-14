@@ -644,7 +644,7 @@
     maxCharge: 2500
     startingCharge: 2500
   - type: BatteryAmmoProvider
-    proto: XrayLaser
+    proto: CartridgeXrayBeam
     fireCost: 100
   - type: Wieldable
   - type: UseDelay
