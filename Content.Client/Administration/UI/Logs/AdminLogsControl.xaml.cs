@@ -244,10 +244,12 @@ public sealed partial class AdminLogsControl : Control
 
         foreach (var child in LogsContainer.Children)
         {
-            if (child is not AdminLogLabel log)
+            // Sunrise edit start - крутые красивые логи
+            if (child is not SunriseAdminLogLabel log)
             {
                 continue;
             }
+            // Sunrise edit end
 
             child.Visible = ShouldShowLog(log);
             if (child.Visible)
@@ -271,7 +273,8 @@ public sealed partial class AdminLogsControl : Control
                button.Text.Contains(PlayerSearch.Text, StringComparison.OrdinalIgnoreCase);
     }
 
-    private bool LogMatchesPlayerFilter(AdminLogLabel label)
+    // Sunrise edit - крутые красивые логи
+    private bool LogMatchesPlayerFilter(SunriseAdminLogLabel label)
     {
         if (label.Log.Players.Length == 0)
             return SelectedPlayers.Count == 0 || IncludeNonPlayerLogs;
@@ -279,7 +282,8 @@ public sealed partial class AdminLogsControl : Control
         return SelectedPlayers.Overlaps(label.Log.Players);
     }
 
-    private bool ShouldShowLog(AdminLogLabel label)
+    // Sunrise edit - крутые красивые логи
+    private bool ShouldShowLog(SunriseAdminLogLabel label)
     {
         // Check log type
         if (!SelectedTypes.Contains(label.Log.Type))
@@ -471,7 +475,11 @@ public sealed partial class AdminLogsControl : Control
         {
             ref var log = ref span[i];
             var separator = new HSeparator();
-            var label = new AdminLogLabel(ref log, separator);
+
+            // Sunrise edit start - крутые красивые логи
+            var label = new SunriseAdminLogLabel(ref log, separator);
+            // Sunrise edit end
+
             label.Visible = ShouldShowLog(label);
 
             TotalLogs++;
