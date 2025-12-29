@@ -63,6 +63,7 @@ public sealed class RCDSystem : EntitySystem
         SubscribeLocalEvent<RCDComponent, DoAfterAttemptEvent<RCDDoAfterEvent>>(OnDoAfterAttempt);
         SubscribeLocalEvent<RCDComponent, RCDSystemMessage>(OnRCDSystemMessage);
         SubscribeNetworkEvent<RCDConstructionGhostRotationEvent>(OnRCDconstructionGhostRotationEvent);
+        SubscribeNetworkEvent<RCDConstructionGhostFlipEvent>(OnRCDConstructionGhostFlipEvent); // Starlight: RPD
     }
 
     #region Event handling
@@ -313,6 +314,26 @@ public sealed class RCDSystem : EntitySystem
         Dirty(uid, rcd);
     }
 
+    // Starlight Start: RPD
+    private void OnRCDConstructionGhostFlipEvent(RCDConstructionGhostFlipEvent ev, EntitySessionEventArgs session)
+    {
+        var uid = GetEntity(ev.NetEntity);
+
+        // Ensure the sender is the player holding the RCD
+        if (session.SenderSession.AttachedEntity is not { } player)
+            return;
+
+        if (_hands.GetActiveItem(player) != uid)
+            return;
+
+        if (!TryComp<RCDComponent>(uid, out var rcd))
+            return;
+
+        rcd.UseMirrorPrototype = ev.UseMirrorPrototype;
+        Dirty(uid, rcd);
+    }
+    // Starlight End
+
     #endregion
 
     #region Entity construction/deconstruction rule checks
@@ -559,18 +580,26 @@ public sealed class RCDSystem : EntitySystem
 
         var prototype = _protoManager.Index(component.ProtoId);
 
-        if (prototype.Prototype == null)
+        // Starlight edit Start: RPD
+        var entityProtoId = prototype.Prototype;
+        if (component.UseMirrorPrototype && !string.IsNullOrEmpty(prototype.MirrorPrototype))
+            entityProtoId = prototype.MirrorPrototype;
+
+        if (string.IsNullOrEmpty(entityProtoId))
+        // Starlight edit End
             return;
 
         switch (prototype.Mode)
         {
             case RcdMode.ConstructTile:
-                _mapSystem.SetTile(gridUid, mapGrid, position, new Tile(_tileDefMan[prototype.Prototype].TileId));
-                _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(user):user} used RCD to set grid: {gridUid} {position} to {prototype.Prototype}");
+                // Starlight edit Start: RPD
+                _mapSystem.SetTile(gridUid, mapGrid, position, new Tile(_tileDefMan[entityProtoId].TileId));
+                _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(user):user} used RCD to set grid: {gridUid} {position} to {entityProtoId}");
+                // Starlight edit End
                 break;
 
             case RcdMode.ConstructObject:
-                var ent = Spawn(prototype.Prototype, _mapSystem.GridTileToLocal(gridUid, mapGrid, position));
+                var ent = Spawn(entityProtoId, _mapSystem.GridTileToLocal(gridUid, mapGrid, position)); // Starlight edit: RPD
 
                 switch (prototype.Rotation)
                 {

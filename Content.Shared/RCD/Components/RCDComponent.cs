@@ -39,6 +39,13 @@ public sealed partial class RCDComponent : Component
     /// </summary>
     [DataField("isRPD"), AutoNetworkedField]
     public bool IsRPD { get; set; } = false;
+
+    /// <summary>
+    /// When true the RCD will use the prototype's MirrorPrototype (if available) for placement/validation.
+    /// This is networked so the server can validate/finalize mirror placement.
+    /// </summary>
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
+    public bool UseMirrorPrototype { get; set; } = false;
     // Starlight End
 
     /// <summary>
