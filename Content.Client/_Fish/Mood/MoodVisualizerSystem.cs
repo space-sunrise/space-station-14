@@ -8,7 +8,7 @@ using Robust.Shared.Utility;
 namespace Content.Client._Fish.Mood;
 
 /// <summary>
-/// This handles the display of mood effects on entities with mood component.
+/// Обрабатывает отображение эффектов настроения на сущностях с компонентом настроения.
 /// </summary>
 public sealed class MoodVisualizerSystem : VisualizerSystem<MoodVisualsComponent>
 {
@@ -44,47 +44,47 @@ public sealed class MoodVisualizerSystem : VisualizerSystem<MoodVisualsComponent
             _spriteSystem.LayerSetSprite((ent.Owner, sprite), MoodVisualLayers.Mood, ent.Comp.Sprite);
 
         if (TryComp<AppearanceComponent>(ent.Owner, out var appearance))
-            UpdateAppearance(ent.Owner, ent.Comp, sprite, appearance);
+            UpdateAppearance(ent, sprite, appearance);
     }
 
-    protected override void OnAppearanceChange(EntityUid uid, MoodVisualsComponent component, ref AppearanceChangeEvent args)
+    private void OnAppearanceChange(Entity<MoodVisualsComponent> ent, ref AppearanceChangeEvent args)
     {
         if (args.Sprite != null)
-            UpdateAppearance(uid, component, args.Sprite, args.Component);
+            UpdateAppearance(ent, args.Sprite, args.Component);
     }
 
-    private bool ShouldHideMoodVisuals(EntityUid uid)
+    private bool ShouldHideMoodVisuals(Entity<MoodVisualsComponent> ent)
     {
-        return HasComp<PentagramComponent>(uid) && HasComp<WingToggleComponent>(uid);
+        return HasComp<PentagramComponent>(ent) && HasComp<WingToggleComponent>(ent);
     }
 
-    private void UpdateAppearance(EntityUid uid, MoodVisualsComponent component, SpriteComponent sprite, AppearanceComponent appearance)
+    private void UpdateAppearance(Entity<MoodVisualsComponent> ent, SpriteComponent sprite, AppearanceComponent appearance)
     {
-        if (!_spriteSystem.LayerMapTryGet((uid, sprite), MoodVisualLayers.Mood, out var index, false))
+        if (!_spriteSystem.LayerMapTryGet((ent, sprite), MoodVisualLayers.Mood, out var index, false))
             return;
 
-        if (ShouldHideMoodVisuals(uid))
+        if (ShouldHideMoodVisuals(ent))
         {
-            _spriteSystem.LayerSetVisible((uid, sprite), index, false);
+            _spriteSystem.LayerSetVisible((ent, sprite), index, false);
             return;
         }
 
-        if (!_appearanceSystem.TryGetData<MoodThreshold>(uid, MoodVisuals.CurrentMoodThreshold, out var moodThreshold, appearance))
+        if (!_appearanceSystem.TryGetData<MoodThreshold>(ent.Owner, MoodVisuals.CurrentMoodThreshold, out var moodThreshold, appearance))
         {
-            _spriteSystem.LayerSetVisible((uid, sprite), index, false);
+            _spriteSystem.LayerSetVisible((ent.Owner, sprite), index, false);
             return;
         }
 
-        // Check if we have a sprite state for this mood threshold
-        if (!component.MoodStates.TryGetValue(moodThreshold, out var state))
+        // Проверяем, есть ли состояние спрайта для этого порога настроения
+        if (!ent.Comp.MoodStates.TryGetValue(moodThreshold, out var state))
         {
-            _spriteSystem.LayerSetVisible((uid, sprite), index, false);
+            _spriteSystem.LayerSetVisible((ent.Owner, sprite), index, false);
             return;
         }
 
-        // Show the sprite layer and set the state
-        _spriteSystem.LayerSetVisible((uid, sprite), index, true);
-        _spriteSystem.LayerSetRsiState((uid, sprite), index, state);
+        // Показываем слой спрайта и устанавливаем состояние
+        _spriteSystem.LayerSetVisible((ent.Owner, sprite), index, true);
+        _spriteSystem.LayerSetRsiState((ent.Owner, sprite), index, state);
     }
 }
 

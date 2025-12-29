@@ -30,11 +30,11 @@ public abstract class SharedWingFlightSystem : EntitySystem
     /// <summary>
     /// Получение целевого масштаба при активном полёте.
     /// </summary>
-    public float GetTargetScale(WingFlightComponent component, float staminaPercent)
+    public float GetTargetScale(Entity<WingFlightComponent> ent, float staminaPercent)
     {
         staminaPercent = Math.Clamp(staminaPercent, 0f, 1f);
-        var bonus = component.MaxScaleMultiplier - component.MinScaleMultiplier;
-        return component.MinScaleMultiplier + bonus * staminaPercent;
+        var bonus = ent.Comp.MaxScaleMultiplier - ent.Comp.MinScaleMultiplier;
+        return ent.Comp.MinScaleMultiplier + bonus * staminaPercent;
     }
 
     private void OnRefreshMovementSpeed(Entity<WingFlightComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
@@ -53,60 +53,51 @@ public abstract class SharedWingFlightSystem : EntitySystem
         args.ModifyFriction(ent.Comp.FrictionModifier);
     }
 
-    public void SetFlightEnabled(EntityUid uid, bool enabled, WingFlightComponent? component = null)
+    public void SetFlightEnabled(Entity<WingFlightComponent> ent, bool enabled)
     {
-        if (!Resolve(uid, ref component, false))
+        if (ent.Comp.FlightEnabled == enabled)
             return;
 
-        if (component.FlightEnabled == enabled)
-            return;
-
-        component.FlightEnabled = enabled;
+        ent.Comp.FlightEnabled = enabled;
 
         if (enabled)
-            EnsureComp<ActiveWingFlightComponent>(uid);
+            EnsureComp<ActiveWingFlightComponent>(ent.Owner);
         else
         {
-            RemComp<ActiveWingFlightComponent>(uid);
-            StartInertia(uid, component);
+            RemComp<ActiveWingFlightComponent>(ent.Owner);
+            StartInertia(ent);
         }
 
-        _movement.RefreshMovementSpeedModifiers(uid);
-        _movement.RefreshFrictionModifiers(uid);
+        _movement.RefreshMovementSpeedModifiers(ent);
+        _movement.RefreshFrictionModifiers(ent);
 
-        Dirty(uid, component);
+        Dirty(ent.Owner, ent.Comp);
     }
 
-    public void StartInertia(EntityUid uid, WingFlightComponent? component = null)
+    public void StartInertia(Entity<WingFlightComponent> ent)
     {
-        if (!Resolve(uid, ref component, false))
-            return;
+        ent.Comp.InertiaActive = true;
+        ent.Comp.InertiaEndTime = _timing.CurTime + ent.Comp.InertiaDuration;
+        EnsureComp<ActiveWingFlightComponent>(ent.Owner);
 
-        component.InertiaActive = true;
-        component.InertiaEndTime = _timing.CurTime + component.InertiaDuration;
-        EnsureComp<ActiveWingFlightComponent>(uid);
+        _movement.RefreshFrictionModifiers(ent);
 
-        _movement.RefreshFrictionModifiers(uid);
-
-        Dirty(uid, component);
+        Dirty(ent.Owner, ent.Comp);
     }
 
-    public void StopInertia(EntityUid uid, WingFlightComponent? component = null)
+    public void StopInertia(Entity<WingFlightComponent> ent)
     {
-        if (!Resolve(uid, ref component, false))
+        if (!ent.Comp.InertiaActive)
             return;
 
-        if (!component.InertiaActive)
-            return;
+        ent.Comp.InertiaActive = false;
+        ent.Comp.InertiaEndTime = null;
 
-        component.InertiaActive = false;
-        component.InertiaEndTime = null;
+        if (!ent.Comp.FlightEnabled)
+            RemComp<ActiveWingFlightComponent>(ent.Owner);
 
-        if (!component.FlightEnabled)
-            RemComp<ActiveWingFlightComponent>(uid);
-
-        _movement.RefreshFrictionModifiers(uid);
-        Dirty(uid, component);
+        _movement.RefreshFrictionModifiers(ent.Owner);
+        Dirty(ent.Owner, ent.Comp);
     }
 
     public override void Update(float frameTime)
@@ -116,54 +107,54 @@ public abstract class SharedWingFlightSystem : EntitySystem
         var curTime = _timing.CurTime;
         var query = EntityQueryEnumerator<ActiveWingFlightComponent, WingFlightComponent>();
 
-        while (query.MoveNext(out var uid, out _, out var flightComp))
+        while (query.MoveNext(out var uid, out var activeComp, out var wingComp))
         {
-            if (!flightComp.InertiaActive)
+            if (!wingComp.InertiaActive)
                 continue;
 
-            if (flightComp.InertiaEndTime == null)
+            if (wingComp.InertiaEndTime == null)
                 continue;
 
-            if (curTime < flightComp.InertiaEndTime)
+            if (curTime < wingComp.InertiaEndTime)
                 continue;
 
-            flightComp.InertiaActive = false;
-            flightComp.InertiaEndTime = null;
+            wingComp.InertiaActive = false;
+            wingComp.InertiaEndTime = null;
 
-            if (!flightComp.FlightEnabled)
+            if (!wingComp.FlightEnabled)
                 RemComp<ActiveWingFlightComponent>(uid);
 
             _movement.RefreshFrictionModifiers(uid);
-            Dirty(uid, flightComp);
+            Dirty(uid, wingComp);
         }
     }
 
-    private bool IsFlightOrInertiaActive(WingFlightComponent component)
+    private bool IsFlightOrInertiaActive(Entity<WingFlightComponent> ent)
     {
-        return component.FlightEnabled || component.InertiaActive;
+        return ent.Comp.FlightEnabled || ent.Comp.InertiaActive;
     }
 
     private void OnDownAttempt(Entity<WingFlightComponent> ent, ref DownAttemptEvent args)
     {
-        if (IsFlightOrInertiaActive(ent.Comp))
+        if (IsFlightOrInertiaActive(ent))
             args.Cancel();
     }
 
     private void OnKnockDownAttempt(Entity<WingFlightComponent> ent, ref KnockDownAttemptEvent args)
     {
-        if (IsFlightOrInertiaActive(ent.Comp))
+        if (IsFlightOrInertiaActive(ent))
             args.Cancelled = true;
     }
 
     private void OnDowned(Entity<WingFlightComponent> ent, ref DownedEvent args)
     {
-        if (IsFlightOrInertiaActive(ent.Comp))
+        if (IsFlightOrInertiaActive(ent))
             _standing.Stand(ent.Owner, force: true);
     }
 
     private void OnKnockedDown(Entity<WingFlightComponent> ent, ref KnockedDownEvent args)
     {
-        if (IsFlightOrInertiaActive(ent.Comp))
+        if (IsFlightOrInertiaActive(ent))
         {
             RemComp<KnockedDownComponent>(ent.Owner);
             _standing.Stand(ent.Owner, force: true);

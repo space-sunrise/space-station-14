@@ -7,7 +7,7 @@ namespace Content.Client._Fish.Abilities.Milira;
 /// <summary>
 /// Клиентская система WingFlight с блокировкой одевания брони при раскрытых крыльях
 /// </summary>
-public sealed class WingFlightClientSystem : EntitySystem
+public sealed class WingFlightClientSystem : SharedWingFlightSystem
 {
     [Dependency] private readonly TagSystem _tagSystem = default!;
 

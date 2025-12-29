@@ -5,22 +5,21 @@ using Robust.Shared.Utility;
 namespace Content.Shared._Fish.Mood;
 
 /// <summary>
-/// Sets which sprite RSI is used for displaying the mood visuals and what state to use based on the current mood threshold.
+/// Устанавливает, какой спрайт RSI используется для отображения визуальных эффектов настроения и какое состояние использовать в зависимости от текущего порога настроения.
 /// </summary>
 [RegisterComponent]
 public sealed partial class MoodVisualsComponent : Component
 {
     /// <summary>
-    /// Sprite RSI used for mood visualization.
+    /// Спрайт RSI, используемый для визуализации настроения.
     /// </summary>
     [DataField]
     public SpriteSpecifier? Sprite;
 
     /// <summary>
-    /// Dictionary mapping mood thresholds to sprite states.
-    /// If a threshold is not in this dictionary, no sprite will be shown for that threshold.
+    /// Словарь, сопоставляющий пороги настроения с состояниями спрайта.
+    /// Если порог отсутствует в этом словаре, спрайт для этого порога отображаться не будет.
     /// </summary>
     [DataField]
     public Dictionary<MoodThreshold, string> MoodStates = new();
 }
-
