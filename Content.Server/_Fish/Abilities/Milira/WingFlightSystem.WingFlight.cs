@@ -6,19 +6,14 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
-using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
-using Content.Shared.Stunnable;
 using Content.Shared.Toggleable;
 using Content.Shared._Fish.Abilities.Milira;
+using Content.Shared.Movement.Components;
 using Content.Shared.Physics;
-using Content.Shared.Tag;
-using Content.Shared.Inventory;
-using Content.Shared.Inventory.Events;
 using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
@@ -27,9 +22,8 @@ namespace Content.Server._Fish.Abilities.Milira;
 
 /// <summary>
 /// Серверная система для полёта расы милира, оно использует другую систему для изменения масштаба крыльев, а также изменяет маркинг, и тратит стамину.
-/// Также включает функциональность переключения крыльев.
 /// </summary>
-public sealed class WingFlightSystem : SharedWingFlightSystem
+public sealed partial class WingFlightSystem : SharedWingFlightSystem
 {
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly SharedStaminaSystem _stamina = default!;
@@ -38,8 +32,6 @@ public sealed class WingFlightSystem : SharedWingFlightSystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
 
     public override void Initialize()
     {
@@ -48,11 +40,6 @@ public sealed class WingFlightSystem : SharedWingFlightSystem
         SubscribeLocalEvent<WingFlightComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<WingFlightComponent, ComponentRemove>(OnComponentRemove);
         SubscribeLocalEvent<WingFlightComponent, ToggleActionEvent>(OnToggleAction);
-
-        SubscribeLocalEvent<WingToggleComponent, MapInitEvent>(OnWingToggleMapInit);
-        SubscribeLocalEvent<WingToggleComponent, ComponentShutdown>(OnWingToggleShutdown);
-        SubscribeLocalEvent<WingToggleComponent, ToggleActionEvent>(OnWingToggleAction);
-        SubscribeLocalEvent<WingToggleComponent, IsEquippingAttemptEvent>(OnEquipAttempt);
     }
 
     private void OnComponentInit(Entity<WingFlightComponent> ent, ref ComponentInit args)
@@ -193,7 +180,7 @@ public sealed class WingFlightSystem : SharedWingFlightSystem
         if (!ent.Comp.AppliedMarkingOnEnable || ent.Comp.OriginalMarkings.Count == 0)
             return;
 
-                        foreach (var (index, original) in ent.Comp.OriginalMarkings)
+        foreach (var (index, original) in ent.Comp.OriginalMarkings)
         {
             if (index < 0 || index >= markings.Count)
                 continue;
@@ -227,18 +214,12 @@ public sealed class WingFlightSystem : SharedWingFlightSystem
     {
         base.Update(frameTime);
 
-        var entities = new List<Entity<WingFlightComponent>>();
-        var query = EntityQueryEnumerator<ActiveWingFlightComponent, WingFlightComponent>();
+        var query = EntityQueryEnumerator<ActiveWingFlightComponent, WingFlightComponent, StaminaComponent>();
 
-        while (query.MoveNext(out var uid, out _, out var flightComp))
+        while (query.MoveNext(out var uid, out _, out var flightComp, out var stamina))
         {
-            entities.Add((uid, flightComp));
-        }
-
-        foreach (var ent in entities)
-        {
-            TryComp(ent.Owner, out StaminaComponent? stamina);
-            var staminaPercent = stamina != null ? GetStaminaPercent(stamina) : 1f;
+            Entity<WingFlightComponent> ent = (uid, flightComp);
+            var staminaPercent = GetStaminaPercent(stamina);
 
             if (ent.Comp.FlightEnabled)
             {
@@ -251,15 +232,12 @@ public sealed class WingFlightSystem : SharedWingFlightSystem
                     continue;
                 }
 
-                if (stamina != null)
+                var staminaCost = ent.Comp.SustainStaminaPerSecond * frameTime;
+                if (!_stamina.TryTakeStamina(ent.Owner, staminaCost, stamina, visual: false))
                 {
-                    var staminaCost = ent.Comp.SustainStaminaPerSecond * frameTime;
-                    if (!_stamina.TryTakeStamina(ent.Owner, staminaCost, stamina, visual: false))
-                    {
-                        _popup.PopupEntity(Loc.GetString("wing-flight-popup-auto-disable"), ent.Owner, ent.Owner, PopupType.Medium);
-                        DisableFlight(ent);
-                        SetScaleImmediate(ent, staminaPercent);
-                    }
+                    _popup.PopupEntity(Loc.GetString("wing-flight-popup-auto-disable"), ent.Owner, ent.Owner, PopupType.Medium);
+                    DisableFlight(ent);
+                    SetScaleImmediate(ent, staminaPercent);
                 }
             }
             else
@@ -362,124 +340,4 @@ public sealed class WingFlightSystem : SharedWingFlightSystem
         ent.Comp.OriginalCollisionMasks.Clear();
         ent.Comp.OriginalCollisionLayers.Clear();
     }
-
-    // WingToggle функционал
-
-    private void OnWingToggleMapInit(Entity<WingToggleComponent> ent, ref MapInitEvent args)
-    {
-        _actions.AddAction(ent.Owner, ref ent.Comp.ActionEntity, ent.Comp.Action, ent.Owner);
-        UpdateWingToggleAction(ent);
-    }
-
-    private void OnWingToggleShutdown(Entity<WingToggleComponent> ent, ref ComponentShutdown args)
-    {
-        if (ent.Comp.ActionEntity != null)
-            _actions.RemoveAction(ent.Owner, ent.Comp.ActionEntity);
-    }
-
-    private void OnWingToggleAction(Entity<WingToggleComponent> ent, ref ToggleActionEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        if (ent.Comp.ActionEntity == null || args.Action.Owner != ent.Comp.ActionEntity.Value)
-            return;
-
-        args.Handled = TryToggleWings(ent);
-    }
-
-    public bool TryToggleWings(Entity<WingToggleComponent> ent, HumanoidAppearanceComponent? humanoid = null)
-    {
-        if (!Resolve(ent.Owner, ref humanoid, false))
-            return false;
-
-        if (!humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.Tail, out var markings) || markings.Count == 0)
-            return false;
-
-        if (!ent.Comp.WingsOpened)
-        {
-            if (!CanOpenWings(ent))
-            {
-                _popup.PopupEntity(Loc.GetString("wing-toggle-open-blocked"), ent.Owner, ent.Owner, PopupType.Medium);
-                return false;
-            }
-        }
-
-        var openTarget = !ent.Comp.WingsOpened;
-        var suffix = ent.Comp.Suffix;
-        var changed = false;
-
-        for (var i = 0; i < markings.Count; i++)
-        {
-            var current = markings[i].MarkingId;
-            var desired = openTarget
-                ? (current.EndsWith(suffix) ? current : $"{current}{suffix}")
-                : (current.EndsWith(suffix) ? current[..^suffix.Length] : current);
-
-            if (!_prototype.HasIndex<MarkingPrototype>(desired))
-                continue;
-
-            if (desired == current)
-                continue;
-
-            _appearance.SetMarkingId(ent.Owner, MarkingCategories.Tail, i, desired, humanoid: humanoid);
-            changed = true;
-        }
-
-        if (!changed)
-            return false;
-
-        ent.Comp.WingsOpened = openTarget;
-        Dirty(ent);
-        UpdateWingToggleAction(ent);
-
-        if (ent.Comp.WingsOpened)
-        {
-            EnsureComp<WingFlightComponent>(ent.Owner);
-            EnsureComp<JumpAbilityComponent>(ent.Owner);
-        }
-        else
-        {
-            RemCompDeferred<WingFlightComponent>(ent.Owner);
-            RemCompDeferred<JumpAbilityComponent>(ent.Owner);
-        }
-        return true;
-    }
-
-    private bool CanOpenWings(Entity<WingToggleComponent> ent)
-    {
-        if (ent.Comp.BlockedSlots == null || ent.Comp.BlockedSlots.Count == 0)
-            return true;
-
-        foreach (var slot in ent.Comp.BlockedSlots)
-        {
-            if (_inventory.TryGetSlotEntity(ent.Owner, slot, out _))
-                return false;
-        }
-
-        return true;
-    }
-
-    private void UpdateWingToggleAction(Entity<WingToggleComponent> ent)
-    {
-        if (ent.Comp.ActionEntity == null)
-            return;
-
-        _actions.SetToggled(ent.Comp.ActionEntity.Value, ent.Comp.WingsOpened);
-    }
-
-    private void OnEquipAttempt(Entity<WingToggleComponent> ent, ref IsEquippingAttemptEvent args)
-    {
-        if (!ent.Comp.WingsOpened)
-            return;
-
-        if (ent.Comp.BlockedSlots != null && ent.Comp.BlockedSlots.Contains(args.Slot))
-        {
-            if (ent.Comp.AllowedTag != null && _tagSystem.HasTag(args.Equipment, ent.Comp.AllowedTag.Value))
-                return;
-
-            args.Cancel();
-        }
-    }
 }
-
