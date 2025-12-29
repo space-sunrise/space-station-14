@@ -8,7 +8,6 @@ using JetBrains.Annotations;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared._Sunrise.Nesting;
 
 namespace Content.Shared.Item;
 
@@ -109,20 +108,11 @@ public abstract class SharedItemSystem : EntitySystem
         if (args.Handled)
             return;
 
-        // Sunrise-start
-        if (HasComp<NestingMobComponent>(uid))
-            return;
-        // Sunrise-end
-
         args.Handled = _handsSystem.TryPickup(args.User, uid, null, animateUser: false);
     }
 
     private void AddPickupVerb(EntityUid uid, ItemComponent component, GetVerbsEvent<InteractionVerb> args)
     {
-        // Sunrise-start. Предотвращаем появление стандартного верба подбора для специальных рас которых можно подобрать
-        if (HasComp<NestingMobComponent>(uid))
-            return;
-        // Sunrise-end
         if (args.Hands == null ||
             args.Using != null ||
             !args.CanAccess ||

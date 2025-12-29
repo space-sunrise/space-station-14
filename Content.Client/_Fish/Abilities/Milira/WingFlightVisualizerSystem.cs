@@ -19,8 +19,6 @@ public sealed class WingFlightVisualizerSystem : EntitySystem
 
     private const string AnimationKey = "wing-flight-scale";
 
-    private readonly Dictionary<EntityUid, Vector2> _originalScales = new();
-
     public override void Initialize()
     {
         base.Initialize();
@@ -30,45 +28,52 @@ public sealed class WingFlightVisualizerSystem : EntitySystem
         SubscribeLocalEvent<WingFlightComponent, ComponentShutdown>(OnShutdown);
     }
 
-    private void OnStartup(EntityUid uid, WingFlightComponent component, ComponentStartup args)
+    private void OnStartup(Entity<WingFlightComponent> ent, ref ComponentStartup args)
     {
-        if (!TryComp<SpriteComponent>(uid, out var sprite))
+        if (!TryComp<SpriteComponent>(ent, out var sprite))
             return;
 
-        _originalScales[uid] = sprite.Scale;
-        ApplyScale((uid, component, sprite), immediate: true);
+        if (!ent.Comp.OriginalScale.HasValue)
+            ent.Comp.OriginalScale = sprite.Scale;
+
+        ApplyScale((ent.Owner, ent.Comp, sprite), immediate: true);
     }
 
-    private void OnState(EntityUid uid, WingFlightComponent component, ref AfterAutoHandleStateEvent args)
+    private void OnState(Entity<WingFlightComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (!TryComp<SpriteComponent>(uid, out var sprite))
+        if (!TryComp<SpriteComponent>(ent, out var sprite))
             return;
 
-        if (!_originalScales.ContainsKey(uid))
-            _originalScales[uid] = sprite.Scale;
+        if (!ent.Comp.OriginalScale.HasValue)
+            ent.Comp.OriginalScale = sprite.Scale;
 
-        ApplyScale((uid, component, sprite), immediate: false);
+        var baseScale = ent.Comp.OriginalScale.Value;
+        var targetScale = baseScale * ent.Comp.CurrentScaleMultiplier;
+        var currentScale = sprite.Scale;
+
+        if (MathHelper.CloseTo(targetScale.Length(), currentScale.Length(), 0.001f))
+            return;
+
+        ApplyScale((ent.Owner, ent.Comp, sprite), immediate: false);
     }
 
-    private void OnShutdown(EntityUid uid, WingFlightComponent component, ComponentShutdown args)
+    private void OnShutdown(Entity<WingFlightComponent> ent, ref ComponentShutdown args)
     {
-        if (!_originalScales.TryGetValue(uid, out var scale))
+        if (!ent.Comp.OriginalScale.HasValue)
             return;
 
-        _originalScales.Remove(uid);
+        var scale = ent.Comp.OriginalScale.Value;
 
-        if (!TryComp<SpriteComponent>(uid, out var sprite))
+        if (!TryComp<SpriteComponent>(ent, out var sprite))
             return;
 
-        _animation.Stop(uid, AnimationKey);
-        _spriteSystem.SetScale((uid, sprite), scale);
+        _animation.Stop(ent.Owner, AnimationKey);
+        _spriteSystem.SetScale((ent.Owner, sprite), scale);
     }
 
     private void ApplyScale(Entity<WingFlightComponent, SpriteComponent> ent, bool immediate)
     {
-        if (!_originalScales.TryGetValue(ent.Owner, out var baseScale))
-            baseScale = ent.Comp2.Scale;
-
+        var baseScale = ent.Comp1.OriginalScale ?? ent.Comp2.Scale;
         var targetScale = baseScale * ent.Comp1.CurrentScaleMultiplier;
 
         if (immediate)

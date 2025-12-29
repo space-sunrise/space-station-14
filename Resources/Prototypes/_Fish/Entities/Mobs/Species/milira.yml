@@ -8,7 +8,9 @@
   - type: Interactions
   - type: WingToggle
   - type: MoodVisuals
-    sprite: _Fish/Mobs/Effects/Milira/mood.rsi
+    sprite:
+      sprite: _Fish/Mobs/Effects/Milira/mood.rsi
+      state: mood_neutral
     moodStates:
       Insane: mood_bad
       Horrible: mood_bad

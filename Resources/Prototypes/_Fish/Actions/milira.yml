@@ -18,8 +18,8 @@
   description: Launch into flight, trading stamina for speed.
   components:
   - type: Action
-    icon: { sprite: _Fish/Actions/milira.rsi, state: toggle_wings}
-    iconOn: { sprite: _Fish/Actions/milira.rsi, state: toggle_wings_active}
+    icon: { sprite: _Fish/Actions/milira.rsi, state: toggle_flight}
+    iconOn: { sprite: _Fish/Actions/milira.rsi, state: toggle_flight_active}
     itemIconStyle: NoItem
     checkCanInteract: false
     useDelay: 1.5

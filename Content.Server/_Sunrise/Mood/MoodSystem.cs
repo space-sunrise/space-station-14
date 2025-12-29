@@ -1,4 +1,5 @@
 ﻿using Content.Server.Chat.Managers;
+using Content.Shared._Fish.Mood;
 using Content.Shared._Sunrise.Mood;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Alert;
@@ -424,6 +425,9 @@ public sealed class MoodSystem : EntitySystem
     public void UpdateAppearance(EntityUid uid, MoodComponent? component = null, AppearanceComponent? appearance = null)
     {
         if (!Resolve(uid, ref component))
+            return;
+
+        if (!HasComp<MoodVisualsComponent>(uid))
             return;
 
         appearance ??= EnsureComp<AppearanceComponent>(uid);

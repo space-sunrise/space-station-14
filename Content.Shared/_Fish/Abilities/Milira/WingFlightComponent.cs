@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.ViewVariables;
@@ -9,7 +10,7 @@ namespace Content.Shared._Fish.Abilities.Milira;
 /// <summary>
 /// Компонент, добавляющий действие полёта и хранящий общее состояние способности.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause, AutoGenerateComponentState(true)]
 public sealed partial class WingFlightComponent : Component
 {
     /// <summary>
@@ -27,7 +28,6 @@ public sealed partial class WingFlightComponent : Component
     /// <summary>
     /// Экземпляр действия полёта на сущности.
     /// </summary>
-    [DataField]
     public EntityUid? ActionEntity;
 
     /// <summary>
@@ -112,7 +112,7 @@ public sealed partial class WingFlightComponent : Component
     /// <summary>
     /// Момент завершения инерции (только сервер).
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables(VVAccess.ReadOnly), AutoPausedField]
     public TimeSpan? InertiaEndTime;
 
     /// <summary>
@@ -144,5 +144,19 @@ public sealed partial class WingFlightComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     public Dictionary<string, int> OriginalCollisionLayers = new();
+
+    /// <summary>
+    /// Оригинальный масштаб спрайта (только клиент, для визуализации).
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public Vector2? OriginalScale;
+}
+
+/// <summary>
+/// Маркерный компонент для сущностей с активным полетом, требующих обновления в Update.
+/// </summary>
+[RegisterComponent, Access(typeof(SharedWingFlightSystem))]
+public sealed partial class ActiveWingFlightComponent : Component
+{
 }
 

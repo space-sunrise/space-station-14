@@ -12,6 +12,12 @@
     },
     {
       "name": "toggle_wings_active"
+    },
+    {
+        "name": "toggle_flight"
+    },
+    {
+        "name": "toggle_flight_active"
     }
   ]
 }

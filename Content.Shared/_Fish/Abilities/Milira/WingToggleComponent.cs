@@ -41,4 +41,10 @@ public sealed partial class WingToggleComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<TagPrototype>? AllowedTag = "WingToggleAllowed";
+
+    /// <summary>
+    /// Список слотов, которые должны быть свободны для раскрытия крыльев.
+    /// </summary>
+    [DataField]
+    public List<string>? BlockedSlots = new() { "outerClothing" };
 }

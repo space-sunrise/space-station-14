@@ -31,6 +31,7 @@ public abstract class SharedNestingSystem : EntitySystem
 
         SubscribeLocalEvent<NestingMobComponent, GetVerbsEvent<AlternativeVerb>>(AddNestingPickupAltVerb);
         SubscribeLocalEvent<NestingMobComponent, PickupAttemptEvent>(OnPickupAttempt);
+        SubscribeLocalEvent<NestingMobComponent, GettingPickedUpAttemptEvent>(OnGettingPickedUpAttempt);
         SubscribeLocalEvent<NestingMobComponent, BeingEquippedAttemptEvent>(OnBeingEquippedAttempt);
         SubscribeLocalEvent<NestingMobComponent, ContainerIsInsertingAttemptEvent>(OnHandEquippedAttempt);
         SubscribeLocalEvent<NestingMobComponent, UseAttemptEvent>(OnAttempt);
@@ -82,6 +83,11 @@ public abstract class SharedNestingSystem : EntitySystem
     {
         if (HasComp<NestingMobComponent>(args.Item) || component.InContainer)
             args.Cancel();
+    }
+
+    private void OnGettingPickedUpAttempt(EntityUid uid, NestingMobComponent component, GettingPickedUpAttemptEvent args)
+    {
+        args.Cancel();
     }
 
     private void AddInsertAltVerb(EntityUid uid, NestingContainerComponent component, GetVerbsEvent<AlternativeVerb> args)

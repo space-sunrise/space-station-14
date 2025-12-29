@@ -1,5 +1,6 @@
 using Content.Client._Sunrise.BloodCult;
 using Content.Shared._Fish.Abilities.Milira;
+using Content.Shared._Fish.Mood;
 using Content.Shared._Sunrise.Mood;
 using Robust.Client.GameObjects;
 using Robust.Shared.Utility;
@@ -22,29 +23,28 @@ public sealed class MoodVisualizerSystem : VisualizerSystem<MoodVisualsComponent
         SubscribeLocalEvent<MoodVisualsComponent, ComponentShutdown>(OnShutdown);
     }
 
-    private void OnShutdown(EntityUid uid, MoodVisualsComponent component, ComponentShutdown args)
+    private void OnShutdown(Entity<MoodVisualsComponent> ent, ref ComponentShutdown args)
     {
-        // Need LayerMapTryGet because Init fails if there's no existing sprite / appearancecomp
-        // which means in some setups (most frequently no AppearanceComp) the layer never exists.
-        if (TryComp<SpriteComponent>(uid, out var sprite) &&
-            _spriteSystem.LayerMapTryGet((uid, sprite), MoodVisualLayers.Mood, out var layer, false))
-        {
-            _spriteSystem.RemoveLayer((uid, sprite), layer);
-        }
-    }
-
-    private void OnComponentInit(EntityUid uid, MoodVisualsComponent component, ComponentInit args)
-    {
-        if (!TryComp<SpriteComponent>(uid, out var sprite) || !TryComp(uid, out AppearanceComponent? appearance))
+        if (!TryComp<SpriteComponent>(ent.Owner, out var sprite))
             return;
 
-        _spriteSystem.LayerMapReserve((uid, sprite), MoodVisualLayers.Mood);
-        _spriteSystem.LayerSetVisible((uid, sprite), MoodVisualLayers.Mood, false);
-        sprite.LayerSetShader(MoodVisualLayers.Mood, "unshaded");
-        if (component.Sprite != null)
-            _spriteSystem.LayerSetRsi((uid, sprite), MoodVisualLayers.Mood, new ResPath(component.Sprite));
+        if (_spriteSystem.LayerMapTryGet((ent.Owner, sprite), MoodVisualLayers.Mood, out var layer, false))
+            _spriteSystem.RemoveLayer((ent.Owner, sprite), layer);
+    }
 
-        UpdateAppearance(uid, component, sprite, appearance);
+    private void OnComponentInit(Entity<MoodVisualsComponent> ent, ref ComponentInit args)
+    {
+        if (!TryComp<SpriteComponent>(ent.Owner, out var sprite))
+            return;
+
+        _spriteSystem.LayerMapReserve((ent.Owner, sprite), MoodVisualLayers.Mood);
+        _spriteSystem.LayerSetVisible((ent.Owner, sprite), MoodVisualLayers.Mood, false);
+        sprite.LayerSetShader(MoodVisualLayers.Mood, "unshaded");
+        if (ent.Comp.Sprite != null)
+            _spriteSystem.LayerSetSprite((ent.Owner, sprite), MoodVisualLayers.Mood, ent.Comp.Sprite);
+
+        if (TryComp<AppearanceComponent>(ent.Owner, out var appearance))
+            UpdateAppearance(ent.Owner, ent.Comp, sprite, appearance);
     }
 
     protected override void OnAppearanceChange(EntityUid uid, MoodVisualsComponent component, ref AppearanceChangeEvent args)
