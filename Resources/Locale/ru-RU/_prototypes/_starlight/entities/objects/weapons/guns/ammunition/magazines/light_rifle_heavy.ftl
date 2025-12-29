@@ -15,3 +15,7 @@ ent-RifleHeavyMagazineUranium = Пулемётный короб (.308 урано
     .desc = { ent-RifleHeavyBase.desc }
 ent-RifleHeavyMagazineAP = Пулемётный короб (.308 AP)
     .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineArtillery = Пулемётный короб (.308 космические)
+    .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineArtilleryLargeExtra = Огромный пулемётный короб (.308 космические)
+    .desc = { ent-RifleHeavyBase.desc }

@@ -38,3 +38,7 @@ ent-ClothingUniformWhiteGroomSuit = white wedding suit
     .desc = A pristine ensemble of ivory and silver, radiating timeless grace.
 ent-ClothingUniformBlackGroomSuit = dark wedding suit
     .desc = A tailored masterpiece of shadow and elegance, crafted from fine onyx-hued fabric.
+ent-ClothingUniformJumpskirtCaptainWhite = captain's white jumpskirt
+    .desc = Same authority, 30% more dramatic twirl. Warning: may summon admirers and inspectors.
+ent-ClothingUniformJumpskirtCaptainBlack = captain's black jumpskirt
+    .desc = Intimidating. Fabulous. Practically invisible in a dark hallway (until the ego arrives).

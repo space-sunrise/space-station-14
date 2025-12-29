@@ -37,7 +37,7 @@
 #SUNRISE-Start
 - type: entity
   id: CratePirateChestSun
-  suffix: Filled, Sunrise
+  suffix: Filled, Weapons
   parent: CratePirate
   components:
   - type: StorageFill
@@ -114,7 +114,7 @@
 
 - type: entity
   id: CratePirateChestCannonBall
-  suffix: Filled
+  suffix: Filled, CannonBall
   parent: CratePirate
   components:
   - type: StorageFill
@@ -124,7 +124,7 @@
 
 - type: entity
   id: CratePirateChestCannonBallFuze
-  suffix: Filled
+  suffix: Filled, Cannonball Fuze
   parent: CratePirate
   components:
   - type: StorageFill
@@ -134,7 +134,7 @@
 
 - type: entity
   id: CratePirateChestGrapeshot
-  suffix: Filled
+  suffix: Filled, Cannonball Grapeshot
   parent: CratePirate
   components:
   - type: StorageFill
@@ -144,7 +144,7 @@
 
 - type: entity
   id: CratePirateChestCannonEMP
-  suffix: Filled
+  suffix: Filled, Cannonball EMP
   parent: CratePirate
   components:
   - type: StorageFill
@@ -154,7 +154,7 @@
 
 - type: entity
   id: CratePirateChestGlassshot
-  suffix: Filled
+  suffix: Filled, Glassshot CannonBall
   parent: CratePirate
   components:
   - type: StorageFill
@@ -164,7 +164,7 @@
 
 - type: entity
   id: CratePirateChestCannonBallMiniMix
-  suffix: Filled
+  suffix: Filled, Mini CannonBall Mix
   parent: CratePirate
   components:
   - type: StorageFill

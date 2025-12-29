@@ -18,7 +18,7 @@
   access:
   - Security
   - Brig
-  - Maintenance
+  # - Maintenance # sunrise-edit
   - External
   - Cryogenics
   special:
@@ -33,12 +33,12 @@
     id: SecurityCadetPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58
+    # pocket1: WeaponPistolMk58 # sunrise-edit
     pocket2: BookSecurity
   storage:
     back:
     - Flash
-    - MagazinePistol
+    #- MagazinePistol  # sunrise-edit
 
 - type: chameleonOutfit
   id: SecurityCadetChameleonOutfit

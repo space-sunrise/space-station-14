@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Content.Server.Database;
+using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
@@ -54,8 +55,15 @@ namespace Content.IntegrationTests.Tests.Preferences
                     Color.Azure,
                     Color.Beige,
                     new (),
-                    1.0f, // Sunrise-Edit
-                    1.0f) // Sunrise-Edit
+                    // Sunrise edit start
+                    MarkingEffectType.Color,
+                    null,
+                    MarkingEffectType.Color,
+                    null,
+                    1.0f,
+                    1.0f
+                    // Sunrise edit end
+                    )
             };
         }
 

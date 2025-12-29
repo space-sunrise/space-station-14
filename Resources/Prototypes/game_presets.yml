@@ -123,7 +123,7 @@
   - multiantag
   - director
   name: dynamic-title
-  showInVote: false # admin-only for now until we fix some bugs
+  showInVote: true # Sunrise-Edit
   description: dynamic-description
   rules:
   - DynamicRule
@@ -140,7 +140,6 @@
     - sekrit
   name: secret-title
   showInVote: true
-  hide: true # Sunrise-Edit
   description: secret-description
   rules:
     - Secret

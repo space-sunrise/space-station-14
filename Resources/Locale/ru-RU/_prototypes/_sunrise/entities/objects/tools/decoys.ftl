@@ -1,0 +1,16 @@
+ent-BalloonPirate1 = пиратский шарик
+    .desc = Если присмотреться, этот пират на самом деле воздушный шарик.
+ent-BalloonPirate2 = { ent-BalloonPirate1 }
+    .desc = { ent-BalloonPirate1.desc }
+ent-BalloonPirate3 = { ent-BalloonPirate1 }
+    .desc = { ent-BalloonPirate1.desc }
+ent-BalloonPirate4 = { ent-BalloonPirate1 }
+    .desc = { ent-BalloonPirate1.desc }
+ent-BalloonPirate5 = { ent-BalloonPirate1 }
+    .desc = { ent-BalloonPirate1.desc }
+ent-BalloonPirate6 = { ent-BalloonPirate1 }
+    .desc = { ent-BalloonPirate1.desc }
+ent-BalloonPirate7 = { ent-BalloonPirate1 }
+    .desc = { ent-BalloonPirate1.desc }
+ent-BalloonPirate8 = { ent-BalloonPirate1 }
+    .desc = { ent-BalloonPirate1.desc }

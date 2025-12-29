@@ -97,7 +97,7 @@
   suffix: Filled
   parent: CrateSyndicate
   name: Cybersun gygax bundle
-  description: Contains a set of Cybersan light armored mechs.
+  description: Contains a set of Cybersun light armored mechs.
   components:
   - type: StorageFill
     contents:
@@ -110,7 +110,7 @@
   suffix: Filled
   parent: CrateSyndicate
   name: Cybersun rover bundle
-  description: Contains a set of Cybersan medium armored mechs.
+  description: Contains a set of Cybersun medium armored mechs.
   components:
   - type: StorageFill
     contents:
@@ -123,7 +123,7 @@
   suffix: Filled
   parent: CrateSyndicate
   name: Cybersun mauler bundle
-  description: Contains a set of Cybersan heavy armored mechs.
+  description: Contains a set of Cybersun heavy armored mechs.
   components:
   - type: StorageFill
     contents:
@@ -138,7 +138,7 @@
   suffix: Filled
   parent: CrateLivestock
   name: Blackmarket salvage mech bundle
-  description: Contains a set of Cybersan light armored mechs.
+  description: Contains a set of Cybersun light armored mechs.
   components:
   - type: StorageFill
     contents:
@@ -150,7 +150,7 @@
   suffix: Filled
   parent: CrateLivestock
   name: Blackmarket USSP mech bundle
-  description: Contains a set of Cybersan medium armored mechs.
+  description: Contains a set of Cybersun medium armored mechs.
   components:
   - type: StorageFill
     contents:

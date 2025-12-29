@@ -46,7 +46,7 @@
   equipment:
     shoes: ClothingShoesBootsLaceup
     eyes: ClothingEyesGlassesCommand
-    gloves: ClothingHandsGlovesCaptain
+    # gloves: ClothingHandsGlovesCaptain Sunrise - Edit
     id: CaptainPDA
     ears: ClothingHeadsetAltCommand
   storage:

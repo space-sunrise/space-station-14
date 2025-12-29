@@ -55,7 +55,7 @@ namespace Content.Client.Info
             var roadmapButton = new Button
             {
                 Text = Loc.GetString("server-info-roadmap-button"),
-                StyleClasses = { StyleClass.ButtonSquare },
+                StyleClasses = { StyleClass.Negative },
             };
             roadmapButton.OnPressed += _ => UserInterfaceManager.GetUIController<RoadmapUIController>().ToggleRoadmap();
             buttons.AddChild(roadmapButton);

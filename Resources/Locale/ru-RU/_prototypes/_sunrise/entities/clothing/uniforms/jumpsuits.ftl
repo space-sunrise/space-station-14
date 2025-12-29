@@ -84,6 +84,10 @@ ent-ClothingUniformMajimaTishka = модный костюм якудзы
     .desc = Блейзер со змеиным принтом, черный кожаный ремень с серебряной пряжкой.
 ent-ClothingUniformMetatonTishka = Модная форма музыканта
     .desc = Руки можно потерять, когда в ногах такая стать!
+ent-ClothingUniformJumpsuitCaptainWhite = белый комбинезон капитана
+    .desc = Хрустящий, блестящий и на 100% аллергичный к мазуту. Вызывает неконтролируемые салюты и тягу к бумажкам.
+ent-ClothingUniformJumpsuitCaptainBlack = чёрный комбинезон капитана
+    .desc = Когда нужно выглядеть как легенда, а не как несчастный случай в прачечной. Прячет пятна кофе и сомнительные решения.
 # комбинезоны Метус
 ent-UniformPrisonGuardMetus = комбинезон тюремного охранника
     .desc = { ent-ClothingUniformJumpsuitHoSOld.desc }

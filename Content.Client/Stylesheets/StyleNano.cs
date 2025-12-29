@@ -169,8 +169,6 @@ namespace Content.Client.Stylesheets
         public const string StyleClassCrossButtonRed = "CrossButtonRed";
         public const string StyleClassButtonColorRed = "ButtonColorRed";
         public const string StyleClassButtonColorGreen = "ButtonColorGreen";
-        public const string StyleClassNoStyle = "NoStyle";  // Sunrise-Edit
-
         public static readonly Color ChatBackgroundColor = Color.FromHex("#25252ADD");
 
         // i'm not sure what the missing symbols were referencing, and this is getting obseleted anyway so:
@@ -1686,18 +1684,6 @@ namespace Content.Client.Stylesheets
                 Element<Button>().Class(StyleClassSocialButtonTelegram)
                     .Pseudo(ContainerButton.StylePseudoClassHover)
                     .Prop(Control.StylePropertyModulateSelf, new Color(20, 156, 224)),
-
-                // Sunrise-Start
-                Element<Button>().Class(StyleClassNoStyle)
-                    .Prop(Button.StylePropertyStyleBox, new StyleBoxFlat
-                    {
-                        BackgroundColor = Color.Transparent,
-                        ContentMarginLeftOverride = 15,
-                        ContentMarginRightOverride = 15,
-                        ContentMarginTopOverride = 12,
-                        ContentMarginBottomOverride = 12
-                    }),
-                // Sunrise-End
 
                 // Silicon law edit ui
                 Element<Label>().Class(SiliconLawContainer.StyleClassSiliconLawPositionLabel)

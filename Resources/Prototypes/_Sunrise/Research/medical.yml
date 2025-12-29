@@ -193,6 +193,38 @@
   - Medical
   - Service
 
+- type: technology
+  id: CompactDefibrillation
+  name: research-technology-compact-defibrilation
+  icon:
+    sprite: Objects/Specific/Medical/defibsmall.rsi
+    state: icon
+  discipline: Biochemical
+  tier: 2
+  cost: 8000
+  recipeUnlocks:
+    - DefibrillatorCompact
+  technologyPrerequisites:
+    - SurgeryTech
+  radioChannels:
+  - Medical
+
+- type: technology
+  id: AdvancedCompactDefibrillation
+  name: research-technology-advanced-compact-defibrilation
+  icon:
+    sprite: _Sunrise/Entities/Objects/Specific/Medical/advanced_defibsmall.rsi
+    state: icon
+  discipline: Biochemical
+  tier: 2
+  cost: 15000
+  recipeUnlocks:
+    - AdvancedDefibrillatorCompact
+  technologyPrerequisites:
+    - CompactDefibrillation
+  radioChannels:
+  - Medical
+
 # Tier 3
 - type: technology
   id: HackCyberLimbsTech

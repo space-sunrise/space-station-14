@@ -390,6 +390,17 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUSSPMarine
+  name: USSP space-marine jumpsuit
+  description: A striped undershirt and simple trousers of the USSP space marines. Worn under a combat spacesuit, because even armor should know who is inside it.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/alcoholichka.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/alcoholichka.rs
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformPencilSkirt
   name: Pencil Skirt
   components:
@@ -550,3 +561,25 @@
       - state: equipped-INNERCLOTHING
       - state: overlay-equipped
         color: "#df0400"
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCaptainWhite
+  name: white captain's jumpsuit
+  description: "A crisp captain's jumpsuit in \"definitely under control\" white. Comes with a complimentary aura of command."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/white_cap_suit.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/white_cap_suit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCaptainBlack
+  name: black captain's jumpsuit
+  description: "A black captain's jumpsuit for \"cool head, hot situation\" days. Warning: does not prevent clown-induced disasters."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/black_cap_suit.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/black_cap_suit.rsi

@@ -11,6 +11,31 @@
     Gold: 100
 
 - type: latheRecipe
+  id: DefibrillatorCompact
+  result: DefibrillatorCompact
+  categories:
+  - Tools
+  completetime: 5
+  materials:
+    Glass: 50
+    Steel: 250
+    Plastic: 50
+    Silver: 100
+
+- type: latheRecipe
+  id: AdvancedDefibrillatorCompact
+  result: AdvancedDefibrillatorCompact
+  categories:
+  - Tools
+  completetime: 10
+  materials:
+    Glass: 50
+    Steel: 250
+    Plastic: 50
+    Silver: 100
+    Plasma: 50
+
+- type: latheRecipe
   id: ScalpelAdvanced
   result: ScalpelAdvanced
   categories:

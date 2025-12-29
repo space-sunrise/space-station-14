@@ -140,7 +140,11 @@
   loadouts:
   - CaptainHead
   - CaptainCap
-  - EliteCaptainCap #Sunrise-Edit
+  # Sunrise-Start
+  - CaptainCapWhite
+  - CaptainCapBlack
+  - EliteCaptainCap
+  # Sunrise-End
 
 - type: loadoutGroup
   id: CaptainJumpsuit
@@ -150,6 +154,12 @@
   - CaptainJumpskirt
   - CaptainFormalSuit
   - CaptainFormalSkirt
+  # Sunrise - Start: captain cap uniforms
+  - CaptainJumpsuitCapWhite
+  - CaptainJumpsuitCapBlack
+  - CaptainJumpskirtCapWhite
+  - CaptainJumpskirtCapBlack
+  # Sunrise - End
 
 - type: loadoutGroup
   id: CaptainNeck
@@ -159,8 +169,14 @@
   - CaptainCloak
   - CaptainCloakFormal
   - CaptainMantle
-  - CaptainEliteCloak # Sunrise-Edit
-  - CapitainScarf # Sunrise-Edit
+  # Sunrise - Start
+  - CaptainEliteCloak
+  - CaptainScarf
+  - CaptainMantleWhite
+  - CaptainMantleWhiteShoulder
+  - CaptainMantleBlack
+  - CaptainMantleBlackShoulder
+  # Sunrise - End
 
 - type: loadoutGroup
   id: CaptainBackpack
@@ -169,6 +185,18 @@
   - CaptainBackpack
   - CaptainSatchel
   - CaptainDuffel
+
+# Sunrise - Start
+- type: loadoutGroup
+  id: CaptainGloves
+  name: loadout-group-captain-gloves
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - CaptainGloves
+  - CaptainGlovesWhite
+  - CaptainGlovesBlack
+# Sunrise - End
 
 - type: loadoutGroup
   id: CaptainOuterClothing

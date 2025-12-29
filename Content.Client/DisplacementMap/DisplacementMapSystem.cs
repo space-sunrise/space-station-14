@@ -30,7 +30,8 @@ public sealed class DisplacementMapSystem : EntitySystem
         Entity<SpriteComponent> sprite,
         int index,
         object key,
-        [NotNullWhen(true)] out string? displacementKey
+        [NotNullWhen(true)] out string? displacementKey,
+        ShaderInstance? shaderOverride = null // Sunrise edit
     )
     {
         displacementKey = BuildDisplacementLayerKey(key);
@@ -39,8 +40,19 @@ public sealed class DisplacementMapSystem : EntitySystem
 
         EnsureDisplacementIsNotOnSprite(sprite, key);
 
+        // Sunrise edit start - градиенты
         if (data.ShaderOverride is not null)
-            sprite.Comp.LayerSetShader(index, data.ShaderOverride);
+        {
+            if (shaderOverride is not null)
+            {
+                shaderOverride.SetParameter("useDisplacement", true);
+                shaderOverride.SetParameter("displacementSize", 127);
+                sprite.Comp.LayerSetShader(index, shaderOverride);
+            }
+            else
+                sprite.Comp.LayerSetShader(index, data.ShaderOverride);
+        }
+        // Sunrise edit end
 
         //allows you not to write it every time in the YML
         foreach (var pair in data.SizeMaps)

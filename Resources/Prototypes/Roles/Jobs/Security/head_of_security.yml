@@ -29,7 +29,7 @@
   - Brig
   - Security
   - Armory
-  - Maintenance
+  # - Maintenance # Sunrise-Edit
   - External
   - Detective
   - Cryogenics
@@ -54,7 +54,6 @@
   storage:
     back:
     - Flash
-#    - MagazineGlock22 # Sunrise-Edit
 
 - type: chameleonOutfit
   id: HeadOfSecurityChameleonOutfit

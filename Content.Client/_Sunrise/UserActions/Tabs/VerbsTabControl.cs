@@ -155,8 +155,10 @@ public sealed partial class VerbsTabControl : BaseTabControl
         if (emote.Category == EmoteCategory.Invalid || emote.Category != EmoteCategory.Verb)
             return false;
 
-        if (!whitelistSystem.IsWhitelistPassOrNull(emote.Whitelist, player) ||
-            whitelistSystem.IsWhitelistFail(emote.Blacklist, player))
+        if (whitelistSystem.IsWhitelistPass(emote.Blacklist, player))
+            return false;
+
+        if (whitelistSystem.IsWhitelistFail(emote.Whitelist, player))
             return false;
 
         if (!emote.Available &&

@@ -154,8 +154,10 @@ public sealed partial class EmotesTabControl : BaseTabControl
         if (emote.Category == EmoteCategory.Invalid || emote.Category == EmoteCategory.Verb || emote.ChatTriggers.Count == 0)
             return false;
 
-        if (!whitelistSystem.IsWhitelistPassOrNull(emote.Whitelist, player) ||
-            whitelistSystem.IsWhitelistFail(emote.Blacklist, player))
+        if (whitelistSystem.IsWhitelistPass(emote.Blacklist, player))
+            return false;
+
+        if (whitelistSystem.IsWhitelistFail(emote.Whitelist, player))
             return false;
 
         if (!emote.Available &&

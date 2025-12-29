@@ -1,4 +1,5 @@
-﻿using Content.Server.Chat.Systems;
+﻿using System.Reflection.Metadata;
+using Content.Server.Chat.Systems;
 using Content.Shared._Sunrise.Animations;
 using Content.Shared._Sunrise.Flip;
 using Content.Shared._Sunrise.Jump;
@@ -31,26 +32,11 @@ public sealed class EmoteAnimationSystem : EntitySystem
     {
         SubscribeLocalEvent<EmoteAnimationComponent, ComponentGetState>(OnGetState);
         SubscribeLocalEvent<EmoteAnimationComponent, EmoteEvent>(OnEmote);
-        SubscribeAllEvent<PlayEmoteMessage>(OnPlayEmote);
     }
 
-    private void OnPlayEmote(PlayEmoteMessage msg, EntitySessionEventArgs args)
+    private void OnGetState(Entity<EmoteAnimationComponent> ent, ref ComponentGetState args)
     {
-        if (args.SenderSession.AttachedEntity is not {} uid)
-            return;
-
-        if (!HasComp<EmoteAnimationComponent>(uid))
-            return;
-
-        if (!_prototypeManager.TryIndex(msg.ProtoId, out var proto))
-            return;
-
-        _chat.TryEmoteWithChat(uid, proto.ID);
-    }
-
-    private void OnGetState(EntityUid uid, EmoteAnimationComponent component, ref ComponentGetState args)
-    {
-        args.State = new EmoteAnimationComponent.EmoteAnimationComponentState(component.AnimationId);
+        args.State = new EmoteAnimationComponent.EmoteAnimationComponentState(ent.Comp.AnimationId);
     }
 
     private void OnEmote(EntityUid uid, EmoteAnimationComponent component, ref EmoteEvent args)

@@ -42,3 +42,11 @@
   materials:
     Steel: 500
     Glass: 200
+
+- type: latheRecipe
+  id: SheetPlasteel1Lathe
+  result: SheetPlasteel1
+  completetime: 1
+  materials:
+    Plasma: 100
+    Steel: 300

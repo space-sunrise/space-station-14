@@ -161,3 +161,16 @@
     range: 10
     sound:
       path: "/Audio/Effects/Lightning/strobeepsilon.ogg"
+
+- type: entity
+  id: AlwaysPoweredStrobeDimLight
+  parent: AlwaysPoweredStrobeLight
+  suffix: Always powered, Dimlight
+  components:
+  - type: PointLight
+    mask: /Textures/Effects/LightMasks/double_cone.png
+    color: "#ba473f"
+    energy: 0.5
+    radius: 5
+    softness: 3
+    offset: "0, 0.35"

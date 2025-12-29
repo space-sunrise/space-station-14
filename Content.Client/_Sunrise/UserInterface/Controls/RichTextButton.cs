@@ -1,9 +1,17 @@
 ﻿using Robust.Client.UserInterface.Controls;
+using Robust.Client.UserInterface.RichText;
+using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise.UserInterface.Controls;
 
 public sealed class RichTextButton : Button
 {
+    private static readonly Type[] TagsAllowed =
+    [
+        typeof(ColorTag),
+        typeof(UserInterface.RichText.TextureTag),
+    ];
+
     public new RichTextLabel Label { get; }
 
     public RichTextButton()
@@ -43,6 +51,10 @@ public sealed class RichTextButton : Button
     public new string Text
     {
         get => Label.Text ?? string.Empty;
-        set => Label.Text = MakeTextReadable(value, ModulateSelfOverride ?? Modulate);
+        set
+        {
+            var markup = MakeTextReadable(value, ModulateSelfOverride ?? Modulate);
+            Label.SetMessage(FormattedMessage.FromMarkupPermissive(markup), TagsAllowed);
+        }
     }
 }

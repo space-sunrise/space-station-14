@@ -64,7 +64,7 @@
     duration: 1
   - type: RuleGrids
   - type: LoadMapRule
-    gridPath: /Maps/_Sunrise/Shuttles/abductor_shuttle.yml
+    gridPath: /Maps/_Sunrise/Shuttles/Antag/abductor_shuttle.yml
   - type: AntagObjectives
     objectives:
     - AbductObjective
@@ -122,6 +122,8 @@
         - SimpleHostile
       mindRoles:
       - MindRoleLoneAbductor
+  - type: DynamicRuleCost
+    cost: 125
 
 - type: entity
   id: AbductorVictim
@@ -150,6 +152,8 @@
         sound: /Audio/_Sunrise/Abductor/abductor.ogg
       mindRoles:
       - AbductorVictimRole
+  - type: DynamicRuleCost
+    cost: 70
 
 - type: entity
   parent: BaseGameRule

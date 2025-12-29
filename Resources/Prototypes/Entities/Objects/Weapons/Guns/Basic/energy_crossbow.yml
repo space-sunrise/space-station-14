@@ -40,10 +40,17 @@
   name: mini energy crossbow
   description: Launches renewable toxic arrows capable of flooring targets instantly.
   components:
+  # Sunrise-start
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Basic/energy_crossbow.rsi
-    state: icon
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/mini_crossbow.rsi
+    layers:
+    - state: icon
+      map: [ "icon" ]
+    - state: animation-icon
+      visible: false
+      map: [ "empty-icon" ]
   - type: Item
-    sprite: Objects/Weapons/Guns/Basic/energy_crossbow.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/mini_crossbow.rsi
+  # Sunrise-end
   - type: StaticPrice
     price: 2500
