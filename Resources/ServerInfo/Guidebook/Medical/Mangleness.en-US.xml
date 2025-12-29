@@ -1,0 +1,63 @@
+<Document>
+
+[head=1][color=#ff9966]Mangleness[/color][/head]
+
+[color=#cccccc]Mangleness is a special type of damage that reflects the general physical and metabolic exhaustion of the body. Unlike other damage types, Mangleness requires a special approach to treatment and cannot be restored by ordinary medical tools.[/color]
+
+[head=2][color=#ffaa66]What is Mangleness?[/color][/head]
+
+[color=#dddddd]Mangleness is a type of damage that accumulates in the body as a result of treatment with chemical preparations. It reflects general fatigue and depletion of body resources, manifesting as physical and metabolic exhaustion.[/color]
+
+<Box>
+<GuideEntityEmbed Entity="HandheldHealthAnalyzer" Caption="Mangleness is displayed in the health analyzer"/>
+</Box>
+
+[head=2][color=#ffaa66]Causes of Mangleness[/color][/head]
+
+[color=#dddddd]Mangleness arises for the following reasons:[/color]
+  -  [color=#ff9999]Use of medical chemicals[/color] [color=#dddddd](most medicines cause slight Mangleness as a side effect)[/color]
+  -  [color=#ff9999]Malnutrition and dehydration[/color]
+
+[head=2][color=#ffaa66]Treating Mangleness[/color][/head]
+
+[head=3][color=#ffbb77]Natural Recovery[/color][/head]
+
+[color=#dddddd]Mangleness is restored naturally in the following ways:[/color]
+
+[bold][color=#99ccff]Nutrition and Hydration[/color][/bold]: [color=#dddddd]The body consumes hunger and thirst resources to recover. The rate depends on satiety:[/color]
+
+  -  [bold][color=#aaddff]Overfed / Overhydrated[/color][/bold]: [color=#dddddd]Restores [bold][color=#99ff99]0.03[/color][/bold] units/sec. Hunger/thirst drop [bold][color=#ff9999]4[/color][/bold] times faster.[/color]
+  -  [bold][color=#aaddff]Well Fed / Hydrated[/color][/bold]: [color=#dddddd]Restores [bold][color=#99ff99]0.03[/color][/bold] units/sec. Hunger/thirst drop [bold][color=#ff9999]4[/color][/bold] times faster.[/color]
+  -  [bold][color=#88ccff]Peckish / Thirsty[/color][/bold]: [color=#dddddd]Restores [bold][color=#99ff99]0.01[/color][/bold] units/sec. Hunger/thirst drop [bold][color=#ff9999]2[/color][/bold] times faster.[/color]
+  -  [bold][color=#ff9999]Starving / Parched[/color][/bold]: [color=#dddddd]Does not restore Mangleness. Deals [bold][color=#ff0000]0.5[/color][/bold] Mangleness damage per second.[/color]
+
+[bold][color=#99ccff]Bed Rest[/color][/bold]: [color=#dddddd]Lying in bed is an effective way to recover from Mangleness.[/color]
+
+  -  [bold][color=#aaddff]Regular Bed[/color][/bold]: [color=#dddddd]Restores [bold][color=#99ff99]0.5[/color][/bold] units of Mangleness per second. Sleeping on the bed doubles the recovery rate to [bold][color=#99ff99]1[/color][/bold] unit per second.[/color]
+  -  [bold][color=#88ccff]Medical Bed[/color][/bold]: [color=#dddddd]Restores [bold][color=#99ff99]1[/color][/bold] unit of Mangleness per second. Sleeping on a medical bed doubles the recovery rate to [bold][color=#99ff99]2[/color][/bold] units per second.[/color]
+
+<Box>
+<GuideEntityEmbed Entity="Bed" Caption="regular bed"/>
+<GuideEntityEmbed Entity="MedicalBed" Caption="medical bed"/>
+</Box>
+
+[head=3][color=#ffbb77]Medical Preparations[/color][/head]
+
+[color=#dddddd]Most medical preparations cause Mangleness as a side effect. The amount of Mangleness caused is proportional to their healing effect - the stronger the drug, the more Mangleness.[/color]
+
+[color=#dddddd]For direct treatment of Mangleness, there are specialized drugs:[/color]
+
+  <GuideReagentEmbed Reagent="Cryoxadone"/>
+<GuideReagentEmbed Reagent="Vitera"/>
+  <GuideReagentEmbed Reagent="GenesisUltra"/>
+<GuideReagentEmbed Reagent="Omnizine"/>
+
+[head=2][color=#ffaa66]Important Notes[/color][/head]
+
+  -  [color=#ff9999]Mangleness cannot be restored by ordinary medical tools[/color] [color=#dddddd](bruise packs, ointment, etc.)[/color]
+  -  [color=#ff9999]For effective treatment of Mangleness, it is important to ensure the patient has sufficient nutrition, hydration, and rest[/color]
+  -  [color=#ff9999]Sleeping on a medical bed significantly accelerates the recovery of Mangleness[/color]
+  -  [color=#ff9999]Cryomedicine, specifically Cryoxadone, is capable of treating Mangleness no worse than sleeping on a medical bed[/color]
+  -  [color=#ff9999]Necrozol allows treating Mangleness in corpses, but it is difficult to synthesize[/color]
+
+</Document>

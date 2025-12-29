@@ -1,0 +1,48 @@
+- type: reagent
+  id: Vitera
+  name: reagent-name-vitera
+  group: Medicine
+  desc: reagent-desc-vitera
+  physicalDesc: reagent-physical-desc-viscous
+  flavor: medicine
+  color: "#a0a0ff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Mangleness: -1
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 16
+        damage:
+          types:
+            Cellular: 1
+            Poison: 1
+
+- type: reagent
+  id: GenesisUltra
+  name: reagent-name-genesis-ultra
+  group: Medicine
+  desc: reagent-desc-genesis-ultra
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: medicine
+  color: "#ff5050"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: -1
+            Mangleness: -3
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 6
+        damage:
+          types:
+            Cellular: 5
+            Poison: 1

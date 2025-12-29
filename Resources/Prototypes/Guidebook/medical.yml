@@ -7,6 +7,12 @@
   - Chemist
   - Cloning
   - Cryogenics
+  - Mangleness
+
+- type: guideEntry
+  id: Mangleness
+  name: Истощение
+  text: "/ServerInfo/Guidebook/Medical/Mangleness.xml"
 
 - type: guideEntry
   id: MedicalDoctor

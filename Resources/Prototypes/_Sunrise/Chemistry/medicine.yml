@@ -10,20 +10,20 @@
     Medicine:
       effects:
       - !type:ModifyBleed
-        amount: -4.2
-      - !type:HealthChange
+        amount: -4
+      - !type:EvenHealthChange
         damage:
           groups:
-            Brute: -3.2
+            Brute: -1.75
       - !type:HealthChange
         damage:
           types:
-            Mangleness: 0.2
+            Mangleness: 0.2625
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
           reagent: HemostaticPowder
-          min: 10.1
+          min: 11
         damage:
           types:
-            Poison: 6
+            Poison: 3

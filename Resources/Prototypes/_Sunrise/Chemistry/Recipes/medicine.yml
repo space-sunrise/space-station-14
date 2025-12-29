@@ -66,6 +66,24 @@
       amount: 1
     Fersilicite:
       amount: 1
+    Bicaridine:
+      amount: 1
   products:
     HemostaticPowder: 2
+
+- type: reaction
+  id: GenesisUltraSynthesis
+  name: reaction-genesis-ultra-synthesis
+  reactants:
+    Tricordrazine:
+      amount: 1
+    Radium:
+      amount: 1
+    Benzene:
+      amount: 1
+    Plasma:
+      amount: 1
+      catalyst: true
+  products:
+    GenesisUltra: 1
 

@@ -1,0 +1,134 @@
+<Document>
+  [head=1][color=#66ccff]Medical Doctor[/color][/head]
+
+  [color=#cccccc]It's time to heal. or at least try to. Doctors are the primary caregivers for all the boo-boos and ouchies crewmembers sustain on the station, whether it be a small scratch or burnt skin.[/color]
+
+  [color=#cccccc]In this guide, you will find basic information about the treatment options available to you, priorities, and other ways to provide assistance.[/color]
+
+  [head=2][color=#66ccff]Diagnosis Basics[/color][/head]
+
+  [color=#dddddd]There are two ways to tell what is wrong with the patient in front of you:[/color]
+
+  - [bold][color=#99ccff]Health Analyzer[/color][/bold]: [color=#dddddd]Scan the patient with a health analyzer or medical PDA - shows the most detailed information[/color]
+  - [bold][color=#99ccff]Visual Examination[/color][/bold]: [color=#dddddd]Use Shift+LMB -> heart symbol on the character for a quick assessment[/color]
+
+  [color=#dddddd]Whenever possible, always use an analyzer or PDA, as they display much more information than a visual examination.[/color]
+
+  <Box>
+    <GuideEntityEmbed Entity="SignExamroom" Caption="examine the patient"/>
+    <GuideEntityEmbed Entity="MedicalPDA"/>
+    <GuideEntityEmbed Entity="MedicalInternPDA" Caption="intern PDA"/>
+    <GuideEntityEmbed Entity="HandheldHealthAnalyzer"/>
+  </Box>
+
+  [head=2][color=#66ccff]Medicines and Treatment Options[/color][/head]
+
+  [color=#dddddd]Before we go further, it will probably be useful to talk about damage types and what treats them. The "Chemicals" guide contains more detailed information about the exact properties of drugs.[/color]
+
+  [head=3][color=#88ddff]Important Notes[/color][/head]
+
+  - [color=#ff9999]Most medicines have an overdose level[/color] [color=#dddddd](Maximum safe dose - no more than 10u)[/color]
+  - [color=#ff9999]Pills take 20 seconds to metabolize[/color] [color=#dddddd]. For fast action, use a syringe[/color]
+  - [color=#ff9999]Medical Hypospray[/color] [color=#dddddd]injects 5u of chemicals almost instantly, but has a long cooldown[/color]
+
+  [head=3][color=#88ddff]Mechanical Damage[/color][/head]
+
+  - [bold][color=#ff9999]Blunt Damage[/color][/bold]: [color=#dddddd]Bicaridine, Bruizine (DO NOT USE TOGETHER), or bruise pack[/color]
+  - [bold][color=#ff9999]Piercing Damage[/color][/bold]: [color=#dddddd]Bicaridine, Puncturase (DO NOT USE TOGETHER), gauze, or bruise pack[/color]
+  - [bold][color=#ff9999]Slash Damage[/color][/bold]: [color=#dddddd]Bicaridine, Lacerinol (DO NOT USE TOGETHER), gauze, or bruise pack[/color]
+
+  [head=3][color=#88ddff]Physical Damage[/color][/head]
+
+  - [bold][color=#ff9999]Burn Damage[/color][/bold]: [color=#dddddd]Dermaline, Kelotane, Pyrazine, or ointment[/color]
+  - [bold][color=#ff9999]Frostbite Damage[/color][/bold]: [color=#dddddd]Dermaline or Leporazine[/color]
+  - [bold][color=#ff9999]Shock Damage[/color][/bold]: [color=#dddddd]Insuzine[/color]
+  - [bold][color=#ff9999]Acid Damage[/color][/bold]: [color=#dddddd]Sigynate or Siderlac[/color]
+
+  [head=3][color=#88ddff]Toxins[/color][/head]
+
+  - [bold][color=#ff9999]Toxin (poison)[/color][/bold]: [color=#dddddd]Dylovene or Diphenhydramine[/color]
+  - [bold][color=#ff9999]Toxin (radiation)[/color][/bold]: [color=#dddddd]Hyronalin or Arithrazine[/color]
+
+  [head=3][color=#88ddff]Air Loss[/color][/head]
+
+  - [bold][color=#ff9999]Air Loss[/color][/bold]: [color=#dddddd]Dexalin, Dexalin+, or Inaprovaline (only for critical patients)[/color]
+  - [bold][color=#ff9999]Blood Loss[/color][/bold]: [color=#dddddd]Dexalin, Dexalin+, Iron, or Blood Pack[/color]
+  - [bold][color=#ff9999]Bleeding[/color][/bold]: [color=#dddddd]Tranexamic Acid, Emergency Medipen, or Gauze[/color]
+
+  [color=#dddddd]Many stations stock first aid kits for different damage types, and all medics have some equipment in their starting belt. First aid kits can be found in medbay storage or ordered from Cargo.[/color]
+
+  <Box>
+    <GuideEntityEmbed Entity="MedkitFilled"/>
+    <GuideEntityEmbed Entity="MedkitBruteFilled" Caption="brute kit"/>
+    <GuideEntityEmbed Entity="MedkitRadiationFilled" Caption="radiation kit"/>
+    <GuideEntityEmbed Entity="MedkitBurnFilled" Caption="burn kit"/>
+    <GuideEntityEmbed Entity="MedkitToxinFilled" Caption="toxin kit"/>
+  </Box>
+
+  <Box>
+    <GuideEntityEmbed Entity="Brutepack"/>
+    <GuideEntityEmbed Entity="Ointment"/>
+    <GuideEntityEmbed Entity="EmergencyMedipen"/>
+    <GuideEntityEmbed Entity="Bloodpack"/>
+    <GuideEntityEmbed Entity="Gauze"/>
+  </Box>
+
+  [head=2][color=#66ccff]Basic Treatment and Triage[/color][/head]
+
+  [color=#dddddd]Examine the patient and note important details: Are they alive? Bleeding? What type of damage?[/color]
+
+  [head=3][color=#88ddff]Critical Condition[/color][/head]
+
+  [color=#dddddd]Patients are in critical condition at 100 damage and dead at 200. Keep this in mind when choosing a treatment method.[/color]
+
+  - [bold][color=#99ccff]Epinephrine[/color][/bold]: [color=#dddddd]Slightly heals most damage types (incl. asphyxiation from critical state). Only works when damage is above 100.[/color]
+  - [bold][color=#99ccff]Medipens[/color][/bold]: [color=#dddddd]Used for emergency treatment of critical patients[/color]
+  - [bold][color=#99ccff]Tranexamic Acid[/color][/bold]: [color=#dddddd]Stops bleeding[/color]
+
+  [head=3][color=#88ddff]Bleeding[/color][/head]
+
+  [color=#dddddd]If there is bleeding - immediately bandage all bleeding wounds with gauze or suture.[/color]
+
+  - [bold][color=#99ccff]Gauze/Suture[/color][/bold]: [color=#dddddd]Primary way to stop bleeding[/color]
+  - [bold][color=#99ccff]Tranexamic Acid[/color][/bold]: [color=#dddddd]Chemical bleeding stop[/color]
+  - [bold][color=#99ccff]Cauterization[/color][/bold]: [color=#dddddd]Emergency way to stop bleeding[/color]
+
+  [head=3][color=#88ddff]Medical Beds[/color][/head]
+
+  [color=#dddddd]If possible, buckle the patient to a medical bed. If you need time for treatment, use a stasis bed.[/color]
+
+  - [bold][color=#99ccff]Medical Bed[/color][/bold]: [color=#dddddd]Standard place for treating patients[/color]
+  - [bold][color=#99ccff]Stasis Bed[/color][/bold]: [color=#dddddd]Sloes down metabolism and negative effects (bleeding, asphyxiation, poisons). Medicines in stasis act very slowly.[/color]
+
+  <Box>
+    <GuideEntityEmbed Entity="MedicalBed"/>
+    <GuideEntityEmbed Entity="StasisBed"/>
+  </Box>
+
+  [head=2][color=#66ccff]Death and Revival[/color][/head]
+
+  [color=#dddddd]You can't save everyone, sometimes death happens. Depending on the state of the body, presence of a soul, and if the body has started rotting, the patient can still be brought back to life.[/color]
+
+  [head=3][color=#88ddff]State Diagnosis[/color][/head]
+
+  1. [bold][color=#ff9999]Do they have a soul?[/color][/bold] [color=#dddddd]On examine: "Their soul has departed. Recovery is unlikely." If not displayed - can be revived.[/color]
+
+  2. [bold][color=#ff9999]Is the body rotting?[/color][/bold] [color=#dddddd]If yes - needs cloning. A rotting body cannot be revived with a defibrillator.[/color]
+
+  3. [bold][color=#ff9999]Total damage less than 200?[/color][/bold] [color=#dddddd]Defibrillators can revive patients with damage less than 200.[/color]
+
+  [head=3][color=#88ddff]Revival Process[/color][/head]
+
+  [color=#dddddd]Chemicals do not metabolize in a dead body, but medicines like bruise packs and ointment can still patch up the patient.[/color]
+
+  - [bold][color=#99ccff]Use bruise packs and ointment[/color][/bold]: [color=#dddddd]To reduce damage to a level where revival is possible[/color]
+  - [bold][color=#99ccff]Defibrillator[/color][/bold]: [color=#dddddd]Instantly heals 40 asphyxiation when used[/color]
+  - [bold][color=#99ccff]Opporozidone[/color][/bold]: [color=#dddddd]Regenerates rot, but is difficult to synthesize[/color]
+
+  <Box>
+    <GuideEntityEmbed Entity="Brutepack"/>
+    <GuideEntityEmbed Entity="Defibrillator"/>
+    <GuideEntityEmbed Entity="Ointment"/>
+  </Box>
+
+</Document>

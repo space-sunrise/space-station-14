@@ -167,3 +167,9 @@ reagent-name-dexalin-plus-saline = dexalin plus-saline
 reagent-name-hemostatic-powder = hemostatic powder
 reagent-desc-hemostatic-powder = Hemostatic powder based on a mixture of tranexamic acid and iron silicide. When overdosed, it severely poisons the body with toxins.
 
+
+reagent-name-vitera = Vitera
+reagent-desc-vitera = A specialized combat medicine that directly treats mangleness damage. Effective for combating exhaustion and metabolic depletion.
+
+reagent-name-genesis-ultra = Genesis-Ultra
+reagent-desc-genesis-ultra = An advanced mangleness treatment that provides rapid healing, but causes genetic damage as a side effect. Use with caution.
