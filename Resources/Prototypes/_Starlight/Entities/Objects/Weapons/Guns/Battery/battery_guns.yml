@@ -245,7 +245,7 @@
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 8
-    pvsIncrease: 0.5
+    pvsIncrease: 0.8
 
 - type: entity
   parent: [BaseWeaponBattery, BaseSecurityContraband ]
@@ -445,7 +445,7 @@
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 5
-    pvsIncrease: 0.3
+    pvsIncrease: 0.5
 
 - type: entity
   name: ANNIHILATOR

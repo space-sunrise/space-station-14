@@ -227,6 +227,12 @@
       - !type:AlertLevelCondition
         alertLevels:
         - blue
+        - violet
+        - yellow
+        - red
+        - gamma
+        - delta
+        - epsilon
   - type: MagazineVisuals
     magState: mag
     steps: 4
@@ -429,8 +435,6 @@
     steps: 5
     zeroVisible: true
   - type: Appearance
-
-
 # Sunrise Colonial Marines
 
 - type: entity
@@ -1116,3 +1120,73 @@
   - type: Battery
     maxCharge: 400000
     startingCharge: 400000
+
+# XenoBorgs
+- type: entity
+  name: xenoborg turbo-laser
+  parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
+  id: XenoborgLaserMinigun
+  description: A big gun for big "Refrigerators". Fires so fast it overheats after a short burst, but at least you’ll definitely hit your target.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/laserminigun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    minAngle: 6
+    maxAngle: 15
+    angleIncrease: 1
+    angleDecay: 5
+    fireRate: 12
+    selectedMode: FullAuto
+    soundGunshot:
+      collection: syndi_plasma
+      params:
+        volume: -2
+    availableModes:
+    - FullAuto
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 33
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargePauseTime: 1
+    autoRechargeRate: 250
+    autoRechargePause: true
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+
+- type: entity
+  name: xenoborg X-ray cannon
+  parent: [BaseWeaponBattery, BaseXenoborgContraband]
+  id: XenoborgXrayGun
+  description: Weapon that uses concentrated x-ray energy against its target.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/xray.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: ProjectileBatteryAmmoProvider # Sunrise-Edit
+    proto: CartridgeXrayBeam # Sunrise-Edit
+    fireCost: 100
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 30

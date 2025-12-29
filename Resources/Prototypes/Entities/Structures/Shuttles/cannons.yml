@@ -91,7 +91,7 @@
         whitelist:
           tags:
             - PowerCell
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedShuttleMediumLaser #RedLightLaser
     fireCost: 20 # Sunrise-edit
 
@@ -147,7 +147,7 @@
         whitelist:
           tags:
             - PowerCage
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedShuttleLaser
     fireCost: 150
 

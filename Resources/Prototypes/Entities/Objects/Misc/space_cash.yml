@@ -52,6 +52,11 @@
         mask:
         - ItemMask
   - type: Appearance
+  # Sunrise-start
+  - type: Currency
+    price:
+      Credit: 1
+  # Sunrise-end
 
 - type: material
   id: Credit

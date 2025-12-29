@@ -248,3 +248,116 @@
       roleLoadout: [ RoleSurvivalSyndicate ]
     - type: RandomMetadata
       nameSegments: [NamesDeathCommando]
+
+# Pirate
+- type: entity
+  name: Scooner spawner
+  id: ScoonerReinforcementSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Decoration/banner.rsi
+        state: banner_syndicate
+  - type: RandomSpawner
+    prototypes:
+    - RandomHumanoidScoonerReinforcement
+
+- type: entity
+  id: RandomHumanoidScoonerReinforcement
+  name: Scooner
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner_syndicate
+    - type: RandomHumanoidSpawner
+      settings: ScoonerReinforcementSettings
+
+- type: randomHumanoidSettings
+  id: ScoonerReinforcementSettings
+  speciesBlacklist:
+  - Diona
+  - Felinid
+  - Moth
+  - Arachnid
+  - Demon
+  - SlimePerson
+  - HumanoidXeno
+  - Predator
+  - Resomi
+  parent: EventHumanoid
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+      - Pirate
+    - type: GhostRole
+      name: ghost-role-information-pirate-name
+      description: ghost-role-information-pirate-description
+      rules: ghost-role-information-rules-team-antagonist
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: Loadout
+      prototypes: [ PirateScoonerEVAGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
+    - type: RandomMetadata
+      nameSegments: [NamesDeathCommando]
+
+- type: entity
+  name: Scooner spawner
+  id: OldScoonerReinforcementSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Decoration/banner.rsi
+        state: banner_syndicate
+  - type: RandomSpawner
+    prototypes:
+    - RandomHumanoidOldScoonerReinforcement
+
+- type: entity
+  id: RandomHumanoidOldScoonerReinforcement
+  name: Scooner
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner_syndicate
+    - type: RandomHumanoidSpawner
+      settings: OldScoonerReinforcementSettings
+
+- type: randomHumanoidSettings
+  id: OldScoonerReinforcementSettings
+  speciesBlacklist:
+  - Diona
+  - Felinid
+  - Moth
+  - Arachnid
+  - Demon
+  - SlimePerson
+  - HumanoidXeno
+  - Predator
+  - Resomi
+  parent: EventHumanoid
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+      - Pirate
+    - type: GhostRole
+      name: ghost-role-information-pirate-name
+      description: ghost-role-information-pirate-description
+      rules: ghost-role-information-rules-team-antagonist
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: Loadout
+      prototypes: [ PirateScoonerOldEVAGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
+    - type: RandomMetadata
+      nameSegments: [NamesDeathCommando]

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import subprocess
-import os
 from typing import Iterable
 
 def main() -> int:
@@ -26,10 +25,7 @@ def get_text_files() -> Iterable[str]:
         yield x.strip()
 
 def is_file_crlf(path: str) -> bool:
-    if '\\' in path:
-        print(f"File {path} contains a backslash in its name.")
-        return True
-
+    # https://stackoverflow.com/a/29697732/4678631
     with open(path, "rb") as f:
         for line in f:
             if line.endswith(b"\r\n"):

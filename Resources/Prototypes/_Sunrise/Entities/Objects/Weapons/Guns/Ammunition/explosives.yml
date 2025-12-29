@@ -109,7 +109,7 @@
 - type: entity
   id: CannonBallEMPshot
   name: EMPshot
-  suffix: Pirate, Sunrise
+  suffix: Pirate
   parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
@@ -122,7 +122,7 @@
 - type: entity
   id: CannonBallFuze
   name: fuzed cannonball
-  suffix: Pirate, Sunrise
+  suffix: Pirate
   parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
@@ -168,6 +168,7 @@
     tags:
     - CannonBallMini
 
+# Launcher
 - type: entity
   id: GrenadeBlastTimer
   name: timer blast grenade

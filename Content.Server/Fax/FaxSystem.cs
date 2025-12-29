@@ -37,6 +37,7 @@ using Content.Shared.Ghost;
 using Content.Shared.Inventory;
 using Robust.Server.Containers;
 using Content.Server.Storage.EntitySystems;
+using Content.Shared.Item;
 using Robust.Shared.Utility;
 
 // sunrise-end
@@ -620,6 +621,28 @@ public sealed class FaxSystem : EntitySystem
 
         var entityToSpawn = printout.PrototypeId.Length == 0 ? component.PrintPaperId.ToString() : printout.PrototypeId;
         var printed = Spawn(entityToSpawn, Transform(uid).Coordinates);
+        // Sunrise-start - For portable faxes (items), attempt to add to inventory instead of dropping to floor
+        if (HasComp<ItemComponent>(uid))
+        {
+            bool successfullyInserted = _container.TryGetContainingContainer(uid, out var parentContainer) &&
+                                        _container.Insert(printed, parentContainer);
+            // 1. Try to insert into the container that holds the fax (e.g. backpack)
+
+            // 2. If not suitable, try to put it in the fax's own storage (if it has one)
+            if (!successfullyInserted && _container.TryGetContainer(uid, "storagebase", out var container))
+            {
+                if (_container.Insert(printed, container))
+                    successfullyInserted = true;
+            }
+
+            // 3. Fallback: If we couldn't insert it anywhere, ensure it's on the grid/map (drop it)
+            // This handles cases where the fax is in a container but that container is full.
+            if (!successfullyInserted)
+            {
+                _transform.AttachToGridOrMap(printed);
+            }
+        }
+        // Sunrise-end
 
         if (TryComp<PaperComponent>(printed, out var paper))
         {

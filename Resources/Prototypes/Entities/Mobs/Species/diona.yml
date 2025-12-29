@@ -52,7 +52,10 @@
       - id: FoodMeatPlant
         amount: 5
   - type: Bloodstream
-    bloodReagent: Sap
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Sap
+        Quantity: 300
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -67,7 +70,6 @@
       methods: [ Touch ]
       effects:
       - !type:HealthChange
-        scaling: true
         damage:
           types:
             Blunt: 0.05
@@ -82,7 +84,6 @@
       methods: [ Touch ]
       effects:
       - !type:HealthChange
-        scaling: true
         damage:
           types:
             Poison: 0.125

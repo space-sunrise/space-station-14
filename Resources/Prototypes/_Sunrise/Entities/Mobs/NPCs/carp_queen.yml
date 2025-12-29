@@ -1,0 +1,44 @@
+- type: entity
+  id: MobCarpQueen
+  name: carp queen
+  parent: MobShark
+  description: The queen of carps, commanding a vicious shoal.
+  suffix: Ghost Role
+  components:
+  - type: Actions
+  - type: GhostRole
+    makeSentient: true
+    allowMovement: true
+    allowSpeech: true
+    name: ghost-role-information-carp-queen-name
+    description: ghost-role-information-carp-queen-description
+    rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: CarpQueen
+    hungerPerSummon: 25
+    maxArmySize: 5
+    healPerHunger: 0.2
+    maxHealPerTick: 5
+    spawnChances:
+      MobCarpServantRainbow: 80
+      MobCarpServantHolo: 10
+      MobCarpServantDungeon: 10
+  - type: ReplacementAccent
+    remove: true
+  - type: Accentless
+    removes:
+    - type: ReplacementAccent
+      accent: genericAggressive
+  - type: TypingIndicator
+    proto: slime
+  - type: Hunger
+  - type: Thirst
+
+

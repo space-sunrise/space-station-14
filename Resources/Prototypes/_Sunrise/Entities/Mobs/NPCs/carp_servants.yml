@@ -1,0 +1,48 @@
+- type: entity
+  id: BaseMobCarpServant
+  abstract: true
+  components:
+  - type: CarpQueenServant
+  - type: CarpServantMemory
+    biteReagentAmount: 1
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 2
+        Slash: 3
+  - type: HTN
+    rootTask:
+      task: RatServantCompound
+    blackboard:
+      IdleRange: !type:Single
+        3.5
+      FollowCloseRange: !type:Single
+        2.0
+      FollowRange: !type:Single
+        3.0
+
+- type: entity
+  id: MobCarpServantDungeon
+  parent: [ BaseMobCarpServant, MobCarpDungeon ]
+
+- type: entity
+  id: MobCarpServantMagic
+  parent: [ BaseMobCarpServant, MobCarpMagic ]
+
+- type: entity
+  id: MobCarpServantHolo
+  parent: [ BaseMobCarpServant, MobCarpHolo ]
+
+- type: entity
+  id: MobCarpServantRainbow
+  parent: [ BaseMobCarpServant, MobCarpRainbow ]
+  components:
+  # Remove RgbLightController to allow fixed color from liquid
+  - type: RgbLightController
+    remove: true
+
+- type: entity
+  id: MobCarpServantDragon
+  parent: [ BaseMobCarpServant, MobCarpDragon ]
+
+

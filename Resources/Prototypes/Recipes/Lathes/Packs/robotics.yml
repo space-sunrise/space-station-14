@@ -39,6 +39,7 @@
   id: BorgModules
   recipes:
   - BorgModuleAdvancedCleaning
+  - BorgModuleAdvancedCombat # Sunrise_edit
   - BorgModuleAdvancedTool
   - BorgModuleAdvancedClowning
   - BorgModuleAdvancedChemical

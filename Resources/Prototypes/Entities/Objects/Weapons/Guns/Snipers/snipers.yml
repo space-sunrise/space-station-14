@@ -50,8 +50,8 @@
       collection: SnipersDrop
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 4
-    pvsIncrease: 0.4
+    maxOffset: 5
+    pvsIncrease: 0.5
   - type: KnockbackByUserTag
     doestContain:
       Resomi:
@@ -227,6 +227,7 @@
     whitelist:
       tags:
         - CartridgeMagnum # changed from Anti-material rifle rounds because it's a flintlock pistol not a Hristov
+        - CartridgeMagnumImprovised # Sunrise-added
     capacity: 1
     proto: CartridgeMagnumAP
   - type: StaticPrice

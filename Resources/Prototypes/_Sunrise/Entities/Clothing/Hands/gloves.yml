@@ -199,25 +199,26 @@
   - type: FingerprintMask
 
 - type: entity
-  parent: [ ClothingHandsGlovesColorBlack, BaseMajorContraband ]
+  parent: ClothingHandsBase
   id: ClothingHandsGlovesCombatCQC
   name: combat gloves
   description: These high-grade tactical gloves are fireproof and shock resistant.
   components:
   - type: Sprite
-    sprite: Clothing/Hands/Gloves/combat.rsi
+    sprite: _Sunrise/Clothing/Hands/Gloves/klawsbattle.rsi
   - type: Clothing
-    sprite: Clothing/Hands/Gloves/combat.rsi
+    sprite: _Sunrise/Clothing/Hands/Gloves/klawsbattle.rsi
   - type: Insulated
   - type: Fiber
     fiberMaterial: fibers-insulative
   - type: MeleeWeapon
     autoAttack: true
-    attackRate: 1.5
+    attackRate: 1.7
     damage:
       types:
-        Blunt: 10
-    bluntStaminaDamageFactor: 1.5
+        Blunt: 6
+        Slash: 4
+    bluntStaminaDamageFactor: 4
     soundHit:
       collection: Punch
     animation: WeaponArcFist

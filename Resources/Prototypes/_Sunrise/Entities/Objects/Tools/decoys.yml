@@ -1,0 +1,163 @@
+- type: entity
+  parent: [BaseItem, BaseFoldable]
+  id: BaseDecoyPirate
+  abstract: true
+  components:
+  - type: Rotatable
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/Decoys/pirate_decoy.rsi
+    layers:
+    - state: oballoon
+      map: ["unfoldedLayer"]
+    - state: ofolded
+      map: ["foldedLayer"]
+      visible: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            path: /Audio/Effects/pop_high.ogg
+  - type: Appearance
+  - type: Item
+    size: Normal
+  - type: RandomMetadata
+    nameSegments:
+    - NamesFakeHumanFirst
+    - NamesFakeHumanLast
+    nameFormat: name-format-standard
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Foldable
+    folded: true
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: Tag
+    tags:
+    - Balloon
+
+- type: entity
+  parent: BaseDecoyPirate
+  id: BalloonPirate1
+  name: pirate balloon
+  description: Upon closer inspection, this Pirate is actually a balloon.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/Decoys/pirate_decoy.rsi
+    layers:
+    - state: oballoon
+      map: ["unfoldedLayer"]
+    - state: ofolded
+      map: ["foldedLayer"]
+      visible: false
+
+- type: entity
+  parent: BaseDecoyPirate
+  id: BalloonPirate2
+  name: pirate balloon
+  description: Upon closer inspection, this Pirate is actually a balloon.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/Decoys/pirate_decoy.rsi
+    layers:
+    - state: aballoon
+      map: ["unfoldedLayer"]
+    - state: afolded
+      map: ["foldedLayer"]
+      visible: false
+
+- type: entity
+  parent: BaseDecoyPirate
+  id: BalloonPirate3
+  name: pirate balloon
+  description: Upon closer inspection, this Pirate is actually a balloon.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/Decoys/pirate_decoy.rsi
+    layers:
+    - state: eballoon
+      map: ["unfoldedLayer"]
+    - state: efolded
+      map: ["foldedLayer"]
+      visible: false
+
+- type: entity
+  parent: BaseDecoyPirate
+  id: BalloonPirate4
+  name: pirate balloon
+  description: Upon closer inspection, this Pirate is actually a balloon.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/Decoys/pirate_decoy.rsi
+    layers:
+    - state: jballoon
+      map: ["unfoldedLayer"]
+    - state: jfolded
+      map: ["foldedLayer"]
+      visible: false
+
+- type: entity
+  parent: BaseDecoyPirate
+  id: BalloonPirate5
+  name: pirate balloon
+  description: Upon closer inspection, this Pirate is actually a balloon.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/Decoys/pirate_decoy.rsi
+    layers:
+    - state: cballoon
+      map: ["unfoldedLayer"]
+    - state: cfolded
+      map: ["foldedLayer"]
+      visible: false
+
+- type: entity
+  parent: BaseDecoyPirate
+  id: BalloonPirate6
+  name: pirate balloon
+  description: Upon closer inspection, this Pirate is actually a balloon.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/Decoys/pirate_decoy.rsi
+    layers:
+    - state: dballoon
+      map: ["unfoldedLayer"]
+    - state: dfolded
+      map: ["foldedLayer"]
+      visible: false
+
+- type: entity
+  parent: BaseDecoyPirate
+  id: BalloonPirate7
+  name: pirate balloon
+  description: Upon closer inspection, this Pirate is actually a balloon.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/Decoys/pirate_decoy.rsi
+    layers:
+    - state: bballoon
+      map: ["unfoldedLayer"]
+    - state: bfolded
+      map: ["foldedLayer"]
+      visible: false
+
+- type: entity
+  parent: BaseDecoyPirate
+  id: BalloonPirate8
+  name: pirate balloon
+  description: Upon closer inspection, this Pirate is actually a balloon.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/Decoys/pirate_decoy.rsi
+    layers:
+    - state: fballoon
+      map: ["unfoldedLayer"]
+    - state: ofolded
+      map: ["foldedLayer"]
+      visible: false

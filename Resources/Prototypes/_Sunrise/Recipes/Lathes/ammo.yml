@@ -51,8 +51,9 @@
   id: MagazinePistol40AP
   result: MagazinePistol40AP
   materials:
-    Steel: 167
-    Uranium: 90
+    Steel: 115
+    Plasteel: 55
+    Uranium: 20
 
 # .40 Pistol Box
 - type: latheRecipe
@@ -81,9 +82,9 @@
   id: MagazineBoxPistol40AP
   result: MagazineBoxPistol40AP
   materials:
-    Steel: 180
-    Uranium: 180
-    Plastic: 260
+    Steel: 200
+    Plasteel: 100
+    Uranium: 35
 
 # .45 Magnum Speedloader
 - type: latheRecipe
@@ -120,8 +121,9 @@
   id: SpeedLoaderMagnumAP
   result: SpeedLoaderMagnumAP
   materials:
-    Steel: 190
-    Uranium: 110
+    Steel: 115
+    Plasteel: 55
+    Uranium: 20
 
 # .45 Magnum Box
 - type: latheRecipe
@@ -157,8 +159,9 @@
   id: MagazineBoxMagnumAP
   result: MagazineBoxMagnumAP
   materials:
-    Steel: 240
-    Uranium: 180
+    Steel: 180
+    Plasteel: 90
+    Uranium: 30
 
 # .45 Magnum Magazine
 - type: latheRecipe
@@ -209,8 +212,9 @@
   id: MagazineMagnumAP
   result: MagazineMagnumAP
   materials:
-    Steel: 190
-    Uranium: 110
+    Steel: 180
+    Plasteel: 90
+    Uranium: 30
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -248,8 +252,9 @@
   id: MagazineRifleAP
   result: MagazineRifleAP
   materials:
-    Steel: 475
-    Uranium: 150
+    Steel: 300
+    Plasteel: 150
+    Uranium: 50
 
 # .20 Rifle Box
 - type: latheRecipe
@@ -278,8 +283,9 @@
   id: MagazineBoxRifleAP
   result: MagazineBoxRifleAP
   materials:
-    Steel: 750
-    Uranium: 250
+    Steel: 540
+    Plasteel: 270
+    Uranium: 90
 
 # .30 Rifle
 - type: latheRecipe
@@ -308,8 +314,9 @@
   id: MagazineLightRifleAP
   result: MagazineLightRifleAP
   materials:
-    Steel: 565
-    Uranium: 180
+    Steel: 360
+    Plasteel: 180
+    Uranium: 60
 
 # .30 Rifle Box
 - type: latheRecipe
@@ -338,8 +345,9 @@
   id: MagazineBoxLightRifleAP
   result: MagazineBoxLightRifleAP
   materials:
-    Steel: 900
-    Uranium: 300
+    Steel: 600
+    Plasteel: 300
+    Uranium: 100
 
 # .35 Auto
 - type: latheRecipe
@@ -376,8 +384,9 @@
   id: MagazinePistolAP
   result: MagazinePistolAP
   materials:
-    Steel: 145
-    Uranium: 65
+    Steel: 105
+    Plasteel: 55
+    Uranium: 20
 
 # .35 Auto SMG
 - type: latheRecipe
@@ -414,8 +423,9 @@
   id: MagazinePistolSubMachineGunAP
   result: MagazinePistolSubMachineGunAP
   materials:
-    Steel: 300
-    Uranium: 225
+    Steel: 225
+    Plasteel: 115
+    Uranium: 40
 
 # .35 Auto WT550
 - type: latheRecipe
@@ -445,8 +455,9 @@
   id: MagazinePistolSubMachineGunTopMountedAP
   result: MagazinePistolSubMachineGunTopMountedAP
   materials:
-    Steel: 280
-    Uranium: 220
+    Steel: 225
+    Plasteel: 115
+    Uranium: 40
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -532,8 +543,9 @@
   id: MagazinePistolHighCapacityAP
   result: MagazinePistolHighCapacityAP
   materials:
-    Steel: 200
-    Uranium: 75
+    Steel: 165
+    Plasteel: 85
+    Uranium: 30
 
 # .35 Auto Box
 - type: latheRecipe
@@ -569,8 +581,9 @@
   id: MagazineBoxPistolAP
   result: MagazineBoxPistolAP
   materials:
-    Steel: 600
-    Uranium: 300
+    Steel: 480
+    Plasteel: 240
+    Uranium: 80
 
 # Heavy .308
 - type: latheRecipe
@@ -624,9 +637,9 @@
   id: MagazineRifleHeavyAP
   result: MagazineRifleHeavyAP
   materials:
-    Steel: 750
-    Uranium: 300
-    Plastic: 300
+    Steel: 480
+    Plasteel: 240
+    Uranium: 80
 
 ## Heavy rifle Box
 - type: latheRecipe
@@ -671,8 +684,9 @@
   id: MagazineBoxHeavyRifleAP
   result: MagazineBoxHeavyRifleAP
   materials:
-    Steel: 800
-    Uranium: 200
+    Steel: 600
+    Plasteel: 300
+    Uranium: 100
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -693,16 +707,16 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineLightRifleBoxIncendiary
-  result: MagazineLightRifleBoxIncendiary
+  id: MagazineRifleBoxIncendiary
+  result: MagazineRifleBoxIncendiary
   materials:
     Steel: 150
     Plastic: 900
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineLightRifleBoxUranium
-  result: MagazineLightRifleBoxUranium
+  id: MagazineRifleBoxUranium
+  result: MagazineRifleBoxUranium
   materials:
     Steel: 150
     Plastic: 475
@@ -722,6 +736,14 @@
   materials:
     Steel: 1100
 
+- type: latheRecipe
+  id: MagazineRifleBoxEmpty
+  result: MagazineRifleBoxEmpty
+  categories:
+  - Ammo
+  completetime: 5
+  materials:
+    Steel: 200
 # RifleHeavyMagazine .308 belt box
 # 7.62 light Rifle Magazines
 - type: latheRecipe
@@ -835,7 +857,9 @@
   id: MagazineBoxBelt127
   result: MagazineBoxBelt127
   materials:
-    Steel: 1000
+    Steel: 800
+    Plasteel: 100
+    Uranium: 100
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -881,7 +905,6 @@
   result: RifleHeavyMagazineArtillery
   materials:
     Steel: 750
-
 # Moved from ammo.yml
 # Base prototypes
 
@@ -936,8 +959,9 @@
   id: MagazineLightRifleBeltBoxAP
   result: MagazineLightRifleBeltBoxAP
   materials:
-    Steel: 800
-    Uranium: 700
+    Steel: 845
+    Plasteel: 425
+    Uranium: 140
 
 #Speedloaders .50 Shotgun
 - type: latheRecipe
@@ -1153,37 +1177,6 @@
 #  completetime: 12
 #  materials:
 #    Steel: 650
-#
-#
-#- type: latheRecipe
-#  id: MagazineBauer127Extended
-#  result: MagazineBauer127Extended
-#  categories:
-#  - Weapons
-#  completetime: 12
-#  materials:
-#    Steel: 1200
-#    Plastic: 50
-#
-#- type: latheRecipe
-#  id: MagazineBR64Extended
-#  result: MagazineBR64Extended
-#  categories:
-#  - Weapons
-#  completetime: 12
-#  materials:
-#    Steel: 1000
-#    Plastic: 50
-#
-#- type: latheRecipe
-#  id: MagazineDragunovExtended
-#  result: MagazineDragunovExtended
-#  categories:
-#  - Weapons
-#  completetime: 12
-#  materials:
-#    Steel: 1200
-
 ### Artillery Shells
 - type: latheRecipe
   id: ShellEMPArtillery

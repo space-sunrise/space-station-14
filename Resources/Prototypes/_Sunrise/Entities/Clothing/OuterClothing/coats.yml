@@ -538,6 +538,38 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/sportsmans.rsi
 
 - type: entity
+  parent: ClothingOuterBase
+  id: ClothingNavalJacket
+  name: Naval Jacket
+  description: Dark blue waterproof jacket with reflective details.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/naval-jacket.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: icon-unshaded
+      shader: shaded
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/naval-jacket.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+      - state: equipped-OUTERCLOTHING-unshaded
+        shader: unshaded
+      - state: equipped-OUTERCLOTHING-unshaded
+        shader: shaded
+  - type: Construction
+    graph: NavalJacketCraft
+    node: NavalJacket
+  - type: Reflect
+    reflectProb: 0.02
+    reflects:
+    - Energy
+    reflectingInHands: false
+    
+- type: entity
   parent: ClothingOuterCoatDetectiveLoadout
   id: ClothingOuterDiscoAssBlazerDetective
   name: disco ass blazer detective
@@ -547,4 +579,3 @@
       sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi
-

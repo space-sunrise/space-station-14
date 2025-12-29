@@ -23,3 +23,12 @@
   - type: AutoRecharge
   - type: StaticPrice
     price: 2000
+
+- type: entity
+  parent: AccessBreaker
+  id: AccessBreakerPirate
+  suffix: Pirate
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/access_breaker.rsi
+    state: icon-pirate

@@ -87,7 +87,7 @@
 
 - type: entity
   name: AKMS
-  parent: BaseWeaponRifleSunrise
+  parent: BaseWeaponRifle
   id: WeaponRifleAKM
   components:
   - type: Sprite
@@ -148,7 +148,7 @@
 
 - type: entity
   name: AKM-U
-  parent: BaseWeaponRifleSunrise
+  parent: BaseWeaponRifle
   id: WeaponRifleAKMU
   components:
   - type: Sprite
@@ -207,7 +207,7 @@
 
 - type: entity
   name: AK-514
-  parent: BaseWeaponRifleSunrise
+  parent: BaseWeaponRifle
   id: WeaponRifleAK514
   components:
   - type: Sprite
@@ -271,7 +271,7 @@
 
 - type: entity
   name: Famas
-  parent: BaseWeaponRifleSunrise
+  parent: BaseWeaponRifle
   id: WeaponRifleFamas
   components:
   - type: Sprite
@@ -341,7 +341,7 @@
 
 - type: entity
   name: G-36
-  parent: BaseWeaponRifleSunrise
+  parent: BaseWeaponRifle
   id: WeaponRifleG36
   components:
   - type: Sprite
@@ -398,12 +398,15 @@
     delay: 0.75
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 5
-    pvsIncrease: 0.5
+    maxOffset: 7
+    pvsIncrease: 0.7
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.85
+    sprintModifier: 0.85
 
 - type: entity
   name: M16A4
-  parent: BaseWeaponRifleSunrise
+  parent: BaseWeaponRifle
   id: WeaponRifleM16A4
   components:
   - type: Sprite
@@ -468,7 +471,7 @@
 
 - type: entity
   name: scar-h
-  parent: BaseWeaponRifleSunrise
+  parent: BaseWeaponRifle
   id: WeaponRifleScarH
   components:
   - type: Sprite
@@ -554,7 +557,7 @@
   - type: Appearance
   - type: EyeCursorOffset
     maxOffset: 5
-    pvsIncrease: 0.55
+    pvsIncrease: 0.5
   - type: StaticPrice
     price: 975
   - type: Contraband

@@ -471,15 +471,12 @@
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
-  - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
     damage:
       types:
-        Blunt: 30 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
+        Blunt: 22
         Structural: 10
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
@@ -1584,3 +1581,82 @@
       - WeaponMechCombatMG
       - WeaponMechCombatShotgun
       - WeaponMechCombatMissileRack6
+
+# Doll House
+- type: entity
+  id: MechDollHouse
+  parent: [ BaseMech, CombatMech, BaseMajorContraband ]
+  name: Doll House
+  description: The Heavy Mech USSP, a communist variant of the Durand, features stronger armor and a powerful machine gun.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/durand.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: dollhouse
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: dollhouse
+    openState: dollhouse-open
+    brokenState: dollhouse-broken
+    mechToPilotDamageMultiplier: 0.15
+    airtight: true
+    maxEquipmentAmount: 2
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 8
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 40
+        Structural: 220
+    bluntStaminaDamageFactor: 1.5
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1.75
+  - type: Damageable
+    damageModifierSet: HeavyArmorSyndi
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: Reflect
+    reflectProb: 0.15
+    spread: 180
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
+    reflects:
+    - NonEnergy
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - DollHouse
+  - type: AccessReader
+    access: [["NuclearOperative"]]
+
+- type: entity
+  id: MechDollHouseBattery
+  parent: MechDollHouse
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageSyndicate
+
+- type: entity
+  id: MechDollHouseFilled
+  parent: MechDollHouseBattery
+  suffix: Battery, Filled
+  components:
+  - type: Mech
+    startingEquipment:
+      - WeaponMechCombatMaxim

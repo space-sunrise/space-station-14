@@ -214,6 +214,20 @@
   - Security
 
 - type: technology
+  id: AdvancedSecBorgsCombatModules
+  name: research-technology-advance-secborgs-combat
+  icon:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: security
+  discipline: Arsenal
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - BorgModuleAdvancedCombat
+  radioChannels:
+  - Security
+  
+- type: technology
   id: HiTechShuttleWeapon
   name: research-technology-hitech-shuttle-weapon
   icon:

@@ -1,0 +1,53 @@
+# Head
+
+- type: loadout
+  id: PrisonInspector-ClothingHeadHatBowlerHat
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonInspector
+      time: 7200 # 2 hrs
+  equipment:
+    head: ClothingHeadHatBowlerHat
+
+
+- type: loadout
+  id: PrisonInspector-ClothingHeadHatIAA
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonInspector
+      time: 28800 # 8 hrs
+  equipment:
+    head: ClothingHeadHatIAA
+
+- type: loadout
+  id: PrisonInspector-ClothingHeadHatDetGadget
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonInspector
+      time: 54000 # 15 hrs
+  equipment:
+    head: Sunrise-ClothingHeadHatDetGadget
+
+# Glasses
+
+- type: loadout
+  id: PrisonInspector-ClothingEyesGlassesSunglasses
+  equipment:
+    eyes: ClothingEyesGlassesSunglasses
+
+- type: loadout
+  id: PrisonInspector-ClothingEyesGlassesNoir
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonInspector
+      time: 39600 # 11 hrs
+  equipment:
+    eyes: ClothingEyesGlassesNoir

@@ -1,6 +1,8 @@
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible.Thresholds.Triggers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;

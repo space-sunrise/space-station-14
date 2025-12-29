@@ -1,6 +1,5 @@
 using Content.Shared.Actions;
 using Content.Shared.Eui;
-using NetSerializer;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.CrewManifest;

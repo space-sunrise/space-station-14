@@ -1,0 +1,10 @@
+- type: entity
+  parent: BolaSyndicate
+  id: BolaSyndicateBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Syndicate
+    - Thief
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.

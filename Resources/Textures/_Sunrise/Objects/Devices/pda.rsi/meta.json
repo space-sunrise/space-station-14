@@ -269,7 +269,7 @@
             ]
         },
 
-        
+
         {
             "name": "pda-seniorphysician",
             "delays": [
@@ -767,7 +767,7 @@
                 ]
             ]
         },
-{
+        {
             "name": "pda-space-prison-inspector",
             "delays": [
                 [
@@ -944,6 +944,9 @@
                     0.2
                 ]
             ]
+        },
+        {
+            "name": "pda-pirate-music"
         }
     ]
 }

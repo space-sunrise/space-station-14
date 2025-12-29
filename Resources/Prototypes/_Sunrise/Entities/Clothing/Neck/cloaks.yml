@@ -309,3 +309,29 @@
     sprite: _Sunrise/Clothing/Neck/Cloaks/blueshieldc.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Neck/Cloaks/blueshieldc.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakContrib
+  name: Contributors cloak
+  description: This cat hold up this station.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/contributor.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Cloaks/contributor.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+      - state: equipped-NECK-light
+        shader: unshaded
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodContributor
+    requiredSlot:
+    - neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}

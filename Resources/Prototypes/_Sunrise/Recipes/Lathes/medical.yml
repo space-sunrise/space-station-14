@@ -109,3 +109,11 @@
     Glass: 300
     Plasma: 100
     Silver: 50
+
+- type: latheRecipe
+  id: Ampula
+  result: Ampula
+  completetime: 2
+  materials:
+    Glass: 200
+    Steel: 50

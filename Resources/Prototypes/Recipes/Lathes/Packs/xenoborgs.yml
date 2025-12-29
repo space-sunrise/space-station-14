@@ -11,6 +11,28 @@
 - type: latheRecipePack
   id: XenoborgUpgradeModules
   recipes:
+  # engi xenoborg
+  - XenoborgModuleDoorControlRecipe
+  # heavy xenoborg
   - XenoborgModuleHeavyLaserRecipe
+  # scout xenoborg
   - XenoborgModuleEnergySwordRecipe
+  # stealth xenoborg
   - XenoborgModuleSuperCloakDeviceRecipe
+
+# Sunrise-Start
+- type: latheRecipePack
+  id: XenoborgSunrise
+  recipes:
+  - XenoborgCircuitBoard
+  - NanopasteFull
+  - CableStack
+  - CableMVStack
+  - CableHVStack
+  - PowerCellXenoborgAdvance
+  - PowerCellXenoborg
+  - XenoborgModuleXrayRecipe
+  - XenoborgModuleTurboLaserRecipe
+  - BorgChargerCircuitboard
+  - MicroManipulatorStockPart
+# Sunrise-End

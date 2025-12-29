@@ -259,6 +259,7 @@
     outerClothing: ClothingOuterArmorRaidBiocode
     shoes: ClothingShoesBootsCombatFilled
     gloves: ClothingHandsGlovesCombatCQC
+    ears: ClothingHeadsetAltSyndicateNoKey
     id: SyndiOperativePDA
     belt: ClothingBeltMilitaryWebbingMedRaidFilled
     pocket1: WeaponPistolViper
@@ -278,3 +279,52 @@
     head: ClothingHeadHatOutlawHat
     pocket1: BaseUplinkRadio25TC
     pocket2: EnergySword
+
+# Pirate
+- type: startingGear
+  id: PirateScoonerEVAGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPirate
+    eyes: ClothingEyesEyepatch
+    back: ClothingBackpackMessengerPirate
+    head: ClothingHeadHelmetPirate
+    ears: ClothingHeadsetFreelanceNoKey
+    outerClothing: ClothingOuterEVASuitPirate
+    shoes: ClothingShoesBootsMagPirate
+    id: PiratePDA
+    belt: JetpackMiniFilled
+    pocket1: WeaponRevolverPirate
+    pocket2: CombatKnife
+  storage:
+    back:
+    - AppraisalTool
+    - DeathRattleImplanterFreelance
+    - RadioImplanterFreelance
+    - SpeedLoaderMagnumSP
+    - CigPackSyndicate
+    - CheapLighter
+    - PinpointerPirate
+    - Doubloon5
+
+- type: startingGear
+  id: PirateScoonerOldEVAGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPirate
+    back: ClothingBackpackMessengerPirate
+    ears: ClothingHeadsetFreelanceNoKey
+    head: ClothingHeadBandBlack
+    outerClothing: ClothingOuterHardsuitPirateEVA
+    shoes: ClothingShoesBootsMagPirate
+    id: PiratePDA
+    belt: JetpackMiniFilled
+    pocket1: WeaponPistolFlintlock
+    pocket2: CartridgeMagnumAP
+  storage:
+    back:
+    - AppraisalTool
+    - DeathRattleImplanterFreelance
+    - RadioImplanterFreelance
+    - CigaretteSyndicate
+    - CheapLighter
+    - PinpointerPirate
+    - Doubloon1

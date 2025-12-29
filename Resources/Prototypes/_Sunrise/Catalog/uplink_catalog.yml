@@ -2252,7 +2252,7 @@
       sprite: /Textures/_Starlight/Objects/Weapons/Melee/cybermantisblade.rsi,
       state: cybermantisblade,
     }
-  productEntity: MantisBladeArmsKit #ClothingBackpackDufelSyndicateFilledMantisBladeArms #Скучно и не практично в сумке ради 4 слота
+  productEntity: MantisBladeArmsKit
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 8
@@ -2412,6 +2412,21 @@
       - SurplusBundle
 
 - type: listing
+  id: UplinkBolaSyndicate
+  name: uplink-bola-syn-name
+  description: uplink-bola-syn-desc
+  productEntity: BolaSyndicateBiocode
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkDisruption
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
   id: UplinkHeadsetEncryptionKeyMaster
   icon: { sprite: /Textures/Objects/Devices/encryption_keys.rsi, state: crypt_red2 }
   productEntity: EncryptionKeySyndieMaster
@@ -2443,6 +2458,29 @@
   categories:
   - UplinkDeception
   conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      - Science
+    tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+      - AssaultOpsUplink
+
+- type: listing
+  id: UplinkDefibrillatorSyndicate
+  name: uplink-interdyne-defibrillator-name
+  description: uplink-interdyne-defibrillator-desc
+  productEntity: DefibrillatorSyndicateBiocode
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkChemicals
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
@@ -2482,3 +2520,38 @@
     Telecrystal: 20
   categories:
     - UplinkPointless
+
+
+- type: listing
+  id: Uplink50blessingset
+  name: uplink-50blessing-name
+  description: uplink-50blessing-desc
+  productEntity: PresentMasksHM
+  discountCategory: rareDiscounts
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkPointless
+
+- type: listing
+  id: UplinkPistolTec9Magazine
+  name: uplink-pistoltec9-magazine-name
+  description: uplink-pistoltec9-magazine-desc
+  productEntity: BaseMagazinePistolCaselessRifleTec9
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkAmmo
+
+- type: listing
+  id: uplinkWeaponPistolTec9
+  name: uplink-pistoltec9-name
+  description: uplink-pistoltec9-desc
+  productEntity: WeaponPistolTec9Biocode
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkWeaponry

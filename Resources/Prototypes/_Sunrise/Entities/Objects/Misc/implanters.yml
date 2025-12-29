@@ -17,3 +17,19 @@
   components:
     - type: Implanter
       implant: CreepyLaughImplant
+
+- type: entity
+  id: RadioImplanterFreelance
+  name: freelance radio implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: RadioImplantFreelance
+
+- type: entity
+  id: DeathRattleImplanterFreelance
+  name: freelance death rattle implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: DeathRattleImplantFreelance
