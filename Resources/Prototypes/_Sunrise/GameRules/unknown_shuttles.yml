@@ -44,7 +44,7 @@
     duration: -0
     endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
   - type: LoadMapRule
-    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ertall_amber.yml"
+    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT_Assault_Amber.yml"
 
 - type: entity
   id: ERTShuttleAssaultRed
@@ -56,7 +56,7 @@
     duration: -0
     endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
   - type: LoadMapRule
-    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ertall_red.yml"
+    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT_Assault_Red.yml"
 
 - type: entity
   id: ERTShuttleAssaultGamma
@@ -68,7 +68,7 @@
     duration: -0
     endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
   - type: LoadMapRule
-    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ertall_gamma.yml"
+    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT_Assault_Gamma.yml"
 
 - type: entity
   id: UnknownShuttlePirateSmall
