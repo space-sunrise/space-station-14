@@ -169,8 +169,14 @@
   - CaptainCloak
   - CaptainCloakFormal
   - CaptainMantle
-  - CaptainEliteCloak # Sunrise-Edit
-  - CapitainScarf # Sunrise-Edit
+  # Sunrise - Start
+  - CaptainEliteCloak
+  - CapitainScarf
+  - CaptainMantleWhite
+  - CaptainMantleWhiteShoulder
+  - CaptainMantleBlack
+  - CaptainMantleBlackShoulder
+  # Sunrise - End
 
 - type: loadoutGroup
   id: CaptainBackpack

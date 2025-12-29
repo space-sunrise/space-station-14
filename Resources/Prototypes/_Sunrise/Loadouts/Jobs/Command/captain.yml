@@ -121,3 +121,47 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: MasterCap
+
+- type: loadout
+  id: CaptainMantleWhite
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    neck: ClothingNeckMantleCaptainWhite
+
+- type: loadout
+  id: CaptainMantleWhiteShoulder
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    neck: ClothingNeckMantleCaptainWhiteShoulder
+
+- type: loadout
+  id: CaptainMantleBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 35h
+  equipment:
+    neck: ClothingNeckMantleCaptainBlack
+
+- type: loadout
+  id: CaptainMantleBlackShoulder
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 35h
+  equipment:
+    neck: ClothingNeckMantleCaptainBlackShoulder
