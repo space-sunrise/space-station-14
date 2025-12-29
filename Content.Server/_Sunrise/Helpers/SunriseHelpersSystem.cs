@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._Sunrise.Other.StationOnlyDirectSpawn;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Shared._Sunrise.Helpers;
@@ -132,6 +133,9 @@ public sealed partial class SunriseHelpersSystem : SharedSunriseHelpersSystem
         var query = EntityQueryEnumerator<StationJobsComponent, StationSpawningComponent>();
         while (query.MoveNext(out var uid, out _, out _))
         {
+            if (HasComp<StationOnlyDirectSpawnComponent>(uid))
+                continue;
+
             spawnableStations.Add(uid);
         }
 

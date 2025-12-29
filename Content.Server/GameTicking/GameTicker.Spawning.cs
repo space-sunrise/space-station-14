@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
+using Content.Server._Sunrise.Helpers;
 using Content.Server._Sunrise.Station;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
@@ -13,7 +14,6 @@ using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
 using Content.Shared.CCVar;
-using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
@@ -45,7 +45,11 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly AdminSystem _admin = default!;
         [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!;
         [Dependency] private readonly ArrivalsSystem _arrivals = default!;
-        [Dependency] private readonly NewLifeSystem _newLifeSystem = default!; // Sunrise-Edit
+
+        // Sunrise added start
+        [Dependency] private readonly NewLifeSystem _newLife = default!;
+        [Dependency] private readonly SunriseHelpersSystem _helpers = default!;
+        // Sunrise added end
 
         public static readonly EntProtoId ObserverPrototypeName = "MobObserver";
         public static readonly EntProtoId AdminObserverPrototypeName = "AdminObserver";
@@ -182,7 +186,10 @@ namespace Content.Server.GameTicking
 
             if (station == EntityUid.Invalid)
             {
-                var stations = GetSpawnableStations();
+                // Sunrise edit start - фикс спавна на ЦК вместо девмапы
+                var stations = _helpers.GetSpawnableStations();
+                // Sunrise edit end
+
                 _robustRandom.Shuffle(stations);
                 if (stations.Count == 0)
                     station = EntityUid.Invalid;
@@ -197,8 +204,8 @@ namespace Content.Server.GameTicking
             }
 
             // Sunrise-NewLife-Start
-            _newLifeSystem.AddUsedCharactersForRespawn(player.UserId, _prefsManager.GetPreferences(player.UserId).SelectedCharacterIndex);
-            _newLifeSystem.SetNextAllowRespawn(player.UserId, _gameTiming.CurTime + TimeSpan.FromMinutes(_newLifeSystem.NewLifeTimeout));
+            _newLife.AddUsedCharactersForRespawn(player.UserId, _prefsManager.GetPreferences(player.UserId).SelectedCharacterIndex);
+            _newLife.SetNextAllowRespawn(player.UserId, _gameTiming.CurTime + TimeSpan.FromMinutes(_newLife.NewLifeTimeout));
             // Sunrise-NewLife-End
 
             string speciesId;
