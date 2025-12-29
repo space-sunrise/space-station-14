@@ -134,4 +134,4 @@
   - type: StationEvent
     startAnnouncement: null
   - type: LoadMapRule
-    gridPath: "/Maps/Shuttles/ShuttleEvent/instigator.yml"
+    gridPath: "/Maps/_Sunrise/Shuttles/Antag/instigator.yml"
