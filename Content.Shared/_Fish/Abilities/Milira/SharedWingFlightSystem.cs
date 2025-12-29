@@ -18,13 +18,6 @@ public abstract class SharedWingFlightSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<WingFlightComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
-        SubscribeLocalEvent<WingFlightComponent, RefreshFrictionModifiersEvent>(OnRefreshFriction);
-        SubscribeLocalEvent<WingFlightComponent, DownAttemptEvent>(OnDownAttempt);
-        SubscribeLocalEvent<WingFlightComponent, KnockDownAttemptEvent>(OnKnockDownAttempt);
-        SubscribeLocalEvent<WingFlightComponent, DownedEvent>(OnDowned);
-        SubscribeLocalEvent<WingFlightComponent, KnockedDownEvent>(OnKnockedDown);
     }
 
     /// <summary>
@@ -37,7 +30,7 @@ public abstract class SharedWingFlightSystem : EntitySystem
         return ent.Comp.MinScaleMultiplier + bonus * staminaPercent;
     }
 
-    private void OnRefreshMovementSpeed(Entity<WingFlightComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
+    protected void OnRefreshMovementSpeed(Entity<WingFlightComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
     {
         if (!ent.Comp.FlightEnabled)
             return;
@@ -45,7 +38,7 @@ public abstract class SharedWingFlightSystem : EntitySystem
         args.ModifySpeed(ent.Comp.SpeedModifier);
     }
 
-    private void OnRefreshFriction(Entity<WingFlightComponent> ent, ref RefreshFrictionModifiersEvent args)
+    protected void OnRefreshFriction(Entity<WingFlightComponent> ent, ref RefreshFrictionModifiersEvent args)
     {
         if (!ent.Comp.FlightEnabled && !ent.Comp.InertiaActive)
             return;
@@ -134,25 +127,25 @@ public abstract class SharedWingFlightSystem : EntitySystem
         return ent.Comp.FlightEnabled || ent.Comp.InertiaActive;
     }
 
-    private void OnDownAttempt(Entity<WingFlightComponent> ent, ref DownAttemptEvent args)
+    protected void OnDownAttempt(Entity<WingFlightComponent> ent, ref DownAttemptEvent args)
     {
         if (IsFlightOrInertiaActive(ent))
             args.Cancel();
     }
 
-    private void OnKnockDownAttempt(Entity<WingFlightComponent> ent, ref KnockDownAttemptEvent args)
+    protected void OnKnockDownAttempt(Entity<WingFlightComponent> ent, ref KnockDownAttemptEvent args)
     {
         if (IsFlightOrInertiaActive(ent))
             args.Cancelled = true;
     }
 
-    private void OnDowned(Entity<WingFlightComponent> ent, ref DownedEvent args)
+    protected void OnDowned(Entity<WingFlightComponent> ent, ref DownedEvent args)
     {
         if (IsFlightOrInertiaActive(ent))
             _standing.Stand(ent.Owner, force: true);
     }
 
-    private void OnKnockedDown(Entity<WingFlightComponent> ent, ref KnockedDownEvent args)
+    protected void OnKnockedDown(Entity<WingFlightComponent> ent, ref KnockedDownEvent args)
     {
         if (IsFlightOrInertiaActive(ent))
         {

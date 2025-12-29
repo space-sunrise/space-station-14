@@ -8,9 +8,11 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
+using Content.Shared.Stunnable;
 using Content.Shared.Toggleable;
 using Content.Shared._Fish.Abilities.Milira;
 using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
@@ -36,6 +38,13 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
     public override void Initialize()
     {
         base.Initialize();
+
+        SubscribeLocalEvent<WingFlightComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
+        SubscribeLocalEvent<WingFlightComponent, RefreshFrictionModifiersEvent>(OnRefreshFriction);
+        SubscribeLocalEvent<WingFlightComponent, DownAttemptEvent>(OnDownAttempt);
+        SubscribeLocalEvent<WingFlightComponent, KnockDownAttemptEvent>(OnKnockDownAttempt);
+        SubscribeLocalEvent<WingFlightComponent, DownedEvent>(OnDowned);
+        SubscribeLocalEvent<WingFlightComponent, KnockedDownEvent>(OnKnockedDown);
 
         SubscribeLocalEvent<WingFlightComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<WingFlightComponent, ComponentRemove>(OnComponentRemove);
@@ -216,7 +225,12 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
 
         var query = EntityQueryEnumerator<ActiveWingFlightComponent, WingFlightComponent, StaminaComponent>();
 
+        var toProcess = new List<(EntityUid uid, WingFlightComponent flightComp, StaminaComponent stamina)>();
+
         while (query.MoveNext(out var uid, out _, out var flightComp, out var stamina))
+            toProcess.Add((uid, flightComp, stamina));
+
+        foreach (var (uid, flightComp, stamina) in toProcess)
         {
             Entity<WingFlightComponent> ent = (uid, flightComp);
             var staminaPercent = GetStaminaPercent(stamina);
