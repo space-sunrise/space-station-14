@@ -3,14 +3,15 @@
   abstract: true
   components:
   - type: Temperature
+    currentTemperature: 310.15
+    specificHeat: 42
+  - type: TemperatureDamage
     heatDamageThreshold: 2000 # Should prevent mobs from taking damage on planets with extreme heat
     coldDamageThreshold: -250 # Should make mobs immune to cold planets
-    currentTemperature: 310.15
-    coldDamage: #per second, scales with temperature & other constants
+    coldDamage:
       types:
         Cold: 0.1
-    specificHeat: 42
-    heatDamage: #per second, scales with temperature & other constants
+    heatDamage:
       types:
         Heat: 1.5
   - type: ThermalRegulator
@@ -165,21 +166,21 @@
   abstract: true
   components:
   - type: Stamina
-    critThreshold: 80
+    baseCritThreshold: 80
 
 - type: entity
   id: MobStaminaSpecial
   abstract: true
   components:
   - type: Stamina
-    critThreshold: 200
+    baseCritThreshold: 200
 
 - type: entity
   id: MobStaminaBoss
   abstract: true
   components:
   - type: Stamina
-    critThreshold: 500
+    baseCritThreshold: 500
 #endregion
 
 #region Dungeon boss
@@ -195,7 +196,7 @@
   - type: Hands
   - type: Puller
   - type: Stamina
-    critThreshold: 999
+    baseCritThreshold: 999
   - type: Tag
     tags:
     - CanPilot

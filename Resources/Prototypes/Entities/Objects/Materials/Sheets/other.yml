@@ -114,11 +114,6 @@
         - ReagentId: Plasma
           Quantity: 10
         canReact: false
-  - type: Tag # Redundant
-    tags:
-    - Sheet
-    - ConstructionMaterial
-    - NoPaint  # Sunrise-edit
 
 - type: entity
   parent: SheetPlasma

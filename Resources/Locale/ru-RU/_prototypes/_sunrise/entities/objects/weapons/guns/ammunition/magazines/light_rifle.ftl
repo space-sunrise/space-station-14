@@ -1,7 +1,3 @@
-ent-MagazineAK = универсальный магазин автомата калашникова
-    .desc = Использует патроны калибра 7,62x39мм.
-ent-MagazineMP38 = магазин ПП MP-38
-    .desc = Использует патроны калибра .35 Авто.
 ent-MagazineScorpion = магазин ПП Скорпион
     .desc = Использует патроны калибра .35 Авто.
 ent-MagazineNewVector = магазин Вектора
@@ -20,7 +16,3 @@ ent-MagazineACP14 = магазин пистолета ACP-14
     .desc = Использует патроны калибра .40.
 ent-MagazineDl6902 = короб-магазин DL6902
     .desc = { ent-BaseMagazineLightRifle.desc }
-ent-MagazinePistolSubMachineGunSIAR52 = Расширенный магазин (безгильзовые)
-    .desc = { ent-BaseMagazineLightRifle.desc }
-ent-MagazineScarH = магазин scar-h
-    .desc = { ent-BaseItem.desc }

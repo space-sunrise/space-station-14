@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible.Thresholds;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
@@ -44,7 +45,7 @@ namespace Content.IntegrationTests.Tests.Destructible
 #pragma warning disable NUnit2045 // Interdependent assertions.
                 Assert.DoesNotThrow(() =>
                 {
-                    sEntityManager.System<DamageableSystem>().TryChangeDamage(sDestructibleEntity, bruteDamage, true, useModifier: false, useVariance: false); // Sunrise-Edit
+                    sEntityManager.System<DamageableSystem>().ChangeDamage(sDestructibleEntity, bruteDamage, true, ignoreGlobalModifiers: true, useVariance: false); // Sunrise-Edit
                 });
 
                 Assert.That(sTestThresholdListenerSystem.ThresholdsReached, Has.Count.EqualTo(1));

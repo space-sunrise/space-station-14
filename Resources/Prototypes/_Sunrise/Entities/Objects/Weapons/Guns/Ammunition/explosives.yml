@@ -21,7 +21,7 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeFragContact
+    proto: BulletGrenadeFrag
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     scale: 0.8, 1.15
@@ -57,7 +57,7 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeBlastContact
+    proto: BulletGrenadeBlast
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     scale: 0.8, 1.15
@@ -75,7 +75,7 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeFlashContact
+    proto: BulletGrenadeFlash
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     scale: 0.8, 1.15
@@ -93,7 +93,7 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeEMPContact
+    proto: BulletGrenadeEMP
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     scale: 1.2, 1.4
@@ -157,8 +157,8 @@
   suffix: Pirate
   parent: BaseCartridge
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: PelletShotgunImprovisedSpreadTraceLarge
+  - type: CartridgeAmmo
+    proto: PelletShotgunImprovisedSpreadTraceLarge
     deleteOnSpawn: true
   - type: Sprite
     scale: 0.75,0.75

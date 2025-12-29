@@ -1,7 +1,3 @@
-ent-MagazineAK = Universal AK magazne
-    .desc = { ent-BaseItem.desc }
-ent-MagazineMP38 = MP38 magazine
-    .desc = { ent-BaseItem.desc }
 ent-MagazineScorpion = Scorpion magazine
     .desc = { ent-BaseItem.desc }
 ent-MagazineNewVector = New Vector magazine
@@ -20,7 +16,5 @@ ent-MagazineACP14 = ACP14 magazine
     .desc = { ent-BaseItem.desc }
 ent-MagazineDl6902 = box-magazine DL6902
     .desc = { ent-BaseMagazineLightRifle.desc }
-ent-MagazinePistolSubMachineGunSIAR52 = extended magazine (caseless)
+ent-MagazinePistolSubMachineGunCaselessExtended = extended magazine (caseless)
     .desc = { ent-BaseMagazineLightRifle.desc }
-ent-MagazineScarH = scar-h magazine
-    .desc = { ent-BaseItem.desc }

@@ -30,5 +30,5 @@ public sealed partial class SickComponent : Component
     public TimeSpan StadyDelay = TimeSpan.FromMinutes(5);
 
     [DataField("beforeInfectedBloodReagent")]
-    public string BeforeInfectedBloodReagent = string.Empty;
+    public List<string> BeforeInfectedBloodReagent = new();
 }

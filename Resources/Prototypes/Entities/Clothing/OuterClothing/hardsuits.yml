@@ -263,7 +263,7 @@
     domePrototype: EnergyDomeSmallPink
   - type: PowerCellDraw
     drawRate: 0
-    useRate: 0
+    useCharge: 0
   - type: UseDelay
     delay: 10.0
 
@@ -992,7 +992,7 @@
 
 #ERT Chaplain Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingOuterHardsuitJuggernaut ]
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndie ]
   id: ClothingOuterHardsuitERTChaplain
   name: ERT chaplain's hardsuit
   description: A protective hardsuit worn by the chaplains of an Emergency Response Team.

@@ -16,7 +16,7 @@
     soundGroups:
       Brute:
         path:
-          "/Audio/Effects/glass_hit.ogg"
+          "/Audio/_Sunrise/Effects/glass_hit.ogg"
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_glass_airlock.rsi
     snapCardinals: false
@@ -45,7 +45,7 @@
     soundGroups:
       Brute:
         path:
-          "/Audio/Effects/glass_hit.ogg"
+          "/Audio/_Sunrise/Effects/glass_hit.ogg"
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_glass.rsi
     snapCardinals: false

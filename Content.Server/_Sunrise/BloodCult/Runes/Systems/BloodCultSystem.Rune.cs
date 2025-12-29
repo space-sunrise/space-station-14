@@ -18,6 +18,7 @@ using Content.Shared._Sunrise.BloodCult.Runes;
 using Content.Shared._Sunrise.BloodCult.UI;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Body.Components;
+using Content.Shared.Chat;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Coordinates;
 using Content.Shared.Cuffs.Components;
@@ -564,7 +565,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             HealCultist(target);
 
             if (TryComp<CuffableComponent>(target, out var cuffs) && cuffs.Container.ContainedEntities.Count >= 1)
-                _cuffable.Uncuff(target, cuffs.LastAddedCuffs, cuffs.LastAddedCuffs);
+                _cuffable.Uncuff(target, cuffs.Container.ContainedEntities[^1], cuffs.Container.ContainedEntities[^1]);
 
             return true;
         }

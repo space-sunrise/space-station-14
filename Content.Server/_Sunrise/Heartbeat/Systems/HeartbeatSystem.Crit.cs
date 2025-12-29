@@ -1,5 +1,7 @@
 ﻿using Content.Server._Sunrise.Heartbeat.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs;
 
 namespace Content.Server._Sunrise.Heartbeat.Systems;

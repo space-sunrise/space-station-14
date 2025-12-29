@@ -270,7 +270,7 @@ public sealed partial class FleshCultSystem
 
     private void OnColdTempImmunityMutation(EntityUid uid, FleshCultistComponent component, FleshCultistColdTempImmunityMutationEvent args)
     {
-        if (TryComp<TemperatureComponent>(uid, out var tempComponent))
+        if (TryComp<TemperatureDamageComponent>(uid, out var tempComponent))
             tempComponent.ColdDamageThreshold = 0;
     }
 

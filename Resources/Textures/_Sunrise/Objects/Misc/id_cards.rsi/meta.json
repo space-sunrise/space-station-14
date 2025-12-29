@@ -1,142 +1,158 @@
 {
-    "version": 1,
-    "license": "CLA",
-    "copyright": "© SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt, made for Space Sunrise by gardsnake (Github)",
-    "size": {
-        "x": 32,
-        "y": 32
+  "version": 1,
+  "license": "CLA",
+  "copyright": "© SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt, made for Space Sunrise by gardsnake (Github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "default"
     },
-    "states": [
-        {
-            "name": "default"
-        },
-        {
-            "name": "default-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "default-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "silver"
-        },
-        {
-            "name": "silver-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "silver-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "gold"
-        },
-        {
-            "name": "gold-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "gold-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "blue"
-        },
-        {
-            "name": "blue-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "blue-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "black"
-        },
-        {
-            "name": "black-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "black-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "orange"
-        },
-        {
-            "name": "orange-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "orange-inhand-right",
-            "directions": 4
-        },
-        {
-
-            "name": "orange-space-prison"
-        },
-        {
-            "name": "dark-orange-space-prison"
-        },
-        {
-            "name": "dark-orange-space-prison"
-        },
-        {
-            "name": "ntr-operator"
-        },
-        {
-            "name": "ntr-captain"
-        },
-        {
-            "name": "green"
-        },
-        {
-            "name": "green-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "green-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "space-prison"
-        },
-        {
-            "name": "space-prison-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "space-prison-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "icon-captain"
-        },
-        {
-            "name": "wizard"
-        },
-        {
-            "name": "pirate"
-        },
-        {
-            "name": "ussp"
-        },
-        {
-            "name": "abductor"
-        },
-        {
-            "name": "clown-side"
-        },
-        {
-            "name": "department-side"
-        },
-        {
-            "name": "department-side-extra-gold"
-        },
-        {
-            "name": "department-side-extra-gold-ussp"
-        }
-    ]
+    {
+      "name": "default-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "default-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "silver"
+    },
+    {
+      "name": "silver-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "silver-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "gold"
+    },
+    {
+      "name": "gold-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "gold-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "blue"
+    },
+    {
+      "name": "blue-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "blue-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "black"
+    },
+    {
+      "name": "black-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "black-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "orange"
+    },
+    {
+      "name": "orange-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "orange-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "orange-space-prison"
+    },
+    {
+      "name": "dark-orange-space-prison"
+    },
+    {
+      "name": "idinspector-space-prison"
+    },
+    {
+      "name": "prisoner-space-prison"
+    },
+    {
+      "name": "stripe_top"
+    },
+    {
+      "name": "stripe_bottom"
+    },
+    {
+      "name": "admin"
+    },
+    {
+      "name": "admin-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "admin-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "green"
+    },
+    {
+      "name": "green-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "green-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "space-prison"
+    },
+    {
+      "name": "space-prison-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "space-prison-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "icon-captain"
+    },
+    {
+      "name": "wizard"
+    },
+    {
+      "name": "pirate"
+    },
+    {
+      "name": "ussp"
+    },
+    {
+      "name": "abductor"
+    },
+    {
+      "name": "clown-side"
+    },
+    {
+      "name": "department-side"
+    },
+    {
+      "name": "department-side-extra"
+    },
+    {
+      "name": "department-side-extra-gold"
+    },
+    {
+      "name": "department-side-extra-gold-ussp"
+    }
+  ]
 }

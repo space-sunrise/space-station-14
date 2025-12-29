@@ -63,10 +63,10 @@
   - type: Construction
     graph: ImprovisedShotgunShellGraph
     node: shell
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunImprovisedSpreadTrace
+    proto: PelletShotgunImprovisedSpreadTrace
   - type: SpentAmmoVisuals
     state: "improvised"
 
@@ -88,10 +88,10 @@
   - type: Construction
     graph: ImprovisedIncendiaryShotgunShellGraph
     node: shell
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunImprovisedIncendiarySpreadTrace
+    proto: PelletShotgunImprovisedIncendiarySpread
   - type: SpentAmmoVisuals
     state: "improvised-incendiary"
     revealSpent: false
@@ -115,10 +115,10 @@
   - type: Construction
     graph: ImprovisedUraniumShotgunShellGraph
     node: shell
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunImprovisedUraniumSpreadTrace
+    proto: PelletShotgunImprovisedUraniumSpread
   - type: SpentAmmoVisuals
     state: "improvised-uranium"
     revealSpent: false
@@ -142,10 +142,10 @@
   - type: Construction
     graph: CoinShotgunShellGraph
     node: shell
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunCoinSpreadTrace
+    proto: PelletShotgunCoinSpread
   - type: SpentAmmoVisuals
     state: "coinshot"
     revealSpent: false

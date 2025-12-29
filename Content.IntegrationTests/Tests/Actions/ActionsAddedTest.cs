@@ -33,19 +33,12 @@ public sealed class ActionsAddedTest
         Assert.That(serverSession.AttachedEntity, Is.Not.Null);
         var serverEnt = serverSession.AttachedEntity!.Value;
         var clientEnt = clientSession!.AttachedEntity!.Value;
-        try
-        {
-            Assert.That(sEntMan.EntityExists(serverEnt));
-            Assert.That(cEntMan.EntityExists(clientEnt));
-            Assert.That(sEntMan.HasComponent<ActionsComponent>(serverEnt));
-            Assert.That(cEntMan.HasComponent<ActionsComponent>(clientEnt));
-            Assert.That(sEntMan.HasComponent<CombatModeComponent>(serverEnt));
-            Assert.That(cEntMan.HasComponent<CombatModeComponent>(clientEnt));
-        }
-        catch (AssertionException)
-        {
-            Console.WriteLine("Assert Failed.");
-        }
+        Assert.That(sEntMan.EntityExists(serverEnt));
+        Assert.That(cEntMan.EntityExists(clientEnt));
+        Assert.That(sEntMan.HasComponent<ActionsComponent>(serverEnt));
+        Assert.That(cEntMan.HasComponent<ActionsComponent>(clientEnt));
+        Assert.That(sEntMan.HasComponent<CombatModeComponent>(serverEnt));
+        Assert.That(cEntMan.HasComponent<CombatModeComponent>(clientEnt));
 
         var sComp = sEntMan.GetComponent<ActionsComponent>(serverEnt);
         var cComp = cEntMan.GetComponent<ActionsComponent>(clientEnt);

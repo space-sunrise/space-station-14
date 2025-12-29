@@ -103,7 +103,7 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
     {
         _bwoinkSystem = system;
         _bwoinkSystem.OnBwoinkTextMessageRecieved += ReceivedBwoink;
-        _bwoinkSystem.OnBwoinkCooldownReceived += ReceivedCooldown;
+        _bwoinkSystem.OnBwoinkCooldownReceived += ReceivedCooldown; // Sunrise-Edit
 
         _input.SetInputCommand(ContentKeyFunctions.OpenAHelp,
             InputCmdHandler.FromDelegate(_ => ToggleWindow()));
@@ -115,7 +115,7 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
 
         DebugTools.Assert(_bwoinkSystem != null);
         _bwoinkSystem!.OnBwoinkTextMessageRecieved -= ReceivedBwoink;
-        _bwoinkSystem!.OnBwoinkCooldownReceived -= ReceivedCooldown;
+        _bwoinkSystem!.OnBwoinkCooldownReceived -= ReceivedCooldown; // Sunrise-Edit
         _bwoinkSystem = null;
     }
 
@@ -160,11 +160,13 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         UIHelper!.Receive(message);
     }
 
+    // Sunrise-Start
     private void ReceivedCooldown(object? sender, BwoinkCooldownMessage message)
     {
         EnsureUIHelper();
         UIHelper?.OnCooldownReceived(message);
     }
+    // Sunrise-End
 
     private void DiscordRelayUpdated(BwoinkDiscordRelayUpdated args, EntitySessionEventArgs session)
     {
@@ -276,15 +278,15 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
 
     private void UnreadAHelpReceived()
     {
-        GameAHelpButton?.StyleClasses.Add(MenuButton.StyleClassRedTopButton);
-        LobbyAHelpButton?.StyleClasses.Add(StyleNano.StyleClassButtonColorRed);
+        GameAHelpButton?.StyleClasses.Add(StyleClass.Negative);
+        LobbyAHelpButton?.StyleClasses.Add(StyleClass.Negative);
         _hasUnreadAHelp = true;
     }
 
     private void UnreadAHelpRead()
     {
-        GameAHelpButton?.StyleClasses.Remove(MenuButton.StyleClassRedTopButton);
-        LobbyAHelpButton?.StyleClasses.Remove(StyleNano.StyleClassButtonColorRed);
+        GameAHelpButton?.StyleClasses.Remove(StyleClass.Negative);
+        LobbyAHelpButton?.StyleClasses.Remove(StyleClass.Negative);
         _hasUnreadAHelp = false;
     }
 
@@ -350,7 +352,7 @@ public interface IAHelpUIHandler : IDisposable
     public void ToggleWindow();
     public void DiscordRelayChanged(bool active);
     public void PeopleTypingUpdated(BwoinkPlayerTypingUpdated args);
-    public void OnCooldownReceived(BwoinkCooldownMessage message);
+    public void OnCooldownReceived(BwoinkCooldownMessage message); // Sunrise-Edit
     public event Action OnClose;
     public event Action OnOpen;
     public Action<NetUserId, string, bool, bool>? SendMessageAction { get; set; }
@@ -441,6 +443,7 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
             panel.UpdatePlayerTyping(args.PlayerName, args.Typing);
     }
 
+    // Sunrise-Start
     public void OnCooldownReceived(BwoinkCooldownMessage message)
     {
         // For admins, we might want to show a message in the currently active panel
@@ -451,7 +454,6 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
         }
     }
 
-    // Sunrise-Start
     public void SetLoadDb(NetUserId userId)
     {
         if (_activePanelMap.TryGetValue(userId, out var panel))
@@ -640,10 +642,12 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
     {
     }
 
+    // Sunrise-Start
     public void OnCooldownReceived(BwoinkCooldownMessage message)
     {
         _chatPanel?.OnCooldownReceived(message);
     }
+    // Sunrise-End
 
     public event Action? OnClose;
     public event Action? OnOpen;

@@ -1,21 +1,15 @@
 - type: entity
   name: survival box
-  parent: BoxSurvivalBase
+  parent: BoxCardboardSmall
   id: BoxRepairSynth
   description: It's a box with basic internals inside.
   components:
-  - type: StorageFill
-    contents:
-      - id: Welder
-      - id: CableApcStack
-      - id: GlowstickRed
-        orGroup: Glowstick
-      - id: GlowstickPurple
-        orGroup: Glowstick
-      - id: GlowstickYellow
-        orGroup: Glowstick
-      - id: GlowstickBlue
-        orGroup: Glowstick
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Welder
+        - id: CableApcStack
   - type: Sprite
     layers:
       - state: box_science
@@ -23,7 +17,7 @@
 
 - type: entity
   name: survival box
-  parent: BoxSurvivalBase
+  parent: BoxCardboardSmall
   id: BoxHugSynth
   description: It's a box with basic internals inside.
   components:
@@ -36,18 +30,12 @@
   - type: Tag
     tags:
     - BoxHug
-  - type: StorageFill
-    contents:
-    - id: Welder
-    - id: CableApcStack
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Welder
+        - id: CableApcStack
 
 - type: entity
   name: survival box
@@ -55,19 +43,14 @@
   id: BoxRepairSecurity
   description: It's a box with basic internals inside.
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskGasSecurity
-    - id: Welder
-    - id: CableApcStack
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSecurity
+        - id: Welder
+        - id: CableApcStack
+        - id: Flare
   - type: Sprite
     layers:
     - state: box_science
@@ -79,20 +62,14 @@
   id: BoxRepairSyndicate
   description: It's a box with basic internals inside.
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskGasSyndicate
-    - id: Welder
-    - id: CableApcStack
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    - id: ClothingMaskGasSecurity
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSyndicate
+        - id: Welder
+        - id: CableApcStack
+        - id: Flare
   - type: Sprite
     layers:
     - state: box_science
@@ -105,20 +82,14 @@
   id: BoxSurvivalWithoutGas
   suffix: Standard withoutGas
   components:
-  - type: StorageFill
-    contents:
-    - id: EmergencyMedipen
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Label
     currentLabel: без балона
 
@@ -135,20 +106,14 @@
     - state: heart
   - type: Item
     heldPrefix: hug
-  - type: StorageFill
-    contents:
-    - id: EmergencyMedipen
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Tag
     tags:
     - BoxHug
@@ -158,20 +123,14 @@
   id: BoxMimeWithoutGas
   suffix: Mime, Emergency, Without gas
   components:
-  - type: StorageFill
-    contents:
-    - id: EmergencyMedipen
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    - id: FoodBreadBaguette
-    - id: DrinkBeerBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodBreadBaguette
+        - id: DrinkWaterBottleFull
 
 - type: entity
   parent: BoxSurvivalBase
@@ -180,21 +139,15 @@
   description: It's a box with basic internals inside.
   suffix: Security
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskGasSecurity
-    - id: EmergencyMedipen
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
+        - id: ClothingMaskGasSecurity
   - type: Sprite
     layers:
     - state: internals
@@ -207,21 +160,15 @@
   description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
   suffix: Syndicate
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskGasSyndicate
-    - id: EmergencyMedipen
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
+        - id: ClothingMaskGasSyndicate
   - type: Sprite
     layers:
     - state: internals
@@ -235,20 +182,16 @@
   name: survival box
   suffix: With beer
   components:
-  - type: StorageFill
-    contents:
-    - id: EmergencyMedipen
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    - id: FoodSnackNutribrick
-    - id: DrinkBeerBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyOxygenTankFilled
+        - id: FoodSnackNutribrick
+        - id: DrinkBeerBottleFull
+        - id: Flare
+        - id: EmergencyMedipen
   - type: Label
     currentLabel: без балона
 
@@ -259,22 +202,16 @@
   description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
   suffix: Extended, With beer
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: ExtendedEmergencyOxygenTankFilled
-    - id: EmergencyMedipen
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    - id: FoodSnackNutribrick
-    - id: DrinkBeerBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: FoodSnackNutribrick
+        - id: DrinkBeerBottleFull
+        - id: Flare
+        - id: EmergencyMedipen
   - type: Sprite
     layers:
     - state: internals
@@ -288,22 +225,16 @@
   description: It's a box with basic internals inside.
   suffix: Medical, With beer
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreathMedical
-    - id: EmergencyOxygenTankFilled
-    - id: EmergencyMedipen
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    - id: FoodSnackNutribrick
-    - id: DrinkBeerBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreathMedical
+        - id: EmergencyOxygenTankFilled
+        - id: FoodSnackNutribrick
+        - id: DrinkBeerBottleFull
+        - id: Flare
+        - id: EmergencyMedipen
   - type: Sprite
     layers:
     - state: internals
@@ -322,20 +253,16 @@
     - state: heart
   - type: Item
     heldPrefix: hug
-  - type: StorageFill
-    contents:
-    - id: EmergencyMedipen
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    - id: FoodSnackNutribrick
-    - id: DrinkBeerBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyOxygenTankFilled
+        - id: FoodSnackNutribrick
+        - id: DrinkBeerBottleFull
+        - id: Flare
+        - id: EmergencyMedipen
   - type: Tag
     tags:
     - BoxHug
@@ -345,22 +272,16 @@
   id: BoxMimeWithBeer
   suffix: Mime, Emergency, With beer
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: EmergencyOxygenTankFilled
-    - id: EmergencyMedipen
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    - id: FoodBreadBaguette
-    - id: DrinkBeerBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyOxygenTankFilled
+        - id: FoodBreadNutriBatard
+        - id: DrinkBeerBottleFull
+        - id: Flare
+        - id: EmergencyMedipen
 
 - type: entity
   parent: BoxSurvivalBase
@@ -369,21 +290,16 @@
   description: It's a box with basic internals inside.
   suffix: Security, With beer
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskGasSecurity
-    - id: EmergencyMedipen
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    - id: FoodSnackNutribrick
-    - id: DrinkBeerBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSecurity
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: FoodSnackNutribrick
+        - id: DrinkBeerBottleFull
+        - id: Flare
+        - id: EmergencyMedipen
   - type: Sprite
     layers:
     - state: internals
@@ -396,21 +312,15 @@
   description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
   suffix: Syndicate, With beer
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskGasSyndicate
-    - id: EmergencyMedipen
-    - id: SpaceMedipen
-    - id: GlowstickRed
-      orGroup: Glowstick
-    - id: GlowstickPurple
-      orGroup: Glowstick
-    - id: GlowstickYellow
-      orGroup: Glowstick
-    - id: GlowstickBlue
-      orGroup: Glowstick
-    - id: FoodSnackNutribrick
-    - id: DrinkBeerBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSyndicate
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: FoodSnackNutribrick
+        - id: DrinkBeerBottleFull
+        - id: EmergencyMedipen
   - type: Sprite
     layers:
     - state: internals

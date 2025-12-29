@@ -29,11 +29,12 @@
   - Brig
   - Security
   - Armory
-#  - Maintenance #Sunrise-Edit
-  - Service
+  - Maintenance
   - External
   - Detective
   - Cryogenics
+  - GenpopEnter
+  - GenpopLeave
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant, DeathRattleImplantBlueShield ]

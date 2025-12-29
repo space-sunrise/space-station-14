@@ -23,6 +23,7 @@
     - state: "id_inserted"
       map: [ "enum.PdaVisualLayers.IdLight" ]
       shader: "unshaded"
+      visible: false
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
   # Sunrise-End

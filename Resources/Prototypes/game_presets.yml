@@ -50,7 +50,8 @@
 #    - BloodCult
 #    - AssaultOps
 #    - SubGamemodesRule
-#    - KesslerSyndromeScheduler
+#    - Xenoborgs
+    - KesslerSyndromeScheduler
 #    - RampingStationEventScheduler
 #    - SpaceTrafficControlEventScheduler
 #    - BasicRoundstartVariation
@@ -73,6 +74,7 @@
 #    - Revolutionary
 #    - Zombie
 #    - Wizard
+    - Xenoborgs
 #    - FleshCult
 #    - BloodCult
 #    - AssaultOps
@@ -167,7 +169,7 @@
   rules:
   - DummyNonAntagChance
   - Traitor
-  - SubGamemodesRule
+  - SubGamemodesRuleNoWizard
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -197,7 +199,8 @@
   minPlayers: 20 # Sunrise-Edit: 20 players for NUKEOPS
   rules:
   - Nukeops
-  - DummyNonAntagChance #sunrise-edit
+  - DummyNonAntagChance
+  - SubGamemodesRuleNoWizard
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -217,6 +220,7 @@
   rules:
   - DummyNonAntagChance
   - Revolutionary
+  - SubGamemodesRuleNoWizard
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -233,6 +237,22 @@
   - Wizard
   - DummyNonAntagChance
   - SubGamemodesRuleNoWizard #No Dual Wizards at the start, midround is fine
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Xenoborgs
+  alias:
+    - xenoborgs
+  name: xenoborgs-title
+  description: xenoborgs-description
+  showInVote: false
+  rules:
+  - Xenoborgs
+  - DummyNonAntagChance
+  - SubGamemodesRuleNoWizardNoXenoborg # no two motherships
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler

@@ -435,14 +435,12 @@
         effect: EffectNightVisionSyndie
   - type: PowerCellDraw
     drawRate: 2
-    useRate: 20
+    useCharge: 20
   - type: Battery
     maxCharge: 600
     startingCharge: 600
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 6
-    autoRechargePause: true
     autoRechargePauseTime: 1
   - type: ItemToggle
     predictable: false

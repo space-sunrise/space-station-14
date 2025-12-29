@@ -11,6 +11,7 @@
   - Revolutionary
   - AllHostile
   - Wizard
+  - Xenoborg
   # Sunrise Edit
   - Thief
   - Vampire
@@ -50,13 +51,14 @@
 
 - type: npcFaction
   id: PetsNT
+  friendly:
+  - NanoTrasen
   hostile:
   - Mouse
   - SimpleHostile
   - Zombie
   - Xeno
   - AllHostile
-  - Wizard
   - Dragon
   # Sunrise Edit
   - Carps

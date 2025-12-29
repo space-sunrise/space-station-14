@@ -8,9 +8,6 @@
     supplyRate: 300000
     supplyRampRate: 50000
     supplyRampTolerance: 500
-  - type: Tag
-    tags:
-      - Debug
 
 - type: entity
   id: DebugConsumer
@@ -20,9 +17,6 @@
   placement:
     mode: SnapgridCenter
   components:
-  - type: Tag
-    tags:
-      - Debug
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
@@ -66,9 +60,6 @@
   placement:
     mode: SnapgridCenter
   components:
-  - type: Tag
-    tags:
-      - Debug
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
@@ -85,6 +76,11 @@
     sprite: Structures/Power/power.rsi
     state: provider
   - type: Battery
+    # Very important:
+    # Disable networking to prevent the battery getting continuously dirtied every tick as it interacts with the power network.
+    # This can not be done by changing the charge rate as the power supply ramps up over time.
+    # This disables prediction for this battery.
+    netsync: false
   - type: NodeContainer
     nodes:
       input:
@@ -100,9 +96,6 @@
   placement:
     mode: SnapgridCenter
   components:
-  - type: Tag
-    tags:
-      - Debug
   - type: Clickable
   - type: PowerNetworkBattery
   - type: InteractionOutline
@@ -120,6 +113,11 @@
     sprite: Structures/Power/power.rsi
     state: provider
   - type: Battery
+    # Very important:
+    # Disable networking to prevent the battery getting continuously dirtied every tick as it interacts with the power network.
+    # This can not be done by changing the charge rate as the power supply ramps up over time.
+    # This disables prediction for this battery.
+    netsync: false
   - type: NodeContainer
     nodes:
       input:
@@ -130,34 +128,12 @@
 
 - type: entity
   parent: BaseSMES
-  id: DebugSMES
-  suffix: DEBUG, Empty
-  components:
-  - type: Tag
-    tags:
-    - Debug
-
-- type: entity
-  parent: BaseSMES
   id: DebugSMESRecharging
   suffix: DEBUG, AutoRecharge
   categories: [ Debug ] # Sunrise added
   components:
   - type: BatterySelfRecharger
     autoRechargeRate: 50000
-    autoRecharge: True
-  - type: Tag
-    tags:
-    - Debug
-
-- type: entity
-  parent: BaseSubstation
-  id: DebugSubstation
-  suffix: DEBUG, Empty
-  components:
-  - type: Tag
-    tags:
-    - Debug
 
 - type: entity
   parent: BaseSubstation
@@ -166,19 +142,6 @@
   components:
   - type: BatterySelfRecharger
     autoRechargeRate: 50000
-    autoRecharge: True
-  - type: Tag
-    tags:
-    - Debug
-
-- type: entity
-  parent: BaseSubstationWall
-  id: DebugSubstationWall
-  suffix: DEBUG, Empty
-  components:
-  - type: Tag
-    tags:
-    - Debug
 
 - type: entity
   parent: BaseSubstationWall
@@ -187,19 +150,6 @@
   components:
   - type: BatterySelfRecharger
     autoRechargeRate: 50000
-    autoRecharge: True
-  - type: Tag
-    tags:
-    - Debug
-
-- type: entity
-  parent: BaseAPC
-  id: DebugAPC
-  suffix: DEBUG, Empty
-  components:
-  - type: Tag
-    tags:
-    - Debug
 
 - type: entity
   parent: BaseAPC
@@ -209,10 +159,6 @@
   components:
   - type: BatterySelfRecharger
     autoRechargeRate: 50000
-    autoRecharge: True
-  - type: Tag
-    tags:
-    - Debug
 
 - type: entity
   id: DebugPowerReceiver
@@ -222,9 +168,6 @@
   placement:
     mode: SnapgridCenter
   components:
-  - type: Tag
-    tags:
-      - Debug
   - type: Clickable
   - type: InteractionOutline
   - type: Physics

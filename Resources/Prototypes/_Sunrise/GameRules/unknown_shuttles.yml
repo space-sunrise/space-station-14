@@ -1,0 +1,137 @@
+- type: entity
+  id: ERTShuttleSmallAmber
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    startAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
+    duration: -0
+    endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT-Small-Amber.yml"
+
+- type: entity
+  id: ERTShuttleMediumRed
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    startAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
+    duration: -0
+    endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT-Medium-Red.yml"
+
+- type: entity
+  id: ERTShuttleCBURNSmall
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    startAudio: /Audio/_Sunrise/Announcements/sunrise_outbreak5.ogg
+    duration: -0
+    endAudio: /Audio/_Sunrise/Announcements/sunrise_outbreak5.ogg
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/DSO/CBURN/ERT-Small-CBURN.yml"
+
+- type: entity
+  id: ERTShuttleAssaultAmber
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    startAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
+    duration: -0
+    endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ertall_amber.yml"
+
+- type: entity
+  id: ERTShuttleAssaultRed
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    startAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
+    duration: -0
+    endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ertall_red.yml"
+
+- type: entity
+  id: ERTShuttleAssaultGamma
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    startAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
+    duration: -0
+    endAudio: /Audio/_Sunrise/Announcements/sunrise_ert_accepted.ogg
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ertall_gamma.yml"
+
+- type: entity
+  id: UnknownShuttlePirateSmall
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    weight: 3
+    earliestStart: 10
+    minimumPlayers: 75
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/Antag/falcon.yml"
+
+- type: entity
+  id: UnknownShuttlePirateMedium
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    weight: 2
+    earliestStart: 20
+    minimumPlayers: 75
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/Antag/rust_brass.yml"
+
+- type: entity
+  id: PirateMedium
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    # startAudio: /Audio/Ambience/Antag/pirate_start.ogg
+    # duration: -0
+    # endAudio: /Audio/Ambience/Antag/pirate_start.ogg
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/Antag/rust_brass.yml"
+
+- type: entity
+  id: PirateSmall
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    # startAudio: /Audio/Ambience/Antag/pirate_start.ogg
+    # duration: -0
+    # endAudio: /Audio/Ambience/Antag/pirate_start.ogg
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/Antag/falcon.yml"
+
+- type: entity
+  id: NukeopsInfiltrator
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/Antag/infiltrator_raid.yml"
+
+- type: entity
+  id: NukeopsInstigator
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+  - type: LoadMapRule
+    gridPath: "/Maps/Shuttles/ShuttleEvent/instigator.yml"

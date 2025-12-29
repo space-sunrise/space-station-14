@@ -98,7 +98,6 @@ reagent-physical-desc-neural = нейронное
 reagent-physical-desc-unidentifiable = неопознаваемое
 reagent-physical-desc-vile = мерзкое
 reagent-physical-desc-celliminol = сильно отдающее кровью
-reagent-physical-desc-apoptodon = сильно пахнущее радиоактивными ожогами
 reagent-physical-desc-h-32 = сильно пахнущее радиоактивными ожогами
 reagent-physical-desc-antidon = чистое
 reagent-physical-desc-brutedon = целебное

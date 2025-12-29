@@ -1,20 +1,18 @@
 - type: entity
+  parent: [ BaseItem, BaseSecurityContraband ]
   id: SpeedLoaderLightRifle
-  name: "speed loader (.45 magnum)" # Starlight
-  parent: [ BaseItem, BaseMinorContraband ]
+  name: "speed loader (.30 rifle)"
+  description: 5-round 'stripper clip' for quickly reloading the Kardashev-Mosin. Intended to hold general-purpose kinetic ammunition.
   components:
-  - type: Tag
-    tags:
-      - SpeedLoaderRifle
   - type: SpeedLoader
   - type: BallisticAmmoProvider
     mayTransfer: true
-    fillDelay: 0.1 #Starlight
+    fillDelay: 0.1 #  Sunrise-add
     whitelist:
       tags:
-        - CartridgeMagnum # Starlight
+      - CartridgeLightRifle
     capacity: 5
-    proto: CartridgeMagnumSP # Starlight
+    proto: CartridgeLightRifleFMJ # Sunrise-edit
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/LightRifle/light_rifle_speed_loader.rsi
     layers:

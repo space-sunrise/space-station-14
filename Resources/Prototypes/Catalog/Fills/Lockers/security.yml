@@ -46,7 +46,6 @@
       amount: 2
     - id: NetworkConfigurator
     - id: Binoculars
-    - id: WeaponEnergyShotgun
     - id: HandheldCriminalRecordsMonitor  # Sunrise-CriminalRecords
     - id: ClothingHandsKnuckleDustersStun # Sunrise-edit
 

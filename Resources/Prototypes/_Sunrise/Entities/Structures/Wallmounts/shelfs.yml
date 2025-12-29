@@ -64,7 +64,6 @@
     maxItemSize: Normal
     whitelist:
       tags:
-        - DrinkGlass
         - DrinkBottle
         - DrinkCan
         - Beer
@@ -139,8 +138,6 @@
       tags:
         - DrinkBottle
         - DrinkCan
-        - DrinkCup
-        - DrinkGlass
         - Cake
         - MonkeyCube
         - Enzyme
@@ -150,7 +147,6 @@
         - Knife
         - KitchenKnife
         - Burger
-        - Ingredient
         - Trash
         - Plastic
         - FoodSnack

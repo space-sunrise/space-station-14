@@ -24,11 +24,6 @@ public abstract partial class SharedJumpSystem
         _enabled = enable;
     }
 
-    private static void OnJumpDeadChanceChanged(float value)
-    {
-        _deadChance = value;
-    }
-
     private static void OnBunnyHopEnableChanged(bool enable)
     {
         _bunnyHopEnabled = enable;

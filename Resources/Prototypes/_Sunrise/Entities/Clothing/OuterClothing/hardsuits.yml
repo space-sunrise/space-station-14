@@ -162,7 +162,7 @@
     domePrototype: EnergyDomeSmallRed
   - type: PowerCellDraw
     drawRate: 0
-    useRate: 0
+    useCharge: 0
   - type: UseDelay
     delay: 10.0
 
@@ -559,6 +559,9 @@
   - type: ToggleClothing
     action: ActionTogglePhaseCloak
     disableOnUnequip: true
+    targetSlot: outerClothing
+  - type: ItemToggle
+    canActivateInhand: false
   - type: ComponentToggler
     parent: true
     components:

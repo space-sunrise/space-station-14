@@ -4,6 +4,8 @@ using Content.Shared._Sunrise.Boss.Events;
 using Content.Shared.Actions;
 using Content.Shared.Camera;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Throwing;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
@@ -61,9 +63,9 @@ public sealed class HellSpawnRushSystem : EntitySystem
         var query = _lookup.GetEntitiesInRange<DamageableComponent>(Transform(ent.Owner).Coordinates, 1.3f);
         foreach (var entity in query)
         {
-            if (_whitelist.IsBlacklistPass(ent.Comp.Blacklist, entity))
+            if (_whitelist.IsWhitelistFail(ent.Comp.Blacklist, entity))
                 continue;
-            _damageable.TryChangeDamage(entity, ent.Comp.ThrowHitDamageDict);
+            _damageable.TryChangeDamage(entity.Owner, ent.Comp.ThrowHitDamageDict);
         }
 
         QueueDel(ent.Comp.RuneUid);

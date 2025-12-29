@@ -16,7 +16,7 @@
       color: "#FF0000"
     - type: EmitSoundOnSpawn
       sound:
-        path: /Audio/Effects/electrical_short_circuit2.ogg
+        path: /Audio/_Sunrise/Effects/electrical_short_circuit2.ogg
     - type: TimedDespawn
       lifetime: 90
     - type: EvaporationSparkle
@@ -30,7 +30,7 @@
     - type: ActivatableUI
       key: enum.GhostRoleRadioUiKey.Key
     - type: EmitSoundOnUse
-      sound: /Audio/Misc/emergency_meeting.ogg
+      sound: /Audio/_Sunrise/Misc/emergency_meeting.ogg
 
 - type: entity
   parent: ReinforcementTeleport

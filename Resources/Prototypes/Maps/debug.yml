@@ -16,7 +16,7 @@
 - type: gameMap
   id: Dev
   mapName: Dev
-  mapPath: /Maps/_Sunrise/Test/dev_map.yml #/Maps/Test/dev_map.yml # Sunrise-edit
+  mapPath: /Maps/Test/dev_map.yml
   minPlayers: 0
   stations:
     Dev:

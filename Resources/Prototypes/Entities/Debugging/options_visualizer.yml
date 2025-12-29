@@ -3,9 +3,6 @@
   suffix: DEBUG
   categories: [ Debug ] # Sunrise added
   components:
-  - type: Tag
-    tags:
-    - Debug
   - type: Sprite
     sprite: Effects/optionsvisualizertest.rsi
     layers:

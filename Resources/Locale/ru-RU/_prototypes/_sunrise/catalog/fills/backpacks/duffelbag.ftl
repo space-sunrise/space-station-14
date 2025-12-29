@@ -42,6 +42,7 @@ ent-ClothingBackpackDuffelWeaponSniperHristovFilled = Набор Христов
     .desc = Христов с 4мя коробками на 10 антиматериальных патрон.
 ent-ClothingBackpackDuffelNanotrasenMedicalBundleFilled = набор медикаментов NanoTrasen
     .desc = Все, что нужно для возвращения в строй ваших товарищей: главным образом, боевые аптечки, дефибриллятор и 4 боевых медипена каждого.
+    .suffix = Заполненный
 ent-ClothingBackpackDuffelAbductorFilled = { ent-ClothingBackpackDuffelAbductorBundle }
     .suffix = Заполненный
     .desc = { ent-ClothingBackpackDuffelAbductorBundle.desc }
