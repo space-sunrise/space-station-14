@@ -6,6 +6,7 @@
     - Toxin
     - Airloss
     - Genetic
+    - Mangleness # Sunrise-Edit
 
 - type: damageContainer
   id: Inorganic
@@ -77,4 +78,5 @@
   - Toxin
   - Airloss
   - Genetic
+  - Mangleness # Sunrise-Edit
   - Metaphysical
