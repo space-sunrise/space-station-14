@@ -164,12 +164,7 @@ public sealed class ThirstSystem : EntitySystem
             component.DehydrationDamage is { } damage &&
             !_mobState.IsDead(uid))
         {
-            // Sunrise-Start
-            // _damageable.TryChangeDamage(uid, damage, true, false);
-            var thirstDamage = new DamageSpecifier();
-            thirstDamage.DamageDict.Add("Mangleness", 0.5);
-            _damageable.TryChangeDamage(uid, thirstDamage, true, false);
-            // Sunrise-End
+            _damageable.TryChangeDamage(uid, damage, true, false);
         }
     }
 
