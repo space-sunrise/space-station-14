@@ -3,6 +3,8 @@ using Content.Shared.Ghost;
 using Content.Shared.Roles;
 using GhostWarpPlayer = Content.Shared.Ghost.SharedGhostSystem.GhostWarpPlayer;
 using GhostWarpGlobalAntagonist = Content.Shared.Ghost.SharedGhostSystem.GhostWarpGlobalAntagonist;
+using Robust.Shared.Utility;
+
 
 namespace Content.Client._Sunrise.UserInterface.Systems.Ghost.Controls;
 
@@ -62,7 +64,7 @@ public sealed partial class SunriseGhostTargetWindow
     /// <returns>Сгенерированное название с иконкой</returns>
     private string GeneratePlayerLabel(GhostWarpPlayer warp)
     {
-        var playerName = TruncateWithEllipsis(warp.Name, MaxLenght);
+        var playerName = FormattedMessage.EscapeText(TruncateWithEllipsis(warp.Name, MaxLenght));
         var jobIcon = _chatIcons.GetJobIcon(warp.JobId, 3);
 
         return $"{jobIcon} {playerName}";
