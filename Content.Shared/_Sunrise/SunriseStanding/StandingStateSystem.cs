@@ -3,12 +3,17 @@ using Content.Shared._Sunrise.Jump;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Gravity;
 using Content.Shared.Movement.Events;
+using Content.Shared.Nutrition;
+using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
 using Robust.Shared.Configuration;
+using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
@@ -20,19 +25,13 @@ namespace Content.Shared._Sunrise.SunriseStanding;
 public sealed class SunriseStandingStateSystem : EntitySystem
 {
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private readonly EntProtoId _fallStatusEffectKey = "StatusEffectFall";
-    private readonly ProtoId<EmotePrototype> _emoteFallOnNeckProto = "FallOnNeck";
-
-    private static float _fallDeadChance;
-
     public const float FallModifier = 0.2f;
 
     public override void Initialize()
@@ -40,34 +39,36 @@ public sealed class SunriseStandingStateSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<CrawlerComponent, KnockedDownEvent>(OnDown);
-        SubscribeLocalEvent<FallComponent, TileFrictionEvent>(OnFallTileFriction);
-        SubscribeLocalEvent<FallComponent, UpdateCanMoveEvent>(OnMoveAttempt);
-        SubscribeLocalEvent<FallComponent, ComponentStartup>(UpdateCanMove);
-        SubscribeLocalEvent<FallComponent, ComponentShutdown>(UpdateCanMove);
-
-        _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.FallDeadChance, OnFallDeadChanceChanged, true);
+        SubscribeLocalEvent<FallStatusEffectComponent, StatusEffectRelayedEvent<TileFrictionEvent>>(OnFallTileFriction);
     }
-    private void OnFallDeadChanceChanged(float value)
-    {
-        _fallDeadChance = value;
-    }
+    /// <summary>
+    /// All commented code causes severe lag on the client side. This is most likely due to StatusEffectRelayedEvent.
+    /// If anyone can fix this, great, but I think it's almost impossible.
+    /// </summary>
+    // private void OnStatusEffectStartUp(Entity<FallStatusEffectComponent> ent, ref StatusEffectAppliedEvent args)
+    // {
+    //     _blocker.UpdateCanMove(args.Target);
+    // }
+    // private void OnStatusEffectRemoved(Entity<FallStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
+    // {
+    //     _blocker.UpdateCanMove(args.Target);
+    // }
 
-    private void UpdateCanMove(EntityUid uid, FallComponent component, EntityEventArgs args)
-    {
-        _blocker.UpdateCanMove(uid);
-    }
+    // private void OnMoveAttempt(Entity<FallStatusEffectComponent> ent, ref StatusEffectRelayedEvent<UpdateCanMoveEvent> args)
+    // {
+    //     args.Args.Cancel();
+    // }
 
-    private void OnMoveAttempt(EntityUid uid, FallComponent component, UpdateCanMoveEvent args)
+    private void OnFallTileFriction(Entity<FallStatusEffectComponent> ent, ref StatusEffectRelayedEvent<TileFrictionEvent> args)
     {
-        if (component.LifeStage > ComponentLifeStage.Running)
+        var parent = Transform(ent).ParentUid;
+
+        if (!TryComp<CanFallComponent>(parent, out var fall))
             return;
 
-        args.Cancel();
-    }
-
-    private void OnFallTileFriction(EntityUid uid, FallComponent component, ref TileFrictionEvent args)
-    {
-        args.Modifier *= FallModifier;
+        var ev = args.Args;
+        ev.Modifier *= fall.Friction;
+        args.Args = ev;
     }
 
     private void OnDown(EntityUid uid, CrawlerComponent comp, KnockedDownEvent ev)
@@ -80,7 +81,22 @@ public sealed class SunriseStandingStateSystem : EntitySystem
 
     public void Fall(EntityUid uid)
     {
-        if (!TryComp<PhysicsComponent>(uid, out var physics) || HasComp<JumpComponent>(uid))
+        if (!TryComp<CanFallComponent>(uid, out var fall))
+            return;
+
+        if (!TryComp<StaminaComponent>(uid, out var stamina))
+            return;
+
+        var threshold = stamina.CritThreshold * (1 - fall.MinimumStamina);
+
+        if (stamina.StaminaDamage >= threshold)
+        {
+            _popup.PopupPredicted(Loc.GetString("cant-fall-no-stamina"), null, uid, uid);
+            return;
+        }
+
+
+        if (!TryComp<PhysicsComponent>(uid, out var physics) || _statusEffects.HasEffectComp<JumpStatusEffectComponent>(uid))
             return;
 
         var ev = new FallAttemptEvent();
@@ -99,14 +115,11 @@ public sealed class SunriseStandingStateSystem : EntitySystem
         if (velocity.LengthSquared() < 0.1f)
             return;
 
-        _physics.SetLinearVelocity(uid, physics.LinearVelocity * 4f, body: physics);
+        _physics.SetLinearVelocity(uid, physics.LinearVelocity * fall.VelocityModifier, body: physics);
         _statusEffects.TryAddStatusEffectDuration(uid,
             _fallStatusEffectKey,
-            TimeSpan.FromSeconds(1));
+            fall.Duration);
 
-        if (_random.Prob(_fallDeadChance) && _net.IsServer)
-        {
-            RaiseLocalEvent(uid, new PlayEmoteMessage(_emoteFallOnNeckProto));
-        }
+        _stamina.TakeStaminaDamage(uid, stamina.CritThreshold * fall.StaminaDamage, null, uid, uid, ignoreResist: true);
     }
 }

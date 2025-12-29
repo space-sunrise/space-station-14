@@ -727,7 +727,7 @@ entities:
     - type: Transform
       pos: 1.7495648,-13.532623
       parent: 1
-- proto: APCBasic
+- proto: APCHighCapacitySyndicate
   entities:
   - uid: 18
     components:
@@ -3638,7 +3638,7 @@ entities:
     - type: Transform
       pos: -2.4942985,-13.37949
       parent: 1
-- proto: PlasmaReinforcedWindowDirectional
+- proto: PlastitaniumWindowDiagonal
   entities:
   - uid: 520
     components:
@@ -4148,7 +4148,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-27.5
       parent: 1
-- proto: ReinforcedPlasmaWindow
+- proto: PlastitaniumWindow
   entities:
   - uid: 254
     components:

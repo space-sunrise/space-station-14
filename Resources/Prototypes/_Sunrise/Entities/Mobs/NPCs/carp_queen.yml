@@ -30,8 +30,6 @@
       MobCarpServantRainbow: 80
       MobCarpServantHolo: 10
       MobCarpServantDungeon: 10
-  - type: ReplacementAccent
-    remove: true
   - type: Accentless
     removes:
     - type: ReplacementAccent

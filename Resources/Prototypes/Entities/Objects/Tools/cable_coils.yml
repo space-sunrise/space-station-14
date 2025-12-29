@@ -33,6 +33,17 @@
     guides:
     - VoltageNetworks
     - Power
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
 
 - type: entity
   id: CableHVStack
@@ -71,6 +82,20 @@
           Quantity: 2
         - ReagentId: Carbon #steel-reinforced
           Quantity: 1
+  # Sunrise-start
+  - type: Healing
+    delay: 0.7
+    damageContainers:
+    - Synth
+    - Silicon
+    - Mech
+    damage:
+      types:
+        Heat: -5
+        Shock: -5
+        Caustic: -5
+        Mangleness: -1
+  # Sunrise-end
 
 - type: entity
   parent: CableHVStack
@@ -127,6 +152,20 @@
           Quantity: 3
         - ReagentId: Copper
           Quantity: 2
+  # Sunrise-start
+  - type: Healing
+    delay: 0.6
+    damageContainers:
+    - Synth
+    - Silicon
+    - Mech
+    damage:
+      types:
+        Heat: -6
+        Shock: -6
+        Caustic: -6
+        Mangleness: -1
+  # Sunrise-end
 
 - type: entity
   parent: CableMVStack
@@ -183,7 +222,7 @@
         - ReagentId: Copper
           Quantity: 2
   - type: Healing
-    delay: 0.6  #Sunrise-edit
+    delay: 0.5  #Sunrise-edit
     damageContainers:
     - Synth #Sunrise-edit
     - Silicon
@@ -193,7 +232,7 @@
         Heat: -6
         Shock: -6
         Caustic: -6
-        Mangleness: 1 #Sunrise-edit
+        Mangleness: -1 #Sunrise-edit
 
 - type: entity
   parent: CableApcStack

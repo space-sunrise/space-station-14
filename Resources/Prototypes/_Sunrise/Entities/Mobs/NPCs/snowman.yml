@@ -14,8 +14,10 @@
         state: state
         sprite: _Sunrise/Mobs/Elemental/snowman.rsi
   - type: Bloodstream
-    bloodMaxVolume: 100
-    bloodReagent: SnowWhite
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: SnowWhite
+        Quantity: 100
   - type: PressureImmunity
   - type: NoSlip
   - type: MovementSpeedModifier
@@ -85,14 +87,13 @@
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletSnowBall
     fireCost: 49
   - type: Battery
     maxCharge: 100
     startingCharge: 100
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 100
   - type: AmmoCounter
   - type: Gun

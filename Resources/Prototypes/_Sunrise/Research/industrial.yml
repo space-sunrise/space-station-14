@@ -93,3 +93,15 @@
   cost: 9000
   recipeUnlocks:
   - BasicThermals
+
+- type: technology
+  id: Modsuits
+  name: research-technology-modsuits
+  icon:
+    sprite: _Sunrise/Modsuits/Backpack/Qillu/blueshield.rsi
+    state: icon
+  discipline: Industrial
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - ModsuitCore

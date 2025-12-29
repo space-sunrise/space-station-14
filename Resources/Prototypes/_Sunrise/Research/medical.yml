@@ -35,18 +35,6 @@
 
 # Tier 2
 - type: technology
-  id: MedicalHyposprays
-  name: research-technology-medical-hyposprays
-  icon:
-    sprite: _Sunrise/Objects/Specific/Medical/hypospray.rsi
-    state: med-hypospray
-  discipline: Biochemical
-  tier: 2
-  cost: 6500
-  recipeUnlocks:
-  - HyposprayMedical
-
-- type: technology
   id: MedicalAssembler
   name: research-technology-medical-assembler
   icon:
@@ -58,8 +46,8 @@
   recipeUnlocks:
   - MedicalAssemblerMachineCircuitboard
   - BlankMediPen
-  technologyPrerequisites:
-    - MedicalHyposprays
+  # technologyPrerequisites: # Sunrise-todo Привязать JetInjectors
+  #   - MedicalHyposprays
 
 - type: technology
   id: SurgeryTechAdvanced
@@ -205,6 +193,38 @@
   - Medical
   - Service
 
+- type: technology
+  id: CompactDefibrillation
+  name: research-technology-compact-defibrilation
+  icon:
+    sprite: Objects/Specific/Medical/defibsmall.rsi
+    state: icon
+  discipline: Biochemical
+  tier: 2
+  cost: 8000
+  recipeUnlocks:
+    - DefibrillatorCompact
+  technologyPrerequisites:
+    - SurgeryTech
+  radioChannels:
+  - Medical
+
+- type: technology
+  id: AdvancedCompactDefibrillation
+  name: research-technology-advanced-compact-defibrilation
+  icon:
+    sprite: _Sunrise/Entities/Objects/Specific/Medical/advanced_defibsmall.rsi
+    state: icon
+  discipline: Biochemical
+  tier: 2
+  cost: 15000
+  recipeUnlocks:
+    - AdvancedDefibrillatorCompact
+  technologyPrerequisites:
+    - CompactDefibrillation
+  radioChannels:
+  - Medical
+
 # Tier 3
 - type: technology
   id: HackCyberLimbsTech
@@ -250,8 +270,8 @@
   recipeUnlocks:
   - AutoMenderBrute
   - AutoMenderBurn
-  technologyPrerequisites:
-  - MedicalHyposprays
+  # technologyPrerequisites: # Sunrise-todo Привязать JetInjectors
+  # - MedicalHyposprays
   radioChannels:
   - Medical
 
@@ -377,5 +397,21 @@
   recipeUnlocks:
   - LauncherSyringe
   - MiniSyringe
+  radioChannels:
+  - Medical
+
+- type: technology
+  id: CloningSystems
+  name: research-technology-cloning
+  icon:
+    sprite: Structures/Machines/cloning.rsi
+    state: pod_0
+  discipline: Biochemical
+  tier: 3
+  cost: 25000
+  recipeUnlocks:
+  - CloningConsoleComputerCircuitboard
+  - CloningPodMachineCircuitboard
+  - MedicalScannerMachineCircuitboard
   radioChannels:
   - Medical

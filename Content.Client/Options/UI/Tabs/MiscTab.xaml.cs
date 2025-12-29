@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Content.Client.UserInterface.Screens;
-using Content.Server.GameTicking.Prototypes;
 using Content.Shared._Sunrise.Lobby;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;

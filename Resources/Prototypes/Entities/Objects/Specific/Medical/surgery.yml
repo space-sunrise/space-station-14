@@ -116,12 +116,17 @@
     state: shiv
   - type: Item
     heldPrefix: shiv
-  - type: SurgeryTool
-    speed: 1.4
-    startSound:
-      path: /Audio/_Sunrise/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/_Sunrise/Medical/Surgery/scalpel2.ogg
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.375,-0.15,0.35,0.12"
+        density: 20 # derived from base_item
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+
 
 - type: entity
   name: advanced scalpel

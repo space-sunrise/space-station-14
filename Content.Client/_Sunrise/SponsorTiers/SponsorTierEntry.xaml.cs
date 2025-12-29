@@ -506,14 +506,14 @@ public sealed partial class SponsorTierEntry : Control
         {
             SetSize = new Vector2(200, 200),
             Margin = new Thickness(5, 5, 5, 5),
-            StyleClasses = { StyleBase.ButtonSquare },
+            StyleClasses = { StyleClass.ButtonSquare },
         };
 
         var box = new BoxContainer()
         {
             Orientation = BoxContainer.LayoutOrientation.Vertical,
             Margin = new Thickness(5, 5, 5, 5),
-            StyleClasses = { StyleBase.ButtonSquare },
+            StyleClasses = { StyleClass.ButtonSquare },
             Align = BoxContainer.AlignMode.Center
         };
 
@@ -546,14 +546,14 @@ public sealed partial class SponsorTierEntry : Control
         {
             SetSize = new Vector2(200, 200),
             Margin = new Thickness(5, 5, 5, 5),
-            StyleClasses = { StyleBase.ButtonSquare },
+            StyleClasses = { StyleClass.ButtonSquare },
         };
 
         var box = new BoxContainer()
         {
             Orientation = BoxContainer.LayoutOrientation.Vertical,
             Margin = new Thickness(5, 5, 5, 5),
-            StyleClasses = { StyleBase.ButtonSquare },
+            StyleClasses = { StyleClass.ButtonSquare },
         };
 
         panel.AddChild(box);

@@ -104,8 +104,8 @@ public sealed class NinjaSuitDrawSystem : SharedNinjaSuitDrawSystem
 
         if (_ninja.GetNinjaBattery(user, out _, out var battery))
         {
-            var canUse = ent.Comp.UseRate <= 0f || battery.CurrentCharge >= ent.Comp.UseRate;
-            var canDraw = ent.Comp.DrawRate <= 0f || battery.CurrentCharge > 0f;
+            var canUse = ent.Comp.UseRate <= 0f || battery.ChargeRate >= ent.Comp.UseRate;
+            var canDraw = ent.Comp.DrawRate <= 0f || battery.ChargeRate > 0f;
             SetPowerStatus(ent, canDraw, canUse);
             if (!canUse)
             {
@@ -138,7 +138,7 @@ public sealed class NinjaSuitDrawSystem : SharedNinjaSuitDrawSystem
         if (!_ninja.IsNinja(user))
             return false;
 
-        return _ninja.GetNinjaBattery(user, out _, out var battery) && battery.CurrentCharge > 0f;
+        return _ninja.GetNinjaBattery(user, out _, out var battery) && battery.ChargeRate > 0f;
     }
 
     public override bool CanUse(Entity<NinjaSuitDrawComponent> ent)
@@ -148,7 +148,7 @@ public sealed class NinjaSuitDrawSystem : SharedNinjaSuitDrawSystem
             return false;
 
         return _ninja.GetNinjaBattery(user, out _, out var battery) &&
-               (ent.Comp.UseRate <= 0f || battery.CurrentCharge >= ent.Comp.UseRate);
+               (ent.Comp.UseRate <= 0f || battery.ChargeRate >= ent.Comp.UseRate);
     }
 }
 

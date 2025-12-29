@@ -75,10 +75,11 @@
       types:
         Slash: 5
   - type: Temperature
-    heatDamageThreshold: 313
-    coldDamageThreshold: 230
     currentTemperature: 310.15
     specificHeat: 42
+  - type: TemperatureDamage
+    heatDamageThreshold: 313
+    coldDamageThreshold: 230
     coldDamage:
       types:
         Cold : 0.1 #per second, scales with temperature & other constants

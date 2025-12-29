@@ -202,3 +202,46 @@
       prob: 0.1
     - id: PKAUpgradeDamage
       prob: 0.1
+
+# Representative
+- type: entity
+  id: LockerRepresentative
+  name: representative locker
+  parent: LockerBaseSecure
+  components:
+  - type: Appearance
+  - type: AccessReader
+    access: [["Ntrep"]]
+  - type: EntityStorageVisuals
+    stateBaseClosed: hop
+    stateDoorOpen: hop_open
+    stateDoorClosed: representative_door
+  # Sunrise-start
+  - type: StorageFill
+    contents:
+    - id: HandheldFax
+  # Sunrise-end
+
+- type: entity
+  id: LockerRepresentativeEmpty
+  name: representative locker
+  parent: LockerBaseSecure
+  suffix: Empty
+  components:
+  - type: Appearance
+  - type: AccessReader
+    access: [["Ntrep"]]
+  - type: EntityStorageVisuals
+    stateBaseClosed: hop
+    stateDoorOpen: hop_open
+    stateDoorClosed: representative_door
+
+- type: entity
+  id: LockerRepresentativeFilled
+  parent: LockerRepresentative
+  suffix: Filled
+  # Sunrise-start
+  # This is now identical to the base LockerRepresentative, kept for compatibility/explicit usage
+  # Sunrise-end
+#Fish-end
+

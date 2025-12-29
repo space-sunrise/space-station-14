@@ -24,9 +24,10 @@
   - type: TypingIndicator
     proto: alien
   - type: Temperature
+    currentTemperature: 310.15
+  - type: TemperatureDamage
     heatDamageThreshold: 360
     coldDamageThreshold: -150
-    currentTemperature: 310.15
   - type: Speech
     speechVerb: LargeMob
   - type: MeleeWeapon
@@ -41,7 +42,10 @@
         Blunt: 5
         Slash: 10
   - type: Bloodstream
-    bloodReagent: FluorosulfuricAcidHumanoidXeno
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: FluorosulfuricAcidHumanoidXeno
+        Quantity: 300
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Xenomorph

@@ -81,7 +81,7 @@
         effect: EffectNightVisionPirate
   - type: PowerCellDraw
     drawRate: 2
-    useRate: 20
+    useCharge: 20
   - type: ItemToggle
     predictable: false
     onUse: false

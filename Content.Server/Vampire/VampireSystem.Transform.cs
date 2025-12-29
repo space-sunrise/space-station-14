@@ -34,7 +34,7 @@ public sealed partial class VampireSystem
         RemComp<ThirstComponent>(vampire); //Unsure, should vampires thirst.. or hunger?
 
         //Render immune to cold, but not heat
-        if (TryComp<TemperatureComponent>(vampire, out var temperatureComponent))
+        if (TryComp<TemperatureDamageComponent>(vampire, out var temperatureComponent))
             temperatureComponent.ColdDamageThreshold = Atmospherics.TCMB;
 
         MakeVulnerableToHoly(vampire);

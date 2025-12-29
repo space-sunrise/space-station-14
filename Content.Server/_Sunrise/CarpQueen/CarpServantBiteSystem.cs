@@ -49,7 +49,7 @@ public sealed class CarpServantBiteSystem : EntitySystem
 
             if (solution.Volume > FixedPoint2.Zero)
             {
-                _bloodstream.TryAddToChemicals((target, bloodstream), solution);
+                _bloodstream.TryAddToBloodstream((target, bloodstream), solution);
             }
         }
     }

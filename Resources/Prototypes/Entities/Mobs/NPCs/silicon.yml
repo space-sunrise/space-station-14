@@ -16,8 +16,6 @@
   - type: StatusEffects
     allowed:
     - Electrocution
-    - Jump # Sunrise-Edit
-    - Fall # Sunrise-Edit
   - type: Repairable
     # Sunrise-Start
     doAfterDelay: 3
@@ -90,7 +88,7 @@
     baseWalkSpeed : 3
     baseSprintSpeed : 4
   - type: Stamina
-    critThreshold: 120
+    baseCritThreshold: 120
   - type: Destructible
     thresholds:
     - trigger:

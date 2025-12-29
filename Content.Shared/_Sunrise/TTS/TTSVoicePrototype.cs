@@ -4,28 +4,28 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Sunrise.TTS;
 
 [Prototype("ttsVoice")]
-public sealed class TTSVoicePrototype : IPrototype
+public sealed partial class TTSVoicePrototype : IPrototype
 {
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     [DataField]
-    public string Name { get; } = string.Empty;
+    public string Name = string.Empty;
 
     [DataField(required: true)]
-    public Sex Sex { get; }
+    public Sex Sex;
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField(required: true)]
-    public string Speaker { get; } = string.Empty;
+    public string Speaker = string.Empty;
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField(required: true)]
-    public string Provider { get; } = string.Empty;
+    public string Provider = string.Empty;
 
     [DataField]
-    public bool RoundStart { get; } = true;
+    public bool RoundStart = true;
 
     [DataField]
-    public bool SponsorOnly { get; }
+    public bool SponsorOnly;
 }

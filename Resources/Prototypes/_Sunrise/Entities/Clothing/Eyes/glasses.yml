@@ -103,7 +103,7 @@
   - type: ToggleCellDraw
   - type: PowerCellDraw
     drawRate: 3.5
-    useRate: 20
+    useCharge: 20
   - type: ComponentToggler
     parent: true
     components:
@@ -173,7 +173,7 @@
   - type: ShowSyndicateIcons
   - type: PowerCellDraw
     drawRate: 2
-    useRate: 15
+    useCharge: 15
   - type: ToggleCellDraw
   - type: PowerCellSlot
     cellSlotId: cell_slot

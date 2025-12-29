@@ -120,7 +120,7 @@ public sealed class LockSystem : EntitySystem
         if (!lockComp.ShowExamine)
             return;
 
-        args.PushText(Loc.GetString(lockComp.Locked
+        args.PushMarkup(Loc.GetString(lockComp.Locked
                 ? "lock-comp-on-examined-is-locked"
                 : "lock-comp-on-examined-is-unlocked",
             ("entityName", Identity.Name(uid, EntityManager))));
@@ -357,7 +357,10 @@ public sealed class LockSystem : EntitySystem
             return true;
 
         if (!quiet)
-            _sharedPopupSystem.PopupClient(Loc.GetString("lock-comp-has-user-access-fail"), user, user);
+        {
+            var denyReason = accessEv.DenyReason ?? Loc.GetString(_defaultDenyReason);
+            _sharedPopupSystem.PopupClient(denyReason, ent, user);
+        }
         return false;
     }
 
@@ -365,12 +368,6 @@ public sealed class LockSystem : EntitySystem
     {
         if (HasComp<MindShieldComponent>(user))
             return true;
-
-        if (!quiet)
-        {
-            var denyReason = _defaultDenyReason;
-            _sharedPopupSystem.PopupClient(denyReason, uid, user);
-        }
 
         return false;
     }
@@ -494,6 +491,10 @@ public sealed class LockSystem : EntitySystem
             return;
 
         args.Cancel();
+
+        if (args.Silent)
+            return;
+
         if (lockComp.Locked && component.Popup != null)
         {
             _sharedPopupSystem.PopupClient(Loc.GetString(component.Popup), uid, args.User);

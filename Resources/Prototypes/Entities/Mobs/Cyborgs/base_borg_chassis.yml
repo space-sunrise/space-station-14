@@ -47,7 +47,7 @@
     thresholds:
       0: Alive
       100: Critical
-      200: Dead
+      300: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
@@ -109,7 +109,7 @@
   - type: ZombieImmune
   # Sunrise-Start
   - type: Repairable
-    doAfterDelay: 3
+    doAfterDelay: 2
     damage:
       types:
         Blunt: -15
@@ -117,7 +117,7 @@
         Piercing: -15
         Caustic: -15
         Structural: -15
-        Mangleness: 5 #SUNRISE-EDIT
+        Mangleness: 2 #SUNRISE-EDIT
     allowSelfRepair: false
   # Sunrise-End
   - type: BorgChassis
@@ -142,17 +142,11 @@
   - type: PowerCellSlot
     cellSlotId: cell_slot
     fitsInCharger: true
-  - type: ItemToggle
-    onActivate: false # You should not be able to turn off a borg temporarily.
-    activated: false # gets activated when a mind is added
-    onUse: false # no item-borg toggling sorry
-  - type: ItemTogglePointLight
-  - type: AccessToggle
-  # TODO: refactor movement to just be based on toggle like speedboots but for the boots themselves
-  # TODO: or just have sentient speedboots be fast idk
+  - type: Access
+    enabled: false # needs a player so that scientists can't drag around an empty borg for free AA
   - type: PowerCellDraw
     drawRate: 0.6
-  # no ToggleCellDraw since dont want to lose access when power is gone
+    enabled: false # the borg is only activated when a player takes over, otherwise the battery is likely empty
   - type: ItemSlots
     slots:
       cell_slot:
@@ -161,9 +155,7 @@
   - type: StatusEffects
     allowed:
     - Flashed
-    - Jump # Sunrise-Edit
     - Flip # Sunrise-Edit
-    - Fall # Sunrise-Edit
   - type: TypingIndicator
     proto: robot
   - type: Speech
@@ -224,6 +216,11 @@
     wattage: 0.2
     blinkingBehaviourId: blinking
     radiatingBehaviourId: radiating
+  # These two components are required to make HandheldLight work, even though we don't even have ItemToggle.
+  # The code is a total mess and needs a complete rewrite.
+  - type: ItemTogglePointLight
+  - type: ToggleableVisuals
+    spriteLayer: light
   - type: LightBehaviour
     behaviours:
     - !type:FadeBehaviour
@@ -240,8 +237,6 @@
       startValue: 0.1
       endValue: 2.0
       isLooped: true
-  - type: ToggleableVisuals
-    spriteLayer: light
   - type: PointLight
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
@@ -284,6 +279,7 @@
   - type: Stripping
     useDragDrop: false
   - type: CyborgSparkEffect
+  - type: MechVulnerableToEMP
   # Sunrise-end
 
 - type: entity
@@ -355,8 +351,8 @@
     factions:
     - NanoTrasen
   - type: Access
-    enabled: false
-    # Sunrise-Start
+    groups:
+    - AllAccess
     tags:
     - Borg
     - EmergencyShuttleRepealAll
@@ -456,7 +452,6 @@
     factions:
     - NanoTrasen #The seemingly best fit. It was a regular NT cyborg once, after all.
   - type: Access
-    enabled: false
     groups:
     - AllAccess #Randomized access would be fun. AllAccess is the best i can think of right now that does make it too hard for it to enter the station or navigate it..
   - type: AccessReader
@@ -524,12 +519,11 @@
     thresholds: # slightly tankier than a normal borg
       0: Alive
       125: Critical
-      250: Dead
+      375: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
   - type: EmagSiliconLaw # should xenoborgs be emagable?
     stunTime: 5
   - type: SiliconLawProvider
     laws: XenoborgLawset # custom laws here
-    subverted: true
   - type: IntrinsicRadioTransmitter # can only use binary and xenoborg channel
     channels:
     - Xenoborg
@@ -539,8 +533,10 @@
     - Mothership
     - Xenoborg
     - Binary
-  - type: Repairable
-    doAfterDelay: 13 # 25% more HP, so 30% more time to heal
+  # Sunrise-start
+  # - type: Repairable
+  #   doAfterDelay: 13 # 25% more HP, so 30% more time to heal
+  # Sunrise-end
   - type: BorgChassis
     maxModules: 0
     hasMindState: robot_e
@@ -594,6 +590,11 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PinpointerMothership: # drop a pinpointer to the mothership upon being destructed
+            min: 1
+            max: 1
       - !type:EmptyContainersBehaviour
         containers:
         - borg_brain
@@ -602,14 +603,14 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: PointLight
-    color: "#0033ff"
+    color: "#3010ff"
+    energy: 7
   - type: GuideHelp
     guides:
     - Cyborgs
     - Robotics
-    # TODO: add Xenoborg guide (part 7 spoilers)
+    - Xenoborgs
   - type: Access
-    enabled: false
     tags:
     - Xenoborg
   - type: AccessReader
@@ -618,3 +619,4 @@
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: Xenoborg

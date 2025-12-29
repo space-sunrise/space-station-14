@@ -36,10 +36,6 @@
 - type: entity
   id: MobCarpServantRainbow
   parent: [ BaseMobCarpServant, MobCarpRainbow ]
-  components:
-  # Remove RgbLightController to allow fixed color from liquid
-  - type: RgbLightController
-    remove: true
 
 - type: entity
   id: MobCarpServantDragon

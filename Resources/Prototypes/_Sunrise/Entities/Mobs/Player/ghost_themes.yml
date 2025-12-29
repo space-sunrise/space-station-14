@@ -403,3 +403,12 @@
   sprite:
     sprite: _Sunrise/Mobs/Ghosts/pirate_ghost.rsi
     state: pirate_icon
+
+- type: ghostTheme
+  id: Draedon
+  name: ghost-theme-draedon
+  sponsorOnly: true
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/draedon.rsi
+    state: draedon_animated
+  scale: 0.8, 0.8

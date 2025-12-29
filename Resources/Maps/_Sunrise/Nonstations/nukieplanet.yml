@@ -2378,7 +2378,7 @@ entities:
     - type: GridFill
       addComponents:
       - type: NukeOpsShuttle
-      path: /Maps/_Sunrise/Shuttles/infiltrator.yml
+      path: /Maps/_Sunrise/Shuttles/Antag/infiltrator.yml
 - proto: AirlockSyndicateGlass
   entities:
   - uid: 19
@@ -2505,7 +2505,7 @@ entities:
     - type: Transform
       pos: -13.5,21.5
       parent: 2
-- proto: APCHighCapacity
+- proto: APCHighCapacitySyndicate
   entities:
   - uid: 41
     components:

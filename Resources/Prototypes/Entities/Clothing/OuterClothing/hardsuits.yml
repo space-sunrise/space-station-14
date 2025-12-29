@@ -30,7 +30,7 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
-        Shock: 0.6 #Sunrise-edit 
+        Shock: 0.6 #Sunrise-edit
         Heat: 0.8
         Radiation: 0.5
   - type: ClothingSpeedModifier
@@ -242,6 +242,7 @@
     containers:
       cell_slot: !type:ContainerSlot
       toggleable-clothing: !type:ContainerSlot
+      beakerSlot: !type:ContainerSlot #Sunrise-Edit
   - type: PowerCellSlot
     cellSlotId: cell_slot
   - type: ItemSlots
@@ -253,12 +254,16 @@
           tags:
             - PowerCell
             - PowerCellSmall
+      beakerSlot: #Sunrise-Start
+        whitelist:
+          tags:
+          - FitsHardsuit #Sunrise-End
   - type: EnergyDomeGenerator
     damageEnergyDraw: 6
     domePrototype: EnergyDomeSmallPink
   - type: PowerCellDraw
     drawRate: 0
-    useRate: 0
+    useCharge: 0
   - type: UseDelay
     delay: 10.0
 
@@ -987,7 +992,7 @@
 
 #ERT Chaplain Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingOuterHardsuitJuggernaut ]
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndie ]
   id: ClothingOuterHardsuitERTChaplain
   name: ERT chaplain's hardsuit
   description: A protective hardsuit worn by the chaplains of an Emergency Response Team.

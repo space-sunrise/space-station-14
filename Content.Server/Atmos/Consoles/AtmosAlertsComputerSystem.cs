@@ -22,7 +22,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility; //Sunrise-Edit
+using Robust.Shared.Utility;
+using Content.Shared.PowerCell.Components; //Sunrise-Edit
 
 namespace Content.Server.Atmos.Monitor.Systems;
 
@@ -37,7 +38,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
     [Dependency] private readonly NavMapSystem _navMapSystem = default!;
     [Dependency] private readonly DeviceListSystem _deviceListSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPowerCellSystem _cell = default!;
+    [Dependency] private readonly PowerCellSystem _cell = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     private const float UpdateTime = 1.0f;
@@ -207,7 +208,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
                 // Sunrise-start
                 if (HasComp<ActivatableUIRequiresPowerCellComponent>(ent) && TryComp<PowerCellDrawComponent>(ent, out var draw))
                 {
-                    if (_cell.HasActivatableCharge(ent, draw) || _cell.HasDrawCharge(ent, draw))
+                    if (_cell.HasActivatableCharge(ent) || _cell.HasDrawCharge(ent))
                     {
                         Beep(ent, entConsole, highestAlert);
                     }

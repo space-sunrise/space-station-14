@@ -24,7 +24,7 @@
 - type: radioChannel
   id: USSPSec
   name: chat-radio-ussp-sec
-  keycode: 'ч'
+  keycode: 'в'
   frequency: 1984
   color: "#B00000"
   longRange: false

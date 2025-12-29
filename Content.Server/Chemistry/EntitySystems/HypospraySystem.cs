@@ -1,6 +1,7 @@
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Chemistry.Hypospray.Events;
+using Content.Shared.Chemistry.Events;
+using Content.Shared.Clothing.EntitySystems;
 
 namespace Content.Server.Chemistry.EntitySystems;
 
@@ -15,17 +16,17 @@ public sealed class ServerHypospraySystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        
+
         // Subscribe to injection events after the shared system processes them
-        SubscribeLocalEvent<HyposprayComponent, HyposprayAfterInjectEvent>(OnAfterInject);
+        SubscribeLocalEvent<InjectorComponent, BeforeInjectTargetEvent>(OnAfterInject);
     }
 
-    private void OnAfterInject(Entity<HyposprayComponent> entity, ref HyposprayAfterInjectEvent args)
+    private void OnAfterInject(Entity<InjectorComponent> entity, ref BeforeInjectTargetEvent args)
     {
         // Get the solution that was injected
         if (_solutionContainers.TryGetSolution(entity.Owner, entity.Comp.SolutionName, out var hypoSpraySoln, out _))
         {
-            _borgHypospray.TryAnnounceInjection(entity.Owner, args.User, args.Target, hypoSpraySoln.Value);
+            _borgHypospray.TryAnnounceInjection(entity.Owner, args.EntityUsingInjector, args.TargetGettingInjected, hypoSpraySoln.Value);
         }
     }
 }

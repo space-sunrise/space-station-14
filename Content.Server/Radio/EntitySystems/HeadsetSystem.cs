@@ -1,4 +1,4 @@
-using Content.Server.Chat.Systems;
+using Content.Shared.Chat;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Radio;

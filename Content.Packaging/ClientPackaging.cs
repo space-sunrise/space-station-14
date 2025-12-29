@@ -71,15 +71,15 @@ public static class ClientPackaging
 
         var inputPass = graph.Input;
 
-        // Sunrise-Sponsors-Start
+        // Sunrise-Start
         var assemblies = new List<string> { "Content.Client", "Content.Shared", "Content.Shared.Database", "Content.Sunrise.Interfaces.Client", "Content.Sunrise.Interfaces.Shared" };
-        // Sunrise-Sponsors-End
+        // Sunrise-End
 
         await RobustSharedPackaging.WriteContentAssemblies(
             inputPass,
             contentDir,
             "Content.Client",
-            assemblies, // Sunrise-Sponsors
+            assemblies, // Sunrise-Edit
             cancel: cancel);
 
         await RobustClientPackaging.WriteClientResources(

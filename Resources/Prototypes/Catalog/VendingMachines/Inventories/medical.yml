@@ -70,7 +70,7 @@
     SyringeIpecac: 1
     ClothingEyesHudMedical: 2
     ClothingEyesEyepatchHudMedical: 2
-    HyposprayMedical: 2 # Sunrise-Edit
+    Ampula: 5 # Sunrise-Edit
     Dropper: 2 # Sunrise-Edit
     BaseChemistryEmptyVial: 2 # Sunrise-Edit
     PatchPack: 3 # Sunrise-Edit

@@ -290,7 +290,7 @@
     maxAngle: 16
     angleIncrease: 2.75
     angleDecay: 15
-    fireRate: 4.25
+    fireRate: 4
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -523,9 +523,8 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/goldDeagle/tiny.rsi
 
-
 - type: entity
-  name: Tec-9 Tactical
+  name: Tac-Tec
   parent: BaseWeaponPistolSunrise
   id: WeaponPistolTec9
   components:
@@ -546,13 +545,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: BaseMagazinePistolCaselessRifleTec9
+        startingItem: MagazinePistolSubMachineGunCaseless
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 1
         whitelist:
           tags:
           - MagazinePistolCaselessRifle
+          - MagazineCaselessRifle
       gun_chamber:
         name: Chamber
         startingItem: CartridgeCaselessRifle

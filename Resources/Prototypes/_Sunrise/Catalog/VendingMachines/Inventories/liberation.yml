@@ -39,7 +39,6 @@
     WeaponRifleG36: 3
     WeaponRifleSKM28: 3
     WeaponRifleSKM24: 3
-    WeaponRifleScarH: 3
     WeaponRifleLecterMk2: 3
     WeaponRifleFoam: 3
     WeaponRifleARG: 3
@@ -161,7 +160,7 @@
     WeaponANNIHILATOR: 3
     WeaponToecloner: 3
     WeaponDecloner: 3
-    WeaponMiniEnergyCrossbow: 3
+    WeaponEnergyCrossbowLarge: 3
     WeaponEnergyCrossbow: 3
     WeaponLaserLNT620: 3
     WeaponEnergyGun: 3
@@ -342,7 +341,6 @@
     MagazineBoxHeavyRiflePractice: 3
     MagazineBoxHeavyRifleIncendiary: 3
     MagazineBoxHeavyRifleUranium: 3
-    MagazineScarH: 5
     MagazineBR64: 5
     MagazineDragunov: 5
     MagazineBauer127: 5

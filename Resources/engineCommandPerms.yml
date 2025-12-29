@@ -8,6 +8,8 @@
   - vvread
   - vvwrite
   - vvinvoke
+  # Sunrise-Edit
+  # - spin
 
 - Flags: DEBUG
   Commands:
@@ -95,11 +97,6 @@
   Commands:
   - listplayers
 
-- Flags: FUN
-  Commands:
-  - tippy
-  - tip
-
 - Flags: SERVER
   Commands:
   - delete
@@ -135,7 +132,7 @@
   - fuck
   - replay_recording_start
   - replay_recording_stop
-  - spin
+  - spin # Sunrise-Edit
 
 - Flags: QUERY
   Commands:

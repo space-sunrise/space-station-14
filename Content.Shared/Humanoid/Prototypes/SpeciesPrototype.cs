@@ -57,7 +57,7 @@ public sealed partial class SpeciesPrototype : IPrototype
     public string SpriteSet { get; private set; } = default!;
 
     [DataField(required: true)]
-    public List<string> BodyTypes { get; } = default!;
+    public List<string> BodyTypes { get; private set; } = default!;
 
     /// <summary>
     ///     Default skin tone for this species. This applies for non-human skin tones.

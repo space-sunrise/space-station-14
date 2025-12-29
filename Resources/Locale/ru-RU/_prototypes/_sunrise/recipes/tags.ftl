@@ -6,3 +6,7 @@ construction-graph-tag-plushiekalium = { ent-PlushieKalium }
 construction-graph-tag-trayscanner = { ent-trayScanner }
 construction-graph-tag-jawsoflife = { ent-JawsOfLife }
 construction-graph-tag-powerdrill = { ent-PowerDrill }
+construction-graph-tag-naval-jacket = { ent-ClothingNavalJacket }
+construction-graph-tag-naval-boots = { ent-ClothingNavalBoots }
+construction-graph-tag-naval-jacket-desc = { ent-ClothingNavalJacket.desc }
+construction-graph-tag-naval-boots-desc = { ent-ClothingNavalBoots.desc }

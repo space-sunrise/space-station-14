@@ -42,7 +42,6 @@
   - type: Tool
     qualities:
       - Prying
-      - Axing # Sunrise-Add
   - type: ToolTileCompatible
   - type: Prying
   - type: UseDelay

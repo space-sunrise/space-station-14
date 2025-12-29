@@ -132,14 +132,11 @@
     - Muted
     - TemporaryBlindness
     - Pacified
-    - StaminaModifier
     - Flashed
     - RadiationProtection
     - Adrenaline
     - LoveEffect  # Sunrise-Edit
-    - Jump # Sunrise-Edit
     - Flip # Sunrise-Edit
-    - Fall # Sunrise-Edit
   - type: Body
     prototype: Human
     requiredLegs: 2
@@ -246,9 +243,12 @@
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 25
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: CognizinFix
+  - type: InjectNeed
+  - type: CanJump
+  - type: CanFall
   # Sunrise-End
 
 - type: entity
@@ -288,10 +288,11 @@
   - type: Blindable
   # Other
   - type: Temperature
-    heatDamageThreshold: 325
-    coldDamageThreshold: 260
     currentTemperature: 310.15
     specificHeat: 42
+  - type: TemperatureDamage
+    heatDamageThreshold: 325
+    coldDamageThreshold: 260
     coldDamage:
       types:
         Cold: 0.1 #per second, scales with temperature & other constants

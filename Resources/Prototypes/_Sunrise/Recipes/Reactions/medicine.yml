@@ -1,35 +1,4 @@
 - type: reaction
-  id: Desoantizyne
-  reactants:
-    Potassium:
-      amount: 4
-    Nitrogen:
-      amount: 1
-    Ephedrine:
-      amount: 5
-    Razorium:
-      amount: 3
-  products:
-    Desoantizyne: 2.7
-
-- type: reaction
-  id: Apoptodon
-  reactants:
-    Cryoxadone:
-      amount: 1
-    Radium:
-      amount: 1
-    Mannitol:
-      amount: 1
-    Benzene:
-      amount: 1
-    Plasma:
-      amount: 1
-      catalyst: true
-  products:
-    Apoptodon: 4
-
-- type: reaction
   id: Celliminol
   impact: High
   minTemp: 500
