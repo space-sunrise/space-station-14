@@ -76,6 +76,12 @@ ent-ClothingUniformMajimaTishka = fashionable yakuza uniform
     .desc = Snake print blazer, black leather belt with silver buckle.
 ent-ClothingUniformMetatonTishka = fashionable musician uniform
     .desc = Who needs arms with legs like these!
+
+# Sunrise - Captain cap uniforms
+ent-ClothingUniformJumpsuitCaptainWhite = captain's white uniform
+    .desc = Crisp, shiny, and 100% allergic to grease. Causes uncontrollable saluting and paperwork cravings.
+ent-ClothingUniformJumpsuitCaptainBlack = captain's black uniform
+    .desc = For when you need to look like a legend, not a laundry accident. Hides coffee stains and questionable decisions.
 # Metus jumpsuits
 ent-UniformPrisonGuardMetus = prison guard uniform
     .desc = { ent-ClothingUniformJumpsuitHoSOld.desc }

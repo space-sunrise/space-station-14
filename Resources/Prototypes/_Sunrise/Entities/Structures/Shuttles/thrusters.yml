@@ -142,9 +142,9 @@
         layer:
         - MachineLayer
   - type: ApcPowerReceiver
-    powerLoad: 25000
+    powerLoad: 15000
   - type: Thruster
-    thrust: 8000
+    thrust: 5000
     burnShape: ["-0.2,2.3", "0.2,5", "1.8,5", "2.2,2.3"]
     damage:
       types:

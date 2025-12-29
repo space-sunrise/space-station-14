@@ -236,3 +236,26 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/sunrisemaid.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/sunrisemaid.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtCaptainWhite
+  name: white captain's jumpskirt
+  description: A sharp white captain's jumpskirt. Stylish enough to intimidate the paperwork into filing itself.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/white_cap_skirt_suit.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/white_cap_skirt_suit.rsi
+
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtCaptainBlack
+  name: black captain's jumpskirt
+  description: A black captain's jumpskirt for maximum drip during emergency meetings. Drama sold separately.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/black_cap_skirt_suit.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/black_cap_skirt_suit.rsi

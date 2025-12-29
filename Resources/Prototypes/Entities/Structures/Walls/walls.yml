@@ -513,9 +513,9 @@
   - type: Ricochetable
     chance: 1
   - type: Sprite
-    sprite: Structures/Walls/plastitanium.rsi
+    sprite: _Sunrise/Structures/Walls/plastitanium.rsi # Sunrise-edit
   - type: Icon
-    sprite: Structures/Walls/plastitanium.rsi
+    sprite: _Sunrise/Structures/Walls/plastitanium.rsi # Sunrise-edit
   - type: IconSmooth
     key: walls
     base: plastitanium
@@ -564,10 +564,10 @@
   components:
   - type: Sprite
     drawdepth: Walls
-    sprite: Structures/Walls/plastitanium_diagonal.rsi
+    sprite: _Sunrise/Structures/Walls/plastitanium_diagonal.rsi # Sunrise-edit
     state: state0
   - type: Icon
-    sprite: Structures/Walls/plastitanium_diagonal.rsi
+    sprite: _Sunrise/Structures/Walls/plastitanium_diagonal.rsi # Sunrise-edit
     state: state0
   - type: Damageable
     damageContainer: StructuralInorganic
@@ -583,10 +583,10 @@
   components:
   - type: Sprite
     drawdepth: Walls
-    sprite: Structures/Walls/plastitanium_diagonal.rsi
+    sprite: _Sunrise/Structures/Walls/plastitanium_diagonal.rsi # Sunrise-edit
     state: state0
   - type: Icon
-    sprite: Structures/Walls/plastitanium_diagonal.rsi
+    sprite: _Sunrise/Structures/Walls/plastitanium_diagonal.rsi # Sunrise-edit
     state: state0
   - type: Destructible
     thresholds:
@@ -870,10 +870,10 @@
   components:
   - type: Sprite
     drawdepth: Walls
-    sprite: Structures/Walls/shuttle_diagonal.rsi
+    sprite: _Sunrise/Structures/Walls/shuttle_diagonal.rsi # Sunrise-edit
     state: state0
   - type: Icon
-    sprite: Structures/Walls/shuttle_diagonal.rsi
+    sprite: _Sunrise/Structures/Walls/shuttle_diagonal.rsi # Sunrise-edit
     state: state0
   - type: Physics
     bodyType: Static
@@ -967,9 +967,9 @@
   - type: RadiationBlocker
     resistance: 5
   - type: Sprite
-    sprite: Structures/Walls/shuttle.rsi
+    sprite: _Sunrise/Structures/Walls/shuttle.rsi # Sunrise-edit
   - type: Icon
-    sprite: Structures/Walls/shuttle.rsi
+    sprite: _Sunrise/Structures/Walls/shuttle.rsi # Sunrise-edit
     state: full
   - type: Construction
     graph: Girder
@@ -1433,9 +1433,9 @@
   name: mining wall
   components:
   - type: Sprite
-    sprite: Structures/Walls/mining.rsi
+    sprite: _Sunrise/Structures/Walls/mining.rsi # Sunrise-edit
   - type: Icon
-    sprite: Structures/Walls/mining.rsi
+    sprite: _Sunrise/Structures/Walls/mining.rsi # Sunrise-edit
   - type: Destructible
     thresholds:
     - trigger:
@@ -1459,10 +1459,10 @@
   components:
   - type: Sprite
     drawdepth: Walls
-    sprite: Structures/Walls/mining_diagonal.rsi
+    sprite: _Sunrise/Structures/Walls/mining_diagonal.rsi # Sunrise-edit
     state: state0
   - type: Icon
-    sprite: Structures/Walls/mining_diagonal.rsi
+    sprite: _Sunrise/Structures/Walls/mining_diagonal.rsi # Sunrise-edit
     state: state0
   - type: Damageable
     damageContainer: StructuralInorganic
