@@ -4,3 +4,14 @@
   antagonist: true
   objective: roles-antag-abductor-objective
   playTimeTracker: AbductorTimeTracker
+
+- type: antag
+  id: AbductorVictim
+  name: roles-abductor-victim-name
+  antagonist: true
+  setPreference: false
+  objective: roles-abductor-victim-objective
+  playTimeTracker: AbductorVictimTracker
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: test

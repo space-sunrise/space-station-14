@@ -20,6 +20,7 @@ using Content.Client.Lobby;
 using Content.Client.MainMenu;
 using Content.Client.Parallax.Managers;
 using Content.Client.Players.PlayTimeTracking;
+using Content.Client.Playtime;
 using Content.Client.Radiation.Overlays;
 using Content.Client.Replay;
 using Content.Client.Screenshot;
@@ -83,29 +84,32 @@ namespace Content.Client.Entry
         [Dependency] private readonly DebugMonitorManager _debugMonitorManager = default!;
         [Dependency] private readonly TitleWindowManager _titleWindowManager = default!;
         [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
+        [Dependency] private readonly ClientsidePlaytimeTrackingManager _clientsidePlaytimeManager = default!;
         [Dependency] private readonly ServersHubManager _serversHubManager = default!; // Sunrise-Hub
         [Dependency] private readonly ContributorsManager _contributorsManager = default!; // Sunrise-Edit
         [Dependency] private readonly PlayerCacheManager _playerCacheManager = default!; // Sunrise-Edit
 
-        public override void Init()
+        public override void PreInit()
         {
-            ClientContentIoC.Register();
+            ClientContentIoC.Register(Dependencies);
 
             foreach (var callback in TestingCallbacks)
             {
                 var cast = (ClientModuleTestingCallbacks) callback;
                 cast.ClientBeforeIoC?.Invoke();
             }
+        }
 
-            IoCManager.BuildGraph();
-            IoCManager.InjectDependencies(this);
+        public override void Init()
+        {
+            Dependencies.BuildGraph();
+            Dependencies.InjectDependencies(this);
 
             _contentLoc.Initialize();
             _componentFactory.DoAutoRegistrations();
             _componentFactory.IgnoreMissingComponents();
 
             // Do not add to these, they are legacy.
-            _componentFactory.RegisterClass<SharedGravityGeneratorComponent>();
             _componentFactory.RegisterClass<SharedAmeControllerComponent>();
             // Do not add to the above, they are legacy
 
@@ -120,8 +124,6 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("htnPrimitive");
             _prototypeManager.RegisterIgnore("gameMap");
             _prototypeManager.RegisterIgnore("gameMapPool");
-            // Sunrise-Edit
-            // _prototypeManager.RegisterIgnore("lobbyBackground");
             _prototypeManager.RegisterIgnore("gamePreset");
             _prototypeManager.RegisterIgnore("noiseChannel");
             _prototypeManager.RegisterIgnore("playerConnectionWhitelist");
@@ -155,6 +157,7 @@ namespace Content.Client.Entry
             _extendedDisconnectInformation.Initialize();
             _jobRequirements.Initialize();
             _playbackMan.Initialize();
+            _clientsidePlaytimeManager.Initialize();
 
             _serversHubManager.Initialize(); // Sunrise-Hub
             _contributorsManager.Initialize(); // Sunrise-Edit
@@ -173,12 +176,6 @@ namespace Content.Client.Entry
 
             _configManager.SetCVar("interactions.window_pos_x", 0); // Sunrise-Edit
             _configManager.SetCVar("interactions.window_pos_y", 0); // Sunrise-Edit
-        }
-
-        public override void Shutdown()
-        {
-            base.Shutdown();
-            _titleWindowManager.Shutdown();
         }
 
         public override void PostInit()

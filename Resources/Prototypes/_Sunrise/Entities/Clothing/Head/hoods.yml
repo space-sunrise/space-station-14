@@ -44,3 +44,25 @@
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
   # SUNRISE EDIT
+
+- type: entity
+  parent: ClothingHeadHatHoodGoliathCloak
+  id: ClothingHeadHatHoodContributor
+  categories: [ HideSpawnMenu ]
+  name: hood
+  description: Closes the back of head.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hoods/contributor.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hoods/contributor.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: equipped-HELMET-light
+        shader: unshaded
+  - type: Tag
+    tags:
+    - ClothMade
+    - TopCovered # INTERACTIONS

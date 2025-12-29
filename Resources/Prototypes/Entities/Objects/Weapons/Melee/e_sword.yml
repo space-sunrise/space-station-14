@@ -169,7 +169,7 @@
   - type: PointLight
     enabled: false
     radius: 1.5
-    energy: 1.5
+    energy: 2.7
     color: white
     netsync: false
   # Sunrise-start
@@ -184,7 +184,7 @@
 
 - type: entity
   name: pen
-  parent: BaseMeleeWeaponEnergy
+  parent: [BaseMeleeWeaponEnergy, SelectableLock]
   id: EnergyDagger
   suffix: E-Dagger
   description: 'A dark ink pen.'
@@ -223,7 +223,7 @@
     - type: Contraband
       severity: Syndicate
   - type: Sprite
-    sprite: Objects/Weapons/Melee/e_dagger.rsi
+    sprite: _Sunrise/Objects/Weapons/Melee/e_dagger.rsi # Sunrise-Edit
     layers:
     - state: e_sword
     - state: e_sword_blade
@@ -233,11 +233,11 @@
       map: [ "blade" ]
   - type: Item
     size: Tiny
-    sprite: Objects/Weapons/Melee/e_dagger.rsi
+    sprite: _Sunrise/Objects/Weapons/Melee/e_dagger.rsi # Sunrise-Edit
   - type: PointLight
     enabled: false
     radius: 1.5
-    energy: 1.5
+    energy: 2.7
     color: white
     netsync: false
   - type: MeleeWeapon
@@ -247,6 +247,16 @@
     damage:
       types:
         Blunt: 1
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/pen_click.ogg
+      params:
+        volume: -4
+        maxDistance: 2
+  - type: UseDelay
+    delay: 1.5
+  - type: ItemToggleRequiresLock #  TODO: FIX THIS VERB IS COOKED
+    lockedPopup: null
   - type: Tag
     tags:
     - Write
@@ -347,7 +357,8 @@
     wieldSound: null # esword light sound instead
   - type: MeleeWeapon
     wideAnimationRotation: -135
-    attackRate: 1.5
+    attackRate: 2
+    autoAttack: true
     angle: 100
     damage:
       types:
@@ -433,10 +444,17 @@
     spread: 75
 
 # Borgs
+
 - type: entity
-  suffix: One-Handed, For Borgs
+  parent: EnergySword
+  id: CyborgEnergySword
+  suffix: For Borgs
+  description: A very loud & dangerous sword with a beam made of pure, concentrated plasma. Specially designed for syndicate cyborgs.
+
+- type: entity
   parent: EnergySwordDouble
   id: CyborgEnergySwordDouble # why is this invalid if ID is BorgEnergySwordDouble
+  suffix: One-Handed, For Borgs
   description: Syndicate Command Interns thought that having one blade on the energy sword was not enough. Specially designed for syndicate cyborgs.
   components: # could add energy-draining like the L6C
   - type: Wieldable

@@ -81,9 +81,11 @@
     eyes: ClothingEyesGlassesSecurity
     head: ClothingHeadHelmetSwat
     mask: ClothingMaskGasSwat
-    outerClothing: ClothingOuterArmorBasicSlim
+    outerClothing: ClothingOuterArmorBulletproofHeavy # Sunrise-Edit
     ears: ClothingHeadsetSecurity
     gloves: ClothingHandsGlovesCombat
+  inhand:
+   - WeaponSubMachineGunWt550 # Sunrise-Edit
   storage:
     back:
     - BoxSurvivalSecurity
@@ -103,6 +105,18 @@
     jumpsuit: ClothingUniformJumpsuitJacketMonkey
     id: PunPunIDCard
 
+- type: startingGear
+  id: MobPollyGear
+  equipment:
+    ears: ClothingHeadsetEngineering
+
+# Emotional Support Scurret
+
+- type: startingGear
+  id: EmotionalSupportScurretGear
+  equipment:
+    id: ScurretPDA
+
 # DeathMatch Gear
 
 - type: startingGear
@@ -119,14 +133,33 @@
 - type: startingGear
   id: MobAghostGear
   equipment:
-    back: ClothingBackpackSatchelHolding
+    back: ClothingBackpackSatchelAdmin
     id: AdminPDA
+    belt: ClothingBeltChiefEngineerFilled # Sunrise-add
+    eyes: ClothingEyesHudSyndicateMedic # Sunrise-add
+    head: ClothingHeadHatCowboyWhite # Sunrise-add
   storage:
     back:
     - GasAnalyzer
     - trayScanner
     - AccessConfiguratorUniversal
     - Multitool
+    # sunrise-start
+    - AnomalyScanner
+    - RubberStampApproved
+    - RubberStampDenied
+    - RubberStampCentcom
+    - RubberStampSyndicate
+    - RubberStampMagistrat
+    - RubberStampRedo
+    - RubberStampTrader
+    - RubberStampSpecOps
+    - BoxFolderCentCom
+    - Emag
+    - AccessBreaker
+    - ClothingEyesHudOmni
+    - ClothingEyesHudDiagnosticERT
+    # sunrise-end
 
 #Gladiator with spear
 - type: startingGear

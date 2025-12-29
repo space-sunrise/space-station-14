@@ -68,6 +68,8 @@ ent-FakeMindShieldToggleAction = [color=green]Toggle Fake Mindshield[/color]
     .desc = Turn the Fake Mindshield implant's transmission on/off
 ent-ActionToggleParamedicSiren = Toggle Paramedic Siren
     .desc = Toggles the paramedic siren on and off.
+ent-ActionGravityJump = Jump
+    .desc = Activating the advanced propulsion system, you propel yourself a short distance in the direction of your gaze.
 ent-ActionToggleRootable = action-name-toggle-rootable
     .desc = action-description-toggle-rootable
 ent-ActionChameleonController = Control clothing

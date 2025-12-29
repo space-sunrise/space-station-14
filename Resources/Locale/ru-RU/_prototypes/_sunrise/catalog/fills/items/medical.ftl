@@ -1,3 +1,6 @@
-ent-MedkitUniversalFilled = universal medkit
-    .desc = Contains all types of medicine that you need.
-    .suffix = Filled
+ent-MedkitUniversalFilled = универсальный медкит
+    .desc = Содержит все виды медикаментов, которые могут вам потребоваться.
+    .suffix = Заполненная
+ent-CoalpenKitFilled = аптечка первой помощи
+    .desc = Это экстренная аптечка для серьёзных бо-бо.
+    .suffix = Заполненная

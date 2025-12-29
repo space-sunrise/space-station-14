@@ -47,7 +47,6 @@
         type: SurgeryBui
       enum.VampireMutationUiKey.Key:
         type: VampireMutationBoundUserInterface
-  - type: Absorbable
       # Sunrise-end
   - type: UseDelay
     delay: 0.5
@@ -74,6 +73,7 @@
     damage:
       types:
         Heat: -0.14
+        Mangleness: -0.03 #Sunrise-Edit
       groups:
         Brute: -0.14
   - type: DamageVisuals
@@ -84,7 +84,10 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
   - type: Bloodstream
-    bloodReagent: Slime # TODO Color slime blood based on their slime color or smth
+    bloodReferenceSolution: # TODO Color slime blood based on their slime color or smth
+      reagents:
+      - ReagentId: Slime
+        Quantity: 300
   - type: Barotrauma
     damage:
       types:
@@ -98,15 +101,14 @@
     - reagents: [ Water, SpaceCleaner ]
       methods: [ Touch ]
       effects:
-      - !type:WashCreamPieReaction
+      - !type:WashCreamPie
     - reagents: [ Water ]
       methods: [ Touch ]
       effects:
       - !type:HealthChange
-        scaleByQuantity: true
         damage:
           types:
-            Heat: 0.1
+            Heat: 0.05
       - !type:PopupMessage
         type: Local
         visualType: Large

@@ -1,0 +1,37 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from Paradise Station, suitstorage/backpack made by JustAdler for https://github.com/ss14Starlight/space-station-14",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon"
+        },
+        {
+            "name": "base"
+        },
+        {
+            "name": "bolt-open"
+        },
+        {
+          "name": "mag-0"
+        },
+        {
+          "name": "mag-1"
+        },
+        {
+          "name": "mag-2"
+        },
+        {
+            "name": "equipped-BACKPACK",
+            "directions": 4
+        },
+        {
+            "name": "equipped-SUITSTORAGE",
+            "directions": 4
+        }
+    ]
+}

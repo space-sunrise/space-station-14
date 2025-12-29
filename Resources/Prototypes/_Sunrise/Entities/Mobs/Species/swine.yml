@@ -5,7 +5,6 @@
   abstract: true
   components:
   - type: Interactions
-  - type: Absorbable
   - type: HumanoidAppearance
     species: Swine
   - type: Hunger
@@ -35,7 +34,7 @@
       100: Critical
       200: Dead
   - type: Stamina
-    critThreshold: 100
+    baseCritThreshold: 100
   - type: Fixtures
     fixtures:
       fix1:

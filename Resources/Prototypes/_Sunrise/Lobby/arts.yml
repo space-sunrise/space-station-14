@@ -11,24 +11,16 @@
   background: /Textures/_Sunrise/Lobby/Arts/engineer.webp
 
 - type: lobbyBackground
+  id: BeerSlime
+  background: /Textures/_Sunrise/Lobby/Arts/beerslime.webp
+
+- type: lobbyBackground
   id: Deadsquad
   background: /Textures/_Sunrise/Lobby/Arts/deadsquad.webp
 
 - type: lobbyBackground
-  id: Detective
-  background: /Textures/_Sunrise/Lobby/Arts/detective.webp
-
-- type: lobbyBackground
   id: EngineersChill
   background: /Textures/_Sunrise/Lobby/Arts/engineers-chill.webp
-
-- type: lobbyBackground
-  id: Greytide
-  background: /Textures/_Sunrise/Lobby/Arts/greytide.webp
-
-- type: lobbyBackground
-  id: Hydroponics
-  background: /Textures/_Sunrise/Lobby/Arts/hydroponics.webp
 
 - type: lobbyBackground
   id: IntoSpace
@@ -55,24 +47,12 @@
   background: /Textures/_Sunrise/Lobby/Arts/maintenance-clown.webp
 
 - type: lobbyBackground
-  id: MedDepart
-  background: /Textures/_Sunrise/Lobby/Arts/med-depart.webp
-
-- type: lobbyBackground
   id: NukiesHere
   background: /Textures/_Sunrise/Lobby/Arts/nukies-here.webp
 
 - type: lobbyBackground
   id: RegularShift
   background: /Textures/_Sunrise/Lobby/Arts/regular-shift.webp
-
-- type: lobbyBackground
-  id: Russellmart
-  background: /Textures/_Sunrise/Lobby/Arts/russellmart.webp
-
-- type: lobbyBackground
-  id: Sidor
-  background: /Textures/_Sunrise/Lobby/Arts/sidor.webp
 
 - type: lobbyBackground
   id: Singulord
@@ -95,12 +75,12 @@
   background: /Textures/_Sunrise/Lobby/Arts/tesla-loose.webp
 
 - type: lobbyBackground
-  id: NukieDudes
-  background: /Textures/_Sunrise/Lobby/Arts/nukie-dudes.webp
+  id: TeslaLoose2
+  background: /Textures/_Sunrise/Lobby/Arts/teslaloose.webp
 
 - type: lobbyBackground
-  id: LostAndPowerless
-  background: /Textures/_Sunrise/Lobby/Arts/lost-and-powerless.webp
+  id: NukieDudes
+  background: /Textures/_Sunrise/Lobby/Arts/nukie-dudes.webp
 
 - type: lobbyBackground
   id: MenAtWork
@@ -137,10 +117,6 @@
 - type: lobbyBackground
   id: SingulordCage
   background: /Textures/_Sunrise/Lobby/Arts/singulord-cage.webp
-
-- type: lobbyBackground
-  id: YouLookLonely
-  background: /Textures/_Sunrise/Lobby/Arts/you-look-lonely.webp
 
 - type: lobbyBackground
   id: GrayTide
@@ -186,9 +162,9 @@
 #  id: NewYearPenguins
 #  background: /Textures/_Sunrise/Lobby/Arts/new-year-penguins.webp
 
-#- type: lobbyBackground
-#  id: NewYearNuke
-#  background: /Textures/_Sunrise/Lobby/Arts/new-year-nuke.webp
+- type: lobbyBackground
+  id: NewYearNuke
+  background: /Textures/_Sunrise/Lobby/Arts/new-year-nuke.webp
 
 - type: lobbyBackground
   id: ArnoldIntelligence
@@ -209,3 +185,7 @@
 - type: lobbyBackground
   id: Reunion
   background: /Textures/_Sunrise/Lobby/Arts/reunion.webp
+
+- type: lobbyBackground
+  id: Prostchitalsanogde
+  background: /Textures/_Sunrise/Lobby/Arts/prostchitalsanogde.webp

@@ -118,12 +118,24 @@
   - NanoTrasenRepresentativeCoatOpen
 
 - type: loadoutGroup
+  id: NanoTrasenRepresentativeBackpack
+  name: loadout-group-hop-backpack
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - CommonBackpack
+  - CommonSatchel
+  - CommonDuffel
+  - NanoTrasenRepresentativeModsuit
+
+- type: loadoutGroup
   id: BlueShieldBackpack
   name: loadout-group-blueshield-backpack
   loadouts:
   - BlueShieldBackpack
   - BlueShieldSatchel
   - BlueShieldDuffel
+  - BlueShieldModsuit
 
 - type: loadoutGroup
   id: BlueShieldJumpsuit
@@ -138,7 +150,6 @@
   name: loadout-group-blueshield-belt
   loadouts:
   - BlueShieldWebbing
-  - AssaultBeltBS
 
 - type: loadoutGroup
   id: BlueShieldNeck
@@ -146,6 +157,15 @@
   loadouts:
   - BlueShieldMantle
   - BlueShieldCoat
+
+- type: loadoutGroup
+  id: BlueshieldGun
+  name: loadout-group-blueshield-gun
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - BlueshieldWT550
+  - BlueshieldAsh12
 
 - type: loadoutGroup
   id: BarberJumpsuit
@@ -167,6 +187,7 @@
   - SecurityTourniquet
   - SecurityWeaponMeleeNeedle
   - SecurityHoloprojector
+  - SecurityMasterBodycam
 
 - type: loadoutGroup
   id: CorporateLaw
@@ -222,10 +243,12 @@
   maxLimit: 1
   loadouts:
   - GlockBox
-  - ACP14Box
-  - WeaponEnergyGunPistolSecurity
+  - MK58Box
+  - MK58GoldBox
+  - SnubRevolverBox
+  - WeaponDominator
   - WeaponDisabler
-  - WeaponTaser
+#  - WeaponTaser
 
 # Security Cadet
 - type: loadoutGroup
@@ -235,8 +258,10 @@
   maxLimit: 1
   loadouts:
   - CadetWeaponGlockBox
-  - CadetWeaponACP14Box
-  - CadetWeaponEnergyGunPistolSecurity
+  - CadetWeaponMK58Box
+  - MK58GoldBox
+  - SnubRevolverBox
+  - CadetWeaponMiniEnergyGun
   - CadetWeaponDisabler
 
 # Security  Detective
@@ -247,10 +272,26 @@
   maxLimit: 1
   loadouts:
   - DetectiveWeapon
+  - WeaponRevolverSnubRevolver
   - DetectiveWeapon20h
   - DetectiveWeapon50h
   - DetectiveWeapon50h2
   - DetectiveWeapon100h
+
+- type: loadoutGroup
+  id: SunriseWardenGun
+  name: loadout-group-security-gun
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - GlockBox
+  - MK58Box
+  - MK58GoldBox
+  - ACP14Box
+  - SnubRevolverBox
+  - WeaponDominator
+  - WeaponDisabler
+#  - WeaponTaser
 
 # Security  HoS
 - type: loadoutGroup
@@ -259,14 +300,17 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - SunriseWeaponPistolG22
-  - SunriseWeaponTaser
+  - GlockBox
+  - MK58Box
+  - ACP14Box
+  - MK58GoldBox
   - HeadofSecurityWeapon20h
   - HeadofSecurityWeapon50h
   - HeadofSecurityWeapon50h2
   - HeadofSecurityWeapon100h
-# Medical
+  - HeadofSecurityWeapon100h2
 
+# Medical
 - type: loadoutGroup
   id: SeniorPhysicianJumpsuit
   name: loadout-group-senior-physician-jumpsuit
@@ -313,12 +357,12 @@
   - Sunrise-GreenGloves
   - Sunrise-TealGloves
   - Sunrise-BlueGloves
-  - Sunrise-GlovesNitrileBlack
-  - Sunrise-GlovesNitrileRed
-  - Sunrise-GlovesNitrileOrange
-  - Sunrise-GlovesNitrileGreen
+  # - Sunrise-GlovesNitrileBlack
+  # - Sunrise-GlovesNitrileRed
+  # - Sunrise-GlovesNitrileOrange
+  # - Sunrise-GlovesNitrileGreen
   - NitrileGloves
-  - Sunrise-GlovesNitrileBlue
+  # - Sunrise-GlovesNitrileBlue
 
 - type: loadoutGroup
   id: SeniorPhysicianHead
@@ -433,12 +477,12 @@
   - Sunrise-GreenGloves
   - Sunrise-TealGloves
   - Sunrise-BlueGloves
-  - Sunrise-GlovesNitrileBlack
-  - Sunrise-GlovesNitrileRed
-  - Sunrise-GlovesNitrileOrange
-  - Sunrise-GlovesNitrileGreen
+  # - Sunrise-GlovesNitrileBlack
+  # - Sunrise-GlovesNitrileRed
+  # - Sunrise-GlovesNitrileOrange
+  # - Sunrise-GlovesNitrileGreen
   - NitrileGloves
-  - Sunrise-GlovesNitrileBlue
+  # - Sunrise-GlovesNitrileBlue
 
 - type: loadoutGroup
   id: SunriseChemistHead
@@ -497,9 +541,9 @@
   - Sunrise-RedGloves
   - Sunrise-GreenGloves
   - Sunrise-TealGloves
-  - Sunrise-GlovesNitrileRed
-  - Sunrise-GlovesNitrileOrange
-  - Sunrise-GlovesNitrileGreen
+  # - Sunrise-GlovesNitrileRed
+  # - Sunrise-GlovesNitrileOrange
+  # - Sunrise-GlovesNitrileGreen
   - NitrileGloves
 
 - type: loadoutGroup
@@ -514,6 +558,14 @@
   - Sunrise-ShoesGreen
   - Sunrise-ShoesCyan
   - MedicalWinterBoots
+
+- type: loadoutGroup
+  id: SunriseChemistMisc
+  name: loadout-group-chemist-misc
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ChemistGoldBeaker
 
 - type: loadoutGroup
   id: SunrisePsychologistHead
@@ -624,10 +676,10 @@
   - Sunrise-GreenGloves
   - Sunrise-TealGloves
   - Sunrise-BlueGloves
-  - Sunrise-GlovesNitrileRed
-  - Sunrise-GlovesNitrileGreen
+  # - Sunrise-GlovesNitrileRed
+  # - Sunrise-GlovesNitrileGreen
   - NitrileGloves
-  - Sunrise-GlovesNitrileBlue
+  # - Sunrise-GlovesNitrileBlue
 
 - type: loadoutGroup
   id: PathologistHead
@@ -714,9 +766,9 @@
   - Sunrise-RedGloves
   - Sunrise-GreenGloves
   - Sunrise-TealGloves
-  - Sunrise-GlovesNitrileBlack
-  - Sunrise-GlovesNitrileRed
-  - Sunrise-GlovesNitrileGreen
+  # - Sunrise-GlovesNitrileBlack
+  # - Sunrise-GlovesNitrileRed
+  # - Sunrise-GlovesNitrileGreen
   - NitrileGloves
 
 - type: loadoutGroup
@@ -853,6 +905,7 @@
   - TrinketsEngineeringTFAT
   - TrinketsEngineeringTFCF
 #  - TrinketsEngineeringTT
+  - TrinketsEngineeringGCW
   - TrinketsEngineeringST
 
 - type: loadoutGroup
@@ -1249,3 +1302,167 @@
   name: loadout-group-uniformntr
   loadouts:
   - JumpsuitNTR
+
+# ComMaid Groups
+
+- type: loadoutGroup
+  id: ComMaidHead
+  name: loadout-group-commaid-head
+  minLimit: 0
+  loadouts:
+  - ComMaidHurseHat
+  - ComMaidBonnyEars
+  - ComMaidTacticalHeadband
+
+- type: loadoutGroup
+  id: ComMaidJumpsuit
+  name: loadout-group-commaid-jumpsuit
+  loadouts:
+  - ComMaidElegantJumpskirt
+  - ComMaidSunriseJumpskirt
+  - ComMaidBunnyUniform
+  - ComMaidJumpsuitLawyerBlack
+  - ComMaidTacticalJumpskirt
+
+- type: loadoutGroup
+  id: ComMaidBackpack
+  name: loadout-group-commaid-backpack
+  loadouts:
+  - ComMaidBackpackSatchelLeather
+  - ComMaidModsuit
+
+- type: loadoutGroup
+  id: ComMaidNeck
+  name: loadout-group-commaid-neck
+  minLimit: 0
+  loadouts:
+  - ComMaidBunnyButterfly
+
+- type: loadoutGroup
+  id: ComMaidShoes
+  name: loadout-group-commaid-shoes
+  loadouts:
+  - ComMaidShoes
+  - ComMaidBunnyShoes
+  - ComMaidShoesBootsLaceup
+
+- type: loadoutGroup
+  id: ComMaidGloves
+  name: loadout-group-commaid-gloves
+  minLimit: 0
+  loadouts:
+  - ComMaidBunnyManjets
+  - ComMaidGlovesWhite
+  - ComMaidGlovesTactical
+
+# Planet Prison - General
+
+- type: loadoutGroup
+  id: TrinketsPlanetPrison
+  name: loadout-group-planet-prison-trinkets
+  minLimit: 0
+  maxLimit: 3
+  loadouts:
+  - ClothingNeckPlanetPrisonLockdownPin
+  - ClothingNeckPlanetPrisonCellblockPin
+
+# Planet Prison - Planet Prisoner
+
+- type: loadoutGroup
+  id: PlanetPrisonerLoot
+  name: loadout-group-planet-prisoner-loot
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - PresentRandomPrisoner
+
+# Planet Prison - General Security
+
+- type: loadoutGroup
+  id: PlanetPrisonSecurityLoot
+  name: loadout-group-planet-prison-security-loot
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - PlanetPrisonSecurity-MasterHandheldCamera
+
+# Planet Prison - Inspector
+
+- type: loadoutGroup
+  id: PrisonInspectorHats
+  name: loadout-group-prison-inspector-hats
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - PrisonInspector-ClothingHeadHatBowlerHat
+  - PrisonInspector-ClothingHeadHatIAA
+  - PrisonInspector-ClothingHeadHatDetGadget
+
+
+- type: loadoutGroup
+  id: PrisonInspectorGlasses
+  name: loadout-group-prison-inspector-glasses
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonInspector-ClothingEyesGlassesSunglasses
+  - PrisonInspector-ClothingEyesGlassesNoir
+
+# Planet Prison - Head Security
+- type: loadoutGroup
+  id: PrisonDoctorHead
+  name: loadout-group-prison-doctor-head
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonDoctor-ClothingHeadCapPrisonDoctorMetus
+  - PrisonDoctor-ClothingHeadHatBeretPrisonDoctorMetus
+  - PrisonDoctor-ClothingHeadHatCapPrisonDoctorMetus
+
+- type: loadoutGroup
+  id: PrisonChefHead
+  name: loadout-group-prison-chef-head
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonChef-ClothingHeadHatChef
+  - PrisonChef-ClothingHeadCapPrisonChefMetus
+  - PrisonChef-ClothingHeadHatBeretPrisonChefMetus
+  - PrisonChef-ClothingHeadHatCapPrisonChefMetus
+  - PrisonChef-ClothingHeadHatChefBlackToque
+
+- type: loadoutGroup
+  id: PrisonEngineerHead
+  name: loadout-group-prison-engineer-head
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonEngineer-ClothingHeadCapPrisonEngineerMetus
+  - PrisonEngineer-ClothingHeadHatBeretPrisonEngineerMetus
+  - PrisonEngineer-ClothingHeadHatCapPrisonEngineerMetus
+
+- type: loadoutGroup
+  id: PrisonScientistHead
+  name: loadout-group-prison-scientist-head
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonScientist-ClothingHeadCapPrisonScientistMetus
+  - PrisonScientist-ClothingHeadHatBeretPrisonScientistMetus
+  - PrisonScientist-ClothingHeadHatCapPrisonScientistMetus
+
+- type: loadoutGroup
+  id: PrisonWorkerHead
+  name: loadout-group-prison-worker-head
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonWorker-ClothingHeadCapPrisonWorkerMetus
+  - PrisonWorker-ClothingHeadHatBeretPrisonWorkerMetus
+  - PrisonWorker-ClothingHeadHatCapPrisonWorkerMetus
+- type: loadoutGroup
+  id: Contributors
+  name: loadout-group-contributors
+  minLimit: 0
+  loadouts:
+  - ContributorLoadout

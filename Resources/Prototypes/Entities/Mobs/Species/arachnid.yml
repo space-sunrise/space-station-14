@@ -8,7 +8,6 @@
   # SUNRISE EDIT
   - type: Interactions
   # SUNRISE EDIT
-  - type: Absorbable
   - type: Body
     prototype: Arachnid
     requiredLegs: 2 # It would be funny if arachnids could use their little back limbs to move around once they lose their legs, but just something to consider post-woundmed
@@ -23,7 +22,6 @@
         Bloodloss: 0.5
         Asphyxiation: 0.5
   - type: Sericulture
-    action: ActionSericulture
     productionLength: 2
     entityProduced: MaterialWebSilk1
     hungerCost: 4 # Should total to 25 total silk on full hunger
@@ -44,16 +42,19 @@
     - reagents: [Water]
       methods: [Touch]
       effects:
-      - !type:WearableReaction
+      - !type:SpawnEntityInInventory
         slot: head
-        prototypeID: WaterDropletHat
+        entity: WaterDropletHat
     - reagents: [Water, SpaceCleaner]
       methods: [Touch]
       effects:
-      - !type:WashCreamPieReaction
+      - !type:WashCreamPie
   # Damage (Self)
   - type: Bloodstream
-    bloodReagent: CopperBlood
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: CopperBlood
+        Quantity: 300
   # Damage (Others)
   - type: MeleeWeapon
     animation: WeaponArcBite
@@ -108,6 +109,7 @@
       - map: [ "enum.HumanoidVisualLayers.Tail" ] # Mentioned in moth code: This needs renaming lol.
       - map: [ "back" ]
       - map: [ "neck" ]
+      - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
       - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
       - map: [ "enum.HumanoidVisualLayers.Hair" ] # Do these need to be here? (arachnid hair arachnid hair)
       - map: [ "enum.HumanoidVisualLayers.HeadSide" ]

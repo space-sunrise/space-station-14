@@ -16,6 +16,7 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Damage;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
@@ -32,14 +33,9 @@ public sealed class ThirstSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
 
-    [ValidatePrototypeId<SatiationIconPrototype>]
-    private const string ThirstIconOverhydratedId = "ThirstIconOverhydrated";
-
-    [ValidatePrototypeId<SatiationIconPrototype>]
-    private const string ThirstIconThirstyId = "ThirstIconThirsty";
-
-    [ValidatePrototypeId<SatiationIconPrototype>]
-    private const string ThirstIconParchedId = "ThirstIconParched";
+    private static readonly ProtoId<SatiationIconPrototype> ThirstIconOverhydratedId = "ThirstIconOverhydrated";
+    private static readonly ProtoId<SatiationIconPrototype> ThirstIconThirstyId = "ThirstIconThirsty";
+    private static readonly ProtoId<SatiationIconPrototype> ThirstIconParchedId = "ThirstIconParched";
 
     public override void Initialize()
     {
@@ -141,15 +137,15 @@ public sealed class ThirstSystem : EntitySystem
         switch (component.CurrentThirstThreshold)
         {
             case ThirstThreshold.OverHydrated:
-                _prototype.TryIndex(ThirstIconOverhydratedId, out prototype);
+                _prototype.Resolve(ThirstIconOverhydratedId, out prototype);
                 break;
 
             case ThirstThreshold.Thirsty:
-                _prototype.TryIndex(ThirstIconThirstyId, out prototype);
+                _prototype.Resolve(ThirstIconThirstyId, out prototype);
                 break;
 
             case ThirstThreshold.Parched:
-                _prototype.TryIndex(ThirstIconParchedId, out prototype);
+                _prototype.Resolve(ThirstIconParchedId, out prototype);
                 break;
 
             default:

@@ -1,0 +1,149 @@
+#EVA CBURN Helmet
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadSoftsuitCBURN
+  name: CBURN helmet
+  description: A pressure resistant and fireproof hood worn by special cleanup units.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/cburn.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+      head-vox:
+      - state: equipped-head-vox
+      - state: equipped-head-unshaded-vox
+        shader: unshaded
+    equipSound: /Audio/Mecha/mechmove03.ogg #starlight
+    unequipSound: /Audio/Mecha/mechmove03.ogg #starlight
+    equipDelay: 2 #starlight
+    unequipDelay: 2 #starlight
+
+#Pirate EVA Helmet
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetPirateOld
+  name: pirate hardsuit helmet
+  suffix: Pirate, Sunrise
+  description: A special hardsuit helmet, made for Scooner.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_old.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_old.rsi
+    equipDelay: 1.25
+    unequipDelay: 1.25
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+  - type: EyeProtection
+
+- type: entity
+  parent: [ ClothingHeadEVAHelmetBase, PowerCellSlotSmallItem, BaseSyndicateContraband ]
+  id: ClothingHeadHelmetPirate
+  name: boarding EVA helmet
+  description: A simple and stylish EVA helmet. Made for humble space heroics and boarding actions. Has a few serious cracks, but do not worry — duct tape fixes everything.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva.rsi
+    equipDelay: 0.8
+    unequipDelay: 0.8
+  - type: StaticPrice
+    price: 1000
+  - type: Appearance
+  - type: UseDelay
+    delay: 5.0
+  - type: ToggleClothing
+    action: NVDToggleAction
+    mustEquip: true
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionPirate
+  - type: PowerCellDraw
+    drawRate: 2
+    useCharge: 20
+  - type: ItemToggle
+    predictable: false
+    onUse: false
+    canActivateInhand: false
+    soundActivate:
+      path: /Audio/_Sunrise/Items/Goggles/activate.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+  - type: ToggleCellDraw
+  - type: FireProtection
+    reduction: 0.9
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+        Radiation: 0.9
+        Caustic: 0.9
+  - type: EyeProtection
+  - type: FlashImmunity
+
+- type: entity
+  parent: ClothingHeadHelmetPirate
+  id: ClothingHeadHelmetPirateAlt
+  name: boarding EVA helmet
+  description: A simple and stylish EVA helmet with a painted skull — for boarding with style.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_alt.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_alt.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPirate
+  id: ClothingHeadHelmetPirateAlt2
+  name: boarding EVA helmet
+  description: A simple and stylish EVA helmet. Made for humble space heroics and boarding actions.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_alt2.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_alt2.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPirate
+  id: ClothingHeadHelmetHardsuitScaf
+  name: scaf hardsuit helmet
+  description: A robust, strong helmet. On the inside smells of pent up anger.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Helmets/scaf.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Helmets/scaf.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.8
+        Radiation: 0.9
+        Caustic: 0.9

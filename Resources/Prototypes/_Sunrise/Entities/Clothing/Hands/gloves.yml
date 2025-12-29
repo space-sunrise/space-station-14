@@ -199,26 +199,51 @@
   - type: FingerprintMask
 
 - type: entity
-  parent: [ ClothingHandsGlovesColorBlack, BaseMajorContraband ]
+  parent: ClothingHandsBase
   id: ClothingHandsGlovesCombatCQC
   name: combat gloves
   description: These high-grade tactical gloves are fireproof and shock resistant.
   components:
   - type: Sprite
-    sprite: Clothing/Hands/Gloves/combat.rsi
+    sprite: _Sunrise/Clothing/Hands/Gloves/klawsbattle.rsi
   - type: Clothing
-    sprite: Clothing/Hands/Gloves/combat.rsi
+    sprite: _Sunrise/Clothing/Hands/Gloves/klawsbattle.rsi
   - type: Insulated
   - type: Fiber
     fiberMaterial: fibers-insulative
   - type: MeleeWeapon
     autoAttack: true
-    attackRate: 1.5
+    attackRate: 1.7
     damage:
       types:
-        Blunt: 10
-    bluntStaminaDamageFactor: 1.5
+        Blunt: 6
+        Slash: 4
+    bluntStaminaDamageFactor: 4
     soundHit:
       collection: Punch
     animation: WeaponArcFist
     mustBeEquippedToUse: true
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesCaptainCapWhite
+  name: white captain's gloves
+  description: A pristine pair of officer gloves for the captain. Perfect for pointing at problems and calling them “tasks”.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Hands/Gloves/white_cap_gloves.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/Hands/Gloves/white_cap_gloves.rsi
+    - type: Insulated
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesCaptainCapBlack
+  name: black captain's gloves
+  description: The captain's gloves, but in black. Adds +5 intimidation and +100% dramatic hand gestures.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Hands/Gloves/black_cap_gloves.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/Hands/Gloves/black_cap_gloves.rsi
+    - type: Insulated

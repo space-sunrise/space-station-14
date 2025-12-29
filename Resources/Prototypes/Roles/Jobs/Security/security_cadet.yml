@@ -5,7 +5,11 @@
   playTimeTracker: JobSecurityCadet
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 18000 #5 hrs # Sunrise-RoleTime
+      time: 10h
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 5h
+      inverted: true # stop playing intern if you're good at security!
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-security
@@ -14,30 +18,27 @@
   access:
   - Security
   - Brig
-#  - Maintenance #Sunrise-Edit
-  - Service
+  # - Maintenance # sunrise-edit
   - External
   - Cryogenics
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
-  speciesBlacklist:
-  - Vox
 
 - type: startingGear
   id: SecurityCadetGear
   equipment:
-    shoes: ClothingShoesBootsJack
+    shoes: ClothingShoesBootsJackFilled
     outerClothing: ClothingOuterArmorBasic
     id: SecurityCadetPDA
     ears: ClothingHeadsetSecurity
-    eyes: ClothingEyesHudSecurity #Sunrise-edit
     belt: ClothingBeltSecurityFilled
-    gloves: ClothingHandsGlovesColorGray
-    pocket1: HyperLinkBookCorporateLaw # Sunrise-edit
+    # pocket1: WeaponPistolMk58 # sunrise-edit
+    pocket2: BookSecurity
   storage:
     back:
     - Flash
+    #- MagazinePistol  # sunrise-edit
 
 - type: chameleonOutfit
   id: SecurityCadetChameleonOutfit

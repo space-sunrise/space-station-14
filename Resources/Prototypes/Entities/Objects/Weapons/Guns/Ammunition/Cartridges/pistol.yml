@@ -6,10 +6,7 @@
   components:
   - type: Tag
     tags:
-      - Cartridge
       - CartridgePistol
-  - type: HitScanCartridgeAmmo
-    proto: BulletPistol
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:
@@ -19,13 +16,79 @@
   - type: SpentAmmoVisuals
 
 - type: entity
-  id: CartridgePistol
-  name: cartridge (.35 auto)
-  description: Arguably the most popular caliber on the market, used by all manner of pistols and submachine guns. Standard kinetic ammunition is common and useful in most situations.
+  id: CartridgePistolRubber
+  name: cartridge (.35 auto rubber)
   parent: BaseCartridgePistol
   components:
-  - type: HitScanCartridgeAmmo
-    proto: BulletPistol
+  - type: CartridgeAmmo
+    proto: BulletPistolTraceRubber
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#00c1b8"
+
+- type: entity
+  id: CartridgePistolSP
+  name: cartridge (.35 auto SP)
+  parent: BaseCartridgePistol
+  components:
+  - type: CartridgeAmmo
+    proto: BulletPistolTraceSP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#3F47DB"
+
+- type: entity
+  id: CartridgePistolHP
+  name: cartridge (.35 auto HP)
+  parent: BaseCartridgePistol
+  components:
+  - type: CartridgeAmmo
+    proto: BulletPistolTraceHP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#000000"
+
+- type: entity
+  id: CartridgePistolFMJ
+  name: cartridge (.35 auto FMJ)
+  parent: BaseCartridgePistol
+  components:
+  - type: CartridgeAmmo
+    proto: BulletPistolTraceFMJ
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#B68F0E"
+
+- type: entity
+  id: CartridgePistolAP
+  name: cartridge (.35 auto AP)
+  parent: BaseCartridgePistol
+  components:
+  - type: CartridgeAmmo
+    proto: BulletPistolTraceAP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#540000"
 
 - type: entity
   id: CartridgePistolPractice
@@ -33,8 +96,8 @@
   description: Arguably the most popular caliber on the market, used by all manner of pistols and submachine guns. Chalk ammunition is generally non-harmful, used for practice.
   parent: BaseCartridgePistol
   components:
-  - type: HitScanCartridgeAmmo
-    proto: BulletPistolPractice
+  - type: CartridgeAmmo
+    proto: BulletPistolTracePractice
   -  type: Sprite
      layers:
        - state: base
@@ -49,10 +112,8 @@
   description: Arguably the most popular caliber on the market, used by all manner of pistols and submachine guns. Incendiary ammunition contains a self-igniting compound that sets the target ablaze.
   parent: BaseCartridgePistol
   components:
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     proto: BulletPistolIncendiary
-  - type: IgniteOnAmmoHit
-    fireStacks: 0.7 # Sunrise-Edit
   - type: Sprite
     layers:
       - state: base
@@ -67,8 +128,8 @@
   description: Arguably the most popular caliber on the market, used by all manner of pistols and submachine guns. Uranium core ammunition features a load of fissile material, irradiating the target from the inside.
   parent: BaseCartridgePistol
   components:
-  - type: HitScanCartridgeAmmo # Sunrise-Edit
-    proto: BulletPistolUranium
+  - type: CartridgeAmmo
+    proto: BulletPistolTraceUranium
   - type: Sprite
     layers:
       - state: base
@@ -92,3 +153,7 @@
   - type: CartridgeAmmo
     proto: BulletPistol
     spent: true
+  - type: Tag
+    tags:
+    - CartridgePistol
+    - Trash # surely theres a way to automatically add this...

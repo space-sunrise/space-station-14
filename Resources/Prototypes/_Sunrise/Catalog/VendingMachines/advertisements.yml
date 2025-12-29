@@ -21,3 +21,21 @@
   values:
     prefix: advertisement-ATM-
     count: 8
+
+- type: localizedDataset
+  id: LiberationVendAds
+  values:
+    prefix: advertisement-liberation-
+    count: 31
+
+- type: localizedDataset
+  id: PirateChatterNPC
+  values:
+    prefix: advertisement-piratehumanoid-
+    count: 48
+
+- type: localizedDataset
+  id: NarSieAds
+  values:
+    prefix: advertisement-narsie-
+    count: 8

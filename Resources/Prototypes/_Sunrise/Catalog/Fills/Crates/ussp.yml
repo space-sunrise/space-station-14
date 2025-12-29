@@ -57,8 +57,23 @@
   components:
   - type: StorageFill
     contents:
-      - id: SpeedLoaderLightRifle
+      - id: SpeedLoaderHeavyRifleRFMJ
         amount: 16
+
+- type: entity
+  parent: CrateAmmunitionSmall
+  id: CrateAmmunitionSmallDragunov
+  name: old small ammunition crate
+  suffix: Filled, Sniper
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponSniperDragunovBiocode
+      - id: MagazineDragunov
+        amount: 2
+      - id: MagazineDragunovIncendiary
+        amount: 2
+      - id: MagazineDragunovUranium
 
 - type: entity
   parent: BaseStructureDynamic
@@ -99,12 +114,10 @@
       - id: WrappedMosin
         amount: 4
   - type: EntityStorageVisuals
-    stateBase: base
     stateDoorOpen: open
     stateDoorClosed: closed
-    stateWelded: welded
   - type: EntityStorage
-    isWeldable: true
+  - type: Weldable
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:

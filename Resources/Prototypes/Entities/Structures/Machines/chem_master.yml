@@ -26,6 +26,7 @@
           - FitsInDispenser
   - type: ChemMaster
     pillDosageLimit: 20
+    patchDosageLimit: 20
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -90,6 +91,7 @@
           tags:
           - Bottle
           - PillCanister
+          - PatchPack # Sunrise-edit
   - type: SolutionContainerManager
     solutions:
       buffer: {}

@@ -46,7 +46,7 @@ namespace Content.IntegrationTests.Tests.Preferences
                 FlavorText = "The biggest boy around.",
                 Species = "Human",
                 Age = 21,
-                BodyType = "Normal",
+                BodyType = "Normal", // Sunrise-Edit
                 Appearance = new(
                     "Afro",
                     Color.Aqua,
@@ -55,12 +55,15 @@ namespace Content.IntegrationTests.Tests.Preferences
                     Color.Azure,
                     Color.Beige,
                     new (),
+                    // Sunrise edit start
                     MarkingEffectType.Color,
                     null,
                     MarkingEffectType.Color,
                     null,
-                    1,
-                    1)
+                    1.0f,
+                    1.0f
+                    // Sunrise edit end
+                    )
             };
         }
 

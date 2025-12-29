@@ -5,6 +5,7 @@
   recipes:
   - AppraisalTool
   - Pickaxe
+  - UtilityKnife
 
 - type: latheRecipePack
   id: CargoBoardsStatic
@@ -22,6 +23,7 @@
   - MineralScannerEmpty
   - AdvancedMineralScannerEmpty
   - OreBagOfHolding
+  - SheetPlasteel1Lathe # Sunrise-add
 
 - type: latheRecipePack
   id: CargoBoards

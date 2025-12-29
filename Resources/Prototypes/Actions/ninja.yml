@@ -27,6 +27,38 @@
 
 - type: entity
   parent: BaseAction
+  id: ActionCreateSmokeGrenade
+  name: Create smoke grenade
+  description: Channels suit power into creating a smoke grenade for tactical escape.
+  components:
+  - type: Action
+    useDelay: 0.5
+    icon:
+      sprite: Objects/Weapons/Grenades/smoke.rsi
+      state: icon
+    itemIconStyle: NoItem
+    priority: -10
+  - type: InstantAction
+    event: !type:CreateSmokeGrenadeEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionCreateFlashbangGrenade
+  name: Create flashbang grenade
+  description: Channels suit power into creating a flashbang grenade for tactical distraction.
+  components:
+  - type: Action
+    useDelay: 0.5
+    icon:
+      sprite: Objects/Weapons/Grenades/flashbang.rsi
+      state: icon
+    itemIconStyle: NoItem
+    priority: -10
+  - type: InstantAction
+    event: !type:CreateFlashbangGrenadeEvent {}
+
+- type: entity
+  parent: BaseAction
   id: ActionRecallKatana
   name: Recall katana
   description: Teleports the Energy Katana linked to this suit to its wearer, cost based on distance.

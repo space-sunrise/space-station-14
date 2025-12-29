@@ -19,8 +19,8 @@
     delay: 1.0
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 5
-    pvsIncrease: 0.5
+    maxOffset: 15 # Sunrise-edit
+    pvsIncrease: 1.5 # Sunrise-edit
   - type: PhysicalComposition
     materialComposition:
       Steel: 100

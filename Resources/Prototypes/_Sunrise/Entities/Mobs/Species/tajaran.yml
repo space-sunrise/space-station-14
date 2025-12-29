@@ -4,7 +4,6 @@
   abstract: true
   components:
   - type: Interactions
-  - type: Absorbable
   - type: HumanoidAppearance
     species: Tajaran
     hideLayersOnEquip:
@@ -19,7 +18,7 @@
   - type: Hunger
   - type: Speech
     speechVerb: Felinid
-    allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr']
+    allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr', 'Growl']
   - type: Thirst
     dehydrationDamage:
       types:
@@ -41,20 +40,23 @@
         Slash: 2
   - type: Vocal
     sounds:
-      Male: MaleFelinid
-      Female: FemaleFelinid
-      Unsexed: MaleFelinid
+      Male: MaleTajaran
+      Female: FemaleTajaran
+      Unsexed: MaleTajaran
   - type: Temperature
-    heatDamageThreshold: 400
-    coldDamageThreshold: 200
     currentTemperature: 310.15
     specificHeat: 46
+  - type: TemperatureDamage
+    heatDamageThreshold: 400
+    coldDamageThreshold: 200
     coldDamage:
       types:
         Cold : 0.2
     heatDamage:
       types:
         Heat : 0.1
+  - type: FlashModifier
+    modifier: 1.4
   - type: Perishable
   - type: MobThresholds
     thresholds:

@@ -42,7 +42,7 @@ health-examinable-carbon-Shock-75 = [color=lightgoldenrodyellow]{ CAPITALIZE(SUB
 health-examinable-carbon-Shock-100 = [color=lightgoldenrodyellow]{ CAPITALIZE(POSS-ADJ($target)) } body has extreme electrical burns across it![/color]
 health-examinable-carbon-Shock-200 = [color=lightgoldenrodyellow]{ CAPITALIZE(POSS-ADJ($target)) } body is completely fried![/color]
 
-health-examinable-carbon-Cold-8 = [color=lightblue]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } mild frostbite at the tips of { POSS-ADJ($target) } fingers.[/color]
+health-examinable-carbon-Cold-8 = [color=lightblue]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } mild frostbite at the tips of { POSS-ADJ($target) } extremities.[/color]
 health-examinable-carbon-Cold-15 = [color=lightblue]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } first-degree frostbite at the ends of { POSS-ADJ($target) } extremities.[/color]
 health-examinable-carbon-Cold-30 = [color=lightblue]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } second-degree frostbite on { POSS-ADJ($target) } extremities.[/color]
 health-examinable-carbon-Cold-50 = [color=lightblue]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } major third-degree frostbite on { POSS-ADJ($target) } extremities.[/color]
@@ -60,3 +60,7 @@ health-examinable-carbon-Caustic-200 = [color=yellowgreen]Most of { POSS-ADJ($ta
 
 health-examinable-carbon-Radiation-50 = [color=orange]{ CAPITALIZE(POSS-ADJ($target)) } skin has formed large blisters.[/color]
 health-examinable-carbon-Radiation-100 = [color=orange]{ CAPITALIZE(POSS-ADJ($target)) } skin is covered in lesions and is peeling off in chunks.[/color]
+
+health-examinable-carbon-Mangleness-15 = [color=gray]{ CAPITALIZE(SUBJECT($target)) } looks visibly tired.[/color]
+health-examinable-carbon-Mangleness-50 = [color=#505050]{ CAPITALIZE(SUBJECT($target)) } can barely walk due to exhaustion![/color]
+health-examinable-carbon-Mangleness-100 = [color=#505050]{ CAPITALIZE(SUBJECT($target)) } looks like a desiccated mummy![/color]

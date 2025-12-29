@@ -1,0 +1,53 @@
+- type: entity
+  parent: BaseSubdermalImplant
+  id: SmokeScreenImplant
+  name: smoke screen implant
+  description: This implant creates a cloud of smoke when activated.
+  components:
+  - type: SubdermalImplant
+    implantAction: ActionActivateSmokeGrenadeImplant
+  - type: TriggerOnActivateImplant
+  - type: SmokeOnTrigger
+    duration: 20
+    spreadAmount: 30
+  - type: EmitSoundOnTrigger
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: CreepyLaughImplant
+  name: creepy laugh implant
+  description: This implant lets the user laugh like borg anywhere at any time.
+  components:
+  - type: SubdermalImplant
+    implantAction: ActionActivateBorgLaughImplant
+  - type: TriggerOnActivateImplant
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Voice/Silicon/syndieborg_laugh.ogg
+  - type: Tag
+    tags:
+    - CreepyLaugh
+    - SubdermalImplant
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplantFreelance
+  name: radio implant
+  description: This implant grants access to the Freelance channel without a headset.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: RadioImplant
+    radioChannels:
+    - Freelance
+
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantFreelance
+  name: freelance death rattle implant
+  description: This implant will inform the Freelance radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RattleOnTrigger
+    radioChannel: Freelance

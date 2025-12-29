@@ -19,8 +19,11 @@ namespace Content.Client.SurveillanceCamera.UI;
 [GenerateTypedNameReferences]
 public sealed partial class SurveillanceCameraMonitorWindow : FancyWindow
 {
-    private readonly IPrototypeManager _prototypeManager; // Sunrise-edit
-    private readonly IEntityManager _entManager; // Sunrise-edit
+    private static readonly ProtoId<ShaderPrototype> CameraStaticShader = "CameraStatic";
+
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IResourceCache _resourceCache = default!;
+    [Dependency] private readonly IEntityManager _entManager = default!; // Sunrise-edit
 
     public event Action<string, string>? CameraSelected;
     public event Action? CameraRefresh;
@@ -40,17 +43,15 @@ public sealed partial class SurveillanceCameraMonitorWindow : FancyWindow
     public SurveillanceCameraMonitorWindow()
     {
         RobustXamlLoader.Load(this);
+        IoCManager.InjectDependencies(this);
 
         // Sunrise-start
-        _prototypeManager = IoCManager.Resolve<IPrototypeManager>();
-        var resourceCache = IoCManager.Resolve<IResourceCache>();
-        _entManager = IoCManager.Resolve<IEntityManager>();
         var spriteSystem = _entManager.System<SpriteSystem>();
         // Sunrise-end
 
         // This could be done better. I don't want to deal with stylesheets at the moment.
-        var texture = resourceCache.GetTexture("/Textures/Interface/Nano/square_black.png"); // Sunrise-edit
-        var shader = _prototypeManager.Index<ShaderPrototype>("CameraStatic").Instance().Duplicate();
+        var texture = _resourceCache.GetTexture("/Textures/Interface/Nano/square_black.png");
+        var shader = _prototypeManager.Index(CameraStaticShader).Instance().Duplicate();
 
         // Sunrise-edit
         _blipTexture = spriteSystem.Frame0(new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/NavMap/beveled_circle.png")));
@@ -67,7 +68,6 @@ public sealed partial class SurveillanceCameraMonitorWindow : FancyWindow
 
         // Sunrise-start
         NavMap.TrackedEntitySelectedAction += SetTrackedEntityFromNavMap;
-        _entManager = IoCManager.Resolve<IEntityManager>();
         // Sunrise-end
     }
 

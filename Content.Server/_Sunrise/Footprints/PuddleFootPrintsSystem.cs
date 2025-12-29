@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Content.Server.Standing;
 using Content.Shared._Sunrise.Footprints;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
@@ -16,7 +15,7 @@ namespace Content.Server._Sunrise.Footprints;
 public sealed class PuddleFootprintSystem : EntitySystem
 {
     [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
-    [Dependency] private readonly SharedStandingStateSystem _standingStateSystem = default!;
+    [Dependency] private readonly StandingStateSystem _standingStateSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -30,8 +29,7 @@ public sealed class PuddleFootprintSystem : EntitySystem
     /// </summary>
     private void OnPuddleInteraction(EntityUid uid, PuddleFootprintComponent component, ref EndCollideEvent args)
 {
-    if (!TryComp<AppearanceComponent>(uid, out var appearance)
-        || !TryComp<PuddleComponent>(uid, out var puddle)
+    if (!TryComp<PuddleComponent>(uid, out var puddle)
         || !TryComp<FootprintEmitterComponent>(args.OtherEntity, out var emitter)
         || !TryComp<SolutionContainerManagerComponent>(uid, out var solutionManager)
         || !_solutionSystem.ResolveSolution((uid, solutionManager), puddle.SolutionName, ref puddle.Solution, out var puddleSolutions)

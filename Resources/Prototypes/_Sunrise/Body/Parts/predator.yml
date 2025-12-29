@@ -89,6 +89,8 @@
   - type: Sprite
     sprite: _Sunrise/Mobs/Species/Predator/parts.rsi/
     state: "l_leg"
+  - type: MovementBodyPart
+    maxDensity: 155
 
 - type: entity
   id: RightLegPredator
@@ -98,6 +100,8 @@
   - type: Sprite
     sprite: _Sunrise/Mobs/Species/Predator/parts.rsi/
     state: "r_leg"
+  - type: MovementBodyPart
+    maxDensity: 155
 
 - type: entity
   id: LeftFootPredator

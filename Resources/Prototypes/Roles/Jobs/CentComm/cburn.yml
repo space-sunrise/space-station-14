@@ -37,8 +37,8 @@
     belt: ClothingBeltBandolier
   storage:
     back:
-    - WeaponShotgunDoubleBarreled
-    - BoxShotgunIncendiary
+    # - WeaponShotgunDoubleBarreled #Sunrise-Edit
+    # - BoxShotgunIncendiary #Sunrise-Edit
     - GrenadeFlashBang
     - PillAmbuzolPlus
     - PillAmbuzol
@@ -51,3 +51,36 @@
   equipment:
     head: ClothingHeadHelmetCBURN
     neck: ClothingNeckScarfStripedBrown
+
+# Sunrise-start
+- type: startingGear
+  id: CBURNGearEVA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBrown
+    back: ClothingBackpackDuffelCBURN
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesGlassesSecurity
+    ears: ClothingHeadsetAltCentCom
+    outerClothing: ClothingOuterSoftsuitCBURN
+    shoes: ClothingShoesBootsCombatFilled
+    id: CBURNPDA
+    pocket1: RadioHandheld
+    pocket2: WeaponLaserGun
+    belt: ClothingBeltSalvageWebbing
+    head: ClothingHeadSoftsuitCBURN
+  storage:
+    back:
+    - GrenadeFlashBang
+    - GrenadeFlashBang
+    - GrenadeFlashBang
+    - PillAmbuzolPlus
+    - PillAmbuzol
+    - PillAmbuzol
+    - PillAmbuzol
+    - SyringeAmbuzol
+    - ClothingHandsPowerGlovesUplinkNTERTCBURN
+    - FireExtinguisherMini
+    - MedkitCombatFilled
+    - MedkitBurnFilled
+    - MedkitToxinFilled
+# Sunrise-end

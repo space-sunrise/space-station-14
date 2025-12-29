@@ -42,7 +42,7 @@
     size: Ginormous
   - type: BallisticAmmoProvider
     mayTransfer: True
-    proto: SunriseCartridgeRifle  # 5.56
+    proto: CartridgeRifleSP
   - type: Storage
     maxItemSize: Huge
     grid:
@@ -62,6 +62,13 @@
       - WeaponMinigunMG100
 
 - type: entity
+  id: PowerpackMinigunMG100Incendiary
+  parent: PowerpackMinigunMG100
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleIncendiary
+
+- type: entity
   id: BasePowerpackMG100
   parent: BaseItem
   abstract: true
@@ -76,7 +83,7 @@
     mayTransfer: true
     whitelist:
       tags:
-      - CartridgeLightRifle  # 5.56
+      - CartridgeLightRifle
     capacity: 1600
   - type: ClothingSpeedModifier
     walkModifier: 0.5
@@ -113,9 +120,9 @@
     - 0,0,6,4
   - type: Gun
     minAngle: 5
-    maxAngle: 90
-    angleIncrease: 2.5
-    angleDecay: 30
+    maxAngle: 80
+    angleIncrease: 1.5
+    angleDecay: 40
     fireRate: 8
     selectedMode: FullAuto
     availableModes:
@@ -169,9 +176,9 @@
     mayTransfer: true
     whitelist:
       tags:
-      - CartridgeLightRifle # 762x39
-    proto: SunriseCartridgeLightRifle
-    capacity: 1000
+      - CartridgeLightRifle
+    proto: CartridgeLightRifleFMJ
+    capacity: 1200
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
@@ -181,6 +188,9 @@
     - 0,0,6,4
   - type: ExplosionResistance
     damageCoefficient: 0.1
+  - type: StorageFill
+    contents:
+      - id: CrazyGlue
   - type: ItemSlots
     slots:
       weapon_slot:

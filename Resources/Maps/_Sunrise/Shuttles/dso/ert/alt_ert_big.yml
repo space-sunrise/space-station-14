@@ -17671,7 +17671,7 @@ entities:
       parent: 464
     - type: GhostRole
       rules: Подчиняйтесь ОБР и Центральному Командованию.
-      description: Слава НТ!
+      description: Слава NT!
       name: Боевой киборг ОБР
     - type: GhostRoleMobSpawner
       prototype: PlayerBorgChassisERTBattery
@@ -17686,7 +17686,7 @@ entities:
       parent: 464
     - type: GhostRole
       rules: Подчиняйтесь ОБР и Центральному Командованию.
-      description: Слава НТ!
+      description: Слава NT!
       name: Боевой киборг ОБР
     - type: GhostRoleMobSpawner
       prototype: PlayerBorgChassisERTBattery
@@ -20544,15 +20544,6 @@ entities:
       parent: 379
     - type: Physics
       canCollide: False
-- proto: WeaponPistolViperBiocode
-  entities:
-  - uid: 1133
-    components:
-    - type: Transform
-      parent: 1127
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: WeaponPulsePistol
   entities:
   - uid: 1932

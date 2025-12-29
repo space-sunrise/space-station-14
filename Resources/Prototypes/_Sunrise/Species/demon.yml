@@ -1,4 +1,4 @@
-- type: species
+﻿- type: species
   id: Demon
   name: species-name-demon
   roundStart: true
@@ -11,7 +11,9 @@
   dollPrototype: MobDemonDummy
   skinColoration: Hues
   naming: firstlast
-  buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png # SUNRISE-TODO: Спрайт жопы аркан
+  buttScan:
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human # SUNRISE-TODO: Спрайт жопы аркан
 
 - type: bodyType
   id: DemonNormal
@@ -24,7 +26,7 @@
     Chest: MobDemonTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
-    Tail: MobDemonTail
+    Tail: MobHumanoidAnyMarking
     Eyes: MobHumanoidEyes
     LArm: MobDemonLArm
     RArm: MobDemonRArm
@@ -34,6 +36,7 @@
     RLeg: MobDemonRLeg
     LFoot: MobDemonLFoot
     RFoot: MobDemonRFoot
+    Back: MobHumanoidAnyMarking
 
 - type: bodyType
   id: DemonSlim
@@ -48,7 +51,7 @@
     Chest: MobDemonSlimTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
-    Tail: MobDemonTail
+    Tail: MobHumanoidAnyMarking
     Eyes: MobHumanoidEyes
     LArm: MobDemonSlimLArm
     RArm: MobDemonSlimRArm
@@ -58,6 +61,7 @@
     RLeg: MobDemonSlimRLeg
     LFoot: MobDemonSlimLFoot
     RFoot: MobDemonSlimRFoot
+    Back: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobDemonMarkingLimits
@@ -79,7 +83,8 @@
       required: false
     Tail:
       points: 1
-      required: false
+      required: true
+      defaultMarkings: [ DemonTailDefault ]
     Snout:
       points: 1
       required: false
@@ -88,6 +93,9 @@
       required: false
     Arms:
       points: 2
+      required: false
+    Back:
+      points: 1
       required: false
 
 - type: humanoidBaseSprite
@@ -173,12 +181,6 @@
   baseSprite:
     sprite: _Sunrise/Mobs/Species/Demon/parts.rsi
     state: r_foot
-
-- type: humanoidBaseSprite
-  id: MobDemonTail
-  baseSprite:
-    sprite: _Sunrise/Mobs/Species/Demon/parts.rsi
-    state: tail
 
 - type: humanoidBaseSprite
   id: MobDemonSlimHead

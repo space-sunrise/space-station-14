@@ -7,6 +7,7 @@ uniform sampler2D displacementMap;
 uniform highp float displacementSize;
 uniform highp vec4 displacementUV;
 varying highp vec2 displacementUVOut;
+uniform bool useDisplacement;
 
 void vertex() {
     if(useDisplacement == true) {
@@ -14,7 +15,6 @@ void vertex() {
     }
 }
 
-uniform bool useDisplacement;
 // DISPLACEMENT END
 
 highp float find_bound(bool forward, bool horizontal) {

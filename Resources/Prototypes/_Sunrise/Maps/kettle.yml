@@ -26,7 +26,6 @@
             Chaplain: [ 1, 2 ]
             Librarian: [ 1, 2 ]
             Lawyer: [ 2, 3 ]
-            Zookeeper: [ 1, 1 ]
             ServiceWorker: [ 4, 4 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]

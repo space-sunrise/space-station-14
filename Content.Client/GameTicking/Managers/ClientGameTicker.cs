@@ -11,6 +11,7 @@ using Robust.Client.State;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio;
+using Content.Shared.GameTicking.Prototypes;
 
 namespace Content.Client.GameTicking.Managers
 {
@@ -31,13 +32,15 @@ namespace Content.Client.GameTicking.Managers
         // Sunrise-Start
         [ViewVariables] public string? LobbyType { get; private set; }
         [ViewVariables] public string? LobbyParallax { get; private set; }
-        [ViewVariables] public string? LobbyAnimation { get; private set; }
+        [ViewVariables] public ProtoId<LobbyBackgroundPrototype>? LobbyAnimation { get; private set; }
         [ViewVariables] public string? LobbyArt { get; private set; }
         // Sunrise-End
         [ViewVariables] public bool DisallowedLateJoin { get; private set; }
         [ViewVariables] public string? ServerInfoBlob { get; private set; }
         [ViewVariables] public TimeSpan StartTime { get; private set; }
         [ViewVariables] public new bool Paused { get; private set; }
+
+        public override IReadOnlyList<(TimeSpan, string)> AllPreviousGameRules => new List<(TimeSpan, string)>();
 
         [ViewVariables] public IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> JobsAvailable => _jobsAvailable;
         [ViewVariables] public IReadOnlyDictionary<NetEntity, string> StationNames => _stationNames;

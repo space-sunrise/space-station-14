@@ -10,32 +10,53 @@
     - Lawyer
     - NtrOfficer
 
-#- type: department # Surnise-Blueshield
-#  id: BlueShield
-#  name: department-Blueshield
-#  description: department-Blueshield-description
-#  color: "#0f4e81"
-#  roles:
-#    - BlueShieldEnsign
-#    - BlueShieldOfficer
-#    - BlueShieldOperative
-#  primary: false
-#  weight: 50
+- type: department # Surnise-Blueshield
+  id: BlueShield
+  name: department-Blueshield
+  description: department-Blueshield-description
+  color: "#0f4e81"
+  roles:
+    - BlueShieldEnsign
+    - BlueShieldOfficer
+    - BlueShieldOperative
+  primary: false
+  weight: 50
 
 - type: department
   id: PlanetPrison
-  sort: 0
   name: department-PlanetPrison
   description: department-PlanetPrison-description
   color: "#9f4000"
   roles:
   - HeadOfPrison
+  - PrisonInspector
   - PrisonWorker
-  - PrisonChef
-  - PrisonDoctor
   - PrisonEngineer
-  - PrisonGuard
+  - PrisonScientist
+  - PrisonDoctor
+  - PrisonChef
+  # - PrisonGuard
+  # - PrisonPilot
   - PlanetPrisoner
+  weight: 150
+
+- type: department
+  id: PlanetPrisonSecurity
+  name: department-PlanetPrisonSecurity
+  description: department-PlanetPrisonSecurity-description
+  color: "#691900"
+  roles:
+  - HeadOfPrison
+  - PrisonInspector
+  - PrisonWorker
+  - PrisonEngineer
+  - PrisonScientist
+  - PrisonDoctor
+  - PrisonChef
+  # - PrisonGuard
+  # - PrisonPilot
+  editorHidden: true
+  manifestHidden: true
 
 - type: department
   id: CentralCommand

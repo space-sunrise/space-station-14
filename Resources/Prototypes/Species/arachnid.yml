@@ -14,7 +14,10 @@
   femaleFirstNames: NamesArachnidFirst
   maleLastNames: NamesArachnidLast
   femaleLastNames: NamesArachnidLast
-  buttScanTexture: /Textures/_Sunrise/ButtsScans/human.png # Sunrise-Edit SUNRISE-TODO: Спрайт жопы для арахнидов
+  # Sunrise-Edit
+  buttScan:
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human # Sunrise-Edit SUNRISE-TODO: Спрайт жопы для арахнидов
 
 - type: bodyType
   id: ArachnidNormal

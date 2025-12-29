@@ -1,0 +1,14 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+              SetSize="450 200"
+              Title="{Loc 'help-choice-title'}"
+              Resizable="False">
+    <BoxContainer Orientation="Vertical">
+        <RichTextLabel Text="{Loc 'help-choice-title-label'}" HorizontalAlignment="Center"/>
+        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" SeparationOverride="20">
+            <Button Name="AHelpButton" Text="{Loc 'help-choice-ahelp-button'}" SetSize="160 45" HorizontalAlignment="Center" Access="Public"/>
+            <Button Name="MentorHelpButton" Text="{Loc 'help-choice-mhelp-button'}" SetSize="160 45" HorizontalAlignment="Center" Access="Public"/>
+        </BoxContainer>
+        <RichTextLabel Name="AHelpDescLabel" Text="{Loc 'help-choice-ahelp-desc-label'}"/>
+        <RichTextLabel Name="MHelpDescLabel" Text="{Loc 'help-choice-mhelp-desc-label'}"/>
+    </BoxContainer>
+</DefaultWindow>

@@ -10,15 +10,15 @@
   - type: Gun
     minAngle: -25
     maxAngle: 25
-    fireRate: 8
+    fireRate: 12
     selectedMode: FullAuto
     availableModes:
       - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/HMGs/minigun_shot.ogg
-  - type: ProjectileBatteryAmmoProvider
-    proto: CartridgeRifle
-    fireCost: 7
+  - type: BatteryAmmoProvider
+    proto: CartridgeRifleSP
+    fireCost: 5
   - type: Appearance
   - type: AmmoCounter
   - type: StaticPrice
@@ -43,11 +43,13 @@
       - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
-  - type: ProjectileBatteryAmmoProvider
-    proto: CartridgeLightRifle
+  - type: BatteryAmmoProvider
+    proto: CartridgeHeavyRifleRFMJ
     fireCost: 8
   - type: Appearance
   - type: AmmoCounter
+  - type: StaticPrice
+    price: 3500
 
 - type: entity
   id: WeaponMechCombatMG
@@ -60,23 +62,25 @@
     sprite: _Sunrise/Objects/Specific/Mech/mecha_mg.rsi
     state: mecha_mg
   - type: Gun
-    minAngle: -10
-    maxAngle: 18
-    angleIncrease: 3.5
-    angleDecay: 9
-    fireRate: 10
+    minAngle: -15
+    maxAngle: 40
+    burstFireRate: 10
     shotsPerBurst: 8
-    burstCooldown: 0.8
+    burstCooldown: 1.5
     selectedMode: Burst
     availableModes:
       - Burst
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
-  - type: ProjectileBatteryAmmoProvider
-    proto: CartridgeRifle
+      path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
+      params:
+        volume: -3
+  - type: BatteryAmmoProvider
+    proto: CartridgeRifleHeavyFMJ
     fireCost: 8
   - type: Appearance
   - type: AmmoCounter
+  - type: StaticPrice
+    price: 1000
 
 - type: entity
   id: WeaponMechCombatPirateCannon
@@ -91,15 +95,15 @@
   - type: Gun
     minAngle: -10
     maxAngle: 15
-    fireRate: 0.2
+    fireRate: 0.25
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CannonBall
-    fireCost: 160
+    fireCost: 150
   - type: Appearance
   - type: AmmoCounter
   - type: StaticPrice
@@ -113,20 +117,47 @@
   parent: [ BaseMechWeaponRange, CombatMechEquipment ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Specific/Mech/mecha_piratecannon.rsi
-    state: mecha_piratecannon
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_blunderbuss.rsi
+    state: mecha_blunderbuss
   - type: Gun
     minAngle: -10
     maxAngle: 15
-    fireRate: 0.4
+    fireRate: 0.25
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CannonBallGrapeshot
-    fireCost: 50
+    fireCost: 75
+  - type: Appearance
+  - type: AmmoCounter
+  - type: StaticPrice
+    price: 2000
+
+- type: entity
+  id: WeaponMechCombatPirateGrapeshotMini
+  name: Mounted BlunderBuss
+  description: An ancient big blunderbuss gun given new life as a mech-mounted gun
+  suffix: Mech Weapon, Gun, Combat, Pirate
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_blunderbuss.rsi
+    state: mecha_blunderbuss
+  - type: Gun
+    minAngle: -10
+    maxAngle: 15
+    fireRate: 0.65
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+  - type: BatteryAmmoProvider
+    proto: CannonBallGrapeshotMini
+    fireCost: 25
   - type: Appearance
   - type: AmmoCounter
   - type: StaticPrice
@@ -145,15 +176,15 @@
   - type: Gun
     minAngle: -10
     maxAngle: 15
-    fireRate: 0.35
+    fireRate: 0.25
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CannonBallGlassshot
-    fireCost: 80
+    fireCost: 75
   - type: Appearance
   - type: AmmoCounter
   - type: StaticPrice
@@ -182,8 +213,8 @@
       collection: syndi_plasma
       params:
         volume: -1
-  - type: HitscanBatteryAmmoProvider
-    proto: BulletSyndiPlasmaDouble
+  - type: BatteryAmmoProvider
+    proto: RedLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 25
   - type: Appearance
   - type: AmmoCounter
@@ -207,8 +238,8 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
-  - type: ProjectileBatteryAmmoProvider
-    proto: GrenadeFrag
+  - type: BatteryAmmoProvider
+    proto: GrenadeFragTimer
     fireCost: 250
   - type: Appearance
   - type: AmmoCounter

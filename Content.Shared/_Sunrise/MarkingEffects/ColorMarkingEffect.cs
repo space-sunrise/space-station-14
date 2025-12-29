@@ -14,7 +14,7 @@ public sealed partial class ColorMarkingEffect : MarkingEffect
     #region Constructors
 
     public ColorMarkingEffect(Color color) : base(color) { }
-    public static ColorMarkingEffect White => new(Color.White);
+    public static readonly ColorMarkingEffect White = new (Color.White);
 
     #endregion
 
@@ -25,7 +25,7 @@ public sealed partial class ColorMarkingEffect : MarkingEffect
         Dictionary<string, string> dict = new();
 
         var color = GetColor();
-        dict.Add($"color.base", color.ToHex());
+        dict.Add("color.base", color.ToHex());
 
         var result = string.Join(",", dict.Select(kvp => $"{kvp.Key}={kvp.Value}"));
         return $"{Type.ToString()}=={result}";
@@ -43,12 +43,17 @@ public sealed partial class ColorMarkingEffect : MarkingEffect
 
         return new ColorMarkingEffect(color);
     }
+
     #endregion
 
     #region Other methods
+
     public override ColorMarkingEffect Clone()
     {
-        return new ColorMarkingEffect(Colors["base"]);
+        if (!Colors.TryGetValue("base", out var color))
+            color = Color.White;
+
+        return new ColorMarkingEffect(color);
     }
 
     public override bool Equals(MarkingEffect? maybeOther)
@@ -58,5 +63,6 @@ public sealed partial class ColorMarkingEffect : MarkingEffect
 
         return DictionaryEquals(Colors, other.Colors);
     }
+
     #endregion
 }

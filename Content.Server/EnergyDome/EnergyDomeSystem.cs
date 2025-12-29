@@ -1,7 +1,6 @@
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
-using Content.Server.PowerCell;
 using Content.Shared._Sunrise.Biocode;
 using Content.Shared.Actions;
 using Content.Shared.Damage;
@@ -15,9 +14,12 @@ using Content.Shared.Timing;
 using Content.Shared.Toggleable;
 using Content.Shared.Verbs;
 using Content.Shared.EnergyDome;
+using Content.Shared.Power;
+using Content.Shared.Power.Components;
 using Robust.Server.Containers;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.EnergyDome;
 
@@ -59,10 +61,9 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
         SubscribeLocalEvent<EnergyDomeGeneratorComponent, ComponentRemove>(OnComponentRemove);
 
-        //Dome events
         SubscribeLocalEvent<EnergyDomeComponent, DamageChangedEvent>(OnDomeDamaged);
+        SubscribeLocalEvent<EnergyDomeProtectedUserComponent, EntParentChangedMessage>(OnProtectedEntityParentChanged);
     }
-
 
     private void OnInit(Entity<EnergyDomeGeneratorComponent> generator, ref MapInitEvent args)
     {
@@ -159,7 +160,6 @@ public sealed partial class EnergyDomeSystem : EntitySystem
         if (args.Handled)
             return;
 
-        // Sunrise-Start
         if (!_containerSystem.ContainsEntity(args.Performer, generator.Owner))
             return;
 
@@ -168,7 +168,6 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             if (!_biocodeSystem.CanUse(args.Performer, biocodedComponent.Factions))
                 return;
         }
-        // Sunrise-End
 
         AttemptToggle(generator, !generator.Comp.Enabled);
 
@@ -184,13 +183,13 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
     private void OnPowerCellChanged(Entity<EnergyDomeGeneratorComponent> generator, ref PowerCellChangedEvent args)
     {
-        if (args.Ejected || !_powerCell.HasDrawCharge(generator))
+        if (args.Ejected || !_powerCell.HasDrawCharge(generator.Owner))
             TurnOff(generator, true);
     }
 
     private void OnChargeChanged(Entity<EnergyDomeGeneratorComponent> generator, ref ChargeChangedEvent args)
     {
-        if (args.Charge == 0)
+        if (args.CurrentCharge == 0)
             TurnOff(generator, true);
     }
     private void OnDomeDamaged(Entity<EnergyDomeComponent> dome, ref DamageChangedEvent args)
@@ -216,9 +215,9 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             _powerCell.TryGetBatteryFromSlot(generatorUid, out var cell);
             if (cell != null)
             {
-                _battery.UseCharge(cell.Owner, energyLeak);
+                _battery.UseCharge(cell.Value.Owner, energyLeak);
 
-                if (cell.CurrentCharge == 0)
+                if (cell.Value.Comp.ChargeRate == 0)
                     TurnOff((generatorUid, generatorComp), true);
             }
         }
@@ -227,7 +226,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
         if (TryComp<BatteryComponent>(generatorUid, out var battery)) {
             _battery.UseCharge(generatorUid, energyLeak);
 
-            if (battery.CurrentCharge == 0)
+            if (battery.ChargeRate == 0)
                 TurnOff((generatorUid, generatorComp), true);
         }
     }
@@ -251,6 +250,12 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
     public bool AttemptToggle(Entity<EnergyDomeGeneratorComponent> generator, bool status)
     {
+        var parent = Transform(generator.Owner).ParentUid;
+        if (HasComp<ContainerManagerComponent>(Transform(parent).ParentUid))
+        {
+            return false;
+        }
+
         if (TryComp<UseDelayComponent>(generator, out var useDelay) && _useDelay.IsDelayed(new (generator, useDelay)))
         {
             _audio.PlayPvs(generator.Comp.TurnOffSound, generator);
@@ -260,9 +265,10 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             return false;
         }
 
-        if (TryComp<PowerCellSlotComponent>(generator, out var powerCellSlot))
+        if (TryComp<PowerCellComponent>(generator, out var powerCellSlot))
         {
-            if (!_powerCell.TryGetBatteryFromSlot(generator, out var cell) && !TryComp(generator, out cell))
+            if (!_powerCell.TryGetBatteryFromSlot(generator.Owner, out var cell) &&
+                !HasComp<BatteryComponent>(generator.Owner))
             {
                 _audio.PlayPvs(generator.Comp.TurnOffSound, generator);
                 _popup.PopupEntity(
@@ -271,7 +277,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
                 return false;
             }
 
-            if (!_powerCell.HasDrawCharge(generator))
+            if (!_powerCell.HasDrawCharge(generator.Owner))
             {
                 _audio.PlayPvs(generator.Comp.TurnOffSound, generator);
                 _popup.PopupEntity(
@@ -283,7 +289,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
         if (TryComp<BatteryComponent>(generator, out var battery))
         {
-            if (battery.CurrentCharge == 0)
+            if (battery.ChargeRate == 0)
             {
                 _audio.PlayPvs(generator.Comp.TurnOffSound, generator);
                 _popup.PopupEntity(
@@ -321,18 +327,34 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             domeComp.Generator = generator;
         }
 
+        var protectedComp = EnsureComp<EnergyDomeProtectedUserComponent>(protectedEntity);
+        protectedComp.DomeEntity = newDome;
+
         if (TryComp<PowerCellDrawComponent>(generator.Owner, out var powerCellDrawComponent))
         {
             _powerCell.SetDrawEnabled(generator.Owner, true);
         }
 
-        if (TryComp<BatterySelfRechargerComponent>(generator, out var recharger)) {
-            recharger.AutoRecharge = true;
-        }
-
         generator.Comp.SpawnedDome = newDome;
         _audio.PlayPvs(generator.Comp.TurnOnSound, generator);
         generator.Comp.Enabled = true;
+    }
+
+    // Sunrise: обработчик смены парента защищаемой сущности
+    private void OnProtectedEntityParentChanged(Entity<EnergyDomeProtectedUserComponent> ent, ref EntParentChangedMessage args)
+    {
+        if (ent.Comp.DomeEntity == null)
+            return;
+        if (HasComp<ContainerManagerComponent>(Transform(ent).ParentUid))
+        {
+            if (TryComp<EnergyDomeComponent>(ent.Comp.DomeEntity.Value, out var domeComp) && domeComp.Generator != null)
+            {
+                if (TryComp<EnergyDomeGeneratorComponent>(domeComp.Generator.Value, out var genComp))
+                {
+                    TurnOff((domeComp.Generator.Value, genComp), false);
+                }
+            }
+        }
     }
 
     private void TurnOff(Entity<EnergyDomeGeneratorComponent> generator, bool startReloading)
@@ -343,13 +365,14 @@ public sealed partial class EnergyDomeSystem : EntitySystem
         generator.Comp.Enabled = false;
         QueueDel(generator.Comp.SpawnedDome);
 
+        if (generator.Comp.DomeParentEntity != null && HasComp<EnergyDomeProtectedUserComponent>(generator.Comp.DomeParentEntity.Value))
+        {
+            RemCompDeferred<EnergyDomeProtectedUserComponent>(generator.Comp.DomeParentEntity.Value);
+        }
+
         if (TryComp<PowerCellDrawComponent>(generator.Owner, out var powerCellDrawComponent))
         {
             _powerCell.SetDrawEnabled(generator.Owner, false);
-        }
-        if (TryComp<BatterySelfRechargerComponent>(generator, out var recharger))
-        {
-            recharger.AutoRecharge = true;
         }
 
         _audio.PlayPvs(generator.Comp.TurnOffSound, generator);
@@ -372,3 +395,4 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             : entity;
     }
 }
+

@@ -1,17 +1,15 @@
 - type: entity
-  id: BaseCartridgeLightRifle
-  name: cartridge (.30 rifle)
+  id: BaseCartridgeLightRifleSP
+  name: cartridge (.30 rifle SP)
   parent: [ BaseCartridge, BaseSecurityContraband ]
-  abstract: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Tag
     tags:
-    - Cartridge
     - CartridgeLightRifle
-  - type: HitScanCartridgeAmmo #Sunrise-Edit
-    proto: BulletLightRifle
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/7.62x39.rsi # Sunrise-Edit
+    scale: 0.60, 0.60 # Sunrise-Added
     layers:
     - state: base
       map: ["enum.AmmoVisualLayers.Base"]
@@ -19,22 +17,72 @@
   - type: SpentAmmoVisuals
 
 - type: entity
-  id: CartridgeLightRifle
-  name: cartridge (.30 rifle)
-  parent: BaseCartridgeLightRifle
-  description: A classic intermediate cartridge used by many combat rifles and LMGs. Standard kinetic ammunition is common and useful in most situations.
+  id: CartridgeLightRifleSP
+  name: cartridge (.30 rifle SP)
+  parent: BaseCartridgeLightRifleSP
   components:
-  - type: HitScanCartridgeAmmo #Sunrise-Edit
-    proto: BulletLightRifle
+  - type: CartridgeAmmo
+    proto: BulletLightRifleTraceSP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#3F47DB"
+
+- type: entity
+  id: CartridgeLightRifleHP
+  name: cartridge (.30 rifle HP)
+  parent: BaseCartridgeLightRifleSP
+  components:
+  - type: CartridgeAmmo
+    proto: BulletLightRifleTraceHP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#000000"
+
+- type: entity
+  id: CartridgeLightRifleFMJ
+  name: cartridge (.30 rifle FMJ)
+  parent: BaseCartridgeLightRifleSP
+  components:
+  - type: CartridgeAmmo
+    proto: BulletLightRifleTraceFMJ
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#B68F0E"
+
+- type: entity
+  id: CartridgeLightRifleAP
+  name: cartridge (.30 rifle AP)
+  parent: BaseCartridgeLightRifleSP
+  components:
+  - type: CartridgeAmmo
+    proto: BulletLightRifleTraceAP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#540000"
 
 - type: entity
   id: CartridgeLightRiflePractice
   name: cartridge (.30 rifle practice)
-  parent: BaseCartridgeLightRifle
-  description: A classic intermediate cartridge used by many combat rifles and LMGs. Chalk ammunition is generally non-harmful, used for practice.
+  parent: BaseCartridgeLightRifleSP
   components:
-  - type: HitScanCartridgeAmmo #Sunrise-Edit
-    proto: BulletLightRiflePractice
+  - type: CartridgeAmmo
+    proto: BulletLightRifleTracePractice
   - type: Sprite
     layers:
       - state: base
@@ -46,10 +94,9 @@
 - type: entity
   id: CartridgeLightRifleIncendiary
   name: cartridge (.30 rifle incendiary)
-  parent: BaseCartridgeLightRifle
-  description: A classic intermediate cartridge used by many combat rifles and LMGs. Incendiary ammunition contains a self-igniting compound that sets the target ablaze.
+  parent: BaseCartridgeLightRifleSP
   components:
-  - type: HitScanCartridgeAmmo #Sunrise-Edit
+  - type: CartridgeAmmo
     proto: BulletLightRifleIncendiary
   - type: Sprite
     layers:
@@ -62,11 +109,10 @@
 - type: entity
   id: CartridgeLightRifleUranium
   name: cartridge (.30 rifle uranium)
-  parent: BaseCartridgeLightRifle
-  description: A classic intermediate cartridge used by many combat rifles and LMGs. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating the target from the inside.
+  parent: BaseCartridgeLightRifleSP
   components:
-  - type: HitScanCartridgeAmmo #Sunrise-Edit
-    proto: BulletLightRifleUranium
+  - type: CartridgeAmmo
+    proto: BulletLightRifleTraceUranium
   - type: Sprite
     layers:
       - state: base

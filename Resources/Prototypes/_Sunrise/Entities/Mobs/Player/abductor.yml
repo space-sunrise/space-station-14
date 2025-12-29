@@ -33,6 +33,10 @@
   - type: Loadout
     prototypes:
       - AbductorScientistGear
+  - type: GhostPanelAntagonistMarker
+    name: abductors-ghost-role-name
+    description: abductors-ghost-role-desc
+    priority: 65
 
 - type: entity
   name: abductor agent
@@ -52,6 +56,10 @@
   - type: Loadout
     prototypes:
       - AbductorAgentGear
+  - type: GhostPanelAntagonistMarker
+    name: abductors-ghost-role-name
+    description: abductors-ghost-role-desc
+    priority: 65
 
 - type: startingGear
   id: AbductorScientistGear
@@ -80,6 +88,52 @@
   - Wonderprod
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  id: AbductorAgentSpawner
+  parent: MarkerBase
+  name: abductor agent spawner
+  components:
+  - type: GhostRole
+    name: abductors-ghost-role-agent
+    description: abductors-ghost-role-desc
+    rules: abductors-ghost-role-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostRoleMobSpawner
+    prototype: MobAbductorAgent
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Structures/Wallmounts/signs.rsi
+        state: radiation
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  id: AbductorScientistSpawner
+  parent: MarkerBase
+  name: abductor scientist spawner
+  components:
+  - type: GhostRole
+    name: abductors-ghost-role-scientist
+    description: abductors-ghost-role-desc
+    rules: abductors-ghost-role-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostRoleMobSpawner
+    prototype: MobAbductorScientist
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Structures/Wallmounts/signs.rsi
+        state: radiation
+
+- type: entity
   name: abductor agent spawner
   id: SpawnPointAbductorAgent
   parent: MarkerBase
@@ -93,43 +147,11 @@
         state: radiation
 
 - type: entity
-  categories: [ HideSpawnMenu, Spawner ]
-  parent: BaseAntagSpawner
-  id: AbductorAgentSpawner
-  components:
-  - type: GhostRole
-    name: abductors-ghost-role-name
-    description: abductors-ghost-role-desc
-    rules: abductors-ghost-role-rules
-  - type: Sprite
-    sprite: Markers/jobs.rsi
-    layers:
-      - state: green
-      - sprite: Structures/Wallmounts/signs.rsi
-        state: radiation
-
-- type: entity
   name: abductor scientist spawner
   id: SpawnPointAbductorScientist
   parent: MarkerBase
   components:
   - type: SpawnPoint
-  - type: Sprite
-    sprite: Markers/jobs.rsi
-    layers:
-      - state: green
-      - sprite: Structures/Wallmounts/signs.rsi
-        state: radiation
-
-- type: entity
-  categories: [ HideSpawnMenu, Spawner ]
-  parent: BaseAntagSpawner
-  id: AbductorScientistSpawner
-  components:
-  - type: GhostRole
-    name: abductors-ghost-role-name
-    description: abductors-ghost-role-desc
-    rules: abductors-ghost-role-rules
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:

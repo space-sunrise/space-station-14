@@ -32,13 +32,13 @@ public sealed class EmitSoundOnWearerMoveSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<EmitSoundOnWearerMoveComponent, PhysicsComponent, TransformComponent, ClothingComponent>();
-        while (query.MoveNext(out var uid, out var emitSoundOnMoveComponent, out var physics, out var xform, out var clothing))
+        var query = EntityQueryEnumerator<EmitSoundOnWearerMoveComponent, TransformComponent, ClothingComponent>();
+        while (query.MoveNext(out var uid, out var emitSoundOnMoveComponent, out var xform, out var clothing))
         {
             if (xform.GridUid == null)
                 continue;
 
-            if (emitSoundOnMoveComponent.RequiresGravity && _gravity.IsWeightless(uid, physics, xform))
+            if (emitSoundOnMoveComponent.RequiresGravity && _gravity.IsWeightless(uid))
                 continue;
 
             var wearer = xform.ParentUid;

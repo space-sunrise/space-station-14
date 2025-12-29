@@ -17,7 +17,7 @@
   - type: PhysicalComposition # 50% of the amount of cloth you'd obtain upon butchering
     materialComposition:
       Cloth: 150
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:
@@ -83,15 +83,13 @@
     - NudeBottom # INTERACTIONS
   # SUNRISE EDIT
 
-  # SUNRISE EDIT
 - type: entity
   abstract: true
-  parent: ClothingUniformBase
-  id: ClothingUniformCommand
+  id: ClothingUniformFoldableBase
   components:
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
-    - CommandSuit
-  # SUNRISE EDIT
+  - type: Foldable
+    canFoldInsideContainer: true
+    unfoldVerbText: unfold-verb-clothing-jacket
+    foldVerbText: fold-verb-clothing-jacket
+  - type: FoldableClothing
+    foldedEquippedPrefix: folded

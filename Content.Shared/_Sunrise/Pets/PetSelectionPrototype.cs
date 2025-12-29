@@ -4,11 +4,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.Pets;
 
-[Prototype("petSelection")]
-public sealed class PetSelectionPrototype : IPrototype
+[Prototype]
+public sealed partial class PetSelectionPrototype : IPrototype
 {
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     [DataField]
     public LocId Name { get; private set; }

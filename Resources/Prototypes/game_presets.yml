@@ -50,7 +50,8 @@
 #    - BloodCult
 #    - AssaultOps
 #    - SubGamemodesRule
-#    - KesslerSyndromeScheduler
+#    - Xenoborgs
+    - KesslerSyndromeScheduler
 #    - RampingStationEventScheduler
 #    - SpaceTrafficControlEventScheduler
 #    - BasicRoundstartVariation
@@ -73,6 +74,7 @@
 #    - Revolutionary
 #    - Zombie
 #    - Wizard
+    - Xenoborgs
 #    - FleshCult
 #    - BloodCult
 #    - AssaultOps
@@ -115,51 +117,43 @@
   - BasicRoundstartVariation
 
 - type: gamePreset
+  id: Dynamic
+  alias:
+  - dynamic
+  - multiantag
+  - director
+  name: dynamic-title
+  showInVote: true # Sunrise-Edit
+  description: dynamic-description
+  rules:
+  - DynamicRule
+  - DummyNonAntag
+  - DynamicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
   id: Secret
   alias:
     - secret
     - sekrit
   name: secret-title
   showInVote: true
-  hide: true # Sunrise-Edit
   description: secret-description
   rules:
     - Secret
 
-#- type: gamePreset
-#  id: SecretExtended #For Admin Use: Runs Extended but shows "Secret" in lobby.
-#  alias:
-#    - secretextended
-#  name: secret-title
-#  showInVote: false #Admin Use
-#  description: secret-description
-#  rules:
-#    - BasicStationEventScheduler
-#    - MeteorSwarmScheduler
-#    - SpaceTrafficControlEventScheduler
-#    - BasicRoundstartVariation
-
-#- type: gamePreset
-#  id: SecretGreenshift #For Admin Use: Runs Greenshift but shows "Secret" in lobby.
-#  alias:
-#  - secretgreenshift
-#  name: secret-title
-#  showInVote: false #Admin Use
-#  description: secret-description
-#  rules:
-#  - SpaceTrafficControlFriendlyEventScheduler
-#  - BasicRoundstartVariation
-
-#- type: gamePreset
-#  id: Sandbox
-#  alias:
-#    - sandbox
-#  name: sandbox-title
-#  description: sandbox-description
-#  showInVote: false # Not suitable for use without admin intervention, since entity spamming can quickly crash a server
-#  maxPlayers: 5
-#  rules:
-#    - Sandbox
+- type: gamePreset
+  id: Sandbox
+  alias:
+    - sandbox
+  name: sandbox-title
+  description: sandbox-description
+  showInVote: false # Not suitable for use without admin intervention, since entity spamming can quickly crash a server
+  maxPlayers: 5
+  rules:
+    - Sandbox
 
 - type: gamePreset
   id: Traitor
@@ -174,7 +168,7 @@
   rules:
   - DummyNonAntagChance
   - Traitor
-  - SubGamemodesRule
+  - SubGamemodesRuleNoWizard
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -204,7 +198,8 @@
   minPlayers: 20 # Sunrise-Edit: 20 players for NUKEOPS
   rules:
   - Nukeops
-  - DummyNonAntagChance #sunrise-edit
+  - DummyNonAntagChance
+  - SubGamemodesRuleNoWizard
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -224,6 +219,7 @@
   rules:
   - DummyNonAntagChance
   - Revolutionary
+  - SubGamemodesRuleNoWizard
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -240,6 +236,22 @@
   - Wizard
   - DummyNonAntagChance
   - SubGamemodesRuleNoWizard #No Dual Wizards at the start, midround is fine
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Xenoborgs
+  alias:
+    - xenoborgs
+  name: xenoborgs-title
+  description: xenoborgs-description
+  showInVote: false
+  rules:
+  - Xenoborgs
+  - DummyNonAntagChance
+  - SubGamemodesRuleNoWizardNoXenoborg # no two motherships
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler

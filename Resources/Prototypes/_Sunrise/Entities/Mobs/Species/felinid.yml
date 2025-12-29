@@ -1,13 +1,12 @@
 - type: entity
   save: false
   name: Urist McFelinid
-  parent: BaseMobSpeciesOrganic
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable]
   id: MobFelinidBase
   abstract: true
   components:
   - type: Interactions
   - type: MultiHandedItem
-  - type: Absorbable
   - type: OwOAccent
   - type: Speech
     speechVerb: Felinid
@@ -402,13 +401,20 @@
           32:
             sprite: _Sunrise/Mobs/Species/Human/Distrofik/displacement.rsi
             state: back
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - Felinid
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 150
+        density: 100
         restitution: 0.0
         mask:
         - MobMask
@@ -462,7 +468,7 @@
       types:
         Slash: 3
   - type: Stamina
-    critThreshold: 100
+    baseCritThreshold: 100
   - type: FootprintEmitter
   - type: Vocal
     sounds:
@@ -492,7 +498,7 @@
     - reagents: [ Water, SpaceCleaner ]
       methods: [ Touch ]
       effects:
-      - !type:WashCreamPieReaction
+      - !type:WashCreamPie
       - !type:Emote
         emote: Hisses
         showInChat: true
@@ -500,8 +506,31 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4.5
-  - type: Felinid
   - type: Carriable
+    requiresNestingMob: true
+  - type: ToggleableNightVision
+    effect: EffectNightVisioSpecies
+  - type: FlashModifier
+    modifier: 2
+  - type: FelinidLicking
+    damage:
+      types:
+        Blunt: -2
+        Slash: -3
+        Piercing: -2
+    stopBleeding: true
+    bloodlossModifier: -1.0
+    delay: 5
+    healingBeginSound:
+      path: "/Audio/_Sunrise/Felinid/lick.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/_Sunrise/Felinid/lick.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
 
 - type: entity
   save: false

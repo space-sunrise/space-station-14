@@ -24,7 +24,6 @@
   access:
   - Security
   - Brig
-  - Service
   - External
   - Cryogenics
   special:
@@ -38,6 +37,11 @@
     head: ClothingHeadHatBeretSecurity
     id: SeniorOfficerPDA
     ears: ClothingHeadsetSecurity
-  storage:
-    back:
-    - WeaponDisablerSMG
+
+- type: chameleonOutfit
+  id: SeniorOfficerChameleonOutfit
+  job: SeniorOfficer
+  equipment:
+    neck: Dinkystar
+    mask: ClothingMaskGasSecurity
+    gloves: ClothingHandsGlovesCombat

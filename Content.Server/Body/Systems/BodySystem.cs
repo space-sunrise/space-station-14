@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Server.Body.Components;
 using Content.Server.Ghost;
 using Content.Server.Humanoid;
 using Content.Shared.Body.Components;
@@ -15,6 +14,7 @@ using Content.Shared.Movement.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Timing;
 using Robust.Shared.Player;
+using Content.Server._Starlight.Medical.Limbs;
 
 namespace Content.Server.Body.Systems;
 
@@ -26,6 +26,7 @@ public sealed class BodySystem : SharedBodySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private readonly LimbSystem _limbSystem = default!;//🌟Starlight🌟
 
     public override void Initialize()
     {
@@ -75,6 +76,9 @@ public sealed class BodySystem : SharedBodySystem
             var layers = HumanoidVisualLayersExtension.Sublayers(layer.Value);
             _humanoidSystem.SetLayersVisibility(bodyEnt.Owner, layers, visible: true);
         }
+
+        if (TryComp<HumanoidAppearanceComponent>(bodyEnt, out var humanoid))
+            _limbSystem.AddLimbVisual((bodyEnt, humanoid), partEnt); //🌟Starlight🌟
     }
 
     protected override void RemovePart(

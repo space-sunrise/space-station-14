@@ -113,7 +113,7 @@
   - type: Machine
     board: AutolatheMachineCircuitboard
   - type: MaterialStorage
-    whitelist:
+    whitelist: &StandardMaterialWhitelist
       tags:
         - Sheet
         - RawMaterial
@@ -129,6 +129,8 @@
     - PartsStatic
     - AtmosStatic
     - CablesStatic
+    - PaperworkStatic
+    - TowelsStatic
     - CargoStatic
     - MaterialsStatic
     - BasicChemistryStatic
@@ -140,7 +142,8 @@
     - HydroponicsStatic
   - type: EmagLatheRecipes
     emagStaticPacks:
-    - SecurityAmmoStatic
+    - SecurityStaticSunrise # Sunrise-Add
+    - SyndicateAmmoStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -187,13 +190,7 @@
   - type: Machine
     board: ProtolatheMachineCircuitboard
   - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
-        - SheetPaper #Sunrise-edit
-
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
   - type: Lathe
     idleState: icon
@@ -218,8 +215,8 @@
     - Janitor
     - Instruments
     - Equipment
-    - FauxTiles
     # Sunrise-Start
+    - Modsuits
     - PowerCages
     - CargoSuit
     - SurgeryDynamicSunrise
@@ -227,13 +224,17 @@
     # Sunrise-End
   - type: EmagLatheRecipes
     emagDynamicPacks:
-    - SecurityAmmo
+    # - SecurityAmmo # Sunrise-edit
     - SecurityExplosives
     - SecurityEquipment
     - SecurityWeapons
     - SecurityDynamicSunrise # Sunrise-Add
     - SecurityDynamicSunriseClothing # Sunrise-Add
     - SecurityDynamicSunriseMech # Sunrise-Add
+    - MedicalCyberlimbDynamic # Sunrise-Add
+    - MedicalCyberOrgansDynamic # Sunrise-Add
+    - MedicalImplantDynamic # Sunrise-Add
+    - SyndicateAmmoSunrise # Sunrise-Add
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -275,7 +276,6 @@
     - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
-    - CircuitFloorsStatic
     - CircuitStaticSunrise # Sunrise-Add
     dynamicPacks:
     - EngineeringBoards
@@ -291,11 +291,7 @@
     emagDynamicPacks:
     - SecurityBoards
   - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
   - type: RequireProjectileTarget
 
@@ -341,12 +337,11 @@
     - MechParts
     - MechEquipment
     - RoboticsDynamicSunrise # Sunrise-Add
+    - MedicalCyberlimbDynamic # Sunrise-Add
+    - MedicalCyberOrgansDynamic # Sunrise-Add
+    - MedicalImplantDynamic # Sunrise-Add
   - type: MaterialStorage
-    whitelist:
-      tags:
-      - Sheet
-      - RawMaterial
-      - Ingot
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
   - type: GuideHelp
     guides:
@@ -418,7 +413,7 @@
     staticPacks:
     - SecurityEquipmentStatic
     - SecurityPracticeStatic
-    - SecurityAmmoStatic
+    #- SecurityAmmoStatic
     - SecurityWeaponsStatic
     - SecurityStaticSunrise # Sunrise-Add
     dynamicPacks:
@@ -433,61 +428,28 @@
     - SecurityDynamicSunrise # Sunrise-Add
     - SecurityDynamicSunriseClothing # Sunrise-Add
     - SecurityDynamicSunriseMech # Sunrise-Add
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - SyndicateAmmoStatic
   - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
   - type: LatheAnnouncing
     channels: [Security]
-
-  # Sunrise-Start
-- type: entity
-  id: CentcomTechFab
-  parent: BaseLatheLube
-  name: centcom techfab
-  suffix: ERT
-  description: Prints equipment for CentCom rapid response squads. "Cost-optimized model" has reduced fabrication speed and limited selection.
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Structures/Machines/techfab.rsi
-    layers:
-    - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: centcom
-    - state: unlit
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: AmmoTechFabCircuitboard
-  - type: Lathe
-    idleState: icon
-    runningState: icon
-    materialUseMultiplier: 1
-    timeMultiplier: 1.75
-    staticPacks:
-    - SecurityAmmoStatic
-    - SecurityStaticSunrise
-    dynamicPacks:
-    - SecurityEquipment
-    - SecurityExplosives
-    - SecurityAmmo
-    - SecurityWeapons
-    - SecurityDynamicSunrise
-  - type: MaterialStorage
+  # sunrise-start
+  - type: BlueprintReceiver
     whitelist:
       tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
-  - type: OreSiloClient
-  # Sunrise-End
+      - BlueprintAutolathe
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      blueprint: !type:Container
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - blueprint
+  # sunrise-end
 
 - type: entity
   id: AmmoTechFab
@@ -514,13 +476,13 @@
       idleState: icon
       runningState: icon
       staticPacks:
-      - SecurityAmmoStatic
+    #  - SecurityAmmoStatic # Sunrise - comment
+      - SecurityStaticSunrise # Sunrise-Add
+    - type: EmagLatheRecipes
+      emagStaticPacks:
+      - SyndicateAmmoStatic
     - type: MaterialStorage
-      whitelist:
-        tags:
-          - Sheet
-          - RawMaterial
-          - Ingot
+      whitelist: *StandardMaterialWhitelist
     - type: OreSiloClient
 
 - type: entity
@@ -558,6 +520,9 @@
     - Chemistry
     - SurgeryDynamicSunrise # Sunrise-Add
     - MedicalDynamicSunrise # Sunrise-Add
+    - MedicalCyberlimbDynamic # Sunrise-Add
+    - MedicalCyberOrgansDynamic # Sunrise-Add
+    - MedicalImplantDynamic # Sunrise-Add
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
@@ -587,6 +552,7 @@
     idleState: icon
     runningState: building
     staticPacks:
+    - TowelsStatic
     - ClothingCivilian
     - ClothingCargo
     - ClothingCommand
@@ -606,11 +572,7 @@
     - ClothingCentComm
     - ClothingSyndie
   - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
 
 - type: entity
@@ -656,6 +618,10 @@
     - BioGenIngredientsStatic
     - BioGenMaterialsStatic
     - BioGenStaticSunrise # Sunrise-Add
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - BioGenEmagStatic
+    - HostileCubesStatic
 
 - type: entity
   parent: BaseLathe
@@ -765,13 +731,16 @@
     idleState: icon
     runningState: building
     staticPacks:
-    - FloorTilesStatic
+    - FloorDarkTilesStatic
+    - FloorSteelTilesStatic
+    - FloorWhiteTilesStatic
+    - FloorMaintsTilesStatic
+    - FloorWoodTilesStatic
+    - FloorConcreteTilesStatic
+    - CircuitFloorsStatic
+    - FloorMarbleTilesStatic
+    dynamicPacks:
+    - FauxTiles
   - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - Metal
-        - Wooden
-        - RawMaterial
-        - Plastic
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient

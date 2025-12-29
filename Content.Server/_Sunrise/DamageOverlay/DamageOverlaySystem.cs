@@ -2,6 +2,7 @@ using Content.Server.Popups;
 using Content.Shared._Sunrise.DamageOverlay;
 using Content.Shared._Sunrise.Helpers;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
 using Robust.Shared.Map;
@@ -20,7 +21,7 @@ public sealed class DamageOverlaySystem : EntitySystem
     [Dependency] private readonly ISharedPlayerManager _player = default!;
 
     private static readonly HashSet<ICommonSession> DisabledSessions = [];
-    private static readonly Dictionary<ICommonSession, DamageOverlaySettings> PlayerSettings = new ();
+    private readonly Dictionary<ICommonSession, DamageOverlaySettings> _playerSettings = new ();
 
     public override void Initialize()
     {
@@ -33,20 +34,20 @@ public sealed class DamageOverlaySystem : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => CleanUp());
     }
 
-    private static void CleanUp()
+    private void CleanUp()
     {
         DisabledSessions.Clear();
-        PlayerSettings.Clear();
+        _playerSettings.Clear();
     }
 
-    private static async void OnDamageOverlayOption(DamageOverlayOptionEvent ev, EntitySessionEventArgs args)
+    private async void OnDamageOverlayOption(DamageOverlayOptionEvent ev, EntitySessionEventArgs args)
     {
         if (ev.Enabled)
             DisabledSessions.Remove(args.SenderSession);
         else
             DisabledSessions.Add(args.SenderSession);
 
-        PlayerSettings.TryAdd(args.SenderSession, new DamageOverlaySettings(ev.SelfEnabled, ev.StructuresEnabled));
+        _playerSettings.TryAdd(args.SenderSession, new DamageOverlaySettings(ev.SelfEnabled, ev.StructuresEnabled));
     }
 
     private void OnDamageChange(Entity<DamageOverlayComponent> ent, ref DamageChangedEvent args)
@@ -108,12 +109,12 @@ public sealed class DamageOverlaySystem : EntitySystem
         return true;
     }
 
-    private static bool IsDisabledByClient(ICommonSession session, Entity<DamageOverlayComponent> target)
+    private bool IsDisabledByClient(ICommonSession session, Entity<DamageOverlayComponent> target)
     {
         if (DisabledSessions.Contains(session))
             return true;
 
-        if (PlayerSettings.TryGetValue(session, out var playerSettings))
+        if (_playerSettings.TryGetValue(session, out var playerSettings))
         {
             if (target.Comp.IsStructure && !playerSettings.StructureDamage)
                 return true;

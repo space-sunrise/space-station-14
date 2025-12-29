@@ -2,6 +2,7 @@
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Structures;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Doors;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
@@ -65,7 +66,7 @@ public sealed class RunicDoorSystem : EntitySystem
         _throwing.TryThrow(user, direction, component.ThrowSpeed, airlock, 10F);
         _damage.TryChangeDamage(user, component.Damage, origin: airlock);
 
-        _stunSystem.TryParalyze(user, TimeSpan.FromSeconds(component.ParalyzeTime), true);
+        _stunSystem.TryAddParalyzeDuration(user, TimeSpan.FromSeconds(component.ParalyzeTime));
         return false;
     }
 }

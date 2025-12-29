@@ -61,6 +61,7 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/vp78/tiny.rsi
   - type: Gun
+    fireRate: 4.25
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -72,18 +73,17 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineVP70
+        startingItem: MagazinePistol40FMJ
         insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_unload.ogg
         priority: 2
         whitelist:
           tags:
-          - MagazinePistol
-          - MagazineVP70
-          - MagazinePistolHighCapacity
+          - MagazinePistolDP
+          - MagazineVP78
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistol
+        startingItem: CartridgePistol40FMJ # .45 ACP
         priority: 1
         whitelist:
           tags:
@@ -137,7 +137,7 @@
           - MagazineGlock22
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistol
+        startingItem: CartridgePistolSP
         priority: 1
         whitelist:
           tags:
@@ -153,6 +153,26 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_cocked.ogg
+
+- type: entity
+  name: Glock-22 Metus
+  description: Made to order for the security of the Metus planetary prison. Semi-automatic design. Uses .35 Auto caliber ammunition.
+  parent: WeaponPistolG22
+  id: WeaponPistolG22Metus
+  suffix: Sunrise
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22_metus/big.rsi
+  - type: Gun
+    fireRate: 3.4
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_shot.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        startingItem: MagazinePistolHighCapacityRubber
 
 - type: entity
   name: Glock-22 Auto
@@ -180,7 +200,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineGlock22
+        startingItem: null
         insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
         priority: 2
@@ -191,7 +211,7 @@
           - MagazineGlock22
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistol
+        startingItem: null
         priority: 1
         whitelist:
           tags:
@@ -241,7 +261,7 @@
           - MagazineHIBrowning
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistol
+        startingItem: CartridgePistolFMJ
         priority: 1
         whitelist:
           tags:
@@ -264,12 +284,13 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/acp14/big.rsi
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/acp14/tiny.rsi
+    storedOffset: 0,-1
   - type: Gun
-    minAngle: 4.35
-    maxAngle: 18
-    angleIncrease: 5
-    angleDecay: 9
-    fireRate: 2.35
+    minAngle: 3.75
+    maxAngle: 16
+    angleIncrease: 2.75
+    angleDecay: 15
+    fireRate: 4
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -287,15 +308,15 @@
         priority: 2
         whitelist:
           tags:
-          - MagazineMagnum
           - MagazineACP14
+          - MagazinePistolDP
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeMagnum
+        startingItem: CartridgePistol40SP
         priority: 1
         whitelist:
           tags:
-          - CartridgeMagnum
+          - CartridgePistolDP
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -321,6 +342,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
 
+# Sidearm HOS and Nukies.
 - type: entity
   name: Desert Eagle
   parent: BaseWeaponPistolSunrise
@@ -331,11 +353,11 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle/tiny.rsi
   - type: Gun
-    minAngle: 4
-    maxAngle: 16
-    angleIncrease: 4
-    angleDecay: 3
-    fireRate: 3.75
+    minAngle: 3.5
+    maxAngle: 15
+    angleIncrease: 5
+    angleDecay: 10
+    fireRate: 5
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -358,7 +380,7 @@
           - MagazineDeagle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeMagnum
+        startingItem: CartridgeMagnumSP
         priority: 1
         whitelist:
           tags:
@@ -372,6 +394,25 @@
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
 
+- type: entity
+  name: Desert Eagle Metus
+  description: Scuffs from old hands mark the handle, heavy and steady, like a verdict passed more than once without trial.
+  parent: WeaponPistolDeagle
+  id: WeaponPistolDeagleMetus
+  suffix: Sunrise
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle_metus/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle_metus/tiny.rsi
+  - type: Gun
+    fireRate: 3
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+
+# Sidearm for detectives.
 - type: entity
   parent: BaseWeaponRevolver
   id: WeaponRevolverSpearhead
@@ -411,19 +452,19 @@
     sprintModifier: 0.97
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 2.75
-    pvsIncrease: 1
-  - type: MeleeWeapon
-    angle: 60
-    range: 0.9
-    damage:
-      types:
-        Blunt: 10
-    bluntStaminaDamageFactor: 2.0
-    attackRate: 1
-    autoAttack: false
-  - type: AltFireMelee
-    attackType: Light
+    maxOffset: 2.5
+    pvsIncrease: 0.25
+  # - type: MeleeWeapon
+  #   angle: 60
+  #   range: 0.9
+  #   damage:
+  #     types:
+  #       Blunt: 10
+  #   bluntStaminaDamageFactor: 2.0
+  #   attackRate: 1
+  #   autoAttack: false
+  # - type: AltFireMelee
+  #   attackType: Light
 
 - type: entity
   parent: WeaponRevolverSpearhead
@@ -454,9 +495,9 @@
     selectedMode: SemiAuto
     minAngle: 4.7
     maxAngle: 25
-    angleIncrease: 1.75
+    angleIncrease: 2
     angleDecay: 14
-    fireRate: 8.4
+    fireRate: 8
     availableModes:
     - SemiAuto
     useKey: true
@@ -467,7 +508,63 @@
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 2
-    pvsIncrease: 1
+    pvsIncrease: 0.2
   - type: SpeedModifiedOnWield
     walkModifier: 0.99
     sprintModifier: 0.99
+
+- type: entity
+  name: Golden Desert Eagle
+  parent: WeaponPistolDeagle
+  id: WeaponPistolDeagleGolden
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/goldDeagle/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/goldDeagle/tiny.rsi
+
+- type: entity
+  name: Tac-Tec
+  parent: BaseWeaponPistolSunrise
+  id: WeaponPistolTec9
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/tec9tactical/big.rsi
+    scale: 0.63, 0.63
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/tec9tactical/tiny.rsi
+  - type: ChamberMagazineAmmoProvider
+    boltClosed: null
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistolSubMachineGunCaseless
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 1
+        whitelist:
+          tags:
+          - MagazinePistolCaselessRifle
+          - MagazineCaselessRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeCaselessRifle
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeCaselessRifle
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot

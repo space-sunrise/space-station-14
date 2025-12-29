@@ -1,4 +1,5 @@
-﻿using Content.Server.Chat.Systems;
+﻿using System.Reflection.Metadata;
+using Content.Server.Chat.Systems;
 using Content.Shared._Sunrise.Animations;
 using Content.Shared._Sunrise.Flip;
 using Content.Shared._Sunrise.Jump;
@@ -6,9 +7,11 @@ using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Emoting;
 using Content.Shared.Gravity;
 using Content.Shared.Standing;
+using Content.Shared.Stunnable;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -16,7 +19,8 @@ namespace Content.Server._Sunrise.Animations;
 
 public sealed class EmoteAnimationSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStandingStateSystem _sharedStanding = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly SharedJumpSystem _jumpSystem = default!;
     [Dependency] private readonly SharedFlipSystem _flipSystem = default!;
@@ -28,27 +32,11 @@ public sealed class EmoteAnimationSystem : EntitySystem
     {
         SubscribeLocalEvent<EmoteAnimationComponent, ComponentGetState>(OnGetState);
         SubscribeLocalEvent<EmoteAnimationComponent, EmoteEvent>(OnEmote);
-        SubscribeLocalEvent<EmoteAnimationComponent, PlayEmoteMessage>(OnPlayEmote);
-        SubscribeLocalEvent<EmoteAnimationComponent, AnimationEmoteAttemptEvent>(CheckEmote);
     }
 
-    private void CheckEmote(EntityUid uid, EmoteAnimationComponent component, AnimationEmoteAttemptEvent args)
+    private void OnGetState(Entity<EmoteAnimationComponent> ent, ref ComponentGetState args)
     {
-        if (args.Emote.ID == "Jump" && !_jumpSystem.CanJump(uid))
-            args.Cancel();
-    }
-
-    private void OnPlayEmote(EntityUid uid, EmoteAnimationComponent component, PlayEmoteMessage args)
-    {
-        if (!_prototypeManager.TryIndex(args.ProtoId, out var proto))
-            return;
-
-        _chat.TryEmoteWithChat(uid, proto.ID);
-    }
-
-    private void OnGetState(EntityUid uid, EmoteAnimationComponent component, ref ComponentGetState args)
-    {
-        args.State = new EmoteAnimationComponent.EmoteAnimationComponentState(component.AnimationId);
+        args.State = new EmoteAnimationComponent.EmoteAnimationComponentState(ent.Comp.AnimationId);
     }
 
     private void OnEmote(EntityUid uid, EmoteAnimationComponent component, ref EmoteEvent args)
@@ -66,10 +54,10 @@ public sealed class EmoteAnimationSystem : EntitySystem
             if (_gravity.IsWeightless(uid))
                 return;
 
-            if (_sharedStanding.IsDown(uid))
-                _sharedStanding.TryStandUp(uid);
+            if (_standing.IsDown(uid))
+                _stun.TryStanding(uid);
             else
-                _sharedStanding.TryLieDown(uid);
+                _stun.TryKnockdown(uid, TimeSpan.FromSeconds(0.5), true, false, false);
 
             return;
         }
@@ -87,7 +75,7 @@ public sealed class EmoteAnimationSystem : EntitySystem
         if (emoteId == "FallOnNeck")
         {
             var damage = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Blunt"), 100);
-            _damageableSystem.TryChangeDamage(uid, damage, true, useVariance: false, useModifier: false);
+            _damageableSystem.ChangeDamage(uid, damage, true, useVariance: false, ignoreGlobalModifiers: true);
         }
 
         component.AnimationId = emoteId;

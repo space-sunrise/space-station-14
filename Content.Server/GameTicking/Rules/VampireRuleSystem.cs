@@ -20,6 +20,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using System.Text;
+using Content.Shared.Roles.Components;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -88,6 +89,7 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
 
         // make sure it's initial chems are set to max
         var vampireComponent = EnsureComp<VampireComponent>(target);
+        var alertsComponent = EnsureComp<AlertsComponent>(target);
         EnsureComp<VampireIconComponent>(target);
         var vampireAlertComponent = EnsureComp<VampireAlertComponent>(target);
         var interfaceComponent = EnsureComp<UserInterfaceComponent>(target);
@@ -107,8 +109,8 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
 
         _vampire.AddStartingAbilities(vampire);
         _vampire.MakeVulnerableToHoly(vampire);
-        _alerts.ShowAlert(vampire, vampireAlertComponent.BloodAlert);
-        _alerts.ShowAlert(vampire, vampireAlertComponent.StellarWeaknessAlert);
+        _alerts.ShowAlert((vampire, alertsComponent), vampireAlertComponent.BloodAlert);
+        _alerts.ShowAlert((vampire, alertsComponent), vampireAlertComponent.StellarWeaknessAlert);
 
         return true;
     }

@@ -14,13 +14,13 @@
 			"name": "base"
 		},
         {
-			"name": "mode-disabler"
+			"name": "disable"
 		},
         {
-			"name": "mode-lethal"
+			"name": "lethal"
 		},
         {
-			"name": "mode-stun"
+			"name": "stun"
 		},
 		{
 			"name": "mag-unshaded-1"

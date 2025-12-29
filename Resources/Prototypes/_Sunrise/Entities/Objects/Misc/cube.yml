@@ -4,18 +4,20 @@
   id: VariantCubeBoxSunrise
   description: Both kobold, mothroach, pig, slime, chiken cubes and monkey cubes. Just add water!
   components:
-  - type: StorageFill
-    contents:
-      - id: KoboldCubeWrapped
-        amount: 2
-      - id: MonkeyCubeWrapped
-        amount: 2
-      - id: SlimeCubeWrapped
-        amount: 2
-      - id: InferiorVulpkaninCubeWrapped
-        amount: 2
-      - id: FelinidCubeWrapped
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: KoboldCubeWrapped
+          amount: 2
+        - id: MonkeyCubeWrapped
+          amount: 2
+        - id: SlimeCubeWrapped
+          amount: 2
+        - id: InferiorVulpkaninCubeWrapped
+          amount: 2
+        - id: FelinidCubeWrapped
+          amount: 2
   - type: Sprite
     sprite: Objects/Misc/monkeycube.rsi
     state: box_variant

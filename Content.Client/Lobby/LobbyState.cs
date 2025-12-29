@@ -6,6 +6,7 @@ using Content.Client.Audio;
 using Content.Client.GameTicking.Managers;
 using Content.Client.Lobby.UI;
 using Content.Client.Message;
+using Content.Client.Playtime;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
 using Content.Shared.CCVar;
@@ -16,22 +17,20 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Client.Changelog;
 using Content.Client.Parallax.Managers;
-using Content.Server.GameTicking.Prototypes;
 using Content.Shared._Sunrise.Lobby;
 using Content.Shared._Sunrise.ServersHub;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.GameTicking;
-using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Serialization.Markdown.Mapping;
-using Serilog;
+using Content.Shared.GameTicking.Prototypes;
 
 namespace Content.Client.Lobby
 {
@@ -44,6 +43,8 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IVoteManager _voteManager = default!;
+        [Dependency] private readonly ClientsidePlaytimeTrackingManager _playtimeTracking = default!;
+        [Dependency] private readonly IPrototypeManager _protoMan = default!;
         [Dependency] private readonly IParallaxManager _parallaxManager = default!;
         [Dependency] private readonly ISerializationManager _serialization = default!;
         [Dependency] private readonly IResourceManager _resource = default!;
@@ -51,7 +52,6 @@ namespace Content.Client.Lobby
         [Dependency] private readonly ContributorsManager _contributorsManager = default!;
         [Dependency] private readonly ChangelogManager _changelogManager = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
@@ -261,10 +261,11 @@ namespace Content.Client.Lobby
             }
             else
             {
+                //Lobby!.StartTime.Text = string.Empty;
+                Lobby!.ReadyButton.Pressed = _gameTicker.AreWeReady;
                 Lobby!.ReadyButton.Text = Loc.GetString(Lobby!.ReadyButton.Pressed ? "lobby-state-player-status-ready": "lobby-state-player-status-not-ready");
                 Lobby!.ReadyButton.ToggleMode = true;
                 Lobby!.ReadyButton.Disabled = false;
-                Lobby!.ReadyButton.Pressed = _gameTicker.AreWeReady;
                 Lobby!.ObserveButton.Disabled = true;
                 Lobby!.GhostRolesButton.Disabled = true;
             }
@@ -273,6 +274,26 @@ namespace Content.Client.Lobby
             {
                 Lobby!.ServerInfo.SetInfoBlob(_gameTicker.ServerInfoBlob);
             }
+
+            var minutesToday = _playtimeTracking.PlaytimeMinutesToday;
+            if (minutesToday > 60)
+            {
+                Lobby!.PlaytimeComment.Visible = true;
+
+                var hoursToday = Math.Round(minutesToday / 60f, 1);
+
+                var chosenString = minutesToday switch
+                {
+                    < 180 => "lobby-state-playtime-comment-normal",
+                    < 360 => "lobby-state-playtime-comment-concerning",
+                    < 720 => "lobby-state-playtime-comment-grasstouchless",
+                    _ => "lobby-state-playtime-comment-selfdestructive"
+                };
+
+                Lobby.PlaytimeComment.SetMarkup(Loc.GetString(chosenString, ("hours", hoursToday)));
+            }
+            else
+                Lobby!.PlaytimeComment.Visible = false;
         }
 
         private void UpdateLobbySoundtrackInfo(LobbySoundtrackChangedEvent ev)
@@ -381,7 +402,7 @@ namespace Content.Client.Lobby
 
         private void SetLobbyAnimation(string lobbyAnimation)
         {
-            if (!_prototypeManager.TryIndex<LobbyAnimationPrototype>(lobbyAnimation, out var lobbyAnimationPrototype))
+            if (!_protoMan.TryIndex<LobbyAnimationPrototype>(lobbyAnimation, out var lobbyAnimationPrototype))
                 return;
 
             if (Lobby == null)
@@ -396,7 +417,7 @@ namespace Content.Client.Lobby
 
         private void SetLobbyArt(string lobbyArt)
         {
-            if (!_prototypeManager.TryIndex<LobbyBackgroundPrototype>(lobbyArt, out var lobbyArtPrototype))
+            if (!_protoMan.TryIndex<LobbyBackgroundPrototype>(lobbyArt, out var lobbyArtPrototype))
                 return;
 
             if (Lobby == null)
@@ -410,7 +431,7 @@ namespace Content.Client.Lobby
 
         private void SetLobbyParallax(string lobbyParallax)
         {
-            if (!_prototypeManager.TryIndex<LobbyParallaxPrototype>(lobbyParallax, out var lobbyParallaxPrototype))
+            if (!_protoMan.TryIndex<LobbyParallaxPrototype>(lobbyParallax, out var lobbyParallaxPrototype))
                 return;
 
             if (Lobby == null)

@@ -67,6 +67,7 @@ namespace Content.Client.Lobby
             var collection = IoCManager.Instance!;
             // Sunrise-Sponsors-Start
             var sponsorPrototypes = _sponsorsManager?.GetClientPrototypes().ToArray() ?? [];
+
             profile.EnsureValid(_playerManager.LocalSession!, collection, sponsorPrototypes);
             // Sunrise-Sponsors-End
             var characters = new Dictionary<int, ICharacterProfile>(Preferences.Characters) {[slot] = profile};

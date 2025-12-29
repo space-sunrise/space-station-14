@@ -1,0 +1,27 @@
+ent-DoubloonBase = дублон
+    .desc = Грязная монета, используемая для нечестивых пиратских сделок.
+ent-Doubloon = дублоны
+    .desc = { ent-DoubloonBase.desc }
+    .suffix = 100 ДБ
+ent-Doubloon1 = дублоны
+    .desc = { ent-DoubloonBase.desc }
+    .suffix = 1 ДБ
+ent-Doubloon5 = дублоны
+    .desc = { ent-DoubloonBase.desc }
+    .suffix = 5 ДБ
+ent-Doubloon15 = дублоны
+    .desc = { ent-DoubloonBase.desc }
+    .suffix = 15 ДБ
+ent-Doubloon50 = дублоны
+    .desc = { ent-DoubloonBase.desc }
+    .suffix = 50 ДБ
+ent-PirateUplinkDebug = радио черного рынка
+    .desc = Если вы не админ то как можно скорее верните эту штуку ближайшему админу.
+    .suffix = 999, ДЕБАГ
+ent-ComputerPirateUplink = консоль черного рынка
+    .desc = Старый ржавый терминал, едва держащийся на проводах и удаче. Экран мерцает, но сеть черного рынка все еще отвечает.
+ent-ComputerPirateExchanger = обменник черного рынка
+    .desc = Старый ржавый терминал, едва держащийся на проводах и удаче. Экран мерцает, но сеть черного рынка все еще отвечает.
+ent-ComputerPirateExchangerWallmount = обменник черного рынка
+    .desc = Настенная версия ржавого обменника, еле живая, но все еще подключенная к черному рынку.
+

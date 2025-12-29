@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "delays": [
+        [
+          0.25,
+          0.25,
+          0.25,
+          0.25
+        ]
+      ]
+    },
+    {
+      "name": "icon-ver2",
+      "delays": [
+        [
+          0.25,
+          0.25,
+          0.25,
+          0.25
+        ]
+      ]
+    },
+    {
+      "name": "icon-ver3",
+      "delays": [
+        [
+          0.25,
+          0.25,
+          0.25,
+          0.25
+        ]
+      ]
+    },
+    {
+      "name": "equipped-BACKPACK",
+      "directions": 4
+    }
+  ]
+}

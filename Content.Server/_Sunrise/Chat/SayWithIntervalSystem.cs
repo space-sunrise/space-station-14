@@ -1,7 +1,5 @@
-using Content.Server.Advertise.Components;
 using Content.Server.Chat.Systems;
-using Content.Server.Power.Components;
-using Content.Shared.VendingMachines;
+using Content.Shared.Chat;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;

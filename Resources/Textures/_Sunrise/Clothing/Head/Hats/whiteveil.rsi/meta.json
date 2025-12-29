@@ -1,0 +1,41 @@
+{
+    "version": 1,
+    "license": "CLA",
+    "copyright": "SUNRISE / bulbo44kkey",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "icon"
+      },
+      {
+        "name": "equipped-HELMET",
+        "directions": 4
+      },
+      {
+        "name": "icon-up"
+      },
+      {
+        "name": "up-equipped-HELMET",
+        "directions": 4
+      },
+      {
+        "name": "up-inhand-left",
+        "directions": 4
+      },
+      {
+        "name": "up-inhand-right",
+        "directions": 4
+      },
+      {
+        "name": "inhand-left",
+        "directions": 4
+      },
+      {
+        "name": "inhand-right",
+        "directions": 4
+      }
+    ]
+  }

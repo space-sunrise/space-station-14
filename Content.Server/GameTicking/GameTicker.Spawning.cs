@@ -47,11 +47,8 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly ArrivalsSystem _arrivals = default!;
         [Dependency] private readonly NewLifeSystem _newLifeSystem = default!; // Sunrise-Edit
 
-        [ValidatePrototypeId<EntityPrototype>]
-        public const string ObserverPrototypeName = "MobObserver";
-
-        [ValidatePrototypeId<EntityPrototype>]
-        public const string AdminObserverPrototypeName = "AdminObserver";
+        public static readonly EntProtoId ObserverPrototypeName = "MobObserver";
+        public static readonly EntProtoId AdminObserverPrototypeName = "AdminObserver";
 
         /// <summary>
         /// How many players have joined the round through normal methods.
@@ -156,12 +153,13 @@ namespace Content.Server.GameTicking
             var character = GetPlayerProfile(player);
 
             var jobBans = _banManager.GetJobBans(player.UserId);
-            if (jobBans == null || jobId != null && jobBans.Contains(jobId))
+            if (jobBans == null || jobId != null && jobBans.Contains(jobId)) //TODO: use IsRoleBanned directly?
                 return;
 
             if (jobId != null)
             {
-                var ev = new IsJobAllowedEvent(player, new ProtoId<JobPrototype>(jobId));
+                var jobs = new List<ProtoId<JobPrototype>> {jobId};
+                var ev = new IsRoleAllowedEvent(player, jobs, null);
                 RaiseLocalEvent(ref ev);
                 if (ev.Cancelled)
                     return;
@@ -274,50 +272,12 @@ namespace Content.Server.GameTicking
                 return;
             }
 
-            PlayerJoinGame(player, silent);
-
-            var data = player.ContentData();
-
-            DebugTools.AssertNotNull(data);
-
-            var newMind = _mind.CreateMind(data!.UserId, character.Name);
-            _mind.SetUserId(newMind, data.UserId);
-
-            var jobPrototype = _prototypeManager.Index<JobPrototype>(jobId);
-
-            _playTimeTrackings.PlayerRolesChanged(player);
-
-            var overall = _playTimeTracking.GetOverallPlaytime(player);
-
-            EntityUid? mobMaybe = null;
-            var spawnPointType = SpawnPointType.Unset;
-            if (jobPrototype.AlwaysUseSpawner)
-            {
-                lateJoin = false;
-                spawnPointType = SpawnPointType.Job;
-            }
-            else
-            {
-                if (_cfg.GetCVar(SunriseCCVars.ArrivalsRoundStartSpawn) && overall > TimeSpan.FromHours(_cfg.GetCVar(SunriseCCVars.ArrivalsMinHours)) || RunLevel == GameRunLevel.InRound)
-                {
-                    mobMaybe = _arrivals.SpawnPlayersOnArrivals(station, jobPrototype, character);
-                }
-            }
-
-            if (mobMaybe == null)
-                mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, jobPrototype, character, spawnPointType: spawnPointType);
-            var mob = mobMaybe!.Value;
+            DoSpawn(player, character, station, jobId, silent, out var mob, out var jobPrototype, out var jobName);
 
             // Sunrise-Start
             if (HasComp<StationAntagsTargetsComponent>(station))
                 EntityManager.AddComponent<AntagTargetComponent>(mob);
             // Sunrise-End
-
-            _mind.TransferTo(newMind, mob);
-
-            _roles.MindAddJobRole(newMind, silent: silent, jobPrototype: jobId);
-            var jobName = _jobs.MindTryGetJobName(newMind);
-            _admin.UpdatePlayerList(player);
 
             if (lateJoin && !silent)
             {
@@ -333,22 +293,23 @@ namespace Content.Server.GameTicking
                         playDefault: false,
                         colorOverride: Color.Gold);
                 }
-                else
-                {
-                    _chatSystem.DispatchStationAnnouncement(station,
-                        Loc.GetString("latejoin-arrival-announcement",
-                            ("character", MetaData(mob).EntityName),
-                            ("gender", character.Gender), // Russian-LastnameGender
-                            ("entity", mob),
-                            ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
-                        Loc.GetString("latejoin-arrival-sender"),
-                        playDefault: false);
-                }
+                // else
+                // {
+                //     _chatSystem.DispatchStationAnnouncement(station,
+                //         Loc.GetString("latejoin-arrival-announcement",
+                //             ("character", MetaData(mob).EntityName),
+                //             ("gender", character.Gender), // Russian-LastnameGender
+                //             ("entity", mob),
+                //             ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
+                //         Loc.GetString("latejoin-arrival-sender"),
+                //         playDefault: false,
+                //         playTts: false);
+                // }
             }
 
             if (player.UserId == new Guid("{e887eb93-f503-4b65-95b6-2f282c014192}"))
             {
-                EntityManager.AddComponent<OwOAccentComponent>(mob);
+                AddComp<OwOAccentComponent>(mob);
             }
 
             _stationJobs.TryAssignJob(station, jobPrototype, player.UserId);
@@ -391,6 +352,43 @@ namespace Content.Server.GameTicking
                 character,
                 canBeAntag); // Sunrise-Edit
             RaiseLocalEvent(mob, aev, true);
+        }
+
+        /// <summary>
+        /// Creates a mob on the specified station, creates the new mind, equips job-specific starting gear and loadout
+        /// </summary>
+        public void DoSpawn(
+            ICommonSession player,
+            HumanoidCharacterProfile character,
+            EntityUid station,
+            string jobId,
+            bool silent,
+            out EntityUid mob,
+            out JobPrototype jobPrototype,
+            out string jobName)
+        {
+            PlayerJoinGame(player, silent);
+
+            var data = player.ContentData();
+
+            DebugTools.AssertNotNull(data);
+
+            var newMind = _mind.CreateMind(data!.UserId, character.Name);
+            _mind.SetUserId(newMind, data.UserId);
+
+            jobPrototype = _prototypeManager.Index<JobPrototype>(jobId);
+
+            _playTimeTrackings.PlayerRolesChanged(player);
+
+            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, jobId, character);
+            DebugTools.AssertNotNull(mobMaybe);
+            mob = mobMaybe!.Value;
+
+            _mind.TransferTo(newMind, mob);
+
+            _roles.MindAddJobRole(newMind, silent: silent, jobPrototype: jobId);
+            jobName = _jobs.MindTryGetJobName(newMind);
+            _admin.UpdatePlayerList(player);
         }
 
         public void Respawn(ICommonSession player)
@@ -469,7 +467,7 @@ namespace Content.Server.GameTicking
         public EntityCoordinates GetObserverSpawnPoint()
         {
             _possiblePositions.Clear();
-            var spawnPointQuery = EntityManager.EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+            var spawnPointQuery = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
             while (spawnPointQuery.MoveNext(out var uid, out var point, out var transform))
             {
                 if (point.SpawnType != SpawnPointType.Observer

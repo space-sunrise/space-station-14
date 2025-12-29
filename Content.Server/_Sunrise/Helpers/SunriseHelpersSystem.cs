@@ -4,6 +4,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Shared._Sunrise.Helpers;
 using Content.Shared.Random.Helpers;
+using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Collections;
 using Robust.Shared.Map;

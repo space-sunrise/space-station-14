@@ -197,7 +197,7 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
             return;
 
         var target = pinpointer.Target;
-        if (target == null || !EntityManager.EntityExists(target.Value))
+        if (target == null || !Exists(target.Value))
         {
             SetDistance(uid, Distance.Unknown, pinpointer);
             return;

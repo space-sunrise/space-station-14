@@ -11,9 +11,9 @@
   - Revolutionary
   - AllHostile
   - Wizard
+  - Xenoborg
   # Sunrise Edit
   - Thief
-  - Changeling
   - Vampire
   - FleshHuman
   - Flesh
@@ -34,10 +34,10 @@
   # Sunrise Edit
   - Thief
   - Carps
-  - Changeling
   - Vampire
   - Flesh
   - BloodCult
+  - Pirate
 
 - type: npcFaction
   id: Mouse
@@ -51,13 +51,14 @@
 
 - type: npcFaction
   id: PetsNT
+  friendly:
+  - NanoTrasen
   hostile:
   - Mouse
   - SimpleHostile
   - Zombie
   - Xeno
   - AllHostile
-  - Wizard
   - Dragon
   # Sunrise Edit
   - Carps
@@ -80,11 +81,11 @@
   # Sunrise Edit
   - Thief
   - Carps
-  - Changeling
   - Vampire
   - FleshHuman
   - Flesh
   - BloodCult
+  - Pirate
 
 - type: npcFaction
   id: SimpleNeutral
@@ -104,11 +105,11 @@
   # Sunrise Edit
   - Thief
   - Carps
-  - Changeling
   - Vampire
   - FleshHuman
   - Flesh
   - BloodCult
+  - Pirate
 
 - type: npcFaction
   id: Xeno
@@ -126,11 +127,11 @@
   # Sunrise Edit
   - Thief
   - Carps
-  - Changeling
   - Vampire
   - FleshHuman
   - Flesh
   - BloodCult
+  - Pirate
 
 - type: npcFaction
   id: Zombie
@@ -149,11 +150,11 @@
   # Sunrise Edit
   - Thief
   - Carps
-  - Changeling
   - Vampire
   - FleshHuman
   - Flesh
   - BloodCult
+  - Pirate
 
 - type: npcFaction
   id: Revolutionary
@@ -167,11 +168,11 @@
   - Dragon
   # Sunrise Edit
   - Carps
-  - Changeling
   - Vampire
   - FleshHuman
   - Flesh
   - BloodCult
+  - Pirate
 
 - type: npcFaction
   id: AllHostile
@@ -192,11 +193,11 @@
   # Sunrise Edit
   - Thief
   - Carps
-  - Changeling
   - Vampire
   - FleshHuman
   - Flesh
   - BloodCult
+  - Pirate
 
 - type: npcFaction
   id: Wizard
@@ -217,12 +218,12 @@
   # Sunrise Edit
   - Thief
   - Carps
-  - Changeling
   - Vampire
   - FleshHuman
   - Flesh
   - Xeno
   - BloodCult
+  - Pirate
 
 - type: npcFaction
   id: Xenoborg
@@ -243,9 +244,9 @@
   # Sunrise Edit
   - Thief
   - Carps
-  - Changeling
   - Vampire
   - FleshHuman
   - Flesh
   - Xeno
   - BloodCult
+  - Pirate

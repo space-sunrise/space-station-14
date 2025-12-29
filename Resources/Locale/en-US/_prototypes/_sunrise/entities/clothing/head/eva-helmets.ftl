@@ -1,0 +1,11 @@
+ent-ClothingHeadSoftsuitCBURN = CBURN helmet
+    .desc = A heavy, fireproof helmet used by special cleanup units.
+ent-ClothingHeadHelmetPirate = pirate EVA helmet
+    .desc = A helmet for a hardsuit. It has a couple of serious cracks, but don't worry — duct tape fixes everything.
+ent-ClothingHeadHelmetPirateAlt = pirate EVA helmet
+    .desc = A hardsuit helmet with a painted skull — for boarding in style.
+ent-ClothingHeadHelmetPirateOld = pirate hardsuit helmet
+    .desc = A special hardsuit helmet, made for Scooner.
+    .suffix = Pirate, Sunrise
+ent-ClothingHeadHelmetPirateAlt2 = pirate EVA helmet
+    .desc = A helmet for a hardsuit.

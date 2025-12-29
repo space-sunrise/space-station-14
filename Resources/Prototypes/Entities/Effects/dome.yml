@@ -28,13 +28,13 @@
     volume: 35
     range: 5
     sound:
-      path: /Audio/Machines/energyshield_ambient.ogg
+      path: /Audio/_Sunrise/Machines/energyshield_ambient.ogg
   - type: EnergyDome
   - type: Tag
     tags:
       - HideContextMenu
       - IgnoreMelee
-      
+
 # Nukeops
 
 - type: entity
@@ -54,7 +54,7 @@
     radius: 5
     power: 2
     color: "#b00000"
-    
+
 - type: entity
   id: EnergyDomeMediumRed
   categories: [ HideSpawnMenu ]
@@ -102,7 +102,7 @@
     radius: 5
     power: 2
     color: "#64b9de"
-    
+
 - type: entity
   id: EnergyDomeMediumBlue
   categories: [ HideSpawnMenu ]

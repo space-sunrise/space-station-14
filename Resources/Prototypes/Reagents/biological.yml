@@ -12,6 +12,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   recognizable: true
+  standsout: true
   physicalDesc: reagent-physical-desc-ferrous
   metabolisms:
     Drink:
@@ -19,9 +20,9 @@
       - !type:SatiateThirst
         factor: 1.0
         conditions:
-          - !type:OrganType
-            type: Human
-            shouldHave: false
+          - !type:MetabolizerTypeCondition
+            type: [ Human ]
+            inverted: true
     Food:
       effects:
         - !type:AdjustReagent
@@ -31,8 +32,8 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:OrganType
-          type: Bloodsucker
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
         damage:
           groups:
             Brute: -3
@@ -64,6 +65,7 @@
   flavor: slimy
   color: "#2cf274"
   recognizable: true
+  standsout: true
   physicalDesc: reagent-physical-desc-viscous
   viscosity: 0.25
   tileReactions:
@@ -74,6 +76,15 @@
       effects:
       - !type:SatiateHunger
         factor: 1
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Slime]
+          inverted: true
+      - !type:ModifyBloodLevel
+        amount: 0.5 # drawing 15u removes 5% blood level from a slimeperson, this will add 5% when injecting 15u
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Slime]
   footstepSound:
     collection: FootstepSlime # makes sense
     params:
@@ -100,9 +111,8 @@
       - !type:SatiateThirst
         factor: 1
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
   footstepSound:
     collection: FootstepSlime
     params:
@@ -150,7 +160,7 @@
         damage:
           types:
             Poison: 4
-      - !type:ChemVomit
+      - !type:Vomit
         probability: 0.25
 
 - type: reagent
@@ -168,22 +178,29 @@
       - !type:SatiateThirst
         factor: 1.5
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
     # Dragon doesn't require airloss healing, so omnizine is still best for humans.
       - !type:ModifyBloodLevel
         amount: 3
+      - !type:EvenHealthChange
+        damage:
+          Burn: -3
+          Brute: -3
+          Toxin: -2
       - !type:HealthChange
         damage:
-          groups:
-            Burn: -5
-            Brute: -5
-            Toxin: -2
           types:
-            Bloodloss: -5
-      - !type:ModifyBleedAmount
+            Bloodloss: -3
+      - !type:ModifyBleed
         amount: -1.5
+      # Sunrise-Start
+      - !type:GenericStatusEffect
+        key: Adrenaline
+        component: IgnoreSlowOnDamage
+        time: 5
+      # Sunrise-End
   # Just in case you REALLY want to water your plants
   plantMetabolism:
   - !type:PlantAdjustWater
@@ -223,9 +240,9 @@
       - !type:SatiateThirst
         factor: 0.5
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
       - !type:AdjustReagent
         reagent: Nutriment
         amount: 0.1
@@ -253,31 +270,3 @@
         damage:
           types:
             Cellular: 2
-
-- type: reagent
-  parent: Blood
-  id: BloodChangeling
-
-- type: reaction
-  id: ChangelingBloodBreakdown
-  source: true
-  requiredMixerCategories:
-  - Centrifuge
-  reactants:
-    BloodChangeling:
-      amount: 5
-  products:
-    Water: 11
-    Iron: 0.5
-    Sugar: 2
-    CarbonDioxide: 3
-    Protein: 4
-  effects:
-    - !type:CreateEntityReactionEffect
-      entity: FleshKudzu
-    - !type:ExplosionReactionEffect
-      explosionType: Default
-      maxIntensity: 2
-      intensityPerUnit: 0.5
-      intensitySlope: 4
-      maxTotalIntensity: 1

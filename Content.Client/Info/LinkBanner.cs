@@ -55,10 +55,11 @@ namespace Content.Client.Info
             var roadmapButton = new Button
             {
                 Text = Loc.GetString("server-info-roadmap-button"),
-                StyleClasses = { StyleBase.ButtonCaution },
+                StyleClasses = { StyleClass.Negative },
             };
             roadmapButton.OnPressed += _ => UserInterfaceManager.GetUIController<RoadmapUIController>().ToggleRoadmap();
             buttons.AddChild(roadmapButton);
+            AddInfoButton("ui-lobby-replays-button", SunriseCCVars.InfoLinksReplays);
             // Sunrise-End
 
             void AddInfoButton(string loc, CVarDef<string> cVar)

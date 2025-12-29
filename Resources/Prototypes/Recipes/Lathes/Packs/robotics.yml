@@ -15,6 +15,8 @@
   - BorgModuleTool
   - BorgModuleCable
   - BorgModuleFireExtinguisher
+  - BorgModuleInflatable
+  - BorgModuleArtistry
 
 - type: latheRecipePack
   id: BorgLimbsStatic
@@ -37,7 +39,9 @@
   id: BorgModules
   recipes:
   - BorgModuleAdvancedCleaning
+  - BorgModuleAdvancedCombat # Sunrise_edit
   - BorgModuleAdvancedTool
+  - BorgModuleAdvancedClowning
   - BorgModuleAdvancedChemical
   - BorgModuleAdvancedMining
 

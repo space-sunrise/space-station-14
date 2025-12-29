@@ -46,6 +46,8 @@ ent-ClothingOuterAerostaticBomberJacket = aerostatic bomber jacket
     .desc = A jacket once worn by the revolutionary air brigades during the Antecentennial Revolution. There are quite a few pockets on the inside, mostly for storing notebooks and compasses.
 ent-ClothingOuterDiscoAssBlazer = disco ass blazer
     .desc = Looks like someone skinned this blazer off some long extinct disco-animal. It has an enigmatic white rectangle on the back and the right sleeve.
+ent-ClothingOuterDiscoAssBlazerDetective = disco ass blazer
+    .desc = Looks like someone skinned this blazer off some long extinct disco-animal. It has an enigmatic white rectangle on the back and the right sleeve.
 ent-ClothingOuterCoatCaptainOvercoat = captain's overcoat
     .desc = Made specifically to the measurements of the current captain and made by the best seamstresses at NanoTrasen.
 ent-ClothingOuterCoatUSSPOvercoatBlack = USSP armored overcoat
@@ -62,3 +64,8 @@ ent-ClothingOuterArmorNTRG = heavvy vest
     .desc = heavvy vest for NTRG Sqaud
 ent-ClothingOuterBezBabTshirt = tshirt for men
     .desc = Oversize Tshirt for men. Without women.
+ent-ClothingOuterCoatJilldress = Jill dress
+    .desc = this is the Snow Maiden dress.
+ent-ClothingOuterCoatMansport = Sports sweatshirt
+    .desc = Hoodies or sweatshirts? I choose T-shirts.
+

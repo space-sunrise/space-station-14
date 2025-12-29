@@ -89,6 +89,18 @@
             "name": "diona2"
         },
         {
+            "name": "diona3",
+            "delays": [
+                [
+                    0.2,
+                    0.3,
+                    0.3,
+                    0.5,
+                    0.5
+                ]
+            ]
+        },
+        {
             "name": "gingerbread0",
             "delays": [
                 [
@@ -912,6 +924,17 @@
             ]
         },
         {
+            "name": "resomi0",
+            "delays": [
+                [
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.4
+                ]
+            ]
+        },
+        {
             "name": "sunrise0",
             "delays": [
                 [
@@ -926,6 +949,37 @@
             "name": "sunrise3",
             "delays": [
                 [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "xenoborg0",
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "xenoborg1"
+        },
+        {
+            "name": "xenoborg2"
+        },
+        {
+            "name": "xenoborg3",
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
                     0.2,
                     0.2,
                     0.2,

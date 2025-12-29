@@ -7,6 +7,10 @@
   icon: "JobIconPsychologist"
   supervisors: job-supervisors-cmo
   displayWeight: 10  # Sunrise
+  special:
+    - !type:AddComponentSpecial
+      components:
+      - type: PsychologistBlockAlcohol
   access:
   - Medical
   - Maintenance

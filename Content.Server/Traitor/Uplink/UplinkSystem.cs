@@ -24,10 +24,9 @@ public sealed class UplinkSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
 
-    [ValidatePrototypeId<CurrencyPrototype>]
-    public const string TelecrystalCurrencyPrototype = "Telecrystal";
-    private const string FallbackUplinkImplant = "UplinkImplant";
-    private const string FallbackUplinkCatalog = "UplinkUplinkImplanter";
+    public static readonly ProtoId<CurrencyPrototype> TelecrystalCurrencyPrototype = "Telecrystal";
+    private static readonly EntProtoId FallbackUplinkImplant = "UplinkImplant";
+    private static readonly ProtoId<ListingPrototype> FallbackUplinkCatalog = "UplinkUplinkImplanter";
 
     /// <summary>
     /// Adds an uplink to the target
@@ -91,9 +90,7 @@ public sealed class UplinkSystem : EntitySystem
     /// </summary>
     private bool ImplantUplink(EntityUid user, FixedPoint2 balance, bool giveDiscounts)
     {
-        var implantProto = new string(FallbackUplinkImplant);
-
-        if (!_proto.TryIndex<ListingPrototype>(FallbackUplinkCatalog, out var catalog))
+        if (!_proto.Resolve<ListingPrototype>(FallbackUplinkCatalog, out var catalog))
             return false;
 
         if (!catalog.Cost.TryGetValue(TelecrystalCurrencyPrototype, out var cost))
@@ -104,10 +101,13 @@ public sealed class UplinkSystem : EntitySystem
         else
             balance = balance - cost;
 
-        var implant = _subdermalImplant.AddImplant(user, implantProto);
+        var implant = _subdermalImplant.AddImplant(user, FallbackUplinkImplant);
 
         if (!HasComp<StoreComponent>(implant))
+        {
+            Log.Error($"Implant does not have the store component {implant}");
             return false;
+        }
 
         SetUplink(user, implant.Value, balance, giveDiscounts);
         return true;
@@ -122,18 +122,21 @@ public sealed class UplinkSystem : EntitySystem
         // Try to find PDA in inventory
         if (_inventorySystem.TryGetContainerSlotEnumerator(user, out var containerSlotEnumerator))
         {
-            while (containerSlotEnumerator.MoveNext(out var pdaUid))
+            while (containerSlotEnumerator.MoveNext(out var containerSlot))
             {
-                if (!pdaUid.ContainedEntity.HasValue)
-                    continue;
+                var pdaUid = containerSlot.ContainedEntity;
 
                 // Sunrtise-Start
-                if (_tagSystem.HasTag(pdaUid.ContainedEntity.Value, "SunriseUplink"))
+
+                if (pdaUid == null)
+                    return null;
+
+                if (_tagSystem.HasTag(pdaUid.Value, "SunriseUplink"))
                     continue;
                 // Sunrtise-End
 
-                if (HasComp<PdaComponent>(pdaUid.ContainedEntity.Value) || HasComp<StoreComponent>(pdaUid.ContainedEntity.Value))
-                    return pdaUid.ContainedEntity.Value;
+                if (HasComp<PdaComponent>(pdaUid) && HasComp<StoreComponent>(pdaUid))
+                    return pdaUid;
             }
         }
 
@@ -145,7 +148,7 @@ public sealed class UplinkSystem : EntitySystem
                 continue;
             // Sunrtise-End
 
-            if (HasComp<PdaComponent>(item) || HasComp<StoreComponent>(item))
+            if (HasComp<PdaComponent>(item) && HasComp<StoreComponent>(item))
                 return item;
         }
 

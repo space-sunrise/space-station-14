@@ -48,6 +48,10 @@
           path: /Audio/Effects/break_stone.ogg
           params:
             volume: -6
+  - type: Gatherable
+    toolWhitelist:
+      tags:
+      - Pickaxe
   - type: Fixtures
     fixtures:
       fix1:
@@ -77,7 +81,7 @@
           Unprimed:
             state: gibtonite_inactive
             visible: false
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     examinable: false
     beepInterval: 0.4
     beepSound:
@@ -86,12 +90,19 @@
     min: 8
     max: 10
   - type: ExplodeOnTrigger
+    keysIn:
+    - timer
   - type: Explosive
     explosionType: DemolitionCharge
     totalIntensity: 450
     intensitySlope: 2.5
     maxIntensity: 10
     canCreateVacuum: false
+  # Sunrise-start
+  - type: Gatherable # nasty hack to cover the fact that this needs to not be single-hit destruction.
+    toolWhitelist:
+      tags: [ ]
+  # Sunrise-end
   - type: Destructible
     thresholds:
     - trigger:
@@ -109,6 +120,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
       - !type:TriggerBehavior
+        keyOut: timer # explode immediately
 
 # Ore veins
 - type: entity
@@ -760,6 +772,62 @@
       state: ironrock_west
     - state: rock_diamond
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: IronRockCoalCrab
+  parent: IronRockCoal
+  suffix: Coal Crab
+  components:
+  - type: OreVein
+    currentOre: OreCoalCrab
+
+- type: entity
+  id: IronRockGoldCrab
+  parent: IronRockGold
+  suffix: Gold Crab
+  components:
+  - type: OreVein
+    currentOre: OreGoldCrab
+
+- type: entity
+  id: IronRockQuartzCrab
+  parent: IronRockQuartz
+  suffix: Quartz Crab
+  components:
+  - type: OreVein
+    currentOre: OreQuartzCrab
+
+- type: entity
+  id: IronRockSilverCrab
+  parent: IronRockSilver
+  suffix: Silver Crab
+  components:
+  - type: OreVein
+    currentOre: OreSilverCrab
+
+- type: entity
+  id: IronRockIronCrab
+  parent: IronRockIron
+  suffix: Iron Crab
+  components:
+  - type: OreVein
+    currentOre: OreIronCrab
+
+- type: entity
+  id: IronRockUraniumCrab
+  parent: IronRockUranium
+  suffix: Uranium Crab
+  components:
+  - type: OreVein
+    currentOre: OreUraniumCrab
+
+- type: entity
+  id: IronRockBananiumCrab
+  parent: IronRockBananium
+  suffix: Bananium Crab
+  components:
+  - type: OreVein
+    currentOre: OreBananiumCrab
 
 # Rocks and ore veins
 - type: entity
@@ -2003,7 +2071,7 @@
     - map: [ "enum.EdgeLayer.West" ]
       state: rock_chromite_west
     - state: rock_coal
-    map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockChromiteGold

@@ -24,22 +24,16 @@
   id: CrateSecuritySWAT
   parent: CrateSecgear
   name: SWAT armor crate
-  description: Contains a SWAT kit. 2 heavy armor suit, 2 special forces helmet, 2special forces gas mask and 2 combat Swat boots. To open it, the Security Service access level is required.
+  description: Contains a SWAT kit. One heavy armor suit with special forces helmet, special forces gas mask and combat Swat boots. To open it, the Security Service access level is required.
   components:
   - type: StorageFill
     contents:
       - id: ClothingOuterArmorSWAT
-        amount: 2
       - id: ClothingMaskGasSwat
-        amount: 2
       - id: ClothingShoesSwat
-        amount: 2
       - id: ClothingHeadHelmetSwat
-        amount: 2
       - id: ClothingBeltSecurity
-        amount: 2
       - id: CombatKnife
-        amount: 2
 
 - type: entity
   id: CrateSecurityArmorReflective
@@ -51,3 +45,21 @@
     contents:
       - id: ClothingOuterArmorReflective
         amount: 2
+
+- type: entity
+  id: CrateSecurityHoly
+  parent: CrateSecgear
+  name: exorcism crate
+  description: Contains a 2 Holy shotgun ammobox and one flask of Holy water. To open it, the Security Service access level is required. Ameno dori me Ameno!
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxShotgunHoly
+        amount: 2
+      - id: DrinkHolyWaterFull
+      - id: FoodGarlic
+        amount: 3
+      - id: WeaponShotgunDoubleBarreledRubber
+        prob: 0.25
+      - id: Bible
+        prob: 0.1

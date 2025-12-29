@@ -8,7 +8,7 @@
   guides: [ Thieves ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 36000 # 10h
+    time: 1h
   # Sunrise-Edit
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
@@ -20,4 +20,3 @@
     back:
     - ThiefBeacon
     - SatchelThief
-    - ClothingHandsChameleonThief

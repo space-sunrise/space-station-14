@@ -232,7 +232,6 @@ public sealed partial class SingleMarkingPicker : BoxContainer
 
         var marking = _markings[Slot];
 
-        ColorSelectorContainer.DisposeAllChildren();
         ColorSelectorContainer.RemoveAllChildren();
 
         if (marking.MarkingColors.Count != proto.Sprites.Count ||
@@ -243,6 +242,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
 
         for (var i = 0; i < marking.MarkingColors.Count; i++)
         {
+            // Sunrise edit start - градиенты
             MarkingEffect selectorColor;
             var selectorType = MarkingEffectType.Color;
             if(marking.MarkingEffects == null)
@@ -257,17 +257,23 @@ public sealed partial class SingleMarkingPicker : BoxContainer
             {
                 HorizontalExpand = true
             };
+            // selector.Color = marking.MarkingColors[i];
             selector.CurrentType = selectorType;
+            // Sunrise edit end
 
             var colorIndex = i;
             selector.OnColorChanged += color =>
             {
-                var newCol = color.Colors["base"];
-                if (marking.MarkingColors[colorIndex] != newCol)
+                // Sunrise edit start - градиенты
+                if (!color.Colors.TryGetValue("base", out var newCol))
+                    newCol = Color.White;
+
+                if (marking.MarkingColors.Count >= colorIndex && marking.MarkingColors[colorIndex] != newCol)
                     marking.SetColor(colorIndex, newCol);
 
-                if(marking.MarkingEffects?[colorIndex].Equals(color) != true)
+                if (marking.MarkingEffects?.Count >= colorIndex && marking.MarkingEffects?[colorIndex].Equals(color) != true)
                     marking.SetMarkingEffect(colorIndex, color.Clone());
+                // Sunrise edit end
 
                 OnColorChanged!((_slot, marking));
             };
@@ -295,6 +301,10 @@ public sealed partial class SingleMarkingPicker : BoxContainer
         for (var i = 0; i < _markings[Slot].MarkingColors.Count && i < oldMarking.MarkingColors.Count; i++)
         {
             _markings[Slot].SetColor(i, oldMarking.MarkingColors[i]);
+        }
+
+        for (var i = 0; i < _markings[Slot].MarkingEffects.Count && i < oldMarking.MarkingEffects.Count; i++)
+        {
             _markings[Slot].SetMarkingEffect(i, oldMarking.MarkingEffects[i]); // Sunrise-Edit
         }
 

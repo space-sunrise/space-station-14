@@ -1,5 +1,5 @@
 - type: gas
-  id: 9
+  id: BZ
   name: gases-bz
   specificHeat: 20
   heatCapacityRatio: 1.4
@@ -11,7 +11,7 @@
   gasOverlayState: bz
 
 - type: gas
-  id: 10
+  id: Healium
   name: gases-healium
   specificHeat: 20
   heatCapacityRatio: 1.4
@@ -23,7 +23,7 @@
   gasOverlayState: healium
 
 - type: gas
-  id: 11
+  id: Nitrium
   name: gases-nitrium
   specificHeat: 20
   heatCapacityRatio: 1.4

@@ -32,10 +32,14 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 // sunrise-start
 using System.Linq;
+using System.Numerics;
 using Content.Shared.Ghost;
 using Content.Shared.Inventory;
 using Robust.Server.Containers;
 using Content.Server.Storage.EntitySystems;
+using Content.Shared.Item;
+using Robust.Shared.Utility;
+
 // sunrise-end
 
 namespace Content.Server.Fax;
@@ -313,8 +317,10 @@ public sealed class FaxSystem : EntitySystem
                     args.Data.TryGetValue(FaxConstants.FaxPaperStampedByData, out List<StampDisplayInfo>? stampedBy);
                     args.Data.TryGetValue(FaxConstants.FaxPaperPrototypeData, out string? prototypeId);
                     args.Data.TryGetValue(FaxConstants.FaxPaperLockedData, out bool? locked);
+                    args.Data.TryGetValue(FaxConstants.FaxPaperImageData, out SpriteSpecifier? imageContent);
+                    args.Data.TryGetValue(FaxConstants.FaxPaperImageScaleData, out Vector2 scaleImage);
 
-                    var printout = new FaxPrintout(content, name, label, prototypeId, stampState, stampedBy, locked ?? false);
+                    var printout = new FaxPrintout(content, name, label, prototypeId, stampState, stampedBy, locked ?? false, imageContent, scaleImage);
                     Receive(uid, printout, args.SenderAddress);
 
                     break;
@@ -442,7 +448,7 @@ public sealed class FaxSystem : EntitySystem
 
         var name = Loc.GetString("fax-machine-printed-paper-name");
 
-        var printout = new FaxPrintout(args.Content, name, args.Label, prototype);
+        var printout = new FaxPrintout(args.Content, name, args.Label, prototype, imageContent: args.ImageContent, imageScale: args.ImageScale);
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
 
@@ -487,7 +493,9 @@ public sealed class FaxSystem : EntitySystem
                                        metadata.EntityPrototype?.ID ?? component.PrintPaperId,
                                        paper.StampState,
                                        paper.StampedBy,
-                                       paper.EditingDisabled);
+                                       paper.EditingDisabled,
+                                       paper.ImageContent,
+                                       paper.ImageScale);
 
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
@@ -558,6 +566,14 @@ public sealed class FaxSystem : EntitySystem
             payload[FaxConstants.FaxPaperStampedByData] = paper.StampedBy;
         }
 
+        // Sunrise-Start
+        if (paper.ImageContent != null)
+        {
+            payload[FaxConstants.FaxPaperImageData] = paper.ImageContent;
+            payload[FaxConstants.FaxPaperImageScaleData] = paper.ImageScale ?? Vector2.One;
+        }
+        // Sunrise-End
+
         _deviceNetworkSystem.QueuePacket(uid, component.DestinationFaxAddress, payload);
 
         _adminLogger.Add(LogType.Action,
@@ -604,11 +620,37 @@ public sealed class FaxSystem : EntitySystem
         var printout = component.PrintingQueue.Dequeue();
 
         var entityToSpawn = printout.PrototypeId.Length == 0 ? component.PrintPaperId.ToString() : printout.PrototypeId;
-        var coordinates = _transform.GetMapCoordinates(uid); // sunrise-edit
-        var printed = EntityManager.SpawnEntity(entityToSpawn, coordinates);
+        var printed = Spawn(entityToSpawn, Transform(uid).Coordinates);
+        // Sunrise-start - For portable faxes (items), attempt to add to inventory instead of dropping to floor
+        if (HasComp<ItemComponent>(uid))
+        {
+            bool successfullyInserted = _container.TryGetContainingContainer(uid, out var parentContainer) &&
+                                        _container.Insert(printed, parentContainer);
+            // 1. Try to insert into the container that holds the fax (e.g. backpack)
+
+            // 2. If not suitable, try to put it in the fax's own storage (if it has one)
+            if (!successfullyInserted && _container.TryGetContainer(uid, "storagebase", out var container))
+            {
+                if (_container.Insert(printed, container))
+                    successfullyInserted = true;
+            }
+
+            // 3. Fallback: If we couldn't insert it anywhere, ensure it's on the grid/map (drop it)
+            // This handles cases where the fax is in a container but that container is full.
+            if (!successfullyInserted)
+            {
+                _transform.AttachToGridOrMap(printed);
+            }
+        }
+        // Sunrise-end
+
         if (TryComp<PaperComponent>(printed, out var paper))
         {
             _paperSystem.SetContent((printed, paper), printout.Content);
+            // Sunrise-Start
+            if (printout.ImageContent != null)
+                _paperSystem.SetImageContent((printed, paper), printout.ImageContent, printout.ImageScale);
+            // Sunrise-End
 
             // Apply stamps
             if (printout.StampState != null)
@@ -666,6 +708,10 @@ public sealed class FaxSystem : EntitySystem
                     if (TryComp<PaperComponent>(printed.Value, out var paper))
                     {
                         _paperSystem.SetContent((printed.Value, paper), printout.Content);
+                        // Sunrise-Start
+                        if (printout.ImageContent != null)
+                            _paperSystem.SetImageContent((printed.Value, paper), printout.ImageContent, printout.ImageScale);
+                        // Sunrise-End
 
                         // Apply stamps
                         if (printout.StampState != null)

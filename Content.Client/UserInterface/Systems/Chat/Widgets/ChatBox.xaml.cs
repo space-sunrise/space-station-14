@@ -14,6 +14,7 @@ using Robust.Shared.Input;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using System.Linq;
+using Robust.Client.UserInterface.RichText; // Sunrise-Edit
 using static Robust.Client.UserInterface.Controls.LineEdit;
 
 namespace Content.Client.UserInterface.Systems.Chat.Widgets;
@@ -22,8 +23,26 @@ namespace Content.Client.UserInterface.Systems.Chat.Widgets;
 [Virtual]
 public partial class ChatBox : UIWidget
 {
+    // Sunrise-Start
+    // По умолчаюнию разрешены только RichTextEntry.DefaultTags.
+    // Теги ниже нужны для корректного отображения иконок в чате
+    private static readonly Type[] TagsAllowed =
+    [
+        typeof(BoldItalicTag),
+        typeof(BoldTag),
+        typeof(BulletTag),
+        typeof(ColorTag),
+        typeof(HeadingTag),
+        typeof(ItalicTag),
+        typeof(Client._Sunrise.UserInterface.RichText.RadioIconTag),
+    ];
+    // Sunrise-End
+
+    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private readonly ILogManager _log = default!;
+
+    private readonly ISawmill _sawmill;
     private readonly ChatUIController _controller;
-    private readonly IEntityManager _entManager;
     private readonly IConfigurationManager _configurationManager;
 
     public bool Main { get; set; }
@@ -33,6 +52,7 @@ public partial class ChatBox : UIWidget
     public ChatBox()
     {
         RobustXamlLoader.Load(this);
+        _sawmill = _log.GetSawmill("chat");
         _entManager = IoCManager.Resolve<IEntityManager>();
         _configurationManager = IoCManager.Resolve<IConfigurationManager>();
 
@@ -50,10 +70,12 @@ public partial class ChatBox : UIWidget
         _controller.RegisterChat(this);
     }
 
+    // Sunrise-Start
     public void SetChatOpacity()
     {
         _controller.SetChatWindowOpacity(_configurationManager.GetCVar(CCVars.ChatWindowOpacity));
     }
+    // Sunrise-End
 
     private void OnTextEntered(LineEditEventArgs args)
     {
@@ -62,7 +84,7 @@ public partial class ChatBox : UIWidget
 
     private void OnMessageAdded(ChatMessage msg)
     {
-        Logger.DebugS("chat", $"{msg.Channel}: {msg.Message}");
+        _sawmill.Debug($"{msg.Channel}: {msg.Message}");
         if (!ChatInput.FilterButton.Popup.IsActive(msg.Channel))
         {
             return;
@@ -90,7 +112,7 @@ public partial class ChatBox : UIWidget
 
     public void Repopulate()
     {
-        ClearChatContents(); // Sunrise
+        ClearChatContents(); // Sunrise-Edit
 
         foreach (var message in _controller.History)
         {
@@ -100,7 +122,7 @@ public partial class ChatBox : UIWidget
 
     private void OnChannelFilter(ChatChannel channel, bool active)
     {
-        ClearChatContents(); // Sunrise
+        ClearChatContents(); // Sunrise-Edit
 
         foreach (var message in _controller.History)
         {
@@ -118,7 +140,7 @@ public partial class ChatBox : UIWidget
         _controller.UpdateHighlights(highlighs);
     }
 
-    // Sunrise start
+    // Sunrise-Start
     private void ClearChatContents()
     {
         Contents.Clear();
@@ -131,7 +153,7 @@ public partial class ChatBox : UIWidget
             }
         }
     }
-    // Sunrise end
+    // Sunrise-End
 
     public void AddLine(string message, Color color)
     {
@@ -140,6 +162,7 @@ public partial class ChatBox : UIWidget
         formatted.AddMarkupOrThrow(message);
         formatted.Pop();
         Contents.AddMessage(formatted);
+        Contents.SetMessage(^1, formatted, TagsAllowed); // Sunrise-Edit
     }
 
     public void Focus(ChatSelectChannel? channel = null)

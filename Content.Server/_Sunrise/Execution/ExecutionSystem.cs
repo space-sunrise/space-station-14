@@ -1,10 +1,12 @@
 ﻿using Content.Server.Kitchen.Components;
 using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared._Starlight.Weapon.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared._Sunrise.Execution;
+using Content.Shared.Kitchen.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
@@ -21,6 +23,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Containers;
 using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server._Sunrise.Execution;
 
@@ -287,7 +291,7 @@ public sealed class ExecutionSystem : EntitySystem
         if (!TryComp<MeleeWeaponComponent>(weapon, out var melee) && melee!.Damage.GetTotal() > 0.0f)
             return;
 
-        _damageableSystem.TryChangeDamage(victim, melee.Damage * DamageModifier, true, useVariance: false, useModifier: false);
+        _damageableSystem.ChangeDamage(victim, melee.Damage * DamageModifier, true, useVariance: false, ignoreGlobalModifiers: true);
         _audioSystem.PlayEntity(melee.HitSound, Filter.Pvs(weapon), weapon, true, AudioParams.Default);
 
         if (attacker == victim)
@@ -361,6 +365,18 @@ public sealed class ExecutionSystem : EntitySystem
         var ammoUid = ev.Ammo[0].Entity;
         switch (ev.Ammo[0].Shootable)
         {
+            //🌟Starlight🌟 start
+            case HitScanCartridgeAmmoComponent cartridge:
+                var hitscanProto = _prototypeManager.Index(cartridge.Hitscan);
+                if (hitscanProto.Damage is not null)
+                    damage = hitscanProto.Damage * hitscanProto.Count;
+
+                cartridge.Spent = true;
+                _appearanceSystem.SetData(ammoUid!.Value, AmmoVisuals.Spent, true);
+                Dirty(ammoUid.Value, cartridge);
+
+                break;
+            //🌟Starlight🌟 end
             case CartridgeAmmoComponent cartridge:
                 // Get the damage value
                 var prototype = _prototypeManager.Index<EntityPrototype>(cartridge.Prototype);
@@ -382,29 +398,6 @@ public sealed class ExecutionSystem : EntitySystem
 
                 break;
 
-            case HitScanCartridgeAmmoComponent hitScanCartridge:
-                // Get the damage value
-                var hitScanPrototype = _prototypeManager.Index<HitscanPrototype>(hitScanCartridge.Prototype);
-                if (hitScanPrototype.Damage != null)
-                {
-                    damage = hitScanPrototype.Damage;
-                    if (hitScanPrototype.ShootModifier == ShootModifier.Split)
-                    {
-                        damage *= hitScanPrototype.SplitCount;
-                    }
-                    else if (hitScanPrototype.ShootModifier == ShootModifier.Spread)
-                    {
-                        damage *= hitScanPrototype.SpreadCount;
-                    }
-
-                    // Expend the cartridge
-                    hitScanCartridge.Spent = true;
-                    _appearanceSystem.SetData(ammoUid!.Value, AmmoVisuals.Spent, true);
-                    Dirty(ammoUid.Value, hitScanCartridge);
-                }
-
-                break;
-
             case AmmoComponent newAmmo:
                 TryComp<ProjectileComponent>(ammoUid, out var projectileB);
                 if (projectileB != null)
@@ -423,7 +416,7 @@ public sealed class ExecutionSystem : EntitySystem
         }
 
         // Gun successfully fired, deal damage
-        _damageableSystem.TryChangeDamage(victim, damage * DamageModifier, true, useVariance: false, useModifier: false);
+        _damageableSystem.ChangeDamage(victim, damage * DamageModifier, true, useVariance: false, ignoreGlobalModifiers: true);
         _audioSystem.PlayEntity(component.SoundGunshot, Filter.Pvs(weapon), weapon, false, AudioParams.Default);
 
         // Popups

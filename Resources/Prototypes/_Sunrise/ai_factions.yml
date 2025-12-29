@@ -1,22 +1,4 @@
 - type: npcFaction
-  id: Changeling
-  hostile:
-  - NanoTrasen
-  - Syndicate
-  - SimpleHostile
-  - Xeno
-  - Zombie
-  - PetsNT
-  - Revolutionary
-  - AllHostile
-  - Thief
-  - Carps
-  - Vampire
-  - Flesh
-  - FleshHuman
-  - BloodCult
-
-- type: npcFaction
   id: Thief
   hostile:
   - NanoTrasen
@@ -26,11 +8,11 @@
   - Zombie
   - AllHostile
   - Carps
-  - Changeling
   - Vampire
   - Flesh
   - FleshHuman
   - BloodCult
+  - Pirate
 
 - type: npcFaction
   id: Carps
@@ -47,10 +29,10 @@
   - AllHostile
   - Thief
   - Vampire
-  - Changeling
   - Flesh
   - FleshHuman
   - BloodCult
+  - Pirate
 
 - type: npcFaction
   id: Vampire
@@ -65,7 +47,44 @@
   - AllHostile
   - Thief
   - Carps
-  - Changeling
   - Flesh
   - FleshHuman
   - BloodCult
+  - Pirate
+
+- type: npcFaction
+  id: SpiderClan
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - SimpleHostile
+  - Zombie
+  - Xeno
+  - PetsNT
+  - Revolutionary
+  - AllHostile
+  - Thief
+  - Carps
+  - Vampire
+  - Flesh
+  - FleshHuman
+  - BloodCult
+  - Pirate
+
+- type: npcFaction
+  id: Pirate
+  hostile:
+    - NanoTrasen
+    - SimpleHostile
+    - Xeno
+    - PetsNT
+    - Revolutionary
+    - Syndicate
+    - Zombie
+    - Vampire
+    - AllHostile
+    - Thief
+    - Carps
+    - Flesh
+    - FleshHuman
+    - BloodCult

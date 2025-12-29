@@ -4,10 +4,10 @@
 # Sends updates to a Discord webhook for new changelog entries since the last GitHub Actions publish run.
 # Automatically figures out the last run and changelog contents with the GitHub API.
 #
-
 import io
 import os
 import time
+import textwrap
 from pathlib import Path
 
 import requests
@@ -175,6 +175,9 @@ def send_embed_discord(embed: dict) -> None:
             break
 
 
+def split_message(message: str, limit: int = DISCORD_SPLIT_LIMIT) -> list[str]:
+    return textwrap.wrap(message, width=limit, replace_whitespace=False)
+
 def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
     if not DISCORD_WEBHOOK_URL:
         print("No discord webhook URL found, skipping discord send")
@@ -190,14 +193,17 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
         if url and url.strip():
             content_string.write(f"[GitHub Pull Request]({url})\n")
 
-        embed = {
-            "title": f"Автор: **{entry["author"]}**",
-            "description": content_string.getvalue(),
-            "color": 0x3498db
-        }
+        full_content = content_string.getvalue()
+        parts = split_message(full_content, DISCORD_SPLIT_LIMIT)
 
-        if len(content_string.getvalue()) > 0:
-            send_embed_discord(embed)
+        for part in parts:
+            embed = {
+                "title": f"Автор: **{entry['author']}**",
+                "description": part,
+                "color": 0x3498db
+            }
+            if len(part) > 0:
+                send_embed_discord(embed)
 
 
 main()

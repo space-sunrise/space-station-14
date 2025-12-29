@@ -16,6 +16,8 @@ using Content.Server.Emp;
 using Robust.Shared.Timing;
 using Content.Shared._Sunrise.Mech;
 using Content.Shared.Coordinates;
+using Content.Shared.Emp;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Sunrise.Mech;
 
@@ -85,7 +87,7 @@ public sealed partial class SunriseMechSystem : EntitySystem
 
         ent.Comp.NextPulseTime = curTime + ent.Comp.CooldownTime;
 
-        _damageable.TryChangeDamage(ent, ent.Comp.EmpDamage);
+        _damageable.TryChangeDamage(ent.Owner, ent.Comp.EmpDamage);
 
         EnsureComp<MechOnEMPPulseComponent>(ent);
     }
@@ -141,7 +143,7 @@ public sealed partial class SunriseMechSystem : EntitySystem
         if (!TryComp<AppearanceComponent>(target, out var appearance))
             return;
 
-        if (!_openable.IsOpen(entity))
+        if (_openable.IsClosed(entity))
         {
             _popup.PopupEntity(Loc.GetString("paint-closed", ("used", args.Used)), args.User, args.User, PopupType.Medium);
             return;

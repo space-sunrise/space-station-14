@@ -7,6 +7,7 @@ using Content.Shared._Sunrise.BloodCult.Items;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
@@ -121,7 +122,7 @@ public sealed class CultBloodSpearSystem : EntitySystem
         {
             if (HasComp<MobStateComponent>(args.Target))
             {
-                _stunSystem.TryParalyze(args.Target, TimeSpan.FromSeconds(component.StuhTime), true);
+                _stunSystem.TryAddParalyzeDuration(args.Target, TimeSpan.FromSeconds(component.StuhTime));
                 _damageableSystem.TryChangeDamage(args.Target, component.Damage, origin: uid);
                 _audio.PlayPvs(component.BreakSound, uid);
                 QueueDel(uid);

@@ -7,13 +7,17 @@ using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Movement.Components;
+using Content.Shared.Standing;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Physics;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Body.Systems;
 
 public partial class SharedBodySystem
 {
+    private static readonly ProtoId<DamageTypePrototype> BloodlossDamageType = "Bloodloss";
     private void InitializeParts()
     {
         // TODO: This doesn't handle comp removal on child ents.
@@ -154,17 +158,23 @@ public partial class SharedBodySystem
         if (!Resolve(bodyEnt, ref bodyEnt.Comp, logMissing: false))
             return;
 
-        if (legEnt.Comp.PartType == BodyPartType.Leg)
-        {
-            bodyEnt.Comp.LegEntities.Remove(legEnt);
-            UpdateMovementSpeed(bodyEnt);
-            Dirty(bodyEnt, bodyEnt.Comp);
+        if (legEnt.Comp.PartType != BodyPartType.Leg)
+            return;
 
-            if (!bodyEnt.Comp.LegEntities.Any())
-            {
-                Standing.Down(bodyEnt);
-            }
-        }
+        bodyEnt.Comp.LegEntities.Remove(legEnt);
+        UpdateMovementSpeed(bodyEnt);
+        Dirty(bodyEnt, bodyEnt.Comp);
+
+        if (bodyEnt.Comp.LegEntities.Count != 0)
+            return;
+
+        if (!TryComp<StandingStateComponent>(bodyEnt, out var standingState)
+            || !standingState.Standing
+            || !Standing.Down(bodyEnt, standingState: standingState))
+            return;
+
+        var ev = new DropHandItemsEvent();
+        RaiseLocalEvent(bodyEnt, ref ev);
     }
 
     private void PartRemoveDamage(Entity<BodyComponent?> bodyEnt, Entity<BodyPartComponent> partEnt)
@@ -178,8 +188,8 @@ public partial class SharedBodySystem
         )
         {
             // TODO BODY SYSTEM KILL : remove this when wounding and required parts are implemented properly
-            var damage = new DamageSpecifier(Prototypes.Index<DamageTypePrototype>("Bloodloss"), 300);
-            Damageable.TryChangeDamage(bodyEnt, damage);
+            var damage = new DamageSpecifier(Prototypes.Index(BloodlossDamageType), 300);
+            Damageable.ChangeDamage(bodyEnt.Owner, damage);
         }
     }
 
@@ -465,6 +475,7 @@ public partial class SharedBodySystem
         var walkSpeed = 0f;
         var sprintSpeed = 0f;
         var acceleration = 0f;
+        var maxDensity = 0f; // 🌟Starlight🌟
         foreach (var legEntity in body.LegEntities)
         {
             if (!TryComp<MovementBodyPartComponent>(legEntity, out var legModifier))
@@ -473,7 +484,24 @@ public partial class SharedBodySystem
             walkSpeed += legModifier.WalkSpeed;
             sprintSpeed += legModifier.SprintSpeed;
             acceleration += legModifier.Acceleration;
+            maxDensity += legModifier.MaxDensity; // 🌟Starlight🌟
         }
+
+        // 🌟Starlight🌟 Start
+        var density = TryComp<FixturesComponent>(bodyId, out var fixtures)
+                      && fixtures.Fixtures.TryGetValue("fix1", out var fixture)
+            ? fixture.Density : 185f;
+
+        var speedFactor = density > maxDensity && maxDensity > 0f
+            ? maxDensity / density
+            : 1f;
+
+        walkSpeed *= speedFactor;
+        sprintSpeed *= speedFactor;
+        acceleration *= speedFactor;
+
+        // 🌟Starlight🌟 End
+
         walkSpeed /= body.RequiredLegs;
         sprintSpeed /= body.RequiredLegs;
         acceleration /= body.RequiredLegs;

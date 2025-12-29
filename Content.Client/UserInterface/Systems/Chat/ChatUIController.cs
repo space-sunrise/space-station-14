@@ -70,8 +70,7 @@ public sealed partial class ChatUIController : UIController
     [UISystemDependency] private readonly MindSystem? _mindSystem = default!;
     [UISystemDependency] private readonly RoleCodewordSystem? _roleCodewordSystem = default!;
 
-    [ValidatePrototypeId<ColorPalettePrototype>]
-    private const string ChatNamePalette = "ChatNames";
+    private static readonly ProtoId<ColorPalettePrototype> ChatNamePalette = "ChatNames";
     private string[] _chatNameColors = default!;
     private bool _chatNameColorsEnabled;
 
@@ -243,7 +242,7 @@ public sealed partial class ChatUIController : UIController
         gameplayStateLoad.OnScreenLoad += OnScreenLoad;
         gameplayStateLoad.OnScreenUnload += OnScreenUnload;
 
-        var nameColors = _prototypeManager.Index<ColorPalettePrototype>(ChatNamePalette).Colors.Values.ToArray();
+        var nameColors = _prototypeManager.Index(ChatNamePalette).Colors.Values.ToArray();
         _chatNameColors = new string[nameColors.Length];
         for (var i = 0; i < nameColors.Length; i++)
         {
@@ -275,7 +274,7 @@ public sealed partial class ChatUIController : UIController
         SetChatWindowOpacity(opacity);
     }
 
-    public void SetChatWindowOpacity(float opacity)
+    public void SetChatWindowOpacity(float opacity) // Sunrise-Edit
     {
         var chatBox = UIManager.ActiveScreen?.GetWidget<ChatBox>() ?? UIManager.ActiveScreen?.GetWidget<ResizableChatBox>();
 
@@ -290,7 +289,7 @@ public sealed partial class ChatUIController : UIController
                  && style is StyleBoxFlat propStyleBoxFlat)
             color = propStyleBoxFlat.BackgroundColor;
         else
-            color = StyleNano.ChatBackgroundColor;
+            color = Color.FromHex("#25252ADD");
 
         panel.PanelOverride = new StyleBoxFlat
         {
@@ -710,7 +709,7 @@ public sealed partial class ChatUIController : UIController
         radioChannel = null;
         return _player.LocalEntity is EntityUid { Valid: true } uid
            && _chatSys != null
-           && _chatSys.TryProccessRadioMessage(uid, text, out _, out radioChannel, quiet: true);
+           && _chatSys.TryProcessRadioMessage(uid, text, out _, out radioChannel, quiet: true);
     }
 
     // Sunrise-Start

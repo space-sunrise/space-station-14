@@ -20,3 +20,5 @@ ent-ClothingHeadsetAltUSSP = Full-Headset USSP
     .desc = A headset for internal affairs agent to hear the captain's last words.
 ent-ClothingHeadsetAltAbductor = abductor over-ear headset
     .desc = { ent-ClothingHeadsetAlt.desc }
+ent-ClothingHeadsetAltCentComSunrise = CentComm over-ear headset
+    .desc = { ent-ClothingHeadsetAltCentCom.desc }

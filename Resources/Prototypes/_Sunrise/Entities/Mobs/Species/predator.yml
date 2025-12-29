@@ -6,7 +6,6 @@
   abstract: true
   components:
   - type: Interactions
-  - type: Absorbable
   - type: Hunger
   - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
     sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
@@ -48,7 +47,10 @@
       - FootstepSound
       - DoorBumpOpener
   - type: Bloodstream
-    bloodReagent: FluorosulfuricAcidPredator
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: FluorosulfuricAcidPredator
+        Quantity: 300
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:

@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
 using Content.Server.Chat.Systems;
+using Content.Shared.Chat;
 
 namespace Content.Server._Sunrise.TTS;
 
@@ -137,6 +138,8 @@ public sealed partial class TTSSystem
             {"с4", "Си 4"}, // cyrillic
             {"c4", "Си 4"}, // latinic
             {"бсс", "Бэ Эс Эс"},
+            {"квилу", "хуиллу"},
+            {"qillu", "хуиллу"},
         };
 
     private static readonly IReadOnlyDictionary<string, string> ReverseTranslit =
@@ -176,9 +179,6 @@ public sealed partial class TTSSystem
             {"eh", "э"},
             {"ju", "ю"},
             {"ja", "я"},
-            {"і", "и"},
-            {"ї", "ё"},
-            {"є", "е"}
         };
 }
 

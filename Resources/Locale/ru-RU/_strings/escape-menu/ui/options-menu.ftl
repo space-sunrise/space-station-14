@@ -38,6 +38,16 @@ ui-options-event-music = Музыка событий
 ui-options-admin-sounds = Музыка админов
 ui-options-bwoink-sound = Воспроизводить звук уведомления АХелп
 ui-options-volume-label = Громкость
+# Sunrise-Start
+ui-options-scp-echo-enabled = Эффект эха
+ui-options-scp-echo-enabled-tooltip =
+    При включении каждый неглобальный звук получит эффект эха.
+    При включении все звуки могут стать громче. Используйте слайдер громкости, чтобы отрегулировать громкость.
+ui-options-scp-echo-strong-preset-preferred = Использовать усиленный эффект эха
+ui-options-scp-echo-strong-preset-preferred-tooltip =
+    Определяет, будет ли использован сильный эффект эха.
+    В усиленном эффекте звуки будут иметь более долгий хвост.
+# Sunrise-End
 
 ## Graphics menu
 

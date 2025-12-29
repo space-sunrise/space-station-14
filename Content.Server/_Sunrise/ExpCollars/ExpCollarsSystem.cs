@@ -6,12 +6,14 @@ using Content.Shared.Clothing;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Tag;
+using Content.Shared.Trigger.Systems;
 using Robust.Server.Audio;
 
 namespace Content.Server._Sunrise.ExpCollars;

@@ -48,6 +48,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
         private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
         [Dependency] private readonly IBanManager _banManager = default!; // Sunrise-Ahelp-Antispam, based on Starlight Build: https://github.com/ss14Starlight/space-station-14/pull/85
+        [Dependency] private readonly DiscordWebhook _discord = default!;
 
         [GeneratedRegex(@"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
         private static partial Regex DiscordRegex();
@@ -59,7 +60,7 @@ namespace Content.Server.Administration.Systems
         private WebhookData? _onCallData;
 
         private ISawmill _sawmill = default!;
-        private readonly HttpClient _httpClient = new();
+        private HttpClient _httpClient = default!;
 
         private string _footerIconUrl = string.Empty;
         private string _avatarUrl = string.Empty;
@@ -99,6 +100,10 @@ namespace Content.Server.Administration.Systems
         public override void Initialize()
         {
             base.Initialize();
+
+            // Sunrise added start
+            _httpClient = _discord.GetClient();
+            // Sunrise added end
 
             Subs.CVar(_config, CCVars.DiscordOnCallWebhook, OnCallChanged, true);
 
@@ -408,7 +413,7 @@ namespace Content.Server.Administration.Systems
 
             if (senderAdmin is not null &&
                 senderAdmin.Value.dat.Flags ==
-                AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
+                AdminFlags.Mentor) // Mentor. Not full admin. That's why it's colored differently.
             {
                 bwoinkText = $"[color=purple]{adminPrefix}{username}[/color]";
             }
@@ -693,7 +698,7 @@ namespace Content.Server.Administration.Systems
             {
                 GameRunLevel.PreRoundLobby => _gameTicker.RoundId == 0
                     ? "pre-round lobby after server restart" // first round after server restart has ID == 0
-                    : $"pre-round lobby for round {_gameTicker.RoundId + 1}",
+                    : $"pre-round lobby for round {_gameTicker.RoundId}",
                 GameRunLevel.InRound => $"round {_gameTicker.RoundId}",
                 GameRunLevel.PostRound => $"post-round {_gameTicker.RoundId}",
                 _ => throw new ArgumentOutOfRangeException(nameof(_gameTicker.RunLevel),
@@ -762,8 +767,12 @@ namespace Content.Server.Administration.Systems
             // Based on Starlight Build: https://github.com/ss14Starlight/space-station-14/pull/85
             var currentTime = _timing.RealTime;
 
-            if (IsOnCooldown(message.UserId, currentTime))
+            if (IsOnCooldown(message.UserId, currentTime, out var remainingCooldown))
+            {
+                // Send cooldown feedback to the client
+                RaiseNetworkEvent(new BwoinkCooldownMessage(remainingCooldown), senderSession.Channel);
                 return;
+            }
 
             if (IsSpam(message.UserId, message.Text))
                 _banManager.CreateServerBan(senderSession.UserId, senderSession.Name, null, null, null, 180, NoteSeverity.High, Loc.GetString("ahelp-antispam-ban-reason"));
@@ -1019,14 +1028,31 @@ namespace Content.Server.Administration.Systems
             }
         }
 
-        private bool IsOnCooldown(NetUserId channelId, TimeSpan currentTime)
+        private bool IsOnCooldown(NetUserId channelId, TimeSpan currentTime, out TimeSpan remainingCooldown)
         {
+            remainingCooldown = TimeSpan.Zero;
+
             var lastMessage = _recentMessages
                 .Where(msg => msg.Channel == channelId)
                 .OrderByDescending(msg => msg.Timestamp)
                 .FirstOrDefault();
 
-            return lastMessage != default && (currentTime - lastMessage.Timestamp) < _messageCooldown;
+            if (lastMessage == default)
+                return false;
+
+            var timeSinceLastMessage = currentTime - lastMessage.Timestamp;
+            if (timeSinceLastMessage < _messageCooldown)
+            {
+                remainingCooldown = _messageCooldown - timeSinceLastMessage;
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool IsOnCooldown(NetUserId channelId, TimeSpan currentTime)
+        {
+            return IsOnCooldown(channelId, currentTime, out _);
         }
 
         private bool IsSpam(NetUserId channelId, string text)

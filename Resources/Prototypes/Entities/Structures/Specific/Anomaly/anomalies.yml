@@ -59,9 +59,19 @@
       types:
         Radiation: 10
 
+# Sunrise-Start
+- type: entity
+  abstract: true
+  id: BaseAnomalyNew
+  parent: BaseAnomaly
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Specific/anomalies.rsi
+# Sunrise-End
+
 - type: entity
   id: AnomalyPyroclastic
-  parent: BaseAnomaly
+  parent: BaseAnomalyNew
   suffix: Pyroclastic
   components:
   - type: AmbientSound
@@ -72,14 +82,21 @@
   - type: Anomaly
     corePrototype: AnomalyCorePyroclastic
     coreInertPrototype: AnomalyCorePyroclasticInert
+    supercriticalSoundAtAnimationStart:
+      collection: AnomalyPyroSupercritical
   - type: Sprite
-    sprite: Structures/Specific/Anomalies/pyro_anom.rsi
+    # Sunrise-Start
     layers:
-    - state: anom
+    - state: shadow-anomaly
+      shader: unshaded
+    - state: anomaly-pyroclastic-vfx
+      shader: unshaded
       map: ["enum.AnomalyVisualLayers.Base"]
-    - state: pulse
+    - state: anomaly-pyroclastic-pulse
+      shader: unshaded
       map: ["enum.AnomalyVisualLayers.Animated"]
       visible: false
+    # Sunrise-End
   - type: PointLight
     radius: 6.0
     energy: 7.5
@@ -97,7 +114,7 @@
     tempChange: 420
   - type: ProjectileAnomaly
     projectilePrototype: ProjectileAnomalyFireball
-    projectileSpeed: 0.5
+    projectileSpeed: 5 # Sunrise-edit
     minProjectiles: 3
     maxProjectiles: 6
   - type: IgnitionSource
@@ -118,19 +135,28 @@
 
 - type: entity
   id: AnomalyGravity
-  parent: BaseAnomaly
+  parent: BaseAnomalyNew
   suffix: Gravity
   components:
   - type: Anomaly
     corePrototype: AnomalyCoreGravity
     coreInertPrototype: AnomalyCoreGravityInert
+    supercriticalSoundAtAnimationStart:
+      collection: AnomalyGravitySupercritical
+    supercriticalDuration: 15s
   - type: Sprite
+    # Sunrise-Start
     layers:
-    - state: anom2
+    - state: shadow-anomaly
+      shader: unshaded
+    - state: anomaly-gravity-vfx
+      shader: unshaded
       map: ["enum.AnomalyVisualLayers.Base"]
-    - state: anom2-pulse
+    - state: anomaly-gravity-pulse
+      shader: unshaded
       map: ["enum.AnomalyVisualLayers.Animated"]
       visible: false
+    # Sunrise-End
   - type: PointLight
     radius: 5.0
     energy: 20
@@ -150,19 +176,27 @@
 
 - type: entity
   id: AnomalyElectricity
-  parent: BaseAnomaly
+  parent: BaseAnomalyNew
   suffix: Electricity
   components:
   - type: Anomaly
     corePrototype: AnomalyCoreElectricity
     coreInertPrototype: AnomalyCoreElectricityInert
+    supercriticalSoundAtAnimationStart:
+      collection: AnomalyElectricitySupercritical
   - type: Sprite
+    # Sunrise-Start
     layers:
-    - state: anom3
+    - state: shadow-anomaly
+      shader: unshaded
+    - state: anomaly-electricity-vfx
+      shader: unshaded
       map: ["enum.AnomalyVisualLayers.Base"]
-    - state: anom3-pulse
+    - state: anomaly-electricity-pulse
+      shader: unshaded
       map: ["enum.AnomalyVisualLayers.Animated"]
       visible: false
+    # Sunrise-End
   - type: PointLight
     radius: 2.0
     energy: 5.0
@@ -181,6 +215,8 @@
     coreInertPrototype: AnomalyCoreFleshInert
     minPulseLength: 180
     maxPulseLength: 300
+    supercriticalSoundAtAnimationStart:
+      collection: AnomalyFleshSupercritical
   - type: Sprite
     layers:
     - state: anom5
@@ -266,16 +302,22 @@
 
 - type: entity
   id: AnomalyBluespace
-  parent: BaseAnomaly
+  parent: BaseAnomalyNew
   suffix: Bluespace
   components:
   - type: Sprite
+    # Sunrise-Start
     layers:
-    - state: anom4
+    - state: shadow-anomaly
+      shader: unshaded
+    - state: anomaly-bluespace-vfx
+      shader: unshaded
       map: ["enum.AnomalyVisualLayers.Base"]
-    - state: anom4-pulse
+    - state: anomaly-bluespace-pulse
+      shader: unshaded
       map: ["enum.AnomalyVisualLayers.Animated"]
       visible: false
+    # Sunrise-End
   - type: PointLight
     radius: 2.0
     energy: 7.5
@@ -306,6 +348,8 @@
   - type: Anomaly
     corePrototype: AnomalyCoreBluespace
     coreInertPrototype: AnomalyCoreBluespaceInert
+    supercriticalSoundAtAnimationStart:
+      collection: AnomalyBluespaceSupercritical
     pulseSound:
       collection: RadiationPulse
       params:
@@ -313,17 +357,23 @@
 
 - type: entity
   id: AnomalyIce
-  parent: BaseAnomaly
+  parent: BaseAnomalyNew
   suffix: Ice
   components:
   - type: Sprite
-    sprite: Structures/Specific/Anomalies/ice_anom.rsi
+    # Sunrise-Start
+    scale: 0.9, 0.9
     layers:
-    - state: anom
+    - state: shadow-anomaly
+      shader: unshaded
+    - state: anomaly-ice-vfx
+      shader: unshaded
       map: ["enum.AnomalyVisualLayers.Base"]
-    - state: pulse
+    - state: anomaly-ice-pulse
+      shader: unshaded
       map: ["enum.AnomalyVisualLayers.Animated"]
       visible: false
+    # Sunrise-End
   - type: PointLight
     radius: 2.0
     energy: 2.5
@@ -332,6 +382,8 @@
   - type: Anomaly
     corePrototype: AnomalyCoreIce
     coreInertPrototype: AnomalyCoreIceInert
+    supercriticalSoundAtAnimationStart:
+      collection: AnomalyIceSupercritical
   - type: ExplosionAnomaly
     supercriticalExplosion: Cryo
     explosionTotalIntensity: 300
@@ -376,6 +428,8 @@
     coreInertPrototype: AnomalyCoreRockInert
     minPulseLength: 180
     maxPulseLength: 300
+    supercriticalSoundAtAnimationStart:
+      collection: AnomalyRockSupercritical
   - type: Sprite
     layers:
     - state: anom6
@@ -778,6 +832,8 @@
     coreInertPrototype: AnomalyCoreFloraInert
     minPulseLength: 60
     maxPulseLength: 120
+    supercriticalSoundAtAnimationStart:
+      collection: AnomalyFloraSupercritical
   - type: TileSpawnAnomaly
     entries:
     - settings:
@@ -854,23 +910,28 @@
 
 - type: entity
   id: AnomalyLiquid
-  parent: BaseAnomaly
+  parent: BaseAnomalyNew
   suffix: Liquid
   components:
   - type: Sprite
-    sprite: Structures/Specific/Anomalies/liquid_anom.rsi
+    # Sunrise-Start
     layers:
-    - state: anom
+    - state: shadow-anomaly
+      shader: unshaded
+    - state: anomaly-liquid-vfx
+      shader: unshaded
       map: ["enum.AnomalyVisualLayers.Base"]
-    - state: pulse
+    - state: anomaly-liquid-pulse
+      shader: unshaded
       map: ["enum.AnomalyVisualLayers.Animated"]
       visible: false
+    # Sunrise-End
   - type: RandomSprite
     selected: # Initialized layer values. Edited through the ReagentProducerAnomalySystem
       enum.AnomalyVisualLayers.Base:
-        anom: "#ffffff"
+        anomaly-liquid-vfx: "#ffffff"
       enum.AnomalyVisualLayers.Animated:
-        pulse: "#ffffff"
+        anomaly-liquid-pulse: "#ffffff"
   - type: PointLight
     radius: 4.0
     energy: 3.5
@@ -881,6 +942,8 @@
     coreInertPrototype: AnomalyCoreLiquidInert
     minPulseLength: 60
     maxPulseLength: 120
+    supercriticalSoundAtAnimationStart:
+      collection: AnomalyFluidSupercritical
   - type: EntitySpawnAnomaly
     entries:
     - settings:
@@ -952,14 +1015,19 @@
     - Honk
     - Carpetium
     - JuiceThatMakesYouWeh
-  - type: Drink
+  - type: Edible
+    edible: Drink
     solution: anomaly
+    destroyOnEmpty: false
+    utensil: Spoon
   - type: DrainableSolution
     solution: anomaly
   - type: DrawableSolution
     solution: anomaly
   - type: ExaminableSolution
     solution: anomaly
+    exactVolume: true
+    locVolume: "examinable-solution-on-examine-volume-no-max"
   - type: RefillableSolution
     solution: anomaly
   - type: InjectableSolution
@@ -967,17 +1035,22 @@
 
 - type: entity
   id: AnomalyShadow
-  parent: BaseAnomaly
+  parent: BaseAnomalyNew
   suffix: Shadow
   components:
   - type: Sprite
-    sprite: Structures/Specific/Anomalies/shadow_anom.rsi
+    # Sunrise-Start
     layers:
-    - state: anom
+    - state: shadow-anomaly
+      shader: unshaded
+    - state: anomaly-shadow-vfx
+      shader: unshaded
       map: ["enum.AnomalyVisualLayers.Base"]
-    - state: pulse
+    - state: anomaly-shadow-pulse
+      shader: unshaded
       map: ["enum.AnomalyVisualLayers.Animated"]
       visible: false
+    # Sunrise-End
   - type: PointLight
     radius: 1.5
     energy: 12.5
@@ -994,6 +1067,8 @@
     maxPulseLength: 120
     animationTime: 4
     offset: "-0.1,0.1"
+    supercriticalSoundAtAnimationStart:
+      collection: AnomalyShadowSupercritical
   - type: EntitySpawnAnomaly
     entries:
     - settings:
@@ -1054,6 +1129,8 @@
     coreInertPrototype: AnomalyCoreTechInert
     minPulseLength: 60
     maxPulseLength: 120
+    supercriticalSoundAtAnimationStart:
+      collection: AnomalyTechSupercritical
   - type: TechAnomaly
   - type: DeviceLinkSource
     ports:
@@ -1112,6 +1189,8 @@
     coreInertPrototype: AnomalyCoreSantaInert
     minPulseLength: 60
     maxPulseLength: 120
+    supercriticalSoundAtAnimationStart:
+      collection: AnomalyPresentSupercritical
   - type: EntitySpawnAnomaly
     entries:
     - settings:

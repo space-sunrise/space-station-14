@@ -39,7 +39,7 @@ jobs:
       run: python3 Tools/_sunrise/move_private.py --clone-dir "SunrisePrivate" --target-dirs "Resources" "Content.Client" "Content.Server" "Content.Shared"
 
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v3.2.0
+      uses: actions/setup-dotnet@v4.1.0
       with:
         dotnet-version: 9.0.x
 

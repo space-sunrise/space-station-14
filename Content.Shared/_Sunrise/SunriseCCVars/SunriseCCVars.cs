@@ -3,6 +3,9 @@ using Robust.Shared.Configuration;
 
 namespace Content.Shared._Sunrise.SunriseCCVars;
 
+// TODO: Разбиние на partial файлы
+// TODO: Документация по каждому из сиваров
+[CVarDefs]
 public sealed partial class SunriseCCVars : CVars
 {
     /**
@@ -57,8 +60,11 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<float> TTSRadioVolume =
         CVarDef.Create("tts.radio_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    public static readonly CVarDef<float> TTSAnnounceVolume =
-        CVarDef.Create("tts.announce_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
+    public static readonly CVarDef<string> TTSRadioEffect =
+        CVarDef.Create("tts.radio_effect", "radio", CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> TTSAnnounceEffect =
+        CVarDef.Create("tts.announce_effect", "tiny_room", CVar.SERVERONLY | CVar.ARCHIVE);
 
     /**
      * Ban Webhook
@@ -188,6 +194,12 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<string> InfoLinksDonate =
         CVarDef.Create("infolinks.donate", "", CVar.SERVER | CVar.REPLICATED);
 
+    /// <summary>
+    /// Link to replays to show in menus.
+    /// </summary>
+    public static readonly CVarDef<string> InfoLinksReplays =
+        CVarDef.Create("infolinks.replays", "https://t.me/ss14_replays", CVar.SERVER | CVar.REPLICATED);
+
     /**
      * Lobby
      */
@@ -219,6 +231,9 @@ public sealed partial class SunriseCCVars : CVars
 
     public static readonly CVarDef<int> MinPlayersPlanetPrison =
         CVarDef.Create("planet_prison.min_players", 0, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> PlanetPrisonModern =
+        CVarDef.Create("planet_prison.modern", true, CVar.SERVERONLY);
 
     /*
      * MaxLoadedChunks
@@ -255,14 +270,17 @@ public sealed partial class SunriseCCVars : CVars
      * Damage
      */
 
-    public static readonly CVarDef<float> DamageVariance =
-        CVarDef.Create("damage.variance", 0.15f, CVar.SERVER | CVar.REPLICATED);
+    public static readonly CVarDef<float> DamagePositiveVariance =
+        CVarDef.Create("damage.positive_variance", 0f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> DamageNegativeVariance =
+        CVarDef.Create("damage.negative_variance", 0.3f, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<float> DamageModifier =
         CVarDef.Create("damage.damage_modifier", 1f, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<float> HealModifier =
-        CVarDef.Create("damage.heal_modifier", 1.2f, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("damage.heal_modifier", 1f, CVar.SERVER | CVar.REPLICATED);
 
     /*
      * NPCs
@@ -299,7 +317,7 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> VotePause =
         CVarDef.Create("vote.pause", true, CVar.SERVERONLY);
 
-    public static readonly CVarDef<bool> ExcludeMaps = CVarDef.Create("vote.exclude_maps", false, CVar.SERVERONLY);
+    public static readonly CVarDef<bool> ExcludeMaps = CVarDef.Create("vote.exclude_maps", true, CVar.SERVERONLY);
 
     public static readonly CVarDef<bool> ExcludePresets =
         CVarDef.Create("vote.exclude_presets", true, CVar.SERVERONLY);
@@ -344,9 +362,6 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> JumpEnable =
         CVarDef.Create("jump.enable", true, CVar.SERVER | CVar.REPLICATED);
 
-    public static readonly CVarDef<float> JumpDeadChance =
-        CVarDef.Create("jump.dead_chance", 0.001f, CVar.SERVER | CVar.REPLICATED);
-
     public static readonly CVarDef<float> JumpCooldown =
         CVarDef.Create("jump.cooldown", 0.600f, CVar.SERVER | CVar.REPLICATED);
 
@@ -381,13 +396,6 @@ public sealed partial class SunriseCCVars : CVars
 
     public static readonly CVarDef<float> SlipDeadChance =
         CVarDef.Create("slip.dead_chance", 0.001f, CVar.SERVER | CVar.REPLICATED);
-
-    /**
-     * Fall
-     */
-
-    public static readonly CVarDef<float> FallDeadChance =
-        CVarDef.Create("fall.dead_chance", 0.01f, CVar.SERVER | CVar.REPLICATED);
 
     /**
      * VigersRay
@@ -524,14 +532,51 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> ChatSanitizationAggressive =
         CVarDef.Create("chatsan.aggressive", true, CVar.SERVER | CVar.ARCHIVE);
 
-    /// <summary>
-    /// Смена даты на документах от принтера
-    /// </summary>
-    public static readonly CVarDef<int> PrinterDocTimeOffsetHours =
-        CVarDef.Create("printerdoc.time_offset_hours", 3, CVar.SERVERONLY);
-    public static readonly CVarDef<int> PrinterDocYearOffset =
-        CVarDef.Create("printerdoc.year_offset", 1000, CVar.SERVERONLY);
+    public static readonly CVarDef<bool> TracesEnabled =
+        CVarDef.Create("opt.traces_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<bool> HoldLookUp =
         CVarDef.Create("scope.hold_look_up", true, CVar.CLIENT | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Название корпорации для подстановки в документы
+    /// </summary>
+    public static readonly CVarDef<string> DocumentCorporationName =
+        CVarDef.Create("doc.corp_name", "NanoTrasen", CVar.SERVER | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Смешение автозаполнения времени в часах
+    /// </summary>
+    public static readonly CVarDef<int> DocumentTimeOffsetHours =
+        CVarDef.Create("doc.time_offset_hours", 3, CVar.SERVER | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Смешение автозаполнения времени в годах
+    /// </summary>
+    public static readonly CVarDef<int> DocumentYearOffset =
+        CVarDef.Create("doc.year_offset", 1000, CVar.SERVER | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Пул шаблонов документов, используемых при создании документов на принтере
+    /// </summary>
+    public static readonly CVarDef<string> DocumentTemplatePool =
+        CVarDef.Create("doc.template_pool", "Sunrise", CVar.SERVER | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> MentorHelpAdminPrefix =
+        CVarDef.Create("mentor_help.admin_prefix", true, CVar.SERVERONLY);
+
+    public static readonly CVarDef<float> MentorHelpRateLimitPeriod =
+        CVarDef.Create("mentor_help.rate_limit_period", 2f, CVar.SERVERONLY);
+
+    public static readonly CVarDef<int> MentorHelpRateLimitCount =
+        CVarDef.Create("mentor_help.rate_limit_count", 10, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> MentorHelpSoundEnabled =
+        CVarDef.Create("mentor_help.mentor_help_sound_enabled", true, CVar.ARCHIVE | CVar.CLIENTONLY);
+
+    /// <summary>
+    /// Авто-открывать тикет при получении нового сообщения (только для автора и назначенного ментора).
+    /// </summary>
+    public static readonly CVarDef<bool> MentorHelpAutoOpenOnNewMessage =
+        CVarDef.Create("mentor_help.auto_open_on_new_message", false, CVar.ARCHIVE | CVar.CLIENTONLY);
 }

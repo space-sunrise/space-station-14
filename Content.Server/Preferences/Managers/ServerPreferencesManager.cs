@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Content.Server.Database;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
+using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -359,7 +360,9 @@ namespace Content.Server.Preferences.Managers
             var prefs = await _db.GetPlayerPreferencesAsync(userId, cancel);
             if (prefs is null)
             {
-                return await _db.InitPrefsAsync(userId, HumanoidCharacterProfile.Random(), cancel);
+                var speciesToBlacklist =
+                    new HashSet<string>(_cfg.GetCVar(CCVars.ICNewAccountSpeciesBlacklist).Split(","));
+                return await _db.InitPrefsAsync(userId, HumanoidCharacterProfile.Random(speciesToBlacklist), cancel);
             }
 
             return prefs;

@@ -32,18 +32,13 @@
   - type: Appearance
 
 - type: entity
-  id: MagazineRifle
-  name: "magazine (.20 rifle)"
+  id: MagazineRifleEmpty
+  name: "magazine (.20 rifle any)"
+  suffix: empty
   parent: BaseMagazineRifle
   components:
   - type: BallisticAmmoProvider
-    proto: SunriseCartridgeRifle # Sunrise-Edit
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
+    proto: null
   - type: Item
     inhandVisuals:
       left:
@@ -52,33 +47,39 @@
       - state: inhand-right-mag
 
 - type: entity
-  id: MagazineRifleEmpty
-  name: "magazine (.20 rifle any)"
-  suffix: empty
-  parent: MagazineRifle
+  id: MagazineRifle
+  name: "magazine (.20 rifle SP)"
+  parent: BaseMagazineRifle
+  categories: [ HideSpawnMenu ] # Sunrise-add # Другие MagazineRifle в _sunrise файле
   components:
   - type: BallisticAmmoProvider
-    proto: null
+    proto: CartridgeRifleSP
   - type: Sprite
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#575EF5"
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#575EF5"
       right:
       - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#575EF5"
 
 - type: entity
   id: MagazineRifleIncendiary
   name: "magazine (.20 rifle incendiary)"
-  parent: MagazineRifle
+  parent: MagazineRifleSP
   components:
   - type: BallisticAmmoProvider
-    proto: SunriseCartridgeRifleIncendiary  # Sunrise-Edit
+    proto: CartridgeRifleIncendiary
   - type: Sprite
     layers:
     - state: base
@@ -102,9 +103,10 @@
   id: MagazineRiflePractice
   name: "magazine (.20 rifle practice)"
   parent: BaseMagazineRifle
+  description: 25-round double stack magazine for combat rifles. Intended to hold non-harmful chalk ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: SunriseCartridgeRiflePractice  # Sunrise-Edit
+    proto: CartridgeRiflePractice
   - type: Sprite
     layers:
     - state: base
@@ -128,9 +130,10 @@
   id: MagazineRifleUranium
   name: "magazine (.20 rifle uranium)"
   parent: BaseMagazineRifle
+  description: 25-round double stack magazine for combat rifles. Intended to hold exotic uranium-core ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: SunriseCartridgeRifleUranium # Sunrise-Edit
+    proto: CartridgeRifleUranium
   - type: Sprite
     layers:
     - state: base
@@ -138,14 +141,14 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
     - state: stripe
-      color: "#00cd42"
+      color: "#40F57A"
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left-mag
       - state: inhand-left-stripe
-        color: "#00cd42"
+        color: "#40F57A"
       right:
       - state: inhand-right-mag
       - state: inhand-right-stripe
-        color: "#00cd42"
+        color: "#40F57A"

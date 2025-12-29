@@ -135,3 +135,229 @@
     - NamesMilitaryFirstLeader
     - NamesMilitaryLast
 
+## RaidOps Leader
+####
+- type: entity
+  name: Infiltrator teamleader spawner
+  id: SyndieInfiltratorTeamLeaderSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Decoration/banner.rsi
+        state: banner_syndicate
+  - type: RandomSpawner
+    prototypes:
+    - RandomHumanoidInfiltratorTeamLeader
+
+- type: entity
+  name: Infiltrator spawner
+  id: SyndieInfiltratorSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Decoration/banner.rsi
+        state: banner_syndicate
+  - type: RandomSpawner
+    prototypes:
+    - RandomHumanoidInfiltrator
+
+- type: entity
+  id: RandomHumanoidInfiltratorTeamLeader
+  name: Infiltrator teamleader
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner_syndicate
+    - type: RandomHumanoidSpawner
+      settings: InfiltratorTeamLeaderSettings
+
+- type: entity
+  id: RandomHumanoidInfiltrator
+  name: Infiltrator
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner_syndicate
+    - type: RandomHumanoidSpawner
+      settings: InfiltratorSettings
+
+- type: randomHumanoidSettings
+  id: InfiltratorTeamLeaderSettings
+  speciesBlacklist:
+  - Diona
+  - Felinid
+  - Moth
+  - Arachnid
+  - Demon
+  - SlimePerson
+  - HumanoidXeno
+  - Predator
+  parent: EventHumanoid
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: NukeOperative
+    - type: GhostRole
+      name: ghost-role-information-syndie-soldier-teamlead-name
+      description: ghost-role-information-syndie-soldier-teamlead-description
+      rules: ghost-role-information-rules-team-antagonist
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: Loadout
+      prototypes: [ SyndicateRaidTeamLeaderGear ]
+      roleLoadout: [ RoleSurvivalSyndicate ]
+    - type: RandomMetadata
+      nameSegments:
+      - NamesSyndicateNormal
+      nameFormat: name-format-nukie-commander
+
+- type: randomHumanoidSettings
+  id: InfiltratorSettings
+  speciesBlacklist:
+  - Diona
+  - Felinid
+  - Moth
+  - Arachnid
+  - Demon
+  - SlimePerson
+  - HumanoidXeno
+  - Predator
+  parent: EventHumanoid
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: NukeOperative
+    - type: GhostRole
+      name: ghost-role-information-syndie-soldier-name
+      description: ghost-role-information-syndie-soldier-description
+      rules: ghost-role-information-rules-team-antagonist
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: Loadout
+      prototypes: [ SyndicateRaidGear ]
+      roleLoadout: [ RoleSurvivalSyndicate ]
+    - type: RandomMetadata
+      nameSegments: [NamesDeathCommando]
+
+# Pirate
+- type: entity
+  name: Scooner spawner
+  id: ScoonerReinforcementSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Decoration/banner.rsi
+        state: banner_syndicate
+  - type: RandomSpawner
+    prototypes:
+    - RandomHumanoidScoonerReinforcement
+
+- type: entity
+  id: RandomHumanoidScoonerReinforcement
+  name: Scooner
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner_syndicate
+    - type: RandomHumanoidSpawner
+      settings: ScoonerReinforcementSettings
+
+- type: randomHumanoidSettings
+  id: ScoonerReinforcementSettings
+  speciesBlacklist:
+  - Diona
+  - Felinid
+  - Moth
+  - Arachnid
+  - Demon
+  - SlimePerson
+  - HumanoidXeno
+  - Predator
+  - Resomi
+  parent: EventHumanoid
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+      - Pirate
+    - type: GhostRole
+      name: ghost-role-information-pirate-name
+      description: ghost-role-information-pirate-description
+      rules: ghost-role-information-rules-team-antagonist
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: Loadout
+      prototypes: [ PirateScoonerEVAGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
+    - type: RandomMetadata
+      nameSegments: [NamesDeathCommando]
+
+- type: entity
+  name: Scooner spawner
+  id: OldScoonerReinforcementSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Decoration/banner.rsi
+        state: banner_syndicate
+  - type: RandomSpawner
+    prototypes:
+    - RandomHumanoidOldScoonerReinforcement
+
+- type: entity
+  id: RandomHumanoidOldScoonerReinforcement
+  name: Scooner
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner_syndicate
+    - type: RandomHumanoidSpawner
+      settings: OldScoonerReinforcementSettings
+
+- type: randomHumanoidSettings
+  id: OldScoonerReinforcementSettings
+  speciesBlacklist:
+  - Diona
+  - Felinid
+  - Moth
+  - Arachnid
+  - Demon
+  - SlimePerson
+  - HumanoidXeno
+  - Predator
+  - Resomi
+  parent: EventHumanoid
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+      - Pirate
+    - type: GhostRole
+      name: ghost-role-information-pirate-name
+      description: ghost-role-information-pirate-description
+      rules: ghost-role-information-rules-team-antagonist
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: Loadout
+      prototypes: [ PirateScoonerOldEVAGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
+    - type: RandomMetadata
+      nameSegments: [NamesDeathCommando]

@@ -15,13 +15,7 @@
     bodyType: KinematicController # Same for all inheritors
   - type: StatusEffects
     allowed:
-    - Stun
-    - KnockedDown
-    - SlowedDown
-    - Stutter
     - Electrocution
-    - Jump # Sunrise-Edit
-    - Fall # Sunrise-Edit
   - type: Repairable
     # Sunrise-Start
     doAfterDelay: 3
@@ -94,7 +88,7 @@
     baseWalkSpeed : 3
     baseSprintSpeed : 4
   - type: Stamina
-    critThreshold: 120
+    baseCritThreshold: 120
   - type: Destructible
     thresholds:
     - trigger:
@@ -169,8 +163,9 @@
     interactFailureString: petting-failure-firebot
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
-  - type: Advertise
-    pack: FirebotAd
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: FirebotAd
 
 - type: entity
   parent: MobSiliconBase
@@ -368,8 +363,9 @@
     interactFailureString: petting-failure-medibot
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
-  - type: Advertise
-    pack: MedibotAds
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: MedibotAds
   - type: Inventory
     templateId: medibot
   - type: DoAfter
@@ -498,3 +494,40 @@
     needsHands: false
   - type: StationAiVision # Sunrise-edit
     range: 1
+
+- type: entity
+  parent: [ MobSiliconBase, MobCombat ]
+  id: MobHugBot
+  name: hugbot
+  description: Awww, who needs a hug?
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/Bots/hugbot.rsi
+    state: hugbot
+  - type: Construction
+    graph: HugBot
+    node: bot
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/boxingpunch1.ogg
+    angle: 30
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 2
+  - type: Anchorable
+  - type: Hands # This probably REALLY needs hand whitelisting, but we NEED hands for hugs, so...
+  - type: ComplexInteraction # Hugging is a complex interaction, apparently.
+  - type: HugBot
+  - type: Body
+    prototype: HugBot
+  - type: HTN
+    rootTask:
+      task: HugBotCompound
+  - type: InteractionPopup
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others

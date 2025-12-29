@@ -1,7 +1,11 @@
 ent-ClothingHandsGlovesAerostatic = аэростатические перчатки
     .desc = Дышащие красные перчатки для профессиональной работы с ручкой и блокнотом.
-ent-ClothingHandsGlovesCentcomNaval = перчатки флота Nanotrasen
-    .desc = Пара высококачественных плотных перчаток, украшенных золотым шитьём, которые выдаются командующим флотом Nanotrasen.
+ent-ClothingHandsGlovesCentcomNaval = перчатки флота NanoTrasen
+    .desc = Пара высококачественных плотных перчаток, украшенных золотым шитьём, которые выдаются командующим флотом NanoTrasen.
+ent-ClothingHandsGlovesCaptainCapWhite = белые перчатки капитана
+    .desc = Стерильная пара офицерских перчаток для капитана. Идеальны, чтобы тыкать в проблемы и называть их «задачами».
+ent-ClothingHandsGlovesCaptainCapBlack = чёрные перчатки капитана
+    .desc = Те же перчатки капитана, но в чёрном. Даёт +5 устрашения и +100% драматичных жестов руками.
 ent-ClothingHandsGlovesLeatherHoS = кожаные перчатки
     .desc = Стильные чёрные кожаные перчатки.
 ent-ClothingHandsGlovesNitrileBlack = чёрные нитриловые перчатки

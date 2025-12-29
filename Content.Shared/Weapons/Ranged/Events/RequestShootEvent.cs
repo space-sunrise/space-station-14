@@ -1,6 +1,5 @@
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
-using System.Collections.Generic;
 
 namespace Content.Shared.Weapons.Ranged.Events;
 
@@ -12,5 +11,5 @@ public sealed class RequestShootEvent : EntityEventArgs
 {
     public NetEntity Gun;
     public NetCoordinates Coordinates;
-    public List<NetEntity> Targets = new();
+    public List<NetEntity> Targets = new(); // Sunrise-Edit
 }

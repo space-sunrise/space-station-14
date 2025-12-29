@@ -6,6 +6,9 @@
     - !type:GroupSelector
       weight: 75
       children:
+      - !type:NestedSelector
+        weight: 5 # Roughly 7% chance
+        tableId: AllToysTable
       # Smoker's specialty
       - !type:AllSelector
         children:
@@ -56,7 +59,7 @@
       - id: ClothingHeadHatPaper
       - id: ClothingHeadHatPirate
       - id: ClothingMaskSterile
-      - id: ClothingNeckHeadphones
+      - id: ClothingMultipleHeadphones
       - id: ClothingNeckTieRed
       - id: ClothingOuterCoatGentle
       - !type:AllSelector
@@ -111,13 +114,8 @@
         - id: ClothingNeckCloakGay
         - id: ClothingNeckCloakEnby
         - id: ClothingNeckCloakPan
-      - id: ToySkeleton
-      - id: Basketball
-      - id: Football
-      - id: BalloonNT
-      - id: BalloonCorgi
+      - id: ToyFigurineSkeleton
       - id: MysteryFigureBox
-      - id: RubberChicken
       # Cult
       - !type:AllSelector
         children:
@@ -163,15 +161,12 @@
     - !type:GroupSelector
       weight: 2
       children:
-      - id: Skub
-      - id: PonderingOrb
-      - id: CluwneHorn
-      - id: ClothingShoesSkates
       - id: DrinkMugDog
       - id: CigarGold
       - id: ClothingUniformJumpsuitFamilyGuy
       - id: WristwatchGold
       - id: RubberStampGreytide
+      - id: MysteryLighterBox
 
 - type: entity
   name: Maint Loot Spawner
@@ -225,7 +220,8 @@
       - id: Plunger
       - id: PowerCellMedium
       - id: PowerCellSmall
-      - id: Soap
+      - !type:NestedSelector
+        tableId: AllSoapsTable
       - id: Wirecutter
       - id: Screwdriver
       - id: Wrench
@@ -271,7 +267,7 @@
       - id: trayScanner
       - id: HandheldGPSBasic
       - id: HandLabeler
-      - id: GlowstickBase
+      - id: GlowstickGreen
       - id: Bucket
       - id: RadioHandheld
       - id: AppraisalTool
@@ -334,18 +330,25 @@
     children:
     # Common Group
     - !type:GroupSelector
-      weight: 95
+      weight: 85  # Sunrise-edit
       children:
       - id: Machete
+      - id: Claymore
       - id: BaseBallBat
       - id: CombatKnife
       - id: Spear
       - id: RifleStock
       - id: ModularReceiver
       - id: HydroponicsToolScythe
+      # Sunrise-start
+      - id: WeaponSubMachineGunMakeshift
+      - id: WeaponPistolMakeshiftCrafted
+      - id: WeaponRevolverMakeshift
+      - id: WeaponSniperMakeshift
+      # Sunrise-end
     # Rare Group
     - !type:GroupSelector
-      weight: 5
+      weight: 15 # Sunrise-edit
       children:
       - id: Lighter
       - id: Matchbox
@@ -356,6 +359,12 @@
         weight: 2
       - id: Syringe
       - id: Mousetrap
+      # Sunrise-start
+      - id: WeaponSubMachineGunImprovised
+      - id: WeaponPistolImprovised
+      - id: WeaponRevolverImprovised
+      - id: WeaponSniperImprovised
+      # Sunrise-end
       - !type:GroupSelector
         weight: 2
         children:
@@ -369,6 +378,8 @@
       - id: SawImprov
       - id: HydroponicsToolMiniHoe
       - id: ClothingHandsKnuckleDusters
+      - !type:NestedSelector
+        tableId: AllToyWeaponsTable
 
 - type: entity
   name: Maint Loot Spawner

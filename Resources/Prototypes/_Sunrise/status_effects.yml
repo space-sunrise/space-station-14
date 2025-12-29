@@ -2,10 +2,18 @@
   id: LoveEffect
 
 - type: statusEffect
-  id: Jump
-
-- type: statusEffect
   id: Flip
 
-- type: statusEffect
-  id: Fall
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectFall
+  name: fall
+  components:
+  - type: FallStatusEffect
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectJump
+  name: jump
+  components:
+  - type: JumpStatusEffect

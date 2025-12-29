@@ -661,3 +661,32 @@
         enum.OpenableVisuals.Layer:
           True: {state: "mauler-meow"}
           False: {state: "mauler-meow-cap"}
+
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Dollhouse , Warboss
+  id: MechPaintDollHouseWarboss
+  categories: [ Debug ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
+    layers:
+      - state: dollhouse-cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
+    heldPrefix: dollhouse
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - DollHouse
+    baseState: warboss
+    openState: dollhouse-open
+    brokenState: warboss-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "dollhouse"}
+          False: {state: "dollhouse-cap"}

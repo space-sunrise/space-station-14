@@ -1,0 +1,32 @@
+- type: entity
+  name: energy crossbow
+  id: WeaponEnergyCrossbowLarge
+  parent: [ WeaponEnergyCrossbowBase, BaseSyndicateContraband ]
+  description: Fires low-damage kinetic bolts at a short range.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/large_crossbow.rsi
+    layers:
+    - state: icon
+      map: [ "icon" ]
+    - state: animation-icon
+      visible: false
+      map: [ "empty-icon" ]
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/large_crossbow.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/large_crossbow_x64.rsi
+    size: Huge
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2
+    pvsIncrease: 0.2
+  - type: Gun
+  - type: StaticPrice
+    price: 2000

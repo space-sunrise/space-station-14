@@ -20,7 +20,8 @@ public enum AbductorOrganType : byte
     Ephedrine,
     Liar,
     Owo,
-    EMP
+    EMP,
+    TraitorGoal
 }
 [Serializable, NetSerializable]
 public enum AbductorArmorModeType : byte

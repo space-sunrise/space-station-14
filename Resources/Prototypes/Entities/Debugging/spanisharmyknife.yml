@@ -6,9 +6,6 @@
   suffix: DEBUG
   categories: [ Debug ] # Sunrise added
   components:
-  - type: Tag
-    tags:
-      - Debug
   - type: Sprite
     sprite: Objects/Tools/debug.rsi
     state: icon

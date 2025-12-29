@@ -4,6 +4,7 @@
   name: chat-emote-name-mews
   category: Vocal
   available: false
+  icon: { sprite: _Sunrise/Actions/felionoid.rsi, state: cat_print }
   whitelist:
     components:
     - Vocal
@@ -27,6 +28,7 @@
   name: chat-emote-name-meows
   category: Vocal
   available: false
+  icon: { sprite: _Sunrise/Actions/felionoid.rsi, state: cat_print }
   whitelist:
     components:
     - Vocal
@@ -53,6 +55,7 @@
   name: chat-emote-name-hisses
   category: Vocal
   available: false
+  icon: { sprite: _Sunrise/Actions/felionoid.rsi, state: cat_print }
   whitelist:
     components:
     - Vocal
@@ -76,6 +79,7 @@
   name: chat-emote-name-purrs
   category: Vocal
   available: false
+  icon: { sprite: _Sunrise/Actions/felionoid.rsi, state: cat_print }
   whitelist:
     components:
     - Vocal
@@ -90,80 +94,6 @@
     - Purrs
     - Purrs.
     - Purrs!
-
-- type: emote
-  id: Growl
-  name: chat-emote-name-growls
-  category: Vocal
-  available: false
-  whitelist:
-    components:
-    - Vocal
-  blacklist:
-    components:
-    - BorgChassis
-  chatMessages: [рычит!]
-  chatTriggers:
-  - рычит
-  - рычит.
-  - рычит!
-  - Growls
-  - Growls.
-  - Growls!
-
-- type: emote
-  id: Bark
-  name: chat-emote-name-bark
-  category: Vocal
-  available: false
-  whitelist:
-    components:
-    - Vocal
-  blacklist:
-    components:
-    - BorgChassis
-  chatMessages: [лает.]
-  chatTriggers:
-  - гав
-  - гав.
-  - гав!
-  - лает
-  - лаять
-  - лает!
-  - лает.
-  - bark.
-  - bark!
-  - barks.
-  - barks!
-  - barked.
-  - barked!
-  - barking.
-
-- type: emote
-  id: Howl
-  name: chat-emote-name-howl
-  category: Vocal
-  available: false
-  whitelist:
-    components:
-    - Vocal
-  blacklist:
-    components:
-    - BorgChassis
-  chatMessages: [воет.]
-  chatTriggers:
-  - выть
-  - воет
-  - воет!
-  - воет.
-  - выть.
-  - выть!
-  - howl.
-  - howl!
-  - howls.
-  - howls!
-  - howling.
-  - howled.
 
 - type: emote
   id: Oink
@@ -228,3 +158,130 @@
   - скулить!
   - скулит
   - скулить
+
+- type: emote
+  id: Scree
+  name: chat-emote-name-scree
+  category: Vocal
+  available: false
+  icon: { sprite: _Sunrise/Actions/resomi.rsi, state: bird_call }
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-scree"]
+  chatTriggers:
+  - scree
+  - scree.
+  - scree!
+  - scree?
+  - screeing
+  - screeing.
+  - screeing!
+  - screeing?
+  - screes
+  - screes.
+  - screes!
+  - screes?
+  - скри
+  - скри.
+  - скри!
+
+- type: emote
+  id: Call
+  name: chat-emote-name-call
+  category: Vocal
+  available: false
+  icon: { sprite: _Sunrise/Actions/resomi.rsi, state: bird_call }
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-call"]
+  chatTriggers:
+  - call
+  - call.
+  - call!
+  - call?
+  - calling
+  - calling.
+  - calling!
+  - calling?
+  - calls
+  - calls.
+  - calls!
+  - calls?
+  - зовёт
+  - зовёт.
+  - зовёт!
+  - зовёт?
+
+- type: emote
+  id: Squawk
+  name: chat-emote-name-squawk
+  category: Vocal
+  available: false
+  icon: { sprite: _Sunrise/Actions/resomi.rsi, state: bird_call }
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-squawk"]
+  chatTriggers:
+  - squawk
+  - squawk.
+  - squawk!
+  - squawk?
+  - squawking
+  - squawking.
+  - squawking!
+  - squawking?
+  - squawks
+  - squawks.
+  - squawks!
+  - squawks?
+  - сквуэк
+  - сквуэк.
+  - сквуэк!
+  - сквуэк?
+  - сквуэкает
+  - сквуэкает.
+  - сквуэкает!
+  - сквуэкает?
+
+- type: emote
+  id: Trill
+  name: chat-emote-name-trill
+  category: Vocal
+  available: false
+  icon: { sprite: _Sunrise/Actions/resomi.rsi, state: bird_call }
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-trill"]
+  chatTriggers:
+  - trill
+  - trill.
+  - trill!
+  - trill?
+  - trills
+  - trills.
+  - trills!
+  - trills?
+  - trilling
+  - trilling.
+  - trilling!
+  - trilling?
+  - трещит
+  - трещит.
+  - трещит!
+  - трещит?

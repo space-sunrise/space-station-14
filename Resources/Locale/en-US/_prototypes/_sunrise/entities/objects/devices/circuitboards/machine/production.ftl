@@ -1,4 +1,4 @@
-ent-PrinterDocMachineCircuitboard = document printer machine board
+ent-CopyMachineMachineCircuitboard = copy machine board
     .desc = A machine printed circuit board for an document printer
 ent-PacificatorCircuitboard = pacifism generator machine board
     .desc = Makes all sentient beings within range pacifists.
@@ -6,3 +6,12 @@ ent-ReflectorMachineCircuitboard = reflector machine board
     .desc = { ent-BaseMachineCircuitboard.desc }
 ent-ExosuitFabricatorHyperConvectionMachineCircuitboard = hyper convection exosuit fabricator machine board
     .desc = A machine printed circuit board for a hyper convection fabricator.
+ent-MedicalAssemblerMachineCircuitboard = Medical assembler machine board
+    .desc = { ent-BaseMachineCircuitboard.desc }
+ent-AutolathePrisonMetusMachineCircuitboard = prison autolathe machine board
+    .desc = Worn, with broken mounts and fine cracks, still warm in places from occasional power pulses.
+ent-SewingPrinterMetusMachineCircuitboard = prison sewing printer machine board
+    .desc = Scarred with solder marks, corroded contacts, and burn traces, dim LEDs flicker occasionally.
+
+ent-PirateTechFabCircuitboard = pirate techfab machine board
+    .desc = { ent-BaseMachineCircuitboard.desc }

@@ -1,20 +1,18 @@
 - type: entity
+  parent: [ BaseItem, BaseSecurityContraband ]
   id: SpeedLoaderLightRifle
   name: "speed loader (.30 rifle)"
-  parent: [ BaseItem, BaseSecurityContraband ]
-  description: 5-round 'stripper clip' for quickly reloading the Kardashev-Mosin. Holds 5 rounds of .30 rifle.
+  description: 5-round 'stripper clip' for quickly reloading the Kardashev-Mosin. Intended to hold general-purpose kinetic ammunition.
   components:
-  - type: Tag
-    tags:
-      - SpeedLoaderRifle
   - type: SpeedLoader
   - type: BallisticAmmoProvider
     mayTransfer: true
+    fillDelay: 0.1 #  Sunrise-add
     whitelist:
       tags:
-        - CartridgeHeavyRifle #Sunrise-Edit 7.62x54
+      - CartridgeLightRifle
     capacity: 5
-    proto: CartridgeHeavyLightRifle #Sunrise-Edit 7.62x54
+    proto: CartridgeLightRifleFMJ # Sunrise-edit
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/LightRifle/light_rifle_speed_loader.rsi
     layers:

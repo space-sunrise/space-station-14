@@ -7,6 +7,6 @@ ent-ClothingHeadHelmetSyndicate = шлем EVA синдиката
 ent-ClothingHeadHelmetCosmonaut = шлем космонавта
     .desc = Древний дизайн, современное производство.
 ent-ClothingHeadHelmetAncient = пустотный шлем NTSRA
-    .desc = Древний космический шлем, разработанный по заказу Центком поразделением NTSRA - агентством космических исследований Nanotrasen.
+    .desc = Древний космический шлем, разработанный по заказу Центком поразделением NTSRA - агентством космических исследований NanoTrasen.
 ent-ClothingHeadHelmetVoidParamed = пустотный шлем парамедика
     .desc = Пустотный шлем, предназначенный для парамедиков.

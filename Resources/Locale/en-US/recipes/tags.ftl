@@ -8,6 +8,7 @@ construction-graph-tag-clown-bike-horn = bike horn
 construction-graph-tag-clowne-horn = broken bike horn
 construction-graph-tag-happy-honk-meal = happy honk meal
 construction-graph-tag-woeful-cluwne-meal = woeful cluwne meal
+construction-graph-tag-boxhug = a box of hugs
 
 # mime
 construction-graph-tag-suspenders = suspenders
@@ -30,10 +31,7 @@ construction-graph-tag-medical-hud = medical hud
 # security
 construction-graph-tag-sun-glasses = sun glasses
 construction-graph-tag-security-helmet = security helmet
-construction-graph-tag-strobe-shield = strobe riot shield
-construction-graph-tag-flash = security flash
-construction-graph-tag-UpgradeFlareGun = upgrade kit (security flare gun)
-construction-graph-tag-ModularReceiverAuto = modular auto receiver
+construction-graph-tag-empty-shotgun-shell = empty shotgun shell
 
 # materials
 construction-graph-tag-manipulator = modular machine part
@@ -55,7 +53,6 @@ construction-graph-tag-power-cell-small = power cell small
 construction-graph-tag-power-cell = power cell
 construction-graph-tag-potato-battery = a potato battery
 construction-graph-tag-super-compact-ai-chip = a super-compact AI chip
-construction-graph-tag-paper = paper
 
 # other
 construction-graph-tag-light-bulb = light bulb
@@ -76,7 +73,7 @@ construction-graph-tag-corgi-hide = corgi hide
 construction-graph-tag-apron = an apron
 construction-graph-tag-utility-belt = a utility belt
 soil-construction-graph-any-mushroom = any mushroom
-construction-graph-tag-matchstick = matchstick
+construction-graph-tag-mop-basic = mop
 
 # toys
 construction-graph-tag-rubber-ducky = a rubber ducky
@@ -108,6 +105,7 @@ construction-graph-tag-ripley-peripherals-control-module = ripley peripherals co
 construction-graph-tag-door-electronics-circuit-board = door electronics circuit board
 construction-graph-tag-firelock-electronics-circuit-board = firelock electronics circuit board
 construction-graph-tag-conveyor-belt-assembly = conveyor belt assembly
+construction-graph-tag-station-ai-core-electronics = station AI core electronics
 
 # tools
 construction-graph-tag-multitool = a multitool
@@ -130,6 +128,7 @@ construction-graph-tag-wallmount-substation-circuit-board = wallmount substation
 construction-graph-tag-surveillance-camera-monitor-board = surveillance camera monitor board
 construction-graph-tag-television-board = television board
 construction-graph-tag-freezer-electronics = freezer electronics
+construction-graph-tag-turret-control-electronics = sentry turret control panel electronics
 
 # crystals
 construction-graph-tag-cyan-crystal-shard = cyan crystal shard
@@ -151,6 +150,10 @@ construction-graph-tag-fire-helmet = fire helmet
 
 # salvage
 construction-graph-tag-spationaut-hardsuit = spationaut hardsuit
+construction-graph-tag-mining-hardsuit = mining hardsuit
+construction-graph-tag-nvd = NVD
 
 # clothing
 construction-graph-tag-backpack = backpack
+
+construction-graph-tag-paper = paper

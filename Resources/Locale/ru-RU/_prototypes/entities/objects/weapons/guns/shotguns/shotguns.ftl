@@ -1,6 +1,10 @@
+ent-BaseWeaponShotgunAny = Базовый Дробовик
+    .desc = Простое оружие: наводи и стреляй.
 ent-BaseWeaponShotgun = Стандартный Дробовик
     .desc = Дерзай — налетай, целься и стреляй.
     .suffix = Дробовик
+ent-BaseWeaponShotgunPump = { ent-BaseWeaponShotgunAny }
+    .desc = { ent-BaseWeaponShotgunAny.desc }
 ent-WeaponShotgunBulldog = Бульдог
     .desc = Магазинный дробовик, предназначенный для ведения ближнего боя. Использует патроны калибра .50 ружейный.
     .suffix = Дробовик

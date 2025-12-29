@@ -10,6 +10,8 @@ namespace Content.Shared.Light.Components;
 public sealed partial class HandheldLightComponent : Component
 {
     public byte? Level;
+
+    [DataField]
     public bool Activated;
 
     [ViewVariables(VVAccess.ReadWrite)]
@@ -24,6 +26,11 @@ public sealed partial class HandheldLightComponent : Component
 
     [DataField("turnOffSound")]
     public SoundSpecifier TurnOffSound = new SoundPathSpecifier("/Audio/Items/flashlight_off.ogg");
+
+    // Sunrise-Start
+    [DataField("needsCharge")]
+    public bool NeedsCharge = true;
+    // Sunrise-End
 
     /// <summary>
     ///     Whether to automatically set item-prefixes when toggling the flashlight.

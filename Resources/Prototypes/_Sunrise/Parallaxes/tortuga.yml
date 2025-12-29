@@ -1,0 +1,9 @@
+- type: parallax
+  id: TortugaStation
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Sunrise/Parallaxes/Tortuga.png"
+      slowness: 0.94
+      scale: 0.5,0.5
+      scrolling: "-0.004,  0.002"

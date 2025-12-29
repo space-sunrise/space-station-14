@@ -18,8 +18,8 @@
   - type: PointLight
     enabled: false
     castShadows: false
-    radius: 1.5
-    energy: 1.6
+    radius: 1.2
+    energy: 3.0
     color: "#b211b2"
   - type: LitOnPowered
   - type: ResearchServer
@@ -76,6 +76,34 @@
   - type: GuideHelp
     guides:
     - Science
+  # Sunrise-Start
+  - type: Item
+    sprite: _Sunrise/Structures/Machines/server.rsi
+    size: Ginormous
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 15
+  - type: DamageOnHit
+    damage:
+      types:
+        Blunt: 5
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 30
+  - type: EmitSoundOnLand
+    sound:
+      collection: MetalBreak
+      params:
+        variation: 0.25
+  - type: MultiHandedItem
+  - type: HeldSpeedModifier
+    walkModifier: 0.6
+    sprintModifier: 0.6
+  - type: StaticPrice
+    price: 40000
+  # Sunrise-End
 
 - type: entity
   id: BaseResearchAndDevelopmentPointSource
@@ -96,7 +124,7 @@
     active: true
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#3db83b"
   - type: ActivatableUI
     key: enum.ResearchClientUiKey.Key

@@ -8,6 +8,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.AssaultOps.Icarus;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Station.Components;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
