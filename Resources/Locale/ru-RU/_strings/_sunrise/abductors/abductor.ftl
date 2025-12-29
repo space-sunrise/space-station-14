@@ -5,6 +5,7 @@ abductors-weapon-restricted-2 = Кажется, что они блокируют
 abductors-weapon-restricted-3 = Нажимает на палочку, но ничего не происходит.
 abductors-weapon-restricted-4 = Нюхает инопланетное оружие.
 abductors-gizmo-restricted = Крутит в руке гизмо.
+abductors-defib-restricted = Крутит в руке предмет.
 abductor-gun-restricted-1 = Пытаются нажать на спусковую скобу, но палец не пролезает.
 abductor-armor-stealth = Стелс
 abductor-armor-combat = Боевой

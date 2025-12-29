@@ -114,19 +114,21 @@
         shader: unshaded
   # Sunrise-Start
   - type: Defibrillator
+    doAfterDuration: 1
     allowUseOnAlive: true
     reagents:
       Omnizine: 10
       Epinephrine: 5
+      Necrosol: 5
   - type: ItemSlots
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellDefibrillatorSyndicate
+        startingItem: PowerCellSmallNuclear
         disableEject: true
         locked: true
   - type: PowerCellDraw
-    useCharge: 85
+    useCharge: 40
   - type: PowerDrainOnMeleeHit
     chargePerHit: 30
   # Sunrise-End

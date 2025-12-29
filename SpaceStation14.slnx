@@ -41,6 +41,11 @@
   <Project Path="Content.Tools/Content.Tools.csproj" />
   <Project Path="Content.YAMLLinter/Content.YAMLLinter.csproj" />
   <Project Path="Pow3r/Pow3r.csproj" />
+  <Folder Name="/Sunrise/">
+    <Project Path="Sunrise/Content.Sunrise.Interfaces.Shared/Content.Sunrise.Interfaces.Shared.csproj" />
+    <Project Path="Sunrise/Content.Sunrise.Interfaces.Client/Content.Sunrise.Interfaces.Client.csproj" />
+    <Project Path="Sunrise/Content.Sunrise.Interfaces.Server/Content.Sunrise.Interfaces.Server.csproj" />
+  </Folder>
   <Folder Name="/RobustToolbox/.github/workflows/">
     <File Path="RobustToolbox/.github/workflows/benchmarks.yml" />
     <File Path="RobustToolbox/.github/workflows/build-all-configurations.yml" />
