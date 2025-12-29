@@ -199,12 +199,7 @@ public sealed class HungerSystem : EntitySystem
             component.StarvationDamage is { } damage &&
             !_mobState.IsDead(uid))
         {
-            // Sunrise-Start
-            // _damageable.TryChangeDamage(uid, damage, true, false);
-            var hungerDamage = new DamageSpecifier();
-            hungerDamage.DamageDict.Add("Mangleness", 0.5);
-            _damageable.TryChangeDamage(uid, hungerDamage, true, false);
-            // Sunrise-End
+            _damageable.TryChangeDamage(uid, damage, true, false);
         }
     }
 
