@@ -125,4 +125,16 @@ public sealed partial class SunriseHelpersSystem : SharedSunriseHelpersSystem
     }
 
     #endregion
+
+    public List<EntityUid> GetSpawnableStations()
+    {
+        var spawnableStations = new List<EntityUid>();
+        var query = EntityQueryEnumerator<StationJobsComponent, StationSpawningComponent>();
+        while (query.MoveNext(out var uid, out _, out _))
+        {
+            spawnableStations.Add(uid);
+        }
+
+        return spawnableStations;
+    }
 }
