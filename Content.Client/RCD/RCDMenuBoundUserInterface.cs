@@ -25,8 +25,12 @@ public sealed class RCDMenuBoundUserInterface : BoundUserInterface
             ["Electrical"] = ("rcd-component-electrical", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Radial/RCD/multicoil.png"))),
             ["Lighting"] = ("rcd-component-lighting", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Radial/RCD/lighting.png"))),
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             // Starlight start: RPD
+=======
+            // Starlight Start: RPD
+>>>>>>> c615845b66 (Localisation fix 2)
             ["Piping"] = ("rpd-component-piping", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/fourway.png"))),
             ["AtmosphericUtility"] = ("rpd-component-atmosphericutility", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/port.png"))),
             ["PumpsValves"] = ("rpd-component-pumpsvalves", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/pump_volume.png"))),
