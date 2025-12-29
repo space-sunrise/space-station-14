@@ -433,7 +433,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         MarkingEffect? hairExtendedColor = null;
         if (appearance.HairMarkingEffect != null)
         {
-            hairExtendedColor = appearance.HairMarkingEffect;
+            hairExtendedColor = appearance.HairMarkingEffect.Clone();
             foreach (var (key, value) in hairExtendedColor.Colors)
                 hairExtendedColor.Colors[key] = ClampColor(value);
         }
@@ -441,7 +441,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         MarkingEffect? facialHairExtendedColor = null;
         if (appearance.FacialHairMarkingEffect != null)
         {
-            facialHairExtendedColor = appearance.FacialHairMarkingEffect;
+            facialHairExtendedColor = appearance.FacialHairMarkingEffect.Clone();
             foreach (var (key, value) in facialHairExtendedColor.Colors)
                 facialHairExtendedColor.Colors[key] = ClampColor(value);
         }
