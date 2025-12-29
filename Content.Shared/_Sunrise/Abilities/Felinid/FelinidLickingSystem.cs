@@ -1,5 +1,4 @@
 using Content.Shared.Actions;
-using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
@@ -12,7 +11,6 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Serialization;
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 
@@ -25,56 +23,63 @@ public sealed class FelinidLickingSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<FelinidLickingComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<FelinidLickingComponent, ComponentShutdown>(OnShutdown);
+
         SubscribeLocalEvent<FelinidLickingComponent, LickingWoundsTargetActionEvent>(OnLickingAction);
         SubscribeLocalEvent<FelinidLickingComponent, FelinidLickingDoAfterEvent>(OnDoAfter);
     }
 
-    private void OnStartup(EntityUid uid, FelinidLickingComponent component, ComponentStartup args)
+    private void OnStartup(Entity<FelinidLickingComponent> ent, ref ComponentStartup args)
     {
-        _actions.AddAction(uid, component.ActionLickingWoundsId);
+        _actions.AddAction(ent, ref ent.Comp.Action, ent.Comp.ActionLickingWoundsId);
+        Dirty(ent);
     }
 
-    private void OnLickingAction(EntityUid uid, FelinidLickingComponent component, LickingWoundsTargetActionEvent args)
+    private void OnShutdown(Entity<FelinidLickingComponent> ent, ref ComponentShutdown args)
     {
-        if (args.Handled || args.Target == null) // мда
+        _actions.RemoveAction(ent.Owner, ent.Comp.Action);
+    }
+
+    private void OnLickingAction(Entity<FelinidLickingComponent> ent, ref LickingWoundsTargetActionEvent args)
+    {
+        if (args.Handled) // мда
             return;
 
-        var target = args.Target;
-
-        if (!CanLick(uid, target, component, out var damageable, out var errorMessage))
+        if (!CanLick(ent, args.Target, out var errorMessage))
         {
             if (errorMessage != null)
-                _popup.PopupClient(errorMessage, uid, uid);
+                _popup.PopupClient(errorMessage, ent, ent);
+
             return;
         }
 
-        StartLicking(uid, target, component, damageable!);
+        args.Handled = TryStartLicking(ent, args.Target);
     }
 
-    private void StartLicking(EntityUid uid, EntityUid target, FelinidLickingComponent licking, DamageableComponent damageable)
+    private bool TryStartLicking(Entity<FelinidLickingComponent> ent, EntityUid target)
     {
-        _audio.PlayPredicted(licking.HealingBeginSound, uid, uid);
+        _audio.PlayPredicted(ent.Comp.HealingBeginSound, ent, ent);
 
-        var doAfterArgs = new DoAfterArgs(EntityManager, uid, licking.Delay, new FelinidLickingDoAfterEvent(), uid, target: target)
+        var doAfterArgs = new DoAfterArgs(EntityManager, ent, ent.Comp.Delay, new FelinidLickingDoAfterEvent(), ent, target: target)
         {
             BreakOnMove = true,
-            NeedHand = false
+            NeedHand = false,
         };
 
-        _doAfter.TryStartDoAfter(doAfterArgs);
+        return _doAfter.TryStartDoAfter(doAfterArgs);
     }
 
-    private void OnDoAfter(EntityUid uid, FelinidLickingComponent component, FelinidLickingDoAfterEvent args)
+    private void OnDoAfter(Entity<FelinidLickingComponent> ent, ref FelinidLickingDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled || args.Target is not { } target)
             return;
@@ -82,28 +87,26 @@ public sealed class FelinidLickingSystem : EntitySystem
         if (!TryComp<DamageableComponent>(target, out var damageable))
             return;
 
-        _damageable.TryChangeDamage(target, component.Damage, true, origin: uid);
+        _damageable.TryChangeDamage(target, ent.Comp.Damage, true, origin: ent);
 
-        if (component.StopBleeding && TryComp<BloodstreamComponent>(target, out var bloodstream))
+        if (ent.Comp.StopBleeding && TryComp<BloodstreamComponent>(target, out var bloodstream))
         {
             var wasBleeding = bloodstream.BleedAmount > 0;
-            _bloodstreamSystem.TryModifyBleedAmount((target, bloodstream), component.BloodlossModifier);
+            _bloodstream.TryModifyBleedAmount((target, bloodstream), ent.Comp.BloodlossModifier);
 
             if (wasBleeding && bloodstream.BleedAmount <= 0)
             {
-                var popup = (uid == target)
+                var popup = ent.Owner == target
                     ? Loc.GetString("medical-item-stop-bleeding-self")
                     : Loc.GetString("medical-item-stop-bleeding", ("target", Identity.Entity(target, EntityManager)));
-                _popup.PopupClient(popup, target, uid);
+                _popup.PopupClient(popup, target, ent);
             }
         }
 
-        _audio.PlayPredicted(component.HealingEndSound, uid, uid);
+        _audio.PlayPredicted(ent.Comp.HealingEndSound, ent, ent);
 
-        if (_mobStateSystem.IsAlive(target) && HasDamageToHeal(target, damageable, component))
-        {
-            StartLicking(uid, target, component, damageable);
-        }
+        if (_mobState.IsAlive(target) && HasDamageToHeal(target, damageable, ent.Comp))
+            TryStartLicking(ent, target);
 
         args.Handled = true;
     }
@@ -111,28 +114,24 @@ public sealed class FelinidLickingSystem : EntitySystem
     /// <summary>
     /// Проверяет, можно ли облизывать раны цели
     /// </summary>
-    /// <param name="licker">Тот, кто облизывает</param>
+    /// <param name="ent">Тот, кто облизывает</param>
     /// <param name="target">Цель</param>
-    /// <param name="component">Компонент облизывания</param>
-    /// <param name="damageable">Компонент урона цели (если доступен)</param>
     /// <param name="errorMessage">Сообщение об ошибке (если есть)</param>
     /// <returns>True, если можно облизывать</returns>
-    private bool CanLick(EntityUid licker, EntityUid target, FelinidLickingComponent component,
-        [NotNullWhen(true)] out DamageableComponent? damageable, out string? errorMessage)
+    private bool CanLick(Entity<FelinidLickingComponent> ent, EntityUid target, out string? errorMessage)
     {
-        damageable = null;
         errorMessage = null;
 
-        if (_standing.IsDown(licker))
+        if (_standing.IsDown(ent.Owner))
             return false;
 
-        if (!TryComp<DamageableComponent>(target, out damageable))
+        if (!TryComp<DamageableComponent>(target, out var damageable))
             return false;
 
-        if (!_mobStateSystem.IsAlive(target))
+        if (!_mobState.IsAlive(target))
             return false;
 
-        if (HasIngestionBlocker(licker))
+        if (HasIngestionBlocker(ent))
         {
             errorMessage = Loc.GetString("felinid-licking-blocked-by-blocker");
             return false;
@@ -144,7 +143,7 @@ public sealed class FelinidLickingSystem : EntitySystem
             return false;
         }
 
-        if (!HasDamageToHeal(target, damageable, component))
+        if (!HasDamageToHeal(target, damageable, ent.Comp))
             return false;
 
         return true;
@@ -155,7 +154,7 @@ public sealed class FelinidLickingSystem : EntitySystem
     /// </summary>
     private bool HasDamageToHeal(EntityUid target, DamageableComponent damageable, FelinidLickingComponent licking)
     {
-        foreach (var (type, amount) in licking.Damage.DamageDict)
+        foreach (var (type, _) in licking.Damage.DamageDict)
         {
             if (damageable.Damage.DamageDict.TryGetValue(type, out var currentDamage) &&
                 currentDamage > FixedPoint2.Zero)
@@ -181,7 +180,7 @@ public sealed class FelinidLickingSystem : EntitySystem
         if (!TryComp<InventoryComponent>(uid, out var inventory))
             return false;
 
-        var enumerator = _inventorySystem.GetSlotEnumerator((uid, inventory), SlotFlags.MASK | SlotFlags.HEAD);
+        var enumerator = _inventory.GetSlotEnumerator((uid, inventory), SlotFlags.MASK | SlotFlags.HEAD);
         while (enumerator.NextItem(out var item))
         {
             if (TryComp<IngestionBlockerComponent>(item, out var blocker) && blocker.Enabled)
@@ -199,7 +198,7 @@ public sealed class FelinidLickingSystem : EntitySystem
         if (!TryComp<InventoryComponent>(uid, out var inventory))
             return false;
 
-        var enumerator = _inventorySystem.GetSlotEnumerator((uid, inventory), SlotFlags.INNERCLOTHING | SlotFlags.OUTERCLOTHING);
+        var enumerator = _inventory.GetSlotEnumerator((uid, inventory), SlotFlags.INNERCLOTHING | SlotFlags.OUTERCLOTHING);
         return enumerator.NextItem(out _);
     }
 }
