@@ -117,7 +117,7 @@
   id: CaptainEliteCloak
   sponsorOnly: false
   equipment:
-    head: ClothingEliteNeckCloakCaptain
+    neck: ClothingEliteNeckCloakCaptain
   effects:
   - !type:GroupLoadoutEffect
     proto: MasterCap
