@@ -820,6 +820,15 @@
         state: inhand-left
       - sprite: Objects/Weapons/Melee/cutlass.rsi
         state: inhand-right
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 16
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Reflect
+    reflectProb: 0.15
+    spread: 90
 
 - type: entity
   parent: ClothingHandsNoGloves

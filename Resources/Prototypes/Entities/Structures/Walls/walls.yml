@@ -583,10 +583,10 @@
   components:
   - type: Sprite
     drawdepth: Walls
-    sprite: Structures/Walls/plastitanium_diagonal.rsi
+    sprite: _Sunrise/Structures/Walls/plastitanium_diagonal.rsi # Sunrise-edit
     state: state0
   - type: Icon
-    sprite: Structures/Walls/plastitanium_diagonal.rsi
+    sprite: _Sunrise/Structures/Walls/plastitanium_diagonal.rsi # Sunrise-edit
     state: state0
   - type: Destructible
     thresholds:
