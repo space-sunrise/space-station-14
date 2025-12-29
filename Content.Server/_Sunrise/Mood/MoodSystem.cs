@@ -1,5 +1,4 @@
 ﻿using Content.Server.Chat.Managers;
-using Content.Shared._Fish.Mood;
 using Content.Shared._Sunrise.Mood;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Alert;

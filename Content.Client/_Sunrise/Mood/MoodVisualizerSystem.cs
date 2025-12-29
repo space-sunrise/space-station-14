@@ -1,11 +1,11 @@
 using Content.Client._Sunrise.BloodCult;
-using Content.Shared._Fish.Abilities.Milira;
-using Content.Shared._Fish.Mood;
+using Content.Shared._Sunrise.Abilities.Milira;
+using Content.Shared._Sunrise.Mood;
 using Content.Shared._Sunrise.Mood;
 using Robust.Client.GameObjects;
 using Robust.Shared.Utility;
 
-namespace Content.Client._Fish.Mood;
+namespace Content.Client._Sunrise.Mood;
 
 /// <summary>
 /// Обрабатывает отображение эффектов настроения на сущностях с компонентом настроения.

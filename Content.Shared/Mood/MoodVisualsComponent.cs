@@ -2,7 +2,7 @@ using Content.Shared._Sunrise.Mood;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Shared._Fish.Mood;
+namespace Content.Shared._Sunrise.Mood;
 
 /// <summary>
 /// Устанавливает, какой спрайт RSI используется для отображения визуальных эффектов настроения и какое состояние использовать в зависимости от текущего порога настроения.

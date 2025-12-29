@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Numerics;
-using Content.Shared._Fish.Abilities.Milira;
+using Content.Shared._Sunrise.Abilities.Milira;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Animations;
 using Robust.Shared.Maths;
 
-namespace Content.Client._Fish.Abilities.Milira;
+namespace Content.Client._Sunrise.Abilities.Milira;
 
 /// <summary>
 /// Клиентская визуализация полёта милиры, плавное изменение масштаба наподобие как у броска предмета

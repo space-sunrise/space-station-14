@@ -10,7 +10,7 @@ using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Toggleable;
-using Content.Shared._Fish.Abilities.Milira;
+using Content.Shared._Sunrise.Abilities.Milira;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
@@ -20,7 +20,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 
-namespace Content.Server._Fish.Abilities.Milira;
+namespace Content.Server._Sunrise.Abilities.Milira;
 
 /// <summary>
 /// Серверная система для полёта расы милира, оно использует другую систему для изменения масштаба крыльев, а также изменяет маркинг, и тратит стамину.

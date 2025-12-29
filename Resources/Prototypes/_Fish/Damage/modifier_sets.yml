@@ -1,8 +1,0 @@
-- type: damageModifierSet
-  id: Milira
-  coefficients:
-    Blunt: 1.15
-    Slash: 1.10
-    Piercing: 1.10
-    Heat: 1.15
-    Cold: 0.7

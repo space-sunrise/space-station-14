@@ -1,8 +1,8 @@
-using Content.Shared._Fish.Abilities.Milira;
+using Content.Shared._Sunrise.Abilities.Milira;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Tag;
 
-namespace Content.Client._Fish.Abilities.Milira;
+namespace Content.Client._Sunrise.Abilities.Milira;
 
 /// <summary>
 /// Клиентская система WingFlight с блокировкой одевания брони при раскрытых крыльях

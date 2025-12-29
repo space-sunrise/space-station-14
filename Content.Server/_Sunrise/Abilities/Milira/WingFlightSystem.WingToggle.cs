@@ -9,11 +9,11 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Content.Shared.Toggleable;
-using Content.Shared._Fish.Abilities.Milira;
+using Content.Shared._Sunrise.Abilities.Milira;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Fish.Abilities.Milira;
+namespace Content.Server._Sunrise.Abilities.Milira;
 
 /// <summary>
 /// Система для переключения крыльев расы милира.
