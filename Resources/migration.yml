@@ -942,5 +942,6 @@ ClothingNeckCMOCloak: ClothingNeckMedCloak
 HyposprayMedicalNoFilter: null
 HyposprayMedical: null
 HyposprayMedicalNoFilterBox: null
+GrenadeFlashTimer: null
 
 # Sunrise-End
