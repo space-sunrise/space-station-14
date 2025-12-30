@@ -141,16 +141,16 @@
 - type: entity
   parent: BaseSyndicateAmmoKitSmall
   id: AntimaterialAmmoKit
-  name: Antimaterial ammo kit
+  name: Antimaterial magazine kit
   components:
   - type: StorageFill
     contents:
     - id: MagazineBauer127
     - id: MagazineBauer127
-    - id: MagazineBauer127
-    - id: MagazineBoxAntiMateriel
-    - id: MagazineBoxAntiMateriel
-    - id: MagazineBoxAntiMateriel
+    - id: MagazineBauer127Penetrator
+    - id: MagazineBauer127Frag
+    - id: MagazineBauer127Blast
+    - id: MagazineBauer127Emp
   - type: Sprite
     layers:
     - state: box_of_doom
