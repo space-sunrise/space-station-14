@@ -6,7 +6,6 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: Action
-      temporary: true
       useDelay: 6
       icon:
         sprite: /Textures/_Sunrise/Actions/felionoid.rsi

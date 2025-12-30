@@ -425,6 +425,10 @@
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
+    # Sunrise edit start - пендосы ебанные. PaperVisuals требуется этот слой. Я сделал его фиктивным
+    - map: [ "enum.PaperVisualLayers.Writing" ]
+      visible: false
+    # Sunrise edit end
   - type: Paper
     content: envelope-default-message
   - type: PaperVisuals
