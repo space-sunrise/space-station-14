@@ -1,12 +1,12 @@
-ent-BaseCartridgeLightRifleSP = cartridge (.30 rifle SP)
+ent-BaseCartridgeLightRifleSP = патрон (.30 винтовочный SP)
     .desc = { ent-BaseCartridge.desc }
-ent-CartridgeLightRifleSP = cartridge (.30 rifle SP)
+ent-CartridgeLightRifleSP = патрон (.30 винтовочный SP)
     .desc = { ent-BaseCartridgeLightRifleSP.desc }
-ent-CartridgeLightRifleHP = cartridge (.30 rifle HP)
+ent-CartridgeLightRifleHP = патрон (.30 винтовочный HP)
     .desc = { ent-BaseCartridgeLightRifleSP.desc }
-ent-CartridgeLightRifleFMJ = cartridge (.30 rifle FMJ)
+ent-CartridgeLightRifleFMJ = патрон (.30 винтовочный FMJ)
     .desc = { ent-BaseCartridgeLightRifleSP.desc }
-ent-CartridgeLightRifleAP = cartridge (.30 rifle AP)
+ent-CartridgeLightRifleAP = патрон (.30 винтовочный AP)
     .desc = { ent-BaseCartridgeLightRifleSP.desc }
 ent-CartridgeLightRiflePractice = патрон (.30 винтовочный учебный)
     .desc = Классический промежуточный патрон, используемый многими боевыми винтовками и ручными пулемётами. Меловые боеприпасы, как правило, не наносят вреда и используются для тренировок.

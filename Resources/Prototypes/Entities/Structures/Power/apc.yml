@@ -252,11 +252,3 @@
   - type: AccessReader
     access: [["Xenoborg"]]
 
-- type: entity
-  parent: APCHighCapacity
-  id: APCHighCapacitySyndicate
-  suffix: High Capacity, 100kJ, Syndicate
-  description: A control terminal for the area's electrical systems. Has small blood-red S on panel
-  components:
-  - type: AccessReader
-    access: [["NuclearOperative"]]
