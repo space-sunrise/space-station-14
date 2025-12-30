@@ -460,7 +460,7 @@
     tags:
     - Trash
     - Document
-  #- type: Appearance, hide stamp marks until we have some kind of displacement
+  - type: Appearance # Sunrise edit - ебанный рот это нужно для работы FireVisuals
   - type: Flammable
     fireSpread: true
     canResistFire: false

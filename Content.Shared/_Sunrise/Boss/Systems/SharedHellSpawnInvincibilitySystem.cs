@@ -59,7 +59,7 @@ public abstract class SharedHellSpawnInvincibilitySystem : EntitySystem
 
     private void RemoveGodmode(EntityUid uid, HellSpawnInvincibilityComponent? comp = null)
     {
-        if (!Resolve(uid, ref comp))
+        if (!Resolve(uid, ref comp, false))
             return;
         if (HasComp<GodmodeComponent>(uid))
         {
