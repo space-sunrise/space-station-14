@@ -1,5 +1,7 @@
 using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Prototypes;
 using Content.Shared.Popups;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.Biocode;
 
@@ -13,7 +15,7 @@ public sealed class BiocodeSystem : EntitySystem
         SubscribeLocalEvent<BiocodeComponent, AttemptThrowBiocodeEvent>(OnAttemptThrowBiocode);
     }
 
-    public bool CanUse(EntityUid user, HashSet<string> factions)
+    public bool CanUse(EntityUid user, HashSet<ProtoId<NpcFactionPrototype>> factions)
     {
         var canUse = false;
         if (!TryComp<NpcFactionMemberComponent>(user, out var npcFactionMemberComponent))
@@ -34,7 +36,7 @@ public sealed class BiocodeSystem : EntitySystem
             return;
 
         if (!string.IsNullOrEmpty(component.AlertText))
-            _popup.PopupEntity(component.AlertText, args.User.Value, args.User.Value);
+            _popup.PopupEntity(Loc.GetString(component.AlertText), args.User.Value, args.User.Value);
 
         args.Cancelled = true;
     }

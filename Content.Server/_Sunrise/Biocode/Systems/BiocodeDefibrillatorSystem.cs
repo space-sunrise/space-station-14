@@ -28,7 +28,7 @@ public sealed class BiocodeDefibrillatorSystem : EntitySystem
 
         // User is not authorized, cancel the zap
         if (!string.IsNullOrEmpty(component.AlertText))
-            _popup.PopupEntity(component.AlertText, uid, args.User.Value);
+            _popup.PopupEntity(Loc.GetString(component.AlertText), uid, args.User.Value);
 
         args.Cancelled = true;
     }

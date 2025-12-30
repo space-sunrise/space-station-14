@@ -50,7 +50,7 @@ public sealed class FactionWeaponBlockerSystem : EntitySystem
             return;
 
         args.Cancelled = true;
-        args.Message = component.AlertText;
+        args.Message = Loc.GetString(component.AlertText);
     }
 
     private void OnShootAttempt(EntityUid uid, FactionWeaponBlockerComponent component, ref AttemptShootEvent args)
@@ -59,6 +59,6 @@ public sealed class FactionWeaponBlockerSystem : EntitySystem
             return;
 
         args.Cancelled = true;
-        args.Message = component.AlertText;
+        args.Message = Loc.GetString(component.AlertText);
     }
 }

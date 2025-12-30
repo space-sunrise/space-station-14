@@ -6,7 +6,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponShotgunBulldog
@@ -16,7 +15,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponLightMachineGunL6
@@ -26,7 +24,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponSubMachineGunC20r
@@ -36,7 +33,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponRifleEstoc
@@ -46,7 +42,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponLauncherChinaLake
@@ -56,7 +51,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponLauncherM79
@@ -66,7 +60,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponSniperHristov
@@ -76,7 +69,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponPistolDeagle
@@ -86,7 +78,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponRifleM90GrenadeLauncher
@@ -96,7 +87,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponRifleBauer127
@@ -106,7 +96,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponSniperDragunov
@@ -116,7 +105,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponSIAR52
@@ -126,7 +114,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponDL6902
@@ -136,7 +123,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponAJ100
@@ -146,7 +132,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponSyndieLaserPistol
@@ -156,7 +141,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponLaserMinigun
@@ -166,7 +150,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponSyndieLaserGun
@@ -176,7 +159,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponGrenadeLauncherGL70
@@ -186,7 +168,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponShotgunMinotaur
@@ -196,7 +177,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponEnergyCrossbow
@@ -206,7 +186,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponSubMachineGunC40r
@@ -216,7 +195,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   parent: WeaponPistolDeagleGolden
@@ -226,4 +204,3 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
