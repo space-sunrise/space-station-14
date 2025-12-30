@@ -28,6 +28,9 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!; // Sunrise - Added
+
+    private const float CriticalDamagePercentage = 1.0f; // Sunrise - Added
 
     public override void Initialize()
     {
@@ -134,6 +137,7 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
         _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(allSensors, component.DoCorpseAlert));
     }
 
+    //Sunrise-Start
     /// <summary>
     /// Checks if there are any corpses with active sensors outside of morgues
     /// </summary>
@@ -141,18 +145,17 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
     {
         foreach (var sensor in component.ConnectedSensors.Values)
         {
-            // Skip if the person is alive
-            if (sensor.IsAlive)
+            var damagePercentage = sensor.DamagePercentage;
+            var isCritical = damagePercentage.HasValue && damagePercentage.Value >= CriticalDamagePercentage;
+
+            if (sensor.IsAlive && !isCritical)
                 continue;
 
-            // Check if the sensor owner entity is inside a morgue
-            var ownerUid = GetEntity(sensor.OwnerUid);
-            if (!EntityManager.EntityExists(ownerUid))
+            if (!TryGetEntity(sensor.OwnerUid, out var ownerUid))
                 continue;
 
-            // Check if the corpse is inside a morgue
-            if (!IsEntityInMorgue(ownerUid))
-                return true; // Found a corpse outside morgue
+            if (!IsEntityInMorgue(ownerUid.Value))
+                return true;
         }
 
         return false;
@@ -163,55 +166,40 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
     /// </summary>
     private bool IsEntityInMorgue(EntityUid entity)
     {
-        // Check if the entity is contained within any morgue
-        var morgueQuery = EntityQueryEnumerator<MorgueComponent, EntityStorageComponent>();
+        var parent = Transform(entity).ParentUid;
 
-        while (morgueQuery.MoveNext(out var morgueUid, out var morgue, out var storage))
-        {
-            // Check if the entity is contained in this morgue
-            if (storage.Contents.ContainedEntities.Contains(entity))
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return parent.IsValid() && HasComp<MorgueComponent>(parent);
     }
 
-    //Sunrise-Start
-    private void OnToggleCorpseAlert(EntityUid uid, CrewMonitoringConsoleComponent component, CrewMonitoringToggleCorpseAlertMessage args)
+    private void OnToggleCorpseAlert(Entity<CrewMonitoringConsoleComponent> ent, ref CrewMonitoringToggleCorpseAlertMessage args)
     {
+        var (uid, component) = ent;
         component.DoCorpseAlert = !component.DoCorpseAlert;
         UpdateUserInterface(uid, component);
     }
-    private void AddToggleVerb(EntityUid uid, CrewMonitoringConsoleComponent component, GetVerbsEvent<InteractionVerb> args)
+
+    private void AddToggleVerb(Entity<CrewMonitoringConsoleComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
     {
+        var (uid, component) = ent;
+
         if (!args.CanInteract || !args.CanAccess)
             return;
 
         InteractionVerb verb = new();
-        if (component.DoCorpseAlert)
-        {
-            verb.Text = Loc.GetString("item-toggle-deactivate-alert");
-        }
-        else
-        {
-            verb.Text = Loc.GetString("item-toggle-activate-alert");
-        }
-        verb.Act = () => ToggleAlert(uid, component);
+
+        verb.Text = _loc.GetString(component.DoCorpseAlert
+            ? "item-toggle-deactivate-alert"
+            : "item-toggle-activate-alert");
+
+        verb.Act = () => ToggleAlert(ent);
         args.Verbs.Add(verb);
     }
 
-    public void ToggleAlert(EntityUid uid, CrewMonitoringConsoleComponent component)
+    public void ToggleAlert(Entity<CrewMonitoringConsoleComponent> ent)
     {
-        if (component.DoCorpseAlert)
-        {
-            component.DoCorpseAlert = false;
-        }
-        else
-        {
-            component.DoCorpseAlert = true;
-        }
+        var (uid, component) = ent;
+        component.DoCorpseAlert = !component.DoCorpseAlert;
+
         Dirty(uid, component);
     }
     //Sunrise-End
