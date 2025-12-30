@@ -16,3 +16,5 @@ ent-BoxSunglasses = sunglasses box
     .desc = A box of cool flash-proof sunglasses.
 ent-BoxForensicPad = forensic pad box
     .desc = A box of forensic pads.
+ent-BoxDetonator = detonator box
+    .desc = A box of explosive detonators and triggers.
