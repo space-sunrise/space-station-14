@@ -116,14 +116,10 @@ public abstract partial class SharedBuckleSystem
                 {
                     BreakOnMove = true,
                     BreakOnDamage = true,
-                    AttemptFrequency = AttemptFrequency.EveryTick
+                    AttemptFrequency = AttemptFrequency.EveryTick,
                 };
 
-                if (_doAfter.TryStartDoAfter(doAfterArgs))
-                {
-                    args.Handled = true;
-                    return;
-                }
+                args.Handled = _doAfter.TryStartDoAfter(doAfterArgs);
             }
         }
         // Sunrise-End
