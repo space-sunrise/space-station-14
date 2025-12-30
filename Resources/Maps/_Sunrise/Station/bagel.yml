@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/30/2025 08:28:39
-  entityCount: 29765
+  time: 12/30/2025 10:48:31
+  entityCount: 29767
 maps:
 - 1
 grids:
@@ -19320,6 +19320,16 @@ entities:
     - type: NavMap
     - type: ImplicitRoof
     - type: ExplosionAirtightGrid
+    - type: Joint
+      joints:
+        docking259477: !type:WeldJoint
+          bodyB: 2
+          bodyA: 29437
+          id: docking259477
+          localAnchorB: -47.5,-40
+          localAnchorA: 0.5,1
+          damping: 1562.9062
+          stiffness: 14028.615
   - uid: 29437
     components:
     - type: MetaData
@@ -19506,6 +19516,16 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ExplosionAirtightGrid
+    - type: Joint
+      joints:
+        docking259477: !type:WeldJoint
+          bodyB: 2
+          bodyA: 29437
+          id: docking259477
+          localAnchorB: -47.5,-40
+          localAnchorA: 0.5,1
+          damping: 1562.9062
+          stiffness: 14028.615
 - proto: ActionToggleInternals
   entities:
   - uid: 27262
@@ -22447,7 +22467,7 @@ entities:
       pos: -13.5,-32.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -249225.27
+      secondsUntilStateChange: -249293.8
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -23554,6 +23574,15 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,0.5
       parent: 29437
+    - type: Door
+      changeAirtight: False
+    - type: Docking
+      dockJointId: docking259477
+      dockedWith: 435
+    - type: DeviceLinkSource
+      lastSignals:
+        DoorStatus: False
+        DockStatus: True
 - proto: AirlockExternalLocked
   entities:
   - uid: 261
@@ -23921,7 +23950,7 @@ entities:
       pos: -14.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -249221.73
+      secondsUntilStateChange: -249290.27
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -24141,7 +24170,7 @@ entities:
       pos: 36.5,30.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -733301
+      secondsUntilStateChange: -733369.56
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -24564,7 +24593,7 @@ entities:
       pos: 44.5,27.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -751438.75
+      secondsUntilStateChange: -751507.3
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -24708,6 +24737,9 @@ entities:
     - type: Transform
       pos: -47.5,-39.5
       parent: 2
+    - type: Docking
+      dockJointId: docking259477
+      dockedWith: 29520
     - type: DeviceLinkSource
       linkedPorts:
         201:
@@ -24715,7 +24747,7 @@ entities:
           - DoorBolt
       lastSignals:
         DoorStatus: False
-        DockStatus: False
+        DockStatus: True
     - type: Door
       changeAirtight: False
   - uid: 436
@@ -152376,6 +152408,18 @@ entities:
     - type: Transform
       pos: 8.5,-1.5
       parent: 29437
+  - uid: 29766
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,-2.5
+      parent: 29437
+  - uid: 29767
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -12.5,-1.5
+      parent: 29437
 - proto: PoweredSmallLightEmpty
   entities:
   - uid: 19195
@@ -174267,7 +174311,7 @@ entities:
       pos: -17.5,8.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -249056.11
+      secondsUntilStateChange: -249124.64
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -197317,7 +197361,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -153204.38
+      secondsUntilStateChange: -153272.9
       state: Opening
     - type: Airlock
       autoClose: False
@@ -197394,7 +197438,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -747311.6
+      secondsUntilStateChange: -747380.2
       state: Opening
     - type: Airlock
       autoClose: False
