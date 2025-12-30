@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/28/2025 14:50:42
-  entityCount: 43424
+  time: 12/30/2025 15:56:00
+  entityCount: 43425
 maps:
 - 1
 grids:
@@ -26863,9 +26863,9 @@ entities:
           -1,1:
             0: 65263
           -1,2:
-            0: 36863
+            0: 12287
           -1,3:
-            0: 65534
+            0: 65535
           -1,4:
             0: 7423
           0,0:
@@ -26873,9 +26873,9 @@ entities:
           0,1:
             0: 31675
           0,2:
-            0: 4095
+            0: 12287
           0,3:
-            0: 65531
+            0: 65535
           0,-5:
             0: 29951
           1,-4:
@@ -27544,8 +27544,7 @@ entities:
           -14,-12:
             0: 65532
           -14,-11:
-            3: 1
-            0: 61694
+            0: 61695
           -14,-10:
             0: 64319
           -14,-9:
@@ -27585,8 +27584,7 @@ entities:
           -8,-14:
             0: 65217
           -9,-14:
-            0: 63046
-            4: 2048
+            0: 65094
           -8,-13:
             0: 3822
           -9,-13:
@@ -28385,12 +28383,12 @@ entities:
             0: 800
           -20,5:
             2: 4355
-            5: 34952
+            3: 34952
           -21,5:
             2: 65343
           -20,6:
             2: 32563
-            5: 8
+            3: 8
           -21,6:
             2: 65535
           -20,7:
@@ -28400,26 +28398,26 @@ entities:
           -20,8:
             2: 52300
           -19,5:
-            5: 30583
+            3: 30583
           -19,6:
-            5: 7
+            3: 7
             2: 16128
           -19,7:
             2: 13107
-            6: 2184
+            4: 2184
           -19,8:
             2: 13107
-            7: 2184
+            5: 2184
           -18,5:
             2: 65535
           -18,6:
             2: 831
             0: 35840
           -18,7:
-            6: 819
+            4: 819
             2: 34952
           -18,8:
-            7: 819
+            5: 819
             2: 34952
           -17,6:
             0: 61422
@@ -28591,23 +28589,23 @@ entities:
             2: 19532
           -19,9:
             2: 13107
-            8: 2184
+            6: 2184
           -19,10:
             2: 13107
-            5: 2184
+            3: 2184
           -19,11:
             2: 819
-            5: 2184
+            3: 2184
           -19,12:
             0: 4095
           -18,9:
-            8: 819
+            6: 819
             2: 34952
           -18,10:
-            5: 819
+            3: 819
             2: 34952
           -18,11:
-            5: 819
+            3: 819
             2: 2184
           -18,12:
             0: 36863
@@ -28722,7 +28720,7 @@ entities:
             0: 34855
             2: 4864
           -14,13:
-            5: 13104
+            3: 13104
             0: 35976
           -14,14:
             2: 5104
@@ -29200,8 +29198,7 @@ entities:
           6,20:
             0: 56251
           6,21:
-            0: 55581
-            4: 1024
+            0: 56605
           6,22:
             0: 4381
             2: 35840
@@ -29460,8 +29457,7 @@ entities:
           -10,-20:
             0: 43963
           -10,-19:
-            3: 1
-            0: 62394
+            0: 62395
           -10,-18:
             0: 65295
           -12,-22:
@@ -29629,10 +29625,11 @@ entities:
             0: 4368
             2: 8736
           12,13:
-            0: 13073
-            2: 34
+            0: 4369
+            2: 8738
           12,14:
-            0: 51
+            0: 17
+            2: 34
           8,-2:
             0: 58094
           8,-1:
@@ -29799,7 +29796,7 @@ entities:
             0: 5456
             2: 16388
           16,-9:
-            5: 28672
+            3: 28672
             0: 51
             2: 136
           16,-7:
@@ -30401,8 +30398,7 @@ entities:
           15,6:
             0: 65535
           16,6:
-            4: 32
-            0: 61120
+            0: 61152
           17,4:
             0: 65421
           17,5:
@@ -30428,9 +30424,7 @@ entities:
           20,5:
             0: 62451
           20,6:
-            0: 16
-            4: 256
-            3: 4096
+            0: 4368
             2: 35008
           -28,-1:
             2: 49152
@@ -31147,16 +31141,6 @@ entities:
         - volume: 2500
           immutable: True
           moles: {}
-        - volume: 2500
-          temperature: 293.15
-          moles:
-            Oxygen: 21.6852
-            Nitrogen: 81.57766
-        - volume: 2500
-          temperature: 293.14975
-          moles:
-            Oxygen: 20.078888
-            Nitrogen: 75.53487
         - volume: 2500
           temperature: 293.15
           moles: {}
@@ -34258,7 +34242,7 @@ entities:
       pos: 48.5,-21.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -77940.08
+      secondsUntilStateChange: -78008.516
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -34330,7 +34314,7 @@ entities:
       pos: -58.5,91.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -382573
+      secondsUntilStateChange: -382641.44
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -34346,7 +34330,7 @@ entities:
       pos: 79.5,28.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -305700.34
+      secondsUntilStateChange: -305768.78
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -34409,7 +34393,7 @@ entities:
       pos: 52.5,36.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -218244.9
+      secondsUntilStateChange: -218313.34
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -34430,7 +34414,7 @@ entities:
       pos: -60.5,57.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -82408.805
+      secondsUntilStateChange: -82477.24
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -35079,7 +35063,7 @@ entities:
       pos: -35.5,7.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -608558.94
+      secondsUntilStateChange: -608627.4
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -36630,7 +36614,7 @@ entities:
       pos: -26.5,47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -396186.3
+      secondsUntilStateChange: -396254.75
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -36884,7 +36868,7 @@ entities:
     - type: AccessReader
       accessListsOriginal: []
     - type: Door
-      secondsUntilStateChange: -69005.69
+      secondsUntilStateChange: -69074.125
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -38210,7 +38194,7 @@ entities:
       pos: 81.5,16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -714232.06
+      secondsUntilStateChange: -714300.5
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -140578,7 +140562,7 @@ entities:
       pos: -24.5,7.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -68463.19
+      secondsUntilStateChange: -68531.625
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -140756,7 +140740,7 @@ entities:
       pos: 39.5,20.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -608444.1
+      secondsUntilStateChange: -608512.56
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -146669,7 +146653,7 @@ entities:
       pos: 15.5,-9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -428273.44
+      secondsUntilStateChange: -428341.88
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -146883,7 +146867,7 @@ entities:
       pos: -39.5,-73.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -736040.06
+      secondsUntilStateChange: -736108.5
       state: Closing
   - uid: 20628
     components:
@@ -207364,6 +207348,13 @@ entities:
     - type: Transform
       pos: -15.5,10.5
       parent: 2
+  - uid: 43425
+    components:
+    - type: MetaData
+      name: Командование - Конференц-зал
+    - type: Transform
+      pos: -0.5,4.5
+      parent: 2
 - proto: HolopadAiCore
   entities:
   - uid: 28801
@@ -207418,6 +207409,9 @@ entities:
     - type: Transform
       pos: -9.5,14.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Command
   - uid: 28813
     components:
     - type: Transform
@@ -257581,7 +257575,7 @@ entities:
       pos: 19.5,-10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -33797.188
+      secondsUntilStateChange: -33865.62
       state: Opening
     - type: DeviceLinkSource
       lastSignals:

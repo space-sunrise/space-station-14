@@ -1024,6 +1024,8 @@
     factions:
     - Syndicate
     - Thief
+  - type: PresetIdCard
+    setAccess: false
   # Sunrise-End
 
 - type: entity
