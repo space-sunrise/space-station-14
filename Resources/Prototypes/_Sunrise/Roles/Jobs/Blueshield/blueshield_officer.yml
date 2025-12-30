@@ -52,3 +52,13 @@
   storage:
     back:
     # - HandheldBSOCrewMonitor
+
+- type: chameleonOutfit
+  id: BlueShieldOfficerChameleonOutfit
+  job: BlueShieldOfficer
+  icon: JobIconBlueShield
+  equipment:
+    shoes: ClothingShoesBootsBlueShieldFilled
+    eyes: ClothingEyesGlassesBlueShield
+    outerClothing: ClothingOuterArmorBlueShield
+    gloves: ClothingHandsGlovesCombat
