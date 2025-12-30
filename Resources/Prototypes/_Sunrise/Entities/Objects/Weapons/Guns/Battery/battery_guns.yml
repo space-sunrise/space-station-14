@@ -54,9 +54,9 @@
 
 - type: entity
   name: LNT620 "Spark"
-  parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
+  parent: [ BaseWeaponAutoPowerCell, BaseSecurityContraband ]
   id: WeaponLaserLNT620
-  description: "Automatic Laser NanoTrasen LNT620."
+  description: Automatic Laser NanoTrasen LNT620.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi

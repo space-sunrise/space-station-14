@@ -868,7 +868,7 @@
 # Gygax
 - type: entity
   id: MechGygax
-  parent: [ BaseMech, CombatMech, BaseRestrictedContraband ]
+  parent: [ BaseMech, CombatMech, BaseSecurityScienceContraband ]
   name: Gygax
   description: While lightly armored, the Gygax has incredible mobility thanks to its ability that lets it smash through walls at high speeds.
   components:
@@ -931,7 +931,7 @@
 # Durand
 - type: entity
   id: MechDurand
-  parent: [ BaseMech, CombatMech, BaseRestrictedContraband ]
+  parent: [ BaseMech, CombatMech, BaseSecurityScienceContraband ]
   name: Durand
   description: A slow but beefy combat exosuit that is extra scary in confined spaces due to its punches. Xenos hate it!
   components:
@@ -999,7 +999,7 @@
 
 - type: entity
   id: MechPhazon
-  parent: [ BaseMech, CombatMech, BaseRestrictedContraband ]
+  parent: [ BaseMech, CombatMech, BaseSecurityScienceContraband ]
   name: Phazon
   description: The most advanced mech on the market, the pinnacle of technological development, extremely mobile and deadly.
   components:
@@ -1071,7 +1071,7 @@
 # NT Gygax
 - type: entity
   id: MechNTGygax
-  parent: [ BaseMech, CombatMech, BaseRestrictedContraband ]
+  parent: [ BaseMech, CombatMech, BaseSecurityScienceContraband ]
   name: Nanotrasen Special Gygax
   description: "Nanotrasen's trump card when solving problems. High durability, increased protection against shock, explosions, temperature, shots: conventional, laser and energy, as well as expanded equipment slots allow to turn the situation on the station upside down. Gas pedals consume a colossal amount of energy."
   components:

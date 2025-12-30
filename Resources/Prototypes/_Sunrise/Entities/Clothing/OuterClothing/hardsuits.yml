@@ -205,7 +205,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseRestrictedContraband]
+  parent: ClothingOuterHardsuitBase
   id: ClothingOuterLightHardsuitUSSP
   name: Thunder-P
   description: A lightweight combat suit designed for rapid response and mobile operations. The light armor provides protection against firearms and allows for high maneuverability. The Grom-P is used by assault troops for fast and effective combat operations.
@@ -235,12 +235,11 @@
     clothingPrototype: ClothingHeadHelmetLightHardsuitUSSP
 
 - type: entity
-  parent: [ClothingOuterHardsuitEngineering, BaseEngineeringContraband]
+  parent: [ ClothingOuterHardsuitEngineering, BaseEngineeringContraband ]
   id: ClothingOuterHardsuitEngineeringCompact
   name: senior's engineer hardsuit
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding. Very compact.
   components:
-  # Sunrise-Start
    - type: FireProtection
      reduction: 0.8
    - type: ExplosionResistance
@@ -256,7 +255,6 @@
         Shock: 0.5
         Heat: 0.7
         Radiation: 0.4
-    # Sunrise-End
    - type: ClothingSpeedModifier
      walkModifier: 0.85
      sprintModifier: 0.85
