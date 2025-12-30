@@ -5,5 +5,5 @@
   description: Why isn't it gray?
   components:
     - type: Pda
-      id: NukieAgentIDCard
+      id: AgentIDCard
       pen: Hypopen
