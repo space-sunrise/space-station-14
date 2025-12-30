@@ -80,7 +80,9 @@
         - id: ClothingUniformJumpsuitHosFormal
         - id: ClothingOuterWinterHoS
         - id: ClothingNeckCloakHos
+        # Sunrise edit start
         - id: ClothingHoSMantleCoat
+        # Sunrise edit end
 
 - type: entity
   id: DresserQuarterMasterFilled

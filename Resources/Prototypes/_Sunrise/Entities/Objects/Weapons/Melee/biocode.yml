@@ -8,7 +8,7 @@
     - Syndicate
   - type: Construction
     graph: EnergySwordDoubleGraph
-    node: DoubleEnergySwordNode
+    node: double
   - type: Biocode
     factions:
     - Syndicate

@@ -6,11 +6,13 @@
   - type: Storage
     grid:
     - 0,0,3,1
-  - type: StorageFill
-    contents:
-    - id: ExplosiveCollarRed
-    - id: ExplosiveCollarWhite
-    - id: Bouquet
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ExplosiveCollarRed
+        - id: ExplosiveCollarWhite
+        - id: Bouquet
   - type: Sprite
     layers:
     - state: box_of_doom_big
@@ -26,11 +28,13 @@
     maxItemSize: Normal
     grid:
     - 0,0,2,2
-  - type: StorageFill
-    contents:
-      - id: CaneShotgun
-      - id: ShellShotgunBooze
-        amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CaneShotgun
+        - id: ShellShotgunBooze
+          amount: 4
 
 - type: entity
   parent: [BoxCardboard, BaseSyndicateContraband]
@@ -69,14 +73,15 @@
   id: SMGAmmoKit
   name: C20r ammo kit
   components:
-  - type: StorageFill
-    contents:
-    - id: MagazinePistolSubMachineGunSP
-    - id: MagazinePistolSubMachineGunSP
-    - id: MagazinePistolSubMachineGunSP
-    - id: MagazinePistolSubMachineGunFMJ
-    - id: MagazinePistolSubMachineGunFMJ
-    - id: MagazinePistolSubMachineGunHP
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazinePistolSubMachineGunSP
+          amount: 3
+        - id: MagazinePistolSubMachineGunFMJ
+          amount: 2
+        - id: MagazinePistolSubMachineGunHP
   - type: Sprite
     layers:
     - state: box_of_doom_big
@@ -87,14 +92,15 @@
   id: RifleAmmoKit
   name: Estoc ammo kit
   components:
-  - type: StorageFill
-    contents:
-    - id: MagazineRifleSP
-    - id: MagazineRifleSP
-    - id: MagazineRifleSP
-    - id: MagazineRifleFMJ
-    - id: MagazineRifleFMJ
-    - id: MagazineRifleAP
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineRifleSP
+          amount: 3
+        - id: MagazineRifleFMJ
+          amount: 2
+        - id: MagazineRifleAP
   - type: Sprite
     layers:
     - state: box_of_doom_big
@@ -108,12 +114,12 @@
   - type: Storage
     grid:
     - 0,0,1,3
-  - type: StorageFill
-    contents:
-    - id: MagazinePistolSubMachineGunCaselessExtended
-    - id: MagazinePistolSubMachineGunCaselessExtended
-    - id: MagazinePistolSubMachineGunCaselessExtended
-    - id: MagazinePistolSubMachineGunCaselessExtended
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazinePistolSubMachineGunCaselessExtended
+          amount: 4
   - type: Sprite
     layers:
     - state: box_of_doom
@@ -127,12 +133,14 @@
   - type: Storage
     grid:
     - 0,0,1,3
-  - type: StorageFill
-    contents:
-    - id: MagazineDragunov
-    - id: MagazineDragunov
-    - id: MagazineDragunovExtended
-    - id: MagazineDragunovExtended
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineDragunov
+          amount: 2
+        - id: MagazineDragunovExtended
+          amount: 2
   - type: Sprite
     layers:
     - state: box_of_doom
@@ -143,14 +151,12 @@
   id: AntimaterialAmmoKit
   name: Antimaterial ammo kit
   components:
-  - type: StorageFill
-    contents:
-    - id: MagazineBauer127
-    - id: MagazineBauer127
-    - id: MagazineBauer127
-    - id: MagazineBoxAntiMateriel
-    - id: MagazineBoxAntiMateriel
-    - id: MagazineBoxAntiMateriel
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineBauer127
+          amount: 6
   - type: Sprite
     layers:
     - state: box_of_doom
@@ -161,90 +167,34 @@
   id: SMGIncendiaryAmmoKit
   name: C20r Incendiary ammo kit
   components:
-  - type: StorageFill
-    contents:
-    - id: MagazinePistolSubMachineGunIncendiary
-      amount: 8
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazinePistolSubMachineGunIncendiary
+          amount: 8
   - type: Sprite
     layers:
     - state: box_of_doom_big
     - state: smg_red
-
-# - type: entity
-#   parent: BaseSyndicateAmmoKit
-#   id: SMGUraniumAmmoKit
-#   name: C20r Uranium ammo kit
-#   components:
-#   - type: StorageFill
-#     contents:
-#     - id: MagazinePistolSubMachineGunUranium
-#     - id: MagazinePistolSubMachineGunUranium
-#     - id: MagazinePistolSubMachineGunUranium
-#     - id: MagazinePistolSubMachineGunUranium
-#     - id: MagazinePistolSubMachineGunUranium
-#     - id: MagazinePistolSubMachineGunUranium
-#     - id: MagazinePistolSubMachineGunUranium
-#     - id: MagazinePistolSubMachineGunUranium
-#   - type: Sprite
-#     layers:
-#     - state: box_of_doom_big
-#     - state: smg_uranium
 
 - type: entity
   parent: BaseSyndicateAmmoKit
   id: ShotGunKit
   name: Bulldog ammo kit
   components:
-  - type: StorageFill
-    contents:
-    - id: MagazineShotgun
-    - id: MagazineShotgun
-    - id: MagazineShotgun
-    - id: MagazineShotgun
-    - id: MagazineShotgun
-    - id: MagazineShotgunSlug
-    - id: MagazineShotgunSlug
-    - id: MagazineShotgunSlug
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineShotgun
+          amount: 5
+        - id: MagazineShotgunSlug
+          amount: 3
   - type: Sprite
     layers:
     - state: box_of_doom_big
     - state: shotgun_base
-
-# - type: entity
-#   parent: BaseSyndicateAmmoKit
-#   id: ShotGunIncendiaryKit
-#   name: Bulldog Incendiary ammo kit
-#   components:
-#   - type: StorageFill
-#     contents:
-#     - id: MagazineShotgunIncendiary
-#     - id: MagazineShotgunIncendiary
-#     - id: MagazineShotgunIncendiary
-#     - id: MagazineShotgunIncendiary
-#     - id: MagazineShotgunIncendiary
-#     - id: MagazineShotgunIncendiary
-#     - id: MagazineShotgunIncendiary
-#     - id: MagazineShotgunIncendiary
-#   - type: Sprite
-#     layers:
-#     - state: box_of_doom_big
-#     - state: shotgun_red
-
-# - type: entity
-#   parent: BaseSyndicateAmmoKit
-#   id: ShotGunUraniumKit
-#   name: Bulldog Uranium ammo kit
-#   components:
-#   - type: StorageFill
-#     contents:
-#     - id: MagazineShotgunUranium
-#     - id: MagazineShotgunUranium
-#     - id: MagazineShotgunUranium
-#     - id: MagazineShotgunUranium
-#   - type: Sprite
-#     layers:
-#     - state: box_of_doom_big
-#     - state: shotgun_uranium
 
 - type: entity
   parent: BaseSyndicateAmmoKit
@@ -258,11 +208,12 @@
   - type: Storage
     grid:
     - 0,0,2,1
-  - type: StorageFill
-    contents:
-    - id: MagazineDl6902
-    - id: MagazineDl6902
-    - id: MagazineDl6902
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineDl6902
+          amount: 3
   - type: Sprite
     layers:
     - state: box_of_doom_big
@@ -276,11 +227,13 @@
   - type: Storage
     grid:
     - 0,0,3,1
-  - type: StorageFill
-    contents:
-    - id: MagazineRifleBoxSP
-      amount: 3
-    - id: MagazineRifleBoxFMJ
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineRifleBoxSP
+          amount: 3
+        - id: MagazineRifleBoxFMJ
   - type: Sprite
     layers:
     - state: box_of_doom_big
@@ -291,10 +244,12 @@
   id: LMGIncendiaryKit
   name: L6 Saw Incendiary ammo kit
   components:
-  - type: StorageFill
-    contents:
-    - id: MagazineRifleBoxIncendiary
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineRifleBoxIncendiary
+          amount: 4
   - type: Sprite
     layers:
     - state: box_of_doom_big
@@ -305,10 +260,12 @@
   id: LMGUraniumKit
   name: L6 Saw Uranium ammo kit
   components:
-  - type: StorageFill
-    contents:
-    - id: MagazineRifleBoxUranium
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineRifleBoxUranium
+          amount: 4
   - type: Sprite
     layers:
     - state: box_of_doom_big
@@ -335,7 +292,6 @@
     - id: CyberEyeThermal
     sound:
       path: /Audio/Effects/unwrap.ogg
-  # Sunrise edit start
   - type: EmitSoundOnPickup
     sound:
       path: /Audio/_Sunrise/Items/Handling/cardboardbox_pickup.ogg
@@ -348,7 +304,6 @@
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/_Sunrise/Items/Handling/cardboardbox_drop.ogg
-  # Sunrise edit end
 
 - type: entity
   parent: CyberEyeThermalBox
@@ -422,10 +377,12 @@
   - type: Storage
     grid:
     - 0,0,1,1
-  - type: StorageFill
-    contents:
-    - id: RightArmCyberMantisBlade
-    - id: LeftArmCyberMantisBlade
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: RightArmCyberMantisBlade
+        - id: LeftArmCyberMantisBlade
   - type: Sprite
     layers:
     - state: box_of_doom_big
