@@ -23,6 +23,7 @@ public sealed class BuckleDragTest : InteractionTest
 
 #pragma warning disable RA0002
         buckle.Delay = TimeSpan.Zero;
+        buckle.UnbuckleDoafterTime = TimeSpan.Zero;
 #pragma warning restore RA0002
 
         // Initially not buckled to the chair and not pulling anything
@@ -46,6 +47,14 @@ public sealed class BuckleDragTest : InteractionTest
         Assert.That(puller.Pulling, Is.Null);
         Assert.That(pullable.Puller, Is.Null);
         Assert.That(pullable.BeingPulled, Is.False);
+
+        // Sunrise added start - у нас пулинг не убирает бакл
+        // Поэтому делаем это вручную, до того, как человека схватят, чтобы логика теста не сломалась
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(Server.System<SharedBuckleSystem>().TryUnbuckle(sUrist, sUrist));
+        });
+        // Sunrise added end
 
         // Start pulling, and thus unbuckle them
         await PressKey(ContentKeyFunctions.TryPullObject, cursorEntity: urist);
