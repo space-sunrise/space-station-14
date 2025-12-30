@@ -102,12 +102,12 @@
       sizeMaps:
         32:
           sprite: _Sunrise/Mobs/Species/Resomi/displacement.rsi
-          state: inHand
+          state: hand_l
     rightHandDisplacement:
       sizeMaps:
         32:
           sprite: _Sunrise/Mobs/Species/Resomi/displacement.rsi
-          state: inHand
+          state: hand_r
   - type: Inventory
     templateId: nonUnderwear
     speciesId: resomi
