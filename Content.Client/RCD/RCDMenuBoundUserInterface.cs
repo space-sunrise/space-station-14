@@ -33,7 +33,7 @@ public sealed class RCDMenuBoundUserInterface : BoundUserInterface
 >>>>>>> c615845b66 (Localisation fix 2)
             ["Piping"] = ("rpd-component-piping", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/fourway.png"))),
             ["AtmosphericUtility"] = ("rpd-component-atmosphericutility", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/port.png"))),
-            ["PumpsValves"] = ("rpd-component-pumpsvalves", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/pump_volume.png"))),
+            ["PumpsValves"] = ("rpd-component-pumps", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/pump_volume.png"))),
             ["Vents"] = ("rpd-component-vents", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/vent_passive.png"))),
             // Starlight end
 >>>>>>> 6dc782d4bd (RPD Localization fix)

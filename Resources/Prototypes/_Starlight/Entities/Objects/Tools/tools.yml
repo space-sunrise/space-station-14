@@ -801,9 +801,15 @@
     - VentPassive
     - MixerGas
     - Radiator
+    - RadiatorBend
     - SignalValve
     - CanisterPort
     - FilterGas
+    - PipeHalf
+    - PipeManifold
+    - PressureRegulator
+    - PassiveGate
+    - PipeSensor
     - Deconstruct
   - type: LimitedCharges
     maxCharges: 45
