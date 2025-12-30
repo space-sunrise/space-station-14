@@ -137,7 +137,7 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
         _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(allSensors, component.DoCorpseAlert));
     }
 
-    //Sunrise-Start
+    //Sunrise-Start: Alert
     /// <summary>
     /// Checks if there are any corpses with active sensors outside of morgues
     /// </summary>
@@ -202,5 +202,5 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
 
         Dirty(uid, component);
     }
-    //Sunrise-End
+    //Sunrise-End: Alert
 }
