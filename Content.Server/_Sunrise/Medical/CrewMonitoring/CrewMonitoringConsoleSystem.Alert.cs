@@ -91,9 +91,7 @@ public sealed partial class CrewMonitoringConsoleSystem
 
     private void OnToggleCorpseAlert(Entity<CrewMonitoringCorpseAlertComponent> ent, ref CrewMonitoringToggleCorpseAlertMessage args)
     {
-        ent.Comp.DoCorpseAlert = !ent.Comp.DoCorpseAlert;
-        Dirty(ent.Owner, ent.Comp);
-        UpdateUserInterface(ent.Owner);
+        ToggleAlert(ent);
     }
 
     private void AddToggleVerb(Entity<CrewMonitoringCorpseAlertComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
