@@ -201,6 +201,7 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
         component.DoCorpseAlert = !component.DoCorpseAlert;
 
         Dirty(uid, component);
+        UpdateUserInterface(uid, component);
     }
     //Sunrise-End: Alert
 }
