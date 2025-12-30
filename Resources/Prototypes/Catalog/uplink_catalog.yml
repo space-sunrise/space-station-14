@@ -1588,27 +1588,19 @@
   categories:
     - UplinkImplants
 
-# Такое говнище нельзя в магазин добавлять
-#- type: listing
-#  id: UplinkScramImplanter
-#  name: uplink-scram-implanter-name
-#  description: uplink-scram-implanter-desc
-#  icon: { sprite: /Textures/Structures/Specific/anomaly.rsi, state: anom4 }
-#  productEntity: ScramImplanter
-#  discountCategory: veryRareDiscounts
-#  discountDownTo:
-#    Telecrystal: 6
-#  cost:
-#    Telecrystal: 8 # it's a gamble that may kill you easily so 4 TC per 2 uses, second one more of a backup
-#  categories:
-#    - UplinkImplants
-#  #Sunrise-start
-#  conditions:
-#  - !type:StoreWhitelistCondition
-#    blacklist:
-#      tags:
-#      - NukeOpsUplink
-#  #Sunrise-end
+- type: listing
+  id: UplinkScramImplanter
+  name: uplink-scram-implanter-name
+  description: uplink-scram-implanter-desc
+  icon: { sprite: /Textures/Structures/Specific/anomaly.rsi, state: anom4 }
+  productEntity: ScramImplanter
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4 # it's a gamble that may kill you easily so 4 TC per 2 uses, second one more of a backup
+  categories:
+    - UplinkImplants
 
 - type: listing
   id: UplinkDnaScramblerImplant
@@ -1618,9 +1610,9 @@
   productEntity: DnaScramblerImplanter
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1
   cost:
-    Telecrystal: 3 # Sunrise-Edit
+    Telecrystal: 2 # Sunrise-Edit
   categories:
     - UplinkImplants
   #Sunrise-start
@@ -1641,7 +1633,7 @@
   discountDownTo:
     Telecrystal: 3 # Sunrise-Edit
   cost:
-    Telecrystal: 5 # Sunrise-Edit
+    Telecrystal: 4 # Sunrise-Edit
   categories:
     - UplinkImplants
 
@@ -1683,7 +1675,7 @@
   icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
   productEntity: MacroBombImplanter
   cost:
-    Telecrystal: 13
+    Telecrystal: 7 # Sunrise-Edit #Be gay do crime!
   categories:
     - UplinkImplants
   conditions:
