@@ -112,50 +112,50 @@ public sealed partial class WingFlightComponent : Component
     /// <summary>
     /// Момент завершения инерции (только сервер).
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly), AutoPausedField]
+    [ViewVariables, AutoPausedField]
     public TimeSpan? InertiaEndTime;
 
     /// <summary>
     /// Аккумулятор для периодического расхода выносливости (только сервер).
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables]
     public float SustainAccumulator;
 
     /// <summary>
     /// Применялся ли суффикс полёта, чтобы при выключении вернуть маркинг обратно.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables]
     public bool AppliedMarkingOnEnable;
 
     /// <summary>
     /// Список оригинальных маркингов для восстановления после отключения полёта (только сервер).
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables]
     public Dictionary<int, string> OriginalMarkings = new();
 
     /// <summary>
     /// Исходные коллизии фикстур, чтобы при завершении полёта вернуть проход блокирующих тайлов.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables]
     public Dictionary<string, int> OriginalCollisionMasks = new();
 
     /// <summary>
     /// Исходные слои фикстур, сохраняются вместе с масками для симметричного возврата.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables]
     public Dictionary<string, int> OriginalCollisionLayers = new();
 
     /// <summary>
     /// Оригинальный масштаб спрайта (только клиент, для визуализации).
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables]
     public Vector2? OriginalScale;
 }
 
 /// <summary>
 /// Маркерный компонент для сущностей с активным полетом, требующих обновления в Update.
 /// </summary>
-[RegisterComponent, Access(typeof(SharedWingFlightSystem))]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class ActiveWingFlightComponent : Component
 {
 }

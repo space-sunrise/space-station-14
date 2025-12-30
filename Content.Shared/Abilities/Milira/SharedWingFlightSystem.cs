@@ -15,11 +15,6 @@ public abstract class SharedWingFlightSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-    }
-
     /// <summary>
     /// Получение целевого масштаба при активном полёте.
     /// </summary>
@@ -64,7 +59,7 @@ public abstract class SharedWingFlightSystem : EntitySystem
         _movement.RefreshMovementSpeedModifiers(ent);
         _movement.RefreshFrictionModifiers(ent);
 
-        Dirty(ent.Owner, ent.Comp);
+        Dirty(ent);
     }
 
     public void StartInertia(Entity<WingFlightComponent> ent)
@@ -75,7 +70,7 @@ public abstract class SharedWingFlightSystem : EntitySystem
 
         _movement.RefreshFrictionModifiers(ent);
 
-        Dirty(ent.Owner, ent.Comp);
+        Dirty(ent);
     }
 
     public void StopInertia(Entity<WingFlightComponent> ent)
@@ -90,7 +85,7 @@ public abstract class SharedWingFlightSystem : EntitySystem
             RemComp<ActiveWingFlightComponent>(ent.Owner);
 
         _movement.RefreshFrictionModifiers(ent.Owner);
-        Dirty(ent.Owner, ent.Comp);
+        Dirty(ent);
     }
 
     public override void Update(float frameTime)

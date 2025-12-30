@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Humanoid;
 using Content.Server.Popups;
@@ -225,12 +226,9 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
 
         var query = EntityQueryEnumerator<ActiveWingFlightComponent, WingFlightComponent, StaminaComponent>();
 
-        var toProcess = new List<(EntityUid uid, WingFlightComponent flightComp, StaminaComponent stamina)>();
+        var toDisable = new List<Entity<WingFlightComponent>>();
 
         while (query.MoveNext(out var uid, out _, out var flightComp, out var stamina))
-            toProcess.Add((uid, flightComp, stamina));
-
-        foreach (var (uid, flightComp, stamina) in toProcess)
         {
             Entity<WingFlightComponent> ent = (uid, flightComp);
             var staminaPercent = GetStaminaPercent(stamina);
@@ -239,8 +237,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
             {
                 if (staminaPercent <= ent.Comp.AutoDisableThreshold)
                 {
-                    _popup.PopupEntity(Loc.GetString("wing-flight-popup-auto-disable"), ent.Owner, ent.Owner, PopupType.Medium);
-                    DisableFlight(ent);
+                    toDisable.Add(ent);
                     SetScaleImmediate(ent, staminaPercent);
                     UpdateScale(ent, staminaPercent, frameTime);
                     continue;
@@ -249,8 +246,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
                 var staminaCost = ent.Comp.SustainStaminaPerSecond * frameTime;
                 if (!_stamina.TryTakeStamina(ent.Owner, staminaCost, stamina, visual: false))
                 {
-                    _popup.PopupEntity(Loc.GetString("wing-flight-popup-auto-disable"), ent.Owner, ent.Owner, PopupType.Medium);
-                    DisableFlight(ent);
+                    toDisable.Add(ent);
                     SetScaleImmediate(ent, staminaPercent);
                 }
             }
@@ -260,6 +256,12 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
             }
 
             UpdateScale(ent, staminaPercent, frameTime);
+        }
+
+        foreach (var ent in toDisable)
+        {
+            _popup.PopupEntity(Loc.GetString("wing-flight-popup-auto-disable"), ent.Owner, ent.Owner, PopupType.Medium);
+            DisableFlight(ent);
         }
     }
 
@@ -312,11 +314,11 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
         if (!TryComp(ent.Owner, out FixturesComponent? fixtures))
             return;
 
-        // Создаём копию идентификаторов фикстур, чтобы избежать изменения коллекции во время перечисления
-        var fixtureIds = new List<string>(fixtures.Fixtures.Keys);
-
-        foreach (var id in fixtureIds)
+        // Обратный обход фикстур для избежания изменения коллекции во время перечисления
+        var fixtureIds = fixtures.Fixtures.Keys.ToArray();
+        for (var i = fixtureIds.Length - 1; i >= 0; i--)
         {
+            var id = fixtureIds[i];
             if (!fixtures.Fixtures.TryGetValue(id, out var fixture))
                 continue;
 
@@ -330,16 +332,16 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
     {
         RemCompDeferred<CanMoveInAirComponent>(ent.Owner);
 
-        if (TryComp(ent.Owner, out PhysicsComponent? physics))
+        if (TryComp<PhysicsComponent>(ent, out var physics))
             _physics.SetBodyStatus(ent.Owner, physics, BodyStatus.OnGround);
 
-        if (TryComp(ent.Owner, out FixturesComponent? fixtures))
+        if (TryComp<FixturesComponent>(ent, out var fixtures))
         {
-            // Создаём копию идентификаторов фикстур, чтобы избежать изменения коллекции во время перечисления
-            var fixtureIds = new List<string>(fixtures.Fixtures.Keys);
-
-            foreach (var id in fixtureIds)
+            // Обратный обход фикстур для избежания изменения коллекции во время перечисления
+            var fixtureIds = fixtures.Fixtures.Keys.ToArray();
+            for (var i = fixtureIds.Length - 1; i >= 0; i--)
             {
+                var id = fixtureIds[i];
                 if (!fixtures.Fixtures.TryGetValue(id, out var fixture))
                     continue;
 

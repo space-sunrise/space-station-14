@@ -13,6 +13,7 @@ using Content.Shared.Verbs;
 using Content.Shared._Sunrise.Carrying;
 using Robust.Shared.Containers;
 using Robust.Shared.Serialization;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._Sunrise.Nesting;
 
@@ -160,6 +161,7 @@ public abstract class SharedNestingSystem : EntitySystem
                 StartNestingPickupDoAfter(args.User, uid);
             },
             Text = Loc.GetString("pick-up-verb-get-data-text"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/pickup.svg.192dpi.png")),
             Priority = 2
         };
         args.Verbs.Add(verb);
