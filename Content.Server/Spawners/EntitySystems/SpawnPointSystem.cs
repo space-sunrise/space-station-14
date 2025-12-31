@@ -52,10 +52,14 @@ public sealed class SpawnPointSystem : EntitySystem
             }
 
             // Sunrise-Start
-            if (spawnPoint.SpawnType == SpawnPointType.Job &&
-                (args.Job == null || spawnPoint.Job == args.Job))
+            else
             {
-                possiblePositions.Add(xform.Coordinates);
+
+                if (spawnPoint.SpawnType == SpawnPointType.Job &&
+                    (args.Job == null || spawnPoint.Job == args.Job))
+                {
+                    possiblePositions.Add(xform.Coordinates);
+                }
             }
             // Sunrise-End
 
