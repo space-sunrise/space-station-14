@@ -569,7 +569,7 @@
         - !type:MetabolizerTypeCondition
           type: [Plant]
         - !type:ReagentCondition
-          reagent: RootBeer
+          reagent: RootBeerFloat
           min: 50
         damage:
           types:
