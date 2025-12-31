@@ -2288,6 +2288,7 @@
     Doubloon: 44
   categories:
   - UplinkPirateWearables
+  conditions:
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
