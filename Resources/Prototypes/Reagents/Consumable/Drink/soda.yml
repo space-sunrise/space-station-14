@@ -59,6 +59,191 @@
   physicalDesc: reagent-physical-desc-fizzy
   flavor: soda
   color: "#2E6671"
+  # Sunrise-start
+  metabolisms:
+    Drink:
+      effects:
+      - !type:Polymorph
+        prototype: ChangelingStingHuman
+        probability: 0.083
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:AdjustReagent
+        reagent: ChangelingSting
+        amount: -1000
+        probability: 0.083
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:Polymorph
+        prototype: ChangelingStingReptilian
+        probability: 0.167
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:AdjustReagent
+        reagent: ChangelingSting
+        amount: -1000
+        probability: 0.167
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:Polymorph
+        prototype: ChangelingStingTajaran
+        probability: 0.25
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:AdjustReagent
+        reagent: ChangelingSting
+        amount: -1000
+        probability: 0.25
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:Polymorph
+        prototype: ChangelingStingSlime
+        probability: 0.333
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:AdjustReagent
+        reagent: ChangelingSting
+        amount: -1000
+        probability: 0.333
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:Polymorph
+        prototype: ChangelingStingMoth
+        probability: 0.417
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:AdjustReagent
+        reagent: ChangelingSting
+        amount: -1000
+        probability: 0.417
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:Polymorph
+        prototype: ChangelingStingSwine
+        probability: 0.5
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:AdjustReagent
+        reagent: ChangelingSting
+        amount: -1000
+        probability: 0.5
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:Polymorph
+        prototype: ChangelingStingResomi
+        probability: 0.583
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:AdjustReagent
+        reagent: ChangelingSting
+        amount: -1000
+        probability: 0.583
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:Polymorph
+        prototype: ChangelingStingVox
+        probability: 0.667
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:AdjustReagent
+        reagent: ChangelingSting
+        amount: -1000
+        probability: 0.667
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:Polymorph
+        prototype: ChangelingStingVulpkanin
+        probability: 0.75
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:AdjustReagent
+        reagent: ChangelingSting
+        amount: -1000
+        probability: 0.75
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:Polymorph
+        prototype: ChangelingStingFelinid
+        probability: 0.833
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:AdjustReagent
+        reagent: ChangelingSting
+        amount: -1000
+        probability: 0.833
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:Polymorph
+        prototype: ChangelingStingHumanoidXeno
+        probability: 0.917
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:AdjustReagent
+        reagent: ChangelingSting
+        amount: -1000
+        probability: 0.917
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:Polymorph
+        prototype: ChangelingStingHumanRename
+        probability: 1
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+      - !type:AdjustReagent
+        reagent: ChangelingSting
+        amount: -1000
+        probability: 1
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingSting
+          min: 5
+  # Sunrise-end
 
 - type: reagent
   id: DrGibb
@@ -74,6 +259,29 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+  # Sunrise-start
+  metabolisms:
+    Poison:
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:ReagentCondition
+          reagent: DrGibb
+          min: 2
+        type: Local
+        visualType: LargeCaution
+        messages: ["dr-gibbs-presence"]
+        probability: 0.2
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: DrGibb
+          min: 2
+        probability: 0.0001
+        damage:
+          types:
+            Blunt: 2000
+  # Sunrise-end
 
 - type: reagent
   id: EnergyDrink
@@ -96,6 +304,17 @@
         effectProto: StatusEffectDrowsiness
         time: 2
         type: Remove
+      # Sunrise-start
+      - !type:GenericStatusEffect
+        key: ShockProtection
+        component: Insulated
+        time: 2
+        type: Add
+        conditions:
+        - !type:ReagentCondition
+          reagent: EnergyDrink
+          min: 5
+      # Sunrise-end
       - !type:AdjustReagent
         reagent: Theobromine
         amount: 0.1
@@ -309,3 +528,22 @@
   physicalDesc: reagent-physical-desc-fizzy
   flavor: metallic
   color: "#66538F"
+  # Sunrise-start
+  metabolisms:
+    Drink:
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectZombieAccent
+        time: 2
+        type: Add
+        conditions:
+        - !type:ReagentCondition
+          reagent: ShamblersJuice
+          min: 15
+      - !type:CureZombieInfection
+        probability: 0.35
+        conditions:
+        - !type:ReagentCondition
+          reagent: ShamblersJuice
+          min: 15
+  # Sunrise-end

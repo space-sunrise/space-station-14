@@ -4,6 +4,10 @@
 - type: statusEffect
   id: Flip
 
+- type: statusEffect
+  id: ShockProtection # Used in Red Bool drink
+  alwaysAllowed: true
+
 - type: entity
   parent: MobStatusEffectBase
   id: StatusEffectFall

@@ -48,6 +48,22 @@
     randomizeName: false
 
 - type: entity
+  parent: MobResomi
+  id: MobResomiRandomization
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  parent: MobHumanoidXeno
+  id: MobHumanoidXenoRandomization
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
   parent: MobVox
   id: MobVoxRandomization
   categories: [ HideSpawnMenu ]
@@ -70,4 +86,13 @@
   components:
   - type: RandomHumanoidAppearance
     randomizeName: false
+    skinColor: "#E5BDA0FF"
+
+- type: entity
+  parent: MobHuman
+  id: MobHumanRandomizationRenamed
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: true
     skinColor: "#E5BDA0FF"

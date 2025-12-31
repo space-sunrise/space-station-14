@@ -1,0 +1,7 @@
+- type: entity
+  parent: SpeechStatusEffectBase
+  id: StatusEffectZombieAccent
+  name: zombieaccent
+  components:
+  - type: ReplacementAccent
+    accent: zombie
