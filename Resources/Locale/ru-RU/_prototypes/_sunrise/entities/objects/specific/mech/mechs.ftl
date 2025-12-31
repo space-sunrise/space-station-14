@@ -58,10 +58,3 @@ ent-MechRoverSyndieFilled = { ent-MechRoverSyndieBattery }
     .suffix = Батарея, Заполненный
     .desc = { ent-MechRoverSyndieBattery.desc }
 
-step-lockermech-toolbox1 = любой тулбокс
-step-lockermech-toolbox2 = второй тулбокс
-step-lockermech-toolbox3 = третий тулбокс
-step-lockermech-flashlight = фонарик
-step-lockermech-oxygentank = любой баллон
-step-lockermech-treads = 5 стальных листов
-step-lockermech-powercell = энергоячейку
