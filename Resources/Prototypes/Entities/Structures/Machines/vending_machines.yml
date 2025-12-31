@@ -792,6 +792,7 @@
     radius: 1.5
     energy: 3.0
     color: "#00E645"
+  - type: PlayerCountDependentStock  # Sunrise-vend
 
 - type: entity
   parent: VendingMachine

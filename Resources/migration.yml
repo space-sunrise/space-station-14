@@ -916,6 +916,9 @@ RandomHumanoidSpawnerERTMedicalAmberVeteran: RandomHumanoidSpawnerERTMedicalAmbe
 RandomHumanoidSpawnerERTSecurityAmberVeteran: RandomHumanoidSpawnerERTSecurityAmber
 RandomHumanoidSpawnerCBURNVeteran: RandomHumanoidSpawnerCBURNUnitEVA
 RandomHumanoidSpawnerERTLeaderGammaVeteran: RandomHumanoidSpawnerERTLeaderGamma
+VendingMachineMayson: null
+DrinkLukin: null
+DrinkFourteenLokoPlusCan: null
 # SL HITSCAN START
 BoxMagazineRifle: BoxMagazineRifleSP
 MagazineBoxLightRifle: MagazineBoxLightRifleSP
