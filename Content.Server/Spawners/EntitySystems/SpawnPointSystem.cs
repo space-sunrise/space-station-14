@@ -33,36 +33,29 @@ public sealed class SpawnPointSystem : EntitySystem
             if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                 continue;
 
+            // Sunrise added start
             // Delta-V: Allow setting a desired SpawnPointType
-            if (args.DesiredSpawnPointType != SpawnPointType.Unset)
+
+            // То, что приходит из ивента главнее заданного в спавнпоинте.
+            var spawnPointType = args.DesiredSpawnPointType != SpawnPointType.Unset
+                ? args.DesiredSpawnPointType
+                : spawnPoint.SpawnType;
+
+            var isMatchingJob = string.IsNullOrEmpty(args.Job)
+                                || string.IsNullOrEmpty(spawnPoint.Job)
+                                || spawnPoint.Job == args.Job;
+
+            switch (spawnPointType)
             {
-                var isMatchingJob = spawnPoint.SpawnType == SpawnPointType.Job &&
-                                    (args.Job == null || spawnPoint.Job == args.Job);
-
-                switch (args.DesiredSpawnPointType)
-                {
-                    case SpawnPointType.Job when isMatchingJob:
-                    case SpawnPointType.LateJoin when spawnPoint.SpawnType == SpawnPointType.LateJoin:
-                    case SpawnPointType.Observer when spawnPoint.SpawnType == SpawnPointType.Observer:
-                        possiblePositions.Add(xform.Coordinates);
-                        break;
-                    default:
-                        continue;
-                }
-            }
-
-            // Sunrise-Start
-            else
-            {
-
-                if (spawnPoint.SpawnType == SpawnPointType.Job &&
-                    (args.Job == null || spawnPoint.Job == args.Job))
-                {
+                case SpawnPointType.Job when isMatchingJob:
+                case SpawnPointType.LateJoin:
+                case SpawnPointType.Observer:
                     possiblePositions.Add(xform.Coordinates);
-                }
+                    break;
+                default:
+                    continue;
             }
-            // Sunrise-End
-
+            // Sunrise added end
         }
 
         if (possiblePositions.Count == 0)
