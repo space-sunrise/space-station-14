@@ -32,12 +32,33 @@ public sealed class SpawnPointSystem : EntitySystem
         {
             if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                 continue;
-            // Sunrise-Start: Всегда фильтруем спавны только по spawn_type = Job и job_id, LateJoin не учитываем вообще
-            if (spawnPoint.SpawnType == SpawnPointType.Job && (args.Job == null || spawnPoint.Job == null || spawnPoint.Job == args.Job))
+
+            // Delta-V: Allow setting a desired SpawnPointType
+            if (args.DesiredSpawnPointType != SpawnPointType.Unset)
+            {
+                var isMatchingJob = spawnPoint.SpawnType == SpawnPointType.Job &&
+                                    (args.Job == null || spawnPoint.Job == args.Job);
+
+                switch (args.DesiredSpawnPointType)
+                {
+                    case SpawnPointType.Job when isMatchingJob:
+                    case SpawnPointType.LateJoin when spawnPoint.SpawnType == SpawnPointType.LateJoin:
+                    case SpawnPointType.Observer when spawnPoint.SpawnType == SpawnPointType.Observer:
+                        possiblePositions.Add(xform.Coordinates);
+                        break;
+                    default:
+                        continue;
+                }
+            }
+
+            // Sunrise-Start
+            if (spawnPoint.SpawnType == SpawnPointType.Job &&
+                (args.Job == null || spawnPoint.Job == args.Job))
             {
                 possiblePositions.Add(xform.Coordinates);
             }
             // Sunrise-End
+
         }
 
         if (possiblePositions.Count == 0)
