@@ -324,12 +324,17 @@
       - !type:GenericStatusEffect
         key: ShockProtection
         component: Insulated
-        time: 2
+        time: 1.25
         type: Add
         conditions:
         - !type:ReagentCondition
           reagent: EnergyDrink
           min: 5
+      - !type:Jitter
+        conditions:
+        - !type:ReagentCondition
+          reagent: EnergyDrink
+          min: 10
       - !type:AdjustTemperature
         amount: -1500
       - !type:AdjustTemperature
