@@ -95,6 +95,10 @@ namespace Content.Client.ContextMenu.UI
         /// </summary>
         public void Close()
         {
+            // Sunrise-Edit: avoid double-close when the popup was already disposed.
+            if (RootMenu.Disposed || RootMenu.MenuBody.Disposed)
+                return;
+
             RootMenu.MenuBody.RemoveAllChildren();
             CancelOpen?.Cancel();
             CancelClose?.Cancel();
