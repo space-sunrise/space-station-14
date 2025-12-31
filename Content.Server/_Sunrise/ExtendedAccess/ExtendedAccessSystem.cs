@@ -73,6 +73,9 @@ public sealed class ExtendedAccessSystem : EntitySystem
     /// </summary>
     private void AfterDelay(Entity<AlertLevelComponent> station)
     {
+        if (TerminatingOrDeleted(station))
+            return;
+
         _chat.DispatchStationAnnouncement(station,
             Loc.GetString("access-system-accesses-established"),
             colorOverride: Color.Yellow,

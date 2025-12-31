@@ -242,6 +242,10 @@ namespace Content.IntegrationTests.Tests
                 "StationEvent",
                 "TimedDespawn",
 
+                // Sunrise added start
+                "StationTransitHub",
+                // Sunrise added end
+
                 // makes an announcement on mapInit.
                 "AnnounceOnSpawn",
             };
