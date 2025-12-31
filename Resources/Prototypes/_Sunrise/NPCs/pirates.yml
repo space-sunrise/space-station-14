@@ -2411,6 +2411,13 @@
   - type: ActionGrant
     actions:
     - ActionGravityJump
+  - type: HellSpawnRush
+    blacklist:
+      tags:
+      - Hellspawn
+      - GlassBeaker
+      - DrinkBottle
+      - DrinkCan
   - type: AmbientSound
     range: 8
     volume: -10

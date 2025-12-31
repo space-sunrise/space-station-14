@@ -272,6 +272,7 @@
 - type: entity
   parent: BulletTrace
   id: XrayLaserBeam
+  categories: [ HideSpawnMenu ]
   components:
   - type: HitscanPierce
     chance: 0.99
@@ -303,6 +304,7 @@
 - type: entity
   id: PelletShotgunImprovisedSpreadTraceLarge
   parent: PelletShotgunImprovisedTrace
+  categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
     damage:

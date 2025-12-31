@@ -12,13 +12,8 @@
                 <controls:StripeBack>
                     <PanelContainer>
                         <Label Name="StationName" Text="{Loc crew-monitoring-ui-no-station-label}" Align="Center" Margin="0 5 0 3"/>
-                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 2 0 3">
-                            <Button Name="CorpseAlertToggle" Text="{Loc 'crew-monitoring-corpse-alert-off'}"
-                                    HorizontalAlignment="Center" Margin="0 0 0 0" SetWidth="260"/>
-                        </BoxContainer>
                     </PanelContainer>
                 </controls:StripeBack>
-
                 <LineEdit Name="SearchLineEdit" HorizontalExpand="True"
                           PlaceHolder="{Loc crew-monitoring-ui-filter-line-placeholder}" />
 
@@ -39,6 +34,13 @@
                             HorizontalAlignment="Center"
                             Visible="false"/>
                 </ScrollContainer>
+                 <!-- Sunrise - Start -->
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 2 0 3">
+                    <Label Text ="{Loc crew-monitoring-corpse-alert}" VerticalAlignment="Center" Margin="0 0 6 0"/>
+                    <CheckBox Name="CorpseAlertToggle" Text="{Loc 'crew-monitoring-corpse-alert-off'}"
+                            HorizontalAlignment="Center" Margin="0 0 0 0" SetWidth="260"/>
+                </BoxContainer>
+                 <!-- Sunrise - End -->
             </BoxContainer>
         </BoxContainer>
 

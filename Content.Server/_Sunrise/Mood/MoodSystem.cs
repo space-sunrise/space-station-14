@@ -29,6 +29,7 @@ public sealed class MoodSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {
@@ -220,6 +221,7 @@ public sealed class MoodSystem : EntitySystem
 
         EnsureComp<NetMoodComponent>(uid);
         RefreshMood(uid, component);
+        UpdateAppearance(uid, component);
     }
 
     private void SetMood(EntityUid uid, float amount, MoodComponent? component = null, bool force = false, bool refresh = false)
@@ -295,6 +297,9 @@ public sealed class MoodSystem : EntitySystem
             _alerts.ShowAlert(uid, alertId);
         else
             _alerts.ClearAlertCategory(uid, "Mood");
+
+        // Update appearance for mood visuals
+        UpdateAppearance(uid, component);
 
         component.LastThreshold = component.CurrentMoodThreshold;
     }
@@ -414,5 +419,17 @@ public sealed class MoodSystem : EntitySystem
 
         _chatManager.ChatMessageToOne(ChatChannel.Emotes, msg, msg, EntityUid.Invalid, false,
             session.Channel);
+    }
+
+    public void UpdateAppearance(EntityUid uid, MoodComponent? component = null, AppearanceComponent? appearance = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+
+        if (!HasComp<MoodVisualsComponent>(uid))
+            return;
+
+        appearance ??= EnsureComp<AppearanceComponent>(uid);
+        _appearance.SetData(uid, MoodVisuals.CurrentMoodThreshold, component.CurrentMoodThreshold, appearance);
     }
 }

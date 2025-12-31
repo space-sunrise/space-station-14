@@ -1,0 +1,78 @@
+- type: entity
+  save: false
+  name: Urist McMilira
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobMilira
+  abstract: true
+  components:
+  - type: Interactions
+  - type: WingToggle
+  - type: MoodVisuals
+    sprite:
+      sprite: _Sunrise/Mobs/Effects/Milira/mood.rsi
+      state: mood_neutral
+    moodStates:
+      Insane: mood_bad
+      Horrible: mood_bad
+      Terrible: mood_bad
+      Bad: mood_bad
+      Meh: mood_meh
+      Neutral: mood_neutral
+      Good: mood_good
+      Great: mood_great
+      Exceptional: mood_great
+      Perfect: mood_great
+      Dead: mood_dead
+  - type: Hunger
+  - type: Icon
+    sprite: _Sunrise/Mobs/Species/Milira/parts.rsi
+    state: full
+  - type: Thirst
+    dehydrationDamage:
+      types:
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 5
+  - type: HumanoidAppearance
+    species: Milira
+  - type: Body
+    prototype: Milira
+    requiredLegs: 2
+  - type: Temperature
+    currentTemperature: 310.15
+    specificHeat: 42
+  - type: TemperatureDamage
+    heatDamageThreshold: 313
+    coldDamageThreshold: 230
+    coldDamage:
+      types:
+        Cold : 0.1 #per second, scales with temperature & other constants
+    heatDamage:
+      types:
+        Heat : 1.5 #per second, scales with temperature & other constants
+  - type: Stamina
+    baseCritThreshold: 100 # не убавляйте милирам стамину в угоду баланса
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
+  - type: Damageable
+    damageModifierSet: Milira
+  - type: FootprintEmitter
+  - type: Carriable
+
+- type: entity
+  save: false
+  parent: MobHumanDummy
+  id: MobMiliraDummy
+  categories: [ HideSpawnMenu ]
+  description: A dummy milira meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Milira
+

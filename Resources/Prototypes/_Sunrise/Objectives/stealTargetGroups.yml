@@ -2,7 +2,7 @@
   id: WeaponEnergyGunMultiphase
   name: steal-target-groups-multiphase # x-01 multiphase energy gun
   sprite:
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/multiphase_energygun.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/multiphase_gun.rsi
     state: base
 
 - type: stealTargetGroup

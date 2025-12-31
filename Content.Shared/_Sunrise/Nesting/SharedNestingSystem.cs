@@ -13,6 +13,7 @@ using Content.Shared.Verbs;
 using Content.Shared._Sunrise.Carrying;
 using Robust.Shared.Containers;
 using Robust.Shared.Serialization;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._Sunrise.Nesting;
 
@@ -29,8 +30,9 @@ public abstract class SharedNestingSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<NestingMobComponent, GettingPickedUpAttemptEvent>(OnGettingPickupAttempt);
+        SubscribeLocalEvent<NestingMobComponent, GetVerbsEvent<AlternativeVerb>>(AddNestingPickupAltVerb);
         SubscribeLocalEvent<NestingMobComponent, PickupAttemptEvent>(OnPickupAttempt);
+        SubscribeLocalEvent<NestingMobComponent, GettingPickedUpAttemptEvent>(OnGettingPickedUpAttempt);
         SubscribeLocalEvent<NestingMobComponent, BeingEquippedAttemptEvent>(OnBeingEquippedAttempt);
         SubscribeLocalEvent<NestingMobComponent, ContainerIsInsertingAttemptEvent>(OnHandEquippedAttempt);
         SubscribeLocalEvent<NestingMobComponent, UseAttemptEvent>(OnAttempt);
@@ -82,6 +84,11 @@ public abstract class SharedNestingSystem : EntitySystem
     {
         if (HasComp<NestingMobComponent>(args.Item) || component.InContainer)
             args.Cancel();
+    }
+
+    private void OnGettingPickedUpAttempt(EntityUid uid, NestingMobComponent component, GettingPickedUpAttemptEvent args)
+    {
+        args.Cancel();
     }
 
     private void AddInsertAltVerb(EntityUid uid, NestingContainerComponent component, GetVerbsEvent<AlternativeVerb> args)
@@ -136,10 +143,28 @@ public abstract class SharedNestingSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnGettingPickupAttempt(EntityUid uid, NestingMobComponent component, ref GettingPickedUpAttemptEvent args)
+    private void AddNestingPickupAltVerb(EntityUid uid, NestingMobComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
-        args.Cancel();
-        StartNestingPickupDoAfter(args.User, args.Item);
+        if (!args.CanInteract || !args.CanAccess)
+            return;
+
+        if (component.InContainer)
+            return;
+
+        if (args.User == args.Target)
+            return;
+
+        AlternativeVerb verb = new()
+        {
+            Act = () =>
+            {
+                StartNestingPickupDoAfter(args.User, uid);
+            },
+            Text = Loc.GetString("pick-up-verb-get-data-text"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/pickup.svg.192dpi.png")),
+            Priority = 2
+        };
+        args.Verbs.Add(verb);
     }
 
     private void StartNestingPickupDoAfter(EntityUid user, EntityUid item)

@@ -42,6 +42,7 @@
     - UplinkPirateWearables
     - UplinkPiratePointless
     - UplinkPirateMechs
+    - UplinkPirateBundle
     currencyWhitelist:
     - Doubloon
     balance:

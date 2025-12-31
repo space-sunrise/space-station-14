@@ -1,0 +1,26 @@
+- type: marking
+  id: MiliraWingBasic
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Milira]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Milira/milira_wings.rsi
+    state: wing_basic
+
+- type: marking
+  id: MiliraWingBasicOpen
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Milira/milira_wings.rsi
+    state: wing_basic_open
+
+- type: marking
+  id: MiliraWingBasicFlight
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Milira/milira_wings.rsi
+    state: wing_basic_flight

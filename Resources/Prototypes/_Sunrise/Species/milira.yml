@@ -1,0 +1,162 @@
+- type: species
+  id: Milira
+  name: species-name-milira
+  roundStart: true
+  prototype: MobMilira
+  bodyTypes:
+  - MiliraNormal
+  markingLimits: MobMiliraMarkingLimits
+  dollPrototype: MobMiliraDummy
+  skinColoration: MiliraLightTones
+  youngAge: 18
+  oldAge: 100
+  maxAge: 300
+  defaultHeight: 1.0
+  defaultWidth: 1.0
+  maxHeight: 1.1
+  maxWidth: 1.1
+  minHeight: 0.9
+  minWidth: 0.9
+  minHeightCm: 150
+  maxHeightCm: 200
+  buttScan:
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human
+
+- type: bodyType
+  id: MiliraNormal
+  name: body-normal
+  sprites:
+    Head: MobMiliraHead
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Chest: MobMiliraTorso
+    Tail: MobHumanoidAnyMarking
+    Eyes: MobMiliraEyes
+    HeadTop: MobHumanoidAnyMarking
+    LArm: MobMiliraLArm
+    RArm: MobMiliraRArm
+    LHand: MobMiliraLHand
+    RHand: MobMiliraRHand
+    LLeg: MobMiliraLLeg
+    RLeg: MobMiliraRLeg
+    LFoot: MobMiliraLFoot
+    RFoot: MobMiliraRFoot
+
+- type: markingPoints
+  id: MobMiliraMarkingLimits
+  points:
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ MiliraWingBasic ]
+    HeadTop:
+      points: 1
+      required: true
+      defaultMarkings: [ MiliraEars ]
+    Chest:
+      points: 1
+      required: false
+    Legs:
+      points: 2
+      required: false
+    Arms:
+      points: 2
+      required: false
+
+- type: humanoidBaseSprite
+  id: MobMiliraHead
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Milira/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobMiliraHeadMale
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Milira/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobMiliraHeadFemale
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Milira/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobMiliraTorso
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Milira/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobMiliraTorsoMale
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Milira/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobMiliraTorsoFemale
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Milira/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobMiliraEyes
+  baseSprite:
+    sprite: Mobs/Customization/eyes.rsi
+    state: eyes
+
+- type: humanoidBaseSprite
+  id: MobMiliraLLeg
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Milira/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobMiliraLHand
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Milira/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobMiliraLArm
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Milira/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobMiliraLFoot
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Milira/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobMiliraRLeg
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Milira/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobMiliraRHand
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Milira/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobMiliraRArm
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Milira/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobMiliraRFoot
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Milira/parts.rsi
+    state: r_foot
+

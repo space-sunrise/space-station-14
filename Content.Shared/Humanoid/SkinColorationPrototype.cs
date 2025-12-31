@@ -98,6 +98,15 @@ public sealed partial class HumanTonedSkinColoration : ISkinColorationStrategy
     [DataField]
     public Color ValidHumanSkinTone = Color.FromHsv(new Vector4(0.07f, 0.2f, 1f, 1f));
 
+    // Sunrise-Start
+    /// <summary>
+    /// Maximum tone value allowed for this coloration, where 0 is lightest and 100 is darkest.
+    /// This allows some species to reuse human tones while clamping how dark they can go.
+    /// </summary>
+    [DataField]
+    public float MaxTone = 100f;
+    // Sunrise-End
+
     public SkinColorationStrategyInput InputType => SkinColorationStrategyInput.Unary;
 
     public bool VerifySkinColor(Color color)
@@ -139,9 +148,9 @@ public sealed partial class HumanTonedSkinColoration : ISkinColorationStrategy
         // 20 - 100 changes the value
         // 0 is 45 - 20 - 100
         // 20 is 25 - 20 - 100
-        // 100 is 25 - 100 - 20
+        // 100 is 25 - 100 - 20 (or a lower value if MaxTone is clamped) // Sunrise-Edit
 
-        var tone = Math.Clamp(color, 0f, 100f);
+        var tone = Math.Clamp(color, 0f, Math.Clamp(MaxTone, 0f, 100f)); // Sunrise-Edit
 
         var rangeOffset = tone - 20f;
 

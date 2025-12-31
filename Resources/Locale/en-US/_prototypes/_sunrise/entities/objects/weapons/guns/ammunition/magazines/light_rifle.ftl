@@ -18,3 +18,5 @@ ent-MagazineDl6902 = box-magazine DL6902
     .desc = { ent-BaseMagazineLightRifle.desc }
 ent-MagazinePistolSubMachineGunCaselessExtended = extended magazine (caseless)
     .desc = { ent-BaseMagazineLightRifle.desc }
+ent-MagazineLightRifleImprovised = magazine (.30 rifle improvised)
+    .desc = Curved 30-round double stack magazine for combat rifles. Intended to hold improvised ammunition.

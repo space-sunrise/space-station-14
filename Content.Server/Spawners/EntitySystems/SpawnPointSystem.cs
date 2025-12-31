@@ -4,7 +4,6 @@ using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
-using Content.Shared._Sunrise.Misc; // Sunrise-Edit
 
 namespace Content.Server.Spawners.EntitySystems;
 
@@ -31,21 +30,6 @@ public sealed class SpawnPointSystem : EntitySystem
 
         while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
         {
-            // Sunrise-Start
-            var hasRoundStart = EntityManager.HasComponent<RoundStartSpawnPointComponent>(uid);
-            var hasLateJoin = EntityManager.HasComponent<LateJoinSpawnPointComponent>(uid);
-            if (_gameTicker.RunLevel == GameRunLevel.PreRoundLobby)
-            {
-                if (hasLateJoin)
-                    continue;
-            }
-            else if (_gameTicker.RunLevel == GameRunLevel.InRound)
-            {
-                if (hasRoundStart)
-                    continue;
-            }
-            // Sunrise-End
-
             if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                 continue;
 
@@ -67,34 +51,19 @@ public sealed class SpawnPointSystem : EntitySystem
                 }
             }
 
-            if (_gameTicker.RunLevel == GameRunLevel.InRound &&
-                spawnPoint.SpawnType == SpawnPointType.LateJoin &&
-                args.DesiredSpawnPointType != SpawnPointType.Job)
+            // Sunrise-Start
+            else
             {
-                possiblePositions.Add(xform.Coordinates);
-            }
 
-            if ((_gameTicker.RunLevel != GameRunLevel.InRound || args.DesiredSpawnPointType == SpawnPointType.Job) &&
-                spawnPoint.SpawnType == SpawnPointType.Job &&
-                (args.Job == null || spawnPoint.Job == null || spawnPoint.Job == args.Job))
-            {
-                possiblePositions.Add(xform.Coordinates);
-            }
-        }
-
-        // Sunrise-Start
-        if (possiblePositions.Count == 0)
-        {
-            var points3 = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-            while (points3.MoveNext(out var uid, out var spawnPoint, out var xform))
-            {
-                if (spawnPoint.SpawnType != SpawnPointType.LateJoin)
-                    continue;
-                if (_stationSystem.GetOwningStation(uid, xform) == args.Station)
+                if (spawnPoint.SpawnType == SpawnPointType.Job &&
+                    (args.Job == null || spawnPoint.Job == args.Job))
+                {
                     possiblePositions.Add(xform.Coordinates);
+                }
             }
+            // Sunrise-End
+
         }
-        // Sunrise-End
 
         if (possiblePositions.Count == 0)
         {
