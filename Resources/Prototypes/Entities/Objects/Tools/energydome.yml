@@ -139,7 +139,7 @@
     maxChargeRate: 1000       #<- passive charging frow power net
     supplyRampTolerance: 500
     supplyRampRate: 50
-    netSyncEnabled: false # Sunrise edit
+    netsync: false # Sunrise edit
   - type: BatteryCharger
     voltage: Medium
   - type: NodeContainer
