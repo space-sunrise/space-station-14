@@ -3448,28 +3448,28 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -1.5,6.5
       parent: 1
-- proto: RandomHumanoidSpawnerERTEngineerGamma
+- proto: RandomHumanoidSpawnerERTEngineerGammaVeteran
   entities:
   - uid: 4
     components:
     - type: Transform
       pos: -3.5183926,12.558143
       parent: 1
-- proto: RandomHumanoidSpawnerERTJanitorGamma
+- proto: RandomHumanoidSpawnerERTJanitorGammaVeteran
   entities:
   - uid: 256
     components:
     - type: Transform
       pos: -5.5027676,-0.50255543
       parent: 1
-- proto: RandomHumanoidSpawnerERTLeaderRed
+- proto: RandomHumanoidSpawnerERTLeaderRedVeteran
   entities:
   - uid: 258
     components:
     - type: Transform
       pos: -1.5696667,11.570206
       parent: 1
-- proto: RandomHumanoidSpawnerERTMedicalGamma
+- proto: RandomHumanoidSpawnerERTMedicalGammaVeteran
   entities:
   - uid: 257
     components:

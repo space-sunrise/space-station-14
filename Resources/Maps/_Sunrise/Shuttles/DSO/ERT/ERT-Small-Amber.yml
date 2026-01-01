@@ -1423,28 +1423,28 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,-3.5
       parent: 1
-- proto: RandomHumanoidSpawnerERTEngineerAmber
+- proto: RandomHumanoidSpawnerERTEngineerAmberVeteran
   entities:
   - uid: 251
     components:
     - type: Transform
       pos: -3.4983344,-0.31948614
       parent: 1
-- proto: RandomHumanoidSpawnerERTLeaderAmber
+- proto: RandomHumanoidSpawnerERTLeaderAmberVeteran
   entities:
   - uid: 128
     components:
     - type: Transform
       pos: -1.5217719,7.498429
       parent: 1
-- proto: RandomHumanoidSpawnerERTMedicalAmber
+- proto: RandomHumanoidSpawnerERTMedicalAmberVeteran
   entities:
   - uid: 250
     components:
     - type: Transform
       pos: -4.5295844,-0.33511114
       parent: 1
-- proto: RandomHumanoidSpawnerERTSecurityAmber
+- proto: RandomHumanoidSpawnerERTSecurityAmberVeteran
   entities:
   - uid: 195
     components:
