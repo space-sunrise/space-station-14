@@ -10,4 +10,4 @@ contraband-examine-text-in-the-clear = [color=green][italic]Вы, скорее �
 contraband-examinable-verb-text = Легальность
 contraband-examinable-verb-message = Проверить легальность этого предмета.
 contraband-department-plural = { $department }
-contraband-job-plural = { MAKEPLURAL($job) }
+contraband-job-plural = { $job }
