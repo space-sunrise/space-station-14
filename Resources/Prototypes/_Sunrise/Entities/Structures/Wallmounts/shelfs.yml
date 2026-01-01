@@ -28,15 +28,9 @@
           collection: MetalBreak
       - !type:SpawnEntitiesBehavior
         spawn:
-          SheetSteel1:
-            min: 4
-            max: 12
           MaterialWoodPlank1:
             min: 1
             max: 4
-          PartRodMetal1:
-            min: 2
-            max: 8
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Fixtures

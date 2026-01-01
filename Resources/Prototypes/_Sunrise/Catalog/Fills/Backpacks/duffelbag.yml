@@ -438,8 +438,8 @@
       storagebase: !type:AllSelector
         children:
         - id: WeaponPistolDeagle
-        - id: MagazineShotgun
-        - id: MagazineShotgun
+        - id: MagazinePistolMagnumAP
+          amount: 3
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

@@ -64,7 +64,7 @@ public abstract class TileAtmosphereTest : AtmosTest
         // Sunrise added start - так как у нас включен ветер - это ломает математику теста. Ветер нужно выключить
         Server.CfgMan.SetCVar(CCVars.SpaceWind, false);
         Assert.That(Server.CfgMan.GetCVar(CCVars.SpaceWind), Is.False);
-        // Sunrise added start
+        // Sunrise added end
 
         var markers = SEntMan.AllEntities<TestMarkerComponent>();
 

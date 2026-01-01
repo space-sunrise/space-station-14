@@ -36,7 +36,7 @@
   id: CrateArmoryShotgunAmmo
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
   name: Shotgun Ammo crate
-  description: Contains varios Box Shotgun ammo. Requires Armory access to open.
+  description: Contains various Box Shotgun ammo. Requires Armory access to open.
   components:
   - type: EntityTableContainerFill
     containers:

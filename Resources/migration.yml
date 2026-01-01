@@ -944,4 +944,6 @@ HyposprayMedical: null
 HyposprayMedicalNoFilterBox: null
 GrenadeFlashTimer: null
 
+ImplantExtractorMachineCircuitboard: InterrogatorMachineCircuitboard
+
 # Sunrise-End

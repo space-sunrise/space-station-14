@@ -47,9 +47,9 @@ public sealed class SpawnPointSystem : EntitySystem
 
             switch (spawnPointType)
             {
-                case SpawnPointType.Job when isMatchingJob:
-                case SpawnPointType.LateJoin:
-                case SpawnPointType.Observer:
+                case SpawnPointType.Job when isMatchingJob && spawnPoint.SpawnType == SpawnPointType.Job:
+                case SpawnPointType.LateJoin when spawnPoint.SpawnType == SpawnPointType.LateJoin:
+                case SpawnPointType.Observer when spawnPoint.SpawnType == SpawnPointType.Observer:
                     possiblePositions.Add(xform.Coordinates);
                     break;
                 default:
