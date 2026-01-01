@@ -15,6 +15,7 @@ public sealed class BiocodeDefibrillatorSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<BiocodeComponent, SunriseCanZapEvent>(OnCanZap);
     }
 

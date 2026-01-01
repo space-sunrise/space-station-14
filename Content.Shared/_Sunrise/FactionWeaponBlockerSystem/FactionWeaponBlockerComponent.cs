@@ -1,11 +1,11 @@
 using Content.Shared.NPC.Prototypes;
-using Content.Shared.Sunrise.FactionGunBlockerSystem;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Sunrise.FactionWeaponBlockerSystem;
+namespace Content.Shared._Sunrise.FactionWeaponBlockerSystem;
 
-[RegisterComponent]
-public sealed partial class FactionWeaponBlockerComponent : SharedFactionWeaponBlockerComponent
+[RegisterComponent, NetworkedComponent]
+public sealed partial class FactionWeaponBlockerComponent : Component
 {
     [ViewVariables]
     public bool CanUse;
