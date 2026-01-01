@@ -109,7 +109,6 @@
 #    allowRepeatedMorphs: true
 #    delay: 1
 
-# Sunrise-start
 - type: polymorph
   id: ChangelingStingHuman
   configuration:
@@ -265,4 +264,3 @@
     revertOnCrit: true
     revertOnDelete: true
     allowRepeatedMorphs: true
-# Sunrise-end
