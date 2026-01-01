@@ -18,14 +18,9 @@
     Plastic: 600
 
 - type: latheRecipe
+  parent: BaseLightRecipe
   id: UvLightTube
   result: UvLightTube
-  categories:
-  - Lights
-  completetime: 2
-  materials:
-    Steel: 50
-    Glass: 50
 
 - type: latheRecipe
   id: ClothingShoesBootsMagSec

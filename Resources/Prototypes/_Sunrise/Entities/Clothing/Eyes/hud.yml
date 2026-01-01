@@ -14,7 +14,7 @@
     - HudMedical
 
 - type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSyndicateContraband, WeldingMaskBase]
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSyndicateContraband]
   id: ClothingEyesHudSyndicateMech
   name: syndicate Mech pilot visor
   description: The syndicate Mech pilote`s professional head-up display, designed for quick diagnosis of their Mech's status.
@@ -28,7 +28,8 @@
     damageContainers:
     - Inorganic
     - Silicon
-    - Mech # Sunrise-edit
+    - Mech
+  - type: FlashImmunity
 
 - type: entity
   parent: [ ClothingEyesBase, ShowSecurityIcons ]
@@ -44,4 +45,4 @@
     damageContainers:
     - Inorganic
     - Silicon
-    - Mech # Sunrise-edit
+    - Mech

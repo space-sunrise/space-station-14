@@ -39,9 +39,9 @@
   # Sunrise-start
   - type: PhysicalComposition
     materialComposition:
-      Steel: 25
-      Plastic: 25
-      Cloth: 500
+      Steel: 5
+      Plastic: 20
+      Cloth: 100
   # Sunrise-end
 
 - type: entity
@@ -332,6 +332,8 @@
     grid:
     - 0,0,19,9
   # Sunrise-start
+  - type: StaticPrice
+    price: 700
   - type: PhysicalComposition
     materialComposition:
       Steel: 1000
