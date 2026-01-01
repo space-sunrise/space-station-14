@@ -438,7 +438,7 @@
       storagebase: !type:AllSelector
         children:
         - id: WeaponPistolDeagle
-        - id: MagazinePistolMagnumAP
+        - id: MagazineDeagle
           amount: 3
 
 - type: entity
