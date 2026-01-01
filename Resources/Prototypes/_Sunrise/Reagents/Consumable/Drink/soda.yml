@@ -50,180 +50,180 @@
         probability: 0.083
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:AdjustReagent
-        reagent: ChangelingSting
+        reagent: ChangelingStingSunrise
         amount: -1000
         probability: 0.083
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:Polymorph
         prototype: ChangelingStingReptilian
         probability: 0.167
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:AdjustReagent
-        reagent: ChangelingSting
+        reagent: ChangelingStingSunrise
         amount: -1000
         probability: 0.167
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:Polymorph
         prototype: ChangelingStingTajaran
         probability: 0.25
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:AdjustReagent
-        reagent: ChangelingSting
+        reagent: ChangelingStingSunrise
         amount: -1000
         probability: 0.25
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:Polymorph
         prototype: ChangelingStingSlime
         probability: 0.333
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:AdjustReagent
-        reagent: ChangelingSting
+        reagent: ChangelingStingSunrise
         amount: -1000
         probability: 0.333
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:Polymorph
         prototype: ChangelingStingMoth
         probability: 0.417
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:AdjustReagent
-        reagent: ChangelingSting
+        reagent: ChangelingStingSunrise
         amount: -1000
         probability: 0.417
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:Polymorph
         prototype: ChangelingStingSwine
         probability: 0.5
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:AdjustReagent
-        reagent: ChangelingSting
+        reagent: ChangelingStingSunrise
         amount: -1000
         probability: 0.5
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:Polymorph
         prototype: ChangelingStingResomi
         probability: 0.583
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:AdjustReagent
-        reagent: ChangelingSting
+        reagent: ChangelingStingSunrise
         amount: -1000
         probability: 0.583
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:Polymorph
         prototype: ChangelingStingVox
         probability: 0.667
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:AdjustReagent
-        reagent: ChangelingSting
+        reagent: ChangelingStingSunrise
         amount: -1000
         probability: 0.667
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:Polymorph
         prototype: ChangelingStingVulpkanin
         probability: 0.75
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:AdjustReagent
-        reagent: ChangelingSting
+        reagent: ChangelingStingSunrise
         amount: -1000
         probability: 0.75
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:Polymorph
         prototype: ChangelingStingFelinid
         probability: 0.833
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:AdjustReagent
-        reagent: ChangelingSting
+        reagent: ChangelingStingSunrise
         amount: -1000
         probability: 0.833
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:Polymorph
         prototype: ChangelingStingHumanoidXeno
         probability: 0.917
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:AdjustReagent
-        reagent: ChangelingSting
+        reagent: ChangelingStingSunrise
         amount: -1000
         probability: 0.917
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:Polymorph
         prototype: ChangelingStingHumanRename
         probability: 1
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
       - !type:AdjustReagent
-        reagent: ChangelingSting
+        reagent: ChangelingStingSunrise
         amount: -1000
         probability: 1
         conditions:
         - !type:ReagentCondition
-          reagent: ChangelingSting
+          reagent: ChangelingStingSunrise
           min: 5
 
 - type: reagent
@@ -246,7 +246,7 @@
       - !type:PopupMessage
         conditions:
         - !type:ReagentCondition
-          reagent: DrGibb
+          reagent: DrGibbSunrise
           min: 2
         type: Local
         visualType: LargeCaution
@@ -255,7 +255,7 @@
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
-          reagent: DrGibb
+          reagent: DrGibbSunrise
           min: 2
         probability: 0.0001
         damage:
@@ -297,12 +297,12 @@
         type: Add
         conditions:
         - !type:ReagentCondition
-          reagent: EnergyDrink
+          reagent: EnergyDrinkSunrise
           min: 5
       - !type:Jitter
         conditions:
         - !type:ReagentCondition
-          reagent: EnergyDrink
+          reagent: EnergyDrinkSunrise
           min: 10
       - !type:AdjustTemperature
         amount: -1500
@@ -418,7 +418,7 @@
         - !type:MetabolizerTypeCondition
           type: [Plant]
         - !type:ReagentCondition
-          reagent: RootBeer
+          reagent: RootBeerSunrise
           min: 50
         damage:
           types:
@@ -488,7 +488,7 @@
         - !type:MetabolizerTypeCondition
           type: [Plant]
         - !type:ReagentCondition
-          reagent: RootBeerFloat
+          reagent: RootBeerFloatSunrise
           min: 50
         damage:
           types:
@@ -612,7 +612,7 @@
         probability: 0.5
         conditions:
         - !type:ReagentCondition
-          reagent: SpaceUp
+          reagent: SpaceUpSunrise
           min: 10
       - !type:GenericStatusEffect
         key: Stutter
@@ -723,13 +723,13 @@
         type: Add
         conditions:
         - !type:ReagentCondition
-          reagent: ShamblersJuice
+          reagent: ShamblersJuiceSunrise
           min: 15
       - !type:CureZombieInfection
         probability: 0.35
         conditions:
         - !type:ReagentCondition
-          reagent: ShamblersJuice
+          reagent: ShamblersJuiceSunrise
           min: 15
       - !type:AdjustTemperature
         amount: -2000
