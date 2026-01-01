@@ -17,5 +17,7 @@ ent-RifleHeavyMagazineAP = Magazine Box (.308 AP)
     .desc = { ent-RifleHeavyBase.desc }
 ent-RifleHeavyMagazineArtillery = Magazine Box (.308 space)
     .desc = { ent-RifleHeavyBase.desc }
+ent-RifleHeavyMagazineArtilleryLarge = Large Magazine Box (.308 space)
+    .desc = { ent-RifleHeavyBase.desc }
 ent-RifleHeavyMagazineArtilleryLargeExtra = Extra Large Magazine Box (.308 space)
     .desc = { ent-RifleHeavyBase.desc }

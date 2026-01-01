@@ -136,6 +136,7 @@
     size: Normal
     shape:
     - 0, 0, 1, 1
+    heldPrefix: disabler
   - type: MagazineVisuals
     magState: disable
     steps: 5
@@ -143,20 +144,25 @@
   - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 50
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/multiphase_gun.rsi
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: DisablerBolt
       fireCost: 50
       magState: disable
       visualState: disable-unshaded
+      heldPrefix: disabler
     - proto: RedLaserBeam
       fireCost: 75
       magState: kill
       visualState: kill-unshaded
+      heldPrefix: lethal
     - proto: DestroyBeam
       fireCost: 250
       magState: destroy
       visualState: destroy-unshaded
+      heldPrefix: destroy
       conditions:
       - !type:AlertLevelCondition
         alertLevels:
@@ -169,6 +175,7 @@
       fireCost: 300
       magState: ion
       visualState: ion-unshaded
+      heldPrefix: special
       conditions:
       - !type:AlertLevelCondition
         alertLevels:
@@ -340,6 +347,7 @@
     size: Small
     shape:
     - 0, 0, 1, 1
+    heldPrefix: stun
   - type: BatterySelfRecharger
     autoRechargeRate: 200
   - type: MagazineVisuals
@@ -354,12 +362,15 @@
     - proto: TaserBolt
       fireCost: 100
       magState: stun
+      heldPrefix: stun
     - proto: RedLaserBeam
       fireCost: 100
       magState: kill
+      heldPrefix: kill
     - proto: DestroyBeam
       fireCost: 100
       magState: destroy
+      heldPrefix: destroy
 
 - type: entity
   name: PDW-9 taser pistol

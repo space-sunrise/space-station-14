@@ -16,3 +16,5 @@ ent-MagazineACP14 = магазин пистолета ACP-14
     .desc = Использует патроны калибра .40.
 ent-MagazineDl6902 = короб-магазин DL6902
     .desc = { ent-BaseMagazineLightRifle.desc }
+ent-MagazineLightRifleImprovised = магазин (7,62 самодельный)
+    .desc = Изогнутый 30-зарядный двухрядный магазин для боевых винтовок. Предназначен для самодельных патронов.

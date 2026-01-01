@@ -86,5 +86,7 @@ ent-ComputerRoboticsControl = robotics control console
     .desc = Used to remotely monitor, disable and destroy the station's cyborgs.
 ent-StationAiUploadComputer = AI upload console
     .desc = Used to update the laws of the station AI.
+ent-StationAiFixerComputer = AI restoration console
+    .desc = Used to repair damaged artificial intelligences.
 ent-ComputerCargoShuttle = cargo shuttle computer
     .desc = Used to order the shuttle.

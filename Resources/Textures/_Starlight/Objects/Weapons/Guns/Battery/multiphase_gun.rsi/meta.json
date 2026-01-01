@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from Paradise Station",
+    "copyright": "Taken from Paradise Station inhand states by KaiserMaus(github)",
     "size": {
         "x": 32,
         "y": 32
@@ -12,14 +12,6 @@
         },
         {
             "name": "base"
-        },
-        {
-            "name": "inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "inhand-right",
-            "directions": 4
         },
         {
             "name": "disable-unshaded"
@@ -140,6 +132,38 @@
         },
         {
             "name": "ion-unshaded-4"
-        }
+        },
+		{
+			"name": "disabler-inhand-left",
+			"directions": 4
+		},
+		{
+			"name": "disabler-inhand-right",
+			"directions": 4
+		},
+        {
+			"name": "lethal-inhand-left",
+			"directions": 4
+		},
+		{
+			"name": "lethal-inhand-right",
+			"directions": 4
+		},
+        {
+			"name": "special-inhand-left",
+			"directions": 4
+		},
+		{
+			"name": "special-inhand-right",
+			"directions": 4
+		},
+        {
+			"name": "destroy-inhand-left",
+			"directions": 4
+		},
+		{
+			"name": "destroy-inhand-right",
+			"directions": 4
+		}
     ]
 }

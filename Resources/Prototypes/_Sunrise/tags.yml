@@ -599,3 +599,7 @@
 # Modsuit
 - type: Tag
   id: ModsuitCore
+
+# Milira Race
+- type: Tag
+  id: WingToggleAllowed

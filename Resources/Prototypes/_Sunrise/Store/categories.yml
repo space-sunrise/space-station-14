@@ -254,6 +254,11 @@
   priority: 11
 
 - type: storeCategory
+  id: UplinkPirateBundle
+  name: store-category-lootbox
+  priority: 12
+
+- type: storeCategory
   id: UplinkPirateExchanger
   name: store-category-exchanger
   priority: 1

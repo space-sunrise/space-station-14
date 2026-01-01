@@ -303,6 +303,10 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateL6SAW
@@ -315,6 +319,10 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateLaserSvalinn
@@ -1961,6 +1969,10 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateBorgMedicalDerelict
@@ -1976,6 +1988,10 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateBorgMiningDerelict
@@ -1991,6 +2007,10 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateOldScoonerTeleport
@@ -2037,6 +2057,10 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 # region Wearables
 - type: listing
@@ -2264,6 +2288,11 @@
     Doubloon: 44
   categories:
   - UplinkPirateWearables
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateMiscSyndiePowercage
@@ -2436,6 +2465,11 @@
   categories:
   - UplinkPirateWearables
   restockTime: 3600
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateHardsuitInfiltration
@@ -2451,6 +2485,11 @@
   categories:
   - UplinkPirateWearables
   restockTime: 3600
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 # region UplinkPiratePointless
 - type: listing
@@ -2570,6 +2609,10 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateMechPirateGrapeshotMini
@@ -2584,6 +2627,10 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateMechPirateGrapeshot
@@ -2599,6 +2646,10 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateMechPirateGlassshot
@@ -2629,6 +2680,10 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateDollHouseBundle
@@ -2647,3 +2702,43 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkPirateSulprus
+  productEntity: CratePirateSurplusBundle
+  discountCategory: rarePirateDiscounts
+  discountDownTo:
+    Doubloon: 25
+  cost:
+    Doubloon: 50
+  categories:
+  - UplinkPirateBundle
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkPirateSulprusSuper
+  productEntity: CratePirateSuperSurplusBundle
+  discountCategory: rarePirateDiscounts
+  discountDownTo:
+    Doubloon: 50
+  cost:
+    Doubloon: 100
+  categories:
+  - UplinkPirateBundle
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle

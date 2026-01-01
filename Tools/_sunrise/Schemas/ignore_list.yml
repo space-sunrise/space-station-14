@@ -86,6 +86,7 @@ ignore_list:
   - 'G-36'
   - 'M-28'
   - 'AR-18'
+  - 'ARG'
   - 'M16A4'
   - 'STG 44'
   - 'ACP-14'
@@ -93,7 +94,9 @@ ignore_list:
   - 'Desert Eagle'
   - 'Metus'
   - 'GL-70'
+  - 'M79'
   - 'M-41'
+  - 'Aussec Armory M-52'
   - 'DEAD-BEEF'
   - 'UwU'
   - 'C-4'
@@ -142,6 +145,7 @@ ignore_list:
   - 'LAW-12'    # Для ent-WeaponShotgunSPAS12
   - 'AKM'       # Для ent-WeaponRifleAKM
   - 'MG-342'    # Для ent-WeaponMachineGunMG42
+  - 'S-13'
   - 'v3.0.9'
   - 'v0.2.1'
   - 'F₃BZ'

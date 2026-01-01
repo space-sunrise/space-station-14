@@ -18,7 +18,7 @@
           availableJobs:
             HeadOfPrison: [ 1, 1 ]
             PrisonInspector: [ 1, 1 ]
-            PrisonWorker: [ 3, 3 ]
+            PrisonWorker: [ 3, 5 ]
             PrisonEngineer: [ 2, 2 ]
             PrisonScientist: [ 2, 2 ]
             PrisonDoctor: [ 1, 1 ]
@@ -32,9 +32,9 @@
               PrisonInspector: 2
               PrisonDoctor: 2
               PrisonChef: 2
-              PrisonEngineer: 1
-              PrisonScientist: 1
+              PrisonEngineer: 2
+              PrisonScientist: 2
               PrisonWorker: 2
-            maxSlots: 14
+            maxSlots: 30
           totalMaxCount:
-            PlanetPrisoner: 14
+            PlanetPrisoner: 30

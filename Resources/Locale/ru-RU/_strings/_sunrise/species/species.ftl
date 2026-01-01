@@ -6,4 +6,5 @@ species-name-xeno = Ксеноморф
 species-name-demon = Аркана
 species-name-resomi = Резоми
 species-name-abductor = Абдуктор
+species-name-milira = Милира
 species-name-vulpkanin = Вульпканин

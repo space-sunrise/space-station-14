@@ -182,6 +182,13 @@ step-manipulator-name = манипулятор
 # Мехи
 construction-graph-tag-lockermech-name = мех-шкафчик
 construction-graph-tag-lockermech-desc = описание мех-шкафчика
+step-lockermech-toolbox1 = любой тулбокс
+step-lockermech-toolbox2 = второй тулбокс
+step-lockermech-toolbox3 = третий тулбокс
+step-lockermech-flashlight = фонарик
+step-lockermech-oxygentank = любой баллон
+step-lockermech-treads = 5 стальных листов
+step-lockermech-powercell = энергоячейку
 step-lockermech-door-electronics = электроника двери
 # Ядерное оружие
 construction-graph-tag-plutonium-core = плутониевое ядро

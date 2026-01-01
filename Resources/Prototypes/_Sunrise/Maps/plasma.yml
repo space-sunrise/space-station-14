@@ -115,7 +115,7 @@
           - Cyborgs
           - Testing
           - Anomaly
-          #- Replenishment
+          - Replenishment
           - IntelWeapons
           - Reports
           - Reconnaissance
@@ -126,5 +126,8 @@
           - HumanitarianAid
           - PersonnelRecovery
           - CrewEducation
+          - Virology
+          - SampleCollection
+          - Examination
           #- VirusFlesh
 
