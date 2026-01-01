@@ -1,3 +1,5 @@
+# TODO: Перенеси в папки санрайза
+
 - type: entity
   name: blood red personal shield generator
   description: A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
@@ -137,6 +139,7 @@
     maxChargeRate: 1000       #<- passive charging frow power net
     supplyRampTolerance: 500
     supplyRampRate: 50
+    netSyncEnabled: false # Sunrise edit
   - type: BatteryCharger
     voltage: Medium
   - type: NodeContainer
