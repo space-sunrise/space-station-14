@@ -4,10 +4,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.FactionWeaponBlockerSystem;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class FactionWeaponBlockerComponent : Component
 {
-    [ViewVariables]
+    [ViewVariables, AutoNetworkedField]
     public bool CanUse;
 
     [DataField]
