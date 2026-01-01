@@ -1,3 +1,6 @@
+# Какого хуя это не наследуется от BaseStructure
+# TODO: Исправьте это говно кто-нибудь
+
 - type: entity
   id: Reflector
   name: reflector
@@ -16,6 +19,7 @@
   - type: Pullable
   - type: Rotatable
   - type: Machine
+    board: ReflectorMachineCircuitboard
   - type: Physics
     bodyType: Static
   - type: Fixtures

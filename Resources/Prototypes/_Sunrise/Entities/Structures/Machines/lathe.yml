@@ -11,6 +11,8 @@
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
+  - type: Machine
+    board: SewingPrinterMetusMachineCircuitboard
   - type: Lathe
     staticPacks:
     - ClothingMetusPlanetPrison
@@ -107,6 +109,8 @@
     - PowerCellsStatic
     - ElectronicsStaticPrison
     - HydroponicsStatic
+  - type: Machine
+    board: AutolathePrisonMetusMachineCircuitboard
 
 - type: entity
   id: PirateTechFab

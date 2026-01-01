@@ -573,8 +573,8 @@
 
 - type: latheRecipe #sunrise-start
   parent: BaseGoldCircuitboardRecipe
-  id: ImplantExtractorMachineCircuitboard
-  result: ImplantExtractorMachineCircuitboard
+  id: InterrogatorMachineCircuitboard
+  result: InterrogatorMachineCircuitboard
   materials:
     Steel: 100
     Glass: 500
