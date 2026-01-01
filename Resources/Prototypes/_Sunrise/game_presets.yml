@@ -26,3 +26,16 @@
   - SpaceTrafficControlEventScheduler
   - SubGamemodesRule
   - BasicRoundstartVariation
+
+- type: gamePreset
+  id: ExtraLowPop
+  name: extra-title
+  hide: true
+  description: extra-description
+  maxPlayers: 10
+  rules:
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - SubGamemodesRule
+  - BasicRoundstartVariation
