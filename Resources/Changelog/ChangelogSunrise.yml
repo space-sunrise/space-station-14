@@ -24214,3 +24214,15 @@
   id: 1579
   time: '2025-12-31T14:43:07.0000000+00:00'
   url: https://github.com/space-sunrise/sunrise-station/pull/3565
+- author: Nrd-K
+  changes:
+  - message: "\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u044B \u043D\u0435\u043A\u043E\
+      \u0442\u043E\u0440\u044B\u0435 \u0446\u0435\u043B\u0438 \u0441\u0442\u0430\u043D\
+      \u0446\u0438\u0438."
+    type: Tweak
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u044B \u043E\u0448\
+      \u0438\u0431\u043A\u0438 \u0432 \u043D\u0438\u0445 ."
+    type: Fix
+  id: 1580
+  time: '2026-01-01T20:49:08.0000000+00:00'
+  url: https://github.com/space-sunrise/sunrise-station/pull/3585

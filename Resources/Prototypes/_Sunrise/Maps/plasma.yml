@@ -94,13 +94,13 @@
           goals:
           - Shuttle
           - Singularity
-          #- SolarPanels Boring, we have more intresting goals
+          - SolarPanels
           - Artifacts
           - Bank
           - Zoo
           - MiningOutpost
           - Tesla
-          #- XenobiologyRepair No Xenobiology
+          - XenobiologyRepair
           - VirusologyAmbusol
           - Containment
           - WeaponsSecurity
