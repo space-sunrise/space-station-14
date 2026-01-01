@@ -805,41 +805,28 @@
 
 - type: entity
   name: Borg heavy laser cannon
-  parent: BaseWeaponBatterySmall
+  parent: WeaponLaserCannon
   id: WeaponHeavyLaserBorg
   description: Borg Heavy Laser Gun is a high-output directed-energy system built for sustained combat operations. Its capacitors deliver concentrated thermal pulses capable of breaching reinforced materials, while the internal cooling assembly allows continuous firing without performance decay. The weapon integrates directly with borg power systems, removing the need for traditional ammunition and ensuring uninterrupted operational efficiency.
-  categories: [ HideSpawnMenu ]
+#  categories: [ HideSpawnMenu ]
   components:
-  - type: Item
-    size: Large
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-  - type: Gun
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: BatteryAmmoProvider
-    proto: RedHeavyLaser #no levelcode system, because I give em disablersmg
-    fireCost: 100
-  - type: Battery
-    maxCharge: 1000
-    startingCharge: 1000
   - type: BatterySelfRecharger
-    autoRechargeRate: 25 # 40 seconds full recharge.
-  - type: MagazineVisuals
-    magState: laser_cyborg
-    steps: 5
-    zeroVisible: true
-  - type: Appearance
+    autoRechargeRate: 30
+  # "remove" wield bonus and penalty so borgs can use it
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+  - type: Gun
+    fireRate: 2
+    minAngle: 1
+    maxAngle: 2
 
 - type: entity
   name: Glock-22B Auto
   parent: BaseItem
   id: WeaponPistolG22AutoBorg
   description: Designed by Nanotrasen’s Small Arms Division for direct use in borg units. The Glock-22B Auto is an automatic sidearm adapted for synthetic systems. It offers stable operation, reduced maintenance, and reliable performance during continuous firing.
-  suffix: Sunrise, Security
+#  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22/big.rsi
@@ -859,55 +846,19 @@
     - FullAuto
     soundGunshot:
       collection: glock22
-  - type: BatteryAmmoProvider
-    proto: BulletPistolTraceRubber
-    fireCost: 100
-  - type: BatteryWeaponFireModes # No AP, or Uranium rounds because can be created roundstart.
-    fireModes:
-    - proto: BulletPistolTraceRubber
-      fireCost: 100
-    - proto: BulletPistolTraceSP
-      fireCost: 100
-      conditions:
-      - !type:AlertLevelCondition
-        alertLevels:
-        - blue
-        - violet
-        - yellow
-        - red
-        - gamma
-        - delta
-        - epsilon
-    - proto: BulletPistolTraceHP
-      fireCost: 100
-      conditions:
-      - !type:AlertLevelCondition
-        alertLevels:
-        - blue
-        - violet
-        - yellow
-        - red
-        - gamma
-        - delta
-        - epsilon
-    - proto: BulletPistolTraceFMJ
-      fireCost: 100
-      conditions:
-      - !type:AlertLevelCondition
-        alertLevels:
-        - blue
-        - violet
-        - yellow
-        - red
-        - gamma
-        - delta
-        - epsilon
-  - type: Battery
-    maxCharge: 1600
-    startingCharge: 1600
-  - type: BatterySelfRecharger
-    autoRechargeRate: 50 # 32 seconds full recharge.
-    autoRechargePauseTime: 5
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgePistol
+    capacity: 15
+    proto: CartridgePistolSP
+    cycleable: false # No synthesizing ammo for your syndicate masters.
+  - type: BallisticAmmoSelfRefiller
+    autoRefillRate: 4s # full refill in 60s
+    affectedByEmp: true
   - type: AmmoCounter
 
 - type: entity
@@ -915,6 +866,7 @@
   parent: BaseItem
   id: WeaponRifleLecterB
   description: Designed for integration into borg combat units, the Lecter-B is a gas-operated rifle refit from its organic-use counterpart. Operating in semi or full automatic modes, it maintains consistent accuracy, stable recoil behavior, and high stopping power under automated firing routines. Its reinforced internals and simplified maintenance pathways allow continuous operation in environments that would quickly degrade standard rifles.
+ # categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Rifles/lecter.rsi
@@ -935,24 +887,19 @@
       - SemiAuto
     soundGunshot:
       collection: galil
-  - type: BatteryAmmoProvider
-    proto: BulletRifleTraceSP
-    fireCost: 100
-  - type: BatteryWeaponFireModes # No AP, or Uranium rounds for balance reasons. Also no Levelcode system, and rubber bullets, because fck em.
-    fireModes:
-    - proto: BulletRifleTraceSP
-      fireCost: 100
-    - proto: BulletRifleTraceHP
-      fireCost: 100
-    - proto: BulletRifleTraceFMJ
-      fireCost: 100
-  - type: Battery
-    maxCharge: 2600
-    startingCharge: 2600
-  - type: BatterySelfRecharger
-    autoRechargeRate: 65 # 40 seconds full recharge.
-    autoRechargePauseTime: 5
-  - type: AmmoCounter
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeRifle
+    capacity: 25
+    proto: CartridgeRifleSP
+    cycleable: false
+  - type: BallisticAmmoSelfRefiller
+    autoRefillRate: 4s #full refill in 100s
+    affectedByEmp: true
 
 - type: entity
   name: service cyborg dispenser (soda)
