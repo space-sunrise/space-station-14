@@ -3,6 +3,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Physics;
 using Robust.Shared.Prototypes;
+using Content.Shared.Atmos.Components; // Starlight: RPD
 
 namespace Content.Shared.RCD.Components;
 
@@ -46,6 +47,12 @@ public sealed partial class RCDComponent : Component
     /// </summary>
     [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
     public bool UseMirrorPrototype { get; set; } = false;
+
+    /// <summary>
+    /// Selected pipe layer when placing atmos devices with the RPD.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public AtmosPipeLayer SelectedPipeLayer { get; set; } = AtmosPipeLayer.Primary;
     // Starlight End
 
     /// <summary>

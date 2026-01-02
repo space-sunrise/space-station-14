@@ -1,4 +1,6 @@
 using Content.Client.Hands.Systems;
+using Content.Shared.Atmos.Components;
+using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.RCD;
 using Content.Shared.RCD.Components;
@@ -25,6 +27,7 @@ public sealed class RCDConstructionGhostSystem : EntitySystem
     [Dependency] private readonly IPlacementManager _placementManager = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
+    [Dependency] private readonly SharedAtmosPipeLayersSystem _pipeLayers = default!;
 
     private Direction _placementDirection = default;
     // Starlight Start: RPD
@@ -135,6 +138,8 @@ public sealed class RCDConstructionGhostSystem : EntitySystem
             ? prototype.MirrorPrototype
             : prototype.Prototype;
 
+        effectiveProto = ApplyPipeLayerPrototype(rcd, effectiveProto);
+
         if (heldEntity == placerEntity && effectiveProto == placerProto)
         // Starlight edit End
             return;
@@ -160,4 +165,22 @@ public sealed class RCDConstructionGhostSystem : EntitySystem
         _placementManager.Clear();
         _placementManager.BeginPlacing(newObjInfo);
     }
+    // Starlight Start: RPD
+    private string? ApplyPipeLayerPrototype(RCDComponent rcd, string? entityType)
+    {
+        if (!rcd.IsRPD || string.IsNullOrEmpty(entityType))
+            return entityType;
+
+        if (!_protoManager.TryIndex<EntityPrototype>(entityType, out var entityProto))
+            return entityType;
+
+        if (!entityProto.TryGetComponent(out AtmosPipeLayersComponent? atmosLayers, EntityManager.ComponentFactory))
+            return entityType;
+
+        return _pipeLayers.TryGetAlternativePrototype(atmosLayers, rcd.SelectedPipeLayer, out var altProto)
+            ? altProto
+            : entityType;
+    }
+    // Starlight End
 }
+
