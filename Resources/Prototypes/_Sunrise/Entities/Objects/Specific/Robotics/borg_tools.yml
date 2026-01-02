@@ -822,46 +822,6 @@
     maxAngle: 2
 
 - type: entity
-  name: Glock-22B Auto
-  parent: BaseItem
-  id: WeaponPistolG22AutoBorg
-  description: Designed by Nanotrasen’s Small Arms Division for direct use in borg units. The Glock-22B Auto is an automatic sidearm adapted for synthetic systems. It offers stable operation, reduced maintenance, and reliable performance during continuous firing.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22/big.rsi
-    layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-0
-        map: ["enum.GunVisualLayers.Mag"]
-  - type: Gun
-    minAngle: 2
-    maxAngle: 16
-    angleIncrease: 1.25
-    angleDecay: 0.5
-    fireRate: 5
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
-    soundGunshot:
-      collection: glock22
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - CartridgePistol
-    capacity: 15
-    proto: CartridgePistolSP
-    cycleable: false 
-  - type: BallisticAmmoSelfRefiller
-    autoRefillRate: 4s # full refill in 60s
-    affectedByEmp: true
-  - type: AmmoCounter
-
-- type: entity
   name: Lecter-B
   parent: BaseItem
   id: WeaponRifleLecterB
