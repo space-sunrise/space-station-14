@@ -447,11 +447,11 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
             if (TryComp<PlayerCountDependentStockComponent>(uid, out var dependentStockComponent))
             {
-                var scale = 1d + Math.Pow(_player.PlayerCount, 0.8d) * dependentStockComponent.Coefficient;
+                var scale = 1d + Math.Pow(_player.PlayerCount, 0.8d) * dependentStockComponent.Coefficient; // Sunrise start
                 if (scale < 1d)
                     scale = 1d;
 
-                restock = (uint)Math.Floor(amount * scale);
+                restock = (uint)Math.Floor(amount * scale); // Sunrise end
             }
 
             restock = Math.Max(restock, 2);
