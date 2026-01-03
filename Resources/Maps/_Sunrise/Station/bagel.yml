@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/30/2025 11:13:12
-  entityCount: 29767
+  time: 01/03/2026 19:15:22
+  entityCount: 29768
 maps:
 - 1
 grids:
@@ -10197,6 +10197,11 @@ entities:
             18980: -35,12
             18981: -35,14
         - node:
+            color: '#DE3A3AFF'
+            id: Delivery
+          decals:
+            21927: -26,-5
+        - node:
             color: '#FFFFFFFF'
             id: Delivery
           decals:
@@ -18146,7 +18151,7 @@ entities:
             2: 39191
           -12,8:
             4: 12
-            6: 52224
+            5: 52224
           -11,5:
             0: 63351
           -11,6:
@@ -18158,7 +18163,7 @@ entities:
           -11,8:
             4: 1
             2: 17476
-            6: 4352
+            5: 4352
           -10,5:
             0: 62139
           -10,6:
@@ -18269,7 +18274,7 @@ entities:
           -6,11:
             0: 3822
           -6,12:
-            5: 61166
+            6: 61166
           -5,9:
             0: 65535
           -5,10:
@@ -18277,7 +18282,7 @@ entities:
           -5,11:
             0: 36863
           -5,12:
-            5: 13107
+            6: 13107
             0: 12
             2: 34816
           -4,9:
@@ -18382,27 +18387,27 @@ entities:
             2: 35033
             0: 12288
           -12,9:
-            5: 3264
+            6: 3264
           -12,10:
-            5: 204
+            6: 204
             3: 49152
           -12,11:
             3: 12
-            5: 52224
+            6: 52224
           -11,9:
-            5: 272
+            6: 272
             2: 17476
           -11,10:
-            5: 17
+            6: 17
             3: 4096
             2: 17476
           -11,11:
             3: 1
-            5: 4352
+            6: 4352
             2: 17476
           -11,12:
             2: 1092
-            5: 272
+            6: 272
           -10,9:
             0: 65535
           -10,10:
@@ -18451,7 +18456,7 @@ entities:
             2: 61158
           -13,12:
             2: 34952
-            6: 48
+            5: 48
             4: 12288
           -12,13:
             2: 13107
@@ -18472,15 +18477,15 @@ entities:
             2: 65299
             0: 8
           -12,12:
-            5: 3264
+            6: 3264
           -11,13:
             0: 65531
           -11,14:
             0: 13243
-            5: 34816
+            6: 34816
           -11,15:
             0: 64435
-            5: 8
+            6: 8
           -11,16:
             0: 15
             2: 65280
@@ -18488,9 +18493,9 @@ entities:
             0: 65533
           -10,14:
             0: 35003
-            5: 13056
+            6: 13056
           -10,15:
-            5: 3
+            6: 3
             0: 64440
           -10,16:
             0: 15
@@ -18517,11 +18522,11 @@ entities:
             2: 62671
           -7,14:
             2: 244
-            5: 57344
+            6: 57344
             0: 1024
           -7,15:
             2: 61440
-            5: 238
+            6: 238
             0: 1024
           -7,16:
             2: 65524
@@ -18590,7 +18595,7 @@ entities:
           -14,12:
             0: 1
             2: 8738
-            6: 128
+            5: 128
             4: 32768
           -17,12:
             0: 52232
@@ -19299,11 +19304,11 @@ entities:
             Nitrogen: 6666.982
         - volume: 2500
           temperature: 293.15
-          moles: {}
-        - volume: 2500
-          temperature: 293.15
           moles:
             Oxygen: 6666.982
+        - volume: 2500
+          temperature: 293.15
+          moles: {}
         chunkSize: 4
     - type: OccluderTree
     - type: Shuttle
@@ -22522,7 +22527,7 @@ entities:
       pos: -13.5,-32.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -249312.08
+      secondsUntilStateChange: -251061.23
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -24005,7 +24010,7 @@ entities:
       pos: -14.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -249308.55
+      secondsUntilStateChange: -251057.7
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -24225,7 +24230,7 @@ entities:
       pos: 36.5,30.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -733387.8
+      secondsUntilStateChange: -735136.94
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -24648,7 +24653,7 @@ entities:
       pos: 44.5,27.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -751525.56
+      secondsUntilStateChange: -753274.7
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -141709,6 +141714,9 @@ entities:
     - type: Transform
       pos: -27.5,36.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Atmospherics
 - proto: LiquidOxygenCanister
   entities:
   - uid: 15035
@@ -144082,6 +144090,11 @@ entities:
     - type: Transform
       pos: -27.5,35.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Atmospherics
+      - - Engineering
+      - - Research
   - uid: 18133
     components:
     - type: Transform
@@ -166582,6 +166595,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: 62.5,0.5
       parent: 2
+- proto: SpawnMechPaddyFilled
+  entities:
+  - uid: 29768
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -25.5,-4.5
+      parent: 2
 - proto: SpawnMechSecPodFilled
   entities:
   - uid: 386
@@ -174366,7 +174387,7 @@ entities:
       pos: -17.5,8.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -249142.92
+      secondsUntilStateChange: -250892.08
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -197416,7 +197437,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -153291.19
+      secondsUntilStateChange: -155040.34
       state: Opening
     - type: Airlock
       autoClose: False
@@ -197493,7 +197514,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -747398.44
+      secondsUntilStateChange: -749147.56
       state: Opening
     - type: Airlock
       autoClose: False
