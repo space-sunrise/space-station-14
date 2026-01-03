@@ -95,6 +95,11 @@
   name: store-category-security
   priority: 5
 
+- type: storeCategory
+  id: PaintThings
+  name: store-category-paint
+  priority: 99
+
 # disease
 
 - type: storeCategory

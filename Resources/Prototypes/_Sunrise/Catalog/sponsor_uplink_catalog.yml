@@ -2058,3 +2058,93 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 3
+
+# region Paint
+
+- type: listing
+  id: UplinkSunriseRestockPaintVend
+  productEntity: VendingMachineRestockPaintVend
+  cost:
+    Suntick: 50
+  categories:
+  - PaintThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseSprayPaint
+  productEntity: SprayPaintBlue
+  cost:
+    Suntick: 10
+  categories:
+  - PaintThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: UplinkSunriseSprayPaintBlack
+  productEntity: SprayPaintBlack
+  cost:
+    Suntick: 20
+  categories:
+  - PaintThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: UplinkSunriseSprayPaintRed
+  productEntity: SprayPaintRed
+  cost:
+    Suntick: 10
+  categories:
+  - PaintThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: UplinkSunriseSprayPaintGreen
+  productEntity: SprayPaintGreen
+  cost:
+    Suntick: 10
+  categories:
+  - PaintThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: UplinkSunriseSprayPaintOrange
+  productEntity: SprayPaintOrange
+  cost:
+    Suntick: 10
+  categories:
+  - PaintThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: UplinkSunriseSprayPaintPurple
+  productEntity: SprayPaintPurple
+  cost:
+    Suntick: 10
+  categories:
+  - PaintThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: UplinkSunriseSprayPaintWhite
+  productEntity: SprayPaintWhite
+  cost:
+    Suntick: 10
+  categories:
+  - PaintThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
