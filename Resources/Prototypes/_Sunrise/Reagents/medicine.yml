@@ -13,14 +13,6 @@
         damage:
           types:
             Mangleness: -1
-      - !type:HealthChange
-        conditions:
-        - !type:ReagentThreshold
-          min: 16
-        damage:
-          types:
-            Cellular: 1
-            Poison: 1
 
 - type: reagent
   id: GenesisUltra
@@ -33,16 +25,16 @@
   metabolisms:
     Medicine:
       effects:
+      - metabolismRate: 0.1
       - !type:HealthChange
         damage:
           types:
-            Cellular: -1
-            Mangleness: -3
+            Cellular: 0.3
+            Mangleness: -0.5
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
           min: 6
         damage:
           types:
-            Cellular: 5
-            Poison: 1
+            Cellular: 3
