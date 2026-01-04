@@ -97,6 +97,11 @@
       collection: ResomiChirp
     interactFailureSound:
       path: /Audio/Items/wirecutter.ogg
+  - type: FootprintEmitter
+    leftBareFootState:
+      - "footprint-left-bare-spider"
+    rightBareFootState:
+      - "footprint-right-bare-spider"
   - type: Hands
     leftHandDisplacement:
       sizeMaps:

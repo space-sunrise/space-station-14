@@ -1,7 +1,6 @@
 using Content.Client._Sunrise.BloodCult;
 using Content.Shared._Sunrise.Abilities.Milira;
 using Content.Shared._Sunrise.Mood;
-using Content.Shared._Sunrise.Mood;
 using Robust.Client.GameObjects;
 using Robust.Shared.Utility;
 
@@ -47,10 +46,10 @@ public sealed class MoodVisualizerSystem : VisualizerSystem<MoodVisualsComponent
             UpdateAppearance(ent, sprite, appearance);
     }
 
-    private void OnAppearanceChange(Entity<MoodVisualsComponent> ent, ref AppearanceChangeEvent args)
+    protected override void OnAppearanceChange(EntityUid uid, MoodVisualsComponent component, ref AppearanceChangeEvent args)
     {
         if (args.Sprite != null)
-            UpdateAppearance(ent, args.Sprite, args.Component);
+            UpdateAppearance((uid, component), args.Sprite, args.Component);
     }
 
     private bool ShouldHideMoodVisuals(Entity<MoodVisualsComponent> ent)

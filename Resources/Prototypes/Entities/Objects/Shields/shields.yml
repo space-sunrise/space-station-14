@@ -631,7 +631,7 @@
       color: white
     - type: ItemTogglePointLight
     - type: Reflect
-      reflectProb: 0.95
+      reflectProb: 1 # Sunrise-Edit
       reflects:
         - Energy
     - type: Blocking
@@ -653,30 +653,21 @@
     - type: Appearance
     - type: Damageable
       damageContainer: Shield
-    - type: ExaminableDamage
-      messages: EnergyShieldMessages
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 180
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-        - trigger:
-            !type:DamageTrigger
-            damage: 100
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-            - !type:PlaySoundBehavior
-              sound:
-                collection: GlassBreak
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                BrokenEnergyShield:
-                  min: 1
-                  max: 1
+    # Sunrise-Start
+    - type: BatterySelfRecharger
+      autoRechargeRate: 75
+      autoRecharge: true
+      autoRechargePause: true
+      autoRechargePauseTime: 5
+    - type: EnergyShield
+      energyCostPerDamage: 15
+    - type: ExaminableBattery
+    - type: Battery
+      maxCharge: 1500
+      startingCharge: 1500
+    - type: PowerCellDraw
+      useRate: 2.5
+    - type: EmpImmune
     - type: StaticPrice
       price: 7000
     # Sunrise-End
