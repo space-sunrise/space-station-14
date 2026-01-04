@@ -1,7 +1,7 @@
 - type: entity
   id: AlwaysPoweredFloorLight
   name: floor light
-  description: "An always powered light."
+  description: An always powered light.
   suffix: Always powered
   parent: SmallLight
   components:
@@ -17,7 +17,7 @@
 
 - type: entity
   name: floor light
-  description: "A light fixture. Draws power and produces light when equipped with a light tube."
+  description: A light fixture. Draws power and produces light when equipped with a light tube.
   id: FloorlightEmpty
   suffix: Empty
   parent: AlwaysPoweredFloorLight
@@ -62,7 +62,7 @@
 
 - type: entity
   id: PoweredFloorlight
-  description: "A light fixture. Draws power and produces light when equipped with a light tube."
+  description: A light fixture. Draws power and produces light when equipped with a light tube.
   suffix: ""
   parent: FloorlightEmpty
   components:
