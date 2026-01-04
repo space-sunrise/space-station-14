@@ -1,7 +1,6 @@
 - type: entity
   id: AlwaysPoweredFloorLight
   name: floor light
-  description: An always powered light.
   suffix: Always powered
   parent: SmallLight
   components:
