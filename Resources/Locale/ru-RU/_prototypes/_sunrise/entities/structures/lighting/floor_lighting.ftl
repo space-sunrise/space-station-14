@@ -1,8 +1,8 @@
-ent-AlwaysPoweredFloorLight = Напольный светильник
-    .desc = Всегда работающий светильник.
-    .suffix = Всегда запитанный
-ent-FloorLightEmpty = Напольный светильник
-    .desc = Осветительный прибор. Потребляет энергию и излучает свет, если оснащён лампочкой.
-    .suffix = Пустой
-ent-PoweredFloorlight = { ent-FloorlightEmpty }
-    .desc = Осветительный прибор. Потребляет энергию и излучает свет, если оснащён лампочкой.
+ent-AlwaysPoweredFloorLight = напольный светильник
+    .desc = { ent-AlwaysPoweredWallLight.desc }
+    .suffix = { ent-AlwaysPoweredWallLight.suffix }
+ent-FloorLightEmpty = { ent-AlwaysPoweredFloorLight }
+    .desc = Осветительный прибор, установленный в полу. Потребляет энергию и излучает свет, если оснащён лампочкой.
+    .suffix = { ent-PoweredlightEmpty.suffix }
+ent-PoweredFloorlight = { ent-AlwaysPoweredFloorLight }
+    .desc = { ent-FloorLightEmpty.desc }
