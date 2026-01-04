@@ -1,9 +1,4 @@
 - type: lobbyAnimation
-  id: Billy
-  rawPath: _Sunrise/Lobby/Animations/billy
-  scale: 13, 13
-
-- type: lobbyAnimation
   id: BlackHole
   rawPath: _Sunrise/Lobby/Animations/black_hole
   scale: 8, 8
@@ -44,18 +39,8 @@
   scale: 8, 8
 
 - type: lobbyAnimation
-  id: EveningSun
-  rawPath: _Sunrise/Lobby/Animations/evening_sun
-  scale: 8, 8
-
-- type: lobbyAnimation
   id: EveningSun2
   rawPath: _Sunrise/Lobby/Animations/evening_sun2
-  scale: 8, 8
-
-- type: lobbyAnimation
-  id: EveningSun3
-  rawPath: _Sunrise/Lobby/Animations/evening_sun3
   scale: 8, 8
 
 - type: lobbyAnimation
@@ -64,19 +49,9 @@
   scale: 8, 8
 
 - type: lobbyAnimation
-  id: EveningSun5
-  rawPath: _Sunrise/Lobby/Animations/evening_sun5
-  scale: 8, 8
-
-- type: lobbyAnimation
   id: EveningSun6
   rawPath: _Sunrise/Lobby/Animations/evening_sun6
   scale: 8, 8
-
-- type: lobbyAnimation
-  id: EveningSun7
-  rawPath: _Sunrise/Lobby/Animations/evening_sun7
-  scale: 6, 6
 
 - type: lobbyAnimation
   id: EveningSun8
@@ -94,11 +69,6 @@
   scale: 8, 8
 
 - type: lobbyAnimation
-  id: Jungle
-  rawPath: _Sunrise/Lobby/Animations/jungle
-  scale: 4, 4
-
-- type: lobbyAnimation
   id: Kvazar
   rawPath: _Sunrise/Lobby/Animations/kvazar
   scale: 8, 8
@@ -111,11 +81,6 @@
 - type: lobbyAnimation
   id: Monolith
   rawPath: _Sunrise/Lobby/Animations/monolith
-  scale: 8, 8
-
-- type: lobbyAnimation
-  id: Nebula
-  rawPath: _Sunrise/Lobby/Animations/nebula
   scale: 8, 8
 
 - type: lobbyAnimation
