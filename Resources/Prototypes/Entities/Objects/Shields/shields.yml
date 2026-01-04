@@ -663,8 +663,6 @@
     - type: Battery
       maxCharge: 1500
       startingCharge: 1500
-    - type: PowerCellDraw
-      useRate: 2.5
     - type: EmpImmune
     - type: StaticPrice
       price: 7000
