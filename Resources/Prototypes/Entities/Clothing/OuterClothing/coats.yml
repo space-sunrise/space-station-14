@@ -100,7 +100,7 @@
         Caustic: 0.75 # not the full 90% from ss13 because of the head
   - type: ExplosionResistance
     damageCoefficient: 0.9
-      - type: StaminaResistance # Sunrise-Add
+  - type: StaminaResistance # Sunrise-Add
     damageCoefficient: 0.9 # Sunrise-Add
 
 - type: entity
