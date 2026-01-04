@@ -7,10 +7,10 @@
         - to: floorLight
           steps:
             - material: Steel
-              amount: 2
+              amount: 1
               doAfter: 2.0
     - node: floorLight
-      entity: FloorlightEmpty
+      entity: FloorLightEmpty
       edges:
         - to: start
           conditions:
@@ -22,5 +22,5 @@
           completed:
             - !type:SpawnPrototype
               prototype: SheetSteel1
-              amount: 2
+              amount: 1
             - !type:DeleteEntity {}

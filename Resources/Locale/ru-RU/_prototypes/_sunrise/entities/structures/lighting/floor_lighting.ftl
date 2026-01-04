@@ -1,7 +1,7 @@
 ent-AlwaysPoweredFloorLight = Напольный светильник
     .desc = Всегда работающий светильник.
     .suffix = Всегда запитанный
-ent-FloorlightEmpty = Напольный светильник
+ent-FloorLightEmpty = Напольный светильник
     .desc = Осветительный прибор. Потребляет энергию и излучает свет, если оснащён лампочкой.
     .suffix = Пустой
 ent-PoweredFloorlight = { ent-FloorlightEmpty }
