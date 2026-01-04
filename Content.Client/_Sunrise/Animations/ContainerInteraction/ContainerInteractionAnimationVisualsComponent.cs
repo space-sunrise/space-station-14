@@ -2,7 +2,7 @@
 
 /// <summary>
 /// Компонент, создающий анимации взаимодействия с контейнерами.
-/// Создает анимацию при добавлении и изьятия предмета из контейнера.
+/// Создает анимацию при добавлении и изъятии предмета из контейнера.
 /// </summary>
 [RegisterComponent]
 public sealed partial class ContainerInteractionAnimationVisualsComponent : Component
