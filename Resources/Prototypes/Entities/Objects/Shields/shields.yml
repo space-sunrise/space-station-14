@@ -656,8 +656,6 @@
     # Sunrise-Start
     - type: BatterySelfRecharger
       autoRechargeRate: 75
-      autoRecharge: true
-      autoRechargePause: true
       autoRechargePauseTime: 5
     - type: EnergyShield
       energyCostPerDamage: 15
