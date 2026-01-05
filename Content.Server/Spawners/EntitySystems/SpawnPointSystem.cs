@@ -35,27 +35,51 @@ public sealed class SpawnPointSystem : EntitySystem
 
             // Sunrise added start
             // Delta-V: Allow setting a desired SpawnPointType
-
-            // То, что приходит из ивента главнее заданного в спавнпоинте.
-            var spawnPointType = args.DesiredSpawnPointType != SpawnPointType.Unset
-                ? args.DesiredSpawnPointType
-                : spawnPoint.SpawnType;
-
-            var isMatchingJob = string.IsNullOrEmpty(args.Job)
-                                || string.IsNullOrEmpty(spawnPoint.Job)
-                                || spawnPoint.Job == args.Job;
-
-            switch (spawnPointType)
+            if (args.DesiredSpawnPointType != SpawnPointType.Unset)
             {
-                case SpawnPointType.Job when isMatchingJob && spawnPoint.SpawnType == SpawnPointType.Job:
-                case SpawnPointType.LateJoin when spawnPoint.SpawnType == SpawnPointType.LateJoin:
-                case SpawnPointType.Observer when spawnPoint.SpawnType == SpawnPointType.Observer:
-                    possiblePositions.Add(xform.Coordinates);
-                    break;
-                default:
-                    continue;
+                switch (args.DesiredSpawnPointType)
+                {
+                    case SpawnPointType.Job:
+                        if (spawnPoint.SpawnType == SpawnPointType.Job)
+                        {
+                            if (args.Job == null || spawnPoint.Job == null || spawnPoint.Job == args.Job)
+                            {
+                                possiblePositions.Add(xform.Coordinates);
+                            }
+                        }
+                        break;
+                    case SpawnPointType.LateJoin:
+                        if (spawnPoint.SpawnType == SpawnPointType.LateJoin)
+                        {
+                            possiblePositions.Add(xform.Coordinates);
+                        }
+                        else if (_gameTicker.RunLevel == GameRunLevel.InRound &&
+                                 spawnPoint.SpawnType == SpawnPointType.Job &&
+                                 (args.Job == null || spawnPoint.Job == null || spawnPoint.Job == args.Job))
+                        {
+                            possiblePositions.Add(xform.Coordinates);
+                        }
+                        break;
+                    case SpawnPointType.Observer when spawnPoint.SpawnType == SpawnPointType.Observer:
+                        possiblePositions.Add(xform.Coordinates);
+                        break;
+                    default:
+                        continue;
+                }
             }
             // Sunrise added end
+
+            // Sunrise-Start
+            else
+            {
+                if (spawnPoint.SpawnType == SpawnPointType.Job &&
+                    (args.Job == null || spawnPoint.Job == null || spawnPoint.Job == args.Job))
+                {
+                    possiblePositions.Add(xform.Coordinates);
+                }
+            }
+            // Sunrise-End
+
         }
 
         if (possiblePositions.Count == 0)
@@ -85,3 +109,4 @@ public sealed class SpawnPointSystem : EntitySystem
             args.Station);
     }
 }
+
