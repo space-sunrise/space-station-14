@@ -4,7 +4,7 @@ meta:
   engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 01/05/2026 07:58:46
+  time: 01/05/2026 08:40:20
   entityCount: 29807
 maps:
 - 1
@@ -22527,7 +22527,7 @@ entities:
       pos: -13.5,-32.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -251346.16
+      secondsUntilStateChange: -251673.14
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -24010,7 +24010,7 @@ entities:
       pos: -14.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -251342.62
+      secondsUntilStateChange: -251669.61
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -24230,7 +24230,7 @@ entities:
       pos: 36.5,30.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -735421.9
+      secondsUntilStateChange: -735748.9
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -24653,7 +24653,7 @@ entities:
       pos: 44.5,27.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -753559.6
+      secondsUntilStateChange: -753886.6
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -101964,6 +101964,16 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#FF6363FF'
+  - uid: 13049
+    components:
+    - type: MetaData
+      name: анти Пун-Пун система
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,-31.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#0335FCFF'
   - uid: 14194
     components:
     - type: Transform
@@ -101972,6 +101982,45 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#FF0000FF'
+  - uid: 14525
+    components:
+    - type: MetaData
+      name: анти Пун-Пун система
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,-1.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#FF1212FF'
+  - uid: 14529
+    components:
+    - type: MetaData
+      name: анти Пун-Пун система
+    - type: Transform
+      pos: -3.5,-0.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#0335FCFF'
+  - uid: 14539
+    components:
+    - type: MetaData
+      name: анти Пун-Пун система
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-6.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#0335FCFF'
+  - uid: 14543
+    components:
+    - type: MetaData
+      name: анти Пун-Пун система
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,-5.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#FF1212FF'
   - uid: 17942
     components:
     - type: Transform
@@ -101988,6 +102037,16 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#FF0000FF'
+  - uid: 29316
+    components:
+    - type: MetaData
+      name: анти Пун-Пун система
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,-32.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#FF1212FF'
 - proto: GasPipeSensor
   entities:
   - uid: 12343
@@ -105970,14 +106029,6 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#FF0000FF'
-  - uid: 13049
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 6.5,-31.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#0000FFFF'
   - uid: 13050
     components:
     - type: Transform
@@ -114251,13 +114302,6 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#0000FFFF'
-  - uid: 14525
-    components:
-    - type: Transform
-      pos: -2.5,-1.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#FF0000FF'
   - uid: 14526
     components:
     - type: Transform
@@ -114280,13 +114324,6 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#FF0000FF'
-  - uid: 14529
-    components:
-    - type: Transform
-      pos: -3.5,-0.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#0000FFFF'
   - uid: 14530
     components:
     - type: Transform
@@ -114357,14 +114394,6 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#0000FFFF'
-  - uid: 14539
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.5,-6.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#0000FFFF'
   - uid: 14540
     components:
     - type: Transform
@@ -114386,14 +114415,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,-5.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#FF0000FF'
-  - uid: 14543
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.5,-5.5
       parent: 2
     - type: AtmosPipeColor
       color: '#FF0000FF'
@@ -122263,14 +122284,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 5.5,-32.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#FF0000FF'
-  - uid: 29316
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 6.5,-32.5
       parent: 2
     - type: AtmosPipeColor
       color: '#FF0000FF'
@@ -174585,7 +174598,7 @@ entities:
       pos: -17.5,8.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -251177
+      secondsUntilStateChange: -251503.98
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -197635,7 +197648,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -155325.27
+      secondsUntilStateChange: -155652.25
       state: Opening
     - type: Airlock
       autoClose: False
@@ -197712,7 +197725,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -749432.5
+      secondsUntilStateChange: -749759.5
       state: Opening
     - type: Airlock
       autoClose: False
