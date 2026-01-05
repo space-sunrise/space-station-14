@@ -10,6 +10,8 @@ using Content.Server.Administration.Notes;
 using Content.Server.Afk;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection;
+using Content.Server.Connection.IPBlocking;
+using Content.Shared.Connection.IPBlocking;
 using Content.Server.Database;
 using Content.Server.Discord;
 using Content.Server.Discord.DiscordLink;
@@ -91,6 +93,7 @@ internal static class ServerContentIoC
         deps.Register<ContributorsManager>();
         deps.Register<PlayerCacheManager>();
         deps.Register<TTSManager>();
+        deps.Register<IIPBlockingSystem, IPBlockingSystem>();
         SunriseServerContentIoC.Register();
         // Sunrise-End
     }

@@ -11,6 +11,7 @@ using Content.Server.Afk;
 using Content.Server.Ani;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection;
+using Content.Shared.Connection.IPBlocking;
 using Content.Server.Database;
 using Content.Server.Discord;
 using Content.Server.Discord.DiscordLink;
@@ -90,6 +91,7 @@ namespace Content.Server.Entry
         [Dependency] private readonly PlayerCacheManager _playerCacheManager = default!; // Sunrise-Edit
         [Dependency] private readonly TTSManager _ttsManager = default!; // Sunrise-Edit
         [Dependency] private readonly DiscordWebhook _discord = default!; // Sunrise-Edit
+        [Dependency] private readonly IIPBlockingSystem _ipBlockingSystem = default!;
         private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
         public override void PreInit()
@@ -142,12 +144,13 @@ namespace Content.Server.Entry
             _serverInfo.Initialize();
             _serverApi.Initialize();
 
-            // Sunrise-Sponsors-Start
+            // Sunrise-Start
             _ttsManager.Initialize();
+            _ipBlockingSystem.Initialize();
             SunriseServerEntry.Init();
             IoCManager.Instance!.TryResolveType(out _sponsorsManager);
             _discord.SetupClient();
-            // Sunrise-Sponsors-End
+            // Sunrise-End
 
             _voteManager.Initialize();
             _updateManager.Initialize();
@@ -218,9 +221,12 @@ namespace Content.Server.Entry
                     _playTimeTracking.Update();
                     _watchlistWebhookManager.Update();
                     _connection.Update();
-                    _serversHubManager.Update(); // Sunrise-Edit
-                    _contributorsManager.Update(); // Sunrise-Edit
-                    _sponsorsManager?.Update(); // Sunrise-Edit
+                    // Sunrise-Start
+                    _serversHubManager.Update();
+                    _contributorsManager.Update();
+                    _sponsorsManager?.Update();
+                    _ipBlockingSystem.Update();
+                    // Sunrise-End
                     break;
             }
         }

@@ -6,8 +6,6 @@ using System.Runtime.InteropServices;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection.IPIntel;
-using Content.Server.Connection.IPBlocking;
-using Content.Shared.Connection.IPBlocking;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
@@ -61,7 +59,6 @@ namespace Content.Server.Connection
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
         private readonly Dictionary<NetUserId, DateTime> _temporaryConnectionAllowed = [];
         private IPIntel.IPIntel _ipintel = default!;
-        private IPBlockingSystem _ipBlockingSystem = default!;
 
         public event EventHandler<PlayerConnectingWithBanEvent>? PlayerConnectingWithBan;
 
@@ -75,14 +72,6 @@ namespace Content.Server.Connection
             _sawmill = _logManager.GetSawmill("connections");
 
             _ipintel = new IPIntel.IPIntel(new IPIntelApi(_http, _cfg), _db, _cfg, _logManager, _chatManager, _gameTiming);
-
-            // Инициализация системы блокировки IP
-            _ipBlockingSystem = new IPBlockingSystem();
-            IoCManager.Instance!.InjectDependencies(_ipBlockingSystem);
-            _ipBlockingSystem.Initialize();
-            
-            // Регистрация в IoC для использования в других системах
-            IoCManager.Instance.RegisterInstance<IIPBlockingSystem>(_ipBlockingSystem, true);
 
             IoCManager.Instance!.TryResolveType(out _sponsorsMgr);
             _netMgr.Connecting += NetMgrOnConnecting;
@@ -134,16 +123,6 @@ namespace Content.Server.Connection
             catch (Exception e)
             {
                 _sawmill.Error("IPIntel update failed:" + e);
-            }
-
-            // Периодическая очистка истекших блокировок IP
-            try
-            {
-                _ipBlockingSystem.Update();
-            }
-            catch (Exception e)
-            {
-                _sawmill.Error("IPBlockingSystem update failed:" + e);
             }
         }
 
