@@ -27,7 +27,7 @@ entities:
     - type: MetaData
       name: NTMS-632 "Рудокоп"
     - type: Transform
-      pos: 2.2710133,-2.4148211
+      pos: 1,1
       parent: invalid
     - type: MapGrid
       chunks:

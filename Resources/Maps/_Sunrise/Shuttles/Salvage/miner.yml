@@ -45,7 +45,7 @@ entities:
     - type: MetaData
       name: NTMS-754 "Горняк"
     - type: Transform
-      pos: -0.5078125,-0.4609375
+      pos: 1,1
       parent: invalid
     - type: MapGrid
       chunks:

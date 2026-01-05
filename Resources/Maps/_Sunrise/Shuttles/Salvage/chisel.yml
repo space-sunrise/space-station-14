@@ -45,7 +45,7 @@ entities:
     - type: MetaData
       name: NTMS-755 "Долото"
     - type: Transform
-      pos: 1,-25
+      pos: 1,1
       parent: invalid
     - type: MapGrid
       chunks:
