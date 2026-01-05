@@ -2,7 +2,7 @@
   id: Milira
   name: species-name-milira
   roundStart: true
-  sponsorOnly: true
+  sponsorOnly: false
   prototype: MobMilira
   bodyTypes:
   - MiliraNormal
