@@ -450,7 +450,7 @@
     selectedMode: SemiAuto
     minAngle: 30
     maxAngle: 90
-    projectileSpeed: 6.5
+    projectileSpeed: 10
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -1693,7 +1693,7 @@
     proto: CartridgeAntiMateriel
   - type: Gun
     showExamineText: false
-    fireRate: 0.25
+    fireRate: 0.1
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto

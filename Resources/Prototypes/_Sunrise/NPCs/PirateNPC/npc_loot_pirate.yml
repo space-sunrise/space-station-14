@@ -423,6 +423,39 @@
       path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
+  parent: MercenaryWebbingBox
+  id: ClothingBeltUtilityPirateT1
+  name: utility belt bundle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/utility.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: Crowbar
+      prob: 0.9
+    - id: Wrench
+      prob: 0.9
+    - id: Screwdriver
+      prob: 0.9
+    - id: Wirecutter
+      prob: 0.9
+    - id: GrenadeFlashBang
+      prob: 0.4
+    - id: MakeshiftShield
+      prob: 0.5
+    # Bonus Loot T1
+    - id: SpaceCash500
+      prob: 0.7
+    - id: SpaceCash1000
+      prob: 0.5
+    - id: LootSpawnerMedicalMinor
+      prob: 0.7
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
   parent: SalvageWebbingBox
   id: ClothingBeltSalvageWebbingTier1Flintlock
   categories: [ HideSpawnMenu ]
@@ -861,8 +894,27 @@
       prob: 0.5
     - id: CartridgeAntiMateriel
       prob: 0.3
+    - id: null
+      prob: 0.6
+      orGroup: AntiMaterielRare
+    - id: CartridgeAntiMaterielPenetrator
+      amount: 3
+      prob: 0.1
+      orGroup: AntiMaterielRare
+    - id: CartridgeAntiMaterielFrag
+      amount: 3
+      prob: 0.1
+      orGroup: AntiMaterielRare
+    - id: CartridgeAntiMaterielBlast
+      amount: 3
+      prob: 0.1
+      orGroup: AntiMaterielRare
+    - id: CartridgeAntiMaterielEmp
+      amount: 3
+      prob: 0.1
+      orGroup: AntiMaterielRare
     - id: MagazineBoxAntiMateriel
-      prob: 0.25
+      prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 

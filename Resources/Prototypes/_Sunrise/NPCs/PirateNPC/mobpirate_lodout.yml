@@ -35,7 +35,7 @@
   id: MobPirateT1KnifeGear
   equipment:
     gloves: ClothingHandsMercCombatKnife
-    belt: ClothingBeltUtility
+    belt: ClothingBeltUtilityPirateT1
     pocket1: SpaceCash500
     pocket2: CombatKnife
     shoes: ClothingShoesBootsJack
