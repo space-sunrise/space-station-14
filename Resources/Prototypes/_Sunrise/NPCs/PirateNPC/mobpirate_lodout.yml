@@ -147,6 +147,15 @@
     pocket2: Gauze1
     shoes: ClothingShoesBootsJack
 
+- type: startingGear
+  id: MobPirateT1RifleGear
+  equipment:
+    gloves: ClothingHandsPPSH
+    belt: ClothingBeltBandolierT1Rifle
+    shoes: ClothingShoesBootsSalvage
+    pocket1: DoubleEmergencyOxygenTankFilled
+    pocket2: ChemistryBottleSaline
+
 # region  Pirate Tier2
 - type: startingGear
   id: MobPirateT2ECutlassGear

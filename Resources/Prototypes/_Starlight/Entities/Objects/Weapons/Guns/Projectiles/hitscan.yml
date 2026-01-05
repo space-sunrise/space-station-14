@@ -681,10 +681,10 @@
     armorPenetration: -0.35
     damage:
       types:
-        Piercing: 7
-        Blunt: 7
+        Piercing: 13
+        Blunt: 6
   - type: HitscanStaminaDamage
-    staminaDamage: 3
+    staminaDamage: 4
   - type: HitscanPierce
     chance: 0.20
     deviation: 0.05

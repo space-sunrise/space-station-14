@@ -1334,19 +1334,21 @@
       prob: 0.2
     # durand
     - id: DurandArmorPlate
-      prob: 0.05
+      prob: 0.1
     - id: DurandLArm
-      prob: 0.25
+      prob: 0.35
     - id: DurandRArm
-      prob: 0.25
+      prob: 0.35
     - id: DurandLLeg
-      prob: 0.25
+      prob: 0.35
     - id: DurandRLeg
-      prob: 0.25
+      prob: 0.35
     - id: DurandHarness
-      prob: 0.25
+      prob: 0.35
     - id: DurandHead
-      prob: 0.25
+      prob: 0.35
+    - id: CratePirateSurplusBundle
+      prob: 0.3
     # Weapon
     - id: WeaponMechCombatMaxim
       prob: 0.5
@@ -1470,27 +1472,30 @@
     - id: SpaceCash1000
       prob: 0.2
     # Weapons
+    - id: CrateAmmunitionSmallDragunov
+      prob: 0.05
+      orGroup: dragunovPool
     - id: WeaponSniperDragunov
-      prob: 0.25
+      prob: 0.3
       orGroup: dragunovPool
     - id:  WeaponSniperDragunovBiocode
-      prob: 0.75
+      prob: 0.6
       orGroup: dragunovPool
     # Items
     - id: MagazineDragunov
       amount: 2
-      prob: 0.4
+      prob: 0.3
       orGroup: dragunovAmmoPool
     - id: MagazineDragunovExtended
       amount: 2
-      prob: 0.4
+      prob: 0.04
       orGroup: dragunovAmmoPool
     - id: MagazineDragunovUranium
-      prob: 0.25
+      prob: 0.15
       orGroup: dragunovAmmoPool
     - id: MagazineDragunovIncendiary
       amount: 2
-      prob: 0.45
+      prob: 0.4
       orGroup: dragunovAmmoPool
     - id: MagazineDragunovEmpty
       prob: 0.25
@@ -2024,10 +2029,10 @@
       prob: 0.5
       orGroup: Skm25Pool
     - id: WeaponRifleSKM24
-      prob: 0.15
+      prob: 0.1
       orGroup: Skm25Pool
     - id: CombatKnife
-      prob: 0.4
+      prob: 0.3
       orGroup: Skm25Pool
     - id: MagazineLightRifleEmpty
       prob: 0.9
@@ -2269,6 +2274,87 @@
       prob: 0.1
     - id: ClothingBackpackMessengerPirate
       prob: 0.15
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: BandolierBox
+  id: ClothingBeltBandolierT1Rifle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash1000
+      prob: 0.4
+    - id: SpaceCash500
+      prob: 0.2
+    # Weapons
+    - id: CombatKnife
+      prob: 0.15
+    - id: WeaponSubMachineGunPPSH
+      prob: 0.5
+    - id: MagazinePistolSubMachineGunPPSH
+      prob: 0.4
+    - id: MagazinePistolSubMachineGunPPSH
+      prob: 0.3
+    - id: MagazinePistolSubMachineGunPPSH
+      prob: 0.1
+    - id: MagazinePistolSubMachineGunPPSHExtended
+      prob: 0.02
+    # Armor
+    - id: ClothingHeadHelmetPirateAlt
+      prob: 0.15
+      orGroup: SalvHardPool2
+    - id: ClothingHeadHelmetPirateAlt2
+      prob: 0.15
+      orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateArmored
+      prob: 0.25
+      orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateArmoredAlt
+      prob: 0.25
+      orGroup: SalvHardPool2
+    - id: ClothingOuterHardsuitPrivateer
+      prob: 0.1
+      orGroup: SalvHardPool2
+    # Bonus Loot T1
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash500
+      prob: 0.9
+    - id: SpaceCash1000
+      prob: 0.7
+    - id: Catwalk
+      prob: 0.5
+    - id: JugDexPlusSaline
+      prob: 0.15
+    - id: AirlossAutoInjector
+      prob: 0.05
+    - id: PyraAutoInjector
+      prob: 0.05
+    - id: CombatMedipen
+      prob: 0.05
+    - id: BruteAutoInjector
+      prob: 0.05
+    - id: BurnAutoInjector
+      prob: 0.05
+    - id: BruizAutoInjector
+      prob: 0.05
+    - id: PunctAutoInjector
+      prob: 0.05
+    - id: LacerAutoInjector
+      prob: 0.05
+    - id: EmergencyMedipen
+      prob: 0.4
+    - id: EmergencyMedipen
+      prob: 0.2
+    - id: EmergencyMedipen
+      prob: 0.1
+    - id: ClothingBackpackMessengerPirate
+      prob: 0.25
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -2575,7 +2661,7 @@
       prob: 0.2
     # Weapons
     - id: WeaponLightMachineGunRPD
-      prob: 0.05
+      prob: 0.15
     # Items
     - id: MagazineRPD
       orGroup: AmmoMGPool

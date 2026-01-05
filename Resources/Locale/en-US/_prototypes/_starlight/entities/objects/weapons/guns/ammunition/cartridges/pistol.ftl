@@ -8,3 +8,6 @@ ent-CartridgePistol40AP = cartridge (.40 AP)
     .desc = { ent-CartridgePistol40SP.desc }
 ent-CartridgePistolImprovised = improvised cartridge (.35 auto)
     .desc = A handmade pistol bullet, uses phosphorus as a propellent instead of gunpowder which makes it much less effective.
+ent-CartridgePistolImprovisedMech = { ent-CartridgePistolImprovised }
+    .desc = { ent-CartridgePistolImprovised.desc }
+    .suffix = Mech

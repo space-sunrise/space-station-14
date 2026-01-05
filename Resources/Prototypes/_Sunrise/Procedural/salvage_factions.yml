@@ -55,6 +55,9 @@
     - proto: MobPirateT1ScrapRifle
       cost: 6
       prob: 0.1
+    - proto: MobPirateT1Rifle
+      cost: 6
+      prob: 0.1
     - proto: MobPirateT1Boss
       cost: 10
       prob: 0.04
