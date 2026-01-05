@@ -11,6 +11,8 @@
     layers:
     - state: icon
       color: "#53535304"
+  - type: FireProtection
+    reduction: 0.5
 
 - type: entity
   parent: ClothingHandsNoGloves

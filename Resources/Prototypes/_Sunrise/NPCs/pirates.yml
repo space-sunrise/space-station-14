@@ -41,6 +41,7 @@
   - type: ToggleableNightVision
     effect: EffectNightVisionPirate
   - type: ComplexInteraction
+  - type: AnomalyAccent
 
 - type: entity
   abstract: true
@@ -124,12 +125,16 @@
       - MobPirateT1MonkeyFireBomb
       - MobPirateT1MonkeyEDagger
       - MobPirateT1Hunter
+      - MobPirateT1HunterSmash
       - MobPirateT1ECutlass
       - MobPirateT1EPickaxe
       - MobPirateT1Flintlock
       - MobPirateT1PlasmaCutter
       - MobPirateT1ScrapRifle
       - MobPirateT1Rifle
+      - MobPirateT1BorgAssault
+      - MobPirateT1BorgMining
+      - MobPirateT1BorgDerelict
     rareChance: 0.15
 
 - type: entity
@@ -164,6 +169,8 @@
       - MobPirateT2Cannoball
       - MobPirateT2Mech
       - MobPirateT2Juggernaut
+      - MobPirateT1BorgAssault
+      - MobPirateT1BorgMining
     rareChance: 0.15
 
 - type: entity
@@ -196,6 +203,7 @@
       - MobPirateT3Grenadier
       - MobPirateT3Infiltrator
       - MobPirateT3Sniper
+      - MobPirateT1BorgAssault
     rareChance: 0.15
 
 # Variations
@@ -423,6 +431,7 @@
   - type: Loadout
     prototypes:
     - MobPirateT1KnifeGear
+  - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -610,6 +619,77 @@
     - actionId: ActionGravityJump
       minRange: 0
       maxRange: 4
+
+- type: entity
+  name: goliath smasher
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee]
+  id: MobPirateT1HunterSmash
+  description: Veteran scrappers, these salvagers are bulky enough to use heavy crusher-axe.
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT1HunterSmashGear
+  - type: Sprite
+    scale: 1.2,1.08
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/goliath_mining.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/goliathhelm.rsi
+      state: equipped-head
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/goliathhelm.rsi
+      state: equipped-head-light
+      shader: unshaded
+    - sprite: _Sunrise/Objects/Weapons/Melee/crusher_broadaxe-inhands.rsi
+      state: wielded-inhand-left
+  - type: Gun
+    soundGunshot: /Audio/Weapons/plasma_cutter.ogg
+    fireRate: 1
+    useKey: false
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 3
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletCharge
+    capacity: 1
+    count: 1
+  - type: LeechOnMarker
+    leech:
+      groups:
+        Brute: -30
+      types:
+        Heat: -10
+        Bloodloss: -5
+        Mangleness: -5
+  - type: MeleeWeapon
+    attackRate: 1
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 8
+        Slash: 12
+        Structural: 50
+    bluntStaminaDamageFactor: 1
+    soundHit:
+      collection: MetalThud
+  - type: JumpAbility
+    jumpDistance: 6
+    jumpSound: /Audio/Effects/stealthoff.ogg
+  - type: HellSpawnRush
+    blacklist:
+      tags:
+      - Hellspawn
+      - GlassBeaker
+      - DrinkBottle
+      - DrinkCan
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGravityJump
+      minRange: 2
+      maxRange: 0
 
 # region Ranged Tier 1
 - type: entity
@@ -962,17 +1042,17 @@
     - sprite: _Sunrise/Clothing/Head/Hardsuits/privateer.rsi
       state: on-equipped-HELMET
       shader: unshaded
-    - sprite: _Sunrise/Clothing/Head/Hats/hoshat.rsi
-      state: equipped-HELMET
+    - sprite: Clothing/Head/Hats/ushanka.rsi
+      state: up-equipped-HELMET
   - type: BatteryAmmoProvider
     proto: CartridgePistolImprovised
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 2
+    autoRechargePauseTime: 1.5
     autoRechargeRate: 99
   - type: Battery
-    maxCharge: 15
-    startingCharge: 15
+    maxCharge: 10
+    startingCharge: 10
   - type: Gun
     showExamineText: false
     fireRate: 15
@@ -980,7 +1060,7 @@
     minAngle: 15
     maxAngle: 30
     angleIncrease: 1
-    angleDecay: 15
+    angleDecay: 6
     availableModes:
     - FullAuto
     soundGunshot:
@@ -1035,6 +1115,160 @@
     mask: /Textures/Effects/LightMasks/cone.png
     color: "#FFC458FF"
 
+- type: entity
+  name: Derelict assault borg
+  description: A broken assault borg rebuilt for pirate raids.
+  parent: [MobMovementSpeedModifierRanged, MobPirateBase]
+  id: MobPirateT1BorgAssault
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT1BorgAssaultGear
+  - type: Stamina
+    baseCritThreshold: 500
+  - type: Damageable
+    damageModifierSet: MobPirateT2
+  - type: CyborgSparkEffect
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Mobs/Silicon/chassis.rsi
+    layers:
+    - state: synd_sec_derelict
+    - state: synd_sec_e
+      shader: unshaded
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 200
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgLegs
+  - type: BatteryAmmoProvider
+    proto: CartridgeLightRifleImprovised
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 2
+    autoRechargeRate: 99
+  - type: Battery
+    maxCharge: 15
+    startingCharge: 15
+  - type: Gun
+    showExamineText: false
+    fireRate: 8
+    selectedMode: FullAuto
+    minAngle: 8
+    maxAngle: 60
+    angleIncrease: 2
+    angleDecay: 15
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_shot.ogg
+      params:
+        pitch: 0.8
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
+
+- type: entity
+  name: Derelict mining borg
+  description: A mining borg stripped down and wired for raiding.
+  parent: [MobMovementSpeedModifierRanged, MobPirateBase]
+  id: MobPirateT1BorgMining
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT1BorgMiningGear
+  - type: Stamina
+    baseCritThreshold: 500
+  - type: Damageable
+    damageModifierSet: MobPirateT2
+  - type: CyborgSparkEffect
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Mobs/Silicon/chassis.rsi
+    layers:
+    - state: miner_derelict
+      map: ["movement"]
+    - state: miner_e_r
+      shader: unshaded
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: miner_moving_derelict
+    noMovementLayers:
+      movement:
+        state: miner_derelict
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 200
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgSpider
+      params:
+        volume: -15
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.6
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletKinetic
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.5
+    minAngle: 8
+    maxAngle: 18
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+
+- type: entity
+  name: Derelict borg brawler
+  description: A derelict borg that fights with brute force.
+  parent: [MobMovementSpeedModifierMelee, MobPirateBase, MobHumanoidHostileAISimpleMelee]
+  id: MobPirateT1BorgDerelict
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT1BorgDerelictGear
+  - type: Stamina
+    baseCritThreshold: 500
+  - type: Damageable
+    damageModifierSet: MobPirateT2
+  - type: CyborgSparkEffect
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Mobs/Silicon/chassis.rsi
+    layers:
+    - state: derelict
+    - state: derelict_e_r
+      shader: unshaded
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 200
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgLegs
+  - type: MeleeWeapon
+    attackRate: 1
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 8
+  - type: HellSpawnInvincibility
+
 # region Melee Tier 2
 - type: entity
   name: pirate boarder
@@ -1045,6 +1279,7 @@
   - type: Loadout
     prototypes:
     - MobPirateT2CutlassGear
+  - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1076,7 +1311,7 @@
       state: equipped-HELMET-unshaded
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: BolaSyndicateBiocode
+    proto: BolaSecurity
     capacity: 1
     count: 1
   - type: RechargeBasicEntityAmmo
@@ -1099,6 +1334,7 @@
   - type: Loadout
     prototypes:
     - MobPirateT2SledgehammerGear
+  - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1114,7 +1350,7 @@
     - sprite: Clothing/Head/Hats/gladiator.rsi
       state: equipped-HELMET
   - type: BasicEntityAmmoProvider
-    proto: BolaSyndicateBiocode
+    proto: BolaSecurity
     capacity: 1
     count: 1
   - type: RechargeBasicEntityAmmo
@@ -1143,6 +1379,7 @@
   - type: Loadout
     prototypes:
     - MobPirateT2GauntletDrillGear
+  - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1188,6 +1425,7 @@
   - type: Loadout
     prototypes:
     - MobPirateT2MechGear
+  - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -1291,6 +1529,7 @@
   - type: Loadout
     prototypes:
     - MobPirateT2JuggernautGear
+  - type: CyborgSparkEffect
   - type: Sprite
     scale: 1.2,1.08
     drawdepth: Mobs
@@ -1892,6 +2131,7 @@
   - type: Loadout
     prototypes:
     - MobPirateT3ShieldSMGGear
+  - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2473,6 +2713,7 @@
   - type: Loadout
     prototypes:
     - MobPirateGearMeleeT4Alt
+  - type: CyborgSparkEffect
   - type: Sprite
     scale: 1.18,1.08
     drawdepth: Mobs
@@ -2575,6 +2816,7 @@
   - type: Loadout
     prototypes:
     - MobPirateT3MechGear
+  - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
     noRot: true

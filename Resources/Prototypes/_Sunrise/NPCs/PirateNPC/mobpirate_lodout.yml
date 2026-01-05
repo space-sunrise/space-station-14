@@ -57,6 +57,14 @@
     pocket1: AdvancedMineralScanner
     pocket2: WeaponGrapplingGun
 
+- type: startingGear
+  id: MobPirateT1HunterSmashGear
+  equipment:
+    back: ClothingBackScrapperT1Smasher
+    shoes: ClothingShoesBootsJump
+    pocket1: AdvancedMineralScanner
+    pocket2: FoodHivelordRemains
+
 # region Ranged
 - type: startingGear
   id: MobPirateT1FlintlockGear
@@ -395,6 +403,21 @@
     shoes: MechPaintClarkeRipleyBigBrother
     belt: BorgOreBag
     back: ClothingBackOreCrateTier1Mech
+
+- type: startingGear
+  id: MobPirateT1BorgAssaultGear
+  equipment:
+    back: ClothingBackOreCrateTier2Cyborg
+
+- type: startingGear
+  id: MobPirateT1BorgMiningGear
+  equipment:
+    back: ClothingBackOreCrateTier1Cyborg
+
+- type: startingGear
+  id: MobPirateT1BorgDerelictGear
+  equipment:
+    back: ClothingBackOreCrateTier1Cyborg
 
 # region Pirate Boss
 - type: startingGear
