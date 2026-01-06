@@ -105,6 +105,8 @@
   id: MobPirateSparkEffectBase
   components:
   - type: CyborgSparkEffect
+  - type: Reflect
+    reflectProb: 0.05
 
 - type: entity
   abstract: true
@@ -123,6 +125,8 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepCyborgLegs
+  - type: Reflect
+    reflectProb: 0.1
 
 # region Spawners
 - type: entity
@@ -608,7 +612,7 @@
     - sprite: Clothing/Head/Hardsuits/goliathhelm.rsi
       state: equipped-head-unshaded-reptilian
       shader: unshaded
-    - sprite: _Sunrise/Objects/Weapons/Melee/crusher_broadaxe-inhands.rsi
+    - sprite: Objects/Weapons/Melee/crusher_glaive-inhands.rsi
       state: wielded-inhand-left
   - type: Gun
     soundGunshot: /Audio/Weapons/plasma_cutter.ogg
@@ -635,9 +639,9 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 8
-        Slash: 12
-        Structural: 50
+        Blunt: 2
+        Slash: 8
+        Structural: 30
     bluntStaminaDamageFactor: 1
     soundHit:
       collection: MetalThud
