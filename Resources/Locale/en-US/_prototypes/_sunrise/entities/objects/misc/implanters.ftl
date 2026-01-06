@@ -4,3 +4,6 @@ ent-SmokeScreenImplanter = { ent-BaseImplantOnlyImplanterSyndi }
 ent-CreepyLaughImplanter = { ent-BaseImplantOnlyImplanterSyndi }
     .suffix = Sunrise, laugh
     .desc = { ent-BaseImplantOnlyImplanterSyndi.desc }
+ent-ScramImplanterProto = { ent-ScramImplanter }
+    .suffix = prototype
+    .desc = { ent-ScramImplanter.desc }

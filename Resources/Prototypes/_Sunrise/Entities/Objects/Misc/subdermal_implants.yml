@@ -51,3 +51,15 @@
   components:
   - type: RattleOnTrigger
     radioChannel: Freelance
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ScramImplantProto
+  name: scram implant
+  description: This implant randomly teleports the user within a large radius when activated.
+  components:
+  - type: SubdermalImplant
+    implantAction: ActionActivateScramImplantProto
+  - type: TriggerOnActivateImplant
+  - type: ScramOnTrigger
+    targetUser: true

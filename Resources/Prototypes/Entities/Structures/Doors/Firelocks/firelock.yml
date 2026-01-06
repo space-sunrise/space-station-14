@@ -111,6 +111,7 @@
       fuel: 5
       time: 3
     - type: Firelock
+      lockedPryTimeModifier: 0.5 # Sunrise-Add
     - type: Appearance
     - type: WiresVisuals
     - type: WiresPanel

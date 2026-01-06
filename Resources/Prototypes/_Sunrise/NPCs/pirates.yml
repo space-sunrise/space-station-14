@@ -42,6 +42,8 @@
     effect: EffectNightVisionPirate
   - type: ComplexInteraction
   - type: AnomalyAccent
+  - type: TTS
+    voice: necrophos_dota_2
 
 - type: entity
   abstract: true
@@ -92,6 +94,30 @@
   components:
   - type: Damageable
     damageModifierSet: MobPirateT3
+
+- type: entity
+  abstract: true
+  id: MobPirateSparkEffectBase
+  components:
+  - type: CyborgSparkEffect
+
+- type: entity
+  abstract: true
+  parent: [MobPirateBase, MobPirateSparkEffectBase]
+  id: MobPirateBorgBase
+  components:
+  - type: Stamina
+    baseCritThreshold: 500
+  - type: Damageable
+    damageModifierSet: MobPirateT2
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 200
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgLegs
 
 # region Spawners
 - type: entity
@@ -425,13 +451,12 @@
 - type: entity
   name: Scrap boarder
   description: Rookie raider sent first through the breach. Usually doesn’t come back, but makes a great distraction.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBase, MobHumanoidHostileAISimpleMelee]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBase, MobHumanoidHostileAISimpleMelee, MobPirateSparkEffectBase]
   id: MobPirateT1Knife
   components:
   - type: Loadout
     prototypes:
     - MobPirateT1KnifeGear
-  - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1118,17 +1143,12 @@
 - type: entity
   name: Derelict assault borg
   description: A broken assault borg rebuilt for pirate raids.
-  parent: [MobMovementSpeedModifierRanged, MobPirateBase]
+  parent: [MobMovementSpeedModifierRanged, MobPirateBorgBase]
   id: MobPirateT1BorgAssault
   components:
   - type: Loadout
     prototypes:
     - MobPirateT1BorgAssaultGear
-  - type: Stamina
-    baseCritThreshold: 500
-  - type: Damageable
-    damageModifierSet: MobPirateT2
-  - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -1137,14 +1157,6 @@
     - state: synd_sec_derelict
     - state: synd_sec_e
       shader: unshaded
-  - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: WeldingFuel
-        Quantity: 200
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepCyborgLegs
   - type: BatteryAmmoProvider
     proto: CartridgeLightRifleImprovised
     fireCost: 1
@@ -1174,17 +1186,12 @@
 - type: entity
   name: Derelict mining borg
   description: A mining borg stripped down and wired for raiding.
-  parent: [MobMovementSpeedModifierRanged, MobPirateBase]
+  parent: [MobMovementSpeedModifierRanged, MobPirateBorgBase]
   id: MobPirateT1BorgMining
   components:
   - type: Loadout
     prototypes:
     - MobPirateT1BorgMiningGear
-  - type: Stamina
-    baseCritThreshold: 500
-  - type: Damageable
-    damageModifierSet: MobPirateT2
-  - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -1201,11 +1208,6 @@
     noMovementLayers:
       movement:
         state: miner_derelict
-  - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: WeldingFuel
-        Quantity: 200
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepCyborgSpider
@@ -1232,17 +1234,12 @@
 - type: entity
   name: Derelict borg brawler
   description: A derelict borg that fights with brute force.
-  parent: [MobMovementSpeedModifierMelee, MobPirateBase, MobHumanoidHostileAISimpleMelee]
+  parent: [MobMovementSpeedModifierMelee, MobPirateBorgBase, MobHumanoidHostileAISimpleMelee]
   id: MobPirateT1BorgDerelict
   components:
   - type: Loadout
     prototypes:
     - MobPirateT1BorgDerelictGear
-  - type: Stamina
-    baseCritThreshold: 500
-  - type: Damageable
-    damageModifierSet: MobPirateT2
-  - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -1251,14 +1248,6 @@
     - state: derelict
     - state: derelict_e_r
       shader: unshaded
-  - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: WeldingFuel
-        Quantity: 200
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepCyborgLegs
   - type: MeleeWeapon
     attackRate: 1
     altDisarm: false
@@ -1273,13 +1262,12 @@
 - type: entity
   name: pirate boarder
   description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee, MobPirateSparkEffectBase]
   id: MobPirateT2Cutlass
   components:
   - type: Loadout
     prototypes:
     - MobPirateT2CutlassGear
-  - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1328,13 +1316,12 @@
 - type: entity
   name: pirate breacher
   description: A boarding team member armed with a sledgehammer, capable of breaking through an airlock — or someone’s skull.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee, MobPirateSparkEffectBase]
   id: MobPirateT2Sledgehammer
   components:
   - type: Loadout
     prototypes:
     - MobPirateT2SledgehammerGear
-  - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1373,13 +1360,12 @@
 - type: entity
   name: pirate breacher
   description: Drilling in the name of... drilling. No rock formation or shuttle wall can withstand the power of mining drill gauthlet.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee, MobPirateSparkEffectBase]
   id: MobPirateT2GauntletDrill
   components:
   - type: Loadout
     prototypes:
     - MobPirateT2GauntletDrillGear
-  - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1419,13 +1405,12 @@
 - type: entity
   name: Big Yarrke
   description: A heavy ancient mech for cold harsh realities of deep space. It has built-in Mining Industrial Drill.
-  parent: MobPirateBaseT2
+  parent: [MobPirateBaseT2, MobPirateSparkEffectBase]
   id: MobPirateT2Mech
   components:
   - type: Loadout
     prototypes:
     - MobPirateT2MechGear
-  - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -1523,13 +1508,12 @@
 - type: entity
   name: Jugger Murmillo
   description: Clad in a heavily armored ancient spacesuit. Slow but incredibly resilient.
-  parent: MobPirateBaseT2
+  parent: [MobPirateBaseT2, MobPirateSparkEffectBase]
   id: MobPirateT2Juggernaut
   components:
   - type: Loadout
     prototypes:
     - MobPirateT2JuggernautGear
-  - type: CyborgSparkEffect
   - type: Sprite
     scale: 1.2,1.08
     drawdepth: Mobs
@@ -2125,13 +2109,12 @@
 - type: entity
   name: Privateer boarder
   description: A pirate who has found sponsors, well-armed and suitably dangerous.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT3]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT3, MobPirateSparkEffectBase]
   id: MobPirateT3ShieldSMG
   components:
   - type: Loadout
     prototypes:
     - MobPirateT3ShieldSMGGear
-  - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2707,13 +2690,12 @@
 - type: entity
   name: Captain Rustfist
   description: An old salvage veteran, more metal than man. His fists creak, his armor’s held together by bolts and faith, and if he swings at you, it’s best to play dead and hope he buys it.
-  parent: [MobHostileBossBase, MobPirateBase]
+  parent: [MobHostileBossBase, MobPirateBase, MobPirateSparkEffectBase]
   id: MobPirateT1Boss
   components:
   - type: Loadout
     prototypes:
     - MobPirateGearMeleeT4Alt
-  - type: CyborgSparkEffect
   - type: Sprite
     scale: 1.18,1.08
     drawdepth: Mobs
@@ -2810,13 +2792,12 @@
 - type: entity
   name: Skull House
   description: The Heavy Mech USSP, a communist variant of the Durand, features stronger armor and a powerful machine gun.
-  parent: [MobHostileBossBase, MobPirateBaseT3]
+  parent: [MobHostileBossBase, MobPirateBaseT3, MobPirateSparkEffectBase]
   id: MobPirateT3Boss
   components:
   - type: Loadout
     prototypes:
     - MobPirateT3MechGear
-  - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
     noRot: true
