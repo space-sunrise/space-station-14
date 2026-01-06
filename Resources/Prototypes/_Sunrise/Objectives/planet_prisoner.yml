@@ -22,3 +22,17 @@
       sprite: Structures/Furniture/chairs.rsi
       state: shuttle
   - type: EscapePrisonCondition
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: [BasePlanetPrisonerObjective, BaseLivingObjective]
+  id: PlanetPrisonerStayFreeObjective
+  name: Stay alive without restraints
+  description: Earn the guards’ confidence and survive without ever being restrained.
+  components:
+  - type: Objective
+    difficulty: 1.0
+    icon:
+      sprite: Objects/Materials/Scrap/generic.rsi
+      state: junk-medkit-1
+  - type: StayFreeCondition
