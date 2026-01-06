@@ -1,11 +1,12 @@
-﻿using Content.Server.Kitchen.Components;
-using Content.Server.Weapons.Ranged.Systems;
+﻿using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared._Starlight.Weapon.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared._Sunrise.Execution;
+using Content.Shared.Body.Components;
 using Content.Shared.Kitchen.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -17,14 +18,21 @@ using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
+using Content.Server.Explosion.EntitySystems;
+using Content.Server.Body.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Containers;
 using Content.Shared.Silicons.Borgs.Components;
-using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Components;
+using Content.Shared.FixedPoint;
+using Content.Shared.Explosion;
+using Content.Shared.Explosion.Components;
+using Content.Shared.Weapons.Hitscan.Components;
+using System.Linq;
+using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.Execution;
 
@@ -38,16 +46,38 @@ public sealed class ExecutionSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly GunSystem _gunSystem = default!;
+    [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
+    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private const float MeleeExecutionTimeModifier = 5.0f;
     private const float GunExecutionTime = 6.0f;
-    private const float DamageModifier = 9.0f;
+    private const float SuicideGunTimeMultiplier = 0.5f;
+    private const int GunExecutionShots = 1;
+    private const float AttackRateToSeconds = 1.0f;
+    private const float OverkillFractionMin = 0.05f;
+    private const float OverkillFractionMax = 0.20f;
+    private const float ExplosiveOverkillFractionMin = 2.0f;
+    private const float ExplosiveOverkillFractionMax = 4.0f;
+    private const float SuicideExplosionIntensityScale = 0.45f;
+    private const int SuicideExplosionMaxTileBreak = 0;
+    private const bool SuicideExplosionCanCreateVacuum = false;
+    private const string GunChamberContainerId = "gun_chamber";
+    private const string StructuralDamageType = "Structural";
+
+    private readonly record struct SuicideExplosionInfo(
+        ProtoId<ExplosionPrototype> ExplosionType,
+        float TotalIntensity,
+        float IntensitySlope,
+        float MaxIntensity,
+        float TileBreakScale);
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -61,10 +91,7 @@ public sealed class ExecutionSystem : EntitySystem
         SubscribeLocalEvent<GunComponent, ExecutionDoAfterEvent>(OnDoafterGun);
     }
 
-    private void OnGetInteractionVerbsMelee(
-        EntityUid uid,
-        SharpComponent component,
-        GetVerbsEvent<UtilityVerb> args)
+    private void OnGetInteractionVerbsMelee(Entity<SharpComponent> ent, ref GetVerbsEvent<UtilityVerb> args)
     {
         if (args.Hands == null || args.Using == null || !args.CanAccess || !args.CanInteract)
             return;
@@ -84,17 +111,14 @@ public sealed class ExecutionSystem : EntitySystem
                 TryStartMeleeExecutionDoafter(weapon, victim, attacker);
             },
             Impact = LogImpact.High,
-            Text = suicide ? Loc.GetString("suicide-verb-name") : Loc.GetString("execution-verb-name"),
-            Message = suicide ? Loc.GetString("suicide-verb-message") : Loc.GetString("execution-verb-message"),
+            Text = suicide ? _loc.GetString("suicide-verb-name") : _loc.GetString("execution-verb-name"),
+            Message = suicide ? _loc.GetString("suicide-verb-message") : _loc.GetString("execution-verb-message"),
         };
 
         args.Verbs.Add(verb);
     }
 
-    private void OnGetInteractionVerbsGun(
-        EntityUid uid,
-        GunComponent component,
-        GetVerbsEvent<UtilityVerb> args)
+    private void OnGetInteractionVerbsGun(Entity<GunComponent> ent, ref GetVerbsEvent<UtilityVerb> args)
     {
         if (args.Hands == null || args.Using == null || !args.CanAccess || !args.CanInteract)
             return;
@@ -115,8 +139,8 @@ public sealed class ExecutionSystem : EntitySystem
             },
             Impact = LogImpact.High,
 
-            Text = suicide ? Loc.GetString("suicide-verb-name") : Loc.GetString("execution-verb-name"),
-            Message = suicide ? Loc.GetString("suicide-verb-message") : Loc.GetString("execution-verb-message"),
+            Text = suicide ? _loc.GetString("suicide-verb-name") : _loc.GetString("execution-verb-name"),
+            Message = suicide ? _loc.GetString("suicide-verb-message") : _loc.GetString("execution-verb-message"),
         };
 
         args.Verbs.Add(verb);
@@ -128,7 +152,7 @@ public sealed class ExecutionSystem : EntitySystem
             return false;
 
         // No point executing someone if they can't take damage
-        if (!TryComp<DamageableComponent>(victim, out var damage))
+        if (!TryComp<DamageableComponent>(victim, out _))
             return false;
 
         // You can't execute something that cannot die
@@ -136,7 +160,7 @@ public sealed class ExecutionSystem : EntitySystem
             return false;
 
         // You can't execute borgs
-        if (TryComp<BorgChassisComponent>(victim, out var borgChassis))
+        if (TryComp<BorgChassisComponent>(victim, out _))
             return false;
 
         // You're not allowed to execute dead people (no fun allowed)
@@ -160,10 +184,11 @@ public sealed class ExecutionSystem : EntitySystem
         if (user != victim)
             return false;
 
-        if (!CanExecuteWithAny(weapon, victim, user)) return false;
+        if (!CanExecuteWithAny(weapon, victim, user))
+            return false;
 
         // We must be able to actually hurt people with the weapon
-        if (!TryComp<MeleeWeaponComponent>(weapon, out var melee) && melee!.Damage.GetTotal() > 0.0f)
+        if (!TryComp<MeleeWeaponComponent>(weapon, out var melee) || melee.Damage.GetTotal() <= 0.0f)
             return false;
 
         return true;
@@ -174,19 +199,26 @@ public sealed class ExecutionSystem : EntitySystem
         if (user != victim)
             return false;
 
-        if (!CanExecuteWithAny(weapon, victim, user)) return false;
-
-        // We must be able to actually fire the gun
-        if (!TryComp<GunComponent>(weapon, out var gun) && _gunSystem.CanShoot(gun!))
+        if (!CanExecuteWithAny(weapon, victim, user))
             return false;
 
-        if (_containerSystem.TryGetContainer(weapon, "gun_chamber", out var chamberContainer))
+        // We must be able to actually fire the gun
+        if (!TryComp<GunComponent>(weapon, out var gun) || !_gunSystem.CanShoot(gun))
+            return false;
+
+        if (_containerSystem.TryGetContainer(weapon, GunChamberContainerId, out var chamberContainer))
         {
             foreach (var contained in chamberContainer.ContainedEntities)
             {
                 if (TryComp<CartridgeAmmoComponent>(contained, out var cartridge) && cartridge.Spent)
                     return false;
             }
+        }
+
+        if (TryComp<DamageableComponent>(victim, out var damageable) && TryComp<BatteryAmmoProviderComponent>(weapon, out var battery))
+        {
+            if (!PrototypeHasLethalEffect(damageable, battery.Prototype))
+                return false;
         }
 
         return true;
@@ -197,18 +229,19 @@ public sealed class ExecutionSystem : EntitySystem
         if (!CanExecuteWithMelee(weapon, victim, attacker))
             return;
 
-        var executionTime = (1.0f / Comp<MeleeWeaponComponent>(weapon).AttackRate) * MeleeExecutionTimeModifier;
+        var executionTime = AttackRateToSeconds / Comp<MeleeWeaponComponent>(weapon).AttackRate * MeleeExecutionTimeModifier;
 
-        if (attacker == victim)
-        {
-            ShowExecutionPopup("suicide-popup-melee-initial-internal", Filter.Entities(attacker), PopupType.Medium, attacker, victim, weapon);
-            ShowExecutionPopup("suicide-popup-melee-initial-external", Filter.PvsExcept(attacker), PopupType.MediumCaution, attacker, victim, weapon);
-        }
-        else
-        {
-            ShowExecutionPopup("execution-popup-melee-initial-internal", Filter.Entities(attacker), PopupType.Medium, attacker, victim, weapon);
-            ShowExecutionPopup("execution-popup-melee-initial-external", Filter.PvsExcept(attacker), PopupType.MediumCaution, attacker, victim, weapon);
-        }
+        var internalKey = attacker == victim
+            ? "suicide-popup-melee-initial-internal"
+            : "execution-popup-melee-initial-internal";
+
+        var externalKey = attacker == victim
+            ? "suicide-popup-melee-initial-external"
+            : "execution-popup-melee-initial-external";
+
+        ShowExecutionPopup(internalKey, Filter.Entities(attacker), PopupType.Medium, attacker, victim, weapon);
+        ShowExecutionPopup(externalKey, Filter.PvsExcept(attacker), PopupType.MediumCaution, attacker, victim, weapon);
+
 
         var doAfter =
             new DoAfterArgs(EntityManager, attacker, executionTime, new ExecutionDoAfterEvent(), weapon, target: victim, used: weapon)
@@ -243,19 +276,25 @@ public sealed class ExecutionSystem : EntitySystem
             return;
         }
 
-        if (attacker == victim)
-        {
-            ShowExecutionPopup("suicide-popup-gun-initial-internal", Filter.Entities(attacker), PopupType.Medium, attacker, victim, weapon);
-            ShowExecutionPopup("suicide-popup-gun-initial-external", Filter.PvsExcept(attacker), PopupType.MediumCaution, attacker, victim, weapon);
-        }
-        else
-        {
-            ShowExecutionPopup("execution-popup-gun-initial-internal", Filter.Entities(attacker), PopupType.Medium, attacker, victim, weapon);
-            ShowExecutionPopup("execution-popup-gun-initial-external", Filter.PvsExcept(attacker), PopupType.MediumCaution, attacker, victim, weapon);
-        }
+        var internalKey = attacker == victim
+            ? "suicide-popup-gun-initial-internal"
+            : "execution-popup-gun-initial-internal";
+
+        var externalKey = attacker == victim
+            ? "suicide-popup-gun-initial-external"
+            : "execution-popup-gun-initial-external";
+
+        ShowExecutionPopup(internalKey, Filter.Entities(attacker), PopupType.Medium, attacker, victim, weapon);
+        ShowExecutionPopup(externalKey, Filter.PvsExcept(attacker), PopupType.MediumCaution, attacker, victim, weapon);
 
         var doAfter =
-            new DoAfterArgs(EntityManager, attacker, attacker == victim ? GunExecutionTime / 2 : GunExecutionTime, new ExecutionDoAfterEvent(), weapon, target: victim, used: weapon)
+            new DoAfterArgs(EntityManager,
+                attacker,
+                attacker == victim ? GunExecutionTime * SuicideGunTimeMultiplier : GunExecutionTime,
+                new ExecutionDoAfterEvent(),
+                weapon,
+                target: victim,
+                used: weapon)
             {
                 BreakOnMove = true,
                 BreakOnDamage = true,
@@ -265,19 +304,8 @@ public sealed class ExecutionSystem : EntitySystem
         _doAfterSystem.TryStartDoAfter(doAfter);
     }
 
-    private bool OnDoafterChecks(EntityUid uid, DoAfterEvent args)
-    {
-        if (args.Handled || args.Cancelled || args.Used == null || args.Target == null)
-            return false;
 
-        if (!CanExecuteWithAny(args.Used.Value, args.Target.Value, uid))
-            return false;
-
-        // All checks passed
-        return true;
-    }
-
-    private void OnDoafterMelee(EntityUid uid, SharpComponent component, DoAfterEvent args)
+    private void OnDoafterMelee(Entity<SharpComponent> ent, ref ExecutionDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled || args.Used == null || args.Target == null)
             return;
@@ -288,26 +316,27 @@ public sealed class ExecutionSystem : EntitySystem
 
         if (!CanExecuteWithMelee(weapon, victim, attacker)) return;
 
-        if (!TryComp<MeleeWeaponComponent>(weapon, out var melee) && melee!.Damage.GetTotal() > 0.0f)
+        if (!TryComp<MeleeWeaponComponent>(weapon, out var melee) || melee.Damage.GetTotal() <= 0.0f)
             return;
 
-        _damageableSystem.ChangeDamage(victim, melee.Damage * DamageModifier, true, useVariance: false, ignoreGlobalModifiers: true);
+        ApplyExecutionDamage(victim, weapon, melee.Damage, forceLethal: true, OverkillFractionMin, OverkillFractionMax);
         _audioSystem.PlayEntity(melee.HitSound, Filter.Pvs(weapon), weapon, true, AudioParams.Default);
 
-        if (attacker == victim)
-        {
-            ShowExecutionPopup("suicide-popup-melee-complete-internal", Filter.Entities(attacker), PopupType.Medium, attacker, victim, weapon);
-            ShowExecutionPopup("suicide-popup-melee-complete-external", Filter.PvsExcept(attacker), PopupType.MediumCaution, attacker, victim, weapon);
-        }
-        else
-        {
-            ShowExecutionPopup("execution-popup-melee-complete-internal", Filter.Entities(attacker), PopupType.Medium, attacker, victim, weapon);
-            ShowExecutionPopup("execution-popup-melee-complete-external", Filter.PvsExcept(attacker), PopupType.MediumCaution, attacker, victim, weapon);
-        }
+        var internalKey = attacker == victim
+            ? "suicide-popup-melee-complete-internal"
+            : "execution-popup-melee-complete-internal";
+
+        var externalKey = attacker == victim
+            ? "suicide-popup-melee-complete-external"
+            : "execution-popup-melee-complete-external";
+
+        ShowExecutionPopup(internalKey, Filter.Entities(attacker), PopupType.Medium, attacker, victim, weapon);
+        ShowExecutionPopup(externalKey, Filter.PvsExcept(attacker), PopupType.MediumCaution, attacker, victim, weapon);
     }
 
+
     // TODO: This repeats a lot of the code of the serverside GunSystem, make it not do that
-    private void OnDoafterGun(EntityUid uid, GunComponent component, DoAfterEvent args)
+    private void OnDoafterGun(Entity<GunComponent> ent, ref ExecutionDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled || args.Used == null || args.Target == null)
             return;
@@ -323,7 +352,7 @@ public sealed class ExecutionSystem : EntitySystem
         var prevention = new ShotAttemptedEvent
         {
             User = attacker,
-            Used = (weapon, component),
+            Used = (weapon, ent.Comp),
         };
 
         RaiseLocalEvent(weapon, ref prevention);
@@ -347,67 +376,126 @@ public sealed class ExecutionSystem : EntitySystem
 
         // Take some ammunition for the shot (one bullet)
         var fromCoordinates = Transform(attacker).Coordinates;
-        var ev = new TakeAmmoEvent(1, new List<(EntityUid? Entity, IShootable Shootable)>(), fromCoordinates, attacker);
-        RaiseLocalEvent(weapon, ev);
+        var takeAmmoEvent = new TakeAmmoEvent(
+            GunExecutionShots,
+            new List<(EntityUid? Entity, IShootable Shootable)>(),
+            fromCoordinates,
+            attacker);
+        RaiseLocalEvent(weapon, takeAmmoEvent);
 
         // Check if there's any ammo left
-        if (ev.Ammo.Count <= 0)
+        if (takeAmmoEvent.Ammo.Count <= 0)
         {
-            _audioSystem.PlayEntity(component.SoundEmpty, Filter.Pvs(weapon), weapon, true, AudioParams.Default);
+            _audioSystem.PlayEntity(ent.Comp.SoundEmpty, Filter.Pvs(weapon), weapon, true, AudioParams.Default);
             ShowExecutionPopup("execution-popup-gun-empty", Filter.Pvs(weapon), PopupType.Medium, attacker, victim, weapon);
             return;
         }
 
         // Information about the ammo like damage
-        DamageSpecifier damage = new DamageSpecifier();
+        DamageSpecifier damage = new();
+        SuicideExplosionInfo? explosiveToTrigger = null;
+        string? firedPrototypeId = null;
 
         // Get some information from IShootable
-        var ammoUid = ev.Ammo[0].Entity;
-        switch (ev.Ammo[0].Shootable)
+        var ammoUid = takeAmmoEvent.Ammo[0].Entity;
+        switch (takeAmmoEvent.Ammo[0].Shootable)
         {
             //🌟Starlight🌟 start
             case HitScanCartridgeAmmoComponent cartridge:
                 var hitscanProto = _prototypeManager.Index(cartridge.Hitscan);
+                firedPrototypeId = cartridge.Hitscan.Id;
+
                 if (hitscanProto.Damage is not null)
                     damage = hitscanProto.Damage * hitscanProto.Count;
 
                 cartridge.Spent = true;
                 _appearanceSystem.SetData(ammoUid!.Value, AmmoVisuals.Spent, true);
+
                 Dirty(ammoUid.Value, cartridge);
+
+                if (cartridge.DeleteOnSpawn)
+                    Del(ammoUid.Value);
 
                 break;
             //🌟Starlight🌟 end
             case CartridgeAmmoComponent cartridge:
                 // Get the damage value
                 var prototype = _prototypeManager.Index<EntityPrototype>(cartridge.Prototype);
-                prototype.TryGetComponent<ProjectileComponent>(out var projectileA, _componentFactory); // sloth forgive me
-                if (projectileA != null)
+                firedPrototypeId = cartridge.Prototype.Id;
+                prototype.TryGetComponent<ProjectileComponent>(out var projectilePrototype, _componentFactory);
+
+                if (projectilePrototype != null)
+                    damage = projectilePrototype.Damage;
+
+                else if (prototype.TryGetComponent<HitscanBasicDamageComponent>(out var hitscanDamage, _componentFactory) && hitscanDamage != null)
+                    damage = hitscanDamage.Damage;
+
+                if (prototype.TryGetComponent<ExplosiveComponent>(out var explosiveProto, _componentFactory) && explosiveProto != null)
                 {
-                    damage = projectileA.Damage;
+                    explosiveToTrigger = new SuicideExplosionInfo(
+                        explosiveProto.ExplosionType,
+                        explosiveProto.TotalIntensity,
+                        explosiveProto.IntensitySlope,
+                        explosiveProto.MaxIntensity,
+                        explosiveProto.TileBreakScale);
                 }
-                prototype.TryGetComponent<ProjectileSpreadComponent>(out var projectilespreaderA, _componentFactory);
-                if (projectilespreaderA != null)
-                {
-                    damage *= projectilespreaderA.Count;
-                }
+
+                prototype.TryGetComponent<ProjectileSpreadComponent>(out var projectileSpread, _componentFactory);
+
+                if (projectileSpread != null)
+                    damage *= projectileSpread.Count;
 
                 // Expend the cartridge
                 cartridge.Spent = true;
                 _appearanceSystem.SetData(ammoUid!.Value, AmmoVisuals.Spent, true);
                 Dirty(ammoUid.Value, cartridge);
 
+                if (cartridge.DeleteOnSpawn)
+                    Del(ammoUid.Value);
+
                 break;
 
-            case AmmoComponent newAmmo:
-                TryComp<ProjectileComponent>(ammoUid, out var projectileB);
-                if (projectileB != null)
+            case AmmoComponent:
+                if (ammoUid != null)
+                    firedPrototypeId = MetaData(ammoUid.Value).EntityPrototype?.ID;
+
+                TryComp<ProjectileComponent>(ammoUid, out var projectileAmmo);
+
+                if (projectileAmmo != null)
+                    damage = projectileAmmo.Damage;
+
+                else if (ammoUid != null && TryComp<HitscanBasicDamageComponent>(ammoUid, out var hitscanAmmoDamage) && !hitscanAmmoDamage.Damage.Empty)
+                    damage = hitscanAmmoDamage.Damage;
+
+                if (ammoUid != null && TryComp<ExplosiveComponent>(ammoUid.Value, out var explosiveAmmo))
                 {
-                    damage = projectileB.Damage;
+                    explosiveToTrigger = new SuicideExplosionInfo(
+                        explosiveAmmo.ExplosionType,
+                        explosiveAmmo.TotalIntensity,
+                        explosiveAmmo.IntensitySlope,
+                        explosiveAmmo.MaxIntensity,
+                        explosiveAmmo.TileBreakScale);
                 }
-                Del(ammoUid);
+
+                if (ammoUid != null)
+                    Del(ammoUid.Value);
+
+                break;
+
+            case HitscanAmmoComponent:
+                if (ammoUid != null)
+                    firedPrototypeId = MetaData(ammoUid.Value).EntityPrototype?.ID;
+
+                if (ammoUid != null && TryComp<HitscanBasicDamageComponent>(ammoUid, out var hitscanAmmo) && !hitscanAmmo.Damage.Empty)
+                    damage = hitscanAmmo.Damage;
+
+                if (ammoUid != null)
+                    Del(ammoUid.Value);
+
                 break;
 
             case HitscanPrototype hitscan:
+                firedPrototypeId = hitscan.ID;
                 damage = hitscan.Damage!;
                 break;
 
@@ -415,27 +503,210 @@ public sealed class ExecutionSystem : EntitySystem
                 throw new ArgumentOutOfRangeException();
         }
 
-        // Gun successfully fired, deal damage
-        _damageableSystem.ChangeDamage(victim, damage * DamageModifier, true, useVariance: false, ignoreGlobalModifiers: true);
-        _audioSystem.PlayEntity(component.SoundGunshot, Filter.Pvs(weapon), weapon, false, AudioParams.Default);
+        var forceLethal = !IsNonLethalAmmo(firedPrototypeId);
+        var isExplosive = explosiveToTrigger != null;
+
+        if (isExplosive && forceLethal)
+        {
+            var explosionType = _prototypeManager.Index(explosiveToTrigger!.Value.ExplosionType);
+            ApplyExecutionDamage(victim, weapon, explosionType.DamagePerIntensity, forceLethal: true, ExplosiveOverkillFractionMin, ExplosiveOverkillFractionMax);
+
+            if (TryComp<BloodstreamComponent>(victim, out var bloodstream))
+                _bloodstreamSystem.SpillAllSolutions((victim, bloodstream));
+        }
+
+        else
+            ApplyExecutionDamage(victim, weapon, damage, forceLethal, OverkillFractionMin, OverkillFractionMax);
+
+        if (explosiveToTrigger != null)
+        {
+            var explosive = explosiveToTrigger.Value;
+            _explosionSystem.QueueExplosion(
+                victim,
+                explosive.ExplosionType,
+                explosive.TotalIntensity * SuicideExplosionIntensityScale,
+                explosive.IntensitySlope,
+                explosive.MaxIntensity * SuicideExplosionIntensityScale,
+                explosive.TileBreakScale,
+                SuicideExplosionMaxTileBreak,
+                SuicideExplosionCanCreateVacuum,
+                attacker);
+        }
+        _audioSystem.PlayEntity(ent.Comp.SoundGunshot, Filter.Pvs(weapon), weapon, false, AudioParams.Default);
 
         // Popups
-        if (attacker != victim)
+
+        var internalKey = attacker != victim
+            ? "execution-popup-gun-complete-internal"
+            : "suicide-popup-gun-complete-internal";
+
+        var externalKey = attacker != victim
+            ? "execution-popup-gun-complete-external"
+            : "suicide-popup-gun-complete-external";
+
+
+        ShowExecutionPopup(internalKey, Filter.Entities(attacker), PopupType.LargeCaution, attacker, victim, weapon);
+        ShowExecutionPopup(externalKey, Filter.PvsExcept(attacker), PopupType.LargeCaution, attacker, victim, weapon);
+    }
+
+    // Чтобы не убивало от пустых патрон
+    // Вероятно можно было сделать это более элегантно, но лень переделывать сейча. Сорян
+    private bool PrototypeHasLethalEffect(DamageableComponent damageable, EntProtoId ammoPrototype)
+    {
+        var proto = _prototypeManager.Index<EntityPrototype>(ammoPrototype);
+
+        if (proto.TryGetComponent<ExplosiveComponent>(out _, _componentFactory))
+            return true;
+
+        DamageSpecifier? damage = null;
+
+        if (proto.TryGetComponent<ProjectileComponent>(out var projectile, _componentFactory) && projectile != null && !projectile.Damage.Empty)
+            damage = projectile.Damage;
+
+        else if (proto.TryGetComponent<HitscanBasicDamageComponent>(out var hitscan, _componentFactory) && hitscan != null && !hitscan.Damage.Empty)
+            damage = hitscan.Damage;
+
+        if (damage == null)
+            return false;
+
+        foreach (var (type, value) in damage.DamageDict)
         {
-            ShowExecutionPopup("execution-popup-gun-complete-internal", Filter.Entities(attacker), PopupType.Medium, attacker, victim, weapon);
-            ShowExecutionPopup("execution-popup-gun-complete-external", Filter.PvsExcept(attacker), PopupType.LargeCaution, attacker, victim, weapon);
+            if (value > FixedPoint2.Zero && damageable.Damage.DamageDict.ContainsKey(type))
+                return true;
         }
-        else
+
+        return false;
+    }
+
+    private static readonly string[] NonLethalAmmoIdTokens =
+    {
+        "Practice",
+        "Rubber",
+    };
+
+    private static bool IsNonLethalAmmo(string? prototypeId)
+    {
+        if (string.IsNullOrWhiteSpace(prototypeId))
+            return false;
+
+        foreach (var token in NonLethalAmmoIdTokens)
         {
-            ShowExecutionPopup("suicide-popup-gun-complete-internal", Filter.Entities(attacker), PopupType.LargeCaution, attacker, victim, weapon);
-            ShowExecutionPopup("suicide-popup-gun-complete-external", Filter.PvsExcept(attacker), PopupType.LargeCaution, attacker, victim, weapon);
+            if (prototypeId.Contains(token, StringComparison.OrdinalIgnoreCase))
+                return true;
         }
+
+        return false;
+    }
+
+    private static DamageSpecifier FilterToSupportedDamage(DamageableComponent damageable, DamageSpecifier damage)
+    {
+        if (damage.Empty)
+            return new DamageSpecifier();
+
+        var filtered = new DamageSpecifier();
+
+        foreach (var (type, value) in damage.DamageDict)
+        {
+            if (value <= FixedPoint2.Zero)
+                continue;
+
+            if (!damageable.Damage.DamageDict.ContainsKey(type))
+                continue;
+
+            filtered.DamageDict[type] = value;
+        }
+
+        return filtered;
+    }
+
+    private bool ApplyExecutionDamage(
+        EntityUid victim,
+        EntityUid weapon,
+        DamageSpecifier baseDamage,
+        bool forceLethal,
+        float overkillFractionMin,
+        float overkillFractionMax)
+    {
+        if (!TryComp<DamageableComponent>(victim, out var damageable))
+            return false;
+
+        var damage = FilterToSupportedDamage(damageable, baseDamage);
+        if (damage.Empty || !damage.AnyPositive())
+            return false;
+
+        if (!forceLethal)
+        {
+            _damageableSystem.ChangeDamage(
+                victim,
+                damage,
+                ignoreResistances: false,
+                origin: weapon,
+                useVariance: false,
+                ignoreGlobalModifiers: false);
+
+            return true;
+        }
+
+        if (!TryComp<MobThresholdsComponent>(victim, out var thresholds))
+            return false;
+
+        damage.DamageDict.Remove(StructuralDamageType);
+        if (damage.Empty || !damage.AnyPositive())
+            return false;
+
+        var lethalRemaining = thresholds.Thresholds.Keys.Last() - damageable.TotalDamage;
+        if (lethalRemaining <= FixedPoint2.Zero)
+            return true;
+
+        var overkillFraction = _random.NextFloat(overkillFractionMin, overkillFractionMax);
+        var overkill = lethalRemaining * overkillFraction;
+        var totalToApply = lethalRemaining + overkill;
+
+        var finalDamage = DistributeDamage(damage, totalToApply);
+        if (finalDamage.Empty || !finalDamage.AnyPositive())
+            return false;
+
+        _damageableSystem.ChangeDamage(
+            victim,
+            finalDamage,
+            ignoreResistances: true,
+            origin: weapon,
+            useVariance: false,
+            ignoreGlobalModifiers: true);
+
+        return true;
+    }
+
+    private static DamageSpecifier DistributeDamage(DamageSpecifier weights, FixedPoint2 total)
+    {
+        if (total <= FixedPoint2.Zero)
+            return new DamageSpecifier();
+
+        var result = new DamageSpecifier(weights);
+        var weightsTotal = result.GetTotal();
+        if (weightsTotal <= FixedPoint2.Zero)
+            return new DamageSpecifier();
+
+        foreach (var type in result.DamageDict.Keys.ToArray())
+        {
+            var value = result.DamageDict[type];
+            if (value <= FixedPoint2.Zero)
+            {
+                result.DamageDict.Remove(type);
+                continue;
+            }
+
+            // Сделано по патерну SharedSuicideSystem
+            result.DamageDict[type] = Math.Ceiling((double)(value * total / weightsTotal));
+        }
+
+        return result;
     }
 
     private void ShowExecutionPopup(string locString, Filter filter, PopupType type,
         EntityUid attacker, EntityUid victim, EntityUid weapon)
     {
-        _popupSystem.PopupEntity(Loc.GetString(
+        _popupSystem.PopupEntity(_loc.GetString(
                 locString, ("attacker", attacker), ("victim", victim), ("weapon", weapon)),
             attacker, filter, true, type);
     }
