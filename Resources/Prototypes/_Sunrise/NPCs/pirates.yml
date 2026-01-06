@@ -16,10 +16,15 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      125: Critical
-      150: Dead
+      120: Critical
+      140: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 135
   - type: Stamina
-    baseCritThreshold: 125
+    baseCritThreshold: 150
   - type: DamageStateVisuals
   - type: RotationVisuals
     defaultRotation: 90
@@ -54,7 +59,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      85: Critical
+      80: Critical
       100: Dead
   - type: PassiveDamage
     allowedStates:
@@ -380,12 +385,12 @@
       state: inhand-left
   - type: BasicEntityAmmoProvider
     proto: FireBomb
-    capacity: 5
-    count: 5
+    capacity: 3
+    count: 3
   - type: Gun
     projectileSpeed: 6
     showExamineText: false
-    fireRate: 1
+    fireRate: 0.5
     minAngle: 45
     maxAngle: 120
     selectedMode: SemiAuto
