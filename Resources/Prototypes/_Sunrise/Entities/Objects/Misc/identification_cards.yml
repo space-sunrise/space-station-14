@@ -158,6 +158,27 @@
 
 - type: entity
   parent: IDCardStandard
+  id: PrisonTraineeIDCard
+  name: prison trainee ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: orange-space-prison
+    - state: stripe_top
+      color: "#ff8c00"
+    - state: stripe_bottom
+      color: "#cc7000"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset-old
+      state: PrisonGuard
+  - type: Item
+    heldPrefix: space-prison
+  - type: PresetIdCard
+    job: PrisonTrainee
+
+- type: entity
+  parent: IDCardStandard
   id: PrisonChefIDCard
   name: prison chef ID card
   components:
@@ -273,25 +294,6 @@
     heldPrefix: space-prison
   - type: PresetIdCard
     job: PlanetPrisoner
-
-- type: entity
-  parent: IDCardStandard
-  id: GuardIDCard
-  name: guard ID card
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Misc/id_cards.rsi
-    layers:
-    - state: space-prison
-    - state: department-side
-      color: *color-security
-    - sprite: *sunrise-icon-rsi
-      offset: *icon-offset
-      state: PrisonGuard
-  - type: Item
-    heldPrefix: space-prison
-  - type: PresetIdCard
-    job: PrisonGuard
 
 - type: entity
   parent: IDCardStandard

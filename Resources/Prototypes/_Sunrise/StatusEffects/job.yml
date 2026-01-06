@@ -77,6 +77,13 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconPrisonTrainee
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: PrisonGuard
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconPrisonPilot
   icon:
     sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi

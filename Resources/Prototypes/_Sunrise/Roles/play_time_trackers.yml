@@ -74,6 +74,9 @@
   id: JobPrisonGuard
 
 - type: playTimeTracker
+  id: JobPrisonTrainee
+
+- type: playTimeTracker
   id: JobPrisonPilot
 
 - type: playTimeTracker

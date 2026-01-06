@@ -190,6 +190,20 @@
     - state: security_officer
 
 - type: entity
+  id: SpawnPointPrisonTrainee
+  parent: SpawnPointJobBase
+  name: prison's trainee
+  components:
+  - type: SpawnPoint
+    spawn_type: Job
+    job_id: PrisonTrainee
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisonworker
+
+- type: entity
   id: SpawnPointPrisonPilot
   parent: SpawnPointJobBase
   name: prison's pilot

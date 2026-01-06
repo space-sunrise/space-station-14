@@ -93,6 +93,8 @@ ent-ClothingHeadHatCapPrisonScientistMetus = prison scientist cap
     .desc = Covered in reagent stains and a strange smell, on the faded stripe where an access mark once was, there are now only traces of those who crossed the boundaries of science.
 ent-ClothingHeadHatCapPrisonWorkerMetus = prison worker cap
     .desc = Fabric darkened by ore dust, burn marks along the edge, as if worn by those who stood closest to what should not breathe.
+ent-ClothingHeadHatCapPrisonTraineeMetus = prison trainee hat
+    .desc = Stylish orange prison trainee hat.
 # Metus berets
 ent-ClothingHeadHatBeretPrisonDoctorMetus = prison doctor beret
     .desc = Soft, reserved like its owner, used to cold bodies and warm indifference.
@@ -104,6 +106,8 @@ ent-ClothingHeadHatBeretPrisonScientistMetus = prison scientist beret
     .desc = Neat but dull, belongs to those who have understood too much and now just pretend to work.
 ent-ClothingHeadHatBeretPrisonWorkerMetus = prison worker beret
     .desc = Crooked, but worn with pride, for its wearer has worked for many more than once.
+ent-ClothingHeadHatBeretPrisonTraineeMetus = prison trainee beret
+    .desc = Fresh and new, still unaware of the weight of long service, marked with orange color showing the path to the future.
 # Metus caps
 ent-ClothingHeadCapPrisonDoctorMetus = prison doctor cap
     .desc = Simple and clean, but cracked from washing, a symbol for those who heal the broken by the system.
@@ -115,3 +119,5 @@ ent-ClothingHeadCapPrisonScientistMetus = prison scientist cap
     .desc = Worn low, a sign of one who carries samples but doesn't make discoveries.
 ent-ClothingHeadCapPrisonWorkerMetus = prison worker cap
     .desc = Rough and worn, always dirty, worn by those who are first in line for orders and last at the exit.
+ent-ClothingHeadCapPrisonTraineeMetus = prison trainee cap
+    .desc = Simple and clean, but new, a symbol for those who are just starting their path in the prison system.
