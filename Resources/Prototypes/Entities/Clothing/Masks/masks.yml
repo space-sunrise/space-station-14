@@ -43,6 +43,13 @@
   - type: Pierceable
     level: Metal
   # Surnise-End
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
 
 - type: entity
   parent: [ClothingMaskGas, BaseSyndicateContraband]
@@ -56,8 +63,17 @@
     sprite: Clothing/Mask/gassyndicate.rsi
   - type: FlashImmunity
   - type: EyeProtection
+  # Surnise-Start
   - type: Pierceable
     level: Metal
+  # Surnise-End
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
 
 - type: entity
   parent: ClothingMaskGas
@@ -69,6 +85,10 @@
     sprite: Clothing/Mask/gasatmos.rsi
   - type: Clothing
     sprite: Clothing/Mask/gasatmos.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.9 # Sunrise-edit
 
 - type: entity
   parent: [ClothingMaskGasAtmos, BaseCommandContraband]
@@ -106,6 +126,13 @@
     sprite: Clothing/Mask/gasexplorer.rsi
   - type: Clothing
     sprite: Clothing/Mask/gasexplorer.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.95
+        Heat: 0.95
 
 - type: entity
   parent: ClothingMaskPullableBase
@@ -144,6 +171,13 @@
     sprite: Clothing/Mask/medicalsecurity.rsi
   - type: Pierceable
     level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
 
 - type: entity
   parent: ClothingMaskPullableBase
@@ -227,6 +261,13 @@
     sprite: Clothing/Mask/clown_security.rsi
   - type: Clothing
     sprite: Clothing/Mask/clown_security.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
 
 - type: entity
   parent: ClothingMaskBase
@@ -367,6 +408,13 @@
     hideOnToggle: true
   - type: Pierceable
     level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.95
+        Heat: 0.95
   - type: FlashImmunity # Sunrise-Edit
 
 - type: entity
@@ -381,6 +429,13 @@
     sprite: Clothing/Mask/merc.rsi
   - type: Pierceable
     level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.95
+        Heat: 0.95
 
 - type: entity
   parent: [ ClothingMaskGas, BaseCentcommContraband ]
@@ -405,6 +460,13 @@
   - type: EyeProtection
   - type: Pierceable
     level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
 
 - type: entity
   parent: ClothingMaskGasERT
@@ -423,6 +485,13 @@
     - Hair
     - HeadTop
     - HeadSide
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.90
+        Heat: 0.90
 
 - type: entity
   parent: ClothingMaskBase
