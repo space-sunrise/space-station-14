@@ -219,7 +219,7 @@ public sealed class SharedCarryingSystem : EntitySystem
         if (xform.ParentUid == xform.GridUid)
             return;
 
-        DropCarried(uid, component.Carried);
+        // DropCarried(uid, component.Carried);
     }
 
 
