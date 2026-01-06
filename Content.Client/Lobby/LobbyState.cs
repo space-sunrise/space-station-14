@@ -411,7 +411,7 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            Lobby!.LobbyAnimation.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(new ResPath(lobbyAnimationPrototype.RawPath), lobbyAnimationPrototype.State));
+            Lobby!.LobbyAnimation.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(new ResPath(lobbyAnimationPrototype.Animation), lobbyAnimationPrototype.State));
             Lobby!.LobbyAnimation.DisplayRect.TextureScale = lobbyAnimationPrototype.Scale;
         }
 
