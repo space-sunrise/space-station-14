@@ -35,14 +35,14 @@
     sprite: Clothing/Mask/gassecurity.rsi
   - type: Clothing
     sprite: Clothing/Mask/gassecurity.rsi
-  # Surnise-Start
+  # Sunrise-Start
   - type: Tag
     tags:
     - HamsterWearable
     - WhitelistChameleon
   - type: Pierceable
     level: Metal
-  # Surnise-End
+  # Sunrise-End
   - type: Armor
     modifiers:
       coefficients:
@@ -63,10 +63,10 @@
     sprite: Clothing/Mask/gassyndicate.rsi
   - type: FlashImmunity
   - type: EyeProtection
-  # Surnise-Start
+  # Sunrise-Start
   - type: Pierceable
     level: Metal
-  # Surnise-End
+  # Sunrise-End
   - type: Armor
     modifiers:
       coefficients:

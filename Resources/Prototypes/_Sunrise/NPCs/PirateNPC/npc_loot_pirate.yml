@@ -27,7 +27,7 @@
       back:
       - state: equipped-BACKPACK
   - type: Item
-    size: Normal
+    size: Huge
     inhandVisuals:
       left:
       - state: inhand-left

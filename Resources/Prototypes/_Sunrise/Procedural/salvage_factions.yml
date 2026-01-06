@@ -124,7 +124,7 @@
       prob: 0.04
     - proto: MobPirateT2Mech
       cost: 7
-      prob: 0.04
+      prob: 0.03
     - proto: MobPirateT2Juggernaut
       cost: 7
       prob: 0.04
