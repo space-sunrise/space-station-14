@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Client._Sunrise.Contributors;
 using Content.Client._Sunrise.Latejoin;
+using Content.Client._Sunrise.Lobby;
 using Content.Client._Sunrise.ServersHub;
 using Content.Client.Audio;
 using Content.Client.GameTicking.Managers;
@@ -14,6 +15,7 @@ using Content.Shared._Sunrise.Contributors;
 using Robust.Client;
 using Robust.Client.Console;
 using Robust.Client.ResourceManagement;
+using Robust.Client.Upload;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
@@ -52,9 +54,12 @@ namespace Content.Client.Lobby
         [Dependency] private readonly ContributorsManager _contributorsManager = default!;
         [Dependency] private readonly ChangelogManager _changelogManager = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
+        [Dependency] private readonly NetworkResourceManager _networkResourceManager = default!;
 
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
+        private LobbyResourceSystem? _lobbyResourceSystem;
 
         protected override Type? LinkedScreenType { get; } = typeof(LobbyGui);
         public LobbyGui? Lobby;
@@ -115,6 +120,13 @@ namespace Content.Client.Lobby
             _cfg.OnValueChanged(SunriseCCVars.LobbyArt, OnLobbyArtChanged, true);
             _cfg.OnValueChanged(SunriseCCVars.LobbyAnimation, OnLobbyAnimationChanged, true);
             _cfg.OnValueChanged(SunriseCCVars.LobbyParallax, OnLobbyParallaxChanged, true);
+
+            // Get lobby resource system
+            _lobbyResourceSystem = _entitySystemManager.GetEntitySystem<LobbyResourceSystem>();
+
+            // Subscribe to resource loaded events
+            _lobbyResourceSystem.AnimationResourceLoaded += OnAnimationResourceLoaded;
+            _lobbyResourceSystem.ArtResourceLoaded += OnArtResourceLoaded;
             // Sunrise-end
 
             Lobby.CharacterPreview.CharacterSetupButton.OnPressed += OnSetupPressed;
@@ -150,6 +162,13 @@ namespace Content.Client.Lobby
 
             _serversHubManager.ServersDataListChanged -= RefreshServersHubHeader;
             _contributorsManager.ContributorsDataListChanged -= RefreshContributorsHeader;
+
+            // Unsubscribe from resource loaded events
+            if (_lobbyResourceSystem != null)
+            {
+                _lobbyResourceSystem.AnimationResourceLoaded -= OnAnimationResourceLoaded;
+                _lobbyResourceSystem.ArtResourceLoaded -= OnArtResourceLoaded;
+            }
         }
 
         private void RefreshServersHubHeader(List<ServerHubEntry> servers)
@@ -411,8 +430,54 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            Lobby!.LobbyAnimation.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(new ResPath(lobbyAnimationPrototype.Animation), lobbyAnimationPrototype.State));
-            Lobby!.LobbyAnimation.DisplayRect.TextureScale = lobbyAnimationPrototype.Scale;
+            var rsiPath = new ResPath(lobbyAnimationPrototype.Animation);
+
+            // Check if resource is available, request if not
+            var isAvailable = _lobbyResourceSystem?.EnsureAnimationResource(lobbyAnimation, rsiPath.ToString()) ?? false;
+
+            ResPath targetPath;
+            if (isAvailable)
+            {
+                // Resource is available, use uploaded path
+                targetPath = (_lobbyResourceSystem?.GetAnimationUploadedPath(rsiPath.ToString()) ?? rsiPath).ToRootedPath();
+            }
+            else
+            {
+                // Resource is being requested, try to use uploaded path first
+                var uploadedPath = _lobbyResourceSystem?.GetAnimationUploadedPath(rsiPath.ToString()) ?? rsiPath;
+                var metaPath = (uploadedPath / "meta.json").ToRootedPath();
+
+                // Check if uploaded resource exists
+                if (_resource.ContentFileExists(metaPath))
+                {
+                    targetPath = uploadedPath.ToRootedPath();
+                }
+                else
+                {
+                    // Resource not available yet, don't try to load it (will cause error)
+                    // The resource will be loaded when it arrives via NetworkResourceUploadMessage
+                    Logger.Debug($"Lobby animation {lobbyAnimation} not yet loaded, waiting for server...");
+                    return;
+                }
+            }
+
+            // Try to set the animation, handle errors gracefully
+            try
+            {
+                if (_resourceCache.TryGetResource<RSIResource>(targetPath, out var rsiResource))
+                {
+                    Lobby!.LobbyAnimation.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(targetPath, lobbyAnimationPrototype.State));
+                    Lobby!.LobbyAnimation.DisplayRect.TextureScale = lobbyAnimationPrototype.Scale;
+                }
+                else
+                {
+                    Logger.Warning($"Failed to load lobby animation RSI: {targetPath}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Warning($"Exception while setting lobby animation {lobbyAnimation}: {ex.Message}");
+            }
         }
 
         private void SetLobbyArt(string lobbyArt)
@@ -426,7 +491,54 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            Lobby!.LobbyArt.Texture = _resourceCache.GetResource<TextureResource>(lobbyArtPrototype.Background);
+            var imagePath = lobbyArtPrototype.Background;
+
+            // Check if resource is available, request if not
+            var isAvailable = _lobbyResourceSystem?.EnsureArtResource(lobbyArt, imagePath) ?? false;
+
+            ResPath targetPath;
+            if (isAvailable)
+            {
+                // Resource is available, use uploaded path
+                targetPath = (_lobbyResourceSystem?.GetArtUploadedPath(imagePath) ?? imagePath).ToRootedPath();
+            }
+            else
+            {
+                // Resource is being requested, try to use uploaded path first
+                var uploadedPath = _lobbyResourceSystem?.GetArtUploadedPath(imagePath) ?? imagePath;
+                var uploadedPathRooted = uploadedPath.ToRootedPath();
+
+            // Check if uploaded resource exists using NetworkResourceManager
+            var relativePath = new ResPath("_Sunrise") / "Lobby" / "Arts" / imagePath.Filename;
+            if (_networkResourceManager?.FileExists(relativePath) == true || _resource.ContentFileExists(uploadedPathRooted))
+            {
+                targetPath = uploadedPathRooted;
+            }
+            else
+            {
+                // Resource not available yet, don't try to load it (will cause error)
+                // The resource will be loaded when it arrives via NetworkResourceUploadMessage
+                Logger.Debug($"Lobby art {lobbyArt} not yet loaded, waiting for server...");
+                return;
+            }
+            }
+
+            // Try to set the art, handle errors gracefully
+            try
+            {
+                if (_resourceCache.TryGetResource<TextureResource>(targetPath, out var textureResource))
+                {
+                    Lobby!.LobbyArt.Texture = textureResource.Texture;
+                }
+                else
+                {
+                    Logger.Warning($"Failed to load lobby art texture: {targetPath}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Warning($"Exception while setting lobby art {lobbyArt}: {ex.Message}");
+            }
         }
 
         private void SetLobbyParallax(string lobbyParallax)
@@ -474,6 +586,47 @@ namespace Content.Client.Lobby
                 return;
 
             SetLobbyParallax(_gameTicker.LobbyParallax!);
+        }
+
+        private void OnAnimationResourceLoaded(string animationId)
+        {
+            if (_lobbyResourceSystem == null)
+                return;
+
+            Logger.Debug($"OnAnimationResourceLoaded called for {animationId}");
+
+            // Retry setting the animation when resource is loaded
+            var currentAnimation = _cfg.GetCVar(SunriseCCVars.LobbyAnimation);
+            if (currentAnimation == animationId || (currentAnimation == "Random" && _gameTicker.LobbyAnimation == animationId))
+            {
+                Logger.Debug($"Setting lobby animation to {animationId} after resource loaded");
+                SetLobbyAnimation(animationId);
+            }
+            else
+            {
+                Logger.Debug($"Animation {animationId} loaded but current is {currentAnimation}, not updating");
+            }
+        }
+
+        private void OnArtResourceLoaded(string artId)
+        {
+            if (_lobbyResourceSystem == null)
+                return;
+
+            Logger.Debug($"OnArtResourceLoaded called for {artId}");
+
+            // Always check and update the current art setting when any resource loads
+            // This ensures that if the user changed the setting while waiting for a resource,
+            // it will be applied once the resource is available
+            var currentArt = _cfg.GetCVar(SunriseCCVars.LobbyArt);
+            var artToSet = currentArt == "Random" ? _gameTicker.LobbyArt : currentArt;
+
+            if (artToSet != null)
+            {
+                Logger.Debug($"Checking if current art {artToSet} is now available after {artId} loaded");
+                // Try to set the current art - it will check availability and apply if ready
+                SetLobbyArt(artToSet);
+            }
         }
 
         // Sunrise-end
