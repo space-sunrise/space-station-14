@@ -7,6 +7,9 @@
     - !type:DepartmentTimeRequirement
       department: Medical
       time: 7200 # 2 hrs
+    - !type:RoleTimeRequirement
+      role: JobChemist
+      time: 7200 #2 hrs
     - !type:DepartmentTimeRequirement
       department: Security
       time: 7200 # 2 hrs
