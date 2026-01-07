@@ -65,6 +65,7 @@ public sealed partial class ExecutionSystem : EntitySystem
     private const int SuicideExplosionMaxTileBreak = 0;
     private const bool SuicideExplosionCanCreateVacuum = false;
     private const string GunChamberContainerId = "gun_chamber";
+    private const string GunMagazineContainerId = "gun_magazine";
     private const string StructuralDamageType = "Structural";
 
     private static readonly string[] NonLethalAmmoIdTokens =

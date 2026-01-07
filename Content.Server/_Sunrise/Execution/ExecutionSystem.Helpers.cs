@@ -13,6 +13,7 @@ using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Containers;
 
 namespace Content.Server._Sunrise.Execution;
 
@@ -90,14 +91,62 @@ public sealed partial class ExecutionSystem
         if (!TryComp<GunComponent>(weapon, out var gun) || !_gunSystem.CanShoot(gun))
             return false;
 
-        if (TryComp<DamageableComponent>(victim, out var damageable) &&
-            TryComp<BatteryAmmoProviderComponent>(weapon, out var battery) &&
-            !PrototypeHasLethalEffect(damageable, battery.Prototype))
+        if (TryComp<DamageableComponent>(victim, out var damageable))
         {
-            return false;
+            if (TryComp<BatteryAmmoProviderComponent>(weapon, out var battery) &&
+                !PrototypeHasLethalEffect(damageable, battery.Prototype))
+            {
+                return false;
+            }
+
+            if (HasNonLethalAmmoPrototype(weapon))
+                return false;
         }
 
         return true;
+    }
+
+    private bool HasNonLethalAmmoPrototype(EntityUid weapon)
+    {
+        if (TryComp<BallisticAmmoProviderComponent>(weapon, out var ballistic) &&
+            ballistic.Proto != null &&
+            IsNonLethalAmmo(ballistic.Proto.Value))
+        {
+            return true;
+        }
+
+        if (TryComp<RevolverAmmoProviderComponent>(weapon, out var revolver) &&
+            revolver.FillPrototype != null &&
+            IsNonLethalAmmo(revolver.FillPrototype))
+        {
+            return true;
+        }
+
+        if (TryComp<BasicEntityAmmoProviderComponent>(weapon, out var basic) &&
+            IsNonLethalAmmo(basic.Proto))
+        {
+            return true;
+        }
+
+        if (_containerSystem.TryGetContainer(weapon, GunMagazineContainerId, out var container) &&
+            container is ContainerSlot slot &&
+            slot.ContainedEntity is { } magEntity)
+        {
+            if (TryComp<BallisticAmmoProviderComponent>(magEntity, out var magBallistic) &&
+                magBallistic.Proto != null &&
+                IsNonLethalAmmo(magBallistic.Proto.Value))
+            {
+                return true;
+            }
+
+            if (TryComp<BasicEntityAmmoProviderComponent>(magEntity, out var magBasic) &&
+                IsNonLethalAmmo(magBasic.Proto))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // Чтобы не убивало от пустых патрон
