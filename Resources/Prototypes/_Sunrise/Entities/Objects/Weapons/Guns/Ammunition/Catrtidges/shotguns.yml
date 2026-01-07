@@ -213,9 +213,9 @@
       ammo:
         reagents:
         - ReagentId: Holywater
-          Quantity: 10
+          Quantity: 4
   - type: SolutionTransfer
-    maxTransferAmount: 10
+    maxTransferAmount: 4
   - type: Tag
     tags:
     - Cartridge
