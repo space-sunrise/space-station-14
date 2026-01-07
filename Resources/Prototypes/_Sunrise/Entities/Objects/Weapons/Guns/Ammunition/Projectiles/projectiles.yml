@@ -58,8 +58,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 1.25
-        Slash: 1.25
+        Piercing: 1.5
+        Slash: 1.5
         Radiation: 2.5
 
 - type: entity

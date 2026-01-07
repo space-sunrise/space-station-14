@@ -36,8 +36,9 @@
         !type:String
         pda-magistrat
   - type: PdaBorderColor
-    borderColor: "#e6bd45"
-    accentVColor: "#3d3d40"
+    borderColor: "#3d3d40"
+    accentVColor: "#e6bd45"
+    accentHColor: "#2e4259"
   - type: Icon
     state: pda-magistrat
 
@@ -183,8 +184,9 @@
         !type:String
         pda-space-prison-boss
   - type: PdaBorderColor
-    borderColor: "#802d29"
-    accentHColor: "#111111"
+    borderColor: "#cc7014"
+    accentVColor: "#cc3d3d"
+    accentHColor: "#3d3d40"
   - type: Icon
     state: pda-space-prison-boss
 
@@ -202,8 +204,8 @@
         !type:String
         pda-space-prison-inspector
   - type: PdaBorderColor
-    borderColor: "#802d29"
-    accentHColor: "#584f70"
+    borderColor: "#cc7014"
+    accentVColor: "#2e4259"
   - type: Icon
     state: pda-space-prison-inspector
 
@@ -225,6 +227,15 @@
     accentVColor: "#cc5200"
   - type: Icon
     state: pda-space-prison-engineer
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge
+      - NetProbeCartridge
 
 - type: entity
   parent: SecurityMetusPDA
@@ -244,6 +255,14 @@
     accentVColor: "#7a2699"
   - type: Icon
     state: pda-space-prison-scientist
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge
 
 - type: entity
   parent: SecurityMetusPDA
@@ -263,6 +282,14 @@
     accentVColor: "#2f6e67"
   - type: Icon
     state: pda-space-prison-doctor
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
 
 - type: entity
   parent: SecurityMetusPDA
@@ -279,7 +306,7 @@
         pda-space-prison-chef
   - type: PdaBorderColor
     borderColor: "#cc7014"
-    accentVColor: "#198019"
+    accentVColor: "#a3b2cc"
   - type: Icon
     state: pda-space-prison-chef
 
@@ -297,10 +324,18 @@
         !type:String
         pda-space-prison-worker
   - type: PdaBorderColor
-    borderColor: "#6b3000"
-    accentVColor: "#4b0100"
+    borderColor: "#cc7014"
+    accentVColor: "#198019"
   - type: Icon
     state: pda-space-prison-worker
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge
 
 - type: entity
   parent: BasePDA
@@ -403,7 +438,8 @@
         pda-roboticist
   - type: PdaBorderColor
     borderColor: "#a3b2cc"
-    accentVColor: "#d95e00"
+    accentVColor: "#7a2699"
+    accentHColor: "#d95e00"
   - type: Icon
     state: pda-roboticist
 
@@ -445,9 +481,9 @@
         !type:String
         pda-representative
   - type: PdaBorderColor
-    borderColor: "#e6bd45"
-    accentVColor: "#4b78a6"
-    accentHColor: "#3d3d40"
+    borderColor: "#3d3d40"
+    accentVColor: "#e6bd45"
+    accentHColor: "#e6bd45"
   - type: Icon
     state: pda-representative
 

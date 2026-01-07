@@ -338,7 +338,7 @@
        pda-hydro
   # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#55804d"
+    borderColor: "#29722e"
     accentVColor: "#6dcc3d"
   # Sunrise-End
   - type: Icon
@@ -484,7 +484,7 @@
   # Sunrise-Start
   - type: PdaBorderColor
     borderColor: "#616266"
-    accentVColor: "#198019"
+    accentVColor: "#e6bd45"
   # Sunrise-End
   - type: Icon
     state: pda-chaplain
@@ -607,7 +607,7 @@
     state: pda-bartender
 
 - type: entity
-  parent: BaseWidePDA
+  parent: BasePDA # Sunrise-Edit
   id: LibrarianPDA
   name: librarian PDA
   description: Smells like books.
@@ -726,9 +726,9 @@
        pda-captain
   # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#e6bd45"
-    accentVColor: "#4b78a6"
-    accentHColor: "#4b78a6"
+    borderColor: "#2e4259"
+    accentVColor: "#e6bd45"
+    accentHColor: "#e6bd45"
   # Sunrise-End
   - type: Icon
     state: pda-captain
@@ -754,9 +754,9 @@
        pda-hop
   # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#627350"
-    accentVColor: "#4b78a6"
-    accentHColor: "#4b78a6"
+    borderColor: "#2e4259"
+    accentVColor: "#e6bd45"
+    accentHColor: "#cc3d3d"
   # Sunrise-End
   - type: Icon
     state: pda-hop
@@ -890,6 +890,7 @@
   - type: PdaBorderColor
     borderColor: "#a3b2cc"
     accentVColor: "#2f6e67"
+    accentHColor: "#2f6e67"
   # Sunrise-End
   - type: Icon
     state: pda-paramedic
@@ -1017,7 +1018,7 @@
   - type: PdaBorderColor
     borderColor: "#637199"
     accentVColor: "#cc3d3d"
-    accentHColor: "#a3b2cc"
+    accentHColor: "#cc3d3d"
   # Sunrise-End
   - type: Icon
     state: pda-warden
@@ -1550,8 +1551,8 @@
   # Sunrise-Start
   - type: PdaBorderColor
     borderColor: "#637199"
-    accentVColor: "#99461d"
-    accentHColor: "#cc3d3d"
+    accentVColor: "#cc3d3d"
+    accentHColor: "#99461d"
   # Sunrise-End
   - type: Icon
     state: pda-detective

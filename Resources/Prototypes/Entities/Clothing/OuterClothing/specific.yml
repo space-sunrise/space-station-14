@@ -24,9 +24,3 @@
           Slash: 0.95
           Heat: 0.90
       showArmorOnExamine: false
-  # Sunrise-Start
-    - type: Biocode
-      factions:
-      - Syndicate
-      - Thief
-  # Sunrise-End

@@ -21,6 +21,9 @@
     - proto: MobPirateT1Hunter
       cost: 5
       prob: 0.1
+    - proto: MobPirateT1HunterSmash
+      cost: 6
+      prob: 0.08
     # range
     - proto: MobPirateT1Pistol
       cost: 2
@@ -55,9 +58,22 @@
     - proto: MobPirateT1ScrapRifle
       cost: 6
       prob: 0.1
+    - proto: MobPirateT1Rifle
+      cost: 6
+      prob: 0.1
+    # borgs
+    - proto: MobPirateT1BorgAssault
+      cost: 5
+      prob: 0.01
+    - proto: MobPirateT1BorgMining
+      cost: 3
+      prob: 0.05
+    - proto: MobPirateT1BorgDerelict
+      cost: 2
+      prob: 0.07
     - proto: MobPirateT1Boss
       cost: 10
-      prob: 0.04
+      prob: 0.05
   configs:
     DefenseStructure: ComputerPirateExchanger
     Megafauna: MobPirateT1Boss
@@ -108,10 +124,20 @@
       prob: 0.04
     - proto: MobPirateT2Mech
       cost: 7
-      prob: 0.04
+      prob: 0.03
     - proto: MobPirateT2Juggernaut
       cost: 7
       prob: 0.04
+    # borgs
+    - proto: MobPirateT1BorgAssault
+      cost: 3
+      prob: 0.04
+    - proto: MobPirateT1BorgMining
+      cost: 2
+      prob: 0.06
+    - proto: MobPirateT1BorgDerelict
+      cost: 2
+      prob: 0.1
     - proto: MobPirateT2Boss
       cost: 10
       prob: 0.02
@@ -154,23 +180,33 @@
       prob: 0.1
     - proto: MobPirateT3Revolver
       cost: 2
-      prob: 0.1
+      prob: 0.08
     # rare
     - proto: MobPirateT3L6
       cost: 5
       prob: 0.04
     - proto: MobPirateT3RPD
       cost: 5
-      prob: 0.04
+      prob: 0.05
     - proto: MobPirateT3Grenadier
-      cost: 7
-      prob: 0.04
+      cost: 5
+      prob: 0.05
     - proto: MobPirateT3Infiltrator
-      cost: 7
+      cost: 5
       prob: 0.04
     - proto: MobPirateT3Sniper
-      cost: 7
-      prob: 0.04
+      cost: 5
+      prob: 0.03
+    # borgs
+    - proto: MobPirateT1BorgAssault
+      cost: 1
+      prob: 0.05
+    - proto: MobPirateT1BorgMining
+      cost: 1
+      prob: 0.02
+    - proto: MobPirateT1BorgDerelict
+      cost: 1
+      prob: 0.02
     - proto: MobPirateT3Boss
       cost: 10
       prob: 0.02

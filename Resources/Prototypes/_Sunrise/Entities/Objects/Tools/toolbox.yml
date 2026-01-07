@@ -1,0 +1,31 @@
+- type: entity
+  name: electrical toolbox
+  suffix: Pirate, Turret
+  parent: ToolboxElectricalTurret
+  id: ToolboxElectricalTurretPirate
+  description: A toolbox typically stocked with electrical gear.
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/Toolboxes/toolbox_thief.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Tools/Toolboxes/toolbox_thief.rsi
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 1
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              WeaponTurretPirateDisposable:
+                min: 1
+                max: 1

@@ -322,11 +322,8 @@
   - type: FlashOnTrigger
     range: 7
   - type: SpawnOnTrigger
-    keysIn:
-    - timer
     proto: GrenadeFlashEffect
     predicted: true
-  - type: ActiveTimerTrigger
   - type: DeleteOnTrigger
 
 - type: entity
@@ -371,6 +368,8 @@
     totalIntensity: 120 # about a ~4 tile radius
     canCreateVacuum: false
   - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
     sound:
       path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
   - type: EmitSoundOnSpawn
@@ -441,6 +440,8 @@
   - type: Ammo
     muzzleFlash: null
   - type: DeleteOnTrigger
+    keysIn:
+    - timer
 
 - type: entity
   id: BulletAirGrenade
@@ -585,6 +586,9 @@
     keysIn:
     - timer
     proto: GrenadeFlashEffect
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Effects/countdown.ogg
@@ -604,6 +608,8 @@
     fillPrototype: PelletClusterIncendiary
     capacity: 30
   - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
     sound:
       path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
   - type: SpawnOnTrigger
@@ -684,6 +690,8 @@
     sound:
       path: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
   - type: DeleteOnTrigger
+    keysIn:
+    - timer
 
 - type: entity
   id: BulletKineticTrash
@@ -782,6 +790,8 @@
     color: blue
     energy: 0.5
   - type: DeleteOnTrigger
+    keysIn:
+    - timer
 
 - type: entity
   id: BulletHeavyRifleArtillery

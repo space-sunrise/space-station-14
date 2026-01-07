@@ -74,6 +74,19 @@
   - type: HeldSpeedModifier
   - type: StaticPrice
     price: 2000
+  - type: ContainerContainer
+    containers:
+      beakerSlot: !type:ContainerSlot
+  - type: Inject
+    openCloseDelay: 1
+    autoClose: true
+    autoCloseDelay: 6
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        whitelist:
+          tags:
+          - FitsHardsuit
 
 #Pirate EVA
 - type: entity
@@ -151,6 +164,21 @@
     damageCoefficient: 0.75
   - type: ClothingSlowOnDamageModifier
     modifier: 0.5
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      beakerSlot: !type:ContainerSlot
+  - type: Inject
+    openCloseDelay: 1
+    autoClose: true
+    autoCloseDelay: 6
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        whitelist:
+          tags:
+          - FitsHardsuit
 
 - type: entity
   parent: ClothingOuterEVASuitPirateArmored
