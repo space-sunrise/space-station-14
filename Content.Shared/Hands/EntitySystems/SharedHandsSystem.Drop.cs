@@ -175,7 +175,6 @@ public abstract partial class SharedHandsSystem
             && (currentMapCoords.Position - TransformSystem.GetMapCoordinates(ent, userXform).Position).Length() <= MaxAnimationRange
             && MetaData(entity.Value).VisibilityMask == MetaData(ent).VisibilityMask) // Don't animate aghost pickups.
         {
-            var coordinateEntity = userXform.ParentUid.IsValid() ? userXform.ParentUid : ent.Owner;
             _storage.PlayPickupAnimation(entity.Value, userXform.Coordinates, currentCoords, itemXform.LocalRotation, ent);
         }
         // Sunrise-Edit
