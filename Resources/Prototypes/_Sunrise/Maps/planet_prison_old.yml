@@ -21,13 +21,16 @@
           PrisonChef: [ 1, 1 ]
           PrisonWorker: [ 2, 3 ]
           PrisonEngineer: [ 2, 3 ]
-          PrisonGuard: [ 20, -1 ]
           PlanetPrisoner: [ 4, 4 ]
       - type: RelativeJobsCount
         jobs:
         - targetJob: PlanetPrisoner
           dependency:
-            PrisonGuard: 2
+            HeadOfPrison: 2
+            PrisonDoctor: 2
+            PrisonChef: 2
+            PrisonWorker: 2
+            PrisonEngineer: 2
           maxSlots: 100
         totalMaxCount:
           PlanetPrisoner: 100

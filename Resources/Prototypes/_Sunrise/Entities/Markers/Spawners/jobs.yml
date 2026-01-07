@@ -177,19 +177,6 @@
       state: prisonscientist
 
 - type: entity
-  id: SpawnPointPrisonGuard
-  parent: SpawnPointJobBase
-  name: prison's guard
-  components:
-  - type: SpawnPoint
-    spawn_type: Job
-    job_id: PrisonGuard
-  - type: Sprite
-    layers:
-    - state: green
-    - state: security_officer
-
-- type: entity
   id: SpawnPointPrisonTrainee
   parent: SpawnPointJobBase
   name: prison's trainee
