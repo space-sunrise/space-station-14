@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Client._Sunrise.Pets;
 using Content.Client.Guidebook;
+using Content.Shared._Sunrise.Pets;
 using Content.Client.Humanoid;
 using Content.Client.Inventory;
 using Content.Client.Lobby.UI;
@@ -108,11 +109,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
     private LobbyPetPreviewPanel? GetLobbyPetPreview()
     {
-        if (_stateManager.CurrentState is LobbyState lobby)
-        {
-            return lobby.Lobby?.PetPreview;
-        }
-
+        // PetPreview больше не используется, спрайт питомца теперь в CharacterPreview
         return null;
     }
 
@@ -162,7 +159,6 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     private void PreferencesDataLoaded()
     {
         PreviewPanel?.SetLoaded(true);
-        PetPreviewPanel?.SetLoaded(true);
 
         if (_stateManager.CurrentState is not LobbyState)
             return;
@@ -174,7 +170,6 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     public void OnStateEntered(LobbyState state)
     {
         PreviewPanel?.SetLoaded(_preferencesManager.ServerDataLoaded);
-        PetPreviewPanel?.SetLoaded(_preferencesManager.ServerDataLoaded);
         ReloadCharacterSetup();
         RefreshPetPreview();
     }
@@ -182,7 +177,6 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     public void OnStateExited(LobbyState state)
     {
         PreviewPanel?.SetLoaded(false);
-        PetPreviewPanel?.SetLoaded(false);
         _profileEditor?.Dispose();
         _characterSetup?.Dispose();
 
@@ -228,13 +222,24 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
     private void RefreshPetPreview()
     {
-        if (PetPreviewPanel == null)
+        if (PreviewPanel == null)
             return;
 
         var currentPetSelection = GetCurrentPetSelection();
-        PetPreviewPanel.SetPetSelection(currentPetSelection);
 
-        PetPreviewPanel.OnChangePetRequested += OpenPetPanel;
+        PreviewPanel.OnChangePetRequested -= OpenPetPanel;
+        PreviewPanel.OnChangePetRequested += OpenPetPanel;
+
+        EntityUid? petDummy = null;
+        if (!string.IsNullOrEmpty(currentPetSelection))
+        {
+            if (_prototypeManager.TryIndex<PetSelectionPrototype>(currentPetSelection, out var petSelectionPrototype))
+            {
+                petDummy = EntityManager.SpawnEntity(petSelectionPrototype.PetEntity, MapCoordinates.Nullspace);
+            }
+        }
+
+        PreviewPanel.SetPetSprite(petDummy);
     }
 
     private void OpenPetPanel()

@@ -14,12 +14,18 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
 
     public Button CharacterSetupButton => CharacterSetup;
 
+    public event Action? OnChangePetRequested;
+
     private EntityUid? _previewDummy;
+    private EntityUid? _petPreviewDummy;
+    private SpriteView? _characterSpriteView;
+    private SpriteView? _petSpriteView;
 
     public LobbyCharacterPreviewPanel()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+        ChangePetButton.OnPressed += _ => OnChangePetRequested?.Invoke();
     }
 
     public void SetLoaded(bool value)
@@ -42,22 +48,67 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
 
         _previewDummy = uid;
 
-        ViewBox.RemoveAllChildren();
-        var spriteView = new SpriteView
+        // Удаляем старый спрайт персонажа
+        if (_characterSpriteView != null)
+        {
+            ViewBox.RemoveChild(_characterSpriteView);
+            _characterSpriteView = null;
+        }
+
+        _characterSpriteView = new SpriteView
         {
             OverrideDirection = Direction.South,
             Scale = new Vector2(4f, 4f),
             MaxSize = new Vector2(112, 112),
             Stretch = SpriteView.StretchMode.Fill,
         };
-        spriteView.SetEntity(uid);
-        ViewBox.AddChild(spriteView);
+        _characterSpriteView.SetEntity(uid);
+        ViewBox.AddChild(_characterSpriteView);
+    }
+
+    public void SetPetSprite(EntityUid? uid)
+    {
+        // Удаляем старый EntityUid питомца
+        if (_petPreviewDummy != null)
+        {
+            if (uid == null || _petPreviewDummy != uid)
+            {
+                _entManager.DeleteEntity(_petPreviewDummy);
+            }
+        }
+
+        _petPreviewDummy = uid;
+
+        // Удаляем старый спрайт питомца
+        if (_petSpriteView != null)
+        {
+            ViewBox.RemoveChild(_petSpriteView);
+            _petSpriteView = null;
+        }
+
+        if (uid == null || !uid.Value.IsValid())
+        {
+            return;
+        }
+
+        _petSpriteView = new SpriteView
+        {
+            OverrideDirection = Direction.South,
+            Scale = new Vector2(2f, 2f),
+            MaxSize = new Vector2(80, 80),
+            Stretch = SpriteView.StretchMode.Fill,
+            VerticalAlignment = Control.VAlignment.Bottom,
+        };
+        _petSpriteView.SetEntity(uid.Value);
+        ViewBox.AddChild(_petSpriteView);
     }
 
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
         _entManager.DeleteEntity(_previewDummy);
+        _entManager.DeleteEntity(_petPreviewDummy);
         _previewDummy = null;
+        _petPreviewDummy = null;
     }
 }

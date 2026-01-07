@@ -451,21 +451,12 @@
                             <BoxContainer
                                 MinHeight="180"
                                 Name="CharacterInfoContent"
-                                Orientation="Vertical">
-                                <BoxContainer
-                                    HorizontalAlignment="Stretch"
+                                Orientation="Vertical"
+                                VerticalExpand="True">
+                                <lobbyUi:LobbyCharacterPreviewPanel
+                                    Access="Public"
                                     HorizontalExpand="True"
-                                    Orientation="Horizontal"
-                                    SizeFlagsStretchRatio="2">
-                                    <lobbyUi:LobbyCharacterPreviewPanel
-                                        Access="Public"
-                                        HorizontalExpand="True"
-                                        Name="CharacterPreview" />
-                                    <pets:LobbyPetPreviewPanel
-                                        Access="Public"
-                                        HorizontalExpand="True"
-                                        Name="PetPreview" />
-                                </BoxContainer>
+                                    Name="CharacterPreview" />
                             </BoxContainer>
                         </BoxContainer>
                         <BoxContainer
