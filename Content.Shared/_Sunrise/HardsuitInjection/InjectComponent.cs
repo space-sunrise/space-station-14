@@ -5,12 +5,14 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using System.Threading;
+using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.HardsuitInjection.Components;
 
 
-[Access(typeof(InjectSystem))]
-[RegisterComponent]
+//[Access(typeof(SharedInjectSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class InjectComponent : Component
 {
     [DataField("toggleInjectionAction", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
@@ -74,4 +76,20 @@ public sealed partial class InjectComponent : Component
 
     [ViewVariables]
     public CancellationTokenSource? AutoCloseCancelToken;
+
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    [DataField("highPressureMultiplier")]
+    public float HighPressureMultiplier = 1;
+
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    [DataField("lowPressureMultiplier")]
+    public float LowPressureMultiplier = 1;
+
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    [DataField("heatingCoefficient")]
+    public float HeatingCoefficient = 1;
+
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    [DataField("coolingCoefficient")]
+    public float CoolingCoefficient = 1;
 }

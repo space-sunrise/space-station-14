@@ -3,7 +3,7 @@
 namespace Content.Server.Temperature.Components;
 
 [RegisterComponent]
-[Access(typeof(TemperatureSystem))]
+//[Access(typeof(TemperatureSystem))]
 public sealed partial class TemperatureProtectionComponent : Component
 {
     /// <summary>

@@ -8,10 +8,16 @@ using Content.Shared.FixedPoint;
 using Content.Shared._Sunrise.HardsuitInjection.Components;
 using Content.Shared.Popups;
 using System.Threading;
+using Content.Server.Temperature.Components;
+using Content.Server.Atmos.Components;
+using Content.Shared._Sunrise.HardsuitInjection.EntitySystems;
+using Content.Shared.Inventory.Events;
+using Content.Shared.Inventory;
+using Content.Shared.Cabinet;
 
-namespace Content.Shared._Sunrise.HardsuitInjection.EntitySystems;
+namespace Content.Server._Sunrise.HardsuitInjection.EntitySystems;
 
-public sealed partial class InjectSystem
+public sealed partial class InjectSystem : SharedInjectSystem
 {
     /// <summary>
     /// Toggle EC on hardsuit
@@ -22,6 +28,8 @@ public sealed partial class InjectSystem
     {
         if (!TryComp<InjectComponent>(uid, out var component)) return;
         if (!TryComp<ItemSlotsComponent>(uid, out var comp)) return;
+        if (!TryComp<TemperatureProtectionComponent>(uid, out var tempProt)) return;
+        if (!TryComp<PressureProtectionComponent>(uid, out var pressProt)) return;
 
         if (component.Container == null) return;
 
@@ -34,17 +42,67 @@ public sealed partial class InjectSystem
             _popupSystem.PopupEntity(Loc.GetString("hardsuitinjection-close"), user, user, PopupType.Medium);
             _sharedAdminLogSystem.Add(LogType.ForceFeed, $"{_entManager.ToPrettyString(user):user} closed EC of {_entManager.ToPrettyString(uid):wearer}");
 
+            pressProt.HighPressureMultiplier = component.HighPressureMultiplier;
+            pressProt.LowPressureMultiplier = component.LowPressureMultiplier;
+            tempProt.HeatingCoefficient = component.HeatingCoefficient;
+            tempProt.CoolingCoefficient = component.CoolingCoefficient;
+
+            component.HighPressureMultiplier = 1;
+            component.LowPressureMultiplier = 1;
+            component.HeatingCoefficient = 1;
+            component.CoolingCoefficient = 1;
+
+            Dirty(uid, component);
+            Dirty(uid, tempProt);
+            Dirty(uid, pressProt);
+
+            if (!TryComp<BarotraumaComponent>(user, out var barotraumaComp1)) return;
+            if (!TryComp<InventoryComponent>(user, out var invComp1)) return;
+
+            if (!_inventorySystem.TryGetSlot(uid, "outerClothing", out var uHardsuit1, inventory: invComp1))
+                return;
+
+            var gotEquippedEvent1 = new GotEquippedEvent(user, uid, uHardsuit1);
+            RaiseLocalEvent(uid, gotEquippedEvent1, true);
+
+            Dirty(user, barotraumaComp1);
+
             return;
         }
 
         _popupSystem.PopupEntity(Loc.GetString("hardsuitinjection-open"), user, user, PopupType.Medium);
         _sharedAdminLogSystem.Add(LogType.ForceFeed, $"{_entManager.ToPrettyString(user):user} opened EC of {_entManager.ToPrettyString(uid):wearer}");
         
+        component.HighPressureMultiplier = pressProt.HighPressureMultiplier;
+        component.LowPressureMultiplier = pressProt.LowPressureMultiplier;
+        component.HeatingCoefficient = tempProt.HeatingCoefficient;
+        component.CoolingCoefficient = tempProt.CoolingCoefficient;
+
+        pressProt.HighPressureMultiplier = 1;
+        pressProt.LowPressureMultiplier = 1;
+        tempProt.HeatingCoefficient = 1;
+        tempProt.CoolingCoefficient = 1;
+
+        Dirty(uid, component);
+        Dirty(uid, tempProt);
+        Dirty(uid, pressProt);
+
        if (component.AutoClose)
-        StartAutoClose(uid, component);
+        StartAutoClose(uid, user, component);
+
+        if (!TryComp<BarotraumaComponent>(user, out var barotraumaComp)) return;
+        if (!TryComp<InventoryComponent>(user, out var invComp)) return;
+
+        if (!_inventorySystem.TryGetSlot(uid, "outerClothing", out var uHardsuit, inventory: invComp))
+            return;
+
+        var gotEquippedEvent2 = new GotEquippedEvent(user, uid, uHardsuit);
+        RaiseLocalEvent(uid, gotEquippedEvent2, true);
+
+        Dirty(user, barotraumaComp);
     }
 
-    private void StartAutoClose(EntityUid uid, InjectComponent component)
+    private void StartAutoClose(EntityUid uid, EntityUid user, InjectComponent component)
     {
         // Отменяем предыдущий таймер, если был
         component.AutoCloseCancelToken?.Cancel();
@@ -60,6 +118,34 @@ public sealed partial class InjectSystem
             {
                 comp.Locked = true;
                 // Оповещение (если нужно)
+                if (!TryComp<TemperatureProtectionComponent>(uid, out var tempProt)) return;
+                if (!TryComp<PressureProtectionComponent>(uid, out var pressProt)) return;
+                
+                pressProt.HighPressureMultiplier = component.HighPressureMultiplier;
+                pressProt.LowPressureMultiplier = component.LowPressureMultiplier;
+                tempProt.HeatingCoefficient = component.HeatingCoefficient;
+                tempProt.CoolingCoefficient = component.CoolingCoefficient;
+
+                component.HighPressureMultiplier = 1;
+                component.LowPressureMultiplier = 1;
+                component.HeatingCoefficient = 1;
+                component.CoolingCoefficient = 1;
+
+                Dirty(uid, component);
+                Dirty(uid, tempProt);
+                Dirty(uid, pressProt);
+
+                if (!TryComp<BarotraumaComponent>(user, out var barotraumaComp)) return;
+                if (!TryComp<InventoryComponent>(user, out var invComp)) return;
+
+                if (!_inventorySystem.TryGetSlot(uid, "outerClothing", out var uHardsuit, inventory: invComp))
+                    return;
+
+                var gotEquippedEvent3 = new GotEquippedEvent(user, uid, uHardsuit);
+                RaiseLocalEvent(uid, gotEquippedEvent3, true);
+                
+                Dirty(user, barotraumaComp);
+
                 _popupSystem.PopupEntity(Loc.GetString("hardsuitinjection-close"), uid, PopupType.Medium);
             }
         }, token);

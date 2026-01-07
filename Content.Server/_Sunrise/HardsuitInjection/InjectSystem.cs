@@ -14,10 +14,11 @@ using Content.Shared.Chemistry.Components.SolutionManager;
 using Robust.Shared.Timing;
 using Content.Shared._Sunrise.HardsuitInjection.Components;
 using Content.Shared.Clothing.EntitySystems;
+using Content.Shared._Sunrise.HardsuitInjection.EntitySystems;
 
-namespace Content.Shared._Sunrise.HardsuitInjection.EntitySystems;
+namespace Content.Server._Sunrise.HardsuitInjection.EntitySystems;
 
-public sealed partial class InjectSystem : EntitySystem
+public sealed partial class InjectSystem : SharedInjectSystem
 {
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;

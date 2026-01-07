@@ -5,10 +5,11 @@ using Content.Shared.Clothing.EntitySystems;
 using Content.Shared._Sunrise.HardsuitInjection.Components;
 using Content.Shared.DoAfter;
 using Robust.Shared.Timing;
+using Content.Shared._Sunrise.HardsuitInjection.EntitySystems;
 
-namespace Content.Shared._Sunrise.HardsuitInjection.EntitySystems;
+namespace Content.Server._Sunrise.HardsuitInjection.EntitySystems;
 
-public sealed partial class InjectSystem
+public sealed partial class InjectSystem : SharedInjectSystem
 {
     private void InitializeActionEvents()
     {

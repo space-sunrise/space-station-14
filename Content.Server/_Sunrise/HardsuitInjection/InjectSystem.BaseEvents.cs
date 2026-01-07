@@ -10,10 +10,11 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs;
 using Content.Shared._Sunrise.HardsuitInjection.Components;
 using Content.Shared.Clothing.EntitySystems;
+using Content.Shared._Sunrise.HardsuitInjection.EntitySystems;
 
-namespace Content.Shared._Sunrise.HardsuitInjection.EntitySystems;
+namespace Content.Server._Sunrise.HardsuitInjection.EntitySystems;
 
-public sealed partial class InjectSystem
+public sealed partial class InjectSystem : SharedInjectSystem
 {
     private void InitializeBaseEvents()
     {

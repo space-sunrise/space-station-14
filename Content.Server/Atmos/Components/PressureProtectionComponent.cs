@@ -3,7 +3,7 @@
 namespace Content.Server.Atmos.Components;
 
 [RegisterComponent]
-[Access(typeof(BarotraumaSystem))]
+//[Access(typeof(BarotraumaSystem))]
 public sealed partial class PressureProtectionComponent : Component
 {
     [DataField]
