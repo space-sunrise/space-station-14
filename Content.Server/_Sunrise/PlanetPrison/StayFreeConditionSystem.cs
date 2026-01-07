@@ -1,4 +1,5 @@
 using Content.Server.GameTicking;
+using Content.Server.Mind;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Cuffs.Components;
@@ -13,7 +14,7 @@ namespace Content.Server._Sunrise.PlanetPrison;
 
 public sealed class StayFreeConditionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
@@ -52,10 +53,15 @@ public sealed class StayFreeConditionSystem : EntitySystem
                 isRestrained = true;
         }
 
-        // До конца раунда / эвакуации прогресс не должен считаться завершённым.
-        var endReached = _emergencyShuttle.EmergencyShuttleArrived ||
-                         _roundEnd.IsRoundEndRequested() ||
-                         _gameTicker.RunLevel != GameRunLevel.InRound;
+        // Проверяем, достигнут ли конец раунда. Цель должна проверяться только в конце раунда или при эвакуации.
+        // Условия окончания раунда:
+        // 1. Эвакуационный шаттл прибыл на станцию центрального командования
+        // 2. Запрошено окончание раунда (например, через админ-команду endround)
+        // 3. Раунд уже не в состоянии InRound (обрабатывает случай, когда раунд уже завершён)
+        var shuttleArrived = _emergencyShuttle.EmergencyShuttleArrived;
+        var roundEndRequested = _roundEnd.IsRoundEndRequested();
+        var roundNotInProgress = _gameTicker.RunLevel != GameRunLevel.InRound;
+        var endReached = shuttleArrived || roundEndRequested || roundNotInProgress;
 
         // Во время раунда: если жив и не закован — 50%, если закован — 10%.
         if (!endReached)
@@ -72,9 +78,9 @@ public sealed class StayFreeConditionSystem : EntitySystem
         return 1f;
     }
 
-    private void OnCuffedStateChanged(EntityUid uid, CuffableComponent component, ref CuffedStateChangeEvent args)
+    private void OnCuffedStateChanged(Entity<CuffableComponent> ent, ref CuffedStateChangeEvent args)
     {
-        if (!_mind.TryGetMind(uid, out var mindId, out var mind))
+        if (!_mind.TryGetMind(ent.Owner, out var mindId, out var mind))
             return;
 
         if (!_mind.TryFindObjective((mindId, mind), StayFreeObjective, out var objectiveUid))
@@ -83,7 +89,7 @@ public sealed class StayFreeConditionSystem : EntitySystem
         if (!TryComp<StayFreeConditionComponent>(objectiveUid.Value, out var conditionComp))
             return;
 
-        var isRestrained = !component.CanStillInteract;
+        var isRestrained = !ent.Comp.CanStillInteract;
 
         if (isRestrained)
         {
