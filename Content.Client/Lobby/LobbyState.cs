@@ -663,22 +663,36 @@ namespace Content.Client.Lobby
 
         /// <summary>
         /// Unloads a resource from video memory by disposing it.
+        /// TODO: Full resource unloading from cache is not currently possible due to sandbox restrictions.
+        /// The ResourceCache does not expose a public API to remove resources from its internal cache.
+        /// Reflection cannot be used in the client sandbox environment.
+        /// This method currently only disposes the resource, but it remains in the cache.
+        /// When the engine provides a proper API for resource cache management, this should be updated.
         /// </summary>
         private void UnloadResource(ResPath resourcePath)
         {
             try
             {
+                bool unloaded = false;
+                
                 // Try to unload RSI resource
                 if (_resourceCache.TryGetResource<RSIResource>(resourcePath, out var rsiResource))
                 {
                     rsiResource.Dispose();
-                    _sawmill.Debug($"Unloaded RSI resource: {resourcePath}");
+                    unloaded = true;
+                    _sawmill.Debug($"Disposed RSI resource: {resourcePath} (still in cache due to sandbox limitations)");
                 }
                 // Try to unload texture resource
                 else if (_resourceCache.TryGetResource<TextureResource>(resourcePath, out var textureResource))
                 {
                     textureResource.Dispose();
-                    _sawmill.Debug($"Unloaded texture resource: {resourcePath}");
+                    unloaded = true;
+                    _sawmill.Debug($"Disposed texture resource: {resourcePath} (still in cache due to sandbox limitations)");
+                }
+                
+                if (!unloaded)
+                {
+                    _sawmill.Debug($"Resource not found in cache: {resourcePath}");
                 }
             }
             catch (Exception ex)

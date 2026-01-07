@@ -21,6 +21,7 @@ public sealed class NetTexturesManager
     [Dependency] private readonly ILogManager _logManager = default!;
 
     private ISawmill _sawmill = default!;
+    private const string AllowedPrefix = "/NetTextures/";
 
     public void Initialize()
     {
@@ -46,7 +47,63 @@ public sealed class NetTexturesManager
             resPath = new ResPath("/") / resourcePath;
         }
 
+        // Clean the path to remove any .. sequences
+        resPath = resPath.Clean();
+
+        // Validate the path to prevent path traversal attacks
+        if (!ValidateResourcePath(resPath, out var errorMessage))
+        {
+            _sawmill.Warning($"Rejected resource request from {session.Name}: {errorMessage} (path: {msg.ResourcePath})");
+            return;
+        }
+
         SendResource(session, resPath);
+    }
+
+    /// <summary>
+    /// Validates that a resource path is safe and within allowed directories.
+    /// Prevents path traversal attacks by ensuring paths don't escape allowed directories.
+    /// </summary>
+    private bool ValidateResourcePath(ResPath path, out string? errorMessage)
+    {
+        errorMessage = null;
+
+        // Path must be rooted
+        if (!path.IsRooted)
+        {
+            errorMessage = "Path must be rooted";
+            return false;
+        }
+
+        // Check for dangerous path traversal sequences in the original string representation
+        // Even after Clean(), we should verify the path doesn't contain .. in segments
+        var pathStr = path.ToString();
+        if (pathStr.Contains("../") || pathStr.Contains("..\\") || pathStr.StartsWith(".."))
+        {
+            errorMessage = "Path contains traversal sequences";
+            return false;
+        }
+
+        // Only allow paths that start with /NetTextures/
+        // This ensures clients can only access resources from the NetTextures directory
+        if (!pathStr.StartsWith(AllowedPrefix, StringComparison.Ordinal))
+        {
+            errorMessage = $"Path must start with {AllowedPrefix}";
+            return false;
+        }
+
+        // Additional check: ensure the cleaned path doesn't escape the allowed directory
+        // by checking that it still starts with the allowed prefix after cleaning
+        var relativePath = path.ToRelativePath();
+        var relativePathStr = relativePath.ToString();
+
+        if (!relativePathStr.StartsWith("NetTextures/", StringComparison.Ordinal))
+        {
+            errorMessage = "Path escapes allowed directory after normalization";
+            return false;
+        }
+
+        return true;
     }
 
     /// <summary>
