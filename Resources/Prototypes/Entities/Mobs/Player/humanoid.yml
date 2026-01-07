@@ -78,6 +78,7 @@
   - HumanoidXeno
   - Predator
   - Resomi
+  - Milira
   randomizeName: false
   components:
     - type: GhostRole
@@ -139,6 +140,7 @@
   - HumanoidXeno
   - Predator
   - Resomi
+  - Milira
   randomizeName: false
   components:
     - type: GhostRole
@@ -187,6 +189,7 @@
   - HumanoidXeno
   - Predator
   - Resomi
+  - Milira
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -227,6 +230,7 @@
   - HumanoidXeno
   - Predator
   - Resomi
+  - Milira
   components:
     - type: GhostRole
       name: ghost-role-information-ert-leader-name
@@ -276,6 +280,7 @@
   - HumanoidXeno
   - Predator
   - Resomi
+  - Milira
   parent: ERTLeader
   components:
     - type: BibleUser
@@ -325,6 +330,7 @@
   - HumanoidXeno
   - Predator
   - Resomi
+  - Milira
   parent: ERTChaplain
   components:
     - type: GhostRole
@@ -376,6 +382,7 @@
   - HumanoidXeno
   - Predator
   - Resomi
+  - Milira
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -424,6 +431,7 @@
   - HumanoidXeno
   - Predator
   - Resomi
+  - Milira
   parent: ERTJanitor
   components:
     - type: GhostRole
@@ -474,6 +482,7 @@
   - HumanoidXeno
   - Predator
   - Resomi
+  - Milira
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -522,6 +531,7 @@
   - HumanoidXeno
   - Predator
   - Resomi
+  - Milira
   parent: ERTEngineer
   components:
     - type: GhostRole
@@ -572,6 +582,7 @@
   - HumanoidXeno
   - Predator
   - Resomi
+  - Milira
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -620,6 +631,7 @@
   - HumanoidXeno
   - Predator
   - Resomi
+  - Milira
   parent: ERTSecurity
   components:
     - type: GhostRole
@@ -659,6 +671,7 @@
   - HumanoidXeno
   - Predator
   - Resomi
+  - Milira
   parent: ERTSecurityEVA
   components:
     - type: GhostRole
@@ -709,6 +722,7 @@
   - HumanoidXeno
   - Predator
   - Resomi
+  - Milira
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -757,6 +771,7 @@
   - HumanoidXeno
   - Predator
   - Resomi
+  - Milira
   parent: ERTMedical
   components:
     - type: GhostRole
@@ -802,6 +817,7 @@
   - HumanoidXeno
   - Predator
   - Resomi
+  - Milira
   components:
     - type: Loadout
       prototypes: [CBURNGear]
@@ -877,6 +893,7 @@
   - Felinid
   - HumanoidXeno
   - Predator
+  - Milira
   components:
     - type: RandomHumanoidAppearance
       randomizeName: false
@@ -902,6 +919,7 @@
   - Felinid
   - HumanoidXeno
   - Predator
+  - Milira
   components:
     - type: RandomHumanoidAppearance
       randomizeName: false
