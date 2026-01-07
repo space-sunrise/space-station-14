@@ -529,6 +529,9 @@
 - type: Tag
   id: Resomi
 
+- type: Tag
+  id: Milira
+
 ### INTERACTION TAGS ###
 # Как одежда закрывает/не закрывает ту или иную область тела
 

@@ -65,6 +65,9 @@
     damageModifierSet: Milira
   - type: FootprintEmitter
   - type: Carriable
+  - type: Tag
+    tags:
+    - Milira
 
 - type: entity
   save: false
