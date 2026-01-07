@@ -41,7 +41,7 @@
       types:
         Piercing: 12
     angle: 0
-    wideAnimation: WeaponArcThrust
+    animation: WeaponArcThrust
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: DamageOtherOnHit

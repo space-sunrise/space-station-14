@@ -89,7 +89,7 @@
       types:
         Piercing: 12
     angle: 0
-    wideAnimation: WeaponArcThrust
+    animation: WeaponArcThrust
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: MeleeRequiresWield
@@ -196,7 +196,7 @@
         Piercing: 15 #you fucking stab em
         Bloodloss: 2 #no way to apply bleed, triangular bayonet wounds are hard to fix(source:that one copypasta)
     angle: 0
-    wideAnimation: WeaponArcThrust
+    animation: WeaponArcThrust
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: GunRequiresWield

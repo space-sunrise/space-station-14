@@ -68,7 +68,7 @@ public sealed class EntityPickupAnimationSystem : EntitySystem
 
         _animations.Play(new Entity<AnimationPlayerComponent>(animatableClone, animations), new Animation
         {
-            // ES START
+            // Sunrise-Edit - портирование анимаций с ES
             Length = TimeSpan.FromMilliseconds(175),
             AnimationTracks =
             {
@@ -106,7 +106,7 @@ public sealed class EntityPickupAnimationSystem : EntitySystem
                     }
                 },
             }
-            // ES END
+            // Sunrise-Edit
         }, "fancy_pickup_anim");
     }
 }
