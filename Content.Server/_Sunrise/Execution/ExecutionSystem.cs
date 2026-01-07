@@ -53,7 +53,6 @@ public sealed class ExecutionSystem : EntitySystem
     [Dependency] private readonly GunSystem _gunSystem = default!;
     [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
@@ -111,8 +110,8 @@ public sealed class ExecutionSystem : EntitySystem
                 TryStartMeleeExecutionDoafter(weapon, victim, attacker);
             },
             Impact = LogImpact.High,
-            Text = suicide ? _loc.GetString("suicide-verb-name") : _loc.GetString("execution-verb-name"),
-            Message = suicide ? _loc.GetString("suicide-verb-message") : _loc.GetString("execution-verb-message"),
+            Text = suicide ? Loc.GetString("suicide-verb-name") : Loc.GetString("execution-verb-name"),
+            Message = suicide ? Loc.GetString("suicide-verb-message") : Loc.GetString("execution-verb-message"),
         };
 
         args.Verbs.Add(verb);
@@ -139,8 +138,8 @@ public sealed class ExecutionSystem : EntitySystem
             },
             Impact = LogImpact.High,
 
-            Text = suicide ? _loc.GetString("suicide-verb-name") : _loc.GetString("execution-verb-name"),
-            Message = suicide ? _loc.GetString("suicide-verb-message") : _loc.GetString("execution-verb-message"),
+            Text = suicide ? Loc.GetString("suicide-verb-name") : Loc.GetString("execution-verb-name"),
+            Message = suicide ? Loc.GetString("suicide-verb-message") : Loc.GetString("execution-verb-message"),
         };
 
         args.Verbs.Add(verb);
@@ -152,7 +151,7 @@ public sealed class ExecutionSystem : EntitySystem
             return false;
 
         // No point executing someone if they can't take damage
-        if (!TryComp<DamageableComponent>(victim, out _))
+        if (!HasComp<DamageableComponent>(victim))
             return false;
 
         // You can't execute something that cannot die
@@ -160,7 +159,7 @@ public sealed class ExecutionSystem : EntitySystem
             return false;
 
         // You can't execute borgs
-        if (TryComp<BorgChassisComponent>(victim, out _))
+        if (HasComp<BorgChassisComponent>(victim))
             return false;
 
         // You're not allowed to execute dead people (no fun allowed)
@@ -706,7 +705,7 @@ public sealed class ExecutionSystem : EntitySystem
     private void ShowExecutionPopup(string locString, Filter filter, PopupType type,
         EntityUid attacker, EntityUid victim, EntityUid weapon)
     {
-        _popupSystem.PopupEntity(_loc.GetString(
+        _popupSystem.PopupEntity(Loc.GetString(
                 locString, ("attacker", attacker), ("victim", victim), ("weapon", weapon)),
             attacker, filter, true, type);
     }

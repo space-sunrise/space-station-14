@@ -29,7 +29,8 @@ public sealed class PuddleFootprintSystem : EntitySystem
     /// </summary>
     private void OnPuddleInteraction(Entity<PuddleFootprintComponent> ent, ref EndCollideEvent args)
     {
-        var (uid, comp) = ent;
+        var uid = ent.Owner;
+        var comp = ent.Comp;
 
         if (TerminatingOrDeleted(uid) || TerminatingOrDeleted(args.OtherEntity))
             return;
