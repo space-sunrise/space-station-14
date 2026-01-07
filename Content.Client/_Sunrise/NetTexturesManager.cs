@@ -1,6 +1,7 @@
 using Content.Shared._Sunrise.NetTextures;
 using Robust.Client.Upload;
 using Robust.Shared.ContentPack;
+using Robust.Shared.Log;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -19,40 +20,29 @@ public sealed class NetTexturesManager
     [Dependency] private readonly NetworkResourceManager _networkResourceManager = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
 
-    private ISawmill _sawmill = default!;
+        private ISawmill _sawmill = default!;
 
-    private const string UploadedPrefix = "/Uploaded";
-    private readonly HashSet<string> _requestedResources = new();
-    private readonly Dictionary<string, ResPath> _pendingResources = new(); // resourcePath -> ResPath
+        private const string UploadedPrefix = "/Uploaded";
+        private readonly HashSet<string> _requestedResources = new();
+        private readonly Dictionary<string, ResPath> _pendingResources = new(); // resourcePath -> ResPath
 
-    /// <summary>
-    /// Event fired when a network texture becomes available.
-    /// </summary>
-    public event Action<string>? ResourceLoaded; // resourcePath
+        /// <summary>
+        /// Event fired when a network texture becomes available.
+        /// </summary>
+        public event Action<string>? ResourceLoaded; // resourcePath
 
-    private TimeSpan _lastCheckTime;
-
-    public void Initialize()
-    {
-        _sawmill = _logManager.GetSawmill("network.textures");
-        // NetworkResourceUploadMessage is already registered by SharedNetworkResourceManager
-        // We'll check for loaded resources in Update() method very frequently
-        _lastCheckTime = _gameTiming.CurTime;
-    }
+        public void Initialize()
+        {
+            _sawmill = _logManager.GetSawmill("network.textures");
+            // NetworkResourceUploadMessage is already registered by SharedNetworkResourceManager
+            // We'll check for loaded resources in Update() method very frequently
+        }
 
     public void Update(float frameTime)
     {
         // If there are no pending resources, skip checking
         if (_pendingResources.Count == 0)
             return;
-
-        // Log occasionally to verify Update is being called
-        var timeSinceLastCheck = _gameTiming.CurTime - _lastCheckTime;
-        if (timeSinceLastCheck > TimeSpan.FromSeconds(1.0))
-        {
-            _sawmill.Debug($"Update called with {_pendingResources.Count} pending resources");
-            _lastCheckTime = _gameTiming.CurTime;
-        }
 
         // Check for loaded resources every frame when there are pending resources
         // This ensures we catch resources as soon as they're loaded
@@ -73,31 +63,18 @@ public sealed class NetTexturesManager
             {
                 checkPath = relativePath / "meta.json";
                 exists = _networkResourceManager.FileExists(checkPath);
-
-                // Debug logging
-                if (!exists)
-                {
-                    _sawmill.Debug($"Update: RSI {resourcePath} not found, checking path: {checkPath}, FileExists: {_networkResourceManager.FileExists(checkPath)}");
-                }
             }
             else
             {
                 // Single file
                 checkPath = relativePath;
                 exists = _networkResourceManager.FileExists(checkPath);
-
-                // Debug logging
-                if (!exists)
-                {
-                    _sawmill.Debug($"Update: File {resourcePath} not found, checking path: {checkPath}, FileExists: {_networkResourceManager.FileExists(checkPath)}");
-                }
             }
 
             if (exists)
             {
                 _requestedResources.Add(resourcePath);
                 completedResources.Add(resourcePath);
-                _sawmill.Debug($"Update: Resource {resourcePath} is now available (checked path: {checkPath}), firing ResourceLoaded event");
                 ResourceLoaded?.Invoke(resourcePath);
             }
         }
@@ -173,7 +150,6 @@ public sealed class NetTexturesManager
         }
 
         // Request the resource for the first time
-        _sawmill.Debug($"Requesting resource: {resourcePath} (normalized: {resPath}), adding to pending. Total pending: {_pendingResources.Count + 1}");
         RequestResource(resourcePath);
         _pendingResources[resourcePath] = resPath;
 

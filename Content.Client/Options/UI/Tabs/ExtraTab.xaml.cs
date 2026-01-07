@@ -90,6 +90,7 @@ public sealed partial class ExtraTab : Control
         Control.AddOptionDropDown(SunriseCCVars.LobbyAnimation, DropDownLobbyAnimation, lobbyAnimations);
         Control.AddOptionDropDown(SunriseCCVars.LobbyParallax, DropDownLobbyParallax, lobbyParallaxes);
         Control.AddOptionPercentSlider(SunriseCCVars.LobbyOpacity, LobbyOpacitySlider);
+        Control.AddOptionCheckBox(SunriseCCVars.LobbyUnloadResources, LobbyUnloadResourcesCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.DamageOverlayEnable, DamageOverlayEnableCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.DamageOverlaySelf, DamageOverlaySelfCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.DamageOverlayStructures, DamageOverlayStructuresCheckBox);

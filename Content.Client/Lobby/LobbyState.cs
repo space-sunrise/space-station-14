@@ -19,6 +19,7 @@ using Robust.Client.Upload;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
+using Robust.Shared.Log;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -55,15 +56,23 @@ namespace Content.Client.Lobby
         [Dependency] private readonly ChangelogManager _changelogManager = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly NetTexturesManager _netTexturesManager = default!;
+        [Dependency] private readonly ILogManager _logManager = default!;
 
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
+        private ISawmill _sawmill = default!;
+        
+        // Track loaded resources for unloading
+        private ResPath? _currentAnimationPath;
+        private ResPath? _currentArtPath;
 
         protected override Type? LinkedScreenType { get; } = typeof(LobbyGui);
         public LobbyGui? Lobby;
 
         protected override void Startup()
         {
+            _sawmill = _logManager.GetSawmill("lobby");
+            
             if (_userInterfaceManager.ActiveScreen == null)
             {
                 return;
@@ -151,6 +160,21 @@ namespace Content.Client.Lobby
             Lobby!.CharacterPreview.CharacterSetupButton.OnPressed -= OnSetupPressed;
             Lobby!.ReadyButton.OnPressed -= OnReadyPressed;
             Lobby!.ReadyButton.OnToggled -= OnReadyToggled;
+
+            // Unload lobby resources if CVar is enabled
+            if (_cfg.GetCVar(SunriseCCVars.LobbyUnloadResources))
+            {
+                if (_currentAnimationPath.HasValue)
+                {
+                    UnloadResource(_currentAnimationPath.Value);
+                    _currentAnimationPath = null;
+                }
+                if (_currentArtPath.HasValue)
+                {
+                    UnloadResource(_currentArtPath.Value);
+                    _currentArtPath = null;
+                }
+            }
 
             Lobby = null;
 
@@ -355,7 +379,7 @@ namespace Content.Client.Lobby
 
             if (Lobby == null)
             {
-                Logger.Error("Error in SetLobbyBackgroundType. Lobby is null");
+                _sawmill.Error("Error in SetLobbyBackgroundType. Lobby is null");
                 return;
             }
 
@@ -381,7 +405,6 @@ namespace Content.Client.Lobby
 
         private void OnLobbyArtChanged(string lobbyArt)
         {
-            Logger.Debug($"OnLobbyArtChanged called with: {lobbyArt}");
             if (lobbyArt == "Random" && _gameTicker.LobbyArt != null)
                 SetLobbyArt(_gameTicker.LobbyArt);
             else
@@ -392,7 +415,6 @@ namespace Content.Client.Lobby
 
         private void OnLobbyAnimationChanged(string lobbyAnimation)
         {
-            Logger.Debug($"OnLobbyAnimationChanged called with: {lobbyAnimation}");
             if (lobbyAnimation == "Random" && _gameTicker.LobbyAnimation != null)
                 SetLobbyAnimation(_gameTicker.LobbyAnimation);
             else
@@ -418,8 +440,14 @@ namespace Content.Client.Lobby
 
             if (Lobby == null)
             {
-                Logger.Error("Error in SetLobbyAnimation. Lobby is null");
+                _sawmill.Error("Error in SetLobbyAnimation. Lobby is null");
                 return;
+            }
+            
+            // Unload previous animation if CVar is enabled
+            if (_cfg.GetCVar(SunriseCCVars.LobbyUnloadResources) && _currentAnimationPath.HasValue)
+            {
+                UnloadResource(_currentAnimationPath.Value);
             }
 
             var rsiPath = lobbyAnimationPrototype.Animation;
@@ -448,7 +476,6 @@ namespace Content.Client.Lobby
                 {
                     // Resource not available yet, don't try to load it (will cause error)
                     // The resource will be loaded when it arrives via NetworkResourceUploadMessage
-                    Logger.Debug($"Lobby animation {lobbyAnimation} not yet loaded, waiting for server...");
                     return;
                 }
             }
@@ -456,37 +483,31 @@ namespace Content.Client.Lobby
             // Try to set the animation, handle errors gracefully
             try
             {
-                Logger.Debug($"Attempting to load lobby animation RSI from path: {targetPath}");
-                
                 // Check if the file actually exists before trying to load it
                 if (!_resource.ContentFileExists(targetPath))
                 {
-                    Logger.Debug($"Target path {targetPath} does not exist in resource manager, checking uploaded path");
                     var metaPath = (targetPath / "meta.json").ToRootedPath();
                     if (!_resource.ContentFileExists(metaPath))
                     {
-                        Logger.Debug($"Meta path {metaPath} also does not exist, resource not yet available");
                         return;
                     }
-                    Logger.Debug($"Meta path {metaPath} exists, using target path {targetPath}");
                 }
                 
                 // Try to get the resource - this will load it if not cached
                 if (_resourceCache.TryGetResource<RSIResource>(targetPath, out var rsiResource))
                 {
-                    Logger.Debug($"RSI resource found in cache, setting animation");
                     Lobby!.LobbyAnimation.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(targetPath, lobbyAnimationPrototype.State));
                     Lobby!.LobbyAnimation.DisplayRect.TextureScale = lobbyAnimationPrototype.Scale;
-                    Logger.Debug($"Lobby animation {lobbyAnimation} set successfully");
+                    _currentAnimationPath = targetPath;
                 }
                 else
                 {
-                    Logger.Warning($"Failed to load lobby animation RSI: {targetPath}. Resource not found in cache.");
+                    _sawmill.Warning($"Failed to load lobby animation RSI: {targetPath}. Resource not found in cache.");
                 }
             }
             catch (Exception ex)
             {
-                Logger.Warning($"Exception while setting lobby animation {lobbyAnimation}: {ex.Message}");
+                _sawmill.Warning($"Exception while setting lobby animation {lobbyAnimation}: {ex.Message}");
             }
         }
 
@@ -497,8 +518,14 @@ namespace Content.Client.Lobby
 
             if (Lobby == null)
             {
-                Logger.Error("Error in SetLobbyArt. Lobby is null");
+                _sawmill.Error("Error in SetLobbyArt. Lobby is null");
                 return;
+            }
+            
+            // Unload previous art if CVar is enabled
+            if (_cfg.GetCVar(SunriseCCVars.LobbyUnloadResources) && _currentArtPath.HasValue)
+            {
+                UnloadResource(_currentArtPath.Value);
             }
 
             var imagePath = lobbyArtPrototype.Background.ToString();
@@ -526,7 +553,6 @@ namespace Content.Client.Lobby
                 {
                     // Resource not available yet, don't try to load it (will cause error)
                     // The resource will be loaded when it arrives via NetworkResourceUploadMessage
-                    Logger.Debug($"Lobby art {lobbyArt} not yet loaded, waiting for server...");
                     return;
                 }
             }
@@ -537,15 +563,16 @@ namespace Content.Client.Lobby
                 if (_resourceCache.TryGetResource<TextureResource>(targetPath, out var textureResource))
                 {
                     Lobby!.LobbyArt.Texture = textureResource.Texture;
+                    _currentArtPath = targetPath;
                 }
                 else
                 {
-                    Logger.Warning($"Failed to load lobby art texture: {targetPath}");
+                    _sawmill.Warning($"Failed to load lobby art texture: {targetPath}");
                 }
             }
             catch (Exception ex)
             {
-                Logger.Warning($"Exception while setting lobby art {lobbyArt}: {ex.Message}");
+                _sawmill.Warning($"Exception while setting lobby art {lobbyArt}: {ex.Message}");
             }
         }
 
@@ -556,7 +583,7 @@ namespace Content.Client.Lobby
 
             if (Lobby == null)
             {
-                Logger.Error("Error in SetLobbyParallax. Lobby is null");
+                _sawmill.Error("Error in SetLobbyParallax. Lobby is null");
                 return;
             }
 
@@ -598,13 +625,10 @@ namespace Content.Client.Lobby
 
         private void OnNetworkResourceLoaded(string resourcePath)
         {
-            Logger.Debug($"OnNetworkResourceLoaded called for {resourcePath}");
-
             // Always check and update the current animation setting when any animation resource loads
             // This ensures that if the user changed the setting while waiting for a resource,
             // it will be applied once the resource is available
             var currentAnimation = _cfg.GetCVar(SunriseCCVars.LobbyAnimation);
-            Logger.Debug($"Current animation setting: {currentAnimation}");
             
             if (currentAnimation != null)
             {
@@ -613,24 +637,14 @@ namespace Content.Client.Lobby
                     // For Random, use the game ticker's selected animation
                     if (_gameTicker.LobbyAnimation != null)
                     {
-                        Logger.Debug($"Setting lobby animation to random selection {_gameTicker.LobbyAnimation} after resource loaded");
                         SetLobbyAnimation(_gameTicker.LobbyAnimation);
-                    }
-                    else
-                    {
-                        Logger.Debug($"Random animation selected but game ticker has no animation yet");
                     }
                 }
                 else
                 {
                     // For specific animation, always try to set it
-                    Logger.Debug($"Setting lobby animation to {currentAnimation} after resource loaded");
                     SetLobbyAnimation(currentAnimation);
                 }
-            }
-            else
-            {
-                Logger.Debug($"Current animation setting is null, skipping");
             }
 
             // Always check and update the current art setting when any art resource loads
@@ -642,9 +656,34 @@ namespace Content.Client.Lobby
                 var artToSet = currentArt == "Random" ? _gameTicker.LobbyArt : currentArt;
                 if (artToSet != null)
                 {
-                    Logger.Debug($"Setting lobby art to {artToSet} after resource loaded");
                     SetLobbyArt(artToSet);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Unloads a resource from video memory by disposing it.
+        /// </summary>
+        private void UnloadResource(ResPath resourcePath)
+        {
+            try
+            {
+                // Try to unload RSI resource
+                if (_resourceCache.TryGetResource<RSIResource>(resourcePath, out var rsiResource))
+                {
+                    rsiResource.Dispose();
+                    _sawmill.Debug($"Unloaded RSI resource: {resourcePath}");
+                }
+                // Try to unload texture resource
+                else if (_resourceCache.TryGetResource<TextureResource>(resourcePath, out var textureResource))
+                {
+                    textureResource.Dispose();
+                    _sawmill.Debug($"Unloaded texture resource: {resourcePath}");
+                }
+            }
+            catch (Exception ex)
+            {
+                _sawmill.Warning($"Failed to unload resource {resourcePath}: {ex.Message}");
             }
         }
 
