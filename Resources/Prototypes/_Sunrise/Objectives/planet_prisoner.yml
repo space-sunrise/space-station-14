@@ -36,4 +36,4 @@
       sprite: Objects/Misc/handcuffs.rsi
       state: handcuff
   - type: StayFreeCondition
-    restrainedIcon: Interface/Alerts/Handcuffed/Handcuffed.png
+    restrainedIcon: Interface/Alerts/Handcuffed/Handcuffed.png # не ставить символ "/" перед Interface/ (т.к. это делает путь абсолютным)
