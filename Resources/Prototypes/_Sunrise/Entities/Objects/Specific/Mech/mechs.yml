@@ -120,6 +120,7 @@
     autoRot: true
     radius: 35
     energy: 4
+    offset: "0.28, 0.75"
     netsync: false
   - type: Tag
     tags:
