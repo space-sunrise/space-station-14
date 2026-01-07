@@ -19,32 +19,32 @@ public sealed class WingToggleClientSystem : SharedWingFlightSystem
         SubscribeLocalEvent<WingToggleComponent, IsEquippingTargetAttemptEvent>(OnEquipTargetAttempt);
     }
 
-    private void OnEquipAttempt(Entity<WingToggleComponent> ent, ref IsEquippingAttemptEvent args)
+    private bool ShouldCancelEquip(Entity<WingToggleComponent> ent, string slot, EntityUid equipment)
     {
         if (!ent.Comp.WingsOpened)
-            return;
+            return false;
 
-        if (ent.Comp.BlockedSlots != null && ent.Comp.BlockedSlots.Contains(args.Slot))
+        if (ent.Comp.BlockedSlots != null && ent.Comp.BlockedSlots.Contains(slot))
         {
-            if (ent.Comp.AllowedTag != null && _tagSystem.HasTag(args.Equipment, ent.Comp.AllowedTag.Value))
-                return;
+            if (ent.Comp.AllowedTag != null && _tagSystem.HasTag(equipment, ent.Comp.AllowedTag.Value))
+                return false;
 
-            args.Cancel();
+            return true;
         }
+
+        return false;
+    }
+
+    private void OnEquipAttempt(Entity<WingToggleComponent> ent, ref IsEquippingAttemptEvent args)
+    {
+        if (ShouldCancelEquip(ent, args.Slot, args.Equipment))
+            args.Cancel();
     }
 
     private void OnEquipTargetAttempt(Entity<WingToggleComponent> ent, ref IsEquippingTargetAttemptEvent args)
     {
-        if (!ent.Comp.WingsOpened)
-            return;
-
-        if (ent.Comp.BlockedSlots != null && ent.Comp.BlockedSlots.Contains(args.Slot))
-        {
-            if (ent.Comp.AllowedTag != null && _tagSystem.HasTag(args.Equipment, ent.Comp.AllowedTag.Value))
-                return;
-
-            args.Cancel();
-        }
+        if (ShouldCancelEquip(ent, args.Slot, args.Equipment))
+             args.Cancel();
     }
 }
 
