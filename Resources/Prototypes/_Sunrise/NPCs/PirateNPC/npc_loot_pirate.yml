@@ -27,7 +27,7 @@
       back:
       - state: equipped-BACKPACK
   - type: Item
-    size: Normal
+    size: Huge
     inhandVisuals:
       left:
       - state: inhand-left
@@ -394,6 +394,8 @@
     - id: ClothingBeltMercWebbing
       prob: 0.2
     # Bonus Loot T1
+    - id: Doubloon1
+      prob: 0.05
     - id: SpaceCash500
       prob: 0.9
     - id: SpaceCash1000
@@ -423,6 +425,71 @@
       path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
+  parent: MercenaryWebbingBox
+  id: ClothingBeltUtilityPirateT1
+  name: utility belt bundle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/utility.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: Crowbar
+      prob: 0.9
+    - id: Wrench
+      prob: 0.9
+    - id: Screwdriver
+      prob: 0.9
+    - id: Wirecutter
+      prob: 0.9
+    - id: GrenadeFlashBang
+      prob: 0.4
+    - id: MakeshiftShield
+      prob: 0.5
+    # Bonus Loot T3
+    - id: Doubloon1
+      prob: 0.05
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash500
+      prob: 0.9
+    - id: SpaceCash1000
+      prob: 0.7
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.25
+    - id: PirateTechFabCircuitboard
+      prob: 0.001
+    - id: LootSpawnerMedicalMinor
+      prob: 0.7
+    - id: AirlossAutoInjector
+      prob: 0.05
+    - id: PyraAutoInjector
+      prob: 0.05
+    - id: CombatMedipen
+      prob: 0.05
+    - id: BruteAutoInjector
+      prob: 0.05
+    - id: BurnAutoInjector
+      prob: 0.05
+    - id: BruizAutoInjector
+      prob: 0.05
+    - id: PunctAutoInjector
+      prob: 0.05
+    - id: LacerAutoInjector
+      prob: 0.05
+    - id: EmergencyMedipen
+      prob: 0.4
+    - id: EmergencyMedipen
+      prob: 0.2
+    - id: EmergencyMedipen
+      prob: 0.1
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
   parent: SalvageWebbingBox
   id: ClothingBeltSalvageWebbingTier1Flintlock
   categories: [ HideSpawnMenu ]
@@ -441,6 +508,45 @@
       prob: 0.3
     - id: MagazineBoxMagnumFMJ
       prob: 0.25
+    # Bonus Loot T3
+    - id: Doubloon1
+      prob: 0.05
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash500
+      prob: 0.9
+    - id: SpaceCash1000
+      prob: 0.7
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.25
+    - id: PirateTechFabCircuitboard
+      prob: 0.001
+    - id: LootSpawnerMedicalMinor
+      prob: 0.7
+    - id: AirlossAutoInjector
+      prob: 0.05
+    - id: PyraAutoInjector
+      prob: 0.05
+    - id: CombatMedipen
+      prob: 0.05
+    - id: BruteAutoInjector
+      prob: 0.05
+    - id: BurnAutoInjector
+      prob: 0.05
+    - id: BruizAutoInjector
+      prob: 0.05
+    - id: PunctAutoInjector
+      prob: 0.05
+    - id: LacerAutoInjector
+      prob: 0.05
+    - id: EmergencyMedipen
+      prob: 0.4
+    - id: EmergencyMedipen
+      prob: 0.2
+    - id: EmergencyMedipen
+      prob: 0.1
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -474,6 +580,8 @@
     - id: CrateAmmunitionSmallLightRifle
       prob: 0.25
     # Bonus Loot T1
+    - id: Doubloon1
+      prob: 0.05
     - id: SpaceCash500
       prob: 0.9
     - id: SpaceCash1000
@@ -621,6 +729,8 @@
       amount: 5
       prob: 0.2
     # Bonus Loot T2
+    - id: Doubloon1
+      prob: 0.05
     - id: SpaceCash1000
       prob: 0.9
     - id: LootSpawnerMedicalMinor
@@ -676,6 +786,12 @@
     - id: PatchBrute
       prob: 0.15
     # Bonus Loot T2
+    - id: Doubloon1
+      prob: 0.05
+    - id: Doubloon5
+      prob: 0.1
+    - id: ClothingBackpackMessengerPirateDecoyKitFilled
+      prob: 0.02
     - id: SpaceCash1000
       prob: 0.9
     - id: LootSpawnerMedicalMinor
@@ -791,6 +907,12 @@
     - id: PatchBrute
       prob: 0.15
     # Bonus Loot T2
+    - id: Doubloon1
+      prob: 0.05
+    - id: Doubloon5
+      prob: 0.1
+    - id: ClothingBackpackMessengerPirateDecoyKitFilled
+      prob: 0.02
     - id: SpaceCash1000
       prob: 0.9
     - id: LootSpawnerMedicalMinor
@@ -861,7 +983,48 @@
       prob: 0.5
     - id: CartridgeAntiMateriel
       prob: 0.3
+    - id: null
+      prob: 0.6
+      orGroup: AntiMaterielRare
+    - id: CartridgeAntiMaterielPenetrator
+      amount: 3
+      prob: 0.1
+      orGroup: AntiMaterielRare
+    - id: CartridgeAntiMaterielFrag
+      amount: 3
+      prob: 0.1
+      orGroup: AntiMaterielRare
+    - id: CartridgeAntiMaterielBlast
+      amount: 3
+      prob: 0.1
+      orGroup: AntiMaterielRare
+    - id: CartridgeAntiMaterielEmp
+      amount: 3
+      prob: 0.1
+      orGroup: AntiMaterielRare
     - id: MagazineBoxAntiMateriel
+      prob: 0.2
+    # Bonus Loot T2
+    - id: Doubloon1
+      prob: 0.05
+    - id: Doubloon5
+      prob: 0.1
+    - id: ClothingBackpackMessengerPirateDecoyKitFilled
+      prob: 0.02
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: LootSpawnerMedicalMinor
+      prob: 0.7
+    - id: SpaceCash1000
+      prob: 0.7
+    - id: LootSpawnerMaterials
+      amount: 2
+      prob: 0.7
+    - id: NukeOpsGrenadeSpawner
+      prob: 0.1
+    - id: NukeOpsMedkitBruteSpawner
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValue
       prob: 0.25
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -908,6 +1071,28 @@
       prob: 0.25
     - id: BrutepackAdvanced1
       prob: 0.25
+    # Bonus Loot T2
+    - id: Doubloon1
+      prob: 0.05
+    - id: Doubloon5
+      prob: 0.1
+    - id: ClothingBackpackMessengerPirateDecoyKitFilled
+      prob: 0.02
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: LootSpawnerMedicalMinor
+      prob: 0.7
+    - id: SpaceCash1000
+      prob: 0.7
+    - id: LootSpawnerMaterials
+      amount: 2
+      prob: 0.7
+    - id: NukeOpsGrenadeSpawner
+      prob: 0.1
+    - id: NukeOpsMedkitBruteSpawner
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValue
+      prob: 0.25
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -953,6 +1138,28 @@
       prob: 0.25
     - id: BrutepackAdvanced1
       prob: 0.25
+    # Bonus Loot T2
+    - id: Doubloon1
+      prob: 0.05
+    - id: Doubloon5
+      prob: 0.1
+    - id: ClothingBackpackMessengerPirateDecoyKitFilled
+      prob: 0.02
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: LootSpawnerMedicalMinor
+      prob: 0.7
+    - id: SpaceCash1000
+      prob: 0.7
+    - id: LootSpawnerMaterials
+      amount: 2
+      prob: 0.7
+    - id: NukeOpsGrenadeSpawner
+      prob: 0.1
+    - id: NukeOpsMedkitBruteSpawner
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValue
+      prob: 0.25
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -997,6 +1204,28 @@
     - id: PatchBrute
       prob: 0.25
     - id: BrutepackAdvanced1
+      prob: 0.25
+    # Bonus Loot T2
+    - id: Doubloon1
+      prob: 0.05
+    - id: Doubloon5
+      prob: 0.1
+    - id: ClothingBackpackMessengerPirateDecoyKitFilled
+      prob: 0.02
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: LootSpawnerMedicalMinor
+      prob: 0.7
+    - id: SpaceCash1000
+      prob: 0.7
+    - id: LootSpawnerMaterials
+      amount: 2
+      prob: 0.7
+    - id: NukeOpsGrenadeSpawner
+      prob: 0.1
+    - id: NukeOpsMedkitBruteSpawner
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValue
       prob: 0.25
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -1051,6 +1280,8 @@
     - id: LootSpawnerMaterialsHighValue
       prob: 0.2
     # Bonus Loot
+    - id: Doubloon1
+      prob: 0.05
     - id: SpaceCash1000
       prob: 0.9
     - id: LootSpawnerMaterialsHighValueConstruction
@@ -1061,6 +1292,72 @@
       prob: 0.5
     - id: LootSpawnerMaterialsSurplus
       prob: 0.3
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: PirateMessengerGiftBox
+  id: ClothingBackScrapperT1Smasher
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: SpaceCash500
+      prob: 0.9
+    - id: SpaceCash500
+      prob: 0.4
+    - id: SpaceCash500
+      prob: 0.2
+    # Weapons
+    - id: WeaponCrusherBroadAxe
+      prob: 0.75
+    # Armor
+    - id: ClothingOuterHardsuitSalvage
+      prob: 0.3
+      orGroup: SalvHardPool
+    - id: ClothingOuterHardsuitSalvageGoliath
+      prob: 0.2
+      orGroup: SalvHardPool
+    - id: MaterialGoliathHide1
+      amount: 6
+      prob: 0.5
+      orGroup: SalvHardPool
+    - id: MaterialGoliathHide1
+      amount: 12
+      prob: 0.25
+      orGroup: SalvHardPool
+    # Items
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.9
+    - id: LootSpawnerMaterialsHighValue
+      prob: 0.4
+    - id: LootSpawnerMaterialsHighValue
+      prob: 0.2
+    # Bonus Loot
+    - id: Doubloon1
+      prob: 0.05
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.7
+    - id: SpaceCash1000
+      prob: 0.7
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.5
+    - id: LootSpawnerMaterialsSurplus
+      prob: 0.3
+    - id: LootSpawnerMedicalMinor
+      prob: 0.7
+    - id: LootSpawnerMaterials
+      amount: 2
+      prob: 0.7
+    - id: NukeOpsGrenadeSpawner
+      prob: 0.3
+    - id: NukeOpsMedkitBruteSpawner
+      prob: 0.3
+    - id: LootSpawnerMaterialsHighValue
+      prob: 0.25
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -1140,6 +1437,8 @@
     - id: PatchBrute
       prob: 0.15
     # Bonus Loot T2
+    - id: Doubloon1
+      prob: 0.05
     - id: SpaceCash1000
       prob: 0.9
     - id: LootSpawnerMedicalMinor
@@ -1183,6 +1482,8 @@
     - id: EnergyDaggerLoud
       prob: 0.4
     # Bonus Loot T3
+    - id: Doubloon1
+      prob: 0.05
     - id: SpaceCash1000
       prob: 0.9
     - id: SpaceCash500
@@ -1270,6 +1571,12 @@
       amount: 5
       prob: 0.2
     # Bonus Loot T3
+    - id: Doubloon1
+      prob: 0.05
+    - id: Doubloon5
+      prob: 0.1
+    - id: ClothingBackpackMessengerPirateDecoyKitFilled
+      prob: 0.02
     - id: SpaceCash1000
       prob: 0.9
     - id: SpaceCash500
@@ -1280,6 +1587,197 @@
       prob: 0.7
     - id: LootSpawnerMaterialsHighValueConstruction
       prob: 0.5
+    sound:
+      path: /Audio/Effects/closetopen.ogg
+
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: ClothingBackOreCrateTier1Cyborg
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: /Textures/Structures/Storage/orebox.rsi
+    layers:
+    - state: orebox
+    - state: orebox-top
+      map: [ top ]
+      visible: true
+  - type: MultiHandedItem
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.5
+    sprintModifier: 0.5
+  - type: Item
+    size: Ginormous
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: SpawnItemsOnUse
+    items:
+    # Salvage
+    - id: OreBox
+      prob: 0.5
+    - id: SalvageSpawnerScrapCommon75
+      prob: 0.9
+    - id: SalvageSpawnerScrapCommon75
+      prob: 0.85
+    - id: SalvageSpawnerScrapCommon75
+      prob: 0.85
+    - id: SalvageSpawnerScrapValuable75
+      prob: 0.8
+    - id: SalvageSpawnerScrapValuable75
+      prob: 0.75
+    - id: SalvageSpawnerScrapValuable75
+      prob: 0.7
+    - id: SalvageSpawnerEquipment
+      prob: 0.65
+    - id: SalvageSpawnerEquipment
+      prob: 0.6
+    - id: SalvageSpawnerTreasureValuable
+      prob: 0.55
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.5
+    - id: LootSpawnerCableCoil
+      prob: 0.45
+    - id: LootSpawnerScienceMajor
+      prob: 0.4
+    - id: SalvageLootSpawner
+      prob: 0.35
+    # ORE
+    - id: SteelOre
+      prob: 0.35
+    - id: Coal15
+      prob: 0.5
+    - id: Coal15
+      prob: 0.35
+    - id: MobCoalCrab
+      prob: 0.1
+    - id: SilverOre
+      prob: 0.35
+    - id: PlasmaOre
+      prob: 0.25
+    - id: GoldOre
+      prob: 0.2
+    - id: BananiumOre1
+      amount: 5
+      prob: 0.2
+    - id: UraniumOre1
+      amount: 5
+      prob: 0.2
+    - id: DiamondOre1
+      amount: 5
+      prob: 0.2
+    # Bonus Loot T1
+    - id: Doubloon1
+      prob: 0.05
+    - id: SpaceCash500
+      prob: 0.9
+    - id: SpaceCash1000
+      prob: 0.7
+    - id: LootSpawnerMedicalMinor
+      prob: 0.7
+    sound:
+      path: /Audio/Effects/closetopen.ogg
+
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: ClothingBackOreCrateTier2Cyborg
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: /Textures/Structures/Storage/orebox.rsi
+    layers:
+    - state: orebox
+    - state: orebox-top
+      map: [ top ]
+      visible: true
+  - type: MultiHandedItem
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.5
+    sprintModifier: 0.5
+  - type: Item
+    size: Ginormous
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: SpawnItemsOnUse
+    items:
+    # Salvage
+    - id: OreBox
+      prob: 0.5
+    - id: SalvageSpawnerScrapCommon75
+      prob: 0.9
+    - id: SalvageSpawnerScrapCommon75
+      prob: 0.85
+    - id: SalvageSpawnerScrapCommon75
+      prob: 0.85
+    - id: SalvageSpawnerScrapValuable75
+      prob: 0.8
+    - id: SalvageSpawnerScrapValuable75
+      prob: 0.75
+    - id: SalvageSpawnerScrapValuable75
+      prob: 0.7
+    - id: SalvageSpawnerEquipment
+      prob: 0.65
+    - id: SalvageSpawnerEquipment
+      prob: 0.6
+    - id: SalvageSpawnerTreasureValuable
+      prob: 0.55
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.5
+    - id: LootSpawnerCableCoil
+      prob: 0.45
+    - id: LootSpawnerScienceMajor
+      prob: 0.4
+    - id: SalvageLootSpawner
+      prob: 0.35
+    # ORE
+    - id: SteelOre
+      prob: 0.35
+    - id: Coal15
+      prob: 0.5
+    - id: Coal15
+      prob: 0.35
+    - id: MobCoalCrab
+      prob: 0.1
+    - id: SilverOre
+      prob: 0.35
+    - id: PlasmaOre
+      prob: 0.25
+    - id: GoldOre
+      prob: 0.2
+    - id: BananiumOre1
+      amount: 5
+      prob: 0.2
+    - id: UraniumOre1
+      amount: 5
+      prob: 0.2
+    - id: DiamondOre1
+      amount: 5
+      prob: 0.2
+    # Bonus Loot T2
+    - id: Doubloon1
+      prob: 0.05
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: LootSpawnerMedicalMinor
+      prob: 0.7
+    - id: SpaceCash1000
+      prob: 0.7
+    - id: LootSpawnerMaterials
+      amount: 2
+      prob: 0.7
+    - id: NukeOpsGrenadeSpawner
+      prob: 0.05
+    - id: NukeOpsMedkitBruteSpawner
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValue
+      prob: 0.25
     sound:
       path: /Audio/Effects/closetopen.ogg
 
@@ -1334,19 +1832,21 @@
       prob: 0.2
     # durand
     - id: DurandArmorPlate
-      prob: 0.05
+      prob: 0.1
     - id: DurandLArm
-      prob: 0.25
+      prob: 0.35
     - id: DurandRArm
-      prob: 0.25
+      prob: 0.35
     - id: DurandLLeg
-      prob: 0.25
+      prob: 0.35
     - id: DurandRLeg
-      prob: 0.25
+      prob: 0.35
     - id: DurandHarness
-      prob: 0.25
+      prob: 0.35
     - id: DurandHead
-      prob: 0.25
+      prob: 0.35
+    - id: CratePirateSurplusBundle
+      prob: 0.3
     # Weapon
     - id: WeaponMechCombatMaxim
       prob: 0.5
@@ -1364,6 +1864,18 @@
     - id: BulletGrenadeStinger
       prob: 0.1
     # Bonus Loot T3
+    - id: Doubloon5
+      prob: 0.1
+    - id: Doubloon5
+      prob: 0.1
+    - id: ModsuitCore
+      prob: 0.05
+    - id: MedipenCombatInjector
+      prob: 0.05
+    - id: SyringeBluespace
+      prob: 0.02
+    - id: BluespacePillPatchCanister
+      prob: 0.02
     - id: SpaceCash1000
       prob: 0.9
     - id: SpaceCash500
@@ -1418,6 +1930,18 @@
     - id: EmpGrenade
       prob: 0.25
     # Bonus Loot T3
+    - id: Doubloon5
+      prob: 0.1
+    - id: Doubloon5
+      prob: 0.1
+    - id: ModsuitCore
+      prob: 0.05
+    - id: MedipenCombatInjector
+      prob: 0.05
+    - id: SyringeBluespace
+      prob: 0.02
+    - id: BluespacePillPatchCanister
+      prob: 0.02
     - id: SpaceCash1000
       prob: 0.9
     - id: SpaceCash500
@@ -1470,33 +1994,48 @@
     - id: SpaceCash1000
       prob: 0.2
     # Weapons
+    - id: CrateAmmunitionSmallDragunov
+      prob: 0.05
+      orGroup: dragunovPool
     - id: WeaponSniperDragunov
-      prob: 0.25
+      prob: 0.3
       orGroup: dragunovPool
     - id:  WeaponSniperDragunovBiocode
-      prob: 0.75
+      prob: 0.6
       orGroup: dragunovPool
     # Items
     - id: MagazineDragunov
       amount: 2
-      prob: 0.4
+      prob: 0.3
       orGroup: dragunovAmmoPool
     - id: MagazineDragunovExtended
       amount: 2
-      prob: 0.4
+      prob: 0.04
       orGroup: dragunovAmmoPool
     - id: MagazineDragunovUranium
-      prob: 0.25
+      prob: 0.15
       orGroup: dragunovAmmoPool
     - id: MagazineDragunovIncendiary
       amount: 2
-      prob: 0.45
+      prob: 0.4
       orGroup: dragunovAmmoPool
     - id: MagazineDragunovEmpty
       prob: 0.25
     - id: MagazineDragunovEmpty
       prob: 0.4
     # Bonus Loot T3
+    - id: Doubloon5
+      prob: 0.1
+    - id: Doubloon5
+      prob: 0.1
+    - id: ModsuitCore
+      prob: 0.05
+    - id: MedipenCombatInjector
+      prob: 0.05
+    - id: SyringeBluespace
+      prob: 0.02
+    - id: BluespacePillPatchCanister
+      prob: 0.02
     - id: SpaceCash1000
       prob: 0.9
     - id: SpaceCash500
@@ -1588,6 +2127,12 @@
       amount: 2
       prob: 0.25
     # Bonus Loot T3
+    - id: Doubloon1
+      prob: 0.05
+    - id: Doubloon5
+      prob: 0.1
+    - id: ClothingBackpackMessengerPirateDecoyKitFilled
+      prob: 0.02
     - id: SpaceCash1000
       prob: 0.9
     - id: SpaceCash500
@@ -1656,6 +2201,12 @@
       prob: 0.3
       orGroup: PirateHardPool
     # Bonus Loot T2
+    - id: Doubloon1
+      prob: 0.05
+    - id: Doubloon5
+      prob: 0.1
+    - id: ClothingBackpackMessengerPirateDecoyKitFilled
+      prob: 0.02
     - id: SpaceCash1000
       prob: 0.9
     - id: SpaceCash500
@@ -1739,6 +2290,8 @@
       prob: 0.05
       orGroup: SalvHardPool2
     # Bonus Loot
+    - id: Doubloon1
+      prob: 0.05
     - id: SpaceCash1000
       prob: 0.9
     - id: SpaceCash500
@@ -1842,6 +2395,8 @@
       amount: 5
       prob: 0.2
     # Bonus Loot T3
+    - id: Doubloon1
+      prob: 0.05
     - id: SpaceCash1000
       prob: 0.9
     - id: SpaceCash500
@@ -1911,6 +2466,18 @@
     - id: ClothingOuterHardsuitPrivateer
       prob: 0.05
     # Bonus Loot T3
+    - id: Doubloon5
+      prob: 0.1
+    - id: Doubloon5
+      prob: 0.1
+    - id: ModsuitCore
+      prob: 0.05
+    - id: MedipenCombatInjector
+      prob: 0.05
+    - id: SyringeBluespace
+      prob: 0.02
+    - id: BluespacePillPatchCanister
+      prob: 0.02
     - id: SpaceCash1000
       prob: 0.9
     - id: SpaceCash500
@@ -1971,11 +2538,31 @@
       prob: 0.25
     - id: MagazineLightRifleAP
       prob: 0.05
-    # Bonus Loot
+    # Bonus Loot T3
+    - id: Doubloon5
+      prob: 0.1
+    - id: Doubloon5
+      prob: 0.1
+    - id: ModsuitCore
+      prob: 0.05
+    - id: MedipenCombatInjector
+      prob: 0.05
+    - id: SyringeBluespace
+      prob: 0.02
+    - id: BluespacePillPatchCanister
+      prob: 0.02
     - id: SpaceCash1000
-      prob: 0.5
+      prob: 0.9
     - id: SpaceCash500
-      prob: 0.3
+      prob: 0.9
+    - id: SpaceCash1000
+      prob: 0.7
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.25
+    - id: PirateTechFabCircuitboard
+      prob: 0.001
     - id: AirlossAutoInjector
       prob: 0.05
     - id: PyraAutoInjector
@@ -2024,10 +2611,10 @@
       prob: 0.5
       orGroup: Skm25Pool
     - id: WeaponRifleSKM24
-      prob: 0.15
+      prob: 0.1
       orGroup: Skm25Pool
     - id: CombatKnife
-      prob: 0.4
+      prob: 0.3
       orGroup: Skm25Pool
     - id: MagazineLightRifleEmpty
       prob: 0.9
@@ -2059,6 +2646,8 @@
       prob: 0.05
       orGroup: SalvHardPool2
     # Bonus Loot T1
+    - id: Doubloon1
+      prob: 0.05
     - id: SpaceCash500
       prob: 0.9
     - id: SpaceCash1000
@@ -2145,6 +2734,18 @@
       prob: 0.1
       orGroup: ScafPool
     # Bonus Loot T3
+    - id: Doubloon5
+      prob: 0.1
+    - id: Doubloon5
+      prob: 0.1
+    - id: ModsuitCore
+      prob: 0.05
+    - id: MedipenCombatInjector
+      prob: 0.05
+    - id: SyringeBluespace
+      prob: 0.02
+    - id: BluespacePillPatchCanister
+      prob: 0.02
     - id: SpaceCash1000
       prob: 0.9
     - id: SpaceCash500
@@ -2233,6 +2834,8 @@
       prob: 0.05
       orGroup: SalvHardPool2
     # Bonus Loot T3
+    - id: Doubloon1
+      prob: 0.05
     - id: SpaceCash1000
       prob: 0.9
     - id: SpaceCash500
@@ -2273,6 +2876,99 @@
       path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
+  parent: BandolierBox
+  id: ClothingBeltBandolierT1Rifle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash1000
+      prob: 0.4
+    - id: SpaceCash500
+      prob: 0.2
+    # Weapons
+    - id: CombatKnife
+      prob: 0.15
+    - id: WeaponSubMachineGunMakeshift
+      prob: 0.2
+    - id: WeaponSubMachineGunPPSH
+      prob: 0.5
+    - id: MagazinePistolSubMachineGunPPSH
+      prob: 0.3
+    - id: MagazinePistolSubMachineGunPPSH
+      prob: 0.25
+    - id: MagazinePistolSubMachineGunPPSH
+      prob: 0.1
+    - id: MagazinePistolSubMachineGunPPSHExtended
+      prob: 0.02
+    - id: MagazineBoxImprovisedPistol
+      prob: 0.5
+    - id: MagazineBoxImprovisedPistol
+      prob: 0.3
+    - id: MagazineBoxImprovisedPistol
+      prob: 0.2
+    # Armor
+    - id: ClothingHeadHelmetPirateAlt
+      prob: 0.15
+      orGroup: SalvHardPool2
+    - id: ClothingHeadHelmetPirateAlt2
+      prob: 0.15
+      orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateArmored
+      prob: 0.25
+      orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateArmoredAlt
+      prob: 0.25
+      orGroup: SalvHardPool2
+    - id: ClothingOuterHardsuitPrivateer
+      prob: 0.1
+      orGroup: SalvHardPool2
+    # Bonus Loot T1
+    - id: Doubloon1
+      prob: 0.05
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash500
+      prob: 0.9
+    - id: SpaceCash1000
+      prob: 0.7
+    - id: LootSpawnerMedicalMinor
+      prob: 0.7
+    - id: Catwalk
+      prob: 0.5
+    - id: JugDexPlusSaline
+      prob: 0.15
+    - id: AirlossAutoInjector
+      prob: 0.05
+    - id: PyraAutoInjector
+      prob: 0.05
+    - id: CombatMedipen
+      prob: 0.05
+    - id: BruteAutoInjector
+      prob: 0.05
+    - id: BurnAutoInjector
+      prob: 0.05
+    - id: BruizAutoInjector
+      prob: 0.05
+    - id: PunctAutoInjector
+      prob: 0.05
+    - id: LacerAutoInjector
+      prob: 0.05
+    - id: EmergencyMedipen
+      prob: 0.4
+    - id: EmergencyMedipen
+      prob: 0.2
+    - id: EmergencyMedipen
+      prob: 0.1
+    - id: ClothingBackpackMessengerPirate
+      prob: 0.25
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
   parent: MilitaryWebbingBox
   id: ClothingBeltMilitaryWebbingTier3Pistol
   categories: [ HideSpawnMenu ]
@@ -2296,6 +2992,8 @@
     - id: WeaponPistolM1984
       prob: 0.25
       orGroup: PistolT3Pool
+    - id: RiotShieldStrobe
+      prob: 0.65
     - id: MagazinePistolEmpty
       prob: 0.9
     - id: MagazinePistolHP
@@ -2308,13 +3006,55 @@
     # Items
     - id: ClothingBeltMilitaryWebbing
       prob: 0.25
-    # Bonus Loot T1
+    # Bonus Loot T3
+    - id: Doubloon5
+      prob: 0.1
+    - id: Doubloon5
+      prob: 0.1
+    - id: ModsuitCore
+      prob: 0.05
+    - id: MedipenCombatInjector
+      prob: 0.05
+    - id: SyringeBluespace
+      prob: 0.02
+    - id: BluespacePillPatchCanister
+      prob: 0.02
+    - id: SpaceCash1000
+      prob: 0.9
     - id: SpaceCash500
       prob: 0.9
     - id: SpaceCash1000
       prob: 0.7
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.25
+    - id: PirateTechFabCircuitboard
+      prob: 0.001
     - id: LootSpawnerMedicalMinor
       prob: 0.7
+    - id: AirlossAutoInjector
+      prob: 0.05
+    - id: PyraAutoInjector
+      prob: 0.05
+    - id: CombatMedipen
+      prob: 0.05
+    - id: BruteAutoInjector
+      prob: 0.05
+    - id: BurnAutoInjector
+      prob: 0.05
+    - id: BruizAutoInjector
+      prob: 0.05
+    - id: PunctAutoInjector
+      prob: 0.05
+    - id: LacerAutoInjector
+      prob: 0.05
+    - id: EmergencyMedipen
+      prob: 0.4
+    - id: EmergencyMedipen
+      prob: 0.2
+    - id: EmergencyMedipen
+      prob: 0.1
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -2335,6 +3075,8 @@
     # Weapons
     - id: WeaponSubMachineGunSkorpion
       prob: 0.75
+    - id: RiotBulletShield
+      prob: 0.65
     - id: MagazinePistolSubMachineGunEmpty
       prob: 0.9
     - id: MagazinePistolSubMachineGunHP
@@ -2347,11 +3089,31 @@
     # Items
     - id: ClothingBeltMilitaryWebbing
       prob: 0.25
-    # Bonus Loot T1
+    # Bonus Loot T3
+    - id: Doubloon5
+      prob: 0.1
+    - id: Doubloon5
+      prob: 0.1
+    - id: ModsuitCore
+      prob: 0.05
+    - id: MedipenCombatInjector
+      prob: 0.05
+    - id: SyringeBluespace
+      prob: 0.02
+    - id: BluespacePillPatchCanister
+      prob: 0.02
+    - id: SpaceCash1000
+      prob: 0.9
     - id: SpaceCash500
       prob: 0.9
     - id: SpaceCash1000
       prob: 0.7
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.25
+    - id: PirateTechFabCircuitboard
+      prob: 0.001
     - id: LootSpawnerMedicalMinor
       prob: 0.7
     - id: AirlossAutoInjector
@@ -2406,10 +3168,30 @@
     - id: ClothingBeltSyndieWebbing
       prob: 0.25
     # Bonus Loot T3
+    - id: Doubloon5
+      prob: 0.1
+    - id: Doubloon5
+      prob: 0.1
+    - id: ModsuitCore
+      prob: 0.05
+    - id: MedipenCombatInjector
+      prob: 0.05
+    - id: SyringeBluespace
+      prob: 0.02
+    - id: BluespacePillPatchCanister
+      prob: 0.02
     - id: SpaceCash500
       prob: 0.9
     - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash1000
       prob: 0.7
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.25
+    - id: PirateTechFabCircuitboard
+      prob: 0.001
     - id: LootSpawnerMedicalMinor
       prob: 0.7
     - id: AirlossAutoInjector
@@ -2478,10 +3260,30 @@
     - id: ClothingBeltSyndieWebbing
       prob: 0.25
     # Bonus Loot T3
+    - id: Doubloon5
+      prob: 0.1
+    - id: Doubloon5
+      prob: 0.1
+    - id: ModsuitCore
+      prob: 0.05
+    - id: MedipenCombatInjector
+      prob: 0.05
+    - id: SyringeBluespace
+      prob: 0.02
+    - id: BluespacePillPatchCanister
+      prob: 0.02
     - id: SpaceCash500
       prob: 0.9
     - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash1000
       prob: 0.7
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.25
+    - id: PirateTechFabCircuitboard
+      prob: 0.001
     - id: LootSpawnerMedicalMinor
       prob: 0.7
     - id: AirlossAutoInjector
@@ -2556,6 +3358,53 @@
       prob: 0.6
     - id: LootSpawnerMaterialsHighValueConstruction
       prob: 0.4
+    # Bonus Loot T3
+    - id: Doubloon5
+      prob: 0.1
+    - id: Doubloon5
+      prob: 0.1
+    - id: ModsuitCore
+      prob: 0.05
+    - id: MedipenCombatInjector
+      prob: 0.05
+    - id: SyringeBluespace
+      prob: 0.02
+    - id: BluespacePillPatchCanister
+      prob: 0.02
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash500
+      prob: 0.9
+    - id: SpaceCash1000
+      prob: 0.7
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.25
+    - id: PirateTechFabCircuitboard
+      prob: 0.001
+    - id: AirlossAutoInjector
+      prob: 0.05
+    - id: PyraAutoInjector
+      prob: 0.05
+    - id: CombatMedipen
+      prob: 0.05
+    - id: BruteAutoInjector
+      prob: 0.05
+    - id: BurnAutoInjector
+      prob: 0.05
+    - id: BruizAutoInjector
+      prob: 0.05
+    - id: PunctAutoInjector
+      prob: 0.05
+    - id: LacerAutoInjector
+      prob: 0.05
+    - id: EmergencyMedipen
+      prob: 0.4
+    - id: EmergencyMedipen
+      prob: 0.2
+    - id: EmergencyMedipen
+      prob: 0.1
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -2575,7 +3424,7 @@
       prob: 0.2
     # Weapons
     - id: WeaponLightMachineGunRPD
-      prob: 0.05
+      prob: 0.15
     # Items
     - id: MagazineRPD
       orGroup: AmmoMGPool
@@ -2600,6 +3449,53 @@
       prob: 0.6
     - id: LootSpawnerMaterialsHighValueConstruction
       prob: 0.4
+    # Bonus Loot T3
+    - id: Doubloon5
+      prob: 0.1
+    - id: Doubloon5
+      prob: 0.1
+    - id: ModsuitCore
+      prob: 0.05
+    - id: MedipenCombatInjector
+      prob: 0.05
+    - id: SyringeBluespace
+      prob: 0.02
+    - id: BluespacePillPatchCanister
+      prob: 0.02
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash500
+      prob: 0.9
+    - id: SpaceCash1000
+      prob: 0.7
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.25
+    - id: PirateTechFabCircuitboard
+      prob: 0.001
+    - id: AirlossAutoInjector
+      prob: 0.05
+    - id: PyraAutoInjector
+      prob: 0.05
+    - id: CombatMedipen
+      prob: 0.05
+    - id: BruteAutoInjector
+      prob: 0.05
+    - id: BurnAutoInjector
+      prob: 0.05
+    - id: BruizAutoInjector
+      prob: 0.05
+    - id: PunctAutoInjector
+      prob: 0.05
+    - id: LacerAutoInjector
+      prob: 0.05
+    - id: EmergencyMedipen
+      prob: 0.4
+    - id: EmergencyMedipen
+      prob: 0.2
+    - id: EmergencyMedipen
+      prob: 0.1
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -2659,12 +3555,54 @@
     - id: PatchBrute
       prob: 0.15
     # Bonus Loot T3
+    - id: Doubloon5
+      prob: 0.1
+    - id: Doubloon5
+      prob: 0.1
+    - id: ModsuitCore
+      prob: 0.05
+    - id: MedipenCombatInjector
+      prob: 0.05
+    - id: SyringeBluespace
+      prob: 0.02
+    - id: BluespacePillPatchCanister
+      prob: 0.02
     - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash500
       prob: 0.9
     - id: LootSpawnerMedicalMinor
       prob: 0.7
     - id: SpaceCash1000
       prob: 0.7
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.25
+    - id: PirateTechFabCircuitboard
+      prob: 0.001
+    - id: AirlossAutoInjector
+      prob: 0.05
+    - id: PyraAutoInjector
+      prob: 0.05
+    - id: CombatMedipen
+      prob: 0.05
+    - id: BruteAutoInjector
+      prob: 0.05
+    - id: BurnAutoInjector
+      prob: 0.05
+    - id: BruizAutoInjector
+      prob: 0.05
+    - id: PunctAutoInjector
+      prob: 0.05
+    - id: LacerAutoInjector
+      prob: 0.05
+    - id: EmergencyMedipen
+      prob: 0.4
+    - id: EmergencyMedipen
+      prob: 0.2
+    - id: EmergencyMedipen
+      prob: 0.1
     - id: LootSpawnerMaterials
       amount: 2
       prob: 0.7
@@ -2733,12 +3671,54 @@
     - id: PatchBrute
       prob: 0.15
     # Bonus Loot T3
+    - id: Doubloon5
+      prob: 0.1
+    - id: Doubloon5
+      prob: 0.1
+    - id: ModsuitCore
+      prob: 0.05
+    - id: MedipenCombatInjector
+      prob: 0.05
+    - id: SyringeBluespace
+      prob: 0.02
+    - id: BluespacePillPatchCanister
+      prob: 0.02
     - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash500
       prob: 0.9
     - id: LootSpawnerMedicalMinor
       prob: 0.7
     - id: SpaceCash1000
       prob: 0.7
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.25
+    - id: PirateTechFabCircuitboard
+      prob: 0.001
+    - id: AirlossAutoInjector
+      prob: 0.05
+    - id: PyraAutoInjector
+      prob: 0.05
+    - id: CombatMedipen
+      prob: 0.05
+    - id: BruteAutoInjector
+      prob: 0.05
+    - id: BurnAutoInjector
+      prob: 0.05
+    - id: BruizAutoInjector
+      prob: 0.05
+    - id: PunctAutoInjector
+      prob: 0.05
+    - id: LacerAutoInjector
+      prob: 0.05
+    - id: EmergencyMedipen
+      prob: 0.4
+    - id: EmergencyMedipen
+      prob: 0.2
+    - id: EmergencyMedipen
+      prob: 0.1
     - id: LootSpawnerMaterials
       amount: 2
       prob: 0.7
@@ -2815,12 +3795,54 @@
     - id: PatchBrute
       prob: 0.15
     # Bonus Loot T3
+    - id: Doubloon5
+      prob: 0.1
+    - id: Doubloon5
+      prob: 0.1
+    - id: ModsuitCore
+      prob: 0.05
+    - id: MedipenCombatInjector
+      prob: 0.05
+    - id: SyringeBluespace
+      prob: 0.02
+    - id: BluespacePillPatchCanister
+      prob: 0.02
     - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash500
       prob: 0.9
     - id: LootSpawnerMedicalMinor
       prob: 0.7
     - id: SpaceCash1000
       prob: 0.7
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.25
+    - id: PirateTechFabCircuitboard
+      prob: 0.001
+    - id: AirlossAutoInjector
+      prob: 0.05
+    - id: PyraAutoInjector
+      prob: 0.05
+    - id: CombatMedipen
+      prob: 0.05
+    - id: BruteAutoInjector
+      prob: 0.05
+    - id: BurnAutoInjector
+      prob: 0.05
+    - id: BruizAutoInjector
+      prob: 0.05
+    - id: PunctAutoInjector
+      prob: 0.05
+    - id: LacerAutoInjector
+      prob: 0.05
+    - id: EmergencyMedipen
+      prob: 0.4
+    - id: EmergencyMedipen
+      prob: 0.2
+    - id: EmergencyMedipen
+      prob: 0.1
     - id: LootSpawnerMaterials
       amount: 2
       prob: 0.7
@@ -2950,6 +3972,18 @@
     - id: Tourniquet
       prob: 0.25
     # Bonus Loot T4
+    - id: Doubloon5
+      prob: 0.1
+    - id: Doubloon5
+      prob: 0.1
+    - id: ModsuitCore
+      prob: 0.05
+    - id: MedipenCombatInjector
+      prob: 0.05
+    - id: SyringeBluespace
+      prob: 0.02
+    - id: BluespacePillPatchCanister
+      prob: 0.02
     - id: SpaceCash2500
       prob: 0.9
     - id: PirateTechFabCircuitboard
@@ -3135,6 +4169,12 @@
     - id: WeaponCrusherBroadAxe
       prob: 0.7
     # Bonus Loot T3
+    - id: Doubloon1
+      prob: 0.05
+    - id: Doubloon5
+      prob: 0.1
+    - id: ClothingBackpackMessengerPirateDecoyKitFilled
+      prob: 0.02
     - id: SpaceCash1000
       prob: 0.9
     - id: SpaceCash500
@@ -3228,3 +4268,4 @@
       prob: 0.4
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
+

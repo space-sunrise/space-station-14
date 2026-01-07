@@ -33,3 +33,11 @@
   components:
   - type: Implanter
     implant: DeathRattleImplantFreelance
+
+- type: entity
+  id: ScramImplanterProto
+  name: scram implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: ScramImplantProto

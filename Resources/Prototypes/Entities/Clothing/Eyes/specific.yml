@@ -15,9 +15,3 @@
     - type: ChameleonClothing
       slot: [eyes]
       default: ClothingEyesGlassesSunglasses
-  # Sunrise-Start
-    - type: Biocode
-      factions:
-      - Syndicate
-      - Thief
-  # Sunrise-End

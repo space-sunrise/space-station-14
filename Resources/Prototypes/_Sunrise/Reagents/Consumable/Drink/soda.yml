@@ -51,7 +51,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:AdjustReagent
         reagent: ChangelingStingSunrise
         amount: -1000
@@ -59,14 +59,14 @@
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:Polymorph
         prototype: ChangelingStingReptilian
         probability: 0.167
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:AdjustReagent
         reagent: ChangelingStingSunrise
         amount: -1000
@@ -74,14 +74,14 @@
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:Polymorph
         prototype: ChangelingStingTajaran
         probability: 0.25
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:AdjustReagent
         reagent: ChangelingStingSunrise
         amount: -1000
@@ -89,14 +89,14 @@
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:Polymorph
         prototype: ChangelingStingSlime
         probability: 0.333
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:AdjustReagent
         reagent: ChangelingStingSunrise
         amount: -1000
@@ -104,14 +104,14 @@
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:Polymorph
         prototype: ChangelingStingMoth
         probability: 0.417
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:AdjustReagent
         reagent: ChangelingStingSunrise
         amount: -1000
@@ -119,14 +119,14 @@
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:Polymorph
         prototype: ChangelingStingSwine
         probability: 0.5
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:AdjustReagent
         reagent: ChangelingStingSunrise
         amount: -1000
@@ -134,14 +134,14 @@
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:Polymorph
         prototype: ChangelingStingResomi
         probability: 0.583
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:AdjustReagent
         reagent: ChangelingStingSunrise
         amount: -1000
@@ -149,14 +149,14 @@
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:Polymorph
         prototype: ChangelingStingVox
         probability: 0.667
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:AdjustReagent
         reagent: ChangelingStingSunrise
         amount: -1000
@@ -164,14 +164,14 @@
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:Polymorph
         prototype: ChangelingStingVulpkanin
         probability: 0.75
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:AdjustReagent
         reagent: ChangelingStingSunrise
         amount: -1000
@@ -179,14 +179,14 @@
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:Polymorph
         prototype: ChangelingStingFelinid
         probability: 0.833
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:AdjustReagent
         reagent: ChangelingStingSunrise
         amount: -1000
@@ -194,14 +194,14 @@
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:Polymorph
         prototype: ChangelingStingHumanoidXeno
         probability: 0.917
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:AdjustReagent
         reagent: ChangelingStingSunrise
         amount: -1000
@@ -209,14 +209,14 @@
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:Polymorph
         prototype: ChangelingStingHumanRename
         probability: 1
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
       - !type:AdjustReagent
         reagent: ChangelingStingSunrise
         amount: -1000
@@ -224,7 +224,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
-          min: 5
+          min: 25
 
 - type: reagent
   id: DrGibbSunrise

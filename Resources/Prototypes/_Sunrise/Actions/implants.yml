@@ -1,0 +1,49 @@
+- type: entity
+  parent: BaseImplantAction
+  id: ActionActivateScramImplantProto
+  name: SCRAM!
+  description: Randomly teleports you within a large distance.
+  components:
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: AutoRecharge
+    rechargeDuration: 600
+  - type: Action
+    checkCanInteract: false
+    useDelay: 5
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Structures/Specific/anomaly.rsi
+      state: anom4
+
+- type: entity
+  id: ActionActivateSmokeGrenadeImplant
+  name: Activate Smoke Grenade
+  description: Create a small cloud of smoke around you.
+  components:
+  - type: Action
+    checkCanInteract: false
+    useDelay: 5
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Objects/Weapons/Grenades/smoke.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:ActivateImplantEvent
+  - type: LimitedCharges
+    maxCharges: 3
+  - type: AutoRecharge
+    rechargeDuration: 120
+
+- type: entity
+  parent: BaseImplantAction
+  id: ActionActivateBorgLaughImplant
+  name: "[color=red]Laugh[/color]"
+  description: Activates your creepy laugh implant, which will produce the signature sound of the Syndicate cyborg.
+  components:
+  - type: Action
+    icon: { sprite: Mobs/Species/Terminator/parts.rsi, state: skull_icon }
+    useDelay: 3
+    itemIconStyle: BigAction

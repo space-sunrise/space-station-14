@@ -72,7 +72,7 @@ public sealed partial class ExtraTab : Control
             var layoutLoc = Loc.GetString($"lobby-parallax-{lobbyParallax.ID}");
             lobbyParallaxes.Add(new OptionDropDownCVar<string>.ValueOption(lobbyParallax.ID, layoutLoc));
         }
-        var lobbyArtsPrototypes = _prototypeManager.EnumeratePrototypes<LobbyBackgroundPrototype>();
+        var lobbyArtsPrototypes = _prototypeManager.EnumeratePrototypes<LobbyArtPrototype>();
         foreach (var lobbyArt in lobbyArtsPrototypes)
         {
             var layoutLoc = Loc.GetString($"lobby-art-{lobbyArt.ID}");
@@ -90,6 +90,7 @@ public sealed partial class ExtraTab : Control
         Control.AddOptionDropDown(SunriseCCVars.LobbyAnimation, DropDownLobbyAnimation, lobbyAnimations);
         Control.AddOptionDropDown(SunriseCCVars.LobbyParallax, DropDownLobbyParallax, lobbyParallaxes);
         Control.AddOptionPercentSlider(SunriseCCVars.LobbyOpacity, LobbyOpacitySlider);
+        Control.AddOptionCheckBox(SunriseCCVars.LobbyUnloadResources, LobbyUnloadResourcesCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.DamageOverlayEnable, DamageOverlayEnableCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.DamageOverlaySelf, DamageOverlaySelfCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.DamageOverlayStructures, DamageOverlayStructuresCheckBox);

@@ -9,7 +9,7 @@
     - !type:DepartmentTimeRequirement
       department: Engineering
       time: 5h
-      inverted: true # stop playing intern if you're good at engineering!
+      #inverted: true # stop playing intern if you're good at engineering! # Sunrise-edit
   startingGear: TechnicalAssistantGear
   icon: "JobIconTechnicalAssistant"
   supervisors: job-supervisors-engineering

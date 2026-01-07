@@ -1,4 +1,8 @@
 guide-entry-disease = Разумная болезнь
+guide-entry-expeditions = Экспедиции
+guide-entry-expedition-pirates = Пираты
+guide-entry-expedition-xenos = Ксено
+guide-entry-expedition-carps = Карпы
 
 ## SUNRISE rules
 
