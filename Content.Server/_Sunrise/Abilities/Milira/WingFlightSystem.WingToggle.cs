@@ -129,7 +129,10 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
 
         foreach (var slot in ent.Comp.BlockedSlots)
         {
-            if (_inventory.TryGetSlotEntity(ent.Owner, slot, out _))
+            if (!_inventory.TryGetSlotEntity(ent.Owner, slot, out var equippedEntity))
+                continue;
+
+            if (ent.Comp.AllowedTag == null || !_tagSystem.HasTag(equippedEntity.Value, ent.Comp.AllowedTag.Value))
                 return false;
         }
 
@@ -148,7 +151,7 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
     {
         if (ent.Comp.BlockedSlots != null && ent.Comp.BlockedSlots.Contains(args.Slot))
         {
-            if (!ent.Comp.WingsOpened)
+            if (ent.Comp.WingsOpened)
             {
                 if (ent.Comp.AllowedTag != null && _tagSystem.HasTag(args.Equipment, ent.Comp.AllowedTag.Value))
                     return;
