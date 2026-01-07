@@ -171,7 +171,7 @@ public abstract partial class SharedHandsSystem
         var coordinateEntity = userXform.ParentUid.IsValid() ? userXform.ParentUid : ent.Owner;
 
         if (itemXform.MapID == userXform.MapID
-            && (itemPos - TransformSystem.GetMapCoordinates(entity.Value, itemXform).Position).Length() <= MaxAnimationRange
+            && (itemPos - TransformSystem.GetMapCoordinates(ent, userXform).Position).Length() <= MaxAnimationRange
             && MetaData(entity.Value).VisibilityMask == MetaData(ent).VisibilityMask) // Don't animate aghost pickups.
         {
             var initialPosition = TransformSystem.ToCoordinates(coordinateEntity, origin);
