@@ -3,7 +3,7 @@
   layers:
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/Parallaxes/KettleParallaxBG.png"
+        path: "/NetTextures/Parallaxes/KettleParallaxBG.png"
       slowness: 0.998046875
       scale: "1, 1"
     - texture:
@@ -28,7 +28,7 @@
       slowness: 0.984352
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/Parallaxes/gas_giant.png"
+        path: "/NetTextures/Parallaxes/gas_giant.png"
       slowness: 0.998046875
       scale: "1, 1"
       tiled: false

@@ -1,9 +1,9 @@
 - type: parallax
-  id: AsteroidParallax
+  id: Earth
   layers:
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/_Sunrise/Parallaxes/NES/GreenParallax.png"
+        path: "/NetTextures/Parallaxes/OrbitEarth.png"
       slowness: 0.998046875
       scale: "1, 1"
     - texture:
@@ -28,9 +28,10 @@
       slowness: 0.984352
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/_Sunrise/Parallaxes/NES/Asteroids.png"
+        path: "/NetTextures/Parallaxes/planet3.png"
       slowness: 0.998046875
-      scale: "0.8, 0.8"
+      scale: "1, 1"
+      tiled: false
   layersLQ:
     - texture:
         !type:GeneratedParallaxTextureSource
