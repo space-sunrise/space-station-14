@@ -44,7 +44,7 @@ public sealed class WingToggleClientSystem : SharedWingFlightSystem
     private void OnEquipTargetAttempt(Entity<WingToggleComponent> ent, ref IsEquippingTargetAttemptEvent args)
     {
         if (ShouldCancelEquip(ent, args.Slot, args.Equipment))
-             args.Cancel();
+            args.Cancel();
     }
 }
 

@@ -70,7 +70,7 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
             return false;
 
         if (TryComp<WingFlightComponent>(ent.Owner, out var wingFlight) && wingFlight.InertiaActive)
-                return false;
+            return false;
 
         if (!ent.Comp.WingsOpened)
         {
@@ -163,13 +163,13 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
 
     private void OnEquipAttempt(Entity<WingToggleComponent> ent, ref IsEquippingAttemptEvent args)
     {
-        if (ShouldCancelEquip(ent, args.Slot, args.Equipment))
+        if (ShouldBlockEquip(ent, args.Slot, args.Equipment))
             args.Cancel();
     }
 
     private void OnEquipTargetAttempt(Entity<WingToggleComponent> ent, ref IsEquippingTargetAttemptEvent args)
     {
-        if (ShouldCancelEquip(ent, args.Slot, args.Equipment))
+        if (ShouldBlockEquip(ent, args.Slot, args.Equipment))
              args.Cancel();
     }
 }
