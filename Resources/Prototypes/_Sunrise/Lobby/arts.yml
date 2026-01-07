@@ -126,41 +126,41 @@
   id: GutsGuts
   background: NetTextures/Lobby/Arts/guts-guts.webp
 
-#- type: lobbyBackground
-#  id: NewYearBar
-#  background: NetTextures/Lobby/Arts/new-year-bar.webp
+- type: lobbyBackground
+  id: NewYearBar
+  background: NetTextures/Lobby/Arts/new-year-bar.webp
 
-#- type: lobbyBackground
-#  id: NewYearSec
-#  background: NetTextures/Lobby/Arts/new-year-sec.webp
+- type: lobbyBackground
+  id: NewYearSec
+  background: NetTextures/Lobby/Arts/new-year-sec.webp
 
 - type: lobbyBackground
   id: NewYearSave
   background: NetTextures/Lobby/Arts/new-year-save.webp
 
-#- type: lobbyBackground
-#  id: NewYearComfort
-#  background: NetTextures/Lobby/Arts/new-year-comfort.webp
+- type: lobbyBackground
+  id: NewYearComfort
+  background: NetTextures/Lobby/Arts/new-year-comfort.webp
 
-#- type: lobbyBackground
-#  id: NewYearParty
-#  background: NetTextures/Lobby/Arts/new-year-party.webp
+- type: lobbyBackground
+  id: NewYearParty
+  background: NetTextures/Lobby/Arts/new-year-party.webp
 
-#- type: lobbyBackground
-#  id: NewYearPine
-#  background: NetTextures/Lobby/Arts/new-year-pine.webp
+- type: lobbyBackground
+  id: NewYearPine
+  background: NetTextures/Lobby/Arts/new-year-pine.webp
 
-#- type: lobbyBackground
-#  id: NewYearExplosion
-#  background: NetTextures/Lobby/Arts/new-year-explosion.webp
+- type: lobbyBackground
+  id: NewYearExplosion
+  background: NetTextures/Lobby/Arts/new-year-explosion.webp
 
 - type: lobbyBackground
   id: SpaceNuke
   background: NetTextures/Lobby/Arts/space-nuke.webp
 
-#- type: lobbyBackground
-#  id: NewYearPenguins
-#  background: NetTextures/Lobby/Arts/new-year-penguins.webp
+- type: lobbyBackground
+  id: NewYearPenguins
+  background: NetTextures/Lobby/Arts/new-year-penguins.webp
 
 - type: lobbyBackground
   id: NewYearNuke
