@@ -35,6 +35,7 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
         SubscribeLocalEvent<WingToggleComponent, ComponentShutdown>(OnWingToggleShutdown);
         SubscribeLocalEvent<WingToggleComponent, ToggleActionEvent>(OnWingToggleAction);
         SubscribeLocalEvent<WingToggleComponent, IsEquippingAttemptEvent>(OnEquipAttempt);
+        SubscribeLocalEvent<WingToggleComponent, IsEquippingTargetAttemptEvent>(OnEquipTargetAttempt);
     }
 
     private void OnWingToggleMapInit(Entity<WingToggleComponent> ent, ref MapInitEvent args)
@@ -67,6 +68,9 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
 
         if (!humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.Tail, out var markings) || markings.Count == 0)
             return false;
+
+        if (TryComp<WingFlightComponent>(ent.Owner, out var wingFlight) && wingFlight.InertiaActive)
+                return false;
 
         if (!ent.Comp.WingsOpened)
         {
@@ -142,15 +146,29 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
 
     private void OnEquipAttempt(Entity<WingToggleComponent> ent, ref IsEquippingAttemptEvent args)
     {
-        if (!ent.Comp.WingsOpened)
-            return;
-
         if (ent.Comp.BlockedSlots != null && ent.Comp.BlockedSlots.Contains(args.Slot))
         {
-            if (ent.Comp.AllowedTag != null && _tagSystem.HasTag(args.Equipment, ent.Comp.AllowedTag.Value))
-                return;
+            if (!ent.Comp.WingsOpened)
+            {
+                if (ent.Comp.AllowedTag != null && _tagSystem.HasTag(args.Equipment, ent.Comp.AllowedTag.Value))
+                    return;
 
-            args.Cancel();
+                args.Cancel();
+            }
+        }
+    }
+
+    private void OnEquipTargetAttempt(Entity<WingToggleComponent> ent, ref IsEquippingTargetAttemptEvent args)
+    {
+        if (ent.Comp.BlockedSlots != null && ent.Comp.BlockedSlots.Contains(args.Slot))
+        {
+            if (ent.Comp.WingsOpened)
+            {
+                if (ent.Comp.AllowedTag != null && _tagSystem.HasTag(args.Equipment, ent.Comp.AllowedTag.Value))
+                    return;
+
+                args.Cancel();
+            }
         }
     }
 }

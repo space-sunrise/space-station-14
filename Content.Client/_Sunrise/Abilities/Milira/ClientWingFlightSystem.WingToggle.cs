@@ -16,9 +16,24 @@ public sealed class WingToggleClientSystem : SharedWingFlightSystem
         base.Initialize();
 
         SubscribeLocalEvent<WingToggleComponent, IsEquippingAttemptEvent>(OnEquipAttempt);
+        SubscribeLocalEvent<WingToggleComponent, IsEquippingTargetAttemptEvent>(OnEquipTargetAttempt);
     }
 
     private void OnEquipAttempt(Entity<WingToggleComponent> ent, ref IsEquippingAttemptEvent args)
+    {
+        if (!ent.Comp.WingsOpened)
+            return;
+
+        if (ent.Comp.BlockedSlots != null && ent.Comp.BlockedSlots.Contains(args.Slot))
+        {
+            if (ent.Comp.AllowedTag != null && _tagSystem.HasTag(args.Equipment, ent.Comp.AllowedTag.Value))
+                return;
+
+            args.Cancel();
+        }
+    }
+
+    private void OnEquipTargetAttempt(Entity<WingToggleComponent> ent, ref IsEquippingTargetAttemptEvent args)
     {
         if (!ent.Comp.WingsOpened)
             return;
