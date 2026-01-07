@@ -15,6 +15,7 @@ execution-popup-gun-complete-external = { $attacker } стреляет { $victim
 execution-popup-gun-clumsy-internal = Вы промахиваетесь по голове { $victim } и вместо этого стреляете себе в ногу!
 execution-popup-gun-clumsy-external = { $attacker } промахивается по { $victim } и вместо этого стреляет себе в ногу!
 execution-popup-gun-empty = { CAPITALIZE($weapon) } кликает.
+execution-popup-ammo-empty = Патрон израсходован.
 suicide-popup-gun-initial-internal = Вы кладете дуло { $weapon } себе в рот.
 suicide-popup-gun-initial-external = { $attacker } кладет дуло { $weapon } себе в рот.
 suicide-popup-gun-complete-internal = Вы стреляете себе в голову!
