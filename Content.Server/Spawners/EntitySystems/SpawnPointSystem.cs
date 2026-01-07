@@ -33,53 +33,36 @@ public sealed class SpawnPointSystem : EntitySystem
             if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                 continue;
 
-            // Sunrise added start
-            // Delta-V: Allow setting a desired SpawnPointType
-            if (args.DesiredSpawnPointType != SpawnPointType.Unset)
-            {
-                switch (args.DesiredSpawnPointType)
-                {
-                    case SpawnPointType.Job:
-                        if (spawnPoint.SpawnType == SpawnPointType.Job)
-                        {
-                            if (args.Job == null || spawnPoint.Job == null || spawnPoint.Job == args.Job)
-                            {
-                                possiblePositions.Add(xform.Coordinates);
-                            }
-                        }
-                        break;
-                    case SpawnPointType.LateJoin:
-                        if (spawnPoint.SpawnType == SpawnPointType.LateJoin)
-                        {
-                            possiblePositions.Add(xform.Coordinates);
-                        }
-                        else if (_gameTicker.RunLevel == GameRunLevel.InRound &&
-                                 spawnPoint.SpawnType == SpawnPointType.Job &&
-                                 (args.Job == null || spawnPoint.Job == null || spawnPoint.Job == args.Job))
-                        {
-                            possiblePositions.Add(xform.Coordinates);
-                        }
-                        break;
-                    case SpawnPointType.Observer when spawnPoint.SpawnType == SpawnPointType.Observer:
-                        possiblePositions.Add(xform.Coordinates);
-                        break;
-                    default:
-                        continue;
-                }
-            }
-            // Sunrise added end
-
             // Sunrise-Start
-            else
-            {
-                if (spawnPoint.SpawnType == SpawnPointType.Job &&
-                    (args.Job == null || spawnPoint.Job == null || spawnPoint.Job == args.Job))
-                {
-                    possiblePositions.Add(xform.Coordinates);
-                }
-            }
-            // Sunrise-End
+            // Determine which spawn point type we need
+            var desiredType = args.DesiredSpawnPointType != SpawnPointType.Unset
+                ? args.DesiredSpawnPointType
+                : SpawnPointType.Job;
 
+            // For LateJoin in round, use Job spawn points
+            var isLateJoinInRound = desiredType == SpawnPointType.LateJoin &&
+                                    _gameTicker.RunLevel == GameRunLevel.InRound;
+
+            // Check if spawn point type matches
+            var typeMatches = spawnPoint.SpawnType == desiredType ||
+                             (isLateJoinInRound && spawnPoint.SpawnType == SpawnPointType.Job);
+
+            if (!typeMatches)
+                continue;
+
+            // For Job spawn points, check job match
+            if (spawnPoint.SpawnType == SpawnPointType.Job || isLateJoinInRound)
+            {
+                var jobMatches = args.Job == null ||
+                                spawnPoint.Job == null ||
+                                spawnPoint.Job == args.Job;
+
+                if (!jobMatches)
+                    continue;
+            }
+
+            possiblePositions.Add(xform.Coordinates);
+            // Sunrise-End
         }
 
         if (possiblePositions.Count == 0)
