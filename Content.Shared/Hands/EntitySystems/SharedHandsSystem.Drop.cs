@@ -168,14 +168,15 @@ public abstract partial class SharedHandsSystem
 
         // Sunrise-Edit - анимации выкидывания предметов на землю
         // Это почти полная копипаста анимации из TryPickup()
-        var coordinateEntity = userXform.ParentUid.IsValid() ? userXform.ParentUid : ent.Owner;
+        var currentCoords = TransformSystem.GetMoverCoordinates(entity.Value);
+        var currentMapCoords = TransformSystem.GetMapCoordinates(entity.Value);
 
         if (itemXform.MapID == userXform.MapID
-            && (itemPos - TransformSystem.GetMapCoordinates(ent, userXform).Position).Length() <= MaxAnimationRange
+            && (currentMapCoords.Position - TransformSystem.GetMapCoordinates(ent, userXform).Position).Length() <= MaxAnimationRange
             && MetaData(entity.Value).VisibilityMask == MetaData(ent).VisibilityMask) // Don't animate aghost pickups.
         {
-            var initialPosition = TransformSystem.ToCoordinates(coordinateEntity, origin);
-            _storage.PlayPickupAnimation(entity.Value, initialPosition, targetDropLocation.Value, itemXform.LocalRotation, ent);
+            var coordinateEntity = userXform.ParentUid.IsValid() ? userXform.ParentUid : ent.Owner;
+            _storage.PlayPickupAnimation(entity.Value, userXform.Coordinates, currentCoords, itemXform.LocalRotation, ent);
         }
         // Sunrise-Edit
 
