@@ -33,6 +33,6 @@
   - type: Objective
     difficulty: 1.0
     icon:
-      sprite: Objects/Materials/Scrap/generic.rsi
-      state: junk-medkit-1
+      sprite: Objects/Misc/handcuffs.rsi
+      state: handcuff
   - type: StayFreeCondition
