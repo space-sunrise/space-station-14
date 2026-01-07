@@ -20,8 +20,7 @@ public sealed class StayFreeConditionSystem : EntitySystem
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string StayFreeObjective = "PlanetPrisonerStayFreeObjective";
+    private readonly EntProtoId StayFreeObjective = "PlanetPrisonerStayFreeObjective";
 
     public override void Initialize()
     {
@@ -36,22 +35,33 @@ public sealed class StayFreeConditionSystem : EntitySystem
         args.Progress = GetProgress(args.MindId, args.Mind);
     }
 
+    /// <summary>
+    /// Проверяет, скован ли игрок (в наручниках, смирительной рубашке и т.п.)
+    /// Игрок считается скованным, если:
+    /// 1. Не может взаимодействовать руками (CanStillInteract == false)
+    /// 2. Все руки закованы (CuffedHandCount >= общее количество рук)
+    /// </summary>
+    private bool IsRestrained(EntityUid entity)
+    {
+        if (!TryComp<CuffableComponent>(entity, out var cuffed))
+            return false;
+
+        if (!cuffed.CanStillInteract)
+            return true;
+
+        if (TryComp<HandsComponent>(entity, out var hands) && cuffed.CuffedHandCount >= hands.Count)
+            return true;
+
+        return false;
+    }
+
     private float GetProgress(EntityUid mindId, MindComponent mind)
     {
         if (mind.OwnedEntity == null || _mind.IsCharacterDeadIc(mind))
             return 0f;
 
         var entity = mind.OwnedEntity.Value;
-
-        var isRestrained = false;
-        if (TryComp<CuffableComponent>(entity, out var cuffed))
-        {
-            if (!cuffed.CanStillInteract)
-                isRestrained = true;
-
-            if (!isRestrained && TryComp<HandsComponent>(entity, out var hands) && cuffed.CuffedHandCount >= hands.Count)
-                isRestrained = true;
-        }
+        var isRestrained = IsRestrained(entity);
 
         // Проверяем, достигнут ли конец раунда. Цель должна проверяться только в конце раунда или при эвакуации.
         // Условия окончания раунда:
@@ -63,7 +73,9 @@ public sealed class StayFreeConditionSystem : EntitySystem
         var roundNotInProgress = _gameTicker.RunLevel != GameRunLevel.InRound;
         var endReached = shuttleArrived || roundEndRequested || roundNotInProgress;
 
-        // Во время раунда: если жив и не закован — 50%, если закован — 10%.
+        // Во время раунда:
+        // 1. если жив и не закован - 50%,
+        // 2. если жив, но закован - 10%.
         if (!endReached)
         {
             if (isRestrained)
@@ -71,7 +83,9 @@ public sealed class StayFreeConditionSystem : EntitySystem
             return 0.5f;
         }
 
-        // В конце раунда: если жив и свободен — 100%, если жив, но закован — 50%.
+        // В конце раунда:
+        // 1. если жив и не закован - 100%,
+        // 2. если жив, но закован - 50%.
         if (isRestrained)
             return 0.5f;
 
@@ -89,11 +103,15 @@ public sealed class StayFreeConditionSystem : EntitySystem
         if (!TryComp<StayFreeConditionComponent>(objectiveUid.Value, out var conditionComp))
             return;
 
-        var isRestrained = !ent.Comp.CanStillInteract;
+        // Критически важно использовать единую логику проверки isRestrained:
+        // рассинхронизация между иконкой и прогрессом приведёт к багу, когда игрок видит иконку свободного,
+        // но прогресс соответствует закованному (или наоборот).
+        var isRestrained = IsRestrained(ent.Owner);
 
         if (isRestrained)
         {
-            // Сохраняем оригинальную иконку, если ещё не сохранили.
+            // SetIcon перезаписывает исходное значение, поэтому сохраняем оригинал для последующего восстановления
+            // при развязывании наручников. Флаг предотвращает повторное сохранение (перезапись может изменить иконку).
             if (!conditionComp.IconOverridden)
             {
                 if (TryComp<ObjectiveComponent>(objectiveUid.Value, out var objComp) && objComp.Icon != null)
@@ -102,12 +120,12 @@ public sealed class StayFreeConditionSystem : EntitySystem
                 conditionComp.IconOverridden = true;
             }
 
-            // Используем иконку из прототипа (по умолчанию — иконка алерта Handcuffed).
             _objectives.SetIcon(objectiveUid.Value, conditionComp.RestrainedIcon);
         }
         else
         {
-            // Восстанавливаем исходную иконку, если она была переопределена.
+            // SetIcon не откатывается автоматически, поэтому явно восстанавливаем сохранённое значение.
+            // Проверка OriginalIcon != null нужна, так как иконка могла отсутствовать на момент сохранения.
             if (conditionComp.IconOverridden && conditionComp.OriginalIcon != null)
                 _objectives.SetIcon(objectiveUid.Value, conditionComp.OriginalIcon);
 
