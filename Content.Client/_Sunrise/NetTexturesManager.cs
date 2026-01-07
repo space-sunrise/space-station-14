@@ -165,6 +165,13 @@ public sealed class NetTexturesManager
         if (_requestedResources.Contains(resourcePath))
             return;
 
+        // Check if client is connected to server before trying to send message
+        if (!_netManager.IsConnected)
+        {
+            _sawmill.Debug($"Cannot request resource {resourcePath}: client not connected to server");
+            return;
+        }
+
         _requestedResources.Add(resourcePath);
 
         var msg = new RequestNetworkResourceMessage
