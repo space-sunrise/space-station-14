@@ -18,7 +18,7 @@
           types:
             Poison: 0.55
             Blunt: 0.5
-            Mangleness: 0.15 #Sunrise-Edit
+            Mangleness: 0.05
       # OD
       - !type:HealthChange
         conditions:

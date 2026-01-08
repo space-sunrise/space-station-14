@@ -5,8 +5,8 @@
   prototype: MobTajaran
   bodyTypes:
   - TajaranNormal
-  # - TajaranCurved
-  # - TajaranSlim
+  - TajaranCurved
+  #- TajaranSlim
   markingLimits: MobTajaranMarkingLimits
   dollPrototype: MobTajaranDummy
   skinColoration: Hues
@@ -46,7 +46,7 @@
 
 - type: bodyType
   id: TajaranCurved
-  name: body-curved
+  name: body-curved-tajaran
   sprites:
     Head: MobTajaranHead
     Hair: MobHumanoidAnyMarking
@@ -67,7 +67,7 @@
 
 - type: bodyType
   id: TajaranSlim
-  name: body-slim
+  name: body-slim-tajaran
   sexRestrictions:
   - Male
   sprites:

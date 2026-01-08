@@ -1,0 +1,29 @@
+# Head
+
+- type: loadout
+  id: PrisonTrainee-ClothingHeadCapPrisonTraineeMetus
+  equipment:
+    head: ClothingHeadCapPrisonTraineeMetus
+
+- type: loadout
+  id: PrisonTrainee-ClothingHeadHatBeretPrisonTraineeMetus
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonTrainee
+      time: 25200 # 7 часов
+  equipment:
+    head: ClothingHeadHatBeretPrisonTraineeMetus
+
+- type: loadout
+  id: PrisonTrainee-ClothingHeadHatCapPrisonTraineeMetus
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonTrainee
+      time: 54000 # 15 часов
+  equipment:
+    head: ClothingHeadHatCapPrisonTraineeMetus
+

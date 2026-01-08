@@ -1,35 +1,25 @@
-using Content.Shared._Sunrise.Abilities.Resomi;
 using Content.Shared._Sunrise.Jump;
-using Content.Shared.ActionBlocker;
-using Content.Shared.Chat;
-using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Gravity;
+using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
-using Content.Shared.Nutrition;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
-using Content.Shared.Standing;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
-using Robust.Shared.Configuration;
-using Robust.Shared.Containers;
-using Robust.Shared.Network;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Systems;
+using Content.Shared.Throwing;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 
 namespace Content.Shared._Sunrise.SunriseStanding;
 
 public sealed class SunriseStandingStateSystem : EntitySystem
 {
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly ThrowingSystem _throwing = default!;
 
     private readonly EntProtoId _fallStatusEffectKey = "StatusEffectFall";
     public const float FallModifier = 0.2f;
@@ -38,88 +28,64 @@ public sealed class SunriseStandingStateSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<CrawlerComponent, KnockedDownEvent>(OnDown);
-        SubscribeLocalEvent<FallStatusEffectComponent, StatusEffectRelayedEvent<TileFrictionEvent>>(OnFallTileFriction);
+        SubscribeLocalEvent<CanFallComponent, KnockedDownEvent>(OnDown);
+        SubscribeLocalEvent<CanFallComponent, MoveInputEvent>(OnMoveInput);
     }
-    /// <summary>
-    /// All commented code causes severe lag on the client side. This is most likely due to StatusEffectRelayedEvent.
-    /// If anyone can fix this, great, but I think it's almost impossible.
-    /// </summary>
-    // private void OnStatusEffectStartUp(Entity<FallStatusEffectComponent> ent, ref StatusEffectAppliedEvent args)
-    // {
-    //     _blocker.UpdateCanMove(args.Target);
-    // }
-    // private void OnStatusEffectRemoved(Entity<FallStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
-    // {
-    //     _blocker.UpdateCanMove(args.Target);
-    // }
-
-    // private void OnMoveAttempt(Entity<FallStatusEffectComponent> ent, ref StatusEffectRelayedEvent<UpdateCanMoveEvent> args)
-    // {
-    //     args.Args.Cancel();
-    // }
-
-    private void OnFallTileFriction(Entity<FallStatusEffectComponent> ent, ref StatusEffectRelayedEvent<TileFrictionEvent> args)
+    private void OnMoveInput(Entity<CanFallComponent> ent, ref MoveInputEvent args)
     {
-        var parent = Transform(ent).ParentUid;
-
-        if (!TryComp<CanFallComponent>(parent, out var fall))
+        ent.Comp.IsMoving = args.Entity.Comp.HeldMoveButtons != MoveButtons.None;
+    }
+    private void OnDown(Entity<CanFallComponent> ent, ref KnockedDownEvent ev)
+    {
+        if (_gravity.IsWeightless(ent.Owner))
             return;
 
-        var ev = args.Args;
-        ev.Modifier *= fall.Friction;
-        args.Args = ev;
+        if (!ent.Comp.IsMoving)
+            return;
+
+        Fall(ent);
     }
 
-    private void OnDown(EntityUid uid, CrawlerComponent comp, KnockedDownEvent ev)
+    public void Fall(Entity<CanFallComponent> ent)
     {
-        if (_gravity.IsWeightless(uid))
+        if (HasComp<ActiveLeaperComponent>(ent))
             return;
 
-        Fall(uid);
-    }
-
-    public void Fall(EntityUid uid)
-    {
-        if (!TryComp<CanFallComponent>(uid, out var fall))
+        if (!TryComp<StaminaComponent>(ent, out var stamina))
             return;
 
-        if (!TryComp<StaminaComponent>(uid, out var stamina))
-            return;
-
-        var threshold = stamina.CritThreshold * (1 - fall.MinimumStamina);
+        var threshold = stamina.CritThreshold * (1 - ent.Comp.MinimumStamina);
 
         if (stamina.StaminaDamage >= threshold)
         {
-            _popup.PopupPredicted(Loc.GetString("cant-fall-no-stamina"), null, uid, uid);
+            _popup.PopupPredicted(Loc.GetString("cant-fall-no-stamina"), null, ent, ent);
             return;
         }
 
-
-        if (!TryComp<PhysicsComponent>(uid, out var physics) || _statusEffects.HasEffectComp<JumpStatusEffectComponent>(uid))
+        if (_statusEffects.HasEffectComp<JumpStatusEffectComponent>(ent))
             return;
 
         var ev = new FallAttemptEvent();
-        RaiseLocalEvent(uid, ref ev);
+        RaiseLocalEvent(ent, ref ev);
         if (ev.Cancelled)
             return;
 
-        if (!TryComp<KnockedDownComponent>(uid, out var knockedDown))
+        if (!TryComp<KnockedDownComponent>(ent, out var knockedDown))
             return;
 
         if (knockedDown.AutoStand)
             return;
 
-        var velocity = physics.LinearVelocity;
+        var xform = Transform(ent);
+        var throwing = xform.LocalRotation.ToWorldVec() * ent.Comp.FallDistance;
+        var direction = xform.Coordinates.Offset(throwing); // to make the character jump in the direction he's looking
 
-        if (velocity.LengthSquared() < 0.1f)
-            return;
+        _throwing.TryThrow(ent, direction, ent.Comp.FallVelocity);
 
-        _physics.SetLinearVelocity(uid, physics.LinearVelocity * fall.VelocityModifier, body: physics);
-        _statusEffects.TryAddStatusEffectDuration(uid,
+        _statusEffects.TryAddStatusEffectDuration(ent,
             _fallStatusEffectKey,
-            fall.Duration);
+            ent.Comp.Duration);
 
-        _stamina.TakeStaminaDamage(uid, stamina.CritThreshold * fall.StaminaDamage, null, uid, uid, ignoreResist: true);
+        _stamina.TakeStaminaDamage(ent, stamina.CritThreshold * ent.Comp.StaminaDamage, null, ent, ent, ignoreResist: true);
     }
 }

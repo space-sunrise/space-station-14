@@ -11,6 +11,8 @@
     layers:
     - state: icon
       color: "#53535304"
+  - type: FireProtection
+    reduction: 0.5
 
 - type: entity
   parent: ClothingHandsNoGloves
@@ -559,6 +561,18 @@
     clothingVisuals:
       gloves:
       - sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
+        state: wielded-inhand-right
+
+- type: entity
+  parent: ClothingHandsNoGloves
+  id: ClothingHandsPPSH
+  suffix: ppsh
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
         state: wielded-inhand-right
 
 - type: entity

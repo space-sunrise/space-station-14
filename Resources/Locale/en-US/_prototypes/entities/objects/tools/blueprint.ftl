@@ -6,3 +6,5 @@ ent-BlueprintSeismicCharge = seismic charge blueprint
     .desc = A blueprint with a schematic of a seismic charge. It can be inserted into an autolathe.
 ent-BlueprintDoubleEmergencyTank = double emergency tank blueprint
     .desc = A blueprint with a schematic of a double emergency tank. It can be inserted into an autolathe.
+ent-BlueprintMagAsh12Slug = ash-12 magazine (.50 slug) blueprint
+    .desc = A blueprint with a schematic of an ash-12 magazine with slugs. It can be inserted into an autolathe and security fabricator.

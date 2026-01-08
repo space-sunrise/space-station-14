@@ -12,6 +12,7 @@
   - Maintenance
   extendedAccess:
   - Salvage
+  - CargoPurchaseAccess # Sunrise-add
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: BoxingDay

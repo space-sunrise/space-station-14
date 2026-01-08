@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 01/03/2026 03:12:37
-  entityCount: 2583
+  time: 01/06/2026 19:18:59
+  entityCount: 2623
 maps:
 - 1
 grids:
@@ -5054,6 +5054,11 @@ entities:
       powered: True
 - proto: AlwaysPoweredStrobeDimLight
   entities:
+  - uid: 1617
+    components:
+    - type: Transform
+      pos: 10.5,32.5
+      parent: 1
   - uid: 2438
     components:
     - type: Transform
@@ -5076,6 +5081,12 @@ entities:
     components:
     - type: Transform
       pos: 38.5,66.5
+      parent: 1
+  - uid: 2623
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,30.5
       parent: 1
 - proto: AmmoTechFab
   entities:
@@ -9705,13 +9716,6 @@ entities:
     - Construction
 - proto: CartridgeAntiMateriel
   entities:
-  - uid: 889
-    components:
-    - type: Transform
-      pos: 50.627735,2.6294875
-      parent: 1
-    - type: Physics
-      canCollide: False
   - uid: 890
     components:
     - type: Transform
@@ -9729,10 +9733,8 @@ entities:
   - uid: 892
     components:
     - type: Transform
-      pos: 50.61211,2.8744068
+      pos: 50.605007,2.9106197
       parent: 1
-    - type: Physics
-      canCollide: False
   - uid: 893
     components:
     - type: Transform
@@ -9741,6 +9743,22 @@ entities:
       parent: 1
     - type: Physics
       canCollide: False
+- proto: CartridgeAntiMaterielEmp
+  entities:
+  - uid: 2615
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 50.391468,1.6189532
+      parent: 1
+- proto: CartridgeAntiMaterielFrag
+  entities:
+  - uid: 889
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 50.183132,2.2699947
+      parent: 1
 - proto: CartridgePistolSpent
   entities:
   - uid: 1558
@@ -11309,10 +11327,10 @@ entities:
       fixtures: {}
 - proto: ComputerPirateUplink
   entities:
-  - uid: 1645
+  - uid: 2606
     components:
     - type: Transform
-      pos: 4.5,65.5
+      pos: 5.5,65.5
       parent: 1
 - proto: ComputerPowerMonitoring
   entities:
@@ -11548,8 +11566,8 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 1146
           - 1145
+          - 1146
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -13160,6 +13178,13 @@ entities:
       flags: Anchorable
     missingComponents:
     - Construction
+- proto: Implanter
+  entities:
+  - uid: 2603
+    components:
+    - type: Transform
+      pos: 30.555746,47.036392
+      parent: 1
 - proto: IntercomConstructed
   entities:
   - uid: 1375
@@ -13488,6 +13513,18 @@ entities:
     components:
     - type: Transform
       pos: 18.5,58.5
+      parent: 1
+- proto: LootSpawnerScienceMajor
+  entities:
+  - uid: 2607
+    components:
+    - type: Transform
+      pos: 9.5,55.5
+      parent: 1
+  - uid: 2608
+    components:
+    - type: Transform
+      pos: 1.5,51.5
       parent: 1
 - proto: LootSpawnerSecurity
   entities:
@@ -14060,6 +14097,76 @@ entities:
     - type: Transform
       pos: 15.5,31.5
       parent: 1
+  - uid: 2584
+    components:
+    - type: Transform
+      pos: 5.5,6.5
+      parent: 1
+  - uid: 2585
+    components:
+    - type: Transform
+      pos: 15.5,7.5
+      parent: 1
+  - uid: 2593
+    components:
+    - type: Transform
+      pos: 2.5,20.5
+      parent: 1
+  - uid: 2594
+    components:
+    - type: Transform
+      pos: 5.5,14.5
+      parent: 1
+  - uid: 2595
+    components:
+    - type: Transform
+      pos: 13.5,14.5
+      parent: 1
+  - uid: 2596
+    components:
+    - type: Transform
+      pos: 19.5,14.5
+      parent: 1
+  - uid: 2597
+    components:
+    - type: Transform
+      pos: 7.5,20.5
+      parent: 1
+  - uid: 2598
+    components:
+    - type: Transform
+      pos: 14.5,20.5
+      parent: 1
+  - uid: 2599
+    components:
+    - type: Transform
+      pos: 13.5,25.5
+      parent: 1
+  - uid: 2609
+    components:
+    - type: Transform
+      pos: 5.5,52.5
+      parent: 1
+  - uid: 2611
+    components:
+    - type: Transform
+      pos: 35.5,39.5
+      parent: 1
+  - uid: 2613
+    components:
+    - type: Transform
+      pos: 19.5,2.5
+      parent: 1
+  - uid: 2617
+    components:
+    - type: Transform
+      pos: 25.5,6.5
+      parent: 1
+  - uid: 2618
+    components:
+    - type: Transform
+      pos: 32.5,20.5
+      parent: 1
 - proto: MobPirateT2Spawner
   entities:
   - uid: 2282
@@ -14091,6 +14198,21 @@ entities:
     components:
     - type: Transform
       pos: 3.5,30.5
+      parent: 1
+  - uid: 2612
+    components:
+    - type: Transform
+      pos: 43.5,39.5
+      parent: 1
+  - uid: 2619
+    components:
+    - type: Transform
+      pos: 8.5,67.5
+      parent: 1
+  - uid: 2620
+    components:
+    - type: Transform
+      pos: 13.5,58.5
       parent: 1
 - proto: MobPirateT3Spawner
   entities:
@@ -14128,6 +14250,16 @@ entities:
     components:
     - type: Transform
       pos: 16.5,61.5
+      parent: 1
+  - uid: 2610
+    components:
+    - type: Transform
+      pos: 9.5,53.5
+      parent: 1
+  - uid: 2616
+    components:
+    - type: Transform
+      pos: 43.5,14.5
       parent: 1
 - proto: ModularGrenade
   entities:
@@ -14172,6 +14304,42 @@ entities:
     components:
     - type: Transform
       pos: 33.535812,36.53695
+      parent: 1
+- proto: NukeOpsAmmoSpawner
+  entities:
+  - uid: 2586
+    components:
+    - type: Transform
+      pos: 16.5,7.5
+      parent: 1
+  - uid: 2587
+    components:
+    - type: Transform
+      pos: 18.5,9.5
+      parent: 1
+  - uid: 2588
+    components:
+    - type: Transform
+      pos: 8.5,1.5
+      parent: 1
+  - uid: 2601
+    components:
+    - type: Transform
+      pos: 5.5,30.5
+      parent: 1
+- proto: NukeOpsGrenadeSpawner
+  entities:
+  - uid: 2592
+    components:
+    - type: Transform
+      pos: 0.5,21.5
+      parent: 1
+- proto: NukeOpsMedkitBruteSpawner
+  entities:
+  - uid: 2600
+    components:
+    - type: Transform
+      pos: 4.5,30.5
       parent: 1
 - proto: OperatingTable
   entities:
@@ -15517,17 +15685,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 18.5,13.5
       parent: 1
-  - uid: 1616
-    components:
-    - type: Transform
-      pos: 10.5,32.5
-      parent: 1
-  - uid: 1617
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,30.5
-      parent: 1
 - proto: PoweredlightLED
   entities:
   - uid: 1618
@@ -15716,6 +15873,11 @@ entities:
     - type: Transform
       pos: 26.5,39.5
       parent: 1
+  - uid: 2590
+    components:
+    - type: Transform
+      pos: 16.5,9.5
+      parent: 1
 - proto: PuddleBloodSmall
   entities:
   - uid: 2047
@@ -15789,6 +15951,11 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 4.5,61.5
+      parent: 1
+  - uid: 1616
+    components:
+    - type: Transform
+      pos: 4.5,65.5
       parent: 1
   - uid: 1643
     components:
@@ -16883,6 +17050,33 @@ entities:
     - type: Transform
       pos: 32.5,36.5
       parent: 1
+- proto: RandomImplantCaseSpawner
+  entities:
+  - uid: 2447
+    components:
+    - type: Transform
+      pos: 30.5,46.5
+      parent: 1
+  - uid: 2604
+    components:
+    - type: Transform
+      pos: 20.5,54.5
+      parent: 1
+  - uid: 2605
+    components:
+    - type: Transform
+      pos: 31.5,63.5
+      parent: 1
+  - uid: 2614
+    components:
+    - type: Transform
+      pos: 24.5,2.5
+      parent: 1
+  - uid: 2622
+    components:
+    - type: Transform
+      pos: 6.5,65.5
+      parent: 1
 - proto: RandomPosterContraband
   entities:
   - uid: 1835
@@ -17049,6 +17243,11 @@ entities:
     components:
     - type: Transform
       pos: 26.5,39.5
+      parent: 1
+  - uid: 2589
+    components:
+    - type: Transform
+      pos: 16.5,9.5
       parent: 1
 - proto: ReinforcedGirder
   entities:
@@ -17367,12 +17566,12 @@ entities:
     - type: Transform
       pos: 33.5,55.5
       parent: 1
-- proto: ScramImplant
+- proto: ScramImplantProto
   entities:
   - uid: 2520
     components:
     - type: Transform
-      pos: 3.5692098,47.49885
+      pos: 3.5086389,47.56261
       parent: 1
 - proto: ScrapAirlock1
   entities:
@@ -18697,6 +18896,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 33.5,36.5
       parent: 1
+  - uid: 2602
+    components:
+    - type: Transform
+      pos: 30.5,46.5
+      parent: 1
 - proto: TargetHuman
   entities:
   - uid: 2107
@@ -18894,6 +19098,15 @@ entities:
     - type: Transform
       pos: 28.5,30.5
       parent: 1
+- proto: VendingMachineWallMedicalCivilian
+  entities:
+  - uid: 2591
+    components:
+    - type: Transform
+      pos: 3.5,2.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: VestineChemistryVial
   entities:
   - uid: 2128
@@ -19751,6 +19964,13 @@ entities:
     - type: Transform
       pos: 24.42415,2.5899053
       parent: 1
+- proto: WeaponLightMachineGunDP28
+  entities:
+  - uid: 1645
+    components:
+    - type: Transform
+      pos: 4.5015817,65.49769
+      parent: 1
 - proto: WeaponPistolCobra
   entities:
   - uid: 1131
@@ -19794,13 +20014,6 @@ entities:
     - type: Transform
       pos: 4.6858606,61.485825
       parent: 1
-- proto: WeaponRifleEstoc
-  entities:
-  - uid: 2447
-    components:
-    - type: Transform
-      pos: 4.553755,64.69905
-      parent: 1
 - proto: WeaponRifleSKM24Syndi
   entities:
   - uid: 1426
@@ -19812,6 +20025,13 @@ entities:
     components:
     - type: Transform
       pos: 4.50688,62.44124
+      parent: 1
+- proto: WeaponRifleSKM28Syndi
+  entities:
+  - uid: 2621
+    components:
+    - type: Transform
+      pos: 4.665644,64.37851
       parent: 1
 - proto: WeaponTurretNanoTrasen
   entities:
@@ -19864,12 +20084,6 @@ entities:
       parent: 1
     - type: Godmode
       oldDamage: {}
-  - uid: 2293
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 11.5,39.5
-      parent: 1
   - uid: 2294
     components:
     - type: Transform
@@ -19899,6 +20113,14 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 11.5,63.5
       parent: 1
+- proto: WeaponTurretPirateDisposable
+  entities:
+  - uid: 2293
+    components:
+    - type: Transform
+      pos: 11.5,39.5
+      parent: 1
+    - type: CMExplosionEffect
 - proto: WeaponTurretSyndicateBroken
   entities:
   - uid: 2298
