@@ -23,3 +23,10 @@
   components:
     - type: CartridgeAmmo
       deleteOnSpawn: true
+
+- type: entity
+  id: CartridgePistolImprovisedMech
+  parent: [CartridgePistolImprovised, MechCartridge]
+  components:
+  - type: CartridgeAmmo
+    deleteOnSpawn: true

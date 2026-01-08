@@ -37657,12 +37657,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -18.5,-44.5
       parent: 2
-  - uid: 42950
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -119.5,14.5
-      parent: 2
 - proto: AirlockSalvageGlassLocked
   entities:
   - uid: 704

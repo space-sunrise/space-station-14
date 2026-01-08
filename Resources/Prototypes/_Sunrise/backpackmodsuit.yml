@@ -84,7 +84,6 @@
 
 - type: loadout
   id: NanoTrasenRepresentativeModsuit
-  sponsorOnly: true
   equipment:
     back: ClothingModsuitNanoTrasenRepresentative
   effects:

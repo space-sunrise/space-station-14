@@ -1,3 +1,4 @@
+using Content.Server._Sunrise;
 using Content.Server._Sunrise.Contributors;
 using Content.Server._Sunrise.IoC;
 using Content.Server._Sunrise.PlayerCache;
@@ -93,6 +94,7 @@ internal static class ServerContentIoC
         deps.Register<ContributorsManager>();
         deps.Register<PlayerCacheManager>();
         deps.Register<TTSManager>();
+        deps.Register<NetTexturesManager>();
         deps.Register<IIPBlockingSystem, IPBlockingSystem>();
         SunriseServerContentIoC.Register();
         // Sunrise-End

@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 01/02/2026 03:33:33
-  entityCount: 399
+  time: 01/05/2026 16:56:33
+  entityCount: 398
 maps: []
 grids:
 - 1
@@ -45,7 +45,7 @@ entities:
     - type: MetaData
       name: NTMS-754 "Горняк"
     - type: Transform
-      pos: -0.5078125,-0.4609375
+      pos: 1,1
       parent: invalid
     - type: MapGrid
       chunks:
@@ -578,6 +578,14 @@ entities:
     components:
     - type: Transform
       pos: 4.5,5.5
+      parent: 1
+    - type: Stealth
+    - type: StealthOnMove
+  - uid: 331
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,4.5
       parent: 1
     - type: Stealth
     - type: StealthOnMove
@@ -1240,23 +1248,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,-2.5
       parent: 1
-  - uid: 331
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,-4.5
-      parent: 1
   - uid: 332
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 2.5,4.5
-      parent: 1
-  - uid: 333
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,4.5
       parent: 1
   - uid: 334
     components:

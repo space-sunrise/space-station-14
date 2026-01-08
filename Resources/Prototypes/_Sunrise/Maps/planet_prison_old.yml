@@ -17,17 +17,8 @@
       - type: StationJobs
         availableJobs:
           HeadOfPrison: [ 1, 1 ]
-          PrisonDoctor: [ 2, 3 ]
+          PrisonDoctor: [ 1, 1 ]
           PrisonChef: [ 1, 1 ]
           PrisonWorker: [ 2, 3 ]
           PrisonEngineer: [ 2, 3 ]
-          PrisonGuard: [ 20, -1 ]
-          PlanetPrisoner: [ 4, 4 ]
-      - type: RelativeJobsCount
-        jobs:
-        - targetJob: PlanetPrisoner
-          dependency:
-            PrisonGuard: 2
-          maxSlots: 100
-        totalMaxCount:
-          PlanetPrisoner: 100
+          PlanetPrisoner: [ 3, 16 ]

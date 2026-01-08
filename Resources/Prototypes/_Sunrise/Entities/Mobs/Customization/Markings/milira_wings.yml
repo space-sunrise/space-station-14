@@ -4,7 +4,7 @@
   markingCategory: Tail
   speciesRestriction: [Milira]
   sprites:
-  - sprite: _Sunrise/Mobs/Customization/Milira/milira_wings.rsi
+  - sprite: _Sunrise/Mobs/Customization/Milira/wings.rsi
     state: wing_basic
 
 - type: marking
@@ -13,7 +13,7 @@
   markingCategory: Tail
   speciesRestriction: []
   sprites:
-  - sprite: _Sunrise/Mobs/Customization/Milira/milira_wings.rsi
+  - sprite: _Sunrise/Mobs/Customization/Milira/wings_open.rsi
     state: wing_basic_open
 
 - type: marking
@@ -22,5 +22,5 @@
   markingCategory: Tail
   speciesRestriction: []
   sprites:
-  - sprite: _Sunrise/Mobs/Customization/Milira/milira_wings.rsi
+  - sprite: _Sunrise/Mobs/Customization/Milira/wings_flight.rsi
     state: wing_basic_flight
