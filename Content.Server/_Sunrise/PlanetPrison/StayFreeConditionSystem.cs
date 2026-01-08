@@ -134,10 +134,7 @@ public sealed class StayFreeConditionSystem : EntitySystem
     {
         // SetIcon не откатывается автоматически, поэтому явно восстанавливаем сохранённое значение.
         if (!conditionComp.IconOverridden)
-        {
-            conditionComp.IconOverridden = false;
             return;
-        }
 
         // Если OriginalIcon был сохранён, используем его. Иначе получаем иконку из прототипа цели
         // (защита от случая, когда иконка отсутствовала на момент сохранения).
