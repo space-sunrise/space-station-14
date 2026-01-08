@@ -3,7 +3,7 @@
   layers:
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/Parallaxes/AspidParallaxBG.png"
+        path: "/NetTextures/Parallaxes/AspidParallaxBG.png"
       slowness: 0.998046875
       scale: "1, 1"
     - texture:
@@ -28,7 +28,7 @@
       slowness: 0.984352
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/Parallaxes/core_planet.png"
+        path: "/NetTextures/Parallaxes/core_planet.png"
       slowness: 0.998046875
       scale: "1, 1"
       tiled: false

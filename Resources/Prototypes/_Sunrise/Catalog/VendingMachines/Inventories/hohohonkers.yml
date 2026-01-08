@@ -8,12 +8,15 @@
     FaketAnomalyIceFlatpack: 2
     FirecrackerBundle: 3
     FirecrackerBox: 3
+    BoxDonkSoftBox: 1
+    FoamCrossbow: 1
   contrabandInventory:
     ToyFigurineClown: 1
-    ClothingBackpackDuffelSMGFake: 1
-    BoxCartridgeCap: 2
+    RevolverCapGun: 1
+    BoxCartridgeCap: 1
     ClusterSyndyFlashGrenade: 2
     SyndieTrickyBomb: 2
   emaggedInventory:
+    ClothingBackpackDuffelSMGFake: 1
     ClothingBackpackDuffell6Fake: 1
     SyndicateBombFake: 1

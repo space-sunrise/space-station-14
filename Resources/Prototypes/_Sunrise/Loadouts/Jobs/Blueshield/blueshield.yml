@@ -8,6 +8,15 @@
       role: JobBlueShield
       time: 20h
 
+- type: loadoutEffectGroup
+  id: MisterBlueShit50
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBlueShield
+      time: 50h
+
 - type: loadout
   id: BlueShieldBackpack
   equipment:
@@ -65,4 +74,4 @@
   - ClothingBackpackDuffelWeaponRifleAsh12
   effects:
   - !type:GroupLoadoutEffect
-    proto: MisterBlueShit
+    proto: MisterBlueShit50

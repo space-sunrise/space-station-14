@@ -74,24 +74,6 @@
       "directions": 4
     },
     {
-      "name": "orange-space-prison"
-    },
-    {
-      "name": "dark-orange-space-prison"
-    },
-    {
-      "name": "idinspector-space-prison"
-    },
-    {
-      "name": "prisoner-space-prison"
-    },
-    {
-      "name": "stripe_top"
-    },
-    {
-      "name": "stripe_bottom"
-    },
-    {
       "name": "admin"
     },
     {
@@ -144,9 +126,6 @@
     },
     {
       "name": "department-side"
-    },
-    {
-      "name": "department-side-extra"
     },
     {
       "name": "department-side-extra-gold"

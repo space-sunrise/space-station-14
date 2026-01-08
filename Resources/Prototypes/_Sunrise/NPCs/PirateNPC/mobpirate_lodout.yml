@@ -35,7 +35,7 @@
   id: MobPirateT1KnifeGear
   equipment:
     gloves: ClothingHandsMercCombatKnife
-    belt: ClothingBeltUtility
+    belt: ClothingBeltUtilityPirateT1
     pocket1: SpaceCash500
     pocket2: CombatKnife
     shoes: ClothingShoesBootsJack
@@ -56,6 +56,14 @@
     shoes: ClothingShoesBootsJump
     pocket1: AdvancedMineralScanner
     pocket2: WeaponGrapplingGun
+
+- type: startingGear
+  id: MobPirateT1HunterSmashGear
+  equipment:
+    back: ClothingBackScrapperT1Smasher
+    shoes: ClothingShoesBootsJump
+    pocket1: AdvancedMineralScanner
+    pocket2: FoodHivelordRemains
 
 # region Ranged
 - type: startingGear
@@ -146,6 +154,15 @@
     pocket1: PouchAmmoFilledSMG
     pocket2: Gauze1
     shoes: ClothingShoesBootsJack
+
+- type: startingGear
+  id: MobPirateT1RifleGear
+  equipment:
+    gloves: ClothingHandsPPSH
+    belt: ClothingBeltBandolierT1Rifle
+    shoes: ClothingShoesBootsSalvage
+    pocket1: DoubleEmergencyOxygenTankFilled
+    pocket2: ChemistryBottleSaline
 
 # region  Pirate Tier2
 - type: startingGear
@@ -386,6 +403,21 @@
     shoes: MechPaintClarkeRipleyBigBrother
     belt: BorgOreBag
     back: ClothingBackOreCrateTier1Mech
+
+- type: startingGear
+  id: MobPirateT1BorgAssaultGear
+  equipment:
+    back: ClothingBackOreCrateTier2Cyborg
+
+- type: startingGear
+  id: MobPirateT1BorgMiningGear
+  equipment:
+    back: ClothingBackOreCrateTier1Cyborg
+
+- type: startingGear
+  id: MobPirateT1BorgDerelictGear
+  equipment:
+    back: ClothingBackOreCrateTier1Cyborg
 
 # region Pirate Boss
 - type: startingGear

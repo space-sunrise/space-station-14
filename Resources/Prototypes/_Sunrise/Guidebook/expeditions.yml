@@ -1,0 +1,24 @@
+- type: guideEntry
+  id: Expeditions
+  name: guide-entry-expeditions
+  text: "/ServerInfo/Guidebook/_Sunrise/Expeditions.xml"
+  priority: 5
+  children:
+  - MobsExpeditionGuidePirates
+  - MobsExpeditionGuideXenos
+  - MobsExpeditionGuideCarps
+
+- type: guideEntry
+  id: MobsExpeditionGuidePirates
+  name: guide-entry-expedition-pirates
+  text: "/ServerInfo/Guidebook/_Sunrise/MobsHostileExpedition/pirates.xml"
+
+- type: guideEntry
+  id: MobsExpeditionGuideXenos
+  name: guide-entry-expedition-xenos
+  text: "/ServerInfo/Guidebook/_Sunrise/MobsHostileExpedition/xenos.xml"
+
+- type: guideEntry
+  id: MobsExpeditionGuideCarps
+  name: guide-entry-expedition-carps
+  text: "/ServerInfo/Guidebook/_Sunrise/MobsHostileExpedition/carps.xml"

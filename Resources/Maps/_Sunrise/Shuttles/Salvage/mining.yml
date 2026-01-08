@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 266.0.0
+  engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 08/17/2025 21:57:44
+  time: 01/06/2026 20:11:17
   entityCount: 252
 maps: []
 grids:
@@ -27,7 +27,7 @@ entities:
     - type: MetaData
       name: NTMS-632 "Рудокоп"
     - type: Transform
-      pos: 2.2710133,-2.4148211
+      pos: 1,1
       parent: invalid
     - type: MapGrid
       chunks:
@@ -200,33 +200,11 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: OccluderTree
     - type: Shuttle
@@ -239,6 +217,7 @@ entities:
     - type: GridPathfinding
     - type: SalvageShuttle
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirCanister
   entities:
   - uid: 21
@@ -311,13 +290,6 @@ entities:
       parent: 181
     - type: Fixtures
       fixtures: {}
-- proto: AtmosDeviceFanTinyDev
-  entities:
-  - uid: 34
-    components:
-    - type: Transform
-      pos: -2.5,-5.5
-      parent: 181
 - proto: AtmosFixBlockerMarker
   entities:
   - uid: 3
@@ -502,6 +474,11 @@ entities:
       parent: 181
 - proto: CableApcExtension
   entities:
+  - uid: 34
+    components:
+    - type: Transform
+      pos: -0.5,-7.5
+      parent: 181
   - uid: 45
     components:
     - type: Transform
@@ -801,14 +778,6 @@ entities:
     - type: Transform
       pos: -3.5,-7.5
       parent: 181
-- proto: CableTerminal
-  entities:
-  - uid: 64
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.5,-7.5
-      parent: 181
 - proto: Catwalk
   entities:
   - uid: 10
@@ -889,6 +858,33 @@ entities:
     - type: Transform
       pos: -2.5,5.5
       parent: 181
+- proto: CratePlasma
+  entities:
+  - uid: 64
+    components:
+    - type: Transform
+      anchored: True
+      pos: -1.5,-7.5
+      parent: 181
+    - type: AccessReader
+      accessListsOriginal:
+      - - Engineering
+      - - Research
+      - - Chemistry
+    - type: Lock
+      locked: False
+    - type: Physics
+      bodyType: Static
+- proto: DefibrillatorCabinet
+  entities:
+  - uid: 243
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,1.5
+      parent: 181
+    - type: Fixtures
+      fixtures: {}
 - proto: DonkpocketBoxSpawner
   entities:
   - uid: 240
@@ -930,6 +926,30 @@ entities:
     components:
     - type: Transform
       pos: 0.70018744,3.5922637
+      parent: 181
+- proto: Fulton1
+  entities:
+  - uid: 7
+    components:
+    - type: Transform
+      pos: -3.4922512,-4.2876997
+      parent: 181
+  - uid: 176
+    components:
+    - type: Transform
+      pos: -3.2969387,-4.514262
+      parent: 181
+  - uid: 184
+    components:
+    - type: Transform
+      pos: -3.6875637,-4.5376997
+      parent: 181
+- proto: FultonBeacon
+  entities:
+  - uid: 137
+    components:
+    - type: Transform
+      pos: -3.5078762,-4.3658247
       parent: 181
 - proto: GasPipeBend
   entities:
@@ -989,20 +1009,6 @@ entities:
     - type: Transform
       pos: -2.5,2.5
       parent: 181
-- proto: GeneratorBasic15kW
-  entities:
-  - uid: 91
-    components:
-    - type: Transform
-      pos: -0.5,-6.5
-      parent: 181
-    - type: CMExplosionEffect
-  - uid: 138
-    components:
-    - type: Transform
-      pos: -0.5,-7.5
-      parent: 181
-    - type: CMExplosionEffect
 - proto: GravityGeneratorMini
   entities:
   - uid: 49
@@ -1047,27 +1053,6 @@ entities:
     - type: Transform
       pos: -0.7141143,3.5776207
       parent: 181
-- proto: LeftArmBorg
-  entities:
-  - uid: 245
-    components:
-    - type: Transform
-      pos: -1.2517962,-7.6630273
-      parent: 181
-- proto: LeftLegBorg
-  entities:
-  - uid: 244
-    components:
-    - type: Transform
-      pos: -1.7728889,-7.7776904
-      parent: 181
-- proto: LightHeadBorg
-  entities:
-  - uid: 243
-    components:
-    - type: Transform
-      pos: -1.5019208,-7.167929
-      parent: 181
 - proto: MiningWindow
   entities:
   - uid: 11
@@ -1099,10 +1084,10 @@ entities:
       parent: 181
 - proto: OxygenCanister
   entities:
-  - uid: 15
+  - uid: 91
     components:
     - type: Transform
-      pos: -3.5,-4.5
+      pos: -0.5,-0.5
       parent: 181
 - proto: PaperBin10
   entities:
@@ -1126,6 +1111,10 @@ entities:
     - type: Transform
       pos: -3.4403822,5.071967
       parent: 181
+    - type: ContainerContainer
+      containers:
+        innate_items: !type:Container
+          ents: []
 - proto: Pickaxe
   entities:
   - uid: 81
@@ -1139,6 +1128,32 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5434036,-4.46221
       parent: 181
+- proto: PortableGeneratorJrPacman
+  entities:
+  - uid: 172
+    components:
+    - type: Transform
+      anchored: True
+      pos: -0.5,-7.5
+      parent: 181
+    - type: Physics
+      bodyType: Static
+    - type: CMExplosionEffect
+- proto: PortableGeneratorPacman
+  entities:
+  - uid: 13
+    components:
+    - type: Transform
+      anchored: True
+      pos: -2.5,-7.5
+      parent: 181
+    - type: MaterialStorage
+      storage:
+        Plasma: 1000
+    - type: Physics
+      bodyType: Static
+    - type: InsertingMaterialStorage
+      endTime: 0
 - proto: PowerCellRecharger
   entities:
   - uid: 108
@@ -1216,6 +1231,11 @@ entities:
       parent: 181
 - proto: Rack
   entities:
+  - uid: 44
+    components:
+    - type: Transform
+      pos: -3.5,-4.5
+      parent: 181
   - uid: 52
     components:
     - type: Transform
@@ -1225,11 +1245,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5,3.5
-      parent: 181
-  - uid: 176
-    components:
-    - type: Transform
-      pos: -5.5,3.5
       parent: 181
   - uid: 189
     components:
@@ -1288,12 +1303,12 @@ entities:
           - Toggle
     - type: Fixtures
       fixtures: {}
-- proto: SMESBasic
+- proto: StasisBed
   entities:
-  - uid: 44
+  - uid: 138
     components:
     - type: Transform
-      pos: -2.5,-7.5
+      pos: -5.5,3.5
       parent: 181
 - proto: SubstationBasic
   entities:
@@ -1386,20 +1401,15 @@ entities:
     - type: Transform
       pos: 0.5,5.5
       parent: 181
-- proto: TorsoBorg
+- proto: VendingMachineWallMedicalCivilian
   entities:
-  - uid: 246
+  - uid: 241
     components:
     - type: Transform
-      pos: -1.4602338,-7.5570865
+      pos: -5.5,4.5
       parent: 181
-- proto: VendingMachineSalvage
-  entities:
-  - uid: 7
-    components:
-    - type: Transform
-      pos: -0.5,-0.5
-      parent: 181
+    - type: Fixtures
+      fixtures: {}
 - proto: WallMining
   entities:
   - uid: 6
@@ -1724,16 +1734,15 @@ entities:
     - type: Transform
       pos: -4.5,1.5
       parent: 181
-- proto: WeaponProtoKineticAccelerator
+- proto: WeldingFuelTankFull
   entities:
-  - uid: 137
+  - uid: 15
     components:
     - type: Transform
-      pos: -5.530746,3.725446
+      anchored: True
+      pos: -0.5,-6.5
       parent: 181
-  - uid: 184
-    components:
-    - type: Transform
-      pos: -5.4240065,3.4719396
-      parent: 181
+    - type: Physics
+      bodyType: Static
+    - type: CMExplosionEffect
 ...

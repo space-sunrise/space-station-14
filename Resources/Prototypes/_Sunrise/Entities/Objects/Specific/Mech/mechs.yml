@@ -60,7 +60,7 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 3
-    baseWeightlessModifier: 5
+    baseWeightlessModifier: 2
   - type: MovementAlwaysTouching
   - type: Pullable
   - type: Clickable
@@ -120,6 +120,7 @@
     autoRot: true
     radius: 35
     energy: 4
+    offset: "0.28, 0.75"
     netsync: false
   - type: Tag
     tags:
@@ -209,7 +210,7 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3.75
-    baseWeightlessModifier: 4
+    baseWeightlessModifier: 2
   - type: Fixtures
     fixtures:
       fix1:
@@ -274,6 +275,8 @@
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
+      enum.MechUiKey.Key:
+        type: MechBoundUserInterface
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
