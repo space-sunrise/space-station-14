@@ -283,6 +283,9 @@
     - type: Clothing
       sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/qipao.rsi
 
+
+
+  # TODO: Fix dress/shoes layering without taking the outerClothing slot
 - type: entity
   parent: UnsensoredClothingUniformBase
   id: ClothingUniformWeddingDressMagnificent
@@ -294,7 +297,6 @@
     - type: Clothing
       slots: [outerClothing]
       sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/weddingdressmagnificent.rsi
-      equippedState: equipped-INNERCLOTHING
 
 - type: entity
   parent: UnsensoredClothingUniformBase
@@ -307,7 +309,6 @@
     - type: Clothing
       slots: [outerClothing]
       sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/weddingdressbelt.rsi
-      equippedState: equipped-INNERCLOTHING
 
 - type: entity
   parent: UnsensoredClothingUniformBase
@@ -320,4 +321,3 @@
     - type: Clothing
       slots: [outerClothing]
       sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/weddingdresssplit.rsi
-      equippedState: equipped-INNERCLOTHING
