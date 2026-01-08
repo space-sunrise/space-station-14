@@ -20,7 +20,7 @@ public sealed class StayFreeConditionSystem : EntitySystem
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
 
-    private readonly EntProtoId StayFreeObjective = "PlanetPrisonerStayFreeObjective";
+    private readonly EntProtoId _stayFreeObjective = "PlanetPrisonerStayFreeObjective";
 
     public override void Initialize()
     {
@@ -97,7 +97,7 @@ public sealed class StayFreeConditionSystem : EntitySystem
         if (!_mind.TryGetMind(ent.Owner, out var mindId, out var mind))
             return;
 
-        if (!_mind.TryFindObjective((mindId, mind), StayFreeObjective, out var objectiveUid))
+        if (!_mind.TryFindObjective((mindId, mind), _stayFreeObjective, out var objectiveUid))
             return;
 
         if (!TryComp<StayFreeConditionComponent>(objectiveUid.Value, out var conditionComp))
