@@ -29,16 +29,14 @@ public sealed class PuddleFootprintSystem : EntitySystem
     /// </summary>
     private void OnPuddleInteraction(Entity<PuddleFootprintComponent> ent, ref EndCollideEvent args)
     {
-        var uid = ent.Owner;
-        var comp = ent.Comp;
 
-        if (TerminatingOrDeleted(uid) || TerminatingOrDeleted(args.OtherEntity))
+        if (TerminatingOrDeleted(ent) || TerminatingOrDeleted(args.OtherEntity))
             return;
 
-        if (!TryComp<PuddleComponent>(uid, out var puddle)
+        if (!TryComp<PuddleComponent>(ent, out var puddle)
             || !TryComp<FootprintEmitterComponent>(args.OtherEntity, out var emitter)
-            || !TryComp<SolutionContainerManagerComponent>(uid, out var solutionManager)
-            || !_solutionSystem.ResolveSolution((uid, solutionManager), puddle.SolutionName, ref puddle.Solution, out var puddleSolutions)
+            || !TryComp<SolutionContainerManagerComponent>(ent, out var solutionManager)
+            || !_solutionSystem.ResolveSolution((ent, solutionManager), puddle.SolutionName, ref puddle.Solution, out var puddleSolutions)
             || !TryComp<SolutionContainerManagerComponent>(args.OtherEntity, out var emitterSolutionManager))
             return;
 
@@ -67,7 +65,7 @@ public sealed class PuddleFootprintSystem : EntitySystem
         var totalSolutionQuantity = puddleSolutions.Contents.Sum(sol => (float)sol.Quantity);
         var waterQuantity = (from sol in puddleSolutions.Contents where sol.Reagent.Prototype == "Water" select (float)sol.Quantity).FirstOrDefault();
 
-        if (waterQuantity / (totalSolutionQuantity / 100f) > comp.WaterThresholdPercent || puddleSolutions.Contents.Count <= 0)
+        if (waterQuantity / (totalSolutionQuantity / 100f) > ent.Comp.WaterThresholdPercent || puddleSolutions.Contents.Count <= 0)
             return;
 
         var availableSpace = solution.MaxVolume.Float() - solution.Volume.Float();
@@ -75,7 +73,7 @@ public sealed class PuddleFootprintSystem : EntitySystem
         if (availableSpace <= 0)
             return;
 
-        var transferVolume = Math.Min(comp.TransferVolume, availableSpace);
+        var transferVolume = Math.Min(ent.Comp.TransferVolume, availableSpace);
 
         if (puddleSolutions.Volume < transferVolume)
             transferVolume = puddleSolutions.Volume.Float();
