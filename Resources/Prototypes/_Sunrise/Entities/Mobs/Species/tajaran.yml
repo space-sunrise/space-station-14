@@ -65,6 +65,79 @@
       200: Dead
   - type: Inventory
     speciesId: human
+    femaleDisplacements:
+      jumpsuit-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit-female
+      head-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: head
+      mask-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: mask
+    displacements:
+      head-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: head
+      mask-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: mask
+      shoes-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes
+      socks-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: socks
+      outerClothing-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: outer
+      hardsuit-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: hardsuit
+    maleDisplacements:
+      jumpsuit-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit
+      shoes-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes
+      socks-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: socks
+      outerClothing-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: outer
+      hardsuit-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: hardsuit
   - type: FootprintEmitter
   - type: Carriable
   - type: ToggleableNightVision
@@ -78,5 +151,80 @@
   categories: [ HideSpawnMenu ]
   description: A dummy tajaran meant to be used in character setup.
   components:
-    - type: HumanoidAppearance
-      species: Tajaran
+  - type: HumanoidAppearance
+    species: Tajaran
+  - type: Inventory
+    speciesId: human
+    femaleDisplacements:
+      jumpsuit-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit-female
+      head-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: head
+      mask-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: mask
+    displacements:
+      head-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: head
+      mask-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: mask
+      shoes-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes
+      socks-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: socks
+      outerClothing-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: outer
+      hardsuit-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: hardsuit
+    maleDisplacements:
+      jumpsuit-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit
+      shoes-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes
+      socks-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: socks
+      outerClothing-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: outer
+      hardsuit-body-curved-tajaran:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: hardsuit

@@ -120,6 +120,7 @@
     autoRot: true
     radius: 35
     energy: 4
+    offset: "0.28, 0.75"
     netsync: false
   - type: Tag
     tags:
@@ -274,6 +275,8 @@
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
+      enum.MechUiKey.Key:
+        type: MechBoundUserInterface
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
