@@ -1,3 +1,4 @@
+using Content.Server._Sunrise;
 using Content.Server._Sunrise.Contributors;
 using Content.Server._Sunrise.Entry;
 using Content.Server._Sunrise.PlayerCache;
@@ -90,6 +91,7 @@ namespace Content.Server.Entry
         [Dependency] private readonly ContributorsManager _contributorsManager = default!; // Sunrise-Edit
         [Dependency] private readonly PlayerCacheManager _playerCacheManager = default!; // Sunrise-Edit
         [Dependency] private readonly TTSManager _ttsManager = default!; // Sunrise-Edit
+        [Dependency] private readonly NetTexturesManager _netTexturesManager = default!; // Sunrise-Edit
         [Dependency] private readonly DiscordWebhook _discord = default!; // Sunrise-Edit
         [Dependency] private readonly IIPBlockingSystem _ipBlockingSystem = default!;
         private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
@@ -146,6 +148,7 @@ namespace Content.Server.Entry
 
             // Sunrise-Start
             _ttsManager.Initialize();
+            _netTexturesManager.Initialize();
             _ipBlockingSystem.Initialize();
             SunriseServerEntry.Init();
             IoCManager.Instance!.TryResolveType(out _sponsorsManager);

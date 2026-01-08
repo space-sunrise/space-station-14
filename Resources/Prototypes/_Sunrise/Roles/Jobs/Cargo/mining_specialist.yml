@@ -19,6 +19,8 @@
   - Mining
   - Maintenance
   - External
+  extendedAccess:
+  - CargoPurchaseAccess
 
 - type: startingGear
   id: MiningSpecialistGear

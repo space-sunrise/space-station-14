@@ -31,4 +31,22 @@
   - type: SolutionContainerManager
     solutions:
       beaker:
-        maxVol: 200
+        maxVol: 150
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior
+        solution: beaker
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassClockwork:
+            min: 1
+            max: 1

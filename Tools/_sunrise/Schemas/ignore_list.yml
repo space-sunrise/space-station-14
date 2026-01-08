@@ -60,6 +60,8 @@ ignore_list:
   - 'EVA'
   - 'MK58'
   - 'WT550'
+  - 'SKM-24'
+  - 'SKM-28'
   - 'N1984'
   - 'DEUS VULT'
   - 'AMS-42'

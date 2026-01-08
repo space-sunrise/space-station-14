@@ -1,0 +1,48 @@
+- type: entity
+  id: MetusRandomAnomalySpawner
+  parent: RandomAnomalySpawner
+  name: random anomaly spawner (without shadow)
+  suffix: Metus
+  components:
+  - type: RandomSpawner
+    chance: 1
+    prototypes:
+    - AnomalyPyroclastic
+    - AnomalyGravity
+    - AnomalyElectricity
+    - AnomalyFlesh
+    - AnomalyBluespace
+    - AnomalyIce
+    - RandomRockAnomalySpawner
+    - AnomalyLiquid
+    - AnomalyFlora
+    # AnomalyShadow excluded
+    - AnomalyTech
+    - AnomalySanta
+    - AnomalyBanana
+    rareChance: 0.3
+    rarePrototypes:
+    - MetusRandomAnomalyInjectorSpawner
+    offset: 0.15
+
+- type: entity
+  id: MetusRandomAnomalyInjectorSpawner
+  parent: RandomAnomalyInjectorSpawner
+  name: random anomaly injector spawner (without shadow)
+  suffix: Metus
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - AnomalyTrapPyroclastic
+    - AnomalyTrapElectricity
+    # AnomalyTrapShadow excluded
+    - AnomalyTrapIce
+    - AnomalyTrapFlora
+    - AnomalyTrapBluespace
+    - AnomalyTrapFlesh
+    - AnomalyTrapGravity
+    - AnomalyTrapTech
+    - AnomalyTrapRock
+    - AnomalyTrapSanta
+    chance: 1
+
