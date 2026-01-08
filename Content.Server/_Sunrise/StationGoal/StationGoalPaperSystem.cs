@@ -43,10 +43,10 @@ namespace Content.Server._Sunrise.StationGoal
                 {
                     var goalProto = _prototypeManager.Index(goalId);
 
-                    if (goalProto.MinPlayers != null && playerCount < goalProto.MinPlayers.Value)
+                    if (playerCount < goalProto.MinPlayers)
                         continue;
 
-                    if (goalProto.MaxPlayers != null && playerCount > goalProto.MaxPlayers.Value)
+                    if (playerCount > goalProto.MaxPlayers)
                         continue;
 
                     selGoal = goalProto;
