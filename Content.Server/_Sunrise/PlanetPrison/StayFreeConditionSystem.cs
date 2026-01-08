@@ -30,7 +30,7 @@ public sealed class StayFreeConditionSystem : EntitySystem
         SubscribeLocalEvent<CuffableComponent, CuffedStateChangeEvent>(OnCuffedStateChanged);
     }
 
-    private void OnGetProgress(EntityUid uid, StayFreeConditionComponent comp, ref ObjectiveGetProgressEvent args)
+    private void OnGetProgress(Entity<StayFreeConditionComponent> ent, ref ObjectiveGetProgressEvent args)
     {
         args.Progress = GetProgress(args.MindId, args.Mind);
     }
