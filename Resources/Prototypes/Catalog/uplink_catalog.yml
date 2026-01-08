@@ -1598,7 +1598,7 @@
   discountDownTo:
     Telecrystal: 2
   cost:
-    Telecrystal: 4 # it's a gamble that may kill you easily so 4 TC per 2 uses, second one more of a backup
+    Telecrystal: 6 # it's a gamble that may kill you easily so 4 TC per 2 uses, second one more of a backup # Sunrise-edit
   categories:
     - UplinkImplants
 

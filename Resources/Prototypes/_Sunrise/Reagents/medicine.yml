@@ -80,3 +80,4 @@
           damage:
             types:
              Cellular: -5
+             Mangleness: -1.25

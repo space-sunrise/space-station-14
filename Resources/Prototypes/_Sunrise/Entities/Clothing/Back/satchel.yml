@@ -240,6 +240,35 @@
         color: "#df0400"
 
 - type: entity
+  parent: ClothingBackpackSatchelPrisonGuard
+  id: ClothingBackpackSatchelPrisonTraineeMetus
+  name: prison trainee satchel
+  description: New and clean, still bearing the marks of a fresh start, with orange accents marking the path of learning.
+  suffix: Metus
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ff8c00"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#ff8c00"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#ff8c00"
+  - type: Clothing
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK
+      - state: overlay-equipped
+        color: "#ff8c00"
+
+- type: entity
   parent: ClothingBackpackSatchel
   id: ClothingBackpackSatchelHoS
   name: head of security's satchel

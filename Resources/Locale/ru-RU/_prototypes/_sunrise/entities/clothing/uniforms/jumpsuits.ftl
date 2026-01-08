@@ -104,3 +104,5 @@ ent-UniformPrisonWorkerMetus = комбинезон тюремного разн�
 ent-ClothingUniformPunksuit = панк-костюм
     .desc = Брось вызов гардеробу!
 
+ent-UniformPrisonTraineeMetus = комбинезон тюремного стажёра
+    .desc = Свежая ткань, ещё хранящая следы обучения, с намёком на оранжевый цвет, отмечающий путь будущего охранника.

@@ -55,6 +55,7 @@ public sealed partial class IdCardConsoleComponent : Component
         "ChiefMedicalOfficer",
         "Command",
         "Cryogenics",
+        "Paramedic", // Sunrise-Edit
         "Engineering",
         "External",
         "GenpopEnter",

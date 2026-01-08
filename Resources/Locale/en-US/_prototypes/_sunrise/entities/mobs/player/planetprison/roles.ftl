@@ -6,3 +6,4 @@ ent-RandomHumanoidPlanetPrisonScientist = prison scientist ghost role
 ent-RandomHumanoidPlanetPrisonDoctor = prison doctor ghost role
 ent-RandomHumanoidPlanetPrisonChef = prison chef ghost role
 ent-RandomHumanoidPlanetPrisonPrisoner = planet prisoner ghost role
+ent-RandomHumanoidPlanetPrisonTrainee = prison trainee ghost role

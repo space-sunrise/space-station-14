@@ -18,12 +18,13 @@
           availableJobs:
             HeadOfPrison: [ 1, 1 ]
             PrisonInspector: [ 1, 1 ]
-            PrisonWorker: [ 3, 5 ]
+            PrisonWorker: [ 3, 3 ]
             PrisonEngineer: [ 2, 2 ]
             PrisonScientist: [ 2, 2 ]
             PrisonDoctor: [ 1, 1 ]
             PrisonChef: [ 1, 1 ]
-            PlanetPrisoner: [ 0, 0 ]
+            PrisonTrainee: [ 3, 3 ]
+            PlanetPrisoner: [ 3, 3 ]
         - type: RelativeJobsCount
           jobs:
           - targetJob: PlanetPrisoner
@@ -35,6 +36,12 @@
               PrisonEngineer: 2
               PrisonScientist: 2
               PrisonWorker: 2
-            maxSlots: 30
+              PrisonTrainee: 2
+            maxSlots: -1
+          - targetJob: PrisonTrainee
+            dependency:
+              PlanetPrisoner: 1
+            maxSlots: -1
           totalMaxCount:
-            PlanetPrisoner: 30
+            PlanetPrisoner: -1
+            PrisonTrainee: -1

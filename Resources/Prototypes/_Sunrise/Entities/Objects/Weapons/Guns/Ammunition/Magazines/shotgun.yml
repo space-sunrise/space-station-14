@@ -7,8 +7,20 @@
   - type: Tag
     tags:
       - MagazineAsh12
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/ash12.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
   - type: Item
     size: Small
+    shape:
+    - 0,0,0,2
+    storedSprite:
+      state: storage
+      sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/ash12.rsi
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
@@ -19,13 +31,6 @@
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/ash12.rsi/
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
     steps: 2

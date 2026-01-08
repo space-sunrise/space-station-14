@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/31/2025 23:31:42
-  entityCount: 4210
+  time: 01/04/2026 23:28:52
+  entityCount: 4226
 maps:
 - 1
 grids:
@@ -3276,11 +3276,17 @@ entities:
     - type: Transform
       pos: 8.5,1.5
       parent: 2
+    - type: Godmode
+      oldDamage: {}
+    - type: BlockedTool
   - uid: 184
     components:
     - type: Transform
       pos: 8.5,2.5
       parent: 2
+    - type: Godmode
+      oldDamage: {}
+    - type: BlockedTool
 - proto: BlockGameArcade
   entities:
   - uid: 185
@@ -11576,6 +11582,13 @@ entities:
     - type: Transform
       pos: 17.540028,-1.3454366
       parent: 2
+- proto: ClothingBackpackDuffelSyndicateDecoyKitFilled
+  entities:
+  - uid: 4216
+    components:
+    - type: Transform
+      pos: -5.5798607,16.091599
+      parent: 2
 - proto: ClothingBackpackDuffelSyndicateFilledMedical
   entities:
   - uid: 1768
@@ -11594,6 +11607,13 @@ entities:
       inSlotFlag: BACK
     - type: Physics
       canCollide: False
+- proto: ClothingBackpackMessengerPirateDecoyKitFilled
+  entities:
+  - uid: 4217
+    components:
+    - type: Transform
+      pos: -5.5642357,15.6853485
+      parent: 2
 - proto: ClothingBackpackSyndicate
   entities:
   - uid: 1777
@@ -11985,6 +12005,11 @@ entities:
     - type: Transform
       pos: 12.5,3.5
       parent: 2
+  - uid: 4211
+    components:
+    - type: Transform
+      pos: 14.5,5.5
+      parent: 2
 - proto: ComputerPowerMonitoring
   entities:
   - uid: 1824
@@ -12065,6 +12090,13 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-17.5
+      parent: 2
+- proto: CrateMaterialSteel
+  entities:
+  - uid: 4218
+    components:
+    - type: Transform
+      pos: 14.5,-1.5
       parent: 2
 - proto: CrateTrashCart
   entities:
@@ -12206,6 +12238,18 @@ entities:
     components:
     - type: Transform
       pos: -20.5,-0.5
+      parent: 2
+- proto: Doubloon5
+  entities:
+  - uid: 4212
+    components:
+    - type: Transform
+      pos: 13.516264,5.6829247
+      parent: 2
+  - uid: 4213
+    components:
+    - type: Transform
+      pos: 13.406889,5.5188622
       parent: 2
 - proto: Dresser
   entities:
@@ -14910,6 +14954,47 @@ entities:
       parent: 2
     - type: Lock
       locked: False
+- proto: LootSpawnerMaterials
+  entities:
+  - uid: 4224
+    components:
+    - type: Transform
+      pos: 15.5,9.5
+      parent: 2
+  - uid: 4226
+    components:
+    - type: Transform
+      pos: 14.5,9.5
+      parent: 2
+- proto: LootSpawnerMaterialsHighValue
+  entities:
+  - uid: 4221
+    components:
+    - type: Transform
+      pos: 16.5,9.5
+      parent: 2
+  - uid: 4222
+    components:
+    - type: Transform
+      pos: 17.5,9.5
+      parent: 2
+  - uid: 4223
+    components:
+    - type: Transform
+      pos: 17.5,8.5
+      parent: 2
+- proto: LootSpawnerMaterialsSurplus
+  entities:
+  - uid: 4219
+    components:
+    - type: Transform
+      pos: 14.5,9.5
+      parent: 2
+  - uid: 4220
+    components:
+    - type: Transform
+      pos: 15.5,9.5
+      parent: 2
 - proto: MachineCentrifuge
   entities:
   - uid: 2295
@@ -14923,6 +15008,13 @@ entities:
     components:
     - type: Transform
       pos: 8.5,-13.5
+      parent: 2
+- proto: MagazineSMGFoam
+  entities:
+  - uid: 4215
+    components:
+    - type: Transform
+      pos: -21.421125,-2.5554514
       parent: 2
 - proto: MailSpamLetter
   entities:
@@ -15110,7 +15202,7 @@ entities:
       pos: -3.5,1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -18601.643
+      secondsUntilStateChange: -19217.646
       state: Opening
   - uid: 2309
     components:
@@ -15118,7 +15210,7 @@ entities:
       pos: -3.5,2.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -18602.51
+      secondsUntilStateChange: -19218.514
       state: Opening
 - proto: MinimoogInstrument
   entities:
@@ -15322,10 +15414,25 @@ entities:
       parent: 2
 - proto: NukeOpsAmmoSpawner
   entities:
+  - uid: 3080
+    components:
+    - type: Transform
+      pos: 11.5,5.5
+      parent: 2
+  - uid: 3081
+    components:
+    - type: Transform
+      pos: 10.5,5.5
+      parent: 2
   - uid: 4099
     components:
     - type: Transform
       pos: 0.5,15.5
+      parent: 2
+  - uid: 4100
+    components:
+    - type: Transform
+      pos: 12.5,5.5
       parent: 2
   - uid: 4103
     components:
@@ -15344,6 +15451,26 @@ entities:
     - type: Transform
       pos: -26.5,10.5
       parent: 2
+  - uid: 4156
+    components:
+    - type: Transform
+      pos: 13.5,-1.5
+      parent: 2
+  - uid: 4157
+    components:
+    - type: Transform
+      pos: 12.5,-1.5
+      parent: 2
+  - uid: 4158
+    components:
+    - type: Transform
+      pos: 11.5,-1.5
+      parent: 2
+  - uid: 4159
+    components:
+    - type: Transform
+      pos: 10.5,-1.5
+      parent: 2
 - proto: NukeOpsLootSpawner
   entities:
   - uid: 1784
@@ -15361,95 +15488,10 @@ entities:
     - type: Transform
       pos: -28.5,-0.5
       parent: 2
-  - uid: 2974
-    components:
-    - type: Transform
-      pos: 17.5,9.5
-      parent: 2
-  - uid: 3080
-    components:
-    - type: Transform
-      pos: 15.5,9.5
-      parent: 2
-  - uid: 3081
-    components:
-    - type: Transform
-      pos: 16.5,9.5
-      parent: 2
-  - uid: 4100
-    components:
-    - type: Transform
-      pos: 14.5,9.5
-      parent: 2
   - uid: 4146
     components:
     - type: Transform
       pos: 2.5,0.5
-      parent: 2
-  - uid: 4147
-    components:
-    - type: Transform
-      pos: 17.5,8.5
-      parent: 2
-  - uid: 4148
-    components:
-    - type: Transform
-      pos: 13.5,5.5
-      parent: 2
-  - uid: 4149
-    components:
-    - type: Transform
-      pos: 12.5,5.5
-      parent: 2
-  - uid: 4150
-    components:
-    - type: Transform
-      pos: 11.5,5.5
-      parent: 2
-  - uid: 4151
-    components:
-    - type: Transform
-      pos: 10.5,5.5
-      parent: 2
-  - uid: 4152
-    components:
-    - type: Transform
-      pos: 9.5,5.5
-      parent: 2
-  - uid: 4153
-    components:
-    - type: Transform
-      pos: 9.5,4.5
-      parent: 2
-  - uid: 4154
-    components:
-    - type: Transform
-      pos: 9.5,-0.5
-      parent: 2
-  - uid: 4155
-    components:
-    - type: Transform
-      pos: 9.5,-1.5
-      parent: 2
-  - uid: 4156
-    components:
-    - type: Transform
-      pos: 10.5,-1.5
-      parent: 2
-  - uid: 4157
-    components:
-    - type: Transform
-      pos: 11.5,-1.5
-      parent: 2
-  - uid: 4158
-    components:
-    - type: Transform
-      pos: 12.5,-1.5
-      parent: 2
-  - uid: 4159
-    components:
-    - type: Transform
-      pos: 13.5,-1.5
       parent: 2
 - proto: NukeOpsMedkitBruteSpawner
   entities:
@@ -15458,12 +15500,22 @@ entities:
     - type: Transform
       pos: 8.5,-12.5
       parent: 2
+  - uid: 4148
+    components:
+    - type: Transform
+      pos: 12.5,-1.5
+      parent: 2
 - proto: NukeOpsMedkitSpawner
   entities:
   - uid: 2300
     components:
     - type: Transform
       pos: 9.5,-12.5
+      parent: 2
+  - uid: 4149
+    components:
+    - type: Transform
+      pos: 13.5,-1.5
       parent: 2
 - proto: NukeOpsWeaponSpawner
   entities:
@@ -15477,10 +15529,30 @@ entities:
     - type: Transform
       pos: -0.5,16.5
       parent: 2
+  - uid: 2974
+    components:
+    - type: Transform
+      pos: 9.5,5.5
+      parent: 2
   - uid: 4101
     components:
     - type: Transform
       pos: -2.5,16.5
+      parent: 2
+  - uid: 4147
+    components:
+    - type: Transform
+      pos: 9.5,4.5
+      parent: 2
+  - uid: 4154
+    components:
+    - type: Transform
+      pos: 9.5,-1.5
+      parent: 2
+  - uid: 4155
+    components:
+    - type: Transform
+      pos: 9.5,-0.5
       parent: 2
 - proto: OperatingTable
   entities:
@@ -15513,6 +15585,13 @@ entities:
     - type: Transform
       pos: -6.9332314,-18.439697
       parent: 2
+- proto: PFigurineChaminaM
+  entities:
+  - uid: 4161
+    components:
+    - type: Transform
+      pos: -15.4524765,8.608116
+      parent: 2
 - proto: PhoneInstrumentSyndicate
   entities:
   - uid: 2329
@@ -15544,6 +15623,13 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
+- proto: PirateTechFab
+  entities:
+  - uid: 4150
+    components:
+    - type: Transform
+      pos: 14.5,3.5
+      parent: 2
 - proto: PlasmaCanister
   entities:
   - uid: 2333
@@ -15675,6 +15761,21 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 8.5,-1.5
+      parent: 2
+  - uid: 4151
+    components:
+    - type: Transform
+      pos: 13.5,2.5
+      parent: 2
+  - uid: 4152
+    components:
+    - type: Transform
+      pos: 13.5,1.5
+      parent: 2
+  - uid: 4153
+    components:
+    - type: Transform
+      pos: 12.5,3.5
       parent: 2
 - proto: PlushieKaliumDouble
   entities:
@@ -18497,6 +18598,13 @@ entities:
     - type: Transform
       pos: 17.485737,1.5503969
       parent: 2
+- proto: SalvageMaterialCrateSpawner
+  entities:
+  - uid: 4225
+    components:
+    - type: Transform
+      pos: 15.5,-1.5
+      parent: 2
 - proto: SawCyber
   entities:
   - uid: 564
@@ -19572,7 +19680,7 @@ entities:
   - uid: 2971
     components:
     - type: Transform
-      pos: -15.4154625,8.758402
+      pos: -15.4212265,8.865929
       parent: 2
 - proto: SyndyFlashGrenade
   entities:
@@ -20292,16 +20400,6 @@ entities:
     components:
     - type: Transform
       pos: 2.54736,1.4182131
-      parent: 2
-- proto: ToyFigurineMouse
-  entities:
-  - uid: 4161
-    components:
-    - type: MetaData
-      desc: Фигурка, изображающая мышь, бегущую к ближайшему кусочку баланса.
-      name: фигурка Maus
-    - type: Transform
-      pos: -15.499947,7.6364183
       parent: 2
 - proto: ToyFigurineNukie
   entities:
@@ -25422,6 +25520,13 @@ entities:
     - type: Transform
       pos: -18.093945,-12.162229
       parent: 2
+- proto: WeaponSubMachineGunC20rFake
+  entities:
+  - uid: 4214
+    components:
+    - type: Transform
+      pos: -21.343,-2.407014
+      parent: 2
 - proto: WeaponTurretSyndicate
   entities:
   - uid: 4105
@@ -25666,7 +25771,7 @@ entities:
       pos: -15.5,-5.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -20871.205
+      secondsUntilStateChange: -21487.209
       state: Opening
   - uid: 4142
     components:
@@ -25674,6 +25779,6 @@ entities:
       pos: -15.5,-4.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -20871.639
+      secondsUntilStateChange: -21487.643
       state: Opening
 ...

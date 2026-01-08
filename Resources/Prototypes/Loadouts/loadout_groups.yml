@@ -1984,5 +1984,5 @@
   name: loadout-group-medical-doctor-id
   loadouts:
   - MedicalPDA
-  - SeniorOfficerPDA
+  - SeniorPhysicianPDA
 # Sunrise-edn

@@ -87,6 +87,10 @@
     access: [["CentralCommand"]]
     alertAccesses:
       gamma: GammaAlertAccesses
+  - type: Tag
+    tags:
+    - EmagImmune
+    - AccessBreakerImmune
   - type: Godmode
   - type: Transform
     anchored: true
