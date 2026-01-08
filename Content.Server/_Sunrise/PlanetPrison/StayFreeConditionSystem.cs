@@ -19,6 +19,8 @@ public sealed class StayFreeConditionSystem : EntitySystem
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly IComponentFactory _componentFactory = default!;
 
     private readonly EntProtoId _stayFreeObjective = "PlanetPrisonerStayFreeObjective";
 
@@ -125,9 +127,21 @@ public sealed class StayFreeConditionSystem : EntitySystem
         else
         {
             // SetIcon не откатывается автоматически, поэтому явно восстанавливаем сохранённое значение.
-            // Проверка OriginalIcon != null нужна, так как иконка могла отсутствовать на момент сохранения.
-            if (conditionComp.IconOverridden && conditionComp.OriginalIcon != null)
-                _objectives.SetIcon(objectiveUid.Value, conditionComp.OriginalIcon);
+            if (conditionComp.IconOverridden)
+            {
+                // Если OriginalIcon был сохранён, используем его. Иначе получаем иконку из прототипа цели
+                // (защита от случая, когда иконка отсутствовала на момент сохранения).
+                var iconToRestore = conditionComp.OriginalIcon;
+                if (iconToRestore == null)
+                {
+                    var objectiveProto = _proto.Index(_stayFreeObjective);
+                    if (objectiveProto.TryGetComponent<ObjectiveComponent>(out var protoObjComp, _componentFactory) && protoObjComp.Icon != null)
+                        iconToRestore = protoObjComp.Icon;
+                }
+
+                if (iconToRestore != null)
+                    _objectives.SetIcon(objectiveUid.Value, iconToRestore);
+            }
 
             conditionComp.IconOverridden = false;
         }
