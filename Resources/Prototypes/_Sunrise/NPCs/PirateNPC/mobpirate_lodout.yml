@@ -439,6 +439,13 @@
     pocket2: PouchAmmoFilledPistol40
 
 - type: startingGear
+  id: MobPirateGearRangedT4LMG
+  equipment:
+    gloves: ClothingHandsDp28
+    belt: ClothingBeltBandolierT4LMG
+    pocket1: PouchAmmo
+
+- type: startingGear
   id: MobPirateT2JuggernautGear
   equipment:
     back: ClothingBackOreCrateBoss

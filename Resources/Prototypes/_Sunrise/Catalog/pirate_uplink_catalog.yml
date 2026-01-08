@@ -696,6 +696,15 @@
   - UplinkPirateAmmo
 
 - type: listing
+  id: UplinkPirateMagCannonBallMini
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/cannonball_belt.rsi, state: base }
+  productEntity: MagazineCannonBallMini
+  cost:
+    Doubloon: 8
+  categories:
+  - UplinkPirateAmmo
+
+- type: listing
   id: UplinkPirateChestGrapeshot
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: grapeshot }
   productEntity: CratePirateChestGrapeshot
@@ -1541,6 +1550,15 @@
   productEntity: ToolboxSyndicateFilled
   cost:
     Doubloon: 4
+  categories:
+  - UplinkPirateDisruption
+
+- type: listing
+  id: UplinkPirateToolboxAllTools
+  name: uplink-toolbox-name
+  productEntity: ToolboxMechanicalFilledAllTools
+  cost:
+    Doubloon: 1
   categories:
   - UplinkPirateDisruption
 
@@ -2461,6 +2479,22 @@
       - SurplusBundle
 
 - type: listing
+  id: UplinkPirateMechPirateMachineCannon
+  productEntity: WeaponMechCombatPirateMachineCannon
+  cost:
+    Doubloon: 20
+  categories:
+  - UplinkPirateMechs
+  restockTime: 1800
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
   id: UplinkPirateMechPirateGrapeshot
   productEntity: WeaponMechCombatPirateGrapeshot
   cost:
@@ -2527,7 +2561,7 @@
   id: UplinkPirateSulprus
   productEntity: CratePirateSurplusBundle
   cost:
-    Doubloon: 20
+    Doubloon: 25
   categories:
   - UplinkPirateBundle
   conditions:
@@ -2542,7 +2576,7 @@
   id: UplinkPirateSulprusSuper
   productEntity: CratePirateSuperSurplusBundle
   cost:
-    Doubloon: 40
+    Doubloon: 50
   categories:
   - UplinkPirateBundle
   conditions:

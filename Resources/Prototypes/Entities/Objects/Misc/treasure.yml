@@ -152,6 +152,11 @@
     size: Tiny
   - type: StaticPrice
     price: 75
+  # Sunrise-Start
+  - type: Currency
+    price:
+      Doubloon: 1
+  # Sunrise-End
   - type: Tag # Sunrise-added
     tags:
     - Coin #

@@ -234,6 +234,7 @@
       - MobPirateT3Revolver
     rarePrototypes:
       - MobPirateT3L6
+      - MobPirateT3Tachanka
       - MobPirateT3RPD
       - MobPirateT3Grenadier
       - MobPirateT3Infiltrator
@@ -1689,9 +1690,9 @@
     capacity: 1
     count: 1
   - type: Gun
-    projectileSpeed: 19
+    projectileSpeed: 18
     showExamineText: false
-    fireRate: 0.2
+    fireRate: 0.1
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -1733,7 +1734,7 @@
     proto: CannonBall
   - type: Gun
     fireRate: 0.05
-    projectileSpeed: 19
+    projectileSpeed: 18
 
 - type: entity
   name: Pirate gunslinger
@@ -1850,7 +1851,7 @@
     proto: CannonBallGrapeshotMini
   - type: Gun
     showExamineText: false
-    fireRate: 0.5
+    fireRate: 0.2
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -1976,13 +1977,13 @@
     proto: CannonBallMini
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 1.75
+    autoRechargePauseTime: 2
     autoRechargeRate: 999
   - type: Battery
     maxCharge: 15
     startingCharge: 15
   - type: Gun
-    projectileSpeed: 20
+    projectileSpeed: 19
     showExamineText: false
     fireRate: 6
     minAngle: 10
@@ -2213,6 +2214,58 @@
   - type: StealthOnMove
     passiveVisibilityRate: -0.05
     movementVisibilityRate: 0.9
+
+- type: entity
+  name: Tachanka
+  description: LMG! Mounted and Loaded!
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3, MobPirateSparkEffectBase]
+  id: MobPirateT3Tachanka
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateGearRangedT4LMG
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/privateer_armored.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_alt.rsi
+      state: equipped-HELMET
+    - sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_alt.rsi
+      state: on-equipped-HELMET
+      shader: unshaded
+    - sprite: _Sunrise/Clothing/Head/Helmets/tfhelm.rsi
+      state: equipped-HELMET
+    - sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Boxes/heavyammobelt.rsi
+      state: inhand-right-mag
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 2
+  - type: BatteryAmmoProvider
+    proto: CartridgeHeavyRifleRFMJ
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 8
+    autoRechargeRate: 999
+  - type: Battery
+    maxCharge: 47
+    startingCharge: 47
+  - type: Gun
+    showExamineText: false
+    fireRate: 5
+    minAngle: 3
+    maxAngle: 50
+    angleIncrease: 1
+    angleDecay: 10
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp28.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Effects/silence.ogg
+  - type: EyeCursorOffset
+    maxOffset: 5
+    pvsIncrease: 0.5
 
 - type: entity
   name: Scrapshade

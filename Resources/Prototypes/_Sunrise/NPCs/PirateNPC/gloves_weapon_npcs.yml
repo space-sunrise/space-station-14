@@ -600,6 +600,18 @@
         state: wielded-inhand-right
 
 - type: entity
+  parent: ClothingHandsNoGloves
+  id: ClothingHandsDp28
+  suffix: skm28
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Starlight/Objects/Weapons/Guns/LMGs/DP28.rsi
+        state: wielded-inhand-right
+
+- type: entity
   parent: ClothingHandsSlashPunchMeleeBase
   id: ClothingHandsMercCombatKnife
   suffix: knife

@@ -188,6 +188,9 @@
     - proto: MobPirateT3RPD
       cost: 5
       prob: 0.05
+    - proto: MobPirateT3Tachanka
+      cost: 6
+      prob: 0.04
     - proto: MobPirateT3Grenadier
       cost: 5
       prob: 0.05
