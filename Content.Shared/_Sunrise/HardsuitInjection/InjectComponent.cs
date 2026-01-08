@@ -53,7 +53,7 @@ public sealed partial class InjectComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public ContainerSlot? Container;
 
-    [ViewVariables(VVAccess.ReadWrite)]
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public bool Locked = true;
 
     [DataField("openCloseDelay")]

@@ -19,6 +19,8 @@ using Content.Shared.Timing;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Melee.Events;
 using JetBrains.Annotations;
+using Content.Shared.Inventory; // Sunrise-Edit
+using Content.Shared._Sunrise.HardsuitInjection.Components; // Sunrise-Edit
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 
@@ -32,6 +34,7 @@ namespace Content.Shared.Chemistry.EntitySystems;
 public sealed partial class InjectorSystem : EntitySystem
 {
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!; // Sunrise-Edit
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedForensicsSystem _forensics = default!;
@@ -450,6 +453,19 @@ public sealed partial class InjectorSystem : EntitySystem
     /// <returns>True if the injection was successful, false if not.</returns>
     private bool TryInject(Entity<InjectorComponent> injector, EntityUid user, EntityUid target, Entity<SolutionComponent> targetSolution, bool asRefill)
     {
+        //Sunrise-Start
+        if (_inventory.TryGetSlotEntity(target, "outerClothing", out var suit))
+        {
+            if (TryComp<InjectComponent>(suit, out var injectComp))
+            {
+                if (injectComp.Locked)
+                {
+                    _popup.PopupClient(Loc.GetString("hardsuitinjection-True"), target, user);
+                    return false;
+                }
+            }
+        }
+        //Sunrise-End
         if (!_solutionContainer.ResolveSolution(injector.Owner,
                 injector.Comp.SolutionName,
                 ref injector.Comp.Solution,
@@ -556,6 +572,20 @@ public sealed partial class InjectorSystem : EntitySystem
             _popup.PopupClient("injector-component-cannot-toggle-draw-message", user, user);
             return false;
         }
+
+        //Sunrise-Start
+        if (_inventory.TryGetSlotEntity(target, "outerClothing", out var suit))
+        {
+            if (TryComp<InjectComponent>(suit, out var injectComp))
+            {
+                if (injectComp.Locked)
+                {
+                    _popup.PopupClient(Loc.GetString("hardsuitinjection-True"), target, user);
+                    return false;
+                }
+            }
+        }
+        //Sunrise-End
 
         var applicableTargetSolution = targetSolution.Comp.Solution;
         // If a whitelist exists, remove all non-whitelisted reagents from the target solution temporarily
