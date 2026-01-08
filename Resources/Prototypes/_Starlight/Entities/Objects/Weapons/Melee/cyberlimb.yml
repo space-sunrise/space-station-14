@@ -176,6 +176,9 @@
   - type: Prying
     speedModifier: 2
     pryPowered: true
+  - type: Construction
+    graph: UpgradeCyberGorilla
+    node: upgraded
 
 #G.O.R.I.L.L.A. cyber arm #Syndie Upgrade
 - type: entity
