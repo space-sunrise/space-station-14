@@ -262,6 +262,10 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - AstroNavCartridge
+  - type: PdaAnimationVisuals
+    animationConfig:
+      animatedState: pda-space-prison-scientist
+      idInsertedLayerState: id_inserted-space-prison
 
 - type: entity
   parent: SecurityMetusPDA
