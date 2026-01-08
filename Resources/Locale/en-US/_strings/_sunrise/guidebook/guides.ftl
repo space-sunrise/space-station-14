@@ -4,6 +4,8 @@ guide-entry-expedition-pirates = Пираты
 guide-entry-expedition-xenos = Ксено
 guide-entry-expedition-carps = Карпы
 
+guide-entry-ammunition = Боеприпасы
+
 ## SUNRISE rules
 
 guide-entry-sr-rules = Правила сервера: SUNRISE
