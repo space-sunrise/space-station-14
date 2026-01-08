@@ -29,6 +29,12 @@ public sealed partial class CCVars
         CVarDef.Create("infolinks.website", "", CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
+    ///     Link to Boosty to show in the launcher.
+    /// </summary>
+    public static readonly CVarDef<string> InfoLinksBoosty =
+        CVarDef.Create("infolinks.boosty", "", CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
     ///     Link to wiki to show in the launcher.
     /// </summary>
     public static readonly CVarDef<string> InfoLinksWiki =

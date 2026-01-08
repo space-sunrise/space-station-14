@@ -5,5 +5,6 @@ server-info-website-button = Website
 server-info-wiki-button = Wiki
 server-info-forum-button = Forum
 server-info-telegram-button = Telegram
+server-info-boosty-button = Boosty
 server-info-report-button = Report Bugs
 server-info-credits-button = Credits

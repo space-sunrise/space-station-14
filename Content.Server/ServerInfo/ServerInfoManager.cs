@@ -18,7 +18,8 @@ public sealed class ServerInfoManager
         (CCVars.InfoLinksGithub,   "github",   "info-link-github"),
         (CCVars.InfoLinksWebsite,  "web",      "info-link-website"),
         (CCVars.InfoLinksWiki,     "wiki",     "info-link-wiki"),
-        (CCVars.InfoLinksTelegram, "telegram", "info-link-telegram")
+        (CCVars.InfoLinksTelegram, "telegram", "info-link-telegram"),
+        (CCVars.InfoLinksBoosty,   "boosty",   "info-link-boosty")
         // @formatter:on
     };
 
