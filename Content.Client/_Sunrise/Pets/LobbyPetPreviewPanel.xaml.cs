@@ -48,7 +48,8 @@ public sealed partial class LobbyPetPreviewPanel : Control
 
     public void SetSummaryText(string value)
     {
-        // Summary больше не используется в этой панели
+        // Sunrise-Edit
+        //Summary.Text = value;
     }
 
     public void SetPetSelection(string? petSelection)

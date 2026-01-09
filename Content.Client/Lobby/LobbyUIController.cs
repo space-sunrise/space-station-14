@@ -109,7 +109,11 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
     private LobbyPetPreviewPanel? GetLobbyPetPreview()
     {
-        // PetPreview больше не используется, спрайт питомца теперь в CharacterPreview
+        // Sunrise-Edit
+        // if (_stateManager.CurrentState is LobbyState lobby)
+        // {
+        //     return lobby.Lobby?.PetPreview;
+        // }
         return null;
     }
 
