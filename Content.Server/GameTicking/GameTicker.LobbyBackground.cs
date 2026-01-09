@@ -1,8 +1,8 @@
 using Robust.Shared.Random;
 using System.Linq;
-using Content.Server.GameTicking.Prototypes;
 using Content.Shared._Sunrise.Lobby;
 using Content.Shared.GameTicking;
+using Content.Shared.GameTicking.Prototypes;
 
 namespace Content.Server.GameTicking;
 
@@ -29,7 +29,7 @@ public sealed partial class GameTicker
 
     private void InitializeLobbyBackground()
     {
-        _lobbyArts = _prototypeManager.EnumeratePrototypes<LobbyBackgroundPrototype>()
+        _lobbyArts = _prototypeManager.EnumeratePrototypes<LobbyArtPrototype>()
             .Select(x => x.ID)
             .ToList();
 

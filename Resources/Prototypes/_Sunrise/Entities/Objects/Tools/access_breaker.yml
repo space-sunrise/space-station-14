@@ -1,0 +1,20 @@
+- type: entity
+  parent: AccessBreaker
+  id: AccessBreakerPirate
+  suffix: Pirate
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/access_breaker.rsi
+    state: icon-pirate
+
+- type: entity
+  parent: AccessBreakerPirate
+  id: AccessBreakerPirateLimited
+  suffix: Pirate, Limited
+  name: access configurator
+  description: A hacked access configurator designed to hack and erase access to digital locks. It looks like the hack didn't go as planned.
+  components:
+  - type: LimitedCharges
+    maxCharges: 2
+  - type: AutoRecharge
+    rechargeDuration: 900

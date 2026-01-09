@@ -16,7 +16,7 @@
       color: "#FF0000"
     - type: EmitSoundOnSpawn
       sound:
-        path: /Audio/Effects/electrical_short_circuit2.ogg
+        path: /Audio/_Sunrise/Effects/electrical_short_circuit2.ogg
     - type: TimedDespawn
       lifetime: 90
     - type: EvaporationSparkle
@@ -30,7 +30,7 @@
     - type: ActivatableUI
       key: enum.GhostRoleRadioUiKey.Key
     - type: EmitSoundOnUse
-      sound: /Audio/Misc/emergency_meeting.ogg
+      sound: /Audio/_Sunrise/Misc/emergency_meeting.ogg
 
 - type: entity
   parent: ReinforcementTeleport
@@ -48,7 +48,8 @@
     raffle:
       settings: short
   - type: GhostRoleMobSpawner
-    prototype: ScoonerReinforcementSpawner
+    prototype: MobHumanPirateScoonerReinforcement
+    selectablePrototypes: ["PirateScoonerHuman", "PirateScoonerReptilian", "PirateScoonerDwarf", "PirateScoonerVox", "PirateScoonerVulpkanin"]
 
 - type: entity
   parent: ReinforcementPirateScooner
@@ -58,4 +59,5 @@
   suffix: Pirate, EVA
   components:
   - type: GhostRoleMobSpawner
-    prototype: OldScoonerReinforcementSpawner
+    prototype: MobHumanPirateScoonerOldReinforcement
+    selectablePrototypes: ["PirateScoonerHumanOld", "PirateScoonerReptilianOld", "PirateScoonerDwarfOld", "PirateScoonerVoxOld", "PirateScoonerVulpkaninOld"]

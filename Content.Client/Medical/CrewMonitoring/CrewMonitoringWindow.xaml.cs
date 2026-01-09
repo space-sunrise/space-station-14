@@ -13,7 +13,6 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
-using Robust.Shared.Localization;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -27,6 +26,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!; // Sunrise - Added
     private readonly SharedTransformSystem _transformSystem;
     private readonly SpriteSystem _spriteSystem;
 
@@ -44,11 +44,11 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
         _spriteSystem = _entManager.System<SpriteSystem>();
 
         NavMap.TrackedEntitySelectedAction += SetTrackedEntityFromNavMap;
-        CorpseAlertToggle.OnPressed += OnCorpseAlertTogglePressed;
-        
-        // Initialize corpse alert toggle to "off" state
+
+        // Sunrise - Start: Alert
+        CorpseAlertToggle.OnToggled += OnCorpseAlertTogglePressed;
         UpdateCorpseAlertToggle(false);
-        CorpseAlertToggle.Disabled = false;
+        // Sunrise - End: Alert
     }
 
     public void Set(string stationName, EntityUid? mapUid)
@@ -461,31 +461,24 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
         NavMap.LocalizedNames.Clear();
     }
 
+    // Sunrise - Start: Alert
     public void UpdateCorpseAlertToggle(bool enabled)
     {
-        if (enabled)
-        {
-            CorpseAlertToggle.Text = Loc.GetString("crew-monitoring-corpse-alert-on");
-            CorpseAlertToggle.AddStyleClass(StyleNano.StyleClassButtonColorGreen);
-        }
-        else
-        {
-            CorpseAlertToggle.Text = Loc.GetString("crew-monitoring-corpse-alert-off");
-            CorpseAlertToggle.RemoveStyleClass(StyleNano.StyleClassButtonColorGreen);
-        }
-        
-        // Re-enable the button when server state is received
+        CorpseAlertToggle.Pressed = enabled;
+
+        CorpseAlertToggle.Text = _loc.GetString(enabled ? "crew-monitoring-corpse-alert-on" : "crew-monitoring-corpse-alert-off");
+        CorpseAlertToggle.Label.FontColorOverride = enabled ? Color.LimeGreen : Color.Red;
+
         CorpseAlertToggle.Disabled = false;
     }
 
-    private void OnCorpseAlertTogglePressed(BaseButton.ButtonEventArgs args)
+    private void OnCorpseAlertTogglePressed(BaseButton.ButtonToggledEventArgs args)
     {
-        // Disable button to prevent spam clicks
+        CorpseAlertToggle.Pressed = args.Pressed;
         CorpseAlertToggle.Disabled = true;
-        
-        // Send message to server
         _boundUserInterface?.SendMessage(new CrewMonitoringToggleCorpseAlertMessage());
     }
+    // Sunrise - End: Alert
 
     protected override void Dispose(bool disposing)
     {

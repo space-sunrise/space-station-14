@@ -3,6 +3,7 @@ using Content.Shared._Sunrise.Boss.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Boss.Systems;

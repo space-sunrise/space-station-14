@@ -885,9 +885,6 @@ WeaponShotgunZauer: null
 HandheldCamera: null # Не надо маппить, оно есть в автоматах
 GrenadeBlast: GrenadeBlastTimer
 GrenadeEMP: GrenadeEMPTimer
-GrenadeFlash: GrenadeFlashContact
-GrenadeFlashTimer: GrenadeFlashContact
-GrenadeFrag: GrenadeFragContact
 WeaponEnergyGunMini: WeaponMiniEnergyGun
 GunSafeCombineSmallArms: SpawnerSafeSmallArms
 AphrodisiacChemistryBottle: null
@@ -905,6 +902,23 @@ SupermatterFlatpack: SupermatterFlatpackAnchored
 SupermatterCrystal: SupermatterFlatpackAnchored
 WeaponRifleM28: WeaponRifleSKM28
 WeaponRifleAR18: null
+MagazineScarH: null
+WeaponRifleScarH: null
+MagazinePistolSubMachineGunSIAR52: MagazinePistolSubMachineGunCaselessExtended
+RandomHumanoidSpawnerERTEngineerGammaVeteran: RandomHumanoidSpawnerERTEngineerGamma
+RandomHumanoidSpawnerERTJanitorGammaVeteran: RandomHumanoidSpawnerERTJanitorGamma
+RandomHumanoidSpawnerERTSecurityGammaVeteran: RandomHumanoidSpawnerERTSecurityGamma
+RandomHumanoidSpawnerERTLeaderRedVeteran: RandomHumanoidSpawnerERTLeaderRed
+RandomHumanoidSpawnerERTMedicalGammaVeteran: RandomHumanoidSpawnerERTMedicalGamma
+RandomHumanoidSpawnerERTEngineerAmberVeteran: RandomHumanoidSpawnerERTEngineerAmber
+RandomHumanoidSpawnerERTLeaderAmberVeteran: RandomHumanoidSpawnerERTLeaderAmber
+RandomHumanoidSpawnerERTMedicalAmberVeteran: RandomHumanoidSpawnerERTMedicalAmber
+RandomHumanoidSpawnerERTSecurityAmberVeteran: RandomHumanoidSpawnerERTSecurityAmber
+RandomHumanoidSpawnerCBURNVeteran: RandomHumanoidSpawnerCBURNUnitEVA
+RandomHumanoidSpawnerERTLeaderGammaVeteran: RandomHumanoidSpawnerERTLeaderGamma
+VendingMachineMayson: null
+DrinkLukin: null
+DrinkFourteenLokoPlusCan: null
 # SL HITSCAN START
 BoxMagazineRifle: BoxMagazineRifleSP
 MagazineBoxLightRifle: MagazineBoxLightRifleSP
@@ -928,4 +942,13 @@ ClothingBeltAssaultFilled: null
 # 2025-12-21
 ClothingNeckCMOCloak: ClothingNeckMedCloak
 
+HyposprayMedicalNoFilter: null
+HyposprayMedical: null
+HyposprayMedicalNoFilterBox: null
+GrenadeFlashTimer: null
+
+ImplantExtractorMachineCircuitboard: InterrogatorMachineCircuitboard
+
+# 2026-01-02
+EnergyDomeWiredTest: null
 # Sunrise-End

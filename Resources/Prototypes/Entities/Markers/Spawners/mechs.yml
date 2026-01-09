@@ -13,20 +13,6 @@
       - MechRipleyBattery
 
 - type: entity
-  name: Hauler APLU Spawner
-  id: SpawnMechHauler
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-      - sprite: Objects/Specific/Mech/ripley.rsi
-        state: hauler
-  - type: ConditionalSpawner
-    prototypes:
-      - MechHauler
-
-- type: entity
   name: Ripley APLU MK-II Spawner
   id: SpawnMechRipley2
   parent: MarkerBase
@@ -48,7 +34,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit
         state: honker
   - type: ConditionalSpawner
     prototypes:
@@ -63,7 +49,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit
         state: honker
   - type: ConditionalSpawner
     prototypes:
@@ -82,20 +68,6 @@
   - type: ConditionalSpawner
     prototypes:
       - MechClarkeBattery
-
-- type: entity
-  name: Big Yarrke Spawner
-  id: SpawnMechBigYarrke
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-      - sprite: Objects/Specific/Mech/clarke.rsi
-        state: bigbrother-broken
-  - type: ConditionalSpawner
-    prototypes:
-      - MechBigYarrkeBattery
 
 - type: entity
   name: Gygax Spawner
@@ -133,7 +105,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit # Sunrise-edit
         state: marauder
   - type: ConditionalSpawner
     prototypes:
@@ -148,40 +120,11 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit
         state: marauder
   - type: ConditionalSpawner
     prototypes:
       - MechMarauderFilled
-
-- type: entity
-  name: NTGygax Spawner
-  id: SpawnMechNTGygax
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-      - sprite: Objects/Specific/Mech/gygax.rsi
-        state: ntgygax
-  - type: ConditionalSpawner
-    prototypes:
-      - MechNTGygaxBattery
-
-- type: entity
-  name: NTGygax Spawner
-  suffix: Filled
-  id: SpawnMechNTGygaxFilled
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-      - sprite: Objects/Specific/Mech/gygax.rsi
-        state: ntgygax
-  - type: ConditionalSpawner
-    prototypes:
-      - MechNTGygaxFilled
 
 - type: entity
   name: Seraph Spawner
@@ -191,7 +134,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit
         state: seraph
   - type: ConditionalSpawner
     prototypes:
@@ -206,7 +149,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit
         state: seraph
   - type: ConditionalSpawner
     prototypes:
@@ -249,7 +192,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit
         state: mauler
   - type: ConditionalSpawner
     prototypes:
@@ -264,54 +207,9 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit
         state: mauler
   - type: ConditionalSpawner
     prototypes:
       - MechMaulerSyndieFilled
 
-- type: entity
-  name: Sec Pod Spawner
-  suffix: Filled
-  id: SpawnMechSecPodFilled
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-      - sprite: _Sunrise/Objects/Specific/Mech/sec_pod.rsi
-        state: sec_pod
-  - type: ConditionalSpawner
-    prototypes:
-      - MechSecPod
-
-- type: entity
-  name: Mining Pod Spawner
-  suffix: Filled
-  id: SpawnMechMiningPodFilled
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-      - sprite: _Sunrise/Objects/Specific/Mech/sec_pod.rsi
-        state: sec_pod
-  - type: ConditionalSpawner
-    prototypes:
-      - MechMiningPod
-
-- type: entity
-  name: Paddy Spawner
-  suffix: Filled
-  id: SpawnMechPaddyFilled
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-      - sprite: Objects/Specific/Mech/ripley.rsi
-        state: paddy
-      - state: mechicon
-  - type: ConditionalSpawner
-    prototypes:
-      - MechPaddyFilled

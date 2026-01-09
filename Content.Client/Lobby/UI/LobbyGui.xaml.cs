@@ -11,8 +11,10 @@ using Content.Client.Parallax.Managers;
 using Content.Client.Resources;
 using Content.Client.Stylesheets;
 using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared.CCVar;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
+using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Utility;
@@ -153,6 +155,13 @@ namespace Content.Client.Lobby.UI
 
             ServerName.Text = Loc.GetString("ui-lobby-welcome", ("name", _serverName));
             LoadIcons();
+
+            SetupButtonIcon(AHelpButton, "/Textures/Interface/info.svg.192dpi.png", Loc.GetString("ui-lobby-ahelp-button"));
+            SetupButtonIcon(MHelpButton, "/Textures/Interface/mentor.svg.192dpi.png", Loc.GetString("ui-lobby-mhelp-button"));
+            SetupButtonIcon(CallVoteButton, "/Textures/Interface/gavel.svg.192dpi.png", Loc.GetString("ui-vote-menu-button"));
+            SetupButtonIcon(OptionsButton, "/Textures/Interface/VerbIcons/settings.svg.192dpi.png", Loc.GetString("ui-lobby-options-button"));
+            SetupButtonIcon(LeaveButton, "/Textures/Interface/VerbIcons/close.svg.192dpi.png", Loc.GetString("ui-lobby-leave-button"));
+
             // Sunrise-end
         }
 
@@ -256,7 +265,7 @@ namespace Content.Client.Lobby.UI
         //    ExpandPanel.Visible = !value;
         //}
 
-        // Sunrise-start
+        // Sunrise-Start
         protected override void Draw(DrawingHandleScreen handle)
         {
             if (!ShowParallax)
@@ -301,7 +310,27 @@ namespace Content.Client.Lobby.UI
                 }
             }
         }
-        // Sunrise-end
+
+        private void SetupButtonIcon(Button button, string iconPath, string tooltip)
+        {
+            button.Text = string.Empty;
+            button.ToolTip = tooltip;
+
+            var iconRect = new TextureRect
+            {
+                Texture = _resourceCache.GetTexture(new ResPath(iconPath)),
+                TextureScale = new Vector2(0.5f, 0.5f),
+                HorizontalAlignment = HAlignment.Center,
+                VerticalAlignment = VAlignment.Center,
+                Stretch = TextureRect.StretchMode.KeepAspectCentered,
+                HorizontalExpand = true,
+                VerticalExpand = true
+            };
+
+            button.RemoveAllChildren();
+            button.AddChild(iconRect);
+        }
+        // Sunrise-End
 
         public enum LobbyGuiState : byte
         {

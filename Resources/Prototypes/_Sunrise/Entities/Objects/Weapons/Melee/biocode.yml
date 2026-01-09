@@ -6,10 +6,9 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
   - type: Construction
     graph: EnergySwordDoubleGraph
-    node: DoubleEnergySwordNode
+    node: double
   - type: Biocode
     factions:
     - Syndicate
@@ -22,7 +21,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
   - type: Tag
     tags:
     - EnergySword
@@ -41,7 +39,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
   - type: Biocode
     factions:
     - Syndicate
@@ -54,7 +51,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
   - type: Biocode
     factions:
     - Syndicate
@@ -67,7 +63,6 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
   - type: Biocode
     factions:
     - Syndicate

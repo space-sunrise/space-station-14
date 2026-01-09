@@ -3,10 +3,12 @@ using Content.Shared.Chemistry;
 using Content.Shared.Damage.Components;
 using Content.Shared.Explosion.EntitySystems;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Random;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Damage.Systems;
@@ -15,6 +17,7 @@ public sealed partial class DamageableSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly IRobustRandom _random = default!; // Sunrise
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
@@ -35,6 +38,10 @@ public sealed partial class DamageableSystem : EntitySystem
     public float UniversalThrownDamageModifier { get; private set; } = 1f;
     public float UniversalTopicalsHealModifier { get; private set; } = 1f;
     public float UniversalMobDamageModifier { get; private set; } = 1f;
+    public float PositiveVariance; // Sunrise-Edit
+    public float NegativeVariance; // Sunrise-Edit
+    public float DamageModifier = 1f; // Sunrise-Edit
+    public float HealModifier = 1f; // Sunrise-Edit
 
     /// <summary>
     ///     If the damage in a DamageableComponent was changed this function should be called.

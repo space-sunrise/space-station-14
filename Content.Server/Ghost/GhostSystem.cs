@@ -636,7 +636,7 @@ namespace Content.Server.Ghost
 
                     DamageSpecifier damage = new(_prototypeManager.Index(AsphyxiationDamageType), dealtDamage);
 
-                    _damageable.ChangeDamage(playerEntity.Value, damage, true, useVariance: false, useModifier: false); // Sunrise-Edit
+                    _damageable.ChangeDamage(playerEntity.Value, damage, true, useVariance: false, ignoreGlobalModifiers: true); // Sunrise-Edit
                 }
             }
 

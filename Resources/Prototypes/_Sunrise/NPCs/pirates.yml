@@ -18,8 +18,13 @@
       0: Alive
       120: Critical
       140: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 135
   - type: Stamina
-    critThreshold: 125
+    baseCritThreshold: 150
   - type: DamageStateVisuals
   - type: RotationVisuals
     defaultRotation: 90
@@ -33,17 +38,6 @@
     rechargeCooldown: 3
     rechargeSound:
       path: /Audio/_Sunrise/Effects/silence.ogg
-  - type: MeleeWeapon
-    attackRate: 1.0
-    altDisarm: false
-    angle: 0
-    animation: WeaponArcPunch
-    damage:
-      types:
-        Slash: 15
-        Structural: 20
-    soundHit:
-      path: /Audio/Weapons/bladeslice.ogg
   - type: Strippable
   - type: UserInterface
     interfaces:
@@ -52,6 +46,9 @@
   - type: ToggleableNightVision
     effect: EffectNightVisionPirate
   - type: ComplexInteraction
+  - type: AnomalyAccent
+  - type: TTS
+    voice: necrophos_dota_2
 
 - type: entity
   abstract: true
@@ -64,8 +61,13 @@
       0: Alive
       80: Critical
       100: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 90
   - type: Stamina
-    critThreshold: 100
+    baseCritThreshold: 100
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -97,6 +99,34 @@
   components:
   - type: Damageable
     damageModifierSet: MobPirateT3
+
+- type: entity
+  abstract: true
+  id: MobPirateSparkEffectBase
+  components:
+  - type: CyborgSparkEffect
+  - type: Reflect
+    reflectProb: 0.05
+
+- type: entity
+  abstract: true
+  parent: [MobPirateBase, MobPirateSparkEffectBase]
+  id: MobPirateBorgBase
+  components:
+  - type: Stamina
+    baseCritThreshold: 500
+  - type: Damageable
+    damageModifierSet: MobPirateT2
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 200
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgLegs
+  - type: Reflect
+    reflectProb: 0.1
 
 # region Spawners
 - type: entity
@@ -130,11 +160,16 @@
       - MobPirateT1MonkeyFireBomb
       - MobPirateT1MonkeyEDagger
       - MobPirateT1Hunter
+      - MobPirateT1HunterSmash
       - MobPirateT1ECutlass
       - MobPirateT1EPickaxe
       - MobPirateT1Flintlock
       - MobPirateT1PlasmaCutter
       - MobPirateT1ScrapRifle
+      - MobPirateT1Rifle
+      - MobPirateT1BorgAssault
+      - MobPirateT1BorgMining
+      - MobPirateT1BorgDerelict
     rareChance: 0.15
 
 - type: entity
@@ -169,6 +204,8 @@
       - MobPirateT2Cannoball
       - MobPirateT2Mech
       - MobPirateT2Juggernaut
+      - MobPirateT1BorgAssault
+      - MobPirateT1BorgMining
     rareChance: 0.15
 
 - type: entity
@@ -201,6 +238,7 @@
       - MobPirateT3Grenadier
       - MobPirateT3Infiltrator
       - MobPirateT3Sniper
+      - MobPirateT1BorgAssault
     rareChance: 0.15
 
 # Variations
@@ -263,7 +301,7 @@
     proto: ShellShotgunImprovised
   - type: Gun
     showExamineText: false
-    fireRate: 0.5
+    fireRate: 0.4
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -351,12 +389,12 @@
       state: inhand-left
   - type: BasicEntityAmmoProvider
     proto: FireBomb
-    capacity: 5
-    count: 5
+    capacity: 3
+    count: 3
   - type: Gun
-    projectileSpeed: 4.5
+    projectileSpeed: 6
     showExamineText: false
-    fireRate: 1
+    fireRate: 0.5
     minAngle: 45
     maxAngle: 120
     selectedMode: SemiAuto
@@ -422,7 +460,7 @@
 - type: entity
   name: Scrap boarder
   description: Rookie raider sent first through the breach. Usually doesn’t come back, but makes a great distraction.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBase, MobHumanoidHostileAISimpleMelee]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBase, MobHumanoidHostileAISimpleMelee, MobPirateSparkEffectBase]
   id: MobPirateT1Knife
   components:
   - type: Loadout
@@ -442,6 +480,24 @@
     - sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva.rsi
       state: on-equipped-HELMET
       shader: unshaded
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 33
+    rechargeSound:
+      path: /Audio/_Sunrise/Abductor/holopaper_open.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletGrenadeFlashBang
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    minAngle: 30
+    maxAngle: 90
+    projectileSpeed: 10
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Effects/drop.ogg
 
 - type: entity
   name: Scrap boarder
@@ -556,7 +612,7 @@
     - sprite: Clothing/Head/Hardsuits/goliathhelm.rsi
       state: equipped-head-unshaded-reptilian
       shader: unshaded
-    - sprite: _Sunrise/Objects/Weapons/Melee/crusher_broadaxe-inhands.rsi
+    - sprite: Objects/Weapons/Melee/crusher_glaive-inhands.rsi
       state: wielded-inhand-left
   - type: Gun
     soundGunshot: /Audio/Weapons/plasma_cutter.ogg
@@ -583,9 +639,9 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 8
-        Slash: 12
-        Structural: 50
+        Blunt: 2
+        Slash: 8
+        Structural: 30
     bluntStaminaDamageFactor: 1
     soundHit:
       collection: MetalThud
@@ -597,6 +653,77 @@
     - actionId: ActionGravityJump
       minRange: 0
       maxRange: 4
+
+- type: entity
+  name: goliath smasher
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee]
+  id: MobPirateT1HunterSmash
+  description: Veteran scrappers, these salvagers are bulky enough to use heavy crusher-axe.
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT1HunterSmashGear
+  - type: Sprite
+    scale: 1.2,1.08
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/goliath_mining.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/goliathhelm.rsi
+      state: equipped-head
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/goliathhelm.rsi
+      state: equipped-head-light
+      shader: unshaded
+    - sprite: _Sunrise/Objects/Weapons/Melee/crusher_broadaxe-inhands.rsi
+      state: wielded-inhand-left
+  - type: Gun
+    soundGunshot: /Audio/Weapons/plasma_cutter.ogg
+    fireRate: 1
+    useKey: false
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 3
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletCharge
+    capacity: 1
+    count: 1
+  - type: LeechOnMarker
+    leech:
+      groups:
+        Brute: -30
+      types:
+        Heat: -10
+        Bloodloss: -5
+        Mangleness: -5
+  - type: MeleeWeapon
+    attackRate: 1
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 8
+        Slash: 12
+        Structural: 50
+    bluntStaminaDamageFactor: 1
+    soundHit:
+      collection: MetalThud
+  - type: JumpAbility
+    jumpDistance: 6
+    jumpSound: /Audio/Effects/stealthoff.ogg
+  - type: HellSpawnRush
+    blacklist:
+      tags:
+      - Hellspawn
+      - GlassBeaker
+      - DrinkBottle
+      - DrinkCan
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGravityJump
+      minRange: 2
+      maxRange: 0
 
 # region Ranged Tier 1
 - type: entity
@@ -853,12 +980,10 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeLightRifleImprovised
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 3
     autoRechargeRate: 99
   - type: Battery
@@ -908,12 +1033,10 @@
       state: up-equipped-HELMET
     - sprite: _Sunrise/Clothing/Neck/Misc/pins.rsi
       state: comm-equipped
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgePistolSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 2
     autoRechargeRate: 99
   - type: Battery
@@ -931,6 +1054,51 @@
     - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
+
+- type: entity
+  name: Scrap veteran gunner
+  description: A hardened scrapper veteran who keeps a PPSH close and a bandolier closer.
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
+  id: MobPirateT1Rifle
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT1RifleGear
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/privateer.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/privateer.rsi
+      state: equipped-HELMET
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/privateer.rsi
+      state: on-equipped-HELMET
+      shader: unshaded
+    - sprite: Clothing/Head/Hats/ushanka.rsi
+      state: up-equipped-HELMET
+  - type: BatteryAmmoProvider
+    proto: CartridgePistolImprovised
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 1.5
+    autoRechargeRate: 99
+  - type: Battery
+    maxCharge: 10
+    startingCharge: 10
+  - type: Gun
+    showExamineText: false
+    fireRate: 15
+    selectedMode: FullAuto
+    minAngle: 15
+    maxAngle: 30
+    angleIncrease: 1
+    angleDecay: 6
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/ppsh.ogg
     soundEmpty:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
 
@@ -981,11 +1149,129 @@
     mask: /Textures/Effects/LightMasks/cone.png
     color: "#FFC458FF"
 
+- type: entity
+  name: Derelict assault borg
+  description: A broken assault borg rebuilt for pirate raids.
+  parent: [MobMovementSpeedModifierRanged, MobPirateBorgBase]
+  id: MobPirateT1BorgAssault
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT1BorgAssaultGear
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Mobs/Silicon/chassis.rsi
+    layers:
+    - state: synd_sec_derelict
+    - state: synd_sec_e
+      shader: unshaded
+  - type: BatteryAmmoProvider
+    proto: CartridgeLightRifleImprovised
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 2
+    autoRechargeRate: 99
+  - type: Battery
+    maxCharge: 15
+    startingCharge: 15
+  - type: Gun
+    showExamineText: false
+    fireRate: 8
+    selectedMode: FullAuto
+    minAngle: 8
+    maxAngle: 60
+    angleIncrease: 2
+    angleDecay: 15
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_shot.ogg
+      params:
+        pitch: 0.8
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
+
+- type: entity
+  name: Derelict mining borg
+  description: A mining borg stripped down and wired for raiding.
+  parent: [MobMovementSpeedModifierRanged, MobPirateBorgBase]
+  id: MobPirateT1BorgMining
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT1BorgMiningGear
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Mobs/Silicon/chassis.rsi
+    layers:
+    - state: miner_derelict
+      map: ["movement"]
+    - state: miner_e_r
+      shader: unshaded
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: miner_moving_derelict
+    noMovementLayers:
+      movement:
+        state: miner_derelict
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgSpider
+      params:
+        volume: -15
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.6
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletKinetic
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.5
+    minAngle: 8
+    maxAngle: 18
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+
+- type: entity
+  name: Derelict borg brawler
+  description: A derelict borg that fights with brute force.
+  parent: [MobMovementSpeedModifierMelee, MobPirateBorgBase, MobHumanoidHostileAISimpleMelee]
+  id: MobPirateT1BorgDerelict
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT1BorgDerelictGear
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Mobs/Silicon/chassis.rsi
+    layers:
+    - state: derelict
+    - state: derelict_e_r
+      shader: unshaded
+  - type: MeleeWeapon
+    attackRate: 1
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 8
+  - type: HellSpawnInvincibility
+
 # region Melee Tier 2
 - type: entity
   name: pirate boarder
   description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee, MobPirateSparkEffectBase]
   id: MobPirateT2Cutlass
   components:
   - type: Loadout
@@ -1022,7 +1308,7 @@
       state: equipped-HELMET-unshaded
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: Bola
+    proto: BolaSecurity
     capacity: 1
     count: 1
   - type: RechargeBasicEntityAmmo
@@ -1039,7 +1325,7 @@
 - type: entity
   name: pirate breacher
   description: A boarding team member armed with a sledgehammer, capable of breaking through an airlock — or someone’s skull.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee, MobPirateSparkEffectBase]
   id: MobPirateT2Sledgehammer
   components:
   - type: Loadout
@@ -1059,11 +1345,31 @@
       state: equipped-INNERCLOTHING
     - sprite: Clothing/Head/Hats/gladiator.rsi
       state: equipped-HELMET
+  - type: BasicEntityAmmoProvider
+    proto: BolaSecurity
+    capacity: 1
+    count: 1
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 20
+  - type: Gun
+    projectileSpeed: 13
+    showExamineText: false
+    fireRate: 0.1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/bolathrow.ogg
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      40: 1.05
+      80: 1.15
+      110: 1.25
+      130: 1.3
 
 - type: entity
   name: pirate breacher
   description: Drilling in the name of... drilling. No rock formation or shuttle wall can withstand the power of mining drill gauthlet.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee, MobPirateSparkEffectBase]
   id: MobPirateT2GauntletDrill
   components:
   - type: Loadout
@@ -1082,7 +1388,7 @@
     - sprite: Clothing/Head/Hats/gladiator.rsi
       state: equipped-HELMET
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 35
+    rechargeCooldown: 20
     rechargeSound:
       path: /Audio/_Sunrise/Abductor/holopaper_open.ogg
   - type: BasicEntityAmmoProvider
@@ -1108,7 +1414,7 @@
 - type: entity
   name: Big Yarrke
   description: A heavy ancient mech for cold harsh realities of deep space. It has built-in Mining Industrial Drill.
-  parent: MobPirateBaseT2
+  parent: [MobPirateBaseT2, MobPirateSparkEffectBase]
   id: MobPirateT2Mech
   components:
   - type: Loadout
@@ -1138,13 +1444,20 @@
       Dead:
         Base: bigbrother-broken
   - type: Bloodstream
-    bloodReagent: WeldingFuel
-    bloodMaxVolume: 200
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 200
   - type: MobThresholds
     thresholds:
       0: Alive
       490: Critical
       500: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 490
   - type: SlowOnDamage
     speedModifierThresholds:
       75: 1.05
@@ -1155,7 +1468,7 @@
       400: 1.5
       450: 1.6
   - type: Stamina
-    critThreshold: 800
+    baseCritThreshold: 800
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 2.75
@@ -1204,7 +1517,7 @@
 - type: entity
   name: Jugger Murmillo
   description: Clad in a heavily armored ancient spacesuit. Slow but incredibly resilient.
-  parent: MobPirateBaseT2
+  parent: [MobPirateBaseT2, MobPirateSparkEffectBase]
   id: MobPirateT2Juggernaut
   components:
   - type: Loadout
@@ -1226,6 +1539,11 @@
       0: Alive
       250: Critical
       275: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 270
   - type: SlowOnDamage
     speedModifierThresholds:
       25: 1.1
@@ -1238,7 +1556,7 @@
       215: 1.8
       225: 2
   - type: Stamina
-    critThreshold: 500
+    baseCritThreshold: 500
   - type: HellSpawnInvincibility
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
@@ -1324,12 +1642,10 @@
       state: equipped-OUTERCLOTHING
     - sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_old.rsi
       state: equipped-HELMET
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeMagnumHP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 4
     autoRechargeRate: 999
   - type: Battery
@@ -1440,12 +1756,10 @@
       shader: unshaded
     - sprite: Clothing/Belt/assault.rsi
       state: equipped-BELT
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeMagnumImprovised
     fireCost: 10
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 2
     autoRechargeRate: 999
   - type: Battery
@@ -1487,12 +1801,10 @@
       shader: unshaded
     - sprite: Clothing/Belt/assault.rsi
       state: equipped-BELT
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeMagnumAP
     fireCost: 10
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 6
     autoRechargeRate: 999
   - type: Battery
@@ -1613,7 +1925,7 @@
     proto: CartridgeAntiMateriel
   - type: Gun
     showExamineText: false
-    fireRate: 0.25
+    fireRate: 0.1
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -1660,12 +1972,10 @@
       state: equipped-BELT
   - type: MovementSpeedModifier
     baseSprintSpeed: 2.75
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CannonBallMini
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 1.75
     autoRechargeRate: 999
   - type: Battery
@@ -1711,7 +2021,7 @@
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
   - type: BasicEntityAmmoProvider
-    proto: Bola
+    proto: BolaSyndicateBiocode
     capacity: 1
     count: 1
   - type: RechargeBasicEntityAmmo
@@ -1783,12 +2093,10 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgePistolSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 6
     autoRechargeRate: 999
   - type: Battery
@@ -1810,7 +2118,7 @@
 - type: entity
   name: Privateer boarder
   description: A pirate who has found sponsors, well-armed and suitably dangerous.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT3]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT3, MobPirateSparkEffectBase]
   id: MobPirateT3ShieldSMG
   components:
   - type: Loadout
@@ -1828,12 +2136,10 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgePistolSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 6
     autoRechargeRate: 999
   - type: Battery
@@ -1874,12 +2180,10 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeRifleHeavySP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 0.8
     autoRechargeRate: 999
   - type: Battery
@@ -1931,12 +2235,10 @@
     - sprite: _Starlight/Objects/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
       state: on-equipped-HELMET
       shader: unshaded
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeRifleHeavyFMJ
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 0.2
     autoRechargeRate: 999
   - type: Battery
@@ -1991,12 +2293,10 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeLightRifleSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 3
     autoRechargeRate: 99
   - type: Battery
@@ -2072,12 +2372,10 @@
       shader: unshaded
   - type: MovementSpeedModifier
     baseSprintSpeed: 3.25
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeRifleSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 2
     autoRechargeRate: 999
   - type: Battery
@@ -2127,7 +2425,7 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgePistol40SP
   - type: BatterySelfRecharger
     autoRechargePauseTime: 0.5
@@ -2164,7 +2462,7 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeHeavyRifleRAP
   - type: BatterySelfRecharger
     autoRechargePauseTime: 1.25
@@ -2208,12 +2506,10 @@
       state: equipped-SUITSTORAGE
   - type: MovementSpeedModifier
     baseSprintSpeed: 2.75
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeLightRifleSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 1
     autoRechargeRate: 999
   - type: Battery
@@ -2253,12 +2549,10 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLightLaser
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 2
     autoRechargeRate: 999
   - type: Battery
@@ -2297,12 +2591,10 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedHeavyLaser
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 30
     autoRechargeRate: 999
   - type: Battery
@@ -2347,7 +2639,7 @@
       state: on-equipped-HELMET
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: GrenadeFragContact
+    proto: GrenadeFrag
     capacity: 1
     count: 1
   - type: Gun
@@ -2382,12 +2674,10 @@
       shader: unshaded
     - sprite: Clothing/Head/Hats/cowboyhatbountyhunter.rsi
       state: equipped-HELMET
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgePistol40SP
     fireCost: 10
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 5
     autoRechargeRate: 999
   - type: Battery
@@ -2409,7 +2699,7 @@
 - type: entity
   name: Captain Rustfist
   description: An old salvage veteran, more metal than man. His fists creak, his armor’s held together by bolts and faith, and if he swings at you, it’s best to play dead and hope he buys it.
-  parent: [MobHostileBossBase, MobPirateBase]
+  parent: [MobHostileBossBase, MobPirateBase, MobPirateSparkEffectBase]
   id: MobPirateT1Boss
   components:
   - type: Loadout
@@ -2441,6 +2731,13 @@
   - type: ActionGrant
     actions:
     - ActionGravityJump
+  - type: HellSpawnRush
+    blacklist:
+      tags:
+      - Hellspawn
+      - GlassBeaker
+      - DrinkBottle
+      - DrinkCan
   - type: AmbientSound
     range: 8
     volume: -10
@@ -2482,12 +2779,10 @@
     - sprite: _Sunrise/Clothing/Head/Hardsuits/piratecaptainhelm.rsi
       state: on-equipped-HELMET
       shader: unshaded
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgePistol40FMJ
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 6
     autoRechargeRate: 999
   - type: Battery
@@ -2506,7 +2801,7 @@
 - type: entity
   name: Skull House
   description: The Heavy Mech USSP, a communist variant of the Durand, features stronger armor and a powerful machine gun.
-  parent: [MobHostileBossBase, MobPirateBaseT3]
+  parent: [MobHostileBossBase, MobPirateBaseT3, MobPirateSparkEffectBase]
   id: MobPirateT3Boss
   components:
   - type: Loadout
@@ -2536,21 +2831,28 @@
       Dead:
         Base: warboss-broken
   - type: Bloodstream
-    bloodReagent: WeldingFuel
-    bloodMaxVolume: 300
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 300
   - type: MobThresholds
     thresholds:
       0: Alive
-      649: Critical
-      650: Dead
+      699: Critical
+      700: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 600
   - type: SlowOnDamage
     speedModifierThresholds:
-      100: 0.9
-      300: 0.8
-      400: 0.7
-      550: 0.6
+      250: 0.9
+      350: 0.8
+      450: 0.7
+      600: 0.6
   - type: Stamina
-    critThreshold: 9999
+    baseCritThreshold: 9999
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
     baseSprintSpeed: 2.25
@@ -2559,12 +2861,10 @@
   - type: Repairable
     fuelCost: 25
     doAfterDelay: 10
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeHeavyRifleRSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargePause: true
     autoRechargePauseTime: 5
     autoRechargeRate: 999
   - type: Battery

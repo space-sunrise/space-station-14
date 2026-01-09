@@ -14,6 +14,7 @@ using Robust.Shared.Input;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using System.Linq;
+using Robust.Client.UserInterface.RichText; // Sunrise-Edit
 using static Robust.Client.UserInterface.Controls.LineEdit;
 
 namespace Content.Client.UserInterface.Systems.Chat.Widgets;
@@ -22,6 +23,21 @@ namespace Content.Client.UserInterface.Systems.Chat.Widgets;
 [Virtual]
 public partial class ChatBox : UIWidget
 {
+    // Sunrise-Start
+    // По умолчаюнию разрешены только RichTextEntry.DefaultTags.
+    // Теги ниже нужны для корректного отображения иконок в чате
+    private static readonly Type[] TagsAllowed =
+    [
+        typeof(BoldItalicTag),
+        typeof(BoldTag),
+        typeof(BulletTag),
+        typeof(ColorTag),
+        typeof(HeadingTag),
+        typeof(ItalicTag),
+        typeof(Client._Sunrise.UserInterface.RichText.RadioIconTag),
+    ];
+    // Sunrise-End
+
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly ILogManager _log = default!;
 
@@ -146,6 +162,7 @@ public partial class ChatBox : UIWidget
         formatted.AddMarkupOrThrow(message);
         formatted.Pop();
         Contents.AddMessage(formatted);
+        Contents.SetMessage(^1, formatted, TagsAllowed); // Sunrise-Edit
     }
 
     public void Focus(ChatSelectChannel? channel = null)

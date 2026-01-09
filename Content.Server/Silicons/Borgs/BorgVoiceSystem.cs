@@ -125,7 +125,7 @@ public sealed class BorgVoiceSystem : EntitySystem
         // Use the borg's selected voice instead of the default
         if (component.SelectedVoiceId != null)
         {
-            args.VoiceId = component.SelectedVoiceId;
+            args.VoiceId = component.SelectedVoiceId.Value;
         }
         args.Effect = component.VoiceEffect;
     }

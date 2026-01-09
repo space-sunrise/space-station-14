@@ -9,7 +9,7 @@
     time: 10800 # 3 hrs
   - !type:OverallPlaytimeRequirement
     time: 36000 #10 hrs
-  icon: "JobIconShaftMiner"
+  icon: "JobIconMiner"
   startingGear: MiningSpecialistGear
   supervisors: job-supervisors-qm
   canBeAntag: false #Работать а не антажить!
@@ -19,6 +19,8 @@
   - Mining
   - Maintenance
   - External
+  extendedAccess:
+  - CargoPurchaseAccess
 
 - type: startingGear
   id: MiningSpecialistGear

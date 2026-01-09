@@ -52,7 +52,7 @@
   components:
     - type: SpawnGridAndDockToStation
       grids:
-        - gridPath: /Maps/_Sunrise/Shuttles/mining.yml
+        - gridPath: /Maps/_Sunrise/Shuttles/Salvage/mining.yml
           priorityTag: DockMining
         - gridPath: /Maps/_Sunrise/Shuttles/security.yml
           priorityTag: DockSecurity

@@ -249,6 +249,9 @@
         },
         {
             "name": "Vampire"
+        },
+        {
+            "name": "Miner"
         }
     ]
 }

@@ -65,10 +65,6 @@ namespace Content.Server.RoundEnd
         /// If the shuttle can't be recalled. if set to true, the station wont be able to recall
         /// </summary>
         public bool CantRecall = false;
-
-        public TimeSpan AutoCallStartTime;
-        private bool _autoCalledBefore = false;
-
         public override void Initialize()
         {
             base.Initialize();

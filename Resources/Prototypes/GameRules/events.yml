@@ -200,6 +200,12 @@
   parent: BaseGameRule
   id: DragonSpawn
   components:
+  # Sunrise-start
+  - type: GameRule
+    delay:
+      min: 900
+      max: 900
+  # Sunrise-end
   - type: StationEvent
     weight: 6.5
     earliestStart: 40
@@ -231,6 +237,12 @@
   parent: BaseGameRule
   id: NinjaSpawn
   components:
+  # Sunrise-start
+  - type: GameRule
+    delay:
+      min: 600
+      max: 600
+  # Sunrise-end
   - type: StationEvent
     weight: 6
     duration: null

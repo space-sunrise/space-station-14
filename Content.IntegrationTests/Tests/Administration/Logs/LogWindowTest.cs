@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Client._Sunrise.Administration.UI.CustomControls;
 using Content.Client.Administration.UI;
 using Content.Client.Administration.UI.CustomControls;
 using Content.Client.Administration.UI.Logs;
@@ -41,7 +42,11 @@ public sealed class LogWindowTest : InteractionTest
         await Client.WaitPost(() => search.Text = guid.ToString());
         await ClickControl(refresh);
         await RunTicks(5);
-        var searchResult = cont.Children.Where(x => x.Visible && x is AdminLogLabel).Cast<AdminLogLabel>().ToArray();
+
+        // Sunrise edit start - крутые красивые логи
+        var searchResult = cont.Children.Where(x => x.Visible && x is SunriseAdminLogLabel).Cast<SunriseAdminLogLabel>().ToArray();
+        // Sunrise edit end
+
         Assert.That(searchResult.Length, Is.EqualTo(1));
         Assert.That(searchResult[0].Log.Message, Contains.Substring($" test log 1: {guid}"));
 
@@ -53,7 +58,11 @@ public sealed class LogWindowTest : InteractionTest
         await Client.WaitPost(() => search.Text = guid.ToString());
         await ClickControl(refresh);
         await RunTicks(5);
-        searchResult = cont.Children.Where(x => x.Visible && x is AdminLogLabel).Cast<AdminLogLabel>().ToArray();
+
+        // Sunrise edit start - крутые красивые логи
+        searchResult = cont.Children.Where(x => x.Visible && x is SunriseAdminLogLabel).Cast<SunriseAdminLogLabel>().ToArray();
+        // Sunrise edit end
+
         Assert.That(searchResult.Length, Is.EqualTo(1));
         Assert.That(searchResult[0].Log.Message, Contains.Substring($" test log 2: {guid}"));
     }

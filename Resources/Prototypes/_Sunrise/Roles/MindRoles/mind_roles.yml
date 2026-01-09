@@ -28,7 +28,7 @@
   - type: MindRole
     antagPrototype: PlanetPrisoner
     exclusiveAntag: true
-    roleType: TeamAntagonist
+    roleType: FreeAgent
   - type: PlanetPrisonerRole
 
 - type: entity

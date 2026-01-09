@@ -7,7 +7,7 @@
     - !type:DepartmentTimeRequirement
       department: Science
       time: 5h
-      inverted: true # stop playing intern if you're good at science!
+      #inverted: true # stop playing intern if you're good at science! Sunrise-edit
   startingGear: ResearchAssistantGear
   icon: "JobIconResearchAssistant"
   supervisors: job-supervisors-science

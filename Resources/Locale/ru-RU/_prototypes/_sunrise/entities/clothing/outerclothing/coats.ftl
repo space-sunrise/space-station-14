@@ -68,3 +68,7 @@ ent-ClothingOuterCoatJilldress = Платье Джилл
     .desc = Это платье Снегурочки.
 ent-ClothingOuterCoatMansport = Спортивная толстовка
     .desc = Худи,или толстовки? Я выбираю футболки.
+ent-ClothingOuterLeatherCoat = кожаная куртка
+    .desc = Прекрасно подходит для выступлений!
+ent-ClothingOuterLeatherCoatOpened = кожаная куртка
+    .desc = Прекрасно подходит для выступлений!

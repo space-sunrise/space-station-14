@@ -8,6 +8,7 @@ using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Server.ServerStatus;
 using Robust.Shared.Configuration;
+using Robust.Shared.Console;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -56,7 +57,7 @@ public sealed class TipsSystem : SharedTipsSystem
     private void WatchdogOnUpdateReceived()
     {
         var message = Loc.GetString("server-updates-received");
-        SendTippyForAll(message, 5f);
+        SendTippyForAll(message, null, 5f, 3f, 0.5f);
     }
     // Sunrise-End
 
@@ -90,11 +91,15 @@ public sealed class TipsSystem : SharedTipsSystem
         }
     }
 
-    public void SendTippyForAll(string msg, float time = 1f)
+    public void SendTippyForAll(string msg,
+        EntProtoId? prototype = null,
+        float speakTime = 1f,
+        float slideTime = 1f,
+        float waddleInterval = 1f)
     {
-        var ev = new TippyEvent(msg)
+        var ev = new TippyEvent(msg, prototype, speakTime, slideTime, waddleInterval)
         {
-            SpeakTime = time + msg.Length * 0.05f
+            SpeakTime = speakTime + msg.Length * 0.05f
         };
         RaiseNetworkEvent(ev);
     }

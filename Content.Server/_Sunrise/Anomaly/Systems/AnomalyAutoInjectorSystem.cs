@@ -23,6 +23,7 @@ using Content.Shared.Humanoid;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Sunrise.Drugs;
 using Content.Shared.Anomaly.Components;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Sunrise.Anomaly.Systems;
 

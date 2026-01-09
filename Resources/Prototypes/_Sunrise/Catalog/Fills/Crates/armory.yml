@@ -1,100 +1,114 @@
 - type: entity
   id: CrateArmoryShotgunTrenchgun4034Sawn
-  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
   name: Trenchgun4034 crate
   description: Contains two Trenchgun4034 with two Bandolier and four buckshot box. Requires Armory access to open.
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponShotgunTrenchgun4034
-      amount: 2
-    - id: ClothingBeltBandolier
-      amount: 2
-    - id: BoxLethalshot
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponShotgunTrenchgun4034
+          amount: 2
+        - id: ClothingBeltBandolier
+          amount: 2
+        - id: BoxLethalshot
+          amount: 4
 
 - type: entity
   id: CrateArmoryCombatShotgun
-  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
   name: Combat Shotgun crate
   description: Contains two Combat Shotgun with two Bandolier and four buckshot box. Requires Armory access to open.
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponShotgunCombat
-      amount: 2
-    - id: ClothingBeltBandolier
-      amount: 2
-    - id: BoxLethalshot
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponShotgunCombat
+          amount: 2
+        - id: ClothingBeltBandolier
+          amount: 2
+        - id: BoxLethalshot
+          amount: 4
 
 - type: entity
   id: CrateArmoryShotgunAmmo
-  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
   name: Shotgun Ammo crate
-  description: Contains varios Box Shotgun ammo. Requires Armory access to open.
+  description: Contains various Box Shotgun ammo. Requires Armory access to open.
   components:
-  - type: StorageFill
-    contents:
-    - id: BoxLethalshot
-      amount: 4
-    - id: BoxBeanbag
-      amount: 2
-    - id: BoxShotgunSlug
-      amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BoxLethalshot
+          amount: 4
+        - id: BoxBeanbag
+          amount: 2
+        - id: BoxShotgunSlug
+          amount: 2
 
 - type: entity
   id: CrateArmoryAKMS
-  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
   name: AKMS crate
   description: Contains two AKMS assault rifle with four mags. Requires Armory access to open.
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponRifleAKM
-        amount: 2
-      - id: MagazineLightRifleSP
-        amount: 1
-      - id: MagazineLightRifleHP
-        amount: 1
-      - id: MagazineLightRifleFMJ
-        amount: 1
-      - id: MagazineLightRifleAP
-        amount: 1
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponRifleAKM
+          amount: 2
+        - id: MagazineLightRifleSP
+          amount: 1
+        - id: MagazineLightRifleHP
+          amount: 1
+        - id: MagazineLightRifleFMJ
+          amount: 1
+        - id: MagazineLightRifleAP
+          amount: 1
 
 - type: entity
   id: CrateArmoryMP5
-  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
   name: MP5 crate
   description: Contains two MP5 submachine gun with two mags. Requires Armory access to open.
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponSubMachineGunMP5
-        amount: 2
-      - id: MagazineMP5
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunMP5
+          amount: 2
+        - id: MagazineMP5
+          amount: 2
 
 - type: entity
   id: CrateArmoryIK30
-  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
   name: IK-30 crate
   description: Contains three IK-30 laser carbine with additional ammunition. Requires Armory access to open.
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponGunLaserCarbineSemi
-        amount: 3
-      - id: MagazineBatteryLr30
-        amount: 3
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponGunLaserCarbineSemi
+          amount: 3
+        - id: MagazineBatteryLr30
+          amount: 3
 
 - type: entity
   id: CrateArmoryIK30Magazines
-  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
   name: IK-30 magazine's crate
   description: Contains six magazines for "IK-30". Requires Armory access to open.
   components:
-  - type: StorageFill
-    contents:
-      - id: MagazineBatteryLr30
-        amount: 6
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MagazineBatteryLr30
+          amount: 6

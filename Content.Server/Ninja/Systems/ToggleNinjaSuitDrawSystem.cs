@@ -24,9 +24,16 @@ public sealed class ToggleNinjaSuitDrawSystem : EntitySystem
 
     private void OnMapInit(Entity<ToggleNinjaSuitDrawComponent> ent, ref MapInitEvent args)
     {
-        var uid = ent.Owner;
-        var draw = Comp<NinjaSuitDrawComponent>(uid);
-        _suitDraw.SetEnabled((uid, draw), _toggle.IsActivated(uid));
+        if (!TryComp<NinjaSuitDrawComponent>(ent, out var draw))
+        {
+            // Если тут будет стоять еррор, то AllComponentsToOneDeleteTest насрет, что все плохо.
+            Log.Warning($"Found entity {ToPrettyString(ent)} with {nameof(ToggleNinjaSuitDrawComponent)} but without {nameof(NinjaSuitDrawComponent)}! Toggle component will be removed");
+            RemComp<ToggleNinjaSuitDrawComponent>(ent);
+
+            return;
+        }
+
+        _suitDraw.SetEnabled((ent, draw), _toggle.IsActivated(ent.Owner));
     }
 
     private void OnActivateAttempt(Entity<ToggleNinjaSuitDrawComponent> ent, ref ItemToggleActivateAttemptEvent args)

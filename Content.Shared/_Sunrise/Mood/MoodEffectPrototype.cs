@@ -3,10 +3,10 @@
 namespace Content.Shared._Sunrise.Mood;
 
 [Prototype]
-public sealed class MoodEffectPrototype : IPrototype
+public sealed partial class MoodEffectPrototype : IPrototype
 {
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     public string Description => Loc.GetString($"mood-effect-{ID}");
 

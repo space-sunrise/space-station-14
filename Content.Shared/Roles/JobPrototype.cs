@@ -89,7 +89,7 @@ namespace Content.Shared.Roles
 
         // Sunrise-Start
         [DataField("radioBold")]
-        public bool RadioIsBold { get; }
+        public bool RadioIsBold { get; private set; }
         // Sunrise-End
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace Content.Shared.Roles
         /// Для космической тюрьмы
         /// </summary>
         [DataField("alwaysUseSpawner")]
-        public bool AlwaysUseSpawner { get; }
+        public bool AlwaysUseSpawner { get; private set; }
 
         [DataField]
         public SpriteSpecifier PreviewIcon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Sunrise/Interface/Misc/job_preview.rsi"), "test");

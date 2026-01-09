@@ -20,7 +20,7 @@
   - Security
   - Brig
   - Armory
-  - Maintenance
+  # - Maintenance # Sunrise-Edit
   - External
   - Detective
   - Cryogenics
@@ -36,11 +36,11 @@
     eyes: ClothingEyesGlassesSecurity
     id: WardenPDA
     ears: ClothingHeadsetSecurity
-    pocket1: WeaponPistolMk58
+    # pocket1: WeaponPistolMk58 # Sunrise-Edit
   storage:
     back:
     - Flash
-    - MagazinePistol
+    # - MagazinePistol # Sunrise-Edit
 
 - type: chameleonOutfit
   id: WardenChameleonOutfit

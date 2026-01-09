@@ -2,14 +2,22 @@
   id: LoveEffect
 
 - type: statusEffect
-  id: Jump
+  id: Flip
 
 - type: statusEffect
-  id: Flip
+  id: ShockProtection # Used in Red Bool drink
+  alwaysAllowed: true
 
 - type: entity
   parent: MobStatusEffectBase
   id: StatusEffectFall
   name: fall
   components:
-  - type: Fall
+  - type: FallStatusEffect
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectJump
+  name: jump
+  components:
+  - type: JumpStatusEffect

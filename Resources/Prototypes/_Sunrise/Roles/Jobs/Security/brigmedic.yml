@@ -19,7 +19,6 @@
   - Medical
   - Security
   - Brig
-  - Maintenance
   - External
   - Cryogenics
   special:
@@ -45,3 +44,7 @@
 - type: chameleonOutfit
   id: BrigmedicChameleonOutfit
   job: Brigmedic
+  hasMindShield: true
+  equipment:
+    mask: ClothingMaskGasSecurity
+    gloves: ClothingHandsGlovesLatex

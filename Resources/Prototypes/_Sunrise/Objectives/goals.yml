@@ -178,3 +178,18 @@
   id: CrewEducation
   text: station-goal-church
   lockBoxPrototypeId: Lockbox
+
+- type: stationGoal
+  id: Virology
+  text: station-goal-virology
+  lockBoxPrototypeId: Lockbox
+
+- type: stationGoal
+  id: SampleCollection
+  text: station-goal-sample-collection
+  lockBoxPrototypeId: Lockbox
+
+- type: stationGoal
+  id: Examination
+  text: station-goal-health-examination
+  lockBoxPrototypeId: Lockbox

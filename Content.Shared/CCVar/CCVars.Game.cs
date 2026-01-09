@@ -311,6 +311,24 @@ public sealed partial class CCVars
         CVarDef.Create("game.ipintel_alert_admin_warn_rating", 0f, CVar.SERVERONLY);
 
     /// <summary>
+    /// Включить систему блокировки IP-адресов для защиты от перегрузки памяти.
+    /// </summary>
+    public static readonly CVarDef<bool> GameIPBlockingEnabled =
+        CVarDef.Create("game.ipblocking_enabled", true, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Время блокировки IP-адреса в секундах при обнаружении подозрительного запроса.
+    /// </summary>
+    public static readonly CVarDef<int> GameIPBlockingDuration =
+        CVarDef.Create("game.ipblocking_duration", 900, CVar.SERVERONLY); // 15 минут по умолчанию
+
+    /// <summary>
+    /// Максимальная допустимая длина ответа в байтах. Запросы с большей длиной будут блокироваться.
+    /// </summary>
+    public static readonly CVarDef<int> GameIPBlockingMaxResponseLength =
+        CVarDef.Create("game.ipblocking_max_response_length", 10485760, CVar.SERVERONLY); // 10MB по умолчанию
+
+    /// <summary>
     ///     Make people bonk when trying to climb certain objects like tables.
     /// </summary>
     public static readonly CVarDef<bool> GameTableBonk =

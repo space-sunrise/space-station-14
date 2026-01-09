@@ -76,8 +76,8 @@
         - id: Saw
         - id: Hemostat
         - id: ClothingMaskSterile
-      - id: BoneGel
-      - id: BoneSetter
+        - id: BoneGel
+        - id: BoneSetter
 - type: entity
   parent: CrateMedical
   id: CrateMedicalScrubs

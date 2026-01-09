@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client._Sunrise.InteractionsPanel.Models;
+using Content.Client.Stylesheets;
 using Content.Shared._Sunrise.InteractionsPanel.Data.Components;
 using Content.Shared._Sunrise.InteractionsPanel.Data.Prototypes;
 using Content.Shared._Sunrise.InteractionsPanel.Data.UI;
@@ -468,7 +469,7 @@ public sealed partial class InteractionsUIWindow : DefaultWindow
             HorizontalExpand = true,
             MinHeight = 40,
             MaxHeight = 45,
-            StyleClasses = { "ButtonSquare" },
+            StyleClasses = { StyleClass.ButtonSquare },
             Disabled = isOnCooldown
         };
 
@@ -535,7 +536,7 @@ public sealed partial class InteractionsUIWindow : DefaultWindow
         {
             MinSize = new Vector2(32, 45),
             MaxSize = new Vector2(32, 45),
-            StyleClasses = { "ButtonSquare" },
+            StyleClasses = { StyleClass.ButtonSquare },
             Margin = new Thickness(2, 0, 0, 0),
             VerticalAlignment = VAlignment.Center
         };
@@ -610,7 +611,7 @@ public sealed partial class InteractionsUIWindow : DefaultWindow
             HorizontalExpand = true,
             MinHeight = 40,
             MaxHeight = 45,
-            StyleClasses = { "ButtonSquare" },
+            StyleClasses = { StyleClass.ButtonSquare },
             Disabled = isOnCooldown,
         };
 
@@ -678,7 +679,7 @@ public sealed partial class InteractionsUIWindow : DefaultWindow
         {
             MinSize = new Vector2(32, 44),
             MaxSize = new Vector2(32, 44),
-            StyleClasses = { "ButtonSquare" },
+            StyleClasses = { StyleClass.ButtonSquare },
             Margin = new Thickness(2, 0, 0, 0),
             VerticalAlignment = VAlignment.Center
         };
@@ -967,7 +968,7 @@ public sealed partial class InteractionsUIWindow : DefaultWindow
         var editButton = new Button
         {
             Text = "Редактировать",
-            StyleClasses = { "ButtonSquare" },
+            StyleClasses = { StyleClass.ButtonSquare },
             Margin = new Thickness(0, 0, 4, 0)
         };
 
@@ -981,7 +982,7 @@ public sealed partial class InteractionsUIWindow : DefaultWindow
         var deleteButton = new Button
         {
             Text = "Удалить",
-            StyleClasses = { "ButtonSquare" },
+            StyleClasses = { StyleClass.ButtonSquare },
         };
 
         deleteButton.StyleBoxOverride = new StyleBoxFlat
@@ -1120,7 +1121,7 @@ public sealed partial class InteractionsUIWindow : DefaultWindow
         var cancelButton = new Button
         {
             Text = "Отмена",
-            StyleClasses = { "ButtonSquare" },
+            StyleClasses = { StyleClass.ButtonSquare },
             Margin = new Thickness(0, 0, 4, 0)
         };
 
@@ -1134,7 +1135,7 @@ public sealed partial class InteractionsUIWindow : DefaultWindow
         var confirmButton = new Button
         {
             Text = "Удалить",
-            StyleClasses = { "ButtonSquare" },
+            StyleClasses = { StyleClass.ButtonSquare },
         };
 
         confirmButton.StyleBoxOverride = new StyleBoxFlat

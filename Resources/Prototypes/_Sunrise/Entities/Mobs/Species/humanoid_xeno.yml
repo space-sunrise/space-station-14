@@ -24,9 +24,10 @@
   - type: TypingIndicator
     proto: alien
   - type: Temperature
+    currentTemperature: 310.15
+  - type: TemperatureDamage
     heatDamageThreshold: 360
     coldDamageThreshold: -150
-    currentTemperature: 310.15
   - type: Speech
     speechVerb: LargeMob
   - type: MeleeWeapon
@@ -41,7 +42,10 @@
         Blunt: 5
         Slash: 10
   - type: Bloodstream
-    bloodReagent: FluorosulfuricAcidHumanoidXeno
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: FluorosulfuricAcidHumanoidXeno
+        Quantity: 300
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Xenomorph
@@ -50,18 +54,6 @@
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
         color: "#44944A"
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.40
-        density: 250
-        restitution: 0.0
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
   - type: Sprite
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -129,6 +121,79 @@
   - type: Inventory
     speciesId: reptilian
     templateId: humanoidxeno
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit-female
+      head:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: head
+      mask:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: mask
+    displacements:
+      head:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: head
+      mask:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: mask
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes
+      socks:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: socks
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: outer
+      hardsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: hardsuit
+    maleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes
+      socks:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: socks
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: outer
+      hardsuit-body-normal:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: hardsuit
   - type: HumanoidAppearance
     species: HumanoidXeno
   - type: Tag
@@ -153,6 +218,79 @@
   - type: Inventory
     speciesId: reptilian
     templateId: humanoidxeno
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit-female
+      head:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: head
+      mask:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: mask
+    displacements:
+      head:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: head
+      mask:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: mask
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes
+      socks:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: socks
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: outer
+      hardsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: hardsuit
+    maleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes
+      socks:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: socks
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: outer
+      hardsuit-body-normal:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: hardsuit
   - type: Body
     prototype: HumanoidXeno
 

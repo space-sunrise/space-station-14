@@ -100,21 +100,6 @@
         - ReagentId: TranexamicAcid #Sunrise-Edit
           Quantity: 3 #Sunrise-Edit
 
-- type: entity
-  id: PatchViagra
-  name: Viarga patch
-  parent: BasePatch
-  components:
-  - type: Sprite
-    state: bandaid-clown
-  - type: SolutionContainerManager
-    solutions:
-      patch:
-        maxVol: 20
-        reagents:
-        - ReagentId: Aphrodisiac
-          Quantity: 10
-
 
 - type: entity
   id: PatchMedical
@@ -159,7 +144,7 @@
   description: Storage of multiple patches efficiently.
   components:
   - type: Item
-    size: Tiny
+    size: Small
     sprite: _Starlight/Objects/Specific/Chemistry/patch_pack.rsi
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Chemistry/patch_pack.rsi

@@ -15,6 +15,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Shared._Sunrise.TTS;
 
 namespace Content.Shared.Chat;
 
@@ -406,7 +407,8 @@ public abstract partial class SharedChatSystem : EntitySystem
         ICommonSession? player = null,
         string? nameOverride = null,
         bool checkRadioPrefix = true,
-        bool ignoreActionBlocker = false)
+        bool ignoreActionBlocker = false,
+        bool isFormatted = false) //Sunrise
     { }
 
     /// <summary>
@@ -431,7 +433,8 @@ public abstract partial class SharedChatSystem : EntitySystem
         ICommonSession? player = null,
         string? nameOverride = null,
         bool checkRadioPrefix = true,
-        bool ignoreActionBlocker = false
+        bool ignoreActionBlocker = false,
+        bool isFormatted = false // Sunrise
         )
     { }
 
@@ -467,6 +470,8 @@ public abstract partial class SharedChatSystem : EntitySystem
         string? sender = null,
         bool playSound = true,
         SoundSpecifier? announcementSound = null,
+        bool playTts = true, // Sunrise-edit
+        ProtoId<TTSVoicePrototype>? announceVoice = null, // Sunrise-edit
         Color? colorOverride = null
         )
     { }
@@ -487,6 +492,8 @@ public abstract partial class SharedChatSystem : EntitySystem
         EntityUid? source = null,
         string? sender = null,
         bool playSound = true,
+        bool playTts = true, // Sunrise-edit
+        ProtoId<TTSVoicePrototype>? announceVoice = null,  // Sunrise-edit
         SoundSpecifier? announcementSound = null,
         Color? colorOverride = null)
     { }
@@ -504,6 +511,9 @@ public abstract partial class SharedChatSystem : EntitySystem
         EntityUid source,
         string message,
         string? sender = null,
+        bool playDefault = true, // Sunrise
+        bool playTts = true, // Sunrise
+        ProtoId<TTSVoicePrototype>? announceVoice = null, // Sunrise
         bool playDefaultSound = true,
         SoundSpecifier? announcementSound = null,
         Color? colorOverride = null)
@@ -533,7 +543,8 @@ public enum InGameICChatType : byte
 {
     Speak,
     Emote,
-    Whisper
+    Whisper,
+    CollectiveMind // Sunrise
 }
 
 /// <summary>

@@ -11,6 +11,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: FugitiveRule
+  - type: DynamicRuleCost
+    cost: 65
 
 - type: entity
   id: PlanetPrison

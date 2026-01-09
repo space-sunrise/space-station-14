@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
+using Content.Client._Sunrise.Administration.UI.CustomControls;
 using Content.Client.Administration.UI.CustomControls;
 using Content.Client.Eui;
 using Content.Shared.Administration.Logs;
@@ -109,8 +110,10 @@ public sealed class AdminLogsEui : BaseEui
             await writer.WriteLineAsync(CsvHeader);
             foreach (var child in LogsControl.LogsContainer.Children)
             {
-                if (child is not AdminLogLabel logLabel || !child.Visible)
+                // Sunrise edit start - крутые красивые логи
+                if (child is not SunriseAdminLogLabel logLabel || !child.Visible)
                     continue;
+                // Sunrise edit end
 
                 var log = logLabel.Log;
 

@@ -1,7 +1,7 @@
 - type: entity
   name: SyndyFlash Grenade
   description: It definitely smells fake.
-  parent: [ GrenadeBase, BaseRestrictedContraband, GrenadeFlashBang ]
+  parent: [ GrenadeBase, BaseSyndicateContraband, GrenadeFlashBang ]
   id: SyndyFlashGrenade
   components:
   - type: Sprite

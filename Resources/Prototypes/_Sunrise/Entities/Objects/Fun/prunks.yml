@@ -326,6 +326,8 @@
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/fake_c20r.rsi
   - type: StaticPrice
     price: 500
+  - type: Gun
+    clumsyProof: true
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -360,6 +362,7 @@
   - type: StaticPrice
     price: 1200
   - type: Gun
+    clumsyProof: true
     minAngle: 21
     maxAngle: 70
     angleIncrease: 1

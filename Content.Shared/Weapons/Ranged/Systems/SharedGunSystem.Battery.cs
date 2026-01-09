@@ -9,6 +9,7 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Content.Shared.Power.Components;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -63,23 +64,6 @@ public abstract partial class SharedGunSystem
     {
         var shots = Math.Min(args.Shots, ent.Comp.Shots);
 
-            return null;
-        }
-
-        if (component is HitscanBatteryAmmoProviderComponent hitscan)
-        {
-            var dmg = ProtoManager.Index<HitscanPrototype>(hitscan.Prototype).Damage;
-            return dmg == null ? dmg : dmg * Damageable.UniversalHitscanDamageModifier;
-        }
-
-        return null;
-    }
-
-    private void OnBatteryTakeAmmo(EntityUid uid, BatteryAmmoProviderComponent component, TakeAmmoEvent args)
-    {
-        var shots = Math.Min(args.Shots, component.Shots);
-
-        // Don't dirty if it's an empty fire.
         if (shots == 0)
             return;
 
@@ -102,23 +86,79 @@ public abstract partial class SharedGunSystem
     /// </summary>
     public void TakeCharge(Entity<BatteryAmmoProviderComponent> ent, int shots = 1)
     {
-        // Take charge from either the BatteryComponent or PowerCellSlotComponent.
+        // Take charge from either the BatteryComponent, PredictedBatteryComponent or PowerCellSlotComponent.
         var ev = new ChangeChargeEvent(-ent.Comp.FireCost * shots);
         RaiseLocalEvent(ent, ref ev);
-        // UpdateShots is already called by the resulting ChargeChangedEvent
+        // UpdateShots is already called by the resulting PredictedBatteryChargeChangedEvent or ChargeChangedEvent
     }
 
     private (EntityUid? Entity, IShootable) GetShootable(BatteryAmmoProviderComponent component, EntityCoordinates coordinates)
     {
-        switch (component)
+
+        var ent = Spawn(component.Prototype, coordinates);
+        return (ent, EnsureShootable(ent));
+    }
+
+    public void UpdateShots(Entity<BatteryAmmoProviderComponent> ent)
+    {
+        var oldShots = ent.Comp.Shots;
+        var oldCapacity = ent.Comp.Capacity;
+        (var newShots, var newCapacity) = GetShots(ent);
+
+        // Only dirty if necessary.
+        if (oldShots == newShots && oldCapacity == newCapacity)
+            return;
+
+        ent.Comp.Shots = newShots;
+        if (newCapacity > 0) // Don't make the capacity 0 when removing a power cell as this will make it be visualized as full instead of empty.
+            ent.Comp.Capacity = newCapacity;
+
+        // Update the ammo counter predictively if the change was predicted. On the server this does nothing.
+        UpdateAmmoCount(ent.Owner);
+
+        Dirty(ent); // Dirtying will update the client's ammo counter in an AfterAutoHandleStateEvent subscription in case it was not predicted.
+
+        if (!TryComp<AppearanceComponent>(ent, out var appearance))
+            return;
+
+        // Update the visuals.
+        Appearance.SetData(ent.Owner, AmmoVisuals.HasAmmo, newShots != 0, appearance);
+        Appearance.SetData(ent.Owner, AmmoVisuals.AmmoCount, newShots, appearance);
+        if (newCapacity > 0) // Don't make the capacity 0 when removing a power cell as this will make it be visualized as full instead of empty.
+            Appearance.SetData(ent.Owner, AmmoVisuals.AmmoMax, newCapacity, appearance);
+    }
+
+    // For server side changes the client's ammo counter needs to be updated as well.
+    private void OnAfterAutoHandleState(Entity<BatteryAmmoProviderComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        UpdateAmmoCount(ent); // Need to have prediction set to true because the state is applied repeatedly while prediction is running.
+    }
+
+    // For when a power cell gets inserted or removed.
+    private void OnPowerCellChanged(Entity<BatteryAmmoProviderComponent> ent, ref PowerCellChangedEvent args)
+    {
+        UpdateShots(ent);
+    }
+
+
+    // For unpredicted batteries.
+    private void OnChargeChanged(Entity<BatteryAmmoProviderComponent> ent, ref ChargeChangedEvent args)
+    {
+        // Update the visuals and charge counter UI.
+        UpdateShots(ent);
+        // No need to queue an update here since unpredicted batteries already update periodically as they charge/discharge.
+        UpdateNextUpdate(ent, args.CurrentCharge, args.MaxCharge, args.CurrentChargeRate);
+    }
+
+    private void UpdateNextUpdate(Entity<BatteryAmmoProviderComponent> ent, float currentCharge, float maxCharge, float currentChargeRate)
+    {
+        // Don't queue any updates if charge is constant.
+        ent.Comp.NextUpdate = null;
+        // ETA of the next full charge.
+        if (currentChargeRate > 0f && currentCharge != maxCharge)
         {
-            case ProjectileBatteryAmmoProviderComponent proj:
-                var ent = Spawn(proj.Prototype, coordinates);
-                return (ent, EnsureShootable(ent));
-            case HitscanBatteryAmmoProviderComponent hitscan:
-                return (null, ProtoManager.Index<HitscanPrototype>(hitscan.Prototype));
-            default:
-                throw new ArgumentOutOfRangeException();
+            ent.Comp.NextUpdate = Timing.CurTime + TimeSpan.FromSeconds((ent.Comp.FireCost - (currentCharge % ent.Comp.FireCost)) / currentChargeRate);
+            ent.Comp.ChargeTime = TimeSpan.FromSeconds(ent.Comp.FireCost / currentChargeRate);
         }
         else if (currentChargeRate < 0f && currentCharge != 0f)
         {
@@ -131,15 +171,12 @@ public abstract partial class SharedGunSystem
     // Shots are only chached, not a DataField, so we need to refresh this when the game is loaded.
     private void OnBatteryStartup(Entity<BatteryAmmoProviderComponent> ent, ref ComponentStartup args)
     {
-        if (_netManager.IsClient && !IsClientSide(ent.Owner))
-            return; // Don't overwrite the server state in cases where the battery is not predicted.
-
         UpdateShots(ent);
     }
 
     /// <summary>
     /// Gets the current and maximum amount of shots from this entity's battery.
-    /// This works for BatteryComponent and PowercellSlotComponent.
+    /// This works for BatteryComponent, PredictedBatteryComponent and PowercellSlotComponent.
     /// </summary>
     public (int, int) GetShots(Entity<BatteryAmmoProviderComponent> ent)
     {
@@ -152,7 +189,8 @@ public abstract partial class SharedGunSystem
     }
 
     /// <summary>
-    /// Update loop for refreshing the ammo counter for charging/draining batteries.
+    /// Update loop for refreshing the ammo counter for charging/draining predicted batteries.
+    /// This is not needed for unpredicted batteries since those already raise ChargeChangedEvent periodically.
     /// </summary>
     private void UpdateBattery(float frameTime)
     {

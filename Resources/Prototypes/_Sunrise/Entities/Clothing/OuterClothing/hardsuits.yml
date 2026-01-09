@@ -109,17 +109,17 @@
         Blunt: 0.8
         Slash: 0.8
         Piercing: 0.75
-        Heat: 0.75
+        Heat: 0.8
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.85
+    sprintModifier: 0.85
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
 
 # USSP
 - type: entity
-  parent: [ ClothingOuterHardsuitBase ]
+  parent: [ ClothingOuterHardsuitSyndieCommander ]
   id: ClothingOuterEliteHardsuitUSSP
   name: Spartak-K
   description: A heavily armored USSP spacesuit designed for combat operations in extreme conditions. Reinforced armor protects against firearms and energy weapons, radiation and explosions. It is used by elite units to protect strategic facilities.
@@ -128,30 +128,13 @@
     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-elite.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-elite.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.02
-    lowPressureMultiplier: 1000
-  - type: TemperatureProtection
-    heatingCoefficient: 0.001
-    coolingCoefficient: 0.001
-  - type: ExplosionResistance
-    damageCoefficient: 0.2
   - type: FireProtection
     reduction: 0.8
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.4
-        Slash: 0.4
-        Piercing: 0.3
-        Heat: 0.5
-        Radiation: 0.25
-        Caustic: 0.4
   - type: Item
     size: Huge
   - type: ClothingSpeedModifier
-    walkModifier: 1.0
-    sprintModifier: 0.90
+    walkModifier: 0.8
+    sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetEliteHardsuitUSSP
@@ -179,7 +162,7 @@
     domePrototype: EnergyDomeSmallRed
   - type: PowerCellDraw
     drawRate: 0
-    useRate: 0
+    useCharge: 0
   - type: UseDelay
     delay: 10.0
 
@@ -222,7 +205,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseRestrictedContraband]
+  parent: ClothingOuterHardsuitBase
   id: ClothingOuterLightHardsuitUSSP
   name: Thunder-P
   description: A lightweight combat suit designed for rapid response and mobile operations. The light armor provides protection against firearms and allows for high maneuverability. The Grom-P is used by assault troops for fast and effective combat operations.
@@ -252,12 +235,11 @@
     clothingPrototype: ClothingHeadHelmetLightHardsuitUSSP
 
 - type: entity
-  parent: [ClothingOuterHardsuitEngineering, BaseEngineeringContraband]
+  parent: [ ClothingOuterHardsuitEngineering, BaseEngineeringContraband ]
   id: ClothingOuterHardsuitEngineeringCompact
   name: senior's engineer hardsuit
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding. Very compact.
   components:
-  # Sunrise-Start
    - type: FireProtection
      reduction: 0.8
    - type: ExplosionResistance
@@ -273,7 +255,6 @@
         Shock: 0.5
         Heat: 0.7
         Radiation: 0.4
-    # Sunrise-End
    - type: ClothingSpeedModifier
      walkModifier: 0.85
      sprintModifier: 0.85
@@ -576,6 +557,9 @@
   - type: ToggleClothing
     action: ActionTogglePhaseCloak
     disableOnUnequip: true
+    targetSlot: outerClothing
+  - type: ItemToggle
+    canActivateInhand: false
   - type: ComponentToggler
     parent: true
     components:

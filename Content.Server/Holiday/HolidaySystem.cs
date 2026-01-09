@@ -59,7 +59,7 @@ namespace Content.Server.Holiday
         {
             foreach (var holiday in _currentHolidays)
             {
-                _chatManager.DispatchServerAnnouncement(holiday.Greet(), holiday.GreetColor()); // Sunrise-Edit
+                _chatManager.DispatchServerAnnouncement(holiday.Greet(), holiday.Color); // Sunrise-Edit
             }
         }
 
@@ -108,7 +108,7 @@ namespace Content.Server.Holiday
                     break;
             }
         }
-        
+
         private void OnLightMapInit(Entity<PointLightComponent> ent, ref MapInitEvent args)
         {
             foreach (var holiday in _currentHolidays)

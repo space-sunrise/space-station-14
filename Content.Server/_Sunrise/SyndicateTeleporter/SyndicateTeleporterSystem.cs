@@ -5,6 +5,8 @@ using Content.Shared._Sunrise.SyndicateTeleporter;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
@@ -46,7 +48,8 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         if (TryComp<BiocodeComponent>(uid, out var biocode) && !_biocode.CanUse(args.User, biocode.Factions))
         {
             if (!string.IsNullOrEmpty(biocode.AlertText))
-                _popup.PopupEntity(biocode.AlertText, args.User, args.User);
+                _popup.PopupEntity(Loc.GetString(biocode.AlertText), args.User, args.User);
+
             args.Handled = true;
             return;
         }

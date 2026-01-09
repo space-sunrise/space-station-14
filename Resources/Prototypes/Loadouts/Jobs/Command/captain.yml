@@ -40,12 +40,6 @@
   equipment:
     head: ClothingHeadHatCapcap
 
-- type: loadout #Sunrise-add
-  id: EliteCaptainCap
-  sponsorOnly: false
-  equipment:
-    head: ClothingHeadEliteCaptainCap
-
 # Neck
 - type: loadout
   id: CaptainCloak
@@ -61,15 +55,6 @@
   id: CaptainMantle
   equipment:
     neck: ClothingNeckMantleCap
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MasterCap
-
-- type: loadout #Sunrise-add
-  id: CaptainEliteCloak
-  sponsorOnly: false
-  equipment:
-    head: ClothingEliteNeckCloakCaptain
   effects:
   - !type:GroupLoadoutEffect
     proto: MasterCap
@@ -101,18 +86,6 @@
   equipment:
     outerClothing: ClothingOuterArmorCaptainCarapace
 
-#Sunrise-Start
-- type: loadout
-  id: CaptainOuterCoat
-  equipment:
-    outerClothing: ClothingOuterCoatCaptain
-
-- type: loadout
-  id: CaptainOuterOverCoat
-  sponsorOnly: false
-  equipment:
-    outerClothing: ClothingOuterCoatCaptainOvercoat
-#Sunrise-End
 - type: loadout
   id: CaptainWintercoat
   equipment:

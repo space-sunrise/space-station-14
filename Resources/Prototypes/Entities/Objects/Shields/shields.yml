@@ -631,7 +631,7 @@
       color: white
     - type: ItemTogglePointLight
     - type: Reflect
-      reflectProb: 0.95
+      reflectProb: 1 # Sunrise-edit
       reflects:
         - Energy
     - type: Blocking
@@ -653,32 +653,43 @@
     - type: Appearance
     - type: Damageable
       damageContainer: Shield
-    - type: ExaminableDamage
-      messages: EnergyShieldMessages
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 180
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-        - trigger:
-            !type:DamageTrigger
-            damage: 100
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-            - !type:PlaySoundBehavior
-              sound:
-                collection: GlassBreak
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                BrokenEnergyShield:
-                  min: 1
-                  max: 1
+#    - type: ExaminableDamage # Sunrise-edit
+#      messages: EnergyShieldMessages
+#    - type: Destructible # Sunrise-edit
+#      thresholds:
+#        - trigger:
+#            !type:DamageTrigger
+#            damage: 180
+#          behaviors:
+#            - !type:DoActsBehavior
+#              acts: [ "Destruction" ]
+#        - trigger:
+#            !type:DamageTrigger
+#            damage: 100
+#          behaviors:
+#            - !type:DoActsBehavior
+#              acts: [ "Destruction" ]
+#            - !type:PlaySoundBehavior
+#              sound:
+#                collection: GlassBreak
+#            - !type:SpawnEntitiesBehavior
+#              spawn:
+#                BrokenEnergyShield:
+#                  min: 1
+#                  max: 1
     - type: StaticPrice
       price: 7000
+    # Sunrise-Start
+    - type: BatterySelfRecharger
+      autoRechargeRate: 50
+      autoRechargePauseTime: 10
+    - type: EnergyShield
+      energyCostPerDamage: 15
+    - type: ExaminableBattery
+    - type: Battery
+      maxCharge: 1500
+      startingCharge: 1500
+    - type: EmpImmune
     # Sunrise-End
 
 - type: entity

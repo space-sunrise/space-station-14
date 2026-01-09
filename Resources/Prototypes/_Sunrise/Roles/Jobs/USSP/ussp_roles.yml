@@ -301,10 +301,13 @@
     - DeathRattleImplanterFreelance
     - RadioImplanterFreelance
     - SpeedLoaderMagnumSP
+    - MagazineBoxMagnumSP
     - CigPackSyndicate
     - CheapLighter
     - PinpointerPirate
+    - Doubloon15
     - Doubloon5
+    - CrowbarOrange
 
 - type: startingGear
   id: PirateScoonerOldEVAGear
@@ -318,13 +321,18 @@
     id: PiratePDA
     belt: JetpackMiniFilled
     pocket1: WeaponPistolFlintlock
-    pocket2: CartridgeMagnumAP
+    pocket2: MagazineBoxMagnumSP
   storage:
     back:
     - AppraisalTool
     - DeathRattleImplanterFreelance
     - RadioImplanterFreelance
-    - CigaretteSyndicate
+    - CigPackSyndicate
     - CheapLighter
     - PinpointerPirate
-    - Doubloon1
+    - Doubloon5
+    - Doubloon5
+    - CrowbarImprovised
+    - CartridgeMagnumAP
+    - CartridgeMagnumAP
+    - CartridgeMagnumAP

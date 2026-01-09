@@ -2,6 +2,7 @@ using Content.Server.Popups;
 using Content.Shared._Sunrise.DamageOverlay;
 using Content.Shared._Sunrise.Helpers;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
 using Robust.Shared.Map;
@@ -80,7 +81,11 @@ public sealed class DamageOverlaySystem : EntitySystem
             return;
 
         if (!_player.TryGetSessionByEntity(args.Origin.Value, out var originSession))
-            return;
+        {
+            // Случай если используется оружие дальнего боя
+            if (!_player.TryGetSessionByEntity(Transform(args.Origin.Value).ParentUid, out originSession))
+                return;
+        }
 
         TryCreatePopup(ent, damageDelta, coords, originSession);
     }

@@ -134,11 +134,8 @@
   description: uplink-gloves-knuckleduster-desc
   icon: { sprite: Clothing/Hands/Gloves/KnuckleDusters/syndicateknuckleduster.rsi, state: syndicateknuckleduster }
   productEntity: ClothingHandsKnuckleDustersSyndicate
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 3
   cost:
-    Doubloon: 8
+    Doubloon: 2
   categories:
   - UplinkPirateWeaponry
 
@@ -146,24 +143,18 @@
   id: UplinkPirateDisposableTurret
   name: uplink-disposable-turret-name
   description: uplink-disposable-turret-desc
-  productEntity: ToolboxElectricalTurretFilled
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 12
+  productEntity: ToolboxElectricalTurretPirateFilled
   cost:
-    Doubloon: 14
+    Doubloon: 13
   categories:
   - UplinkPirateWeaponry
 
 - type: listing
   id: UplinkPirateHristov
   icon: { sprite: /Textures/Objects/Weapons/Guns/Snipers/heavy_sniper.rsi, state: base }
-  productEntity: WeaponSniperHristovBiocode
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 25
+  productEntity: WeaponSniperHristov
   cost:
-    Doubloon: 35
+    Doubloon: 45
   categories:
   - UplinkPirateWeaponry
   conditions:
@@ -303,18 +294,26 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateL6SAW
   productEntity: ClothingBackpackDuffelSyndicateFilledLMG
   cost:
-    Doubloon: 125
+    Doubloon: 85
   categories:
   - UplinkPirateWeaponry
   restockTime: 3600
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateLaserSvalinn
@@ -393,11 +392,19 @@
   description: uplink-weapon-base-desc
   productEntity: ClothingBackpackMessengerMercenaryBundleSKM24
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Base/big.rsi, state: icon }
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 18
   cost:
-    Doubloon: 24
+    Doubloon: 21
+  categories:
+  - UplinkPirateWeaponry
+
+- type: listing
+  id: UplinkPirateARG
+  name: uplink-weapon-arg-name
+  description: uplink-weapon-arg-desc
+  productEntity: ClothingBackpackMessengerMercenaryBundleARG
+  icon: { sprite: _Starlight/Objects/Weapons/Guns/Rifles/arg.rsi, state: icon }
+  cost:
+    Doubloon: 27
   categories:
   - UplinkPirateWeaponry
 
@@ -417,11 +424,8 @@
   name: uplink-weapon-ussp-dmr-name
   productEntity: CrateAmmunitionSmallDragunov
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Snipers/dragunov/big.rsi, state: icon }
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 36
   cost:
-    Doubloon: 49
+    Doubloon: 42
   categories:
   - UplinkPirateWeaponry
   restockTime: 2700
@@ -433,12 +437,9 @@
   id: UplinkPirateMiniEnergyCrossbow
   name: uplink-mini-energy-crossbow-name
   description: uplink-mini-energy-crossbow-desc
-  productEntity: WeaponMiniEnergyCrossbowBiocode
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 34
+  productEntity: WeaponEnergyCrossbow
   cost:
-    Doubloon: 38
+    Doubloon: 36
   restockTime: 2700
   categories:
   - UplinkPirateWeaponry
@@ -448,12 +449,9 @@
 
 - type: listing
   id: UplinkPirateEnergyCrossbow
-  productEntity: WeaponEnergyCrossbow
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 38
+  productEntity: WeaponEnergyCrossbowLarge
   cost:
-    Doubloon: 45
+    Doubloon: 37
   restockTime: 2700
   categories:
   - UplinkPirateWeaponry
@@ -547,12 +545,9 @@
   name: uplink-eshield-name
   description: uplink-eshield-desc
   icon: { sprite: /Textures/Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
-  productEntity: EnergyShieldBiocode
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 30
+  productEntity: EnergyShield
   cost:
-    Doubloon: 49
+    Doubloon: 39
   categories:
   - UplinkPirateWeaponry
   conditions:
@@ -565,11 +560,8 @@
   description: uplink-grenade-launcher-m79-desc
   icon: { sprite: /Textures/_RMC14/Objects/Weapons/Guns/Launchers/m79/big.rsi, state: base }
   productEntity: ClothingBackpackDuffelSyndicateFilledGrenadeLauncherM79
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 10 # Good morning Vietnam!
   cost:
-    Doubloon: 24
+    Doubloon: 17
   categories:
   - UplinkPirateWeaponry
   conditions:
@@ -582,11 +574,8 @@
   description: uplink-c40r-bundle-desc
   icon: { sprite: /Textures/_Sunrise/Objects/Weapons/Guns/SMGs/c40r.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledSMG40
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 27
   cost:
-    Doubloon: 32
+    Doubloon: 29
   categories:
   - UplinkPirateWeaponry
   restockTime: 2700
@@ -597,46 +586,34 @@
 - type: listing
   id: UplinkPirateSyndieLaserGun
   name: uplink-weapon-syndie-laser-gun-name
-  productEntity: WeaponSyndieLaserGunBiocode
+  productEntity: WeaponSyndieLaserGun
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielasergun.rsi, state: icon }
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 42
   cost:
-    Doubloon: 45
+    Doubloon: 43
   categories:
   - UplinkPirateWeaponry
 
 - type: listing
   id: UplinkPirateCrusherGlaive
   productEntity: WeaponCrusherGlaive
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 8
   cost:
-    Doubloon: 9
+    Doubloon: 8
   categories:
   - UplinkPirateWeaponry
 
 - type: listing
   id: UplinkPirateCrusher
   productEntity: WeaponCrusher
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 8
   cost:
-    Doubloon: 9
+    Doubloon: 8
   categories:
   - UplinkPirateWeaponry
 
 - type: listing
   id: UplinkPirateCrusherAxe
   productEntity: WeaponCrusherBroadAxe
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 18
   cost:
-    Doubloon: 20
+    Doubloon: 19
   categories:
   - UplinkPirateWeaponry
   restockTime: 900
@@ -649,12 +626,9 @@
   name: uplink-fire-axe-flaming-name
   description: uplink-fire-axe-flaming-desc
   icon: { sprite: Objects/Weapons/Melee/fireaxeflaming.rsi, state: icon }
-  productEntity: FireAxeFlamingBiocode
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 25
+  productEntity: FireAxeFlaming
   cost:
-    Doubloon: 29
+    Doubloon: 27
   categories:
   - UplinkPirateWeaponry
 
@@ -663,12 +637,9 @@
   name: uplink-esword-name
   description: uplink-esword-desc
   icon: { sprite: /Textures/Objects/Weapons/Melee/e_sword.rsi, state: icon }
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 33
-  productEntity: EnergySwordBiocode
+  productEntity: EnergySword
   cost:
-    Doubloon: 38
+    Doubloon: 30
   categories:
   - UplinkPirateWeaponry
   restockTime: 2700
@@ -849,6 +820,42 @@
   - UplinkPirateAmmo
 
 - type: listing
+  id: UplinkPirateHristovAmmoAP
+  description: uplink-sniper-ammo-pen-desc
+  productEntity: MagazineBoxAntiMaterielAP
+  cost:
+    Doubloon: 10
+  categories:
+  - UplinkPirateAmmo
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: UplinkPirateHristovAmmoFrag
+  description: uplink-sniper-ammo-frag-desc
+  productEntity: MagazineBoxAntiMaterielFrag
+  cost:
+    Doubloon: 10
+  categories:
+  - UplinkPirateAmmo
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: UplinkPirateHristovAmmoBlast
+  description: uplink-sniper-ammo-blast-desc
+  productEntity: MagazineBoxAntiMaterielBlast
+  cost:
+    Doubloon: 12
+  categories:
+  - UplinkPirateAmmo
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
   id: UplinkPirateBoxImprovisedRifle
   productEntity: MagazineBoxImprovisedRifle
   cost:
@@ -983,11 +990,8 @@
   id: UplinkPirateL6SAWBoxSP
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi, state: icon }
   productEntity: MagazineRifleBoxSP
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 13
   cost:
-    Doubloon: 15
+    Doubloon: 10
   categories:
   - UplinkPirateAmmo
 
@@ -995,24 +999,128 @@
   id: UplinkPirateL6SAWBoxFMJ
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi, state: icon }
   productEntity: MagazineRifleBoxFMJ
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 15
   cost:
-    Doubloon: 18
+    Doubloon: 12
   categories:
   - UplinkPirateAmmo
+
+- type: listing
+  id: UplinkPirateL6SAWBoxIncendiary
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi, state: icon }
+  productEntity: MagazineRifleBoxIncendiary
+  cost:
+    Doubloon: 16
+  categories:
+  - UplinkPirateAmmo
+
+- type: listing
+  id: UplinkPirateBox556SP
+  productEntity: MagazineBoxRifleSP
+  cost:
+    Doubloon: 1
+  categories:
+  - UplinkPirateAmmo
+
+- type: listing
+  id: UplinkPirateBox556FMJ
+  productEntity: MagazineBoxRifleFMJ
+  cost:
+    Doubloon: 1
+  categories:
+  - UplinkPirateAmmo
+
+- type: listing
+  id: UplinkPirateBox556HP
+  productEntity: MagazineBoxRifleHP
+  cost:
+    Doubloon: 1
+  categories:
+  - UplinkPirateAmmo
+
+- type: listing
+  id: UplinkPirateBox556AP
+  productEntity: MagazineBoxRifleAP
+  cost:
+    Doubloon: 6
+  categories:
+  - UplinkPirateAmmo
+  restockTime: 900
+
+- type: listing
+  id: UplinkPirateBox556Incendiary
+  productEntity: MagazineBoxRifleIncendiary
+  cost:
+    Doubloon: 4
+  categories:
+  - UplinkPirateAmmo
+  restockTime: 900
+
+- type: listing
+  id: UplinkPiratePRDBeltBoxSP
+  productEntity: MagazineLightRifleBeltBox
+  cost:
+    Doubloon: 5
+  categories:
+  - UplinkPirateAmmo
+
+- type: listing
+  id: UplinkPiratePRDBeltBoxFMJ
+  productEntity: MagazineLightRifleBeltBoxFMJ
+  cost:
+    Doubloon: 5
+  categories:
+  - UplinkPirateAmmo
+
+- type: listing
+  id: UplinkPiratePRDBeltBoxHP
+  productEntity: MagazineLightRifleBeltBoxHP
+  cost:
+    Doubloon: 5
+  categories:
+  - UplinkPirateAmmo
+
+- type: listing
+  id: UplinkPiratePRDBeltBoxAP
+  productEntity: MagazineLightRifleBeltBoxAP
+  cost:
+    Doubloon: 8
+  categories:
+  - UplinkPirateAmmo
+  restockTime: 900
+
+- type: listing
+  id: UplinkPiratePRDBeltBoxIncendiary
+  productEntity: MagazineLightRifleBeltBoxIncendiary
+  cost:
+    Doubloon: 7
+  categories:
+  - UplinkPirateAmmo
+  restockTime: 900
+
+- type: listing
+  id: UplinkPiratePRDBeltBoxPractice
+  productEntity: MagazineLightRifleBeltBoxPractice
+  cost:
+    Doubloon: 3
+  categories:
+  - UplinkPirateAmmo
+
+- type: listing
+  id: UplinkPiratePRDBeltBoxUranium
+  productEntity: MagazineLightRifleBeltBoxUranium
+  cost:
+    Doubloon: 9
+  categories:
+  - UplinkPirateAmmo
+  restockTime: 900
 
 - type: listing
   id: UplinkPirateMagDragunov
   description: uplink-magazine-dragunov-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
   productEntity: MagazineDragunov
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 5
   cost:
-    Doubloon: 8
+    Doubloon: 6
   categories:
   - UplinkPirateAmmo
 
@@ -1028,11 +1136,8 @@
 - type: listing
   id: UplinkPirateBox762RAP
   productEntity: MagazineBoxRifleMachineAP
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 10
   cost:
-    Doubloon: 14
+    Doubloon: 12
   categories:
   - UplinkPirateAmmo
   restockTime: 900
@@ -1040,11 +1145,8 @@
 - type: listing
   id: UplinkPirateBox762RIncendiary
   productEntity: MagazineBoxRifleMachineIncendiary
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 6
   cost:
-    Doubloon: 10
+    Doubloon: 8
   categories:
   - UplinkPirateAmmo
   restockTime: 900
@@ -1052,44 +1154,32 @@
 - type: listing
   id: UplinkPirateBox762RFMJ
   productEntity: MagazineBoxRifleMachineFMJ
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon: 2
+    Doubloon: 1
   categories:
   - UplinkPirateAmmo
 
 - type: listing
   id: UplinkPirateBox762RSP
   productEntity: MagazineBoxRifleMachineSP
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon: 2
+    Doubloon: 1
   categories:
   - UplinkPirateAmmo
 
 - type: listing
   id: UplinkPirateBox762RHP
   productEntity: MagazineBoxRifleMachineHP
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon: 2
+    Doubloon: 1
   categories:
   - UplinkPirateAmmo
 
 - type: listing
   id: UplinkPirateMag308AP
   productEntity: MagazineRifleHeavyAP
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 12
   cost:
-    Doubloon: 16
+    Doubloon: 14
   categories:
   - UplinkPirateAmmo
   restockTime: 3600
@@ -1097,33 +1187,24 @@
 - type: listing
   id: UplinkPirateMag308FMJ
   productEntity: MagazineRifleHeavyFMJ
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 2
   cost:
-    Doubloon: 5
+    Doubloon: 3
   categories:
   - UplinkPirateAmmo
 
 - type: listing
   id: UplinkPirateMag308SP
   productEntity: MagazineRifleHeavySP
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 2
   cost:
-    Doubloon: 5
+    Doubloon: 3
   categories:
   - UplinkPirateAmmo
 
 - type: listing
   id: UplinkPirateMag308HP
   productEntity: MagazineRifleHeavyHP
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 2
   cost:
-    Doubloon: 5
+    Doubloon: 3
   categories:
   - UplinkPirateAmmo
 
@@ -1133,9 +1214,6 @@
   name: uplink-singularity-grenade-name
   description: uplink-singularity-grenade-desc
   productEntity: SingularityGrenade
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
     Doubloon: 1
   categories:
@@ -1146,11 +1224,8 @@
   name: uplink-whitehole-grenade-name
   description: uplink-whitehole-grenade-desc
   productEntity: WhiteholeGrenade
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon: 3
+    Doubloon: 2
   categories:
     - UplinkPirateExplosives
 
@@ -1179,11 +1254,8 @@
   name: uplink-grenadier-rig-name
   description: uplink-grenadier-rig-desc
   productEntity: ClothingBeltMilitaryWebbingGrenadeFilled
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 26
   cost:
-    Doubloon: 45
+    Doubloon: 35
   categories:
   - UplinkPirateExplosives
 
@@ -1192,11 +1264,8 @@
   name: uplink-c4-bundle-name
   description: uplink-c4-bundle-desc
   productEntity: ClothingBackpackDuffelSyndicateC4tBundle
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 25
   cost:
-    Doubloon: 38
+    Doubloon: 31
   categories:
   - UplinkPirateExplosives
 
@@ -1205,11 +1274,8 @@
   name: uplink-emp-grenade-name
   description: uplink-emp-grenade-desc
   productEntity: EmpGrenade
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon: 2
+    Doubloon: 1
   categories:
   - UplinkPirateExplosives
 
@@ -1218,11 +1284,8 @@
   name: uplink-shrapnel-grenade-name
   description: uplink-shrapnel-grenade-desc
   productEntity: GrenadeShrapnel
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 2
   cost:
-    Doubloon: 4
+    Doubloon: 3
   categories:
   - UplinkPirateExplosives
 
@@ -1231,11 +1294,8 @@
   name: uplink-incendiary-grenade-name
   description: uplink-incendiary-grenade-desc
   productEntity: GrenadeIncendiary
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 2
   cost:
-    Doubloon: 4
+    Doubloon: 3
   categories:
   - UplinkPirateExplosives
 
@@ -1246,11 +1306,8 @@
   description: uplink-grenade-frag-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: frag }
   productEntity: GrenadeFragTimer
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon:  3
+    Doubloon: 2
   categories:
   - UplinkPirateExplosives
 
@@ -1261,11 +1318,8 @@
   description: uplink-grenade-blast-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: blast }
   productEntity: GrenadeBlastTimer
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon:  3
+    Doubloon: 2
   categories:
   - UplinkPirateExplosives
 
@@ -1276,55 +1330,43 @@
   description: uplink-grenade-emp-timer-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: emp }
   productEntity: GrenadeEMPTimer
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon:  3
+    Doubloon: 2
   categories:
   - UplinkPirateExplosives
 
 - type: listing
-  id: UplinkPirateGrenadeFragContact
+  id: UplinkPirateGrenadeFrag
   name: uplink-grenade-frag-contact-name
   description: uplink-grenade-frag-contact-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: frag }
-  productEntity: GrenadeFragContact
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 2
+  productEntity: GrenadeFrag
   cost:
-    Doubloon: 5
+    Doubloon: 3
   categories:
   - UplinkPirateExplosives
 
 
 - type: listing
-  id: UplinkPirateGrenadeBlastContact
+  id: UplinkPirateGrenadeBlast
   name: uplink-grenade-blast-contact-name
   description: uplink-grenade-blast-contact-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: blast }
-  productEntity: GrenadeBlastContact
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 2
+  productEntity: GrenadeBlast
   cost:
-    Doubloon: 5
+    Doubloon: 3
   categories:
   - UplinkPirateExplosives
 
 
 - type: listing
-  id: UplinkPirateGrenadeEMPContact
+  id: UplinkPirateGrenadeEMP
   name: uplink-grenade-emp-contact-name
   description: uplink-grenade-emp-contact-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: emp }
-  productEntity: GrenadeEMPContact
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 2
+  productEntity: GrenadeEMP
   cost:
-    Doubloon: 5
+    Doubloon: 3
   categories:
   - UplinkPirateExplosives
 
@@ -1341,6 +1383,10 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 # region Chemicals
 - type: listing
@@ -1348,11 +1394,8 @@
   name: uplink-combat-medkit-name
   description: uplink-combat-medkit-desc
   productEntity: MedkitCombatFilled
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 2
   cost:
-    Doubloon: 4
+    Doubloon: 3
   categories:
   - UplinkPirateChemicals
 
@@ -1361,11 +1404,8 @@
   name: uplink-combat-medipen-name
   description: uplink-combat-medipen-desc
   productEntity: CombatMedipen
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 4
   cost:
-    Doubloon: 6
+    Doubloon: 5
   categories:
   - UplinkPirateChemicals
 
@@ -1374,11 +1414,8 @@
   name: uplink-stimpack-name
   description: uplink-stimpack-desc
   productEntity: Stimpack
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 4
   cost:
-    Doubloon: 6
+    Doubloon: 5
   categories:
   - UplinkPirateChemicals
 
@@ -1387,11 +1424,8 @@
   name: uplink-stimkit-name
   description: uplink-stimkit-desc
   productEntity: StimkitFilled
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 10
   cost:
-    Doubloon: 13
+    Doubloon: 11
   categories:
   - UplinkPirateChemicals
 
@@ -1410,11 +1444,8 @@
   name: uplink-meds-bundle-name
   description: uplink-meds-bundle-desc
   productEntity: ClothingBackpackDuffelSyndicateMedicalBundleFilled
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 60
   cost:
-    Doubloon: 65
+    Doubloon: 62
   categories:
   - UplinkPirateChemicals
   restockTime: 3600
@@ -1435,11 +1466,8 @@
   name: uplink-coalpen-kit-name
   description: uplink-coalpen-kit-desc
   productEntity: CoalpenKitFilled
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 2
   cost:
-    Doubloon: 3
+    Doubloon: 2
   categories:
   - UplinkPirateChemicals
 
@@ -1460,11 +1488,8 @@
   name: uplink-access-breaker-name
   description: uplink-access-breaker-desc
   productEntity: AccessBreakerPirate
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 7
   cost:
-    Doubloon: 9
+    Doubloon: 8
   categories:
   - UplinkPirateDisruption
 
@@ -1473,11 +1498,8 @@
   name: uplink-emag-name
   description: uplink-emag-desc
   productEntity: Emag
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 8
   cost:
-    Doubloon: 12
+    Doubloon: 10
   categories:
   - UplinkPirateDisruption
 
@@ -1486,11 +1508,8 @@
   name: uplink-radio-jammer-name
   description: uplink-radio-jammer-desc
   productEntity: RadioJammer
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 6
   cost:
-    Doubloon: 7
+    Doubloon: 6
   categories:
   - UplinkPirateDisruption
 
@@ -1499,11 +1518,8 @@
   name: uplink-syndicate-weapon-module-name
   description: uplink-syndicate-weapon-module-desc
   productEntity: BorgModuleSyndicateWeapon
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 4
   cost:
-    Doubloon: 10
+    Doubloon: 7
   categories:
   - UplinkPirateDisruption
 
@@ -1513,11 +1529,8 @@
   description: uplink-syndicate-martyr-module-desc
   productEntity: BorgModuleMartyr
   icon: { sprite: /Textures/Objects/Specific/Robotics/borgmodule.rsi, state: syndicateborgbomb }
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 5
   cost:
-    Doubloon: 8
+    Doubloon: 6
   categories:
     - UplinkPirateDisruption
 
@@ -1526,11 +1539,8 @@
   name: uplink-toolbox-name
   description: uplink-toolbox-desc
   productEntity: ToolboxSyndicateFilled
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 3
   cost:
-    Doubloon: 5
+    Doubloon: 4
   categories:
   - UplinkPirateDisruption
 
@@ -1539,11 +1549,8 @@
   name: uplink-syndicate-jaws-of-life-name
   description: uplink-syndicate-jaws-of-life-desc
   productEntity: SyndicateJawsOfLife
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 3
   cost:
-    Doubloon: 4
+    Doubloon: 3
   categories:
   - UplinkPirateDisruption
 
@@ -1552,11 +1559,8 @@
   name: uplink-pirate-fab-name
   description: uplink-pirate-fab-desc
   productEntity: PirateTechFabCircuitboard
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 28
   cost:
-    Doubloon: 38
+    Doubloon: 33
   categories:
   - UplinkPirateDisruption
   restockTime: 1800
@@ -1566,11 +1570,8 @@
   name: uplink-power-sink-name
   description: uplink-power-sink-desc
   productEntity: PowerSink
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 12
   cost:
-    Doubloon: 13
+    Doubloon: 12
   categories:
   - UplinkPirateDisruption
 
@@ -1589,11 +1590,8 @@
   name: uplink-duffel-surgery-name
   description: uplink-duffel-surgery-desc
   productEntity: ClothingBackpackDuffelSyndicateFilledMedical
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 2
   cost:
-    Doubloon: 4
+    Doubloon: 3
   categories:
   - UplinkPirateDisruption
 
@@ -1602,11 +1600,8 @@
   name: uplink-syndie-intellicard-name
   description: uplink-syndie-intellicard-desc
   productEntity: SyndieIntellicard
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 14
   cost:
-    Doubloon: 16
+    Doubloon: 9
   categories:
   - UplinkPirateDisruption
 
@@ -1617,11 +1612,8 @@
   description: uplink-freedom-implanter-desc
   icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: freedom }
   productEntity: FreedomImplanter
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon: 5
+    Doubloon: 3
   categories:
     - UplinkPirateImplants
 
@@ -1631,11 +1623,8 @@
   description: uplink-scram-implanter-desc
   icon: { sprite: /Textures/Structures/Specific/anomaly.rsi, state: anom4 }
   productEntity: ScramImplanter
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 2
   cost:
-    Doubloon: 6
+    Doubloon: 4
   categories:
     - UplinkPirateImplants
 
@@ -1645,11 +1634,8 @@
   description: uplink-dna-scrambler-implanter-desc
   icon: { sprite: /Textures/Mobs/Species/Human/parts.rsi, state: full }
   productEntity: DnaScramblerImplanter
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 2
   cost:
-    Doubloon: 3
+    Doubloon: 2
   categories:
     - UplinkPirateImplants
 
@@ -1659,11 +1645,8 @@
   description: uplink-emp-implanter-desc
   icon: { sprite: /Textures/Objects/Magic/magicactions.rsi, state: shield }
   productEntity: EmpImplanter
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 3
   cost:
-    Doubloon: 6
+    Doubloon: 4
   categories:
     - UplinkPirateImplants
 
@@ -1673,11 +1656,8 @@
   description: uplink-radio-implanter-desc
   icon: { sprite: /Textures/Objects/Devices/encryption_keys.rsi, state: synd_label }
   productEntity: RadioImplanter
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon: 18
+    Doubloon: 9
   categories:
   - UplinkPirateImplants
 
@@ -1685,11 +1665,8 @@
   id: UplinkPirateRadioImplanterFreelance
   icon: { sprite: /Textures/Objects/Devices/encryption_keys.rsi, state: pirate_label }
   productEntity: RadioImplanterFreelance
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon: 3
+    Doubloon: 2
   categories:
   - UplinkPirateImplants
 
@@ -1731,11 +1708,8 @@
   description: uplink-smoke-screen-implanter-desc
   icon: { sprite: Objects/Weapons/Grenades/smoke.rsi, state: icon }
   productEntity: SmokeScreenImplanter
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon: 4
+    Doubloon: 2
   categories:
   - UplinkPirateImplants
 
@@ -1745,11 +1719,8 @@
   description: uplink-creepy-laugh-implanter-desc
   icon: { sprite: Clothing/Mask/gassyndicate.rsi, state: icon }
   productEntity: CreepyLaughImplanter
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon: 3
+    Doubloon: 2
   categories:
   - UplinkPirateImplants
 
@@ -1771,11 +1742,8 @@
   name: uplink-chameleon-projector-name
   description: uplink-chameleon-projector-desc
   productEntity: ChameleonProjector
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 14
   cost:
-    Doubloon: 20
+    Doubloon: 17
   categories:
   - UplinkPirateDeception
 
@@ -1784,11 +1752,8 @@
   name: uplink-ultrabright-lantern-name
   description: uplink-ultrabright-lantern-desc
   productEntity: LanternFlash
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon: 2
+    Doubloon: 1
   categories:
   - UplinkPirateDeception
 
@@ -1798,11 +1763,8 @@
   description: uplink-decoy-kit-desc
   icon: { sprite: /Textures/_Sunrise/Objects/Tools/Decoys/pirate_decoy.rsi, state: afolded }
   productEntity: ClothingBackpackMessengerPirateDecoyKitFilled
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 3
   cost:
-    Doubloon: 5
+    Doubloon: 4
   categories:
   - UplinkPirateDeception
 
@@ -1811,11 +1773,8 @@
   name: uplink-exploding-syndicate-bomb-fake-name
   description: uplink-exploding-syndicate-bomb-fake-desc
   productEntity: SyndicateBombFake
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon: 5
+    Doubloon: 3
   categories:
   - UplinkPirateDeception
 
@@ -1830,11 +1789,8 @@
       state: eyes_night,
     }
   productEntity: CyberEyeNightVisionBox
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 7
   cost:
-    Doubloon: 13
+    Doubloon: 10
   categories:
   - UplinkPirateCybernetics
 
@@ -1938,11 +1894,8 @@
       state: eyes_thermal,
     }
   productEntity: CyberEyeThermalBox
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 24
   cost:
-    Doubloon: 30
+    Doubloon: 27
   categories:
   - UplinkPirateCybernetics
 
@@ -1951,46 +1904,49 @@
   id: UplinkPirateBorgDerelict
   productEntity: PlayerBorgDerelictGhostRole
   icon: { sprite: Mobs/Silicon/chassis.rsi, state: derelict }
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 30
   cost:
-    Doubloon: 35
+    Doubloon: 17
   categories:
   - UplinkPirateAllies
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateBorgMedicalDerelict
   productEntity: PlayerMedicalBorgDerelictGhostRole
   icon: { sprite: Mobs/Silicon/chassis.rsi, state: medical_derelict }
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 35
   cost:
-    Doubloon: 40
+    Doubloon: 22
   categories:
   - UplinkPirateAllies
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateBorgMiningDerelict
   productEntity: PlayerMiningBorgDerelictGhostRole
   icon: { sprite: Mobs/Silicon/chassis.rsi, state: miner_derelict }
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 38
   cost:
-    Doubloon: 45
+    Doubloon: 22
   categories:
   - UplinkPirateAllies
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateOldScoonerTeleport
@@ -1998,11 +1954,8 @@
   description: uplink-base-scooner-desc
   icon: { sprite: _Sunrise/Objects/Tools/Decoys/pirate_decoy.rsi, state: fballoon }
   productEntity: ReinforcementPirateScoonerEVA
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 15
   cost:
-    Doubloon: 25
+    Doubloon: 20
   categories:
   - UplinkPirateAllies
   restockTime: 900
@@ -2013,11 +1966,8 @@
   description: uplink-scrapper-scooner-desc
   icon: { sprite: _Sunrise/Objects/Tools/Decoys/pirate_decoy.rsi, state: eballoon }
   productEntity: ReinforcementPirateScooner
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 30
   cost:
-    Doubloon: 45
+    Doubloon: 37
   categories:
   - UplinkPirateAllies
   restockTime: 1800
@@ -2026,17 +1976,18 @@
   id: UplinkPirateBorgSyndicateDerelict
   productEntity: PlayerBorgSyndicateDerelictGhostRole
   icon: { sprite: Mobs/Silicon/chassis.rsi, state: synd_sec_derelict }
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 48
   cost:
-    Doubloon: 58
+    Doubloon: 27
   categories:
   - UplinkPirateAllies
   restockTime: 2700
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 # region Wearables
 - type: listing
@@ -2044,11 +1995,8 @@
   name: uplink-black-jetpack-name
   description: uplink-black-jetpack-desc
   productEntity: JetpackBlackFilled
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon: 2
+    Doubloon: 1
   categories:
   - UplinkPirateWearables
 
@@ -2056,11 +2004,8 @@
   id: UplinkPirateJetpackMini
   description: uplink-black-jetpack-desc
   productEntity: JetpackMiniFilled
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon: 2
+    Doubloon: 1
   categories:
   - UplinkPirateWearables
 
@@ -2069,11 +2014,8 @@
   name: uplink-voice-mask-name
   description: uplink-voice-mask-desc
   productEntity: ClothingMaskGasVoiceChameleon
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon: 2
+    Doubloon: 1
   categories:
   - UplinkPirateWearables
 
@@ -2109,33 +2051,24 @@
   description: uplink-chameleon-desc
   productEntity: ClothingBackpackChameleonFill
   icon: { sprite: /Textures/Clothing/Uniforms/Jumpsuit/rainbow.rsi, state: icon }
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 9
   cost:
-    Doubloon: 16
+    Doubloon: 12
   categories:
     - UplinkPirateWearables
 
 - type: listing
   id: UplinkPirateMagPirate
   productEntity: ClothingShoesBootsMagPirate
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 5
   cost:
-    Doubloon: 8
+    Doubloon: 6
   categories:
   - UplinkPirateWearables
 
 - type: listing
   id: UplinkPirateBootsMagCombat
   productEntity: ClothingShoesBootsMagCombat
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 5
   cost:
-    Doubloon: 8
+    Doubloon: 6
   categories:
   - UplinkPirateWearables
 
@@ -2143,12 +2076,9 @@
   id: UplinkPirateBootsMagSyndie
   name: uplink-clothing-shoes-boots-mag-syndie-name
   description: uplink-clothing-shoes-boots-mag-syndie-desc
-  productEntity: ClothingShoesBootsMagSyndieBiocode
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 6
+  productEntity: ClothingShoesBootsMagSyndie
   cost:
-    Doubloon: 12
+    Doubloon: 8
   categories:
   - UplinkPirateWearables
 
@@ -2158,11 +2088,8 @@
   description: uplink-eva-syndie-desc
   icon: { sprite: /Textures/Clothing/OuterClothing/Suits/eva_syndicate.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateEVABundle
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon: 3
+    Doubloon: 2
   categories:
   - UplinkPirateWearables
 
@@ -2172,12 +2099,9 @@
   name: uplink-syndie-thermal-name
   description: uplink-syndie-thermal-desc
   icon: { sprite: /Textures/_Sunrise/Clothing/Eyes/Glasses/synd_thermal.rsi, state: icon }
-  productEntity: ClothingEyesGlassesThermalSyndieBiocode
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 30
+  productEntity: ClothingEyesGlassesThermalSec
   cost:
-    Doubloon: 38
+    Doubloon: 15
   categories:
   - UplinkPirateWearables
   restockTime: 3600
@@ -2186,11 +2110,8 @@
   id: UplinkPirateAmmoPouch
   icon: { sprite: /Textures/_RMC14/Objects/Clothing/Pouches/large_ammo_mag.rsi, state: icon }
   productEntity: PouchAmmo
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 2
   cost:
-    Doubloon: 4
+    Doubloon: 3
   categories:
   - UplinkPirateWearables
 
@@ -2198,44 +2119,32 @@
   id: UplinkPiratePouchExplosive
   icon: { sprite: /Textures/_RMC14/Objects/Clothing/Pouches/large_explosive.rsi, state: icon }
   productEntity: PouchExplosive
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 3
   cost:
-    Doubloon: 4
+    Doubloon: 3
   categories:
   - UplinkPirateWearables
 
 - type: listing
   id: UplinkPirategEyepatchHudDiag
   productEntity: ClothingEyesEyepatchHudDiag
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 5
   cost:
-    Doubloon: 7
+    Doubloon: 6
   categories:
   - UplinkPirateWearables
 
 - type: listing
   id: UplinkPirategEyepatchHudMedical
   productEntity: ClothingEyesEyepatchHudMedical
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 5
   cost:
-    Doubloon: 7
+    Doubloon: 6
   categories:
   - UplinkPirateWearables
 
 - type: listing
   id: UplinkPirategEyepatchHudSec
   productEntity: ClothingEyesEyepatchHudSecurity
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 5
   cost:
-    Doubloon: 7
+    Doubloon: 6
   categories:
   - UplinkPirateWearables
 
@@ -2244,11 +2153,8 @@
   name: uplink-clothing-thieving-gloves-name
   description: uplink-clothing-thieving-gloves-desc
   productEntity: ThievingGloves
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 20
   cost:
-    Doubloon: 23
+    Doubloon: 21
   categories:
   - UplinkPirateWearables
 
@@ -2257,13 +2163,15 @@
   name: uplink-clothing-outer-hardsuit-chameleon-name
   description: uplink-clothing-hardsuit-chameleon-desc
   productEntity: ClothingOuterHardsuitChameleon
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 38
   cost:
-    Doubloon: 44
+    Doubloon: 41
   categories:
   - UplinkPirateWearables
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateMiscSyndiePowercage
@@ -2299,22 +2207,21 @@
   description: uplink-messenger-random-desc
   productEntity: RandomBackpackContrabandMessengerSpawner
   icon: { sprite: /Textures/_Sunrise/Clothing/Back/Messenger/color.rsi, state: icon }
-  discountCategory: usualPirateDiscounts
-  discountDownTo:
-    Doubloon: 4
   cost:
-    Doubloon: 6
+    Doubloon: 5
   categories:
   - UplinkPirateWearables
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPiratePirateEVA
   productEntity: ClothingOuterHardsuitPirateEVA
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 1
   cost:
-    Doubloon: 2
+    Doubloon: 1
   categories:
   - UplinkPirateWearables
 
@@ -2324,11 +2231,8 @@
   name: uplink-eva-bundle-name
   description: uplink-eva-bundle-desc
   icon: { sprite: /Textures/_Sunrise/Clothing/OuterClothing/Suits/pirateeva.rsi, state: icon }
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 8
   cost:
-    Doubloon: 11
+    Doubloon: 9
   categories:
   - UplinkPirateWearables
 
@@ -2338,11 +2242,8 @@
   name: uplink-eva-armored-bundle-name
   description: uplink-eva-armored-bundle-desc
   icon: { sprite: /Textures/_Sunrise/Clothing/OuterClothing/Suits/pirateeva_armored.rsi, state: icon }
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 14
   cost:
-    Doubloon: 18
+    Doubloon: 16
   categories:
   - UplinkPirateWearables
 
@@ -2352,11 +2253,8 @@
   name: uplink-eva-pirate-bundle-name
   description: uplink-eva-pirate-bundle-desc
   icon: { sprite: /Textures/_Sunrise/Clothing/OuterClothing/Suits/pirateeva_armored.rsi, state: icon }
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 22
   cost:
-    Doubloon: 25
+    Doubloon: 23
   categories:
   - UplinkPirateWearables
   restockTime: 900
@@ -2364,11 +2262,8 @@
 - type: listing
   id: UplinkPirateHardsuitPirate
   productEntity: ClothingOuterHardsuitPirate
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 22
   cost:
-    Doubloon: 25
+    Doubloon: 23
   categories:
   - UplinkPirateWearables
 
@@ -2389,11 +2284,8 @@
   name: uplink-scaf-bundle-name
   description: uplink-scaf-bundle-desc
   icon: { sprite: /Textures/_Sunrise/Clothing/OuterClothing/Suits/scaf.rsi, state: icon }
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 36
   cost:
-    Doubloon: 40
+    Doubloon: 38
   categories:
   - UplinkPirateWearables
   restockTime: 3600
@@ -2401,11 +2293,8 @@
 - type: listing
   id: UplinkPiratePrivateer
   productEntity: ClothingOuterHardsuitPrivateer
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 30
   cost:
-    Doubloon: 42
+    Doubloon: 36
   categories:
   - UplinkPirateWearables
   restockTime: 3600
@@ -2413,26 +2302,8 @@
 - type: listing
   id: UplinkPiratePrivateerArmored
   productEntity: ClothingOuterHardsuitPrivateerArmored
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
+  cost:
     Doubloon: 45
-  cost:
-    Doubloon: 50
-  categories:
-  - UplinkPirateWearables
-  restockTime: 3600
-
-- type: listing
-  id: UplinkPirateHardsuitSyndie
-  name: uplink-hardsuit-syndie-name
-  description: uplink-hardsuit-syndie-desc
-  icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndicate.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateHardsuitBundle
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 85
-  cost:
-    Telecrystal: 90
   categories:
   - UplinkPirateWearables
   restockTime: 3600
@@ -2443,14 +2314,16 @@
   description: uplink-hardsuit-infiltration-desc
   icon: { sprite: /Textures/_Starlight/Objects/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledInfiltration
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 85
   cost:
-    Doubloon: 90
+    Doubloon: 60
   categories:
   - UplinkPirateWearables
   restockTime: 3600
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 # region UplinkPiratePointless
 - type: listing
@@ -2467,7 +2340,7 @@
   id: UplinkPiratePiratePDAMusic
   productEntity: PiratePDAMusic
   cost:
-    Doubloon: 6
+    Doubloon: 3
   categories:
   - UplinkPiratePointless
 
@@ -2560,54 +2433,54 @@
   description: uplink-mech-teleporter-pirate-desc
   icon: { sprite: /Textures/Objects/Specific/Mech/ripley.rsi, state: bigbrother }
   productEntity: CratePirateMechYarrkeBundle
-  discountCategory: veryRarePirateDiscounts
-  discountDownTo:
-    Doubloon: 70
   cost:
-    Doubloon: 140
+    Doubloon: 100
   categories:
   - UplinkPirateMechs
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateMechPirateGrapeshotMini
   productEntity: WeaponMechCombatPirateGrapeshotMini
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 27
   cost:
-    Doubloon: 28
+    Doubloon: 20
   categories:
   - UplinkPirateMechs
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateMechPirateGrapeshot
   productEntity: WeaponMechCombatPirateGrapeshot
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 30
   cost:
-    Doubloon: 33
+    Doubloon: 25
   categories:
   - UplinkPirateMechs
   restockTime: 1800
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateMechPirateGlassshot
   productEntity: WeaponMechCombatPirateGlassshot
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 30
   cost:
-    Doubloon: 33
+    Doubloon: 25
   categories:
   - UplinkPirateMechs
   restockTime: 1800
@@ -2618,17 +2491,18 @@
 - type: listing
   id: UplinkPirateMechPirateCannon
   productEntity: WeaponMechCombatPirateCannon
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 30
   cost:
-    Doubloon: 35
+    Doubloon: 25
   categories:
   - UplinkPirateMechs
   restockTime: 1800
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateDollHouseBundle
@@ -2636,14 +2510,45 @@
   description: uplink-mech-teleporter-ussp-desc
   icon: { sprite: /Textures/Objects/Specific/Mech/durand.rsi, state: dollhouse }
   productEntity: CratePirateMechDollHouseBundle
-  discountCategory: rarePirateDiscounts
-  discountDownTo:
-    Doubloon: 280
   cost:
-    Doubloon: 400
+    Doubloon: 300
   categories:
   - UplinkPirateMechs
   restockTime: 3600
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkPirateSulprus
+  productEntity: CratePirateSurplusBundle
+  cost:
+    Doubloon: 20
+  categories:
+  - UplinkPirateBundle
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkPirateSulprusSuper
+  productEntity: CratePirateSuperSurplusBundle
+  cost:
+    Doubloon: 40
+  categories:
+  - UplinkPirateBundle
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle

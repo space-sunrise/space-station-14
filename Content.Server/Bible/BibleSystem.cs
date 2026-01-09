@@ -146,20 +146,22 @@ namespace Content.Server.Bible
             var userEnt = Identity.Entity(args.User, EntityManager);
             var targetEnt = Identity.Entity(args.Target.Value, EntityManager);
 
-            //Damage unholy creatures
+            // Sunrise-start
             if (HasComp<UnholyComponent>(args.Target))
             {
                 _damageableSystem.TryChangeDamage(args.Target.Value, component.DamageUnholy, true, origin: uid);
 
-                var othersMessage = Loc.GetString(component.LocPrefix + "-damage-unholy-others", ("user", Identity.Entity(args.User, EntityManager)), ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
-                _popupSystem.PopupEntity(othersMessage, args.User, Filter.PvsExcept(args.User), true, PopupType.MediumCaution);
+                var othersUnholyMessage = Loc.GetString(component.LocPrefix + "-damage-unholy-others", ("user", Identity.Entity(args.User, EntityManager)), ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
+                _popupSystem.PopupEntity(othersUnholyMessage, args.User, Filter.PvsExcept(args.User), true, PopupType.MediumCaution);
 
-                var selfMessage = Loc.GetString(component.LocPrefix + "-damage-unholy-self", ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
-                _popupSystem.PopupEntity(selfMessage, args.User, args.User, PopupType.LargeCaution);
+                var selfUnholyMessage = Loc.GetString(component.LocPrefix + "-damage-unholy-self", ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
+                _popupSystem.PopupEntity(selfUnholyMessage, args.User, args.User, PopupType.LargeCaution);
+
+                _delay.TryResetDelay((uid, useDelay));
 
                 return;
             }
-
+            // Sunrise-end
 
             // This only has a chance to fail if the target is not wearing anything on their head and is not a familiar..
             if (!_invSystem.TryGetSlotEntity(args.Target.Value, "head", out _) && !HasComp<FamiliarComponent>(args.Target.Value))
@@ -198,9 +200,9 @@ namespace Content.Server.Bible
 
             _popupSystem.PopupEntity(othersMessage, args.User, Filter.PvsExcept(args.User), true, PopupType.Medium);
             _popupSystem.PopupEntity(selfMessage, args.User, args.User, PopupType.Large);
-        }
 
-        RaiseLocalEvent(args.Target.Value, new MoodEffectEvent("GotBlessed")); // Sunrise Edit
+            RaiseLocalEvent(args.Target.Value, new MoodEffectEvent("GotBlessed")); // Sunrise Edit
+        }
 
         private void AddSummonVerb(EntityUid uid, SummonableComponent component, GetVerbsEvent<AlternativeVerb> args)
         {

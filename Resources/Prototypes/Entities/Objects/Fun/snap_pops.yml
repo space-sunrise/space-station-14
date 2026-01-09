@@ -33,9 +33,6 @@
     maxIntensity: 0.01
     intensitySlope: 1
     totalIntensity: 0.01
-  - type: Construction
-    graph: SnapPopExplosiveGraph
-    node: snapPop
 #Sunrise-start
   - type: Construction
     graph: SnapPopConstruction

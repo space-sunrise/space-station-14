@@ -216,6 +216,12 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<string> LobbyParallax =
         CVarDef.Create("lobby.parallax", "Random", CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    /// <summary>
+    /// Whether to unload lobby resources from video memory when switching backgrounds or entering round.
+    /// </summary>
+    public static readonly CVarDef<bool> LobbyUnloadResources =
+        CVarDef.Create("lobby.unload_resources", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
     public static readonly CVarDef<float> LobbyOpacity =
         CVarDef.Create("lobby.lobby_opacity", 0.90f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
@@ -362,9 +368,6 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> JumpEnable =
         CVarDef.Create("jump.enable", true, CVar.SERVER | CVar.REPLICATED);
 
-    public static readonly CVarDef<float> JumpDeadChance =
-        CVarDef.Create("jump.dead_chance", 0.001f, CVar.SERVER | CVar.REPLICATED);
-
     public static readonly CVarDef<float> JumpCooldown =
         CVarDef.Create("jump.cooldown", 0.600f, CVar.SERVER | CVar.REPLICATED);
 
@@ -399,13 +402,6 @@ public sealed partial class SunriseCCVars : CVars
 
     public static readonly CVarDef<float> SlipDeadChance =
         CVarDef.Create("slip.dead_chance", 0.001f, CVar.SERVER | CVar.REPLICATED);
-
-    /**
-     * Fall
-     */
-
-    public static readonly CVarDef<float> FallDeadChance =
-        CVarDef.Create("fall.dead_chance", 0.01f, CVar.SERVER | CVar.REPLICATED);
 
     /**
      * VigersRay

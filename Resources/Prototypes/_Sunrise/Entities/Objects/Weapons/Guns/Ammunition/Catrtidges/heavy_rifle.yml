@@ -6,7 +6,6 @@
   components:
   - type: Tag
     tags:
-      - Cartridge
       - CartridgeHeavyRifle
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/7.62x51.rsi
@@ -16,6 +15,8 @@
       map: ["enum.AmmoVisualLayers.Base"]
   - type: Appearance
   - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 3
   - type: PhysicalComposition
     materialComposition:
       Steel: 10
@@ -28,7 +29,6 @@
   components:
   - type: Tag
     tags:
-      - Cartridge
       - CartridgeHeavyRifleR
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/7.62x54.rsi
@@ -38,6 +38,8 @@
       map: ["enum.AmmoVisualLayers.Base"]
   - type: Appearance
   - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 3
   - type: PhysicalComposition
     materialComposition:
       Steel: 10
@@ -74,8 +76,8 @@
   name: cartridge (.308 SP)
   parent: BaseCartridgeRifleHeavy
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceHeavySP
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceHeavySP
   - type: Sprite
     layers:
       - state: base
@@ -89,8 +91,8 @@
   name: cartridge (.308 HP)
   parent: BaseCartridgeRifleHeavy
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceHeavyHP
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceHeavyHP
   - type: Sprite
     layers:
       - state: base
@@ -104,8 +106,8 @@
   name: cartridge (.308 FMJ)
   parent: BaseCartridgeRifleHeavy
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceHeavyFMJ
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceHeavyFMJ
   - type: Sprite
     layers:
       - state: base
@@ -119,8 +121,8 @@
   name: cartridge (.308 AP)
   parent: BaseCartridgeRifleHeavy
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceHeavyAP
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceHeavyAP
   - type: Sprite
     layers:
       - state: base
@@ -134,8 +136,8 @@
   name: cartridge (.308 practice)
   parent: BaseCartridgeRifleHeavy
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceHeavyPractice
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceHeavyPractice
   - type: Sprite
     layers:
       - state: base
@@ -150,7 +152,7 @@
   parent: BaseCartridgeRifleHeavy
   components:
   - type: CartridgeAmmo
-    proto: BulletRifleTraceHeavyIncendiary
+    proto: BulletRifleHeavyIncendiary
   - type: Sprite
     layers:
       - state: base
@@ -164,8 +166,8 @@
   name: cartridge (.308 uranium)
   parent: BaseCartridgeRifleHeavy
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceHeavyUranium
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceHeavyUranium
   - type: Sprite
     layers:
       - state: base
@@ -180,8 +182,8 @@
   name: cartridge (7.62mmR SP)
   parent: BaseCartridgeHeavyRifleR
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceHeavySP
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceHeavySP
   - type: Sprite
     layers:
       - state: base
@@ -195,8 +197,8 @@
   name: cartridge (7.62mmR HP)
   parent: BaseCartridgeHeavyRifleR
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceHeavyHP
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceHeavyHP
   - type: Sprite
     layers:
       - state: base
@@ -210,8 +212,8 @@
   name: cartridge (7.62mmR FMJ)
   parent: BaseCartridgeHeavyRifleR
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceHeavyFMJ
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceHeavyFMJ
   - type: Sprite
     layers:
       - state: base
@@ -225,8 +227,8 @@
   name: cartridge (7.62mmR AP)
   parent: BaseCartridgeHeavyRifleR
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceHeavyAP
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceHeavyAP
   - type: Sprite
     layers:
       - state: base
@@ -240,8 +242,8 @@
   name: cartridge (7.62mmR practice)
   parent: BaseCartridgeHeavyRifleR
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceHeavyPractice
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceHeavyPractice
   - type: Sprite
     layers:
       - state: base
@@ -256,7 +258,7 @@
   parent: BaseCartridgeHeavyRifleR
   components:
   - type: CartridgeAmmo
-    proto: BulletRifleTraceHeavyIncendiary
+    proto: BulletRifleHeavyIncendiary
   - type: Sprite
     layers:
       - state: base
@@ -270,8 +272,8 @@
   name: cartridge (7.62mmR uranium)
   parent: BaseCartridgeHeavyRifleR
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceHeavyUranium
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceHeavyUranium
   - type: Sprite
     layers:
       - state: base

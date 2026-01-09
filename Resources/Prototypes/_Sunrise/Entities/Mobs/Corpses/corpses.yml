@@ -1,0 +1,76 @@
+# region start (ANTAGS)
+
+- type: entity
+  parent: SalvageHumanCorpse
+  id: MobRandomSyndicateCorpse
+  suffix: Dead, Syndicate
+  components:
+  - type: Loadout
+    prototypes:
+    - SyndicateCorpseGear
+    - SyndicateCorpseGearAlt
+    - SyndicateCorpseGearAlt2
+    - SyndicateCorpseGearSec1
+    - SyndicateCorpseGearSec2
+    - SyndicateCorpseGearSec3
+    - SyndicateCorpseGearSec4
+    - SyndicateCorpseGearLead
+    - SyndicateCorpseGearEngi
+    - SyndicateCorpseGearEngiAlt
+    - SyndicateCorpseGearMedicAlt
+    - SyndicateCorpseGearMedic
+    - SyndicateCorpseGearMedicAlt2
+
+- type: entity
+  parent: SalvageHumanCorpse
+  id: MobRandomNukieCorpse
+  suffix: Dead, Nukie
+  components:
+  - type: Loadout
+    prototypes:
+    - NukieCorpseGear
+
+# USSP
+- type: entity
+  parent: SalvageHumanCorpse
+  id: MobRandomSovietUSSPCorpse
+  suffix: Dead, Soviet
+  components:
+  - type: Loadout
+    prototypes:
+    - SovietCorpseGearMarine
+    - SovietCorpseGearMarineB
+    - SovietCorpseGearMarineC
+    - SovietCorpseGearMarineD
+    - SovietCorpseGearMarineF
+    - SovietCorpseGearOfficer
+    - SovietCorpseGearOfficerB
+    - SovietCorpseGearEVAOfficer
+    - SovietCorpseGearEVALight
+    - SovietCorpseGearEVALightB
+    - SovietCorpseGearEVA
+    - SovietCorpseGearA
+    - SovietCorpseGearB
+    - SovietCorpseGearC
+    - SovietCorpseGearD
+    - SovietCorpseGearF
+
+- type: entity
+  parent: SalvageHumanCorpse
+  id: MobRandomMercenaryCorpse
+  suffix: Dead, Mercenary
+  components:
+  - type: Loadout
+    prototypes:
+    - MercenaryCorpseGear
+
+- type: entity
+  parent: SalvageHumanCorpse
+  id: MobRandomPirateCorpse
+  suffix: Dead, Pirate
+  components:
+  - type: Loadout
+    prototypes:
+    - PirateCorpseGear
+
+# region End (ANTAGS)

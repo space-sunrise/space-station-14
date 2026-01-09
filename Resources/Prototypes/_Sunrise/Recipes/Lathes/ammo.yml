@@ -1069,15 +1069,6 @@
     Steel: 800
 
 - type: latheRecipe
-  id: MagazineACP14
-  result: MagazineACP14
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 250
-
-- type: latheRecipe
   id: MagazineGlock22
   result: MagazineGlock22
   categories:

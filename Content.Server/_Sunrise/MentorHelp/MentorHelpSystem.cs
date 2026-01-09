@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
@@ -362,10 +363,25 @@ namespace Content.Server._Sunrise.MentorHelp
                     tickets = openTickets.Concat(closedTickets).ToList();
                 }
 
+                // Collect all unique user IDs for batch loading
+                var userIds = new HashSet<Guid>();
+                foreach (var ticket in tickets)
+                {
+                    userIds.Add(ticket.PlayerId);
+                    if (ticket.AssignedToUserId.HasValue)
+                        userIds.Add(ticket.AssignedToUserId.Value);
+                    if (ticket.ClosedByUserId.HasValue)
+                        userIds.Add(ticket.ClosedByUserId.Value);
+                }
+
+                // Load all player names in one batch query
+                var playerNames = await _dbManager.GetPlayerNamesBatchAsync(userIds);
+
+                // Convert tickets to data using cached names
                 var ticketDataList = new List<MentorHelpTicketData>();
                 foreach (var ticket in tickets)
                 {
-                    ticketDataList.Add(await ConvertToTicketDataAsync(ticket));
+                    ticketDataList.Add(ConvertToTicketData(ticket, playerNames));
                 }
 
                 RaiseNetworkEvent(new MentorHelpTicketsListMessage(ticketDataList), session.Channel);
@@ -526,6 +542,31 @@ namespace Content.Server._Sunrise.MentorHelp
             }
         }
 
+
+        private MentorHelpTicketData ConvertToTicketData(MentorHelpTicket ticket, Dictionary<Guid, string> playerNames)
+        {
+            playerNames.TryGetValue(ticket.PlayerId, out var playerName);
+            var assignedToName = ticket.AssignedToUserId.HasValue && playerNames.TryGetValue(ticket.AssignedToUserId.Value, out var assignedName) ? assignedName : null;
+            var closedByName = ticket.ClosedByUserId.HasValue && playerNames.TryGetValue(ticket.ClosedByUserId.Value, out var closedName) ? closedName : null;
+
+            return new MentorHelpTicketData
+            {
+                Id = ticket.Id,
+                PlayerId = new NetUserId(ticket.PlayerId),
+                PlayerName = playerName ?? "Unknown",
+                AssignedToUserId = ticket.AssignedToUserId.HasValue ? new NetUserId(ticket.AssignedToUserId.Value) : null,
+                AssignedToName = assignedToName,
+                Subject = ticket.Subject,
+                Status = ticket.Status,
+                CreatedAt = ticket.CreatedAt.DateTime,
+                UpdatedAt = ticket.UpdatedAt.DateTime,
+                ClosedAt = ticket.ClosedAt?.DateTime,
+                ClosedByUserId = ticket.ClosedByUserId.HasValue ? new NetUserId(ticket.ClosedByUserId.Value) : null,
+                ClosedByName = closedByName,
+                RoundId = ticket.RoundId,
+                HasUnreadMessages = false // Would need to implement read tracking
+            };
+        }
 
         private async Task<MentorHelpTicketData> ConvertToTicketDataAsync(MentorHelpTicket ticket)
         {

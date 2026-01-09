@@ -43,3 +43,5 @@ ent-ClothingBackpackSatchelPrisonScientistMetus = prison scientist satchel
     .desc = A hard satchel with polished stripes, as if its owner is afraid to lose a single record.
 ent-ClothingBackpackSatchelPrisonWorkerMetus = prison worker satchel
     .desc = Baggy and heavy, half worn out from constant tool changes.
+ent-ClothingBackpackSatchelPrisonTraineeMetus = prison trainee satchel
+    .desc = New and clean, still bearing the marks of a fresh start, with orange accents marking the path of learning.

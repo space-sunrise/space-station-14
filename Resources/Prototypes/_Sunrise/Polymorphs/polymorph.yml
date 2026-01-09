@@ -89,7 +89,7 @@
   configuration:
     entity: MobVulpkaninRandomization
     forced: true
-    transferName: true 
+    transferName: true
     inventory: Transfer
     revertOnCrit: false
     revertOnDeath: false
@@ -108,3 +108,159 @@
 #    inventory: Drop
 #    allowRepeatedMorphs: true
 #    delay: 1
+
+- type: polymorph
+  id: ChangelingStingHuman
+  configuration:
+    entity: MobHumanRandomization
+    forced: true
+    transferDamage: true
+    transferName: true
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: true
+    revertOnDelete: true
+    allowRepeatedMorphs: true
+
+- type: polymorph
+  id: ChangelingStingReptilian
+  configuration:
+    entity: MobReptilianRandomization
+    forced: true
+    transferDamage: true
+    transferName: true
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: true
+    revertOnDelete: true
+    allowRepeatedMorphs: true
+
+- type: polymorph
+  id: ChangelingStingTajaran
+  configuration:
+    entity: MobTajaranRandomization
+    forced: true
+    transferDamage: true
+    transferName: true
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: true
+    revertOnDelete: true
+    allowRepeatedMorphs: true
+
+- type: polymorph
+  id: ChangelingStingSlime
+  configuration:
+    entity: MobSlimePersonRandomization
+    forced: true
+    transferDamage: true
+    transferName: true
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: true
+    revertOnDelete: true
+    allowRepeatedMorphs: true
+
+- type: polymorph
+  id: ChangelingStingMoth
+  configuration:
+    entity: MobMothRandomization
+    forced: true
+    transferDamage: true
+    transferName: true
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: true
+    revertOnDelete: true
+    allowRepeatedMorphs: true
+
+- type: polymorph
+  id: ChangelingStingSwine
+  configuration:
+    entity: MobSwineRandomization
+    forced: true
+    transferDamage: true
+    transferName: true
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: true
+    revertOnDelete: true
+    allowRepeatedMorphs: true
+
+- type: polymorph
+  id: ChangelingStingResomi
+  configuration:
+    entity: MobResomiRandomization
+    forced: true
+    transferDamage: true
+    transferName: true
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: true
+    revertOnDelete: true
+    allowRepeatedMorphs: true
+
+- type: polymorph
+  id: ChangelingStingVox
+  configuration:
+    entity: MobVoxRandomization
+    forced: true
+    transferDamage: true
+    transferName: true
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: true
+    revertOnDelete: true
+    allowRepeatedMorphs: true
+
+- type: polymorph
+  id: ChangelingStingVulpkanin
+  configuration:
+    entity: MobVulpkaninRandomization
+    forced: true
+    transferDamage: true
+    transferName: true
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: true
+    revertOnDelete: true
+    allowRepeatedMorphs: true
+
+- type: polymorph
+  id: ChangelingStingFelinid
+  configuration:
+    entity: MobFelinidRandomization
+    forced: true
+    transferDamage: true
+    transferName: true
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: true
+    revertOnDelete: true
+    allowRepeatedMorphs: true
+
+- type: polymorph
+  id: ChangelingStingHumanoidXeno
+  configuration:
+    entity: MobHumanoidXenoRandomization
+    forced: true
+    transferDamage: true
+    transferName: true
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: true
+    revertOnDelete: true
+    allowRepeatedMorphs: true
+
+- type: polymorph
+  id: ChangelingStingHumanRename
+  configuration:
+    entity: MobHumanRandomizationRenamed
+    forced: true
+    transferDamage: true
+    transferName: false
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: true
+    revertOnDelete: true
+    allowRepeatedMorphs: true

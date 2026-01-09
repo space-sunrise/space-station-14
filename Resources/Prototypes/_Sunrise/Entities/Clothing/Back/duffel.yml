@@ -54,6 +54,7 @@
   parent: [ ClothingBackpackDuffel, BaseCentcommContraband ]
   id: ClothingBackpackDuffelNanotrasenMedical
   name: nanotrasen duffel bag
+  categories: [ HideSpawnMenu ]
   description: A duffel bag containing a variety of biological containment equipment.
   components:
   - type: Sprite

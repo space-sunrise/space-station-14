@@ -60,6 +60,7 @@
     - type: Transform
     - type: ProtectedGrid
     - type: UnbuildableGrid
+    - type: StationOnlyDirectSpawn # Sunrise added
 
 - type: entity
   id: StandardStationArena

@@ -115,7 +115,7 @@ public sealed partial class RequirementsSelector : BoxContainer
             Text = Loc.GetString("role-timer-locked"),
             Visible = true,
             HorizontalAlignment = HAlignment.Center,
-            StyleClasses = {StyleBase.StyleClassLabelSubText},
+            StyleClasses = { "StyleClassLabelSubText" },
         };
 
         _lockStripe.Children.Clear();
@@ -136,7 +136,7 @@ public sealed partial class RequirementsSelector : BoxContainer
             Visible = true,
             HorizontalAlignment = HAlignment.Center,
             FontColorOverride = Color.Red,
-            StyleClasses = {StyleBase.StyleClassLabelSubText},
+            StyleClasses = { "StyleClassLabelSubText" },
         };
 
         _lockStripe.Children.Clear();

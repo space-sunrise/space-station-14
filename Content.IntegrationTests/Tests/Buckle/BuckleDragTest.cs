@@ -47,6 +47,14 @@ public sealed class BuckleDragTest : InteractionTest
         Assert.That(pullable.Puller, Is.Null);
         Assert.That(pullable.BeingPulled, Is.False);
 
+        // Sunrise added start - у нас пулинг не убирает бакл
+        // Поэтому делаем это вручную, до того, как человека схватят, чтобы логика теста не сломалась
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(Server.System<SharedBuckleSystem>().TryUnbuckle(sUrist, sUrist));
+        });
+        // Sunrise added end
+
         // Start pulling, and thus unbuckle them
         await PressKey(ContentKeyFunctions.TryPullObject, cursorEntity: urist);
         await RunTicks(5);

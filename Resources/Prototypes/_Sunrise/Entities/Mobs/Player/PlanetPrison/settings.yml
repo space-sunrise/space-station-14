@@ -109,3 +109,17 @@
     - type: Loadout
       prototypes: [ PlanetPrisonerGear ]
       roleLoadout: [ JobPlanetPrisoner ]
+
+- type: randomHumanoidSettings
+  id: PlanetPrisonTrainee
+  parent: EventHumanoid
+  components:
+    - type: GhostRole
+      name: ghost-role-information-planet-prison-trainee-name
+      description: ghost-role-information-planet-prison-trainee-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+    - type: Loadout
+      prototypes: [ PrisonTraineeGear ]
+      roleLoadout: [ JobPrisonTrainee ]

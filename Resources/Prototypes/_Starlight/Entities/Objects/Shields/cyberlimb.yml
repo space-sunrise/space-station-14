@@ -84,8 +84,6 @@
       damageContainer: Shield
     - type: BatterySelfRecharger
       autoRechargeRate: 75
-      autoRecharge: true
-      autoRechargePause: true
       autoRechargePauseTime: 5
     - type: EnergyShield
     - type: ExaminableBattery
@@ -93,7 +91,7 @@
       maxCharge: 1500
       startingCharge: 1500
     - type: PowerCellDraw
-      useRate: 2.5
+      useCharge: 2.5
     # - type: Destructible
     #   thresholds:
     #     - trigger:

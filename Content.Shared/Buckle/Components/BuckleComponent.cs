@@ -73,7 +73,7 @@ public sealed partial class BuckleComponent : Component
 
     // Sunrise-Start
     [DataField]
-    public float UnbuckleDoafterTime = 2f;
+    public TimeSpan UnbuckleDoafterTime = TimeSpan.FromSeconds(2f);
     // Sunrise-End
 }
 

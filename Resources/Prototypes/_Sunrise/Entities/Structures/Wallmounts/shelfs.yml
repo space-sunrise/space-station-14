@@ -28,15 +28,9 @@
           collection: MetalBreak
       - !type:SpawnEntitiesBehavior
         spawn:
-          SheetSteel1:
-            min: 4
-            max: 12
           MaterialWoodPlank1:
             min: 1
             max: 4
-          PartRodMetal1:
-            min: 2
-            max: 8
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Fixtures
@@ -64,7 +58,6 @@
     maxItemSize: Normal
     whitelist:
       tags:
-        - DrinkGlass
         - DrinkBottle
         - DrinkCan
         - Beer
@@ -102,14 +95,14 @@
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:
-            min: 4
-            max: 12
+            min: 0
+            max: 1
           MaterialWoodPlank1:
             min: 1
             max: 4
           PartRodMetal1:
-            min: 2
-            max: 8
+            min: 1
+            max: 2
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Fixtures
@@ -139,8 +132,6 @@
       tags:
         - DrinkBottle
         - DrinkCan
-        - DrinkCup
-        - DrinkGlass
         - Cake
         - MonkeyCube
         - Enzyme
@@ -150,7 +141,6 @@
         - Knife
         - KitchenKnife
         - Burger
-        - Ingredient
         - Trash
         - Plastic
         - FoodSnack

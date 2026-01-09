@@ -68,7 +68,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponSniperDragunovBiocode
+      - id: WeaponSniperDragunov
       - id: MagazineDragunov
         amount: 2
       - id: MagazineDragunovIncendiary

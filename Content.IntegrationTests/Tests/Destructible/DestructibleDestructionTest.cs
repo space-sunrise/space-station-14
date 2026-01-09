@@ -45,7 +45,7 @@ namespace Content.IntegrationTests.Tests.Destructible
 #pragma warning disable NUnit2045 // Interdependent assertions.
                 Assert.DoesNotThrow(() =>
                 {
-                    sEntityManager.System<DamageableSystem>().TryChangeDamage(sDestructibleEntity, bruteDamage, true, useModifier: false, useVariance: false); // Sunrise-Edit
+                    sEntityManager.System<DamageableSystem>().ChangeDamage(sDestructibleEntity, bruteDamage, true, ignoreGlobalModifiers: true, useVariance: false); // Sunrise-Edit
                 });
 
                 Assert.That(sTestThresholdListenerSystem.ThresholdsReached, Has.Count.EqualTo(1));

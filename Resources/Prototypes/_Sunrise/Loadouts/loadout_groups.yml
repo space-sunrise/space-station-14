@@ -1460,6 +1460,17 @@
   - PrisonWorker-ClothingHeadCapPrisonWorkerMetus
   - PrisonWorker-ClothingHeadHatBeretPrisonWorkerMetus
   - PrisonWorker-ClothingHeadHatCapPrisonWorkerMetus
+
+- type: loadoutGroup
+  id: PrisonTraineeHead
+  name: loadout-group-prison-trainee-head
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonTrainee-ClothingHeadCapPrisonTraineeMetus
+  - PrisonTrainee-ClothingHeadHatBeretPrisonTraineeMetus
+  - PrisonTrainee-ClothingHeadHatCapPrisonTraineeMetus
+
 - type: loadoutGroup
   id: Contributors
   name: loadout-group-contributors

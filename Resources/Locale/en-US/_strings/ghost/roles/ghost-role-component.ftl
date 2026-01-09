@@ -341,6 +341,11 @@ ghost-role-information-cossack-description = From a history lost to time, you fi
 
 ghost-role-information-pirate-name = Space Pirate
 ghost-role-information-pirate-description = Argh matey! Collect some cool loot, but make sure to avoid security and salvage!
+ghost-role-information-pirate-human-name = Space Pirate (Human)
+ghost-role-information-pirate-reptilian-name = Space Pirate (Reptilian)
+ghost-role-information-pirate-dwarf-name = Space Pirate (Dwarf)
+ghost-role-information-pirate-vox-name = Space Pirate (Vox)
+ghost-role-information-pirate-vulpkanin-name = Space Pirate (Vulpkanin)
 
 ghost-role-information-pirate-captain-name = Space Pirate Captain
 ghost-role-information-pirate-captain-description = Argh matey! You are in charge here and need to devise a plan to get that juicy loot by hook or by crook. Just make sure to avoid security and salvage!

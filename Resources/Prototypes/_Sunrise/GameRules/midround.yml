@@ -8,3 +8,5 @@
     objectives:
     - TerminateObjective
     - ShutDownObjective
+  - type: DynamicRuleCost
+    cost: 100

@@ -472,7 +472,7 @@
       types:
         Slash: 3
   - type: Stamina
-    critThreshold: 100
+    baseCritThreshold: 100
   - type: FootprintEmitter
   - type: Vocal
     sounds:

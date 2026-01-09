@@ -7,7 +7,7 @@
   id: FoodBreadBase
   components:
   - type: Item
-    size: Normal
+    size: Small # Sunrise edit - для багета внутри запаски мима
   - type: FlavorProfile
     flavors:
       - bread
@@ -670,7 +670,7 @@
     quickEquip: false
   - type: Item
     shape:
-    - 0,0,0,3
+    - 0,0,0,2 # Sunrise edit - для багета внутри запаски мима
     storedRotation: -45
     inhandVisuals:
       left:

@@ -73,12 +73,6 @@
   order: 4
   lawString: law-deathsquad-4
 
-- type: siliconLaw
-  id: DeathSquadLaw5
-  order: 5
-  lawString: law-deathsquad-5
-
-
 - type: siliconLawset
   id: DeathSquadLawset
   laws:
@@ -86,7 +80,6 @@
   - DeathSquadLaw2
   - DeathSquadLaw3
   - DeathSquadLaw4
-  - DeathSquadLaw5
   obeysTo: laws-owner-centcomm
 
 # ERT Directives laws

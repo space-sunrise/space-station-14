@@ -159,6 +159,8 @@ uplink-micro-bomb-implanter-name = Имплантер Микробомба
 uplink-micro-bomb-implanter-desc = Взрывается при ручной активации или гибели носителя этого импланта. Уничтожает тело пользователя со всем снаряжением.
 uplink-radio-implanter-name = Радиоимплант
 uplink-radio-implanter-desc = Вживляемое радио Синдиката для скрытой связи. Не требует гарнитуры.
+uplink-voice-mask-implanter-name = Имплантер Голосовая маска
+uplink-voice-mask-implanter-desc = Модифицирует голосовые связки, позволяя звучать как кто угодно.
 # Cybernetics
 uplink-nightvision-eyes = Кибер-глаза ночного видения
 uplink-nightvision-eyes-desc = Позволяют видеть в темноте, но делают вас более уязвимым к светошумовым гранатам. (Внимание: Требуется помощь хирурга.)
@@ -375,3 +377,6 @@ uplink-bola-syn-name = Бола Синдиката
 uplink-bola-syn-desc = Идеальная версия болы для Синдиката.
 uplink-interdyne-defibrillator-name = Дефибриллятор Interdyne
 uplink-interdyne-defibrillator-desc = Превосходный дефибриллятор, предназначенный для помощи и самообороны. Для настоящих медиков Синдиката.
+
+uplink-energycrossbow-name = Мини-энергетический арбалет
+uplink-energycrossbow-desc = Главное оружие оперативника, предпочитающего неподвижные цели. Стреляет регенерирующими токсичными болтами, мгновенно валящими жертву на пол.

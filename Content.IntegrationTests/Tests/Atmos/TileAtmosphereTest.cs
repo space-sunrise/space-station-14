@@ -61,6 +61,11 @@ public abstract class TileAtmosphereTest : AtmosTest
     [Test]
     public async Task FireSpreading()
     {
+        // Sunrise added start - так как у нас включен ветер - это ломает математику теста. Ветер нужно выключить
+        Server.CfgMan.SetCVar(CCVars.SpaceWind, false);
+        Assert.That(Server.CfgMan.GetCVar(CCVars.SpaceWind), Is.False);
+        // Sunrise added end
+
         var markers = SEntMan.AllEntities<TestMarkerComponent>();
 
         EntityUid source, point1, point2;

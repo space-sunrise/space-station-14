@@ -3,8 +3,8 @@ atmos-alerts-window-station-name = [color=white][font size=14]{ $stationName }[/
 atmos-alerts-window-unknown-location = Неизвестное местоположение
 atmos-alerts-window-tab-no-alerts = Предупреждения
 atmos-alerts-window-tab-alerts = Предупреждения ({ $value })
-atmos-alerts-window-tab-air-alarms = Воздушные тревоги
-atmos-alerts-window-tab-fire-alarms = Пожарные тревоги
+atmos-alerts-window-tab-air-alarms = Воздушные
+atmos-alerts-window-tab-fire-alarms = Пожарные
 atmos-alerts-window-alarm-label = { CAPITALIZE($name) } ({ $address })
 atmos-alerts-window-temperature-label = Температура
 atmos-alerts-window-temperature-value = { $valueInC } °C ({ $valueInK } K)
