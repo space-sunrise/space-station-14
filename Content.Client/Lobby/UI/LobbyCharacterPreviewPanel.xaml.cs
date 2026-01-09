@@ -77,8 +77,6 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
             }
         }
 
-        _petPreviewDummy = uid;
-
         // Удаляем старый спрайт питомца
         if (_petSpriteView != null)
         {
@@ -88,8 +86,11 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
 
         if (uid == null || !uid.Value.IsValid())
         {
+            _petPreviewDummy = null;
             return;
         }
+
+        _petPreviewDummy = uid;
 
         _petSpriteView = new SpriteView
         {
