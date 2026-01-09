@@ -133,8 +133,6 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
             }
         }
 
-        _petPreviewDummy = uid;
-
         if (_petSpriteView != null)
         {
             ViewBox.RemoveChild(_petSpriteView);
@@ -143,8 +141,11 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
 
         if (uid == null || !uid.Value.IsValid())
         {
+            _petPreviewDummy = null;
             return;
         }
+
+        _petPreviewDummy = uid;
 
         _petSpriteView = new SpriteView
         {
