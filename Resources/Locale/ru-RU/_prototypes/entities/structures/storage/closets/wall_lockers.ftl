@@ -54,3 +54,5 @@ ent-LockerWallPrisoner7 = { ent-LockerWallBasePrisoner }
 ent-LockerWallPrisoner8 = { ent-LockerWallBasePrisoner }
     .suffix = 8
     .desc = { ent-LockerWallBasePrisoner.desc }
+ent-LockerWallSyndicate = кроваво-красный настенный шкафчик
+    .desc = Настенное хранилище с кроваво-красным оформлением.

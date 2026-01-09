@@ -186,11 +186,18 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1200
+        damage: 700 # Sunrise-edit
       behaviors:
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
+      # Sunrise-start
+      - !type:SpawnEntitiesBehavior # Sunrise-edit
+        spawn:
+          ScrapSteel:
+            min: 2
+            max: 4
+      # Sunrise-end
       - !type:ChangeConstructionNodeBehavior
         node: start
       - !type:DoActsBehavior
@@ -216,7 +223,7 @@
 # Ripley MK-I
 - type: entity
   id: MechRipley
-  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
+  parent: [ MechBreakageRipley, BaseMech, IndustrialMech, BaseCargoContraband ] # Sunrise-edit
   name: Ripley APLU
   description: Versatile and lightly armored, the Ripley is useful for almost any heavy work scenario. The "APLU" stands for Autonomous Power Loading Unit.
   components:
@@ -273,7 +280,7 @@
 # Ripley MK-II
 - type: entity
   id: MechRipley2
-  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
+  parent: [ MechBreakageRipley, BaseMech, IndustrialMech, BaseCargoContraband ] # Sunrise-edit
   name: Ripley APLU MK-II
   description: The "MK-II" has a pressurized cabin for space operations, but the added weight has slowed it down.
   components:
@@ -602,7 +609,7 @@
 # Gygax
 - type: entity
   id: MechGygax
-  parent: [ BaseMech, CombatMech, BaseSecurityScienceContraband ]
+  parent: [ MechBreakageGygax, BaseMech, CombatMech, BaseSecurityScienceContraband ] # Sunrise-edit
   name: Gygax
   description: While lightly armored, the Gygax has incredible mobility thanks to its ability that lets it smash through walls at high speeds.
   components:
@@ -665,7 +672,7 @@
 # Durand
 - type: entity
   id: MechDurand
-  parent: [ BaseMech, CombatMech, BaseSecurityScienceContraband ]
+  parent: [ MechBreakageDurand, BaseMech, CombatMech, BaseSecurityScienceContraband ] # Sunrise-edit
   name: Durand
   description: A slow but beefy combat exosuit that is extra scary in confined spaces due to its punches. Xenos hate it!
   components:
@@ -734,7 +741,7 @@
 # NT Gygax
 - type: entity
   id: MechNTGygax
-  parent: [ BaseMech, CombatMech, BaseSecurityScienceContraband ]
+  parent: [ MechBreakageGygax, BaseMech, CombatMech, BaseSecurityScienceContraband ] # Sunrise-edit
   name: Nanotrasen Special Gygax
   description: "Nanotrasen's trump card when solving problems. High durability, increased protection against shock, explosions, temperature, shots: conventional, laser and energy, as well as expanded equipment slots allow to turn the situation on the station upside down. Gas pedals consume a colossal amount of energy."
   components:
@@ -819,7 +826,7 @@
 # Marauder
 - type: entity
   id: MechMarauder
-  parent: [ BaseMech, CombatMech, BaseCentcommContraband ]
+  parent: [ MechBreakageMarauderFamily, BaseMech, CombatMech, BaseCentcommContraband ] # Sunrise-edit
   name: Marauder
   description: Looks like we're all saved. # ERT mech
   components:
@@ -906,7 +913,7 @@
 # Seraph
 - type: entity
   id: MechSeraph
-  parent: [ BaseMech, CombatMech, BaseCentcommContraband ]
+  parent: [ MechBreakageMarauderFamily, BaseMech, CombatMech, BaseCentcommContraband ] # Sunrise-edit
   name: Seraph
   description: That's the last thing you'll see.
   components:
@@ -996,7 +1003,7 @@
 # Dark Gygax
 - type: entity
   id: MechGygaxSyndie
-  parent: [ BaseMech, CombatMech, BaseSyndicateContraband ]
+  parent: [ MechBreakageGygax, BaseMech, CombatMech, BaseSyndicateContraband ] # Sunrise-edit
   name: Dark Gygax
   description: A modified Gygax used for nefarious purposes. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:
@@ -1079,7 +1086,7 @@
 # Mauler
 - type: entity
   id: MechMaulerSyndie
-  parent: [ BaseMech, CombatMech, BaseSyndicateContraband ]
+  parent: [ MechBreakageMarauderFamily, BaseMech, CombatMech, BaseSyndicateContraband ] # Sunrise-edit
   name: Mauler
   description: A modified Marauder used by the Syndicate that's not as maneuverable as the Dark Gygax, but it makes up for that in armor and sheer firepower. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:

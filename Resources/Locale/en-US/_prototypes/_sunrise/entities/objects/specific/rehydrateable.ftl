@@ -8,3 +8,5 @@ ent-InferiorVulpkaninCube = inferior vulpkanin cube
     .desc = { ent-MonkeyCube.desc }
 ent-FelinidCube = felinid cube
     .desc = { ent-MonkeyCube.desc }
+ent-PirateMonkeyCube = pirate monkey cube
+    .desc = { ent-MonkeyCube.desc }

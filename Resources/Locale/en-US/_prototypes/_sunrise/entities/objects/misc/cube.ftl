@@ -18,3 +18,6 @@ ent-InferiorVulpkaninCubeWrapped = inferior vulpkanin cube
 ent-FelinidCubeWrapped = felinid cube
     .desc = Unwrap this to get a felinid cube.
     .suffix = Wrapped
+ent-PirateMonkeyCubeWrapped = pirate monkey cube
+    .desc = Unwrap this to get a pirate monkey cube.
+    .suffix = Wrapped

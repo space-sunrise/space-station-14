@@ -123,7 +123,7 @@
       mindRoles:
       - MindRoleLoneAbductor
   - type: DynamicRuleCost
-    cost: 125
+    cost: 100
 
 - type: entity
   id: AbductorVictim

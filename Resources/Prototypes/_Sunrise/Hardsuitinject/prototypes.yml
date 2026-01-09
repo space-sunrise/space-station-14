@@ -81,6 +81,8 @@
         reagents:
         - ReagentId: Bicaridine
           Quantity: 15
+        - ReagentId: Epinephrine
+          Quantity: 5
 
 - type: entity
   parent: Ampula
@@ -95,6 +97,10 @@
         reagents:
         - ReagentId: Dermaline
           Quantity: 10
+        - ReagentId: Epinephrine
+          Quantity: 5
+        - ReagentId: Leporazine
+          Quantity: 5
 
 - type: entity
   parent: Ampula

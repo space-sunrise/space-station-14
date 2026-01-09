@@ -30,6 +30,7 @@ research-technology-optimized-microgalvanism = Оптимизированный 
 research-technology-biochemical-stasis = Биохимический стазис
 research-technology-mechanized-treatment = Механизированная подготовка
 research-technology-bluespace-chemistry = Блюспейс-химия
+research-technology-launcher-syringe = Шприцемёт
 research-technology-autoMenders = Автомендеры
 research-technology-salvage-weapons = Утилизаторское оружие
 research-technology-special-means = Специальные средства

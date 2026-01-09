@@ -137,4 +137,13 @@
             min: 20
           - !type:RoundDurationCondition
             min: 2100 # 35 minutes
+        - id: AbductorsSpawn
+          weight: 8
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 15
+          - !type:RoundDurationCondition
+            min: 900 # 15 minutes
         # Sunrise-End

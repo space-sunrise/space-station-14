@@ -756,3 +756,12 @@
   id: SecuritySergeantPDA
   name: security sergeant PDA
   description: Still functional. Unlike its owner, it does not shout at you.
+
+- type: entity
+  parent: PiratePDAMusic
+  id: PiratePDAMusicPassangerId
+  name: Shantyman PDA
+  description: Yargh! but now with shanties.
+  components:
+  - type: Pda
+    id: PassengerIDCard

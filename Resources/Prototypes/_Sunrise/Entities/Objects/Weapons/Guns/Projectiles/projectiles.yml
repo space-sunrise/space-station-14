@@ -931,7 +931,7 @@
       types:
         Heat: 14
         Slash: 14
-        Structural: 50
+        Structural: 30
     penetrationThreshold: 800
     penetrationDamageTypeRequirement:
     - Structural
@@ -944,6 +944,7 @@
     color: "#dd16d395"
     energy: 0.5
   - type: GatheringProjectile
+    amount: 6
 
 - type: entity
   name: wide plasma barrage

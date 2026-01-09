@@ -1,3 +1,28 @@
+# region Modules
+- type: entity
+  id: MechEquipmentGrabberSmallMining
+  parent: MechEquipmentGrabberSmall
+  components:
+  - type: MechGrabber
+    maxContents: 2
+    grabDelay: 1
+    grabEnergyDelta: -5
+  - type: UIFragment
+    ui: !type:MechGrabberUi
+  - type: ContainerContainer
+    containers:
+      item-container: !type:Container
+  - type: ContainerFill
+    containers:
+      item-container:
+      - OreBox
+      - OreBox
+  - type: Tag
+    tags:
+    - IndustrialMech
+    - SmallMech
+
+# region Base Mechs
 - type: entity
   id: BaseMechPod
   save: false
@@ -242,7 +267,7 @@
       - IndustrialMech
     startingEquipment:
       - WeaponMechIndustrialPlasmaCutterLight #Нужно сделать улучшения WeaponMechIndustrialKineticAccelerator по аналогии с ручным для прогресса в раунде
-      - MechEquipmentGrabberSmall
+      - MechEquipmentGrabberSmallMining
   - type: Reflect
     reflectProb: 0.10
     spread: 180
@@ -388,7 +413,7 @@
 # region Paddy
 - type: entity
   id: MechPaddy
-  parent: [ BaseMech, CombatMech, IndustrialMech, BaseSecurityContraband ]
+  parent: [ MechBreakageRipley, BaseMech, CombatMech, IndustrialMech, BaseSecurityContraband ] # Sunrise-edit
   name: Paddy
   description: Autonomous Power Loader Unit Subtype Paddy. A Modified MK-II Ripley design intended for light security use.
   components:
@@ -629,7 +654,7 @@
 # Rover
 - type: entity
   id: MechRoverSyndie
-  parent: [ BaseMech, CombatMech, BaseSyndicateContraband ]
+  parent: [ MechBreakageDurand, BaseMech, CombatMech, BaseSyndicateContraband ] # Sunrise-edit
   name: Rover
   description: A modified Durand used for nefarious purposes. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:
@@ -708,7 +733,7 @@
 # Doll House
 - type: entity
   id: MechDollHouse
-  parent: [ BaseMech, CombatMech, BaseMajorContraband ]
+  parent: [ MechBreakageDurand, BaseMech, CombatMech, BaseMajorContraband ] # Sunrise-edit
   name: Doll House
   description: The Heavy Mech USSP, a communist variant of the Durand, features stronger armor and a powerful machine gun.
   components:

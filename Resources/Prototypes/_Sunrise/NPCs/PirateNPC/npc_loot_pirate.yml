@@ -239,6 +239,8 @@
       prob: 0.9
     - id: SpaceCash1000
       prob: 0.7
+    - id: PirateMonkeyCubeWrapped
+      prob: 0.005
 
 - type: entity
   id: PirateCashSpawner01
@@ -511,6 +513,8 @@
       prob: 0.25
     - id: FoodBanana
       prob: 0.15
+    - id: PirateMonkeyCubeWrapped
+      prob: 0.05
     # Weapons
     - id: ClothingHandsKnuckleDusters
       prob: 0.4
@@ -538,6 +542,8 @@
       prob: 0.25
     - id: FoodBanana
       prob: 0.15
+    - id: PirateMonkeyCubeWrapped
+      prob: 0.01
     # Weapons
     - id: WeaponFlareGun
       prob: 0.75
@@ -590,6 +596,8 @@
       prob: 0.25
     - id: FoodBanana
       prob: 0.15
+    - id: PirateMonkeyCubeWrapped
+      prob: 0.1
     # Items
     - id: CableApcStack10
       prob: 0.2

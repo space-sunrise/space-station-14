@@ -8,3 +8,5 @@ ent-InferiorVulpkaninCube = кубик низшего вульпканина
     .desc = Просто добавь воды!
 ent-FelinidCube = фелинидовый кубик
     .desc = Просто добавь воды!
+ent-PirateMonkeyCube = пропитанный ромом обезьяний кубик
+    .desc = Просто добавь воды!

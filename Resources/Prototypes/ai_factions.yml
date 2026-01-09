@@ -63,6 +63,7 @@
   # Sunrise Edit
   - Carps
   - Flesh
+  - Xenoborg
 
 - type: npcFaction
   id: SimpleHostile
@@ -224,6 +225,7 @@
   - Xeno
   - BloodCult
   - Pirate
+  - Dragon
 
 - type: npcFaction
   id: Xenoborg

@@ -175,11 +175,11 @@
     Slash: 0.75
     Piercing: 0.7
     Shock: 2
-    Heat: 0.7
+    Heat: 0.8 # Sunrise-edit
     Structural: 0.55
   flatReductions:
     Blunt: 5
-    Heat: 5
+    Heat: 3 # Sunrise-edit
 
 - type: damageModifierSet
   id: MediumArmorNT
