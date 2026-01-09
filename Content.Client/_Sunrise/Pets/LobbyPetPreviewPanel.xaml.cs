@@ -95,6 +95,9 @@ public sealed partial class LobbyPetPreviewPanel : Control
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
+        
+        _playerCache.CacheChanged -= UpdateSelectedPetFromCache;
+        
         if (_previewDummy != null)
         {
             _entManager.DeleteEntity(_previewDummy.Value);
