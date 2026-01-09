@@ -130,12 +130,9 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
 
     public void SetPetSprite(EntityUid? uid)
     {
-        if (_petPreviewDummy != null)
+        if (_petPreviewDummy != null && (uid == null || _petPreviewDummy != uid))
         {
-            if (uid == null || _petPreviewDummy != uid)
-            {
-                _entManager.DeleteEntity(_petPreviewDummy);
-            }
+            _entManager.DeleteEntity(_petPreviewDummy);
         }
 
         if (_petSpriteView != null)
