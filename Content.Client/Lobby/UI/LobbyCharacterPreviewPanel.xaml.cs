@@ -125,7 +125,6 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
 
     public void SetPetSprite(EntityUid? uid)
     {
-        // Удаляем старый EntityUid питомца
         if (_petPreviewDummy != null)
         {
             if (uid == null || _petPreviewDummy != uid)
@@ -136,7 +135,6 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
 
         _petPreviewDummy = uid;
 
-        // Удаляем старый спрайт питомца
         if (_petSpriteView != null)
         {
             ViewBox.RemoveChild(_petSpriteView);
