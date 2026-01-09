@@ -27,7 +27,12 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-        ChangePetButton.OnPressed += _ => OnChangePetRequested?.Invoke();
+        ChangePetButton.OnPressed += OnChangePetButtonPressed;
+    }
+
+    private void OnChangePetButtonPressed(BaseButton.ButtonEventArgs args)
+    {
+        OnChangePetRequested?.Invoke();
     }
 
     public void SetLoaded(bool value)
@@ -162,6 +167,10 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
+        if (!disposing)
+            return;
+
+        ChangePetButton.OnPressed -= OnChangePetButtonPressed;
         _entManager.DeleteEntity(_previewDummy);
         _entManager.DeleteEntity(_petPreviewDummy);
         _previewDummy = null;
