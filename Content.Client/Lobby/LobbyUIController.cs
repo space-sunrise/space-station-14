@@ -235,12 +235,10 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         PreviewPanel.OnChangePetRequested += OpenPetPanel;
 
         EntityUid? petDummy = null;
-        if (!string.IsNullOrEmpty(currentPetSelection))
+        if (!string.IsNullOrEmpty(currentPetSelection) &&
+            _prototypeManager.TryIndex<PetSelectionPrototype>(currentPetSelection, out var petSelectionPrototype))
         {
-            if (_prototypeManager.TryIndex<PetSelectionPrototype>(currentPetSelection, out var petSelectionPrototype))
-            {
-                petDummy = EntityManager.SpawnEntity(petSelectionPrototype.PetEntity, MapCoordinates.Nullspace);
-            }
+            petDummy = EntityManager.SpawnEntity(petSelectionPrototype.PetEntity, MapCoordinates.Nullspace);
         }
 
         PreviewPanel.SetPetSprite(petDummy);
