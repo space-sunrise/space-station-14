@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/28/2025 18:44:57
-  entityCount: 480
+  time: 01/09/2026 00:12:15
+  entityCount: 486
 maps: []
 grids:
 - 44868
@@ -2443,9 +2443,13 @@ entities:
         217:
         - - Pressed
           - Toggle
+        - - Pressed
+          - AutoClose
         172:
         - - Pressed
           - Toggle
+        - - Pressed
+          - AutoClose
         314:
         - - Pressed
           - DoorBolt
@@ -2599,27 +2603,6 @@ entities:
       pos: -3.7794266,-1.5318359
       parent: 44868
     - type: CMExplosionEffect
-  - uid: 15
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.254008,-5.4821963
-      parent: 44868
-    - type: CMExplosionEffect
-  - uid: 92
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.523216,-5.482196
-      parent: 44868
-    - type: CMExplosionEffect
-  - uid: 150
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.215781,-5.457719
-      parent: 44868
-    - type: CMExplosionEffect
   - uid: 161
     components:
     - type: Transform
@@ -2655,27 +2638,6 @@ entities:
       pos: 6.7791657,-1.5422616
       parent: 44868
     - type: CMExplosionEffect
-  - uid: 185
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.7297205,-5.4821963
-      parent: 44868
-    - type: CMExplosionEffect
-  - uid: 186
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.780185,-5.482196
-      parent: 44868
-    - type: CMExplosionEffect
-  - uid: 187
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.4360406,-5.4699574
-      parent: 44868
-    - type: CMExplosionEffect
 - proto: PowerCageRecharger
   entities:
   - uid: 27
@@ -2686,16 +2648,6 @@ entities:
       parent: 44868
     - type: PointLight
       enabled: False
-  - uid: 91
-    components:
-    - type: Transform
-      pos: 4.5,-3.5
-      parent: 44868
-  - uid: 94
-    components:
-    - type: Transform
-      pos: -1.5,-3.5
-      parent: 44868
   - uid: 159
     components:
     - type: Transform
@@ -2704,6 +2656,80 @@ entities:
       parent: 44868
     - type: PointLight
       enabled: False
+- proto: PowerCellMedium
+  entities:
+  - uid: 15
+    components:
+    - type: Transform
+      pos: 4.7900367,-5.223636
+      parent: 44868
+    - type: CMExplosionEffect
+  - uid: 91
+    components:
+    - type: Transform
+      pos: 4.4931617,-5.239261
+      parent: 44868
+    - type: CMExplosionEffect
+  - uid: 92
+    components:
+    - type: Transform
+      pos: -1.4912138,-5.286136
+      parent: 44868
+    - type: CMExplosionEffect
+  - uid: 94
+    components:
+    - type: Transform
+      pos: -1.2099638,-5.254886
+      parent: 44868
+    - type: CMExplosionEffect
+  - uid: 150
+    components:
+    - type: Transform
+      pos: 4.2744117,-5.208011
+      parent: 44868
+    - type: CMExplosionEffect
+  - uid: 185
+    components:
+    - type: Transform
+      pos: -1.7568388,-5.254886
+      parent: 44868
+    - type: CMExplosionEffect
+  - uid: 331
+    components:
+    - type: Transform
+      pos: 4.6650357,-5.458011
+      parent: 44868
+    - type: CMExplosionEffect
+  - uid: 332
+    components:
+    - type: Transform
+      pos: 4.3837867,-5.426761
+      parent: 44868
+    - type: CMExplosionEffect
+  - uid: 333
+    components:
+    - type: Transform
+      pos: -1.6474638,-5.473636
+      parent: 44868
+    - type: CMExplosionEffect
+  - uid: 334
+    components:
+    - type: Transform
+      pos: -1.3974638,-5.442386
+      parent: 44868
+    - type: CMExplosionEffect
+- proto: PowerCellRecharger
+  entities:
+  - uid: 329
+    components:
+    - type: Transform
+      pos: 4.5,-3.5
+      parent: 44868
+  - uid: 330
+    components:
+    - type: Transform
+      pos: -1.5,-3.5
+      parent: 44868
 - proto: Poweredlight
   entities:
   - uid: 268
@@ -3319,6 +3345,20 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 6.5,-11.5
+      parent: 44868
+- proto: TableReinforced
+  entities:
+  - uid: 186
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,-3.5
+      parent: 44868
+  - uid: 187
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,-3.5
       parent: 44868
 - proto: TableReinforcedGlass
   entities:
