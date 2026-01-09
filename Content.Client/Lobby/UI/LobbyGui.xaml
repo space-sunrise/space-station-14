@@ -343,7 +343,6 @@
                 <PanelContainer
                     Access="Public"
                     HorizontalExpand="True"
-                    MinWidth="500"
                     Name="RightPanel"
                     StyleClasses="AngleRect"
                     VerticalAlignment="Stretch"
@@ -355,29 +354,41 @@
                         VerticalAlignment="Stretch"
                         VerticalExpand="True">
                         <BoxContainer
-                            HorizontalAlignment="Right"
+                            HorizontalAlignment="Stretch"
                             HorizontalExpand="True"
                             Margin="3,3,3,3"
                             Orientation="Horizontal"
                             SizeFlagsStretchRatio="1">
                             <Button
                                 Access="Public"
+                                MinWidth="40"
+                                HorizontalExpand="True"
                                 Name="AHelpButton"
                                 StyleClasses="ButtonBig"
                                 Text="{Loc 'ui-lobby-ahelp-button'}" />
                             <Button
                                 Access="Public"
+                                MinWidth="40"
+                                HorizontalExpand="True"
                                 Name="MHelpButton"
                                 StyleClasses="ButtonBig"
                                 Text="{Loc 'ui-lobby-mhelp-button'}" />
-                            <vote:VoteCallMenuButton Name="CallVoteButton" StyleClasses="ButtonBig" />
+                            <vote:VoteCallMenuButton
+                                MinWidth="40"
+                                HorizontalExpand="True"
+                                Name="CallVoteButton"
+                                StyleClasses="ButtonBig" />
                             <Button
                                 Access="Public"
+                                MinWidth="40"
+                                HorizontalExpand="True"
                                 Name="OptionsButton"
                                 StyleClasses="ButtonBig"
                                 Text="{Loc 'ui-lobby-options-button'}" />
                             <Button
                                 Access="Public"
+                                MinWidth="40"
+                                HorizontalExpand="True"
                                 Name="LeaveButton"
                                 StyleClasses="ButtonBig"
                                 Text="{Loc 'ui-lobby-leave-button'}" />
