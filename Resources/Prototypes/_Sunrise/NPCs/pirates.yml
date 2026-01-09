@@ -270,6 +270,7 @@
       - MobPirateT3LaserSMG
       - MobPirateT3LaserCannon
       - MobPirateT3Revolver
+      - MobPirateT3SMG
     rarePrototypes:
       - MobPirateT3L6
       - MobPirateT3Tachanka

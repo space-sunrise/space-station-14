@@ -181,6 +181,9 @@
     - proto: MobPirateT3Revolver
       cost: 2
       prob: 0.08
+    - proto: MobPirateT3SMG
+      cost: 2
+      prob: 0.15
     # rare
     - proto: MobPirateT3L6
       cost: 5
