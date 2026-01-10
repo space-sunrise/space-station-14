@@ -1209,6 +1209,17 @@ public abstract class SharedStorageSystem : EntitySystem
             if (canPlaySound)
                 Audio.PlayPredicted(storageComp.StorageInsertSound, uid, user, _audioParams);
 
+            // Sunrise-Edit - анимация забирания предмета из хранилища
+            if (user != null)
+            {
+                PlayPickupAnimation(insertEnt,
+                    Transform(user.Value).Coordinates,
+                    Transform(uid).Coordinates,
+                    Transform(insertEnt).LocalRotation,
+                    user);
+            }
+            // Sunrise-Edit
+
             return true;
         }
 
@@ -1235,6 +1246,18 @@ public abstract class SharedStorageSystem : EntitySystem
             // Failed to insert anything.
             return false;
         }
+
+        // Sunrise-Edit - анимация забирания предмета из хранилища
+        // Ссаное говно, почему тут две точки успешного выхода
+        if (user != null)
+        {
+            PlayPickupAnimation(insertEnt,
+                Transform(user.Value).Coordinates,
+                Transform(uid).Coordinates,
+                Transform(insertEnt).LocalRotation,
+                user);
+        }
+        // Sunrise-Edit
 
         if (canPlaySound)
             Audio.PlayPredicted(storageComp.StorageInsertSound, uid, user, _audioParams);

@@ -23,6 +23,8 @@ using Robust.Shared.Log;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using System.Numerics;
+using System.Threading.Tasks;
 using Content.Client.Changelog;
 using Content.Client.Parallax.Managers;
 using Content.Shared._Sunrise.Lobby;
@@ -66,6 +68,9 @@ namespace Content.Client.Lobby
         private ResPath? _currentAnimationPath;
         private ResPath? _currentArtPath;
 
+        private const string LoadingRsiPath = "/Textures/_Sunrise/loading.rsi";
+        private const string LoadingState = "loading";
+
         protected override Type? LinkedScreenType { get; } = typeof(LobbyGui);
         public LobbyGui? Lobby;
 
@@ -90,15 +95,16 @@ namespace Content.Client.Lobby
             _voteManager.SetPopupContainer(Lobby.VoteContainer);
             LayoutContainer.SetAnchorPreset(Lobby, LayoutContainer.LayoutPreset.Wide);
 
-            var lobbyNameCvar = _cfg.GetCVar(CCVars.ServerLobbyName);
-            var serverName = _baseClient.GameInfo?.ServerName ?? string.Empty;
+            // Sunrise-Start
+            //var lobbyNameCvar = _cfg.GetCVar(CCVars.ServerLobbyName);
+            //var serverName = _baseClient.GameInfo?.ServerName ?? string.Empty;
 
             // Lobby.ServerName.Text = string.IsNullOrEmpty(lobbyNameCvar)
             //     ? Loc.GetString("ui-lobby-title", ("serverName", serverName))
             //     : lobbyNameCvar;
 
-            var width = _cfg.GetCVar(CCVars.ServerLobbyRightPanelWidth);
-            Lobby.RightPanel.SetWidth = width;
+            // var width = _cfg.GetCVar(CCVars.ServerLobbyRightPanelWidth);
+            // Lobby.RightPanel.SetWidth = width;
 
             UpdateLobbyUi();
 
@@ -122,6 +128,12 @@ namespace Content.Client.Lobby
             Lobby.LobbyAnimation.DisplayRect.HorizontalExpand = true;
             Lobby.LobbyAnimation.DisplayRect.VerticalExpand = true;
 
+            // Setup loading animation
+            Lobby.LoadingAnimation.DisplayRect.Stretch = TextureRect.StretchMode.KeepAspectCentered;
+            Lobby.LoadingAnimation.DisplayRect.TextureScale = new Vector2(2.0f, 2.0f);
+            Lobby.LoadingAnimation.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(new ResPath(LoadingRsiPath), LoadingState));
+            Lobby.LoadingAnimationContainer.Visible = false;
+
 
             _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundType, OnLobbyBackgroundTypeChanged, true);
             _cfg.OnValueChanged(SunriseCCVars.LobbyArt, OnLobbyArtChanged, true);
@@ -130,7 +142,7 @@ namespace Content.Client.Lobby
 
             // Subscribe to resource loaded events
             _netTexturesManager.ResourceLoaded += OnNetworkResourceLoaded;
-            // Sunrise-end
+            // Sunrise-End
 
             Lobby.CharacterPreview.CharacterSetupButton.OnPressed += OnSetupPressed;
             Lobby.ReadyButton.OnPressed += OnReadyPressed;
@@ -485,6 +497,10 @@ namespace Content.Client.Lobby
                 return;
             }
 
+            // Hide old animation and show loading animation immediately (before any resource checks)
+            Lobby!.LobbyAnimation.Visible = false;
+            ShowLoadingAnimation();
+
             // Unload previous animation if CVar is enabled
             if (_cfg.GetCVar(SunriseCCVars.LobbyUnloadResources) && _currentAnimationPath.HasValue)
             {
@@ -539,11 +555,14 @@ namespace Content.Client.Lobby
                 {
                     Lobby!.LobbyAnimation.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(targetPath, lobbyAnimationPrototype.State));
                     Lobby!.LobbyAnimation.DisplayRect.TextureScale = lobbyAnimationPrototype.Scale;
+                    Lobby!.LobbyAnimation.Visible = true;
+                    HideLoadingAnimation();
                     _currentAnimationPath = targetPath;
                 }
                 else
                 {
                     _sawmill.Warning($"Failed to load lobby animation RSI: {targetPath}. Resource not found in cache.");
+                    ShowLoadingAnimation();
                 }
             }
             catch (Exception ex)
@@ -577,6 +596,10 @@ namespace Content.Client.Lobby
                 return;
             }
 
+            // Hide old art and show loading animation immediately
+            Lobby!.LobbyArt.Visible = false;
+            ShowLoadingAnimation();
+
             // Unload previous art if CVar is enabled
             if (_cfg.GetCVar(SunriseCCVars.LobbyUnloadResources) && _currentArtPath.HasValue)
             {
@@ -606,7 +629,7 @@ namespace Content.Client.Lobby
                 }
                 else
                 {
-                    // Resource not available yet, don't try to load it (will cause error)
+                    // Resource not available yet, show loading animation
                     // The resource will be loaded when it arrives via NetworkResourceUploadMessage
                     return;
                 }
@@ -618,11 +641,14 @@ namespace Content.Client.Lobby
                 if (_resourceCache.TryGetResource<TextureResource>(targetPath, out var textureResource))
                 {
                     Lobby!.LobbyArt.Texture = textureResource.Texture;
+                    Lobby!.LobbyArt.Visible = true;
+                    HideLoadingAnimation();
                     _currentArtPath = targetPath;
                 }
                 else
                 {
                     _sawmill.Warning($"Failed to load lobby art texture: {targetPath}");
+                    // Keep loading animation visible
                 }
             }
             catch (Exception ex)
@@ -656,7 +682,32 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            _parallaxManager.LoadParallaxByName(lobbyParallaxPrototype.Parallax);
+            // Show loading animation for parallax (it may load network textures)
+            ShowLoadingAnimation();
+
+            // Subscribe to resource loaded events to hide loading animation when parallax textures are ready
+            void OnParallaxResourceLoaded(string resourcePath)
+            {
+                // Check if parallax is loaded
+                if (_parallaxManager.IsLoaded(lobbyParallaxPrototype.Parallax))
+                {
+                    _netTexturesManager.ResourceLoaded -= OnParallaxResourceLoaded;
+                    HideLoadingAnimation();
+                }
+            }
+
+            _netTexturesManager.ResourceLoaded += OnParallaxResourceLoaded;
+
+            _parallaxManager.LoadParallaxByName(lobbyParallaxPrototype.Parallax).ContinueWith(task =>
+            {
+                // Hide loading animation when parallax loading completes
+                if (Lobby != null && _parallaxManager.IsLoaded(lobbyParallaxPrototype.Parallax))
+                {
+                    _netTexturesManager.ResourceLoaded -= OnParallaxResourceLoaded;
+                    HideLoadingAnimation();
+                }
+            });
+
             Lobby!.LobbyParallax = lobbyParallaxPrototype.Parallax;
         }
 
@@ -784,6 +835,36 @@ namespace Content.Client.Lobby
                         }
                     }
                     break;
+            }
+        }
+
+        /// <summary>
+        /// Shows loading animation on the currently visible background element.
+        /// </summary>
+        private void ShowLoadingAnimation()
+        {
+            if (Lobby == null)
+                return;
+
+            try
+            {
+                Lobby.LoadingAnimationContainer.Visible = true;
+                Lobby.LoadingAnimationContainer.SetPositionLast();
+            }
+            catch (Exception ex)
+            {
+                _sawmill.Warning($"Failed to show loading animation: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Hides loading animation.
+        /// </summary>
+        private void HideLoadingAnimation()
+        {
+            if (Lobby != null)
+            {
+                Lobby.LoadingAnimationContainer.Visible = false;
             }
         }
 

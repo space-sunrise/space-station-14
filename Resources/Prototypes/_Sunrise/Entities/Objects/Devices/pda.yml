@@ -184,9 +184,8 @@
         !type:String
         pda-space-prison-boss
   - type: PdaBorderColor
-    borderColor: "#cc7014"
-    accentVColor: "#cc3d3d"
-    accentHColor: "#3d3d40"
+    borderColor: "#802d29"
+    accentHColor: "#111111"
   - type: Icon
     state: pda-space-prison-boss
 
@@ -204,8 +203,8 @@
         !type:String
         pda-space-prison-inspector
   - type: PdaBorderColor
-    borderColor: "#cc7014"
-    accentVColor: "#2e4259"
+    borderColor: "#802d29"
+    accentHColor: "#584f70"
   - type: Icon
     state: pda-space-prison-inspector
 
@@ -223,8 +222,8 @@
         !type:String
         pda-space-prison-engineer
   - type: PdaBorderColor
-    borderColor: "#cc7014"
-    accentVColor: "#cc5200"
+    borderColor: "#6b3000"
+    accentVColor: "#615f00"
   - type: Icon
     state: pda-space-prison-engineer
   - type: CartridgeLoader
@@ -251,8 +250,8 @@
         !type:String
         pda-space-prison-scientist
   - type: PdaBorderColor
-    borderColor: "#cc7014"
-    accentVColor: "#7a2699"
+    borderColor: "#6b3000"
+    accentVColor: "#390f4e"
   - type: Icon
     state: pda-space-prison-scientist
   - type: CartridgeLoader
@@ -278,8 +277,8 @@
         !type:String
         pda-space-prison-doctor
   - type: PdaBorderColor
-    borderColor: "#cc7014"
-    accentVColor: "#2f6e67"
+    borderColor: "#6b3000"
+    accentVColor: "#26465a"
   - type: Icon
     state: pda-space-prison-doctor
   - type: CartridgeLoader
@@ -305,8 +304,8 @@
         !type:String
         pda-space-prison-chef
   - type: PdaBorderColor
-    borderColor: "#cc7014"
-    accentVColor: "#a3b2cc"
+    borderColor: "#6b3000"
+    accentVColor: "#423842"
   - type: Icon
     state: pda-space-prison-chef
 
@@ -324,8 +323,8 @@
         !type:String
         pda-space-prison-worker
   - type: PdaBorderColor
-    borderColor: "#cc7014"
-    accentVColor: "#198019"
+    borderColor: "#6b3000"
+    accentVColor: "#4b0100"
   - type: Icon
     state: pda-space-prison-worker
   - type: CartridgeLoader
@@ -336,6 +335,26 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - AstroNavCartridge
+
+- type: entity
+  parent: SecurityMetusPDA
+  id: PrisonTraineePDA
+  name: prison trainee's PDA
+  description: New and clean, still learning the ropes, marked with orange to show the path of growth.
+  components:
+  - type: Pda
+    id: PrisonTraineeIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-guardian
+  - type: PdaBorderColor
+    borderColor: "#6b3000"
+    accentVColor: "#7c3800"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-guardian
 
 - type: entity
   parent: BasePDA
@@ -397,31 +416,6 @@
       - NewsReaderCartridge
       - AstroNavCartridge
 
-- type: entity
-  parent: BasePDA
-  id: GuardPDA
-  name: prison guard's PDA
-  description: Bent and scuffed, but every scratch is evidence of a continuous struggle for safety.
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Devices/pda.rsi
-  - type: Pda
-    id: GuardIDCard
-  - type: Appearance
-    appearanceDataInit:
-      enum.PdaVisuals.PdaType:
-        !type:String
-        pda-space-prison-guardian
-  - type: Icon
-    sprite: _Sunrise/Objects/Devices/pda.rsi
-    state: pda-space-prison-guardian
-  - type: CartridgeLoader
-    uiKey: enum.PdaUiKey.Key
-    preinstalled:
-      - CrewManifestCartridge
-      - NotekeeperCartridge
-      - NanoTaskCartridge
-      - NewsReaderCartridge
 
 - type: entity
   parent: BaseMedicalPDA

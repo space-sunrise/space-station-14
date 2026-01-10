@@ -10,6 +10,10 @@
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
+    # Sunrise-start
+        tongue: OrganHumanTongue
+        eye_implant: null
+    # Sunrise-end
     torso:
       part: TorsoVulpkanin
       connections:

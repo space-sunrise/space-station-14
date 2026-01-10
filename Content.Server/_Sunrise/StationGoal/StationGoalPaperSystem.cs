@@ -1,5 +1,3 @@
-using Content.Server.GameTicking.Events;
-using Content.Server.Paper;
 using Content.Shared.Fax.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Paper;
@@ -10,6 +8,7 @@ using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.StationGoal
@@ -21,6 +20,7 @@ namespace Content.Server._Sunrise.StationGoal
         [Dependency] private readonly PaperSystem _paperSystem = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private readonly IRobustRandom _random = default!;
 
         public override void Initialize()
         {
@@ -36,14 +36,17 @@ namespace Content.Server._Sunrise.StationGoal
             while (query.MoveNext(out var uid, out var station))
             {
                 var tempGoals = new List<ProtoId<StationGoalPrototype>>(station.Goals);
-                StationGoalPrototype? selGoal = null;
-                while (tempGoals.Count > 0)
-                {
-                    var goalId = tempGoals[^1];
-                    tempGoals.RemoveAt(tempGoals.Count - 1);
+                _random.Shuffle(tempGoals);
 
+                StationGoalPrototype? selGoal = null;
+                foreach (var goalId in tempGoals)
+                {
                     var goalProto = _prototypeManager.Index(goalId);
-                    if (playerCount > goalProto.MaxPlayers || playerCount < goalProto.MinPlayers)
+
+                    if (playerCount < goalProto.MinPlayers)
+                        continue;
+
+                    if (playerCount > goalProto.MaxPlayers)
                         continue;
 
                     selGoal = goalProto;
@@ -51,7 +54,7 @@ namespace Content.Server._Sunrise.StationGoal
                 }
 
                 if (selGoal is null)
-                    return;
+                    continue;
 
                 if (SendStationGoal(uid, selGoal))
                     Log.Info($"Goal {selGoal.ID} has been sent to station {MetaData(uid).EntityName}");

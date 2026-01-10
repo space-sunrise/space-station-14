@@ -103,7 +103,7 @@
     layers:
     - state: orange
     - state: department-side
-      color: "#ffa62b"
+      color: "#bdaa00"
     - sprite: *sunrise-icon-rsi
       offset: *icon-offset
       state: PrisonEngineer
@@ -122,7 +122,7 @@
     layers:
     - state: orange
     - state: department-side
-      color: "#a53aaa"
+      color: "#663170"
     - sprite: *sunrise-icon-rsi
       offset: *icon-offset
       state: PrisonScientist
@@ -141,7 +141,7 @@
     layers:
     - state: orange
     - state: department-side
-      color: "#68aed6"
+      color: "#53788d"
     - sprite: *sunrise-icon-rsi
       offset: *icon-offset
       state: PrisonDoctor
@@ -149,6 +149,25 @@
     heldPrefix: orange
   - type: PresetIdCard
     job: PrisonDoctor
+
+- type: entity
+  parent: IDCardStandard
+  id: PrisonTraineeIDCard
+  name: prison trainee ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: orange
+    - state: department-side
+      color: "#966600"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: PrisonGuard
+  - type: Item
+    heldPrefix: orange
+  - type: PresetIdCard
+    job: PrisonTrainee
 
 - type: entity
   parent: IDCardStandard
@@ -160,7 +179,7 @@
     layers:
     - state: orange
     - state: department-side
-      color: "#639137"
+      color: "#acbb99"
     - sprite: *sunrise-icon-rsi
       offset: *icon-offset
       state: PrisonChef
@@ -179,7 +198,7 @@
     layers:
     - state: orange
     - state: department-side
-      color: "#639137"
+      color: "#610000"
     - sprite: *sunrise-icon-rsi
       offset: *icon-offset
       state: PrisonWorker
@@ -198,7 +217,7 @@
     layers:
     - state: silver
     - state: department-side
-      color: "#1b67a5"
+      color: "#745288"
     - sprite: *sunrise-icon-rsi
       offset: *icon-offset
       state: PrisonInspector
@@ -262,24 +281,24 @@
   - type: PresetIdCard
     job: PlanetPrisoner
 
-- type: entity
-  parent: IDCardStandard
-  id: GuardIDCard
-  name: guard ID card
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Misc/id_cards.rsi
-    layers:
-    - state: orange
-    - state: department-side
-      color: *color-security
-    - sprite: *sunrise-icon-rsi
-      offset: *icon-offset
-      state: PrisonGuard
-  - type: Item
-    heldPrefix: orange
-  - type: PresetIdCard
-    job: PrisonGuard
+# - type: entity
+#   parent: IDCardStandard
+#   id: GuardIDCard
+#   name: guard ID card
+#   components:
+#   - type: Sprite
+#     sprite: _Sunrise/Objects/Misc/id_cards.rsi
+#     layers:
+#     - state: orange
+#     - state: department-side
+#       color: *color-security
+#     - sprite: *sunrise-icon-rsi
+#       offset: *icon-offset
+#       state: PrisonGuard
+#   - type: Item
+#     heldPrefix: orange
+#   - type: PresetIdCard
+#     job: PrisonGuard
 
 - type: entity
   parent: IDCardStandard
@@ -310,7 +329,7 @@
     layers:
     - state: gold
     - state: department-side
-      color: "#9c2600"
+      color: "#463636"
     - sprite: *sunrise-icon-rsi
       offset: *icon-offset
       state: HeadOfPrison
