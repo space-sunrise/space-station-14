@@ -60,8 +60,3 @@
   id: Xenoborgs
   name: guide-entry-xenoborgs
   text: "/ServerInfo/Guidebook/Antagonist/Xenoborgs.xml"
-
-- type: guideEntry
-  id: FleshCult
-  name: guide-entry-flesh-cult
-  text: "/ServerInfo/Guidebook/Antagonist/FleshCult.xml"
