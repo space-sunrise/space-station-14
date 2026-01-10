@@ -1,0 +1,129 @@
+<Document>
+  # Flesh Cultist
+
+  <Box>
+    [color=#999999][italic]"THE HEART HUNGERS FOR FRESH MEAT."[/italic][/color]
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="MobFleshPudge" Caption=""/>
+  </Box>
+
+  You are chosen. Inside you lives a parasite from an alien dimension — the source of your power and your inevitable end. A Flesh Cultist is a being born from the fusion of human and alien biomass. All sentient species except slimepeople make suitable hosts for the parasite.
+
+  Your fate is sealed — the parasite will either be fed, or it will burst from within your body when you die. In exchange, you gain unique abilities that grow stronger with each passing day. Your primary objective is to obtain three humanoid corpses, unite with other cultists, and begin the grand ritual to summon the [bold]Flesh Heart[/bold].
+
+  Feed the heart humanoid flesh. Protect it with your life. When most of the station is infected, you have won — the cult's strength lies in its numbers.
+
+  ## Forbidden Actions
+
+  Despite your power, limitations exist:
+
+  - Manipulating life support systems (releasing plasma into the distro, etc.)
+  - Releasing the Singularity or Tesla
+  - Revealing yourself before the Flesh Heart spawns
+  - Massacring the crew before creating the Heart
+  - Creating the Flesh Heart on shuttles or outside the station
+  - Completely building over the Flesh Heart with structures
+  - Sabotaging the supermatter crystal's operation
+
+  Everything else is allowed within project rules.
+
+  ## Communication
+
+  <Box>
+    Use the [bold]cult radio frequency[/bold] (command `:c`) to coordinate with other cultists. A lone cultist is easily destroyed. A unified group is the station's nightmare.
+  </Box>
+
+  ## Evolution Shop
+
+  This is your primary source of power. As you consume humanoid flesh and work with other cultists, you accumulate [bold]evolution points[/bold]. Spend them on active abilities and passive improvements.
+
+  <Box>
+    <GuideEntityEmbed Entity="MobFleshSpider" Caption="Combat Form"/>
+    <GuideEntityEmbed Entity="MobFleshBall" Caption="Mobile Unit"/>
+  </Box>
+
+  ## Abilities
+
+  ### Offense
+
+  [bold]Spider Form[/bold] | Cost: 2 EP
+  Transform part of your body into a spider-like form. Gain significant movement speed increase and moderate protection.
+
+  [bold]Spike Pistol[/bold] | Cost: 5 EP
+  Transform your active hand into a deadly spike pistol. Flesh forms sharp projectiles for ranged attacks.
+
+  [bold]Meat Worms[/bold] | Cost: 2 EP
+  Spawn live meat worms that can be thrown at enemies. Effective melee weapon with its own consciousness.
+
+  [bold]Flesh Fist[/bold] | Cost: 3 EP
+  Transform your hand into a massive fist. Easily breaks through walls, structures, and deals enormous damage to living flesh.
+
+  [bold]Flesh Blade[/bold] | Cost: 4 EP
+  Transform your hand into a deadly blade of bone and flesh. Perfect weapon for close combat.
+
+  [bold]Flesh Claw[/bold] | Cost: 2 EP
+  Transform your hand into a functional claw. Grab objects, manipulate mechanisms, slice enemies.
+
+  [bold]Acid Spit[/bold] | Cost: 2 EP
+  Spit acid at your enemies. Deals damage and destroys materials. Effective against fortified positions.
+
+  ### Defense
+
+  [bold]Flesh Armor[/bold] | Cost: 2 EP
+  Cloak yourself in armor made of bone and flesh. Significantly increases damage resistance.
+
+  [bold]Heavy Armor[/bold] | Cost: 5 EP
+  Cloak yourself in heavy armor. Provides maximum protection from damage.
+
+  [bold]Flash Protection[/bold] | Cost: 2 EP
+  Your eyes adapt to bright light. Bright flashes no longer blind you.
+
+  [bold]Insulation[/bold] | Cost: 1 EP
+  You learn to work with electricity. Electrical current no longer harms you.
+
+  [bold]Pressure Adaptation[/bold] | Cost: 1 EP
+  Low-pressure environments no longer threaten you. Safely work in vacuum.
+
+  [bold]Thermal Regulation[/bold] | Cost: 1 EP
+  Maintain stable body temperature in cold space conditions. Survive in low-temperature environments without harm.
+
+  ### Utility
+
+  [bold]Adrenaline Synthesis[/bold] | Cost: 2 EP
+  Inject combat adrenaline. Temporarily increases speed and knockdown resistance.
+
+  [bold]Blood Absorption[/bold] | Cost: 2 EP
+  You instinctively absorb blood from floors. Blood pools heal your wounds.
+
+  ### Flesh Heart
+
+  [bold]Create Heart[/bold] | Cost: 10 EP
+  Create the source of the cult's power. Requires three humanoid corpses. Protect the heart from hostile crew — it is your objective and endless source of strength.
+
+  ## Survival Strategy
+
+  <Box>
+    [color=#ff6b6b][bold]Remember:[/bold] You are not a machine of war. You are a predator wearing human skin.[/color]
+  </Box>
+
+  ### Early Game
+
+  1. [bold]Blend with the crowd[/bold] — act normal, unsuspecting. The parasite is slow. You have time.
+  2. [bold]Find your allies[/bold] — use the cult radio, arrange secret meetings in safe locations.
+  3. [bold]Begin the hunt[/bold] — kill people one by one and hide their corpses. Target the unbelievers, station enemies, those whose absence won't raise suspicion.
+
+  ### Mid Game
+
+  4. [bold]Gather resources[/bold] — stockpile three corpses in a safe location. Distract the crew with incidents elsewhere.
+  5. [bold]Begin the ritual[/bold] — when your group is strong enough, create the Flesh Heart in protected territory.
+  6. [bold]Defend the heart[/bold] — this is all that matters. Everything else is secondary. Feed it flesh, and it will grow, spawning new warriors.
+
+  ### Late Game
+
+  As your cult grows, the station becomes infected. The crew, once strong and organized, becomes weak and demoralized. Your unity and patience have brought victory.
+
+  ## Victory
+
+  The round ends in a [color=red][bold]MAJOR CULT VICTORY[/bold][/color] when most of the station is infected. You have won. Flesh has triumphed.
+</Document>

@@ -14,6 +14,7 @@
   - MinorAntagonists
   - Changelings # Sunrise-Edit
   - Disease # Sunrise-Edit
+  - FleshCult # Sunrise-Edit
 
 - type: guideEntry
   id: Traitors
@@ -59,3 +60,8 @@
   id: Xenoborgs
   name: guide-entry-xenoborgs
   text: "/ServerInfo/Guidebook/Antagonist/Xenoborgs.xml"
+
+- type: guideEntry
+  id: FleshCult
+  name: guide-entry-flesh-cult
+  text: "/ServerInfo/Guidebook/Antagonist/FleshCult.xml"
