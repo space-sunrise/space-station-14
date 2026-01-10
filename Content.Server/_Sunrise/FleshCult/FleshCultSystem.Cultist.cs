@@ -2,15 +2,12 @@
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
 using Content.Server.Forensics;
-using Content.Server.Temperature.Components;
 using Content.Shared._Sunrise.NightVision.Components;
 using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared._Sunrise.FleshCult;
-using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
-using Content.Shared.Chemistry.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Electrocution;
 using Content.Shared.FixedPoint;
@@ -20,6 +17,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
@@ -106,6 +104,9 @@ public sealed partial class
 
     private void HandleDeadState(EntityUid uid, FleshCultistComponent component)
     {
+        if (component.IsDeathPending)
+            return;
+
         DeleteFleshBodyModComponent(uid, "shoes", component);
         DeleteFleshBodyModComponent(uid, "outerClothing", component);
         ParasiteComesOut(uid, component);
@@ -288,54 +289,80 @@ public sealed partial class
         return true;
     }
 
-    private bool ParasiteComesOut(EntityUid uid, FleshCultistComponent? component = null)
+private bool ParasiteComesOut(EntityUid uid, FleshCultistComponent? component = null)
+{
+    if (Terminating(uid))
+        return false;
+
+    if (!Resolve(uid, ref component))
+        return false;
+
+    if (component.IsDeathPending)
+        return false;
+
+    component.IsDeathPending = true;
+
+    var coordinates = Transform(uid).Coordinates;
+    var abommob = Spawn(component.FleshMutationMobId, _transformSystem.GetMapCoordinates(uid));
+
+    if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
+        _mindSystem.TransferTo(mindId, abommob, ghostCheckOverride: true);
+
+    _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-user", ("EntityTransform", uid)), uid, uid, PopupType.LargeCaution);
+    _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-others", ("Entity", uid), ("EntityTransform", abommob)), abommob, Filter.PvsExcept(abommob), true, PopupType.LargeCaution);
+    _audioSystem.PlayPvs(component.SoundMutation, coordinates, AudioParams.Default.WithVariation(0.025f));
+
+    // Создаём лужу крови ПЕРЕД очисткой контейнеров и гиббингом
+    if (!Terminating(uid) && TryComp<BloodstreamComponent>(uid, out var bloodstream) && bloodstream.BloodSolution != null)
     {
-        if (!Resolve(uid, ref component))
-            return false;
-
-        var coordinates = Transform(uid).Coordinates;
-        var abommob = Spawn(component.FleshMutationMobId, _transformSystem.GetMapCoordinates(uid));
-
-        if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
-            _mindSystem.TransferTo(mindId, abommob, ghostCheckOverride: true);
-
-        _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-user", ("EntityTransform", uid)), uid, uid, PopupType.LargeCaution);
-        _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-others", ("Entity", uid), ("EntityTransform", abommob)), abommob, Filter.PvsExcept(abommob), true, PopupType.LargeCaution);
-        _audioSystem.PlayPvs(component.SoundMutation, coordinates, AudioParams.Default.WithVariation(0.025f));
-
-        if (TryComp(uid, out ContainerManagerComponent? container))
+        var solutionEntity = bloodstream.BloodSolution.Value;
+        if (Exists(solutionEntity.Owner) && !Terminating(solutionEntity.Owner))
         {
-            foreach (var cont in container.GetAllContainers().ToArray())
+            if (_puddleSystem.TrySpillAt(uid, solutionEntity.Comp.Solution.SplitSolution(50), out var puddleUid) && TryComp<DnaComponent>(uid, out var dna) && dna.DNA != null)
             {
-                foreach (var entity in cont.ContainedEntities.Where(entity => !HasComp<BodyPartComponent>(entity) && !HasComp<UnremoveableComponent>(entity)))
+                var comp = EnsureComp<ForensicsComponent>(puddleUid);
+                comp.DNAs.Add(dna.DNA);
+            }
+        }
+    }
+
+    if (!Terminating(uid) && TryComp(uid, out ContainerManagerComponent? container))
+    {
+        foreach (var cont in container.GetAllContainers().ToArray())
+        {
+            foreach (var entity in cont.ContainedEntities.Where(entity => !HasComp<BodyPartComponent>(entity) && !HasComp<UnremoveableComponent>(entity)).ToList())
+            {
+                if (Exists(entity) && !Terminating(entity))
                 {
                     _containerSystem.Remove(entity, cont, force: true);
                     Transform(entity).Coordinates = coordinates;
                 }
             }
         }
-
-        if (TryComp<BloodstreamComponent>(uid, out var bloodstream) && bloodstream.BloodSolution != null)
-        {
-            var tempSol = new Solution { MaxVolume = 5 };
-            tempSol.AddSolution(bloodstream.BloodSolution.Value.Comp.Solution, _prototypeManager);
-
-            if (_puddleSystem.TrySpillAt(uid, tempSol.SplitSolution(50), out var puddleUid) && TryComp<DnaComponent>(uid, out var dna) && dna.DNA != null)
-            {
-                var comp = EnsureComp<ForensicsComponent>(puddleUid);
-                comp.DNAs.Add(dna.DNA);
-            }
-        }
-
-        QueueDel(uid);
-        return true;
     }
+
+    _body.GibBody(uid, true);
+    return true;
+}
 
     public void UpdateCultist(float frameTime)
     {
         base.Update(frameTime);
-        foreach (var cultist in EntityQuery<FleshCultistComponent>())
+        // foreach (var cultist in EntityQuery<FleshCultistComponent>())
+        var query = EntityQueryEnumerator<FleshCultistComponent>();
+
+        while (query.MoveNext(out var uid, out var cultist))
         {
+            if (cultist.IsDeathPending)
+            {
+                // Check if entity is still dead and complete the transformation
+                if (TryComp<MobStateComponent>(uid, out var mobState) && mobState.CurrentState == MobState.Dead)
+                {
+                    ParasiteComesOut(uid, cultist);
+                }
+                continue;
+            }
+
             cultist.Accumulator += frameTime;
             if (cultist.Accumulator <= 1)
                 continue;
@@ -347,14 +374,18 @@ public sealed partial class
                 if (cultist.AccumulatorStarveNotify > 30)
                 {
                     cultist.AccumulatorStarveNotify = 0;
-                    _popup.PopupEntity(Loc.GetString("flesh-cultist-hungry"), cultist.Owner, cultist.Owner, PopupType.Large);
+                    _popup.PopupEntity(Loc.GetString("flesh-cultist-hungry"), uid, uid, PopupType.Large);
                 }
             }
 
             if (cultist.Hunger < 0)
-                ParasiteComesOut(cultist.Owner, cultist);
+            {
+                // ParasiteComesOut(cultist.Owner, cultist);
+                ParasiteComesOut(uid, cultist);
+                continue;
+            }
 
-            ChangeParasiteHunger(cultist.Owner, cultist.HungerСonsumption, cultist);
+            ChangeParasiteHunger(uid, cultist.HungerСonsumption, cultist);
         }
     }
 }
