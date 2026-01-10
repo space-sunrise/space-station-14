@@ -206,7 +206,7 @@
     - type: InputMover
     - type: MobMover
     - type: Physics
-      bodyType: Dynamic
+      bodyType: KinematicController
     - type: MovementSpeedModifier
       baseWalkSpeed: 3.5
       baseSprintSpeed: 4.5

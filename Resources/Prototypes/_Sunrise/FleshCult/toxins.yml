@@ -38,6 +38,35 @@
         visualType: Large
         messages: [ "generic-reagent-effect-burning-insides" ]
         probability: 0.9
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:TagCondition
+          tag: "Flesh"
+          inverted: true
+        scaling: false
+        ignoreResistances: true
+        damage:
+          types:
+            Caustic: 4
+      - !type:Emote
+        conditions:
+        - !type:TagCondition
+          tag: "Flesh"
+          inverted: true
+        emote: Scream
+        probability: 0.9
+      - !type:PopupMessage
+        conditions:
+        - !type:TagCondition
+          tag: "Flesh"
+          inverted: true
+        type: Local
+        visualType: Large
+        messages: [ "generic-reagent-effect-burning-insides" ]
+        probability: 0.9
 
 
 - type: reagent
@@ -49,7 +78,7 @@
   flavor: bitter
   color: "#c9000e"
   metabolisms:
-    Medicine:
+    Poison:
       effects:
       - !type:CauseFleshCultInfection
         conditions:
@@ -63,7 +92,7 @@
         conditions:
         - !type:TagCondition
           tag: "Flesh"
-        amount: 0.1 
+        amount: 0.1
       - !type:SatiateThirst
         conditions:
         - !type:TagCondition
