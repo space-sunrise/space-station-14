@@ -18,7 +18,7 @@
       - !type:HealthChange
         damage:
           types:
-            Mangleness: 0.2625
+            Mangleness: 0.2625 # Sunrise-Edit # 15% of 1.75 brute healing (EvenHealthChange)
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -43,7 +43,7 @@
           damage:
             types:
               Radiation: -3
-              Mangleness: 0.5 #Sunrise-Edit
+              Mangleness: 0.45 # Sunrise-Edit # 15% of 3 radiation healing
     Poison:
       effects:
         - !type:ModifyStatusEffect

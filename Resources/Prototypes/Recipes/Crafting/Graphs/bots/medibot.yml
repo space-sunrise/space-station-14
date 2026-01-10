@@ -13,7 +13,7 @@
         name: construction-graph-tag-medkit
       - tag: DiscreteHealthAnalyzer
         icon:
-          sprite: Objects/Specific/Medical/healthanalyzer.rsi
+          sprite: _Sunrise/Objects/Devices/health_analyzer.rsi # Sunrise-Edit
           state: analyzer
         name: construction-graph-tag-health-analyzer
         doAfter: 2

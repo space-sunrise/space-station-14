@@ -3,6 +3,7 @@ using Content.Shared._Sunrise.Mood;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Alert;
 using Content.Shared.CCVar;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
