@@ -39,6 +39,10 @@ public sealed class CritMobActionsSystem : EntitySystem
 
     private void OnSuccumb(EntityUid uid, MobStateActionsComponent component, CritSuccumbEvent args)
     {
+
+        if (args.Handled) // Sunrise-Edit
+            return;
+
         if (!TryComp<ActorComponent>(uid, out var actor) || !_mobState.IsCritical(uid))
             return;
 
@@ -66,42 +70,46 @@ public sealed class CritMobActionsSystem : EntitySystem
         args.Handled = _deathgasp.Deathgasp(uid);
     }
 
+    // Sunrise-Edit-Start
+
     private void OnLastWords(EntityUid uid, MobStateActionsComponent component, CritLastWordsEvent args)
     {
+        if (args.Handled)
+            return;
+
         if (!TryComp<ActorComponent>(uid, out var actor))
             return;
 
-        // Sunrise-Edit-Start
-        
         _quickDialog.OpenDialog(
-            actor.PlayerSession,
-            Loc.GetString("action-name-crit-last-words"),
-            "",
-            (string lastWords) =>
+        actor.PlayerSession,
+        Loc.GetString("action-name-crit-last-words"),
+        string.Empty,
+        (string lastWords) =>
+        {
+            if (Deleted(uid))
+                return;
+
+            if (actor.PlayerSession.AttachedEntity != uid)
+                return;
+
+            if (!_mobState.IsCritical(uid))
+                return;
+
+            if (lastWords.Length > MaxLastWordsLength)
+                lastWords = lastWords[..MaxLastWordsLength];
+
+            lastWords += "...";
+
+            var pending = EnsureComp<PendingLastWordsComponent>(uid);
+            pending.Text = lastWords;
+
+            if (actor.PlayerSession.GetMind() is { } mind)
             {
-                // if a person is gibbed/deleted, they can't say last words
-                if (Deleted(uid))
-                    return;
+                _ghostSystem.OpenAcceptEui(mind, actor.PlayerSession);
+            }
+        });
 
-                if (actor.PlayerSession.AttachedEntity != uid)
-                    return;
-
-                if (!_mobState.IsCritical(uid))
-                    return;
-
-                if (lastWords.Length > MaxLastWordsLength)
-                    lastWords = lastWords[..MaxLastWordsLength];
-
-                lastWords += "...";
-
-                var pending = EnsureComp<PendingLastWordsComponent>(uid);
-                pending.Text = lastWords;
-
-                if (actor.PlayerSession.GetMind() is { } mind)
-                    _ghostSystem.OpenAcceptEui(mind, actor.PlayerSession);
-            });
-
-        // Sunrise-Edit-End
         args.Handled = true;
     }
+    // Sunrise-Edit-End
 }
