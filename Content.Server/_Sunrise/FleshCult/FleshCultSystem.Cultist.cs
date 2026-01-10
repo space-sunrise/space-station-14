@@ -35,7 +35,8 @@ namespace Content.Server._Sunrise.FleshCult;
 /// <summary>
 /// System for managing Flesh Cultist components and their related events and behaviors.
 /// </summary>
-public sealed partial class FleshCultSystem
+public sealed partial class
+    FleshCultSystem
 {
     [ValidatePrototypeId<CollectiveMindPrototype>]
     private const string FleshCollectiveMindProto = "FleshCult";
