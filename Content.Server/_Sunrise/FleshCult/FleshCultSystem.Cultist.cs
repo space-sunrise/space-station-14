@@ -341,6 +341,8 @@ private bool ParasiteComesOut(EntityUid uid, FleshCultistComponent? component = 
     _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-others", ("Entity", uid), ("EntityTransform", abommob)), abommob, Filter.PvsExcept(abommob), true, PopupType.LargeCaution);
     _audioSystem.PlayPvs(component.SoundMutation, coordinates, AudioParams.Default.WithVariation(0.025f));
 
+    _body.GibBody(uid, true);
+
     return true;
 }
 
