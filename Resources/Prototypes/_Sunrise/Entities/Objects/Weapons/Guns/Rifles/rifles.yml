@@ -549,6 +549,9 @@
     shape:
     - 0,0,4,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ash12/tiny.rsi
+    storedSprite:
+      state: icon
+      sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ash12/big.rsi
   - type: Gun
     minAngle: 3
     maxAngle: 24

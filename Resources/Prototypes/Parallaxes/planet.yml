@@ -3,7 +3,7 @@
   layers:
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/Parallaxes/land.png"
+        path: "/NetTextures/Parallaxes/land.png"
       slowness: 0.98
       scale: 1,1
     - texture:

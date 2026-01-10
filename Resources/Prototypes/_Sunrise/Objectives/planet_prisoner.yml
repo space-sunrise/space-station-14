@@ -11,7 +11,7 @@
 
 - type: entity
   categories: [ HideSpawnMenu ]
-  parent: [BasePlanetPrisonerObjective, BaseLivingObjective]
+  parent: [ BasePlanetPrisonerObjective, BaseLivingObjective ]
   id: PlanetPrisonerEscapeObjective
   name: Escape from planet prison
   description: You need to get out of the containment complex and run as far away as possible, you may be able to escape.
@@ -22,3 +22,18 @@
       sprite: Structures/Furniture/chairs.rsi
       state: shuttle
   - type: EscapePrisonCondition
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: [ BasePlanetPrisonerObjective, BaseLivingObjective ]
+  id: PlanetPrisonerStayFreeObjective
+  name: Stay alive without restraints
+  description: Earn the guards’ confidence and survive without ever being restrained.
+  components:
+  - type: Objective
+    difficulty: 1.0
+    icon:
+      sprite: Objects/Misc/handcuffs.rsi
+      state: handcuff
+  - type: StayFreeCondition
+    restrainedIcon: Interface/Alerts/Handcuffed/Handcuffed.png # не ставить символ "/" перед Interface/ (т.к. это делает путь абсолютным)

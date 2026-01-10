@@ -68,4 +68,7 @@ ent-ClothingOuterCoatJilldress = Jill dress
     .desc = this is the Snow Maiden dress.
 ent-ClothingOuterCoatMansport = Sports sweatshirt
     .desc = Hoodies or sweatshirts? I choose T-shirts.
-
+ent-ClothingOuterLeatherCoat = leather jacket
+    .desc = Perfect for performances!
+ent-ClothingOuterLeatherCoatOpened = leather jacket
+    .desc = Perfect for performances!

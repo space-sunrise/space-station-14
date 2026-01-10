@@ -973,6 +973,21 @@
     - IAA
 
 - type: listing
+  id: UplinkSunriseTacticalHosUniform
+  name: uplink-sunrise-tactical-hos-uniform-name
+  productEntity: ClothingUniformJumpskirtTacticalHos
+  cost:
+    Suntick: 40
+  categories:
+  - HOSHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfSecurity
+
+- type: listing
   id: UplinkSunriseClothingHeadHatCapUSSPBlack
   name: uplink-sunrise-clothing-head-hat-cap-black-name
   productEntity: ClothingHeadHatCapUSSPBlack

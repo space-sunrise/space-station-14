@@ -157,12 +157,18 @@ public sealed partial class PolymorphSystem : EntitySystem
         if (ent.Comp.Reverted)
             return;
 
+        // Sunrise-start
         if (ent.Comp.Configuration.RevertOnDelete)
+        {
             Revert(ent.AsNullable());
-
-        // Remove our original entity too
+            return;
+        }
+        // Заглушка-решение. Ишуй оффам отправлен
+        // Remove our original entity too.
         // Note that Revert will set Parent to null, so reverted entities will not be deleted
-        QueueDel(ent.Comp.Parent);
+        if (ent.Comp.Parent is { } parent && !Deleted(parent))
+            QueueDel(parent);
+        // Sunrise-end
     }
 
     /// <summary>

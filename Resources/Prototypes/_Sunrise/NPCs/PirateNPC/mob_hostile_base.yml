@@ -241,9 +241,9 @@
       NavSmash: !type:Bool
         true
       VisionRadius: !type:Single
-        20
+        30
       AggroVisionRadius: !type:Single
-        20
+        35
 
 - type: entity
   id: MobHumanoidHostileAISimpleRanged
@@ -262,9 +262,9 @@
       NavSmash: !type:Bool
         true
       VisionRadius: !type:Single
-        20
+        30
       AggroVisionRadius: !type:Single
-        20
+        35
       MeleeRange: !type:Single
         4
 

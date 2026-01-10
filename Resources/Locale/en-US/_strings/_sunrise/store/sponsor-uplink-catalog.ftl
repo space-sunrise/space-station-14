@@ -147,6 +147,7 @@ uplink-sunrise-clothing-belt-hos-name = Security's Belt
 uplink-sunrise-clothing-head-hat-cap-black-name = Old Leather USSP Cap
 uplink-sunrise-clothing-head-hat-cap-leather-hos-name = Head Of Security's Leather Cap
 uplink-sunrise-clothing-neck-cloak-hos-cloak-name = Head Of Security's Cloak
+uplink-sunrise-tactical-hos-uniform-name = Tactical HoS uniform
 
 ## Research Director
 

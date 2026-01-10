@@ -7,13 +7,6 @@
       tags:
       - SalvageSyndicateBase
     presets:
-    # Duplicates are intentional to weight SyndicateBaseLarge to ~40%.
-    - Bucket
-    - Wow
-    - SpaceShip
-    - Tall
-    - SyndicateBaseLarge
-    - SyndicateBaseLarge
     - SyndicateBaseLarge
 
   - !type:CorridorDunGen
@@ -112,8 +105,6 @@
   id: SyndicateBaseWallMounts
   table: !type:GroupSelector
     children:
-    - id: VendingMachineWallMedicalCivilian
-      weight: 0.3
     - id: IntercomCommon
       weight: 0.2
     - id: IntercomConstructed
@@ -121,9 +112,7 @@
     - id: StationMapBroken
       weight: 0.15
     - id: ComputerPirateExchangerWallmount
-      weight: 0.02
-    - id: WallMountATM
-      weight: 0.2
+      weight: 0.05
     - id: DefibrillatorCabinetFilled
       weight: 0.5
     - id: DefibrillatorCabinetFilledOpen
@@ -184,3 +173,7 @@
       weight: 0.3
     - id: PoweredlightEmpty
       weight: 0.8
+    - id: VendingMachineWallMedicalCivilian
+      weight: 0.5
+    - id: VendingMachineWallMedical
+      weight: 0.5

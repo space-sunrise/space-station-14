@@ -149,6 +149,7 @@ uplink-sunrise-clothing-belt-hos-name = Пояс службы безопасно
 uplink-sunrise-clothing-head-hat-cap-black-name = Старая кожаная фуражка СССП
 uplink-sunrise-clothing-head-hat-cap-leather-hos-name = Кожаная фуражка главы службы безопасности
 uplink-sunrise-clothing-neck-cloak-hos-cloak-name = Плащ главы службы безопасности
+uplink-sunrise-tactical-hos-uniform-name = Тактическая форма ГСБ
 
 ## Research Director
 
