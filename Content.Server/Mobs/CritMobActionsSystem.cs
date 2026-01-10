@@ -10,17 +10,17 @@ using Content.Shared.Players;
 using Robust.Server.Console;
 using Robust.Shared.Player;
 using Content.Shared.Speech.Muting;
+using Content.Server.Mobs.Components; // Sunrise-Edit
 
 namespace Content.Server.Mobs;
 
 /// <summary>
-///     Handles performing crit-specific actions.
+/// Handles performing crit-specific actions.
 /// </summary>
 public sealed class CritMobActionsSystem : EntitySystem
 {
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly DeathgaspSystem _deathgasp = default!;
-    [Dependency] private readonly IServerConsoleHost _host = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
@@ -42,10 +42,12 @@ public sealed class CritMobActionsSystem : EntitySystem
         if (!TryComp<ActorComponent>(uid, out var actor) || !_mobState.IsCritical(uid))
             return;
 
-        //_host.ExecuteCommand(actor.PlayerSession, "ghost");
-        // Sunrise-Edit
-        if (actor.PlayerSession.GetMind() is { } mindId)
-            _ghostSystem.OpenAcceptEui(mindId, actor.PlayerSession);
+        // Sunrise-Edit-Start
+
+        if (actor.PlayerSession.GetMind() is { } mind)
+            _ghostSystem.OpenAcceptEui(mind, actor.PlayerSession);
+
+        // Sunrise-Edit-End
 
         args.Handled = true;
     }
@@ -69,31 +71,37 @@ public sealed class CritMobActionsSystem : EntitySystem
         if (!TryComp<ActorComponent>(uid, out var actor))
             return;
 
-        _quickDialog.OpenDialog(actor.PlayerSession, Loc.GetString("action-name-crit-last-words"), "",
+        // Sunrise-Edit-Start
+        
+        _quickDialog.OpenDialog(
+            actor.PlayerSession,
+            Loc.GetString("action-name-crit-last-words"),
+            "",
             (string lastWords) =>
             {
                 // if a person is gibbed/deleted, they can't say last words
                 if (Deleted(uid))
                     return;
 
-                // Intentionally does not check for muteness
-                if (actor.PlayerSession.AttachedEntity != uid
-                    || !_mobState.IsCritical(uid))
+                if (actor.PlayerSession.AttachedEntity != uid)
+                    return;
+
+                if (!_mobState.IsCritical(uid))
                     return;
 
                 if (lastWords.Length > MaxLastWordsLength)
-                {
-                    lastWords = lastWords.Substring(0, MaxLastWordsLength);
-                }
+                    lastWords = lastWords[..MaxLastWordsLength];
+
                 lastWords += "...";
 
-                _chat.TrySendInGameICMessage(uid, lastWords, InGameICChatType.Whisper, ChatTransmitRange.Normal, checkRadioPrefix: false, ignoreActionBlocker: true);
-                //_host.ExecuteCommand(actor.PlayerSession, "ghost");
-                // Sunrise-Edit
-                if (actor.PlayerSession.GetMind() is { } mindId)
-                    _ghostSystem.OpenAcceptEui(mindId, actor.PlayerSession);
+                var pending = EnsureComp<PendingLastWordsComponent>(uid);
+                pending.Text = lastWords;
+
+                if (actor.PlayerSession.GetMind() is { } mind)
+                    _ghostSystem.OpenAcceptEui(mind, actor.PlayerSession);
             });
 
+        // Sunrise-Edit-End
         args.Handled = true;
     }
 }

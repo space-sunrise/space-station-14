@@ -21,14 +21,25 @@ namespace Content.Server._Sunrise.Ghost
         {
             base.HandleMessage(msg);
 
-            if (msg is not AcceptGhostChoiceMessage choice ||
-                choice.Button == AcceptGhostUiButton.Deny)
+            if (msg is not AcceptGhostChoiceMessage choice)
             {
                 Close();
                 return;
             }
+            if (Player.AttachedEntity is { Valid: true } entity)
+            {
+                if (choice.Button == AcceptGhostUiButton.Accept)
+                {
+                    _ghostSystem.TrySendPendingLastWords(entity);
+                }
+                else
+                {
+                    _ghostSystem.CancelPendingLastWords(entity);
+                }
+            }
 
-            _ghostSystem.OnGhostAttempt(_mindId, canReturnGlobal: true);
+            if (choice.Button == AcceptGhostUiButton.Accept)
+                _ghostSystem.OnGhostAttempt(_mindId, canReturnGlobal: true);
             Close();
         }
     }

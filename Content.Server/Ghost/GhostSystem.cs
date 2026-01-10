@@ -4,6 +4,7 @@ using Content.Server._Sunrise.Ghost;
 using Content.Server._Sunrise.NewLife;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
+using Content.Server.Chat.Systems;
 using Content.Server.EUI;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
@@ -44,6 +45,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Server.Mobs.Components; // Sunrise-Edit
+using Content.Shared.Chat; // Sunrise-Edit
 
 namespace Content.Server.Ghost
 {
@@ -67,6 +70,7 @@ namespace Content.Server.Ghost
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
         [Dependency] private readonly IChatManager _chatManager = default!;
+        [Dependency] private readonly ChatSystem _chat = default!; // Sunrise-Edit
         [Dependency] private readonly SharedMindSystem _mind = default!;
         [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly DamageableSystem _damageable = default!;
@@ -654,7 +658,38 @@ namespace Content.Server.Ghost
 
             return true;
         }
+
+    // Sunrise-Edit-Start
+
+        public void TrySendPendingLastWords(EntityUid entity)
+        {
+            if (!TryComp<PendingLastWordsComponent>(entity, out var pending))
+                return;
+
+            if (!_mobState.IsCritical(entity))
+            {
+                RemComp<PendingLastWordsComponent>(entity);
+                return;
+            }
+
+            _chat.TrySendInGameICMessage(
+                entity,
+                pending.Text,
+                InGameICChatType.Whisper,
+                ChatTransmitRange.Normal,
+                checkRadioPrefix: false,
+                ignoreActionBlocker: true);
+
+            RemComp<PendingLastWordsComponent>(entity);
+        }
+
+        public void CancelPendingLastWords(EntityUid entity)
+        {
+            RemComp<PendingLastWordsComponent>(entity);
+        }
     }
+
+    // Sunrise-Edit-End
 
     public sealed class GhostAttemptHandleEvent(MindComponent mind, bool canReturnGlobal) : HandledEntityEventArgs
     {
