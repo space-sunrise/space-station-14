@@ -35,8 +35,7 @@ namespace Content.Server._Sunrise.FleshCult;
 /// <summary>
 /// System for managing Flesh Cultist components and their related events and behaviors.
 /// </summary>
-public sealed partial class
-    FleshCultSystem
+public sealed partial class FleshCultSystem
 {
     [ValidatePrototypeId<CollectiveMindPrototype>]
     private const string FleshCollectiveMindProto = "FleshCult";
@@ -194,7 +193,8 @@ public sealed partial class
 
     private void OnShutdown(EntityUid uid, FleshCultistComponent component, ComponentShutdown args)
     {
-        RemoveActions(uid, component);
+        // Don't try to remove actions during shutdown - they'll be cleaned up automatically
+        // when the entity is deleted. Attempting to remove them can cause warnings/errors.
         RemoveComponents(uid);
         RemoveCollectiveMind(uid);
         _alerts.ClearAlert(uid, component.MutationPointAlert);
@@ -204,12 +204,39 @@ public sealed partial class
 
     private void RemoveActions(EntityUid uid, FleshCultistComponent component)
     {
-        if (TryComp(uid, out ActionsComponent? actionsComponent) && TryComp(uid, out FleshAbilitiesComponent? abilitiesComponent))
+        // This method is kept for potential future use but is not called during shutdown
+        if (!TryComp(uid, out ActionsComponent? actionsComponent))
+            return;
+
+        // Remove shop action if it exists
+        if (component.ActionFleshCultistShopEntity != null && Exists(component.ActionFleshCultistShopEntity))
         {
-            _action.RemoveAction(uid, component.ActionFleshCultistShopEntity);
-            foreach (var action in abilitiesComponent.Actions)
+            try
             {
-                _action.RemoveAction(uid, action);
+                _action.RemoveAction(uid, component.ActionFleshCultistShopEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Warning($"Failed to remove shop action from {uid}: {ex.Message}");
+            }
+        }
+
+        // Remove ability actions
+        if (TryComp(uid, out FleshAbilitiesComponent? abilitiesComponent))
+        {
+            foreach (var action in abilitiesComponent.Actions.ToList())
+            {
+                if (Exists(action))
+                {
+                    try
+                    {
+                        _action.RemoveAction(uid, action);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Warning($"Failed to remove ability action from {uid}: {ex.Message}");
+                    }
+                }
             }
         }
     }
