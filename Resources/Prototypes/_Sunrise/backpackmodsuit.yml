@@ -50,6 +50,18 @@
   - type: Modsuit
     roundStartBiocode: true
 
+- type: entity
+  abstract: true
+  parent: ClothingModsuitBackpack # Sunrise edit
+  id: ClothingModsuitBackpackActivated
+  name: backpack
+  description: You wear this on your back and put items into it.
+  components:
+  - type: ContainerFill
+    containers:
+      modsuit_core:
+      - ModsuitCore
+
 #Синего Щита
 - type: loadout
   id: BlueShieldModsuit
@@ -58,7 +70,7 @@
     back: ClothingBlueShieldModsuit
 
 - type: entity
-  parent: ClothingModsuitBackpack
+  parent: ClothingModsuitBackpackActivated
   id: ClothingBlueShieldModsuit
   name: blueshield modsuit
   description: Superior.
@@ -91,7 +103,7 @@
     proto: NTModsuit
 
 - type: entity
-  parent: ClothingModsuitBackpack
+  parent: ClothingModsuitBackpackActivated
   id: ClothingModsuitNanoTrasenRepresentative
   name: NT modsuit
   description: Superior.
@@ -112,7 +124,7 @@
     back: ClothingModsuitComMaid
 
 - type: entity
-  parent: ClothingModsuitBackpack
+  parent: ClothingModsuitBackpackActivated
   id: ClothingModsuitComMaid
   name: com maid modsuit
   description: Superior.
@@ -133,7 +145,7 @@
     back: ClothingCommonModsuit
 
 - type: entity
-  parent: ClothingModsuitBackpack
+  parent: ClothingModsuitBackpackActivated
   id: ClothingCommonModsuit
   name: passenger modsuit
   description: Superior.
