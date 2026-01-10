@@ -35,7 +35,8 @@ namespace Content.Server._Sunrise.FleshCult;
 /// <summary>
 /// System for managing Flesh Cultist components and their related events and behaviors.
 /// </summary>
-public sealed partial class FleshCultSystem
+public sealed partial class
+    FleshCultSystem
 {
     [ValidatePrototypeId<CollectiveMindPrototype>]
     private const string FleshCollectiveMindProto = "FleshCult";
@@ -105,6 +106,9 @@ public sealed partial class FleshCultSystem
 
     private void HandleDeadState(EntityUid uid, FleshCultistComponent component)
     {
+        if (component.IsDeathPending) // Fish-Edit
+            return;
+
         DeleteFleshBodyModComponent(uid, "shoes", component);
         DeleteFleshBodyModComponent(uid, "outerClothing", component);
         ParasiteComesOut(uid, component);
@@ -289,8 +293,16 @@ public sealed partial class FleshCultSystem
 
     private bool ParasiteComesOut(EntityUid uid, FleshCultistComponent? component = null)
     {
+        if (Terminating(uid)) // Fish-edit
+            return false;
+
         if (!Resolve(uid, ref component))
             return false;
+
+        if (component.IsDeathPending) // Fish-Edit
+            return false;
+
+        component.IsDeathPending = true; // Fish-Edit
 
         var coordinates = Transform(uid).Coordinates;
         var abommob = Spawn(component.FleshMutationMobId, _transformSystem.GetMapCoordinates(uid));
@@ -306,7 +318,8 @@ public sealed partial class FleshCultSystem
         {
             foreach (var cont in container.GetAllContainers().ToArray())
             {
-                foreach (var entity in cont.ContainedEntities.Where(entity => !HasComp<BodyPartComponent>(entity) && !HasComp<UnremoveableComponent>(entity)))
+                // foreach (var entity in cont.ContainedEntities.Where(entity => !HasComp<BodyPartComponent>(entity) && !HasComp<UnremoveableComponent>(entity)))
+                foreach (var entity in cont.ContainedEntities.Where(entity => !HasComp<BodyPartComponent>(entity) && !HasComp<UnremoveableComponent>(entity)).ToList()) // Fish-Edit
                 {
                     _containerSystem.Remove(entity, cont, force: true);
                     Transform(entity).Coordinates = coordinates;
@@ -326,15 +339,21 @@ public sealed partial class FleshCultSystem
             }
         }
 
-        QueueDel(uid);
+        _body.GibBody(uid, true); // Fish-edit
         return true;
     }
 
     public void UpdateCultist(float frameTime)
     {
         base.Update(frameTime);
-        foreach (var cultist in EntityQuery<FleshCultistComponent>())
+        // foreach (var cultist in EntityQuery<FleshCultistComponent>())
+        var query = EntityQueryEnumerator<FleshCultistComponent>(); // Fish-Edit
+
+        while (query.MoveNext(out var uid, out var cultist)) // Fish-Edit
         {
+            if (cultist.IsDeathPending) // Fish-Edit
+                continue;
+
             cultist.Accumulator += frameTime;
             if (cultist.Accumulator <= 1)
                 continue;
@@ -346,14 +365,19 @@ public sealed partial class FleshCultSystem
                 if (cultist.AccumulatorStarveNotify > 30)
                 {
                     cultist.AccumulatorStarveNotify = 0;
-                    _popup.PopupEntity(Loc.GetString("flesh-cultist-hungry"), cultist.Owner, cultist.Owner, PopupType.Large);
+                    _popup.PopupEntity(Loc.GetString("flesh-cultist-hungry"), uid, uid, PopupType.Large);
                 }
             }
 
             if (cultist.Hunger < 0)
-                ParasiteComesOut(cultist.Owner, cultist);
+            {
+                // ParasiteComesOut(cultist.Owner, cultist);
+                ParasiteComesOut(uid, cultist); // Fish-Edit
+                continue; // Fish-Edit
+            }
 
-            ChangeParasiteHunger(cultist.Owner, cultist.HungerСonsumption, cultist);
+            // ChangeParasiteHunger(cultist.Owner, cultist.HungerСonsumption, cultist);
+            ChangeParasiteHunger(uid, cultist.HungerСonsumption, cultist); // Fish-Edit
         }
     }
 }
