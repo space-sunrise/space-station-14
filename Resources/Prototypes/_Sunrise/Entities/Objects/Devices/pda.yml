@@ -759,7 +759,7 @@
 
 - type: entity
   parent: PiratePDAMusic
-  id: PiratePDAMusicPassangerId
+  id:  PiratePDAMusicPassengerId
   name: Shantyman PDA
   description: Yargh! but now with shanties.
   components:

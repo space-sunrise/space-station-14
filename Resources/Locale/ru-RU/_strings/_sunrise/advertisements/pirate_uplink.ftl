@@ -23,7 +23,7 @@ advertisement-pirate-uplink-19 = Резина для редких случаев
 advertisement-pirate-uplink-20 = Патроны заканчиваются быстрее чем решимость
 
 advertisement-pirate-uplink-21 = Снайперка для дальних разговоров
-advertisement-pirate-uplink-22 = Христоф Выбор без компромиссов
+advertisement-pirate-uplink-22 = Христов Выбор без компромиссов
 advertisement-pirate-uplink-23 = Пулемет когда точность не обязательна
 advertisement-pirate-uplink-24 = Турель на случай если уходишь последним
 advertisement-pirate-uplink-25 = Пиратская пушка решает многое
