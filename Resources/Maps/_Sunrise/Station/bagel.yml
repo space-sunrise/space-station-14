@@ -4,7 +4,7 @@ meta:
   engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 01/10/2026 09:12:39
+  time: 01/10/2026 22:03:53
   entityCount: 29887
 maps:
 - 1
@@ -22556,7 +22556,7 @@ entities:
       pos: -13.5,-32.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -270145.9
+      secondsUntilStateChange: -271805.62
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -24001,7 +24001,7 @@ entities:
       pos: -14.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -270142.38
+      secondsUntilStateChange: -271802.1
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -24225,7 +24225,7 @@ entities:
       pos: 36.5,30.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -754221.6
+      secondsUntilStateChange: -755881.4
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -24685,7 +24685,7 @@ entities:
       pos: 44.5,27.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -772359.4
+      secondsUntilStateChange: -774019.1
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -99672,6 +99672,12 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#B3A234FF'
+  - uid: 24146
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 26.5,-27.5
+      parent: 2
 - proto: GasPipeBend
   entities:
   - uid: 822
@@ -127727,6 +127733,13 @@ entities:
       color: '#333333FF'
 - proto: GasThermoMachineFreezer
   entities:
+  - uid: 5950
+    components:
+    - type: Transform
+      pos: 26.5,-26.5
+      parent: 2
+    - type: GasThermoMachine
+      targetTemperature: 235
   - uid: 12570
     components:
     - type: Transform
@@ -144857,13 +144870,6 @@ entities:
     - type: Transform
       pos: 4.539866,13.781895
       parent: 2
-  - uid: 5950
-    components:
-    - type: Transform
-      pos: -16.438595,51.585796
-      parent: 2
-    - type: Paper
-      content: Без надобности не трогать!
   - uid: 6013
     components:
     - type: Transform
@@ -166966,18 +166972,6 @@ entities:
       coefficientOfPerformance: -0.9
       targetTemperature: 263.15
       heatCapacity: 1750
-  - uid: 24146
-    components:
-    - type: Transform
-      pos: 26.5,-26.5
-      parent: 2
-    - type: SpaceHeater
-      powerLevel: Low
-      mode: Cool
-    - type: GasThermoMachine
-      coefficientOfPerformance: -0.9
-      targetTemperature: 263.15
-      heatCapacity: 1750
 - proto: SpacemenFigurineSpawner90
   entities:
   - uid: 21466
@@ -175136,7 +175130,7 @@ entities:
       pos: -17.5,8.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -269976.75
+      secondsUntilStateChange: -271636.47
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -198250,7 +198244,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -174125.02
+      secondsUntilStateChange: -175784.75
       state: Opening
     - type: Airlock
       autoClose: False
@@ -198331,7 +198325,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -768232.25
+      secondsUntilStateChange: -769892
       state: Opening
     - type: Airlock
       autoClose: False

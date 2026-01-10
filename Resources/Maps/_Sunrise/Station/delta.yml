@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 01/09/2026 12:12:25
-  entityCount: 43454
+  time: 01/10/2026 22:03:42
+  entityCount: 43455
 maps:
 - 1
 grids:
@@ -11880,6 +11880,7 @@ entities:
             37802: -61,-6
             38132: -48,5
             39299: 27,88
+            49265: 29,80
         - node:
             color: '#FA7500FF'
             id: BrickTileWhiteInnerSe
@@ -14611,7 +14612,6 @@ entities:
             15898: -69,-9
             15910: -73,10
             23192: 35,-2
-            25697: 31,80
             25853: 31,74
             25854: 32,74
             25855: 33,74
@@ -14676,6 +14676,7 @@ entities:
             39236: 27,82
             39297: 29,88
             39298: 28,88
+            49266: 31,80
         - node:
             color: '#FA7500FF'
             id: BrickTileWhiteLineS
@@ -18199,7 +18200,6 @@ entities:
             id: DirtHeavyMonotile
           decals:
             24332: -43,60
-            25978: 31,80
         - node:
             cleanable: True
             zIndex: 1
@@ -34299,7 +34299,7 @@ entities:
       pos: 48.5,-21.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -109588.3
+      secondsUntilStateChange: -115368.14
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -34371,7 +34371,7 @@ entities:
       pos: -58.5,91.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -414221.22
+      secondsUntilStateChange: -420001.06
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -34387,7 +34387,7 @@ entities:
       pos: 79.5,28.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -337348.56
+      secondsUntilStateChange: -343128.4
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -34450,7 +34450,7 @@ entities:
       pos: 52.5,36.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -249893.12
+      secondsUntilStateChange: -255672.97
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -34471,7 +34471,7 @@ entities:
       pos: -60.5,57.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -114057.02
+      secondsUntilStateChange: -119836.87
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -35120,7 +35120,7 @@ entities:
       pos: -35.5,7.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -640207.1
+      secondsUntilStateChange: -645986.94
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -36671,7 +36671,7 @@ entities:
       pos: -26.5,47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -427834.53
+      secondsUntilStateChange: -433614.38
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -36925,7 +36925,7 @@ entities:
     - type: AccessReader
       accessListsOriginal: []
     - type: Door
-      secondsUntilStateChange: -100653.91
+      secondsUntilStateChange: -106433.75
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -38245,7 +38245,7 @@ entities:
       pos: 81.5,16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -745880.25
+      secondsUntilStateChange: -751660.06
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -42432,12 +42432,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -81.5,-2.5
-      parent: 2
-  - uid: 1230
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 34.5,61.5
       parent: 2
   - uid: 1231
     components:
@@ -140682,7 +140676,7 @@ entities:
       pos: -24.5,7.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -100111.41
+      secondsUntilStateChange: -105891.25
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -140860,7 +140854,7 @@ entities:
       pos: 39.5,20.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -640092.3
+      secondsUntilStateChange: -645872.1
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -141713,6 +141707,11 @@ entities:
     components:
     - type: Transform
       pos: 41.34809,33.73653
+      parent: 2
+  - uid: 26207
+    components:
+    - type: Transform
+      pos: 41.777298,33.79714
       parent: 2
 - proto: DrinkWaterBottleFull
   entities:
@@ -146773,7 +146772,7 @@ entities:
       pos: 15.5,-9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -459921.66
+      secondsUntilStateChange: -465701.5
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -146987,7 +146986,7 @@ entities:
       pos: -39.5,-73.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -767688.25
+      secondsUntilStateChange: -773468.06
       state: Closing
   - uid: 20628
     components:
@@ -152404,6 +152403,12 @@ entities:
     components:
     - type: Transform
       pos: -29.5,-22.5
+      parent: 2
+  - uid: 26212
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -32.5,28.5
       parent: 2
   - uid: 28779
     components:
@@ -188353,6 +188358,13 @@ entities:
       threshold: 8500
 - proto: GasThermoMachineFreezer
   entities:
+  - uid: 490
+    components:
+    - type: Transform
+      pos: -32.5,29.5
+      parent: 2
+    - type: GasThermoMachine
+      targetTemperature: 235
   - uid: 25735
     components:
     - type: Transform
@@ -193382,15 +193394,6 @@ entities:
     - type: CMExplosionEffect
 - proto: GeneratorRTG
   entities:
-  - uid: 26207
-    components:
-    - type: Transform
-      anchored: False
-      pos: 35.5,78.5
-      parent: 2
-    - type: Physics
-      bodyType: Dynamic
-    - type: CMExplosionEffect
   - uid: 26208
     components:
     - type: Transform
@@ -193408,24 +193411,6 @@ entities:
     - type: Transform
       pos: 13.5,-5.5
       parent: 2
-    - type: CMExplosionEffect
-  - uid: 26211
-    components:
-    - type: Transform
-      anchored: False
-      pos: 33.5,78.5
-      parent: 2
-    - type: Physics
-      bodyType: Dynamic
-    - type: CMExplosionEffect
-  - uid: 26212
-    components:
-    - type: Transform
-      anchored: False
-      pos: 34.5,79.5
-      parent: 2
-    - type: Physics
-      bodyType: Dynamic
     - type: CMExplosionEffect
 - proto: Girder
   entities:
@@ -213437,10 +213422,10 @@ entities:
   - uid: 6484
     components:
     - type: Transform
-      pos: -54.503696,57.57496
+      pos: 34.50645,78.49553
       parent: 2
     - type: Paper
-      content: Без надобности не трогать!
+      content: все РИТЭГи расстащили...
   - uid: 7431
     components:
     - type: Transform
@@ -214539,6 +214524,11 @@ entities:
       parent: 2
     - type: Physics
       canCollide: False
+  - uid: 43455
+    components:
+    - type: Transform
+      pos: -67.124275,18.61329
+      parent: 2
 - proto: PersonalAI
   entities:
   - uid: 29652
@@ -214851,6 +214841,16 @@ entities:
       parent: 2
 - proto: PlasticFlapsAirtightClear
   entities:
+  - uid: 1230
+    components:
+    - type: Transform
+      pos: 32.5,61.5
+      parent: 2
+  - uid: 26211
+    components:
+    - type: Transform
+      pos: 34.5,61.5
+      parent: 2
   - uid: 29692
     components:
     - type: Transform
@@ -245675,20 +245675,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: SpaceHeaterAnchored
-  entities:
-  - uid: 490
-    components:
-    - type: Transform
-      pos: -32.5,29.5
-      parent: 2
-    - type: SpaceHeater
-      powerLevel: High
-      mode: Cool
-    - type: GasThermoMachine
-      coefficientOfPerformance: -0.9
-      targetTemperature: 263.15
-      heatCapacity: 7000
 - proto: Spaceshroom
   entities:
   - uid: 34385
@@ -257724,7 +257710,7 @@ entities:
       pos: 19.5,-10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -65445.402
+      secondsUntilStateChange: -71225.25
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
