@@ -64,4 +64,4 @@
 - type: guideEntry
   id: FleshCult
   name: guide-entry-flesh-cult
-  text: "/ServerInfo/Guidebook/Antagonist/FleshCult.xml" # Sunrise-Edit
+  text: "/ServerInfo/Guidebook/Antagonist/FleshCult.xml"
