@@ -34,8 +34,6 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
         SubscribeLocalEvent<WingToggleComponent, MapInitEvent>(OnWingToggleMapInit);
         SubscribeLocalEvent<WingToggleComponent, ComponentShutdown>(OnWingToggleShutdown);
         SubscribeLocalEvent<WingToggleComponent, ToggleActionEvent>(OnWingToggleAction);
-        SubscribeLocalEvent<WingToggleComponent, IsEquippingAttemptEvent>(OnEquipAttempt);
-        SubscribeLocalEvent<WingToggleComponent, IsEquippingTargetAttemptEvent>(OnEquipTargetAttempt);
     }
 
     private void OnWingToggleMapInit(Entity<WingToggleComponent> ent, ref MapInitEvent args)
@@ -145,32 +143,6 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
             return;
 
         _actions.SetToggled(ent.Comp.ActionEntity.Value, ent.Comp.WingsOpened);
-    }
-
-    private bool ShouldBlockEquip(Entity<WingToggleComponent> ent, string slot, EntityUid equipment)
-    {
-        if (ent.Comp.BlockedSlots == null || !ent.Comp.BlockedSlots.Contains(slot))
-            return false;
-
-        if (!ent.Comp.WingsOpened)
-            return false;
-
-        if (ent.Comp.AllowedTag != null && _tagSystem.HasTag(equipment, ent.Comp.AllowedTag.Value))
-            return false;
-
-        return true;
-    }
-
-    private void OnEquipAttempt(Entity<WingToggleComponent> ent, ref IsEquippingAttemptEvent args)
-    {
-        if (ShouldBlockEquip(ent, args.Slot, args.Equipment))
-            args.Cancel();
-    }
-
-    private void OnEquipTargetAttempt(Entity<WingToggleComponent> ent, ref IsEquippingTargetAttemptEvent args)
-    {
-        if (ShouldBlockEquip(ent, args.Slot, args.Equipment))
-             args.Cancel();
     }
 }
 

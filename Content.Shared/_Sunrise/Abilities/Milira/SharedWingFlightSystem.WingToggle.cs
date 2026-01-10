@@ -2,12 +2,12 @@ using Content.Shared._Sunrise.Abilities.Milira;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Tag;
 
-namespace Content.Client._Sunrise.Abilities.Milira;
+namespace Content.Shared._Sunrise.Abilities.Milira;
 
 /// <summary>
 /// Клиентская система WingFlight с блокировкой одевания брони при раскрытых крыльях
 /// </summary>
-public sealed class WingToggleClientSystem : SharedWingFlightSystem
+public sealed class WingToggleSharedSystem : SharedWingFlightSystem
 {
     [Dependency] private readonly TagSystem _tagSystem = default!;
 
