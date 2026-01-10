@@ -9,6 +9,7 @@ using Content.Shared.Actions.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Cuffs.Components;
+using Content.Shared.Damage;
 using Content.Shared.Electrocution;
 using Content.Shared.FixedPoint;
 using Content.Shared.Flash.Components;
@@ -27,6 +28,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.FleshCult;
 
@@ -312,36 +314,6 @@ private bool ParasiteComesOut(EntityUid uid, FleshCultistComponent? component = 
     _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-others", ("Entity", uid), ("EntityTransform", abommob)), abommob, Filter.PvsExcept(abommob), true, PopupType.LargeCaution);
     _audioSystem.PlayPvs(component.SoundMutation, coordinates, AudioParams.Default.WithVariation(0.025f));
 
-    // Создаём лужу крови ПЕРЕД очисткой контейнеров и гиббингом
-    if (!Terminating(uid) && TryComp<BloodstreamComponent>(uid, out var bloodstream) && bloodstream.BloodSolution != null)
-    {
-        var solutionEntity = bloodstream.BloodSolution.Value;
-        if (Exists(solutionEntity.Owner) && !Terminating(solutionEntity.Owner))
-        {
-            if (_puddleSystem.TrySpillAt(uid, solutionEntity.Comp.Solution.SplitSolution(50), out var puddleUid) && TryComp<DnaComponent>(uid, out var dna) && dna.DNA != null)
-            {
-                var comp = EnsureComp<ForensicsComponent>(puddleUid);
-                comp.DNAs.Add(dna.DNA);
-            }
-        }
-    }
-
-    if (!Terminating(uid) && TryComp(uid, out ContainerManagerComponent? container))
-    {
-        foreach (var cont in container.GetAllContainers().ToArray())
-        {
-            foreach (var entity in cont.ContainedEntities.Where(entity => !HasComp<BodyPartComponent>(entity) && !HasComp<UnremoveableComponent>(entity)).ToList())
-            {
-                if (Exists(entity) && !Terminating(entity))
-                {
-                    _containerSystem.Remove(entity, cont, force: true);
-                    Transform(entity).Coordinates = coordinates;
-                }
-            }
-        }
-    }
-
-    _body.GibBody(uid, true);
     return true;
 }
 
