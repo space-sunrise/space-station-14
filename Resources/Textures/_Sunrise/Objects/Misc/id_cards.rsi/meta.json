@@ -63,17 +63,6 @@
       "directions": 4
     },
     {
-      "name": "orange"
-    },
-    {
-      "name": "orange-inhand-left",
-      "directions": 4
-    },
-    {
-      "name": "orange-inhand-right",
-      "directions": 4
-    },
-    {
       "name": "admin"
     },
     {
@@ -96,14 +85,31 @@
       "directions": 4
     },
     {
-      "name": "space-prison"
+      "name": "orange"
     },
     {
-      "name": "space-prison-inhand-left",
+      "name": "orange-inhand-left",
       "directions": 4
     },
     {
-      "name": "space-prison-inhand-right",
+      "name": "orange-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "space-prison-orange-red"
+    },
+    {
+      "name": "space-prison-orange"
+    },
+    {
+      "name": "space-prison-prisoner"
+    },
+    {
+      "name": "space-prison-prisoner-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "space-prison-prisoner-inhand-right",
       "directions": 4
     },
     {
