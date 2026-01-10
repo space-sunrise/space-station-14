@@ -55,6 +55,7 @@
       - Ntrep # Sunrise
       - Magistrat # Sunrise
       - Barber  # Sunrise
+      - Mining # Sunrise
       privilegedIdSlot:
         name: id-card-console-privileged-id
         ejectSound: /Audio/Machines/id_swipe.ogg
@@ -140,6 +141,7 @@
     - Ntrep # Sunrise
     - Magistrat # Sunrise
     - Barber  # Sunrise
+    - Mining # Sunrise
     privilegedIdSlot:
       name: id-card-console-privileged-id
       startingItem: UniversalIDCard
