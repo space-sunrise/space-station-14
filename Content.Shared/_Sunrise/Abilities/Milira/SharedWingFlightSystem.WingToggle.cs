@@ -5,7 +5,7 @@ using Content.Shared.Tag;
 namespace Content.Shared._Sunrise.Abilities.Milira;
 
 /// <summary>
-/// Клиентская система WingFlight с блокировкой одевания брони при раскрытых крыльях
+/// Shared система WingFlight с блокировкой одевания брони при раскрытых крыльях
 /// </summary>
 public sealed class WingToggleSharedSystem : SharedWingFlightSystem
 {
