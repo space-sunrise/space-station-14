@@ -1,4 +1,4 @@
-﻿﻿using Content.Shared.Alert;
+﻿using Content.Shared.Alert;
 using Content.Shared.FixedPoint;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
