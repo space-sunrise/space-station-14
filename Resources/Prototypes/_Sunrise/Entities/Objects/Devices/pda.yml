@@ -151,7 +151,7 @@
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-space-prison-prisoner
 
-# Planet Prison Metus - Start
+### Planet Prison - Start ###
 
 - type: entity
   parent: BasePDA
@@ -210,22 +210,44 @@
 
 - type: entity
   parent: SecurityMetusPDA
+  id: PrisonWorkerPDA
+  name: prison worker's PDA
+  description: Worn and scratched, it bears the marks of hard and monotonous labor.
+  components:
+  - type: Pda
+    id: PrisonWorkerIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-worker
+  - type: PdaBorderColor
+    borderColor: "#6b3000"
+    accentVColor: "#4b0100"
+  - type: Icon
+    state: pda-space-prison-worker
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge
+
+# prison Engineer - start
+- type: entity
+  parent: SecurityMetusPDA
   id: PrisonEngineerPDA
+  abstract: true
   name: prison engineer's PDA
   description: Heavy and scorched at the edges, it has absorbed the heat of short circuits and welding seams of the prison block.
   components:
   - type: Pda
     id: PrisonEngineerIDCard
-  - type: Appearance
-    appearanceDataInit:
-      enum.PdaVisuals.PdaType:
-        !type:String
-        pda-space-prison-engineer
   - type: PdaBorderColor
     borderColor: "#6b3000"
     accentVColor: "#615f00"
-  - type: Icon
-    state: pda-space-prison-engineer
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
@@ -235,6 +257,31 @@
       - NewsReaderCartridge
       - AstroNavCartridge
       - NetProbeCartridge
+
+- type: entity
+  parent: PrisonEngineerPDA
+  id: PrisonEngineerPDAscreenZap
+  components:
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-engineer-screen-zap
+  - type: Icon
+    state: pda-space-prison-engineer-screen-zap
+
+- type: entity
+  parent: PrisonEngineerPDA
+  id: PrisonEngineerPDAscreenPoint
+  components:
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-engineer-screen-point
+  - type: Icon
+    state: pda-space-prison-engineer-screen-point
+# prison Engineer - end
 
 - type: entity
   parent: SecurityMetusPDA
@@ -309,56 +356,62 @@
   - type: Icon
     state: pda-space-prison-chef
 
-- type: entity
-  parent: SecurityMetusPDA
-  id: PrisonWorkerPDA
-  name: prison worker's PDA
-  description: Worn and scratched, it bears the marks of hard and monotonous labor.
-  components:
-  - type: Pda
-    id: PrisonWorkerIDCard
-  - type: Appearance
-    appearanceDataInit:
-      enum.PdaVisuals.PdaType:
-        !type:String
-        pda-space-prison-worker
-  - type: PdaBorderColor
-    borderColor: "#6b3000"
-    accentVColor: "#4b0100"
-  - type: Icon
-    state: pda-space-prison-worker
-  - type: CartridgeLoader
-    uiKey: enum.PdaUiKey.Key
-    preinstalled:
-      - CrewManifestCartridge
-      - NotekeeperCartridge
-      - NanoTaskCartridge
-      - NewsReaderCartridge
-      - AstroNavCartridge
-
+# prison Trainee - start
 - type: entity
   parent: SecurityMetusPDA
   id: PrisonTraineePDA
+  abstract: true
   name: prison trainee's PDA
   description: New and clean, still learning the ropes, marked with orange to show the path of growth.
   components:
   - type: Pda
     id: PrisonTraineeIDCard
+  - type: PdaBorderColor
+    borderColor: "#6b3000"
+    accentVColor: "#7c3800"
+
+- type: entity
+  parent: PrisonTraineePDA
+  id: PrisonTraineePDApartial
+  components:
   - type: Appearance
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
         !type:String
-        pda-space-prison-guardian
-  - type: PdaBorderColor
-    borderColor: "#6b3000"
-    accentVColor: "#7c3800"
+        pda-space-prison-trainee-partial
   - type: Icon
-    sprite: _Sunrise/Objects/Devices/pda.rsi
-    state: pda-space-prison-guardian
+    state: pda-space-prison-trainee-partial
 
+- type: entity
+  parent: PrisonTraineePDA
+  id: PrisonTraineePDAadvanced
+  components:
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-trainee-advanced
+  - type: Icon
+    state: pda-space-prison-trainee-advanced
+
+- type: entity
+  parent: PrisonTraineePDA
+  id: PrisonTraineePDAcomplete
+  components:
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-trainee-complete
+  - type: Icon
+    state: pda-space-prison-trainee-complete
+# prison Trainee - end
+
+# planet Prisoner - start
 - type: entity
   parent: BasePDA
   id: PlanetPrisonerPDA
+  abstract: true
   name: prisoner's PDA
   description: Minimal functions. Maximum oversight.
   components:
@@ -366,16 +419,8 @@
     sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
     id: PlanetPrisonerIDCard
-  - type: Appearance
-    appearanceDataInit:
-      enum.PdaVisuals.PdaType:
-        !type:String
-        pda-space-prison-prisoner
   - type: PdaBorderColor
     borderColor: "#3b3b3b"
-  - type: Icon
-    sprite: _Sunrise/Objects/Devices/pda.rsi
-    state: pda-space-prison-prisoner
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
@@ -383,7 +428,56 @@
       - NewsReaderCartridge
       - NavigatorCartridge
 
-# Planet Prison Metus - End
+- type: entity
+  parent: PlanetPrisonerPDA
+  id: PlanetPrisonerPDAscreenH
+  components:
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-prisoner-screen-H
+  - type: Icon
+    state: pda-space-prison-prisoner-screen-H
+
+- type: entity
+  parent: PlanetPrisonerPDA
+  id: PlanetPrisonerPDAscreenHcracked
+  components:
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-prisoner-screen-H-cracked
+  - type: Icon
+    state: pda-space-prison-prisoner-screen-H-cracked
+
+- type: entity
+  parent: PlanetPrisonerPDA
+  id: PlanetPrisonerPDAscreenX
+  components:
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-prisoner-screen-X
+  - type: Icon
+    state: pda-space-prison-prisoner-screen-X
+
+- type: entity
+  parent: PlanetPrisonerPDA
+  id: PlanetPrisonerPDAscreenXcracked
+  components:
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-prisoner-screen-X-cracked
+  - type: Icon
+    state: pda-space-prison-prisoner-screen-X-cracked
+# planet Prisoner - end
+
+### Planet Prison - End ###
 
 - type: entity
   parent: BasePDA
