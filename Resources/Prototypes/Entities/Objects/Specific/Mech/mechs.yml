@@ -156,7 +156,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      500: Critical
+      250: Critical
     showOverlays: false
     allowRevives: true
   - type: HealthExaminable
@@ -166,6 +166,7 @@
       - Piercing
       - Heat
       - Shock
+      - Mangleness # Sunrise-Edit
     locPrefix: mech
   - type: Appearance
   - type: ContainerContainer
@@ -186,7 +187,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 700 # Sunrise-edit
+        damage: 500 # Sunrise-edit
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -582,7 +583,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      400: Critical
+      200: Critical
     showOverlays: false
     allowRevives: true
   # Sunrise-Start
@@ -658,6 +659,10 @@
     - DoorBumpOpener
     - FootstepSound
     - Gygax
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Critical
 
 - type: entity
   id: MechGygaxBattery
@@ -725,6 +730,10 @@
     - DoorBumpOpener
     - FootstepSound
     - Durand
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Critical
 
 - type: entity
   id: MechDurandBattery
@@ -800,6 +809,10 @@
     - Gygax
   - type: AccessReader
     access: [["CentralCommand"]]
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      325: Critical
 
 - type: entity
   id: MechNTGygaxBattery
@@ -882,7 +895,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      550: Critical
+      500: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -969,7 +982,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      600: Critical
+      550: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -1147,7 +1160,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      650: Critical
+      600: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader

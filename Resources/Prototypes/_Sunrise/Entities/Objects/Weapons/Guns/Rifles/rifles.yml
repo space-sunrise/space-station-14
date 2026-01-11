@@ -566,7 +566,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineAsh12
+        startingItem: MagazineAsh12Slug
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/ash12/ash12_mag_in.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/ash12/ash12_mag_out.ogg
         priority: 3

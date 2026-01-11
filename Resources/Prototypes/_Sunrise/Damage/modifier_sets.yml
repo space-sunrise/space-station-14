@@ -176,7 +176,7 @@
     Piercing: 0.7
     Shock: 2
     Heat: 0.8 # Sunrise-edit
-    Structural: 0.55
+    Structural: 0.01
   flatReductions:
     Blunt: 5
     Heat: 3 # Sunrise-edit
@@ -189,7 +189,7 @@
     Piercing: 0.5
     Shock: 3
     Heat: 0.8
-    Structural: 0.45
+    Structural: 0.05
   flatReductions:
     Blunt: 5
     Heat: 6
@@ -204,7 +204,7 @@
     Piercing: 0.3
     Shock: 3.5
     Heat: 0.75
-    Structural: 0.4
+    Structural: 0.1
   flatReductions:
     Blunt: 7
     Heat: 8
@@ -219,7 +219,7 @@
     Piercing: 0.5
     Shock: 3
     Heat: 0.8
-    Structural: 0.45
+    Structural: 0.05
   flatReductions:
     Blunt: 5
     Heat: 5
@@ -234,7 +234,7 @@
     Piercing: 0.35
     Shock: 3.5
     Heat: 0.75
-    Structural: 0.4
+    Structural: 0.1
   flatReductions:
     Blunt: 7
     Heat: 7

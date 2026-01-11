@@ -2011,24 +2011,24 @@
     - sprite: Clothing/Belt/assault.rsi
       state: equipped-BELT
   - type: MovementSpeedModifier
-    baseSprintSpeed: 2.75
+    baseSprintSpeed: 2.5
   - type: BatteryAmmoProvider
     proto: CannonBallMini
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 2
+    autoRechargePauseTime: 3
     autoRechargeRate: 999
   - type: Battery
     maxCharge: 15
     startingCharge: 15
   - type: Gun
-    projectileSpeed: 19
+    projectileSpeed: 18
     showExamineText: false
     fireRate: 6
-    minAngle: 10
-    maxAngle: 50
+    minAngle: 12
+    maxAngle: 55
     angleIncrease: 5
-    angleDecay: 15
+    angleDecay: 13
     selectedMode: FullAuto
     availableModes:
     - FullAuto
