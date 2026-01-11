@@ -138,18 +138,18 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
-  - type: Pda
-    id: PlanetPrisonerIDCard
-  - type: Appearance
-    appearanceDataInit:
-      enum.PdaVisuals.PdaType:
-        !type:String
-        pda-space-prison-prisoner
-  - type: PdaBorderColor
-    borderColor: "#787983"
-  - type: Icon
-    sprite: _Sunrise/Objects/Devices/pda.rsi
-    state: pda-space-prison-prisoner
+  # - type: Pda
+  #   id: PlanetPrisonerIDCard
+  # - type: Appearance
+  #   appearanceDataInit:
+  #     enum.PdaVisuals.PdaType:
+  #       !type:String
+  #       pda-space-prison-prisoner
+  # - type: PdaBorderColor
+  #   borderColor: "#787983"
+  # - type: Icon
+  #   sprite: _Sunrise/Objects/Devices/pda.rsi
+  #   state: pda-space-prison-prisoner
 
 ### Planet Prison - Start ###
 
