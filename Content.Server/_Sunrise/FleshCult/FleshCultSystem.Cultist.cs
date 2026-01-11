@@ -321,7 +321,7 @@ private bool ParasiteComesOut(EntityUid uid, FleshCultistComponent? component = 
 
     public void UpdateCultist(float frameTime)
     {
-        base.Update(frameTime);
+
         // foreach (var cultist in EntityQuery<FleshCultistComponent>())
         var query = EntityQueryEnumerator<FleshCultistComponent>();
 
