@@ -27,3 +27,32 @@
   equipment:
     head: ClothingHeadHatCapPrisonTraineeMetus
 
+# PDA
+
+- type: loadout
+  id: PrisonTrainee-PrisonTraineePDApartial
+  equipment:
+    id: PrisonTraineePDApartial
+
+- type: loadout
+  id: PrisonTrainee-PrisonTraineePDAadvanced
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonTrainee
+      time: 25200 # 7 часов
+  equipment:
+    id: PrisonTraineePDAadvanced
+
+- type: loadout
+  id: PrisonTrainee-PrisonTraineePDAcomplete
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonTrainee
+      time: 54000 # 15 часов
+  equipment:
+    id: PrisonTraineePDAcomplete
+

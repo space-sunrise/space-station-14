@@ -118,4 +118,5 @@ loadout-group-prison-engineer-head = Головной убор
 loadout-group-prison-scientist-head = Головной убор
 loadout-group-prison-worker-head = Головной убор
 loadout-group-prison-trainee-head = Головной убор
+loadout-group-prison-trainee-pda = ПДА
 loadout-group-contributors = Контрибьюторы

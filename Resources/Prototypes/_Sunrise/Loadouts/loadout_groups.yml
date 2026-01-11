@@ -1472,6 +1472,16 @@
   - PrisonTrainee-ClothingHeadHatCapPrisonTraineeMetus
 
 - type: loadoutGroup
+  id: PrisonTraineePDA
+  name: loadout-group-prison-trainee-pda
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonTrainee-PrisonTraineePDApartial
+  - PrisonTrainee-PrisonTraineePDAadvanced
+  - PrisonTrainee-PrisonTraineePDAcomplete
+
+- type: loadoutGroup
   id: Contributors
   name: loadout-group-contributors
   minLimit: 0
