@@ -108,6 +108,7 @@ loadout-group-prison-inspector-glasses = Очки
 loadout-group-prison-doctor-head = Головной убор
 loadout-group-prison-chef-head = Головной убор
 loadout-group-prison-engineer-head = Головной убор
+loadout-group-prison-engineer-pda = PDA
 loadout-group-prison-scientist-head = Головной убор
 loadout-group-prison-worker-head = Головной убор
 loadout-group-prison-trainee-head = Головной убор

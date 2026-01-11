@@ -32,7 +32,6 @@
 - type: startingGear
   id: PrisonEngineerGear
   equipment:
-    id: PrisonEngineerPDAscreenZap
     jumpsuit: UniformPrisonEngineerMetus
     ears: ClothingHeadsetJEngineering
     eyes: ClothingEyesGlassesSunglasses

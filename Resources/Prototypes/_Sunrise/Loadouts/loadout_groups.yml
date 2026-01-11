@@ -1442,6 +1442,15 @@
   - PrisonEngineer-ClothingHeadHatCapPrisonEngineerMetus
 
 - type: loadoutGroup
+  id: PrisonEngineerPDA
+  name: loadout-group-prison-engineer-pda
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonEngineer-PrisonEngineerPDAscreenZap
+  - PrisonEngineer-PrisonEngineerPDAscreenPoint
+
+- type: loadoutGroup
   id: PrisonScientistHead
   name: loadout-group-prison-scientist-head
   minLimit: 1
