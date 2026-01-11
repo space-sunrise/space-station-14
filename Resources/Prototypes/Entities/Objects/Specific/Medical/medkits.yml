@@ -10,7 +10,7 @@
   - type: Storage
     maxItemSize: Small
     grid:
-    - 0,0,2,1
+    - 0,0,5,1 # Sunrise-Edit
   - type: Item
     size: Large
     grid:
