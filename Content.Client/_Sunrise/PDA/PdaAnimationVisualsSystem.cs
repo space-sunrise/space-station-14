@@ -28,10 +28,10 @@ public sealed class PdaAnimationVisualsSystem : EntitySystem
         if (args.Sprite == null)
             return;
 
-        if (!_appearance.TryGetData<bool>(ent.Owner, PdaVisuals.IdCardInserted, out var isCardInserted, args.Component))
+        if (!_appearance.TryGetData<bool>(ent, PdaVisuals.IdCardInserted, out var isCardInserted, args.Component))
             return;
 
-        var sprite = (ent.Owner, args.Sprite);
+        var sprite = new Entity<SpriteComponent>(ent.Owner, args.Sprite);
 
         if (isCardInserted)
         {
@@ -45,33 +45,33 @@ public sealed class PdaAnimationVisualsSystem : EntitySystem
     /// <summary>
     /// Применяет анимированное состояние PDA с включённой анимацией.
     /// </summary>
-    private void ApplyAnimatedState((EntityUid Uid, SpriteComponent Sprite) sprite, PdaAnimationVisualsComponent comp)
+    private void ApplyAnimatedState(Entity<SpriteComponent> sprite, PdaAnimationVisualsComponent comp)
     {
-        _spriteSystem.LayerSetRsiState((sprite.Uid, sprite.Sprite), PdaVisualLayers.Base, comp.AnimatedState);
-        _spriteSystem.LayerSetAutoAnimated((sprite.Uid, sprite.Sprite), PdaVisualLayers.Base, true);
-        _spriteSystem.LayerSetRsiState((sprite.Uid, sprite.Sprite), PdaVisualLayers.IdLight, comp.IdInsertedLayerState);
-        _spriteSystem.LayerSetVisible((sprite.Uid, sprite.Sprite), PdaVisualLayers.IdLight, true);
+        _spriteSystem.LayerSetRsiState(sprite.AsNullable(), PdaVisualLayers.Base, comp.AnimatedState);
+        _spriteSystem.LayerSetAutoAnimated(sprite.AsNullable(), PdaVisualLayers.Base, true);
+        _spriteSystem.LayerSetRsiState(sprite.AsNullable(), PdaVisualLayers.IdLight, comp.IdInsertedLayerState);
+        _spriteSystem.LayerSetVisible(sprite.AsNullable(), PdaVisualLayers.IdLight, true);
     }
 
     /// <summary>
     /// Применяет статичное состояние PDA. Если StaticState не указан,
     /// использует первый кадр анимации с остановленной анимацией.
     /// </summary>
-    private void ApplyStaticState((EntityUid Uid, SpriteComponent Sprite) sprite, PdaAnimationVisualsComponent comp)
+    private void ApplyStaticState(Entity<SpriteComponent> sprite, PdaAnimationVisualsComponent comp)
     {
         ApplyStaticBaseState(sprite, comp);
-        _spriteSystem.LayerSetVisible((sprite.Uid, sprite.Sprite), PdaVisualLayers.IdLight, false);
+        _spriteSystem.LayerSetVisible(sprite.AsNullable(), PdaVisualLayers.IdLight, false);
     }
 
     /// <summary>
     /// Применяет статичный base state. Если StaticState указан - использует его,
     /// иначе использует первый кадр AnimatedState с остановленной анимацией.
     /// </summary>
-    private void ApplyStaticBaseState((EntityUid Uid, SpriteComponent Sprite) sprite, PdaAnimationVisualsComponent comp)
+    private void ApplyStaticBaseState(Entity<SpriteComponent> sprite, PdaAnimationVisualsComponent comp)
     {
         var stateName = GetStaticStateName(comp);
-        _spriteSystem.LayerSetRsiState((sprite.Uid, sprite.Sprite), PdaVisualLayers.Base, stateName);
-        _spriteSystem.LayerSetAutoAnimated((sprite.Uid, sprite.Sprite), PdaVisualLayers.Base, false);
+        _spriteSystem.LayerSetRsiState(sprite.AsNullable(), PdaVisualLayers.Base, stateName);
+        _spriteSystem.LayerSetAutoAnimated(sprite.AsNullable(), PdaVisualLayers.Base, false);
     }
 
     /// <summary>
