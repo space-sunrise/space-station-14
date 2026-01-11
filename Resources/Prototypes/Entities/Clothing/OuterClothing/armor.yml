@@ -48,6 +48,7 @@
     # Sunrise-start
     - NudeBottom
     - ArmorBasic
+    - Vest
   - type: StaminaResistance
     damageCoefficient: 0.9
   - type: Construction
