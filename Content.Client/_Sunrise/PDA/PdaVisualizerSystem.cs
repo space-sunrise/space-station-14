@@ -14,7 +14,7 @@ namespace Content.Client._Sunrise.PDA;
 public sealed class SunrisePdaVisualizerSystem : EntitySystem
 {
     [Dependency] private readonly SpriteSystem _spriteSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {
@@ -23,34 +23,33 @@ public sealed class SunrisePdaVisualizerSystem : EntitySystem
         SubscribeLocalEvent<PdaAnimationVisualsComponent, AppearanceChangeEvent>(OnAppearanceChange, after: new[] { typeof(PdaVisualizerSystem) });
     }
 
-    private void OnAppearanceChange(EntityUid uid, PdaAnimationVisualsComponent comp, ref AppearanceChangeEvent args)
+    private void OnAppearanceChange(Entity<PdaAnimationVisualsComponent> ent, ref AppearanceChangeEvent args)
     {
-        if (args.Sprite == null || comp.AnimationConfig == null)
+        if (args.Sprite == null)
             return;
 
-        if (!_appearanceSystem.TryGetData<bool>(uid, PdaVisuals.IdCardInserted, out var isCardInserted, args.Component))
+        if (!_appearance.TryGetData<bool>(ent.Owner, PdaVisuals.IdCardInserted, out var isCardInserted, args.Component))
             return;
 
-        var config = comp.AnimationConfig;
-        var sprite = (uid, args.Sprite);
+        var sprite = (ent.Owner, args.Sprite);
 
         if (isCardInserted)
         {
-            ApplyAnimatedState(sprite, config);
+            ApplyAnimatedState(sprite, ent.Comp);
             return;
         }
 
-        ApplyStaticState(sprite, config);
+        ApplyStaticState(sprite, ent.Comp);
     }
 
     /// <summary>
     /// Применяет анимированное состояние PDA с включённой анимацией.
     /// </summary>
-    private void ApplyAnimatedState((EntityUid Uid, SpriteComponent Sprite) sprite, PdaAnimationConfig config)
+    private void ApplyAnimatedState((EntityUid Uid, SpriteComponent Sprite) sprite, PdaAnimationVisualsComponent comp)
     {
-        _spriteSystem.LayerSetRsiState((sprite.Uid, sprite.Sprite), PdaVisualLayers.Base, config.AnimatedState);
+        _spriteSystem.LayerSetRsiState((sprite.Uid, sprite.Sprite), PdaVisualLayers.Base, comp.AnimatedState);
         _spriteSystem.LayerSetAutoAnimated((sprite.Uid, sprite.Sprite), PdaVisualLayers.Base, true);
-        _spriteSystem.LayerSetRsiState((sprite.Uid, sprite.Sprite), PdaVisualLayers.IdLight, config.IdInsertedLayerState);
+        _spriteSystem.LayerSetRsiState((sprite.Uid, sprite.Sprite), PdaVisualLayers.IdLight, comp.IdInsertedLayerState);
         _spriteSystem.LayerSetVisible((sprite.Uid, sprite.Sprite), PdaVisualLayers.IdLight, true);
     }
 
@@ -58,9 +57,9 @@ public sealed class SunrisePdaVisualizerSystem : EntitySystem
     /// Применяет статичное состояние PDA. Если StaticState не указан,
     /// использует первый кадр анимации с остановленной анимацией.
     /// </summary>
-    private void ApplyStaticState((EntityUid Uid, SpriteComponent Sprite) sprite, PdaAnimationConfig config)
+    private void ApplyStaticState((EntityUid Uid, SpriteComponent Sprite) sprite, PdaAnimationVisualsComponent comp)
     {
-        ApplyStaticBaseState(sprite, config);
+        ApplyStaticBaseState(sprite, comp);
         _spriteSystem.LayerSetVisible((sprite.Uid, sprite.Sprite), PdaVisualLayers.IdLight, false);
     }
 
@@ -68,9 +67,9 @@ public sealed class SunrisePdaVisualizerSystem : EntitySystem
     /// Применяет статичный base state. Если StaticState указан - использует его,
     /// иначе использует первый кадр AnimatedState с остановленной анимацией.
     /// </summary>
-    private void ApplyStaticBaseState((EntityUid Uid, SpriteComponent Sprite) sprite, PdaAnimationConfig config)
+    private void ApplyStaticBaseState((EntityUid Uid, SpriteComponent Sprite) sprite, PdaAnimationVisualsComponent comp)
     {
-        var stateName = GetStaticStateName(config);
+        var stateName = GetStaticStateName(comp);
         _spriteSystem.LayerSetRsiState((sprite.Uid, sprite.Sprite), PdaVisualLayers.Base, stateName);
         _spriteSystem.LayerSetAutoAnimated((sprite.Uid, sprite.Sprite), PdaVisualLayers.Base, false);
     }
@@ -79,8 +78,8 @@ public sealed class SunrisePdaVisualizerSystem : EntitySystem
     /// Возвращает имя state для статичного отображения.
     /// Если StaticState не указан, возвращает AnimatedState для использования первого кадра.
     /// </summary>
-    private static string GetStaticStateName(PdaAnimationConfig config)
+    private static string GetStaticStateName(PdaAnimationVisualsComponent comp)
     {
-        return config.StaticState ?? config.AnimatedState;
+        return comp.StaticState ?? comp.AnimatedState;
     }
 }
