@@ -369,6 +369,7 @@
   groups:
   - TrinketsPlanetPrison
   - PlanetPrisonerLoot
+  - PlanetPrisonerPDA
   - PrisonerJumpsuit
   #- GroupSpeciesBreathTool
   - Bra

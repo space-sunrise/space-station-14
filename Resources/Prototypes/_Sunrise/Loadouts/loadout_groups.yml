@@ -1376,6 +1376,17 @@
   loadouts:
   - PresentRandomPrisoner
 
+- type: loadoutGroup
+  id: PlanetPrisonerPDA
+  name: loadout-group-planet-prisoner-pda
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PlanetPrisoner-PlanetPrisonerPDAscreenH
+  - PlanetPrisoner-PlanetPrisonerPDAscreenHcracked
+  - PlanetPrisoner-PlanetPrisonerPDAscreenX
+  - PlanetPrisoner-PlanetPrisonerPDAscreenXcracked
+
 # Planet Prison - General Security
 
 - type: loadoutGroup
