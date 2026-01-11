@@ -11,7 +11,7 @@ namespace Content.Client._Sunrise.PDA;
 /// в зависимости от наличия ID карты.
 /// Конфигурация задаётся через компонент <see cref="PdaAnimationVisualsComponent"/> в прототипах.
 /// </summary>
-public sealed class SunrisePdaVisualizerSystem : EntitySystem
+public sealed class PdaAnimationVisualsSystem : EntitySystem
 {
     [Dependency] private readonly SpriteSystem _spriteSystem = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
