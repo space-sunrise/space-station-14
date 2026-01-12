@@ -1,6 +1,7 @@
 using Robust.Shared.Prototypes;
+using Content.Server.Spawners.Components;
 
-namespace Content.Server.Spawners.Components;
+namespace Content.Server._Sunrise.Spawners.Components;
 
 /// <summary>
 /// Компонент, помечающий прототип точки спавна как принадлежащий к Планетарной Тюрьме.

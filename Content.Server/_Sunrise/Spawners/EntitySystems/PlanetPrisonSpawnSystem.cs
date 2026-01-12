@@ -1,22 +1,23 @@
 using Content.Server.GameTicking;
 using Content.Server.Spawners.Components;
+using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Systems;
+using Content.Server._Sunrise.Spawners.Components;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Map;
 
-namespace Content.Server.Spawners.EntitySystems;
+namespace Content.Server._Sunrise.Spawners.EntitySystems;
 
 /// <summary>
 /// Обрабатывает спавн для ролей Планетарной Тюрьмы, имеющих особое поведение спавна.
 /// Эта система запускается перед стандартной SpawnPointSystem, чтобы переопределить
-/// логику спавна по умолчанию для этих специфических ролей.
+/// логику спавна по умолчанию для этих ролей.
 /// </summary>
 public sealed class PlanetPrisonSpawnSystem : EntitySystem
 {
-    [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
@@ -83,11 +84,17 @@ public sealed class PlanetPrisonSpawnSystem : EntitySystem
 
     private List<EntityCoordinates> FindPlanetPrisonSpawnPositions(PlayerSpawningEvent args)
     {
-        // Сначала пытаемся найти специфические спавнеры Планетарной Тюрьмы для желаемого типа спавна.
+        // Если DesiredSpawnPointType равно Unset, это означает, что стандартная SpawnPointSystem
+        // попытается найти спавнер самостоятельно. В этом случае мы не должны мешать ей,
+        // поэтому не будем пытаться найти спавнеры Планетарной Тюрьмы.
+        if (args.DesiredSpawnPointType == SpawnPointType.Unset)
+            return new();
+
+        // Сначала пытаемся найти спавнеры Планетарной Тюрьмы для желаемого типа спавна.
         var positions = GetValidPrisonSpawners(args, args.DesiredSpawnPointType);
 
         // Запасной вариант: если для позднего присоединения (DesiredSpawnPointType == LateJoin)
-        // не найдено специфических спавнеров Планетарной Тюрьмы, предназначенных именно для позднего присоединения,
+        // не найдено спавнеров Планетарной Тюрьмы, предназначенных именно для позднего присоединения,
         // то в качестве отката пытаемся найти обычные спавнеры типа "Job" (предназначенные для старта раунда)
         // для этой же роли. Это гарантирует, что игроки Планетарной Тюрьмы всегда смогут заспавниться,
         // даже если специализированные LateJoin-спавнеры отсутствуют.
@@ -109,15 +116,15 @@ public sealed class PlanetPrisonSpawnSystem : EntitySystem
 
         while (query.MoveNext(out var uid, out var spawnPoint, out var prisonComp, out var xform))
         {
-        // Пропускаем спавнеры, находящиеся не на той станции.
-        if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
-            continue;
+            // Пропускаем спавнеры, находящиеся не на той станции.
+            if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
+                continue;
 
-        // Проверяем, подходит ли этот спавнер для текущей работы и желаемого типа спавна.
-        if (IsValidPrisonSpawnerInternal(spawnPoint, prisonComp, args.Job, targetSpawnPointType))
-        {
-            validPositions.Add(xform.Coordinates);
-        }
+            // Проверяем, подходит ли этот спавнер для текущей работы и желаемого типа спавна.
+            if (IsValidPrisonSpawnerInternal(spawnPoint, prisonComp, args.Job, targetSpawnPointType))
+            {
+                validPositions.Add(xform.Coordinates);
+            }
         }
 
         return validPositions;
