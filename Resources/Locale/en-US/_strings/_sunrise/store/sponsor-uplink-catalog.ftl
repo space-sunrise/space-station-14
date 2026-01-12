@@ -258,3 +258,14 @@ uplink-sunrise-mob-mothroach-name = Mothroach
 uplink-sunrise-player-borg-generic-name = Borg
 uplink-sunrise-boombox-name = Boombox
 uplink-sunrise-tape-player-name = Tape player
+
+## Paint
+
+uplink-sunrise-spray-paint-desc = A tin of spray paint.
+uplink-sunrise-spray-paint-blue-name = Spray paint (blue)
+uplink-sunrise-spray-paint-black-name = Spray paint (black)
+uplink-sunrise-spray-paint-red-name = Spray paint (red)
+uplink-sunrise-spray-paint-green-name = Spray paint (green)
+uplink-sunrise-spray-paint-orange-name = Spray paint (orange)
+uplink-sunrise-spray-paint-purple-name = Spray paint (purple)
+uplink-sunrise-spray-paint-white-name = Spray paint (white)

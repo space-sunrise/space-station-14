@@ -2089,6 +2089,8 @@
 
 - type: listing
   id: UplinkSunriseSprayPaint
+  name: uplink-sunrise-spray-paint-blue-name
+  description: uplink-sunrise-spray-paint-desc
   productEntity: SprayPaintBlue
   cost:
     Suntick: 10
@@ -2100,6 +2102,8 @@
 
 - type: listing
   id: UplinkSunriseSprayPaintBlack
+  name: uplink-sunrise-spray-paint-black-name
+  description: uplink-sunrise-spray-paint-desc
   productEntity: SprayPaintBlack
   cost:
     Suntick: 20
@@ -2111,6 +2115,8 @@
 
 - type: listing
   id: UplinkSunriseSprayPaintRed
+  name: uplink-sunrise-spray-paint-red-name
+  description: uplink-sunrise-spray-paint-desc
   productEntity: SprayPaintRed
   cost:
     Suntick: 10
@@ -2122,6 +2128,8 @@
 
 - type: listing
   id: UplinkSunriseSprayPaintGreen
+  name: uplink-sunrise-spray-paint-green-name
+  description: uplink-sunrise-spray-paint-desc
   productEntity: SprayPaintGreen
   cost:
     Suntick: 10
@@ -2133,6 +2141,8 @@
 
 - type: listing
   id: UplinkSunriseSprayPaintOrange
+  name: uplink-sunrise-spray-paint-orange-name
+  description: uplink-sunrise-spray-paint-desc
   productEntity: SprayPaintOrange
   cost:
     Suntick: 10
@@ -2144,6 +2154,8 @@
 
 - type: listing
   id: UplinkSunriseSprayPaintPurple
+  name: uplink-sunrise-spray-paint-purple-name
+  description: uplink-sunrise-spray-paint-desc
   productEntity: SprayPaintPurple
   cost:
     Suntick: 10
@@ -2155,6 +2167,8 @@
 
 - type: listing
   id: UplinkSunriseSprayPaintWhite
+  name: uplink-sunrise-spray-paint-white-name
+  description: uplink-sunrise-spray-paint-desc
   productEntity: SprayPaintWhite
   cost:
     Suntick: 10
