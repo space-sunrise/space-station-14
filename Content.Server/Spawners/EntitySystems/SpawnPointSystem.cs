@@ -33,37 +33,52 @@ public sealed class SpawnPointSystem : EntitySystem
             if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                 continue;
 
-            // Sunrise-Start
-            // Determine which spawn point type we need
-            var desiredType = args.DesiredSpawnPointType != SpawnPointType.Unset
-                ? args.DesiredSpawnPointType
-                : SpawnPointType.Job;
-
-            // For LateJoin in round, use Job spawn points
-            var isLateJoinInRound = desiredType == SpawnPointType.LateJoin &&
-                                    _gameTicker.RunLevel == GameRunLevel.InRound;
-
-            // Check if spawn point type matches
-            var typeMatches = spawnPoint.SpawnType == desiredType ||
-                             (isLateJoinInRound && spawnPoint.SpawnType == SpawnPointType.Job);
-
-            if (!typeMatches)
-                continue;
-
-            // For Job spawn points, check job match
-            if (spawnPoint.SpawnType == SpawnPointType.Job || isLateJoinInRound)
+            // Delta-V: Allow setting a desired SpawnPointType
+            if (args.DesiredSpawnPointType != SpawnPointType.Unset)
             {
-                var jobMatches = args.Job == null ||
-                                spawnPoint.Job == null ||
-                                spawnPoint.Job == args.Job;
+                var isMatchingJob = spawnPoint.SpawnType == SpawnPointType.Job &&
+                                    (args.Job == null || spawnPoint.Job == args.Job);
 
-                if (!jobMatches)
-                    continue;
+                switch (args.DesiredSpawnPointType)
+                {
+                    case SpawnPointType.Job when isMatchingJob:
+                    case SpawnPointType.LateJoin when spawnPoint.SpawnType == SpawnPointType.LateJoin:
+                    case SpawnPointType.Observer when spawnPoint.SpawnType == SpawnPointType.Observer:
+                        possiblePositions.Add(xform.Coordinates);
+                        break;
+                    default:
+                        continue;
+                }
             }
 
-            possiblePositions.Add(xform.Coordinates);
-            // Sunrise-End
+            if (_gameTicker.RunLevel == GameRunLevel.InRound &&
+                spawnPoint.SpawnType == SpawnPointType.LateJoin &&
+                args.DesiredSpawnPointType != SpawnPointType.Job)
+            {
+                possiblePositions.Add(xform.Coordinates);
+            }
+
+            if ((_gameTicker.RunLevel != GameRunLevel.InRound || args.DesiredSpawnPointType == SpawnPointType.Job) &&
+                spawnPoint.SpawnType == SpawnPointType.Job &&
+                (args.Job == null || spawnPoint.Job == args.Job))
+            {
+                possiblePositions.Add(xform.Coordinates);
+            }
         }
+
+        // Sunrise-Start
+        if (possiblePositions.Count == 0)
+        {
+            var points3 = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+            while (points3.MoveNext(out var uid, out var spawnPoint, out var xform))
+            {
+                if (spawnPoint.SpawnType != SpawnPointType.LateJoin)
+                    continue;
+                if (_stationSystem.GetOwningStation(uid, xform) == args.Station)
+                    possiblePositions.Add(xform.Coordinates);
+            }
+        }
+        // Sunrise-End
 
         if (possiblePositions.Count == 0)
         {
@@ -71,14 +86,13 @@ public sealed class SpawnPointSystem : EntitySystem
             // TODO: Refactor gameticker spawning code so we don't have to do this!
             var points2 = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
 
-            if (points2.MoveNext(out _, out var xform))
+            if (points2.MoveNext(out var spawnPoint, out var xform))
             {
-                Log.Error($"Unable to pick a valid spawn point, picking random spawner as a backup.\nRunLevel: {_gameTicker.RunLevel} Station: {ToPrettyString(args.Station)} Job: {args.Job}");
                 possiblePositions.Add(xform.Coordinates);
             }
             else
             {
-                Log.Error($"No spawn points were available!\nRunLevel: {_gameTicker.RunLevel} Station: {ToPrettyString(args.Station)} Job: {args.Job}");
+                Log.Error("No spawn points were available!");
                 return;
             }
         }
@@ -92,4 +106,3 @@ public sealed class SpawnPointSystem : EntitySystem
             args.Station);
     }
 }
-
