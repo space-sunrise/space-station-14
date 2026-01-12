@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Shared._Sunrise.SunriseCCVars;
@@ -28,7 +27,7 @@ public sealed partial class NpcSleepSystem : EntitySystem
     public float DisableDistance  = 20f;
 
     private TimeSpan _nextCheckTime = TimeSpan.Zero;
-    private TimeSpan _checkCooldown = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan CheckCooldown = TimeSpan.FromSeconds(5);
 
     private EntityQuery<ActorComponent> _actorQuery;
     private EntityQuery<ActiveNPCComponent> _activeQuery;
@@ -56,10 +55,10 @@ public sealed partial class NpcSleepSystem : EntitySystem
         if (!Enabled || !DisableWithoutPlayers)
             return;
 
-        if (_nextCheckTime <= _timing.CurTime)
+        if (_timing.CurTime < _nextCheckTime)
             return;
 
-        _nextCheckTime = _timing.CurTime + _checkCooldown;
+        _nextCheckTime = _timing.CurTime + CheckCooldown;
 
         var query = EntityQueryEnumerator<HTNComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var htn, out var xform))
@@ -94,6 +93,15 @@ public sealed partial class NpcSleepSystem : EntitySystem
             _players,
             LookupFlags.Dynamic | LookupFlags.Approximate);
 
-        return _players.Any(e => !_ghostQuery.HasComp(e));
+        foreach (var ent in _players)
+        {
+            if (_ghostQuery.HasComp(ent))
+                continue;
+
+            // Достаточно одного подходящего игрока
+            return true;
+        }
+
+        return false;
     }
 }
