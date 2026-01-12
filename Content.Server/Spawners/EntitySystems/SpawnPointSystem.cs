@@ -44,10 +44,24 @@ public sealed class SpawnPointSystem : EntitySystem
         var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
         var possiblePositions = new List<EntityCoordinates>();
 
+        // Sunrise-Start
+        // Cache collections for fallback optimization - collect all spawner positions in one pass
+        var jobPositionsForRole = new List<EntityCoordinates>();
+        var allLateJoinPositions = new List<EntityCoordinates>();
+        // Sunrise-End
+
         while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
         {
             if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                 continue;
+
+            // Sunrise-Start
+            // Collect positions for fallback use (optimization: single pass instead of multiple queries)
+            if (spawnPoint.SpawnType == SpawnPointType.Job && spawnPoint.Job == args.Job)
+                jobPositionsForRole.Add(xform.Coordinates);
+            if (spawnPoint.SpawnType == SpawnPointType.LateJoin)
+                allLateJoinPositions.Add(xform.Coordinates);
+            // Sunrise-End
 
             // Delta-V: Allow setting a desired SpawnPointType
             if (args.DesiredSpawnPointType != SpawnPointType.Unset)
@@ -86,34 +100,16 @@ public sealed class SpawnPointSystem : EntitySystem
         }
 
         // Sunrise-Start
-        // Fallback 1: If no positions found, try to find Job spawners for this specific role
+        // Fallback 1: Use pre-collected job spawners for this specific role
         if (possiblePositions.Count == 0 && args.Job != null)
         {
-            var jobPoints = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-            while (jobPoints.MoveNext(out var uid, out var spawnPoint, out var xform))
-            {
-                if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
-                    continue;
-                if (spawnPoint.SpawnType == SpawnPointType.Job && spawnPoint.Job == args.Job)
-                {
-                    possiblePositions.Add(xform.Coordinates);
-                }
-            }
+            possiblePositions.AddRange(jobPositionsForRole);
         }
 
-        // Fallback 2: If still no positions, use any LateJoin spawner as last resort
+        // Fallback 2: Use pre-collected late join spawners as last resort
         if (possiblePositions.Count == 0)
         {
-            var fallbackPoints = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-            while (fallbackPoints.MoveNext(out var uid, out var spawnPoint, out var xform))
-            {
-                if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
-                    continue;
-                if (spawnPoint.SpawnType == SpawnPointType.LateJoin)
-                {
-                    possiblePositions.Add(xform.Coordinates);
-                }
-            }
+            possiblePositions.AddRange(allLateJoinPositions);
         }
         // Sunrise-End
 
