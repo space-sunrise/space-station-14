@@ -94,7 +94,8 @@ public sealed partial class FleshCultSystem : EntitySystem
         "Vox",
         "HumanoidXeno",
         "Predator",
-        "Tajaran"
+        "Tajaran",
+        "Milira"
     ];
 
     public override void Initialize()
@@ -119,3 +120,4 @@ public sealed partial class FleshCultSystem : EntitySystem
         UpdateHeart(frameTime);
     }
 }
+

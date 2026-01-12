@@ -145,4 +145,3 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
         _actions.SetToggled(ent.Comp.ActionEntity.Value, ent.Comp.WingsOpened);
     }
 }
-
