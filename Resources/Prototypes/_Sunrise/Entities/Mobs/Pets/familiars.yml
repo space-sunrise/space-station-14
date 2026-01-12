@@ -67,7 +67,7 @@
     tags:
     - Service
   - type: MindContainer
-    showExamineInfo: true
+  - type: MindExaminable
   - type: NpcFactionMember
     factions:
     - PetsNT
