@@ -10,7 +10,7 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 18000 # 5 hrs
-  weight: 10
+  weight: 9
   startingGear: HeadOfPrisonGear
   icon: "JobIconHeadOfPrison"
   overrideConsoleVisibility: false
