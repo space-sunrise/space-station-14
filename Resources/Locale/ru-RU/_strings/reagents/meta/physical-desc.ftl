@@ -101,5 +101,6 @@ reagent-physical-desc-celliminol = сильно отдающее кровью
 reagent-physical-desc-h-32 = сильно пахнущее радиоактивными ожогами
 reagent-physical-desc-antidon = чистое
 reagent-physical-desc-brutedon = целебное
+reagent-physical-desc-nutricryokomp = соевое, и немного шепучее
 reagent-physical-desc-blessing = благословение Вакха
 reagent-physical-desc-pulverizedlantern = измельчённый фонарь
