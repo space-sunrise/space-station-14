@@ -10,7 +10,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
-namespace Content.Server._Sunrise.NPCSleep;
+namespace Content.Server._Sunrise.NPC;
 
 public sealed partial class NpcSleepSystem : EntitySystem
 {
