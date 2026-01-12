@@ -61,9 +61,9 @@ public sealed class SpawnPointSystem : EntitySystem
                     case SpawnPointType.LateJoin when spawnPoint.SpawnType == SpawnPointType.LateJoin:
                     case SpawnPointType.Observer when spawnPoint.SpawnType == SpawnPointType.Observer:
                         possiblePositions.Add(xform.Coordinates);
-                        break;
+                        continue; // Sunrise added edit: Skip remaining checks to avoid duplicates
                     default:
-                        continue;
+                        break; // Sunrise added edit: Continue to check other conditions
                 }
             }
 
