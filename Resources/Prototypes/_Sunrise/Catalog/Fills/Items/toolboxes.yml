@@ -41,3 +41,14 @@
         - id: DoubleEmergencyNitrogenTankFilled
   - type: StaticPrice
     price: 1500
+
+- type: entity
+  id: ToolboxElectricalTurretPirateFilled
+  name: electrical toolbox
+  suffix: Pirate, Turret, Filled
+  parent: ToolboxElectricalTurretPirate
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: ToolboxElectricalEntityTable

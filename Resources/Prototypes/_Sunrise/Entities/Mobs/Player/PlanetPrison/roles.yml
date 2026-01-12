@@ -77,3 +77,13 @@
       state: planetprisoner
     - type: RandomHumanoidSpawner
       settings: PlanetPrisoner
+
+- type: entity
+  id: RandomHumanoidPlanetPrisonTrainee
+  name: prison trainee ghost role
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Markers/jobs.rsi
+      state: prisonworker
+    - type: RandomHumanoidSpawner
+      settings: PlanetPrisonTrainee

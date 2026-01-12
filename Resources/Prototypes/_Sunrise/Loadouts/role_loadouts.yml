@@ -339,6 +339,18 @@
   - Contributors
 
 - type: roleLoadout
+  id: JobPrisonTrainee
+  groups:
+  - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
+  #- Trinkets
+  - PrisonTraineeHead
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
   id: JobPrisonChef
   groups:
   - TrinketsPlanetPrison

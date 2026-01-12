@@ -401,6 +401,53 @@
         color: "#df0400"
 
 - type: entity
+  parent: ClothingHeadHatBeretPrisonGuard
+  id: ClothingHeadHatBeretPrisonTraineeMetus
+  name: prison trainee beret
+  suffix: Metus
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ff8c00"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#ff8c00"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#ff8c00"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#ff8c00"
+
+- type: entity
+  parent: ClothingHeadPrisonGuard
+  id: ClothingHeadHatCapPrisonTraineeMetus
+  name: prison trainee hat
+  suffix: Metus
+  description: Stylish orange prison trainee hat.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ff8c00"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#ff8c00"
+
+- type: entity
   parent: ClothingHeadBase
   id: ClothingHeadCapPrisonGuard
   name: prison guard's cap
@@ -560,6 +607,35 @@
       - state: equipped-HELMET
       - state: overlay-equipped
         color: "#df0400"
+
+- type: entity
+  parent: ClothingHeadCapPrisonGuard
+  id: ClothingHeadCapPrisonTraineeMetus
+  name: prison trainee cap
+  description: Simple and clean, but new, a symbol for those who are just starting their path in the prison system.
+  suffix: Metus
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ff8c00"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#ff8c00"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#ff8c00"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#ff8c00"
 
 - type: entity
   parent: ClothingHeadBase

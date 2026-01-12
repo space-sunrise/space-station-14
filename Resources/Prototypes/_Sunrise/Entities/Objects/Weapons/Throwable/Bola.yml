@@ -15,6 +15,7 @@
   - type: Tag
     tags:
     - BolaSecurity
+    - SecBeltEquip
 
 - type: entity
   name: syndicate bola
@@ -31,3 +32,7 @@
     walkSpeed: 0.60
     sprintSpeed: 0.60
     staminaDamage: 30
+  - type: Tag
+    tags:
+    - BolaSecurity
+    - SecBeltEquip

@@ -160,13 +160,25 @@
   id: ClothingBeltPrisonWorkerMetus
   parent: ClothingBeltPrisonGuardianFilledMetus
   name: prison worker belt
-  description: Heavy and coarse, with traces of impacts and scorched leather, carrying everything gathered from work across the prison’s many parts.
+  description: Heavy and coarse, with traces of impacts and scorched leather, carrying everything gathered from work across the prison's many parts.
   components:
   - type: Sprite
     layers:
     - state: icon
     - state: overlay-icon
       color: "#df0400"
+
+- type: entity
+  id: ClothingBeltPrisonTraineeMetus
+  parent: ClothingBeltPrisonGuardianFilledMetus
+  name: prison trainee belt
+  description: Fresh and new, still learning to carry the weight of responsibility, marked with orange to show the path ahead.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ff8c00"
 
 - type: entity
   parent: ClothingBeltStorageBase
