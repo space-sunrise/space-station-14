@@ -4,6 +4,7 @@ using Content.Server.Station.Systems;
 using Content.Server._Sunrise.Spawners.Components;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Map;
 
@@ -23,7 +24,6 @@ public sealed class PlanetPrisonSpawnSystem : EntitySystem
     [Dependency] private readonly SharedJobSystem _jobSystem = default!;
 
     private const string PlanetPrisonDepartmentId = "PlanetPrison";
-    private ProtoId<DepartmentPrototype> _planetPrisonDepartmentId = PlanetPrisonDepartmentId;
 
     public override void Initialize()
     {
