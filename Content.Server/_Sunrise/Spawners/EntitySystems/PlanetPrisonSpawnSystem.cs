@@ -1,11 +1,9 @@
-using Content.Server.GameTicking;
 using Content.Server.Spawners.Components;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Server._Sunrise.Spawners.Components;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Map;
 
@@ -24,7 +22,8 @@ public sealed class PlanetPrisonSpawnSystem : EntitySystem
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
     [Dependency] private readonly SharedJobSystem _jobSystem = default!;
 
-    private ProtoId<DepartmentPrototype> _planetPrisonDepartmentId = "PlanetPrison";
+    private const string PlanetPrisonDepartmentId = "PlanetPrison";
+    private ProtoId<DepartmentPrototype> _planetPrisonDepartmentId = PlanetPrisonDepartmentId;
 
     public override void Initialize()
     {
@@ -79,7 +78,7 @@ public sealed class PlanetPrisonSpawnSystem : EntitySystem
             return false;
 
         // Проверяем, принадлежит ли работа к департаменту "PlanetPrison".
-        return departmentPrototype.ID == _planetPrisonDepartmentId;
+        return departmentPrototype.ID == PlanetPrisonDepartmentId;
     }
 
     private List<EntityCoordinates> FindPlanetPrisonSpawnPositions(PlayerSpawningEvent args)
@@ -130,10 +129,10 @@ public sealed class PlanetPrisonSpawnSystem : EntitySystem
         return validPositions;
     }
 
-/// <summary>
-/// Внутренний вспомогательный метод для проверки того, является ли спавнер Планетарной Тюрьмы действительным.
-/// </summary>
-private bool IsValidPrisonSpawnerInternal(SpawnPointComponent spawnPoint, PlanetPrisonSpawnComponent prisonComp, ProtoId<JobPrototype>? job, SpawnPointType targetSpawnPointType)
+    /// <summary>
+    /// Внутренний вспомогательный метод для проверки того, является ли спавнер Планетарной Тюрьмы действительным.
+    /// </summary>
+    private bool IsValidPrisonSpawnerInternal(SpawnPointComponent spawnPoint, PlanetPrisonSpawnComponent prisonComp, ProtoId<JobPrototype>? job, SpawnPointType targetSpawnPointType)
     {
         // Проверяем, поддерживает ли спавнер требуемый тип спавна.
         if (spawnPoint.SpawnType != targetSpawnPointType)
