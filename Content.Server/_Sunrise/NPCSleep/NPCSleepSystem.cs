@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Shared._Sunrise.SunriseCCVars;
@@ -5,38 +6,47 @@ using Content.Shared.CCVar;
 using Content.Shared.Ghost;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC;
-using Robust.Server.Player;
+using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.NPCSleep;
 
-public sealed partial class NPCSleepSystem : EntitySystem
+public sealed partial class NpcSleepSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IConfigurationManager _configuration = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly NPCSystem _npcSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly NPCSystem _npc = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
-    public bool Enabled { get; set; } = true;
+    public bool Enabled = true;
+    public bool DisableWithoutPlayers = true;
 
-    public bool DisableWithoutPlayers { get; set; } = true;
+    public float DisableDistance  = 20f;
 
-    public float DisableDistance { get; set; } = 20f;
+    private TimeSpan _nextCheckTime = TimeSpan.Zero;
+    private TimeSpan _checkCooldown = TimeSpan.FromSeconds(5);
 
-    public TimeSpan NextTick = TimeSpan.Zero;
-    public TimeSpan RefreshCooldown = TimeSpan.FromSeconds(5);
+    private EntityQuery<ActorComponent> _actorQuery;
+    private EntityQuery<ActiveNPCComponent> _activeQuery;
+    private EntityQuery<GhostComponent> _ghostQuery;
+
+    private readonly HashSet<Entity<ActorComponent>> _players = [];
 
     public override void Initialize()
     {
         base.Initialize();
 
-        Subs.CVar(_configurationManager, CCVars.NPCEnabled, value => Enabled = value, true);
-        Subs.CVar(_configurationManager, SunriseCCVars.NPCDisableWithoutPlayers, obj => DisableWithoutPlayers = obj, true);
-        Subs.CVar(_configurationManager, SunriseCCVars.NPCDisableDistance, obj => DisableDistance = obj, true);
+        Subs.CVar(_configuration, CCVars.NPCEnabled, value => Enabled = value, true);
+        Subs.CVar(_configuration, SunriseCCVars.NpcDisableWithoutPlayers, obj => DisableWithoutPlayers = obj, true);
+        Subs.CVar(_configuration, SunriseCCVars.NpcDisableDistance, obj => DisableDistance = obj, true);
+
+        _actorQuery = GetEntityQuery<ActorComponent>();
+        _activeQuery = GetEntityQuery<ActiveNPCComponent>();
+        _ghostQuery = GetEntityQuery<GhostComponent>();
     }
 
     public override void Update(float frameTime)
@@ -46,66 +56,44 @@ public sealed partial class NPCSleepSystem : EntitySystem
         if (!Enabled || !DisableWithoutPlayers)
             return;
 
-        if (NextTick > _timing.CurTime)
+        if (_nextCheckTime <= _timing.CurTime)
             return;
 
-        NextTick += RefreshCooldown;
+        _nextCheckTime = _timing.CurTime + _checkCooldown;
 
-        var query = EntityQueryEnumerator<HTNComponent>();
-
-        while(query.MoveNext(out var uid, out var htn))
+        var query = EntityQueryEnumerator<HTNComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var htn, out var xform))
         {
-            if (!_mobStateSystem.IsAlive(uid))
+            if (!_mobState.IsAlive(uid))
                 continue;
 
-            if (HasComp<ActorComponent>(uid))
+            if (_actorQuery.HasComp(uid))
                 continue;
 
-            if (AllowNpc(uid))
+            var isActive = _activeQuery.HasComponent(uid);
+            if (AllowNpc(uid, xform))
             {
-                if (!HasComp<ActiveNPCComponent>(uid))
-                {
-                    _npcSystem.WakeNPC(uid, htn);
-                }
+                if (!isActive)
+                    _npc.WakeNPC(uid, htn);
             }
             else
             {
-                if (HasComp<ActiveNPCComponent>(uid))
-                {
-                    _npcSystem.SleepNPC(uid, htn);
-                }
+                if (isActive)
+                    _npc.SleepNPC(uid, htn);
             }
         }
     }
 
-    private bool AllowNpc(EntityUid uid)
+    private bool AllowNpc(EntityUid uid, TransformComponent xform)
     {
-        var xform = Transform(uid);
-        var npcCoords = xform.Coordinates.ToMap(EntityManager, _transform);
-        var npcMapId = xform.MapID;
+        var npcCoords = _transform.GetMapCoordinates(uid, xform);
 
-        foreach (var playerSession in _playerManager.SessionsDict)
-        {
-            if (playerSession.Value.AttachedEntity == null)
-                continue;
+        _players.Clear();
+        _lookup.GetEntitiesInRange(npcCoords,
+            DisableDistance,
+            _players,
+            LookupFlags.Dynamic | LookupFlags.Approximate);
 
-            if (HasComp<GhostComponent>(playerSession.Value.AttachedEntity))
-                continue;
-
-            var xformPlayer = Transform(playerSession.Value.AttachedEntity.Value);
-            var playerMapId = xformPlayer.MapID;
-
-            if (npcMapId != playerMapId)
-                continue;
-
-            var playerCoords = xformPlayer.Coordinates.ToMap(EntityManager, _transform);
-
-            var distance = (npcCoords.Position - playerCoords.Position).Length();
-
-            if (distance < DisableDistance)
-                return true;
-        }
-
-        return false;
+        return _players.Any(e => !_ghostQuery.HasComp(e));
     }
 }
