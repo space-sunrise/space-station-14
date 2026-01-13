@@ -9,6 +9,7 @@
     sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-pilot
   - type: Pda
     id: PrisonPilotIDCard
   - type: Appearance
@@ -20,7 +21,6 @@
     borderColor: "#cc7014"
     accentVColor: "#cc3d3d"
     accentHColor: "#3d3d40"
-    state: pda-space-prison-pilot
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
