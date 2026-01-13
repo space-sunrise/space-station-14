@@ -211,6 +211,7 @@ public sealed partial class
             {
                 _action.RemoveAction(uid, action);
             }
+            abilitiesComponent.Actions.Clear();
         }
     }
 
@@ -221,6 +222,8 @@ public sealed partial class
         RemCompDeferred<FlashImmunityComponent>(uid);
         RemCompDeferred<RespiratorImmunityComponent>(uid);
         RemCompDeferred<PressureImmunityComponent>(uid);
+        RemCompDeferred<StoreComponent>(uid);
+        RemCompDeferred<FleshAbilitiesComponent>(uid);
     }
 
     private void RemoveCollectiveMind(EntityUid uid)
@@ -291,33 +294,33 @@ public sealed partial class
         return true;
     }
 
-private bool ParasiteComesOut(EntityUid uid, FleshCultistComponent? component = null)
-{
-    if (Terminating(uid))
-        return false;
+    private bool ParasiteComesOut(EntityUid uid, FleshCultistComponent? component = null)
+    {
+        if (Terminating(uid))
+            return false;
 
-    if (!Resolve(uid, ref component))
-        return false;
+        if (!Resolve(uid, ref component))
+            return false;
 
-    if (component.IsDeathPending)
-        return false;
+        if (component.IsDeathPending)
+            return false;
 
-    component.IsDeathPending = true;
+        component.IsDeathPending = true;
 
-    var coordinates = Transform(uid).Coordinates;
-    var abommob = Spawn(component.FleshMutationMobId, _transformSystem.GetMapCoordinates(uid));
+        var coordinates = Transform(uid).Coordinates;
+        var abommob = Spawn(component.FleshMutationMobId, _transformSystem.GetMapCoordinates(uid));
 
-    if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
-        _mindSystem.TransferTo(mindId, abommob, ghostCheckOverride: true);
+        if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
+            _mindSystem.TransferTo(mindId, abommob, ghostCheckOverride: true);
 
-    _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-user", ("EntityTransform", uid)), uid, uid, PopupType.LargeCaution);
-    _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-others", ("Entity", uid), ("EntityTransform", abommob)), abommob, Filter.PvsExcept(abommob), true, PopupType.LargeCaution);
-    _audioSystem.PlayPvs(component.SoundMutation, coordinates, AudioParams.Default.WithVariation(0.025f));
+        _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-user", ("EntityTransform", uid)), uid, uid, PopupType.LargeCaution);
+        _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-others", ("Entity", uid), ("EntityTransform", abommob)), abommob, Filter.PvsExcept(abommob), true, PopupType.LargeCaution);
+        _audioSystem.PlayPvs(component.SoundMutation, coordinates, AudioParams.Default.WithVariation(0.025f));
 
-    _body.GibBody(uid, true);
+        _body.GibBody(uid, true);
 
-    return true;
-}
+        return true;
+    }
 
     public void UpdateCultist(float frameTime)
     {

@@ -205,6 +205,8 @@
           Quantity: 500
     - type: InputMover
     - type: MobMover
+    - type: Physics
+      bodyType: KinematicController
     - type: MovementSpeedModifier
       baseWalkSpeed: 3 # Fish-edit
       baseSprintSpeed: 4 # Fish-edit
@@ -444,6 +446,8 @@
       equippedPrefix: fleshhugger
       slots:
         - MASK
+    - type: Physics
+      bodyType: KinematicController
     - type: Fixtures
       fixtures:
         fix1:
@@ -518,6 +522,8 @@
     - type: Vocal
       sounds:
         Unsexed: FleshWormEmote
+    - type: Physics
+      bodyType: KinematicController
     - type: Fixtures
       fixtures:
         fix1:
