@@ -11,35 +11,27 @@ namespace Content.Client._Sunrise.PDA;
 /// в зависимости от наличия ID карты.
 /// Конфигурация задаётся через компонент <see cref="PdaAnimationVisualsComponent"/> в прототипах.
 /// </summary>
-public sealed class PdaAnimationVisualsSystem : EntitySystem
+// VisualizerSystem автоматически подписывается на AppearanceChangeEvent и предоставляет
+// готовые зависимости (AppearanceSystem, SpriteSystem)
+public sealed class PdaAnimationVisualsSystem : VisualizerSystem<PdaAnimationVisualsComponent>
 {
-    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<PdaAnimationVisualsComponent, AppearanceChangeEvent>(OnAppearanceChange, after: new[] { typeof(PdaVisualizerSystem) });
-    }
-
-    private void OnAppearanceChange(Entity<PdaAnimationVisualsComponent> ent, ref AppearanceChangeEvent args)
+    protected override void OnAppearanceChange(EntityUid uid, PdaAnimationVisualsComponent comp, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
             return;
 
-        if (!_appearance.TryGetData<bool>(ent, PdaVisuals.IdCardInserted, out var isCardInserted, args.Component))
+        if (!AppearanceSystem.TryGetData<bool>(uid, PdaVisuals.IdCardInserted, out var isCardInserted, args.Component))
             return;
 
-        var sprite = new Entity<SpriteComponent>(ent.Owner, args.Sprite);
+        var sprite = new Entity<SpriteComponent>(uid, args.Sprite);
 
         if (isCardInserted)
         {
-            ApplyAnimatedState(sprite, ent.Comp);
+            ApplyAnimatedState(sprite, comp);
             return;
         }
 
-        ApplyStaticState(sprite, ent.Comp);
+        ApplyStaticState(sprite, comp);
     }
 
     /// <summary>
@@ -47,10 +39,10 @@ public sealed class PdaAnimationVisualsSystem : EntitySystem
     /// </summary>
     private void ApplyAnimatedState(Entity<SpriteComponent> sprite, PdaAnimationVisualsComponent comp)
     {
-        _spriteSystem.LayerSetRsiState(sprite.AsNullable(), PdaVisualLayers.Base, comp.AnimatedState);
-        _spriteSystem.LayerSetAutoAnimated(sprite.AsNullable(), PdaVisualLayers.Base, true);
-        _spriteSystem.LayerSetRsiState(sprite.AsNullable(), PdaVisualLayers.IdLight, comp.IdInsertedLayerState);
-        _spriteSystem.LayerSetVisible(sprite.AsNullable(), PdaVisualLayers.IdLight, true);
+        SpriteSystem.LayerSetRsiState(sprite.AsNullable(), PdaVisualLayers.Base, comp.AnimatedState);
+        SpriteSystem.LayerSetAutoAnimated(sprite.AsNullable(), PdaVisualLayers.Base, true);
+        SpriteSystem.LayerSetRsiState(sprite.AsNullable(), PdaVisualLayers.IdLight, comp.IdInsertedLayerState);
+        SpriteSystem.LayerSetVisible(sprite.AsNullable(), PdaVisualLayers.IdLight, true);
     }
 
     /// <summary>
@@ -60,7 +52,7 @@ public sealed class PdaAnimationVisualsSystem : EntitySystem
     private void ApplyStaticState(Entity<SpriteComponent> sprite, PdaAnimationVisualsComponent comp)
     {
         ApplyStaticBaseState(sprite, comp);
-        _spriteSystem.LayerSetVisible(sprite.AsNullable(), PdaVisualLayers.IdLight, false);
+        SpriteSystem.LayerSetVisible(sprite.AsNullable(), PdaVisualLayers.IdLight, false);
     }
 
     /// <summary>
@@ -70,8 +62,8 @@ public sealed class PdaAnimationVisualsSystem : EntitySystem
     private void ApplyStaticBaseState(Entity<SpriteComponent> sprite, PdaAnimationVisualsComponent comp)
     {
         var stateName = GetStaticStateName(comp);
-        _spriteSystem.LayerSetRsiState(sprite.AsNullable(), PdaVisualLayers.Base, stateName);
-        _spriteSystem.LayerSetAutoAnimated(sprite.AsNullable(), PdaVisualLayers.Base, false);
+        SpriteSystem.LayerSetRsiState(sprite.AsNullable(), PdaVisualLayers.Base, stateName);
+        SpriteSystem.LayerSetAutoAnimated(sprite.AsNullable(), PdaVisualLayers.Base, false);
     }
 
     /// <summary>
