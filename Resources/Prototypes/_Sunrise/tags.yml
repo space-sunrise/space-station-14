@@ -103,6 +103,15 @@
   id: HandGrenadeAmmo
 
 - type: Tag
+  id: FireBomb
+
+- type: Tag
+  id: PipeBomb
+
+- type: Tag
+  id: ImprovidesedGrenadeEmpty
+
+- type: Tag
   id: SpeedLoaderShotgun
 
 - type: Tag
@@ -607,3 +616,10 @@
 # Dungeon
 - type: Tag
   id: SalvageSyndicateBase
+
+# region Tools
+- type: Tag
+  id: EmergencyWelder
+
+- type: Tag
+  id: GasTank

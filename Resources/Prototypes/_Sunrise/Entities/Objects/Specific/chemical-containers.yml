@@ -1,5 +1,5 @@
 - type: entity
-  id: PolytrinicAcidChemistryBottle
+  id: ChemistryBottlePolytrinicAcid
   suffix: polytrinic acid
   parent: BaseChemistryBottleFilled
   components:

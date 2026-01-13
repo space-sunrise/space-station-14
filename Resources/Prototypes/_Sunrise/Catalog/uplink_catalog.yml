@@ -1187,7 +1187,7 @@
   name: uplink-syndicate-rapier-name
   description: uplink-syndicate-rapier-desc
   icon: { sprite: _Sunrise/Clothing/Belt/syndie_sheath.rsi, state: sheath-rapier }
-  productEntity: BeltSheathSyndieFilledBox
+  productEntity: SyndicateRapierToxinBox
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 5
@@ -1240,7 +1240,7 @@
   id: UplinkPolytrinicAcidChemistryBottle
   name: uplink-polytrinic-acid-chemistry-bottle-name
   description: uplink-polytrinic-acid-chemistry-bottle-desc
-  productEntity: PolytrinicAcidChemistryBottle
+  productEntity: ChemistryBottlePolytrinicAcid
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 2

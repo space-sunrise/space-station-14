@@ -32,3 +32,12 @@ ent-GrenadeFragLight = лёгкая осколочная граната
     .desc = { ent-BaseGrenade.desc }
 ent-CartridgeRocketFrag = осколочная ракета
     .desc = Осколочная боеголовка для РПГ-7. Имеет форму трубы.
+
+ent-ImprovisedGrenadeCasingEmpty = пустая самодельная гильза
+    .desc = Полая самодельная гильза, которую можно наполнить самодельной начинкой.
+ent-ImprovisedGrenadeFirebomb = самодельная зажигательная граната
+    .desc = { ent-BaseGrenade.desc }
+ent-ImprovisedGrenadePipebomb = самодельная граната-трубчатая бомба
+    .desc = { ent-BaseGrenade.desc }
+ent-ImprovisedGrenadeGlass = самодельная стеклянная граната
+    .desc = { ent-BaseGrenade.desc }

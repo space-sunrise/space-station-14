@@ -16,6 +16,8 @@
   - type: StartTimerOnShoot
   - type: TimerTrigger
     delay: 2
+  - type: TimedDespawn
+    lifetime: 6
   - type: Fixtures
     fixtures:
       fix1:
@@ -686,7 +688,7 @@
     keysIn:
     - timer
   - type: TimerTrigger
-    delay: 2
+    delay: 3
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -956,3 +958,90 @@
     proto: BulletPlasma
     count: 3
     spread: 25
+
+- type: entity
+  id: BulletImprovisedGrenadeFirebomb
+  name: firebomb
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Bombs/ied.rsi
+    layers:
+      - state: primed
+      - state: wires
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 25
+    intensitySlope: 5
+    maxIntensity: 3
+    canCreateVacuum: false
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterIncendiary
+    capacity: 10
+  - type: AmbientSound
+    range: 8
+    volume: 1
+    sound:
+      path: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+
+- type: entity
+  id: BulletImprovisedGrenadePipeBomb
+  name: pipebomb
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Bombs/pipebomb.rsi
+    layers:
+      - state: primed
+      - state: wires
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 50
+    intensitySlope: 5
+    maxIntensity: 6
+    canCreateVacuum: false
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterLessLethal
+    capacity: 6
+  - type: AmbientSound
+    range: 8
+    volume: 1
+    sound:
+      path: /Audio/Effects/lightburn.ogg
+
+- type: entity
+  id: BulletImprovisedGrenadeGlass
+  name: glass
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/explosives.rsi
+    layers:
+      - state: glass
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 5
+    intensitySlope: 1
+    maxIntensity: 5
+    canCreateVacuum: false
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterLessLethal
+    capacity: 16

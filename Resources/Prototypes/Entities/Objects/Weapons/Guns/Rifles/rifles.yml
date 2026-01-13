@@ -78,8 +78,8 @@
         knockback: 0.1
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.3
+    maxOffset: 2
+    pvsIncrease: 0.2
   # Sunrise end
 
 - type: entity

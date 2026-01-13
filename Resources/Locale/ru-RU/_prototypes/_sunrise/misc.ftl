@@ -4,10 +4,6 @@ ent-MobGorillaRampaging = буйная горилла
 ent-MachineArtifactCrusherXenoborg = дробилка тел
     .desc = Лучше не засовывать туда голову...
 
-ent-ChemistryBottleAloxadone = { ent-BaseChemistryBottleFilled }
-    .desc = { ent-BaseChemistryBottleFilled.desc }
-    .suffix = алоксадон
-
 ent-WeaponSubMachineGunBriefcase = коричневый портфель
     .desc = Полезен для переноски вещей в руках.
     .suffix = Оружие

@@ -16,5 +16,3 @@ ent-ShellTranquilizer = транквилизатор 12 калибра
     .desc = { ent-BaseShellShotgun.desc }
 ent-ShellShotgunUranium = урановая дробь 12 калибра
     .desc = { ent-BaseShellShotgun.desc }
-ent-ShellShotgunImprovised = самодельная картечь 12 калибра
-    .desc = Самодельный патрон 12 калибра, стреляющий болезненными осколками стекла. Разброс настолько велик, что им невозможно попасть даже в амбар.

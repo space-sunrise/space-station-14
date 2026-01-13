@@ -120,6 +120,9 @@
     reflects:
       - Energy
     reflectingInHands: false
+  - type: Construction
+    graph: UpgradeArmorVest
+    node: reflective
 
 #Detective's vest
 - type: entity
@@ -382,6 +385,9 @@
     - Vest
     - FullBodyOuter
     - WhitelistChameleon
+  - type: Construction
+    graph: UpgradeArmorVest
+    node: riot
   # SUNRISE EDIT
 
 - type: entity

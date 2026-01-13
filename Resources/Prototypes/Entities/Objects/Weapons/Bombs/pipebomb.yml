@@ -28,6 +28,12 @@
     intensitySlope: 5
     maxIntensity: 6
     canCreateVacuum: false
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - HandGrenade
+    - PipeBomb
+  # Sunrise-End
   - type: Appearance
   - type: TimerTriggerVisuals
   - type: Construction

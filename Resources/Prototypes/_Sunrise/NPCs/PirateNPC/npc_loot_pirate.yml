@@ -180,6 +180,19 @@
     state: icon
 
 - type: entity
+  parent: MercenaryWebbingBox
+  id: WaistbagBox
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/waistbag_leather.rsi
+    layers:
+    - state: icon
+  - type: Item
+    size: Huge
+
+- type: entity
   parent: [NpcLootBase, BaseItem]
   id: PiratePouchGiftBox
   name: pirate pouch bundle
@@ -511,22 +524,24 @@
     - id: PirateCashSpawner08
     - id: TrashBananaPeel
       prob: 0.25
+    - id: TrashBananaPeel
+      prob: 0.4
     - id: FoodBanana
       prob: 0.15
     - id: PirateMonkeyCubeWrapped
       prob: 0.05
     # Weapons
     - id: ClothingHandsKnuckleDusters
-      prob: 0.4
+      prob: 0.6
       orGroup: KnuckleDuster
     - id: ClothingHandsKnuckleDustersBrass
-      prob: 0.3
+      prob: 0.4
       orGroup: KnuckleDuster
     - id: ClothingHandsKnuckleDustersSyndicate
-      prob: 0.2
+      prob: 0.1
       orGroup: KnuckleDuster
     - id: ClothingHandsKnuckleDustersStun
-      prob: 0.1
+      prob: 0.05
       orGroup: KnuckleDuster
 
 - type: entity
@@ -617,6 +632,65 @@
       prob: 0.05
       amount: 3
       orGroup: ShotgunAmmoPool
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+
+- type: entity
+  parent: WaistbagBox
+  id: WaistbagBoxTier1Grenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: PirateCashSpawner08
+    - id: PirateCashSpawner08
+      prob: 0.25
+    # Items
+    - id: CableApcStack10
+      prob: 0.2
+    - id: CableApcStack10
+      prob: 0.5
+    - id: ShardGlass
+      amount: 2
+      prob: 0.5
+    - id: ShardGlass
+      amount: 4
+      prob: 0.25
+    - id: FireBomb
+      prob: 0.9
+    - id: FireBombEmpty
+      prob: 0.25
+      amount: 3
+    - id: PipeBombCable
+      prob: 0.4
+    - id: PipeBombGunpowder
+      prob: 0.3
+    - id: PipeBomb
+      prob: 0.25
+    - id: WeaponGrenadeLauncherImprovised
+      prob: 0.4
+    - id: FireBomb
+      prob: 0.15
+      orGroup: GrenadePool
+    - id: FireBomb
+      prob: 0.15
+      amount: 5
+      orGroup: GrenadePool
+    - id: FireBombFuel
+      prob: 0.05
+      amount: 3
+      orGroup: GrenadePool
+    - id: ImprovisedGrenadeFirebomb
+      prob: 0.15
+      orGroup: GrenadePool
+    - id: ImprovisedGrenadePipebomb
+      prob: 0.15
+      orGroup: GrenadePool
+    - id: ImprovisedGrenadeGlass
+      prob: 0.15
+      orGroup: GrenadePool
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -877,13 +951,13 @@
     - id: CombatKnife
       prob: 0.15
     - id: WeaponProtoKineticAccelerator
-      prob: 0.4
+      prob: 0.6
     - id: PKAUpgradeRange
-      prob: 0.05
+      prob: 0.15
     - id: PKAUpgradeDamage
-      prob: 0.05
+      prob: 0.15
     - id: PKAUpgradeFireRate
-      prob: 0.05
+      prob: 0.15
     - id: ClothingNeckCloakPirateCap
       prob: 0.75
       orGroup: SalvHardPool
@@ -2223,7 +2297,7 @@
     - id: PirateCashSpawner07
     # Weapons
     - id: EnergyCutlass
-      prob: 0.4
+      prob: 0.3
     # Armor
     - id: PirateHandyFlag
       prob: 0.4
@@ -2236,6 +2310,69 @@
       orGroup: PirateHardPool
     - id: ClothingHeadHelmetPirateOld
       prob: 0.3
+      orGroup: PirateHardPool
+    # Bonus Loot T2
+    - id: PirateAmpulaSpawnerT2
+    - id: Doubloon1
+      prob: 0.05
+    - id: Doubloon5
+      prob: 0.1
+    - id: ClothingBackpackMessengerPirateDecoyKitFilled
+      prob: 0.02
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash500
+      prob: 0.5
+    - id: SpaceCash1000
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.25
+    - id: PirateTechFabCircuitboard
+      prob: 0.001
+    - id: PirateMedSpawner01
+    - id: ClothingBackpackMessengerPirate
+      prob: 0.15
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+
+- type: entity
+  parent: PirateMessengerGiftBox
+  id: ClothingBeltShieldBucklerMeleeT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/forged_buckler_shield.rsi
+    layers:
+    - state: base
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Melee/forged_buckler_shield.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: PirateCashSpawner07
+    # Weapons
+    - id: Cutlass
+      prob: 0.75
+    # Armor
+    - id: PirateHandyFlag
+      prob: 0.15
+      orGroup: PirateHardPool
+    - id: ClothingHeadHelmetPodWars
+      prob: 0.35
+      orGroup: PirateHardPool
+    - id: ClothingOuterArmorPodWars
+      prob: 0.25
+      orGroup: PirateHardPool
+    - id: ForgedShieldBuckler
+      prob: 0.5
       orGroup: PirateHardPool
     # Bonus Loot T2
     - id: PirateAmpulaSpawnerT2

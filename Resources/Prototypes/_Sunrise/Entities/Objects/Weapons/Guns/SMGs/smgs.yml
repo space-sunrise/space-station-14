@@ -475,7 +475,7 @@
   - type: Item
     size: Large
     shape:
-    - 0,0,3,2
+    - 0,0,3,1
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi
     layers:
@@ -541,7 +541,7 @@
   - type: Item
     size: Large
     shape:
-    - 0,0,4,2
+    - 0,0,3,1
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi
     layers:
@@ -717,6 +717,7 @@
         whitelist:
           tags:
           - MagazinePistolDPSubMachineGun
+          - MagazinePistolDP
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber

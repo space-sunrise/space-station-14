@@ -17,6 +17,7 @@
   id: MechArmorThin
   parent: MechArmorBase
   name: mech armor (thin)
+  categories: [ HideSpawnMenu ]
   components:
   - type: Armor
     modifiers:
@@ -35,6 +36,7 @@
   id: MechArmorLight
   parent: MechArmorBase
   name: mech armor (light)
+  categories: [ HideSpawnMenu ]
   components:
   - type: Armor
     modifiers:
@@ -53,6 +55,7 @@
   id: MechArmorMediumNT
   parent: MechArmorBase
   name: mech armor (medium NT)
+  categories: [ HideSpawnMenu ]
   components:
   - type: Armor
     modifiers:
@@ -73,6 +76,7 @@
   id: MechArmorHeavyNT
   parent: MechArmorBase
   name: mech armor (heavy NT)
+  categories: [ HideSpawnMenu ]
   components:
   - type: Armor
     modifiers:
@@ -93,6 +97,7 @@
   id: MechArmorMediumSyndi
   parent: MechArmorBase
   name: mech armor (medium syndi)
+  categories: [ HideSpawnMenu ]
   components:
   - type: Armor
     modifiers:
@@ -113,6 +118,7 @@
   id: MechArmorHeavySyndi
   parent: MechArmorBase
   name: mech armor (heavy syndi)
+  categories: [ HideSpawnMenu ]
   components:
   - type: Armor
     modifiers:

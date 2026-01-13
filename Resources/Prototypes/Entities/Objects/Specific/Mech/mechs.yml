@@ -177,6 +177,7 @@
   # Sunrise-Start
   - type: Inventory
     templateId: mechArmor
+  - type: InventorySlots
   - type: Loadout
     prototypes: [ MechArmorLightLoadout ]
   # Sunrise-End

@@ -212,6 +212,11 @@
     enabled: false
     radius: 1.0
     color: orange
+  # Sunrise-start
+  - type: Tag
+    tags:
+    - EmergencyWelder
+  # Sunrise-end
 
 - type: entity
   parent: [ Welder, BaseXenoborgContraband ]

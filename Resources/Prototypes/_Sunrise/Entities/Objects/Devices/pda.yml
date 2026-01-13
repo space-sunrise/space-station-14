@@ -461,6 +461,15 @@
     accentHColor: "#3d3d40"
   - type: Icon
     state: pda-securitypilot
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - NavigatorCartridge
+      - WantedListCartridge
+      - AstroNavCartridge
 
 - type: entity
   parent: CaptainPDA

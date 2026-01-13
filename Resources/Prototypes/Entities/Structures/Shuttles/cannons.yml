@@ -637,7 +637,7 @@
     angleIncrease: 1
     angleDecay: 25
     projectileSpeed: 32
-    fireRate: 5
+    fireRate: 4
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
       params:

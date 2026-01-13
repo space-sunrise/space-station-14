@@ -1298,18 +1298,6 @@ entities:
     - type: Transform
       pos: 6.716812,-3.2679749
       parent: 7656
-- proto: MedkitCombatFilled
-  entities:
-  - uid: 15
-    components:
-    - type: Transform
-      pos: 6.715974,-3.542241
-      parent: 7656
-  - uid: 7819
-    components:
-    - type: Transform
-      pos: 6.388687,-3.4085999
-      parent: 7656
 - proto: PillCanisterBicaridine
   entities:
   - uid: 7678

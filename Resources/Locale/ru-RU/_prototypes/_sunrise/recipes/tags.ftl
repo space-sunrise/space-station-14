@@ -10,3 +10,4 @@ construction-graph-tag-naval-jacket = { ent-ClothingNavalJacket }
 construction-graph-tag-naval-boots = { ent-ClothingNavalBoots }
 construction-graph-tag-naval-jacket-desc = { ent-ClothingNavalJacket.desc }
 construction-graph-tag-naval-boots-desc = { ent-ClothingNavalBoots.desc }
+construction-graph-tag-firebomb = { ent-FireBomb.desc }

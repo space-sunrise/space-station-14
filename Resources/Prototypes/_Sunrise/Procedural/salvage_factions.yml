@@ -50,6 +50,15 @@
     - proto: MobPirateT1MonkeyFireBomb
       cost: 3
       prob: 0.1
+    - proto: MobPirateT1bombardierFire
+      cost: 4
+      prob: 0.05
+    - proto: MobPirateT1bombardierGlass
+      cost: 4
+      prob: 0.05
+    - proto: MobPirateT1bombardierPipe
+      cost: 4
+      prob: 0.05
     - proto: MobPirateT1Flintlock
       prob: 0.2
     - proto: MobPirateT1PlasmaCutter
