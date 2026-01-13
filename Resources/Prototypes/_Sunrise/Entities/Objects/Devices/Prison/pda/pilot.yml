@@ -1,0 +1,31 @@
+### Пилот пока не используется в ротации ###
+- type: entity
+  parent: BasePDA
+  id: PrisonPilotPDA
+  name: prison pilot's PDA
+  description: Shiny and technologically advanced, as if it had just been pulled out of the cockpit.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-pilot
+  - type: Pda
+    id: PrisonPilotIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-pilot
+  - type: PdaBorderColor
+    borderColor: "#cc7014"
+    accentVColor: "#cc3d3d"
+    accentHColor: "#3d3d40"
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge
