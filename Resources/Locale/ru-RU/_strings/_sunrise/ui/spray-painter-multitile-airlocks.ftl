@@ -1,7 +1,6 @@
-# Sunrise-start
 # Группы
-spray-painter-tab-group-airlockdoubleglass = Двойной стеклянный
-spray-painter-tab-group-airlocktripleglass = Тройной стеклянный
+spray-painter-tab-group-airlockdoubleglass = Двойной
+spray-painter-tab-group-airlocktripleglass = Тройной
 
 # Двойные стеклянные шлюзы
 spray-painter-style-airlockdoubleglass-atmospherics = Атмосферика
@@ -32,4 +31,3 @@ spray-painter-style-airlocktripleglass-science = Научный
 spray-painter-style-airlocktripleglass-security = Служба безопасности
 spray-painter-style-airlocktripleglass-virology = Вирусология
 spray-painter-style-airlocktripleglass-centralcommand = Центральное командование
-# Sunrise-end

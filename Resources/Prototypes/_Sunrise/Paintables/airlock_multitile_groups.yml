@@ -16,7 +16,6 @@
     science: DoubleGlassAirlockScience
     security: DoubleGlassAirlockSecurity
     virology: DoubleGlassAirlockVirology
-    centralcommand: DoubleGlassAirlockCentralCommand
 
 - type: paintableGroup
   id: AirlockTripleGlass
@@ -36,4 +35,3 @@
     science: TripleGlassAirlockScience
     security: TripleGlassAirlockSecurity
     virology: TripleGlassAirlockVirology
-    centralcommand: TripleGlassAirlockCentralCommand

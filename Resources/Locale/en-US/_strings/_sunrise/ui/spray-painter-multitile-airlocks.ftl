@@ -1,7 +1,6 @@
-# Sunrise-start
 # Groups
-spray-painter-tab-group-airlockdoubleglass = Double glass
-spray-painter-tab-group-airlocktripleglass = Triple glass
+spray-painter-tab-group-airlockdoubleglass = Double
+spray-painter-tab-group-airlocktripleglass = Triple
 
 # Double glass airlocks
 spray-painter-style-airlockdoubleglass-atmospherics = Atmospherics
@@ -32,4 +31,3 @@ spray-painter-style-airlocktripleglass-science = Science
 spray-painter-style-airlocktripleglass-security = Security
 spray-painter-style-airlocktripleglass-virology = Virology
 spray-painter-style-airlocktripleglass-centralcommand = Central Command
-# Sunrise-end
