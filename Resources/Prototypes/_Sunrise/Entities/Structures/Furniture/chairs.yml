@@ -55,4 +55,4 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Construction
-    remove: true
+    deconstructionTarget: null

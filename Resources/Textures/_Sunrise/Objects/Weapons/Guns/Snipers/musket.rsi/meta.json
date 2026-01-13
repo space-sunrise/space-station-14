@@ -20,8 +20,8 @@
       "directions": 4
     },
     {
-        "name": "wielded-inhand-right",
-        "directions": 4
+      "name": "wielded-inhand-right",
+      "directions": 4
     },
     {
       "name": "base"
@@ -30,28 +30,28 @@
       "name": "base1"
     },
     {
-        "name": "inhand-left-fill-1",
-        "directions": 4
+      "name": "inhand-left-fill-1",
+      "directions": 4
     },
     {
-        "name": "inhand-right-fill-1",
-        "directions": 4
+      "name": "inhand-right-fill-1",
+      "directions": 4
     },
     {
-        "name": "wielded-inhand-left-fill-1",
-        "directions": 4
+      "name": "wielded-inhand-left-fill-1",
+      "directions": 4
     },
     {
-        "name": "wielded-inhand-right-fill-1",
-        "directions": 4
+      "name": "wielded-inhand-right-fill-1",
+      "directions": 4
     },
     {
-        "name": "equipped-backpack-fill-1",
-        "directions": 4
+      "name": "equipped-backpack-fill-1",
+      "directions": 4
     },
     {
-        "name": "equipped-suitstorage-fill-1",
-        "directions": 4
+      "name": "equipped-suitstorage-fill-1",
+      "directions": 4
     }
   ]
 }

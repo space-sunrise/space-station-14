@@ -291,7 +291,7 @@
     layers:
     - state: casing
   - type: Item
-    size: small
+    size: Small
   - type: SolutionContainerManager
     solutions:
       shell:
@@ -320,7 +320,7 @@
     node: casing
   - type: Tag
     tags:
-    - ImprovidesedGrenadeEmpty
+    - ImprovisedGrenadeEmpty
 
 - type: entity
   id: ImprovisedGrenadeFirebomb

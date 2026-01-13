@@ -212,7 +212,6 @@
   - type: Construction
     graph: UpgradeCyberGorilla
     node: start
-  # Sunrise-end
 
 - type: entity
   name: experimental G.O.R.I.L.L.A. gauntlet

@@ -109,7 +109,7 @@
   id: PipeBomb
 
 - type: Tag
-  id: ImprovidesedGrenadeEmpty
+  id: ImprovisedGrenadeEmpty
 
 - type: Tag
   id: SpeedLoaderShotgun
@@ -125,6 +125,9 @@
 
 - type: Tag
   id: CannonBallMini
+
+- type: Tag
+  id: MagazineAsh12 # WeaponRifleAsh12 (Sunrise)
 
 # Weapons
 - type: Tag
@@ -283,9 +286,6 @@
 
 - type: Tag
   id: ShotgunSlug
-
-- type: Tag
-  id: MagazineAsh12Slug
 
 # Material bag:
 
