@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: SecurityMetusPDA
   id: PrisonDoctorPDA
   name: prison doctor's PDA
