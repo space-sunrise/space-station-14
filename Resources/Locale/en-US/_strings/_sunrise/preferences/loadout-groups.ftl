@@ -100,11 +100,14 @@ loadout-group-station-engineer-gloves = Инженер, перчатки
 loadout-group-station-engineer-mask = Инженер, маска
 loadout-group-station-engineer-neck = Инженер, шея
 loadout-group-uniformntr = Униформа ИСН
-loadout-group-planet-prison-trinkets = Безделушки ПТ
-loadout-group-planet-prisoner-loot = Тайник Зека
-loadout-group-planet-prison-pda = PDA
-loadout-group-planet-prison-security-loot = Привилегии Охраны
-loadout-group-prison-inspector-hats = Шляпа
-loadout-group-prison-inspector-glasses = Очки
-loadout-group-planet-prison-head = Головной убор
 loadout-group-contributors = Contributors
+
+loadout-group-head = Головной убор
+loadout-group-hats = Шляпа
+loadout-group-glasses = Очки
+loadout-group-pda = PDA
+
+loadout-group-prison-trinkets = Безделушки ПТ
+loadout-group-prisoner-loot = Тайник Зека
+loadout-group-prison-security-loot = Привилегии Охраны
+
