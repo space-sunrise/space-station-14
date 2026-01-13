@@ -1,5 +1,9 @@
 ﻿- type: entity
-  parent: SimpleSpaceMobBase
+  parent:
+  - BaseSimpleMob
+  - MobAtmosExposed
+  - MobCombat
+  - MobBloodstream
   id: BaseMobFleshCult
   name: flesh mob
   description: A shambling mass of flesh, animated through anomalous energy.
