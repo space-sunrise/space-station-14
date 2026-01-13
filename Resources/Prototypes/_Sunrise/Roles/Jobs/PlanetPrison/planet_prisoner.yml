@@ -24,7 +24,7 @@
   id: PlanetPrisonerGear
   equipment:
     shoes: ClothingShoesBootsPrisonerGrey
-    id: PlanetPrisonerPDAscreenH
+    id: PlanetPrisonerPDAScreenH
     ears: ClothingHeadsetGrey
 
 - type: chameleonOutfit
