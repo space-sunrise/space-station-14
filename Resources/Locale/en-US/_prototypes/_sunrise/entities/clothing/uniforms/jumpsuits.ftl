@@ -95,6 +95,8 @@ ent-UniformPrisonScientistMetus = prison scientist uniform
     .desc = Dark streaks from reagents on the shoulders and chest, small spots of chemical mixes, the fabric seems to preserve the memory of experiments best left unsaid.
 ent-UniformPrisonWorkerMetus = prison worker uniform
     .desc = The fabric is wounded by ore dust and fine scratches, elbows and knees are slightly rubbed, it smells of metal and damp mines, as if it holds encounters with the unknown.
+ent-ClothingUniformPunksuit = punksuit
+    .desc = Challenge the dress code!
 ent-UniformPrisonTraineeMetus = prison trainee uniform
     .desc = Fresh fabric, still bearing the marks of training, with a hint of orange that marks the path of a future guard.
 

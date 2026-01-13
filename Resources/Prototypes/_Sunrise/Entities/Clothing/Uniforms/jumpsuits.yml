@@ -611,3 +611,14 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/black_cap_suit.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/black_cap_suit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformPunksuit
+  name: Punk Suit
+  description: Challenge the dress code!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/punksuit.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/punksuit.rsi

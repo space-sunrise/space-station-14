@@ -133,6 +133,7 @@
             state: hair
   # Sunrise-start
   - type: Carriable
+  - type: FootprintEmitter
   # Sunrise-end
   - type: Inventory
 # SUNRISE EDIT

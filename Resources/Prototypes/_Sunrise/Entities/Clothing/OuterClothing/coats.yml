@@ -576,3 +576,43 @@
       sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi
+
+
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterLeatherCoat
+  name: leather jacket
+  description: Perfect for performances!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/leathercoat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/leathercoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.90
+        Piercing: 0.85
+        Heat: 0.95
+  - type: ExplosionResistance
+    damageCoefficient: 0.95
+  - type: Item
+    size: Huge
+  - type: Tag
+    tags:
+    - ClothMade
+    - NudeBottom
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterLeatherCoat]
+  id: ClothingOuterLeatherCoatOpened
+  name: leather jacket
+  description: Perfect for performances!
+  components:
+  - type: Tag
+    tags:
+      - ClothMade
+      - NudeFull
+      - WhitelistChameleon

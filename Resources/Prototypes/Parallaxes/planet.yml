@@ -8,7 +8,7 @@
       scale: 1,1
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/NetTextures/Parallaxes/noise.png"
+        path: "/Textures/Parallaxes/noise.png"
       slowness: 0.95
       scale: "2, 2"
       scrolling: "0.1, -0.05"

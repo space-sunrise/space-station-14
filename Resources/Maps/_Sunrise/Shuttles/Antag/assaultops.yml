@@ -4,7 +4,7 @@ meta:
   engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/30/2025 15:47:42
+  time: 01/09/2026 00:14:53
   entityCount: 907
 maps: []
 grids:
@@ -4868,9 +4868,13 @@ entities:
         341:
         - - Pressed
           - Toggle
+        - - Pressed
+          - AutoClose
         340:
         - - Pressed
           - Toggle
+        - - Pressed
+          - AutoClose
         365:
         - - Pressed
           - Toggle
@@ -4893,9 +4897,13 @@ entities:
         342:
         - - Pressed
           - Toggle
+        - - Pressed
+          - AutoClose
         343:
         - - Pressed
           - Toggle
+        - - Pressed
+          - AutoClose
         363:
         - - Pressed
           - Toggle

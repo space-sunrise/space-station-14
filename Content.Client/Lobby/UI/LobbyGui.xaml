@@ -39,6 +39,19 @@
             Name="DefaultState"
             VerticalExpand="True">
             <BoxContainer
+                Access="Public"
+                HorizontalAlignment="Center"
+                Name="LoadingAnimationContainer"
+                Orientation="Vertical"
+                VerticalAlignment="Center"
+                Visible="False">
+                <AnimatedTextureRect
+                    Access="Public"
+                    HorizontalAlignment="Center"
+                    Name="LoadingAnimation"
+                    VerticalAlignment="Center" />
+            </BoxContainer>
+            <BoxContainer
                 HorizontalAlignment="Left"
                 HorizontalExpand="True"
                 Orientation="Vertical">
@@ -343,7 +356,6 @@
                 <PanelContainer
                     Access="Public"
                     HorizontalExpand="True"
-                    MinWidth="500"
                     Name="RightPanel"
                     StyleClasses="AngleRect"
                     VerticalAlignment="Stretch"
@@ -355,29 +367,41 @@
                         VerticalAlignment="Stretch"
                         VerticalExpand="True">
                         <BoxContainer
-                            HorizontalAlignment="Right"
+                            HorizontalAlignment="Stretch"
                             HorizontalExpand="True"
                             Margin="3,3,3,3"
                             Orientation="Horizontal"
                             SizeFlagsStretchRatio="1">
                             <Button
                                 Access="Public"
+                                HorizontalExpand="True"
+                                MinWidth="40"
                                 Name="AHelpButton"
                                 StyleClasses="ButtonBig"
                                 Text="{Loc 'ui-lobby-ahelp-button'}" />
                             <Button
                                 Access="Public"
+                                HorizontalExpand="True"
+                                MinWidth="40"
                                 Name="MHelpButton"
                                 StyleClasses="ButtonBig"
                                 Text="{Loc 'ui-lobby-mhelp-button'}" />
-                            <vote:VoteCallMenuButton Name="CallVoteButton" StyleClasses="ButtonBig" />
+                            <vote:VoteCallMenuButton
+                                HorizontalExpand="True"
+                                MinWidth="40"
+                                Name="CallVoteButton"
+                                StyleClasses="ButtonBig" />
                             <Button
                                 Access="Public"
+                                HorizontalExpand="True"
+                                MinWidth="40"
                                 Name="OptionsButton"
                                 StyleClasses="ButtonBig"
                                 Text="{Loc 'ui-lobby-options-button'}" />
                             <Button
                                 Access="Public"
+                                HorizontalExpand="True"
+                                MinWidth="40"
                                 Name="LeaveButton"
                                 StyleClasses="ButtonBig"
                                 Text="{Loc 'ui-lobby-leave-button'}" />
@@ -451,21 +475,12 @@
                             <BoxContainer
                                 MinHeight="180"
                                 Name="CharacterInfoContent"
-                                Orientation="Vertical">
-                                <BoxContainer
-                                    HorizontalAlignment="Stretch"
+                                Orientation="Vertical"
+                                VerticalExpand="True">
+                                <lobbyUi:LobbyCharacterPreviewPanel
+                                    Access="Public"
                                     HorizontalExpand="True"
-                                    Orientation="Horizontal"
-                                    SizeFlagsStretchRatio="2">
-                                    <lobbyUi:LobbyCharacterPreviewPanel
-                                        Access="Public"
-                                        HorizontalExpand="True"
-                                        Name="CharacterPreview" />
-                                    <pets:LobbyPetPreviewPanel
-                                        Access="Public"
-                                        HorizontalExpand="True"
-                                        Name="PetPreview" />
-                                </BoxContainer>
+                                    Name="CharacterPreview" />
                             </BoxContainer>
                         </BoxContainer>
                         <BoxContainer
