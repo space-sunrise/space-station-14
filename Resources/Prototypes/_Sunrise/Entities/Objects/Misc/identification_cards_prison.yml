@@ -1,0 +1,158 @@
+- type: entity
+  parent: IDCardStandard
+  id: SecurityMetusIDCard
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - sprite: &sunrise-icon-rsi _Sunrise/Interface/Misc/job_icons.rsi
+      offset: &icon-offset -0.19, 0
+    - sprite: &icon-rsi Interface/Misc/job_icons.rsi
+  - type: Item
+    heldPrefix: orange
+
+- type: entity
+  parent: SecurityMetusIDCard
+  id: HeadOfPrisonIDCard
+  name: head of prison ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: space-prison-orange-red
+    - state: department-side
+      color: "#463636"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: HeadOfPrison
+  - type: PresetIdCard
+    job: HeadOfPrison
+
+- type: entity
+  parent: SecurityMetusIDCard
+  id: PrisonInspectorIDCard
+  name: prison inspector ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: space-prison-orange-red
+    - state: department-side
+      color: "#745288"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: PrisonInspector
+  - type: PresetIdCard
+    job: PrisonInspector
+
+- type: entity
+  parent: SecurityMetusIDCard
+  id: PrisonWorkerIDCard
+  name: prison worker ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: space-prison-orange
+    - state: department-side
+      color: "#610000"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: PrisonWorker
+  - type: PresetIdCard
+    job: PrisonWorker
+
+- type: entity
+  parent: SecurityMetusIDCard
+  id: PrisonEngineerIDCard
+  name: prison engineer ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: space-prison-orange
+    - state: department-side
+      color: "#bdaa00"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: PrisonEngineer
+  - type: PresetIdCard
+    job: PrisonEngineer
+
+- type: entity
+  parent: SecurityMetusIDCard
+  id: PrisonScientistIDCard
+  name: prison scientist ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: space-prison-orange
+    - state: department-side
+      color: "#663170"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: PrisonScientist
+  - type: PresetIdCard
+    job: PrisonScientist
+
+- type: entity
+  parent: SecurityMetusIDCard
+  id: PrisonDoctorIDCard
+  name: prison doctor ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: space-prison-orange
+    - state: department-side
+      color: "#53788d"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: PrisonDoctor
+  - type: PresetIdCard
+    job: PrisonDoctor
+
+- type: entity
+  parent: SecurityMetusIDCard
+  id: PrisonChefIDCard
+  name: prison chef ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: space-prison-orange
+    - state: department-side
+      color: "#acbb99"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: PrisonChef
+  - type: PresetIdCard
+    job: PrisonChef
+
+- type: entity
+  parent: SecurityMetusIDCard
+  id: PrisonTraineeIDCard
+  name: prison trainee ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: space-prison-orange
+    - state: department-side
+      color: "#966600"
+    - sprite: *sunrise-icon-rsi
+      offset: *icon-offset
+      state: PrisonGuard
+  - type: PresetIdCard
+    job: PrisonTrainee
+
+- type: entity
+  parent: IDCardStandard
+  id: PlanetPrisonerIDCard
+  name: prisoner ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: space-prison-prisoner
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Prisoner
+  - type: Item
+    heldPrefix: space-prison-prisoner
+  - type: PresetIdCard
+    job: PlanetPrisoner

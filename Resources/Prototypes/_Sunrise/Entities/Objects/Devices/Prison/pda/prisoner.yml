@@ -23,7 +23,6 @@
       enum.PdaVisuals.PdaType:
         !type:String
         pda-space-prison-prisoner-screen-H
-
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-space-prison-prisoner-screen-H
@@ -40,7 +39,7 @@
 
 - type: entity
   parent: PlanetPrisonerPDA
-  id: PlanetPrisonerPDAscreenH
+  id: PlanetPrisonerPDAScreenH
   components:
   - type: Appearance
     appearanceDataInit:
@@ -52,7 +51,7 @@
 
 - type: entity
   parent: PlanetPrisonerPDA
-  id: PlanetPrisonerPDAscreenHcracked
+  id: PlanetPrisonerPDAScreenHCracked
   components:
   - type: Appearance
     appearanceDataInit:
@@ -64,7 +63,7 @@
 
 - type: entity
   parent: PlanetPrisonerPDA
-  id: PlanetPrisonerPDAscreenX
+  id: PlanetPrisonerPDAScreenX
   components:
   - type: Appearance
     appearanceDataInit:
@@ -76,7 +75,7 @@
 
 - type: entity
   parent: PlanetPrisonerPDA
-  id: PlanetPrisonerPDAscreenXcracked
+  id: PlanetPrisonerPDAScreenXCracked
   components:
   - type: Appearance
     appearanceDataInit:

@@ -22,7 +22,7 @@
 
 - type: entity
   parent: PrisonEngineerPDA
-  id: PrisonEngineerPDAscreenZap
+  id: PrisonEngineerPDAScreenZap
   components:
   - type: Appearance
     appearanceDataInit:
@@ -34,7 +34,7 @@
 
 - type: entity
   parent: PrisonEngineerPDA
-  id: PrisonEngineerPDAscreenPoint
+  id: PrisonEngineerPDAScreenPoint
   components:
   - type: Appearance
     appearanceDataInit:
