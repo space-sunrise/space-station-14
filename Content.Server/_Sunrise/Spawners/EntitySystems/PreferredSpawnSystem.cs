@@ -99,19 +99,29 @@ public sealed class PreferredSpawnSystem : EntitySystem
     }
 
     /// <summary>
-    /// Внутренний вспомогательный метод для проверки того, является ли спавнер действительным.
+    /// Внутренний вспомогательный метод для проверки действительности preferred спавнера.
+    ///
+    /// Логика двойной проверки типов спавна:
+    /// 1. SpawnPoint.SpawnType - базовая категория спавнера (Job/LateJoin/Whatever)
+    /// 2. PreferredSpawnTypes - opt-in фильтр для PreferredSpawnSystem
+    ///
+    /// Спавнер участвует в preferred спавне ТОЛЬКО ЕСЛИ:
+    /// - Его базовый SpawnType соответствует искомому типу
+    /// - И этот тип явно указан в PreferredSpawnTypes
     /// </summary>
     private bool IsValidPreferredSpawnerInternal(SpawnPointComponent spawnPoint, PreferredSpawnComponent preferredComp, ProtoId<JobPrototype>? job, SpawnPointType targetSpawnPointType)
     {
-        // Проверяем, поддерживает ли спавнер требуемый тип спавна.
+        // Проверяем базовую категорию спавнера
+        // Например: для Job спавна ищем спавнеры с SpawnType = Job
         if (spawnPoint.SpawnType != targetSpawnPointType)
             return false;
 
-        // Дополнительная фильтрация по работе, если спавнер предназначен для конкретной работы.
+        // Дополнительная фильтрация по конкретной роли (опционально)
         if (spawnPoint.Job != null && job != null && spawnPoint.Job != job)
             return false;
 
-        // Проверяем, включает ли предпочтительные типы спавна спавнера целевой тип спавна.
+        // Opt-in проверка: спавнер должен явно поддерживать этот тип через PreferredSpawnTypes
+        // Это предотвращает случайное использование обычных спавнеров в preferred логике
         return preferredComp.PreferredSpawnTypes.Contains(targetSpawnPointType);
     }
 }
