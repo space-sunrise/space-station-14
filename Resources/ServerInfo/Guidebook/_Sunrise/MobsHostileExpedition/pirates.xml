@@ -64,9 +64,9 @@
   <GuideEntityEmbed Entity="MobPirateT1HunterSmash" Caption=""/>
   </Box>
   <Box>
-  <GuideEntityEmbed Entity="MobPirateT1bombardierFire" Caption=""/>
-  <GuideEntityEmbed Entity="MobPirateT1bombardierGlass" Caption=""/>
-  <GuideEntityEmbed Entity="MobPirateT1bombardierPipe" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1BombardierFire" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1BombardierGlass" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1BombardierPipe" Caption=""/>
   </Box>
   - [bold][color=#a4885c]Особенности:[/color][/bold] огненные бомбы, отражение энерго-кинжала, охотники с рывком и вампиризмом-крушителей
   - [bold][color=#a4885c]Примеры ролей:[/color][/bold] подрывник, диверсант, охотник

@@ -3,24 +3,11 @@
   id: MechEquipmentGrabberSmallMining
   parent: MechEquipmentGrabberSmall
   components:
-  - type: MechGrabber
-    maxContents: 2
-    grabDelay: 1
-    grabEnergyDelta: -5
-  - type: UIFragment
-    ui: !type:MechGrabberUi
-  - type: ContainerContainer
-    containers:
-      item-container: !type:Container
   - type: ContainerFill
     containers:
       item-container:
       - OreBox
       - OreBox
-  - type: Tag
-    tags:
-    - IndustrialMech
-    - SmallMech
 
 # region Base Mechs
 - type: entity
@@ -650,7 +637,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      300: Critical
+      275: Critical
 
 - type: entity
   id: MechNTGygaxBattery

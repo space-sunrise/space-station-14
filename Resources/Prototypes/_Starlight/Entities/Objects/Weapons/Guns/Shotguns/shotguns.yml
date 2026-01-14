@@ -138,6 +138,8 @@
     fireRate: 2
     availableModes:
     - SemiAuto
+  - type: GunSpreadModifier # Sunrise-Add
+    spread: 1.4
   - type: BallisticAmmoProvider
     capacity: 3
   - type: RevolverAmmoProvider

@@ -332,9 +332,9 @@
       - MobPirateT1MonkeyEDagger
       - MobPirateT1Hunter
       - MobPirateT1HunterSmash
-      - MobPirateT1bombardierFire
-      - MobPirateT1bombardierGlass
-      - MobPirateT1bombardierPipe
+      - MobPirateT1BombardierFire
+      - MobPirateT1BombardierGlass
+      - MobPirateT1BombardierPipe
       - MobPirateT1ECutlass
       - MobPirateT1EPickaxe
       - MobPirateT1PlasmaCutter
@@ -1282,7 +1282,7 @@
   name: Scrap bombardier
   description: A thrill-seeker who likes to play with fire, gunpowder, and welding fuel. Armed with a bombagun, a terrifying weapon of the Grey Tide from those tunnels.
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
-  id: MobPirateT1bombardierFire
+  id: MobPirateT1BombardierFire
   suffix: firebomb
   components:
   - type: Loadout
@@ -1314,8 +1314,8 @@
 - type: entity
   name: Scrap bombardier
   description: A thrill-seeker who likes to play with fire, gunpowder, and welding fuel. Armed with a bombagun, a terrifying weapon of the Grey Tide from those tunnels.
-  parent: [MobPirateT1bombardierFire, MobPirateBase]
-  id: MobPirateT1bombardierGlass
+  parent: [MobPirateT1BombardierFire, MobPirateBase]
+  id: MobPirateT1BombardierGlass
   suffix: Glass shot
   components:
   - type: Loadout
@@ -1327,8 +1327,8 @@
 - type: entity
   name: Scrap bombardier
   description: A thrill-seeker who likes to play with fire, gunpowder, and welding fuel. Armed with a bombagun, a terrifying weapon of the Grey Tide from those tunnels.
-  parent: [MobPirateT1bombardierFire, MobPirateBase]
-  id: MobPirateT1bombardierPipe
+  parent: [MobPirateT1BombardierFire, MobPirateBase]
+  id: MobPirateT1BombardierPipe
   suffix: pipebomb
   components:
   - type: Loadout

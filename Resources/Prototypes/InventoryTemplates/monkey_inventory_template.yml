@@ -27,7 +27,7 @@
     uiWindowPos: 1,0
     strippingWindowPos: 0,2
     displayName: Jumpsuit
-  # Sunsise-start
+  # Sunrise-start
   - name: pocket1
     slotTexture: pocket
     fullTextureName: template_small
@@ -56,10 +56,10 @@
     slotFlags: BELT
     slotGroup: SecondHotbar
     stripTime: 6
-    uiWindowPos: 2,1
+    uiWindowPos: 3,1
     strippingWindowPos: 1,5
     displayName: Belt
-  # Sunsise-end
+  # Sunrise-end
   - name: id
     slotTexture: id
     fullTextureName: template_small

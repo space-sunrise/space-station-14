@@ -670,7 +670,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      300: Critical
+      275: Critical
 
 - type: entity
   id: MechGygaxBattery
@@ -1000,8 +1000,14 @@
     - DoorBumpOpener
     - FootstepSound
     - Gygax
+  # Sunrise-Start
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Critical
   - type: AccessReader
     access: [["NuclearOperative"]]
+  # Sunrise-End
 
 - type: entity
   id: MechGygaxSyndieBattery

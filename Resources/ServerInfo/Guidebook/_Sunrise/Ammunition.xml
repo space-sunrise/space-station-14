@@ -148,7 +148,7 @@
 
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      Дробовой (.50)
+      12-й калибр
       <GuideEntityEmbed Entity="ShellShotgun" Caption="Патрон" Scale="1.0"/>
       <GuideEntityEmbed Entity="BoxLethalshot" Caption="Коробка" Scale="0.9"/>
       </Box>
@@ -156,7 +156,7 @@
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
       - [color=#F4001F]Дробь[/color]
-      - Пулевой
+      - Пулевой/Слаг
       - [color=#149A1E]Травматический[/color]
       - [color=#FFFF0B]Фальшфейер[/color]
       - [color=#FFFF0B]Зажигательный[/color]
@@ -197,5 +197,5 @@
   - 15мм осколочный: небольшой взрыв и осколочный урон по площади.
   - 15мм разрывной: взрывной урон по площади и структурам.
   - 15мм ЭМИ: вызывает ЭМИ, выводит из строя электронику и наносит урон мехам/киборгам.
-  - Артиллерийский: летит на несоезмиримо большую дистанцию чем остальные патроны, ценой характеристик. Обычно используется в вооружении шаттлов.
+  - Артиллерийский: летит на несоизмеримо большую дистанцию чем остальные патроны, ценой характеристик. Обычно используется в вооружении шаттлов.
 </Document>
