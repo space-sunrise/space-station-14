@@ -59,6 +59,9 @@
         "name": "prisonchef"
     },
     {
+        "name": "prisontrainee"
+    },
+    {
         "name": "planetprisoner"
     }
   ]
