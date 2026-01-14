@@ -23,7 +23,6 @@
 - type: startingGear
   id: PrisonTraineeGear
   equipment:
-    id: PrisonTraineePDAPartial
     jumpsuit: UniformPrisonTraineeMetus
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
