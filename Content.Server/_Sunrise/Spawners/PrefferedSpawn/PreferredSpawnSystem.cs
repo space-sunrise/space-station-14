@@ -17,7 +17,7 @@ namespace Content.Server._Sunrise.Spawners.PrefferedSpawn;
 public sealed class PreferredSpawnSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
 
     public override void Initialize()
@@ -80,12 +80,12 @@ public sealed class PreferredSpawnSystem : EntitySystem
     private List<EntityCoordinates> GetValidPreferredSpawners(PlayerSpawningEvent args, SpawnPointType targetSpawnPointType)
     {
         var validPositions = new List<EntityCoordinates>();
-        var query = EntityQueryEnumerator<SpawnPointComponent, PreferredSpawnComponent, TransformComponent>();
+        var query = EntityQueryEnumerator<PreferredSpawnComponent, SpawnPointComponent, TransformComponent>();
 
-        while (query.MoveNext(out var uid, out var spawnPoint, out var preferredComp, out var xform))
+        while (query.MoveNext(out var uid, out var preferredComp, out var spawnPoint, out var xform))
         {
             // Пропускаем спавнеры, находящиеся не на той станции.
-            if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
+            if (args.Station != null && _station.GetOwningStation(uid, xform) != args.Station)
                 continue;
 
             // Проверяем, подходит ли этот спавнер для текущей работы и желаемого типа спавна.
