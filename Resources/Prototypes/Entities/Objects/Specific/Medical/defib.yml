@@ -135,7 +135,7 @@
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 8
+        Blunt: 6 # Sunrise-Edit: 8 -> 6
   - type: ItemToggleMeleeWeapon
     activatedSoundOnHit:
       path: /Audio/Items/Defib/defib_zap.ogg
@@ -148,5 +148,5 @@
         volume: -10
     activatedDamage:
       types:
-        Blunt: 8
-        Shock: 16
+        Blunt: 6 # Sunrise-Edit: 8 -> 6
+        Shock: 6 # Sunrise-Edit: 16 -> 6
