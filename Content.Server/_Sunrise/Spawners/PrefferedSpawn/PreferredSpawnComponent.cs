@@ -1,7 +1,7 @@
 using Robust.Shared.Prototypes;
 using Content.Server.Spawners.Components;
 
-namespace Content.Server._Sunrise.Spawners.Components;
+namespace Content.Server._Sunrise.Spawners.PrefferedSpawn;
 
 /// <summary>
 /// Компонент, помечающий прототип точки спавна как имеющий предпочтительные типы спавна.

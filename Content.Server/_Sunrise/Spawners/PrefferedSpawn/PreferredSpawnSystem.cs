@@ -1,13 +1,13 @@
 using Content.Server.Spawners.Components;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Systems;
-using Content.Server._Sunrise.Spawners.Components;
+using Content.Server._Sunrise.Spawners.PrefferedSpawn;
 using Content.Shared.Roles;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server._Sunrise.Spawners.EntitySystems;
+namespace Content.Server._Sunrise.Spawners.PrefferedSpawn;
 
 /// <summary>
 /// Обрабатывает спавн для ролей, имеющих особое поведение спавна.
