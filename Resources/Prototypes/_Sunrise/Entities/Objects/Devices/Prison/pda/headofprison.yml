@@ -44,3 +44,6 @@
     accentHColor: "#111111"
   - type: Icon
     state: pda-space-prison-boss
+  - type: PdaAnimationVisuals
+    animatedState: pda-space-prison-boss
+    idInsertedLayerState: id_inserted-space-prison

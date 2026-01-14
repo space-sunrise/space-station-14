@@ -22,6 +22,9 @@
         pda-space-prison-trainee-partial
   - type: Icon
     state: pda-space-prison-trainee-partial
+  - type: PdaAnimationVisuals
+    animatedState: pda-space-prison-trainee-partial
+    idInsertedLayerState: id_inserted-space-prison
 
 - type: entity
   parent: PrisonTraineePDA
@@ -34,6 +37,9 @@
         pda-space-prison-trainee-advanced
   - type: Icon
     state: pda-space-prison-trainee-advanced
+  - type: PdaAnimationVisuals
+    animatedState: pda-space-prison-trainee-advanced
+    idInsertedLayerState: id_inserted-space-prison
 
 - type: entity
   parent: PrisonTraineePDA
@@ -46,3 +52,6 @@
         pda-space-prison-trainee-complete
   - type: Icon
     state: pda-space-prison-trainee-complete
+  - type: PdaAnimationVisuals
+    animatedState: pda-space-prison-trainee-complete
+    idInsertedLayerState: id_inserted-space-prison
