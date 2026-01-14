@@ -111,7 +111,6 @@ loadout-group-contributors = Контрибьюторы
 
 loadout-group-head = Головной убор
 loadout-group-hats = Шляпа
-loadout-group-glasses = Очки
 loadout-group-pda = ПДА
 
 loadout-group-prison-trinkets = Безделушки ПТ

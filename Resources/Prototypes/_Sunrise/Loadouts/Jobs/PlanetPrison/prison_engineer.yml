@@ -30,12 +30,12 @@
 # PDA
 
 - type: loadout
-  id: PrisonEngineer-PrisonEngineerPDAscreenZap
+  id: PrisonEngineer-PrisonEngineerPDAScreenZap
   equipment:
-    id: PrisonEngineerPDAscreenZap
+    id: PrisonEngineerPDAScreenZap
 
 - type: loadout
-  id: PrisonEngineer-PrisonEngineerPDAscreenPoint
+  id: PrisonEngineer-PrisonEngineerPDAScreenPoint
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -43,4 +43,4 @@
       role: JobPrisonEngineer
       time: 36000 # 10 часов
   equipment:
-    id: PrisonEngineerPDAscreenPoint
+    id: PrisonEngineerPDAScreenPoint

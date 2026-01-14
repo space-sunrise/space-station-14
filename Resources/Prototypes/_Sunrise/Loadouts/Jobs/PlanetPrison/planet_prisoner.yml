@@ -14,12 +14,12 @@
 # PDA
 
 - type: loadout
-  id: PlanetPrisoner-PlanetPrisonerPDAscreenH
+  id: PlanetPrisoner-PlanetPrisonerPDAScreenH
   equipment:
-    id: PlanetPrisonerPDAscreenH
+    id: PlanetPrisonerPDAScreenH
 
 - type: loadout
-  id: PlanetPrisoner-PlanetPrisonerPDAscreenHcracked
+  id: PlanetPrisoner-PlanetPrisonerPDAScreenHCracked
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -27,10 +27,10 @@
       role: JobPlanetPrisoner
       time: 36000 # 10 часов
   equipment:
-    id: PlanetPrisonerPDAscreenHcracked
+    id: PlanetPrisonerPDAScreenHCracked
 
 - type: loadout
-  id: PlanetPrisoner-PlanetPrisonerPDAscreenX
+  id: PlanetPrisoner-PlanetPrisonerPDAScreenX
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -38,10 +38,10 @@
       role: JobPlanetPrisoner
       time: 72000 # 20 часов
   equipment:
-    id: PlanetPrisonerPDAscreenX
+    id: PlanetPrisonerPDAScreenX
 
 - type: loadout
-  id: PlanetPrisoner-PlanetPrisonerPDAscreenXcracked
+  id: PlanetPrisoner-PlanetPrisonerPDAScreenXCracked
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -49,4 +49,4 @@
       role: JobPlanetPrisoner
       time: 108000 # 30 часов
   equipment:
-    id: PlanetPrisonerPDAscreenXcracked
+    id: PlanetPrisonerPDAScreenXCracked
