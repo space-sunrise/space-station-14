@@ -67,7 +67,7 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
         if (!humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.Tail, out var markings) || markings.Count == 0)
             return false;
 
-        if (TryComp<WingFlightComponent>(ent.Owner, out var wingFlight) && wingFlight.InertiaActive)
+        if (TryComp<WingFlightComponent>(ent, out var wingFlight) && wingFlight.InertiaActive)
             return false;
 
         if (!ent.Comp.WingsOpened)
