@@ -212,4 +212,48 @@
   - type: Construction
     graph: UpgradeCyberGorilla
     node: start
-  #Sunrise-end
+
+- type: entity
+  name: experimental G.O.R.I.L.L.A. gauntlet
+  parent: WeaponGauntletGorilla
+  id: WeaponGauntletGorillaUpgraded
+  description: A reinforced G.O.R.I.L.L.A. gauntlet. When powered with an anomaly core, a single blow can launch anomalous objects through the air.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MeleeWeapon
+    attackRate: 1
+    angle: 0
+    bluntStaminaDamageFactor: 2
+    animation: WeaponArcFist
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 30
+        Structural: 25
+    soundHit:
+      path: "/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg"
+  - type: HeldSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: Reflect
+    reflectProb: 0.25
+  - type: UseDelay
+    delay: 1
+  - type: UseDelayOnMeleeHit
+  - type: MeleeThrowOnHit
+    unanchorOnHit: Unanchorable
+    stunTime: 1.5
+  - type: Tool
+    qualities:
+      - Prying
+    useSound: /Audio/Items/jaws_pry.ogg
+  - type: ToolTileCompatible
+    delay: 1
+  - type: Prying
+    speedModifier: 5
+    pryPowered: true
+    useSound: /Audio/Machines/airlock_creaking.ogg
+  - type: Construction
+    graph: UpgradeCyberGorilla
+    node: upgraded
+  # Sunrise-end

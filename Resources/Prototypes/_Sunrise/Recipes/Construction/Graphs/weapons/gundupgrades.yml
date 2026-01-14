@@ -118,7 +118,7 @@
               name: construction-graph-tag-gorilla-upgrade-kit
               doAfter: 2
     - node: upgraded
-      entity: CyberGorillaArm
+      entity: WeaponGauntletGorillaUpgraded
 
 # Gorilla
 - type: constructionGraph

@@ -1,0 +1,45 @@
+- type: entity
+  parent: SecurityMetusPDA
+  id: PrisonEngineerPDA
+  abstract: true
+  name: prison engineer's PDA
+  description: Heavy and scorched at the edges, it has absorbed the heat of short circuits and welding seams of the prison block.
+  components:
+  - type: Pda
+    id: PrisonEngineerIDCard
+  - type: PdaBorderColor
+    borderColor: "#6b3000"
+    accentVColor: "#615f00"
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge
+      - NetProbeCartridge
+
+- type: entity
+  parent: PrisonEngineerPDA
+  id: PrisonEngineerPDAScreenZap
+  components:
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-engineer-screen-zap
+  - type: Icon
+    state: pda-space-prison-engineer-screen-zap
+
+- type: entity
+  parent: PrisonEngineerPDA
+  id: PrisonEngineerPDAScreenPoint
+  components:
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-engineer-screen-point
+  - type: Icon
+    state: pda-space-prison-engineer-screen-point

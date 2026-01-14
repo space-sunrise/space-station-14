@@ -132,3 +132,4 @@ tiles-astro-asteroid-sand = астероид-астро-песок
 tiles-wood-large = большой деревянный пол
 tiles-light-fancy-wood = красивый деревянный пол
 tiles-lattice-diagonal = решётка диагональная
+tiles-xenoborg-floor = ксеноборговая плитка

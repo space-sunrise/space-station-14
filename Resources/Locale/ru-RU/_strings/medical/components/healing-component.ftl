@@ -3,3 +3,4 @@ medical-item-cant-use = Нет повреждений, которые можно
 medical-item-stop-bleeding = { CAPITALIZE($target) } остановил кровотечение
 medical-item-stop-bleeding-self = Вы остановили кровотечение
 medical-item-popup-target = { CAPITALIZE($user) } пытается лечить вас при помощи { $item }!
+medical-item-solution-missing = В устройстве недостаточно реагента для работы!

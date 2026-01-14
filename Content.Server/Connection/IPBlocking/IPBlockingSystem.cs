@@ -1,11 +1,7 @@
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Net;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
-using Robust.Shared.IoC;
-using Robust.Shared.Log;
-using Robust.Shared.Timing;
 
 using Content.Shared.Connection.IPBlocking;
 
@@ -19,7 +15,6 @@ public sealed class IPBlockingSystem : IIPBlockingSystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     private readonly ConcurrentDictionary<IPAddress, DateTime> _blockedIPs = new();
     private ISawmill _sawmill = default!;
@@ -88,25 +83,21 @@ public sealed class IPBlockingSystem : IIPBlockingSystem
     public bool CheckAndBlockSuspiciousLength(IPAddress ip, int length, string context)
     {
         if (!_enabled)
+        {
+            _sawmill.Debug($"IP blocking is disabled, skipping block for {ip}");
             return false;
+        }
 
         // Проверяем на отрицательные или слишком большие значения
         if (length < 0 || length > _maxResponseLength)
         {
             var reason = $"Подозрительная длина ответа: {length} байт (контекст: {context})";
+            _sawmill.Info($"Blocking IP {ip} for suspicious length {length} in context {context}");
             BlockIP(ip, reason);
             return true;
         }
 
         return false;
-    }
-
-    /// <summary>
-    /// Получает максимально допустимую длину ответа.
-    /// </summary>
-    public int GetMaxResponseLength()
-    {
-        return _maxResponseLength;
     }
 
     /// <summary>
@@ -143,14 +134,6 @@ public sealed class IPBlockingSystem : IIPBlockingSystem
         {
             _sawmill.Info($"IP {ip} разблокирован вручную");
         }
-    }
-
-    /// <summary>
-    /// Получает количество заблокированных IP-адресов.
-    /// </summary>
-    public int GetBlockedCount()
-    {
-        return _blockedIPs.Count;
     }
 }
 

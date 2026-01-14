@@ -1,0 +1,48 @@
+- type: entity
+  parent: SecurityMetusPDA
+  id: PrisonTraineePDA
+  abstract: true
+  name: prison trainee's PDA
+  description: New and clean, still learning the ropes, marked with orange to show the path of growth.
+  components:
+  - type: Pda
+    id: PrisonTraineeIDCard
+  - type: PdaBorderColor
+    borderColor: "#6b3000"
+    accentVColor: "#7c3800"
+
+- type: entity
+  parent: PrisonTraineePDA
+  id: PrisonTraineePDAPartial
+  components:
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-trainee-partial
+  - type: Icon
+    state: pda-space-prison-trainee-partial
+
+- type: entity
+  parent: PrisonTraineePDA
+  id: PrisonTraineePDAAdvanced
+  components:
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-trainee-advanced
+  - type: Icon
+    state: pda-space-prison-trainee-advanced
+
+- type: entity
+  parent: PrisonTraineePDA
+  id: PrisonTraineePDAComplete
+  components:
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-trainee-complete
+  - type: Icon
+    state: pda-space-prison-trainee-complete

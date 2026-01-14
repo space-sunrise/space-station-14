@@ -23,10 +23,9 @@
   - type: Sprite
     sprite: _Sunrise/Structures/Furniture/chairs.rsi
     state: comfy-brown
-# TODO:
-#  - type: Construction
-#    graph: Seat
-#    node: chairComfyBrown
+  - type: Construction
+    graph: Seat
+    node: chairComfyBrown
 
 - type: entity
   name: grey office chair
@@ -36,10 +35,9 @@
   - type: Sprite
     sprite: _Sunrise/Structures/Furniture/chairs.rsi
     state: office-grey
-# TODO:
-#  - type: Construction
-#    graph: Seat
-#    node: chairOfficeDark
+  - type: Construction
+    graph: Seat
+    node: chairOfficeDark
 
 - type: entity
   name: barber's chair
@@ -49,3 +47,12 @@
   - type: Sprite
     sprite: _Sunrise/Structures/Furniture/chairs.rsi
     state: barber
+
+- type: entity
+  id: ChairFoldingArtifact
+  parent: ChairFolding
+  suffix: artifact
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Construction
+    deconstructionTarget: null

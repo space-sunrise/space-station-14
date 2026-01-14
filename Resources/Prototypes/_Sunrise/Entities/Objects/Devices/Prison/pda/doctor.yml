@@ -1,0 +1,26 @@
+- type: entity
+  parent: SecurityMetusPDA
+  id: PrisonDoctorPDA
+  name: prison doctor's PDA
+  description: Sterile in appearance but worn at the edges, it has held more than one story of pain and salvation.
+  components:
+  - type: Pda
+    id: PrisonDoctorIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-doctor
+  - type: PdaBorderColor
+    borderColor: "#6b3000"
+    accentVColor: "#26465a"
+  - type: Icon
+    state: pda-space-prison-doctor
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge

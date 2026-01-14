@@ -48,6 +48,7 @@
     # Sunrise-start
     - NudeBottom
     - ArmorBasic
+    - Vest
   - type: StaminaResistance
     damageCoefficient: 0.9
   - type: Construction
@@ -89,6 +90,11 @@
         Heat: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.80
+  # Sunrise-Start
+  - type: Construction
+    graph: UpgradeArmorVest
+    node: bullet
+  # Sunrise-End
 
 - type: entity
   parent: [ClothingOuterArmorBase, ClothingOuterArmorHeatAbsorb] # Sunrise-Edit
@@ -114,6 +120,9 @@
     reflects:
       - Energy
     reflectingInHands: false
+  - type: Construction
+    graph: UpgradeArmorVest
+    node: reflective
 
 #Detective's vest
 - type: entity
@@ -376,6 +385,9 @@
     - Vest
     - FullBodyOuter
     - WhitelistChameleon
+  - type: Construction
+    graph: UpgradeArmorVest
+    node: riot
   # SUNRISE EDIT
 
 - type: entity

@@ -681,10 +681,10 @@
     armorPenetration: -0.35
     damage:
       types:
-        Piercing: 7
-        Blunt: 7
+        Piercing: 13
+        Blunt: 6
   - type: HitscanStaminaDamage
-    staminaDamage: 3
+    staminaDamage: 4
   - type: HitscanPierce
     chance: 0.20
     deviation: 0.05
@@ -995,12 +995,16 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
+    armorPenetration: 0.05 # Sunrise-add
     damage:
       types:
         Piercing: 40
         Structural: 15
+  - type: HitscanStaminaDamage # Sunrise-add
+    staminaDamage: 10
   - type: HitscanPierce
     chance: 0.08
+    pierceLevel: Metal # Sunrise-add
   - type: HitscanBasicVisuals
     bullet:
       sprite:
@@ -1030,12 +1034,17 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
+    armorPenetration: -0.15 # Sunrise-edit
     damage:
       types:
         Piercing: 5
         Structural: 5
+  - type: HitscanStaminaDamage # Sunrise-add
+    staminaDamage: 2
   - type: HitscanPierce
     chance: 0.03
+  - type: HitscanRicochet # Sunrise-edit
+    chance: 0.2
   - type: HitscanBasicVisuals
     bullet:
       sprite:
@@ -1062,6 +1071,8 @@
       types:
         Blunt: 2
         Heat: 3
+  - type: HitscanStaminaDamage # Sunrise-add
+    staminaDamage: 2
   - type: HitscanPierce
     chance: 0.02
   - type: HitscanIgniteEffect
@@ -1090,6 +1101,8 @@
     damage:
       types:
         Blunt: 1
+  - type: HitscanStaminaDamage # Sunrise-add
+    staminaDamage: 1
   - type: HitscanPierce
     chance: 0
   - type: HitscanBasicVisuals
@@ -1114,12 +1127,17 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
+    armorPenetration: -0.15 # Sunrise-edit
     damage:
       types:
         Piercing: 2
         Slash: 2
+  - type: HitscanStaminaDamage # Sunrise-add
+    staminaDamage: 2
   - type: HitscanPierce
     chance: 0
+  - type: HitscanRicochet # Sunrise-edit
+    chance: 0.2
   - type: HitscanBasicVisuals
     bullet:
       sprite:
@@ -1146,6 +1164,8 @@
       types:
         Radiation: 2
         Piercing: 3
+  - type: HitscanStaminaDamage # Sunrise-add
+    staminaDamage: 2
   - type: HitscanPierce
     chance: 0.05
     pierceLevel: HardenedMetal
@@ -1175,6 +1195,8 @@
       types:
         Piercing: 5
         Structural: 20
+  - type: HitscanStaminaDamage # Sunrise-add
+    staminaDamage: 3
   - type: HitscanPierce
     chance: 0.03
   - type: HitscanBasicVisuals
@@ -1257,7 +1279,30 @@
   - type: HitscanBasicDamage
     damage:
       types:
-        Heat: 60
+        Heat: 55
+        Structural: 20
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_blue
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_blue
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_blue
+
+- type: entity
+  id: PulseBeam
+  name: pulse beam
+  parent: BasicHitscanNoBeam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 35
+        Structural: 5
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi

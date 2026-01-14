@@ -29,7 +29,7 @@ public sealed partial class GameTicker
 
     private void InitializeLobbyBackground()
     {
-        _lobbyArts = _prototypeManager.EnumeratePrototypes<LobbyBackgroundPrototype>()
+        _lobbyArts = _prototypeManager.EnumeratePrototypes<LobbyArtPrototype>()
             .Select(x => x.ID)
             .ToList();
 

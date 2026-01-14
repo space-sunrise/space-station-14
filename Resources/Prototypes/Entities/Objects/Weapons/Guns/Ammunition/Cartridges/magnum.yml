@@ -60,7 +60,7 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#000000"
+        color: "#F5514C"
 
 - type: entity
   id: CartridgeMagnumFMJ

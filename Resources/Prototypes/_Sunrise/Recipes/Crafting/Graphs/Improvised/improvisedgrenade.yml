@@ -1,0 +1,82 @@
+﻿- type: constructionGraph
+  id: ImprovisedGrenadeCasing
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: casing
+          steps:
+            - material: Steel
+              amount: 3
+              doAfter: 1
+            - material: Plastic
+              amount: 1
+              doAfter: 1
+            - material: CrushedPhosphorus
+              amount: 1
+            - material: Cable
+              amount: 3
+              doAfter: 1
+    - node: casing
+      entity: ImprovisedGrenadeCasingEmpty
+      edges:
+        - to: firebomb
+          steps:
+            - tag: FireBomb
+              name: construction-graph-tag-firebomb
+              icon:
+               sprite: Objects/Weapons/Bombs/ied.rsi
+               state: base
+        - to: pipebomb
+          steps:
+            - tag: PipeBomb
+              name: ent-PipeBomb
+              icon:
+               sprite: Objects/Weapons/Bombs/pipebomb.rsi
+               state: base
+        - to: glass
+          steps:
+            - material: CrushedPhosphorus
+              amount: 5
+            - tag: GlassShard
+              name: construction-graph-tag-glass-shard
+              icon:
+               sprite: Objects/Materials/Shards/shard.rsi
+               state: shard1
+              doAfter: 0.5
+            - tag: GlassShard
+              name: construction-graph-tag-glass-shard
+              icon:
+               sprite: Objects/Materials/Shards/shard.rsi
+               state: shard2
+              doAfter: 0.5
+            - tag: GlassShard
+              name: construction-graph-tag-glass-shard
+              icon:
+               sprite: Objects/Materials/Shards/shard.rsi
+               state: shard1
+              doAfter: 0.5
+            - tag: GlassShard
+              name: construction-graph-tag-glass-shard
+              icon:
+               sprite: Objects/Materials/Shards/shard.rsi
+               state: shard3
+              doAfter: 0.5
+            - tag: GlassShard
+              name: construction-graph-tag-glass-shard
+              icon:
+               sprite: Objects/Materials/Shards/shard.rsi
+               state: shard2
+              doAfter: 0.5
+            - tag: GlassShard
+              name: construction-graph-tag-glass-shard
+              icon:
+               sprite: Objects/Materials/Shards/shard.rsi
+               state: shard1
+              doAfter: 0.5
+    - node: firebomb
+      entity: ImprovisedGrenadeFirebomb
+    - node: pipebomb
+      entity: ImprovisedGrenadePipebomb
+    - node: glass
+      entity: ImprovisedGrenadeGlass

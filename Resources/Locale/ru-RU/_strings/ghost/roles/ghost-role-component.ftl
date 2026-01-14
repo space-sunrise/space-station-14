@@ -37,6 +37,8 @@ ghost-role-information-silicon-rules =
     Вам абсолютно [color=red]НЕ[/color] разрешено помнить, скажем, имя, внешность и т. д. вашего предыдущего персонажа.
 ghost-role-information-mouse-name = Мышь
 ghost-role-information-mouse-description = Голодная и озорная мышь.
+ghost-role-information-cancer-mouse-name = Раковая мышь
+ghost-role-information-cancer-mouse-description = Облучённая мышь, распространяй свою заразу и ищи еду.
 ghost-role-information-mothroach-name = Таракамоль
 ghost-role-information-mothroach-description = Милая озорная таракамоль.
 ghost-role-information-snail-name = Улитка
@@ -76,6 +78,8 @@ ghost-role-information-kobold-description = Будьте маленьким гр
 ghost-role-information-rat-king-name = Крысиный король
 ghost-role-information-rat-king-description = Вы - Крысиный король, вас интересует еда, еда и ещё раз еда. Сотрудничайте со станцией или сражайтесь с ней ради еды. Я уже упоминал, что вас интересует еда?
 
+ghost-role-information-expedition-pirate-name = Пират из Комплекса
+ghost-role-information-expedition-pirate-description = Вы член команды пиратов. Не дай Утилизаторам разграбить свою базу.
 rat-guard-ghost-role-name = Крысиный гвардеец
 rat-guard-ghost-role-description = Вы элитный крысиный гвардеец. Защищайте своего короля и выполняйте его приказы.
 ghost-role-information-rat-servant-name = Крысиный слуга
@@ -269,6 +273,10 @@ ghost-role-information-gingerbread-name = Пряничный человечек
 ghost-role-information-gingerbread-description =
     Существо с чистым духом праздника.
     Распространяйте патоку и всем хорошего настроения.
+ghost-role-information-mothership-core-name = Ядро материнского корабля
+ghost-role-information-mothership-core-desc = Вы — ядро материнского корабля ксеноборгов. Помогайте им множиться, боргируя любой мозг, который они приносят вам.
+ghost-role-information-xenoborg-name = Ксеноборг
+ghost-role-information-xenoborg-desc = Странный киборг, созданный для самовоспроизведения и захвата станции, превращая любое разумное существо в ксеноборгов.
 ghost-role-information-wizard-name = Маг
 ghost-role-information-wizard-desc = ТЫ НАСТОЯЩИЙ МАГ! Покажи станции, на что способна твоя магия.
 ghost-role-information-tomatokiller-name = Помидор-Убийца
@@ -281,3 +289,4 @@ ghost-role-information-artifact-name = Разумный артефакт
 ghost-role-information-artifact-description = Осуществляйте свои инопланетные прихоти. Принудительно активируйте свои узлы во благо или во зло.
 ghost-role-information-syndie-assaultborg-name = Штурмовой киборг Синдиката
 ghost-role-information-syndie-assaultborg-description = Ядерным оперативникам требуется подкрепление. Вы, хладнокремниевая машина для убийств, будете им помогать. Больше дакки!
+ghost-role-information-expedition-pirate-rules = Вы [color=red][bold]Умный Пират[/bold][/color] более умный ваших товарищей, не дайте утилизаторам вас ограбить. Вам [color=red][bold]запрещено[/bold][/color] покидать комплекс и саму экспедицию на шаттле.

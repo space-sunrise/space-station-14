@@ -78,4 +78,8 @@
   components:
   - type: HumanoidAppearance
     species: Milira
+  - type: MoodVisuals
+    sprite:
+      sprite: _Sunrise/Mobs/Effects/Milira/mood.rsi
+      state: mood_neutral
 

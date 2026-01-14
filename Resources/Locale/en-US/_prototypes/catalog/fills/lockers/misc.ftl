@@ -1,6 +1,9 @@
 ent-LockerSyndicatePersonalFilled = { ent-LockerSyndicatePersonal }
     .suffix = Filled
     .desc = { ent-LockerSyndicatePersonal.desc }
+ent-LockerSyndicateWallFilled = { ent-LockerWallSyndicate }
+    .suffix = Filled
+    .desc = { ent-LockerWallSyndicate.desc }
 ent-ClosetEmergencyFilledRandom = { ent-ClosetEmergency }
     .suffix = Filled, Random
     .desc = { ent-ClosetEmergency.desc }

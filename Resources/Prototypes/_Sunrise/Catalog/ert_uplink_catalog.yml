@@ -976,14 +976,13 @@
   productEntity: RifleHeavyMagazineAP
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: 342ap }
   cost:
-    Crystallite: 16
+    Crystallite: 15
   categories:
   - NTAmmo
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
-      - ERTGamma
       - ERTEpsilon
 
 - type: listing

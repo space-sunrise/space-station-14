@@ -11,8 +11,8 @@ public sealed partial class LobbyAnimationPrototype : IPrototype
     [IdDataField]
     public string ID { get; set; } = default!;
 
-    [DataField("rawPath", required: true)]
-    public string RawPath = default!;
+    [DataField("animation", required: true)]
+    public string Animation = default!;
 
     [DataField("scale")]
     public Vector2 Scale = new(1f, 1f);

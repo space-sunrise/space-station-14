@@ -27,6 +27,39 @@
     uiWindowPos: 1,0
     strippingWindowPos: 0,2
     displayName: Jumpsuit
+  # Sunrise-start
+  - name: pocket1
+    slotTexture: pocket
+    fullTextureName: template_small
+    slotFlags: POCKET
+    slotGroup: MainHotbar
+    stripTime: 3
+    uiWindowPos: 0,3
+    strippingWindowPos: 0,4
+    displayName: Pocket 1
+    stripHidden: true
+    dependsOn: jumpsuit
+  - name: pocket2
+    slotTexture: pocket
+    fullTextureName: template_small
+    slotFlags: POCKET
+    slotGroup: MainHotbar
+    stripTime: 3
+    uiWindowPos: 2,3
+    strippingWindowPos: 1,4
+    displayName: Pocket 2
+    stripHidden: true
+    dependsOn: jumpsuit
+  - name: belt
+    slotTexture: belt
+    fullTextureName: template_small
+    slotFlags: BELT
+    slotGroup: SecondHotbar
+    stripTime: 6
+    uiWindowPos: 3,1
+    strippingWindowPos: 1,5
+    displayName: Belt
+  # Sunrise-end
   - name: id
     slotTexture: id
     fullTextureName: template_small

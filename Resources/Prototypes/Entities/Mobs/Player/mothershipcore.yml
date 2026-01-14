@@ -154,6 +154,12 @@
   - type: Xenoborg
     mindRole: MindRoleMothershipCore
     briefingText: mothership-welcome
+  # Sunrise-Start
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-mothership-core-name
+    description: ghost-panel-antagonist-mothership-core-description
+    priority: 15
+  # Sunrise-End
   - type: MothershipCore
   - type: Tag
     tags:

@@ -109,6 +109,8 @@
     children:
     - id: ClothingEyesGlassesSecurity
     - id: WeaponTaser
+    - id: BoxBeaker # Sunrise-edit
+    - id: BoxVial # Sunrise-edit
     - id: WeaponDisabler
     - id: TrackingImplanter
       amount: 2

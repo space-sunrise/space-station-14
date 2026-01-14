@@ -1,0 +1,18 @@
+ - type: entity
+   parent: SecurityMetusPDA
+   id: PrisonChefPDA
+   name: prison chef's PDA
+   description: Worn and stained with spots of spices, it reflects the harsh daily grind of the prison kitchen.
+   components:
+   - type: Pda
+     id: PrisonChefIDCard
+   - type: Appearance
+     appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-chef
+   - type: PdaBorderColor
+     borderColor: "#6b3000"
+     accentVColor: "#423842"
+   - type: Icon
+     state: pda-space-prison-chef

@@ -1187,12 +1187,12 @@
   name: uplink-syndicate-rapier-name
   description: uplink-syndicate-rapier-desc
   icon: { sprite: _Sunrise/Clothing/Belt/syndie_sheath.rsi, state: sheath-rapier }
-  productEntity: BeltSheathSyndieFilledBox
+  productEntity: SyndicateRapierToxinBox
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 5
   cost:
-    Telecrystal: 7
+    Telecrystal: 8
   categories:
   - UplinkWeaponry
   conditions:
@@ -1240,7 +1240,7 @@
   id: UplinkPolytrinicAcidChemistryBottle
   name: uplink-polytrinic-acid-chemistry-bottle-name
   description: uplink-polytrinic-acid-chemistry-bottle-desc
-  productEntity: PolytrinicAcidChemistryBottle
+  productEntity: ChemistryBottlePolytrinicAcid
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 2
@@ -1750,6 +1750,20 @@
   description: uplink-smoke-screen-implanter-desc
   icon: { sprite: Objects/Weapons/Grenades/smoke.rsi, state: icon }
   productEntity: SmokeScreenImplanter
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkImplants
+
+- type: listing
+  id: UplinkScramImplanterProto
+  name: uplink-scram-implanter-proto-name
+  description: uplink-scram-implanter-proto-desc
+  icon: { sprite: /Textures/Structures/Specific/anomaly.rsi, state: anom4 }
+  productEntity: ScramImplanterProto
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 1

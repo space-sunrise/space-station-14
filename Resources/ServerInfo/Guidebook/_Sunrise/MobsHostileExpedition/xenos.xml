@@ -1,0 +1,157 @@
+<Document>
+  # Ксено
+
+  Ксено (ксеноморфы) - агрессивные инопланетные формы жизни, действующие стаей.
+  У них кислотная кровь, коллективный разум и способность вскрывать двери.
+  При разделке можно получить мясо ксеноморфа.
+
+  [bold][color=#a4885c]________________________________________________________________________[/color]
+
+  # Известные варианты
+  # "Бурильщик"
+
+  Молодая форма, предпочитает прятаться и вести бой на ближней дистанции.
+
+  <Box>
+  <GuideEntityEmbed Entity="MobXeno"/>
+  </Box>
+  - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 50
+  - [bold][color=#a4885c]Скорость:[/color][/bold] 4 м/с
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 6 [color=red]Brute[/color]
+  - [bold][color=#a4885c]Сопротивления:[/color][/bold] нет
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] нет
+
+  [bold][color=#a4885c]________________________________________________________________________[/color]
+
+  # "Дрон"
+
+  Рабочая каста улья. Поддерживает рой и помогает в строительстве гнезда.
+
+  <Box>
+  <GuideEntityEmbed Entity="MobXenoDrone"/>
+  </Box>
+  - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 80
+  - [bold][color=#a4885c]Скорость:[/color][/bold] 4 м/с
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 6 [color=red]Brute[/color]
+  - [bold][color=#a4885c]Сопротивления:[/color][/bold] нет
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] нет
+
+  [bold][color=#a4885c]________________________________________________________________________[/color]
+
+  # "Преторианец"
+
+  Крупный и живучий охранник улья.
+
+  <Box>
+  <GuideEntityEmbed Entity="MobXenoPraetorian"/>
+  </Box>
+  - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 100
+  - [bold][color=#a4885c]Скорость:[/color][/bold] 4 м/с
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 6 [color=red]Brute[/color]
+  - [bold][color=#a4885c]Сопротивления:[/color][/bold] нет
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] нет
+
+  [bold][color=#a4885c]________________________________________________________________________[/color]
+
+  # "Раваджер"
+
+  Сильный рукопашник, опасен при прорывах и в ближнем бою.
+
+  <Box>
+  <GuideEntityEmbed Entity="MobXenoRavager"/>
+  </Box>
+  - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 100
+  - [bold][color=#a4885c]Скорость:[/color][/bold] 4 м/с
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 10 [color=red]Brute[/color]
+  - [bold][color=#a4885c]Сопротивления:[/color][/bold] нет
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] нет
+
+  [bold][color=#a4885c]________________________________________________________________________[/color]
+
+  # "Бегун"
+
+  Быстрая каста, использует тактику "ударил - ушел".
+
+  <Box>
+  <GuideEntityEmbed Entity="MobXenoRunner"/>
+  </Box>
+  - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 50
+  - [bold][color=#a4885c]Скорость:[/color][/bold] 6 м/с
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 5 [color=red]Brute[/color]
+  - [bold][color=#a4885c]Сопротивления:[/color][/bold] нет
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] нет
+
+  [bold][color=#a4885c]________________________________________________________________________[/color]
+
+  # "Роуни"
+
+  Редкая разновидность бегуна.
+
+  <Box>
+  <GuideEntityEmbed Entity="MobXenoRouny"/>
+  </Box>
+  - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 50
+  - [bold][color=#a4885c]Скорость:[/color][/bold] 6 м/с
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 5 [color=red]Brute[/color]
+  - [bold][color=#a4885c]Сопротивления:[/color][/bold] нет
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] нет
+
+  [bold][color=#a4885c]________________________________________________________________________[/color]
+
+  # "Плевун"
+
+  Дистанционный боец, атакует кислотой.
+
+  <Box>
+  <GuideEntityEmbed Entity="MobXenoSpitter"/>
+  </Box>
+  - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 50
+  - [bold][color=#a4885c]Скорость:[/color][/bold] 4 м/с
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 5 [color=orange]Caustic[/color]
+  - [bold][color=#a4885c]Сопротивления:[/color][/bold] нет
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] Кислотный урон
+
+  [bold][color=#a4885c]________________________________________________________________________[/color]
+
+  # "Кислотная турель"
+
+  Неподвижная оборонительная органика, стреляет кислотой.
+
+  <Box>
+  <GuideEntityEmbed Entity="WeaponTurretXeno"/>
+  </Box>
+  - [bold][color=#a4885c]Прочность:[/color][/bold] 100
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 5 [color=orange]Caustic[/color]
+  - [bold][color=#a4885c]Сопротивления:[/color][/bold] нет
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] Кислотный урон
+
+  [bold][color=#a4885c]________________________________________________________________________[/color]
+
+  # "Королева"
+
+  Главный организм улья и самая опасная цель.
+
+  <Box>
+  <GuideEntityEmbed Entity="MobXenoQueen"/>
+  </Box>
+  - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 300
+  - [bold][color=#a4885c]Скорость:[/color][/bold] 4 м/с
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 12 [color=red]Brute[/color]
+  - [bold][color=#a4885c]Сопротивления:[/color][/bold] нет
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] нет
+
+  [bold][color=#a4885c]________________________________________________________________________[/color]
+
+  # Цели миссий
+  ## Устранение
+  <Box>
+  <GuideEntityEmbed Entity="MobXenoQueen"/>
+  </Box>
+  Устранить крупную и опасную цель - [color=#a4885c]королеву[/color] - за отведенное время.
+
+  ## Уничтожение
+  <Box>
+  <GuideEntityEmbed Entity="XenoWardingTower"/>
+  </Box>
+  Уничтожить нужное число [color=#a4885c]вардинговых башен ксено[/color] за отведенное время.
+</Document>

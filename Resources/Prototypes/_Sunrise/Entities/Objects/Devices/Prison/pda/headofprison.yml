@@ -1,0 +1,46 @@
+- type: entity
+  parent: BasePDA
+  id: SecurityMetusPDA
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda"
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_inserted-space-prison"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+
+- type: entity
+  parent: SecurityMetusPDA
+  id: HeadOfPrisonPDA
+  name: Prison governor's PDA
+  description: Has the look of a prestigious instrument of power, but a little scratched from constant emergency calls.
+  components:
+  - type: Pda
+    id: HeadOfPrisonIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-boss
+  - type: PdaBorderColor
+    borderColor: "#802d29"
+    accentHColor: "#111111"
+  - type: Icon
+    state: pda-space-prison-boss

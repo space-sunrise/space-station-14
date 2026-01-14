@@ -34,7 +34,37 @@
     sprite: Clothing/OuterClothing/Armor/armor_reflec.rsi
     state: icon
   product: CrateSecurityArmorReflective
-  cost: 880
+  cost: 1250
+  category: cargoproduct-category-name-security
+  group: market
+
+- type: cargoProduct
+  id: SecurityHeatAbsorb
+  icon:
+    sprite: _Starlight/Clothing/OuterClothing/Armor/heatabsorbent.rsi
+    state: icon
+  product: CrateSecurityArmorHeatAbsorb
+  cost: 950
+  category: cargoproduct-category-name-security
+  group: market
+
+- type: cargoProduct
+  id: SecurityArmorStab
+  icon:
+    sprite: _Starlight/Clothing/OuterClothing/Armor/stabvest.rsi
+    state: icon
+  product: CrateSecurityArmorStab
+  cost: 950
+  category: cargoproduct-category-name-security
+  group: market
+
+- type: cargoProduct
+  id: SecurityArmorPlate
+  icon:
+    sprite: _Starlight/Clothing/OuterClothing/Armor/platecarrier.rsi
+    state: icon
+  product: CrateSecurityArmorPlate
+  cost: 950
   category: cargoproduct-category-name-security
   group: market
 

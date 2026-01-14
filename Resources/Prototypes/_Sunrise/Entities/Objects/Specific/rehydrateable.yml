@@ -42,3 +42,12 @@
   - type: Rehydratable
     possibleSpawns:
     - MobFelinidRandomization
+
+- type: entity
+  parent: MonkeyCube
+  id: PirateMonkeyCube
+  name: pirate monkey cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobBasePirateMonkey

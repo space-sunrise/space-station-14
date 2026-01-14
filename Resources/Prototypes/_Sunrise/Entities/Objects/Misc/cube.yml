@@ -121,3 +121,16 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/cube.rsi
     state: wrapper_mothroach
+
+- type: entity
+  parent: MonkeyCubeWrapped
+  name: pirate monkey cube
+  suffix: Wrapped
+  id: PirateMonkeyCubeWrapped
+  description: Unwrap this to get a pirate monkey cube.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: PirateMonkeyCube
+    sound:
+      path: /Audio/Effects/unwrap.ogg

@@ -39,6 +39,7 @@
         layer:
         - MachineLayer
   - type: EntityStorage
+    maxSize: 1.05 # Sunrise edit - неправильные спрайты в ящиках (#3611)
   - type: PlaceableSurface
     isPlaceable: false # defaults to closed.
   - type: Damageable

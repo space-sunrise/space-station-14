@@ -1,0 +1,16 @@
+seeds-plaststeelcap-name = plaststeelcap
+seeds-plaststeelcap-display-name = plaststeelcap
+seeds-glasscap-name = glasscap
+seeds-glasscap-display-name = glasscap
+seeds-cannabis-vita-name = cannabis vita
+seeds-cannabis-vita-display-name = cannabis vita
+seeds-barrelmelon-name = barrelmelon
+seeds-barrelmelon-display-name = barrelmelon
+seeds-lanternfruit-name = lantern fruit
+seeds-lanternfruit-display-name = lantern fruit
+seeds-redrose-name = red rose
+seeds-redrose-display-name = red rose
+seeds-whiterose-name = white rose
+seeds-whiterose-display-name = white rose
+seeds-sunflower-name = sunflower
+seeds-sunflower-display-name = sunflower

@@ -112,6 +112,15 @@
   suffix: Pirate
   parent: BaseCannonBall
   components:
+  - type: TriggerOnLand
+  - type: EmpOnTrigger
+    range: 2
+    energyConsumption: 30000
+    disableDuration: 10
+  - type: SpawnOnTrigger
+    proto: CannonBallGlassshot
+    useMapCoords: true
+  - type: DeleteOnTrigger
   - type: CartridgeAmmo
     proto: BulletEMP
     deleteOnSpawn: true
@@ -126,11 +135,40 @@
   parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeBlastTimer
+    proto: BulletFuzeCannonBall
     deleteOnSpawn: true
+  - type: TriggerOnUse
+  - type: TimerTrigger
+    delay: 2
+    examinable: true
+    initialBeepDelay: 0
+    beepSound: /Audio/Effects/lightburn.ogg
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 150
+    intensitySlope: 5
+    maxIntensity: 10
+    canCreateVacuum: false
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterLessLethal
+    capacity: 20
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     state: fuzeball
+  - type: GenericVisualizer
+    visuals:
+      enum.Trigger.TriggerVisuals.VisualState:
+        enum.ConstructionVisuals.Layer:
+          Primed: { state: primed }
+          Unprimed: { state: fuzeball }
+  - type: Appearance
+  - type: TimerTriggerVisuals
 
 - type: entity
   id: CannonBallMini
@@ -240,3 +278,106 @@
     state: rpg
   - type: StaticPrice
     price: 20
+
+# region Improvised
+- type: entity
+  id: ImprovisedGrenadeCasingEmpty
+  name: empty improvised casing
+  description: A hollow homemade shotgun shell that can be filled with a somewhat deadly variety of makeshift pellets.
+  parent: [BaseItem, BaseMinorContraband ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/explosives.rsi
+    layers:
+    - state: casing
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      shell:
+        maxVol: 5
+  - type: MixableSolution
+    solution: shell
+  - type: FitsInDispenser
+    solution: shell
+  - type: RefillableSolution
+    solution: shell
+  - type: DrainableSolution
+    solution: shell
+  - type: ExaminableSolution
+    solution: shell
+  - type: DrawableSolution
+    solution: shell
+  - type: InjectableSolution
+    solution: shell
+  - type: SolutionTransfer
+  - type: SolutionItemStatus
+    solution: shell
+  - type: Spillable
+    solution: shell
+  - type: Construction
+    graph: ImprovisedGrenadeCasing
+    node: casing
+  - type: Tag
+    tags:
+    - ImprovisedGrenadeEmpty
+
+- type: entity
+  id: ImprovisedGrenadeFirebomb
+  name: grenade firebomb
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletImprovisedGrenadeFirebomb
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/explosives.rsi
+    layers:
+    - state: ied
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Construction
+    graph: ImprovisedGrenadeCasing
+    node: firebomb
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: spent
+    suffix: false
+
+- type: entity
+  id: ImprovisedGrenadePipebomb
+  name: grenade pipebomb
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletImprovisedGrenadePipeBomb
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/explosives.rsi
+    layers:
+    - state: pipebomb
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Construction
+    graph: ImprovisedGrenadeCasing
+    node: pipebomb
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: spent
+    suffix: false
+
+- type: entity
+  id: ImprovisedGrenadeGlass
+  name: grenade glassshot
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletImprovisedGrenadeGlass
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/explosives.rsi
+    layers:
+    - state: glass
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Construction
+    graph: ImprovisedGrenadeCasing
+    node: glass
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: spent
+    suffix: false

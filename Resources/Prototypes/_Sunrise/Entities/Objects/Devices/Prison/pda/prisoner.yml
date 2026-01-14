@@ -1,0 +1,86 @@
+- type: entity
+  parent: BasePDA
+  id: PlanetPrisonerPDA
+  abstract: true
+  name: prisoner's PDA
+  description: Minimal functions. Maximum oversight.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda-space-prison-prisoner-screen-H"
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_inserted-space-prison"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-prisoner-screen-H
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-prisoner-screen-H
+  - type: Pda
+    id: PlanetPrisonerIDCard
+  - type: PdaBorderColor
+    borderColor: "#3b3b3b"
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NewsReaderCartridge
+      - NavigatorCartridge
+
+- type: entity
+  parent: PlanetPrisonerPDA
+  id: PlanetPrisonerPDAScreenH
+  components:
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-prisoner-screen-H
+  - type: Icon
+    state: pda-space-prison-prisoner-screen-H
+
+- type: entity
+  parent: PlanetPrisonerPDA
+  id: PlanetPrisonerPDAScreenHCracked
+  components:
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-prisoner-screen-H-cracked
+  - type: Icon
+    state: pda-space-prison-prisoner-screen-H-cracked
+
+- type: entity
+  parent: PlanetPrisonerPDA
+  id: PlanetPrisonerPDAScreenX
+  components:
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-prisoner-screen-X
+  - type: Icon
+    state: pda-space-prison-prisoner-screen-X
+
+- type: entity
+  parent: PlanetPrisonerPDA
+  id: PlanetPrisonerPDAScreenXCracked
+  components:
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-prisoner-screen-X-cracked
+  - type: Icon
+    state: pda-space-prison-prisoner-screen-X-cracked

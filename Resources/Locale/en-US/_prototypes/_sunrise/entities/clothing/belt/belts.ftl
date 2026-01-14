@@ -45,4 +45,6 @@ ent-ClothingBeltPrisonEngineerMetus = prison engineer belt
 ent-ClothingBeltPrisonScientistMetus = prison scientist belt
     .desc = Stern, marked by instruments and foreign hands, as if it has outlasted more than one owner.
 ent-ClothingBeltPrisonWorkerMetus = prison worker belt
-    .desc = Heavy and coarse, with traces of impacts and scorched leather, carrying everything gathered from work across the prison’s many parts.
+    .desc = Heavy and coarse, with traces of impacts and scorched leather, carrying everything gathered from work across the prison's many parts.
+ent-ClothingBeltPrisonTraineeMetus = prison trainee belt
+    .desc = Fresh and new, still learning to carry the weight of responsibility, marked with orange to show the path ahead.

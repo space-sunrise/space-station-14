@@ -1,0 +1,44 @@
+- type: entity
+  name: random implant case spawner
+  id: RandomImplantCaseSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Sunrise/Objects/Misc/lockbox.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - ImplantCaseNightVision
+    - ImplantCaseThermal
+    - ImplantCaseImplantChemical
+    - ImplantCaseImplantWelding
+    - ImplantCaseImplantMedical
+    - ImplantCaseGorilla
+    - ImplantCaseMechwright
+    - ImplantCaseReaper
+    - ImplantCaseRobust
+    - ImplantCaseHack
+    - ImplantCaseAtmos
+    - ImplantCaseJani
+    - ImplantCaseImplantSecurity
+    - ImplantCaseBonesaw
+    - ImplantCaseLaserEmitter
+    - ImplantCaseBulwark
+    - ImplantCaseGrenadeThrower
+    - ImplantCaseMantisBladeMaxGuard
+    - LeftArmCyberGorilla
+    - LeftArmCyberMechwright
+    - LeftArmCyberReaper
+    - LeftArmCyberRobust
+    - LeftArmCyberHack
+    - LeftArmCyberAtmos
+    - LeftArmCyberJanitorial
+    - LeftArmCyberBonesaw
+    - LeftArmCyberLaserEmitter
+    - LeftArmCyberBulwark
+    - LeftArmCyberGrenadeThrower
+    - LeftArmCyberMantisBladeMaxGuard
+    chance: 1
+    offset: 0.0

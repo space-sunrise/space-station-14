@@ -216,6 +216,12 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<string> LobbyParallax =
         CVarDef.Create("lobby.parallax", "Random", CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    /// <summary>
+    /// Whether to unload lobby resources from video memory when switching backgrounds or entering round.
+    /// </summary>
+    public static readonly CVarDef<bool> LobbyUnloadResources =
+        CVarDef.Create("lobby.unload_resources", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
     public static readonly CVarDef<float> LobbyOpacity =
         CVarDef.Create("lobby.lobby_opacity", 0.90f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
@@ -286,9 +292,11 @@ public sealed partial class SunriseCCVars : CVars
      * NPCs
      */
 
-    public static readonly CVarDef<bool> NPCDisableWithoutPlayers = CVarDef.Create("npc.disable_without_players", true);
+    public static readonly CVarDef<bool> NpcDisableWithoutPlayers =
+        CVarDef.Create("npc.disable_without_players", true, CVar.SERVERONLY | CVar.ARCHIVE);
 
-    public static readonly CVarDef<float> NPCDisableDistance = CVarDef.Create("npc.disable_distance", 20f);
+    public static readonly CVarDef<float> NpcDisableDistance =
+        CVarDef.Create("npc.disable_distance", 20f, CVar.SERVERONLY | CVar.ARCHIVE);
 
     /*
      * Vote

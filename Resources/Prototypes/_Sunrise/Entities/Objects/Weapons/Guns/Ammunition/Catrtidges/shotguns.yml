@@ -134,6 +134,7 @@
     tags:
     - Cartridge
     - ShellShotgun
+    - ShotgunSlug
     - ShellShotgunLight
   - type: Sprite
     layers:

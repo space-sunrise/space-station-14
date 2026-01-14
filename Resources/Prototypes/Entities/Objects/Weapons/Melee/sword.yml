@@ -48,6 +48,12 @@
   - type: Reflect
     reflectProb: 0.15
     spread: 90
+  - type: Tool
+    qualities:
+    - Slicing
+    - Prying
+  - type: ToolTileCompatible
+  - type: Prying
   # sunrise-end
 
 - type: entity

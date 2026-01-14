@@ -141,3 +141,21 @@
   targetNode: hardsuitGoliath
   category: construction-category-clothing
   objectType: Item
+
+- type: construction
+  id: ImprovisedGrenadeCasing
+  graph: ImprovisedGrenadeCasing
+  startNode: start
+  targetNode: casing
+  category: construction-category-weapons
+  objectType: Item
+  name: ent-ImprovisedGrenadeCasingEmpty
+  description: ent-ImprovisedGrenadeCasingEmpty.desc
+
+- type: construction
+  id: bombaga
+  graph: bombaga
+  startNode: start
+  targetNode: bombarda
+  category: construction-category-weapons
+  objectType: Item

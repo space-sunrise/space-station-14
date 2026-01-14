@@ -97,6 +97,8 @@ uplink-smoke-screen-implanter-desc = Creates a small cloud of smoke for you to s
 
 uplink-creepy-laugh-implanter-name = Creepy Laugh Implanter
 uplink-creepy-laugh-implanter-desc = An audio implant that plays the signature laugh of a Syndicate cyborg. Annoying, intimidating, and undeniably stylish.
+uplink-scram-implanter-proto-name = Scram Implanter Proto
+uplink-scram-implanter-proto-desc = A 1-use scram implant that recharges after 600 seconds. Teleports you within a large radius, tries to place you on an unobstructed tile, and may sometimes fail. Life insurance not included.
 
 uplink-cluster-mini-bomb-name = Cluster Minibomb
 uplink-cluster-mini-bomb-desc = If you don't care about accuracy, then this choice is for you.

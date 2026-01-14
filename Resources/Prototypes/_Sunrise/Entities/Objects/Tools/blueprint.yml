@@ -75,9 +75,29 @@
 - type: entity
   parent: BaseBlueprintSecurity
   id: BlueprintMagAsh12Slug
-  name: ash-12 magazine (.50 slug) blueprint
+  name: ash-12 magazine slug blueprint
   description: A blueprint with a schematic of a ash-12 magazine with slugs. It can be inserted into an autolathe and security fabricator.
   components:
   - type: Blueprint
     providedRecipes:
-    - MagazineAsh12
+    - MagazineAsh12Slug
+
+- type: entity
+  parent: BaseBlueprintSecurity
+  id: BlueprintMagAsh12Beanbag
+  name: ash-12 magazine beanbag blueprint
+  description: A blueprint with a schematic of a ash-12 magazine with beanbag. It can be inserted into an autolathe and security fabricator.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - MagazineAsh12Beanbag
+
+- type: entity
+  parent: BaseBlueprintSecurity
+  id: BlueprintMagAsh12Flare
+  name: ash-12 magazine flare blueprint
+  description: A blueprint with a schematic of a ash-12 magazine with flare. It can be inserted into an autolathe and security fabricator.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - MagazineAsh12Flare

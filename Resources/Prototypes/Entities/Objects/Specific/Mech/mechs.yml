@@ -156,7 +156,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      500: Critical
+      250: Critical
     showOverlays: false
     allowRevives: true
   - type: HealthExaminable
@@ -166,6 +166,7 @@
       - Piercing
       - Heat
       - Shock
+      - Mangleness # Sunrise-Edit
     locPrefix: mech
   - type: Appearance
   - type: ContainerContainer
@@ -173,9 +174,15 @@
       mech-pilot-slot: !type:ContainerSlot
       mech-equipment-container: !type:Container
       mech-battery-slot: !type:ContainerSlot
+  # Sunrise-Start
+  - type: Inventory
+    templateId: mechArmor
+  - type: InventorySlots
+  - type: Loadout
+    prototypes: [ MechArmorLightLoadout ]
+  # Sunrise-End
   - type: Damageable
     damageContainer: Mech
-    damageModifierSet: LightArmor
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/mechmove03.ogg
@@ -186,11 +193,18 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1200
+        damage: 500 # Sunrise-edit
       behaviors:
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
+      # Sunrise-start
+      - !type:SpawnEntitiesBehavior # Sunrise-edit
+        spawn:
+          ScrapSteel:
+            min: 2
+            max: 4
+      # Sunrise-end
       - !type:ChangeConstructionNodeBehavior
         node: start
       - !type:DoActsBehavior
@@ -216,7 +230,7 @@
 # Ripley MK-I
 - type: entity
   id: MechRipley
-  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
+  parent: [ MechBreakageRipley, BaseMech, IndustrialMech, BaseCargoContraband ] # Sunrise-edit
   name: Ripley APLU
   description: Versatile and lightly armored, the Ripley is useful for almost any heavy work scenario. The "APLU" stands for Autonomous Power Loading Unit.
   components:
@@ -273,7 +287,7 @@
 # Ripley MK-II
 - type: entity
   id: MechRipley2
-  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
+  parent: [ MechBreakageRipley, BaseMech, IndustrialMech, BaseCargoContraband ] # Sunrise-edit
   name: Ripley APLU MK-II
   description: The "MK-II" has a pressurized cabin for space operations, but the added weight has slowed it down.
   components:
@@ -307,8 +321,10 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 2.25
-  - type: Damageable
-    damageModifierSet: MediumArmorNT
+  # Sunrise-Start
+  - type: Loadout
+    prototypes: [ MechArmorMediumNTLoadout ]
+  # Sunrise-End
   - type: Reflect
     reflectProb: 0.10
     spread: 180
@@ -370,7 +386,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.1
+    reflectProb: 0.05
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -427,7 +443,7 @@
       components:
       - HumanoidAppearance
   - type: Reflect
-    reflectProb: 0.35
+    reflectProb: 0.05
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -575,7 +591,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      400: Critical
+      200: Critical
     showOverlays: false
     allowRevives: true
   # Sunrise-Start
@@ -602,7 +618,7 @@
 # Gygax
 - type: entity
   id: MechGygax
-  parent: [ BaseMech, CombatMech, BaseSecurityScienceContraband ]
+  parent: [ MechBreakageGygax, BaseMech, CombatMech, BaseSecurityScienceContraband ] # Sunrise-edit
   name: Gygax
   description: While lightly armored, the Gygax has incredible mobility thanks to its ability that lets it smash through walls at high speeds.
   components:
@@ -641,7 +657,7 @@
     baseWalkSpeed: 2
     baseSprintSpeed: 3.5
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.05
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -651,6 +667,10 @@
     - DoorBumpOpener
     - FootstepSound
     - Gygax
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      275: Critical
 
 - type: entity
   id: MechGygaxBattery
@@ -665,7 +685,7 @@
 # Durand
 - type: entity
   id: MechDurand
-  parent: [ BaseMech, CombatMech, BaseSecurityScienceContraband ]
+  parent: [ MechBreakageDurand, BaseMech, CombatMech, BaseSecurityScienceContraband ] # Sunrise-edit
   name: Durand
   description: A slow but beefy combat exosuit that is extra scary in confined spaces due to its punches. Xenos hate it!
   components:
@@ -703,12 +723,14 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
     baseSprintSpeed: 2
-  - type: Damageable
-    damageModifierSet: MediumArmorNT
+  # Sunrise-Start
+  - type: Loadout
+    prototypes: [ MechArmorMediumNTLoadout ]
+  # Sunrise-End
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.20
+    reflectProb: 0.10
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -718,6 +740,10 @@
     - DoorBumpOpener
     - FootstepSound
     - Durand
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Critical
 
 - type: entity
   id: MechDurandBattery
@@ -731,95 +757,10 @@
 
 # Nanotrasen Combat Mechs
 
-# NT Gygax
-- type: entity
-  id: MechNTGygax
-  parent: [ BaseMech, CombatMech, BaseSecurityScienceContraband ]
-  name: Nanotrasen Special Gygax
-  description: "Nanotrasen's trump card when solving problems. High durability, increased protection against shock, explosions, temperature, shots: conventional, laser and energy, as well as expanded equipment slots allow to turn the situation on the station upside down. Gas pedals consume a colossal amount of energy."
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    noRot: true
-    sprite: Objects/Specific/Mech/gygax.rsi
-    scale: 1.08, 1.08
-    layers:
-    - map: [ "enum.MechVisualLayers.Base" ]
-      state: ntgygax
-  - type: FootstepModifier
-    footstepSoundCollection:
-      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
-  - type: Mech
-    baseState: ntgygax
-    openState: ntgygax-open
-    brokenState: ntgygax-broken
-    mechToPilotDamageMultiplier: 0.3
-    airtight: true
-    maxEquipmentAmount: 4
-    pilotWhitelist:
-      components:
-        - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
-  - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
-  - type: MeleeWeapon
-    hidden: true
-    attackRate: 1
-    damage:
-      types:
-        Blunt: 35
-        Structural: 180
-    bluntStaminaDamageFactor: 1.5
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 3
-  - type: Reflect
-    reflectProb: 0.15
-    spread: 180
-    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
-    reflects:
-    - NonEnergy
-  - type: Damageable
-    damageModifierSet: MediumArmorNT
-  - type: CanMoveInAir
-  - type: MovementAlwaysTouching
-  - type: Tag
-    tags:
-    - DoorBumpOpener
-    - FootstepSound
-    - Gygax
-  - type: AccessReader
-    access: [["CentralCommand"]]
-
-- type: entity
-  id: MechNTGygaxBattery
-  parent: MechNTGygax
-  suffix: Battery
-  components:
-  - type: ContainerFill
-    containers:
-      mech-battery-slot:
-      - PowerCageERT
-
-- type: entity
-  id: MechNTGygaxFilled
-  parent: MechNTGygaxBattery
-  suffix: Battery, Filled
-  components:
-  - type: Mech
-    startingEquipment:
-      - WeaponMechChainSword
-      - WeaponMechCombatShotgun
-      - WeaponMechCombatPulseRifle
-      - WeaponMechCombatMissileRack8
-
 # Marauder
 - type: entity
   id: MechMarauder
-  parent: [ BaseMech, CombatMech, BaseCentcommContraband ]
+  parent: [ MechBreakageMarauderFamily, BaseMech, CombatMech, BaseCentcommContraband ] # Sunrise-edit
   name: Marauder
   description: Looks like we're all saved. # ERT mech
   components:
@@ -861,12 +802,14 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 1.5
-  - type: Damageable
-    damageModifierSet: HeavyArmorNT
+  # Sunrise-Start
+  - type: Loadout
+    prototypes: [ MechArmorHeavyNTLoadout ]
+  # Sunrise-End
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.20
+    reflectProb: 0.15
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -875,7 +818,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      550: Critical
+      500: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -906,7 +849,7 @@
 # Seraph
 - type: entity
   id: MechSeraph
-  parent: [ BaseMech, CombatMech, BaseCentcommContraband ]
+  parent: [ MechBreakageMarauderFamily, BaseMech, CombatMech, BaseCentcommContraband ] # Sunrise-edit
   name: Seraph
   description: That's the last thing you'll see.
   components:
@@ -948,8 +891,10 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 3.7
-  - type: Damageable
-    damageModifierSet: HeavyArmorNT
+  # Sunrise-Start
+  - type: Loadout
+    prototypes: [ MechArmorHeavyNTLoadout ]
+  # Sunrise-End
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
@@ -962,7 +907,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      600: Critical
+      550: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -996,7 +941,7 @@
 # Dark Gygax
 - type: entity
   id: MechGygaxSyndie
-  parent: [ BaseMech, CombatMech, BaseSyndicateContraband ]
+  parent: [ MechBreakageGygax, BaseMech, CombatMech, BaseSyndicateContraband ] # Sunrise-edit
   name: Dark Gygax
   description: A modified Gygax used for nefarious purposes. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:
@@ -1038,12 +983,14 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
     baseSprintSpeed: 3.7
-  - type: Damageable
-    damageModifierSet: MediumArmorSyndi
+  # Sunrise-Start
+  - type: Loadout
+    prototypes: [ MechArmorMediumSyndiLoadout ]
+  # Sunrise-End
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.10
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -1053,8 +1000,14 @@
     - DoorBumpOpener
     - FootstepSound
     - Gygax
+  # Sunrise-Start
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Critical
   - type: AccessReader
     access: [["NuclearOperative"]]
+  # Sunrise-End
 
 - type: entity
   id: MechGygaxSyndieBattery
@@ -1079,7 +1032,7 @@
 # Mauler
 - type: entity
   id: MechMaulerSyndie
-  parent: [ BaseMech, CombatMech, BaseSyndicateContraband ]
+  parent: [ MechBreakageMarauderFamily, BaseMech, CombatMech, BaseSyndicateContraband ] # Sunrise-edit
   name: Mauler
   description: A modified Marauder used by the Syndicate that's not as maneuverable as the Dark Gygax, but it makes up for that in armor and sheer firepower. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:
@@ -1121,12 +1074,14 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 1.5
-  - type: Damageable
-    damageModifierSet: HeavyArmorSyndi
+  # Sunrise-Start
+  - type: Loadout
+    prototypes: [ MechArmorHeavySyndiLoadout ]
+  # Sunrise-End
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.20
+    reflectProb: 0.15
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -1140,7 +1095,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      650: Critical
+      600: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader

@@ -21,6 +21,8 @@ uplink-gloves-north-star-name = Перчатки Полярной звезды
 uplink-gloves-north-star-desc = Пара перчаток, которые значительно сокращают время между ударами, позволяя избивать людей до смерти шквалом ударов.
 uplink-gloves-knuckleduster-name = Кастеты Синдиката
 uplink-gloves-knuckleduster-desc = Пара пластитановых кастетов, усиливающих силу ваших ударов.
+uplink-hushpup-name = Молчун
+uplink-hushpup-desc = Мощный дробовик с глушителем и малым размером магазина. В комплекте запасная коробка дроби. Использует ружейные патроны калибра .50.
 uplink-estoc-bundle-name = Набор «Эсток»
 uplink-estoc-bundle-desc = Марксманская винтовка «Эсток» с оптикой средней дальности. В комплекте два магазина (5,56 мм).
 # Explosives
@@ -159,6 +161,8 @@ uplink-micro-bomb-implanter-name = Имплантер Микробомба
 uplink-micro-bomb-implanter-desc = Взрывается при ручной активации или гибели носителя этого импланта. Уничтожает тело пользователя со всем снаряжением.
 uplink-radio-implanter-name = Радиоимплант
 uplink-radio-implanter-desc = Вживляемое радио Синдиката для скрытой связи. Не требует гарнитуры.
+uplink-voice-mask-implanter-name = Имплантер Голосовая маска
+uplink-voice-mask-implanter-desc = Модифицирует голосовые связки, позволяя звучать как кто угодно.
 # Cybernetics
 uplink-nightvision-eyes = Кибер-глаза ночного видения
 uplink-nightvision-eyes-desc = Позволяют видеть в темноте, но делают вас более уязвимым к светошумовым гранатам. (Внимание: Требуется помощь хирурга.)

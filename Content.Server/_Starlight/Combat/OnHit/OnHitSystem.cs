@@ -29,7 +29,7 @@ public sealed partial class OnHitSystem : SharedOnHitSystem
 
         var handcuffs = SpawnNextToOrDrop(ent.Comp.HandcuffProtorype, args.User);
 
-        if (!_cuffs.TryAddNewCuffs(target, user, handcuffs, cuffable))
+        if (!_cuffs.TryCuffingNow(user, target, handcuffs))
             QueueDel(handcuffs);
     }
 }

@@ -167,6 +167,20 @@
   - type: Store
     balance:
       Doubloon: 0
+  - type: VocalizerRequiresPower
+  - type: Vocalizer
+    minVocalizeInterval: 10s
+    maxVocalizeInterval: 45s
+    hideChat: true
+  - type: DatasetVocalizer
+    dataset: PirateUplinkChatter
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Vending
+  - type: TTS
+    voice: Bandit
   - type: BlockedTool
   - type: Tag
     tags:

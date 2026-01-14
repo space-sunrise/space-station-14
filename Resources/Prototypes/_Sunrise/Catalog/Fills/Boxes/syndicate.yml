@@ -391,3 +391,23 @@
     layers:
     - state: box_of_doom_big
     - state: implant
+
+- type: entity
+  parent: CyberEyeThermalBox
+  id: SyndicateRapierToxinBox
+  name: syndicate rapier kit
+  description: Contains a wrapped syndicate rapier and a random toxin bottle. Packaging disintegrates when opened, leaving no evidence behind.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: BeltSheathSyndieFilledBox
+    - id: ChemistryBottleToxin
+      orGroup: RapierToxin
+    - id: ChemistryBottleMuteToxin
+      orGroup: RapierToxin
+    - id: ChemistryBottleUnstableMutagen
+      orGroup: RapierToxin
+    - id: ChemistryBottlePolytrinicAcid
+      orGroup: RapierToxin
+    - id: ChemistryBottleLead
+      orGroup: RapierToxin

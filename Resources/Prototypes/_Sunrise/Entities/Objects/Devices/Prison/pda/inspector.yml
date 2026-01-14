@@ -1,0 +1,18 @@
+- type: entity
+  parent: SecurityMetusPDA
+  id: PrisonInspectorPDA
+  name: prison inspector's PDA
+  description: Scarred with small dents and scratches, yet still retaining an official appearance.
+  components:
+  - type: Pda
+    id: PrisonInspectorIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-inspector
+  - type: PdaBorderColor
+    borderColor: "#802d29"
+    accentHColor: "#584f70"
+  - type: Icon
+    state: pda-space-prison-inspector

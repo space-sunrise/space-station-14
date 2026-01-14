@@ -1,0 +1,26 @@
+- type: entity
+  parent: SecurityMetusPDA
+  id: PrisonWorkerPDA
+  name: prison worker's PDA
+  description: Worn and scratched, it bears the marks of hard and monotonous labor.
+  components:
+  - type: Pda
+    id: PrisonWorkerIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-worker
+  - type: PdaBorderColor
+    borderColor: "#6b3000"
+    accentVColor: "#4b0100"
+  - type: Icon
+    state: pda-space-prison-worker
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge

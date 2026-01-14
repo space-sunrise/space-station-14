@@ -8,6 +8,11 @@ namespace Content.Shared.Connection.IPBlocking;
 public interface IIPBlockingSystem
 {
     /// <summary>
+    /// Инициализирует систему блокировки IP.
+    /// </summary>
+    void Initialize();
+
+    /// <summary>
     /// Проверяет, заблокирован ли указанный IP-адрес.
     /// </summary>
     bool IsBlocked(IPAddress ip);
@@ -19,8 +24,8 @@ public interface IIPBlockingSystem
     bool CheckAndBlockSuspiciousLength(IPAddress ip, int length, string context);
 
     /// <summary>
-    /// Получает максимально допустимую длину ответа.
+    /// Очищает истекшие блокировки. Должен вызываться периодически.
     /// </summary>
-    int GetMaxResponseLength();
+    void Update();
 }
 

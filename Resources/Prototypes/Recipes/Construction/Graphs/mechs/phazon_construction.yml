@@ -6,6 +6,10 @@
     edges:
     - to: phazon
       steps:
+      # Sunrise-Start
+      - assemblyId: Phazon
+        guideString: mech-construction-guide-string
+      # Sunrise-End
       - tool: Anchoring
         doAfter: 1
         completed:

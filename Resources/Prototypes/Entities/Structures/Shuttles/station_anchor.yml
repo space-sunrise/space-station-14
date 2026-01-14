@@ -124,6 +124,27 @@
 
 #Sunrise-Start
 - type: entity
+  parent: StationAnchorOff
+  id: ShuttleAnchorOff
+  name: shuttle anchor
+  description: Prevents shuttles from moving.
+  suffix: Off
+  components:
+  - type: Sprite
+    scale: 0.5,0.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        density: 190
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+
+- type: entity
   id: StationAnchorBaseDespawn
   abstract: true
   placement:

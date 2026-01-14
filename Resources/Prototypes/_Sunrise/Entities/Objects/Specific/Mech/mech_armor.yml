@@ -1,0 +1,166 @@
+- type: entity
+  id: MechArmorBase
+  abstract: true
+  parent: ClothingOuterBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    layers:
+    - state: mecha_clamp
+      visible: false
+  - type: Clothing
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Unremoveable
+
+- type: entity
+  id: MechArmorThin
+  parent: MechArmorBase
+  name: mech armor (thin)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.9
+        Shock: 1
+        Heat: 0.8
+        Structural: 0.05
+      flatReductions:
+        Blunt: 2
+        Heat: 1
+
+- type: entity
+  id: MechArmorLight
+  parent: MechArmorBase
+  name: mech armor (light)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.7
+        Shock: 2
+        Heat: 0.7
+        Structural: 0.1
+      flatReductions:
+        Blunt: 5
+        Heat: 5
+
+- type: entity
+  id: MechArmorMediumNT
+  parent: MechArmorBase
+  name: mech armor (medium NT)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.5
+        Shock: 3
+        Heat: 0.8
+        Structural: 0.15
+      flatReductions:
+        Blunt: 5
+        Heat: 6
+        Slash: 5
+        Piercing: 3
+
+- type: entity
+  id: MechArmorHeavyNT
+  parent: MechArmorBase
+  name: mech armor (heavy NT)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.3
+        Shock: 3.5
+        Heat: 0.75
+        Structural: 0.25
+      flatReductions:
+        Blunt: 7
+        Heat: 8
+        Slash: 7
+        Piercing: 5
+
+- type: entity
+  id: MechArmorMediumSyndi
+  parent: MechArmorBase
+  name: mech armor (medium syndi)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.5
+        Shock: 3
+        Heat: 0.8
+        Structural: 0.15
+      flatReductions:
+        Blunt: 5
+        Heat: 5
+        Slash: 5
+        Piercing: 4
+
+- type: entity
+  id: MechArmorHeavySyndi
+  parent: MechArmorBase
+  name: mech armor (heavy syndi)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.35
+        Shock: 3.5
+        Heat: 0.75
+        Structural: 0.25
+      flatReductions:
+        Blunt: 7
+        Heat: 7
+        Slash: 7
+        Piercing: 6
+
+- type: startingGear
+  id: MechArmorThinLoadout
+  equipment:
+    outerClothing: MechArmorThin
+
+- type: startingGear
+  id: MechArmorLightLoadout
+  equipment:
+    outerClothing: MechArmorLight
+
+- type: startingGear
+  id: MechArmorMediumNTLoadout
+  equipment:
+    outerClothing: MechArmorMediumNT
+
+- type: startingGear
+  id: MechArmorHeavyNTLoadout
+  equipment:
+    outerClothing: MechArmorHeavyNT
+
+- type: startingGear
+  id: MechArmorMediumSyndiLoadout
+  equipment:
+    outerClothing: MechArmorMediumSyndi
+
+- type: startingGear
+  id: MechArmorHeavySyndiLoadout
+  equipment:
+    outerClothing: MechArmorHeavySyndi

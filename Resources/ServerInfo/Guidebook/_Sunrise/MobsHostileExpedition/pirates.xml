@@ -1,0 +1,227 @@
+<Document>
+  # Пираты
+
+  Пиратские отряды - враждебные фракции, встречающиеся на экспедициях утилизации.
+  Их сила делится на три уровня угрозы:
+  [bold]Мусорщики[/bold], [bold]Пираты[/bold], [bold]Наемники[/bold].
+  Ниже - ориентиры по экипировке, ролям и особенностям.
+
+
+
+  # Мусорщики
+  Низкоуровневые налетчики и мародеры. Используют самодельное и промышленное снаряжение.
+
+  [bold][color=#a4885c]Общие параметры:[/color][/bold]
+  - [bold][color=#a4885c]Здоровье:[/color][/bold] 130; у обезьян 100
+  - [bold][color=#a4885c]Скорость:[/color][/bold] 3.8 м/с (ближний бой), 3.0 м/с (дальний бой)
+  - [bold][color=#a4885c]Сопротивления:[/color][/bold] [color=red]Blunt[/color] 40% [color=red]Slash[/color] 30% [color=yellow]Piercing[/color] 50% [color=orange]Heat[/color] 30% [color=orange]Caustic[/color] 50%
+  - [bold][color=#a4885c]Физическая броня:[/color][/bold] зависит от экипировки и роли (бронекостюм, щит и т.п.)
+  - [bold][color=#a4885c]Особенности:[/color][/bold] ночное зрение, пассивная регенерация, EVA-экипировка
+
+  ## Ближний бой
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT1Knife" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1Pickaxe" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1MonkeyKnuckleDusters" Caption=""/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT1ECutlass" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1EPickaxe" Caption=""/>
+  </Box>
+  - [bold][color=#a4885c]Оружие:[/color][/bold] ножи, кирки, кастеты; элитные бойцы вооружены энерго-саблями и энерго-кирками
+  - [bold][color=#a4885c]Примеры ролей:[/color][/bold] абордажник, шахтёр, обезьяна-рукопашник
+  - [bold][color=#a4885c]Поведение:[/color][/bold] активно сближаются и вскрывают проходы
+
+  ## Дальний бой
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT1Pistol" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1Mosin" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1Flintlock" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1PKA" Caption=""/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT1ScrapSMG" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1SMG" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1ScrapRifle" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1Rifle" Caption=""/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT1MonkeyFlareGun" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1MonkeyFlareGunCoin" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1MonkeyFlareGunIncendiary" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1MonkeyFlareGunUranium" Caption=""/>
+  </Box>
+  - [bold][color=#a4885c]Вооружение:[/color][/bold] пистолеты, винтовки, ПП, самодельное и промышленное оружие, плазморез
+  - [bold][color=#a4885c]Особые варианты:[/color][/bold] ракетницы обезьян используют разные типы боеприпасов
+  - [bold][color=#a4885c]Примеры ролей:[/color][/bold] стрелок, снайпер, автоматчик, обезьяна с сигнальным пистолетом
+
+  ## Редкие и особые
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT1MonkeyFireBomb" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1MonkeyEDagger" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1PlasmaCutter" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1Hunter" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1HunterSmash" Caption=""/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT1BombardierFire" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1BombardierGlass" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1BombardierPipe" Caption=""/>
+  </Box>
+  - [bold][color=#a4885c]Особенности:[/color][/bold] огненные бомбы, отражение энерго-кинжала, охотники с рывком и вампиризмом-крушителей
+  - [bold][color=#a4885c]Примеры ролей:[/color][/bold] подрывник, диверсант, охотник
+
+  ## Киборги
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT1BorgAssault" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1BorgMining" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1BorgDerelict" Caption=""/>
+  </Box>
+  - [bold][color=#a4885c]Особенности:[/color][/bold] механические цели, повышенная стойкость к урону и оглушению
+  - [bold][color=#a4885c]Примеры ролей:[/color][/bold] штурмовой, шахтёрский, дереликтовый киборг
+
+  ## Босс
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT1Boss" Caption=""/>
+  </Box>
+  - [bold][color=#a4885c]Скорость:[/color][/bold] 4.0 м/с
+  - [bold][color=#a4885c]Особенности:[/color][/bold] рывок проламывает окна и стеклянные преграды; удары отбрасывают противников; высокая устойчивость к оглушению; впадает в состояние берсерка, кратковременно ускоряясь и игнорируя урон
+  - [bold][color=#a4885c]Пример роли:[/color][/bold] Ржавый Кулак
+
+
+
+  # Пираты
+  Средний уровень угрозы. Носит классическое пиратское снаряжение и тяжелую броню.
+
+  [bold][color=#a4885c]Общие параметры:[/color][/bold]
+  - [bold][color=#a4885c]Здоровье:[/color][/bold] 140
+  - [bold][color=#a4885c]Скорость:[/color][/bold] 3.8 м/с (ближний бой), 3.0 м/с (дальний бой)
+  - [bold][color=#a4885c]Сопротивления:[/color][/bold] [color=red]Blunt[/color] 50% [color=red]Slash[/color] 40% [color=yellow]Piercing[/color] 60% [color=orange]Heat[/color] 40% [color=orange]Caustic[/color] 50% Bloodloss 30% Mangleness 30%
+  - [bold][color=#a4885c]Физическая броня:[/color][/bold] зависит от экипировки и роли (бронекостюм, щит и т.п.)
+  - [bold][color=#a4885c]Особенности:[/color][/bold] ночное зрение, пассивная регенерация, лучшее бронирование
+
+  ## Ближний бой
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT2Cutlass" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT2ECutlass" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT2Sledgehammer" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT2GauntletDrill" Caption=""/>
+  </Box>
+  - [bold][color=#a4885c]Оружие:[/color][/bold] сабли, энерго-сабли, кувалды, буровые перчатки
+  - [bold][color=#a4885c]Примеры ролей:[/color][/bold] фехтовальщик, штурмовик, бурильщик
+  - [bold][color=#a4885c]Тактика:[/color][/bold] прорыв в ближний бой под прикрытием брони, броски метательного оружия
+
+  ## Дальний бой
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT2Shotgun" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT2ShotgunMiniBall" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT2ShotgunGlass" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT2Musket" Caption=""/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT2MachineCannon" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT2DoubleFlintlock" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT2DoubleRevolver" Caption=""/>
+  </Box>
+  - [bold][color=#a4885c]Вооружение:[/color][/bold] мушкеты, мушкетоны, револьверы, пушки
+  - [bold][color=#a4885c]Броня (дальний бой):[/color][/bold] костюм EVA - [color=red]Blunt[/color] 25% [color=red]Slash[/color] 25% [color=yellow]Piercing[/color] 15% [color=orange]Heat[/color] 60%
+  - [bold][color=#a4885c]Примеры ролей:[/color][/bold] дробовик-штурмовик, мушкетёр, артиллерист, дуэлянт
+
+  ## Редкие и тяжелые
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT2RevolverCutlass" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT2Grapeshot" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT2Cannoball" Caption=""/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT2Mech" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT2Juggernaut" Caption=""/>
+  </Box>
+  - [bold][color=#a4885c]Особенности:[/color][/bold] комбинированное оружие, корабельные пушки, тяжелые доспехи и мехи, тяжеловесы имеют свойство ускоряться после определенного порога урона. Мурмилло впадает в состояние берсерка, кратковременно ускоряясь и игнорируя урон
+  - [bold][color=#a4885c]Прочность:[/color][/bold] мех 380, джаггернаут 250; скорость 2.75 м/с
+  - [bold][color=#a4885c]Примеры ролей:[/color][/bold] дуэлянт с комбинированным оружием, канонир, Мех Ярк, Мурмилло
+
+  ## Киборги
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT1BorgAssault" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1BorgMining" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1BorgDerelict" Caption=""/>
+  </Box>
+  - [bold][color=#a4885c]Особенности:[/color][/bold] механические цели, устойчивы к урону, могут встречаться вместе с пиратами T2
+  - [bold][color=#a4885c]Примеры ролей:[/color][/bold] штурмовой, шахтёрский, дереликтовый киборг
+
+  ## Босс
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT2Boss" Caption=""/>
+  </Box>
+  - [bold][color=#a4885c]Скорость:[/color][/bold] 4.5 м/с
+  - [bold][color=#a4885c]Особенности:[/color][/bold] Смешанное вооружение, высокий рефлект и высокий порог оглушения
+  - [bold][color=#a4885c]Пример роли:[/color][/bold] капитан-стрелок
+
+
+
+  # Наемники
+  Верхний уровень угрозы. Часто выступают как каперы или наемники с спонсорами и современным оружием.
+
+  [bold][color=#a4885c]Общие параметры:[/color][/bold]
+  - [bold][color=#a4885c]Здоровье:[/color][/bold] 140
+  - [bold][color=#a4885c]Скорость:[/color][/bold] 3.8 м/с (ближний бой), 3.0 м/с (дальний бой)
+  - [bold][color=#a4885c]Сопротивления:[/color][/bold] [color=red]Blunt[/color] 60% [color=red]Slash[/color] 50% [color=yellow]Piercing[/color] 70% [color=orange]Heat[/color] 50% [color=orange]Caustic[/color] 50% Bloodloss 50% Mangleness 50%
+  - [bold][color=#a4885c]Физическая броня:[/color][/bold] зависит от экипировки и роли (бронекостюм, щит и т.п.)
+  - [bold][color=#a4885c]Особенности:[/color][/bold] лучшее снаряжение, щиты, лазеры, продвинутые боевые роли
+
+  ## Ближний бой и контроль
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT3Bola" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT3Stun" Caption=""/>
+  </Box>
+  - [bold][color=#a4885c]Оружие:[/color][/bold] бола и оглушающие средства, энергетический щит
+  - [bold][color=#a4885c]Примеры ролей:[/color][/bold] контролёр, щитовик
+  - [bold][color=#a4885c]Тактика:[/color][/bold] контроль и фиксация целей
+
+  ## Дальний бой
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT3Shield1984" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT3ShieldSMG" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT3DMR" Caption=""/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT3Rifle" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT3Rifle2" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT3Revolver" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT3LaserSMG" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT3LaserCannon" Caption=""/>
+  </Box>
+  - [bold][color=#a4885c]Вооружение:[/color][/bold] щит-стрелки, винтовки, револьверы, лазерные ПП и пушки
+  - [bold][color=#a4885c]Примеры ролей:[/color][/bold] щит-стрелок, DMR-стрелок, автоматчик, револьверщик, лазерный стрелок
+
+  ## Редкие и элитные
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT3L6" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT3RPD" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT3Grenadier" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT3Infiltrator" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT3Sniper" Caption=""/>
+  </Box>
+  - [bold][color=#a4885c]Особенности:[/color][/bold] тяжелые пулеметы, гранатометчики, скрытные бойцы, снайперы
+  - [bold][color=#a4885c]Примеры ролей:[/color][/bold] пулемётчик, гранатомётчик, диверсант, снайпер
+
+  ## Киборги
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT1BorgAssault" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1BorgMining" Caption=""/>
+  <GuideEntityEmbed Entity="MobPirateT1BorgDerelict" Caption=""/>
+  </Box>
+  - [bold][color=#a4885c]Особенности:[/color][/bold] механические цели, иногда поддерживают наемников T3
+  - [bold][color=#a4885c]Примеры ролей:[/color][/bold] штурмовой, шахтёрский, дереликтовый киборг
+
+  ## Босс
+  <Box>
+  <GuideEntityEmbed Entity="MobPirateT3Boss" Caption=""/>
+  </Box>
+  - [bold][color=#a4885c]Здоровье:[/color][/bold] 450
+  - [bold][color=#a4885c]Скорость:[/color][/bold] 2.25 м/с
+  - [bold][color=#a4885c]Особенности:[/color][/bold] тяжелый мех вооруженный пулемётом, высокий запас прочности и отражение снарядов, изредка может выпускать дым или телепортироваться. Опасен в ближнем бою
+  - [bold][color=#a4885c]Пример роли:[/color][/bold] тяжёлый мех
+</Document>
+
