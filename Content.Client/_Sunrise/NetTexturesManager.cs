@@ -1,4 +1,7 @@
+using System.IO;
+using System.Text.RegularExpressions;
 using Content.Shared._Sunrise.NetTextures;
+using Robust.Client.ResourceManagement;
 using Robust.Client.Upload;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Log;
@@ -16,6 +19,7 @@ public sealed class NetTexturesManager
 {
     [Dependency] private readonly IClientNetManager _netManager = default!;
     [Dependency] private readonly IResourceManager _resourceManager = default!;
+    [Dependency] private readonly IResourceCache _resourceCache = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly NetworkResourceManager _networkResourceManager = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
@@ -56,13 +60,14 @@ public sealed class NetTexturesManager
             bool exists = false;
             ResPath checkPath;
 
-            // For RSI directories, check for meta.json file
+            // For RSI directories, check if all files are present
+            // This ensures all PNG files are present, not just meta.json
             // Check if path ends with .rsi (more reliable than Extension property)
             var pathStr = relativePath.ToString();
             if (pathStr.EndsWith(".rsi") || pathStr.EndsWith(".rsi/"))
             {
-                checkPath = relativePath / "meta.json";
-                exists = _networkResourceManager.FileExists(checkPath);
+                // Check if all RSI files are present by reading meta.json and verifying all PNG files exist
+                exists = CheckRsiFilesComplete(relativePath);
             }
             else
             {
@@ -191,13 +196,13 @@ public sealed class NetTexturesManager
         var relativePath = resPath.ToRelativePath();
         bool exists = false;
 
-        // For RSI directories, check for meta.json file
+        // For RSI directories, check if all files are present
         // Check if path ends with .rsi (more reliable than Extension property)
         var pathStr = relativePath.ToString();
         if (pathStr.EndsWith(".rsi") || pathStr.EndsWith(".rsi/"))
         {
-            var metaRelativePath = relativePath / "meta.json";
-            exists = _networkResourceManager.FileExists(metaRelativePath);
+            // Check if all RSI files are present by reading meta.json and verifying all PNG files exist
+            exists = CheckRsiFilesComplete(relativePath);
         }
         else
         {
@@ -234,6 +239,77 @@ public sealed class NetTexturesManager
         var relativePath = resPath.ToRelativePath();
         var path = new ResPath(UploadedPrefix) / relativePath;
         return path.ToRootedPath(); // Ensure it's always rooted
+    }
+
+    /// <summary>
+    /// Checks if all RSI files are present by reading meta.json and verifying all PNG files exist.
+    /// Uses simple string parsing instead of JsonDocument to avoid sandbox restrictions.
+    /// </summary>
+    private bool CheckRsiFilesComplete(ResPath relativePath)
+    {
+        try
+        {
+            // Check if meta.json exists
+            var metaRelativePath = relativePath / "meta.json";
+            if (!_networkResourceManager.FileExists(metaRelativePath))
+            {
+                return false;
+            }
+
+            // Read meta.json from uploaded path
+            var uploadedPath = (new ResPath(UploadedPrefix) / relativePath).ToRootedPath();
+            var metaUploadedPath = (new ResPath(UploadedPrefix) / metaRelativePath).ToRootedPath();
+            
+            if (!_resourceManager.TryContentFileRead(metaUploadedPath, out var metaStream))
+            {
+                return false;
+            }
+
+            using (metaStream)
+            {
+                // Read JSON text
+                using var reader = new StreamReader(metaStream);
+                var jsonText = reader.ReadToEnd();
+
+                // Simple regex to extract state names from JSON
+                // Matches "name": "statename" patterns
+                var namePattern = new Regex(@"""name""\s*:\s*""([^""]+)""", RegexOptions.Compiled);
+                var matches = namePattern.Matches(jsonText);
+
+                if (matches.Count == 0)
+                {
+                    // No states found, might be invalid JSON or empty states array
+                    return false;
+                }
+
+                // Check if all PNG files for each state exist
+                foreach (Match match in matches)
+                {
+                    if (match.Groups.Count < 2)
+                        continue;
+
+                    var stateName = match.Groups[1].Value;
+                    if (string.IsNullOrEmpty(stateName))
+                    {
+                        continue;
+                    }
+
+                    // Check if PNG file exists for this state
+                    var pngRelativePath = relativePath / $"{stateName}.png";
+                    if (!_networkResourceManager.FileExists(pngRelativePath))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _sawmill.Debug($"Error checking RSI files completeness: {ex.Message}");
+            return false;
+        }
     }
 }
 

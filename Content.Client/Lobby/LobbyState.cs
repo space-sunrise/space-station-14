@@ -1,4 +1,6 @@
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Content.Client._Sunrise;
 using Content.Client._Sunrise.Contributors;
 using Content.Client._Sunrise.Latejoin;
@@ -509,6 +511,13 @@ namespace Content.Client.Lobby
 
             var rsiPath = lobbyAnimationPrototype.Animation;
 
+            // Ensure the path ends with .rsi for RSI resources
+            if (!rsiPath.EndsWith(".rsi") && !rsiPath.EndsWith(".rsi/"))
+            {
+                _sawmill.Warning($"Invalid RSI path format: {rsiPath}. Expected path ending with .rsi");
+                return;
+            }
+
             // Check if resource is available, request if not
             var isAvailable = _netTexturesManager.EnsureResource(rsiPath);
 
@@ -540,18 +549,58 @@ namespace Content.Client.Lobby
             // Try to set the animation, handle errors gracefully
             try
             {
-                // Check if the file actually exists before trying to load it
-                if (!_resource.ContentFileExists(targetPath))
+                // Check if meta.json exists (basic check)
+                var metaPath = (targetPath / "meta.json").ToRootedPath();
+                if (!_resource.ContentFileExists(metaPath))
                 {
-                    var metaPath = (targetPath / "meta.json").ToRootedPath();
-                    if (!_resource.ContentFileExists(metaPath))
-                    {
-                        return;
-                    }
+                    _sawmill.Debug($"RSI meta.json doesn't exist yet: {metaPath}, waiting for network load");
+                    return;
                 }
 
+                var requiredState = lobbyAnimationPrototype.State;
+
                 // Try to get the resource - this will load it if not cached
-                if (_resourceCache.TryGetResource<RSIResource>(targetPath, out var rsiResource))
+                // We don't check for individual files, just try to load and see if it works
+                RSIResource? rsiResource = null;
+                try
+                {
+                    // First try to get from cache
+                    if (!_resourceCache.TryGetResource<RSIResource>(targetPath, out rsiResource))
+                    {
+                        _sawmill.Debug($"RSI resource not in cache, attempting to load: {targetPath}");
+                        // Use useFallback: false to detect if resource actually loaded or fallback was used
+                        // This prevents us from thinking the resource loaded when it actually failed
+                        rsiResource = _resourceCache.GetResource<RSIResource>(targetPath, useFallback: false);
+                        _sawmill.Debug($"Successfully loaded RSI resource: {targetPath}");
+                    }
+                    else
+                    {
+                        _sawmill.Debug($"RSI resource found in cache: {targetPath}");
+                    }
+                }
+                catch (FileNotFoundException)
+                {
+                    // Resource file doesn't exist, wait for it to be loaded
+                    // This can happen if meta.json exists but PNG files are still loading
+                    _sawmill.Debug($"RSI resource not found yet: {targetPath}, waiting for network load");
+                    return;
+                }
+                catch (Exception loadEx)
+                {
+                    // If loading failed, wait for resource to be fully loaded
+                    // This can happen if files are partially loaded
+                    _sawmill.Debug($"Failed to load lobby animation RSI: {targetPath}. Error: {loadEx.Message}. Waiting for complete resource.");
+                    return;
+                }
+
+                // Verify that the resource actually loaded correctly by checking if the state exists
+                if (rsiResource == null || !rsiResource.RSI.TryGetState(requiredState, out _))
+                {
+                    _sawmill.Debug($"RSI state '{requiredState}' not found in loaded resource: {targetPath}, waiting for complete resource");
+                    return;
+                }
+
+                if (rsiResource != null)
                 {
                     Lobby!.LobbyAnimation.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(targetPath, lobbyAnimationPrototype.State));
                     Lobby!.LobbyAnimation.DisplayRect.TextureScale = lobbyAnimationPrototype.Scale;
@@ -865,6 +914,68 @@ namespace Content.Client.Lobby
             if (Lobby != null)
             {
                 Lobby.LoadingAnimationContainer.Visible = false;
+            }
+        }
+
+        /// <summary>
+        /// Checks if all RSI files are present by reading meta.json and verifying all PNG files exist.
+        /// Uses simple string parsing instead of JsonDocument to avoid sandbox restrictions.
+        /// </summary>
+        private bool CheckRsiFilesComplete(ResPath rsiPath, ResPath metaPath)
+        {
+            try
+            {
+                // Read meta.json
+                if (!_resource.TryContentFileRead(metaPath, out var metaStream))
+                {
+                    return false;
+                }
+
+                using (metaStream)
+                {
+                    // Read JSON text
+                    using var reader = new StreamReader(metaStream);
+                    var jsonText = reader.ReadToEnd();
+
+                    // Simple regex to extract state names from JSON
+                    // Matches "name": "statename" patterns
+                    var namePattern = new Regex(@"""name""\s*:\s*""([^""]+)""", RegexOptions.Compiled);
+                    var matches = namePattern.Matches(jsonText);
+
+                    if (matches.Count == 0)
+                    {
+                        // No states found, might be invalid JSON or empty states array
+                        return false;
+                    }
+
+                    // Check if all PNG files for each state exist
+                    foreach (Match match in matches)
+                    {
+                        if (match.Groups.Count < 2)
+                            continue;
+
+                        var stateName = match.Groups[1].Value;
+                        if (string.IsNullOrEmpty(stateName))
+                        {
+                            continue;
+                        }
+
+                        // Check if PNG file exists for this state
+                        var pngPath = (rsiPath / $"{stateName}.png").ToRootedPath();
+                        if (!_resource.ContentFileExists(pngPath))
+                        {
+                            _sawmill.Debug($"RSI file missing: {pngPath}");
+                            return false;
+                        }
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _sawmill.Debug($"Error checking RSI files completeness: {ex.Message}");
+                return false;
             }
         }
 
