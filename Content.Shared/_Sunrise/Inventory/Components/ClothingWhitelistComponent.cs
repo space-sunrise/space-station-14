@@ -8,7 +8,7 @@ namespace Content.Shared._Sunrise.Inventory.Components;
 /// Если хотите понять как использовать EntityWhitelist посмотрите на другие похожие прототипы.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-public sealed partial class ArmorWhitelistComponent : Component
+public sealed partial class ClothingWhitelistComponent : Component
 {
     /// <summary>
     /// Вайтлист сущностей, которым разрешено экипировать этот предмет.
