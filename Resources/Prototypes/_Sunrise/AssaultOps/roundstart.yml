@@ -28,6 +28,10 @@
       roleLoadout:
       - RoleSurvivalAssaultOps
       components:
+      - type: GhostPanelAntagonistMarker
+        name: assaultops-title
+        description: assaultops-ghostpanel-commander
+        priority: 85
       - type: AssaultOperative
       - type: NpcFactionMember
         factions:
@@ -48,6 +52,10 @@
       roleLoadout:
       - RoleSurvivalAssaultOps
       components:
+      - type: GhostPanelAntagonistMarker
+        name: assaultops-title
+        description: assaultops-ghostpanel-operative
+        priority: 85
       - type: AssaultOperative
       - type: NpcFactionMember
         factions:
