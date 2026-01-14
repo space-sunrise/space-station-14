@@ -98,6 +98,8 @@
     - SpeedLoaderShotgunBeanbag
     # PODAVLENIE
     - BolaSecurity
+    # Milira
+    - ClothingOuterArmorMiliraLight
 ####################################################
 
 - type: latheRecipePack
@@ -327,6 +329,9 @@
     - VestSecUpgradeReflective
     - VestSecUpgradeWeb
     - VestSecUpgradeBulletHeavy
+    - ClothingOuterArmorMiliraHeavy
+    - ClothingOuterHardsuitMilira
+    - ClothingEyesHudMilira
 
 - type: latheRecipePack
   id: SecurityDynamicSunriseMech
