@@ -1349,6 +1349,8 @@
     - id: PirateMedSpawner05
     - id: BrutepackAdvanced1
       prob: 0.25
+    - id: ClothingOuterHardsuitPrivateerArmored
+      prob: 0.05
     # Bonus Loot T2
     - id: PirateAmpulaSpawnerT2
     - id: Doubloon1
@@ -2892,7 +2894,7 @@
       prob: 0.25
       orGroup: SalvHardPool2
     - id: ClothingOuterHardsuitPrivateer
-      prob: 0.1
+      prob: 0.05
       orGroup: SalvHardPool2
     # Bonus Loot T1
     - id: Doubloon1
@@ -2943,6 +2945,8 @@
     # Items
     - id: ClothingBeltMilitaryWebbing
       prob: 0.25
+    - id: ClothingOuterHardsuitPrivateer
+      prob: 0.05
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -2991,6 +2995,8 @@
     # Items
     - id: ClothingBeltMilitaryWebbing
       prob: 0.25
+    - id: ClothingOuterHardsuitPrivateer
+      prob: 0.05
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -3034,6 +3040,8 @@
     # Items
     - id: ClothingBeltSyndieWebbing
       prob: 0.25
+    - id: ClothingOuterHardsuitPrivateer
+      prob: 0.05
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -3096,6 +3104,8 @@
     # Items
     - id: ClothingBeltSyndieWebbing
       prob: 0.25
+    - id: ClothingOuterHardsuitPrivateerArmored
+      prob: 0.05
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -3166,6 +3176,10 @@
       prob: 0.6
     - id: LootSpawnerMaterialsHighValueConstruction
       prob: 0.4
+    - id: ClothingHeadHelmetHardsuitScaf
+      prob: 0.05
+    - id: ClothingOuterHardsuitScaf
+      prob: 0.05
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -3223,6 +3237,8 @@
       prob: 0.6
     - id: LootSpawnerMaterialsHighValueConstruction
       prob: 0.4
+    - id: ClothingOuterHardsuitPrivateerArmored
+      prob: 0.05
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -3264,6 +3280,8 @@
       orGroup: LaserGunPool
     # Items
     - id: PirateMedSpawner03
+    - id: ClothingOuterHardsuitPrivateerArmored
+      prob: 0.05
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -3316,6 +3334,8 @@
       orGroup: SMG40Pool
     # Items
     - id: PirateMedSpawner03
+    - id: ClothingOuterHardsuitPrivateer
+      prob: 0.05
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -3383,6 +3403,8 @@
     - id: PirateMedSpawner03
     - id: CrateAmmunitionSmallLightRifle
       prob: 0.25
+    - id: ClothingOuterHardsuitPrivateerArmored
+      prob: 0.05
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -3443,6 +3465,8 @@
       prob: 0.4
     # Items
     - id: PirateMedSpawner03
+    - id: ClothingOuterHardsuitPrivateer
+      prob: 0.05
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -3558,6 +3582,8 @@
       prob: 0.5
     - id: Tourniquet
       prob: 0.25
+    - id: ClothingOuterHardsuitPrivateer
+      prob: 0.05
     # Bonus Loot T4
     - id: Doubloon5
       prob: 0.1
@@ -3603,7 +3629,7 @@
       prob: 0.3
     # Armor
     - id: ClothingOuterHardsuitPrivateerArmored
-      prob: 0.1
+      prob: 0.05
       orGroup: EvaHelmPool
     - id: ClothingOuterHardsuitPrivateer
       prob: 0.2
