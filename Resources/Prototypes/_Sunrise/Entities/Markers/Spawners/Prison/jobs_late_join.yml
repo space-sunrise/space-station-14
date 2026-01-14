@@ -1,0 +1,158 @@
+- type: entity
+  id: SpawnPointLateJoinHeadOfPrison
+  parent: SpawnPointHeadOfPrison
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    spawn_type: LateJoin
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ LateJoin ]
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: headofprison
+
+- type: entity
+  id: SpawnPointLateJoinPrisonInspector
+  parent: SpawnPointPrisonInspector
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    spawn_type: LateJoin
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ LateJoin ]
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisoninspector
+
+- type: entity
+  id: SpawnPointLateJoinPrisonEngineer
+  parent: SpawnPointPrisonEngineer
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    spawn_type: LateJoin
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ LateJoin ]
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisonengineer
+
+- type: entity
+  id: SpawnPointLateJoinPrisonDoctor
+  parent: SpawnPointPrisonDoctor
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    spawn_type: LateJoin
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ LateJoin ]
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisondoctor
+
+- type: entity
+  id: SpawnPointLateJoinPrisonChef
+  parent: SpawnPointPrisonChef
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    spawn_type: LateJoin
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ LateJoin ]
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisonchef
+
+- type: entity
+  id: SpawnPointLateJoinPrisonWorker
+  parent: SpawnPointPrisonWorker
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    spawn_type: LateJoin
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ LateJoin ]
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisonworker
+
+- type: entity
+  id: SpawnPointLateJoinPrisonScientist
+  parent: SpawnPointPrisonScientist
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    spawn_type: LateJoin
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ LateJoin ]
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisonscientist
+
+- type: entity
+  id: SpawnPointLateJoinPrisonTrainee
+  parent: SpawnPointPrisonTrainee
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    spawn_type: LateJoin
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ LateJoin ]
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: prisontrainee
+
+- type: entity
+  id: SpawnPointLateJoinPlanetPrisoner
+  parent: SpawnPointPlanetPrisoner
+  suffix: Job Spawn, Late Join
+  components:
+  - type: SpawnPoint
+    spawn_type: LateJoin
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ LateJoin ]
+  - type: Sprite
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: planetprisoner
+
+- type: entity
+  id: SpawnPointLateJoinPrisonPilot  # не комментирую его, потому что локаль тоже придется.
+  parent: SpawnPointPrisonPilot
+  suffix: Job Spawn, Late Join
+  abstract: true # скоро придёт его время, а пока так.
+  components:
+  - type: SpawnPoint
+    spawn_type: LateJoin
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ LateJoin ]
+  - type: Sprite
+    layers:
+    - state: pink
+    - state: seniorofficer
