@@ -1,4 +1,5 @@
 ﻿- type: entity
+  # parent: SimpleSpaceMobBase
   parent:
   - BaseSimpleMob
   - MobAtmosExposed
@@ -212,12 +213,12 @@
     - type: Physics
       bodyType: KinematicController
     - type: MovementSpeedModifier
-      baseWalkSpeed: 3 # Fish-edit
-      baseSprintSpeed: 4 # Fish-edit
+      baseWalkSpeed: 3
+      baseSprintSpeed: 4
     - type: MobThresholds
       thresholds:
         0: Alive
-        250: Dead
+        200: Dead
     - type: MobState
       allowedStates:
         - Alive
@@ -621,3 +622,14 @@
               max: 1
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
+
+- type: entity
+  id: MobFleshCultistPreview
+  name: flesh cultist
+  suffix: DO NOT MAP
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Interface/Misc/antag_preview.rsi
+    state: flesh_cultist
+    scale: 2, 2
+

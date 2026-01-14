@@ -5,7 +5,7 @@
     [color=#999999][italic]"СЕРДЦЕ ТРЕБУЕТ ЖИВОЕ МЯСО."[/italic][/color]
   </Box>
   <Box>
-    <GuideEntityEmbed Entity="MobFleshPudge" Caption=""/>
+    <GuideEntityEmbed Entity="MobFleshCultistPreview" Caption=""/>
   </Box>
 
   Вы избраны плотью. Внутри вас живёт паразит из чуждого измерения — источник силы и ваша верная смерть. Культист плоти — это существо, рождённое из слияния человека и инопланетной биомассы. Все разумные виды, кроме слаймолюдов, подходят в качестве хозяев для паразита.
@@ -28,6 +28,17 @@
 
   Всё остальное — разрешено в рамках правил проекта.
 
+  <Box>
+  <GuideEntityEmbed Entity="MobFleshPudge" Caption="Форма для боя"/>
+  <GuideEntityEmbed Entity="MobFleshSpider" Caption="Форма для засад"/>
+  <GuideEntityEmbed Entity="MobFleshBall" Caption="Форма-шахид"/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="MobFleshBat" Caption="Форма для разведки"/>
+  <GuideEntityEmbed Entity="MobFleshHugger" Caption="Форма для контроля жертв"/>
+  <GuideEntityEmbed Entity="MobFleshWorm" Caption="Форма для отвлечения внимания"/>
+</Box>
+
   ## Связь
 
   <Box>
@@ -37,13 +48,7 @@
   ## Магазин Эволюции
 
   Это ваш основной источник силы. Вы накапливаете [bold]очки эволюции[/bold] по мере поглощения тел любых существ. Каждое тело с трупа гуманоида даёт больше очков, чем животное. [color=#ff6b6b]Каждый труп может быть поглощён только один раз[/color].
-
-  <Box>
-    <GuideEntityEmbed Entity="MobFleshPudge" Caption="Форма для боя"/>
-    <GuideEntityEmbed Entity="MobFleshSpider" Caption="Форма для засад"/>
-    <GuideEntityEmbed Entity="MobFleshBall" Caption="Форма-шахид"/>
-  </Box>
-
+  
   ## Карол и Вербовка
 
   [color=#ff6b6b]Лидер культа[/color] начинает раунд со шприцами [bold]Карола[/bold]. Он может использовать их на цели для создания новых членов культа.
