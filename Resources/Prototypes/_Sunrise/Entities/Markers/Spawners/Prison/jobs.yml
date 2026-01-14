@@ -1,0 +1,159 @@
+- type: entity
+  id: SpawnPointHeadOfPrison
+  parent: SpawnPointJobBase
+  name: head of prison
+  components:
+  - type: SpawnPoint
+    spawn_type: Job
+    job_id: HeadOfPrison
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ Job ]
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Sunrise/Markers/jobs.rsi
+        state: headofprison
+
+- type: entity
+  id: SpawnPointPrisonInspector
+  parent: SpawnPointJobBase
+  name: prison inspector
+  components:
+  - type: SpawnPoint
+    spawn_type: Job
+    job_id: PrisonInspector
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ Job ]
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisoninspector
+
+- type: entity
+  id: SpawnPointPrisonEngineer
+  parent: SpawnPointJobBase
+  name: prison engineer
+  components:
+  - type: SpawnPoint
+    spawn_type: Job
+    job_id: PrisonEngineer
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ Job ]
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisonengineer
+
+- type: entity
+  id: SpawnPointPrisonDoctor
+  parent: SpawnPointJobBase
+  name: prison doctor
+  components:
+  - type: SpawnPoint
+    spawn_type: Job
+    job_id: PrisonDoctor
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ Job ]
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisondoctor
+
+- type: entity
+  id: SpawnPointPrisonChef
+  parent: SpawnPointJobBase
+  name: prison chef
+  components:
+  - type: SpawnPoint
+    spawn_type: Job
+    job_id: PrisonChef
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ Job ]
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisonchef
+
+- type: entity
+  id: SpawnPointPrisonWorker
+  parent: SpawnPointJobBase
+  name: prison worker
+  components:
+  - type: SpawnPoint
+    spawn_type: Job
+    job_id: PrisonWorker
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ Job ]
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisonworker
+
+- type: entity
+  id: SpawnPointPrisonScientist
+  parent: SpawnPointJobBase
+  name: prison scientist
+  components:
+  - type: SpawnPoint
+    spawn_type: Job
+    job_id: PrisonScientist
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ Job ]
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisonscientist
+
+- type: entity
+  id: SpawnPointPrisonTrainee
+  parent: SpawnPointJobBase
+  name: prison trainee
+  components:
+  - type: SpawnPoint
+    spawn_type: Job
+    job_id: PrisonTrainee
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ Job ]
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: prisontrainee
+
+- type: entity
+  id: SpawnPointPlanetPrisoner
+  parent: SpawnPointJobBase
+  name: planet prisoner
+  components:
+  - type: SpawnPoint
+    spawn_type: Job
+    job_id: PlanetPrisoner
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ Job ]
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Sunrise/Markers/jobs.rsi
+      state: planetprisoner
+
+- type: entity
+  id: SpawnPointPrisonPilot # не комментирую его, потому что локаль тоже придется.
+  parent: SpawnPointJobBase
+  name: prison pilot
+  abstract: true # скоро придёт его время, а пока так.
+  components:
+  - type: SpawnPoint
+    spawn_type: Job
+    job_id: PrisonPilot
+  - type: PreferredSpawn
+    preferredSpawnTypes: [ Job ]
+  - type: Sprite
+    layers:
+    - state: green
+    - state: seniorofficer
