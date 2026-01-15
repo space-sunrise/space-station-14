@@ -331,7 +331,7 @@
   parent: BaseGameRule
   components:
   - type: GameRule
-    minPlayers: 60
+    minPlayers: 45 # Sunrise-Edit
     # Sunrise-Start
     delay:
       min: 300

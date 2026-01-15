@@ -5,4 +5,4 @@ ent-ClothingEyesHudSyndicateMech = визор МЕХ-пилота синдика
 ent-ClothingEyesHudDiagnosticERT = охранно-диагностический визор
     .desc = Окуляр с индикатором на стекле, способный анализировать целостность и состояние роботов и экзокостюмов. Так же встроена технология охранного визора.
 ent-ClothingEyesGlassesHiddenSecurityChameleon = {ent-ClothingEyesGlassesHiddenSecurity}
-    .desc =  {ent-ClothingEyesGlassesHiddenSecurity.desc}
+    .desc = {ent-ClothingEyesGlassesHiddenSecurity.desc}

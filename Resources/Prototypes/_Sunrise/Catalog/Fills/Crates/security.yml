@@ -100,7 +100,7 @@
 - type: entity
   id: CrateSecurityDebugArmorCrate
   parent: CrateSecgear
-  name: asorti armor crate
+  name: asorted armor crate
   description: Contains most basics armors. To open it, the Security Service access level is required.
   suffix: DEBUG
   components:

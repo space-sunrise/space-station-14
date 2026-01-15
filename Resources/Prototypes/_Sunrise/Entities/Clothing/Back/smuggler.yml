@@ -249,9 +249,7 @@
 - type: entity
   parent: [ BaseItem, BaseSubfloorAnchorStorageAnchored, BaseMajorContraband ]
   id: RevolutionarySmugglerStash
-  name: wraped smuggler stash
-  suffix: HypoDart
-  description: A small box containing a hypodart. Packaging disintegrates when opened, leaving no evidence behind.
+  name: wrapped smuggler stash
   components:
   - type: Sprite
     sprite: Clothing/Back/Satchels/smuggler.rsi
