@@ -30,9 +30,10 @@
     - id: UnfinishedRevolverForged
       weight: 2
     - id: UnfinishedSubMachineGunForged
-      weight: 1
+      weight: 0.5
     - id: UnfinishedSniperForged
       weight: 0.5
+    - id: RadioJammerSyndicate
 
 - type: entityTable
   id: SmugglerSunriseImprovisedAmmoTable
@@ -175,6 +176,13 @@
     - id: FireBombFuel
       amount: !type:RangeNumberSelector
         range: 1, 3
+    - id: CleanerGrenadeAcidBox
+    - id: TearGasGrenade
+      amount: !type:RangeNumberSelector
+        range: 1, 2
+    - id: GrenadeStinger
+      amount: !type:RangeNumberSelector
+        range: 1, 2
 
 - type: entityTable
   id: SmugglerSunriseRareWeaponsTable
@@ -183,13 +191,37 @@
     - id: WeaponRevolverSnubRevolver
     - id: WeaponRevolverPirate
     - id: WeaponRevolverPython
+      weight: 0.5
     - id: WeaponRevolverPythonAP
+      weight: 0.5
     - id: RevolverCapGunFake
+      weight: 0.5
     - id: WeaponSniperRepeater
     - id: WeaponSniperMosin
     - id: WeaponShotgunTrenchgun4034Sawn
     - id: WeaponShotgunSawn
     - id: WeaponLaserSvalinn
+    - id: WeaponMakeshiftLaser
+    - id: LauncherSyringePistol
+    - id: WeaponLaserGun
+    - id: Musket
+    - id: Flash
+    - id: ImplanterExtractor
+
+- type: entityTable
+  id: SmugglerSunriseMeleeWeaponsTable
+  table: !type:GroupSelector
+    children:
+    - id: ThrowingKnife
+    - id: ClothingHandsKnuckleDusters
+    - id: ClothingHandsKnuckleDustersBrass
+    - id: ClothingHandsKnuckleDustersSyndicate
+    - id: BaseBallBat
+    - id: SurvivalKnife
+    - id: KukriKnife
+    - id: CombatKnife
+    - id: GauntletGORILLAUpgradeKit
+    - id: WeaponPistolCHIMPUpgradeKit
     - id: WeaponMakeshiftLaser
     - id: LauncherSyringePistol
     - id: WeaponLaserGun
@@ -267,3 +299,6 @@
     - !type:NestedSelector
       tableId: SmugglerSunriseRareWeaponsTable
       weight: 0.3
+    - !type:NestedSelector
+      tableId: SmugglerSunriseMeleeWeaponsTable
+      weight: 0.6

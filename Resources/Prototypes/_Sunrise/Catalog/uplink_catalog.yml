@@ -166,7 +166,7 @@
   description: uplink-pistol-magnum-magazine-ap-desc
   productEntity: MagazineMagnumAP
   cost:
-    Telecrystal: 3
+    Telecrystal: 2 # Бронебойные больше не игнорят всю броню
   categories:
   - UplinkAmmo
 
