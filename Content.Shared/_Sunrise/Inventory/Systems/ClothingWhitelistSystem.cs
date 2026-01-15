@@ -17,6 +17,9 @@ public sealed class ClothingWhitelistSystem : EntitySystem
 
     private void OnEquippedAttempt(Entity<ClothingWhitelistComponent> ent, ref BeingEquippedAttemptEvent args)
     {
+        if (args.Cancelled)
+            return;
+
         if (_whitelistSystem.CheckBoth(args.EquipTarget, ent.Comp.Blacklist, ent.Comp.Whitelist))
             return;
 
