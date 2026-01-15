@@ -541,5 +541,3 @@
     damageCoefficient: 0.7
   - type: ExplosionResistance
     damageCoefficient: 0.75
-    walkModifier: 0.97
-    sprintModifier: 0.97
