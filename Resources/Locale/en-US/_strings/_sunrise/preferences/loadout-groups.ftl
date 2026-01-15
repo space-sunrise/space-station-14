@@ -102,11 +102,11 @@ loadout-group-station-engineer-neck = Инженер, шея
 loadout-group-uniformntr = Униформа ИСН
 loadout-group-contributors = Contributors
 
-loadout-group-head = Головной убор
-loadout-group-hats = Шляпа
+loadout-group-head = Headwear
+loadout-group-hats = Hats
 loadout-group-pda = PDA
 
-loadout-group-prison-trinkets = Безделушки ПТ
-loadout-group-prisoner-loot = Тайник Зека
-loadout-group-prison-security-loot = Привилегии Охраны
+loadout-group-prison-trinkets = Prison Trinkets
+loadout-group-prisoner-loot = Prisoner Loot
+loadout-group-prison-security-loot = Security Privileges
 
