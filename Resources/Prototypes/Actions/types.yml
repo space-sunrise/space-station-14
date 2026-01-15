@@ -205,7 +205,7 @@
     maxCharges: 2
   # Sunrise-Start
   - type: AutoRecharge
-    rechargeDuration: 360
+    rechargeDuration: 600
   # Sunrise-End
   - type: Action
     checkCanInteract: false

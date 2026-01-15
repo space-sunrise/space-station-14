@@ -46,3 +46,8 @@
     - Inorganic
     - Silicon
     - Mech
+
+- type: entity
+  parent: [ClothingEyesChameleon, ClothingEyesGlassesHiddenSecurity]
+  id: ClothingEyesGlassesHiddenSecurityChameleon
+  suffix: Syndicate, Chameleon

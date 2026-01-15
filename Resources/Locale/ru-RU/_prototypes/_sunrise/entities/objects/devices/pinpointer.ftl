@@ -1,3 +1,6 @@
 ent-PinpointerPirate = пинпоинтер фрилансера
     .desc = Ручной трекер, который ведет к вашему шаттлу.
     .suffix = Пират
+ent-PinpointerSmugglerRevolutionaryStash = пинпоинтер
+    .desc = Ручной трекер, который ведет туда, где лежит что-то забавное.
+    .suffix = Революция
