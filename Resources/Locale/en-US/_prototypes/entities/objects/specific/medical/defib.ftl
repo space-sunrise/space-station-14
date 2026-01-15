@@ -11,4 +11,4 @@ ent-DefibrillatorOneHandedUnpowered = { ent-BaseDefibrillator }
 ent-DefibrillatorCompact = compact defibrillator
     .desc = Now in fun size!
 ent-DefibrillatorSyndicate = interdyne defibrillator
-    .desc = Doubles as a self-defense weapon against war-crime inclined tiders. Jumpstarts the heart with a cocktail of Omnizine, Epinephrine, and Necrosol. Can be used offensively, but offers limited combat utility.
+    .desc = Doubles as a self-defense weapon against war-crime inclined tiders.
