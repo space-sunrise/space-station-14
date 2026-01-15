@@ -6,6 +6,7 @@ using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Server.GameObjects;
 
 namespace Content.Server._Sunrise.Doors.Systems;
 
@@ -18,11 +19,21 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
     private const string BlockerPrototype = "SunriseMultiTileAirtightBlocker";
 
     [Dependency] private readonly AirtightSystem _airtight = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+
+    private EntityQuery<AirtightComponent> _airtightQuery;
+    private EntityQuery<DoorComponent> _doorQuery;
+    private EntityQuery<MapGridComponent> _gridQuery;
+    private EntityQuery<TransformComponent> _xformQuery;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _airtightQuery = GetEntityQuery<AirtightComponent>();
+        _doorQuery = GetEntityQuery<DoorComponent>();
+        _gridQuery = GetEntityQuery<MapGridComponent>();
+        _xformQuery = GetEntityQuery<TransformComponent>();
 
         SubscribeLocalEvent<SunriseMultiTileAirtightComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<SunriseMultiTileAirtightComponent, ComponentShutdown>(OnShutdown);
@@ -85,8 +96,10 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
     {
         DeleteBlockers(ent);
 
-        var xform = Transform(ent);
-        if (!xform.Anchored || xform.GridUid is not { } gridUid || !TryComp(gridUid, out MapGridComponent? grid))
+        if (!_xformQuery.TryGetComponent(ent.Owner, out var xform))
+            return;
+
+        if (!xform.Anchored || xform.GridUid is not { } gridUid || !_gridQuery.TryGetComponent(gridUid, out var grid))
             return;
 
         var baseTile = _transform.GetGridTilePositionOrDefault((ent, xform), grid);
@@ -100,7 +113,7 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
 
             var coords = GetTileCenter(gridUid, grid, tile);
             var blocker = Spawn(BlockerPrototype, coords);
-            var blockerXform = Transform(blocker);
+            var blockerXform = _xformQuery.GetComponent(blocker);
 
             // Обязательно анкорим на грид и конкретный тайл, ибо airtight будет не на том месте будет и будет адское шоу
             if (!_transform.AnchorEntity((blocker, blockerXform), (gridUid, grid), tile))
@@ -121,11 +134,11 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
     {
         bool blocked;
 
-        if (TryComp(ent, out AirtightComponent? doorAirtight))
+        if (_airtightQuery.TryGetComponent(ent.Owner, out var doorAirtight))
             blocked = doorAirtight.AirBlocked;
         else
         {
-            if (!TryComp(ent, out DoorComponent? door))
+            if (!_doorQuery.TryGetComponent(ent.Owner, out var door))
                 return;
 
             blocked = door.State is DoorState.Closed or DoorState.Welded;
@@ -133,7 +146,7 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
 
         foreach (var blocker in ent.Comp.Blockers)
         {
-            if (!TryComp(blocker, out AirtightComponent? airtight))
+            if (!_airtightQuery.TryGetComponent(blocker, out var airtight))
                 continue;
 
             _airtight.SetAirblocked((blocker, airtight), blocked);
