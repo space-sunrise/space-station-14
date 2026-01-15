@@ -91,5 +91,7 @@ ent-CommaidPDA = КПК горничной командования
 ent-PiratePDAMusic = КПК с черепушкой и пианино
     .suffix = Музыка
     .desc = 'Чёрный цвет – стильно! Череп и кости – круто! Теперь грабить можно под музыку!'
+ent-PiratePDAMusicPassengerId = { ent-PiratePDAMusic }
+    .desc = { ent-PiratePDAMusic.desc }
 ent-SecuritySergeantPDA = КПК сержанта СБ
     .desc = Всё ещё работает. В отличие от владельца, не кричит на вас.

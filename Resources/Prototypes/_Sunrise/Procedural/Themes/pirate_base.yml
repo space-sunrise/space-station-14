@@ -360,3 +360,15 @@
   tags:
     - SalvageSyndicateBase
 
+- type: entity
+  id: SyndicateBaseRoomMarker
+  parent: BaseRoomMarker
+  name: syndicate base room marker
+  components:
+  - type: RoomFill
+    minSize: 3,5
+    maxSize: 21,19
+    roomWhitelist:
+      tags:
+      - SalvageSyndicateBase
+

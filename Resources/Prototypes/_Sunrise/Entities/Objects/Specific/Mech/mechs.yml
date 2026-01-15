@@ -1,3 +1,15 @@
+# region Modules
+- type: entity
+  id: MechEquipmentGrabberSmallMining
+  parent: MechEquipmentGrabberSmall
+  components:
+  - type: ContainerFill
+    containers:
+      item-container:
+      - OreBox
+      - OreBox
+
+# region Base Mechs
 - type: entity
   id: BaseMechPod
   save: false
@@ -93,9 +105,13 @@
       mech-pilot-slot: !type:ContainerSlot
       mech-equipment-container: !type:Container
       mech-battery-slot: !type:ContainerSlot
+  - type: Inventory
+    templateId: mechArmor
+  - type: InventorySlots
+  - type: Loadout
+    prototypes: [ MechArmorLightLoadout ]
   - type: Damageable
     damageContainer: Mech
-    damageModifierSet: LightArmor
   - type: GuideHelp
     guides:
     - Robotics
@@ -174,7 +190,7 @@
     startingEquipment:
       - WeaponMechCombatSolarisLaser
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.05
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -183,7 +199,7 @@
     currentThresholdState: Alive
     thresholds:
       0: Alive
-      380: Critical
+      225: Critical
     showOverlays: false
     allowRevives: true
   - type: ContainerFill
@@ -242,9 +258,9 @@
       - IndustrialMech
     startingEquipment:
       - WeaponMechIndustrialPlasmaCutterLight #Нужно сделать улучшения WeaponMechIndustrialKineticAccelerator по аналогии с ручным для прогресса в раунде
-      - MechEquipmentGrabberSmall
+      - MechEquipmentGrabberSmallMining
   - type: Reflect
-    reflectProb: 0.10
+    reflectProb: 0.05
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -253,7 +269,7 @@
     currentThresholdState: Alive
     thresholds:
       0: Alive
-      250: Critical
+      200: Critical
     showOverlays: false
     allowRevives: true
   - type: ContainerFill
@@ -353,10 +369,10 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.5
     baseSprintSpeed: 4
-  - type: Damageable
-    damageModifierSet: HeavyArmorSyndi
+  - type: Loadout
+    prototypes: [ MechArmorHeavySyndiLoadout ]
   - type: Reflect
-    reflectProb: 0.1
+    reflectProb: 0.15
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -370,7 +386,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      500: Critical
+      400: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -389,7 +405,7 @@
 # region Paddy
 - type: entity
   id: MechPaddy
-  parent: [ BaseMech, CombatMech, IndustrialMech, BaseSecurityContraband ]
+  parent: [ MechBreakageRipley, BaseMech, CombatMech, IndustrialMech, BaseSecurityContraband ] # Sunrise-edit
   name: Paddy
   description: Autonomous Power Loader Unit Subtype Paddy. A Modified MK-II Ripley design intended for light security use.
   components:
@@ -423,7 +439,7 @@
       components:
         - HumanoidAppearance
   - type: Reflect
-    reflectProb: 0.10
+    reflectProb: 0.05
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -438,7 +454,7 @@
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
-    baseSprintSpeed: 3.75
+    baseSprintSpeed: 4
   - type: PointLight
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
@@ -493,7 +509,7 @@
     baseState: bigbrother
     openState: bigbrother-open
     brokenState: bigbrother-broken
-    mechToPilotDamageMultiplier: 0.25
+    mechToPilotDamageMultiplier: 0.15
     airtight: true
     pilotWhitelist:
       components:
@@ -502,24 +518,24 @@
       tags:
       - IndustrialMech
       - CombatMech
-  - type: Damageable
-    damageModifierSet: MediumArmorSyndi
+  - type: Loadout
+    prototypes: [ MechArmorMediumSyndiLoadout ]
   - type: MeleeWeapon
     hidden: true
     autoAttack: true
     attackRate: 3.5
     damage:
       types:
-        Structural: 60
-        Piercing: 4
-        Slash: 5
+        Structural: 50
+        Piercing: 3
+        Slash: 3
         Blunt: 10
     bluntStaminaDamageFactor: 0.5
     soundHit:
       path: "/Audio/Items/drill_use.ogg"
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 3
+    baseSprintSpeed: 3.5
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
@@ -553,6 +569,98 @@
     containers:
       mech-battery-slot:
       - PowerCageHigh
+
+# region NT ERT Gygax
+# NT Gygax
+- type: entity
+  id: MechNTGygax
+  parent: [ MechBreakageGygax, BaseMech, CombatMech, BaseSecurityScienceContraband ] # Sunrise-edit
+  name: Nanotrasen Special Gygax
+  description: "Nanotrasen's trump card when solving problems. High durability, increased protection against shock, explosions, temperature, shots: conventional, laser and energy, as well as expanded equipment slots allow to turn the situation on the station upside down. Gas pedals consume a colossal amount of energy."
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/gygax.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: ntgygax
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: ntgygax
+    openState: ntgygax-open
+    brokenState: ntgygax-broken
+    mechToPilotDamageMultiplier: 0.3
+    airtight: true
+    maxEquipmentAmount: 4
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 8
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 35
+        Structural: 180
+    bluntStaminaDamageFactor: 1.5
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3
+  - type: Reflect
+    reflectProb: 0.10
+    spread: 180
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
+    reflects:
+    - NonEnergy
+  # Sunrise-Start
+  - type: Loadout
+    prototypes: [ MechArmorMediumNTLoadout ]
+  # Sunrise-End
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Gygax
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      275: Critical
+
+- type: entity
+  id: MechNTGygaxBattery
+  parent: MechNTGygax
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageERT
+
+- type: entity
+  id: MechNTGygaxFilled
+  parent: MechNTGygaxBattery
+  suffix: Battery, Filled
+  components:
+  - type: Mech
+    startingEquipment:
+      - WeaponMechChainSword
+      - WeaponMechCombatShotgun
+      - WeaponMechCombatPulseRifle
+      - WeaponMechCombatMissileRack8
 
 # region Phazon
 
@@ -593,8 +701,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.2
     baseSprintSpeed: 4
-  - type: Damageable
-    damageModifierSet: MediumArmorNT
   - type: Reflect
     reflectProb: 0.5
     spread: 180
@@ -606,7 +712,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      450: Critical
+      220: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -630,7 +736,7 @@
 # Rover
 - type: entity
   id: MechRoverSyndie
-  parent: [ BaseMech, CombatMech, BaseSyndicateContraband ]
+  parent: [ MechBreakageDurand, BaseMech, CombatMech, BaseSyndicateContraband ] # Sunrise-edit
   name: Rover
   description: A modified Durand used for nefarious purposes. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:
@@ -672,16 +778,21 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
     baseSprintSpeed: 2.8
-  - type: Damageable
-    damageModifierSet: MediumArmorSyndi
+  - type: Loadout
+    prototypes: [ MechArmorMediumSyndiLoadout ]
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.20
+    reflectProb: 0.1
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      400: Critical
   - type: AccessReader
     access: [["NuclearOperative"]]
 
@@ -709,7 +820,7 @@
 # Doll House
 - type: entity
   id: MechDollHouse
-  parent: [ BaseMech, CombatMech, BaseMajorContraband ]
+  parent: [ MechBreakageDurand, BaseMech, CombatMech, BaseMajorContraband ] # Sunrise-edit
   name: Doll House
   description: The Heavy Mech USSP, a communist variant of the Durand, features stronger armor and a powerful machine gun.
   components:
@@ -748,8 +859,8 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 1.75
-  - type: Damageable
-    damageModifierSet: HeavyArmorSyndi
+  - type: Loadout
+    prototypes: [ MechArmorHeavySyndiLoadout ]
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
@@ -765,6 +876,11 @@
     - DollHouse
   - type: AccessReader
     access: [["NuclearOperative"]]
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      400: Critical
 
 - type: entity
   id: MechDollHouseBattery

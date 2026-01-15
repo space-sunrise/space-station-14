@@ -4,10 +4,6 @@ ent-MobGorillaRampaging = буйная горилла
 ent-MachineArtifactCrusherXenoborg = дробилка тел
     .desc = Лучше не засовывать туда голову...
 
-ent-ChemistryBottleAloxadone = { ent-BaseChemistryBottleFilled }
-    .desc = { ent-BaseChemistryBottleFilled.desc }
-    .suffix = алоксадон
-
 ent-WeaponSubMachineGunBriefcase = коричневый портфель
     .desc = Полезен для переноски вещей в руках.
     .suffix = Оружие
@@ -18,8 +14,8 @@ ent-FoodBreadCottonNutriBatard = хлопковый нутри-батард
 ent-CrazyLube = сумасшедшая смазка
     .desc = Бутылка суперскользкой сумасшедшей смазки от Honk! Co.
 
-ent-ClothingBackpackMessengerPirateDecoyKitFilled = набор отвлекающих манёвров
-    .desc = Содержит визуальные отвлекашки. Запах и звук — скоро.
+ent-ClothingBackpackMessengerPirateDecoyKitFilled = набор обманок
+    .desc = Содержит визуальные отвлекашки и набор ПТСР утилизатора.
 
 ent-CurtainsSkyBlue = { ent-BaseCurtains }
     .suffix = Красивые небесно-голубые

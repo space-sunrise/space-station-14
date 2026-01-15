@@ -335,7 +335,6 @@
     - WeaponMechCombatSolarisLaser
     - WeaponMechCombatFiredartLaser
     - WeaponMechCombatUltraRifle
-    - WeaponMechCombatMG
     - WeaponMechCombatIon
     - WeaponMechCombatXray
     - WeaponMechCombatShotgun
@@ -371,13 +370,13 @@
     - MagazineGrenadeEmpty
     - ShellFragArtillery
     - ShellEMPArtillery
-    # .60/14mm cannon
+    # .60/15mm cannon
     - MagazineBauer127
     - MagazineBauer127Penetrator
     - MagazineBauer127Blast
     - MagazineBauer127Frag
     - MagazineBauer127Emp
-    # .60/14mm auto-cannon
+    # .60/15mm auto-cannon
     - MagazineBoxBelt127Empty
     - MagazineBoxBelt127
     - MagazineBoxBelt127Artillery

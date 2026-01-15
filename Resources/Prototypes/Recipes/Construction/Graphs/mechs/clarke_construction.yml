@@ -6,6 +6,10 @@
     edges:
     - to: clarke
       steps:
+      # Sunrise-Start
+      - assemblyId: Clarke
+        guideString: mech-construction-guide-string
+      # Sunrise-End
       - tool: Anchoring
         doAfter: 1
         completed:

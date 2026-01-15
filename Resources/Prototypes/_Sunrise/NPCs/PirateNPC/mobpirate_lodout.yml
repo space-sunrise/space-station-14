@@ -9,24 +9,28 @@
 - type: startingGear
   id: MobPirateT1MonkeyKnuckleDustersGear
   equipment:
+    gloves: ClothingHandsMonkeyKnuckleDustersPirateT1
     pocket1: PiratePouchTier1KnuckleDusters
     pocket2: CigaretteSyndicate
 
 - type: startingGear
   id: MobPirateT1MonkeyEDaggerGear
   equipment:
+    gloves: ClothingHandsPirateArmorT1PirateEvaArmored
     pocket1: PiratePouchTier3EDagger
     pocket2: CigPackSyndicate
 
 - type: startingGear
   id: MobPirateT1MonkeyFlareGunGear
   equipment:
+    gloves: ClothingHandsPirateArmorT1PirateEvaArmored
     pocket1: PiratePouchTier1FlareGun
     pocket2: CigaretteSyndicate
 
 - type: startingGear
   id: MobPirateT1MonkeyFireBombGear
   equipment:
+    gloves: ClothingHandsPirateArmorT1PirateEvaArmored
     pocket1: PiratePouchTier1FireBomb
     pocket2: CigaretteSyndicate
 
@@ -43,6 +47,7 @@
 - type: startingGear
   id: MobPirateT1PickaxeGear
   equipment:
+    gloves: ClothingHandsPirateArmorT1PirateEva
     back: ClothingBackScrapperMeleeT1
     belt: OreBag
     pocket1: Flare
@@ -52,6 +57,7 @@
 - type: startingGear
   id: MobPirateT1HunterGear
   equipment:
+    gloves: ClothingHandsPirateArmorT1Goliath
     back: ClothingBackScrapperT1Hunter
     shoes: ClothingShoesBootsJump
     pocket1: AdvancedMineralScanner
@@ -60,6 +66,7 @@
 - type: startingGear
   id: MobPirateT1HunterSmashGear
   equipment:
+    gloves: ClothingHandsPirateArmorT1GoliathMining
     back: ClothingBackScrapperT1Smasher
     shoes: ClothingShoesBootsJump
     pocket1: AdvancedMineralScanner
@@ -123,7 +130,7 @@
 - type: startingGear
   id: MobPirateT1ECutlassGear
   equipment:
-    gloves: ClothingHandsECutlass
+    gloves: ClothingHandsECutlassPirateT1
     back: ClothingBackPirateMessengerT1ECutlass
     pocket1: EmergencyMedipen
     pocket2: Stimpack
@@ -164,11 +171,38 @@
     pocket1: DoubleEmergencyOxygenTankFilled
     pocket2: ChemistryBottleSaline
 
+- type: startingGear
+  id: MobPirateT1BombardierFireGear
+  equipment:
+    gloves: ClothingHandsBombadaPirateT1
+    belt: WaistbagBoxTier1Grenade
+    shoes: ClothingShoesBootsCowboyBrownFilled
+    pocket1: PiratePouchTier1FireBomb
+    pocket2: ImprovisedGrenadeFirebomb
+
+- type: startingGear
+  id: MobPirateT1BombardierPipeGear
+  equipment:
+    gloves: ClothingHandsBombadaPirateT1
+    belt: WaistbagBoxTier1Grenade
+    shoes: ClothingShoesBootsCowboyWhiteFilled
+    pocket1: PiratePouchTier1FireBomb
+    pocket2: ImprovisedGrenadePipebomb
+
+- type: startingGear
+  id: MobPirateT1BombardierGlassGear
+  equipment:
+    gloves: ClothingHandsBombadaPirateT1
+    belt: WaistbagBoxTier1Grenade
+    shoes: ClothingShoesBootsCowboyBlackFilled
+    pocket1: PiratePouchTier1FireBomb
+    pocket2: ImprovisedGrenadeGlass
+
 # region  Pirate Tier2
 - type: startingGear
   id: MobPirateT2ECutlassGear
   equipment:
-    gloves: ClothingHandsECutlass
+    gloves: ClothingHandsECutlassPirateT2
     back: ClothingBackpackMessengerMeleeT2
     pocket1: EmergencyMedipen
     pocket2: Stimpack
@@ -178,10 +212,11 @@
   id: MobPirateT2CutlassGear
   equipment:
     gloves: ClothingHandsMercCutlass
-    pocket1: Cutlass
-    pocket2: SyringeStimulants
+    pocket1: SyringeSaline
+    pocket2: PatchPackBrute
     shoes: ClothingShoesBootsWork
     back: OxygenTankFilled
+    belt: ClothingBeltShieldBucklerMeleeT2
 
 - type: startingGear
   id: MobPirateT2SledgehammerGear
@@ -398,6 +433,7 @@
 - type: startingGear
   id: MobPirateT2MechGear
   equipment:
+    gloves: ClothingHandsPirateArmorT2Invisible
     pocket1: RipleyCentralElectronics
     pocket2: RipleyPeripheralsElectronics
     shoes: MechPaintClarkeRipleyBigBrother
@@ -407,16 +443,19 @@
 - type: startingGear
   id: MobPirateT1BorgAssaultGear
   equipment:
+    gloves: ClothingHandsPirateArmorT1Invisible
     back: ClothingBackOreCrateTier2Cyborg
 
 - type: startingGear
   id: MobPirateT1BorgMiningGear
   equipment:
+    gloves: ClothingHandsPirateArmorT1Invisible
     back: ClothingBackOreCrateTier1Cyborg
 
 - type: startingGear
   id: MobPirateT1BorgDerelictGear
   equipment:
+    gloves: ClothingHandsPirateArmorT1Invisible
     back: ClothingBackOreCrateTier1Cyborg
 
 # region Pirate Boss
@@ -439,8 +478,16 @@
     pocket2: PouchAmmoFilledPistol40
 
 - type: startingGear
+  id: MobPirateGearRangedT4LMG
+  equipment:
+    gloves: ClothingHandsDp28
+    belt: ClothingBeltBandolierT4LMG
+    pocket1: PouchAmmo
+
+- type: startingGear
   id: MobPirateT2JuggernautGear
   equipment:
+    gloves: ClothingHandsPirateArmorT2Invisible
     back: ClothingBackOreCrateBoss
     pocket1: ClothingHeadHatGladiator
     pocket2: StimkitFilled
@@ -460,3 +507,5 @@
     shoes: DurandTargetingElectronics
     back: ClothingBackOreCrateTier3Mech
     belt: MechPaintDurandDollhouse
+
+

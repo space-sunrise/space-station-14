@@ -16,7 +16,7 @@
             prefixCreator: 'TG'
         - type: SpawnGridAndDockToStation
           grids:
-          - gridPath: /Maps/_Sunrise/Shuttles/Salvage/chisel.yml
+          - gridPath: /Maps/_Sunrise/Shuttles/Salvage/nomad.yml
             priorityTag: DockMining
           - gridPath: /Maps/_Sunrise/Shuttles/security.yml
             priorityTag: DockSecurity

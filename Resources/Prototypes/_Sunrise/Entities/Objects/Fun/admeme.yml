@@ -1,0 +1,15 @@
+- type: entity
+  name: magnetic spell of all-consuming cleanliness
+  id: BagOfSummoningGarbageAdmeme
+  parent: TrashBagBlue
+  suffix: Admeme
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,20,20
+    quickInsert: true
+    areaInsert: true
+    areaInsertRadius: 5
+  - type: MagnetPickup
+    range: 10

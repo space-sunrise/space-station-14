@@ -479,19 +479,19 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector
-      weight: 80
+      weight: 90
       children:
       - id: GunSafeShotgunTrenchgun4034
       - id: GunSafeShotgunKammerer
       - id: GunSafeShotgunRiot
     - !type:GroupSelector
-      weight: 15
+      weight: 7
       children:
       - id: GunSafeShotgunSPAS12
       - id: GunSafeShotgunEnforcer
       - id: GunSafeShotgunCombat
     - !type:GroupSelector
-      weight: 5
+      weight: 3
       children:
       - id: GunSafeDoubleBarreled
 
@@ -516,13 +516,13 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector
-      weight: 80
+      weight: 90
       children:
       - id: GunSafeRifleLecter
       - id: GunSafeRifleM16A4
       - id: GunSafeRifleAKMU
     - !type:GroupSelector
-      weight: 20
+      weight: 10
       children:
       - id: GunSafeRifleFamas
       - id: GunSafeRifleLecterMk2

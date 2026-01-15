@@ -585,7 +585,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.75,-0.45,0.75,0.45"
+          bounds: "-0.5,-0.3,0.5,0.3"
         density: 125
         mask:
         - MachineMask
@@ -637,7 +637,7 @@
     angleIncrease: 1
     angleDecay: 25
     projectileSpeed: 32
-    fireRate: 5
+    fireRate: 4
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
       params:
@@ -666,7 +666,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.9,-0.45,0.9,0.45"
+          bounds: "-0.45,-0.3,0.45,0.3"
         density: 200
         mask:
         - MachineMask
@@ -726,6 +726,18 @@
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: Machine
     board: ShuttleGunSquallCircuitboard
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.4,0.3,0.4"
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
   - type: MagazineAmmoProvider
   - type: MagazineVisuals
     magState: mag

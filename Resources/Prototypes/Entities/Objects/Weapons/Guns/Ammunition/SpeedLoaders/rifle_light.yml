@@ -7,7 +7,7 @@
   - type: SpeedLoader
   - type: BallisticAmmoProvider
     mayTransfer: true
-    fillDelay: 0.1 #  Sunrise-add
+    fillDelay: 0.08 #  Sunrise-add
     whitelist:
       tags:
       - CartridgeLightRifle

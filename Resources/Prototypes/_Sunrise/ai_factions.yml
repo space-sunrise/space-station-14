@@ -76,6 +76,7 @@
   hostile:
     - NanoTrasen
     - SimpleHostile
+    - Passive
     - Xeno
     - PetsNT
     - Revolutionary

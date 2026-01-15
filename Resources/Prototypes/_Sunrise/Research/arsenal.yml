@@ -108,7 +108,6 @@
   - DurandTargetingElectronics
   - WeaponMechCombatShotgun
   - WeaponMechCombatShotgunIncendiary
-  - WeaponMechCombatMG
   - PaintDurandExecutor
   - PaintDurandShire
   - PaintDurandOld
@@ -226,7 +225,7 @@
   - BorgModuleAdvancedCombat
   radioChannels:
   - Security
-  
+
 - type: technology
   id: HiTechShuttleWeapon
   name: research-technology-hitech-shuttle-weapon

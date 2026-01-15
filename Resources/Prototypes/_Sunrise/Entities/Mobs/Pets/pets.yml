@@ -195,6 +195,14 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: vidra
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: vidra
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
   - type: Butcherable
     spawned:
     - id: FoodMeat

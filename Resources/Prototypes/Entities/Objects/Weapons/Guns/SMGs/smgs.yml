@@ -74,10 +74,6 @@
   - type: EmitSoundOnLand
     sound:
       collection: RiflesDrop
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 2
-    pvsIncrease: 0.2
   # Sunrise end
 
 - type: entity

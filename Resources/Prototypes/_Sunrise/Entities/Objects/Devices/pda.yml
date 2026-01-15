@@ -177,6 +177,15 @@
     accentHColor: "#3d3d40"
   - type: Icon
     state: pda-securitypilot
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - NavigatorCartridge
+      - WantedListCartridge
+      - AstroNavCartridge
 
 - type: entity
   parent: CaptainPDA
@@ -472,3 +481,12 @@
   id: SecuritySergeantPDA
   name: security sergeant PDA
   description: Still functional. Unlike its owner, it does not shout at you.
+
+- type: entity
+  parent: PiratePDAMusic
+  id:  PiratePDAMusicPassengerId
+  name: Shantyman PDA
+  description: Yargh! but now with shanties.
+  components:
+  - type: Pda
+    id: PassengerIDCard

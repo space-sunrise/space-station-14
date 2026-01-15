@@ -49,7 +49,7 @@
   equipment:
     id: PrisonWorkerPDA
     jumpsuit: UniformPrisonWorkerMetus
-    ears: ClothingHeadsetService
+    ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasic
@@ -65,7 +65,7 @@
   equipment:
     jumpsuit: UniformPrisonWorkerMetus
     head: ClothingHeadCapPrisonWorkerMetus
-    ears: ClothingHeadsetService
+    ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasic
