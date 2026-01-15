@@ -36,6 +36,9 @@
         - GlassAirlockLayer
   - type: Transform
     noRot: false
+  - type: SunriseMultiTileAirtight
+    extraTiles:
+    - 1,0
 
 - type: entity
   id: TripleGlassAirlock
@@ -67,6 +70,10 @@
         - GlassAirlockLayer
   - type: Transform
     noRot: false
+  - type: SunriseMultiTileAirtight
+    extraTiles:
+    - -1,0
+    - 1,0
 
 # == Double airlocks == #
 

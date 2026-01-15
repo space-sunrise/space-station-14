@@ -1,0 +1,19 @@
+- type: entity
+  id: SunriseMultiTileAirtightBlocker
+  name: airtight blocker
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Airtight
+    airBlocked: false
+    noAirWhenFullyAirBlocked: false
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StrongMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
