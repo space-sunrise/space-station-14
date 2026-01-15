@@ -7857,7 +7857,7 @@ entities:
           priority: 0
           component: ClothingSpeedModifier
         title: null
-- proto: ClothingBackpackSatchelSmugglerFilled
+- proto: ClothingBackpackSmugglerRevolutionaryFilled
   entities:
   - uid: 2467
     components:
