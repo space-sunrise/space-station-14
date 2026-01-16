@@ -927,6 +927,8 @@
     bluntStaminaDamageFactor: 1.5
     soundHit:
       collection: PunchHard
+  - type: FireProtection
+    reduction: 0.99
 # This is some proper cursed stuff: due to layering of clothes sprites, gloves displayed under outer clothes
 # So in order to make wielded weapon visible, I'm using neck slot which is drawn on top of outer suit layer.
 

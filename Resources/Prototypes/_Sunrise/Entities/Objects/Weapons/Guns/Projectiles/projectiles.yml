@@ -749,6 +749,9 @@
     intensitySlope: 5
     maxIntensity: 10
     canCreateVacuum: false
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
 
 - type: entity
   id: BulletFuzeCannonBall
@@ -802,6 +805,9 @@
   - type: ProjectileGrenade
     fillPrototype: PelletClusterLessLethal
     capacity: 30
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
 
 - type: entity
   id: BulletGrenadeEMPTimer

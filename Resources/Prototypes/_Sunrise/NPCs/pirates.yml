@@ -3259,7 +3259,7 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 420
+    damageCap: 430
   - type: SlowOnDamage
     speedModifierThresholds:
       150: 0.9
@@ -3300,8 +3300,6 @@
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
-  - type: FireProtection
-    reduction: 0.8
   - type: PointLight
     enabled: true
     autoRot: true
@@ -3319,8 +3317,8 @@
     - FootstepSound
     - Pickaxe
   - type: EyeCursorOffset
-    maxOffset: 4
-    pvsIncrease: 0.4
+    maxOffset: 5
+    pvsIncrease: 0.6
   - type: Magboots
   - type: HellSpawnInvincibility
   - type: HellSpawnSpiral
