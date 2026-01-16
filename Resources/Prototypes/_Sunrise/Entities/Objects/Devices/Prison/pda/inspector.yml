@@ -16,3 +16,6 @@
     accentHColor: "#584f70"
   - type: Icon
     state: pda-space-prison-inspector
+  - type: PdaAnimationVisuals
+    animatedState: pda-space-prison-inspector
+    idInsertedLayerState: id_inserted-space-prison

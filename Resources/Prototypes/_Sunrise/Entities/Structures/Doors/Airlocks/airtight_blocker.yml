@@ -1,0 +1,8 @@
+- type: entity
+  id: SunriseMultiTileAirtightBlocker
+  name: airtight blocker
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Airtight
+    airBlocked: false
+    noAirWhenFullyAirBlocked: false

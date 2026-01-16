@@ -48,6 +48,9 @@
         pda-space-prison-prisoner-screen-H
   - type: Icon
     state: pda-space-prison-prisoner-screen-H
+  - type: PdaAnimationVisuals
+    animatedState: pda-space-prison-prisoner-screen-H
+    idInsertedLayerState: id_inserted-space-prison
 
 - type: entity
   parent: PlanetPrisonerPDA
@@ -60,6 +63,9 @@
         pda-space-prison-prisoner-screen-H-cracked
   - type: Icon
     state: pda-space-prison-prisoner-screen-H-cracked
+  - type: PdaAnimationVisuals
+    animatedState: pda-space-prison-prisoner-screen-H-cracked
+    idInsertedLayerState: id_inserted-space-prison
 
 - type: entity
   parent: PlanetPrisonerPDA
@@ -72,6 +78,9 @@
         pda-space-prison-prisoner-screen-X
   - type: Icon
     state: pda-space-prison-prisoner-screen-X
+  - type: PdaAnimationVisuals
+    animatedState: pda-space-prison-prisoner-screen-X
+    idInsertedLayerState: id_inserted-space-prison
 
 - type: entity
   parent: PlanetPrisonerPDA
@@ -84,3 +93,6 @@
         pda-space-prison-prisoner-screen-X-cracked
   - type: Icon
     state: pda-space-prison-prisoner-screen-X-cracked
+  - type: PdaAnimationVisuals
+    animatedState: pda-space-prison-prisoner-screen-X-cracked
+    idInsertedLayerState: id_inserted-space-prison

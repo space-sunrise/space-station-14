@@ -26,3 +26,21 @@
       time: 54000 # 15 часов
   equipment:
     head: ClothingHeadHatCapPrisonEngineerMetus
+
+# PDA
+
+- type: loadout
+  id: PrisonEngineer-PrisonEngineerPDAScreenZap
+  equipment:
+    id: PrisonEngineerPDAScreenZap
+
+- type: loadout
+  id: PrisonEngineer-PrisonEngineerPDAScreenPoint
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonEngineer
+      time: 36000 # 10 часов
+  equipment:
+    id: PrisonEngineerPDAScreenPoint

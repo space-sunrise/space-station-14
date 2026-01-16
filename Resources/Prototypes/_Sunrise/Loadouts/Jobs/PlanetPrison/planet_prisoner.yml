@@ -10,3 +10,43 @@
       time: 198000 # 55 hrs
   inhand:
   - PresentRandomPrisoner
+
+# PDA
+
+- type: loadout
+  id: PlanetPrisoner-PlanetPrisonerPDAScreenH
+  equipment:
+    id: PlanetPrisonerPDAScreenH
+
+- type: loadout
+  id: PlanetPrisoner-PlanetPrisonerPDAScreenHCracked
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPlanetPrisoner
+      time: 36000 # 10 часов
+  equipment:
+    id: PlanetPrisonerPDAScreenHCracked
+
+- type: loadout
+  id: PlanetPrisoner-PlanetPrisonerPDAScreenX
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPlanetPrisoner
+      time: 72000 # 20 часов
+  equipment:
+    id: PlanetPrisonerPDAScreenX
+
+- type: loadout
+  id: PlanetPrisoner-PlanetPrisonerPDAScreenXCracked
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPlanetPrisoner
+      time: 108000 # 30 часов
+  equipment:
+    id: PlanetPrisonerPDAScreenXCracked

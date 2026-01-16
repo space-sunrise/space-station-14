@@ -200,6 +200,9 @@
   id: MagazineACP14
 
 - type: Tag
+  id: MagazinePistolHighCapacityRubber
+
+- type: Tag
   id: MagazineAR18
 
 - type: Tag
@@ -231,6 +234,9 @@
 
 - type: Tag
   id: MagazineGlock22
+
+- type: Tag
+  id: MagazineGlock22Metus
 
 - type: Tag
   id: MagazineHeavyRifle

@@ -24805,3 +24805,12 @@
   id: 1614
   time: '2026-01-14T13:00:14.0000000+00:00'
   url: https://github.com/space-sunrise/sunrise-station/pull/3693
+- author: Orvex07
+  changes:
+  - message: "\u0414\u0432\u043E\u0439\u043D\u044B\u0435/\u0422\u0440\u043E\u0439\u043D\
+      \u044B\u0435 \u0448\u043B\u044E\u0437\u044B \u043A\u0440\u0430\u0441\u044F\u0442\
+      \u0441\u044F \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E"
+    type: Fix
+  id: 1615
+  time: '2026-01-15T21:23:41.0000000+00:00'
+  url: https://github.com/space-sunrise/sunrise-station/pull/3719

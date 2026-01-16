@@ -24,3 +24,6 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
+  - type: PdaAnimationVisuals
+    animatedState: pda-space-prison-doctor
+    idInsertedLayerState: id_inserted-space-prison

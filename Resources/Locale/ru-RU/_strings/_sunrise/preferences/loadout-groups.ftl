@@ -107,15 +107,12 @@ loadout-group-commaid-backpack = Горничная командования, р
 loadout-group-commaid-neck = Горничная командования, шея
 loadout-group-commaid-shoes = Горничная командования, обувь
 loadout-group-commaid-gloves = Горничная командования, перчатки
-loadout-group-planet-prison-trinkets = Безделушки ПТ
-loadout-group-planet-prisoner-loot = Тайник Зека
-loadout-group-planet-prison-security-loot = Привилегии Охраны
-loadout-group-prison-inspector-hats = Шляпа
-loadout-group-prison-inspector-glasses = Очки
-loadout-group-prison-doctor-head = Головной убор
-loadout-group-prison-chef-head = Головной убор
-loadout-group-prison-engineer-head = Головной убор
-loadout-group-prison-scientist-head = Головной убор
-loadout-group-prison-worker-head = Головной убор
-loadout-group-prison-trainee-head = Головной убор
 loadout-group-contributors = Контрибьюторы
+
+loadout-group-head = Головной убор
+loadout-group-hats = Шляпа
+loadout-group-pda = ПДА
+
+loadout-group-prison-trinkets = Безделушки ПТ
+loadout-group-prisoner-loot = Тайник Зека
+loadout-group-prison-security-loot = Привилегии Охраны
