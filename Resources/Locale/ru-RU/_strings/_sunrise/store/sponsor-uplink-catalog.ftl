@@ -261,3 +261,14 @@ uplink-sunrise-mob-mothroach-name = Таракан
 uplink-sunrise-player-borg-generic-name = Борг
 uplink-sunrise-boombox-name = Бумбокс
 uplink-sunrise-tape-player-name = Магнитофон
+
+## Paint
+
+uplink-sunrise-spray-paint-desc = Баночка аэрозольной краски.
+uplink-sunrise-spray-paint-blue-name = Баллончик краски (синий)
+uplink-sunrise-spray-paint-black-name = Баллончик краски (чёрный)
+uplink-sunrise-spray-paint-red-name = Баллончик краски (красный)
+uplink-sunrise-spray-paint-green-name = Баллончик краски (зелёный)
+uplink-sunrise-spray-paint-orange-name = Баллончик краски (оранжевый)
+uplink-sunrise-spray-paint-purple-name = Баллончик краски (фиолетовый)
+uplink-sunrise-spray-paint-white-name = Баллончик краски (белый)

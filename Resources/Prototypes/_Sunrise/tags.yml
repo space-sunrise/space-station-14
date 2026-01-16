@@ -1,5 +1,9 @@
+# Behavior flags
 - type: Tag
-  id: NoPaint
+  id: CantInteract
+
+- type: Tag
+  id: Directional
 
 - type: Tag
   id: IgnoreMelee
@@ -8,139 +12,316 @@
   id: NoInjectable
 
 - type: Tag
-  id: Nanopaste
+  id: NoPaint
 
 - type: Tag
-  id: SunriseUplink
+  id: NoSpinOnThrow
 
 - type: Tag
-  id: PlutoniumCore
-
-- type: Tag
-  id: Predator
-
-- type: Tag
-  id: HumanoidXeno
-
-- type: Tag
-  id: DockGamma
-
-- type: Tag
-  id: BorgModuleSecurity
-
-- type: Tag
-  id: BorgModuleERT
-
-- type: Tag
-  id: SyndieAgentUplink
-
-- type: Tag
-  id: AnomalyCore
-
-- type: Tag
-  id: LoneOpsUplink
-
-- type: Tag
-  id: Flash
-
-- type: Tag
-  id: CreepyLaugh
-
-- type: Tag
-  id: TrayScanner
-
-- type: Tag
-  id: NVDHandcrafted
-
-- type: Tag
-  id: PlantAnalyzer
+  id: ShowWires
 
 # Uplinks
 - type: Tag
-  id: NTUplink
-
-- type: Tag
-  id: ERTRed
-
-- type: Tag
-  id: ERTGamma
-
-- type: Tag
-  id: ERTEpsilon
+  id: BlueShield
 
 - type: Tag
   id: CBURN
 
 - type: Tag
-  id: BlueShield
+  id: Commission
+
+- type: Tag
+  id: ERTEpsilon
+
+- type: Tag
+  id: ERTGamma
+
+- type: Tag
+  id: ERTRed
+
+- type: Tag
+  id: FugitiveUplink
+
+- type: Tag
+  id: LoneOpsUplink
+
+- type: Tag
+  id: NTUplink
+
+- type: Tag
+  id: NoCommission
 
 - type: Tag
   id: PirateUplink
 
 - type: Tag
-  id: Commission
+  id: SunriseUplink
 
 - type: Tag
-  id: NoCommission
-# Catridges:
+  id: SyndieAgentUplink
+
+# Species / roles / targets
+- type: Tag
+  id: Abductor
+
+- type: Tag
+  id: AbductorScientist
+
+- type: Tag
+  id: CarpRiftHealTarget
+
+- type: Tag
+  id: Felinid
+
+- type: Tag
+  id: HumanoidXeno
+
+- type: Tag
+  id: Predator
+
+- type: Tag
+  id: Resomi
+
+- type: Tag
+  id: WingToggleAllowed
+
+# Docks
+- type: Tag
+  id: DockCentComm
+
+- type: Tag
+  id: DockGamma
+
+- type: Tag
+  id: DockMining
+
+- type: Tag
+  id: DockPersonal
+
+- type: Tag
+  id: DockSecurity
+
+# Borg modules
+- type: Tag
+  id: BorgModuleERT
+
+- type: Tag
+  id: BorgModuleSecurity
+
+# Tools / devices
+- type: Tag
+  id: CreepyLaugh
+
+- type: Tag
+  id: EmergencyWelder
+
+- type: Tag
+  id: Flash
+
+- type: Tag
+  id: GasTank
+
+- type: Tag
+  id: Nanopaste
+
+- type: Tag
+  id: PlantAnalyzer
+
+- type: Tag
+  id: TrayScanner
+
+# Cores / power
+- type: Tag
+  id: AnomalyCore
+
+- type: Tag
+  id: PlutoniumCore
+
+- type: Tag
+  id: PowerCellHigh
+
+# Ammo / payloads
+- type: Tag
+  id: ArtilleryShell
+
+- type: Tag
+  id: CannonBallMini
 
 - type: Tag
   id: CartridgeHeavyRifleR
 
 - type: Tag
+  id: FireBomb
+
+- type: Tag
   id: FireThrowerBall
 
 - type: Tag
-  id: PowerpackMinigunMG100
-
-- type: Tag
-  id: PowerpackDL6902
-
-- type: Tag
-  id: MiniSyringe
+  id: FuelTankFlamethrower
 
 - type: Tag
   id: HandGrenadeAmmo
 
 - type: Tag
-  id: SpeedLoaderShotgun
+  id: ImprovisedAmmoBox
+
+- type: Tag
+  id: ImprovisedGrenadeEmpty
+
+- type: Tag
+  id: MiniSyringe
+
+- type: Tag
+  id: PipeBomb
+
+- type: Tag
+  id: PowerpackDL6902
+
+- type: Tag
+  id: PowerpackFlame
+
+- type: Tag
+  id: PowerpackMinigunMG100
 
 - type: Tag
   id: ShellShotgunEmpty
 
 - type: Tag
-  id: Coin
+  id: ShotgunSlug
 
 - type: Tag
-  id: ImprovisedAmmoBox
+  id: SpeedLoaderRifle
 
 - type: Tag
-  id: CannonBallMini
+  id: SpeedLoaderShotgun
 
-# Weapons
+# Magazines
 - type: Tag
-  id: WrappedWeapon
-
-- type: Tag
-  id: WeaponPistolG22
+  id: MagazineACP14
 
 - type: Tag
-  id: UpgradeFlareGun
+  id: MagazinePistolHighCapacityRubber
+
+- type: Tag
+  id: MagazineAR18
+
+- type: Tag
+  id: MagazineAsh12
+
+- type: Tag
+  id: MagazineBauer127
+
+- type: Tag
+  id: MagazineBoxL6Cap
+
+- type: Tag
+  id: MagazineBR64
+
+- type: Tag
+  id: MagazineCannonBallMini
+
+- type: Tag
+  id: MagazineCaselessRifle
+
+- type: Tag
+  id: MagazineDeagle
+
+- type: Tag
+  id: MagazineDl6902
+
+- type: Tag
+  id: MagazineDragunov
+
+- type: Tag
+  id: MagazineGlock22
+
+- type: Tag
+  id: MagazineGlock22Metus
+
+- type: Tag
+  id: MagazineHeavyRifle
+
+- type: Tag
+  id: MagazineHIBrowning
+
+- type: Tag
+  id: MagazineLightMachineGunMG60
+
+- type: Tag
+  id: MagazineLightRiflePan
+
+- type: Tag
+  id: MagazineMachineGunHeavyRifle
+
+- type: Tag
+  id: MagazineMachineGunMG42
+
+- type: Tag
+  id: MagazineM28
+
+- type: Tag
+  id: MagazineMP5
+
+- type: Tag
+  id: MagazineMP7
+
+- type: Tag
+  id: MagazineNewVector
+
+- type: Tag
+  id: MagazineP90
+
+- type: Tag
+  id: MagazinePistolCaselessRifleTec9
+
+- type: Tag
+  id: MagazinePistolDPSubMachineGun
+
+- type: Tag
+  id: MagazinePistolSubMachineGunCap
+
+- type: Tag
+  id: MagazineRPD
+
+- type: Tag
+  id: MagazineScorpion
+
+- type: Tag
+  id: MagazineVP78
+
+# Weapons / upgrades
+- type: Tag
+  id: ArmorBasic
+
+- type: Tag
+  id: BolaSecurity
+
+- type: Tag
+  id: EnergySword
+
+- type: Tag
+  id: GorillaUpgradeKit
+
+- type: Tag
+  id: Laser
 
 - type: Tag
   id: ModularReceiverAuto
 
 - type: Tag
+  id: RiotShield
+
+- type: Tag
+  id: RiotShieldStrobe
+
+- type: Tag
+  id: SyndicateRapier
+
+- type: Tag
   id: UpgradeDrozd
 
 - type: Tag
-  id: UpgradeLecter
-
-- type: Tag
-  id: UpgradeWebVest
-
-- type: Tag
-  id: UpgradeKitPlate
+  id: UpgradeFlareGun
 
 - type: Tag
   id: UpgradeKitBullet
@@ -149,139 +330,60 @@
   id: UpgradeKitBulletHeavy
 
 - type: Tag
-  id: UpgradeKitStab
-
-- type: Tag
-  id: UpgradeKitRiot
-
-- type: Tag
   id: UpgradeKitHeat
+
+- type: Tag
+  id: UpgradeKitPlate
 
 - type: Tag
   id: UpgradeKitReflective
 
 - type: Tag
-  id: ArmorBasic
+  id: UpgradeKitRiot
 
 - type: Tag
-  id: GorillaUpgradeKit
+  id: UpgradeKitStab
+
+- type: Tag
+  id: UpgradeLecter
+
+- type: Tag
+  id: UpgradeWebVest
+
+- type: Tag
+  id: WeaponPistolG22
 
 - type: Tag
   id: WeaponPistolTec9
 
-# Magazines:
 - type: Tag
-  id: MagazineCaselessRifle
+  id: WrappedWeapon
+
+# Clothing / gear
+- type: Tag
+  id: FullBodyOuter
 
 - type: Tag
-  id: MagazineHeavyRifle
+  id: HardsuitMining
 
 - type: Tag
-  id: SpeedLoaderRifle
+  id: ModsuitCore
 
 - type: Tag
-  id: MagazineLightRiflePan
+  id: NightVisionDevice
 
 - type: Tag
-  id: MagazineCannonBallMini
+  id: NVDHandcrafted
 
 - type: Tag
-  id: MagazineBoxL6Cap
+  id: Vest
 
 - type: Tag
-  id: MagazinePistolSubMachineGunCap
+  id: WhitelistChameleonSuit
 
+# Materials / construction
 - type: Tag
-  id: MagazinePistolDPSubMachineGun
-
-- type: Tag
-  id: MagazinePistolCaselessRifleTec9
-
-- type: Tag
-  id: MagazineM28
-
-- type: Tag
-  id: MagazineDragunov
-
-- type: Tag
-  id: MagazineBR64
-
-- type: Tag
-  id: MagazineBauer127
-
-- type: Tag
-  id: MagazineAR18
-
-- type: Tag
-  id: MagazineP90
-
-- type: Tag
-  id: MagazineMP7
-
-- type: Tag
-  id: MagazineMP5
-
-- type: Tag
-  id: MagazineScorpion
-
-- type: Tag
-  id: MagazineNewVector
-
-- type: Tag
-  id: MagazineRPD
-
-- type: Tag
-  id: MagazineMachineGunMG42
-
-- type: Tag
-  id: MagazineLightMachineGunMG60
-
-- type: Tag
-  id: MagazineMachineGunHeavyRifle # .308 calibler
-
-- type: Tag
-  id: MagazineVP78
-
-- type: Tag
-  id: MagazineDeagle
-
-- type: Tag
-  id: MagazineGlock22
-
-- type: Tag
-  id: MagazineHIBrowning
-
-- type: Tag
-  id: MagazineACP14
-
-- type: Tag
-  id: FuelTankFlamethrower
-
-- type: Tag
-  id: NoSpinOnThrow
-
-- type: Tag
-  id: PowerpackFlame
-
-- type: Tag
-  id: MagazineDl6902
-
-- type: Tag
-  id: BluespaceBox
-
-- type: Tag
-  id: SyndicateRapier
-
-- type: Tag
-  id: ShotgunSlug
-
-- type: Tag
-  id: MagazineAsh12
-
-# Material bag:
-
-- type: Tag
-  id: Tile
+  id: Board
 
 - type: Tag
   id: MicroManipulatorStockPart
@@ -290,39 +392,23 @@
   id: PartRodMetal
 
 - type: Tag
-  id: Board
-
-# Mechs
+  id: SheetOfficePaper
 
 - type: Tag
-  id: Ripley
+  id: SheetPaper
 
+- type: Tag
+  id: SolarAssemblyFlatpack
+
+- type: Tag
+  id: Tile
+
+# Mechs
 - type: Tag
   id: Clarke
 
 - type: Tag
-  id: Gygax
-
-- type: Tag
-  id: Mauler
-
-- type: Tag
-  id: DollHouse
-
-- type: Tag
-  id: Durand
-
-- type: Tag
-  id: Phazon
-
-- type: Tag
-  id: PaddyMech
-
-- type: Tag
   id: ClarkeCentralControlModule
-
-- type: Tag
-  id: ClarkePeripheralsControlModule
 
 - type: Tag
   id: ClarkeHead
@@ -331,22 +417,29 @@
   id: ClarkeLArm
 
 - type: Tag
+  id: ClarkePeripheralsControlModule
+
+- type: Tag
   id: ClarkeRArm
 
 - type: Tag
   id: ClarkeTreads
 
 - type: Tag
+  id: CombatMech
+# TODO: Make medical mech
+
+- type: Tag
+  id: DollHouse
+
+- type: Tag
+  id: Durand
+
+- type: Tag
   id: DurandArmor
 
 - type: Tag
   id: DurandCentralControlModule
-
-- type: Tag
-  id: DurandPeripheralsControlModule
-
-- type: Tag
-  id: DurandTargetingControlModule
 
 - type: Tag
   id: DurandHead
@@ -358,25 +451,25 @@
   id: DurandLLeg
 
 - type: Tag
+  id: DurandPeripheralsControlModule
+
+- type: Tag
   id: DurandRArm
 
 - type: Tag
   id: DurandRLeg
 
 - type: Tag
-  id: EnergySword
+  id: DurandTargetingControlModule
+
+- type: Tag
+  id: Gygax
 
 - type: Tag
   id: GygaxArmor
 
 - type: Tag
   id: GygaxCentralControlModule
-
-- type: Tag
-  id: GygaxPeripheralsControlModule
-
-- type: Tag
-  id: GygaxTargetingControlModule
 
 - type: Tag
   id: GygaxHead
@@ -388,22 +481,43 @@
   id: GygaxLLeg
 
 - type: Tag
+  id: GygaxPeripheralsControlModule
+
+- type: Tag
   id: GygaxRArm
 
 - type: Tag
   id: GygaxRLeg
 
 - type: Tag
+  id: GygaxTargetingControlModule
+
+- type: Tag
+  id: IndustrialMech
+
+- type: Tag
+  id: Mauler
+
+- type: Tag
+  id: MechAirTank
+
+- type: Tag
+  id: MechPhasicScanningModule
+
+- type: Tag
+  id: MechThruster
+
+- type: Tag
+  id: PaddyMech
+
+- type: Tag
+  id: Phazon
+
+- type: Tag
   id: PhazonArmor
 
 - type: Tag
   id: PhazonCentralControlModule
-
-- type: Tag
-  id: PhazonPeripheralsControlModule
-
-- type: Tag
-  id: PhazonTargetingControlModule
 
 - type: Tag
   id: PhazonHead
@@ -415,123 +529,66 @@
   id: PhazonLLeg
 
 - type: Tag
+  id: PhazonPeripheralsControlModule
+
+- type: Tag
   id: PhazonRArm
 
 - type: Tag
   id: PhazonRLeg
 
 - type: Tag
-  id: Laser
+  id: PhazonTargetingControlModule
 
 - type: Tag
-  id: MechAirTank
-
-- type: Tag
-  id: MechThruster
-
-- type: Tag
-  id: MechPhasicScanningModule
+  id: Ripley
 
 - type: Tag
   id: RipleyMKIIUpgradeKit
 
 - type: Tag
-  id: IndustrialMech
-
-- type: Tag
-  id: CombatMech
-# TODO: Make medical mech
-
-- type: Tag
   id: SpecialMech
 
+# Misc / fun
 - type: Tag
-  id: SolarAssemblyFlatpack
+  id: BluespaceBox
 
 - type: Tag
-  id: ArtilleryShell
-
-- type: Tag
-  id: PokerCardClassic
-
-- type: Tag
-  id: PokerCard
-
-- type: Tag
-  id: ToySword
-
-- type: Tag
-  id: FugitiveUplink
-
-- type: Tag
-  id: Vest
-
-- type: Tag
-  id: FullBodyOuter
-
-- type: Tag
-  id: Directional
+  id: Coin
 
 - type: Tag
   id: Geranium
 
 - type: Tag
-  id: WhitelistChameleonSuit
+  id: PokerCard
+
+- type: Tag
+  id: PokerCardClassic
+
+- type: Tag
+  id: PlushieKalium
+
+- type: Tag
+  id: SnapPop
 
 - type: Tag
   id: Sunflower
 
 - type: Tag
-  id: CarpRiftHealTarget
+  id: Table
 
 - type: Tag
-  id: SheetOfficePaper
+  id: ToySword
+
+# Dungeon
+- type: Tag
+  id: SalvageSyndicateBase
 
 - type: Tag
-  id: SheetPaper
-
-- type: Tag
-  id: PowerCellHigh
-
-- type: Tag
-  id: RiotShield
-
-- type: Tag
-  id: RiotShieldStrobe
-
-- type: Tag
-  id: DockCentComm
-
-- type: Tag
-  id: Abductor
-
-- type: Tag
-  id: AbductorScientist
-
-- type: Tag
-  id: ShowWires
-
-- type: Tag
-  id: CantInteract
-
-- type: Tag
-  id: DockMining
-
-- type: Tag
-  id: DockSecurity
-
-- type: Tag
-  id: DockPersonal
-
-- type: Tag
-  id: Felinid
-
-- type: Tag
-  id: Resomi
+  id: Milira
 
 ### INTERACTION TAGS ###
 # Как одежда закрывает/не закрывает ту или иную область тела
-
 - type: Tag
   id: CommandSuit
 
@@ -574,36 +631,3 @@
 # Закрыто только сверху (шлюяпы, кепки)
 - type: Tag
   id: TopCovered
-
-### INTERACTION TAGS ###
-# Fun
-- type: Tag
-  id: PlushieKalium
-
-- type: Tag
-  id: SnapPop
-
-- type: Tag
-  id: Table
-
-- type: Tag
-  id: BolaSecurity
-
-# Clothing
-- type: Tag
-  id: HardsuitMining
-
-- type: Tag
-  id: NightVisionDevice
-
-# Modsuit
-- type: Tag
-  id: ModsuitCore
-
-# Milira Race
-- type: Tag
-  id: WingToggleAllowed
-
-# Dungeon
-- type: Tag
-  id: SalvageSyndicateBase

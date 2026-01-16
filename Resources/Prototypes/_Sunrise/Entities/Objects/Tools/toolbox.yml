@@ -6,10 +6,18 @@
   description: A toolbox typically stocked with electrical gear.
   components:
   - type: Sprite
-    sprite: Objects/Tools/Toolboxes/toolbox_thief.rsi
+    sprite: Objects/Tools/Toolboxes/toolbox_syn.rsi
     state: icon
   - type: Item
-    sprite: Objects/Tools/Toolboxes/toolbox_thief.rsi
+    sprite: Objects/Tools/Toolboxes/toolbox_syn.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,7,3
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 20
   - type: Destructible
     thresholds:
       - trigger:

@@ -136,7 +136,7 @@
         damage:
           types:
             Radiation: -3
-            Mangleness: 0.45 # Sunrise-Edit # 15% of 3 radiation healing
+            Mangleness: 0.45 #Sunrise-Edit
           groups:
             Brute: 1.5
 
@@ -210,15 +210,7 @@
             Brute: -2
             Burn: -2
             Toxin: -2
-          # Sunrise-Start
-        - !type:HealthChange
-          conditions:
-          - !type:TemperatureCondition
-            max: 213.0
-          damage:
-            types:
-              Mangleness: -0.9 # Sunrise-Edit # Powerful cryo medicine: heals 10% of total 9 healing
-          # Sunrise-End
+            Mangleness: -2
 
 - type: reagent
   id: Doxarubixadone
@@ -257,7 +249,7 @@
             Heat: -1.5
             Shock: -1.5
             Cold: -1.5
-            Mangleness: 0.675 # Sunrise-Edit # 15% of 4.5 burn healing (Heat+Shock+Cold)
+            Mangleness: 0.45 # Sunrise-Edit # 15% of 4.5 burn healing (Heat+Shock)
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -371,14 +363,14 @@
             Brute: -0.7 # Sunrise-Edit # Бафф эпинефрина, ибо он лечил крайне мало
             Burn: -0.7 # Sunrise-Edit
       #Sunrise-Start
-      # - !type:HealthChange
-      #   conditions:
-      #   - !type:ReagentCondition
-      #     reagent: Epinephrine
-      #     min: 5
-      #   damage:
-      #     types:
-      #       Mangleness: 0.1
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Epinephrine
+          min: 5
+        damage:
+          types:
+            Mangleness: 0.1
       #Sunrise-End
       - !type:HealthChange
         conditions:
@@ -512,7 +504,7 @@
             Heat: -0.33
             Shock: -0.33
             Cold: -0.33
-            Mangleness: 0.15 # Sunrise-Edit # 15% of 0.99 burn healing (Heat+Shock+Cold)
+            Mangleness: 0.05 #Sunrise-Edit
       - !type:SatiateThirst
         factor: -10
         conditions:
@@ -577,9 +569,6 @@
   metabolisms:
     Medicine:
       effects:
-      #Sunrise-Start
-      # Barozine doesn't heal, it just provides pressure immunity - no Mangleness
-      #Sunrise-End
       - !type:HealthChange
         probability: 0.3
         damage:
@@ -746,7 +735,10 @@
     Drink:
       effects:
         #Sunrise-Start
-        # Saline only restores blood, doesn't heal damage - no Mangleness
+        - !type:HealthChange
+          damage:
+            types:
+              Mangleness: -0.25
         #Sunrise-End
         - !type:SatiateThirst
           factor: 6
@@ -840,12 +832,6 @@
       # but still technically stop your bleeding.
       - !type:ModifyBleed
         amount: -1.5
-      #Sunrise-Start
-      # - !type:HealthChange
-      #   damage:
-      #     types:
-      #       Mangleness: 0.3
-        #Sunrise-End
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -913,7 +899,7 @@
       - !type:HealthChange
         damage:
           types:
-            Mangleness: 0.88 # Sunrise-Edit # 15% of 6 (Burn+Toxin+Brute) = 0.9, -1% of 2 Airloss = -0.02, net 0.88
+            Mangleness: -1
       - !type:AdjustReagent # Против всяких крестьян с копьями
         reagent: Licoxide
         amount: -1
@@ -1272,7 +1258,6 @@
             Heat: -0.5
             Shock: -0.5
             Cold: -0.5
-            Mangleness: 0.375 # Sunrise-Edit # 15% of 2.5 total healing
             # Sunrise-End
   reactiveEffects:
     Unholy:
@@ -1433,17 +1418,7 @@
         damage:
           Brute: -2
           Burn: -2
-        # Sunrise-Start
-        - !type:HealthChange
-          conditions:
-          - !type:TemperatureCondition
-            max: 213.0
-          - !type:TotalDamageCondition
-            min: 199.9
-          damage:
-            types:
-              Mangleness: 0.6 # Sunrise-Edit # 15% of 4 total healing (Brute 2 + Burn 2)
-        # Sunrise-End
+          Mangleness: -2
       - !type:EvenHealthChange
         conditions:
         - !type:TemperatureCondition
@@ -1453,17 +1428,7 @@
         damage:
           Brute: -4
           Burn: -4
-        # Sunrise-Start
-        - !type:HealthChange
-          conditions:
-          - !type:TemperatureCondition
-            max: 213.0
-          - !type:TotalDamageCondition
-            min: 500
-          damage:
-            types:
-              Mangleness: 1.2 # Sunrise-Edit # 15% of 8 total healing (Brute 4 + Burn 4)
-        # Sunrise-End
+          Mangleness: -4
 
 - type: reagent
   id: Necrosol
@@ -1497,7 +1462,7 @@
           damage:
             types:
               Poison: -4 # Sunrise-Edit
-              Mangleness: -0.8 # Sunrise-Edit # Powerful cryo medicine: heals 10% of total 8 healing (Brute 2 + Burn 2 + Poison 4)
+              Mangleness: -5 #Sunrise-Edit
 
 - type: reagent
   id : Aloxadone
@@ -1517,15 +1482,6 @@
           max: 213.0
         damage:
           Burn: -4.5
-          # Sunrise-Start
-        - !type:HealthChange
-          conditions:
-          - !type:TemperatureCondition
-            max: 213.0
-          damage:
-            types:
-              Mangleness: 0.675 # Sunrise-Edit # 15% of 4.5 burn healing
-          # Sunrise-End
 
 - type: reagent
   id : Mannitol # currently this is just a way to create psicodine

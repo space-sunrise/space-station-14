@@ -307,6 +307,7 @@
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
   - PrisonEngineerHead
+  - PrisonEngineerPDA
   #- TrinketsEngineering
   #- Trinkets
   - Bra
@@ -345,6 +346,7 @@
   - PlanetPrisonSecurityLoot
   #- Trinkets
   - PrisonTraineeHead
+  - PrisonTraineePDA
   - Bra
   - Pants
   - Socks
@@ -367,6 +369,7 @@
   groups:
   - TrinketsPlanetPrison
   - PlanetPrisonerLoot
+  - PlanetPrisonerPDA
   - PrisonerJumpsuit
   #- GroupSpeciesBreathTool
   - Bra

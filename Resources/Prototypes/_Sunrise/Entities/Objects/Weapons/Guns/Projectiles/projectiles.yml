@@ -16,6 +16,8 @@
   - type: StartTimerOnShoot
   - type: TimerTrigger
     delay: 2
+  - type: TimedDespawn
+    lifetime: 6
   - type: Fixtures
     fixtures:
       fix1:
@@ -417,6 +419,8 @@
       path: /Audio/Items/smoke_grenade_prime.ogg
       params:
         volume: 15
+  - type: TimedDespawn
+    lifetime: 3
 
 - type: entity
   id: BulletEMPGrenade
@@ -446,6 +450,8 @@
 - type: entity
   id: BulletAirGrenade
   parent: BaseBulletGrenade
+  name: air grenade
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Grenades/airboom.rsi
@@ -457,7 +463,7 @@
     primingSound:
       path: /Audio/Items/smoke_grenade_prime.ogg
   - type: TimerTrigger
-    delay: 3
+    delay: 2
   - type: ReleaseGasOnTrigger
     keysIn:
     - timer
@@ -468,6 +474,8 @@
       - 654.7464 # oxygen
       - 2463.0936 # nitrogen
       temperature: 293.15
+  - type: TimedDespawn
+    lifetime: 5
 
 - type: entity
   id: BulletTearGasGrenade
@@ -542,7 +550,7 @@
 
 - type: entity
   id: BulletMetalFoamGrenade
-  name: tear gase grenade
+  name: metal foam grenade
   parent: BulletSmokeGrenade
   categories: [ HideSpawnMenu ]
   components:
@@ -550,6 +558,8 @@
     sprite: Objects/Weapons/Grenades/metalfoam.rsi
     layers:
       - state: primed
+  - type: TimerTrigger
+    delay: 2
   - type: SmokeOnTrigger
     keysIn:
     - timer
@@ -678,7 +688,7 @@
     keysIn:
     - timer
   - type: TimerTrigger
-    delay: 2
+    delay: 3
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -739,6 +749,32 @@
     intensitySlope: 5
     maxIntensity: 10
     canCreateVacuum: false
+
+- type: entity
+  id: BulletFuzeCannonBall
+  name: blast grenade
+  parent: BaseBulletGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: primed
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 150 # a ~2 tile radius
+    intensitySlope: 5
+    maxIntensity: 10
+    canCreateVacuum: false
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterLessLethal
+    capacity: 20
 
 # This is supposed to spawn shrapnel and stuff so uhh... TODO?
 - type: entity
@@ -897,19 +933,20 @@
       types:
         Heat: 14
         Slash: 14
-        Structural: 35
+        Structural: 30
     penetrationThreshold: 800
     penetrationDamageTypeRequirement:
     - Structural
   - type: Ammo
     muzzleFlash: HitscanEffect
   - type: TimedDespawn
-    lifetime: 0.35
+    lifetime: 0.3
   - type: PointLight
     radius: 2.5
     color: "#dd16d395"
     energy: 0.5
   - type: GatheringProjectile
+    amount: 6
 
 - type: entity
   name: wide plasma barrage
@@ -921,3 +958,90 @@
     proto: BulletPlasma
     count: 3
     spread: 25
+
+- type: entity
+  id: BulletImprovisedGrenadeFirebomb
+  name: firebomb
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Bombs/ied.rsi
+    layers:
+      - state: primed
+      - state: wires
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 25
+    intensitySlope: 5
+    maxIntensity: 3
+    canCreateVacuum: false
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterIncendiary
+    capacity: 10
+  - type: AmbientSound
+    range: 8
+    volume: 1
+    sound:
+      path: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+
+- type: entity
+  id: BulletImprovisedGrenadePipeBomb
+  name: pipebomb
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Bombs/pipebomb.rsi
+    layers:
+      - state: primed
+      - state: wires
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 50
+    intensitySlope: 5
+    maxIntensity: 6
+    canCreateVacuum: false
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterLessLethal
+    capacity: 6
+  - type: AmbientSound
+    range: 8
+    volume: 1
+    sound:
+      path: /Audio/Effects/lightburn.ogg
+
+- type: entity
+  id: BulletImprovisedGrenadeGlass
+  name: glass
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/explosives.rsi
+    layers:
+      - state: glass
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 5
+    intensitySlope: 1
+    maxIntensity: 5
+    canCreateVacuum: false
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterLessLethal
+    capacity: 16

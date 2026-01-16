@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/29/2025 00:53:36
-  entityCount: 824
+  time: 01/13/2026 15:07:26
+  entityCount: 841
 maps: []
 grids:
 - 1
@@ -847,6 +847,22 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
+  - uid: 729
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-14.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 746
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -8.5,-14.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanDirectionalDev
   entities:
   - uid: 164
@@ -1094,7 +1110,7 @@ entities:
   - uid: 500
     components:
     - type: Transform
-      pos: -0.055586338,-11.121721
+      pos: -0.40786028,-11.49341
       parent: 1
 - proto: BoxWarmLightbulb
   entities:
@@ -1592,6 +1608,21 @@ entities:
     - type: Transform
       pos: -10.5,-14.5
       parent: 1
+  - uid: 782
+    components:
+    - type: Transform
+      pos: -2.5,-13.5
+      parent: 1
+  - uid: 789
+    components:
+    - type: Transform
+      pos: -3.5,-13.5
+      parent: 1
+  - uid: 800
+    components:
+    - type: Transform
+      pos: -3.5,-14.5
+      parent: 1
   - uid: 804
     components:
     - type: Transform
@@ -1606,6 +1637,16 @@ entities:
     components:
     - type: Transform
       pos: -1.5,-9.5
+      parent: 1
+  - uid: 807
+    components:
+    - type: Transform
+      pos: -8.5,-13.5
+      parent: 1
+  - uid: 808
+    components:
+    - type: Transform
+      pos: -8.5,-14.5
       parent: 1
   - uid: 809
     components:
@@ -1823,6 +1864,41 @@ entities:
     components:
     - type: Transform
       pos: -7.5,-11.5
+      parent: 1
+  - uid: 771
+    components:
+    - type: Transform
+      pos: -7.5,-12.5
+      parent: 1
+  - uid: 772
+    components:
+    - type: Transform
+      pos: -8.5,-12.5
+      parent: 1
+  - uid: 774
+    components:
+    - type: Transform
+      pos: -8.5,-13.5
+      parent: 1
+  - uid: 775
+    components:
+    - type: Transform
+      pos: -8.5,-14.5
+      parent: 1
+  - uid: 778
+    components:
+    - type: Transform
+      pos: -3.5,-14.5
+      parent: 1
+  - uid: 780
+    components:
+    - type: Transform
+      pos: -4.5,-14.5
+      parent: 1
+  - uid: 781
+    components:
+    - type: Transform
+      pos: -5.5,-14.5
       parent: 1
 - proto: CableMVStack
   entities:
@@ -2115,6 +2191,13 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
+- proto: ClothingBackpackDuffelSyndicateFilledMedical
+  entities:
+  - uid: 811
+    components:
+    - type: Transform
+      pos: -0.47036028,-9.321535
+      parent: 1
 - proto: ClothingHeadHatSurgcapPurple
   entities:
   - uid: 865
@@ -2152,6 +2235,14 @@ entities:
     components:
     - type: Transform
       pos: -2.5,-6.5
+      parent: 1
+- proto: ComputerPowerMonitoring
+  entities:
+  - uid: 810
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-8.5
       parent: 1
 - proto: ComputerRadar
   entities:
@@ -4660,10 +4751,10 @@ entities:
     - type: Transform
       pos: -6.5,-7.5
       parent: 1
-  - uid: 729
+  - uid: 820
     components:
     - type: Transform
-      pos: -0.5,-8.5
+      pos: -3.5,-9.5
       parent: 1
   - uid: 866
     components:
@@ -4714,13 +4805,6 @@ entities:
     - type: Transform
       pos: -9.5,1.5
       parent: 1
-- proto: SuitStoragePirateCapSun
-  entities:
-  - uid: 343
-    components:
-    - type: Transform
-      pos: -0.5,0.5
-      parent: 1
 - proto: SuitStoragePirateSun
   entities:
   - uid: 52
@@ -4742,6 +4826,11 @@ entities:
     components:
     - type: Transform
       pos: -9.5,8.5
+      parent: 1
+  - uid: 618
+    components:
+    - type: Transform
+      pos: -0.5,0.5
       parent: 1
   - uid: 734
     components:
@@ -5154,6 +5243,16 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-9.5
+      parent: 1
+    - type: AccessReader
+      accessListsOriginal:
+      - - SyndicateAgent
+- proto: VendingMachineMedicalBase
+  entities:
+  - uid: 343
+    components:
+    - type: Transform
+      pos: -0.5,-8.5
       parent: 1
 - proto: VendingMachineWallMedicalCivilian
   entities:

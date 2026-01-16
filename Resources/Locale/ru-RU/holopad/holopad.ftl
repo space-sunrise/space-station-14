@@ -142,3 +142,6 @@ holopad-station-bridge = Станция - Мостик
 holopad-station-cargo-bay = Станция - Грузовой отсек
 # CentComm
 holopad-centcomm-evac = ЦентКом - Эвакуационный шаттл
+# Sunrise
+holopad-salvage-shuttle = Шаттл утилизаторов
+holopad-security-shuttle = Шаттл безопасности

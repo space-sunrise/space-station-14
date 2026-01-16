@@ -1,0 +1,201 @@
+﻿<Document>
+  # Боеприпасы
+
+  Краткая шпаргалка по калибрам и типам патронов. Значения урона и бронепробития могут немного отличаться
+  между калибрами и конкретными боеприпасами, но общая логика типов одинакова.
+
+  ## Калибры и доступные типы
+  <Table Columns="2">
+    <ColorBox Color="#a88b5e">
+      <Box VerticalAlignment="Center">
+      Калибр
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#a88b5e">
+      <Box VerticalAlignment="Center">
+      Типы патронов
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
+      Пистолетный (.35)
+      <GuideEntityEmbed Entity="CartridgePistolFMJ" Caption="Патрон" Scale="1.0"/>
+      <GuideEntityEmbed Entity="MagazineBoxPistolFMJ" Caption="Коробка" Scale="0.9"/>
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
+      - [color=#3F47DB]SP[/color]
+      - [color=#F5514C]HP[/color] (экспансивные)
+      - [color=#B68F0E]FMJ[/color]
+      - [color=#540000]AP[/color] (бронебойные)
+      - [color=#00c1b8]Резиновые[/color]
+      - [color=#dbdbdb]Учебные[/color]
+      - [color=#ff6e52]Зажигательные[/color]
+      - [color=#65fe08]Урановые[/color]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
+      Магнум (.45)
+      <GuideEntityEmbed Entity="CartridgeMagnumFMJ" Caption="Патрон" Scale="1.0"/>
+      <GuideEntityEmbed Entity="MagazineBoxMagnumFMJ" Caption="Коробка" Scale="0.9"/>
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
+      - [color=#3F47DB]SP[/color]
+      - [color=#F5514C]HP[/color] (экспансивные)
+      - [color=#B68F0E]FMJ[/color]
+      - [color=#540000]AP[/color] (бронебойные)
+      - [color=#00c1b8]Резиновые[/color]
+      - [color=#dbdbdb]Учебные[/color]
+      - [color=#ff6e52]Зажигательные[/color]
+      - [color=#65fe08]Урановые[/color]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
+      Винтовочный (5.56)
+      <GuideEntityEmbed Entity="CartridgeRifleFMJ" Caption="Патрон" Scale="1.0"/>
+      <GuideEntityEmbed Entity="MagazineBoxRifleFMJ" Caption="Коробка" Scale="0.9"/>
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
+      - [color=#3F47DB]SP[/color]
+      - [color=#F5514C]HP[/color] (экспансивные)
+      - [color=#B68F0E]FMJ[/color]
+      - [color=#540000]AP[/color] (бронебойные)
+      - [color=#dbdbdb]Учебные[/color]
+      - [color=#ff6e52]Зажигательные[/color]
+      - [color=#65fe08]Урановые[/color]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
+      Лёгкий винтовочный (7,62)
+      <GuideEntityEmbed Entity="CartridgeLightRifleFMJ" Caption="Патрон" Scale="1.0"/>
+      <GuideEntityEmbed Entity="MagazineBoxLightRifleFMJ" Caption="Коробка" Scale="0.9"/>
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
+      - [color=#3F47DB]SP[/color]
+      - [color=#F5514C]HP[/color] (экспансивные)
+      - [color=#B68F0E]FMJ[/color]
+      - [color=#540000]AP[/color] (бронебойные)
+      - [color=#dbdbdb]Учебные[/color]
+      - [color=#ff6e52]Зажигательные[/color]
+      - [color=#65fe08]Урановые[/color]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
+      Тяжёлый винтовочный (.308 / 7,62ммR)
+      <GuideEntityEmbed Entity="CartridgeRifleHeavyFMJ" Caption="Патрон" Scale="1.0"/>
+      <GuideEntityEmbed Entity="MagazineBoxHeavyRifleFMJ" Caption="Коробка" Scale="0.9"/>
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
+      - [color=#3F47DB]SP[/color]
+      - [color=#F5514C]HP[/color] (экспансивные)
+      - [color=#B68F0E]FMJ[/color]
+      - [color=#540000]AP[/color] (бронебойные)
+      - [color=#dbdbdb]Учебные[/color]
+      - [color=#ff6e52]Зажигательные[/color]
+      - [color=#65fe08]Урановые[/color]
+      - [color=#7f009b]Артиллерийский[/color] (.308 космос)
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
+      Безгильзовый (.25)
+      <GuideEntityEmbed Entity="CartridgeCaselessRifle" Caption="Патрон" Scale="1.0"/>
+      <GuideEntityEmbed Entity="MagazineBoxCaselessRifle" Caption="Коробка" Scale="0.9"/>
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
+      - [color=#B68F0E]Обычные[/color]
+      - [color=#dbdbdb]Учебные[/color]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
+      Антиматериальный (15 мм)
+      <GuideEntityEmbed Entity="CartridgeAntiMateriel" Caption="Патрон" Scale="1.0"/>
+      <GuideEntityEmbed Entity="MagazineBoxAntiMateriel" Caption="Коробка" Scale="0.9"/>
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
+      - [color=#9b0000]Бронебойные[/color]
+      - [color=#7f009b]Антиматериальный[/color]
+      - [color=#7ea53b]Осколочный[/color]
+      - [color=#8d6425]Взрывной[/color]
+      - [color=#005396]ЭМИ[/color]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
+      12-й калибр
+      <GuideEntityEmbed Entity="ShellShotgun" Caption="Патрон" Scale="1.0"/>
+      <GuideEntityEmbed Entity="BoxLethalshot" Caption="Коробка" Scale="0.9"/>
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
+      - [color=#F4001F]Дробь[/color]
+      - Пулевой/Слаг
+      - [color=#149A1E]Травматический[/color]
+      - [color=#FFFF0B]Фальшфейер[/color]
+      - [color=#FFFF0B]Зажигательный[/color]
+      - [color=#dbdbdb]Учебный[/color]
+      - [color=#49CECE]Транквилизатор[/color]
+      - [color=#65fe08]Урановые[/color]
+      - Самодельная [color=#555555]картечь[/color]
+      - Самодельный [color=#FFFF0B]Зажигательный[/color]
+      - Самодельный [color=#65fe08]Урановые[/color]
+      - Самодельный ([color=#caa44a]монетная пуля[/color])
+      - [color=#149A1E]Алкогольный[/color]
+      - [color=#e4e4e4]Святой[/color]
+      </Box>
+    </ColorBox>
+  </Table>
+  ## Что делает каждый тип
+  - SP (полуоболочечные): стандартный урон калибра, немного хуже бронепробитие -13% ; умеренные шансы пробития и рикошета.
+  - HP (экспансивные): обычно около +30% урона, отсутствие пробития брони, эффективность по броне -70…100%; низкий шанс пробития и рикошета.
+  - FMJ (полнооболочечные): обычно -30…-40% урона, но бронепробитие около 25%; высокий шанс пробития и рикошета.
+  - AP (бронебойные): максимальное бронепробитие (около 69%), сниженный урон; лучший вариант против брони.
+  - Резиновые: низкий урон, высокий урон выносливости; нелетальные.
+  - Учёбный: минимальный урон; тренировочные патроны.
+  - Зажигательный: часть урона огнем, может поджигать цель.
+  - Урановые: добавляет радиационный урон и лучше пробивает/рикошетит.
+  - Дробь: несколько дробин, лучший урон в упор, быстро теряет эффективность на расстоянии.
+  - Пуля: один тяжелый снаряд, лучше дальность и бронепробитие, но без урона по площади.
+  - Травматический: нелетальный урон и сильная усталость/оглушение.
+  - Фальшфейер: свет/поджог, низкий прямой урон.
+  - Транквилизатор: химический эффект (усыпление), минимальный прямой урон.
+  - Самодельный (стекло): самодельные, широкий разброс и низкая точность; лучше вблизи.
+  - Самодельный Зажигательный: самодельные с поджогом.
+  - Самодельный Урановые: самодельные с радиационным уроном.
+  - Самодельный (монетная пуля): тяжелый импровизированный снаряд, сильный удар вблизи, слабая дальность.
+  - Алкогольный: химический заряд, наносит эффекты реагентов.
+  - Святой: специальные эффекты и святой урон, полезны против отдельных целей.
+  - 15мм Антиматериальный: огромный урон структуре и останавливающая сила, не имеет шанса пробития целей/структур без полного уничтожения.
+  - 15мм бронебойный: максимальное бронепробитие и шанс пробития целей/структур.
+  - 15мм осколочный: небольшой взрыв и осколочный урон по площади.
+  - 15мм разрывной: взрывной урон по площади и структурам.
+  - 15мм ЭМИ: вызывает ЭМИ, выводит из строя электронику и наносит урон мехам/киборгам.
+  - Артиллерийский: летит на несоизмеримо большую дистанцию чем остальные патроны, ценой характеристик. Обычно используется в вооружении шаттлов.
+</Document>

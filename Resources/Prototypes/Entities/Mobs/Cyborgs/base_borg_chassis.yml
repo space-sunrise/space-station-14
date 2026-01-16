@@ -513,6 +513,12 @@
     - NamesXenoborg
   - type: NameIdentifier
     group: Xenoborg
+  # Sunrise-Start
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-xenoborg-name
+    description: ghost-panel-antagonist-xenoborg-description
+    priority: 25
+  # Sunrise-End
   - type: Sprite
     sprite: Mobs/Silicon/chassis.rsi
   - type: MobThresholds

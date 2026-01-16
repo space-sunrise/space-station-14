@@ -336,3 +336,13 @@
     - CartridgeMagnumAP
     - CartridgeMagnumAP
     - CartridgeMagnumAP
+
+# Syndicate Operative Outfit - Monkey
+- type: startingGear
+  id: PirateGearMonkeyFake
+  equipment:
+    head: ClothingHeadBandBlack
+    jumpsuit: ClothingUniformJumpsuitPirate
+    mask: CigaretteSyndicate
+    ears: ClothingHeadsetFreelanceNoKey
+    id:  PiratePDAMusicPassengerId

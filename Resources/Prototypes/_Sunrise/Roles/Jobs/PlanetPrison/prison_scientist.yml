@@ -10,6 +10,7 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 7200 # 2 hrs
+  weight: 3
   alwaysUseSpawner: true
   canBeAntag: false
   startingGear: PrisonScientistGear
@@ -32,7 +33,7 @@
   equipment:
     id: PrisonScientistPDA
     jumpsuit: UniformPrisonScientistMetus
-    ears: ClothingHeadsetScience
+    ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasic

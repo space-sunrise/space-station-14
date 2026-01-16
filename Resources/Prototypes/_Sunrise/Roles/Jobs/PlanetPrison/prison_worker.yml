@@ -23,6 +23,7 @@
   icon: "JobIconPrisonWorker"
   overrideConsoleVisibility: false
   supervisors: job-supervisors-head-of-prison
+  weight: 4
   alwaysUseSpawner: true
   canBeAntag: false
   displayWeight: 80
@@ -49,7 +50,7 @@
   equipment:
     id: PrisonWorkerPDA
     jumpsuit: UniformPrisonWorkerMetus
-    ears: ClothingHeadsetService
+    ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasic
@@ -65,7 +66,7 @@
   equipment:
     jumpsuit: UniformPrisonWorkerMetus
     head: ClothingHeadCapPrisonWorkerMetus
-    ears: ClothingHeadsetService
+    ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasic

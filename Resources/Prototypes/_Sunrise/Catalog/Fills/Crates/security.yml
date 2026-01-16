@@ -47,6 +47,39 @@
         amount: 2
 
 - type: entity
+  id: CrateSecurityArmorHeatAbsorb
+  parent: CrateSecgear
+  name: heat absorb armor crate
+  description: Contains a 2 heat absorb armor. To open it, the Security Service access level is required.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterArmorHeatAbsorb
+        amount: 2
+
+- type: entity
+  id: CrateSecurityArmorStab
+  parent: CrateSecgear
+  name: stab armor crate
+  description: Contains a 2 heat absorb armor. To open it, the Security Service access level is required.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterArmorStab
+        amount: 2
+
+- type: entity
+  id: CrateSecurityArmorPlate
+  parent: CrateSecgear
+  name: heat absorb armor crate
+  description: Contains a 2 plate armor. To open it, the Security Service access level is required.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterArmorPlate
+        amount: 2
+
+- type: entity
   id: CrateSecurityHoly
   parent: CrateSecgear
   name: exorcism crate
