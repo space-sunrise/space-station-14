@@ -9,8 +9,6 @@
     layers:
     - state: icon
     - state: icon-ANM-Full
-    - state: icon-ANM-Medium
-    - state: icon-ANM-Empty
       shader: unshaded
   - type: Clothing
     sprite: _Sunrise/Objects/Tools/advanced-rcd.rsi
