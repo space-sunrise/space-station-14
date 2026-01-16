@@ -1,0 +1,44 @@
+<Document>
+  # Cargo Bounties
+  Пока [textlink="Cargo" link="Cargo"] может зарабатывать [color=cyan]спесосы[/color], продавая почти всё, больше денег можно получить, выполняя [color=cyan]bounties[/color], которые выдаёт [color=cyan]Cargo Bounty Computer[/color].
+
+  ## Starting Bounties
+
+  <Box>
+    <GuideEntityEmbed Entity="ComputerCargoBounty"/>
+    <GuideEntityEmbed Entity="PaperCargoBountyManifest"/>
+  </Box>
+
+  Чтобы начать награду, взаимодействуйте с [color=cyan]Cargo Bounty Computer[/color]. Он показывает список текущих наград, и вы можете либо распечатать этикетку, либо пропустить её.
+
+  - Распечатка этикетки даёт [color=cyan]Bounty Manifest[/color] со списком товаров, которые нужно добыть. Этикетку можно распечатывать сколько угодно, просто не работайте над недавно начатой задачей другого техника.
+  - Пропуск заменяет текущую награду на новую, ведь одновременно может быть только шесть активных. Пропуск имеет перезарядку 15 минут и аннулирует старую награду, чем можно рассердить других техников.
+
+  ## Fulfilling Bounties
+
+  <Box>
+    <GuideEntityEmbed Entity="PaperCargoBountyManifest"/>
+    <GuideEntityEmbed Entity="CrateGenericSteel"/>
+    <GuideEntityEmbed Entity="AppraisalTool"/>
+  </Box>
+
+  С [color=cyan]Bounty Manifest[/color] вам остаётся собрать нужные товары, но большинство отделов отдадут их, если вы покажете Manifest.
+
+  После сбора вернитесь на грузовую и сложите всё в пустой [color=cyan]Crate[/color]. Закройте ящик и приклейте к нему Manifest.
+
+  Чтобы подтвердить выполнение, используйте [color=cyan]Appraisal Tool[/color] на ящике. Он должен показать, что награда выполнена.
+
+  ## Selling Bounties
+
+  <Box>
+    <GuideEntityEmbed Entity="PaperCargoBountyManifest"/>
+    <GuideEntityEmbed Entity="CrateGenericSteel"/>
+    <GuideEntityEmbed Entity="CargoPalletSell"/>
+  </Box>
+
+  Как только вы проверили исполнение награды, действуйте как при обычной продаже.
+
+  Привезите груз на [color=cyan]Trading Station[/color], продайте и всё готово!
+
+  Когда вернётесь, на месте будет новая награда.
+</Document>

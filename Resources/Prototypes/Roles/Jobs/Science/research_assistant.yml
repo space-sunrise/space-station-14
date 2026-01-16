@@ -16,7 +16,10 @@
   access:
   - Research
   - Maintenance
-
+  # Sunrise-Start
+  extendedAccess:
+  - ResearchConsoleAccess
+  # Sunrise-End
 - type: startingGear
   id: ResearchAssistantGear
   equipment:
