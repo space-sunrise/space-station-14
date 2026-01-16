@@ -37,7 +37,7 @@
   equipment:
     id: PrisonDoctorPDA
     jumpsuit: UniformPrisonDoctorMetus
-    ears: ClothingHeadsetMedical
+    ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorRiot

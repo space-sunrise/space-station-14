@@ -33,7 +33,7 @@
   equipment:
     id: PrisonScientistPDA
     jumpsuit: UniformPrisonScientistMetus
-    ears: ClothingHeadsetScience
+    ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasic
