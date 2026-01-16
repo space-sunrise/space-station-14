@@ -87,7 +87,7 @@
       groups:
         Brute: -5
       types:
-        Mangleness: -5
+        Deterioration: -5
   # Sunrise-end
 
 - type: entity

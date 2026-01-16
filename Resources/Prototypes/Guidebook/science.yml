@@ -56,6 +56,7 @@
   text: "/ServerInfo/Guidebook/Science/Robotics.xml"
   children:
   - Cyborgs
+  - CyborgRepair
 
 - type: guideEntry
   id: Cyborgs

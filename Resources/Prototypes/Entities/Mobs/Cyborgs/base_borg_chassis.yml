@@ -61,7 +61,7 @@
       - Piercing
       - Heat
       - Shock
-      - Mangleness #Sunrise-Edit
+      - Deterioration #Sunrise-Edit
     locPrefix: silicon
   - type: UserInterface
     interfaces:
@@ -117,7 +117,7 @@
         Piercing: -15
         Caustic: -15
         Structural: -15
-        Mangleness: 2 #SUNRISE-EDIT
+        Deterioration: 5 #SUNRISE-EDIT
     allowSelfRepair: false
   # Sunrise-End
   - type: BorgChassis

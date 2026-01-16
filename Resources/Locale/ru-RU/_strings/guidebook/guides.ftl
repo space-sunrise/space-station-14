@@ -195,3 +195,4 @@ guide-entry-rules-ban-types = Типы банов
 guide-entry-rules-ban-durations = Длительность банов
 guide-entry-writing = Разметка письма
 guide-entry-glossary = Словарь терминов
+guide-entry-cyborg-repair = Ремонт киборгов
