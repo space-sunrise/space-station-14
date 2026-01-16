@@ -75,6 +75,20 @@
         - ReagentId: Lead
           Quantity: 1
         # Sunrise-end
+  # Sunrise-start
+  - type: Healing
+    delay: 2.0
+    damageContainers:
+    - Silicon
+    - Synth
+    - Mech
+    healingSound: "/Audio/Items/ratchet.ogg"
+    damage:
+      groups:
+        Brute: -5
+      types:
+        Mangleness: -5
+  # Sunrise-end
 
 - type: entity
   parent: SheetSteel
