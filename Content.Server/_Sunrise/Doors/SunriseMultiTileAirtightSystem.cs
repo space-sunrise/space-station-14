@@ -157,7 +157,7 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
     {
         foreach (var blocker in ent.Comp.Blockers)
         {
-            if (!Deleted(blocker))
+            if (!TerminatingOrDeleted(blocker))
                 Del(blocker);
         }
 
