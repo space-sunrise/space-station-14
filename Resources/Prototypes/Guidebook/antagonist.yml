@@ -33,7 +33,7 @@
 - type: guideEntry
   id: Revolutionaries
   name: guide-entry-revolutionaries
-  text: "/ServerInfo/Guidebook/Antagonist/Revolutionaries.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/Antagonist/Revolutionaries.xml"  # Sunrise-Edit
 
 - type: guideEntry
   id: MinorAntagonists
