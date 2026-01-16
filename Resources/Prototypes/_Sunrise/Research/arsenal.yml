@@ -197,6 +197,22 @@
   - Security
 
 - type: technology
+  id: MiliraEquipment
+  name: research-technology-milira-equipment
+  icon:
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Milira/heavy.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - ClothingOuterArmorMiliraHeavy
+  - ClothingOuterHardsuitMilira
+  - ClothingEyesHudMilira
+  radioChannels:
+  - Security
+
+- type: technology
   id: AdvancedLaserManipulation
   name: research-technology-advance-laser
   icon:

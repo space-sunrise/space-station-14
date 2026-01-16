@@ -584,6 +584,9 @@
 - type: Tag
   id: SalvageSyndicateBase
 
+- type: Tag
+  id: Milira
+
 ### INTERACTION TAGS ###
 # Как одежда закрывает/не закрывает ту или иную область тела
 - type: Tag

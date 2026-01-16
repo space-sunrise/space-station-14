@@ -89,3 +89,4 @@ research-technology-advanced-spray = Продвинутые спреи
 research-technology-quantum-fiber-weaving = Плетение квантового волокна
 research-technology-bluespace-cargo-transport = Блюспейс-транспортировка грузов
 research-technology-advance-secborgs-combat = Продвинутые боевые модули СБ боргов
+research-technology-milira-equipment = Снаряжение Милир

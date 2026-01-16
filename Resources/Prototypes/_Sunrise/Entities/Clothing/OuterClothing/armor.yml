@@ -474,3 +474,70 @@
   - type: Construction
     graph: UpgradeArmorVest
     node: bullet_heavy
+
+# Milira
+
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ClothingOuterArmorMiliraHeavy
+  name: milira armor heavy
+  description: Heavy armor for Milir, extending flight and providing protection.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Milira/heavy.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Milira/heavy.rsi
+  - type: ClothingWhitelist
+    whitelist:
+      tags:
+      - Milira
+  - type: Tag
+    tags:
+    - WingToggleAllowed
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.7
+        Piercing: 0.6
+        Heat: 0.7
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+  - type: StaminaResistance
+    damageCoefficient: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ClothingOuterArmorMiliraLight
+  name: milira armor light
+  description: Light armor for Milir, extending flight and providing weak protection.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Milira/light.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/Milira/light.rsi
+  - type: ClothingWhitelist
+    whitelist:
+      tags:
+      - Milira
+  - type: Tag
+    tags:
+    - WingToggleAllowed
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.7
+  - type: StaminaResistance
+    damageCoefficient: 0.7
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
