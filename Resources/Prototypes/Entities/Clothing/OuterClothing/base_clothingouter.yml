@@ -171,8 +171,6 @@
       beakerSlot: !type:ContainerSlot # Sunrise-Start
   - type: Inject
     openCloseDelay: 1.5
-    autoClose: true
-    autoCloseDelay: 6
   - type: ItemSlots
     slots:
       beakerSlot:

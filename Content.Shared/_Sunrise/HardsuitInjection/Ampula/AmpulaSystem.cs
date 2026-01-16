@@ -36,25 +36,6 @@ public sealed partial class AmpulaSystem : EntitySystem
             return;
         if (!TryComp<InjectComponent>(slot, out var containerlock))
             return;
-        if (!sys.TryGetSlot(slot.Value, containerlock.ContainerId, out var itemslot, itemslots))
-            return;
-        if (!TryComp<HandsComponent>(user, out var handscomp))
-            return;
-        if (!itemslot.InsertOnInteract)
-            return;
-
-        if (!sys.CanInsert(slot.Value, args.Used, args.User, itemslot, swap: itemslot.Swap))
-            return;
-
-        // Drop the held item onto the floor. Return if the user cannot drop.
-        if (!_handsSystem.TryDrop(args.User, args.Used))
-            return;
-
-        if (itemslot.Item != null)
-            _handsSystem.TryPickupAnyHand(args.User, itemslot.Item.Value, handsComp: handscomp);
-
-        sys.TryInsert(slot.Value, itemslot, args.Used, user);
-        args.Handled = true;
     }
 
 }

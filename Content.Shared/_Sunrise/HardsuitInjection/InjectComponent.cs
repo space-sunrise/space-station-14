@@ -11,7 +11,6 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Sunrise.HardsuitInjection.Components;
 
 
-//[Access(typeof(SharedInjectSystem))]
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class InjectComponent : Component
 {
@@ -22,53 +21,45 @@ public sealed partial class InjectComponent : Component
     public string InjectionAction = "ActionInjection";
 
 
-    [DataField("requiredSlot")]
+    [DataField]
     public SlotFlags RequiredFlags = SlotFlags.OUTERCLOTHING;
 
-    [DataField("containerId")]
+    [DataField]
     public string ContainerId = "beakerSlot";
 
 
-    [DataField("verbText")]
+    [DataField]
     public string VerbText = "hardsuitinjection-toggle";
 
 
-    [DataField("delay")]
+    [DataField]
     public TimeSpan? Delay = TimeSpan.FromSeconds(30);
 
-    [DataField("stripDelay")]
+    [DataField]
     public TimeSpan? StripDelay = TimeSpan.FromSeconds(10);
 
 
-    [DataField("injectSound")]
+    [DataField]
     public SoundSpecifier InjectSound = new SoundPathSpecifier("/Audio/Items/hypospray.ogg");
 
 
-    [ViewVariables(VVAccess.ReadWrite)]
     public EntityUid? ToggleInjectionActionEntity;
 
-    [ViewVariables(VVAccess.ReadWrite)]
     public EntityUid? InjectionActionEntity;
 
-    [ViewVariables(VVAccess.ReadWrite)]
     public ContainerSlot? Container;
 
-    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    [AutoNetworkedField]
     public bool Locked = true;
 
-    [DataField("openCloseDelay")]
     public TimeSpan OpenCloseDelay = TimeSpan.FromSeconds(3);
 
-    [DataField("canBeOpened")]
     public bool CanBeOpened = true;
 
-    [DataField("alwaysOpen")]
     public bool AlwaysOpen = false;
 
-    [DataField("autoClose")]
-    public bool AutoClose = true;
+    public bool AutoClose = false;
 
-    [DataField("autoCloseDelay")]
     public TimeSpan AutoCloseDelay = TimeSpan.FromSeconds(10);
 
     [ViewVariables]
@@ -77,19 +68,19 @@ public sealed partial class InjectComponent : Component
     [ViewVariables]
     public CancellationTokenSource? AutoCloseCancelToken;
 
-    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    [DataField("highPressureMultiplier")]
+    [DataField]
+    public TimeSpan AmpulaInsertDelay = TimeSpan.FromSeconds(2);
+
+
+    [AutoNetworkedField]
     public float HighPressureMultiplier = 1;
 
-    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    [DataField("lowPressureMultiplier")]
+    [AutoNetworkedField]
     public float LowPressureMultiplier = 1;
 
-    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    [DataField("heatingCoefficient")]
+    [AutoNetworkedField]
     public float HeatingCoefficient = 1;
 
-    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    [DataField("coolingCoefficient")]
+    [AutoNetworkedField]
     public float CoolingCoefficient = 1;
 }

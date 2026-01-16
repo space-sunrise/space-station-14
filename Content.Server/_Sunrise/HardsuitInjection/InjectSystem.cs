@@ -15,6 +15,7 @@ using Robust.Shared.Timing;
 using Content.Shared._Sunrise.HardsuitInjection.Components;
 using Content.Shared.Clothing.EntitySystems;
 using Content.Shared._Sunrise.HardsuitInjection.EntitySystems;
+using Content.Shared.Interaction;
 
 namespace Content.Server._Sunrise.HardsuitInjection.EntitySystems;
 
@@ -40,6 +41,7 @@ public sealed partial class InjectSystem : SharedInjectSystem
         base.Initialize();
 
         SubscribeLocalEvent<InjectComponent, UpdateECEvent>(OnUpdateEC);
+        SubscribeLocalEvent<InjectComponent, InteractUsingEvent>(OnHardsuitInteractUsing, before: new[] { typeof(ItemSlotsSystem) });
 
         InitializeBaseEvents();
         InitializeActionEvents();
@@ -57,9 +59,49 @@ public sealed partial class InjectSystem : SharedInjectSystem
 
         var removedSolution = _solutions.SplitSolution(solutionEntity.Value, args.ReagentTransfer.Value);
         args.RemovedReagentAmount = removedSolution;
-
-        _solutions.UpdateAppearance((solutionEntity.Value.Owner, solutionEntity.Value.Comp));
     }
+
+    private void OnHardsuitInteractUsing(EntityUid uid, InjectComponent component, InteractUsingEvent args)
+    {
+        if (args.Handled) return;
+        
+        var used = args.Used;
+        var user = args.User;
+
+        if (!TryComp<AmpulaComponent>(used, out var ampulaComponent)) 
+        {
+            return;
+        }
+        args.Handled = true;
+
+        if (_netManager.IsClient) return;
+
+        if (!TryComp<ItemSlotsComponent>(uid, out var itemslots)) return;
+        if (!_itemSlotsSystem.TryGetSlot(uid, component.ContainerId, out var itemslot, itemslots)) return;
+        if (!itemslot.InsertOnInteract) return;
+
+        if (itemslot.Locked)
+        {
+            _popupSystem.PopupEntity(Loc.GetString("hardsuitinjection-closed"), user, user);
+            return;
+        }
+
+        if (!_itemSlotsSystem.CanInsert(uid, used, user, itemslot, swap: itemslot.Swap)) return;
+
+        var doAfterArgs = new DoAfterArgs(EntityManager, user, component.AmpulaInsertDelay, new AmpulaInsertDoAfterEvent(), uid, target: args.Target, used: used)
+        {
+            BreakOnMove = false,
+            BreakOnDamage = false,
+            NeedHand = true,
+            BlockDuplicate = true,
+        };
+
+        if (!_doAfter.TryStartDoAfter(doAfterArgs))
+        {
+            return;
+        }
+    }
+
 
     #endregion
 }
