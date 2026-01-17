@@ -1,5 +1,3 @@
-# Metus Planet Prison bedsheets recipes
-
 - type: latheRecipe
   parent: BaseSpecifiedBedsheetRecipe
   id: DoubleBedsheetCosmosPrison

@@ -1,6 +1,4 @@
-# Prison Planet Prison clothing recipes
-
-# Prison Planet Prison jumpsuits
+# Jumpskirts Regular
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: ClothingUniformJumpsuitPrisonDoctor
@@ -26,7 +24,7 @@
   id: ClothingUniformJumpsuitPrisonTrainee
   result: ClothingUniformJumpsuitPrisonTrainee
 
-# Veteran jumpsuits (higher cost)
+# Jumpsuits Veteran
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: ClothingUniformJumpsuitPrisonDoctorVeteran
@@ -80,7 +78,7 @@
   id: ClothingUniformJumpsuitPrisonWorker
   result: ClothingUniformJumpsuitPrisonWorker
 
-# Prison jumpskirts (regular)
+# Jumpskirts Regular
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: ClothingUniformJumpskirtPrisonDoctor
@@ -111,7 +109,7 @@
   id: ClothingUniformJumpskirtPrisonTrainee
   result: ClothingUniformJumpskirtPrisonTrainee
 
-# Prison jumpskirts (veteran, higher cost)
+# Jumpskirts Veteran
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: ClothingUniformJumpskirtPrisonDoctorVeteran
@@ -378,22 +376,6 @@
   materials:
     Cloth: 3000
     Durathread: 3000
-
-- type: latheRecipe
-  parent: BaseHatRecipe
-  id: ClothingHeadHatBeretPrisonGuard
-  result: ClothingHeadHatBeretPrisonGuard
-  materials:
-    Cloth: 1500
-    Durathread: 1500
-
-- type: latheRecipe
-  parent: BaseHatRecipe
-  id: ClothingHeadCapPrisonGuard
-  result: ClothingHeadCapPrisonGuard
-  materials:
-    Cloth: 300
-    Durathread: 200
 
 # Optional prisoner stock uniforms (grey variant)
 - type: latheRecipe
