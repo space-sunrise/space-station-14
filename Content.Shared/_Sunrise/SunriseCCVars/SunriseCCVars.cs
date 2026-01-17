@@ -200,31 +200,6 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<string> InfoLinksReplays =
         CVarDef.Create("infolinks.replays", "https://t.me/ss14_replays", CVar.SERVER | CVar.REPLICATED);
 
-    /**
-     * Lobby
-     */
-
-    public static readonly CVarDef<string> LobbyBackgroundType =
-        CVarDef.Create("lobby.background", "Random", CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<string> LobbyArt =
-        CVarDef.Create("lobby.art", "Random", CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<string> LobbyAnimation =
-        CVarDef.Create("lobby.animation", "Random", CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<string> LobbyParallax =
-        CVarDef.Create("lobby.parallax", "Random", CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Whether to unload lobby resources from video memory when switching backgrounds or entering round.
-    /// </summary>
-    public static readonly CVarDef<bool> LobbyUnloadResources =
-        CVarDef.Create("lobby.unload_resources", true, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<float> LobbyOpacity =
-        CVarDef.Create("lobby.lobby_opacity", 0.90f, CVar.CLIENTONLY | CVar.ARCHIVE);
-
     public static readonly CVarDef<string> ServerName =
         CVarDef.Create("lobby.server_name", "Sunrise Station", CVar.SERVER | CVar.REPLICATED);
 
