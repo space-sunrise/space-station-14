@@ -152,8 +152,17 @@ public sealed class DiscordWebhook : IPostInjectInit, IDisposable
         }
         else
         {
-            client = CreateClientWithProxies(proxyAddress);
-            _sawmill.Info("Configured Discord webhooks to use proxies");
+            try
+            {
+                client = CreateClientWithProxies(proxyAddress);
+                _sawmill.Info("Configured Discord webhooks to use proxies");
+            }
+            catch (Exception ex)
+            {
+                _sawmill.Error($"Failed to configure proxy for Discord webhooks: {ex.Message}. Continuing without proxy.");
+                client = new HttpClient();
+                client.Timeout = Timeout;
+            }
         }
 
         // Add custom headers if configured
@@ -165,18 +174,23 @@ public sealed class DiscordWebhook : IPostInjectInit, IDisposable
     private HttpClient CreateClientWithProxies(string proxyAddress)
     {
         var handler = CreateHandler(proxyAddress);
+        if (handler == null)
+        {
+            throw new InvalidOperationException("Failed to create proxy handler");
+        }
+        
         var client = new HttpClient(handler);
         client.Timeout = Timeout;
 
         return client;
     }
 
-    public SocketsHttpHandler CreateHandler(string proxyAddress)
+    public SocketsHttpHandler? CreateHandler(string proxyAddress)
     {
         if (!Uri.TryCreate(proxyAddress, UriKind.Absolute, out var proxyUri))
         {
-            _sawmill.Error($"Invalid proxy URI: {proxyAddress}. Discord connections will fail.");
-            throw new UriFormatException($"Invalid proxy address: {proxyAddress}");
+            _sawmill.Error($"Invalid proxy URI: {proxyAddress}. Discord connections will continue without proxy.");
+            return null;
         }
 
         var proxyUsername = _configuration.GetCVar(SunriseCCVars.DiscordProxyUsername);
