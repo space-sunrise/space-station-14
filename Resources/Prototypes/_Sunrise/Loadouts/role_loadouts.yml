@@ -292,6 +292,7 @@
 - type: roleLoadout
   id: JobPrisonWorker
   groups:
+  - PrisonWorkerJumpsuit
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
   - PrisonWorkerHead
@@ -304,6 +305,7 @@
 - type: roleLoadout
   id: JobPrisonEngineer
   groups:
+  - PrisonEngineerJumpsuit
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
   - PrisonEngineerHead
@@ -318,6 +320,7 @@
 - type: roleLoadout
   id: JobPrisonScientist
   groups:
+  - PrisonScientistJumpsuit
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
   #- Trinkets
@@ -330,6 +333,7 @@
 - type: roleLoadout
   id: JobPrisonDoctor
   groups:
+  - PrisonDoctorJumpsuit
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
   #- Trinkets
@@ -342,6 +346,7 @@
 - type: roleLoadout
   id: JobPrisonTrainee
   groups:
+  - PrisonTraineeJumpsuit
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
   #- Trinkets
@@ -355,6 +360,7 @@
 - type: roleLoadout
   id: JobPrisonChef
   groups:
+  - PrisonChefJumpsuit
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
   #- Trinkets
