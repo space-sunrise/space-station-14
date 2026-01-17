@@ -1426,7 +1426,7 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - PrisonDoctor-ClothingHeadCapPrisonDoctorPrison
+  - PrisonDoctor-ClothingHeadCapPrisonDoctor
   - PrisonDoctor-ClothingHeadHatBeretPrisonDoctor
   - PrisonDoctor-ClothingHeadHatCapPrisonDoctor
 
@@ -1437,8 +1437,8 @@
   maxLimit: 1
   loadouts:
   - PrisonChef-ClothingHeadHatChef
-  - PrisonChef-ClothingHeadCapPrisonChefPrison
-  - PrisonChef-ClothingHeadHatBeretPrisonChefPrison
+  - PrisonChef-ClothingHeadCapPrisonChef
+  - PrisonChef-ClothingHeadHatBeretPrisonChef
   - PrisonChef-ClothingHeadHatCapPrisonChef
   - PrisonChef-ClothingHeadHatChefBlackToque
 
@@ -1448,8 +1448,8 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - PrisonEngineer-ClothingHeadCapPrisonEngineerPrison
-  - PrisonEngineer-ClothingHeadHatBeretPrisonEngineerPrison
+  - PrisonEngineer-ClothingHeadCapPrisonEngineer
+  - PrisonEngineer-ClothingHeadHatBeretPrisonEngineer
   - PrisonEngineer-ClothingHeadHatCapPrisonEngineer
 
 - type: loadoutGroup
@@ -1467,8 +1467,8 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - PrisonScientist-ClothingHeadCapPrisonScientistPrison
-  - PrisonScientist-ClothingHeadHatBeretPrisonScientistPrison
+  - PrisonScientist-ClothingHeadCapPrisonScientist
+  - PrisonScientist-ClothingHeadHatBeretPrisonScientist
   - PrisonScientist-ClothingHeadHatCapPrisonScientist
 
 - type: loadoutGroup
@@ -1477,8 +1477,8 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - PrisonWorker-ClothingHeadCapPrisonWorkerPrison
-  - PrisonWorker-ClothingHeadHatBeretPrisonWorkerPrison
+  - PrisonWorker-ClothingHeadCapPrisonWorker
+  - PrisonWorker-ClothingHeadHatBeretPrisonWorker
   - PrisonWorker-ClothingHeadHatCapPrisonWorker
 
 - type: loadoutGroup
@@ -1487,8 +1487,8 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - PrisonTrainee-ClothingHeadCapPrisonTraineePrison
-  - PrisonTrainee-ClothingHeadHatBeretPrisonTraineePrison
+  - PrisonTrainee-ClothingHeadCapPrisonTrainee
+  - PrisonTrainee-ClothingHeadHatBeretPrisonTrainee
   - PrisonTrainee-ClothingHeadHatCapPrisonTrainee
 
 - type: loadoutGroup

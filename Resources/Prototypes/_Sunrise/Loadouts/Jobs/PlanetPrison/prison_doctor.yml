@@ -1,7 +1,7 @@
 # Head
 
 - type: loadout
-  id: PrisonDoctor-ClothingHeadCapPrisonDoctorPrison
+  id: PrisonDoctor-ClothingHeadCapPrisonDoctor
   equipment:
     head: ClothingHeadCapPrisonDoctor
 

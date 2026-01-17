@@ -1,7 +1,7 @@
 # Head
 
--- type: loadout
-  id: PrisonChef-ClothingHeadCapPrisonChefPrison
+- type: loadout
+  id: PrisonChef-ClothingHeadCapPrisonChef
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -11,8 +11,8 @@
   equipment:
     head: ClothingHeadCapPrisonChef
 
--- type: loadout
-  id: PrisonChef-ClothingHeadHatBeretPrisonChefPrison
+- type: loadout
+  id: PrisonChef-ClothingHeadHatBeretPrisonChef
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -22,7 +22,7 @@
   equipment:
     head: ClothingHeadHatBeretPrisonChef
 
--- type: loadout
+- type: loadout
   id: PrisonChef-ClothingHeadHatCapPrisonChef
   effects:
   - !type:JobRequirementLoadoutEffect
