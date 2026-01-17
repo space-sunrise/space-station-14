@@ -1,12 +1,12 @@
 # Head
 
 - type: loadout
-  id: PrisonTrainee-ClothingHeadCapPrisonTraineeMetus
+  id: PrisonTrainee-ClothingHeadCapPrisonTraineePrison
   equipment:
-    head: ClothingHeadCapPrisonTraineeMetus
+    head: ClothingHeadCapPrisonTrainee
 
-- type: loadout
-  id: PrisonTrainee-ClothingHeadHatBeretPrisonTraineeMetus
+-- type: loadout
+  id: PrisonTrainee-ClothingHeadHatBeretPrisonTraineePrison
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -14,10 +14,10 @@
       role: JobPrisonTrainee
       time: 25200 # 7 часов
   equipment:
-    head: ClothingHeadHatBeretPrisonTraineeMetus
+    head: ClothingHeadHatBeretPrisonTrainee
 
-- type: loadout
-  id: PrisonTrainee-ClothingHeadHatCapPrisonTraineeMetus
+-- type: loadout
+  id: PrisonTrainee-ClothingHeadHatCapPrisonTrainee
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -25,7 +25,7 @@
       role: JobPrisonTrainee
       time: 54000 # 15 часов
   equipment:
-    head: ClothingHeadHatCapPrisonTraineeMetus
+    head: ClothingHeadHatCapPrisonTrainee
 
 # PDA
 

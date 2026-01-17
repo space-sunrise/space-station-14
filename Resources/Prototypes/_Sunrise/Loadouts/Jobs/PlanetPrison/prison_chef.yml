@@ -1,7 +1,7 @@
 # Head
 
-- type: loadout
-  id: PrisonChef-ClothingHeadCapPrisonChefMetus
+-- type: loadout
+  id: PrisonChef-ClothingHeadCapPrisonChefPrison
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -9,10 +9,10 @@
       role: JobPrisonChef
       time: 7200 # 2 hrs
   equipment:
-    head: ClothingHeadCapPrisonChefMetus
+    head: ClothingHeadCapPrisonChef
 
-- type: loadout
-  id: PrisonChef-ClothingHeadHatBeretPrisonChefMetus
+-- type: loadout
+  id: PrisonChef-ClothingHeadHatBeretPrisonChefPrison
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -20,10 +20,10 @@
       role: JobPrisonChef
       time: 25200 # 7 hrs
   equipment:
-    head: ClothingHeadHatBeretPrisonChefMetus
+    head: ClothingHeadHatBeretPrisonChef
 
-- type: loadout
-  id: PrisonChef-ClothingHeadHatCapPrisonChefMetus
+-- type: loadout
+  id: PrisonChef-ClothingHeadHatCapPrisonChef
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -31,7 +31,7 @@
       role: JobPrisonChef
       time: 54000 # 15 hrs
   equipment:
-    head: ClothingHeadHatCapPrisonChefMetus
+    head: ClothingHeadHatCapPrisonChef
 
 - type: loadout
   id: PrisonChef-ClothingHeadHatChef

@@ -47,8 +47,8 @@
   id: PrisonScientistChameleonOutfit
   job: PrisonScientist
   equipment:
-    jumpsuit: UniformPrisonScientistMetus
-    head: ClothingHeadHatCapPrisonScientistMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonScientistVeteran
+    head: ClothingHeadHatCapPrisonScientist
     ears: ClothingHeadsetScience
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat

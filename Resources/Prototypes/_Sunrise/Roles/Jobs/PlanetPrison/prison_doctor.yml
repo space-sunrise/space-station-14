@@ -51,8 +51,8 @@
   id: PrisonDoctorChameleonOutfit
   job: PrisonDoctor
   equipment:
-    jumpsuit: UniformPrisonDoctorMetus
-    head: ClothingHeadHatBeretPrisonDoctorMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonDoctor
+    head: ClothingHeadHatBeretPrisonDoctor
     ears: ClothingHeadsetMedical
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat

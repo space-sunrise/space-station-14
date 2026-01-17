@@ -39,8 +39,8 @@
   id: PrisonTraineeChameleonOutfit
   job: PrisonTrainee
   equipment:
-    jumpsuit: UniformPrisonTraineeMetus
-    head: ClothingHeadHatBeretPrisonTraineeMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonTrainee
+    head: ClothingHeadHatBeretPrisonTrainee
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
