@@ -174,7 +174,7 @@
       tags:
       - CartridgePistol
     capacity: 30
-    proto: CartridgePistolSP
+    proto: CartridgePistolFMJ
     cycleable: false # No synthesizing ammo for your syndicate masters.
   - type: BallisticAmmoSelfRefiller
     autoRefillRate: 4s

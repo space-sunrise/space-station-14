@@ -149,12 +149,14 @@
     - type: ContainerContainer
       containers:
         ballistic-ammo: !type:Container
-    - type: BatteryAmmoProvider
-      proto: BulletRifleTraceSP
-      fireCost: 100
-    - type: Battery
-      maxCharge: 10000
-      startingCharge: 10000
-    - type: BatterySelfRecharger
-      autoRechargeRate: 100 # Sunrise-Edit
+    - type: BallisticAmmoProvider
+      whitelist:
+        tags:
+        - CartridgeRifle # Sunrise-Edit
+      capacity: 200 # Sunrise-Edit
+      proto: CartridgeRifleFMJ # Sunrise-Edit
+      cycleable: false # No synthesizing ammo for your syndicate masters.
+    - type: BallisticAmmoSelfRefiller
+      autoRefillRate: 4s
+      affectedByEmp: true
     - type: AmmoCounter
