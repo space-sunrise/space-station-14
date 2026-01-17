@@ -49,7 +49,6 @@
   id: PrisonWorkerGear
   equipment:
     id: PrisonWorkerPDA
-    jumpsuit: UniformPrisonWorkerMetus
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
