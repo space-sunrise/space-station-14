@@ -1,0 +1,15 @@
+# Metus Planet Prison carpets packs
+
+- type: latheRecipePack
+  id: CarpetsPrison
+  recipes:
+    - Carpet
+    - CarpetBlackPrison
+    - CarpetPinkPrison
+    - CarpetBlue
+    - CarpetSkyBlue
+    - CarpetGreen
+    - CarpetOrangePrison
+    - CarpetPurple
+    - CarpetCyan
+    - CarpetWhite

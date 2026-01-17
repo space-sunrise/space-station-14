@@ -10,7 +10,7 @@ ent-MedicalAssemblerMachineCircuitboard = Medical assembler machine board
     .desc = { ent-BaseMachineCircuitboard.desc }
 ent-AutolathePrisonMetusMachineCircuitboard = prison autolathe machine board
     .desc = Worn, with broken mounts and fine cracks, still warm in places from occasional power pulses.
-ent-SewingPrinterMetusMachineCircuitboard = prison sewing printer machine board
+ent-SewingPrinterPrisonMachineCircuitboard = prison sewing printer machine board
     .desc = Scarred with solder marks, corroded contacts, and burn traces, dim LEDs flicker occasionally.
 
 ent-PirateTechFabCircuitboard = pirate techfab machine board
