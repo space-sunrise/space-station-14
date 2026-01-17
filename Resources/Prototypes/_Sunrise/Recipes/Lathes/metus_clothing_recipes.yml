@@ -16,32 +16,32 @@
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: UniformPrisonGuardMetus
-  result: UniformPrisonGuardMetus
+  result: ClothingUniformJumpsuitPrisonGuard
 
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: UniformPrisonDoctorMetus
-  result: UniformPrisonDoctorMetus
+  result: ClothingUniformJumpsuitPrisonDoctor
 
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: UniformPrisonChefMetus
-  result: UniformPrisonChefMetus
+  result: ClothingUniformJumpsuitPrisonChef
 
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: UniformPrisonEngineerMetus
-  result: UniformPrisonEngineerMetus
+  result: ClothingUniformJumpsuitPrisonEngineer
 
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: UniformPrisonScientistMetus
-  result: UniformPrisonScientistMetus
+  result: ClothingUniformJumpsuitPrisonScientist
 
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: UniformPrisonWorkerMetus
-  result: UniformPrisonWorkerMetus
+  result: ClothingUniformJumpsuitPrisonWorker
 
 # Metus hats/caps/berets per role (non-command hats)
 - type: latheRecipe
