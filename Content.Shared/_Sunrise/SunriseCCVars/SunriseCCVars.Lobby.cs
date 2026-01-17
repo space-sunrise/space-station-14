@@ -53,7 +53,7 @@ public sealed partial class SunriseCCVars
         CVarDef.Create("lobby.unload_resources", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
-    /// Прозрачность интерфейса лобби в процентах 0-100%
+    /// Прозрачность интерфейса лобби (0.0-1.0)
     /// </summary>
     public static readonly CVarDef<float> LobbyOpacity =
         CVarDef.Create("lobby.lobby_opacity", 0.90f, CVar.CLIENTONLY | CVar.ARCHIVE);
