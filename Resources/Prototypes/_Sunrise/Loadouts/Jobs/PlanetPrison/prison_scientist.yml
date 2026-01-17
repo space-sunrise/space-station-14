@@ -1,12 +1,12 @@
 # Head
 
 - type: loadout
-  id: PrisonScientist-ClothingHeadCapPrisonScientistMetus
+  id: PrisonScientist-ClothingHeadCapPrisonScientist
   equipment:
     head: ClothingHeadCapPrisonScientistMetus
 
 - type: loadout
-  id: PrisonScientist-ClothingHeadHatBeretPrisonScientistMetus
+  id: PrisonScientist-ClothingHeadHatBeretPrisonScientist
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -17,7 +17,7 @@
     head: ClothingHeadHatBeretPrisonScientistMetus
 
 - type: loadout
-  id: PrisonScientist-ClothingHeadHatCapPrisonScientistMetus
+  id: PrisonScientist-ClothingHeadHatCapPrisonScientist
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:

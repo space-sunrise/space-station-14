@@ -48,8 +48,8 @@
   id: PrisonEngineerChameleonOutfit
   job: PrisonEngineer
   equipment:
-    jumpsuit: UniformPrisonEngineerMetus
-    head: ClothingHeadHatCapPrisonWorkerMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonEngineer
+    head: ClothingHeadHatCapPrisonEngineer
     ears: ClothingHeadsetJEngineering
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
