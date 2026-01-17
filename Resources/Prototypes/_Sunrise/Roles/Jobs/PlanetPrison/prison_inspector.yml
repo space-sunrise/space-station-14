@@ -40,6 +40,7 @@
   id: PrisonInspectorGear
   equipment:
     id: PrisonInspectorPDA
+    jumpsuit: ClothingUniformJumpsuitArmouredBlack
     ears: ClothingHeadsetCommand
     gloves: ClothingHandsGlovesForensic
     outerClothing: ClothingOuterArmorBasic
