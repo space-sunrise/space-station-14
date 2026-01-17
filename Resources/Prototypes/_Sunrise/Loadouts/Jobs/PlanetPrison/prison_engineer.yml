@@ -1,28 +1,46 @@
 # Head
 
 - type: loadout
-  id: PrisonDoctor-ClothingHeadCapPrisonDoctorMetus
+  id: PrisonEngineer-ClothingHeadCapPrisonEngineerMetus
   equipment:
-    head: ClothingHeadCapPrisonDoctorMetus
+    head: ClothingHeadCapPrisonEngineerMetus
 
 - type: loadout
-  id: PrisonDoctor-ClothingHeadHatBeretPrisonDoctorMetus
+  id: PrisonEngineer-ClothingHeadHatBeretPrisonEngineerMetus
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:RoleTimeRequirement
-      role: JobPrisonDoctor
+      role: JobPrisonEngineer
       time: 25200 # 7 часов
   equipment:
-    head: ClothingHeadHatBeretPrisonDoctorMetus
+    head: ClothingHeadHatBeretPrisonEngineerMetus
 
 - type: loadout
-  id: PrisonDoctor-ClothingHeadHatCapPrisonDoctorMetus
+  id: PrisonEngineer-ClothingHeadHatCapPrisonEngineerMetus
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:RoleTimeRequirement
-      role: JobPrisonDoctor
+      role: JobPrisonEngineer
       time: 54000 # 15 часов
   equipment:
-    head: ClothingHeadHatCapPrisonDoctorMetus
+    head: ClothingHeadHatCapPrisonEngineerMetus
+
+# PDA
+
+- type: loadout
+  id: PrisonEngineer-PrisonEngineerPDAScreenZap
+  equipment:
+    id: PrisonEngineerPDAScreenZap
+
+- type: loadout
+  id: PrisonEngineer-PrisonEngineerPDAScreenPoint
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonEngineer
+      time: 36000 # 10 часов
+  equipment:
+    id: PrisonEngineerPDAScreenPoint
