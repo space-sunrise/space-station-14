@@ -126,3 +126,15 @@
     stackRequirements:
       Manipulator: 4
       Steel: 5
+
+- type: entity
+  id: MessengerServerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: messenger server machine board
+  description: A machine printed circuit board for a messenger server.
+  components:
+  - type: MachineBoard
+    prototype: MessengerServer
+    stackRequirements:
+      Steel: 1
+      Cable: 2

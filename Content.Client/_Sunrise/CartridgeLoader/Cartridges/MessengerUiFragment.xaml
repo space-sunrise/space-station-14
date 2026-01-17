@@ -1,0 +1,135 @@
+<cartridges1:MessengerUiFragment
+    Margin="1,0,2,0"
+    xmlns="https://spacestation14.io"
+    xmlns:cartridges1="clr-namespace:Content.Client._Sunrise.CartridgeLoader.Cartridges">
+    <PanelContainer StyleClasses="BackgroundDark" />
+    <BoxContainer
+        HorizontalExpand="True"
+        Orientation="Horizontal"
+        VerticalExpand="True">
+        <BoxContainer
+            Orientation="Vertical"
+            SetWidth="200"
+            VerticalExpand="True">
+            <Label
+                HorizontalAlignment="Center"
+                HorizontalExpand="True"
+                Margin="4"
+                Name="StatusLabel"
+                Text="{Loc 'messenger-status-connecting'}" />
+            <LineEdit
+                HorizontalExpand="True"
+                Margin="4"
+                Name="SearchInput"
+                PlaceHolder="{Loc 'messenger-search-placeholder'}" />
+            <BoxContainer
+                HorizontalExpand="True"
+                Orientation="Horizontal"
+                Margin="4,2">
+                <Button
+                    Name="PersonalChatsTab"
+                    Text="{Loc 'messenger-tab-personal'}"
+                    HorizontalExpand="True"
+                    ToggleMode="True" />
+                <Button
+                    Name="GroupChatsTab"
+                    Text="{Loc 'messenger-tab-groups'}"
+                    HorizontalExpand="True"
+                    ToggleMode="True" />
+            </BoxContainer>
+            <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer
+                    HorizontalExpand="True"
+                    Name="ChatsContainer"
+                    Orientation="Vertical" />
+            </ScrollContainer>
+            <PanelContainer StyleClasses="LowDivider" Margin="4 2" />
+            <Button
+                Disabled="True"
+                HorizontalExpand="True"
+                Margin="4"
+                Name="CreateGroupButton"
+                Text="{Loc 'messenger-create-group-button'}" />
+        </BoxContainer>
+
+        <PanelContainer StyleClasses="LowDivider" SetWidth="2" VerticalExpand="True" />
+
+        <BoxContainer
+            HorizontalExpand="True"
+            Margin="4"
+            Orientation="Vertical"
+            VerticalExpand="True">
+            <BoxContainer
+                HorizontalExpand="True"
+                Orientation="Horizontal"
+                Margin="4,0">
+                <Label
+                    HorizontalExpand="True"
+                    Name="ChatNameLabel"
+                    Text="{Loc 'messenger-chat-select'}" />
+                <CheckBox
+                    Name="MuteCheckBox"
+                    Text="🔇"
+                    ToolTip="{Loc 'messenger-mute-tooltip'}"
+                    Visible="False" />
+                <Button
+                    Name="ToggleMembersButton"
+                    Text="≡"
+                    SetWidth="30"
+                    ToolTip="{Loc 'messenger-members-toggle-show'}"
+                    Visible="False" />
+            </BoxContainer>
+            <PanelContainer StyleClasses="LowDivider" Margin="4 2" />
+            <BoxContainer
+                HorizontalExpand="True"
+                Orientation="Horizontal"
+                VerticalExpand="True">
+                <ScrollContainer
+                    HorizontalExpand="True"
+                    Name="MessagesContainer"
+                    VerticalExpand="True"
+                    HScrollEnabled="False">
+                    <BoxContainer
+                        HorizontalExpand="True"
+                        Name="MessagesList"
+                        Orientation="Vertical" />
+                </ScrollContainer>
+                <PanelContainer StyleClasses="LowDivider" SetWidth="2" VerticalExpand="True" />
+                <ScrollContainer
+                    HorizontalExpand="True"
+                    Name="MembersContainer"
+                    VerticalExpand="True"
+                    Visible="False">
+                    <BoxContainer
+                        HorizontalExpand="True"
+                        Name="MembersList"
+                        Orientation="Vertical" />
+                </ScrollContainer>
+            </BoxContainer>
+            <PanelContainer StyleClasses="LowDivider" Margin="4 2" />
+            <BoxContainer
+                HorizontalExpand="True"
+                Margin="4"
+                Name="InputContainer"
+                Orientation="Horizontal"
+                Visible="False">
+                <Button
+                    Name="EmojiButton"
+                    Text="☺"
+                    SetWidth="30"
+                    ToolTip="{Loc 'messenger-emoji-button-tooltip'}" />
+                <LineEdit
+                    Editable="False"
+                    HorizontalExpand="True"
+                    Margin="4,0,0,0"
+                    Name="MessageInput"
+                    PlaceHolder="{Loc 'messenger-message-placeholder'}" />
+                <Button
+                    Disabled="True"
+                    Margin="4,0,0,0"
+                    Name="SendButton"
+                    Text="{Loc 'messenger-send-button'}" />
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</cartridges1:MessengerUiFragment>

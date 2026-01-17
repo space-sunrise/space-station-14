@@ -36,6 +36,7 @@
       - CrewManifestCartridge
       - NewsReaderCartridge
       - NavigatorCartridge
+      - MessengerCartridge
 
 - type: entity
   parent: PlanetPrisonerPDA
