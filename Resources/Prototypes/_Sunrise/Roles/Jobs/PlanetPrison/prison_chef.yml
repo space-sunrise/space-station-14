@@ -35,7 +35,7 @@
   id: PrisonChefGear
   equipment:
     id: PrisonChefPDA
-    jumpsuit: UniformPrisonChefMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonChef
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     mask: ClothingMaskItalianMoustache
@@ -51,7 +51,7 @@
   id: PrisonChefChameleonOutfit
   job: PrisonChef
   equipment:
-    jumpsuit: UniformPrisonChefMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonChef
     head: ClothingHeadHatChefBlackToque
     ears: ClothingHeadsetService
     eyes: ClothingEyesGlassesSunglasses

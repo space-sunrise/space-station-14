@@ -32,7 +32,7 @@
   id: PrisonScientistGear
   equipment:
     id: PrisonScientistPDA
-    jumpsuit: UniformPrisonScientistMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonScientistVeteran
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
@@ -47,7 +47,7 @@
   id: PrisonScientistChameleonOutfit
   job: PrisonScientist
   equipment:
-    jumpsuit: UniformPrisonScientistMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonScientistVeteran
     head: ClothingHeadHatCapPrisonScientistMetus
     ears: ClothingHeadsetScience
     eyes: ClothingEyesGlassesSunglasses
