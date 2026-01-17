@@ -1426,9 +1426,9 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - PrisonDoctor-ClothingHeadCapPrisonDoctor
-  - PrisonDoctor-ClothingHeadHatBeretPrisonDoctor
-  - PrisonDoctor-ClothingHeadHatCapPrisonDoctor
+  - PrisonDoctor-ClothingHeadCapPrisonDoctorMetus
+  - PrisonDoctor-ClothingHeadHatBeretPrisonDoctorMetus
+  - PrisonDoctor-ClothingHeadHatCapPrisonDoctorMetus
 
 - type: loadoutGroup
   id: PrisonChefHead
@@ -1437,9 +1437,9 @@
   maxLimit: 1
   loadouts:
   - PrisonChef-ClothingHeadHatChef
-  - PrisonChef-ClothingHeadCapPrisonChef
-  - PrisonChef-ClothingHeadHatBeretPrisonChef
-  - PrisonChef-ClothingHeadHatCapPrisonChef
+  - PrisonChef-ClothingHeadCapPrisonChefMetus
+  - PrisonChef-ClothingHeadHatBeretPrisonChefMetus
+  - PrisonChef-ClothingHeadHatCapPrisonChefMetus
   - PrisonChef-ClothingHeadHatChefBlackToque
 
 - type: loadoutGroup
@@ -1448,9 +1448,9 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - PrisonEngineer-ClothingHeadCapPrisonEngineer
-  - PrisonEngineer-ClothingHeadHatBeretPrisonEngineer
-  - PrisonEngineer-ClothingHeadHatCapPrisonEngineer
+  - PrisonEngineer-ClothingHeadCapPrisonEngineerMetus
+  - PrisonEngineer-ClothingHeadHatBeretPrisonEngineerMetus
+  - PrisonEngineer-ClothingHeadHatCapPrisonEngineerMetus
 
 - type: loadoutGroup
   id: PrisonEngineerPDA
@@ -1467,9 +1467,9 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - PrisonScientist-ClothingHeadCapPrisonScientist
-  - PrisonScientist-ClothingHeadHatBeretPrisonScientist
-  - PrisonScientist-ClothingHeadHatCapPrisonScientist
+  - PrisonScientist-ClothingHeadCapPrisonScientistMetus
+  - PrisonScientist-ClothingHeadHatBeretPrisonScientistMetus
+  - PrisonScientist-ClothingHeadHatCapPrisonScientistMetus
 
 - type: loadoutGroup
   id: PrisonWorkerHead
@@ -1477,9 +1477,9 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - PrisonWorker-ClothingHeadCapPrisonWorker
-  - PrisonWorker-ClothingHeadHatBeretPrisonWorker
-  - PrisonWorker-ClothingHeadHatCapPrisonWorker
+  - PrisonWorker-ClothingHeadCapPrisonWorkerMetus
+  - PrisonWorker-ClothingHeadHatBeretPrisonWorkerMetus
+  - PrisonWorker-ClothingHeadHatCapPrisonWorkerMetus
 
 - type: loadoutGroup
   id: PrisonTraineeHead
@@ -1487,9 +1487,9 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - PrisonTrainee-ClothingHeadCapPrisonTrainee
-  - PrisonTrainee-ClothingHeadHatBeretPrisonTrainee
-  - PrisonTrainee-ClothingHeadHatCapPrisonTrainee
+  - PrisonTrainee-ClothingHeadCapPrisonTraineeMetus
+  - PrisonTrainee-ClothingHeadHatBeretPrisonTraineeMetus
+  - PrisonTrainee-ClothingHeadHatCapPrisonTraineeMetus
 
 - type: loadoutGroup
   id: PrisonTraineePDA

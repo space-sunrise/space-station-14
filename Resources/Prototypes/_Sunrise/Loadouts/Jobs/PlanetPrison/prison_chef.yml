@@ -1,7 +1,7 @@
 # Head
 
 - type: loadout
-  id: PrisonChef-ClothingHeadCapPrisonChef
+  id: PrisonChef-ClothingHeadCapPrisonChefMetus
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -12,7 +12,7 @@
     head: ClothingHeadCapPrisonChefMetus
 
 - type: loadout
-  id: PrisonChef-ClothingHeadHatBeretPrisonChef
+  id: PrisonChef-ClothingHeadHatBeretPrisonChefMetus
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -23,7 +23,7 @@
     head: ClothingHeadHatBeretPrisonChefMetus
 
 - type: loadout
-  id: PrisonChef-ClothingHeadHatCapPrisonChef
+  id: PrisonChef-ClothingHeadHatCapPrisonChefMetus
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
