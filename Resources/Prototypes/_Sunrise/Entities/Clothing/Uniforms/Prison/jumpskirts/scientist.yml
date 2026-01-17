@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingUniformJumpskirPrisonRegularBase
+  parent: ClothingUniformJumpskirtPrisonRegularBase
   id: ClothingUniformJumpskirtPrisonScientist
   name: prison scientist jumpskirt
   description: Research-grade material with protective coatings, marked by the faint chemical signatures of experiments conducted under constant surveillance.

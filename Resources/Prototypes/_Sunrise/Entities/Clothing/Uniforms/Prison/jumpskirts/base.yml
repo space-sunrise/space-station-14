@@ -1,6 +1,6 @@
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformJumpskirPrisonRegularBase
+  id: ClothingUniformJumpskirtPrisonRegularBase
   name: prison regular jumpskirt
   description: A standard skirt uniform worn by prison staff in their daily duties.
   suffix: Prison

@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingUniformJumpskirPrisonRegularBase
+  parent: ClothingUniformJumpskirtPrisonRegularBase
   id: ClothingUniformJumpskirtPrisonChef
   name: prison chef jumpskirt
   description: Professional culinary attire with practical design, the hem carrying faint aromas of meals prepared in the shadow of high walls.

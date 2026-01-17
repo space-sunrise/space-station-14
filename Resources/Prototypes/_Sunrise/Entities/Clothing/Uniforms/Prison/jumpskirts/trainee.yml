@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingUniformJumpskirPrisonRegularBase
+  parent: ClothingUniformJumpskirtPrisonRegularBase
   id: ClothingUniformJumpskirtPrisonTrainee
   name: prison trainee jumpskirt
   description: Regulation uniform with perfect tailoring, representing new recruits learning that in this line of work, mistakes can have permanent consequences.

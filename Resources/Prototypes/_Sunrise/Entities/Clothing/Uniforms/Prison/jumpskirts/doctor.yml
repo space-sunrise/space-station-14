@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingUniformJumpskirPrisonRegularBase
+  parent: ClothingUniformJumpskirtPrisonRegularBase
   id: ClothingUniformJumpskirtPrisonDoctor
   name: prison doctor jumpskirt
   description: Clinical white fabric with functional cut, designed for swift movement during medical crises where every second counts in a locked-down facility.

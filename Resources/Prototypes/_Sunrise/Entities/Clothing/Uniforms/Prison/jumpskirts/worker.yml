@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingUniformJumpskirPrisonRegularBase
+  parent: ClothingUniformJumpskirtPrisonRegularBase
   id: ClothingUniformJumpskirtPrisonWorker
   name: prison worker jumpskirt
   description: Heavy-duty construction with extra padding, carrying the weight of labor performed in depths where hope sometimes gets buried with the ore.

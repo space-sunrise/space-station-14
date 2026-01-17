@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingUniformJumpskirPrisonRegularBase
+  parent: ClothingUniformJumpskirtPrisonRegularBase
   id: ClothingUniformJumpskirtPrisonEngineer
   name: prison engineer jumpskirt
   description: Utility-focused design with tool belts in mind, bearing subtle scorch marks from emergency repairs when systems fail under maximum security.
