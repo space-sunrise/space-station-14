@@ -16,38 +16,38 @@
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: UniformPrisonGuardMetus
-  result: UniformPrisonGuardMetus
+  result: ClothingUniformJumpsuitPrisonGuard
 
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: UniformPrisonDoctorMetus
-  result: UniformPrisonDoctorMetus
+  result: ClothingUniformJumpsuitPrisonDoctor
 
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: UniformPrisonChefMetus
-  result: UniformPrisonChefMetus
+  result: ClothingUniformJumpsuitPrisonChef
 
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: UniformPrisonEngineerMetus
-  result: UniformPrisonEngineerMetus
+  result: ClothingUniformJumpsuitPrisonEngineer
 
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: UniformPrisonScientistMetus
-  result: UniformPrisonScientistMetus
+  result: ClothingUniformJumpsuitPrisonScientist
 
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: UniformPrisonWorkerMetus
-  result: UniformPrisonWorkerMetus
+  result: ClothingUniformJumpsuitPrisonWorker
 
 # Metus hats/caps/berets per role (non-command hats)
 - type: latheRecipe
   parent: BaseHatRecipe
   id: ClothingHeadHatBeretPrisonDoctorMetus
-  result: ClothingHeadHatBeretPrisonDoctorMetus
+  result: ClothingHeadHatBeretPrisonDoctor
   materials:
     Cloth: 1500
     Durathread: 1500
@@ -55,7 +55,7 @@
 - type: latheRecipe
   parent: BaseHatRecipe
   id: ClothingHeadHatCapPrisonDoctorMetus
-  result: ClothingHeadHatCapPrisonDoctorMetus
+  result: ClothingHeadHatCapPrisonDoctor
   materials:
     Cloth: 3000
     Durathread: 3000
@@ -63,7 +63,7 @@
 - type: latheRecipe
   parent: BaseHatRecipe
   id: ClothingHeadCapPrisonDoctorMetus
-  result: ClothingHeadCapPrisonDoctorMetus
+  result: ClothingHeadCapPrisonDoctor
   materials:
     Cloth: 300
     Durathread: 200
@@ -71,7 +71,7 @@
 - type: latheRecipe
   parent: BaseHatRecipe
   id: ClothingHeadHatBeretPrisonChefMetus
-  result: ClothingHeadHatBeretPrisonChefMetus
+  result: ClothingHeadHatBeretPrisonChef
   materials:
     Cloth: 1500
     Durathread: 1500
@@ -79,7 +79,7 @@
 - type: latheRecipe
   parent: BaseHatRecipe
   id: ClothingHeadHatCapPrisonChefMetus
-  result: ClothingHeadHatCapPrisonChefMetus
+  result: ClothingHeadHatCapPrisonChef
   materials:
     Cloth: 3000
     Durathread: 3000
@@ -87,7 +87,7 @@
 - type: latheRecipe
   parent: BaseHatRecipe
   id: ClothingHeadCapPrisonChefMetus
-  result: ClothingHeadCapPrisonChefMetus
+  result: ClothingHeadCapPrisonChef
   materials:
     Cloth: 300
     Durathread: 200
@@ -95,7 +95,7 @@
 - type: latheRecipe
   parent: BaseHatRecipe
   id: ClothingHeadHatBeretPrisonEngineerMetus
-  result: ClothingHeadHatBeretPrisonEngineerMetus
+  result: ClothingHeadHatBeretPrisonEngineer
   materials:
     Cloth: 1500
     Durathread: 1500
@@ -103,7 +103,7 @@
 - type: latheRecipe
   parent: BaseHatRecipe
   id: ClothingHeadHatCapPrisonEngineerMetus
-  result: ClothingHeadHatCapPrisonEngineerMetus
+  result: ClothingHeadHatCapPrisonEngineer
   materials:
     Cloth: 3000
     Durathread: 3000
@@ -111,7 +111,7 @@
 - type: latheRecipe
   parent: BaseHatRecipe
   id: ClothingHeadCapPrisonEngineerMetus
-  result: ClothingHeadCapPrisonEngineerMetus
+  result: ClothingHeadCapPrisonEngineer
   materials:
     Cloth: 300
     Durathread: 200
@@ -119,7 +119,7 @@
 - type: latheRecipe
   parent: BaseHatRecipe
   id: ClothingHeadHatBeretPrisonScientistMetus
-  result: ClothingHeadHatBeretPrisonScientistMetus
+  result: ClothingHeadHatBeretPrisonScientist
   materials:
     Cloth: 1500
     Durathread: 1500
@@ -127,7 +127,7 @@
 - type: latheRecipe
   parent: BaseHatRecipe
   id: ClothingHeadHatCapPrisonScientistMetus
-  result: ClothingHeadHatCapPrisonScientistMetus
+  result: ClothingHeadHatCapPrisonScientist
   materials:
     Cloth: 3000
     Durathread: 3000
@@ -135,7 +135,7 @@
 - type: latheRecipe
   parent: BaseHatRecipe
   id: ClothingHeadCapPrisonScientistMetus
-  result: ClothingHeadCapPrisonScientistMetus
+  result: ClothingHeadCapPrisonScientist
   materials:
     Cloth: 300
     Durathread: 200
@@ -143,7 +143,7 @@
 - type: latheRecipe
   parent: BaseHatRecipe
   id: ClothingHeadHatBeretPrisonWorkerMetus
-  result: ClothingHeadHatBeretPrisonWorkerMetus
+  result: ClothingHeadHatBeretPrisonWorker
   materials:
     Cloth: 1500
     Durathread: 1500
@@ -151,7 +151,7 @@
 - type: latheRecipe
   parent: BaseHatRecipe
   id: ClothingHeadHatCapPrisonWorkerMetus
-  result: ClothingHeadHatCapPrisonWorkerMetus
+  result: ClothingHeadHatCapPrisonWorker
   materials:
     Cloth: 3000
     Durathread: 3000
@@ -159,7 +159,7 @@
 - type: latheRecipe
   parent: BaseHatRecipe
   id: ClothingHeadCapPrisonWorkerMetus
-  result: ClothingHeadCapPrisonWorkerMetus
+  result: ClothingHeadCapPrisonWorker
   materials:
     Cloth: 300
     Durathread: 200

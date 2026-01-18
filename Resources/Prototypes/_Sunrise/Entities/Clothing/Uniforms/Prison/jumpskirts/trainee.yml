@@ -1,0 +1,55 @@
+- type: entity
+  parent: ClothingUniformJumpskirtPrisonRegularBase
+  id: ClothingUniformJumpskirtPrisonTrainee
+  name: prison trainee jumpskirt
+  description: Regulation uniform with perfect tailoring, representing new recruits learning that in this line of work, mistakes can have permanent consequences.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ff8c00"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#ff8c00"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#ff8c00"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: overlay-equipped
+        color: "#ff8c00"
+
+- type: entity
+  parent: ClothingUniformJumpskirtPrisonVeteranBase
+  id: ClothingUniformJumpskirtPrisonTraineeVeteran
+  name: veteran prison trainee jumpskirt
+  description: Seasoned training skirt uniform for experienced mentors who have guided countless recruits through their first challenging days, their wisdom earned through years of shaping the next generation of guards.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ff8c00"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#ff8c00"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#ff8c00"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: overlay-equipped
+        color: "#ff8c00"
