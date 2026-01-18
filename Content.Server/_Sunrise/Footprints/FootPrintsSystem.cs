@@ -230,9 +230,9 @@ public sealed class FootprintSystem : EntitySystem
             return null;
 
         var t = emitterSolution.Volume.Float() / emitterSolution.MaxVolume.Float();
-        t = Math.Clamp(t, 0f, 1f);
-        t = Easings.InOutSine(t);
-        var alpha = 0.1f + t * 0.8f;
+        t = Easings.OutQuad(t);
+        t = MathF.Pow(t, 0.7f);
+        var alpha = Math.Clamp(0.05f + t * 0.7f, 0f, 1f);
 
         _appearance.SetData(entity,
             FootprintVisualParameter.TrackColor,
