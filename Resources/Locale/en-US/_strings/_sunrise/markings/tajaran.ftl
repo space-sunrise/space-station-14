@@ -57,7 +57,6 @@ marking-FacialHairMustache = Усы
 marking-FacialHairMustache2 = Усы 2
 marking-FacialHairMustache3 = Усы 3
 
-# Sunrise-start
 marking-BodyAshwalker = Ashwalker
 marking-BodyAshwalker-ashwalker = Ashwalker
 marking-BodyCheetor = Cheetor
@@ -83,11 +82,10 @@ marking-HeadTopEarringLeft-earring_left = Earring (left)
 marking-HeadTopEarringRight = Earring (right)
 marking-HeadTopEarringRight-earring_right = Earring (right)
 marking-FacialHairCheeks1 = Cheeks 1
-marking-FacialHairCheeks1-cheeks_1 = Cheeks 1
+marking-FacialHairCheeks1-cheeks_one = Cheeks 1
 marking-FacialHairCheeksLynx = Lynx cheeks
 marking-FacialHairCheeksLynx-lynx_cheeks = Lynx cheeks
 marking-FacialHairCheeksMassive = Massive cheeks
 marking-FacialHairCheeksMassive-massive_cheeks = Massive cheeks
 marking-FacialHairCheeksPuffy = Puffy cheeks
 marking-FacialHairCheeksPuffy-puffy_cheeks = Puffy cheeks
-# Sunrise-end

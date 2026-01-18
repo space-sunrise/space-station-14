@@ -385,7 +385,7 @@
   speciesRestriction: [Tajaran]
   sprites:
     - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_custom.rsi
-      state: cheeks_1
+      state: cheeks_one
 
 - type: marking
   id: FacialHairCheeksLynx
