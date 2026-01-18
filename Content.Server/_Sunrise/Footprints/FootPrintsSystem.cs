@@ -254,7 +254,7 @@ public sealed class FootprintSystem : EntitySystem
             FootprintVisualType.SuitFootprint => _random.Pick(emitter.PressureSuitFootState),
             FootprintVisualType.DragMark => _random.Pick(emitter.DraggingStates),
 
-            _ => throw new NotImplementedException($"Unknown footprint visual type: {visualType}")
+            _ => throw new InvalidOperationException($"Unknown footprint visual type: {visualType}")
         };
     }
 
