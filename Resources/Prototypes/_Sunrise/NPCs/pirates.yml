@@ -132,7 +132,7 @@
     thresholds:
       0: Alive
       120: Critical
-      130: Dead
+      125: Dead
   - type: Destructible
     thresholds:
     - trigger:
@@ -235,7 +235,7 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 90
+    damageCap: 100
   - type: Stamina
     baseCritThreshold: 100
   - type: Butcherable
@@ -1431,8 +1431,19 @@
     sprite: Mobs/Silicon/chassis.rsi
     layers:
     - state: synd_sec_derelict
+      map: ["enum.DamageStateVisualLayers.Base"]
     - state: synd_sec_e
+      map: ["enum.DamageStateVisualLayers.BaseUnshaded"]
       shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: synd_sec_derelict
+        BaseUnshaded: synd_sec_e
+      Critical:
+        Base: synd_sec_derelict
+      Dead:
+        Base: synd_sec_derelict
   - type: BatteryAmmoProvider
     proto: CartridgeLightRifleImprovised
     fireCost: 1
@@ -1474,9 +1485,19 @@
     sprite: Mobs/Silicon/chassis.rsi
     layers:
     - state: miner_derelict
-      map: ["movement"]
+      map: ["enum.DamageStateVisualLayers.Base", "movement"]
     - state: miner_e_r
+      map: ["enum.DamageStateVisualLayers.BaseUnshaded"]
       shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: miner_derelict
+        BaseUnshaded: miner_e_r
+      Critical:
+        Base: miner_derelict
+      Dead:
+        Base: miner_derelict
   - type: SpriteMovement
     movementLayers:
       movement:
@@ -1522,8 +1543,19 @@
     sprite: Mobs/Silicon/chassis.rsi
     layers:
     - state: derelict
+      map: ["enum.DamageStateVisualLayers.Base"]
     - state: derelict_e_r
+      map: ["enum.DamageStateVisualLayers.BaseUnshaded"]
       shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: derelict
+        BaseUnshaded: derelict_e_r
+      Critical:
+        Base: derelict
+      Dead:
+        Base: derelict
   - type: MeleeWeapon
     attackRate: 1
     altDisarm: false
@@ -1842,7 +1874,7 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 245
+    damageCap: 250
   - type: SlowOnDamage
     speedModifierThresholds:
       25: 1.1
@@ -3291,7 +3323,7 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 430
+    damageCap: 450
   - type: SlowOnDamage
     speedModifierThresholds:
       150: 0.9

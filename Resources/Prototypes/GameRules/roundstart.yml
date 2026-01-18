@@ -371,8 +371,8 @@
   - type: SubGamemodes
     rules:
     - id: RevolutionarySmugglerStashSpawn
-      amount: 5
-      maxAmount: 10
+      amount: 3
+      maxAmount: 9
     # Sunrise-End
   - type: DynamicRuleCost
     cost: 200
