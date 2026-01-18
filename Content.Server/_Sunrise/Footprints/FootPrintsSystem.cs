@@ -5,10 +5,8 @@ using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
-using Content.Shared.Mobs.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
-using Content.Shared.GameTicking;
 using Content.Shared.Gravity;
 using Content.Shared.Standing;
 using Robust.Shared.Physics.Components;
@@ -68,7 +66,7 @@ public sealed class FootprintSystem : EntitySystem
 
     private void OnSolutionUpdate(Entity<FootprintComponent> entity, ref SolutionContainerChangedEvent args)
     {
-        UpdateAppearance(entity, args.Solution);
+        // UpdateAppearance(entity, args.Solution);
     }
 
     private void OnFootprintEmitterInit(Entity<FootprintEmitterComponent> entity, ref ComponentInit args)
@@ -212,8 +210,10 @@ public sealed class FootprintSystem : EntitySystem
         if (!_appearanceQuery.TryComp(entity, out var appearance))
             return null;
 
-        var rawAlpha = emitterSolution.Volume.Float() / emitterSolution.MaxVolume.Float();
-        var alpha = Math.Clamp((0.8f * rawAlpha) + 0.3f, 0.5f, 1f);
+        var t = emitterSolution.Volume.Float() / emitterSolution.MaxVolume.Float();
+        t = Math.Clamp(t, 0f, 1f);
+        t = Easings.InOutSine(t);
+        var alpha = 0.1f + t * 0.8f;
 
         _appearanceSystem.SetData(entity,
             FootprintVisualParameter.TrackColor,
@@ -221,7 +221,6 @@ public sealed class FootprintSystem : EntitySystem
             appearance);
 
         return appearance;
-
     }
 
     private string GetStateId(FootprintVisualType visualType, FootprintEmitterComponent emitter)
