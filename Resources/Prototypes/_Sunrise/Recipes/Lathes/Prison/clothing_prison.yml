@@ -361,21 +361,6 @@
     Cloth: 300
 
 # Prison variants for vanilla items with custom cost
-- type: latheRecipe
-  parent: BaseCommandHatRecipe
-  id: ClothingHeadHatBeretHoS
-  result: ClothingHeadHatBeretHoS
-  materials:
-    Cloth: 1500
-    Durathread: 1500
-
-- type: latheRecipe
-  parent: BaseCommandHatRecipe
-  id: ClothingHeadHatCapHoS
-  result: ClothingHeadHatCapHoS
-  materials:
-    Cloth: 3000
-    Durathread: 3000
 
 # Optional prisoner stock uniforms (grey variant)
 - type: latheRecipe

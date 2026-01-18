@@ -48,8 +48,8 @@
 - type: startingGear
   id: PrisonWorkerGear
   equipment:
-    id: PrisonWorkerPDA
     jumpsuit: UniformPrisonWorkerMetus
+    id: PrisonWorkerPDA
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat

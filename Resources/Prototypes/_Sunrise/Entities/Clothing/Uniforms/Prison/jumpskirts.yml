@@ -1,0 +1,145 @@
+- type: entity
+  parent: ClothingUniformJumpskirtGuard
+  id: ClothingUniformJumpskirtPrisonDoctor
+  name: prison doctor's jumpskirt
+  description: A jumpskirt worn by prison doctors. Clean and professional.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisondoctor.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisondoctor.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtGuard
+  id: ClothingUniformJumpskirtPrisonChef
+  name: prison chef's jumpskirt
+  description: A jumpskirt worn by prison chefs. Stained with various kitchen ingredients.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisonchef.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisonchef.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtGuard
+  id: ClothingUniformJumpskirtPrisonEngineer
+  name: prison engineer's jumpskirt
+  description: A jumpskirt worn by prison engineers. Reinforced for safety.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisonengineer.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisonengineer.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtGuard
+  id: ClothingUniformJumpskirtPrisonScientist
+  name: prison scientist's jumpskirt
+  description: A jumpskirt worn by prison scientists. Resistant to chemical spills.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisonscientist.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisonscientist.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtGuard
+  id: ClothingUniformJumpskirtPrisonWorker
+  name: prison worker's jumpskirt
+  description: A jumpskirt worn by prison workers. Tough and durable.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisonworker.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisonworker.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtGuard
+  id: ClothingUniformJumpskirtPrisonTrainee
+  name: prison trainee's jumpskirt
+  description: A jumpskirt worn by prison trainees. Brand new and crisp.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisontrainee.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisontrainee.rsi
+
+# Veteran versions with enhanced materials
+- type: entity
+  parent: ClothingUniformJumpskirtGuard
+  id: ClothingUniformJumpskirtPrisonDoctorVeteran
+  name: veteran prison doctor's jumpskirt
+  description: A reinforced jumpskirt for experienced prison doctors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisondoctor.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisondoctor.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtGuard
+  id: ClothingUniformJumpskirtPrisonChefVeteran
+  name: veteran prison chef's jumpskirt
+  description: A reinforced jumpskirt for experienced prison chefs.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisonchef.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisonchef.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtGuard
+  id: ClothingUniformJumpskirtPrisonEngineerVeteran
+  name: veteran prison engineer's jumpskirt
+  description: A reinforced jumpskirt for experienced prison engineers.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisonengineer.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisonengineer.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtGuard
+  id: ClothingUniformJumpskirtPrisonScientistVeteran
+  name: veteran prison scientist's jumpskirt
+  description: A reinforced jumpskirt for experienced prison scientists.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisonscientist.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisonscientist.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtGuard
+  id: ClothingUniformJumpskirtPrisonWorkerVeteran
+  name: veteran prison worker's jumpskirt
+  description: A reinforced jumpskirt for experienced prison workers.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisonworker.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisonworker.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtGuard
+  id: ClothingUniformJumpskirtPrisonTraineeVeteran
+  name: veteran prison trainee's jumpskirt
+  description: A reinforced jumpskirt for experienced prison trainees.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisontrainee.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisontrainee.rsi
+
+# Base versions for templates
+- type: entity
+  parent: ClothingUniformJumpskirtGuard
+  id: ClothingUniformJumpskirtPrisonRegularBase
+  name: prison regular jumpskirt base
+  description: A base template for prison regular jumpskirts.
+
+- type: entity
+  parent: ClothingUniformJumpskirtGuard
+  id: ClothingUniformJumpskirtPrisonVeteranBase
+  name: prison veteran jumpskirt base
+  description: A base template for prison veteran jumpskirts.

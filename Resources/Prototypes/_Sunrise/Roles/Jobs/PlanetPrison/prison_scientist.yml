@@ -31,8 +31,8 @@
 - type: startingGear
   id: PrisonScientistGear
   equipment:
-    id: PrisonScientistPDA
     jumpsuit: UniformPrisonScientistMetus
+    id: PrisonScientistPDA
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat

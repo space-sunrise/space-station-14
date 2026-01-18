@@ -1,5 +1,3 @@
-@dotnet (786-1014) # Metus Planet Prison carpets recipes
-
 - type: latheRecipe
   parent: BaseCarpetRecipe
   id: CarpetBlackPrison

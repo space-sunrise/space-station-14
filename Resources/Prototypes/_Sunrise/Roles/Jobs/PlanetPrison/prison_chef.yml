@@ -34,8 +34,8 @@
 - type: startingGear
   id: PrisonChefGear
   equipment:
-    id: PrisonChefPDA
     jumpsuit: UniformPrisonChefMetus
+    id: PrisonChefPDA
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     mask: ClothingMaskItalianMoustache
