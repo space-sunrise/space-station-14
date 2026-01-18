@@ -22,6 +22,8 @@
   - AutoMenderBrute
   - HandheldCrewMonitor
   - BlankMediPen
+  - DefibrillatorCompact
+  - AdvancedDefibrillatorCompact
 
 - type: latheRecipePack
   id: SurgeryDynamicSunrise

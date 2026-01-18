@@ -1,0 +1,1 @@
+reagent-physical-desc-nutricryokomp = соевое и немного шипучее

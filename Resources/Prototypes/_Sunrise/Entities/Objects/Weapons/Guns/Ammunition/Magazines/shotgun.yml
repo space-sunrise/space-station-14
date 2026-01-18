@@ -38,8 +38,8 @@
   - type: Appearance
 
 - type: entity
-  id: MagazineAsh12
-  name: "ash-12 magazine (.50 slug)"
+  id: MagazineAsh12Slug
+  name: ash-12 magazine slug
   parent: BaseMagazineAsh12
   components:
   - type: Sprite
@@ -50,3 +50,35 @@
       map: ["enum.GunVisualLayers.Mag"]
     - state: stripe
       color: "#780606"
+
+- type: entity
+  id: MagazineAsh12Beanbag
+  name: ash-12 magazine beanbag
+  parent: BaseMagazineAsh12
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#149A1E"
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunBeanbag
+
+- type: entity
+  id: MagazineAsh12Flare
+  name: ash-12 magazine flare
+  parent: BaseMagazineAsh12
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#FFFF0B"
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunFlare

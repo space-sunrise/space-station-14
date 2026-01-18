@@ -34,7 +34,6 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
         SubscribeLocalEvent<WingToggleComponent, MapInitEvent>(OnWingToggleMapInit);
         SubscribeLocalEvent<WingToggleComponent, ComponentShutdown>(OnWingToggleShutdown);
         SubscribeLocalEvent<WingToggleComponent, ToggleActionEvent>(OnWingToggleAction);
-        SubscribeLocalEvent<WingToggleComponent, IsEquippingAttemptEvent>(OnEquipAttempt);
     }
 
     private void OnWingToggleMapInit(Entity<WingToggleComponent> ent, ref MapInitEvent args)
@@ -66,6 +65,9 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
             return false;
 
         if (!humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.Tail, out var markings) || markings.Count == 0)
+            return false;
+
+        if (TryComp<WingFlightComponent>(ent, out var wingFlight) && wingFlight.InertiaActive)
             return false;
 
         if (!ent.Comp.WingsOpened)
@@ -125,7 +127,10 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
 
         foreach (var slot in ent.Comp.BlockedSlots)
         {
-            if (_inventory.TryGetSlotEntity(ent.Owner, slot, out _))
+            if (!_inventory.TryGetSlotEntity(ent.Owner, slot, out var equippedEntity))
+                continue;
+
+            if (ent.Comp.AllowedTag == null || !_tagSystem.HasTag(equippedEntity.Value, ent.Comp.AllowedTag.Value))
                 return false;
         }
 
@@ -139,19 +144,4 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
 
         _actions.SetToggled(ent.Comp.ActionEntity.Value, ent.Comp.WingsOpened);
     }
-
-    private void OnEquipAttempt(Entity<WingToggleComponent> ent, ref IsEquippingAttemptEvent args)
-    {
-        if (!ent.Comp.WingsOpened)
-            return;
-
-        if (ent.Comp.BlockedSlots != null && ent.Comp.BlockedSlots.Contains(args.Slot))
-        {
-            if (ent.Comp.AllowedTag != null && _tagSystem.HasTag(args.Equipment, ent.Comp.AllowedTag.Value))
-                return;
-
-            args.Cancel();
-        }
-    }
 }
-

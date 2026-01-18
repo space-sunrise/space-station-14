@@ -1,0 +1,5 @@
+﻿- type: lobbyBackgroundPreset
+  id: AllAllAll
+  allArtsAllowed: true
+  allAnimationsAllowed: true
+  allParallaxesAllowed: true

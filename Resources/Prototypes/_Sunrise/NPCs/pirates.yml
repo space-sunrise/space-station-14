@@ -1,3 +1,118 @@
+- type: entity
+  name: monkey
+  id: MobBasePirateMonkey
+  parent: MobBaseAncestor
+  description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
+  suffix: fake pirate
+  components:
+  - type: NameIdentifier
+    group: Monkey
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-primate
+  - type: Speech
+    speechSounds: Monkey
+    speechVerb: Monkey
+  - type: MonkeyAccent
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-monkey-name
+    description: ghost-role-information-monkey-description
+    rules: ghost-role-information-freeagent-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: Loadout
+    prototypes: [PirateGearMonkeyFake]
+
+# Pirate gib loot
+- type: entityTable
+  id: OrganLootTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: OrganHumanHeart
+      prob: 0.1
+    - !type:EntSelector
+      id: OrganHumanLungs
+      prob: 0.1
+    - !type:EntSelector
+      id: OrganHumanStomach
+      prob: 0.1
+    - !type:EntSelector
+      id: OrganHumanLiver
+      prob: 0.1
+    - !type:EntSelector
+      id: OrganHumanKidneys
+      prob: 0.1
+    - !type:EntSelector
+      id: OrganHumanTongue
+      prob: 0.1
+    - !type:EntSelector
+      id: OrganHumanAppendix
+      prob: 0.1
+    - !type:EntSelector
+      id: OrganHumanEars
+      prob: 0.1
+    - !type:EntSelector
+      id: OrganHumanEyes
+      prob: 0.1
+    - !type:EntSelector
+      id: OrganHumanBrain
+      prob: 0.01
+    - !type:EntSelector
+      id: LeftArmHuman
+      prob: 0.01
+    - !type:EntSelector
+      id: RightArmHuman
+      prob: 0.01
+    - !type:EntSelector
+      id: LeftHandHuman
+      prob: 0.01
+    - !type:EntSelector
+      id: RightHandHuman
+      prob: 0.01
+    - !type:EntSelector
+      id: LeftLegHuman
+      prob: 0.01
+    - !type:EntSelector
+      id: RightLegHuman
+      prob: 0.01
+    - !type:EntSelector
+      id: LeftFootHuman
+      prob: 0.01
+    - !type:EntSelector
+      id: RightFootHuman
+      prob: 0.01
+    - !type:EntSelector
+      id: ScrapMedkit
+      prob: 0.05
+    - !type:EntSelector
+      id: FoodMeat
+      prob: 0.05
+    - !type:EntSelector
+      id: FoodMeatRotten
+      prob: 0.55
+    - !type:EntSelector
+      id: FoodMeatRotten
+      prob: 0.45
+    - !type:EntSelector
+      id: FoodMeatRotten
+      prob: 0.15
+
+
+- type: entity
+  id: OrganLootSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.3
+    deleteSpawnerAfterSpawn: true
+    table: !type:NestedSelector
+      tableId: OrganLootTable
+
 # Base
 - type: entity
   abstract: true
@@ -17,12 +132,55 @@
     thresholds:
       0: Alive
       120: Critical
-      140: Dead
+      130: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageGroupTrigger
+        damageGroup: Brute
+        damage: 300
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          OrganLootSpawner:
+            min: 1
+            max: 1
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 600
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
+        popupType: LargeCaution
+        targetOnly: true
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 40
+      behaviors:
+      - !type:VomitBehavior
   - type: PassiveDamage
     allowedStates:
     - Alive
     - Critical
-    damageCap: 135
+    damageCap: 125
   - type: Stamina
     baseCritThreshold: 150
   - type: DamageStateVisuals
@@ -49,6 +207,18 @@
   - type: AnomalyAccent
   - type: TTS
     voice: necrophos_dota_2
+  - type: GhostRole
+    prob: 0.0001
+    makeSentient: true
+    name: ghost-role-information-expedition-pirate-name
+    description: ghost-role-information-expedition-pirate-description
+    rules: ghost-role-information-expedition-pirate-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: GuideHelp
+    guides:
+    - MobsExpeditionGuidePirates
 
 - type: entity
   abstract: true
@@ -156,14 +326,17 @@
       - MobPirateT1MonkeyFlareGunUranium
       - MobPirateT1ScrapSMG
       - MobPirateT1SMG
+      - MobPirateT1Flintlock
     rarePrototypes:
       - MobPirateT1MonkeyFireBomb
       - MobPirateT1MonkeyEDagger
       - MobPirateT1Hunter
       - MobPirateT1HunterSmash
+      - MobPirateT1BombardierFire
+      - MobPirateT1BombardierGlass
+      - MobPirateT1BombardierPipe
       - MobPirateT1ECutlass
       - MobPirateT1EPickaxe
-      - MobPirateT1Flintlock
       - MobPirateT1PlasmaCutter
       - MobPirateT1ScrapRifle
       - MobPirateT1Rifle
@@ -232,8 +405,10 @@
       - MobPirateT3LaserSMG
       - MobPirateT3LaserCannon
       - MobPirateT3Revolver
+      - MobPirateT3SMG
     rarePrototypes:
       - MobPirateT3L6
+      - MobPirateT3Tachanka
       - MobPirateT3RPD
       - MobPirateT3Grenadier
       - MobPirateT3Infiltrator
@@ -264,16 +439,6 @@
     - sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva.rsi
       state: on-equipped-HELMET
       shader: unshaded
-  - type: MeleeWeapon
-    attackRate: 1.5
-    damage:
-      types:
-        Blunt: 10
-        Piercing: 8
-    bluntStaminaDamageFactor: 1.75
-    soundHit:
-      collection: Punch
-    animation: WeaponArcFist
 
 - type: entity
   name: Scrap monkey
@@ -466,6 +631,17 @@
   - type: Loadout
     prototypes:
     - MobPirateT1KnifeGear
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      140: Critical
+      150: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      50: 1.1
+      75: 1.2
+      100: 1.3
+      120: 1.4
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -481,7 +657,7 @@
       state: on-equipped-HELMET
       shader: unshaded
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 33
+    rechargeCooldown: 35
     rechargeSound:
       path: /Audio/_Sunrise/Abductor/holopaper_open.ogg
   - type: BasicEntityAmmoProvider
@@ -493,7 +669,7 @@
     selectedMode: SemiAuto
     minAngle: 30
     maxAngle: 90
-    projectileSpeed: 10
+    projectileSpeed: 9
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -904,8 +1080,8 @@
       state: comm-equipped
   - type: BasicEntityAmmoProvider
     proto: CartridgeHeavyRifleRFMJ
-    capacity: 5
-    count: 5
+    capacity: 4
+    count: 4
   - type: Gun
     showExamineText: false
     fireRate: 0.65
@@ -1101,6 +1277,65 @@
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/ppsh.ogg
     soundEmpty:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
+
+- type: entity
+  name: Scrap bombardier
+  description: A thrill-seeker who likes to play with fire, gunpowder, and welding fuel. Armed with a bombagun, a terrifying weapon of the Grey Tide from those tunnels.
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
+  id: MobPirateT1BombardierFire
+  suffix: firebomb
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT1BombardierFireGear
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Clothing/OuterClothing/Suits/pirateeva_armored_alt.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/privateer.rsi
+      state: equipped-HELMET
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/privateer.rsi
+      state: on-equipped-HELMET
+      shader: unshaded
+  - type: BasicEntityAmmoProvider
+    proto: BulletImprovisedGrenadeFirebomb
+  - type: Gun
+    projectileSpeed: 16
+    showExamineText: false
+    fireRate: 0.25
+    minAngle: 1
+    maxAngle: 10
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+
+- type: entity
+  name: Scrap bombardier
+  description: A thrill-seeker who likes to play with fire, gunpowder, and welding fuel. Armed with a bombagun, a terrifying weapon of the Grey Tide from those tunnels.
+  parent: [MobPirateT1BombardierFire, MobPirateBase]
+  id: MobPirateT1BombardierGlass
+  suffix: Glass shot
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT1BombardierGlassGear
+  - type: BasicEntityAmmoProvider
+    proto: BulletImprovisedGrenadeGlass
+
+- type: entity
+  name: Scrap bombardier
+  description: A thrill-seeker who likes to play with fire, gunpowder, and welding fuel. Armed with a bombagun, a terrifying weapon of the Grey Tide from those tunnels.
+  parent: [MobPirateT1BombardierFire, MobPirateBase]
+  id: MobPirateT1BombardierPipe
+  suffix: pipebomb
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT1BombardierPipeGear
+  - type: BasicEntityAmmoProvider
+    proto: BulletImprovisedGrenadePipeBomb
 
 - type: entity
   name: Scrap salvager
@@ -1451,22 +1686,54 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      490: Critical
-      500: Dead
+      370: Critical
+      380: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
+        popupType: LargeCaution
+        targetOnly: true
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 40
+      behaviors:
+      - !type:VomitBehavior
   - type: PassiveDamage
     allowedStates:
     - Alive
     - Critical
-    damageCap: 490
+    damageCap: 400
   - type: SlowOnDamage
     speedModifierThresholds:
-      75: 1.05
-      125: 1.1
-      175: 1.2
-      250: 1.3
-      300: 1.4
-      400: 1.5
-      450: 1.6
+      50: 1.1
+      100: 1.2
+      150: 1.3
+      200: 1.4
+      250: 1.5
+      300: 1.6
+      350: 1.7
   - type: Stamina
     baseCritThreshold: 800
   - type: MovementSpeedModifier
@@ -1537,13 +1804,13 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      250: Critical
-      275: Dead
+      240: Critical
+      250: Dead
   - type: PassiveDamage
     allowedStates:
     - Alive
     - Critical
-    damageCap: 270
+    damageCap: 245
   - type: SlowOnDamage
     speedModifierThresholds:
       25: 1.1
@@ -1689,9 +1956,9 @@
     capacity: 1
     count: 1
   - type: Gun
-    projectileSpeed: 19
+    projectileSpeed: 18
     showExamineText: false
-    fireRate: 0.2
+    fireRate: 0.1
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -1733,7 +2000,7 @@
     proto: CannonBall
   - type: Gun
     fireRate: 0.05
-    projectileSpeed: 19
+    projectileSpeed: 18
 
 - type: entity
   name: Pirate gunslinger
@@ -1850,7 +2117,7 @@
     proto: CannonBallGrapeshotMini
   - type: Gun
     showExamineText: false
-    fireRate: 0.5
+    fireRate: 0.2
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -1971,24 +2238,24 @@
     - sprite: Clothing/Belt/assault.rsi
       state: equipped-BELT
   - type: MovementSpeedModifier
-    baseSprintSpeed: 2.75
+    baseSprintSpeed: 2.5
   - type: BatteryAmmoProvider
     proto: CannonBallMini
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 1.75
+    autoRechargePauseTime: 3
     autoRechargeRate: 999
   - type: Battery
     maxCharge: 15
     startingCharge: 15
   - type: Gun
-    projectileSpeed: 20
+    projectileSpeed: 18
     showExamineText: false
     fireRate: 6
-    minAngle: 10
-    maxAngle: 50
+    minAngle: 12
+    maxAngle: 55
     angleIncrease: 5
-    angleDecay: 15
+    angleDecay: 13
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -2213,6 +2480,58 @@
   - type: StealthOnMove
     passiveVisibilityRate: -0.05
     movementVisibilityRate: 0.9
+
+- type: entity
+  name: Tachanka
+  description: LMG! Mounted and Loaded!
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3, MobPirateSparkEffectBase]
+  id: MobPirateT3Tachanka
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateGearRangedT4LMG
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/privateer_armored.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_alt.rsi
+      state: equipped-HELMET
+    - sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_alt.rsi
+      state: on-equipped-HELMET
+      shader: unshaded
+    - sprite: _Sunrise/Clothing/Head/Helmets/tfhelm.rsi
+      state: equipped-HELMET
+    - sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Boxes/heavyammobelt.rsi
+      state: inhand-right-mag
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 2
+  - type: BatteryAmmoProvider
+    proto: CartridgeHeavyRifleRFMJ
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 8
+    autoRechargeRate: 999
+  - type: Battery
+    maxCharge: 47
+    startingCharge: 47
+  - type: Gun
+    showExamineText: false
+    fireRate: 5
+    minAngle: 3
+    maxAngle: 50
+    angleIncrease: 1
+    angleDecay: 10
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp28.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Effects/silence.ogg
+  - type: EyeCursorOffset
+    maxOffset: 5
+    pvsIncrease: 0.5
 
 - type: entity
   name: Scrapshade
@@ -2705,6 +3024,38 @@
   - type: Loadout
     prototypes:
     - MobPirateGearMeleeT4Alt
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
+        popupType: LargeCaution
+        targetOnly: true
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 40
+      behaviors:
+      - !type:VomitBehavior
   - type: Sprite
     scale: 1.18,1.08
     drawdepth: Mobs
@@ -2764,6 +3115,38 @@
   - type: Loadout
     prototypes:
     - MobPirateGearRangedT4
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
+        popupType: LargeCaution
+        targetOnly: true
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 40
+      behaviors:
+      - !type:VomitBehavior
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2838,19 +3221,51 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      699: Critical
-      700: Dead
+      449: Critical
+      450: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
+        popupType: LargeCaution
+        targetOnly: true
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 40
+      behaviors:
+      - !type:VomitBehavior
   - type: PassiveDamage
     allowedStates:
     - Alive
     - Critical
-    damageCap: 600
+    damageCap: 420
   - type: SlowOnDamage
     speedModifierThresholds:
-      250: 0.9
-      350: 0.8
-      450: 0.7
-      600: 0.6
+      150: 0.9
+      250: 0.8
+      350: 0.7
+      400: 0.6
   - type: Stamina
     baseCritThreshold: 9999
   - type: MovementSpeedModifier

@@ -274,6 +274,8 @@
   id: XrayLaserBeam
   categories: [ HideSpawnMenu ]
   components:
+  - type: HitscanReflect
+    reflectiveType: None
   - type: HitscanPierce
     chance: 0.99
     deviation: 0.005

@@ -26,6 +26,7 @@
     tags:
     - ShellShotgun
     - ShellShotgunLight
+    - ShotgunSlug # sunrise-add
   - type: Sprite
     layers:
       - state: base
@@ -76,6 +77,7 @@
     tags:
     - ShellShotgun
     - ShellShotgunLight
+    - ShotgunSlug # sunrise-add
   - type: Sprite
     layers:
       - state: base

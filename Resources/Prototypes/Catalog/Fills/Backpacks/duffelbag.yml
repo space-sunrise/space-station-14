@@ -512,4 +512,5 @@
         children:
         - id: WeaponShotgunHushpup
         - id: BoxLethalshot
+        - id: SpeedLoaderShellShotgun # Sunrise-add
         - id: TreasureCoinIron

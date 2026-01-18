@@ -50,6 +50,15 @@
     - proto: MobPirateT1MonkeyFireBomb
       cost: 3
       prob: 0.1
+    - proto: MobPirateT1BombardierFire
+      cost: 4
+      prob: 0.05
+    - proto: MobPirateT1BombardierGlass
+      cost: 4
+      prob: 0.05
+    - proto: MobPirateT1BombardierPipe
+      cost: 4
+      prob: 0.05
     - proto: MobPirateT1Flintlock
       prob: 0.2
     - proto: MobPirateT1PlasmaCutter
@@ -181,6 +190,9 @@
     - proto: MobPirateT3Revolver
       cost: 2
       prob: 0.08
+    - proto: MobPirateT3SMG
+      cost: 2
+      prob: 0.15
     # rare
     - proto: MobPirateT3L6
       cost: 5
@@ -188,6 +200,9 @@
     - proto: MobPirateT3RPD
       cost: 5
       prob: 0.05
+    - proto: MobPirateT3Tachanka
+      cost: 6
+      prob: 0.04
     - proto: MobPirateT3Grenadier
       cost: 5
       prob: 0.05

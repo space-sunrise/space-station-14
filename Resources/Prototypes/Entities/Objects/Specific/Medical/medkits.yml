@@ -13,6 +13,8 @@
     - 0,0,5,1 # Sunrise-Edit
   - type: Item
     size: Large
+    shape:
+    - 0,0,5,1 # Sunrise-Edit
     sprite: Objects/Specific/Medical/firstaidkits.rsi
     heldPrefix: firstaid
   - type: PhysicalComposition

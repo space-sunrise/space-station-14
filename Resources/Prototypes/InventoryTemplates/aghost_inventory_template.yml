@@ -33,7 +33,7 @@
 #       strippingWindowPos: 0,1 # Sunrise-edt
 #       displayName: Mask
 
-# Sunsise-start
+# Sunrise-start
 - type: inventoryTemplate
   id: aghost
   slots:   #starlight change, gave aghost diona template bc grape said no shoes for aghost

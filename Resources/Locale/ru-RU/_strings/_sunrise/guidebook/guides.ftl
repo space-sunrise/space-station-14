@@ -1,5 +1,7 @@
 ## SUNRISE guides
 
+guide-entry-ammunition = Боеприпасы
+
 guide-entry-disease = Разумная болезнь
 guide-entry-expeditions = Экспедиции
 guide-entry-expedition-pirates = Пираты

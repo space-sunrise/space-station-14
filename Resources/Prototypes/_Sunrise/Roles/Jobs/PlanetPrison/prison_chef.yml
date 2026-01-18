@@ -14,6 +14,7 @@
   startingGear: PrisonChefGear
   overrideConsoleVisibility: false
   supervisors: job-supervisors-head-of-prison
+  weight: 5
   alwaysUseSpawner: true
   canBeAntag: false
   displayWeight: 40
@@ -35,7 +36,7 @@
   equipment:
     id: PrisonChefPDA
     jumpsuit: UniformPrisonChefMetus
-    ears: ClothingHeadsetService
+    ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     mask: ClothingMaskItalianMoustache
     gloves: ClothingHandsGlovesCombat

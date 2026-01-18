@@ -92,3 +92,18 @@
   products:
     Brutedon: 1
 
+- type: reaction
+  id: Nutricryokomp
+  reactants:
+    Cryoxadone:
+      amount: 1
+    Iron:
+      amount: 1
+    Iodine:
+      amount: 1
+    Nutriment: 
+      amount: 1
+    Saline:
+      amount: 1
+  products:
+    Nutricryokomp: 5

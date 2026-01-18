@@ -130,6 +130,7 @@
   name: G.O.R.I.L.L.A. gauntlet
   parent: BaseItem
   id: CyberGorillaArm
+  categories: [ HideSpawnMenu ]
   description: A robust piece of research equipment. When powered with an anomaly core, a single blow can launch anomalous objects through the air.
   components:
   - type: Sprite
@@ -187,6 +188,7 @@
   name: experimental G.O.R.I.L.L.A. gauntlet
   parent: [CyberGorillaArm, BaseScienceContraband]
   id: CyberGorillaArmUpgraded
+  categories: [ HideSpawnMenu ]
   description: A reinforced cybernetic arm equipped with integrated G.O.R.I.L.L.A. gauntlet systems. When powered with an anomaly core, a single strike can hurl anomalous objects or your enemy just like its standalone counterpart.
   components:
   - type: Sprite

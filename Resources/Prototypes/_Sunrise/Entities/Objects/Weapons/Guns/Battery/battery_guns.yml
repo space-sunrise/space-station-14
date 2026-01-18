@@ -908,13 +908,14 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_pistol.rsi
     storedOffset: -2,-5
   - type: MagazineVisuals
     magState: stun
     steps: 5
     zeroVisible: true
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_pistol.rsi
   - type: Gun
     selectedMode: SemiAuto
     availableModes:
@@ -922,16 +923,16 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: BatteryAmmoProvider
-    proto: AdvancedDisablerBolt
-    fireCost: 1000
+    proto: TaserBolt
+    fireCost: 1500
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: AdvancedDisablerBolt
+    - proto: TaserBolt
       fireCost: 1000
       magState: stun
       visualState: stun
     - proto: PulseBeam
-      fireCost: 2000
+      fireCost: 1500
       magState: kill
       visualState: kill
     - proto: DestroyBeam
@@ -976,11 +977,11 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
+    proto: TaserBolt
     fireCost: 1500
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
+    - proto: TaserBolt
       fireCost: 1500
       magState: stun
       visualState: stun
@@ -1032,11 +1033,11 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: BatteryAmmoProvider
-    proto: AdvancedDisablerBolt
+    proto: TaserBolt
     fireCost: 1500
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: AdvancedDisablerBolt
+    - proto: TaserBolt
       fireCost: 1500
       magState: stun
       visualState: stun
@@ -1095,11 +1096,11 @@
     steps: 5
     zeroVisible: true
   - type: BatteryAmmoProvider
-    proto: AdvancedDisablerBolt
+    proto: TaserBolt
     fireCost: 1500
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: AdvancedDisablerBolt
+    - proto: TaserBolt
       fireCost: 1500
       magState: stun
       visualState: stun

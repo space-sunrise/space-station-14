@@ -701,6 +701,10 @@
         whitelist:
           tags:
           - ConstructionMaterial
+          # Sunrise-Start
+          - CableCoil
+          - Nanopaste
+          # Sunrise-End
     - hand:
         emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
         emptyLabel: borg-slot-construction-empty

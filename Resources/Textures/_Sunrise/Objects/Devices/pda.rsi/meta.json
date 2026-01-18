@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Made for Space Sunrise by gardsnake (Github)",
+    "copyright": "Made for Space Sunrise by gardsnake (Github) | pda-space-prison* by KAVALDi (Github)",
     "size": {
         "x": 32,
         "y": 32
@@ -23,6 +23,9 @@
         },
         {
             "name": "id_inserted_wide"
+        },
+        {
+            "name": "id_inserted-space-prison"
         },
         {
             "name": "light_overlay"
@@ -170,17 +173,6 @@
             ]
         },
         {
-            "name": "pda-space-prison-boss",
-            "delays": [
-                [
-                    0.2,
-                    0.2,
-                    0.2,
-                    0.2
-                ]
-            ]
-        },
-        {
             "name": "pda-cmo",
             "delays": [
                 [
@@ -269,7 +261,7 @@
             ]
         },
 
-        
+
         {
             "name": "pda-seniorphysician",
             "delays": [
@@ -767,107 +759,6 @@
                 ]
             ]
         },
-{
-            "name": "pda-space-prison-inspector",
-            "delays": [
-                [
-                    0.2,
-                    0.2,
-                    0.2,
-                    0.2
-                ]
-            ]
-        },
-        {
-            "name": "pda-space-prison-guardian",
-            "delays": [
-                [
-                    0.2,
-                    0.2,
-                    0.2,
-                    0.2
-                ]
-            ]
-        },
-        {
-            "name": "pda-space-prison-pilot",
-            "delays": [
-                [
-                    0.2,
-                    0.2,
-                    0.2,
-                    0.2
-                ]
-            ]
-        },
-        {
-            "name": "pda-space-prison-engineer",
-            "delays": [
-                [
-                    0.2,
-                    0.2,
-                    0.2,
-                    0.2
-                ]
-            ]
-        },
-        {
-            "name": "pda-space-prison-doctor",
-            "delays": [
-                [
-                    0.2,
-                    0.2,
-                    0.2,
-                    0.2
-                ]
-            ]
-        },
-        {
-            "name": "pda-space-prison-scientist",
-            "delays": [
-                [
-                    0.2,
-                    0.2,
-                    0.2,
-                    0.2
-                ]
-            ]
-        },
-        {
-            "name": "pda-space-prison-chef",
-            "delays": [
-                [
-                    0.2,
-                    0.2,
-                    0.2,
-                    0.2
-                ]
-            ]
-        },
-        {
-            "name": "pda-space-prison-worker",
-            "delays": [
-                [
-                    0.2,
-                    0.2,
-                    0.2,
-                    0.2
-                ]
-            ]
-        },
-        {
-            "name": "pda-space-prison-prisoner",
-            "delays": [
-                [
-                    0.2,
-                    0.2,
-                    0.2,
-                    0.2
-                ]
-            ]
-        },
-
-
         {
             "name": "pda-wizard",
             "delays": [
@@ -944,6 +835,70 @@
                     0.2
                 ]
             ]
+        },
+        {
+            "name": "pda-space-prison-pilot",
+            "delays": [[0.2, 0.2, 0.2, 0.2]]
+        },
+        {
+            "name": "pda-space-prison-boss",
+            "delays": [[0.2, 0.2, 0.2, 0.2]]
+        },
+        {
+            "name": "pda-space-prison-inspector",
+            "delays": [[0.2, 0.2, 0.2, 0.2]]
+        },
+        {
+            "name": "pda-space-prison-worker",
+            "delays": [[0.2, 0.2, 0.2, 0.2]]
+        },
+        {
+            "name": "pda-space-prison-engineer-screen-zap",
+            "delays": [[0.2, 0.2, 0.2, 0.2]]
+        },
+        {
+            "name": "pda-space-prison-engineer-screen-point",
+            "delays": [[0.2, 0.2, 0.2, 0.2]]
+        },
+        {
+            "name": "pda-space-prison-scientist",
+            "delays": [[0.2, 0.2, 0.2, 0.2]]
+        },
+        {
+            "name": "pda-space-prison-doctor",
+            "delays": [[0.2, 0.2, 0.2, 0.2]]
+        },
+        {
+            "name": "pda-space-prison-chef",
+            "delays": [[0.2, 0.2, 0.2, 0.2]]
+        },
+        {
+            "name": "pda-space-prison-trainee-partial",
+            "delays": [[0.2, 0.2, 0.2, 0.2]]
+        },
+        {
+            "name": "pda-space-prison-trainee-advanced",
+            "delays": [[0.2, 0.2, 0.2, 0.2]]
+        },
+        {
+            "name": "pda-space-prison-trainee-complete",
+            "delays": [[0.2, 0.2, 0.2, 0.2]]
+        },
+        {
+            "name": "pda-space-prison-prisoner-screen-H",
+            "delays": [[0.2, 0.2, 0.2, 0.2]]
+        },
+        {
+            "name": "pda-space-prison-prisoner-screen-H-cracked",
+            "delays": [[0.2, 0.2, 0.2, 0.2]]
+        },
+        {
+            "name": "pda-space-prison-prisoner-screen-X",
+            "delays": [[0.2, 0.2, 0.2, 0.2]]
+        },
+        {
+            "name": "pda-space-prison-prisoner-screen-X-cracked",
+            "delays": [[0.2, 0.2, 0.2, 0.2]]
         },
         {
             "name": "pda-ussp",

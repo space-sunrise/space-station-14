@@ -81,3 +81,31 @@
             types:
              Cellular: -5
              Mangleness: -1.25
+
+- type: reagent
+  id: Nutricryokomp
+  name: reagent-name-nutricryokomp
+  group: Medicine
+  desc: reagent-desc-nutricryokomp
+  physicalDesc: reagent-physical-desc-nutricryokomp
+  flavor: medicine
+  color: "#cfc434ff"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      effects:
+        - !type:ModifyBloodLevel
+          amount: 1
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0
+        - !type:SatiateThirst
+          factor: 4
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0
+        - !type:SatiateHunger
+          factor: 1
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0

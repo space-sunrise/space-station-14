@@ -3,18 +3,18 @@
   "license": "CC-BY-SA-3.0",
   "copyright": "https://www.deviantart.com/fellfeline/art/Loading-Gears-892433408",
   "size": {
-    "x": 267,
-    "y": 168
+    "x": 270,
+    "y": 171
   },
   "states": [
     {
         "name": "loading",
         "delays": [
             [
-                0.1,
-                0.1,
-                0.1,
-                0.1
+                0.2,
+                0.2,
+                0.2,
+                0.2
             ]
         ]
     }

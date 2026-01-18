@@ -92,6 +92,11 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Mech/mecha_piratecannon.rsi
     state: mecha_piratecannon
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_inhands_64x.rsi
+    storedSprite:
+      state: storage
+      sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_storage_64x.rsi
   - type: Gun
     minAngle: -10
     maxAngle: 15
@@ -110,6 +115,43 @@
     price: 3000
 
 - type: entity
+  id: WeaponMechCombatPirateMachineCannon
+  name: Mounted Pirate Machine Cannon
+  description: An ancient heavy gun given new life as a mech-mounted gun
+  suffix: Mech Weapon, Gun, Combat, Pirate
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_piratecannon.rsi
+    state: mecha_piratecannon
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_inhands_64x.rsi
+    storedSprite:
+      state: storage
+      sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_storage_64x.rsi
+  - type: Gun
+    minAngle: -10
+    maxAngle: 15
+    fireRate: 6.5
+    projectileSpeed: 20
+    bigTrigger: true
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+      params:
+        volume: -1
+        pitch: 1.2
+  - type: BatteryAmmoProvider
+    proto: CannonBallMini
+    fireCost: 25
+  - type: Appearance
+  - type: AmmoCounter
+  - type: StaticPrice
+    price: 4000
+
+- type: entity
   id: WeaponMechCombatPirateGrapeshot
   name: Mounted PirateGrapeshot
   description: An ancient heavy gun given new life as a mech-mounted gun
@@ -119,6 +161,11 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Mech/mecha_blunderbuss.rsi
     state: mecha_blunderbuss
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_inhands_64x.rsi
+    storedSprite:
+      state: storage
+      sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_storage_64x.rsi
   - type: Gun
     minAngle: -10
     maxAngle: 15
@@ -146,6 +193,11 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Mech/mecha_blunderbuss.rsi
     state: mecha_blunderbuss
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_inhands_64x.rsi
+    storedSprite:
+      state: storage
+      sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_storage_64x.rsi
   - type: Gun
     minAngle: -10
     maxAngle: 15
@@ -173,6 +225,11 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Mech/mecha_piratecannon.rsi
     state: mecha_piratecannon
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_inhands_64x.rsi
+    storedSprite:
+      state: storage
+      sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_storage_64x.rsi
   - type: Gun
     minAngle: -10
     maxAngle: 15

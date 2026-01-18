@@ -1,0 +1,16 @@
+﻿# Long Range
+- type: entity
+  parent: HolopadLongRange
+  id: HolopadSalvageShuttle
+  suffix: salvage shuttle
+  components:
+  - type: Label
+    currentLabel: holopad-salvage-shuttle
+
+- type: entity
+  parent: HolopadLongRange
+  id: HolopadSecurityShuttle
+  suffix: security shuttle
+  components:
+  - type: Label
+    currentLabel: holopad-security-shuttle

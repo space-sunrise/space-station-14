@@ -4,7 +4,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
     state: icon
   product: CrateArmoryIK30
-  cost: 3600
+  cost: 5000
   category: cargoproduct-category-name-armory
   group: market
 
@@ -14,7 +14,7 @@
     sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Battery/lr30_mag.rsi
     state: base
   product: CrateArmoryIK30Magazines
-  cost: 1200
+  cost: 500
   category: cargoproduct-category-name-armory
   group: market
 
@@ -24,7 +24,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/trenchgun_l_4034/big.rsi
     state: icon
   product: CrateArmoryShotgunTrenchgun4034Sawn
-  cost: 5250
+  cost: 6500
   category: cargoproduct-category-name-armory
   group: market
 
@@ -34,7 +34,7 @@
     sprite: Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi
     state: lethal
   product: CrateArmoryShotgunAmmo
-  cost: 2250
+  cost: 1800
   category: cargoproduct-category-name-armory
   group: market
 
@@ -44,7 +44,7 @@
     sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_mosin.rsi
     state: icon
   product: CrateShelfMosin
-  cost: 3250
+  cost: 3000
   category: cargoproduct-category-name-armory
   group: market
 
@@ -64,6 +64,6 @@
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cshotgun.rsi
     state: icon
   product: CrateArmoryCombatShotgun
-  cost: 7400
+  cost: 9250
   category: cargoproduct-category-name-armory
   group: market

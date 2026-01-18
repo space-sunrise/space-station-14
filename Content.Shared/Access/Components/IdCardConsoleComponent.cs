@@ -75,6 +75,7 @@ public sealed partial class IdCardConsoleComponent : Component
         "Security",
         "Service",
         "Theatre",
+        "Mining", // Sunrise-Edit
         "BlueShield", // Sunrise-Edit
         "Ntrep", // Sunrise-Edit
         "Magistrat", // Sunrise-Edit
