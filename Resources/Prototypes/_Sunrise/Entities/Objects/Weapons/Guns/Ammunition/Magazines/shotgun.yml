@@ -50,6 +50,10 @@
       map: ["enum.GunVisualLayers.Mag"]
     - state: stripe
       color: "#780606"
+  - type: Item
+    storedSprite:
+      state: storage_slug
+      sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/ash12.rsi
 
 - type: entity
   id: MagazineAsh12Beanbag
@@ -66,6 +70,10 @@
       color: "#149A1E"
   - type: BallisticAmmoProvider
     proto: ShellShotgunBeanbag
+  - type: Item
+    storedSprite:
+      state: storage_rubber
+      sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/ash12.rsi
 
 - type: entity
   id: MagazineAsh12Flare
@@ -82,3 +90,7 @@
       color: "#FFFF0B"
   - type: BallisticAmmoProvider
     proto: ShellShotgunFlare
+  - type: Item
+    storedSprite:
+      state: storage_flare
+      sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/ash12.rsi

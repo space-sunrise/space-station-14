@@ -197,6 +197,16 @@
     rechargeSound:
       path: /Audio/_Sunrise/Effects/silence.ogg
   - type: Strippable
+  - type: Tool
+    speedModifier: 2
+    qualities:
+    - Prying
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 2
+    useSound:
+      path: /Audio/Items/crowbar.ogg
   - type: UserInterface
     interfaces:
       enum.StrippingUiKey.Key:
@@ -208,7 +218,7 @@
   - type: TTS
     voice: necrophos_dota_2
   - type: GhostRole
-    prob: 0.0001
+    prob: 0.001
     makeSentient: true
     name: ghost-role-information-expedition-pirate-name
     description: ghost-role-information-expedition-pirate-description
@@ -2352,7 +2362,7 @@
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
   - type: BasicEntityAmmoProvider
-    proto: BolaSyndicateBiocode
+    proto: BolaSyndicateDespawn
     capacity: 1
     count: 1
   - type: RechargeBasicEntityAmmo

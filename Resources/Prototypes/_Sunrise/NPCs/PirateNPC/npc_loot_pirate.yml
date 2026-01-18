@@ -3042,6 +3042,14 @@
       prob: 0.25
     - id: ClothingOuterHardsuitPrivateer
       prob: 0.05
+    - id: BolaSyndicateDespawn
+      prob: 0.9
+    - id: BolaSyndicateDespawn
+      prob: 0.8
+    - id: BolaSyndicate
+      prob: 0.3
+    - id: BolaSyndicate
+      prob: 0.15
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5

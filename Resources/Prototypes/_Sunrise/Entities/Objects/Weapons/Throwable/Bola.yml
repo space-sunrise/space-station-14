@@ -36,3 +36,10 @@
     tags:
     - BolaSecurity
     - SecBeltEquip
+
+- type: entity
+  parent: BolaSyndicate
+  id: BolaSyndicateDespawn
+  components:
+  - type: TimedDespawn
+    lifetime: 60
