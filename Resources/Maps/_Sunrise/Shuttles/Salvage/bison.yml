@@ -15519,7 +15519,7 @@ entities:
     - type: Transform
       pos: 4.5,-17.5
       parent: 1
-- proto: SolarPanel
+- proto: SolarPanelPlasma
   entities:
   - uid: 2173
     components:
@@ -15719,7 +15719,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -14.5,-24.5
       parent: 1
-- proto: SolarPanelBroken
+- proto: SolarPanelPlasmaBroken
   entities:
   - uid: 2347
     components:
