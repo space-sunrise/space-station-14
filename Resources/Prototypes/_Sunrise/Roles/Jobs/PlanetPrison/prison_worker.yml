@@ -63,7 +63,7 @@
   id: PrisonWorkerChameleonOutfit
   job: PrisonWorker
   equipment:
-    jumpsuit: UniformPrisonWorkerMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonWorker
     head: ClothingHeadCapPrisonWorkerMetus
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses

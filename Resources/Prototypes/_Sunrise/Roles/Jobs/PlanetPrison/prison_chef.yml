@@ -50,7 +50,7 @@
   id: PrisonChefChameleonOutfit
   job: PrisonChef
   equipment:
-    jumpsuit: UniformPrisonChefMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonChef
     head: ClothingHeadHatChefBlackToque
     ears: ClothingHeadsetService
     eyes: ClothingEyesGlassesSunglasses

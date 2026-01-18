@@ -1,0 +1,55 @@
+- type: entity
+  parent: ClothingUniformJumpsuitPrisonRegularBase
+  id: ClothingUniformJumpsuitPrisonDoctor
+  name: prison doctor jumpsuit
+  description: Sterile white fabric with reinforced seams, designed for medical emergencies in high-security environments where trust is a luxury.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#99D2FF"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#99D2FF"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#99D2FF"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: overlay-equipped
+        color: "#99D2FF"
+
+- type: entity
+  parent: ClothingUniformJumpsuitPrisonVeteranBase
+  id: ClothingUniformJumpsuitPrisonDoctorVeteran
+  name: veteran prison doctor jumpsuit
+  description: Enhanced medical uniform with additional pockets and reinforced stitching, bearing the subtle wear of countless emergency interventions in maximum security.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#99D2FF"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#99D2FF"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#99D2FF"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: overlay-equipped
+        color: "#99D2FF"
