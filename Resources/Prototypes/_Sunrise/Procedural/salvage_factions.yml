@@ -73,13 +73,13 @@
     # borgs
     - proto: MobPirateT1BorgAssault
       cost: 5
-      prob: 0.01
-    - proto: MobPirateT1BorgMining
-      cost: 3
       prob: 0.05
-    - proto: MobPirateT1BorgDerelict
+    - proto: MobPirateT1BorgMining
       cost: 2
-      prob: 0.07
+      prob: 0.1
+    - proto: MobPirateT1BorgDerelict
+      cost: 1
+      prob: 0.15
     - proto: MobPirateT1Boss
       cost: 10
       prob: 0.05
@@ -139,13 +139,13 @@
       prob: 0.04
     # borgs
     - proto: MobPirateT1BorgAssault
-      cost: 3
-      prob: 0.04
+      cost: 2
+      prob: 0.1
     - proto: MobPirateT1BorgMining
-      cost: 2
-      prob: 0.06
+      cost: 1
+      prob: 0.1
     - proto: MobPirateT1BorgDerelict
-      cost: 2
+      cost: 1
       prob: 0.1
     - proto: MobPirateT2Boss
       cost: 10

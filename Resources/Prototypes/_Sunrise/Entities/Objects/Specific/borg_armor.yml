@@ -10,7 +10,8 @@
     - state: mecha_abooster_proj
       visible: true
   - type: Clothing
-    slotFlags: OUTERCLOTHING
+    slots:
+    - OuterClothing
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
   - type: Armor
     modifiers:
@@ -38,7 +39,8 @@
     - state: ripleyupgrade
       visible: true
   - type: Clothing
-    slotFlags: OUTERCLOTHING
+    slots:
+    - OuterClothing
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
   - type: Armor
     modifiers:

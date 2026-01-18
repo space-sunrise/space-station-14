@@ -33,5 +33,5 @@
     solution: beaker
     generated:
       reagents:
-      - ReagentId: SpaceLube
+      - ReagentId: Artifexium
         Quantity: 200
