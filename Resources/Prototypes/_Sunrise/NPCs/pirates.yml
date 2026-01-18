@@ -229,6 +229,8 @@
   - type: GuideHelp
     guides:
     - MobsExpeditionGuidePirates
+  - type: GhostOnMove
+    mustBeDead: true
 
 - type: entity
   abstract: true

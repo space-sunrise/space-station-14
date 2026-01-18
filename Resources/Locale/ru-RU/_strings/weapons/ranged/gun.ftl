@@ -43,12 +43,10 @@ gun-chamber-rack = Передёрнуть затвор
 # MagazineAmmoProvider
 gun-magazine-examine =
     Тут [color={ $color }]{ $count }[/color] { $count ->
-        [one] штука
-        [few] штуки
-       *[other] штук
+        [one] выстрел
+        [few] выстрелов
+       *[other] выстрела
     }.
-# MagazineAmmoProvider
-gun-magazine-examine = [color={$color}]{$count}[/color] патронов осталось.
 # 🌟Starlight - Start🌟
 gun-magazine-ammo-type = Содержит [color={$color}]{$type}[/color].
 gun-magazine-empty = Магазин пуст.

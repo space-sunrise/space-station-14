@@ -335,6 +335,10 @@
     sprite: Clothing/Uniforms/Jumpsuit/lawyerblack.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/lawyerblack.rsi
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,1
   - type: Tag
     tags:
       - Vest
