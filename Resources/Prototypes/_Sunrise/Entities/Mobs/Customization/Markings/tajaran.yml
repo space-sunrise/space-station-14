@@ -618,7 +618,7 @@
       state: ears_floppy
 
 - type: marking
-  id: HeadTopCuttedEarLeft
+  id: HeadTopCutEarLeft
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Tajaran]
@@ -627,7 +627,7 @@
       state: cut_ear_left
 
 - type: marking
-  id: HeadTopCuttedEarRight
+  id: HeadTopCutEarRight
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Tajaran]
