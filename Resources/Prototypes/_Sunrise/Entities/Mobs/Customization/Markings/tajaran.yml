@@ -429,7 +429,7 @@
       state: painted_back
 
 - type: marking
-  id: BodySpotyShoulders
+  id: BodySpottyShoulders
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Tajaran]
@@ -546,7 +546,7 @@
       state: painted_back_r_leg
 
 - type: marking
-  id: BodySpotyShouldersLArm
+  id: BodySpottyShouldersLArm
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Tajaran]
@@ -555,7 +555,7 @@
       state: spotty_shoulders_l_arm
 
 - type: marking
-  id: BodySpotyShouldersRArm
+  id: BodySpottyShouldersRArm
   bodyPart: RArm
   markingCategory: Arms
   speciesRestriction: [Tajaran]
@@ -564,7 +564,7 @@
       state: spotty_shoulders_r_arm
 
 - type: marking
-  id: BodySpotyShouldersLLeg
+  id: BodySpottyShouldersLLeg
   bodyPart: LLeg
   markingCategory: Legs
   speciesRestriction: [Tajaran]
@@ -573,7 +573,7 @@
       state: spotty_shoulders_l_leg
 
 - type: marking
-  id: BodySpotyShouldersRLeg
+  id: BodySpottyShouldersRLeg
   bodyPart: RLeg
   markingCategory: Legs
   speciesRestriction: [Tajaran]
