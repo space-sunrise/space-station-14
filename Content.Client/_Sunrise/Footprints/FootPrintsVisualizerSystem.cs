@@ -23,8 +23,6 @@ public sealed class FootprintVisualizerSystem : EntitySystem
 
         // Причина по которой нельзя использовать VisualizerSystem<T>
         SubscribeLocalEvent<FootprintComponent, AppearanceChangeEvent>(OnAppearanceChange, after:[typeof(PuddleSystem)]);
-
-        Log.Level = LogLevel.Info;
     }
 
     private void OnAppearanceChange(EntityUid uid, FootprintComponent component, ref AppearanceChangeEvent args)
