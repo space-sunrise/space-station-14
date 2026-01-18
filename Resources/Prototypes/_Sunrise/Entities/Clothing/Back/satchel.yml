@@ -366,3 +366,21 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Satchels/yellowsatchel.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchelCaptain
+  id: ClothingBackpackSatchelCaptainWhite
+  name: ent-ClothingBackpackSatchelCaptainWhite
+  description: ent-ClothingBackpackSatchelCaptainWhite.desc
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Satchels/white_cap_satchel.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchelCaptain
+  id: ClothingBackpackSatchelCaptainBlack
+  name: ent-ClothingBackpackSatchelCaptainBlack
+  description: ent-ClothingBackpackSatchelCaptainBlack.desc
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Satchels/black_cap_satchel.rsi

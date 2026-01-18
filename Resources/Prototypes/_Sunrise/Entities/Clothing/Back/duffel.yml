@@ -168,3 +168,21 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Duffels/yellowduffel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffelCaptain
+  id: ClothingBackpackDuffelCaptainWhite
+  name: ent-ClothingBackpackDuffelCaptainWhite
+  description: ent-ClothingBackpackDuffelCaptainWhite.desc
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Duffels/white_cap_duffel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffelCaptain
+  id: ClothingBackpackDuffelCaptainBlack
+  name: ent-ClothingBackpackDuffelCaptainBlack
+  description: ent-ClothingBackpackDuffelCaptainBlack.desc
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Duffels/black_cap_duffel.rsi
