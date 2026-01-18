@@ -231288,8 +231288,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -80.5,1.5
       parent: 2
-- proto: ReinforcedUraniumWindow
-  entities:
   - uid: 32060
     components:
     - type: Transform
