@@ -15,6 +15,7 @@ public sealed class EmoteAnimationSystem : EntitySystem
 
     public const string AnimationKey = "emoteAnimationKeyId";
     private const string AnimationKeyTurn = "emoteAnimationKeyId_rotate";
+    private const string StaminaAnimationKey = "stamina";
 
     public override void Initialize()
     {
@@ -55,10 +56,13 @@ public sealed class EmoteAnimationSystem : EntitySystem
             _animationSystem.Play(uid, animation, AnimationKey);
         });
 
+        // Анимация прыжка использует слот FatigueAnimation (StaminaAnimationKey),
+        // перехватывая его у периодической анимации из StunSystem, которая тоже имеет offset
+        // Это решает конфликт KeyFrame при одновременном наложении двух анимаций
         _emoteList.Add("Jump", uid =>
         {
-            if (_animationSystem.HasRunningAnimation(uid, AnimationKey))
-                return;
+            if (_animationSystem.HasRunningAnimation(uid, StaminaAnimationKey))
+                _animationSystem.Stop(uid, StaminaAnimationKey);
 
             var animation = new Animation
             {
@@ -82,7 +86,7 @@ public sealed class EmoteAnimationSystem : EntitySystem
                 }
             };
 
-            _animationSystem.Play(uid, animation, AnimationKey);
+            _animationSystem.Play(uid, animation, StaminaAnimationKey);
         });
 
         _emoteList.Add("Dance", uid =>
