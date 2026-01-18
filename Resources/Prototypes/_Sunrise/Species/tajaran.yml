@@ -43,6 +43,7 @@
     Tail: MobTajaranTail
     HeadTop: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
+    Back: MobHumanoidAnyMarking
 
 - type: bodyType
   id: TajaranCurved
@@ -64,6 +65,7 @@
     Tail: MobTajaranTail
     HeadTop: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
+    Back: MobHumanoidAnyMarking
 
 - type: bodyType
   id: TajaranSlim
@@ -87,6 +89,7 @@
     Tail: MobTajaranTail
     HeadTop: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
+    Back: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobTajaranMarkingLimits
@@ -106,6 +109,15 @@
       required: false
     Head:
       points: 3
+      required: false
+    HeadTop:
+      points: 1
+      required: false
+    Snout:
+      points: 1
+      required: false
+    Overlay:
+      points: 1
       required: false
 
 - type: humanoidBaseSprite

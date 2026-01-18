@@ -235,15 +235,6 @@
       state: muzzle
 
 - type: marking
-  id: FacialHairBeard
-  bodyPart: FacialHair
-  markingCategory: FacialHair
-  speciesRestriction: [Tajaran]
-  sprites:
-    - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_facial_hairs.rsi
-      state: beard
-
-- type: marking
   id: FacialHairCheeks
   bodyPart: FacialHair
   markingCategory: FacialHair
@@ -278,3 +269,147 @@
   sprites:
     - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_facial_hairs.rsi
       state: mustache_3
+
+- type: marking
+  id: BodyAshwalker
+  bodyPart: Back
+  markingCategory: Overlay
+  speciesRestriction: [Tajaran]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_custom.rsi
+      state: ashwalker
+
+- type: marking
+  id: BodyCheetor
+  bodyPart: Back
+  markingCategory: Overlay
+  speciesRestriction: [Tajaran]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_custom.rsi
+      state: cheetor
+
+- type: marking
+  id: BodyPaintedBack
+  bodyPart: Back
+  markingCategory: Overlay
+  speciesRestriction: [Tajaran]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_custom.rsi
+      state: painted_back
+
+- type: marking
+  id: BodySpotyShoulders
+  bodyPart: Back
+  markingCategory: Overlay
+  speciesRestriction: [Tajaran]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_custom.rsi
+      state: spotty_shoulders
+
+- type: marking
+  id: TailDamaged
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Tajaran]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_custom.rsi
+      state: tail_damaged
+
+- type: marking
+  id: HeadEyeColor
+  bodyPart: Eyes
+  markingCategory: Head
+  speciesRestriction: [Tajaran]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_custom.rsi
+      state: eye_color
+
+- type: marking
+  id: HeadJaguarFacemarks
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Tajaran]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_custom.rsi
+      state: jaguar_facemarks
+
+- type: marking
+  id: HeadTopEarsFloppy
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Tajaran]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_custom.rsi
+      state: ears_floppy
+
+- type: marking
+  id: HeadTopCuttedEarLeft
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Tajaran]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_custom.rsi
+      state: cut_ear_left
+
+- type: marking
+  id: HeadTopCuttedEarRight
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Tajaran]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_custom.rsi
+      state: cut_ear_right
+
+- type: marking
+  id: HeadTopEarringLeft
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Tajaran]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_custom.rsi
+      state: earring_left
+
+- type: marking
+  id: HeadTopEarringRight
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Tajaran]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_custom.rsi
+      state: earring_right
+
+- type: marking
+  id: FacialHairCheeks1
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Tajaran]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_custom.rsi
+      state: cheeks_1
+
+- type: marking
+  id: FacialHairCheeksLynx
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Tajaran]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_custom.rsi
+      state: lynx_cheeks
+
+- type: marking
+  id: FacialHairCheeksMassive
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Tajaran]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_custom.rsi
+      state: massive_cheeks
+
+- type: marking
+  id: FacialHairCheeksPuffy
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Tajaran]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/Tajaran/tajaran_custom.rsi
+      state: puffy_cheeks
