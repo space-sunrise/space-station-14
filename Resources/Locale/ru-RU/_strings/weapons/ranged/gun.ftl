@@ -44,8 +44,8 @@ gun-chamber-rack = Передёрнуть затвор
 gun-magazine-examine =
     Тут [color={ $color }]{ $count }[/color] { $count ->
         [one] выстрел
-        [few] выстрелов
-       *[other] выстрела
+        [few] выстрела
+       *[other] выстрелов
     }.
 # 🌟Starlight - Start🌟
 gun-magazine-ammo-type = Содержит [color={$color}]{$type}[/color].
