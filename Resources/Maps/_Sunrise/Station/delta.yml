@@ -256611,14 +256611,6 @@ entities:
     - type: Transform
       pos: 23.5,16.5
       parent: 2
-- proto: Telecrystal10
-  entities:
-  - uid: 29913
-    components:
-    - type: Transform
-      parent: 21128
-    - type: Physics
-      canCollide: False
 - proto: TeslaCoil
   entities:
   - uid: 8837
