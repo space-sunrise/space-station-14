@@ -206,6 +206,7 @@
   tier: 2
   cost: 7500
   recipeUnlocks:
+  - ClothingOuterArmorMiliraLight
   - ClothingOuterArmorMiliraHeavy
   - ClothingOuterHardsuitMilira
   - ClothingEyesHudMilira
