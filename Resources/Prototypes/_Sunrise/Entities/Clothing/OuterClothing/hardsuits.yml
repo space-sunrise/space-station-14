@@ -681,8 +681,6 @@
       beakerSlot: !type:ContainerSlot
   - type: Inject
     openCloseDelay: 1.5
-    autoClose: true
-    autoCloseDelay: 6
   - type: ItemSlots
     slots:
       beakerSlot:

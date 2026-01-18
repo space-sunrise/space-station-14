@@ -52,12 +52,16 @@ public sealed partial class InjectComponent : Component
     [AutoNetworkedField]
     public bool Locked = true;
 
+    [DataField]
     public TimeSpan OpenCloseDelay = TimeSpan.FromSeconds(3);
 
+    [DataField]
     public bool CanBeOpened = true;
 
+    [DataField]
     public bool AlwaysOpen = false;
 
+    [DataField]
     public bool AutoClose = false;
 
     public TimeSpan AutoCloseDelay = TimeSpan.FromSeconds(10);
