@@ -18,7 +18,7 @@
           grids:
           - gridPath: /Maps/_Sunrise/Shuttles/Salvage/chisel.yml
             priorityTag: DockMining
-          - gridPath: /Maps/_Sunrise/Shuttles/security.yml
+          - gridPath: /Maps/_Sunrise/Shuttles/Security/security.yml
             priorityTag: DockSecurity
           - gridPath: /Maps/_Sunrise/Shuttles/personal.yml
             priorityTag: DockPersonal
