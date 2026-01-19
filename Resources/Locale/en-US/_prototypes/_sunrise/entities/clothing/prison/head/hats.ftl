@@ -1,4 +1,3 @@
- # Prison cap
 ent-ClothingHeadHatCapPrisonDoctor = prison doctor cap
     .desc = Heavy, clean, its wearer is used to deciding who lives and who dies.
 ent-ClothingHeadHatCapPrisonChef = prison chef cap
