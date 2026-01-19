@@ -30,19 +30,19 @@
 # Рабочая униформа
 
 - type: loadout
-  id: PrisonDoctor-ClothingUniformJumpsuitPrisonDoctor
+  id: PrisonDoctorJumpsuit
   groupBy: "prison_regular"
   equipment:
     jumpsuit: ClothingUniformJumpsuitPrisonDoctor
 
 - type: loadout
-  id: PrisonDoctor-ClothingUniformJumpskirtPrisonDoctor
+  id: PrisonDoctorJumpskirt
   groupBy: "prison_regular"
   equipment:
     jumpsuit: ClothingUniformJumpskirtPrisonDoctor
 
 - type: loadout
-  id: PrisonDoctor-ClothingUniformJumpsuitPrisonDoctorVeteran
+  id: PrisonDoctorJumpsuitVeteran
   groupBy: "prison_veteran"
   effects:
   - !type:JobRequirementLoadoutEffect
@@ -54,7 +54,7 @@
     jumpsuit: ClothingUniformJumpsuitPrisonDoctorVeteran
 
 - type: loadout
-  id: PrisonDoctor-ClothingUniformJumpskirtPrisonDoctorVeteran
+  id: PrisonDoctorJumpskirtVeteran
   groupBy: "prison_veteran"
   effects:
   - !type:JobRequirementLoadoutEffect
