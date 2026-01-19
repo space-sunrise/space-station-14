@@ -1,12 +1,12 @@
 # Head
 
 - type: loadout
-  id: PrisonTrainee-ClothingHeadCapPrisonTrainee
+  id: PrisonTraineeCap
   equipment:
     head: ClothingHeadCapPrisonTrainee
 
 - type: loadout
-  id: PrisonTrainee-ClothingHeadHatBeretPrisonTrainee
+  id: PrisonTraineeBeret
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -17,7 +17,7 @@
     head: ClothingHeadHatBeretPrisonTrainee
 
 - type: loadout
-  id: PrisonTrainee-ClothingHeadHatCapPrisonTrainee
+  id: PrisonTraineeHat
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -30,12 +30,12 @@
 # PDA
 
 - type: loadout
-  id: PrisonTrainee-PrisonTraineePDAPartial
+  id: PrisonTraineePDAPartial
   equipment:
     id: PrisonTraineePDAPartial
 
 - type: loadout
-  id: PrisonTrainee-PrisonTraineePDAAdvanced
+  id: PrisonTraineePDAAdvanced
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -46,7 +46,7 @@
     id: PrisonTraineePDAAdvanced
 
 - type: loadout
-  id: PrisonTrainee-PrisonTraineePDAComplete
+  id: PrisonTraineePDAComplete
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:

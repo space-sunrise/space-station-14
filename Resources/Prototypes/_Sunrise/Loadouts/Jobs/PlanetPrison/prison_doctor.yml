@@ -1,12 +1,12 @@
 # Head
 
 - type: loadout
-  id: PrisonDoctor-ClothingHeadCapPrisonDoctor
+  id: PrisonDoctorCap
   equipment:
     head: ClothingHeadCapPrisonDoctor
 
 - type: loadout
-  id: PrisonDoctor-ClothingHeadHatBeretPrisonDoctor
+  id: PrisonDoctorBeret
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -17,7 +17,7 @@
     head: ClothingHeadHatBeretPrisonDoctor
 
 - type: loadout
-  id: PrisonDoctor-ClothingHeadHatCapPrisonDoctor
+  id: PrisonDoctorHat
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:

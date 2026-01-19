@@ -1,7 +1,7 @@
 # Head
 
 - type: loadout
-  id: PrisonChef-ClothingHeadCapPrisonChef
+  id: PrisonChefCap
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -12,7 +12,7 @@
     head: ClothingHeadCapPrisonChef
 
 - type: loadout
-  id: PrisonChef-ClothingHeadHatBeretPrisonChef
+  id: PrisonChefBeret
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -23,7 +23,7 @@
     head: ClothingHeadHatBeretPrisonChef
 
 - type: loadout
-  id: PrisonChef-ClothingHeadHatCapPrisonChef
+  id: PrisonChefHat
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -34,13 +34,13 @@
     head: ClothingHeadHatCapPrisonChef
 
 - type: loadout
-  id: PrisonChef-ClothingHeadHatChef
+  id: PrisonChefChefHat
   equipment:
     head: ClothingHeadHatChef
   groupBy: "Toque"
 
 - type: loadout
-  id: PrisonChef-ClothingHeadHatChefBlackToque
+  id: PrisonChefBlackToque
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
