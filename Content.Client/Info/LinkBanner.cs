@@ -33,11 +33,8 @@ namespace Content.Client.Info
             rulesButton.OnPressed += args => new RulesAndInfoWindow().Open();
             buttons.AddChild(rulesButton);
 
-            AddInfoButton("server-info-discord-button", CCVars.InfoLinksDiscord);
             AddInfoButton("server-info-website-button", CCVars.InfoLinksWebsite);
-            AddInfoButton("server-info-wiki-button", CCVars.InfoLinksWiki);
             AddInfoButton("server-info-forum-button", CCVars.InfoLinksForum);
-            AddInfoButton("server-info-telegram-button", CCVars.InfoLinksTelegram);
 
             var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
             var guidebookButton = new Button() { Text = Loc.GetString("server-info-guidebook-button") };
@@ -59,7 +56,6 @@ namespace Content.Client.Info
             };
             roadmapButton.OnPressed += _ => UserInterfaceManager.GetUIController<RoadmapUIController>().ToggleRoadmap();
             buttons.AddChild(roadmapButton);
-            AddInfoButton("ui-lobby-replays-button", SunriseCCVars.InfoLinksReplays);
             // Sunrise-End
 
             void AddInfoButton(string loc, CVarDef<string> cVar)

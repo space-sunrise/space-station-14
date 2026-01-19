@@ -3,7 +3,7 @@
   layers:
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/NetTextures/Parallaxes/space_map2.png"
+        path: "/Textures/Parallaxes/space_map2.png"
       slowness: 0.995
       scale: "4, 4"
     - texture:

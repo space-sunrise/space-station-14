@@ -1,0 +1,85 @@
+<Document>
+  # Революционеры
+
+  <Box>
+    [color=#999999][italic]"Viva la revolucion!!"[/italic][/color]
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="PosterContrabandRevolt" Caption=""/>
+  </Box>
+
+  Революционеры — антагонисты обращения, спонсируемые [color=#ff0000]Синдикатом[/color], чья задача — взять станцию под контроль. У них нет хитрых трюков, только идея и сила числом.
+
+  ## Цели
+  Вы должны завербовать, заковать или убить весь [bold]командный состав[/bold] в любом порядке.
+  <Box>
+    <GuideEntityEmbed Entity="ToyFigurineCaptain" Caption="Капитан"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ToyFigurineHeadOfPersonnel" Caption="ГП"/>
+    <GuideEntityEmbed Entity="ToyFigurineHeadOfSecurity" Caption="ГСБ"/>
+    <GuideEntityEmbed Entity="ToyFigurineChiefMedicalOfficer" Caption="ГВ"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ToyFigurineChiefEngineer" Caption="СИ"/>
+    <GuideEntityEmbed Entity="ToyFigurineResearchDirector" Caption="НР"/>
+    <GuideEntityEmbed Entity="ToyFigurineQuartermaster" Caption="КМ"/>
+  </Box>
+  Ваша цель — [bold]не уничтожить станцию[/bold], а [italic]захватить ее[/italic], поэтому старайтесь минимизировать разрушения.
+
+  [bold]Революция проиграет[/bold], если все [bold][color=#5e9cff]Главы революции[/color][/bold] погибнут — все [color=red]Революционеры[/color] будут развербованы в тот же миг.
+
+  <Box>
+    <GuideEntityEmbed Entity="ClothingBackpackSatchelSmugglerFilled" Caption=""/>
+  </Box>
+  ## Схроны
+  Пешки [color=#ff0000]Синдиката[/color] любезно заложили от 6 до 15 схронов. Их может отыскать любой, но у [bold][color=#5e9cff]Глав революции[/color][/bold] есть пинпоинтер, указывающий на их местоположение.
+  Для их поиска вам необходим Т-лучевой сканер а так же Лом и Гаечный ключ для вскрытия напольной плитки.
+
+  ## Главы революции и вербовка
+  [bold][color=#5e9cff]Главы революции[/color][/bold] выбираются в начале смены и стартуют с [color=cyan]вспышкой[/color] и [color=cyan]солнечными очками[/color].
+
+  <Box>
+    <GuideEntityEmbed Entity="Flash"/>
+    <GuideEntityEmbed Entity="ClothingEyesGlassesSunglasses"/>
+  </Box>
+
+  Вы можете обратить члена экипажа на свою сторону, атакуя его любой [bold]вспышкой[/bold] в [color=#ff0000]боевом режиме[/color].
+  Однако [bold]вы не можете обратить цель, если на ней есть [color=cyan]защита от вспышек[/color][/bold], например очки или сварочная маска.
+
+  <Box>
+    <GuideEntityEmbed Entity="ClothingEyesGlassesSunglasses"/>
+    <GuideEntityEmbed Entity="ClothingEyesGlassesSecurity"/>
+    <GuideEntityEmbed Entity="ClothingHeadHatWelding"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="MindShieldImplanter"/>
+  </Box>
+  Еще одна помеха — [color=cyan]импланты защиты разума (МЩ)[/color]. Они:
+  - Не дают имплантированному стать [color=red]Революционером[/color]
+  - Развербовывают революционеров, лишая их лояльности к [color=#5e9cff]Главе революции[/color]
+  - [bold]Заметно уничтожаются при установке в [color=#5e9cff]Главу революции[/color][/bold], выдавая вас
+  - НЕ защищают от дезориентации вспышкой
+
+  Считайте, что у [color=#cb0000]Службы безопасности[/color] импланты уже стоят, а у командного состава часть ролей может быть защищена, но даже без МЩ вы не сможете завербовать Главу Отдела только если он не ВрИО набранный среди рядовых сотрудников. [bold]Имплант защиты разума можно извлечь Экстрактором имплантов, предварительно выбрав экстракцию МЩ.[/bold]
+
+  Получить экстрактор можно несколькими способами:
+  - У [color=#5e9cff]Главы революции[/color] сразу есть чертеж для автолата
+  - В схронах может быть найден экстрактор
+  - Можно дождаться изучения имплантов в РНД и напечатать его на МедФабе
+
+  [bold]Особенность билда:[/bold] даже если у глав станции нет МЩ, вербовать их нельзя. Цели революции только раундовые Главы или прибывшие с Космопорта, ВрИО не считаются как полноценные главы и не ялвяются целью революции.
+  <Box>
+    <GuideEntityEmbed Entity="RandomHumanoidSpawnerBlueShieldOperative"/>
+  </Box>
+  ### Офицер Синего Щита (ОСЩ)
+  - Cпециальная роль предназначенная для охраны членов коммандования. Все главы имеют имплантированные в себя   [bold]Импланты хрипа синего щита[/bold]. Данный импланты [color=red][bold]автоматически[/bold][/color] сообщает Синему Щиту по каналу связи об критическом состоянии главы.
+  - Совет: Саботируйте телекомуникационные сервера или найдите способ отключения радио и датчиков следения одежды, либо начните свои деяния резко не дав вашим противникам время на перегрупировку.
+  <Box>
+    <GuideEntityEmbed Entity="TelecomServerFilledBlueShield"/>
+  </Box>
+  ## Революционер
+  [color=red]Революционер[/color] — это член экипажа, обращенный [bold][color=#5e9cff]Главой революции[/color][/bold].
+
+  [bold][color=red]Революционеры[/color] не могут обращать других,[/bold] но способны выполнять грязную работу и приказы.
+</Document>

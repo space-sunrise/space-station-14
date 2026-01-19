@@ -94,7 +94,7 @@
       path: /Audio/Machines/button.ogg
   - type: ToggleCellDraw
   - type: FireProtection
-    reduction: 0.4
+    reduction: 0.2
   - type: Armor
     modifiers:
       coefficients:

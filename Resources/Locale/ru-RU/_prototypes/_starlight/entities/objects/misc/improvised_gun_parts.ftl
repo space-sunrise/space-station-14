@@ -1,4 +1,4 @@
-ent-UnfinishedForgedShotgun = собранный выкованный дробовик
+ent-UnfinishedForgedShotgun = выкованные части дробовика
     .desc = Осталось только сварить, чтобы всё закрепить.
 ent-UnfinishedPistolForged = выкованные части пистолета
     .desc = Возможно, потребуется некоторая сборка. Требуется сварка.

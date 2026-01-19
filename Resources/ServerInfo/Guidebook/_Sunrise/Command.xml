@@ -1,0 +1,54 @@
+<Document>
+  # Command
+  Главы каждого отдела собираются, чтобы сформировать отдел [color=#1b67a5]Command[/color], мощную силу, управляющую станцией. У них обычно есть доступ к специальному оборудованию и собственным помещениям. Их часто хотят найти мёртвыми.
+
+  ## Personnel
+  [color=#1b67a5]Command[/color] состоит из глав отделов: [color=#9fed58]Head of Personnel[/color], [color=#cb0000]Head of Security[/color], [color=#5b97bc]Chief Medical Officer[/color], [color=#f39f27]Chief Engineer[/color], [color=#c96dbf]Research Director[/color], [color=#b18644]Quartermaster[/color] и прежде всего [color=#1b67a5]Captain[/color].
+  <Box>
+    <GuideEntityEmbed Entity="ToyFigurineCaptain" Caption="Captain"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ToyFigurineHeadOfPersonnel" Caption="HoP"/>
+    <GuideEntityEmbed Entity="ToyFigurineHeadOfSecurity" Caption="HoS"/>
+    <GuideEntityEmbed Entity="ToyFigurineChiefMedicalOfficer" Caption="CMO"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ToyFigurineChiefEngineer" Caption="CE"/>
+    <GuideEntityEmbed Entity="ToyFigurineResearchDirector" Caption="RD"/>
+    <GuideEntityEmbed Entity="ToyFigurineQuartermaster" Caption="QM"/>
+  </Box>
+
+  ## Taking Charge
+  Поздравляем с повышением! Помимо всей лишней бумажной волокиты, ваши новые [color=#a4885c]обязанности[/color] включают управление своим отделом, внесение изменений и расстановку приоритетов, заботу о безопасности персонала и оборудования, а также умение впускать немного лени, пока ваши товарищи делают работу за вас.
+
+  Не забывайте, что у вас всё ещё есть работа! Ваши навороченные инструменты не дают вам выходного, вы всё так же должны закрывать отсутствие сотрудников, помогать тем, кто отстаёт, и обучать новичков.
+
+  Можно просто сидеть и позволять людям злиться, но разумнее включиться в работу и действовать рядом с ними. Не забывайте перемещать работников так, чтобы они делали то, что им нравится или выходит лучше всего.
+
+  ## Your Locker
+  Чтобы справиться с новыми душераздирающими обязанностями, каждому главе выдают особые предметы для управления подчинёнными. Большую часть вы найдёте в своём [color=#a4885c]шкафчике[/color].
+  <Box>
+    <GuideEntityEmbed Entity="LockerCaptain"/>
+  </Box>
+
+  Ваш [color=#a4885c]пульт[/color] простой, но глубоко недооценён. Маленький, но мощный, он может открывать и закрывать [color=#a4885c]воздушные шлюзы[/color], крутить [color=#a4885c]засовы[/color], перекрывать их и переключать [color=#a4885c]аварийный доступ[/color] на расстоянии.
+  <Box>
+    <GuideEntityEmbed Entity="DoorRemoteCommand"/>
+  </Box>
+  Пульт определяет, куда ходит персонал. Главы могут выгнать людей из опасных зон или впустить их стремительно, когда нужно срочно забрать предмет.
+
+  Помимо этого, у вас есть собственный канал [color=#1b67a5]Command[/color], как и у других отделов. Однако он особенно важен, потому что его слышат [color=#a4885c]все отделы[/color].
+  Используйте его, чтобы общаться с другими главами и озвучивать желания ваших работников.
+
+  [color=#1b67a5]Captain[/color] и [color=#9fed58]Head of Personnel[/color] получают доступ к [color=#a4885c]главному ключу шифрования[/color], позволяющему слушать любые радиоканалы станции. Это невероятный ресурс, ведь вы сами можете координировать все отделы.
+  [color=#a4885c]Не тратьте это преимущество зря![/color]
+  <Box>
+    <GuideEntityEmbed Entity="ClothingHeadsetCommand"/>
+    <GuideEntityEmbed Entity="EncryptionKeyStationMaster"/>
+  </Box>
+
+  Чтобы победить бумажную гору, в шкафчике лежит [color=#a4885c]печать[/color]. Используйте её для подписей: после штампа редактировать документ нельзя, так что проверяйте всё заранее.
+  <Box>
+    <GuideEntityEmbed Entity="RubberStampCaptain"/>
+  </Box>
+</Document>

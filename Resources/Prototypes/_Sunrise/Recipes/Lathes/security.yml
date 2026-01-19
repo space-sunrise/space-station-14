@@ -470,10 +470,10 @@
   - Clothing
   completetime: 18
   materials:
-    Cloth: 200
-    Durathread: 100
-    Plastic: 125
-    Steel: 400
+    Cloth: 400
+    Durathread: 200
+    Plastic: 300
+    Steel: 1200
 
 - type: latheRecipe
   id: ClothingOuterArmorMiliraHeavy
@@ -482,10 +482,10 @@
   - Clothing
   completetime: 24
   materials:
-    Cloth: 250
-    Durathread: 175
-    Plastic: 175
-    Steel: 700
+    Cloth: 500
+    Durathread: 400
+    Plastic: 400
+    Steel: 1400
 
 - type: latheRecipe
   id: ClothingOuterHardsuitMilira
@@ -494,10 +494,10 @@
   - Clothing
   completetime: 30
   materials:
-    Steel: 1000
-    Durathread: 250
-    Plastic: 250
-    Glass: 200
+    Steel: 2000
+    Durathread: 500
+    Plastic: 500
+    Glass: 400
 
 - type: latheRecipe
   id: ClothingEyesHudMilira
@@ -506,9 +506,10 @@
   - Clothing
   completetime: 12
   materials:
-    Steel: 200
-    Glass: 300
-    Plastic: 150
+    Steel: 400
+    Glass: 600
+    Plastic: 300
+    Silver: 200
 
 - type: latheRecipe
   parent: BaseWeaponRecipeLong

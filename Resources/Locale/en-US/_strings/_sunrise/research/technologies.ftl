@@ -3,6 +3,7 @@ research-technology-medical-assembler = Medical Assembling
 research-technology-basic-surgery = Basic surgery
 research-technology-basic-cyberlimbs = Basic cyberlimbs
 research-technology-bluespace-ammo = Bluespace Syringegun Ammo
+research-technology-implant-extractor-safety = Safety implant extractor
 research-technology-implant-extractor = Implant extractor
 research-technology-advanced-surgery = Advanced surgery
 research-technology-mechanized-medical-treatment = Mechanized Medical Treatment

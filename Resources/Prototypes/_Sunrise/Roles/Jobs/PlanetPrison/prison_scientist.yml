@@ -32,7 +32,6 @@
   id: PrisonScientistGear
   equipment:
     id: PrisonScientistPDA
-    jumpsuit: ClothingUniformJumpsuitPrisonScientist
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat

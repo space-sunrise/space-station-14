@@ -1,5 +1,17 @@
 ﻿- type: entity
   parent: BaseGameRule
+  id: RevolutionarySmugglerStashSpawn
+  components:
+  - type: StationEvent
+    earliestStart: 0
+    duration: 1
+    minimumPlayers: 1
+    weight: 0
+  - type: RandomSpawnRule
+    prototype: RevolutionarySmugglerStash
+
+- type: entity
+  parent: BaseGameRule
   id: DiseaseSpawn
   categories: [ HideSpawnMenu ]
   components:

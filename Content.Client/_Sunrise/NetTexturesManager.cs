@@ -1,6 +1,7 @@
 using System.IO;
 using System.Text.RegularExpressions;
 using Content.Shared._Sunrise.NetTextures;
+using Robust.Client;
 using Robust.Client.ResourceManagement;
 using Robust.Client.Upload;
 using Robust.Shared.ContentPack;
@@ -23,6 +24,7 @@ public sealed class NetTexturesManager
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly NetworkResourceManager _networkResourceManager = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private readonly IBaseClient _baseClient = default!;
 
         private ISawmill _sawmill = default!;
 
@@ -40,6 +42,21 @@ public sealed class NetTexturesManager
             _sawmill = _logManager.GetSawmill("network.textures");
             // NetworkResourceUploadMessage is already registered by SharedNetworkResourceManager
             // We'll check for loaded resources in Update() method very frequently
+
+            // Clear resources when disconnecting to ensure fresh state on reconnection
+            _baseClient.RunLevelChanged += OnRunLevelChanged;
+        }
+
+        private void OnRunLevelChanged(object? sender, RunLevelChangedEventArgs e)
+        {
+            // Clear requested and pending resources when disconnecting from a multiplayer game
+            // This ensures resources are re-requested on reconnection
+            if (e.OldLevel == ClientRunLevel.InGame)
+            {
+                _sawmill.Debug("Clearing network texture resource tracking on disconnect");
+                _requestedResources.Clear();
+                _pendingResources.Clear();
+            }
         }
 
     public void Update(float frameTime)
@@ -244,22 +261,23 @@ public sealed class NetTexturesManager
     /// <summary>
     /// Checks if all RSI files are present by reading meta.json and verifying all PNG files exist.
     /// Uses simple string parsing instead of JsonDocument to avoid sandbox restrictions.
+    /// IMPORTANT: Checks files through VFS (_resourceManager) to ensure they're actually available for ResourceCache.
     /// </summary>
     private bool CheckRsiFilesComplete(ResPath relativePath)
     {
         try
         {
-            // Check if meta.json exists
-            var metaRelativePath = relativePath / "meta.json";
-            if (!_networkResourceManager.FileExists(metaRelativePath))
+            // Read meta.json from uploaded path (check through VFS)
+            var uploadedPath = (new ResPath(UploadedPrefix) / relativePath).ToRootedPath();
+            var metaUploadedPath = (uploadedPath / "meta.json").ToRootedPath();
+
+            // First check if meta.json exists in VFS
+            if (!_resourceManager.ContentFileExists(metaUploadedPath))
             {
                 return false;
             }
 
-            // Read meta.json from uploaded path
-            var uploadedPath = (new ResPath(UploadedPrefix) / relativePath).ToRootedPath();
-            var metaUploadedPath = (new ResPath(UploadedPrefix) / metaRelativePath).ToRootedPath();
-            
+            // Try to read meta.json to verify it's accessible
             if (!_resourceManager.TryContentFileRead(metaUploadedPath, out var metaStream))
             {
                 return false;
@@ -282,7 +300,7 @@ public sealed class NetTexturesManager
                     return false;
                 }
 
-                // Check if all PNG files for each state exist
+                // Check if all PNG files for each state exist in VFS
                 foreach (Match match in matches)
                 {
                     if (match.Groups.Count < 2)
@@ -294,10 +312,11 @@ public sealed class NetTexturesManager
                         continue;
                     }
 
-                    // Check if PNG file exists for this state
-                    var pngRelativePath = relativePath / $"{stateName}.png";
-                    if (!_networkResourceManager.FileExists(pngRelativePath))
+                    // Check if PNG file exists in VFS (not just MemoryContentRoot)
+                    var pngUploadedPath = (uploadedPath / $"{stateName}.png").ToRootedPath();
+                    if (!_resourceManager.ContentFileExists(pngUploadedPath))
                     {
+                        _sawmill.Debug($"RSI PNG file not yet available in VFS: {pngUploadedPath}");
                         return false;
                     }
                 }
