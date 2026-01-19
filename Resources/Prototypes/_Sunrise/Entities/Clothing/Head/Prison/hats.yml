@@ -20,7 +20,7 @@
         color: "#99D2FF"
 
 - type: entity
-  parent: ClothingHeadHatGarrisonCapAdjutant
+  parent: ClothingHeadPrisonGuard
   id: ClothingHeadHatCapPrisonDoctor
   name: prison doctor's cap
   description: A cap worn by prison doctors. Medical blue.
@@ -75,7 +75,7 @@
         color: "#ffffff"
 
 - type: entity
-  parent: ClothingHeadHatGarrisonCapAdjutant
+  parent: ClothingHeadPrisonGuard
   id: ClothingHeadHatCapPrisonChef
   name: prison chef's cap
   description: A cap worn by prison chefs. Culinary white.
@@ -130,7 +130,7 @@
         color: "#ffd900"
 
 - type: entity
-  parent: ClothingHeadHatGarrisonCapAdjutant
+  parent: ClothingHeadPrisonGuard
   id: ClothingHeadHatCapPrisonEngineer
   name: prison engineer's cap
   description: A cap worn by prison engineers. Engineering yellow.
@@ -185,7 +185,7 @@
         color: "#9d1edd"
 
 - type: entity
-  parent: ClothingHeadHatGarrisonCapAdjutant
+  parent: ClothingHeadPrisonGuard
   id: ClothingHeadHatCapPrisonScientist
   name: prison scientist's cap
   description: A cap worn by prison scientists. Research purple.
@@ -240,7 +240,7 @@
         color: "#df0400"
 
 - type: entity
-  parent: ClothingHeadHatGarrisonCapAdjutant
+  parent: ClothingHeadPrisonGuard
   id: ClothingHeadHatCapPrisonWorker
   name: prison worker's cap
   description: A cap worn by prison workers. Labor red.
@@ -295,7 +295,7 @@
         color: "#ff8c00"
 
 - type: entity
-  parent: ClothingHeadHatGarrisonCapAdjutant
+  parent: ClothingHeadPrisonGuard
   id: ClothingHeadHatCapPrisonTrainee
   name: prison trainee's cap
   description: A cap worn by prison trainees. Training orange.
