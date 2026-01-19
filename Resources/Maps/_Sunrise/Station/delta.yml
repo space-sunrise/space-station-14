@@ -123811,39 +123811,6 @@ entities:
       inSlotFlag: BACK
     - type: Physics
       canCollide: False
-- proto: ClothingBackpackSatchelSmugglerFilled
-  entities:
-  - uid: 481
-    components:
-    - type: Transform
-      pos: -55.5,93.5
-      parent: 2
-    - type: GroupExamine
-      group:
-      - hoverMessage: ""
-        contextText: verb-examine-group-other
-        icon: /Textures/Interface/examine-star.png
-        components:
-        - Armor
-        - ClothingSpeedModifier
-        entries:
-        - message: >-
-            Обеспечивает следующую защиту:
-
-            - [color=orange]Взрывной[/color] урон [color=white]к содержимому[/color] снижается на [color=lightblue]10%[/color].
-          priority: 0
-          component: Armor
-        title: null
-  - uid: 483
-    components:
-    - type: Transform
-      pos: -50.5,65.5
-      parent: 2
-  - uid: 7540
-    components:
-    - type: Transform
-      pos: 49.5,-52.5
-      parent: 2
 - proto: ClothingBeltChampion
   entities:
   - uid: 7269
@@ -256644,14 +256611,6 @@ entities:
     - type: Transform
       pos: 23.5,16.5
       parent: 2
-- proto: Telecrystal10
-  entities:
-  - uid: 29913
-    components:
-    - type: Transform
-      parent: 21128
-    - type: Physics
-      canCollide: False
 - proto: TeslaCoil
   entities:
   - uid: 8837

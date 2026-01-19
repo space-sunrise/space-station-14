@@ -48,6 +48,11 @@
     - Mech
 
 - type: entity
+  parent: [ClothingEyesChameleon, ClothingEyesGlassesHiddenSecurity]
+  id: ClothingEyesGlassesHiddenSecurityChameleon
+  suffix: Syndicate, Chameleon
+
+- type: entity
   parent: [ClothingEyesBase, ShowMedicalIcons]
   id: ClothingEyesHudMilira
   name: milira hud

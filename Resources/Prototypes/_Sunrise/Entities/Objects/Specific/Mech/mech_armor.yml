@@ -7,11 +7,13 @@
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     layers:
-    - state: mecha_clamp
+    - state: mecha_abooster_proj
       visible: false
   - type: Clothing
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
   - type: Unremoveable
+  - type: Pierceable
+    level: Rock
 
 - type: entity
   id: MechArmorThin
@@ -31,6 +33,8 @@
       flatReductions:
         Blunt: 2
         Heat: 1
+  - type: Pierceable
+    level: Metal
 
 - type: entity
   id: MechArmorLight
@@ -50,6 +54,8 @@
       flatReductions:
         Blunt: 5
         Heat: 5
+  - type: Pierceable
+    level: Metal
 
 - type: entity
   id: MechArmorMediumNT

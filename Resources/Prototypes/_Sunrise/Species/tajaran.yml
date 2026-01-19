@@ -40,9 +40,10 @@
     RLeg: MobTajaranRLeg
     LFoot: MobTajaranLFoot
     RFoot: MobTajaranRFoot
-    Tail: MobTajaranTail
+    Tail: MobHumanoidAnyMarking
     HeadTop: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
+    Back: MobHumanoidAnyMarking
 
 - type: bodyType
   id: TajaranCurved
@@ -61,9 +62,10 @@
     RLeg: MobTajaranRLegCurved
     LFoot: MobTajaranLFootCurved
     RFoot: MobTajaranRFootCurved
-    Tail: MobTajaranTail
+    Tail: MobHumanoidAnyMarking
     HeadTop: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
+    Back: MobHumanoidAnyMarking
 
 - type: bodyType
   id: TajaranSlim
@@ -84,9 +86,10 @@
     RLeg: MobTajaranSlimRLeg
     LFoot: MobTajaranSlimLFoot
     RFoot: MobTajaranSlimRFoot
-    Tail: MobTajaranTail
+    Tail: MobHumanoidAnyMarking
     HeadTop: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
+    Back: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobTajaranMarkingLimits
@@ -95,17 +98,27 @@
     Hair:
       points: 1
       required: false
-    FacialHair:
-      points: 1
-      required: false
     Chest:
       points: 1
       required: false
+    Arms:
+      points: 2
+      required: false
+    Legs:
+      points: 2
+      required: false
     Tail:
       points: 1
-      required: false
+      required: true
+      defaultMarkings: [ TajaranTailDefault ]
     Head:
       points: 3
+      required: false
+    HeadTop:
+      points: 1
+      required: false
+    Snout:
+      points: 1
       required: false
 
 - type: humanoidBaseSprite

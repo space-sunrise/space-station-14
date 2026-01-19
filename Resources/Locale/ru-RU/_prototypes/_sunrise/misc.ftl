@@ -46,10 +46,6 @@ ent-MiningBorgChassisDerelict = заброшенный киборг-утилиз
 ent-SyndicateAssaultBorgChassisDerelictSunrise = заброшенный штурмовой киборг Синдиката
     .desc = Смертоносная машина с доступом к разнообразным модулям. Этот скорее ржаво-оранжевый, чем кроваво-красный.
 
-ent-PlayerSyndicateAssaultBorgDerelict = { ent-SyndicateAssaultBorgChassisDerelictSunrise }
-    .desc = { ent-SyndicateAssaultBorgChassisDerelictSunrise.desc }
-    .suffix = Батарея, Модуль
-
 ent-SyndicateMedicalBorgChassisDerelictSunrise = заброшенный медицинский киборг Синдиката
     .desc = Медицинская поддержка для полевых операций. Его медицинские протоколы, похоже, деградировали.
 

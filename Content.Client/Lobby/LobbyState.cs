@@ -158,6 +158,35 @@ namespace Content.Client.Lobby
             _contributorsManager.ContributorsDataListChanged += RefreshContributorsHeader;
 
             RefreshContributorsHeader(_contributorsManager.ContributorsDataList);
+
+            // Sunrise-Start
+            // Explicitly restore lobby background after reconnection
+            // This ensures the background is loaded even if CVar events were called before Lobby initialization
+            UpdateLobbyType();
+            var backgroundType = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
+            if (backgroundType == "Random" && _gameTicker.LobbyType != null)
+            {
+                backgroundType = _gameTicker.LobbyType;
+            }
+
+            if (!Enum.TryParse(backgroundType, out LobbyBackgroundType lobbyBackgroundType))
+            {
+                lobbyBackgroundType = LobbyBackgroundType.Parallax; // Default
+            }
+
+            switch (lobbyBackgroundType)
+            {
+                case LobbyBackgroundType.Parallax:
+                    UpdateLobbyParallax();
+                    break;
+                case LobbyBackgroundType.Art:
+                    UpdateLobbyArt();
+                    break;
+                case LobbyBackgroundType.Animation:
+                    UpdateLobbyAnimation();
+                    break;
+            }
+            // Sunrise-End
         }
 
         protected override void Shutdown()
@@ -412,9 +441,11 @@ namespace Content.Client.Lobby
                 lobbyBackgroundTypeString = default;
             }
 
+            // Lobby may be null during reconnection or before initialization
+            // This is normal, just return silently - the background will be set when Lobby is initialized
             if (Lobby == null)
             {
-                _sawmill.Error("Error in SetLobbyBackgroundType. Lobby is null");
+                _sawmill.Debug("SetLobbyBackgroundType called before Lobby initialization, skipping");
                 return;
             }
 
@@ -493,9 +524,11 @@ namespace Content.Client.Lobby
             if (!_protoMan.TryIndex<LobbyAnimationPrototype>(lobbyAnimation, out var lobbyAnimationPrototype))
                 return;
 
+            // Lobby may be null during reconnection or before initialization
+            // This is normal, just return silently - the animation will be set when Lobby is initialized
             if (Lobby == null)
             {
-                _sawmill.Error("Error in SetLobbyAnimation. Lobby is null");
+                _sawmill.Debug("SetLobbyAnimation called before Lobby initialization, skipping");
                 return;
             }
 
@@ -559,23 +592,80 @@ namespace Content.Client.Lobby
 
                 var requiredState = lobbyAnimationPrototype.State;
 
+                // Before attempting to load, verify all required PNG files exist in VFS
+                // This prevents FileNotFoundException when RSI tries to load animation.png
+                try
+                {
+                    if (!_resource.TryContentFileRead(metaPath, out var metaStream))
+                    {
+                        _sawmill.Debug($"Cannot read meta.json: {metaPath}, waiting for network load");
+                        return;
+                    }
+
+                    using (metaStream)
+                    {
+                        using var reader = new StreamReader(metaStream);
+                        var jsonText = reader.ReadToEnd();
+
+                        // Extract state names from JSON to verify PNG files exist
+                        var namePattern = new Regex(@"""name""\s*:\s*""([^""]+)""", RegexOptions.Compiled);
+                        var matches = namePattern.Matches(jsonText);
+
+                        foreach (Match match in matches)
+                        {
+                            if (match.Groups.Count < 2)
+                                continue;
+
+                            var stateName = match.Groups[1].Value;
+                            if (string.IsNullOrEmpty(stateName))
+                                continue;
+
+                            // Verify PNG file exists in VFS before attempting to load RSI
+                            var pngPath = (targetPath / $"{stateName}.png").ToRootedPath();
+                            if (!_resource.ContentFileExists(pngPath))
+                            {
+                                _sawmill.Debug($"RSI PNG file not yet available in VFS: {pngPath}, waiting for network load");
+                                return;
+                            }
+                        }
+                    }
+                }
+                catch (Exception checkEx)
+                {
+                    _sawmill.Debug($"Error verifying RSI files before load: {checkEx.Message}, waiting for network load");
+                    return;
+                }
+
                 // Try to get the resource - this will load it if not cached
                 // We don't check for individual files, just try to load and see if it works
                 RSIResource? rsiResource = null;
                 try
                 {
                     // First try to get from cache
-                    if (!_resourceCache.TryGetResource<RSIResource>(targetPath, out rsiResource))
+                    bool fromCache = _resourceCache.TryGetResource<RSIResource>(targetPath, out rsiResource);
+                    
+                    if (fromCache && rsiResource != null)
                     {
-                        _sawmill.Debug($"RSI resource not in cache, attempting to load: {targetPath}");
+                        _sawmill.Debug($"RSI resource found in cache: {targetPath}");
+                        
+                        // Verify that cached resource is still valid by checking if the state exists
+                        // This is important after reconnection when files in VFS may have been cleared
+                        if (!rsiResource.RSI.TryGetState(requiredState, out _))
+                        {
+                            _sawmill.Debug($"Cached RSI resource is invalid (state '{requiredState}' not found), attempting to reload: {targetPath}");
+                            // Resource in cache is invalid, try to reload it
+                            fromCache = false;
+                            rsiResource = null;
+                        }
+                    }
+                    
+                    if (!fromCache)
+                    {
+                        _sawmill.Debug($"RSI resource not in cache or invalid, attempting to load: {targetPath}");
                         // Use useFallback: false to detect if resource actually loaded or fallback was used
                         // This prevents us from thinking the resource loaded when it actually failed
                         rsiResource = _resourceCache.GetResource<RSIResource>(targetPath, useFallback: false);
                         _sawmill.Debug($"Successfully loaded RSI resource: {targetPath}");
-                    }
-                    else
-                    {
-                        _sawmill.Debug($"RSI resource found in cache: {targetPath}");
                     }
                 }
                 catch (FileNotFoundException)
@@ -593,7 +683,7 @@ namespace Content.Client.Lobby
                     return;
                 }
 
-                // Verify that the resource actually loaded correctly by checking if the state exists
+                // Final verification that the resource actually loaded correctly by checking if the state exists
                 if (rsiResource == null || !rsiResource.RSI.TryGetState(requiredState, out _))
                 {
                     _sawmill.Debug($"RSI state '{requiredState}' not found in loaded resource: {targetPath}, waiting for complete resource");
@@ -639,9 +729,11 @@ namespace Content.Client.Lobby
             if (!_protoMan.TryIndex<LobbyArtPrototype>(lobbyArt, out var lobbyArtPrototype))
                 return;
 
+            // Lobby may be null during reconnection or before initialization
+            // This is normal, just return silently - the art will be set when Lobby is initialized
             if (Lobby == null)
             {
-                _sawmill.Error("Error in SetLobbyArt. Lobby is null");
+                _sawmill.Debug("SetLobbyArt called before Lobby initialization, skipping");
                 return;
             }
 
@@ -725,9 +817,11 @@ namespace Content.Client.Lobby
             if (!_protoMan.TryIndex<LobbyParallaxPrototype>(lobbyParallax, out var lobbyParallaxPrototype))
                 return;
 
+            // Lobby may be null during reconnection or before initialization
+            // This is normal, just return silently - the parallax will be set when Lobby is initialized
             if (Lobby == null)
             {
-                _sawmill.Error("Error in SetLobbyParallax. Lobby is null");
+                _sawmill.Debug("SetLobbyParallax called before Lobby initialization, skipping");
                 return;
             }
 
@@ -824,6 +918,14 @@ namespace Content.Client.Lobby
 
         private void OnNetworkResourceLoaded(string resourcePath)
         {
+            // Lobby may be null during reconnection or before initialization
+            // This is normal, just return silently - resources will be loaded when Lobby is initialized
+            if (Lobby == null)
+            {
+                _sawmill.Debug("OnNetworkResourceLoaded called before Lobby initialization, skipping");
+                return;
+            }
+
             // Only update the resource that matches the current background type
             var backgroundType = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
             if (backgroundType == "Random" && _gameTicker.LobbyType != null)

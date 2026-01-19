@@ -169,8 +169,8 @@
       Doubloon: 0
   - type: VocalizerRequiresPower
   - type: Vocalizer
-    minVocalizeInterval: 10s
-    maxVocalizeInterval: 45s
+    minVocalizeInterval: 20s
+    maxVocalizeInterval: 60s
     hideChat: true
   - type: DatasetVocalizer
     dataset: PirateUplinkChatter
@@ -180,7 +180,7 @@
     speechVerb: Robotic
     speechSounds: Vending
   - type: TTS
-    voice: Bandit
+    voice: StalkerSidorovich
   - type: BlockedTool
   - type: Tag
     tags:

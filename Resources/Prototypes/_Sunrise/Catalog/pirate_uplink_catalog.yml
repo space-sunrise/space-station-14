@@ -1631,7 +1631,7 @@
   icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: freedom }
   productEntity: FreedomImplanter
   cost:
-    Doubloon: 3
+    Doubloon: 8
   categories:
     - UplinkPirateImplants
 
@@ -1642,7 +1642,7 @@
   icon: { sprite: /Textures/Structures/Specific/anomaly.rsi, state: anom4 }
   productEntity: ScramImplanter
   cost:
-    Doubloon: 4
+    Doubloon: 12
   categories:
     - UplinkPirateImplants
 
@@ -1653,7 +1653,7 @@
   icon: { sprite: /Textures/Mobs/Species/Human/parts.rsi, state: full }
   productEntity: DnaScramblerImplanter
   cost:
-    Doubloon: 2
+    Doubloon: 3
   categories:
     - UplinkPirateImplants
 
@@ -1664,7 +1664,7 @@
   icon: { sprite: /Textures/Objects/Magic/magicactions.rsi, state: shield }
   productEntity: EmpImplanter
   cost:
-    Doubloon: 4
+    Doubloon: 6
   categories:
     - UplinkPirateImplants
 
@@ -1675,7 +1675,7 @@
   icon: { sprite: /Textures/Objects/Devices/encryption_keys.rsi, state: synd_label }
   productEntity: RadioImplanter
   cost:
-    Doubloon: 9
+    Doubloon: 25
   categories:
   - UplinkPirateImplants
 
@@ -1716,7 +1716,7 @@
   description: uplink-piratedeathrattle-implant-desc
   productEntity: BoxFreelanceRattleImplants
   cost:
-    Doubloon: 5
+    Doubloon: 4
   categories:
   - UplinkPirateImplants
 
@@ -1727,7 +1727,7 @@
   icon: { sprite: Objects/Weapons/Grenades/smoke.rsi, state: icon }
   productEntity: SmokeScreenImplanter
   cost:
-    Doubloon: 2
+    Doubloon: 5
   categories:
   - UplinkPirateImplants
 
@@ -1738,7 +1738,7 @@
   icon: { sprite: Clothing/Mask/gassyndicate.rsi, state: icon }
   productEntity: CreepyLaughImplanter
   cost:
-    Doubloon: 2
+    Doubloon: 1
   categories:
   - UplinkPirateImplants
 
@@ -1761,7 +1761,7 @@
   description: uplink-chameleon-projector-desc
   productEntity: ChameleonProjector
   cost:
-    Doubloon: 17
+    Doubloon: 15
   categories:
   - UplinkPirateDeception
 
@@ -1782,7 +1782,7 @@
   icon: { sprite: /Textures/_Sunrise/Objects/Tools/Decoys/pirate_decoy.rsi, state: afolded }
   productEntity: ClothingBackpackMessengerPirateDecoyKitFilled
   cost:
-    Doubloon: 4
+    Doubloon: 3
   categories:
   - UplinkPirateDeception
 
@@ -1792,7 +1792,7 @@
   description: uplink-exploding-syndicate-bomb-fake-desc
   productEntity: SyndicateBombFake
   cost:
-    Doubloon: 3
+    Doubloon: 4
   categories:
   - UplinkPirateDeception
 
@@ -1808,7 +1808,7 @@
     }
   productEntity: CyberEyeNightVisionBox
   cost:
-    Doubloon: 10
+    Doubloon: 8
   categories:
   - UplinkPirateCybernetics
 
@@ -1898,7 +1898,7 @@
     }
   productEntity: CyberArmMantisBox
   cost:
-    Doubloon: 22
+    Doubloon: 18
   categories:
   - UplinkPirateCybernetics
 
@@ -1913,7 +1913,7 @@
     }
   productEntity: CyberEyeThermalBox
   cost:
-    Doubloon: 27
+    Doubloon: 18
   categories:
   - UplinkPirateCybernetics
 
@@ -1923,7 +1923,7 @@
   productEntity: PlayerBorgDerelictGhostRole
   icon: { sprite: Mobs/Silicon/chassis.rsi, state: derelict }
   cost:
-    Doubloon: 17
+    Doubloon: 15
   categories:
   - UplinkPirateAllies
   conditions:
@@ -1939,7 +1939,7 @@
   productEntity: PlayerMedicalBorgDerelictGhostRole
   icon: { sprite: Mobs/Silicon/chassis.rsi, state: medical_derelict }
   cost:
-    Doubloon: 22
+    Doubloon: 20
   categories:
   - UplinkPirateAllies
   conditions:
@@ -1955,7 +1955,7 @@
   productEntity: PlayerMiningBorgDerelictGhostRole
   icon: { sprite: Mobs/Silicon/chassis.rsi, state: miner_derelict }
   cost:
-    Doubloon: 22
+    Doubloon: 20
   categories:
   - UplinkPirateAllies
   conditions:
@@ -1985,7 +1985,7 @@
   icon: { sprite: _Sunrise/Objects/Tools/Decoys/pirate_decoy.rsi, state: eballoon }
   productEntity: ReinforcementPirateScooner
   cost:
-    Doubloon: 37
+    Doubloon: 35
   categories:
   - UplinkPirateAllies
   restockTime: 1800
@@ -1995,7 +1995,7 @@
   productEntity: PlayerBorgSyndicateDerelictGhostRole
   icon: { sprite: Mobs/Silicon/chassis.rsi, state: synd_sec_derelict }
   cost:
-    Doubloon: 27
+    Doubloon: 25
   categories:
   - UplinkPirateAllies
   restockTime: 2700
@@ -2119,7 +2119,7 @@
   icon: { sprite: /Textures/_Sunrise/Clothing/Eyes/Glasses/synd_thermal.rsi, state: icon }
   productEntity: ClothingEyesGlassesThermalSec
   cost:
-    Doubloon: 15
+    Doubloon: 10
   categories:
   - UplinkPirateWearables
   restockTime: 3600
@@ -2129,7 +2129,7 @@
   icon: { sprite: /Textures/_RMC14/Objects/Clothing/Pouches/large_ammo_mag.rsi, state: icon }
   productEntity: PouchAmmo
   cost:
-    Doubloon: 3
+    Doubloon: 2
   categories:
   - UplinkPirateWearables
 
@@ -2138,7 +2138,7 @@
   icon: { sprite: /Textures/_RMC14/Objects/Clothing/Pouches/large_explosive.rsi, state: icon }
   productEntity: PouchExplosive
   cost:
-    Doubloon: 3
+    Doubloon: 2
   categories:
   - UplinkPirateWearables
 
@@ -2146,7 +2146,7 @@
   id: UplinkPirategEyepatchHudDiag
   productEntity: ClothingEyesEyepatchHudDiag
   cost:
-    Doubloon: 6
+    Doubloon: 4
   categories:
   - UplinkPirateWearables
 
@@ -2154,7 +2154,7 @@
   id: UplinkPirategEyepatchHudMedical
   productEntity: ClothingEyesEyepatchHudMedical
   cost:
-    Doubloon: 6
+    Doubloon: 4
   categories:
   - UplinkPirateWearables
 
@@ -2162,7 +2162,7 @@
   id: UplinkPirategEyepatchHudSec
   productEntity: ClothingEyesEyepatchHudSecurity
   cost:
-    Doubloon: 6
+    Doubloon: 4
   categories:
   - UplinkPirateWearables
 
@@ -2172,7 +2172,7 @@
   description: uplink-clothing-thieving-gloves-desc
   productEntity: ThievingGloves
   cost:
-    Doubloon: 21
+    Doubloon: 18
   categories:
   - UplinkPirateWearables
 
@@ -2182,7 +2182,7 @@
   description: uplink-clothing-hardsuit-chameleon-desc
   productEntity: ClothingOuterHardsuitChameleon
   cost:
-    Doubloon: 41
+    Doubloon: 38
   categories:
   - UplinkPirateWearables
   conditions:
@@ -2197,7 +2197,7 @@
   description: uplink-objects-power-syndie-powercell-desc
   productEntity: PowerCellSyndicate
   cost:
-    Doubloon: 24
+    Doubloon: 18
   categories:
   - UplinkPirateWearables
 

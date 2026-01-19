@@ -196,8 +196,8 @@
     maxCharge: 1500
     startingCharge: 1500
   - type: BatterySelfRecharger
-    autoRechargeRate: 12
-    autoRechargePauseTime: 30
+    autoRechargeRate: 3
+    autoRechargePauseTime: 10
   - type: Tag
     tags:
     - HighRiskItem
@@ -230,9 +230,6 @@
     - SuitStorage
   - type: Gun
     fireRate: 0.5
-  - type: BatterySelfRecharger
-    autoRechargeRate: 2
-    autoRechargePauseTime: 60
   - type: BatteryAmmoProvider
     proto: EmpPulse
     fireCost: 125
@@ -266,10 +263,7 @@
     shape:
     - 0, 0, 3, 1
   - type: Gun
-    fireRate: 0.6
-  - type: BatterySelfRecharger
-    autoRechargeRate: 2
-    autoRechargePauseTime: 60
+    fireRate: 0.5
   - type: BatteryAmmoProvider
     proto: EmpPulse
     fireCost: 250

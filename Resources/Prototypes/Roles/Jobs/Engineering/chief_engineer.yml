@@ -31,7 +31,7 @@
   - Cryogenics
   special:
   - !type:AddImplantSpecial
-    implants: [ TrackingImplant, DeathRattleImplantBlueShield ]
+    implants: [ DeathRattleImplantBlueShield ] # Sunrise-Edit
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff

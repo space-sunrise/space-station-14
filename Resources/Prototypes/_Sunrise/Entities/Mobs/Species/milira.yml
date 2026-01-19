@@ -67,6 +67,10 @@
   - type: Carriable
   - type: Tag
     tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
     - Milira
 
 - type: entity

@@ -331,7 +331,7 @@
     soundFailToActivate:
       path: /Audio/Machines/button.ogg
   - type: FireProtection
-    reduction: 0.9
+    reduction: 0.3
   - type: Armor
     modifiers:
       coefficients:

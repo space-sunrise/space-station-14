@@ -59,7 +59,7 @@
   - Mining  # Sunrise-edit
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant, DeathRattleImplantBlueShield ]
+    implants: [ MindShieldImplant, DeathRattleImplantBlueShield ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff

@@ -1,4 +1,4 @@
-{
+﻿{
     "version": 1,
     "license": "CC-BY-SA-3.0",
     "copyright": "Made by JustKekc & moroz_3",
@@ -7,10 +7,89 @@
         "y": 32
     },
     "states": [
-        { "name": "stripes_body", "directions": 4 },
-        { "name": "skeleton_body", "directions": 4 },
-        { "name": "patch", "directions": 4 },
-        { "name": "blots_body", "directions": 4 },
-        { "name": "points", "directions": 4 }
+        {
+            "name": "stripes_body",
+            "directions": 4
+        },
+        {
+            "name": "skeleton_body",
+            "directions": 4
+        },
+        {
+            "name": "patch",
+            "directions": 4
+        },
+        {
+            "name": "blots_body",
+            "directions": 4
+        },
+        {
+            "name": "points",
+            "directions": 4
+        },
+        {
+            "name": "stripes_l_arm",
+            "directions": 4
+        },
+        {
+            "name": "stripes_r_arm",
+            "directions": 4
+        },
+        {
+            "name": "stripes_l_leg",
+            "directions": 4
+        },
+        {
+            "name": "stripes_r_leg",
+            "directions": 4
+        },
+        {
+            "name": "blots_l_arm",
+            "directions": 4
+        },
+        {
+            "name": "blots_r_arm",
+            "directions": 4
+        },
+        {
+            "name": "blots_l_leg",
+            "directions": 4
+        },
+        {
+            "name": "blots_r_leg",
+            "directions": 4
+        },
+        {
+            "name": "patch_l_arm",
+            "directions": 4
+        },
+        {
+            "name": "patch_r_arm",
+            "directions": 4
+        },
+        {
+            "name": "patch_l_leg",
+            "directions": 4
+        },
+        {
+            "name": "patch_r_leg",
+            "directions": 4
+        },
+        {
+            "name": "skeleton_l_arm",
+            "directions": 4
+        },
+        {
+            "name": "skeleton_r_arm",
+            "directions": 4
+        },
+        {
+            "name": "skeleton_l_leg",
+            "directions": 4
+        },
+        {
+            "name": "skeleton_r_leg",
+            "directions": 4
+        }
     ]
 }

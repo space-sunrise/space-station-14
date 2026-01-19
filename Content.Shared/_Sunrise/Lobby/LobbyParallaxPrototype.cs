@@ -1,13 +1,23 @@
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 
 namespace Content.Shared._Sunrise.Lobby;
 
-[Prototype("lobbyParallax")]
-public sealed partial class LobbyParallaxPrototype : IPrototype
+[Prototype]
+public sealed partial class LobbyParallaxPrototype : IPrototype, IInheritingPrototype
 {
-    [IdDataField]
-    public string ID { get; set; } = default!;
+    /// <inheritdoc />
+    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<LobbyParallaxPrototype>))]
+    public string[]? Parents { get; private set; }
 
-    [DataField("parallax", required: true)]
+    /// <inheritdoc />
+    [NeverPushInheritance, AbstractDataField]
+    public bool Abstract { get; private set; }
+
+    /// <inheritdoc />
+    [IdDataField]
+    public string ID { get; private set; } = default!;
+
+    [DataField(required: true)]
     public string Parallax = default!;
 }
