@@ -38,6 +38,31 @@
     - Paper
 
 - type: entity
+  parent: [BaseItem, DiskSounds] # Sunrise
+  id: TechnologyDiskBlueprint
+  name: technology disk
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    layers:
+    - state: datadisk_base
+      map: ["enum.DamageStateVisualLayers.Base"]
+    - state: datadisk_label
+  - type: Item
+    size: Tiny
+  - type: RandomSprite
+    available:
+    - enum.DamageStateVisualLayers.Base:
+        datadisk_base: Sixteen
+  - type: TechnologyDisk
+  - type: StaticPrice
+    price: 100
+  - type: Tag # defaults to autolathe-insertable
+    tags:
+    - BlueprintAutolathe
+
+- type: entity
   parent: BaseBlueprint
   id: BaseBlueprintSecurity
   abstract: true
@@ -101,3 +126,13 @@
   - type: Blueprint
     providedRecipes:
     - MagazineAsh12Flare
+
+# region medical
+- type: entity
+  parent: TechnologyDiskBlueprint
+  id: BlueprintImplanterExtractor
+  description: A blueprint with a schematic of an implant extractor. It can be inserted into an autolathe.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - ImplanterExtractor

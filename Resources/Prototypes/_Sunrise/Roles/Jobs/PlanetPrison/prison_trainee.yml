@@ -24,7 +24,7 @@
 - type: startingGear
   id: PrisonTraineeGear
   equipment:
-    jumpsuit: UniformPrisonTraineeMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonTrainee
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
@@ -39,7 +39,7 @@
   id: PrisonTraineeChameleonOutfit
   job: PrisonTrainee
   equipment:
-    jumpsuit: UniformPrisonTraineeMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonTrainee
     head: ClothingHeadHatBeretPrisonTraineeMetus
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses

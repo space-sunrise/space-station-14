@@ -1,0 +1,55 @@
+- type: entity
+  parent: ClothingUniformJumpskirtPrisonRegularBase
+  id: ClothingUniformJumpskirtPrisonScientist
+  name: prison scientist jumpskirt
+  description: Research-grade material with protective coatings, marked by the faint chemical signatures of experiments conducted under constant surveillance.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#9d1edd"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#9d1edd"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#9d1edd"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: overlay-equipped
+        color: "#9d1edd"
+
+- type: entity
+  parent: ClothingUniformJumpskirtPrisonVeteranBase
+  id: ClothingUniformJumpskirtPrisonScientistVeteran
+  name: veteran prison scientist jumpskirt
+  description: Prestigious research skirt uniform for distinguished scientists whose groundbreaking work has advanced prison research, bearing the subtle scars of years spent pushing the boundaries of knowledge in confinement.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#9d1edd"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#9d1edd"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#9d1edd"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: overlay-equipped
+        color: "#9d1edd"

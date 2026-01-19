@@ -76,7 +76,7 @@
   - MedkitBrute
   - MedkitAdvanced
   - MedkitRadiation
-  - MedkitCombat
+  #- MedkitCombat # Sunrise-Edit
 
 - type: latheRecipePack
   id: MedicalBoardsStatic

@@ -48,7 +48,6 @@
 - type: startingGear
   id: PrisonWorkerGear
   equipment:
-    jumpsuit: UniformPrisonWorkerMetus
     id: PrisonWorkerPDA
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
@@ -64,7 +63,7 @@
   id: PrisonWorkerChameleonOutfit
   job: PrisonWorker
   equipment:
-    jumpsuit: UniformPrisonWorkerMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonWorker
     head: ClothingHeadCapPrisonWorkerMetus
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses

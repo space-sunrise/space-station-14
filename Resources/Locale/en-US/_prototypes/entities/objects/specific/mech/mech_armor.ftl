@@ -1,0 +1,14 @@
+ent-MechArmorThin = mech armor (thin)
+    .desc = Minimal plating that slightly reduces damage.
+ent-MechArmorLight = mech armor (light)
+    .desc = Light mech armor: modestly reduces physical and heat damage.
+ent-MechArmorMediumNT = mech armor (medium NT)
+    .desc = Medium Nanotrasen mech armor: solid protection against small arms fire, minor heat resistance.
+ent-MechArmorHeavyNT = mech armor (heavy NT)
+    .desc = Heavy Nanotrasen mech armor: strong physical resistance, middling heat resistance.
+ent-MechArmorMediumSyndi = mech armor (medium syndi)
+    .desc = Medium syndicate armor: decent protection, with improved physical resistance.
+ent-MechArmorHeavySyndi = mech armor (heavy syndi)
+    .desc = Heavy syndicate armor: strong against physical damage, modest against heat.
+ent-BorgArmorSilicon = borg armor plating
+    .desc = Standard borg armor plating.

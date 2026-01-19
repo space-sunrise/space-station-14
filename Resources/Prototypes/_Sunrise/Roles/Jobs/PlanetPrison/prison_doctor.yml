@@ -35,7 +35,6 @@
 - type: startingGear
   id: PrisonDoctorGear
   equipment:
-    jumpsuit: UniformPrisonDoctorMetus
     id: PrisonDoctorPDA
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
@@ -51,7 +50,7 @@
   id: PrisonDoctorChameleonOutfit
   job: PrisonDoctor
   equipment:
-    jumpsuit: UniformPrisonDoctorMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonDoctor
     head: ClothingHeadHatBeretPrisonDoctorMetus
     ears: ClothingHeadsetMedical
     eyes: ClothingEyesGlassesSunglasses

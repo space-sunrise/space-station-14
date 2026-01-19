@@ -125,7 +125,7 @@
   discountDownTo:
     Telecrystal: 3
   cost:
-    Telecrystal: 6
+    Telecrystal: 5 # Sunrise-Edit
   categories:
     - UplinkWeaponry
 
@@ -694,7 +694,7 @@
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: icon }
   productEntity: SpeedLoaderMagnumAP
   cost:
-    Telecrystal: 3
+    Telecrystal: 2 # Sunrise-Edit
   categories:
   - UplinkAmmo
 

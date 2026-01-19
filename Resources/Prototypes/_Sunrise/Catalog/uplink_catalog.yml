@@ -11,9 +11,9 @@
 
 - type: listing
   id: UplinkClothingEyesGlassesThermal
-  name: uplink-syndie-thermal-name
+  name: uplink-thermal-name
   description: uplink-thermal-desc
-  productEntity: ClothingEyesGlassesThermal
+  productEntity: ClothingEyesGlassesThermalChameleon
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 4
@@ -21,12 +21,6 @@
     Telecrystal: 5
   categories:
   - UplinkWearables
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
 
 - type: listing
   id: UplinkClothingEyesGlassesThermalSyndie
@@ -36,47 +30,35 @@
   productEntity: ClothingEyesGlassesThermalSyndieBiocode
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 6
+    Telecrystal: 3
   cost:
-    Telecrystal: 8
+    Telecrystal: 5
   categories:
   - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
 
 - type: listing
   id: UplinkAmmoPouch
   icon: { sprite: _RMC14/Objects/Clothing/Pouches/large_ammo_mag.rsi, state: icon }
   productEntity: PouchAmmo
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 1
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
   - UplinkWearables
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
 
 - type: listing
   id: UplinkPouchExplosive
   icon: { sprite: _RMC14/Objects/Clothing/Pouches/large_explosive.rsi, state: icon }
   productEntity: PouchExplosive
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 1
   cost:
-    Telecrystal: 3
+    Telecrystal: 1
   categories:
   - UplinkWearables
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
 
 - type: listing
   id: UplinkClothingEyesHudSyndicateMech
@@ -84,11 +66,8 @@
   description: uplink-syndie-diagnostic-hud-desc
   icon: { sprite: _Sunrise/Clothing/Eyes/Hud/syndmech.rsi, state: icon }
   productEntity: ClothingEyesHudSyndicateMech
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 1
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
   - UplinkWearables
   conditions:
@@ -133,7 +112,7 @@
   discountDownTo:
     Telecrystal: 4
   cost:
-    Telecrystal: 6
+    Telecrystal: 5
   categories:
   - UplinkWearables
 
@@ -143,7 +122,7 @@
   description: uplink-objects-power-syndie-powercell-desc
   productEntity: PowerCellSyndicate
   cost:
-    Telecrystal: 5
+    Telecrystal: 4
   categories:
   - UplinkWearables
 
@@ -166,7 +145,7 @@
   description: uplink-pistol-magnum-magazine-ap-desc
   productEntity: MagazineMagnumAP
   cost:
-    Telecrystal: 3
+    Telecrystal: 2 # Бронебойные больше не игнорят всю броню
   categories:
   - UplinkAmmo
 

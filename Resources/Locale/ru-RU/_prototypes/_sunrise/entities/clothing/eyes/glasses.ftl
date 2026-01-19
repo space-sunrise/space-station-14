@@ -23,3 +23,5 @@ ent-ClothingEyesStuttering = неловкие очки
 ent-ClothingEyesGlassesSniperThermalSyndie = оптические тепловизионные снайперские очки
     .suffix = синдикат
     .desc = Тепловизоры в форме качественных очков для уничтожения мерзавцев и важных шишек из NanoTrasen, версия для снайперов с ядерной батареей.
+ent-ClothingEyesGlassesThermalChameleon = хамелеонный термальный сканер
+    .desc = Термальные очки с модулем хамелеона; меняют внешний вид и дают термовизор.

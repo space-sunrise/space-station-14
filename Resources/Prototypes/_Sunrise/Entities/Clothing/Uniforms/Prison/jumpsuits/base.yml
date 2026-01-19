@@ -1,0 +1,24 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPrisonRegularBase
+  name: prison regular uniform
+  description: A standard uniform worn by prison staff in their daily duties.
+  suffix: Prison
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Prison/Jumpsuit/regular.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Prison/Jumpsuit/regular.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPrisonVeteranBase
+  name: prison veteran uniform
+  description: A distinguished uniform worn by experienced prison staff who have proven their dedication through years of service.
+  suffix: Prison
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Prison/Jumpsuit/veteran.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Prison/Jumpsuit/veteran.rsi
+

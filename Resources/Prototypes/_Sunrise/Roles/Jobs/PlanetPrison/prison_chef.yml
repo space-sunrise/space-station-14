@@ -34,7 +34,6 @@
 - type: startingGear
   id: PrisonChefGear
   equipment:
-    jumpsuit: UniformPrisonChefMetus
     id: PrisonChefPDA
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
@@ -51,7 +50,7 @@
   id: PrisonChefChameleonOutfit
   job: PrisonChef
   equipment:
-    jumpsuit: UniformPrisonChefMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonChef
     head: ClothingHeadHatChefBlackToque
     ears: ClothingHeadsetService
     eyes: ClothingEyesGlassesSunglasses

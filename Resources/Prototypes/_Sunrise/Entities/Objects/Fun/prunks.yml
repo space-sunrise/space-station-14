@@ -220,9 +220,6 @@
       - TrashOnSolutionEmpty
   - type: StorageFill
     contents:
-      - id: Screwdriver
-      - id: Crowbar
-      - id: Wirecutter
       - id: DrinkSpaceLube
       - id: CrazyGlue
 

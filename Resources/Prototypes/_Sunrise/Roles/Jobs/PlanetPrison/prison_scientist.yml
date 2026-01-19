@@ -31,7 +31,6 @@
 - type: startingGear
   id: PrisonScientistGear
   equipment:
-    jumpsuit: UniformPrisonScientistMetus
     id: PrisonScientistPDA
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
@@ -47,7 +46,7 @@
   id: PrisonScientistChameleonOutfit
   job: PrisonScientist
   equipment:
-    jumpsuit: UniformPrisonScientistMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonScientistVeteran
     head: ClothingHeadHatCapPrisonScientistMetus
     ears: ClothingHeadsetScience
     eyes: ClothingEyesGlassesSunglasses

@@ -388,6 +388,10 @@
   - type: Loadout
     prototypes: [ PirateScoonerEVAGear ]
     roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
 
 - type: entity
   parent: [MobHuman, PirateScoonerReinforcementBase]
@@ -398,6 +402,10 @@
   - type: Loadout
     prototypes: [ PirateScoonerOldEVAGear ]
     roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
 
 - type: entity
   parent: [MobReptilian, PirateScoonerReinforcementBase]
@@ -408,6 +416,10 @@
   - type: Loadout
     prototypes: [ PirateScoonerEVAGear ]
     roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
 
 - type: entity
   parent: [MobReptilian, PirateScoonerReinforcementBase]
@@ -418,6 +430,10 @@
   - type: Loadout
     prototypes: [ PirateScoonerOldEVAGear ]
     roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
 
 - type: entity
   parent: [MobDwarf, PirateScoonerReinforcementBase]
@@ -428,6 +444,10 @@
   - type: Loadout
     prototypes: [ PirateScoonerEVAGear ]
     roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
 
 - type: entity
   parent: [MobDwarf, PirateScoonerReinforcementBase]
@@ -438,6 +458,10 @@
   - type: Loadout
     prototypes: [ PirateScoonerOldEVAGear ]
     roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
 
 - type: entity
   parent: [MobVox, PirateScoonerReinforcementBase]
@@ -448,6 +472,10 @@
   - type: Loadout
     prototypes: [ PirateScoonerEVAGear ]
     roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
 
 - type: entity
   parent: [MobVox, PirateScoonerReinforcementBase]
@@ -458,6 +486,10 @@
   - type: Loadout
     prototypes: [ PirateScoonerOldEVAGear ]
     roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
 
 - type: entity
   parent: [MobVulpkanin, PirateScoonerReinforcementBase]
@@ -468,6 +500,10 @@
   - type: Loadout
     prototypes: [ PirateScoonerEVAGear ]
     roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
 
 - type: entity
   parent: [MobVulpkanin, PirateScoonerReinforcementBase]
@@ -478,3 +514,7 @@
   - type: Loadout
     prototypes: [ PirateScoonerOldEVAGear ]
     roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate

@@ -84,18 +84,18 @@
           Quantity: 1
   # Sunrise-start
   - type: Healing
-    delay: 0.7
+    delay: 1
     damageContainers:
     - Synth
     - Silicon
     - Mech
     damage:
       types:
-        Heat: -5
-        Shock: -5
-        Caustic: -5
+        Heat: -6
+        Shock: -6
+        Caustic: -6
         Mangleness: -1
-  # Sunrise-end
+    # #Sunrise-End
 
 - type: entity
   parent: CableHVStack
@@ -154,7 +154,7 @@
           Quantity: 2
   # Sunrise-start
   - type: Healing
-    delay: 0.6
+    delay: 0.75
     damageContainers:
     - Synth
     - Silicon
@@ -165,7 +165,7 @@
         Shock: -6
         Caustic: -6
         Mangleness: -1
-  # Sunrise-end
+    # #Sunrise-End
 
 - type: entity
   parent: CableMVStack
@@ -227,12 +227,14 @@
     - Synth #Sunrise-edit
     - Silicon
     - Mech #Sunrise-edit
+    # #Sunrise-Start
     damage:
       types:
         Heat: -6
         Shock: -6
         Caustic: -6
-        Mangleness: -1 #Sunrise-edit
+        Mangleness: -1
+    # #Sunrise-End
 
 - type: entity
   parent: CableApcStack
