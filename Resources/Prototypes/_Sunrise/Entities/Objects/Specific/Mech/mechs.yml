@@ -19,6 +19,9 @@
   - type: CanMoveInAir
   - type: Reactive
   - type: MobMover
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
   - type: Mech
     entryDelay: 1
   - type: MechAir
@@ -90,6 +93,7 @@
       300: Critical
     showOverlays: false
     allowRevives: true
+  - type: ZombieImmune
   - type: HealthExaminable
     examinableTypes:
       - Blunt

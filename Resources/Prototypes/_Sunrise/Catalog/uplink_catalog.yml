@@ -421,13 +421,11 @@
     Telecrystal: 1
   categories:
   - UplinkAmmo
-  #Sunrise-start
   conditions:
   - !type:StoreWhitelistCondition
     blacklist:
       tags:
       - AssaultOpsUplink
-  #Sunrise-end
 
 - type: listing
   id: UplinkAmmoBundleSuper
@@ -460,13 +458,11 @@
     Telecrystal: 5
   categories:
   - UplinkExplosives
-  #Sunrise-start
   conditions:
   - !type:StoreWhitelistCondition
     blacklist:
       tags:
       - AssaultOpsUplink
-  #Sunrise-end
 
 # For the China-Lake
 - type: listing
@@ -588,6 +584,50 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
+
+- type: listing
+  id: UplinkShotgunBreachingMagazine
+  description: uplink-breaching-magazine-desc
+  icon:
+    {
+      sprite: /Textures/_Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Shotgun/m12.rsi,
+      state: breach,
+    }
+  productEntity: MagazineShotgunBreach
+  cost:
+    Telecrystal: 1
+  categories:
+    - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineShotgunBeanbag
+  description: uplink-magazine-bulldog-slug-desc
+  icon: { sprite: /Textures/_Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Shotgun/m12.rsi, state: beanbag }
+  productEntity: MagazineShotgunBeanbag
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineShotgunIncendiary
+  description: uplink-magazine-bulldog-incendiary-desc
+  icon: { sprite: /Textures/_Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Shotgun/m12.rsi, state: base }
+  productEntity: MagazineShotgunIncendiary
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineShotgunUranium
+  description: uplink-magazine-bulldog-uranium-desc
+  icon: { sprite: /Textures/_Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Shotgun/m12.rsi, state: uranium }
+  productEntity: MagazineShotgunUranium
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkAmmo
 
 - type: listing
   id: UplinkBoomboxBundle

@@ -159,6 +159,7 @@
       250: Critical
     showOverlays: false
     allowRevives: true
+  - type: ZombieImmune
   - type: HealthExaminable
     examinableTypes:
       - Blunt
