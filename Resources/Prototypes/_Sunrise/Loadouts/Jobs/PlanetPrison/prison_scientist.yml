@@ -26,3 +26,41 @@
       time: 54000 # 15 часов
   equipment:
     head: ClothingHeadHatCapPrisonScientistMetus
+
+# Рабочая униформа
+
+- type: loadout
+  id: PrisonScientist-ClothingUniformJumpsuitPrisonScientist
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonScientist
+
+- type: loadout
+  id: PrisonScientist-ClothingUniformJumpskirtPrisonScientist
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonScientist
+
+- type: loadout
+  id: PrisonScientist-ClothingUniformJumpsuitPrisonScientistVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonScientist
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonScientistVeteran
+
+- type: loadout
+  id: PrisonScientist-ClothingUniformJumpskirtPrisonScientistVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonScientist
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonScientistVeteran
