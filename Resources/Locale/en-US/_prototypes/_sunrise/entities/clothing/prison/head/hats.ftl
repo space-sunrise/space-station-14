@@ -8,8 +8,8 @@ ent-ClothingHeadHatCapPrisonScientist = prison scientist cap
     .desc = Covered in reagent stains and a strange smell, on the faded stripe where an access mark once was, there are now only traces of those who crossed the boundaries of science.
 ent-ClothingHeadHatCapPrisonWorker = prison worker cap
     .desc = Fabric darkened by ore dust, burn marks along the edge, as if worn by those who stood closest to what should not breathe.
-ent-ClothingHeadHatCapPrisonTrainee = prison trainee hat
-    .desc = Stylish orange prison trainee hat.
+ent-ClothingHeadHatCapPrisonTrainee = prison trainee cap
+    .desc = Stylish orange prison trainee cap.
 
 # Prison berets
 ent-ClothingHeadHatBeretPrisonDoctor = prison doctor beret
