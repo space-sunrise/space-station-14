@@ -48,7 +48,7 @@
   job: PrisonEngineer
   equipment:
     jumpsuit: ClothingUniformJumpsuitPrisonEngineer
-    head: ClothingHeadHatCapPrisonWorkerMetus
+    head: ClothingHeadHatCapPrisonEngineer
     ears: ClothingHeadsetJEngineering
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat

@@ -47,7 +47,7 @@
   job: PrisonScientist
   equipment:
     jumpsuit: ClothingUniformJumpsuitPrisonScientistVeteran
-    head: ClothingHeadHatCapPrisonScientistMetus
+    head: ClothingHeadHatCapPrisonScientist
     ears: ClothingHeadsetScience
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat

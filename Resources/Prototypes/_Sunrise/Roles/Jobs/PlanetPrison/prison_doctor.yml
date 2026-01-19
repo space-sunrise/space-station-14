@@ -51,7 +51,7 @@
   job: PrisonDoctor
   equipment:
     jumpsuit: ClothingUniformJumpsuitPrisonDoctor
-    head: ClothingHeadHatBeretPrisonDoctorMetus
+    head: ClothingHeadHatBeretPrisonDoctor
     ears: ClothingHeadsetMedical
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat

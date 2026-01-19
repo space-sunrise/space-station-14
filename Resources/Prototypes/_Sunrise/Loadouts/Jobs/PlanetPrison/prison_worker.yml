@@ -1,12 +1,12 @@
 # Head
 
 - type: loadout
-  id: PrisonWorker-ClothingHeadCapPrisonWorkerMetus
+  id: PrisonWorkerCap
   equipment:
-    head: ClothingHeadCapPrisonWorkerMetus
+    head: ClothingHeadCapPrisonWorker
 
 - type: loadout
-  id: PrisonWorker-ClothingHeadHatBeretPrisonWorkerMetus
+  id: PrisonWorkerBeret
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -14,10 +14,10 @@
       role: JobPrisonWorker
       time: 25200 # 7 часов
   equipment:
-    head: ClothingHeadHatBeretPrisonWorkerMetus
+    head: ClothingHeadHatBeretPrisonWorker
 
 - type: loadout
-  id: PrisonWorker-ClothingHeadHatCapPrisonWorkerMetus
+  id: PrisonWorkerHat
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -25,7 +25,7 @@
       role: JobPrisonWorker
       time: 54000 # 15 часов
   equipment:
-    head: ClothingHeadHatCapPrisonWorkerMetus
+    head: ClothingHeadHatCapPrisonWorker
 
 # Рабочая униформа
 

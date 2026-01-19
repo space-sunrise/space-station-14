@@ -156,9 +156,9 @@
 
 - type: entity
   parent: ClothingHeadPrisonGuard
-  id: ClothingHeadHatCapPrisonDoctorMetus
+  id: ClothingHeadHatCapPrisonDoctor
   name: prison doctor hat
-  suffix: Metus
+  suffix: Prison
   description: Stylish blue prison doctor hat.
   components:
   - type: Sprite
@@ -175,9 +175,9 @@
 
 - type: entity
   parent: ClothingHeadPrisonGuard
-  id: ClothingHeadHatCapPrisonChefMetus
+  id: ClothingHeadHatCapPrisonChef
   name: prison chef hat
-  suffix: Metus
+  suffix: Prison
   description: Stylish white prison chef hat.
   components:
   - type: Sprite
@@ -194,9 +194,9 @@
 
 - type: entity
   parent: ClothingHeadPrisonGuard
-  id: ClothingHeadHatCapPrisonEngineerMetus
+  id: ClothingHeadHatCapPrisonEngineer
   name: prison engineer hat
-  suffix: Metus
+  suffix: Prison
   description: Stylish yellow prison engineer hat.
   components:
   - type: Sprite
@@ -213,9 +213,9 @@
 
 - type: entity
   parent: ClothingHeadPrisonGuard
-  id: ClothingHeadHatCapPrisonScientistMetus
+  id: ClothingHeadHatCapPrisonScientist
   name: prison scientist hat
-  suffix: Metus
+  suffix: Prison
   description: Stylish purple prison scientist hat.
   components:
   - type: Sprite
@@ -232,9 +232,9 @@
 
 - type: entity
   parent: ClothingHeadPrisonGuard
-  id: ClothingHeadHatCapPrisonWorkerMetus
+  id: ClothingHeadHatCapPrisonWorker
   name: prison worker hat
-  suffix: Metus
+  suffix: Prison
   description: Stylish red prison worker hat.
   components:
   - type: Sprite
@@ -262,9 +262,9 @@
 
 - type: entity
   parent: ClothingHeadHatBeretPrisonGuard
-  id: ClothingHeadHatBeretPrisonDoctorMetus
+  id: ClothingHeadHatBeretPrisonDoctor
   name: prison doctor beret
-  suffix: Metus
+  suffix: Prison
   components:
   - type: Sprite
     layers:
@@ -290,9 +290,9 @@
 
 - type: entity
   parent: ClothingHeadHatBeretPrisonGuard
-  id: ClothingHeadHatBeretPrisonChefMetus
+  id: ClothingHeadHatBeretPrisonChef
   name: prison chef beret
-  suffix: Metus
+  suffix: Prison
   components:
   - type: Sprite
     layers:
@@ -318,9 +318,9 @@
 
 - type: entity
   parent: ClothingHeadHatBeretPrisonGuard
-  id: ClothingHeadHatBeretPrisonEngineerMetus
+  id: ClothingHeadHatBeretPrisonEngineer
   name: prison engineer beret
-  suffix: Metus
+  suffix: Prison
   components:
   - type: Sprite
     layers:
@@ -346,9 +346,9 @@
 
 - type: entity
   parent: ClothingHeadHatBeretPrisonGuard
-  id: ClothingHeadHatBeretPrisonScientistMetus
+  id: ClothingHeadHatBeretPrisonScientist
   name: prison scientist beret
-  suffix: Metus
+  suffix: Prison
   components:
   - type: Sprite
     layers:
@@ -374,9 +374,9 @@
 
 - type: entity
   parent: ClothingHeadHatBeretPrisonGuard
-  id: ClothingHeadHatBeretPrisonWorkerMetus
+  id: ClothingHeadHatBeretPrisonWorker
   name: prison worker beret
-  suffix: Metus
+  suffix: Prison
   components:
   - type: Sprite
     layers:
@@ -402,9 +402,9 @@
 
 - type: entity
   parent: ClothingHeadHatBeretPrisonGuard
-  id: ClothingHeadHatBeretPrisonTraineeMetus
+  id: ClothingHeadHatBeretPrisonTrainee
   name: prison trainee beret
-  suffix: Metus
+  suffix: Prison
   components:
   - type: Sprite
     layers:
@@ -430,9 +430,9 @@
 
 - type: entity
   parent: ClothingHeadPrisonGuard
-  id: ClothingHeadHatCapPrisonTraineeMetus
+  id: ClothingHeadHatCapPrisonTrainee
   name: prison trainee hat
-  suffix: Metus
+  suffix: Prison
   description: Stylish orange prison trainee hat.
   components:
   - type: Sprite
@@ -465,10 +465,10 @@
 
 - type: entity
   parent: ClothingHeadCapPrisonGuard
-  id: ClothingHeadCapPrisonDoctorMetus
+  id: ClothingHeadCapPrisonDoctor
   name: prison doctor cap
   description: Heavy, clean, its wearer is used to deciding who lives and who dies.
-  suffix: Metus
+  suffix: Prison
   components:
   - type: Sprite
     layers:
@@ -494,10 +494,10 @@
 
 - type: entity
   parent: ClothingHeadCapPrisonGuard
-  id: ClothingHeadCapPrisonChefMetus
+  id: ClothingHeadCapPrisonChef
   name: prison chef cap
   description: Old but well-kept, belongs to those who survived feeding monsters and commanding even over pots.
-  suffix: Metus
+  suffix: Prison
   components:
   - type: Sprite
     layers:
@@ -523,10 +523,10 @@
 
 - type: entity
   parent: ClothingHeadCapPrisonGuard
-  id: ClothingHeadCapPrisonEngineerMetus
+  id: ClothingHeadCapPrisonEngineer
   name: prison engineer cap
   description: Tough and precise, fits those who, for the 220th time, keep the power system running while others go insane.
-  suffix: Metus
+  suffix: Prison
   components:
   - type: Sprite
     layers:
@@ -552,10 +552,10 @@
 
 - type: entity
   parent: ClothingHeadCapPrisonGuard
-  id: ClothingHeadCapPrisonScientistMetus
+  id: ClothingHeadCapPrisonScientist
   name: prison scientist cap
   description: Covered in reagent stains and a strange smell, on the faded stripe where an access mark once was, there are now only traces of those who crossed the boundaries of science.
-  suffix: Metus
+  suffix: Prison
   components:
   - type: Sprite
     layers:
@@ -581,10 +581,10 @@
 
 - type: entity
   parent: ClothingHeadCapPrisonGuard
-  id: ClothingHeadCapPrisonWorkerMetus
+  id: ClothingHeadCapPrisonWorker
   name: prison worker cap
   description: Fabric darkened by ore dust, burn marks along the edge, as if worn by those who stood closest to what should not breathe.
-  suffix: Metus
+  suffix: Prison
   components:
   - type: Sprite
     layers:
@@ -610,10 +610,10 @@
 
 - type: entity
   parent: ClothingHeadCapPrisonGuard
-  id: ClothingHeadCapPrisonTraineeMetus
+  id: ClothingHeadCapPrisonTrainee
   name: prison trainee cap
   description: Simple and clean, but new, a symbol for those who are just starting their path in the prison system.
-  suffix: Metus
+  suffix: Prison
   components:
   - type: Sprite
     layers:

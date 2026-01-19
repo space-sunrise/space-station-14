@@ -64,7 +64,7 @@
   job: PrisonWorker
   equipment:
     jumpsuit: ClothingUniformJumpsuitPrisonWorker
-    head: ClothingHeadCapPrisonWorkerMetus
+    head: ClothingHeadCapPrisonWorker
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
