@@ -38,6 +38,7 @@
     - BoxLethalshot
     - BoxShotgunSlug
     - BoxShellTranquilizer
+    - BoxShotgunFlare
     #####################MAGAZINE#######################
     # LMG
     - MagazineLightRifleBeltBoxSP
