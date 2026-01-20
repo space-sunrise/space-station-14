@@ -2,6 +2,7 @@ language: ru-RU
 
 reviews:
   auto_apply_labels: true
+  allow_label_editing: true
   labeling_instructions:
     - label: "🧊 Нет C# 🧊"
       instructions: "Применить, когда PR не содержит изменений в .cs файлах"
