@@ -51,7 +51,7 @@
     price: 3000
 
 - type: entity
-  name: DragonSlayer
+  name: dragon slayer
   parent:  Claymore
   id: GutsSword
   description: What determines the fate of mankind in this world? Some unseen being? Or a law, like the Hand of God floating above the world? At the very least, what's true is that man cannot even control his own will
