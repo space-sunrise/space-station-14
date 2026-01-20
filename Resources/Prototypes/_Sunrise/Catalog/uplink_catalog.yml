@@ -600,6 +600,19 @@
     - UplinkAmmo
 
 - type: listing
+  id: UplinkMagazineShotgunFlechette
+  description: uplink-magazine-shotgun-flechette-desc
+  icon: { sprite: /Textures/_Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Shotgun/m12.rsi, state: flechette }
+  productEntity: MagazineShotgunFlechette
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkAmmo
+
+- type: listing
   id: UplinkMagazineShotgunBeanbag
   description: uplink-magazine-bulldog-slug-desc
   icon: { sprite: /Textures/_Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Shotgun/m12.rsi, state: beanbag }
@@ -614,6 +627,9 @@
   description: uplink-magazine-bulldog-incendiary-desc
   icon: { sprite: /Textures/_Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Shotgun/m12.rsi, state: base }
   productEntity: MagazineShotgunIncendiary
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 3
   cost:
     Telecrystal: 4
   categories:
@@ -624,6 +640,9 @@
   description: uplink-magazine-bulldog-uranium-desc
   icon: { sprite: /Textures/_Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Shotgun/m12.rsi, state: uranium }
   productEntity: MagazineShotgunUranium
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 3
   cost:
     Telecrystal: 4
   categories:

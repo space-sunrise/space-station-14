@@ -15,3 +15,7 @@ ent-ShellShotgunHoly = святая пуля 12 калибра
     .desc = Во имя Света, Святых и 12-го калибра — аминь.
 ent-ShellShotgunBreaching = прорывная пуля 12 калибра
     .desc = { ent-BaseShellShotgun.desc }
+
+ent-ShellShotgunFlechette = флешетта 12 калибра
+    .desc = { ent-BaseShellShotgun.desc }
+

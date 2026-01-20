@@ -10,3 +10,7 @@ ent-MagazineShotgunUranium = барабан урановых 12 калибра
     .desc = { ent-BaseMagazineShotgun.desc }
 ent-MagazineShotgunBreach = барабан пробивных 12 калибра
     .desc = { ent-BaseMagazineShotgun.desc }
+
+ent-MagazineShotgunFlechette = барабан флешетты 12 калибра
+    .desc = { ent-BaseMagazineShotgun.desc }
+

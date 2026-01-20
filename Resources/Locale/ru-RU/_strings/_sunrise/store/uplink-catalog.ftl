@@ -1,4 +1,4 @@
-## Targets
+﻿## Targets
 
 uplink-core-extraction-toolbox-name = Набор инструментов для извлечения ядра
 uplink-core-extraction-toolbox-desc = Ящик с инструментами, в котором есть все необходимое для извлечения плутониевого сердечника ядерной бомбы. Инструкции в комплект не входят.
@@ -7,6 +7,7 @@ uplink-core-extraction-toolbox-desc = Ящик с инструментами, в
 
 uplink-magazine-shotgun-name = Барабан (.50 ружейный).
 uplink-magazine-shotgun-desc = Барабан на 8 выстрелов для дробовика. Совместим с "Бульдогом".
+uplink-magazine-shotgun-flechette-desc = Барабан с бронебойными флешеттами, пробивающими стены и укрытия, но с меньшей кучностью.
 uplink-breaching-magazine-desc = Барабанный магазин, заряженный пробивными-патронами для пробития шлюзов, окон и стен. Менее эффективен против людей.
 uplink-magazine-bulldog-incendiary-desc = Барабанный магазин на 8 патронов зажигательной дроби, легко превращает гражданских в горящие спички.
 uplink-magazine-lmg-name = Коробка патронов (.30 винтовочные)
