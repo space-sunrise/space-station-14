@@ -329,6 +329,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink
 #Sunrise-end
 
 # Explosives
@@ -628,7 +629,7 @@
 # For the C20R
 - type: listing
   id: UplinkMagazinePistolSubMachineGun
-  name: uplink-pistol-magazine-c20r-name
+  # name: uplink-pistol-magazine-c20r-name # Sunrise-Edit
   description: uplink-pistol-magazine-c20r-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
   productEntity: MagazinePistolSubMachineGunSP # Sunrise-Edit
@@ -712,7 +713,7 @@
 # For the Estoc
 - type: listing
   id: UplinkEstocAmmo
-  name: uplink-estoc-ammo-name
+  #name: uplink-estoc-ammo-name # Sunrise-edit
   description: uplink-estoc-ammo-desc
   productEntity: MagazineRifle
   cost:

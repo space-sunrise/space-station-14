@@ -1,4 +1,4 @@
-﻿<Document>
+<Document>
   # Боеприпасы
 
   Краткая шпаргалка по калибрам и типам патронов. Значения урона и бронепробития могут немного отличаться
@@ -36,6 +36,22 @@
       - [color=#65fe08]Урановые[/color]
       </Box>
     </ColorBox>
+    <ColorBox>
+      <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
+      Тяжёлый пистолетный (.40)
+      <GuideEntityEmbed Entity="CartridgePistol40FMJ" Caption="Патрон" Scale="1.0"/>
+      <GuideEntityEmbed Entity="MagazineBoxPistol40FMJ" Caption="Коробка" Scale="0.9"/>
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
+      - [color=#3F47DB]SP[/color]
+      - [color=#F5514C]HP[/color] (экспансивные)
+      - [color=#B68F0E]FMJ[/color]
+      - [color=#540000]AP[/color] (бронебойные)
+      </Box>
+    </ColorBox>
+
 
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
@@ -160,12 +176,14 @@
       - [color=#149A1E]Травматический[/color]
       - [color=#FFFF0B]Фальшфейер[/color]
       - [color=#FFFF0B]Зажигательный[/color]
+      - [color=#0096FF]Пробивной[/color]
+      - [color=#5da0b5]Флешетта[/color]
       - [color=#dbdbdb]Учебный[/color]
       - [color=#49CECE]Транквилизатор[/color]
-      - [color=#65fe08]Урановые[/color]
+      - [color=#65fe08]Урановый[/color]
       - Самодельная [color=#555555]картечь[/color]
       - Самодельный [color=#FFFF0B]Зажигательный[/color]
-      - Самодельный [color=#65fe08]Урановые[/color]
+      - Самодельный [color=#65fe08]Урановый[/color]
       - Самодельный ([color=#caa44a]монетная пуля[/color])
       - [color=#149A1E]Алкогольный[/color]
       - [color=#e4e4e4]Святой[/color]
