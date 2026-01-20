@@ -1,4 +1,4 @@
-<Document>
+﻿<Document>
   # Боеприпасы
 
   Краткая шпаргалка по калибрам и типам патронов. Значения урона и бронепробития могут немного отличаться
@@ -167,6 +167,9 @@
       12-й калибр
       <GuideEntityEmbed Entity="ShellShotgun" Caption="Патрон" Scale="1.0"/>
       <GuideEntityEmbed Entity="BoxLethalshot" Caption="Коробка" Scale="0.9"/>
+      <GuideEntityEmbed Entity="BoxShotgunBreaching" Caption="Коробка (пробивной)" Scale="0.9"/>
+      <GuideEntityEmbed Entity="BoxShotgunFlechette" Caption="Коробка (флешетта)" Scale="0.9"/>
+      <GuideEntityEmbed Entity="SpeedLoaderShellShotgun" Caption="Спидлоадер" Scale="0.9"/>
       </Box>
     </ColorBox>
     <ColorBox>
