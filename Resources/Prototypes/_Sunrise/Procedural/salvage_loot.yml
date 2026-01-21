@@ -1,0 +1,74 @@
+# Sunrise-specific salvage loot
+
+# - Low value
+- type: salvageLoot
+  id: OreIronCrab
+  guaranteed: true
+  loots:
+    - !type:BiomeMarkerLoot
+      proto: OreIronCrab
+
+- type: salvageLoot
+  id: OreCoalCrab
+  guaranteed: true
+  loots:
+    - !type:BiomeMarkerLoot
+      proto: OreCoalCrab
+
+- type: salvageLoot
+  id: OreQuartzCrab
+  guaranteed: true
+  loots:
+    - !type:BiomeMarkerLoot
+      proto: OreQuartzCrab
+
+- type: salvageLoot
+  id: OreSaltCrab
+  guaranteed: true
+  loots:
+    - !type:BiomeMarkerLoot
+      proto: OreSaltCrab
+
+# - Medium value
+- type: salvageLoot
+  id: OreGoldCrab
+  guaranteed: true
+  loots:
+    - !type:BiomeMarkerLoot
+      proto: OreGoldCrab
+
+- type: salvageLoot
+  id: OreSilverCrab
+  guaranteed: true
+  loots:
+    - !type:BiomeMarkerLoot
+      proto: OreSilverCrab
+
+# - High value
+- type: salvageLoot
+  id: OrePlasmaCrab
+  guaranteed: true
+  loots:
+    - !type:BiomeMarkerLoot
+      proto: OrePlasmaCrab
+
+- type: salvageLoot
+  id: OreUraniumCrab
+  guaranteed: true
+  loots:
+    - !type:BiomeMarkerLoot
+      proto: OreUraniumCrab
+
+- type: salvageLoot
+  id: OreBananiumCrab
+  guaranteed: true
+  loots:
+    - !type:BiomeMarkerLoot
+      proto: OreBananiumCrab
+
+- type: salvageLoot
+  id: OreDiamondCrab
+  guaranteed: true
+  loots:
+    - !type:BiomeMarkerLoot
+      proto: OreDiamondCrab
