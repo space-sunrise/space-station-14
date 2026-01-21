@@ -86,7 +86,7 @@
   molarMass: 44
   color: 8F00FF
   reagent: NitrousOxide
-  pricePerMole: 1.5 # Sunrise-Edit
+  pricePerMole: 0.5 # Sunrise-Edit
 
 - type: gas
   id: Frezon
