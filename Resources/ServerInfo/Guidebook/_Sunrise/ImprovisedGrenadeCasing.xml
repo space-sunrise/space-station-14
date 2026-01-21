@@ -1,4 +1,4 @@
-  # Самодельная граната: пустой корпус
+﻿  # Самодельная граната: пустой корпус
 
   Пустая гильза — основа для самодельных гранат. Заполните её и выберите ветку в графе, чтобы получить один из вариантов.
 
@@ -6,9 +6,9 @@
     ### Для создания Трубчатой бомбы
       - Трубчатая бомба с контактным тригером и дополнительными осколочными частями.
       <GuideEntityEmbed Entity="PipeBomb" Caption="Трубчатая бомба" Scale="1"/><GuideEntityEmbed Entity="ImprovisedGrenadeCasingEmpty" Caption="пустая самодельная гильза" Scale="1"/>
-    ### Для создания Зажигательная бомбы
+    ### Для создания Зажигательной бомбы
       - Зажигательная бомба с контактным тригером и дополнительными зажигательными частями.
       <GuideEntityEmbed Entity="FireBomb" Caption="Зажигательная бомба" Scale="1"/><GuideEntityEmbed Entity="ImprovisedGrenadeCasingEmpty" Caption="пустая самодельная гильза" Scale="1"/>
     ### Для создания Стеклянной картечи
-      - Стеклянная картечь: много мелких поражений в месте попадании.
-      5 единиц <GuideEntityEmbed Entity="CrushedPhosphorus" Caption="5ед Фосфорного порошока" Scale="1.1"/><GuideEntityEmbed Entity="ShardGlass" Caption="5 осколоков стекла" Scale="1"/><GuideEntityEmbed Entity="ImprovisedGrenadeCasingEmpty" Caption="пустая самодельная гильза" Scale="1"/>
+      - Стеклянная картечь: много мелких поражений в месте попадания.
+      5 единиц <GuideEntityEmbed Entity="CrushedPhosphorus" Caption="5 ед. Фосфорного порошка" Scale="1.1"/><GuideEntityEmbed Entity="ShardGlass" Caption="5 осколков стекла" Scale="1"/><GuideEntityEmbed Entity="ImprovisedGrenadeCasingEmpty" Caption="пустая самодельная гильза" Scale="1"/>

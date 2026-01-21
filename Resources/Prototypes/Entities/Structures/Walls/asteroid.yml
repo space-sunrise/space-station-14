@@ -48,10 +48,12 @@
           path: /Audio/Effects/break_stone.ogg
           params:
             volume: -6
+#Sunrise-Start
   - type: Gatherable
     toolWhitelist:
       tags:
       - Pickaxe
+#Sunrise-End
   - type: Fixtures
     fixtures:
       fix1:
@@ -98,11 +100,11 @@
     intensitySlope: 2.5
     maxIntensity: 10
     canCreateVacuum: false
-  # Sunrise-start
+  #Sunrise-Start
   - type: Gatherable # nasty hack to cover the fact that this needs to not be single-hit destruction.
     toolWhitelist:
       tags: [ ]
-  # Sunrise-end
+  #Sunrise-End
   - type: Destructible
     thresholds:
     - trigger:
@@ -216,6 +218,7 @@
   components:
   - type: OreVein
     currentOre: OreDiamondCrab
+#Sunrise-End
 
 - type: entity
   id: AsteroidRockPlasma
@@ -239,6 +242,7 @@
     - state: rock_phoron
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
+#Sunrise-Start
 - type: entity
   id: AsteroidRockPlasmaCrab
   parent: AsteroidRockPlasma
@@ -246,7 +250,7 @@
   components:
   - type: OreVein
     currentOre: OrePlasmaCrab
-
+#Sunrise-End
 - type: entity
   id: AsteroidRockQuartz
   parent: AsteroidRock
@@ -426,6 +430,7 @@
     - state: rock_salt
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
+#Sunrise-Start
 - type: entity
   id: AsteroidRockSaltCrab
   parent: AsteroidRockSalt
@@ -433,7 +438,7 @@
   components:
   - type: OreVein
     currentOre: OreSaltCrab
-
+#Sunrise-End
 - type: entity
   id: AsteroidRockArtifactFragment
   parent: AsteroidRock
@@ -798,6 +803,7 @@
     - state: rock_diamond
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
+#Sunrise-Start
 - type: entity
   id: IronRockCoalCrab
   parent: IronRockCoal
@@ -883,7 +889,7 @@
 # Rocks and ore veins
 - type: entity
   id: WallRock
-  parent: AsteroidRock
+  parent: AsteroidRock #Sunrise-Edit
   name: rock
   suffix: planetmap
   components:
@@ -896,12 +902,12 @@
       - Pickaxe
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Rock # Sunrise-edit
+    damageModifierSet: Rock #Sunrise-Edit
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 120 # Sunrise-edit
+        damage: 120 #Sunrise-Edit
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]

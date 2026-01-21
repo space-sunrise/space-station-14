@@ -1,5 +1,4 @@
 # Low value
-#Sunrise-Start
 - type: biomeMarkerLayer
   id: OreIronLow
   entityMask:
@@ -9,11 +8,12 @@
     WallRockChromite: WallRockChromiteTin
     WallRockSand: WallRockSandTin
     WallRockSnow: WallRockSnowTin
-  maxCount: 10
+  maxCount: 10 #Sunrise-Edit
   minGroupSize: 4
   maxGroupSize: 8
   radius: 4
 
+#Sunrise-Start
 - type: biomeMarkerLayer
   id: OreIronLowCrab
   entityMask:
@@ -27,6 +27,7 @@
   minGroupSize: 4
   maxGroupSize: 8
   radius: 4
+#Sunrise-End
 
 - type: biomeMarkerLayer
   id: OreQuartzLow
@@ -36,11 +37,12 @@
     WallRockBasalt: WallRockBasaltQuartz
     WallRockChromite: WallRockChromiteQuartz
     WallRockSnow: WallRockSnowQuartz
-  maxCount: 10
+  maxCount: 10 #Sunrise-Edit
   minGroupSize: 4
   maxGroupSize: 8
   radius: 4
 
+#Sunrise-Start
 - type: biomeMarkerLayer
   id: OreQuartzLowCrab
   entityMask:
@@ -53,6 +55,7 @@
   minGroupSize: 4
   maxGroupSize: 8
   radius: 4
+#Sunrise-End
 
 - type: biomeMarkerLayer
   id: OreCoalLow
@@ -63,11 +66,12 @@
     WallRockChromite: WallRockChromiteCoal
     WallRockSand: WallRockSandCoal
     WallRockSnow: WallRockSnowCoal
-  maxCount: 10
+  maxCount: 10 #Sunrise-Edit
   minGroupSize: 4
   maxGroupSize: 6
   radius: 4
 
+#Sunrise-Start
 - type: biomeMarkerLayer
   id: OreCoalLowCrab
   entityMask:
@@ -81,6 +85,7 @@
   minGroupSize: 4
   maxGroupSize: 6
   radius: 4
+#Sunrise-End
 
 - type: biomeMarkerLayer
   id: OreSaltLow
@@ -91,11 +96,12 @@
     WallRockChromite: WallRockChromiteSalt
     WallRockSand: WallRockSandSalt
     WallRockSnow: WallRockSnowSalt
-  maxCount: 8
+  maxCount: 8 #Sunrise-Edit
   minGroupSize: 4
   maxGroupSize: 6
   radius: 4
 
+#Sunrise-Start
 - type: biomeMarkerLayer
   id: OreSaltLowCrab
   entityMask:
@@ -109,6 +115,7 @@
   minGroupSize: 4
   maxGroupSize: 6
   radius: 4
+#Sunrise-End
 
 # Medium value
 # Gold
@@ -121,11 +128,12 @@
     WallRockChromite: WallRockChromiteGold
     WallRockSand: WallRockSandGold
     WallRockSnow: WallRockSnowGold
-  maxCount: 5
+  maxCount: 5 #Sunrise-Edit
   minGroupSize: 2
   maxGroupSize: 5
   radius: 4
 
+#Sunrise-Start
 - type: biomeMarkerLayer
   id: OreGoldLowCrab
   entityMask:
@@ -139,6 +147,7 @@
   minGroupSize: 2
   maxGroupSize: 5
   radius: 4
+#Sunrise-End
 
 # Silver
 - type: biomeMarkerLayer
@@ -150,11 +159,12 @@
     WallRockChromite: WallRockChromiteSilver
     WallRockSand: WallRockSandSilver
     WallRockSnow: WallRockSnowSilver
-  maxCount: 5
+  maxCount: 5 #Sunrise-Edit
   minGroupSize: 2
   maxGroupSize: 5
   radius: 4
 
+#Sunrise-Start
 - type: biomeMarkerLayer
   id: OreSilverLowCrab
   entityMask:
@@ -168,6 +178,7 @@
   minGroupSize: 2
   maxGroupSize: 5
   radius: 4
+#Sunrise-End
 
 # High value
 # Plasma
@@ -180,11 +191,12 @@
     WallRockChromite: WallRockChromitePlasma
     WallRockSand: WallRockSandPlasma
     WallRockSnow: WallRockSnowPlasma
-  maxCount: 3
+  maxCount: 3 #Sunrise-Edit
   minGroupSize: 2
   maxGroupSize: 4
   radius: 4
 
+#Sunrise-Start
 - type: biomeMarkerLayer
   id: OrePlasmaLowCrab
   entityMask:
@@ -198,6 +210,7 @@
   minGroupSize: 2
   maxGroupSize: 4
   radius: 4
+#Sunrise-End
 
 # Uranium
 - type: biomeMarkerLayer
@@ -209,11 +222,12 @@
     WallRockChromite: WallRockChromiteUranium
     WallRockSand: WallRockSandUranium
     WallRockSnow: WallRockSnowUranium
-  maxCount: 4
+  maxCount: 4 #Sunrise-Edit
   minGroupSize: 2
   maxGroupSize: 4
   radius: 4
 
+#Sunrise-Start
 - type: biomeMarkerLayer
   id: OreUraniumLowCrab
   entityMask:
@@ -227,7 +241,9 @@
   minGroupSize: 2
   maxGroupSize: 4
   radius: 4
+#Sunrise-End
 
+#Sunrise-Start
 - type: biomeMarkerLayer
   id: OreBananiumLow
   entityMask:
@@ -255,6 +271,7 @@
   minGroupSize: 2
   maxGroupSize: 4
   radius: 4
+#Sunrise-End
 
 - type: biomeMarkerLayer
   id: OreDiamondLow
@@ -265,11 +282,12 @@
     WallRockChromite: WallRockChromiteDiamond
     WallRockSand: WallRockSandDiamond
     WallRockSnow: WallRockSnowDiamond
-  maxCount: 2
+  maxCount: 2 #Sunrise-Edit
   minGroupSize: 1
   maxGroupSize: 2
   radius: 4
 
+#Sunrise-Start
 - type: biomeMarkerLayer
   id: OreDiamondLowCrab
   entityMask:
