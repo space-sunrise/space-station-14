@@ -50,3 +50,41 @@
   equipment:
     head: ClothingHeadHatChefBlackToque
   groupBy: "Toque"
+
+# Рабочая униформа
+
+- type: loadout
+  id: PrisonChef-ClothingUniformJumpsuitPrisonChef
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonChef
+
+- type: loadout
+  id: PrisonChef-ClothingUniformJumpskirtPrisonChef
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonChef
+
+- type: loadout
+  id: PrisonChef-ClothingUniformJumpsuitPrisonChefVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonChef
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonChefVeteran
+
+- type: loadout
+  id: PrisonChef-ClothingUniformJumpskirtPrisonChefVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonChef
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonChefVeteran
