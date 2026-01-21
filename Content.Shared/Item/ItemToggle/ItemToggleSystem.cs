@@ -84,7 +84,7 @@ public sealed class ItemToggleSystem : EntitySystem
             return;
 
         // Sunrise-Start
-        if (TryComp<HandsComponent>(args.User, out var handsComp))
+        if (HasComp<ItemComponent>(ent.Owner) && TryComp<HandsComponent>(args.User, out var handsComp))
         {
             if (!_handsSystem.TryGetActiveItem((args.User, handsComp), out var itemInHand))
                 return;
@@ -114,7 +114,7 @@ public sealed class ItemToggleSystem : EntitySystem
         if (!ent.Comp.CanActivateInhand) // Верб позволяет активировать в руке ПНВ и термалы, а нам это не нужно
             return;
 
-        if (TryComp<HandsComponent>(args.User, out var handsComp))
+        if (HasComp<ItemComponent>(ent.Owner) && TryComp<HandsComponent>(args.User, out var handsComp))
         {
             if (!_handsSystem.TryGetActiveItem((args.User, handsComp), out var itemInHand))
                 return;
