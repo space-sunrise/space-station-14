@@ -717,7 +717,7 @@
   description: uplink-estoc-ammo-desc
   productEntity: MagazineRifle
   cost:
-    Telecrystal: 2
+    Telecrystal: 1 # Sunrise-Edit
   categories:
   - UplinkAmmo
 

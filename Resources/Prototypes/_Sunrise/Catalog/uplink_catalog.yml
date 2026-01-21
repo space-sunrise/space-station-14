@@ -224,7 +224,7 @@
   description: uplink-estoc-ammo-desc
   productEntity: MagazineRifleHP
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
   - UplinkAmmo
 
@@ -233,7 +233,7 @@
   description: uplink-estoc-ammo-desc
   productEntity: MagazineRifleFMJ
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
   - UplinkAmmo
 
