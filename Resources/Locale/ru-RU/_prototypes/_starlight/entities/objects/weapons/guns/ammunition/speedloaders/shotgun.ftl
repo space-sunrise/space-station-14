@@ -13,3 +13,5 @@ ent-SpeedLoaderShotgunUranium = спидлоадер урановых 12 кал�
     .desc = { ent-BaseSpeedLoaderShotgun.desc }
 ent-SpeedLoaderShotgunIncendiary = спидлоадер зажигательных 12 калибра
     .desc = { ent-BaseSpeedLoaderShotgun.desc }
+ent-SpeedLoaderShotgunFlechette = спидлоадер флешетт 12 калибра
+    .desc = { ent-BaseSpeedLoaderShotgun.desc }

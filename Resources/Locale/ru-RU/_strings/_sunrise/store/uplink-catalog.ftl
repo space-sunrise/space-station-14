@@ -1,4 +1,4 @@
-## Targets
+﻿## Targets
 
 uplink-core-extraction-toolbox-name = Набор инструментов для извлечения ядра
 uplink-core-extraction-toolbox-desc = Ящик с инструментами, в котором есть все необходимое для извлечения плутониевого сердечника ядерной бомбы. Инструкции в комплект не входят.
@@ -7,6 +7,9 @@ uplink-core-extraction-toolbox-desc = Ящик с инструментами, в
 
 uplink-magazine-shotgun-name = Барабан (.50 ружейный).
 uplink-magazine-shotgun-desc = Барабан на 8 выстрелов для дробовика. Совместим с "Бульдогом".
+uplink-magazine-shotgun-flechette-desc = Барабан с бронебойными флешеттами, пробивающими стены и укрытия, но с меньшей кучностью.
+uplink-breaching-magazine-desc = Барабанный магазин, заряженный пробивными-патронами для пробития шлюзов, окон и стен. Менее эффективен против людей.
+uplink-magazine-bulldog-incendiary-desc = Барабанный магазин на 8 патронов зажигательной дроби, легко превращает гражданских в горящие спички.
 uplink-magazine-lmg-name = Коробка патронов (.30 винтовочные)
 uplink-magazine-lmg-desc = Коробка патронов на 100 выстрелов. Совместим с "L6-SAW".
 uplink-grenade-frag-timer-name = безконтактная Осколочная граната
@@ -32,14 +35,14 @@ uplink-magazine-dl6902-desc = Магазин для Dl6902. Содержит 200
 uplink-magazine-dragunov-desc = Магазин для Драгунова. Содержит 10 патронов калибра 7,62х54R.
 uplink-magazine-dragunov-extended-desc = Магазин для Драгунова. Содержит 20 патронов калибра 7,62х54R.
 uplink-magazine-bulldog-uraniumslug-desc = Барабанный магазин на 8 урановых пулевых патронов. Совместим с "Бульдогом".
-uplink-magazine-bulldog-uranium-desc = Барабанный магазин на 8 патронов урановой дроби. Совместим с "Бульдогом".
+uplink-magazine-bulldog-uranium-desc = Барабанный магазин на 8 патронов урановой дроби, легко поражает экипаж нанотрейзен лучевой болезнью.
 uplink-pistol-magnum-magazine-name = Магазин (.45 магнум SP)
 uplink-pistol-magnum-magazine-desc = 7-зарядный однорядный магазин для пистолета. Содержит патроны SP. Совместим с "Диглом".
 uplink-pistol-magnum-magazine-ap-name = Магазин (.45 магнум бронебойные)
 uplink-pistol-magnum-magazine-ap-desc = 7-зарядный однорядный магазин для пистолета. Содержит бронебойные патроны. Совместим с "Диглом".
 uplink-pistoltec9-magazine-name = Tac-Tec (.20 безгильзовый)
 uplink-pistoltec9-magazine-desc = Кустарный пистолетный магазин под распространённый патрон, используемый агентами синдиката.
-
+uplink-pistol-magazine-c40r-desc = Магазин ПП на 24 патрона. Совместим с C-40r.
 
 uplink-magazine-127-desc = Магазин Bauer SR-127 на 7 патронов предназначеных для уничтожения мехов, киборгов или стркутур таких как решетки и окна, пары попаданий достаточно для пролома стены.
 uplink-magazine-127pen-desc = Магазин Bauer SR-127 на 7 патронов предназначеных для ликвидации защищенных противников а так же целей за укрытиями и стенами, прекрасно сочетаются с термальным зрением.

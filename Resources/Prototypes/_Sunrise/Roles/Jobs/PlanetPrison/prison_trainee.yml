@@ -24,7 +24,6 @@
 - type: startingGear
   id: PrisonTraineeGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitPrisonTrainee
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat

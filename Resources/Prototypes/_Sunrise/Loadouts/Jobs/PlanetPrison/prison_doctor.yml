@@ -26,3 +26,41 @@
       time: 54000 # 15 часов
   equipment:
     head: ClothingHeadHatCapPrisonDoctorMetus
+
+# Рабочая униформа
+
+- type: loadout
+  id: PrisonDoctor-ClothingUniformJumpsuitPrisonDoctor
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonDoctor
+
+- type: loadout
+  id: PrisonDoctor-ClothingUniformJumpskirtPrisonDoctor
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonDoctor
+
+- type: loadout
+  id: PrisonDoctor-ClothingUniformJumpsuitPrisonDoctorVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonDoctor
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonDoctorVeteran
+
+- type: loadout
+  id: PrisonDoctor-ClothingUniformJumpskirtPrisonDoctorVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonDoctor
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonDoctorVeteran

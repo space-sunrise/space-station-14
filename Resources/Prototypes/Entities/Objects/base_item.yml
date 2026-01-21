@@ -48,6 +48,7 @@
     voice: Portal2FactCore # Sunrise-TTS
   - type: StaticPrice
     price: 0 # Sunrise-TTS
+  - type: SurgeryTarget # Sunrise added
 
 - type: entity
   name: "storage item"

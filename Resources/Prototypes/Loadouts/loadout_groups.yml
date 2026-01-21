@@ -185,6 +185,14 @@
   - CaptainBackpack
   - CaptainSatchel
   - CaptainDuffel
+  # Sunrise - Start
+  - CaptainBackpackWhite
+  - CaptainBackpackBlack
+  - CaptainSatchelWhite
+  - CaptainSatchelBlack
+  - CaptainDuffelWhite
+  - CaptainDuffelBlack
+  # Sunrise - End
 
 # Sunrise - Start
 - type: loadoutGroup

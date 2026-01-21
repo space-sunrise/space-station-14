@@ -168,3 +168,21 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Backpacks/yellowbackpack.rsi
+
+- type: entity
+  parent: ClothingBackpackCaptain
+  id: ClothingBackpackCaptainWhite
+  name: white captain's backpack
+  description: A white backpack with gold trim and a captain's patch. Sturdy fabric, padded straps, and a few inner pockets.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Backpacks/white_cap_backpack.rsi
+
+- type: entity
+  parent: ClothingBackpackCaptain
+  id: ClothingBackpackCaptainBlack
+  name: black captain's backpack
+  description: A black backpack with gold trim and a captain's patch. Reinforced stitching and a comfortable fit.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Backpacks/black_cap_backpack.rsi

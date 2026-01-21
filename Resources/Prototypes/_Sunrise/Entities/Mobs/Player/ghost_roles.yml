@@ -190,6 +190,35 @@
     - BoxShotgunHoly
     - DrinkHolyWaterFull
 
+- type: startingGear
+  id: ERTChaplainGearGamma
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTChaplain
+    back: ClothingBackpackERTChaplain
+    shoes: ClothingShoesBootsMagSec
+    head: ClothingHeadEVAHelmetERTChaplain
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesHudMedSec
+    outerClothing: ClothingOuterHardsuitERTChaplain
+    id: ERTChaplainPDA
+    ears: ClothingHeadsetAltCentComSunrise
+    belt: ClothingBeltSecurityFilledERT
+    pocket1: LanternFlash
+    pocket2: ClothingHandsPowerGlovesUplinkNTERTRed
+  inhand:
+  - WeaponShotgunEnforcer
+  storage:
+    back:
+    - BoxErtBaseKit
+    - CrowbarRed
+    - Bible
+    - SpeedLoaderMagnumSP
+    - FlippoLighterSunriseBlack
+    - Candle
+    - WeaponRevolverSpearhead
+    - BoxShotgunHoly
+    - DrinkHolyWaterFull
+
 # Engineer
 - type: startingGear
   id: ERTEngineerGearAmber
