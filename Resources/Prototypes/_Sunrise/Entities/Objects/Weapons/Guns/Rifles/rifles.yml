@@ -531,7 +531,7 @@
 
 - type: entity
   name: ASH-12
-  parent: BaseWeaponRifleSunrise
+  parent: [GunLight, BaseWeaponRifle]
   id: WeaponRifleAsh12
   components:
   - type: Sprite
@@ -552,11 +552,14 @@
     storedSprite:
       state: icon
       sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ash12/big.rsi
+  - type: GunWieldBonus
+    minAngle: -14
+    maxAngle: -20
   - type: Gun
-    minAngle: 3
-    maxAngle: 24
-    angleIncrease: 2
-    angleDecay: 12
+    minAngle: 15
+    maxAngle: 30
+    angleIncrease: 3
+    angleDecay: 15
     fireRate: 3
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/ash12/fire.ogg

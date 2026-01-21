@@ -2,6 +2,7 @@
 
 - type: loadout
   id: PrisonChefCap
+  id: PrisonChefCap
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -10,8 +11,10 @@
       time: 7200 # 2 hrs
   equipment:
     head: ClothingHeadCapPrisonChef
+    head: ClothingHeadCapPrisonChef
 
 - type: loadout
+  id: PrisonChefBeret
   id: PrisonChefBeret
   effects:
   - !type:JobRequirementLoadoutEffect
@@ -21,8 +24,10 @@
       time: 25200 # 7 hrs
   equipment:
     head: ClothingHeadHatBeretPrisonChef
+    head: ClothingHeadHatBeretPrisonChef
 
 - type: loadout
+  id: PrisonChefHat
   id: PrisonChefHat
   effects:
   - !type:JobRequirementLoadoutEffect
@@ -32,14 +37,17 @@
       time: 54000 # 15 hrs
   equipment:
     head: ClothingHeadHatCapPrisonChef
+    head: ClothingHeadHatCapPrisonChef
 
 - type: loadout
+  id: PrisonChefChefHat
   id: PrisonChefChefHat
   equipment:
     head: ClothingHeadHatChef
   groupBy: "Toque"
 
 - type: loadout
+  id: PrisonChefBlackToque
   id: PrisonChefBlackToque
   effects:
   - !type:JobRequirementLoadoutEffect

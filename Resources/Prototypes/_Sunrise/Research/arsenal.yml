@@ -39,6 +39,8 @@
   - MagazinePistolHighCapacityAP
   - MagazineBoxHeavyRifleAP
   - MagazineRifleHeavyAP
+  - BoxShotgunFlechette
+  - SpeedLoaderShotgunFlechette
   radioChannels:
   - Security
 

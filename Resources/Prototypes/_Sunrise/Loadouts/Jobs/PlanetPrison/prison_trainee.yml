@@ -2,10 +2,13 @@
 
 - type: loadout
   id: PrisonTraineeCap
+  id: PrisonTraineeCap
   equipment:
+    head: ClothingHeadCapPrisonTrainee
     head: ClothingHeadCapPrisonTrainee
 
 - type: loadout
+  id: PrisonTraineeBeret
   id: PrisonTraineeBeret
   effects:
   - !type:JobRequirementLoadoutEffect
@@ -15,8 +18,10 @@
       time: 25200 # 7 часов
   equipment:
     head: ClothingHeadHatBeretPrisonTrainee
+    head: ClothingHeadHatBeretPrisonTrainee
 
 - type: loadout
+  id: PrisonTraineeHat
   id: PrisonTraineeHat
   effects:
   - !type:JobRequirementLoadoutEffect
@@ -26,15 +31,18 @@
       time: 54000 # 15 часов
   equipment:
     head: ClothingHeadHatCapPrisonTrainee
+    head: ClothingHeadHatCapPrisonTrainee
 
 # PDA
 
 - type: loadout
   id: PrisonTraineePDAPartial
+  id: PrisonTraineePDAPartial
   equipment:
     id: PrisonTraineePDAPartial
 
 - type: loadout
+  id: PrisonTraineePDAAdvanced
   id: PrisonTraineePDAAdvanced
   effects:
   - !type:JobRequirementLoadoutEffect
@@ -46,6 +54,7 @@
     id: PrisonTraineePDAAdvanced
 
 - type: loadout
+  id: PrisonTraineePDAComplete
   id: PrisonTraineePDAComplete
   effects:
   - !type:JobRequirementLoadoutEffect

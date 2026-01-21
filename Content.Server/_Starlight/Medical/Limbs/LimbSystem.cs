@@ -1,4 +1,4 @@
-using System.Linq;
+using Content.Server.Administration.Systems;
 using Content.Server.Body.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Humanoid;
@@ -8,14 +8,13 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Interaction.Components;
-using Content.Shared.Starlight;
 using Content.Shared.Starlight.Medical.Surgery;
 using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Medical.Limbs;
+
 public sealed partial class LimbSystem : SharedLimbSystem
 {
     [Dependency] private readonly ContainerSystem _containers = default!;
@@ -24,6 +23,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
     [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly StarlightEntitySystem _entity = default!;
 
     private readonly EntProtoId _virtual = "PartVirtual";
     public override void Initialize()
@@ -64,7 +64,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
         return true;
     }
 
-    public void Amputatate(Entity<TransformComponent, HumanoidAppearanceComponent, BodyComponent> body, Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb)
+    public void Amputate(Entity<TransformComponent, HumanoidAppearanceComponent, BodyComponent> body, Entity<TransformComponent, MetaDataComponent> limb)
     {
         if (!_containers.TryGetContainingContainer((limb.Owner, limb.Comp1, limb.Comp2), out var container)
          || _body.GetParentPartAndSlotOrNull(limb.Owner) is not var (_, slotId)
@@ -72,10 +72,10 @@ public sealed partial class LimbSystem : SharedLimbSystem
 
         if (TryComp<CustomLimbComponent>(limb, out var virtualLimb))
             AmputateItemLimb((body, body.Comp1, body.Comp3), limb, slotId, virtualLimb);
-        else
+        else if (_entity.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(limb, out var bodyPart))
         {
-            RemoveLimbVisual(body, limb);
-            RemoveLimb(body, limb);
+            RemoveLimbVisual(body, bodyPart);
+            RemoveLimb(body, bodyPart);
         }
     }
 
@@ -87,7 +87,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
         Dirty(body, vizualizer);
     }
 
-    private void AmputateItemLimb(Entity<TransformComponent, BodyComponent> body, Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb, string slotId, CustomLimbComponent virtualLimb)
+    private void AmputateItemLimb(Entity<TransformComponent, BodyComponent> body, Entity<TransformComponent, MetaDataComponent> limb, string slotId, CustomLimbComponent virtualLimb)
     {
         RemoveItemLimb(body, virtualLimb.Item, BodySystem.GetPartSlotContainerId(slotId));
 

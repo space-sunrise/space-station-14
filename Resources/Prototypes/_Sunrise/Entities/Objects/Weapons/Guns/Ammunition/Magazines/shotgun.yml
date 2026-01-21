@@ -8,6 +8,7 @@
     tags:
       - MagazineAsh12
   - type: Sprite
+    scale: 0.8,0.8
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/ash12.rsi
     layers:
     - state: base
@@ -16,11 +17,6 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
     size: Small
-    shape:
-    - 0,0,0,2
-    storedSprite:
-      state: storage
-      sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/ash12.rsi
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
@@ -33,7 +29,7 @@
       ballistic-ammo: !type:Container
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 9
     zeroVisible: false
   - type: Appearance
 
@@ -50,10 +46,6 @@
       map: ["enum.GunVisualLayers.Mag"]
     - state: stripe
       color: "#780606"
-  - type: Item
-    storedSprite:
-      state: storage_slug
-      sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/ash12.rsi
 
 - type: entity
   id: MagazineAsh12Beanbag
@@ -70,10 +62,6 @@
       color: "#149A1E"
   - type: BallisticAmmoProvider
     proto: ShellShotgunBeanbag
-  - type: Item
-    storedSprite:
-      state: storage_rubber
-      sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/ash12.rsi
 
 - type: entity
   id: MagazineAsh12Flare
@@ -90,7 +78,76 @@
       color: "#FFFF0B"
   - type: BallisticAmmoProvider
     proto: ShellShotgunFlare
+
+# region Bulldog
+- type: entity
+  id: MagazineShotgunBreach
+  name: ammo drum (.50 breaching)
+  parent: BaseMagazineShotgun
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunBreaching
+  - type: Sprite
+    layers:
+    - state: breach
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
   - type: Item
-    storedSprite:
-      state: storage_flare
-      sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/ash12.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#0096FF"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#0096FF"
+
+- type: entity
+  parent: BaseMagazineShotgun
+  id: MagazineShotgunFlechette
+  name: ammo drum (.50 flechette)
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunFlechette
+  - type: Sprite
+    layers:
+    - state: flechette
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#5da0b5"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#5da0b5"
+
+- type: entity
+  id: MagazineShotgunUranium
+  name: ammo drum (.50 Uranium)
+  parent: BaseMagazineShotgun
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunUranium
+  - type: Sprite
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#40F57A"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#40F57A"

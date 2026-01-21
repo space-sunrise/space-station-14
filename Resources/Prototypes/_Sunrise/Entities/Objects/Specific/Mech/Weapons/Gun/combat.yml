@@ -17,7 +17,7 @@
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/HMGs/minigun_shot.ogg
   - type: BatteryAmmoProvider
-    proto: CartridgeRifleSP
+    proto: CartridgeRifleFMJ
     fireCost: 5
   - type: Appearance
   - type: AmmoCounter

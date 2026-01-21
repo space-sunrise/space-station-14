@@ -979,6 +979,25 @@
     Plasteel: 425
     Uranium: 140
 
+#Box .50 Shotgun
+- type: latheRecipe
+  parent: BaseAmmoBoxRecipe
+  id: BoxShotgunBreaching
+  result: BoxShotgunBreaching
+  materials:
+    Steel: 250
+    Plastic: 100
+    Plasma: 50
+
+- type: latheRecipe
+  parent: BaseAmmoBoxRecipe
+  id: BoxShotgunFlechette
+  result: BoxShotgunFlechette
+  materials:
+    Steel: 80
+    Plasteel: 300
+    Plastic: 50
+
 #Speedloaders .50 Shotgun
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
@@ -1008,6 +1027,15 @@
   result: SpeedLoaderShotgunSlug
   materials:
     Steel: 225
+    Plastic: 25
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoaderShotgunFlechette
+  result: SpeedLoaderShotgunFlechette
+  materials:
+    Steel: 60
+    Plasteel: 200
     Plastic: 25
 
 - type: latheRecipe
