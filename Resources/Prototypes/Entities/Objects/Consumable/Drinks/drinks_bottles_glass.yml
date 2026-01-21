@@ -420,10 +420,10 @@
   - type: SolutionContainerManager
     solutions:
       drink:
-        maxVol: 300
+        maxVol: 300 #Sunrise-Edit
         reagents:
         - ReagentId: Beer
-          Quantity: 300
+          Quantity: 300 #Sunrise-Edit
   - type: Label
     currentLabel: reagent-name-beer
   - type: Sprite
