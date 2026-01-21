@@ -33,12 +33,18 @@ public sealed class StationDontSellingSystems : EntitySystem
         _lookup.GetGridEntities(uid, entities);
         foreach (var entityUid in entities)
         {
+            if (!entityUid.Owner.IsValid())
+                continue;
+
             DepreciatePrice(entityUid);
         }
     }
 
     private void DepreciatePrice(EntityUid uid)
     {
+        if (!uid.IsValid())
+            return;
+
         EnsureComp<DontSellComponent>(uid);
 
         if (!TryComp<ContainerManagerComponent>(uid, out var containers))
@@ -65,6 +71,9 @@ public sealed class StationDontSellingSystems : EntitySystem
     {
         foreach (var gridUid in args.Station.Comp.Grids)
         {
+            if (!gridUid.IsValid())
+                continue;
+
             AddComp<DontSellingGridComponent>(gridUid);
         }
     }
