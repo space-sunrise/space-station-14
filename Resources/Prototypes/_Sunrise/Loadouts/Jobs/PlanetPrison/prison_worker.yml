@@ -2,13 +2,10 @@
 
 - type: loadout
   id: PrisonWorkerCap
-  id: PrisonWorkerCap
   equipment:
-    head: ClothingHeadCapPrisonWorker
     head: ClothingHeadCapPrisonWorker
 
 - type: loadout
-  id: PrisonWorkerBeret
   id: PrisonWorkerBeret
   effects:
   - !type:JobRequirementLoadoutEffect
@@ -18,10 +15,8 @@
       time: 25200 # 7 часов
   equipment:
     head: ClothingHeadHatBeretPrisonWorker
-    head: ClothingHeadHatBeretPrisonWorker
 
 - type: loadout
-  id: PrisonWorkerHat
   id: PrisonWorkerHat
   effects:
   - !type:JobRequirementLoadoutEffect

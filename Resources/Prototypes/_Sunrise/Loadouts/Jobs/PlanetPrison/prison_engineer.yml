@@ -2,13 +2,10 @@
 
 - type: loadout
   id: PrisonEngineerCap
-  id: PrisonEngineerCap
   equipment:
-    head: ClothingHeadCapPrisonEngineer
     head: ClothingHeadCapPrisonEngineer
 
 - type: loadout
-  id: PrisonEngineerBeret
   id: PrisonEngineerBeret
   effects:
   - !type:JobRequirementLoadoutEffect
@@ -18,10 +15,8 @@
       time: 25200 # 7 часов
   equipment:
     head: ClothingHeadHatBeretPrisonEngineer
-    head: ClothingHeadHatBeretPrisonEngineer
 
 - type: loadout
-  id: PrisonEngineerHat
   id: PrisonEngineerHat
   effects:
   - !type:JobRequirementLoadoutEffect
@@ -31,18 +26,15 @@
       time: 54000 # 15 часов
   equipment:
     head: ClothingHeadHatCapPrisonEngineer
-    head: ClothingHeadHatCapPrisonEngineer
 
 # PDA
 
 - type: loadout
   id: PrisonEngineerPDAScreenZap
-  id: PrisonEngineerPDAScreenZap
   equipment:
-    id: PrisonEngineerPDAScreenZap
+    pda: PrisonEngineerPDAScreenZap
 
 - type: loadout
-  id: PrisonEngineerPDAScreenPoint
   id: PrisonEngineerPDAScreenPoint
   effects:
   - !type:JobRequirementLoadoutEffect
@@ -51,7 +43,7 @@
       role: JobPrisonEngineer
       time: 36000 # 10 часов
   equipment:
-    id: PrisonEngineerPDAScreenPoint
+    pda: PrisonEngineerPDAScreenPoint
 
 # Рабочая униформа
 

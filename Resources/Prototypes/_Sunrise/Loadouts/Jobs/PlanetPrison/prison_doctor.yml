@@ -2,13 +2,10 @@
 
 - type: loadout
   id: PrisonDoctorCap
-  id: PrisonDoctorCap
   equipment:
-    head: ClothingHeadCapPrisonDoctor
     head: ClothingHeadCapPrisonDoctor
 
 - type: loadout
-  id: PrisonDoctorBeret
   id: PrisonDoctorBeret
   effects:
   - !type:JobRequirementLoadoutEffect
@@ -18,10 +15,8 @@
       time: 25200 # 7 часов
   equipment:
     head: ClothingHeadHatBeretPrisonDoctor
-    head: ClothingHeadHatBeretPrisonDoctor
 
 - type: loadout
-  id: PrisonDoctorHat
   id: PrisonDoctorHat
   effects:
   - !type:JobRequirementLoadoutEffect
