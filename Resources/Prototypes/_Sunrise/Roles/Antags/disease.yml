@@ -61,6 +61,8 @@
     interfaces:
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
+      enum.DiseaseInfoUiKey.Key:
+        type: DiseaseInfoBui
   - type: Visibility
     layer: 2 #ghost vis layer
   - type: Store

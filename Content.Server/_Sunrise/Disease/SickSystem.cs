@@ -153,6 +153,7 @@ public sealed class SickSystem : SharedSickSystem
                     RaiseNetworkEvent(new ClientInfectEvent(GetNetEntity(uid), GetNetEntity(component.owner)));
                     diseaseComp.SickOfAllTime++;
                     AddMoney(component.owner, 5);
+                    _popupSystem.PopupEntity(Loc.GetString("disease-infect-reward", ("points", 5)), component.owner, component.owner, PopupType.Medium);
 
                     component.Inited = true;
                 }

@@ -42,7 +42,8 @@ public sealed partial class EntityStorageComponent : Component, IGasMixtureHolde
     public int MasksToRemove = (int)(
         CollisionGroup.MidImpassable |
         CollisionGroup.HighImpassable |
-        CollisionGroup.LowImpassable);
+        CollisionGroup.LowImpassable |
+        CollisionGroup.BulletImpassable);
 
     /// <summary>
     /// Collision masks that were removed from ANY layer when the storage was opened;

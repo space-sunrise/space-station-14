@@ -11,11 +11,14 @@ public sealed partial class CureDiseaseInfectionEntityEffectSystem : EntityEffec
 
     protected override void Effect(Entity<SickComponent> entity, ref EntityEffectEvent<CureDiseaseInfection> args)
     {
-        if (_entityManager.TryGetComponent<DiseaseRoleComponent>(entity.Owner, out var disease))
+        if (_entityManager.TryGetComponent<SickComponent>(entity.Owner, out var sick))
         {
-            var comp = _entityManager.EnsureComponent<DiseaseVaccineTimerComponent>(entity.Owner);
-            comp.Immune = args.Effect.Innoculate;
-            comp.Delay = TimeSpan.FromMinutes(2) + TimeSpan.FromSeconds(disease.Shield * 30);
+            if (_entityManager.TryGetComponent<DiseaseRoleComponent>(sick.owner, out var disease))
+            {
+                var comp = _entityManager.EnsureComponent<DiseaseVaccineTimerComponent>(entity.Owner);
+                comp.Immune = args.Effect.Innoculate;
+                comp.Delay = TimeSpan.FromMinutes(2) + TimeSpan.FromSeconds(disease.Shield * 30);
+            }
         }
     }
 }
