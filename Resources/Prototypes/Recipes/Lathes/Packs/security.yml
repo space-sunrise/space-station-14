@@ -128,8 +128,8 @@
   - MagazinePistolSubMachineGunUranium
   - MagazineRifleIncendiary
   - MagazineRifleUranium
-  - MagazineShotgunBeanbag
-  - MagazineShotgunIncendiary
+  #- MagazineShotgunBeanbag # Sunrise-Edit
+  #- MagazineShotgunIncendiary # Sunrise-Edit
   - SpeedLoaderMagnumIncendiary
   - SpeedLoaderMagnumUranium
 

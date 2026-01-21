@@ -121,7 +121,13 @@
   suffix: AntiqueLaser
   components:
   - type: AccessReader
-    access: [["Captain"]]
+  # Sunrise-start
+    access: [["CentralCommand"]] # базово только ЦК
+    alertAccesses:
+      blue: CaptainAlertAccesses
+      red: CaptainAlertAccesses
+      gamma: CaptainAlertAccesses
+  # Sunrise-end
   - type: Construction
     graph: GlassBox
     node: glassBox

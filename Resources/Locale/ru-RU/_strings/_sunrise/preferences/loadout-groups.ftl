@@ -116,3 +116,5 @@ loadout-group-pda = ПДА
 loadout-group-prison-trinkets = Безделушки ПТ
 loadout-group-prisoner-loot = Тайник Зека
 loadout-group-prison-security-loot = Привилегии Охраны
+
+loadout-group-prison-jumpsuit = Рабочая униформа

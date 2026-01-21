@@ -265,6 +265,7 @@
     - BoxShotgunIncendiary
     - BoxShotgunUranium
     - BoxShellTranquilizer
+    - BoxShotgunFlechette
   #####################MAGAZINE#######################
   # LMG
     - MagazineLightRifleBeltBoxIncendiary
@@ -310,6 +311,7 @@
   # Shotgun
     - SpeedLoaderShotgunIncendiary
     - SpeedLoaderShotgunUranium
+    - SpeedLoaderShotgunFlechette
   # Grenade
     - MagazineGrenadeEmpty
 ####################################################

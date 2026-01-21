@@ -26,3 +26,41 @@
       time: 54000 # 15 часов
   equipment:
     head: ClothingHeadHatCapPrisonWorkerMetus
+
+# Рабочая униформа
+
+- type: loadout
+  id: PrisonWorker-ClothingUniformJumpsuitPrisonWorker
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonWorker
+
+- type: loadout
+  id: PrisonWorker-ClothingUniformJumpskirtPrisonWorker
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonWorker
+
+- type: loadout
+  id: PrisonWorker-ClothingUniformJumpsuitPrisonWorkerVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonWorker
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonWorkerVeteran
+
+- type: loadout
+  id: PrisonWorker-ClothingUniformJumpskirtPrisonWorkerVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonWorker
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonWorkerVeteran

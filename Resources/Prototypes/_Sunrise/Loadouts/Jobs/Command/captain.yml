@@ -165,3 +165,69 @@
       time: 35h
   equipment:
     neck: ClothingNeckMantleCaptainBlackShoulder
+
+- type: loadout
+  id: CaptainBackpackWhite
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    back: ClothingBackpackCaptainWhite
+
+- type: loadout
+  id: CaptainBackpackBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 35h
+  equipment:
+    back: ClothingBackpackCaptainBlack
+
+- type: loadout
+  id: CaptainSatchelWhite
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    back: ClothingBackpackSatchelCaptainWhite
+
+- type: loadout
+  id: CaptainSatchelBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 35h
+  equipment:
+    back: ClothingBackpackSatchelCaptainBlack
+
+- type: loadout
+  id: CaptainDuffelWhite
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    back: ClothingBackpackDuffelCaptainWhite
+
+- type: loadout
+  id: CaptainDuffelBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 35h
+  equipment:
+    back: ClothingBackpackDuffelCaptainBlack

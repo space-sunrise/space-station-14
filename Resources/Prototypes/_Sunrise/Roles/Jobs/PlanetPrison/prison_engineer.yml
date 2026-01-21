@@ -33,7 +33,6 @@
 - type: startingGear
   id: PrisonEngineerGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitPrisonEngineer
     ears: ClothingHeadsetJEngineering
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat

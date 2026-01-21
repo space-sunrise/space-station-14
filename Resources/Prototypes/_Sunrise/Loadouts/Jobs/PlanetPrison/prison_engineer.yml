@@ -44,3 +44,41 @@
       time: 36000 # 10 часов
   equipment:
     id: PrisonEngineerPDAScreenPoint
+
+# Рабочая униформа
+
+- type: loadout
+  id: PrisonEngineer-ClothingUniformJumpsuitPrisonEngineer
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonEngineer
+
+- type: loadout
+  id: PrisonEngineer-ClothingUniformJumpskirtPrisonEngineer
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonEngineer
+
+- type: loadout
+  id: PrisonEngineer-ClothingUniformJumpsuitPrisonEngineerVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonEngineer
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonEngineerVeteran
+
+- type: loadout
+  id: PrisonEngineer-ClothingUniformJumpskirtPrisonEngineerVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonEngineer
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonEngineerVeteran

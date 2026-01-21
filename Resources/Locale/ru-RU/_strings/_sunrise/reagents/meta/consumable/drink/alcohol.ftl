@@ -1,13 +1,13 @@
 reagent-name-alien-brain-hemorrhage = инопланетное кровоизлияние в мозг
 reagent-desc-alien-brain-hemorrhage = Пожалуй, стоит провериться в медблоке.
 
-reagent-name-bronx = Бронкс
+reagent-name-bronx = бронкс
 reagent-desc-bronx = Апельсиновый родственник Манхэттена и Мартини.
 
-reagent-name-crush-depth = Критическая глубина
+reagent-name-crush-depth = критическая глубина
 reagent-desc-crush-depth = Стигийский напиток, зовущий в бездну. Тёмный и холодный, он напоминает: самый древний страх — страх неизвестного.
 
-reagent-name-dark-and-stormy = Тёмный и бурный
+reagent-name-dark-and-stormy = тёмный и бурный
 reagent-desc-dark-and-stormy = Кажется, вы почти слышите гром.
 
 reagent-name-eggnog = эгг-ног
@@ -25,7 +25,7 @@ reagent-desc-jungle-bird = Несмотря на название, среди в
 reagent-name-kalimotxo = калимочо
 reagent-desc-kalimotxo = Куба Либре для истинного ценителя алкоголя.
 
-reagent-name-tortuga = Тортуга
+reagent-name-tortuga = тортуга
 reagent-desc-tortuga = Идеально для пиратов, назначенных трезвым водителем. Йо-хо-хо!
 
 reagent-name-monkey-business = обезьяньи дела
@@ -70,3 +70,35 @@ reagent-desc-the-sun-also-rises = Крепкий коктейль мутного
 reagent-name-whiskey-sour = виски сауэр
 reagent-desc-whiskey-sour = В чём секретный ингредиент? Яйца. Это яйца.
 
+reagent-name-yorsh = ёрш
+reagent-desc-yorsh = Вкус беззаботного детства.
+
+reagent-name-alexander = александр
+reagent-desc-alexander = В ходе производства ни один Александр не пострадал. Наверное...
+
+reagent-name-campari = кампари
+reagent-desc-campari = Настойка на основе ароматических трав и цитрусовых. Без ГМО!
+
+reagent-name-negroni = негрони
+reagent-desc-negroni = Американо для алкоголиков.
+
+reagent-name-oldFashioned = олд фэшен
+reagent-desc-oldFashioned = Как сказал величайший классик: "Это классика".
+
+reagent-name-badTouch = проникновение
+reagent-desc-badTouch = Входит... И выходит... И входит... Замечательно выходит!
+
+reagent-name-darkAndStormy = тьма и буря
+reagent-desc-darkAndStormy = Прямиком с Бермудских Островов! Пират слева говорит, что именно поэтому напиток и пропадает с барной стойки.
+
+reagent-name-bramble = брамбл
+reagent-desc-bramble = Ягодки, джин, и довольно стрёмный вид.
+
+reagent-name-maiTai = май тай
+reagent-desc-maiTai = Первый человек, попробовавший этот коктейль, воскликнул: ”Mai tai — roa ae!”. Что в переводе с тайского означает... Да откуда мне знать? Звучит круто!
+
+reagent-name-paloma = палома
+reagent-desc-paloma = Сверху ковбои. Снизу маракасы. Что же выбрать?
+
+reagent-name-boyarsky = боярский
+reagent-desc-boyarsky = Что делать, если ты устал от жизни? СМЕШИВАТЬ ВОДКУ!

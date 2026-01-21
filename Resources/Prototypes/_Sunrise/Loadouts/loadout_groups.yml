@@ -1501,6 +1501,74 @@
   - PrisonTrainee-PrisonTraineePDAAdvanced
   - PrisonTrainee-PrisonTraineePDAComplete
 
+# Prison Uniform Groups
+
+- type: loadoutGroup
+  id: PrisonDoctorJumpsuit
+  name: loadout-group-prison-jumpsuit
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonDoctor-ClothingUniformJumpsuitPrisonDoctor
+  - PrisonDoctor-ClothingUniformJumpskirtPrisonDoctor
+  - PrisonDoctor-ClothingUniformJumpsuitPrisonDoctorVeteran
+  - PrisonDoctor-ClothingUniformJumpskirtPrisonDoctorVeteran
+
+- type: loadoutGroup
+  id: PrisonChefJumpsuit
+  name: loadout-group-prison-jumpsuit
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonChef-ClothingUniformJumpsuitPrisonChef
+  - PrisonChef-ClothingUniformJumpskirtPrisonChef
+  - PrisonChef-ClothingUniformJumpsuitPrisonChefVeteran
+  - PrisonChef-ClothingUniformJumpskirtPrisonChefVeteran
+
+- type: loadoutGroup
+  id: PrisonEngineerJumpsuit
+  name: loadout-group-prison-jumpsuit
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonEngineer-ClothingUniformJumpsuitPrisonEngineer
+  - PrisonEngineer-ClothingUniformJumpskirtPrisonEngineer
+  - PrisonEngineer-ClothingUniformJumpsuitPrisonEngineerVeteran
+  - PrisonEngineer-ClothingUniformJumpskirtPrisonEngineerVeteran
+
+- type: loadoutGroup
+  id: PrisonScientistJumpsuit
+  name: loadout-group-prison-jumpsuit
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonScientist-ClothingUniformJumpsuitPrisonScientist
+  - PrisonScientist-ClothingUniformJumpskirtPrisonScientist
+  - PrisonScientist-ClothingUniformJumpsuitPrisonScientistVeteran
+  - PrisonScientist-ClothingUniformJumpskirtPrisonScientistVeteran
+
+- type: loadoutGroup
+  id: PrisonWorkerJumpsuit
+  name: loadout-group-prison-jumpsuit
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonWorker-ClothingUniformJumpsuitPrisonWorker
+  - PrisonWorker-ClothingUniformJumpskirtPrisonWorker
+  - PrisonWorker-ClothingUniformJumpsuitPrisonWorkerVeteran
+  - PrisonWorker-ClothingUniformJumpskirtPrisonWorkerVeteran
+
+- type: loadoutGroup
+  id: PrisonTraineeJumpsuit
+  name: loadout-group-prison-jumpsuit
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - PrisonTrainee-ClothingUniformJumpsuitPrisonTrainee
+  - PrisonTrainee-ClothingUniformJumpskirtPrisonTrainee
+  - PrisonTrainee-ClothingUniformJumpsuitPrisonTraineeVeteran
+  - PrisonTrainee-ClothingUniformJumpskirtPrisonTraineeVeteran
+
 - type: loadoutGroup
   id: Contributors
   name: loadout-group-contributors

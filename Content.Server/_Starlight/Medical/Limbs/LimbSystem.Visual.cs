@@ -4,10 +4,10 @@ using Content.Shared._Sunrise;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Starlight;
 
 namespace Content.Server._Starlight.Medical.Limbs;
+
 public sealed partial class LimbSystem : SharedLimbSystem
 {
     public void AddLimbVisual(Entity<HumanoidAppearanceComponent> body, Entity<BodyPartComponent> limb)

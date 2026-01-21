@@ -11,5 +11,3 @@ ent-MagazineShotgunSlug = барабан пуль 12 калибра
     .desc = { ent-BaseMagazineShotgun.desc }
 ent-MagazineShotgunIncendiary = барабан зажигательных 12 калибра
     .desc = { ent-BaseMagazineShotgun.desc }
-ent-MagazineShotgunUranium = барабан урановых 12 калибра
-    .desc = { ent-BaseMagazineShotgun.desc }
