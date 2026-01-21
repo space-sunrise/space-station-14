@@ -1,6 +1,7 @@
 ## SUNRISE guides
 
 guide-entry-ammunition = Боеприпасы
+guide-entry-improvised-grenade-casing = Самодельная граната (корпус)
 
 guide-entry-disease = Разумная болезнь
 guide-entry-expeditions = Экспедиции
