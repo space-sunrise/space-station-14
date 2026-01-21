@@ -72,7 +72,7 @@
 - type: entity
   id: MobSpawnCrabSalt
   parent: MobSpawnCrabQuartz
-  name: mobspawner diamondcrab
+  name: mobspawner saltcrab
   categories: [ HideSpawnMenu, Spawner ]
   components:
   - type: Sprite
@@ -84,7 +84,7 @@
 - type: entity
   id: MobSpawnCrabPlasma
   parent: MobSpawnCrabQuartz
-  name: mobspawner diamondcrab
+  name: mobspawner plasmacrab
   categories: [ HideSpawnMenu, Spawner ]
   components:
   - type: Sprite
