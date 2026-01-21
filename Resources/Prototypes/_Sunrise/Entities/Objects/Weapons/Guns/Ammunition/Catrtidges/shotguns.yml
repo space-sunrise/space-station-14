@@ -236,7 +236,7 @@
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#5da0b5"
       - state: holy
-        color: "#01151b"
+        color: "#07252eb5"
       - state: spent-long
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
