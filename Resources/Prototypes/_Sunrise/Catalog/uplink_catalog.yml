@@ -191,7 +191,7 @@
 
 - type: listing
   id: UplinkMagazinePistol40SMGSP
-  description: uplink-pistol-magazine-c20r-desc
+  description: uplink-pistol-magazine-c40r-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
   productEntity: MagazinePistol40SubMachineGunSP
   cost:
@@ -201,7 +201,7 @@
 
 - type: listing
   id: UplinkMagazinePistol40SMGHP
-  description: uplink-pistol-magazine-c20r-desc
+  description: uplink-pistol-magazine-c40r-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
   productEntity: MagazinePistol40SubMachineGunHP
   cost:
@@ -211,7 +211,7 @@
 
 - type: listing
   id: UplinkMagazinePistol40SMGFMJ
-  description: uplink-pistol-magazine-c20r-desc
+  description: uplink-pistol-magazine-c40r-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
   productEntity: MagazinePistol40SubMachineGunFMJ
   cost:
@@ -1603,6 +1603,9 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkMechIon

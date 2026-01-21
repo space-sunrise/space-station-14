@@ -112,7 +112,7 @@
 - type: entity
   id: SpeedLoaderShotgunFlechette
   name: "speed loader (.50 flechette)"
-  parent: [ BaseSpeedLoaderShotgun, BaseSyndicateContraband ]
+  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband ]
   components:
   - type: BallisticAmmoProvider
     proto: ShellShotgunFlechette
