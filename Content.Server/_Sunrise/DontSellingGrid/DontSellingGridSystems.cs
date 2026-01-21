@@ -1,5 +1,4 @@
 using Content.Server.Cargo.Components;
-using Content.Server.Cargo.Systems;
 using Content.Server.Station.Events;
 using Content.Shared._Sunrise.Economy;
 using Content.Shared.Cargo;
@@ -12,26 +11,31 @@ public sealed class StationDontSellingSystems : EntitySystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
+    private readonly HashSet<Entity<StaticPriceComponent>> _entities = [];
+
+    private EntityQuery<ContainerManagerComponent> _containerQuery;
+    private EntityQuery<StationDontSellingGridComponent> _stationQuery;
+
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<DontSellingGridComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<StationDontSellingGridComponent, StationPostInitEvent>(OnPostInit);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawning);
         SubscribeLocalEvent<DontSellComponent, PriceCalculationEvent>(OnCalculatePrice);
+
+        _containerQuery = GetEntityQuery<ContainerManagerComponent>();
+        _stationQuery = GetEntityQuery<StationDontSellingGridComponent>();
     }
 
-    private void OnCalculatePrice(EntityUid uid, DontSellComponent component, ref PriceCalculationEvent args)
-    {
-        args.Price = 0;
-        args.Handled = true;
-    }
+    #region Event handlers
 
-    private void OnStartup(EntityUid uid, DontSellingGridComponent component, ref ComponentStartup args)
+    private void OnStartup(Entity<DontSellingGridComponent> ent, ref ComponentStartup args)
     {
-        var entities = new HashSet<Entity<StaticPriceComponent>>();
-        _lookup.GetGridEntities(uid, entities);
-        foreach (var entityUid in entities)
+        _entities.Clear();
+        _lookup.GetGridEntities(ent, _entities);
+        foreach (var entityUid in _entities)
         {
             if (!entityUid.Owner.IsValid())
                 continue;
@@ -40,6 +44,35 @@ public sealed class StationDontSellingSystems : EntitySystem
         }
     }
 
+    private void OnPostInit(Entity<StationDontSellingGridComponent> ent, ref StationPostInitEvent args)
+    {
+        foreach (var gridUid in args.Station.Comp.Grids)
+        {
+            if (!gridUid.IsValid())
+                continue;
+
+            EnsureComp<DontSellingGridComponent>(gridUid);
+        }
+    }
+
+    private void OnPlayerSpawning(PlayerSpawnCompleteEvent ev)
+    {
+        if (!_stationQuery.HasComp(ev.Station))
+            return;
+
+        DepreciatePrice(ev.Mob);
+    }
+
+    private void OnCalculatePrice(Entity<DontSellComponent> ent, ref PriceCalculationEvent args)
+    {
+        args.Price = 0;
+        args.Handled = true;
+    }
+
+    #endregion
+
+    #region Decrease price logic
+
     private void DepreciatePrice(EntityUid uid)
     {
         if (!uid.IsValid())
@@ -47,7 +80,7 @@ public sealed class StationDontSellingSystems : EntitySystem
 
         EnsureComp<DontSellComponent>(uid);
 
-        if (!TryComp<ContainerManagerComponent>(uid, out var containers))
+        if (!_containerQuery.TryComp(uid, out var containers))
             return;
 
         foreach (var container in containers.Containers.Values)
@@ -59,22 +92,5 @@ public sealed class StationDontSellingSystems : EntitySystem
         }
     }
 
-    private void OnPlayerSpawning(PlayerSpawnCompleteEvent ev)
-    {
-        if (!HasComp<StationDontSellingGridComponent>(ev.Station))
-            return;
-
-        DepreciatePrice(ev.Mob);
-    }
-
-    private void OnPostInit(EntityUid uid, StationDontSellingGridComponent component, ref StationPostInitEvent args)
-    {
-        foreach (var gridUid in args.Station.Comp.Grids)
-        {
-            if (!gridUid.IsValid())
-                continue;
-
-            AddComp<DontSellingGridComponent>(gridUid);
-        }
-    }
+    #endregion
 }
