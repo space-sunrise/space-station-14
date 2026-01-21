@@ -269,6 +269,7 @@
     guides:
     - Bartender
     - Drinks
+  - type: PlayerCountDependentStock  # Sunrise-vend
 
 - type: entity
   parent: VendingMachineBooze
@@ -366,6 +367,7 @@
     radius: 1.5
     energy: 3.0
     color: "#4b93ad"
+  - type: PlayerCountDependentStock  # Sunrise-vend
 
 - type: entity
   parent: VendingMachine
@@ -956,6 +958,7 @@
   - type: GuideHelp
     guides:
     - MedicalDoctor
+  - type: PlayerCountDependentStock  # Sunrise-vend
 
 - type: entity
   parent: VendingMachineMedicalBase
@@ -976,6 +979,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
     access: [["Medical"]]
+  - type: PlayerCountDependentStock  # Sunrise-vend
 
 - type: entity
   parent: VendingMachine
@@ -2318,6 +2322,7 @@
   - type: GuideHelp
     guides:
     - Medical
+  - type: PlayerCountDependentStock  # Sunrise-vend
   #Sunrise-Start
 
 - type: entity
@@ -2357,3 +2362,4 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
     access: [["Medical"]]
+  - type: PlayerCountDependentStock  # Sunrise-vend
