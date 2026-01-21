@@ -46,7 +46,7 @@
   categories: [ HideSpawnMenu, Spawner ]
   components:
   - type: Sprite
-    sprite: /Textures/Effects/mobspawn.rsi
+    sprite: /Textures/_Sunrise/Effects/mobspawn.rsi # Sunrise-Edit
     state: crab_coal
   - type: SpawnOnDespawn
     prototype: MobCoalCrab
@@ -70,7 +70,7 @@
   categories: [ HideSpawnMenu, Spawner ]
   components:
   - type: Sprite
-    sprite: /Textures/Effects/mobspawn.rsi
+    sprite: /Textures/_Sunrise/Effects/mobspawn.rsi # Sunrise-Edit
     state: crab_gold
   - type: SpawnOnDespawn
     prototype: MobGoldCrab
@@ -94,7 +94,7 @@
   categories: [ HideSpawnMenu, Spawner ]
   components:
   - type: Sprite
-    sprite: /Textures/Effects/mobspawn.rsi
+    sprite: /Textures/_Sunrise/Effects/mobspawn.rsi # Sunrise-Edit
     state: crab_bananium
   - type: SpawnOnDespawn
     prototype: MobBananiumCrab

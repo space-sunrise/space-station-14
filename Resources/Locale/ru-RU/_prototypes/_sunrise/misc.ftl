@@ -90,3 +90,6 @@ ent-CartridgeHeavyRifleRFMJMech = { ent-CartridgeHeavyRifleRFMJ }
 ent-CartridgeXrayBeam = патрон (рентген-луч)
     .desc = { ent-BaseCartridge.desc }
 
+
+ent-EmptyDetonator = детонатор
+    .desc = Детонирующий капсюль. Требуются триггер и провод.

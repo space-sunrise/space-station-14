@@ -1,4 +1,5 @@
 # Low value
+#Sunrise-Start
 - type: biomeMarkerLayer
   id: OreIron
   entityMask:
@@ -8,7 +9,21 @@
     WallRockChromite: WallRockChromiteTin
     WallRockSand: WallRockSandTin
     WallRockSnow: WallRockSnowTin
-  maxCount: 30
+  maxCount: 15
+  minGroupSize: 10
+  maxGroupSize: 15
+  radius: 4
+
+- type: biomeMarkerLayer
+  id: OreIronCrab
+  entityMask:
+    AsteroidRock: AsteroidRockTinCrab
+    WallRock: WallRockTinCrab
+    WallRockBasalt: WallRockBasaltTinCrab
+    WallRockChromite: WallRockChromiteTinCrab
+    WallRockSand: WallRockSandTinCrab
+    WallRockSnow: WallRockSnowTinCrab
+  maxCount: 15
   minGroupSize: 10
   maxGroupSize: 15
   radius: 4
@@ -21,7 +36,20 @@
     WallRockBasalt: WallRockBasaltQuartz
     WallRockChromite: WallRockChromiteQuartz
     WallRockSnow: WallRockSnowQuartz
-  maxCount: 30
+  maxCount: 15
+  minGroupSize: 10
+  maxGroupSize: 15
+  radius: 4
+
+- type: biomeMarkerLayer
+  id: OreQuartzCrab
+  entityMask:
+    AsteroidRock: AsteroidRockQuartzCrab
+    WallRock: WallRockQuartzCrab
+    WallRockBasalt: WallRockBasaltQuartzCrab
+    WallRockChromite: WallRockChromiteQuartzCrab
+    WallRockSnow: WallRockSnowQuartzCrab
+  maxCount: 15
   minGroupSize: 10
   maxGroupSize: 15
   radius: 4
@@ -35,7 +63,21 @@
     WallRockChromite: WallRockChromiteCoal
     WallRockSand: WallRockSandCoal
     WallRockSnow: WallRockSnowCoal
-  maxCount: 30
+  maxCount: 15
+  minGroupSize: 8
+  maxGroupSize: 12
+  radius: 4
+
+- type: biomeMarkerLayer
+  id: OreCoalCrab
+  entityMask:
+    AsteroidRock: AsteroidRockCoalCrab
+    WallRock: WallRockCoalCrab
+    WallRockBasalt: WallRockBasaltCoalCrab
+    WallRockChromite: WallRockChromiteCoalCrab
+    WallRockSand: WallRockSandCoalCrab
+    WallRockSnow: WallRockSnowCoalCrab
+  maxCount: 15
   minGroupSize: 8
   maxGroupSize: 12
   radius: 4
@@ -49,7 +91,21 @@
     WallRockChromite: WallRockChromiteSalt
     WallRockSand: WallRockSandSalt
     WallRockSnow: WallRockSnowSalt
-  maxCount: 30
+  maxCount: 15
+  minGroupSize: 8
+  maxGroupSize: 12
+  radius: 4
+
+- type: biomeMarkerLayer
+  id: OreSaltCrab
+  entityMask:
+    AsteroidRock: AsteroidRockSaltCrab
+    WallRock: WallRockSaltCrab
+    WallRockBasalt: WallRockBasaltSaltCrab
+    WallRockChromite: WallRockChromiteSaltCrab
+    WallRockSand: WallRockSandSaltCrab
+    WallRockSnow: WallRockSnowSaltCrab
+  maxCount: 15
   minGroupSize: 8
   maxGroupSize: 12
   radius: 4
@@ -65,7 +121,21 @@
     WallRockChromite: WallRockChromiteGold
     WallRockSand: WallRockSandGold
     WallRockSnow: WallRockSnowGold
-  maxCount: 20
+  maxCount: 10
+  minGroupSize: 5
+  maxGroupSize: 10
+  radius: 4
+
+- type: biomeMarkerLayer
+  id: OreGoldCrab
+  entityMask:
+    AsteroidRock: AsteroidRockGoldCrab
+    WallRock: WallRockGoldCrab
+    WallRockBasalt: WallRockBasaltGoldCrab
+    WallRockChromite: WallRockChromiteGoldCrab
+    WallRockSand: WallRockSandGoldCrab
+    WallRockSnow: WallRockSnowGoldCrab
+  maxCount: 10
   minGroupSize: 5
   maxGroupSize: 10
   radius: 4
@@ -80,7 +150,21 @@
     WallRockChromite: WallRockChromiteSilver
     WallRockSand: WallRockSandSilver
     WallRockSnow: WallRockSnowSilver
-  maxCount: 20
+  maxCount: 10
+  minGroupSize: 5
+  maxGroupSize: 10
+  radius: 4
+
+- type: biomeMarkerLayer
+  id: OreSilverCrab
+  entityMask:
+    AsteroidRock: AsteroidRockSilverCrab
+    WallRock: WallRockSilverCrab
+    WallRockBasalt: WallRockBasaltSilverCrab
+    WallRockChromite: WallRockChromiteSilverCrab
+    WallRockSand: WallRockSandSilverCrab
+    WallRockSnow: WallRockSnowSilverCrab
+  maxCount: 10
   minGroupSize: 5
   maxGroupSize: 10
   radius: 4
@@ -96,7 +180,21 @@
     WallRockChromite: WallRockChromitePlasma
     WallRockSand: WallRockSandPlasma
     WallRockSnow: WallRockSnowPlasma
-  maxCount: 12
+  maxCount: 6
+  minGroupSize: 4
+  maxGroupSize: 8
+  radius: 4
+
+- type: biomeMarkerLayer
+  id: OrePlasmaCrab
+  entityMask:
+    AsteroidRock: AsteroidRockPlasmaCrab
+    WallRock: WallRockPlasmaCrab
+    WallRockBasalt: WallRockBasaltPlasmaCrab
+    WallRockChromite: WallRockChromitePlasmaCrab
+    WallRockSand: WallRockSandPlasmaCrab
+    WallRockSnow: WallRockSnowPlasmaCrab
+  maxCount: 6
   minGroupSize: 4
   maxGroupSize: 8
   radius: 4
@@ -111,9 +209,51 @@
     WallRockChromite: WallRockChromiteUranium
     WallRockSand: WallRockSandUranium
     WallRockSnow: WallRockSnowUranium
-  maxCount: 15
+  maxCount: 8
   minGroupSize: 4
   maxGroupSize: 8
+  radius: 4
+
+- type: biomeMarkerLayer
+  id: OreUraniumCrab
+  entityMask:
+    AsteroidRock: AsteroidRockUraniumCrab
+    WallRock: WallRockUraniumCrab
+    WallRockBasalt: WallRockBasaltUraniumCrab
+    WallRockChromite: WallRockChromiteUraniumCrab
+    WallRockSand: WallRockSandUraniumCrab
+    WallRockSnow: WallRockSnowUraniumCrab
+  maxCount: 7
+  minGroupSize: 4
+  maxGroupSize: 8
+  radius: 4
+
+- type: biomeMarkerLayer
+  id: OreBananium
+  entityMask:
+    AsteroidRock: AsteroidRockBananium
+    WallRock: WallRockBananium
+    WallRockBasalt: WallRockBasaltBananium
+    WallRockChromite: WallRockChromiteBananium
+    WallRockSand: WallRockSandBananium
+    WallRockSnow: WallRockSnowBananium
+  maxCount: 6
+  minGroupSize: 3
+  maxGroupSize: 6
+  radius: 4
+
+- type: biomeMarkerLayer
+  id: OreBananiumCrab
+  entityMask:
+    AsteroidRock: AsteroidRockBananiumCrab
+    WallRock: WallRockBananiumCrab
+    WallRockBasalt: WallRockBasaltBananiumCrab
+    WallRockChromite: WallRockChromiteBananiumCrab
+    WallRockSand: WallRockSandBananiumCrab
+    WallRockSnow: WallRockSnowBananiumCrab
+  maxCount: 6
+  minGroupSize: 3
+  maxGroupSize: 6
   radius: 4
 
 - type: biomeMarkerLayer
@@ -125,10 +265,25 @@
     WallRockChromite: WallRockChromiteDiamond
     WallRockSand: WallRockSandDiamond
     WallRockSnow: WallRockSnowDiamond
-  maxCount: 6
+  maxCount: 3
   minGroupSize: 1
   maxGroupSize: 2
   radius: 4
+
+- type: biomeMarkerLayer
+  id: OreDiamondCrab
+  entityMask:
+    AsteroidRock: AsteroidRockDiamondCrab
+    WallRock: WallRockDiamondCrab
+    WallRockBasalt: WallRockBasaltDiamondCrab
+    WallRockChromite: WallRockChromiteDiamondCrab
+    WallRockSand: WallRockSandDiamondCrab
+    WallRockSnow: WallRockSnowDiamondCrab
+  maxCount: 3
+  minGroupSize: 1
+  maxGroupSize: 2
+  radius: 4
+#Sunrise-End
 
 # Artifact Fragment
 - type: biomeMarkerLayer

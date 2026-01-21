@@ -208,6 +208,15 @@
     - state: rock_diamond
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
+#Sunrise-Start
+- type: entity
+  id: AsteroidRockDiamondCrab
+  parent: AsteroidRockDiamond
+  suffix: Diamond Crab
+  components:
+  - type: OreVein
+    currentOre: OreDiamondCrab
+
 - type: entity
   id: AsteroidRockPlasma
   parent: AsteroidRock
@@ -229,6 +238,14 @@
       state: rock_asteroid_west
     - state: rock_phoron
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: AsteroidRockPlasmaCrab
+  parent: AsteroidRockPlasma
+  suffix: Plasma Crab
+  components:
+  - type: OreVein
+    currentOre: OrePlasmaCrab
 
 - type: entity
   id: AsteroidRockQuartz
@@ -408,6 +425,14 @@
       state: rock_asteroid_west
     - state: rock_salt
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: AsteroidRockSaltCrab
+  parent: AsteroidRockSalt
+  suffix: Salt Crab
+  components:
+  - type: OreVein
+    currentOre: OreSaltCrab
 
 - type: entity
   id: AsteroidRockArtifactFragment
@@ -829,6 +854,32 @@
   - type: OreVein
     currentOre: OreBananiumCrab
 
+# New crab variants for salt/plasma/diamond rock clusters
+- type: entity
+  id: IronRockSaltCrab
+  parent: IronRockSalt
+  suffix: Salt Crab
+  components:
+  - type: OreVein
+    currentOre: OreSaltCrab
+
+- type: entity
+  id: IronRockPlasmaCrab
+  parent: IronRockPlasma
+  suffix: Plasma Crab
+  components:
+  - type: OreVein
+    currentOre: OrePlasmaCrab
+
+- type: entity
+  id: IronRockDiamondCrab
+  parent: IronRockDiamond
+  suffix: Diamond Crab
+  components:
+  - type: OreVein
+    currentOre: OreDiamondCrab
+#Sunrise-End
+
 # Rocks and ore veins
 - type: entity
   id: WallRock
@@ -845,12 +896,12 @@
       - Pickaxe
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
+    damageModifierSet: Rock # Sunrise-edit
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 150
+        damage: 120 # Sunrise-edit
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
