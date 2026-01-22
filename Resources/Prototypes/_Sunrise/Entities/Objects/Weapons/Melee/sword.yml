@@ -51,8 +51,13 @@
     price: 3000
 
 - type: entity
+<<<<<<< Updated upstream
   name: dragon slayer
   parent: Claymore
+=======
+  name: dragon slayers
+  parent:  Claymore
+>>>>>>> Stashed changes
   id: GutsSword
   description: What determines the fate of mankind in this world? Some unseen being? Or a law, like the Hand of God floating above the world? At the very least, what's true is that man cannot even control his own will
   components:
@@ -135,6 +140,7 @@
         - Back
         - SuitStorage
     - type: DisarmMalus
+      malus: 0.5
     - type: Scalpel
     - type: SurgeryTool
       successRate: 0.6
