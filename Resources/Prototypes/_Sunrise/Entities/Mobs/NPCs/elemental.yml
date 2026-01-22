@@ -10,6 +10,12 @@
     damage:
       types:
         Slash: 7
+  - type: Explosive
+    explosionType: FireBomb
+    totalIntensity: 20
+    maxIntensity: 3
+    intensitySlope: 5
+    canCreateVacuum: false
   - type: Destructible
     thresholds:
     - trigger:
@@ -24,6 +30,7 @@
           PlasmaOre1:
             min: 2
             max: 4
+      - !type:ExplodeBehavior
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: PointLight
