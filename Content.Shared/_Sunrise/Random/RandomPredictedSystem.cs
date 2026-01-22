@@ -35,7 +35,7 @@ public sealed partial class RandomPredictedSystem : EntitySystem
     /// <remarks>
     /// Чем больше разных сущностей будет использоваться, тем случайнее будет выдаваемый результат.
     /// </remarks>
-    private System.Random GetOrCreateEntityRandom(params List<EntityUid> entities)
+    private System.Random GetOrCreateEntityRandom(List<EntityUid> entities)
     {
         var list = entities
             .Select(e => GetNetEntity(e).Id)

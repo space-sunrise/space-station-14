@@ -25,7 +25,7 @@ public sealed partial class RandomPredictedSystem
     /// <inheritdoc cref="NextForEntity(EntityUid, int, int)"/>
     /// </summary>
     [PublicAPI]
-    public int NextForEntity(int minValue, int maxValue, params List<EntityUid> entities)
+    public int NextForEntity(List<EntityUid> entities, int minValue = 0, int maxValue = int.MaxValue)
     {
         var random = GetOrCreateEntityRandom(entities);
         return random.Next(minValue, maxValue);
@@ -46,7 +46,7 @@ public sealed partial class RandomPredictedSystem
     /// <inheritdoc cref="NextFloatForEntity(EntityUid, float, float)"/>
     /// </summary>
     [PublicAPI]
-    public float NextFloatForEntity(float minValue, float maxValue, params List<EntityUid> entities)
+    public float NextFloatForEntity(List<EntityUid> entities, float minValue = 0f, float maxValue = 1f)
     {
         var random = GetOrCreateEntityRandom(entities);
         return random.NextFloat(minValue, maxValue);
@@ -67,7 +67,7 @@ public sealed partial class RandomPredictedSystem
     /// <inheritdoc cref="NextDoubleForEntity(EntityUid)"/>
     /// </summary>
     [PublicAPI]
-    public double NextDoubleForEntity(params List<EntityUid> entities)
+    public double NextDoubleForEntity(List<EntityUid> entities)
     {
         var random = GetOrCreateEntityRandom(entities);
         return random.NextDouble();
@@ -81,7 +81,7 @@ public sealed partial class RandomPredictedSystem
     /// </remarks>
     /// <returns>Прокнули ли переданный шанс</returns>
     [PublicAPI]
-    public bool ProbForEntity(EntityUid ent, float chance)
+    public bool ProbForEntity(EntityUid ent, float chance = 0.5f)
     {
         var random = GetOrCreateEntityRandom(ent);
         return random.NextDouble() < chance;
@@ -91,7 +91,7 @@ public sealed partial class RandomPredictedSystem
     /// <inheritdoc cref="ProbForEntity(EntityUid, float)"/>
     /// </summary>
     [PublicAPI]
-    public bool ProbForEntity(float chance, params List<EntityUid> entities)
+    public bool ProbForEntity(List<EntityUid> entities, float chance = 0.5f)
     {
         var random = GetOrCreateEntityRandom(entities);
         return random.NextDouble() < chance;
@@ -101,6 +101,7 @@ public sealed partial class RandomPredictedSystem
     /// Выбирает случайный элемент из списка для указанной сущности.
     /// </summary>
     /// <returns>Случайный элемент из списка <see cref="list"/></returns>
+    /// TODO: Здесь кажется скрывается миспредикт, но я его не вижу. Почините, если это так или уберите эту плашку.
     [PublicAPI]
     public T PickForEntity<T>(EntityUid ent, IReadOnlyList<T> list)
     {
@@ -114,7 +115,7 @@ public sealed partial class RandomPredictedSystem
     /// </summary>
     /// TODO: Здесь кажется скрывается миспредикт, но я его не вижу. Почините, если это так или уберите эту плашку.
     [PublicAPI]
-    public T PickForEntity<T>(IReadOnlyList<T> list, params List<EntityUid> entities)
+    public T PickForEntity<T>(List<EntityUid> entities, IReadOnlyList<T> list)
     {
         var random = GetOrCreateEntityRandom(entities);
         var index = random.Next(list.Count);
