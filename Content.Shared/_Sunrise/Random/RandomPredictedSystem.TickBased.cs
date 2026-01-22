@@ -1,4 +1,5 @@
 ﻿using Content.Shared.GameTicking;
+using JetBrains.Annotations;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Sunrise.Random;
@@ -32,6 +33,7 @@ public sealed partial class RandomPredictedSystem
     /// <summary>
     /// Возвращает случайное целое число, зависящее от текущего тика.
     /// </summary>
+    [PublicAPI]
     public int NextByTick(int minValue, int maxValue)
     {
         UpdateTickRandom();
@@ -41,6 +43,7 @@ public sealed partial class RandomPredictedSystem
     /// <summary>
     /// Возвращает случайное число с плавающей запятой, зависящее от текущего тика.
     /// </summary>
+    [PublicAPI]
     public float NextFloatByTick(float minValue = 0f, float maxValue = 1f)
     {
         UpdateTickRandom();
@@ -50,6 +53,7 @@ public sealed partial class RandomPredictedSystem
     /// <summary>
     /// Возвращает true с заданной вероятностью, зависящей от текущего тика.
     /// </summary>
+    [PublicAPI]
     public bool ProbByTick(float chance)
     {
         UpdateTickRandom();
