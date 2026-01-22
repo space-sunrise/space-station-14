@@ -75,7 +75,7 @@ public sealed class EmoteAnimationSystem : EntitySystem
         if (emoteId == "FallOnNeck")
         {
             var damage = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Blunt"), 100);
-            _damageableSystem.ChangeDamage(uid, damage, true, useVariance: false, ignoreGlobalModifiers: true);
+            _damageableSystem.ChangeDamage(uid, damage, true, ignoreVariance: true, ignoreGlobalModifiers: true);
         }
 
         component.AnimationId = emoteId;
