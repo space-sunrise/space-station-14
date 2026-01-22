@@ -1,17 +1,11 @@
 - type: entity
-  parent: ClothingBackpack
+  parent: ClothingBackpackSyndicate
   id: ClothingBackpackSyndie
   name: syndie backpack
   description: An operative's backpack with increased capacity.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Backpacks/syndiebackpack.rsi
-  - type: Storage
-    maxItemSize: Huge
-    grid:
-    - 0,0,7,4
-  - type: ExplosionResistance
-    damageCoefficient: 0.1
 
 - type: entity
   parent: ClothingBackpack
