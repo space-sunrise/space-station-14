@@ -148,11 +148,11 @@ public sealed partial class DamageableSystem
         if (useVariance)
         {
             var varianceMultiplier = 1f;
-            if (damage.GetTotal() > 0)
+            if (damage.GetTotal() != FixedPoint2.Zero)
             {
                 var min = 1f - NegativeVariance;
                 var max = 1f + PositiveVariance;
-                varianceMultiplier = _random.NextFloat(min, max);
+                varianceMultiplier = _random.NextFloatForEntity(ent, min, max);
             }
             damage *= varianceMultiplier;
         }
