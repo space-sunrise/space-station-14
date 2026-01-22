@@ -62,7 +62,7 @@ uplink-goldendeagle-name = Золотой Десерт Игл
 uplink-goldendeagle-desc = "Использует патрон "магнум" 45-го калибра, Выгравировано: Все, что у меня осталось от него в памяти — это два позолоченных Desert Eagle 45-го калибра"
 ##bombs
 uplink-pizza-bomb-name = Nefarious Pizza bomb
-uplink-pizza-bomb-desc = Originally developed by covertly by DONK Co to disuade the heretics who prefer their pizza not in pocket form. This pizza box is wired, and explodes within moments of being opened.
+uplink-pizza-bomb-desc = Originally developed covertly by DONK Co to dissuade the heretics who prefer their pizza not in pocket form. This pizza box is wired, and explodes within moments of being opened.
 ## Cyborgs
 
 uplink-reinforcement-radio-syndicate-cyborg-assault-name = Телепорт подкрепления боевого борга синдиката
