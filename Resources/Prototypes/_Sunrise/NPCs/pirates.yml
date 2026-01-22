@@ -231,6 +231,8 @@
     - MobsExpeditionGuidePirates
   - type: GhostOnMove
     mustBeDead: true
+  - type: TimedDespawn
+    lifetime: 1200
 
 - type: entity
   abstract: true

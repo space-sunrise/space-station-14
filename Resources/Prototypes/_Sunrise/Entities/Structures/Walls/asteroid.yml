@@ -1,0 +1,79 @@
+- type: entity
+  id: IronRockCoalCrab
+  parent: IronRockCoal
+  suffix: Coal Crab
+  components:
+  - type: OreVein
+    currentOre: OreCoalCrab
+
+- type: entity
+  id: IronRockGoldCrab
+  parent: IronRockGold
+  suffix: Gold Crab
+  components:
+  - type: OreVein
+    currentOre: OreGoldCrab
+
+- type: entity
+  id: IronRockQuartzCrab
+  parent: IronRockQuartz
+  suffix: Quartz Crab
+  components:
+  - type: OreVein
+    currentOre: OreQuartzCrab
+
+- type: entity
+  id: IronRockSilverCrab
+  parent: IronRockSilver
+  suffix: Silver Crab
+  components:
+  - type: OreVein
+    currentOre: OreSilverCrab
+
+- type: entity
+  id: IronRockIronCrab
+  parent: IronRockIron
+  suffix: Iron Crab
+  components:
+  - type: OreVein
+    currentOre: OreIronCrab
+
+- type: entity
+  id: IronRockUraniumCrab
+  parent: IronRockUranium
+  suffix: Uranium Crab
+  components:
+  - type: OreVein
+    currentOre: OreUraniumCrab
+
+- type: entity
+  id: IronRockBananiumCrab
+  parent: IronRockBananium
+  suffix: Bananium Crab
+  components:
+  - type: OreVein
+    currentOre: OreBananiumCrab
+
+- type: entity
+  id: IronRockSaltCrab
+  parent: IronRockSalt
+  suffix: Salt Crab
+  components:
+  - type: OreVein
+    currentOre: OreSaltCrab
+
+- type: entity
+  id: IronRockPlasmaCrab
+  parent: IronRockPlasma
+  suffix: Plasma Crab
+  components:
+  - type: OreVein
+    currentOre: OrePlasmaCrab
+
+- type: entity
+  id: IronRockDiamondCrab
+  parent: IronRockDiamond
+  suffix: Diamond Crab
+  components:
+  - type: OreVein
+    currentOre: OreDiamondCrab
