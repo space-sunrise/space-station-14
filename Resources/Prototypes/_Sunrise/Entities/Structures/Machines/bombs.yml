@@ -52,7 +52,7 @@
   suffix: Bomb
   components:
     - type: Sprite
-      sprite: _Starlight/Objects/Weapons/Bombs/Pizzabomb.rsi
+      sprite: _Sunrise/Objects/Weapons/Bombs/Pizzabomb.rsi
     - type: TwoStageTrigger #Trigger the sound trigger, delay, then explode
       triggerDelay: 0.5
       components:
