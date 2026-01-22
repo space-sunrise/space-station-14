@@ -1,0 +1,9 @@
+- type: inventoryTemplate
+  id: mechArmor
+  slots:
+  - name: outerClothing
+    slotTexture: suit
+    slotFlags: OUTERCLOTHING
+    uiWindowPos: 0,0
+    strippingWindowPos: 0,0
+    displayName: Armor

@@ -6,6 +6,7 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 36000 # 10h общего времени
+  weight: 2
   alwaysUseSpawner: true
   canBeAntag: false
   startingGear: PrisonTraineeGear
@@ -23,8 +24,6 @@
 - type: startingGear
   id: PrisonTraineeGear
   equipment:
-    id: PrisonTraineePDA
-    jumpsuit: UniformPrisonTraineeMetus
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
@@ -39,8 +38,8 @@
   id: PrisonTraineeChameleonOutfit
   job: PrisonTrainee
   equipment:
-    jumpsuit: UniformPrisonTraineeMetus
-    head: ClothingHeadHatBeretPrisonTraineeMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonTrainee
+    head: ClothingHeadHatBeretPrisonTrainee
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat

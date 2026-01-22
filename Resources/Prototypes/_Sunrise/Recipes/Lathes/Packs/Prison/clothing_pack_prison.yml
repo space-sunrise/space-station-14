@@ -1,0 +1,78 @@
+# Metus Planet Prison clothing packs
+
+- type: latheRecipePack
+  id: ClothingPrisonPlanetPrison
+  recipes:
+    # Head of Prison highlights
+    - ClothingUniformJumpsuitHoSOld
+    - ClothingHeadHatBeretHoS
+    - ClothingNeckCloakHOSCloak
+
+    # Prison Guard
+    - ClothingHeadHatBeretPrisonGuard
+    - ClothingHeadCapPrisonGuard
+
+    # Prison Doctor
+    - ClothingUniformJumpsuitPrisonDoctor
+    - ClothingUniformJumpskirtPrisonDoctor
+    - ClothingHeadHatBeretPrisonDoctor
+    - ClothingHeadHatCapPrisonDoctor
+    - ClothingHeadCapPrisonDoctor
+
+    # Prison Chef
+    - ClothingUniformJumpsuitPrisonChef
+    - ClothingUniformJumpskirtPrisonChef
+    - ClothingHeadHatChef
+    - ClothingHeadHatChefBlackToque
+    - ClothingHeadHatBeretPrisonChef
+    - ClothingHeadHatCapPrisonChef
+    - ClothingHeadCapPrisonChef
+
+    # Prison Engineer
+    - ClothingUniformJumpsuitPrisonEngineer
+    - ClothingUniformJumpskirtPrisonEngineer
+    - ClothingHeadHatBeretPrisonEngineer
+    - ClothingHeadHatCapPrisonEngineer
+    - ClothingHeadCapPrisonEngineer
+
+    # Prison Scientist
+    - ClothingUniformJumpsuitPrisonScientist
+    - ClothingUniformJumpskirtPrisonScientist
+    - ClothingUniformJumpsuitPrisonScientistVeteran
+    - ClothingUniformJumpskirtPrisonScientistVeteran
+    - ClothingHeadHatBeretPrisonScientist
+    - ClothingHeadHatCapPrisonScientist
+    - ClothingHeadCapPrisonScientist
+
+    # Prison Worker
+    - ClothingUniformJumpsuitPrisonWorker
+    - ClothingUniformJumpskirtPrisonWorker
+    - ClothingHeadHatBeretPrisonWorker
+    - ClothingHeadHatCapPrisonWorker
+    - ClothingHeadCapPrisonWorker
+
+    # Prison Trainee
+    - ClothingUniformJumpsuitPrisonTrainee
+    - ClothingUniformJumpskirtPrisonTrainee
+    - ClothingHeadHatBeretPrisonTrainee
+    - ClothingHeadHatCapPrisonTrainee
+    - ClothingHeadCapPrisonTrainee
+
+    # Veteran jumpsuits (higher cost)
+    - ClothingUniformJumpsuitPrisonDoctorVeteran
+    - ClothingUniformJumpsuitPrisonChefVeteran
+    - ClothingUniformJumpsuitPrisonEngineerVeteran
+    - ClothingUniformJumpsuitPrisonScientistVeteran
+    - ClothingUniformJumpsuitPrisonWorkerVeteran
+    - ClothingUniformJumpsuitPrisonTraineeVeteran
+
+    # Veteran jumpskirts (higher cost)
+    - ClothingUniformJumpskirtPrisonDoctorVeteran
+    - ClothingUniformJumpskirtPrisonChefVeteran
+    - ClothingUniformJumpskirtPrisonEngineerVeteran
+    - ClothingUniformJumpskirtPrisonScientistVeteran
+    - ClothingUniformJumpskirtPrisonWorkerVeteran
+    - ClothingUniformJumpskirtPrisonTraineeVeteran
+
+    # Optional prisoner stock uniforms
+    - ClothingUniformJumpsuitPrisonerGrey

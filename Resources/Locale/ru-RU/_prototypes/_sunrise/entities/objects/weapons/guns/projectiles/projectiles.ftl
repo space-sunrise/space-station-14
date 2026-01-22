@@ -44,3 +44,10 @@ ent-BoltTempgunVeryHot = очень горячий снаряд
     .desc = { ent-WatcherBoltMagmawing.desc }
 ent-BoltTempgunVeryCold = очень холодный снаряд
     .desc = { ent-WatcherBolt.desc }
+
+ent-BulletImprovisedGrenadeFirebomb = зажигательная граната
+    .desc = { ent-BaseBulletTrigger.desc }
+ent-BulletImprovisedGrenadePipeBomb = граната-трубчатая бомба
+    .desc = { ent-BaseBulletTrigger.desc }
+ent-BulletImprovisedGrenadeGlass = стеклянная граната
+    .desc = { ent-BaseBulletTrigger.desc }

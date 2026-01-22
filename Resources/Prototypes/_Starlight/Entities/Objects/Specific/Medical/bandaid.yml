@@ -144,16 +144,17 @@
   description: Storage of multiple patches efficiently.
   components:
   - type: Item
-    size: Small
+    size: Tiny
     sprite: _Starlight/Objects/Specific/Chemistry/patch_pack.rsi
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Starlight/Objects/Specific/Chemistry/patch_pack.rsi
     state: icon
   - type: Tag
     tags:
       - PatchPack
   - type: Storage
-    maxItemSize: Small
+    maxItemSize: Tiny
     grid:
     - 0,0,4,1
     quickInsert: true

@@ -1,0 +1,12 @@
+- type: entity
+  id: ImplanterExtractor
+  parent: BaseImplanter
+  name: implant extractor
+  description: "A dual-purpose syringe designed for the removal of specific subdermal implants. Once an implant is extracted, it is stored within and can be re-administered.\nWARNING: Operator error, such as selecting a non-present implant type, causes severe genetic trauma to the operator."
+  components:
+  - type: Implanter
+    currentMode: Draw  # Sunrise-Edit
+    implantOnly: false  # Sunrise-Edit
+  - type: Tag
+    tags:
+    - Trash

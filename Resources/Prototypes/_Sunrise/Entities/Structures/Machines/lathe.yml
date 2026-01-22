@@ -1,9 +1,9 @@
 - type: entity
   parent: UniformPrinter
-  id: SewingPrinterMetus
+  id: SewingPrinterPrison
   name: prison sewing printer
   description: Designed for producing textile items, maintaining order and identification within the prison.
-  suffix: Metus
+  suffix: Prison
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/sewing_printer_metus.rsi
@@ -12,12 +12,12 @@
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
   - type: Machine
-    board: SewingPrinterMetusMachineCircuitboard
+    board: SewingPrinterPrisonMachineCircuitboard
   - type: Lathe
     staticPacks:
-    - ClothingMetusPlanetPrison
-    - BedsheetsMetus
-    - CarpetsMetus
+    - ClothingPrisonPlanetPrison
+    - BedsheetsPrison
+    - CarpetsPrison
 
 - type: entity
   id: ExosuitFabricatorHyperConvection

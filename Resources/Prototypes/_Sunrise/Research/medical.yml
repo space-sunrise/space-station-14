@@ -35,6 +35,18 @@
 
 # Tier 2
 - type: technology
+  id: ImplantExtractor
+  name: research-technology-implant-extractor
+  icon:
+    sprite: Objects/Specific/Medical/implanter.rsi
+    state: implanter0
+  discipline: Biochemical
+  tier: 2
+  cost: 8000
+  recipeUnlocks:
+  - ImplanterExtractor
+
+- type: technology
   id: MedicalAssembler
   name: research-technology-medical-assembler
   icon:
@@ -247,8 +259,8 @@
   - Service
 
 - type: technology
-  id: ImplantExtractor
-  name: research-technology-implant-extractor
+  id: ImplantExtractorSafety
+  name: research-technology-implant-extractor-safety
   icon:
     sprite: _Sunrise/Structures/Machines/interrogator.rsi
     state: open
@@ -257,6 +269,8 @@
   cost: 12500
   recipeUnlocks:
   - InterrogatorMachineCircuitboard
+  technologyPrerequisites:
+    - ImplantExtractor
 
 - type: technology
   id: AutoMenders

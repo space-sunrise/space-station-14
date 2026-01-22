@@ -1,0 +1,13 @@
+- type: latheRecipePack
+  id: CarpetsPrison
+  recipes:
+    - Carpet
+    - CarpetBlackPrison
+    - CarpetPinkPrison
+    - CarpetBlue
+    - CarpetSkyBlue
+    - CarpetGreen
+    - CarpetOrangePrison
+    - CarpetPurple
+    - CarpetCyan
+    - CarpetWhite

@@ -1,0 +1,302 @@
+# Sunrise smuggler bag loot tables.
+
+- type: entityTable
+  id: SmugglerSunriseLootTable
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: SmugglerSunriseForgedPartsTable
+    - !type:NestedSelector
+      tableId: SmugglerSunriseImprovisedAmmoTable
+    - !type:NestedSelector
+      tableId: SmugglerSunriseMaterialsTable
+    - !type:NestedSelector
+      tableId: SmugglerSunriseGrenadesTable
+
+- type: entityTable
+  id: SmugglerSunriseForgedPartsTable
+  table: !type:GroupSelector
+    children:
+    - id: UnfinishedSwordForged
+      weight: 2
+    - id: UnfinishedClaymoreForged
+      weight: 1
+    - id: UnfinishedClothingOuterArmorForged
+      weight: 2
+    - id: UnfinishedClothingHeadHelmetForged
+      weight: 2
+    - id: UnfinishedPistolForged
+      weight: 2
+    - id: UnfinishedRevolverForged
+      weight: 2
+    - id: UnfinishedSubMachineGunForged
+      weight: 0.5
+    - id: UnfinishedSniperForged
+      weight: 0.5
+    - id: RadioJammerSyndicate
+
+- type: entityTable
+  id: SmugglerSunriseImprovisedAmmoTable
+  table: !type:GroupSelector
+    children:
+    - id: ShellShotgunImprovisedEmpty
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+    - id: ShellShotgunImprovisedIncendiary
+      amount: !type:RangeNumberSelector
+        range: 1, 4
+    - id: ShellShotgunImprovisedUranium
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+    - id: MagazineBoxImprovisedPistol
+    - id: MagazineBoxImprovisedRifle
+    - id: MagazineBoxImprovisedMagnum
+    - id: MagazineBoxImprovisedShotgun
+    - id: SpeedLoaderLightRifle
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+    - id: SpeedLoaderMagnumAP
+    - id: MagazinePistolSubMachineGunImprovisedFilled
+    - id: MagazinePistolImprovisedFilled
+      amount: !type:RangeNumberSelector
+        range: 1, 2
+    - id: MagazineBoxAntiMateriel
+      weight: 0.15
+    - id: CartridgeAntiMateriel
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+
+- type: entityTable
+  id: SmugglerSunriseMaterialsTable
+  table: !type:GroupSelector
+    children:
+    - id: SheetSteel
+    - id: Flash
+    - id: SheetPlastic
+    - id: SheetGlass
+    - id: CrushedPhosphorus
+    - id: MaterialCloth
+    - id: MaterialGunpowder
+      amount: !type:RangeNumberSelector
+        range: 5, 10
+      weight: 0.25
+
+- type: entityTable
+  id: SmugglerSunriseMedItemsTable
+  table: !type:GroupSelector
+    children:
+    - id: Gauze
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+    - id: Brutepack
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+    - id: RegenerativeMesh
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+    - id: MedicatedSuture
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+    - id: Bloodpack
+      amount: !type:RangeNumberSelector
+        range: 1, 2
+    - id: EmergencyMedipen
+      amount: !type:RangeNumberSelector
+        range: 1, 2
+    - id: BruteAutoInjector
+      amount: !type:RangeNumberSelector
+        range: 1, 2
+    - id: BurnAutoInjector
+      amount: !type:RangeNumberSelector
+        range: 1, 2
+    - id: PunctAutoInjector
+      amount: !type:RangeNumberSelector
+        range: 1, 2
+    - id: CombatMedipen
+    - id: Stimpack
+
+- type: entityTable
+  id: SmugglerSunriseLeftArmImplantsTable
+  table: !type:GroupSelector
+    children:
+    - id: LeftArmCyberGorilla
+    - id: LeftArmCyberMechwright
+    - id: LeftArmCyberReaper
+    - id: LeftArmCyberRobust
+    - id: LeftArmCyberHack
+    - id: LeftArmCyberAtmos
+    - id: LeftArmCyberJanitorial
+    - id: LeftArmCyberBonesaw
+    - id: LeftArmCyberLaserEmitter
+    - id: LeftArmCyberBulwark
+    - id: LeftArmCyberGrenadeThrower
+    - id: LeftArmCyberMantisBladeMaxGuard
+
+- type: entityTable
+  id: SmugglerSunriseImplantersTable
+  table: !type:GroupSelector
+    children:
+    - id: FakeMindShieldImplanter
+      weight: 1
+    - id: FreedomImplanter
+      weight: 10
+    - id: StorageImplanter
+      weight: 10
+    - id: SmokeScreenImplanter
+      weight: 10
+    - id: ImplanterExtractor
+
+- type: entityTable
+  id: SmugglerSunriseGrenadesTable
+  table: !type:GroupSelector
+    children:
+    - id: ImprovisedGrenadeCasingEmpty
+      amount: !type:RangeNumberSelector
+        range: 1, 2
+    - id: ImprovisedGrenadeFirebomb
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+    - id: ImprovisedGrenadePipebomb
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+    - id: ImprovisedGrenadeGlass
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+    - id: PipeBomb
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+    - id: PipeBombCable
+      weight: 0.75
+    - id: FireBomb
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+    - id: FireBombEmpty
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+    - id: FireBombFuel
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+    - id: CleanerGrenadeAcidBox
+    - id: TearGasGrenade
+      amount: !type:RangeNumberSelector
+        range: 1, 2
+    - id: GrenadeStinger
+      amount: !type:RangeNumberSelector
+        range: 1, 2
+
+- type: entityTable
+  id: SmugglerSunriseRareWeaponsTable
+  table: !type:GroupSelector
+    children:
+    - id: WeaponRevolverSnubRevolver
+    - id: WeaponRevolverPirate
+    - id: WeaponRevolverPython
+      weight: 0.5
+    - id: WeaponRevolverPythonAP
+      weight: 0.5
+    - id: RevolverCapGunFake
+      weight: 0.5
+    - id: WeaponSniperRepeater
+    - id: WeaponSniperMosin
+    - id: WeaponShotgunTrenchgun4034Sawn
+    - id: WeaponShotgunSawn
+    - id: WeaponLaserSvalinn
+    - id: WeaponMakeshiftLaser
+    - id: LauncherSyringePistol
+    - id: WeaponLaserGun
+    - id: Musket
+    - id: Flash
+    - id: ImplanterExtractor
+
+- type: entityTable
+  id: SmugglerSunriseMeleeWeaponsTable
+  table: !type:GroupSelector
+    children:
+    - id: ThrowingKnife
+    - id: ClothingHandsKnuckleDusters
+    - id: ClothingHandsKnuckleDustersBrass
+    - id: ClothingHandsKnuckleDustersSyndicate
+    - id: BaseBallBat
+    - id: SurvivalKnife
+    - id: KukriKnife
+    - id: CombatKnife
+    - id: GauntletGORILLAUpgradeKit
+    - id: WeaponPistolCHIMPUpgradeKit
+    - id: WeaponMakeshiftLaser
+    - id: LauncherSyringePistol
+    - id: WeaponLaserGun
+    - id: Musket
+    - id: Flash
+    - id: ImplanterExtractor
+
+- type: entity
+  parent: ClothingBackpackSatchelSmugglerUnanchored
+  id: ClothingBackpackSmugglerRevolutionaryFilled
+  suffix: Smuggler, Revolutionary, Do Not Map
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Satchels/smuggler.rsi
+    state: icon
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,7,4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: FillSmugglerBackpackRevolutionary
+
+- type: entity
+  parent: [ BaseItem, BaseSubfloorAnchorStorageAnchored, BaseMajorContraband ]
+  id: RevolutionarySmugglerStash
+  name: wrapped smuggler stash
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Satchels/smuggler.rsi
+    state: folded
+  - type: SpawnItemsOnUse
+    items:
+    - id: ClothingBackpackSmugglerRevolutionaryFilled
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+  - type: AbductorHumanObservationConsole # Спаси и сохрани
+
+#Table
+- type: entityTable
+  id: FillSmugglerBackpackRevolutionary
+  table: !type:GroupSelector
+    rolls: !type:RangeNumberSelector
+      range: 9, 12
+    children:
+    - !type:NestedSelector
+      tableId: SmugglerSunriseImprovisedAmmoTable
+    - !type:NestedSelector
+      tableId: SmugglerSunriseImprovisedAmmoTable
+    - !type:NestedSelector
+      tableId: SmugglerSunriseImprovisedAmmoTable
+    - !type:NestedSelector
+      tableId: SmugglerSunriseMaterialsTable
+      weight: 0.5
+    - !type:NestedSelector
+      tableId: SmugglerSunriseMaterialsTable
+      weight: 0.6
+    - !type:NestedSelector
+      tableId: SmugglerSunriseMedItemsTable
+    - !type:NestedSelector
+      tableId: SmugglerSunriseLeftArmImplantsTable
+    - !type:NestedSelector
+      tableId: SmugglerSunriseImplantersTable
+    - !type:NestedSelector
+      tableId: SmugglerSunriseGrenadesTable
+    - !type:NestedSelector
+      tableId: SmugglerSunriseGrenadesTable
+    - !type:NestedSelector
+      tableId: SmugglerSunriseForgedPartsTable
+    - !type:NestedSelector
+      tableId: SmugglerSunriseForgedPartsTable
+    - !type:NestedSelector
+      tableId: SmugglerSunriseRareWeaponsTable
+      weight: 0.3
+    - !type:NestedSelector
+      tableId: SmugglerSunriseMeleeWeaponsTable
+      weight: 0.6

@@ -107,18 +107,24 @@
     - Common
     - Science
   - type: ZombieImmune
-  # Sunrise-Start
+
   - type: Repairable
-    doAfterDelay: 2
-    damage:
-      types:
-        Blunt: -15
-        Slash: -15
-        Piercing: -15
-        Caustic: -15
-        Structural: -15
-        Mangleness: 2 #SUNRISE-EDIT
+    #damageValue: -10 # 10 seconds to repair from crit # Sunrise-Edit
+    doAfterDelay: 1
+    fuelCost: 0.5
     allowSelfRepair: false
+  # Sunrise-Start
+    damage:
+      groups:
+        Brute: -10
+      types:
+        Heat: -5
+        Shock: -5
+        Caustic: -5
+        Structural: -10
+        Mangleness: 1
+  - type: Loadout
+    prototypes: [ BorgArmorSiliconLoadout ]
   # Sunrise-End
   - type: BorgChassis
   - type: BorgVoice # Sunrise-TTS: Allow cyborgs to change their voice
@@ -439,8 +445,16 @@
     - DoorBumpOpener
     - CanPilot
     - FootstepSound
-    - EmagImmune
   - type: BlockLawChange
+  - type: Loadout
+    prototypes: [ BorgArmorSiliconLoadoutMk2 ]
+  - type: ToggleableNightVision
+    effect: EffectNightVisionSyndie
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      300: Dead
   # Sunrise-end
 
 - type: entity
@@ -499,6 +513,17 @@
       Unsexed: UnisexSiliconSyndicate
   - type: PointLight
     color: "#dd200b"
+  # Sunrise-start
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      300: Dead
+  - type: TTS
+    voice: Sentrybot
+  - type: ToggleableNightVision
+    effect: EffectNightVisionSyndie
+  # Sunrise-end
 
 - type: entity
   parent: BaseBorgChassisNotIonStormable
@@ -513,6 +538,12 @@
     - NamesXenoborg
   - type: NameIdentifier
     group: Xenoborg
+  # Sunrise-Start
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-xenoborg-name
+    description: ghost-panel-antagonist-xenoborg-description
+    priority: 25
+  # Sunrise-End
   - type: Sprite
     sprite: Mobs/Silicon/chassis.rsi
   - type: MobThresholds
@@ -533,10 +564,6 @@
     - Mothership
     - Xenoborg
     - Binary
-  # Sunrise-start
-  # - type: Repairable
-  #   doAfterDelay: 13 # 25% more HP, so 30% more time to heal
-  # Sunrise-end
   - type: BorgChassis
     maxModules: 0
     hasMindState: robot_e

@@ -1,7 +1,7 @@
 # Neck
 
 - type: loadout
-  id: PlanetPrisonSecurity-MasterHandheldCamera
+  id: PlanetPrisonSecurityMasterHandheldCamera
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:

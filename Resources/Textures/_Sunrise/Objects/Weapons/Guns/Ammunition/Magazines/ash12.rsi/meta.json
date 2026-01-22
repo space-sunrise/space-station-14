@@ -15,11 +15,35 @@
 
         },
         {
-            "name": "stripe"
+            "name": "mag-2"
+
         },
         {
-            "name": "storage"
+            "name": "mag-3"
 
+        },
+        {
+            "name": "mag-4"
+
+        },
+        {
+            "name": "mag-5"
+
+        },
+        {
+            "name": "mag-6"
+
+        },
+        {
+            "name": "mag-7"
+
+        },
+        {
+            "name": "mag-8"
+
+        },
+        {
+            "name": "stripe"
         }
     ]
 }

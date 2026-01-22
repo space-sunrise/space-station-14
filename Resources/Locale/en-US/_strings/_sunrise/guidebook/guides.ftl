@@ -4,6 +4,8 @@ guide-entry-expedition-pirates = Пираты
 guide-entry-expedition-xenos = Ксено
 guide-entry-expedition-carps = Карпы
 
+guide-entry-ammunition = Боеприпасы
+
 ## SUNRISE rules
 
 guide-entry-sr-rules = Правила сервера: SUNRISE
@@ -48,3 +50,4 @@ guide-entry-sr-rule-excep-10 = Исключение/прецедент 10
 guide-entry-sr-rule-cep = Политика эскалации конфликтов
 guide-entry-sr-rule-ccp = Политика создания персонажей
 guide-entry-sr-rule-pana = Препятствование аресту неантагонистами
+guide-entry-improvised-grenade-casing = Improvised grenade casing

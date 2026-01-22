@@ -27,7 +27,7 @@ namespace Content.IntegrationTests.Tests.Doors
       fix1:
         shape:
           !type:PhysShapeCircle
-            bounds: ""-0.49,-0.49,0.49,0.49""
+            bounds: ""-0.46,-0.46,0.46,0.46""
         layer:
         - Impassable
 
@@ -47,10 +47,10 @@ namespace Content.IntegrationTests.Tests.Doors
       fix1:
         shape:
           !type:PhysShapeAabb
-            bounds: ""-0.49,-0.49,0.49,0.49""
+            bounds: ""-0.46,-0.46,0.46,0.46""
         mask:
         - Impassable
-";
+"; // Sunrise edit - фикс двойных шлюзов (было 0.49)
         [Test]
         public async Task OpenCloseDestroyTest()
         {

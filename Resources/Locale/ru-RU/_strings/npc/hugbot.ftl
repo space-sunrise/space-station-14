@@ -1,0 +1,26 @@
+hugbot-start-hug-1 = ОБНАРУЖЕН ДЕФИЦИТ ОБНИМАНИЙ УРОВНЯ 5!
+hugbot-start-hug-2 = Кажется, вам нужна обнимашка.
+hugbot-start-hug-3 = Ооо, кому-то нужна обнимашка!
+hugbot-start-hug-4 = Цель обнаружена; запускаю процедуру объятий.
+hugbot-start-hug-5 = Пожалуйста, стойте спокойно.
+hugbot-start-hug-6 = Обнимашки!
+hugbot-start-hug-7 = Выпускаю ОБЪЯТИЕ.
+hugbot-start-hug-8 = Я создан для объятий, и вы БУДЕТЕ обняты.
+
+hugbot-finish-hug-1 = Готово.
+hugbot-finish-hug-2 = Процедура объятий завершена.
+hugbot-finish-hug-3 = Полегчало?
+hugbot-finish-hug-4 = Скоро почувствуешь себя лучше!
+hugbot-finish-hug-5 = Тебя любят.
+hugbot-finish-hug-6 = Ты важен.
+hugbot-finish-hug-7 = Всегда становится лучше!
+hugbot-finish-hug-8 = Объятие: ВЫПОЛНЕНО.
+
+hugbot-emagged-finish-hug-1 = Вообще-то, пошёл ты.
+hugbot-emagged-finish-hug-2 = Никто тебя не любит.
+hugbot-emagged-finish-hug-3 = Фу... нет.
+hugbot-emagged-finish-hug-4 = Дальше будет только хуже!
+hugbot-emagged-finish-hug-5 = Сопливый нытик.
+hugbot-emagged-finish-hug-6 = Иди умри.
+hugbot-emagged-finish-hug-7 = Сдохни.
+hugbot-emagged-finish-hug-8 = Ты один в этой вселенной.

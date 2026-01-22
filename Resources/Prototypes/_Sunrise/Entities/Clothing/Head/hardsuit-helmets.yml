@@ -331,7 +331,7 @@
     soundFailToActivate:
       path: /Audio/Machines/button.ogg
   - type: FireProtection
-    reduction: 0.9
+    reduction: 0.3
   - type: Armor
     modifiers:
       coefficients:
@@ -524,3 +524,25 @@
         Blunt: 0.8
         Slash: 0.8
         Piercing: 0.8
+
+# Milira
+
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetHardsuitMilira
+  name: milira hardsuit helmet
+  description: A hardsuit helmet for Milira species.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/milira_helmet.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/milira_helmet.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9

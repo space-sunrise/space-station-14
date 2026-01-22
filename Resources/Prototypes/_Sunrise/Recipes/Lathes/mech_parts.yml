@@ -239,8 +239,9 @@
   - Phazon
   completetime: 20
   materials:
-    Steel: 3000
+    Steel: 1000
     Plasma: 1000
+    Plasteel: 2000
 
 - type: latheRecipe
   id: PhazonHead

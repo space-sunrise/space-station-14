@@ -74,10 +74,6 @@
   - type: EmitSoundOnLand
     sound:
       collection: RiflesDrop
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 2
-    pvsIncrease: 0.2
   # Sunrise end
 
 - type: entity
@@ -178,7 +174,7 @@
       tags:
       - CartridgePistol
     capacity: 30
-    proto: CartridgePistolSP
+    proto: CartridgePistolFMJ
     cycleable: false # No synthesizing ammo for your syndicate masters.
   - type: BallisticAmmoSelfRefiller
     autoRefillRate: 4s

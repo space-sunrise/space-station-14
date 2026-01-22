@@ -79,6 +79,15 @@
     smokePrototype: AluminiumMetalFoam
   - type: StaticPrice
     price: 350
+  #Sunrise-Start
+  - type: CartridgeAmmo
+    proto: BulletMetalFoamGrenade
+    deleteOnSpawn: true
+  - type: SpentAmmoVisuals
+  - type: Tag
+    tags:
+    - HandGrenadeAmmo
+  #Sunrise-End
 
 - type: entity
   parent: [ BaseEngineeringContraband, VolatileGrenadeBase, GrenadeBase ] # Prevent inheriting DeleteOnTrigger from SmokeGrenade
@@ -115,3 +124,12 @@
         enabled:
           True: { state: active }
           False: { state: spent }
+  #Sunrise-Start
+  - type: CartridgeAmmo
+    proto: BulletAirGrenade
+    deleteOnSpawn: true
+  - type: SpentAmmoVisuals
+  - type: Tag
+    tags:
+    - HandGrenadeAmmo
+  #Sunrise-End

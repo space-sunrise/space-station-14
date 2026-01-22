@@ -1,0 +1,37 @@
+- type: paintableGroup
+  id: AirlockDoubleGlass
+  time: 6
+  cost: 6
+  defaultStyle: basic
+  styles:
+    atmospherics: DoubleGlassAirlockAtmospherics
+    basic: DoubleGlassAirlockBasic
+    cargo: DoubleGlassAirlockCargo
+    chemistry: DoubleGlassAirlockChemistry
+    command: DoubleGlassAirlockCommand
+    engineering: DoubleGlassAirlockEngineering
+    maintenance: DoubleGlassAirlockMaint
+    medical: DoubleGlassAirlockMedical
+    salvage: DoubleGlassAirlockSalvage
+    science: DoubleGlassAirlockScience
+    security: DoubleGlassAirlockSecurity
+    virology: DoubleGlassAirlockVirology
+
+- type: paintableGroup
+  id: AirlockTripleGlass
+  time: 9
+  cost: 9
+  defaultStyle: basic
+  styles:
+    atmospherics: TripleGlassAirlockAtmospherics
+    basic: TripleGlassAirlockBasic
+    cargo: TripleGlassAirlockCargo
+    chemistry: TripleGlassAirlockChemistry
+    command: TripleGlassAirlockCommand
+    engineering: TripleGlassAirlockEngineering
+    maintenance: TripleGlassAirlockMaint
+    medical: TripleGlassAirlockMedical
+    salvage: TripleGlassAirlockSalvage
+    science: TripleGlassAirlockScience
+    security: TripleGlassAirlockSecurity
+    virology: TripleGlassAirlockVirology

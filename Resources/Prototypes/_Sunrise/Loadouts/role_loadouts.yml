@@ -292,6 +292,7 @@
 - type: roleLoadout
   id: JobPrisonWorker
   groups:
+  - PrisonWorkerJumpsuit
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
   - PrisonWorkerHead
@@ -304,9 +305,11 @@
 - type: roleLoadout
   id: JobPrisonEngineer
   groups:
+  - PrisonEngineerJumpsuit
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
   - PrisonEngineerHead
+  - PrisonEngineerPDA
   #- TrinketsEngineering
   #- Trinkets
   - Bra
@@ -317,6 +320,7 @@
 - type: roleLoadout
   id: JobPrisonScientist
   groups:
+  - PrisonScientistJumpsuit
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
   #- Trinkets
@@ -329,6 +333,7 @@
 - type: roleLoadout
   id: JobPrisonDoctor
   groups:
+  - PrisonDoctorJumpsuit
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
   #- Trinkets
@@ -341,10 +346,12 @@
 - type: roleLoadout
   id: JobPrisonTrainee
   groups:
+  - PrisonTraineeJumpsuit
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
   #- Trinkets
   - PrisonTraineeHead
+  - PrisonTraineePDA
   - Bra
   - Pants
   - Socks
@@ -353,6 +360,7 @@
 - type: roleLoadout
   id: JobPrisonChef
   groups:
+  - PrisonChefJumpsuit
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
   #- Trinkets
@@ -367,6 +375,7 @@
   groups:
   - TrinketsPlanetPrison
   - PlanetPrisonerLoot
+  - PlanetPrisonerPDA
   - PrisonerJumpsuit
   #- GroupSpeciesBreathTool
   - Bra

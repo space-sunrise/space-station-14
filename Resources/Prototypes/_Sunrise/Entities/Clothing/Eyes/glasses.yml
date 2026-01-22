@@ -187,3 +187,38 @@
         startingItem: PowerCellSmallNuclear
         disableEject: true
         swap: false
+
+- type: entity
+  parent: ClothingEyesChameleon
+  id: ClothingEyesGlassesThermalChameleon
+  name: chameleon thermal scanner
+  suffix: Chameleon, Thermal
+  description: Thermals in the shape of glasses.
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+  - type: ToggleClothing
+    action: ActionToggleThermalVision
+    disableOnUnequip: true
+    targetSlot: eyes
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: ThermalVision
+  - type: PowerCellDraw
+    drawRate: 3
+    useCharge: 15
+  - type: ItemToggle
+    predictable: false # issues between ToggleCellDraw and ItemToggleActiveSound
+    onUse: false
+    canActivateInhand: false
+    soundActivate:
+      path: /Audio/_Sunrise/Effects/silence.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Effects/silence.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+  - type: ToggleCellDraw
