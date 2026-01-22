@@ -29,15 +29,10 @@ namespace Content.Server._Sunrise.Ghost
             if (Player.AttachedEntity is { Valid: true } entity)
             {
                 if (choice.Button == AcceptGhostUiButton.Accept)
-                {
                     _ghostSystem.TrySendPendingLastWords(entity);
-                }
                 else
-                {
                     _ghostSystem.CancelPendingLastWords(entity);
-                }
             }
-
             if (choice.Button == AcceptGhostUiButton.Accept)
                 _ghostSystem.OnGhostAttempt(_mindId, canReturnGlobal: true);
             Close();
