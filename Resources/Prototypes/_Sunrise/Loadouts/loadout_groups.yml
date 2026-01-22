@@ -1386,10 +1386,6 @@
   - PlanetPrisonerPDAScreenHCracked
   - PlanetPrisonerPDAScreenX
   - PlanetPrisonerPDAScreenXCracked
-  - PlanetPrisonerPDAScreenH
-  - PlanetPrisonerPDAScreenHCracked
-  - PlanetPrisonerPDAScreenX
-  - PlanetPrisonerPDAScreenXCracked
 
 # Planet Prison - General Security
 
@@ -1413,9 +1409,6 @@
   - PrisonInspectorBowlerHat
   - PrisonInspectorIAAHat
   - PrisonInspectorDetGadget
-  - PrisonInspectorBowlerHat
-  - PrisonInspectorIAAHat
-  - PrisonInspectorDetGadget
 
 
 - type: loadoutGroup
@@ -1426,8 +1419,6 @@
   loadouts:
   - PrisonInspectorSunglasses
   - PrisonInspectorNoirGlasses
-  - PrisonInspectorSunglasses
-  - PrisonInspectorNoirGlasses
 
 # Planet Prison - Head Security
 - type: loadoutGroup
@@ -1436,9 +1427,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - PrisonDoctorCap
-  - PrisonDoctorBeret
-  - PrisonDoctorHat
   - PrisonDoctorCap
   - PrisonDoctorBeret
   - PrisonDoctorHat
@@ -1454,11 +1442,6 @@
   - PrisonChefBeret
   - PrisonChefHat
   - PrisonChefBlackToque
-  - PrisonChefChefHat
-  - PrisonChefCap
-  - PrisonChefBeret
-  - PrisonChefHat
-  - PrisonChefBlackToque
 
 - type: loadoutGroup
   id: PrisonEngineerHead
@@ -1466,9 +1449,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - PrisonEngineerCap
-  - PrisonEngineerBeret
-  - PrisonEngineerHat
   - PrisonEngineerCap
   - PrisonEngineerBeret
   - PrisonEngineerHat
@@ -1481,8 +1461,6 @@
   loadouts:
   - PrisonEngineerPDAScreenZap
   - PrisonEngineerPDAScreenPoint
-  - PrisonEngineerPDAScreenZap
-  - PrisonEngineerPDAScreenPoint
 
 - type: loadoutGroup
   id: PrisonScientistHead
@@ -1490,9 +1468,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - PrisonScientistCap
-  - PrisonScientistBeret
-  - PrisonScientistHat
   - PrisonScientistCap
   - PrisonScientistBeret
   - PrisonScientistHat
@@ -1506,9 +1481,6 @@
   - PrisonWorkerCap
   - PrisonWorkerBeret
   - PrisonWorkerHat
-  - PrisonWorkerCap
-  - PrisonWorkerBeret
-  - PrisonWorkerHat
 
 - type: loadoutGroup
   id: PrisonTraineeHead
@@ -1516,9 +1488,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - PrisonTraineeCap
-  - PrisonTraineeBeret
-  - PrisonTraineeHat
   - PrisonTraineeCap
   - PrisonTraineeBeret
   - PrisonTraineeHat
