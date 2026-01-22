@@ -32,7 +32,7 @@
 - type: loadout
   id: PrisonEngineerPDAScreenZap
   equipment:
-    pda: PrisonEngineerPDAScreenZap
+    id: PrisonEngineerPDAScreenZap
 
 - type: loadout
   id: PrisonEngineerPDAScreenPoint
@@ -43,7 +43,7 @@
       role: JobPrisonEngineer
       time: 36000 # 10 часов
   equipment:
-    pda: PrisonEngineerPDAScreenPoint
+    id: PrisonEngineerPDAScreenPoint
 
 # Рабочая униформа
 

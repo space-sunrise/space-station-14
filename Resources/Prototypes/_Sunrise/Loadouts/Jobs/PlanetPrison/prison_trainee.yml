@@ -32,7 +32,7 @@
 - type: loadout
   id: PrisonTraineePDAPartial
   equipment:
-    pda: PrisonTraineePDAPartial
+    id: PrisonTraineePDAPartial
 
 - type: loadout
   id: PrisonTraineePDAAdvanced
@@ -43,7 +43,7 @@
       role: JobPrisonTrainee
       time: 25200 # 7 часов
   equipment:
-    pda: PrisonTraineePDAAdvanced
+    id: PrisonTraineePDAAdvanced
 
 - type: loadout
   id: PrisonTraineePDAComplete
@@ -54,7 +54,7 @@
       role: JobPrisonTrainee
       time: 54000 # 15 часов
   equipment:
-    pda: PrisonTraineePDAComplete
+    id: PrisonTraineePDAComplete
 
 # Рабочая униформа
 
