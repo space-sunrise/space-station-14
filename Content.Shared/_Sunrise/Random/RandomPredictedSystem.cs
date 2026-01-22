@@ -1,4 +1,5 @@
-﻿using Content.Shared.Random.Helpers;
+﻿using System.Linq;
+using Content.Shared.Random.Helpers;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Sunrise.Random;
@@ -24,6 +25,28 @@ public sealed partial class RandomPredictedSystem : EntitySystem
         base.Initialize();
 
         InitializeTickBased();
+    }
+
+    /// <summary>
+    /// Создает или получает экземпляр рандома для конкретных сущностей.
+    /// Сид зависит от текущего тика и ID сущностей, что обеспечивает предсказуемость.
+    /// </summary>
+    /// <param name="entities">Список <see cref="EntityUid"/> на основе ID которого будет основываться сид для рандома.</param>
+    /// <remarks>
+    /// Чем больше разных сущностей будет использоваться, тем случайнее будет выдаваемый результат.
+    /// </remarks>
+    private System.Random GetOrCreateEntityRandom(params List<EntityUid> entities)
+    {
+        var list = entities
+            .Select(e => GetNetEntity(e).Id)
+            .ToList();
+
+        list.Add((int)_timing.CurTick.Value);
+
+        var seed = SharedRandomExtensions.HashCodeCombine(list);
+        var random = new System.Random(seed);
+
+        return random;
     }
 
     /// <summary>

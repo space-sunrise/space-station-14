@@ -12,15 +12,26 @@ public sealed partial class RandomPredictedSystem
     /// <summary>
     /// Возвращает случайное целое число для указанной сущности.
     /// </summary>
-    public int NextForEntity(EntityUid ent, int minValue, int maxValue)
+    /// <returns>Случайно число типа <see cref="int"/> в заданном диапазоне</returns>
+    public int NextForEntity(EntityUid ent, int minValue = 0, int maxValue = int.MaxValue)
     {
         var random = GetOrCreateEntityRandom(ent);
         return random.Next(minValue, maxValue);
     }
 
     /// <summary>
+    /// <inheritdoc cref="NextForEntity(EntityUid, int, int)"/>
+    /// </summary>
+    public int NextForEntity(int minValue, int maxValue, params List<EntityUid> entities)
+    {
+        var random = GetOrCreateEntityRandom(entities);
+        return random.Next(minValue, maxValue);
+    }
+
+    /// <summary>
     /// Возвращает случайное число с плавающей запятой для указанной сущности.
     /// </summary>
+    /// <returns>Случайно число типа <see cref="float"/> в заданном диапазоне</returns>
     public float NextFloatForEntity(EntityUid ent, float minValue = 0f, float maxValue = 1f)
     {
         var random = GetOrCreateEntityRandom(ent);
@@ -28,8 +39,18 @@ public sealed partial class RandomPredictedSystem
     }
 
     /// <summary>
+    /// <inheritdoc cref="NextFloatForEntity(EntityUid, float, float)"/>
+    /// </summary>
+    public float NextFloatForEntity(float minValue, float maxValue, params List<EntityUid> entities)
+    {
+        var random = GetOrCreateEntityRandom(entities);
+        return random.NextFloat(minValue, maxValue);
+    }
+
+    /// <summary>
     /// Возвращает случайное число двойной точности для указанной сущности.
     /// </summary>
+    /// <returns>Случайно число типа <see cref="double"/> в диапазоне [0, 1)</returns>
     public double NextDoubleForEntity(EntityUid ent)
     {
         var random = GetOrCreateEntityRandom(ent);
@@ -37,8 +58,21 @@ public sealed partial class RandomPredictedSystem
     }
 
     /// <summary>
+    /// <inheritdoc cref="NextDoubleForEntity(EntityUid)"/>
+    /// </summary>
+    public double NextDoubleForEntity(params List<EntityUid> entities)
+    {
+        var random = GetOrCreateEntityRandom(entities);
+        return random.NextDouble();
+    }
+
+    /// <summary>
     /// Возвращает true с заданной вероятностью для указанной сущности.
     /// </summary>
+    /// <remarks>
+    /// Шанс обязан быть в диапазоне [0, 1]!
+    /// </remarks>
+    /// <returns>Прокнули ли переданный шанс</returns>
     public bool ProbForEntity(EntityUid ent, float chance)
     {
         var random = GetOrCreateEntityRandom(ent);
@@ -46,11 +80,31 @@ public sealed partial class RandomPredictedSystem
     }
 
     /// <summary>
+    /// <inheritdoc cref="ProbForEntity(EntityUid, float)"/>
+    /// </summary>
+    public bool ProbForEntity(float chance, params List<EntityUid> entities)
+    {
+        var random = GetOrCreateEntityRandom(entities);
+        return random.NextDouble() < chance;
+    }
+
+    /// <summary>
     /// Выбирает случайный элемент из списка для указанной сущности.
     /// </summary>
+    /// <returns>Случайный элемент из списка <see cref="list"/></returns>
     public T PickForEntity<T>(EntityUid ent, IReadOnlyList<T> list)
     {
         var random = GetOrCreateEntityRandom(ent);
+        var index = random.Next(list.Count);
+        return list[index];
+    }
+
+    /// <summary>
+    /// <inheritdoc cref="PickForEntity{T}(EntityUid, IReadOnlyList{T})"/>
+    /// </summary>
+    public T PickForEntity<T>(IReadOnlyList<T> list, params List<EntityUid> entities)
+    {
+        var random = GetOrCreateEntityRandom(entities);
         var index = random.Next(list.Count);
         return list[index];
     }
