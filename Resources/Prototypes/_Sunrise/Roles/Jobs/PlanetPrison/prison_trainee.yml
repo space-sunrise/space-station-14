@@ -31,7 +31,7 @@
     belt: ClothingBeltPrisonTraineeMetus
     back: ClothingBackpackSatchelPrisonTraineeMetus
     shoes: ClothingShoesBootsJack
-    pocket1: WeaponPistolG22Metus
+    pocket1: WeaponPistolG22Prison
     pocket2: SecurityWhistle
 
 - type: chameleonOutfit
