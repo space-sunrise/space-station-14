@@ -15,12 +15,13 @@ using Content.Server.Mobs.Components; // Sunrise-Edit
 namespace Content.Server.Mobs;
 
 /// <summary>
-/// Handles performing crit-specific actions.
+///     Handles performing crit-specific actions.
 /// </summary>
 public sealed class CritMobActionsSystem : EntitySystem
 {
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly DeathgaspSystem _deathgasp = default!;
+    [Dependency] private readonly IServerConsoleHost _host = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
@@ -39,19 +40,13 @@ public sealed class CritMobActionsSystem : EntitySystem
 
     private void OnSuccumb(EntityUid uid, MobStateActionsComponent component, CritSuccumbEvent args)
     {
-
-        if (args.Handled) // Sunrise-Edit
-            return;
-
         if (!TryComp<ActorComponent>(uid, out var actor) || !_mobState.IsCritical(uid))
             return;
 
-        // Sunrise-Edit-Start
+        //_host.ExecuteCommand(actor.PlayerSession, "ghost"); // Sunrise-Edit
 
-        if (actor.PlayerSession.GetMind() is { } mind)
-            _ghostSystem.OpenAcceptEui(mind, actor.PlayerSession);
-
-        // Sunrise-Edit-End
+        if (actor.PlayerSession.GetMind() is { } mindId)
+            _ghostSystem.OpenAcceptEui(mindId, actor.PlayerSession);
 
         args.Handled = true;
     }
