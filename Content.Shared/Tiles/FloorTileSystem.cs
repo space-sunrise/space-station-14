@@ -4,7 +4,6 @@ using System.Numerics;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Interaction;
-using Content.Shared.Light.Components; // Sunrise-Edit
 using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
@@ -73,30 +72,29 @@ public sealed class FloorTileSystem : EntitySystem
 
         var map = _transform.ToMapCoordinates(location);
 
-        // Sunrise-Start: Убрал проверку FindGridsIntersecting для разрешения размещения tiles на планетах
+        // Disallow placement close to grids.
         // FTLing close is okay but this makes alignment too finnicky.
         // While you may already have a tile close you want to replace when we get half-tiles that may also be finnicky
         // so we're just gon with this for now.
-        // const bool inRange = true;
-        // var state = (inRange, location.EntityId);
-        // _mapManager.FindGridsIntersecting(map.MapId, new Box2(map.Position - CheckRange, map.Position + CheckRange), ref state,
-        //     static (EntityUid entityUid, MapGridComponent grid, ref (bool weh, EntityUid EntityId) tuple) =>
-        //     {
-        //         if (tuple.EntityId == entityUid)
-        //             return true;
-        //
-        //         tuple.weh = false;
-        //         return false;
-        //     });
-        //
-        // if (!state.inRange)
-        // {
-        //     if (_netManager.IsClient && _timing.IsFirstTimePredicted)
-        //         _popup.PopupEntity(Loc.GetString("invalid-floor-placement"), args.User);
-        //
-        //     return;
-        // }
-        // Sunrise-End
+        const bool inRange = true;
+        var state = (inRange, location.EntityId);
+        _mapManager.FindGridsIntersecting(map.MapId, new Box2(map.Position - CheckRange, map.Position + CheckRange), ref state,
+            static (EntityUid entityUid, MapGridComponent grid, ref (bool weh, EntityUid EntityId) tuple) =>
+            {
+                if (tuple.EntityId == entityUid)
+                    return true;
+
+                tuple.weh = false;
+                return false;
+            });
+
+        if (!state.inRange)
+        {
+            if (_netManager.IsClient && _timing.IsFirstTimePredicted)
+                _popup.PopupEntity(Loc.GetString("invalid-floor-placement"), args.User);
+
+            return;
+        }
 
         var userPos = _transform.ToMapCoordinates(transformQuery.GetComponent(args.User).Coordinates).Position;
         var dir = userPos - map.Position;
@@ -136,46 +134,15 @@ public sealed class FloorTileSystem : EntitySystem
                 var gridUid = location.EntityId;
                 var tile = _map.GetTileRef(gridUid, mapGrid, location);
 
-                var baseTurf = (ContentTileDefinition) _tileDefinitionManager[tile.Tile.TypeId]; // Sunrise-Edit
-                var isFloorTile = currentTileDefinition.BaseTurf == "Plating"; // Sunrise-Edit
-
-                // // Sunrise added start: На планетах разрешаем floor tiles без проверок
-                var isOnPlanet = HasComp<RoofComponent>(gridUid);
-
-                if (isFloorTile && isOnPlanet)
-                {
-                    if (!HasComp<ProtectedGridComponent>(gridUid) && !CanPlaceTile(gridUid, mapGrid, tile.GridIndices, out var planetReason))
-                    {
-                        _popup.PopupClient(planetReason, args.User, args.User);
-                        return;
-                    }
-
-                    if (!_stackSystem.TryUse((uid, stack), 1))
-                        return;
-
-                    args.Handled = true;
-                    PlaceAt(args.User, gridUid, mapGrid, location, currentTileDefinition.TileId, component.PlaceTileSound);
-                    return;
-                }
-                // // Sunrise added end
-
-                if (!HasComp<ProtectedGridComponent>(gridUid) && !CanPlaceTile(gridUid, mapGrid, tile.GridIndices, out var reason)) // Sunrise-Edit
+                if (!CanPlaceTile(gridUid, mapGrid, tile.GridIndices, out var reason))
                 {
                     _popup.PopupClient(reason, args.User, args.User);
                     return;
                 }
 
-                // // Sunrise added start: Специальная обработка floor tiles
-                var isBaseTurfFloor = baseTurf.BaseTurf == "Plating";
-                if (isFloorTile && isBaseTurfFloor && !isOnPlanet)
-                {
-                    // На станциях блокируем замену floor tiles друг на друга
-                    _popup.PopupClient(Loc.GetString("invalid-floor-placement"), args.User, args.User);
-                    return;
-                }
-                // Sunrise added end
+                var baseTurf = (ContentTileDefinition) _tileDefinitionManager[tile.Tile.TypeId];
 
-                if (HasBaseTurf(currentTileDefinition, baseTurf.ID) && !(isFloorTile && isBaseTurfFloor && !isOnPlanet)) // Sunrise-Edit
+                if (HasBaseTurf(currentTileDefinition, baseTurf.ID))
                 {
                     if (!_stackSystem.TryUse((uid, stack), 1))
                         continue;
