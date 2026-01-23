@@ -1,4 +1,4 @@
-﻿using Content.Client.Gameplay;
+using Content.Client.Gameplay;
 using Content.Client.Ghost;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.UserInterface.Systems.Ghost.Widgets;
@@ -6,6 +6,7 @@ using Content.Shared.Ghost;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Content.Client._Sunrise.ServersHub;
+using Content.Client._Sunrise.PlanetPrison;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared.Configuration;
@@ -23,6 +24,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     [UISystemDependency] private readonly GhostSystem? _system = default;
+    [UISystemDependency] private readonly PlanetPrisonUISystem _prisonUI = default!;
 
     private GhostGui? Gui => UIManager.GetActiveUIWidgetOrNull<GhostGui>();
 
@@ -162,6 +164,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.ReturnToBodyPressed += ReturnToBody;
         Gui.GhostRolesPressed += GhostRolesPressed;
         Gui.RespawnPressed += Respawn; // Sunrise-Sponsors
+        Gui.PrisonPressed += PrisonPressed; // Sunrise-Prison
         Gui.ChangeServerPressed += ChangeServerPressed;
         Gui.TargetWindow.WarpClicked += OnWarpClicked;
 
@@ -180,6 +183,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.ReturnToBodyPressed -= ReturnToBody;
         Gui.GhostRolesPressed -= GhostRolesPressed;
         Gui.RespawnPressed -= Respawn; // Sunrise-Sponsors
+        Gui.PrisonPressed -= PrisonPressed; // Sunrise-Prison
         Gui.ChangeServerPressed -= ChangeServerPressed;
         Gui.TargetWindow.WarpClicked -= OnWarpClicked;
 
@@ -215,4 +219,11 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     {
         _serversHubManager.ToggleWindow();
     }
+
+    // Sunrise-Prison-Start
+    private void PrisonPressed()
+    {
+        _prisonUI.OpenWindow();
+    }
+    // Sunrise-Prison-End
 }

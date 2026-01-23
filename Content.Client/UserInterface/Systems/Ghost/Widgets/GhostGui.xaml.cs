@@ -18,6 +18,7 @@ public sealed partial class GhostGui : UIWidget
     public event Action? GhostRolesPressed;
     private int _prevNumberRoles;
     public event Action? RespawnPressed; // Sunrise-Edit
+    public event Action? PrisonPressed; // Sunrise-Prison
     public event Action? ChangeServerPressed;
 
     public GhostGui()
@@ -34,6 +35,7 @@ public sealed partial class GhostGui : UIWidget
         GhostRolesButton.OnPressed += _ => GhostRolesPressed?.Invoke();
         GhostRolesButton.OnPressed += _ => GhostRolesButton.StyleClasses.Remove(StyleClass.Negative);
         RespawnButton.OnPressed += _ => RespawnPressed?.Invoke(); // Sunrise-Edit
+        PrisonButton.OnPressed += _ => PrisonPressed?.Invoke(); // Sunrise-Prison
         ChangeServerButton.OnPressed += _ => ChangeServerPressed?.Invoke();
     }
 
@@ -70,6 +72,9 @@ public sealed partial class GhostGui : UIWidget
             RespawnButton.Disabled = true;
             RespawnButton.Text = Loc.GetString("new-life-gui-button-disable");
         }
+
+        // Кнопка тюрьмы активна для призраков
+        PrisonButton.Disabled = false;
         // Sunrise-End
 
         TargetWindow.Populate();

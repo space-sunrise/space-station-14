@@ -10,3 +10,20 @@ planet-prison-round-end-result =
         [few] Из тюрьмы сбежало { $count } заключённых.
        *[other] Из тюрьмы сбежали { $count } заключённых.
     }
+
+# Prison interface for ghosts
+planet-prison-window-title = Prison
+planet-prison-tab-maps = Maps
+planet-prison-tab-roles = Roles
+planet-prison-gui-button = Prison
+
+# Map and role placeholders
+planet-prison-map-modern = Modern: { $name }
+planet-prison-map-modern-description = Modern prison map with new technologies and improved security.
+planet-prison-map-old = Old: { $name }
+planet-prison-map-old-description = Classic prison map with traditional architecture.
+planet-prison-map-placeholder-title = No maps found
+planet-prison-map-placeholder-description = Available prison maps not found. Perhaps the planetary prison has not been created yet.
+planet-prison-map-fallback-description = Prison map: { $name }
+planet-prison-role-placeholder-title = Role placeholder
+planet-prison-role-placeholder-description = Role description will be added later.

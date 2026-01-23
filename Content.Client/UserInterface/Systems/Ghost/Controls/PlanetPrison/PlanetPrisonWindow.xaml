@@ -1,0 +1,38 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+            xmlns:pda="clr-namespace:Content.Client.PDA"
+            Title="{Loc 'planet-prison-window-title'}"
+            MinSize="490 400"
+            SetSize="490 500">
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+        <!-- Вкладки -->
+        <BoxContainer Orientation="Horizontal" Name="TabBar" SetHeight="32" Margin="1 1 3 0" HorizontalExpand="True">
+            <pda:PdaNavigationButton Name="MapsTabButton"
+                                    LabelText="{Loc 'planet-prison-tab-maps'}"
+                                    IsCurrent="True"
+                                    HorizontalExpand="True"/>
+            <pda:PdaNavigationButton Name="RolesTabButton"
+                                    LabelText="{Loc 'planet-prison-tab-roles'}"
+                                    HorizontalExpand="True"/>
+        </BoxContainer>
+
+        <!-- Вкладка карт -->
+        <ScrollContainer VerticalExpand="True" HScrollEnabled="False" Name="MapsContainer" HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical"
+                        VerticalExpand="True"
+                        HorizontalExpand="True"
+                        Name="MapsEntryContainer">
+                <!-- Список карт добавляется сюда кодом -->
+            </BoxContainer>
+        </ScrollContainer>
+
+        <!-- Вкладка ролей -->
+        <ScrollContainer VerticalExpand="True" HScrollEnabled="False" Name="RolesContainer" Visible="False" HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical"
+                        VerticalExpand="True"
+                        HorizontalExpand="True"
+                        Name="RolesEntryContainer">
+                <!-- Список ролей добавляется сюда кодом -->
+            </BoxContainer>
+        </ScrollContainer>
+    </BoxContainer>
+</DefaultWindow>

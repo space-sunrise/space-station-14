@@ -36,3 +36,6 @@ ghost-roles-window-rules-footer = The button will enable after {$time} seconds (
 
 ghost-return-to-body-title = Return to Body
 ghost-return-to-body-text = You are being revived! Return to your body?
+
+# Sunrise-Prison
+ghost-gui-prison-button = Prison

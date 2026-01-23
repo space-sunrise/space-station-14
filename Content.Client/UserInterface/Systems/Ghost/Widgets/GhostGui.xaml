@@ -1,4 +1,4 @@
-﻿<widgets:GhostGui xmlns="https://spacestation14.io"
+<widgets:GhostGui xmlns="https://spacestation14.io"
                   xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Ghost.Widgets"
                   HorizontalAlignment="Center">
     <BoxContainer Orientation="Vertical">
@@ -11,6 +11,7 @@
         <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Name="ChangeServerButton" Text="{Loc ghost-gui-change-server}"/>
             <Button Name="RespawnButton" Text="{Loc ghost-gui-respawn-button}" Disabled="True"/>
+            <Button Name="PrisonButton" Text="{Loc ghost-gui-prison-button}" Disabled="True"/>
         </BoxContainer>
         <!-- Sunrise-Sponsor-End -->
     </BoxContainer>
