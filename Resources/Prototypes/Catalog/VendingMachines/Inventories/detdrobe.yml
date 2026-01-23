@@ -18,9 +18,11 @@
     ClothingHeadsetSecurity: 2
   contrabandInventory:
     ToyFigurineDetective: 1
-    ClothingEyesBinoclardLenses: 1
+    # Sunrise Start
+    ClothingEyesBinoclardLenses: 1 
     ClothingHandsGlovesAerostatic: 1
     ClothingNeckHorrific: 1
     ClothingOuterAerostaticBomberJacket: 1
     ClothingShoesGreenLizardskin: 1
-    ClothingUniformJumpsuitSuperstarCop: 1
+    ClothingUniformJumpsuitSuperstarCop: 1 
+    # Sunrise End
