@@ -26,18 +26,29 @@ public sealed class RCDMenuBoundUserInterface : BoundUserInterface
             ["Lighting"] = ("rcd-component-lighting", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Radial/RCD/lighting.png"))),
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             // Starlight start: RPD
 =======
             // Starlight Start: RPD
 >>>>>>> c615845b66 (Localisation fix 2)
+=======
+            // Starlight Start: RPD
+>>>>>>> 7546ce0450 (Better RPD)
             ["Piping"] = ("rpd-component-piping", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/fourway.png"))),
             ["AtmosphericUtility"] = ("rpd-component-atmosphericutility", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/port.png"))),
             ["PumpsValves"] = ("rpd-component-pumps", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/pump_volume.png"))),
             ["Vents"] = ("rpd-component-vents", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/vent_passive.png"))),
+<<<<<<< HEAD
             // Starlight end
 >>>>>>> 6dc782d4bd (RPD Localization fix)
+=======
+            ["SensorsMonitors"] = ("rpd-component-sensors-monitors", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/airalarm.png"))),
+            // Starlight End: RPD
+>>>>>>> 7546ce0450 (Better RPD)
         };
+
+    private bool IsRpd => EntMan.TryGetComponent<RCDComponent>(Owner, out var rcd) && rcd.IsRpd; // Starlight: RPD
 
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;

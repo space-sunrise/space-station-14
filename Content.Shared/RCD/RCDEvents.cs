@@ -37,6 +37,33 @@ public sealed class RCDConstructionGhostFlipEvent : EntityEventArgs
 }
 // Starlight End
 
+// Starlight Start: RPD
+[Serializable, NetSerializable]
+public sealed class RCDConstructionGhostFlipEvent : EntityEventArgs
+{
+    public readonly NetEntity NetEntity;
+    public readonly bool UseMirrorPrototype;
+    public RCDConstructionGhostFlipEvent(NetEntity netEntity, bool useMirrorPrototype)
+    {
+        NetEntity = netEntity;
+        UseMirrorPrototype = useMirrorPrototype;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class RPDEyeRotationEvent : EntityEventArgs
+{
+    public readonly NetEntity NetEntity;
+    public float? EyeRotation;
+
+    public RPDEyeRotationEvent(NetEntity netEntity, float? eyeRotation)
+    {
+        NetEntity = netEntity;
+        EyeRotation = eyeRotation;
+    }
+}
+// Starlight End: RPD
+
 [Serializable, NetSerializable]
 public enum RcdUiKey : byte
 {
