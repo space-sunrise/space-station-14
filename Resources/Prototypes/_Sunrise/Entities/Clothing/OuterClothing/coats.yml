@@ -353,7 +353,7 @@
 - type: entity
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase] 
   id: ClothingOuterAerostaticBomberJacketArmored
-  name: aerostatic bomber jacket
+  name: armored aerostatic bomber jacket
   description: A jacket once worn by the revolutionary air brigades during the Antecentennial Revolution. There are quite a few pockets on the inside, mostly for storing notebooks and compasses.
   components:
   - type: Sprite
