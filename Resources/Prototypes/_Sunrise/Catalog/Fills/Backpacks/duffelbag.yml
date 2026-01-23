@@ -424,10 +424,8 @@
       storagebase: !type:AllSelector
         children:
         - id: WeaponShotgunMinotaurBiocode
-        - id: MagazineShotgun
-        - id: MagazineShotgun
-        - id: MagazineShotgun
-        - id: MagazineShotgun
+        - id: MagazineShotgunXL
+        - id: MagazineShotgunBreach
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

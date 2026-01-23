@@ -734,6 +734,44 @@
   - UplinkAmmo
 
 - type: listing
+  id: UplinkShotGunKitSmall
+  name: uplink-ammo-shotgunkit-name
+  description: uplink-ammo-shotgunkit-desc
+  productEntity: ShotGunKitSmall
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 9
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+
+- type: listing
+  id: UplinkShotGunKitLarge
+  description: uplink-ammo-shotgunkit-xl-desc
+  icon: { sprite: /Textures/_Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Shotgun/m16.rsi, state: base }
+  productEntity: ShotGunKitLarge
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 8
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+
+- type: listing
   id: UplinkBoomboxBundle
   name: uplink-music-boombox-name
   description: uplink-music-boombox-desc
@@ -2278,6 +2316,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink
 
 - type: listing
   id: uplinkWeaponPistolDeagle

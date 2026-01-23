@@ -167,7 +167,7 @@
     - state: smg_base
 
 - type: entity
-  parent: BaseSyndicateAmmoKit
+  parent: BaseSyndicateAmmoKitSmall
   id: SMGIncendiaryAmmoKit
   name: C20r Incendiary ammo kit
   components:
@@ -176,7 +176,7 @@
       storagebase: !type:AllSelector
         children:
         - id: MagazinePistolSubMachineGunIncendiary
-          amount: 8
+          amount: 6
   - type: Sprite
     layers:
     - state: box_of_doom_big
@@ -199,6 +199,44 @@
     layers:
     - state: box_of_doom_big
     - state: shotgun_base
+
+- type: entity
+  parent: BaseSyndicateAmmoKitSmall
+  id: ShotGunKitSmall
+  name: ammo drum kit
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineShotgun
+          amount: 2
+        - id: MagazineShotgunSlug
+          amount: 2
+        - id: MagazineShotgunIncendiary
+        - id: MagazineShotgunFlechette
+  - type: Sprite
+    layers:
+    - state: box_of_doom_big
+    - state: shotgun_base
+
+- type: entity
+  parent: BaseSyndicateAmmoKit
+  id: ShotGunKitLarge
+  name: XL ammo kit
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineShotgunXL
+        - id: MagazineShotgunFlechetteXL
+        - id: MagazineShotgunSlugXL
+        - id: MagazineShotgunIncendiaryXL
+  - type: Sprite
+    layers:
+    - state: box_of_doom_big
+    - state: shotgun_xl_big
 
 - type: entity
   parent: BaseSyndicateAmmoKit

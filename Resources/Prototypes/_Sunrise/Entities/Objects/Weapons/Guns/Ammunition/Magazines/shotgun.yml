@@ -1,3 +1,51 @@
+# region Base
+- type: entity
+  abstract: true
+  parent: [ BaseItem, BaseSecurityContraband ]
+  id: BaseMagazineShotgunXL
+  name: XL ammo drum (.50 shells)
+  components:
+  - type: Tag
+    tags:
+    - MagazineShotgun
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - ShellShotgun
+    capacity: 16
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
+  - type: Item
+    shape:
+    - 0,0,1,1
+    size: Small
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#d73307"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#d73307"
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    scale: 1.1,1.1
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Shotgun/m16.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 17
+    zeroVisible: false
+  - type: Appearance
+
 - type: entity
   id: BaseMagazineAsh12
   name: "ash-12 magazine(.50 slug)"
@@ -151,3 +199,103 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#40F57A"
+
+# region XL drummag
+- type: entity
+  parent: BaseMagazineShotgunXL
+  id: MagazineShotgunFlechetteXL
+  name: XL ammo drum (.50 flechette)
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunFlechette
+  - type: Sprite
+    layers:
+    - state: flechette
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#5da0b5"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#5da0b5"
+
+- type: entity
+  parent: BaseMagazineShotgunXL
+  id: MagazineShotgunIncendiaryXL
+  name: XL ammo drum (.50 incendiary)
+  description: A extra-large drum magazine used by some military-grade automatic shotguns. Intended to hold self-igniting incendiary ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunIncendiary
+  - type: Sprite
+    layers:
+    - state: flame
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#72382d"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#72382d"
+
+- type: entity
+  parent: BaseMagazineShotgunXL
+  id: MagazineShotgunXL
+  name: XL ammo drum (.50 pellet)
+  description: A extra-large  drum magazine used by some military-grade automatic shotguns. Intended to hold general-purpose kinetic ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgun
+  - type: Sprite
+    layers:
+    - state: pellets
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ba7710"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ba7710"
+
+- type: entity
+  parent: BaseMagazineShotgunXL
+  id: MagazineShotgunSlugXL
+  name: XL ammo drum (.50 slug)
+  description: A extra-large  drum magazine used by some military-grade automatic shotguns. Intended to hold long-ranged slug ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunSlug
+  - type: Sprite
+    layers:
+    - state: slug
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#72382d"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#72382d"
