@@ -421,7 +421,7 @@
   - type: FireProtection
     reduction: 0.8
   - type: ExplosionResistance
-    damageCoefficient: 0.4 # Sunrise-edit
+    damageCoefficient: 0.2 # Sunrise-edit
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -432,7 +432,7 @@
         Piercing: 0.8
         Shock: 0.2 #Sunrise-edit
         Heat: 0.4
-        Radiation: 0.1 # Sunrise-edit
+        Radiation: 0.0 # Sunrise-edit
         Caustic: 0.7
   - type: ClothingSpeedModifier
     walkModifier: 0.8
@@ -506,7 +506,7 @@
         Radiation: 0.2 # Sunrise-edit
         Caustic: 0.2
   - type: ExplosionResistance
-    damageCoefficient: 0.3 # Sunrise-edit
+    damageCoefficient: 0.1 # Sunrise-edit
   - type: ClothingSpeedModifier
     walkModifier: 0.75
     sprintModifier: 0.75
