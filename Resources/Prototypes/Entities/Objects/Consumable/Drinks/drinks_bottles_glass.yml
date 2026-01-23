@@ -420,7 +420,7 @@
   - type: SolutionContainerManager
     solutions:
       drink:
-        maxVol: 300 #Sunrise-Edit
+        maxVol: 150
         reagents:
         - ReagentId: Beer
           Quantity: 300 #Sunrise-Edit
