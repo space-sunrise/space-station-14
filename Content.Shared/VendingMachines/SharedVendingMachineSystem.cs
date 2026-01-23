@@ -438,7 +438,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
         uint restock = amount;
 
-        if (type == InventoryType.Regular)
+        if (type == InventoryType.Regular || type == InventoryType.Contraband)
         {
             var chanceOfMissingStock = 1 - restockQuality;
             var result = Randomizer.NextFloat(0, 1);
