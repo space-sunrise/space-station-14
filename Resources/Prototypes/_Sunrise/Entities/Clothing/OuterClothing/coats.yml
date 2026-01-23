@@ -351,7 +351,25 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/hos_overcoat.rsi
 
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase]
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase] 
+  id: ClothingOuterAerostaticBomberJacketArmored
+  name: aerostatic bomber jacket
+  description: A jacket once worn by the revolutionary air brigades during the Antecentennial Revolution. There are quite a few pockets on the inside, mostly for storing notebooks and compasses.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/kim.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/kim.rsi
+  # SUNRISE EDIT
+  - type: Tag
+    tags:
+      - Vest
+      - NudeBottom  # INTERACTIONS
+      - WhitelistChameleon
+  # SUNRISE EDIT
+
+- type: entity
+  parent: ClothingOuterBase
   id: ClothingOuterAerostaticBomberJacket
   name: aerostatic bomber jacket
   description: A jacket once worn by the revolutionary air brigades during the Antecentennial Revolution. There are quite a few pockets on the inside, mostly for storing notebooks and compasses.
