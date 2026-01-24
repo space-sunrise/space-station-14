@@ -30,7 +30,7 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
-    ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
+    ejectState: eject-unshaded  #No sprite, see chefvend/dinnerware/BODA/etc for expamples
   - type: Vocalizer
   - type: DatasetVocalizer
     dataset: MailDrobeAds
