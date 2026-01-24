@@ -1,6 +1,4 @@
 using Content.Client.Hands.Systems;
-using Content.Shared.Atmos.Components;
-using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.RCD;
 using Content.Shared.RCD.Components;
@@ -12,6 +10,8 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Input;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
+using Content.Shared.Atmos.Components;
+using Content.Shared.Atmos.EntitySystems;
 // Starlight End
 
 namespace Content.Client.RCD;
@@ -27,7 +27,7 @@ public sealed class RCDConstructionGhostSystem : EntitySystem
     [Dependency] private readonly IPlacementManager _placementManager = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly SharedAtmosPipeLayersSystem _pipeLayers = default!;
+    [Dependency] private readonly SharedAtmosPipeLayersSystem _pipeLayers = default!; // Starlight: RPD
 
     private Direction _placementDirection = default;
     // Starlight Start: RPD
@@ -183,4 +183,3 @@ public sealed class RCDConstructionGhostSystem : EntitySystem
     }
     // Starlight End
 }
-

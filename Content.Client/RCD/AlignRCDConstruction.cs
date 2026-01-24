@@ -77,9 +77,9 @@ public sealed class AlignRCDConstruction : PlacementMode
                 CurrentTile.Y + tileSize / 2 + pManager.PlacementOffset.Y));
         }
 
+    // Starlight Start: RPD
         ApplyRpdLayerSelection(gridId.Value, gridRotation);
     }
-    // Starlight Start: RPD
     private void ApplyRpdLayerSelection(EntityUid gridUid, Angle gridRotation)
     {
         if (pManager.PlacementType != PlacementTypes.None)
@@ -103,8 +103,8 @@ public sealed class AlignRCDConstruction : PlacementMode
         }
 
         _rcdSystem.SetGhostPipeLayer(rcdUid.Value, layer);
-    }
     // Starlight End
+    }
 
     public override bool IsValidPosition(EntityCoordinates position)
     {
