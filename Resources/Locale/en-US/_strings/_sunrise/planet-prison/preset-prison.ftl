@@ -25,5 +25,19 @@ planet-prison-map-old-description = Classic prison map with traditional architec
 planet-prison-map-placeholder-title = No maps found
 planet-prison-map-placeholder-description = Available prison maps not found. Perhaps the planetary prison has not been created yet.
 planet-prison-map-fallback-description = Prison map: { $name }
+planet-prison-map-metus-title = Metus
+planet-prison-map-metus-description = Location: [color=yellow]Planet[/color]\nModifier: [color=brown]Mine[/color]\nDescription: [color=gray]Semi-abandoned complex surrounded by mining ore.[/color]
+
+planet-prison-map-nox-title = Nox
+planet-prison-map-nox-description = Location: [color=cyan]Space[/color]\nModifier: [color=red]Secrets[/color]\nDescription: [color=gray]Smaller than Metus, but more saturated with secrets for prisoners and RP rooms.[/color]
+
+planet-prison-priority-required = Priority setting required from 2 players ({ $current }/{ $required })
+planet-prison-priority-never = Never
+planet-prison-priority-low = Low
+planet-prison-priority-medium = Medium
+planet-prison-priority-high = High
+planet-prison-vote-count = ({ $current }/{ $required })
+planet-prison-launching = (launching)
+planet-prison-launched = (launched)
 planet-prison-role-placeholder-title = Role placeholder
 planet-prison-role-placeholder-description = Role description will be added later.

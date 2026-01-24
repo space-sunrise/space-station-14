@@ -15,6 +15,11 @@
                                     HorizontalExpand="True"/>
         </BoxContainer>
 
+        <!-- Общий счетчик приоритетов -->
+        <PanelContainer Name="PriorityCounterPanel" StyleClasses="HighDivider" Visible="False" Margin="4">
+            <Label Name="PriorityCounterLabel" HorizontalAlignment="Center" Margin="8" />
+        </PanelContainer>
+
         <!-- Вкладка карт -->
         <ScrollContainer VerticalExpand="True" HScrollEnabled="False" Name="MapsContainer" HorizontalExpand="True">
             <BoxContainer Orientation="Vertical"

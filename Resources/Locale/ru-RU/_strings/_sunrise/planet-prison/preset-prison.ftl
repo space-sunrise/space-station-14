@@ -25,5 +25,25 @@ planet-prison-map-old-description = Классическая карта тюрь
 planet-prison-map-placeholder-title = Карты не найдены
 planet-prison-map-placeholder-description = Доступные карты тюрьмы не найдены. Возможно, планетарная тюрьма еще не создана.
 planet-prison-map-fallback-description = Карта тюрьмы: { $name }
+planet-prison-map-metus-title = Metus
+planet-prison-map-metus-description =
+    Расположение: [color=lime]Планета[/color]
+    Модификатор: [color=brown]Шахта[/color]
+    Описание: [color=gray]Полузаброшенный комплекс в окружении шахтёрской руды.[/color]
+
+planet-prison-map-nox-title = Nox
+planet-prison-map-nox-description =
+    Расположение: [color=#0065ad]Космос[/color]
+    Модификатор: [color=darkred]Секретки[/color]
+    Описание: [color=gray]Меньше по размеру чем Metus, но более насыщена по секреткам для зеков и РП комнатам.[/color]
+
+planet-prison-priority-required = Требуется расставление приоритетов от 2 игроков ({ $current }/{ $required })
+planet-prison-priority-never = Никогда
+planet-prison-priority-low = Низкий
+planet-prison-priority-medium = Средний
+planet-prison-priority-high = Высокий
+planet-prison-vote-count = ({ $current }/{ $required })
+planet-prison-launching = (запускается)
+planet-prison-launched = (запущен)
 planet-prison-role-placeholder-title = Заглушка роли
 planet-prison-role-placeholder-description = Описание роли будет добавлено позже.

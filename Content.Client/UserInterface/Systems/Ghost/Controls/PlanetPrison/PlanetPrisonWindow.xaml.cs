@@ -62,4 +62,8 @@ public sealed partial class PlanetPrisonWindow : DefaultWindow
 
     public int MapsEntryCount => MapsEntryContainer.ChildCount;
     public int RolesEntryCount => RolesEntryContainer.ChildCount;
+
+    // Public accessors for priority counter elements
+    public Label GetPriorityCounterLabel() => PriorityCounterLabel;
+    public PanelContainer GetPriorityCounterPanel() => PriorityCounterPanel;
 }

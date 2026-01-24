@@ -21,6 +21,18 @@ public sealed partial class GhostGui : UIWidget
     public event Action? PrisonPressed; // Sunrise-Prison
     public event Action? ChangeServerPressed;
 
+    public void HighlightPrisonButton(bool highlight)
+    {
+        if (highlight)
+        {
+            PrisonButton.StyleClasses.Add(StyleClass.Negative);
+        }
+        else
+        {
+            PrisonButton.StyleClasses.Remove(StyleClass.Negative);
+        }
+    }
+
     public GhostGui()
     {
         RobustXamlLoader.Load(this);

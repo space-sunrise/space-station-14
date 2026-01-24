@@ -3,8 +3,13 @@ using Content.Client.Ghost;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.UserInterface.Systems.Ghost.Widgets;
 using Content.Shared.Ghost;
+using Robust.Client.Audio;
+using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Player;
 using Content.Client._Sunrise.ServersHub;
 using Content.Client._Sunrise.PlanetPrison;
 using Content.Shared._Sunrise.SunriseCCVars;
@@ -19,6 +24,7 @@ namespace Content.Client.UserInterface.Systems.Ghost;
 public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSystem>
 {
     [Dependency] private readonly IEntityNetworkManager _net = default!;
+    [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly ServersHubManager _serversHubManager = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
@@ -166,6 +172,8 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.RespawnPressed += Respawn; // Sunrise-Sponsors
         Gui.PrisonPressed += PrisonPressed; // Sunrise-Prison
         Gui.ChangeServerPressed += ChangeServerPressed;
+
+        _prisonUI.PrisonButtonHighlightChanged += OnPrisonButtonHighlightChanged;
         Gui.TargetWindow.WarpClicked += OnWarpClicked;
 
         // Sunrise edit - нету фичи
@@ -185,6 +193,8 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.RespawnPressed -= Respawn; // Sunrise-Sponsors
         Gui.PrisonPressed -= PrisonPressed; // Sunrise-Prison
         Gui.ChangeServerPressed -= ChangeServerPressed;
+
+        _prisonUI.PrisonButtonHighlightChanged -= OnPrisonButtonHighlightChanged;
         Gui.TargetWindow.WarpClicked -= OnWarpClicked;
 
         Gui.Hide();
@@ -224,6 +234,11 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     private void PrisonPressed()
     {
         _prisonUI.OpenWindow();
+    }
+
+    private void OnPrisonButtonHighlightChanged(bool highlight)
+    {
+        Gui?.HighlightPrisonButton(highlight);
     }
     // Sunrise-Prison-End
 }
