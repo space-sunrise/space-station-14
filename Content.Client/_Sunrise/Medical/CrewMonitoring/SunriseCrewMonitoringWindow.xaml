@@ -34,6 +34,11 @@
                             HorizontalAlignment="Center"
                             Visible="false"/>
                 </ScrollContainer>
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 2 0 3">
+                    <Label Text ="{Loc crew-monitoring-corpse-alert}" VerticalAlignment="Center" Margin="0 0 6 0"/>
+                    <CheckBox Name="CorpseAlertToggle" Text="{Loc 'crew-monitoring-corpse-alert-off'}"
+                            HorizontalAlignment="Center" Margin="0 0 0 0" SetWidth="260"/>
+                </BoxContainer>
             </BoxContainer>
         </BoxContainer>
 
@@ -50,3 +55,4 @@
         </BoxContainer>
     </BoxContainer>
 </controls:FancyWindow>
+

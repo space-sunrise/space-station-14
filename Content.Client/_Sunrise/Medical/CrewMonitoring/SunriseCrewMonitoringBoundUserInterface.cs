@@ -1,14 +1,14 @@
 using Content.Shared.Medical.CrewMonitoring;
 using Robust.Client.UserInterface;
 
-namespace Content.Client.Medical.CrewMonitoring;
+namespace Content.Client._Sunrise.Medical.CrewMonitoring;
 
-public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
+public class SunriseCrewMonitoringBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]
-    private CrewMonitoringWindow? _menu;
+    protected SunriseCrewMonitoringWindow? _menu;
 
-    public CrewMonitoringBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+    public SunriseCrewMonitoringBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
     }
 
@@ -24,12 +24,11 @@ public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
             gridUid = xform.GridUid;
 
             if (EntMan.TryGetComponent<MetaDataComponent>(gridUid, out var metaData))
-            {
                 stationName = metaData.EntityName;
-            }
         }
 
-        _menu = this.CreateWindow<CrewMonitoringWindow>();
+        _menu = this.CreateWindow<SunriseCrewMonitoringWindow>();
+        _menu.SetBoundUserInterface(this);
         _menu.Set(stationName, gridUid);
     }
 
@@ -37,12 +36,11 @@ public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
     {
         base.UpdateState(state);
 
-        switch (state)
-        {
-            case CrewMonitoringState st:
-                EntMan.TryGetComponent<TransformComponent>(Owner, out var xform);
-                _menu?.ShowSensors(st.Sensors, Owner, xform?.Coordinates);
-                break;
-        }
+        if (state is not CrewMonitoringState st)
+            return;
+
+        EntMan.TryGetComponent<TransformComponent>(Owner, out var xform);
+        _menu?.ShowSensors(st.Sensors, Owner, xform?.Coordinates);
+        _menu?.UpdateCorpseAlertToggle(st.CorpseAlertEnabled);
     }
 }
