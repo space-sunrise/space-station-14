@@ -125,7 +125,7 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
 
         var uniqueSensors = uniqueSensorsMap.Values.ToList();
 
-        var orderedSensors = uniqueSensors.OrderBy(n => n.Name).OrderBy(j => j.Job);
+        var orderedSensors = uniqueSensors.OrderBy(j => j.Job).ThenBy(n => n.Name);
         var assignedSensors = new HashSet<SuitSensorStatus>();
         var departments = uniqueSensors.SelectMany(d => d.JobDepartments).Distinct().OrderBy(n => n);
 

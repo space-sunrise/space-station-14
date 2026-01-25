@@ -4,7 +4,7 @@ namespace Content.Shared.Medical.CrewMonitoring;
 public sealed partial class CrewMonitoringFilterComponent : Component
 {
     /// <summary>
-    /// Разрешенные отделы. Если пустое все доступныЮ
+    /// Разрешенные отделы. Если пустое все доступны
     /// </summary>
     [DataField]
     public List<string> AllowedDepartmentIds = new();
