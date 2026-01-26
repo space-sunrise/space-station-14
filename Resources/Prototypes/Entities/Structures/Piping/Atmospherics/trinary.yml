@@ -47,15 +47,17 @@
         - state: gasFilter
           map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     # region starlight
+=======
+    # Carpmosia-start - Atmos Alt Prototypes
+>>>>>>> d9ca0dff02 (Fixes)
     - type: AtmosPipeLayers
       alternativePrototypes:
         Primary: GasFilter
         Secondary: GasFilterAlt1
         Tertiary: GasFilterAlt2
-    # end region
-    # Carpmosia-start - Atmos Alt Prototypes
         Quaternary: GasFilterAlt3
         Quinary: GasFilterAlt4
     # Carpmosia-end - Atmos Alt Prototypes
@@ -220,15 +222,17 @@
         - state: gasMixer
           map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     # region starlight
+=======
+    # Carpmosia-start - Atmos Alt Prototypes
+>>>>>>> d9ca0dff02 (Fixes)
     - type: AtmosPipeLayers
       alternativePrototypes:
         Primary: GasMixer
         Secondary: GasMixerAlt1
         Tertiary: GasMixerAlt2
-    # end region
-    # Carpmosia-start - Atmos Alt Prototypes
         Quaternary: GasMixerAlt3
         Quinary: GasMixerAlt4
     # Carpmosia-end - Atmos Alt Prototypes
@@ -409,15 +413,17 @@
         - state: off
           map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     # region starlight
+=======
+    # Carpmosia-start - Atmos Alt Prototypes
+>>>>>>> d9ca0dff02 (Fixes)
     - type: AtmosPipeLayers
       alternativePrototypes:
         Primary: PressureControlledValve
         Secondary: PressureControlledValveAlt1
         Tertiary: PressureControlledValveAlt2
-    # end region
-    # Carpmosia-start - Atmos Alt Prototypes
         Quaternary: PressureControlledValveAlt3
         Quinary: PressureControlledValveAlt4
     # Carpmosia-end - Atmos Alt Prototypes

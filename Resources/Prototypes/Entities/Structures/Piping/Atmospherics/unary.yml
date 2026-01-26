@@ -49,15 +49,17 @@
         - state: vent_off
           map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     # region starlight
+=======
+    # Carpmosia-start - Atmos Alt Prototypes
+>>>>>>> d9ca0dff02 (Fixes)
     - type: AtmosPipeLayers
       alternativePrototypes:
         Primary: GasVentPump
         Secondary: GasVentPumpAlt1
         Tertiary: GasVentPumpAlt2
-    # end region
-    # Carpmosia-start - Atmos Alt Prototypes
         Quaternary: GasVentPumpAlt3
         Quinary: GasVentPumpAlt4
     # Carpmosia-end - Atmos Alt Prototypes
@@ -123,15 +125,17 @@
         - state: vent_passive
           map: [ "enum.SubfloorLayers.FirstLayer" ]
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     # region starlight
+=======
+    # Carpmosia-start - Atmos Alt Prototypes
+>>>>>>> d9ca0dff02 (Fixes)
     - type: AtmosPipeLayers
       alternativePrototypes:
         Primary: GasPassiveVent
         Secondary: GasPassiveVentAlt1
         Tertiary: GasPassiveVentAlt2
-    # end region
-    # Carpmosia-start - Atmos Alt Prototypes
         Quaternary: GasPassiveVentAlt3
         Quinary: GasPassiveVentAlt4
     # Carpmosia-end - Atmos Alt Prototypes
@@ -185,15 +189,17 @@
         - state: scrub_off
           map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     # region starlight
+=======
+    # Carpmosia-start - Atmos Alt Prototypes
+>>>>>>> d9ca0dff02 (Fixes)
     - type: AtmosPipeLayers
       alternativePrototypes:
         Primary: GasVentScrubber
         Secondary: GasVentScrubberAlt1
         Tertiary: GasVentScrubberAlt2
-    # end region
-    # Carpmosia-start - Atmos Alt Prototypes
         Quaternary: GasVentScrubberAlt3
         Quinary: GasVentScrubberAlt4
     # Carpmosia-end - Atmos Alt Prototypes
@@ -259,15 +265,17 @@
           map: [ "enum.LightLayers.Unshaded" ]
           color: "#990000"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     # region starlight
+=======
+    # Carpmosia-start - Atmos Alt Prototypes
+>>>>>>> d9ca0dff02 (Fixes)
     - type: AtmosPipeLayers
       alternativePrototypes:
         Primary: GasOutletInjector
         Secondary: GasOutletInjectorAlt1
         Tertiary: GasOutletInjectorAlt2
-    # end region
-    # Carpmosia-start - Atmos Alt Prototypes
         Quaternary: GasOutletInjectorAlt3
         Quinary: GasOutletInjectorAlt4
     # Carpmosia-end - Atmos Alt Prototypes
