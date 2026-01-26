@@ -1,59 +1,110 @@
 - type: guideEntry
   id: Species
   name: guide-entry-species
-  text: "/ServerInfo/Guidebook/Mobs/Species.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/Species.xml"  # Sunrise-Edit
   children:
   - Arachnid
+  - Demon # Sunrise-Add
   - Diona
   - Dwarf
+  - Felinid # Sunrise-Add
   - Human
+  - HumanoidXeno # Sunrise-Add
+  - Milira # Sunrise-Add
   - Moth
+  - Predator # Sunrise-Add
   - Reptilian
+  - Resomi # Sunrise-Add
   - SlimePerson
+  - Swine # Sunrise-Add
+  - Tajaran # Sunrise-Add
   - Vox
   - Vulpkanin
 
 - type: guideEntry
   id: Arachnid
   name: species-name-arachnid
-  text: "/ServerInfo/Guidebook/Mobs/Arachnid.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/Arachnid.xml"  # Sunrise-Edit
 
 - type: guideEntry
   id: Diona
   name: species-name-diona
-  text: "/ServerInfo/Guidebook/Mobs/Diona.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/Diona.xml"  # Sunrise-Edit
 
 - type: guideEntry
   id: Dwarf
   name: species-name-dwarf
-  text: "/ServerInfo/Guidebook/Mobs/Dwarf.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/Dwarf.xml"  # Sunrise-Edit
 
 - type: guideEntry
   id: Human
   name: species-name-human
-  text: "/ServerInfo/Guidebook/Mobs/Human.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/Human.xml"  # Sunrise-Edit
 
 - type: guideEntry
   id: Moth
   name: species-name-moth
-  text: "/ServerInfo/Guidebook/Mobs/Moth.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/Moth.xml"  # Sunrise-Edit
 
 - type: guideEntry
   id: Reptilian
   name: species-name-reptilian
-  text: "/ServerInfo/Guidebook/Mobs/Reptilian.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/Reptilian.xml"  # Sunrise-Edit
 
 - type: guideEntry
   id: SlimePerson
   name: species-name-slime
-  text: "/ServerInfo/Guidebook/Mobs/SlimePerson.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/SlimePerson.xml"  # Sunrise-Edit
 
 - type: guideEntry
   id: Vox
   name: species-name-vox
-  text: "/ServerInfo/Guidebook/Mobs/Vox.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/Vox.xml"  # Sunrise-Edit
 
 - type: guideEntry
   id: Vulpkanin
   name: species-name-vulpkanin
-  text: "/ServerInfo/Guidebook/Mobs/Vulpkanin.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/Vulpkanin.xml"  # Sunrise-Edit
+
+# Sunrise-Start
+- type: guideEntry
+  id: Swine
+  name: species-name-swine
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/Swine.xml"
+
+- type: guideEntry
+  id: Tajaran
+  name: species-name-tajaran
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/Tajaran.xml"
+
+- type: guideEntry
+  id: Resomi
+  name: species-name-resomi
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/Resomi.xml"
+
+- type: guideEntry
+  id: Predator
+  name: species-name-predator
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/Predator.xml"
+
+- type: guideEntry
+  id: HumanoidXeno
+  name: species-name-xeno
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/HumanoidXeno.xml"
+
+- type: guideEntry
+  id: Milira
+  name: species-name-milira
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/Milira.xml"
+
+- type: guideEntry
+  id: Demon
+  name: species-name-demon
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/Demon.xml"
+
+- type: guideEntry
+  id: Felinid
+  name: species-name-felinid
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/Felinid.xml"
+
+# Sunrise-End

@@ -64,7 +64,12 @@
 - type: damageModifierSet
   id: Xenomorph
   coefficients:
-    Heat: 1.15
+    Piercing: 1.05
+    Cold: 1.1
+    Heat: 1.2
+    Shock: 1.25
+  flatReductions:
+    Blunt: 4
 
 - type: damageModifierSet
   id: GorillaRampaging

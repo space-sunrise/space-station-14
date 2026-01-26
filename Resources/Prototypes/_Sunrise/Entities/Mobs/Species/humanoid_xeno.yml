@@ -39,8 +39,10 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 5
-        Slash: 10
+        Blunt: 3
+        Slash: 2
+        Caustic: 1
+  - type: LizardAccent
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -95,13 +97,14 @@
       state: body-overlay-2
       visible: false
   - type: Hunger
-    baseDecayRate: 0.04
+    baseDecayRate: 0.08
   - type: Thirst
     baseDecayRate: 0.15
     dehydrationDamage:
       types:
         Bloodloss: 0.5
         Asphyxiation: 0.5
+        Caustic: 0.05
   - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
     sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
     state: full
