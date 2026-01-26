@@ -29,11 +29,12 @@ messenger-add-user-search = Поиск:
 messenger-add-user-placeholder = Введите имя пользователя
 messenger-add-user-cancel = Отмена
 messenger-emoji-picker-title = Выбрать смайлики
-messenger-connection-label = { $status ->
-    [connecting] { messenger-status-connecting }
-    [disconnected] { messenger-status-disconnected }
-    *[connected] { messenger-status-connected }
-}
+messenger-connection-label =
+    Статус подключения: { $status ->
+        [connecting] { messenger-status-connecting }
+        [disconnected] { messenger-status-disconnected }
+        *[connected] { messenger-status-connected }
+    }
 messenger-system-user-added = добавил(а) { $userName } в группу
 messenger-system-user-removed = удалил(а) { $userName } из группы
 messenger-system-user-added-by = { $adderName } добавил(а) { $userName } в группу
