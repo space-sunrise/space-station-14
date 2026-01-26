@@ -32,7 +32,7 @@ public sealed partial class MessengerServerComponent : Component
     /// <summary>
     /// Максимальное количество сообщений в истории для одного чата
     /// </summary>
-    [DataField("maxMessageHistory")]
+    [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public int MaxMessageHistory = 5000;
 
