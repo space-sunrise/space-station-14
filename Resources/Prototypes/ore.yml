@@ -92,6 +92,20 @@
   id: OreUraniumCrab
   oreEntity: MobSpawnCrabUranium
 
+#Sunrise-Start
+- type: ore
+  id: OreSaltCrab
+  oreEntity: MobSpawnCrabSalt
+
+- type: ore
+  id: OrePlasmaCrab
+  oreEntity: MobSpawnCrabPlasma
+
+- type: ore
+  id: OreDiamondCrab
+  oreEntity: MobSpawnCrabDiamond
+#Sunrise-End
+
 - type: ore
   id: OreArtifactFragment
   oreEntity: ArtifactFragment1
@@ -121,3 +135,8 @@
     OreBananiumCrab: 1
     OreCoalCrab: 5
     OreGoldCrab: 2
+    #Sunrise-Start
+    OreSaltCrab: 5
+    OrePlasmaCrab: 2
+    OreDiamondCrab: 1
+    #Sunrise-End

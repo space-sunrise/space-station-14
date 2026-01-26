@@ -4,10 +4,10 @@
   description: job-description-intern
   playTimeTracker: JobMedicalIntern
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 5h
-      #inverted: true # stop playing intern if you're good at med! Sunrise-edit
+    # - !type:DepartmentTimeRequirement # Sunrise-edit: disable department time gate for intern role inversion
+    #   department: Medical
+    #   time: 5h
+    #   #inverted: true # stop playing intern if you're good at med! Sunrise-edit
   startingGear: MedicalInternGear
   icon: "JobIconMedicalIntern"
   supervisors: job-supervisors-medicine

@@ -21,6 +21,7 @@
     - phosphorus_2
     - phosphorus_3
   - type: Sprite
+    scale: 0.8,0.8
     sprite: _Starlight/Objects/Materials/phosphorus.rsi
     state: phosphorus_3
     layers:
@@ -28,6 +29,7 @@
       map: ["base"]
   - type: Appearance
   - type: Item
+    size: Tiny
     heldPrefix: phosphorus
 
 - type: entity

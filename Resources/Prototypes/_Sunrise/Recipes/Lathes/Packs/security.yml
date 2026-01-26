@@ -38,6 +38,7 @@
     - BoxLethalshot
     - BoxShotgunSlug
     - BoxShellTranquilizer
+    - BoxShotgunFlare
     #####################MAGAZINE#######################
     # LMG
     - MagazineLightRifleBeltBoxSP
@@ -264,6 +265,7 @@
     - BoxShotgunIncendiary
     - BoxShotgunUranium
     - BoxShellTranquilizer
+    - BoxShotgunFlechette
   #####################MAGAZINE#######################
   # LMG
     - MagazineLightRifleBeltBoxIncendiary
@@ -309,6 +311,7 @@
   # Shotgun
     - SpeedLoaderShotgunIncendiary
     - SpeedLoaderShotgunUranium
+    - SpeedLoaderShotgunFlechette
   # Grenade
     - MagazineGrenadeEmpty
 ####################################################
@@ -327,6 +330,10 @@
     - VestSecUpgradeReflective
     - VestSecUpgradeWeb
     - VestSecUpgradeBulletHeavy
+    - ClothingOuterArmorMiliraLight
+    - ClothingOuterArmorMiliraHeavy
+    - ClothingOuterHardsuitMilira
+    - ClothingEyesHudMilira
 
 - type: latheRecipePack
   id: SecurityDynamicSunriseMech

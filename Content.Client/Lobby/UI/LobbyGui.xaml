@@ -352,7 +352,54 @@
             <BoxContainer
                 HorizontalAlignment="Right"
                 HorizontalExpand="True"
-                Orientation="Vertical">
+                Orientation="Horizontal"
+                SeparationOverride="5">
+                <PanelContainer
+                    Access="Public"
+                    HorizontalAlignment="Right"
+                    Name="SocialButtonsPanel"
+                    StyleClasses="AngleRect"
+                    VerticalAlignment="Top">
+                    <BoxContainer
+                        HorizontalAlignment="Center"
+                        Margin="3,3,3,3"
+                        Orientation="Vertical"
+                        SeparationOverride="2"
+                        VerticalAlignment="Top">
+                        <BoxContainer
+                            Orientation="Horizontal"
+                            SeparationOverride="2">
+                            <Button
+                                Access="Public"
+                                MinWidth="48"
+                                MinHeight="48"
+                                Name="DiscordButton"
+                                StyleClasses="ButtonBig" />
+                            <Button
+                                Access="Public"
+                                MinWidth="48"
+                                MinHeight="48"
+                                Name="WikiButton"
+                                StyleClasses="ButtonBig" />
+                        </BoxContainer>
+                        <BoxContainer
+                            Orientation="Horizontal"
+                            SeparationOverride="2">
+                            <Button
+                                Access="Public"
+                                MinWidth="48"
+                                MinHeight="48"
+                                Name="TelegramButton"
+                                StyleClasses="ButtonBig" />
+                            <Button
+                                Access="Public"
+                                MinWidth="48"
+                                MinHeight="48"
+                                Name="ReplaysButton"
+                                StyleClasses="ButtonBig" />
+                        </BoxContainer>
+                    </BoxContainer>
+                </PanelContainer>
                 <PanelContainer
                     Access="Public"
                     HorizontalExpand="True"

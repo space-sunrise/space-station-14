@@ -6,10 +6,10 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10h
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 5h
-      #inverted: true # stop playing intern if you're good at security! Sunrise-edit
+    # - !type:DepartmentTimeRequirement # Sunrise-edit: disable department time gate for intern role inversion
+    #   department: Security
+    #   time: 5h
+    #   #inverted: true # stop playing intern if you're good at security! Sunrise-edit
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-security

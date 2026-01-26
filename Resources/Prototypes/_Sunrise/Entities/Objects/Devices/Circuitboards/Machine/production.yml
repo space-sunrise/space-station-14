@@ -1,5 +1,5 @@
 ﻿- type: entity
-  id: SewingPrinterMetusMachineCircuitboard
+  id: SewingPrinterPrisonMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: prison sewing printer machine board
   description: Scarred with solder marks, corroded contacts, and burn traces, dim LEDs flicker occasionally.
@@ -9,7 +9,7 @@
     sprite: _Sunrise/Objects/Misc/module.rsi
     state: prison_general
   - type: MachineBoard
-    prototype: SewingPrinterMetus
+    prototype: SewingPrinterPrison
     stackRequirements:
       Manipulator: 10
 

@@ -19,6 +19,9 @@
   - type: CanMoveInAir
   - type: Reactive
   - type: MobMover
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
   - type: Mech
     entryDelay: 1
   - type: MechAir
@@ -70,8 +73,8 @@
   - type: InputMover
   - type: InteractionOutline
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 3
+    baseWalkSpeed: 2
+    baseSprintSpeed: 5
     baseWeightlessModifier: 2
   - type: MovementAlwaysTouching
   - type: Pullable
@@ -87,9 +90,10 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      400: Critical
+      300: Critical
     showOverlays: false
     allowRevives: true
+  - type: ZombieImmune
   - type: HealthExaminable
     examinableTypes:
       - Blunt
@@ -225,7 +229,7 @@
       map: ["enum.MechVisualLayers.Base"]
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 3.75
+    baseSprintSpeed: 5
     baseWeightlessModifier: 2
   - type: Fixtures
     fixtures:

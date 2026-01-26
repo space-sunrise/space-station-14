@@ -18,7 +18,7 @@
           grids:
           - gridPath: /Maps/_Sunrise/Shuttles/Salvage/pickaxe.yml
             priorityTag: DockMining
-          - gridPath: /Maps/_Sunrise/Shuttles/security.yml
+          - gridPath: /Maps/_Sunrise/Shuttles/Security/security.yml
             priorityTag: DockSecurity
           - gridPath: /Maps/_Sunrise/Shuttles/personal.yml
             priorityTag: DockPersonal
@@ -69,7 +69,7 @@
             Roboticist: [ 3, 3 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
-            Warden: [ 1, 1 ]
+            Warden: [ 2, 2 ]
             SeniorOfficer: [ 1, 1 ]
             Detective: [ 1, 1 ]
             Brigmedic: [ 2, 2 ]

@@ -12,7 +12,7 @@
     sprite: _Sunrise/Clothing/Mask/pilotmask.rsi
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskGasAtmos
   id: ClothingMaskGasAtmosian
   name: atmosian's gas mask
   description: An improved gas mask used by the Atmosians. Fireproof!
@@ -89,7 +89,7 @@
   - type: IngestionBlocker
 
 - type: entity
-  parent: ClothingMaskGasAtmos
+  parent: ClothingMaskGasSecurity
   id: ClothingMaskIAA
   name: elite gas mask
   description: Black gas mask with gold-plated element above the visor made of durable glass. You do not have to breathe the same air as the defendants. Protects against flares.
@@ -98,9 +98,6 @@
     sprite: _Sunrise/Clothing/Mask/iaamask.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/iaamask.rsi
-  - type: BreathMask
-  - type: IngestionBlocker
-  - type: FlashImmunity
 
 - type: entity
   parent: ClothingMaskGasAtmos

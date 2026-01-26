@@ -21,12 +21,14 @@
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_glass_airlock.rsi
     snapCardinals: false
     offset: 0.5,0
+  - type: Paintable
+    group: AirlockDoubleGlass
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.49,-0.49,1.49,0.49" # don't want this colliding with walls or they won't close
+          bounds: "-0.46,-0.46,1.46,0.46" # don't want this colliding with walls or they won't close
         density: 100
         mask:
         - FullTileMask
@@ -34,6 +36,9 @@
         - GlassAirlockLayer
   - type: Transform
     noRot: false
+  - type: SunriseMultiTileAirtight
+    extraTiles:
+    - 1,0
 
 - type: entity
   id: TripleGlassAirlock
@@ -50,12 +55,14 @@
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_glass.rsi
     snapCardinals: false
     offset: 0,0
+  - type: Paintable
+    group: AirlockTripleGlass
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-1.49,-0.49,1.49,0.49" # don't want this colliding with walls or they won't close
+          bounds: "-1.46,-0.46,1.46,0.46" # don't want this colliding with walls or they won't close
         density: 100
         mask:
         - FullTileMask
@@ -63,6 +70,10 @@
         - GlassAirlockLayer
   - type: Transform
     noRot: false
+  - type: SunriseMultiTileAirtight
+    extraTiles:
+    - -1,0
+    - 1,0
 
 # == Double airlocks == #
 
@@ -73,6 +84,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_basic.rsi
+  - type: Paintable
+    group: AirlockDoubleGlass
 
 - type: entity
   id: DoubleGlassAirlockAtmospherics
@@ -81,6 +94,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_atmospherics.rsi
+  - type: Paintable
+    group: AirlockDoubleGlass
 
 - type: entity
   id: DoubleGlassAirlockCargo
@@ -89,6 +104,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_cargo.rsi
+  - type: Paintable
+    group: AirlockDoubleGlass
 
 - type: entity
   id: DoubleGlassAirlockChemistry
@@ -97,6 +114,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_chemistry.rsi
+  - type: Paintable
+    group: AirlockDoubleGlass
 
 - type: entity
   id: DoubleGlassAirlockCommand
@@ -105,6 +124,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_command.rsi
+  - type: Paintable
+    group: AirlockDoubleGlass
 
 - type: entity
   id: DoubleGlassAirlockCentralCommand
@@ -113,6 +134,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_centcomm.rsi
+  - type: Paintable
+    group: AirlockDoubleGlass
 
 - type: entity
   id: DoubleGlassAirlockEngineering
@@ -121,6 +144,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_engineering.rsi
+  - type: Paintable
+    group: AirlockDoubleGlass
 
 - type: entity
   id: DoubleGlassAirlockMaint
@@ -129,6 +154,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_maint.rsi
+  - type: Paintable
+    group: AirlockDoubleGlass
 
 - type: entity
   id: DoubleGlassAirlockMedical
@@ -137,6 +164,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_medical.rsi
+  - type: Paintable
+    group: AirlockDoubleGlass
 
 - type: entity
   id: DoubleGlassAirlockScience
@@ -145,6 +174,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_science.rsi
+  - type: Paintable
+    group: AirlockDoubleGlass
 
 - type: entity
   id: DoubleGlassAirlockSecurity
@@ -153,6 +184,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_security.rsi
+  - type: Paintable
+    group: AirlockDoubleGlass
 
 - type: entity
   id: DoubleGlassAirlockVirology
@@ -161,6 +194,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_virology.rsi
+  - type: Paintable
+    group: AirlockDoubleGlass
 
 - type: entity
   id: DoubleGlassAirlockSalvage
@@ -169,6 +204,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_salvage.rsi
+  - type: Paintable
+    group: AirlockDoubleGlass
 
 # == Triple airlocks ==
 
@@ -179,6 +216,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_basic.rsi
+  - type: Paintable
+    group: AirlockTripleGlass
 
 - type: entity
   id: TripleGlassAirlockAtmospherics
@@ -187,6 +226,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_atmospherics.rsi
+  - type: Paintable
+    group: AirlockTripleGlass
 
 - type: entity
   id: TripleGlassAirlockCargo
@@ -195,6 +236,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_cargo.rsi
+  - type: Paintable
+    group: AirlockTripleGlass
 
 - type: entity
   id: TripleGlassAirlockCentralCommand
@@ -203,6 +246,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_centcomm.rsi
+  - type: Paintable
+    group: AirlockTripleGlass
 
 - type: entity
   id: TripleGlassAirlockChemistry
@@ -211,6 +256,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_chemistry.rsi
+  - type: Paintable
+    group: AirlockTripleGlass
 
 - type: entity
   id: TripleGlassAirlockCommand
@@ -219,6 +266,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_command.rsi
+  - type: Paintable
+    group: AirlockTripleGlass
 
 - type: entity
   id: TripleGlassAirlockEngineering
@@ -227,6 +276,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_engineering.rsi
+  - type: Paintable
+    group: AirlockTripleGlass
 
 - type: entity
   id: TripleGlassAirlockMaint
@@ -235,6 +286,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_maint.rsi
+  - type: Paintable
+    group: AirlockTripleGlass
 
 - type: entity
   id: TripleGlassAirlockMedical
@@ -243,6 +296,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_medical.rsi
+  - type: Paintable
+    group: AirlockTripleGlass
 
 - type: entity
   id: TripleGlassAirlockSalvage
@@ -251,6 +306,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_salvage.rsi
+  - type: Paintable
+    group: AirlockTripleGlass
 
 - type: entity
   id: TripleGlassAirlockScience
@@ -259,6 +316,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_science.rsi
+  - type: Paintable
+    group: AirlockTripleGlass
 
 - type: entity
   id: TripleGlassAirlockSecurity
@@ -267,6 +326,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_security.rsi
+  - type: Paintable
+    group: AirlockTripleGlass
 
 - type: entity
   id: TripleGlassAirlockVirology
@@ -275,3 +336,5 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_virology.rsi
+  - type: Paintable
+    group: AirlockTripleGlass

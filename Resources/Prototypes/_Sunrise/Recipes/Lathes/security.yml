@@ -461,6 +461,56 @@
     Plastic: 300
     Steel: 300
 
+# Milira equipment
+
+- type: latheRecipe
+  id: ClothingOuterArmorMiliraLight
+  result: ClothingOuterArmorMiliraLight
+  categories:
+  - Clothing
+  completetime: 18
+  materials:
+    Cloth: 400
+    Durathread: 200
+    Plastic: 300
+    Steel: 1200
+
+- type: latheRecipe
+  id: ClothingOuterArmorMiliraHeavy
+  result: ClothingOuterArmorMiliraHeavy
+  categories:
+  - Clothing
+  completetime: 24
+  materials:
+    Cloth: 500
+    Durathread: 400
+    Plastic: 400
+    Steel: 1400
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitMilira
+  result: ClothingOuterHardsuitMilira
+  categories:
+  - Clothing
+  completetime: 30
+  materials:
+    Steel: 2000
+    Durathread: 500
+    Plastic: 500
+    Glass: 400
+
+- type: latheRecipe
+  id: ClothingEyesHudMilira
+  result: ClothingEyesHudMilira
+  categories:
+  - Clothing
+  completetime: 12
+  materials:
+    Steel: 400
+    Glass: 600
+    Plastic: 300
+    Silver: 200
+
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
   id: WeaponIonCarbine

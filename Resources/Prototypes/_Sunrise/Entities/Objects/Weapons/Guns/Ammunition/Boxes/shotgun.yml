@@ -1,0 +1,53 @@
+- type: entity
+  name: ammunition box (.50 holy)
+  parent: AmmoProviderShotgunShell
+  id: BoxShotgunHoly
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgunHoly
+    - type: MagazineVisuals
+      magState: mag-practice
+      steps: 5
+      zeroVisible: false
+    - type: Sprite
+      sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-practice-1
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: holy
+
+- type: entity
+  parent: [BoxShotgunHoly, BaseSyndicateContraband]
+  id: BoxShotgunBreaching
+  name: ammunition box (.50 breaching)
+  description: A cardboard box of .50 shotgun shells. Packed with breaching buckshot for forced entry.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgunBreaching
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-1
+        color: "#0096FF"
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: breaching
+
+- type: entity
+  parent: [BoxShotgunHoly, BaseSecurityContraband ]
+  id: BoxShotgunFlechette
+  name: ammunition box (.50 flechette)
+  description: A cardboard box of .50 shotgun shells. Holds armor-piercing flechette.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgunFlechette
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-1
+        color: "#5da0b5"
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: flechette

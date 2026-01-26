@@ -35,7 +35,7 @@
   - type: LimitedCharges
     maxCharges: 3
   - type: AutoRecharge
-    rechargeDuration: 120
+    rechargeDuration: 300
 
 - type: entity
   parent: BaseImplantAction

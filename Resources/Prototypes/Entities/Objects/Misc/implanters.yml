@@ -19,12 +19,12 @@
       - Guardian # no holoparasite macrobomb wombo combo
       tags:
       - Unimplantable
-    currentMode: Inject #Sunrise-Edit
+    currentMode: Inject  # Sunrise-Edit
     implanterSlot:
       name: Implant
-      ejectOnBreak: true #Sunrise-Edit
-      swap: false #Sunrise-Edit
-      locked: True
+      ejectOnBreak: true  # Sunrise-Edit
+      swap: false  # Sunrise-Edit
+      locked: false  # Sunrise-Edit
       priority: 0
       whitelist:
         tags:
@@ -54,6 +54,8 @@
       types:
         Cellular: 50
         Heat: 10
+        Radiation: 15  # Sunrise-Edit
+        Caustic: 15  # Sunrise-Edit
   - type: Sprite
     sprite: Objects/Specific/Medical/implanter.rsi
     state: implanter0
@@ -87,16 +89,19 @@
 - type: entity
   id: Implanter
   parent: BaseImplanter
-  name: implant extractor
-  description: "A dual-purpose syringe designed for the removal of specific subdermal implants. Once an implant is extracted, it is stored within and can be re-administered.\nWARNING: Operator error, such as selecting a non-present implant type, causes severe genetic trauma to the operator."
+  name: implanter
+  description: A disposable syringe exclusively designed for the injection of subdermal implants.
   components:
+  - type: Implanter
+    currentMode: Inject  # Sunrise-Edit
+    implantOnly: true  # Sunrise-Edit
   - type: Tag
     tags:
     - Trash
 
 - type: entity
   id: ImplanterAdmeme
-  parent: Implanter
+  parent: ImplanterExtractor # Sunrise-edit
   suffix: Admeme
   components:
   - type: Implanter

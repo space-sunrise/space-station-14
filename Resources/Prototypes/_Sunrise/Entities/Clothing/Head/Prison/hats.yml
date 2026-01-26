@@ -1,0 +1,331 @@
+# Prison hats, caps, and berets per role
+
+# Doctor variants
+- type: entity
+  parent: ClothingHeadHatBeretPrisonGuard
+  id: ClothingHeadHatBeretPrisonDoctor
+  name: prison doctor's beret
+  description: A beret worn by prison doctors. Medical blue.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#99D2FF"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#99D2FF"
+
+- type: entity
+  parent: ClothingHeadPrisonGuard
+  id: ClothingHeadHatCapPrisonDoctor
+  name: prison doctor's cap
+  description: A cap worn by prison doctors. Medical blue.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#99D2FF"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#99D2FF"
+
+- type: entity
+  parent: ClothingHeadCapPrisonGuard
+  id: ClothingHeadCapPrisonDoctor
+  name: prison doctor's cap (visor)
+  description: A visor cap worn by prison doctors. Medical blue.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#99D2FF"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#99D2FF"
+
+# Chef variants
+- type: entity
+  parent: ClothingHeadHatBeretPrisonGuard
+  id: ClothingHeadHatBeretPrisonChef
+  name: prison chef's beret
+  description: A beret worn by prison chefs. Culinary white.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffffff"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#ffffff"
+
+- type: entity
+  parent: ClothingHeadPrisonGuard
+  id: ClothingHeadHatCapPrisonChef
+  name: prison chef's cap
+  description: A cap worn by prison chefs. Culinary white.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffffff"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#ffffff"
+
+- type: entity
+  parent: ClothingHeadCapPrisonGuard
+  id: ClothingHeadCapPrisonChef
+  name: prison chef's cap (visor)
+  description: A visor cap worn by prison chefs. Culinary white.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffffff"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#ffffff"
+
+# Engineer variants
+- type: entity
+  parent: ClothingHeadHatBeretPrisonGuard
+  id: ClothingHeadHatBeretPrisonEngineer
+  name: prison engineer's beret
+  description: A beret worn by prison engineers. Engineering yellow.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffd900"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#ffd900"
+
+- type: entity
+  parent: ClothingHeadPrisonGuard
+  id: ClothingHeadHatCapPrisonEngineer
+  name: prison engineer's cap
+  description: A cap worn by prison engineers. Engineering yellow.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffd900"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#ffd900"
+
+- type: entity
+  parent: ClothingHeadCapPrisonGuard
+  id: ClothingHeadCapPrisonEngineer
+  name: prison engineer's cap (visor)
+  description: A visor cap worn by prison engineers. Engineering yellow.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffd900"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#ffd900"
+
+# Scientist variants
+- type: entity
+  parent: ClothingHeadHatBeretPrisonGuard
+  id: ClothingHeadHatBeretPrisonScientist
+  name: prison scientist's beret
+  description: A beret worn by prison scientists. Research purple.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#9d1edd"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#9d1edd"
+
+- type: entity
+  parent: ClothingHeadPrisonGuard
+  id: ClothingHeadHatCapPrisonScientist
+  name: prison scientist's cap
+  description: A cap worn by prison scientists. Research purple.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#9d1edd"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#9d1edd"
+
+- type: entity
+  parent: ClothingHeadCapPrisonGuard
+  id: ClothingHeadCapPrisonScientist
+  name: prison scientist's cap (visor)
+  description: A visor cap worn by prison scientists. Research purple.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#9d1edd"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#9d1edd"
+
+# Worker variants
+- type: entity
+  parent: ClothingHeadHatBeretPrisonGuard
+  id: ClothingHeadHatBeretPrisonWorker
+  name: prison worker's beret
+  description: A beret worn by prison workers. Labor red.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#df0400"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#df0400"
+
+- type: entity
+  parent: ClothingHeadPrisonGuard
+  id: ClothingHeadHatCapPrisonWorker
+  name: prison worker's cap
+  description: A cap worn by prison workers. Labor red.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#df0400"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#df0400"
+
+- type: entity
+  parent: ClothingHeadCapPrisonGuard
+  id: ClothingHeadCapPrisonWorker
+  name: prison worker's cap (visor)
+  description: A visor cap worn by prison workers. Labor red.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#df0400"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#df0400"
+
+# Trainee variants
+- type: entity
+  parent: ClothingHeadHatBeretPrisonGuard
+  id: ClothingHeadHatBeretPrisonTrainee
+  name: prison trainee's beret
+  description: A beret worn by prison trainees. Training orange.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ff8c00"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#ff8c00"
+
+- type: entity
+  parent: ClothingHeadPrisonGuard
+  id: ClothingHeadHatCapPrisonTrainee
+  name: prison trainee's cap
+  description: A cap worn by prison trainees. Training orange.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ff8c00"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#ff8c00"
+
+- type: entity
+  parent: ClothingHeadCapPrisonGuard
+  id: ClothingHeadCapPrisonTrainee
+  name: prison trainee's cap (visor)
+  description: A visor cap worn by prison trainees. Training orange.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ff8c00"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: overlay-equipped
+        color: "#ff8c00"

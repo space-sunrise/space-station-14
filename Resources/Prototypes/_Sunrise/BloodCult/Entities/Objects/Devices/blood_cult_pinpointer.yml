@@ -5,6 +5,7 @@
   parent: PinpointerBase
   components:
   - type: Sprite
+    scale: 0.75,0.75
     sprite: _Sunrise/BloodCult/pinpointer.rsi
     layers:
     - state: pinpointer_bloodcult

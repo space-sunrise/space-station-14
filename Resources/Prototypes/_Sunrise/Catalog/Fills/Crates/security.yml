@@ -96,3 +96,27 @@
         prob: 0.25
       - id: Bible
         prob: 0.1
+
+- type: entity
+  id: CrateSecurityDebugArmorCrate
+  parent: CrateSecgear
+  name: asorted armor crate
+  description: Contains most basics armors. To open it, the Security Service access level is required.
+  suffix: DEBUG
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterVestArmorSec
+      - id: ClothingOuterArmorBasic
+      - id: ClothingOuterArmorBasicSlim
+      - id: ClothingOuterArmorBlueShield
+      - id: ClothingOuterArmorHeatAbsorb
+      - id: ClothingOuterArmorStab
+      - id: ClothingOuterArmorPlate
+      - id: ClothingOuterArmorBulletproof
+      - id: VestSecUpgradeStab
+      - id: VestSecUpgradeHeat
+      - id: VestSecUpgradeBulletHeavy
+      - id: VestSecUpgradeReflective
+      - id: VestSecUpgradeBullet
+      - id: VestSecUpgradeWeb

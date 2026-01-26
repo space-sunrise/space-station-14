@@ -489,13 +489,13 @@
     unwieldOnUse: false
   - type: GunWieldBonus
     minAngle: -2.5
-    maxAngle: -23
+    maxAngle: -25
   - type: Gun
     minAngle: 5.5
     maxAngle: 45
-    angleIncrease: 2.5
-    angleDecay: 18
-    fireRate: 7.5
+    angleIncrease: 2.75
+    angleDecay: 20
+    fireRate: 7
     selectedMode: FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
@@ -518,6 +518,9 @@
           - MagazinePistol
           - MagazinePistolHighCapacity
           - MagazinePistolCaselessRifle
+          - MagazineRifle
+          - MagazineLightRifle
+          - MagazinePistolDPSubMachineGun
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistolSP
@@ -526,6 +529,9 @@
           tags:
           - CartridgeCaselessRifle
           - CartridgePistol
+          - CartridgePistolDP
+          - CartridgeRifle
+          - CartridgeLightRifle
   - type: MagazineVisuals
     magState: mag
     steps: 1

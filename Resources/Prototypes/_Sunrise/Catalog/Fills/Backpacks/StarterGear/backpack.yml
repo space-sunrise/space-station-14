@@ -8,7 +8,9 @@
     contents:
     - id: WeaponAJ100Biocode
     - id: MagazinePistolSubMachineGun
-      amount: 2
+    - id: MagazinePistol40SubMachineGunSP
+    - id: MagazineRifleSP
+    - id: MagazineLightRifleSP
 
 - type: entity
   parent: ClothingBackpackSyndie

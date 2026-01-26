@@ -1,6 +1,7 @@
 research-discipline-biochemical = Биохимия
 research-technology-basic-surgery = Базовая хирургия
 research-technology-basic-cyberlimbs = Базовые кибер-конечности
+research-technology-implant-extractor-safety = Безопасное извлечение имплантов
 research-technology-implant-extractor = Извлечение имплантов
 research-technology-advanced-surgery = Продвинутая хирургия
 research-technology-hanheld-crew-monitor = Портативный мониторинг
@@ -28,3 +29,4 @@ research-technology-medical-assembler = Продвинутая фармацеп�
 research-technology-cloning = Система клонирования
 research-technology-compact-defibrilation = Компактная дефибрилляция
 research-technology-advanced-compact-defibrilation = Продвинутая дефибрилляция
+research-technology-dna-injector = ДНК-манипуляции

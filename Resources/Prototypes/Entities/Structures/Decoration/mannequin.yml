@@ -88,3 +88,8 @@
         ent: null
   - type: Inventory
     templateId: mannequin
+  # Sunrise-start
+  - type: Tag # Thanks for Banumbas
+    tags:
+    - Milira
+  # Sunrise-End

@@ -27,6 +27,9 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
+// Sunrise added start - фикс двойных шлюзов
+using Robust.Shared.Physics;
+// Sunrise added end
 
 namespace Content.Shared.Doors.Systems;
 
@@ -49,6 +52,8 @@ public abstract partial class SharedDoorSystem : EntitySystem
     [Dependency] protected readonly SharedPopupSystem Popup = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!;
+
+    private EntityQuery<FixturesComponent> _fixturesQuery; // Sunrise-edit - фикс двойных шлюзов
 
     public static readonly ProtoId<TagPrototype> DoorBumpTag = "DoorBumpOpener";
 
@@ -90,6 +95,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
 
         // Sunrise added start - фикс двойных шлюзов
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
+        _fixturesQuery = GetEntityQuery<FixturesComponent>();
         // Sunrise added end
     }
 
@@ -602,17 +608,25 @@ public abstract partial class SharedDoorSystem : EntitySystem
         _doorIntersecting.Clear();
 
         // Sunrise edit start - фикс двойных шлюзов
-        var aabb = _entityLookup.GetWorldAABB(uid);
-        _entityLookup.GetEntitiesIntersecting(xform.GridUid.Value,
-            aabb,
-            _doorIntersecting,
-            flags: (LookupFlags.All & ~LookupFlags.Sensors));
-        // Sunrise edit end
+        // Для корректного подсчета координат необходимо использовать LocalPhysicsTransform
+        var transform = PhysicsSystem.GetLocalPhysicsTransform(uid);
+
+        if (!_fixturesQuery.TryGetComponent(uid, out var fixtures))
+        {
+            yield break;
+        }
+
+        // Шлюзы имеют единственный fixture с единственным child
+        var shape = fixtures.Fixtures.Values.First().Shape;
+        var bounds = shape.ComputeAABB(transform, 0);
+
+        _entityLookup.GetLocalEntitiesIntersecting(xform.GridUid.Value,
+              bounds,
+              _doorIntersecting,
+              flags: (LookupFlags.All & ~LookupFlags.Sensors));
 
         // TODO SLOTH fix electro's code.
         // ReSharper disable once InconsistentNaming
-
-        // Sunrise edit start - фикс двойных шлюзов
         // Просто методя с Entity<T> нет, поэтому пришлось тут все менять
         foreach (var otherPhysics in _doorIntersecting)
         {

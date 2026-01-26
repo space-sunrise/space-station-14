@@ -731,7 +731,15 @@
         emptyLabel: borg-slot-construction-empty
         whitelist:
           tags:
+          # Sunrise-Start
+          - CableCoil
+          - Nanopaste
           - ConstructionMaterial
+          - PowerCell
+          - PowerCellSmall
+          - MicroManipulatorStockPart
+          - Igniter
+          # Sunrise-End
     - hand:
         emptyRepresentative: SpaceHeaterFlatpack
         emptyLabel: borg-slot-flatpacks-empty

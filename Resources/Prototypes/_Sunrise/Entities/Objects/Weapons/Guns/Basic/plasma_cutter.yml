@@ -24,6 +24,7 @@
     angleDecay: 25
     minAngle: 24
     maxAngle: 25
+    projectileSpeed: 25
     availableModes:
     - SemiAuto
     soundGunshot:

@@ -14,3 +14,6 @@ ent-CrateSecurityArmorPlate = plate armor crate
     .desc = Contains two plate armor vests. To open it, the Security Service access level is required.
 ent-CrateSecurityHoly = exorcism crate
     .desc = Contains two Holy shotgun ammo boxes, three garlics, a flask of Holy Water, and sometimes a Bible. Requires Security access to open. Ameno dori me Ameno!
+ent-CrateSecurityDebugArmorCrate = asorted armor crate
+    .suffix = DEBUG
+    .desc = Contains most basics armors. To open it, the Security Service access level is required.
