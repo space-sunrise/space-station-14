@@ -30,7 +30,7 @@
   id: HeadOfPrisonGear
   equipment:
     id: HeadOfPrisonPDA
-    jumpsuit: ClothingUniformJumpsuitHoSOld
+    jumpsuit: ClothingUniformJumpsuitHoSAlt
     head: ClothingHeadHatBeretHoS
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltCommand
@@ -46,7 +46,7 @@
   id: HeadOfPrisonChameleonOutfit
   job: HeadOfPrison
   equipment:
-    jumpsuit: ClothingUniformJumpsuitHoSOld
+    jumpsuit: ClothingUniformJumpsuitHoSAlt
     head: ClothingHeadHatBeretHoS
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltCommand
