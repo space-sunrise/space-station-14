@@ -52,12 +52,12 @@
   allowManualMemberManagement: false
 
 - type: messengerAutoGroup
-  id: DepartmentService
+  id: DepartmentCivilian
   name: department-service
   groupId: dept_service
   addAllUsers: false
   departments:
-    - Service
+    - Civilian
   allowManualMemberManagement: false
 
 - type: messengerAutoGroup
