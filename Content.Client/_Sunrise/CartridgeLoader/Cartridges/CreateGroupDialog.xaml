@@ -1,6 +1,5 @@
 <DefaultWindow
     xmlns="https://spacestation14.io"
-    xmlns:cartridges="clr-namespace:Content.Client._Sunrise.CartridgeLoader.Cartridges"
     Title="{Loc 'messenger-create-group-title'}"
     MinSize="300,150">
     <BoxContainer

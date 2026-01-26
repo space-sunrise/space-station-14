@@ -14,7 +14,8 @@
             <BoxContainer
                 HorizontalExpand="True"
                 Orientation="Horizontal"
-                Margin="4,0">
+                Margin="4,0"
+                SetHeight="26">
                 <Label
                     HorizontalAlignment="Center"
                     HorizontalExpand="True"
@@ -67,7 +68,8 @@
             <BoxContainer
                 HorizontalExpand="True"
                 Orientation="Horizontal"
-                Margin="4,0">
+                Margin="4,0"
+                SetHeight="26">
                 <Label
                     HorizontalExpand="True"
                     Name="ChatNameLabel"
@@ -76,7 +78,8 @@
                     Name="MuteCheckBox"
                     Text="🔇"
                     ToolTip="{Loc 'messenger-mute-tooltip'}"
-                    Visible="False" />
+                    Visible="False"
+                    Margin="0,0,4,0" />
                 <Button
                     Name="ToggleMembersButton"
                     Text="≡"
