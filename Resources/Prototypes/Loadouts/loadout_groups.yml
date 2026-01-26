@@ -214,6 +214,8 @@
   - CaptainOuterCoat # Sunrise-Edit
   - CaptainOuterOverCoat  # Sunrise-Edit
   - CaptainWintercoat
+  - CaptainCarapaceWhite # Sunrise-Edit
+  - CaptainCarapaceBlack # Sunrise-Edit
 
 - type: loadoutGroup
   id: CaptainJobTrinkets

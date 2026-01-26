@@ -531,3 +531,27 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.96
     sprintModifier: 0.96
+
+
+- type: entity
+  parent: ClothingOuterArmorCaptainCarapace
+  id: ClothingOuterArmorCaptainCarapaceWhite
+  name: white captain's carapace
+  description: A flexible armored chestpiece with pristine white composite plating, built to protect vital organs without restricting movement.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/OuterClothing/Armor/captain_carapace_white.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/OuterClothing/Armor/captain_carapace_white.rsi
+
+
+- type: entity
+  parent: ClothingOuterArmorCaptainCarapace
+  id: ClothingOuterArmorCaptainCarapaceBlack
+  name: black captain's carapace
+  description: A flexible armored chestpiece with matte-black composite plating, built to protect vital organs without restricting movement.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/OuterClothing/Armor/captain_carapace_black.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/OuterClothing/Armor/captain_carapace_black.rsi

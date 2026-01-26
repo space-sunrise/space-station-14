@@ -231,3 +231,25 @@
       time: 35h
   equipment:
     back: ClothingBackpackDuffelCaptainBlack
+
+- type: loadout
+  id: CaptainCarapaceWhite
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    outerClothing: ClothingOuterArmorCaptainCarapaceWhite
+
+- type: loadout
+  id: CaptainCarapaceBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 35h
+  equipment:
+    outerClothing: ClothingOuterArmorCaptainCarapaceBlack
