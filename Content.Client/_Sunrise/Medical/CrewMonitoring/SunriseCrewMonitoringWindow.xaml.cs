@@ -279,9 +279,7 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
             var specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), "alive");
 
             if (!sensor.IsAlive)
-            {
                 specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), "dead");
-            }
 
             else if (sensor.DamagePercentage != null)
             {
@@ -361,9 +359,7 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
                     var prevTrackedEntity = _trackedEntity;
 
                     if (_trackedEntity == sensor.SuitSensorUid)
-                    {
                         _trackedEntity = null;
-                    }
 
                     else
                     {
@@ -460,13 +456,9 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
     private EntityCoordinates CoordinatesToLocal(EntityCoordinates refCoords)
     {
         if (NavMap.MapUid != null)
-        {
             return _transformSystem.WithEntityId(refCoords, (EntityUid)NavMap.MapUid);
-        }
         else
-        {
             return refCoords;
-        }
     }
 
     private void ClearOutDatedData()
