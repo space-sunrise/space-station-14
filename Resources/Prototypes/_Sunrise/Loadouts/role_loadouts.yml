@@ -262,7 +262,7 @@
   - TrinketsPlanetPrison
   - PlanetPrisonSecurityLoot
   #- PrisonGuardHead
-  #- PrisonGuardJumpsuit комбенизон должен отличаться от охраны
+  - HeadOfPrisonJumpsuit
   #- PrisonGuardBackpack
   #- SecurityShoes
   #- SurvivalSecurity

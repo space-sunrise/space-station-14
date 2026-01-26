@@ -1571,6 +1571,15 @@
   - PrisonTraineeJumpskirtVeteran
 
 - type: loadoutGroup
+  id: HeadOfPrisonJumpsuit
+  name: loadout-group-prison-jumpsuit
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - HeadOfPrisonJumpsuitAlt
+  - HeadOfPrisonJumpsuitOld
+
+- type: loadoutGroup
   id: Contributors
   name: loadout-group-contributors
   minLimit: 0
