@@ -6,9 +6,11 @@
     mode: SnapgridCenter
   components:
   - type: AtmosDevice
-  - type: Tag
-    tags:
-      - Unstackable
+  # Carpmosia-start - Atmos stacking
+  # - type: Tag
+  #   tags:
+  #     - Unstackable
+  # Carpmosia-end - Atmos stacking
   - type: SubFloorHide
     blockInteractions: false
     blockAmbience: false
@@ -449,6 +451,11 @@
   placement:
     mode: SnapgridCenter
   components:
+    # Carpmosia-start - Atmos stacking
+    - type: Tag
+      tags:
+        - Unstackable
+    # Carpmosia-end - Atmos stacking
     - type: SubFloorHide
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
@@ -660,6 +667,11 @@
   placement:
     mode: SnapgridCenter
   components:
+  # Carpmosia-start - Atmos stacking
+  - type: Tag
+    tags:
+      - Unstackable
+  # Carpmosia-end - Atmos stacking
   - type: Rotatable
   - type: Transform
     noRot: false
