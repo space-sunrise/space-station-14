@@ -20,6 +20,7 @@ public sealed partial class PlanetPrisonMapEntry : BoxContainer
     }
 
     private PriorityLevel _currentPriority = PriorityLevel.Never;
+    public bool IsLaunched { get; set; } = false;
 
     public PlanetPrisonMapEntry(string name, string description)
     {
@@ -142,6 +143,8 @@ public sealed partial class PlanetPrisonMapEntry : BoxContainer
         LowButton.Disabled = _currentPriority == PriorityLevel.Low;
         MediumButton.Disabled = _currentPriority == PriorityLevel.Medium;
         HighButton.Disabled = _currentPriority == PriorityLevel.High;
+        // Обновляем стили
+        UpdateButtonStates();
     }
 
     public PriorityLevel CurrentPriority => _currentPriority;

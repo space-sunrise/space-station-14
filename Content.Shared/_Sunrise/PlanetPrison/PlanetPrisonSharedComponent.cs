@@ -15,4 +15,10 @@ public partial class PlanetPrisonSharedComponent : Component
 
     [DataField(required: true)]
     public List<ProtoId<BiomeTemplatePrototype>> Biomes = [];
+
+    /// <summary>
+    /// Минимальное количество игроков, необходимое для запуска любой карты тюрьмы
+    /// </summary>
+    [DataField]
+    public int MinPlayersRequired = 2;
 }

@@ -5,6 +5,8 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Log;
+using System.Collections.Generic;
 
 namespace Content.Client.UserInterface.Systems.Ghost.Controls.PlanetPrison;
 
@@ -13,6 +15,7 @@ public sealed partial class PlanetPrisonWindow : DefaultWindow
 {
     public event Action? MapsTabPressed;
     public event Action? RolesTabPressed;
+    public event Action? RolesTabActivated;
 
     public PlanetPrisonWindow()
     {
@@ -38,6 +41,7 @@ public sealed partial class PlanetPrisonWindow : DefaultWindow
         MapsContainer.Visible = false;
         RolesContainer.Visible = true;
         RolesTabPressed?.Invoke();
+        RolesTabActivated?.Invoke();
     }
 
     public void ClearMaps()
@@ -66,4 +70,64 @@ public sealed partial class PlanetPrisonWindow : DefaultWindow
     // Public accessors for priority counter elements
     public Label GetPriorityCounterLabel() => PriorityCounterLabel;
     public PanelContainer GetPriorityCounterPanel() => PriorityCounterPanel;
+
+    public void SetRolesLocked(bool locked)
+    {
+        foreach (var child in RolesEntryContainer.Children)
+        {
+            if (child is PlanetPrisonRoleEntry roleEntry)
+            {
+                roleEntry.SetLocked(locked);
+            }
+        }
+    }
+
+    public void UpdateRolePriorities(Dictionary<string, PlanetPrisonRoleEntry.PriorityLevel> rolePriorities)
+    {
+        Logger.Info($"UpdateRolePriorities called with {rolePriorities.Count} priorities");
+        foreach (var child in RolesEntryContainer.Children)
+        {
+            if (child is PlanetPrisonRoleEntry roleEntry)
+            {
+                var roleId = roleEntry.RoleId;
+                if (rolePriorities.TryGetValue(roleId, out var priority))
+                {
+                    Logger.Info($"Setting role {roleId} to {priority}");
+                    roleEntry.SetSelectedPriority(priority);
+                }
+                else
+                {
+                    Logger.Info($"Role {roleId} not found in priorities, setting to Never");
+                    roleEntry.SetSelectedPriority(PlanetPrisonRoleEntry.PriorityLevel.Never);
+                }
+            }
+        }
+    }
+
+    public void SetMapsLocked(bool locked)
+    {
+        foreach (var child in MapsEntryContainer.Children)
+        {
+            if (child is PlanetPrisonMapEntry mapEntry)
+            {
+                if (locked)
+                {
+                    mapEntry.DisableButtons();
+                    Logger.Info($"Locked buttons for map (launched: {mapEntry.IsLaunched})");
+                }
+                else
+                {
+                    if (!mapEntry.IsLaunched)
+                    {
+                        mapEntry.EnableButtons();
+                        Logger.Info($"Enabled buttons for map (not launched)");
+                    }
+                    else
+                    {
+                        Logger.Info($"Kept buttons disabled for map (launched)");
+                    }
+                }
+            }
+        }
+    }
 }

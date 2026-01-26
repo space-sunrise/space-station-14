@@ -83,7 +83,7 @@ public sealed class FloorTileSystem : EntitySystem
             {
                 if (tuple.EntityId == entityUid)
                     return true;
-
+    
                 tuple.weh = false;
                 return false;
             });
