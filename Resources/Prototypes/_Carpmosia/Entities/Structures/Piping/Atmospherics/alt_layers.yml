@@ -556,44 +556,6 @@
 
 # GasFilterFlipped
 - type: entity
-  parent: [GasPipeLayerAlt1, GasFilterFlipped]
-  id: GasFilterFlippedAlt1
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    drawdepth: FloorObjects
-    sprite: Structures/Piping/Atmospherics/gasfilter.rsi
-    layers:
-      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
-        state: pipeTrinaryConnectors
-        map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: gasFilterF
-        map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
-  - type: Flippable
-    mirrorEntity: GasFilterAlt1
-  - type: Construction
-    node: filterflippedAlt1
-
-- type: entity
-  parent: [GasPipeLayerAlt2, GasFilterFlipped]
-  id: GasFilterFlippedAlt2
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    drawdepth: FloorObjects
-    sprite: Structures/Piping/Atmospherics/gasfilter.rsi
-    layers:
-      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
-        state: pipeTrinaryConnectors
-        map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: gasFilterF
-        map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
-  - type: Flippable
-    mirrorEntity: GasFilterAlt2
-  - type: Construction
-    node: filterflippedAlt2
-
-- type: entity
   parent: [GasPipeLayerAlt3, GasFilterFlipped]
   id: GasFilterFlippedAlt3
   categories: [ HideSpawnMenu ]
@@ -671,44 +633,6 @@
     node: mixerAlt4
 
 # GasMixerFlipped
-- type: entity
-  parent: [GasPipeLayerAlt1, GasMixerFlipped]
-  id: GasMixerFlippedAlt1
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    drawdepth: FloorObjects
-    sprite: Structures/Piping/Atmospherics/gasmixer.rsi
-    layers:
-      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
-        state: pipeTrinaryConnectors
-        map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: gasMixerF
-        map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
-  - type: Flippable
-    mirrorEntity: GasMixerAlt1
-  - type: Construction
-    node: mixerflippedAlt1
-
-- type: entity
-  parent: [GasPipeLayerAlt2, GasMixerFlipped]
-  id: GasMixerFlippedAlt2
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    drawdepth: FloorObjects
-    sprite: Structures/Piping/Atmospherics/gasmixer.rsi
-    layers:
-      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
-        state: pipeTrinaryConnectors
-        map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: gasMixerF
-        map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
-  - type: Flippable
-    mirrorEntity: GasMixerAlt2
-  - type: Construction
-    node: mixerflippedAlt2
-
 - type: entity
   parent: [GasPipeLayerAlt3, GasMixerFlipped]
   id: GasMixerFlippedAlt3
