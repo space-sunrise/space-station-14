@@ -20,7 +20,6 @@
   - type: CrewMonitoringFilter
     allowedDepartmentIds:
     - Security
-    includeTrackers: true
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
