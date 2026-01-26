@@ -18,7 +18,7 @@
     - type: PlantAnalyzerCartridge
 
 - type: entity
-  parent: BaseItem
+  parent: BasePDACartridge
   id: NavigatorCartridge
   name: navigator cartridge
   description: A program for viewing the station map for navigation purposes.
