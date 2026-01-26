@@ -53,8 +53,8 @@
 
 - type: messengerAutoGroup
   id: DepartmentCivilian
-  name: department-service
-  groupId: dept_service
+  name: department-civilian
+  groupId: dept_civilian
   addAllUsers: false
   departments:
     - Civilian

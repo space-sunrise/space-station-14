@@ -4,5 +4,5 @@ department-security = Служба безопастности
 department-medical = Медицинский
 department-science = РНД
 department-cargo = Карго
-department-service = Сервис
+department-civilian = Гражданские
 department-command = Командный
