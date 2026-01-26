@@ -19,6 +19,7 @@
   - type: CrewMonitoringConsole
   - type: CrewMonitoringFilter
     onlyShowWoundedOrDead: true
+    includeTrackers: true
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
