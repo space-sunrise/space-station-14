@@ -2,7 +2,7 @@ name: AI Game Design Review
 
 on:
   pull_request_target:
-    types: [opened, reopened]
+    types: [opened, synchronize, reopened]
 
 jobs:
   ai_review:
