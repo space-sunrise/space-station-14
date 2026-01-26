@@ -744,44 +744,6 @@
   - GasMixerAlt4
 
 - type: construction
-  id: GasMixerFlippedAlt1
-  hide: true
-  graph: GasTrinary
-  startNode: start
-  targetNode: mixerflippedAlt1
-  category: construction-category-utilities
-  placementMode: AlignAtmosPipeLayers
-  canBuildInImpassable: false
-  mirror: GasMixerAlt1
-  conditions:
-  - !type:NoUnstackableInTile
-  alternativePrototypes:
-  - GasMixerFlipped
-  - GasMixerFlippedAlt1
-  - GasMixerFlippedAlt2
-  - GasMixerFlippedAlt3
-  - GasMixerFlippedAlt4
-
-- type: construction
-  id: GasMixerFlippedAlt2
-  hide: true
-  graph: GasTrinary
-  startNode: start
-  targetNode: mixerflippedAlt2
-  category: construction-category-utilities
-  placementMode: AlignAtmosPipeLayers
-  canBuildInImpassable: false
-  mirror: GasMixerAlt2
-  conditions:
-  - !type:NoUnstackableInTile
-  alternativePrototypes:
-  - GasMixerFlipped
-  - GasMixerFlippedAlt1
-  - GasMixerFlippedAlt2
-  - GasMixerFlippedAlt3
-  - GasMixerFlippedAlt4
-
-- type: construction
   id: GasMixerFlippedAlt3
   hide: true
   graph: GasTrinary
