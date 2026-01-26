@@ -35,7 +35,7 @@ public sealed partial class MessengerServerComponent : Component
     /// </summary>
     [DataField("maxMessageHistory")]
     [ViewVariables(VVAccess.ReadWrite)]
-    public int MaxMessageHistory = 100;
+    public int MaxMessageHistory = 5000;
 
     /// <summary>
     /// Счетчик для генерации уникальных ID групп
