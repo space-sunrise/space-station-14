@@ -3926,7 +3926,11 @@
   id: MobDionaNymph
   description: It's like a cat, only.... branch-ier.
   components:
+  # Sunrise-Start
   - type: VentCrawler # Sunrise-edit
+  - type: Item
+    size: Large
+  # Sunrise-End
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -4006,6 +4010,8 @@
   - type: CollectiveMind
     minds:
     - Dioneas
+  - type: Carriable
+  - type: CanEscapeInventory
 
 - type: entity
   parent: MobDionaNymph

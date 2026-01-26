@@ -14,12 +14,12 @@
 # PDA
 
 - type: loadout
-  id: PlanetPrisoner-PlanetPrisonerPDAScreenH
+  id: PlanetPrisonerPDAScreenH
   equipment:
     id: PlanetPrisonerPDAScreenH
 
 - type: loadout
-  id: PlanetPrisoner-PlanetPrisonerPDAScreenHCracked
+  id: PlanetPrisonerPDAScreenHCracked
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -30,7 +30,7 @@
     id: PlanetPrisonerPDAScreenHCracked
 
 - type: loadout
-  id: PlanetPrisoner-PlanetPrisonerPDAScreenX
+  id: PlanetPrisonerPDAScreenX
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -41,7 +41,7 @@
     id: PlanetPrisonerPDAScreenX
 
 - type: loadout
-  id: PlanetPrisoner-PlanetPrisonerPDAScreenXCracked
+  id: PlanetPrisonerPDAScreenXCracked
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:

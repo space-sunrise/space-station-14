@@ -53,6 +53,10 @@
     - state: datadisk_base
       map: ["enum.DamageStateVisualLayers.Base"]
     - state: datadisk_label
+  # Sunrise-Start
+  - type: Item
+    size: Tiny
+  # Sunrise-End
   - type: RandomSprite
     available:
     - enum.DamageStateVisualLayers.Base:

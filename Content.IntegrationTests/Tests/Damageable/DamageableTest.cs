@@ -171,7 +171,7 @@ namespace Content.IntegrationTests.Tests.Damageable
                 var damageToDeal = FixedPoint2.New(types.Count * 5);
                 DamageSpecifier damage = new(group3, damageToDeal);
 
-                sDamageableSystem.ChangeDamage(uid, damage, true, ignoreGlobalModifiers: true, useVariance: false); // Sunrise-Edit
+                sDamageableSystem.ChangeDamage(uid, damage, true, ignoreGlobalModifiers: true, ignoreVariance: true); // Sunrise-Edit
 
                 Assert.Multiple(() =>
                 {
@@ -185,7 +185,7 @@ namespace Content.IntegrationTests.Tests.Damageable
                 });
 
                 // Heal
-                sDamageableSystem.ChangeDamage(uid, -damage, ignoreGlobalModifiers: true, useVariance: false); // Sunrise-Edit
+                sDamageableSystem.ChangeDamage(uid, -damage, ignoreGlobalModifiers: true, ignoreVariance: true); // Sunrise-Edit
 
                 Assert.Multiple(() =>
                 {
@@ -204,7 +204,7 @@ namespace Content.IntegrationTests.Tests.Damageable
                 Assert.That(types, Has.Count.EqualTo(3));
 
                 damage = new DamageSpecifier(group3, 14);
-                sDamageableSystem.ChangeDamage(uid, damage, true, ignoreGlobalModifiers: true, useVariance: false); // Sunrise-Edit
+                sDamageableSystem.ChangeDamage(uid, damage, true, ignoreGlobalModifiers: true, ignoreVariance: true); // Sunrise-Edit
 
                 Assert.Multiple(() =>
                 {
@@ -216,7 +216,7 @@ namespace Content.IntegrationTests.Tests.Damageable
                 });
 
                 // Heal
-                sDamageableSystem.ChangeDamage(uid, -damage, ignoreGlobalModifiers: true, useVariance: false); // Sunrise-Edit
+                sDamageableSystem.ChangeDamage(uid, -damage, ignoreGlobalModifiers: true, ignoreVariance: true); // Sunrise-Edit
 
                 Assert.Multiple(() =>
                 {
@@ -232,7 +232,7 @@ namespace Content.IntegrationTests.Tests.Damageable
                     Assert.That(sDamageableComponent.TotalDamage, Is.EqualTo(FixedPoint2.Zero));
                 });
                 damage = new DamageSpecifier(group1, FixedPoint2.New(10)) + new DamageSpecifier(type2b, FixedPoint2.New(10));
-                sDamageableSystem.ChangeDamage(uid, damage, true, ignoreGlobalModifiers: true, useVariance: false); // Sunrise-Edit
+                sDamageableSystem.ChangeDamage(uid, damage, true, ignoreGlobalModifiers: true, ignoreVariance: true); // Sunrise-Edit
 
                 Assert.Multiple(() =>
                 {
@@ -252,9 +252,9 @@ namespace Content.IntegrationTests.Tests.Damageable
                 Assert.That(sDamageableComponent.TotalDamage, Is.EqualTo(FixedPoint2.Zero));
 
                 // Test 'wasted' healing
-                sDamageableSystem.ChangeDamage(uid, new DamageSpecifier(type3a, 5), ignoreGlobalModifiers: true, useVariance: false); // Sunrise-Edit
-                sDamageableSystem.ChangeDamage(uid, new DamageSpecifier(type3b, 7), ignoreGlobalModifiers: true, useVariance: false); // Sunrise-Edit
-                sDamageableSystem.ChangeDamage(uid, new DamageSpecifier(group3, -11), ignoreGlobalModifiers: true, useVariance: false); // Sunrise-Edit
+                sDamageableSystem.ChangeDamage(uid, new DamageSpecifier(type3a, 5), ignoreGlobalModifiers: true, ignoreVariance: true); // Sunrise-Edit
+                sDamageableSystem.ChangeDamage(uid, new DamageSpecifier(type3b, 7), ignoreGlobalModifiers: true, ignoreVariance: true); // Sunrise-Edit
+                sDamageableSystem.ChangeDamage(uid, new DamageSpecifier(group3, -11), ignoreGlobalModifiers: true, ignoreVariance: true); // Sunrise-Edit
 
                 Assert.Multiple(() =>
                 {
@@ -264,11 +264,11 @@ namespace Content.IntegrationTests.Tests.Damageable
                 });
 
                 // Test Over-Healing
-                sDamageableSystem.ChangeDamage(uid, new DamageSpecifier(group3, FixedPoint2.New(-100)), ignoreGlobalModifiers: true, useVariance: false); // Sunrise-Edit
+                sDamageableSystem.ChangeDamage(uid, new DamageSpecifier(group3, FixedPoint2.New(-100)), ignoreGlobalModifiers: true, ignoreVariance: true); // Sunrise-Edit
                 Assert.That(sDamageableComponent.TotalDamage, Is.EqualTo(FixedPoint2.Zero));
 
                 // Test that if no health change occurred, returns false
-                sDamageableSystem.ChangeDamage(uid, new DamageSpecifier(group3, -100), ignoreGlobalModifiers: true, useVariance: false); // Sunrise-Edit
+                sDamageableSystem.ChangeDamage(uid, new DamageSpecifier(group3, -100), ignoreGlobalModifiers: true, ignoreVariance: true); // Sunrise-Edit
                 Assert.That(sDamageableComponent.TotalDamage, Is.EqualTo(FixedPoint2.Zero));
             });
             await pair.CleanReturnAsync();

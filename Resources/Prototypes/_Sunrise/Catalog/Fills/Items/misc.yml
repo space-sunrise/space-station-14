@@ -20,7 +20,7 @@
     - id: Handcuffs
     - id: Stunbaton
     - id: GrenadeFlashBang
-    - id: TearGasGrenade
+    - id: HandheldHealthAnalyzer
 
 - type: entity
   id: ClothingShoesBootsBlueShieldFilled
@@ -36,14 +36,13 @@
 
 - type: entity
   id: ClothingBeltSecurityFilledERT
-  parent: ClothingBeltSecurity
+  parent: ClothingBeltMilitaryWebbingERT
   suffix: Filled, ERT
   components:
   - type: StorageFill
     contents:
-    - id: Stunbaton
+    - id: Telebaton
+    - id: Whistle
+    - id: Handcuffs
     - id: Handcuffs
     - id: HoloprojectorSecurity
-    - id: GrenadeFlashBang
-    - id: TearGasGrenade
-    - id: Truncheon

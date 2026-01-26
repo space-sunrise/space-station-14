@@ -19,6 +19,7 @@
       - NewsReaderCartridge
       - AstroNavCartridge
       - NetProbeCartridge
+      - MessengerCartridge
 
 - type: entity
   parent: PrisonEngineerPDA

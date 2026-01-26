@@ -38,6 +38,7 @@
     - BoxLethalshot
     - BoxShotgunSlug
     - BoxShellTranquilizer
+    - BoxShotgunFlare
     #####################MAGAZINE#######################
     # LMG
     - MagazineLightRifleBeltBoxSP
@@ -98,8 +99,6 @@
     - SpeedLoaderShotgunBeanbag
     # PODAVLENIE
     - BolaSecurity
-    # Milira
-    - ClothingOuterArmorMiliraLight
 ####################################################
 
 - type: latheRecipePack
@@ -266,6 +265,7 @@
     - BoxShotgunIncendiary
     - BoxShotgunUranium
     - BoxShellTranquilizer
+    - BoxShotgunFlechette
   #####################MAGAZINE#######################
   # LMG
     - MagazineLightRifleBeltBoxIncendiary
@@ -311,6 +311,7 @@
   # Shotgun
     - SpeedLoaderShotgunIncendiary
     - SpeedLoaderShotgunUranium
+    - SpeedLoaderShotgunFlechette
   # Grenade
     - MagazineGrenadeEmpty
 ####################################################
@@ -329,6 +330,7 @@
     - VestSecUpgradeReflective
     - VestSecUpgradeWeb
     - VestSecUpgradeBulletHeavy
+    - ClothingOuterArmorMiliraLight
     - ClothingOuterArmorMiliraHeavy
     - ClothingOuterHardsuitMilira
     - ClothingEyesHudMilira

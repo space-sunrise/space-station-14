@@ -38,7 +38,8 @@
       groups:
         Brute: -0.5
         Burn: -0.5
-        Airloss: -0.05
+        Airloss: -0.25
+        Genetic: -0.25
 
 - type: entity
   id: MobPassiveRegen
@@ -51,9 +52,10 @@
     damageCap: 125
     damage:
       groups:
-        Brute: -0.5
-        Burn: -0.5
-        Airloss: -0.05
+        Brute: -1
+        Burn: -1
+        Airloss: -1
+        Genetic: -1
 
 - type: entity
   id: MobPassiveRegenMedium
@@ -66,9 +68,10 @@
     damageCap: 125
     damage:
       groups:
-        Brute: -1
-        Burn: -1
-        Airloss: -0.1
+        Brute: -2
+        Burn: -2
+        Airloss: -3
+        Genetic: -3
 
 - type: entity
   id: MobPassiveRegenStrong
@@ -82,9 +85,11 @@
     damageCap: 9999
     damage:
       groups:
-        Brute: -0.5
-        Burn: -0.5
+        Brute: -1
+        Burn: -1
         Airloss: -1
+        Genetic: -1
+
 #endregion
 
 #region Movement

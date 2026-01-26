@@ -39,6 +39,8 @@
   - MagazinePistolHighCapacityAP
   - MagazineBoxHeavyRifleAP
   - MagazineRifleHeavyAP
+  - BoxShotgunFlechette
+  - SpeedLoaderShotgunFlechette
   radioChannels:
   - Security
 
@@ -206,6 +208,7 @@
   tier: 2
   cost: 7500
   recipeUnlocks:
+  - ClothingOuterArmorMiliraLight
   - ClothingOuterArmorMiliraHeavy
   - ClothingOuterHardsuitMilira
   - ClothingEyesHudMilira

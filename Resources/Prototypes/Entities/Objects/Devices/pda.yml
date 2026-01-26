@@ -87,6 +87,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - NavigatorCartridge
+      - MessengerCartridge # Sunrise-Edit
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -165,6 +166,7 @@
     - NewsReaderCartridge
     - NavigatorCartridge
     - WantedListCartridge
+    - MessengerCartridge # Sunrise-Edit
 
 - type: entity
   parent: BasePDA
@@ -180,6 +182,7 @@
       - NewsReaderCartridge
       - NavigatorCartridge
       - MedTekCartridge
+      - MessengerCartridge # Sunrise-Edit
 
 - type: entity
   parent: BasePDA
@@ -352,6 +355,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - PlantAnalyzerCartridge
+      - MessengerCartridge
 # Sunrise-End
 
 - type: entity
@@ -534,6 +538,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - AstroNavCartridge
+    - MessengerCartridge # Sunrise-Edit
 
 - type: entity
   parent: BasePDA
@@ -583,6 +588,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - AstroNavCartridge
+      - MessengerCartridge # Sunrise-Edit
 
 - type: entity
   parent: BasePDA
@@ -1000,6 +1006,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - MessengerCartridge # Sunrise-Edit
 
 - type: entity
   parent: BaseSecurityPDA
@@ -1082,6 +1089,7 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+      - MessengerCartridge # Sunrise-Edit
 
 - type: entity
   parent: CentcomPDA
@@ -1130,6 +1138,7 @@
       - WantedListCartridge
       - MedTekCartridge
       - AstroNavCartridge
+      - MessengerCartridge # Sunrise-Edit
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1379,6 +1388,7 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+      - MessengerCartridge # Sunrise-Edit
 
 - type: entity
   parent: ERTLeaderPDA
@@ -1564,6 +1574,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - MessengerCartridge # Sunrise-Edit
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1594,6 +1605,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+    - MessengerCartridge # Sunrise-Edit
 
 - type: entity
   parent: ClownPDA
@@ -1719,7 +1731,7 @@
   description: Smells like postage stamps and shuttle fuel.
   components:
   - type: Pda
-    id: CargoIDCard
+    id: SeniorCourierIDCard   # Sunrise-edit
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:

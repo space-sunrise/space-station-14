@@ -125,7 +125,7 @@
   discountDownTo:
     Telecrystal: 3
   cost:
-    Telecrystal: 6
+    Telecrystal: 5 # Sunrise-Edit
   categories:
     - UplinkWeaponry
 
@@ -194,7 +194,7 @@
       tags:
       - AssaultOpsUplink
       - NukeOpsUplink
-      - LoneOpsUplink
+      - LoneOpsUplink # Sunrise-Edit
   #Sunrise-end
 
 - type: listing
@@ -329,6 +329,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink
 #Sunrise-end
 
 # Explosives
@@ -628,7 +629,7 @@
 # For the C20R
 - type: listing
   id: UplinkMagazinePistolSubMachineGun
-  name: uplink-pistol-magazine-c20r-name
+  # name: uplink-pistol-magazine-c20r-name # Sunrise-Edit
   description: uplink-pistol-magazine-c20r-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
   productEntity: MagazinePistolSubMachineGunSP # Sunrise-Edit
@@ -647,7 +648,7 @@
 # For the Bulldog
 - type: listing
   id: UplinkMagazineShotgunPellet
-  name: uplink-magazine-bulldog-pellet-name
+  #name: uplink-magazine-bulldog-pellet-name # Sunrise-Edit
   description: uplink-magazine-bulldog-pellet-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: pellets }
   productEntity: MagazineShotgun
@@ -658,21 +659,14 @@
 
 - type: listing
   id: UplinkMagazineShotgunSlug
-  name: uplink-magazine-bulldog-slug-name
+  #name: uplink-magazine-bulldog-slug-name # Sunrise-Edit
   description: uplink-magazine-bulldog-slug-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: slug }
   productEntity: MagazineShotgunSlug
   cost:
-    Telecrystal: 3
+    Telecrystal: 2 # Sunrise-Edit
   categories:
   - UplinkAmmo
-  # Sunrise-Start
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - AssaultOpsUplink
-  # Sunrise-End
 
 # For the Cobra
 - type: listing
@@ -694,7 +688,7 @@
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: icon }
   productEntity: SpeedLoaderMagnumAP
   cost:
-    Telecrystal: 3
+    Telecrystal: 2 # Sunrise-Edit
   categories:
   - UplinkAmmo
 
@@ -719,11 +713,11 @@
 # For the Estoc
 - type: listing
   id: UplinkEstocAmmo
-  name: uplink-estoc-ammo-name
+  #name: uplink-estoc-ammo-name # Sunrise-edit
   description: uplink-estoc-ammo-desc
   productEntity: MagazineRifle
   cost:
-    Telecrystal: 2
+    Telecrystal: 1 # Sunrise-Edit
   categories:
   - UplinkAmmo
 
@@ -1291,6 +1285,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink
 
 - type: listing
   id: UplinkSurplusBundle
@@ -1422,7 +1417,6 @@
       blacklist:
         tags:
           - NukeOpsUplink
-          - LoneOpsUplink # Sunrise-Edit
           - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
@@ -1440,6 +1434,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Edit
 
 # Move to _Sunrise
 #- type: listing

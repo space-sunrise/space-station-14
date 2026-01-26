@@ -8,8 +8,8 @@
       time: 10h
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 5h
-      #inverted: true # stop playing intern if you're good at security! Sunrise-edit
+      time: 50h # Sunrise-edit
+      inverted: true # stop playing intern if you're good at security!
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-security

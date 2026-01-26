@@ -1,0 +1,34 @@
+<Document>
+  # Расы
+
+  Нанотрейзен использует множество разумных видов.
+
+  <Box>
+    <GuideEntityEmbed Entity="MobArachnid" Caption="Арахнид"/>
+    <GuideEntityEmbed Entity="MobDiona" Caption="Диона"/>
+    <GuideEntityEmbed Entity="MobDwarf" Caption="Дворф"/>
+    <GuideEntityEmbed Entity="MobHuman" Caption="Человек"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="MobMoth" Caption="Ниан"/>
+    <GuideEntityEmbed Entity="MobReptilian" Caption="Унатх"/>
+    <GuideEntityEmbed Entity="MobSlimePerson" Caption="Слаймолюд"/>
+    <GuideEntityEmbed Entity="MobVox" Caption="Вокс"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="MobVulpkanin" Caption="Вульпканин"/>
+    <GuideEntityEmbed Entity="MobFelinid" Caption="Фелинид"/>
+    <GuideEntityEmbed Entity="MobSwine" Caption="Троттин"/>
+    <GuideEntityEmbed Entity="MobTajaran" Caption="Таяран"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="MobPredator" Caption="Яутжа"/>
+    <GuideEntityEmbed Entity="MobHumanoidXeno" Caption="Ксеноморф"/>
+    <GuideEntityEmbed Entity="MobDemon" Caption="Аркана"/>
+    <GuideEntityEmbed Entity="MobResomi" Caption="Резоми"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="MobMilira" Caption="Милира"/>
+  </Box>
+
+</Document>

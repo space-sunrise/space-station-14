@@ -48,10 +48,12 @@
           path: /Audio/Effects/break_stone.ogg
           params:
             volume: -6
+#Sunrise-Start
   - type: Gatherable
     toolWhitelist:
       tags:
       - Pickaxe
+#Sunrise-End
   - type: Fixtures
     fixtures:
       fix1:
@@ -98,11 +100,11 @@
     intensitySlope: 2.5
     maxIntensity: 10
     canCreateVacuum: false
-  # Sunrise-start
+  #Sunrise-Start
   - type: Gatherable # nasty hack to cover the fact that this needs to not be single-hit destruction.
     toolWhitelist:
       tags: [ ]
-  # Sunrise-end
+  #Sunrise-End
   - type: Destructible
     thresholds:
     - trigger:
@@ -208,6 +210,16 @@
     - state: rock_diamond
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
+#Sunrise-Start
+- type: entity
+  id: AsteroidRockDiamondCrab
+  parent: AsteroidRockDiamond
+  suffix: Diamond Crab
+  components:
+  - type: OreVein
+    currentOre: OreDiamondCrab
+#Sunrise-End
+
 - type: entity
   id: AsteroidRockPlasma
   parent: AsteroidRock
@@ -230,6 +242,15 @@
     - state: rock_phoron
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
+#Sunrise-Start
+- type: entity
+  id: AsteroidRockPlasmaCrab
+  parent: AsteroidRockPlasma
+  suffix: Plasma Crab
+  components:
+  - type: OreVein
+    currentOre: OrePlasmaCrab
+#Sunrise-End
 - type: entity
   id: AsteroidRockQuartz
   parent: AsteroidRock
@@ -409,6 +430,15 @@
     - state: rock_salt
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
+#Sunrise-Start
+- type: entity
+  id: AsteroidRockSaltCrab
+  parent: AsteroidRockSalt
+  suffix: Salt Crab
+  components:
+  - type: OreVein
+    currentOre: OreSaltCrab
+#Sunrise-End
 - type: entity
   id: AsteroidRockArtifactFragment
   parent: AsteroidRock
@@ -773,66 +803,10 @@
     - state: rock_diamond
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
-- type: entity
-  id: IronRockCoalCrab
-  parent: IronRockCoal
-  suffix: Coal Crab
-  components:
-  - type: OreVein
-    currentOre: OreCoalCrab
-
-- type: entity
-  id: IronRockGoldCrab
-  parent: IronRockGold
-  suffix: Gold Crab
-  components:
-  - type: OreVein
-    currentOre: OreGoldCrab
-
-- type: entity
-  id: IronRockQuartzCrab
-  parent: IronRockQuartz
-  suffix: Quartz Crab
-  components:
-  - type: OreVein
-    currentOre: OreQuartzCrab
-
-- type: entity
-  id: IronRockSilverCrab
-  parent: IronRockSilver
-  suffix: Silver Crab
-  components:
-  - type: OreVein
-    currentOre: OreSilverCrab
-
-- type: entity
-  id: IronRockIronCrab
-  parent: IronRockIron
-  suffix: Iron Crab
-  components:
-  - type: OreVein
-    currentOre: OreIronCrab
-
-- type: entity
-  id: IronRockUraniumCrab
-  parent: IronRockUranium
-  suffix: Uranium Crab
-  components:
-  - type: OreVein
-    currentOre: OreUraniumCrab
-
-- type: entity
-  id: IronRockBananiumCrab
-  parent: IronRockBananium
-  suffix: Bananium Crab
-  components:
-  - type: OreVein
-    currentOre: OreBananiumCrab
-
 # Rocks and ore veins
 - type: entity
   id: WallRock
-  parent: AsteroidRock
+  parent: AsteroidRock #Sunrise-Edit
   name: rock
   suffix: planetmap
   components:
@@ -845,12 +819,12 @@
       - Pickaxe
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
+    damageModifierSet: Rock #Sunrise-Edit
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 150
+        damage: 120 #Sunrise-Edit
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]

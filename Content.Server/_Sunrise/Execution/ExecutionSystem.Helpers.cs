@@ -234,7 +234,7 @@ public sealed partial class ExecutionSystem
                 damage,
                 ignoreResistances: false,
                 origin: weapon,
-                useVariance: false,
+                ignoreVariance: true,
                 ignoreGlobalModifiers: false);
 
             return true;
@@ -264,7 +264,7 @@ public sealed partial class ExecutionSystem
             finalDamage,
             ignoreResistances: true,
             origin: weapon,
-            useVariance: false,
+            ignoreVariance: true,
             ignoreGlobalModifiers: true);
 
         return true;

@@ -1,0 +1,48 @@
+messenger-status-connecting = Connecting...
+messenger-status-disconnected = Server unavailable
+messenger-status-connected = Connected
+messenger-search-placeholder = Search...
+messenger-tab-personal = Personal
+messenger-tab-groups = Groups
+messenger-create-group-button = Create group
+messenger-chat-select = Select chat
+messenger-mute-tooltip = Mute
+messenger-members-toggle-show = Show members
+messenger-members-toggle-hide = Hide members
+messenger-emoji-button-tooltip = Select emojis
+messenger-message-placeholder = Enter message...
+messenger-send-button = Send
+messenger-members-header = Members:
+messenger-member-owner = { $name } (Owner)
+messenger-remove-member-tooltip = Remove from group
+messenger-no-members = No members
+messenger-add-member-button = Add
+messenger-create-group-title = Create group
+messenger-create-group-label = Group name:
+messenger-create-group-placeholder = Enter name
+messenger-create-group-button-create = Create
+messenger-create-group-button-cancel = Cancel
+messenger-add-user-title = Add member
+messenger-add-user-to-group-title = Add member to { $groupName }
+messenger-no-users-available = No users available to add
+messenger-add-user-search = Search:
+messenger-add-user-placeholder = Enter user name
+messenger-add-user-cancel = Cancel
+messenger-emoji-picker-title = Select emojis
+messenger-connection-label = { $status ->
+    [connecting] { messenger-status-connecting }
+    [disconnected] { messenger-status-disconnected }
+    *[connected] { messenger-status-connected }
+}
+messenger-system-user-added = added { $userName } to the group
+messenger-system-user-removed = removed { $userName } from the group
+messenger-system-user-added-by = { $adderName } added { $userName } to the group
+messenger-system-user-removed-by = { $removerName } removed { $userName } from the group
+messenger-emoji-recent-title = Recently used
+messenger-emoji-recent-empty-hint = Recently used emojis will appear here
+messenger-emoji-favorite-title = Favorites
+messenger-emoji-favorite-hint = ПКМ по общему списку для добавления.
+    ПКМ по избраном для удаления.
+messenger-emoji-all-title = All emojis
+messenger-user-unknown = Unknown
+messenger-system-name = System

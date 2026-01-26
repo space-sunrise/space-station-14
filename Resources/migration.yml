@@ -919,6 +919,11 @@ RandomHumanoidSpawnerERTLeaderGammaVeteran: RandomHumanoidSpawnerERTLeaderGamma
 VendingMachineMayson: null
 DrinkLukin: null
 DrinkFourteenLokoPlusCan: null
+MagazineAsh12: null
+ClothingHeadHelmetSpaceNinjaBiocode: null
+ClothingHandsGlovesSpaceNinjaBiocode: null
+ClothingOuterSuitSpaceNinjaBiocode: null
+EnergyKatanaBiocode: null
 # SL HITSCAN START
 BoxMagazineRifle: BoxMagazineRifleSP
 MagazineBoxLightRifle: MagazineBoxLightRifleSP

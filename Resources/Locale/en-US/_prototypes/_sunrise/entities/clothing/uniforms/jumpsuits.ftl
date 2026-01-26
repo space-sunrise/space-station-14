@@ -16,8 +16,6 @@ ent-ClothingUniformJumpsuitBlueShield = blueshield's uniform
     .desc = On style.
 ent-ClothingUniformJumpsuitNTRG = NTRG's uniform
     .desc = On style.
-ent-ClothingUniformJumpsuitPrisonerGrey = prisoner's suit
-    .desc = Why isn't it orange?
 ent-ClothingUniformJumpsuitPrisonGuard = prison guard's suit
     .desc = Why isn't it red?
 ent-ClothingUniformJumpsuitPilot = security pilot's suit
@@ -82,21 +80,7 @@ ent-ClothingUniformJumpsuitCaptainWhite = captain's white uniform
     .desc = Crisp, shiny, and 100% allergic to grease. Causes uncontrollable saluting and paperwork cravings.
 ent-ClothingUniformJumpsuitCaptainBlack = captain's black uniform
     .desc = For when you need to look like a legend, not a laundry accident. Hides coffee stains and questionable decisions.
-# Metus jumpsuits
-ent-UniformPrisonGuardMetus = prison guard uniform
-    .desc = { ent-ClothingUniformJumpsuitHoSOld.desc }
-ent-UniformPrisonDoctorMetus = prison doctor uniform
-    .desc = The fabric is partly faded and darkened, with stains from medical fluids on the sleeves, as if the material absorbed heavy operations.
-ent-UniformPrisonChefMetus = prison chef uniform
-    .desc = The fabric is soaked with grease and soot, with stains from constant contact with stoves and pots, slightly worn where the habit of order is stronger than fatigue.
-ent-UniformPrisonEngineerMetus = prison engineer uniform
-    .desc = The material is dense and slightly worn on the elbows and knees, with dark stains of unknown origin, as if it absorbed the scents of abandoned prison places.
-ent-UniformPrisonScientistMetus = prison scientist uniform
-    .desc = Dark streaks from reagents on the shoulders and chest, small spots of chemical mixes, the fabric seems to preserve the memory of experiments best left unsaid.
-ent-UniformPrisonWorkerMetus = prison worker uniform
-    .desc = The fabric is wounded by ore dust and fine scratches, elbows and knees are slightly rubbed, it smells of metal and damp mines, as if it holds encounters with the unknown.
 ent-ClothingUniformPunksuit = punksuit
     .desc = Challenge the dress code!
-ent-UniformPrisonTraineeMetus = prison trainee uniform
-    .desc = Fresh fabric, still bearing the marks of training, with a hint of orange that marks the path of a future guard.
+
 

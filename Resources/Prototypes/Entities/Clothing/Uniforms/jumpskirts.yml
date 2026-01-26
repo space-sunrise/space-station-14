@@ -524,6 +524,16 @@
     sprite: Clothing/Uniforms/Jumpskirt/operative_s.rsi
   - type: StaticPrice
     price: 500
+  # Sunrise-Start
+  - type: Armor #Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14.
+    modifiers:
+      coefficients:
+        Slash: 0.92
+        Piercing: 0.98
+        Heat: 0.95
+  - type: StaminaResistance
+    damageCoefficient: 0.95
+  # Sunrise-End
 
 - type: entity
   parent: ClothingUniformSkirtBase

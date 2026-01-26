@@ -6,6 +6,7 @@ nano-task-program-name = NanoTask
 news-read-program-name = Station news
 
 crew-manifest-program-name = Crew manifest
+messenger-program-name = Messenger MAX
 crew-manifest-cartridge-loading = Loading ...
 
 net-probe-program-name = NetProbe

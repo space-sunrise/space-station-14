@@ -305,6 +305,14 @@
     sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
   - type: FlashImmunity
   # Sunrise-Start
+  - type: ToggleClothing
+    action: ActionToggleThermalVision
+    disableOnUnequip: true
+    targetSlot: eyes
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: ThermalVision
   - type: ItemToggle
     predictable: false
     onUse: false
@@ -316,8 +324,11 @@
     soundFailToActivate:
       path: /Audio/Machines/button.ogg
   - type: NinjaSuitDraw
-    drawRate: 0.5
+    drawRate: 2
+    useRate: 1
   - type: ToggleNinjaSuitDraw
+  - type: UseDelay
+    delay: 1
   # Sunrise-End
 
 - type: entity

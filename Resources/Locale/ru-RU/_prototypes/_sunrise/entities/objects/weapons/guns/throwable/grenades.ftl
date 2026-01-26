@@ -6,3 +6,6 @@ ent-CleanerGrenadeAcid = { ent-CleanerGrenade }
     .desc = { ent-CleanerGrenade.desc }
 ent-CleanerGrenadeAcidBox = коробка с гранатой глубокой очистки
     .desc = Коробка с гранатой для глубокой очистки. Удаляет до 99,99% микробов, грязи и остатков членов экипажа. Упаковка распадается при открытии, не оставляя следов.
+ent-Pizzabomb = коробка пиццы
+    .desc = { ent-FoodBoxPizza.desc }
+

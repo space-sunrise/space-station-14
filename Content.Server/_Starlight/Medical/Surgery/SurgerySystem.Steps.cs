@@ -7,10 +7,8 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
-using Content.Shared.Damage;
 using Content.Shared.Humanoid;
 using Content.Shared.Traits.Assorted;
-using Microsoft.CodeAnalysis;
 using Content.Server._Starlight.Medical.Limbs;
 using Content.Server.Administration.Systems;
 using Content.Shared.Bed.Sleep;
@@ -170,8 +168,8 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     private void OnStepAmputationComplete(Entity<SurgeryStepAmputationEffectComponent> ent, ref SurgeryStepEvent args)
     {
         if (_entity.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Body, out var body)
-            && _entity.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(args.Part, out var limb))
-            _limbSystem.Amputatate(body, limb);
+            && _entity.TryEntity<TransformComponent, MetaDataComponent>(args.Part, out var limb))
+            _limbSystem.Amputate(body, limb);
     }
 
     private void CustomLimbRemoved(Entity<CustomLimbMarkerComponent> ent, ref ComponentRemove args)

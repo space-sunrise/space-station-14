@@ -321,6 +321,9 @@
   - type: Tag
     tags:
     - ImprovisedGrenadeEmpty
+  - type: GuideHelp
+    guides:
+    - SunriseImprovisedGrenadeCasing
 
 - type: entity
   id: ImprovisedGrenadeFirebomb

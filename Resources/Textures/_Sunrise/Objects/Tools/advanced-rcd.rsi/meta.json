@@ -1,7 +1,7 @@
 ﻿{
     "version": 1,
     "license": "CLA",
-    "copyright": "Created by discord @land1001",
+    "copyright": "Created by discord @land1001 resprited by discord @vispick",
     "size": {
         "x": 32,
         "y": 32
@@ -21,6 +21,39 @@
         {
             "name": "equipped-BELT",
             "directions": 4
+        },
+        {
+            "name": "icon-ANM-Empty",
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "icon-ANM-Full",
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "icon-ANM-Medium",
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
         }
     ]
 }

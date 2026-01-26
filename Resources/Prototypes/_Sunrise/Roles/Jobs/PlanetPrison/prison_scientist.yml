@@ -32,7 +32,6 @@
   id: PrisonScientistGear
   equipment:
     id: PrisonScientistPDA
-    jumpsuit: UniformPrisonScientistMetus
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
@@ -40,15 +39,15 @@
     belt: ClothingBeltPrisonScientistMetus
     back: ClothingBackpackSatchelPrisonScientistMetus
     shoes: ClothingShoesBootsJack
-    pocket1: WeaponPistolG22Metus
+    pocket1: WeaponPistolG22Prison
     pocket2: SecurityWhistle
 
 - type: chameleonOutfit
   id: PrisonScientistChameleonOutfit
   job: PrisonScientist
   equipment:
-    jumpsuit: UniformPrisonScientistMetus
-    head: ClothingHeadHatCapPrisonScientistMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonScientistVeteran
+    head: ClothingHeadHatCapPrisonScientist
     ears: ClothingHeadsetScience
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
