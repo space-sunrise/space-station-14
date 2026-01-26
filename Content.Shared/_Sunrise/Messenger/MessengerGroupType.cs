@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Messenger;
+namespace Content.Shared._Sunrise.Messenger;
 
 /// <summary>
 /// Тип группы в мессенджере

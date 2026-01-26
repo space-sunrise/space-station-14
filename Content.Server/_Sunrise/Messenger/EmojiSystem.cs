@@ -1,8 +1,8 @@
-namespace Content.Server.Messenger;
+namespace Content.Server._Sunrise.Messenger;
 
 /// <summary>
 /// Серверная реализация системы эмодзи
 /// </summary>
-public sealed class ServerEmojiSystem : Shared.Messenger.EmojiSystem
+public sealed class ServerEmojiSystem : Content.Shared._Sunrise.Messenger.EmojiSystem
 {
 }

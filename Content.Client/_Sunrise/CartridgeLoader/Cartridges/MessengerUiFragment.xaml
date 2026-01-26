@@ -11,12 +11,17 @@
             Orientation="Vertical"
             SetWidth="200"
             VerticalExpand="True">
-            <Label
-                HorizontalAlignment="Center"
+            <BoxContainer
                 HorizontalExpand="True"
-                Margin="4"
-                Name="StatusLabel"
-                Text="{Loc 'messenger-status-connecting'}" />
+                Orientation="Horizontal"
+                Margin="4,0">
+                <Label
+                    HorizontalAlignment="Center"
+                    HorizontalExpand="True"
+                    Name="StatusLabel"
+                    Text="{Loc 'messenger-status-connecting'}" />
+            </BoxContainer>
+            <PanelContainer StyleClasses="LowDivider" Margin="4 2" />
             <LineEdit
                 HorizontalExpand="True"
                 Margin="4"
@@ -37,6 +42,7 @@
                     HorizontalExpand="True"
                     ToggleMode="True" />
             </BoxContainer>
+            <PanelContainer StyleClasses="LowDivider" Margin="4 2" />
             <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
                 <BoxContainer
                     HorizontalExpand="True"
@@ -47,7 +53,7 @@
             <Button
                 Disabled="True"
                 HorizontalExpand="True"
-                Margin="4"
+                Margin="4,0,4,4"
                 Name="CreateGroupButton"
                 Text="{Loc 'messenger-create-group-button'}" />
         </BoxContainer>
@@ -56,7 +62,6 @@
 
         <BoxContainer
             HorizontalExpand="True"
-            Margin="4"
             Orientation="Vertical"
             VerticalExpand="True">
             <BoxContainer
@@ -109,26 +114,28 @@
             <PanelContainer StyleClasses="LowDivider" Margin="4 2" />
             <BoxContainer
                 HorizontalExpand="True"
-                Margin="4"
+                Margin="4,0,4,4"
                 Name="InputContainer"
                 Orientation="Horizontal"
                 Visible="False">
-                <Button
-                    Name="EmojiButton"
-                    Text="☺"
-                    SetWidth="30"
-                    ToolTip="{Loc 'messenger-emoji-button-tooltip'}" />
                 <LineEdit
                     Editable="False"
                     HorizontalExpand="True"
-                    Margin="4,0,0,0"
                     Name="MessageInput"
                     PlaceHolder="{Loc 'messenger-message-placeholder'}" />
+                <Button
+                    Name="EmojiButton"
+                    Text="☻"
+                    SetWidth="30"
+                    Margin="4,0,0,0"
+                    ToolTip="{Loc 'messenger-emoji-button-tooltip'}" />
                 <Button
                     Disabled="True"
                     Margin="4,0,0,0"
                     Name="SendButton"
-                    Text="{Loc 'messenger-send-button'}" />
+                    Text="➤"
+                    SetWidth="30"
+                    ToolTip="{Loc 'messenger-send-button'}" />
             </BoxContainer>
         </BoxContainer>
     </BoxContainer>

@@ -1,7 +1,6 @@
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Shared.Messenger;
+namespace Content.Shared._Sunrise.Messenger;
 
 /// <summary>
 /// Прототип эмодзи для мессенджера

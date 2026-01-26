@@ -1,9 +1,8 @@
 using Content.Shared.DeviceNetwork;
-using Content.Shared.Messenger;
+using Content.Shared._Sunrise.Messenger;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server.Messenger;
+namespace Content.Server._Sunrise.Messenger;
 
 /// <summary>
 /// Компонент сервера мессенджера, который обрабатывает сообщения между КПК

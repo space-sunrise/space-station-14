@@ -1,0 +1,33 @@
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    MinSize="300,400">
+    <BoxContainer
+        Orientation="Vertical"
+        HorizontalExpand="True"
+        VerticalExpand="True"
+        Margin="8">
+        <Label
+            Name="SearchLabel"
+            Text="{Loc 'messenger-add-user-search'}"
+            Margin="0,0,0,4" />
+        <LineEdit
+            Name="SearchInput"
+            PlaceHolder="{Loc 'messenger-add-user-placeholder'}"
+            HorizontalExpand="True"
+            Margin="0,0,0,8" />
+        <ScrollContainer
+            HorizontalExpand="True"
+            VerticalExpand="True"
+            Name="UsersScrollContainer">
+            <BoxContainer
+                Name="UsersList"
+                Orientation="Vertical"
+                HorizontalExpand="True" />
+        </ScrollContainer>
+        <Button
+            Name="CloseButton"
+            Text="{Loc 'messenger-add-user-cancel'}"
+            HorizontalExpand="True"
+            Margin="0,4,0,0" />
+    </BoxContainer>
+</DefaultWindow>

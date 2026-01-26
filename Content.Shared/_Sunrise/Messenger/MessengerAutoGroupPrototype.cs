@@ -1,7 +1,7 @@
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Messenger;
+namespace Content.Shared._Sunrise.Messenger;
 
 /// <summary>
 /// Прототип автоматической группы мессенджера (департаменты, общий чат и т.д.)

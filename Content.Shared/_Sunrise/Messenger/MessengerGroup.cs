@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Messenger;
+namespace Content.Shared._Sunrise.Messenger;
 
 /// <summary>
 /// Информация о группе в мессенджере

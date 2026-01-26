@@ -1,6 +1,6 @@
-using Content.Shared.Messenger;
+using Content.Shared._Sunrise.Messenger;
 
-namespace Content.Server.CartridgeLoader.Cartridges;
+namespace Content.Server._Sunrise.CartridgeLoader.Cartridges;
 
 /// <summary>
 /// Компонент картриджа мессенджера для КПК

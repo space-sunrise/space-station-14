@@ -1,7 +1,7 @@
-using Content.Shared.Messenger;
+using Content.Shared._Sunrise.Messenger;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.CartridgeLoader.Cartridges;
+namespace Content.Shared._Sunrise.CartridgeLoader.Cartridges;
 
 /// <summary>
 /// Состояние UI мессенджера

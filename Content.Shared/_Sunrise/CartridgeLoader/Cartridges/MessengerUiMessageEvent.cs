@@ -1,6 +1,7 @@
+using Content.Shared.CartridgeLoader;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.CartridgeLoader.Cartridges;
+namespace Content.Shared._Sunrise.CartridgeLoader.Cartridges;
 
 /// <summary>
 /// Событие сообщения UI мессенджера

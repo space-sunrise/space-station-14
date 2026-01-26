@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Messenger;
+namespace Content.Shared._Sunrise.Messenger;
 
 /// <summary>
 /// Система для работы с эмодзи в мессенджере
