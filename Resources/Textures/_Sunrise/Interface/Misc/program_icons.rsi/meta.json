@@ -1,0 +1,20 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "discord: seraphimttt",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "max_logo1"
+      },
+      {
+        "name": "max_logo2"
+      },
+      {
+        "name": "max_logo3"
+      }
+    ]
+}

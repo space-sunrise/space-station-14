@@ -1,0 +1,1703 @@
+- type: emoji
+  id: acute
+  code: ":acute:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: acute
+
+- type: emoji
+  id: aggressive
+  code: ":aggressive:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: aggressive
+
+- type: emoji
+  id: agree
+  code: ":agree:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: agree
+
+- type: emoji
+  id: air_kiss
+  code: ":air_kiss:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: air_kiss
+
+- type: emoji
+  id: alcoholic
+  code: ":alcoholic:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: alcoholic
+
+- type: emoji
+  id: angel
+  code: ":angel:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: angel
+
+- type: emoji
+  id: angry2
+  code: ":angry2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: angry2
+
+- type: emoji
+  id: assassin
+  code: ":assassin:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: assassin
+
+- type: emoji
+  id: bad
+  code: ":bad:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: bad
+
+- type: emoji
+  id: bb
+  code: ":bb:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: bb
+
+- type: emoji
+  id: bb2
+  code: ":bb2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: bb2
+
+- type: emoji
+  id: beach
+  code: ":beach:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: beach
+
+- type: emoji
+  id: beee
+  code: ":beee:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: beee
+
+- type: emoji
+  id: beta
+  code: ":beta:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: beta
+
+- type: emoji
+  id: big_boss
+  code: ":big_boss:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: big_boss
+
+- type: emoji
+  id: biggrin
+  code: ":biggrin:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: biggrin
+
+- type: emoji
+  id: black_eye
+  code: ":black_eye:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: black_eye
+
+- type: emoji
+  id: blind
+  code: ":blind:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: blind
+
+- type: emoji
+  id: blum2
+  code: ":blum2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: blum2
+
+- type: emoji
+  id: blum3
+  code: ":blum3:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: blum3
+
+- type: emoji
+  id: blush
+  code: ":blush:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: blush
+
+- type: emoji
+  id: blush2
+  code: ":blush2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: blush2
+
+- type: emoji
+  id: boast
+  code: ":boast:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: boast
+
+- type: emoji
+  id: boredom
+  code: ":boredom:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: boredom
+
+- type: emoji
+  id: brunette
+  code: ":brunette:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: brunette
+
+- type: emoji
+  id: buba
+  code: ":buba:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: buba
+
+- type: emoji
+  id: buba_phone
+  code: ":buba_phone:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: buba_phone
+
+- type: emoji
+  id: butcher
+  code: ":butcher:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: butcher
+
+- type: emoji
+  id: bye
+  code: ":bye:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: bye
+
+- type: emoji
+  id: censored
+  code: ":censored:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: censored
+
+- type: emoji
+  id: clapping
+  code: ":clapping:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: clapping
+
+- type: emoji
+  id: close_tema
+  code: ":close_tema:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: close_tema
+
+- type: emoji
+  id: comando
+  code: ":comando:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: comando
+
+- type: emoji
+  id: cool
+  code: ":cool:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: cool
+
+- type: emoji
+  id: cray
+  code: ":cray:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: cray
+
+- type: emoji
+  id: cray2
+  code: ":cray2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: cray2
+
+- type: emoji
+  id: crazy
+  code: ":crazy:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: crazy
+
+- type: emoji
+  id: crazy_pilot
+  code: ":crazy_pilot:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: crazy_pilot
+
+- type: emoji
+  id: curtsey
+  code: ":curtsey:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: curtsey
+
+- type: emoji
+  id: dance
+  code: ":dance:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: dance
+
+- type: emoji
+  id: dance2
+  code: ":dance2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: dance2
+
+- type: emoji
+  id: dance3
+  code: ":dance3:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: dance3
+
+- type: emoji
+  id: dance4
+  code: ":dance4:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: dance4
+
+- type: emoji
+  id: dash1
+  code: ":dash1:"
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+  spriteState: dash1
+
+- type: emoji
+  id: dash2
+  code: ":dash2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: dash2
+
+- type: emoji
+  id: dash3
+  code: ":dash3:"
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+  spriteState: dash3
+
+- type: emoji
+  id: declare
+  code: ":declare:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: declare
+
+- type: emoji
+  id: ded_moroz
+  code: ":ded_moroz:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: ded_moroz
+
+- type: emoji
+  id: ded_snegurochka
+  code: ":ded_snegurochka:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: ded_snegurochka
+
+- type: emoji
+  id: ded_snegurochka2
+  code: ":ded_snegurochka2:"
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+  spriteState: ded_snegurochka2
+
+- type: emoji
+  id: derisive
+  code: ":derisive:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: derisive
+
+- type: emoji
+  id: diablo
+  code: ":diablo:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: diablo
+
+- type: emoji
+  id: dirol
+  code: ":dirol:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: dirol
+
+- type: emoji
+  id: dntknw
+  code: ":dntknw:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: dntknw
+
+- type: emoji
+  id: don_t_mention
+  code: ":don_t_mention:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: don_t_mention
+
+- type: emoji
+  id: download
+  code: ":download:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: download
+
+- type: emoji
+  id: drag
+  code: ":drag:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: drag
+
+- type: emoji
+  id: drinks
+  code: ":drinks:"
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+  spriteState: drinks
+
+- type: emoji
+  id: dwarf
+  code: ":dwarf:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: dwarf
+
+- type: emoji
+  id: elf
+  code: ":elf:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: elf
+
+- type: emoji
+  id: facepalm
+  code: ":facepalm:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: facepalm
+
+- type: emoji
+  id: feminist
+  code: ":feminist:"
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+  spriteState: feminist
+
+- type: emoji
+  id: feminist_en
+  code: ":feminist_en:"
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+  spriteState: feminist_en
+
+- type: emoji
+  id: first_move
+  code: ":first_move:"
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+  spriteState: first_move
+
+- type: emoji
+  id: flirt
+  code: ":flirt:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: flirt
+
+- type: emoji
+  id: focus
+  code: ":focus:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: focus
+
+- type: emoji
+  id: fool
+  code: ":fool:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: fool
+
+- type: emoji
+  id: friends
+  code: ":friends:"
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+  spriteState: friends
+
+- type: emoji
+  id: gamer1
+  code: ":gamer1:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: gamer1
+
+- type: emoji
+  id: gamer2
+  code: ":gamer2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: gamer2
+
+- type: emoji
+  id: gamer3
+  code: ":gamer3:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: gamer3
+
+- type: emoji
+  id: gamer4
+  code: ":gamer4:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: gamer4
+
+- type: emoji
+  id: girl_blum
+  code: ":girl_blum:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_blum
+
+- type: emoji
+  id: girl_blum2
+  code: ":girl_blum2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_blum2
+
+- type: emoji
+  id: girl_cray
+  code: ":girl_cray:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_cray
+
+- type: emoji
+  id: girl_cray2
+  code: ":girl_cray2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_cray2
+
+- type: emoji
+  id: girl_cray3
+  code: ":girl_cray3:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_cray3
+
+- type: emoji
+  id: girl_crazy
+  code: ":girl_crazy:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_crazy
+
+- type: emoji
+  id: girl_dance
+  code: ":girl_dance:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_dance
+
+- type: emoji
+  id: girl_devil
+  code: ":girl_devil:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_devil
+
+- type: emoji
+  id: girl_drink1
+  code: ":girl_drink1:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_drink1
+
+- type: emoji
+  id: girl_drink2
+  code: ":girl_drink2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_drink2
+
+- type: emoji
+  id: girl_drink3
+  code: ":girl_drink3:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_drink3
+
+- type: emoji
+  id: girl_drink4
+  code: ":girl_drink4:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_drink4
+
+- type: emoji
+  id: girl_haha
+  code: ":girl_haha:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_haha
+
+- type: emoji
+  id: girl_hide
+  code: ":girl_hide:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_hide
+
+- type: emoji
+  id: girl_hospital
+  code: ":girl_hospital:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_hospital
+
+- type: emoji
+  id: girl_impossible
+  code: ":girl_impossible:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_impossible
+
+- type: emoji
+  id: girl_in_love
+  code: ":girl_in_love:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_in_love
+
+- type: emoji
+  id: girl_mad
+  code: ":girl_mad:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_mad
+
+- type: emoji
+  id: girl_pinkglassesf
+  code: ":girl_pinkglassesf:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_pinkglassesf
+
+- type: emoji
+  id: girl_prepare_fish
+  code: ":girl_prepare_fish:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_prepare_fish
+
+- type: emoji
+  id: girl_sad
+  code: ":girl_sad:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_sad
+
+- type: emoji
+  id: girl_sigh
+  code: ":girl_sigh:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_sigh
+
+- type: emoji
+  id: girl_smile
+  code: ":girl_smile:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_smile
+
+- type: emoji
+  id: girl_to_take_umbrage
+  code: ":girl_to_take_umbrage:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_to_take_umbrage
+
+- type: emoji
+  id: girl_to_take_umbrage2
+  code: ":girl_to_take_umbrage2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_to_take_umbrage2
+
+- type: emoji
+  id: girl_wacko
+  code: ":girl_wacko:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_wacko
+
+- type: emoji
+  id: girl_werewolf
+  code: ":girl_werewolf:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_werewolf
+
+- type: emoji
+  id: girl_wink
+  code: ":girl_wink:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_wink
+
+- type: emoji
+  id: girl_witch
+  code: ":girl_witch:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: girl_witch
+
+- type: emoji
+  id: give_heart
+  code: ":give_heart:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: give_heart
+
+- type: emoji
+  id: give_rose
+  code: ":give_rose:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: give_rose
+
+- type: emoji
+  id: good
+  code: ":good:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: good
+
+- type: emoji
+  id: good2
+  code: ":good2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: good2
+
+- type: emoji
+  id: good3
+  code: ":good3:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: good3
+
+- type: emoji
+  id: grin
+  code: ":grin:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: grin
+
+- type: emoji
+  id: haha
+  code: ":haha:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: haha
+
+- type: emoji
+  id: hang1
+  code: ":hang1:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: hang1
+
+- type: emoji
+  id: hang2
+  code: ":hang2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: hang2
+
+- type: emoji
+  id: hang3
+  code: ":hang3:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: hang3
+
+- type: emoji
+  id: heat
+  code: ":heat:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: heat
+
+- type: emoji
+  id: help
+  code: ":help:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: help
+
+- type: emoji
+  id: hi
+  code: ":hi:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: hi
+
+- type: emoji
+  id: hunter
+  code: ":hunter:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: hunter
+
+- type: emoji
+  id: hysteric
+  code: ":hysteric:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: hysteric
+
+- type: emoji
+  id: i_m_so_happy
+  code: ":i_m_so_happy:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: i_m_so_happy
+
+- type: emoji
+  id: ireful1
+  code: ":ireful1:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: ireful1
+
+- type: emoji
+  id: ireful2
+  code: ":ireful2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: ireful2
+
+- type: emoji
+  id: ireful3
+  code: ":ireful3:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: ireful3
+
+- type: emoji
+  id: jester
+  code: ":jester:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: jester
+
+- type: emoji
+  id: king
+  code: ":king:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: king
+
+- type: emoji
+  id: king2
+  code: ":king2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: king2
+
+- type: emoji
+  id: kiss2
+  code: ":kiss2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: kiss2
+
+- type: emoji
+  id: kiss3
+  code: ":kiss3:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: kiss3
+
+- type: emoji
+  id: laugh1
+  code: ":laugh1:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: laugh1
+
+- type: emoji
+  id: laugh2
+  code: ":laugh2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: laugh2
+
+- type: emoji
+  id: laugh3
+  code: ":laugh3:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: laugh3
+
+- type: emoji
+  id: lazy
+  code: ":lazy:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: lazy
+
+- type: emoji
+  id: lazy2
+  code: ":lazy2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: lazy2
+
+- type: emoji
+  id: lazy3
+  code: ":lazy3:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: lazy3
+
+- type: emoji
+  id: locomotive
+  code: ":locomotive:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: locomotive
+
+- type: emoji
+  id: lol
+  code: ":lol:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: lol
+
+- type: emoji
+  id: mad
+  code: ":mad:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: mad
+
+- type: emoji
+  id: mail1
+  code: ":mail1:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: mail1
+
+- type: emoji
+  id: man_in_love
+  code: ":man_in_love:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: man_in_love
+
+- type: emoji
+  id: mda
+  code: ":mda:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: mda
+
+- type: emoji
+  id: meeting
+  code: ":meeting:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: meeting
+
+- type: emoji
+  id: meowth
+  code: ":meowth:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: meowth
+
+- type: emoji
+  id: moil
+  code: ":moil:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: moil
+
+- type: emoji
+  id: morpheus
+  code: ":morpheus:"
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+  spriteState: morpheus
+
+- type: emoji
+  id: mosking
+  code: ":mosking:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: mosking
+
+- type: emoji
+  id: music
+  code: ":music:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: music
+
+- type: emoji
+  id: music2
+  code: ":music2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: music2
+
+- type: emoji
+  id: nea
+  code: ":nea:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: nea
+
+- type: emoji
+  id: negative
+  code: ":negative:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: negative
+
+- type: emoji
+  id: neo
+  code: ":neo:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: neo
+
+- type: emoji
+  id: new_russian
+  code: ":new_russian:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: new_russian
+
+- type: emoji
+  id: no
+  code: ":no:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: no
+
+- type: emoji
+  id: no2
+  code: ":no2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: no2
+
+- type: emoji
+  id: nono
+  code: ":nono:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: nono
+
+- type: emoji
+  id: not_i
+  code: ":not_i:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: not_i
+
+- type: emoji
+  id: nyam
+  code: ":nyam:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: nyam
+
+- type: emoji
+  id: offtopic
+  code: ":offtopic:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: offtopic
+
+- type: emoji
+  id: ok
+  code: ":ok:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: ok
+
+- type: emoji
+  id: on_the_quiet
+  code: ":on_the_quiet:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: on_the_quiet
+
+- type: emoji
+  id: on_the_quiet2
+  code: ":on_the_quiet2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: on_the_quiet2
+
+- type: emoji
+  id: orc
+  code: ":orc:"
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+  spriteState: orc
+
+- type: emoji
+  id: padonak
+  code: ":padonak:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: padonak
+
+- type: emoji
+  id: paint
+  code: ":paint:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: paint
+
+- type: emoji
+  id: paint2
+  code: ":paint2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: paint2
+
+- type: emoji
+  id: paint3
+  code: ":paint3:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: paint3
+
+- type: emoji
+  id: paladin
+  code: ":paladin:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: paladin
+
+- type: emoji
+  id: pardon
+  code: ":pardon:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: pardon
+
+- type: emoji
+  id: parting
+  code: ":parting:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: parting
+
+- type: emoji
+  id: parting2
+  code: ":parting2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: parting2
+
+- type: emoji
+  id: party
+  code: ":party:"
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+  spriteState: party
+
+- type: emoji
+  id: patsak
+  code: ":patsak:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: patsak
+
+- type: emoji
+  id: pig_ball
+  code: ":pig_ball:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: pig_ball
+
+- type: emoji
+  id: pilot
+  code: ":pilot:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: pilot
+
+- type: emoji
+  id: pioneer
+  code: ":pioneer:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: pioneer
+
+- type: emoji
+  id: pioneer_smoke
+  code: ":pioneer_smoke:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: pioneer_smoke
+
+- type: emoji
+  id: pleasantry
+  code: ":pleasantry:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: pleasantry
+
+- type: emoji
+  id: pogranichnik
+  code: ":pogranichnik:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: pogranichnik
+
+- type: emoji
+  id: polling
+  code: ":polling:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: polling
+
+- type: emoji
+  id: pooh
+  code: ":pooh:"
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+  spriteState: pooh
+
+- type: emoji
+  id: pooh_birth_day
+  code: ":pooh_birth_day:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: pooh_birth_day
+
+- type: emoji
+  id: pooh_door
+  code: ":pooh_door:"
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+  spriteState: pooh_door
+
+- type: emoji
+  id: pooh_go
+  code: ":pooh_go:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: pooh_go
+
+- type: emoji
+  id: pooh_honey
+  code: ":pooh_honey:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: pooh_honey
+
+- type: emoji
+  id: pooh_lol
+  code: ":pooh_lol:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: pooh_lol
+
+- type: emoji
+  id: pooh_on_ball
+  code: ":pooh_on_ball:"
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+  spriteState: pooh_on_ball
+
+- type: emoji
+  id: popcorm1
+  code: ":popcorm1:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: popcorm1
+
+- type: emoji
+  id: popcorm2
+  code: ":popcorm2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: popcorm2
+
+- type: emoji
+  id: prankster
+  code: ":prankster:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: prankster
+
+- type: emoji
+  id: prankster2
+  code: ":prankster2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: prankster2
+
+- type: emoji
+  id: preved
+  code: ":preved:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: preved
+
+- type: emoji
+  id: punish
+  code: ":punish:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: punish
+
+- type: emoji
+  id: punish2
+  code: ":punish2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: punish2
+
+- type: emoji
+  id: queen
+  code: ":queen:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: queen
+
+- type: emoji
+  id: rabbi
+  code: ":rabbi:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: rabbi
+
+- type: emoji
+  id: rap
+  code: ":rap:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: rap
+
+- type: emoji
+  id: read
+  code: ":read:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: read
+
+- type: emoji
+  id: resent
+  code: ":resent:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: resent
+
+- type: emoji
+  id: rofl
+  code: ":rofl:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: rofl
+
+- type: emoji
+  id: rtfm
+  code: ":rtfm:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: rtfm
+
+- type: emoji
+  id: russian
+  code: ":russian:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: russian
+
+- type: emoji
+  id: russian_roulette
+  code: ":russian_roulette:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: russian_roulette
+
+- type: emoji
+  id: sad
+  code: ":sad:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: sad
+
+- type: emoji
+  id: santa
+  code: ":santa:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: santa
+
+- type: emoji
+  id: santa2
+  code: ":santa2:"
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+  spriteState: santa2
+
+- type: emoji
+  id: santa3
+  code: ":santa3:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: santa3
+
+- type: emoji
+  id: sarcasm
+  code: ":sarcasm:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: sarcasm
+
+- type: emoji
+  id: sarcastic
+  code: ":sarcastic:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: sarcastic
+
+- type: emoji
+  id: sarcastic_blum
+  code: ":sarcastic_blum:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: sarcastic_blum
+
+- type: emoji
+  id: sarcastic_hand
+  code: ":sarcastic_hand:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: sarcastic_hand
+
+- type: emoji
+  id: scare
+  code: ":scare:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: scare
+
+- type: emoji
+  id: scare2
+  code: ":scare2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: scare2
+
+- type: emoji
+  id: scenic
+  code: ":scenic:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: scenic
+
+- type: emoji
+  id: sclerosis
+  code: ":sclerosis:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: sclerosis
+
+- type: emoji
+  id: scout
+  code: ":scout:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: scout
+
+- type: emoji
+  id: scout_en
+  code: ":scout_en:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: scout_en
+
+- type: emoji
+  id: scratch_one_s_head
+  code: ":scratch_one_s_head:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: scratch_one_s_head
+
+- type: emoji
+  id: search
+  code: ":search:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: search
+
+- type: emoji
+  id: secret
+  code: ":secret:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: secret
+
+- type: emoji
+  id: shablon_padonak_04
+  code: ":shablon_padonak_04:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: shablon_padonak_04
+
+- type: emoji
+  id: shablon_padonak_05
+  code: ":shablon_padonak_05:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: shablon_padonak_05
+
+- type: emoji
+  id: shablon_padonak_06
+  code: ":shablon_padonak_06:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: shablon_padonak_06
+
+- type: emoji
+  id: shok
+  code: ":shok:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: shok
+
+- type: emoji
+  id: shout
+  code: ":shout:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: shout
+
+- type: emoji
+  id: slow
+  code: ":slow:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: slow
+
+- type: emoji
+  id: slow_en
+  code: ":slow_en:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: slow_en
+
+- type: emoji
+  id: smile3
+  code: ":smile3:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: smile3
+
+- type: emoji
+  id: smoke
+  code: ":smoke:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: smoke
+
+- type: emoji
+  id: snegurochka
+  code: ":snegurochka:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: snegurochka
+
+- type: emoji
+  id: snooks
+  code: ":snooks:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: snooks
+
+- type: emoji
+  id: sorry
+  code: ":sorry:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: sorry
+
+- type: emoji
+  id: sorry2
+  code: ":sorry2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: sorry2
+
+- type: emoji
+  id: spiteful
+  code: ":spiteful:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: spiteful
+
+- type: emoji
+  id: spruce_up
+  code: ":spruce_up:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: spruce_up
+
+- type: emoji
+  id: stink
+  code: ":stink:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: stink
+
+- type: emoji
+  id: stinker
+  code: ":stinker:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: stinker
+
+- type: emoji
+  id: stop
+  code: ":stop:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: stop
+
+- type: emoji
+  id: suicide2
+  code: ":suicide2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: suicide2
+
+- type: emoji
+  id: suicide_fool_edit
+  code: ":suicide_fool_edit:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: suicide_fool_edit
+
+- type: emoji
+  id: sun_bespectacled
+  code: ":sun_bespectacled:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: sun_bespectacled
+
+- type: emoji
+  id: superman
+  code: ":superman:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: superman
+
+- type: emoji
+  id: superman2
+  code: ":superman2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: superman2
+
+- type: emoji
+  id: superstition
+  code: ":superstition:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: superstition
+
+- type: emoji
+  id: swoon
+  code: ":swoon:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: swoon
+
+- type: emoji
+  id: swoon2
+  code: ":swoon2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: swoon2
+
+- type: emoji
+  id: take_example
+  code: ":take_example:"
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+  spriteState: take_example
+
+- type: emoji
+  id: taunt
+  code: ":taunt:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: taunt
+
+- type: emoji
+  id: tease
+  code: ":tease:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: tease
+
+- type: emoji
+  id: telephone
+  code: ":telephone:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: telephone
+
+- type: emoji
+  id: tender
+  code: ":tender:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: tender
+
+- type: emoji
+  id: thank_you
+  code: ":thank_you:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: thank_you
+
+- type: emoji
+  id: thank_you2
+  code: ":thank_you2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: thank_you2
+
+- type: emoji
+  id: this
+  code: ":this:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: this
+
+- type: emoji
+  id: threaten
+  code: ":threaten:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: threaten
+
+- type: emoji
+  id: to_babruysk
+  code: ":to_babruysk:"
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+  spriteState: to_babruysk
+
+- type: emoji
+  id: to_become_senile
+  code: ":to_become_senile:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: to_become_senile
+
+- type: emoji
+  id: to_clue
+  code: ":to_clue:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: to_clue
+
+- type: emoji
+  id: to_keep_order
+  code: ":to_keep_order:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: to_keep_order
+
+- type: emoji
+  id: to_pick_ones_nose
+  code: ":to_pick_ones_nose:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: to_pick_ones_nose
+
+- type: emoji
+  id: to_pick_ones_nose2
+  code: ":to_pick_ones_nose2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: to_pick_ones_nose2
+
+- type: emoji
+  id: to_pick_ones_nose3
+  code: ":to_pick_ones_nose3:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: to_pick_ones_nose3
+
+- type: emoji
+  id: to_pick_ones_nose_eat
+  code: ":to_pick_ones_nose_eat:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: to_pick_ones_nose_eat
+
+- type: emoji
+  id: to_take_umbrage
+  code: ":to_take_umbrage:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: to_take_umbrage
+
+- type: emoji
+  id: tomato
+  code: ":tomato:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: tomato
+
+- type: emoji
+  id: tomato2
+  code: ":tomato2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: tomato2
+
+- type: emoji
+  id: tommy
+  code: ":tommy:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: tommy
+
+- type: emoji
+  id: tongue
+  code: ":tongue:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: tongue
+
+- type: emoji
+  id: triniti
+  code: ":triniti:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: triniti
+
+- type: emoji
+  id: umnik
+  code: ":umnik:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: umnik
+
+- type: emoji
+  id: umnik2
+  code: ":umnik2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: umnik2
+
+- type: emoji
+  id: vampire
+  code: ":vampire:"
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+  spriteState: vampire
+
+- type: emoji
+  id: victory
+  code: ":victory:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: victory
+
+- type: emoji
+  id: vinsent
+  code: ":vinsent:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: vinsent
+
+- type: emoji
+  id: wacko
+  code: ":wacko:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: wacko
+
+- type: emoji
+  id: wacko2
+  code: ":wacko2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: wacko2
+
+- type: emoji
+  id: whistle
+  code: ":whistle:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: whistle
+
+- type: emoji
+  id: whistle2
+  code: ":whistle2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: whistle2
+
+- type: emoji
+  id: whistle3
+  code: ":whistle3:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: whistle3
+
+- type: emoji
+  id: wild
+  code: ":wild:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: wild
+
+- type: emoji
+  id: wink
+  code: ":wink:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: wink
+
+- type: emoji
+  id: wink3
+  code: ":wink3:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: wink3
+
+- type: emoji
+  id: wizard
+  code: ":wizard:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: wizard
+
+- type: emoji
+  id: yahoo
+  code: ":yahoo:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: yahoo
+
+- type: emoji
+  id: yes
+  code: ":yes:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: yes
+
+- type: emoji
+  id: yes2
+  code: ":yes2:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: yes2
+
+- type: emoji
+  id: yes3
+  code: ":yes3:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: yes3
+
+- type: emoji
+  id: yes4
+  code: ":yes4:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: yes4
+
+- type: emoji
+  id: yu
+  code: ":yu:"
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+  spriteState: yu

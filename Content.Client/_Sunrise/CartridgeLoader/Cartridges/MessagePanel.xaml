@@ -1,0 +1,55 @@
+<PanelContainer
+    xmlns="https://spacestation14.io"
+    HorizontalExpand="True"
+    Margin="4,0"
+    Name="MessagePanelContainer">
+    <BoxContainer
+        Orientation="Vertical"
+        HorizontalExpand="True"
+        MinSize="0,30"
+        Name="MessageBox">
+        <BoxContainer
+            Orientation="Horizontal"
+            Margin="0,0,0,4"
+            Name="Header">
+            <Label
+                Name="SenderLabel"
+                Text=""
+                StyleClasses="Bold"
+                HorizontalExpand="True"
+                MaxWidth="240"
+                HorizontalAlignment="Left"
+                Align="Left"
+                RectClipContent="True" />
+            <BoxContainer
+                Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                HorizontalExpand="False"
+                Name="RightContainer">
+                <Label
+                    Name="TimeLabel"
+                    Text=""
+                    HorizontalAlignment="Right"
+                    StyleClasses="LabelSubText" />
+            </BoxContainer>
+        </BoxContainer>
+        <Control
+            HorizontalExpand="True"
+            MinSize="0,20"
+            Name="ContentContainer">
+            <RichTextLabel
+                Name="ContentLabel"
+                HorizontalExpand="True"
+                MinSize="0,20" />
+            <TextureRect
+                Name="ReadStatusIcon"
+                SetWidth="16"
+                SetHeight="16"
+                TextureScale="0.5,0.5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Margin="0,0,2,2"
+                Visible="False" />
+        </Control>
+    </BoxContainer>
+</PanelContainer>

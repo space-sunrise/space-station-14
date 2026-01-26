@@ -2,3 +2,8 @@
   id: SurveillanceCameraHandheld
   name: device-frequency-prototype-name-body-camera
   frequency: 1940
+
+- type: deviceFrequency
+  id: Messenger
+  name: device-frequency-prototype-name-messenger
+  frequency: 2203

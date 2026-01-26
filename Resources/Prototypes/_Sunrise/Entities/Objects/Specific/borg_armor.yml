@@ -1,4 +1,4 @@
-- type: entity
+- type: entity # Sunrise-TODO: Добавить кастомизацию и возможность менять/Заменять и улучшать броню боргов
   id: BorgArmorSilicon
   name: armor plating
   parent: ClothingOuterBase
@@ -18,9 +18,9 @@
       coefficients:
         Blunt: 1
         Slash: 0.7
-        Piercing: 0.7
+        Piercing: 0.6
         Heat: 0.5
-        Shock: 2
+        Shock: 0.7
         Caustic: 1
         Structural: 0.2
   - type: Unremoveable
@@ -47,9 +47,9 @@
       coefficients:
         Blunt: 0.9
         Slash: 0.6
-        Piercing: 0.6
+        Piercing: 0.5
         Heat: 0.5
-        Shock: 2
+        Shock: 0.6
         Caustic: 1
         Structural: 0.2
   - type: Unremoveable

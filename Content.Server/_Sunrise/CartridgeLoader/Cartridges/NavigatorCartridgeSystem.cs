@@ -48,14 +48,12 @@ public sealed class NavigatorCartridgeSystem : EntitySystem
         var stationName = "Unknown Station";
         NetEntity? mapUid = null;
 
-        if (owningStation != null && TryComp<MetaDataComponent>(owningStation.Value, out var metaData))
+        if (owningStation != null)
         {
-            stationName = metaData.EntityName;
-            
-            // Try to get the station's primary grid for the map
+            stationName = MetaData(owningStation.Value).EntityName;
+
             if (TryComp<StationDataComponent>(owningStation.Value, out var stationData) && stationData.Grids.Count > 0)
             {
-                // Get the first grid as the map reference and convert to NetEntity
                 mapUid = GetNetEntity(stationData.Grids.First());
             }
         }

@@ -14,16 +14,16 @@
     jumpsuit: ClothingUniformJumpsuitNinja
     back: ClothingBackpackSatchel
     mask: ClothingMaskNinja
-    head: ClothingHeadHelmetSpaceNinjaBiocode # Sunrise-Edit
+    head: ClothingHeadHelmetSpaceNinja
     eyes: ClothingEyesVisorNinja
-    gloves: ClothingHandsGlovesSpaceNinjaBiocode # Sunrise-Edit
-    outerClothing: ClothingOuterSuitSpaceNinjaBiocode # Sunrise-Edit
+    gloves: ClothingHandsGlovesSpaceNinja
+    outerClothing: ClothingOuterSuitSpaceNinja
     shoes: ClothingShoesSpaceNinjaBiocode # Sunrise-Edit
     id: AgentIDCard
     ears: ClothingHeadsetNinja
     pocket1: SpiderCharge
     pocket2: HandHeldMassScanner
-    belt: EnergyKatanaBiocode # Sunrise-Edit
+    belt: EnergyKatana
   inhand:
     - JetpackBlackFilled
   storage:

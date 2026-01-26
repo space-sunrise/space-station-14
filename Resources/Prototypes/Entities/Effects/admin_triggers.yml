@@ -33,9 +33,22 @@
   suffix: Flash
   parent: AdminInstantEffectBase
   components:
+  # Sunrise-Start
+  - type: TimerTrigger
+    delay: 0
+    keyOut: timer
+  # Sunrise-End
   - type: FlashOnTrigger
+    # Sunrise-Start
+    keysIn:
+    - timer
+    # Sunrise-End
     range: 7
   - type: SpawnOnTrigger
+    # Sunrise-Start
+    keysIn:
+    - timer
+    # Sunrise-End
     proto: GrenadeFlashEffect
 
 - type: entity
