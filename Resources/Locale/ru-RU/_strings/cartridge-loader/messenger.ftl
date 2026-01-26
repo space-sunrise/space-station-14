@@ -39,10 +39,10 @@ messenger-system-user-removed = удалил(а) { $userName } из группы
 messenger-system-user-added-by = { $adderName } добавил(а) { $userName } в группу
 messenger-system-user-removed-by = { $removerName } удалил(а) { $userName } из группы
 messenger-emoji-recent-title = Недавно использованные
-messenger-emoji-recent-empty-hint = Здесь будут показаны недавно использованые смайлики
+messenger-emoji-recent-empty-hint = Здесь будут находиться недавно использованные смайлики
 messenger-emoji-favorite-title = Избранные
 messenger-emoji-favorite-hint = ПКМ по общему списку для добавления.
-    ПКМ по избраном для удаления.
+    ПКМ по избранным для удаления.
 messenger-emoji-all-title = Все смайлики
 messenger-user-unknown = Неизвестно
 messenger-system-name = Система
