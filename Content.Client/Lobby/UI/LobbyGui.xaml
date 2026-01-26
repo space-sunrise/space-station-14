@@ -44,14 +44,12 @@
                 Name="LoadingAnimationContainer"
                 Orientation="Vertical"
                 VerticalAlignment="Center"
-                Visible="False"
-                MouseFilter="Pass">
+                Visible="False">
                 <AnimatedTextureRect
                     Access="Public"
                     HorizontalAlignment="Center"
                     Name="LoadingAnimation"
-                    VerticalAlignment="Center"
-                    MouseFilter="Pass" />
+                    VerticalAlignment="Center" />
             </BoxContainer>
             <BoxContainer
                 HorizontalAlignment="Left"

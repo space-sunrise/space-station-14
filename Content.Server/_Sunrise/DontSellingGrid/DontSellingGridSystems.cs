@@ -37,9 +37,6 @@ public sealed class StationDontSellingSystems : EntitySystem
         _lookup.GetGridEntities(ent, _entities);
         foreach (var entityUid in _entities)
         {
-            if (!entityUid.Owner.IsValid())
-                continue;
-
             DepreciatePrice(entityUid);
         }
     }
@@ -87,7 +84,8 @@ public sealed class StationDontSellingSystems : EntitySystem
         {
             foreach (var ent in container.ContainedEntities)
             {
-                DepreciatePrice(ent);
+                if (ent.IsValid())
+                    DepreciatePrice(ent);
             }
         }
     }

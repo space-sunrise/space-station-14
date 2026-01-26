@@ -194,7 +194,7 @@
       tags:
       - AssaultOpsUplink
       - NukeOpsUplink
-      - LoneOpsUplink
+      - LoneOpsUplink # Sunrise-Edit
   #Sunrise-end
 
 - type: listing
@@ -1285,6 +1285,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink
 
 - type: listing
   id: UplinkSurplusBundle
@@ -1416,7 +1417,6 @@
       blacklist:
         tags:
           - NukeOpsUplink
-          - LoneOpsUplink # Sunrise-Edit
           - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
@@ -1434,6 +1434,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Edit
 
 # Move to _Sunrise
 #- type: listing

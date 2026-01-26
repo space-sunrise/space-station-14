@@ -70,11 +70,6 @@ namespace Content.Client.Lobby
         private ResPath? _currentAnimationPath;
         private ResPath? _currentArtPath;
 
-        // Используется для «мягкой отмены» фоновых загрузок (арт / анимация / параллакс).
-        // При каждом запуске новой загрузки увеличиваем версию и перед применением результата
-        // проверяем, что версия всё ещё совпадает (иначе результат игнорируем).
-        private int _backgroundLoadVersion = 0;
-
         private const string LoadingRsiPath = "/Textures/_Sunrise/loading.rsi";
         private const string LoadingState = "loading";
 
@@ -446,8 +441,6 @@ namespace Content.Client.Lobby
                 lobbyBackgroundTypeString = default;
             }
 
-            _backgroundLoadVersion++;
-
             // Lobby may be null during reconnection or before initialization
             // This is normal, just return silently - the background will be set when Lobby is initialized
             if (Lobby == null)
@@ -514,13 +507,6 @@ namespace Content.Client.Lobby
 
         private void SetLobbyAnimation(string lobbyAnimation)
         {
-            _ = SetLobbyAnimationAsync(lobbyAnimation);
-        }
-
-        private async Task SetLobbyAnimationAsync(string lobbyAnimation)
-        {
-            var loadVersion = _backgroundLoadVersion;
-
             // Check if animation background type is currently selected
             var backgroundType = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
             if (backgroundType == "Random" && _gameTicker.LobbyType != null)
@@ -546,12 +532,7 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            if (loadVersion != _backgroundLoadVersion)
-            {
-                _sawmill.Debug("SetLobbyAnimation aborted due to background load version change");
-                return;
-            }
-
+            // Hide old animation and show loading animation immediately (before any resource checks)
             Lobby!.LobbyAnimation.Visible = false;
             ShowLoadingAnimation();
 
@@ -585,8 +566,8 @@ namespace Content.Client.Lobby
                 var uploadedPath = _netTexturesManager.GetUploadedPath(rsiPath);
                 var metaPath = (uploadedPath / "meta.json").ToRootedPath();
 
-                var fileExists = await Task.Run(() => _resource.ContentFileExists(metaPath));
-                if (fileExists)
+                // Check if uploaded resource exists
+                if (_resource.ContentFileExists(metaPath))
                 {
                     targetPath = uploadedPath;
                 }
@@ -601,23 +582,21 @@ namespace Content.Client.Lobby
             // Try to set the animation, handle errors gracefully
             try
             {
-                var requiredState = lobbyAnimationPrototype.State;
-
+                // Check if meta.json exists (basic check)
                 var metaPath = (targetPath / "meta.json").ToRootedPath();
-                var metaExists = await Task.Run(() => _resource.ContentFileExists(metaPath));
-                if (!metaExists)
+                if (!_resource.ContentFileExists(metaPath))
                 {
                     _sawmill.Debug($"RSI meta.json doesn't exist yet: {metaPath}, waiting for network load");
                     return;
                 }
 
+                var requiredState = lobbyAnimationPrototype.State;
+
                 // Before attempting to load, verify all required PNG files exist in VFS
                 // This prevents FileNotFoundException when RSI tries to load animation.png
                 try
                 {
-                    Stream? metaStream = null;
-                    var canRead = await Task.Run(() => _resource.TryContentFileRead(metaPath, out metaStream));
-                    if (!canRead || metaStream == null)
+                    if (!_resource.TryContentFileRead(metaPath, out var metaStream))
                     {
                         _sawmill.Debug($"Cannot read meta.json: {metaPath}, waiting for network load");
                         return;
@@ -626,7 +605,7 @@ namespace Content.Client.Lobby
                     using (metaStream)
                     {
                         using var reader = new StreamReader(metaStream);
-                        var jsonText = await reader.ReadToEndAsync();
+                        var jsonText = reader.ReadToEnd();
 
                         // Extract state names from JSON to verify PNG files exist
                         var namePattern = new Regex(@"""name""\s*:\s*""([^""]+)""", RegexOptions.Compiled);
@@ -643,8 +622,7 @@ namespace Content.Client.Lobby
 
                             // Verify PNG file exists in VFS before attempting to load RSI
                             var pngPath = (targetPath / $"{stateName}.png").ToRootedPath();
-                            var pngExists = await Task.Run(() => _resource.ContentFileExists(pngPath));
-                            if (!pngExists)
+                            if (!_resource.ContentFileExists(pngPath))
                             {
                                 _sawmill.Debug($"RSI PNG file not yet available in VFS: {pngPath}, waiting for network load");
                                 return;
@@ -658,28 +636,18 @@ namespace Content.Client.Lobby
                     return;
                 }
 
-                if (loadVersion != _backgroundLoadVersion)
-                {
-                    _sawmill.Debug("SetLobbyAnimation aborted due to background load version change before resource load");
-                    return;
-                }
-
-                // Small delay to allow other operations to proceed before loading resource
-                // This prevents blocking the main thread while keeping resource operations on main thread
-                await Task.Delay(0);
-
                 // Try to get the resource - this will load it if not cached
-                // ResourceCache operations must be on main thread, so we don't use Task.Run here
+                // We don't check for individual files, just try to load and see if it works
                 RSIResource? rsiResource = null;
                 try
                 {
                     // First try to get from cache
                     bool fromCache = _resourceCache.TryGetResource<RSIResource>(targetPath, out rsiResource);
-
+                    
                     if (fromCache && rsiResource != null)
                     {
                         _sawmill.Debug($"RSI resource found in cache: {targetPath}");
-
+                        
                         // Verify that cached resource is still valid by checking if the state exists
                         // This is important after reconnection when files in VFS may have been cleared
                         if (!rsiResource.RSI.TryGetState(requiredState, out _))
@@ -690,7 +658,7 @@ namespace Content.Client.Lobby
                             rsiResource = null;
                         }
                     }
-
+                    
                     if (!fromCache)
                     {
                         _sawmill.Debug($"RSI resource not in cache or invalid, attempting to load: {targetPath}");
@@ -712,12 +680,6 @@ namespace Content.Client.Lobby
                     // If loading failed, wait for resource to be fully loaded
                     // This can happen if files are partially loaded
                     _sawmill.Debug($"Failed to load lobby animation RSI: {targetPath}. Error: {loadEx.Message}. Waiting for complete resource.");
-                    return;
-                }
-
-                if (loadVersion != _backgroundLoadVersion)
-                {
-                    _sawmill.Debug("SetLobbyAnimation result ignored due to background load version change");
                     return;
                 }
 
@@ -750,12 +712,6 @@ namespace Content.Client.Lobby
 
         private void SetLobbyArt(string lobbyArt)
         {
-            _ = SetLobbyArtAsync(lobbyArt);
-        }
-
-        private async Task SetLobbyArtAsync(string lobbyArt)
-        {
-            var loadVersion = _backgroundLoadVersion;
             // Check if art background type is currently selected
             var backgroundType = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
             if (backgroundType == "Random" && _gameTicker.LobbyType != null)
@@ -781,12 +737,7 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            if (loadVersion != _backgroundLoadVersion)
-            {
-                _sawmill.Debug("SetLobbyArt aborted due to background load version change");
-                return;
-            }
-
+            // Hide old art and show loading animation immediately
             Lobby!.LobbyArt.Visible = false;
             ShowLoadingAnimation();
 
@@ -812,8 +763,8 @@ namespace Content.Client.Lobby
                 // Resource is being requested, try to use uploaded path first
                 var uploadedPath = _netTexturesManager.GetUploadedPath(imagePath);
 
-                var fileExists = await Task.Run(() => _resource.ContentFileExists(uploadedPath));
-                if (fileExists)
+                // Check if uploaded resource exists
+                if (_resource.ContentFileExists(uploadedPath))
                 {
                     targetPath = uploadedPath;
                 }
@@ -828,19 +779,7 @@ namespace Content.Client.Lobby
             // Try to set the art, handle errors gracefully
             try
             {
-                if (loadVersion != _backgroundLoadVersion)
-                {
-                    _sawmill.Debug("SetLobbyArt result ignored due to background load version change");
-                    return;
-                }
-
-                await Task.Delay(0);
-
-               TextureResource? textureResource = null;
-                if (_resourceCache.TryGetResource<TextureResource>(targetPath, out var resource))
-                    textureResource = resource;
-
-                if (textureResource != null)
+                if (_resourceCache.TryGetResource<TextureResource>(targetPath, out var textureResource))
                 {
                     Lobby!.LobbyArt.Texture = textureResource.Texture;
                     Lobby!.LobbyArt.Visible = true;
@@ -861,7 +800,6 @@ namespace Content.Client.Lobby
 
         private void SetLobbyParallax(string lobbyParallax)
         {
-            var loadVersion = _backgroundLoadVersion;
             // Check if parallax background type is currently selected
             var backgroundType = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
             if (backgroundType == "Random" && _gameTicker.LobbyType != null)
@@ -887,24 +825,12 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            if (loadVersion != _backgroundLoadVersion)
-            {
-                _sawmill.Debug("SetLobbyParallax aborted due to background load version change");
-                return;
-            }
-
             // Show loading animation for parallax (it may load network textures)
             ShowLoadingAnimation();
 
             // Subscribe to resource loaded events to hide loading animation when parallax textures are ready
             void OnParallaxResourceLoaded(string resourcePath)
             {
-                if (loadVersion != _backgroundLoadVersion)
-                {
-                    _netTexturesManager.ResourceLoaded -= OnParallaxResourceLoaded;
-                    return;
-                }
-
                 // Check if parallax is loaded
                 if (_parallaxManager.IsLoaded(lobbyParallaxPrototype.Parallax))
                 {
@@ -917,12 +843,7 @@ namespace Content.Client.Lobby
 
             _parallaxManager.LoadParallaxByName(lobbyParallaxPrototype.Parallax).ContinueWith(task =>
             {
-                if (loadVersion != _backgroundLoadVersion)
-                {
-                    _netTexturesManager.ResourceLoaded -= OnParallaxResourceLoaded;
-                    return;
-                }
-
+                // Hide loading animation when parallax loading completes
                 if (Lobby != null && _parallaxManager.IsLoaded(lobbyParallaxPrototype.Parallax))
                 {
                     _netTexturesManager.ResourceLoaded -= OnParallaxResourceLoaded;
