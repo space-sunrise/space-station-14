@@ -61,8 +61,7 @@ uplink-pistoltec9-desc = Очень дешёвый в производстве �
 uplink-goldendeagle-name = Золотой Десерт Игл
 uplink-goldendeagle-desc = "Использует патрон "магнум" 45-го калибра, Выгравировано: Все, что у меня осталось от него в памяти — это два позолоченных Desert Eagle 45-го калибра"
 uplink-cornivoregloves-name = перчатки алой жатвы корниворы
-uplink-cornivoregloves-desc = Мы не можем сказать, жаждете ли вы крови... но эти перчатки  - определённо да. Каждый коготь - это хирургический инструмент для кровопускания, заполняющий  свою цель нашим фирменным  химическим  коктейлем. Ваша жертва будет истекать и истекать и истекать... пока вы обдумываете следующий надрез. Помните: красный - это новый чёрный. И он вечно в моде.
-##bombs
+uplink-cornivoregloves-desc = Мы не можем сказать, жаждете ли вы крови... но эти перчатки - определённо да. Каждый коготь - это хирургический инструмент для кровопускания, заполняющий свою цель нашим фирменным химическим коктейлем. Ваша жертва будет истекать и истекать и истекать... пока вы обдумываете следующий надрез. Помните: красный - это новый чёрный. И он вечно в моде.
 uplink-pizza-bomb-name = Nefarious Pizza bomb
 uplink-pizza-bomb-desc = Originally developed covertly by DONK Co to dissuade the heretics who prefer their pizza not in pocket form. This pizza box is wired, and explodes within moments of being opened.
 ## Cyborgs

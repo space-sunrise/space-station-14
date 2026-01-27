@@ -2754,7 +2754,7 @@
   name: uplink-cornivoregloves-name
   description: uplink-cornivoregloves-desc
   productEntity: CornivoreGlovesBiocode
-  discountCategory: RareDiscounts
+  discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 4
   cost:
