@@ -11,6 +11,7 @@ using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Toggleable;
+using Content.Shared.Mobs.Systems;
 using Content.Shared._Sunrise.Abilities.Milira;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
@@ -31,6 +32,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _appearance = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
@@ -249,6 +251,9 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
                     toDisable.Add(ent);
                     SetScaleImmediate(ent, staminaPercent);
                 }
+
+                if (_mobState.IsCritical(ent.Owner))
+                    toDisable.Add(ent);
             }
             else
             {
