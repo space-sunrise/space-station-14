@@ -1,6 +1,9 @@
 using Content.Shared._Sunrise.Abilities.Milira;
 using Content.Shared.Inventory.Events;
+using Content.Shared.Mobs;
 using Content.Shared.Tag;
+using Robust.Shared.GameObjects;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.Abilities.Milira;
 
@@ -17,6 +20,8 @@ public sealed class WingToggleSharedSystem : SharedWingFlightSystem
 
         SubscribeLocalEvent<WingToggleComponent, IsEquippingAttemptEvent>(OnEquipAttempt);
         SubscribeLocalEvent<WingToggleComponent, IsEquippingTargetAttemptEvent>(OnEquipTargetAttempt);
+
+        SubscribeLocalEvent<WingToggleComponent, MobStateChangedEvent>(OnMobStateChanged);
     }
 
     private bool ShouldCancelEquip(Entity<WingToggleComponent> ent, string slot, EntityUid equipment)
@@ -46,5 +51,23 @@ public sealed class WingToggleSharedSystem : SharedWingFlightSystem
         if (ShouldCancelEquip(ent, args.Slot, args.Equipment))
             args.Cancel();
     }
+
+    public void CloseWing(Entity<WingToggleComponent> ent)
+    {
+        if (!ent.Comp.WingsOpened)
+            return;
+
+        RaiseLocalEvent(ent.Owner, new WingCloseEvent());
+    }
+
+    private void OnMobStateChanged(Entity<WingToggleComponent> ent, ref MobStateChangedEvent args)
+    {
+        if (args.NewMobState == MobState.Dead)
+            CloseWing(ent);
+    }
 }
 
+[Serializable, NetSerializable]
+public sealed class WingCloseEvent : EntityEventArgs
+{
+}
