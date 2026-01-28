@@ -110,6 +110,16 @@
       map: [ "enum.PipeVisualLayers.Pipe" ]
     - state: gasFilterF
       map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+<<<<<<< HEAD
+=======
+    # region starlight
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasFilterFlipped
+        Secondary: GasFilterFlippedAlt1
+        Tertiary: GasFilterFlippedAlt2
+    # end region
+>>>>>>> e9439bd201 (Unfix)
   - type: Flippable
     mirrorEntity: GasFilter
   - type: Appearance
@@ -230,6 +240,16 @@
       map: [ "enum.PipeVisualLayers.Pipe" ]
     - state: gasMixerF
       map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+<<<<<<< HEAD
+=======
+    # region starlight
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasMixerFlipped
+        Secondary: GasMixerFlippedAlt1
+        Tertiary: GasMixerFlippedAlt2
+    # end region
+>>>>>>> e9439bd201 (Unfix)
   - type: Appearance
   - type: GenericVisualizer
     visuals:
