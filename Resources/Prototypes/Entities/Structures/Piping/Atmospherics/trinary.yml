@@ -112,7 +112,10 @@
       map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> e9439bd201 (Unfix)
     # region starlight
     - type: AtmosPipeLayers
       alternativePrototypes:
@@ -120,6 +123,7 @@
         Secondary: GasFilterFlippedAlt1
         Tertiary: GasFilterFlippedAlt2
     # end region
+<<<<<<< HEAD
 >>>>>>> e9439bd201 (Unfix)
 =======
   # region starlight
@@ -130,6 +134,8 @@
       Tertiary: GasFilterFlippedAlt2
   # end region
 >>>>>>> 5774eaee7c (Flipped Mixer and Filter fix)
+=======
+>>>>>>> e9439bd201 (Unfix)
   - type: Flippable
     mirrorEntity: GasFilter
   - type: Appearance
@@ -252,7 +258,10 @@
       map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> e9439bd201 (Unfix)
     # region starlight
     - type: AtmosPipeLayers
       alternativePrototypes:
@@ -260,6 +269,7 @@
         Secondary: GasMixerFlippedAlt1
         Tertiary: GasMixerFlippedAlt2
     # end region
+<<<<<<< HEAD
 >>>>>>> e9439bd201 (Unfix)
 =======
   # region starlight
@@ -270,6 +280,8 @@
       Tertiary: GasMixerFlippedAlt2
   # end region
 >>>>>>> 5774eaee7c (Flipped Mixer and Filter fix)
+=======
+>>>>>>> e9439bd201 (Unfix)
   - type: Appearance
   - type: GenericVisualizer
     visuals:
