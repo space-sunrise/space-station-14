@@ -176,16 +176,18 @@
           types:
             Poison: 0.1
       # dwarves take less toxin damage and heal a marginal amount of brute
-      - !type:HealthChange
-        conditions:
-        - !type:ReagentCondition
-          reagent: Ethanol
-          min: 15
-        - !type:MetabolizerTypeCondition
-          type: [ Dwarf ]
-        damage:
-          types:
-            Poison: 0.02
+      # Sunrise-Start
+      # - !type:HealthChange
+      #   conditions:
+      #   - !type:ReagentCondition
+      #     reagent: Ethanol
+      #     min: 15
+      #   - !type:MetabolizerTypeCondition 
+      #     type: [ Dwarf ]
+      #   damage:
+      #     types:
+      #       Poison: 0.02
+      # Sunrise-End
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
