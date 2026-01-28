@@ -1,3 +1,6 @@
+# If you will add more custom gases here, consider adding CVars for
+# making it's price configurable -> _Sunrise\Atmos\EntitySystems\AtmosphereSystem.CCVars.cs
+
 - type: gas
   id: BZ
   name: gases-bz
