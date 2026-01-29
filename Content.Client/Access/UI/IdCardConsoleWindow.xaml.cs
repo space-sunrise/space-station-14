@@ -68,7 +68,19 @@ namespace Content.Client.Access.UI
             JobTitleSaveButton.OnPressed += _ => SubmitData();
 
             var jobs = _prototypeManager.EnumeratePrototypes<JobPrototype>().ToList();
-            jobs.Sort((x, y) => string.Compare(x.LocalizedName, y.LocalizedName, StringComparison.CurrentCulture));
+
+            // Sunrise-Start
+            // If allowed jobs list is specified, sort jobs according to the allowedJobs order
+            if (_allowedJobs.Count > 0)
+            {
+                jobs = jobs.Where(job => _allowedJobs.Contains(job.ID))
+                          .OrderBy(job => _allowedJobs.IndexOf(job.ID))
+                          .ToList();
+            }
+            else
+            {  // Sunrise-End
+                jobs.Sort((x, y) => string.Compare(x.LocalizedName, y.LocalizedName, StringComparison.CurrentCulture));
+            }  // Sunrise-Edit
 
             foreach (var job in jobs)
             {

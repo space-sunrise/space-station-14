@@ -166,11 +166,11 @@
       - Cargo
       - CargoPurchaseAccess
     allowedJobs:
-      - PrisonTrainee
-      - PrisonChef
-      - PrisonDoctor
-      - PrisonScientist
-      - PrisonEngineer
-      - PrisonWorker
-      - PrisonInspector
       - HeadOfPrison
+      - PrisonInspector
+      - PrisonWorker
+      - PrisonEngineer
+      - PrisonScientist
+      - PrisonDoctor
+      - PrisonChef
+      - PrisonTrainee
