@@ -267,6 +267,19 @@
 
 - type: entity
   parent: BaseFlatpack
+  id: SyndicateMicrowaveFlatpack
+  name: microwave flatpack
+  description: A flatpack used for constructing a microwave.
+  components:
+  - type: Sprite
+    layers:
+    - state: microwave
+  - type: Flatpack
+    allowUnpackOnTables: true
+    entity: SyndicateMicrowave
+
+- type: entity
+  parent: BaseFlatpack
   id: HydroponicsTrayFlatpack
   name: hydroponics tray flatpack
   description: A flatpack used for constructing a hydroponics tray.
@@ -280,17 +293,3 @@
     guides:
     - Botany
     - Chemicals
-
-- type: entity
-  parent: [ BaseFlatpack, BaseSyndicateContraband ]
-  id: SyndicateMicrowaveFlatpack
-  name: donk co. microwave flatpack
-  description: A flatpack used for constructing a microwave too hot for Nanotrasen to handle.
-  components:
-  - type: Item
-    size: Normal
-  - type: Flatpack
-    entity: SyndicateMicrowave
-  - type: GuideHelp
-    guides:
-    - FoodRecipes

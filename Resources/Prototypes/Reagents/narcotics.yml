@@ -170,10 +170,10 @@
         conditions:
         - !type:ReagentCondition
           reagent: Stimulants
-          min: 45
+          min: 50
         damage:
           types:
-            Poison: 3
+            Poison: 1
       # Interactions
       - !type:ModifyStatusEffect
         conditions:
@@ -343,7 +343,7 @@
           reagent: Nocturine
           min: 8
         effectProto: StatusEffectForcedSleeping
-        time: 9
+        time: 6
         delay: 5
 
 - type: reagent

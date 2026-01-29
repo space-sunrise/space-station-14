@@ -5,12 +5,12 @@
   description: Randomly teleports you within a large distance.
   components:
   - type: LimitedCharges
-    maxCharges: 2
+    maxCharges: 1
   - type: AutoRecharge
-    rechargeDuration: 1200
+    rechargeDuration: 600
   - type: Action
     checkCanInteract: false
-    useDelay: 10
+    useDelay: 5
     itemIconStyle: BigAction
     priority: -20
     icon:
@@ -35,7 +35,7 @@
   - type: LimitedCharges
     maxCharges: 3
   - type: AutoRecharge
-    rechargeDuration: 600
+    rechargeDuration: 300
 
 - type: entity
   parent: BaseImplantAction

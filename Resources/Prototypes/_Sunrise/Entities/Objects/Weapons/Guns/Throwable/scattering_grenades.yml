@@ -47,7 +47,7 @@
       map: ["enum.TriggerVisualLayers.Base"]
   - type: ScatteringGrenade
     fillPrototype: SyndieMiniBomb
-    distance: 1
+    distance: 4
     capacity: 3
   - type: TimerTrigger
     beepSound:

@@ -866,8 +866,8 @@ BaseUplinkNTERT100BC: null
 BaseUplinkNTERT200BC: null
 SupermatterSliver: null
 CartridgePistol: null
-AtmosDeviceFanTinyDev: AtmosDeviceFanTiny
-AtmosDeviceFanDirectionalDev: AtmosDeviceFanDirectional
+AtmosDeviceFanTiny: AtmosDeviceFanTinyDev
+AtmosDeviceFanDirectional: AtmosDeviceFanDirectionalDev
 MagazineBR64Extended: null
 MagazineBR64: null
 MagazineAR18Extended: null
@@ -889,7 +889,7 @@ WeaponEnergyGunMini: WeaponMiniEnergyGun
 GunSafeCombineSmallArms: SpawnerSafeSmallArms
 AphrodisiacChemistryBottle: null
 PatchViagra: null
-ClothingHandsGlovesBoxingRigged: GlovesBoxingRiggedRandomSpawner
+
 MagazinePPSH41: MagazinePistolSubMachineGunPPSHExtended
 MagazinePPSH41Extended: null
 WeaponSTG44: null
@@ -943,8 +943,7 @@ WeaponRifleV31: null
 MagazineV31: null
 WeaponEnergyGunMultiphase: WeaponMultiphaseGun
 ClothingBeltAssaultFilled: null
-MagazinePistolSubMachineGunCaseless: BaseMagazinePistolCaselessRifleExtended
-SyndicateCircuitBoard: SyndimovCircuitBoard
+
 # 2025-12-21
 ClothingNeckCMOCloak: ClothingNeckMedCloak
 

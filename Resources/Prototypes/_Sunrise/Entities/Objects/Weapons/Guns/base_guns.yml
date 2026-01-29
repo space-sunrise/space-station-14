@@ -23,15 +23,15 @@
     useKey: true
     selectedMode: SemiAuto
   - type: MeleeWeapon
-    wideAnimationRotation: 0
-    range: 1
+    angle: 60
+    range: 1.5
     damage:
       types:
         Blunt: 8
         Structural: 2
     bluntStaminaDamageFactor: 2.0
-    soundHit:
-      collection: MetalThud
+    attackRate: 1.25
+    autoAttack: false
   - type: AltFireMelee
     attackType: Heavy
 

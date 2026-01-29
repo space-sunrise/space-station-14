@@ -164,11 +164,13 @@
   color: "#FDD023"
   metabolisms:
     Poison:
-      metabolismRate : 2.0
       effects:
       - !type:Electrocute
-        siemensCoefficient: 0.5
-        probability: 0.5
+        probability: 0.35
+        conditions: # Sunrise-Edit
+        - !type:ReagentCondition
+          reagent: Licoxide
+          min: 1
 
 - type: reagent
   id: Razorium

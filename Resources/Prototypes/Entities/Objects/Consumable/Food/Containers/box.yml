@@ -721,17 +721,13 @@
 - type: entityTable
   id: HappyHonkToyUnsafeEntityTable
   table: !type:GroupSelector
-    children: # Total Weight 6
-    - id: ClothingHeadHatCatEars
-      weight: 0.25
+    children:
     - id: C4
-      weight: 0.05
+      weight: 0.02
     - id: ToyMarauder
     - id: ToyMauler
     - id: ToyNuke
     - id: ToySword
-    - id: WeaponRevolverPythonAP
-      weight: 0.4
     - id: BalloonSyn
-      weight: 0.3
+      weight: 0.6
     - id: PlushieNuke

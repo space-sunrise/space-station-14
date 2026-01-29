@@ -47,14 +47,10 @@
   parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterStorageBase
   components:
-  - type: Item
-    size: Normal
-    shape:
-    - 0,0,1,2
+  - type: ContainerInteractionAnimationVisuals # Sunrise added
   - type: Storage
     grid:
     - 0,0,2,1
-    maxItemSize: Small
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -71,7 +67,6 @@
     - Vest
     - WhitelistChameleon
     - NudeBottom # INTERACTIONS
-  - type: ContainerInteractionAnimationVisuals
   # Sunrise-End
 
 - type: entity
@@ -266,6 +261,4 @@
   id: ClothingOuterBaseMedium
   components:
   - type: Item
-    size: Large
-    shape:
-    - 0,0,2,3
+    size: Huge

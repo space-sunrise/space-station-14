@@ -140,7 +140,7 @@
     sprite: Clothing/OuterClothing/Vests/detvest.rsi
 
 - type: entity
-  parent: [ ClothingOuterBaseMedium, AllowSuitStorageClothing ]
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
   id: ClothingOuterArmorBaseCarapace
   abstract: true
   components:
@@ -154,6 +154,10 @@
         Caustic: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.65
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: HeldSpeedModifier
   - type: GroupExamine
 
 - type: entity
@@ -186,7 +190,7 @@
 
 #Web vest
 - type: entity
-  parent: [ClothingOuterArmorBase, ClothingOuterStorageBase, BaseSyndicateContraband]
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSyndicateContraband]
   id: ClothingOuterVestWeb
   name: web vest
   description: A synthetic armor vest. This one has added webbing and ballistic plates.
@@ -204,18 +208,16 @@
         Slash: 0.6
         Piercing: 0.3
         Heat: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
   - type: StaticPrice
     price: 1500
-  # Sunrise-Start
-  - type: StaminaResistance
-    damageCoefficient: 0.8
-  - type: ExplosionResistance
-    damageCoefficient: 0.85
-  # Sunrise-End
+  - type: StaminaResistance # Sunrise-Add
+    damageCoefficient: 0.75 # Sunrise-Add
 
 #Elite web vest
 - type: entity
-  parent: [ClothingOuterArmorBase, AllowSuitStorageClothing, BaseSyndicateContraband]
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSyndicateContraband]
   id: ClothingOuterVestWebElite
   name: elite web vest
   description: A synthetic armor vest. This one has added webbing and heat resistant fibers.
@@ -265,6 +267,8 @@
         Slash: 0.7
         Piercing: 0.5
         Heat: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
 
 
 # Armor covering multiple body parts including limbs

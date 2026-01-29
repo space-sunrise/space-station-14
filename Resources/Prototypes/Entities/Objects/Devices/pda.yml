@@ -1843,14 +1843,6 @@
   # Sunrise-End
 
 - type: entity
-  parent: ChameleonPDA
-  id: ChameleonAgentPDA
-  suffix: Chameleon, Agent ID
-  components:
-  - type: Pda
-    id: AgentIDCard
-
-- type: entity
   parent: BaseWidePDA
   id: WizardPDA
   name: wizard PDA

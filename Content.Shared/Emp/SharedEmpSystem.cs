@@ -62,8 +62,7 @@ public abstract class SharedEmpSystem : EntitySystem
     /// <param name="energyConsumption">The amount of energy consumed by the EMP pulse.</param>
     /// <param name="duration">The duration of the EMP effects.</param>
     /// <param name="user">The player that caused the effect. Used for predicted audio.</param>
-    /// <param name="predicted">Whether this pulse is being replicated on the client.</param>
-    public void EmpPulse(EntityCoordinates coordinates, float range, float energyConsumption, TimeSpan duration, EntityUid? user = null, bool predicted = true)
+    public void EmpPulse(EntityCoordinates coordinates, float range, float energyConsumption, TimeSpan duration, EntityUid? user = null)
     {
         _entSet.Clear();
         _lookup.GetEntitiesInRange(coordinates, range, _entSet);
@@ -75,10 +74,7 @@ public abstract class SharedEmpSystem : EntitySystem
         if (_net.IsServer)
             Spawn(EmpPulseEffectPrototype, coordinates);
 
-        if (predicted)
-            _audio.PlayPredicted(EmpSound, coordinates, user);
-        else
-            _audio.PlayPvs(EmpSound, coordinates);
+        _audio.PlayPredicted(EmpSound, coordinates, user);
     }
 
     /// <summary>
