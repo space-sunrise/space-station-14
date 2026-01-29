@@ -21,8 +21,6 @@
     energy: 3
     color: "#4faffb"
   - type: CarpEgg
-    # Parameters are set dynamically by the queen that spawned the egg
-    # requiredVolume, hatchDelay, etc. are configured per queen
   - type: Destructible
     thresholds:
     - trigger: !type:DamageTrigger

@@ -26,7 +26,6 @@
     maxArmySize: 5
     healPerHunger: 0.2
     maxHealPerTick: 5
-    # Egg configuration - parameters for spawned eggs
     eggRequiredVolume: 15
     eggHatchDelay: 5
     eggMaxWaitWithoutLiquid: 30

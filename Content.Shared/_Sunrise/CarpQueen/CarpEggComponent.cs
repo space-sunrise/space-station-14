@@ -9,51 +9,50 @@ public sealed partial class CarpEggComponent : Component
     [DataField("queen")] public EntityUid? Queen;
 
     /// <summary>
-    /// Required puddle volume (u) to hatch.
+    /// Объем лужи, необходимый для вылупления.
     /// </summary>
     [DataField("requiredVolume")] public float RequiredVolume = 10f;
 
     /// <summary>
-    /// Seconds between hatch checks.
+    /// Секунд между проверками вылупления.
     /// </summary>
     [DataField("checkInterval")] public float CheckInterval = 3f;
 
     [DataField("accum")] public float Accum;
 
     /// <summary>
-    /// Seconds the egg must remain on valid liquid before hatching.
+    /// Секунд, сколько икра должна пролежать на жидкости перед вылуплением.
     /// </summary>
     [DataField("hatchDelay")] public float HatchDelay = 5f;
 
     /// <summary>
-    /// Whether current tile conditions are sufficient for hatching.
+    /// Достаточны ли текущие условия тайла для вылупления.
     /// </summary>
     [DataField("eligible")] public bool Eligible;
 
     /// <summary>
-    /// Accumulated time spent waiting without valid liquid. If exceeds MaxWaitWithoutLiquid, egg breaks.
+    /// Накопленное время ожидания без жидкости. При превышении MaxWaitWithoutLiquid икра ломается.
     /// </summary>
     [DataField("waitElapsed")] public float WaitElapsed;
 
     /// <summary>
-    /// Max seconds to wait for liquid to appear before breaking the egg.
+    /// Максимум секунд ожидания появления жидкости перед разрушением икры.
     /// </summary>
     [DataField("maxWaitWithoutLiquid")] public float MaxWaitWithoutLiquid = 30f;
 
     /// <summary>
-    /// Range (in tiles) to search for queen when hatching.
-    /// If queen is within this range, carp becomes servant; otherwise, it imprints on nearby players.
+    /// Радиус (тайлы) поиска королевы при вылуплении.
+    /// Если королева в радиусе - карп становится слугой, иначе запоминает игроков.
     /// </summary>
     [DataField("queenSearchRange")] public float QueenSearchRange = 3f;
 
     /// <summary>
-    /// Range (in tiles) to search for nearby players to imprint on when queen is not nearby.
-    /// Increased to allow carps to remember friends from further away.
+    /// Радиус (тайлы) поиска игроков для запоминания, когда королевы нет рядом.
     /// </summary>
     [DataField("friendSearchRange")] public float FriendSearchRange = 6f;
 
     /// <summary>
-    /// Amount of reagent injected per carp bite.
+    /// Количество реагента, впрыскиваемое при укусе карпа.
     /// </summary>
     [DataField("biteReagentAmount")] public FixedPoint2 BiteReagentAmount = FixedPoint2.New(1);
 }

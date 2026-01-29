@@ -57,8 +57,6 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
         if (TryComp<HungerComponent>(uid, out var hunger))
             component.LastObservedHunger = _hunger.GetHunger(hunger);
 
-        // Initialize random female TTS voice for Carp Queen
-        // Queens should have female voices to match their commanding presence
         if (TryComp<TTSComponent>(uid, out var ttsComponent))
         {
             TryAssignRandomFemaleVoiceToQueen(ttsComponent);
@@ -73,7 +71,6 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
         if (component.ArmyMobSpawnOptions.Count == 0)
             return;
 
-        // Limit total eggs + servants to MaxArmySize. Prune invalid references first.
         var toRemoveServants = new List<EntityUid>();
         var aliveServants = 0;
         foreach (var s in component.Servants)
@@ -106,7 +103,6 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
             return;
         }
 
-        // Hunger cost like Rat King
         if (!TryComp<HungerComponent>(uid, out var hungerComp))
             return;
 
@@ -118,12 +114,9 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
 
         args.Handled = true;
         _hunger.ModifyHunger(uid, -component.HungerPerSummon, hungerComp);
-        // Spawn egg instead of immediate servant
         var egg = Spawn("MobCarpEgg", Transform(uid).Coordinates);
         var eggComp = EnsureComp<CarpEggComponent>(egg);
         eggComp.Queen = uid;
-
-        // Configure egg parameters from queen component
         eggComp.RequiredVolume = component.EggRequiredVolume;
         eggComp.HatchDelay = component.EggHatchDelay;
         eggComp.MaxWaitWithoutLiquid = component.EggMaxWaitWithoutLiquid;
@@ -133,8 +126,6 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
 
         Dirty(egg, eggComp);
         component.Eggs.Add(egg);
-
-        // Trigger hatch check now that queen is assigned (covers tiles already containing liquid/FloorWater)
         _carpEggs.RequestHatchCheck(egg);
         _popup.PopupEntity(Loc.GetString("carp-queen-summon-popup"), uid, uid);
     }
@@ -156,7 +147,6 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
         if (!Exists(target))
             return;
 
-        // Accept any living mob (players or AI). Ignore objects.
         var valid = false;
         if (TryComp<MobStateComponent>(target, out var mobState))
             valid = mobState.CurrentState != MobState.Dead;
@@ -170,7 +160,6 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
 
         foreach (var servant in component.Servants)
         {
-            // Skip if servant is being deleted or doesn't exist
             if (TerminatingOrDeleted(servant))
                 continue;
 
@@ -196,7 +185,6 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
     {
         base.Update(frameTime);
 
-        // Small self-heal when hunger increases (i.e., when eating).
         var query = EntityQueryEnumerator<CarpQueenComponent, HungerComponent>();
         while (query.MoveNext(out var uid, out var queen, out var hunger))
         {
@@ -210,7 +198,7 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
                     var spec = new DamageSpecifier();
                     spec.DamageDict["Blunt"] = -heal / 2f;
                     spec.DamageDict["Slash"] = -heal / 2f;
-                    spec.DamageDict["Heat"] = 0f; // leave as 0; can be adjusted later
+                    spec.DamageDict["Heat"] = 0f;
                     _damageable.TryChangeDamage(uid, spec, true, false);
                 }
             }
@@ -223,7 +211,6 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
     {
         base.UpdateServantNpc(uid, orderType);
 
-        // Only update if this is actually a servant (has CarpQueenServantComponent)
         if (!TryComp<CarpQueenServantComponent>(uid, out var servant) || servant.Queen == null || !Exists(servant.Queen.Value))
             return;
 
@@ -233,11 +220,8 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
         if (htn.Plan != null)
             _htn.ShutdownPlan(htn);
 
-        // Servant always follows queen and executes her commands
         _npc.SetBlackboard(uid, NPCBlackboard.FollowTarget, new EntityCoordinates(servant.Queen.Value, Vector2.Zero));
 
-        // Configure order and follow distances as requested (close follow ~1 tile)
-        // Convert CarpQueenOrderType to RatKingOrderType for HTN compatibility
         var ratKingOrder = SharedCarpQueenSystem.ConvertToRatKingOrder(orderType);
         _npc.SetBlackboard(uid, NPCBlackboard.CurrentOrders, ratKingOrder);
         _npc.SetBlackboard(uid, "FollowCloseRange", 1.0f);
@@ -258,10 +242,6 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
         _chat.TrySendInGameICMessage(uid, msg, InGameICChatType.Speak, true);
     }
 
-    /// <summary>
-    /// Attempts to assign a random female voice to the carp queen's TTS component.
-    /// Falls back to a default voice if voice selection fails.
-    /// </summary>
     private void TryAssignRandomFemaleVoiceToQueen(TTSComponent ttsComponent)
     {
         try
@@ -284,10 +264,6 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
         }
     }
 
-    /// <summary>
-    /// Gets all available female TTS voices that can be used at round start.
-    /// Filters out sponsor-only voices.
-    /// </summary>
     private List<TTSVoicePrototype> GetAvailableFemaleVoices()
     {
         var femaleVoices = new List<TTSVoicePrototype>();
@@ -303,20 +279,13 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
         return femaleVoices;
     }
 
-    /// <summary>
-    /// Checks if a voice is suitable for the carp queen (female, round start, not sponsor-only).
-    /// </summary>
     private bool IsVoiceSuitableForQueen(TTSVoicePrototype voice)
     {
         return voice.Sex == Sex.Female && voice.RoundStart && !voice.SponsorOnly;
     }
 
-    /// <summary>
-    /// Assigns a fallback female voice when random selection fails.
-    /// </summary>
     private void AssignFallbackVoice(TTSComponent ttsComponent)
     {
-        // Charlotte is a reliable female voice available by default
         ttsComponent.VoicePrototypeId = "Charlotte";
     }
 }

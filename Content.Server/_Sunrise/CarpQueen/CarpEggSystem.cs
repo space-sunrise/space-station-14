@@ -65,7 +65,6 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
         var query = EntityQueryEnumerator<CarpEggComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var egg, out var xform))
         {
-            // If not currently eligible, periodically re-check conditions to become eligible
             if (!egg.Eligible)
             {
                 egg.Accum += frameTime;
@@ -76,7 +75,6 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
                     TryHatchCheck(uid, egg);
                 }
 
-                // If waited too long without liquid, destroy the egg (same as if it was broken)
                 if (egg.WaitElapsed >= egg.MaxWaitWithoutLiquid)
                 {
                     _destructible.DestroyEntity(uid);
@@ -85,11 +83,9 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
                 continue;
             }
 
-            // Eligible: count down to hatch
             egg.Accum += frameTime;
             if (egg.Accum >= egg.HatchDelay)
             {
-                // Validate still on liquid before hatching
                 if (TryComp<MapGridComponent>(xform.GridUid, out var grid))
                 {
                     var tile = _map.GetTileRef(xform.GridUid.Value, grid, xform.Coordinates);
@@ -100,10 +96,8 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
                     }
                 }
 
-                // Conditions no longer valid
                 egg.Eligible = false;
                 egg.Accum = 0f;
-                // Do not reset WaitElapsed here so total wait continues accumulating until liquid appears
                 ResetVisual(uid);
             }
         }
@@ -111,11 +105,9 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
 
     private void OnServantStartup(EntityUid uid, CarpQueenServantComponent servant, ComponentStartup args)
     {
-        // Queen present: follow and use her current orders
         if (servant.Queen != null && TryComp(servant.Queen.Value, out CarpQueenComponent? queen))
         {
             _npc.SetBlackboard(uid, NPCBlackboard.FollowTarget, new EntityCoordinates(servant.Queen.Value, Vector2.Zero));
-            // Convert CarpQueenOrderType to RatKingOrderType for HTN compatibility
             var ratKingOrder = SharedCarpQueenSystem.ConvertToRatKingOrder(queen.CurrentOrder);
             _npc.SetBlackboard(uid, NPCBlackboard.CurrentOrders, ratKingOrder);
             _npc.SetBlackboard(uid, "FollowCloseRange", 1.0f);
@@ -123,12 +115,9 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
         }
         else
         {
-            // No queen: default to Loose so directly spawned servants are active
-            // Convert to RatKingOrderType for HTN compatibility
             _npc.SetBlackboard(uid, NPCBlackboard.CurrentOrders, RatKingOrderType.Loose);
         }
 
-        // If HTN is already present, force a replan now
         if (TryComp<HTNComponent>(uid, out var htn))
         {
             if (htn.Plan != null)
@@ -139,7 +128,6 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
 
     private void OnEggMapInit(EntityUid uid, CarpEggComponent egg, MapInitEvent args)
     {
-        // Defer until queen is assigned to avoid spawning unlinked servants
         if (egg.Queen == null)
             return;
 
@@ -159,12 +147,9 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
 
     private void OnSolutionChanged(ref SolutionChangedEvent args)
     {
-        // If a puddle changed, re-check eggs on that tile
-        // Skip if entity is being deleted or doesn't have required components
         if (!TryComp<PuddleComponent>(args.Solution.Owner, out var _))
             return;
 
-        // Additional safety check - ensure entity is valid
         if (TerminatingOrDeleted(args.Solution.Owner))
             return;
 
@@ -183,7 +168,6 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
 
     private void OnPuddleMapInit(EntityUid uid, PuddleComponent puddle, MapInitEvent args)
     {
-        // New puddle spawned: check eggs on this tile
         var xform = Transform(uid);
         if (xform.GridUid == null)
             return;
@@ -220,7 +204,6 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
         if (!TryComp<TransformComponent>(uid, out var xform))
             return;
 
-        // Only hatch if not inside containers
         if (xform.GridUid == null)
             return;
         if (_containers.IsEntityInContainer(uid))
@@ -237,7 +220,6 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
                 egg.Eligible = true;
                 egg.Accum = 0f;
                 egg.WaitElapsed = 0f;
-                // Show popup locally to queen if present, otherwise to all nearby
                 if (egg.Queen != null && Exists(egg.Queen.Value))
                     _popup.PopupEntity(Loc.GetString("carp-egg-activates"), uid, egg.Queen.Value);
                 else
@@ -258,7 +240,6 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
 
     private bool HasSufficientLiquid(TileRef tile, float required)
     {
-        // Puddle volume check
         if (_puddles.TryGetPuddle(tile, out var puddle))
         {
             var vol = _puddles.CurrentVolume(puddle);
@@ -266,11 +247,9 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
                 return true;
         }
 
-        // Floor water entity check counts as sufficient
         var gridId = tile.GridUid;
         if (gridId != null)
         {
-            // Check anchored entities first
             if (gridId is { } gid && TryComp<MapGridComponent>(gid, out var grid))
             {
                 var enumerator = _map.GetAnchoredEntitiesEnumerator(gid, grid, tile.GridIndices);
@@ -279,14 +258,12 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
                     if (!ent.HasValue)
                         continue;
 
-                    // Check by prototype ID
                     var meta = MetaData(ent.Value);
                     if (meta.EntityPrototype?.ID == "FloorWaterEntity")
                         return true;
                 }
             }
 
-            // Also check all entities in tile (fallback)
             var entities = _lookup.GetEntitiesInTile(tile);
             foreach (var ent in entities)
             {
@@ -302,7 +279,6 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
     private void UpdateVisualForTile(EntityUid uid, TileRef tile)
     {
         Color color;
-        // Prefer puddle solution color if present
         if (_puddles.TryGetPuddle(tile, out var puddle) && TryComp(puddle, out PuddleComponent? puddleComp) && puddleComp.Solution != null)
         {
             var sol = puddleComp.Solution.Value.Comp.Solution;
@@ -310,25 +286,21 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
         }
         else
         {
-            // FloorWaterEntity fallback -> use Water reagent color
             color = _protos.Index<ReagentPrototype>("Water").SubstanceColor;
         }
 
-        // Tint light only on server; sprite tint is clientside visualizer concern
         _lights.SetColor(uid, color);
         _appearance.SetData(uid, CarpEggVisuals.OverlayColor, color);
     }
 
     private void ResetVisual(EntityUid uid)
     {
-        // Reset to white
         _lights.SetColor(uid, Color.White);
         _appearance.SetData(uid, CarpEggVisuals.OverlayColor, Color.White);
     }
 
     private void Hatch(EntityUid uid, CarpEggComponent egg, TransformComponent xform)
     {
-        // Get tile information for liquid color and reagents
         Color liquidColor = Color.White;
         List<Color> liquidColors = new();
         Dictionary<string, FixedPoint2> rememberedReagents = new();
@@ -337,22 +309,18 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
         {
             var tile = _map.GetTileRef(xform.GridUid.Value, grid, xform.Coordinates);
 
-            // Always include FloorWaterEntity color if present (base water color)
             var waterColor = _protos.Index<ReagentPrototype>("Water").SubstanceColor;
             liquidColors.Add(waterColor);
 
-            // Get additional colors from puddle if present
             if (_puddles.TryGetPuddle(tile, out var puddle) && TryComp(puddle, out PuddleComponent? puddleComp) && puddleComp.Solution != null)
             {
                 var sol = puddleComp.Solution.Value.Comp.Solution;
                 liquidColor = sol.GetColor(_protos);
 
-                // Remember all reagents in the solution
                 foreach (var (reagentId, quantity) in sol.Contents)
                 {
                     rememberedReagents[reagentId.ToString()] = quantity;
 
-                    // Get individual color for each reagent (avoid duplicates)
                     if (_protos.TryIndex<ReagentPrototype>(reagentId.ToString(), out var reagentProto))
                     {
                         var reagentColor = reagentProto.SubstanceColor;
@@ -365,18 +333,15 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
             }
             else
             {
-                // No puddle, just use water color as base
                 liquidColor = waterColor;
-                rememberedReagents["Water"] = FixedPoint2.New(30); // Assume water
+                rememberedReagents["Water"] = FixedPoint2.New(30);
             }
         }
 
-        // Determine spawn prototype: mostly rainbow carp, rarely holo/dungeon
-        string protoId = "MobCarpServantRainbow"; // Default to rainbow
+        string protoId = "MobCarpServantRainbow";
 
         if (egg.Queen != null && TryComp(egg.Queen.Value, out CarpQueenComponent? queen))
         {
-            // Use spawn chances from queen component
             var roll = _rand.Next(100);
             var cumulative = 0;
             var selected = false;
@@ -392,21 +357,18 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
                 }
             }
 
-            // If no spawn chance matched (sum < 100), default to rainbow
             if (!selected)
                 protoId = "MobCarpServantRainbow";
         }
 
         var mob = Spawn(protoId, xform.Coordinates);
 
-        // Store liquid memory
         var memory = EnsureComp<CarpServantMemoryComponent>(mob);
         memory.LiquidColor = liquidColor;
         memory.LiquidColors = liquidColors;
         memory.RememberedReagents = rememberedReagents;
         memory.BiteReagentAmount = egg.BiteReagentAmount;
 
-        // Check if queen is nearby
         bool queenNearby = false;
         EntityUid? closestFriend = null;
         float closestDistance = float.MaxValue;
@@ -418,12 +380,10 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
             var mobCoords = xform.Coordinates.ToMap(EntityManager, _xformSys);
             var distance = (queenCoords.Position - mobCoords.Position).Length();
 
-            // Consider queen "nearby" if within configured range
             if (distance <= egg.QueenSearchRange)
                 queenNearby = true;
         }
 
-        // Always remember nearby players (within configured range)
         var nearbyEntities = new HashSet<EntityUid>();
         _lookup.GetEntitiesInRange(xform.Coordinates, egg.FriendSearchRange, nearbyEntities);
 
@@ -431,20 +391,15 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
 
         foreach (var entity in nearbyEntities)
         {
-            // Check if it's a humanoid (same as MobTomatoKiller uses whitelist with HumanoidAppearanceComponent)
-            // This will match both players and AI with humanoid appearance
             if (HasComp<HumanoidAppearanceComponent>(entity))
             {
                 memory.RememberedFriends.Add(entity);
 
-                // Add to faction exceptions so they won't be attacked (unless queen orders)
-                // Use NpcFactionSystem to properly add to ignored list
                 if (!_npcFaction.IsIgnored((mob, exception), entity))
                 {
                     _npcFaction.IgnoreEntity((mob, exception), (entity, null));
                 }
 
-                // Track closest friend for following
                 var entityXform = Transform(entity);
                 var entityCoords = entityXform.Coordinates.ToMap(EntityManager, _xformSys);
                 var mobCoords = xform.Coordinates.ToMap(EntityManager, _xformSys);
@@ -458,10 +413,8 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
             }
         }
 
-        // If queen is nearby, make carp a servant; otherwise, let it work as normal carp
         if (queenNearby && egg.Queen != null && Exists(egg.Queen.Value))
         {
-            // Make carp a servant of the queen
             if (TryComp(egg.Queen, out CarpQueenComponent? qc))
             {
                 var queenUid = egg.Queen.Value;
@@ -475,47 +428,37 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
                 comp.Queen = egg.Queen;
                 Dirty(mob, comp);
                 qc.Servants.Add(mob);
-                // Remove egg from tracking
                 qc.Eggs.Remove(uid);
 
-                // Follow queen and execute her commands
                 _npc.SetBlackboard(mob, NPCBlackboard.FollowTarget, new EntityCoordinates(egg.Queen.Value, Vector2.Zero));
                 _carpQueenSystem.UpdateServantNpc(mob, qc.CurrentOrder);
             }
         }
         else
         {
-            // Queen is not nearby - carp works as normal carp (like MobTomatoKiller)
-            // Remove servant components if they exist
             RemComp<CarpQueenServantComponent>(mob);
 
-            // Use normal carp HTN compound instead of RatServantCompound
             if (TryComp<HTNComponent>(mob, out var htn))
             {
-                // Change HTN root task to normal carp behavior
                 htn.RootTask = new HTNCompoundTask { Task = "DragonCarpCompound" };
                 _htn.Replan(htn);
             }
 
-            // Set follow target to closest friend if available
             if (closestFriend != null)
             {
                 _npc.SetBlackboard(mob, NPCBlackboard.FollowTarget, new EntityCoordinates(closestFriend.Value, Vector2.Zero));
             }
 
-            // Still remove egg from tracking if queen exists
             if (TryComp(egg.Queen, out CarpQueenComponent? qc))
             {
                 qc.Eggs.Remove(uid);
             }
         }
 
-        // Apply color to carp (will be handled by visualizer system)
         Dirty(mob, memory);
         QueueDel(uid);
     }
 
-    // Public entry-point for other systems (e.g. queen) to re-check hatching conditions
     public void RequestHatchCheck(EntityUid uid)
     {
         if (!TryComp(uid, out CarpEggComponent? egg))
@@ -526,7 +469,6 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
 
     private void OnEggDestroyed(EntityUid uid, CarpEggComponent egg, DestructionEventArgs args)
     {
-        // Spill 2u of a random reagent on destruction
         var reagents = _protos.EnumeratePrototypes<ReagentPrototype>();
         string chosen = null!;
         var count = 0;
@@ -543,7 +485,6 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
             _puddles.TrySpillAt(uid, sol, out _, sound: false);
         }
 
-        // Remove egg from queen tracking
         if (egg.Queen != null && TryComp(egg.Queen.Value, out CarpQueenComponent? queen))
         {
             queen.Eggs.Remove(uid);
