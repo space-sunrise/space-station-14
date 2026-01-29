@@ -97,3 +97,5 @@ ent-SpawnPointMailCarrier = mail carrier
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointRoboticist = roboticist
     .desc = { ent-SpawnPointJobBase.desc }
+ent-SpawnPointSecurityPilot = security pilot
+    .desc = { ent-SpawnPointJobBase.desc }
