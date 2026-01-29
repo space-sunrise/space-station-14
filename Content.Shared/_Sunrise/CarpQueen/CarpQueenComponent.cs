@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Content.Shared.Actions;
+using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
@@ -64,7 +65,7 @@ public sealed partial class CarpQueenComponent : Component
     [DataField("armyMobSpawnOptions")]
     public List<string> ArmyMobSpawnOptions = new()
     {
-        "MobCarpServantRegular"
+        "MobCarpServantRegular",
         "MobCarpServantRainbow",
         "MobCarpServantHolo",
         "MobCarpServantDragon",
@@ -107,6 +108,42 @@ public sealed partial class CarpQueenComponent : Component
     public float HealPerHunger = 0.2f;
 
     /// <summary>
+    /// Egg configuration - required puddle volume (u) to hatch.
+    /// </summary>
+    [DataField("eggRequiredVolume")]
+    public float EggRequiredVolume = 15f;
+
+    /// <summary>
+    /// Egg configuration - seconds the egg must remain on valid liquid before hatching.
+    /// </summary>
+    [DataField("eggHatchDelay")]
+    public float EggHatchDelay = 5f;
+
+    /// <summary>
+    /// Egg configuration - max seconds to wait for liquid to appear before breaking the egg.
+    /// </summary>
+    [DataField("eggMaxWaitWithoutLiquid")]
+    public float EggMaxWaitWithoutLiquid = 30f;
+
+    /// <summary>
+    /// Egg configuration - range (in tiles) to search for queen when hatching.
+    /// </summary>
+    [DataField("eggQueenSearchRange")]
+    public float EggQueenSearchRange = 3f;
+
+    /// <summary>
+    /// Egg configuration - range (in tiles) to search for nearby players to imprint on.
+    /// </summary>
+    [DataField("eggFriendSearchRange")]
+    public float EggFriendSearchRange = 6f;
+
+    /// <summary>
+    /// Amount of reagent injected per carp bite.
+    /// </summary>
+    [DataField("biteReagentAmount")]
+    public FixedPoint2 BiteReagentAmount = FixedPoint2.New(1);
+
+    /// <summary>
     /// Maximum HP healed per tick from eating.
     /// </summary>
     [DataField("maxHealPerTick")]
@@ -120,7 +157,7 @@ public sealed partial class CarpQueenComponent : Component
     [DataField("spawnChances")]
     public Dictionary<string, int> SpawnChances = new()
     {
-        { "MobCarpServantRegular", 55 }
+        { "MobCarpServantRegular", 55 },
         { "MobCarpServantRainbow", 10 },
         { "MobCarpServantHolo", 10 },
         { "MobCarpServantDragon", 25 },

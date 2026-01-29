@@ -22,6 +22,13 @@ public sealed partial class CarpServantMemoryComponent : Component
     public Color LiquidColor = Color.White;
 
     /// <summary>
+    /// List of all colors from liquids the carp hatched from.
+    /// Used for rainbow carps to cycle through colors.
+    /// </summary>
+    [DataField("liquidColors"), AutoNetworkedField]
+    public List<Color> LiquidColors = new();
+
+    /// <summary>
     /// Dictionary of reagent IDs and their amounts that were in the liquid.
     /// Used for injection on bite.
     /// </summary>

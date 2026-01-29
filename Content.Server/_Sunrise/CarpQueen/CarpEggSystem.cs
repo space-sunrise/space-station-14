@@ -330,13 +330,18 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
     {
         // Get tile information for liquid color and reagents
         Color liquidColor = Color.White;
+        List<Color> liquidColors = new();
         Dictionary<string, FixedPoint2> rememberedReagents = new();
 
         if (TryComp<MapGridComponent>(xform.GridUid, out var grid))
         {
             var tile = _map.GetTileRef(xform.GridUid.Value, grid, xform.Coordinates);
 
-            // Get liquid color and reagents from puddle or FloorWaterEntity
+            // Always include FloorWaterEntity color if present (base water color)
+            var waterColor = _protos.Index<ReagentPrototype>("Water").SubstanceColor;
+            liquidColors.Add(waterColor);
+
+            // Get additional colors from puddle if present
             if (_puddles.TryGetPuddle(tile, out var puddle) && TryComp(puddle, out PuddleComponent? puddleComp) && puddleComp.Solution != null)
             {
                 var sol = puddleComp.Solution.Value.Comp.Solution;
@@ -346,12 +351,22 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
                 foreach (var (reagentId, quantity) in sol.Contents)
                 {
                     rememberedReagents[reagentId.ToString()] = quantity;
+
+                    // Get individual color for each reagent (avoid duplicates)
+                    if (_protos.TryIndex<ReagentPrototype>(reagentId.ToString(), out var reagentProto))
+                    {
+                        var reagentColor = reagentProto.SubstanceColor;
+                        if (!liquidColors.Contains(reagentColor))
+                        {
+                            liquidColors.Add(reagentColor);
+                        }
+                    }
                 }
             }
             else
             {
-                // FloorWaterEntity fallback -> use Water reagent color
-                liquidColor = _protos.Index<ReagentPrototype>("Water").SubstanceColor;
+                // No puddle, just use water color as base
+                liquidColor = waterColor;
                 rememberedReagents["Water"] = FixedPoint2.New(30); // Assume water
             }
         }
@@ -387,7 +402,9 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
         // Store liquid memory
         var memory = EnsureComp<CarpServantMemoryComponent>(mob);
         memory.LiquidColor = liquidColor;
+        memory.LiquidColors = liquidColors;
         memory.RememberedReagents = rememberedReagents;
+        memory.BiteReagentAmount = egg.BiteReagentAmount;
 
         // Check if queen is nearby
         bool queenNearby = false;
@@ -402,7 +419,7 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
             var distance = (queenCoords.Position - mobCoords.Position).Length();
 
             // Consider queen "nearby" if within configured range
-            if (distance <= egg.QueenCheckRange)
+            if (distance <= egg.QueenSearchRange)
                 queenNearby = true;
         }
 

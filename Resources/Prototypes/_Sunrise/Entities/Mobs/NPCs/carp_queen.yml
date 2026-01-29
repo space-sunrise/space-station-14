@@ -26,11 +26,18 @@
     maxArmySize: 5
     healPerHunger: 0.2
     maxHealPerTick: 5
+    # Egg configuration - parameters for spawned eggs
+    eggRequiredVolume: 15
+    eggHatchDelay: 5
+    eggMaxWaitWithoutLiquid: 30
+    eggQueenSearchRange: 4
+    eggFriendSearchRange: 4
+    biteReagentAmount: 1
     spawnChances:
-      MobCarpServantRegular: 55
-      MobCarpServantRainbow: 10
-      MobCarpServantHolo: 10
-      MobCarpServantDragon: 25
+      MobCarpServantRegular: 50
+      MobCarpServantRainbow: 5
+      MobCarpServantHolo: 15
+      MobCarpServantDragon: 30
   - type: Accentless
     removes:
     - type: ReplacementAccent
