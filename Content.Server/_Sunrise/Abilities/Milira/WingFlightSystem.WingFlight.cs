@@ -11,6 +11,7 @@ using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Toggleable;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared._Sunrise.Abilities.Milira;
 using Content.Shared.Movement.Components;
@@ -48,6 +49,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
         SubscribeLocalEvent<WingFlightComponent, KnockDownAttemptEvent>(OnKnockDownAttempt);
         SubscribeLocalEvent<WingFlightComponent, DownedEvent>(OnDowned);
         SubscribeLocalEvent<WingFlightComponent, KnockedDownEvent>(OnKnockedDown);
+        SubscribeLocalEvent<WingFlightComponent, MobStateChangedEvent>(OnMobStateChanged);
 
         SubscribeLocalEvent<WingFlightComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<WingFlightComponent, ComponentRemove>(OnComponentRemove);
@@ -251,9 +253,6 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
                     toDisable.Add(ent);
                     SetScaleImmediate(ent, staminaPercent);
                 }
-
-                if (_mobState.IsCritical(ent.Owner))
-                    toDisable.Add(ent);
             }
             else
             {
@@ -360,5 +359,14 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
 
         ent.Comp.OriginalCollisionMasks.Clear();
         ent.Comp.OriginalCollisionLayers.Clear();
+    }
+
+    private void OnMobStateChanged(Entity<WingFlightComponent> ent, ref MobStateChangedEvent args)
+    {
+        if (!ent.Comp.FlightEnabled)
+            return;
+
+        if (args.NewMobState == MobState.Critical)
+            DisableFlight(ent);
     }
 }

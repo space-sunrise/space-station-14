@@ -57,7 +57,8 @@ public sealed class WingToggleSharedSystem : SharedWingFlightSystem
         if (!ent.Comp.WingsOpened)
             return;
 
-        RaiseLocalEvent(ent.Owner, new WingCloseEvent());
+        var ev = new WingForceClose();
+        RaiseLocalEvent(ent.Owner, ref ev);
     }
 
     private void OnMobStateChanged(Entity<WingToggleComponent> ent, ref MobStateChangedEvent args)
@@ -67,7 +68,5 @@ public sealed class WingToggleSharedSystem : SharedWingFlightSystem
     }
 }
 
-[Serializable, NetSerializable]
-public sealed class WingCloseEvent : EntityEventArgs
-{
-}
+[ByRefEvent]
+public readonly record struct WingForceClose;
