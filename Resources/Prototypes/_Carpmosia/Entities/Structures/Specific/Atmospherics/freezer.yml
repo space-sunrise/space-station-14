@@ -11,16 +11,6 @@
       Quinary: GasVentPumpFreezerAlt4
 
 - type: entity
-  parent: [AirSensorFreezerBase, GasVentPumpFreezerBase, GasVentPumpAlt1]
-  id: GasVentPumpFreezerAlt1
-  categories: [ HideSpawnMenu ]
-
-- type: entity
-  parent: [AirSensorFreezerBase, GasVentPumpFreezerBase, GasVentPumpAlt2]
-  id: GasVentPumpFreezerAlt2
-  categories: [ HideSpawnMenu ]
-
-- type: entity
   parent: [AirSensorFreezerBase, GasVentPumpFreezerBase, GasVentPumpAlt3]
   id: GasVentPumpFreezerAlt3
   categories: [ HideSpawnMenu ]
@@ -41,16 +31,6 @@
       Tertiary: GasVentScrubberFreezerAlt2
       Quaternary: GasVentScrubberFreezerAlt3
       Quinary: GasVentScrubberFreezerAlt4
-
-- type: entity
-  parent: [AirSensorFreezerBase, GasVentScrubberFreezerBase, GasVentScrubberAlt1]
-  id: GasVentScrubberFreezerAlt1
-  categories: [ HideSpawnMenu ]
-
-- type: entity
-  parent: [AirSensorFreezerBase, GasVentScrubberFreezerBase, GasVentScrubberAlt2]
-  id: GasVentScrubberFreezerAlt2
-  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent: [AirSensorFreezerBase, GasVentScrubberFreezerBase, GasVentScrubberAlt3]

@@ -11,16 +11,6 @@
       Quinary: GasVentPumpVoxAlt4
 
 - type: entity
-  parent: [AirSensorVoxBase, GasVentPumpVoxBase, GasVentPumpAlt1]
-  id: GasVentPumpVoxAlt1
-  categories: [ HideSpawnMenu ]
-
-- type: entity
-  parent: [AirSensorVoxBase, GasVentPumpVoxBase, GasVentPumpAlt2]
-  id: GasVentPumpVoxAlt2
-  categories: [ HideSpawnMenu ]
-
-- type: entity
   parent: [AirSensorVoxBase, GasVentPumpVoxBase, GasVentPumpAlt3]
   id: GasVentPumpVoxAlt3
   categories: [ HideSpawnMenu ]
@@ -52,16 +42,6 @@
       Tertiary: GasVentScrubberVoxAlt2
       Quaternary: GasVentScrubberVoxAlt3
       Quinary: GasVentScrubberVoxAlt4
-
-- type: entity
-  parent: [AirSensorVoxBase, GasVentScrubberVoxBase, GasVentScrubberAlt1]
-  id: GasVentScrubberVoxAlt1
-  categories: [ HideSpawnMenu ]
-
-- type: entity
-  parent: [AirSensorVoxBase, GasVentScrubberVoxBase, GasVentScrubberAlt2]
-  id: GasVentScrubberVoxAlt2
-  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent: [AirSensorVoxBase, GasVentScrubberVoxBase, GasVentScrubberAlt3]
