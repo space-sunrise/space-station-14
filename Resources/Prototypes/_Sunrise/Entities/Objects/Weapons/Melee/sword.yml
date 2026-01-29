@@ -49,3 +49,97 @@
       path: /Audio/_Sunrise/Items/Handling/sabre_drop.ogg
   - type: StaticPrice
     price: 3000
+
+- type: entity
+  name: dragon slayer
+  parent: Claymore
+  id: GutsSword
+  description: What determines the fate of mankind in this world? Some unseen being? Or a law, like the Hand of God floating above the world? At the very least, what's true is that man cannot even control his own will
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Objects/Weapons/Melee/gutsword.rsi
+      scale: 0.75, 0.75
+    - type: MeleeWeapon
+      wideAnimationRotation: 0
+      angle: 360
+      attackRate: 0.5
+      damage:
+        types:
+          Slash: 45
+      soundHit:
+        path: /Audio/Weapons/block_metal1.ogg
+    - type: InjectOnHit
+      limit: 45
+      reagents:
+        - ReagentId: Hemorrhinol
+          Quantity: 15
+    - type: MeleeThrowOnHit
+      distance: 0.5
+      speed: 5
+    - type: Reflect
+      soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
+      reflects:
+        - NonEnergy
+      reflectProb: 0.6
+    - type: Blocking
+      passiveBlockFraction: 0.8
+      activeBlockFraction: 0.7
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 0.2
+          Slash: 0.2
+          Piercing: 0.3
+          Heat: 0.9
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.5
+          Slash: 0.5
+          Piercing: 0.6
+          Heat: 0.6
+        flatReductions:
+          Heat: 1
+          Piercing: 1
+    - type: AmmoCounter
+    - type: UseDelayOnShoot
+    - type: UseDelay
+      delay: 1
+    - type: Wieldable
+    - type: GunRequiresWield
+    - type: Gun
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/energycrossbow_shoot.ogg
+      fireRate: 1
+      useKey: false
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 0.5
+      rechargeSound:
+        path: /Audio/Weapons/Guns/MagIn/energycrossbow_reload.ogg
+    - type: BasicEntityAmmoProvider
+      proto: BulletChargeGlaive
+      capacity: 1
+      count: 1
+    - type: LeechOnMarker
+      leech:
+        groups:
+          Brute: -30
+        types:
+          Bloodloss: -5
+    - type: Item
+      storedSprite:
+        state: storage
+        sprite: _Sunrise/Objects/Weapons/Melee/gutsword_storage_64x.rsi
+      shape:
+        - 0,0,3,3
+    - type: Clothing
+      sprite: _Sunrise/Objects/Weapons/Melee/gutsword.rsi
+      slots:
+        - Back
+        - SuitStorage
+    - type: DisarmMalus
+      malus: 0.5
+    - type: Scalpel
+    - type: SurgeryTool
+      successRate: 0.6
+      startSound:
+        path: /Audio/_Sunrise/Medical/Surgery/scalpel1.ogg
+      endSound:
+        path: /Audio/_Sunrise/Medical/Surgery/scalpel2.ogg

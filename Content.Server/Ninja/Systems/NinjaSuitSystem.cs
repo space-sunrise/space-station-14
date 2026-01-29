@@ -32,8 +32,8 @@ public sealed class NinjaSuitSystem : SharedNinjaSuitSystem
         SubscribeLocalEvent<NinjaSuitComponent, ContainerIsInsertingAttemptEvent>(OnSuitInsertAttempt);
         SubscribeLocalEvent<NinjaSuitComponent, RecallKatanaEvent>(OnRecallKatana);
         SubscribeLocalEvent<NinjaSuitComponent, NinjaEmpEvent>(OnEmp);
-        SubscribeLocalEvent<NinjaSuitComponent, CreateSmokeGrenadeEvent>(OnCreateSmokeGrenade);
-        SubscribeLocalEvent<NinjaSuitComponent, CreateFlashbangGrenadeEvent>(OnCreateFlashbangGrenade);
+        SubscribeLocalEvent<NinjaSuitComponent, CreateSmokeGrenadeEvent>(OnCreateSmokeGrenade); // Sunrise-Add
+        SubscribeLocalEvent<NinjaSuitComponent, CreateFlashbangGrenadeEvent>(OnCreateFlashbangGrenade); // Sunrise-Add
     }
 
     protected override void NinjaEquipped(Entity<NinjaSuitComponent> ent, Entity<SpaceNinjaComponent> user)
@@ -153,7 +153,7 @@ public sealed class NinjaSuitSystem : SharedNinjaSuitSystem
 
         _emp.EmpPulse(Transform(user).Coordinates, comp.EmpRange, comp.EmpConsumption, comp.EmpDuration, user);
     }
-
+    // Sunrise-start
     private void OnCreateSmokeGrenade(Entity<NinjaSuitComponent> ent, ref CreateSmokeGrenadeEvent args)
     {
         var (uid, comp) = ent;
@@ -169,9 +169,8 @@ public sealed class NinjaSuitSystem : SharedNinjaSuitSystem
         if (CheckDisabled(ent, user))
             return;
 
-        // Create smoke grenade in hands or on ground
-        var grenade = Spawn("SmokeGrenade", _transform.GetMapCoordinates(user));
-        _hands.TryPickupAnyHand(user, grenade);
+        // Instant smoke effect around the user (10s by prototype)
+        Spawn("AdminInstantEffectSmoke10", _transform.GetMapCoordinates(user));
     }
 
     private void OnCreateFlashbangGrenade(Entity<NinjaSuitComponent> ent, ref CreateFlashbangGrenadeEvent args)
@@ -189,8 +188,8 @@ public sealed class NinjaSuitSystem : SharedNinjaSuitSystem
         if (CheckDisabled(ent, user))
             return;
 
-        // Create flashbang grenade in hands or on ground
-        var grenade = Spawn("GrenadeFlashBang", _transform.GetMapCoordinates(user));
-        _hands.TryPickupAnyHand(user, grenade);
+        // Instant flash effect around the user
+        Spawn("AdminInstantEffectFlash", _transform.GetMapCoordinates(user));
     }
+    // Sunrise-End
 }

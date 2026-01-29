@@ -2,6 +2,7 @@
   id: NanotrasenPrison
   parent:
   - BaseStation
+  - BaseStationNews
   - BaseStationJobsSpawning
   - BaseStationRecords
   - BaseStationNanotrasen

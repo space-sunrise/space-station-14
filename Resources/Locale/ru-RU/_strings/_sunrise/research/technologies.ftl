@@ -29,3 +29,4 @@ research-technology-medical-assembler = Продвинутая фармацеп�
 research-technology-cloning = Система клонирования
 research-technology-compact-defibrilation = Компактная дефибрилляция
 research-technology-advanced-compact-defibrilation = Продвинутая дефибрилляция
+research-technology-dna-injector = ДНК-манипуляции

@@ -33,7 +33,6 @@
 - type: startingGear
   id: PrisonEngineerGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitPrisonEngineer
     ears: ClothingHeadsetJEngineering
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
@@ -41,7 +40,7 @@
     belt: ClothingBeltPrisonEngineerMetus
     back: ClothingBackpackSatchelPrisonEngineerMetus
     shoes: ClothingShoesBootsJack
-    pocket1: WeaponPistolG22Metus
+    pocket1: WeaponPistolG22Prison
     pocket2: SecurityWhistle
 
 - type: chameleonOutfit
@@ -49,7 +48,7 @@
   job: PrisonEngineer
   equipment:
     jumpsuit: ClothingUniformJumpsuitPrisonEngineer
-    head: ClothingHeadHatCapPrisonWorkerMetus
+    head: ClothingHeadHatCapPrisonEngineer
     ears: ClothingHeadsetJEngineering
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat

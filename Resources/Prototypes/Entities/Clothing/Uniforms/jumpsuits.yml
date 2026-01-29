@@ -829,6 +829,16 @@
     sprite: Clothing/Uniforms/Jumpsuit/operative.rsi
   - type: StaticPrice
     price: 500
+  # Sunrise-Start
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.92
+        Piercing: 0.98
+        Heat: 0.95
+  - type: StaminaResistance
+    damageCoefficient: 0.95
+  # Sunrise-End
 
 - type: entity
   parent: ClothingUniformBase

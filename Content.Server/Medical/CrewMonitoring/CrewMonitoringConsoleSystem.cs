@@ -82,7 +82,10 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem // Sunris
 
         // Update all sensors info
         var allSensors = component.ConnectedSensors.Values.ToList();
+
         // Sunrise - Start
+        ApplyFilter(uid, ref allSensors);
+
         var corpseAlertEnabled = TryComp(uid, out CrewMonitoringCorpseAlertComponent? alert) && alert.DoCorpseAlert;
         _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(allSensors, corpseAlertEnabled));
         // Sunrise - End

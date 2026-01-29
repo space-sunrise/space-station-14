@@ -6,6 +6,7 @@ research-technology-bluespace-ammo = Bluespace Syringegun Ammo
 research-technology-implant-extractor-safety = Safety implant extractor
 research-technology-implant-extractor = Implant extractor
 research-technology-advanced-surgery = Advanced surgery
+research-technology-dna-injector = DNA Injector
 research-technology-mechanized-medical-treatment = Mechanized Medical Treatment
 research-technology-basic-eye-implants = Basic Eye Implants
 research-technology-functional-cyberlimbs = Functional Cyberlimbs

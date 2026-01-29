@@ -81,6 +81,21 @@
     - SurgeryTech
 
 - type: technology
+  id: DnaInjectorTech
+  name: research-technology-dna-injector
+  icon:
+    sprite: Objects/Specific/Medical/implanter.rsi
+    state: implanter0
+  discipline: Biochemical
+  tier: 2
+  cost: 9000
+  recipeUnlocks:
+    - DnaInjector
+  technologyPrerequisites:
+    - SurgeryTechAdvanced
+    - ImplantExtractor
+
+- type: technology
   id: HandheldCrewMonitorTech
   name: research-technology-hanheld-crew-monitor
   icon:

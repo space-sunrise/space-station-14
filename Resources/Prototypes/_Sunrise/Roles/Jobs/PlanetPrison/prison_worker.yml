@@ -49,7 +49,6 @@
   id: PrisonWorkerGear
   equipment:
     id: PrisonWorkerPDA
-    jumpsuit: ClothingUniformJumpsuitPrisonWorker
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
@@ -57,7 +56,7 @@
     belt: ClothingBeltPrisonWorkerMetus
     back: ClothingBackpackSatchelPrisonWorkerMetus
     shoes: ClothingShoesBootsJack
-    pocket1: WeaponPistolG22Metus
+    pocket1: WeaponPistolG22Prison
     pocket2: SecurityWhistle
 
 - type: chameleonOutfit
@@ -65,7 +64,7 @@
   job: PrisonWorker
   equipment:
     jumpsuit: ClothingUniformJumpsuitPrisonWorker
-    head: ClothingHeadCapPrisonWorkerMetus
+    head: ClothingHeadCapPrisonWorker
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat

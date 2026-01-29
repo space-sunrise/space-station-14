@@ -110,3 +110,4 @@ loadout-group-prison-trinkets = Prison Trinkets
 loadout-group-prisoner-loot = Prisoner Loot
 loadout-group-prison-security-loot = Security Privileges
 
+loadout-group-prison-jumpsuit = Prison Jumpsuit

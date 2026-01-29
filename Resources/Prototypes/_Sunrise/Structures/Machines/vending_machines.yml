@@ -4,8 +4,8 @@
   name: Boxing Drobe
   description: Always short on stock.
   components:
-  #- type: VendingMachine
-  #  pack: BoxingDrobeInventory
+  - type: VendingMachine
+    pack: BoxingDrobeInventory
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/VendingMachines/boxingdrobe.rsi
     layers:
@@ -25,15 +25,12 @@
   name: MailDrobe
   description: Neither solar flares nor meteors nor plasma fire nor void of space stays these couriers from the swift completion of their appointed rounds.
   components:
-  #- type: VendingMachine
-  #  pack: MailDrobeInventory
-  #  offState: off
-  #  brokenState: broken
-  #  normalState: normal-unshaded
-    # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
-#  - type: Vocalizer
-#  - type: DatasetVocalizer
-#    dataset: MailDrobeAds
+  - type: VendingMachine
+    pack: MailDrobeInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded  #No sprite, see chefvend/dinnerware/BODA/etc for expamples
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/VendingMachines/maildrobe.rsi
     layers:
@@ -44,8 +41,8 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  #- type: AccessReader
-  #  access: [["Mail"]]
+  - type: AccessReader
+    access: [["Cargo"]]
   - type: PointLight
     radius: 1.5
     energy: 1.6

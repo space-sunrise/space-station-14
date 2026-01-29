@@ -1,0 +1,23 @@
+- type: latheRecipe
+  parent: BaseCarpetRecipe
+  id: CarpetBlackPrison
+  result: FloorCarpetItemBlack
+  materials:
+    Cloth: 100
+    Durathread: 100
+
+- type: latheRecipe
+  parent: BaseCarpetRecipe
+  id: CarpetPinkPrison
+  result: FloorCarpetItemPink
+  materials:
+    Cloth: 100
+    Durathread: 100
+
+- type: latheRecipe
+  parent: BaseCarpetRecipe
+  id: CarpetOrangePrison
+  result: FloorCarpetItemOrange
+  materials:
+    Cloth: 100
+    Durathread: 100

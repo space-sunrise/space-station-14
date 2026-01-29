@@ -50,3 +50,4 @@ guide-entry-sr-rule-excep-10 = Исключение/прецедент 10
 guide-entry-sr-rule-cep = Политика эскалации конфликтов
 guide-entry-sr-rule-ccp = Политика создания персонажей
 guide-entry-sr-rule-pana = Препятствование аресту неантагонистами
+guide-entry-improvised-grenade-casing = Improvised grenade casing

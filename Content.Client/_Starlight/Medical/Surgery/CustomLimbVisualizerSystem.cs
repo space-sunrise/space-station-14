@@ -121,6 +121,7 @@ public sealed class CustomLimbVisualizerSystem : EntitySystem
             {
                 var index = sprite.LayerMapReserveBlank($"custom-{layer}");
                 sprite.LayerSetVisible(layer, false);
+                sprite.LayerSetVisible($"custom-{layer}", false);
             }
     }
 }

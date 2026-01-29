@@ -1,4 +1,4 @@
-﻿using Robust.Shared;
+using Robust.Shared;
 using Robust.Shared.Configuration;
 
 namespace Content.Shared._Sunrise.SunriseCCVars;
@@ -574,4 +574,20 @@ public sealed partial class SunriseCCVars : CVars
 
     public static readonly CVarDef<int> GameIPBlockingUnhandledMessageRateLimit =
         CVarDef.Create("game.ipblocking_unhandled_message_rate_limit", 10, CVar.SERVERONLY);
+
+    /*
+     * Messenger Emoji
+     */
+
+    /// <summary>
+    /// Недавно использованные смайлики в мессенджере (разделены запятыми, максимум 5).
+    /// </summary>
+    public static readonly CVarDef<string> MessengerRecentEmojis =
+        CVarDef.Create("messenger.recent_emojis", "", CVar.ARCHIVE | CVar.CLIENTONLY);
+
+    /// <summary>
+    /// Избранные смайлики в мессенджере (разделены запятыми).
+    /// </summary>
+    public static readonly CVarDef<string> MessengerFavoriteEmojis =
+        CVarDef.Create("messenger.favorite_emojis", "", CVar.ARCHIVE | CVar.CLIENTONLY);
 }

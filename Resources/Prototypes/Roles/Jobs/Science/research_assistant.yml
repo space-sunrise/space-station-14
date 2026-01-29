@@ -4,10 +4,10 @@
   description: job-description-research-assistant
   playTimeTracker: JobResearchAssistant
   requirements:
-    # - !type:DepartmentTimeRequirement # Sunrise-edit: disable department time gate for intern role inversion
-    #   department: Science
-    #   time: 5h
-    #   #inverted: true # stop playing intern if you're good at science! Sunrise-edit
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 15h #  Sunrise-edit
+      inverted: true # stop playing intern if you're good at science!
   startingGear: ResearchAssistantGear
   icon: "JobIconResearchAssistant"
   supervisors: job-supervisors-science

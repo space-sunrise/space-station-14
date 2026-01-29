@@ -1,6 +1,6 @@
 - type: entity
   id: ThrusterSyndicate
-  parent: [ BaseThruster, ConstructibleMachine ]
+  parent: [ ThrusterXenoborg, ConstructibleMachine ] # ThrusterXenoborg Никакого саботажа двигателей, не выключить не открутить и не повернуть
   components:
     - type: Thruster
       baseThrust: 150
@@ -24,7 +24,7 @@
 - type: entity
   id: BigThruster
   name: big thruster
-  parent: [ BaseThruster]
+  parent: [ ThrusterXenoborg]
   placement:
     mode: AlignTileAny
   components:
@@ -109,7 +109,7 @@
 - type: entity
   id: HugeThruster
   name: huge thruster
-  parent: [ BaseThruster ]
+  parent: [ ThrusterXenoborg ]
   components:
   - type: Anchorable
     flags:

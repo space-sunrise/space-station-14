@@ -7,5 +7,5 @@ ent-PirateTechFab = pirate fabrication
 ent-AmmoLathe = ammo lathe
     .suffix = ShuttleBattle
     .desc = Prints ammunition, repair parts for shuttle crew. "Cost-optimized model" has reduced fabrication speed and limited selection.
-ent-SewingPrinterMetus = prison sewing printer
+ent-SewingPrinterPrison = prison sewing printer
     .desc = Designed for producing textile items, maintaining order and identification within the prison.

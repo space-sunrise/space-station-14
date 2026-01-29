@@ -27,6 +27,16 @@
   - type: Icon
     sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
     state: tajaran_m
+  - type: JumpAbility
+    action: ActionVulpkaninGravityJump
+    canCollide: true
+    jumpDistance: 3
+    jumpSound:
+      path: /Audio/Weapons/punchmiss.ogg
+      params:
+        pitch: 1.33
+        volume: -5
+        variation: 0.05
   - type: MeleeWeapon
     hidden: false
     soundHit:
@@ -37,7 +47,7 @@
     damage:
       types:
         Blunt: 1
-        Slash: 2
+        Slash: 5
   - type: Vocal
     sounds:
       Male: MaleTajaran
@@ -47,8 +57,8 @@
     currentTemperature: 310.15
     specificHeat: 46
   - type: TemperatureDamage
-    heatDamageThreshold: 400
-    coldDamageThreshold: 200
+    heatDamageThreshold: 350
+    coldDamageThreshold: 230
     coldDamage:
       types:
         Cold : 0.2

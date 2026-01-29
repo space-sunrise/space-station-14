@@ -1,6 +1,6 @@
 - type: entity
   id: PlasticFlapsBase
-  parent: BaseStructureDynamic
+  parent: [BaseDeltaPressureGlass, BaseStructureDynamic] # Sunrise-Edit
   abstract: true
   placement:
     mode: SnapgridCenter
@@ -31,6 +31,18 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
+  # Sunrise-Start
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: Repairable
+  - type: Appearance
+  - type: DamageVisuals
+    thresholds: [5, 10, 20]
+    damageDivisor: 5
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Structures/Windows/cracks.rsi
+  # Sunrise-End
   - type: Destructible
     thresholds:
     - trigger:
@@ -84,6 +96,14 @@
   suffix: Airtight, Clear
   description: Heavy duty, slightly stronger, airtight plastic flaps. Definitely can't get past those. No way.
   components:
+  # Sunrise-Start
+  - type: DamageVisuals
+    thresholds: [5, 10, 20]
+    damageDivisor: 7
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Structures/Windows/cracks.rsi
+  # Sunrise-End
   - type: Destructible
     thresholds:
     - trigger:
@@ -95,9 +115,6 @@
   - type: Airtight
   - type: StaticPrice
     price: 100
-  - type: Anchorable
-    flags:
-    - Anchorable
 
 - type: entity
   id: PlasticFlapsAirtightOpaque
@@ -106,6 +123,14 @@
   suffix: Airtight, Opaque
   description: Heavy duty, slightly stronger, airtight plastic flaps. Definitely can't get past those. No way.
   components:
+  # Sunrise-Start
+  - type: DamageVisuals
+    thresholds: [5, 10, 20]
+    damageDivisor: 6.5
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Structures/Windows/cracks.rsi
+  # Sunrise-End
   - type: Destructible
     thresholds:
     - trigger:

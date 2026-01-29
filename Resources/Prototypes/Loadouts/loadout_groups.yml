@@ -185,6 +185,14 @@
   - CaptainBackpack
   - CaptainSatchel
   - CaptainDuffel
+  # Sunrise - Start
+  - CaptainBackpackWhite
+  - CaptainBackpackBlack
+  - CaptainSatchelWhite
+  - CaptainSatchelBlack
+  - CaptainDuffelWhite
+  - CaptainDuffelBlack
+  # Sunrise - End
 
 # Sunrise - Start
 - type: loadoutGroup
@@ -206,6 +214,8 @@
   - CaptainOuterCoat # Sunrise-Edit
   - CaptainOuterOverCoat  # Sunrise-Edit
   - CaptainWintercoat
+  - CaptainCarapaceWhite # Sunrise-Edit
+  - CaptainCarapaceBlack # Sunrise-Edit
 
 - type: loadoutGroup
   id: CaptainJobTrinkets

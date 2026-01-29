@@ -8,6 +8,7 @@ job-name-senior-engineer = ведущий инженер
 job-name-senior-researcher = ведущий учёный
 job-name-senior-physician = ведущий врач
 job-name-senior-officer = инструктор СБ
+job-name-senior-courier = логист
 job-name-head-of-prison = начальник тюрьмы
 job-name-prison-inspector = инспектор тюрьмы
 job-name-prison-chef = тюремный повар

@@ -1,24 +1,37 @@
+using System.Buffers.Binary;
+using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Content.Shared._Sunrise.NetTextures;
 using Robust.Server.Player;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Network;
+using Robust.Shared.Network.Transfer;
 using Robust.Shared.Player;
 using Robust.Shared.Upload;
 using Robust.Shared.Utility;
+using ByteHelpers = Robust.Shared.Utility.ByteHelpers;
 
 namespace Content.Server._Sunrise;
 
 /// <summary>
 /// Manager that handles dynamic loading of network textures from server to client.
+/// Uses High Bandwidth Transfer (WebSocket) to avoid blocking main game traffic.
 /// Textures are loaded into MemoryContentRoot on the client.
 /// </summary>
 public sealed class NetTexturesManager
 {
+    /// <summary>
+    /// Transfer key for server -> client texture downloads via WebSocket
+    /// </summary>
+    private const string TransferKeyNetTextures = "TransferKeyNetTextures";
+
     [Dependency] private readonly IResourceManager _resourceManager = default!;
     [Dependency] private readonly IServerNetManager _netManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private readonly ITransferManager _transferManager = default!;
 
     private ISawmill _sawmill = default!;
     private const string AllowedPrefix = "/NetTextures/";
@@ -27,6 +40,9 @@ public sealed class NetTexturesManager
     {
         _sawmill = _logManager.GetSawmill("network.textures");
         _netManager.RegisterNetMessage<RequestNetworkResourceMessage>(OnRequestNetworkResource);
+
+        // Register transfer key for High Bandwidth Transfer (WebSocket)
+        _transferManager.RegisterTransferMessage(TransferKeyNetTextures);
     }
 
     private void OnRequestNetworkResource(RequestNetworkResourceMessage msg)
@@ -107,12 +123,18 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Sends a resource (file or directory) to the client.
+    /// Sends a resource (file or directory) to the client using High Bandwidth Transfer (WebSocket).
     /// If the path points to a directory (e.g., .rsi), all files in that directory are sent.
     /// If the path points to a file, only that file is sent.
     /// </summary>
-    private void SendResource(ICommonSession session, ResPath resourcePath)
+    private async void SendResource(ICommonSession session, ResPath resourcePath)
     {
+        var startTime = DateTime.UtcNow;
+        _sawmill.Debug($"[NetTextures] Starting transfer of {resourcePath} to {session.Name}");
+
+        // Collect all files to send
+        var filesToSend = new List<(ResPath Relative, byte[] Data)>();
+
         // Check if it's a directory (RSI files are directories)
         // Try to find files in the directory first
         var files = _resourceManager.ContentFindFiles(resourcePath).ToList();
@@ -126,11 +148,12 @@ public sealed class NetTexturesManager
                 return;
             }
 
-            SendSingleFile(session, resourcePath);
+            if (!CollectSingleFile(resourcePath, filesToSend))
+                return;
         }
         else
         {
-            // Directory - send all files
+            // Directory - collect all files
             foreach (var filePath in files)
             {
                 if (!filePath.TryRelativeTo(resourcePath, out var relativePath))
@@ -155,24 +178,47 @@ public sealed class NetTexturesManager
                     var relativeUploadPath = resourcePath.ToRelativePath();
                     var uploadedPath = relativeUploadPath / relativePathValue;
 
-                    var uploadMsg = new NetworkResourceUploadMessage(data, uploadedPath);
-                    session.Channel.SendMessage(uploadMsg);
+                    filesToSend.Add((uploadedPath, data));
                 }
             }
 
-            _sawmill.Debug($"Sent resource directory {resourcePath} ({files.Count} files) to {session.Name}");
+            _sawmill.Debug($"Collected resource directory {resourcePath} ({files.Count} files) for {session.Name}");
+        }
+
+        // Send via High Bandwidth Transfer (WebSocket) to avoid blocking main game traffic
+        try
+        {
+            var transferStartTime = DateTime.UtcNow;
+            await using var transferStream = _transferManager.StartTransfer(session.Channel,
+                new TransferStartInfo
+                {
+                    MessageKey = TransferKeyNetTextures
+                });
+
+            await WriteFileStream(transferStream, filesToSend);
+
+            var totalTime = (DateTime.UtcNow - startTime).TotalMilliseconds;
+            var transferTime = (DateTime.UtcNow - transferStartTime).TotalMilliseconds;
+            var totalSize = filesToSend.Sum(f => f.Data.Length);
+            _sawmill.Info($"[NetTextures] Sent {filesToSend.Count} files ({ByteHelpers.FormatBytes(totalSize)}) via High Bandwidth Transfer to {session.Name} in {transferTime:F0}ms (total: {totalTime:F0}ms)");
+        }
+        catch (Exception ex)
+        {
+            _sawmill.Warning($"Failed to send resource via High Bandwidth Transfer to {session.Name}: {ex.Message}");
+            // Fallback to regular network message if WebSocket transfer fails
+            SendResourceFallback(session, filesToSend);
         }
     }
 
     /// <summary>
-    /// Sends a single file resource to the client.
+    /// Collects a single file for transfer.
     /// </summary>
-    private void SendSingleFile(ICommonSession session, ResPath filePath)
+    private bool CollectSingleFile(ResPath filePath, List<(ResPath Relative, byte[] Data)> filesToSend)
     {
         if (!_resourceManager.TryContentFileRead(filePath, out var stream))
         {
             _sawmill.Warning($"Failed to read file: {filePath}");
-            return;
+            return false;
         }
 
         using (stream)
@@ -182,11 +228,58 @@ public sealed class NetTexturesManager
 
             // Calculate uploaded path: preserve the original path structure relative to Resources root
             var relativeUploadPath = filePath.ToRelativePath();
-            var uploadMsg = new NetworkResourceUploadMessage(data, relativeUploadPath);
-            session.Channel.SendMessage(uploadMsg);
+            filesToSend.Add((relativeUploadPath, data));
         }
 
-        _sawmill.Debug($"Sent resource file {filePath} to {session.Name}");
+        return true;
+    }
+
+    /// <summary>
+    /// Fallback method: sends resources via regular network messages if WebSocket transfer fails.
+    /// </summary>
+    private void SendResourceFallback(ICommonSession session, List<(ResPath Relative, byte[] Data)> files)
+    {
+        foreach (var (relativePath, data) in files)
+        {
+            var uploadMsg = new NetworkResourceUploadMessage(data, relativePath);
+            session.Channel.SendMessage(uploadMsg);
+        }
+        _sawmill.Debug($"Sent {files.Count} files via fallback (regular network) to {session.Name}");
+    }
+
+    /// <summary>
+    /// Writes files to a transfer stream using the same format as SharedNetworkResourceManager.
+    /// Format: [pathLength: uint32][dataLength: uint32][path: bytes][data: bytes][continue: byte]...
+    /// </summary>
+    private static async Task WriteFileStream(Stream stream, IEnumerable<(ResPath Relative, byte[] Data)> files)
+    {
+        var lengthBytes = new byte[4];
+        var continueByte = new byte[1];
+
+        var first = true;
+
+            foreach (var (relative, data) in files)
+            {
+                if (!first)
+                {
+                    continueByte[0] = 1;
+                    await stream.WriteAsync(continueByte);
+                }
+
+                first = false;
+
+                BinaryPrimitives.WriteUInt32LittleEndian(lengthBytes, (uint)Encoding.UTF8.GetByteCount(relative.CanonPath));
+                await stream.WriteAsync(lengthBytes);
+
+                BinaryPrimitives.WriteUInt32LittleEndian(lengthBytes, (uint)data.Length);
+                await stream.WriteAsync(lengthBytes);
+
+                await stream.WriteAsync(Encoding.UTF8.GetBytes(relative.CanonPath));
+                await stream.WriteAsync(data);
+            }
+
+            continueByte[0] = 0;
+            await stream.WriteAsync(continueByte);
     }
 }
 

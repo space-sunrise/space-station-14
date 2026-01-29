@@ -1186,6 +1186,40 @@
     spread: 6
 
 - type: entity
+  id: PelletShotgunFlechetteTrace
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: 0.4
+    damage:
+      types:
+        Piercing: 4
+        Structural: 4
+  - type: HitscanStaminaDamage
+    staminaDamage: 3
+  - type: HitscanPierce
+    chance: 0.7
+    pierceLevel: HardenedMetal
+  - type: HitscanRicochet
+    chance: 0.4
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: _Sunrise/Objects/Weapons/Projectiles/shrapnel.rsi
+        state: shrapnelshot_bit
+
+- type: entity
+  id: PelletShotgunFlechetteSpreadTrace
+  parent: PelletShotgunFlechetteTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: PelletShotgunFlechetteTrace
+    count: 8
+    spread: 10
+
+- type: entity
   id: PelletShotgunBreachTrace
   parent: BulletTrace
   categories: [ HideSpawnMenu ]

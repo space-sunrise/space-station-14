@@ -133,6 +133,7 @@
   suffix: Coal
   components:
   - type: Sprite
+    sprite: _Sunrise/Mobs/Elemental/orecrab.rsi # Sunrise-Add
     state: coal_crab
   - type: MeleeWeapon
     damage:
@@ -201,6 +202,7 @@
   suffix: Bananium
   components:
   - type: Sprite
+    sprite: _Sunrise/Mobs/Elemental/orecrab.rsi # Sunrise-Add
     state: bananium_crab
   - type: FactionException
   - type: NPCRetaliation
@@ -286,6 +288,7 @@
   suffix: Gold
   components:
   - type: Sprite
+    sprite: _Sunrise/Mobs/Elemental/orecrab.rsi # Sunrise-Add
     state: gold_crab
   - type: MeleeWeapon
     damage:

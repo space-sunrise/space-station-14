@@ -1,0 +1,11 @@
+<Document>
+  # Арканы
+
+  <Box>
+    <GuideEntityEmbed Entity="MobDemon" Caption=""/>
+  </Box>
+
+  Арканы наносят колющий урон безоружными атаками.
+  В остальном они близки к обычным гуманоидам.
+
+</Document>

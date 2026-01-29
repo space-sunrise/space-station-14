@@ -61,3 +61,16 @@
     - type: Construction
       graph: UpgradeArmorVest
       node: webvest
+
+- type: entity
+  parent: ClothingOuterVestWebSec
+  id: ClothingOuterVestWebBlue
+  name: blueshild web vest
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/OuterClothing/Vests/web_armor_blue.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/OuterClothing/Vests/web_armor_blue.rsi
+    - type: Construction
+      graph: UpgradeArmorVestBlueshield
+      node: webvest
