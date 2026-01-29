@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN;
@@ -5,6 +6,7 @@ using Content.Server.NPC.Systems;
 using Content.Server.Popups;
 using Content.Server.Chat.Systems;
 using Content.Shared._Sunrise.CarpQueen;
+using Content.Shared.Humanoid;
 using Content.Shared.Pointing;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Dataset;
@@ -56,18 +58,10 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
             component.LastObservedHunger = _hunger.GetHunger(hunger);
 
         // Initialize random female TTS voice for Carp Queen
+        // Queens should have female voices to match their commanding presence
         if (TryComp<TTSComponent>(uid, out var ttsComponent))
         {
-            var femaleVoices = _prototypeManager
-                .EnumeratePrototypes<TTSVoicePrototype>()
-                .Where(v => v.RoundStart && !v.SponsorOnly && v.Sex == Sex.Female)
-                .ToArray();
-
-            if (femaleVoices.Length > 0)
-            {
-                var randomVoice = _random.Pick(femaleVoices);
-                ttsComponent.VoicePrototypeId = randomVoice.ID;
-            }
+            TryAssignRandomFemaleVoiceToQueen(ttsComponent);
         }
     }
 
@@ -128,6 +122,15 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
         var egg = Spawn("MobCarpEgg", Transform(uid).Coordinates);
         var eggComp = EnsureComp<CarpEggComponent>(egg);
         eggComp.Queen = uid;
+
+        // Configure egg parameters from queen component
+        eggComp.RequiredVolume = component.EggRequiredVolume;
+        eggComp.HatchDelay = component.EggHatchDelay;
+        eggComp.MaxWaitWithoutLiquid = component.EggMaxWaitWithoutLiquid;
+        eggComp.QueenSearchRange = component.EggQueenSearchRange;
+        eggComp.FriendSearchRange = component.EggFriendSearchRange;
+        eggComp.BiteReagentAmount = component.BiteReagentAmount;
+
         Dirty(egg, eggComp);
         component.Eggs.Add(egg);
 
@@ -253,6 +256,68 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
 
         var msg = Random.Pick(datasetPrototype);
         _chat.TrySendInGameICMessage(uid, msg, InGameICChatType.Speak, true);
+    }
+
+    /// <summary>
+    /// Attempts to assign a random female voice to the carp queen's TTS component.
+    /// Falls back to a default voice if voice selection fails.
+    /// </summary>
+    private void TryAssignRandomFemaleVoiceToQueen(TTSComponent ttsComponent)
+    {
+        try
+        {
+            var availableFemaleVoices = GetAvailableFemaleVoices();
+            if (availableFemaleVoices.Count == 0)
+            {
+                Log.Warning("No female TTS voices available for carp queen");
+                AssignFallbackVoice(ttsComponent);
+                return;
+            }
+
+            var selectedVoice = _random.Pick(availableFemaleVoices);
+            ttsComponent.VoicePrototypeId = selectedVoice.ID;
+        }
+        catch (Exception ex)
+        {
+            Log.Error($"Failed to assign TTS voice to carp queen: {ex.Message}");
+            AssignFallbackVoice(ttsComponent);
+        }
+    }
+
+    /// <summary>
+    /// Gets all available female TTS voices that can be used at round start.
+    /// Filters out sponsor-only voices.
+    /// </summary>
+    private List<TTSVoicePrototype> GetAvailableFemaleVoices()
+    {
+        var femaleVoices = new List<TTSVoicePrototype>();
+
+        foreach (var voice in _prototypeManager.EnumeratePrototypes<TTSVoicePrototype>())
+        {
+            if (IsVoiceSuitableForQueen(voice))
+            {
+                femaleVoices.Add(voice);
+            }
+        }
+
+        return femaleVoices;
+    }
+
+    /// <summary>
+    /// Checks if a voice is suitable for the carp queen (female, round start, not sponsor-only).
+    /// </summary>
+    private bool IsVoiceSuitableForQueen(TTSVoicePrototype voice)
+    {
+        return voice.Sex == Sex.Female && voice.RoundStart && !voice.SponsorOnly;
+    }
+
+    /// <summary>
+    /// Assigns a fallback female voice when random selection fails.
+    /// </summary>
+    private void AssignFallbackVoice(TTSComponent ttsComponent)
+    {
+        // Charlotte is a reliable female voice available by default
+        ttsComponent.VoicePrototypeId = "Charlotte";
     }
 }
 
