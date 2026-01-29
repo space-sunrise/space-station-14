@@ -27,9 +27,10 @@
     healPerHunger: 0.2
     maxHealPerTick: 5
     spawnChances:
-      MobCarpServantRainbow: 80
+      MobCarpServantRegular: 55
+      MobCarpServantRainbow: 10
       MobCarpServantHolo: 10
-      MobCarpServantDungeon: 10
+      MobCarpServantDragon: 25
   - type: Accentless
     removes:
     - type: ReplacementAccent

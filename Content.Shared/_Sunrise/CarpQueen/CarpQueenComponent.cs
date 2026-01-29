@@ -64,11 +64,10 @@ public sealed partial class CarpQueenComponent : Component
     [DataField("armyMobSpawnOptions")]
     public List<string> ArmyMobSpawnOptions = new()
     {
-        "MobCarpServantDungeon",
-        "MobCarpServantMagic",
-        "MobCarpServantHolo",
+        "MobCarpServantRegular"
         "MobCarpServantRainbow",
-        "MobCarpServantDragon"
+        "MobCarpServantHolo",
+        "MobCarpServantDragon",
     };
 
     /// <summary>
@@ -121,9 +120,10 @@ public sealed partial class CarpQueenComponent : Component
     [DataField("spawnChances")]
     public Dictionary<string, int> SpawnChances = new()
     {
-        { "MobCarpServantRainbow", 80 },
+        { "MobCarpServantRegular", 55 }
+        { "MobCarpServantRainbow", 10 },
         { "MobCarpServantHolo", 10 },
-        { "MobCarpServantDungeon", 10 }
+        { "MobCarpServantDragon", 25 },
     };
 }
 

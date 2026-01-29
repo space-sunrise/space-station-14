@@ -22,14 +22,6 @@
         3.0
 
 - type: entity
-  id: MobCarpServantDungeon
-  parent: [ BaseMobCarpServant, MobCarpDungeon ]
-
-- type: entity
-  id: MobCarpServantMagic
-  parent: [ BaseMobCarpServant, MobCarpMagic ]
-
-- type: entity
   id: MobCarpServantHolo
   parent: [ BaseMobCarpServant, MobCarpHolo ]
 
@@ -40,5 +32,9 @@
 - type: entity
   id: MobCarpServantDragon
   parent: [ BaseMobCarpServant, MobCarpDragon ]
+
+- type: entity
+  id: MobCarpServantRegular
+  parent: [ BaseMobCarpServant, MobCarp ]
 
 
