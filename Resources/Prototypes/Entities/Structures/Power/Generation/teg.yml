@@ -124,6 +124,22 @@
         - state: circ-0-light
           shader: unshaded
           map: [ "enum.TegVisualLayers.CirculatorLight" ]
+    # Carpmosia-start - 5 pipe layers
+    - type: AtmosPipeLayers
+      spriteLayersRsiPaths:
+        enum.TegVisualLayers.CirculatorBase:
+          Primary: _Carpmosia/Structures/Power/Generation/teg.rsi
+          Secondary: _Carpmosia/Structures/Power/Generation/teg_alt1.rsi
+          Tertiary: _Carpmosia/Structures/Power/Generation/teg_alt2.rsi
+          Quaternary: _Carpmosia/Structures/Power/Generation/teg_alt3.rsi
+          Quinary: _Carpmosia/Structures/Power/Generation/teg_alt4.rsi
+        enum.TegVisualLayers.CirculatorLight:
+          Primary: _Carpmosia/Structures/Power/Generation/teg.rsi
+          Secondary: _Carpmosia/Structures/Power/Generation/teg_alt1.rsi
+          Tertiary: _Carpmosia/Structures/Power/Generation/teg_alt2.rsi
+          Quaternary: _Carpmosia/Structures/Power/Generation/teg_alt3.rsi
+          Quinary: _Carpmosia/Structures/Power/Generation/teg_alt4.rsi
+    # Carpmosia-end - 5 pipe layers
 
     - type: GenericVisualizer
       visuals:
