@@ -29,6 +29,7 @@ namespace Content.Client.Access.UI
 
         private AccessLevelControl _accessButtons = new();
         private readonly List<string> _jobPrototypeIds = new();
+        private readonly List<ProtoId<JobPrototype>> _allowedJobs; // Sunrise-Edit
 
         private string? _lastFullName;
         private string? _lastJobTitle;
@@ -38,13 +39,14 @@ namespace Content.Client.Access.UI
         private static ProtoId<JobPrototype> _defaultJob = "Passenger";
 
         public IdCardConsoleWindow(IdCardConsoleBoundUserInterface owner, IPrototypeManager prototypeManager,
-            List<ProtoId<AccessLevelPrototype>> accessLevels)
+            List<ProtoId<AccessLevelPrototype>> accessLevels, List<ProtoId<JobPrototype>> allowedJobs) // Sunrise added edit
         {
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
             _logMill = _logManager.GetSawmill(SharedIdCardConsoleSystem.Sawmill);
 
             _owner = owner;
+            _allowedJobs = allowedJobs; // Sunrise-Edit
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _maxIdJobLength = _cfgManager.GetCVar(CCVars.MaxIdJobLength);
@@ -70,7 +72,18 @@ namespace Content.Client.Access.UI
 
             foreach (var job in jobs)
             {
-                if (!job.OverrideConsoleVisibility.GetValueOrDefault(job.SetPreference))
+                // Sunrise-Start
+                // If allowed jobs list is specified, only show jobs in that list
+                if (_allowedJobs.Count > 0)
+                {
+                    if (!_allowedJobs.Contains(job.ID))
+                    {
+                        continue;
+                    }
+                }
+                // Otherwise, use the default visibility logic
+                // Sunrise-End
+                else if (!job.OverrideConsoleVisibility.GetValueOrDefault(job.SetPreference)) // Sunrise added edit
                 {
                     continue;
                 }
@@ -198,14 +211,27 @@ namespace Content.Client.Access.UI
 
             var jobIndex = _jobPrototypeIds.IndexOf(state.TargetIdJobPrototype);
             // If the job index is < 0 that means they don't have a job registered in the station records
-            // or the IdCardComponent's JobPrototype field.
+            // or the IdCardComponent's JobPrototype field, or the job is not in the allowed jobs list. // Sunrise added edit
             // For example, a new ID from a box would have no job index.
             if (jobIndex < 0)
             {
                 jobIndex = _jobPrototypeIds.IndexOf(_defaultJob);
+                // Sunrise-Start
+                // If default job is also not allowed, select the first available job
+                if (jobIndex < 0 && _jobPrototypeIds.Count > 0)
+                {
+                    jobIndex = 0;
+                }
+                // Sunrise-End
             }
 
-            JobPresetOptionButton.SelectId(jobIndex);
+            // Sunrise added edit
+            // Only try to select if we have a valid index
+            if (jobIndex >= 0 && jobIndex < _jobPrototypeIds.Count)
+            {
+                JobPresetOptionButton.SelectId(jobIndex);
+            }
+            // Sunrise added edit
 
             _lastFullName = state.TargetIdFullName;
             _lastJobTitle = state.TargetIdJobTitle;

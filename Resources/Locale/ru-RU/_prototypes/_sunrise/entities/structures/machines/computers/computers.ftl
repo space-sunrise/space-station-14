@@ -5,3 +5,5 @@ ent-AbductorHumanObservationConsole = консоль наблюдения за �
 ent-AbductorHumanObservationConsoleEye = глаз абдукторов
     .desc = Устройство наблюдения абдукторов.
     .suffix = НЕ РАЗМЕЩАТЬ НА КАРТЕ
+ent-ComputerIdPrison = консоль ID карт тюрьмы
+    .desc = Компьютер для программирования ID карт сотрудников тюрьмы, для доступа к разным частям тюрьмы.

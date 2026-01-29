@@ -115,3 +115,62 @@
     interfaces:
      enum.CodeConsoleUiKey.Key:
         type: CodeConsoleBoundUserInterface
+
+- type: entity
+  parent: ComputerId
+  id: ComputerIdPrison
+  name: prison ID card computer
+  description: Terminal for programming prison employee ID cards to access parts of the prison.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: id
+      color: "#ff6600"
+    - map: ["computerLayerKeys"]
+      state: id_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: IdCardConsole
+    accessLevels:
+      - Command
+      - Armory
+      - Magistrat
+      - HeadOfSecurity
+      - Brig
+      - GenpopEnter
+      - GenpopLeave
+      - Security
+      - Engineering
+      - Mining
+      - Hydroponics
+      - Medical
+      - Maintenance
+      - Janitor
+      - Kitchen
+      - Mail
+      - Service
+      - Bar
+      - Theatre
+      - Chapel
+      - Atmospherics
+      - Cryogenics
+      - Chemistry
+      - External
+      - Research
+      - ResearchConsoleAccess
+      - Cargo
+      - CargoPurchaseAccess
+    allowedJobs:
+      - PrisonTrainee
+      - PrisonChef
+      - PrisonDoctor
+      - PrisonScientist
+      - PrisonEngineer
+      - PrisonWorker
+      - PrisonInspector
+      - HeadOfPrison

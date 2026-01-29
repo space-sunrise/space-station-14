@@ -5,3 +5,5 @@ ent-AbductorHumanObservationConsole = human observation console
 ent-AbductorHumanObservationConsoleEye = abductor eye
     .desc = The abductor's viewer.
     .suffix = DO NOT MAP
+ent-ComputerIdPrison = prison ID card computer
+    .desc = Terminal for programming prison employee ID cards to access parts of the prison.

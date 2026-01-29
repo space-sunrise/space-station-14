@@ -85,6 +85,15 @@ public sealed partial class IdCardConsoleComponent : Component
         "ResearchConsoleAccess", // Sunrise-Edit
     };
 
+    // Sunrise-Start
+    /// <summary>
+    /// If empty, all jobs with OverrideConsoleVisibility will be shown.
+    /// If populated, only jobs in this list will be shown (regardless of OverrideConsoleVisibility).
+    /// </summary>
+    [DataField]
+    public List<ProtoId<JobPrototype>> AllowedJobs = new();
+    // Sunrise-End
+
     [Serializable, NetSerializable]
     public sealed class IdCardConsoleBoundUserInterfaceState : BoundUserInterfaceState
     {

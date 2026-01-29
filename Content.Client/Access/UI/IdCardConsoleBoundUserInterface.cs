@@ -35,10 +35,12 @@ namespace Content.Client.Access.UI
         {
             base.Open();
             List<ProtoId<AccessLevelPrototype>> accessLevels;
+            List<ProtoId<JobPrototype>> allowedJobs = new(); // Sunrise-Edit
 
             if (EntMan.TryGetComponent<IdCardConsoleComponent>(Owner, out var idCard))
             {
                 accessLevels = idCard.AccessLevels;
+                allowedJobs = idCard.AllowedJobs; // Sunrise-Edit
             }
             else
             {
@@ -46,7 +48,7 @@ namespace Content.Client.Access.UI
                 _idCardConsoleSystem.Log.Error($"No IdCardConsole component found for {EntMan.ToPrettyString(Owner)}!");
             }
 
-            _window = new IdCardConsoleWindow(this, _prototypeManager, accessLevels)
+            _window = new IdCardConsoleWindow(this, _prototypeManager, accessLevels, allowedJobs) // Sunrise added edit
             {
                 Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName
             };
