@@ -38,5 +38,6 @@
     proto: slime
   - type: Hunger
   - type: Thirst
+  - type: TTS
 
 

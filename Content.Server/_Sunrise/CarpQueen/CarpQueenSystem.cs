@@ -11,8 +11,11 @@ using Content.Shared.Dataset;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.RatKing;
+using Content.Shared._Sunrise.TTS;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Nutrition.Components;
@@ -33,6 +36,8 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
     [Dependency] private readonly HungerSystem _hunger = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
     {
@@ -49,6 +54,21 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
 
         if (TryComp<HungerComponent>(uid, out var hunger))
             component.LastObservedHunger = _hunger.GetHunger(hunger);
+
+        // Initialize random female TTS voice for Carp Queen
+        if (TryComp<TTSComponent>(uid, out var ttsComponent))
+        {
+            var femaleVoices = _prototypeManager
+                .EnumeratePrototypes<TTSVoicePrototype>()
+                .Where(v => v.RoundStart && !v.SponsorOnly && v.Sex == Sex.Female)
+                .ToArray();
+
+            if (femaleVoices.Length > 0)
+            {
+                var randomVoice = _random.Pick(femaleVoices);
+                ttsComponent.VoicePrototypeId = randomVoice.ID;
+            }
+        }
     }
 
     private void OnSummon(EntityUid uid, CarpQueenComponent component, CarpQueenSummonActionEvent args)
