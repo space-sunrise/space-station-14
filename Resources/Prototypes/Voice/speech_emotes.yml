@@ -250,8 +250,6 @@
   # Sunrise-start
    - пищит
    - пищать
-   - пикает
-   - пикать
   # Sunrise-end
 
 - type: emote
@@ -342,8 +340,10 @@
   - whined
   - whining
   # Sunrise-start
-  - скулит
-  - скулить
+  - поскуливает
+  - поскулил
+  - поскулила
+  - поскулить
   # Sunrise-end
 
 - type: emote
