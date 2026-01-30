@@ -96,7 +96,7 @@
 - type: emoteSounds
   id: MaleReptilian
   # Sunrise-start
-  parents: [MaleHuman]
+  parent: MaleHuman
   # Sunrise-end
   params:
     variation: 0.125
@@ -127,7 +127,7 @@
 - type: emoteSounds
   id: FemaleReptilian
   # Sunrise-start
-  parents: [FemaleHuman]
+  parent: FemaleHuman
   # Sunrise-end
   params:
     variation: 0.125
@@ -254,7 +254,7 @@
 - type: emoteSounds
   id: UnisexVox
   # Sunrise-start
-  parents: [MaleHuman]
+  parent: MaleHuman
   # Sunrise-end
   sounds:
     Scream:
@@ -288,7 +288,7 @@
 - type: emoteSounds
   id: UnisexDiona
   # Sunrise-start
-  parents: [MaleHuman]
+  parent: MaleHuman
   # Sunrise-end
   sounds:
     Scream:
@@ -313,7 +313,7 @@
 - type: emoteSounds
   id: UnisexArachnid
   # Sunrise-start
-  parents: [MaleHuman]
+  parent: MaleHuman
   # Sunrise-end
   params:
     variation: 0.125
@@ -434,7 +434,7 @@
 - type: emoteSounds
   id: UnisexMoth
   # Sunrise-start
-  parents: [MaleHuman]
+  parent: MaleHuman
   # Sunrise-end
   params:
     variation: 0.125
@@ -532,7 +532,7 @@
 - type: emoteSounds
   id: MaleVulpkanin
   # Sunrise-start
-  parents: [MaleHuman]
+  parent: MaleHuman
   # Sunrise-end
   params:
     variation: 0.125
@@ -575,7 +575,7 @@
 - type: emoteSounds
   id: FemaleVulpkanin
   # Sunrise-start
-  parents: [FemaleHuman]
+  parent: FemaleHuman
   # Sunrise-end
   params:
     variation: 0.125

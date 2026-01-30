@@ -1,6 +1,6 @@
 - type: emoteSounds
   id: MaleFelinid
-  parents: [MaleHuman]
+  parent: MaleHuman
   params:
     variation: 0.125
   sounds:
@@ -33,7 +33,7 @@
 
 - type: emoteSounds
   id: FemaleFelinid
-  parents: [FemaleHuman]
+  parent: FemaleHuman
   params:
     variation: 0.125
   sounds:
@@ -66,7 +66,7 @@
 
 - type: emoteSounds
   id: MaleTajaran
-  parents: [MaleHuman]
+  parent: MaleHuman
   params:
     variation: 0.125
   sounds:
@@ -99,7 +99,7 @@
 
 - type: emoteSounds
   id: FemaleTajaran
-  parents: [FemaleHuman]
+  parent: FemaleHuman
   params:
     variation: 0.125
   sounds:
@@ -133,7 +133,7 @@
 
 - type: emoteSounds
   id: UnisexSwine
-  parents: [MaleHuman]
+  parent: MaleHuman
   sounds:
     Scream:
       collection: SwineScreams
@@ -173,7 +173,7 @@
 
 - type: emoteSounds
   id: Predator
-  parents: [MaleHuman]
+  parent: MaleHuman
   params:
     variation: 0.125
   sounds:
@@ -201,7 +201,7 @@
 
 - type: emoteSounds
   id: ClownGoblin
-  parents: [MaleHuman]
+  parent: MaleHuman
   params:
     variation: 0.125
   sounds:
@@ -210,7 +210,7 @@
 
 - type: emoteSounds
   id: UnisexResomi
-  parents: [FemaleHuman]
+  parent: FemaleHuman
   params:
     variation: 0.125
   sounds:
