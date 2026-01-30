@@ -155,13 +155,6 @@
     components:
     - BorgChassis
   chatMessages: ["chat-emote-msg-whines"]
-  chatTriggers:
-  - скулит.
-  - скулит!
-  - скулить.
-  - скулить!
-  - скулит
-  - скулить
 
 - type: emote
   id: Scree
