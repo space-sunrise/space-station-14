@@ -96,10 +96,17 @@ public sealed class AlignRCDConstruction : PlacementMode
         var mouseCoordsDiff = _unalignedMouseCoords.Position - MouseCoords.Position;
         var layer = AtmosPipeLayer.Primary;
 
-        if (mouseCoordsDiff.Length() > MouseDeadzoneRadius)
+        if (mouseCoordsDiff.Length() > MouseDeadzoneRadius / 2)
         {
             var direction = (new Angle(mouseCoordsDiff) + _eyeManager.CurrentEye.Rotation + gridRotation + Math.PI / 2).GetCardinalDir();
-            layer = (direction == Direction.North || direction == Direction.East) ? AtmosPipeLayer.Secondary : AtmosPipeLayer.Tertiary;
+            if (mouseCoordsDiff.Length() > MouseDeadzoneRadius)
+            {
+                layer = (direction == Direction.North || direction == Direction.East) ? AtmosPipeLayer.Quaternary : AtmosPipeLayer.Quinary;
+            }
+            else
+            {
+                layer = (direction == Direction.North || direction == Direction.East) ? AtmosPipeLayer.Secondary : AtmosPipeLayer.Tertiary;
+            }
         }
 
         _rcdSystem.SetGhostPipeLayer(rcdUid.Value, layer);
