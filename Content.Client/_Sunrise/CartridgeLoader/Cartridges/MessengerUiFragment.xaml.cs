@@ -16,19 +16,28 @@ using Robust.Client.UserInterface.RichText;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.StatusIcon;
+using Robust.Shared.Timing;
 
 namespace Content.Client._Sunrise.CartridgeLoader.Cartridges;
 
 [GenerateTypedNameReferences]
 public sealed partial class MessengerUiFragment : BoxContainer
 {
-    public event Action<string?, string?, string>? OnSendMessage;
+    public event Action<string?, string?, string, string?>? OnSendMessage;
     public event Action<string>? OnCreateGroup;
     public event Action<string, string>? OnAddToGroup;
     public event Action<string, string>? OnRemoveFromGroup;
     public event Action<string>? OnRequestMessages;
     public event Action<string, bool>? OnToggleMute;
+    public event Action<string>? OnAcceptInvite;
+    public event Action<string>? OnDeclineInvite;
+    public event Action<string>? OnLeaveGroup;
+    public event Action<string, long>? OnDeleteMessage;
+    public event Action<string>? OnTogglePin;
+    public event Action? OnRequestPhotos;
 
     private string? _currentChatId;
     private MessengerUiState? _currentState;
@@ -40,14 +49,23 @@ public sealed partial class MessengerUiFragment : BoxContainer
     private int _lastMessageCount;
     private bool _isScrolledToBottom = true;
 
+    /// <summary>
+    /// Максимальное количество сообщений, отображаемых в UI (для оптимизации производительности)
+    /// </summary>
+    private const int MaxDisplayedMessages = 100;
+
     private Dictionary<string, int>? _lastUnreadCounts;
     private HashSet<string>? _lastUserIds;
     private HashSet<string>? _lastGroupIds;
+    private HashSet<string>? _lastPinnedChats;
     private int _lastActiveTab = -1;
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
     [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly NetTexturesManager _netTexturesManager = default!;
 
     private CreateGroupDialog? _createGroupDialog;
     private AddUserDialog? _addUserDialog;
@@ -85,9 +103,11 @@ public sealed partial class MessengerUiFragment : BoxContainer
         CreateGroupButton.OnPressed += _ => ShowCreateGroupDialog();
         ToggleMembersButton.OnPressed += _ => ToggleMembersList();
         EmojiButton.OnPressed += _ => ShowEmojiPicker();
+        PhotoButton.OnPressed += _ => RequestPhotos();
         SearchInput.OnTextChanged += OnSearchTextChanged;
         PersonalChatsTab.OnPressed += _ => SwitchTab(0);
         GroupChatsTab.OnPressed += _ => SwitchTab(1);
+        InvitesTab.OnPressed += _ => SwitchTab(2);
         MuteCheckBox.OnToggled += OnMuteToggled;
 
         PersonalChatsTab.Pressed = true;
@@ -153,6 +173,12 @@ public sealed partial class MessengerUiFragment : BoxContainer
         MessageInput.Editable = canInteract && hasChatSelected;
         SendButton.Disabled = !canInteract || !hasChatSelected;
         EmojiButton.Disabled = !canInteract || !hasChatSelected;
+        PhotoButton.Disabled = !canInteract || !hasChatSelected;
+
+        if (state.PhotoGallery != null && state.PhotoGallery.Count > 0)
+        {
+            ShowPhotoPicker(state.PhotoGallery);
+        }
 
         var savedChatId = _currentChatId;
         var savedGroupId = _currentGroupId;
@@ -207,6 +233,11 @@ public sealed partial class MessengerUiFragment : BoxContainer
                 .ThenBy(m => m.Content)
                 .ToList();
 
+            if (messages.Count > MaxDisplayedMessages)
+            {
+                messages = messages.Skip(messages.Count - MaxDisplayedMessages).ToList();
+            }
+
             var wasChatChanged = savedChatId != _currentChatId;
 
             if (wasChatChanged)
@@ -240,34 +271,12 @@ public sealed partial class MessengerUiFragment : BoxContainer
 
             if (!needsUpdate && _currentChatId != null && _currentChatId.StartsWith("personal_") && _currentState?.CurrentUserId != null)
             {
-                var hasStatusChange = false;
-
                 if (state.MessageHistory.TryGetValue(_currentChatId, out var newMessages))
                 {
-                    if (_previousState?.MessageHistory.TryGetValue(_currentChatId, out var oldMessages) == true)
+                    if (HasMessageStatusChanged(newMessages, _currentState.CurrentUserId))
                     {
-                        foreach (var newMsg in newMessages)
-                        {
-                            if (newMsg.SenderId == _currentState.CurrentUserId && newMsg.RecipientId != null)
-                            {
-                                var oldMsg = oldMessages.FirstOrDefault(m =>
-                                    m.SenderId == newMsg.SenderId &&
-                                    Math.Abs(m.Timestamp.TotalSeconds - newMsg.Timestamp.TotalSeconds) < 0.001 &&
-                                    m.Content == newMsg.Content);
-
-                                if (oldMsg != null && oldMsg.IsRead != newMsg.IsRead)
-                                {
-                                    hasStatusChange = true;
-                                    break;
-                                }
-                            }
-                        }
+                        needsUpdate = true;
                     }
-                }
-
-                if (hasStatusChange)
-                {
-                    needsUpdate = true;
                 }
             }
 
@@ -288,6 +297,7 @@ public sealed partial class MessengerUiFragment : BoxContainer
         }
 
         UpdateChatsList(state);
+        UpdateTabButtons(state);
 
         if (_showMembersList && _currentGroupId != null)
         {
@@ -295,15 +305,155 @@ public sealed partial class MessengerUiFragment : BoxContainer
         }
     }
 
+    private void UpdateTabButtons(MessengerUiState state)
+    {
+        int personalUnreadChats = 0;
+        int groupsUnreadChats = 0;
+        int invitesCount = 0;
+
+        if (state.CurrentUserId != null)
+        {
+            foreach (var user in state.Users)
+            {
+                if (user.UserId == state.CurrentUserId)
+                    continue;
+
+                var chatId = GetPersonalChatId(user.UserId);
+                if (state.UnreadCounts.TryGetValue(chatId, out var count) && count > 0)
+                {
+                    personalUnreadChats++;
+                }
+            }
+        }
+
+        foreach (var group in state.Groups)
+        {
+            if (state.UnreadCounts.TryGetValue(group.GroupId, out var count) && count > 0)
+            {
+                groupsUnreadChats++;
+            }
+        }
+
+        if (state.ActiveInvites != null)
+        {
+            invitesCount = state.ActiveInvites.Count;
+        }
+
+        UpdateTabButton(PersonalChatsTab, personalUnreadChats);
+        UpdateTabButton(GroupChatsTab, groupsUnreadChats);
+        UpdateTabButton(InvitesTab, invitesCount);
+    }
+
+    private void UpdateTabButton(Button button, int count)
+    {
+        BoxContainer? textContainer;
+        Label? nameLabel;
+        var isInvitesTab = button == InvitesTab;
+
+        if (button.ChildCount == 0)
+        {
+            textContainer = new BoxContainer
+            {
+                Orientation = LayoutOrientation.Horizontal,
+                HorizontalExpand = true
+            };
+            nameLabel = new Label
+            {
+                Text = button.Text ?? "",
+                HorizontalExpand = false,
+                Align = isInvitesTab ? Label.AlignMode.Center : Label.AlignMode.Left
+            };
+            textContainer.AddChild(nameLabel);
+            button.AddChild(textContainer);
+        }
+        else
+        {
+            textContainer = button.Children.FirstOrDefault() as BoxContainer;
+            if (textContainer == null)
+            {
+                textContainer = new BoxContainer
+                {
+                    Orientation = LayoutOrientation.Horizontal,
+                    HorizontalExpand = true
+                };
+                nameLabel = new Label
+                {
+                    Text = button.Text ?? "",
+                    HorizontalExpand = false,
+                    Align = isInvitesTab ? Label.AlignMode.Center : Label.AlignMode.Left
+                };
+                textContainer.AddChild(nameLabel);
+                button.RemoveAllChildren();
+                button.AddChild(textContainer);
+            }
+            else
+            {
+                nameLabel = textContainer.Children.OfType<Label>().FirstOrDefault(l => !l.StyleClasses.Contains("Bold"));
+                if (nameLabel == null)
+                {
+                    nameLabel = new Label
+                    {
+                        Text = button.Text ?? "",
+                        HorizontalExpand = false,
+                        Align = isInvitesTab ? Label.AlignMode.Center : Label.AlignMode.Left
+                    };
+                    textContainer.AddChild(nameLabel);
+                }
+                else
+                {
+                    nameLabel.HorizontalExpand = false;
+                    nameLabel.Align = isInvitesTab ? Label.AlignMode.Center : Label.AlignMode.Left;
+                }
+            }
+        }
+
+        var existingCounter = textContainer.Children.OfType<Label>()
+            .FirstOrDefault(l => l != nameLabel && l.StyleClasses.Contains("Bold"));
+
+        if (count > 0)
+        {
+            button.ModulateSelfOverride = Color.Red;
+
+            if (existingCounter == null)
+            {
+                var counterLabel = new Label
+                {
+                    Text = $"({count})",
+                    Align = Label.AlignMode.Left,
+                    StyleClasses = { "Bold" },
+                    HorizontalExpand = false
+                };
+                counterLabel.ModulateSelfOverride = Color.White;
+                textContainer.AddChild(counterLabel);
+            }
+            else
+            {
+                existingCounter.Text = $"({count})";
+            }
+        }
+        else
+        {
+            button.ModulateSelfOverride = null;
+
+            if (existingCounter != null)
+            {
+                textContainer.RemoveChild(existingCounter);
+            }
+        }
+    }
+
+
     private void SwitchTab(int tabIndex)
     {
         _activeTab = tabIndex;
         PersonalChatsTab.Pressed = tabIndex == 0;
         GroupChatsTab.Pressed = tabIndex == 1;
+        InvitesTab.Pressed = tabIndex == 2;
         CreateGroupButton.Visible = tabIndex == 1;
         if (_currentState != null)
         {
             UpdateChatsList(_currentState);
+            UpdateTabButtons(_currentState);
         }
     }
 
@@ -333,15 +483,18 @@ public sealed partial class MessengerUiFragment : BoxContainer
     {
         var currentUserIds = new HashSet<string>(state.Users.Select(u => u.UserId));
         var currentGroupIds = new HashSet<string>(state.Groups.Select(g => g.GroupId));
+        var currentPinnedChats = new HashSet<string>(state.PinnedChats);
 
         var tabChanged = _lastActiveTab != _activeTab;
 
         var needsUpdate = _lastUserIds == null ||
                          _lastGroupIds == null ||
                          _lastUnreadCounts == null ||
+                         _lastPinnedChats == null ||
                          tabChanged ||
                          !currentUserIds.SetEquals(_lastUserIds) ||
                          !currentGroupIds.SetEquals(_lastGroupIds) ||
+                         !currentPinnedChats.SetEquals(_lastPinnedChats) ||
                          !AreUnreadCountsEqual(_lastUnreadCounts, state.UnreadCounts) ||
                          _searchFilter != string.Empty;
 
@@ -354,6 +507,7 @@ public sealed partial class MessengerUiFragment : BoxContainer
         _lastUserIds = currentUserIds;
         _lastGroupIds = currentGroupIds;
         _lastUnreadCounts = new Dictionary<string, int>(state.UnreadCounts);
+        _lastPinnedChats = new HashSet<string>(currentPinnedChats);
         _lastActiveTab = _activeTab;
 
         ChatsContainer.RemoveAllChildren();
@@ -377,138 +531,102 @@ public sealed partial class MessengerUiFragment : BoxContainer
 
         if (_activeTab == 0)
         {
-            foreach (var user in state.Users)
+            UpdatePersonalChatsList(state, searchLower);
+        }
+        else if (_activeTab == 1)
+        {
+            UpdateGroupChatsList(state, searchLower);
+        }
+        else if (_activeTab == 2)
+        {
+            UpdateInvitesList(state);
+        }
+    }
+
+    /// <summary>
+    /// Обновляет список личных чатов
+    /// </summary>
+    private void UpdatePersonalChatsList(MessengerUiState state, string searchFilter)
+    {
+        var usersList = state.Users.Where(u => u.UserId != state.CurrentUserId).ToList();
+        var pinnedChats = state.PinnedChats;
+
+        var sortedUsers = usersList.OrderByDescending(u => pinnedChats.Contains(GetPersonalChatId(u.UserId)))
+            .ThenBy(u => u.Name)
+            .ToList();
+
+        foreach (var user in sortedUsers)
+        {
+            var userName = user.Name;
+            if (!string.IsNullOrEmpty(searchFilter) && !userName.ToLowerInvariant().Contains(searchFilter))
+                continue;
+
+            var buttonContainer = new BoxContainer
             {
-                if (user.UserId == state.CurrentUserId)
-                    continue;
+                Orientation = LayoutOrientation.Horizontal,
+                HorizontalExpand = true,
+                Margin = new Thickness(2)
+            };
 
-                var userName = user.Name;
-                var chatId = GetPersonalChatId(user.UserId);
+            var button = CreatePersonalChatButton(user, state);
+            buttonContainer.AddChild(button);
+            ChatsContainer.AddChild(buttonContainer);
+        }
+    }
 
-                if (!string.IsNullOrEmpty(searchLower) && !userName.ToLowerInvariant().Contains(searchLower))
-                    continue;
+    /// <summary>
+    /// Обновляет список групповых чатов
+    /// </summary>
+    private void UpdateGroupChatsList(MessengerUiState state, string searchFilter)
+    {
+        var pinnedChats = state.PinnedChats;
 
-                var buttonContainer = new BoxContainer
-                {
-                    Orientation = LayoutOrientation.Horizontal,
-                    HorizontalExpand = true,
-                    Margin = new Thickness(2)
-                };
+        var sortedGroups = state.Groups.OrderByDescending(g => pinnedChats.Contains(g.GroupId))
+            .ThenBy(g => g.Name)
+            .ToList();
 
-                var button = new Button
-                {
-                    HorizontalExpand = true,
-                    ClipText = false,
-                    TextAlign = Label.AlignMode.Left,
-                    ToolTip = userName
-                };
+        foreach (var group in sortedGroups)
+        {
+            var groupName = group.Name;
+            if (!string.IsNullOrEmpty(searchFilter) && !groupName.ToLowerInvariant().Contains(searchFilter))
+                continue;
 
-                var unreadCount = state.UnreadCounts.TryGetValue(chatId, out var count) ? count : 0;
-                var hasUnread = unreadCount > 0;
+            var groupContainer = new BoxContainer
+            {
+                Orientation = LayoutOrientation.Horizontal,
+                HorizontalExpand = true,
+                Margin = new Thickness(2)
+            };
 
-                var textContainer = new BoxContainer
-                {
-                    Orientation = LayoutOrientation.Horizontal,
-                    HorizontalExpand = true
-                };
+            var button = CreateGroupChatButton(group, state);
+            groupContainer.AddChild(button);
+            ChatsContainer.AddChild(groupContainer);
+        }
+    }
 
-                var nameLabel = new Label
-                {
-                    Text = userName,
-                    HorizontalExpand = true,
-                    ClipText = true,
-                    Align = Label.AlignMode.Left
-                };
-                textContainer.AddChild(nameLabel);
-
-                if (hasUnread)
-                {
-                    var counterLabel = new Label
-                    {
-                        Text = $"({unreadCount})",
-                        Align = Label.AlignMode.Left,
-                        StyleClasses = { "Bold" },
-                        HorizontalExpand = false,
-                        MinSize = new Vector2(40, 0)
-                    };
-                    counterLabel.ModulateSelfOverride = Color.White;
-                    textContainer.AddChild(counterLabel);
-                    button.ModulateSelfOverride = Color.Red;
-                }
-
-                button.AddChild(textContainer);
-
-                button.OnPressed += _ => SelectChat(chatId, userName);
-                buttonContainer.AddChild(button);
-
-                ChatsContainer.AddChild(buttonContainer);
+    /// <summary>
+    /// Обновляет список приглашений
+    /// </summary>
+    private void UpdateInvitesList(MessengerUiState state)
+    {
+        if (state.ActiveInvites.Count > 0)
+        {
+            foreach (var invite in state.ActiveInvites)
+            {
+                var invitePanel = CreateInvitePanel(invite);
+                ChatsContainer.AddChild(invitePanel);
             }
         }
         else
         {
-            foreach (var group in state.Groups)
+            var noInvitesLabel = new Label
             {
-                var groupContainer = new BoxContainer
-                {
-                    Orientation = LayoutOrientation.Horizontal,
-                    HorizontalExpand = true,
-                    Margin = new Thickness(2)
-                };
-
-                var groupId = group.GroupId;
-                var groupName = group.Name;
-
-                if (!string.IsNullOrEmpty(searchLower) && !groupName.ToLowerInvariant().Contains(searchLower))
-                    continue;
-
-                var button = new Button
-                {
-                    HorizontalExpand = true,
-                    ClipText = false,
-                    TextAlign = Label.AlignMode.Left,
-                    ToolTip = groupName
-                };
-
-                var unreadCount = state.UnreadCounts.TryGetValue(groupId, out var count) ? count : 0;
-                var hasUnread = unreadCount > 0;
-
-                var textContainer = new BoxContainer
-                {
-                    Orientation = LayoutOrientation.Horizontal,
-                    HorizontalExpand = true
-                };
-
-                var nameLabel = new Label
-                {
-                    Text = groupName,
-                    HorizontalExpand = true,
-                    ClipText = true,
-                    Align = Label.AlignMode.Left
-                };
-                textContainer.AddChild(nameLabel);
-
-                if (hasUnread)
-                {
-                    var counterLabel = new Label
-                    {
-                        Text = $"({unreadCount})",
-                        Align = Label.AlignMode.Left,
-                        StyleClasses = { "Bold" },
-                        HorizontalExpand = false,
-                        MinSize = new Vector2(40, 0)
-                    };
-                    counterLabel.ModulateSelfOverride = Color.White;
-                    textContainer.AddChild(counterLabel);
-                    button.ModulateSelfOverride = Color.Red;
-                }
-
-                button.AddChild(textContainer);
-
-                button.OnPressed += _ => SelectChat(groupId, groupName);
-                groupContainer.AddChild(button);
-
-                ChatsContainer.AddChild(groupContainer);
-            }
+                Text = Loc.GetString("messenger-no-invites"),
+                HorizontalExpand = true,
+                HorizontalAlignment = HAlignment.Center,
+                Margin = new Thickness(4)
+            };
+            ChatsContainer.AddChild(noInvitesLabel);
         }
     }
 
@@ -723,21 +841,9 @@ public sealed partial class MessengerUiFragment : BoxContainer
 
                 var isMemberOwner = memberId == group.OwnerId;
 
-                var memberPanel = new PanelContainer
-                {
-                    HorizontalExpand = true,
-                    Margin = new Thickness(2, 2)
-                };
-                memberPanel.PanelOverride = new StyleBoxFlat
-                {
-                    BackgroundColor = Color.FromHex("#25252A"),
-                    BorderColor = Color.FromHex("#3D4059"),
-                    BorderThickness = new Thickness(1),
-                    ContentMarginLeftOverride = 6,
-                    ContentMarginRightOverride = 6,
-                    ContentMarginTopOverride = 4,
-                    ContentMarginBottomOverride = 4
-                };
+                var memberPanel = CreateStyledPanel(
+                    Color.FromHex("#25252A"),
+                    Color.FromHex("#3D4059"));
 
                 var memberContainer = new BoxContainer
                 {
@@ -745,9 +851,22 @@ public sealed partial class MessengerUiFragment : BoxContainer
                     HorizontalExpand = true
                 };
 
-                var displayText = isMemberOwner
-                    ? $"★ {userName}"
-                    : userName;
+                if (isMemberOwner)
+                {
+                    var ownerStarLabel = new Label
+                    {
+                        Text = "★",
+                        HorizontalExpand = false,
+                        Margin = new Thickness(0, 0, 4, 0),
+                        VerticalAlignment = VAlignment.Center
+                    };
+                    memberContainer.AddChild(ownerStarLabel);
+                }
+
+                if (user != null)
+                {
+                    CreateJobIconRect(user.JobIconId, memberContainer);
+                }
 
                 var tooltipText = isMemberOwner
                     ? Loc.GetString("messenger-member-owner", ("name", userName))
@@ -755,7 +874,7 @@ public sealed partial class MessengerUiFragment : BoxContainer
 
                 var memberLabel = new Label
                 {
-                    Text = displayText,
+                    Text = userName,
                     HorizontalExpand = true,
                     ClipText = true,
                     ToolTip = tooltipText
@@ -789,110 +908,223 @@ public sealed partial class MessengerUiFragment : BoxContainer
             MembersList.AddChild(noMembersLabel);
         }
 
-        if (isUserGroup && isOwner && _currentState != null && _currentState.ServerAvailable && _currentState.IsRegistered)
+        if (isUserGroup && _currentState != null && _currentState.ServerAvailable && _currentState.IsRegistered)
         {
-            AddMemberButton.Disabled = false;
-            AddMemberButton.Visible = true;
-            AddMemberButton.OnPressed -= OnAddMemberButtonPressed;
-            AddMemberButton.OnPressed += OnAddMemberButtonPressed;
+            var buttonsContainer = new BoxContainer
+            {
+                Orientation = LayoutOrientation.Horizontal,
+                HorizontalExpand = true,
+                Margin = new Thickness(2, 4)
+            };
+
+            if (group.Type == MessengerGroupType.UserCreated && isOwner)
+            {
+                if (AddMemberButton.Parent != null)
+                {
+                    AddMemberButton.Parent.RemoveChild(AddMemberButton);
+                }
+                AddMemberButton.Disabled = false;
+                AddMemberButton.Visible = true;
+                AddMemberButton.Text = Loc.GetString("messenger-invite-member-button");
+                AddMemberButton.HorizontalExpand = true;
+                AddMemberButton.Margin = new Thickness(2, 0);
+                AddMemberButton.OnPressed -= OnAddMemberButtonPressed;
+                AddMemberButton.OnPressed += OnAddMemberButtonPressed;
+                buttonsContainer.AddChild(AddMemberButton);
+            }
+            else
+            {
+                AddMemberButton.Disabled = true;
+                AddMemberButton.Visible = false;
+            }
+
+            var leaveButton = new Button
+            {
+                Text = Loc.GetString("messenger-leave-group"),
+                HorizontalExpand = true,
+                Margin = new Thickness(2, 0)
+            };
+            leaveButton.OnPressed += _ =>
+            {
+                if (_currentGroupId != null)
+                {
+                    OnLeaveGroup?.Invoke(_currentGroupId);
+                }
+            };
+            buttonsContainer.AddChild(leaveButton);
+
+            MembersList.AddChild(buttonsContainer);
         }
         else
         {
             AddMemberButton.Disabled = true;
             AddMemberButton.Visible = false;
         }
+
     }
 
     private void UpdateMessages(List<MessengerMessage> messages)
     {
-        var hasNewMessages = messages.Count > _lastMessageCount;
+        if (messages.Count > MaxDisplayedMessages)
+        {
+            messages = messages.Skip(messages.Count - MaxDisplayedMessages).ToList();
+        }
 
+        var hasNewMessages = messages.Count > _lastMessageCount;
         UpdateScrollBottomState();
         var wasAtBottom = _isScrolledToBottom;
 
-
-        if (_lastMessageCount == 0)
-        {
-            MessagesList.RemoveAllChildren();
-        }
-
-        var hasStatusChange = false;
-        if (!hasNewMessages && messages.Count == _lastMessageCount && MessagesList.ChildCount > 0)
-        {
-            var isPersonalChat = _currentChatId != null && _currentChatId.StartsWith("personal_");
-            if (isPersonalChat && _currentState?.CurrentUserId != null && _currentChatId != null)
-            {
-                if (_previousState?.MessageHistory.TryGetValue(_currentChatId, out var oldMessages) == true)
-                {
-                    foreach (var newMsg in messages)
-                    {
-                        if (newMsg.SenderId == _currentState.CurrentUserId && newMsg.RecipientId != null)
-                        {
-                            var oldMsg = oldMessages.FirstOrDefault(m =>
-                                m.SenderId == newMsg.SenderId &&
-                                Math.Abs(m.Timestamp.TotalSeconds - newMsg.Timestamp.TotalSeconds) < 0.001 &&
-                                m.Content == newMsg.Content);
-
-                            if (oldMsg != null && oldMsg.IsRead != newMsg.IsRead)
-                            {
-                                hasStatusChange = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (hasStatusChange)
-            {
-                MessagesList.RemoveAllChildren();
-                _lastMessageCount = 0;
-            }
-            else
-                return;
-        }
-
-        else if (messages.Count < _lastMessageCount)
+        if (ShouldClearMessagesList(messages, hasNewMessages))
         {
             MessagesList.RemoveAllChildren();
             _lastMessageCount = 0;
         }
 
+        if (!ShouldUpdateMessagesList(messages, hasNewMessages))
+        {
+            return;
+        }
+
+        AddNewMessages(messages);
+        RemoveDeletedMessages(messages);
+
+        _lastMessageCount = messages.Count;
+
+        var shouldScroll = (hasNewMessages && wasAtBottom || _lastMessageCount == 0 &&
+            messages.Count > 0 || hasNewMessages && _isScrolledToBottom);
+
+        if (shouldScroll)
+        {
+            ScrollToBottom();
+        }
+        else
+        {
+            UpdateScrollBottomState();
+        }
+    }
+
+    /// <summary>
+    /// Проверяет, нужно ли очистить список сообщений
+    /// </summary>
+    private bool ShouldClearMessagesList(List<MessengerMessage> messages, bool hasNewMessages)
+    {
+        if (_lastMessageCount == 0 || messages.Count < _lastMessageCount)
+            return true;
+
+        if (messages.Count > 0 && _lastMessageCount > 0)
+        {
+            var firstDisplayedId = GetFirstDisplayedMessageId();
+            if (firstDisplayedId.HasValue && messages[0].MessageId != firstDisplayedId.Value)
+                return true;
+        }
+
+        if (!hasNewMessages && messages.Count == _lastMessageCount && MessagesList.ChildCount > 0)
+        {
+            var isPersonalChat = _currentChatId != null && _currentChatId.StartsWith("personal_");
+            if (isPersonalChat && _currentState?.CurrentUserId != null && _currentChatId != null)
+            {
+                return HasMessageStatusChanged(messages, _currentState.CurrentUserId);
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Проверяет, нужно ли обновить список сообщений
+    /// </summary>
+    private bool ShouldUpdateMessagesList(List<MessengerMessage> messages, bool hasNewMessages)
+    {
+        if (hasNewMessages)
+            return true;
+
+        if (messages.Count != _lastMessageCount)
+            return true;
+
+        if (MessagesList.ChildCount == 0 && messages.Count > 0)
+            return true;
+
+        var isPersonalChat = _currentChatId != null && _currentChatId.StartsWith("personal_");
+        if (isPersonalChat && _currentState?.CurrentUserId != null && _currentChatId != null)
+        {
+            return HasMessageStatusChanged(messages, _currentState.CurrentUserId);
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Добавляет новые сообщения в список
+    /// </summary>
+    private void AddNewMessages(List<MessengerMessage> messages)
+    {
+        var existingMessageIds = new HashSet<long>();
+        foreach (var child in MessagesList.Children)
+        {
+            if (child is MessagePanel panel)
+            {
+                existingMessageIds.Add(panel.MessageId);
+            }
+        }
+
         for (int i = _lastMessageCount; i < messages.Count; i++)
         {
             var message = messages[i];
+            if (existingMessageIds.Contains(message.MessageId))
+                continue;
+
             var isOwnMessage = _currentState?.CurrentUserId == message.SenderId;
             var isPersonalChat = _currentChatId != null && _currentChatId.StartsWith("personal_");
 
             var messagePanel = new MessagePanel();
             messagePanel.UpdateMessage(message, isOwnMessage, isPersonalChat, _currentState?.CurrentUserId);
+            if (isOwnMessage)
+            {
+                messagePanel.OnDeleteMessage += (messageId) =>
+                {
+                    if (_currentChatId != null)
+                    {
+                        OnDeleteMessage?.Invoke(_currentChatId, messageId);
+                    }
+                };
+            }
             MessagesList.AddChild(messagePanel);
         }
+    }
 
-        var previousMessageCount = _lastMessageCount;
-        _lastMessageCount = messages.Count;
-
-        var shouldScroll = (hasNewMessages && wasAtBottom || previousMessageCount == 0 &&
-            messages.Count > 0 || hasNewMessages && _isScrolledToBottom);
-
-        if (shouldScroll)
+    /// <summary>
+    /// Удаляет сообщения, которых больше нет в списке
+    /// </summary>
+    private void RemoveDeletedMessages(List<MessengerMessage> messages)
+    {
+        var messageIds = new HashSet<long>(messages.Select(m => m.MessageId));
+        var toRemove = new List<Control>();
+        foreach (var child in MessagesList.Children)
         {
-            _userInterfaceManager.DeferAction(() =>
+            if (child is MessagePanel panel && !messageIds.Contains(panel.MessageId))
             {
-                if (MessagesList == null || MessagesContainer == null)
-                    return;
-
-                var contentHeight = MessagesList.Height;
-                var containerHeight = MessagesContainer.Height;
-                var maxScroll = Math.Max(0, contentHeight - containerHeight);
-
-                MessagesContainer.VScroll = maxScroll;
-                MessagesContainer.VScrollTarget = maxScroll;
-                _isScrolledToBottom = true;
-            });
+                toRemove.Add(child);
+            }
         }
-        else
-            UpdateScrollBottomState();
+        foreach (var child in toRemove)
+        {
+            MessagesList.RemoveChild(child);
+        }
+    }
+
+    /// <summary>
+    /// Получает ID первого отображаемого сообщения для проверки необходимости полной перерисовки
+    /// </summary>
+    private long? GetFirstDisplayedMessageId()
+    {
+        if (MessagesList.ChildCount == 0)
+            return null;
+
+        var firstChild = MessagesList.Children.FirstOrDefault();
+        if (firstChild is not MessagePanel firstPanel)
+            return null;
+
+        return firstPanel.MessageId;
     }
 
     private void SendMessage()
@@ -922,21 +1154,90 @@ public sealed partial class MessengerUiFragment : BoxContainer
         }
 
         MessageInput.Clear();
-        OnSendMessage?.Invoke(recipientId, groupId, messageText);
+        OnSendMessage?.Invoke(recipientId, groupId, messageText, null);
+        ScrollToBottom();
+    }
 
-        _userInterfaceManager.DeferAction(() =>
+    private void SendPhoto(string imagePath)
+    {
+        if (_currentChatId == null)
+            return;
+
+        string? recipientId = null;
+        string? groupId = null;
+
+        if (_currentChatId.StartsWith("personal_"))
         {
-            if (MessagesList == null || MessagesContainer == null)
-                return;
+            var parts = _currentChatId.Split('_');
+            if (parts.Length >= 3 && _currentState?.CurrentUserId != null)
+            {
+                var userId1 = parts[1];
+                var userId2 = parts[2];
+                recipientId = userId1 == _currentState.CurrentUserId ? userId2 : userId1;
+            }
+        }
+        else if (_currentState?.Groups.Any(g => g.GroupId == _currentChatId) ?? false)
+        {
+            groupId = _currentChatId;
+        }
 
-            var contentHeight = MessagesList.Height;
-            var containerHeight = MessagesContainer.Height;
-            var maxScroll = Math.Max(0, contentHeight - containerHeight);
+        OnSendMessage?.Invoke(recipientId, groupId, string.Empty, imagePath);
+    }
 
-            MessagesContainer.VScroll = maxScroll;
-            MessagesContainer.VScrollTarget = maxScroll;
-            _isScrolledToBottom = true;
-        });
+    private void RequestPhotos()
+    {
+        if (_currentChatId == null)
+            return;
+
+        OnRequestPhotos?.Invoke();
+    }
+
+    private DefaultWindow? _photoPickerDialog;
+
+    private void ShowPhotoPicker(Dictionary<string, PhotoMetadata> photos)
+    {
+        if (_photoPickerDialog != null && _photoPickerDialog.IsOpen)
+            return;
+
+        var dialog = new DefaultWindow
+        {
+            Title = Loc.GetString("messenger-photo-picker-title"),
+            MinSize = new Vector2(560, 620),
+        };
+        _photoPickerDialog = dialog;
+
+        var scroll = new ScrollContainer
+        {
+            HorizontalExpand = true,
+            VerticalExpand = true
+        };
+
+        var grid = new GridContainer
+        {
+            Columns = 2,
+            HorizontalExpand = true
+        };
+
+        foreach (var (id, metadata) in photos)
+        {
+            var photoControl = new PhotoItemControl(id, metadata,
+                _netTexturesManager,
+                _resourceCache,
+                _gameTiming);
+
+            photoControl.MinSize = new Vector2(120, 120);
+            photoControl.OnPressed += _ =>
+            {
+                SendPhoto(metadata.ImagePath);
+                dialog.Close();
+            };
+            grid.AddChild(photoControl);
+        }
+
+        scroll.AddChild(grid);
+        dialog.Contents.AddChild(scroll);
+        dialog.OnClose += () => _photoPickerDialog = null;
+        dialog.OpenCentered();
     }
 
     private string GetPersonalChatId(string userId)
@@ -1023,7 +1324,8 @@ public sealed partial class MessengerUiFragment : BoxContainer
         }
 
         var dialog = new AddUserDialog();
-        dialog.SetTitle(Loc.GetString("messenger-add-user-to-group-title", ("groupName", groupName)));
+        var dialogTitle = Loc.GetString("messenger-invite-user-to-group-title", ("groupName", groupName));
+        dialog.SetTitle(dialogTitle);
         _addUserDialog = dialog;
 
         dialog.SetAvailableUsers(availableUsers);
@@ -1112,20 +1414,38 @@ public sealed partial class MessengerUiFragment : BoxContainer
         var allEmojis = emojiSystem.GetAllEmojis().ToList();
         var emojiDict = allEmojis.ToDictionary(e => e.Code, e => e);
 
+        BuildRecentEmojisSection(contentContainer, emojiDict, spriteSystem);
+        BuildFavoriteEmojisSection(contentContainer, allEmojis, spriteSystem);
+        BuildAllEmojisSection(contentContainer, allEmojis, spriteSystem);
+    }
+
+    /// <summary>
+    /// Создает стиль панели для секций эмодзи
+    /// </summary>
+    private StyleBoxTexture CreateEmojiPanelStyle()
+    {
+        var panelTex = _resourceCache.GetTexture("/Textures/Interface/Nano/rounded_button_bordered.svg.96dpi.png");
+        var panelStyle = new StyleBoxTexture
+        {
+            Texture = panelTex
+        };
+        panelStyle.SetPatchMargin(StyleBox.Margin.All, 5);
+        panelStyle.SetContentMarginOverride(StyleBox.Margin.All, 8);
+        panelStyle.Modulate = Color.FromHex("#2F2F35");
+        return panelStyle;
+    }
+
+    /// <summary>
+    /// Создает секцию недавних эмодзи
+    /// </summary>
+    private void BuildRecentEmojisSection(BoxContainer contentContainer, Dictionary<string, EmojiPrototype> emojiDict, SpriteSystem spriteSystem)
+    {
         var recentPanel = new PanelContainer
         {
             HorizontalExpand = true,
             Margin = new Thickness(0, 0, 0, 10)
         };
-        var recentPanelTex = _resourceCache.GetTexture("/Textures/Interface/Nano/rounded_button_bordered.svg.96dpi.png");
-        var recentPanelStyle = new StyleBoxTexture
-        {
-            Texture = recentPanelTex
-        };
-        recentPanelStyle.SetPatchMargin(StyleBox.Margin.All, 5);
-        recentPanelStyle.SetContentMarginOverride(StyleBox.Margin.All, 8);
-        recentPanelStyle.Modulate = Color.FromHex("#2F2F35");
-        recentPanel.PanelOverride = recentPanelStyle;
+        recentPanel.PanelOverride = CreateEmojiPanelStyle();
 
         var recentSection = new BoxContainer
         {
@@ -1170,21 +1490,19 @@ public sealed partial class MessengerUiFragment : BoxContainer
         }
         recentPanel.AddChild(recentSection);
         contentContainer.AddChild(recentPanel);
+    }
 
+    /// <summary>
+    /// Создает секцию избранных эмодзи
+    /// </summary>
+    private void BuildFavoriteEmojisSection(BoxContainer contentContainer, List<EmojiPrototype> allEmojis, SpriteSystem spriteSystem)
+    {
         var favoritePanel = new PanelContainer
         {
             HorizontalExpand = true,
             Margin = new Thickness(0, 0, 0, 10)
         };
-        var favoritePanelTex = _resourceCache.GetTexture("/Textures/Interface/Nano/rounded_button_bordered.svg.96dpi.png");
-        var favoritePanelStyle = new StyleBoxTexture
-        {
-            Texture = favoritePanelTex
-        };
-        favoritePanelStyle.SetPatchMargin(StyleBox.Margin.All, 5);
-        favoritePanelStyle.SetContentMarginOverride(StyleBox.Margin.All, 8);
-        favoritePanelStyle.Modulate = Color.FromHex("#2F2F35");
-        favoritePanel.PanelOverride = favoritePanelStyle;
+        favoritePanel.PanelOverride = CreateEmojiPanelStyle();
 
         var favoriteSection = new BoxContainer
         {
@@ -1227,21 +1545,19 @@ public sealed partial class MessengerUiFragment : BoxContainer
         }
         favoritePanel.AddChild(favoriteSection);
         contentContainer.AddChild(favoritePanel);
+    }
 
+    /// <summary>
+    /// Создает секцию всех эмодзи
+    /// </summary>
+    private void BuildAllEmojisSection(BoxContainer contentContainer, List<EmojiPrototype> allEmojis, SpriteSystem spriteSystem)
+    {
         var allPanel = new PanelContainer
         {
             HorizontalExpand = true,
             Margin = new Thickness(0, 0, 0, 0)
         };
-        var allPanelTex = _resourceCache.GetTexture("/Textures/Interface/Nano/rounded_button_bordered.svg.96dpi.png");
-        var allPanelStyle = new StyleBoxTexture
-        {
-            Texture = allPanelTex
-        };
-        allPanelStyle.SetPatchMargin(StyleBox.Margin.All, 5);
-        allPanelStyle.SetContentMarginOverride(StyleBox.Margin.All, 8);
-        allPanelStyle.Modulate = Color.FromHex("#2F2F35");
-        allPanel.PanelOverride = allPanelStyle;
+        allPanel.PanelOverride = CreateEmojiPanelStyle();
 
         var allSection = new BoxContainer
         {
@@ -1470,4 +1786,314 @@ public sealed partial class MessengerUiFragment : BoxContainer
             // ignored
         }
     }
+
+    #region UI Helper Methods
+
+    /// <summary>
+    /// Создает кнопку чата с общими элементами
+    /// </summary>
+    private Button CreateChatButton(string chatId, string chatName, bool isPinned, int unreadCount,
+        ProtoId<JobIconPrototype>? jobIconId, Action<string, string> onSelect, Action<string>? onTogglePin)
+    {
+        var button = new Button
+        {
+            HorizontalExpand = true,
+            ClipText = false,
+            TextAlign = Label.AlignMode.Left,
+            ToolTip = chatName
+        };
+
+        var textContainer = new BoxContainer
+        {
+            Orientation = LayoutOrientation.Horizontal,
+            HorizontalExpand = true
+        };
+
+        if (isPinned)
+        {
+            var starLabel = new Label
+            {
+                Text = "★",
+                HorizontalExpand = false,
+                Margin = new Thickness(0, 0, 4, 0),
+                VerticalAlignment = VAlignment.Center
+            };
+            textContainer.AddChild(starLabel);
+        }
+
+        if (jobIconId != null)
+        {
+            CreateJobIconRect(jobIconId, textContainer);
+        }
+
+        var nameLabel = new Label
+        {
+            Text = chatName,
+            HorizontalExpand = true,
+            ClipText = true,
+            Align = Label.AlignMode.Left
+        };
+        textContainer.AddChild(nameLabel);
+
+        if (unreadCount > 0)
+        {
+            var counterLabel = CreateUnreadCounterLabel(unreadCount);
+            textContainer.AddChild(counterLabel);
+            button.ModulateSelfOverride = Color.Red;
+        }
+
+        button.AddChild(textContainer);
+
+        button.OnPressed += _ => onSelect(chatId, chatName);
+
+        button.OnKeyBindDown += args =>
+        {
+            if (args.Function == EngineKeyFunctions.UIRightClick)
+            {
+                args.Handle();
+
+                if (_currentState != null)
+                {
+                    if (_currentState.PinnedChats.Contains(chatId))
+                        _currentState.PinnedChats.Remove(chatId);
+                    else
+                        _currentState.PinnedChats.Add(chatId);
+
+                    _lastPinnedChats = null;
+                    UpdateChatsList(_currentState);
+                }
+
+                onTogglePin?.Invoke(chatId);
+            }
+        };
+
+        return button;
+    }
+
+    /// <summary>
+    /// Создает кнопку для личного чата
+    /// </summary>
+    private Button CreatePersonalChatButton(MessengerUser user, MessengerUiState state)
+    {
+        var chatId = GetPersonalChatId(user.UserId);
+        var isPinned = state.PinnedChats.Contains(chatId);
+        var unreadCount = state.UnreadCounts.TryGetValue(chatId, out var count) ? count : 0;
+
+        return CreateChatButton(
+            chatId,
+            user.Name,
+            isPinned,
+            unreadCount,
+            user.JobIconId,
+            SelectChat,
+            OnTogglePin != null ? OnTogglePin.Invoke : null
+        );
+    }
+
+    /// <summary>
+    /// Создает кнопку для группового чата
+    /// </summary>
+    private Button CreateGroupChatButton(MessengerGroup group, MessengerUiState state)
+    {
+        var isPinned = state.PinnedChats.Contains(group.GroupId);
+        var unreadCount = state.UnreadCounts.TryGetValue(group.GroupId, out var count) ? count : 0;
+
+        return CreateChatButton(
+            group.GroupId,
+            group.Name,
+            isPinned,
+            unreadCount,
+            null,
+            SelectChat,
+            OnTogglePin != null ? OnTogglePin.Invoke : null
+        );
+    }
+
+    /// <summary>
+    /// Создает панель приглашения
+    /// </summary>
+    private PanelContainer CreateInvitePanel(MessengerGroupInvite invite)
+    {
+        var invitePanel = CreateStyledPanel(
+            Color.FromHex("#25252A"),
+            Color.FromHex("#3D4059"));
+
+        var inviteContainer = new BoxContainer
+        {
+            Orientation = LayoutOrientation.Vertical,
+            HorizontalExpand = true
+        };
+
+        var groupNameLabel = new Label
+        {
+            Text = invite.GroupName,
+            StyleClasses = { "Bold" },
+            HorizontalExpand = true,
+            Margin = new Thickness(0, 0, 0, 4),
+            ClipText = true
+        };
+        inviteContainer.AddChild(groupNameLabel);
+
+        var inviteInfo = new RichTextLabel
+        {
+            HorizontalExpand = true,
+            Margin = new Thickness(0, 0, 0, 8)
+        };
+        inviteInfo.SetMessage(Loc.GetString("messenger-invite-info", ("inviter", invite.InviterName)), tagsAllowed: null);
+        inviteInfo.StyleClasses.Add("LabelSubText");
+        inviteContainer.AddChild(inviteInfo);
+
+        var buttonsContainer = new BoxContainer
+        {
+            Orientation = LayoutOrientation.Horizontal,
+            HorizontalExpand = true
+        };
+
+        var acceptButton = new Button
+        {
+            Text = "✓",
+            HorizontalExpand = true,
+            Margin = new Thickness(2, 0)
+        };
+        acceptButton.OnPressed += _ => OnAcceptInvite?.Invoke(invite.GroupId);
+        buttonsContainer.AddChild(acceptButton);
+
+        var declineButton = new Button
+        {
+            Text = "✖",
+            HorizontalExpand = true,
+            Margin = new Thickness(2, 0)
+        };
+        declineButton.OnPressed += _ => OnDeclineInvite?.Invoke(invite.GroupId);
+        buttonsContainer.AddChild(declineButton);
+
+        inviteContainer.AddChild(buttonsContainer);
+        invitePanel.AddChild(inviteContainer);
+
+        return invitePanel;
+    }
+
+    /// <summary>
+    /// Создает TextureRect с иконкой работы и добавляет его в контейнер
+    /// </summary>
+    private void CreateJobIconRect(ProtoId<JobIconPrototype>? jobIconId, Control container)
+    {
+        if (jobIconId != null && _prototypeManager.TryIndex(jobIconId.Value, out JobIconPrototype? jobIcon))
+        {
+            var iconRect = new TextureRect
+            {
+                Texture = GetSpriteSystem().Frame0(jobIcon.Icon),
+                SetWidth = 20,
+                SetHeight = 20,
+                Stretch = TextureRect.StretchMode.Scale,
+                Margin = new Thickness(0, 0, 4, 0)
+            };
+            container.AddChild(iconRect);
+        }
+        else
+        {
+            var unknownIconId = new ProtoId<JobIconPrototype>("JobIconUnknown");
+            if (_prototypeManager.TryIndex(unknownIconId, out JobIconPrototype? unknownIcon))
+            {
+                var iconRect = new TextureRect
+                {
+                    Texture = GetSpriteSystem().Frame0(unknownIcon.Icon),
+                    SetWidth = 20,
+                    SetHeight = 20,
+                    Stretch = TextureRect.StretchMode.Scale,
+                    Margin = new Thickness(0, 0, 4, 0)
+                };
+                container.AddChild(iconRect);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Создает панель с общим стилем для приглашений и участников
+    /// </summary>
+    private PanelContainer CreateStyledPanel(Color backgroundColor, Color borderColor)
+    {
+        var panel = new PanelContainer
+        {
+            HorizontalExpand = true,
+            Margin = new Thickness(2, 2)
+        };
+        panel.PanelOverride = new StyleBoxFlat
+        {
+            BackgroundColor = backgroundColor,
+            BorderColor = borderColor,
+            BorderThickness = new Thickness(1),
+            ContentMarginLeftOverride = 6,
+            ContentMarginRightOverride = 6,
+            ContentMarginTopOverride = 4,
+            ContentMarginBottomOverride = 4
+        };
+        return panel;
+    }
+
+    /// <summary>
+    /// Создает метку счетчика непрочитанных сообщений
+    /// </summary>
+    private Label CreateUnreadCounterLabel(int count)
+    {
+        var counterLabel = new Label
+        {
+            Text = $"({count})",
+            Align = Label.AlignMode.Left,
+            StyleClasses = { "Bold" },
+            HorizontalExpand = false,
+            MinSize = new Vector2(40, 0)
+        };
+        counterLabel.ModulateSelfOverride = Color.White;
+        return counterLabel;
+    }
+
+    /// <summary>
+    /// Прокручивает список сообщений до конца
+    /// </summary>
+    private void ScrollToBottom()
+    {
+        _userInterfaceManager.DeferAction(() =>
+        {
+            if (MessagesList == null || MessagesContainer == null)
+                return;
+
+            var contentHeight = MessagesList.Height;
+            var containerHeight = MessagesContainer.Height;
+            var maxScroll = Math.Max(0, contentHeight - containerHeight);
+
+            MessagesContainer.VScroll = maxScroll;
+            MessagesContainer.VScrollTarget = maxScroll;
+            _isScrolledToBottom = true;
+        });
+    }
+
+    /// <summary>
+    /// Проверяет, изменился ли статус прочтения сообщений
+    /// </summary>
+    private bool HasMessageStatusChanged(List<MessengerMessage> newMessages, string currentUserId)
+    {
+        if (_previousState?.MessageHistory.TryGetValue(_currentChatId ?? string.Empty, out var oldMessages) != true || oldMessages == null)
+            return false;
+
+        foreach (var newMsg in newMessages)
+        {
+            if (newMsg.SenderId == currentUserId && newMsg.RecipientId != null)
+            {
+                var oldMsg = oldMessages.FirstOrDefault(m =>
+                    m.SenderId == newMsg.SenderId &&
+                    Math.Abs(m.Timestamp.TotalSeconds - newMsg.Timestamp.TotalSeconds) < 0.001 &&
+                    m.Content == newMsg.Content);
+
+                if (oldMsg != null && oldMsg.IsRead != newMsg.IsRead)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    #endregion
 }

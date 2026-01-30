@@ -1,0 +1,50 @@
+<cartridges:PhotoUiFragment xmlns:cartridges="clr-namespace:Content.Client._Sunrise.CartridgeLoader.Cartridges"
+                            xmlns:viewport="clr-namespace:Content.Client.Viewport"
+                            xmlns="https://spacestation14.io" Margin="4"
+                            Orientation="Vertical">
+
+    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0,0,0,4">
+        <Button Name="CameraTabBtn" Text="{Loc 'photo-cartridge-tab-camera'}" HorizontalExpand="True" ToggleMode="True" Pressed="True"/>
+        <Button Name="GalleryTabBtn" Text="{Loc 'photo-cartridge-tab-gallery'}" HorizontalExpand="True" ToggleMode="True"/>
+    </BoxContainer>
+
+    <Label Name="ErrorMessageLabel" Text="" StyleClasses="Danger" Visible="False"/>
+    <Label Name="PhotoCountLabel" Text="" Align="Right" StyleClasses="LabelSubText"/>
+
+    <BoxContainer Name="CameraView" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Visible="True">
+        <PanelContainer Name="CameraPreviewContainer" HorizontalExpand="True" VerticalExpand="True" Margin="0,0,0,4">
+            <viewport:ScalingViewport Name="CameraPreview" HorizontalExpand="True" VerticalExpand="True"/>
+        </PanelContainer>
+
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0,0,0,4">
+            <Label Text="{Loc 'photo-cartridge-zoom-label'}" Margin="0,0,8,0" VerticalAlignment="Center"/>
+            <Slider Name="ZoomSlider" HorizontalExpand="True" MinValue="0" MaxValue="1" Value="0" Margin="0,0,8,0"/>
+            <CheckBox Name="FlashCheckBox" Text="{Loc 'photo-cartridge-flash-label'}" Pressed="True"/>
+        </BoxContainer>
+
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <Button Name="CaptureButton" Text="{Loc 'photo-cartridge-capture-button'}" HorizontalExpand="True" MinHeight="40"/>
+            <Button Name="ToggleOverlayButton" Text="{Loc 'photo-cartridge-overlay-button'}" MinWidth="80" MinHeight="40"
+                   ToggleMode="True" Margin="4,0,0,0"/>
+        </BoxContainer>
+    </BoxContainer>
+
+    <BoxContainer Name="GalleryView" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Visible="False">
+        <ScrollContainer Name="GalleryScroll" HorizontalExpand="True" VerticalExpand="True">
+            <GridContainer Name="GalleryContainer" Columns="2" HorizontalExpand="True"/>
+        </ScrollContainer>
+    </BoxContainer>
+
+    <BoxContainer Name="ImageViewOverlay" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Visible="False" Margin="4">
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <Button Name="BackFromImageParams" Text="{Loc 'photo-cartridge-back-button'}" HorizontalAlignment="Left"/>
+            <Control HorizontalExpand="True"/>
+            <Button Name="DeleteImageBtn" Text="{Loc 'photo-cartridge-delete-button'}" StyleClasses="Caution" HorizontalAlignment="Right"/>
+        </BoxContainer>
+        <PanelContainer HorizontalExpand="True" VerticalExpand="True" Margin="0,4,0,0">
+             <TextureRect Name="FullImageRect" HorizontalExpand="True" VerticalExpand="True" Stretch="KeepAspectCentered"/>
+        </PanelContainer>
+        <Label Name="FullImageTimestamp" Align="Center" StyleClasses="LabelSubText"/>
+    </BoxContainer>
+
+</cartridges:PhotoUiFragment>

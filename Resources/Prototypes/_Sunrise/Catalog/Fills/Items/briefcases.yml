@@ -8,3 +8,103 @@
         - id: Paper
         - id: PenCentcom
         - id: RubberStampIAA
+
+- type: entity
+  id: BriefcaseWeaponC40Filled
+  parent: BriefcaseWeaponSmall
+  name: secure C-40r case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunC40rBiocode
+        - id: MagazineBoxPistol40SP
+
+- type: entity
+  id: BriefcaseWeaponSIAR52Filled
+  parent: BriefcaseWeaponSmall
+  name: secure SIAR-52 case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: WeaponSIAR52
+
+- type: entity
+  id: BriefcaseWeaponAJ100Filled
+  parent: BriefcaseWeaponSmall
+  name: secure AJ-100 case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: WeaponAJ100
+
+- type: entity
+  id: BriefcaseWeaponDragunovFilled
+  parent: BriefcaseWeapon
+  name: secure dragunov case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSniperDragunov
+        - id: MagazineDragunovIncendiary
+        - id: MagazineDragunovUranium
+        - id: MagazineDragunov
+
+- type: entity
+  id: BriefcaseWeaponM79Filled
+  parent: BriefcaseWeapon
+  name: secure m79 case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponLauncherM79
+        - id: GrenadeFragTimer
+          amount: 2
+        - id: GrenadeEMPTimer
+
+- type: entity
+  id: BriefcaseWeaponSKM24Filled
+  parent: BriefcaseWeapon
+  name: secure SKM-24 case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleSKM24Syndi
+        - id: MagazineLightRifleSP
+          amount: 2
+
+- type: entity
+  id: BriefcaseWeaponSKM28Filled
+  parent: BriefcaseWeapon
+  name: secure SKM-28 case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleSKM28Syndi
+        - id: MagazineRifleHeavySP
+          amount: 2
+        - id: MagazineRifleHeavyHP
+        - id: MagazineRifleHeavyFMJ
+
+- type: entity
+  id: BriefcaseWeaponMinotaurFilled
+  parent: BriefcaseWeapon
+  name: secure AS-12 case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponShotgunMinotaurBiocode
+        - id: MagazineShotgunXL

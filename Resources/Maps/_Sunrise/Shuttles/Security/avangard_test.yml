@@ -88,6 +88,7 @@ entities:
     - type: SpreaderGrid
     - type: Shuttle
       dampingModifier: 0.25
+    - type: SecurityShuttle
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier

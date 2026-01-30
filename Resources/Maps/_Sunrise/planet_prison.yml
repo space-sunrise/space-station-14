@@ -46801,7 +46801,7 @@ entities:
     - type: Transform
       pos: -10.50058,38.55076
       parent: 2
-- proto: ClothingHandsGlovesBoxingRigged
+- proto: GlovesBoxingRiggedRandomSpawner
   entities:
   - uid: 4716
     components:

@@ -78,7 +78,7 @@
     prefix: device-address-prefix-console
     savableAddress: false
   - type: WirelessNetworkConnection
-    range: 500
+    range: 2000 # Sunrise-Edit
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
@@ -89,6 +89,7 @@
     # Sunrise-Start
       - NavigatorCartridge
       - MessengerCartridge
+      - PhotoCartridge
     # Sunrise-End
     cartridgeSlot:
       priority: -1
@@ -170,6 +171,7 @@
     # Sunrise-Start
     - NavigatorCartridge
     - MessengerCartridge
+    - PhotoCartridge
     # Sunrise-End
 
 - type: entity
@@ -188,6 +190,7 @@
     # Sunrise-Start
       - NavigatorCartridge
       - MessengerCartridge
+      - PhotoCartridge
     # Sunrise-End
 
 - type: entity
@@ -363,6 +366,7 @@
       - PlantAnalyzerCartridge
       - NavigatorCartridge
       - MessengerCartridge
+      - PhotoCartridge
 # Sunrise-End
 
 - type: entity
@@ -548,6 +552,7 @@
     # Sunrise-Start
     - NavigatorCartridge
     - MessengerCartridge
+    - PhotoCartridge
     # Sunrise-End
 
 - type: entity
@@ -601,6 +606,7 @@
     # Sunrise-Start
       - NavigatorCartridge
       - MessengerCartridge
+      - PhotoCartridge
     # Sunrise-End
 
 - type: entity
@@ -1022,6 +1028,7 @@
     # Sunrise-Start
     - NavigatorCartridge
     - MessengerCartridge
+    - PhotoCartridge
     # Sunrise-End
 
 - type: entity
@@ -1108,6 +1115,7 @@
     # Sunrise-Start
       - NavigatorCartridge
       - MessengerCartridge
+      - PhotoCartridge
     # Sunrise-End
 
 - type: entity
@@ -1160,6 +1168,7 @@
     # Sunrise-Start
       - NavigatorCartridge
       - MessengerCartridge
+      - PhotoCartridge
     # Sunrise-End
   - type: Tag #  Ignore Chameleon tags
     tags:
@@ -1413,6 +1422,7 @@
     # Sunrise-Start
       - NavigatorCartridge
       - MessengerCartridge
+      - PhotoCartridge
     # Sunrise-End
 
 - type: entity
@@ -1602,6 +1612,7 @@
     # Sunrise-Start
     - NavigatorCartridge
     - MessengerCartridge
+    - PhotoCartridge
     # Sunrise-End
 
 - type: entity
@@ -1636,6 +1647,7 @@
     # Sunrise-Start
     - NavigatorCartridge
     - MessengerCartridge
+    - PhotoCartridge
     # Sunrise-End
 
 - type: entity
@@ -1803,6 +1815,7 @@
     - NavigatorCartridge
     - AstroNavCartridge
     - MessengerCartridge
+    - PhotoCartridge
   # Sunrise-end
 
 - type: entity
@@ -1841,6 +1854,14 @@
     - Syndicate
     - Thief
   # Sunrise-End
+
+- type: entity
+  parent: ChameleonPDA
+  id: ChameleonAgentPDA
+  suffix: Chameleon, Agent ID
+  components:
+  - type: Pda
+    id: AgentIDCard
 
 - type: entity
   parent: BaseWidePDA

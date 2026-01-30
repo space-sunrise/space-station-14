@@ -31,6 +31,7 @@
       - AstroNavCartridge
       - NavigatorCartridge
       - MessengerCartridge
+      - PhotoCartridge
   - type: PdaAnimationVisuals
     animatedState: pda-space-prison-pilot
     idInsertedLayerState: id_inserted-space-prison

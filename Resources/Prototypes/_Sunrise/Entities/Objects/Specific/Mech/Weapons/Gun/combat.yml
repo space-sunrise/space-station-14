@@ -117,12 +117,12 @@
 - type: entity
   id: WeaponMechCombatPirateMachineCannon
   name: Mounted Pirate Machine Cannon
-  description: An ancient heavy gun given new life as a mech-mounted gun
+  description: A unique strange gun given new life as a mech-mounted gun
   suffix: Mech Weapon, Gun, Combat, Pirate
   parent: [ BaseMechWeaponRange, CombatMechEquipment ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Specific/Mech/mecha_piratecannon.rsi
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_piratecannon_auto.rsi
     state: mecha_piratecannon
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_inhands_64x.rsi

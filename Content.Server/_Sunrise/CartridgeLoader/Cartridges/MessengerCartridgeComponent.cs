@@ -97,4 +97,16 @@ public sealed partial class MessengerCartridgeComponent : Component
     /// </summary>
     [ViewVariables]
     public Dictionary<string, int> ServerUnreadCounts = new();
+
+    /// <summary>
+    /// Активные приглашения в группы
+    /// </summary>
+    [ViewVariables]
+    public List<MessengerGroupInvite> ActiveInvites = new();
+
+    /// <summary>
+    /// Закрепленные чаты (chatId)
+    /// </summary>
+    [ViewVariables]
+    public HashSet<string> PinnedChats = new();
 }

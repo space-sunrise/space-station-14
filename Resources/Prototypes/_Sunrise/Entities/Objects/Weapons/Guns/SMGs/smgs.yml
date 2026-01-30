@@ -521,6 +521,7 @@
           - MagazineRifle
           - MagazineLightRifle
           - MagazinePistolDPSubMachineGun
+          - MagazinePistolDP
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistolSP

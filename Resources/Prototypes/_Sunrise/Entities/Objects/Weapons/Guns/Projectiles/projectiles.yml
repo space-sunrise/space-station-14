@@ -423,31 +423,6 @@
     lifetime: 3
 
 - type: entity
-  id: BulletEMPGrenade
-  name: emp grenade
-  parent: BulletGrenadeEMPTimer
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Grenades/empgrenade.rsi
-    layers:
-      - state: primed
-  - type: EmitSoundOnSpawn
-    sound:
-      path: /Audio/Effects/countdown.ogg
-  - type: EmpOnTrigger
-    keysIn:
-    - timer
-    range: 11
-    energyConsumption: 50000
-    disableDuration: 60
-  - type: Ammo
-    muzzleFlash: null
-  - type: DeleteOnTrigger
-    keysIn:
-    - timer
-
-- type: entity
   id: BulletAirGrenade
   parent: BaseBulletGrenade
   name: air grenade

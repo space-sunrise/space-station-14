@@ -118,6 +118,18 @@ public sealed partial class MessengerServerSystem : EntitySystem
             case MessengerCommands.CmdGetMessages:
                 HandleGetMessages(uid, component, args);
                 break;
+            case MessengerCommands.CmdAcceptInvite:
+                HandleAcceptInvite(uid, component, args);
+                break;
+            case MessengerCommands.CmdDeclineInvite:
+                HandleDeclineInvite(uid, component, args);
+                break;
+            case MessengerCommands.CmdLeaveGroup:
+                HandleLeaveGroup(uid, component, args);
+                break;
+            case MessengerCommands.CmdDeleteMessage:
+                HandleDeleteMessage(uid, component, args);
+                break;
             default:
                 Sawmill.Warning($"Unknown command received: {command} from {args.SenderAddress}");
                 break;

@@ -1,0 +1,14 @@
+photo-cartridge-photos-count = Photos: {$count}/{$max}
+photo-cartridge-limit-reached = Photo limit reached
+photo-cartridge-photo-not-found = Photo not found
+photo-cartridge-messenger-unavailable = Messenger server unavailable
+photo-cartridge-recipient-not-specified = Recipient not specified
+photo-cartridge-photo-text = [Photo]
+photo-cartridge-tab-camera = Camera
+photo-cartridge-tab-gallery = Gallery
+photo-cartridge-zoom-label = Zoom:
+photo-cartridge-capture-button = Take Photo
+photo-cartridge-overlay-button = 👁 Overlay
+photo-cartridge-back-button = Back
+photo-cartridge-delete-button = Delete
+photo-cartridge-flash-label = Flash

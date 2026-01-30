@@ -11,6 +11,8 @@ using Robust.Shared.Network.Transfer;
 using Robust.Shared.Player;
 using Robust.Shared.Upload;
 using Robust.Shared.Utility;
+using Robust.Shared.GameObjects;
+using Content.Shared.GameTicking;
 using ByteHelpers = Robust.Shared.Utility.ByteHelpers;
 
 namespace Content.Server._Sunrise;
@@ -20,7 +22,7 @@ namespace Content.Server._Sunrise;
 /// Uses High Bandwidth Transfer (WebSocket) to avoid blocking main game traffic.
 /// Textures are loaded into MemoryContentRoot on the client.
 /// </summary>
-public sealed class NetTexturesManager
+    public sealed class NetTexturesManager
 {
     /// <summary>
     /// Transfer key for server -> client texture downloads via WebSocket
@@ -32,17 +34,33 @@ public sealed class NetTexturesManager
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly ITransferManager _transferManager = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     private ISawmill _sawmill = default!;
     private const string AllowedPrefix = "/NetTextures/";
+
+    /// <summary>
+    /// Dynamically registered in-memory resources that are not present on disk.
+    /// Key is the relative upload path used on the client (e.g. "NetTextures/Messenger/photo_123.png").
+    /// </summary>
+    private readonly Dictionary<ResPath, byte[]> _dynamicResources = new();
 
     public void Initialize()
     {
         _sawmill = _logManager.GetSawmill("network.textures");
         _netManager.RegisterNetMessage<RequestNetworkResourceMessage>(OnRequestNetworkResource);
 
-        // Register transfer key for High Bandwidth Transfer (WebSocket)
         _transferManager.RegisterTransferMessage(TransferKeyNetTextures);
+    }
+
+    /// <summary>
+    /// Clears all dynamically registered in-memory resources.
+    /// Used during round restarts to prevent memory leaks.
+    /// </summary>
+    public void ClearDynamicResources()
+    {
+        _dynamicResources.Clear();
+        _sawmill.Info("Cleared all dynamic NetTexture resources due to round restart.");
     }
 
     private void OnRequestNetworkResource(RequestNetworkResourceMessage msg)
@@ -50,7 +68,6 @@ public sealed class NetTexturesManager
         if (!_playerManager.TryGetSessionByChannel(msg.MsgChannel, out var session))
             return;
 
-        // Normalize the path - ensure it's rooted
         var resourcePath = msg.ResourcePath;
         ResPath resPath;
 
@@ -63,10 +80,8 @@ public sealed class NetTexturesManager
             resPath = new ResPath("/") / resourcePath;
         }
 
-        // Clean the path to remove any .. sequences
         resPath = resPath.Clean();
 
-        // Validate the path to prevent path traversal attacks
         if (!ValidateResourcePath(resPath, out var errorMessage))
         {
             _sawmill.Warning($"Rejected resource request from {session.Name}: {errorMessage} (path: {msg.ResourcePath})");
@@ -84,15 +99,12 @@ public sealed class NetTexturesManager
     {
         errorMessage = null;
 
-        // Path must be rooted
         if (!path.IsRooted)
         {
             errorMessage = "Path must be rooted";
             return false;
         }
 
-        // Check for dangerous path traversal sequences in the original string representation
-        // Even after Clean(), we should verify the path doesn't contain .. in segments
         var pathStr = path.ToString();
         if (pathStr.Contains("../") || pathStr.Contains("..\\") || pathStr.StartsWith(".."))
         {
@@ -100,16 +112,12 @@ public sealed class NetTexturesManager
             return false;
         }
 
-        // Only allow paths that start with /NetTextures/
-        // This ensures clients can only access resources from the NetTextures directory
         if (!pathStr.StartsWith(AllowedPrefix, StringComparison.Ordinal))
         {
             errorMessage = $"Path must start with {AllowedPrefix}";
             return false;
         }
 
-        // Additional check: ensure the cleaned path doesn't escape the allowed directory
-        // by checking that it still starts with the allowed prefix after cleaning
         var relativePath = path.ToRelativePath();
         var relativePathStr = relativePath.ToString();
 
@@ -132,60 +140,60 @@ public sealed class NetTexturesManager
         var startTime = DateTime.UtcNow;
         _sawmill.Debug($"[NetTextures] Starting transfer of {resourcePath} to {session.Name}");
 
-        // Collect all files to send
         var filesToSend = new List<(ResPath Relative, byte[] Data)>();
 
-        // Check if it's a directory (RSI files are directories)
-        // Try to find files in the directory first
-        var files = _resourceManager.ContentFindFiles(resourcePath).ToList();
-
-        if (files.Count == 0)
+        var relativeUploadPath = resourcePath.ToRelativePath();
+        if (_dynamicResources.TryGetValue(relativeUploadPath, out var dynamicData))
         {
-            // No files found in directory, try as single file
-            if (!_resourceManager.ContentFileExists(resourcePath))
-            {
-                _sawmill.Warning($"Resource not found: {resourcePath}");
-                return;
-            }
-
-            if (!CollectSingleFile(resourcePath, filesToSend))
-                return;
+            filesToSend.Add((relativeUploadPath, dynamicData));
         }
         else
         {
-            // Directory - collect all files
-            foreach (var filePath in files)
+
+            var files = _resourceManager.ContentFindFiles(resourcePath).ToList();
+
+            if (files.Count == 0)
             {
-                if (!filePath.TryRelativeTo(resourcePath, out var relativePath))
-                    continue;
-
-                // relativePath is guaranteed to be non-null here because TryRelativeTo returned true
-                var relativePathValue = relativePath.Value;
-
-                if (!_resourceManager.TryContentFileRead(filePath, out var stream))
+                if (!_resourceManager.ContentFileExists(resourcePath))
                 {
-                    _sawmill.Warning($"Failed to read file: {filePath}");
-                    continue;
+                    _sawmill.Warning($"Resource not found: {resourcePath}");
+                    return;
                 }
 
-                using (stream)
-                {
-                    var data = new byte[stream.Length];
-                    stream.Read(data, 0, data.Length);
-
-                    // Calculate uploaded path: preserve the original path structure relative to Resources root
-                    // Remove leading / and use as relative path for MemoryContentRoot
-                    var relativeUploadPath = resourcePath.ToRelativePath();
-                    var uploadedPath = relativeUploadPath / relativePathValue;
-
-                    filesToSend.Add((uploadedPath, data));
-                }
+                if (!CollectSingleFile(resourcePath, filesToSend))
+                    return;
             }
+            else
+            {
+                foreach (var filePath in files)
+                {
+                    if (!filePath.TryRelativeTo(resourcePath, out var relativePath))
+                        continue;
 
-            _sawmill.Debug($"Collected resource directory {resourcePath} ({files.Count} files) for {session.Name}");
+                    var relativePathValue = relativePath.Value;
+
+                    if (!_resourceManager.TryContentFileRead(filePath, out var stream))
+                    {
+                        _sawmill.Warning($"Failed to read file: {filePath}");
+                        continue;
+                    }
+
+                    using (stream)
+                    {
+                        var data = new byte[stream.Length];
+                        stream.Read(data, 0, data.Length);
+
+                        var relativeUploadPath2 = resourcePath.ToRelativePath();
+                        var uploadedPath = relativeUploadPath2 / relativePathValue;
+
+                        filesToSend.Add((uploadedPath, data));
+                    }
+                }
+
+                _sawmill.Debug($"Collected resource directory {resourcePath} ({files.Count} files) for {session.Name}");
+            }
         }
 
-        // Send via High Bandwidth Transfer (WebSocket) to avoid blocking main game traffic
         try
         {
             var transferStartTime = DateTime.UtcNow;
@@ -205,7 +213,6 @@ public sealed class NetTexturesManager
         catch (Exception ex)
         {
             _sawmill.Warning($"Failed to send resource via High Bandwidth Transfer to {session.Name}: {ex.Message}");
-            // Fallback to regular network message if WebSocket transfer fails
             SendResourceFallback(session, filesToSend);
         }
     }
@@ -226,7 +233,6 @@ public sealed class NetTexturesManager
             var data = new byte[stream.Length];
             stream.Read(data, 0, data.Length);
 
-            // Calculate uploaded path: preserve the original path structure relative to Resources root
             var relativeUploadPath = filePath.ToRelativePath();
             filesToSend.Add((relativeUploadPath, data));
         }
@@ -258,28 +264,72 @@ public sealed class NetTexturesManager
 
         var first = true;
 
-            foreach (var (relative, data) in files)
+        foreach (var (relative, data) in files)
+        {
+            if (!first)
             {
-                if (!first)
-                {
-                    continueByte[0] = 1;
-                    await stream.WriteAsync(continueByte);
-                }
-
-                first = false;
-
-                BinaryPrimitives.WriteUInt32LittleEndian(lengthBytes, (uint)Encoding.UTF8.GetByteCount(relative.CanonPath));
-                await stream.WriteAsync(lengthBytes);
-
-                BinaryPrimitives.WriteUInt32LittleEndian(lengthBytes, (uint)data.Length);
-                await stream.WriteAsync(lengthBytes);
-
-                await stream.WriteAsync(Encoding.UTF8.GetBytes(relative.CanonPath));
-                await stream.WriteAsync(data);
+                continueByte[0] = 1;
+                await stream.WriteAsync(continueByte);
             }
 
-            continueByte[0] = 0;
-            await stream.WriteAsync(continueByte);
+            first = false;
+
+            BinaryPrimitives.WriteUInt32LittleEndian(lengthBytes, (uint)Encoding.UTF8.GetByteCount(relative.CanonPath));
+            await stream.WriteAsync(lengthBytes);
+
+            BinaryPrimitives.WriteUInt32LittleEndian(lengthBytes, (uint)data.Length);
+            await stream.WriteAsync(lengthBytes);
+
+            await stream.WriteAsync(Encoding.UTF8.GetBytes(relative.CanonPath));
+            await stream.WriteAsync(data);
+        }
+
+        continueByte[0] = 0;
+        await stream.WriteAsync(continueByte);
+    }
+
+    /// <summary>
+    /// Registers a dynamic in-memory network texture that is not present on disk.
+    /// The resourcePath must point inside /NetTextures/ and will be validated by <see cref="ValidateResourcePath"/>.
+    /// </summary>
+    /// <param name="resourcePath">Rooted resource path, e.g. "/NetTextures/Messenger/photo_123.png".</param>
+    /// <param name="data">Raw file bytes (PNG, WEBP, etc.).</param>
+    public void RegisterDynamicResource(string resourcePath, byte[] data)
+    {
+        var path = resourcePath.StartsWith("/")
+            ? new ResPath(resourcePath)
+            : new ResPath("/") / resourcePath;
+
+        path = path.Clean();
+
+        if (!ValidateResourcePath(path, out var error))
+        {
+            _sawmill.Warning($"Failed to register dynamic NetTexture {resourcePath}: {error}");
+            return;
+        }
+
+        var relativeUploadPath = path.ToRelativePath();
+        _dynamicResources[relativeUploadPath] = data;
+        _sawmill.Debug($"Registered dynamic NetTexture resource: {relativeUploadPath}");
+    }
+
+    /// <summary>
+    /// Unregisters a dynamic in-memory network texture.
+    /// </summary>
+    /// <param name="resourcePath">Rooted resource path, e.g. "/NetTextures/Messenger/photo_123.png".</param>
+    public void UnregisterDynamicResource(string resourcePath)
+    {
+        var path = resourcePath.StartsWith("/")
+            ? new ResPath(resourcePath)
+            : new ResPath("/") / resourcePath;
+
+        path = path.Clean();
+        var relativeUploadPath = path.ToRelativePath();
+
+        if (_dynamicResources.Remove(relativeUploadPath))
+        {
+            _sawmill.Debug($"Unregistered dynamic NetTexture resource: {relativeUploadPath}");
+        }
     }
 }
 
