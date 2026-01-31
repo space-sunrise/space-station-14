@@ -33,7 +33,6 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _appearance = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
