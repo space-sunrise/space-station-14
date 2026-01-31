@@ -376,10 +376,12 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
     public bool IsOpen => Window is { Disposed: false, IsOpen: true } || ClydeWindow is { IsDisposed: false };
     public bool EverOpened;
 
-    public BwoinkWindow? Window;
+    // Sunrise-edit
+    public Content.Client._Sunrise.Administration.UI.Bwoink.SunriseBwoinkWindow? Window;
     public WindowRoot? WindowRoot;
     public IClydeWindow? ClydeWindow;
-    public BwoinkControl? Control;
+    // Sunrise-edit
+    public Content.Client._Sunrise.Administration.UI.Bwoink.SunriseBwoinkControl? Control;
 
     public void Receive(SharedBwoinkSystem.BwoinkTextMessage message)
     {
@@ -497,7 +499,8 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
         if (Control is { Disposed: false })
             return;
 
-        Window = new BwoinkWindow();
+        // Sunrise-edit
+        Window = new Content.Client._Sunrise.Administration.UI.Bwoink.SunriseBwoinkWindow();
         Control = Window.Bwoink;
         Window.OnClose += () => { OnClose?.Invoke(); };
         Window.OnOpen += () =>

@@ -10,28 +10,22 @@
                     <BoxContainer Access="Public" Name="BwoinkArea" VerticalExpand="True" />
                 </BoxContainer>
             </SplitContainer>
-
-            <!-- Sunrise-Start -->
-            <BoxContainer Orientation="Vertical" SetHeight="60" SeparationOverride="2" HorizontalExpand="True" Margin="4 2">
-                <BoxContainer Orientation="Horizontal" SetHeight="30" HorizontalExpand="True" SeparationOverride="4">
-                    <CheckBox Name="AdminOnly" Access="Public" Text="{Loc 'admin-ahelp-admin-only'}" ToolTip="{Loc 'admin-ahelp-admin-only-tooltip'}" VerticalAlignment="Center" />
-                    <CheckBox Name="PlaySound" Access="Public" Text="{Loc 'admin-bwoink-play-sound'}" Pressed="True" VerticalAlignment="Center" />
-                    <Control HorizontalExpand="True" />
-                    <Button Visible="True" Name="PopOut" Access="Public" Text="{Loc 'admin-logs-pop-out'}" StyleClasses="OpenRight" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <Button Visible="True" Name="AdminWho" Access="Public" Text="{Loc 'admin-who-button'}" StyleClasses="OpenLeft" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                </BoxContainer>
-
-                <BoxContainer Orientation="Horizontal" SetHeight="30" HorizontalExpand="True" SeparationOverride="4">
-                    <Control HorizontalExpand="True" />
-                    <Button Visible="False" Name="Bans" Text="{Loc 'admin-player-actions-bans'}" StyleClasses="OpenRight" />
-                    <Button Visible="False" Access="Public" Name="Notes" Text="{Loc 'admin-player-actions-notes'}" StyleClasses="OpenBoth" />
-                    <controls:ConfirmButton Visible="False" Name="Kick" Text="{Loc 'admin-player-actions-kick'}" ConfirmationText="{Loc 'admin-player-actions-confirm'}" StyleClasses="OpenBoth" />
-                    <Button Visible="False" Name="Ban" Text="{Loc 'admin-player-actions-ban'}" StyleClasses="OpenBoth" />
-                    <controls:ConfirmButton Visible="False" Name="Respawn" Text="{Loc 'admin-player-actions-respawn'}" ConfirmationText="{Loc 'admin-player-actions-confirm'}" StyleClasses="OpenBoth" />
-                    <Button Visible="False" Name="Follow" Text="{Loc 'admin-player-actions-follow'}" StyleClasses="OpenLeft" />
-                </BoxContainer>
+            <BoxContainer Orientation="Horizontal" SetHeight="30" >
+                <CheckBox Name="AdminOnly" Access="Public" Text="{Loc 'admin-ahelp-admin-only'}" ToolTip="{Loc 'admin-ahelp-admin-only-tooltip'}" />
+                <Control HorizontalExpand="True" MinWidth="5" />
+                <CheckBox Name="PlaySound" Access="Public" Text="{Loc 'admin-bwoink-play-sound'}" Pressed="True" />
+                <Control HorizontalExpand="True" MinWidth="5" />
+                <Button Visible="True" Name="PopOut" Access="Public" Text="{Loc 'admin-logs-pop-out'}" StyleClasses="OpenBoth" HorizontalAlignment="Left" />
+                <Control HorizontalExpand="True" MinWidth="5" />
+                <Button Visible="True" Name="AdminWho" Access="Public" Text="{Loc 'admin-who-button'}" StyleClasses="OpenBoth" HorizontalAlignment="Left" />
+                <Control HorizontalExpand="True" />
+                <Button Visible="False" Name="Bans" Text="{Loc 'admin-player-actions-bans'}" StyleClasses="OpenRight" />
+                <Button Visible="False" Access="Public" Name="Notes" Text="{Loc 'admin-player-actions-notes'}" StyleClasses="OpenBoth" />
+                <controls:ConfirmButton Visible="False" Name="Kick" Text="{Loc 'admin-player-actions-kick'}" ConfirmationText="{Loc 'admin-player-actions-confirm'}" StyleClasses="OpenBoth" />
+                <Button Visible="False" Name="Ban" Text="{Loc 'admin-player-actions-ban'}" StyleClasses="OpenBoth" />
+                <controls:ConfirmButton Visible="False" Name="Respawn" Text="{Loc 'admin-player-actions-respawn'}" ConfirmationText="{Loc 'admin-player-actions-confirm'}" StyleClasses="OpenBoth" />
+                <Button Visible="False" Name="Follow" Text="{Loc 'admin-player-actions-follow'}" StyleClasses="OpenLeft" />
             </BoxContainer>
-            <!-- Sunrise-End -->
         </SplitContainer>
     </PanelContainer>
 </Control>
