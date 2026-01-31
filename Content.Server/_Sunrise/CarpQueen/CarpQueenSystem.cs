@@ -293,7 +293,14 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
 
     private void AssignFallbackVoice(TTSComponent ttsComponent)
     {
-        ttsComponent.VoicePrototypeId = "Charlotte";
+        if (_prototypeManager.TryIndex<TTSVoicePrototype>("Charlotte", out _))
+        {
+            ttsComponent.VoicePrototypeId = "Charlotte";
+        }
+        else
+        {
+            Log.Warning("Fallback TTS voice 'Charlotte' not found, leaving voice unset");
+        }
     }
 }
 
