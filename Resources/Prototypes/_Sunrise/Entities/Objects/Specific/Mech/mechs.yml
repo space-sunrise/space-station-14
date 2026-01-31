@@ -145,6 +145,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener
+    - FootstepSound
 
 # region Mech Pod
 - type: entity

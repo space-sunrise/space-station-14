@@ -45,7 +45,7 @@
         priority: 2
         whitelist:
           tags:
-            - MagazineDragunovSP
+            - MagazineDragunov
       gun_chamber:
         name: Chamber
         startingItem: CartridgeHeavyRifleRFMJ

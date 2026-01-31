@@ -1162,7 +1162,7 @@
 
 - type: entity
   name: Scrap boarder
-  description: Rookie raider sent first through the breach. Usually doesn’t come back, but makes a great distraction.
+  description: Rookie raider sent first through the breach. Usually doesnt come back, but makes a great distraction.
   parent: [MobMovementSpeedModifierEVAMelee, MobPirateBase, MobPirateSparkEffectBase]
   id: MobPirateT1Knife
   components:
@@ -1632,7 +1632,7 @@
 
 - type: entity
   name: Scrap raider
-  description: Loves guns. Has built as many weapons with his own hands as he’s blown up. Armed with an improvised SMG.
+  description: Loves guns. Has built as many weapons with his own hands as heï¿½s blown up. Armed with an improvised SMG.
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
   id: MobPirateT1ScrapSMG
   components:
@@ -1675,7 +1675,7 @@
   name: Scrap Automatic
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
   id: MobPirateT1ScrapRifle
-  description: In a team where everyone is armed with whatever they could grab, he picked up a rifle — at least it used to be one…
+  description: In a team where everyone is armed with whatever they could grab, he picked up a rifle ï¿½ at least it used to be oneï¿½
   components:
   - type: Loadout
     prototypes:
@@ -1724,7 +1724,7 @@
   name: Scrap raider
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
   id: MobPirateT1SMG
-  description: In a team where everyone is armed with whatever they could grab, he picked up a rifle — at least it used to be one…
+  description: In a team where everyone is armed with whatever they could grab, he picked up a rifle ï¿½ at least it used to be oneï¿½
   components:
   - type: Loadout
     prototypes:
@@ -2129,7 +2129,7 @@
 
 - type: entity
   name: pirate breacher
-  description: A boarding team member armed with a sledgehammer, capable of breaking through an airlock — or someone’s skull.
+  description: A boarding team member armed with a sledgehammer, capable of breaking through an airlock ï¿½ or someoneï¿½s skull.
   parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2Melee]
   id: MobPirateT2Sledgehammer
   components:
@@ -2485,7 +2485,7 @@
 
 - type: entity
   name: Shrap'nel Thunder
-  description: Turns everything into cheese with holes. Claims that “shrapnel is just another form of art.
+  description: Turns everything into cheese with holes. Claims that ï¿½shrapnel is just another form of art.
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2Ranged]
   id: MobPirateT2Grapeshot
   components:
@@ -3136,7 +3136,7 @@
 
 - type: entity
   name: Scrapshade
-  description: Boo! Scared? Don’t worry, I won’t hurt you.
+  description: Boo! Scared? Donï¿½t worry, I wonï¿½t hurt you.
   parent: MobPirateT3DMR
   id: MobPirateT3Infiltrator
   components:
@@ -3539,7 +3539,7 @@
 
 - type: entity
   name: Privateer grenadier
-  description: Covered in fireworks and explosives. Hasn’t heard of safety regulations or just ignores them loudly.
+  description: Covered in fireworks and explosives. Hasnï¿½t heard of safety regulations or just ignores them loudly.
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3Ranged]
   id: MobPirateT3Grenadier
   components:
@@ -3622,7 +3622,7 @@
 # region Tier 1-3 Boss
 - type: entity
   name: Captain Rustfist
-  description: An old salvage veteran, more metal than man. His fists creak, his armor’s held together by bolts and faith, and if he swings at you, it’s best to play dead and hope he buys it.
+  description: An old salvage veteran, more metal than man. His fists creak, his armorï¿½s held together by bolts and faith, and if he swings at you, itï¿½s best to play dead and hope he buys it.
   parent: [MobHostileBossBase, MobPirateBase, MobPirateSparkEffectBase]
   id: MobPirateT1Boss
   components:
