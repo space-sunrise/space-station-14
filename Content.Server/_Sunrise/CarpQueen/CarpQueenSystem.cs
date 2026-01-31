@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server.DeviceLinking.Systems;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
@@ -26,11 +27,19 @@ using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Chat;
+using Content.Shared.Interaction;
+using Content.Shared.Interaction.Events;
+using Content.Shared.Lock;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+using Content.Server.DeviceLinking.Components;
 
 namespace Content.Server._Sunrise.CarpQueen;
 
 public sealed class CarpQueenSystem : SharedCarpQueenSystem
 {
+    [Dependency] private readonly DeviceLinkSystem _deviceLinkSystem = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly HTNSystem _htn = default!;
     [Dependency] private readonly CarpEggSystem _carpEggs = default!;
@@ -39,6 +48,7 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
     [Dependency] private readonly HungerSystem _hunger = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
@@ -48,8 +58,12 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
 
         SubscribeLocalEvent<CarpQueenComponent, CarpQueenSummonActionEvent>(OnSummon);
         SubscribeLocalEvent<CarpQueenComponent, AfterPointedAtEvent>(OnPointedAt);
+        SubscribeLocalEvent<CarpQueenComponent, InteractHandEvent>(OnInteractHand);
+        SubscribeLocalEvent<CarpQueenComponent, AttackAttemptEvent>(OnAttackAttempt);
         SubscribeLocalEvent<CarpQueenComponent, PlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<CarpQueenServantComponent, ComponentShutdown>(OnServantShutdown);
+
+        SubscribeLocalEvent<CarpQueenServantComponent, AttackAttemptEvent>(OnServantAttackAttempt);
     }
 
     protected override void OnStartup(EntityUid uid, CarpQueenComponent component, ComponentStartup args)
@@ -143,6 +157,7 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
 
     private void OnPointedAt(EntityUid uid, CarpQueenComponent component, ref AfterPointedAtEvent args)
     {
+        // Указывание используется только для команд слугам
         if (component.CurrentOrder != CarpQueenOrderType.Kill)
             return;
 
@@ -181,6 +196,87 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
             }
 
             _npc.SetBlackboard(servant, NPCBlackboard.CurrentOrderedTarget, target);
+        }
+    }
+
+    private void OnInteractHand(EntityUid uid, CarpQueenComponent component, InteractHandEvent args)
+    {
+        Log.Error($"[CarpQueen] InteractHandEvent triggered for queen {uid}, target: {args.Target}");
+
+        // Проверяем, является ли цель кнопкой
+        if (TryComp<SignalSwitchComponent>(args.Target, out var signalSwitch))
+        {
+            Log.Error($"[CarpQueen] Queen {uid} interacting with button {args.Target}, activating");
+
+            // Проверяем блокировку
+            if (TryComp<LockComponent>(args.Target, out var lockComp) && lockComp.Locked)
+            {
+                Log.Error($"[CarpQueen] Button {args.Target} is locked, cannot activate");
+                return;
+            }
+
+            // Активируем кнопку через системное событие
+            var activateEvent = new ActivateInWorldEvent(uid, args.Target, true);
+            RaiseLocalEvent(args.Target, activateEvent);
+            args.Handled = true; // Помечаем как обработанное
+
+            Log.Error($"[CarpQueen] Successfully activated button {args.Target} via interaction");
+        }
+        else
+        {
+            Log.Error($"[CarpQueen] Target {args.Target} is not a SignalSwitchComponent");
+        }
+    }
+
+    private void OnAttackAttempt(EntityUid uid, CarpQueenComponent component, AttackAttemptEvent args)
+    {
+        if (!args.Target.HasValue)
+            return;
+
+        Log.Info($"[CarpQueen] AttackAttemptEvent triggered for queen {uid}, target: {args.Target.Value}");
+
+        // Проверяем, является ли цель кнопкой
+        if (TryComp<SignalSwitchComponent>(args.Target.Value, out var signalSwitch))
+        {
+            Log.Info($"[CarpQueen] Queen {uid} attacking button {args.Target.Value}, activating instead");
+
+            // Проверяем блокировку
+            if (TryComp<LockComponent>(args.Target.Value, out var lockComp) && lockComp.Locked)
+            {
+                Log.Info($"[CarpQueen] Button {args.Target.Value} is locked, cannot activate");
+                return;
+            }
+
+            // Активируем кнопку через системное событие
+            var activateEvent = new ActivateInWorldEvent(uid, args.Target.Value, true);
+            RaiseLocalEvent(args.Target.Value, activateEvent);
+
+            Log.Info($"[CarpQueen] Successfully activated button {args.Target.Value} via attack");
+        }
+    }
+
+    private void OnServantAttackAttempt(EntityUid uid, CarpQueenServantComponent component, AttackAttemptEvent args)
+    {
+        if (!args.Target.HasValue)
+            return;
+
+        // Проверяем, является ли цель кнопкой
+        if (TryComp<SignalSwitchComponent>(args.Target.Value, out var signalSwitch))
+        {
+            Log.Info($"[CarpQueen] Servant {uid} attacking button {args.Target.Value}, activating");
+
+            // Проверяем блокировку
+            if (TryComp<LockComponent>(args.Target.Value, out var lockComp) && lockComp.Locked)
+            {
+                Log.Info($"[CarpQueen] Button {args.Target.Value} is locked, cannot activate");
+                return;
+            }
+
+            // Активируем кнопку через системное событие
+            var activateEvent = new ActivateInWorldEvent(uid, args.Target.Value, true);
+            RaiseLocalEvent(args.Target.Value, activateEvent);
+
+            Log.Info($"[CarpQueen] Servant {uid} successfully activated button {args.Target.Value}");
         }
     }
 

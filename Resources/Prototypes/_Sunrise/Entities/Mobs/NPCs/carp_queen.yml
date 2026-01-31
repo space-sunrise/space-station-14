@@ -46,5 +46,7 @@
   - type: Hunger
   - type: Thirst
   - type: TTS
+  - type: Puller
+    needsHands: false
 
 

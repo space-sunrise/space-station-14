@@ -33,6 +33,8 @@
   id: MobCarpServantDragon
   parent: [ BaseMobCarpServant, MobCarpDragon ]
   components:
+  - type: Puller
+    needsHands: false
   - type: TTSRandom
     voices:
       "[Hearthstone] Финли": 10
@@ -52,6 +54,12 @@
       "Gyrocopter": 15
       "Meepo": 10
       "Slark": 17
+  - type: Speech
+    speechVerb: Default  # Переопределяем LargeMob на Default для нормальной речи
+  - type: Accentless
+    removes:
+    - type: ReplacementAccent
+      accent: genericAggressive  # Убираем агрессивный акцент для нормальной речи
 
 - type: entity
   id: MobCarpServantRegular
