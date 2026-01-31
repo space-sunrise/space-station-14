@@ -46,6 +46,10 @@ messenger-emoji-favorite-title = Favorites
 messenger-emoji-favorite-hint = ПКМ по общему списку для добавления.
     ПКМ по избраном для удаления.
 messenger-emoji-all-title = All emojis
+
+messenger-notification-message = Новое сообщение от { $name }
+messenger-group-notification-message = Новое сообщение в группе { $name }
+messenger-invite-notification-message = Вас пригласили в группу { $name }
 messenger-user-unknown = Unknown
 messenger-system-name = System
 messenger-leave-group = Leave group

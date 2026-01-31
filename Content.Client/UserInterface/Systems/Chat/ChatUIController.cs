@@ -785,6 +785,18 @@ public sealed partial class ChatUIController : UIController
         if (text.Length == 0)
             return (ChatSelectChannel.None, text, null, null); // Sunrise-Edit
 
+        // Sunrise-Start
+        if (text.StartsWith(SharedChatSystem.RadioChannelPrefix) && text.Length > 2 && text.IndexOf(SharedChatSystem.RadioChannelPrefix, 1) > 0)
+        {
+            var secondColon = text.IndexOf(SharedChatSystem.RadioChannelPrefix, 1);
+            var space = text.IndexOf(' ');
+            if (space == -1 || space > secondColon)
+            {
+                return (ChatSelectChannel.None, text, null, null);
+            }
+        }
+        // Sunrise-End
+
         // We only cut off prefix only if it is not a radio or local channel, which both map to the same /say command
         // because ????????
 

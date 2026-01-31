@@ -72,7 +72,7 @@ public sealed partial class MessengerServerSystem : EntitySystem
 
         foreach (var user in component.Users.Values)
         {
-            AddUserToAutoGroups(uid, component, user.UserId, user.Name, user.DepartmentId);
+            AddUserToAutoGroups(uid, component, user.UserId, user.Name, user.DepartmentIds);
         }
     }
 
