@@ -260,7 +260,7 @@
     sprite: _Sunrise/Clothing/Hands/Gloves/cornivoregloves.rsi
   - type: MeleeWeapon
     autoAttack: true
-    attackRate: 4.35
+    attackRate: 4
     damage:
       types:
         Slash: 8
