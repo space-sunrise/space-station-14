@@ -1,6 +1,6 @@
-    <!-- Sunrise-Start -->
+    <!-- Sunrise-start -->
 <BoxContainer xmlns="https://spacestation14.io" Orientation="Horizontal" HorizontalExpand="true" Margin="8 0" SeparationOverride="4">
     <Label Name="PlayerEntryLabel" Text="" ClipText="True" HorizontalExpand="True" VerticalAlignment="Center" />
     <TextureButton Name="PlayerEntryPinButton" HorizontalAlignment="Right" VerticalAlignment="Center" />
-    <!-- Sunrise-End -->
 </BoxContainer>
+    <!-- Sunrise-end -->
