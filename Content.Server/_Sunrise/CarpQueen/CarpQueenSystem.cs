@@ -5,6 +5,7 @@ using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Server.Popups;
 using Content.Server.Chat.Systems;
+using Content.Server.Ghost.Roles.Components;
 using Content.Shared._Sunrise.CarpQueen;
 using Content.Shared.Humanoid;
 using Content.Shared.Pointing;
@@ -47,6 +48,7 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
 
         SubscribeLocalEvent<CarpQueenComponent, CarpQueenSummonActionEvent>(OnSummon);
         SubscribeLocalEvent<CarpQueenComponent, AfterPointedAtEvent>(OnPointedAt);
+        SubscribeLocalEvent<CarpQueenComponent, PlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<CarpQueenServantComponent, ComponentShutdown>(OnServantShutdown);
     }
 
@@ -179,6 +181,11 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
 
             _npc.SetBlackboard(servant, NPCBlackboard.CurrentOrderedTarget, target);
         }
+    }
+
+    private void OnPlayerDetached(EntityUid uid, CarpQueenComponent component, PlayerDetachedEvent args)
+    {
+        EnsureComp<GhostTakeoverAvailableComponent>(uid);
     }
 
     public override void Update(float frameTime)
