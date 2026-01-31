@@ -4,25 +4,8 @@
   components:
   - type: BallisticAmmoProvider
     capacity: 20
-
-- type: entity
-  parent: BaseMagazinePistolCaselessRifleExtended
-  id: MagazinePistolSubMachineGunCaseless
-  name: Tec9Magazine
-  components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/mp38.rsi
-    scale: 0.90, 0.70
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 2
-    zeroVisible: false
-  - type: Appearance
+    scale: 1,1.15
 
 - type: entity
   id: MagazinePistolSubMachineGunCaselessExtended

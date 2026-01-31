@@ -12,6 +12,13 @@
             Orientation="Horizontal"
             Margin="0,0,0,4"
             Name="Header">
+            <TextureRect
+                Name="JobIconRect"
+                SetWidth="20"
+                SetHeight="20"
+                Stretch="Scale"
+                Margin="0,0,4,0"
+                Visible="False" />
             <Label
                 Name="SenderLabel"
                 Text=""
@@ -33,23 +40,34 @@
                     StyleClasses="LabelSubText" />
             </BoxContainer>
         </BoxContainer>
-        <Control
+        <BoxContainer
+            Orientation="Vertical"
             HorizontalExpand="True"
-            MinSize="0,20"
             Name="ContentContainer">
             <RichTextLabel
                 Name="ContentLabel"
+                HorizontalExpand="True" />
+            <ContainerButton
+                Name="ImageButton"
                 HorizontalExpand="True"
-                MinSize="0,20" />
-            <TextureRect
-                Name="ReadStatusIcon"
-                SetWidth="16"
-                SetHeight="16"
-                TextureScale="0.5,0.5"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                Margin="0,0,2,2"
-                Visible="False" />
-        </Control>
+                Visible="False"
+                Margin="0,4,0,0">
+                <PanelContainer Name="ImageBorder" HorizontalExpand="True">
+                    <TextureRect
+                        Name="ImagePreview"
+                        HorizontalExpand="True"
+                        Stretch="KeepAspect" />
+                </PanelContainer>
+            </ContainerButton>
+        </BoxContainer>
+        <TextureRect
+            Name="ReadStatusIcon"
+            SetWidth="16"
+            SetHeight="16"
+            TextureScale="0.5,0.5"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Margin="0,0,2,2"
+            Visible="False" />
     </BoxContainer>
 </PanelContainer>

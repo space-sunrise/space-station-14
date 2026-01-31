@@ -1,3 +1,5 @@
+using Content.Shared.StatusIcon;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.Messenger;
@@ -28,11 +30,17 @@ public sealed class MessengerUser
     /// </summary>
     public string? DepartmentId { get; set; }
 
-    public MessengerUser(string userId, string name, string? jobTitle = null, string? departmentId = null)
+    /// <summary>
+    /// ID иконки роли пользователя (опционально)
+    /// </summary>
+    public ProtoId<JobIconPrototype>? JobIconId { get; set; }
+
+    public MessengerUser(string userId, string name, string? jobTitle = null, string? departmentId = null, ProtoId<JobIconPrototype>? jobIconId = null)
     {
         UserId = userId;
         Name = name;
         JobTitle = jobTitle;
         DepartmentId = departmentId;
+        JobIconId = jobIconId;
     }
 }

@@ -62,7 +62,7 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Piercing: 15 # Sunrise-Edit
+        Piercing: 5
   # Visual & Audio
   - type: DamageVisuals
     damageOverlayGroups:
@@ -146,19 +146,9 @@
       - "footprint-left-bare-spider"
     rightBareFootState:
       - "footprint-right-bare-spider"
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.40
-        density: 250
-        restitution: 0.0
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
   - type: Carriable
+  - type: ToggleableNightVision
+    effect: EffectNightVisioSpecies
   # Sunrise-end
 
 - type: entity

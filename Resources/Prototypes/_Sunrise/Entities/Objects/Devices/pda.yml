@@ -187,6 +187,7 @@
       - AstroNavCartridge
       - NavigatorCartridge
       - MessengerCartridge
+      - PhotoCartridge
 
 - type: entity
   parent: CaptainPDA
@@ -425,6 +426,7 @@
     - AstroNavCartridge
     - NavigatorCartridge
     - MessengerCartridge
+    - PhotoCartridge
 
 - type: entity
   parent: BasePDA

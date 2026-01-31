@@ -1,6 +1,6 @@
 - type: entity
   name: BaseWeaponLauncher
-  parent: BaseItem
+  parent: [ BaseItem, BaseGunWieldable ]
   id: BaseWeaponLauncher
   description: A rooty tooty point and shooty.
   abstract: true
@@ -19,6 +19,14 @@
     containers:
       ballistic-ammo: !type:Container
         ents: []
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 25 # Slower than a bullet, same speed as our old projectile limit.
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
   # Sunrise start
   - type: EmitSoundOnPickup
     sound:
@@ -41,7 +49,7 @@
 
 - type: entity
   name: china lake
-  parent: [BaseWeaponLauncher, BaseGunWieldable, BaseSyndicateContraband]
+  parent: [BaseWeaponLauncher, BaseSyndicateContraband]
   id: WeaponLauncherChinaLake
   description: PLOOP.
   components:
@@ -62,19 +70,12 @@
   - type: AmmoCounter
   - type: Gun
     pump: true
-    fireRate: 1
-    selectedMode: SemiAuto
-    availableModes:
-      - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
-    projectileSpeed: 15 # Sunrise-Edit
   - type: BallisticAmmoProvider
     whitelist:
       tags:
         - Grenade
-    capacity: 3 # Sunrise-Edit
-    proto: GrenadeFragTimer
+    capacity: 3
+    proto: GrenadeFrag
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: GunRequiresWield
@@ -82,7 +83,7 @@
     price: 10000
 
 - type: entity
-  parent: [ BaseWeaponLauncher, BaseGunWieldable, BaseMajorContraband ]
+  parent: [ BaseWeaponLauncher, BaseMajorContraband ]
   id: WeaponLauncherHydra
   name: hydra
   description: PLOOP... FSSSSSS...
@@ -100,13 +101,6 @@
   - type: Item
     size: Huge
   - type: AmmoCounter
-  - type: Gun
-    fireRate: 1
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
   - type: GunRequiresWield
   - type: ContainerContainer
     containers:

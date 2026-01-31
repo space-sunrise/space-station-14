@@ -54,6 +54,21 @@ public sealed class MessengerUiState : BoundUserInterfaceState
     /// </summary>
     public Dictionary<string, int> UnreadCounts { get; }
 
+    /// <summary>
+    /// Активные приглашения в группы
+    /// </summary>
+    public List<MessengerGroupInvite> ActiveInvites { get; }
+
+    /// <summary>
+    /// Закрепленные чаты (chatId)
+    /// </summary>
+    public HashSet<string> PinnedChats { get; }
+
+    /// <summary>
+    /// Галерея фотографий для выбора (опционально)
+    /// </summary>
+    public Dictionary<string, PhotoMetadata>? PhotoGallery { get; }
+
     public MessengerUiState(
         bool isRegistered,
         bool serverAvailable,
@@ -63,7 +78,10 @@ public sealed class MessengerUiState : BoundUserInterfaceState
         Dictionary<string, List<MessengerMessage>> messageHistory,
         HashSet<string> mutedPersonalChats,
         HashSet<string> mutedGroupChats,
-        Dictionary<string, int> unreadCounts)
+        Dictionary<string, int> unreadCounts,
+        List<MessengerGroupInvite> activeInvites,
+        HashSet<string> pinnedChats,
+        Dictionary<string, PhotoMetadata>? photoGallery = null)
     {
         IsRegistered = isRegistered;
         ServerAvailable = serverAvailable;
@@ -74,5 +92,8 @@ public sealed class MessengerUiState : BoundUserInterfaceState
         MutedPersonalChats = mutedPersonalChats;
         MutedGroupChats = mutedGroupChats;
         UnreadCounts = unreadCounts;
+        ActiveInvites = activeInvites;
+        PinnedChats = pinnedChats;
+        PhotoGallery = photoGallery;
     }
 }

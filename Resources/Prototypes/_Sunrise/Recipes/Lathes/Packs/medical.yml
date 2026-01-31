@@ -25,6 +25,7 @@
   - ImplanterExtractor
   - DefibrillatorCompact
   - AdvancedDefibrillatorCompact
+  - DnaInjector
 
 - type: latheRecipePack
   id: SurgeryDynamicSunrise

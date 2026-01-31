@@ -61,7 +61,7 @@ public sealed class TapePlayerBoundUserInterface : BoundUserInterface
         if (_entityManager.TryGetComponent<MusicTapeComponent>(tapePlayer.InsertedTape, out var musicTapeComponent))
         {
             var audio = EntMan.System<AudioSystem>();
-            var length = audio.GetAudioLength(audio.GetSound(musicTapeComponent.Sound));
+            var length = audio.GetAudioLength(audio.ResolveSound(musicTapeComponent.Sound));
             _menu.SetSelectedSong(musicTapeComponent.SongName, (float) length.TotalSeconds);
         }
         else
@@ -104,7 +104,7 @@ public sealed class TapePlayerBoundUserInterface : BoundUserInterface
             return;
 
         _menu.OnClose -= Close;
-        _menu.Dispose();
+        _menu.Orphan();
         _menu = null;
     }
 }

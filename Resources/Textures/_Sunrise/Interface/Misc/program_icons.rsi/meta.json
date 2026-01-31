@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "discord: seraphimttt",
+    "copyright": "max icons - discord: seraphimttt. Other take here https://pixelexplosive.itch.io/pixel-art-ui-icon-pack-25-icons-32x32",
     "size": {
       "x": 32,
       "y": 32
@@ -15,6 +15,12 @@
       },
       {
         "name": "max_logo3"
+      },
+      {
+        "name": "robust_chat"
+      },
+      {
+        "name": "flash_snap"
       }
     ]
 }

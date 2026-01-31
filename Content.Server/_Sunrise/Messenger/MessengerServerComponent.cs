@@ -34,7 +34,7 @@ public sealed partial class MessengerServerComponent : Component
     /// </summary>
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public int MaxMessageHistory = 5000;
+    public int MaxMessageHistory = 2000;
 
     /// <summary>
     /// Счетчик для генерации уникальных ID групп
@@ -66,4 +66,10 @@ public sealed partial class MessengerServerComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<DeviceFrequencyPrototype> PdaFrequencyId = "PDA";
+
+    /// <summary>
+    /// Активные приглашения в группы. Ключ - ID получателя, значение - список приглашений
+    /// </summary>
+    [ViewVariables]
+    public readonly Dictionary<string, List<MessengerGroupInvite>> ActiveInvites = new();
 }

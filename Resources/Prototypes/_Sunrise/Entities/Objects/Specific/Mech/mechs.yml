@@ -359,6 +359,10 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    equipmentWhitelist:
+      tags:
+      - IndustrialMech
+      - CombatMech
   - type: MeleeThrowOnHit
     distance: 1
     speed: 8

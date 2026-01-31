@@ -14,7 +14,7 @@
     DrinkCampariBottleFull: 5
     DrinkAbsintheBottleFull: 2
     DrinkAleBottleFull: 5
-    DrinkBeerBottleFull: 5
+    DrinkBeerBottleFull: 6 #Sunrise-Edit
     DrinkBlueCuracaoBottleFull: 2
     DrinkCognacBottleFull: 4
     DrinkCoconutWaterCarton: 3
@@ -46,7 +46,7 @@
     DrinkWineBottleFull: 5
     DrinkChampagneBottleFull: 2 #because the premium drink
     DrinkSakeBottleFull: 3
-    DrinkBeerCan: 5
+    DrinkBeerCan: 9 #Sunrise-Edit
     DrinkWineCan: 5
   contrabandInventory:
     ChemistryBottleEthanol: 3

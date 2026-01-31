@@ -6,7 +6,7 @@ namespace Content.Shared._Sunrise.TapePlayer
     [RegisterComponent, NetworkedComponent]
     public sealed partial class MusicTapeComponent : Component
     {
-        [DataField(customTypeSerializer: typeof(SoundSpecifierTypeSerializer), required: true)]
+        [DataField(required: true)]
         public SoundSpecifier Sound;
 
         [DataField]

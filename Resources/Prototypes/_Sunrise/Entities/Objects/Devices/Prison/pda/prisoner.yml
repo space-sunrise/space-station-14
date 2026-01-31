@@ -37,6 +37,7 @@
       - NewsReaderCartridge
       - NavigatorCartridge
       - MessengerCartridge
+      - PhotoCartridge
 
 - type: entity
   parent: PlanetPrisonerPDA
