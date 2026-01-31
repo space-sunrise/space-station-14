@@ -62,6 +62,7 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
         if (TryComp<TTSComponent>(uid, out var ttsComponent))
         {
             TryAssignRandomFemaleVoiceToQueen(ttsComponent);
+            Dirty(uid, ttsComponent);
         }
     }
 
