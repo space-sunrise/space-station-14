@@ -10,10 +10,11 @@ namespace Content.Shared._Sunrise.TTS;
 public sealed partial class TTSRandomComponent : Component
 {
     /// <summary>
-    /// Словарь ID прототипов голосов с их шансами выпадения для случайного выбора.
+    /// Словарь голосов с их шансами выпадения для случайного выбора.
+    /// Ключ может быть ID прототипа голоса или названием голоса (можно в кавычках для читаемости).
     /// Чем выше число, тем больше шанс выпадения голоса.
-    /// Если шанс не указан или равен 0, используется значение 1.
+    /// Если шанс не указан или равен 0, используется значение 1 (равный шанс).
     /// </summary>
     [DataField("voices")]
-    public Dictionary<ProtoId<TTSVoicePrototype>, int> Voices = new();
+    public Dictionary<string, int> Voices = new();
 }

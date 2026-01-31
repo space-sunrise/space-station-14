@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._Sunrise.TTS;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -10,6 +11,7 @@ namespace Content.Server._Sunrise.TTS;
 public sealed class TTSRandomSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
     {
@@ -32,32 +34,50 @@ public sealed class TTSRandomSystem : EntitySystem
         }
     }
 
-    private ProtoId<TTSVoicePrototype>? SelectRandomVoice(Dictionary<ProtoId<TTSVoicePrototype>, int> voices)
+    private ProtoId<TTSVoicePrototype>? SelectRandomVoice(Dictionary<string, int> voices)
     {
         if (voices.Count == 0)
             return null;
 
-        var totalChance = 0;
-        foreach (var chance in voices.Values)
-        {
-            totalChance += Math.Max(1, chance);
-        }
-
-        if (totalChance == 0)
+        var totalChance = CalculateTotalChance(voices);
+        if (totalChance <= 0)
             return null;
 
-        var randomValue = _random.Next(totalChance);
-        var currentChance = 0;
+        var randomRoll = _random.Next(totalChance);
+        var currentThreshold = 0;
 
-        foreach (var (voiceId, chance) in voices)
+        foreach (var (voiceKey, chance) in voices)
         {
-            currentChance += Math.Max(1, chance);
-            if (randomValue < currentChance)
+            currentThreshold += Math.Max(1, chance);
+            if (randomRoll < currentThreshold)
             {
-                return voiceId;
+                return ResolveVoicePrototype(voiceKey);
             }
         }
 
-        return voices.Keys.First();
+        return ResolveVoicePrototype(voices.Keys.First());
+    }
+
+    private int CalculateTotalChance(Dictionary<string, int> voices)
+    {
+        var total = 0;
+        foreach (var chance in voices.Values)
+        {
+            total += Math.Max(1, chance);
+        }
+        return total;
+    }
+
+    private ProtoId<TTSVoicePrototype>? ResolveVoicePrototype(string voiceKey)
+    {
+        if (_prototypeManager.TryIndex<TTSVoicePrototype>(voiceKey, out _))
+        {
+            return voiceKey;
+        }
+
+        var matchingPrototype = _prototypeManager.EnumeratePrototypes<TTSVoicePrototype>()
+            .FirstOrDefault(prototype => prototype.Name == voiceKey);
+
+        return matchingPrototype?.ID;
     }
 }
