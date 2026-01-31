@@ -58,7 +58,7 @@ public sealed class WingToggleSharedSystem : SharedWingFlightSystem
             return;
 
         var ev = new WingForceClose();
-        RaiseLocalEvent(ent.Owner, ref ev);
+        RaiseLocalEvent(ent, ref ev);
     }
 
     private void OnMobStateChanged(Entity<WingToggleComponent> ent, ref MobStateChangedEvent args)
