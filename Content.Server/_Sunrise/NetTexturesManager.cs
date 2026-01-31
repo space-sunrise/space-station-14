@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Content.Shared._Sunrise.CartridgeLoader.Cartridges;
 using Content.Shared._Sunrise.NetTextures;
 using Robust.Server.Player;
 using Robust.Shared.ContentPack;
@@ -11,8 +12,6 @@ using Robust.Shared.Network.Transfer;
 using Robust.Shared.Player;
 using Robust.Shared.Upload;
 using Robust.Shared.Utility;
-using Robust.Shared.GameObjects;
-using Content.Shared.GameTicking;
 using ByteHelpers = Robust.Shared.Utility.ByteHelpers;
 
 namespace Content.Server._Sunrise;
@@ -45,10 +44,19 @@ namespace Content.Server._Sunrise;
     /// </summary>
     private readonly Dictionary<ResPath, byte[]> _dynamicResources = new();
 
+    /// <summary>
+    /// Callback for handling photo captures. PhotoCartridgeSystem registers itself here.
+    /// </summary>
+    public Action<PdaPhotoCaptureMessage>? OnPhotoCaptureMessage { get; set; }
+
     public void Initialize()
     {
         _sawmill = _logManager.GetSawmill("network.textures");
         _netManager.RegisterNetMessage<RequestNetworkResourceMessage>(OnRequestNetworkResource);
+
+        _netManager.RegisterNetMessage<PdaPhotoCaptureMessage>(
+            msg => OnPhotoCaptureMessage?.Invoke(msg),
+            accept: NetMessageAccept.Server);
 
         _transferManager.RegisterTransferMessage(TransferKeyNetTextures);
     }

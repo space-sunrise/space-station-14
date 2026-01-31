@@ -202,18 +202,19 @@ public sealed partial class MessengerCartridgeSystem
             groups.Add(new MessengerGroup(groupId, groupName, new HashSet<string>(membersList ?? new List<string>()), groupType, autoGroupPrototypeId, ownerId));
         }
 
-        component.Groups = groups;
-
+        var existingGroupIds = component.Groups.Select(g => g.GroupId).ToHashSet();
         foreach (var group in groups)
         {
             if (group.Type == MessengerGroupType.Automatic && group.AutoGroupPrototypeId != null)
             {
-                if (!component.MutedGroupChats.Contains(group.GroupId))
+                if (!existingGroupIds.Contains(group.GroupId) && !component.MutedGroupChats.Contains(group.GroupId))
                 {
                     component.MutedGroupChats.Add(group.GroupId);
                 }
             }
         }
+
+        component.Groups = groups;
 
         if (serverUnreadCounts != null)
         {

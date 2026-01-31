@@ -7,12 +7,17 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.RichText;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Utility;
+using Content.Client._Sunrise;
+using Robust.Client.ResourceManagement;
 
 namespace Content.Client.CartridgeLoader.Cartridges;
 
 [GenerateTypedNameReferences]
 public sealed partial class NewsReaderUiFragment : BoxContainer
 {
+    [Dependency] private readonly NetTexturesManager _netTexturesManager = default!;
+    [Dependency] private readonly IResourceCache _resourceCache = default!;
+
     public event Action? OnNextButtonPressed;
     public event Action? OnPrevButtonPressed;
 
@@ -21,6 +26,7 @@ public sealed partial class NewsReaderUiFragment : BoxContainer
     public NewsReaderUiFragment()
     {
         RobustXamlLoader.Load(this);
+        IoCManager.InjectDependencies(this);
 
         Next.OnPressed += _ => OnNextButtonPressed?.Invoke();
         Prev.OnPressed += _ => OnPrevButtonPressed?.Invoke();
@@ -46,6 +52,42 @@ public sealed partial class NewsReaderUiFragment : BoxContainer
 
         var author = Loc.GetString("news-read-ui-author-prefix") + " " + (article.Author ?? Loc.GetString("news-read-ui-no-author"));
         Author.SetMessage(FormattedMessage.FromMarkupPermissive(author), UserFormattableTags.BaseAllowedTags);
+
+        // Sunrise-Start
+        ArticlePhotosContainer.Children.Clear();
+        if (article.PhotoPaths != null)
+        {
+            foreach (var path in article.PhotoPaths)
+            {
+                var textureRect = new TextureRect
+                {
+                    HorizontalExpand = true,
+                    Stretch = TextureRect.StretchMode.KeepAspectCentered,
+                    MinHeight = 150
+                };
+                ArticlePhotosContainer.AddChild(textureRect);
+
+                if (_netTexturesManager.EnsureResource(path))
+                {
+                    var uploaded = _netTexturesManager.GetUploadedPath(path);
+                    if (_resourceCache.TryGetResource<TextureResource>(uploaded, out var tex))
+                        textureRect.Texture = tex.Texture;
+                }
+                else
+                {
+                    void OnLoaded(string loadedPath)
+                    {
+                        if (loadedPath != path) return;
+                        var uploaded = _netTexturesManager.GetUploadedPath(path);
+                        if (_resourceCache.TryGetResource<TextureResource>(uploaded, out var tex))
+                            textureRect.Texture = tex.Texture;
+                        _netTexturesManager.ResourceLoaded -= OnLoaded;
+                    }
+                    _netTexturesManager.ResourceLoaded += OnLoaded;
+                }
+            }
+        }
+        // Sunrise-End
 
         Prev.Disabled = targetNum <= 1;
         Next.Disabled = targetNum >= totalNum;

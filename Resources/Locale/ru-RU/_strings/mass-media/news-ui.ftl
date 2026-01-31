@@ -41,3 +41,7 @@ news-write-ui-richtext-tooltip =
     { "[bullet/]bullet[/color]" }
 news-pda-notification-header = Новая новостная статья
 news-publish-admin-announcement = { $actor } опубликовал(а) новостную статью { $title } за авторством { $author }
+news-write-ui-photos-label = Фотографии:
+news-write-ui-add-photo-text = Добавить фото
+news-write-ui-select-photo-title = Выберите фото с КПК
+news-write-ui-no-photos = На КПК нет фотографий

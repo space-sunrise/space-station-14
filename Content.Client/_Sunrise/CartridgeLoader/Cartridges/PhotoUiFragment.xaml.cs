@@ -67,10 +67,10 @@ public sealed partial class PhotoUiFragment : BoxContainer
         SwitchTab(true);
 
         var system = _entityManager.System<PhotoCartridgeClientSystem>();
-        ZoomSlider.Value = (system.CaptureDistance - 2.0f) / 8.0f;
+        ZoomSlider.Value = (system.CaptureDistance - system.MinCaptureDistance) / 8.0f;
         ZoomSlider.OnValueChanged += args =>
         {
-            system.CaptureDistance = 2.0f + args.Value * 8.0f;
+            system.CaptureDistance = system.MinCaptureDistance + args.Value * 8.0f;
         };
 
         SetupCameraPreview();
@@ -175,7 +175,7 @@ public sealed partial class PhotoUiFragment : BoxContainer
              var xform = _entityManager.GetComponent<TransformComponent>(source);
              var sourcePos = xform.MapPosition;
 
-             var targetPos = photoSystem.GetCameraPosition(source, photoSystem.CaptureDistance);
+             var targetPos = photoSystem.GetClampedCapturePosition(source, photoSystem.CaptureDistance);
 
              _previewEye.Position = sourcePos.Offset(targetPos - sourcePos.Position);
              _previewEye.Rotation = _eyeManager.CurrentEye.Rotation;
