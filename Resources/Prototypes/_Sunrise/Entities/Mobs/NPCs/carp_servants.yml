@@ -32,6 +32,26 @@
 - type: entity
   id: MobCarpServantDragon
   parent: [ BaseMobCarpServant, MobCarpDragon ]
+  components:
+  - type: TTSRandom
+    voices:
+      "[Hearthstone] Финли": 10
+      "[League of Legends] Твич": 10
+      "[Skyrim] Ворожея": 10
+      "[Warcraft 3] Мурадин": 10
+      "[Warcraft] Гаррош Адский Крик": 10
+      "[YouTube] PlayBoyzTV": 10
+      "Мориарти": 5
+      "Abaddon": 10
+      "Achemist": 15
+      "Batrider": 20
+      "Bloodseeker": 10
+      "Bounty Hunter": 20
+      "Centaur Warrunner": 15
+      "Clockwerk": 25
+      "Gyrocopter": 15
+      "Meepo": 10
+      "Slark": 17
 
 - type: entity
   id: MobCarpServantRegular
