@@ -73,7 +73,7 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
 
         if ((!forceClose || !ent.Comp.WingsOpened) && !CanOpenWings(ent))
         {
-            _popup.PopupEntity(Loc.GetString("wing-toggle-open-blocked"), ent.Owner, ent.Owner, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("wing-toggle-open-blocked"), ent, ent, PopupType.Medium);
             return false;
         }
 
