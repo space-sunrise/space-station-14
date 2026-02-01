@@ -25,7 +25,12 @@ public sealed partial class DeltaPressureSystem : SharedDeltaPressureSystem
         SubscribeLocalEvent<DeltaPressureComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<DeltaPressureComponent, ComponentShutdown>(OnComponentShutdown);
         SubscribeLocalEvent<DeltaPressureComponent, GridUidChangedEvent>(OnGridChanged);
+
+        // Sunrise-edit - Configurable DeltaP in CVars
+        AfterInit();
     }
+
+    partial void AfterInit(); // Sunrise-edit - Configurable DeltaP in CVars
 
     private void OnComponentInit(Entity<DeltaPressureComponent> ent, ref ComponentInit args)
     {
