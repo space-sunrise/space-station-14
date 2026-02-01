@@ -51,7 +51,7 @@
 #    - AssaultOps
 #    - SubGamemodesRule
 #    - Xenoborgs
-    - KesslerSyndromeScheduler
+#    - KesslerSyndromeScheduler
 #    - RampingStationEventScheduler
 #    - SpaceTrafficControlEventScheduler
 #    - BasicRoundstartVariation
@@ -74,7 +74,7 @@
 #    - Revolutionary
 #    - Zombie
 #    - Wizard
-    - Xenoborgs
+#    - Xenoborgs
 #    - FleshCult
 #    - BloodCult
 #    - AssaultOps
@@ -87,7 +87,7 @@
 #    - SpaceTrafficControlEventScheduler
 #    - SpaceTrafficControlFriendlyEventScheduler
 #    - BasicRoundstartVariation
-
+#    - Vampire #Starlight
 # Sunrise-Edit: Replace by Extra
 #- type: gamePreset
 #  id: Extended

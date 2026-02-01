@@ -196,14 +196,15 @@
         type: SurgeryBui
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
-      # Sunrise-Start
-      enum.VampireMutationUiKey.Key:
-        type: VampireMutationBoundUserInterface
-      enum.SummonCultistUiKey.Key:
-        type: SummonCultistListWindowBUI
-      enum.CultSpellProviderUiKey.Key:
-        type: SpellSelectorBUI
-      # Sunrise-End
+      # Starlight-Start
+      enum.VampireClassUiKey.Key: # SL
+        type: VampireClassBui
+      enum.VampireLocateUiKey.Key: # SL
+        type: VampireLocateBui
+      enum.ThavenMoodsUiKey.Key: # impstation edit
+        type: ThavenMoodsBoundUserInterface
+        requireInputValidation: false
+      # Starlight-End
   - type: Puller
   - type: Speech
     speechSounds: Alto
@@ -269,7 +270,27 @@
   - type: CanEscapeInventory
   - type: Mood
   - type: CritHeartbeat
-  # Sunrise-End
+  - type: UserInterface
+    interfaces:
+    # Starlight-edit: start
+      enum.HumanoidMarkingModifierKey.Key:
+        type: HumanoidMarkingModifierBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+    # Starlight-edit: end
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.VampireClassUiKey.Key: # SL
+        type: VampireClassBui
+      enum.VampireLocateUiKey.Key: # SL
+        type: VampireLocateBui
+      enum.ThavenMoodsUiKey.Key: # impstation edit
+        type: ThavenMoodsBoundUserInterface
+        requireInputValidation: false
   - type: Barotrauma
     damage:
       types:

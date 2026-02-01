@@ -45,9 +45,12 @@
       # Sunrise-start
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
-      enum.VampireMutationUiKey.Key:
-        type: VampireMutationBoundUserInterface
-      # Sunrise-end
+      # Starlight edit: start
+      enum.VampireClassUiKey.Key:
+        type: VampireClassBui
+      enum.VampireLocateUiKey.Key:
+        type: VampireLocateBui
+      # Starlight edit: end
   - type: UseDelay
     delay: 0.5
   - type: HumanoidAppearance

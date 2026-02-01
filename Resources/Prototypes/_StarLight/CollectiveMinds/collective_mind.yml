@@ -1,0 +1,8 @@
+- type: collectiveMind
+  id: VampireThrall
+  name: collective-mind-vampire-thrall
+  keycode: 'p'
+  color: "#066338"
+  requiredComponents:
+  - Dantalion
+  - VampireThrall

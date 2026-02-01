@@ -692,6 +692,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                 return false;
         }
 
+        // Starlight: Chaplainsusers should never be selected as vampires.
+        if (def.MindRoles != null && def.MindRoles.Contains("MindRoleVampire") && HasComp<BibleUserComponent>(entity.Value))
+            return false;
+
         return true;
     }
 

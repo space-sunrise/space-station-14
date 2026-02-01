@@ -1853,6 +1853,7 @@
     heldPrefix: 0
   - type: ItemRepickupCooldown  # Sunrise-add
     cooldown: 5                 # Sunrise-add
+  - type: VampireDevourable # Starlight-edit: Vampire Devouring
   - type: Clothing
     quickEquip: false
     sprite: Mobs/Animals/mouse.rsi

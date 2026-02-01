@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseGameRule
+  id: Vampire
+  components:
+  - type: VampireRule
+  - type: AntagSelection
+    agentName: vampire-roundend-name
+    definitions:
+    - prefRoles: [ Vampire ]
+      max: 3
+      playerRatio: 10
+      lateJoinAdditional: true
+      allowNonHumans: True
+      multiAntagSetting: None
+      mindRoles:
+      - MindRoleVampire
