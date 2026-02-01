@@ -285,3 +285,107 @@
   - трещит.
   - трещит!
   - трещит?
+
+- type: emote
+  id: Roars
+  name: chat-emote-name-roar
+  category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-roar"]
+  chatTriggers:
+    - ревёт.
+    - ревёт!
+    - реветь.
+    - реветь!
+    - ревёт
+    - реветь
+    - ревет.
+    - ревет!
+    - ревет
+    - roar
+    - roar.
+    - roar!
+    - roars
+    - roars!
+    - roars.
+
+- type: emote
+  id: HissesXeno
+  name: chat-emote-name-xenohisses
+  category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-xenohisses"]
+  chatTriggers:
+    - шипит.
+    - шипит!
+    - шипеть.
+    - шипеть!
+    - шипит
+    - шипеть
+    - hiss
+    - hiss.
+    - hiss!
+    - hisses
+    - hisses.
+    - hisses!
+
+- type: emote
+  id: Rumbles
+  name: chat-emote-name-rumble
+  category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-rumble"]
+  chatTriggers:
+   - рокочет
+    - рокочет.
+    - рокочет!
+    - рокотать
+    - рокотать.
+    - рокотать!
+    - rumbles
+    - rumbles!
+    - rumbles.
+
+- type: emote
+  id: Growls
+  name: chat-emote-name-growls
+  category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-growls"]
+  chatTriggers:
+    - рычит
+    - рычит!
+    - рычит.
+    - рычать
+    - рычать.
+    - рычать!
+    - growl
+    - growl!
+    - growl.
+    - growls
+    - growls.
+    - growls!

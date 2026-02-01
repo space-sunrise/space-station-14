@@ -1,6 +1,7 @@
 chat-emote-name-hisses = Шипеть
 chat-emote-name-purrs = Мурчать
 chat-emote-name-growls = Рычать
+chat-emote-msg-growls = рычит
 chat-emote-name-mews = Мявкать
 chat-emote-name-oink = Хрюкать
 chat-emote-name-meows = Мяукать
@@ -16,3 +17,9 @@ chat-emote-name-call = зовёт
 chat-emote-name-squawk = скрипит
 chat-emote-name-scree = верещит
 chat-emote-msg-trill = трещит!
+chat-emote-name-roar = Реветь
+chat-emote-name-rumble = Рокотать
+chat-emote-name-xenohisses = Шипение ксеноморфа
+chat-emote-msg-roar = ревёт!
+chat-emote-msg-rumble = рокочет
+chat-emote-msg-xenohisses = шипит

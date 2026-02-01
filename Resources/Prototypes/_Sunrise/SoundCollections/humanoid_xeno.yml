@@ -5,3 +5,39 @@
   - /Audio/_Sunrise/Voice/HumanoidXeno/humanoid_xeno_scream2.ogg
   - /Audio/_Sunrise/Voice/HumanoidXeno/humanoid_xeno_scream3.ogg
   - /Audio/_Sunrise/Voice/HumanoidXeno/humanoid_xeno_scream4.ogg
+
+- type: soundCollection
+  id: HumanoidXenoGrowls
+  files:
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_growl_1.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_growl_2.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_growl_3.ogg
+
+- type: soundCollection
+  id: HumanoidXenoHisses
+  files:
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_hiss_1.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_hiss_2.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_hiss_3.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_hiss_4.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_hiss_5.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_hiss_6.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_hiss_7.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_hiss_8.ogg
+
+- type: soundCollection
+  id: HumanoidXenoRoars
+  files:
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_roar_1.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_roar_2.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_roar_3.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_roar_4.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_roar_5.ogg
+
+- type: soundCollection
+  id: HumanoidXenoRumbles
+  files:
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_rumble_1.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_rumble_2.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_rumble_3.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/xeno_rumble_4.ogg
