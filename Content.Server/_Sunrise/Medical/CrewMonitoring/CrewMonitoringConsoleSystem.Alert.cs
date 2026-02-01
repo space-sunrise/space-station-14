@@ -1,4 +1,5 @@
 using Content.Server.Power.EntitySystems;
+using Content.Shared.Ghost;
 using Content.Shared.Medical.CrewMonitoring;
 using Content.Shared.Morgue.Components;
 using Content.Shared.Power.Components;
@@ -97,6 +98,9 @@ public sealed partial class CrewMonitoringConsoleSystem
     private void AddToggleVerb(Entity<CrewMonitoringCorpseAlertComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
     {
         if (!args.CanInteract || !args.CanAccess)
+            return;
+
+        if (TryComp<GhostComponent>(args.User, out var ghost) && ghost.CanGhostInteract)
             return;
 
         InteractionVerb verb = new();
