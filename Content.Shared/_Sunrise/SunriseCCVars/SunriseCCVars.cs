@@ -617,4 +617,6 @@ public sealed partial class SunriseCCVars : CVars
     /// Percentage of players (0.0 to 1.0) who will receive spam during a wave.
     /// </summary>
     public static readonly CVarDef<float> MessengerSpamPlayerPercentage =
-        CVarDef.Create("messenger.spam_player_percentage", 0.4f, CVar.SERVERONLY);}
+        CVarDef.Create("messenger.spam_player_percentage", 0.4f, CVar.SERVERONLY);
+
+}
