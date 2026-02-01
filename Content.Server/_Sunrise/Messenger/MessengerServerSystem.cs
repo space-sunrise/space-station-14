@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Radio;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Shared.DeviceNetwork.Events;
 using Content.Server.Station.Systems;
@@ -9,6 +10,7 @@ using Content.Shared._Sunrise.Messenger;
 using Content.Shared.Inventory;
 using Robust.Shared.Prototypes;
 using Content.Server.CartridgeLoader;
+using Content.Server.DeviceNetwork.Components;
 
 namespace Content.Server._Sunrise.Messenger;
 
@@ -27,6 +29,20 @@ public sealed partial class MessengerServerSystem : EntitySystem
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
 
     private ISawmill Sawmill { get; set; } = default!;
+
+    /// <summary>
+    /// Находит GroupId для указанного радиоканала
+    /// </summary>
+    public string? GetGroupIdByRadioChannel(string radioChannelId)
+    {
+        foreach (var proto in _prototypeManager.EnumeratePrototypes<MessengerAutoGroupPrototype>())
+        {
+            if (proto.RadioChannel == radioChannelId)
+                return proto.GroupId;
+        }
+
+        return null;
+    }
 
     public override void Initialize()
     {
@@ -171,5 +187,28 @@ public sealed partial class MessengerServerSystem : EntitySystem
     private long GetNextMessageId(EntityUid uid, MessengerServerComponent component)
     {
         return ++component.MessageIdCounter;
+    }
+
+    /// <summary>
+    /// Находит сущность сервера мессенджера для станции
+    /// </summary>
+    public (EntityUid, MessengerServerComponent)? GetServerEntity(EntityUid? station)
+    {
+        if (station == null)
+            return null;
+
+        var query = EntityQueryEnumerator<MessengerServerComponent, SingletonDeviceNetServerComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var singleton))
+        {
+            if (!_singletonServer.IsActiveServer(uid, singleton))
+                continue;
+
+            if (_stationSystem.GetOwningStation(uid) != station)
+                continue;
+
+            return (uid, comp);
+        }
+
+        return null;
     }
 }
