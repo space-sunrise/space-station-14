@@ -148,6 +148,9 @@
     enabled: true
     radius: 3
     color: blue
+  - type: NpcFactionMember
+    factions:
+      - NanoTrasen
   - type: Clickable
   - type: ContainmentField
     throwForce: 0

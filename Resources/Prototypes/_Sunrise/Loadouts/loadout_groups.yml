@@ -248,7 +248,7 @@
   - SnubRevolverBox
   - WeaponDominator
   - WeaponDisabler
-#  - WeaponTaser
+  - WeaponTaser
 
 # Security Cadet
 - type: loadoutGroup
@@ -291,7 +291,17 @@
   - SnubRevolverBox
   - WeaponDominator
   - WeaponDisabler
-#  - WeaponTaser
+  - WeaponTaser
+
+- type: loadoutGroup
+  id: SunriseBrigmedGun
+  name: loadout-group-security-gun
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - WeaponDisabler
+  - WeaponDominatorBrigmed
+  - WeaponTaserBrigmed
 
 # Security  HoS
 - type: loadoutGroup

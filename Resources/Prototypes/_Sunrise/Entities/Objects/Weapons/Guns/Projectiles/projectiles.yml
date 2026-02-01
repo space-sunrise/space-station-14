@@ -48,43 +48,6 @@
     - type: Ammo
       muzzleFlash: null
 
-- type: entity
-  id: BulletTaserSunrise
-  name: taser bolt
-  categories: [ HideSpawnMenu ]
-  parent: BaseBullet
-  components:
-  - type: Sprite
-    noRot: true
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    color: "#ffff33"
-    layers:
-    - state: spark
-      shader: unshaded
-  - type: Projectile
-    damage:
-      types:
-        Shock: 1
-  - type: StaminaDamageOnCollide
-    damage: 33
-  - type: SolutionContainerManager
-    solutions:
-      ammo:
-        reagents:
-        - ReagentId: Licoxide
-          Quantity: 0.5
-  - type: RefillableSolution
-    solution: ammo
-  - type: DrainableSolution
-    solution: ammo
-  - type: SolutionInjectOnProjectileHit
-    transferAmount: 0.5
-    solution: ammo
-  - type: InjectableSolution
-    solution: ammo
-  - type: TimedDespawn
-    lifetime: 0.28 #5.2 tiles
-
 # Sunrise-ION
 - type: entity
   name: EMP impulse
@@ -1024,3 +987,46 @@
     triggerKey: trigger
     fillPrototype: PelletClusterLessLethal
     capacity: 16
+
+- type: entity
+  parent: BaseBullet
+  id: EnergyCrossbowBoltLarge
+  categories: [ HideSpawnMenu ]
+  name: energy bolt
+  description: This'll hurt.
+  components:
+  - type: Reflective
+    reflective:
+    - NonEnergy
+  - type: Ammo
+    muzzleFlash: null
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: crossbowbolt
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 2
+  - type: StunOnCollide #somewhat mirror to taser stats, meant to be tot 'sidegrade'
+    stunAmount: 0
+    knockdownAmount: 2.5
+    slowdownAmount: 2.5
+    walkSpeedModifier: 0.2
+    sprintSpeedModifier: 0.2
+    drop: false
+  - type: StaminaDamageOnCollide #additional stam damage to make repeated pushups less of a viable counter
+    damage: 45
+  - type: SolutionContainerManager
+    solutions:
+      bolt:
+        maxVol: 3
+        reagents:
+        - ReagentId: Toxin
+          Quantity: 1.5
+        - ReagentId: Lead
+          Quantity: 1.5
+  - type: SolutionInjectOnProjectileHit
+    transferAmount: 3
+    solution: bolt
