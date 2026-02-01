@@ -104,6 +104,18 @@ public sealed partial class PlanetPrisonWindow : DefaultWindow
         }
     }
 
+    public PlanetPrisonRoleEntry? GetRoleEntry(string roleId)
+    {
+        foreach (var child in RolesEntryContainer.Children)
+        {
+            if (child is PlanetPrisonRoleEntry roleEntry && roleEntry.RoleId == roleId)
+            {
+                return roleEntry;
+            }
+        }
+        return null;
+    }
+
     public void SetMapsLocked(bool locked)
     {
         foreach (var child in MapsEntryContainer.Children)

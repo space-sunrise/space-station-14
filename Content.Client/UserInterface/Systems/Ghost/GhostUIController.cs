@@ -108,7 +108,11 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         }
         // Sunrise-End
 
-        Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody, canRespawn);
+        // Проверяем доступность ролей тюрьмы
+        var prisonRolesAvailable = _prisonUI.AreAnyPrisonRolesAvailable();
+        var prisonRequirementsText = prisonRolesAvailable ? null : _prisonUI.GetPrisonRequirementsText();
+
+        Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody, canRespawn, prisonRolesAvailable, prisonRequirementsText);
     }
 
     private void OnPlayerRemoved(GhostComponent component)

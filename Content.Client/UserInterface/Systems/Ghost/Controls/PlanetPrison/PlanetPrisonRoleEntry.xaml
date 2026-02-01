@@ -43,4 +43,14 @@
                 HorizontalExpand="True"
                 Margin="0 2 0 0"/>
     </BoxContainer>
+    <PanelContainer Name="LockStripe"
+                    StyleClasses="HighDivider"
+                    Visible="False"
+                    Margin="0 8 0 0"
+                    MouseFilter="Stop">
+        <Label Name="LockLabel"
+               HorizontalAlignment="Center"
+               Margin="8"
+               StyleClasses="LabelSubText"/>
+    </PanelContainer>
 </BoxContainer>

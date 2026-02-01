@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Content.Client.UserInterface.Systems.Ghost.Controls.PlanetPrison;
 using Content.Client.UserInterface.Systems.Ghost;
+using Content.Client.Players.PlayTimeTracking;
 using Content.Shared._Sunrise.PlanetPrison;
 using Content.Shared._Sunrise.NewLife;
 using Content.Shared.Maps;
@@ -41,6 +42,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
     [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
     [Dependency] private readonly IResourceManager _resourceManager = default!;
     [Dependency] private readonly IEntityNetworkManager _net = default!;
+    [Dependency] private readonly JobRequirementsManager _jobRequirements = default!;
 
     private PlanetPrisonWindow? _window;
     private LoadoutWindow? _loadoutWindow;
@@ -63,6 +65,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
     private bool _initialStateRequested = false; // Флаг, запрашивалось ли начальное состояние
 
     public event Action<bool>? PrisonButtonHighlightChanged;
+    public event Action<bool>? PrisonButtonAvailabilityChanged;
 
     public override void Initialize()
     {
@@ -78,7 +81,6 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         SubscribeNetworkEvent<PlanetPrisonRoleUpdateEvent>(OnRoleUpdate);
         SubscribeNetworkEvent<PlanetPrisonCloseWindowEvent>(OnCloseWindow);
         SubscribeLocalEvent<MapRemovedEvent>(OnMapRemoved);
-
 
         PopulateMaps();
         PopulateRoles();
@@ -103,6 +105,15 @@ public sealed class PlanetPrisonUISystem : EntitySystem
     public void OpenWindow()
     {
         Logger.Info("PlanetPrisonUISystem: OpenWindow called");
+
+        // Проверяем доступность ролей перед открытием окна
+        if (!AreAnyPrisonRolesAvailable())
+        {
+            Logger.Info("PlanetPrisonUISystem: No prison roles available, not opening window");
+            // Можно показать уведомление игроку
+            return;
+        }
+
         if (_window == null)
         {
             Logger.Error("PlanetPrisonUISystem: Window is null!");
@@ -139,6 +150,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
 
         // Обновляем состояния кнопок ролей в соответствии с загруженными приоритетами
         UpdateRoleButtonStates();
+        RefreshRoleRequirements();
 
         // Если окно открывается во время активного голосования, блокируем кнопки
         if (_window != null && HasActiveVoting())
@@ -183,8 +195,9 @@ public sealed class PlanetPrisonUISystem : EntitySystem
 
     private void OnRolesTabActivated()
     {
-        Logger.Info("Roles tab activated - updating button states");
+        Logger.Info("Roles tab activated - updating button states and requirements");
         UpdateRoleButtonStates();
+        RefreshRoleRequirements();
     }
 
     private void PopulateMaps()
@@ -286,6 +299,13 @@ public sealed class PlanetPrisonUISystem : EntitySystem
     private void OnMapPrioritySelected(string mapId, PlanetPrisonMapEntry.PriorityLevel priority)
     {
         Logger.Info($"{mapId} priority selected: {priority}");
+
+        // Проверяем, что игрок имеет доступ хотя бы к одной роли тюрьмы
+        if (!AreAnyPrisonRolesAvailable())
+        {
+            Logger.Warning($"Player tried to vote for {mapId} but has no available prison roles - blocking vote");
+            return;
+        }
 
         _localPriority[mapId] = priority;
         // Не устанавливаем _hasVoted[mapId] = true здесь - кнопки блокируются только при запуске голосования
@@ -896,6 +916,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         );
         prisonerEntry.PrioritySelected += (priority) => OnRolePrioritySelected("PlanetPrisoner", priority);
         prisonerEntry.LoadoutPressed += () => OnRoleLoadoutPressed("PlanetPrisoner");
+        CheckRoleRequirements("PlanetPrisoner", prisonerEntry);
         _window.AddRoleEntry(prisonerEntry);
         // Восстанавливаем сохраненный приоритет или устанавливаем Never по умолчанию
         _rolePriority.TryAdd("PlanetPrisoner", PlanetPrisonRoleEntry.PriorityLevel.Never);
@@ -908,6 +929,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         );
         headEntry.PrioritySelected += (priority) => OnRolePrioritySelected("HeadOfPrison", priority);
         headEntry.LoadoutPressed += () => OnRoleLoadoutPressed("HeadOfPrison");
+        CheckRoleRequirements("HeadOfPrison", headEntry);
         _window.AddRoleEntry(headEntry);
         // Восстанавливаем сохраненный приоритет или устанавливаем Never по умолчанию
         _rolePriority.TryAdd("HeadOfPrison", PlanetPrisonRoleEntry.PriorityLevel.Never);
@@ -920,6 +942,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         );
         inspectorEntry.PrioritySelected += (priority) => OnRolePrioritySelected("PrisonInspector", priority);
         inspectorEntry.LoadoutPressed += () => OnRoleLoadoutPressed("PrisonInspector");
+        CheckRoleRequirements("PrisonInspector", inspectorEntry);
         _window.AddRoleEntry(inspectorEntry);
         // Восстанавливаем сохраненный приоритет или устанавливаем Never по умолчанию
         _rolePriority.TryAdd("PrisonInspector", PlanetPrisonRoleEntry.PriorityLevel.Never);
@@ -932,6 +955,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         );
         workerEntry.PrioritySelected += (priority) => OnRolePrioritySelected("PrisonWorker", priority);
         workerEntry.LoadoutPressed += () => OnRoleLoadoutPressed("PrisonWorker");
+        CheckRoleRequirements("PrisonWorker", workerEntry);
         _window.AddRoleEntry(workerEntry);
         // Восстанавливаем сохраненный приоритет или устанавливаем Never по умолчанию
         _rolePriority.TryAdd("PrisonWorker", PlanetPrisonRoleEntry.PriorityLevel.Never);
@@ -944,6 +968,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         );
         engineerEntry.PrioritySelected += (priority) => OnRolePrioritySelected("PrisonEngineer", priority);
         engineerEntry.LoadoutPressed += () => OnRoleLoadoutPressed("PrisonEngineer");
+        CheckRoleRequirements("PrisonEngineer", engineerEntry);
         _window.AddRoleEntry(engineerEntry);
         // Восстанавливаем сохраненный приоритет или устанавливаем Never по умолчанию
         _rolePriority.TryAdd("PrisonEngineer", PlanetPrisonRoleEntry.PriorityLevel.Never);
@@ -956,6 +981,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         );
         scientistEntry.PrioritySelected += (priority) => OnRolePrioritySelected("PrisonScientist", priority);
         scientistEntry.LoadoutPressed += () => OnRoleLoadoutPressed("PrisonScientist");
+        CheckRoleRequirements("PrisonScientist", scientistEntry);
         _window.AddRoleEntry(scientistEntry);
         // Восстанавливаем сохраненный приоритет или устанавливаем Never по умолчанию
         _rolePriority.TryAdd("PrisonScientist", PlanetPrisonRoleEntry.PriorityLevel.Never);
@@ -968,6 +994,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         );
         doctorEntry.PrioritySelected += (priority) => OnRolePrioritySelected("PrisonDoctor", priority);
         doctorEntry.LoadoutPressed += () => OnRoleLoadoutPressed("PrisonDoctor");
+        CheckRoleRequirements("PrisonDoctor", doctorEntry);
         _window.AddRoleEntry(doctorEntry);
         // Восстанавливаем сохраненный приоритет или устанавливаем Never по умолчанию
         _rolePriority.TryAdd("PrisonDoctor", PlanetPrisonRoleEntry.PriorityLevel.Never);
@@ -980,6 +1007,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         );
         chefEntry.PrioritySelected += (priority) => OnRolePrioritySelected("PrisonChef", priority);
         chefEntry.LoadoutPressed += () => OnRoleLoadoutPressed("PrisonChef");
+        CheckRoleRequirements("PrisonChef", chefEntry);
         _window.AddRoleEntry(chefEntry);
         // Восстанавливаем сохраненный приоритет или устанавливаем Never по умолчанию
         _rolePriority.TryAdd("PrisonChef", PlanetPrisonRoleEntry.PriorityLevel.Never);
@@ -992,6 +1020,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         );
         traineeEntry.PrioritySelected += (priority) => OnRolePrioritySelected("PrisonTrainee", priority);
         traineeEntry.LoadoutPressed += () => OnRoleLoadoutPressed("PrisonTrainee");
+        CheckRoleRequirements("PrisonTrainee", traineeEntry);
         _window.AddRoleEntry(traineeEntry);
         // Восстанавливаем сохраненный приоритет или устанавливаем Never по умолчанию
         _rolePriority.TryAdd("PrisonTrainee", PlanetPrisonRoleEntry.PriorityLevel.Never);
@@ -1003,6 +1032,107 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         var msg = new NewLifeOpenRequest();
         _net.SendSystemNetworkMessage(msg);
         Logger.Info("NewLifeOpenRequest sent successfully");
+    }
+
+    private void RefreshRoleRequirements()
+    {
+        if (_window == null)
+            return;
+
+        // Обновляем требования для всех ролей
+        var roleIds = new[] { "PlanetPrisoner", "HeadOfPrison", "PrisonInspector", "PrisonWorker", "PrisonEngineer", "PrisonScientist", "PrisonDoctor", "PrisonChef", "PrisonTrainee" };
+
+        foreach (var roleId in roleIds)
+        {
+            var entry = _window.GetRoleEntry(roleId);
+            if (entry != null)
+            {
+                CheckRoleRequirements(roleId, entry);
+            }
+        }
+    }
+
+    private void CheckRoleRequirements(string roleId, PlanetPrisonRoleEntry entry)
+    {
+        // Получаем прототип роли
+        if (!_prototypeManager.TryIndex<JobPrototype>(roleId, out var jobProto))
+        {
+            Logger.Warning($"Job prototype not found for role: {roleId}");
+            return;
+        }
+
+        // Получаем текущий профиль игрока
+        var profile = (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter;
+        if (profile == null)
+        {
+            Logger.Warning("Cannot get player profile for role requirements check");
+            return;
+        }
+
+        // Проверяем требования роли
+        if (!_jobRequirements.IsAllowed(jobProto, profile, out var reason))
+        {
+            Logger.Info($"Role {roleId} locked due to requirements: {reason}");
+            entry.LockRequirements(reason);
+        }
+        else
+        {
+            Logger.Info($"Role {roleId} requirements met, unlocking");
+            entry.UnlockRequirements();
+        }
+    }
+
+    public bool AreAnyPrisonRolesAvailable()
+    {
+        // Получаем текущий профиль игрока
+        var profile = (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter;
+        if (profile == null)
+        {
+            Logger.Warning("Cannot get player profile for prison roles availability check - profile not loaded yet");
+            // Если профиль не загружен, разрешаем доступ (на случай задержки загрузки)
+            return true;
+        }
+
+        // Проверяем все роли тюрьмы
+        var prisonRoleIds = new[] { "PlanetPrisoner", "HeadOfPrison", "PrisonInspector", "PrisonWorker", "PrisonEngineer", "PrisonScientist", "PrisonDoctor", "PrisonChef", "PrisonTrainee" };
+
+        foreach (var roleId in prisonRoleIds)
+        {
+            if (!_prototypeManager.TryIndex<JobPrototype>(roleId, out var jobProto))
+                continue;
+
+            // Если хотя бы одна роль доступна, возвращаем true
+            if (_jobRequirements.IsAllowed(jobProto, profile, out _))
+            {
+                Logger.Info($"Prison role {roleId} is available for player");
+                return true;
+            }
+        }
+
+        Logger.Info("No prison roles are available for player - all locked by requirements");
+        return false;
+    }
+
+    public string GetPrisonRequirementsText()
+    {
+        // Получаем текущий профиль игрока
+        var profile = (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter;
+        if (profile == null)
+        {
+            return "Loading player profile...";
+        }
+
+        // Получаем требования для роли PlanetPrisoner (как пример самой простой роли)
+        if (_prototypeManager.TryIndex<JobPrototype>("PlanetPrisoner", out var prisonerProto))
+        {
+            if (!_jobRequirements.IsAllowed(prisonerProto, profile, out var reason))
+            {
+                // Возвращаем только текст требований
+                return reason.ToString();
+            }
+        }
+
+        return "No prison roles available";
     }
 
 }

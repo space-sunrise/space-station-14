@@ -57,7 +57,7 @@ public sealed partial class GhostGui : UIWidget
         Visible = false;
     }
 
-    public void Update(int? roles, bool? canReturnToBody, bool canRespawn) // Sunrise-Edit
+    public void Update(int? roles, bool? canReturnToBody, bool canRespawn, bool prisonRolesAvailable, string? prisonRequirementsText = null) // Sunrise-Edit
     {
         ReturnToBodyButton.Disabled = !canReturnToBody ?? true;
 
@@ -85,8 +85,17 @@ public sealed partial class GhostGui : UIWidget
             RespawnButton.Text = Loc.GetString("new-life-gui-button-disable");
         }
 
-        // Кнопка тюрьмы активна для призраков
-        PrisonButton.Disabled = false;
+        // Кнопка тюрьмы активна только если доступны роли
+        if (prisonRolesAvailable)
+        {
+            PrisonButton.Disabled = false;
+            PrisonButton.ToolTip = null;
+        }
+        else
+        {
+            PrisonButton.Disabled = true;
+            PrisonButton.ToolTip = prisonRequirementsText ?? "No prison roles available";
+        }
         // Sunrise-End
 
         TargetWindow.Populate();
