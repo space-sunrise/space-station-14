@@ -139,6 +139,7 @@
   parent: BaseSubstation
   id: DebugSubstationRecharging
   suffix: DEBUG, AutoRecharge
+  categories: [ Debug ] # Sunrise-Add
   components:
   - type: BatterySelfRecharger
     autoRechargeRate: 50000
@@ -147,6 +148,7 @@
   parent: BaseSubstationWall
   id: DebugSubstationWallRecharging
   suffix: DEBUG, AutoRecharge
+  categories: [ Debug ] # Sunrise-Add
   components:
   - type: BatterySelfRecharger
     autoRechargeRate: 50000
