@@ -32,3 +32,8 @@ ent-ClothingBackpackDuffelWhite = белый вещмешок
     .desc = Этот вещмешок выглядит великолепно.
 ent-ClothingBackpackDuffelYellow = жёлтый вещмешок
     .desc = Этот вещмешок выглядит великолепно.
+
+# Sunrise-start
+ent-ClothingBackpackDuffelRandomColorSpawner = вещмешок (случайный цвет)
+    .desc = Вещмешок случайного цвета.
+# Sunrise-end

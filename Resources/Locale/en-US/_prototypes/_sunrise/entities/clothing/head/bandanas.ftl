@@ -8,3 +8,5 @@ ent-ClothingHeadBandWhite = white bandana
     .desc = { ent-ClothingHeadBandBase.desc }
 ent-ClothingHeadBandPurple = purple bandana
     .desc = { ent-ClothingHeadBandBase.desc }
+ent-ClothingHeadBandRandomColorSpawner = bandana (random color)
+    .desc = A bandana of a random color.
