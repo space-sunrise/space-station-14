@@ -64,7 +64,7 @@ public sealed partial class CCVars
     ///     Needs <see cref="MonstermosEqualization"/> and <see cref="MonstermosDepressurization"/> to be enabled to work.
     /// </summary>
     public static readonly CVarDef<bool> AtmosGridImpulse =
-        CVarDef.Create("atmos.grid_impulse", true, CVar.SERVERONLY); // Sunrise-Edit
+        CVarDef.Create("atmos.grid_impulse", false, CVar.SERVERONLY);
 
     /// <summary>
     ///     What fraction of air from a spaced tile escapes every tick.
