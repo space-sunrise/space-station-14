@@ -1189,7 +1189,7 @@
 - type: emoji
   id: skull
   code: ":skull:"
-  spritePath: _Sunrise/Interface/Misc/smiles2.rsi
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
   spriteState: skull
 
 - type: emoji

@@ -126,11 +126,16 @@ public sealed partial class MessengerCartridgeSystem
             var departmentIds = new List<string>();
             if (departmentIdsObj is List<object> deptList)
             {
-                departmentIds.AddRange(deptList.Select(d => d.ToString() ?? string.Empty));
+                departmentIds.AddRange(deptList.Select(d => d.ToString() ?? string.Empty).Where(s => !string.IsNullOrWhiteSpace(s)));
             }
             else if (departmentIdsObj is List<string> deptStringList)
             {
-                departmentIds.AddRange(deptStringList);
+                departmentIds.AddRange(deptStringList.Where(s => !string.IsNullOrWhiteSpace(s)));
+            }
+
+            if (departmentIds.Count == 0 && departmentId != null && !string.IsNullOrWhiteSpace(departmentId))
+            {
+                departmentIds.Add(departmentId);
             }
 
             ProtoId<JobIconPrototype>? jobIconId = null;

@@ -168,7 +168,11 @@ public sealed class NewsSystem : SharedNewsSystem
             return;
 
         if (!CanUse(msg.Actor, ent.Owner))
+        {
+            _popup.PopupEntity(Loc.GetString("news-write-no-access-popup"), ent, msg.Actor, PopupType.SmallCaution);
+            _audio.PlayPvs(ent.Comp.NoAccessSound, ent);
             return;
+        }
 
         ent.Comp.PublishEnabled = false;
         ent.Comp.NextPublish = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.PublishCooldown);

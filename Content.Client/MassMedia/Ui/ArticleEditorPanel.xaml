@@ -65,11 +65,11 @@
             </Control>
             <Control HorizontalExpand="True"/>
             <BoxContainer Orientation="Horizontal">
-                <Button Name="ButtonSaveDraft" SetHeight="32" SetWidth="100"
+                <Button Name="ButtonSaveDraft" SetHeight="32" SetWidth="120"
                         StyleClasses="OpenRight" Text="{Loc news-write-ui-save-text}"/> <!-- Sunrise-Edit -->
-                <Button Name="ButtonPreview" SetHeight="32" SetWidth="100"
+                <Button Name="ButtonPreview" SetHeight="32" SetWidth="120"
                         StyleClasses="OpenBoth" Text="{Loc news-write-ui-preview-text}"/> <!-- Sunrise-Edit -->
-                <Button Name="ButtonPublish" SetHeight="32" SetWidth="100" Text="{Loc news-write-ui-publish-text}" Access="Public"/> <!-- Sunrise-Edit -->
+                <Button Name="ButtonPublish" SetHeight="32" SetWidth="120" Text="{Loc news-write-ui-publish-text}" Access="Public"/> <!-- Sunrise-Edit -->
             </BoxContainer>
         </BoxContainer>
     </BoxContainer>

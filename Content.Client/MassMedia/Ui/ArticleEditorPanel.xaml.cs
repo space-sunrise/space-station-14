@@ -56,11 +56,11 @@ public sealed partial class ArticleEditorPanel : Control
         ButtonPreview.OnPressed += OnPreview;
         ButtonCancel.OnPressed += OnCancel;
         ButtonPublish.OnPressed += OnPublish;
-        ButtonSaveDraft.OnPressed += OnDraftSaved;
+        ButtonSaveDraft.OnPressed += _ => OnDraftSaved();
         ButtonAddPhoto.OnPressed += _ => RequestPhotosPressed?.Invoke(); // Sunrise-Add
 
-        TitleField.OnTextChanged += args => OnTextChanged(args.Text.Length, args.Control, SharedNewsSystem.MaxTitleLength);
-        ContentField.OnTextChanged += args => OnTextChanged(Rope.CalcTotalLength(args.TextRope), args.Control, SharedNewsSystem.MaxContentLength);
+        TitleField.OnTextChanged += OnTitleChanged;
+        ContentField.OnTextChanged += OnContentChanged;
     }
 
     private void OnTextChanged(long length, Control control, long maxLength)
@@ -93,8 +93,16 @@ public sealed partial class ArticleEditorPanel : Control
         TextEditPanel.Visible = !_preview;
         PreviewPanel.Visible = _preview;
 
-        var articleBody = Rope.Collapse(ContentField.TextRope);
-        PreviewLabel.SetMessage(FormattedMessage.FromMarkupPermissive(articleBody), UserFormattableTags.BaseAllowedTags);
+        if (_preview)
+        {
+            var articleBody = Rope.Collapse(ContentField.TextRope);
+            PreviewLabel.SetMessage(FormattedMessage.FromMarkupPermissive(articleBody), UserFormattableTags.BaseAllowedTags);
+            ButtonPreview.Text = Loc.GetString("news-write-ui-write-text");
+        }
+        else
+        {
+            ButtonPreview.Text = Loc.GetString("news-write-ui-preview-text");
+        }
     }
 
     private void OnCancel(BaseButton.ButtonEventArgs eventArgs)
@@ -106,15 +114,17 @@ public sealed partial class ArticleEditorPanel : Control
     private void OnPublish(BaseButton.ButtonEventArgs eventArgs)
     {
         PublishButtonPressed?.Invoke();
-        Reset();
         Visible = false;
     }
 
-    private void OnDraftSaved(BaseButton.ButtonEventArgs eventArgs)
+    private void OnDraftSaved()
     {
         ArticleDraftUpdated?.Invoke(TitleField.Text, Rope.Collapse(ContentField.TextRope), PhotoPaths); // Sunrise-Edit
         Visible = false;
     }
+
+    private void OnTitleChanged(LineEdit.LineEditEventArgs args) => OnTextChanged(args.Text.Length, args.Control, SharedNewsSystem.MaxTitleLength);
+    private void OnContentChanged(TextEdit.TextEditEventArgs args) => OnTextChanged(Rope.CalcTotalLength(args.TextRope), args.Control, SharedNewsSystem.MaxContentLength);
 
     private void Reset()
     {
@@ -147,25 +157,40 @@ public sealed partial class ArticleEditorPanel : Control
             PhotosContainer.AddChild(photoControl);
         }
 
+        UpdatePhotoCountLabel();
+    }
+
+    private void UpdatePhotoCountLabel()
+    {
         PhotoCountLabel.Text = $"{PhotoPaths.Count}/10";
         ButtonAddPhoto.Disabled = PhotoPaths.Count >= 10;
+        PhotoCountLabel.ModulateSelfOverride = PhotoPaths.Count >= 10 ? Color.Red : null;
     }
 
     private sealed class SelectedPhotoControl : Control
     {
         public event Action? OnRemove;
 
+        private readonly string _path;
+        private readonly NetTexturesManager _netTextures;
+        private readonly IResourceCache _cache;
+        private readonly TextureRect _textureRect;
+
         public SelectedPhotoControl(string path, NetTexturesManager netTextures, IResourceCache cache)
         {
+            _path = path;
+            _netTextures = netTextures;
+            _cache = cache;
+
             SetSize = new Vector2(100, 100);
 
-            var textureRect = new TextureRect
+            _textureRect = new TextureRect
             {
                 HorizontalExpand = true,
                 VerticalExpand = true,
                 Stretch = TextureRect.StretchMode.KeepAspectCentered
             };
-            AddChild(textureRect);
+            AddChild(_textureRect);
 
             var removeButton = new Button
             {
@@ -186,12 +211,34 @@ public sealed partial class ArticleEditorPanel : Control
             removeButton.OnPressed += _ => OnRemove?.Invoke();
             AddChild(removeButton);
 
-            if (netTextures.EnsureResource(path))
+            _netTextures.ResourceLoaded += OnResourceLoaded;
+
+            if (_netTextures.EnsureResource(path))
             {
-                var uploaded = netTextures.GetUploadedPath(path);
-                if (cache.TryGetResource<TextureResource>(uploaded, out var tex))
-                    textureRect.Texture = tex.Texture;
+                UpdateTexture();
             }
+        }
+
+        private void OnResourceLoaded(string path)
+        {
+            if (path == _path)
+                UpdateTexture();
+        }
+
+        private void UpdateTexture()
+        {
+            var uploaded = _netTextures.GetUploadedPath(_path);
+            if (_cache.TryGetResource<TextureResource>(uploaded, out var tex))
+                _textureRect.Texture = tex.Texture;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            if (!disposing)
+                return;
+
+            _netTextures.ResourceLoaded -= OnResourceLoaded;
         }
     }
     // Sunrise-End
@@ -205,5 +252,8 @@ public sealed partial class ArticleEditorPanel : Control
         ButtonPreview.OnPressed -= OnPreview;
         ButtonCancel.OnPressed -= OnCancel;
         ButtonPublish.OnPressed -= OnPublish;
+        ButtonSaveDraft.OnPressed -= _ => OnDraftSaved();
+        TitleField.OnTextChanged -= OnTitleChanged;
+        ContentField.OnTextChanged -= OnContentChanged;
     }
 }

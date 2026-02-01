@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Content.Client.Viewport;
@@ -140,7 +138,7 @@ public sealed partial class PhotoUiFragment : BoxContainer
         if (CameraPreview != null)
         {
             CameraPreview.Eye = _previewEye;
-            CameraPreview.ViewportSize = new Robust.Shared.Maths.Vector2i(256, 256);
+            CameraPreview.ViewportSize = new Vector2i(256, 256);
             CameraPreview.RenderScaleMode = ScalingViewportRenderScaleMode.Fixed;
             CameraPreview.FixedRenderScale = 1;
 

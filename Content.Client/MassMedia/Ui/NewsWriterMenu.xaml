@@ -5,7 +5,7 @@
     xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     Title="{Loc 'news-write-ui-default-title'}"
     MinSize="500 600"
-    SetSize="500 600"> <!-- Sunrise-Edit -->
+    SetSize="510 600"> <!-- Sunrise-Edit -->
 
     <ui:ArticleEditorPanel Name="ArticleEditorPanel" HorizontalAlignment="Left" VerticalExpand="True"
                            MinWidth="510" MinHeight="370" Margin="0 0 0 30" Access="Public" Visible="False"/> <!-- Sunrise-Edit -->

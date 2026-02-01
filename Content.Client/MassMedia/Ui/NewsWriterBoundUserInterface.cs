@@ -41,9 +41,9 @@ public sealed class NewsWriterBoundUserInterface : BoundUserInterface
         if (state is NewsWriterBoundUserInterfaceState cast)
         {
             _menu?.UpdateUI(cast.Articles, cast.PublishEnabled, cast.NextPublish, cast.DraftTitle, cast.DraftContent);
-            if (_menu != null && cast.DraftPhotoPaths != null)
+            if (_menu != null)
             {
-                _menu.ArticleEditorPanel.PhotoPaths = new List<string>(cast.DraftPhotoPaths);
+                _menu.ArticleEditorPanel.PhotoPaths = cast.DraftPhotoPaths != null ? new List<string>(cast.DraftPhotoPaths) : new List<string>();
                 _menu.ArticleEditorPanel.UpdatePhotosUI();
             }
         }
