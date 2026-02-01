@@ -10,6 +10,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.PlanetPrison;
 public sealed partial class PlanetPrisonMapEntry : BoxContainer
 {
     public event Action<PriorityLevel>? PrioritySelected;
+    public event Action? JoinPressed;
 
     public enum PriorityLevel
     {
@@ -37,6 +38,7 @@ public sealed partial class PlanetPrisonMapEntry : BoxContainer
         LowButton.OnPressed += _ => SetPriority(PriorityLevel.Low);
         MediumButton.OnPressed += _ => SetPriority(PriorityLevel.Medium);
         HighButton.OnPressed += _ => SetPriority(PriorityLevel.High);
+        JoinButton.OnPressed += _ => JoinPressed?.Invoke();
     }
 
     private void SetPriority(PriorityLevel priority)
@@ -52,8 +54,28 @@ public sealed partial class PlanetPrisonMapEntry : BoxContainer
         UpdateButtonStates();
     }
 
+    public void SetLaunched(bool launched)
+    {
+        IsLaunched = launched;
+        UpdateButtonStates();
+    }
+
     private void UpdateButtonStates()
     {
+        // Если карта запущена, показываем кнопку "Присоединиться" вместо кнопок приоритетов
+        if (IsLaunched)
+        {
+            // Скрываем контейнер с кнопками приоритетов
+            PriorityButtons.Visible = false;
+            // Показываем кнопку "Присоединиться"
+            JoinButton.Visible = true;
+            return;
+        }
+
+        // Карта не запущена - показываем кнопки приоритетов
+        PriorityButtons.Visible = true;
+        JoinButton.Visible = false;
+
         // Сбрасываем все кнопки к обычному состоянию
         NeverButton.StyleClasses.Remove("ButtonSquarePressed");
         LowButton.StyleClasses.Remove("ButtonSquarePressed");

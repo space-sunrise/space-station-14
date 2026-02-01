@@ -44,6 +44,7 @@ planet-prison-priority-never = Никогда
 planet-prison-priority-low = Низкий
 planet-prison-priority-medium = Средний
 planet-prison-priority-high = Высокий
+planet-prison-join-button = Присоединиться
 planet-prison-vote-count = ({ $current }/{ $required })
 planet-prison-launching = (запускается)
 planet-prison-launched = (запущен)

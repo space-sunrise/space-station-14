@@ -1,7 +1,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Content.Client.UserInterface.Systems.Ghost.Controls.PlanetPrison;
+using Content.Client.UserInterface.Systems.Ghost;
 using Content.Shared._Sunrise.PlanetPrison;
+using Content.Shared._Sunrise.NewLife;
 using Content.Shared.Maps;
 using Robust.Client.Audio;
 using Robust.Client.GameObjects;
@@ -38,6 +40,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
     [Dependency] private readonly IResourceManager _resourceManager = default!;
+    [Dependency] private readonly IEntityNetworkManager _net = default!;
 
     private PlanetPrisonWindow? _window;
     private LoadoutWindow? _loadoutWindow;
@@ -198,6 +201,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         );
 
         _metusMapEntry.PrioritySelected += (priority) => OnMapPrioritySelected("PlanetPrison", priority);
+        _metusMapEntry.JoinPressed += OnJoinPressed;
         _window.AddMapEntry(_metusMapEntry);
 
         // Создаем карту Nox
@@ -207,7 +211,10 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         );
 
         _noxMapEntry.PrioritySelected += (priority) => OnMapPrioritySelected("PlanetPrisonOld", priority);
+        _noxMapEntry.JoinPressed += OnJoinPressed;
         _window.AddMapEntry(_noxMapEntry);
+
+        Logger.Info("Added join button handlers for prison maps");
 
         // Настраиваем каждую карту отдельно
         SetupMapEntry("PlanetPrison", _metusMapEntry);
@@ -262,15 +269,16 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         // Восстанавливаем состояние
         if (_mapLaunched.ContainsKey(mapId) && _mapLaunched[mapId])
         {
-            // Карта запущена - показываем статус
+            // Карта запущена - показываем статус и кнопку "Присоединиться"
             entry.ShowLaunchedStatus();
-            entry.DisableButtons();
+            entry.SetLaunched(true);
         }
         else
         {
             // Карта не запущена - делаем её активной
             entry.HideStatus();
             entry.HideVoteCount();
+            entry.SetLaunched(false);
             entry.EnableButtons();
         }
     }
@@ -318,7 +326,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         var entry = msg.MapId == "PlanetPrison" ? _metusMapEntry : _noxMapEntry;
         if (entry != null)
         {
-            entry.IsLaunched = msg.IsLaunched;
+            entry.SetLaunched(msg.IsLaunched);
         }
 
         // Обновляем общее количество игроков с приоритетами только если это не специальный флаг сброса
@@ -342,7 +350,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
             var launchedEntry = msg.MapId == "PlanetPrison" ? _metusMapEntry : _noxMapEntry;
             if (launchedEntry != null)
             {
-                launchedEntry.IsLaunched = true;
+                launchedEntry.SetLaunched(true);
             }
 
             // Сбрасываем состояния голосования (но не статусы запущенных карт)
@@ -987,6 +995,14 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         _window.AddRoleEntry(traineeEntry);
         // Восстанавливаем сохраненный приоритет или устанавливаем Never по умолчанию
         _rolePriority.TryAdd("PrisonTrainee", PlanetPrisonRoleEntry.PriorityLevel.Never);
+    }
+
+    private void OnJoinPressed()
+    {
+        Logger.Info("PlanetPrison join button pressed - opening new life interface");
+        var msg = new NewLifeOpenRequest();
+        _net.SendSystemNetworkMessage(msg);
+        Logger.Info("NewLifeOpenRequest sent successfully");
     }
 
 }

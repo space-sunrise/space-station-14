@@ -46,4 +46,10 @@
                 HorizontalExpand="True"
                 Margin="0 2 0 0"/>
     </BoxContainer>
+    <Button Name="JoinButton"
+            Text="{Loc 'planet-prison-join-button'}"
+            StyleClasses="ButtonSquare"
+            Visible="False"
+            HorizontalExpand="True"
+            Margin="0 8 0 0"/>
 </BoxContainer>
