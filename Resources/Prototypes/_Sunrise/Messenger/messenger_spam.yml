@@ -1,0 +1,66 @@
+- type: messengerSpam
+  id: SpamCasino
+  senderDataset: MessengerSpamCasinoSenders
+  messageDataset: MessengerSpamCasinoMessages
+
+- type: messengerSpam
+  id: SpamDating
+  senderDataset: MessengerSpamDatingSenders
+  messageDataset: MessengerSpamDatingMessages
+
+- type: messengerSpam
+  id: SpamFinance
+  senderDataset: MessengerSpamFinanceSenders
+  messageDataset: MessengerSpamFinanceMessages
+
+- type: messengerSpam
+  id: SpamMedicine
+  senderDataset: MessengerSpamMedicineSenders
+  messageDataset: MessengerSpamMedicineMessages
+
+- type: messengerSpam
+  id: SpamPrince
+  senderDataset: MessengerSpamPrinceSenders
+  nameDataset: MessengerSpamPrinceNames
+  surnameDataset: MessengerSpamPrinceSurnames
+  messageDataset: MessengerSpamPrinceMessages
+
+- type: messengerSpam
+  id: SpamAdult
+  senderDataset: MessengerSpamAdultSenders
+  messageDataset: MessengerSpamAdultMessages
+
+- type: messengerSpam
+  id: SpamLottery
+  senderDataset: MessengerSpamLotterySenders
+  messageDataset: MessengerSpamLotteryMessages
+
+- type: messengerSpam
+  id: SpamEvents
+  senderDataset: MessengerSpamEventsSenders
+  messageDataset: MessengerSpamEventsMessages
+
+- type: messengerSpam
+  id: SpamEmergency
+  senderDataset: MessengerSpamEmergencySenders
+  messageDataset: MessengerSpamEmergencyMessages
+
+- type: messengerSpam
+  id: SpamCult
+  senderDataset: MessengerSpamCultSenders
+  messageDataset: MessengerSpamCultMessages
+
+- type: messengerSpam
+  id: SpamPets
+  senderDataset: MessengerSpamPetsSenders
+  messageDataset: MessengerSpamPetsMessages
+
+- type: messengerSpam
+  id: SpamWeapons
+  senderDataset: MessengerSpamWeaponsSenders
+  messageDataset: MessengerSpamWeaponsMessages
+
+- type: messengerSpam
+  id: SpamError
+  senderDataset: MessengerSpamErrorSenders
+  messageDataset: MessengerSpamErrorMessages

@@ -11,6 +11,7 @@ using Content.Shared.Inventory;
 using Robust.Shared.Prototypes;
 using Content.Server.CartridgeLoader;
 using Content.Server.DeviceNetwork.Components;
+using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.Messenger;
 
@@ -27,7 +28,7 @@ public sealed partial class MessengerServerSystem : EntitySystem
     [Dependency] private readonly ILocalizationManager _loc = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
-
+    [Dependency] private readonly IRobustRandom _random = default!;
     private ISawmill Sawmill { get; set; } = default!;
 
     /// <summary>
@@ -55,6 +56,14 @@ public sealed partial class MessengerServerSystem : EntitySystem
         SubscribeLocalEvent<MessengerServerComponent, DeviceNetServerDisconnectedEvent>(OnServerDisconnected);
         SubscribeLocalEvent<MessengerServerComponent, RoundRestartCleanupEvent>(OnRoundRestart);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
+
+        InitializeSpam();
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        UpdateSpam(frameTime);
     }
 
     private void OnRoundRestart(EntityUid uid, MessengerServerComponent component, RoundRestartCleanupEvent args)
