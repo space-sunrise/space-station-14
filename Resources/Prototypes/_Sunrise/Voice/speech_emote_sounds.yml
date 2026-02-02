@@ -163,14 +163,12 @@
   id: XenoHumanoid
   sounds:
     Scream:
-      collection: HumanoidXenoScreams
+      collection: HumanoidXenoSqeals
     Laugh:
       collection: HumanoidXenoScreams
     Cough:
       collection: HumanoidXenoScreams
     SevereCough:
-      collection: HumanoidXenoScreams
-    Crying:
       collection: HumanoidXenoScreams
     Hisses:
       collection: HumanoidXenoHisses
@@ -180,6 +178,10 @@
       collection: HumanoidXenoGrowls
     Rumbles:
       collection: HumanoidXenoRumbles
+    Crying:
+      collection: HumanoidXenoCry
+    DefaultDeathgasp:
+      collection: HumanoidXenoDeathgasp
   params:
     variation: 0.125
 
