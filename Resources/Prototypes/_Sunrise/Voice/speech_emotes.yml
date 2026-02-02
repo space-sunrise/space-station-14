@@ -294,6 +294,7 @@
   whitelist:
     components:
     - Vocal
+    - PressureImmunity
   blacklist:
     components:
     - BorgChassis
@@ -323,6 +324,7 @@
   whitelist:
     components:
     - Vocal
+    - PressureImmunity
   blacklist:
     components:
     - BorgChassis
@@ -348,6 +350,7 @@
   whitelist:
     components:
     - Vocal
+    - PressureImmunity
   blacklist:
     components:
     - BorgChassis
@@ -371,6 +374,7 @@
   whitelist:
     components:
     - Vocal
+    - PressureImmunity
   blacklist:
     components:
     - BorgChassis
@@ -382,3 +386,7 @@
     - рычать
     - рычать.
     - рычать!
+    - growls!
+    - growl!
+    - growls.
+    - growl.
