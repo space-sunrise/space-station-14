@@ -31,7 +31,7 @@
         Heat: 3
   - type: Speech
     speechVerb: LargeMob
-    allowedEmotes: [ 'HissesXeno', 'Roars', 'Rumbles', 'Growls' ]
+    allowedEmotes: [ 'HissesXeno', 'Roars', 'Rumbles', 'GrowlsXeno' ]
   - type: MeleeWeapon
     hidden: true
     soundHit:

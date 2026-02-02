@@ -23,3 +23,4 @@ chat-emote-name-xenohisses = Шипение ксеноморфа
 chat-emote-msg-roar = ревёт!
 chat-emote-msg-rumble = рокочет
 chat-emote-msg-xenohisses = шипит
+chat-emote-name-growlsxeno = Рычать

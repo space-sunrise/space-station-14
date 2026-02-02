@@ -365,8 +365,8 @@
     - rumbles.
 
 - type: emote
-  id: Growls
-  name: chat-emote-name-growls
+  id: GrowlsXeno
+  name: chat-emote-name-growlsxeno
   category: Vocal
   available: false
   whitelist:
