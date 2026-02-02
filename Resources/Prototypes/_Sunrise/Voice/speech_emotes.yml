@@ -330,17 +330,18 @@
     - BorgChassis
   chatMessages: ["chat-emote-msg-xenohisses"]
   chatTriggers:
-    - шипит!
-    - шипеть.
-    - шипеть!
-    - шипит
-    - шипеть
-    - hiss
-    - hiss.
-    - hiss!
-    - hisses
-    - hisses.
-    - hisses!
+    - шипит по-ксеносьи!
+    - шипеть по-ксеносьи.
+    - шипеть по-ксеносьи!
+    - шипит по-ксеньсьи
+    - шипит по-ксеньсьи.
+    - шипеть по-ксеносьи
+    - xeno's hiss
+    - xeno's hiss.
+    - xeno's hiss!
+    - hisses like a xenomorph
+    - hisses like a xenomorph.
+    - hisses like a xenomorph!
 
 - type: emote
   id: Rumbles
