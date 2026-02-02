@@ -42,7 +42,8 @@
     damage:
       types:
         Blunt: 5
-        Slash: 10
+        Slash: 5
+        Acid: 5
         Caustic: 1
   - type: LizardAccent
   - type: VulpaAccent
