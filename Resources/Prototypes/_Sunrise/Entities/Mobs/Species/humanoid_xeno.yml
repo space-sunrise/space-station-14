@@ -26,11 +26,9 @@
   - type: Temperature
     currentTemperature: 310.15
   - type: TemperatureDamage
-    heatDamageThreshold: 320
-    coldDamageThreshold: -150
     heatDamage:
       types:
-        Heat : 3 #per second, scales with temperature & other constants
+        Heat: 3 `#per` second, scales with temperature & other constants
   - type: Speech
     speechVerb: LargeMob
     allowedEmotes: [ 'HissesXeno', 'Roars', 'Rumbles', 'Growls' ]
@@ -124,7 +122,7 @@
     requiredLegs: 2
   - type: Inventory
     speciesId: reptilian
-    templateId: diona
+    templateId: humanoidxeno
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
