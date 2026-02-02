@@ -30,10 +30,21 @@ public sealed class AdminCommandLoggerSystem : EntitySystem
         "asay",
     ];
 
+    #region Life cycle
+
     public override void Initialize()
     {
         _console.AnyCommandExecuted += OnCommandExecuted;
     }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+
+        _console.AnyCommandExecuted -= OnCommandExecuted;
+    }
+
+    #endregion
 
     private void OnCommandExecuted(IConsoleShell shell, string name, string argStr, string[] args)
     {

@@ -154,10 +154,14 @@ public sealed partial class EmotesTabControl : BaseTabControl
         if (!_whitelist.CheckBoth(player, emote.Blacklist, emote.Whitelist))
             return false;
 
-        if (!emote.Available &&
-            _speechQuery.TryGetComponent(player, out var speech) &&
-            !speech.AllowedEmotes.Contains(emote.ID))
-            return false;
+        if (!emote.Available)
+        {
+            if (!_speechQuery.TryGetComponent(player, out var speech))
+                return false;
+
+            if (!speech.AllowedEmotes.Contains(emote.ID))
+                return false;
+        }
 
         return true;
     }
