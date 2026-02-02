@@ -28,7 +28,7 @@
   - type: TemperatureDamage
     heatDamage:
       types:
-        Heat: 3 `#per` second, scales with temperature & other constants
+        Heat: 3
   - type: Speech
     speechVerb: LargeMob
     allowedEmotes: [ 'HissesXeno', 'Roars', 'Rumbles', 'Growls' ]
