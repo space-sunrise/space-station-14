@@ -9,7 +9,7 @@ ent-ClothingHeadRabbitHat = шапка кролика
 ent-ClothingHeadBowWhite = белый бантик
     .desc = Аккуратный бантик для волос.
 ent-ClothingHeadBowRed = красный бантик
-    .desc = Аккуратный бантик для волос.
+    .desc = { ent-ClothingHeadBowWhite.desc }
 ent-ClothingHeadBowBlack = чёрный бантик
-    .desc = Аккуратный бантик для волос.
+    .desc = { ent-ClothingHeadBowWhite.desc }
 

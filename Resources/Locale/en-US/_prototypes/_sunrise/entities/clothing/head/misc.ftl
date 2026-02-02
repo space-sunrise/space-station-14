@@ -9,7 +9,7 @@ ent-ClothingHeadRabbitHat = rabbit hat
 ent-ClothingHeadBowWhite = white bow
     .desc = A neat hair bow.
 ent-ClothingHeadBowRed = red bow
-    .desc = A neat hair bow.
+    .desc = { ent-ClothingHeadBowWhite.desc }
 ent-ClothingHeadBowBlack = black bow
-    .desc = A neat hair bow.
+    .desc = { ent-ClothingHeadBowWhite.desc }
 
