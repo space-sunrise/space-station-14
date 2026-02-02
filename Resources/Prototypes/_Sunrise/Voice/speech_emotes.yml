@@ -381,13 +381,15 @@
     - BorgChassis
   chatMessages: ["chat-emote-msg-growls"]
   chatTriggers:
-    - рычит
-    - рычит!
-    - рычит.
-    - рычать
-    - рычать.
-    - рычать!
-    - growls!
-    - growl!
-    - growls.
-    - growl.
+    - рычит по-ксеносьи
+    - рычит по-ксеносьи!
+    - рычит по-ксеносьи.
+    - рычать по-ксеносьи
+    - рычать по-ксеносьи.
+    - рычать по-ксеносьи!
+    - growls like a xenomorph!
+    - xeno's growl!
+    - growls like a xenomorph.
+    - growls like a xenomorph
+    - xeno's growl.
+    - xeno's growl
