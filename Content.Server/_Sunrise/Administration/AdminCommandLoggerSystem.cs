@@ -25,12 +25,12 @@ public sealed class AdminCommandLoggerSystem : EntitySystem
     /// <remarks>
     /// При добавлении учитывать, что команды не требующие админ-прав игнорируются по умолчанию!
     /// </remarks>
-    private static readonly HashSet<string> LogBlacklist =
-    [
+    private static readonly HashSet<string> LogBlacklist = new(StringComparer.OrdinalIgnoreCase)
+    {
         "asay",
-    ];
+    };
 
-    #region Life cycle
+#region Life cycle
 
     public override void Initialize()
     {
