@@ -172,11 +172,11 @@
       collection: HumanoidXenoScreams
     Crying:
       collection: HumanoidXenoScreams
-    HissesXeno:
+    Hisses:
       collection: HumanoidXenoHisses
     Roars:
       collection: HumanoidXenoRoars
-    GrowlsXeno:
+    Growls:
       collection: HumanoidXenoGrowls
     Rumbles:
       collection: HumanoidXenoRumbles
