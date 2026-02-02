@@ -176,7 +176,7 @@
       collection: HumanoidXenoHisses
     Roars:
       collection: HumanoidXenoRoars
-    Growls:
+    Growl:
       collection: HumanoidXenoGrowls
     Rumbles:
       collection: HumanoidXenoRumbles
