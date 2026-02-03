@@ -99,7 +99,7 @@
     energy: 2
     color: "#e95151"
   - type: Reflect
-    reflectProb: 0.5
+    reflectProb: 0.4
   - type: AmbientSound
     volume: 3
     range: 5
@@ -716,7 +716,7 @@
     energy: 2
     color: "#e96a51"
   - type: Reflect
-    reflectProb: 0.5
+    reflectProb: 0.25
   - type: AmbientSound
     volume: 3
     range: 5

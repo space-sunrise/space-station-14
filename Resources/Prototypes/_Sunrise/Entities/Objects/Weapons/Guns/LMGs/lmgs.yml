@@ -322,6 +322,20 @@
   - type: Appearance
 
 - type: entity
+  id: MagazineCannonBallGrapeshotMini
+  name: grapeshot suitcase
+  parent: MagazineCannonBallMini
+  suffix: Admeme
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: false
+    proto: CannonBallGrapeshotMini
+    whitelist:
+      tags:
+      - CannonBallMini
+    capacity: 50
+
+- type: entity
   name: pirate cannon
   parent: BaseWeaponLightMachineGun
   id: WeaponLightMachineGunPirateCannon

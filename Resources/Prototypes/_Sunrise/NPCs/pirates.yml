@@ -122,6 +122,11 @@
   - MobPassiveRegen
   id: MobPirateBase
   components:
+  # Allows ghosts/admins to quickly warp to pirates from the ghost teleport panel
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-pirate-name
+    description: ghost-panel-antagonist-pirate-description
+    priority: 45
   - type: Damageable
     damageModifierSet: MobPirateT1
   - type: NpcFactionMember
@@ -351,7 +356,7 @@
   components:
   - type: CyborgSparkEffect
   - type: Reflect
-    reflectProb: 0.05
+    reflectProb: 0.03
 
 - type: entity
   abstract: true
@@ -3160,6 +3165,11 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Effects/countdown.ogg
+  - type: Reflect
+    reflectProb: 0.9
+    spread: 360
+    reflects:
+    - Energy
 
 # region Ranged Tier 3
 - type: entity
