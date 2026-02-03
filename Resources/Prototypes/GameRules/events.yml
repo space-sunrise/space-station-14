@@ -240,7 +240,7 @@
   # Sunrise-start
   - type: GameRule
     delay:
-      min: 600
+      min: 60
       max: 600
   # Sunrise-end
   - type: StationEvent
