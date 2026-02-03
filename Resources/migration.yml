@@ -945,6 +945,8 @@ WeaponEnergyGunMultiphase: WeaponMultiphaseGun
 ClothingBeltAssaultFilled: null
 MagazinePistolSubMachineGunCaseless: BaseMagazinePistolCaselessRifleExtended
 SyndicateCircuitBoard: SyndimovCircuitBoard
+WeaponRifleAKM: WeaponRifleAKMU
+CrateArmoryAKMS: null
 # 2025-12-21
 ClothingNeckCMOCloak: ClothingNeckMedCloak
 

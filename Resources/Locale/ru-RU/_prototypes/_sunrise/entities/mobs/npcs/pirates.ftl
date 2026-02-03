@@ -129,6 +129,9 @@ ent-MobPirateT2Mech = Большой Ярк
     .desc = Тяжелый древний мех для суровых условий глубокого космоса. Этот Громилла оснащён встроенным промышленным горным буром.
 ent-MobPirateT2Juggernaut = Мурмилло
     .desc = Одет в тяжелый древний бронескафандр. Медлительный, но чрезвычайно живучий.
+ent-MobPirateT2JuggernautMG = { ent-MobPirateT2Juggernaut }
+    .suffix = пулемётчик
+    .desc = { ent-MobPirateT2Juggernaut.desc }
 ent-MobPirateT2DoubleFlintlock = дуэлист пиратов
     .desc = Вооружён парой старинных кремнёвых пистолетов. Стреляет медленно, зато больно.
 ent-MobPirateT2DoubleRevolver = пистолетчик пиратов
@@ -366,6 +369,10 @@ ent-MobPirateT2JuggernautTimed = { ent-MobPirateT2Juggernaut }
 
     .suffix = Деспавн
     .desc = { ent-MobPirateT2Juggernaut.desc }
+ent-MobPirateT2JuggernautMGTimed = { ent-MobPirateT2JuggernautMG }
+
+    .suffix = Деспавн
+    .desc = { ent-MobPirateT2JuggernautMG.desc }
 ent-MobPirateT3BolaTimed = { ent-MobPirateT3Bola }
 
     .suffix = Деспавн
@@ -446,8 +453,6 @@ ent-MobPirateT3BossTimed = { ent-MobPirateT3Boss }
 
     .suffix = Деспавн
     .desc = { ent-MobPirateT3Boss.desc }
-
-
 
 
 

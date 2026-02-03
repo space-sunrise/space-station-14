@@ -171,6 +171,9 @@
     - proto: MobPirateT2JuggernautTimed
       cost: 5
       prob: 0.04
+    - proto: MobPirateT2JuggernautMGTimed
+      cost: 5
+      prob: 0.03
     # borgs
     - proto: MobPirateT1BorgAssaultTimed
       cost: 1

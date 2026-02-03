@@ -504,6 +504,7 @@
       - MobPirateT2Cannoball
       - MobPirateT2Mech
       - MobPirateT2Juggernaut
+      - MobPirateT2JuggernautMG
       - MobPirateT2BorgAssault
     rareChance: 0.2
 
@@ -649,6 +650,7 @@
       - MobPirateT2CannoballTimed
       - MobPirateT2MechTimed
       - MobPirateT2JuggernautTimed
+      - MobPirateT2JuggernautMGTimed
       - MobPirateT1BorgAssaultTimed
       - MobPirateT2BorgAssaultTimed
       - MobPirateT1BorgMiningTimed
@@ -943,6 +945,10 @@
 - type: entity
   parent: [MobPirateTimedDespawn, MobPirateT2Juggernaut]
   id: MobPirateT2JuggernautTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2JuggernautMG]
+  id: MobPirateT2JuggernautMGTimed
 
 - type: entity
   parent: [MobPirateTimedDespawn, MobPirateT3Bola]
@@ -2671,6 +2677,81 @@
     - DoorBumpOpener
     - FootstepSound
     - Pickaxe
+
+- type: entity
+  name: Jugger Murmillo
+  description: Clad in a heavily armored ancient spacesuit. Slow but incredibly resilient.
+  parent: [MobPirateT2MachineCannon, MobPirateSparkEffectBase]
+  id: MobPirateT2JuggernautMG
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT2JuggernautGearAlt
+  - type: Sprite
+    scale: 1.2,1.08
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/gladiator.rsi
+      state: human
+    - sprite: _Sunrise/Mobs/Species/Templates/gladiator.rsi
+      state: human-unshaded
+      shader: unshaded
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      240: Critical
+      250: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 250
+  - type: Stamina
+    baseCritThreshold: 500
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgLegs
+      params:
+        volume: -8
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      50: 1.05
+      75: 1.1
+      100: 1.2
+      125: 1.3
+      150: 1.4
+      175: 1.5
+      200: 1.6
+      215: 1.8
+      225: 2
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1.75
+    baseAcceleration: 10
+  - type: Reflect
+    reflectProb: 0.15
+    spread: 180
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
+    reflects:
+    - NonEnergy
+    - Energy
+  - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
+    radius: 1.75
+    energy: 1.5
+    mask: /Textures/Effects/LightMasks/soft_cone.png
+    color: "#8cff00"
+  - type: AmbientSound
+    range: 4
+    volume: -8
+    sound:
+      path: /Audio/Effects/internals.ogg
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
 
 # region Ranged Tier 2
 - type: entity

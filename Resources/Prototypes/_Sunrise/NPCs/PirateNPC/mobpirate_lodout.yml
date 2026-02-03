@@ -503,6 +503,15 @@
     pocket2: StimkitFilled
 
 - type: startingGear
+  id: MobPirateT2JuggernautGearAlt
+  equipment:
+    gloves: ClothingLightMachineGunPirateCannonJugg
+    back: ClothingBackPirateMessengerT2MG
+    belt: ClothingBeltAmmoT2MG
+    pocket1: ClothingHeadHatGladiator
+    pocket2: StimkitFilled
+
+- type: startingGear
   id: MobPirateGearMeleeT4Alt
   equipment:
     gloves: ClothingHandsGorilla
