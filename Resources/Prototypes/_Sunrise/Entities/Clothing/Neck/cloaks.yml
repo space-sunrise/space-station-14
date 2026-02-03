@@ -343,7 +343,7 @@
   description: A white cloak with violet stripes, showing your status as the arbiter of cutting-edge technology.
   components:
   - type: Sprite
-    sprite: _Sunrise\Clothing\Neck\Cloaks\rdlegacy.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/rdlegacy.rsi
   - type: StealTarget
     stealGroup: HeadCloak
     
@@ -354,6 +354,6 @@
   description: A dark green cloak with light blue ornaments, given to those who proved themselves to master the precise art of engineering.
   components:
   - type: Sprite
-    sprite: _Sunrise\Clothing\Neck\Cloaks\celegacy.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/celegacy.rsi
   - type: StealTarget
     stealGroup: HeadCloak
