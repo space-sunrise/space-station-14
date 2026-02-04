@@ -264,7 +264,7 @@
       cost: 2
       prob: 0.15
     # rare
-    - proto: MobPirateT3L5Timed
+    - proto: MobPirateT3L6Timed
       cost: 5
       prob: 0.04
     - proto: MobPirateT3RPDTimed

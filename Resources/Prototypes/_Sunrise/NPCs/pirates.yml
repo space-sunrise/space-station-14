@@ -827,6 +827,10 @@
   id: MobPirateT1RifleTimed
 
 - type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1RifleAlt]
+  id: MobPirateT1RifleAltTimed
+
+- type: entity
   parent: [MobPirateTimedDespawn, MobPirateT1BorgAssault]
   id: MobPirateT1BorgAssaultTimed
 

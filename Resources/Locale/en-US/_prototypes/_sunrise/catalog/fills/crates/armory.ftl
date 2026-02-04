@@ -14,7 +14,3 @@ ent-CrateArmoryM16A4 = M16A4 crate
     .desc = Contains three M16A4 assault rifle. Requires Armory access to open.
 ent-CrateArmoryMP7 = MP7 crate
     .desc = Contains two MP7 submachine gun with two mags. Requires Armory access to open.
-ent-CrateArmoryMagazineBoxLightRifleBig = MagazineBoxLightRifleBig crate
-    .desc = Contains two MagazineBoxLightRifleBig. Requires Armory access to open.
-ent-CrateArmoryMagazineBoxRifleBig = MagazineBoxRifleBig crate
-    .desc = Contains Box Rifle ammo. Requires Armory access to open.
