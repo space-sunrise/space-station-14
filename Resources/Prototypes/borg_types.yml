@@ -270,7 +270,7 @@
   - type: InnateItem
     instantActions:
     - HandheldStationMapUnpowered
-    - HandheldCrewMonitorBorg
+    - HandheldEmergencyCrewMonitor
     entityTargetActions:
     - HandheldHealthAnalyzerUnpowered
   # Sunrise-End

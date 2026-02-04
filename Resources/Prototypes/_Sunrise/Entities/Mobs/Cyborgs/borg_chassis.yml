@@ -213,7 +213,7 @@
     instantActions:
     - PortableSurveillanceCameraMonitorUnpowered
     - HandheldStationMapUnpowered
-    - HandheldCrewMonitorBorg
+    - HandheldEmergencyCrewMonitorBorg
     - HandHeldMassScannerBorg
   - type: MobThresholds
     thresholds:

@@ -181,7 +181,8 @@ ignore_list:
   - 'MHelp'
   - 'Net-ERR*?*%'
   - 'Holo Girl'
-
+  - 'RobustChat'
+  
 ignore_files:
   - 'italian.ftl'
   - 'russian.ftl'
