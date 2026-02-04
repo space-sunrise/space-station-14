@@ -1018,6 +1018,28 @@
       - LoneOpsUplink
 
 - type: listing
+  id: UplinkL6SawBundleMax
+  name: uplink-l6-sawmax-bundle-name
+  description: uplink-l6-sawmax-bundle-desc
+  icon: { sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledLMGMax
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 20
+  cost:
+    Telecrystal: 25 # Sunrise-Edit
+  categories:
+  - UplinkWeaponry
+#Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+#Sunrise-end
+
+- type: listing
   id: UplinkClothingBackpackSyndieDL6902Filled
   name: uplink-clothing-backpack-syndie-dl6902-name
   productEntity: ClothingBackpackSyndieDL6902Filled
@@ -1044,9 +1066,9 @@
   description: uplink-power-backpack-dl6902-desc
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 22
+    Telecrystal: 20
   cost:
-    Telecrystal: 38
+    Telecrystal: 35
   categories:
   - UplinkWeaponry
   conditions:
@@ -2535,7 +2557,7 @@
   discountDownTo:
     Telecrystal: 20
   cost:
-    Telecrystal: 35
+    Telecrystal: 30
   categories:
   - UplinkWeaponry
   conditions:

@@ -260,7 +260,7 @@
   - type: Clothing
     clothingVisuals:
       gloves:
-      - sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+      - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/l6.rsi
         state: wielded-inhand-right
 
 - type: entity

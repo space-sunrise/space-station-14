@@ -26,6 +26,15 @@
     - Syndicate
 
 - type: entity
+  parent: WeaponLightMachineGunL6Max
+  id: WeaponLightMachineGunL6MaxBiocode
+  suffix: BIOCODE
+  components:
+  - type: FactionWeaponBlocker
+    factions:
+    - Syndicate
+
+- type: entity
   parent: WeaponSubMachineGunC20r
   id: WeaponSubMachineGunC20rBiocode
   suffix: BIOCODE
