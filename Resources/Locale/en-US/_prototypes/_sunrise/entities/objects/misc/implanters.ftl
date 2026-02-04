@@ -11,5 +11,5 @@ ent-DeathRattleImplanterFreelance = { ent-BaseImplantOnlyImplanterSyndi }
     .suffix = freelance death rattle
     .desc = { ent-BaseImplantOnlyImplanterSyndi.desc }
 ent-ScramImplanterProto = { ent-ScramImplanter }
-    .suffix = prototype
+    .suffix = prototype scram
     .desc = { ent-ScramImplanter.desc }

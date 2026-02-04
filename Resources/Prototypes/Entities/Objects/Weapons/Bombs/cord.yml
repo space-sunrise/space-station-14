@@ -75,6 +75,11 @@
       # - Window
       # - Wall
   # - type: StickyVisualizer
+  # Sunrise-Start
+  - type: GuideHelp
+    guides:
+    - SunriseDetonatorTriggers
+  # Sunrise-End
 
 - type: entity
   parent: CableDetStack

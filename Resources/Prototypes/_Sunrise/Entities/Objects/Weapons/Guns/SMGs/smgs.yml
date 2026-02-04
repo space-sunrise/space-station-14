@@ -488,14 +488,14 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -2.5
+    minAngle: -3
     maxAngle: -25
   - type: Gun
-    minAngle: 5.5
+    minAngle: 6
     maxAngle: 45
-    angleIncrease: 2.75
-    angleDecay: 20
-    fireRate: 7
+    angleIncrease: 2.5
+    angleDecay: 18
+    fireRate: 6
     selectedMode: FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/pistol.ogg

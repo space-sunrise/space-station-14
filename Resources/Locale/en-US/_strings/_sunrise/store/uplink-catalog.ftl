@@ -1,4 +1,4 @@
-## Targets
+﻿## Targets
 
 uplink-core-extraction-toolbox-name = Core Extraction Toolbox
 uplink-core-extraction-toolbox-desc = A toolbox containing everything you need to remove a nuclear bomb's plutonium core. Instructions not included.
@@ -149,4 +149,5 @@ uplink-energy-dome-desc = A personal shield generator that protects the wearer f
 
 uplink-syndicate-teleporter-name = Hand syndicate teleporter
 uplink-syndicate-teleporter-desc = An experimental hand teleporting device. Teleports its owner forward in a small area. Be careful not to end up in the wall.
+
 

@@ -2,6 +2,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Radio.EntitySystems;
+using Content.Server.Station.Systems;
+using Content.Server._Sunrise.Messenger;
 using Content.Shared.Access.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Research.Components;
@@ -22,6 +24,8 @@ namespace Content.Server.Research.Systems
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly RadioSystem _radio = default!;
+        [Dependency] private readonly MessengerServerSystem _messenger = default!;
+        [Dependency] private readonly StationSystem _stationSystem = default!;
 
         public override void Initialize()
         {

@@ -1,6 +1,9 @@
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Pinpointer;
+using Content.Server.Station.Systems;
+using Content.Server._Sunrise.Messenger;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Radio;
 using Content.Shared.Trigger;
 using Content.Shared.Trigger.Components.Effects;
 using Robust.Shared.Prototypes;
@@ -13,6 +16,8 @@ public sealed class RattleOnTriggerSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
+    [Dependency] private readonly MessengerServerSystem _messenger = default!;
+    [Dependency] private readonly StationSystem _station = default!;
 
     public override void Initialize()
     {
@@ -43,7 +48,18 @@ public sealed class RattleOnTriggerSystem : EntitySystem
         var posText = FormattedMessage.RemoveMarkupOrThrow(_navMap.GetNearestBeaconString(target.Value));
 
         var message = Loc.GetString(messageId, ("user", target.Value), ("position", posText));
-        // Sends a message to the radio channel specified by the implant
-        _radio.SendRadioMessage(ent.Owner, message, _prototypeManager.Index(ent.Comp.RadioChannel), ent.Owner);
+
+        // Sunrise-Start
+        var sentToMessenger = false;
+        if (_messenger.GetServerEntity(_station.GetOwningStation(ent.Owner)) is var (server, _) &&
+            _messenger.GetGroupIdByRadioChannel(ent.Comp.RadioChannel) is { } groupId)
+        {
+            _messenger.SendSystemMessageToGroup(server, groupId, message);
+            sentToMessenger = true;
+        }
+
+        if (!sentToMessenger)
+            _radio.SendRadioMessage(ent.Owner, message, _prototypeManager.Index(ent.Comp.RadioChannel), ent.Owner);
+        // Sunrise-End
     }
 }

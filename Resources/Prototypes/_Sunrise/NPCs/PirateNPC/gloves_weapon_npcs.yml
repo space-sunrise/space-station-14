@@ -1,6 +1,27 @@
 # Gloves with fake weapon visuals for NPCs
 - type: entity
-  parent: ClothingHandsBase
+  abstract: true
+  parent: BaseItem
+  id: ClothingHandsBaseNPC
+  components:
+  - type: Clothing
+    slots: [gloves]
+    equipSound:
+      path: /Audio/_Sunrise/Items/Equip/Gloves/sound1.ogg
+      params:
+        volume: -4
+        maxDistance: 3
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 5
+  - type: Insulated
+  - type: Unremoveable
+  - type: FireProtection
+    reduction: 0.5
+
+- type: entity
+  parent: ClothingHandsBaseNPC
   id: ClothingHandsNoGloves
   name: combat gloves
   abstract: true
@@ -8,27 +29,17 @@
   - type: Unremoveable
   - type: FireProtection
     reduction: 0.5
-  - type: MeleeWeapon #Sunrise-start
-    attackRate: 1.5
+  - type: MeleeWeapon
+    attackRate: 1.25
     damage:
       types:
         Blunt: 10
-        Structural: 10
-    bluntStaminaDamageFactor: 1.5
+        Structural: 20
+    bluntStaminaDamageFactor: 1
     soundHit:
       collection: Punch
     animation: WeaponArcFist
-    mustBeEquippedToUse: true #Sunrise-end
-
-- type: entity
-  parent: ClothingHandsBase
-  id: ClothingHandsNoGlovesNoDamage
-  abstract: true
-  components:
-  - type: Insulated
-  - type: Unremoveable
-  - type: FireProtection
-    reduction: 0.5
+    mustBeEquippedToUse: true
 
 - type: entity
   parent: ClothingHandsNoGloves
@@ -43,8 +54,8 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 8
-        Structural: 10
+        Blunt: 10
+        Structural: 20
     bluntStaminaDamageFactor: 3.0
     soundHit:
       collection: MetalThud
@@ -104,7 +115,7 @@
       types:
         Slash: 10
         Heat: 12
-        Structural: 15
+        Structural: 25
     soundHit:
       path: /Audio/Weapons/eblade1.ogg
       params:
@@ -395,6 +406,7 @@
       types:
         Piercing: 15
         Bloodloss: 2
+        Structural: 20
 
 - type: entity
   parent: [ClothingHandsBlackSMG, ClothingHandsSlashArcMeleeBase, PirateArmorPirateEvaArmored]
@@ -411,6 +423,7 @@
     damage:
       types:
         Piercing: 12
+        Structural: 20
 
 - type: entity
   parent: ClothingHandsBlackSMG
@@ -468,7 +481,7 @@
     damage:
       types:
         Slash: 17
-        Structural: 15
+        Structural: 25
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
       params:
@@ -719,7 +732,7 @@
       types:
         Slash: 10
         Heat: 12
-        Structural: 15
+        Structural: 25
     soundHit:
       path: /Audio/Weapons/eblade1.ogg
       params:
@@ -805,7 +818,7 @@
     damage:
       types:
         Blunt: 20
-        Structural: 20
+        Structural: 30
     bluntStaminaDamageFactor: 1.5
     soundHit:
       collection: MetalThud
@@ -1168,19 +1181,19 @@
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsNoGlovesNoDamage, PirateArmorGoliath]
+  parent: [ClothingHandsBaseNPC, PirateArmorGoliath]
   id: ClothingHandsPirateArmorT1Goliath
   suffix: pirate T1 goliath armor
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsNoGlovesNoDamage, PirateArmorGoliathMining]
+  parent: [ClothingHandsBaseNPC, PirateArmorGoliathMining]
   id: ClothingHandsPirateArmorT1GoliathMining
   suffix: pirate T1 goliath mining armor
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEva]
+  parent: [ClothingHandsBaseNPC, PirateArmorPirateEva]
   id: ClothingHandsPirateArmorT1PirateEva
   suffix: pirate T1 EVA armor
   categories: [ HideSpawnMenu ]
@@ -1192,7 +1205,7 @@
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsNoGlovesNoDamage, PirateArmorMechArmorMediumSyndi]
+  parent: [ClothingHandsBaseNPC, PirateArmorMechArmorMediumSyndi]
   id: ClothingHandsPirateArmorT2Invisible
   suffix: pirate T2 armor
   categories: [ HideSpawnMenu ]

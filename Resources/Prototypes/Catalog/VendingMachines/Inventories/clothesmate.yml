@@ -9,27 +9,16 @@
     ClothingRandomSpawner: 8
     ClothingUniformRandomShorts: 4
     ClothingHeadHatBeret: 4
-#sunrise-start
-    ClothingHeadBandWhite: 2
-#sunrise-end
-    ClothingHeadBandBlack: 2
-    ClothingHeadBandBlue: 2
-#sunrise-start
-    ClothingHeadBandCyan: 2
-    ClothingHeadBandYellow: 2
-#sunrise-end
-    ClothingHeadBandGreen: 2
-#sunrise-start
-    ClothingHeadBandOrange: 2
-#sunrise-end
-    ClothingHeadBandRed: 2
-#sunrise-start
-    ClothingHeadBandPurple: 2
-#sunrise-end
+    #Sunrise-start
+    ClothingHeadBandRandomColorSpawner: 10
+    ClothingHeadBowWhite: 2
+    ClothingHeadBowRed: 2
+    ClothingHeadBowBlack: 2
+    #Sunrise-end
     ClothingHeadBandSkull: 2
     ClothingHeadHatGreyFlatcap: 3
     ClothingHeadHatBrownFlatcap: 3
-    ClothingUniformJumpskirtChristmas: 3 #sunrise-edit
+    ClothingUniformJumpskirtChristmas: 3 # Sunrise - edit
     ClothingUniformJumpsuitColorGrey: 8
     ClothingUniformJumpskirtColorGrey: 8
     ClothingUniformJumpsuitColorWhite: 3
@@ -70,25 +59,23 @@
     ClothingUniformJumpskirtCasualRed: 2
     ClothingUniformJumpsuitCasualGreen: 2
     ClothingUniformJumpskirtCasualGreen: 2
-    ClothingUniformJumpsuitBlackturtleneck: 4 #sunrise
+    ClothingUniformJumpsuitBlackturtleneck: 2 # Sunrise - edit
     # DO NOT ADD MORE, USE UNIFORM DYING
     ClothingShoesColorBlack: 8
     ClothingShoesColorBrown: 4
     ClothingShoesColorWhite: 3
     ClothingShoesColorBlue: 2
-#Sunrise-start
-    ClothingShoesColorCyan: 2
-#Sunrise-end
+    ClothingShoesColorCyan: 2 # Sunrise - edit
     ClothingShoesColorYellow: 2
     ClothingShoesColorGreen: 2
     ClothingShoesColorOrange: 2
     ClothingShoesColorRed: 2
     ClothingShoesColorPurple: 2
     ClothingHeadHatGreysoft: 8
-#Sunrise-start
+    #Sunrise-start
     ClothingHeadHatBrownsoft: 2
     ClothingHeadRabbitHat: 2
-#Sunrise-end
+    #Sunrise-end
     ClothingHeadHatMimesoft: 3
     ClothingHeadHatBluesoft: 2
     ClothingHeadHatYellowsoft: 2
@@ -116,35 +103,13 @@
     ClothingHandsGlovesColorPurple: 2
     ClothingEyesGlassesCheapSunglasses: 3
     # DO NOT ADD MORE, USE UNIFORM DYING
-#Sunrise-start
-    ClothingBackpackBlack: 2
-    ClothingBackpackBlue: 2
-    ClothingBackpackCian: 2
-    ClothingBackpackGreen: 2
-    ClothingBackpackOrange: 2
-    ClothingBackpackPurple: 2
-    ClothingBackpackRed: 2
-    ClothingBackpackWhite: 2
-    ClothingBackpackYellow: 2
-    ClothingBackpackDuffelBlack: 2
-    ClothingBackpackDuffelBlue: 2
-    ClothingBackpackDuffelCian: 2
-    ClothingBackpackDuffelGreen: 2
-    ClothingBackpackDuffelOrange: 2
-    ClothingBackpackDuffelPurple: 2
-    ClothingBackpackDuffelRed: 2
-    ClothingBackpackDuffelWhite: 2
-    ClothingBackpackDuffelYellow: 2
-    ClothingBackpackSatchelBlack: 2
-    ClothingBackpackSatchelBlue: 2
-    ClothingBackpackSatchelCian: 2
-    ClothingBackpackSatchelGreen: 2
-    ClothingBackpackSatchelOrange: 2
-    ClothingBackpackSatchelPurple: 2
-    ClothingBackpackSatchelRed: 2
-    ClothingBackpackSatchelWhite: 2
-    ClothingBackpackSatchelYellow: 2
+    #Sunrise-start
+    ClothingBackpackRandomColorSpawner: 10
+    ClothingBackpackDuffelRandomColorSpawner: 10
+    ClothingBackpackSatchelRandomColorSpawner: 10
     ClothingNeckAmethystHeart: 2
+    ClothingUniformShortDress: 2
+    ClothingUniformShortDressRed: 2
     ClothingUniformTurleneckBlack: 2
     ClothingUniformTurleneckBlackWomen: 2
     ClothingUniformTurleneckBlackSleeveless: 2
@@ -152,7 +117,7 @@
     ClothingNavalJacket: 2
     ClothingOuterLeatherCoat: 1
     ClothingNavalBoots: 2
-#Sunrise-end
+    #Sunrise-end
   contrabandInventory:
     ClothingMaskNeckGaiter: 2
     ClothingUniformJumpsuitTacticool: 1

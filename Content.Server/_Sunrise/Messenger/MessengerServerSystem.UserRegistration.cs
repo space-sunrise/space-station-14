@@ -143,23 +143,20 @@ public sealed partial class MessengerServerSystem
         var userName = pda.OwnerName ?? Loc.GetString("messenger-user-unknown");
 
         string? jobTitle = null;
-        string? departmentId = null;
-        ProtoId<JobIconPrototype>? jobIconId = null;
+        var departments = new List<string>();
+        ProtoId<JobIconPrototype> jobIconId = "JobIconUnknown";
 
         if (pda.ContainedId != null && TryComp<IdCardComponent>(pda.ContainedId.Value, out var idCard))
         {
             jobTitle = idCard.LocalizedJobTitle;
-            if (idCard.JobDepartments.Count > 0)
-            {
-                departmentId = idCard.JobDepartments[0];
-            }
+            departments.AddRange(idCard.JobDepartments.Select(d => (string) d));
             jobIconId = idCard.JobIcon;
         }
 
-        var user = new MessengerUser(userId, userName, jobTitle, departmentId, jobIconId);
+        var user = new MessengerUser(userId, userName, jobTitle, departments, jobIconId);
         component.Users[userId] = user;
 
-        AddUserToAutoGroups(uid, component, userId, userName, departmentId);
+        AddUserToAutoGroups(uid, component, userId, userName, departments);
 
         if (!TryComp<DeviceNetworkComponent>(uid, out var serverDevice))
         {
@@ -184,8 +181,9 @@ public sealed partial class MessengerServerSystem
             ["user_id"] = userId,
             ["user_name"] = userName,
             ["job_title"] = jobTitle ?? string.Empty,
-            ["department_id"] = departmentId ?? string.Empty,
-            ["job_icon_id"] = jobIconId?.Id ?? string.Empty
+            ["department_id"] = user.DepartmentId ?? string.Empty,
+            ["department_ids"] = user.DepartmentIds,
+            ["job_icon_id"] = jobIconId.Id
         };
 
         if (_deviceNetwork.IsAddressPresent(serverDevice.DeviceNetId, userId))
@@ -202,6 +200,7 @@ public sealed partial class MessengerServerSystem
                 ["user_name"] = u.Name,
                 ["job_title"] = u.JobTitle ?? string.Empty,
                 ["department_id"] = u.DepartmentId ?? string.Empty,
+                ["department_ids"] = u.DepartmentIds,
                 ["job_icon_id"] = u.JobIconId?.Id ?? string.Empty
             }).ToList()
         };
@@ -312,17 +311,14 @@ public sealed partial class MessengerServerSystem
 
         string? userName = null;
         string? jobTitle = null;
-        string? departmentId = null;
-        ProtoId<JobIconPrototype>? jobIconId = null;
+        var departments = new List<string>();
+        ProtoId<JobIconPrototype> jobIconId = "JobIconUnknown";
 
         if (pda.ContainedId != null && TryComp<IdCardComponent>(pda.ContainedId.Value, out var idCard))
         {
             userName = idCard.FullName;
             jobTitle = idCard.LocalizedJobTitle;
-            if (idCard.JobDepartments.Count > 0)
-            {
-                departmentId = idCard.JobDepartments[0];
-            }
+            departments.AddRange(idCard.JobDepartments.Select(d => (string) d));
             jobIconId = idCard.JobIcon;
         }
 
@@ -331,10 +327,10 @@ public sealed partial class MessengerServerSystem
             userName = pda.OwnerName ?? Loc.GetString("messenger-user-unknown");
         }
 
-        var user = new MessengerUser(userId, userName, jobTitle, departmentId, jobIconId);
+        var user = new MessengerUser(userId, userName, jobTitle, departments, jobIconId);
         component.Users[userId] = user;
 
-        AddUserToAutoGroups(uid, component, userId, userName, departmentId);
+        AddUserToAutoGroups(uid, component, userId, userName, departments);
 
         if (!TryComp<DeviceNetworkComponent>(uid, out var serverDevice))
         {
@@ -359,8 +355,9 @@ public sealed partial class MessengerServerSystem
             ["user_id"] = userId,
             ["user_name"] = userName,
             ["job_title"] = jobTitle ?? string.Empty,
-            ["department_id"] = departmentId ?? string.Empty,
-            ["job_icon_id"] = jobIconId?.Id ?? string.Empty
+            ["department_id"] = user.DepartmentId ?? string.Empty,
+            ["department_ids"] = user.DepartmentIds,
+            ["job_icon_id"] = jobIconId.Id
         };
 
         if (_deviceNetwork.IsAddressPresent(serverDevice.DeviceNetId, args.SenderAddress))
@@ -377,6 +374,7 @@ public sealed partial class MessengerServerSystem
                 ["user_name"] = u.Name,
                 ["job_title"] = u.JobTitle ?? string.Empty,
                 ["department_id"] = u.DepartmentId ?? string.Empty,
+                ["department_ids"] = u.DepartmentIds,
                 ["job_icon_id"] = u.JobIconId?.Id ?? string.Empty
             }).ToList()
         };
@@ -431,7 +429,7 @@ public sealed partial class MessengerServerSystem
     /// <summary>
     /// Добавляет пользователя в автоматические группы на основе прототипов
     /// </summary>
-    private void AddUserToAutoGroups(EntityUid uid, MessengerServerComponent component, string userId, string userName, string? departmentId)
+    private void AddUserToAutoGroups(EntityUid uid, MessengerServerComponent component, string userId, string userName, IEnumerable<string> departments)
     {
         foreach (var autoGroupProto in _prototypeManager.EnumeratePrototypes<MessengerAutoGroupPrototype>())
         {
@@ -441,9 +439,9 @@ public sealed partial class MessengerServerSystem
             {
                 shouldAdd = true;
             }
-            else if (departmentId != null && autoGroupProto.Departments.Count > 0)
+            else if (autoGroupProto.Departments.Count > 0)
             {
-                shouldAdd = autoGroupProto.Departments.Contains(departmentId);
+                shouldAdd = autoGroupProto.Departments.Any(d => departments.Contains((string) d));
             }
 
             if (!shouldAdd)
@@ -630,25 +628,22 @@ public sealed partial class MessengerServerSystem
             return;
 
         string? jobTitle = null;
-        string? departmentId = null;
-        ProtoId<JobIconPrototype>? jobIconId = null;
+        var departments = new List<string>();
+        ProtoId<JobIconPrototype> jobIconId = "JobIconUnknown";
 
         if (pdaComp.ContainedId != null && TryComp<IdCardComponent>(pdaComp.ContainedId.Value, out var idCard))
         {
             jobTitle = idCard.LocalizedJobTitle;
-            if (idCard.JobDepartments.Count > 0)
-            {
-                departmentId = idCard.JobDepartments[0];
-            }
+            departments.AddRange(idCard.JobDepartments.Select(d => (string) d));
             jobIconId = idCard.JobIcon;
         }
 
-        var needsUpdate = user.JobTitle != jobTitle || user.DepartmentId != departmentId || user.JobIconId != jobIconId;
+        var needsUpdate = user.JobTitle != jobTitle || !user.DepartmentIds.SequenceEqual(departments) || user.JobIconId != jobIconId;
 
         if (needsUpdate)
         {
             user.JobTitle = jobTitle;
-            user.DepartmentId = departmentId;
+            user.DepartmentIds = departments;
             user.JobIconId = jobIconId;
 
             if (!TryComp<DeviceNetworkComponent>(uid, out var serverDevice))
@@ -669,6 +664,7 @@ public sealed partial class MessengerServerSystem
                     ["user_name"] = u.Name,
                     ["job_title"] = u.JobTitle ?? string.Empty,
                     ["department_id"] = u.DepartmentId ?? string.Empty,
+                    ["department_ids"] = u.DepartmentIds,
                     ["job_icon_id"] = u.JobIconId?.Id ?? string.Empty
                 }).ToList()
             };

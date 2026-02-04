@@ -119,7 +119,6 @@
   parent:
   - MobNonHumanHostileBase
   - MobHumanoidInvetorySimplified
-  - MobHumanoidHostileAISimpleRanged
   - MobPassiveRegen
   id: MobPirateBase
   components:
@@ -128,6 +127,7 @@
   - type: NpcFactionMember
     factions:
     - Pirate
+  - type: FootprintEmitter
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -173,7 +173,7 @@
     - trigger:
         !type:DamageTypeTrigger
         damageType: Radiation
-        damage: 40
+        damage: 75
       behaviors:
       - !type:VomitBehavior
   - type: PassiveDamage
@@ -198,13 +198,13 @@
       path: /Audio/_Sunrise/Effects/silence.ogg
   - type: Strippable
   - type: Tool
-    speedModifier: 2
+    speedModifier: 8
     qualities:
     - Prying
   - type: Prying
     pryPowered: true
     force: true
-    speedModifier: 2
+    speedModifier: 8
     useSound:
       path: /Audio/Items/crowbar.ogg
   - type: UserInterface
@@ -218,21 +218,35 @@
   - type: TTS
     voice: necrophos_dota_2
   - type: GhostRole
-    prob: 0.001
+    prob: 0.1
     makeSentient: true
     name: ghost-role-information-expedition-pirate-name
     description: ghost-role-information-expedition-pirate-description
     rules: ghost-role-information-expedition-pirate-rules
     raffle:
-      settings: default
+      settings: short
   - type: GhostTakeoverAvailable
   - type: GuideHelp
     guides:
     - MobsExpeditionGuidePirates
   - type: GhostOnMove
     mustBeDead: true
+  - type: Puller
+    needsHands: false
+
+# For Expedition NPC
+- type: entity
+  abstract: true
+  id: MobPirateTimedDespawn
+  components:
   - type: TimedDespawn
-    lifetime: 1200
+    lifetime: 1200 # 20 minutes
+  - type: GhostRole
+    name: ghost-role-information-expedition-pirate-name
+    description: ghost-role-information-expedition-pirate-description
+    rules: ghost-role-information-rules-expedition-pirate-antagonist
+    raffle:
+      settings: short
 
 - type: entity
   abstract: true
@@ -266,7 +280,7 @@
       types:
         Slash: 3
         Blunt: 7
-        Structural: 10
+        Structural: 15
 
 - type: entity
   abstract: true
@@ -275,6 +289,14 @@
   components:
   - type: Damageable
     damageModifierSet: MobPirateT2
+  - type: GhostRole
+    prob: 0.05
+    makeSentient: true
+    name: ghost-role-information-expedition-pirate-name
+    description: ghost-role-information-expedition-pirate-description
+    rules: ghost-role-information-expedition-pirate-rules
+    raffle:
+      settings: short
 
 - type: entity
   abstract: true
@@ -283,6 +305,42 @@
   components:
   - type: Damageable
     damageModifierSet: MobPirateT3
+  - type: GhostRole
+    prob: 0.01
+    makeSentient: true
+    name: ghost-role-information-expedition-pirate-name
+    description: ghost-role-information-expedition-pirate-description
+    rules: ghost-role-information-expedition-pirate-rules
+    raffle:
+      settings: default
+
+- type: entity
+  abstract: true
+  parent:
+  - MobPirateBaseT2
+  - MobHumanoidHostileAISimpleRanged
+  id: MobPirateBaseT2Ranged
+
+- type: entity
+  abstract: true
+  parent:
+  - MobPirateBaseT2
+  - MobHumanoidHostileAISimpleMelee
+  id: MobPirateBaseT2Melee
+
+- type: entity
+  abstract: true
+  parent:
+  - MobPirateBaseT3
+  - MobHumanoidHostileAISimpleRanged
+  id: MobPirateBaseT3Ranged
+
+- type: entity
+  abstract: true
+  parent:
+  - MobPirateBaseT3
+  - MobHumanoidHostileAISimpleMelee
+  id: MobPirateBaseT3Melee
 
 - type: entity
   abstract: true
@@ -358,11 +416,11 @@
       state: icon
   - type: RandomSpawner
     prototypes:
-      # Ближний
+      # ???????
       - MobPirateT1Knife
       - MobPirateT1MonkeyKnuckleDusters
       - MobPirateT1Pickaxe
-      # Дальний
+      # ???????
       - MobPirateT1Pistol
       - MobPirateT1Mosin
       - MobPirateT1PKA
@@ -389,7 +447,7 @@
       - MobPirateT1BorgAssault
       - MobPirateT1BorgMining
       - MobPirateT1BorgDerelict
-    rareChance: 0.15
+    rareChance: 0.2
 
 - type: entity
   name: pirate T2 spawner
@@ -404,16 +462,20 @@
       state: icon
   - type: RandomSpawner
     prototypes:
-      # Ближний
+      # ???????
       - MobPirateT2Cutlass
       - MobPirateT2ECutlass
       - MobPirateT2Sledgehammer
       - MobPirateT2GauntletDrill
-      # Дальний
+      # ???????
       - MobPirateT2Shotgun
       - MobPirateT2ShotgunMiniBall
       - MobPirateT2ShotgunGlass
       - MobPirateT2Musket
+      - MobPirateT2MusketEMP
+      - MobPirateT2MusketBlast
+      - MobPirateT2MusketFrag
+      - MobPirateT2MusketPenetrator
       - MobPirateT2MachineCannon
       - MobPirateT2DoubleFlintlock
       - MobPirateT2DoubleRevolver
@@ -425,7 +487,7 @@
       - MobPirateT2Juggernaut
       - MobPirateT1BorgAssault
       - MobPirateT1BorgMining
-    rareChance: 0.15
+    rareChance: 0.2
 
 - type: entity
   name: pirate T3 spawner
@@ -439,10 +501,10 @@
       state: icon
   - type: RandomSpawner
     prototypes:
-      # Ближний
+      # ???????
       - MobPirateT3Bola
       - MobPirateT3Stun
-      # Дальний
+      # ???????
       - MobPirateT3Shield1984
       - MobPirateT3ShieldSMG
       - MobPirateT3DMR
@@ -460,8 +522,438 @@
       - MobPirateT3Infiltrator
       - MobPirateT3Sniper
       - MobPirateT1BorgAssault
+    rareChance: 0.2
+
+# mixed all tiers spawner
+- type: entity
+  name: pirate T1-T3 spawner
+  id: MobPirateAllTiersSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+      - MobPirateT1Spawner
+      - MobPirateT2Spawner
+      - MobPirateT3Spawner
+
+# timed despawn spawners
+- type: entity
+  name: pirate T1 spawner (despawn)
+  id: MobPirateT1TimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: one
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+      # ???????
+      - MobPirateT1KnifeTimed
+      - MobPirateT1MonkeyKnuckleDustersTimed
+      - MobPirateT1PickaxeTimed
+      # ???????
+      - MobPirateT1PistolTimed
+      - MobPirateT1MosinTimed
+      - MobPirateT1PKATimed
+      - MobPirateT1MonkeyFlareGunTimed
+      - MobPirateT1MonkeyFlareGunCoinTimed
+      - MobPirateT1MonkeyFlareGunIncendiaryTimed
+      - MobPirateT1MonkeyFlareGunUraniumTimed
+      - MobPirateT1ScrapSMGTimed
+      - MobPirateT1SMGTimed
+      - MobPirateT1FlintlockTimed
+    rarePrototypes:
+      - MobPirateT1MonkeyFireBombTimed
+      - MobPirateT1MonkeyEDaggerTimed
+      - MobPirateT1HunterTimed
+      - MobPirateT1HunterSmashTimed
+      - MobPirateT1BombardierFireTimed
+      - MobPirateT1BombardierGlassTimed
+      - MobPirateT1BombardierPipeTimed
+      - MobPirateT1ECutlassTimed
+      - MobPirateT1EPickaxeTimed
+      - MobPirateT1PlasmaCutterTimed
+      - MobPirateT1ScrapRifleTimed
+      - MobPirateT1RifleTimed
+      - MobPirateT1BorgAssaultTimed
+      - MobPirateT1BorgMiningTimed
+      - MobPirateT1BorgDerelictTimed
+    rareChance: 0.2
+
+- type: entity
+  name: pirate T2 spawner (despawn)
+  id: MobPirateT2TimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: two
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+      # ???????
+      - MobPirateT2CutlassTimed
+      - MobPirateT2ECutlassTimed
+      - MobPirateT2SledgehammerTimed
+      - MobPirateT2GauntletDrillTimed
+      # ???????
+      - MobPirateT2ShotgunTimed
+      - MobPirateT2ShotgunMiniBallTimed
+      - MobPirateT2ShotgunGlassTimed
+      - MobPirateT2MusketTimed
+      - MobPirateT2MusketEMPTimed
+      - MobPirateT2MusketBlastTimed
+      - MobPirateT2MusketFragTimed
+      - MobPirateT2MusketPenetratorTimed
+      - MobPirateT2MachineCannonTimed
+      - MobPirateT2DoubleFlintlockTimed
+      - MobPirateT2DoubleRevolverTimed
+    rarePrototypes:
+      - MobPirateT2RevolverCutlassTimed
+      - MobPirateT2GrapeshotTimed
+      - MobPirateT2CannoballTimed
+      - MobPirateT2MechTimed
+      - MobPirateT2JuggernautTimed
+      - MobPirateT1BorgAssaultTimed
+      - MobPirateT1BorgMiningTimed
     rareChance: 0.15
 
+- type: entity
+  name: pirate T3 spawner (despawn)
+  id: MobPirateT3TimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+      # ???????
+      - MobPirateT3BolaTimed
+      - MobPirateT3StunTimed
+      # ???????
+      - MobPirateT3Shield1984Timed
+      - MobPirateT3ShieldSMGTimed
+      - MobPirateT3DMRTimed
+      - MobPirateT3Rifle2Timed
+      - MobPirateT3RifleTimed
+      - MobPirateT3LaserSMGTimed
+      - MobPirateT3LaserCannonTimed
+      - MobPirateT3RevolverTimed
+      - MobPirateT3SMGTimed
+    rarePrototypes:
+      - MobPirateT3L6Timed
+      - MobPirateT3TachankaTimed
+      - MobPirateT3RPDTimed
+      - MobPirateT3GrenadierTimed
+      - MobPirateT3InfiltratorTimed
+      - MobPirateT3SniperTimed
+      - MobPirateT1BorgAssaultTimed
+    rareChance: 0.15
+
+# mixed all tiers spawner (despawn)
+- type: entity
+  name: pirate T1-T3 spawner (despawn)
+  id: MobPirateAllTiersTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+      - MobPirateT1TimedSpawner
+      - MobPirateT2TimedSpawner
+      - MobPirateT3TimedSpawner
+
+# region Timed-despan pirate variants (inherit original + MobPirateTimedDespawn)
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1Knife]
+  id: MobPirateT1KnifeTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1MonkeyKnuckleDusters]
+  id: MobPirateT1MonkeyKnuckleDustersTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1Pickaxe]
+  id: MobPirateT1PickaxeTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1Pistol]
+  id: MobPirateT1PistolTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1Mosin]
+  id: MobPirateT1MosinTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1PKA]
+  id: MobPirateT1PKATimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1MonkeyFlareGun]
+  id: MobPirateT1MonkeyFlareGunTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1MonkeyFlareGunCoin]
+  id: MobPirateT1MonkeyFlareGunCoinTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1MonkeyFlareGunIncendiary]
+  id: MobPirateT1MonkeyFlareGunIncendiaryTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1MonkeyFlareGunUranium]
+  id: MobPirateT1MonkeyFlareGunUraniumTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1ScrapSMG]
+  id: MobPirateT1ScrapSMGTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1SMG]
+  id: MobPirateT1SMGTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1Flintlock]
+  id: MobPirateT1FlintlockTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1MonkeyFireBomb]
+  id: MobPirateT1MonkeyFireBombTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1MonkeyEDagger]
+  id: MobPirateT1MonkeyEDaggerTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1Hunter]
+  id: MobPirateT1HunterTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1HunterSmash]
+  id: MobPirateT1HunterSmashTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1BombardierFire]
+  id: MobPirateT1BombardierFireTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1BombardierGlass]
+  id: MobPirateT1BombardierGlassTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1BombardierPipe]
+  id: MobPirateT1BombardierPipeTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1ECutlass]
+  id: MobPirateT1ECutlassTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1EPickaxe]
+  id: MobPirateT1EPickaxeTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1PlasmaCutter]
+  id: MobPirateT1PlasmaCutterTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1ScrapRifle]
+  id: MobPirateT1ScrapRifleTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1Rifle]
+  id: MobPirateT1RifleTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1BorgAssault]
+  id: MobPirateT1BorgAssaultTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1BorgMining]
+  id: MobPirateT1BorgMiningTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1BorgDerelict]
+  id: MobPirateT1BorgDerelictTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2Cutlass]
+  id: MobPirateT2CutlassTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2ECutlass]
+  id: MobPirateT2ECutlassTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2Sledgehammer]
+  id: MobPirateT2SledgehammerTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2GauntletDrill]
+  id: MobPirateT2GauntletDrillTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2Shotgun]
+  id: MobPirateT2ShotgunTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2ShotgunMiniBall]
+  id: MobPirateT2ShotgunMiniBallTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2ShotgunGlass]
+  id: MobPirateT2ShotgunGlassTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2Musket]
+  id: MobPirateT2MusketTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2MusketEMP]
+  id: MobPirateT2MusketEMPTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2MusketBlast]
+  id: MobPirateT2MusketBlastTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2MusketFrag]
+  id: MobPirateT2MusketFragTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2MusketPenetrator]
+  id: MobPirateT2MusketPenetratorTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2MachineCannon]
+  id: MobPirateT2MachineCannonTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2DoubleFlintlock]
+  id: MobPirateT2DoubleFlintlockTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2DoubleRevolver]
+  id: MobPirateT2DoubleRevolverTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2RevolverCutlass]
+  id: MobPirateT2RevolverCutlassTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2Grapeshot]
+  id: MobPirateT2GrapeshotTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2Cannoball]
+  id: MobPirateT2CannoballTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2Mech]
+  id: MobPirateT2MechTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2Juggernaut]
+  id: MobPirateT2JuggernautTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3Bola]
+  id: MobPirateT3BolaTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3Stun]
+  id: MobPirateT3StunTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3Shield1984]
+  id: MobPirateT3Shield1984Timed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3ShieldSMG]
+  id: MobPirateT3ShieldSMGTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3DMR]
+  id: MobPirateT3DMRTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3Rifle2]
+  id: MobPirateT3Rifle2Timed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3Rifle]
+  id: MobPirateT3RifleTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3LaserSMG]
+  id: MobPirateT3LaserSMGTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3LaserCannon]
+  id: MobPirateT3LaserCannonTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3Revolver]
+  id: MobPirateT3RevolverTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3SMG]
+  id: MobPirateT3SMGTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3L6]
+  id: MobPirateT3L6Timed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3Tachanka]
+  id: MobPirateT3TachankaTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3RPD]
+  id: MobPirateT3RPDTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3Grenadier]
+  id: MobPirateT3GrenadierTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3Infiltrator]
+  id: MobPirateT3InfiltratorTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3Sniper]
+  id: MobPirateT3SniperTimed
+
+# boss timed variants
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1Boss]
+  id: MobPirateT1BossTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2Boss]
+  id: MobPirateT2BossTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3Boss]
+  id: MobPirateT3BossTimed
+# endregion Timed variants
 # Variations
 # region Melee Tier 1
 - type: entity
@@ -670,8 +1162,8 @@
 
 - type: entity
   name: Scrap boarder
-  description: Rookie raider sent first through the breach. Usually doesn’t come back, but makes a great distraction.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBase, MobHumanoidHostileAISimpleMelee, MobPirateSparkEffectBase]
+  description: Rookie raider sent first through the breach. Usually doesnt come back, but makes a great distraction.
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBase, MobPirateSparkEffectBase]
   id: MobPirateT1Knife
   components:
   - type: Loadout
@@ -724,7 +1216,7 @@
 - type: entity
   name: Scrap boarder
   description: Swings with the characteristic Vshuuu Vshuuu sound of an energy sword, constantly showing off just how awesome these Eeeee-blades are.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBase, MobHumanoidHostileAISimpleMelee]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBase]
   id: MobPirateT1ECutlass
   components:
   - type: Loadout
@@ -747,7 +1239,7 @@
 
 - type: entity
   name: Scrap miner
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBase, MobHumanoidHostileAISimpleMelee]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBase]
   id: MobPirateT1EPickaxe
   description: A looter that scavenged enough coins to afford some decent equipment.
   components:
@@ -771,7 +1263,7 @@
 
 - type: entity
   name: Scrap miner
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBase, MobHumanoidHostileAISimpleMelee]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBase]
   id: MobPirateT1Pickaxe
   description: Armed with a trusty pickaxe and greed, every group needs its grunts.
   components:
@@ -815,7 +1307,7 @@
 
 - type: entity
   name: goliath hunter
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2Melee]
   id: MobPirateT1Hunter
   description: Veteran scrappers, these salvagers are wealthy enough to explore abandoned ruins for the adrenaline rush and adventure alone.
   components:
@@ -878,7 +1370,7 @@
 
 - type: entity
   name: goliath smasher
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2Melee]
   id: MobPirateT1HunterSmash
   description: Veteran scrappers, these salvagers are bulky enough to use heavy crusher-axe.
   components:
@@ -951,7 +1443,7 @@
 - type: entity
   name: Scrap salvager
   description: A seasoned pirate-salvager. With a plasma cutter, capable of slicing through shuttle hulls and clearing a path for the boarding team.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2Ranged]
   id: MobPirateT1PlasmaCutter
   components:
   - type: Loadout
@@ -1140,7 +1632,7 @@
 
 - type: entity
   name: Scrap raider
-  description: Loves guns. Has built as many weapons with his own hands as he’s blown up. Armed with an improvised SMG.
+  description: Loves guns. Has built as many weapons with his own hands as he�s blown up. Armed with an improvised SMG.
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
   id: MobPirateT1ScrapSMG
   components:
@@ -1183,7 +1675,7 @@
   name: Scrap Automatic
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
   id: MobPirateT1ScrapRifle
-  description: In a team where everyone is armed with whatever they could grab, he picked up a rifle — at least it used to be one…
+  description: In a team where everyone is armed with whatever they could grab, he picked up a rifle � at least it used to be one�
   components:
   - type: Loadout
     prototypes:
@@ -1232,7 +1724,7 @@
   name: Scrap raider
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
   id: MobPirateT1SMG
-  description: In a team where everyone is armed with whatever they could grab, he picked up a rifle — at least it used to be one…
+  description: In a team where everyone is armed with whatever they could grab, he picked up a rifle � at least it used to be one�
   components:
   - type: Loadout
     prototypes:
@@ -1584,7 +2076,7 @@
 - type: entity
   name: pirate boarder
   description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee, MobPirateSparkEffectBase]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2Melee, MobPirateSparkEffectBase]
   id: MobPirateT2Cutlass
   components:
   - type: Loadout
@@ -1604,7 +2096,7 @@
 - type: entity
   name: pirate boarder
   description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2Melee]
   id: MobPirateT2ECutlass
   components:
   - type: Loadout
@@ -1637,8 +2129,8 @@
 
 - type: entity
   name: pirate breacher
-  description: A boarding team member armed with a sledgehammer, capable of breaking through an airlock — or someone’s skull.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee, MobPirateSparkEffectBase]
+  description: A boarding team member armed with a sledgehammer, capable of breaking through an airlock � or someone�s skull.
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2Melee]
   id: MobPirateT2Sledgehammer
   components:
   - type: Loadout
@@ -1682,7 +2174,7 @@
 - type: entity
   name: pirate breacher
   description: Drilling in the name of... drilling. No rock formation or shuttle wall can withstand the power of mining drill gauthlet.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2, MobHumanoidHostileAISimpleMelee, MobPirateSparkEffectBase]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2Melee, MobPirateSparkEffectBase]
   id: MobPirateT2GauntletDrill
   components:
   - type: Loadout
@@ -1760,18 +2252,18 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: WeldingFuel
-        Quantity: 200
+        Quantity: 300
   - type: MobThresholds
     thresholds:
       0: Alive
-      370: Critical
-      380: Dead
+      350: Critical
+      375: Dead
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTypeTrigger
         damageType: Heat
-        damage: 1500
+        damage: 3000
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawnInContainer: true
@@ -1783,21 +2275,6 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MeatLaserImpact
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Radiation
-        damage: 15
-      behaviors:
-      - !type:PopupBehavior
-        popup: mouth-taste-metal
-        popupType: LargeCaution
-        targetOnly: true
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Radiation
-        damage: 40
-      behaviors:
-      - !type:VomitBehavior
   - type: PassiveDamage
     allowedStates:
     - Alive
@@ -1813,7 +2290,7 @@
       300: 1.6
       350: 1.7
   - type: Stamina
-    baseCritThreshold: 800
+    baseCritThreshold: 1200
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 2.75
@@ -1824,14 +2301,14 @@
         volume: 5
   - type: Repairable
     fuelCost: 25
-    doAfterDelay: 10
+    doAfterDelay: 3
   - type: MeleeWeapon
     hidden: true
     autoAttack: true
-    attackRate: 3.5
+    attackRate: 4
     damage:
       types:
-        Structural: 50
+        Structural: 40
         Piercing: 5
         Slash: 5
         Blunt: 5
@@ -2008,8 +2485,8 @@
 
 - type: entity
   name: Shrap'nel Thunder
-  description: Turns everything into cheese with holes. Claims that “shrapnel is just another form of art.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2]
+  description: Turns everything into cheese with holes. Claims that �shrapnel is just another form of art.
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2Ranged]
   id: MobPirateT2Grapeshot
   components:
   - type: Loadout
@@ -2083,7 +2560,7 @@
 - type: entity
   name: Pirate gunslinger
   description: Wields two pirate revolvers. One revolver is good, but two are even better.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2Ranged]
   id: MobPirateT2DoubleRevolver
   components:
   - type: Loadout
@@ -2128,7 +2605,7 @@
 - type: entity
   name: Pirate duelist
   description: Armed with a pair of old flintlock pistols. Fires slowly, but painfully.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2Ranged]
   id: MobPirateT2DoubleFlintlock
   components:
   - type: Loadout
@@ -2173,7 +2650,7 @@
 - type: entity
   name: pirate blunderbuss
   description: Less a gun, more a handheld cannon. Fires anything that fits the barrel.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2Ranged]
   id: MobPirateT2Shotgun
   components:
   - type: Loadout
@@ -2248,7 +2725,7 @@
 - type: entity
   name: pirate musketeer
   description: Armed with an antique large-caliber musket.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2Ranged]
   id: MobPirateT2Musket
   components:
   - type: Loadout
@@ -2266,11 +2743,17 @@
     - sprite: Clothing/Head/Hardsuits/pirateeva.rsi
       state: on-equipped-HELMET-vox
       shader: unshaded
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 8
+    rechargeSound:
+      path: /Audio/_Sunrise/Effects/silence.ogg
   - type: BasicEntityAmmoProvider
     proto: CartridgeAntiMateriel
+    capacity: 1
+    count: 1
   - type: Gun
     showExamineText: false
-    fireRate: 0.1
+    fireRate: 1
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -2293,9 +2776,49 @@
   - type: ParrotMemory
 
 - type: entity
+  name: pirate musketeer
+  description: Armed with an antique large-caliber musket. Color of tip on ammo in his bandolier was blue.
+  parent: MobPirateT2Musket
+  id: MobPirateT2MusketEMP
+  suffix: EMP
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: CartridgeAntiMaterielEmp
+
+- type: entity
+  name: pirate musketeer
+  description: Armed with an antique large-caliber musket. Color of tip on ammo in his bandolier was brown.
+  parent: MobPirateT2Musket
+  id: MobPirateT2MusketBlast
+  suffix: Blast
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: CartridgeAntiMaterielBlast
+
+- type: entity
+  name: pirate musketeer
+  description: Armed with an antique large-caliber musket. Color of tip on ammo in his bandolier was green.
+  parent: MobPirateT2Musket
+  id: MobPirateT2MusketFrag
+  suffix: Frag
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: CartridgeAntiMaterielFrag
+
+- type: entity
+  name: pirate musketeer
+  description: Armed with an antique large-caliber musket. Color of tip on ammo in his bandolier was red.
+  parent: MobPirateT2Musket
+  id: MobPirateT2MusketPenetrator
+  suffix: Armor-piece
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: CartridgeAntiMaterielPenetrator
+
+- type: entity
   name: pirate machinonner
   description: Pirate with handheld belt feeded cannon..What?!.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2Ranged]
   id: MobPirateT2MachineCannon
   components:
   - type: Loadout
@@ -2347,7 +2870,7 @@
 - type: entity
   name: Privateer hunter
   description: A pirate who has found sponsors, well-armed and suitably dangerous.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT3]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT3Melee]
   id: MobPirateT3Bola
   components:
   - type: Loadout
@@ -2383,7 +2906,7 @@
 - type: entity
   name: Privateer hunter
   description: A pirate who has found sponsors, well-armed and suitably dangerous.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT3]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT3Melee]
   id: MobPirateT3Stun
   components:
   - type: Loadout
@@ -2420,7 +2943,7 @@
 - type: entity
   name: Privateer boarder
   description: A pirate who has found sponsors, well-armed and suitably dangerous.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT3]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT3Melee]
   id: MobPirateT3Shield1984
   components:
   - type: Loadout
@@ -2463,7 +2986,7 @@
 - type: entity
   name: Privateer boarder
   description: A pirate who has found sponsors, well-armed and suitably dangerous.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT3, MobPirateSparkEffectBase]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT3Melee]
   id: MobPirateT3ShieldSMG
   components:
   - type: Loadout
@@ -2505,7 +3028,7 @@
 - type: entity
   name: Privateer sharpshooter
   description: A pirate who has found sponsors, well-armed and suitably dangerous.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3Ranged]
   id: MobPirateT3DMR
   components:
   - type: Loadout
@@ -2562,7 +3085,7 @@
 - type: entity
   name: Tachanka
   description: LMG! Mounted and Loaded!
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3, MobPirateSparkEffectBase]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3Ranged, MobPirateSparkEffectBase]
   id: MobPirateT3Tachanka
   components:
   - type: Loadout
@@ -2613,7 +3136,7 @@
 
 - type: entity
   name: Scrapshade
-  description: Boo! Scared? Don’t worry, I won’t hurt you.
+  description: Boo! Scared? Don�t worry, I won�t hurt you.
   parent: MobPirateT3DMR
   id: MobPirateT3Infiltrator
   components:
@@ -2672,7 +3195,7 @@
 - type: entity
   name: Privateer rifleman
   description: A pirate who has found sponsors, well-armed and suitably dangerous.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3Ranged]
   id: MobPirateT3Rifle
   components:
   - type: Loadout
@@ -2751,7 +3274,7 @@
 - type: entity
   name: Privateer machinegunner
   description: A pirate who has found sponsors, well-armed and suitably dangerous.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3Ranged]
   id: MobPirateT3L6
   components:
   - type: Loadout
@@ -2883,7 +3406,7 @@
 - type: entity
   name: Privateer machinegunner
   description: A pirate who has found sponsors, well-armed and suitably dangerous.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3Ranged]
   id: MobPirateT3RPD
   components:
   - type: Loadout
@@ -2928,7 +3451,7 @@
 - type: entity
   name: Privateer salamander
   description: A pirate who has found sponsors, well-armed and suitably dangerous.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3Ranged]
   id: MobPirateT3LaserSMG
   components:
   - type: Loadout
@@ -2970,7 +3493,7 @@
 - type: entity
   name: Privateer mamba
   description: A pirate who has found sponsors, well-armed and suitably dangerous.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3Ranged]
   id: MobPirateT3LaserCannon
   components:
   - type: Loadout
@@ -3016,8 +3539,8 @@
 
 - type: entity
   name: Privateer grenadier
-  description: Covered in fireworks and explosives. Hasn’t heard of safety regulations or just ignores them loudly.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3]
+  description: Covered in fireworks and explosives. Hasn�t heard of safety regulations or just ignores them loudly.
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3Ranged]
   id: MobPirateT3Grenadier
   components:
   - type: Loadout
@@ -3035,6 +3558,10 @@
     - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-heavy.rsi
       state: on-equipped-HELMET
       shader: unshaded
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 7
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: BasicEntityAmmoProvider
     proto: GrenadeFrag
     capacity: 1
@@ -3042,7 +3569,7 @@
   - type: Gun
     projectileSpeed: 15
     showExamineText: false
-    fireRate: 0.15
+    fireRate: 1
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -3051,7 +3578,7 @@
 - type: entity
   name: bounty hunter
   description: A seasoned merc who joined the pirate ranks. Fast hands, faster trigger.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3Ranged]
   id: MobPirateT3Revolver
   components:
   - type: Loadout
@@ -3095,7 +3622,7 @@
 # region Tier 1-3 Boss
 - type: entity
   name: Captain Rustfist
-  description: An old salvage veteran, more metal than man. His fists creak, his armor’s held together by bolts and faith, and if he swings at you, it’s best to play dead and hope he buys it.
+  description: An old salvage veteran, more metal than man. His fists creak, his armor�s held together by bolts and faith, and if he swings at you, it�s best to play dead and hope he buys it.
   parent: [MobHostileBossBase, MobPirateBase, MobPirateSparkEffectBase]
   id: MobPirateT1Boss
   components:
@@ -3187,7 +3714,7 @@
 - type: entity
   name: Captain Gold Bolt
   description: Space legend, feared and drunk in equal measure.
-  parent: [MobHostileBossBase, MobPirateBaseT2]
+  parent: [MobHostileBossBase, MobPirateBaseT2Ranged]
   id: MobPirateT2Boss
   components:
   - type: Loadout
@@ -3262,7 +3789,7 @@
 - type: entity
   name: Skull House
   description: The Heavy Mech USSP, a communist variant of the Durand, features stronger armor and a powerful machine gun.
-  parent: [MobHostileBossBase, MobPirateBaseT3, MobPirateSparkEffectBase]
+  parent: [MobHostileBossBase, MobPirateBaseT3Ranged, MobPirateSparkEffectBase]
   id: MobPirateT3Boss
   components:
   - type: Loadout
@@ -3405,3 +3932,7 @@
     - SmokeScreenImplant
     - ScramImplant
     - CreepyLaughImplant
+  - type: GhostRole
+    prob: 0.35
+    makeSentient: true
+

@@ -672,7 +672,7 @@
     walkModifier: 0.85
     sprintModifier: 0.85
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitMilira
+    clothingPrototype: ClothingHeadHelmetEVAMilira
   - type: ClothingWhitelist
     whitelist:
       tags:

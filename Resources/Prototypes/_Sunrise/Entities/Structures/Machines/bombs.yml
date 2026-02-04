@@ -52,13 +52,16 @@
   suffix: Bomb
   components:
     - type: Sprite
-      sprite: _Sunrise/Objects/Weapons/Bombs/Pizzabomb.rsi
+      sprite: _Sunrise/Objects/Weapons/Bombs/pizzabomb.rsi
     - type: TwoStageTrigger #Trigger the sound trigger, delay, then explode
       triggerDelay: 0.5
       components:
         - type: ExplodeOnTrigger # Explode after the delay
           keysIn:
             - stageTwo
+    - type: Item
+      sprite: _Sunrise/Objects/Weapons/Bombs/pizzabomb.rsi
+      heldPrefix: box
     - type: EmitSoundOnTrigger
       sound: /Audio/Machines/microwave_done_beep.ogg
     - type: TriggerOnUiOpen # Timer is triggered on storage open

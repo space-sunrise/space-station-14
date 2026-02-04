@@ -40,6 +40,24 @@
                 <RichTextLabel Name="PreviewLabel" VerticalAlignment="Top" Margin="9 3" MaxWidth="360"/>
             </ScrollContainer>
         </Control>
+        <!-- Sunrise-Start -->
+        <BoxContainer Orientation="Horizontal" Margin="11 5 11 0">
+            <Label Text="{Loc news-write-ui-photos-label}" Margin="6 0 10 0" VerticalAlignment="Center"/>
+            <Button Name="ButtonAddPhoto" Text="{Loc news-write-ui-add-photo-text}" SetHeight="24"/>
+            <Control HorizontalExpand="True"/>
+            <Label Name="PhotoCountLabel" Text="0/10" StyleClasses="LabelWeak" VerticalAlignment="Center" Margin="0 0 6 0"/>
+        </BoxContainer>
+        <Control Name="PhotosPanel" SetHeight="120" Margin="11 5 11 0">
+            <PanelContainer>
+                <PanelContainer.PanelOverride>
+                    <graphics:StyleBoxFlat BackgroundColor="#1a1a1c" BorderThickness="1" BorderColor="#3B3E56"/>
+                </PanelContainer.PanelOverride>
+            </PanelContainer>
+            <ScrollContainer Name="PhotosScroll" HScrollEnabled="True" VScrollEnabled="False" VerticalExpand="True">
+                 <BoxContainer Name="PhotosContainer" Orientation="Horizontal" SeparationOverride="5" Margin="5 5" VerticalExpand="True"/>
+            </ScrollContainer>
+        </Control>
+        <!-- Sunrise-End -->
         <BoxContainer Orientation="Horizontal" Margin="12 5 12 8">
             <Control>
                 <Button Name="ButtonCancel" SetHeight="32" SetWidth="85"
@@ -47,11 +65,11 @@
             </Control>
             <Control HorizontalExpand="True"/>
             <BoxContainer Orientation="Horizontal">
-                <Button Name="ButtonSaveDraft" SetHeight="32" SetWidth="85"
-                        StyleClasses="OpenRight" Text="{Loc news-write-ui-save-text}"/>
-                <Button Name="ButtonPreview" SetHeight="32" SetWidth="85"
-                        StyleClasses="OpenBoth" Text="{Loc news-write-ui-preview-text}"/>
-                <Button Name="ButtonPublish" SetHeight="32" SetWidth="85" Text="{Loc news-write-ui-publish-text}" Access="Public"/>
+                <Button Name="ButtonSaveDraft" SetHeight="32" SetWidth="120"
+                        StyleClasses="OpenRight" Text="{Loc news-write-ui-save-text}"/> <!-- Sunrise-Edit -->
+                <Button Name="ButtonPreview" SetHeight="32" SetWidth="120"
+                        StyleClasses="OpenBoth" Text="{Loc news-write-ui-preview-text}"/> <!-- Sunrise-Edit -->
+                <Button Name="ButtonPublish" SetHeight="32" SetWidth="120" Text="{Loc news-write-ui-publish-text}" Access="Public"/> <!-- Sunrise-Edit -->
             </BoxContainer>
         </BoxContainer>
     </BoxContainer>

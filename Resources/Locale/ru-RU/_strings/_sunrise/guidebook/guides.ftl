@@ -2,6 +2,7 @@
 
 guide-entry-ammunition = Боеприпасы
 guide-entry-improvised-grenade-casing = Самодельная граната (корпус)
+guide-entry-detonator-triggers = Взрывной шнур и триггеры
 
 guide-entry-disease = Разумная болезнь
 guide-entry-expeditions = Экспедиции

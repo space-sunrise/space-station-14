@@ -14,6 +14,7 @@ public class ChatInputBox : PanelContainer
     public readonly ChannelSelectorButton ChannelSelector;
     public readonly HistoryLineEdit Input;
     public readonly ChannelFilterButton FilterButton;
+    public Button? EmojiButton; // Sunrise-Add
     protected readonly BoxContainer Container;
     protected ChatChannel ActiveChannel { get; private set; } = ChatChannel.Local;
 
@@ -51,6 +52,28 @@ public class ChatInputBox : PanelContainer
         AddStyleClass(StyleClassChatPanel);
         ChannelSelector.OnChannelSelect += UpdateActiveChannel;
     }
+
+    // Sunrise-Start
+    public void ToggleEmojiButton(bool visible)
+    {
+        if (visible && EmojiButton == null)
+        {
+            EmojiButton = new Button
+            {
+                Name = "EmojiButton",
+                Text = "☻",
+                SetWidth = 30,
+                ToolTip = Loc.GetString("messenger-emoji-button-tooltip")
+            };
+            // Insert before FilterButton
+            Container.AddChild(EmojiButton);
+            FilterButton.SetPositionInParent(Container.ChildCount - 1);
+        }
+
+        if (EmojiButton != null)
+            EmojiButton.Visible = visible;
+    }
+    // Sunrise-End
 
     private void UpdateActiveChannel(ChatSelectChannel selectedChannel)
     {

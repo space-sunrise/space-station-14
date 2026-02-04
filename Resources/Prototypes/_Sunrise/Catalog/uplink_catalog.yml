@@ -48,6 +48,9 @@
   productEntity: PouchAmmo
   categories:
   - UplinkWearables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
 
 - type: listing
   id: UplinkPouchExplosive
@@ -512,11 +515,41 @@
 
 - type: listing
   id: UplinkMagazineDragunov
-  description: uplink-magazine-dragunov-desc
+  description: uplink-magazine-dragunov-sp-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
-  productEntity: MagazineDragunov
+  productEntity: MagazineDragunovSP
   cost:
     Telecrystal: 1
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineDragunovHP
+  description: uplink-magazine-dragunov-hp-desc
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
+  productEntity: MagazineDragunovHP
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineDragunovFMJ
+  description: uplink-magazine-dragunov-fmj-desc
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
+  productEntity: MagazineDragunovFMJ
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineDragunovIncendiary
+  description: uplink-magazine-dragunov-incendiary-desc
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
+  productEntity: MagazineDragunovIncendiary
+  cost:
+    Telecrystal: 2
   categories:
   - UplinkAmmo
 
@@ -819,12 +852,9 @@
   id: UplinkBoomboxBundle
   name: uplink-music-boombox-name
   description: uplink-music-boombox-desc
-  productEntity: ClothingBackpackDuffelBoomboxBundle
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 2
+  productEntity: BoomboxSyndie
   cost:
-    Telecrystal: 4
+    Telecrystal: 2
   categories:
   - UplinkPointless
 
@@ -2003,7 +2033,7 @@
 # Implats
 
 - type: listing
-  id: UplinkSmokeScreenImplanter  #PR Wiz #31782
+  id: UplinkSmokeScreenImplanter
   name: uplink-smoke-screen-implanter-name
   description: uplink-smoke-screen-implanter-desc
   icon: { sprite: Objects/Weapons/Grenades/smoke.rsi, state: icon }
@@ -2051,9 +2081,9 @@
   productEntity: LauncherCreamPieFake
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 6
+    Telecrystal: 4
   cost:
-    Telecrystal: 8
+    Telecrystal: 5
   categories:
   - UplinkJob
   conditions:
@@ -2067,7 +2097,7 @@
   description: uplink-heavy-cleanade-desc
   productEntity: CleanerGrenadeAcidBox
   cost:
-    Telecrystal: 4
+    Telecrystal: 3
   categories:
   - UplinkJob
   conditions:
@@ -2152,9 +2182,9 @@
   productEntity: LauncherSyringeRapid
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - UplinkJob
   conditions:

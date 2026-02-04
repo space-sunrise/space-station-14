@@ -8338,7 +8338,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ClothingHeadHelmetHardsuitMilira
+- proto: ClothingHeadHelmetEVAMilira
   entities:
   - uid: 2826
     mapInit: true

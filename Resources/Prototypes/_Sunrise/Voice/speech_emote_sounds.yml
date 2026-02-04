@@ -1,5 +1,6 @@
 - type: emoteSounds
   id: MaleFelinid
+  parent: MaleHuman
   params:
     variation: 0.125
   sounds:
@@ -32,6 +33,7 @@
 
 - type: emoteSounds
   id: FemaleFelinid
+  parent: FemaleHuman
   params:
     variation: 0.125
   sounds:
@@ -64,6 +66,7 @@
 
 - type: emoteSounds
   id: MaleTajaran
+  parent: MaleHuman
   params:
     variation: 0.125
   sounds:
@@ -96,6 +99,7 @@
 
 - type: emoteSounds
   id: FemaleTajaran
+  parent: FemaleHuman
   params:
     variation: 0.125
   sounds:
@@ -129,6 +133,7 @@
 
 - type: emoteSounds
   id: UnisexSwine
+  parent: MaleHuman
   sounds:
     Scream:
       collection: SwineScreams
@@ -168,6 +173,7 @@
 
 - type: emoteSounds
   id: Predator
+  parent: MaleHuman
   params:
     variation: 0.125
   sounds:
@@ -177,6 +183,14 @@
       collection: PredatorSigh
     Laugh:
       collection: PredatorLaugh
+    Flip:
+      path: /Audio/Effects/thudswoosh.ogg
+    Dance:
+      path: /Audio/Effects/thudswoosh.ogg
+    Lay:
+      collection: BodyFall
+    FallOnNeck:
+      collection: BodyFall
 
 - type: emoteSounds
   id: Reaper
@@ -187,6 +201,7 @@
 
 - type: emoteSounds
   id: ClownGoblin
+  parent: MaleHuman
   params:
     variation: 0.125
   sounds:
@@ -195,6 +210,7 @@
 
 - type: emoteSounds
   id: UnisexResomi
+  parent: FemaleHuman
   params:
     variation: 0.125
   sounds:

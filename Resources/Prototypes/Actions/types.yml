@@ -148,10 +148,9 @@
     maxCharges: 3
   # Sunrise-Start
   - type: AutoRecharge
-    rechargeDuration: 600
+    rechargeDuration: 300
   # Sunrise-End
   - type: Action
-    useDelay: 5 # Sunrise-Edit
     checkCanInteract: false
     itemIconStyle: BigAction
     priority: -20

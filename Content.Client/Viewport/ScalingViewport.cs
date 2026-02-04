@@ -314,6 +314,25 @@ namespace Content.Client.Viewport
             return Vector2.Transform(vpLocal, matrix);
         }
 
+        // Sunrise-Start
+        public Vector2 WorldToRenderTargetPixels(Vector2 map)
+        {
+            if (_eye == null)
+                return default;
+
+            EnsureViewportCreated();
+
+            return _viewport!.WorldToLocal(map);
+        }
+        public Vector2 RenderTargetPixelsToWorld(Vector2 pixels)
+        {
+            if (_eye == null || _viewport == null)
+                return default;
+
+            return _viewport.LocalToWorld(pixels).Position;
+        }
+        // Sunrise-End
+
         public Matrix3x2 GetWorldToScreenMatrix()
         {
             EnsureViewportCreated();

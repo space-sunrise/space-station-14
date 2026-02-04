@@ -8,8 +8,15 @@
   - MagazineShotgunEmpty
   - MagazineShotgunSlug
   - MagazinePistolCaselessRifle
+  - MagazinePistolSubMachineGunCaselessExtended
   - MagazineBoxAntiMateriel
   # Sunrise-start
   - MagazineRifleBoxSP
   - MagazineRifleBoxFMJ
+  - MagazinePistol40SubMachineGunSP
+  - MagazinePistol40SubMachineGunHP
+  - MagazinePistol40SubMachineGunFMJ
+  - MagazineDragunovSP
+  - MagazineDragunovHP
+  - MagazineDragunovFMJ
   # Sunrise-end

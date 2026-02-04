@@ -26,21 +26,26 @@ public sealed class MessengerUser
     public string? JobTitle { get; set; }
 
     /// <summary>
-    /// ID отдела пользователя (опционально)
+    /// ID главного отдела пользователя (опционально)
     /// </summary>
-    public string? DepartmentId { get; set; }
+    public string? DepartmentId => DepartmentIds.Count > 0 ? DepartmentIds[0] : null;
+
+    /// <summary>
+    /// Список всех отделов пользователя
+    /// </summary>
+    public List<string> DepartmentIds { get; set; } = new();
 
     /// <summary>
     /// ID иконки роли пользователя (опционально)
     /// </summary>
     public ProtoId<JobIconPrototype>? JobIconId { get; set; }
 
-    public MessengerUser(string userId, string name, string? jobTitle = null, string? departmentId = null, ProtoId<JobIconPrototype>? jobIconId = null)
+    public MessengerUser(string userId, string name, string? jobTitle = null, List<string>? departmentIds = null, ProtoId<JobIconPrototype>? jobIconId = null)
     {
         UserId = userId;
         Name = name;
         JobTitle = jobTitle;
-        DepartmentId = departmentId;
+        DepartmentIds = departmentIds ?? new List<string>();
         JobIconId = jobIconId;
     }
 }

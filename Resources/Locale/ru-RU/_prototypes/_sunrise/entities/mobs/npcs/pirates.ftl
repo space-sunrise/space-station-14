@@ -76,6 +76,18 @@ ent-MobPirateT2ShotgunGlass = мушкетонщик пиратов
     .desc = Знает толк в дробовиках, вооружен мушкетоном. Меньше дробовик, больше ручная пушка. Стреляет всем, что влезло в ствол.
 ent-MobPirateT2Musket = мушкетер пиратов
     .desc = Пират вооруженый старинным мушкетом крупного калибра и штыком.
+ent-MobPirateT2MusketEMP = { ent-MobPirateT2Musket }
+    .suffix = ЭМИ
+    .desc = { ent-MobPirateT2Musket.desc }
+ent-MobPirateT2MusketBlast = { ent-MobPirateT2Musket }
+    .suffix = Взрыв
+    .desc = { ent-MobPirateT2Musket.desc }
+ent-MobPirateT2MusketFrag = { ent-MobPirateT2Musket }
+    .suffix = Осколки
+    .desc = { ent-MobPirateT2Musket.desc }
+ent-MobPirateT2MusketPenetrator = { ent-MobPirateT2Musket }
+    .suffix = Бронебой
+    .desc = { ent-MobPirateT2Musket.desc }
 ent-MobPirateT2MachineCannon = ядромётчик пиратов
     .desc = Пират с ручной пушкой с ленточным питанием... Что?!.
 ent-MobPirateT2Mech = Большой Ярк
@@ -130,3 +142,238 @@ ent-MobPirateT3Boss = Красный Черепень
     .desc = Тяжёлый боевой экзокостюм СССП разновидности «Дюранда». Медленный, но неумолимый. Вооружён старым пулемётом крупного калибра. Может выдать рывок, выпустить огонь или скрыться в дыму, сопровождая всё жутким смехом.
 ent-MobPirateT3Tachanka = Тачанка
     .desc = Пулемёт! Установлен и заряжен!
+
+# timed despawn variants reuse base names/descriptions
+ent-MobPirateT1KnifeTimed = { ent-MobPirateT1Knife }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1Knife.desc }
+ent-MobPirateT1MonkeyKnuckleDustersTimed = { ent-MobPirateT1MonkeyKnuckleDusters }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1MonkeyKnuckleDusters.desc }
+ent-MobPirateT1PickaxeTimed = { ent-MobPirateT1Pickaxe }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1Pickaxe.desc }
+ent-MobPirateT1PistolTimed = { ent-MobPirateT1Pistol }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1Pistol.desc }
+ent-MobPirateT1MosinTimed = { ent-MobPirateT1Mosin }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1Mosin.desc }
+ent-MobPirateT1PKATimed = { ent-MobPirateT1PKA }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1PKA.desc }
+ent-MobPirateT1MonkeyFlareGunTimed = { ent-MobPirateT1MonkeyFlareGun }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1MonkeyFlareGun.desc }
+ent-MobPirateT1MonkeyFlareGunCoinTimed = { ent-MobPirateT1MonkeyFlareGunCoin }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1MonkeyFlareGunCoin.desc }
+ent-MobPirateT1MonkeyFlareGunIncendiaryTimed = { ent-MobPirateT1MonkeyFlareGunIncendiary }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1MonkeyFlareGunIncendiary.desc }
+ent-MobPirateT1MonkeyFlareGunUraniumTimed = { ent-MobPirateT1MonkeyFlareGunUranium }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1MonkeyFlareGunUranium.desc }
+ent-MobPirateT1ScrapSMGTimed = { ent-MobPirateT1ScrapSMG }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1ScrapSMG.desc }
+ent-MobPirateT1SMGTimed = { ent-MobPirateT1SMG }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1SMG.desc }
+ent-MobPirateT1FlintlockTimed = { ent-MobPirateT1Flintlock }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1Flintlock.desc }
+ent-MobPirateT1MonkeyFireBombTimed = { ent-MobPirateT1MonkeyFireBomb }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1MonkeyFireBomb.desc }
+ent-MobPirateT1MonkeyEDaggerTimed = { ent-MobPirateT1MonkeyEDagger }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1MonkeyEDagger.desc }
+ent-MobPirateT1HunterTimed = { ent-MobPirateT1Hunter }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1Hunter.desc }
+ent-MobPirateT1HunterSmashTimed = { ent-MobPirateT1HunterSmash }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1HunterSmash.desc }
+ent-MobPirateT1BombardierFireTimed = { ent-MobPirateT1BombardierFire }
+    .suffix = Деспавн 20мин, Зажиг
+    .desc = { ent-MobPirateT1BombardierFire.desc }
+ent-MobPirateT1BombardierGlassTimed = { ent-MobPirateT1BombardierGlass }
+    .suffix = Деспавн 20мин, Картечь
+    .desc = { ent-MobPirateT1BombardierGlass.desc }
+ent-MobPirateT1BombardierPipeTimed = { ent-MobPirateT1BombardierPipe }
+    .suffix = Деспавн 20мин, Бомба
+    .desc = { ent-MobPirateT1BombardierPipe.desc }
+ent-MobPirateT1ECutlassTimed = { ent-MobPirateT1ECutlass }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1ECutlass.desc }
+ent-MobPirateT1EPickaxeTimed = { ent-MobPirateT1EPickaxe }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1EPickaxe.desc }
+ent-MobPirateT1PlasmaCutterTimed = { ent-MobPirateT1PlasmaCutter }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1PlasmaCutter.desc }
+ent-MobPirateT1ScrapRifleTimed = { ent-MobPirateT1ScrapRifle }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1ScrapRifle.desc }
+ent-MobPirateT1RifleTimed = { ent-MobPirateT1Rifle }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1Rifle.desc }
+ent-MobPirateT1BorgAssaultTimed = { ent-MobPirateT1BorgAssault }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1BorgAssault.desc }
+ent-MobPirateT1BorgMiningTimed = { ent-MobPirateT1BorgMining }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1BorgMining.desc }
+ent-MobPirateT1BorgDerelictTimed = { ent-MobPirateT1BorgDerelict }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1BorgDerelict.desc }
+ent-MobPirateT2CutlassTimed = { ent-MobPirateT2Cutlass }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT2Cutlass.desc }
+ent-MobPirateT2ECutlassTimed = { ent-MobPirateT2ECutlass }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT2ECutlass.desc }
+ent-MobPirateT2SledgehammerTimed = { ent-MobPirateT2Sledgehammer }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT2Sledgehammer.desc }
+ent-MobPirateT2GauntletDrillTimed = { ent-MobPirateT2GauntletDrill }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT2GauntletDrill.desc }
+ent-MobPirateT2ShotgunTimed = { ent-MobPirateT2Shotgun }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT2Shotgun.desc }
+ent-MobPirateT2ShotgunMiniBallTimed = { ent-MobPirateT2ShotgunMiniBall }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT2ShotgunMiniBall.desc }
+ent-MobPirateT2ShotgunGlassTimed = { ent-MobPirateT2ShotgunGlass }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT2ShotgunGlass.desc }
+ent-MobPirateT2MusketTimed = { ent-MobPirateT2Musket }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT2Musket.desc }
+ent-MobPirateT2MusketEMPTimed = { ent-MobPirateT2MusketEMP }
+    .suffix = Деспавн 20мин, ЭМИ
+    .desc = { ent-MobPirateT2Musket.desc }
+ent-MobPirateT2MusketBlastTimed = { ent-MobPirateT2MusketBlast }
+    .suffix = Деспавн 20мин, Взрыв
+    .desc = { ent-MobPirateT2Musket.desc }
+ent-MobPirateT2MusketFragTimed = { ent-MobPirateT2MusketFrag }
+    .suffix = Деспавн 20мин, Осколки
+    .desc = { ent-MobPirateT2Musket.desc }
+ent-MobPirateT2MusketPenetratorTimed = { ent-MobPirateT2MusketPenetrator }
+    .suffix = Деспавн 20мин, Бронебой
+    .desc = { ent-MobPirateT2Musket.desc }
+ent-MobPirateT2MachineCannonTimed = { ent-MobPirateT2MachineCannon }
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT2MachineCannon.desc }
+ent-MobPirateT2DoubleFlintlockTimed = { ent-MobPirateT2DoubleFlintlock }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT2DoubleFlintlock.desc }
+ent-MobPirateT2DoubleRevolverTimed = { ent-MobPirateT2DoubleRevolver }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT2DoubleRevolver.desc }
+ent-MobPirateT2RevolverCutlassTimed = { ent-MobPirateT2RevolverCutlass }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT2RevolverCutlass.desc }
+ent-MobPirateT2GrapeshotTimed = { ent-MobPirateT2Grapeshot }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT2Grapeshot.desc }
+ent-MobPirateT2CannoballTimed = { ent-MobPirateT2Cannoball }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT2Cannoball.desc }
+ent-MobPirateT2MechTimed = { ent-MobPirateT2Mech }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT2Mech.desc }
+ent-MobPirateT2JuggernautTimed = { ent-MobPirateT2Juggernaut }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT2Juggernaut.desc }
+ent-MobPirateT3BolaTimed = { ent-MobPirateT3Bola }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT3Bola.desc }
+ent-MobPirateT3StunTimed = { ent-MobPirateT3Stun }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT3Stun.desc }
+ent-MobPirateT3Shield1984Timed = { ent-MobPirateT3Shield1984 }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT3Shield1984.desc }
+ent-MobPirateT3ShieldSMGTimed = { ent-MobPirateT3ShieldSMG }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT3ShieldSMG.desc }
+ent-MobPirateT3DMRTimed = { ent-MobPirateT3DMR }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT3DMR.desc }
+ent-MobPirateT3Rifle2Timed = { ent-MobPirateT3Rifle2 }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT3Rifle2.desc }
+ent-MobPirateT3RifleTimed = { ent-MobPirateT3Rifle }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT3Rifle.desc }
+ent-MobPirateT3LaserSMGTimed = { ent-MobPirateT3LaserSMG }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT3LaserSMG.desc }
+ent-MobPirateT3LaserCannonTimed = { ent-MobPirateT3LaserCannon }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT3LaserCannon.desc }
+ent-MobPirateT3RevolverTimed = { ent-MobPirateT3Revolver }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT3Revolver.desc }
+ent-MobPirateT3SMGTimed = { ent-MobPirateT3SMG }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT3SMG.desc }
+ent-MobPirateT3L6Timed = { ent-MobPirateT3L6 }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT3L6.desc }
+ent-MobPirateT3TachankaTimed = { ent-MobPirateT3Tachanka }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT3Tachanka.desc }
+ent-MobPirateT3RPDTimed = { ent-MobPirateT3RPD }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT3RPD.desc }
+ent-MobPirateT3GrenadierTimed = { ent-MobPirateT3Grenadier }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT3Grenadier.desc }
+ent-MobPirateT3InfiltratorTimed = { ent-MobPirateT3Infiltrator }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT3Infiltrator.desc }
+ent-MobPirateT3SniperTimed = { ent-MobPirateT3Sniper }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT3Sniper.desc }
+ent-MobPirateT1BossTimed = { ent-MobPirateT1Boss }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT1Boss.desc }
+ent-MobPirateT2BossTimed = { ent-MobPirateT2Boss }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT2Boss.desc }
+ent-MobPirateT3BossTimed = { ent-MobPirateT3Boss }
+
+    .suffix = Деспавн 20мин
+    .desc = { ent-MobPirateT3Boss.desc }
+
+

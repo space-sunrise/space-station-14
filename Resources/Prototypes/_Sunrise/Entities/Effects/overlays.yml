@@ -27,8 +27,8 @@
   components:
   - type: PointLight
     color: "#D6E4FF"
-    energy: 0.1
-    radius: 7
+    energy: 0.05
+    radius: 6
     softness: 20
 
 - type: entity

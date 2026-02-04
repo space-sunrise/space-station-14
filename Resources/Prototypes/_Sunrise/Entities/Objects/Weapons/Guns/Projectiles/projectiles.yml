@@ -912,9 +912,9 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Heat: 14
-        Slash: 14
-        Structural: 30
+        Heat: 13
+        Slash: 13
+        Structural: 23
     penetrationThreshold: 800
     penetrationDamageTypeRequirement:
     - Structural
@@ -926,8 +926,6 @@
     radius: 2.5
     color: "#dd16d395"
     energy: 0.5
-  - type: GatheringProjectile
-    amount: 6
 
 - type: entity
   name: wide plasma barrage

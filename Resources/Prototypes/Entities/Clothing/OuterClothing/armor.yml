@@ -34,9 +34,6 @@
   - type: ArmorSparkEffect #starlight
   - type: StaminaResistance # Sunrise-Add
     damageCoefficient: 0.9 # Sunrise-Add
-  - type: Item
-    shape:
-    - 0,0,2,2
   # Sunrise-End
 
 #Standard armor vest, allowed for security and bartenders

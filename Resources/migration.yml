@@ -957,4 +957,10 @@ ImplantExtractorMachineCircuitboard: InterrogatorMachineCircuitboard
 
 # 2026-01-02
 EnergyDomeWiredTest: null
+
+# 2026-01-31
+ClothingHeadHelmetHardsuitMilira: ClothingHeadHelmetEVAMilira
 # Sunrise-End
+
+# 2026-01-30
+MagazineDragunov: MagazineDragunovSP

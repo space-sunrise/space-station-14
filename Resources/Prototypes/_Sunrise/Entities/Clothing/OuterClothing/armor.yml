@@ -362,7 +362,7 @@
   parent: ClothingOuterArmorBasic
   id: ClothingOuterArmorPlate
   name: plate carrier
-  description: A standard Type II armored vest that provides good protection against bullets and lasers with the help of a plate inserted in the back and front, but not much else.
+  description: A standard Type II armored vest that provides good protection against bullets with the help of a plate inserted in the back and front, but not much else.
   components:
   - type: Pierceable
     level: Metal

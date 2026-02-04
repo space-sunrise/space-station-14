@@ -7,6 +7,9 @@
     selectedBorgType: security
   - type: Loadout
     prototypes: [ BorgArmorSiliconLoadoutMk2 ]
+  - type: Tag
+    tags:
+    - NoPaint
 
 - type: entity
   id: BorgChassisPeace

@@ -105,3 +105,9 @@
   abstract: true
   components:
   - type: StationRandomXenoArtifact
+
+- type: entity
+  id: BaseStationSpam
+  abstract: true
+  components:
+  - type: StationMessengerSpam

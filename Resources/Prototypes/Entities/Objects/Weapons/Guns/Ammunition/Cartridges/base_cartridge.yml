@@ -40,3 +40,8 @@
         volume: -1
   - type: StaticPrice
     price: 1
+  # Sunrise-Start
+  - type: GuideHelp
+    guides:
+    - SunriseAmmunition
+  # Sunrise-End
