@@ -1027,17 +1027,14 @@
   discountDownTo:
     Telecrystal: 20
   cost:
-    Telecrystal: 25 # Sunrise-Edit
+    Telecrystal: 25
   categories:
   - UplinkWeaponry
-#Sunrise-start
   conditions:
   - !type:StoreWhitelistCondition
-    whitelist:
+    blacklist:
       tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-#Sunrise-end
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkClothingBackpackSyndieDL6902Filled
@@ -2492,19 +2489,6 @@
     Telecrystal: 5
   categories:
   - UplinkWeaponry
-
-# - type: listing # Sunrise-TODO: Fix this
-#   id: uplinkWeaponPistolStechkin
-#   name: uplink-stechkin-name
-#   description: uplink-stechkin-desc
-#   productEntity: WeaponPistolStechkin
-#   discountCategory: rareDiscounts
-#   discountDownTo:
-#     Telecrystal: 3
-#   cost:
-#     Telecrystal: 6
-#   categories:
-#   - UplinkWeaponry
 
 - type: listing
   id: UplinkGrenadeLauncherM79

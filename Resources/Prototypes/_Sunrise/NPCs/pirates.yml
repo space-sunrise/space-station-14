@@ -2687,6 +2687,7 @@
   description: Clad in a heavily armored ancient spacesuit. Slow but incredibly resilient.
   parent: [MobPirateT2MachineCannon, MobPirateSparkEffectBase]
   id: MobPirateT2JuggernautMG
+  suffix: Machine gunner
   components:
   - type: Loadout
     prototypes:

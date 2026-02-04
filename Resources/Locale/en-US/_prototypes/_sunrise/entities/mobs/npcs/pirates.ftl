@@ -1,5 +1,5 @@
 ent-MobPirateT2JuggernautMG = { ent-MobPirateT2Juggernaut }
-    .suffix = machinegunner
+    .suffix = Machine gunner
     .desc = { ent-MobPirateT2Juggernaut.desc }
 
 ent-MobPirateT2JuggernautMGTimed = { ent-MobPirateT2JuggernautMG }
