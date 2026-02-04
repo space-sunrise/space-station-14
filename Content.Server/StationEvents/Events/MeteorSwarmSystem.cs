@@ -6,6 +6,7 @@ using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Random.Helpers;
+using Robust.Server.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
@@ -17,6 +18,7 @@ namespace Content.Server.StationEvents.Events;
 public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
 {
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly StationSystem _station = default!;
 
@@ -32,8 +34,7 @@ public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
         if (component.Announcement is { } locId)
             _chat.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(locId), playDefault: false, colorOverride: Color.Gold);
 
-        // Sunrise-Edit
-        // _audio.PlayGlobal(component.AnnouncementSound, allPlayersInGame, true);
+        _audio.PlayGlobal(component.AnnouncementSound, allPlayersInGame, true);
     }
 
     protected override void ActiveTick(EntityUid uid, MeteorSwarmComponent component, GameRuleComponent gameRule, float frameTime)
