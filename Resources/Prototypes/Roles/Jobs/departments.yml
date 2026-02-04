@@ -107,6 +107,7 @@
   - Psychologist
   - Paramedic
   - MedicalPathologist  # Sunrise-pathologist
+  - Brigmedic # Sunrise-edit
 
 - type: department
   id: Security
