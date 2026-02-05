@@ -62,7 +62,7 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Piercing: 15 # Sunrise-Edit
+        Piercing: 5
   # Visual & Audio
   - type: DamageVisuals
     damageOverlayGroups:
