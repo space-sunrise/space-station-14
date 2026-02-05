@@ -4,8 +4,8 @@ meta:
   engineVersion: 271.1.0
   forkId: ""
   forkVersion: ""
-  time: 01/29/2026 14:40:01
-  entityCount: 30196
+  time: 02/05/2026 11:20:20
+  entityCount: 30297
 maps:
 - 1
 grids:
@@ -14730,6 +14730,9 @@ entities:
             19714: -4,-47
             20714: 40,-10
             20850: 13,13
+            22086: -39,60
+            22087: -39,59
+            22088: -39,58
         - node:
             zIndex: 90
             color: '#FFFFFFFF'
@@ -15501,6 +15504,9 @@ entities:
             19769: 39,14
             19985: 36,-25
             19986: 36,-23
+            22083: -41,58
+            22084: -41,59
+            22085: -41,60
         - node:
             zIndex: 1
             color: '#DE3A3AFF'
@@ -22488,12 +22494,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,0.5
       parent: 2
-  - uid: 13133
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -10.5,2.5
-      parent: 2
 - proto: AirlockDetectiveGlassLocked
   entities:
   - uid: 162
@@ -22546,7 +22546,7 @@ entities:
       pos: -13.5,-32.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -280984.3
+      secondsUntilStateChange: -281584.75
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -24024,7 +24024,7 @@ entities:
       pos: -14.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -280980.78
+      secondsUntilStateChange: -281581.22
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -24248,7 +24248,7 @@ entities:
       pos: 36.5,30.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -765060
+      secondsUntilStateChange: -765660.5
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -24514,6 +24514,14 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 55.5,0.5
       parent: 2
+- proto: AirlockNrepLocked
+  entities:
+  - uid: 13133
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -10.5,2.5
+      parent: 2
 - proto: AirlockQuartermasterGlassLocked
   entities:
   - uid: 20237
@@ -24720,7 +24728,7 @@ entities:
       pos: 44.5,27.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -783197.75
+      secondsUntilStateChange: -783798.25
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -145947,6 +145955,25 @@ entities:
       content: >2-
                                                     [bold]НЕ ТРОГАТЬ!
                                ЭНЕРГО-ДРОБОВИК СМОТРИТЕЛЯ!
+  - uid: 30252
+    components:
+    - type: Transform
+      pos: -16.46507,46.653362
+      parent: 2
+    - type: Paper
+      content: >2
+                                         
+
+
+
+
+
+
+
+
+
+                                                [bold]БУДЬТЕ БДИТЕЛЬНЫ!
+                           вентелятора под шлюзом больше [color=red]НЕТ!
 - proto: PaperBin10
   entities:
   - uid: 16833
@@ -146710,7 +146737,7 @@ entities:
     - type: MetaData
       desc: Вероятно это была неподходящая идея...
     - type: Transform
-      pos: 1.485487,34.59391
+      pos: 6.1638002,53.434547
       parent: 2
 - proto: PlushieHampter
   entities:
@@ -168004,6 +168031,23 @@ entities:
     - type: Transform
       pos: -33.5,14.5
       parent: 2
+- proto: SpawnPointCommaid
+  entities:
+  - uid: 30243
+    components:
+    - type: Transform
+      pos: 0.5,2.5
+      parent: 2
+  - uid: 30244
+    components:
+    - type: Transform
+      pos: -1.5,2.5
+      parent: 2
+  - uid: 30245
+    components:
+    - type: Transform
+      pos: 2.5,2.5
+      parent: 2
 - proto: SpawnPointDetective
   entities:
   - uid: 21522
@@ -168483,6 +168527,28 @@ entities:
     - type: Transform
       pos: -41.5,8.5
       parent: 2
+- proto: SpawnPointRoboticist
+  entities:
+  - uid: 30248
+    components:
+    - type: Transform
+      pos: -38.5,11.5
+      parent: 2
+  - uid: 30249
+    components:
+    - type: Transform
+      pos: -37.5,14.5
+      parent: 2
+  - uid: 30250
+    components:
+    - type: Transform
+      pos: -34.5,14.5
+      parent: 2
+  - uid: 30251
+    components:
+    - type: Transform
+      pos: -51.5,13.5
+      parent: 2
 - proto: SpawnPointSalvageSpecialist
   entities:
   - uid: 19322
@@ -168572,6 +168638,13 @@ entities:
     components:
     - type: Transform
       pos: -27.5,4.5
+      parent: 2
+- proto: SpawnPointSecurityPilot
+  entities:
+  - uid: 30247
+    components:
+    - type: Transform
+      pos: 11.5,35.5
       parent: 2
 - proto: SpawnPointSeniorEngineer
   entities:
@@ -171583,6 +171656,742 @@ entities:
     - type: Airtight
       airBlocked: True
   - uid: 30193
+    components:
+    - type: Transform
+      anchored: True
+      pos: 18.5,25.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30197
+    components:
+    - type: Transform
+      anchored: True
+      pos: 18.5,-17.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30198
+    components:
+    - type: Transform
+      anchored: True
+      pos: -44.5,24.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30199
+    components:
+    - type: Transform
+      anchored: True
+      pos: 60.5,24.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30200
+    components:
+    - type: Transform
+      anchored: True
+      pos: 56.5,24.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30201
+    components:
+    - type: Transform
+      anchored: True
+      pos: 56.5,17.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30202
+    components:
+    - type: Transform
+      anchored: True
+      pos: 60.5,17.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30203
+    components:
+    - type: Transform
+      anchored: True
+      pos: -23.5,31.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30204
+    components:
+    - type: Transform
+      anchored: True
+      pos: -31.5,51.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30205
+    components:
+    - type: Transform
+      anchored: True
+      pos: -29.5,37.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30206
+    components:
+    - type: Transform
+      anchored: True
+      pos: -31.5,55.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30207
+    components:
+    - type: Transform
+      anchored: True
+      pos: -31.5,31.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30208
+    components:
+    - type: Transform
+      anchored: True
+      pos: 48.5,5.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30209
+    components:
+    - type: Transform
+      anchored: True
+      pos: 47.5,8.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30210
+    components:
+    - type: Transform
+      anchored: True
+      pos: 5.5,16.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30211
+    components:
+    - type: Transform
+      anchored: True
+      pos: -2.5,22.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30212
+    components:
+    - type: Transform
+      anchored: True
+      pos: 48.5,3.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30213
+    components:
+    - type: Transform
+      anchored: True
+      pos: -52.5,-2.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30214
+    components:
+    - type: Transform
+      anchored: True
+      pos: -52.5,0.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30215
+    components:
+    - type: Transform
+      anchored: True
+      pos: -44.5,-2.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30216
+    components:
+    - type: Transform
+      anchored: True
+      pos: -22.5,-9.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30217
+    components:
+    - type: Transform
+      anchored: True
+      pos: 15.5,-25.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30218
+    components:
+    - type: Transform
+      anchored: True
+      pos: 17.5,-25.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30219
+    components:
+    - type: Transform
+      anchored: True
+      pos: -17.5,9.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30220
+    components:
+    - type: Transform
+      anchored: True
+      pos: -17.5,7.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30221
+    components:
+    - type: Transform
+      anchored: True
+      pos: 1.5,-25.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30222
+    components:
+    - type: Transform
+      anchored: True
+      pos: -0.5,-25.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30223
+    components:
+    - type: Transform
+      anchored: True
+      pos: -0.5,-21.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30224
+    components:
+    - type: Transform
+      anchored: True
+      pos: 1.5,-21.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30225
+    components:
+    - type: Transform
+      anchored: True
+      pos: 1.5,-52.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30226
+    components:
+    - type: Transform
+      anchored: True
+      pos: -0.5,-52.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30227
+    components:
+    - type: Transform
+      anchored: True
+      pos: 1.5,-43.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30228
+    components:
+    - type: Transform
+      anchored: True
+      pos: -0.5,-43.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30229
+    components:
+    - type: Transform
+      anchored: True
+      pos: -14.5,10.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30230
+    components:
+    - type: Transform
+      anchored: True
+      pos: -16.5,10.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30231
+    components:
+    - type: Transform
+      anchored: True
+      pos: -24.5,10.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30232
+    components:
+    - type: Transform
+      anchored: True
+      pos: -26.5,10.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30233
+    components:
+    - type: Transform
+      anchored: True
+      pos: 18.5,9.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30234
+    components:
+    - type: Transform
+      anchored: True
+      pos: 18.5,7.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30235
+    components:
+    - type: Transform
+      anchored: True
+      pos: 15.5,10.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30236
+    components:
+    - type: Transform
+      anchored: True
+      pos: 17.5,10.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30237
+    components:
+    - type: Transform
+      anchored: True
+      pos: -24.5,22.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30238
+    components:
+    - type: Transform
+      anchored: True
+      pos: -26.5,22.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30239
+    components:
+    - type: Transform
+      anchored: True
+      pos: 41.5,19.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30240
+    components:
+    - type: Transform
+      anchored: True
+      pos: 39.5,19.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30241
+    components:
+    - type: Transform
+      anchored: True
+      pos: 18.5,23.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30242
+    components:
+    - type: Transform
+      anchored: True
+      pos: 18.5,25.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30246
+    components:
+    - type: Transform
+      anchored: True
+      pos: 18.5,-17.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30253
+    components:
+    - type: Transform
+      anchored: True
+      pos: -44.5,24.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30254
+    components:
+    - type: Transform
+      anchored: True
+      pos: 60.5,24.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30255
+    components:
+    - type: Transform
+      anchored: True
+      pos: 56.5,24.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30256
+    components:
+    - type: Transform
+      anchored: True
+      pos: 56.5,17.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30257
+    components:
+    - type: Transform
+      anchored: True
+      pos: 60.5,17.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30258
+    components:
+    - type: Transform
+      anchored: True
+      pos: -23.5,31.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30259
+    components:
+    - type: Transform
+      anchored: True
+      pos: -31.5,51.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30260
+    components:
+    - type: Transform
+      anchored: True
+      pos: -29.5,37.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30261
+    components:
+    - type: Transform
+      anchored: True
+      pos: -31.5,55.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30262
+    components:
+    - type: Transform
+      anchored: True
+      pos: -31.5,31.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30263
+    components:
+    - type: Transform
+      anchored: True
+      pos: 48.5,5.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30264
+    components:
+    - type: Transform
+      anchored: True
+      pos: 47.5,8.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30265
+    components:
+    - type: Transform
+      anchored: True
+      pos: 5.5,16.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30266
+    components:
+    - type: Transform
+      anchored: True
+      pos: -2.5,22.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30267
+    components:
+    - type: Transform
+      anchored: True
+      pos: 48.5,3.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30268
+    components:
+    - type: Transform
+      anchored: True
+      pos: -52.5,-2.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30269
+    components:
+    - type: Transform
+      anchored: True
+      pos: -52.5,0.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30270
+    components:
+    - type: Transform
+      anchored: True
+      pos: -44.5,-2.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30271
+    components:
+    - type: Transform
+      anchored: True
+      pos: -22.5,-9.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30272
+    components:
+    - type: Transform
+      anchored: True
+      pos: 15.5,-25.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30273
+    components:
+    - type: Transform
+      anchored: True
+      pos: 17.5,-25.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30274
+    components:
+    - type: Transform
+      anchored: True
+      pos: -17.5,9.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30275
+    components:
+    - type: Transform
+      anchored: True
+      pos: -17.5,7.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30276
+    components:
+    - type: Transform
+      anchored: True
+      pos: 1.5,-25.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30277
+    components:
+    - type: Transform
+      anchored: True
+      pos: -0.5,-25.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30278
+    components:
+    - type: Transform
+      anchored: True
+      pos: -0.5,-21.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30279
+    components:
+    - type: Transform
+      anchored: True
+      pos: 1.5,-21.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30280
+    components:
+    - type: Transform
+      anchored: True
+      pos: 1.5,-52.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30281
+    components:
+    - type: Transform
+      anchored: True
+      pos: -0.5,-52.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30282
+    components:
+    - type: Transform
+      anchored: True
+      pos: 1.5,-43.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30283
+    components:
+    - type: Transform
+      anchored: True
+      pos: -0.5,-43.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30284
+    components:
+    - type: Transform
+      anchored: True
+      pos: -14.5,10.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30285
+    components:
+    - type: Transform
+      anchored: True
+      pos: -16.5,10.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30286
+    components:
+    - type: Transform
+      anchored: True
+      pos: -24.5,10.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30287
+    components:
+    - type: Transform
+      anchored: True
+      pos: -26.5,10.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30288
+    components:
+    - type: Transform
+      anchored: True
+      pos: 18.5,9.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30289
+    components:
+    - type: Transform
+      anchored: True
+      pos: 18.5,7.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30290
+    components:
+    - type: Transform
+      anchored: True
+      pos: 15.5,10.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30291
+    components:
+    - type: Transform
+      anchored: True
+      pos: 17.5,10.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30292
+    components:
+    - type: Transform
+      anchored: True
+      pos: -24.5,22.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30293
+    components:
+    - type: Transform
+      anchored: True
+      pos: -26.5,22.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30294
+    components:
+    - type: Transform
+      anchored: True
+      pos: 41.5,19.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30295
+    components:
+    - type: Transform
+      anchored: True
+      pos: 39.5,19.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30296
+    components:
+    - type: Transform
+      anchored: True
+      pos: 18.5,23.5
+      parent: 2
+    - type: Airtight
+      airBlocked: True
+  - uid: 30297
     components:
     - type: Transform
       anchored: True
@@ -177271,7 +178080,7 @@ entities:
       pos: -17.5,8.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -280815.16
+      secondsUntilStateChange: -281415.6
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -200536,7 +201345,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -779070.6
+      secondsUntilStateChange: -779671.1
       state: Opening
     - type: Airlock
       autoClose: False
