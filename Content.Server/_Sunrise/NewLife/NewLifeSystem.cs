@@ -20,6 +20,8 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Sunrise.Interfaces.Shared;
+using Content.Server._Sunrise.PlanetPrison;
+using Robust.Shared.Map;
 
 namespace Content.Server._Sunrise.NewLife
 {
@@ -35,6 +37,8 @@ namespace Content.Server._Sunrise.NewLife
         [Dependency] private readonly PlayTimeTrackingSystem _playTimeTrackings = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IServerNetManager _netMgr = default!;
+        [Dependency] private readonly PlanetPrisonSystem _planetPrisonSystem = default!;
+        [Dependency] private readonly PlanetPrisonStationSystem _planetPrisonStation = default!;
         private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
         private readonly Dictionary<ICommonSession, NewLifeEui> _openUis = new();
@@ -199,6 +203,40 @@ namespace Content.Server._Sunrise.NewLife
                 stationsList.Add(GetNetEntity(stationUid), MetaData(stationUid).EntityName);
             }
 
+            // Попробуем определить станцию, соответствующую запущенной карте, и поместить её первой в списке.
+            // Используем StationSystem.GetStationInMap — это надёжнее, чем проверять Transform у самой сущности станции,
+            // т.к. у станции может быть несколько гридов и Transform станции может не иметь нужного MapID.
+            var launchedMapId = _planetPrisonStation.GetAnyLaunchedMapId();
+            if (launchedMapId != MapId.Nullspace && stationsList.Count > 0)
+            {
+                var stationUid = _stationSystem.GetStationInMap(launchedMapId);
+                if (stationUid != null)
+                {
+                    NetEntity? preferredNet = GetNetEntity(stationUid.Value);
+                    if (preferredNet.HasValue && stationsList.ContainsKey(preferredNet.Value))
+                    {
+                        // Перестроим словарь так, чтобы preferred был первым
+                        var orderedStations = new Dictionary<NetEntity, string>();
+                        var orderedJobs = new Dictionary<NetEntity, List<(JobPrototype, int?)>>();
+
+                        orderedStations.Add(preferredNet.Value, stationsList[preferredNet.Value]);
+                        if (jobsDict.ContainsKey(preferredNet.Value))
+                            orderedJobs.Add(preferredNet.Value, jobsDict[preferredNet.Value]);
+
+                        foreach (var kv in stationsList)
+                        {
+                            if (kv.Key.Equals(preferredNet.Value))
+                                continue;
+                            orderedStations.Add(kv.Key, kv.Value);
+                            if (jobsDict.ContainsKey(kv.Key))
+                                orderedJobs.Add(kv.Key, jobsDict[kv.Key]);
+                        }
+
+                        stationsList = orderedStations;
+                        jobsDict = orderedJobs;
+                    }
+                }
+            }
             if (!TryGetNextAllowRespawn(session.UserId, out var nextAllowRespawn))
                 return;
 

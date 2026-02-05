@@ -159,6 +159,12 @@ namespace Content.Server._Sunrise.PlanetPrison
 
             component.FirstMindAdded = true;
 
+            // Сохраняем MapId для корректного выбора станции в NewLife
+            if (TryComp<TransformComponent>(uid, out var xform))
+            {
+                component.MapId = xform.MapID;
+            }
+
 
             if (_roleSystem.MindHasRole<PlanetPrisonerRoleComponent>(mindId))
             {

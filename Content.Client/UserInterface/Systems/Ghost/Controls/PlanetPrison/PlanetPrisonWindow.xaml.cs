@@ -84,7 +84,6 @@ public sealed partial class PlanetPrisonWindow : DefaultWindow
 
     public void UpdateRolePriorities(Dictionary<string, PlanetPrisonRoleEntry.PriorityLevel> rolePriorities)
     {
-        Logger.Info($"UpdateRolePriorities called with {rolePriorities.Count} priorities");
         foreach (var child in RolesEntryContainer.Children)
         {
             if (child is PlanetPrisonRoleEntry roleEntry)
@@ -92,7 +91,6 @@ public sealed partial class PlanetPrisonWindow : DefaultWindow
                 var roleId = roleEntry.RoleId;
                 if (rolePriorities.TryGetValue(roleId, out var priority))
                 {
-                    Logger.Info($"Setting role {roleId} to {priority}");
                     roleEntry.SetSelectedPriority(priority);
                 }
                 else

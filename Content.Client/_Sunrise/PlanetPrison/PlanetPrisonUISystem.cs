@@ -104,7 +104,6 @@ public sealed class PlanetPrisonUISystem : EntitySystem
 
     public void OpenWindow()
     {
-        Logger.Info("PlanetPrisonUISystem: OpenWindow called");
 
         // Проверяем доступность ролей перед открытием окна
         if (!AreAnyPrisonRolesAvailable())
@@ -120,33 +119,26 @@ public sealed class PlanetPrisonUISystem : EntitySystem
             return;
         }
 
-        // Сбрасываем счетчик участников перед запросом актуального статуса
+        // Сбрасываем счетчик участников и состояния карт перед запросом актуального статуса
         _totalPriorityPlayers = 0;
 
-        Logger.Info($"Opening prison window, _rolePriority count before load: {_rolePriority.Count}");
-        foreach (var kvp in _rolePriority)
+        // Сбрасываем статусы всех карт
+        if (_metusMapEntry != null)
         {
-            Logger.Info($"Role priority before load: {kvp.Key} = {kvp.Value}");
+            _metusMapEntry.HideStatus();
+        }
+        if (_noxMapEntry != null)
+        {
+            _noxMapEntry.HideStatus();
         }
 
         // Загружаем сохраненные приоритеты ролей из файла при каждом открытии окна
         LoadRolePrioritiesFromPreferences();
 
-        Logger.Info($"After loading from file, _rolePriority count: {_rolePriority.Count}");
-        foreach (var kvp in _rolePriority)
-        {
-            Logger.Info($"Role priority after load: {kvp.Key} = {kvp.Value}");
-        }
-
         // Обновляем данные перед открытием окна
         PopulateMaps();
         PopulateRoles();
 
-        Logger.Info($"After populate roles, _rolePriority count: {_rolePriority.Count}");
-        foreach (var kvp in _rolePriority)
-        {
-            Logger.Info($"Role after populate: {kvp.Key}: priority {kvp.Value}");
-        }
 
         // Обновляем состояния кнопок ролей в соответствии с загруженными приоритетами
         UpdateRoleButtonStates();
@@ -167,15 +159,12 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         if (_window != null && !_window.IsOpen)
         {
             _window.OpenCentered();
-            Logger.Info("PlanetPrisonUISystem: Window opened");
-        }
-        else
-        {
-            Logger.Info("PlanetPrisonUISystem: Window already open or null");
         }
 
-        // Всегда запрашиваем актуальный статус при открытии окна
-        // Это гарантирует корректное отображение после любых изменений
+        // Отправляем все текущие приоритеты на сервер
+        SendAllRolePrioritiesToServer();
+
+        // Запрашиваем актуальный статус голосования для всех карт
         RequestPrisonVoteStatus();
     }
 
@@ -195,7 +184,6 @@ public sealed class PlanetPrisonUISystem : EntitySystem
 
     private void OnRolesTabActivated()
     {
-        Logger.Info("Roles tab activated - updating button states and requirements");
         UpdateRoleButtonStates();
         RefreshRoleRequirements();
     }
@@ -227,34 +215,26 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         _noxMapEntry.JoinPressed += OnJoinPressed;
         _window.AddMapEntry(_noxMapEntry);
 
-        Logger.Info("Added join button handlers for prison maps");
 
         // Настраиваем каждую карту отдельно
         SetupMapEntry("PlanetPrison", _metusMapEntry);
         SetupMapEntry("PlanetPrisonOld", _noxMapEntry);
 
-        Logger.Info("Added Metus and Nox map entries");
     }
 
     private void UpdatePriorityCounter()
     {
         if (_window == null) return;
 
-        Logger.Info($"Updating priority counter: {_totalPriorityPlayers} participants");
-
-        // Счетчик всегда виден под вкладкой карт
+        // Обычное отображение количества участников
         _window.GetPriorityCounterLabel().Text = Loc.GetString("planet-prison-participants-count",
             ("count", _totalPriorityPlayers));
-        _window.GetPriorityCounterPanel().Visible = true;
 
-        // Устанавливаем цвет фона
+        // Стандартный цвет фона
         var panel = _window.GetPriorityCounterPanel();
-        if (panel.PanelOverride == null)
-        {
-            // Создаем новый StyleBoxFlat с нужным цветом
-            var styleBox = new StyleBoxFlat { BackgroundColor = Color.FromHex("#202023") };
-            panel.PanelOverride = styleBox;
-        }
+        panel.PanelOverride = new StyleBoxFlat { BackgroundColor = Color.FromHex("#202023") };
+
+        _window.GetPriorityCounterPanel().Visible = true;
     }
 
     private int GetRequiredVotes(string mapId)
@@ -313,18 +293,25 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         // Отправляем голос на сервер (не блокируем кнопки локально)
         var message = new PlanetPrisonVoteMessage(mapId, (int)priority);
         RaiseNetworkEvent(message);
+
+        // Отправляем запрос на обновление статуса, чтобы UI обновился
+        RequestPrisonVoteStatus();
     }
 
     private void OnPrisonVoteUpdate(PlanetPrisonVoteUpdateEvent msg)
     {
-        Logger.Info($"Prison vote update: {msg.MapId}, votes: {msg.VoteCount}, voting: {msg.IsVoting}, time: {msg.RemainingSeconds}, total players: {msg.TotalPriorityPlayers}");
+        Logger.Info($"OnPrisonVoteUpdate received - MapId={msg.MapId}, IsVoting={msg.IsVoting}, TotalPriorityPlayers={msg.TotalPriorityPlayers}, InsufficientRoles=[{string.Join(",", msg.InsufficientRoles)}]");
 
         // Специальная обработка глобального сброса состояний
-        if (!msg.IsVoting && msg.TotalPriorityPlayers == -1 && !msg.RemainingSeconds.HasValue)
+        if (!msg.IsVoting && msg.TotalPriorityPlayers == -1 && msg.RemainingSeconds == 0)
         {
             // Полный сброс всех состояний на клиенте (специальный флаг TotalPriorityPlayers = -1)
             Logger.Info($"Received global state reset from server for {msg.MapId}, resetting counter to 0");
             _totalPriorityPlayers = 0; // Явно сбрасываем счетчик
+
+            // Полностью сбрасываем статусы запущенных карт при глобальном сбросе
+            _mapLaunched.Clear();
+
             ResetAllClientStates(null);
 
             // Перезагружаем приоритеты ролей после глобального сброса
@@ -337,6 +324,8 @@ public sealed class PlanetPrisonUISystem : EntitySystem
             Logger.Info("Global state reset completed on client");
             return;
         }
+
+        Logger.Debug($"DEBUG: Processing update for {msg.MapId} - VoteCount: {msg.VoteCount}, IsVoting: {msg.IsVoting}, IsLaunched: {msg.IsLaunched}, RemainingSeconds: {msg.RemainingSeconds}, TotalPriorityPlayers: {msg.TotalPriorityPlayers}, InsufficientRoles: [{string.Join(", ", msg.InsufficientRoles ?? Array.Empty<string>())}]");
 
         // Сохраняем количество голосов для конкретной карты
         _lastVoteCount[msg.MapId] = msg.VoteCount;
@@ -352,18 +341,15 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         // Обновляем общее количество игроков с приоритетами только если это не специальный флаг сброса
         if (msg.TotalPriorityPlayers != -1)
         {
-            Logger.Info($"Updating total players from {msg.TotalPriorityPlayers} (was {_totalPriorityPlayers})");
             _totalPriorityPlayers = msg.TotalPriorityPlayers;
-            _minPlayersRequired = msg.MinPlayersRequired;
         }
 
         // Обновляем счетчик приоритетов
         UpdatePriorityCounter();
 
-        // Специальная обработка для только что запущенной карты (RemainingSeconds = 0)
-        if (msg.RemainingSeconds.HasValue && msg.RemainingSeconds.Value == 0 && !msg.IsVoting)
+        // Специальная обработка для только что запущенной карты
+        if (msg.IsLaunched)
         {
-            Logger.Info($"Map {msg.MapId} just launched (RemainingSeconds=0)");
             _mapLaunched[msg.MapId] = true;
 
             // Помечаем entry как запущенную
@@ -396,16 +382,16 @@ public sealed class PlanetPrisonUISystem : EntitySystem
 
         if (mapEntry != null)
         {
-            if (msg.IsVoting && msg.RemainingSeconds.HasValue)
+            if (msg.IsVoting && msg.RemainingSeconds > 0)
             {
                 // Во время голосования: блокируем кнопки (счетчик не показываем)
                 mapEntry.HideVoteCount();
                 mapEntry.DisableButtons(); // Блокируем все кнопки во время голосования
 
-                if (msg.RemainingSeconds.Value > 0)
+                if (msg.RemainingSeconds > 0)
                 {
                     // Показываем таймер
-                    mapEntry.ShowTimer(msg.RemainingSeconds.Value);
+                    mapEntry.ShowTimer((int)msg.RemainingSeconds);
                     mapEntry.HideStatus();
                     mapEntry.HideVoteCount();
                 }
@@ -420,14 +406,14 @@ public sealed class PlanetPrisonUISystem : EntitySystem
                 UpdatePrisonButtonHighlight(true);
 
                 // Проигрываем звук, если это начало голосования
-                if (msg.RemainingSeconds.Value == 5)
+                if (msg.RemainingSeconds == 5)
                 {
                     // _entManager.System<AudioSystem>().PlayGlobal("/Audio/Effects/beep.ogg", Filter.Local(), false, AudioParams.Default);
                 }
             }
-            else if (!msg.IsVoting && msg.VoteCount >= GetRequiredVotes(msg.MapId))
+            else if (msg.IsLaunched)
             {
-                // Голосование завершено успешно - блокируем кнопки навсегда и показываем статус
+                // Карта запущена - показываем статус запуска
                 mapEntry.HideVoteCount();
                 mapEntry.HideTimer();
                 mapEntry.DisableButtons(); // Полная блокировка всех кнопок
@@ -440,7 +426,6 @@ public sealed class PlanetPrisonUISystem : EntitySystem
                     if (mapEntry != null)
                     {
                         mapEntry.ShowLaunchedStatus();
-                        Logger.Info($"Map {msg.MapId} launched successfully");
                     }
                 });
             }
@@ -480,17 +465,14 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         // Блокируем/разблокируем кнопки ролей и карт только во время отсчета запуска
         if (_window != null)
         {
-            var shouldLock = msg.IsVoting && msg.RemainingSeconds.HasValue && msg.RemainingSeconds.Value >= 0;
+            var shouldLock = msg.IsVoting && msg.RemainingSeconds >= 0;
             _window.SetRolesLocked(shouldLock);
             _window.SetMapsLocked(shouldLock);
-            Logger.Info($"Roles and maps buttons {(shouldLock ? "locked" : "unlocked")} due to voting countdown");
         }
     }
 
     private void OnRolePrioritySelected(string roleId, PlanetPrisonRoleEntry.PriorityLevel priority)
     {
-        Logger.Info($"Prison role priority selected: {roleId} = {priority} (was {_rolePriority.GetValueOrDefault(roleId, PlanetPrisonRoleEntry.PriorityLevel.Never)})");
-
         // Обновляем локальное состояние
         _rolePriority[roleId] = priority;
 
@@ -500,13 +482,25 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         // Отправляем приоритет роли на сервер
         var msg = new PlanetPrisonRolePriorityMessage(roleId, (int)priority);
         RaiseNetworkEvent(msg);
+
+        // Отправляем запрос на обновление статуса, чтобы UI обновился
+        RequestPrisonVoteStatus();
+    }
+
+    private void SendAllRolePrioritiesToServer()
+    {
+        foreach (var kvp in _rolePriority)
+        {
+            var roleId = kvp.Key;
+            var priority = kvp.Value;
+            var msg = new PlanetPrisonRolePriorityMessage(roleId, (int)priority);
+            RaiseNetworkEvent(msg);
+        }
     }
 
 
     private void OnRoleLoadoutPressed(string roleId)
     {
-        Logger.Info($"Prison role loadout pressed: {roleId}");
-
         try
         {
             // Закрываем существующее окно, если оно открыто
@@ -633,8 +627,6 @@ public sealed class PlanetPrisonUISystem : EntitySystem
 
     private void LoadRolePrioritiesFromPreferences()
     {
-        Logger.Info("Loading role priorities from file");
-
         try
         {
             var dirPath = new ResPath("/PlanetPrison");
@@ -643,38 +635,28 @@ public sealed class PlanetPrisonUISystem : EntitySystem
                 _resourceManager.UserData.CreateDir(dirPath);
             }
             var filePath = dirPath / "priorities.txt";
-            Logger.Info($"Checking if file exists: {filePath}");
             if (_resourceManager.UserData.Exists(filePath))
             {
-                Logger.Info("File exists, reading...");
                 using var stream = _resourceManager.UserData.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                 using var reader = new StreamReader(stream);
                 var prioritiesData = reader.ReadToEnd();
-                Logger.Info($"Loaded priorities data from file: '{prioritiesData}'");
 
                 if (!string.IsNullOrEmpty(prioritiesData))
                 {
                     var priorityPairs = prioritiesData.Split(',');
-                    Logger.Info($"Found {priorityPairs.Length} priority pairs");
 
                     foreach (var pair in priorityPairs)
                     {
-                        Logger.Info($"Processing pair: '{pair}'");
                         var parts = pair.Split(':');
                         if (parts.Length == 2 && int.TryParse(parts[1], out var priorityValue))
                         {
                             _rolePriority[parts[0]] = (PlanetPrisonRoleEntry.PriorityLevel)priorityValue;
-                            Logger.Info($"Loaded priority: {parts[0]} = {(PlanetPrisonRoleEntry.PriorityLevel)priorityValue}");
                         }
                         else
                         {
                             Logger.Warning($"Failed to parse priority pair: '{pair}'");
                         }
                     }
-                }
-                else
-                {
-                    Logger.Info("Priorities data is empty");
                 }
             }
             else
@@ -695,14 +677,8 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         if (_window == null)
             return;
 
-        Logger.Info($"Updating role button states, _rolePriority has {_rolePriority.Count} entries");
-        foreach (var kvp in _rolePriority)
-        {
-            Logger.Info($"Setting role {kvp.Key} to priority {kvp.Value}");
-        }
 
         _window.UpdateRolePriorities(_rolePriority);
-        Logger.Info("Updated role button states from saved priorities");
     }
 
     private bool HasActiveVoting()
@@ -715,7 +691,8 @@ public sealed class PlanetPrisonUISystem : EntitySystem
     private void OnRoleUpdate(PlanetPrisonRoleUpdateEvent msg)
     {
         // Обновляем UI роли на основе статуса
-        Logger.Info($"Role update received: {msg.RoleId}, taken={msg.IsTaken}, assigned={msg.IsAssigned}");
+        // Сервер автоматически отправляет обновления карт при изменении ролей,
+        // поэтому дополнительный запрос не нужен
 
         // Пока что просто логируем, в будущем можно добавить визуальные индикаторы
         // TODO: Найти соответствующий PlanetPrisonRoleEntry и обновить его статус
@@ -798,7 +775,6 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         // Сбрасываем состояние для всех карт, но НЕ трогаем статус _mapLaunched (запущенные карты остаются запущенными)
         foreach (var mapId in new[] { "PlanetPrison", "PlanetPrisonOld" })
         {
-            Logger.Info($"Resetting client state for {mapId}: hasVoted={_hasVoted[mapId]} -> false, localPriority={_localPriority[mapId]} -> Never");
 
             _hasVoted[mapId] = false;
             // НЕ сбрасываем _mapLaunched - запущенные карты остаются запущенными до их удаления
@@ -811,7 +787,6 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         SetupMapEntry("PlanetPrisonOld", _noxMapEntry);
 
         UpdatePriorityCounter();
-        Logger.Info($"Client states reset after launching {launchedMapId ?? "none (full reset)"}");
     }
 
     // Сбрасывает только состояния голосования, но сохраняет статусы запущенных карт
@@ -827,14 +802,16 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         }
 
         UpdatePriorityCounter();
-        Logger.Info("Voting states reset, launched statuses preserved");
     }
 
     private void UpdateMapEntryUI(PlanetPrisonVoteUpdateEvent msg, PlanetPrisonMapEntry entry)
     {
+        Logger.Debug($"DEBUG: UpdateMapEntryUI called for {msg.MapId} - IsVoting: {msg.IsVoting}, IsLaunched: {msg.IsLaunched}, RemainingSeconds: {msg.RemainingSeconds}, VoteCount: {msg.VoteCount}");
+
         // Обработка только что запущенной карты - показываем финальный статус сразу
-        if (!msg.IsVoting && msg.RemainingSeconds.HasValue && msg.RemainingSeconds.Value == 0)
+        if (msg.IsLaunched)
         {
+            Logger.Debug($"DEBUG: Handling launching status for {msg.MapId}");
             entry.HideTimer();
             entry.HideVoteCount();
             entry.ShowLaunchingStatus();
@@ -842,7 +819,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
             return;
         }
 
-        if (msg.IsVoting && msg.RemainingSeconds.HasValue)
+        if (msg.IsVoting)
         {
             HandleVotingUI(msg, entry);
         }
@@ -859,9 +836,9 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         entry.HideStatus();
 
         // При 1 секунде показываем "(запускается)" вместо цифры для плавного перехода
-        if (msg.RemainingSeconds!.Value > 1)
+        if (msg.RemainingSeconds > 1)
         {
-            entry.ShowTimer(msg.RemainingSeconds!.Value);
+            entry.ShowTimer((int)msg.RemainingSeconds);
         }
         else
         {
@@ -872,10 +849,13 @@ public sealed class PlanetPrisonUISystem : EntitySystem
 
     private void HandleNonVotingUI(PlanetPrisonVoteUpdateEvent msg, PlanetPrisonMapEntry entry)
     {
+        Logger.Debug($"DEBUG: HandleNonVotingUI for {msg.MapId} - checking _mapLaunched: {(_mapLaunched.ContainsKey(msg.MapId) ? _mapLaunched[msg.MapId].ToString() : "NOT_FOUND")}");
+
         entry.HideTimer();
 
         if (_mapLaunched.ContainsKey(msg.MapId) && _mapLaunched[msg.MapId])
         {
+            Logger.Debug($"DEBUG: Showing launched status for {msg.MapId} because _mapLaunched is true");
             // Карта уже запущена - блокируем интерфейс
             entry.ShowLaunchedStatus();
             entry.DisableButtons();
@@ -883,6 +863,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         }
         else
         {
+            Logger.Debug($"DEBUG: Hiding status for {msg.MapId} because _mapLaunched is false or not found");
             // Карта доступна для голосования
             entry.HideStatus();
             entry.EnableButtons();
@@ -899,11 +880,6 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         if (_window == null)
             return;
 
-        Logger.Info($"Populating roles, current _rolePriority count: {_rolePriority.Count}");
-        foreach (var kvp in _rolePriority)
-        {
-            Logger.Info($"Role before populate: {kvp.Key}: priority {kvp.Value}");
-        }
 
         _window.ClearRoles();
 
@@ -1028,10 +1004,8 @@ public sealed class PlanetPrisonUISystem : EntitySystem
 
     private void OnJoinPressed()
     {
-        Logger.Info("PlanetPrison join button pressed - opening new life interface");
         var msg = new NewLifeOpenRequest();
         _net.SendSystemNetworkMessage(msg);
-        Logger.Info("NewLifeOpenRequest sent successfully");
     }
 
     private void RefreshRoleRequirements()
@@ -1072,12 +1046,10 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         // Проверяем требования роли
         if (!_jobRequirements.IsAllowed(jobProto, profile, out var reason))
         {
-            Logger.Info($"Role {roleId} locked due to requirements: {reason}");
             entry.LockRequirements(reason);
         }
         else
         {
-            Logger.Info($"Role {roleId} requirements met, unlocking");
             entry.UnlockRequirements();
         }
     }
@@ -1104,7 +1076,6 @@ public sealed class PlanetPrisonUISystem : EntitySystem
             // Если хотя бы одна роль доступна, возвращаем true
             if (_jobRequirements.IsAllowed(jobProto, profile, out _))
             {
-                Logger.Info($"Prison role {roleId} is available for player");
                 return true;
             }
         }

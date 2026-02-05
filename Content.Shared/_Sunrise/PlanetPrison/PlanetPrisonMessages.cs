@@ -18,23 +18,32 @@ public sealed class PlanetPrisonVoteMessage : EntityEventArgs
 [NetSerializable, Serializable]
 public sealed class PlanetPrisonVoteUpdateEvent : EntityEventArgs
 {
-    public string MapId { get; }
-    public int VoteCount { get; } // Количество голосов с приоритетом > 0
-    public bool IsVoting { get; } // Идет ли голосование
-    public int? RemainingSeconds { get; } // Оставшееся время голосования
-    public int TotalPriorityPlayers { get; } // Общее количество игроков с приоритетами
-    public int MinPlayersRequired { get; } // Минимальное количество игроков для запуска
-    public bool IsLaunched { get; } // Запущена ли карта
+    [DataField]
+    public string MapId { get; set; } = default!;
+    [DataField]
+    public int VoteCount { get; set; } // Количество голосов с приоритетом > 0
+    [DataField]
+    public bool IsVoting { get; set; } // Идет ли голосование
+    [DataField]
+    public double RemainingSeconds { get; set; } // Оставшееся время голосования
+    [DataField]
+    public int TotalPriorityPlayers { get; set; } // Общее количество игроков с приоритетами
+    [DataField]
+    public bool IsLaunched { get; set; } // Запущена ли карта
+    [DataField]
+    public string[] InsufficientRoles { get; set; } = Array.Empty<string>();
 
-    public PlanetPrisonVoteUpdateEvent(string mapId, int voteCount, bool isVoting, int? remainingSeconds = null, int totalPriorityPlayers = 0, int minPlayersRequired = 2, bool isLaunched = false)
+    public PlanetPrisonVoteUpdateEvent() {}
+
+    public PlanetPrisonVoteUpdateEvent(string mapId, int voteCount, bool isVoting, bool isLaunched, double remainingSeconds, int totalPriorityPlayers, string[] insufficientRoles)
     {
         MapId = mapId;
         VoteCount = voteCount;
         IsVoting = isVoting;
+        IsLaunched = isLaunched;
         RemainingSeconds = remainingSeconds;
         TotalPriorityPlayers = totalPriorityPlayers;
-        MinPlayersRequired = minPlayersRequired;
-        IsLaunched = isLaunched;
+        InsufficientRoles = insufficientRoles ?? Array.Empty<string>();
     }
 }
 

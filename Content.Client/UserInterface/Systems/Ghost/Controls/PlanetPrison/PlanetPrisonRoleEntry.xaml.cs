@@ -57,10 +57,8 @@ public sealed partial class PlanetPrisonRoleEntry : BoxContainer
 
     public void SetSelectedPriority(PriorityLevel priority)
     {
-        Logger.Info($"SetSelectedPriority called for role {RoleId}: {priority} (was {_currentPriority})");
         _currentPriority = priority;
         UpdateButtonStates();
-        Logger.Info($"SetSelectedPriority completed for role {RoleId}: now {_currentPriority}");
     }
 
     private void UpdateButtonStates()

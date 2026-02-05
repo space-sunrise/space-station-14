@@ -9,6 +9,7 @@ using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
+using Content.Server.Preferences.Managers;
 using Robust.Server.Audio;
 using Content.Server.Maps;
 using Content.Server.Parallax;
@@ -32,6 +33,7 @@ using Robust.Shared.EntitySerialization;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Server.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -44,7 +46,8 @@ namespace Content.Server._Sunrise.PlanetPrison;
 /// </summary>
 internal readonly record struct MapVotingState(
     Dictionary<NetUserId, int> Votes,
-    CancellationTokenSource Timer
+    CancellationTokenSource Timer,
+    int? RemainingSeconds = null
 );
 
 /// <summary>
@@ -59,6 +62,7 @@ internal readonly record struct RoleState(
 public sealed class PlanetPrisonStationSystem : EntitySystem
 {
     [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -76,6 +80,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
+    [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
 
     // Состояние голосования карт
     private readonly Dictionary<string, MapVotingState> _mapStates = new();
@@ -86,11 +91,222 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     // Игроки с активными приоритетами карт
     private readonly HashSet<NetUserId> _priorityPlayers = new();
 
+    // Квоты ролей для запуска карты (роль -> количество)
+    private readonly Dictionary<string, int> _roleQuotas = new()
+    {
+        {"PlanetPrisoner", 1},
+        {"HeadOfPrison", 1}
+    };
+
     // Запущенные карты
     private readonly Dictionary<string, MapId> _launchedMaps = new();
 
     private const string MetusMapId = "PlanetPrison";
     private const string NoxMapId = "PlanetPrisonOld";
+
+    /// <summary>
+    /// Проверяет, можно ли запустить карту с текущими приоритетами игроков
+    /// </summary>
+    private bool CanStartRound()
+    {
+        // Получаем участвующих игроков (голосующих за карты)
+        var participatingPlayers = _player.Sessions
+            .Select(p => p.UserId)
+            .Where(userId => _mapStates.Any(mapState =>
+                mapState.Value.Votes.GetValueOrDefault(userId, 0) > 0))
+            .ToList();
+
+        Logger.Debug($"DEBUG: CanStartRound - participatingPlayers: {string.Join(", ", participatingPlayers)}");
+
+        // Проверяем, что среди участвующих хватает приоритетов на роли
+        foreach (var (roleId, requiredCount) in _roleQuotas)
+        {
+            var candidates = participatingPlayers
+                .Where(playerId => GetOrCreateRoleState(roleId).Priorities.GetValueOrDefault(playerId, 0) > 0)
+                .ToList();
+
+            Logger.Debug($"DEBUG: CanStartRound - Role {roleId} - required: {requiredCount}, candidates: {candidates.Count}");
+
+            if (candidates.Count < requiredCount)
+            {
+                Logger.Debug($"DEBUG: CanStartRound returning false due to insufficient {roleId}");
+                return false;
+            }
+        }
+
+        Logger.Debug($"DEBUG: CanStartRound returning true");
+        return true;
+    }
+
+    /// <summary>
+    /// Возвращает количество игроков, участвующих в распределении ролей
+    /// </summary>
+    private int GetParticipatingPlayerCount()
+    {
+        // Участвующие игроки - это те, кто голосует за карты
+        var count = _player.Sessions
+            .Select(p => p.UserId)
+            .Count(userId => _mapStates.Any(mapState =>
+                mapState.Value.Votes.GetValueOrDefault(userId, 0) > 0));
+
+        Logger.Debug($"DEBUG: GetParticipatingPlayerCount returning {count}, mapStates: {string.Join(", ", _mapStates.Select(ms => $"{ms.Key}: {string.Join(",", ms.Value.Votes)}"))}");
+        return count;
+    }
+
+        /// <summary>
+    /// Возвращает любую запущенную карту (MapId) или MapId.Nullspace если ни одной нет.
+    /// </summary>
+    public MapId GetAnyLaunchedMapId()
+    {
+        return _launchedMaps.Values.FirstOrDefault();
+    }
+
+    /// <summary>
+    /// Обновляет статус игрока в списке приоритетных на основе голосов за карты
+    /// Игрок считается участвующим если у него есть голоса за карты
+    /// </summary>
+    private void UpdatePlayerPriorityStatus(NetUserId playerId)
+    {
+        // Проверяем, есть ли у игрока голоса за карты
+        bool hasMapVotes = _mapStates.Any(mapState =>
+            mapState.Value.Votes.GetValueOrDefault(playerId, 0) > 0);
+
+        // Обновляем список игроков с приоритетами
+        if (hasMapVotes && !_priorityPlayers.Contains(playerId))
+        {
+            _priorityPlayers.Add(playerId);
+            Logger.Info($"Added player {playerId} to priority list (has map votes)");
+
+            // Автоматически устанавливаем высокий приоритет для PlanetPrisoner всем новым участникам
+            var prisonerState = GetOrCreateRoleState("PlanetPrisoner");
+            prisonerState.Priorities[playerId] = 3; // High priority
+            Logger.Info($"Automatically set high priority for {playerId} on PlanetPrisoner (new participant)");
+
+            // Отправляем обновление состояния роли игроку
+            SendRoleUpdateToPlayer(playerId, "PlanetPrisoner");
+        }
+        else if (!hasMapVotes && _priorityPlayers.Contains(playerId))
+        {
+            _priorityPlayers.Remove(playerId);
+            Logger.Info($"Removed player {playerId} from priority list (no map votes)");
+
+            // Сбрасываем приоритет PlanetPrisoner до значения по умолчанию (0) при выходе из списка участников
+            var prisonerState = GetOrCreateRoleState("PlanetPrisoner");
+            prisonerState.Priorities[playerId] = 0; // Reset to Never
+            Logger.Info($"Reset priority for {playerId} on PlanetPrisoner (removed from participants)");
+
+            // Отправляем обновление состояния роли игроку
+            SendRoleUpdateToPlayer(playerId, "PlanetPrisoner");
+        }
+    }
+
+    /// <summary>
+    /// Отправляет обновление состояния голосования для всех карт конкретному игроку
+    /// </summary>
+    private void SendVotingStateToPlayer(NetUserId playerId)
+    {
+        if (!_player.TryGetSessionById(playerId, out var session))
+            return;
+
+        var participatingCount = GetParticipatingPlayerCount();
+        var canStartRound = CanStartRound();
+        var hasActiveVoting = HasActiveTimer("GLOBAL");
+        var insufficientRoles = GetInsufficientRoles();
+
+        foreach (var mapId in new[] { MetusMapId, NoxMapId })
+        {
+            var voteCount = GetVoteCount(mapId);
+            var hasTimer = HasActiveTimer(mapId) || HasActiveTimer("GLOBAL");
+            var isLaunched = _launchedMaps.ContainsKey(mapId);
+            var remainingSeconds = HasActiveTimer("GLOBAL") && _mapStates.TryGetValue("GLOBAL", out var globalState) ? globalState.RemainingSeconds : (int?)null;
+
+            var updateEvent = new PlanetPrisonVoteUpdateEvent(mapId, voteCount, hasTimer, isLaunched, remainingSeconds ?? 0, participatingCount, insufficientRoles.ToArray());
+            RaiseNetworkEvent(updateEvent, session);
+        }
+    }
+
+    /// <summary>
+    /// Отправляет обновление состояния конкретной роли конкретному игроку
+    /// </summary>
+    private void SendRoleUpdateToPlayer(NetUserId playerId, string roleId)
+    {
+        if (!_player.TryGetSessionById(playerId, out var session))
+            return;
+
+        var roleState = GetOrCreateRoleState(roleId);
+        var isTaken = roleState.AssignedPlayer != null;
+        var isAssigned = roleState.AssignedPlayer == playerId;
+
+        var updateEvent = new PlanetPrisonRoleUpdateEvent(roleId, isTaken, isAssigned);
+        RaiseNetworkEvent(updateEvent, session);
+    }
+
+    /// <summary>
+    /// Отправляет обновление состояния голосования для всех карт всем клиентам
+    /// </summary>
+    private void UpdateAllVotingStates()
+    {
+        // Получаем минимальное количество игроков из компонента
+        var planetPrisonQuery = EntityQueryEnumerator<PlanetPrisonSharedComponent>();
+        var minPlayersRequired = 2; // Значение по умолчанию
+
+        if (planetPrisonQuery.MoveNext(out var planetPrisonComp))
+        {
+            minPlayersRequired = planetPrisonComp.MinPlayersRequired;
+        }
+
+        var participatingCount = GetParticipatingPlayerCount();
+        var canStartRound = CanStartRound();
+        var hasActiveVoting = HasActiveTimer("GLOBAL");
+
+        // Всегда показываем текущий список недостаточных ролей
+        var insufficientRoles = GetInsufficientRoles();
+
+        Logger.Info($"UpdateAllVotingStates called: participatingCount={participatingCount}, canStartRound={canStartRound}, hasActiveVoting={hasActiveVoting}, insufficientRoles={string.Join(",", insufficientRoles)}");
+
+        foreach (var mapId in new[] { MetusMapId, NoxMapId })
+        {
+            var voteCount = GetVoteCount(mapId);
+            var hasTimer = HasActiveTimer(mapId) || HasActiveTimer("GLOBAL");
+            var isLaunched = _launchedMaps.ContainsKey(mapId);
+            // Используем remainingSeconds из глобального состояния, если оно активно
+            var remainingSeconds = HasActiveTimer("GLOBAL") && _mapStates.TryGetValue("GLOBAL", out var globalState) ? globalState.RemainingSeconds : (int?)null;
+
+            var updateEvent = new PlanetPrisonVoteUpdateEvent(mapId, voteCount, hasTimer, isLaunched, remainingSeconds ?? 0, participatingCount, insufficientRoles.ToArray());
+            RaiseNetworkEvent(updateEvent);
+        }
+    }
+
+    /// <summary>
+    /// Возвращает список ролей, для которых не хватает кандидатов
+    /// </summary>
+    private List<string> GetInsufficientRoles()
+    {
+        var insufficientRoles = new List<string>();
+        var participatingPlayers = _player.Sessions
+            .Select(p => p.UserId)
+            .Where(userId => _mapStates.Any(mapState =>
+                mapState.Value.Votes.GetValueOrDefault(userId, 0) > 0))
+            .ToList();
+
+        Logger.Debug($"DEBUG: GetInsufficientRoles - participatingPlayers: {string.Join(", ", participatingPlayers)}");
+
+        foreach (var (roleId, requiredCount) in _roleQuotas)
+        {
+            var candidates = participatingPlayers
+                .Where(playerId => GetOrCreateRoleState(roleId).Priorities.GetValueOrDefault(playerId, 0) > 0)
+                .ToList();
+
+            Logger.Debug($"DEBUG: Role {roleId} - required: {requiredCount}, candidates: {candidates.Count} ({string.Join(", ", candidates)})");
+
+            if (candidates.Count < requiredCount)
+                insufficientRoles.Add(roleId);
+        }
+
+        Logger.Debug($"DEBUG: GetInsufficientRoles returning: [{string.Join(", ", insufficientRoles)}]");
+
+        return insufficientRoles;
+    }
 
     /// <summary>
     /// Получить или создать состояние голосования для карты
@@ -99,7 +315,9 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     {
         if (!_mapStates.TryGetValue(mapId, out var state))
         {
-            state = new MapVotingState(new Dictionary<NetUserId, int>(), new CancellationTokenSource());
+            var timer = new CancellationTokenSource();
+            timer.Cancel(); // По умолчанию таймер отменен
+            state = new MapVotingState(new Dictionary<NetUserId, int>(), timer);
             _mapStates[mapId] = state;
         }
         return state;
@@ -346,24 +564,13 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         var oldPriority = mapState.Votes.GetValueOrDefault(player.UserId, 0);
         mapState.Votes[player.UserId] = msg.Priority;
 
-        // Проверяем общее количество активных приоритетов игрока по всем картам
-        int totalActivePriorities = _mapStates.Values.Sum(state => state.Votes.ContainsKey(player.UserId) && state.Votes[player.UserId] > 0 ? 1 : 0);
+        // Обновляем статус игрока в списке приоритетных после изменения голоса за карту
+        UpdatePlayerPriorityStatus(player.UserId);
 
-        // Обновляем список игроков с приоритетами на основе общего количества активных приоритетов
-        if (totalActivePriorities > 0 && !_priorityPlayers.Contains(player.UserId))
-        {
-            _priorityPlayers.Add(player.UserId);
-            Logger.Info($"Added player {player.UserId} to priority list (total active priorities: {totalActivePriorities})");
-        }
-        else if (totalActivePriorities == 0 && _priorityPlayers.Contains(player.UserId))
-        {
-            _priorityPlayers.Remove(player.UserId);
-            Logger.Info($"Removed player {player.UserId} from priority list (no active priorities)");
-        }
+        // Обновляем состояние голосования для всех карт после изменения голосов
+        UpdateAllVotingStates();
 
         var playerCount = _priorityPlayers.Count;
-        Logger.Info($"Priority players list: {string.Join(", ", _priorityPlayers)}");
-        Logger.Info($"Player {player.Name} set priority {msg.Priority} for {msg.MapId}. Total priority players: {playerCount}");
 
         // Получаем минимальное количество игроков из компонента
         var planetPrisonQuery = EntityQueryEnumerator<PlanetPrisonSharedComponent>();
@@ -374,28 +581,21 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             minPlayersRequired = planetPrisonComp.MinPlayersRequired;
         }
 
-        // Отправляем обновление всем клиентам для всех карт (даже если игроков недостаточно)
-        foreach (var mapId in new[] { MetusMapId, NoxMapId })
+        // UpdateAllVotingStates() уже отправляет обновления всем клиентам выше
+
+        // Проверяем выполнение квоты ролей для запуска голосования
+        if (!CanStartRound())
         {
-            var voteCount = GetVoteCount(mapId);
-            var hasTimer = HasActiveTimer(mapId) || HasActiveTimer("GLOBAL");
-            var isLaunched = _launchedMaps.ContainsKey(mapId);
-            var updateEvent = new PlanetPrisonVoteUpdateEvent(mapId, voteCount, hasTimer, remainingSeconds: null, _priorityPlayers.Count, minPlayersRequired, isLaunched);
-            RaiseNetworkEvent(updateEvent);
+            var insufficientRoles = GetInsufficientRoles();
+            Logger.Info($"BLOCKED: Cannot start vote - insufficient role quotas: {string.Join(", ", insufficientRoles)}");
+            return; // Ранний выход, если квота не выполнена
         }
 
-        // Проверяем минимальное количество игроков для запуска голосования
-        if (playerCount < minPlayersRequired)
-        {
-            Logger.Info($"BLOCKED: Not enough players for vote: {playerCount}/{minPlayersRequired} required");
-            return; // Ранний выход, если игроков недостаточно
-        }
-
-        // Если набралось 2+ игрока с приоритетами, начинаем глобальное голосование
-        Logger.Info($"Checking vote start: playerCount={playerCount}, hasGlobalTimer={HasActiveTimer("GLOBAL")}, priorityPlayers={string.Join(",", _priorityPlayers)}");
+        // Если квота выполнена, начинаем глобальное голосование
+        Logger.Info($"Checking vote start: quota fulfilled, hasGlobalTimer={HasActiveTimer("GLOBAL")}");
         if (!HasActiveTimer("GLOBAL"))
         {
-            Logger.Info("STARTING global prison vote due to 2+ players");
+            Logger.Info("STARTING global prison vote - quota fulfilled");
             StartGlobalPrisonVote();
         }
         else
@@ -434,205 +634,94 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
     private void AssignPrisonRoles()
     {
-        Logger.Info("Assigning prison roles to players who voted for the map based on their role priorities");
 
-        // Получаем игроков, которые голосовали за карту (участвовали в голосовании)
-        var votingPlayers = new HashSet<NetUserId>();
-        foreach (var mapState in _mapStates.Values)
+        // Получаем участвующих игроков (голосующих за карты)
+        var participatingPlayers = _player.Sessions
+            .Select(p => p.UserId)
+            .Where(userId => _mapStates.Any(mapState =>
+                mapState.Value.Votes.GetValueOrDefault(userId, 0) > 0))
+            .ToList();
+
+        Logger.Info($"Found {participatingPlayers.Count} participating players: {string.Join(", ", participatingPlayers.OrderBy(id => id.UserId))}");
+
+        if (participatingPlayers.Count == 0)
         {
-            foreach (var playerId in mapState.Votes.Keys)
-            {
-                if (mapState.Votes[playerId] > 0) // Приоритет > Never
-                    votingPlayers.Add(playerId);
-            }
-        }
-
-        Logger.Info($"Found {votingPlayers.Count} players who voted for the map: {string.Join(", ", votingPlayers)}");
-
-        if (votingPlayers.Count == 0)
-        {
-            Logger.Info("No players voted for the map, skipping role assignment");
+            Logger.Info("No participating players, skipping role assignment");
             return;
         }
 
-        // Определяем доступные роли в порядке приоритета (от высшего к низшему)
-        var availableRoles = new[] { "HeadOfPrison", "PrisonInspector", "PrisonWorker", "PrisonEngineer", "PrisonScientist", "PrisonDoctor", "PrisonChef", "PrisonTrainee", "PlanetPrisoner" };
-
-        // Разделяем игроков на две группы:
-        // 1. Игроки, которые установили приоритеты ролей (хотя бы один приоритет > Never)
-        // 2. Игроки, которые оставили все приоритеты "Никогда"
-        var playersWithRolePriorities = new HashSet<NetUserId>();
-        var playersWithoutRolePriorities = new HashSet<NetUserId>();
-
-        foreach (var playerId in votingPlayers)
-        {
-            bool hasAnyRolePriority = false;
-            foreach (var roleId in availableRoles)
-            {
-                var roleState = GetOrCreateRoleState(roleId);
-                if (roleState.Priorities.GetValueOrDefault(playerId, 0) > 0) // Приоритет > Never
-                {
-                    hasAnyRolePriority = true;
-                    break;
-                }
-            }
-
-            if (hasAnyRolePriority)
-            {
-                playersWithRolePriorities.Add(playerId);
-            }
-            else
-            {
-                playersWithoutRolePriorities.Add(playerId);
-            }
-        }
-
-        Logger.Info($"Players with role priorities: {string.Join(", ", playersWithRolePriorities)}");
-        Logger.Info($"Players without role priorities: {string.Join(", ", playersWithoutRolePriorities)}");
-
-        // Создаем список игроков с их приоритетами по ролям (только для игроков с приоритетами)
-        var playerRolePreferences = new Dictionary<NetUserId, Dictionary<string, int>>();
-        foreach (var playerId in playersWithRolePriorities)
-        {
-            playerRolePreferences[playerId] = new Dictionary<string, int>();
-            foreach (var roleId in availableRoles)
-            {
-                var roleState = GetOrCreateRoleState(roleId);
-                var priority = roleState.Priorities.GetValueOrDefault(playerId, 0); // 0 = Never
-                playerRolePreferences[playerId][roleId] = priority;
-            }
-        }
-
-        // Распределяем роли по приоритетам (жадный алгоритм) - только для игроков с приоритетами
+        // Распределяем роли по уровням приоритета (от высшего к низшему)
         var assignedPlayers = new HashSet<NetUserId>();
         var assignedRoles = new HashSet<string>();
 
-        // Для каждого уровня приоритета (от высшего к низшему)
-        for (int priorityLevel = 3; priorityLevel >= 1; priorityLevel--) // High=3, Medium=2, Low=1
+        // Проходим по уровням приоритета: Высокий (3) → Средний (2) → Низкий (1)
+        for (int priorityLevel = 3; priorityLevel >= 1; priorityLevel--)
         {
-            foreach (var roleId in availableRoles)
+
+            // Для каждой роли собираем кандидатов с текущим уровнем приоритета
+            foreach (var roleId in _roleQuotas.Keys)
             {
                 if (assignedRoles.Contains(roleId))
                     continue; // Роль уже назначена
 
-                // Находим игроков, которые хотят эту роль с текущим приоритетом
-                var candidates = playersWithRolePriorities
-                    .Where(p => !assignedPlayers.Contains(p) &&
-                               playerRolePreferences[p][roleId] == priorityLevel)
+                var requiredCount = _roleQuotas[roleId];
+                var alreadyAssigned = assignedRoles.Count(r => r == roleId);
+                var slotsLeft = requiredCount - alreadyAssigned;
+
+                if (slotsLeft <= 0)
+                    continue; // Все слоты для этой роли заняты
+
+                // Находим кандидатов с нужным приоритетом на эту роль
+                var candidates = participatingPlayers
+                    .Where(playerId =>
+                        !assignedPlayers.Contains(playerId) && // Не назначен другой роли
+                        GetOrCreateRoleState(roleId).Priorities.GetValueOrDefault(playerId, 0) == priorityLevel)
                     .ToList();
 
-                if (candidates.Any())
-                {
-                    // Назначаем роль первому кандидату (можно рандомизировать)
-                    var selectedPlayer = candidates.First();
-                    var roleState = GetOrCreateRoleState(roleId);
 
+                if (candidates.Count == 0)
+                    continue;
+
+                // Случайно выбираем игроков для доступных слотов
+                var selectedCandidates = candidates
+                    .OrderBy(_ => _random.Next()) // Случайный порядок
+                    .Take(slotsLeft)
+                    .ToList();
+
+                foreach (var playerId in selectedCandidates)
+                {
                     // Назначаем роль игроку
-                    _roleStates[roleId] = roleState with { AssignedPlayer = selectedPlayer };
-                    assignedPlayers.Add(selectedPlayer);
+                    var roleState = GetOrCreateRoleState(roleId);
+                    _roleStates[roleId] = roleState with { AssignedPlayer = playerId };
+                    assignedPlayers.Add(playerId);
                     assignedRoles.Add(roleId);
 
-                    Logger.Info($"Assigned role {roleId} to player {selectedPlayer} (priority level {priorityLevel})");
 
                     // Отправляем обновление игроку
                     var updateEvent = new PlanetPrisonRoleUpdateEvent(roleId, false, true);
                     RaiseNetworkEvent(updateEvent);
 
                     // Спавним игрока с ролью
-                    SpawnPlayerWithRole(selectedPlayer, roleId);
+                    SpawnPlayerWithRole(playerId, roleId);
                 }
             }
         }
 
-        // Теперь распределяем оставшиеся роли среди игроков без приоритетов
-        var remainingRoles = availableRoles.Where(r => !assignedRoles.Contains(r)).ToList();
-        var playersNeedingRoles = playersWithoutRolePriorities.Where(p => !assignedPlayers.Contains(p)).ToList();
+        // Проверяем, все ли роли распределены
+        var unfilledRoles = _roleQuotas
+            .Where(kvp => assignedRoles.Count(r => r == kvp.Key) < kvp.Value)
+            .Select(kvp => $"{kvp.Key}({assignedRoles.Count(r => r == kvp.Key)}/{kvp.Value})")
+            .ToList();
 
-        Logger.Info($"Remaining roles: {string.Join(", ", remainingRoles)}");
-        Logger.Info($"Players without priorities needing roles: {string.Join(", ", playersNeedingRoles)}");
 
-        // Распределяем оставшиеся роли игрокам без приоритетов
-        var roleIndex = 0;
-        foreach (var playerId in playersNeedingRoles)
+        if (unfilledRoles.Any())
         {
-            if (roleIndex >= remainingRoles.Count)
-                break; // Все роли распределены
-
-            var roleId = remainingRoles[roleIndex++];
-            var roleState = GetOrCreateRoleState(roleId);
-
-            // Назначаем роль игроку
-            _roleStates[roleId] = roleState with { AssignedPlayer = playerId };
-            assignedPlayers.Add(playerId);
-
-            Logger.Info($"Assigned remaining role {roleId} to player {playerId} (no role priorities set)");
-
-            // Отправляем обновление игроку
-            var updateEvent = new PlanetPrisonRoleUpdateEvent(roleId, false, true);
-            RaiseNetworkEvent(updateEvent);
-
-            // Спавним игрока с ролью
-            SpawnPlayerWithRole(playerId, roleId);
+            Logger.Warning($"Unfilled role quotas: {string.Join(", ", unfilledRoles)}");
         }
-
-        // Распределяем оставшиеся роли между игроками без назначений
-        var remainingPlayers = votingPlayers.Where(p => !assignedPlayers.Contains(p)).ToList();
-        var availableFallbackRoles = new[] { "PlanetPrisoner", "PrisonTrainee" }.Where(r => !assignedRoles.Contains(r)).ToList();
-
-        Logger.Info($"Remaining players without roles: {string.Join(", ", remainingPlayers)}");
-        Logger.Info($"Available fallback roles: {string.Join(", ", availableFallbackRoles)}");
-
-        foreach (var playerId in remainingPlayers)
+        else
         {
-            if (!availableFallbackRoles.Any())
-                break; // Нет доступных ролей
-
-            string selectedRole;
-            if (availableFallbackRoles.Count == 1)
-            {
-                // Только одна роль доступна
-                selectedRole = availableFallbackRoles[0];
-            }
-            else
-            {
-                // Две роли доступны - выбираем по приоритетам
-                var planetPrisonerPriority = GetOrCreateRoleState("PlanetPrisoner").Priorities.GetValueOrDefault(playerId, 0);
-                var prisonTraineePriority = GetOrCreateRoleState("PrisonTrainee").Priorities.GetValueOrDefault(playerId, 0);
-
-                if (planetPrisonerPriority > prisonTraineePriority)
-                {
-                    selectedRole = "PlanetPrisoner";
-                }
-                else if (prisonTraineePriority > planetPrisonerPriority)
-                {
-                    selectedRole = "PrisonTrainee";
-                }
-                else
-                {
-                    // Приоритеты равны или оба 0 - выбираем рандомно
-                    selectedRole = _random.Pick(availableFallbackRoles);
-                    Logger.Info($"Player {playerId} has equal priorities for fallback roles, randomly selected {selectedRole}");
-                }
-            }
-
-            // Назначаем выбранную роль
-            var roleState = GetOrCreateRoleState(selectedRole);
-            _roleStates[selectedRole] = roleState with { AssignedPlayer = playerId };
-            assignedPlayers.Add(playerId);
-            assignedRoles.Add(selectedRole);
-
-            Logger.Info($"Assigned fallback role {selectedRole} to player {playerId}");
-
-            var updateEvent = new PlanetPrisonRoleUpdateEvent(selectedRole, false, true);
-            RaiseNetworkEvent(updateEvent);
-
-            SpawnPlayerWithRole(playerId, selectedRole);
-
-            // Убираем роль из списка доступных
-            availableFallbackRoles.Remove(selectedRole);
+            Logger.Info("All role quotas filled successfully!");
         }
-
-        Logger.Info($"Role assignment complete. Assigned {assignedPlayers.Count} players to roles from {votingPlayers.Count} voters");
     }
 
     private void SpawnPlayerWithRole(NetUserId playerId, string roleId)
@@ -693,8 +782,9 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
                 return;
             }
 
-            // Получаем профиль игрока для спавна
-            var profile = HumanoidCharacterProfile.DefaultWithSpecies();
+            // Получаем реальный профиль игрока
+            var preferences = _prefsManager.GetPreferences(playerId);
+            var profile = (HumanoidCharacterProfile?)preferences?.SelectedCharacter ?? HumanoidCharacterProfile.DefaultWithSpecies();
 
             // Создаем персонажа без job (чтобы избежать автоматического применения starting gear)
             var character = _stationSpawning.SpawnPlayerMob(coordinates.Value, null, profile, station.Value);
@@ -794,7 +884,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             // Для запущенной карты отправляем RemainingSeconds = 0 чтобы клиент показал "(запускается)" и затем "(запущен)"
             var remainingSeconds = (mapId == launchedMapId) ? 0 : (int?)null;
             var isLaunched = _launchedMaps.ContainsKey(mapId);
-            var updateEvent = new PlanetPrisonVoteUpdateEvent(mapId, voteCount, false, remainingSeconds, 0, 2, isLaunched);
+            var updateEvent = new PlanetPrisonVoteUpdateEvent(mapId, voteCount, false, isLaunched, remainingSeconds ?? 0, 0, Array.Empty<string>());
             RaiseNetworkEvent(updateEvent);
         }
 
@@ -820,7 +910,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             // Используем специальную комбинацию параметров для обозначения глобального сброса:
             // TotalPriorityPlayers = -1 (специальный флаг)
             var isLaunched = _launchedMaps.ContainsKey(mapId);
-            var updateEvent = new PlanetPrisonVoteUpdateEvent(mapId, 0, false, null, -1, minPlayersRequired, isLaunched);
+            var updateEvent = new PlanetPrisonVoteUpdateEvent(mapId, 0, false, isLaunched, 0, -1, Array.Empty<string>());
             RaiseNetworkEvent(updateEvent);
             Logger.Info($"Sent reset for {mapId}");
         }
@@ -830,6 +920,12 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
     private void OnPrisonStatusRequest(PlanetPrisonStatusRequestMessage msg, EntitySessionEventArgs args)
     {
+        // Обновляем статусы всех игроков перед вычислением participatingCount
+        foreach (var session in _player.Sessions)
+        {
+            UpdatePlayerPriorityStatus(session.UserId);
+        }
+
         // Получаем минимальное количество игроков из компонента
         var planetPrisonQuery = EntityQueryEnumerator<PlanetPrisonSharedComponent>();
         var minPlayersRequired = 2; // Значение по умолчанию
@@ -841,7 +937,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
         // Отправляем текущее состояние голосования клиенту
         var voteCount = GetVoteCount(msg.MapId);
-        var isVoting = HasActiveTimer(msg.MapId) && _launchedMaps.ContainsKey(msg.MapId);
+        var isVoting = HasActiveTimer(msg.MapId) || HasActiveTimer("GLOBAL");
 
         // Проверяем существует ли запущенная карта
         bool mapExists = false;
@@ -857,8 +953,30 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         }
 
         var isLaunched = _launchedMaps.ContainsKey(msg.MapId);
-        var updateEvent = new PlanetPrisonVoteUpdateEvent(msg.MapId, voteCount, isVoting, null, _priorityPlayers.Count, minPlayersRequired, isLaunched);
-        RaiseNetworkEvent(updateEvent, args.SenderSession);
+        var participatingCount = GetParticipatingPlayerCount();
+        var canStartRound = CanStartRound();
+        var hasActiveVoting = HasActiveTimer("GLOBAL");
+
+        // Всегда показываем текущий список недостаточных ролей
+        var insufficientRoles = GetInsufficientRoles();
+
+        Logger.Info($"OnPrisonStatusRequest: map={msg.MapId}, player={args.SenderSession?.Name}, participatingCount={participatingCount}, canStartRound={canStartRound}, hasActiveVoting={hasActiveVoting}, insufficientRoles={string.Join(",", insufficientRoles)}");
+
+        var remainingSeconds = HasActiveTimer("GLOBAL") && _mapStates.TryGetValue("GLOBAL", out var globalState) ? globalState.RemainingSeconds : (int?)null;
+        var updateEvent = new PlanetPrisonVoteUpdateEvent(msg.MapId, voteCount, isVoting, isLaunched, remainingSeconds ?? 0, participatingCount, insufficientRoles.ToArray());
+        RaiseNetworkEvent(updateEvent, args.SenderSession!);
+
+        // Также отправляем состояние других карт этому игроку
+        foreach (var otherMapId in new[] { MetusMapId, NoxMapId }.Where(id => id != msg.MapId))
+        {
+            var otherVoteCount = GetVoteCount(otherMapId);
+            var otherIsVoting = HasActiveTimer(otherMapId) || HasActiveTimer("GLOBAL");
+            var otherIsLaunched = _launchedMaps.ContainsKey(otherMapId);
+
+            var otherRemainingSeconds = HasActiveTimer("GLOBAL") && _mapStates.TryGetValue("GLOBAL", out var otherGlobalState) ? otherGlobalState.RemainingSeconds : (int?)null;
+            var otherUpdateEvent = new PlanetPrisonVoteUpdateEvent(otherMapId, otherVoteCount, otherIsVoting, otherIsLaunched, otherRemainingSeconds ?? 0, participatingCount, insufficientRoles.ToArray());
+            RaiseNetworkEvent(otherUpdateEvent, args.SenderSession!);
+        }
     }
 
     private void OnRolePriority(PlanetPrisonRolePriorityMessage msg, EntitySessionEventArgs args)
@@ -873,7 +991,26 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         var currentRoleState = GetOrCreateRoleState(msg.RoleId);
 
         // Сохраняем приоритет игрока для роли
-        currentRoleState.Priorities[player.UserId] = msg.Priority;
+        var oldPriority = currentRoleState.Priorities.GetValueOrDefault(player.UserId, -1);
+
+        // Если игрок пытается установить низкий приоритет для PlanetPrisoner, но у него есть голоса за карты,
+        // автоматически устанавливаем высокий приоритет (игроки, голосующие за карты, должны быть готовы к роли заключенного)
+        var finalPriority = msg.Priority;
+        if (msg.RoleId == "PlanetPrisoner" && msg.Priority < 3)
+        {
+            // Проверяем, есть ли у игрока голоса за карты
+            bool hasMapVotes = _mapStates.Any(mapState =>
+                mapState.Value.Votes.GetValueOrDefault(player.UserId, 0) > 0);
+
+            if (hasMapVotes && msg.Priority < 3)
+            {
+                finalPriority = 3; // Принудительно устанавливаем высокий приоритет
+                Logger.Info($"Forced high priority for {player.Name} on PlanetPrisoner (has map votes)");
+            }
+        }
+
+        currentRoleState.Priorities[player.UserId] = finalPriority;
+        Logger.Info($"Updated priority for {player.Name} on {msg.RoleId}: {oldPriority} -> {finalPriority}");
 
         // Проверяем, можно ли назначить эту роль игроку
         // Пока что просто отправляем обновление статуса роли
@@ -882,6 +1019,12 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
         var updateEvent = new PlanetPrisonRoleUpdateEvent(msg.RoleId, isTaken, isAssigned);
         RaiseNetworkEvent(updateEvent, player);
+
+        // Обновляем состояние голосования для карт игроку, который изменил приоритет
+        SendVotingStateToPlayer(player.UserId);
+
+        // Также обновляем состояние для всех клиентов, чтобы они увидели изменения в квотах
+        UpdateAllVotingStates();
     }
 
     private void OnMapRemoved(MapRemovedEvent ev)
@@ -921,7 +1064,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
     private async void StartGlobalPrisonVote()
     {
-        Logger.Info($"Starting global prison vote... (players: {_priorityPlayers.Count})");
+        Logger.Info($"Starting global prison vote... (players: {GetParticipatingPlayerCount()})");
 
         // Получаем минимальное количество игроков из компонента
         var planetPrisonQuery = EntityQueryEnumerator<PlanetPrisonSharedComponent>();
@@ -933,9 +1076,9 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         }
 
         // Дополнительная проверка - должно быть минимум игроков
-        if (_priorityPlayers.Count < minPlayersRequired)
+        if (GetParticipatingPlayerCount() < minPlayersRequired)
         {
-            Logger.Error($"Cannot start prison vote with {_priorityPlayers.Count} players, need at least {minPlayersRequired}");
+            Logger.Error($"Cannot start prison vote with {GetParticipatingPlayerCount()} players, need at least {minPlayersRequired}");
             return;
         }
 
@@ -975,14 +1118,14 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
         // Проверяем, подходит ли выбранная карта по количеству игроков
         var minPlayersForSelectedMap = GetMinPlayersRequiredForMap(selectedMapId);
-        if (_priorityPlayers.Count < minPlayersForSelectedMap)
+        if (GetParticipatingPlayerCount() < minPlayersForSelectedMap)
         {
-            Logger.Info($"Selected map {selectedMapId} needs {minPlayersForSelectedMap} players, but only {_priorityPlayers.Count} available. Waiting for more players...");
+            Logger.Info($"Selected map {selectedMapId} needs {minPlayersForSelectedMap} players, but only {GetParticipatingPlayerCount()} available. Waiting for more players...");
             // Не отменяем голосование, ждем больше игроков
             return;
         }
 
-        Logger.Info($"Selected map {selectedMapId} with priority {maxScore} (meets player requirements: {_priorityPlayers.Count} >= {minPlayersForSelectedMap})");
+            Logger.Info($"Selected map {selectedMapId} with priority {maxScore} (meets player requirements: {GetParticipatingPlayerCount()} >= {minPlayersForSelectedMap})");
 
         // Проигрываем звук только когда карта действительно выбрана и подходит
         _audioSystem.PlayGlobal("/Audio/Machines/beep.ogg", Filter.Broadcast(), false, AudioParams.Default);
@@ -990,8 +1133,12 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         // Запускаем таймер для выбранной карты
         var globalState = GetOrCreateMapState("GLOBAL");
         // Обновляем таймер в состоянии
-        _mapStates["GLOBAL"] = globalState with { Timer = new CancellationTokenSource() };
-        var startEvent = new PlanetPrisonVoteUpdateEvent(selectedMapId, _priorityPlayers.Count, true, 5, _priorityPlayers.Count, minPlayersRequired, false);
+        _mapStates["GLOBAL"] = globalState with { Timer = new CancellationTokenSource(), RemainingSeconds = 5 };
+
+        // Очищаем предупреждения о недостатке ролей, так как голосование началось
+        UpdateAllVotingStates();
+
+        var startEvent = new PlanetPrisonVoteUpdateEvent(selectedMapId, GetParticipatingPlayerCount(), true, false, 5, GetParticipatingPlayerCount(), Array.Empty<string>());
         RaiseNetworkEvent(startEvent);
 
         try
@@ -1004,11 +1151,15 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
                 if (globalTimer.IsCancellationRequested)
                     return;
 
-                var updateEvent = new PlanetPrisonVoteUpdateEvent(selectedMapId, _priorityPlayers.Count, true, i, _priorityPlayers.Count, minPlayersRequired, false);
+                // Обновляем оставшееся время в состоянии
+                var currentState = _mapStates["GLOBAL"];
+                _mapStates["GLOBAL"] = currentState with { RemainingSeconds = i };
+
+                var updateEvent = new PlanetPrisonVoteUpdateEvent(selectedMapId, GetParticipatingPlayerCount(), true, false, i, GetParticipatingPlayerCount(), Array.Empty<string>());
                 RaiseNetworkEvent(updateEvent);
 
                 // Если время вышло и игроков недостаточно, отменить голосование
-                if (i == 0 && _priorityPlayers.Count < minPlayersRequired)
+                if (i == 0 && GetParticipatingPlayerCount() < minPlayersRequired)
                 {
                     Logger.Info("Voting timeout reached, not enough players. Cancelling vote.");
                     // Отменить голосование - сбросить состояния
@@ -1020,8 +1171,17 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
                 await Task.Delay(1000, globalTimer.Token);
             }
 
+            // Финальная проверка перед запуском - все ли роли еще доступны
+            if (!CanStartRound())
+            {
+                Logger.Info("Cannot launch map - roles became unavailable during countdown");
+                ResetMapVotingOnly();
+                SendGlobalStateReset();
+                return;
+            }
+
             // При 0 секундах сразу показываем "(запускается)" без задержки
-            var launchEvent = new PlanetPrisonVoteUpdateEvent(selectedMapId, _priorityPlayers.Count, true, 0, _priorityPlayers.Count, minPlayersRequired, false);
+            var launchEvent = new PlanetPrisonVoteUpdateEvent(selectedMapId, GetParticipatingPlayerCount(), true, false, 0, GetParticipatingPlayerCount(), Array.Empty<string>());
             RaiseNetworkEvent(launchEvent);
 
             // Небольшая задержка чтобы клиент успел показать "(запускается)" перед загрузкой карты
@@ -1056,7 +1216,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             {
                 _mapStates.Remove("GLOBAL");
             }
-            var endEvent = new PlanetPrisonVoteUpdateEvent(selectedMapId, _priorityPlayers.Count, false, null, _priorityPlayers.Count, minPlayersRequired, true);
+            var endEvent = new PlanetPrisonVoteUpdateEvent(selectedMapId, GetParticipatingPlayerCount(), false, true, 0, GetParticipatingPlayerCount(), Array.Empty<string>());
             RaiseNetworkEvent(endEvent);
         }
     }
@@ -1109,7 +1269,6 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
                 return MapId.Nullspace;
             }
 
-            Logger.Info($"Prison map loaded successfully with map ID {freeMapId}, entities: {uids.Count}");
 
             // Для карт с планетами создаем планету
             if (protoId == MetusMapId) // Metus - планета
@@ -1184,7 +1343,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
         // Отправляем обновление о сбросе
         var isLaunched = _launchedMaps.ContainsKey(mapId);
-        var resetEvent = new PlanetPrisonVoteUpdateEvent(mapId, 0, false, null, 0, 2, isLaunched);
+        var resetEvent = new PlanetPrisonVoteUpdateEvent(mapId, 0, false, isLaunched, 0, 0, Array.Empty<string>());
         RaiseNetworkEvent(resetEvent);
 
         Logger.Info($"Prison voting reset for {mapId}");
