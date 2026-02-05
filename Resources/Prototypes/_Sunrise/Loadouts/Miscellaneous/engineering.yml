@@ -157,6 +157,18 @@
     back:
     - HandheldStationMap
 
+- type: loadout
+  id: TrinketsEngineeringSMM
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 36000 # 10hr
+  storage:
+    back:
+    - HyperLinkBookSupermatterManual
+
  #Neck
 
 

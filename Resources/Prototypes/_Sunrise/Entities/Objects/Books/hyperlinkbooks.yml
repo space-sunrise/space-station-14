@@ -37,3 +37,20 @@
   - type: Tag
     tags:
     - Book
+
+- type: entity
+  parent: BaseHyperLinkBook
+  id: HyperLinkBookSupermatterManual
+  name: supermatter 101
+  description: Supermatter quick guide for total newbies.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/books.rsi
+    layers:
+    - state: supermatter_guide
+  - type: HyperLink
+    url: https://pewpewko.github.io/ss14-manuals/books/supermatter.pdf # Supermatter guide by pewpewko
+  - type: Tag
+    tags:
+    - Book
+
