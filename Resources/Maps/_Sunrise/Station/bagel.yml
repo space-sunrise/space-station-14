@@ -22545,12 +22545,6 @@ entities:
     - type: Transform
       pos: -13.5,-32.5
       parent: 2
-    - type: Door
-      secondsUntilStateChange: -281584.75
-      state: Opening
-    - type: DeviceLinkSource
-      lastSignals:
-        DoorStatus: True
   - uid: 181
     components:
     - type: Transform
@@ -24023,12 +24017,6 @@ entities:
     - type: Transform
       pos: -14.5,-47.5
       parent: 2
-    - type: Door
-      secondsUntilStateChange: -281581.22
-      state: Opening
-    - type: DeviceLinkSource
-      lastSignals:
-        DoorStatus: True
   - uid: 309
     components:
     - type: MetaData
@@ -24247,12 +24235,6 @@ entities:
     - type: Transform
       pos: 36.5,30.5
       parent: 2
-    - type: Door
-      secondsUntilStateChange: -765660.5
-      state: Opening
-    - type: DeviceLinkSource
-      lastSignals:
-        DoorStatus: True
   - uid: 349
     components:
     - type: Transform
@@ -24727,12 +24709,6 @@ entities:
     - type: Transform
       pos: 44.5,27.5
       parent: 2
-    - type: Door
-      secondsUntilStateChange: -783798.25
-      state: Opening
-    - type: DeviceLinkSource
-      lastSignals:
-        DoorStatus: True
   - uid: 413
     components:
     - type: Transform
@@ -178079,12 +178055,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -17.5,8.5
       parent: 2
-    - type: Door
-      secondsUntilStateChange: -281415.6
-      state: Opening
-    - type: DeviceLinkSource
-      lastSignals:
-        DoorStatus: True
   - uid: 19183
     components:
     - type: Transform
@@ -201341,14 +201311,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -109.5,8.5
       parent: 2
-    - type: DeviceLinkSource
-      lastSignals:
-        DoorStatus: True
-    - type: Door
-      secondsUntilStateChange: -779671.1
-      state: Opening
-    - type: Airlock
-      autoClose: False
   - uid: 26137
     components:
     - type: Transform
