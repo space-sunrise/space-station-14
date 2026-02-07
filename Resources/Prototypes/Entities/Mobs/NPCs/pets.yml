@@ -1008,11 +1008,7 @@
   components:
   - type: Vocalizer
     maxVocalizeInterval: 180 # polly is chattier # Sunrise Edit
-# Sunrise Edit Start
-  - type: TTS
-    voice: Dornan
   - type: RadioVocalizer
-# Sunrise Edit End
     radioAttemptChance: 0.9 # polly wants to share with the world # Sunrise Edit
   - type: Grammar
     attributes:
@@ -1020,4 +1016,7 @@
       gender: male
   - type: Loadout
     prototypes: [ MobPollyGear ]
-
+# Sunrise Edit start
+  - type: TTS
+    voice: Dornan
+# Sunrise Edit end
