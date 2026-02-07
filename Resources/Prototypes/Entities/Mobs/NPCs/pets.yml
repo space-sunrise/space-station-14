@@ -1007,9 +1007,13 @@
   description: An expert in quantum cracker theory
   components:
   - type: Vocalizer
-    maxVocalizeInterval: 240 # polly is chattier
+    maxVocalizeInterval: 180 # polly is chattier # Sunrise Edit
+# Sunrise Edit Start
+  - type: TTS
+    voice: Dornan
   - type: RadioVocalizer
-    radioAttemptChance: 0.8 # polly wants to share with the world
+# Sunrise Edit End
+    radioAttemptChance: 0.9 # polly wants to share with the world # Sunrise Edit
   - type: Grammar
     attributes:
       proper: true
