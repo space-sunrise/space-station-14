@@ -527,8 +527,8 @@
 # Sunrise Edit Start
 - type: entity
   parent: BaseToggleAction
-  id: WhistleAction
-  name: Whistle Action
+  id: ActionWhistle
+  name: Action Whistle
   description: STOP RIGHT THERE!
   components:
   - type: Action

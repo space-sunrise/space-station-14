@@ -28,7 +28,7 @@
     soundDeactivate:
       collection: BaseWhistle
   - type: ToggleClothing
-    action: WhistleAction # Sunrise Edit End
+    action: ActionWhistle # Sunrise Edit End
 
 - type: entity
   parent: BaseWhistle
@@ -64,11 +64,13 @@
       collection: TrenchWhistle
   - type: Whistle
     distance: 15 # Let your enemies hear the sound of death approaching
-  - type: ItemToggle # Sunrise Edit Start
+# Sunrise Edit Start
+  - type: ItemToggle
     soundActivate:
       collection: TrenchWhistle
     soundDeactivate:
       collection: TrenchWhistle
   - type: ToggleClothing
-    action: WhistleAction # Sunrise Edit End
+    action: ActionWhistle
+# Sunrise Edit End
 

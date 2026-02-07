@@ -76,3 +76,5 @@ ent-ActionToggleRootable = Укорениться
     .desc = Начать или перестать быть прикреплённым к полу.
 ent-ActionChameleonController = Измените свою одежду
     .desc = Быстро измените свою одежду
+ent-ActionWhistle = Свистнуть
+    .desc = СТОЙ ГДЕ СТОИШЬ!
