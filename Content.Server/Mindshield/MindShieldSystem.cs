@@ -8,6 +8,7 @@ using Content.Shared.Implants.Components;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Revolutionary.Components;
 using Content.Shared.Roles.Components;
+using Content.Shared._Starlight.Antags.Vampires.Components;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Mindshield;
@@ -35,6 +36,10 @@ public sealed class MindShieldSystem : EntitySystem
     private void OnImplantImplanted(Entity<MindShieldImplantComponent> ent, ref ImplantImplantedEvent ev)
     {
         EnsureComp<MindShieldComponent>(ev.Implanted);
+        // Starlight-edit start
+        if (HasComp<VampireThrallComponent>(ev.Implanted))
+            RemComp<VampireThrallComponent>(ev.Implanted);
+        // Starlight-edit end
         MindShieldRemovalCheck(ev.Implanted, ev.Implant);
     }
 
