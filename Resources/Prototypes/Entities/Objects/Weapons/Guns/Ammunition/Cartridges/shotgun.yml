@@ -40,7 +40,7 @@
   - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    proto: PelletShotgunBeanbagTrace
+    proto: PelletShotgunBeanbag
 
 - type: entity
   id: ShellShotgunSlug
