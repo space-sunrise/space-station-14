@@ -44,3 +44,15 @@
         Radiation: 6
         Piercing: 10
 
+- type: entity
+  parent: BaseBulletRubber
+  id: BulletPistolProjectileRubber
+  categories: [ HideSpawnMenu ]
+  name: bullet (.35 auto rubber)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+  - type: StaminaDamageOnCollide
+    damage: 9

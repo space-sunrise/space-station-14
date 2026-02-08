@@ -21,7 +21,7 @@
   parent: BaseCartridgeMagnum
   components:
   - type: CartridgeAmmo
-    proto: BulletMagnumTraceRubber
+    proto: BulletMagnumProjectileRubber
   - type: Sprite
     layers:
       - state: base

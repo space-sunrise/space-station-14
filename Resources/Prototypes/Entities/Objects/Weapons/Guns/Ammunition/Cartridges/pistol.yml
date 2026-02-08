@@ -21,7 +21,7 @@
   parent: BaseCartridgePistol
   components:
   - type: CartridgeAmmo
-    proto: BulletPistolTraceRubber
+    proto: BulletPistolProjectileRubber
   - type: Sprite
     layers:
       - state: base
