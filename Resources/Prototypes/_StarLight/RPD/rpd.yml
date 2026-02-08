@@ -305,7 +305,7 @@
 - type: rcd
   id: AirSensor
   category: SensorsMonitors
-  sprite: /Textures/Interface/Radial/RPD/airsensor.png
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/airsensor.png
   mode: ConstructObject
   prototype: AirSensor
   cost: 4
@@ -317,7 +317,7 @@
 - type: rcd
   id: AirAlarm
   category: SensorsMonitors
-  sprite: /Textures/Interface/Radial/RPD/airalarm.png
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/airalarm.png
   mode: ConstructObject
   prototype: AirAlarm
   cost: 8
