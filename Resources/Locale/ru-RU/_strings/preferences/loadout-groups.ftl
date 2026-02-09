@@ -129,6 +129,7 @@ loadout-group-warden-outerclothing = Смотритель, верхняя оде
 loadout-group-security-head = Офицер СБ, голова
 loadout-group-security-jumpsuit = Офицер СБ, комбинезон
 loadout-group-security-backpack = Офицер СБ, рюкзак
+loadout-group-security-glasses = Офицер СБ, очки
 loadout-group-security-belt = Офицер СБ, пояс
 loadout-group-security-outerclothing = Офицер СБ, верхняя одежда
 loadout-group-security-shoes = Офицер СБ, обувь
