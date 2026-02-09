@@ -1,0 +1,57 @@
+- type: entity
+  id: AbductorLampStrobe
+  name: AbductorLamp
+  parent: AlwaysPoweredStrobeLight
+  description: "modern and economical"
+  suffix: strobe
+  components:
+  - type: AmbientSound
+    volume: -30
+    range: 1
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: GlassSmash
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Construction
+    graph: LightFixture
+    node: bulbLight
+  - type: Sprite
+    sprite: _Sunrise/Structures/Wallmounts/abductorlamp.rsi
+    drawdepth: WallMountedItems
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: base
+  - type: PointLight
+    mask: /Textures/Effects/LightMasks/double_cone.png
+    color: "#F4C1C1"
+    energy: 5
+    radius: 10
+    softness: 1
+    offset: "0, 0.35"
+  - type: RotatingLight
+  - type: Physics
+
+- type: entity
+  parent: AlwaysPoweredWallLight
+  name: AbductorLamp
+  description: "modern and economical"
+  id: AbductorLamp
+  suffix: Always Powered, Exterior
+  components:
+  - type: PointLight
+    radius: 12
+    energy: 4.5
+    softness: 0.5
+    color: "#F4C1C1"
+  - type: Sprite
+    sprite: _Sunrise/Structures/Wallmounts/abductorlamp.rsi
+    drawdepth: WallMountedItems
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: base

@@ -55,4 +55,13 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Construction
-    deconstructionTarget: null
+    deconstructionTarget: nul
+
+- type: entity
+  id: ChairAbductor
+  parent: ChairCarp
+  name: Abductor chair
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Furniture/abductorchair.rsi
+    state: abductor_chair
