@@ -1007,9 +1007,9 @@
   description: An expert in quantum cracker theory
   components:
   - type: Vocalizer
-    maxVocalizeInterval: 180 # polly is chattier # Sunrise Edit
+    maxVocalizeInterval: 240 # polly is chattier
   - type: RadioVocalizer
-    radioAttemptChance: 0.9 # polly wants to share with the world # Sunrise Edit
+    radioAttemptChance: 0.8 # polly wants to share with the world
   - type: Grammar
     attributes:
       proper: true
