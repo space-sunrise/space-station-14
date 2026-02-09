@@ -247,3 +247,53 @@
     - type: Clothing
       sprite: _Sunrise/Clothing/Hands/Gloves/black_cap_gloves.rsi
     - type: Insulated
+
+- type: entity
+  parent: ClothingHandsGlovesNorthStar
+  id: CornivoreGloves
+  name: gloves of cornivore
+  description: We don't know if you're thirsty for blood... but... these gloves definitely are!!! They're saturated with a special toxin.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/cornivoregloves.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/cornivoregloves.rsi
+  - type: MeleeWeapon
+    autoAttack: true
+    attackRate: 4
+    damage:
+      types:
+        Slash: 8
+    soundHit:
+      collection: Punch
+    animation: WeaponArcFist
+    mustBeEquippedToUse: true
+  - type: InjectOnHit
+    limit: 20
+    reagents:
+      - ReagentId: Hemorrhinol
+        Quantity: 5
+      - ReagentId: Warfarin
+        Quantity: 5
+      - ReagentId: Lexorin
+        Quantity: 0.2
+  - type: Fiber
+    fiberMaterial: fibers-leather
+    fiberColor: fibers-blue
+  - type: FingerprintMask
+  - type: MeleeSpeech
+  - type: ActivatableUI
+    key: enum.MeleeSpeechUiKey.Key
+    verbOnly: true
+  - type: Actions
+  - type: UserInterface
+    interfaces:
+      enum.MeleeSpeechUiKey.Key:
+        type: MeleeSpeechBoundUserInterface
+  - type: Insulated
+  - type: StaticPrice
+    price: 2500
+  - type: Tag
+    tags:
+    - Kangaroo
+    - WhitelistChameleon

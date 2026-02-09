@@ -163,6 +163,9 @@
   id: HandGrenadeAmmo
 
 - type: Tag
+  id: ImprovisedGrenade
+
+- type: Tag
   id: ImprovisedAmmoBox
 
 - type: Tag

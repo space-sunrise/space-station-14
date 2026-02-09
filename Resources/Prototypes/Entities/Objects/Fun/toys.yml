@@ -202,6 +202,8 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/energycrossbow_shoot.ogg
+    bigTrigger: true # Sunrise-Edit
+    clumsyProof: true # Sunrise-Edit
   - type: BallisticAmmoProvider
     whitelist:
       tags:

@@ -75,6 +75,7 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+    bigTrigger: true # Sunrise-Edit
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
   - type: Item

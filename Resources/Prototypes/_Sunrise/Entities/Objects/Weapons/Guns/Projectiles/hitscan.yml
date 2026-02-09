@@ -311,16 +311,16 @@
   - type: HitscanBasicDamage
     damage:
       types:
-        Piercing: 2
-        Slash: 2
-        Structural: 3
+        Piercing: 3
+        Slash: 3
+        Structural: 5
   - type: HitscanPierce
-    chance: 0.01
+    chance: 0.05
   - type: HitscanRicochet
     chance: 0.5
   - type: HitscanStaminaDamage
-    staminaDamage: 3
+    staminaDamage: 6
   - type: ProjectileSpread
     proto: PelletShotgunImprovisedSpreadTraceLarge
-    count: 36
-    spread: 45
+    count: 24
+    spread: 50

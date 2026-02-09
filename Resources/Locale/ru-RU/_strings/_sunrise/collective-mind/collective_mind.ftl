@@ -11,3 +11,4 @@ collective-mind-zombie = Зомби
 collective-mind-changeling = Генокрад
 collective-mind-blood-cult = Культ Крови
 collective-mind-abductor = Абдукторы
+collective-mind-pirate = Пираты

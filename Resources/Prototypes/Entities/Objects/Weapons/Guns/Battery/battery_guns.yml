@@ -203,6 +203,8 @@
       shader: unshaded
   - type: Item
     storedOffset: 0,-5
+  - type: Gun
+    bigTrigger: true # Sunrise-Edit
   - type: BatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 62.5
@@ -473,6 +475,7 @@
           map: ["enum.GunVisualLayers.Base"]
     - type: Gun
       clumsyProof: true # Sunrise-add
+      bigTrigger: true # Sunrise-Edit
       fireRate: 0.5
       soundGunshot:
         path: /Audio/Weapons/emitter.ogg
@@ -550,9 +553,10 @@
     projectileSpeed: 35 # any higher and this causes issues in lag
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
-  - type: BatteryAmmoProvider # Sunrise-Edit
-    proto: DisablerBoltPractice
-    fireCost: 50
+    bigTrigger: true # Sunrise-Edit
+  - type: BatteryAmmoProvider
+    proto: BulletDisablerPractice
+    fireCost: 62.5
   - type: Tag
     tags:
     - Taser
@@ -579,8 +583,8 @@
     slots:
       - suitStorage
       - Belt
-  - type: BatteryAmmoProvider # Sunrise-Edit
-    proto: DisablerBolt
+  - type: BatteryAmmoProvider
+    proto: BulletDisabler
     fireCost: 62.5
   - type: GuideHelp
     guides:
@@ -617,8 +621,8 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
-  - type: BatteryAmmoProvider # Sunrise-Edit
-    proto: DisablerBoltSmg
+  - type: BatteryAmmoProvider
+    proto: BulletDisablerSmg
     fireCost: 25
   - type: MagazineVisuals
     magState: mag
@@ -659,8 +663,8 @@
       path: /Audio/Weapons/Guns/Gunshots/taser.ogg
     projectileSpeed: 25
   - type: BatteryAmmoProvider
-    proto: BulletTaserSunrise
-    fireCost: 83.3 #Sunrise-Edit 12 Shots
+    proto: BulletTaser
+    fireCost: 200
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -704,6 +708,7 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+    bigTrigger: true # Sunrise-Edit
   # Sunrise-start
   - type: Item
     size: Normal

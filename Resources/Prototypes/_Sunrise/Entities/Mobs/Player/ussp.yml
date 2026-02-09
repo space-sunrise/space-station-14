@@ -201,6 +201,10 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
+    - type: GhostPanelAntagonistMarker
+      name: ghost-panel-antagonist-infiltrator-name
+      description: ghost-panel-antagonist-infiltrator-description
+      priority: 11
     - type: NukeOperative
     - type: GhostRole
       name: ghost-role-information-syndie-soldier-teamlead-name
@@ -234,6 +238,10 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
+    - type: GhostPanelAntagonistMarker
+      name: ghost-panel-antagonist-infiltrator-name
+      description: ghost-panel-antagonist-infiltrator-description
+      priority: 11
     - type: NukeOperative
     - type: GhostRole
       name: ghost-role-information-syndie-soldier-name
@@ -369,6 +377,10 @@
   id: PirateScoonerReinforcementBase
   suffix: Pirate
   components:
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-pirate-name
+    description: ghost-panel-antagonist-pirate-description
+    priority: 45
   - type: RandomHumanoidAppearance
     randomizeName: false
   - type: RandomMetadata

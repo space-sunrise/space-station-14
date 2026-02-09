@@ -20,6 +20,11 @@
       storagebase: !type:Container
   - type: StaticPrice
     price: 10
+  # Sunrise-Start
+  - type: PhysicalComposition
+    materialComposition:
+      Cardboard: 100
+  # Sunrise-End
 
 - type: entity
   abstract: true

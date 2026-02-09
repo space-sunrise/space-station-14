@@ -520,12 +520,12 @@
       children:
       - id: GunSafeRifleLecter
       - id: GunSafeRifleM16A4
-      - id: GunSafeRifleAKMU
     - !type:GroupSelector
       weight: 10
       children:
       - id: GunSafeRifleFamas
       - id: GunSafeRifleLecterMk2
+      - id: GunSafeRifleAKMU
 
 # SMG Spawner
 - type: entity

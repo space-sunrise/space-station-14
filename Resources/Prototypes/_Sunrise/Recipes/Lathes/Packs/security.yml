@@ -190,6 +190,10 @@
     - SpeedLoaderShotgunEmpty
     - SpeedLoaderShotgunSlug
     - SpeedLoaderShotgunBeanbag
+    # Pirate cannon
+    - CannonBallMini
+    - CannonBallGrapeshotMini
+    - MagazineCannonBallMini
     # Medical
     - Gauze
     - Brutepack

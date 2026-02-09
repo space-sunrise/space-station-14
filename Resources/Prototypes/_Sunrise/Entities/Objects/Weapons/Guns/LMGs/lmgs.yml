@@ -322,6 +322,20 @@
   - type: Appearance
 
 - type: entity
+  id: MagazineCannonBallGrapeshotMini
+  name: grapeshot suitcase
+  parent: MagazineCannonBallMini
+  suffix: Admeme
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: false
+    proto: CannonBallGrapeshotMini
+    whitelist:
+      tags:
+      - CannonBallMini
+    capacity: 50
+
+- type: entity
   name: pirate cannon
   parent: BaseWeaponLightMachineGun
   id: WeaponLightMachineGunPirateCannon
@@ -403,3 +417,62 @@
         Felinid:
           knockback: 1 #half of what resomi take
           staminaMultiplier: 15
+
+- type: entity
+  name: L6 SAW
+  id: WeaponLightMachineGunL6Max
+  parent: WeaponLightMachineGunL6
+  description: Developed by Waffle Corp, the L6 Squad Automatic Weapon is a deadly light machine gun often used by the Gorlex Marauders. Although bulky and cumbersome, its heavy barrel and high ammo capacity make it perfect for suppressing combatants with a hail of bullets. Feeds from .30 ammo belts.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 10000
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi
+    quickEquip: false
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/m41_cock.ogg
+    soundBoltClosed:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+    soundBoltOpened:
+      path: /Audio/Weapons/Guns/Cock/shotgun_open.ogg
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.90
+    sprintModifier: 0.90
+  - type: GunRequiresWield
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.90
+  - type: HeldSpeedModifier
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -22
+  - type: Gun
+    minAngle: 24
+    maxAngle: 35
+    angleIncrease: 2
+    angleDecay: 18
+    fireRate: 8
+    soundGunshot:
+      collection: m249 # Sunrise-Edit
+      params:
+        volume: 10
+        pitch: 1.1
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 4
+    pvsIncrease: 0.4

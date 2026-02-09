@@ -132,15 +132,15 @@
   - type: AntagLoadProfileRule
     speciesOverride: Human
     speciesOverrideBlacklist:
-    - Vox
     - Felinid
-    - Diona
-    - HumanoidXeno
-    - Predator
     #Species that do not work with nukies should be included in this list.
     #Once the issues are fixed the species should be removed from this list to be enabled.
     #Balance concerns are not a valid reason to disable a species, except for high-impact Nukie-specific exploits.
-    #- Vox
+    # - Vox
+    # - Felinid
+    # - Diona
+    # - HumanoidXeno
+    # - Predator
 
 - type: entity
   parent: BaseNukeopsRule
@@ -224,6 +224,33 @@
         - Syndicate
       mindRoles:
       - MindRoleNukeops
+    # Sunrise start
+    # Extra operative above 80 players (keeps 80 players unchanged).
+    - prefRoles: [ Nukeops ]
+      fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
+      spawnerPrototype: SpawnPointNukeopsOperative
+      min: 0
+      max: 1
+      playerRatio: 85
+      startingGear: SyndicateOperativeGearFull
+      roleLoadout:
+      - RoleSurvivalNukie
+      components:
+      - type: GhostPanelAntagonistMarker
+        name: ghost-panel-antagonist-nukeops-name
+        description: ghost-panel-antagonist-nukeops-description
+        priority: 10
+      - type: NukeOperative
+      - type: RandomMetadata
+        nameSegments:
+        - NamesSyndicateNormal
+        nameFormat: name-format-nukie-operator
+      - type: NpcFactionMember
+        factions:
+        - Syndicate
+      mindRoles:
+      - MindRoleNukeops
+    # Sunrise end
   - type: DynamicRuleCost
     cost: 200
 
@@ -238,7 +265,7 @@
   - type: AntagRandomObjectives
     sets:
     - groups: TraitorObjectiveGroups
-    maxDifficulty: 5
+    maxDifficulty: 6 # Sunrise-Edit
   - type: AntagSelection
     agentName: traitor-round-end-agent-name
   - type: DynamicRuleCost
@@ -371,8 +398,8 @@
   - type: SubGamemodes
     rules:
     - id: RevolutionarySmugglerStashSpawn
-      amount: 6
-      maxAmount: 15
+      amount: 8
+      maxAmount: 16
     # Sunrise-End
   - type: DynamicRuleCost
     cost: 200

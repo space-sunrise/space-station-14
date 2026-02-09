@@ -80,8 +80,8 @@
   - type: AntagObjectives
     objectives:
     - AbductObjective
-  - type: AntagLoadProfileRule
-    speciesHardOverride: Abductor
+  - type: AntagSpawner # Sunrise-todo: починить AntagLoadProfileRule для бубукторов
+    prototype: MobAbductor
   - type: AntagSelection
     definitions:
     - spawnerPrototype: AbductorScientistSpawner

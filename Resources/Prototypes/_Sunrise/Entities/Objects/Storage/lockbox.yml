@@ -16,6 +16,7 @@
     grid:
     - 0,0,3,3
     maxItemSize: Large
+  - type: LockedStorage
   - type: Lock
   - type: AccessReader
   - type: Appearance

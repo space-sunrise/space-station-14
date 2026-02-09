@@ -34,16 +34,16 @@
     steps: 5
     zeroVisible: true
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 50
+    proto: BulletDisabler
+    fireCost: 62.5
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
-      fireCost: 50
+    - proto: BulletDisabler
+      fireCost: 62.5
       visualState: disable
       magState: disable
       heldPrefix: disable4
-    - proto: TaserBolt
+    - proto: BulletTaser
       fireCost: 166
       visualState: stun
       magState: stun
@@ -74,19 +74,24 @@
     access: [["Security"]]
   - type: Item
     storedOffset: 1,-5
+  - type: Gun
+    fireRate: 2
+    projectileSpeed: 35 # any higher and this causes issues in lag
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: BatterySelfRecharger
-    autoRechargeRate: 15
+    autoRechargeRate: 8
     autoRechargePauseTime: 10
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 50
+    proto: BulletDisabler
+    fireCost: 62.5
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
-      fireCost: 50
+    - proto: BulletDisabler
+      fireCost: 62.5
       magState: disable
-    - proto: TaserBolt
-      fireCost: 166
+    - proto: BulletTaser
+      fireCost: 200
       magState: stun
       conditions:
       - !type:AlertLevelCondition
@@ -97,18 +102,9 @@
         - gamma
         - epsilon
         - delta
-    - proto: RedLaserBeam
-      fireCost: 66.6
+    - proto: RedMediumLaser
+      fireCost: 125
       magState: lethal
-      conditions:
-      - !type:AlertLevelCondition
-        alertLevels:
-        - violet
-        - yellow
-        - red
-        - gamma
-        - epsilon
-        - delta
 
 - type: entity
   name: X-01 multiphase energy gun
@@ -142,24 +138,24 @@
     steps: 5
     zeroVisible: true
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 50
+    proto: BulletDisabler
+    fireCost: 75
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Battery/multiphase_gun.rsi
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
-      fireCost: 50
+    - proto: BulletDisabler
+      fireCost: 75
       magState: disable
       visualState: disable-unshaded
       heldPrefix: disabler
-    - proto: RedLaserBeam
-      fireCost: 75
+    - proto: RedMediumLaser
+      fireCost: 150
       magState: kill
       visualState: kill-unshaded
       heldPrefix: lethal
     - proto: DestroyBeam
-      fireCost: 250
+      fireCost: 300
       magState: destroy
       visualState: destroy-unshaded
       heldPrefix: destroy
@@ -168,10 +164,11 @@
         alertLevels:
         - violet
         - yellow
+        - red
         - gamma
         - epsilon
         - delta
-    - proto: EmpPulse
+    - proto: BulletEMP
       fireCost: 300
       magState: ion
       visualState: ion-unshaded
@@ -196,8 +193,8 @@
     maxCharge: 1500
     startingCharge: 1500
   - type: BatterySelfRecharger
-    autoRechargeRate: 3
-    autoRechargePauseTime: 10
+    autoRechargeRate: 8
+    autoRechargePauseTime: 8
   - type: Tag
     tags:
     - HighRiskItem
@@ -231,7 +228,7 @@
   - type: Gun
     fireRate: 0.5
   - type: BatteryAmmoProvider
-    proto: EmpPulse
+    proto: BulletEMP
     fireCost: 125
   - type: MagazineVisuals
     magState: mag
@@ -242,8 +239,8 @@
   - type: GunRequiresWield
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 8
-    pvsIncrease: 0.8
+    maxOffset: 7
+    pvsIncrease: 0.7
 
 - type: entity
   parent: [BaseWeaponBattery, BaseSecurityContraband ]
@@ -265,7 +262,7 @@
   - type: Gun
     fireRate: 0.5
   - type: BatteryAmmoProvider
-    proto: EmpPulse
+    proto: BulletEMP
     fireCost: 250
   - type: MagazineVisuals
     magState: mag
@@ -349,15 +346,15 @@
     steps: 5
     zeroVisible: true
   - type: BatteryAmmoProvider
-    proto: TaserBolt
+    proto: BulletTaser
     fireCost: 100
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: TaserBolt
+    - proto: BulletTaser
       fireCost: 100
       magState: stun
       heldPrefix: stun
-    - proto: RedLaserBeam
+    - proto: RedMediumLaser
       fireCost: 100
       magState: kill
       heldPrefix: kill
@@ -386,20 +383,22 @@
     size: Small
     shape:
     - 0, 0, 1, 1
+  - type: Gun
+    bigTrigger: true # Sunrise-Edit
   - type: MagazineVisuals
     magState: disable
     steps: 5
     zeroVisible: true
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 75
+    proto: BulletTaser
+    fireCost: 150
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
-      fireCost: 75
+    - proto: BulletTaser
+      fireCost: 150
       magState: disable
       visualState: disable
-    - proto: RedLaserBeam
+    - proto: RedMediumLaser
       fireCost: 100
       magState: kill
       visualState: kill
