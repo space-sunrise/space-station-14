@@ -524,14 +524,4 @@
     icon: { sprite: Interface/Actions/voice-mask.rsi, state: icon }
     itemIconStyle: BigAction
 
-# Sunrise Edit Start
-- type: entity
-  parent: BaseToggleAction
-  id: ActionWhistle
-  name: Action Whistle
-  description: STOP RIGHT THERE!
-  components:
-  - type: Action
-    useDelay: 3
-    icon: { sprite: Objects/Fun/whistles.rsi , state: whistle }
-# Sunrise Edit End
+
