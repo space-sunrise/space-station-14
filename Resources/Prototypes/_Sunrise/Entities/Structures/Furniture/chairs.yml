@@ -55,7 +55,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Construction
-    deconstructionTarget: nul
+    deconstructionTarget: null
 
 - type: entity
   id: ChairAbductor
