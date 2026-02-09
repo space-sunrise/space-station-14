@@ -6,3 +6,5 @@ ent-AlwaysPoweredLightUV = { ent-AlwaysPoweredWallLight }
     .desc = { ent-AlwaysPoweredWallLight.desc }
 ent-AbductorLamp = светильник абдукторов
     .desc = Освещает коридоры корабля и путь к вашему сердцу через грудную клетку. Затемняет вопросы этики в вашем сознании.
+ent-AbductorLampStrobe = светильник абдукторов
+    .desc = { ent-AbductorLamp.desc }
