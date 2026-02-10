@@ -337,7 +337,7 @@
       toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
-  parent: ClothingCloakBase
+  parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCloakLegacyRd
   name: research director's cloak
   description: A white cloak with violet stripes, showing your status as the arbiter of cutting-edge technology.
@@ -346,7 +346,7 @@
     sprite: _Sunrise/Clothing/Neck/Cloaks/rdlegacy.rsi
 
 - type: entity
-  parent: ClothingCloakBase
+  parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCloakLegacyCe
   name: chief engineer's cloak
   description: A dark green cloak with light blue ornaments, given to those who proved themselves to master the precise art of engineering.
