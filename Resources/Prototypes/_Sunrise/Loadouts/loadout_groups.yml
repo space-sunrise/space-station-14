@@ -101,7 +101,7 @@
 
 - type: loadoutGroup
   id: BrigmedicInjectors
-  name: loadout-group-brigmedic-injectors
+  name: loadout-group-sunrise-injectors
   minLimit: 0
   maxLimit: 4
   loadouts:
