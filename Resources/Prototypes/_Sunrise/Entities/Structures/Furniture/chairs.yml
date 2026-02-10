@@ -59,8 +59,9 @@
 
 - type: entity
   id: ChairAbductor
-  parent: ChairCarp
-  name: Abductor chair
+  parent: ChairBase
+  name: chair abductor
+  description: cool chair for cool vulp
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Furniture/abductorchair.rsi

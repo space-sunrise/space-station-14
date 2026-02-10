@@ -1,8 +1,8 @@
 - type: entity
-  id: AbductorLampStrobe
-  name: AbductorLamp
+  id: abductorlampstrobe
+  name: abductor lamp
   parent: AlwaysPoweredStrobeLight
-  description: "modern and economical"
+  description: Modern and economical
   suffix: strobe
   components:
   - type: AmbientSound
@@ -39,8 +39,8 @@
 
 - type: entity
   parent: AlwaysPoweredWallLight
-  name: AbductorLamp
-  description: "modern and economical"
+  name: abductorlamp
+  description: Modern and economical
   id: AbductorLamp
   suffix: Always Powered, Exterior
   components:
