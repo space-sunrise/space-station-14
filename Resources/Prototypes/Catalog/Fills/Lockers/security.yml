@@ -304,14 +304,16 @@
   - type: EntityStorageVisuals
     stateDoorClosed: enforcer
   # Sunrise-End
-  - type: StorageFill
-    contents:
-    - id: SpeedLoaderShellShotgun # Sunrise-Add
-      amount: 2
-    - id: WeaponShotgunEnforcer
-      amount: 2
-    - id: BoxLethalshot
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SpeedLoaderShellShotgun # Sunrise-Add
+          amount: 2
+        - id: WeaponShotgunEnforcer
+          amount: 2
+        - id: BoxLethalshot
+          amount: 4
 
 - type: entity
   parent: [GunSafeBaseSecureSunrise, BaseSecurityContraband] # Sunrise-Edit
@@ -322,14 +324,16 @@
   - type: EntityStorageVisuals
     stateDoorClosed: kammerer
   # Sunrise-End
-  - type: StorageFill
-    contents:
-    - id: SpeedLoaderShellShotgun # Sunrise-Add
-      amount: 2
-    - id: WeaponShotgunKammerer
-      amount: 2
-    - id: BoxLethalshot
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SpeedLoaderShellShotgun # Sunrise-Add
+          amount: 2
+        - id: WeaponShotgunKammerer
+          amount: 2
+        - id: BoxLethalshot
+          amount: 4
 
 - type: entity
   id: GunSafeSubMachineGunWt550

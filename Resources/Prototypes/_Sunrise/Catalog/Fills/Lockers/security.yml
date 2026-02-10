@@ -25,9 +25,11 @@
   components:
   - type: EntityStorageVisuals
     stateDoorClosed: lwap
-  - type: StorageFill
-    contents:
-    - id: WeaponEnergySniper
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponEnergySniper
 
 - type: entity
   parent: GunSafeSuperweaponSecureGamma
@@ -55,10 +57,12 @@
   components:
   - type: EntityStorageVisuals
     stateDoorClosed: temperature
-  - type: StorageFill
-    contents:
-    - id: WeaponIonRifle
-    - id: WeaponTemperatureGun
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponIonRifle
+        - id: WeaponTemperatureGun
 
 - type: entity
   parent: GunSafeSuperweaponBaseSecure
@@ -67,12 +71,14 @@
   components:
   - type: EntityStorageVisuals
     stateDoorClosed: larker
-  - type: StorageFill
-    contents:
-    - id: WeaponRifleLarker
-      amount: 2
-    - id: BoxMagazineRifleNanotrasen
-      amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponRifleLarker
+          amount: 2
+        - id: BoxMagazineRifleNanotrasen
+          amount: 2
 
 - type: entity
   parent: GunSafeSuperweaponBaseSecure
@@ -81,12 +87,14 @@
   components:
   - type: EntityStorageVisuals
     stateDoorClosed: skm28
-  - type: StorageFill
-    contents:
-    - id: WeaponRifleSKM28Nano
-      amount: 2
-    - id: BoxMagazineRifleNanotrasen
-      amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponRifleSKM28Nano
+          amount: 2
+        - id: BoxMagazineRifleNanotrasen
+          amount: 2
 
 # region Energy Guns
 - type: entity
@@ -95,10 +103,12 @@
   name: mini energy cannons safe
   suffix: SUNRISE
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponMiniEnergyGun
-      amount: 6
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponMiniEnergyGun
+          amount: 6
 
 - type: entity
   id: GunSafeEnergyGunPistolSecurity
@@ -106,10 +116,12 @@
   name: safe
   suffix: Energy Pistol «Judge»
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponEnergyGunPistolSecurity
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponEnergyGunPistolSecurity
+          amount: 4
 
 - type: entity
   id: GunSafeEnergyPistolDominator
@@ -117,10 +129,12 @@
   name: safe
   suffix: Energy Pistol «Dominator»
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponDominator
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponDominator
+          amount: 4
 
 - type: entity
   parent: GunSafeBaseSecureSunrise
@@ -130,10 +144,12 @@
   components:
   - type: EntityStorageVisuals
     stateDoorClosed: energy
-  - type: StorageFill
-    contents:
-    - id: WeaponEnergyGun
-      amount: 3
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponEnergyGun
+          amount: 3
 
 - type: entity
   parent: GunSafeBaseSecureSunrise
@@ -143,10 +159,12 @@
   components:
   - type: EntityStorageVisuals
     stateDoorClosed: lasersmg
-  - type: StorageFill
-    contents:
-    - id: WeaponLaserLNT620
-      amount: 3
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponLaserLNT620
+          amount: 3
 
 - type: entity
   parent: GunSafeBaseSecureSunrise
@@ -156,10 +174,12 @@
   components:
   - type: EntityStorageVisuals
     stateDoorClosed: energysmg
-  - type: StorageFill
-    contents:
-    - id: WeaponEnergyGunTactical
-      amount: 3
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponEnergyGunTactical
+          amount: 3
 
 # region Pistols safes
 - type: entity
@@ -170,12 +190,14 @@
   components:
   - type: EntityStorageVisuals
     stateDoorClosed: pistol
-  - type: StorageFill
-    contents:
-    - id: WeaponPistolG22
-      amount: 4
-    - id: MagazineGlock22
-      amount: 8
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponPistolG22
+          amount: 4
+        - id: MagazineGlock22
+          amount: 8
 
 - type: entity
   parent: GunSafePistolG22 #GunSafeHandgunBaseSecureSunrise
@@ -183,12 +205,14 @@
   name: safe
   suffix: M1984
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponPistolM1984
-      amount: 4
-    - id: MagazinePistol
-      amount: 8
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponPistolM1984
+          amount: 4
+        - id: MagazinePistol
+          amount: 8
 
 - type: entity
   parent: GunSafePistolG22 #GunSafeHandgunBaseSecureSunrise
@@ -196,14 +220,16 @@
   name: safe
   suffix: Snub Revolver
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponRevolverSnubRevolver
-      amount: 4
-    - id: SpeedLoaderMagnumSP
-      amount: 6
-    - id: SpeedLoaderMagnumRubber
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponRevolverSnubRevolver
+          amount: 4
+        - id: SpeedLoaderMagnumSP
+          amount: 6
+        - id: SpeedLoaderMagnumRubber
+          amount: 4
 
 - type: entity
   parent: GunSafePistolG22 #GunSafeHandgunBaseSecureSunrise
@@ -211,12 +237,14 @@
   name: safe
   suffix: VP-78
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponPistolVP78
-      amount: 4
-    - id: PouchAmmoFilledPistol40
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponPistolVP78
+          amount: 4
+        - id: PouchAmmoFilledPistol40
+          amount: 4
 
 - type: entity
   parent: GunSafePistolG22 #GunSafeHandgunBaseSecureSunrise
@@ -224,12 +252,14 @@
   name: safe
   suffix: ACP-14
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponPistolACP14
-      amount: 4
-    - id: PouchAmmoFilledPistol40
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponPistolACP14
+          amount: 4
+        - id: PouchAmmoFilledPistol40
+          amount: 4
 
 # region SMGs safes
 
@@ -239,12 +269,14 @@
   name: safe
   suffix: Vector
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponSubMachineGunNewVector
-      amount: 2
-    - id: MagazinePistolSubMachineGunSP
-      amount: 6
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunNewVector
+          amount: 2
+        - id: MagazinePistolSubMachineGunSP
+          amount: 6
 
 - type: entity
   parent: GunSafeBaseSecure
@@ -252,12 +284,14 @@
   name: safe
   suffix: MP7
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponSubMachineGunMP7
-      amount: 2
-    - id: MagazinePistolHighCapacityFMJ
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunMP7
+          amount: 2
+        - id: MagazinePistolHighCapacityFMJ
+          amount: 4
 
 - type: entity
   parent: GunSafeBaseSecure
@@ -265,12 +299,14 @@
   name: safe
   suffix: Skorpion
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponSubMachineGunSkorpion
-      amount: 3
-    - id: MagazinePistolSubMachineGunSP
-      amount: 6
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunSkorpion
+          amount: 3
+        - id: MagazinePistolSubMachineGunSP
+          amount: 6
 
 - type: entity
   parent: GunSafeBaseSecure
@@ -278,12 +314,14 @@
   name: safe
   suffix: MP5
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponSubMachineGunMP5
-      amount: 2
-    - id: MagazinePistolSubMachineGunSP
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunMP5
+          amount: 2
+        - id: MagazinePistolSubMachineGunSP
+          amount: 4
 
 - type: entity
   parent: GunSafeBaseSecureSunrise
@@ -293,12 +331,14 @@
   components:
   - type: EntityStorageVisuals
     stateDoorClosed: drozd
-  - type: StorageFill
-    contents:
-    - id: WeaponSubMachineGunDrozdMk2
-      amount: 2
-    - id: MagazinePistolSubMachineGunSP
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunDrozdMk2
+          amount: 2
+        - id: MagazinePistolSubMachineGunSP
+          amount: 4
 
 - type: entity
   parent: GunSafeBaseSecure
@@ -306,12 +346,14 @@
   name: safe
   suffix: SP91RC
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponSubMachineGunSP91RC
-      amount: 2
-    - id: MagazinePistolSubMachineGunSP
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunSP91RC
+          amount: 2
+        - id: MagazinePistolSubMachineGunSP
+          amount: 4
 
 # region Rifles safes
 - type: entity
@@ -322,10 +364,12 @@
   components:
   - type: EntityStorageVisuals
     stateDoorClosed: lmg
-  - type: StorageFill
-    contents:
-    - id: WeaponRifleM52
-    - id: BoxMagazineRifleM52
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponRifleM52
+        - id: BoxMagazineRifleM52
 
 - type: entity
   parent: GunSafeBaseSecure
@@ -333,12 +377,14 @@
   name: safe
   suffix: M16A4
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponRifleM16A4
-      amount: 2
-    - id: MagazineRifleSP
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponRifleM16A4
+          amount: 2
+        - id: MagazineRifleSP
+          amount: 4
 
 - type: entity
   parent: GunSafeBaseSecureSunrise
@@ -348,17 +394,19 @@
   components:
   - type: EntityStorageVisuals
     stateDoorClosed: lecter
-  - type: StorageFill
-    contents:
-    - id: WeaponRifleLecterMk2
-      amount: 2
-    - id: WeaponRifleG36
-    - id: MagazineRifleSP
-      amount: 4
-    - id: MagazineRifleHP
-      amount: 2
-    - id: MagazineRifleFMJ
-      amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponRifleLecterMk2
+          amount: 2
+        - id: WeaponRifleG36
+        - id: MagazineRifleSP
+          amount: 4
+        - id: MagazineRifleHP
+          amount: 2
+        - id: MagazineRifleFMJ
+          amount: 2
 
 - type: entity
   parent: GunSafeBaseSecure
@@ -366,17 +414,19 @@
   name: safe
   suffix: Famas
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponRifleFamas
-      amount: 2
-    - id: WeaponRifleG36
-    - id: MagazineRifleSP
-      amount: 4
-    - id: MagazineRifleHP
-      amount: 2
-    - id: MagazineRifleFMJ
-      amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponRifleFamas
+          amount: 2
+        - id: WeaponRifleG36
+        - id: MagazineRifleSP
+          amount: 4
+        - id: MagazineRifleHP
+          amount: 2
+        - id: MagazineRifleFMJ
+          amount: 2
 
 
 - type: entity
@@ -387,66 +437,68 @@
   components:
   - type: EntityStorageVisuals
     stateDoorClosed: rifle
-  - type: StorageFill
-    contents:
-    - id: WeaponRifleSKM24
-      prob: 0.33
-      orGroup: SKM
-    - id: WeaponRifleSKM24White
-      prob: 0.33
-      orGroup: SKM
-    - id: WeaponRifleSKM24Green
-      prob: 0.33
-      orGroup: SKM
-    - id: WeaponRifleSKM24Scrap
-      prob: 0.05
-      amount: 3
-      orGroup: SKM
-    - id: WeaponRifleSKM24Syndi
-      prob: 0.1
-      orGroup: SKM
-    - id: WeaponRifleSKM24Nano
-      orGroup: SKM
-    - id: WeaponRifleSKM24
-      prob: 0.33
-      orGroup: SKM2
-    - id: WeaponRifleSKM24White
-      prob: 0.33
-      orGroup: SKM2
-    - id: WeaponRifleSKM24Green
-      orGroup: SKM2
-    - id: WeaponRifleSKM24Scrap
-      prob: 0.05
-      amount: 3
-      orGroup: SKM2
-    - id: WeaponRifleSKM24Syndi
-      prob: 0.1
-      orGroup: SKM2
-    - id: WeaponRifleSKM24Nano
-      orGroup: SKM2
-    - id: WeaponRifleSKM24
-      prob: 0.33
-      orGroup: SKM3
-    - id: WeaponRifleSKM24White
-      prob: 0.33
-      orGroup: SKM3
-    - id: WeaponRifleSKM24Green
-      orGroup: SKM3
-    - id: WeaponRifleSKM24Scrap
-      prob: 0.05
-      amount: 3
-      orGroup: SKM3
-    - id: WeaponRifleSKM24Syndi
-      prob: 0.1
-      orGroup: SKM3
-    - id: WeaponRifleSKM24Nano
-      orGroup: SKM3
-    - id: MagazineLightRifleSP
-      amount: 4
-    - id: MagazineLightRifleFMJ
-      amount: 2
-    - id: MagazineLightRifleHP
-      amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponRifleSKM24
+          prob: 0.33
+          orGroup: SKM
+        - id: WeaponRifleSKM24White
+          prob: 0.33
+          orGroup: SKM
+        - id: WeaponRifleSKM24Green
+          prob: 0.33
+          orGroup: SKM
+        - id: WeaponRifleSKM24Scrap
+          prob: 0.05
+          amount: 3
+          orGroup: SKM
+        - id: WeaponRifleSKM24Syndi
+          prob: 0.1
+          orGroup: SKM
+        - id: WeaponRifleSKM24Nano
+          orGroup: SKM
+        - id: WeaponRifleSKM24
+          prob: 0.33
+          orGroup: SKM2
+        - id: WeaponRifleSKM24White
+          prob: 0.33
+          orGroup: SKM2
+        - id: WeaponRifleSKM24Green
+          orGroup: SKM2
+        - id: WeaponRifleSKM24Scrap
+          prob: 0.05
+          amount: 3
+          orGroup: SKM2
+        - id: WeaponRifleSKM24Syndi
+          prob: 0.1
+          orGroup: SKM2
+        - id: WeaponRifleSKM24Nano
+          orGroup: SKM2
+        - id: WeaponRifleSKM24
+          prob: 0.33
+          orGroup: SKM3
+        - id: WeaponRifleSKM24White
+          prob: 0.33
+          orGroup: SKM3
+        - id: WeaponRifleSKM24Green
+          orGroup: SKM3
+        - id: WeaponRifleSKM24Scrap
+          prob: 0.05
+          amount: 3
+          orGroup: SKM3
+        - id: WeaponRifleSKM24Syndi
+          prob: 0.1
+          orGroup: SKM3
+        - id: WeaponRifleSKM24Nano
+          orGroup: SKM3
+        - id: MagazineLightRifleSP
+          amount: 4
+        - id: MagazineLightRifleFMJ
+          amount: 2
+        - id: MagazineLightRifleHP
+          amount: 2
 
 # region Shotguns safes
 - type: entity
@@ -457,18 +509,20 @@
   components:
   - type: EntityStorageVisuals
     stateDoorClosed: kammerer
-  - type: StorageFill
-    contents:
-    - id: WeaponShotgunTrenchgun4034
-      amount: 2
-    - id: SpeedLoaderShellShotgun
-      amount: 4
-    - id: BoxBeanbag
-      amount: 1
-    - id: BoxShotgunSlug
-      amount: 1
-    - id: BoxShotgunFlare
-      amount: 1
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponShotgunTrenchgun4034
+          amount: 2
+        - id: SpeedLoaderShellShotgun
+          amount: 4
+        - id: BoxBeanbag
+          amount: 1
+        - id: BoxShotgunSlug
+          amount: 1
+        - id: BoxShotgunFlare
+          amount: 1
 
 - type: entity
   parent: GunSafeBaseSecureSunrise
@@ -478,18 +532,20 @@
   components:
   - type: EntityStorageVisuals
     stateDoorClosed: kammerer
-  - type: StorageFill
-    contents:
-    - id: WeaponShotgunRiot
-      amount: 2
-    - id: SpeedLoaderShellShotgun
-      amount: 4
-    - id: BoxBeanbag
-      amount: 1
-    - id: BoxShotgunSlug
-      amount: 1
-    - id: BoxShotgunFlare
-      amount: 1
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponShotgunRiot
+          amount: 2
+        - id: SpeedLoaderShellShotgun
+          amount: 4
+        - id: BoxBeanbag
+          amount: 1
+        - id: BoxShotgunSlug
+          amount: 1
+        - id: BoxShotgunFlare
+          amount: 1
 
 - type: entity
   parent: GunSafeBaseSecureSunrise
@@ -499,18 +555,20 @@
   components:
   - type: EntityStorageVisuals
     stateDoorClosed: enforcer
-  - type: StorageFill
-    contents:
-    - id: WeaponShotgunSPAS12
-      amount: 2
-    - id: SpeedLoaderShellShotgun
-      amount: 4
-    - id: BoxBeanbag
-      amount: 1
-    - id: BoxShotgunSlug
-      amount: 1
-    - id: BoxShotgunFlare
-      amount: 1
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponShotgunSPAS12
+          amount: 2
+        - id: SpeedLoaderShellShotgun
+          amount: 4
+        - id: BoxBeanbag
+          amount: 1
+        - id: BoxShotgunSlug
+          amount: 1
+        - id: BoxShotgunFlare
+          amount: 1
 
 - type: entity
   parent: GunSafeBaseSecureSunrise
@@ -520,18 +578,20 @@
   components:
   - type: EntityStorageVisuals
     stateDoorClosed: enforcer
-  - type: StorageFill
-    contents:
-    - id: WeaponShotgunCombat
-      amount: 2
-    - id: SpeedLoaderShellShotgun
-      amount: 4
-    - id: BoxBeanbag
-      amount: 1
-    - id: BoxShotgunSlug
-      amount: 1
-    - id: BoxShotgunFlare
-      amount: 1
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponShotgunCombat
+          amount: 2
+        - id: SpeedLoaderShellShotgun
+          amount: 4
+        - id: BoxBeanbag
+          amount: 1
+        - id: BoxShotgunSlug
+          amount: 1
+        - id: BoxShotgunFlare
+          amount: 1
 
 - type: entity
   parent: GunSafeBaseSecureSunrise
@@ -542,18 +602,20 @@
   components:
   - type: EntityStorageVisuals
     stateDoorClosed: kammerer
-  - type: StorageFill
-    contents:
-    - id: WeaponShotgunDoubleBarreled
-      amount: 4
-    - id: SpeedLoaderShellShotgun
-      amount: 4
-    - id: BoxBeanbag
-      amount: 2
-    - id: SpeedLoaderShotgunIncendiary
-      amount: 4
-    - id: BoxShotgunFlare
-      amount: 1
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponShotgunDoubleBarreled
+          amount: 4
+        - id: SpeedLoaderShellShotgun
+          amount: 4
+        - id: BoxBeanbag
+          amount: 2
+        - id: SpeedLoaderShotgunIncendiary
+          amount: 4
+        - id: BoxShotgunFlare
+          amount: 1
 
 # region Spawners
 # Small Arms Spawner

@@ -3,12 +3,14 @@
   parent: SuitStorageBase
   suffix: BlueShield
   components:
-  - type: StorageFill
-    contents:
-    - id: OxygenTankFilled
-    - id: ClothingOuterHardsuitBlueShield
-    - id: ClothingMaskGasBlueShield
-    - id: ClothingShoesBootsMagSec
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: OxygenTankFilled
+        - id: ClothingOuterHardsuitBlueShield
+        - id: ClothingMaskGasBlueShield
+        - id: ClothingShoesBootsMagSec
   - type: AccessReader
     access: [["BlueShield"]]
 
@@ -18,8 +20,10 @@
   parent: SuitStorageBase
   suffix: Security, Sunrise
   components:
-  - type: StorageFill
-    contents:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitSecuritySunrise
         - id: ClothingMaskBreath
@@ -34,8 +38,10 @@
   parent: SuitStorageBase
   suffix: Pirate EVA, Sunrise
   components:
-  - type: StorageFill
-    contents:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
         - id: OxygenTankFilled
           orGroup: OxygenTankPool
         - id: DoubleEmergencyOxygenTankFilled
@@ -72,8 +78,10 @@
   parent: SuitStorageBase
   suffix: Pirate, Sunrise
   components:
-  - type: StorageFill
-    contents:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
         - id: OxygenTankFilled
           orGroup: OxygenTankPool
         - id: DoubleEmergencyOxygenTankFilled
@@ -117,8 +125,10 @@
   parent: SuitStorageBase
   suffix: Pirate Captain, Sunrise
   components:
-  - type: StorageFill
-    contents:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
         - id: OxygenTankFilled
           orGroup: OxygenTankPool
         - id: DoubleEmergencyOxygenTankFilled

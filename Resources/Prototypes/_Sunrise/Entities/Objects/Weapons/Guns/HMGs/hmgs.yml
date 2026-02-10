@@ -188,9 +188,11 @@
     - 0,0,6,4
   - type: ExplosionResistance
     damageCoefficient: 0.1
-  - type: StorageFill
-    contents:
-      - id: CrazyGlue
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CrazyGlue
   - type: ItemSlots
     slots:
       weapon_slot:

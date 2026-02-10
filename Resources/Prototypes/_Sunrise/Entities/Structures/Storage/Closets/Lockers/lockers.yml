@@ -326,20 +326,22 @@
   parent: ClosetPatologoanatom
   suffix: Filled
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingUniformJumpsuitMedicalDoctor
-    - id: HandheldHealthAnalyzer
-    - id: BoxForensicPad
-    - id: ClothingHeadsetMedical
-    - id: HeadSkeleton
-    - id: ClothingHeadHatPatologonatHat
-    - id: Scalpel
-    - id: ClothingHandsGlovesNitrile
-    - id: ClothingShoesColorBlack
-    - id: RubberStampPath
-    - id: ClothingOuterHospitalGown
-      amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitMedicalDoctor
+        - id: HandheldHealthAnalyzer
+        - id: BoxForensicPad
+        - id: ClothingHeadsetMedical
+        - id: HeadSkeleton
+        - id: ClothingHeadHatPatologonatHat
+        - id: Scalpel
+        - id: ClothingHandsGlovesNitrile
+        - id: ClothingShoesColorBlack
+        - id: RubberStampPath
+        - id: ClothingOuterHospitalGown
+          amount: 2
 
 - type: entity
   id: LockerMiningSpecialist
@@ -369,23 +371,25 @@
   name: mining specialist's equipment
   description: Nevermind the pickaxe.
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingOuterHardsuitSalvage
-    - id: ToolboxMechanicalFilledAllTools
-    - id: ClothingMaskGasExplorer
-    - id: AirTankFilled
-    - id: RadioHandheld
-    - id: OreBag
-    - id: Nanopaste
-    - id: WeaponProtoKineticAccelerator
-    - id: HandHeldMassScanner
-    - id: PKAUpgradeRange
-      prob: 0.1
-    - id: PKAUpgradeFireRate
-      prob: 0.1
-    - id: PKAUpgradeDamage
-      prob: 0.1
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitSalvage
+        - id: ToolboxMechanicalFilledAllTools
+        - id: ClothingMaskGasExplorer
+        - id: AirTankFilled
+        - id: RadioHandheld
+        - id: OreBag
+        - id: Nanopaste
+        - id: WeaponProtoKineticAccelerator
+        - id: HandHeldMassScanner
+        - id: PKAUpgradeRange
+          prob: 0.1
+        - id: PKAUpgradeFireRate
+          prob: 0.1
+        - id: PKAUpgradeDamage
+          prob: 0.1
 
 # Representative
 - type: entity
@@ -420,7 +424,9 @@
   parent: LockerRepresentative
   suffix: Filled
   components:
-  - type: StorageFill
-    contents:
-    - id: HandheldFax
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: HandheldFax
 

@@ -26,3 +26,5 @@ ent-InsulatedGlovesAtmos = insulated gloves atmos
     .desc = Insulated gloves made especially for atmospheric technicians.
 ent-ClothingHandsGlovesCombatCQC = combat gloves
     .desc = These high-quality tactical gloves are fireproof and shock resistant.
+ent-ClothingHandsGlovesCombatFingerless = fingerless combat gloves
+    .desc = Tactical gloves that may not protect you from finger burns, but will make you cooler.
