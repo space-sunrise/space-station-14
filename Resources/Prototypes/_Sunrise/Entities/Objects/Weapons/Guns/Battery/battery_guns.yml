@@ -411,7 +411,7 @@
     maxCharge: 1000
     startingCharge: 1000
   - type: BatteryAmmoProvider
-    proto: BulletDisabler
+    proto: BulletDisablerSmg
     fireCost: 20
   - type: BatteryWeaponFireModes
     fireModes:

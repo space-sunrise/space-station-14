@@ -168,10 +168,8 @@
   name: safe
   suffix: Glock-22
   components:
-  # Sunrise-Start
   - type: EntityStorageVisuals
     stateDoorClosed: pistol
-  # Sunrise-End
   - type: StorageFill
     contents:
     - id: WeaponPistolG22
