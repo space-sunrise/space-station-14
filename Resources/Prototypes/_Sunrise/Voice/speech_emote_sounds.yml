@@ -166,8 +166,27 @@
 
 - type: emoteSounds
   id: XenoHumanoid
-  sound:
-    collection: HumanoidXenoScreams
+  sounds:
+    Scream:
+      collection: HumanoidXenoSqeals
+    Laugh:
+      collection: HumanoidXenoScreams
+    Cough:
+      collection: HumanoidXenoScreams
+    SevereCough:
+      collection: HumanoidXenoScreams
+    Hisses:
+      collection: HumanoidXenoHisses
+    Roars:
+      collection: HumanoidXenoRoars
+    Growl:
+      collection: HumanoidXenoGrowls
+    Rumbles:
+      collection: HumanoidXenoRumbles
+    Crying:
+      collection: HumanoidXenoCry
+    DefaultDeathgasp:
+      collection: HumanoidXenoDeathgasp
   params:
     variation: 0.125
 

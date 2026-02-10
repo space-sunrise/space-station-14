@@ -2905,3 +2905,16 @@
     Telecrystal: 3
   categories:
     - UplinkExplosives
+
+- type: listing
+  id: UplinkCornivoreGloves
+  name: uplink-cornivoregloves-name
+  description: uplink-cornivoregloves-desc
+  productEntity: CornivoreGlovesBiocode
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkWeaponry
