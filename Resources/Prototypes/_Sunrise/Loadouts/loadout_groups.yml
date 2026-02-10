@@ -367,12 +367,12 @@
   - Sunrise-GreenGloves
   - Sunrise-TealGloves
   - Sunrise-BlueGloves
-  # - Sunrise-GlovesNitrileBlack
-  # - Sunrise-GlovesNitrileRed
-  # - Sunrise-GlovesNitrileOrange
-  # - Sunrise-GlovesNitrileGreen
+  - Sunrise-GlovesNitrileBlack
+  - Sunrise-GlovesNitrileRed
+  - Sunrise-GlovesNitrileOrange
+  - Sunrise-GlovesNitrileGreen
   - NitrileGloves
-  # - Sunrise-GlovesNitrileBlue
+  - Sunrise-GlovesNitrileBlue
 
 - type: loadoutGroup
   id: SeniorPhysicianHead
