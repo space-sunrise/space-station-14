@@ -9,7 +9,6 @@ namespace Content.Shared._Sunrise.CollectiveMind;
 public sealed class CollectiveMindUpdateSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IComponentFactory _factory = default!;

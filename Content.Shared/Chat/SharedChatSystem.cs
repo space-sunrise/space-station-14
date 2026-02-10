@@ -1,9 +1,8 @@
 using System.Collections.Frozen;
-using Content.Shared.CollectiveMind;
 using System.Text.RegularExpressions;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Chat.Prototypes;
-using Content.Shared._Sunrise.CollectiveMind;
+using Content.Shared._Sunrise.CollectiveMind; // Sunrise-Edit
 using Content.Shared.Popups;
 using Content.Shared.Radio;
 using Content.Shared.Speech;
@@ -60,9 +59,6 @@ public abstract partial class SharedChatSystem : EntitySystem
     /// Cache of the keycodes for faster lookup.
     /// </summary>
     private FrozenDictionary<char, RadioChannelPrototype> _keyCodes = default!;
-
-    private FrozenDictionary<char, CollectiveMindPrototype> _mindKeyCodes = default!;
-
     private FrozenDictionary<char, CollectiveMindPrototype> _mindKeyCodes = default!; // Sunrise-Edit
 
     public override void Initialize()
@@ -92,13 +88,6 @@ public abstract partial class SharedChatSystem : EntitySystem
     private void CacheRadios()
     {
         _keyCodes = _prototypeManager.EnumeratePrototypes<RadioChannelPrototype>()
-            .ToFrozenDictionary(x => x.KeyCode);
-    }
-
-    private void CacheCollectiveMinds()
-    {
-        _prototypeManager.PrototypesReloaded -= OnPrototypeReload;
-        _mindKeyCodes = _prototypeManager.EnumeratePrototypes<CollectiveMindPrototype>()
             .ToFrozenDictionary(x => x.KeyCode);
     }
 
@@ -226,43 +215,6 @@ public abstract partial class SharedChatSystem : EntitySystem
         }
 
         return true;
-    }
-
-    public bool TryProccessCollectiveMindMessage(
-        EntityUid source,
-        string input,
-        out string output,
-        out CollectiveMindPrototype? channel,
-        bool quiet = false)
-    {
-        output = input.Trim();
-        channel = null;
-
-        if (input.Length == 0)
-            return false;
-
-        if (!input.StartsWith(CollectiveMindPrefix))
-            return false;
-
-        if (input.Length < 2 || char.IsWhiteSpace(input[1]))
-        {
-            output = SanitizeMessageCapital(input[1..].TrimStart());
-            if (!quiet)
-                _popup.PopupEntity(Loc.GetString("chat-manager-no-radio-key"), source, source);
-            return true;
-        }
-
-        var channelKey = input[1];
-        channelKey = char.ToLower(channelKey);
-        output = SanitizeMessageCapital(input[2..].TrimStart());
-
-        if (_mindKeyCodes.TryGetValue(channelKey, out channel) || quiet)
-            return true;
-
-        var msg = Loc.GetString("chat-manager-no-such-channel", ("key", channelKey));
-        _popup.PopupEntity(msg, source, source);
-
-        return false;
     }
 
     // Sunrise-Start
