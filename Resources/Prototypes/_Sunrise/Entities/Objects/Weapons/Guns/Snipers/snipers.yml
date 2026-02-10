@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   name: Dragunov
   parent: [ BaseWeaponRifle, BaseGunWieldable ]
   id: WeaponSniperDragunov
@@ -39,7 +39,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineDragunov
+        startingItem: MagazineDragunovSP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Dragunov/dragunov_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Dragunov/dragunov_unload.ogg
         priority: 2
@@ -321,3 +321,4 @@
   - type: Tag
     tags:
       - WrappedWeapon
+

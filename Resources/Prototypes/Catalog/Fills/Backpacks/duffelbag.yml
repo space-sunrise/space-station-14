@@ -201,6 +201,22 @@
       - id: MagazinePistol40SubMachineGunFMJ
         amount: 2
       - id: MagazinePistol40SubMachineGunHP
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledLMGMax
+  name: L6 Saw bundle
+  suffix: L6 Saw-Max
+  description: "More dakka: The iconic L6 lightmachinegun, bundled with 2 box magazines."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponLightMachineGunL6MaxBiocode
+        - id: MagazineRifleBoxSP
+          amount: 2
+        - id: MagazineRifleBoxFMJ
 # Sunrise-end
 
 - type: entity

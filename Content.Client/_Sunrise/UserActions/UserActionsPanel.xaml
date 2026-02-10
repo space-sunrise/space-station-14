@@ -9,7 +9,7 @@
 
             <TabContainer Name="TabContainer" HorizontalExpand="True" VerticalExpand="True">
                 <tabs:EmotesTabControl Name="EmotesTabControl"/>
-                <tabs:VerbsTabControl Name="VerbTabControl"/>
+                <tabs:EmotesTabControl Name="VerbTabControl"/>
             </TabContainer>
 
             <Label Name="NoContentLabel"

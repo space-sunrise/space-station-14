@@ -57,12 +57,13 @@ public sealed partial class CCVars
     ///     Also looks weird on slow spacing for unrelated reasons. If you do want to enable this, you should probably turn on instaspacing.
     /// </summary>
     public static readonly CVarDef<bool> MonstermosRipTiles =
-        CVarDef.Create("atmos.monstermos_rip_tiles", false, CVar.SERVERONLY);
+        CVarDef.Create("atmos.monstermos_rip_tiles", true, CVar.SERVERONLY); // Sunrise-Edit
 
     /// <summary>
     ///     Whether explosive depressurization will cause the grid to gain an impulse.
     ///     Needs <see cref="MonstermosEqualization"/> and <see cref="MonstermosDepressurization"/> to be enabled to work.
     /// </summary>
+    // Sunrise FIXME: При включении вызывает исключение в ShuttleSystem.Impact из-за MeteorSystem при отключенном якоре
     public static readonly CVarDef<bool> AtmosGridImpulse =
         CVarDef.Create("atmos.grid_impulse", false, CVar.SERVERONLY);
 

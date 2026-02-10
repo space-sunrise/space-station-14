@@ -24,6 +24,7 @@
     - кашель
     - кашляет
     - кашлянул
+    - кашлять
     # Russian-Localization-End
 
 - type: emote
@@ -68,6 +69,7 @@
     # Russian-Localization-Start
     - зевок
     - зевает
+    - зевать
     # Russian-Localization-End
 
 - type: emote

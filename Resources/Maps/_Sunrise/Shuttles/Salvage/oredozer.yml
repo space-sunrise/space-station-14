@@ -655,15 +655,7 @@ entities:
     - type: GridPathfinding
     - type: ImplicitRoof
     - type: ExplosionAirtightGrid
-- proto: AirlockExternalGlassNukeopLocked
-  entities:
-  - uid: 344
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -8.5,2.5
-      parent: 1
-- proto: AirlockExternalNukeopLocked
+- proto: AirlockExternalGlassCargoLocked
   entities:
   - uid: 83
     components:
@@ -738,6 +730,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -4.5,-6.5
+      parent: 1
+  - uid: 344
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -8.5,2.5
       parent: 1
 - proto: AirlockSalvageLocked
   entities:

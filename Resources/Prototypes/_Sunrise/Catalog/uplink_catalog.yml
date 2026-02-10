@@ -48,6 +48,9 @@
   productEntity: PouchAmmo
   categories:
   - UplinkWearables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
 
 - type: listing
   id: UplinkPouchExplosive
@@ -512,11 +515,41 @@
 
 - type: listing
   id: UplinkMagazineDragunov
-  description: uplink-magazine-dragunov-desc
+  description: uplink-magazine-dragunov-sp-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
-  productEntity: MagazineDragunov
+  productEntity: MagazineDragunovSP
   cost:
     Telecrystal: 1
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineDragunovHP
+  description: uplink-magazine-dragunov-hp-desc
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
+  productEntity: MagazineDragunovHP
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineDragunovFMJ
+  description: uplink-magazine-dragunov-fmj-desc
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
+  productEntity: MagazineDragunovFMJ
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineDragunovIncendiary
+  description: uplink-magazine-dragunov-incendiary-desc
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
+  productEntity: MagazineDragunovIncendiary
+  cost:
+    Telecrystal: 2
   categories:
   - UplinkAmmo
 
@@ -819,12 +852,9 @@
   id: UplinkBoomboxBundle
   name: uplink-music-boombox-name
   description: uplink-music-boombox-desc
-  productEntity: ClothingBackpackDuffelBoomboxBundle
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 2
+  productEntity: BoomboxSyndie
   cost:
-    Telecrystal: 4
+    Telecrystal: 2
   categories:
   - UplinkPointless
 
@@ -988,6 +1018,25 @@
       - LoneOpsUplink
 
 - type: listing
+  id: UplinkL6SawBundleMax
+  name: uplink-l6-sawmax-bundle-name
+  description: uplink-l6-sawmax-bundle-desc
+  icon: { sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledLMGMax
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 20
+  cost:
+    Telecrystal: 25
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+
+- type: listing
   id: UplinkClothingBackpackSyndieDL6902Filled
   name: uplink-clothing-backpack-syndie-dl6902-name
   productEntity: ClothingBackpackSyndieDL6902Filled
@@ -1014,9 +1063,9 @@
   description: uplink-power-backpack-dl6902-desc
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 22
+    Telecrystal: 20
   cost:
-    Telecrystal: 38
+    Telecrystal: 35
   categories:
   - UplinkWeaponry
   conditions:
@@ -2003,7 +2052,7 @@
 # Implats
 
 - type: listing
-  id: UplinkSmokeScreenImplanter  #PR Wiz #31782
+  id: UplinkSmokeScreenImplanter
   name: uplink-smoke-screen-implanter-name
   description: uplink-smoke-screen-implanter-desc
   icon: { sprite: Objects/Weapons/Grenades/smoke.rsi, state: icon }
@@ -2051,9 +2100,9 @@
   productEntity: LauncherCreamPieFake
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 6
+    Telecrystal: 4
   cost:
-    Telecrystal: 8
+    Telecrystal: 5
   categories:
   - UplinkJob
   conditions:
@@ -2067,7 +2116,7 @@
   description: uplink-heavy-cleanade-desc
   productEntity: CleanerGrenadeAcidBox
   cost:
-    Telecrystal: 4
+    Telecrystal: 3
   categories:
   - UplinkJob
   conditions:
@@ -2152,9 +2201,9 @@
   productEntity: LauncherSyringeRapid
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - UplinkJob
   conditions:
@@ -2365,6 +2414,22 @@
     stock: 1
 
 - type: listing
+  id: uplinkWeaponEnergyCrossbow
+  name: uplink-energy-crossbow-name
+  description: uplink-energy-crossbow-desc
+  productEntity: WeaponEnergyCrossbowLarge
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: uplinkWeaponShotgunMinotaur
   name: uplink-minotaur-name
   description: uplink-minotaur-desc
@@ -2425,19 +2490,6 @@
   categories:
   - UplinkWeaponry
 
-# - type: listing # Sunrise-TODO: Fix this
-#   id: uplinkWeaponPistolStechkin
-#   name: uplink-stechkin-name
-#   description: uplink-stechkin-desc
-#   productEntity: WeaponPistolStechkin
-#   discountCategory: rareDiscounts
-#   discountDownTo:
-#     Telecrystal: 3
-#   cost:
-#     Telecrystal: 6
-#   categories:
-#   - UplinkWeaponry
-
 - type: listing
   id: UplinkGrenadeLauncherM79
   name: uplink-grenade-launcher-m79-name
@@ -2489,7 +2541,7 @@
   discountDownTo:
     Telecrystal: 20
   cost:
-    Telecrystal: 35
+    Telecrystal: 30
   categories:
   - UplinkWeaponry
   conditions:
@@ -2853,3 +2905,16 @@
     Telecrystal: 3
   categories:
     - UplinkExplosives
+
+- type: listing
+  id: UplinkCornivoreGloves
+  name: uplink-cornivoregloves-name
+  description: uplink-cornivoregloves-desc
+  productEntity: CornivoreGlovesBiocode
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkWeaponry

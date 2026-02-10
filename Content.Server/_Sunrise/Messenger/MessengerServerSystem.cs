@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Radio;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Shared.DeviceNetwork.Events;
 using Content.Server.Station.Systems;
@@ -9,6 +10,8 @@ using Content.Shared._Sunrise.Messenger;
 using Content.Shared.Inventory;
 using Robust.Shared.Prototypes;
 using Content.Server.CartridgeLoader;
+using Content.Server.DeviceNetwork.Components;
+using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.Messenger;
 
@@ -25,8 +28,22 @@ public sealed partial class MessengerServerSystem : EntitySystem
     [Dependency] private readonly ILocalizationManager _loc = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
-
+    [Dependency] private readonly IRobustRandom _random = default!;
     private ISawmill Sawmill { get; set; } = default!;
+
+    /// <summary>
+    /// Находит GroupId для указанного радиоканала
+    /// </summary>
+    public string? GetGroupIdByRadioChannel(string radioChannelId)
+    {
+        foreach (var proto in _prototypeManager.EnumeratePrototypes<MessengerAutoGroupPrototype>())
+        {
+            if (proto.RadioChannel == radioChannelId)
+                return proto.GroupId;
+        }
+
+        return null;
+    }
 
     public override void Initialize()
     {
@@ -39,6 +56,14 @@ public sealed partial class MessengerServerSystem : EntitySystem
         SubscribeLocalEvent<MessengerServerComponent, DeviceNetServerDisconnectedEvent>(OnServerDisconnected);
         SubscribeLocalEvent<MessengerServerComponent, RoundRestartCleanupEvent>(OnRoundRestart);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
+
+        InitializeSpam();
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        UpdateSpam(frameTime);
     }
 
     private void OnRoundRestart(EntityUid uid, MessengerServerComponent component, RoundRestartCleanupEvent args)
@@ -72,7 +97,7 @@ public sealed partial class MessengerServerSystem : EntitySystem
 
         foreach (var user in component.Users.Values)
         {
-            AddUserToAutoGroups(uid, component, user.UserId, user.Name, user.DepartmentId);
+            AddUserToAutoGroups(uid, component, user.UserId, user.Name, user.DepartmentIds);
         }
     }
 
@@ -171,5 +196,28 @@ public sealed partial class MessengerServerSystem : EntitySystem
     private long GetNextMessageId(EntityUid uid, MessengerServerComponent component)
     {
         return ++component.MessageIdCounter;
+    }
+
+    /// <summary>
+    /// Находит сущность сервера мессенджера для станции
+    /// </summary>
+    public (EntityUid, MessengerServerComponent)? GetServerEntity(EntityUid? station)
+    {
+        if (station == null)
+            return null;
+
+        var query = EntityQueryEnumerator<MessengerServerComponent, SingletonDeviceNetServerComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var singleton))
+        {
+            if (!_singletonServer.IsActiveServer(uid, singleton))
+                continue;
+
+            if (_stationSystem.GetOwningStation(uid) != station)
+                continue;
+
+            return (uid, comp);
+        }
+
+        return null;
     }
 }

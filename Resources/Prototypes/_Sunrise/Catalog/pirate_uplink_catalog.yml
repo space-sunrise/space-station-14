@@ -1127,7 +1127,7 @@
   id: UplinkPirateMagDragunov
   description: uplink-magazine-dragunov-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
-  productEntity: MagazineDragunov
+  productEntity: MagazineDragunovSP
   cost:
     Doubloon: 6
   categories:

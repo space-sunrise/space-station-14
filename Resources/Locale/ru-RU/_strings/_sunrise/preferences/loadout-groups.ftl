@@ -109,9 +109,7 @@ loadout-group-commaid-shoes = Горничная командования, об�
 loadout-group-commaid-gloves = Горничная командования, перчатки
 loadout-group-contributors = Контрибьюторы
 
-loadout-group-head = Головной убор
 loadout-group-hats = Шляпа
-loadout-group-pda = ПДА
 
 loadout-group-prison-trinkets = Безделушки ПТ
 loadout-group-prisoner-loot = Тайник Зека

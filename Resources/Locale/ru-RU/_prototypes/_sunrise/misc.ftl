@@ -78,6 +78,12 @@ ent-CableDet = взрывной шнур
 ent-CableDetStack = взрывной шнур
     .desc = Взрывной шнур, чтобы убрать всё, что стоит на пути.
     .suffix = Полный
+ent-CableDetStack10 = { ent-CableDetStack }
+    .desc = { ent-CableDetStack.desc }
+    .suffix = 10
+ent-CableDetStack1 = { ent-CableDetStack }
+    .desc = { ent-CableDetStack.desc }
+    .suffix = 1
 
 ent-ParcelWrapAdmeme = блюспейс-обёртка
     .desc = Бумага для упаковки предметов при транспортировке. Эта, кажется, способна прятать внутри подозрительно много пространства.

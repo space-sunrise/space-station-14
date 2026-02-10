@@ -5,7 +5,7 @@
   - type: PointLight
     enabled: true
     radius: 10
-    energy: 10
+    energy: 5
     netsync: false
   - type: LightFade
     duration: 0.5

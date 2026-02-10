@@ -1,4 +1,4 @@
-## Targets
+﻿## Targets
 
 uplink-core-extraction-toolbox-name = Core Extraction Toolbox
 uplink-core-extraction-toolbox-desc = A toolbox containing everything you need to remove a nuclear bomb's plutonium core. Instructions not included.
@@ -58,7 +58,8 @@ uplink-pistoltec9-desc = Очень дешёвый в производстве �
 
 uplink-goldendeagle-name = Золотой Десерт Игл
 uplink-goldendeagle-desc = "Использует патрон "магнум" 45-го калибра, Выгравировано: Все, что у меня осталось от него в памяти — это два позолоченных Desert Eagle 45-го калибра"
-##bombs
+uplink-cornivoregloves-name = Перчатки алой жатвы корниворы
+uplink-cornivoregloves-desc = Мы не можем сказать, жаждете ли вы крови... но эти перчатки - определённо да. Каждый коготь - это хирургический инструмент для кровопускания, заполняющий свою цель нашим фирменным химическим коктейлем. Ваша жертва будет истекать и истекать и истекать... пока вы обдумываете следующий надрез. Помните: красный - это новый чёрный. И он вечно в моде.
 uplink-pizza-bomb-name = Nefarious Pizza bomb
 uplink-pizza-bomb-desc = Originally developed covertly by DONK Co to dissuade the heretics who prefer their pizza not in pocket form. This pizza box is wired, and explodes within moments of being opened.
 ## Cyborgs
@@ -148,4 +149,5 @@ uplink-energy-dome-desc = A personal shield generator that protects the wearer f
 
 uplink-syndicate-teleporter-name = Hand syndicate teleporter
 uplink-syndicate-teleporter-desc = An experimental hand teleporting device. Teleports its owner forward in a small area. Be careful not to end up in the wall.
+
 

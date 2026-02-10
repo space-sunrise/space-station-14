@@ -66,6 +66,9 @@
   parent: ToySword
   components:
   - type: Wieldable
+  - type: ItemToggle
+    onUse: false
+    onActivate: false
   - type: Sprite
     sprite: Objects/Weapons/Melee/e_sword_double.rsi
     layers:

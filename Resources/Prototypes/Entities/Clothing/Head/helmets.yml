@@ -483,10 +483,10 @@
   - type: Armor
     modifiers: #There's gotta be SOME reason to use this over other helmets.
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
-        Heat: 0.9
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
   - type: HideLayerClothing
     layers:
       Hair: HEAD

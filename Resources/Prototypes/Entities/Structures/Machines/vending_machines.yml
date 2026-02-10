@@ -208,7 +208,7 @@
     pack: GenericVendGoodbyes
   - type: Transform
     noRot: false
-  - type: PlayerCountDependentStock  # Sunrise-vend
+  - type: PlayerCountDependentStock  # Sunrise-Edit
 
 - type: entity
   parent: VendingMachine
@@ -269,6 +269,7 @@
     guides:
     - Bartender
     - Drinks
+  - type: PlayerCountDependentStock  # Sunrise-Edit
 
 - type: entity
   parent: VendingMachineBooze
@@ -366,6 +367,7 @@
     radius: 1.5
     energy: 3.0
     color: "#4b93ad"
+  - type: PlayerCountDependentStock  # Sunrise-Edit
 
 - type: entity
   parent: VendingMachine
@@ -396,7 +398,7 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: PlayerCountDependentStock  # Sunrise-vend
+  - type: PlayerCountDependentStock  # Sunrise-Edit
 
 - type: entity
   parent: VendingMachine
@@ -500,7 +502,7 @@
     radius: 1.5
     energy: 2.0
     color: "#ad7c4b"
-  - type: PlayerCountDependentStock  # Sunrise-vend
+  - type: PlayerCountDependentStock  # Sunrise-Edit
 
 - type: entity
   parent: VendingMachine
@@ -537,7 +539,7 @@
     radius: 1.5
     energy: 3.0
     color: "#3c5eb5"
-  - type: PlayerCountDependentStock  # Sunrise-vend
+  - type: PlayerCountDependentStock  # Sunrise-Edit
 
 - type: entity
   parent: VendingMachineCola
@@ -681,7 +683,7 @@
     radius: 1.5
     energy: 3.0
     color: "#66538F"
-  - type: PlayerCountDependentStock  # Sunrise-vend
+  - type: PlayerCountDependentStock  # Sunrise-Edit
 
 - type: entity
   parent: VendingMachine
@@ -718,7 +720,7 @@
     radius: 1.5
     energy: 3.0
     color: "#6927C5"
-  - type: PlayerCountDependentStock  # Sunrise-vend
+  - type: PlayerCountDependentStock  # Sunrise-Edit
 
 - type: entity
   parent: VendingMachine
@@ -755,7 +757,7 @@
     radius: 1.5
     energy: 3.0
     color: "#D82929"
-  - type: PlayerCountDependentStock  # Sunrise-vend
+  - type: PlayerCountDependentStock  # Sunrise-Edit
 
 - type: entity
   parent: VendingMachine
@@ -792,7 +794,7 @@
     radius: 1.5
     energy: 3.0
     color: "#00E645"
-  - type: PlayerCountDependentStock  # Sunrise-vend
+  - type: PlayerCountDependentStock  # Sunrise-Edit
 
 - type: entity
   parent: VendingMachine
@@ -889,7 +891,7 @@
     radius: 1.5
     energy: 3.0
     color: "#6148c7"
-  - type: PlayerCountDependentStock  # Sunrise-vend
+  - type: PlayerCountDependentStock  # Sunrise-Edit
 
 - type: entity
   parent: VendingMachine
@@ -956,6 +958,7 @@
   - type: GuideHelp
     guides:
     - MedicalDoctor
+  - type: PlayerCountDependentStock  # Sunrise-Edit
 
 - type: entity
   parent: VendingMachineMedicalBase
@@ -976,6 +979,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
     access: [["Medical"]]
+  - type: PlayerCountDependentStock  # Sunrise-Edit
 
 - type: entity
   parent: VendingMachine
@@ -1124,7 +1128,7 @@
     radius: 1.5
     energy: 3.0
     color: "#c73434"
-  - type: PlayerCountDependentStock  # Sunrise-vend
+  - type: PlayerCountDependentStock  # Sunrise-Edit
 
 - type: entity
   parent: VendingMachineSnack
@@ -1155,7 +1159,7 @@
     radius: 1.5
     energy: 3.0
     color: "#737785"
-  - type: PlayerCountDependentStock  # Sunrise-vend
+  - type: PlayerCountDependentStock  # Sunrise-Edit
 
 - type: entity
   parent: VendingMachineSnack
@@ -1273,7 +1277,7 @@
     energy: 3.0
     color: "#389690"
   - type: RussianAccent
-  - type: PlayerCountDependentStock  # Sunrise-vend
+  - type: PlayerCountDependentStock  # Sunrise-Edit
 
 - type: entity
   parent: VendingMachine
@@ -1472,7 +1476,7 @@
     radius: 1.5
     energy: 3.0
     color: "#ffe599"
-  - type: PlayerCountDependentStock  # Sunrise-vend
+  - type: PlayerCountDependentStock  # Sunrise-Edit
 
 - type: entity
   parent: VendingMachine
@@ -1538,7 +1542,7 @@
     radius: 1.5
     energy: 3.0
     color: "#d4ab33"
-  - type: PlayerCountDependentStock  # Sunrise-vend
+  - type: PlayerCountDependentStock  # Sunrise-Edit
 
 # job clothing
 
@@ -2318,6 +2322,7 @@
   - type: GuideHelp
     guides:
     - Medical
+  - type: PlayerCountDependentStock  # Sunrise-Edit
   #Sunrise-Start
 
 - type: entity
@@ -2357,3 +2362,4 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
     access: [["Medical"]]
+  - type: PlayerCountDependentStock  # Sunrise-Edit

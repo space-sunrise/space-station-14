@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   parent: CrateGeneric
   id: CrateAmmunitionSmall
   name: old small ammunition crate
@@ -69,7 +69,7 @@
   - type: StorageFill
     contents:
       - id: WeaponSniperDragunov
-      - id: MagazineDragunov
+      - id: MagazineDragunovSP
         amount: 2
       - id: MagazineDragunovIncendiary
         amount: 2
@@ -230,4 +230,5 @@
     tags:
     - Recyclable
     - WrappedWeapon
+
 

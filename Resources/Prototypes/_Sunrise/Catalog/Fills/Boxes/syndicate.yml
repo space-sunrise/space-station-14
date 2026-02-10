@@ -137,7 +137,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: MagazineDragunov
+        - id: MagazineDragunovSP
           amount: 2
         - id: MagazineDragunovExtended
           amount: 2
@@ -449,3 +449,4 @@
       orGroup: RapierToxin
     - id: ChemistryBottleLead
       orGroup: RapierToxin
+

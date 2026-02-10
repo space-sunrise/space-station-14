@@ -15,3 +15,5 @@ ent-ClothingHeadHelmetPirateAlt2 = абордажный EVA шлем
 ent-ClothingHeadHelmetHardsuitScaf = шлем скуфандра EVA
     .desc = Крепкий шлем. Внутри пропах злостью прежнего владельца.
     .suffix = Пират
+ent-ClothingHeadHelmetEVAMilira = EVA шлем милир
+    .desc = EVA шлем специально для милир.

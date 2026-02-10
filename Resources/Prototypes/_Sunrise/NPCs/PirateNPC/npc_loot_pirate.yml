@@ -1,4 +1,4 @@
-#region BASE
+﻿#region BASE
 
 - type: entity
   id: NpcLootBase
@@ -2181,7 +2181,7 @@
       prob: 0.6
       orGroup: dragunovPool
     # Items
-    - id: MagazineDragunov
+    - id: MagazineDragunovSP
       amount: 2
       prob: 0.3
       orGroup: dragunovAmmoPool
@@ -3806,4 +3806,5 @@
       prob: 0.4
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
+
 

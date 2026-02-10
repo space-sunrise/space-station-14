@@ -1,3 +1,4 @@
+using Content.Shared.Radio;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
@@ -23,6 +24,12 @@ public sealed partial class MessengerAutoGroupPrototype : IPrototype
     /// </summary>
     [DataField(required: true)]
     public string GroupId { get; private set; } = default!;
+
+    /// <summary>
+    /// Связанный радиоканал (для системных оповещений)
+    /// </summary>
+    [DataField]
+    public ProtoId<RadioChannelPrototype>? RadioChannel { get; private set; } = null;
 
     /// <summary>
     /// Если true, добавляет всех пользователей автоматически
