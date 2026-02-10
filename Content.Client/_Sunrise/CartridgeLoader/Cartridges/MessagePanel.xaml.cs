@@ -1,5 +1,5 @@
-using System.Numerics;
 using Content.Client._Sunrise.Messenger;
+using Content.Client._Sunrise.UserInterface.CustomControls;
 using Content.Client.Resources;
 using Content.Client.Stylesheets;
 using Content.Shared._Sunrise.Messenger;
@@ -175,25 +175,7 @@ public sealed partial class MessagePanel : PanelContainer
 
     private void ShowFullImage()
     {
-        if (ImagePreview.Texture == null)
-            return;
-
-        var window = new DefaultWindow
-        {
-            Title = Loc.GetString("messenger-image-preview-title"),
-            MinSize = new Vector2(600, 600)
-        };
-
-        var textureRect = new TextureRect
-        {
-            Texture = ImagePreview.Texture,
-            Stretch = TextureRect.StretchMode.KeepAspect,
-            HorizontalExpand = true,
-            VerticalExpand = true
-        };
-
-        window.Contents.AddChild(textureRect);
-        window.OpenCentered();
+        PhotoPreviewWindow.Open(ImagePreview.Texture);
     }
 
     private void OnResourceLoaded(string resourcePath)

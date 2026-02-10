@@ -145,6 +145,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener
+    - FootstepSound
 
 # region Mech Pod
 - type: entity
@@ -331,6 +332,9 @@
     containers:
       mech-battery-slot:
       - PowerCageMedium
+  - type: Tag
+    tags:
+    - DoorBumpOpener # No paint unique ripley
 
 # Ripley MK-II "Death"
 - type: entity

@@ -176,16 +176,18 @@
           types:
             Poison: 0.1
       # dwarves take less toxin damage and heal a marginal amount of brute
+      # Sunrise-Start
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
           reagent: Ethanol
-          min: 15
-        - !type:MetabolizerTypeCondition
+          min: 25
+        - !type:MetabolizerTypeCondition 
           type: [ Dwarf ]
         damage:
           types:
             Poison: 0.02
+      # Sunrise-End
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -237,7 +239,7 @@
         factor: 2
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.2
+        amount: 0.2    
 
 - type: reagent
   id: CoffeeLiqueur

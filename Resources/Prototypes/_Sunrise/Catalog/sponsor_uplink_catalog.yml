@@ -1316,7 +1316,7 @@
   name: uplink-sunrise-clothing-neck-cloak-black-sec-name
   productEntity: ClothingNeckCloakBlackSec
   cost:
-    Suntick: 15
+    Suntick: 20
   categories:
   - SecurityThings
   conditions:
@@ -1331,22 +1331,7 @@
   name: uplink-sunrise-weapon-disabler-name
   productEntity: WeaponDisabler
   cost:
-    Suntick: 10
-  categories:
-  - SecurityThings
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerDepartmentCondition
-    whitelist:
-    - Security
-
-- type: listing
-  id: UplinkSunriseClothingOuterArmorBulletproof
-  name: uplink-sunrise-clothing-outer-armor-bulletproof-name
-  productEntity: ClothingOuterArmorBulletproof
-  cost:
-    Suntick: 10
+    Suntick: 15
   categories:
   - SecurityThings
   conditions:

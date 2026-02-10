@@ -25,12 +25,11 @@
   - type: StationLimitedNetwork
   - type: StaticPrice
     price: 500
-#    Sunrise-Edit
-#  - type: Tag
-#    tags:
-#    - HighRiskItem
-#  - type: StealTarget
-#    stealGroup: HandheldCrewMonitor
+  - type: Tag
+    tags:
+    - HighRiskItem
+  - type: StealTarget
+    stealGroup: HandheldCrewMonitor
 
 - type: entity
   id: HandheldCrewMonitorEmpty

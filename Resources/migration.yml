@@ -945,6 +945,8 @@ WeaponEnergyGunMultiphase: WeaponMultiphaseGun
 ClothingBeltAssaultFilled: null
 MagazinePistolSubMachineGunCaseless: BaseMagazinePistolCaselessRifleExtended
 SyndicateCircuitBoard: SyndimovCircuitBoard
+WeaponRifleAKM: WeaponRifleAKMU
+CrateArmoryAKMS: null
 # 2025-12-21
 ClothingNeckCMOCloak: ClothingNeckMedCloak
 
@@ -957,4 +959,10 @@ ImplantExtractorMachineCircuitboard: InterrogatorMachineCircuitboard
 
 # 2026-01-02
 EnergyDomeWiredTest: null
+
+# 2026-01-31
+ClothingHeadHelmetHardsuitMilira: ClothingHeadHelmetEVAMilira
 # Sunrise-End
+
+# 2026-01-30
+MagazineDragunov: MagazineDragunovSP

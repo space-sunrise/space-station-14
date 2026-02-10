@@ -500,6 +500,17 @@
     Glass: 400
 
 - type: latheRecipe
+  id: ClothingHeadHelmetEVAMilira
+  result: ClothingHeadHelmetEVAMilira
+  categories:
+  - Clothing
+  completetime: 6
+  materials:
+    Steel: 200
+    Plastic: 200
+    Glass: 200
+
+- type: latheRecipe
   id: ClothingEyesHudMilira
   result: ClothingEyesHudMilira
   categories:

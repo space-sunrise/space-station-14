@@ -10,35 +10,46 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise.UserActions.Tabs;
 
 [GenerateTypedNameReferences]
 public sealed partial class EmotesTabControl : BaseTabControl
 {
-    [Dependency] private readonly EntityManager _entManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly IEntityManager _ent = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    private EntityWhitelistSystem? _whitelist;
+
+    public const string StyleClassEmoteButton = "EmoteButton";
+
+    public EmoteCategory? AllowedCategories;
+    public bool CheckChatTriggersCount = true;
 
     private TimeSpan _lastEmoteTime;
     private static readonly TimeSpan EmoteCooldown = TimeSpan.FromSeconds(2f);
+
+    private readonly EntityQuery<SpeechComponent> _speechQuery;
 
     public EmotesTabControl()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+
+        _speechQuery = _ent.GetEntityQuery<SpeechComponent>();
     }
 
     public override bool UpdateState()
     {
         EmotesList.RemoveAllChildren();
 
-        var player = _playerManager.LocalEntity;
+        var player = _player.LocalEntity;
         if (player is not { Valid: true })
             return false;
 
-        var emotes = _prototypeManager.EnumeratePrototypes<EmotePrototype>()
+        var emotes = _prototype.EnumeratePrototypes<EmotePrototype>()
             .Where(emote => IsEmoteAvailable(emote, player.Value))
             .OrderBy(x => x.Category)
             .ThenBy(x => x.ID)
@@ -66,8 +77,8 @@ public sealed partial class EmotesTabControl : BaseTabControl
             return;
 
         var maxWidth = Math.Min(300, Width);
-        var firstRow = EmotesList.Children.First() as BoxContainer;
-        if (firstRow == null)
+
+        if (!EmotesList.Children.TryFirstOrDefault(out var firstRow))
             return;
 
         var currentRow = firstRow;
@@ -103,7 +114,7 @@ public sealed partial class EmotesTabControl : BaseTabControl
         }
     }
 
-    private BoxContainer CreateNewRow()
+    private static BoxContainer CreateNewRow()
     {
         return new BoxContainer
         {
@@ -114,68 +125,55 @@ public sealed partial class EmotesTabControl : BaseTabControl
 
     private Button CreateEmoteButton(EmotePrototype emote)
     {
-        var container = new BoxContainer
-        {
-            Orientation = BoxContainer.LayoutOrientation.Vertical,
-            HorizontalExpand = true,
-            MinSize = new Vector2(0, 24),
-            Margin = new Thickness(1)
-        };
-
-        var label = new RichTextLabel
-        {
-            HorizontalExpand = true,
-            VerticalExpand = true,
-            HorizontalAlignment = HAlignment.Center,
-            VerticalAlignment = VAlignment.Center,
-            Text = Loc.GetString(emote.Name)
-        };
-
         var button = new Button
         {
-            StyleClasses = { "EmoteButton" },
             HorizontalExpand = true,
             MinSize = new Vector2(0, 24),
-            Margin = new Thickness(1)
+            Margin = new Thickness(1),
+            Text = Loc.GetString(emote.Name),
         };
 
-        container.AddChild(label);
-        button.AddChild(container);
-
-        button.OnPressed += _ => OnPlayEmote(new ProtoId<EmotePrototype>(emote.ID));
+        button.AddStyleClass(StyleClassEmoteButton);
+        button.OnPressed += _ => OnPlayEmote(emote.ID);
 
         return button;
     }
 
     private bool IsEmoteAvailable(EmotePrototype emote, EntityUid player)
     {
-        var whitelistSystem = _entManager.System<EntityWhitelistSystem>();
-
-        if (emote.Category == EmoteCategory.Invalid || emote.Category == EmoteCategory.Verb || emote.ChatTriggers.Count == 0)
+        if (emote.Category == EmoteCategory.Invalid)
             return false;
 
-        if (whitelistSystem.IsWhitelistPass(emote.Blacklist, player))
+        if (AllowedCategories != null && (AllowedCategories & emote.Category) == 0)
             return false;
 
-        if (whitelistSystem.IsWhitelistFail(emote.Whitelist, player))
+        if (CheckChatTriggersCount && emote.ChatTriggers.Count == 0)
             return false;
 
-        if (!emote.Available &&
-            _entManager.TryGetComponent<SpeechComponent>(player, out var speech) &&
-            !speech.AllowedEmotes.Contains(emote.ID))
+        _whitelist ??= _ent.System<EntityWhitelistSystem>();
+        if (!_whitelist.CheckBoth(player, emote.Blacklist, emote.Whitelist))
             return false;
+
+        if (!emote.Available)
+        {
+            if (!_speechQuery.TryGetComponent(player, out var speech))
+                return false;
+
+            if (!speech.AllowedEmotes.Contains(emote.ID))
+                return false;
+        }
 
         return true;
     }
 
     private void OnPlayEmote(ProtoId<EmotePrototype> protoId)
     {
-        var currentTime = _gameTiming.CurTime;
+        var currentTime = _timing.CurTime;
         if (currentTime - _lastEmoteTime < EmoteCooldown)
             return;
 
         _lastEmoteTime = currentTime;
-        _entManager.RaisePredictiveEvent(new PlayEmoteMessage(protoId));
+        _ent.RaisePredictiveEvent(new PlayEmoteMessage(protoId));
     }
 
     protected override void Resized()

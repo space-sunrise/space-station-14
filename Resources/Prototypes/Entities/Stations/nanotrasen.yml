@@ -29,6 +29,7 @@
     - BaseStationNanotrasen
     - BaseStationDeliveries
   # Sunrise-Start
+    - BaseStationSpam
     - BaseStationTransitHub
     - BaseStationDontSelling
     - BaseStationPlanetPrison

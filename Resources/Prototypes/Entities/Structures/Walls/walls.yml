@@ -1007,7 +1007,7 @@
         density: 2000
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, BaseDeltaPressurePlasma]
   id: WallSolid
   name: solid wall
   components:

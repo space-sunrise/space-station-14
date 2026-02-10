@@ -13,7 +13,7 @@
         Cold: 0.1
     heatDamage:
       types:
-        Heat: 1.5
+        Heat: 1
   - type: ThermalRegulator
     metabolismHeat: 800
     radiatedHeat: 100

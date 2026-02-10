@@ -1,6 +1,7 @@
 using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Station.Systems;
+using Content.Server._Sunrise.Messenger;
 using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Access.Systems;
@@ -30,6 +31,7 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
     [Dependency] private readonly StationRecordsSystem _records = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly MessengerServerSystem _messenger = default!;
 
     public override void Initialize()
     {
@@ -170,8 +172,17 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
             // this is impossible
             _ => "not-wanted"
         };
-        _radio.SendRadioMessage(ent, Loc.GetString($"criminal-records-console-{statusString}", args),
-            ent.Comp.SecurityChannel, ent);
+        // Sunrise-Start
+        var locMsg = Loc.GetString($"criminal-records-console-{statusString}", args);
+        // _radio.SendRadioMessage(ent, locMsg,
+        //    ent.Comp.SecurityChannel, ent);
+
+        if (_messenger.GetServerEntity(_station.GetOwningStation(ent)) is var (server, _) &&
+            _messenger.GetGroupIdByRadioChannel(ent.Comp.SecurityChannel) is { } groupId)
+        {
+            _messenger.SendSystemMessageToGroup(server, groupId, locMsg);
+        }
+        // Sunrise-End
 
         UpdateUserInterface(ent);
     }

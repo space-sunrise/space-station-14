@@ -242,9 +242,17 @@ namespace Content.Server.Cargo.Systems
                     ("orderAmount", order.OrderQuantity),
                     ("approver", order.Approver ?? string.Empty),
                     ("cost", cost));
-                _radio.SendRadioMessage(uid, message, account.RadioChannel, uid, escapeMarkup: false);
+                // Sunrise-Start
+                /*_radio.SendRadioMessage(uid, message, account.RadioChannel, uid, escapeMarkup: false);
                 if (CargoOrderConsoleComponent.BaseAnnouncementChannel != account.RadioChannel)
-                    _radio.SendRadioMessage(uid, message, CargoOrderConsoleComponent.BaseAnnouncementChannel, uid, escapeMarkup: false);
+                    _radio.SendRadioMessage(uid, message, CargoOrderConsoleComponent.BaseAnnouncementChannel, uid, escapeMarkup: false);*/
+
+                if (_messenger.GetServerEntity(_station.GetOwningStation(uid)) is var (server, _) &&
+                    _messenger.GetGroupIdByRadioChannel(CargoOrderConsoleComponent.BaseAnnouncementChannel) is { } groupId)
+                {
+                    _messenger.SendSystemMessageToGroup(server, groupId, message);
+                }
+                // Sunrise-End
             }
 
             ConsolePopup(args.Actor, Loc.GetString("cargo-console-trade-station", ("destination", MetaData(ev.FulfillmentEntity.Value).EntityName)));

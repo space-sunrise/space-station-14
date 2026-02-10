@@ -259,5 +259,5 @@
         priority: 1
         whitelist:
           tags:
-          - Grenade
+          - ImprovisedGrenade
           - HandGrenadeAmmo

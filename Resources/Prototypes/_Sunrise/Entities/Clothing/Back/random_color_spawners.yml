@@ -1,0 +1,56 @@
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackRandomColorSpawner
+  name: backpack
+  suffix: Random color
+  components:
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+    - ClothingBackpackBlack
+    - ClothingBackpackBlue
+    - ClothingBackpackCian
+    - ClothingBackpackGreen
+    - ClothingBackpackOrange
+    - ClothingBackpackPurple
+    - ClothingBackpackRed
+    - ClothingBackpackWhite
+    - ClothingBackpackYellow
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelRandomColorSpawner
+  name: duffel bag
+  suffix: Random color
+  components:
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+    - ClothingBackpackDuffelBlack
+    - ClothingBackpackDuffelBlue
+    - ClothingBackpackDuffelCian
+    - ClothingBackpackDuffelGreen
+    - ClothingBackpackDuffelOrange
+    - ClothingBackpackDuffelPurple
+    - ClothingBackpackDuffelRed
+    - ClothingBackpackDuffelWhite
+    - ClothingBackpackDuffelYellow
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelRandomColorSpawner
+  name: satchel
+  suffix: Random color
+  components:
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+    - ClothingBackpackSatchelBlack
+    - ClothingBackpackSatchelBlue
+    - ClothingBackpackSatchelCian
+    - ClothingBackpackSatchelGreen
+    - ClothingBackpackSatchelOrange
+    - ClothingBackpackSatchelPurple
+    - ClothingBackpackSatchelRed
+    - ClothingBackpackSatchelWhite
+    - ClothingBackpackSatchelYellow

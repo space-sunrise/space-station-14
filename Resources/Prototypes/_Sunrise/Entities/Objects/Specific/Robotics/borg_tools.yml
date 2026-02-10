@@ -717,8 +717,8 @@
     - HyposprayInjectMode
 
 - type: entity
-  parent: HandheldCrewMonitor
-  id: HandheldCrewMonitorBorg
+  parent: HandheldEmergencyCrewMonitor
+  id: HandheldEmergencyCrewMonitorBorg
   name: handheld robot crew monitor
   description: A hand-held crew monitor that runs off of your own power cells, which displays the status of the crew suit sensors.
   categories: [ HideSpawnMenu ]

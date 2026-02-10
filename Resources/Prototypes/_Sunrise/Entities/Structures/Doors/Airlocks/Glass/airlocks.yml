@@ -9,7 +9,7 @@
 
 - type: entity
   id: DoubleGlassAirlock
-  parent: AirlockGlass
+  parent: [AirlockGlass, BaseDeltaPressureReinforcedPlasmaQuarter]
   name: double glass airlock
   components:
   - type: MeleeSound
@@ -42,7 +42,7 @@
 
 - type: entity
   id: TripleGlassAirlock
-  parent: AirlockGlass
+  parent: [AirlockGlass, BaseDeltaPressureReinforcedPlasmaQuarter]
   name: triple glass airlock
   description: It opens, it closes, and maybe crushes you, but it bigger than normal door.
   components:

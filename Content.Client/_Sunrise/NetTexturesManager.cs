@@ -3,15 +3,13 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Content.Shared._Sunrise.CartridgeLoader.Cartridges;
 using Content.Shared._Sunrise.NetTextures;
 using Robust.Client;
-using Robust.Client.ResourceManagement;
-using Robust.Client.Upload;
 using Robust.Shared.Asynchronous;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Network;
 using Robust.Shared.Network.Transfer;
-using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise;
@@ -39,14 +37,14 @@ public sealed class NetTexturesManager
 
     private const string UploadedPrefix = "/Uploaded";
     private readonly HashSet<string> _requestedResources = new();
-    private readonly Dictionary<string, ResPath> _pendingResources = new(); // resourcePath -> ResPath
+    private readonly Dictionary<string, ResPath> _pendingResources = new();
 
     private readonly MemoryContentRoot _netTexturesContentRoot = new();
 
         /// <summary>
         /// Event fired when a network texture becomes available.
         /// </summary>
-        public event Action<string>? ResourceLoaded; // resourcePath
+        public event Action<string>? ResourceLoaded;
 
         public void Initialize()
         {
@@ -55,10 +53,8 @@ public sealed class NetTexturesManager
 
             _transferManager.RegisterTransferMessage(TransferKeyNetTextures, ReceiveNetTexturesTransfer);
 
-            // NetworkResourceUploadMessage is already registered by SharedNetworkResourceManager
-            // We'll check for loaded resources in Update() method very frequently
+            _netManager.RegisterNetMessage<PdaPhotoCaptureMessage>(accept: NetMessageAccept.Server);
 
-            // Clear resources when disconnecting to ensure fresh state on reconnection
             _baseClient.RunLevelChanged += OnRunLevelChanged;
         }
 
@@ -78,20 +74,16 @@ public sealed class NetTexturesManager
 
             try
             {
-                // Read transfer stream using the same format as SharedNetworkResourceManager
-                // But without IAsyncEnumerable to avoid sandbox violations
                 await ReadTransferStream(stream, (relative, data) =>
                 {
                     fileCount++;
                     totalSize += data.Length;
                     _sawmill.Verbose($"Storing NetTexture: {relative} ({ByteHelpers.FormatBytes(data.Length)})");
 
-                    // Store file on main thread (required for MemoryContentRoot)
                     _taskManager.RunOnMainThread(() =>
                     {
                         _netTexturesContentRoot.AddOrUpdateFile(relative, data);
 
-                        // Check if any pending resources are now available
                         CheckPendingResourcesAfterLoad(relative);
                     });
                 });
@@ -149,7 +141,6 @@ public sealed class NetTexturesManager
                 var relativePath = resPath.ToRelativePath();
                 bool exists = false;
 
-                // For RSI directories, check if all files are present
                 var pathStr = relativePath.ToString();
                 if (pathStr.EndsWith(".rsi") || pathStr.EndsWith(".rsi/"))
                 {
@@ -157,7 +148,6 @@ public sealed class NetTexturesManager
                 }
                 else
                 {
-                    // Single file - check through resource manager (our content root is added there)
                     var uploadedPath = (new ResPath(UploadedPrefix) / relativePath).ToRootedPath();
                     exists = _resourceManager.ContentFileExists(uploadedPath);
                 }
@@ -188,34 +178,24 @@ public sealed class NetTexturesManager
 
     public void Update(float frameTime)
     {
-        // If there are no pending resources, skip checking
         if (_pendingResources.Count == 0)
             return;
 
-        // Check for loaded resources every frame when there are pending resources
-        // This ensures we catch resources as soon as they're loaded
         var completedResources = new List<string>();
         foreach (var (resourcePath, resPath) in _pendingResources)
         {
-            // Check if resource is available
-            // MemoryContentRoot stores paths relative to /Uploaded prefix
             var relativePath = resPath.ToRelativePath();
 
             bool exists = false;
             ResPath checkPath;
 
-            // For RSI directories, check if all files are present
-            // This ensures all PNG files are present, not just meta.json
-            // Check if path ends with .rsi (more reliable than Extension property)
             var pathStr = relativePath.ToString();
             if (pathStr.EndsWith(".rsi") || pathStr.EndsWith(".rsi/"))
             {
-                // Check if all RSI files are present by reading meta.json and verifying all PNG files exist
                 exists = CheckRsiFilesComplete(relativePath);
             }
             else
             {
-                // Single file - check through resource manager
                 var uploadedPath = (new ResPath(UploadedPrefix) / relativePath).ToRootedPath();
                 exists = _resourceManager.ContentFileExists(uploadedPath);
             }
@@ -241,7 +221,6 @@ public sealed class NetTexturesManager
     /// <returns>True if the resource is available, false if it's being requested</returns>
     public bool EnsureResource(string resourcePath)
     {
-        // Normalize the path
         ResPath resPath;
         if (resourcePath.StartsWith("/"))
         {
@@ -253,14 +232,11 @@ public sealed class NetTexturesManager
             resPath = rootPath / resourcePath;
         }
 
-        // Check if the resource is actually available
         var relativePath = resPath.ToRelativePath();
         var uploadedPath = (new ResPath(UploadedPrefix) / relativePath).ToRootedPath();
 
         bool isAvailable = false;
 
-        // For RSI directories, check for meta.json
-        // Check if path ends with .rsi (more reliable than Extension property)
         var pathStr = relativePath.ToString();
         if (pathStr.EndsWith(".rsi") || pathStr.EndsWith(".rsi/"))
         {
@@ -270,40 +246,31 @@ public sealed class NetTexturesManager
         }
         else
         {
-            // Single file
             isAvailable = _resourceManager.ContentFileExists(uploadedPath);
         }
 
         if (isAvailable)
         {
-            // Resource is available
             if (!_requestedResources.Contains(resourcePath))
                 _requestedResources.Add(resourcePath);
-            // Remove from pending if it was there
             _pendingResources.Remove(resourcePath);
             return true;
         }
 
-        // Resource is not available yet
-        // If it's already in pending, we're already tracking it
         if (_pendingResources.ContainsKey(resourcePath))
         {
             return false;
         }
 
-        // If it was requested before but not in pending, add it to pending to track it
         if (_requestedResources.Contains(resourcePath))
         {
             _pendingResources[resourcePath] = resPath;
             return false;
         }
 
-        // Request the resource for the first time
         RequestResource(resourcePath);
         _pendingResources[resourcePath] = resPath;
 
-        // Immediately check if the resource is already available (might be cached or loaded very fast)
-        // This helps catch resources that load synchronously
         CheckResourceImmediately(resourcePath, resPath);
 
         return false;
@@ -314,7 +281,6 @@ public sealed class NetTexturesManager
         if (_requestedResources.Contains(resourcePath))
             return;
 
-        // Check if client is connected to server before trying to send message
         if (!_netManager.IsConnected)
         {
             _sawmill.Debug($"Cannot request resource {resourcePath}: client not connected to server");
@@ -340,17 +306,13 @@ public sealed class NetTexturesManager
         var relativePath = resPath.ToRelativePath();
         bool exists = false;
 
-        // For RSI directories, check if all files are present
-        // Check if path ends with .rsi (more reliable than Extension property)
         var pathStr = relativePath.ToString();
         if (pathStr.EndsWith(".rsi") || pathStr.EndsWith(".rsi/"))
         {
-            // Check if all RSI files are present by reading meta.json and verifying all PNG files exist
             exists = CheckRsiFilesComplete(relativePath);
         }
         else
         {
-            // Single file - check through resource manager
             var uploadedPath = (new ResPath(UploadedPrefix) / relativePath).ToRootedPath();
             exists = _resourceManager.ContentFileExists(uploadedPath);
         }
@@ -383,7 +345,7 @@ public sealed class NetTexturesManager
 
         var relativePath = resPath.ToRelativePath();
         var path = new ResPath(UploadedPrefix) / relativePath;
-        return path.ToRootedPath(); // Ensure it's always rooted
+        return path.ToRootedPath();
     }
 
     /// <summary>
@@ -395,17 +357,14 @@ public sealed class NetTexturesManager
     {
         try
         {
-            // Read meta.json from uploaded path (check through VFS)
             var uploadedPath = (new ResPath(UploadedPrefix) / relativePath).ToRootedPath();
             var metaUploadedPath = (uploadedPath / "meta.json").ToRootedPath();
 
-            // First check if meta.json exists in VFS
             if (!_resourceManager.ContentFileExists(metaUploadedPath))
             {
                 return false;
             }
 
-            // Try to read meta.json to verify it's accessible
             if (!_resourceManager.TryContentFileRead(metaUploadedPath, out var metaStream))
             {
                 return false;
@@ -413,22 +372,17 @@ public sealed class NetTexturesManager
 
             using (metaStream)
             {
-                // Read JSON text
                 using var reader = new StreamReader(metaStream);
                 var jsonText = reader.ReadToEnd();
 
-                // Simple regex to extract state names from JSON
-                // Matches "name": "statename" patterns
                 var namePattern = new Regex(@"""name""\s*:\s*""([^""]+)""", RegexOptions.Compiled);
                 var matches = namePattern.Matches(jsonText);
 
                 if (matches.Count == 0)
                 {
-                    // No states found, might be invalid JSON or empty states array
                     return false;
                 }
 
-                // Check if all PNG files for each state exist in VFS
                 foreach (Match match in matches)
                 {
                     if (match.Groups.Count < 2)
@@ -440,7 +394,6 @@ public sealed class NetTexturesManager
                         continue;
                     }
 
-                    // Check if PNG file exists in VFS (not just MemoryContentRoot)
                     var pngUploadedPath = (uploadedPath / $"{stateName}.png").ToRootedPath();
                     if (!_resourceManager.ContentFileExists(pngUploadedPath))
                     {
@@ -458,5 +411,32 @@ public sealed class NetTexturesManager
             return false;
         }
     }
-}
 
+    /// <summary>
+    /// Sends a captured photo to the server.
+    /// This method is used by PhotoCartridgeClientSystem to avoid registering its own network message.
+    /// </summary>
+    /// <param name="loaderUid">Uid of the cartridge loader (PDA) that took the photo</param>
+    /// <param name="imageData">PNG image data</param>
+    /// <param name="width">Image width in pixels</param>
+    /// <param name="height">Image height in pixels</param>
+    public void SendPhotoToServer(NetEntity loaderUid, byte[] imageData, int width, int height)
+    {
+        if (!_netManager.IsConnected)
+        {
+            _sawmill.Warning("Cannot send photo: client not connected to server");
+            return;
+        }
+
+        var message = new PdaPhotoCaptureMessage
+        {
+            LoaderUid = loaderUid,
+            ImageData = imageData,
+            Width = width,
+            Height = height
+        };
+
+        _netManager.ClientSendMessage(message);
+        _sawmill.Debug($"Sent photo to server: {width}x{height}, {imageData.Length} bytes, loader: {loaderUid}");
+    }
+}

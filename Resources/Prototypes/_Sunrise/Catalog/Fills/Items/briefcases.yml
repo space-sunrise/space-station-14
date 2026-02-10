@@ -52,8 +52,9 @@
         children:
         - id: WeaponSniperDragunov
         - id: MagazineDragunovIncendiary
-        - id: MagazineDragunovUranium
-        - id: MagazineDragunov
+        - id: MagazineDragunovSP
+        - id: MagazineDragunovHP
+        - id: MagazineDragunovFMJ
 
 - type: entity
   id: BriefcaseWeaponM79Filled

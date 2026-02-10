@@ -590,4 +590,33 @@ public sealed partial class SunriseCCVars : CVars
     /// </summary>
     public static readonly CVarDef<string> MessengerFavoriteEmojis =
         CVarDef.Create("messenger.favorite_emojis", "", CVar.ARCHIVE | CVar.CLIENTONLY);
+
+    /*
+     * Messenger Spam
+     */
+
+    /// <summary>
+    /// Enables the mechanic where players receive spam messages on their PDA.
+    /// </summary>
+    public static readonly CVarDef<bool> MessengerSpamEnabled =
+        CVarDef.Create("messenger.spam_enabled", true, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Minimum time between spam waves in seconds.
+    /// </summary>
+    public static readonly CVarDef<float> MessengerSpamMinTime =
+        CVarDef.Create("messenger.spam_min_time", 300f, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Maximum time between spam waves in seconds.
+    /// </summary>
+    public static readonly CVarDef<float> MessengerSpamMaxTime =
+        CVarDef.Create("messenger.spam_max_time", 600f, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Percentage of players (0.0 to 1.0) who will receive spam during a wave.
+    /// </summary>
+    public static readonly CVarDef<float> MessengerSpamPlayerPercentage =
+        CVarDef.Create("messenger.spam_player_percentage", 0.4f, CVar.SERVERONLY);
+
 }

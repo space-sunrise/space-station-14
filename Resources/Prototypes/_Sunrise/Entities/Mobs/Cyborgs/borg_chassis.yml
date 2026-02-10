@@ -7,6 +7,14 @@
     selectedBorgType: security
   - type: Loadout
     prototypes: [ BorgArmorSiliconLoadoutMk2 ]
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+    - SiliconEmotes
+    - Unimplantable
+    - NoPaint
 
 - type: entity
   id: BorgChassisPeace
@@ -213,7 +221,7 @@
     instantActions:
     - PortableSurveillanceCameraMonitorUnpowered
     - HandheldStationMapUnpowered
-    - HandheldCrewMonitorBorg
+    - HandheldEmergencyCrewMonitorBorg
     - HandHeldMassScannerBorg
   - type: MobThresholds
     thresholds:

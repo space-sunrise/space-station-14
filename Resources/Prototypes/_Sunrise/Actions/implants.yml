@@ -5,9 +5,9 @@
   description: Randomly teleports you within a large distance.
   components:
   - type: LimitedCharges
-    maxCharges: 2
+    maxCharges: 1
   - type: AutoRecharge
-    rechargeDuration: 1200
+    rechargeDuration: 900
   - type: Action
     checkCanInteract: false
     useDelay: 10

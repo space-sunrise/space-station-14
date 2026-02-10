@@ -96,16 +96,16 @@
     - ImplantExtractor
 
 - type: technology
-  id: HandheldCrewMonitorTech
+  id: HandheldEmergencyCrewMonitorTech
   name: research-technology-hanheld-crew-monitor
   icon:
-    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
+    sprite: _Sunrise/Objects/Specific/Medical/handheld_emergency_crewmonitor.rsi
     state: scanner
   discipline: Biochemical
   tier: 2
   cost: 9000
   recipeUnlocks:
-    - HandheldCrewMonitor
+    - HandheldEmergencyCrewMonitor
   technologyPrerequisites:
     - SurgeryTech
 
