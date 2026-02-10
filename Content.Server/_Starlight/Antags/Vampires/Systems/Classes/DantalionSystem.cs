@@ -6,7 +6,7 @@ using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.CombatMode.Pacification;
-using Content.Shared.CollectiveMind;
+using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -554,7 +554,7 @@ public sealed class DantalionSystem : EntitySystem
         {
             if (!Exists(thrall))
                 continue;
-            
+
             // Remove stuns
             if (HasComp<StunnedComponent>(thrall))
                 RemComp<StunnedComponent>(thrall);
