@@ -1,10 +1,9 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
 using Content.Server.Forensics;
 using Content.Server.Temperature.Components;
 using Content.Shared._Sunrise.NightVision.Components;
-using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared._Sunrise.FleshCult;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
@@ -37,8 +36,6 @@ namespace Content.Server._Sunrise.FleshCult;
 /// </summary>
 public sealed partial class FleshCultSystem
 {
-    [ValidatePrototypeId<CollectiveMindPrototype>]
-    private const string FleshCollectiveMindProto = "FleshCult";
 
     [ValidatePrototypeId<TagPrototype>]
     private const string FleshTagProto = "Flesh";
@@ -160,9 +157,6 @@ public sealed partial class FleshCultSystem
     private void InitializeStore(EntityUid uid, FleshCultistComponent component)
     {
         var storeComp = EnsureComp<StoreComponent>(uid);
-        var collectiveMindComponent = EnsureComp<CollectiveMindComponent>(uid);
-        if (!collectiveMindComponent.Minds.Contains(FleshCollectiveMindProto))
-            collectiveMindComponent.Minds.Add(FleshCollectiveMindProto);
 
         storeComp.Categories.Add("FleshCultistPassiveSkills");
         storeComp.Categories.Add("FleshCultistActiveSkills");
@@ -192,7 +186,6 @@ public sealed partial class FleshCultSystem
     {
         RemoveActions(uid, component);
         RemoveComponents(uid);
-        RemoveCollectiveMind(uid);
         _alerts.ClearAlert(uid, component.MutationPointAlert);
         _tagSystem.RemoveTag(uid, FleshTagProto);
         RemoveObjectives(uid);
@@ -217,12 +210,6 @@ public sealed partial class FleshCultSystem
         RemCompDeferred<FlashImmunityComponent>(uid);
         RemCompDeferred<RespiratorImmunityComponent>(uid);
         RemCompDeferred<PressureImmunityComponent>(uid);
-    }
-
-    private void RemoveCollectiveMind(EntityUid uid)
-    {
-        if (TryComp(uid, out CollectiveMindComponent? collectiveMind) && collectiveMind.Minds.Contains(FleshCollectiveMindProto))
-            collectiveMind.Minds.Remove(FleshCollectiveMindProto);
     }
 
     private void RemoveObjectives(EntityUid uid)

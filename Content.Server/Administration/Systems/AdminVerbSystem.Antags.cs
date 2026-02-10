@@ -17,6 +17,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Roles.Components;
+using Content.Server._Starlight.GameTicking.Rules.Components;
 
 namespace Content.Server.Administration.Systems;
 

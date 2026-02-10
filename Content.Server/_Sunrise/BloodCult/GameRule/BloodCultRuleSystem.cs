@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server._Sunrise.BloodCult.Objectives.Components;
 using Content.Server._Sunrise.BloodCult.Objectives.Systems;
 using Content.Server._Sunrise.BloodCult.Runes.Systems;
@@ -13,7 +13,6 @@ using Content.Server.RoundEnd;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared._Sunrise.BloodCult;
 using Content.Shared._Sunrise.BloodCult.Components;
-using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Body.Systems;
@@ -363,14 +362,6 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
     private void OnCultistComponentRemoved(EntityUid uid, BloodCultistComponent component, ComponentRemove args)
     {
-        if (TryComp<CollectiveMindComponent>(uid, out var collectiveMind))
-        {
-            collectiveMind.Minds.Remove("BloodCult");
-
-            if (collectiveMind.Minds.Count == 0)
-                RemComp<CollectiveMindComponent>(uid);
-        }
-
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
         {
             if (_mindSystem.TryFindObjective((mindId, mind), _cultistKillObjective, out var objective))
@@ -405,6 +396,8 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
                     _actionsSystem.RemoveAction(uid, userAction);
             }
         }
+        _factionSystem.RemoveFaction(uid, "BloodCult", false);
+        _factionSystem.AddFaction(uid, "NanoTrasen");
     }
 
     private void RemoveCultistAppearance(EntityUid cultist)
@@ -494,9 +487,6 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
             RemComp<ClumsyComponent>(cultist);
 
         EnsureComp<CultMemberComponent>(cultist);
-
-        var collectiveMind = EnsureComp<CollectiveMindComponent>(cultist);
-        collectiveMind.Minds.Add("BloodCult");
 
         _tagSystem.AddTag(cultist, "Cultist");
 

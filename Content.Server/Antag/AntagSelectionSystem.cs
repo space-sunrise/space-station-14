@@ -39,6 +39,7 @@ using Robust.Shared.Utility;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 using Content.Sunrise.Interfaces.Shared;
+using Content.Server.Bible.Components;
 using AddComponentSpecial = Content.Server.Jobs.AddComponentSpecial; // Sunrise-Sponsors
 
 namespace Content.Server.Antag;

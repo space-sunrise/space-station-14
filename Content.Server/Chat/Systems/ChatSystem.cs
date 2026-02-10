@@ -68,6 +68,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly AnnouncementSpeakerSystem _announcementSpeaker = default!;
+    [Dependency] private readonly CollectiveMindUpdateSystem _collectiveMind = default!; // Sunrise-Edit
 
     public const string DefaultAnnouncementSound = "/Audio/_Sunrise/Announcements/announce_dig.ogg"; // Sunrise-edit
 
@@ -250,15 +251,6 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (TryProcessRadioMessage(source, message, out var modMessage, out var channel))
             {
                 SendEntityWhisper(source, modMessage, range, channel, nameOverride, hideLog, ignoreActionBlocker, isFormatted); //sunrise-edit
-                return;
-            }
-        }
-
-        if (desiredType == InGameICChatType.CollectiveMind)
-        {
-            if (TryProccessCollectiveMindMessage(source, message, out var modMessage, out var channel))
-            {
-                SendCollectiveMindChat(source, modMessage, channel);
                 return;
             }
         }
@@ -504,7 +496,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (collectiveMind == null || message == "")
             return;
 
-        if (!TryComp<CollectiveMindComponent>(source, out var sourseCollectiveMindComp))
+        if (!TryComp<CollectiveMindComponent>(source, out var sourceCollectiveMindComp))
             return;
 
         if (!sourceCollectiveMindComp.Minds.ContainsKey(collectiveMind))

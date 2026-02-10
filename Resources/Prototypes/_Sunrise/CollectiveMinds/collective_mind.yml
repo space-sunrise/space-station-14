@@ -18,6 +18,8 @@
   keycode: 'п'
   color: "#ff2676"
   voiceId: legion_commander_demon_dota_2
+  requiredComponents:
+  - FleshCultist
 
 - type: collectiveMind
   id: Dionas
@@ -68,6 +70,9 @@
   keycode: 'к'
   color: "#8b0000"
   voiceId: legion_commander_demon_dota_2
+  requiredComponents:
+  - BloodCultist
+  - Construct
 
 - type: collectiveMind
   id: Abductor
