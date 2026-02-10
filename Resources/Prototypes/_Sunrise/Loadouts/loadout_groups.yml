@@ -250,6 +250,14 @@
   - WeaponDisabler
   - WeaponTaser
 
+- type: loadoutGroup # Sunrise Edit Start
+  id: SecurityGlasses
+  name: loadout-group-security-glasses
+  loadouts:
+  - SecurityEyesHud
+  - SecurityEyesGlasses
+  - SecurityEyesEyepatchHud # Sunrise Edit End
+
 # Security Cadet
 - type: loadoutGroup
   id: SunriseWeaponCadet

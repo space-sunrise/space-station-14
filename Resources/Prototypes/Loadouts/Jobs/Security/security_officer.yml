@@ -92,22 +92,6 @@
   equipment:
     back: ClothingBackpackDuffelSecurity
 
-# Glasses # Sunrise Edit Start
-- type: loadout
-  id: SecurityEyesHud
-  equipment:
-    eyes: ClothingEyesHudSecurity
-
-- type: loadout
-  id: SecurityEyesGlasses
-  equipment:
-    eyes: ClothingEyesGlassesSecurity
-
-- type: loadout
-  id: SecurityEyesEyepatchHud
-  equipment:
-    eyes: ClothingEyesEyepatchHudSecurity # Sunrise Edit End
-
 # Belt
 - type: loadout
   id: SecurityBelt

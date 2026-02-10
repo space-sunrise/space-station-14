@@ -2,6 +2,7 @@
 loadout-group-species-restriction = Этот предмет недоступен для вашей текущей расы.
 # Miscellaneous
 loadout-group-trinkets = Безделушки
+loadout-group-jobtrinkets = Безделушки по работе
 loadout-group-glasses = Очки
 loadout-group-backpack = Рюкзак
 loadout-group-instruments = Инструменты

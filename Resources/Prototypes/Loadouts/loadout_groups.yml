@@ -1434,14 +1434,6 @@
   - SecuritySatchel
   - SecurityDuffel
 
-- type: loadoutGroup # Sunrise Edit Start
-  id: SecurityGlasses
-  name: loadout-group-security-glasses
-  loadouts:
-  - SecurityEyesHud
-  - SecurityEyesGlasses
-  - SecurityEyesEyepatchHud # Sunrise Edit End
-
 - type: loadoutGroup
   id: SecurityBelt
   name: loadout-group-security-belt
