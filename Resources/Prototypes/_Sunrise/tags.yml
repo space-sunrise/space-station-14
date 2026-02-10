@@ -52,6 +52,9 @@
   id: NoCommission
 
 - type: Tag
+  id: Pirate
+
+- type: Tag
   id: PirateUplink
 
 - type: Tag
@@ -640,3 +643,6 @@
 
 - type: Tag
   id: Diona
+
+- type: Tag
+  id: Xeno

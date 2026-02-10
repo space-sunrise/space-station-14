@@ -2,6 +2,10 @@
   parent: BaseGameRule
   id: Vampire
   components:
+  - type: GameRule
+    delay:
+      min: 600
+      max: 900
   - type: VampireRule
   - type: AntagSelection
     agentName: vampire-roundend-name
@@ -14,3 +18,5 @@
       multiAntagSetting: None
       mindRoles:
       - MindRoleVampire
+  - type: DynamicRuleCost
+    cost: 125

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: SimpleSpaceMobBase
   id: BaseMobFleshCult
   name: flesh mob
@@ -56,9 +56,6 @@
           Slash: 3
     - type: ReplacementAccent
       accent: genericAggressive
-    - type: CollectiveMind
-      minds:
-      - FleshCult
     - type: IgnoreFleshSpiderWeb
 
 - type: entity

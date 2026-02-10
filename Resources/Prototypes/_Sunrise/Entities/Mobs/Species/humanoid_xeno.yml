@@ -204,9 +204,6 @@
       - CanPilot
       - FootstepSound
       - DoorBumpOpener
-  - type: CollectiveMind
-    minds:
-    - Xeno
   - type: FootprintEmitter
   - type: Carriable
 

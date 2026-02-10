@@ -106,16 +106,12 @@
       - CannotSuicide
       - DoorBumpOpener
       - FootstepSound
+      - Xeno # Sunrise-Edit
   - type: NoSlip
   - type: Perishable #Ummmm the acid kills a lot of the bacteria or something
     molsPerSecondPerUnitMass: 0.0005
   - type: Speech
     speechVerb: LargeMob
-  # Sunrise-Start
-  - type: CollectiveMind
-    minds:
-    - Xeno
-  # Sunrise-End
 
 - type: entity
   name: praetorian

@@ -102,7 +102,6 @@
   - type: MobMover
   - type: MovementSpeedModifier
   - type: LagCompensation
-  - type: TextToSpeech
   - type: CollectiveMind
 
 - type: entity

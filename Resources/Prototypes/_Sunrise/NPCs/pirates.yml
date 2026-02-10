@@ -132,8 +132,12 @@
   - type: NpcFactionMember
     factions:
     - Pirate
-  - type: CollectiveMind
-    minds:
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
     - Pirate
   - type: FootprintEmitter
   - type: MobThresholds

@@ -49,9 +49,6 @@
       reagents:
       - ReagentId: AbductorBlood
         Quantity: 300
-  - type: CollectiveMind
-    minds:
-    - Abductor
 
 - type: entity
   parent: BaseSpeciesDummy

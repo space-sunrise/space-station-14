@@ -201,9 +201,6 @@
         type: VampireClassBui
       enum.VampireLocateUiKey.Key: # SL
         type: VampireLocateBui
-      enum.ThavenMoodsUiKey.Key: # impstation edit
-        type: ThavenMoodsBoundUserInterface
-        requireInputValidation: false
       # Starlight-End
   - type: Puller
   - type: Speech
@@ -281,16 +278,13 @@
         type: StoreBoundUserInterface
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
-    # Starlight-edit: end
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
       enum.VampireClassUiKey.Key: # SL
         type: VampireClassBui
       enum.VampireLocateUiKey.Key: # SL
         type: VampireLocateBui
-      enum.ThavenMoodsUiKey.Key: # impstation edit
-        type: ThavenMoodsBoundUserInterface
-        requireInputValidation: false
+    # Starlight-edit: end
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
   - type: Barotrauma
     damage:
       types:

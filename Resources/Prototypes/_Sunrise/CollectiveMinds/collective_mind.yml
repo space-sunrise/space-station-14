@@ -4,6 +4,9 @@
   keycode: 'х'
   color: "#00ff40"
   voiceId: shadow_fiend_dota_2
+  requiredTags:
+  - HumanoidXeno
+  - Xeno
 
 - type: collectiveMind
   id: Blob
@@ -20,6 +23,8 @@
   voiceId: legion_commander_demon_dota_2
   requiredComponents:
   - FleshCultist
+  requiredTag:
+  - Flesh
 
 - type: collectiveMind
   id: Dionas
@@ -27,7 +32,8 @@
   keycode: 'д'
   color: "#0f6b1e"
   voiceId: shadow_shaman_dota_2
-  requiredTag: Diona
+  requiredTags:
+  - Diona
 
 - type: collectiveMind
   id: Arachnids
@@ -35,7 +41,8 @@
   keycode: 'а'
   color: "#706d0d"
   voiceId: shadow_fiend_dota_2
-  requiredTag: Arachnid
+  requiredTags:
+  - Arachnid
 
 - type: collectiveMind
   id: Carp
@@ -81,6 +88,8 @@
   color: "#d600bd"
   voiceId: Glados
   showAuthor: true
+  requiredTag:
+  - Abductor
 
 - type: collectiveMind
   id: Pirate
@@ -89,3 +98,5 @@
   color: "#d4af37"
   voiceId: necrophos_dota_2
   showAuthor: true
+  requiredTag:
+  - Pirate

@@ -2725,6 +2725,7 @@
     tags:
     - DoorBumpOpener
     - FootstepSound
+    - Arachnid # Sunrise-Edit
   - type: Prying # Open door from xeno.yml.
     pryPowered: true
     force: true
@@ -2747,9 +2748,6 @@
       collection: FootstepSpiderLegs
       params:
         volume: -10
-  - type: CollectiveMind
-    minds:
-    - Arachnids
   - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
@@ -4000,6 +3998,7 @@
     tags:
     - DoorBumpOpener
     - VimPilot
+    - Diona
   - type: Emoting
   - type: BodyEmotes
     soundsId: Nymph
@@ -4008,9 +4007,6 @@
     reformTime: 10
     popupText: diona-reform-attempt
     reformPrototype: MobDionaReformed
-  - type: CollectiveMind
-    minds:
-    - Dioneas
   - type: Carriable
   - type: CanEscapeInventory
 

@@ -32,7 +32,7 @@
     - DoorBumpOpener
     - SpiderCraft
     - AnomalyHost
-    - Arachnid
+    - Arachnid # Sunrise-Edit
   - type: Butcherable
     butcheringType: Spike
     spawned:
