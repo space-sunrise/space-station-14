@@ -99,7 +99,7 @@
 - type: entity
   id: CrateSecurityArmorPlate
   parent: CrateSecgear
-  name: heat absorb armor crate
+  name: plate-carrier armor crate
   description: Contains a 2 plate armor. To open it, the Security Service access level is required.
   components:
   - type: EntityTableContainerFill

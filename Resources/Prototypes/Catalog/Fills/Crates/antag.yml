@@ -197,16 +197,15 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: ClothingHeadHelmetPirate
-          orGroup: HelmetPool
-        - id: ClothingHeadHelmetPirateAlt
-          orGroup: HelmetPool
-        - id: ClothingHeadHelmetPirateAlt2
-          orGroup: HelmetPool
-        - id: ClothingOuterEVASuitPirateArmoredAlt
-          orGroup: HardPool
-        - id: ClothingOuterEVASuitPirateArmored
-          orGroup: HardPool
+        - !type:GroupSelector
+          children:
+          - id: ClothingHeadHelmetPirate
+          - id: ClothingHeadHelmetPirateAlt
+          - id: ClothingHeadHelmetPirateAlt2
+        - !type:GroupSelector
+          children:
+          - id: ClothingOuterEVASuitPirateArmoredAlt
+          - id: ClothingOuterEVASuitPirateArmored
         - id: DoubleEmergencyNitrogenTankFilled
         - id: DoubleEmergencyOxygenTankFilled
 
@@ -219,12 +218,11 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: ClothingHeadHelmetPirate
-          orGroup: HelmetPool
-        - id: ClothingHeadHelmetPirateAlt
-          orGroup: HelmetPool
-        - id: ClothingHeadHelmetPirateAlt2
-          orGroup: HelmetPool
+        - !type:GroupSelector
+          children:
+          - id: ClothingHeadHelmetPirate
+          - id: ClothingHeadHelmetPirateAlt
+          - id: ClothingHeadHelmetPirateAlt2
         - id: ClothingOuterEVASuitPirate
         - id: DoubleEmergencyNitrogenTankFilled
         - id: DoubleEmergencyOxygenTankFilled

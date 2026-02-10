@@ -205,7 +205,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: LeftArmCyberHack
+        - id: LeftArmCyberAtmos
 
 - type: entity
   parent: BaseImplantCase

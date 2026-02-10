@@ -8,9 +8,6 @@
       components:
       - BallisticAmmoProvider
       - CartridgeAmmo
-    blacklist:
-      components:
-      - Gun
   - type: MultiHandedItem
   - type: Item
     size: Ginormous

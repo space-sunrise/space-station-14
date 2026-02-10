@@ -344,5 +344,5 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: MagazinePistolSubMachineGunTopMountedIncendiary
+        - id: MagazineLightRifleIncendiary
           amount: 4

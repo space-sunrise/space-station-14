@@ -15,7 +15,7 @@
   id: CrateServiceCopyMachineRestock
   parent: CrateGenericSteel
   name: printer machine restock crate
-  description: printer paper with ink and office papper
+  description: printer paper with ink and office paper
   components:
   - type: EntityTableContainerFill
     containers:

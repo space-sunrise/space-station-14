@@ -441,58 +441,46 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: WeaponRifleSKM24
-          prob: 0.33
-          orGroup: SKM
-        - id: WeaponRifleSKM24White
-          prob: 0.33
-          orGroup: SKM
-        - id: WeaponRifleSKM24Green
-          prob: 0.33
-          orGroup: SKM
-        - id: WeaponRifleSKM24Scrap
-          prob: 0.05
-          amount: 3
-          orGroup: SKM
-        - id: WeaponRifleSKM24Syndi
-          prob: 0.1
-          orGroup: SKM
-        - id: WeaponRifleSKM24Nano
-          orGroup: SKM
-        - id: WeaponRifleSKM24
-          prob: 0.33
-          orGroup: SKM2
-        - id: WeaponRifleSKM24White
-          prob: 0.33
-          orGroup: SKM2
-        - id: WeaponRifleSKM24Green
-          orGroup: SKM2
-        - id: WeaponRifleSKM24Scrap
-          prob: 0.05
-          amount: 3
-          orGroup: SKM2
-        - id: WeaponRifleSKM24Syndi
-          prob: 0.1
-          orGroup: SKM2
-        - id: WeaponRifleSKM24Nano
-          orGroup: SKM2
-        - id: WeaponRifleSKM24
-          prob: 0.33
-          orGroup: SKM3
-        - id: WeaponRifleSKM24White
-          prob: 0.33
-          orGroup: SKM3
-        - id: WeaponRifleSKM24Green
-          orGroup: SKM3
-        - id: WeaponRifleSKM24Scrap
-          prob: 0.05
-          amount: 3
-          orGroup: SKM3
-        - id: WeaponRifleSKM24Syndi
-          prob: 0.1
-          orGroup: SKM3
-        - id: WeaponRifleSKM24Nano
-          orGroup: SKM3
+        - !type:GroupSelector
+          children:
+          - id: WeaponRifleSKM24
+            weight: 0.33
+          - id: WeaponRifleSKM24White
+            weight: 0.33
+          - id: WeaponRifleSKM24Green
+            weight: 0.33
+          - id: WeaponRifleSKM24Scrap
+            weight: 0.05
+            amount: 3
+          - id: WeaponRifleSKM24Syndi
+            weight: 0.1
+          - id: WeaponRifleSKM24Nano
+        - !type:GroupSelector
+          children:
+          - id: WeaponRifleSKM24
+            weight: 0.33
+          - id: WeaponRifleSKM24White
+            weight: 0.33
+          - id: WeaponRifleSKM24Green
+          - id: WeaponRifleSKM24Scrap
+            weight: 0.05
+            amount: 3
+          - id: WeaponRifleSKM24Syndi
+            weight: 0.1
+          - id: WeaponRifleSKM24Nano
+        - !type:GroupSelector
+          children:
+          - id: WeaponRifleSKM24
+            weight: 0.33
+          - id: WeaponRifleSKM24White
+            weight: 0.33
+          - id: WeaponRifleSKM24Green
+          - id: WeaponRifleSKM24Scrap
+            weight: 0.05
+            amount: 3
+          - id: WeaponRifleSKM24Syndi
+            weight: 0.1
+          - id: WeaponRifleSKM24Nano
         - id: MagazineLightRifleSP
           amount: 4
         - id: MagazineLightRifleFMJ
