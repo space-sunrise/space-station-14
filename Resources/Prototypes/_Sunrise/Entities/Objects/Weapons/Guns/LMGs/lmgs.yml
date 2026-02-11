@@ -450,9 +450,9 @@
     maxAngle: 0
   - type: Gun
     minAngle: 1
-    maxAngle: 40
+    maxAngle: 50
     angleIncrease: 1
-    angleDecay: 25
+    angleDecay: 20
     fireRate: 15
     soundGunshot:
       collection: L6

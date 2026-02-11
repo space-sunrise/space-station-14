@@ -390,6 +390,14 @@
     stock: 3
 
 - type: listing
+  id: UplinkPirateLCG
+  productEntity: WeaponMachineGunLCG
+  cost:
+    Doubloon: 19
+  categories:
+  - UplinkPirateWeaponry
+
+- type: listing
   id: UplinkPirateM24Scrap
   name: uplink-weapon-scrap-name
   description: uplink-weapon-scrap-desc
@@ -736,6 +744,14 @@
   categories:
   - UplinkPirateAmmo
   restockTime: 900
+
+- type: listing
+  id: UplinkPirateMagChainGun
+  productEntity: MagazineChainGun
+  cost:
+    Doubloon: 5
+  categories:
+  - UplinkPirateAmmo
 
 - type: listing
   id: UplinkPirateMagSMGAP

@@ -420,3 +420,7 @@ ent-MobPirateT2BossTimed = { ent-MobPirateT2Boss }
 ent-MobPirateT3BossTimed = { ent-MobPirateT3Boss }
     .suffix = Деспавн
     .desc = { ent-MobPirateT3Boss.desc }
+ent-MobPirateT1LCG = Оператор цепной пушки мусорщиков
+    .desc = Пират с лёгкой цепной пушкой, хорошо вооружён и опасен.
+ent-MobPirateT1LCGTimed = { ent-MobPirateT1LCG }
+    .desc = { ent-MobPirateT1LCG.desc }
