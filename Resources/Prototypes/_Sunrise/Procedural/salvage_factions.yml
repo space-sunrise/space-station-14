@@ -4,25 +4,33 @@
   entries:
     # melee
     - proto: MobPirateT1KnifeTimed
-      prob: 0.25
+      prob: 0.15
+    - proto: MobPirateT1KnifeTearGasTimed
+      prob: 0.15
+    - proto: MobPirateT1KnifeStingerTimed
+      prob: 0.15
+    - proto: MobPirateT1KnifeFirebombTimed
+      prob: 0.15
+    - proto: MobPirateT1KnifeBolaTimed
+      prob: 0.15
     - proto: MobPirateT1MonkeyKnuckleDustersTimed
-      prob: 0.25
+      prob: 0.2
     - proto: MobPirateT1PickaxeTimed
       prob: 0.25
     - proto: MobPirateT1MonkeyEDaggerTimed
-      cost: 3
+      cost: 1
       prob: 0.1
     - proto: MobPirateT1ECutlassTimed
-      cost: 5
+      cost: 3
       prob: 0.05
     - proto: MobPirateT1EPickaxeTimed
-      cost: 5
+      cost: 3
       prob: 0.1
     - proto: MobPirateT1HunterTimed
-      cost: 5
+      cost: 4
       prob: 0.1
     - proto: MobPirateT1HunterSmashTimed
-      cost: 6
+      cost: 4
       prob: 0.08
     # range
     - proto: MobPirateT1PistolTimed
@@ -62,17 +70,20 @@
     - proto: MobPirateT1FlintlockTimed
       prob: 0.2
     - proto: MobPirateT1PlasmaCutterTimed
-      cost: 5
+      cost: 4
       prob: 0.1
     - proto: MobPirateT1ScrapRifleTimed
-      cost: 6
+      cost: 4
       prob: 0.1
     - proto: MobPirateT1RifleTimed
-      cost: 6
+      cost: 4
+      prob: 0.1
+    - proto: MobPirateT1RifleAltTimed
+      cost: 4
       prob: 0.1
     # borgs
     - proto: MobPirateT1BorgAssaultTimed
-      cost: 3
+      cost: 2
       prob: 0.05
     - proto: MobPirateT1BorgMiningTimed
       cost: 2
@@ -93,15 +104,30 @@
   entries:
     # melee
     - proto: MobPirateT2CutlassTimed
-      prob: 0.1
+      prob: 0.15
     - proto: MobPirateT2ECutlassTimed
+      cost: 1
+      prob: 0.1
+    - proto: MobPirateT2ECutlassTearGasTimed
+      cost: 1
+      prob: 0.1
+    - proto: MobPirateT2ECutlassStingerTimed
+      cost: 1
+      prob: 0.1
+    - proto: MobPirateT2ECutlassFirebombTimed
+      cost: 1
+      prob: 0.1
+    - proto: MobPirateT2ECutlassBolaTimed
+      cost: 1
+      prob: 0.1
+    - proto: MobPirateT2ECutlassFuzeCannonBallTimed
       cost: 2
       prob: 0.1
     - proto: MobPirateT2SledgehammerTimed
-      cost: 2
+      cost: 1
       prob: 0.1
     - proto: MobPirateT2GauntletDrillTimed
-      cost: 2
+      cost: 1
       prob: 0.1
     # range
     - proto: MobPirateT2ShotgunTimed
@@ -140,21 +166,27 @@
       cost: 5
       prob: 0.04
     - proto: MobPirateT2MechTimed
-      cost: 7
+      cost: 5
       prob: 0.03
     - proto: MobPirateT2JuggernautTimed
-      cost: 7
+      cost: 5
       prob: 0.04
+    - proto: MobPirateT2JuggernautMGTimed
+      cost: 5
+      prob: 0.03
     # borgs
     - proto: MobPirateT1BorgAssaultTimed
+      cost: 1
+      prob: 0.05
+    - proto: MobPirateT2BorgAssaultTimed
       cost: 2
       prob: 0.1
     - proto: MobPirateT1BorgMiningTimed
       cost: 1
-      prob: 0.1
+      prob: 0.05
     - proto: MobPirateT1BorgDerelictTimed
       cost: 1
-      prob: 0.1
+      prob: 0.05
     - proto: MobPirateT2BossTimed
       cost: 5
       prob: 0.1
@@ -176,6 +208,9 @@
     - proto: MobPirateT1ECutlassTimed
       cost: 1
       prob: 0.05
+    - proto: MobPirateT1Spawner
+      cost: 1
+      prob: 0.01
     # range
     - proto: MobPirateT1BombardierFireTimed
       cost: 1
@@ -236,7 +271,7 @@
       cost: 5
       prob: 0.05
     - proto: MobPirateT3TachankaTimed
-      cost: 6
+      cost: 5
       prob: 0.04
     - proto: MobPirateT3GrenadierTimed
       cost: 5
@@ -250,7 +285,13 @@
     # borgs
     - proto: MobPirateT1BorgAssaultTimed
       cost: 1
+      prob: 0.02
+    - proto: MobPirateT2BorgAssaultTimed
+      cost: 1
       prob: 0.05
+    - proto: MobPirateT3BorgAssaultTimed
+      cost: 2
+      prob: 0.1
     - proto: MobPirateT1BorgMiningTimed
       cost: 1
       prob: 0.02

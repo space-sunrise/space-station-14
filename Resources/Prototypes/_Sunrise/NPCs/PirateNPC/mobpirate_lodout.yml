@@ -163,6 +163,16 @@
     shoes: ClothingShoesBootsJack
 
 - type: startingGear
+  id: MobPirateT1RifleGearAlt
+  equipment:
+    gloves: ClothingHandsSKM24B
+    belt: ClothingBeltMercenaryWebbingRangedT3
+    back: ClothingBackPirateMessengerT1SKM24
+    shoes: ClothingShoesBootsSalvage
+    pocket1: DoubleEmergencyOxygenTankFilled
+    pocket2: ChemistryBottleSaline
+
+- type: startingGear
   id: MobPirateT1RifleGear
   equipment:
     gloves: ClothingHandsPPSH
@@ -489,6 +499,15 @@
   equipment:
     gloves: ClothingHandsPirateArmorT2Invisible
     back: ClothingBackOreCrateBoss
+    pocket1: ClothingHeadHatGladiator
+    pocket2: StimkitFilled
+
+- type: startingGear
+  id: MobPirateT2JuggernautGearAlt
+  equipment:
+    gloves: ClothingLightMachineGunPirateCannonJugg
+    back: ClothingBackPirateMessengerT2MG
+    belt: ClothingBeltAmmoT2MG
     pocket1: ClothingHeadHatGladiator
     pocket2: StimkitFilled
 

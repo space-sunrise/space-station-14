@@ -13,8 +13,15 @@
     WeaponPistolG22Auto: 3
     WeaponPistolHIB88M4: 3
     WeaponPistolACP14: 3
+    WeaponPistolEchis: 3
     WeaponPistolDeagle: 3
+    WeaponPistolDeagleMetus: 3
     WeaponPistolM1984: 3
+    WeaponPistolTec9: 3
+    WeaponPistolG22Prison: 3
+    WeaponPistolImprovised: 3
+    WeaponPistolMakeshiftCrafted: 3
+    WeaponPistolForged: 3
 
     WeaponRevolverDeckard: 3
     WeaponRevolverInspector: 3
@@ -32,7 +39,6 @@
     WeaponRevolverSpearheadBlack: 3
 
     WeaponRifleAk: 3
-    WeaponRifleAKM: 3
     WeaponRifleAKMU: 3
     WeaponRifleAK514: 3
     WeaponRifleFamas: 3
@@ -48,12 +54,18 @@
     WeaponRifleM16A4: 3
     WeaponRifleEstoc: 3
     WeaponRifleBR64: 3
+    WeaponRifleLecterXL8: 3
+    WeaponRifleLeikha: 3
+    WeaponRifleAsh12: 3
 
     WeaponShotgunBulldog: 3
     WeaponShotgunDoubleBarreled: 3
+    WeaponShotgunKammerer: 3
     WeaponShotgunEnforcer: 3
+    #WeaponShotgunEnforcerRubber: 3
     WeaponShotgunSawn: 3
     WeaponShotgunHandmade: 3
+    WeaponShotgunHushpup: 3
     WeaponShotgunBlunderbuss: 3
     WeaponShotgunImprovised: 3
     Musket: 3
@@ -86,6 +98,9 @@
     WeaponSIAR52: 3
     WeaponSubMachineGunSP91RC: 3
     WeaponSubMachineGunPPSH: 3
+    WeaponSubMachineGunWt550: 3
+    WeaponSubMachineGunC20rROW: 3
+    WeaponSubMachineGunBriefcase: 3
     WeaponSubMachineGunMakeshift: 3
     WeaponSubMachineGunImprovised: 3
     WeaponSubMachineGunForged: 3
@@ -108,16 +123,21 @@
     WeaponGrenadeLauncherGL70Flash: 3
     WeaponGrenadeLauncherSecurity: 3
     WeaponLauncherM79: 3
+    WeaponGrenadeLauncherImprovised: 3
+    WeaponLauncherMultipleRocket: 3
 
     WeaponTetherGun: 3
     WeaponForceGun: 3
     WeaponGrapplingGun: 3
+    WeaponPlasmaCutter: 3
 
     WeaponLightMachineGunL6: 3
+    WeaponLightMachineGunL6Max: 3
     WeaponLightMachineGunL6C: 3
     WeaponLightMachineGunMG60: 3
     WeaponLightMachineGunRPD: 3
     WeaponMachineGunMG42: 3
+    WeaponMinigunMG100: 3
     PowerpackMinigunMG100: 3
     PowerpackMinigunMG100Incendiary: 3
     WeaponLightMachineGunM492Cburn: 3
@@ -126,6 +146,7 @@
     WeaponDL6902: 3
     WeaponMinigun: 3
     WeaponLightMachineGunDP28: 3
+    WeaponLightMachineGunPirateCannon: 3
     WeaponLaserSvalinn: 3
     WeaponLaserGun: 3
     WeaponMakeshiftLaser: 3
@@ -146,17 +167,20 @@
     WeaponDisablerSMG: 3
     WeaponTaser: 3
     WeaponAdvancedTaser: 3
+    WeaponTaserSuper: 3
     WeaponMiniEnergyGun: 3
     WeaponDominator: 3
     WeaponMultiphaseGun: 3
     WeaponIonRifle: 3
     WeaponIonCarbine: 3
+    WeaponTemperatureGun: 3
     WeaponLaserImmolator: 3
     WeaponGunLaserCarbineSemi: 3
     WeaponGunLaserCarbineAutomatic: 3
     WeaponM1911: 3
     WeaponPDW9: 3
     WeaponEnergySniper: 3 #LWAP
+    WeaponEnergyMagnum: 3
     WeaponANNIHILATOR: 3
     WeaponToecloner: 3
     WeaponDecloner: 3
@@ -231,6 +255,10 @@
     MagazineShotgunSlug: 8
     MagazineShotgunBeanbag: 8
     MagazineShotgunIncendiary: 8
+    MagazineShotgunXL: 8
+    MagazineShotgunSlugXL: 8
+    MagazineShotgunIncendiaryXL: 8
+    MagazineShotgunFlechetteXL: 8
     # Ammo magnum
     MagazineBoxImprovisedMagnum: 3
     SpeedLoaderMagnumRubber: 8

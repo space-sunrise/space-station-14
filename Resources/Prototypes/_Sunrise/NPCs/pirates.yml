@@ -122,10 +122,18 @@
   - MobPassiveRegen
   id: MobPirateBase
   components:
+  # Allows ghosts/admins to quickly warp to pirates from the ghost teleport panel
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-pirate-name
+    description: ghost-panel-antagonist-pirate-description
+    priority: 45
   - type: Damageable
     damageModifierSet: MobPirateT1
   - type: NpcFactionMember
     factions:
+    - Pirate
+  - type: CollectiveMind
+    minds:
     - Pirate
   - type: FootprintEmitter
   - type: MobThresholds
@@ -198,13 +206,13 @@
       path: /Audio/_Sunrise/Effects/silence.ogg
   - type: Strippable
   - type: Tool
-    speedModifier: 8
+    speedModifier: 11
     qualities:
     - Prying
   - type: Prying
     pryPowered: true
     force: true
-    speedModifier: 8
+    speedModifier: 11
     useSound:
       path: /Audio/Items/crowbar.ogg
   - type: UserInterface
@@ -348,13 +356,15 @@
   components:
   - type: CyborgSparkEffect
   - type: Reflect
-    reflectProb: 0.05
+    reflectProb: 0.03
 
 - type: entity
   abstract: true
   parent: [MobPirateBase, MobPirateSparkEffectBase]
   id: MobPirateBorgBase
   components:
+  - type: TTS
+    voice: Sentrybot
   - type: Stamina
     baseCritThreshold: 500
   - type: Damageable
@@ -416,11 +426,15 @@
       state: icon
   - type: RandomSpawner
     prototypes:
-      # ???????
+
       - MobPirateT1Knife
+      - MobPirateT1KnifeTearGas
+      - MobPirateT1KnifeStinger
+      - MobPirateT1KnifeFirebomb
+      - MobPirateT1KnifeBola
       - MobPirateT1MonkeyKnuckleDusters
       - MobPirateT1Pickaxe
-      # ???????
+
       - MobPirateT1Pistol
       - MobPirateT1Mosin
       - MobPirateT1PKA
@@ -462,12 +476,17 @@
       state: icon
   - type: RandomSpawner
     prototypes:
-      # ???????
+
       - MobPirateT2Cutlass
       - MobPirateT2ECutlass
+      - MobPirateT2ECutlassTearGas
+      - MobPirateT2ECutlassStinger
+      - MobPirateT2ECutlassFirebomb
+      - MobPirateT2ECutlassBola
+      - MobPirateT2ECutlassFuzeCannonBall
       - MobPirateT2Sledgehammer
       - MobPirateT2GauntletDrill
-      # ???????
+
       - MobPirateT2Shotgun
       - MobPirateT2ShotgunMiniBall
       - MobPirateT2ShotgunGlass
@@ -485,8 +504,8 @@
       - MobPirateT2Cannoball
       - MobPirateT2Mech
       - MobPirateT2Juggernaut
-      - MobPirateT1BorgAssault
-      - MobPirateT1BorgMining
+      - MobPirateT2JuggernautMG
+      - MobPirateT2BorgAssault
     rareChance: 0.2
 
 - type: entity
@@ -501,10 +520,10 @@
       state: icon
   - type: RandomSpawner
     prototypes:
-      # ???????
+
       - MobPirateT3Bola
       - MobPirateT3Stun
-      # ???????
+
       - MobPirateT3Shield1984
       - MobPirateT3ShieldSMG
       - MobPirateT3DMR
@@ -521,7 +540,7 @@
       - MobPirateT3Grenadier
       - MobPirateT3Infiltrator
       - MobPirateT3Sniper
-      - MobPirateT1BorgAssault
+      - MobPirateT3BorgAssault
     rareChance: 0.2
 
 # mixed all tiers spawner
@@ -555,11 +574,13 @@
       state: icon
   - type: RandomSpawner
     prototypes:
-      # ???????
       - MobPirateT1KnifeTimed
+      - MobPirateT1KnifeTearGasTimed
+      - MobPirateT1KnifeStingerTimed
+      - MobPirateT1KnifeFirebombTimed
+      - MobPirateT1KnifeBolaTimed
       - MobPirateT1MonkeyKnuckleDustersTimed
       - MobPirateT1PickaxeTimed
-      # ???????
       - MobPirateT1PistolTimed
       - MobPirateT1MosinTimed
       - MobPirateT1PKATimed
@@ -601,12 +622,17 @@
       state: icon
   - type: RandomSpawner
     prototypes:
-      # ???????
+
       - MobPirateT2CutlassTimed
       - MobPirateT2ECutlassTimed
+      - MobPirateT2ECutlassTearGasTimed
+      - MobPirateT2ECutlassStingerTimed
+      - MobPirateT2ECutlassFirebombTimed
+      - MobPirateT2ECutlassBolaTimed
+      - MobPirateT2ECutlassFuzeCannonBallTimed
       - MobPirateT2SledgehammerTimed
       - MobPirateT2GauntletDrillTimed
-      # ???????
+
       - MobPirateT2ShotgunTimed
       - MobPirateT2ShotgunMiniBallTimed
       - MobPirateT2ShotgunGlassTimed
@@ -624,7 +650,9 @@
       - MobPirateT2CannoballTimed
       - MobPirateT2MechTimed
       - MobPirateT2JuggernautTimed
+      - MobPirateT2JuggernautMGTimed
       - MobPirateT1BorgAssaultTimed
+      - MobPirateT2BorgAssaultTimed
       - MobPirateT1BorgMiningTimed
     rareChance: 0.15
 
@@ -640,10 +668,10 @@
       state: icon
   - type: RandomSpawner
     prototypes:
-      # ???????
+
       - MobPirateT3BolaTimed
       - MobPirateT3StunTimed
-      # ???????
+
       - MobPirateT3Shield1984Timed
       - MobPirateT3ShieldSMGTimed
       - MobPirateT3DMRTimed
@@ -661,6 +689,7 @@
       - MobPirateT3InfiltratorTimed
       - MobPirateT3SniperTimed
       - MobPirateT1BorgAssaultTimed
+      - MobPirateT3BorgAssaultTimed
     rareChance: 0.15
 
 # mixed all tiers spawner (despawn)
@@ -684,6 +713,22 @@
 - type: entity
   parent: [MobPirateTimedDespawn, MobPirateT1Knife]
   id: MobPirateT1KnifeTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1KnifeTearGas]
+  id: MobPirateT1KnifeTearGasTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1KnifeStinger]
+  id: MobPirateT1KnifeStingerTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1KnifeFirebomb]
+  id: MobPirateT1KnifeFirebombTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1KnifeBola]
+  id: MobPirateT1KnifeBolaTimed
 
 - type: entity
   parent: [MobPirateTimedDespawn, MobPirateT1MonkeyKnuckleDusters]
@@ -782,8 +827,20 @@
   id: MobPirateT1RifleTimed
 
 - type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1RifleAlt]
+  id: MobPirateT1RifleAltTimed
+
+- type: entity
   parent: [MobPirateTimedDespawn, MobPirateT1BorgAssault]
   id: MobPirateT1BorgAssaultTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2BorgAssault]
+  id: MobPirateT2BorgAssaultTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3BorgAssault]
+  id: MobPirateT3BorgAssaultTimed
 
 - type: entity
   parent: [MobPirateTimedDespawn, MobPirateT1BorgMining]
@@ -800,6 +857,26 @@
 - type: entity
   parent: [MobPirateTimedDespawn, MobPirateT2ECutlass]
   id: MobPirateT2ECutlassTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2ECutlassTearGas]
+  id: MobPirateT2ECutlassTearGasTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2ECutlassStinger]
+  id: MobPirateT2ECutlassStingerTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2ECutlassFirebomb]
+  id: MobPirateT2ECutlassFirebombTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2ECutlassBola]
+  id: MobPirateT2ECutlassBolaTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2ECutlassFuzeCannonBall]
+  id: MobPirateT2ECutlassFuzeCannonBallTimed
 
 - type: entity
   parent: [MobPirateTimedDespawn, MobPirateT2Sledgehammer]
@@ -872,6 +949,10 @@
 - type: entity
   parent: [MobPirateTimedDespawn, MobPirateT2Juggernaut]
   id: MobPirateT2JuggernautTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2JuggernautMG]
+  id: MobPirateT2JuggernautMGTimed
 
 - type: entity
   parent: [MobPirateTimedDespawn, MobPirateT3Bola]
@@ -1195,7 +1276,7 @@
       state: on-equipped-HELMET
       shader: unshaded
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 35
+    rechargeCooldown: 30
     rechargeSound:
       path: /Audio/_Sunrise/Abductor/holopaper_open.ogg
   - type: BasicEntityAmmoProvider
@@ -1212,6 +1293,42 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Effects/drop.ogg
+
+- type: entity
+  parent: MobPirateT1Knife
+  id: MobPirateT1KnifeTearGas
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: BulletTearGasGrenade
+    capacity: 1
+    count: 1
+
+- type: entity
+  parent: MobPirateT1Knife
+  id: MobPirateT1KnifeStinger
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: BulletGrenadeStinger
+    capacity: 1
+    count: 1
+
+- type: entity
+  parent: MobPirateT1Knife
+  id: MobPirateT1KnifeFirebomb
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: BulletImprovisedGrenadeFirebomb
+    capacity: 1
+    count: 1
+
+- type: entity
+  parent: MobPirateT1Knife
+  id: MobPirateT1KnifeBola
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: BolaSyndicateDespawn
+    capacity: 1
+    count: 1
 
 - type: entity
   name: Scrap boarder
@@ -1772,6 +1889,51 @@
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
 
 - type: entity
+  name: Scrap gunner
+  description: A hardened scrapper veteran who keeps a cheap SMK-24.
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
+  id: MobPirateT1RifleAlt
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT1RifleGearAlt
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/privateer.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/privateer.rsi
+      state: equipped-HELMET
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/privateer.rsi
+      state: on-equipped-HELMET
+      shader: unshaded
+  - type: BatteryAmmoProvider
+    proto: CartridgeLightRifleSP
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 3
+    autoRechargeRate: 99
+  - type: Battery
+    maxCharge: 20
+    startingCharge: 20
+  - type: Gun
+    showExamineText: false
+    fireRate: 4.5
+    selectedMode: FullAuto
+    minAngle: 0
+    maxAngle: 40
+    angleIncrease: 3
+    angleDecay: 18
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_shot.ogg
+      params:
+        pitch: 0.8
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
+
+- type: entity
   name: Scrap veteran gunner
   description: A hardened scrapper veteran who keeps a PPSH close and a bandolier closer.
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
@@ -1796,11 +1958,11 @@
     proto: CartridgePistolImprovised
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 1.5
+    autoRechargePauseTime: 1.3
     autoRechargeRate: 99
   - type: Battery
-    maxCharge: 10
-    startingCharge: 10
+    maxCharge: 15
+    startingCharge: 15
   - type: Gun
     showExamineText: false
     fireRate: 15
@@ -1977,6 +2139,26 @@
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
 
 - type: entity
+  parent: MobPirateT1BorgAssault
+  id: MobPirateT2BorgAssault
+  components:
+  - type: BatteryAmmoProvider
+    proto: CartridgeRifleFMJ
+  - type: Battery
+    maxCharge: 20
+    startingCharge: 20
+
+- type: entity
+  parent: MobPirateT1BorgAssault
+  id: MobPirateT3BorgAssault
+  components:
+  - type: BatteryAmmoProvider
+    proto: CartridgeRifleIncendiary
+  - type: Battery
+    maxCharge: 20
+    startingCharge: 20
+
+- type: entity
   name: Derelict mining borg
   description: A mining borg stripped down and wired for raiding.
   parent: [MobMovementSpeedModifierRanged, MobPirateBorgBase]
@@ -2126,6 +2308,61 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/bolathrow.ogg
+
+- type: entity
+  name: pirate boarder
+  description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
+  parent: MobPirateT2ECutlass
+  id: MobPirateT2ECutlassTearGas
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: BulletTearGasGrenade
+    capacity: 1
+    count: 1
+
+- type: entity
+  name: pirate boarder
+  description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
+  parent: MobPirateT2ECutlass
+  id: MobPirateT2ECutlassStinger
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: BulletGrenadeStinger
+    capacity: 1
+    count: 1
+
+- type: entity
+  name: pirate boarder
+  description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
+  parent: MobPirateT2ECutlass
+  id: MobPirateT2ECutlassFirebomb
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: BulletImprovisedGrenadeFirebomb
+    capacity: 1
+    count: 1
+
+- type: entity
+  name: pirate boarder
+  description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
+  parent: MobPirateT2ECutlass
+  id: MobPirateT2ECutlassBola
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: BolaSecurity
+    capacity: 1
+    count: 1
+
+- type: entity
+  name: pirate boarder
+  description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
+  parent: MobPirateT2ECutlass
+  id: MobPirateT2ECutlassFuzeCannonBall
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: BulletFuzeCannonBall
+    capacity: 1
+    count: 1
 
 - type: entity
   name: pirate breacher
@@ -2444,6 +2681,82 @@
     - DoorBumpOpener
     - FootstepSound
     - Pickaxe
+
+- type: entity
+  name: Jugger Murmillo
+  description: Clad in a heavily armored ancient spacesuit. Slow but incredibly resilient.
+  parent: [MobPirateT2MachineCannon, MobPirateSparkEffectBase]
+  id: MobPirateT2JuggernautMG
+  suffix: Machine gunner
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT2JuggernautGearAlt
+  - type: Sprite
+    scale: 1.2,1.08
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/gladiator.rsi
+      state: human
+    - sprite: _Sunrise/Mobs/Species/Templates/gladiator.rsi
+      state: human-unshaded
+      shader: unshaded
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      240: Critical
+      250: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 250
+  - type: Stamina
+    baseCritThreshold: 500
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgLegs
+      params:
+        volume: -8
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      50: 1.05
+      75: 1.1
+      100: 1.2
+      125: 1.3
+      150: 1.4
+      175: 1.5
+      200: 1.6
+      215: 1.8
+      225: 2
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1.75
+    baseAcceleration: 10
+  - type: Reflect
+    reflectProb: 0.15
+    spread: 180
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
+    reflects:
+    - NonEnergy
+    - Energy
+  - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
+    radius: 1.75
+    energy: 1.5
+    mask: /Textures/Effects/LightMasks/soft_cone.png
+    color: "#8cff00"
+  - type: AmbientSound
+    range: 4
+    volume: -8
+    sound:
+      path: /Audio/Effects/internals.ogg
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
 
 # region Ranged Tier 2
 - type: entity
@@ -2938,6 +3251,11 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Effects/countdown.ogg
+  - type: Reflect
+    reflectProb: 0.9
+    spread: 360
+    reflects:
+    - Energy
 
 # region Ranged Tier 3
 - type: entity
@@ -3214,7 +3532,7 @@
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
   - type: BatteryAmmoProvider
-    proto: CartridgeLightRifleSP
+    proto: CartridgeLightRifleFMJ
     fireCost: 1
   - type: BatterySelfRecharger
     autoRechargePauseTime: 3

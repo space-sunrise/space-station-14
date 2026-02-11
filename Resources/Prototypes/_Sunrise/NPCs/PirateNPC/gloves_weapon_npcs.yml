@@ -99,7 +99,7 @@
     energy: 2
     color: "#e95151"
   - type: Reflect
-    reflectProb: 0.5
+    reflectProb: 0.4
   - type: AmbientSound
     volume: 3
     range: 5
@@ -260,7 +260,7 @@
   - type: Clothing
     clothingVisuals:
       gloves:
-      - sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+      - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/l6.rsi
         state: wielded-inhand-right
 
 - type: entity
@@ -716,7 +716,7 @@
     energy: 2
     color: "#e96a51"
   - type: Reflect
-    reflectProb: 0.5
+    reflectProb: 0.25
   - type: AmbientSound
     volume: 3
     range: 5
@@ -1209,6 +1209,28 @@
   id: ClothingHandsPirateArmorT2Invisible
   suffix: pirate T2 armor
   categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsNoGloves, PirateArmorMechArmorMediumSyndi]
+  id: ClothingLightMachineGunPirateCannonJugg
+  suffix: lmg pirate cannon
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_inhands_64x.rsi
+        state: wielded-inhand-right
+  - type: MeleeThrowOnHit
+    distance: 0.7
+    speed: 10
+  - type: MeleeWeapon
+    attackRate: 0.5
+    soundHit:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+      params:
+        volume: -6
+        pitch: 0.5
 
 - type: entity
   parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]

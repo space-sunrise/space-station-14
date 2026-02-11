@@ -20,10 +20,10 @@
     unwieldOnUse: false
   - type: GunWieldBonus
     minAngle: -20
-    maxAngle: -50 # Sunrise-Edit
+    maxAngle: -20
   - type: Gun
     minAngle: 24
-    maxAngle: 80  # Sunrise-Edit
+    maxAngle: 45
     angleIncrease: 4
     angleDecay: 16
     fireRate: 8
@@ -80,12 +80,13 @@
         knockback: 0.02
         staminaMultiplier: 100
       Felinid:
-        knockback: 0.02
+        knockback: 0.01
         staminaMultiplier: 100
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 5
-    pvsIncrease: 0.5
+  - type: RestrictByUserTag
+    doestContain:
+    - Abductor
+    messages:
+    - abductor-gun-restricted-1
   # Sunrise end
 
 - type: entity
@@ -95,7 +96,7 @@
   description: Developed by Waffle Corp, the L6 Squad Automatic Weapon is a deadly light machine gun often used by the Gorlex Marauders. Although bulky and cumbersome, its heavy barrel and high ammo capacity make it perfect for suppressing combatants with a hail of bullets. Feeds from .30 ammo belts.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/l6.rsi # Sunrise-Edit
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -108,15 +109,6 @@
   - type: Appearance
   - type: StaticPrice
     price: 10000
-  # Sunrise start
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.85
-    sprintModifier: 0.85
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: HeldSpeedModifier
-  # Sunrise end
 
 - type: entity
   name: L6C ROW

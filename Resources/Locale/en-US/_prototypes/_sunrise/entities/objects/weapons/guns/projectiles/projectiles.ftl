@@ -1,7 +1,5 @@
 ent-BulletAcid2 = acid spit
     .desc = { ent-BaseBullet.desc }
-ent-BulletTaserSunrise = taser bolt
-    .desc = { ent-BaseBullet.desc }
 ent-BulletEMP = EMP impulse
     .desc = { ent-BaseBulletTrigger.desc }
 ent-RadiationBullet = radiation particle

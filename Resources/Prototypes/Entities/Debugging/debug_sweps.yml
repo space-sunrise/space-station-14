@@ -4,6 +4,7 @@
   id: WeaponHitscanDebug
   description: pew pew!
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise-Add
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Pistols/debug.rsi
@@ -35,6 +36,7 @@
   id: WeaponPistolDebug
   description: ded
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise-Add
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Pistols/debug.rsi
@@ -102,6 +104,7 @@
   name: bang, ded cartridge
   parent: BaseCartridgePistol
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise-Add
   components:
   - type: Tag
     tags:
@@ -115,6 +118,7 @@
   id: MeleeDebugGib
   description: hit hard ye
   suffix: DEBUG
+  categories: [ Debug ] # Sunrise-Add
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/debug.rsi

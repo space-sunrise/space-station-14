@@ -597,6 +597,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+    requireActivated: false
   - type: HeldSpeedModifier
   - type: Tag
     tags:

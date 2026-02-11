@@ -249,6 +249,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Add
 
 - type: listing
   id: UplinkBulldog
@@ -268,6 +269,7 @@
     blacklist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Add
 
 - type: listing
   id: UplinkBulldogBundle
@@ -287,6 +289,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Add
 
 - type: listing
   id: UplinkEstoc
@@ -306,6 +309,7 @@
     blacklist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Add
 
 - type: listing
   id: UplinkEstocBundle
@@ -325,6 +329,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Add
 
 - type: listing
   id: UplinkGrenadeLauncher
@@ -379,10 +384,9 @@
 #Sunrise-start
   conditions:
   - !type:StoreWhitelistCondition
-    whitelist:
+    blacklist:
       tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
+      - AssaultOpsUplink
 #Sunrise-end
 
 # Explosives

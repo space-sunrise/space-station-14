@@ -206,13 +206,11 @@
   # Sunrise-Start
   - type: StaminaResistance
     damageCoefficient: 0.8
-  - type: ExplosionResistance
-    damageCoefficient: 0.85
   # Sunrise-End
 
 #Elite web vest
 - type: entity
-  parent: [ClothingOuterArmorBase, AllowSuitStorageClothing, BaseSyndicateContraband]
+  parent: [ClothingOuterArmorBase, ClothingOuterStorageBase, BaseSyndicateContraband] # Sunrise-Edit
   id: ClothingOuterVestWebElite
   name: elite web vest
   description: A synthetic armor vest. This one has added webbing and heat resistant fibers.
@@ -241,8 +239,10 @@
     reduction: 0.85
   - type: StaticPrice
     price: 2500
-  - type: StaminaResistance # Sunrise-Add
-    damageCoefficient: 0.8 # Sunrise-Add
+  # Sunrise-Start
+  - type: StaminaResistance
+    damageCoefficient: 0.7
+  # Sunrise-End
 
 #Mercenary web vest
 - type: entity
@@ -295,8 +295,8 @@
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
     damageCoefficient: 0.45
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.95 # Sunrise-Edit
+    sprintModifier: 0.95 # Sunrise-Edit
   #Shoulder mounted flashlight
   - type: ToggleableVisuals
     spriteLayer: light
@@ -346,6 +346,21 @@
   - type: Item
     size: Normal
   # Sunrise-Start
+  - type: FireProtection
+    reduction: 0.65
+  - type: ContainerContainer
+    containers:
+      beakerSlot: !type:ContainerSlot
+  - type: Inject
+    openCloseDelay: 1
+    autoClose: true
+    autoCloseDelay: 6
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        whitelist:
+          tags:
+          - FitsHardsuit
   - type: Tag
     tags:
     - FullBodyOuter

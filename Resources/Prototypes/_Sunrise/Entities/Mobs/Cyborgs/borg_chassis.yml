@@ -9,6 +9,11 @@
     prototypes: [ BorgArmorSiliconLoadoutMk2 ]
   - type: Tag
     tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+    - SiliconEmotes
+    - Unimplantable
     - NoPaint
 
 - type: entity

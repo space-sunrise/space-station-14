@@ -253,14 +253,16 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
       - !type:ExplodeBehavior
-    - trigger:
-        !type:DamageTrigger #A fallback that deletes it but doesnt explode in case something somehow gets here without exploding violently enough.
+    - trigger: # Sunrise-Edit: non-explosive destruction (slash-only, not from explosions)
+        !type:DamageTypeTrigger
+        damageType: Slash
         damage: 50
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
-    - trigger:
-        !type:DamageTrigger
+    - trigger: # Sunrise-Edit: non-explosive stack spawn (slash-only, not from explosions)
+        !type:DamageTypeTrigger
+        damageType: Slash
         damage: 35
       behaviors:
       - !type:SpawnEntitiesBehavior
@@ -270,6 +272,23 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+    # - trigger: # Sunrise-Edit: disable non-explosive destruction
+    #     !type:DamageTrigger #A fallback that deletes it but doesnt explode in case something somehow gets here without exploding violently enough.
+    #     damage: 50
+    #   behaviors:
+    #   - !type:DoActsBehavior
+    #     acts: ["Destruction"]
+    # - trigger: # Sunrise-Edit: disable stack spawn on non-explosive damage
+    #     !type:DamageTrigger
+    #     damage: 35
+    #   behaviors:
+    #   - !type:SpawnEntitiesBehavior
+    #     spawn:
+    #       CableDetStack1:
+    #         min: 1
+    #         max: 1
+    #   - !type:DoActsBehavior
+    #     acts: [ "Destruction" ]
   - type: CableVis
     node: cordage
   - type: NodeContainer
