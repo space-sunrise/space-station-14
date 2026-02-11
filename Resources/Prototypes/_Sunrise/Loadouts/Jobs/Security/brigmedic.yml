@@ -1,5 +1,5 @@
 - type: loadoutEffectGroup
-  id: MasterBrigmedic5h
+  id: Brigmedic5h
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -55,7 +55,7 @@
   id: AutoInjectorBrute2
   effects:
   - !type:GroupLoadoutEffect
-    proto: MasterBrigmedic5h
+    proto: Brigmedic5h
   storage:
     back:
     - BruteAutoInjector
@@ -70,7 +70,7 @@
   id: AutoInjectorBurn2
   effects:
   - !type:GroupLoadoutEffect
-    proto: MasterBrigmedic5h
+    proto: Brigmedic5h
   storage:
     back:
     - BurnAutoInjector
@@ -85,7 +85,7 @@
   id: AutoInjectorPuncturase2
   effects:
   - !type:GroupLoadoutEffect
-    proto: MasterBrigmedic5h
+    proto: Brigmedic5h
   storage:
     back:
     - PunctAutoInjector
@@ -100,7 +100,7 @@
   id: AutoInjectorBruiz2
   effects:
   - !type:GroupLoadoutEffect
-    proto: MasterBrigmedic5h
+    proto: Brigmedic5h
   storage:
     back:
     - BruizAutoInjector
@@ -115,7 +115,7 @@
   id: AutoInjectorLacer2
   effects:
   - !type:GroupLoadoutEffect
-    proto: MasterBrigmedic5h
+    proto: Brigmedic5h
   storage:
     back:
     - LacerAutoInjector
@@ -130,7 +130,7 @@
   id: AutoInjectorPyrazine2
   effects:
   - !type:GroupLoadoutEffect
-    proto: MasterBrigmedic5h
+    proto: Brigmedic5h
   storage:
     back:
     - PyraAutoInjector
@@ -163,7 +163,7 @@
   id: AutoInjectorPoly
   effects:
   - !type:GroupLoadoutEffect
-    proto: MasterBrigmedic5h
+    proto: Brigmedic5h
   storage:
     back:
     - PolyAutoInjector
@@ -172,7 +172,7 @@
   id: AutoInjectorStellibinin
   effects:
   - !type:GroupLoadoutEffect
-    proto: MasterBrigmedic5h
+    proto: Brigmedic5h
   storage:
     back:
     - StellibininAutoInjector
