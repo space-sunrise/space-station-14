@@ -28,6 +28,7 @@ using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Parallax.Biomes;
 using Robust.Shared.Console;
 using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization.Systems;
@@ -939,22 +940,6 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             initStart.Stop();
             Console.WriteLine($"[CACHE] Map initialization: {initStart.Elapsed.TotalMilliseconds:F0}ms");
 
-            // Для карт с планетами создаем планету
-            if (mapProtoId == MetusMapId) // Metus - планета
-            {
-                try
-                {
-                    var planetStart = System.Diagnostics.Stopwatch.StartNew();
-                    await CreatePlanetForMap(mapIdObj, mapProtoId);
-                    planetStart.Stop();
-                    Console.WriteLine($"[CACHE] Planet creation: {planetStart.Elapsed.TotalMilliseconds:F0}ms");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"[CACHE] Failed to create planet for {mapProtoId}: {ex.Message}");
-                }
-            }
-
             // Добавляем в очередь кэша
             if (_cachedMaps.TryGetValue(mapProtoId, out var queue))
             {
@@ -1032,22 +1017,6 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             }
             initStart.Stop();
             Console.WriteLine($"[CACHE] Map initialization: {initStart.Elapsed.TotalMilliseconds:F0}ms");
-
-            // Для карт с планетами создаем планету
-            if (mapProtoId == MetusMapId) // Metus - планета
-            {
-                try
-                {
-                    var planetStart = System.Diagnostics.Stopwatch.StartNew();
-                    CreatePlanetForMap(mapIdObj, mapProtoId).Wait();
-                    planetStart.Stop();
-                    Console.WriteLine($"[CACHE] Planet creation: {planetStart.Elapsed.TotalMilliseconds:F0}ms");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"[CACHE] Failed to create planet for {mapProtoId}: {ex.Message}");
-                }
-            }
 
             // Добавляем в очередь кэша
             if (_cachedMaps.TryGetValue(mapProtoId, out var queue))
@@ -1791,6 +1760,12 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             _map.SetPaused(cachedMapId, false);
             activationStart.Stop();
 
+            // Для карт с планетами гарантируем создание/наличие планеты при активации
+            if (protoId == MetusMapId)
+            {
+                await CreatePlanetForMap(cachedMapId, protoId);
+            }
+
             Console.WriteLine($"[VOTE] Map {protoId} activated in {activationStart.Elapsed.TotalMilliseconds:F0}ms");
             return cachedMapId;
         }
@@ -1806,6 +1781,12 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
             // Активируем только что созданную карту
             _map.SetPaused(cachedMapId, false);
+
+            // Для карт с планетами гарантируем создание/наличие планеты при активации
+            if (protoId == MetusMapId)
+            {
+                await CreatePlanetForMap(cachedMapId, protoId);
+            }
 
             Console.WriteLine($"Activated newly cached prison map {protoId} (MapId: {cachedMapId})");
             return cachedMapId;
@@ -1892,18 +1873,39 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     {
         try
         {
-            // Получаем компонент станции для биомов
+            // Пытаемся получить список биомов из активной станции тюрьмы.
+            // Если компонент станции не найден (например, в отдельном режиме тюрьмы),
+            // используем заранее известный набор биомов по умолчанию.
+            var biomeIds = new List<ProtoId<BiomeTemplatePrototype>>();
+
             var query = AllEntityQuery<PlanetPrisonStationComponent>();
-            if (!query.MoveNext(out var stationComp))
+            if (query.MoveNext(out var stationComp))
             {
-                Console.WriteLine("No PlanetPrisonStationComponent found for creating planet");
+                biomeIds.AddRange(stationComp.Biomes);
+            }
+            else
+            {
+                Console.WriteLine("No PlanetPrisonStationComponent found for creating planet, using default biome set");
+                // Fallback-набор биомов, совпадающий с настройками BaseStationPlanetPrison.
+                biomeIds.Add(new ProtoId<BiomeTemplatePrototype>("PlainGrasslands"));
+                biomeIds.Add(new ProtoId<BiomeTemplatePrototype>("PlainLowDesert"));
+                biomeIds.Add(new ProtoId<BiomeTemplatePrototype>("PlainSnow"));
+            }
+
+            if (biomeIds.Count == 0)
+            {
+                Console.WriteLine("No biome IDs available for prison planet");
                 return;
             }
 
-            // Выбираем случайный биом
-            if (!_prototypeManager.TryIndex(_random.Pick(stationComp.Biomes), out var biome))
+            // Выбираем случайный биом из доступного списка без использования Pick (чтобы избежать nullable-предупреждений).
+            var biomeIndex = _random.Next(biomeIds.Count);
+            var biomeId = biomeIds[biomeIndex];
+
+            // TryIndex по контракту может вернуть null в out-параметре, поэтому используем nullable-тип и явную проверку.
+            if (!_prototypeManager.TryIndex(biomeId, out BiomeTemplatePrototype? biome) || biome == null)
             {
-                Console.WriteLine("No biome found for prison planet");
+                Console.WriteLine($"No biome prototype found for prison planet (id={biomeId})");
                 return;
             }
 
