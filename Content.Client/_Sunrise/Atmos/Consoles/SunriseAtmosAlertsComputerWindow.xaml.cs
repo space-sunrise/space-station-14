@@ -35,6 +35,7 @@ public sealed partial class SunriseAtmosAlertsComputerWindow : FancyWindow
 
     private IEnumerable<AtmosAlertsComputerEntry>? _activeAlarms = null;
     private Dictionary<NetEntity, float> _deviceSilencingProgress = new();
+    private readonly List<NetEntity> _deviceSilencingProgressKeys = new();
 
     public event Action<NetEntity?>? SendFocusChangeMessageAction;
     public event Action<NetEntity, bool>? SendDeviceSilencedMessageAction;
@@ -231,8 +232,9 @@ public sealed partial class SunriseAtmosAlertsComputerWindow : FancyWindow
 
         var silenced = console.SilencedDevices;
 
-        _activeAlarms = _allAlarms.Where(x => x.AlarmState > AtmosAlarmType.Normal &&
-            (!silenced.Contains(x.NetEntity) || _deviceSilencingProgress.ContainsKey(x.NetEntity)));
+        var activeAlarms = _allAlarms.Where(x => x.AlarmState > AtmosAlarmType.Normal &&
+            (!silenced.Contains(x.NetEntity) || _deviceSilencingProgress.ContainsKey(x.NetEntity))).ToArray();
+        _activeAlarms = activeAlarms;
 
         // Reset nav map data
         NavMap.TrackedCoordinates.Clear();
@@ -282,7 +284,7 @@ public sealed partial class SunriseAtmosAlertsComputerWindow : FancyWindow
         NavMap.ForceNavMapUpdate();
 
         // Clear excess children from the tables
-        var activeAlarmCount = _activeAlarms.Count();
+        var activeAlarmCount = activeAlarms.Length;
 
         while (AlertsTable.ChildCount > activeAlarmCount)
             AlertsTable.RemoveChild(AlertsTable.GetChild(AlertsTable.ChildCount - 1));
@@ -294,21 +296,21 @@ public sealed partial class SunriseAtmosAlertsComputerWindow : FancyWindow
             FireAlarmsTable.RemoveChild(FireAlarmsTable.GetChild(FireAlarmsTable.ChildCount - 1));
 
         // Update all entries in each table
-        for (int index = 0; index < _activeAlarms.Count(); index++)
+        for (int index = 0; index < activeAlarms.Length; index++)
         {
-            var entry = _activeAlarms.ElementAt(index);
+            var entry = activeAlarms[index];
             UpdateUIEntry(entry, index, AlertsTable, console, focusData);
         }
 
-        for (int index = 0; index < airAlarms.Count(); index++)
+        for (int index = 0; index < airAlarms.Length; index++)
         {
-            var entry = airAlarms.ElementAt(index);
+            var entry = airAlarms[index];
             UpdateUIEntry(entry, index, AirAlarmsTable, console, focusData);
         }
 
-        for (int index = 0; index < fireAlarms.Count(); index++)
+        for (int index = 0; index < fireAlarms.Length; index++)
         {
-            var entry = fireAlarms.ElementAt(index);
+            var entry = fireAlarms[index];
             UpdateUIEntry(entry, index, FireAlarmsTable, console, focusData);
         }
 
@@ -568,8 +570,17 @@ public sealed partial class SunriseAtmosAlertsComputerWindow : FancyWindow
         AutoScrollToFocus();
 
         // Device silencing update
-        foreach ((var device, var remainingTime) in _deviceSilencingProgress)
+        _deviceSilencingProgressKeys.Clear();
+        foreach (var (device, _) in _deviceSilencingProgress)
         {
+            _deviceSilencingProgressKeys.Add(device);
+        }
+
+        foreach (var device in _deviceSilencingProgressKeys)
+        {
+            if (!_deviceSilencingProgress.TryGetValue(device, out var remainingTime))
+                continue;
+
             var t = remainingTime - args.DeltaSeconds;
 
             if (t <= 0)
