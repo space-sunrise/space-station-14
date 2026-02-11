@@ -1,10 +1,10 @@
-- type: gameMap
+﻿- type: gameMap
   id: PlanetPrisonOld
   mapName: 'Nox'
   mapPath: /Maps/_Sunrise/planet_prison_old.yml
   maxRandomOffset: 0
   randomRotation: false
-  minPlayers: 0
+  minPlayers: 2
   stations:
     PlanetPrison:
       stationProto: NanotrasenPrison
@@ -14,8 +14,6 @@
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: 'TG'
-        - type: PlanetPrisonMapConfig
-          minPlayersRequired: 3
         - type: StationJobs
           availableJobs:
             HeadOfPrison: [ 1, 1 ]

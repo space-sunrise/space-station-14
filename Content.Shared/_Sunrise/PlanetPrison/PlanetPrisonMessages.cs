@@ -32,10 +32,14 @@ public sealed class PlanetPrisonVoteUpdateEvent : EntityEventArgs
     public bool IsLaunched { get; set; } // Запущена ли карта
     [DataField]
     public string[] InsufficientRoles { get; set; } = Array.Empty<string>();
+    [DataField]
+    public bool IsHidden { get; set; } // Карта скрыта (кэшированная)
+    [DataField]
+    public int MinPlayers { get; set; } // Минимальное количество игроков для запуска карты
 
-    public PlanetPrisonVoteUpdateEvent() {}
+    public PlanetPrisonVoteUpdateEvent() { }
 
-    public PlanetPrisonVoteUpdateEvent(string mapId, int voteCount, bool isVoting, bool isLaunched, double remainingSeconds, int totalPriorityPlayers, string[] insufficientRoles)
+    public PlanetPrisonVoteUpdateEvent(string mapId, int voteCount, bool isVoting, bool isLaunched, double remainingSeconds, int totalPriorityPlayers, string[] insufficientRoles, int minPlayers = 2, bool isHidden = false)
     {
         MapId = mapId;
         VoteCount = voteCount;
@@ -44,6 +48,8 @@ public sealed class PlanetPrisonVoteUpdateEvent : EntityEventArgs
         RemainingSeconds = remainingSeconds;
         TotalPriorityPlayers = totalPriorityPlayers;
         InsufficientRoles = insufficientRoles ?? Array.Empty<string>();
+        MinPlayers = minPlayers;
+        IsHidden = isHidden;
     }
 }
 

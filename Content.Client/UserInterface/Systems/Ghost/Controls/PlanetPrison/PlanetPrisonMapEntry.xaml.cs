@@ -54,6 +54,14 @@ public sealed partial class PlanetPrisonMapEntry : BoxContainer
         UpdateButtonStates();
     }
 
+    /// <summary>
+    /// Обновляет описание карты (локализованный/форматированный текст).
+    /// </summary>
+    public void SetDescription(string description)
+    {
+        Description.SetMessage(FormattedMessage.FromMarkupPermissive(description));
+    }
+
     public void SetLaunched(bool launched)
     {
         IsLaunched = launched;

@@ -48,6 +48,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
     private LoadoutWindow? _loadoutWindow;
     private PlanetPrisonMapEntry? _metusMapEntry;
     private PlanetPrisonMapEntry? _noxMapEntry;
+    private readonly Dictionary<string, int> _mapMinPlayers = new();
     private System.Threading.CancellationTokenSource? _timerCancellation;
 
     // Отдельное состояние для каждой карты
@@ -195,7 +196,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
 
         _window.ClearMaps();
 
-        // Создаем карту Metus
+        // Создаем карту Metus (клиент теперь полагается на серверное значение MinPlayers; используем запасной плейсхолдер)
         _metusMapEntry = new PlanetPrisonMapEntry(
             Loc.GetString("planet-prison-map-metus-title"),
             Loc.GetString("planet-prison-map-metus-description", ("minPlayers", 2))
@@ -205,10 +206,10 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         _metusMapEntry.JoinPressed += OnJoinPressed;
         _window.AddMapEntry(_metusMapEntry);
 
-        // Создаем карту Nox
+        // Создаем карту Nox (placeholder minPlayers = 2 until server sends real values)
         _noxMapEntry = new PlanetPrisonMapEntry(
             Loc.GetString("planet-prison-map-nox-title"),
-            Loc.GetString("planet-prison-map-nox-description", ("minPlayers", 3))
+            Loc.GetString("planet-prison-map-nox-description", ("minPlayers", 2))
         );
 
         _noxMapEntry.PrioritySelected += (priority) => OnMapPrioritySelected("PlanetPrisonOld", priority);
@@ -239,7 +240,10 @@ public sealed class PlanetPrisonUISystem : EntitySystem
 
     private int GetRequiredVotes(string mapId)
     {
-        return 2; // Все карты требуют 2 голоса
+        // Возвращаем последнее известное значение minPlayers, присланное сервером; иначе дефолт 2
+        if (_mapMinPlayers.TryGetValue(mapId, out var val))
+            return val;
+        return 2;
     }
 
     private void SetupMapEntry(string mapId, PlanetPrisonMapEntry? entry)
@@ -300,7 +304,27 @@ public sealed class PlanetPrisonUISystem : EntitySystem
 
     private void OnPrisonVoteUpdate(PlanetPrisonVoteUpdateEvent msg)
     {
-        Logger.Info($"OnPrisonVoteUpdate received - MapId={msg.MapId}, IsVoting={msg.IsVoting}, TotalPriorityPlayers={msg.TotalPriorityPlayers}, InsufficientRoles=[{string.Join(",", msg.InsufficientRoles)}]");
+        Logger.Info($"OnPrisonVoteUpdate received - MapId={msg.MapId}, IsVoting={msg.IsVoting}, TotalPriorityPlayers={msg.TotalPriorityPlayers}, InsufficientRoles=[{string.Join(",", msg.InsufficientRoles)}], IsHidden={msg.IsHidden}");
+
+        // Sunrise-Edit: Защита от несогласованных обновлений - если карта уже помечена как запущенная локально,
+        // игнорируем входящее сообщение с isLaunched=false
+        if (_mapLaunched.ContainsKey(msg.MapId) && _mapLaunched[msg.MapId] && !msg.IsLaunched)
+        {
+            Logger.Debug($"[CLIENT-PROTECT] Ignoring inconsistent update for {msg.MapId}: local launched=true, incoming isLaunched=false");
+            return;
+        }
+
+        // Sunrise-Edit: Скрываем карту, если она помечена как скрытая (кэшированная)
+        if (msg.IsHidden)
+        {
+            var hiddenEntry = msg.MapId == "PlanetPrison" ? _metusMapEntry : _noxMapEntry;
+            if (hiddenEntry != null)
+            {
+                hiddenEntry.Visible = false;
+                Logger.Info($"Hiding cached map {msg.MapId}");
+            }
+            return;
+        }
 
         // Специальная обработка глобального сброса состояний
         if (!msg.IsVoting && msg.TotalPriorityPlayers == -1 && msg.RemainingSeconds == 0)
@@ -309,8 +333,14 @@ public sealed class PlanetPrisonUISystem : EntitySystem
             Logger.Info($"Received global state reset from server for {msg.MapId}, resetting counter to 0");
             _totalPriorityPlayers = 0; // Явно сбрасываем счетчик
 
+            // Сохраняем актуальное MinPlayers даже при сбросе
+            _mapMinPlayers[msg.MapId] = msg.MinPlayers;
+
             // Полностью сбрасываем статусы запущенных карт при глобальном сбросе
             _mapLaunched.Clear();
+
+            // Сохраняем статус запуска карты из сообщения сервера
+            _mapLaunched[msg.MapId] = msg.IsLaunched;
 
             ResetAllClientStates(null);
 
@@ -366,101 +396,28 @@ public sealed class PlanetPrisonUISystem : EntitySystem
             SetupMapEntry("PlanetPrisonOld", _noxMapEntry);
         }
 
-        // Обновляем UI для карты
+        // Обновляем UI для карты и синхронизируем текст описания с серверным minPlayers
         var targetEntry = msg.MapId == "PlanetPrison" ? _metusMapEntry : _noxMapEntry;
         if (targetEntry != null)
         {
+            try
+            {
+                // Сохраняем и применяем значение minPlayers, присланное сервером
+                _mapMinPlayers[msg.MapId] = msg.MinPlayers;
+                var descKey = msg.MapId == "PlanetPrison"
+                    ? "planet-prison-map-metus-description"
+                    : "planet-prison-map-nox-description";
+                targetEntry.SetDescription(Loc.GetString(descKey, ("minPlayers", msg.MinPlayers)));
+            }
+            catch
+            {
+                // Игнорируем ошибки установки описания, UI всё ещё обновится далее
+            }
+
             UpdateMapEntryUI(msg, targetEntry);
         }
 
-        // Определяем какую карту обновлять
-        PlanetPrisonMapEntry? mapEntry = null;
-        if (msg.MapId == "PlanetPrison" && _metusMapEntry != null)
-            mapEntry = _metusMapEntry;
-        else if (msg.MapId == "PlanetPrisonOld" && _noxMapEntry != null)
-            mapEntry = _noxMapEntry;
-
-        if (mapEntry != null)
-        {
-            if (msg.IsVoting && msg.RemainingSeconds > 0)
-            {
-                // Во время голосования: блокируем кнопки (счетчик не показываем)
-                mapEntry.HideVoteCount();
-                mapEntry.DisableButtons(); // Блокируем все кнопки во время голосования
-
-                if (msg.RemainingSeconds > 0)
-                {
-                    // Показываем таймер
-                    mapEntry.ShowTimer((int)msg.RemainingSeconds);
-                    mapEntry.HideStatus();
-                    mapEntry.HideVoteCount();
-                }
-                else // RemainingSeconds == 0
-                {
-                    // Таймер закончился, показываем "(запускается)"
-                    mapEntry.HideTimer();
-                    mapEntry.HideVoteCount();
-                    mapEntry.ShowLaunchingStatus();
-                }
-
-                UpdatePrisonButtonHighlight(true);
-
-                // Проигрываем звук, если это начало голосования
-                if (msg.RemainingSeconds == 5)
-                {
-                    // _entManager.System<AudioSystem>().PlayGlobal("/Audio/Effects/beep.ogg", Filter.Local(), false, AudioParams.Default);
-                }
-            }
-            else if (msg.IsLaunched)
-            {
-                // Карта запущена - показываем статус запуска
-                mapEntry.HideVoteCount();
-                mapEntry.HideTimer();
-                mapEntry.DisableButtons(); // Полная блокировка всех кнопок
-                UpdatePrisonButtonHighlight(false);
-                _hasVoted[msg.MapId] = true;
-
-                // Показываем "(запускается)" желтым, затем "(запущен)" красным
-                mapEntry.ShowLaunchingStatus();
-                Robust.Shared.Timing.Timer.Spawn(2000, () => {
-                    if (mapEntry != null)
-                    {
-                        mapEntry.ShowLaunchedStatus();
-                    }
-                });
-            }
-            else
-            {
-                // Голосование не активно
-                mapEntry.HideTimer();
-
-                if (_mapLaunched.ContainsKey(msg.MapId) && _mapLaunched[msg.MapId])
-                {
-                    // Карта запущена - показываем статус "(запущен)"
-                    mapEntry.ShowLaunchedStatus();
-                    mapEntry.HideVoteCount();
-                    mapEntry.DisableButtons(); // Кнопки остаются заблокированными
-                }
-                else
-                {
-                    // Карта не запущена
-                    mapEntry.HideStatus();
-
-                    // Не показываем счетчики для отдельных карт
-                    mapEntry.HideVoteCount();
-                    if (!_hasVoted.ContainsKey(msg.MapId) || !_hasVoted[msg.MapId])
-                    {
-                        mapEntry.EnableButtons();
-                    }
-                    else
-                    {
-                        mapEntry.DisableButtons();
-                    }
-                }
-
-                UpdatePrisonButtonHighlight(false);
-            }
-        }
+        // UI обновляется только через UpdateMapEntryUI для избежания конфликтов
 
         // Блокируем/разблокируем кнопки ролей и карт только во время отсчета запуска
         if (_window != null)
@@ -798,7 +755,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         {
             _hasVoted[mapId] = false;
             _lastVoteCount[mapId] = 0;
-            _localPriority[mapId] = PlanetPrisonMapEntry.PriorityLevel.Never;
+            // НЕ сбрасываем _localPriority - приоритеты карт должны сохраняться
         }
 
         UpdatePriorityCounter();
@@ -808,13 +765,13 @@ public sealed class PlanetPrisonUISystem : EntitySystem
     {
         Logger.Debug($"DEBUG: UpdateMapEntryUI called for {msg.MapId} - IsVoting: {msg.IsVoting}, IsLaunched: {msg.IsLaunched}, RemainingSeconds: {msg.RemainingSeconds}, VoteCount: {msg.VoteCount}");
 
-        // Обработка только что запущенной карты - показываем финальный статус сразу
+        // Обработка уже запущенной карты - показываем финальный статус "запущен"
         if (msg.IsLaunched)
         {
-            Logger.Debug($"DEBUG: Handling launching status for {msg.MapId}");
+            Logger.Debug($"DEBUG: Handling launched status for {msg.MapId}");
             entry.HideTimer();
             entry.HideVoteCount();
-            entry.ShowLaunchingStatus();
+            entry.ShowLaunchedStatus();
             entry.DisableButtons();
             return;
         }
@@ -867,11 +824,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
             // Карта доступна для голосования
             entry.HideStatus();
             entry.EnableButtons();
-
-            if (msg.VoteCount > 0)
-                entry.ShowVoteCount(msg.VoteCount, GetRequiredVotes(msg.MapId));
-            else
-                entry.HideVoteCount();
+            entry.HideVoteCount();
         }
     }
 
