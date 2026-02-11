@@ -38,13 +38,6 @@ public sealed class AtmosAlertsComputerBoundUserInterface : BoundUserInterface
         SendMessage(new AtmosAlertsComputerDeviceSilencedMessage(netEntity, silenceDevice));
     }
 
-    // // Sunrise-start
-    // public void SendAlertSoundToggleMessage(bool enabled)
-    // {
-    //     SendMessage(new AtmosAlertsComputerAlertSoundToggleMessage(enabled));
-    // }
-    // // Sunrise-end
-
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
