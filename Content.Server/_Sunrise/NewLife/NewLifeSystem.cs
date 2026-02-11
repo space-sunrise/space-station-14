@@ -22,6 +22,7 @@ using Robust.Shared.Prototypes;
 using Content.Sunrise.Interfaces.Shared;
 using Content.Server._Sunrise.PlanetPrison;
 using Robust.Shared.Map;
+using Content.Shared._Sunrise.PlanetPrison;
 
 namespace Content.Server._Sunrise.NewLife
 {
@@ -157,6 +158,12 @@ namespace Content.Server._Sunrise.NewLife
                 return;
             _prefsManager.GetPreferences(player.UserId).SetProfile(characterId.Value);
             _gameTicker.MakeJoinGame(player, stationUid.Value, roleProto, canBeAntag: false);
+
+            // Закрываем интерфейс тюрьмы, если он был открыт, после успешного респавна через New Life.
+            // На старте тюрьмы окно закрывается через PlanetPrisonStationSystem.SpawnPlayerWithRole,
+            // но при повторном заходе призрака через New Life эта логика не срабатывает,
+            // поэтому дублируем закрытие здесь на стороне New Life.
+            RaiseNetworkEvent(new PlanetPrisonCloseWindowEvent(), player);
         }
 
         private void OpenEui(ICommonSession session)

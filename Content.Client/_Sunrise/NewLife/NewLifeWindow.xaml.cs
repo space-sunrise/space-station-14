@@ -66,18 +66,31 @@ namespace Content.Client._Sunrise.NewLife
 
         public int? GetSelectedCharacter()
         {
+            // Если список персонажей ещё не заполнен, безопасно возвращаем null,
+            // чтобы не лезть в OptionButton.SelectedMetadata с пустыми данными
+            if (CharacterSelector.ItemCount == 0)
+                return null;
+
             var characterId = (int?) CharacterSelector.SelectedMetadata;
             return characterId;
         }
 
         public string? GetSelectedRole()
         {
+            // Аналогичная защита для ролей: пока список пуст, выбора нет
+            if (RoleSelector.ItemCount == 0)
+                return null;
+
             var roleId = (string?) RoleSelector.SelectedMetadata;
             return roleId;
         }
 
         public NetEntity? GetSelectedStation()
         {
+            // И для станций: не запрашиваем SelectedMetadata у пустого списка
+            if (StationSelector.ItemCount == 0)
+                return null;
+
             var roleId = (NetEntity?) StationSelector.SelectedMetadata;
             return roleId;
         }
