@@ -134,7 +134,7 @@
   parent: BaseSubdermalImplant
   id: ReviverImplant
   name: reviver implant
-  description: "Stimulates an adrenaline surge with a focused discharge to the heart and a cocktail of reagents."
+  description: "Stimulates an adrenaline surge with a focused discharge to the heart and a cocktail of reagents. Enters critical: injects automatically"
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Implants/implants.rsi

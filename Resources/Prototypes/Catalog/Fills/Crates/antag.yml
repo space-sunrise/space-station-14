@@ -131,10 +131,12 @@
   suffix: Filled, Plasteel CannonBall
   parent: CratePirate
   components:
-  - type: StorageFill
-    contents:
-      - id: CannonBallAntiMateriel
-        amount: 6
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: CannonBallAntiMateriel
+          amount: 6
 
 - type: entity
   id: CratePirateChestCannonBallFuze
