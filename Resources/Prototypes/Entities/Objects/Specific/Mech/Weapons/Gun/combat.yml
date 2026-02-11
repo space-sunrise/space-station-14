@@ -394,6 +394,16 @@
   - type: Battery
     maxCharge: 900
     startingCharge: 900
+  - type: Item
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_inhand.rsi
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 20
+        staminaMultiplier: 8
+      Felinid:
+        knockback: 20
+        staminaMultiplier: 8
 
 - type: entity
   id: WeaponMechCombatMissileRack6
@@ -421,6 +431,16 @@
   - type: Battery
     maxCharge: 1800
     startingCharge: 1800
+  - type: Item
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_inhand.rsi
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 20
+        staminaMultiplier: 8
+      Felinid:
+        knockback: 20
+        staminaMultiplier: 8
 
 # Sunrise-start
 - type: entity
@@ -470,3 +490,13 @@
   - type: Tag
     tags:
     - PaddyMech
+  - type: Item
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_inhand.rsi
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 20
+        staminaMultiplier: 8
+      Felinid:
+        knockback: 20
+        staminaMultiplier: 8
