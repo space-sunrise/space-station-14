@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: ERT death tracking implant box
   parent: [BoxCardboard, BaseCentcommContraband]
   id: BoxErtImplants
@@ -11,10 +11,12 @@
   - type: Storage
     grid:
     - 0,0,5,3
-  - type: StorageFill
-    contents:
-    - id: DeathRattleImplanterCentcomm
-      amount: 6
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DeathRattleImplanterCentcomm
+          amount: 6
 
 - type: entity
   name: Freelance death rattle implant box
@@ -29,10 +31,12 @@
   - type: Storage
     grid:
     - 0,0,5,3
-  - type: StorageFill
-    contents:
-    - id: DeathRattleImplanterFreelance
-      amount: 6
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DeathRattleImplanterFreelance
+          amount: 6
 
 - type: entity
   name: GrenadeIncendiary box
@@ -40,10 +44,12 @@
   id: BoxGrenadeIncendiary
   description: 'WARNING: These devices are extremely dangerous.'
   components:
-  - type: StorageFill
-    contents:
-    - id: GrenadeIncendiary
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: GrenadeIncendiary
+          amount: 4
   - type: Sprite
     layers:
     - state: box_security
@@ -55,10 +61,12 @@
   id: BoxGrenadeShrapnel
   description: 'WARNING: These devices are extremely dangerous.'
   components:
-  - type: StorageFill
-    contents:
-    - id: GrenadeShrapnel
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: GrenadeShrapnel
+          amount: 4
   - type: Sprite
     layers:
     - state: box_security
@@ -71,10 +79,12 @@
   id: BoxGrenadeStinger
   description: 'WARNING: These devices are extremely dangerous.'
   components:
-  - type: StorageFill
-    contents:
-    - id: GrenadeStinger
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: GrenadeStinger
+          amount: 4
   - type: Sprite
     layers:
     - state: box_security
@@ -86,10 +96,12 @@
   id: BoxMetalFoamGrenade
   description: 'WARNING: These devices are extremely dangerous.'
   components:
-  - type: StorageFill
-    contents:
-    - id: MetalFoamGrenade
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MetalFoamGrenade
+          amount: 4
   - type: Sprite
     layers:
     - state: box_security
@@ -101,10 +113,12 @@
   id: BoxTearGasGrenade
   description: 'WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.'
   components:
-  - type: StorageFill
-    contents:
-    - id: TearGasGrenade
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: TearGasGrenade
+          amount: 4
   - type: Sprite
     layers:
     - state: box_security
@@ -116,10 +130,12 @@
   id: BoxSmokeGrenade
   description: 'WARNING: These devices are extremely dangerous.'
   components:
-  - type: StorageFill
-    contents:
-    - id: SmokeGrenade
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SmokeGrenade
+          amount: 4
   - type: Sprite
     layers:
     - state: box_security
@@ -131,10 +147,12 @@
   id: BoxClusterBangFull
   description: 'WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.'
   components:
-  - type: StorageFill
-    contents:
-    - id: ClusterBangFull
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClusterBangFull
+          amount: 4
   - type: Sprite
     layers:
     - state: box_security
@@ -145,10 +163,12 @@
   parent: BoxCardboard
   id: BoxGrenadeCleanade
   components:
-  - type: StorageFill
-    contents:
-    - id: CleanerGrenade
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CleanerGrenade
+          amount: 4
   - type: Sprite
     layers:
     - state: box_security
@@ -168,19 +188,21 @@
   - type: Storage
     grid:
     - 0,0,4,3
-  - type: StorageFill
-    contents:
-    - id: PortableSurveillanceCameraMonitorUnpowered
-    - id: HandheldCriminalRecordsMonitorUnpowered
-    - id: PinpointerUniversal
-    - id: PinpointerNuclear
-    - id: DoubleEmergencyOxygenTankFilled
-    - id: MedipenCombatInjector
-    - id: AutoMenderBruteFilled
-    - id: AutoMenderBurnFilled
-    - id: FoodTinMRE
-    - id: FoodSnackMaysonEnergy
-    - id: DrinkMREFlask
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: PortableSurveillanceCameraMonitorUnpowered
+        - id: HandheldCriminalRecordsMonitorUnpowered
+        - id: PinpointerUniversal
+        - id: PinpointerNuclear
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: MedipenCombatInjector
+        - id: AutoMenderBruteFilled
+        - id: AutoMenderBurnFilled
+        - id: FoodTinMRE
+        - id: FoodSnackMaysonEnergy
+        - id: DrinkMREFlask
 
 - type: entity
   name: ERT base kit box
@@ -196,19 +218,21 @@
   - type: Storage
     grid:
     - 0,0,4,3
-  - type: StorageFill
-    contents:
-    - id: DoubleEmergencyOxygenTankFilled
-      amount: 2
-    - id: DrinkMREFlask
-    - id: FoodSnackNutribrick
-    - id: FireExtinguisherMini
-    - id: MedipenCombatInjector
-    - id: AutoMenderBruteFilled
-    - id: AutoMenderBurnFilled
-    - id: HandHeldMassScanner
-    - id: Telebaton
-    - id: FoodTinMRE
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DoubleEmergencyOxygenTankFilled
+          amount: 2
+        - id: DrinkMREFlask
+        - id: FoodSnackNutribrick
+        - id: FireExtinguisherMini
+        - id: MedipenCombatInjector
+        - id: AutoMenderBruteFilled
+        - id: AutoMenderBurnFilled
+        - id: HandHeldMassScanner
+        - id: Telebaton
+        - id: FoodTinMRE
 
 #ammo kits
 - type: entity
@@ -217,12 +241,14 @@
   id: BoxMagazineRifleNanotrasen
   description: A box full of 7,62x51 magazines.
   components:
-  - type: StorageFill
-    contents:
-      - id: MagazineRifleHeavySP
-        amount: 2
-      - id: MagazineRifleHeavyFMJ
-      - id: MagazineRifleHeavyHP
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineRifleHeavySP
+          amount: 2
+        - id: MagazineRifleHeavyFMJ
+        - id: MagazineRifleHeavyHP
 
 - type: entity
   name: .308 incendiary magazines kit
@@ -230,10 +256,12 @@
   id: BoxMagazineRifleNanotrasenIncendiary
   description: A box full of 7,62x51 magazines.
   components:
-  - type: StorageFill
-    contents:
-      - id: MagazineRifleHeavyIncendiary
-        amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineRifleHeavyIncendiary
+          amount: 4
 
 - type: entity
   name: M-52 magazines kit
@@ -241,12 +269,14 @@
   id: BoxMagazineRifleM52
   description: A box full of 5,56x45 magazines.
   components:
-  - type: StorageFill
-    contents:
-      - id: MagazineRifleM52SP
-        amount: 2
-      - id: MagazineRifleM52FMJ
-      - id: MagazineRifleM52HP
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineRifleM52SP
+          amount: 2
+        - id: MagazineRifleM52FMJ
+        - id: MagazineRifleM52HP
 
 - type: entity
   name: 5,56 magazines kit
@@ -254,12 +284,14 @@
   id: BoxMagazineRifleKit
   description: A box full of 5,56x45 magazines.
   components:
-  - type: StorageFill
-    contents:
-      - id: MagazineRifleSP
-        amount: 2
-      - id: MagazineRifleFMJ
-      - id: MagazineRifleHP
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineRifleSP
+          amount: 2
+        - id: MagazineRifleFMJ
+        - id: MagazineRifleHP
 
 - type: entity
   name: 5,56 incendiary magazines kit
@@ -267,10 +299,12 @@
   id: BoxMagazineRifleIncendiary
   description: A box full of 5,56x45 magazines.
   components:
-  - type: StorageFill
-    contents:
-      - id: MagazineRifleIncendiary
-        amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineRifleIncendiary
+          amount: 4
 
 - type: entity
   name: WT550 magazines kit
@@ -278,12 +312,14 @@
   id: BoxMagazineSMGTopMounted
   description: A box full of WT550 magazines.
   components:
-  - type: StorageFill
-    contents:
-      - id: MagazinePistolSubMachineGunTopMountedSP
-        amount: 2
-      - id: MagazinePistolSubMachineGunTopMounted
-      - id: MagazinePistolSubMachineGunTopMountedHP
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazinePistolSubMachineGunTopMountedSP
+          amount: 2
+        - id: MagazinePistolSubMachineGunTopMounted
+        - id: MagazinePistolSubMachineGunTopMountedHP
 
 - type: entity
   name: WT550 incendiary magazines kit
@@ -291,10 +327,12 @@
   id: BoxMagazineSMGTopMountedIncendiary
   description: A box full of WT550 magazines.
   components:
-  - type: StorageFill
-    contents:
-      - id: MagazinePistolSubMachineGunTopMountedIncendiary
-        amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazinePistolSubMachineGunTopMountedIncendiary
+          amount: 4
 
 - type: entity
   name: 7,62 incendiary magazines kit
@@ -302,7 +340,9 @@
   id: BoxMagazineLightRifleIncendiary
   description: A box full of 7,62 magazines.
   components:
-  - type: StorageFill
-    contents:
-      - id: MagazinePistolSubMachineGunTopMountedIncendiary
-        amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineLightRifleIncendiary
+          amount: 4

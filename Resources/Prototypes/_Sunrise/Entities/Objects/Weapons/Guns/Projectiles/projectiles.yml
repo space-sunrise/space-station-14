@@ -717,6 +717,28 @@
     fillPrototype: PelletClusterLessLethal
     capacity: 20
 
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  id: BulletAntiMaterielCannonBall
+  name: plasteel cannonball
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: ball
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 75
+        Blunt: 25
+        Structural: 800
+    penetrationThreshold: 1200
+    penetrationDamageTypeRequirement:
+    - Structural
+  - type: StaminaDamageOnCollide
+    damage: 80
+
 # This is supposed to spawn shrapnel and stuff so uhh... TODO?
 - type: entity
   id: BulletGrenadeFragTimer

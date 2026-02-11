@@ -32,45 +32,51 @@
   parent: ClothingBeltMilitaryWebbingMedSunrise
   suffix: Filled
   components:
-  - type: StorageFill
-    contents:
-      - id: ChemistryBottleEpinephrine
-        amount: 2
-      - id: ChemistryBottleOmnizine
-      - id: Stimpack
-      - id: RadAutoInjector
-      - id: AntiPoisonMedipen
-      - id: PunctAutoInjector
-      - id: PyraAutoInjector
-      - id: Bloodpack
-      - id: MedkitCombatFilled
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ChemistryBottleEpinephrine
+          amount: 2
+        - id: ChemistryBottleOmnizine
+        - id: Stimpack
+        - id: RadAutoInjector
+        - id: AntiPoisonMedipen
+        - id: PunctAutoInjector
+        - id: PyraAutoInjector
+        - id: Bloodpack
+        - id: MedkitCombatFilled
 
 - type: entity
   id: ClothingBeltMilitaryWebbingMedRaidFilled
   parent: ClothingBeltMilitaryWebbingMedSunrise
   suffix: Filled
   components:
-  - type: StorageFill
-    contents:
-      - id: Stimpack
-      - id: RadAutoInjector
-      - id: AntiPoisonMedipen
-      - id: CombatMedipen
-      - id: Bloodpack
-      - id: MedkitCombatFilled
-      - id: Tourniquet
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Stimpack
+        - id: RadAutoInjector
+        - id: AntiPoisonMedipen
+        - id: CombatMedipen
+        - id: Bloodpack
+        - id: MedkitCombatFilled
+        - id: Tourniquet
+          amount: 2
 
 - type: entity
   id: ClothingAbductorBeltFilled
   parent: ClothingAbductorBelt
   suffix: Filled
   components:
-  - type: StorageFill
-    contents:
-      - id: CrowbarAbductor
-      - id: WrenchAbductor
-      - id: ScrewdriverAbductor
-      - id: WirecutterAbductor
-      - id: WelderAbductor
-      - id: MultitoolAbductor
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CrowbarAbductor
+        - id: WrenchAbductor
+        - id: ScrewdriverAbductor
+        - id: WirecutterAbductor
+        - id: WelderAbductor
+        - id: MultitoolAbductor

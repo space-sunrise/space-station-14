@@ -129,6 +129,26 @@
   - Security
   - Medical
 
+- type: technology
+  id: BiochemicalImplantsTech
+  name: research-technology-biochemical-implants
+  icon:
+    sprite: _Sunrise/Entities/Objects/Implants/implants.rsi
+    state: inject_implant_blue
+  discipline: Biochemical
+  tier: 2
+  cost: 9000
+  recipeUnlocks:
+    - SadTromboneImplant
+    - BikeHornImplant
+    - LightImplant
+    - TrackingImplant
+    - CreepyLaughImplant # EMAG
+  technologyPrerequisites:
+    - CyberImplantsTech
+  radioChannels:
+  - Medical
+
 # Sunrise, moved from civilian to medical. Ave Starlight!
 - type: technology
   id: BiochemicalStasis
@@ -395,6 +415,27 @@
   radioChannels:
   - Security
   - Medical
+
+- type: technology
+  id: AdvancedImplantsTech
+  name: research-technology-advanced-implants
+  icon:
+    sprite: _Sunrise/Entities/Objects/Implants/implants.rsi
+    state: reviver_implant
+  discipline: Biochemical
+  tier: 3
+  cost: 12000
+  recipeUnlocks:
+    - ReviverImplant
+    - NutrimentImplant
+    - ProtoAdrenalImplant # EMAG
+    - ScramImplantProto # EMAG
+  technologyPrerequisites:
+    - BiochemicalImplantsTech
+    - SurgeryTechAdvanced
+  radioChannels:
+  - Medical
+  - Security
 
 # Sunrise, moved from civilian to medical
 - type: technology

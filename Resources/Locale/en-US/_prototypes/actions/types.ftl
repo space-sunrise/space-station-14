@@ -58,6 +58,16 @@ ent-ActionActivateHonkImplant = Honk
     .desc = Activates your honking implant, which will produce the signature sound of the clown.
 ent-ActionActivateBorgLaughImplant = [color=red]Laugh[/color]
     .desc = Activates your creepy laugh implant, which will produce the signature sound of the Syndicate cyborg.
+ent-ActionActivateProtoAdrenalImplant = Activate proto-adrenal
+    .desc = Injects a small dose of ephedrine and epinephrine.
+ent-ActionActivateAdrenalImplant = Activate adrenal
+    .desc = Injects a strong dose of ephedrine and epinephrine.
+ent-ActionActivateStimpackImplant = Activate stimpack
+    .desc = Injects a large dose of stimulants.
+ent-ActionActivateNutrimentImplant = Activate nutriment
+    .desc = Injects complex nutriment.
+ent-ActionActivateReviverImplant = Activate reviver
+    .desc = Triggers an adrenaline surge with a focused discharge to the heart and a cocktail of reagents.
 ent-ActionFireStarter = Ignite
     .desc = Ignites enemies in a radius around you.
 ent-ActionToggleEyes = Open/Close eyes
