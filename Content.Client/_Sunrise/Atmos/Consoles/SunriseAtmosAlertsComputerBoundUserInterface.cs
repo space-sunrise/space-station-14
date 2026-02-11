@@ -1,19 +1,21 @@
 using Content.Shared.Atmos.Components;
 
-namespace Content.Client.Atmos.Consoles;
+namespace Content.Client._Sunrise.Atmos.Consoles;
 
-public sealed class AtmosAlertsComputerBoundUserInterface : BoundUserInterface
+public sealed class SunriseAtmosAlertsComputerBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]
-    private AtmosAlertsComputerWindow? _menu;
+    private SunriseAtmosAlertsComputerWindow? _menu;
 
-    public AtmosAlertsComputerBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) { }
+    public SunriseAtmosAlertsComputerBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+    {
+    }
 
     protected override void Open()
     {
         base.Open();
 
-        _menu = new AtmosAlertsComputerWindow(this, Owner);
+        _menu = new SunriseAtmosAlertsComputerWindow(this, Owner);
         _menu.OpenCentered();
         _menu.OnClose += Close;
     }
@@ -22,10 +24,11 @@ public sealed class AtmosAlertsComputerBoundUserInterface : BoundUserInterface
     {
         base.UpdateState(state);
 
-        var castState = (AtmosAlertsComputerBoundInterfaceState) state;
+        var castState = (AtmosAlertsComputerBoundInterfaceState)state;
 
         EntMan.TryGetComponent<TransformComponent>(Owner, out var xform);
         _menu?.UpdateUI(xform?.Coordinates, castState.AirAlarms, castState.FireAlarms, castState.FocusData);
+        _menu?.UpdateAlertSoundToggle(castState.DoAtmosAlert);
     }
 
     public void SendFocusChangeMessage(NetEntity? netEntity)
@@ -38,12 +41,10 @@ public sealed class AtmosAlertsComputerBoundUserInterface : BoundUserInterface
         SendMessage(new AtmosAlertsComputerDeviceSilencedMessage(netEntity, silenceDevice));
     }
 
-    // // Sunrise-start
-    // public void SendAlertSoundToggleMessage(bool enabled)
-    // {
-    //     SendMessage(new AtmosAlertsComputerAlertSoundToggleMessage(enabled));
-    // }
-    // // Sunrise-end
+    public void SendAlertSoundToggleMessage(bool enabled)
+    {
+        SendMessage(new AtmosAlertsComputerAlertSoundToggleMessage(enabled));
+    }
 
     protected override void Dispose(bool disposing)
     {
@@ -51,6 +52,11 @@ public sealed class AtmosAlertsComputerBoundUserInterface : BoundUserInterface
         if (!disposing)
             return;
 
-        _menu?.Dispose();
+        if (_menu != null)
+        {
+            _menu.OnClose -= Close;
+            _menu.Close();
+            _menu = null;
+        }
     }
 }

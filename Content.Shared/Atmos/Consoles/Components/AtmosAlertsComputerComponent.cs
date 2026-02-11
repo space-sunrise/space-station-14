@@ -39,8 +39,8 @@ public sealed partial class AtmosAlertsComputerComponent : Component
     [DataField]
     public TimeSpan NextBeep = TimeSpan.Zero;
 
-    [DataField]
-    public bool DoAtmosAlert = true;
+    [DataField, AutoNetworkedField]
+    public bool DoAtmosAlert = false;
     // Sunrise-end
 }
 
@@ -130,6 +130,13 @@ public sealed class AtmosAlertsComputerBoundInterfaceState : BoundUserInterfaceS
     /// </summary>
     public AtmosAlertsFocusDeviceData? FocusData;
 
+    // Sunrise-start
+    /// <summary>
+    /// Управление пищалкой
+    /// </summary>
+    public bool DoAtmosAlert;
+    // Sunrise-end
+
     /// <summary>
     /// Sends data from the server to the client to populate the atmos monitoring console UI
     /// </summary>
@@ -139,6 +146,16 @@ public sealed class AtmosAlertsComputerBoundInterfaceState : BoundUserInterfaceS
         FireAlarms = fireAlarms;
         FocusData = focusData;
     }
+
+    // Sunrise-start
+    public AtmosAlertsComputerBoundInterfaceState(AtmosAlertsComputerEntry[] airAlarms, AtmosAlertsComputerEntry[] fireAlarms, AtmosAlertsFocusDeviceData? focusData, bool doAtmosAlert)
+    {
+        AirAlarms = airAlarms;
+        FireAlarms = fireAlarms;
+        FocusData = focusData;
+        DoAtmosAlert = doAtmosAlert;
+    }
+    // Sunrise-end
 }
 
 [Serializable, NetSerializable]
@@ -223,6 +240,19 @@ public sealed class AtmosAlertsComputerDeviceSilencedMessage : BoundUserInterfac
         SilenceDevice = silenceDevice;
     }
 }
+
+// Sunrise-start
+[Serializable, NetSerializable]
+public sealed class AtmosAlertsComputerAlertSoundToggleMessage : BoundUserInterfaceMessage
+{
+    public bool Enabled;
+
+    public AtmosAlertsComputerAlertSoundToggleMessage(bool enabled)
+    {
+        Enabled = enabled;
+    }
+}
+// Sunrise-end
 
 /// <summary>
 /// List of all the different atmos device groups
