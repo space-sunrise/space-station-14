@@ -1,4 +1,5 @@
 collective-mind-chat-wrap-message = [bold]{$channel} {$number}: {$message}[/bold]
+collective-mind-chat-wrap-message-with-author = [bold]{ $channel } ({ $source }): { $message }[/bold]
 collective-mind-chat-wrap-message-admin = {$source} ({$channel} {$number}): {$message}
 collective-mind-flesh-cult = Плоть
 collective-mind-xeno = Ксено
