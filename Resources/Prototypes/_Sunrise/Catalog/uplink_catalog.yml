@@ -2929,6 +2929,7 @@
           - LoneOpsUplink
           - AssaultOpsUplink
 
+- type: listing
   id: UplinkCornivoreGloves
   name: uplink-cornivoregloves-name
   description: uplink-cornivoregloves-desc
