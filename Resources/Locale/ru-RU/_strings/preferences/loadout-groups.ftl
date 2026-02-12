@@ -1,8 +1,6 @@
 # Errors
 loadout-group-species-restriction = Этот предмет недоступен для вашей текущей расы.
 # Miscellaneous
-loadout-group-trinkets = { loadout-group-common-misc-items }
-loadout-group-jobtrinkets = { loadout-group-common-misc-items }
 loadout-group-glasses = { loadout-group-eyes }
 loadout-group-backpack = { loadout-group-back }
 loadout-group-instruments = { loadout-group-common-misc-items }
