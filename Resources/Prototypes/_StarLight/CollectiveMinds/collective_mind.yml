@@ -3,6 +3,7 @@
   name: collective-mind-vampire-thrall
   keycode: 'в' # Sunrise-Edit
   color: "#066338"
-  requiredComponents:
-  - Dantalion
-  - VampireThrall
+  whitelist:
+    components:
+      - Dantalion
+      - VampireThrall

@@ -1,19 +1,17 @@
-using Content.Shared.Tag;
+using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 using Robust.Shared.GameObjects;
 using Content.Shared.GameTicking;
-using Robust.Shared.Utility;
 
 namespace Content.Shared._Sunrise.CollectiveMind;
 
 public sealed class CollectiveMindUpdateSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IComponentFactory _factory = default!;
-    private ISawmill _sawmill = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
 
+    private ISawmill _sawmill = default!;
     private static Dictionary<CollectiveMindPrototype, int> _globalMindIDTracker = new();
 
     public override void Initialize()
@@ -50,42 +48,23 @@ public sealed class CollectiveMindUpdateSystem : EntitySystem
             targetComponent.Minds.Add(mind.Key, mind.Value);
         }
 
-        UpdateCollectiveMind(targetuid, targetComponent); //capture any we missed
+        UpdateCollectiveMind(targetuid, targetComponent);
     }
+
     public void UpdateCollectiveMind(EntityUid uid, CollectiveMindComponent collective)
     {
         foreach (var prototype in _prototypeManager.EnumeratePrototypes<CollectiveMindPrototype>())
         {
-            var components = StringsToRegs(prototype.RequiredComponents);
+            if (prototype.Whitelist == null)
+                continue;
 
-            bool meetsRequirements = false;
-
-            foreach (var component in components)
-            {
-                bool hasComponent = EntityManager.HasComponent(uid, component);
-
-                if (hasComponent)
-                {
-                    meetsRequirements = true;
-                }
-            }
-
-            foreach (var tag in prototype.RequiredTags)
-            {
-                bool hasTag = _tag.HasTag(uid, tag);
-
-                if (hasTag)
-                {
-                    meetsRequirements = true;
-                }
-            }
+            var meetsRequirements = _whitelistSystem.CheckBoth(uid, prototype.Blacklist, prototype.Whitelist);
 
             if (meetsRequirements)
             {
-                //check if they dont already have it
                 if (collective.Minds.ContainsKey(prototype))
                     continue;
-                
+
                 collective.Minds.TryAdd(prototype, CreateNewCollectiveMindMemberData(prototype));
             }
             else
@@ -95,33 +74,8 @@ public sealed class CollectiveMindUpdateSystem : EntitySystem
         }
     }
 
-    private List<ComponentRegistration> StringsToRegs(List<string> input)
-    {
-        var list = new List<ComponentRegistration>();
-
-        if (input == null || input.Count == 0)
-            return list;
-
-        foreach (var name in input)
-        {
-            var availability = _factory.GetComponentAvailability(name);
-            if (_factory.TryGetRegistration(name, out var registration)
-                && availability == ComponentAvailability.Available)
-            {
-                list.Add(registration);
-            }
-            else if (availability == ComponentAvailability.Unknown)
-            {
-                _sawmill.Error($"StringsToRegs failed: Unknown component name {name} passed to {nameof(CollectiveMindUpdateSystem)}.");
-            }
-        }
-
-        return list;
-    }
-
     private static CollectiveMindMemberData CreateNewCollectiveMindMemberData(CollectiveMindPrototype prototype)
     {
-        //check if one exists
         if (!_globalMindIDTracker.ContainsKey(prototype))
         {
             _globalMindIDTracker[prototype] = new CollectiveMindMemberData().MindId;

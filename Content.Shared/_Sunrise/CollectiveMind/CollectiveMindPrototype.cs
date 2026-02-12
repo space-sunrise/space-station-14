@@ -1,38 +1,38 @@
-    using Content.Shared._Sunrise.TTS;
-    using Content.Shared.Tag;
-    using Robust.Shared.Prototypes;
-    using Robust.Shared.Serialization;
+using Content.Shared._Sunrise.TTS;
+using Content.Shared.Whitelist;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
-    namespace Content.Shared._Sunrise.CollectiveMind;
+namespace Content.Shared._Sunrise.CollectiveMind;
 
-    [Prototype]
-    [Serializable, NetSerializable]
-    public sealed partial class CollectiveMindPrototype : IPrototype
-    {
-        [DataField]
-        public string Name { get; private set; } = string.Empty;
+[Prototype]
+[Serializable, NetSerializable]
+public sealed partial class CollectiveMindPrototype : IPrototype
+{
+    [DataField]
+    public string Name { get; private set; } = string.Empty;
 
-        [ViewVariables(VVAccess.ReadOnly)]
-        public string LocalizedName => Loc.GetString(Name);
+    [ViewVariables(VVAccess.ReadOnly)]
+    public string LocalizedName => Loc.GetString(Name);
 
-        [DataField("keycode")]
-        public char KeyCode { get; private set; } = '\0';
+    [DataField("keycode")]
+    public char KeyCode { get; private set; } = '\0';
 
-        [DataField]
-        public Color Color { get; private set; } = Color.Lime;
+    [DataField]
+    public Color Color { get; private set; } = Color.Lime;
 
-        [DataField]
-        public ProtoId<TTSVoicePrototype>? VoiceId;
+    [DataField]
+    public ProtoId<TTSVoicePrototype>? VoiceId;
 
-        [DataField]
-        public bool ShowAuthor { get; private set; } = false;
+    [DataField]
+    public bool ShowAuthor { get; private set; } = false;
 
-        [IdDataField, ViewVariables]
-        public string ID { get; private set; } = default!;
+    [IdDataField, ViewVariables]
+    public string ID { get; private set; } = default!;
 
-        [DataField]
-        public List<string> RequiredComponents { get; set; } = new();
+    [DataField]
+    public EntityWhitelist? Whitelist;
 
-        [DataField]
-        public List<ProtoId<TagPrototype>> RequiredTags { get; set; } = new();
-    }
+    [DataField]
+    public EntityWhitelist? Blacklist;
+}

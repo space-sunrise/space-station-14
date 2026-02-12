@@ -4,9 +4,10 @@
   keycode: 'х'
   color: "#00ff40"
   voiceId: shadow_fiend_dota_2
-  requiredTags:
-  - HumanoidXeno
-  - Xeno
+  whitelist:
+    tags:
+      - Xeno
+      - HumanoidXeno
 
 - type: collectiveMind
   id: Blob
@@ -21,10 +22,11 @@
   keycode: 'п'
   color: "#ff2676"
   voiceId: legion_commander_demon_dota_2
-  requiredComponents:
-  - FleshCultist
-  requiredTag:
-  - Flesh
+  whitelist:
+    tags:
+      - Flesh
+    components:
+      - FleshCultist
 
 - type: collectiveMind
   id: Dionas
@@ -32,8 +34,9 @@
   keycode: 'д'
   color: "#0f6b1e"
   voiceId: shadow_shaman_dota_2
-  requiredTags:
-  - Diona
+  whitelist:
+    tags:
+      - Diona
 
 - type: collectiveMind
   id: Arachnids
@@ -41,8 +44,9 @@
   keycode: 'а'
   color: "#706d0d"
   voiceId: shadow_fiend_dota_2
-  requiredTags:
-  - Arachnid
+  whitelist:
+    tags:
+      - Arachnid
 
 - type: collectiveMind
   id: Carp
@@ -50,10 +54,11 @@
   keycode: 'р'
   color: "#787878"
   voiceId: EvilThalya
-  requiredComponents:
-  - Dragon
-  requiredTags:
-  - Carp
+  whitelist:
+    tags:
+      - Carp
+    components:
+      - Dragon
 
 - type: collectiveMind
   id: Zombie
@@ -61,8 +66,9 @@
   keycode: 'з'
   color: "#508053"
   voiceId: shadow_fiend_dota_2
-  requiredComponents:
-  - Zombie
+  whitelist:
+    components:
+      - Zombie
 
 - type: collectiveMind
   id: Changeling
@@ -77,9 +83,11 @@
   keycode: 'к'
   color: "#8b0000"
   voiceId: legion_commander_demon_dota_2
-  requiredComponents:
-  - BloodCultist
-  - Construct
+  whitelist:
+    components:
+      - BloodCultist
+      - Construct
+
 
 - type: collectiveMind
   id: Abductor
@@ -88,10 +96,9 @@
   color: "#d600bd"
   voiceId: Glados
   showAuthor: true
-  requiredTags:
-  - Abductor
-  RequiredComponents:
-  - Abductor
+  whitelist:
+    components:
+      - Abductor
 
 - type: collectiveMind
   id: Pirate
@@ -100,5 +107,6 @@
   color: "#d4af37"
   voiceId: necrophos_dota_2
   showAuthor: true
-  requiredTags:
-  - Pirate
+  whitelist:
+    tags:
+      - Pirate
