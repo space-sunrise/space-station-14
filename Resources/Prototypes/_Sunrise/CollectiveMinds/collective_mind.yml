@@ -88,7 +88,9 @@
   color: "#d600bd"
   voiceId: Glados
   showAuthor: true
-  requiredTag:
+  requiredTags:
+  - Abductor
+  RequiredComponents:
   - Abductor
 
 - type: collectiveMind
@@ -98,5 +100,5 @@
   color: "#d4af37"
   voiceId: necrophos_dota_2
   showAuthor: true
-  requiredTag:
+  requiredTags:
   - Pirate
