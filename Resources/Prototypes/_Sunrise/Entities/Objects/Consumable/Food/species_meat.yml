@@ -100,6 +100,15 @@
     tags:
     - Raw
     - Meat
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Slime
+          Quantity: 10
+        - ReagentId: Nutriment
+          Quantity: 5
   - type: Extractable
     juiceSolution:
       reagents:
