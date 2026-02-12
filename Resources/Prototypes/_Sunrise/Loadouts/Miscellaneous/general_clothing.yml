@@ -222,12 +222,12 @@
     outerClothing: ClothingOuterWinterColorOrange
 
 - type: loadout
-  id: SunriseWinterColorrColorRed
+  id: SunriseWinterColorRed
   equipment:
     outerClothing: ClothingOuterWinterColorRed
 
 - type: loadout
-  id: SunriseWinterColorrColorWhite
+  id: SunriseWinterColorWhite
   equipment:
     outerClothing: ClothingOuterWinterColorWhite
 

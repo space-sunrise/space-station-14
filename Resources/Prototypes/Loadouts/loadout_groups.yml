@@ -1024,12 +1024,12 @@
   loadouts:
   - ChiefEngineerWintercoat
   #Sunrise-start
-  - SunriseWinterColorrColorWhite
+  - SunriseWinterColorWhite
   - SunriseClothingOuterFlannelWhite
   - StationEngineerOuterVest
   - StationEngineerWintercoat
   - AtmosphericTechnicianWintercoat
-  - SunriseWinterColorrColorRed
+  - SunriseWinterColorRed
   - SunriseWinterColorOrange
   - SunriseWinterColorYellow
   #Sunrise-end
@@ -1114,7 +1114,7 @@
   - StationEngineerOuterVest
   - StationEngineerWintercoat
 #sunrise-start
-  - SunriseWinterColorrColorRed
+  - SunriseWinterColorRed
   - SunriseWinterColorOrange
   - SunriseWinterColorYellow
 #sunrise-end
@@ -1153,7 +1153,7 @@
   - AtmosphericTechnicianWintercoat
 #sunrise-start
   - StationEngineerOuterVest
-  - SunriseWinterColorrColorRed
+  - SunriseWinterColorRed
   - SunriseWinterColorOrange
   - SunriseWinterColorYellow
 #sunrise-end
@@ -1595,9 +1595,9 @@
   - SunriseWinterGen
   - MedicalDoctorWintercoat
   - ParamedicWintercoat
-  - SunriseWinterColorrColorWhite
+  - SunriseWinterColorWhite
   - SunriseWinterColorBlack
-  - SunriseWinterColorrColorRed
+  - SunriseWinterColorRed
   - SunriseWinterColorOrange
   - SunriseWinterColorGreen
   - SunriseWinterColorCyan
@@ -1680,8 +1680,8 @@
   loadouts:
   - RegularLabCoat
   # Sunrise-start
-  - SunriseWinterColorrColorWhite
-  - SunriseWinterColorrColorRed
+  - SunriseWinterColorWhite
+  - SunriseWinterColorRed
   - SunriseWinterColorGreen
   - SunriseWinterColorCyan
 # Sunrise-end
@@ -1719,8 +1719,8 @@
   - SunriseRedGloves
   - SunriseGreenGloves
   - SunriseTealGloves
-  # - SunriseGlovesNitrileRed
-  # - SunriseGlovesNitrileGreen
+  - SunriseGlovesNitrileRed
+  - SunriseGlovesNitrileGreen
 # Sunrise-end
   - NitrileGloves
 
@@ -1781,8 +1781,8 @@
   - ChemistWintercoat
 # Sunrise-start
   - MedicalDoctorWintercoat
-  - SunriseWinterColorrColorWhite
-  - SunriseWinterColorrColorRed
+  - SunriseWinterColorWhite
+  - SunriseWinterColorRed
   - SunriseWinterColorOrange
   - SunriseWinterColorGreen
   - SunriseWinterColorCyan
@@ -1844,8 +1844,8 @@
 # Sunrise-end
   - ParamedicWintercoat
 # Sunrise-start
-  - SunriseWinterColorrColorWhite
-  - SunriseWinterColorrColorRed
+  - SunriseWinterColorWhite
+  - SunriseWinterColorRed
   - SunriseWinterColorGreen
   - SunriseWinterColorCyan
   - SunriseWinterColorBlue

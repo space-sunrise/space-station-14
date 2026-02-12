@@ -415,9 +415,9 @@
   - SunriseWinterGen
   - MedicalDoctorWintercoat
   - ParamedicWintercoat
-  - SunriseWinterColorrColorWhite
+  - SunriseWinterColorWhite
   - SunriseWinterColorBlack
-  - SunriseWinterColorrColorRed
+  - SunriseWinterColorRed
   - SunriseWinterColorOrange
   - SunriseWinterColorGreen
   - SunriseWinterColorCyan
@@ -593,7 +593,7 @@
   loadouts:
   - RegularLabCoat
   - MedicalDoctorWintercoat
-  - SunriseWinterColorrColorWhite
+  - SunriseWinterColorWhite
   - SunriseWinterColorCyan
 
 
@@ -718,9 +718,9 @@
   - RegularLabCoat
   - CoatPatologoanatom
   - MedicalDoctorWintercoat
-  - SunriseWinterColorrColorWhite
+  - SunriseWinterColorWhite
   - SunriseWinterColorBlack
-  - SunriseWinterColorrColorRed
+  - SunriseWinterColorRed
   - SunriseWinterColorGreen
   - SunriseWinterColorCyan
 
@@ -988,7 +988,7 @@
   - StationEngineerOuterVest
   - StationEngineerWintercoat
   - AtmosphericTechnicianWintercoat
-  - SunriseWinterColorrColorRed
+  - SunriseWinterColorRed
   - SunriseWinterColorOrange
   - SunriseWinterColorYellow
 
