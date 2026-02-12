@@ -102,3 +102,13 @@
     - state: synd_label
   - type: StaticPrice
     price: 4500
+
+- type: entity
+  parent: [ EncryptionKey, BaseTSFContraband ]
+  id: EncryptionKeyTSF
+  name: TSF encryption key
+  components:
+  - type: EncryptionKey
+    channels:
+    - TSF
+    defaultChannel: TSF

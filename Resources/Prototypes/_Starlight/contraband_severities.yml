@@ -1,0 +1,7 @@
+- type: contrabandSeverity
+  id: Soviet
+  examineText: contraband-examine-text-soviet
+
+- type: contrabandSeverity
+  id: TSF
+  examineText: contraband-examine-text-tsf

@@ -259,3 +259,15 @@
     sprite: Clothing/Ears/Headsets/syndicate.rsi
   - type: Clothing
     sprite: Clothing/Ears/Headsets/syndicate.rsi
+
+- type: entity
+  parent: [ClothingHeadset, BaseTSFContraband]
+  id: ClothingHeadsetTSFTrader
+  name: Trans-Solar Trader's headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyTSF
+      - EncryptionKeyMerchant
+      - EncryptionKeyCommon

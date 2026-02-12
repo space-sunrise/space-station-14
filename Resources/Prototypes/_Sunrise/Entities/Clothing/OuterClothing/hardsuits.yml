@@ -845,3 +845,43 @@
         Caustic: 0.4
   - type: ExplosionResistance
     damageCoefficient: 0.5
+
+- type: entity
+  parent: [ BaseTSFContraband, ClothingOuterHardsuitBase ]
+  id: ClothingOuterHardsuitTSF
+  name: MARSOC hardsuit
+  description: A suit worn by marines of the Trans-Solar Federation's Marine Special Operations Command. Armored, space ready, and fireproof.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/tsf.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/tsf.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.25
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.25
+        Radiation: 0.15
+        Caustic: 0.35
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 1000
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: MeleeWeapon
+    attackRate: 0.8
+    damage:
+      types:
+        Blunt: 10
+    soundHit:
+      collection: Punch
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitTSF

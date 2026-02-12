@@ -36,3 +36,11 @@
   frequency: 1991
   color: "#890000"
   longRange: false
+
+- type: radioChannel
+  id: TSF
+  name: chat-radio-tsf
+  keycode: "о"
+  frequency: 1922
+  color: "#22a7ff"
+  longRange: true

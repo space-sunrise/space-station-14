@@ -180,3 +180,8 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Backpacks/black_cap_backpack.rsi
+
+- type: entity
+  parent: [BaseTSFContraband, ClothingBackpackBlueShield]
+  id: ClothingBackpackTSF
+  name: federation backpack
