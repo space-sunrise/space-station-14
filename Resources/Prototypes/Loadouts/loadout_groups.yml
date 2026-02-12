@@ -1774,9 +1774,6 @@
   minLimit: 0
   loadouts:
   - RegularLabCoat
-# Sunrise-start
-  - RegularLabCoat
-# Sunrise-end
   - ChemistLabCoat
   - ChemistWintercoat
 # Sunrise-start
@@ -1856,7 +1853,6 @@
   name: loadout-group-paramedic-shoes
   loadouts:
 # Sunrise-start
-  - WhiteShoes
   - SunriseRedShoes
   - SunriseOrangeShoes
   - SunriseShoesGreen
