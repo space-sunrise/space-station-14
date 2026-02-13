@@ -34,6 +34,10 @@
     {
       "name": "spitter_body",
       "directions": 4
+    },
+    {
+      "name": "cougar_body",
+      "directions": 4
     }
   ]
 }

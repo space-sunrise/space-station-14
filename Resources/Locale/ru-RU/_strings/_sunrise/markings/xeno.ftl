@@ -36,3 +36,4 @@ marking-HumanoidXenoHeadRavager = Голова Разрушителя
 marking-HumanoidXenoHeadNeomorph = Голова Неоморфа
 marking-HumanoidXenoArmsPredalien = Руки Предалиена
 marking-HumanoidXenoLegsPredalien = Ноги Предалиена
+marking-HumanoidXenoChestCougar = Грудь Пумы

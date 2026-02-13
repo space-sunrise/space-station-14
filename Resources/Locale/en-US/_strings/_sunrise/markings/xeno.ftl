@@ -36,3 +36,4 @@ marking-HumanoidXenoHeadRavager = Ravager Head
 marking-HumanoidXenoHeadNeomorph = Neomorph Head
 marking-HumanoidXenoArmsPredalien = Predalien Arms
 marking-HumanoidXenoLegsPredalien = Predalien Legs
+marking-HumanoidXenoChestCougar = Cougar Chest

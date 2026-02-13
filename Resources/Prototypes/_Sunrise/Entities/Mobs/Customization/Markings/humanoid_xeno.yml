@@ -189,6 +189,15 @@
     state: runner_chest
 
 - type: marking
+  id: HumanoidXenoChestCougar
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/body.rsi
+    state: cougar_body
+
+- type: marking
   id: HumanoidXenoHeadDefault
   bodyPart: Head
   markingCategory: Head
