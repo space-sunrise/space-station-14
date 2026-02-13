@@ -44,6 +44,7 @@
       reagents:
       - ReagentId: InsectBlood
         Quantity: 300
+# Sunrise edit start
   - type: JumpAbility
     action: ActionVulpkaninGravityJump
     canCollide: true
@@ -54,6 +55,7 @@
         pitch: 1.33
         volume: -5
         variation: 0.05
+# Sunrise edit end
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
