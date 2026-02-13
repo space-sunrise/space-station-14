@@ -26,6 +26,14 @@
     {
       "name": "runner_chest",
       "directions": 4
+    },
+    {
+      "name": "neo_body",
+      "directions": 4
+    },
+    {
+      "name": "spitter_body",
+      "directions": 4
     }
   ]
 }
