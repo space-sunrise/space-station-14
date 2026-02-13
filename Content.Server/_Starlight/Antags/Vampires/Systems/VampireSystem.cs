@@ -7,7 +7,7 @@ using Content.Shared._Starlight.Antags.Vampires;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 using Content.Shared._Starlight.Antags.Vampires.Prototypes;
-using Content.Shared.Eye.Blinding.Components;
+using Content.Shared._Sunrise.NightVision.Components; // Sunrise-Edit
 using Content.Shared.Vampire.Components;
 using Content.Shared.Alert;
 using Content.Shared.Actions.Components;
@@ -441,7 +441,7 @@ public sealed partial class VampireSystem : EntitySystem
     private void OnShutdown(EntityUid uid, VampireComponent comp, ComponentShutdown args)
     {
         RemComp<UnholyComponent>(uid);
-        RemComp<NightVisionComponent>(uid);
+        RemComp<ToggleableNightVisionComponent>(uid); // Sunrise-Edit
         if (TryComp<VampireDrainBeamComponent>(uid, out var drainBeamComp))
         {
             foreach (var connection in drainBeamComp.ActiveBeams.Values)
@@ -728,7 +728,7 @@ public sealed partial class VampireSystem : EntitySystem
         EntityManager.AddComponent(uid, classComp);
 
         if (classProto.ID == "Umbrae")
-            EnsureComp<NightVisionComponent>(uid);
+            EnsureComp<ToggleableNightVisionComponent>(uid); // Sunrise-Edit
 
         comp.ChosenClassId = classProto.ID;
 

@@ -20,6 +20,7 @@ vampire-target-protected-by-faith = Этот человек защищён св�
 vampire-drink-target-maxed = Вы уже выпили { $amount } единиц крови у этой цели.
 vampire-drink-target-hard-max = Вы выпили максимум крови у этой цели ({ $amount } единиц).
 vampire-full-power-achieved = Ваша вампирическая сущность достигает полной силы!
+vampire-umbrae-full-power-fov = Тени подчиняются вашей воле. Теперь вы можете видеть сквозь стены!
 
 vampire-role-greeting = Вы — вампир!
     Ваша жажда крови толкает вас питаться членами экипажа. Используйте способности, чтобы обращать других.
