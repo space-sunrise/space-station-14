@@ -31,7 +31,7 @@
     belt: OreBag
     head: ClothingHeadHatHardhatYellowDark
     pocket1: MineralScannerUnpowered
-    pocket2: EnergyPickaxe
+    pocket2: MiningDrill
 
 - type: chameleonOutfit
   id: MiningSpecialistChameleonOutfit

@@ -358,18 +358,8 @@
             Asphyxiation: -3
             Poison: -0.5
           groups:
-            Brute: -0.7 # Sunrise-Edit # Бафф эпинефрина, ибо он лечил крайне мало
-            Burn: -0.7 # Sunrise-Edit
-      #Sunrise-Start
-      - !type:HealthChange
-        conditions:
-        - !type:ReagentCondition
-          reagent: Epinephrine
-          min: 5
-        damage:
-          types:
-            Mangleness: 0.1
-      #Sunrise-End
+            Brute: -1 # Sunrise-Edit # Бафф эпинефрина, ибо он лечил крайне мало
+            Burn: -1 # Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -481,7 +471,6 @@
         damage:
           types:
             Asphyxiation: -2
-            Mangleness: 0.2 #Sunrise-Edit
       - !type:ModifyBleed
         amount: -0.25
 

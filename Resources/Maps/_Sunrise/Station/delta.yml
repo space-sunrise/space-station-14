@@ -295855,7 +295855,7 @@ entities:
       - 42259
       - 42258
       - 42260
-- proto: WeaponIonRifle
+- proto: GunSafeSuperIonRifle
   entities:
   - uid: 42276
     components:

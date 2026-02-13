@@ -208,6 +208,15 @@
     pocket1: PiratePouchTier1FireBomb
     pocket2: ImprovisedGrenadeGlass
 
+- type: startingGear
+  id: MobPirateT1LCGGear
+  equipment:
+    gloves: ClothingHandsLCD
+    belt: ClothingBeltAssaultT1LCG
+    pocket1: DrinkSpaceLube
+    pocket2: ReviverImplanter
+    shoes: ClothingShoesBootsJackFilled
+
 # region  Pirate Tier2
 - type: startingGear
   id: MobPirateT2ECutlassGear

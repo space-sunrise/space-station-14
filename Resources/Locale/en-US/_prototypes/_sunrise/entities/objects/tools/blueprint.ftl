@@ -8,3 +8,5 @@ ent-BlueprintMagAsh12Flare = ash-12 magazine flare blueprint
     .desc = A blueprint with a schematic of an ash-12 magazine with flare. It can be inserted into an autolathe and security fabricator.
 ent-BlueprintImplanterExtractor = { ent-TechnologyDiskBlueprint }
     .desc = { ent-TechnologyDiskBlueprint.desc }
+ent-BlueprintProtoAdrenalImplant = proto-adrenal implant blueprint
+    .desc = A blueprint with a schematic of a proto-adrenal implant. It can be inserted into a medical techfab.

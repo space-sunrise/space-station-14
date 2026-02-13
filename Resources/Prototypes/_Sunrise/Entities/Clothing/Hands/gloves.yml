@@ -249,6 +249,35 @@
     - type: Insulated
 
 - type: entity
+  parent: ClothingHandsSmooth
+  id: ClothingHandsGlovesCombatFingerless
+  name: mercenary fingerless gloves
+  description: Tactical Gloves that may not protect you from finger burns, but will make you cooler.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/mercfingerless.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/mercfingerless.rsi
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+    fiberColor: fibers-black
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 0 # no protection
+  - type: MeleeWeapon
+    attackRate: 2
+    damage:
+      types:
+        Blunt: 6
+    bluntStaminaDamageFactor: 1.3
+
+    soundHit:
+      collection: Punch
+    animation: WeaponArcFist
+    mustBeEquippedToUse: true
+
+- type: entity
   parent: ClothingHandsGlovesNorthStar
   id: CornivoreGloves
   name: gloves of cornivore
@@ -264,10 +293,6 @@
     damage:
       types:
         Slash: 8
-    soundHit:
-      collection: Punch
-    animation: WeaponArcFist
-    mustBeEquippedToUse: true
   - type: InjectOnHit
     limit: 20
     reagents:

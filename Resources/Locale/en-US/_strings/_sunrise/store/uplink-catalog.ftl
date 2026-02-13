@@ -100,6 +100,14 @@ uplink-creepy-laugh-implanter-name = Creepy Laugh Implanter
 uplink-creepy-laugh-implanter-desc = An audio implant that plays the signature laugh of a Syndicate cyborg. Annoying, intimidating, and undeniably stylish.
 uplink-scram-implanter-proto-name = Scram Implanter Proto
 uplink-scram-implanter-proto-desc = A 1-use scram implant that recharges after 600 seconds. Teleports you within a large radius, tries to place you on an unobstructed tile, and may sometimes fail. Life insurance not included.
+uplink-proto-adrenal-implanter-name = Proto-adrenal Implanter
+uplink-proto-adrenal-implanter-desc = Injects a small dose of ephedrine and epinephrine on activation.
+uplink-adrenal-implanter-name = Adrenal Implanter
+uplink-adrenal-implanter-desc = Injects a strong dose of ephedrine and epinephrine on activation.
+uplink-stimpack-implanter-name = Stimpack Implanter
+uplink-stimpack-implanter-desc = Injects a large dose of stimulants on activation.
+uplink-nutriment-implanter-name = Nutriment Implanter
+uplink-nutriment-implanter-desc = Injects vitamins, saline, and nutriment on activation.
 
 uplink-cluster-mini-bomb-name = Cluster Minibomb
 uplink-cluster-mini-bomb-desc = If you don't care about accuracy, then this choice is for you.

@@ -1,4 +1,4 @@
-ent-CratePirateChestCaptain = сундук пиратского капитана
+﻿ent-CratePirateChestCaptain = сундук пиратского капитана
     .suffix = Заполнен
     .desc = { ent-CratePirate.desc }
 ent-CratePirateChest = сундук пиратского матроса
@@ -9,6 +9,9 @@ ent-CratePirateChestSun = { ent-CratePirate }
     .desc = { ent-CratePirate.desc }
 ent-CratePirateChestCannonBall = сундук пиратов с пушечными ядрами
     .suffix = Заполнен, Пушечные ядра, Sunrise
+    .desc = { ent-CratePirate.desc }
+ent-CratePirateChestCannonBallPlasteel = сундук пиратов с пласталевыми ядрами
+    .suffix = Заполнен, Пласталевые ядра, Sunrise
     .desc = { ent-CratePirate.desc }
 ent-CratePirateChestCannonBallFuze = сундук пиратов с ядрами с детонатором
     .suffix = Заполнен, Ядра с детонатором, Sunrise

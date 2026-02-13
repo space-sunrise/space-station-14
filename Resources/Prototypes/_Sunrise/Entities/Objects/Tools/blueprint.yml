@@ -136,3 +136,13 @@
   - type: Blueprint
     providedRecipes:
     - ImplanterExtractor
+
+- type: entity
+  parent: BaseBlueprintSunrise
+  id: BlueprintProtoAdrenalImplant
+  name: proto-adrenal implant blueprint
+  description: A blueprint with a schematic of a proto-adrenal implant. It can be inserted into a medical techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - ProtoAdrenalImplant

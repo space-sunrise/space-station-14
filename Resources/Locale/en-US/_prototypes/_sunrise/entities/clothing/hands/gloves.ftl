@@ -26,5 +26,7 @@ ent-InsulatedGlovesAtmos = insulated gloves atmos
     .desc = Insulated gloves made especially for atmospheric technicians.
 ent-ClothingHandsGlovesCombatCQC = combat gloves
     .desc = These high-quality tactical gloves are fireproof and shock resistant.
+ent-ClothingHandsGlovesCombatFingerless = fingerless combat gloves
+    .desc = Tactical gloves that may not protect you from finger burns, but will make you cooler.
 ent-CornivoreGloves = the crimson  harvest gloves of cornivore
     .desc = We cannot say if you crave blood... but these gloves most certainly do. Each talon is a surgical bloodletting tool, seeding its target with our proprietary chemical blend. Your victim will bleed and bleed and bleed... as you ponder your next incision. Remember: red is the new black. And it is eternally fashionable.

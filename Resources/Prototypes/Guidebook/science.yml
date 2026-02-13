@@ -11,7 +11,7 @@
 - type: guideEntry
   id: Technologies
   name: guide-entry-technologies
-  text: "/ServerInfo/Guidebook/Science/Technologies.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/Science/Technologies.xml" # Sunrise-Edit
   filterEnabled: True
 
 - type: guideEntry
