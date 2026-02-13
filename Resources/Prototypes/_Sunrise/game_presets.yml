@@ -39,3 +39,23 @@
   - SpaceTrafficControlEventScheduler
   - SubGamemodesRule
   - BasicRoundstartVariation
+
+- type: gamePreset
+  id: TraitorVampire
+  alias:
+    - vampiretraitor
+    - vamptraitor
+    - traitorvampire
+    - traitorvamp
+  name: traitorvampire-title
+  description: traitorvampire-description
+  hide: true
+  showInVote: false
+  minPlayers:
+  rules:
+    - VampireLess
+    - TraitorLess
+    - SubGamemodesRuleNoVampire
+    - BasicStationEventScheduler
+    - MeteorSwarmScheduler
+    - BasicRoundstartVariation

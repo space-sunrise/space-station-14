@@ -20,3 +20,26 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: PlanetPrisonRule
+
+- type: entity
+  parent: BaseGameRule
+  id: Vampire
+  components:
+  - type: GameRule
+    delay:
+      min: 600
+      max: 900
+  - type: VampireRule
+  - type: AntagSelection
+    agentName: vampire-roundend-name
+    definitions:
+    - prefRoles: [ Vampire ]
+      max: 13
+      playerRatio: 10
+      lateJoinAdditional: true
+      allowNonHumans: True
+      multiAntagSetting: None
+      mindRoles:
+      - MindRoleVampire
+  - type: DynamicRuleCost
+    cost: 125

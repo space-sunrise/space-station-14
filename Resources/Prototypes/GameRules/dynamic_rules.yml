@@ -46,6 +46,13 @@
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 10
+      # Sunrise-Start
+        - id: Vampire
+          weight: 60
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+      # Sunrise-End
       # Roundstart Minor Rules
       - !type:GroupSelector
         conditions:

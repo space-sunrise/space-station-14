@@ -7,29 +7,12 @@
   - vampires
   name: vampire-gamemode-title
   description: vampire-gamemode-description
-  showInVote: True # 🌟Starlight🌟 - Leave disabled until they are reworked
-  minPlayers: 50 # 🌟Starlight🌟
+  hide: true
+  showInVote: false # Sunrise-Edit
+  minPlayers: 30 # Sunrise-Edit
   rules:
   - Vampire
-  - SubGamemodesRule
+  - SubGamemodesRuleNoVampire
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - BasicRoundstartVariation
-
-- type: gamePreset
-  id: TraitorVampire
-  alias:
-    - vampiretraitor
-    - vamptraitor
-    - traitorvampire
-    - traitorvamp
-  name: traitorling-title
-  description: traitorling-description
-  showInVote: true
-  minPlayers: 50
-  rules:
-    - Vampire
-    - Traitor
-    - BasicStationEventScheduler
-    - MeteorSwarmScheduler
-    - BasicRoundstartVariation
