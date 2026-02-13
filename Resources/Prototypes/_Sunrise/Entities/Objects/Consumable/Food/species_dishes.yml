@@ -81,7 +81,11 @@
         - ReagentId: Protein
           Quantity: 12
         - ReagentId: Water
-          Quantity: 6
+          Quantity: 4
+        - ReagentId: Vinegar
+          Quantity: 1
+        - ReagentId: Kelotane
+          Quantity: 1
 
 - type: entity
   parent: FoodSpeciesBowlDishBase
@@ -172,6 +176,8 @@
           Quantity: 16
         - ReagentId: Protein
           Quantity: 10
+        - ReagentId: Holywater
+          Quantity: 2
 
 - type: entity
   parent: FoodSpeciesDishBase
@@ -305,4 +311,3 @@
           Quantity: 16
         - ReagentId: Protein
           Quantity: 10
-
