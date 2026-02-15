@@ -591,8 +591,10 @@
     - Security
     - Antagonists
   - type: PacifismAllowedGun
-  - type: StealTarget # sunrise-edit
-    stealGroup: OfficerHandgun # sunrise-edit
+  # Sunrise - Start
+  - type: StealTarget 
+    stealGroup: OfficerHandgun
+  # Sunrise - End
 
 - type: entity
   name: disabler SMG
