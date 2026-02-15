@@ -1,0 +1,129 @@
+- type: latheRecipe
+  id: SadTromboneImplant
+  result: SadTromboneImplant
+  categories:
+  - Implants
+  completetime: 6
+  materials:
+    Steel: 200
+    Plastic: 100
+    Glass: 50
+
+- type: latheRecipe
+  id: BikeHornImplant
+  result: BikeHornImplant
+  categories:
+  - Implants
+  completetime: 6
+  materials:
+    Steel: 200
+    Plastic: 100
+    Glass: 50
+
+- type: latheRecipe
+  id: LightImplant
+  result: LightImplant
+  categories:
+  - Implants
+  completetime: 6
+  materials:
+    Steel: 200
+    Plastic: 150
+    Glass: 150
+
+- type: latheRecipe
+  id: TrackingImplant
+  result: TrackingImplant
+  categories:
+  - Implants
+  completetime: 9
+  materials:
+    Steel: 250
+    Plastic: 150
+    Glass: 200
+    Silver: 100
+
+- type: latheRecipe
+  id: CreepyLaughImplant
+  result: CreepyLaughImplant
+  categories:
+  - Implants
+  completetime: 6
+  materials:
+    Steel: 200
+    Plastic: 150
+    Glass: 100
+
+- type: latheRecipe
+  id: NutrimentImplant
+  result: NutrimentImplant
+  categories:
+  - Implants
+  completetime: 12
+  materials:
+    Steel: 250
+    Plastic: 200
+    Glass: 200
+    Silver: 100
+    Uranium: 50
+
+- type: latheRecipe
+  id: ReviverImplant
+  result: ReviverImplant
+  categories:
+  - Implants
+  completetime: 12
+  materials:
+    Steel: 300
+    Plastic: 200
+    Glass: 250
+    Silver: 150
+    Gold: 100
+    Uranium: 100
+
+- type: latheRecipe
+  id: ProtoAdrenalImplant
+  result: ProtoAdrenalImplant
+  categories:
+  - Implants
+  completetime: 12
+  materials:
+    Steel: 300
+    Plastic: 200
+    Glass: 200
+    Silver: 150
+    Plasma: 100
+    Uranium: 100
+    Diamond: 100
+
+- type: latheRecipe
+  id: AdrenalImplant
+  result: AdrenalImplant
+  categories:
+  - Implants
+  completetime: 12
+  materials:
+    Steel: 350
+    Plastic: 250
+    Glass: 250
+    Silver: 150
+    Gold: 150
+    Plasma: 100
+    Uranium: 100
+    Diamond: 100
+
+- type: latheRecipe
+  id: ScramImplantProto
+  result: ScramImplantProto
+  categories:
+  - Implants
+  completetime: 12
+  materials:
+    Steel: 350
+    Plastic: 250
+    Glass: 250
+    Gold: 200
+    Silver: 200
+    Plasma: 200
+    Uranium: 100
+    Diamond: 100

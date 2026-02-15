@@ -63,3 +63,129 @@
   - type: TriggerOnActivateImplant
   - type: ScramOnTrigger
     targetUser: true
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ProtoAdrenalImplant
+  name: proto-adrenal implant
+  description: Injects a small dose of ephedrine and epinephrine when activated.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Implants/implants.rsi
+    state: inject_implant_blue
+  - type: SubdermalImplant
+    implantAction: ActionActivateProtoAdrenalImplant
+  - type: TriggerOnActivateImplant
+  - type: AddSolutionOnTrigger
+    solution: bloodstream
+    targetUser: true
+    addedSolution:
+      reagents:
+      - ReagentId: Ephedrine
+        Quantity: 5
+      - ReagentId: Epinephrine
+        Quantity: 10
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: AdrenalImplant
+  name: adrenal implant
+  description: Injects a strong dose of ephedrine and epinephrine when activated.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Implants/implants.rsi
+    state: inject_implant_redblue
+  - type: SubdermalImplant
+    implantAction: ActionActivateAdrenalImplant
+  - type: TriggerOnActivateImplant
+  - type: AddSolutionOnTrigger
+    solution: bloodstream
+    targetUser: true
+    addedSolution:
+      reagents:
+      - ReagentId: Ephedrine
+        Quantity: 15
+      - ReagentId: Epinephrine
+        Quantity: 15
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: StimpackImplant
+  name: stimpack implant
+  description: Injects a large dose of stimulants when activated.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Implants/implants.rsi
+    state: inject_implant_red
+  - type: SubdermalImplant
+    implantAction: ActionActivateStimpackImplant
+  - type: TriggerOnActivateImplant
+  - type: AddSolutionOnTrigger
+    solution: bloodstream
+    targetUser: true
+    addedSolution:
+      reagents:
+      - ReagentId: Stimulants
+        Quantity: 20
+      - ReagentId: Epinephrine
+        Quantity: 10
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ReviverImplant
+  name: reviver implant
+  description: "Stimulates an adrenaline surge with a focused discharge to the heart and a cocktail of reagents. Enters critical: injects automatically"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Implants/implants.rsi
+    state: reviver_implant
+  - type: SubdermalImplant
+    implantAction: ActionActivateReviverImplant
+  - type: TriggerOnActivateImplant
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+    targetMobstateEntity: true
+  - type: AddSolutionOnTrigger
+    solution: bloodstream
+    targetUser: true
+    addedSolution:
+      reagents:
+      - ReagentId: Epinephrine
+        Quantity: 3
+      - ReagentId: Inaprovaline
+        Quantity: 2
+      - ReagentId: DexalinPlus
+        Quantity: 2
+      - ReagentId: Saline
+        Quantity: 1
+      - ReagentId: Omnizine
+        Quantity: 1
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: NutrimentImplant
+  name: nutriment implant
+  description: "Injects a complex of nutriment when activated. Enters critical: injects automatically"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Implants/implants.rsi
+    state: inject_implant_yellow
+  - type: SubdermalImplant
+    implantAction: ActionActivateNutrimentImplant
+  - type: TriggerOnActivateImplant
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+    targetMobstateEntity: true
+  - type: AddSolutionOnTrigger
+    solution: bloodstream
+    targetUser: true
+    addedSolution:
+      reagents:
+      - ReagentId: Vitamin
+        Quantity: 4
+      - ReagentId: Saline
+        Quantity: 3
+      - ReagentId: Protein
+        Quantity: 4

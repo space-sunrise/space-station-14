@@ -240,6 +240,18 @@
         state: inhand-right
 
 - type: entity
+  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  id: ClothingHandsLCD
+  suffix: Chain gun
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/light_chaingun/tiny.rsi
+        state: wielded-inhand-right
+
+- type: entity
   parent: [ClothingHandsNoGloves, PirateArmorPrivateerArmored]
   id: ClothingHandsRPD
   suffix: RPD

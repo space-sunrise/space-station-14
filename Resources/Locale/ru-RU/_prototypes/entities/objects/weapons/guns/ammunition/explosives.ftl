@@ -1,4 +1,4 @@
-ent-CartridgeRocket = выстрел ПГ-7ВЛ
+﻿ent-CartridgeRocket = выстрел ПГ-7ВЛ
     .desc = Выстрел для гранатомёта РПГ-7. Имеет форму трубы.
 ent-CartridgeRocketSlow = выстрел ПГ-7ВЛ "Улитка"
     .desc = Выстрел для гранатомёта РПГ-7. Необычайно медленная.
@@ -12,6 +12,9 @@ ent-BaseCannonBall = базовое пушечное ядро
     .desc = { ent-BaseItem.desc }
 ent-CannonBall = пушечное ядро
     .suffix = Пират
+    .desc = { ent-BaseCannonBall.desc }
+ent-CannonBallAntiMateriel = пласталевое пушечное ядро
+    .suffix = Пираты
     .desc = { ent-BaseCannonBall.desc }
 ent-CannonBallGrapeshot = картечь
     .suffix = Пираты

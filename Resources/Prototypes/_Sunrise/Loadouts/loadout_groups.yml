@@ -164,7 +164,10 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
+  - BlueshieldACP14
   - BlueshieldWT550
+  - BlueshieldLecterMk2
+  - BlueshieldVP78
   - BlueshieldAsh12
 
 - type: loadoutGroup
