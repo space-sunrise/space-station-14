@@ -260,8 +260,8 @@
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.8
   - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
+    walkModifier: 0.8
+    sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: EmitSoundOnWearerMove
     sound:
