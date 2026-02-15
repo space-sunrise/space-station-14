@@ -48,6 +48,8 @@
       visualState: stun
       magState: stun
       heldPrefix: stun4
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 - type: entity
   name: dominator
@@ -105,6 +107,8 @@
     - proto: RedMediumLaser
       fireCost: 125
       magState: lethal
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 - type: entity
   name: X-01 multiphase energy gun
