@@ -72,10 +72,11 @@
     drawdepth: WallMountedItems
     layers:
     - map: ["enum.PoweredLightLayers.Base"]
-      state: base
+      state: glow
+  - type: PoweredLightVisuals
     spriteStateMap:
       empty: empty
       off: base
-      on: glow
+      on: base
       broken: broken
       burned: burned
