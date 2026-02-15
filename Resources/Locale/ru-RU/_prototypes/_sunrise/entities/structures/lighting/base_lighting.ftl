@@ -8,3 +8,5 @@ ent-abductorlamp = светильник абдукторов
     .desc = Освещает коридоры корабля и путь к вашему сердцу через грудную клетку. Затемняет вопросы этики в вашем сознании.
 ent-abductorlampstrobe = светильник абдукторов
     .desc = { ent-AbductorLamp.desc }
+ent-AbductorLampNew = стильный светильник абдукторов
+    .desc = { ent-AbductorLamp.desc }

@@ -8,3 +8,5 @@ ent-abductorlamp = abductor lamp
     .desc = It illuminates the ship's corridors and the path to your heart through your chest. It obscures questions of ethics in your mind.
 ent-abductorlampstrobe = abductor lamp
     .desc = { ent-AbductorLamp.desc }
+ent-AbductorLampNew = abductor lamp
+    .desc = { ent-AbductorLamp.desc }
