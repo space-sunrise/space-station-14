@@ -13,10 +13,3 @@
   components:
   - type: Contraband
     allowedJobs: [ SalvageSpecialist ]
-
-- type: entity
-  id: BaseTSFContraband
-  abstract: true
-  components:
-  - type: Contraband
-    severity: TSF

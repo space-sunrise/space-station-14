@@ -172,15 +172,3 @@
       sprite: _Sunrise/Clothing/Ears/Headsets/wizard.rsi # Sunrise-Edit
     - type: Clothing
       sprite: _Sunrise/Clothing/Ears/Headsets/wizard.rsi # Sunrise-Edit
-
-- type: entity
-  parent: [ClothingHeadsetAlt, BaseTSFContraband]
-  id: ClothingHeadsetAltTSF
-  name: Trans-Solar Marine Corps bowman headset
-  description: An ergonomic combat headset used by the TSMC. Protects against loud noises.
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyTSF
-      - EncryptionKeyCommand

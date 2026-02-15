@@ -112,3 +112,9 @@
     channels:
     - TSF
     defaultChannel: TSF
+  - type: Sprite
+    layers:
+    - sprite: Objects/Devices/encryption_keys.rsi
+      state: crypt_blue
+    - sprite: Objects/Devices/encryption_keys.rsi
+      state: com_label

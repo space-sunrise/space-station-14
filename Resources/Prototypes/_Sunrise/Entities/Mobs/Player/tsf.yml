@@ -48,16 +48,22 @@
 - type: randomHumanoidSettings
   id: TSFMarine
   parent: EventHumanoidMindShielded
-  # speciesBlacklist:
-  # - Arachnid
-  # - Diona
-  # - Moth
-  # - SlimePerson
-  # - Skeleton
-  # - Vox
-  # - Dwarf
-  speciesWhitelist:
-  - Human
+  speciesBlacklist:
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  - HumanoidXeno
+  - Predator
+  - Resomi
   components:
     - type: GhostRole
       name: ghost-role-information-tsf-marine-name

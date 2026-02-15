@@ -40,7 +40,7 @@
 - type: radioChannel
   id: TSF
   name: chat-radio-tsf
-  keycode: "о"
+  keycode: "ы"
   frequency: 1922
   color: "#22a7ff"
   longRange: true

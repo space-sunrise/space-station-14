@@ -93,7 +93,7 @@
     id: TSFIdCardElite
     ears: ClothingHeadsetAltTSF
     belt: ClothingBeltTSFMarineWebbing
-    pocket1: AccessOverider
+    pocket1: BoxDetonator
     pocket2: WeaponPistolDeagle
     suitstorage: WeaponRifleM52
   storage:
@@ -101,6 +101,7 @@
     - BoxSurvivalSecurity
     - CrowbarRed
     - MedkitCombatFilled
+    - CableDetStack
     belt:
     - MagazineBoxRifleHP
     - MagazineRifleM52HP
