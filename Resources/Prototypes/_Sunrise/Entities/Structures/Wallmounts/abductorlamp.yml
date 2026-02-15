@@ -57,30 +57,10 @@
       state: base
 
 - type: entity
-  parent: AlwaysPoweredWallLight
-  name: abductorlamp
-  description: Modern and economical
-  id: AbductorLamp
-  suffix: Always Powered, Exterior
-  components:
-  - type: PointLight
-    radius: 12
-    energy: 4.5
-    softness: 0.5
-    color: "#F4C1C1"
-  - type: Sprite
-    sprite: _Sunrise/Structures/Wallmounts/abductorlamp.rsi
-    drawdepth: WallMountedItems
-    layers:
-    - map: ["enum.PoweredLightLayers.Base"]
-      state: base
-
-- type: entity
   parent: Poweredlight
   name: abductorlamp
   description: Modern and economical
   id: AbductorLampNew
-  suffix: Always Powered, Exterior
   components:
   - type: PointLight
     radius: 12
