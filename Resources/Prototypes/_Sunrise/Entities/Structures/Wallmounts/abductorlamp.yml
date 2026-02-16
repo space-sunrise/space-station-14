@@ -1,5 +1,5 @@
 - type: entity
-  id: abductorlampstrobe
+  id: AbductorLampStrobe
   name: abductor lamp
   parent: AlwaysPoweredStrobeLight
   description: Modern and economical
@@ -39,7 +39,7 @@
 
 - type: entity
   parent: AlwaysPoweredWallLight
-  name: abductorlamp
+  name: abductor lamp
   description: Modern and economical
   id: AbductorLamp
   suffix: Always Powered, Exterior
@@ -57,8 +57,8 @@
       state: base
 
 - type: entity
-  parent: Poweredlight
-  name: abductorlamp
+  parent: PoweredlightEmpty
+  name: abductor lamp
   description: Modern and economical
   id: AbductorLampNew
   components:
@@ -67,6 +67,14 @@
     energy: 4.5
     softness: 0.5
     color: "#F4C1C1"
+  - type: PoweredLight
+    hasLampOnSpawn: LightTube
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -15
+    range: 2
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg
   - type: Sprite
     sprite: _Sunrise/Structures/Wallmounts/abductoraskallamp.rsi
     drawdepth: WallMountedItems
@@ -80,3 +88,8 @@
       on: base
       broken: broken
       burned: burned
+  - type: DamageOnInteract
+    damage:
+      types:
+        Heat: 1
+    popupText: powered-light-component-burn-hand
