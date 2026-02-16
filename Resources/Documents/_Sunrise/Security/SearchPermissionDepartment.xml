@@ -1,8 +1,9 @@
 <Document>
-[head=3][color=#5a0f0f][bold]Опись вооружения[/bold][/color][/head]
+[head=2][color=#5a0f0f][bold]Разрешение на обыск отдела[/bold][/color][/head]
 [color=#b52d2d][bold]{corpString}[/bold][/color][mono] / СБ[/mono]
 [color=#666666][bold]Станция:[/bold][/color] {stationName}
 [color=#666666][bold]Время:[/bold][/color] {timeString}
+
 [color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
 [color=#b52d2d][bold]Составитель[/bold][/color]
 [mono]ФИО:      [/mono]
@@ -11,15 +12,13 @@
 [color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
 [color=#b52d2d][bold]Содержание[/bold][/color]
 
-Оружие:
+Я, (ФИО), в должности (ДОЛЖНОСТЬ), разрешаю произвести обыск (наименование отдела/помещения).
 
-Патроны:
-
-Материалы:
-
-Прочее:
-
-Средства индивидуальной защиты:
+[color=#b52d2d][bold]Причина обыска[/bold][/color]
+[mono]
+1)
+2)
+[/mono]
 
 [color=#666666][italic]Место для печатей[/italic][/color]
 
