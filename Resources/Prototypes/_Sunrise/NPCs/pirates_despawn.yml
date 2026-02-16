@@ -170,7 +170,7 @@
       - MobPirateT2TimedSpawner
       - MobPirateT3TimedSpawner
 
-# T1 squad spawners (despawn)
+# region T1 squad
 - type: entityTable
   id: PirateT1LMGSquadTimedTable
   table: !type:AllSelector
@@ -292,10 +292,7 @@
   table: !type:AllSelector
     children:
     - !type:EntSelector
-      id: MobPirateT1RifleTimed
-      prob: 1
-    - !type:EntSelector
-      id: MobPirateT2BorgAssaultTimed
+      id: MobPirateT1SMGTimed
       prob: 1
     - !type:EntSelector
       id: MobPirateT1MedicTimed
@@ -304,7 +301,13 @@
       id: MobPirateT1ScrapRifleTimed
       prob: 1
     - !type:EntSelector
-      id: MobPirateT1SMGTimed
+      id: MobPirateT3BorgAssaultTimed
+      prob: 0.25
+    - !type:EntSelector
+      id: MobPirateT2BorgAssaultTimed
+      prob: 0.5
+    - !type:EntSelector
+      id: MobPirateT1BorgAssaultTimed
       prob: 1
 
 - type: entity
@@ -743,27 +746,3 @@
   parent: [MobPirateTimedDespawn, MobPirateT3Boss]
   id: MobPirateT3BossTimed
 # region Timed END
-
-# region SQUAD start
-- type: entity
-  parent: MarkerBase
-  id: PirateSquadSpawnerT1MG
-  name: Pirate MG Squad Spawner
-  components:
-  - type: Sprite
-    layers:
-    - state: red
-    - state: one
-    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
-      state: icon
-    - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/light_chaingun/big.rsi
-      state: base
-  - type: EntityTableSpawner
-    table: !type:AllSelector
-      children:
-      - id: MobPirateT1RifleTimed
-      - id: MobPirateT1LCGTimed
-      - id: MobPirateT1MosinTimed
-        amount: 2
-      - id: MobPirateT1MedicTimed
-# region SQUAD end

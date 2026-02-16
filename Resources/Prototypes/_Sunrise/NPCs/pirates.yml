@@ -242,6 +242,12 @@
     mustBeDead: true
   - type: Puller
     needsHands: false
+  - type: Speech
+  - type: Advertise
+    pack: PirateChatterNPC
+    minimumWait: 30
+    maximumWait: 120
+    nextAdvertisementTime: 10
 
 - type: entity
   abstract: true
@@ -276,6 +282,11 @@
         Slash: 3
         Blunt: 7
         Structural: 15
+  - type: Advertise
+    pack: PirateChatterNPC
+    minimumWait: 998
+    maximumWait: 999
+    nextAdvertisementTime: 10
 
 - type: entity
   abstract: true
@@ -869,6 +880,10 @@
       state: equipped-SUITSTORAGE
   - type: Tag
     tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
     - PirateVeteranLeader
 
 - type: entity
@@ -877,9 +892,6 @@
   id: MobPirateT1EPickaxe
   description: A looter that scavenged enough coins to afford some decent equipment.
   components:
-  - type: Tag
-    tags:
-    - PirateVeteranLeader
   - type: Loadout
     prototypes:
     - MobPirateT1EPickaxeGear
@@ -897,6 +909,13 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+    - PirateVeteranLeader
 
 - type: entity
   name: Scrap miner
@@ -950,6 +969,10 @@
   components:
   - type: Tag
     tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
     - PirateVeteranLeader
   - type: Loadout
     prototypes:
@@ -1016,6 +1039,10 @@
   components:
   - type: Tag
     tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
     - PirateVeteranLeader
   - type: Loadout
     prototypes:
@@ -1140,6 +1167,10 @@
         volume: -6
   - type: Tag
     tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
     - PirateVeteranLeader
 
 - type: entity
@@ -1413,6 +1444,10 @@
   components:
   - type: Tag
     tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
     - PirateVeteranLeader
   - type: Loadout
     prototypes:
@@ -1505,6 +1540,10 @@
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
   - type: Tag
     tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
     - PirateVeteranLeader
 
 - type: entity
@@ -1515,6 +1554,10 @@
   components:
   - type: Tag
     tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
     - PirateVeteranLeader
   - type: Loadout
     prototypes:
@@ -1936,6 +1979,10 @@
     soundGunshot: /Audio/Weapons/bolathrow.ogg
   - type: Tag
     tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
     - PirateVeteranLeader
 
 - type: entity
@@ -3140,6 +3187,10 @@
     pvsIncrease: 0.7
   - type: Tag
     tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
     - PirateVeteranLeader
 
 - type: entity
@@ -3222,6 +3273,10 @@
       maxRange: 3
   - type: Tag
     tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
     - PirateVeteranLeader
 
 - type: entity
@@ -3232,6 +3287,10 @@
   components:
   - type: Tag
     tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
     - PirateVeteranLeader
   - type: Loadout
     prototypes:
