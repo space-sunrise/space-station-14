@@ -36,6 +36,30 @@
 
 - type: entity
   parent: MercenaryDuffelGiftBox
+  id: DuffelSyndicateMedicalGiftBox
+  name: syndicate medical gear bundle
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    state: icon-med
+  - type: Item
+    heldPrefix: med
+    inhandVisuals:
+      left:
+      - state: med-inhand-left
+      right:
+      - state: med-inhand-right
+  - type: Clothing
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    equippedPrefix: med
+    clothingVisuals:
+      back:
+      - state: med-equipped-BACKPACK
+
+- type: entity
+  parent: MercenaryDuffelGiftBox
   id: PirateMessengerGiftBox
   name: pirate gear bundle
   abstract: true
@@ -768,6 +792,53 @@
     - id: PirateCashSpawner03
     - id: LootSpawnerMedicalMinor
       prob: 0.7
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+
+- type: entity
+  parent: DuffelSyndicateMedicalGiftBox
+  id: ClothingBackDuffelMercenaryTier1Medic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponGrapplingGun
+    # Cash
+    - id: SpaceCash100
+      prob: 0.9
+    - id: SpaceCash500
+      prob: 0.65
+    - id: SpaceCash500
+      prob: 0.45
+    # Weapons
+    - id: WeaponPistolMk58
+      prob: 0.8
+      orGroup: PistolT1Pool
+    - id: WeaponPistolViper
+      prob: 0.15
+      orGroup: PistolT1Pool
+    - id: WeaponPistolM1984
+      prob: 0.05
+      orGroup: PistolT1Pool
+    - id: MagazineBoxPistolSP
+      prob: 0.3
+    # Items
+    - id: ClothingBeltWebbingMercenaryTier1Pistol
+      prob: 0.75
+    # Bonus Loot T1
+    - id: Doubloon1
+      prob: 0.05
+    - id: PirateCashSpawner03
+    - id: PirateMedSpawner01
+    - id: PirateMedSpawner01
+      prob: 0.8
+    - id: PirateMedSpawner01
+      prob: 0.5
+    - id: NukeOpsMedkitBruteSpawner
+      prob: 0.8
+    - id: NukeOpsMedkitBruteSpawner
+      prob: 0.25
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
