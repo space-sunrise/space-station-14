@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 using Content.Server.NPC;
+using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Shared._Sunrise.NPC;
 using Content.Shared.Mobs.Systems;
@@ -138,9 +139,21 @@ public sealed class PirateVeteranFollowerSystem : EntitySystem
         }
 
         if (followTarget == null)
+        {
+            // Drop stale follow target to avoid moving to a dead leader's last known position.
+            ClearFollowTarget(uid);
             return false;
+        }
 
         _npc.SetBlackboard(uid, NPCBlackboard.FollowTarget, new EntityCoordinates(followTarget.Value, Vector2.Zero));
         return true;
+    }
+
+    private void ClearFollowTarget(EntityUid uid)
+    {
+        if (!TryComp<HTNComponent>(uid, out var htn))
+            return;
+
+        htn.Blackboard.Remove<EntityCoordinates>(NPCBlackboard.FollowTarget);
     }
 }
