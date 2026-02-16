@@ -1,5 +1,5 @@
 <Document>
-[head=2][color=#0b6a8b][bold]Психологическое заключенние о здоровье[/bold][/color][/head]
+[head=2][color=#0b6a8b][bold]Психологическое заключение о здоровье[/bold][/color][/head]
 [color=#0b6a8b][bold]{corpString}[/bold][/color][mono] / МЕД-ПД[/mono]
 [color=#666666][bold]Станция:[/bold][/color] {stationName}
 [color=#666666][bold]Время:[/bold][/color] {timeString}
