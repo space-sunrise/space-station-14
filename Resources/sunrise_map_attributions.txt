@@ -1,11 +1,5 @@
-- files: ["delta.yml"]
-  editors: Gpxgji, SliZen, George69, Kendrick, ReWAFFlution
-
-- files: ["bagel.yml"]
-  editors: Gpxgji, SliZen, Stirka
-
 - files: ["box.yml"]
-  editors: Gpxgji, SliZen, George69
+  editors: Odleer
 
 - files: ["barratry.yml"]
   editors: Focstor, Furo, non_stop_smetana
@@ -13,8 +7,11 @@
 - files: ["plasma.yml"]
   editors: KaiserMaus, Hatiko, CallMeOwO, ktenanta, Odleer
 
+- files: ["delta.yml"]
+  editors: meowstushka, JunterFox, Odleer
+
 - files: ["planet_prison.yml"]
-  editors: KAVALDi
+  editors: Odleer, ZavanickTEP
 
 - files: ["cluster.yml"]
   editors: Odleer
@@ -31,4 +28,5 @@
 - files: ["meta.yml"]
   editors: J C Denton, freychik
 
-
+- files: ["bagel.yml"]
+  editors: pacable, Francus41 

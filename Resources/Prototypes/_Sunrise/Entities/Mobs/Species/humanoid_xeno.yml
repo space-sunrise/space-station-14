@@ -26,12 +26,10 @@
   - type: Temperature
     currentTemperature: 310.15
   - type: TemperatureDamage
-    heatDamage:
-      types:
-        Heat: 3
+    heatDamageThreshold: 360
+    coldDamageThreshold: -150
   - type: Speech
     speechVerb: LargeMob
-    allowedEmotes: [ 'Hisses', 'Roars', 'Rumbles', 'Growl' ]
   - type: MeleeWeapon
     hidden: true
     soundHit:
@@ -41,11 +39,10 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 5
-        Slash: 5
+        Blunt: 3
+        Slash: 2
         Caustic: 1
   - type: LizardAccent
-  - type: VulpaAccent
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:

@@ -5,17 +5,15 @@
   name: Nanotrasen gygax bundle
   description: Contains a set of Nanotrasen light armored mechs.
   components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - id: MechNTGygaxFilled
-        - id: HandheldMechAnalyzer
-        - id: Nanopaste
-        - id: CableApcStack
-        - id: ToolboxMechanicalFilled
-        - id: TowelColorNT
-        - id: WelderIndustrial
+  - type: StorageFill
+    contents:
+      - id: MechNTGygaxFilled
+      - id: HandheldMechAnalyzer
+      - id: Nanopaste
+      - id: CableApcStack
+      - id: ToolboxMechanicalFilled
+      - id: TowelColorNT
+      - id: WelderIndustrial
 
 - type: entity
   id: CrateCommandMarauderBundle
@@ -24,17 +22,15 @@
   name: Nanotrasen Marauder Bundle
   description: Contains a set of Nanotrasen heavy armored mechs.
   components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - id: MechMarauderFilled
-        - id: HandheldMechAnalyzer
-        - id: Nanopaste
-        - id: CableApcStack
-        - id: ToolboxMechanicalFilled
-        - id: TowelColorNT
-        - id: WelderIndustrial
+  - type: StorageFill
+    contents:
+      - id: MechMarauderFilled
+      - id: HandheldMechAnalyzer
+      - id: Nanopaste
+      - id: CableApcStack
+      - id: ToolboxMechanicalFilled
+      - id: TowelColorNT
+      - id: WelderIndustrial
 
 - type: entity
   id: CrateCommandSeraphBundle
@@ -43,14 +39,12 @@
   name: Nanotrasen Seraph Bundle
   description: Contains a set of Nanotrasen elite heavy armored mechs.
   components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - id: MechSeraphFilled
-        - id: HandheldMechAnalyzer
-        - id: Nanopaste
-        - id: CableApcStack
-        - id: ToolboxMechanicalFilled
-        - id: TowelColorNT
-        - id: WelderIndustrial
+  - type: StorageFill
+    contents:
+      - id: MechSeraphFilled
+      - id: HandheldMechAnalyzer
+      - id: Nanopaste
+      - id: CableApcStack
+      - id: ToolboxMechanicalFilled
+      - id: TowelColorNT
+      - id: WelderIndustrial

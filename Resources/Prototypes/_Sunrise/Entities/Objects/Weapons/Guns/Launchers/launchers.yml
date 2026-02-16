@@ -30,11 +30,11 @@
   - type: MagazineVisuals
     magState: mag
     steps: 2
-    zeroVisible: false
+    zeroVisible: true
   - type: Appearance
   - type: Wieldable
   - type: UseDelay
-    delay: 1
+    delay: 0.5
   - type: GunRequiresWield
   - type: SpeedModifiedOnWield
     walkModifier: 0.5

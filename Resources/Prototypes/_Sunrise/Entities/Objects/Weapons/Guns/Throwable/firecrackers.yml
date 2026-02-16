@@ -77,11 +77,9 @@
     - 0,0,4,3
     areaInsert: true
     maxItemSize: Tiny
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: Firecracker
-          amount: 10
+  - type: StorageFill
+    contents:
+      - id: Firecracker
+        amount: 10
   - type: Dumpable
 

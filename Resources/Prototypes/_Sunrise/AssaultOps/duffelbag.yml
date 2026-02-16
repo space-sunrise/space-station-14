@@ -3,12 +3,10 @@
   id: ClothingBackpackAssaultOpsFill
   suffix: Fill
   components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: BoxSurvivalSyndicate
-        - id: ChemistryBottleNocturine
-        - id: FreedomImplanter
-        - id: PinpointerIcarus
-        - id: EncryptionKeySyndie
+  - type: StorageFill
+    contents:
+    - id: BoxSurvivalSyndicate
+    - id: ChemistryBottleNocturine
+    - id: FreedomImplanter
+    - id: PinpointerIcarus
+    - id: EncryptionKeySyndie

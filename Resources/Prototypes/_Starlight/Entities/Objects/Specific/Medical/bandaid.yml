@@ -172,12 +172,10 @@
   components:
   - type: Label
     currentLabel: brute patch
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: PatchBrute
-          amount: 5
+  - type: StorageFill
+    contents:
+    - id: PatchBrute
+      amount: 5
 
 - type: entity
   name: patch pack
@@ -187,12 +185,10 @@
   components:
   - type: Label
     currentLabel: Heat patch
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: PatchBurn
-          amount: 5
+  - type: StorageFill
+    contents:
+    - id: PatchBurn
+      amount: 5
 
 - type: entity
   name: bluespace drug storage

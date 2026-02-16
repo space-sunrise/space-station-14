@@ -153,8 +153,6 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_cocked.ogg
-  - type: StealTarget
-    stealGroup: OfficerHandgun
 
 - type: entity
   name: Glock-22 Prison
@@ -348,8 +346,6 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-  - type: StealTarget
-    stealGroup: OfficerHandgun
 
 - type: entity
   name: Mateba
@@ -366,8 +362,6 @@
     fireRate: 3
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
-  - type: StealTarget
-    stealGroup: OfficerHandgun
 
 # Sidearm HOS and Nukies.
 - type: entity
@@ -420,8 +414,6 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-  - type: StealTarget
-    stealGroup: OfficerHandgun
 
 - type: entity
   name: Desert Eagle Metus
@@ -483,8 +475,6 @@
   - type: EyeCursorOffset
     maxOffset: 2.5
     pvsIncrease: 0.25
-  - type: StealTarget
-    stealGroup: OfficerHandgun
 
 - type: entity
   parent: WeaponRevolverSpearhead
@@ -532,8 +522,6 @@
   - type: SpeedModifiedOnWield
     walkModifier: 0.99
     sprintModifier: 0.99
-  - type: StealTarget
-    stealGroup: OfficerHandgun
 
 - type: entity
   name: Golden Desert Eagle

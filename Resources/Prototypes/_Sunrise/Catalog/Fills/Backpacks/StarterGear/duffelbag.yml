@@ -4,9 +4,7 @@
   name: syndicate boombox bundle
   description: Kills with style.
   components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: BoomboxSyndie
+  - type: StorageFill
+    contents:
+    - id: BoomboxSyndie
 # Кассет нету, покупайте в спонсорском магазине.

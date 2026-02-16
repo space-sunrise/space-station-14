@@ -111,5 +111,3 @@
     angleIncrease: 10
     angleDecay: 6
     selectedMode: SemiAuto
-  - type: StealTarget
-    stealGroup: OfficerHandgun

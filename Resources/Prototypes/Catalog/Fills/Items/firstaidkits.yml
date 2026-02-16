@@ -150,10 +150,8 @@
   suffix: Stimkit, Filled
   parent: StimkitFilled
   components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: StimpackMiniNT
-          amount: 6
+  - type: StorageFill
+    contents:
+      - id: StimpackMiniNT
+        amount: 6
 #Sunrse-end

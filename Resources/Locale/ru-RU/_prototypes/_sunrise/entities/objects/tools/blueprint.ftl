@@ -8,5 +8,3 @@ ent-BlueprintMagAsh12Flare = чертёж магазина АШ-12 фальшф�
     .desc = Чертёж со схемой магазина АШ-12 с фальшфейерами. Его можно вставить в автолат и охранный ТехФаб.
 ent-BlueprintImplanterExtractor = { ent-TechnologyDiskBlueprint }
     .desc = Чертёж со схемой экстрактора
-ent-BlueprintProtoAdrenalImplant = чертёж протоадреналинового импланта
-    .desc = Чертёж со схемой протоадреналинового импланта. Его можно вставить в автолат.

@@ -1,12 +1,12 @@
 ent-BaseEntityEyeImplant = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
-ent-EyeImplantWelding = орган-имплант сварщика
+ent-EyeImplantWelding = Имплант сварщика
     .desc = Защищает глаза от сварочных вспышек.
-ent-EyeImplantMedical = медицинский орган-имплант
+ent-EyeImplantMedical = Медицинский имплант
     .desc = Позволяет видеть информацию о гуманоидах без медицинских очков.
-ent-EyeImplantSecurity = орган-имплант безопасности
+ent-EyeImplantSecurity = Имплант безопасности
     .desc = Позволяет видеть информацию о членах экипажа станции без защитных очков.
-ent-EyeImplantSyndie = орган-имплант синдиката
+ent-EyeImplantSyndie = Имплант синдиката
     .desc = Позволяет видеть информацию о членах экипажа станции, гуманоидах и синдикате без каких-либо очков.
-ent-EyeImplantChemical = орган-имплант химического ИЛС
+ent-EyeImplantChemical = Имплант химического ИЛС
     .desc = Позволяет видеть информацию о химикатах без химических очков.
