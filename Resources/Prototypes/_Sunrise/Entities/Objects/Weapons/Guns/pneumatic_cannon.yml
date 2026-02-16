@@ -14,10 +14,12 @@
     - 0,0,1,0
     - 0,1,0,1
     storedOffset: 0,-4
-  - type: StorageFill
-    contents:
-    - id: MiniSyringe
-      amount: 3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MiniSyringe
+          amount: 3
 
 - type: entity
   name: rapid syringe gun
@@ -42,7 +44,9 @@
     size: Normal
     shape:
     - 0,0,1,1
-  - type: StorageFill
-    contents:
-    - id: MiniSyringe
-      amount: 10
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MiniSyringe
+          amount: 10

@@ -199,10 +199,14 @@
       prob: 0.5
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeNonlethalHandgunBaseSecureSunrise, BaseSecurityContraband] # Sunrise-Edit
   id: GunSafeDisabler
   name: disabler safe
   components:
+  # Sunrise-Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: disabler
+  # Sunrise-End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -216,10 +220,14 @@
       amount: 5
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeHandgunBaseSecureSunrise, BaseSecurityContraband] # Sunrise-Edit
   id: GunSafePistolMk58
   name: mk58 safe
   components:
+  # Sunrise-Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: pistol
+  # Sunrise-End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -235,10 +243,14 @@
       amount: 8
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseSecureSunrise, BaseSecurityContraband] # Sunrise-Edit
   id: GunSafeRifleLecter
   name: lecter safe
   components:
+  # Sunrise-Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: lecter
+  # Sunrise-End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -250,6 +262,7 @@
     children:
     - id: WeaponRifleLecter
       amount: 2
+    # Sunrise-Start
     - id: WeaponRifleLeikha
     - id: MagazineRifleSP
       amount: 4
@@ -257,12 +270,17 @@
       amount: 2
     - id: MagazineRifleHP
       amount: 2
+    # Sunrise-End
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseSecureSunrise, BaseSecurityContraband] # Sunrise-Edit
   id: GunSafeSubMachineGunDrozd
   name: drozd safe
   components:
+  # Sunrise-Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: drozd
+  # Sunrise-End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -278,39 +296,55 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseSecureSunrise, BaseSecurityContraband] # Sunrise-Edit
   id: GunSafeShotgunEnforcer
   name: enforcer safe
   components:
-  - type: StorageFill
-    contents:
-    - id: SpeedLoaderShellShotgun
-      amount: 2
-    - id: WeaponShotgunEnforcer
-      amount: 2
-    - id: BoxLethalshot
-      amount: 4
+  # Sunrise-Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: enforcer
+  # Sunrise-End
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SpeedLoaderShellShotgun # Sunrise-Add
+          amount: 2
+        - id: WeaponShotgunEnforcer
+          amount: 2
+        - id: BoxLethalshot
+          amount: 4
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseSecureSunrise, BaseSecurityContraband] # Sunrise-Edit
   id: GunSafeShotgunKammerer
   name: kammerer safe
   components:
-  - type: StorageFill
-    contents:
-    - id: SpeedLoaderShellShotgun
-      amount: 2
-    - id: WeaponShotgunKammerer
-      amount: 2
-    - id: BoxLethalshot
-      amount: 4
+  # Sunrise-Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: kammerer
+  # Sunrise-End
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SpeedLoaderShellShotgun # Sunrise-Add
+          amount: 2
+        - id: WeaponShotgunKammerer
+          amount: 2
+        - id: BoxLethalshot
+          amount: 4
 
 - type: entity
   id: GunSafeSubMachineGunWt550
   suffix: Wt550
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseSecureSunrise, BaseSecurityContraband] # Sunrise-Edit
   name: wt550 safe
   components:
+  # Sunrise-Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: wt550
+  # Sunrise-End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -326,10 +360,14 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseSecureSunrise, BaseSecurityContraband] # Sunrise-Edit
   id: GunSafeLaserCarbine
   name: laser safe
   components:
+  # Sunrise-Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: laser
+  # Sunrise-End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -340,4 +378,4 @@
   table: !type:AllSelector
     children:
     - id: WeaponLaserCarbine
-      amount: 3
+      amount: 6 # Sunrise-Edit

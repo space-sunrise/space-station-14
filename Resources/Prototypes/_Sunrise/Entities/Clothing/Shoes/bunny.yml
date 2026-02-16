@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: ClothingShoesBase
   id: BunnyShoes
   name: bunny shoes
@@ -20,7 +20,7 @@
   id: BunnyShoesFilled
   suffix: Bunny, Filled
   components:
-  - type: StorageFill
+  - type: EntityTableContainerFill
   - type: ContainerFill
     containers:
       item:

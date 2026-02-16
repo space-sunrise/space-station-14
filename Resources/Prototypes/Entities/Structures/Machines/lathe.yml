@@ -339,7 +339,6 @@
     - RoboticsDynamicSunrise # Sunrise-Add
     - MedicalCyberlimbDynamic # Sunrise-Add
     - MedicalCyberOrgansDynamic # Sunrise-Add
-    - MedicalImplantDynamic # Sunrise-Add
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
@@ -523,6 +522,11 @@
     - MedicalCyberlimbDynamic # Sunrise-Add
     - MedicalCyberOrgansDynamic # Sunrise-Add
     - MedicalImplantDynamic # Sunrise-Add
+  # Sunrise-Start
+  - type: EmagLatheRecipes
+    emagDynamicPacks:
+    - MedicalImplantEmag
+  # Sunrise-End
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget

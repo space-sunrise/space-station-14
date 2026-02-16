@@ -112,3 +112,19 @@
   files:
   - /Audio/_Sunrise/Weapons/Guns/Gunshots/glock22_shot_1.ogg
   - /Audio/_Sunrise/Weapons/Guns/Gunshots/glock22_shot_2.ogg
+
+- type: soundCollection
+  id: L6
+  files:
+  - /Audio/_Starlight/Weapons/Guns/Gunshots/l6.ogg
+  - /Audio/_Starlight/Weapons/Guns/Gunshots/l6-2.ogg
+  - /Audio/_Starlight/Weapons/Guns/Gunshots/l6-3.ogg
+
+  #- /Audio/_Starlight/Weapons/Guns/Gunshots/uzi.ogg
+  #- /Audio/_Starlight/Weapons/Guns/Gunshots/dp28.ogg
+  #- /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+  # - /Audio/_RMC14/Weapons/Guns/Gunshots/gun_m1984_1.ogg
+  # - /Audio/_RMC14/Weapons/Guns/Gunshots/gun_m1984_2.ogg
+  # - /Audio/_RMC14/Weapons/Guns/Gunshots/gun_m1984_3.ogg
+  # - /Audio/_RMC14/Weapons/Guns/Gunshots/gun_m1984_4.ogg
+  # - /Audio/_RMC14/Weapons/Guns/Gunshots/gun_m1984_5.ogg

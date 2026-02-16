@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "from https://github.com/Skyrat-SS13/Skyrat-tg/blob/HEAD/icons/obj/medical/organs/organs.dmi",
+  "copyright": "from https://github.com/Skyrat-SS13/Skyrat-tg/blob/HEAD/icons/obj/medical/organs/organs.dmi, inject implant resprited by KaiserMaus",
   "size": {
     "x": 32,
     "y": 32
@@ -9,6 +9,24 @@
   "states": [
     {
       "name": "reviver_implant"
+    },
+    {
+      "name": "inject_implant_red"
+    },
+    {
+      "name": "inject_implant_blue"
+    },
+    {
+      "name": "inject_implant_redblue"
+    },
+    {
+      "name": "inject_implant_yellow"
+    },
+    {
+      "name": "inject_implant_white"
+    },
+    {
+      "name": "inject_implant_purple"
     }
   ]
 }

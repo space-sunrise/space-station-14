@@ -242,7 +242,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanStaminaDamage
-    staminaDamage: 15
+    staminaDamage: 10
   - type: HitscanBasicDamage
     armorPenetration: -0.99
     damage:

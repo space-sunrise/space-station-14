@@ -1,4 +1,4 @@
-ent-MuzzleFlashEffect = { "" }
+﻿ent-MuzzleFlashEffect = { "" }
     .desc = { "" }
 ent-MuzzleFlashEffectOmnilaser = { ent-MuzzleFlashEffect }
     .desc = { ent-MuzzleFlashEffect.desc }
@@ -87,6 +87,8 @@ ent-BulletWaterShot = вода
 ent-BulletHivebot = пуля хайвбота
     .desc = { ent-BaseBullet.desc }
 ent-BulletCannonBall = пушечное ядро
+    .desc = { ent-BaseBulletTrigger.desc }
+ent-BulletAntiMaterielCannonBall = пласталевое пушечное ядро
     .desc = { ent-BaseBulletTrigger.desc }
 ent-GrapplingHook = якорь
     .desc = { "" }

@@ -62,3 +62,14 @@
     items:
       - id: WeaponRevolverSnubRevolver
       - id: SpeedLoaderMagnumRubber
+
+- type: entity
+  parent: GlockBox
+  id: VP78Box
+  name: VP78 box
+  description: It contains a ACP14 and a rubber magazine for it. Did you want something else?
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponPistolVP78
+      - id: PouchAmmoFilledPistol40
