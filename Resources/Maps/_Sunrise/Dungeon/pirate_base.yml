@@ -14180,7 +14180,7 @@ entities:
     - type: Transform
       pos: 38.5,62.5
       parent: 1
-- proto: MobPirateT1Spawner
+- proto: MobPirateT1TimedSpawner
   entities:
   - uid: 1834
     components:
@@ -14342,7 +14342,7 @@ entities:
     - type: Transform
       pos: 15.5,1.5
       parent: 1
-- proto: MobPirateT2Spawner
+- proto: MobPirateT2TimedSpawner
   entities:
   - uid: 2282
     components:
@@ -14389,7 +14389,7 @@ entities:
     - type: Transform
       pos: 22.5,1.5
       parent: 1
-- proto: MobPirateT3Spawner
+- proto: MobPirateT3TimedSpawner
   entities:
   - uid: 1983
     components:

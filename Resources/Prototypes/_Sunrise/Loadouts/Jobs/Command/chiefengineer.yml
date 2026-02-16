@@ -2,3 +2,8 @@
   id: ChiefEngineerScarf
   equipment:
     neck: ClothingNeckScarfCe
+
+- type: loadout
+  id: ChiefEngineerCloakLegacy
+  equipment:
+    neck: ClothingNeckCloakLegacyCe

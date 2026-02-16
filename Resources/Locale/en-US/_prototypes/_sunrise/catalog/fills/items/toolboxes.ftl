@@ -4,3 +4,7 @@ ent-ToolboxSyndicateFilledCoreExtraction = { ent-ToolboxSyndicate }
 ent-ToolboxElectricalTurretPirateFilled = { ent-ToolboxElectricalTurretPirate }
     .suffix = Pirate, Turret, Filled
     .desc = { ent-ToolboxElectricalTurretPirate.desc }
+
+ent-ToolboxArtisticFilledCleaner = { ent-ToolboxArtistic }
+    .suffix = Cleaner
+    .desc = { ent-ToolboxArtistic.desc }
