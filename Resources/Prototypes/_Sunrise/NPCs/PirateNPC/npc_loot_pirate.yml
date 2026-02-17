@@ -870,7 +870,7 @@
     - id: ClothingBeltMedicalFilled
       prob: 0.75
     # Bonus Loot T2
-    - id: PirateCashSpawner02
+    - id: PirateCashSpawner03
     - id: PirateMedSpawner02
     - id: PirateMedSpawner02
       prob: 0.8
@@ -878,7 +878,7 @@
       prob: 0.6
     - id: NukeOpsMedkitBruteSpawner
       prob: 0.8
-    - id: NukeOpsMedkitBurnSpawner
+    - id: NukeOpsMedkitSpawner
       prob: 0.55
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -914,11 +914,11 @@
       prob: 0.8
     - id: PirateMedSpawner02
       prob: 0.6
-    - id: NukeOpsMedkitAdvancedSpawner
+    - id: NukeOpsMedkitSpawner
       prob: 0.6
     - id: NukeOpsMedkitBruteSpawner
       prob: 0.5
-    - id: NukeOpsMedkitBurnSpawner
+    - id: NukeOpsMedkitSpawner
       prob: 0.5
     - id: Doubloon5
       prob: 0.1
