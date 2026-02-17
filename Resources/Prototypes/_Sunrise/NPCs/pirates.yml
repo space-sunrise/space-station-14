@@ -245,7 +245,7 @@
   - type: Speech
   - type: Advertise
     pack: PirateChatterNPC
-    minimumWait: 30
+    minimumWait: 45
     maximumWait: 120
     nextAdvertisementTime: 10
 
@@ -430,6 +430,7 @@
       - MobPirateT1KnifeStinger
       - MobPirateT1KnifeFirebomb
       - MobPirateT1KnifeBola
+      - MobPirateT1KnifeEMP
       - MobPirateT1MonkeyKnuckleDusters
       - MobPirateT1Pickaxe
 
@@ -498,6 +499,7 @@
       - MobPirateT2MachineCannon
       - MobPirateT2DoubleFlintlock
       - MobPirateT2DoubleRevolver
+      - MobPirateT2Medic
     rarePrototypes:
       - MobPirateT2RevolverCutlass
       - MobPirateT2Grapeshot
@@ -533,6 +535,7 @@
       - MobPirateT3LaserCannon
       - MobPirateT3Revolver
       - MobPirateT3SMG
+      - MobPirateT3Medic
     rarePrototypes:
       - MobPirateT3L6
       - MobPirateT3Tachanka
@@ -852,6 +855,15 @@
   components:
   - type: BasicEntityAmmoProvider
     proto: BolaSyndicateDespawn
+    capacity: 1
+    count: 1
+
+- type: entity
+  parent: MobPirateT1Knife
+  id: MobPirateT1KnifeEMP
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: EmpGrenade
     capacity: 1
     count: 1
 
@@ -1277,6 +1289,11 @@
   - type: Loadout
     prototypes:
     - MobPirateT1MedicGear
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Critical
+      100: Dead
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1300,8 +1317,133 @@
     threshold: 0.9
     damage:
       groups:
-        Brute: -30
+        Brute: -20
         Burn: -10
+        Airloss: -5
+    whitelist:
+      components:
+      - PirateVeteranFollower
+
+- type: entity
+  name: pirate medic
+  description: A better-equipped pirate combat medic. Keeps the assault wave alive with stronger restorative support.
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2Ranged]
+  id: MobPirateT2Medic
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT2MedicGear
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Critical
+      100: Dead
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Eyes/Hud/medpatch.rsi
+      state: equipped-EYES
+    - sprite: Clothing/OuterClothing/Hardsuits/piratecaptain.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_old.rsi
+      state: equipped-HELMET
+    - sprite: Clothing/Head/Bandanas/blue.rsi
+      state: equipped-HELMET
+    - sprite: _Sunrise/Clothing/Head/Hats/cmospecialhat.rsi
+      state: off-equipped-HELMET
+    - sprite: Clothing/OuterClothing/Coats/labcoat_cmo.rsi
+      state: open-equipped-OUTERCLOTHING
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+  - type: BasicEntityAmmoProvider
+    proto: CartridgePistol40SP
+    capacity: 7
+    count: 7
+  - type: Gun
+    showExamineText: false
+    minAngle: 8
+    maxAngle: 18
+    angleIncrease: 3
+    angleDecay: 4
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+  - type: AoEHeal
+    threshold: 0.9
+    damage:
+      groups:
+        Brute: -20
+        Burn: -10
+        Airloss: -5
+    whitelist:
+      components:
+      - PirateVeteranFollower
+
+- type: entity
+  name: Privateer combat medic
+  description: A hired privateer medic. Fast hands, better stimulants, and enough firepower to stay relevant.
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3Ranged]
+  id: MobPirateT3Medic
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT3MedicGear
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Critical
+      100: Dead
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/privateer.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/neckgaiter.rsi
+      state: equipped-MASK
+    - sprite: _Sunrise/Clothing/OuterClothing/Vests/armor_sec_med.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/privateer.rsi
+      state: equipped-HELMET
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/privateer.rsi
+      state: on-equipped-HELMET
+      shader: unshaded
+    - sprite: _Sunrise/Clothing/Head/Hats/cmospecialhat.rsi
+      state: off-equipped-HELMET
+    - sprite: Objects/Tanks/oxygen.rsi
+      state: equipped-SUITSTORAGE
+    - sprite: Clothing/Hands/Gloves/nitrile.rsi
+      state: equipped-HAND
+      color: "#3CB57C"
+  - type: BatteryAmmoProvider
+    proto: CartridgePistolSP
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 3
+    autoRechargeRate: 999
+  - type: Battery
+    maxCharge: 10
+    startingCharge: 10
+  - type: Gun
+    showExamineText: false
+    minAngle: 3
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 6
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+  - type: AoEHeal
+    threshold: 0.9
+    damage:
+      groups:
+        Brute: -30
+        Burn: -20
         Airloss: -10
     whitelist:
       components:

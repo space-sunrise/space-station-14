@@ -32,6 +32,7 @@
       - MobPirateT1KnifeStingerTimed
       - MobPirateT1KnifeFirebombTimed
       - MobPirateT1KnifeBolaTimed
+      - MobPirateT1KnifeEMPTimed
       - MobPirateT1MonkeyKnuckleDustersTimed
       - MobPirateT1PickaxeTimed
       - MobPirateT1PistolTimed
@@ -105,6 +106,7 @@
       - MobPirateT2MachineCannonTimed
       - MobPirateT2DoubleFlintlockTimed
       - MobPirateT2DoubleRevolverTimed
+      - MobPirateT2MedicTimed
     rarePrototypes:
       - MobPirateT2RevolverCutlassTimed
       - MobPirateT2GrapeshotTimed
@@ -142,6 +144,7 @@
       - MobPirateT3LaserCannonTimed
       - MobPirateT3RevolverTimed
       - MobPirateT3SMGTimed
+      - MobPirateT3MedicTimed
     rarePrototypes:
       - MobPirateT3L6Timed
       - MobPirateT3TachankaTimed
@@ -412,6 +415,752 @@
     offset: 2.6
     deleteSpawnerAfterSpawn: true
 
+# region Random tier squads
+- type: entity
+  name: pirate T1 random unit spawner (despawn)
+  id: MobPirateT1RandomUnitTimedSpawner
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - MobPirateT1KnifeTimed
+    - MobPirateT1KnifeTearGasTimed
+    - MobPirateT1KnifeStingerTimed
+    - MobPirateT1KnifeFirebombTimed
+    - MobPirateT1KnifeBolaTimed
+    - MobPirateT1KnifeEMPTimed
+    - MobPirateT1PickaxeTimed
+    - MobPirateT1PistolTimed
+    - MobPirateT1MedicTimed
+    - MobPirateT1MosinTimed
+    - MobPirateT1PKATimed
+    - MobPirateT1ScrapSMGTimed
+    - MobPirateT1ScrapRifleTimed
+    - MobPirateT1FlintlockTimed
+    deleteSpawnerAfterSpawn: true
+    offset: 0.8
+
+- type: entityTable
+  id: PirateT1RandomSquadTimedTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobPirateT1RandomUnitTimedSpawner
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT1RandomUnitTimedSpawner
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT1RandomUnitTimedSpawner
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT1RandomUnitTimedSpawner
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT1RandomUnitTimedSpawner
+      prob: 1
+
+- type: entity
+  name: pirate T1 random squad spawner (despawn)
+  id: MobPirateT1RandomSquadTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: one
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: PirateT1RandomSquadTimedTable
+    offset: 2.4
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  name: pirate T2 random unit spawner (despawn)
+  id: MobPirateT2RandomUnitTimedSpawner
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - MobPirateT2CutlassTimed
+    - MobPirateT2ECutlassBolaTimed
+    - MobPirateT2ECutlassStingerTimed
+    - MobPirateT2SledgehammerTimed
+    - MobPirateT2GauntletDrillTimed
+    - MobPirateT2ShotgunTimed
+    - MobPirateT2ShotgunMiniBallTimed
+    - MobPirateT2ShotgunGlassTimed
+    - MobPirateT2MusketTimed
+    - MobPirateT2MusketEMPTimed
+    - MobPirateT2MusketBlastTimed
+    - MobPirateT2MusketFragTimed
+    - MobPirateT2MusketPenetratorTimed
+    - MobPirateT2MachineCannonTimed
+    - MobPirateT2DoubleFlintlockTimed
+    - MobPirateT2DoubleRevolverTimed
+    - MobPirateT2MedicTimed
+    deleteSpawnerAfterSpawn: true
+    offset: 0.8
+
+- type: entityTable
+  id: PirateT2RandomSquadTimedTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobPirateT2RandomUnitTimedSpawner
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2RandomUnitTimedSpawner
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2RandomUnitTimedSpawner
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2RandomUnitTimedSpawner
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2RandomUnitTimedSpawner
+      prob: 1
+
+- type: entity
+  name: pirate T2 random squad spawner (despawn)
+  id: MobPirateT2RandomSquadTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: two
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: PirateT2RandomSquadTimedTable
+    offset: 2.5
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  name: pirate T3 random unit spawner (despawn)
+  id: MobPirateT3RandomUnitTimedSpawner
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - MobPirateT3BolaTimed
+    - MobPirateT3StunTimed
+    - MobPirateT3Shield1984Timed
+    - MobPirateT3ShieldSMGTimed
+    - MobPirateT3DMRTimed
+    - MobPirateT3RifleTimed
+    - MobPirateT3LaserSMGTimed
+    - MobPirateT3LaserCannonTimed
+    - MobPirateT3RevolverTimed
+    - MobPirateT3SMGTimed
+    - MobPirateT3RPDTimed
+    - MobPirateT3GrenadierTimed
+    - MobPirateT3SniperTimed
+    - MobPirateT3MedicTimed
+    deleteSpawnerAfterSpawn: true
+    offset: 0.8
+
+- type: entityTable
+  id: PirateT3RandomSquadTimedTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobPirateT3RandomUnitTimedSpawner
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3RandomUnitTimedSpawner
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3RandomUnitTimedSpawner
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3RandomUnitTimedSpawner
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3RandomUnitTimedSpawner
+      prob: 1
+
+- type: entity
+  name: pirate T3 random squad spawner (despawn)
+  id: MobPirateT3RandomSquadTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: PirateT3RandomSquadTimedTable
+    offset: 2.6
+    deleteSpawnerAfterSpawn: true
+
+# region T2 squad
+- type: entityTable
+  id: PirateT2LMGSquadTimedTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobPirateT2MusketPenetratorTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2MusketTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2DoubleRevolverTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2MedicTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2JuggernautMGTimed
+      prob: 1
+
+- type: entity
+  name: pirate T2 LMG squad spawner (despawn)
+  id: MobPirateT2LMGSquadTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: one
+    - sprite: Objects/Materials/materials.rsi
+      state: steel
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: PirateT2LMGSquadTimedTable
+    offset: 2.2
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: PirateT2BreachSquadTimedTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobPirateT2ECutlassTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2ECutlassBolaTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2ShotgunTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2ShotgunMiniBallTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2MedicTimed
+      prob: 1
+
+- type: entity
+  name: pirate T2 breach squad spawner (despawn)
+  id: MobPirateT2BreachSquadTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: one
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: PirateT2BreachSquadTimedTable
+    offset: 2.2
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: PirateT2AssaultSquadTimedTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobPirateT2MusketBlastTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2MachineCannonTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2DoubleFlintlockTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2ShotgunGlassTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2MedicTimed
+      prob: 1
+
+- type: entity
+  name: pirate T2 assault squad spawner (despawn)
+  id: MobPirateT2AssaultSquadTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: one
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: PirateT2AssaultSquadTimedTable
+    offset: 2.2
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: PirateT2HeavySquadTimedTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobPirateT2JuggernautTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2JuggernautMGTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2MachineCannonTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2MechTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2ShotgunTimed
+      prob: 1
+
+- type: entity
+  name: pirate T2 heavy squad spawner (despawn)
+  id: MobPirateT2HeavySquadTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: one
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: PirateT2HeavySquadTimedTable
+    offset: 2.4
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: PirateT2InfiltratorSquadTimedTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobPirateT2RevolverCutlassTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2ECutlassStingerTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2DoubleRevolverTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2MusketEMPTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2MedicTimed
+      prob: 1
+
+- type: entity
+  name: pirate T2 infiltrator squad spawner (despawn)
+  id: MobPirateT2InfiltratorSquadTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: one
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: PirateT2InfiltratorSquadTimedTable
+    offset: 2.2
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: PirateT2ControlSquadTimedTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobPirateT2JuggernautMGTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2MachineCannonTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2ShotgunGlassTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2RevolverCutlassTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2ECutlassBolaTimed
+      prob: 1
+
+- type: entity
+  name: pirate T2 control squad spawner (despawn)
+  id: MobPirateT2ControlSquadTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: one
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: PirateT2ControlSquadTimedTable
+    offset: 2.3
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: PirateT2AntiCrowdSquadTimedTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobPirateT2MusketFragTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2GrapeshotTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2ECutlassTearGasTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2DoubleFlintlockTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT2ShotgunMiniBallTimed
+      prob: 1
+
+- type: entity
+  name: pirate T2 anti crowd squad spawner (despawn)
+  id: MobPirateT2AntiCrowdSquadTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: one
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: PirateT2AntiCrowdSquadTimedTable
+    offset: 2.3
+    deleteSpawnerAfterSpawn: true
+
+# region T3 squad
+- type: entityTable
+  id: PirateT3LMGSquadTimedTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobPirateT3RifleTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3RPDTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3SMGTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3L6Timed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3ShieldSMGTimed
+      prob: 1
+
+- type: entity
+  name: pirate T3 LMG squad spawner (despawn)
+  id: MobPirateT3LMGSquadTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: one
+    - sprite: Objects/Materials/materials.rsi
+      state: steel
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: PirateT3LMGSquadTimedTable
+    offset: 2.2
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: PirateT3BreachSquadTimedTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobPirateT3Shield1984Timed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3StunTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3BolaTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3GrenadierTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3LaserSMGTimed
+      prob: 1
+
+- type: entity
+  name: pirate T3 breach squad spawner (despawn)
+  id: MobPirateT3BreachSquadTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: one
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: PirateT3BreachSquadTimedTable
+    offset: 2.2
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: PirateT3AssaultSquadTimedTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobPirateT3RifleTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3Rifle2Timed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3SMGTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3LaserSMGTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3RevolverTimed
+      prob: 1
+
+- type: entity
+  name: pirate T3 assault squad spawner (despawn)
+  id: MobPirateT3AssaultSquadTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: one
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: PirateT3AssaultSquadTimedTable
+    offset: 2.2
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: PirateT3HeavySquadTimedTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobPirateT3L6Timed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3RPDTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3TachankaTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3LaserCannonTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3GrenadierTimed
+      prob: 1
+
+- type: entity
+  name: pirate T3 heavy squad spawner (despawn)
+  id: MobPirateT3HeavySquadTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: one
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: PirateT3HeavySquadTimedTable
+    offset: 2.4
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: PirateT3InfiltratorSquadTimedTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobPirateT3InfiltratorTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3SniperTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3RevolverTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3BolaTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3StunTimed
+      prob: 1
+
+- type: entity
+  name: pirate T3 infiltrator squad spawner (despawn)
+  id: MobPirateT3InfiltratorSquadTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: one
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: PirateT3InfiltratorSquadTimedTable
+    offset: 2.2
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: PirateT3ShieldPhalanxTimedTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobPirateT3Shield1984Timed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3ShieldSMGTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3StunTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3BolaTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3DMRTimed
+      prob: 1
+
+- type: entity
+  name: pirate T3 shield phalanx squad spawner (despawn)
+  id: MobPirateT3ShieldPhalanxTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: one
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: PirateT3ShieldPhalanxTimedTable
+    offset: 2.3
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: PirateT3SuppressorSquadTimedTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobPirateT3L6Timed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3TachankaTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3RPDTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3GrenadierTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3ShieldSMGTimed
+      prob: 1
+
+- type: entity
+  name: pirate T3 suppressor squad spawner (despawn)
+  id: MobPirateT3SuppressorSquadTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: one
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: PirateT3SuppressorSquadTimedTable
+    offset: 2.3
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: PirateT3UniversalSquadTimedTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobPirateT3Rifle2Timed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3LaserSMGTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3GrenadierTimed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3Shield1984Timed
+      prob: 1
+    - !type:EntSelector
+      id: MobPirateT3RevolverTimed
+      prob: 1
+
+- type: entity
+  name: pirate T3 universal squad spawner (despawn)
+  id: MobPirateT3UniversalSquadTimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: one
+    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
+      state: icon
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: PirateT3UniversalSquadTimedTable
+    offset: 2.3
+    deleteSpawnerAfterSpawn: true
+
 # region Timed-Start
 - type: entity
   parent: [MobPirateTimedDespawn, MobPirateT1Knife]
@@ -434,6 +1183,10 @@
   id: MobPirateT1KnifeBolaTimed
 
 - type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1KnifeEMP]
+  id: MobPirateT1KnifeEMPTimed
+
+- type: entity
   parent: [MobPirateTimedDespawn, MobPirateT1MonkeyKnuckleDusters]
   id: MobPirateT1MonkeyKnuckleDustersTimed
 
@@ -448,6 +1201,14 @@
 - type: entity
   parent: [MobPirateTimedDespawn, MobPirateT1Medic]
   id: MobPirateT1MedicTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT2Medic]
+  id: MobPirateT2MedicTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT3Medic]
+  id: MobPirateT3MedicTimed
 
 - type: entity
   parent: [MobPirateTimedDespawn, MobPirateT1Mosin]

@@ -337,6 +337,16 @@
     pocket1: PatchOmni
     pocket2: PatchBrute
 
+- type: startingGear
+  id: MobPirateT2MedicGear
+  equipment:
+    gloves: ClothingHandsBlackPistol
+    back: ClothingBackDuffelMercenaryTier2Medic
+    belt: ClothingBeltMedicalFilled
+    shoes: ClothingShoesBootsMagPirate
+    pocket1: HandheldHealthAnalyzer
+    pocket2: MedkitCombatFilled
+
 # region  Pirate Tier3
 - type: startingGear
   id: MobPirateT3BolaGear
@@ -451,6 +461,16 @@
     pocket1: PouchAmmoFilledPistol40
     pocket2: WeaponPistolVP78
     shoes: ClothingShoesBootsMagCombat
+
+- type: startingGear
+  id: MobPirateT3MedicGear
+  equipment:
+    gloves: ClothingHandsSMGC40
+    back: ClothingBackDuffelMercenaryTier3Medic
+    belt: ClothingBeltMedicalFilled
+    shoes: ClothingShoesBootsMagCombat
+    pocket1: HandheldHealthAnalyzer
+    pocket2: StimkitFilled
 
 - type: startingGear
   id: MobPirateGearRangedAltT3
