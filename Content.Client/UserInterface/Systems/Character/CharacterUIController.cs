@@ -10,7 +10,7 @@ using Content.Shared.Input;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
-using Content.Shared._Sunrise.CollectiveMind;
+using Content.Client._Sunrise.UserInterface.Systems.Character;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
@@ -27,7 +27,7 @@ using static Robust.Client.UserInterface.Controls.BaseButton;
 namespace Content.Client.UserInterface.Systems.Character;
 
 [UsedImplicitly]
-public sealed class CharacterUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>, IOnSystemChanged<CharacterInfoSystem>
+public sealed partial class CharacterUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>, IOnSystemChanged<CharacterInfoSystem>  // Sunrise-Edit: collective minds displayed at character menu
 {
     [Dependency] private readonly IEntityManager _ent = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
@@ -183,28 +183,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         }
 
 
-        // Sunrise-Start: collective minds displayed at character menu
-        if (minds != null && minds.Count > 0)
-        {
-            var mindsControl = new CharacterMindsControl
-            {
-                Orientation = BoxContainer.LayoutOrientation.Vertical
-            };
-            var mindDescriptionMessage = new FormattedMessage();
-            mindDescriptionMessage.AddText(Loc.GetString("character-info-collective-minds-title"));
-            foreach (var mindPrototype in minds)
-            {
-                mindDescriptionMessage.AddText("\n");
-                mindDescriptionMessage.PushColor(mindPrototype.Key.Color);
-                mindDescriptionMessage.AddText($"{mindPrototype.Key.LocalizedName}: +{mindPrototype.Key.KeyCode}");
-                mindDescriptionMessage.AddText(" ");
-                mindDescriptionMessage.AddText(Loc.GetString("character-info-collective-minds-number", ("mindId", mindPrototype.Value.MindId)));
-                mindDescriptionMessage.Pop();
-            }
-            mindsControl.Description.SetMessage(mindDescriptionMessage);
-            _window.Objectives.AddChild(mindsControl);
-        }
-        // Sunrise-End: collective minds displayed at character menu
+        AddCollectiveMindsToCharacterMenu(minds);         // Sunrise-Edit: collective minds displayed at character menu
 
         if (briefing != null)
         {
