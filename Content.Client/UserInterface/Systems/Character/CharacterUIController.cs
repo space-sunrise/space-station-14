@@ -131,7 +131,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
             return;
         }
 
-        var (entity, job, objectives, minds, briefing, entityName) = data; // Sunrise-Edit: collective minds displayed at character menu
+        var (entity, job, objectives, briefing, entityName, minds) = data; // Sunrise-Edit: collective minds displayed at character menu
 
         _window.SpriteView.SetEntity(entity);
 
