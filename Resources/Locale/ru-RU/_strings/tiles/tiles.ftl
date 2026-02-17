@@ -133,8 +133,4 @@ tiles-wood-large = большой деревянный пол
 tiles-light-fancy-wood = красивый деревянный пол
 tiles-lattice-diagonal = решётка диагональная
 tiles-xenoborg-floor = ксеноборговая плитка
-tiles-abductor-floor = пол абдукторов старый
-tiles-abductor-floor-cooldesign = пол абдукторов
-tiles-abductor-floor-cute = пол абдукторов
-tiles-abductor-floor-shield = пол абдукторов
-tiles-abductor-floor-tetris = пол абдукторов
+

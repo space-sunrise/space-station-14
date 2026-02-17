@@ -5,22 +5,6 @@
   description: Modern and economical
   suffix: strobe
   components:
-  - type: AmbientSound
-    volume: -30
-    range: 1
-    sound:
-      path: /Audio/Ambience/Objects/light_hum.ogg
-  - type: MeleeSound
-    soundGroups:
-      Brute:
-        collection: GlassSmash
-  - type: Transform
-    anchored: true
-  - type: Clickable
-  - type: InteractionOutline
-  - type: Construction
-    graph: LightFixture
-    node: bulbLight
   - type: Sprite
     sprite: _Sunrise/Structures/Wallmounts/abductorlamp.rsi
     drawdepth: WallMountedItems
@@ -69,18 +53,8 @@
     color: "#F4C1C1"
   - type: PoweredLight
     hasLampOnSpawn: LightTube
-  - type: AmbientOnPowered
-  - type: AmbientSound
-    volume: -15
-    range: 2
-    sound:
-      path: /Audio/Ambience/Objects/light_hum.ogg
   - type: Sprite
     sprite: _Sunrise/Structures/Wallmounts/abductoraskallamp.rsi
-    drawdepth: WallMountedItems
-    layers:
-    - map: ["enum.PoweredLightLayers.Base"]
-      state: glow
   - type: PoweredLightVisuals
     spriteStateMap:
       empty: empty
@@ -88,8 +62,4 @@
       on: base
       broken: broken
       burned: burned
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 1
-    popupText: powered-light-component-burn-hand
+

@@ -148,8 +148,4 @@ tiles-white-marble = white marble tile
 tiles-dark-marble = dark marble tile
 tiles-plasma-marble = plasmarble tile
 tiles-uranium-marble = uranium marble tile
-tiles-abductor-floor = abductor floor old
-tiles-abductor-floor-cooldesign = abductor floor
-tiles-abductor-floor-cute = abductor floor
-tiles-abductor-floor-shield = abductor floor
-tiles-abductor-floor-tetris = abductor floor
+
