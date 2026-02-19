@@ -13,6 +13,7 @@ public sealed class VampireSystem : EntitySystem
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
+    private const string VampireBloodAlertKey = "VampireBlood";
     private static readonly ProtoId<FactionIconPrototype> _thrallIcon = "VampireThrallIcon";
     private static readonly ProtoId<FactionIconPrototype> _masterIcon = "VampireFaction";
 
@@ -28,7 +29,7 @@ public sealed class VampireSystem : EntitySystem
     {
         var key = args.Alert.AlertKey.AlertType;
 
-        if (key == "VampireBlood")
+        if (key == VampireBloodAlertKey)
         {
             // Background is set by the alert -> only set the digit layers from the counter value.
             var value = Math.Clamp(comp.DrunkBlood, 0, 9999);
