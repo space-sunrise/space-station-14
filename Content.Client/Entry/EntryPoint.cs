@@ -143,6 +143,7 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("codewordGenerator");
             _prototypeManager.RegisterIgnore("codewordFaction");
             // Sunrise-Start
+            _prototypeManager.RegisterIgnore("antagRoleBlacklist");
             _prototypeManager.RegisterIgnore("stationGoal");
             _prototypeManager.RegisterIgnore("sponsorLoadout");
             _prototypeManager.RegisterIgnore("holidayGiveawayItem");
