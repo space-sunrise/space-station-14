@@ -6,7 +6,6 @@ using Robust.Client.UserInterface;
 using Robust.Shared.IoC;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using System.Linq;
 
 namespace Content.Client._Starlight.Antags.Vampires;
 
@@ -39,8 +38,7 @@ public sealed class VampireClassBui : BoundUserInterface
 
     private void OnMenuClosed()
     {
-        if (_choiceMade 
-            || !EntMan.EntityExists(Owner) || !EntMan.TryGetComponent<MetaDataComponent>(Owner, out _))
+        if (_choiceMade)
             return;
 
         SendMessage(new VampireClassClosedBuiMsg());
