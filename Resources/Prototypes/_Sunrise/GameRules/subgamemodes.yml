@@ -4,7 +4,6 @@
   id: VampireLess
   components:
   - type: GameRule
-    minPlayers: 5
     delay:
       min: 600
       max: 900
@@ -27,7 +26,6 @@
   id: TraitorLess
   components:
   - type: GameRule
-    minPlayers: 5
     delay:
       min: 600
       max: 900
