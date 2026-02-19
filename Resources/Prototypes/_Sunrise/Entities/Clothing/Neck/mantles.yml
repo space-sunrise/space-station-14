@@ -43,7 +43,7 @@
       sprite: _Sunrise/Clothing/Neck/Mantles/blueshieldm.rsi
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: ClothingNeckCloakCap
   id: ClothingNeckMantleCaptainWhite
   name: white captain's mantle
   description: A crisp white mantle for a captain who really wants everyone to notice.
@@ -54,7 +54,7 @@
       sprite: _Sunrise/Clothing/Neck/Mantles/captain_mantle_white.rsi
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: ClothingNeckCloakCap
   id: ClothingNeckMantleCaptainBlack
   name: black captain's mantle
   description: A black mantle for a captain who prefers to command in stealth… loudly.
@@ -65,7 +65,7 @@
       sprite: _Sunrise/Clothing/Neck/Mantles/captain_mantle_black.rsi
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: ClothingNeckCloakCap
   id: ClothingNeckMantleCaptainWhiteShoulder
   name: white captain's shoulder mantle
   description: A one-shoulder white mantle half cape, half declaration of authority.
@@ -76,7 +76,7 @@
       sprite: _Sunrise/Clothing/Neck/Mantles/captain_mantle_white_shoulder.rsi
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: ClothingNeckCloakCap
   id: ClothingNeckMantleCaptainBlackShoulder
   name: black captain's shoulder mantle
   description: A one-shoulder black mantle for maximum drama and minimum paperwork.

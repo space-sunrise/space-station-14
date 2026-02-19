@@ -35,7 +35,7 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatHuman
+    - id: FoodMeatMilira
       amount: 5
   - type: HumanoidAppearance
     species: Milira

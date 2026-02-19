@@ -236,6 +236,8 @@
     magState: mag
     steps: 4
     zeroVisible: true
+  - type: StealTarget
+    stealGroup: OfficerHandgun
   # - type: PointLight
   #   enabled: false
   #   mask: /Textures/Effects/LightMasks/cone.png

@@ -100,6 +100,33 @@
   - BrigmedicJumpskirt
 
 - type: loadoutGroup
+  id: BrigmedicInjectors
+  name: loadout-group-sunrise-injectors
+  minLimit: 0
+  maxLimit: 4
+  loadouts:
+  - AutoInjectorEmergency1
+  - AutoInjectorEmergency2
+  - AutoInjectorBrute1
+  - AutoInjectorBrute2
+  - AutoInjectorBurn1
+  - AutoInjectorBurn2
+  - AutoInjectorPuncturase1
+  - AutoInjectorPuncturase2
+  - AutoInjectorBruiz1
+  - AutoInjectorBruiz2
+  - AutoInjectorLacer1
+  - AutoInjectorLacer2
+  - AutoInjectorPyrazine1
+  - AutoInjectorPyrazine2
+  - AutoInjectorAirloss
+  - AutoInjectorPoison
+  - AutoInjectorCoal
+  - AutoInjectorRadiation
+  - AutoInjectorPoly
+  - AutoInjectorStellibinin
+
+- type: loadoutGroup
   id: NanoTrasenRepresentativeJumpsuit
   name: loadout-group-nanotrasenrepresentative-jumpsuit
   minLimit: 1
