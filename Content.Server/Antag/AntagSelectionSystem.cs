@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.Antag.Components;
+using Content.Server._Sunrise.Antag;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
@@ -39,7 +40,6 @@ using Robust.Shared.Utility;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 using Content.Sunrise.Interfaces.Shared;
-using Content.Server.Bible.Components;
 using AddComponentSpecial = Content.Server.Jobs.AddComponentSpecial; // Sunrise-Sponsors
 
 namespace Content.Server.Antag;
@@ -59,6 +59,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     [Dependency] private readonly RoleSystem _role = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private readonly AntagRoleBlacklistSystem _antagRoleBlacklist = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
@@ -693,9 +694,13 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                 return false;
         }
 
-        // Starlight: Chaplainsusers should never be selected as vampires.
-        if (def.MindRoles != null && def.MindRoles.Contains("MindRoleVampire") && HasComp<BibleUserComponent>(entity.Value))
-            return false;
+        // Sunrise: Изначально система нужна была для того чтобы священник не мог стать вампиром
+        // Но теперь можно поставить в прототипе antagRoleBlacklist любой тэг, компонент и тп
+        if (def.MindRoles != null && def.MindRoles.Count > 0)
+        {
+            if (_antagRoleBlacklist.IsBlocked(entity.Value, def.MindRoles))
+                return false;
+        }
 
         return true;
     }

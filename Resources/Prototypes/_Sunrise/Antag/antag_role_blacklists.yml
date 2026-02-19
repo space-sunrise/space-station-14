@@ -1,0 +1,7 @@
+- type: antagRoleBlacklist
+  id: BibleUserVampire
+  blacklist:
+    components:
+    - BibleUser
+  mindRoles:
+  - MindRoleVampire
