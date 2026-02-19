@@ -22,9 +22,9 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     private readonly TransformSystem _transform;
+    private readonly SpriteSystem _sprite;
     private readonly EntityQuery<HysteriaVisionComponent> _hysteriaQuery;
     private readonly EntityQuery<VampireThrallComponent> _thrallQuery;
 
@@ -41,6 +41,7 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
     {
         IoCManager.InjectDependencies(this);
         _transform = _entManager.System<TransformSystem>();
+        _sprite = _entManager.System<SpriteSystem>();
         _hysteriaQuery = _entManager.GetEntityQuery<HysteriaVisionComponent>();
         _thrallQuery = _entManager.GetEntityQuery<VampireThrallComponent>();
     }
