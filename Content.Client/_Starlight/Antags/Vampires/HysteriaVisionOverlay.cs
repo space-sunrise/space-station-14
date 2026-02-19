@@ -3,8 +3,8 @@ using Content.Shared.Humanoid;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
-using Robust.Client.ResourceManagement;
 using Robust.Shared.Enums;
+using Robust.Shared.Graphics;
 using Robust.Shared.Graphics.RSI;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -13,19 +13,20 @@ using Robust.Shared.Utility;
 namespace Content.Client._Starlight.Antags.Vampires;
 
 /// <summary>
-/// Overlay that renders monster/animal sprites over humanoids  
+/// Overlay that renders monster/animal sprites over humanoids
 /// when the local player has HysteriaVisionComponent.
 /// </summary>
 public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     private readonly TransformSystem _transform;
-    private readonly EntityLookupSystem _lookup;
+    private readonly EntityQuery<HysteriaVisionComponent> _hysteriaQuery;
+    private readonly EntityQuery<VampireThrallComponent> _thrallQuery;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
 
@@ -40,15 +41,20 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
     {
         IoCManager.InjectDependencies(this);
         _transform = _entManager.System<TransformSystem>();
-        _lookup = _entManager.System<EntityLookupSystem>();
+        _hysteriaQuery = _entManager.GetEntityQuery<HysteriaVisionComponent>();
+        _thrallQuery = _entManager.GetEntityQuery<VampireThrallComponent>();
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
         var player = _playerManager.LocalEntity;
-        if (player == null 
-            || !_entManager.TryGetComponent<HysteriaVisionComponent>(player, out var hysteria) 
-            || _timing.CurTime > hysteria.EndTime) // Check if effect expired
+        if (player == null)
+            return false;
+
+        if (!_hysteriaQuery.TryComp(player.Value, out var hysteria))
+            return false;
+
+        if (_timing.CurTime > hysteria.EndTime) // Check if effect expired
             return false;
 
         // Load all sprites if not loaded
@@ -66,16 +72,8 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
         {
             var sprite = HysteriaVisionComponent.DisguiseSprites[i];
             var trimmedPath = sprite.Path.TrimStart('/');
-            var path = new ResPath("/Textures") / trimmedPath;
-
-            if (!_resourceCache.TryGetResource<RSIResource>(path, out var rsiResource) 
-                || !rsiResource.RSI.TryGetState(sprite.State, out var rsiState))
-            {
-                _disguiseStates[i] = null;
-                continue;
-            }
-
-            _disguiseStates[i] = rsiState;
+            var specifier = new SpriteSpecifier.Rsi(new ResPath(trimmedPath), sprite.State);
+            _disguiseStates[i] = _sprite.GetState(specifier);
         }
     }
 
@@ -93,55 +91,59 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
     }
 
     /// <summary>
-    /// Converts a Direction into the corresponding RsiDirection
+    /// Helper to get the first frame of a given state and direction.
     /// </summary>
-    private static RsiDirection GetRsiDirection(Direction dir) => dir switch
+    private static Texture? GetFrame0(RSI.State state, RsiDirection dir)
     {
-        Direction.North => RsiDirection.North,
-        Direction.South => RsiDirection.South,
-        Direction.East => RsiDirection.East,
-        Direction.West => RsiDirection.West,
-        Direction.NorthEast => RsiDirection.North,
-        Direction.NorthWest => RsiDirection.North,
-        Direction.SouthEast => RsiDirection.South,
-        Direction.SouthWest => RsiDirection.South,
-        _ => RsiDirection.South
-    };
+        return state.GetFrame(dir, 0);
+    }
 
     protected override void Draw(in OverlayDrawArgs args)
     {
         var player = _playerManager.LocalEntity;
-        if (player == null || !_entManager.TryGetComponent<HysteriaVisionComponent>(player, out var hysteria))
+        if (player == null)
+            return;
+
+        if (!_hysteriaQuery.TryComp(player.Value, out var hysteria))
             return;
 
         var preserveSourceThrallVisibility =
-            _entManager.TryGetComponent<VampireThrallComponent>(player.Value, out var playerThrall)
+            _thrallQuery.TryComp(player.Value, out var playerThrall)
             && playerThrall.Master == hysteria.Source;
 
         var worldHandle = args.WorldHandle;
-        var counterRotation = -(args.Viewport.Eye?.Rotation ?? Angle.Zero); 
+        var counterRotation = -(args.Viewport.Eye?.Rotation ?? Angle.Zero);
+        var enlargedBounds = args.WorldBounds.Enlarged(2f);
 
         // Query all humanoids
         var query = _entManager.EntityQueryEnumerator<HumanoidAppearanceComponent, TransformComponent, SpriteComponent>();
 
         while (query.MoveNext(out var uid, out _, out var xform, out var sprite))
         {
-            if (xform.MapID != args.MapId // Skip if not on the same map
-                || uid == player // Skip self
-                || !sprite.Visible) // Skip entities that are not visible
+            if (xform.MapID != args.MapId) // Skip if not on the same map
+                continue;
+
+            if (uid == player) // Skip self
+                continue;
+
+            if (!sprite.Visible) // Skip entities that are not visible
                 continue;
 
             // Skip thralls of the source vampire
-            if (preserveSourceThrallVisibility
-                && _entManager.TryGetComponent<VampireThrallComponent>(uid, out var thrall)
-                && thrall.Master == hysteria.Source)
-                continue;
+            if (preserveSourceThrallVisibility)
+            {
+                if (_thrallQuery.TryComp(uid, out var thrall))
+                {
+                    if (thrall.Master == hysteria.Source)
+                        continue;
+                }
+            }
 
             // Get world position
             var worldPos = _transform.GetWorldPosition(xform);
 
             // Check if in viewport bounds (with some margin)
-            if (!args.WorldBounds.Enlarged(2f).Contains(worldPos))
+            if (!enlargedBounds.Contains(worldPos))
                 continue;
 
             // Get random sprite for this entity
@@ -152,15 +154,14 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
 
             var size = HysteriaVisionComponent.DisguiseSprites[spriteIndex].Size;
 
-            // Get the direction from the targets sprite to match their facing
-            var rsiDir = GetRsiDirection(xform.LocalRotation.GetCardinalDir());
-            var texture = disguiseState.GetFrame(rsiDir, 0);
+            var rsiDir = SpriteComponent.Layer.GetDirection(disguiseState.RsiDirections, xform.LocalRotation);
+            var texture = GetFrame0(disguiseState, rsiDir);
             if (texture == null)
                 continue;
 
             // Calculate the draw box centered on the entity
             var drawPos = worldPos;
-            
+
             var box = Box2.CenteredAround(drawPos, size);
 
             var rotatedBox = new Box2Rotated(box, counterRotation, drawPos);

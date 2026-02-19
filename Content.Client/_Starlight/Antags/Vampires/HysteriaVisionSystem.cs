@@ -17,6 +17,7 @@ public sealed class HysteriaVisionSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private HysteriaVisionOverlay? _overlay;
+    private EntityQuery<HysteriaVisionComponent> _hysteriaQuery;
 
     public override void Initialize()
     {
@@ -26,6 +27,8 @@ public sealed class HysteriaVisionSystem : EntitySystem
         SubscribeLocalEvent<HysteriaVisionComponent, ComponentShutdown>(OnHysteriaShutdown);
         SubscribeLocalEvent<HysteriaVisionComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<HysteriaVisionComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
+
+        _hysteriaQuery = GetEntityQuery<HysteriaVisionComponent>();
     }
 
     public override void Shutdown()
@@ -47,10 +50,14 @@ public sealed class HysteriaVisionSystem : EntitySystem
     }
 
     private void OnPlayerAttached(EntityUid uid, HysteriaVisionComponent component, LocalPlayerAttachedEvent args)
-        => AddOverlay();
+    {
+        AddOverlay();
+    }
 
     private void OnPlayerDetached(EntityUid uid, HysteriaVisionComponent component, LocalPlayerDetachedEvent args)
-        => RemoveOverlay();
+    {
+        RemoveOverlay();
+    }
 
     public override void Update(float frameTime)
     {
@@ -58,7 +65,7 @@ public sealed class HysteriaVisionSystem : EntitySystem
 
         // Check if we need to remove the overlay due to expiration
         var player = _playerManager.LocalEntity;
-        if (player == null || !TryComp<HysteriaVisionComponent>(player, out var hysteria))
+        if (player == null || !_hysteriaQuery.TryComp(player.Value, out var hysteria))
             return;
 
         // Remove component if expired
@@ -81,6 +88,7 @@ public sealed class HysteriaVisionSystem : EntitySystem
             return;
 
         _overlayManager.RemoveOverlay(_overlay);
+        _overlay.Dispose();
         _overlay = null;
     }
 }
