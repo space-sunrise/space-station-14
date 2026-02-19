@@ -4,6 +4,7 @@ using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Roles;
 using Content.Shared.Objectives.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
@@ -17,8 +18,8 @@ namespace Content.IntegrationTests.Tests._Starlight.Antags;
 [TestFixture]
 public sealed class VampireRuleTest
 {
-    private const string VampireGameRuleProtoId = "Vampire";
-    private const string VampireAntagRoleName = "Vampire";
+    private static readonly EntProtoId VampireGameRuleProtoId = "Vampire";
+    private static readonly ProtoId<AntagPrototype> VampireAntagRoleName = "Vampire";
 
     [Test]
     public async Task TestVampireRuleAssignsAntagAndObjectives()
