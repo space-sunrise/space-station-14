@@ -1,48 +1,7 @@
 - type: entity
-  id: AbductorLampStrobe
-  name: abductor lamp
-  parent: AlwaysPoweredStrobeLight
-  description: Modern and economical
-  suffix: strobe
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Structures/Wallmounts/abductorlamp.rsi
-    drawdepth: WallMountedItems
-    layers:
-    - map: ["enum.PoweredLightLayers.Base"]
-      state: base
-  - type: PointLight
-    mask: /Textures/Effects/LightMasks/double_cone.png
-    color: "#F4C1C1"
-    energy: 5
-    radius: 10
-    softness: 1
-    offset: "0, 0.35"
-  - type: RotatingLight
-  - type: Physics
-
-- type: entity
-  parent: AlwaysPoweredWallLight
-  name: abductor lamp
-  description: Modern and economical
-  id: AbductorLamp
-  suffix: Always Powered, Exterior
-  components:
-  - type: PointLight
-    radius: 12
-    energy: 4.5
-    softness: 0.5
-    color: "#F4C1C1"
-  - type: Sprite
-    sprite: _Sunrise/Structures/Wallmounts/abductorlamp.rsi
-    drawdepth: WallMountedItems
-    layers:
-    - map: ["enum.PoweredLightLayers.Base"]
-      state: base
-
-- type: entity
   parent: PoweredlightEmpty
   name: abductor lamp
+  suffix: Exterior
   description: Modern and economical
   id: AbductorLampNew
   components:
@@ -55,11 +14,5 @@
     hasLampOnSpawn: LightTube
   - type: Sprite
     sprite: _Sunrise/Structures/Wallmounts/abductoraskallamp.rsi
-  - type: PoweredLightVisuals
-    spriteStateMap:
-      empty: empty
-      off: base
-      on: base
-      broken: broken
-      burned: burned
+
 
