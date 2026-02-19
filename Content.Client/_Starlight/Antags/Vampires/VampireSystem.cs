@@ -19,7 +19,6 @@ public sealed class VampireSystem : EntitySystem
 
     public override void Initialize()
     {
-        base.Initialize();
         SubscribeLocalEvent<VampireComponent, UpdateAlertSpriteEvent>(OnUpdateAlert);
         SubscribeLocalEvent<VampireThrallComponent, GetStatusIconsEvent>(OnThrallIcons);
         SubscribeLocalEvent<VampireComponent, GetStatusIconsEvent>(OnVampireIcons);
