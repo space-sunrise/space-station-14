@@ -248,3 +248,21 @@
     Glass: 700
     Cloth: 20
     CrushedPhosphorus: 1500
+
+- type: latheRecipe
+  id: BombagaTA
+  result: WeaponGrenadeLauncherImprovised
+  completetime: 120
+  materials:
+    Steel: 1800
+    Plastic: 700
+    Wood: 350
+    Plasteel: 500
+
+- type: latheRecipe
+  id: ImprovisedGrenadeCasingEmptyTA
+  result: ImprovisedGrenadeCasingEmpty
+  completetime: 18
+  materials:
+    Steel: 120
+    Plastic: 80
