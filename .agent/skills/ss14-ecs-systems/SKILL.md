@@ -449,3 +449,86 @@ public record struct MyPerformantEvent(EntityUid Target, float Value);
 - Имена всегда заканчиваются на `Event`: `InteractUsingEvent`, `DamageChangedEvent`
 - Попытки: `AttemptEvent` / `Attempt`: `PickupAttemptEvent`
 - Уведомления: описательное имя: `MobStateChangedEvent`, `StackCountChangedEvent`
+
+## Оптимизации hot-path (дополнение)
+
+### 1) Предвычисляй инварианты до вложенных циклов
+
+```csharp
+var fastPath = false;
+var itemShape = ItemSystem.GetItemShape(itemEnt); // Получаем форму один раз.
+var fastAngles = itemShape.Count == 1;
+
+if (itemShape.Count == 1 && itemShape[0].Contains(Vector2i.Zero))
+    fastPath = true;
+
+var angles = new ValueList<Angle>();
+if (!fastAngles)
+{
+    for (var angle = startAngle; angle <= Angle.FromDegrees(360 - startAngle); angle += Math.PI / 2f)
+        angles.Add(angle); // Подготовили набор углов один раз.
+}
+else
+{
+    angles.Add(startAngle);
+    if (itemShape[0].Width != itemShape[0].Height)
+        angles.Add(startAngle + Angle.FromDegrees(90));
+}
+
+while (chunkEnumerator.MoveNext(out var storageChunk))
+{
+    for (var y = bottom; y <= top; y++)
+    {
+        for (var x = left; x <= right; x++)
+        {
+            foreach (var angle in angles)
+            {
+                // Основная тяжёлая проверка использует уже предвычисленные значения.
+            }
+        }
+    }
+}
+```
+
+### 1.1) Храни агрегат (`TargetCount`/`BurstShotsCount`) как состояние
+
+```csharp
+// Вместо пересчёта "сколько выстрелов уже сделано в burst" на каждом шаге:
+if (gun.BurstActivated)
+{
+    gun.BurstShotsCount += shots; // Инкрементальный счётчик.
+    if (gun.BurstShotsCount >= gun.ShotsPerBurstModified)
+    {
+        gun.BurstActivated = false;
+        gun.BurstShotsCount = 0;
+    }
+}
+```
+
+### 2) Не используй LINQ в горячих циклах
+
+```csharp
+// ✅ Для hot-path: явный цикл и ранний выход.
+for (var i = 0; i < entities.Count; i++)
+{
+    var uid = entities[i];
+    if (!TryComp<MyComponent>(uid, out var comp))
+        continue;
+    Process(uid, comp);
+}
+
+// ❌ Избегай в hot-path:
+// entities.Where(...).Select(...).ToList();
+```
+
+### 3) Порядок компонентов в `EntityQueryEnumerator`
+
+Ставь первым более редкий компонент, чтобы сократить пересечение множеств:
+
+```csharp
+var query = EntityQueryEnumerator<ActiveTimerTriggerComponent, TimerTriggerComponent>();
+```
+
+### 4) Ранние `continue/return` обязательны для дешёвых фильтров
+
+Сначала дешёвые проверки, потом дорогие вычисления/события. Это снижает среднюю цену итерации и уменьшает шум профайлера.

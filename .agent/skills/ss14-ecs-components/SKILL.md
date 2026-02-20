@@ -344,3 +344,42 @@ public sealed partial class TargetMarkerComponent : Component
 7. **Организация полей** — используйте `#region` блоки для группировки связанных полей в больших компонентах
 8. **`[DataField]` только для YAML-конфигурации** — не ставьте на рантайм-поля (`EntityUid`, таймстампы, кеши)
 9. **Не указывайте строковое имя в `[DataField]`** — имя выводится автоматически из имени поля
+
+## Оптимизация через Active-компоненты (дополнение)
+
+### Паттерн: `BaseComponent + ActiveComponent`
+
+Используй базовый компонент для конфигурации и отдельный `Active...Component` для текущей активности:
+
+```csharp
+[RegisterComponent]
+public sealed partial class TimerTriggerComponent : Component
+{
+    [DataField] public TimeSpan Delay = TimeSpan.FromSeconds(5);
+    public TimeSpan NextTrigger = TimeSpan.Zero;
+}
+
+[RegisterComponent]
+public sealed partial class ActiveTimerTriggerComponent : Component;
+```
+
+В системе:
+
+```csharp
+// Активация.
+EnsureComp<ActiveTimerTriggerComponent>(uid);
+
+// Завершение работы — компонент удаляется.
+RemComp<ActiveTimerTriggerComponent>(uid);
+```
+
+### Почему это важно
+
+1. В query попадают только активные сущности.
+2. Снижается количество пустых итераций.
+3. Упрощается логика состояния: активность читается по наличию компонента.
+
+### Анти-паттерн
+
+1. Держать флаг `IsActive` только в базовом компоненте и перебирать всех подряд.
+2. Не удалять активный компонент после завершения состояния.

@@ -335,3 +335,39 @@ if (TryComp<MyComponent>(uid, out var myComp) &&
     // ...
 }
 ```
+
+## Оптимизации работы с сущностями (дополнение)
+
+### 1) Для частых проверок используй кешированный `EntityQuery<T>`
+
+Если API системы часто дергает один и тот же компонент, кешируй query в `Initialize()`:
+
+```csharp
+private EntityQuery<TagComponent> _tagQuery;
+
+public override void Initialize()
+{
+    _tagQuery = GetEntityQuery<TagComponent>();
+}
+
+public bool HasTagFast(EntityUid uid, ProtoId<TagPrototype> tag)
+{
+    return _tagQuery.TryComp(uid, out var comp) &&
+           comp.Tags.Contains(tag);
+}
+```
+
+Это уменьшает накладные расходы по сравнению с многократными общими проверками.
+
+### 2) Удаляй лишние временные компоненты сразу после завершения роли
+
+```csharp
+if (timer.NextTrigger <= curTime)
+{
+    Trigger(uid, timer.User, timer.KeyOut);
+    RemComp<ActiveTimerTriggerComponent>(uid); // Сущность больше не активна.
+}
+```
+
+Идея простая: у сущности должны оставаться только реально используемые компоненты.  
+Иначе она продолжит попадать в query и увеличивать стоимость перебора.

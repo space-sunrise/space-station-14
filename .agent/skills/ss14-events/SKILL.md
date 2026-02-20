@@ -213,3 +213,32 @@ private void OnEvent(EntityUid uid, MyComponent component, MyEvent args) { ... }
 **Ошибка**: Изменять поля в `ref` событии, если вы не являетесь "ответственной" системой.
 **Почему**: Это может сломать логику других систем, которые получат измененное событие.
 **Правильно**: Изменяйте данные только если ваша система должна перехватить или модифицировать результат (например, броня уменьшает урон).
+
+## Дополнение по производительности: `ByRef record struct`
+
+Для частых локальных событий предпочитай этот формат:
+
+```csharp
+[ByRefEvent] public record struct ChargedMachineActivatedEvent;
+
+private void RaiseActivated(EntityUid uid)
+{
+    var ev = new ChargedMachineActivatedEvent();
+    RaiseLocalEvent(uid, ref ev); // Важно: ref обязателен.
+}
+```
+
+### Почему это полезно
+
+1. Меньше копирований событий в массовых потоках.
+2. Стабильнее поведение в hot-path по сравнению с тяжёлыми классами-событиями.
+
+### Анти-паттерн
+
+```csharp
+// ❌ Частое событие как класс + вызов без by-ref:
+public sealed class FrequentEvent : EntityEventArgs { }
+RaiseLocalEvent(uid, new FrequentEvent());
+```
+
+Используй классы там, где это действительно нужно по семантике, а не по привычке.

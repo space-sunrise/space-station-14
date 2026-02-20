@@ -382,3 +382,41 @@ net.predict true   // Включить обратно
 - **SS14 ECS Systems** — паттерны работы с сетевыми событиями из систем
 - **SS14 ECS Entities** — `EntityUid` vs `NetEntity`, контейнеры и сетевая идентификация
 - **SS14 Prediction** — как клиент использует полученные состояния для предсказания
+
+## Оптимизация синхронизации: `DirtyField` вместо полного `Dirty` (дополнение)
+
+Для больших сетевых компонентов с множеством `AutoNetworkedField` и включёнными field deltas, точечные изменения помечай через `DirtyField`.
+
+```csharp
+[RegisterComponent, NetworkedComponent]
+[AutoGenerateComponentState(fieldDeltas: true)]
+public sealed partial class ProximityDetectorComponent : Component
+{
+    [AutoNetworkedField] public TimeSpan NextUpdate = TimeSpan.Zero;
+    [AutoNetworkedField] public float Distance = float.PositiveInfinity;
+    [AutoNetworkedField] public EntityUid? Target;
+}
+
+private void Tick(EntityUid uid, ProximityDetectorComponent comp)
+{
+    comp.NextUpdate += comp.UpdateCooldown;
+    DirtyField(uid, comp, nameof(ProximityDetectorComponent.NextUpdate));
+    // Отправится дельта только по изменённому полю.
+}
+```
+
+### Когда так делать
+
+1. Меняется одно или несколько конкретных полей.
+2. Компонент «тяжёлый» по количеству сетевых полей.
+3. Изменения происходят часто.
+
+### Анти-паттерн
+
+```csharp
+// ❌ Полный dirty на каждый тик при изменении одного поля:
+comp.NextUpdate += comp.UpdateCooldown;
+Dirty(uid, comp);
+```
+
+Полный `Dirty` оставляй для случаев, где действительно меняется существенная часть состояния одновременно.
