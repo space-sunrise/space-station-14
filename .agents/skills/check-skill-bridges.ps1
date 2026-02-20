@@ -8,6 +8,7 @@ $sourceRoot = Join-Path $RepoRoot ".agent/skills"
 $codexBridgeRoot = Join-Path $RepoRoot ".agents/skills"
 $claudeBridgeRoot = Join-Path $RepoRoot ".claude/skills"
 $cursorBridgeRoot = Join-Path $RepoRoot ".cursor/skills"
+$githubBridgeRoot = Join-Path $RepoRoot ".github/skills"
 
 function Get-SkillData {
     param([string]$SkillMdPath)
@@ -48,6 +49,9 @@ if (-not (Test-Path $claudeBridgeRoot)) {
 if (-not (Test-Path $cursorBridgeRoot)) {
     throw "Cursor bridge skills path not found: $cursorBridgeRoot"
 }
+if (-not (Test-Path $githubBridgeRoot)) {
+    throw "GitHub Copilot bridge skills path not found: $githubBridgeRoot"
+}
 
 $errors = New-Object System.Collections.Generic.List[string]
 
@@ -63,11 +67,15 @@ $claudeBridgeSkills = Get-ChildItem $claudeBridgeRoot -Directory |
 $cursorBridgeSkills = Get-ChildItem $cursorBridgeRoot -Directory |
     Where-Object { Test-Path (Join-Path $_.FullName "SKILL.md") } |
     Sort-Object Name
+$githubBridgeSkills = Get-ChildItem $githubBridgeRoot -Directory |
+    Where-Object { Test-Path (Join-Path $_.FullName "SKILL.md") } |
+    Sort-Object Name
 
 $sourceNames = @($sourceSkills.Name)
 $codexBridgeNames = @($codexBridgeSkills.Name)
 $claudeBridgeNames = @($claudeBridgeSkills.Name)
 $cursorBridgeNames = @($cursorBridgeSkills.Name)
+$githubBridgeNames = @($githubBridgeSkills.Name)
 
 foreach ($source in $sourceSkills) {
     $name = $source.Name
@@ -75,6 +83,7 @@ foreach ($source in $sourceSkills) {
     $codexBridgeSkillMd = Join-Path $codexBridgeRoot "$name/SKILL.md"
     $claudeBridgeSkillMd = Join-Path $claudeBridgeRoot "$name/SKILL.md"
     $cursorBridgeSkillMd = Join-Path $cursorBridgeRoot "$name/SKILL.md"
+    $githubBridgeSkillMd = Join-Path $githubBridgeRoot "$name/SKILL.md"
 
     if (-not (Test-Path $codexBridgeSkillMd)) {
         $errors.Add("Missing Codex bridge SKILL.md for '$name'.")
@@ -85,7 +94,10 @@ foreach ($source in $sourceSkills) {
     if (-not (Test-Path $cursorBridgeSkillMd)) {
         $errors.Add("Missing Cursor bridge SKILL.md for '$name'.")
     }
-    if ((-not (Test-Path $codexBridgeSkillMd)) -or (-not (Test-Path $claudeBridgeSkillMd)) -or (-not (Test-Path $cursorBridgeSkillMd))) {
+    if (-not (Test-Path $githubBridgeSkillMd)) {
+        $errors.Add("Missing GitHub Copilot bridge SKILL.md for '$name'.")
+    }
+    if ((-not (Test-Path $codexBridgeSkillMd)) -or (-not (Test-Path $claudeBridgeSkillMd)) -or (-not (Test-Path $cursorBridgeSkillMd)) -or (-not (Test-Path $githubBridgeSkillMd))) {
         continue
     }
 
@@ -93,6 +105,7 @@ foreach ($source in $sourceSkills) {
     $codexData = Get-SkillData -SkillMdPath $codexBridgeSkillMd
     $claudeData = Get-SkillData -SkillMdPath $claudeBridgeSkillMd
     $cursorData = Get-SkillData -SkillMdPath $cursorBridgeSkillMd
+    $githubData = Get-SkillData -SkillMdPath $githubBridgeSkillMd
 
     $expectedSourceSkill = "../../../.agent/skills/$name/SKILL.md"
     $expectedCodexBridgeRef = "../../../.agents/skills/$name/SKILL.md"
@@ -129,6 +142,21 @@ foreach ($source in $sourceSkills) {
     if ($cursorData.body -notmatch [regex]::Escape($expectedClaudeBridgeRef)) {
         $errors.Add("Cursor bridge reference mismatch for '$name'.")
     }
+
+    if ($githubData.name -ne $name) {
+        $errors.Add("GitHub Copilot bridge name mismatch for '$name': '$($githubData.name)'")
+    }
+    if ($githubData.description -ne $sourceData.description) {
+        $errors.Add("GitHub Copilot bridge description mismatch for '$name'.")
+    }
+    if ($githubData.source_skill -ne $expectedSourceSkill) {
+        $errors.Add(
+            "GitHub Copilot bridge source_skill mismatch for '$name': '$($githubData.source_skill)'"
+        )
+    }
+    if ($githubData.body -notmatch [regex]::Escape($expectedSourceSkill)) {
+        $errors.Add("GitHub Copilot bridge reference mismatch for '$name'.")
+    }
 }
 
 foreach ($codexBridgeName in $codexBridgeNames) {
@@ -149,6 +177,12 @@ foreach ($cursorBridgeName in $cursorBridgeNames) {
     }
 }
 
+foreach ($githubBridgeName in $githubBridgeNames) {
+    if ($sourceNames -notcontains $githubBridgeName) {
+        $errors.Add("GitHub Copilot bridge exists without source skill: '$githubBridgeName'.")
+    }
+}
+
 foreach ($sourceName in $sourceNames) {
     if ($codexBridgeNames -notcontains $sourceName) {
         $errors.Add("Source skill missing in Codex bridge tree: '$sourceName'.")
@@ -158,6 +192,9 @@ foreach ($sourceName in $sourceNames) {
     }
     if ($cursorBridgeNames -notcontains $sourceName) {
         $errors.Add("Source skill missing in Cursor bridge tree: '$sourceName'.")
+    }
+    if ($githubBridgeNames -notcontains $sourceName) {
+        $errors.Add("Source skill missing in GitHub Copilot bridge tree: '$sourceName'.")
     }
 }
 
@@ -174,4 +211,5 @@ Write-Host "- source skills: $($sourceSkills.Count)"
 Write-Host "- codex bridges: $($codexBridgeSkills.Count)"
 Write-Host "- claude bridges: $($claudeBridgeSkills.Count)"
 Write-Host "- cursor bridges: $($cursorBridgeSkills.Count)"
+Write-Host "- github copilot bridges: $($githubBridgeSkills.Count)"
 exit 0
