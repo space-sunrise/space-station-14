@@ -61,6 +61,74 @@ public sealed class MySystem : EntitySystem
 
 Зависимости разрешаются автоматически до вызова `Initialize()`. Всегда используйте `= default!` для подавления предупреждений компилятора.
 
+## Порядок членов системы (обязательный)
+
+Держи стабильный порядок блоков в каждом `*System`, чтобы код читался быстро и одинаково во всех подсистемах 🙂
+
+1. Зависимости (`[Dependency]` поля).
+2. Константы + `static readonly` поля.
+3. Runtime-кэшированные поля и долгоживущие поля состояния.
+4. `Initialize()`, `Shutdown()`.
+5. Event handlers (`On...`, `Handle...`, сетевые и компонентные события).
+6. Main logic (публичный/защищенный API системы).
+7. Other code (override/специализированные методы, не helper-блок).
+8. Helpers (маленькие private-методы для обслуживания логики).
+9. Private nested classes / records / enums / прочее.
+
+Не смешивай блоки между собой: helpers не поднимай выше event handlers, runtime-кэш не размазывай по файлу, private nested-типы держи внизу.
+
+Пример:
+
+```csharp
+public sealed class ExampleSystem : EntitySystem
+{
+    // 1) Dependencies
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+
+    // 2) Constants + static readonly
+    private const float TimeoutSeconds = 1.0f;
+    private static readonly ProtoId<TagPrototype> SpecialTag = "Special";
+
+    // 3) Runtime cache/state
+    private readonly Dictionary<EntityUid, TimeSpan> _cooldowns = new();
+
+    // 4) Init/Shutdown
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<MyComponent, ComponentInit>(OnInit);
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+        _cooldowns.Clear();
+    }
+
+    // 5) Event handlers
+    private void OnInit(Entity<MyComponent> ent, ref ComponentInit args)
+    {
+        _cooldowns[ent] = _timing.CurTime;
+    }
+
+    // 6) Main logic
+    public bool TryActivate(EntityUid uid) => true;
+
+    // 7) Other code
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+    }
+
+    // 8) Helpers
+    private bool IsCoolingDown(EntityUid uid) => _cooldowns.ContainsKey(uid);
+
+    // 9) Private nested types
+    private sealed record DebugEntry(EntityUid Uid, TimeSpan Time);
+}
+```
+
 ## Подписка на события
 
 ### Directed Events (направленные)
