@@ -1,7 +1,7 @@
 - type: tile
   id: FloorAbductor
   name: tiles-abductor-floor
-  sprite: /Textures/_Sunrise/Abductor/Tiles/abductor_tile.png
+  sprite: _Sunrise/Abductor/Tiles/abductor_tile.png
   isSubfloor: false
   footstepSounds:
     collection: FootstepAsteroid
@@ -12,7 +12,7 @@
 - type: tile
   id: FloorAbductorshield
   name: tiles-abductor-floor-shield
-  sprite: /Textures/_Sunrise/Abductor/Tiles/abductor_tile2.png
+  sprite: _Sunrise/Abductor/Tiles/abductor_tile2.png
   isSubfloor: false
   footstepSounds:
     collection: FootstepAsteroid
@@ -21,9 +21,9 @@
   indestructible: true
 
 - type: tile
-  id: FloorAbductortetris
+  id: FloorAbductorTetris
   name: tiles-abductor-floor-tetris
-  sprite: /Textures/_Sunrise/Abductor/Tiles/abductor_tile3.png
+  sprite: _Sunrise/Abductor/Tiles/abductor_tile3.png
   isSubfloor: false
   footstepSounds:
     collection: FootstepAsteroid
@@ -32,9 +32,9 @@
   indestructible: true
 
 - type: tile
-  id: FloorAbductorcooldesign
+  id: FloorAbductorCoolDesign
   name: tiles-abductor-floor-cooldesign
-  sprite: /Textures/_Sunrise/Abductor/Tiles/abductor_tile4.png
+  sprite: _Sunrise/Abductor/Tiles/abductor_tile4.png
   isSubfloor: false
   footstepSounds:
     collection: FootstepAsteroid
@@ -43,9 +43,9 @@
   indestructible: true
 
 - type: tile
-  id: FloorAbductorcute
+  id: FloorAbductorCute
   name: tiles-abductor-floor-cute
-  sprite: /Textures/_Sunrise/Abductor/Tiles/abductor_tile5.png
+  sprite: _Sunrise/Abductor/Tiles/abductor_tile5.png
   isSubfloor: false
   footstepSounds:
     collection: FootstepAsteroid

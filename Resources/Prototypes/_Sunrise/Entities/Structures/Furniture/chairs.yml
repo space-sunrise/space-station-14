@@ -64,5 +64,5 @@
   description: cool chair for cool vulp
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Furniture/abductorchair.rsi
+    sprite: _Sunrise/Structures/Furniture/abductor_chair.rsi
     state: abductor_chair

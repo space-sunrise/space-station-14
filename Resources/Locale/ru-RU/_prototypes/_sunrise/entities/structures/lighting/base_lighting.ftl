@@ -4,5 +4,5 @@ ent-PoweredlightUV = { ent-Poweredlight }
 ent-AlwaysPoweredLightUV = { ent-AlwaysPoweredWallLight }
     .suffix = Всегда включен, Ультра фиолет
     .desc = { ent-AlwaysPoweredWallLight.desc }
-ent-AbductorLampNew = стильный светильник абдукторов
+ent-AbductorLamp = стильный светильник абдукторов
     .desc = Освещает коридоры корабля и путь к вашему сердцу через грудную клетку. Затемняет вопросы этики в вашем сознании.
