@@ -91,6 +91,9 @@
     sprite: Objects/Tanks/oxygen.rsi
   - type: Clothing
     sprite: Objects/Tanks/oxygen.rsi
+  - type: Tag
+    tags:
+    - GasTank
 
 - type: entity
   parent: GasTankRoundBase
