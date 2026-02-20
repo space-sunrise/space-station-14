@@ -5,6 +5,12 @@ description: Architecture guide for EntitySystem in Space Station 14 — lifecyc
 
 # EntitySystem — системы в ECS
 
+## Граница ответственности
+
+Этот skill покрывает устройство систем, lifecycle, события, query и предикцию.
+Строгие naming-нормативы (суффикс `System`, парность имен `Component/System`, стиль dependency-алиасов, соглашения по именам файлов) ведутся в `ss14-naming-conventions`.
+Если пример здесь конфликтует с `ss14-naming-conventions`, применяй `ss14-naming-conventions`.
+
 ## Что такое EntitySystem
 
 EntitySystem — это синглтон-класс, который содержит **всю логику и поведение** для сущностей. В ECS-архитектуре компоненты хранят только данные, а системы оперируют этими данными. Системы автоматически создаются и управляются движком — не нужно их вручную регистрировать.
