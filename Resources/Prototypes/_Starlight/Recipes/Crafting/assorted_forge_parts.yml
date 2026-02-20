@@ -4,6 +4,6 @@
   graph: AssortedForgeParts
   startNode: start
   targetNode: finish
-  category: construction-category-structures
+  category: construction-category-misc
   objectType: Item
   description: crafting-menu-text-ASSFP
