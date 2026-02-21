@@ -5,6 +5,10 @@
   maxRandomOffset: 0
   randomRotation: false
   minPlayers: 2
+  prisonMapFamily: Metus
+  prisonCacheSize: 2
+  prisonCacheMapIdStart: 600
+  prisonCompletionMode: Freeze
   stations:
     PlanetPrison:
       stationProto: NanotrasenPrison

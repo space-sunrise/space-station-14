@@ -21,8 +21,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Sunrise.Interfaces.Shared;
 using Content.Server._Sunrise.PlanetPrison;
-using Robust.Shared.Map;
 using Content.Shared._Sunrise.PlanetPrison;
+using Robust.Shared.Map;
 
 namespace Content.Server._Sunrise.NewLife
 {
@@ -158,6 +158,19 @@ namespace Content.Server._Sunrise.NewLife
                 return;
             _prefsManager.GetPreferences(player.UserId).SetProfile(characterId.Value);
             _gameTicker.MakeJoinGame(player, stationUid.Value, roleProto, canBeAntag: false);
+
+            // Если игрок заспавнился через New Life, и его станция находится на тюремной карте,
+            // помечаем его как участника конкретной тюремной карты для последующих голосований.
+            if (player.AttachedEntity is { Valid: true } ent &&
+                EntityManager.TryGetComponent<TransformComponent>(ent, out var xform))
+            {
+                // В PlanetPrisonStationSystem тюремные карты используют диапазон ID 100-199.
+                if ((int) xform.MapID >= 100)
+                {
+                    var spawned = EntityManager.EnsureComponent<PlanetPrisonSpawnedComponent>(ent);
+                    spawned.MapId = xform.MapID;
+                }
+            }
 
             // Закрываем интерфейс тюрьмы, если он был открыт, после успешного респавна через New Life.
             // На старте тюрьмы окно закрывается через PlanetPrisonStationSystem.SpawnPlayerWithRole,

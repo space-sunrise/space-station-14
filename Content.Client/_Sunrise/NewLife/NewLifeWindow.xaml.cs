@@ -23,6 +23,8 @@ namespace Content.Client._Sunrise.NewLife
 
         private Dictionary<NetEntity, List<NewLifeRolesInfo>> _jobs = new();
 
+        private bool _prisonTimerActive;
+
         public Action? SpawnRequested;
 
         public NewLifeWindow(IGameTiming timing)
@@ -180,9 +182,22 @@ namespace Content.Client._Sunrise.NewLife
             _jobs = jobs;
         }
 
+        public void SetPrisonTimerActive(bool active)
+        {
+            _prisonTimerActive = active;
+        }
+
         protected override void FrameUpdate(FrameEventArgs args)
         {
             base.FrameUpdate(args);
+
+            if (_prisonTimerActive)
+            {
+                Spawn.Disabled = true;
+                NextRespawnLabel.Visible = false;
+                return;
+            }
+
             var selectedCharacter = GetSelectedCharacter();
             if (selectedCharacter != null && _usedCharacters.Contains(selectedCharacter.Value))
             {

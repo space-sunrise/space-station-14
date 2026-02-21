@@ -17,8 +17,20 @@ public partial class PlanetPrisonSharedComponent : Component
     public List<ProtoId<BiomeTemplatePrototype>> Biomes = [];
 
     /// <summary>
-    /// Минимальное количество игроков, необходимое для запуска любой карты тюрьмы
+    /// Настройки игрового процесса тюрьмы
     /// </summary>
     [DataField]
-    public int MinPlayersRequired = 2;
+    public PrisonGameplaySettings GameplaySettings = new();
+
+    /// <summary>
+    /// Настройки завершения карт тюрьмы (Freeze / Delete)
+    /// </summary>
+    [DataField]
+    public PrisonMapCompletionSettings CompletionSettings = new();
+
+    /// <summary>
+    /// Настройки кэширования карт тюрьмы
+    /// </summary>
+    [DataField]
+    public PrisonCacheSettings CacheSettings = new();
 }

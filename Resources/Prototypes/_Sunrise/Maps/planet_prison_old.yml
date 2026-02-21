@@ -1,10 +1,14 @@
-﻿- type: gameMap
+- type: gameMap
   id: PlanetPrisonOld
   mapName: 'Nox'
   mapPath: /Maps/_Sunrise/planet_prison_old.yml
   maxRandomOffset: 0
   randomRotation: false
   minPlayers: 2
+  prisonMapFamily: Nox
+  prisonCacheSize: 2
+  prisonCacheMapIdStart: 500
+  prisonCompletionMode: Delete
   stations:
     PlanetPrison:
       stationProto: NanotrasenPrison

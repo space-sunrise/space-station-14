@@ -23,7 +23,14 @@ public enum StandardVoteType : byte
     /// <summary>
     /// Vote to kick a player.
     /// </summary>
-    Votekick
+    Votekick,
+
+    // Sunrise-Start
+    /// <summary>
+    /// Vote to end the current Planet Prison run (per specific prison map).
+    /// </summary>
+    PrisonEnd
+    // Sunrise-End
 }
 
 /// <summary>

@@ -7,6 +7,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
+using Content.Shared._Sunrise.PlanetPrison; // Sunrise-Edit
 using Content.Server.Maps;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.Vote;
@@ -28,6 +29,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Robust.Shared.Map; // Sunrise-Edit
 
 namespace Content.Server.Voting.Managers
 {
@@ -42,6 +44,7 @@ namespace Content.Server.Voting.Managers
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IGameMapManager _gameMapManager = default!;
+        [Dependency] private readonly IMapManager _mapManager = default!; // Sunrise-Edit
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
         [Dependency] private readonly ISharedPlaytimeManager _playtimeManager = default!;
@@ -138,6 +141,28 @@ namespace Content.Server.Voting.Managers
         {
             if (!IsValidOption(v, option))
                 throw new ArgumentOutOfRangeException(nameof(option), "Invalid vote option ID");
+
+            if (option != null && !CheckVoterEligibility(player, v.VoterEligibility, v.RequiredMapId))
+            {
+                if (v.VoterEligibility == VoterEligibility.PlanetPrisonSpawned && v.RequiredMapId != null)
+                {
+                    var attached = player.AttachedEntity;
+                    MapId? playerMapId = null;
+                    var hasComp = false;
+
+                    if (attached is { Valid: true } att)
+                    {
+                        if (_entityManager.TryGetComponent<PlanetPrisonSpawnedComponent>(att, out var spawned))
+                        {
+                            hasComp = true;
+                            playerMapId = spawned.MapId;
+                        }
+                    }
+
+                    _logManager.GetSawmill("vote.prison").Info($"[PRISON-VOTE] CastVote rejected: player={player.Name}, voteId={v.Id}, requiredMapId={v.RequiredMapId}, playerMapId={playerMapId}, hasComponent={hasComp}");
+                }
+                return;
+            }
 
             if (v.CastVotes.TryGetValue(player, out var existingOption))
             {
@@ -246,21 +271,19 @@ namespace Content.Server.Voting.Managers
                 true,
                 AudioParams.Default.WithLoop(true).WithVolume(-10f))!.Value.Entity;
 
-            // Sunrise-Start
-            if (_entityManager.System<GameTicker>().RunLevel == GameRunLevel.PreRoundLobby)
+            if (_entityManager.System<GameTicker>().RunLevel == GameRunLevel.PreRoundLobby) // Sunrise-Edit
             {
                 if (_cfg.GetCVar(SunriseCCVars.VotePause))
                     _entityManager.System<GameTicker>().PauseStart(true);
                 if (_cfg.GetCVar(SunriseCCVars.VoteDisableOOC))
                     _cfg.SetCVar(CCVars.OocEnabled, false);
             }
-            // Sunrise-End
 
             var start = _timing.RealTime;
             var end = start + options.Duration;
             var reg = new VoteReg(id, entries, options.Title, options.InitiatorText,
                 options.InitiatorPlayer, start, end, options.VoterEligibility, options.DisplayVotes, options.DisplayVotesAdmins, // Sunrise-Edit
-                options.TargetEntity);
+                options.TargetEntity, options.RequiredMapId); // Sunrise-Edit
 
             var handle = new VoteHandle(this, reg);
 
@@ -296,7 +319,25 @@ namespace Content.Server.Voting.Managers
             msg.VoteId = v.Id;
             msg.VoteActive = !v.Finished;
 
-            if (!CheckVoterEligibility(player, v.VoterEligibility))
+            var eligible = CheckVoterEligibility(player, v.VoterEligibility, v.RequiredMapId); // Sunrise-Edit
+            if (v.VoterEligibility == VoterEligibility.PlanetPrisonSpawned && v.RequiredMapId != null)
+            {
+                var attached = player.AttachedEntity;
+                MapId? playerMapId = null;
+                var hasComp = false;
+
+                if (attached is { Valid: true } att)
+                {
+                    if (_entityManager.TryGetComponent<PlanetPrisonSpawnedComponent>(att, out var spawned))
+                    {
+                        hasComp = true;
+                        playerMapId = spawned.MapId;
+                    }
+                }
+
+                _logManager.GetSawmill("vote.prison").Info($"[PRISON-VOTE] SendSingleUpdate: player={player.Name}, voteId={v.Id}, eligible={eligible}, VoteActive={eligible && !v.Finished}, requiredMapId={v.RequiredMapId}, playerMapId={playerMapId}, hasComponent={hasComp}");
+            }
+            if (!eligible)
             {
                 msg.VoteActive = false;
                 player.Channel.SendMessage(msg);
@@ -434,7 +475,7 @@ namespace Content.Server.Voting.Managers
             // Remove ineligible votes that somehow slipped through
             foreach (var playerVote in v.CastVotes)
             {
-                if (!CheckVoterEligibility(playerVote.Key, v.VoterEligibility))
+                if (!CheckVoterEligibility(playerVote.Key, v.VoterEligibility, v.RequiredMapId)) // Sunrise-Edit
                 {
                     v.Entries[playerVote.Value].Votes -= 1;
                     v.CastVotes.Remove(playerVote.Key);
@@ -442,8 +483,7 @@ namespace Content.Server.Voting.Managers
             }
 
             // Find winner or stalemate.
-            // Sunrise-Start: На случай пустых голосований
-            ImmutableArray<object> winners;
+            ImmutableArray<object> winners; // Sunrise-Edit: На случай пустых голосований
             if (v.Entries.Any())
             {
                 winners = v.Entries
@@ -457,7 +497,6 @@ namespace Content.Server.Voting.Managers
             {
                 winners = ImmutableArray<object>.Empty;
             }
-            // Sunrise-End
 
             // Store all votes in order for webhooks
             var voteTally = new List<int>();
@@ -468,8 +507,7 @@ namespace Content.Server.Voting.Managers
 
             v.Finished = true;
             v.Dirty = true;
-            // Sunrise-Start: На случай пустых голосований
-            if (_voteHandles.ContainsKey(v.Id))
+            if (_voteHandles.ContainsKey(v.Id)) // Sunrise-Edit: На случай пустых голосований
             {
                 var args = new VoteFinishedEventArgs(winners.Length == 1 ? winners[0] : null, winners, voteTally);
                 v.OnFinished?.Invoke(_voteHandles[v.Id], args);
@@ -490,7 +528,7 @@ namespace Content.Server.Voting.Managers
             if (activeVotes < 1)
             {
                 _entityManager.System<SharedAudioSystem>().Stop(_voteAudioStream);
-                if (_entityManager.System<GameTicker>().RunLevel == GameRunLevel.PreRoundLobby)
+                if (_entityManager.System<GameTicker>().RunLevel == GameRunLevel.PreRoundLobby) // Sunrise-Edit
                 {
                     if (_cfg.GetCVar(SunriseCCVars.VotePause))
                         _entityManager.System<GameTicker>().PauseStart(false);
@@ -498,8 +536,6 @@ namespace Content.Server.Voting.Managers
                         _cfg.SetCVar(CCVars.OocEnabled, true);
                 }
             }
-
-            // Sunrise-End
 
             DirtyCanCallVoteAll();
         }
@@ -545,6 +581,17 @@ namespace Content.Server.Voting.Managers
             }
 
             return true;
+        }
+
+        public bool CheckVoterEligibility(ICommonSession player, VoterEligibility eligibility, MapId? requiredMapId) // Sunrise-Edit
+        {
+            if (!CheckVoterEligibility(player, eligibility))
+                return false;
+
+            if (eligibility != VoterEligibility.PlanetPrisonSpawned || requiredMapId == null)
+                return true;
+
+            return _entityManager.System<Content.Server._Sunrise.PlanetPrison.Voting.PlanetPrisonVoteSystem>().CheckPrisonVoterEligibility(player, requiredMapId.Value);
         }
 
         public IEnumerable<IVoteHandle> ActiveVotes => _voteHandles.Values;
@@ -598,6 +645,7 @@ namespace Content.Server.Voting.Managers
             public readonly bool DisplayVotes;
             public readonly bool DisplayVotesAdmins; // Sunrise-Edit
             public readonly NetEntity? TargetEntity;
+            public readonly MapId? RequiredMapId; // Sunrise-Edit
 
             public bool Cancelled;
             public bool Finished;
@@ -608,7 +656,7 @@ namespace Content.Server.Voting.Managers
             public ICommonSession? Initiator { get; }
 
             public VoteReg(int id, VoteEntry[] entries, string title, string initiatorText,
-                ICommonSession? initiator, TimeSpan start, TimeSpan end, VoterEligibility voterEligibility, bool displayVotes, bool displayVotesAdmins, NetEntity? targetEntity) // Sunrise-Edit
+                ICommonSession? initiator, TimeSpan start, TimeSpan end, VoterEligibility voterEligibility, bool displayVotes, bool displayVotesAdmins, NetEntity? targetEntity, MapId? requiredMapId) // Sunrise-Edit
             {
                 Id = id;
                 Entries = entries;
@@ -621,6 +669,7 @@ namespace Content.Server.Voting.Managers
                 DisplayVotes = displayVotes;
                 DisplayVotesAdmins = displayVotesAdmins; // Sunrise-Edit
                 TargetEntity = targetEntity;
+                RequiredMapId = requiredMapId; // Sunrise-Edit
             }
         }
 
@@ -643,7 +692,8 @@ namespace Content.Server.Voting.Managers
             All,
             Ghost, // Player needs to be a ghost
             GhostMinimumPlaytime, // Player needs to be a ghost, with a minimum playtime and deathtime as defined by votekick CCvars.
-            MinimumPlaytime //Player needs to have a minimum playtime and deathtime as defined by votekick CCvars.
+            MinimumPlaytime, //Player needs to have a minimum playtime and deathtime as defined by votekick CCvars.
+            PlanetPrisonSpawned // Player spawned on a specific Planet Prison map // Sunrise-Edit
         }
 
         #endregion

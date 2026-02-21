@@ -16,7 +16,7 @@
         </BoxContainer>
 
         <!-- Общий счетчик приоритетов -->
-        <PanelContainer Name="PriorityCounterPanel" StyleClasses="HighDivider" Visible="False" Margin="4">
+        <PanelContainer Name="PriorityCounterPanel" StyleClasses="PanelDark" Visible="False" Margin="4">
             <Label Name="PriorityCounterLabel" HorizontalAlignment="Center" Margin="8" />
         </PanelContainer>
 

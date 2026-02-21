@@ -1,4 +1,5 @@
 using System.Collections.Specialized;
+using System.Collections.Generic; // Sunrise-Edit
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -74,6 +75,9 @@ namespace Content.Server.Voting.Managers
                     timeoutVote = false; // Allows the timeout to be updated manually in the create method
                     CreateVotekickVote(initiator, args);
                     break;
+                case StandardVoteType.PrisonEnd: // Sunrise-Edit
+                    _entityManager.System<Content.Server._Sunrise.PlanetPrison.Voting.PlanetPrisonVoteSystem>().CreatePrisonEndVote(initiator);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(voteType), voteType, null);
             }
@@ -91,9 +95,7 @@ namespace Content.Server.Voting.Managers
             var ghostVotePercentageRequirement = _cfg.GetCVar(CCVars.VoteRestartGhostPercentage);
             var ghostVoterPercentage = CalculateEligibleVoterPercentage(VoterEligibility.Ghost);
 
-            // Sunrise-Start
-            var showRestartVotes = _cfg.GetCVar(SunriseCCVars.ShowRestartVotes);
-            // Sunrise-End
+            var showRestartVotes = _cfg.GetCVar(SunriseCCVars.ShowRestartVotes); // Sunrise-Edit
 
             if (totalPlayers <= playerVoteMaximum || ghostVoterPercentage >= ghostVotePercentageRequirement)
             {
@@ -374,6 +376,7 @@ namespace Content.Server.Voting.Managers
                 }
             };
         }
+
 
         private async void CreateVotekickVote(ICommonSession? initiator, string[]? args)
         {

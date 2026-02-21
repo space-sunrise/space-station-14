@@ -160,6 +160,13 @@ public sealed partial class PlanetPrisonMapEntry : BoxContainer
 
     public void DisableButtons()
     {
+        // Глобальная блокировка во время таймеров должна также отключать кнопку "Присоединиться" для запущенных карт
+        if (IsLaunched)
+        {
+            JoinButton.Disabled = true;
+            return;
+        }
+
         NeverButton.Disabled = true;
         LowButton.Disabled = true;
         MediumButton.Disabled = true;
@@ -168,6 +175,13 @@ public sealed partial class PlanetPrisonMapEntry : BoxContainer
 
     public void EnableButtons()
     {
+        // Если карта запущена, глобальная разблокировка должна включать кнопку "Присоединиться"
+        if (IsLaunched)
+        {
+            JoinButton.Disabled = false;
+            return;
+        }
+
         // Разблокируем все кнопки кроме текущего выбора
         NeverButton.Disabled = _currentPriority == PriorityLevel.Never;
         LowButton.Disabled = _currentPriority == PriorityLevel.Low;

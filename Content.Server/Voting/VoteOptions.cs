@@ -1,5 +1,6 @@
 using Content.Server.Voting.Managers;
 using Robust.Shared.Player;
+using Robust.Shared.Map; // Sunrise-Edit
 
 namespace Content.Server.Voting
 {
@@ -57,6 +58,13 @@ namespace Content.Server.Voting
         ///     Whether the vote should have an entity attached to it, to be used for things like letting ghosts follow it.
         /// </summary>
         public NetEntity? TargetEntity = null;
+
+        // Sunrise-Start
+        /// <summary>
+        ///     Optional restriction to a specific map (used for Planet Prison per-map votes).
+        /// </summary>
+        public MapId? RequiredMapId { get; set; } = null;
+        // Sunrise-End
 
         /// <summary>
         ///     Sets <see cref="InitiatorPlayer"/> and <see cref="InitiatorText"/>

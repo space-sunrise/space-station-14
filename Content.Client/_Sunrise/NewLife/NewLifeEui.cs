@@ -1,9 +1,11 @@
 using System.Linq;
 using Content.Client.Eui;
 using Content.Client.Lobby;
+using Content.Client._Sunrise.PlanetPrison;
 using Content.Shared._Sunrise.NewLife;
 using Content.Shared.Eui;
 using JetBrains.Annotations;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Timing;
 
 
@@ -13,6 +15,7 @@ namespace Content.Client._Sunrise.NewLife
     public sealed class NewLifeEui : BaseEui
     {
         private readonly NewLifeWindow _window;
+        private PlanetPrisonUISystem? _prisonUi;
 
         public NewLifeEui()
         {
@@ -32,6 +35,10 @@ namespace Content.Client._Sunrise.NewLife
             {
                 SendMessage(new CloseEuiMessage());
             };
+
+            var prisonUi = EntitySystem.Get<PlanetPrisonUISystem>();
+            _prisonUi = prisonUi;
+            prisonUi.PrisonTimerActiveChanged += OnPrisonTimerActiveChanged;
         }
 
         public override void Opened()
@@ -43,6 +50,11 @@ namespace Content.Client._Sunrise.NewLife
         public override void Closed()
         {
             base.Closed();
+            if (_prisonUi != null)
+            {
+                _prisonUi.PrisonTimerActiveChanged -= OnPrisonTimerActiveChanged;
+                _prisonUi = null;
+            }
             _window.Close();
         }
 
@@ -60,6 +72,16 @@ namespace Content.Client._Sunrise.NewLife
             _window.UpdateRolesList(newLifeState.Jobs[selectedStation]);
             _window.UpdateJobs(newLifeState.Jobs);
             _window.UpdateNextRespawn(newLifeState.NextRespawnTime);
+        }
+
+        private void OnPrisonTimerActiveChanged(bool active)
+        {
+            _window.SetPrisonTimerActive(active);
+
+            if (active && _window.IsOpen)
+            {
+                _window.Close();
+            }
         }
     }
 }

@@ -7,6 +7,14 @@ using Robust.Client.UserInterface.XAML;
 
 namespace Content.Client.UserInterface.Systems.Ghost.Widgets;
 
+public enum NewLifeRespawnBlockReason
+{
+    None,
+    SponsorOnly,
+    PrisonTimer,
+    Unavailable
+}
+
 [GenerateTypedNameReferences]
 public sealed partial class GhostGui : UIWidget
 {
@@ -57,7 +65,7 @@ public sealed partial class GhostGui : UIWidget
         Visible = false;
     }
 
-    public void Update(int? roles, bool? canReturnToBody, bool canRespawn, bool prisonRolesAvailable, string? prisonRequirementsText = null) // Sunrise-Edit
+    public void Update(int? roles, bool? canReturnToBody, NewLifeRespawnBlockReason respawnBlockReason, bool prisonRolesAvailable, string? prisonRequirementsText = null) // Sunrise-Edit
     {
         ReturnToBodyButton.Disabled = !canReturnToBody ?? true;
 
@@ -74,16 +82,8 @@ public sealed partial class GhostGui : UIWidget
         }
 
         // Sunrise-Start
-        if (canRespawn)
-        {
-            RespawnButton.Disabled = false;
-            RespawnButton.Text = Loc.GetString("new-life-gui-button");
-        }
-        else
-        {
-            RespawnButton.Disabled = true;
-            RespawnButton.Text = Loc.GetString("new-life-gui-button-disable");
-        }
+        RespawnButton.Text = Loc.GetString("new-life-gui-button");
+        RespawnButton.Disabled = respawnBlockReason != NewLifeRespawnBlockReason.None;
 
         // Кнопка тюрьмы активна только если доступны роли
         if (prisonRolesAvailable)

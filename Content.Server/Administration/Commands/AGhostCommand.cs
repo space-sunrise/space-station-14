@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.GameTicking;
+using Content.Server.GameTicking.Events;
 using Content.Server.Ghost;
 using Content.Server.Mind;
 using Content.Shared.Administration;
@@ -8,6 +9,8 @@ using Content.Shared.Mind;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Console;
+using Robust.Shared.GameObjects;
+using Robust.Shared.Map;
 using Robust.Shared.Player;
 
 namespace Content.Server.Administration.Commands;
@@ -97,6 +100,14 @@ public sealed class AGhostCommand : LocalizedCommands
         var coordinates = player!.AttachedEntity != null
             ? _entities.GetComponent<TransformComponent>(player.AttachedEntity.Value).Coordinates
             : gameTicker.GetObserverSpawnPoint();
+        if (player.AttachedEntity != null)
+        {
+            var mapId = _entities.GetComponent<TransformComponent>(player.AttachedEntity.Value).MapID;
+            var ev = new GetObserverSpawnPointEvent(mapId);
+            _entities.EventBus.RaiseEvent(EventSource.Local, ref ev);
+            if (ev.Coordinates is { } safeCoords && safeCoords.IsValid(_entities))
+                coordinates = safeCoords;
+        }
         var ghost = _entities.SpawnEntity(GameTicker.AdminObserverPrototypeName, coordinates);
         transformSystem.AttachToGridOrMap(ghost, _entities.GetComponent<TransformComponent>(ghost));
 

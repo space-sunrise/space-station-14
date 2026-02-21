@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Content.Client.UserInterface.Systems.Ghost.Controls.PlanetPrison;
@@ -57,6 +58,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
     private readonly Dictionary<string, bool> _mapLaunched = new();
     private readonly Dictionary<string, int> _lastVoteCount = new();
     private readonly Dictionary<int, string> _mapIdToProto = new(); // Соответствие MapId -> protoId
+    private readonly Dictionary<string, bool> _mapVotingState = new(); // Состояние голосования для каждой карты
 
     // Отдельное состояние для ролей
     private readonly Dictionary<string, PlanetPrisonRoleEntry.PriorityLevel> _rolePriority = new();
@@ -64,6 +66,10 @@ public sealed class PlanetPrisonUISystem : EntitySystem
     private int _totalPriorityPlayers = 0; // Общее количество игроков с приоритетами
     private int _minPlayersRequired = 2; // Минимальное количество игроков для запуска
     private bool _initialStateRequested = false; // Флаг, запрашивалось ли начальное состояние
+
+    // Событие, уведомляющее о смене состояния любых тюремных таймеров (true - есть активный таймер)
+    public event Action<bool>? PrisonTimerActiveChanged;
+    private bool _anyPrisonTimerActive;
 
     public event Action<bool>? PrisonButtonHighlightChanged;
     public event Action<bool>? PrisonButtonAvailabilityChanged;
@@ -225,17 +231,14 @@ public sealed class PlanetPrisonUISystem : EntitySystem
 
     private void UpdatePriorityCounter()
     {
-        if (_window == null) return;
+        if (_window == null)
+            return;
 
-        // Обычное отображение количества участников
-        _window.GetPriorityCounterLabel().Text = Loc.GetString("planet-prison-participants-count",
-            ("count", _totalPriorityPlayers));
-
-        // Стандартный цвет фона
         var panel = _window.GetPriorityCounterPanel();
-        panel.PanelOverride = new StyleBoxFlat { BackgroundColor = Color.FromHex("#202023") };
+        var label = _window.GetPriorityCounterLabel();
 
-        _window.GetPriorityCounterPanel().Visible = true;
+        label.Text = Loc.GetString("planet-prison-participants-count", ("count", _totalPriorityPlayers));
+        panel.Visible = true;
     }
 
     private int GetRequiredVotes(string mapId)
@@ -259,6 +262,8 @@ public sealed class PlanetPrisonUISystem : EntitySystem
             _mapLaunched[mapId] = false;
         if (!_lastVoteCount.ContainsKey(mapId))
             _lastVoteCount[mapId] = 0;
+        if (!_mapVotingState.ContainsKey(mapId))
+            _mapVotingState[mapId] = false;
 
         // Устанавливаем сохраненный приоритет
         entry.SetSelectedPriority(_localPriority[mapId]);
@@ -297,9 +302,6 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         // Отправляем голос на сервер (не блокируем кнопки локально)
         var message = new PlanetPrisonVoteMessage(mapId, (int)priority);
         RaiseNetworkEvent(message);
-
-        // Отправляем запрос на обновление статуса, чтобы UI обновился
-        RequestPrisonVoteStatus();
     }
 
     private void OnPrisonVoteUpdate(PlanetPrisonVoteUpdateEvent msg)
@@ -342,6 +344,9 @@ public sealed class PlanetPrisonUISystem : EntitySystem
             // Сохраняем статус запуска карты из сообщения сервера
             _mapLaunched[msg.MapId] = msg.IsLaunched;
 
+            // Сбрасываем состояние голосования всех карт
+            _mapVotingState.Clear();
+
             ResetAllClientStates(null);
 
             // Перезагружаем приоритеты ролей после глобального сброса
@@ -360,6 +365,9 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         // Сохраняем количество голосов для конкретной карты
         _lastVoteCount[msg.MapId] = msg.VoteCount;
 
+        // Обновляем состояние голосования для этой карты
+        _mapVotingState[msg.MapId] = msg.IsVoting;
+
         // Обновляем статус запущенной карты
         _mapLaunched[msg.MapId] = msg.IsLaunched;
         var entry = msg.MapId == "PlanetPrison" ? _metusMapEntry : _noxMapEntry;
@@ -374,13 +382,12 @@ public sealed class PlanetPrisonUISystem : EntitySystem
             _totalPriorityPlayers = msg.TotalPriorityPlayers;
         }
 
-        // Обновляем счетчик приоритетов
-        UpdatePriorityCounter();
-
         // Специальная обработка для только что запущенной карты
         if (msg.IsLaunched)
         {
             _mapLaunched[msg.MapId] = true;
+            // Запущенная карта больше не голосует
+            _mapVotingState[msg.MapId] = false;
 
             // Помечаем entry как запущенную
             var launchedEntry = msg.MapId == "PlanetPrison" ? _metusMapEntry : _noxMapEntry;
@@ -389,11 +396,24 @@ public sealed class PlanetPrisonUISystem : EntitySystem
                 launchedEntry.SetLaunched(true);
             }
 
-            // Сбрасываем состояния голосования (но не статусы запущенных карт)
-            ResetVotingStatesOnly();
-            // Принудительно обновляем UI для всех карт
-            SetupMapEntry("PlanetPrison", _metusMapEntry);
-            SetupMapEntry("PlanetPrisonOld", _noxMapEntry);
+            // Проверяем, есть ли другие карты с активным голосованием
+            var otherMapsVoting = _mapVotingState.Any(kvp => kvp.Key != msg.MapId && kvp.Value);
+            
+            if (otherMapsVoting)
+            {
+                // Другая карта голосует - сбрасываем состояние только для этой запущенной карты
+                ResetVotingStateForMap(msg.MapId);
+                // Обновляем UI только для запущенной карты
+                SetupMapEntry(msg.MapId, launchedEntry);
+            }
+            else
+            {
+                // Нет активного голосования других карт - сбрасываем состояния для всех карт
+                ResetVotingStatesOnly();
+                // Принудительно обновляем UI для всех карт
+                SetupMapEntry("PlanetPrison", _metusMapEntry);
+                SetupMapEntry("PlanetPrisonOld", _noxMapEntry);
+            }
         }
 
         // Обновляем UI для карты и синхронизируем текст описания с серверным minPlayers
@@ -420,12 +440,20 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         // UI обновляется только через UpdateMapEntryUI для избежания конфликтов
 
         // Блокируем/разблокируем кнопки ролей и карт только во время отсчета запуска
+        // Проверяем глобальное состояние голосования - блокируем если ЛЮБАЯ карта голосует
         if (_window != null)
         {
-            var shouldLock = msg.IsVoting && msg.RemainingSeconds >= 0;
-            _window.SetRolesLocked(shouldLock);
-            _window.SetMapsLocked(shouldLock);
+            var anyMapVoting = _mapVotingState.Values.Any(v => v);
+            _window.SetRolesLocked(anyMapVoting);
+            _window.SetMapsLocked(anyMapVoting);
         }
+
+        // Обновляем глобальное состояние тюремных таймеров
+        UpdatePrisonTimerState();
+
+        // Обновляем счетчик приоритетов в конце, после полной обработки всех данных карты
+        // Это гарантирует, что счетчик обновляется после всех изменений состояния
+        UpdatePriorityCounter();
     }
 
     private void OnRolePrioritySelected(string roleId, PlanetPrisonRoleEntry.PriorityLevel priority)
@@ -645,6 +673,15 @@ public sealed class PlanetPrisonUISystem : EntitySystem
                (_lastVoteCount["PlanetPrison"] > 0 || _lastVoteCount["PlanetPrisonOld"] > 0);
     }
 
+    /// <summary>
+    /// Возвращает true, если для любой карты тюрьмы сейчас активен таймер голосования (например, 5-секундный отсчет запуска).
+    /// Используется для блокировки действий вроде Respawn/\"Присоединиться\" на время критичных таймеров.
+    /// </summary>
+    public bool IsAnyPrisonTimerActive()
+    {
+        return _mapVotingState.Values.Any(v => v);
+    }
+
     private void OnRoleUpdate(PlanetPrisonRoleUpdateEvent msg)
     {
         // Обновляем UI роли на основе статуса
@@ -737,6 +774,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
             // НЕ сбрасываем _mapLaunched - запущенные карты остаются запущенными до их удаления
             _lastVoteCount[mapId] = 0;
             _localPriority[mapId] = PlanetPrisonMapEntry.PriorityLevel.Never;
+            _mapVotingState[mapId] = false;
         }
 
         // Обновляем UI для каждой карты отдельно
@@ -744,6 +782,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         SetupMapEntry("PlanetPrisonOld", _noxMapEntry);
 
         UpdatePriorityCounter();
+        UpdatePrisonTimerState();
     }
 
     // Сбрасывает только состояния голосования, но сохраняет статусы запущенных карт
@@ -755,10 +794,32 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         {
             _hasVoted[mapId] = false;
             _lastVoteCount[mapId] = 0;
+            _mapVotingState[mapId] = false;
             // НЕ сбрасываем _localPriority - приоритеты карт должны сохраняться
         }
 
         UpdatePriorityCounter();
+        UpdatePrisonTimerState();
+    }
+
+    // Сбрасывает состояние голосования только для конкретной карты, сохраняя состояние других карт
+    private void ResetVotingStateForMap(string mapId)
+    {
+        _hasVoted[mapId] = false;
+        _lastVoteCount[mapId] = 0;
+        _mapVotingState[mapId] = false;
+        // НЕ сбрасываем _localPriority - приоритеты карт должны сохраняться
+        // НЕ сбрасываем _totalPriorityPlayers - он может использоваться другими картами
+    }
+
+    private void UpdatePrisonTimerState()
+    {
+        var any = _mapVotingState.Values.Any(v => v);
+        if (any == _anyPrisonTimerActive)
+            return;
+
+        _anyPrisonTimerActive = any;
+        PrisonTimerActiveChanged?.Invoke(any);
     }
 
     private void UpdateMapEntryUI(PlanetPrisonVoteUpdateEvent msg, PlanetPrisonMapEntry entry)

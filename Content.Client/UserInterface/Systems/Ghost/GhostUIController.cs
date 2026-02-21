@@ -86,33 +86,30 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
 
         // Sunrise-Start
         var newLifeEnable = _cfg.GetCVar(SunriseCCVars.NewLifeEnable);
-        var canRespawn = false;
-        if (newLifeEnable)
+        var respawnBlockReason = NewLifeRespawnBlockReason.None;
+        if (!newLifeEnable)
+        {
+            respawnBlockReason = NewLifeRespawnBlockReason.Unavailable;
+        }
+        else
         {
             var sponsorOnly = _cfg.GetCVar(SunriseCCVars.NewLifeSponsorOnly);
-            if (sponsorOnly && _sponsorsManager != null)
+            if (sponsorOnly && _sponsorsManager != null && !_sponsorsManager.ClientAllowedRespawn())
             {
-                if (_sponsorsManager.ClientAllowedRespawn() || !sponsorOnly)
-                {
-                    canRespawn = true;
-                }
-                else
-                {
-                    canRespawn = false;
-                }
+                respawnBlockReason = NewLifeRespawnBlockReason.SponsorOnly;
             }
-            else
+            else if (_prisonUI != null && _prisonUI.IsAnyPrisonTimerActive())
             {
-                canRespawn = true;
+                respawnBlockReason = NewLifeRespawnBlockReason.PrisonTimer;
             }
         }
-        // Sunrise-End
 
         // Проверяем доступность ролей тюрьмы
-        var prisonRolesAvailable = _prisonUI.AreAnyPrisonRolesAvailable();
-        var prisonRequirementsText = prisonRolesAvailable ? null : _prisonUI.GetPrisonRequirementsText();
+        var prisonRolesAvailable = _prisonUI?.AreAnyPrisonRolesAvailable() ?? false;
+        var prisonRequirementsText = prisonRolesAvailable ? null : _prisonUI?.GetPrisonRequirementsText();
 
-        Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody, canRespawn, prisonRolesAvailable, prisonRequirementsText);
+        Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody, respawnBlockReason, prisonRolesAvailable, prisonRequirementsText);
+        // Sunrise-End
     }
 
     private void OnPlayerRemoved(GhostComponent component)
@@ -177,7 +174,11 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.PrisonPressed += PrisonPressed; // Sunrise-Prison
         Gui.ChangeServerPressed += ChangeServerPressed;
 
-        _prisonUI.PrisonButtonHighlightChanged += OnPrisonButtonHighlightChanged;
+        if (_prisonUI != null)
+        {
+            _prisonUI.PrisonButtonHighlightChanged += OnPrisonButtonHighlightChanged;
+            _prisonUI.PrisonTimerActiveChanged += OnPrisonTimerActiveChanged;
+        }
         Gui.TargetWindow.WarpClicked += OnWarpClicked;
 
         // Sunrise edit - нету фичи
@@ -198,7 +199,11 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.PrisonPressed -= PrisonPressed; // Sunrise-Prison
         Gui.ChangeServerPressed -= ChangeServerPressed;
 
-        _prisonUI.PrisonButtonHighlightChanged -= OnPrisonButtonHighlightChanged;
+        if (_prisonUI != null)
+        {
+            _prisonUI.PrisonButtonHighlightChanged -= OnPrisonButtonHighlightChanged;
+            _prisonUI.PrisonTimerActiveChanged -= OnPrisonTimerActiveChanged;
+        }
         Gui.TargetWindow.WarpClicked -= OnWarpClicked;
 
         Gui.Hide();
@@ -243,6 +248,11 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     private void OnPrisonButtonHighlightChanged(bool highlight)
     {
         Gui?.HighlightPrisonButton(highlight);
+    }
+
+    private void OnPrisonTimerActiveChanged(bool active)
+    {
+        UpdateGui();
     }
     // Sunrise-Prison-End
 }

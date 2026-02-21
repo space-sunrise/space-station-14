@@ -6,7 +6,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
+using Content.Server.GameTicking.Events;
+using Content.Server.Ghost;
 using Content.Server.Mind;
+using Content.Shared.Mind.Components;
 using Content.Server.Roles;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
@@ -17,6 +20,7 @@ using Robust.Server.Audio;
 using Content.Server.Maps;
 using Content.Server.Parallax;
 using Content.Server.Shuttles.Systems;
+using Robust.Shared.EntitySerialization.Systems;
 using Content.Shared._Sunrise.PlanetPrison;
 using Content.Shared._Sunrise.Shuttles;
 using Content.Shared._Sunrise.SunriseCCVars;
@@ -29,6 +33,10 @@ using Content.Shared.Roles;
 using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Parallax.Biomes;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Ghost;
+using Content.Shared.Players;
 using Robust.Shared.Console;
 using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization.Systems;
@@ -36,6 +44,7 @@ using Robust.Shared.Utility;
 using Robust.Shared.Configuration;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Server.Player;
@@ -43,6 +52,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Enums;
 
 namespace Content.Server._Sunrise.PlanetPrison;
 
@@ -86,6 +96,10 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
     [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly MapLoaderSystem _loader = default!;
+    [Dependency] private readonly GhostSystem _ghosts = default!;
 
     // Состояние голосования карт
     private readonly Dictionary<string, MapVotingState> _mapStates = new();
@@ -96,8 +110,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     // Игроки с активными приоритетами карт
     private readonly HashSet<NetUserId> _priorityPlayers = new();
 
-    // Квоты ролей для запуска карты (роль -> количество)
-    private readonly Dictionary<string, int> _roleQuotas = new()
+    private static readonly Dictionary<string, int> DefaultRoleQuotas = new()
     {
         {"HeadOfPrison", 1},
         {"PlanetPrisoner", 1}
@@ -109,17 +122,149 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     // Кэшированные карты для быстрой загрузки (очередь для множественных копий)
     private readonly Dictionary<string, Queue<MapId>> _cachedMaps = new();
 
+    // Замороженные карты тюрьмы (ожидают удаления при рестарте раунда)
+    private readonly HashSet<MapId> _pausedOrphanMaps = new();
+
+    private bool _isCleaningPausedMaps;
+
     // Флаг для предотвращения повторного кэширования в одном лобби
     private bool _cachePreloaded = false;
 
     // Активная карта, для которой в данный момент идет глобальное голосование / отсчет таймера
     private string? _activeVotingMapId = null;
 
-    // Конфигурация карт тюрьмы
-    private const string MetusMapId = "PlanetPrison";
-    private const string NoxMapId = "PlanetPrisonOld";
-    private const int METUS_CACHE_SIZE = 1;
-    private const int NOX_CACHE_SIZE = 3;
+    private readonly List<EntityCoordinates> _observerSpawnPositionsBuffer = new();
+
+    /// <summary>
+    /// Возвращает все protoId карт тюрьмы (Modern + Old) для перебора.
+    /// При отсутствии компонента использует fallback: прототипы GameMap с PrisonMapFamily или PrisonCacheSize > 0.
+    /// </summary>
+    private IEnumerable<string> GetPrisonMapProtoIds()
+    {
+        var component = GetPrisonComponent();
+        if (component != null)
+        {
+            foreach (var id in component.StationsModern)
+                yield return id.ToString();
+            foreach (var id in component.StationsOld)
+                yield return id.ToString();
+            yield break;
+        }
+
+        foreach (var proto in _prototypeManager.EnumeratePrototypes<GameMapPrototype>())
+        {
+            if (!string.IsNullOrEmpty(proto.PrisonMapFamily) || proto.PrisonCacheSize > 0)
+                yield return proto.ID;
+        }
+    }
+
+    /// <summary>
+    /// Объединённый список карт: из компонента + из _mapStates (карты с голосами).
+    /// Гарантирует учёт карт, по которым уже голосовали, даже если компонент недоступен (лобби).
+    /// </summary>
+    private List<string> GetPrisonMapIdsForBroadcast()
+    {
+        var fromComponent = GetPrisonMapProtoIds().ToList();
+        var fromStates = _mapStates.Keys.Where(k => k != "GLOBAL").ToList();
+        return fromComponent.Union(fromStates).Distinct().ToList();
+    }
+
+    /// <summary>
+    /// Возвращает квоты ролей из прототипа или дефолт.
+    /// </summary>
+    private IReadOnlyDictionary<string, int> GetRoleQuotas()
+    {
+        var component = GetPrisonComponent();
+        if (component?.GameplaySettings.RequiredRoles != null && component.GameplaySettings.RequiredRoles.Count > 0)
+            return component.GameplaySettings.RequiredRoles;
+        return DefaultRoleQuotas;
+    }
+
+    /// <summary>
+    /// Получает компонент PlanetPrisonSharedComponent или возвращает null
+    /// </summary>
+    private PlanetPrisonSharedComponent? GetPrisonComponent()
+    {
+        var planetPrisonQuery = EntityQueryEnumerator<PlanetPrisonSharedComponent>();
+        if (planetPrisonQuery.MoveNext(out var component))
+            return component;
+        return null;
+    }
+
+    /// <summary>
+    /// Получает настройки завершения карты для конкретного protoId карты.
+    /// Сначала проверяет переопределения из PlanetPrisonMapSettingsComponent на станции карты,
+    /// затем использует глобальные настройки из PlanetPrisonSharedComponent.
+    /// </summary>
+    private PrisonMapCompletionSettings GetCompletionSettingsForMap(string protoId)
+    {
+        var mapId = _launchedMaps.GetValueOrDefault(protoId);
+        if (mapId != MapId.Nullspace && _mapManager.MapExists(mapId))
+        {
+            var stationQuery = EntityQueryEnumerator<StationDataComponent>();
+            while (stationQuery.MoveNext(out var uid, out var stationData))
+            {
+                if (_transform.GetMapId(uid) != mapId)
+                    continue;
+
+                if (TryComp<PlanetPrisonMapSettingsComponent>(uid, out var mapSettings) &&
+                    mapSettings.CompletionSettingsOverride != null)
+                {
+                    Console.WriteLine($"[SETTINGS] Using map-specific completion settings for {protoId} from PlanetPrisonMapSettingsComponent");
+                    return mapSettings.CompletionSettingsOverride;
+                }
+            }
+        }
+
+        if (_prototypeManager.TryIndex<GameMapPrototype>(protoId, out var gameMapProto))
+        {
+            var mode = gameMapProto.PrisonCompletionMode;
+            if (!string.IsNullOrEmpty(gameMapProto.PrisonMapFamily) || mode != PrisonMapCompletionMode.Delete)
+            {
+                Console.WriteLine($"[SETTINGS] Using completion from GameMapPrototype for {protoId}: {mode}");
+                return new PrisonMapCompletionSettings { CompletionMode = mode };
+            }
+        }
+
+        var component = GetPrisonComponent();
+        var settings = component?.CompletionSettings ?? new PrisonMapCompletionSettings();
+        Console.WriteLine($"[SETTINGS] Using global completion settings for {protoId}: {settings.CompletionMode}");
+        return settings;
+    }
+
+    /// <summary>
+    /// Получает минимальное количество игроков из компонента
+    /// </summary>
+    private int GetMinPlayersRequired()
+    {
+        var component = GetPrisonComponent();
+        return component?.GameplaySettings.MinPlayersRequired ?? 2;
+    }
+
+    /// <summary>
+    /// Размер кэша для карты с данным protoId: из прототипа (PrisonCacheSize) или дефолт из base.
+    /// </summary>
+    private int GetPrisonCacheSizeForProto(string protoId)
+    {
+        if (_prototypeManager.TryIndex<GameMapPrototype>(protoId, out var gameMapProto) &&
+            !string.IsNullOrEmpty(gameMapProto.PrisonMapFamily))
+        {
+            var size = gameMapProto.PrisonCacheSize;
+            if (size > 0)
+                return size;
+        }
+        var component = GetPrisonComponent();
+        return component?.CacheSettings.DefaultPrisonCacheSize ?? 1;
+    }
+
+    /// <summary>
+    /// Карта тюрьмы с планетой (создаём планету при активации). По соглашению — PrisonMapFamily == "Metus".
+    /// </summary>
+    private bool IsPlanetPrisonMap(string protoId)
+    {
+        return _prototypeManager.TryIndex<GameMapPrototype>(protoId, out var p) &&
+               string.Equals(p.PrisonMapFamily, "Metus", StringComparison.OrdinalIgnoreCase);
+    }
 
     /// <summary>
     /// Проверяет, можно ли запустить карту с текущими приоритетами игроков
@@ -136,7 +281,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         Logger.Debug($"CanStartRound - participatingPlayers: {string.Join(", ", participatingPlayers)}");
 
         // Проверяем, что среди участвующих хватает приоритетов на роли
-        foreach (var (roleId, requiredCount) in _roleQuotas)
+        foreach (var (roleId, requiredCount) in GetRoleQuotas())
         {
             var candidates = participatingPlayers
                 .Where(playerId => GetOrCreateRoleState(roleId).Priorities.GetValueOrDefault(playerId, 0) > 0)
@@ -230,7 +375,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         var hasActiveVoting = HasActiveTimer("GLOBAL");
         var insufficientRoles = GetInsufficientRoles();
 
-        foreach (var mapId in new[] { MetusMapId, NoxMapId })
+        foreach (var mapId in GetPrisonMapProtoIds().ToList())
         {
             var voteCount = GetVoteCount(mapId);
             var isLaunched = _launchedMaps.ContainsKey(mapId);
@@ -281,13 +426,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     private void UpdateAllVotingStates()
     {
         // Получаем минимальное количество игроков из компонента
-        var planetPrisonQuery = EntityQueryEnumerator<PlanetPrisonSharedComponent>();
-        var minPlayersRequired = 2; // Значение по умолчанию
-
-        if (planetPrisonQuery.MoveNext(out var planetPrisonComp))
-        {
-            minPlayersRequired = planetPrisonComp.MinPlayersRequired;
-        }
+        var minPlayersRequired = GetMinPlayersRequired();
 
         var participatingCount = GetParticipatingPlayerCount();
         var canStartRound = CanStartRound();
@@ -298,7 +437,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
         Console.WriteLine($"UpdateAllVotingStates called: participatingCount={participatingCount}, canStartRound={canStartRound}, hasActiveVoting={hasActiveVoting}, insufficientRoles={string.Join(",", insufficientRoles)}");
 
-        foreach (var mapId in new[] { MetusMapId, NoxMapId })
+        foreach (var mapId in GetPrisonMapIdsForBroadcast())
         {
             var voteCount = GetVoteCount(mapId);
             var isLaunched = _launchedMaps.ContainsKey(mapId);
@@ -343,7 +482,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
         Logger.Debug($"GetInsufficientRoles - participatingPlayers: {string.Join(", ", participatingPlayers)}");
 
-        foreach (var (roleId, requiredCount) in _roleQuotas)
+        foreach (var (roleId, requiredCount) in GetRoleQuotas())
         {
             var candidates = participatingPlayers
                 .Where(playerId => GetOrCreateRoleState(roleId).Priorities.GetValueOrDefault(playerId, 0) > 0)
@@ -420,6 +559,12 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
         SubscribeLocalEvent<StationPostInitEvent>(OnStationPostInit);
         SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRunLevelChanged);
+
+        // Подписка на события смерти и превращения в призрака для автоматического удаления пустых карт
+        SubscribeLocalEvent<PlanetPrisonSpawnedComponent, MobStateChangedEvent>(OnPrisonPlayerMobStateChanged);
+        SubscribeLocalEvent<PlanetPrisonSpawnedComponent, PlayerDetachedEvent>(OnPrisonPlayerDetached);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+        SubscribeLocalEvent<GetObserverSpawnPointEvent>(OnGetObserverSpawnPoint);
 
         Log.Level = LogLevel.Info;
     }
@@ -627,13 +772,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         var playerCount = _priorityPlayers.Count;
 
         // Получаем минимальное количество игроков из компонента
-        var planetPrisonQuery = EntityQueryEnumerator<PlanetPrisonSharedComponent>();
-        var minPlayersRequired = 2; // Значение по умолчанию
-
-        if (planetPrisonQuery.MoveNext(out var planetPrisonComp))
-        {
-            minPlayersRequired = planetPrisonComp.MinPlayersRequired;
-        }
+        var minPlayersRequired = GetMinPlayersRequired();
 
         // UpdateAllVotingStates() уже отправляет обновления всем клиентам выше
 
@@ -739,18 +878,32 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     }
 
 
-    private int GetMinPlayersRequiredForMap(string mapId)
+    private int GetMinPlayersRequiredForMap(string protoId)
     {
         const int defaultMin = 2;
 
-        if (string.IsNullOrEmpty(mapId))
+        if (string.IsNullOrEmpty(protoId))
             return defaultMin;
 
-        // Прямое чтение только из GameMapPrototype.minPlayers
-        if (_prototypeManager.TryIndex<GameMapPrototype>(mapId, out var proto) && proto.MinPlayers > 0)
+        var mapId = _launchedMaps.GetValueOrDefault(protoId);
+        if (mapId != MapId.Nullspace && _mapManager.MapExists(mapId))
+        {
+            var stationQuery = EntityQueryEnumerator<StationDataComponent>();
+            while (stationQuery.MoveNext(out var uid, out _))
+            {
+                if (_transform.GetMapId(uid) != mapId)
+                    continue;
+                if (TryComp<PlanetPrisonMapSettingsComponent>(uid, out var mapSettings) &&
+                    mapSettings.GameplaySettingsOverride is { } gs)
+                {
+                    return gs.MinPlayersRequired;
+                }
+            }
+        }
+
+        if (_prototypeManager.TryIndex<GameMapPrototype>(protoId, out var proto) && proto.MinPlayers > 0)
             return (int)proto.MinPlayers;
 
-        // Простой дефолт
         return defaultMin;
     }
 
@@ -777,36 +930,39 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     }
 
     /// <summary>
-    /// Гарантирует, что очереди кэша для карт тюрьмы инициализированы
+    /// Гарантирует, что очереди кэша для карт тюрьмы инициализированы (по одному на каждый protoId из списка).
     /// </summary>
     private void InitializeCacheQueues()
     {
-        if (!_cachedMaps.ContainsKey(MetusMapId) || _cachedMaps[MetusMapId] == null)
-            _cachedMaps[MetusMapId] = new Queue<MapId>();
-        if (!_cachedMaps.ContainsKey(NoxMapId) || _cachedMaps[NoxMapId] == null)
-            _cachedMaps[NoxMapId] = new Queue<MapId>();
+        var protoIds = GetPrisonMapProtoIds().ToList();
+        foreach (var protoId in protoIds)
+        {
+            if (!_cachedMaps.ContainsKey(protoId) || _cachedMaps[protoId] == null)
+                _cachedMaps[protoId] = new Queue<MapId>();
+        }
     }
 
     /// <summary>
-    /// Асинхронно загружает все карты тюрьмы после начала раунда
+    /// Асинхронно загружает все карты тюрьмы после начала раунда.
     /// </summary>
     private async Task PreloadAllPrisonMapsAsync()
     {
         Console.WriteLine("[CACHE] === STARTING ASYNC PRISON MAP LOADING ===");
-        Console.WriteLine("[CACHE] Starting async loading of all prison maps after round start (3 Metus + 3 Nox)");
-        Console.WriteLine("[CACHE] This should not interfere with round initialization or Xenoborgs player checks");
         Console.WriteLine($"[CACHE] Current thread: {Thread.CurrentThread.ManagedThreadId}");
 
         try
         {
             InitializeCacheQueues();
             var startTime = System.Diagnostics.Stopwatch.StartNew();
+            var protoIds = GetPrisonMapProtoIds().ToList();
 
-            Console.WriteLine("[CACHE] Loading Metus maps...");
-            await LoadMapsOfTypeAsync(MetusMapId, METUS_CACHE_SIZE, "Metus");
-
-            Console.WriteLine("[CACHE] Loading Nox maps...");
-            await LoadMapsOfTypeAsync(NoxMapId, NOX_CACHE_SIZE, "Nox");
+            foreach (var protoId in protoIds)
+            {
+                var displayName = _prototypeManager.TryIndex<GameMapPrototype>(protoId, out var p) ? p.MapName : protoId;
+                var count = GetPrisonCacheSizeForProto(protoId);
+                Console.WriteLine($"[CACHE] Loading {displayName} ({protoId}) x{count}...");
+                await LoadMapsOfTypeAsync(protoId, count, displayName);
+            }
 
             startTime.Stop();
             LogCacheCompletion(startTime);
@@ -820,7 +976,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     }
 
     /// <summary>
-    /// Синхронно загружает все карты тюрьмы (для совместимости)
+    /// Синхронно загружает все карты тюрьмы (для совместимости).
     /// </summary>
     private void PreloadAllPrisonMapsAtRoundStart()
     {
@@ -828,11 +984,16 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
         InitializeCacheQueues();
         var startTime = System.Diagnostics.Stopwatch.StartNew();
+        var protoIds = GetPrisonMapProtoIds().ToList();
 
         try
         {
-            LoadMapsOfType(MetusMapId, METUS_CACHE_SIZE, "Metus");
-            LoadMapsOfType(NoxMapId, NOX_CACHE_SIZE, "Nox");
+            foreach (var protoId in protoIds)
+            {
+                var displayName = _prototypeManager.TryIndex<GameMapPrototype>(protoId, out var p) ? p.MapName : protoId;
+                var count = GetPrisonCacheSizeForProto(protoId);
+                LoadMapsOfType(protoId, count, displayName);
+            }
 
             startTime.Stop();
             LogCacheCompletion(startTime);
@@ -849,7 +1010,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         {
             Console.WriteLine($"[CACHE] Loading {displayName} #{i}");
             var mapStart = System.Diagnostics.Stopwatch.StartNew();
-            await PreloadSingleMapAsync(mapType);
+            await PreloadSingleMapAsync(mapType, i - 1);
             mapStart.Stop();
             Console.WriteLine($"[CACHE] {displayName} #{i} loaded in {mapStart.Elapsed.TotalSeconds:F2}s");
         }
@@ -861,7 +1022,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         {
             Console.WriteLine($"[CACHE] Loading {displayName} #{i}");
             var mapStart = System.Diagnostics.Stopwatch.StartNew();
-            PreloadSingleMap(mapType);
+            PreloadSingleMap(mapType, i - 1);
             mapStart.Stop();
             Console.WriteLine($"[CACHE] {displayName} #{i} loaded in {mapStart.Elapsed.TotalSeconds:F2}s");
         }
@@ -870,10 +1031,14 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     private void LogCacheCompletion(System.Diagnostics.Stopwatch startTime)
     {
         startTime.Stop();
-        var metuschCount = _cachedMaps.TryGetValue(MetusMapId, out var metuschQueue) ? metuschQueue.Count : 0;
-        var noxCount = _cachedMaps.TryGetValue(NoxMapId, out var noxQueue) ? noxQueue.Count : 0;
-
-        Console.WriteLine($"[CACHE] All prison maps loaded: {metuschCount} Metus, {noxCount} Nox");
+        var parts = new List<string>();
+        foreach (var protoId in GetPrisonMapProtoIds())
+        {
+            var count = _cachedMaps.TryGetValue(protoId, out var q) ? q.Count : 0;
+            var name = _prototypeManager.TryIndex<GameMapPrototype>(protoId, out var p) ? p.MapName : protoId;
+            parts.Add($"{count} {name}");
+        }
+        Console.WriteLine($"[CACHE] All prison maps loaded: {string.Join(", ", parts)}");
         Console.WriteLine($"[CACHE] Total load time: {startTime.Elapsed.TotalSeconds:F1}s");
     }
 
@@ -882,7 +1047,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     /// <summary>
     /// Асинхронно предварительно загружает одну карту тюрьмы
     /// </summary>
-    private async Task PreloadSingleMapAsync(string mapProtoId)
+    private async Task PreloadSingleMapAsync(string mapProtoId, int? cacheIndex = null)
     {
         var mapLoadStart = System.Diagnostics.Stopwatch.StartNew();
 
@@ -890,8 +1055,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         {
             Console.WriteLine($"[CACHE] Starting preload of {mapProtoId}...");
 
-            // Находим свободный MapId
-            var cacheMapId = FindFreeMapId();
+            var cacheMapId = GetNextFreeMapIdForProto(mapProtoId, cacheIndex);
             if (cacheMapId == -1)
             {
                 Console.WriteLine($"[CACHE] Cannot find free map ID for {mapProtoId}");
@@ -960,7 +1124,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     /// <summary>
     /// Предварительно загружает одну карту тюрьмы
     /// </summary>
-    private void PreloadSingleMap(string mapProtoId)
+    private void PreloadSingleMap(string mapProtoId, int? cacheIndex = null)
     {
         var mapLoadStart = System.Diagnostics.Stopwatch.StartNew();
 
@@ -968,8 +1132,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         {
             Console.WriteLine($"[CACHE] Starting preload of {mapProtoId}...");
 
-            // Находим свободный MapId
-            var cacheMapId = FindFreeMapId();
+            var cacheMapId = GetNextFreeMapIdForProto(mapProtoId, cacheIndex);
             if (cacheMapId == -1)
             {
                 Console.WriteLine($"[CACHE] Cannot find free map ID for {mapProtoId}");
@@ -1075,7 +1238,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         Console.WriteLine($"[CACHE] Prison map cache cleared - deleted {totalMapsDeleted} cached maps");
     }
 
-    private void AssignPrisonRoles()
+    private void AssignPrisonRoles(string selectedMapId)
     {
 
         // Получаем участвующих игроков (голосующих за карты)
@@ -1102,12 +1265,12 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         {
 
             // Для каждой роли собираем кандидатов с текущим уровнем приоритета
-            foreach (var roleId in _roleQuotas.Keys)
+            foreach (var roleId in GetRoleQuotas().Keys)
             {
                 if (assignedRoles.Contains(roleId))
                     continue; // Роль уже назначена
 
-                var requiredCount = _roleQuotas[roleId];
+                var requiredCount = GetRoleQuotas()[roleId];
                 var alreadyAssigned = assignedRoles.Count(r => r == roleId);
                 var slotsLeft = requiredCount - alreadyAssigned;
 
@@ -1144,14 +1307,14 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
                     var updateEvent = new PlanetPrisonRoleUpdateEvent(roleId, false, true);
                     RaiseNetworkEvent(updateEvent);
 
-                    // Спавним игрока с ролью
-                    SpawnPlayerWithRole(playerId, roleId);
+                    // Спавним игрока с ролью на правильной карте
+                    SpawnPlayerWithRole(playerId, roleId, selectedMapId);
                 }
             }
         }
 
         // Проверяем, все ли роли распределены
-        var unfilledRoles = _roleQuotas
+        var unfilledRoles = GetRoleQuotas()
             .Where(kvp => assignedRoles.Count(r => r == kvp.Key) < kvp.Value)
             .Select(kvp => $"{kvp.Key}({assignedRoles.Count(r => r == kvp.Key)}/{kvp.Value})")
             .ToList();
@@ -1167,7 +1330,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         }
     }
 
-    private void SpawnPlayerWithRole(NetUserId playerId, string roleId)
+    private void SpawnPlayerWithRole(NetUserId playerId, string roleId, string selectedMapId)
     {
         // Получаем сессию игрока
         if (!_player.TryGetSessionById(playerId, out var session))
@@ -1201,8 +1364,52 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
         try
         {
-            // Находим запущенную карту тюрьмы (любую, так как роли глобальны для тюрьмы)
-            var prisonMapId = _launchedMaps.Values.FirstOrDefault();
+            // Определяем карту для спавна игрока на основе его голосов
+            // Если игрок голосовал за выбранную карту, используем её
+            // Иначе находим карту с наивысшим приоритетом голоса игрока
+            MapId prisonMapId = MapId.Nullspace;
+            
+            // Проверяем, голосовал ли игрок за выбранную карту
+            if (_mapStates.TryGetValue(selectedMapId, out var selectedMapState) &&
+                selectedMapState.Votes.GetValueOrDefault(playerId, 0) > 0 &&
+                _launchedMaps.TryGetValue(selectedMapId, out var selectedMapIdValue))
+            {
+                prisonMapId = selectedMapIdValue;
+                Console.WriteLine($"Player {session.Name} voted for selected map {selectedMapId}, spawning on MapId {prisonMapId}");
+            }
+            else
+            {
+                // Ищем карту с наивысшим приоритетом голоса игрока среди запущенных карт
+                var bestMapId = string.Empty;
+                var bestPriority = 0;
+                
+                foreach (var kvp in _launchedMaps)
+                {
+                    var mapProtoId = kvp.Key;
+                    if (_mapStates.TryGetValue(mapProtoId, out var mapState))
+                    {
+                        var playerPriority = mapState.Votes.GetValueOrDefault(playerId, 0);
+                        if (playerPriority > bestPriority)
+                        {
+                            bestPriority = playerPriority;
+                            bestMapId = mapProtoId;
+                        }
+                    }
+                }
+                
+                if (!string.IsNullOrEmpty(bestMapId) && _launchedMaps.TryGetValue(bestMapId, out var bestMapIdValue))
+                {
+                    prisonMapId = bestMapIdValue;
+                    Console.WriteLine($"Player {session.Name} voted for map {bestMapId} with priority {bestPriority}, spawning on MapId {prisonMapId}");
+                }
+                else
+                {
+                    // Fallback: используем первую доступную запущенную карту
+                    prisonMapId = _launchedMaps.Values.FirstOrDefault();
+                    Console.WriteLine($"Player {session.Name} has no votes for launched maps, using fallback MapId {prisonMapId}");
+                }
+            }
+            
             if (prisonMapId == MapId.Nullspace)
             {
                 Console.WriteLine($"No prison map is currently launched for role assignment");
@@ -1231,6 +1438,11 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
             // Создаем персонажа без job (чтобы избежать автоматического применения starting gear)
             var character = _stationSpawning.SpawnPlayerMob(coordinates.Value, null, profile, station.Value);
+
+            // Помечаем персонажа как заспавненного на тюремной карте, чтобы в дальнейшем
+            // можно было ограничивать голосования только для игроков этой карты.
+            var spawnedMarker = EnsureComp<PlanetPrisonSpawnedComponent>(character);
+            spawnedMarker.MapId = prisonMapId;
 
             // Создаем Mind для игрока
             var newMind = _mind.CreateMind(playerId, session.Name);
@@ -1321,7 +1533,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     private void SendFinalUpdatesAfterLaunch(string launchedMapId)
     {
         // Отправляем обновления для всех карт
-        foreach (var mapId in new[] { MetusMapId, NoxMapId })
+        foreach (var mapId in GetPrisonMapProtoIds().ToList())
         {
             var voteCount = 0; // Все голоса сброшены
             // Для запущенной карты отправляем RemainingSeconds = 0 чтобы клиент показал "(запускается)" и затем "(запущен)"
@@ -1339,16 +1551,10 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         Console.WriteLine("Sending global state reset to all clients");
 
         // Получаем минимальное количество игроков из компонента
-        var planetPrisonQuery = EntityQueryEnumerator<PlanetPrisonSharedComponent>();
-        var minPlayersRequired = 2; // Значение по умолчанию
-
-        if (planetPrisonQuery.MoveNext(out var planetPrisonComp))
-        {
-            minPlayersRequired = planetPrisonComp.MinPlayersRequired;
-        }
+        var minPlayersRequired = GetMinPlayersRequired();
 
         // Отправляем специальное сообщение о глобальном сбросе для каждой карты
-        foreach (var mapId in new[] { MetusMapId, NoxMapId })
+        foreach (var mapId in GetPrisonMapProtoIds().ToList())
         {
             // Используем специальную комбинацию параметров для обозначения глобального сброса:
             // TotalPriorityPlayers = -1 (специальный флаг)
@@ -1371,13 +1577,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         }
 
         // Получаем минимальное количество игроков из компонента
-        var planetPrisonQuery = EntityQueryEnumerator<PlanetPrisonSharedComponent>();
-        var minPlayersRequired = 2; // Значение по умолчанию
-
-        if (planetPrisonQuery.MoveNext(out var planetPrisonComp))
-        {
-            minPlayersRequired = planetPrisonComp.MinPlayersRequired;
-        }
+        var minPlayersRequired = GetMinPlayersRequired();
 
         // Отправляем текущее состояние голосования клиенту
         var voteCount = GetVoteCount(msg.MapId);
@@ -1415,7 +1615,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         RaiseNetworkEvent(updateEvent, args.SenderSession!);
 
         // Также отправляем состояние других карт этому игроку
-        foreach (var otherMapId in new[] { MetusMapId, NoxMapId }.Where(id => id != msg.MapId))
+        foreach (var otherMapId in GetPrisonMapProtoIds().Where(id => id != msg.MapId))
         {
             var otherVoteCount = GetVoteCount(otherMapId);
             var otherIsLaunched = _launchedMaps.ContainsKey(otherMapId);
@@ -1491,6 +1691,355 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         UpdateAllVotingStates();
     }
 
+    /// <summary>
+    /// Проверяет все запущенные карты и удаляет те, на которых нет живых игроков (все умерли или стали призраками)
+    /// </summary>
+    /// <summary>
+    /// Обработчик события изменения состояния моба для игроков на тюремных картах
+    /// Также проверяет, стал ли игрок призраком (для случаев, когда игрок становится призраком без смерти)
+    /// </summary>
+    private void OnPrisonPlayerMobStateChanged(Entity<PlanetPrisonSpawnedComponent> ent, ref MobStateChangedEvent args)
+    {
+        // Проверяем, что игрок умер или стал призраком
+        bool shouldCheck = false;
+        
+        if (args.NewMobState == MobState.Dead)
+        {
+            shouldCheck = true;
+            Console.WriteLine($"[AUTO-DELETE] Player died on map {ent.Comp.MapId}");
+        }
+        else if (HasComp<GhostComponent>(ent))
+        {
+            // Игрок стал призраком без смерти (например, через криокапсулу)
+            shouldCheck = true;
+            Console.WriteLine($"[AUTO-DELETE] Player became ghost on map {ent.Comp.MapId}");
+        }
+
+        if (!shouldCheck)
+            return;
+
+        // Проверяем, что это действительно игрок с Mind, а не NPC
+        if (!TryComp<MindContainerComponent>(ent, out var mindContainer) ||
+            (mindContainer.Mind == null && mindContainer.LastMindStored == null))
+            return;
+
+        // Получаем MapId из компонента
+        var mapId = ent.Comp.MapId;
+        if (mapId == MapId.Nullspace)
+            return;
+
+        // Проверяем и удаляем карту, если она пустая
+        CheckAndRemoveMapIfEmpty(mapId);
+    }
+
+    /// <summary>
+    /// Обработчик отсоединения игрока от сущности на тюремной карте.
+    /// Используется для удаления карт, если все игроки вышли из тела / отключились.
+    /// </summary>
+    private void OnPrisonPlayerDetached(Entity<PlanetPrisonSpawnedComponent> ent, ref PlayerDetachedEvent args)
+    {
+        var mapId = ent.Comp.MapId;
+        if (mapId == MapId.Nullspace)
+            return;
+
+        Console.WriteLine($"[AUTO-DELETE] Player detached from map {mapId} (session status={args.Player.Status})");
+
+        CheckAndRemoveMapIfEmpty(mapId);
+    }
+
+    private void OnGetObserverSpawnPoint(GetObserverSpawnPointEvent ev)
+    {
+        if (ev.ExcludeMapId is not { } excludeMapId || !IsPrisonMap(excludeMapId))
+            return;
+        var coords = GetObserverSpawnPointExcludingMap(excludeMapId);
+        if (coords.IsValid(EntityManager))
+            ev.Coordinates = coords;
+    }
+
+    /// <summary>
+    /// Возвращает true, если карта является тюремной (запущенной или в кэше).
+    /// </summary>
+    private bool IsPrisonMap(MapId mapId)
+    {
+        if (_launchedMaps.Values.Contains(mapId))
+            return true;
+        foreach (var queue in _cachedMaps.Values)
+        {
+            if (queue != null && queue.Contains(mapId))
+                return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Возвращает координаты точки спавна наблюдателя, исключая указанную карту.
+    /// Используется перед удалением карты тюрьмы, чтобы призраки не создавались на удаляемой карте.
+    /// </summary>
+    private EntityCoordinates GetObserverSpawnPointExcludingMap(MapId excludeMapId)
+    {
+        _observerSpawnPositionsBuffer.Clear();
+        var spawnPointQuery = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+        while (spawnPointQuery.MoveNext(out var uid, out var point, out var transform))
+        {
+            if (point.SpawnType != SpawnPointType.Observer
+               || TerminatingOrDeleted(uid)
+               || transform.MapUid == null
+               || TerminatingOrDeleted(transform.MapUid.Value))
+            {
+                continue;
+            }
+            if (_transform.GetMapId(uid) == excludeMapId)
+                continue;
+            _observerSpawnPositionsBuffer.Add(transform.Coordinates);
+        }
+
+        var metaQuery = GetEntityQuery<MetaDataComponent>();
+
+        if (_observerSpawnPositionsBuffer.Count == 0)
+        {
+            var query = AllEntityQuery<MapGridComponent>();
+            while (query.MoveNext(out var uid, out var grid))
+            {
+                if (!metaQuery.TryGetComponent(uid, out var meta) || meta.EntityPaused || TerminatingOrDeleted(uid))
+                    continue;
+                if (_transform.GetMapId(uid) == excludeMapId)
+                    continue;
+                _observerSpawnPositionsBuffer.Add(new EntityCoordinates(uid, Vector2.Zero));
+            }
+        }
+
+        if (_observerSpawnPositionsBuffer.Count != 0)
+        {
+            var spawn = _random.Pick(_observerSpawnPositionsBuffer);
+            var toMap = _transform.ToMapCoordinates(spawn);
+            if (_mapManager.TryFindGridAt(toMap, out var gridUid, out _))
+            {
+                var gridXform = Transform(gridUid);
+                return new EntityCoordinates(gridUid, Vector2.Transform(toMap.Position, _transform.GetInvWorldMatrix(gridXform)));
+            }
+            return spawn;
+        }
+
+        if (_map.MapExists(_gameTicker.DefaultMap) && _gameTicker.DefaultMap != excludeMapId)
+        {
+            var mapUid = _map.GetMapOrInvalid(_gameTicker.DefaultMap);
+            if (!TerminatingOrDeleted(mapUid))
+                return new EntityCoordinates(mapUid, Vector2.Zero);
+        }
+
+        foreach (var map in _map.GetAllMapIds())
+        {
+            if (map == excludeMapId)
+                continue;
+            var mapUid = _map.GetMapOrInvalid(map);
+            if (!metaQuery.TryGetComponent(mapUid, out var meta)
+                || meta.EntityPaused
+                || TerminatingOrDeleted(mapUid))
+            {
+                continue;
+            }
+            return new EntityCoordinates(mapUid, Vector2.Zero);
+        }
+
+        return EntityCoordinates.Invalid;
+    }
+
+    /// <summary>
+    /// Переносит всех игроков (сессии), привязанных к сущностям на карте тюрьмы, на главную станцию перед удалением карты.
+    /// Призраков перемещает в точку спавна призраков; тела/трупы — создаёт нового призрака и переносит ум.
+    /// Возвращает false, если нет валидной точки спавна призраков (тогда удаление карты вызывать не следует).
+    /// </summary>
+    private bool TeleportPrisonGhostsToMainStation(MapId mapId)
+    {
+        var spawnCoords = GetObserverSpawnPointExcludingMap(mapId);
+        if (!spawnCoords.IsValid(EntityManager))
+            return false;
+
+        var sessionsOnMap = new List<ICommonSession>();
+        foreach (var session in _playerManager.Sessions)
+        {
+            if (session.AttachedEntity is not { } uid)
+                continue;
+            if (Deleted(uid) || !TryComp(uid, out TransformComponent? xform))
+                continue;
+            if (xform.MapID != mapId)
+                continue;
+            sessionsOnMap.Add(session);
+        }
+
+        foreach (var session in sessionsOnMap)
+        {
+            var uid = session.AttachedEntity!.Value;
+            if (HasComp<GhostComponent>(uid))
+            {
+                RemComp<PlanetPrisonSpawnedComponent>(uid);
+                _transform.SetCoordinates(uid, spawnCoords);
+                continue;
+            }
+
+            if (!_mind.TryGetMind(uid, out var mindId, out _))
+                continue;
+
+            var newGhost = Spawn(GameTicker.ObserverPrototypeName, spawnCoords);
+            EnsureComp<MindContainerComponent>(newGhost);
+            var ghostComp = Comp<GhostComponent>(newGhost);
+            _ghosts.SetCanReturnToBody((newGhost, ghostComp), false);
+            _mind.TransferTo(mindId, newGhost, createGhost: false);
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Отвязывает от сущностей все сессии, привязанные к сущностям на указанной карте.
+    /// Используется при принудительном удалении карты (например, рестарт раунда), когда точки спавна призраков нет.
+    /// </summary>
+    private void DetachSessionsOnMap(MapId mapId)
+    {
+        foreach (var session in _playerManager.Sessions)
+        {
+            if (session.AttachedEntity is not { } uid)
+                continue;
+            if (Deleted(uid) || !TryComp(uid, out TransformComponent? xform))
+                continue;
+            if (xform.MapID != mapId)
+                continue;
+            _playerManager.SetAttachedEntity(session, null);
+        }
+    }
+
+    /// <summary>
+    /// Проверяет указанную карту и удаляет её, если на ней нет живых игроков (не призраков)
+    /// </summary>
+    private void CheckAndRemoveMapIfEmpty(MapId mapId)
+    {
+        if (mapId == MapId.Nullspace || !_mapManager.MapExists(mapId))
+        {
+            Console.WriteLine($"[AUTO-DELETE] Map {mapId} doesn't exist, skipping check");
+            return;
+        }
+
+        // Находим protoId для этой карты
+        var protoId = _launchedMaps.FirstOrDefault(kvp => kvp.Value == mapId).Key;
+        if (string.IsNullOrEmpty(protoId))
+        {
+            Console.WriteLine($"[AUTO-DELETE] Map {mapId} is not in launched maps, skipping check");
+            return;
+        }
+
+        // Проверяем, есть ли живые игроки (не призраки) на этой карте
+        bool hasAlivePlayers = false;
+
+        // Ищем всех игроков с PlanetPrisonSpawnedComponent на этой карте
+        var query = EntityQueryEnumerator<PlanetPrisonSpawnedComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var spawned, out var xform))
+        {
+            // Проверяем, что сущность находится на нужной карте
+            if (xform.MapID != mapId)
+                continue;
+
+            // Проверяем, что это действительно игрок с Mind (не обычный моб / NPC)
+            if (!TryComp<MindContainerComponent>(uid, out var mindContainer) ||
+                (mindContainer.Mind == null && mindContainer.LastMindStored == null))
+                continue;
+
+            // Проверяем, что у сущности есть актор и сессия в игровом состоянии
+            if (!TryComp<ActorComponent>(uid, out var actor) ||
+                actor.PlayerSession == null ||
+                actor.PlayerSession.Status != SessionStatus.InGame)
+                continue;
+
+            // Проверяем, является ли игрок призраком
+            if (HasComp<GhostComponent>(uid))
+                continue;
+
+            // Проверяем, жив ли игрок
+            if (!_mobState.IsAlive(uid))
+                continue;
+
+            // Нашли живого подключенного игрока (не призрака) на карте
+            hasAlivePlayers = true;
+            break;
+        }
+
+        if (!hasAlivePlayers)
+        {
+            var completionSettings = GetCompletionSettingsForMap(protoId);
+            Console.WriteLine($"[COMPLETION] Map {protoId} (MapId: {mapId}) has no alive players, CompletionMode: {completionSettings.CompletionMode}");
+
+            if (!TeleportPrisonGhostsToMainStation(mapId))
+            {
+                Console.WriteLine($"[COMPLETION] Cannot delete map {protoId} (MapId: {mapId}): no valid observer spawn point, will retry later");
+                return;
+            }
+
+            _launchedMaps.Remove(protoId);
+
+            if (_mapManager.MapExists(mapId))
+            {
+                if (completionSettings.CompletionMode == PrisonMapCompletionMode.Delete)
+                {
+                    DetachSessionsOnMap(mapId);
+                    _mapManager.DeleteMap(mapId);
+                    Console.WriteLine($"[COMPLETION] Map {protoId} (MapId: {mapId}) deleted immediately");
+                }
+                else
+                {
+                    _map.SetPaused(mapId, true);
+                    _pausedOrphanMaps.Add(mapId);
+                    Console.WriteLine($"[COMPLETION] Map {protoId} (MapId: {mapId}) frozen, will be deleted on round restart");
+                }
+            }
+
+            OnPrisonMapEnded();
+        }
+        else
+        {
+            Console.WriteLine($"[AUTO-DELETE] Map {protoId} (MapId: {mapId}) still has alive players, keeping");
+        }
+    }
+
+    /// <summary>
+    /// Общая логика при завершении раунда карты тюрьмы (звук, сброс голосования, SendGlobalStateReset).
+    /// Вызывается при заморозке карты и при её удалении.
+    /// </summary>
+    private void OnPrisonMapEnded()
+    {
+        _audioSystem.PlayGlobal("/Audio/Misc/notice1.ogg", Filter.Broadcast(), false, AudioParams.Default);
+
+        foreach (var mapState in _mapStates.Values)
+        {
+            mapState.Timer.Cancel();
+        }
+        _mapStates.Clear();
+
+        ResetMapVotingOnly();
+        SendGlobalStateReset();
+    }
+
+    private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
+    {
+        var toDelete = _pausedOrphanMaps.ToList();
+        _pausedOrphanMaps.Clear();
+        _isCleaningPausedMaps = true;
+        try
+        {
+            foreach (var mapId in toDelete)
+            {
+                if (!_mapManager.MapExists(mapId))
+                    continue;
+                if (!TeleportPrisonGhostsToMainStation(mapId))
+                    DetachSessionsOnMap(mapId);
+                DetachSessionsOnMap(mapId);
+                _mapManager.DeleteMap(mapId);
+            }
+        }
+        finally
+        {
+            _isCleaningPausedMaps = false;
+        }
+    }
+
     private void OnMapRemoved(MapRemovedEvent ev)
     {
         var mapIdValue = (int)ev.MapId;
@@ -1517,7 +2066,6 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             {
                 Console.WriteLine($"Prison map (ID: {mapIdValue}) was launched and removed");
 
-                // Карта была запущена через голосование - удаляем из запущенных карт
                 var protoId = _launchedMaps.FirstOrDefault(kvp => kvp.Value == ev.MapId).Key;
                 if (!string.IsNullOrEmpty(protoId))
                 {
@@ -1528,37 +2076,12 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             else
             {
                 Console.WriteLine($"Prison map (ID: {mapIdValue}) removed, was not cached or launched");
-
-                // Карта не была в кэше и не была запущена - это необычная ситуация
-                // Возможно, она была создана другим способом
             }
 
-            // Проигрываем звук при удалении карты тюрьмы
-            _audioSystem.PlayGlobal("/Audio/Misc/notice1.ogg", Filter.Broadcast(), false, AudioParams.Default);
+            _pausedOrphanMaps.Remove(ev.MapId);
 
-            // Сброс состояния голосования карт при удалении карты тюрьмы
-            foreach (var mapState in _mapStates.Values)
-            {
-                mapState.Timer.Cancel();
-            }
-            _mapStates.Clear();
-
-            // Отменяем глобальный таймер, если он активен
-            if (HasActiveTimer("GLOBAL"))
-            {
-                // Находим и отменяем глобальный таймер
-                // Поскольку глобальный таймер хранится в _mapStates, но мы уже очистили _mapStates,
-                // просто сбрасываем состояние
-            }
-
-            // НЕ очищаем кэш карт при удалении - кэш должен оставаться для будущих запусков
-            // ClearMapCache(); // УБРАНО
-
-            // Сбрасываем только голоса карт, но сохраняем приоритеты ролей
-            ResetMapVotingOnly();
-
-            // Отправляем клиентам обновления о сбросе состояний
-            SendGlobalStateReset();
+            if (!_isCleaningPausedMaps)
+                OnPrisonMapEnded();
         }
     }
 
@@ -1571,7 +2094,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         var defaultMin = 2;
         var minPlayersCandidates = new List<int>();
 
-        foreach (var mapId in new[] { MetusMapId, NoxMapId })
+        foreach (var mapId in GetPrisonMapProtoIds().ToList())
         {
             if (_prototypeManager.TryIndex<GameMapPrototype>(mapId, out var proto) && proto.MinPlayers > 0)
             {
@@ -1582,11 +2105,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         // Если нет ни одного значения в prototype, пробуем глобальную настройку в компоненте
         if (!minPlayersCandidates.Any())
         {
-            var planetPrisonQuery = EntityQueryEnumerator<PlanetPrisonSharedComponent>();
-            if (planetPrisonQuery.MoveNext(out var planetPrisonComp))
-            {
-                minPlayersCandidates.Add(planetPrisonComp.MinPlayersRequired);
-            }
+            minPlayersCandidates.Add(GetMinPlayersRequired());
         }
 
         var minPlayersRequired = minPlayersCandidates.Any() ? minPlayersCandidates.Min() : defaultMin;
@@ -1600,7 +2119,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
         // Вычисляем суммарный приоритет для каждой карты от проголосовавших игроков
         var mapScores = new Dictionary<string, double>();
-        foreach (var mapId in new[] { MetusMapId, NoxMapId })
+        foreach (var mapId in GetPrisonMapIdsForBroadcast())
         {
             var mapState = GetOrCreateMapState(mapId);
             if (mapState.Votes.Count > 0)
@@ -1622,6 +2141,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         if (!votedMaps.Any())
         {
             Console.WriteLine($"No maps with votes found, cancelling vote");
+            Console.WriteLine($"[DEBUG] mapScores: [{string.Join(", ", mapScores.Select(kvp => $"{kvp.Key}={kvp.Value}"))}], mapIds: [{string.Join(", ", GetPrisonMapIdsForBroadcast())}]");
             ResetMapVotingOnly();
             SendGlobalStateReset();
             return;
@@ -1677,6 +2197,9 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
                 var updateEvent = BuildVoteUpdateEvent(selectedMapId, GetParticipatingPlayerCount(), true, false, i, GetParticipatingPlayerCount(), Array.Empty<string>());
                 RaiseNetworkEvent(updateEvent);
 
+                // Обновляем состояние всех карт, чтобы другие карты получили правильное состояние (isVoting=false)
+                UpdateAllVotingStates();
+
                 // Если время вышло и игроков недостаточно, отменить голосование
                 if (i == 0 && GetParticipatingPlayerCount() < minPlayersRequired)
                 {
@@ -1714,7 +2237,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             _launchedMaps[selectedMapId] = launchedMapId;
 
             // Назначаем роли игрокам на основе их приоритетов ПЕРЕД сбросом
-            AssignPrisonRoles();
+            AssignPrisonRoles(selectedMapId);
 
             // После назначения ролей сбрасываем только голоса карт и пул игроков, но сохраняем приоритеты ролей
             ResetMapVotingOnly();
@@ -1760,8 +2283,8 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             _map.SetPaused(cachedMapId, false);
             activationStart.Stop();
 
-            // Для карт с планетами гарантируем создание/наличие планеты при активации
-            if (protoId == MetusMapId)
+            // Для карт с планетами (PrisonMapFamily == Metus) гарантируем создание/наличие планеты при активации
+            if (IsPlanetPrisonMap(protoId))
             {
                 await CreatePlanetForMap(cachedMapId, protoId);
             }
@@ -1782,8 +2305,8 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             // Активируем только что созданную карту
             _map.SetPaused(cachedMapId, false);
 
-            // Для карт с планетами гарантируем создание/наличие планеты при активации
-            if (protoId == MetusMapId)
+            // Для карт с планетами (PrisonMapFamily == Metus) гарантируем создание/наличие планеты при активации
+            if (IsPlanetPrisonMap(protoId))
             {
                 await CreatePlanetForMap(cachedMapId, protoId);
             }
@@ -1795,11 +2318,14 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         // Если и это не помогло, загружаем без кэша (fallback)
         Console.WriteLine($"Failed to create cache for {protoId}, loading from scratch");
 
-        // Находим свободный MapId
-        var freeMapId = FindFreeMapId();
-        var mapIdObj = new MapId(freeMapId);
+        var freeMapId = GetNextFreeMapIdForProto(protoId, null);
+        if (freeMapId == -1)
+        {
+            Console.WriteLine($"Cannot find free map ID for {protoId}");
+            return MapId.Nullspace;
+        }
 
-        // Проверяем что ID свободен
+        var mapIdObj = new MapId(freeMapId);
         if (_mapManager.MapExists(mapIdObj))
         {
             Console.WriteLine($"Map ID {freeMapId} already exists, cannot spawn prison map");
@@ -1839,8 +2365,8 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             }
 
 
-            // Для карт с планетами создаем планету
-            if (protoId == MetusMapId) // Metus - планета
+            // Для карт с планетами (PrisonMapFamily == Metus) создаем планету
+            if (IsPlanetPrisonMap(protoId))
             {
                 await CreatePlanetForMap(mapIdObj, protoId);
             }
@@ -1855,9 +2381,59 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Возвращает первый свободный MapId в диапазоне [start, start+size-1] или -1.
+    /// </summary>
+    private int FindFreeMapIdInRange(int start, int size)
+    {
+        for (var i = 0; i < size; i++)
+        {
+            var id = start + i;
+            if (!_mapManager.MapExists(new MapId(id)))
+            {
+                Console.WriteLine($"Found free map ID in range: {id}");
+                return id;
+            }
+        }
+        Console.WriteLine($"No free map IDs in range {start}..{start + size - 1}");
+        return -1;
+    }
+
+    /// <summary>
+    /// Свободный MapId для прелоада (cacheIndex задан) или on-demand (cacheIndex == null). Учитывает prisonCacheMapIdStart, затем диапазон семейства, затем глобальный 100..499.
+    /// </summary>
+    private int GetNextFreeMapIdForProto(string protoId, int? cacheIndex)
+    {
+        if (!_prototypeManager.TryIndex<GameMapPrototype>(protoId, out var gameMapProto))
+            return FindFreeMapId();
+
+        if (cacheIndex is >= 0 && gameMapProto.PrisonCacheMapIdStart is { } start)
+        {
+            var candidate = start + cacheIndex.Value;
+            if (!_mapManager.MapExists(new MapId(candidate)))
+            {
+                Console.WriteLine($"Using explicit map ID for {protoId} cache #{cacheIndex}: {candidate}");
+                return candidate;
+            }
+            Console.WriteLine($"[CACHE] MapId {candidate} already in use for {protoId}, falling back to family/global search");
+        }
+
+        var family = gameMapProto.PrisonMapFamily;
+        var component = GetPrisonComponent();
+        if (!string.IsNullOrEmpty(family) && component?.CacheSettings.FamilyMapIdRanges is { } ranges &&
+            ranges.TryGetValue(family, out var range))
+        {
+            var id = FindFreeMapIdInRange(range.Start, range.Size);
+            if (id >= 0)
+                return id;
+        }
+
+        return FindFreeMapId();
+    }
+
     private int FindFreeMapId()
     {
-        for (int i = 100; i < 200; i++)
+        for (int i = 100; i < 500; i++)
         {
             if (!_mapManager.MapExists(new MapId(i)))
             {
@@ -1865,8 +2441,8 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
                 return i;
             }
         }
-        Console.WriteLine("No free map IDs found in range 100-199");
-        return 111; // Fallback
+        Console.WriteLine("No free map IDs found in range 100-499");
+        return -1;
     }
 
     private async Task CreatePlanetForMap(MapId mapId, string protoId)

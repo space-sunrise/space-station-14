@@ -69,6 +69,25 @@
     - PlainGrasslands
     - PlainLowDesert
     - PlainSnow
+    # Глобальные настройки тюрьмы (используются по умолчанию для всех карт)
+    # Эти настройки можно переопределить для конкретной карты через PlanetPrisonMapSettingsComponent
+    # в прототипе карты (см. planet_prison.yml и planet_prison_old.yml)
+    gameplaySettings:
+      minPlayersRequired: 2
+      requiredRoles:
+        HeadOfPrison: 1
+        PlanetPrisoner: 1
+    completionSettings:
+      completionMode: Delete  # Freeze - заморозить и удалить при рестарте, Delete - сразу удалить
+    cacheSettings:
+      defaultPrisonCacheSize: 1  # Дефолтный размер кэша, если у карты в прототипе не задан prisonCacheSize
+      familyMapIdRanges:
+        Nox:
+          start: 500
+          size: 51
+        Metus:
+          start: 600
+          size: 51
     shuttleWhitelist:
       components:
       - SecurityShuttle

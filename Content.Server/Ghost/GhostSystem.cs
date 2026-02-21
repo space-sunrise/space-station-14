@@ -35,6 +35,7 @@ using Content.Shared.SSDIndicator;
 using Content.Shared.Storage.Components;
 using Content.Shared.Tag;
 using Content.Shared.Warps;
+using Content.Shared._Sunrise.PlanetPrison; // Sunrise-Edit
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -647,6 +648,11 @@ namespace Content.Server.Ghost
             // Sunrise-Start
             if (mind.UserId.HasValue)
                 _newLifeSystem.SetNextAllowRespawn(mind.UserId.Value, _gameTiming.CurTime + TimeSpan.FromMinutes(_newLifeSystem.NewLifeTimeout));
+            if (ghost != null && playerEntity != null && TryComp(playerEntity.Value, out PlanetPrisonSpawnedComponent? prisonComp))
+            {
+                var ghostPrison = EnsureComp<PlanetPrisonSpawnedComponent>(ghost.Value);
+                ghostPrison.MapId = prisonComp.MapId;
+            }
             // Sunrise-End
 
             if (ghost == null)
