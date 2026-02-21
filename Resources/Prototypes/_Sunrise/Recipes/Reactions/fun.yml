@@ -1,0 +1,15 @@
+- type: reaction
+  id: CrushedPhosphorus
+  impact: Low
+  quantized: true
+  minTemp: 500
+  reactants:
+    Phosphorus:
+      amount: 2
+    Hydrogen:
+      amount: 1
+    Ethanol:
+      amount: 1
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: CrushedPhosphorus1
