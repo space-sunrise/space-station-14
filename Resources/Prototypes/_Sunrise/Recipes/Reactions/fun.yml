@@ -5,11 +5,11 @@
   minTemp: 500
   reactants:
     Phosphorus:
-      amount: 2
+      amount: 4
     Hydrogen:
-      amount: 1
+      amount: 2
     Ethanol:
-      amount: 1
+      amount: 2
   effects:
-    - !type:CreateEntityReactionEffect
+    - !type:SpawnEntity
       entity: CrushedPhosphorus1
