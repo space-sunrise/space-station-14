@@ -39,4 +39,4 @@ ghost-return-to-body-title = Вернуться в тело
 ghost-return-to-body-text = Вас воскрешают! Вернуться в своё тело?
 # Sunrise-edit
 ghost-gui-change-server = Другие сервера
-ghost-gui-prison-button = Тюрьма
+ghost-gui-prison-button = Тюрьма ({ $count })

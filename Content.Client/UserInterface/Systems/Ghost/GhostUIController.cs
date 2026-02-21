@@ -107,8 +107,19 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         // Проверяем доступность ролей тюрьмы
         var prisonRolesAvailable = _prisonUI?.AreAnyPrisonRolesAvailable() ?? false;
         var prisonRequirementsText = prisonRolesAvailable ? null : _prisonUI?.GetPrisonRequirementsText();
+        var prisonParticipantCount = _prisonUI?.GetParticipatingPlayerCount() ?? 0;
 
-        Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody, respawnBlockReason, prisonRolesAvailable, prisonRequirementsText);
+        Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody, respawnBlockReason, prisonRolesAvailable, prisonRequirementsText, prisonParticipantCount);
+        // Подсветка кнопки: Red = таймер активен (достаточно игроков для старта), Yellow = хотя бы одна карта запущена
+        var prisonHighlight = PrisonButtonHighlightState.None;
+        if (_prisonUI != null)
+        {
+            if (_prisonUI.IsAnyPrisonTimerActive())
+                prisonHighlight = PrisonButtonHighlightState.Red;
+            else if (_prisonUI.IsAnyMapLaunched())
+                prisonHighlight = PrisonButtonHighlightState.Yellow;
+        }
+        Gui.HighlightPrisonButton(prisonHighlight);
         // Sunrise-End
     }
 
@@ -176,8 +187,9 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
 
         if (_prisonUI != null)
         {
-            _prisonUI.PrisonButtonHighlightChanged += OnPrisonButtonHighlightChanged;
             _prisonUI.PrisonTimerActiveChanged += OnPrisonTimerActiveChanged;
+            _prisonUI.PrisonParticipantCountChanged += OnPrisonParticipantCountChanged;
+            _prisonUI.PrisonMapLaunchedChanged += OnPrisonMapLaunchedChanged;
         }
         Gui.TargetWindow.WarpClicked += OnWarpClicked;
 
@@ -201,8 +213,9 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
 
         if (_prisonUI != null)
         {
-            _prisonUI.PrisonButtonHighlightChanged -= OnPrisonButtonHighlightChanged;
             _prisonUI.PrisonTimerActiveChanged -= OnPrisonTimerActiveChanged;
+            _prisonUI.PrisonParticipantCountChanged -= OnPrisonParticipantCountChanged;
+            _prisonUI.PrisonMapLaunchedChanged -= OnPrisonMapLaunchedChanged;
         }
         Gui.TargetWindow.WarpClicked -= OnWarpClicked;
 
@@ -245,12 +258,17 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         _prisonUI.OpenWindow();
     }
 
-    private void OnPrisonButtonHighlightChanged(bool highlight)
+    private void OnPrisonTimerActiveChanged(bool active)
     {
-        Gui?.HighlightPrisonButton(highlight);
+        UpdateGui();
     }
 
-    private void OnPrisonTimerActiveChanged(bool active)
+    private void OnPrisonParticipantCountChanged()
+    {
+        UpdateGui();
+    }
+
+    private void OnPrisonMapLaunchedChanged()
     {
         UpdateGui();
     }

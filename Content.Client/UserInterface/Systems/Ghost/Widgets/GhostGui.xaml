@@ -11,7 +11,7 @@
         <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Name="ChangeServerButton" Text="{Loc ghost-gui-change-server}"/>
             <Button Name="RespawnButton" Text="{Loc ghost-gui-respawn-button}" Disabled="True"/>
-            <Button Name="PrisonButton" Text="{Loc ghost-gui-prison-button}" Disabled="True"/>
+            <Button Name="PrisonButton" Disabled="True"/>
         </BoxContainer>
         <!-- Sunrise-Sponsor-End -->
     </BoxContainer>

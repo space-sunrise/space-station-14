@@ -69,7 +69,14 @@ public sealed class PlanetPrisonUISystem : EntitySystem
 
     // Событие, уведомляющее о смене состояния любых тюремных таймеров (true - есть активный таймер)
     public event Action<bool>? PrisonTimerActiveChanged;
+
+    // Событие при изменении количества участников голосования (обновление кнопки "Тюрьма (N)")
+    public event Action? PrisonParticipantCountChanged;
     private bool _anyPrisonTimerActive;
+
+    // Событие при изменении состояния «хотя бы одна карта запущена»
+    public event Action? PrisonMapLaunchedChanged;
+    private bool _anyMapLaunched;
 
     public event Action<bool>? PrisonButtonHighlightChanged;
     public event Action<bool>? PrisonButtonAvailabilityChanged;
@@ -333,7 +340,10 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         {
             // Полный сброс всех состояний на клиенте (специальный флаг TotalPriorityPlayers = -1)
             Logger.Info($"Received global state reset from server for {msg.MapId}, resetting counter to 0");
+            var hadCount = _totalPriorityPlayers != 0;
             _totalPriorityPlayers = 0; // Явно сбрасываем счетчик
+            if (hadCount)
+                PrisonParticipantCountChanged?.Invoke();
 
             // Сохраняем актуальное MinPlayers даже при сбросе
             _mapMinPlayers[msg.MapId] = msg.MinPlayers;
@@ -356,6 +366,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
                 UpdateRoleButtonStates();
             }
 
+            UpdatePrisonMapLaunchedState();
             Logger.Info("Global state reset completed on client");
             return;
         }
@@ -379,7 +390,10 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         // Обновляем общее количество игроков с приоритетами только если это не специальный флаг сброса
         if (msg.TotalPriorityPlayers != -1)
         {
+            var oldCount = _totalPriorityPlayers;
             _totalPriorityPlayers = msg.TotalPriorityPlayers;
+            if (oldCount != _totalPriorityPlayers)
+                PrisonParticipantCountChanged?.Invoke();
         }
 
         // Специальная обработка для только что запущенной карты
@@ -450,6 +464,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
 
         // Обновляем глобальное состояние тюремных таймеров
         UpdatePrisonTimerState();
+        UpdatePrisonMapLaunchedState();
 
         // Обновляем счетчик приоритетов в конце, после полной обработки всех данных карты
         // Это гарантирует, что счетчик обновляется после всех изменений состояния
@@ -682,6 +697,14 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         return _mapVotingState.Values.Any(v => v);
     }
 
+    /// <summary>
+    /// Возвращает true, если хотя бы одна карта тюрьмы запущена (ожидает присоединения игроков).
+    /// </summary>
+    public bool IsAnyMapLaunched()
+    {
+        return _mapLaunched.Values.Any(v => v);
+    }
+
     private void OnRoleUpdate(PlanetPrisonRoleUpdateEvent msg)
     {
         // Обновляем UI роли на основе статуса
@@ -731,6 +754,8 @@ public sealed class PlanetPrisonUISystem : EntitySystem
                 removedProtoId = "PlanetPrisonOld";
                 Logger.Info($"Nox map (ID: {mapIdValue}) removed, status reset");
             }
+
+            UpdatePrisonMapLaunchedState();
 
             // Обновляем UI только для удаленной карты, другая остается запущенной
             if (removedProtoId == "PlanetPrison")
@@ -820,6 +845,16 @@ public sealed class PlanetPrisonUISystem : EntitySystem
 
         _anyPrisonTimerActive = any;
         PrisonTimerActiveChanged?.Invoke(any);
+    }
+
+    private void UpdatePrisonMapLaunchedState()
+    {
+        var any = _mapLaunched.Values.Any(v => v);
+        if (any == _anyMapLaunched)
+            return;
+
+        _anyMapLaunched = any;
+        PrisonMapLaunchedChanged?.Invoke();
     }
 
     private void UpdateMapEntryUI(PlanetPrisonVoteUpdateEvent msg, PlanetPrisonMapEntry entry)
@@ -1119,5 +1154,10 @@ public sealed class PlanetPrisonUISystem : EntitySystem
 
         return "No prison roles available";
     }
+
+    /// <summary>
+    /// Возвращает количество участвующих игроков (проголосовавших за карты тюрьмы).
+    /// </summary>
+    public int GetParticipatingPlayerCount() => _totalPriorityPlayers;
 
 }
