@@ -125,6 +125,9 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     // Замороженные карты тюрьмы (ожидают удаления при рестарте раунда)
     private readonly HashSet<MapId> _pausedOrphanMaps = new();
 
+    // Отложенные проверки пустых карт (из OnPrisonPlayerDetached), чтобы не удалять карту до завершения переноса ума в мозг
+    private readonly HashSet<MapId> _pendingEmptyMapChecks = new();
+
     private bool _isCleaningPausedMaps;
 
     // Флаг для предотвращения повторного кэширования в одном лобби
@@ -567,6 +570,16 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         SubscribeLocalEvent<GetObserverSpawnPointEvent>(OnGetObserverSpawnPoint);
 
         Log.Level = LogLevel.Info;
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        if (_pendingEmptyMapChecks.Count == 0)
+            return;
+        foreach (var mapId in _pendingEmptyMapChecks)
+            CheckAndRemoveMapIfEmpty(mapId);
+        _pendingEmptyMapChecks.Clear();
     }
 
     /// <summary>
@@ -1744,7 +1757,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
         Console.WriteLine($"[AUTO-DELETE] Player detached from map {mapId} (session status={args.Player.Status})");
 
-        CheckAndRemoveMapIfEmpty(mapId);
+        _pendingEmptyMapChecks.Add(mapId);
     }
 
     private void OnGetObserverSpawnPoint(GetObserverSpawnPointEvent ev)

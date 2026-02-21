@@ -127,15 +127,8 @@ public sealed partial class PlanetPrisonWindow : DefaultWindow
                 }
                 else
                 {
-                    if (!mapEntry.IsLaunched)
-                    {
-                        mapEntry.EnableButtons();
-                        Logger.Info($"Enabled buttons for map (not launched)");
-                    }
-                    else
-                    {
-                        Logger.Info($"Kept buttons disabled for map (launched)");
-                    }
+                    mapEntry.EnableButtons();
+                    Logger.Info($"Enabled buttons for map (launched: {mapEntry.IsLaunched})");
                 }
             }
         }

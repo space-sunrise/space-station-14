@@ -861,14 +861,14 @@ public sealed class PlanetPrisonUISystem : EntitySystem
     {
         Logger.Debug($"DEBUG: UpdateMapEntryUI called for {msg.MapId} - IsVoting: {msg.IsVoting}, IsLaunched: {msg.IsLaunched}, RemainingSeconds: {msg.RemainingSeconds}, VoteCount: {msg.VoteCount}");
 
-        // Обработка уже запущенной карты - показываем финальный статус "запущен"
+        // Обработка уже запущенной карты - показываем финальный статус "запущен", кнопка «Присоединиться» активна
         if (msg.IsLaunched)
         {
             Logger.Debug($"DEBUG: Handling launched status for {msg.MapId}");
             entry.HideTimer();
             entry.HideVoteCount();
             entry.ShowLaunchedStatus();
-            entry.DisableButtons();
+            entry.EnableButtons();
             return;
         }
 
@@ -909,9 +909,9 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         if (_mapLaunched.ContainsKey(msg.MapId) && _mapLaunched[msg.MapId])
         {
             Logger.Debug($"DEBUG: Showing launched status for {msg.MapId} because _mapLaunched is true");
-            // Карта уже запущена - блокируем интерфейс
+            // Карта уже запущена — кнопка «Присоединиться» активна
             entry.ShowLaunchedStatus();
-            entry.DisableButtons();
+            entry.EnableButtons();
             entry.HideVoteCount();
         }
         else

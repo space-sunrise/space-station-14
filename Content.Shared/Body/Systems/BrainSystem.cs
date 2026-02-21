@@ -1,4 +1,4 @@
-﻿using Content.Shared.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
@@ -24,7 +24,9 @@ public sealed class BrainSystem : EntitySystem
 
     private void HandleMind(EntityUid newEntity, EntityUid oldEntity)
     {
-        if (TerminatingOrDeleted(newEntity) || TerminatingOrDeleted(oldEntity))
+        // Переносим ум в мозг только если мозг валиден. Если тело уже Terminating (гиббинг), всё равно переносим в мозг, чтобы сессия не осталась привязана к удаляющемуся телу.
+        // Exists() защищает от краша, если мозг уже удалён (например, карта тюрьмы удалена до вызова HandleMind).
+        if (!Exists(newEntity) || TerminatingOrDeleted(newEntity))
             return;
 
         var newMindContainer = EnsureComp<MindContainerComponent>(newEntity);
