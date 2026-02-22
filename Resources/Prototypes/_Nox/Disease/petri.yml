@@ -1,0 +1,91 @@
+- type: entity
+  name: чаша петри
+  parent: 
+  - BaseStructureDynamic
+  - BaseMob
+  - MobAtmosStandard
+  id: PetriDash
+  components:
+  - type: Body
+    prototype: Animal
+  - type: Transform
+    anchored: true
+  - type: SolutionContainerManager
+  - type: InjectableSolution
+    solution: chemicals
+  - type: Bloodstream
+    bloodlossThreshold: 0
+    bleedAmount: 0
+    bloodlossDamage:
+      types:
+        Bloodloss: 0.5
+    bloodlossHealDamage:
+      types:
+        Bloodloss: -1
+  - type: Pullable
+  - type: Muted
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    scale: 0.7, 0.7
+    noRot: true
+    sprite: _Nox/Disease/petri_dish.rsi
+    state: icon
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: Appearance
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.20,-0.20,0.20,0.20"
+        density: 60
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DiseaseMutation
+    changeApperance: true
+  - type: Tag
+    tags: 
+    - DiseaseAlwaysInfectable
+    - IgnoreCanInfect
+    - DiseaseIgnorSymptoms
+  - type: ZombieImmune
+  - type: Construction
+    graph: petri
+    node: petriNode

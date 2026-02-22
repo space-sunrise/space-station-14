@@ -1,0 +1,10 @@
+- type: accent
+  id: disease
+  fullReplacements:
+  - accent-words-disease-1
+  - accent-words-disease-2
+  - accent-words-disease-3
+  - accent-words-disease-4
+  - accent-words-disease-5
+  - accent-words-disease-6
+  - accent-words-disease-7

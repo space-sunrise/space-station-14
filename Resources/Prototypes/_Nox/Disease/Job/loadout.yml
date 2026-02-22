@@ -1,0 +1,84 @@
+- type: roleLoadout
+  id: JobVirologist
+  groups:
+  - GroupTankHarness
+  - VirologistHead
+  - MedicalMask
+  - VirologistJumpsuit
+  - MedicalGloves
+  - VirologistBackpack
+  - VirologistUnderwear
+  - MedicalShoes
+  - VirologistOuterclothing
+  - Glasses
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+
+# Jumpsuit
+- type: loadout
+  id: VirologistJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitVirology
+
+- type: loadout
+  id: VirologistJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtVirology
+
+# Back
+- type: loadout
+  id: VirologistBackpack
+  equipment:
+    back: ClothingBackpackVirology
+
+- type: loadout
+  id: VirologistSatchel
+  equipment:
+    back: ClothingBackpackSatchelVirology
+
+- type: loadout
+  id: VirologistDuffel
+  equipment:
+    back: ClothingBackpackDuffelVirology
+
+# Head
+- type: loadout
+  id: VirologistHead
+  equipment:
+    head: ClothingHeadHatBeretMedic
+
+# Underwear
+- type: loadout
+  id: UnderwearBottomBoxersVirologist
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleUnderwear
+  equipment:
+    underwearb: ClothingUnderwearBottomBoxersDoctor
+
+- type: loadout
+  id: UnderwearBottomPantiesVirologist
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: FemaleUnderwear
+  equipment:
+    underwearb: ClothingUnderwearBottomPantiesDoctor
+
+- type: loadout
+  id: UnderwearTopBraVirologist
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: FemaleUnderwear
+  equipment:
+    underweart: ClothingUnderwearTopBraDoctor
+
+- type: loadout
+  id: VirologistOuterclothingWinter
+  equipment:
+    outerClothing: ClothingOuterWinterViro
+
+- type: loadout
+  id: VirologistOuterclothing
+  equipment:
+    outerClothing: ClothingOuterCoatLabViroOpened

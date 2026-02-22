@@ -1,0 +1,74 @@
+- type: reaction
+  id: Infectizine
+  reactants:
+    Saline:
+      amount: 1
+    Potassium:
+      amount: 1
+    Iron:
+      amount: 1
+  products:
+    Infectizine: 3
+
+- type: reaction
+  id: Mycocline
+  minTemp: 370
+  reactants:
+    Dylovene:
+      amount: 1
+    Infectizine:
+      amount: 1
+  products:
+    Mycocline: 2
+
+- type: reaction
+  id: Virucidine
+  minTemp: 400
+  reactants:
+    Silver:
+      amount: 1
+    Infectizine:
+      amount: 1
+    Mannitol:
+      amount: 1
+  products:
+    Virucidine: 3
+
+- type: reaction
+  id: Panacemycin
+  minTemp: 450
+  reactants:
+    Virucidine:
+      amount: 1
+    Mycocline:
+      amount: 1
+    Infectizine:
+      amount: 1
+  products:
+    Panacemycin: 3
+
+- type: reaction
+  id: Septomycin
+  minTemp: 390
+  reactants:
+    PotassiumIodide:
+      amount: 1
+    Infectizine:
+      amount: 1
+    Saline:
+      amount: 1
+  products:
+    Septomycin: 3
+
+- type: reaction
+  id: Necrovir
+  minTemp: 500
+  reactants:
+    Necrosol:
+      amount: 1
+    Haloperidol:
+      amount: 1
+    Lipolicide:
+      amount: 1
+  products:
+    Necrovir: 3

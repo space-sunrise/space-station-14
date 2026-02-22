@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Space Station 14 project Nox.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "blackkit"
+    },
+	{
+      "name": "advkit"
+    },
+    {
+      "name": "advkit-inhand-right",
+      "directions": 4
+    },
+    {
+        "name": "advkit-inhand-left",
+		"directions": 4
+    },
+	{
+      "name": "blackkit-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "blackkit-inhand-left",
+      "directions": 4
+    }
+  ]
+}

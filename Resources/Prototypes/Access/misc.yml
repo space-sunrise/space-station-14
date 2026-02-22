@@ -44,6 +44,7 @@
   - Mining  # Sunrise-edit
   - CargoPurchaseAccess  # Sunrise-edit
   - ResearchConsoleAccess  # Sunrise-edit
+  - Virology # Nox-edit
 
 - type: accessGroup
   id: General

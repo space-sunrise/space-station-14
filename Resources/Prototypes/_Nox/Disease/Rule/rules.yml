@@ -1,0 +1,65 @@
+- type: entity
+  parent: BaseGameRule
+  id: LowDiseaseOutbreakRule
+  components:
+  - type: DiseaseOutbreakRule
+    symptomsByDanger:
+      Low: 2
+      Medium: 1
+    bodyCount: 4
+    numberPrimaryPacienst: 1
+  - type: StationEvent
+    weight: 10
+    duration: null
+    earliestStart: 15
+    reoccurrenceDelay: 10
+    minimumPlayers: 10
+
+- type: entity
+  parent: BaseGameRule
+  id: MediumDiseaseOutbreakRule
+  components:
+  - type: DiseaseOutbreakRule
+    symptomsByDanger:
+      Low: 4
+      Medium: 3
+    bodyCount: 7
+    numberPrimaryPacienst: 1
+  - type: StationEvent
+    weight: 8
+    duration: null
+    earliestStart: 30
+    reoccurrenceDelay: 15
+    minimumPlayers: 10
+  
+- type: entity
+  parent: BaseGameRule
+  id: HardDiseaseOutbreakRule
+  components:
+  - type: DiseaseOutbreakRule
+    symptomsByDanger:
+      Low: 4
+      Medium: 3
+      High: 1
+    bodyCount: 9
+    numberPrimaryPacienst: 1
+  - type: StationEvent
+    weight: 6
+    duration: null
+    earliestStart: 60
+    reoccurrenceDelay: 20
+    minimumPlayers: 10
+
+- type: entity
+  parent: BaseGameRule
+  id: SentientDiseaseOutbreakRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    weight: 3
+    duration: 30
+    earliestStart: 45
+    reoccurrenceDelay: 60
+    minimumPlayers: 35
+  - type: RandomSpawnRule
+    prototype: SentientDisease

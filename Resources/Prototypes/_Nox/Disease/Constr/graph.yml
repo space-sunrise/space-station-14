@@ -1,0 +1,26 @@
+- type: constructionGraph
+  id: petri
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: petriNode
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Glass
+              amount: 1
+              doAfter: 3
+    - node: petriNode
+      entity: PetriDash
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetGlass1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 3

@@ -1,0 +1,83 @@
+- type: entity
+  name: медицинский набор от заболеваний
+  description: Базовый медицинский набор, предназначенный для хранения и применения стандартных противовирусных и антибактериальных препаратов.
+  parent: BaseStorageItem
+  id: DiseaseMedkit
+  components:
+  - type: Sprite
+    sprite: _Nox/Disease/firstaidkits.rsi
+    state: advkit
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,1
+  - type: Item
+    size: Large
+    sprite: _Nox/Disease/firstaidkits.rsi
+    heldPrefix: advkit
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 150
+  - type: Tag
+    tags:
+    - Medkit
+
+- type: entity
+  name: продвинутый медицинский набор от заболеваний
+  description: Усиленный противовирусный меднабор для работы с агрессивными и экспериментальными препаратами. Использовать с осторожностью.
+  parent: DiseaseMedkit
+  id: SuperDiseaseMedkit
+  components:
+  - type: Sprite
+    state: blackkit
+  - type: Item
+    heldPrefix: blackkit
+
+- type: entity
+  id: FilledDiseaseMedkit
+  suffix: Filled
+  parent: DiseaseMedkit
+  components:
+  - type: StorageFill
+    contents:
+      - id: ChemistryBottleInfectizine
+      - id: ChemistryBottleInfectizine
+      - id: ChemistryBottleInfectizine
+      - id: ChemistryBottleMycocline
+      - id: ChemistryBottleMycocline
+      - id: ChemistryBottleSeptomycin
+      - id: ChemistryBottleSeptomycin
+
+- type: entity
+  id: FilledSuperDiseaseMedkit
+  suffix: Filled
+  parent: SuperDiseaseMedkit
+  components:
+  - type: StorageFill
+    contents:
+      - id: ChemistryBottleVirucidine
+      - id: ChemistryBottleVirucidine
+      - id: ChemistryBottleVirucidine
+      - id: ChemistryBottlePanacemycin
+      - id: ChemistryBottlePanacemycin
+      - id: ChemistryBottleNecrovir
+
+- type: entity
+  id: CrateDiseaseMedkit
+  parent: CrateMedical
+  name: аварийный набор от заболеваний
+  description: Ящик содержит набор лекарств от заболеваний.
+  components:
+  - type: StorageFill
+    contents:
+    - id: FilledDiseaseMedkit
+
+- type: entity
+  id: CrateSuperDiseaseMedkit
+  parent: CrateMedical
+  name: продвинутый аварийный набор от заболеваний
+  description: Ящик содержит продвинутый набор лекарств от заболеваний.
+  components:
+  - type: StorageFill
+    contents:
+    - id: FilledSuperDiseaseMedkit

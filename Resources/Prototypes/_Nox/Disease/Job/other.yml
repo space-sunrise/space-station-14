@@ -1,0 +1,32 @@
+- type: playTimeTracker
+  id: JobVirologist
+
+- type: entity
+  parent: IDCardStandard
+  id: IDCardVirologist
+  name: ID-карта вирусолога
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+  - type: PresetIdCard
+    job: Virologist
+
+- type: entity
+  parent: BasePDA
+  id: VirologistPDA
+  name: КПК вирусолога
+  description: Интересное у тебя заболевание!
+  components:
+  - type: Pda
+    id: IDCardVirologist
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-virology
+  - type: PdaBorderColor
+    borderColor: "#817d6f"
+    accentVColor: "#12445b"
+  - type: Icon
+    state: pda-virology

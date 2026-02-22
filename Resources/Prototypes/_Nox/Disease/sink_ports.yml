@@ -1,0 +1,14 @@
+- type: sinkPort
+  id: DiseaseDiagnoserDataServerReceiver
+  name: signal-port-name-disease-data-server-receiver
+  description: signal-port-description-disease-data-server-receiver
+
+- type: sinkPort
+  id: DiseaseDiagnoserReceiver
+  name: signal-port-name-disease-diagnoser-receiver
+  description: signal-port-description-disease-diagnoser-receiver 
+
+- type: sinkPort
+  id: DiseaseSolutionAnalyzerReceiver
+  name: signal-port-name-disease-solution-analyzer-receiver
+  description: signal-port-description-disease-solution-analyzer-receiver

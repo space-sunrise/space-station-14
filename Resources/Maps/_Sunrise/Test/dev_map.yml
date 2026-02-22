@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 270.0.0
+  engineVersion: 271.1.0
   forkId: ""
   forkVersion: ""
-  time: 01/16/2026 21:15:11
-  entityCount: 3153
+  time: 02/22/2026 09:36:16
+  entityCount: 3149
 maps:
 - 23
 grids:
@@ -2086,7 +2086,7 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-- proto: AtmosDeviceFanDirectionalDev
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 574
     components:
@@ -2453,7 +2453,7 @@ entities:
     - type: Transform
       pos: 0.5,-4.5
       parent: 2709
-- proto: AtmosDeviceFanTinyDev
+- proto: AtmosDeviceFanTiny
   entities:
   - uid: 1412
     components:
@@ -3114,6 +3114,27 @@ entities:
     components:
     - type: Transform
       pos: 49.5,25.5
+      parent: 1
+- proto: BoxMouthSwab
+  entities:
+  - uid: 1209
+    components:
+    - type: Transform
+      pos: 57.39145,40.597385
+      parent: 1
+- proto: BoxSyringe
+  entities:
+  - uid: 1208
+    components:
+    - type: Transform
+      pos: 60.537285,38.524467
+      parent: 1
+- proto: BoxVial
+  entities:
+  - uid: 1212
+    components:
+    - type: Transform
+      pos: 60.558113,38.295303
       parent: 1
 - proto: Bucket
   entities:
@@ -4653,26 +4674,6 @@ entities:
     components:
     - type: Transform
       pos: 57.5,39.5
-      parent: 1
-  - uid: 1245
-    components:
-    - type: Transform
-      pos: 58.5,39.5
-      parent: 1
-  - uid: 1246
-    components:
-    - type: Transform
-      pos: 59.5,39.5
-      parent: 1
-  - uid: 1247
-    components:
-    - type: Transform
-      pos: 58.5,38.5
-      parent: 1
-  - uid: 1248
-    components:
-    - type: Transform
-      pos: 58.5,37.5
       parent: 1
   - uid: 1249
     components:
@@ -7851,21 +7852,6 @@ entities:
     - type: Transform
       pos: 57.5,37.5
       parent: 1
-  - uid: 2426
-    components:
-    - type: Transform
-      pos: 58.5,37.5
-      parent: 1
-  - uid: 2427
-    components:
-    - type: Transform
-      pos: 59.5,37.5
-      parent: 1
-  - uid: 2428
-    components:
-    - type: Transform
-      pos: 60.5,37.5
-      parent: 1
   - uid: 2429
     components:
     - type: Transform
@@ -8868,13 +8854,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 72.5,-14.5
       parent: 1
-- proto: Chainsaw
-  entities:
-  - uid: 1195
-    components:
-    - type: Transform
-      pos: 59.70333,41.59572
-      parent: 1
 - proto: Chair
   entities:
   - uid: 2710
@@ -9021,13 +9000,6 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-- proto: ClothingBackpackDuffelSurgeryFilled
-  entities:
-  - uid: 1218
-    components:
-    - type: Transform
-      pos: 59.32892,41.820488
-      parent: 1
 - proto: ClothingBeltPlantFilled
   entities:
   - uid: 1046
@@ -9114,12 +9086,6 @@ entities:
       parent: 1
 - proto: computerBodyScanner
   entities:
-  - uid: 1221
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 60.5,39.5
-      parent: 1
   - uid: 2623
     components:
     - type: Transform
@@ -9188,6 +9154,39 @@ entities:
     - type: Transform
       pos: 49.5,57.5
       parent: 1
+- proto: ComputerDiagnoserConsole
+  entities:
+  - uid: 1245
+    components:
+    - type: Transform
+      pos: 60.5,40.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        1231:
+        - - DiseaseDiagnoserSender
+          - DiseaseDiagnoserReceiver
+        1195:
+        - - DiseaseDiagnoserDataServerSender
+          - DiseaseDiagnoserDataServerReceiver
+        1200:
+        - - DiseaseSolutionAnalyzerSender
+          - DiseaseSolutionAnalyzerReceiver
+- proto: ComputerDiseaseEvolutionConsole
+  entities:
+  - uid: 1216
+    components:
+    - type: Transform
+      pos: 58.5,41.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        1200:
+        - - DiseaseSolutionAnalyzerSender
+          - DiseaseSolutionAnalyzerReceiver
+        1195:
+        - - DiseaseDiagnoserDataServerSender
+          - DiseaseDiagnoserDataServerReceiver
 - proto: ComputerEmergencyShuttle
   entities:
   - uid: 2624
@@ -9751,13 +9750,6 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: CrateMedicalSurgery
-  entities:
-  - uid: 1209
-    components:
-    - type: Transform
-      pos: 60.5,41.5
-      parent: 1
 - proto: Crematorium
   entities:
   - uid: 1204
@@ -9883,6 +9875,27 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
+- proto: DiseaseDataServer
+  entities:
+  - uid: 1195
+    components:
+    - type: Transform
+      pos: 60.5,41.5
+      parent: 1
+- proto: DiseaseDiagnoserNox
+  entities:
+  - uid: 1231
+    components:
+    - type: Transform
+      pos: 60.5,39.5
+      parent: 1
+- proto: DiseaseSolutionAnalyzer
+  entities:
+  - uid: 1200
+    components:
+    - type: Transform
+      pos: 59.5,41.5
+      parent: 1
 - proto: DogBed
   entities:
   - uid: 780
@@ -10122,13 +10135,6 @@ entities:
     components:
     - type: Transform
       pos: 58.5,35.5
-      parent: 1
-    - type: Fixtures
-      fixtures: {}
-  - uid: 1257
-    components:
-    - type: Transform
-      pos: 59.5,39.5
       parent: 1
     - type: Fixtures
       fixtures: {}
@@ -11827,15 +11833,6 @@ entities:
       parent: 1
     - type: Lock
       locked: False
-- proto: LockerChiefMedicalOfficerFilledHardsuit
-  entities:
-  - uid: 1231
-    components:
-    - type: Transform
-      pos: 59.5,37.5
-      parent: 1
-    - type: Lock
-      locked: False
 - proto: LockerEngineerFilledHardsuit
   entities:
   - uid: 1289
@@ -12497,13 +12494,6 @@ entities:
     - type: Transform
       pos: 46.5,38.5
       parent: 1
-- proto: MedicalTechFab
-  entities:
-  - uid: 1212
-    components:
-    - type: Transform
-      pos: 58.5,41.5
-      parent: 1
 - proto: MeleeDebug100
   entities:
   - uid: 2684
@@ -12625,13 +12615,6 @@ entities:
       canCollide: False
     - type: InsideEntityStorage
     - type: CMExplosionEffect
-- proto: OperatingTable
-  entities:
-  - uid: 1216
-    components:
-    - type: Transform
-      pos: 59.5,39.5
-      parent: 1
 - proto: OxygenCanister
   entities:
   - uid: 423
@@ -14323,14 +14306,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,18.5
       parent: 1
-- proto: ScalpelLaser
-  entities:
-  - uid: 1267
-    components:
-    - type: Transform
-      rot: 0.22689280275926285 rad
-      pos: 57.48462,40.584305
-      parent: 1
 - proto: Screwdriver
   entities:
   - uid: 438
@@ -15171,12 +15146,6 @@ entities:
     - type: Transform
       pos: 33.5,47.5
       parent: 1
-  - uid: 1200
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 60.5,38.5
-      parent: 1
 - proto: SMESAdvancedEmpty
   entities:
   - uid: 3093
@@ -15682,11 +15651,6 @@ entities:
     - type: Transform
       pos: 51.5,38.5
       parent: 1
-  - uid: 1222
-    components:
-    - type: Transform
-      pos: 57.5,38.5
-      parent: 1
   - uid: 1964
     components:
     - type: Transform
@@ -15769,6 +15733,13 @@ entities:
     components:
     - type: Transform
       pos: 33.5,18.5
+      parent: 1
+- proto: SpawnTestDiseaseMobHuman
+  entities:
+  - uid: 1248
+    components:
+    - type: Transform
+      pos: 57.5,38.5
       parent: 1
 - proto: SpearUranium
   entities:
@@ -15878,6 +15849,56 @@ entities:
       pos: 1.5,1.5
       parent: 2709
     - type: CMExplosionEffect
+- proto: SunriseMultiTileAirtightBlocker
+  entities:
+  - uid: 1218
+    components:
+    - type: Transform
+      anchored: True
+      pos: 43.5,2.5
+      parent: 1
+    - type: Airtight
+      airBlocked: True
+  - uid: 1222
+    components:
+    - type: Transform
+      anchored: True
+      pos: 43.5,2.5
+      parent: 1
+    - type: Airtight
+      airBlocked: True
+  - uid: 1246
+    components:
+    - type: Transform
+      anchored: True
+      pos: 43.5,7.5
+      parent: 1
+    - type: Airtight
+      airBlocked: True
+  - uid: 1247
+    components:
+    - type: Transform
+      anchored: True
+      pos: 43.5,5.5
+      parent: 1
+    - type: Airtight
+      airBlocked: True
+  - uid: 1257
+    components:
+    - type: Transform
+      anchored: True
+      pos: 43.5,7.5
+      parent: 1
+    - type: Airtight
+      airBlocked: True
+  - uid: 1267
+    components:
+    - type: Transform
+      anchored: True
+      pos: 43.5,5.5
+      parent: 1
+    - type: Airtight
+      airBlocked: True
 - proto: SurveillanceCameraGeneral
   entities:
   - uid: 2674
@@ -15909,14 +15930,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,1.5
       parent: 2709
-- proto: SurveillanceCameraMedical
-  entities:
-  - uid: 2673
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 56.5,41.5
-      parent: 1
 - proto: SurveillanceCameraRouterGeneral
   entities:
   - uid: 2670
@@ -16063,11 +16076,6 @@ entities:
     - type: Transform
       pos: 51.5,40.5
       parent: 1
-  - uid: 1208
-    components:
-    - type: Transform
-      pos: 59.5,41.5
-      parent: 1
   - uid: 1254
     components:
     - type: Transform
@@ -16099,6 +16107,16 @@ entities:
     components:
     - type: Transform
       pos: 54.5,44.5
+      parent: 1
+  - uid: 1215
+    components:
+    - type: Transform
+      pos: 60.5,38.5
+      parent: 1
+  - uid: 1221
+    components:
+    - type: Transform
+      pos: 60.5,37.5
       parent: 1
   - uid: 1296
     components:
@@ -16647,13 +16665,6 @@ entities:
     components:
     - type: Transform
       pos: 50.5,37.5
-      parent: 1
-- proto: VendingMachineMediDrobe
-  entities:
-  - uid: 1215
-    components:
-    - type: Transform
-      pos: 60.5,37.5
       parent: 1
 - proto: VendingMachineRoboDrobe
   entities:
