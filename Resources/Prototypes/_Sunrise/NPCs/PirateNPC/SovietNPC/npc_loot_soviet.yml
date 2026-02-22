@@ -1,0 +1,402 @@
+# MERCENARY NPC LOOT
+
+#region TIER 1
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: ClothingBackpackDuffelMercenaryTier1Pistol
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: PirateCashSpawner08
+    # Weapons
+    - id: WeaponPistolMk58
+      prob: 0.9
+    # Armor
+    - id: ClothingOuterVestWebMerc
+      prob: 0.4
+
+    - id: PirateMedSpawner01
+    # Bonus Loot T1
+    - id: PirateCashSpawner08
+      prob: 0.9
+    - id: PirateCashSpawner03
+      prob: 0.7
+    - id: LootSpawnerIndustrial
+      prob: 0.7
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryWebbingBox
+  id: ClothingBeltWebbingSovietTier1Pistol
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MagazinePistol
+      prob: 0.9
+    - id: MagazinePistolEmpty
+      prob: 0.9
+    - id: MagazinePistolEmpty
+      prob: 0.8
+    - id: MagazinePistolEmpty
+      amount: 2
+      prob: 0.4
+    - id: MagazineBoxPistolFMJ
+      prob: 0.3
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: ClothingBackpackDuffelMercenaryTier1Mosin
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: PirateCashSpawner08
+    # Weapons
+    - id: WeaponSniperMosin
+      prob: 0.9
+    # Armor
+    - id: ClothingOuterVestWebMerc
+      prob: 0.4
+
+    - id: PirateMedSpawner01
+    # Bonus Loot T2
+    - id: PirateCashSpawner03
+      prob: 0.9
+    - id: LootSpawnerMaterials
+      prob: 0.7
+    - id: PirateCashSpawner03
+      prob: 0.7
+    - id: LootSpawnerIndustrial
+      amount: 2
+      prob: 0.7
+    - id: PirateCashSpawner08
+      prob: 0.7
+    - id: LootSpawnerIndustrial
+      prob: 0.3
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryWebbingBox
+  id: ClothingBeltWebbingMercenaryTier1Mosin
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/bandolier.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: MagazineBoxLightRifleFMJ
+      prob: 0.4
+    - id: SpeedLoaderLightRifle
+      prob: 0.9
+    - id: SpeedLoaderLightRifle
+      prob: 0.9
+    - id: SpeedLoaderLightRifle
+      prob: 0.2
+    - id: MagazineBoxLightRifleBig
+      prob: 0.1
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+#region TIER 2
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: ClothingBackpackDuffelMercenaryTier2Shotgun
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: PirateCashSpawner03
+    # Weapons
+    - id: WeaponShotgunKammerer
+      prob: 0.6
+    # Armor
+    - id: ClothingOuterArmorBasicSlim
+      prob: 0.4
+
+    - id: PirateMedSpawner01
+    # Bonus Loot T2
+    - id: PirateCashSpawner03
+      prob: 0.9
+    - id: PirateCashSpawner03
+      prob: 0.7
+    - id: PirateCashSpawner03
+      prob: 0.7
+    - id: LootSpawnerIndustrial
+      amount: 2
+      prob: 0.7
+    - id: PirateCashSpawner08
+      prob: 0.7
+    - id: LootSpawnerIndustrial
+      prob: 0.3
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryWebbingBox
+  id: ClothingBeltWebbingMercenaryTier2Shotgun
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: BoxShotgunSlug
+      prob: 0.4
+    - id: BoxShotgunSlug
+      prob: 0.2
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: ClothingBackpackDuffelMercenaryTier2Revolver
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: PirateCashSpawner03
+    # Weapons
+    - id: WeaponRevolverMateba
+      prob: 0.9
+    - id: WeaponRevolverMateba
+      prob: 0.3
+    # Armor
+    - id: ClothingOuterCoatDetective
+      prob: 0.4
+    - id: ClothingHeadHatUshanka
+      prob: 0.4
+
+    - id: PirateMedSpawner01
+    # Bonus Loot T2
+    - id: PirateCashSpawner03
+      prob: 0.9
+    - id: PirateCashSpawner03
+      prob: 0.7
+    - id: PirateCashSpawner03
+      prob: 0.7
+    - id: LootSpawnerIndustrial
+      amount: 2
+      prob: 0.7
+    - id: PirateCashSpawner08
+      prob: 0.7
+    - id: LootSpawnerIndustrial
+      prob: 0.3
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryWebbingBox
+  id: ClothingBeltWebbingSovietTier2Revolver
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/bandolier.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpeedLoaderMagnumEmpty
+      prob: 0.9
+    - id: SpeedLoaderMagnumEmpty
+      prob: 0.6
+    - id: SpeedLoaderMagnumEmpty
+      prob: 0.1
+    - id: MagazineBoxPistolFMJ
+      prob: 0.9
+    - id: MagazineBoxPistolFMJ
+      prob: 0.2
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+#region TIER 3
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: ClothingBackpackDuffelMercenaryTier3Medic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: PirateCashSpawner07
+    # Weapons
+    - id: WeaponEnergyGun
+      prob: 0.9
+    - id: SawElectric
+      prob: 0.7
+    # Armor
+    # Items
+    - id: LootSpawnerMedicalMinor
+      prob: 0.45
+    - id: PirateMedSpawner01
+    # Bonus Loot T3
+    - id: PirateCashSpawner07
+      prob: 0.9
+    - id: PirateCashSpawner07
+      prob: 0.9
+    - id: PirateCashSpawner03
+      prob: 0.7
+    - id: PirateCashSpawner03
+      prob: 0.7
+    - id: LootSpawnerIndustrial
+      amount: 2
+      prob: 0.7
+    - id: SalvageLootSpawner
+      prob: 0.5
+    - id: LootSpawnerIndustrial
+      prob: 0.4
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryWebbingBox
+  id: ClothingBeltMercenaryTier3Medic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/emt.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: Brutepack
+      prob: 0.6
+    - id: Ointment
+      prob: 0.6
+    - id: Bloodpack
+      prob: 0.7
+    - id: Gauze
+      amount: 1
+      prob: 0.9
+    - id: EmergencyMedipen
+      prob: 0.7
+    - id: EmergencyMedipen
+      prob: 0.4
+    - id: EmergencyMedipen
+      prob: 0.2
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: ClothingBackpackDuffelMercenaryTier3Assault
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: PirateCashSpawner07
+    # Weapons
+    - id: WeaponRifleSKM24Green
+      prob: 0.9
+    - id: MagazineLightRifleEmpty
+      prob: 0.9
+    - id: MagazineLightRifleEmpty
+      prob: 0.75
+    - id: MagazineLightRifleFMJ
+      prob: 0.4
+    - id: MagazineLightRifleFMJ
+      prob: 0.25
+    - id: MagazineLightRifleAP
+      prob: 0.05
+    # Armor
+    - id: ClothingOuterLightHardsuitUSSP
+      prob: 0.2
+    - id: ClothingMaskGasMerc
+      prob: 0.3
+    # Items
+    - id: LootSpawnerMedicalMinor
+      prob: 0.2
+    - id: PirateMedSpawner01
+    # Bonus Loot T3
+    - id: PirateCashSpawner07
+      prob: 0.9
+    - id: PirateCashSpawner07
+      prob: 0.9
+    - id: PirateCashSpawner07
+      prob: 0.7
+    - id: PirateCashSpawner03
+      prob: 0.7
+    - id: LootSpawnerIndustrial
+      amount: 2
+      prob: 0.7
+    - id: SalvageLootSpawner
+      prob: 0.5
+    - id: LootSpawnerIndustrial
+      prob: 0.4
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryWebbingBox
+  id: ClothingBeltMercenaryTier3Assault
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/militarywebbing.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: MagazineRifleFMJ
+      prob: 0.4
+    - id: MagazineRifleFMJ
+      prob: 0.2
+    - id: MagazineBoxRifleFMJ
+      prob: 0.3
+    - id: Tourniquet
+      prob: 0.4
+    - id: MagazineBoxRifleMachineFMJ
+      prob: 0.1
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+#region TIER 4
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: ClothingBackpackDuffelMercenaryTier4Captain
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: PirateCashSpawner06
+    # Weapons
+    - id: WeaponSniperDragunovBiocode
+      prob: 0.8
+    - id: WeaponSniperDragunov
+      prob: 0.25
+    # Armor
+    - id: ClothingOuterVestWebMerc
+      prob: 0.4
+    # Items
+    - id: MagazineBoxRifleMachineFMJ
+      prob: 0.7
+    - id: MagazineBoxRifleMachineBig
+      prob: 0.3
+    - id: PirateMedSpawner01
+    - id: MagazineBoxRifleMachineAP
+      prob: 0.1
+    - id: AmmoTechFabCircuitboard
+      prob: 0.1
+    # Bonus Loot T4
+    - id: PirateCashSpawner06
+      prob: 0.9
+    - id: SalvageLootSpawner
+      prob: 0.9
+    - id: PirateCashSpawner07
+      prob: 0.7
+    - id: PirateCashSpawner07
+      prob: 0.7
+    - id: LootSpawnerIndustrial
+      amount: 3
+      prob: 0.7
+    - id: LootSpawnerArmoryGunsOnly
+      prob: 0.3
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg

@@ -1,0 +1,83 @@
+# Tier 1
+- type: startingGear
+  id: MobHumanoidSovietGearMeleeT1
+  equipment:
+    gloves: ClothingHandsBottle
+    pocket1: SpaceCash500
+    pocket2: BrokenBottle
+    shoes: ClothingShoesBootsMerc
+
+- type: startingGear
+  id: MobHumanoidSovietGearMeleeT1Alt
+  equipment:
+    gloves: ClothingHandsFinka
+    pocket1: SpaceCash500
+    pocket2: BrokenBottle
+    shoes: ClothingShoesBootsMerc
+
+- type: startingGear
+  id: MobHumanoidSovietGearRangedT1
+  equipment:
+    gloves: ClothingHandsBlackPistol
+    back: ClothingBackpackDuffelMercenaryTier1Pistol
+    belt: ClothingBeltWebbingSovietTier1Pistol
+    shoes: ClothingShoesBootsMerc
+
+- type: startingGear
+  id: MobHumanoidSovietGearRangedAltT1
+  equipment:
+    gloves: ClothingHandsMercMosin
+    back: ClothingBackpackDuffelMercenaryTier1Mosin
+    belt: ClothingBeltWebbingMercenaryTier1Mosin
+    shoes: ClothingShoesBootsMerc
+
+# Tier 2
+- type: startingGear
+  id: MobHumanoidSovietGearMeleeT2
+  equipment:
+    gloves: ClothingHandsFinka
+    pocket1: Machete
+    pocket2: SpaceCash1000
+    shoes: ClothingShoesBootsCombat
+
+- type: startingGear
+  id: MobHumanoidSovietGearRangedT2
+  equipment:
+    gloves: ClothingHandsMercRevolvers
+    back: ClothingBackpackDuffelMercenaryTier2Revolver
+    belt: ClothingBeltWebbingSovietTier2Revolver
+    shoes: ClothingShoesBootsCombat
+
+- type: startingGear
+  id: MobHumanoidSovietGearRangedAltT2
+  equipment:
+    gloves: ClothingHandsBlackShotgun
+    back: ClothingBackpackDuffelMercenaryTier2Shotgun
+    belt: ClothingBeltWebbingMercenaryTier2Shotgun
+    shoes: ClothingShoesBootsCombat
+
+# Tier 3
+- type: startingGear
+  id: MobHumanoidSovietGearT3
+  equipment:
+    gloves: ClothingHandsPPSH
+    belt: ClothingBeltBandolierT1Rifle
+    shoes: ClothingShoesBootsSalvage
+    pocket1: DoubleEmergencyOxygenTankFilled
+    pocket2: ChemistryBottleSaline
+
+- type: startingGear
+  id: MobHumanoidSovietGearRangedT3Alt
+  equipment:
+    gloves: ClothingHandsSKM24G
+    back: ClothingBackpackDuffelMercenaryTier3Assault
+    belt: ClothingBeltMercenaryTier3Assault
+    shoes: ClothingShoesBootsCombat
+
+# Tier 4
+- type: startingGear
+  id: MobHumanoidSovietGearTier4Captain
+  equipment:
+    gloves: ClothingHandsDragunov
+    back: ClothingBackpackDuffelMercenaryTier4Captain
+    shoes: ClothingShoesBootsCombat

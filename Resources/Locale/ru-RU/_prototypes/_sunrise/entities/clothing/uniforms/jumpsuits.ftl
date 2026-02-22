@@ -89,3 +89,5 @@ ent-ClothingUniformJumpsuitCaptainBlack = чёрный комбинезон ка
 ent-ClothingUniformPunksuit = панк-костюм
     .desc = Брось вызов гардеробу!
 
+ent-ClothingUSSPMarine = комбинезон космопехотинца СССП
+    .desc = Полосатая тельняшка и простые брюки космопехоты СССП. Носятся под боевым скафандром, ведь даже броня должна знать, кто внутри.

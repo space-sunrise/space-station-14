@@ -429,6 +429,8 @@
   - type: Clothing
     clothingVisuals:
       gloves:
+      - sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+        state: equipped-HAND
       - sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
         state: wielded-inhand-right
   - type: MeleeWeapon
@@ -603,6 +605,18 @@
     clothingVisuals:
       gloves:
       - sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Syndicate/tiny.rsi
+        state: wielded-inhand-right
+
+- type: entity
+  parent: [ClothingHandsNoGloves, PirateArmorPrivateer]
+  id: ClothingHandsSKM24G
+  suffix: skm24
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Green/tiny.rsi
         state: wielded-inhand-right
 
 - type: entity
@@ -956,6 +970,43 @@
       collection: PunchHard
   - type: FireProtection
     reduction: 0.99
+
+- type: entity
+  parent: ClothingHandsNoGloves
+  id: ClothingHandsBottle
+  components:
+  - type: Reflect
+    reflectProb: 0.01
+  - type: MeleeWeapon
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 5
+        Structural: 15
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+
+- type: entity
+  parent: ClothingHandsNoGloves
+  id: ClothingHandsFinka
+  components:
+  - type: Reflect
+    reflectProb: 0.01
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 2
+    damage:
+      types:
+        Slash: 9
+        Structural: 15
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Sunrise/Objects/Weapons/Melee/finka.rsi
+        state: inhand-left
+
 # This is some proper cursed stuff: due to layering of clothes sprites, gloves displayed under outer clothes
 # So in order to make wielded weapon visible, I'm using neck slot which is drawn on top of outer suit layer.
 
@@ -1272,4 +1323,3 @@
   id: ClothingHandsECutlassPirateT2
   suffix: pirate T2
   categories: [ HideSpawnMenu ]
-

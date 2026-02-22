@@ -13,6 +13,7 @@
   - FleshHuman
   - BloodCult
   - Pirate
+  - Soviet
 
 - type: npcFaction
   id: Carps
@@ -33,6 +34,7 @@
   - FleshHuman
   - BloodCult
   - Pirate
+  - Soviet
 
 - type: npcFaction
   id: Vampire
@@ -51,6 +53,7 @@
   - FleshHuman
   - BloodCult
   - Pirate
+  - Soviet
 
 - type: npcFaction
   id: SpiderClan
@@ -70,6 +73,7 @@
   - FleshHuman
   - BloodCult
   - Pirate
+  - Soviet
 
 - type: npcFaction
   id: Pirate
@@ -89,3 +93,24 @@
     - Flesh
     - FleshHuman
     - BloodCult
+    - Soviet
+
+- type: npcFaction
+  id: Soviet
+  hostile:
+    - NanoTrasen
+    - SimpleHostile
+    - Passive
+    - Xeno
+    - PetsNT
+    - Revolutionary
+    - Syndicate
+    - Zombie
+    - Vampire
+    - AllHostile
+    - Thief
+    - Carps
+    - Flesh
+    - FleshHuman
+    - BloodCult
+    - Pirate
