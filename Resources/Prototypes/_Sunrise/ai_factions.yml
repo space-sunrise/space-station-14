@@ -86,6 +86,9 @@
     - Revolutionary
     - Syndicate
     - Zombie
+    - Wizard
+    - Xenoborg
+    - Dragon
     - Vampire
     - AllHostile
     - Thief
@@ -95,6 +98,7 @@
     - FleshHuman
     - BloodCult
     - Soviet
+    - SpiderClan
 
 - type: npcFaction
   id: Soviet
@@ -114,7 +118,9 @@
     - AllHostile
     - Thief
     - Carps
+    - Dragon
     - Flesh
     - FleshHuman
     - BloodCult
     - Pirate
+    - SpiderClan
