@@ -78,6 +78,10 @@ namespace Content.Server.Voting.Managers
                 case StandardVoteType.PrisonEnd: // Sunrise-Edit
                     _entityManager.System<Content.Server._Sunrise.PlanetPrison.Voting.PlanetPrisonVoteSystem>().CreatePrisonEndVote(initiator);
                     break;
+                case StandardVoteType.PrisonExclude: // Sunrise-Edit
+                    timeoutVote = false;
+                    _entityManager.System<Content.Server._Sunrise.PlanetPrison.Voting.PlanetPrisonVoteSystem>().CreatePrisonExcludeVote(initiator, args);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(voteType), voteType, null);
             }

@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Client._Sunrise.PlanetPrison;
 using Content.Client.GameTicking.Managers;
 using Content.Shared._Sunrise.NewLife;
 using Content.Shared.Station.Components;
@@ -22,6 +23,8 @@ namespace Content.Client._Sunrise.NewLife
         private List<int> _usedCharacters = [];
 
         private Dictionary<NetEntity, List<NewLifeRolesInfo>> _jobs = new();
+
+        private Dictionary<NetEntity, string> _stationNames = new();
 
         private bool _prisonTimerActive;
 
@@ -121,6 +124,7 @@ namespace Content.Client._Sunrise.NewLife
         public void UpdateStationList(Dictionary<NetEntity, string> stations, NetEntity selectedStation)
         {
             StationSelector.Clear();
+            _stationNames.Clear();
 
             if (stations.Count == 0)
                 return;
@@ -158,6 +162,7 @@ namespace Content.Client._Sunrise.NewLife
 
                 StationSelector.AddItem(stationName);
                 StationSelector.SetItemMetadata(StationSelector.ItemCount - 1, stationUid);
+                _stationNames[stationUid] = stationName;
 
                 if (stationUid == selectedStation)
                 {
@@ -217,6 +222,20 @@ namespace Content.Client._Sunrise.NewLife
                         continue;
                     Spawn.Disabled = true;
                     NextRespawnLabelTitle.Text = Loc.GetString("new-life-gui-role-not-available");
+                    NextRespawnLabel.Visible = false;
+                    return;
+                }
+            }
+
+            // Sunrise-Edit: Block spawn on prison maps the player is excluded from
+            if (selectedStation.HasValue && _stationNames.TryGetValue(selectedStation.Value, out var stationName) &&
+                stationName.Contains("Планетарная тюрьма"))
+            {
+                var protoId = stationName.Contains("Metus") ? "PlanetPrison" : stationName.Contains("Nox") ? "PlanetPrisonOld" : null;
+                if (protoId != null && EntitySystem.Get<PlanetPrisonUISystem>().IsPlayerExcludedFromPrisonMap(protoId))
+                {
+                    Spawn.Disabled = true;
+                    NextRespawnLabelTitle.Text = Loc.GetString("new-life-gui-station-excluded");
                     NextRespawnLabel.Visible = false;
                     return;
                 }

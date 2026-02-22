@@ -23,22 +23,35 @@ namespace Content.Server.Voting
 
         public override void Execute(IConsoleShell shell, string argStr, string[] args)
         {
-            if (args.Length != 1 && args[0] != StandardVoteType.Votekick.ToString())
+            if (args.Length < 1)
             {
                 shell.WriteError(Loc.GetString("shell-need-exactly-one-argument"));
                 return;
             }
-            if (args.Length != 4 && args[0] == StandardVoteType.Votekick.ToString())
-            {
-                shell.WriteError(Loc.GetString("shell-wrong-arguments-number-need-specific", ("properAmount", 4), ("currentAmount", args.Length)));
-                return;
-            }
-
 
             if (!Enum.TryParse<StandardVoteType>(args[0], ignoreCase: true, out var type))
             {
                 shell.WriteError(Loc.GetString("cmd-createvote-invalid-vote-type"));
                 return;
+            }
+
+            // Validate argument count per vote type
+            switch (type)
+            {
+                case StandardVoteType.Votekick when args.Length != 4:
+                    shell.WriteError(Loc.GetString("shell-wrong-arguments-number-need-specific", ("properAmount", 4), ("currentAmount", args.Length)));
+                    return;
+                // Sunrise-Edit: PrisonExclude expects 3 args: type + targetUserId + reason
+                case StandardVoteType.PrisonExclude when args.Length != 3:
+                    shell.WriteError(Loc.GetString("shell-wrong-arguments-number-need-specific", ("properAmount", 3), ("currentAmount", args.Length)));
+                    return;
+                default:
+                    if (type != StandardVoteType.Votekick && type != StandardVoteType.PrisonExclude && args.Length != 1) // Sunrise-Edit
+                    {
+                        shell.WriteError(Loc.GetString("shell-need-exactly-one-argument"));
+                        return;
+                    }
+                    break;
             }
 
             if (shell.Player != null && !_voteManager.CanCallVote(shell.Player, type))

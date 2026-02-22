@@ -9,6 +9,7 @@ using Content.Server.Preferences.Managers;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared.Station.Components;
 using Content.Shared._Sunrise.NewLife;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Ghost;
@@ -155,6 +156,13 @@ namespace Content.Server._Sunrise.NewLife
             if ((_sponsorsManager == null || !_sponsorsManager.IsAllowedRespawn(player.UserId)) && _newLifeSponsorOnly)
                 return;
             if (!_stationJobs.GetAvailableJobs(stationUid.Value).Contains(roleProto))
+                return;
+
+            // Sunrise-Edit: Reject spawn on prison maps the player is excluded from
+            var mapId = TryComp<StationDataComponent>(stationUid.Value, out var stationData) && stationData.Grids.Count > 0
+                ? Transform(stationData.Grids.First()).MapID
+                : Transform(stationUid.Value).MapID;
+            if (_planetPrisonStation.IsPlayerExcludedFromMap(player.UserId, mapId))
                 return;
             _prefsManager.GetPreferences(player.UserId).SetProfile(characterId.Value);
             _gameTicker.MakeJoinGame(player, stationUid.Value, roleProto, canBeAntag: false);

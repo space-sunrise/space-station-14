@@ -67,6 +67,12 @@ public sealed class PlanetPrisonUISystem : EntitySystem
     private int _minPlayersRequired = 2; // Минимальное количество игроков для запуска
     private bool _initialStateRequested = false; // Флаг, запрашивалось ли начальное состояние
 
+    // Текущая карта тюрьмы, на которой находится игрок (proto id или null)
+    private string? _currentPrisonMapProtoId;
+
+    // Карты, с которых игрок исключён
+    private readonly HashSet<string> _excludedMapProtoIds = new();
+
     // Событие, уведомляющее о смене состояния любых тюремных таймеров (true - есть активный таймер)
     public event Action<bool>? PrisonTimerActiveChanged;
 
@@ -95,6 +101,8 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         SubscribeNetworkEvent<PlanetPrisonRoleUpdateEvent>(OnRoleUpdate);
         SubscribeNetworkEvent<PlanetPrisonCloseWindowEvent>(OnCloseWindow);
         SubscribeLocalEvent<MapRemovedEvent>(OnMapRemoved);
+        SubscribeNetworkEvent<PlanetPrisonCurrentMapEvent>(OnCurrentMapReceived);
+        SubscribeNetworkEvent<PlanetPrisonExcludedMapsEvent>(OnExcludedMapsReceived);
 
         PopulateMaps();
         PopulateRoles();
@@ -869,6 +877,7 @@ public sealed class PlanetPrisonUISystem : EntitySystem
             entry.HideVoteCount();
             entry.ShowLaunchedStatus();
             entry.EnableButtons();
+            RefreshJoinButtonExcluded();
             return;
         }
 
@@ -880,6 +889,8 @@ public sealed class PlanetPrisonUISystem : EntitySystem
         {
             HandleNonVotingUI(msg, entry);
         }
+
+        RefreshJoinButtonExcluded();
     }
 
     private void HandleVotingUI(PlanetPrisonVoteUpdateEvent msg, PlanetPrisonMapEntry entry)
@@ -1159,5 +1170,36 @@ public sealed class PlanetPrisonUISystem : EntitySystem
     /// Возвращает количество участвующих игроков (проголосовавших за карты тюрьмы).
     /// </summary>
     public int GetParticipatingPlayerCount() => _totalPriorityPlayers;
+
+    // ─── Exclude vote ───────────────────────────────────────────────────────
+
+    private void OnCurrentMapReceived(PlanetPrisonCurrentMapEvent msg)
+    {
+        _currentPrisonMapProtoId = msg.ProtoId;
+    }
+
+    private void OnExcludedMapsReceived(PlanetPrisonExcludedMapsEvent msg)
+    {
+        _excludedMapProtoIds.Clear();
+        foreach (var id in msg.ExcludedMapProtoIds)
+            _excludedMapProtoIds.Add(id);
+
+        RefreshJoinButtonExcluded();
+    }
+
+    /// <summary>
+    /// Блокирует кнопку «Присоединиться» для карт, с которых игрок исключён.
+    /// </summary>
+    private void RefreshJoinButtonExcluded()
+    {
+        _metusMapEntry?.SetJoinExcluded(_excludedMapProtoIds.Contains("PlanetPrison"));
+        _noxMapEntry?.SetJoinExcluded(_excludedMapProtoIds.Contains("PlanetPrisonOld"));
+    }
+
+    /// <summary>
+    /// Возвращает true, если игрок исключён с данной тюремной карты (protoId: PlanetPrison, PlanetPrisonOld).
+    /// </summary>
+    public bool IsPlayerExcludedFromPrisonMap(string mapProtoId)
+        => _excludedMapProtoIds.Contains(mapProtoId);
 
 }

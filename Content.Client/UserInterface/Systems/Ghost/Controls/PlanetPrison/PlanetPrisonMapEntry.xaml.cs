@@ -192,4 +192,13 @@ public sealed partial class PlanetPrisonMapEntry : BoxContainer
     }
 
     public PriorityLevel CurrentPriority => _currentPriority;
+
+    /// <summary>
+    /// Блокирует кнопку «Присоединиться», если игрок исключён с этой карты.
+    /// </summary>
+    public void SetJoinExcluded(bool excluded)
+    {
+        if (IsLaunched)
+            JoinButton.Disabled = excluded;
+    }
 }

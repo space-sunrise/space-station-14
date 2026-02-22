@@ -9,6 +9,7 @@ new-life-gui-new-life = Новая жизнь
 new-life-gui-available = Доступно.
 new-life-gui-character-not-available = Персонаж не доступен.
 new-life-gui-role-not-available = Роль недоступна.
+new-life-gui-station-excluded = Вы исключены с этой карты.
 new-life-gui-character-used = { $name } [Недоступен]
 new-life-gui-character-rules_title = Правила
 new-life-gui-character-rule1 = 1. Вы ничего не помните с прошлой жизни.

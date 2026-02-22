@@ -29,7 +29,12 @@ public enum StandardVoteType : byte
     /// <summary>
     /// Vote to end the current Planet Prison run (per specific prison map).
     /// </summary>
-    PrisonEnd
+    PrisonEnd,
+
+    /// <summary>
+    /// Vote to exclude a player from the current Planet Prison map.
+    /// </summary>
+    PrisonExclude
     // Sunrise-End
 }
 

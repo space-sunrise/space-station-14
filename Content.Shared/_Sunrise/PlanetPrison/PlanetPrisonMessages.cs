@@ -1,3 +1,4 @@
+using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.PlanetPrison;
@@ -104,4 +105,55 @@ public sealed class PlanetPrisonRoleUpdateEvent : EntityEventArgs
 [NetSerializable, Serializable]
 public sealed class PlanetPrisonCloseWindowEvent : EntityEventArgs
 {
+}
+
+/// <summary>
+/// Client requests the list of players currently on the sender's prison map.
+/// Server determines the map from the sender's PlanetPrisonSpawnedComponent.
+/// </summary>
+[NetSerializable, Serializable]
+public sealed class PrisonMapPlayersRequestMessage : EntityEventArgs
+{
+}
+
+/// <summary>
+/// Server response with players on a specific prison map.
+/// </summary>
+[NetSerializable, Serializable]
+public sealed class PrisonMapPlayersResponseEvent : EntityEventArgs
+{
+    public (NetUserId UserId, NetEntity Entity, string Name)[] Players { get; }
+
+    public PrisonMapPlayersResponseEvent((NetUserId, NetEntity, string)[] players)
+    {
+        Players = players;
+    }
+}
+
+/// <summary>
+/// Tells the client which prison map proto id the player is currently on (null if not on any).
+/// </summary>
+[NetSerializable, Serializable]
+public sealed class PlanetPrisonCurrentMapEvent : EntityEventArgs
+{
+    public string? ProtoId { get; }
+
+    public PlanetPrisonCurrentMapEvent(string? protoId)
+    {
+        ProtoId = protoId;
+    }
+}
+
+/// <summary>
+/// Tells the client which prison map proto ids the player has been excluded from.
+/// </summary>
+[NetSerializable, Serializable]
+public sealed class PlanetPrisonExcludedMapsEvent : EntityEventArgs
+{
+    public string[] ExcludedMapProtoIds { get; }
+
+    public PlanetPrisonExcludedMapsEvent(string[] excludedMapProtoIds)
+    {
+        ExcludedMapProtoIds = excludedMapProtoIds;
+    }
 }

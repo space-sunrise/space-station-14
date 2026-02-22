@@ -125,6 +125,9 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     // Замороженные карты тюрьмы (ожидают удаления при рестарте раунда)
     private readonly HashSet<MapId> _pausedOrphanMaps = new();
 
+    // Игроки, исключённые с конкретных карт (proto id -> set of NetUserId)
+    private readonly Dictionary<string, HashSet<NetUserId>> _excludedPlayers = new();
+
     // Отложенные проверки пустых карт (из OnPrisonPlayerDetached), чтобы не удалять карту до завершения переноса ума в мозг
     private readonly HashSet<MapId> _pendingEmptyMapChecks = new();
 
@@ -557,6 +560,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         SubscribeNetworkEvent<PlanetPrisonVoteMessage>(OnPrisonVote);
         SubscribeNetworkEvent<PlanetPrisonStatusRequestMessage>(OnPrisonStatusRequest);
         SubscribeNetworkEvent<PlanetPrisonRolePriorityMessage>(OnRolePriority);
+        SubscribeNetworkEvent<PrisonMapPlayersRequestMessage>(OnPrisonMapPlayersRequest);
 
         // Сбрасываем состояние при старте нового раунда
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
@@ -1654,6 +1658,10 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             var otherUpdateEvent = BuildVoteUpdateEvent(otherMapId, otherVoteCount, otherHasTimer, otherIsLaunched, otherRemainingSeconds ?? 0, participatingCount, insufficientRoles.ToArray());
             RaiseNetworkEvent(otherUpdateEvent, args.SenderSession!);
         }
+
+        // Отправляем клиенту его текущую карту и список исключений
+        SendCurrentMapEvent(args.SenderSession!);
+        SendExcludedMapsEvent(args.SenderSession!);
     }
 
     private void OnRolePriority(PlanetPrisonRolePriorityMessage msg, EntitySessionEventArgs args)
@@ -1987,6 +1995,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             }
 
             _launchedMaps.Remove(protoId);
+            ClearExcludedPlayersForMap(protoId);
 
             if (_mapManager.MapExists(mapId))
             {
@@ -2084,6 +2093,9 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
                 {
                     _launchedMaps.Remove(protoId);
                     Console.WriteLine($"Removed {protoId} from launched maps");
+
+                    // Снимаем пометку «исключён» для всех игроков с этой карты
+                    ClearExcludedPlayersForMap(protoId);
                 }
             }
             else
@@ -2526,5 +2538,139 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         RaiseNetworkEvent(resetEvent);
 
         Console.WriteLine($"Prison voting reset for {mapId}");
+    }
+
+    /// <summary>
+    /// Возвращает словарь запущенных карт (proto id -> MapId) для внешних систем.
+    /// </summary>
+    public IReadOnlyDictionary<string, MapId> GetLaunchedMaps() => _launchedMaps;
+
+    // ─── Exclude vote helpers ───────────────────────────────────────────────
+
+    /// <summary>
+    /// Обрабатывает запрос клиента на список игроков на его текущей карте тюрьмы.
+    /// </summary>
+    private void OnPrisonMapPlayersRequest(PrisonMapPlayersRequestMessage msg, EntitySessionEventArgs args)
+    {
+        var session = args.SenderSession;
+        if (session == null)
+            return;
+
+        if (session.AttachedEntity is not { Valid: true } senderEnt ||
+            !TryComp<PlanetPrisonSpawnedComponent>(senderEnt, out var senderSpawned))
+        {
+            var empty = new PrisonMapPlayersResponseEvent(Array.Empty<(NetUserId, NetEntity, string)>());
+            RaiseNetworkEvent(empty, session.Channel);
+            return;
+        }
+
+        var mapId = senderSpawned.MapId;
+        var players = new List<(NetUserId, NetEntity, string)>();
+
+        foreach (var player in _playerManager.Sessions)
+        {
+            if (player == session)
+                continue;
+
+            if (player.AttachedEntity is not { Valid: true } playerEnt)
+                continue;
+
+            if (!TryComp<PlanetPrisonSpawnedComponent>(playerEnt, out var playerSpawned))
+                continue;
+
+            if (playerSpawned.MapId != mapId)
+                continue;
+
+            var name = MetaData(playerEnt).EntityName;
+            players.Add((player.UserId, GetNetEntity(playerEnt), name));
+        }
+
+        var response = new PrisonMapPlayersResponseEvent(players.ToArray());
+        RaiseNetworkEvent(response, session.Channel);
+    }
+
+    /// <summary>
+    /// Отправляет клиенту proto id его текущей карты тюрьмы (null если не на карте).
+    /// </summary>
+    private void SendCurrentMapEvent(ICommonSession session)
+    {
+        if (session.AttachedEntity is not { Valid: true } ent ||
+            !TryComp<PlanetPrisonSpawnedComponent>(ent, out var spawned))
+        {
+            RaiseNetworkEvent(new PlanetPrisonCurrentMapEvent(null), session.Channel);
+            return;
+        }
+
+        string? protoId = null;
+        foreach (var (proto, mapId) in _launchedMaps)
+        {
+            if (mapId == spawned.MapId)
+            {
+                protoId = proto;
+                break;
+            }
+        }
+
+        RaiseNetworkEvent(new PlanetPrisonCurrentMapEvent(protoId), session.Channel);
+    }
+
+    /// <summary>
+    /// Отправляет клиенту список карт, с которых он исключён.
+    /// </summary>
+    private void SendExcludedMapsEvent(ICommonSession session)
+    {
+        var excluded = new List<string>();
+        foreach (var (proto, set) in _excludedPlayers)
+        {
+            if (set.Contains(session.UserId))
+                excluded.Add(proto);
+        }
+
+        RaiseNetworkEvent(new PlanetPrisonExcludedMapsEvent(excluded.ToArray()), session.Channel);
+    }
+
+    /// <summary>
+    /// Возвращает true, если игрок исключён с тюремной карты с данным MapId.
+    /// </summary>
+    public bool IsPlayerExcludedFromMap(NetUserId userId, MapId mapId)
+    {
+        var protoId = _launchedMaps.FirstOrDefault(kvp => kvp.Value == mapId).Key;
+        if (string.IsNullOrEmpty(protoId))
+            return false;
+        return _excludedPlayers.TryGetValue(protoId, out var set) && set.Contains(userId);
+    }
+
+    /// <summary>
+    /// Помечает игрока как исключённого с карты.
+    /// </summary>
+    public void ExcludePlayerFromMap(NetUserId userId, string mapProtoId)
+    {
+        if (!_excludedPlayers.TryGetValue(mapProtoId, out var set))
+        {
+            set = new HashSet<NetUserId>();
+            _excludedPlayers[mapProtoId] = set;
+        }
+
+        set.Add(userId);
+
+        if (_playerManager.TryGetSessionById(userId, out var session))
+            SendExcludedMapsEvent(session);
+    }
+
+    /// <summary>
+    /// Снимает пометку «исключён» для всех игроков с данной карты (при завершении карты).
+    /// </summary>
+    public void ClearExcludedPlayersForMap(string mapProtoId)
+    {
+        if (!_excludedPlayers.TryGetValue(mapProtoId, out var set))
+            return;
+
+        foreach (var userId in set)
+        {
+            if (_playerManager.TryGetSessionById(userId, out var session))
+                SendExcludedMapsEvent(session);
+        }
+
+        _excludedPlayers.Remove(mapProtoId);
     }
 }
