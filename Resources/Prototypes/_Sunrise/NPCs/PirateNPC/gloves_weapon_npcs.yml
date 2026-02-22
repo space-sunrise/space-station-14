@@ -429,7 +429,7 @@
   - type: Clothing
     clothingVisuals:
       gloves:
-      - sprite: _Sunrise/Clothing/Hands/Gloves/mercfingerless.rsi
+      - sprite: Clothing/Hands/Gloves/mercfingerless.rsi
         state: equipped-HAND
       - sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
         state: wielded-inhand-right
