@@ -53,3 +53,18 @@
     proto: JensenTimer
   equipment:
     eyes: ClothingEyesGlassesJensen
+
+# sunrise-start
+- type: loadout
+  id: GlassesCheapSunglasses
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: CheapSunglassesTimer
+  equipment:
+    eyes: ClothingEyesGlassesCheapSunglasses
+
+- type: loadout
+  id: GlassesStuttering
+  equipment:
+    eyes: ClothingEyesStuttering
+# sunrise-end

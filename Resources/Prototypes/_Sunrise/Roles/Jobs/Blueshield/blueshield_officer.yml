@@ -36,6 +36,10 @@
     - Cargo
     - Medical
     - BlueShield
+    - Cryogenics
+    - Lawyer
+    - Barber
+    - Mining
   special:
     - !type:AddImplantSpecial
       implants: [ MindShieldImplant ]
