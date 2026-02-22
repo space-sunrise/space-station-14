@@ -262,9 +262,15 @@
   biomes:
     - Caves
 
+# Sunrise-Start
 - type: salvageDungeonMod
   id: SyndicateBase
   desc: salvage-dungeon-mod-syndicate-base
   proto: SyndicateBase
   biomes:
     - Snow
+  factions:
+    - PiratesT1
+    - PiratesT2
+    - PiratesT3
+  # Sunrise-End

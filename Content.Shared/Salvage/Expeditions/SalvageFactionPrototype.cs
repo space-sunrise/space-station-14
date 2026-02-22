@@ -1,4 +1,6 @@
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List; // Sunrise-Edit
+using Content.Shared.Procedural; // Sunrise-Edit
 
 namespace Content.Shared.Salvage.Expeditions;
 
@@ -11,6 +13,9 @@ public sealed partial class SalvageFactionPrototype : IPrototype
 
     [ViewVariables(VVAccess.ReadWrite), DataField("entries", required: true)]
     public List<SalvageMobEntry> MobGroups = new();
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("difficulties", customTypeSerializer: typeof(PrototypeIdListSerializer<SalvageDifficultyPrototype>))]
+    public List<string>? Difficulties { get; private set; } = null; // Sunrise-Edit
 
     /// <summary>
     /// Miscellaneous data for factions.

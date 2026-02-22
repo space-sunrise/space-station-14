@@ -41,14 +41,14 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         // - Biome
         // - Lighting
         // - Atmos
-        var biome = GetMod<SalvageBiomeModPrototype>(rand, ref modifierBudget);
-        var light = GetBiomeMod<SalvageLightMod>(biome.ID, rand, ref modifierBudget);
-        var temp = GetBiomeMod<SalvageTemperatureMod>(biome.ID, rand, ref modifierBudget);
-        var air = GetBiomeMod<SalvageAirMod>(biome.ID, rand, ref modifierBudget);
-        var dungeon = GetBiomeMod<SalvageDungeonModPrototype>(biome.ID, rand, ref modifierBudget);
-        var factionProtos = _proto.EnumeratePrototypes<SalvageFactionPrototype>().ToList();
-        factionProtos.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
-        var faction = factionProtos[rand.Next(factionProtos.Count)];
+        // Sunrise-Start
+        var biome = GetMod<SalvageBiomeModPrototype>(rand, ref modifierBudget, difficulty.ID);
+        var light = GetBiomeMod<SalvageLightMod>(biome.ID, rand, ref modifierBudget, difficulty.ID);
+        var temp = GetBiomeMod<SalvageTemperatureMod>(biome.ID, rand, ref modifierBudget, difficulty.ID);
+        var air = GetBiomeMod<SalvageAirMod>(biome.ID, rand, ref modifierBudget, difficulty.ID);
+        var dungeon = GetBiomeMod<SalvageDungeonModPrototype>(biome.ID, rand, ref modifierBudget, difficulty.ID);
+        var faction = GetFactionPrototype(dungeon.Factions, difficulty.ID, rand);
+        // Sunrise-End
 
         var mods = new List<string>();
 
@@ -73,9 +73,35 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         return new SalvageMission(seed, dungeon.ID, faction.ID, biome.ID, air.ID, temp.Temperature, light.Color, duration, mods);
     }
 
-    public T GetBiomeMod<T>(string biome, System.Random rand, ref float rating) where T : class, IPrototype, IBiomeSpecificMod
+    // Sunrise-Start
+    public SalvageFactionPrototype GetFactionPrototype(List<ProtoId<SalvageFactionPrototype>>? dungeonFactions, string difficultyId, System.Random rand)
     {
-        var mods = _proto.EnumeratePrototypes<T>().ToList();
+        var factionProtos = _proto.EnumeratePrototypes<SalvageFactionPrototype>().ToList();
+
+        if (dungeonFactions != null && dungeonFactions.Count > 0)
+        {
+            factionProtos = dungeonFactions.ConvertAll(new Converter<ProtoId<SalvageFactionPrototype>, SalvageFactionPrototype>(_proto.Index));
+        }
+
+        var byDifficulty = factionProtos
+            .Where(x => x.Difficulties == null || x.Difficulties.Contains(difficultyId))
+            .ToList();
+
+        if (byDifficulty.Count > 0)
+            factionProtos = byDifficulty;
+
+        factionProtos.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
+        return factionProtos[rand.Next(factionProtos.Count)];
+    }
+    // Sunrise-End
+
+    // Sunrise-Start
+    public T GetBiomeMod<T>(string biome, System.Random rand, ref float rating, string difficultyId) where T : class, IPrototype, IBiomeSpecificMod
+    {
+        var mods = _proto
+            .EnumeratePrototypes<T>()
+            .Where(x => x.Difficulties == null || x.Difficulties.Contains(difficultyId))
+            .ToList();
         mods.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
         rand.Shuffle(mods);
 
@@ -91,10 +117,15 @@ public abstract partial class SharedSalvageSystem : EntitySystem
 
         throw new InvalidOperationException();
     }
+    // Sunrise-End
 
-    public T GetMod<T>(System.Random rand, ref float rating) where T : class, IPrototype, ISalvageMod
+    // Sunrise-Start
+    public T GetMod<T>(System.Random rand, ref float rating, string difficultyId) where T : class, IPrototype, ISalvageMod
     {
-        var mods = _proto.EnumeratePrototypes<T>().ToList();
+        var mods = _proto
+            .EnumeratePrototypes<T>()
+            .Where(x => x.Difficulties == null || x.Difficulties.Contains(difficultyId))
+            .ToList();
         mods.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
         rand.Shuffle(mods);
 
@@ -110,5 +141,6 @@ public abstract partial class SharedSalvageSystem : EntitySystem
 
         throw new InvalidOperationException();
     }
+    // Sunrise-End
 }
 

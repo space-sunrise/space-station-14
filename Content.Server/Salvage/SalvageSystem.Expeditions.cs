@@ -3,6 +3,8 @@ using System.Threading;
 using Content.Server.Salvage.Expeditions;
 using Content.Shared.CCVar;
 using Content.Shared.Examine;
+using Content.Shared.Procedural; // Sunrise-Edit
+using Content.Shared.Random.Helpers; // Sunrise-Edit
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.CPUJob.JobQueues;
@@ -17,7 +19,7 @@ public sealed partial class SalvageSystem
      * Handles setup / teardown of salvage expeditions.
      */
 
-    private const int MissionLimit = 3;
+    private const int MissionLimit = 4; // Sunrise-Edit
 
     private readonly JobQueue _salvageQueue = new();
     private readonly List<(SpawnSalvageMissionJob Job, CancellationTokenSource CancelToken)> _salvageJobs = new();
@@ -141,14 +143,23 @@ public sealed partial class SalvageSystem
     private void GenerateMissions(SalvageExpeditionDataComponent component)
     {
         component.Missions.Clear();
+        // Sunrise-Start: weighted difficulty generation with round-time gates.
+        var roundDuration = _gameTicker.RoundDuration();
+        var difficulties = _prototypeManager
+            .EnumeratePrototypes<SalvageDifficultyPrototype>()
+            .Where(d => d.Delay <= roundDuration && d.Probability > 0f)
+            .ToDictionary(d => d.ID, d => d.Probability);
 
+        if (difficulties.Count == 0)
+            return;
+        // Sunrise-End
         for (var i = 0; i < MissionLimit; i++)
         {
             var mission = new SalvageMissionParams
             {
                 Index = component.NextIndex,
                 Seed = _random.Next(),
-                Difficulty = "Moderate",
+                Difficulty = _random.Pick(difficulties), // Sunrise-Edit
             };
 
             component.Missions[component.NextIndex++] = mission;

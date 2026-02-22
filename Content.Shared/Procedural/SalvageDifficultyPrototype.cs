@@ -25,6 +25,9 @@ public sealed partial class SalvageDifficultyPrototype : IPrototype
     [DataField("mobBudget", required : true)]
     public float MobBudget;
 
+    [DataField("lootPrototype")]
+    public string LootPrototypeId = "SalvageLoot"; // Sunrise-Edit
+
     /// <summary>
     /// Budget allowed for mission modifiers like no light, etc.
     /// </summary>
@@ -33,4 +36,16 @@ public sealed partial class SalvageDifficultyPrototype : IPrototype
 
     [DataField("recommendedPlayers", required: true)]
     public int RecommendedPlayers;
+
+    /// <summary>
+    /// Minimum round time after which this difficulty can appear.
+    /// </summary>
+    [DataField("delay")]
+    public TimeSpan Delay = TimeSpan.Zero; // Sunrise-Edit
+
+    /// <summary>
+    /// Weighted chance for this difficulty when generating offers.
+    /// </summary>
+    [DataField("probability")]
+    public float Probability = 1f; // Sunrise-Edit
 }
