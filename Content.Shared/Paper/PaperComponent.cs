@@ -52,22 +52,24 @@ public sealed partial class PaperComponent : Component
         public readonly string Text;
         public readonly List<StampDisplayInfo> StampedBy;
         public readonly PaperAction Mode;
-        // Sunrise-Start
+        // Sunrise - Start
         public readonly Color DefaultColor;
-        public readonly SpriteSpecifier? ImageContent; // Sunrise-edit
-        public readonly Vector2? ImageScale; // Sunrise-edit
-        // Sunrise-End
+        public readonly SpriteSpecifier? ImageContent;
+        public readonly Vector2? ImageScale;
+        public readonly bool TemplateFieldsEnabled;
+        // Sunrise - End
 
-        public PaperBoundUserInterfaceState(string text, Color defaultColor, List<StampDisplayInfo> stampedBy, PaperAction mode = PaperAction.Read, SpriteSpecifier? imageContent = null, Vector2? imageScale = null) // Sunrise-edit
+        public PaperBoundUserInterfaceState(string text, Color defaultColor, List<StampDisplayInfo> stampedBy, PaperAction mode = PaperAction.Read, SpriteSpecifier? imageContent = null, Vector2? imageScale = null, bool templateFieldsEnabled = false) // Sunrise-edit
         {
             Text = text;
             StampedBy = stampedBy;
             Mode = mode;
-            // Sunrise-Start
+            // Sunrise - Start
             DefaultColor = defaultColor;
             ImageContent = imageContent;
             ImageScale = imageScale;
-            // Sunrise-End
+            TemplateFieldsEnabled = templateFieldsEnabled;
+            // Sunrise - End
         }
     }
 
@@ -81,6 +83,29 @@ public sealed partial class PaperComponent : Component
             Text = text;
         }
     }
+
+    // Sunrise - Start
+    [Serializable, NetSerializable]
+    public enum PaperTemplateRequestType : byte
+    {
+        Signature,
+
+        Job
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class PaperTemplateRequestMessage : BoundUserInterfaceMessage
+    {
+        public readonly PaperTemplateRequestType Type;
+        public readonly int Index;
+
+        public PaperTemplateRequestMessage(PaperTemplateRequestType type, int index)
+        {
+            Type = type;
+            Index = index;
+        }
+    }
+    // Sunrise-end
 
     [Serializable, NetSerializable]
     public enum PaperUiKey

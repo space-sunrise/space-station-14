@@ -23,6 +23,9 @@ public sealed class PaperBoundUserInterface : BoundUserInterface
 
         _window = this.CreateWindow<PaperWindow>();
         _window.OnSaved += InputOnTextEntered;
+        // Sunrise - Start
+        _window.OnTemplateRequested += OnTemplateRequested;
+        // Sunrise - End
 
         if (EntMan.TryGetComponent<PaperComponent>(Owner, out var paper))
         {
@@ -33,6 +36,13 @@ public sealed class PaperBoundUserInterface : BoundUserInterface
             _window.InitVisuals(Owner, visuals);
         }
     }
+
+    // Sunrise - Start
+    private void OnTemplateRequested(PaperTemplateRequestType type, int index)
+    {
+        SendMessage(new PaperTemplateRequestMessage(type, index));
+    }
+    // Sunrise - End
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {

@@ -13,6 +13,11 @@ using static Content.Shared.Paper.PaperComponent;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+// Sunrise - Start
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Access.Systems;
+using Content.Shared._Sunrise.Paperwork;
+// Sunrise - End
 
 namespace Content.Shared.Paper;
 
@@ -28,11 +33,12 @@ public sealed class PaperSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedIdCardSystem _idCard = default!; // Sunrise - Edit
+    [Dependency] private readonly SharedHandsSystem _hands = default!; // Sunrise - Edit
 
     private static readonly ProtoId<TagPrototype> WriteIgnoreStampsTag = "WriteIgnoreStamps";
     private static readonly ProtoId<TagPrototype> WriteTag = "Write";
     private static readonly Vector2 DefaultImageScale = new (1f, 1f);
-
     private EntityQuery<PaperComponent> _paperQuery;
 
     public override void Initialize()
@@ -45,6 +51,7 @@ public sealed class PaperSystem : EntitySystem
         SubscribeLocalEvent<PaperComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<PaperComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<PaperComponent, PaperInputTextMessage>(OnInputTextMessage);
+        SubscribeLocalEvent<PaperComponent, PaperTemplateRequestMessage>(OnTemplateRequest); // Sunrise - Edit
 
         SubscribeLocalEvent<RandomPaperContentComponent, MapInitEvent>(OnRandomPaperContentMapInit);
 
@@ -185,8 +192,39 @@ public sealed class PaperSystem : EntitySystem
         };
     }
 
+    // Sunrise - Start
+    // Есть ли у пользывателя инструмент в руках с тегом "Writer"
+
+    private bool TryRequireWriteTool(Entity<PaperComponent> paper, EntityUid user)
+    {
+        if (_hands.GetActiveItem(user) is not { } used)
+        {
+            _popupSystem.PopupEntity(Loc.GetString("paper-no-write-tool"), paper, user);
+            return false;
+        }
+
+        if (!_tagSystem.HasTag(used, WriteTag))
+        {
+            _popupSystem.PopupEntity(Loc.GetString("paper-no-write-tool"), paper, user);
+            return false;
+        }
+
+        if (paper.Comp.StampedBy.Count > 0 && !_tagSystem.HasTag(used, WriteIgnoreStampsTag))
+        {
+            _popupSystem.PopupEntity(Loc.GetString("paper-stamped-write-blocked"), paper, user);
+            return false;
+        }
+        return true;
+    }
+    // Sunrise - End
+
     private void OnInputTextMessage(Entity<PaperComponent> entity, ref PaperInputTextMessage args)
     {
+        // Sunrise - Start
+        if (!TryRequireWriteTool(entity, args.Actor))
+            return;
+        // Sunrise - End
+
         var ev = new PaperWriteAttemptEvent(entity.Owner);
         RaiseLocalEvent(args.Actor, ref ev);
         if (ev.Cancelled)
@@ -214,6 +252,91 @@ public sealed class PaperSystem : EntitySystem
         entity.Comp.Mode = PaperAction.Read;
         UpdateUserInterface(entity);
     }
+
+    // Sunrise - Start
+    private void OnTemplateRequest(Entity<PaperComponent> entity, ref PaperTemplateRequestMessage args)
+    {
+
+        switch (args.Type)
+        {
+            case PaperTemplateRequestType.Signature:
+                HandleSignatureRequest(entity, args.Actor, args.Index);
+                break;
+
+            case PaperTemplateRequestType.Job:
+                HandleJobRequest(entity, args.Actor, args.Index);
+                break;
+        }
+
+    }
+
+    private bool TryValidateTemplateWriteRequest(Entity<PaperComponent> entity, EntityUid actor, int index)
+    {
+        if (!HasComp<PaperTemplateFormComponent>(entity))
+            return false;
+
+        if (!TryRequireWriteTool(entity, actor))
+            return false;
+
+        var ev = new PaperWriteAttemptEvent(entity.Owner);
+        RaiseLocalEvent(actor, ref ev);
+
+        if (ev.Cancelled || index < 0)
+            return false;
+
+
+        return true;
+    }
+
+    private void HandleSignatureRequest(Entity<PaperComponent> entity, EntityUid actor, int index)
+    {
+        if (!TryValidateTemplateWriteRequest(entity, actor, index))
+            return;
+
+        var content = entity.Comp.Content;
+        var signature = FormattedMessage.EscapeText(Name(actor));
+        var newContent = PaperInteractiveTagParsing.ReplaceNthTag(content, PaperInteractiveTagParsing.SignatureTagRegex, index, signature);
+
+        if (newContent == null || newContent.Length > entity.Comp.ContentSize)
+            return;
+
+        SetContent(entity, newContent);
+
+        _audio.PlayPvs(entity.Comp.Sound, entity);
+        _adminLogger.Add(LogType.Chat,
+            LogImpact.Low,
+            $"{ToPrettyString(actor):player} has signed {ToPrettyString(entity):entity} with: {signature}");
+    }
+
+    private void HandleJobRequest(Entity<PaperComponent> entity, EntityUid actor, int index)
+    {
+        if (!TryValidateTemplateWriteRequest(entity, actor, index))
+            return;
+
+        var content = entity.Comp.Content;
+        var jobTitle = Loc.GetString("paper-job-unknown");
+
+        if (_idCard.TryFindIdCard(actor, out var idCard))
+        {
+            var title = idCard.Comp.LocalizedJobTitle;
+            if (!string.IsNullOrWhiteSpace(title))
+                jobTitle = title.Trim();
+        }
+
+        var jobEscaped = FormattedMessage.EscapeText(jobTitle);
+        var newContent = PaperInteractiveTagParsing.ReplaceNthTag(content, PaperInteractiveTagParsing.JobTagRegex, index, jobEscaped);
+
+        if (newContent == null || newContent.Length > entity.Comp.ContentSize)
+            return;
+
+        SetContent(entity, newContent);
+
+        _audio.PlayPvs(entity.Comp.Sound, entity);
+        _adminLogger.Add(LogType.Chat,
+            LogImpact.Low,
+            $"{ToPrettyString(actor):player} has filled job on {ToPrettyString(entity):entity} with: {jobEscaped}");
+    }
+    // Sunrise - End
 
     private void OnRandomPaperContentMapInit(Entity<RandomPaperContentComponent> ent, ref MapInitEvent args)
     {
@@ -318,7 +441,12 @@ public sealed class PaperSystem : EntitySystem
 
     private void UpdateUserInterface(Entity<PaperComponent> entity)
     {
-        _uiSystem.SetUiState(entity.Owner, PaperUiKey.Key, new PaperBoundUserInterfaceState(entity.Comp.Content, entity.Comp.DefaultColor, entity.Comp.StampedBy, entity.Comp.Mode, entity.Comp.ImageContent, entity.Comp.ImageScale)); // Sunrise-edit
+        // Sunrise-start
+        var templateFieldsEnabled = HasComp<PaperTemplateFormComponent>(entity);
+
+        _uiSystem.SetUiState(entity.Owner, PaperUiKey.Key,
+            new PaperBoundUserInterfaceState(entity.Comp.Content, entity.Comp.DefaultColor, entity.Comp.StampedBy, entity.Comp.Mode, entity.Comp.ImageContent, entity.Comp.ImageScale, templateFieldsEnabled));
+        // Sunrise-end
     }
 }
 

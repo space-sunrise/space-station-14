@@ -42,11 +42,17 @@
     - PermissionToTravelInCaseOfThreat
     - PrescriptionDrugAuthorization
     - ProductManufacturingOrder
+    - ProductManufacturingOrderScience
+    - ProductManufacturingOrderService
+    - ProductManufacturingOrderMedical
+    - ProductManufacturingOrderEngineering
     - ReportDepartment
     - ReportEmployeePerformance
     - ReportOnEliminationOfViolations
     - ReportOnTheChaptersMeeting
     - ReportStation
+    - ResponseProvideCCReport
+    - ResponseHeadsPresence
     - ReportStudyObject
     - RequestCallMembersCentralCommitteeDSO
     - RequestChangeSalary
@@ -72,6 +78,7 @@
     - ApplicationChangePosition
     - ApplicationPetRegistration
     - ReportQilluRepresentative
+    - OrderingSpecialEquipmentCentcomStandard
     - ExplanatoryNote
     - ReportCrewAccessChange
     - RequestLegalProtection
@@ -127,6 +134,8 @@
     - OrderEvacuation
     - OrderProvideCCReport
     - DecreeHeadsPresence
+    - DecreeEnhancedControl
+    - CentcomResponse
     - OrderCentcom
     - OrderReport
     - OrderCentcomTransferStationStaff

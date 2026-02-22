@@ -1,0 +1,14 @@
+﻿copy-machine-default-document-title = Document
+copy-machine-menu-cancel-job = Cancel
+copy-machine-component-CentcomStandard = CC: Standard Forms
+copy-machine-component-Centcom = CC: Standard Forms
+copy-machine-component-CentcomStrict = CC: Restricted Forms
+doc-template-decree-enhanced-control-name = Imperative Decree of the Higher Central Command
+doc-template-centcom-response-name = Central Command Response
+doc-template-product-manufacturing-order-science-name = Order: product manufacturing (Science)
+doc-template-product-manufacturing-order-service-name = Order: product manufacturing (Service)
+doc-template-product-manufacturing-order-medical-name = Order: product manufacturing (Medical)
+doc-template-product-manufacturing-order-engineering-name = Order: product manufacturing (Engineering)
+doc-template-ordering-special-equipment-centcom-standard-name = Order: special equipment (CC Standard)
+doc-template-response-provide-cc-report-name = Response: central objective report
+doc-template-response-heads-presence-name = Response: station heads presence

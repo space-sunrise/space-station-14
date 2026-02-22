@@ -16,7 +16,7 @@ public sealed partial class CopyMachineComponent : Component
     /// Максимальное количество заданий в очереди принтера
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public int MaxQueueSize = 5;
+    public int MaxQueueSize = 8;
 
     [DataField, AutoNetworkedField]
     public CopyMachineJobView? CurrentJobView;
@@ -81,7 +81,7 @@ public sealed partial class CopyMachineComponent : Component
     /// Сколько чернил тратится на печать одного листа
     /// </summary>
     [DataField]
-    public int IncCost = 1;
+    public float IncCost = 0.5f;
 
     /// <summary>
     /// Сколько материала бумаги тратится на один лист (в условных единицах материала)
@@ -94,6 +94,13 @@ public sealed partial class CopyMachineComponent : Component
     /// </summary>
     [DataField]
     public List<ProtoId<DocTemplatePrototype>> Templates = new();
+
+    /// <summary>
+    /// Ограничивает доступные категории шаблонов  <see cref="DocTemplatePrototype.Component"/>
+    /// Если список пустой - доступны все категории
+    /// </summary>
+    [DataField]
+    public List<string> TemplateComponentWhitelist = new();
 
     /// <summary>
     /// Время, когда можно начать следующий принт (серверное время)

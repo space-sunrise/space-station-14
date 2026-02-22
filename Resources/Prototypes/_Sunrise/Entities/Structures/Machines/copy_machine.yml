@@ -6,6 +6,12 @@
   components:
   - type: Appearance
   - type: WiresVisuals
+  - type: GenericVisualizer
+    visuals:
+      enum.CopyMachineVisuals.IsRunning:
+        enum.LatheVisualLayers.IsRunning:
+          True: { state: building }
+          False: { state: icon }
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/copy_machine.rsi
     snapCardinals: true
@@ -26,6 +32,19 @@
     board: CopyMachineMachineCircuitboard
   - type: CopyMachine
     solution: inc
+    templateComponentWhitelist:
+    - CentcomStandard
+    - Command
+    - Engineering
+    - Justice
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+    - Syndicate
+    - General
+    - Prison
     copySlot:
       insertSound: /Audio/Effects/packetrip.ogg
       ejectSound: /Audio/Effects/packetrip.ogg
@@ -42,7 +61,7 @@
   - type: SolutionContainerManager
     solutions:
       inc:
-        maxVol: 250
+        maxVol: 500
   - type: Spillable
     solution: inc
   - type: RefillableSolution
@@ -99,6 +118,34 @@
   id: CopyMachineFilled
   name: copy machine
   suffix: Filled
+  components:
+  - type: MaterialStorage
+    storage:
+      officePaper: 2000
+  - type: SolutionContainerManager
+    solutions:
+      inc:
+        reagents:
+        - ReagentId: Inc
+          Quantity: 15
+
+- type: entity
+  parent: CopyMachine
+  id: CopyMachineCentcom
+  name: centcom copy machine
+  suffix: CentCom
+  description: A secure document printer configured for Central Command.
+  components:
+  - type: CopyMachine
+    templateComponentWhitelist:
+    - CentcomStandard
+    - CentcomStrict
+
+- type: entity
+  parent: CopyMachineCentcom
+  id: CopyMachineCentcomFilled
+  name: centcom copy machine
+  suffix: CentCom, Filled
   components:
   - type: MaterialStorage
     storage:

@@ -1,4 +1,14 @@
 using System.Numerics;
+// Sunrise-start
+using System.Text.RegularExpressions;
+using Content.Client.UserInterface.Controls;
+using Content.Client.Hands.Systems;
+using Content.Shared.Administration;
+using Content.Shared._Sunrise.Paperwork;
+using Content.Shared.Tag;
+using Robust.Client.Player;
+using Robust.Shared.Prototypes;
+// Sunrise-end
 using Content.Client.RichText;
 using Content.Client._Sunrise.UserInterface.RichText;
 using Content.Shared.Paper;
@@ -25,6 +35,28 @@ namespace Content.Client.Paper.UI
         [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
 
         private static Color DefaultTextColor = new(25, 25, 25);
+
+        // Sunrise - Start
+        private static readonly Type[] TemplateAllowedTags =
+        [
+            ..UserFormattableTags.BaseAllowedTags,
+            typeof(PaperFormTagHandler),
+            typeof(PaperJobTagHandler),
+            typeof(PaperSignatureTagHandler),
+        ];
+
+        private static readonly Regex InteractiveInjectedAttrRegex =
+            new(@"\bidx\s*=\s*(?:""[^""]*""|[^\s\]]+)", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
+        private static readonly Regex InteractiveTagEscapeRegex =
+            new(@"(?<!\\)\[(?:signature|form|job)\b", RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
+
+        public bool TemplateFieldsEnabled { get; set; }
+        public event Action<PaperComponent.PaperTemplateRequestType, int>? OnTemplateRequested;
+
+        private string _currentRawText = string.Empty;
+        [Dependency] private readonly IPlayerManager _playerManager = default!;
+        // Sunrise - End
 
         // <summary>
         // Size of resize handles around the paper
@@ -237,6 +269,12 @@ namespace Content.Client.Paper.UI
                     var verticalMargin = fontLineHeight * paddingRequiredInLines * _paperContentLineScale;
                     TextAlignmentPadding.Margin = new Thickness(0.0f, verticalMargin, 0.0f, 0.0f);
                 }
+
+                // Sunrise - Start
+                PaperFormTagHandler.FontLineHeight = fontLineHeight;
+                PaperJobTagHandler.FontLineHeight = fontLineHeight;
+                PaperSignatureTagHandler.FontLineHeight = fontLineHeight;
+                // Sunrise - End
             }
 
             base.Draw(handle);
@@ -254,7 +292,15 @@ namespace Content.Client.Paper.UI
             EditButtons.Visible = isEditing;
 
             var msg = new FormattedMessage();
-            msg.AddMarkupPermissive(state.Text);
+
+            // Sunrise - Start
+            TemplateFieldsEnabled = state.TemplateFieldsEnabled;
+            _currentRawText = state.Text;
+            var displayText = TemplateFieldsEnabled && !isEditing
+                ? PrepareInteractiveTagsForDisplay(state.Text)
+                : EscapeInteractiveTags(state.Text);
+            msg.AddMarkupPermissive(displayText);
+            // Sunrise - End
 
             // For premade documents, we want to be able to edit them rather than
             // replace them.
@@ -274,7 +320,10 @@ namespace Content.Client.Paper.UI
             {
                 msg.AddMarkupPermissive("\r\n");
             }
-            WrittenTextLabel.SetMessage(msg, UserFormattableTags.BaseAllowedTags, state.DefaultColor); // Sunrise-edit, перекрашиваемый текст
+            // Sunrise - Start
+            var allowedTags = TemplateFieldsEnabled ? TemplateAllowedTags : UserFormattableTags.BaseAllowedTags;
+            WrittenTextLabel.SetMessage(msg, allowedTags, state.DefaultColor); // Sunrise-edit
+            // Sunrise - End
 
             WrittenTextLabel.Visible = !isEditing && state.Text.Length > 0;
             BlankPaperIndicator.Visible = !isEditing && state.Text.Length == 0;
@@ -300,6 +349,93 @@ namespace Content.Client.Paper.UI
                 StampDisplay.AddStamp(new StampWidget{ StampInfo = stamper });
             }
         }
+
+        // Sunrise - Start
+        private static string PrepareInteractiveTagsForDisplay(string text)
+        {
+            text = InjectIndexes(text, PaperInteractiveTagParsing.SignatureTagRegex, PaperInteractiveTagParsing.SignatureTagName);
+            text = InjectIndexes(text, PaperInteractiveTagParsing.FormTagRegex, PaperInteractiveTagParsing.FormTagName);
+            text = InjectIndexes(text, PaperInteractiveTagParsing.JobTagRegex, PaperInteractiveTagParsing.JobTagName);
+            return text;
+        }
+
+        private static string InjectIndexes(string text, Regex regex, string tagName)
+        {
+            var idx = 0;
+            return regex.Replace(text, match =>
+            {
+                var attrs = InteractiveInjectedAttrRegex
+                    .Replace(match.Groups["attrs"].Value, string.Empty)
+                    .Trim();
+
+                if (attrs.EndsWith('/'))
+                    attrs = attrs[..^1].TrimEnd();
+
+                if (attrs.Length > 0 && attrs[0] != '=')
+                    attrs = " " + attrs;
+
+                return $"[{tagName}{attrs} idx={idx++} /]";
+            });
+        }
+
+        private static string EscapeInteractiveTags(string text)
+        {
+            return InteractiveTagEscapeRegex.Replace(text, match => "\\" + match.Value);
+        }
+
+        internal void OnSignaturePressed(int index)
+        {
+            if (!TemplateFieldsEnabled)
+                return;
+
+            OnTemplateRequested?.Invoke(PaperComponent.PaperTemplateRequestType.Signature, index);
+        }
+
+        internal void OnJobPressed(int index)
+        {
+            if (!TemplateFieldsEnabled)
+                return;
+
+            OnTemplateRequested?.Invoke(PaperComponent.PaperTemplateRequestType.Job, index);
+        }
+
+        internal void OnFormPressed(int index)
+        {
+            if (!TemplateFieldsEnabled)
+                return;
+
+            OpenFormDialog(index);
+        }
+
+        private void OpenFormDialog(int index)
+        {
+            var dialog = new DialogWindow(
+                title: Loc.GetString("paper-form-dialog-title"),
+                entries: new List<QuickDialogEntry>
+                {
+                    new("text", QuickDialogEntryType.ShortText, Loc.GetString("paper-form-dialog-prompt")),
+                });
+
+            dialog.OnConfirmed += results =>
+            {
+                if (!results.TryGetValue("text", out var value) || string.IsNullOrWhiteSpace(value))
+                    return;
+
+                var text = ReplaceNthInteractiveTag(_currentRawText, PaperInteractiveTagParsing.FormTagRegex, index,
+                    FormattedMessage.EscapeText(value));
+
+                if (text == null)
+                    return;
+
+                OnSaved?.Invoke(text);
+            };
+        }
+
+        private static string? ReplaceNthInteractiveTag(string text, Regex regex, int index, string replacement)
+        {
+            return PaperInteractiveTagParsing.ReplaceNthTag(text, regex, index, replacement);
+        }
+        // Sunrise - End
 
         /// <summary>
         ///     BaseWindow interface. Allow users to drag UI around by grabbing
