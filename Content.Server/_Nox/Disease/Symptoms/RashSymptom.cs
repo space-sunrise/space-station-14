@@ -18,22 +18,22 @@ public sealed class RashSymptom : DiseaseSymptomBase
     public RashSymptom(TimedWindow effectTimedWindow) : base(effectTimedWindow)
     { }
 
-    public override void OnAdded(EntityUid host, DiseaseComponent virus)
+    public override void OnAdded(EntityUid host, DiseaseComponent disease)
     {
-        base.OnAdded(host, virus);
+        base.OnAdded(host, disease);
     }
 
-    public override void OnRemoved(EntityUid host, DiseaseComponent virus)
+    public override void OnRemoved(EntityUid host, DiseaseComponent disease)
     {
-        base.OnRemoved(host, virus);
+        base.OnRemoved(host, disease);
     }
 
-    public override void OnUpdate(EntityUid host, DiseaseComponent virus)
+    public override void OnUpdate(EntityUid host, DiseaseComponent disease)
     {
-        base.OnUpdate(host, virus);
+        base.OnUpdate(host, disease);
     }
 
-    public override void DoEffect(EntityUid host, DiseaseComponent virus)
+    public override void DoEffect(EntityUid host, DiseaseComponent disease)
     {
         var chatSystem = _entityManager.System<ChatSystem>();
 

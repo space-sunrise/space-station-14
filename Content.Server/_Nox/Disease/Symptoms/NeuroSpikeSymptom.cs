@@ -18,24 +18,24 @@ public sealed class NeuroSpikeSymptom : DiseaseSymptomBase
     public NeuroSpikeSymptom(TimedWindow effectTimedWindow) : base(effectTimedWindow)
     { }
 
-    public override void OnAdded(EntityUid host, DiseaseComponent virus)
+    public override void OnAdded(EntityUid host, DiseaseComponent disease)
     {
-        base.OnAdded(host, virus);
+        base.OnAdded(host, disease);
 
         _duration = new TimedWindow(TimeSpan.FromSeconds(5f), TimeSpan.FromSeconds(10f));
     }
 
-    public override void OnRemoved(EntityUid host, DiseaseComponent virus)
+    public override void OnRemoved(EntityUid host, DiseaseComponent disease)
     {
-        base.OnRemoved(host, virus);
+        base.OnRemoved(host, disease);
     }
 
-    public override void OnUpdate(EntityUid host, DiseaseComponent virus)
+    public override void OnUpdate(EntityUid host, DiseaseComponent disease)
     {
-        base.OnUpdate(host, virus);
+        base.OnUpdate(host, disease);
     }
 
-    public override void DoEffect(EntityUid host, DiseaseComponent virus)
+    public override void DoEffect(EntityUid host, DiseaseComponent disease)
     {
         var jitteringSystem = _entityManager.System<SharedJitteringSystem>();
         var stun = _entityManager.System<StunSystem>();

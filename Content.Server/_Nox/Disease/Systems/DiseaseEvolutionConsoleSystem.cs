@@ -53,16 +53,16 @@ public sealed class DiseaseEvolutionConsoleSystem : EntitySystem
             || !TryComp<DiseaseDiagnoserDataServerComponent>(component.DiseaseDiagnoserDataServer, out var server))
             return;
 
-        DiseaseData? virusData = null;
+        DiseaseData? diseaseData = null;
 
         if (_diseaseSolutionAnalyzer.TryGetDiseaseDataFromContainer(
                 component.DiseaseSolutionAnalyzer.Value,
-                out var virusDataList)
-            && virusDataList != null)
+                out var diseaseDataList)
+            && diseaseDataList != null)
         {
-            var source = virusDataList.FirstOrDefault();
+            var source = diseaseDataList.FirstOrDefault();
             // Скорее можно обойтись и без копии, но мне не хочется это проверять, ибо я уже обжигался
-            virusData = source != null
+            diseaseData = source != null
                 ? (DiseaseData)source.Clone()
                 : null;
         }
@@ -73,10 +73,10 @@ public sealed class DiseaseEvolutionConsoleSystem : EntitySystem
                 {
                     if (args.Symptom == null
                         || !_prototypeManager.TryIndex<DiseaseSymptomPrototype>(args.Symptom, out _)
-                        || virusData == null)
+                        || diseaseData == null)
                         return;
 
-                    var price = _diseaseSystem.GetSymptomPrice(virusData, args.Symptom);
+                    var price = _diseaseSystem.GetSymptomPrice(diseaseData, args.Symptom);
                     if (server.Points < price)
                         return;
 
@@ -89,10 +89,10 @@ public sealed class DiseaseEvolutionConsoleSystem : EntitySystem
                 {
                     if (args.Body == null
                         || !_prototypeManager.TryIndex<BodyPrototype>(args.Body, out _)
-                        || virusData == null)
+                        || diseaseData == null)
                         return;
 
-                    var price = _diseaseSystem.GetBodyPrice(virusData);
+                    var price = _diseaseSystem.GetBodyPrice(diseaseData);
                     if (server.Points < price)
                         return;
 
@@ -105,10 +105,10 @@ public sealed class DiseaseEvolutionConsoleSystem : EntitySystem
                 {
                     if (args.Symptom == null
                         || !_prototypeManager.TryIndex<DiseaseSymptomPrototype>(args.Symptom, out _)
-                        || virusData == null)
+                        || diseaseData == null)
                         return;
 
-                    var price = _diseaseSystem.GetSymptomDeletePrice(virusData.MultiPriceDeleteSymptom);
+                    var price = _diseaseSystem.GetSymptomDeletePrice(diseaseData.MultiPriceDeleteSymptom);
                     if (server.Points < price)
                         return;
 
@@ -121,7 +121,7 @@ public sealed class DiseaseEvolutionConsoleSystem : EntitySystem
                 {
                     if (args.Body == null
                         || !_prototypeManager.TryIndex<BodyPrototype>(args.Body, out _)
-                        || virusData == null)
+                        || diseaseData == null)
                         return;
 
                     var price = _diseaseSystem.GetBodyDeletePrice();
@@ -256,7 +256,7 @@ public sealed class DiseaseEvolutionConsoleSystem : EntitySystem
         if (!Resolve(console, ref console.Comp, false))
             return default!;
 
-        DiseaseData? virusData = null;
+        DiseaseData? diseaseData = null;
 
         int points = 0;
 
@@ -264,11 +264,11 @@ public sealed class DiseaseEvolutionConsoleSystem : EntitySystem
         var solutionAnalyzerConnected = console.Comp.DiseaseSolutionAnalyzer != null;
 
         if (console.Comp.DiseaseSolutionAnalyzer != null &&
-            _diseaseSolutionAnalyzer.TryGetDiseaseDataFromContainer(console.Comp.DiseaseSolutionAnalyzer.Value, out var virusDataList))
+            _diseaseSolutionAnalyzer.TryGetDiseaseDataFromContainer(console.Comp.DiseaseSolutionAnalyzer.Value, out var diseaseDataList))
         {
-            var source = virusDataList.FirstOrDefault();
+            var source = diseaseDataList.FirstOrDefault();
             // Скорее можно обойтись и без копии, но мне не хочется это проверять, ибо я уже обжигался
-            virusData = source != null
+            diseaseData = source != null
                 ? (DiseaseData)source.Clone()
                 : null;
         }
@@ -281,14 +281,14 @@ public sealed class DiseaseEvolutionConsoleSystem : EntitySystem
 
         return new DiseaseEvolutionConsoleBoundUserInterfaceState(
             points,
-            virusData?.MultiPriceDeleteSymptom ?? 0,
+            diseaseData?.MultiPriceDeleteSymptom ?? 0,
             dataServerConnected,
             solutionAnalyzerConnected,
             console.Comp.DataServerInRange,
             console.Comp.SolutionAnalyzerInRange,
-            virusData != null,
-            virusData?.ActiveSymptom,
-            virusData?.BodyWhitelist,
+            diseaseData != null,
+            diseaseData?.ActiveSymptom,
+            diseaseData?.BodyWhitelist,
             isSentientDisease: false
         );
     }

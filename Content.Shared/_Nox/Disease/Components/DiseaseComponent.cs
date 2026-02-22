@@ -99,6 +99,13 @@ public sealed partial class DiseaseData : ReagentData
     public float DamageWhenDead = 5;
 
     /// <summary>
+    ///     Модификатор скорости вируса.
+    /// </summary>
+    [DataField]
+    [ViewVariables(VVAccess.ReadOnly)]
+    public float SpeedModifier = 1f;
+
+    /// <summary>
     ///     Регенерация вируса.
     /// </summary>
     [DataField]
@@ -284,6 +291,7 @@ public sealed partial class DiseaseData : ReagentData
             Threshold = Threshold,
             DefaultMedicineResistance = DefaultMedicineResistance,
             Infectivity = Infectivity,
+            SpeedModifier = SpeedModifier,
 
             ActiveSymptom = ActiveSymptom.ToList(),
             BodyWhitelist = BodyWhitelist.ToList(),

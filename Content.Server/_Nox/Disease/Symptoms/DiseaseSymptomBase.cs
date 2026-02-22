@@ -29,25 +29,25 @@ public abstract class DiseaseSymptomBase : IDiseaseSymptom
         PrototypeId = attr.Id;
     }
 
-    public virtual void OnAdded(EntityUid host, DiseaseComponent virus)
+    public virtual void OnAdded(EntityUid host, DiseaseComponent disease)
     {
-        ApplyDataEffect(virus.Data, true);
+        ApplyDataEffect(disease.Data, true);
     }
 
-    public virtual void OnRemoved(EntityUid host, DiseaseComponent virus)
+    public virtual void OnRemoved(EntityUid host, DiseaseComponent disease)
     {
-        ApplyDataEffect(virus.Data, false);
+        ApplyDataEffect(disease.Data, false);
     }
 
-    public virtual void OnUpdate(EntityUid host, DiseaseComponent virus)
+    public virtual void OnUpdate(EntityUid host, DiseaseComponent disease)
     {
         var timedWindowSystem = _entityManager.System<TimedWindowSystem>();
 
         if (timedWindowSystem.IsExpired(EffectTimedWindow))
         {
-            DoEffect(host, virus);
+            DoEffect(host, disease);
 
-            if (!BaseDiseaseSettings.DebuffDiseaseMultipliers.TryGetValue(virus.RegenerationType, out var timeMultiplier) || timeMultiplier <= 0f)
+            if (!BaseDiseaseSettings.DebuffDiseaseMultipliers.TryGetValue(disease.RegenerationType, out var timeMultiplier) || timeMultiplier <= 0f)
                 timeMultiplier = 1.0f;
 
             timedWindowSystem.Reset(
@@ -58,7 +58,7 @@ public abstract class DiseaseSymptomBase : IDiseaseSymptom
         }
     }
 
-    public abstract void DoEffect(EntityUid host, DiseaseComponent virus);
+    public abstract void DoEffect(EntityUid host, DiseaseComponent disease);
     public abstract IDiseaseSymptom Clone();
     public virtual void ApplyDataEffect(DiseaseData data, bool add)
     {

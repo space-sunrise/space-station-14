@@ -47,10 +47,10 @@ public sealed class DiseaseDiagnoserConsoleSystem : EntitySystem
         {
             case UiButton.StartAnalys:
                 {
-                    if (component.DiseaseSolutionAnalyzer == null || !TryComp<DiseaseSolutionAnalyzerComponent>(component.DiseaseSolutionAnalyzer, out var virusSolutionAnalyzer))
+                    if (component.DiseaseSolutionAnalyzer == null || !TryComp<DiseaseSolutionAnalyzerComponent>(component.DiseaseSolutionAnalyzer, out var diseaseSolutionAnalyzer))
                         return;
 
-                    _diseaseSolutionAnalyzer.StartScanDisease((component.DiseaseSolutionAnalyzer.Value, virusSolutionAnalyzer));
+                    _diseaseSolutionAnalyzer.StartScanDisease((component.DiseaseSolutionAnalyzer.Value, diseaseSolutionAnalyzer));
                     break;
                 }
             case UiButton.DeleteData:

@@ -143,7 +143,7 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
             if (container is ContainerSlot slot)
             {
                 if (slot.ContainedEntity != null)
-                    args.PushMarkup(Loc.GetString("virus-diagnoser-dna-material-attached"));
+                    args.PushMarkup(Loc.GetString("disease-diagnoser-dna-material-attached"));
             }
         }
 
@@ -152,7 +152,7 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
             if (container is ContainerSlot slot)
             {
                 if (slot.ContainedEntity != null)
-                    args.PushMarkup(Loc.GetString("virus-diagnoser-flask-attached"));
+                    args.PushMarkup(Loc.GetString("disease-diagnoser-flask-attached"));
             }
         }
     }
@@ -196,7 +196,7 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
 
         if (data == null)
         {
-            var noDiseaseText = Loc.GetString("virus-report-no-virus");
+            var noDiseaseText = Loc.GetString("disease-report-no-disease");
 
             _paperSystem.SetContent((paper, paperComp), noDiseaseText);
             return;
@@ -207,7 +207,7 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
         // 1) симптомы
         var symptomsText =
             data.ActiveSymptom.Count == 0
-                ? Loc.GetString("virus-report-symptoms-none")
+                ? Loc.GetString("disease-report-symptoms-none")
                 : string.Join(", ", data.ActiveSymptom.Select(symptom =>
                 {
                     // Получаем строковый ID,
@@ -225,7 +225,7 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
         string bodyText;
         if (data.BodyWhitelist == null || data.BodyWhitelist.Count == 0)
         {
-            bodyText = Loc.GetString("virus-report-body-any");
+            bodyText = Loc.GetString("disease-report-body-any");
         }
         else
         {
@@ -251,7 +251,7 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
         string medicineText;
         if (data.MedicineResistance == null || data.MedicineResistance.Count == 0)
         {
-            medicineText = Loc.GetString("virus-report-medicine-none");
+            medicineText = Loc.GetString("disease-report-medicine-none");
         }
         else
         {
@@ -264,11 +264,11 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
                 if (_prototypeManager.TryIndex<ReagentPrototype>(reagentId, out var rp))
                 {
                     var reagentName = rp.LocalizedName;
-                    lines.Add(Loc.GetString("virus-report-medicine-entry", ("name", reagentName), ("value", value.ToString("0.00"))));
+                    lines.Add(Loc.GetString("disease-report-medicine-entry", ("name", reagentName), ("value", value.ToString("0.00"))));
                 }
                 else
                 {
-                    lines.Add(Loc.GetString("virus-report-medicine-entry", ("name", reagentId.ToString()), ("value", value.ToString("0.00"))));
+                    lines.Add(Loc.GetString("disease-report-medicine-entry", ("name", reagentId.ToString()), ("value", value.ToString("0.00"))));
                 }
             }
 
@@ -276,31 +276,31 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
         }
 
         var content = $@"
-        [center][b]{Loc.GetString("virus-report-title")}[/b][/center]
+        [center][b]{Loc.GetString("disease-report-title")}[/b][/center]
 
-        {Loc.GetString("virus-report-strain", ("id", data.StrainId))}
+        {Loc.GetString("disease-report-strain", ("id", data.StrainId))}
 
-        {Loc.GetString("virus-report-threshold", ("value", data.MaxThreshold.ToString("0.0")))}
-        {Loc.GetString("virus-report-infectivity", ("value", (data.Infectivity * 100).ToString("0")))}
+        {Loc.GetString("disease-report-threshold", ("value", data.MaxThreshold.ToString("0.0")))}
+        {Loc.GetString("disease-report-infectivity", ("value", (data.Infectivity * 100).ToString("0")))}
 
-        {Loc.GetString("virus-report-damage-when-dead", ("value", data.DamageWhenDead.ToString("0.0")))}
-        {Loc.GetString("virus-report-mutation-points", ("value", data.MutationPoints.ToString("0")))}
-        {Loc.GetString("virus-report-regen-threshold", ("value", data.RegenThreshold.ToString("0.0")))}
-        {Loc.GetString("virus-report-regen-mutation", ("value", data.RegenMutationPoints.ToString("0.0")))}
-        {Loc.GetString("virus-report-milty-price-delete-symptom", ("value", data.MultiPriceDeleteSymptom.ToString("0.0")))}
+        {Loc.GetString("disease-report-damage-when-dead", ("value", data.DamageWhenDead.ToString("0.0")))}
+        {Loc.GetString("disease-report-mutation-points", ("value", data.MutationPoints.ToString("0")))}
+        {Loc.GetString("disease-report-regen-threshold", ("value", data.RegenThreshold.ToString("0.0")))}
+        {Loc.GetString("disease-report-regen-mutation", ("value", data.RegenMutationPoints.ToString("0.0")))}
+        {Loc.GetString("disease-report-milty-price-delete-symptom", ("value", data.MultiPriceDeleteSymptom.ToString("0.0")))}
 
-        {Loc.GetString("virus-report-default-medicine-resistance", ("value", data.DefaultMedicineResistance.ToString("0.00")))}
+        {Loc.GetString("disease-report-default-medicine-resistance", ("value", data.DefaultMedicineResistance.ToString("0.00")))}
 
-        {Loc.GetString("virus-report-medicine-header")}
+        {Loc.GetString("disease-report-medicine-header")}
         {medicineText}
 
-        {Loc.GetString("virus-report-symptoms-header")}
-        {(string.IsNullOrWhiteSpace(symptomsText) ? Loc.GetString("virus-report-symptoms-none") : symptomsText)}
+        {Loc.GetString("disease-report-symptoms-header")}
+        {(string.IsNullOrWhiteSpace(symptomsText) ? Loc.GetString("disease-report-symptoms-none") : symptomsText)}
 
-        {Loc.GetString("virus-report-bodyes-header")}
+        {Loc.GetString("disease-report-bodyes-header")}
         {bodyText}
 
-        [small]{Loc.GetString("virus-report-footer")}[/small]
+        [small]{Loc.GetString("disease-report-footer")}[/small]
         ";
 
         _paperSystem.SetContent((paper, paperComp), content);

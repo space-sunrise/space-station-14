@@ -4,25 +4,34 @@
 using Content.Shared._Nox.Disease.Components;
 using Content.Shared._Nox.TimeWindow;
 using Content.Shared._Nox.Disease.Symptoms;
+using Content.Shared.Movement.Systems;
 
 namespace Content.Server._Nox.Disease.Symptoms;
 
-[DiseaseSymptom("ViralRegenerationSymptom")]
-public sealed class MedViralRegenerationSymptom : DiseaseSymptomBase
+[DiseaseSymptom("AddSpeedSymptom")]
+public sealed class AddSpeedSymptom : DiseaseSymptomBase
 {
-    private float _addRegenThreshold = 0.5f;
-
-    public MedViralRegenerationSymptom(TimedWindow effectTimedWindow) : base(effectTimedWindow)
+    [Dependency] private readonly EntityManager _entityManager = default!;
+    private float _addSpeedModifier = 0.2f;
+    public AddSpeedSymptom(TimedWindow effectTimedWindow) : base(effectTimedWindow)
     { }
 
     public override void OnAdded(EntityUid host, DiseaseComponent disease)
     {
         base.OnAdded(host, disease);
+
+        var movement = _entityManager.System<MovementSpeedModifierSystem>();
+
+        movement.RefreshMovementSpeedModifiers(host);
     }
 
     public override void OnRemoved(EntityUid host, DiseaseComponent disease)
     {
         base.OnRemoved(host, disease);
+
+        var movement = _entityManager.System<MovementSpeedModifierSystem>();
+
+        movement.RefreshMovementSpeedModifiers(host);
     }
 
     public override void OnUpdate(EntityUid host, DiseaseComponent disease)
@@ -37,15 +46,15 @@ public sealed class MedViralRegenerationSymptom : DiseaseSymptomBase
 
     public override IDiseaseSymptom Clone()
     {
-        return new MedViralRegenerationSymptom(EffectTimedWindow.Clone());
+        return new AddSpeedSymptom(EffectTimedWindow.Clone());
     }
 
     public override void ApplyDataEffect(DiseaseData data, bool add)
     {
         base.ApplyDataEffect(data, add);
         if (add)
-            data.RegenThreshold += _addRegenThreshold;
+            data.SpeedModifier += _addSpeedModifier;
         else
-            data.RegenThreshold -= _addRegenThreshold;
+            data.SpeedModifier -= _addSpeedModifier;
     }
 }

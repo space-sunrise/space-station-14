@@ -83,6 +83,7 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         SubscribeLocalEvent<DiseaseComponent, EntityZombifiedEvent>(OnEntityZombified);
 
         RashInitialize();
+        AddSpeedInitialize();
     }
 
     public override void Update(float frameTime)

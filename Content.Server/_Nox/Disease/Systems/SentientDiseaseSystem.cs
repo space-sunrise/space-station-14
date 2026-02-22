@@ -64,7 +64,7 @@ public sealed class SentientDiseaseSystem : EntitySystem
         if (list.Count <= 0)
         {
             _popupSystem.PopupEntity(
-                Loc.GetString("sentient-virus-teleport-no-primary-infected"),
+                Loc.GetString("sentient-disease-teleport-no-primary-infected"),
                 uid,
                 uid,
                 PopupType.Medium
@@ -94,15 +94,15 @@ public sealed class SentientDiseaseSystem : EntitySystem
 
         args.Handled = true;
 
-        if (TryComp<DiseaseComponent>(args.Target, out var virus)
-            && virus.Data.StrainId == component.Data.StrainId)
+        if (TryComp<DiseaseComponent>(args.Target, out var disease)
+            && disease.Data.StrainId == component.Data.StrainId)
         {
             AddPrimaryPatient(uid, args.Target, component);
         }
         else if (!_diseaseSystem.CanInfect(args.Target, component.Data))
         {
             _popupSystem.PopupEntity(
-                    Loc.GetString("sentient-virus-infect-impossible-target"),
+                    Loc.GetString("sentient-disease-infect-impossible-target"),
                     uid,
                     uid,
                     PopupType.Medium);
@@ -127,7 +127,7 @@ public sealed class SentientDiseaseSystem : EntitySystem
         if (component.Data.MutationPoints < totalPrice)
         {
             _popupSystem.PopupEntity(
-                Loc.GetString("sentient-virus-infect-no-points", ("price", missingPoints2)),
+                Loc.GetString("sentient-disease-infect-no-points", ("price", missingPoints2)),
                 uid,
                 uid,
                 PopupType.Medium
@@ -138,7 +138,7 @@ public sealed class SentientDiseaseSystem : EntitySystem
         if (TryAddPrimaryInfected(uid, target, component))
             component.Data.MutationPoints -= totalPrice;
         else
-            _popupSystem.PopupEntity(Loc.GetString("sentient-virus-infect-failed-source"), uid, uid, PopupType.Medium);
+            _popupSystem.PopupEntity(Loc.GetString("sentient-disease-infect-failed-source"), uid, uid, PopupType.Medium);
     }
 
     private void UpdateSentientDisease(EntityUid uid, SentientDiseaseComponent? component = null)
@@ -252,12 +252,12 @@ public sealed class SentientDiseaseSystem : EntitySystem
             return;
 
         var query = EntityQueryEnumerator<DiseaseComponent>();
-        while (query.MoveNext(out var virusUid, out var virusComponent))
+        while (query.MoveNext(out var diseaseUid, out var diseaseComponent))
         {
-            if (virusComponent.Data != null && virusComponent.Data.StrainId == source.Data.StrainId)
+            if (diseaseComponent.Data != null && diseaseComponent.Data.StrainId == source.Data.StrainId)
             {
-                virusComponent.Data.ApplyInfectionData(source.Data);
-                _diseaseSystem.RefreshSymptoms((virusUid, virusComponent));
+                diseaseComponent.Data.ApplyInfectionData(source.Data);
+                _diseaseSystem.RefreshSymptoms((diseaseUid, diseaseComponent));
             }
         }
     }

@@ -142,7 +142,7 @@ public sealed class DiseaseSolutionAnalyzerSystem : EntitySystem
             if (container is ContainerSlot slot)
             {
                 if (slot.ContainedEntity != null)
-                    args.PushMarkup(Loc.GetString("virus-diagnoser-flask-attached"));
+                    args.PushMarkup(Loc.GetString("disease-diagnoser-flask-attached"));
             }
         }
     }
@@ -174,7 +174,7 @@ public sealed class DiseaseSolutionAnalyzerSystem : EntitySystem
                 out var console))
             return;
 
-        if (!TryGetDiseaseDataFromContainer(ent, out var virusData))
+        if (!TryGetDiseaseDataFromContainer(ent, out var diseaseData))
             return;
 
         if (!TryComp<DiseaseDiagnoserDataServerComponent>(
@@ -182,7 +182,7 @@ public sealed class DiseaseSolutionAnalyzerSystem : EntitySystem
                 out var server))
             return;
 
-        foreach (var data in virusData)
+        foreach (var data in diseaseData)
         {
             _dataServer.SaveData(
                 (console.DiseaseDiagnoserDataServer.Value, server),
@@ -196,9 +196,9 @@ public sealed class DiseaseSolutionAnalyzerSystem : EntitySystem
 
     public bool TryGetDiseaseDataFromContainer(
     EntityUid owner,
-    out List<DiseaseData> virusData)
+    out List<DiseaseData> diseaseData)
     {
-        virusData = new();
+        diseaseData = new();
 
         if (!_container.TryGetContainer(owner, FlaskContainerKey, out var container))
             return false;
@@ -237,11 +237,11 @@ public sealed class DiseaseSolutionAnalyzerSystem : EntitySystem
 
             foreach (var data in dataList.OfType<DiseaseData>())
             {
-                virusData.Add(data);
+                diseaseData.Add(data);
             }
         }
 
-        return virusData.Count > 0;
+        return diseaseData.Count > 0;
     }
 
     public void AddSymptom(Entity<DiseaseSolutionAnalyzerComponent?> console, string symptom)
@@ -257,15 +257,15 @@ public sealed class DiseaseSolutionAnalyzerSystem : EntitySystem
         if (_prototypeManager.Index<DiseaseSymptomPrototype>(symptom) == null)
             return;
 
-        if (!TryGetDiseaseDataFromContainer(console, out var virusDataList))
+        if (!TryGetDiseaseDataFromContainer(console, out var diseaseDataList))
             return;
 
-        var virusData = virusDataList.FirstOrDefault();
+        var diseaseData = diseaseDataList.FirstOrDefault();
 
-        if (virusData == null)
+        if (diseaseData == null)
             return;
 
-        virusData.ActiveSymptom.Add(symptom);
+        diseaseData.ActiveSymptom.Add(symptom);
     }
 
     public void AddBody(Entity<DiseaseSolutionAnalyzerComponent?> console, string body)
@@ -281,15 +281,15 @@ public sealed class DiseaseSolutionAnalyzerSystem : EntitySystem
         if (_prototypeManager.Index<BodyPrototype>(body) == null)
             return;
 
-        if (!TryGetDiseaseDataFromContainer(console, out var virusDataList))
+        if (!TryGetDiseaseDataFromContainer(console, out var diseaseDataList))
             return;
 
-        var virusData = virusDataList.FirstOrDefault();
+        var diseaseData = diseaseDataList.FirstOrDefault();
 
-        if (virusData == null)
+        if (diseaseData == null)
             return;
 
-        virusData.BodyWhitelist.Add(body);
+        diseaseData.BodyWhitelist.Add(body);
     }
 
     public void RemSymptom(Entity<DiseaseSolutionAnalyzerComponent?> console, string symptom)
@@ -305,15 +305,15 @@ public sealed class DiseaseSolutionAnalyzerSystem : EntitySystem
         if (_prototypeManager.Index<DiseaseSymptomPrototype>(symptom) == null)
             return;
 
-        if (!TryGetDiseaseDataFromContainer(console, out var virusDataList))
+        if (!TryGetDiseaseDataFromContainer(console, out var diseaseDataList))
             return;
 
-        var virusData = virusDataList.FirstOrDefault();
+        var diseaseData = diseaseDataList.FirstOrDefault();
 
-        if (virusData == null)
+        if (diseaseData == null)
             return;
 
-        virusData.ActiveSymptom.Remove(symptom);
+        diseaseData.ActiveSymptom.Remove(symptom);
     }
 
     public void RemBody(Entity<DiseaseSolutionAnalyzerComponent?> console, string body)
@@ -329,15 +329,15 @@ public sealed class DiseaseSolutionAnalyzerSystem : EntitySystem
         if (_prototypeManager.Index<BodyPrototype>(body) == null)
             return;
 
-        if (!TryGetDiseaseDataFromContainer(console, out var virusDataList))
+        if (!TryGetDiseaseDataFromContainer(console, out var diseaseDataList))
             return;
 
-        var virusData = virusDataList.FirstOrDefault();
+        var diseaseData = diseaseDataList.FirstOrDefault();
 
-        if (virusData == null)
+        if (diseaseData == null)
             return;
 
-        virusData.BodyWhitelist.Remove(body);
+        diseaseData.BodyWhitelist.Remove(body);
     }
 
     private void UpdateAppearance(Entity<DiseaseSolutionAnalyzerComponent> ent)

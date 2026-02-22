@@ -26,22 +26,22 @@ public sealed class NecrosisSymptom : DiseaseSymptomBase
     public NecrosisSymptom(TimedWindow effectTimedWindow) : base(effectTimedWindow)
     { }
 
-    public override void OnAdded(EntityUid host, DiseaseComponent virus)
+    public override void OnAdded(EntityUid host, DiseaseComponent disease)
     {
-        base.OnAdded(host, virus);
+        base.OnAdded(host, disease);
     }
 
-    public override void OnRemoved(EntityUid host, DiseaseComponent virus)
+    public override void OnRemoved(EntityUid host, DiseaseComponent disease)
     {
-        base.OnRemoved(host, virus);
+        base.OnRemoved(host, disease);
     }
 
-    public override void OnUpdate(EntityUid host, DiseaseComponent virus)
+    public override void OnUpdate(EntityUid host, DiseaseComponent disease)
     {
-        base.OnUpdate(host, virus);
+        base.OnUpdate(host, disease);
     }
 
-    public override void DoEffect(EntityUid host, DiseaseComponent virus)
+    public override void DoEffect(EntityUid host, DiseaseComponent disease)
     {
         var damageableSystem = _entityManager.System<DamageableSystem>();
         var popupSystem = _entityManager.System<PopupSystem>();
@@ -54,11 +54,11 @@ public sealed class NecrosisSymptom : DiseaseSymptomBase
 
         var messageKey = _random.Pick(new[]
         {
-            "virus-necrosis-popup-1",
-            "virus-necrosis-popup-2",
-            "virus-necrosis-popup-3",
-            "virus-necrosis-popup-4",
-            "virus-necrosis-popup-5"
+            "disease-necrosis-popup-1",
+            "disease-necrosis-popup-2",
+            "disease-necrosis-popup-3",
+            "disease-necrosis-popup-4",
+            "disease-necrosis-popup-5"
         });
 
         popupSystem.PopupEntity(Loc.GetString(messageKey), host, host, PopupType.Medium);

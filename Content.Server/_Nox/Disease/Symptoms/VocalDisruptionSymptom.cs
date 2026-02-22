@@ -14,15 +14,15 @@ namespace Content.Server._Nox.Disease.Symptoms;
 public sealed class VocalDisruptionSymptom : DiseaseSymptomBase
 {
     [Dependency] private readonly EntityManager _entityManager = default!;
-    private static readonly ProtoId<ReplacementAccentPrototype> Accent = "virus";
+    private static readonly ProtoId<ReplacementAccentPrototype> Accent = "disease";
     private ProtoId<ReplacementAccentPrototype>? _oldAccent = null;
 
     public VocalDisruptionSymptom(TimedWindow effectTimedWindow) : base(effectTimedWindow)
     { }
 
-    public override void OnAdded(EntityUid host, DiseaseComponent virus)
+    public override void OnAdded(EntityUid host, DiseaseComponent disease)
     {
-        base.OnAdded(host, virus);
+        base.OnAdded(host, disease);
 
         if (_entityManager.TryGetComponent<ReplacementAccentComponent>(host, out var component))
             _oldAccent = component.Accent;
@@ -33,9 +33,9 @@ public sealed class VocalDisruptionSymptom : DiseaseSymptomBase
         }
     }
 
-    public override void OnRemoved(EntityUid host, DiseaseComponent virus)
+    public override void OnRemoved(EntityUid host, DiseaseComponent disease)
     {
-        base.OnRemoved(host, virus);
+        base.OnRemoved(host, disease);
 
         if (_entityManager.TryGetComponent<ReplacementAccentComponent>(host, out var component)
             && _oldAccent is { } accent)
@@ -44,12 +44,12 @@ public sealed class VocalDisruptionSymptom : DiseaseSymptomBase
             _entityManager.RemoveComponent<ReplacementAccentComponent>(host);
     }
 
-    public override void OnUpdate(EntityUid host, DiseaseComponent virus)
+    public override void OnUpdate(EntityUid host, DiseaseComponent disease)
     {
-        base.OnUpdate(host, virus);
+        base.OnUpdate(host, disease);
     }
 
-    public override void DoEffect(EntityUid host, DiseaseComponent virus)
+    public override void DoEffect(EntityUid host, DiseaseComponent disease)
     {
 
     }

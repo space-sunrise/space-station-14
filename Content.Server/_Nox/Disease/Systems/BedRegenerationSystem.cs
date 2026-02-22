@@ -21,13 +21,13 @@ public sealed class BedRegenerationSystem : EntitySystem
 
     private void OnStrapped(Entity<BedRegenerationComponent> bed, ref StrappedEvent args)
     {
-        if (TryComp<DiseaseComponent>(args.Buckle, out var virusComponent))
-            virusComponent.RegenerationType = bed.Comp.RegenerationType;
+        if (TryComp<DiseaseComponent>(args.Buckle, out var diseaseComponent))
+            diseaseComponent.RegenerationType = bed.Comp.RegenerationType;
     }
 
     private void OnUnstrapped(Entity<BedRegenerationComponent> bed, ref UnstrappedEvent args)
     {
-        if (TryComp<DiseaseComponent>(args.Buckle, out var virusComponent))
-            virusComponent.RegenerationType = BedRegenerationType.None;
+        if (TryComp<DiseaseComponent>(args.Buckle, out var diseaseComponent))
+            diseaseComponent.RegenerationType = BedRegenerationType.None;
     }
 }

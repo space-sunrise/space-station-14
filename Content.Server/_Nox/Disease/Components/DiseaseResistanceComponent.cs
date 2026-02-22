@@ -15,5 +15,5 @@ public sealed partial class DiseaseResistanceComponent : Component
 
     [DataField]
     [ViewVariables(VVAccess.ReadOnly)]
-    public LocId Examine = "virus-resistance-coefficient-value";
+    public LocId Examine = "disease-resistance-coefficient-value";
 }
