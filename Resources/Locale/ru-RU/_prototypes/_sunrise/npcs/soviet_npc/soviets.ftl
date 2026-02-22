@@ -61,3 +61,15 @@ ent-MobSovietBearTimed = { ent-MobSovietBear }
 ent-MobSovietSpaceBearTimed = { ent-MobSovietSpaceBear }
     .desc = { ent-MobSovietSpaceBear.desc }
     .suffix = Деспавн
+
+ent-GunSideArmFan = Счастливый 45-й
+    .desc = Капитанский револьвер с быстрым зажигательным огнем.
+ent-ActionSideArmFan = Счастливый 45-й
+    .desc = Выстрел из капитанского «Счастливого 45-го».
+
+ent-MobSovietTimedDespawn = база таймед-деспавна
+    .desc = Базовый прототип для советских вариантов с деспавном по времени.
+    .suffix = Деспавн
+ent-MobSovietTimedSpawner = советский таймед-спавнер
+    .desc = Случайно спавнит советских экспедиционных бойцов с деспавном по времени.
+    .suffix = Деспавн

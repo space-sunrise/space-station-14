@@ -50,3 +50,15 @@ ent-MobSovietBearTimed = { ent-MobSovietBear }
     .desc = { ent-MobSovietBear.desc }
 ent-MobSovietSpaceBearTimed = { ent-MobSovietSpaceBear }
     .desc = { ent-MobSovietSpaceBear.desc }
+
+ent-GunSideArmFan = Lucky 45
+    .desc = A captain's sidearm with rapid incendiary fire.
+ent-ActionSideArmFan = Lucky 45
+    .desc = Fires the captain's Lucky 45.
+
+ent-MobSovietTimedDespawn = timed despawn base
+    .desc = Base prototype for timed Soviet despawn variants.
+    .suffix = Despawn
+ent-MobSovietTimedSpawner = soviet timed spawner
+    .desc = Randomly spawns timed Soviet expedition enemies.
+    .suffix = Despawn
