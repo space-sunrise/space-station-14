@@ -43,8 +43,6 @@ public sealed class ZombificationSymptom : DiseaseSymptomBase
         if (_entityManager.HasComponent<ZombieComponent>(target) || _entityManager.HasComponent<ZombieImmuneComponent>(target))
             return;
 
-        // DS14-start
-
         _entityManager.EnsureComponent<PendingZombieComponent>(target);
         _entityManager.EnsureComponent<ZombifyOnDeathComponent>(target);
     }

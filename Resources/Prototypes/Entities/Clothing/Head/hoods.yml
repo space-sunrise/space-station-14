@@ -28,6 +28,10 @@
       Snout: HEAD
       HeadTop: HEAD
       HeadSide: HEAD
+  # Nox-start
+  - type: DiseaseResistance
+    diseaseResistanceCoefficient: 0.25
+  # Nox-end
 
 - type: entity
   parent: ClothingHeadHatHoodBioGeneral

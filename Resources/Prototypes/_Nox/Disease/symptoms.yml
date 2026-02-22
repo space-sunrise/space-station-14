@@ -126,3 +126,24 @@
   danger: High
   price: 1400
 
+- type: diseaseSymptom
+  id: AddSpeedSymptom
+  name: гиперактивность
+  description: заражённый становится быстрее.
+  danger: Medium
+  price: 900
+
+- type: diseaseSymptom
+  id: AddStaminaSymptom
+  name: повышенная выносливость
+  description: увеличивает запас стамины заражённого.
+  danger: Medium
+  price: 900
+
+- type: diseaseSymptom
+  id: ModTresholdSymptom
+  name: повышенная живучесть
+  description: повышает пороги критического состояния и смерти заражённого.
+  danger: High
+  price: 1600
+

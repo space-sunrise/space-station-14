@@ -51,7 +51,23 @@ public sealed class BlindableSymptom : DiseaseSymptomBase
 
     public override void DoEffect(EntityUid host, DiseaseComponent disease)
     {
+        // На случай если слепота/урон глаз был снят чем-то внешним.
+        // Важно: доводим EyeDamage до целевого минимума.
+        var system = _entityManager.System<BlindableSystem>();
 
+        if (!_entityManager.TryGetComponent<BlindableComponent>(host, out var component))
+            return;
+
+        if (_eyeTotalDamage <= 0)
+            return;
+
+        var targetDamage = component.MinDamage + _eyeTotalDamage;
+        var delta = targetDamage - component.EyeDamage;
+
+        if (delta <= 0)
+            return;
+
+        system.AdjustEyeDamage((host, component), delta);
     }
 
     public override void ApplyDataEffect(DiseaseData data, bool add)

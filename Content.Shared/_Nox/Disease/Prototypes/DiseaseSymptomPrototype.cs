@@ -31,10 +31,16 @@ public sealed partial class DiseaseSymptomPrototype : IPrototype
     public int Price = 100;
 
     /// <summary>
-    ///     Индикатор, требуется для управления сиптомами в случайных вирусах событий игры.
+    ///     Индикатор, требуется для управления симптомами в случайных вирусах событий игры.
     /// </summary>
     [DataField("danger", required: true)]
     public DangerIndicatorSymptom DangerIndicator;
+
+    /// <summary>
+    ///     Разрешает использовать симптом в случайной генерации вирусов (DiseaseSystem.GenerateDiseaseData).
+    /// </summary>
+    [DataField]
+    public bool CanGenerateRandomly { get; private set; } = true;
 
     /// <summary>
     ///     Интервал срабатывания симптома.

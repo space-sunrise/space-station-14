@@ -495,6 +495,7 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
                 .EnumeratePrototypes<DiseaseSymptomPrototype>()
                 .Where(p =>
                     p.DangerIndicator == danger &&
+                    p.CanGenerateRandomly &&
                     !data.ActiveSymptom.Contains(p.ID))
                 .ToList();
 

@@ -32,6 +32,10 @@
     - FullBodyOuter
     - WhitelistChameleon
   # Sunrise-End
+  # Nox-start
+  - type: DiseaseResistance
+    diseaseResistanceCoefficient: 0.7
+  # Nox-end
 
 - type: entity
   parent: ClothingOuterBioGeneral
