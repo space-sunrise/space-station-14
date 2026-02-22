@@ -10,7 +10,7 @@
   indestructible: true
 
 - type: tile
-  id: FloorAbductorshield
+  id: FloorAbductorShield
   name: tiles-abductor-floor-shield
   sprite: /Textures/_Sunrise/Abductor/Tiles/abductor_tile2.png
   isSubfloor: false
