@@ -5,6 +5,7 @@ using Content.Server.Medical.Components;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
+using Content.Shared._Nox.Disease.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -47,6 +48,15 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
             healthAnalyzer.ScannedEntity = entity.Comp.BodyContainer.ContainedEntity;
         }
 
+        // Nox-disease-start
+        float curProg = 0f;
+
+        if (TryComp<DiseaseComponent>(entity.Comp.BodyContainer.ContainedEntity, out var virus))
+            curProg = virus.Data.Threshold / virus.Data.MaxThreshold;
+
+        float infectionLevel = 1f - curProg;
+        // Nox-disease-end
+
         // TODO: This should be a state my dude
         _uiSystem.ServerSendUiMessage(
             entity.Owner,
@@ -59,7 +69,9 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
                 : 0,
             null,
             null,
-            null
+            null,
+            null,
+            infectionLevel // Nox-disease
         ));
     }
 

@@ -16,8 +16,9 @@ public sealed class HealthAnalyzerScannedUserMessage : BoundUserInterfaceMessage
     public bool? Unrevivable;
     public float? HungerLevel;
     public float? ThirstLevel;
+    public float? CureProgress; // Nox-disease
 
-    public HealthAnalyzerScannedUserMessage(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, float? hungerLevel = null, float? thirstLevel = null)
+    public HealthAnalyzerScannedUserMessage(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, float? hungerLevel = null, float? thirstLevel = null, float? cureProgress = null)
     {
         TargetEntity = targetEntity;
         Temperature = temperature;
@@ -27,6 +28,7 @@ public sealed class HealthAnalyzerScannedUserMessage : BoundUserInterfaceMessage
         Unrevivable = unrevivable;
         HungerLevel = hungerLevel;
         ThirstLevel = thirstLevel;
+        CureProgress = cureProgress; // Nox-disease
     }
 }
 

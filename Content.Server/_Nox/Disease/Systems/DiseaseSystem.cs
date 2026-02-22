@@ -164,9 +164,6 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         _timedWindowSystem.Reset(component.DiseaseUpdateWindow);
 
         RefreshSymptoms((uid, component));
-
-        if (string.IsNullOrEmpty(component.Data.StrainId))
-            component.Data.StrainId = GenerateStrainId();
     }
 
     private void OnShutdown(EntityUid uid, DiseaseComponent component, ComponentShutdown args)
@@ -182,7 +179,7 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
     /// </summary>
     public DiseaseData CreateNewDisease(string strainId = "")
     {
-        DiseaseData data = new DiseaseData(string.IsNullOrEmpty(strainId) ? GenerateStrainId() : strainId);
+        DiseaseData data = new DiseaseData(strainId);
 
         var whitelist = new EntityWhitelist();
         whitelist.Components = BaseDiseaseSettings.DefaultWhitelistComponents.ToArray();
@@ -353,7 +350,7 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         ProbInfect(host.Comp.Data, target, host);
     }
 
-    public void ProbInfect(DiseaseData data, EntityUid target, EntityUid? host = null)
+    public void ProbInfect(DiseaseData data, EntityUid target, EntityUid? host = null, float? chance = null)
     {
         var ev = new ProbInfectAttemptEvent(target, false, host);
         RaiseLocalEvent(target, ev);
@@ -371,17 +368,17 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         }
 
         // Вычисляем шанс заражения
-        var chance = GetDiseaseInfectionChance(target, data);
+        var finalChance = chance ?? GetDiseaseInfectionChance(target, data);
 
         // Бросаем шанс
-        if (_random.Prob(chance))
+        if (_random.Prob(finalChance))
         {
-            _sawmill.Debug($"[{host}] заразил [{target}] вирусом {data.StrainId} (шанс {chance:P0})");
+            _sawmill.Debug($"[{host}] заразил [{target}] вирусом {data.StrainId} (шанс {finalChance:P0})");
             InfectEntity(data, target);
         }
         else
         {
-            _sawmill.Debug($"[{host}] не заразил [{target}] (шанс {chance:P0})");
+            _sawmill.Debug($"[{host}] не заразил [{target}] (шанс {finalChance:P0})");
         }
     }
 
@@ -479,21 +476,6 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
             return false;
 
         return true;
-    }
-
-    public string GenerateStrainId()
-    {
-        const int length = 6;
-
-        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-        var id = new char[length];
-        for (int i = 0; i < length; i++)
-        {
-            id[i] = chars[_random.Next(chars.Length)];
-        }
-
-        return new string(id);
     }
 
     public DiseaseData GenerateDiseaseData(

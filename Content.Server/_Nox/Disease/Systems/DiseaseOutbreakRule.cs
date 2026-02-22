@@ -37,7 +37,7 @@ public sealed class DiseaseOutbreakRule : StationEventSystem<DiseaseOutbreakRule
                 ents.Add(entity);
         }
 
-        var strainId = _diseaseSystem.GenerateStrainId();
+        var strainId = DiseaseData.GenerateStrainId();
         if (component.Data == null)
             component.Data = _diseaseSystem.GenerateDiseaseData(strainId, component.SymptomsByDanger, component.BodyCount);
 

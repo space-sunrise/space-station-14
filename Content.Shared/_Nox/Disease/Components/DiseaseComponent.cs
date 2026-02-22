@@ -14,6 +14,7 @@ using Content.Shared.Mobs;
 using Robust.Shared.GameStates;
 using Content.Shared.StatusIcon;
 using Content.Shared._Nox.Disease.Symptoms;
+using System.Threading;
 
 namespace Content.Shared._Nox.Disease.Components;
 
@@ -67,6 +68,8 @@ public sealed partial class DiseaseComponent : Component
 [ImplicitDataDefinitionForInheritors, Serializable, NetSerializable]
 public sealed partial class DiseaseData : ReagentData
 {
+    private static long _strainIdCounter;
+
     /// <summary>
     ///     ID штамма.
     /// </summary>
@@ -166,12 +169,45 @@ public sealed partial class DiseaseData : ReagentData
     public DiseaseData()
     {
         InitializeWhitelist();
+        EnsureStrainId();
     }
 
     public DiseaseData(string strainId)
     {
         InitializeWhitelist();
         StrainId = strainId;
+        EnsureStrainId();
+    }
+
+    private void EnsureStrainId()
+    {
+        if (string.IsNullOrEmpty(StrainId))
+            StrainId = GenerateStrainId();
+    }
+
+    public static string GenerateStrainId()
+    {
+        const int length = 6;
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        const ulong radix = 36;
+        const ulong modulus = 2_176_782_336; // 36^6
+
+        var counter = (ulong)Interlocked.Increment(ref _strainIdCounter);
+        var ticks = (ulong)DateTime.UtcNow.Ticks;
+
+        // Не криптографическая уникальность: достаточно для идентификатора штамма в рамках рантайма.
+        var mixed = ticks ^ (counter * 0x9E3779B97F4A7C15UL);
+        var value = mixed % modulus;
+
+        var id = new char[length];
+        for (var i = length - 1; i >= 0; i--)
+        {
+            var rem = (int)(value % radix);
+            id[i] = chars[rem];
+            value /= radix;
+        }
+
+        return new string(id);
     }
 
     private void InitializeWhitelist()

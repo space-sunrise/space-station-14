@@ -318,7 +318,7 @@ public sealed class SentientDiseaseSystem : EntitySystem
 
     private void OnInit(Entity<SentientDiseaseComponent> entity, ref ComponentInit args)
     {
-        var strain = _diseaseSystem.GenerateStrainId();
+        var strain = DiseaseData.GenerateStrainId();
 
         if (entity.Comp.Data == null)
             entity.Comp.Data = new DiseaseData(strain);

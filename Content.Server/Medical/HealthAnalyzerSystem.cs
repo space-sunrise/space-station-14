@@ -24,6 +24,7 @@ using Content.Server.Body.Systems;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.AbstractAnalyzer;
+using Content.Shared._Nox.Disease.Components;
 
 namespace Content.Server.Medical;
 
@@ -91,6 +92,15 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
         if (TryComp<UnrevivableComponent>(target, out var unrevivableComp) && unrevivableComp.Analyzable)
             unrevivable = true;
 
+        // Nox-disease-start
+        float curProg = 0f;
+
+        if (TryComp<DiseaseComponent>(target, out var virus))
+            curProg = virus.Data.Threshold / virus.Data.MaxThreshold;
+
+        float infectionLevel = 1f - curProg;
+        // Nox-disease-end
+
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
             GetNetEntity(target),
             bodyTemperature,
@@ -99,7 +109,8 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
             bleeding,
             unrevivable,
             hungerLevel,
-            thirstLevel
+            thirstLevel,
+            infectionLevel // Nox-disease
         ));
     }
 

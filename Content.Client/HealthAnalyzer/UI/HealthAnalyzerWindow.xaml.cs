@@ -136,6 +136,24 @@ namespace Content.Client.HealthAnalyzer.UI
                     MaxWidth = 300
                 });
 
+            // Nox-disease-start
+            if (msg.CureProgress != null)
+            {
+
+                var percent = Math.Clamp(msg.CureProgress.Value, 0f, 1f) * 100f;
+
+                AlertsContainer.AddChild(new RichTextLabel
+                {
+                    Text = Loc.GetString(
+                        "health-analyzer-window-entity-infected-text",
+                        ("progress", percent.ToString("F1"))
+                    ),
+                    Margin = new Thickness(0, 4),
+                    MaxWidth = 300
+                });
+            }
+            // Nox-disease-end
+
             // Damage Groups
 
             var damageSortedGroups =
