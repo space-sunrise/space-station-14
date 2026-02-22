@@ -6,17 +6,22 @@ using Content.Server._Nox.Disease.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared._Nox.Disease.Components;
 using Content.Shared._Nox.Disease.Effects;
-using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.EntityEffects;
+using Content.Shared._Nox.Disease.Prototypes;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Log;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Nox.Disease.Effects;
 
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
-public sealed partial class CauseDiseaseEntityEffectsSystem : EntityEffectSystem<SolutionComponent, CauseDiseaseEffect>
+public sealed partial class CauseDiseaseEntityEffectsSystem : EntityEffectSystem<BloodstreamComponent, CauseDiseaseEffect>
 {
     [Dependency] private readonly DiseaseSystem _diseaseSystem = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
     private ISawmill _sawmill = default!;
 
@@ -26,16 +31,23 @@ public sealed partial class CauseDiseaseEntityEffectsSystem : EntityEffectSystem
         _sawmill = _logManager.GetSawmill("CauseDiseaseEffect");
     }
 
-    protected override void Effect(Entity<SolutionComponent> entity, ref EntityEffectEvent<CauseDiseaseEffect> args)
+    protected override void Effect(Entity<BloodstreamComponent> entity, ref EntityEffectEvent<CauseDiseaseEffect> args)
     {
         DiseaseData? data = null;
 
-        var solution = entity.Comp.Solution;
+        var container = new Entity<SolutionContainerManagerComponent?>(entity.Owner, null);
+        if (!_solutionContainer.ResolveSolution(container, entity.Comp.BloodSolutionName, ref entity.Comp.BloodSolution, out var bloodSolution)
+            || bloodSolution == null)
+        {
+            _sawmill.Debug(
+                $"CauseDiseaseEffect: no bloodstream solution resolved for target={entity.Owner} user={args.User}");
+            return;
+        }
 
-        var contents = solution.Contents;
+        var contents = bloodSolution.Contents;
         _sawmill.Debug(
             $"CauseDiseaseEffect: start target={entity.Owner} user={args.User} scale={args.Scale} " +
-            $"solutionVol={solution.Volume} reagents={contents.Count}");
+            $"solutionVol={bloodSolution.Volume} reagents={contents.Count}");
 
         if (contents.Count == 0)
         {
@@ -69,7 +81,7 @@ public sealed partial class CauseDiseaseEntityEffectsSystem : EntityEffectSystem
         }
 
         var hasMobState = HasComp<MobStateComponent>(entity.Owner);
-        var hasBloodstream = HasComp<BloodstreamComponent>(entity.Owner);
+        var hasBloodstream = true;
         var canInfect = _diseaseSystem.CanInfect(entity.Owner, data);
 
         var whitelistComps = data.EntityWhitelist?.Components == null
@@ -85,15 +97,29 @@ public sealed partial class CauseDiseaseEntityEffectsSystem : EntityEffectSystem
             $"CauseDiseaseEffect: precheck target={entity.Owner} hasMobState={hasMobState} " +
             $"hasBloodstream={hasBloodstream} canInfect={canInfect}");
 
-        if (data.Infectivity <= 0f)
+        var infectionData = (DiseaseData)data.CloneForInfection();
+
+        if (data.Infectivity > 0f)
         {
+            infectionData.Infectivity = data.Infectivity;
+        }
+        else
+        {
+            // Фоллбек: если infectivity не задана, считаем её по симптомам (как в UI для sentient disease).
+            var computed = 0f;
+            foreach (var symptomId in infectionData.ActiveSymptom)
+            {
+                if (_prototypeManager.TryIndex<DiseaseSymptomPrototype>(symptomId, out var proto))
+                    computed += proto.AddInfectivity;
+            }
+
+            infectionData.Infectivity = Math.Clamp(computed, 0f, 1f);
             _sawmill.Debug(
-                $"CauseDiseaseEffect: infectivity is {data.Infectivity:0.###} (<= 0), infection chance will be zero unless overridden elsewhere.");
+                $"CauseDiseaseEffect: infectivity fallback computed={infectionData.Infectivity:0.###} from symptoms={infectionData.ActiveSymptom.Count}");
         }
 
-        DiseaseComponent component = new DiseaseComponent(data);
-
-        _sawmill.Debug($"CauseDiseaseEffect: calling ProbInfect target={entity.Owner} strain='{component.Data.StrainId}'");
-        _diseaseSystem.ProbInfect(component.Data, entity.Owner);
+        _sawmill.Debug(
+            $"CauseDiseaseEffect: calling ProbInfect target={entity.Owner} strain='{infectionData.StrainId}' infectivity={infectionData.Infectivity:0.###}");
+        _diseaseSystem.ProbInfect(infectionData, entity.Owner, args.User);
     }
 }

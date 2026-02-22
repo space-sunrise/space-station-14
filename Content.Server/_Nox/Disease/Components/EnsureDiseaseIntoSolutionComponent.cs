@@ -9,5 +9,6 @@ namespace Content.Server._Nox.Disease.Components;
 public sealed partial class EnsureDiseaseIntoSolutionComponent : Component
 {
     [ViewVariables(VVAccess.ReadOnly)]
+    [DataField]
     public DiseaseData? Data = null;
 }

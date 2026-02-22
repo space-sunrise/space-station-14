@@ -43,7 +43,7 @@ public sealed partial class EnsureDiseaseIntoSolutionSystem : EntitySystem
             foreach (var reagent in solution.Contents)
             {
                 if (reagent.Reagent.Prototype != _diseaseDiagnoser.Reagent)
-                    return;
+                    continue;
 
                 List<ReagentData> reagentData = reagent.Reagent.EnsureReagentData();
 
