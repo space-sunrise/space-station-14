@@ -80,6 +80,9 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: EVAdispenserAds
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/VendingMachines/evavend.rsi
     layers:
