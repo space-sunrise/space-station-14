@@ -49,12 +49,16 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
         }
 
         // Nox-disease-start
-        float curProg = 0f;
+        float? infectionLevel = null;
 
         if (TryComp<DiseaseComponent>(entity.Comp.BodyContainer.ContainedEntity, out var virus))
-            curProg = virus.Data.Threshold / virus.Data.MaxThreshold;
+        {
+            var curProg = virus.Data.MaxThreshold > 0f
+                ? virus.Data.Threshold / virus.Data.MaxThreshold
+                : 0f;
 
-        float infectionLevel = 1f - curProg;
+            infectionLevel = 1f - curProg;
+        }
         // Nox-disease-end
 
         // TODO: This should be a state my dude

@@ -93,12 +93,16 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
             unrevivable = true;
 
         // Nox-disease-start
-        float curProg = 0f;
+        float? infectionLevel = null;
 
         if (TryComp<DiseaseComponent>(target, out var virus))
-            curProg = virus.Data.Threshold / virus.Data.MaxThreshold;
+        {
+            var curProg = virus.Data.MaxThreshold > 0f
+                ? virus.Data.Threshold / virus.Data.MaxThreshold
+                : 0f;
 
-        float infectionLevel = 1f - curProg;
+            infectionLevel = 1f - curProg;
+        }
         // Nox-disease-end
 
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(

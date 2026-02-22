@@ -69,3 +69,5 @@
     - MedicalDoctor
   - type: PowerSwitch
   - type: CanSleepOnBuckle # Sunrise-Edit
+  - type: BedRegeneration # Nox-disease
+    regenerationType: Stasis

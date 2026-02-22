@@ -112,7 +112,7 @@ namespace Content.Client.HealthAnalyzer.UI
 
             // Alerts
 
-            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true;
+            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true || msg.CureProgress != null; // Nox-disease CureProgress
 
             AlertsDivider.Visible = showAlerts;
             AlertsContainer.Visible = showAlerts;

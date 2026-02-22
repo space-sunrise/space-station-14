@@ -72,6 +72,7 @@
     delay: 5 #SUNRISE-EDIT
   - type: Pullable
   - type: CanSleepOnBuckle # Sunrise-Edit
+  - type: BedRegeneration # Nox-disease
 
 
 - type: entity
