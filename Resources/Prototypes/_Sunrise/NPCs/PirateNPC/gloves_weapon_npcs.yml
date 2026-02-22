@@ -429,7 +429,7 @@
   - type: Clothing
     clothingVisuals:
       gloves:
-      - sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+      - sprite: _Sunrise/Clothing/Hands/Gloves/mercfingerless.rsi
         state: equipped-HAND
       - sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
         state: wielded-inhand-right
@@ -974,6 +974,7 @@
 - type: entity
   parent: ClothingHandsNoGloves
   id: ClothingHandsBottle
+  categories: [ HideSpawnMenu ]
   components:
   - type: Reflect
     reflectProb: 0.01
@@ -989,6 +990,7 @@
 - type: entity
   parent: ClothingHandsNoGloves
   id: ClothingHandsFinka
+  categories: [ HideSpawnMenu ]
   components:
   - type: Reflect
     reflectProb: 0.01

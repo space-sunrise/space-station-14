@@ -90,6 +90,7 @@
     - AllHostile
     - Thief
     - Carps
+    - Dragon
     - Flesh
     - FleshHuman
     - BloodCult
@@ -106,6 +107,9 @@
     - Revolutionary
     - Syndicate
     - Zombie
+    - Wizard
+    - Xenoborg
+    - Dragon
     - Vampire
     - AllHostile
     - Thief

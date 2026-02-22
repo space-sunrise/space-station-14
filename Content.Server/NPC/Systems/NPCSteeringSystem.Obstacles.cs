@@ -161,9 +161,7 @@ public sealed partial class NPCSteeringSystem
             // Try smashing obstacles.
             else if ((component.Flags & PathFlags.Smashing) != 0x0)
             {
-                // Sunrise-Start: pass actual weapon uid with its component to avoid owner mismatch asserts.
-                if (_melee.TryGetWeapon(uid, out var weaponUid, out var meleeWeapon) && meleeWeapon.NextAttack <= _timing.CurTime && TryComp<CombatModeComponent>(uid, out var combatMode))
-                // Sunrise-End
+                if (_melee.TryGetWeapon(uid, out var weaponUid, out var meleeWeapon) && meleeWeapon.NextAttack <= _timing.CurTime && TryComp<CombatModeComponent>(uid, out var combatMode)) // Sunrise-Add/Edit
                 {
                     _combat.SetInCombatMode(uid, true, combatMode);
                     var destructibleQuery = GetEntityQuery<DestructibleComponent>();

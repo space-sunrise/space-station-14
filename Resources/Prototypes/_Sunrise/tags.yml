@@ -599,6 +599,15 @@
 - type: Tag
   id: ShipWreck
 
+- type: Tag
+  id: SovietDungeon
+
+- type: Tag
+  id: SovietRuineDungeon
+
+- type: Tag
+  id: SovietWarehouse
+
 ### INTERACTION TAGS ###
 # Как одежда закрывает/не закрывает ту или иную область тела
 - type: Tag
