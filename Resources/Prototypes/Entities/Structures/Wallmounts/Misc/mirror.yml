@@ -9,6 +9,7 @@
   - type: Sprite
     sprite: Structures/Wallmounts/mirror.rsi
     state: mirror
+  # Вырезал ввиду наличия багов + нелогичности в использовании зеркала для смены цвета волос и их размера.
   # - type: MagicMirror #instant and silent # Sunrise Edit Start
   #   changeHairSound: null
   #   addSlotTime: 0

@@ -13,7 +13,7 @@
           Quantity: 10
   - type: Icon
     sprite: _Sunrise/Objects/Consumable/Food/condiments.rsi
-    state: "packet-smetana"
+    state: packet-smetana
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 2
@@ -34,7 +34,7 @@
           Quantity: 10
   - type: Icon
     sprite: _Sunrise/Objects/Consumable/Food/condiments.rsi
-    state: "packet-honey"
+    state: packet-honey
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 2
