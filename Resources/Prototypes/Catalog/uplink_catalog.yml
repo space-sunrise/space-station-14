@@ -67,7 +67,6 @@
       - AssaultOpsUplink
       - SubdermalImplant
       - NukeOpsUplink
-      - LoneOpsUplink # Sunrise-Edit
   - !type:ListingLimitedStockCondition
     stock: 1
   #Sunrise-end

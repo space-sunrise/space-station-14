@@ -691,7 +691,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Syndicate/tiny.rsi
 
 - type: entity
-  parent: WeaponRifleSKM24
+  parent: [BaseSecurityContraband, WeaponRifleSKM24]
   id: WeaponRifleSKM24Nano
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. Money doesn't smell.
   components:
@@ -792,7 +792,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm28/Syndicate/tiny.rsi
 
 - type: entity
-  parent: WeaponRifleSKM28
+  parent: [BaseSecurityContraband, WeaponRifleSKM28]
   id: WeaponRifleSKM28Nano
   description: A marksman conversion of the standard SKM-24. Features an extended heavy barrel, reworked internals, and a mounted optical sight. Chambered in .308. Money doesn't smell.
   components:

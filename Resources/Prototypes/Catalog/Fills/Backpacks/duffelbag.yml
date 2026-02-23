@@ -149,21 +149,23 @@
   name: China-Lake bundle
   description: "An old m79 grenade launcher bundled with 11 rounds of various destruction capability."
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponLauncherM79Biocode # Sunrise-edit
-      - id: GrenadeBlast
-        amount: 1
-      - id: GrenadeFrag
-        amount: 1
-      - id: GrenadeEMP
-        amount: 1
-      - id: GrenadeBlastTimer
-        amount: 2
-      - id: GrenadeFragTimer
-        amount: 2
-      - id: GrenadeEMPTimer
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponLauncherM79Biocode # Sunrise-edit
+        - id: GrenadeBlast
+          amount: 1
+        - id: GrenadeFrag
+          amount: 1
+        - id: GrenadeEMP
+          amount: 1
+        - id: GrenadeBlastTimer
+          amount: 2
+        - id: GrenadeFragTimer
+          amount: 2
+        - id: GrenadeEMPTimer
+          amount: 2
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -171,21 +173,23 @@
   name: China-Lake bundle
   description: "GL70 grenade launcher bundled with 11 rounds of various destruction capability."
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponGrenadeLauncherGL70Biocode # Sunrise-edit
-      - id: GrenadeBlast
-        amount: 1
-      - id: GrenadeFrag
-        amount: 1
-      - id: GrenadeEMP
-        amount: 1
-      - id: GrenadeBlastTimer
-        amount: 2
-      - id: GrenadeFragTimer
-        amount: 2
-      - id: GrenadeEMPTimer
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponGrenadeLauncherGL70Biocode # Sunrise-edit
+        - id: GrenadeBlast
+          amount: 1
+        - id: GrenadeFrag
+          amount: 1
+        - id: GrenadeEMP
+          amount: 1
+        - id: GrenadeBlastTimer
+          amount: 2
+        - id: GrenadeFragTimer
+          amount: 2
+        - id: GrenadeEMPTimer
+          amount: 2
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -193,14 +197,16 @@
   name: C-40r bundle
   description: "Old faithful: The classic C-40r Submachine Gun, bundled with three magazines."
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponSubMachineGunC40rBiocode
-      - id: MagazinePistol40SubMachineGunSP
-        amount: 2
-      - id: MagazinePistol40SubMachineGunFMJ
-        amount: 2
-      - id: MagazinePistol40SubMachineGunHP
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunC40rBiocode
+        - id: MagazinePistol40SubMachineGunSP
+          amount: 2
+        - id: MagazinePistol40SubMachineGunFMJ
+          amount: 2
+        - id: MagazinePistol40SubMachineGunHP
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "discord: .askal02, Special for SUNRISE",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "base",
+      "directions": 4,
+      "delays": [
+        [0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1, 0.1]
+      ]
+    },
+    {
+      "name": "broken",
+      "directions": 4
+    },
+    {
+      "name": "burned",
+      "directions": 4
+    },
+    {
+      "name": "empty",
+      "directions": 4
+    },
+    {
+      "name": "glow",
+      "directions": 4,
+      "delays": [
+        [0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1, 0.1]
+      ]
+    }
+  ]
+}

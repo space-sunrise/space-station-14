@@ -85,7 +85,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadHatWarden
   id: ClothingHeadHatCapWardenAlt
   name: warden's police hat
   description: It's a special blue hat issued to the Warden of a security force.

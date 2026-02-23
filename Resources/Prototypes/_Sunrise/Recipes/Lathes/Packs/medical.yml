@@ -79,3 +79,16 @@
   - ImplantCaseImplantMedical
   - ImplantCaseImplantChemical
   - ImplantCaseImplantSecurity
+  - SadTromboneImplant
+  - BikeHornImplant
+  - LightImplant
+  - TrackingImplant
+  - NutrimentImplant
+  - ReviverImplant
+
+- type: latheRecipePack
+  id: MedicalImplantEmag
+  recipes:
+  - CreepyLaughImplant
+  - ProtoAdrenalImplant
+  - ScramImplantProto

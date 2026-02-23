@@ -1559,6 +1559,19 @@
   - UplinkWeaponry
 
 - type: listing
+  id: UplinkHomerunBat
+  name: uplink-homerun-bat-name
+  description: uplink-homerun-bat-desc
+  productEntity: HomerunBat
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 7
+  categories:
+  - UplinkWeaponry
+
+- type: listing
   id: UplinkEswordNuke
   name: uplink-esword-name
   description: uplink-esword-desc
@@ -1576,7 +1589,6 @@
     whitelist:
       tags:
       - NukeOpsUplink
-      - LoneOpsUplink
 
 - type: listing
   id: UplinkPolytrinicAcidChemistryBottle
@@ -1590,6 +1602,21 @@
     Telecrystal: 4
   categories:
   - UplinkChemicals
+
+- type: listing
+  id: UplinkCleanerKit
+  name: uplink-cleaner-kit-name
+  description: uplink-cleaner-kit-desc
+  productEntity: ToolboxArtisticFilledCleaner
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkDisruption
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
 
 - type: listing
   id: UplinkExplosiveCollarsKit
@@ -2091,6 +2118,50 @@
       - SyndieAgentUplink
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: UplinkProtoAdrenalImplanter
+  name: uplink-proto-adrenal-implanter-name
+  description: uplink-proto-adrenal-implanter-desc
+  icon: { sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi, state: microstimpen }
+  productEntity: ProtoAdrenalImplanter
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkImplants
+
+- type: listing
+  id: UplinkAdrenalImplanter
+  name: uplink-adrenal-implanter-name
+  description: uplink-adrenal-implanter-desc
+  icon: { sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi, state: stimpen }
+  productEntity: AdrenalImplanter
+  cost:
+    Telecrystal: 7
+  categories:
+  - UplinkImplants
+
+- type: listing
+  id: UplinkStimpackImplanter
+  name: uplink-stimpack-implanter-name
+  description: uplink-stimpack-implanter-desc
+  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: stimpen }
+  productEntity: StimpackImplanter
+  cost:
+    Telecrystal: 9
+  categories:
+  - UplinkImplants
+
+- type: listing
+  id: UplinkNutrimentImplanter
+  name: uplink-nutriment-implanter-name
+  description: uplink-nutriment-implanter-desc
+  icon: { sprite: Objects/Consumable/Food/burger.rsi, state: bigbite }
+  productEntity: NutrimentImplanter
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkImplants
 # Jobs
 
 - type: listing
@@ -2905,3 +2976,39 @@
     Telecrystal: 3
   categories:
     - UplinkExplosives
+
+- type: listing
+  id: UplinkEshieldTraitor
+  name: uplink-eshield-name
+  description: uplink-eshield-desc
+  icon:
+    sprite: /Textures/Objects/Weapons/Melee/e_shield.rsi
+    state: eshield-on
+  productEntity: EnergyShieldBiocode
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 6
+  categories:
+    - UplinkWeaponry
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+          - LoneOpsUplink
+          - AssaultOpsUplink
+
+- type: listing
+  id: UplinkCornivoreGloves
+  name: uplink-cornivoregloves-name
+  description: uplink-cornivoregloves-desc
+  productEntity: CornivoreGlovesBiocode
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkWeaponry

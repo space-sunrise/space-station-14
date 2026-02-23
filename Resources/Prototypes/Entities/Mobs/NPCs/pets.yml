@@ -1016,4 +1016,7 @@
       gender: male
   - type: Loadout
     prototypes: [ MobPollyGear ]
-
+# Sunrise Edit start
+  - type: TTS
+    voice: Dornan
+# Sunrise Edit end

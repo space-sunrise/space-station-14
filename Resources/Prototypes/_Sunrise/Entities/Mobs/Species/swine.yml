@@ -62,7 +62,7 @@
   - type: Butcherable
     butcheringType: Spike # TODO human.
     spawned:
-    - id: FoodMeat
+    - id: FoodMeatSwine
       amount: 5
   - type: FootprintEmitter
   - type: Carriable

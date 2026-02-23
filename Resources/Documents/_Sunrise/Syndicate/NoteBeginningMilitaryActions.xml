@@ -1,15 +1,22 @@
 <Document>
-[bold]Станция: {stationName}[/bold]
-[bold]Форма СНД/КОМ-ОВ[/bold]
-[head=2]Заметка о начале военных действий[/head]
-
-[italic]Время от начала смены и дата: {timeString}[/italic]
+[head=2][color=#4a0010][bold]Заметка о начале военных действий[/bold][/color][/head]
+[color=#b00020][bold]СНД[/bold][/color][mono] / КОМ-ОВ[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#b00020][bold]Содержание[/bold][/color]
 
 Позывной Агента:
 
 Неуважаемые корпоративные крысы {corpString}! Синдикат официально объявляет о начале военных действий с вами, а также о начале операции по вашему истреблению.
-Причина предъявления ноты:
 
-[italic]Место для печатей[/italic]
+[color=#b00020][bold]Причина предъявления ноты[/bold][/color]
+[mono]
+1)
+2)
+[/mono]
+
+[color=#666666][italic]Место для печатей[/italic][/color]
+
 
 </Document>

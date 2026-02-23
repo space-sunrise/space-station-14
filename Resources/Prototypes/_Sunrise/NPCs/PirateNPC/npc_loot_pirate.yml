@@ -990,6 +990,57 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
+- type: entity
+  parent: BeltAssaultBox
+  id: ClothingBeltAssaultT1LCG
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: PirateCashSpawner01
+    - id: PirateCashSpawner03
+    # Weapons
+    - id: WeaponLightMachineGunRPD
+      prob: 0.15
+    # Items
+    - id: WeaponMachineGunLCGEmpty
+      orGroup: AmmoMGPool
+    - id: WeaponMachineGunLCG
+      orGroup: AmmoMGPool
+    - id: MagazineChainGun
+      orGroup: AmmoMGPool
+    - id: MagazineChainGun100
+      orGroup: AmmoMGPool
+    - id: MagazineChainGun200
+      orGroup: AmmoMGPool
+    - id: MagazineChainGun250
+      orGroup: AmmoMGPool
+    - id: LootSpawnerMaterialsSurplus
+      prob: 0.9
+      amount: 8
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.6
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.4
+    - id: ClothingOuterEVASuitPirateArmoredAlt
+      prob: 0.05
+    # Bonus Loot T1
+    - id: PirateAmpulaSpawnerT3
+    - id: Doubloon5
+      prob: 0.1
+    - id: Doubloon5
+      prob: 0.1
+    - id: PirateMedSpawner02
+    - id: PirateCashSpawner01
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.25
+    - id: PirateMedSpawner01
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
 #region TIER 2
 - type: entity
   parent: ScrapperDuffelGiftBox
@@ -2902,8 +2953,8 @@
     - id: PirateCashSpawner01
     - id: LootSpawnerMedicalMinor
       prob: 0.7
-    - id: Catwalk
-      prob: 0.5
+    - id: ReviverImplant
+      prob: 0.3
     - id: JugDexPlusSaline
       prob: 0.15
     - id: PirateMedSpawner01

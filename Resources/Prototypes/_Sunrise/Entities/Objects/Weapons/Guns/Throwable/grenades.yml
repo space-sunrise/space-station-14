@@ -10,7 +10,7 @@
 - type: entity
   name: shrapnel-explosive grenade
   description: Grenade that creates a small but devastating explosion.
-  parent: [GrenadeBase, BaseSyndicateContraband]
+  parent: [TimerGrenadeBase, BaseSyndicateContraband]
   id: ExShrapnelGrenade
   components:
   - type: ProjectileGrenade

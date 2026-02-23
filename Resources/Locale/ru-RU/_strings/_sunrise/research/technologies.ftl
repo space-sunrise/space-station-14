@@ -30,3 +30,5 @@ research-technology-cloning = Система клонирования
 research-technology-compact-defibrilation = Компактная дефибрилляция
 research-technology-advanced-compact-defibrilation = Продвинутая дефибрилляция
 research-technology-dna-injector = ДНК-манипуляции
+research-technology-biochemical-implants = Биохимические импланты
+research-technology-advanced-implants = Продвинутые импланты
