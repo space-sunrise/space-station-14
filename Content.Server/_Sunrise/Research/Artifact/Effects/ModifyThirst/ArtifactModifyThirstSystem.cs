@@ -12,13 +12,16 @@ public sealed class ArtifactModifyThirstSystem : BaseXAESystem<ArtifactModifyThi
     [Dependency] private readonly ThirstSystem _thirst = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
+    private readonly HashSet<Entity<ThirstComponent>> _entities = [];
+
     protected override void OnActivated(Entity<ArtifactModifyThirstComponent> ent, ref XenoArtifactNodeActivatedEvent args)
     {
-        var humans = _lookup.GetEntitiesInRange<ThirstComponent>(Transform(ent).Coordinates, ent.Comp.Range);
+        _entities.Clear();
+        _lookup.GetEntitiesInRange(Transform(ent).Coordinates, ent.Comp.Range, _entities);
 
-        foreach (var uid in humans)
+        foreach (var uid in _entities)
         {
-            var modifier = _random.NextFloat(-1f, 1f);
+            var modifier = _random.NextFloat(ent.Comp.MinModifier, ent.Comp.MaxModifier);
             _thirst.ModifyThirst(uid, uid, modifier * ent.Comp.Amount);
         }
     }

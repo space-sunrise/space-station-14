@@ -4,20 +4,24 @@
   name: printer machine crate
   description:
   components:
-  - type: StorageFill
-    contents:
-    - id: Screwdriver
-    - id: CopyMachineFlatpack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: Screwdriver
+        - id: CopyMachineFlatpack
 
 - type: entity
   id: CrateServiceCopyMachineRestock
   parent: CrateGenericSteel
   name: printer machine restock crate
-  description: printer paper with ink and office papper
+  description: printer paper with ink and office paper
   components:
-  - type: StorageFill
-    contents:
-    - id: SheetOfficePaper
-      amount: 1
-    - id: DrinkInc
-      amount: 1
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SheetOfficePaper
+          amount: 1
+        - id: DrinkInc
+          amount: 1

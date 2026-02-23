@@ -1,8 +1,10 @@
-﻿using Content.Server._Sunrise.Helpers;
+﻿using System.Linq;
 using Content.Server.Doors.Systems;
+using Content.Shared._Sunrise.Helpers;
 using Content.Shared.Doors.Components;
 using Content.Shared.Xenoarchaeology.Artifact;
 using Content.Shared.Xenoarchaeology.Artifact.XAE;
+using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.Research.Artifact.Effects.BoltAirlocks;
 
@@ -10,15 +12,22 @@ public sealed class ArtifactBoltAirlocksSystem : BaseXAESystem<ArtifactBoltAirlo
 {
     [Dependency] private readonly DoorSystem _door = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SunriseHelpersSystem _helpers = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+
+    private readonly HashSet<Entity<DoorBoltComponent>> _entities = [];
 
     protected override void OnActivated(Entity<ArtifactBoltAirlocksComponent> ent, ref XenoArtifactNodeActivatedEvent args)
     {
         var coords = Transform(ent).Coordinates;
-        var doors = _lookup.GetEntitiesInRange<DoorBoltComponent>(coords, ent.Comp.Range, LookupFlags.Static);
-        var reducedDoors = _helpers.GetPercentageOfHashSet(doors, ent.Comp.Chance);
 
-        foreach (var door in reducedDoors)
+        _entities.Clear();
+        _lookup.GetEntitiesInRange(coords, ent.Comp.Range, _entities, LookupFlags.Static);
+
+        var filteredDoors  = _entities.ToList()
+            .ShuffleRobust(_random)
+            .TakePercentage(ent.Comp.Chance);
+
+        foreach (var door in filteredDoors )
         {
             _door.SetBoltsDown(door, true);
         }

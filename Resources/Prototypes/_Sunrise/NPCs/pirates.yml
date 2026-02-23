@@ -458,6 +458,7 @@
       - MobPirateT1PlasmaCutter
       - MobPirateT1ScrapRifle
       - MobPirateT1Rifle
+      - MobPirateT1LCG
       - MobPirateT1BorgAssault
       - MobPirateT1BorgMining
       - MobPirateT1BorgDerelict
@@ -604,6 +605,7 @@
       - MobPirateT1PlasmaCutterTimed
       - MobPirateT1ScrapRifleTimed
       - MobPirateT1RifleTimed
+      - MobPirateT1LCGTimed
       - MobPirateT1BorgAssaultTimed
       - MobPirateT1BorgMiningTimed
       - MobPirateT1BorgDerelictTimed
@@ -825,6 +827,10 @@
 - type: entity
   parent: [MobPirateTimedDespawn, MobPirateT1Rifle]
   id: MobPirateT1RifleTimed
+
+- type: entity
+  parent: [MobPirateTimedDespawn, MobPirateT1LCG]
+  id: MobPirateT1LCGTimed
 
 - type: entity
   parent: [MobPirateTimedDespawn, MobPirateT1RifleAlt]
@@ -2253,6 +2259,55 @@
       types:
         Blunt: 8
   - type: HellSpawnInvincibility
+
+
+- type: entity
+  name: Scrap chaingunner
+  description: A pirate with light chain gun, well-armed and suitably dangerous.
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3Ranged]
+  id: MobPirateT1LCG
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT1LCGGear
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Clothing/OuterClothing/Suits/pirateeva_armored_alt.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/privateer.rsi
+      state: equipped-HELMET
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/privateer.rsi
+      state: on-equipped-HELMET
+      shader: unshaded
+    - sprite: Objects/Tanks/oxygen.rsi
+      state: equipped-SUITSTORAGE
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 3
+  - type: BatteryAmmoProvider
+    proto: CartridgeMinigun
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 1
+    autoRechargeRate: 20
+  - type: Battery
+    maxCharge: 120
+    startingCharge: 120
+  - type: Gun
+    showExamineText: false
+    fireRate: 15
+    minAngle: 2
+    maxAngle: 55
+    angleIncrease: 1.25
+    angleDecay: 20
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      collection: L6
+      params:
+        volume: -6
+        pitch: 1.03
 
 # region Melee Tier 2
 - type: entity

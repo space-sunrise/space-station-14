@@ -32,7 +32,7 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatLizard
+    - id: FoodMeatUnath # Sunrise - edit
       amount: 5
   - type: LizardAccent
   - type: Speech

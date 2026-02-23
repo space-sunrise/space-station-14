@@ -485,6 +485,15 @@
     state: nanotrasen_form_header_sec_investig
 
 - type: docTemplate
+  id: SearchPermissionDepartment
+  name: doc-template-search-permission-department-name
+  content: /Documents/_Sunrise/Security/SearchPermissionDepartment.xml
+  component: Security
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header_sec_investig
+
+- type: docTemplate
   id: Sentence
   name: doc-template-sentence-name
   content: /Documents/_Sunrise/Security/Sentence.xml

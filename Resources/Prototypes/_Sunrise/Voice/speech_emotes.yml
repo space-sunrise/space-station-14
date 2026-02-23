@@ -284,3 +284,57 @@
   - трещит.
   - трещит!
   - трещит?
+
+- type: emote
+  id: Roars
+  name: chat-emote-name-roar
+  category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+    - PressureImmunity
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-roar"]
+  chatTriggers:
+    - ревёт.
+    - ревёт!
+    - реветь.
+    - реветь!
+    - ревёт
+    - реветь
+    - ревет.
+    - ревет!
+    - ревет
+    - roar
+    - roar.
+    - roar!
+    - roars
+    - roars!
+    - roars.
+
+- type: emote
+  id: Rumbles
+  name: chat-emote-name-rumble
+  category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+    - PressureImmunity
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-rumble"]
+  chatTriggers:
+   - рокочет
+    - рокочет.
+    - рокочет!
+    - рокотать
+    - рокотать.
+    - рокотать!
+    - rumbles
+    - rumbles!
+    - rumbles.

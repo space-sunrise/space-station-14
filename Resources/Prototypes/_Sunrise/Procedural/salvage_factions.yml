@@ -60,13 +60,13 @@
       prob: 0.1
     - proto: MobPirateT1BombardierFireTimed
       cost: 4
-      prob: 0.05
+      prob: 0.04
     - proto: MobPirateT1BombardierGlassTimed
       cost: 4
-      prob: 0.05
+      prob: 0.04
     - proto: MobPirateT1BombardierPipeTimed
       cost: 4
-      prob: 0.05
+      prob: 0.04
     - proto: MobPirateT1FlintlockTimed
       prob: 0.2
     - proto: MobPirateT1PlasmaCutterTimed
@@ -81,6 +81,9 @@
     - proto: MobPirateT1RifleAltTimed
       cost: 4
       prob: 0.1
+    - proto: MobPirateT1LCGTimed
+      cost: 5
+      prob: 0.02
     # borgs
     - proto: MobPirateT1BorgAssaultTimed
       cost: 2
@@ -92,11 +95,11 @@
       cost: 1
       prob: 0.15
     - proto: MobPirateT1BossTimed
-      cost: 5
+      cost: 8
       prob: 0.05
   configs:
     DefenseStructure: ComputerPirateExchanger
-    Megafauna: MobPirateT1Boss
+    Megafauna: MobPirateT1BossTimed
 
 - type: salvageFaction
   id: PiratesT2
@@ -188,11 +191,11 @@
       cost: 1
       prob: 0.05
     - proto: MobPirateT2BossTimed
-      cost: 5
-      prob: 0.1
+      cost: 8
+      prob: 0.05
   configs:
     DefenseStructure: ComputerPirateExchanger
-    Megafauna: MobPirateT2Boss
+    Megafauna: MobPirateT2BossTimed
 
 - type: salvageFaction
   id: PiratesT3
@@ -299,8 +302,8 @@
       cost: 1
       prob: 0.02
     - proto: MobPirateT3BossTimed
-      cost: 5
-      prob: 0.1
+      cost: 8
+      prob: 0.05
   configs:
     DefenseStructure: ComputerPirateExchanger
-    Megafauna: MobPirateT3Boss
+    Megafauna: MobPirateT3BossTimed

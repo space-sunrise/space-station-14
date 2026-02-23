@@ -4,6 +4,6 @@
     sprite: _Sunrise/Structures/Machines/server.rsi
     state: icon
   product: CrateResearchServer
-  cost: 30000
+  cost: 25000
   category: cargoproduct-category-name-science
   group: market

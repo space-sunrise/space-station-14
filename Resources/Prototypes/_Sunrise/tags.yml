@@ -224,6 +224,9 @@
   id: MagazineCannonBallMini
 
 - type: Tag
+  id: MagazineChainGun
+
+- type: Tag
   id: MagazineCaselessRifle
 
 - type: Tag

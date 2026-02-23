@@ -59,3 +59,4 @@ gun-revolver-insert = Заряжен
 gun-revolver-spin = Вращать барабан
 gun-revolver-spun = Барабан вращается
 gun-speedloader-empty = Спидлоадер пуст
+examine-weapon-dismantle-on-shoot = Оружие может развалиться при выстреле ([color=yellow]{ $chance }%[/color]).

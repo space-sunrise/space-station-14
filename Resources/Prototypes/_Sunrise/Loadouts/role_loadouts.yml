@@ -42,6 +42,7 @@
   groups:
   - BrigmedicJumpsuit
   - BrigmedicBackpack
+  - BrigmedicInjectors
   - SurvivalSecurity
   - Trinkets
   - SecurityTrinkets

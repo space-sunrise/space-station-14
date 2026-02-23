@@ -15,6 +15,7 @@ loadout-group-blueshield-backpack = { loadout-group-back }
 loadout-group-blueshield-jumpsuit = { loadout-group-jumpsuit }
 loadout-group-brigmedic-backpack = { loadout-group-back }
 loadout-group-brigmedic-jumpsuit = { loadout-group-jumpsuit }
+loadout-group-sunrise-injectors = { loadout-group-trinkets }
 loadout-group-cargo-technician-gloves = { loadout-group-gloves }
 loadout-group-cargo-technician-mask = { loadout-group-mask }
 loadout-group-cargo-technician-neck = { loadout-group-neck }

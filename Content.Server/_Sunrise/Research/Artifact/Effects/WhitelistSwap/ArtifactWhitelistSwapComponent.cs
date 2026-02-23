@@ -5,6 +5,18 @@ namespace Content.Server._Sunrise.Research.Artifact.Effects.WhitelistSwap;
 [RegisterComponent]
 public sealed partial class ArtifactWhitelistSwapComponent : Component
 {
-    [DataField(required: true)]
-    public EntityWhitelist TargetWhitelist;
+    [DataField]
+    public EntityWhitelist? TargetWhitelist;
+
+    [DataField]
+    public EntityWhitelist? TargetBlacklist;
+
+    [DataField]
+    public bool PreventTeleportFromOtherMaps = true;
+
+    [DataField]
+    public EntityWhitelist? OtherMapWhitelist;
+
+    [DataField]
+    public EntityWhitelist? OtherMapBlacklist;
 }
