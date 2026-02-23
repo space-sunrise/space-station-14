@@ -25,7 +25,7 @@ public sealed partial class SalvageDifficultyPrototype : IPrototype
     [DataField("mobBudget", required : true)]
     public float MobBudget;
 
-    [DataField("lootPrototype")]
+    [DataField]
     public string LootPrototypeId = "SalvageLoot"; // Sunrise-Edit
 
     /// <summary>
