@@ -40,7 +40,7 @@ public sealed partial class SalvageDifficultyPrototype : IPrototype
     /// <summary>
     /// Minimum round time after which this difficulty can appear.
     /// </summary>
-    [DataField("delay")]
+    [DataField]
     public TimeSpan Delay = TimeSpan.Zero; // Sunrise-Edit
 
     /// <summary>
