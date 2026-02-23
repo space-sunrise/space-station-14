@@ -15,7 +15,7 @@ public static class EnumerableExtensions
         float percentage)
     {
         if (source is null)
-            throw new ArgumentNullException(nameof(source));
+            throw new ArgumentException("Source list can not be null", nameof(source));
 
         if (percentage < 0f || percentage > 1f)
             throw new ArgumentOutOfRangeException(nameof(percentage), "Percentage must be in range [0, 1].");
