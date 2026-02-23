@@ -1,12 +1,1 @@
-- type: entity
-  parent: BaseBulletRubber
-  id: BulletMagnumProjectileRubber
-  categories: [ HideSpawnMenu ]
-  name: bullet (.45 magnum rubber)
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 7.5
-  - type: StaminaDamageOnCollide
-    damage: 20
+
