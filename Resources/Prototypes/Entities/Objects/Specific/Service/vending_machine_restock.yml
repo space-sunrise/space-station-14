@@ -420,7 +420,7 @@
     canRestock:
     - TankDispenserEVAInventory
     - TankDispenserEngineeringInventory
-    - EVASuitDispenserInventory
+    - EVASuitDispenserInventory # Sunrise-Edit
   - type: Sprite
     layers:
     - state: base
