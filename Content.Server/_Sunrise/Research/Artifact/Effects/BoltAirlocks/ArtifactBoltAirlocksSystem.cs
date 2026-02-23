@@ -23,11 +23,11 @@ public sealed class ArtifactBoltAirlocksSystem : BaseXAESystem<ArtifactBoltAirlo
         _entities.Clear();
         _lookup.GetEntitiesInRange(coords, ent.Comp.Range, _entities, LookupFlags.Static);
 
-        _entities.ToList()
+        var filteredDoors  = _entities.ToList()
             .ShuffleRobust(_random)
             .TakePercentage(ent.Comp.Chance);
 
-        foreach (var door in _entities)
+        foreach (var door in filteredDoors )
         {
             _door.SetBoltsDown(door, true);
         }

@@ -20,7 +20,7 @@ public sealed class AddComponentsInRadiusSystem : BaseXAESystem<AddComponentsInR
 
         foreach (var target in _entities)
         {
-            if (!_whitelist.CheckBoth(target, ent.Comp.Blacklist, ent.Comp.Blacklist))
+            if (!_whitelist.CheckBoth(target, ent.Comp.Blacklist, ent.Comp.Whitelist))
                 continue;
 
             EntityManager.AddComponents(target, ent.Comp.Components, ent.Comp.RemoveExistingComponents);

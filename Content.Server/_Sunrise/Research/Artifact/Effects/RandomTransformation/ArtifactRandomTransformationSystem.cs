@@ -58,11 +58,12 @@ public sealed class ArtifactRandomTransformationSystem : BaseXAESystem<ArtifactR
 
     private void ReduceAndTransform(Entity<ArtifactRandomTransformationComponent> ent, List<EntityUid> entities)
     {
-        entities
+        var filtered = entities
             .ShuffleRobust(_random)
-            .TakePercentage(ent.Comp.TransformationPercentRatio);
+            .TakePercentage(ent.Comp.TransformationPercentRatio)
+            .ToList();
 
-        DoTransformation(ent, entities);
+        DoTransformation(ent, filtered);
     }
 
     private void DoTransformation(Entity<ArtifactRandomTransformationComponent> ent, List<EntityUid> items)

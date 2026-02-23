@@ -20,11 +20,17 @@ public sealed class ArtifactWhitelistSwapSystem : BaseXAESystem<ArtifactWhitelis
     protected override void OnActivated(Entity<ArtifactWhitelistSwapComponent> ent, ref XenoArtifactNodeActivatedEvent args)
     {
         var humans = _helpers.GetAll<HumanoidAppearanceComponent, TransformComponent>().ToList();
+        if (humans.Count == 0)
+            return;
+
         var player = _random.PickAndTake(humans);
 
         var targets = _helpers.GetAll<TransformComponent>()
             .Where(e => IsAllowedTarget(e, player, ent))
             .ToList();
+        if (targets.Count == 0)
+            return;
+
         var target = _random.PickAndTake(targets);
 
         _transform.SwapPositions((player, player.Comp2), target.AsNullable());
