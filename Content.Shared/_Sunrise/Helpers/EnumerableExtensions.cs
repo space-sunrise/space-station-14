@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Robust.Shared.Random;
 
 namespace Content.Shared._Sunrise.Helpers;
 
@@ -10,7 +11,7 @@ public static class EnumerableExtensions
     /// <param name="source">Исходный список</param>
     /// <param name="percentage">Процент, который должен строго быть в [0, 1]</param>
     public static IEnumerable<T> TakePercentage<T>(
-        this IReadOnlyCollection<T> source,
+        this IList<T> source,
         float percentage)
     {
         if (source is null)
@@ -22,5 +23,11 @@ public static class EnumerableExtensions
         var countToTake = (int)(source.Count * percentage);
 
         return source.Take(countToTake);
+    }
+
+    public static IList<T> ShuffleRobust<T>(this IList<T> source, IRobustRandom random)
+    {
+        random.Shuffle(source);
+        return source;
     }
 }

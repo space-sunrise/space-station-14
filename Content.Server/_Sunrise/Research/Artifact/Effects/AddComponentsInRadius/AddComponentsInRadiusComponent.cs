@@ -19,4 +19,13 @@ public sealed partial class AddComponentsInRadiusComponent : Component
 
     [DataField]
     public EntityWhitelist? Whitelist;
+
+    [DataField]
+    public EntityWhitelist? Blacklist;
+
+    [DataField]
+    public LookupFlags SearchFlags = LookupFlags.All;
+
+    [DataField]
+    public bool RemoveExistingComponents;
 }
