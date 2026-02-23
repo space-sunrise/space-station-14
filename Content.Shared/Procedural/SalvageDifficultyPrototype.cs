@@ -46,6 +46,6 @@ public sealed partial class SalvageDifficultyPrototype : IPrototype
     /// <summary>
     /// Weighted chance for this difficulty when generating offers.
     /// </summary>
-    [DataField("probability")]
+    [DataField]
     public float Probability = 1f; // Sunrise-Edit
 }
