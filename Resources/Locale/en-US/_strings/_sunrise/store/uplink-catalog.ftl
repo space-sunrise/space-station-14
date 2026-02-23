@@ -118,6 +118,11 @@ uplink-mech-teleporter-heavy-desc = Contains Cybersun heavy armored mech with in
 uplink-mech-teleporter-assault-name = Assault Mech teleporter
 uplink-mech-teleporter-assault-desc = Contains Cybersun lightly armored mech with integrated chainsword, LBX AC 10 "Scattershot", SRM-8 Light Missile Rack and P-X Tesla Cannon.
 
+uplink-cleaner-kit-name = Mob Cleaner Kit
+uplink-cleaner-kit-desc = Clean up any evidence, make sure it can't be traced back to you.
+
+uplink-homerun-bat-name = Homerun Bat
+uplink-homerun-bat-desc = Send your enemies flying. Hey batta batta batta SWING batta!
 
 uplink-ammo-crate-ammokit-bundle-name = Syndicate super ammo bundle
 uplink-ammo-crate-ammokit-bundle-desc = Reloading! Reloading! Reloading! Contains various ammo kit except for big gun.

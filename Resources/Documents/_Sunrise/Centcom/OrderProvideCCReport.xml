@@ -1,13 +1,16 @@
 <Document>
-[bold]Станция: Station ХХ-000[/bold]
-[bold]Форма {corpString}/ЦК-КОМ[/bold]
-[head=3]Приказ о предоставлении отчета о цели ЦК[/head]
+[head=3][color=#000000][bold]* Приказ о предоставлении отчёта о цели ЦК *[/bold][/color][/head]
+[color=#000000][bold]{corpString}[/bold][/color][mono] / ЦК-КОМ[/mono]
+[color=#666666][bold]Станция:[/bold][/color] Station ХХ-000
+[color=#666666][bold]Время:[/bold][/color] {timeString}
 
-[italic]Время от начала смены и дата: {timeString}[/italic]
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#000000][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
 
-Составитель документа:
-Должность составителя:
-
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#000000][bold]* Приказ *[/bold][/color]
 
 В соответствии с установленной целью космической станции, прошу предоставить отчёт о выполнении цели за период с начала смены станции до настоящего момента.
 
@@ -15,6 +18,7 @@
 
 Срок выполнения: Немедленно.
 
-[italic]Место для печатей[/italic]
+[color=#666666][italic]Место для печатей[/italic][/color]
+
 
 </Document>

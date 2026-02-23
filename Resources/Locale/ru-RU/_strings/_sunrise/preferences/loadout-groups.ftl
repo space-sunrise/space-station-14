@@ -17,6 +17,7 @@ loadout-group-bodycam = Бодикамера
 loadout-group-bra = Бюстгальтер
 loadout-group-brigmedic-backpack = Рюкзак бригмедика
 loadout-group-brigmedic-jumpsuit = Униформа бригмедика
+loadout-group-sunrise-injectors = Инъекторы
 loadout-group-cargo-technician-gloves = Грузчик, перчатки
 loadout-group-cargo-technician-mask = Грузчик, маска
 loadout-group-cargo-technician-neck = Грузчик, шея

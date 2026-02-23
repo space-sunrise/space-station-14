@@ -1008,6 +1008,7 @@
   - ChiefEngineerCloak
   - ChiefEngineerMantle
   - ChiefEngineerScarf
+  - ChiefEngineerCloakLegacy #Sunrise-edit
   #sunrise-start
   - Sunrise-ScarfRed
   - Sunrise-ScarfOrange
@@ -1206,6 +1207,7 @@
   - ResearchDirectorMantle
   - ResearchDirectorCloak
   - ResearchDirectorScarf # Sunrise-Edit
+  - ResearchDirectorCloakLegacy # Sunrise-edit
 
 - type: loadoutGroup
   id: ResearchDirectorJumpsuit

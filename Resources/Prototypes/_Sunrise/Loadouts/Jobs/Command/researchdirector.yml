@@ -2,3 +2,8 @@
   id: ResearchDirectorScarf
   equipment:
     neck: ClothingNeckScarfRD
+
+- type: loadout
+  id: ResearchDirectorCloakLegacy
+  equipment:
+    neck: ClothingNeckCloakLegacyRd

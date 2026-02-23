@@ -62,3 +62,7 @@ ent-ClothingOuterCoatBlueshield = blue shield's overcoat
     .desc = Somewhat royal overcoat, that protecting protecting its wearer.
 ent-ClothingNeckCloakContrib = contributors cloak
     .desc = This cat hold up this station.
+ent-ClothingNeckCloakLegacyRd = research director's cloak
+    .desc = A white cloak with violet stripes, showing your status as the arbiter of cutting-edge technology.
+ent-ClothingNeckCloakLegacyCe = chief engineer's cloak
+    .desc = A dark green cloak with light blue ornaments, given to those who proved themselves to master the precise art of engineering.
