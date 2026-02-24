@@ -158,6 +158,18 @@
         {
             "name": "maletalternative",
             "directions": 4
+        },
+        {
+            "name": "emo_new",
+            "directions": 4
+        },
+        {
+            "name": "cascade",
+            "directions": 4
+        },
+        {
+            "name": "lace_ponytail",
+            "directions": 4
         }
   ]
-} 
+}
