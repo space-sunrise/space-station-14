@@ -19,10 +19,10 @@ public sealed partial class SalvageDungeonModPrototype : IPrototype, IBiomeSpeci
     [DataField]
     public List<ProtoId<SalvageBiomeModPrototype>>? Biomes { get; private set; } = null;
 
-    [DataField("difficulties", customTypeSerializer: typeof(PrototypeIdListSerializer<SalvageDifficultyPrototype>))]
-    public List<string>? Difficulties { get; private set; } = null; // Sunrise-Edit
-
     // Sunrise-Start
+    [DataField("difficulties", customTypeSerializer: typeof(PrototypeIdListSerializer<SalvageDifficultyPrototype>))]
+    public List<string>? Difficulties { get; private set; } = null;
+
     /// <summary>
     /// Which factions can spawn on this dungeon; any if empty.
     /// </summary>
