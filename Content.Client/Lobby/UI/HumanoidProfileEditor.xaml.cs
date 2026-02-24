@@ -108,6 +108,7 @@ namespace Content.Client.Lobby.UI
         private ColorSelectorSliders _rgbSkinColorSelector;
 
         private bool _isDirty;
+        private bool _updatingHairMirroring; // Sunrise - Edit
 
         private static readonly ProtoId<GuideEntryPrototype> DefaultSpeciesGuidebook = "Species";
 
@@ -474,6 +475,19 @@ namespace Content.Client.Lobby.UI
                 UpdateCMarkingsFacialHair();
                 ReloadPreview();
             };
+
+            // Sunrise - Start
+            HairMirroring.OnToggled += args =>
+            {
+                if (Profile is null || _updatingHairMirroring)
+                    return;
+
+                Profile = Profile.WithCharacterAppearance(
+                    Profile.Appearance.WithHairMirroring(args.Pressed)
+                );
+                ReloadPreview();
+            };
+            // Sunrise - End
 
             #endregion Hair
 
@@ -871,6 +885,7 @@ namespace Content.Client.Lobby.UI
 
             PreviewDummy = _controller.LoadProfileEntity(Profile, JobOverride, ShowClothes.Pressed);
             SpriteView.SetEntity(PreviewDummy);
+            SetPreviewRotation(_previewRotation);  // Sunrise - Edit
             _entManager.System<MetaDataSystem>().SetEntityName(PreviewDummy, Profile.Name);
 
             // Check and set the dirty flag to enable the save/reset buttons as appropriate.
@@ -911,6 +926,7 @@ namespace Content.Client.Lobby.UI
             UpdateTtsVoicesControls(); // Sunrise-TTS
             UpdateBodyTypes();
             UpdateHairPickers();
+            UpdateHairMirroringControls(); // Sunrise - Edit
             UpdateCMarkingsHair();
             UpdateCMarkingsFacialHair();
 
@@ -938,6 +954,8 @@ namespace Content.Client.Lobby.UI
                 return;
 
             _entManager.System<HumanoidAppearanceSystem>().LoadProfile(PreviewDummy, Profile);
+            // Sunrise-edit
+            SetPreviewRotation(_previewRotation);
 
             // Check and set the dirty flag to enable the save/reset buttons as appropriate.
             SetDirty();
@@ -1717,6 +1735,20 @@ namespace Content.Client.Lobby.UI
                 1);
         }
 
+        // Sunrise - Start
+        private void UpdateHairMirroringControls()
+        {
+            if (Profile == null)
+            {
+                return;
+            }
+
+            _updatingHairMirroring = true;
+            HairMirroring.Pressed = Profile.Appearance.HairMirrored;
+            _updatingHairMirroring = false;
+        }
+        // Sunrise - End
+
         private static List<Marking> CreateHairMarkings(
             string styleId,
             string defaultStyleId,
@@ -1838,7 +1870,13 @@ namespace Content.Client.Lobby.UI
 
         private void SetPreviewRotation(Direction direction)
         {
-            SpriteView.OverrideDirection = (Direction) ((int) direction % 4 * 2);
+            // Sunrise - Start
+            var previewDirection = (Direction)((int)direction % 4 * 2);
+            SpriteView.OverrideDirection = previewDirection;
+
+            if (_entManager.EntityExists(PreviewDummy))
+                _entManager.System<HumanoidAppearanceSystem>().UpdateHairMirroringForDirection(PreviewDummy, previewDirection);
+            // Sunrise - End
         }
 
         private void RandomizeEverything()

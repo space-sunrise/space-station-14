@@ -131,6 +131,11 @@
                                 <humanoid:SingleMarkingPicker Name="HairStylePicker" Category="Hair" />
                                 <humanoid:SingleMarkingPicker Name="FacialHairPicker" Category="FacialHair" />
                             </BoxContainer>
+                            <!-- Sunrise - Start -->
+                            <BoxContainer Margin="10 0 10 10" Orientation="Horizontal">
+                                <CheckBox Name="HairMirroring" Text="{Loc 'humanoid-profile-editor-hair-mirroring'}" />
+                            </BoxContainer>
+                            <!-- Sunrise - End -->
                             <!-- Eyes -->
                             <BoxContainer Margin="10" Orientation="Vertical">
                                 <Label Text="{Loc 'humanoid-profile-editor-eyes-label'}" />

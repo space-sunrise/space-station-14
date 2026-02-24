@@ -194,10 +194,13 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         targetHumanoid.Age = sourceHumanoid.Age;
         targetHumanoid.CustomBaseLayers = new(sourceHumanoid.CustomBaseLayers);
         targetHumanoid.MarkingSet = new(sourceHumanoid.MarkingSet);
-        SetTTSVoice(target, sourceHumanoid.Voice, targetHumanoid); // Sunrise-TTS
         targetHumanoid.BodyType = sourceHumanoid.BodyType;
-        targetHumanoid.Width = sourceHumanoid.Width; //Sunrise
-        targetHumanoid.Height = sourceHumanoid.Height; //Sunrise
+        // Sunrise - Start
+        SetTTSVoice(target, sourceHumanoid.Voice, targetHumanoid); // Sunrise-TTS
+        targetHumanoid.Width = sourceHumanoid.Width;
+        targetHumanoid.Height = sourceHumanoid.Height;
+        targetHumanoid.HairMirrored = sourceHumanoid.HairMirrored;
+        // Sunrise - End
 
         SetSex(target, sourceHumanoid.Sex, false, targetHumanoid);
         SetGender((target, targetHumanoid), sourceHumanoid.Gender);
@@ -508,6 +511,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         humanoid.Width = profile.Appearance.Width; //Sunrise
         humanoid.Height = profile.Appearance.Height; //Sunrise
+        humanoid.HairMirrored = profile.Appearance.HairMirrored; // Sunrise - Edit
 
         Dirty(uid, humanoid);
     }
@@ -572,12 +576,12 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         {
             return;
         }
-        // Sunrise-start
+        // Sunrise - Start
         var markingObject = new Marking(marking, colors)
         {
             Forced = forced
         };
-        // Sunrise-end
+        // Sunrise - End
         humanoid.MarkingSet.AddBack(prototype.MarkingCategory, markingObject);
 
         if (sync)

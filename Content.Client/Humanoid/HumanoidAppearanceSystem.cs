@@ -22,17 +22,22 @@ namespace Content.Client.Humanoid;
 
 public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 {
+    private static readonly float MirrorPixelCompensation = 1f / EyeManager.PixelsPerMeter; // Sunrise - Edit
+
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly DisplacementMapSystem _displacement = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!; // Sunrise - Edit
+    [Dependency] private readonly IEyeManager _eyeManager = default!; // Sunrise - Edit
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<HumanoidAppearanceComponent, AfterAutoHandleStateEvent>(OnHandleState);
+        SubscribeLocalEvent<HumanoidAppearanceComponent, MoveEvent>(OnMoved); // Sunrise - Edit
         //Subs.CVar(_configurationManager, CCVars.AccessibilityClientCensorNudity, OnCvarChanged, true);
         //Subs.CVar(_configurationManager, CCVars.AccessibilityServerCensorNudity, OnCvarChanged, true);
     }
@@ -58,17 +63,114 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
         var humanoidAppearance = entity.Comp1;
         var sprite = entity.Comp2;
-        // Sunrise-start
+        // Sunrise - Start
         var scale = new Vector2(humanoidAppearance.Width, humanoidAppearance.Height);
 
         _sprite.SetScale(entity.Owner, scale);
-        // Sunrise-end
+        // Sunrise - End
         sprite[_sprite.LayerMapReserve((entity.Owner, sprite), HumanoidVisualLayers.Eyes)].Color = humanoidAppearance.EyeColor;
     }
 
     private static bool IsHidden(HumanoidAppearanceComponent humanoid, HumanoidVisualLayers layer)
         => humanoid.HiddenLayers.ContainsKey(layer) || humanoid.PermanentlyHidden.Contains(layer);
 
+    // Sunrise - Start
+
+    private void OnMoved(EntityUid uid, HumanoidAppearanceComponent component, ref MoveEvent args)
+    {
+        if (!component.HairMirrored ||
+            args.OldRotation.GetCardinalDir() == args.NewRotation.GetCardinalDir() ||
+            !TryComp(uid, out SpriteComponent? sprite))
+        {
+            return;
+        }
+
+        UpdateHairMirroring((uid, component, sprite));
+    }
+
+    private Direction GetCurrentVisualDirection(EntityUid uid)
+    {
+        var angle = _transform.GetWorldRotation(uid) + _eyeManager.CurrentEye.Rotation;
+        return angle.GetCardinalDir();
+    }
+
+    // Меняем местами состояния волос на западе/востоке.
+    private static SpriteComponent.DirectionOffset GetHairDirOffset(Direction direction, bool shouldMirror)
+    {
+        if (!shouldMirror)
+            return SpriteComponent.DirectionOffset.None;
+
+        return direction is Direction.East or Direction.West
+            ? SpriteComponent.DirectionOffset.Flip
+            : SpriteComponent.DirectionOffset.None;
+    }
+
+    // Относительно камеры отражение по x исключительно только к северу и югу.
+    private static bool ShouldApplyMirrorCompensation(Direction direction, bool shouldMirror)
+    {
+        return shouldMirror && direction is Direction.North or Direction.South;
+    }
+
+    private void ApplyHairMirroring(Entity<SpriteComponent> spriteEnt, string layerId, bool shouldMirror, Direction direction)
+    {
+        if (!_sprite.TryGetLayer((spriteEnt.Owner, spriteEnt.Comp), layerId, out var existingLayer, false))
+            return;
+
+        var offset = existingLayer.Offset;
+        var targetDirOffset = GetHairDirOffset(direction, shouldMirror);
+        var hadMirrorCompensation = existingLayer.Scale.X < 0f && existingLayer.DirOffset == SpriteComponent.DirectionOffset.None;
+        var shouldApplyCompensation = ShouldApplyMirrorCompensation(direction, shouldMirror);
+
+        // Решение - проблемы: смещалось по пикселю.
+        if (hadMirrorCompensation)
+            offset.X += MirrorPixelCompensation;
+
+        if (shouldApplyCompensation)
+            offset.X -= MirrorPixelCompensation;
+
+        _sprite.LayerSetDirOffset((spriteEnt.Owner, spriteEnt.Comp), layerId, targetDirOffset);
+        _sprite.LayerSetOffset((spriteEnt.Owner, spriteEnt.Comp), layerId, offset);
+        // Отражение волос по x
+        _sprite.LayerSetScale((spriteEnt.Owner, spriteEnt.Comp), layerId, shouldMirror ? new Vector2(-1f, 1f) : Vector2.One);
+    }
+
+    public void UpdateHairMirroringForDirection(EntityUid uid, Direction direction)
+    {
+        if (!TryComp(uid, out HumanoidAppearanceComponent? humanoid) ||
+            !TryComp(uid, out SpriteComponent? sprite))
+        {
+            return;
+        }
+
+        UpdateHairMirroring((uid, humanoid, sprite), direction);
+    }
+
+    private void UpdateHairMirroring(Entity<HumanoidAppearanceComponent, SpriteComponent> entity, Direction? forcedDirection = null)
+    {
+        if (!entity.Comp1.HairMirrored)
+            return;
+
+        var visualDirection = forcedDirection ?? GetCurrentVisualDirection(entity.Owner);
+
+        if (!entity.Comp1.MarkingSet.TryGetCategory(MarkingCategories.Hair, out var hairMarkings))
+            return;
+
+        foreach (var marking in hairMarkings)
+        {
+            if (!_markingManager.TryGetMarking(marking, out var markingPrototype))
+                continue;
+
+            foreach (var markingSprite in markingPrototype.Sprites)
+            {
+                if (markingSprite is not SpriteSpecifier.Rsi rsi)
+                    continue;
+
+                var layerId = $"{markingPrototype.ID}-{rsi.RsiState}";
+                ApplyHairMirroring((entity.Owner, entity.Comp2), layerId, true, visualDirection);
+            }
+        }
+    }
+    // Sunrise - End
     private void UpdateLayers(Entity<HumanoidAppearanceComponent, SpriteComponent> entity)
     {
         var component = entity.Comp1;
@@ -248,6 +350,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         humanoid.EyeColor = profile.Appearance.EyeColor;
         humanoid.Width = profile.Appearance.Width; // Sunrise
         humanoid.Height = profile.Appearance.Height; // Sunrise
+        humanoid.HairMirrored = profile.Appearance.HairMirrored; // Sunrise-edit
 
         UpdateSprite((uid, humanoid, Comp<SpriteComponent>(uid)));
     }
@@ -379,6 +482,9 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         visible &= humanoid.BaseLayers.TryGetValue(markingPrototype.BodyPart, out var setting)
            && setting.AllowsMarkings;
 
+        var shouldMirror = markingPrototype.BodyPart == HumanoidVisualLayers.Hair && humanoid.HairMirrored; // Sunrise-edit
+        var visualDirection = shouldMirror ? GetCurrentVisualDirection(entity.Owner) : Direction.Invalid; // Sunrise-edit
+
         for (var j = 0; j < markingPrototype.Sprites.Count; j++)
         {
             var markingSprite = markingPrototype.Sprites[j];
@@ -396,6 +502,12 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             }
 
             _sprite.LayerSetVisible((entity.Owner, sprite), layerId, visible);
+            // Sunrise - Start
+            if (markingPrototype.BodyPart == HumanoidVisualLayers.Hair)
+            {
+                ApplyHairMirroring((entity.Owner, sprite), layerId, shouldMirror, visualDirection);
+            }
+            // Sunrise - End
 
             if (!visible || setting == null) // this is kinda implied
                 continue;
