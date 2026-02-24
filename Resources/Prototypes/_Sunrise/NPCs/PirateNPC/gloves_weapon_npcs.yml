@@ -976,6 +976,13 @@
   id: ClothingHandsBottle
   categories: [ HideSpawnMenu ]
   components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+        state: equipped-HAND
+      - sprite: _Sunrise/Objects/Misc/broken_bottle.rsi
+        state: inhand-left
   - type: Reflect
     reflectProb: 0.01
   - type: MeleeWeapon
