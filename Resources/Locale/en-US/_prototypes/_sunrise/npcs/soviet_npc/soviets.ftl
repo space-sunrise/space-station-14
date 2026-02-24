@@ -25,6 +25,8 @@ ent-MobSovietCaptain = soviet captain
     .desc = The commander of the Soviet raid party, dangerous and disciplined.
 ent-MobSovietBear = soviet war bear
     .desc = A brutal Soviet assault beast that reeks of strong booze.
+ent-MobSovietBearAlt = { ent-MobSovietBear }
+    .desc = { ent-MobSovietBear.desc }
 ent-MobSovietSpaceBear = soviet space bear
     .desc = A brutal spacefaring Soviet beast that reeks of strong booze.
 
@@ -48,6 +50,8 @@ ent-MobSovietCaptainTimed = { ent-MobSovietCaptain }
     .desc = { ent-MobSovietCaptain.desc }
 ent-MobSovietBearTimed = { ent-MobSovietBear }
     .desc = { ent-MobSovietBear.desc }
+ent-MobSovietBearAltTimed = { ent-MobSovietBearAlt }
+    .desc = { ent-MobSovietBearAlt.desc }
 ent-MobSovietSpaceBearTimed = { ent-MobSovietSpaceBear }
     .desc = { ent-MobSovietSpaceBear.desc }
 

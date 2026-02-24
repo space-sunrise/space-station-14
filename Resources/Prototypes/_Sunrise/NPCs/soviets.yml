@@ -540,20 +540,14 @@
 
 # region Mini-boss
 - type: entity
-  name: soviet bear
-  id: MobSovietBear
+  abstract: true
+  id: MobSovietBearBase
   parent: MobBearSpace
   description: Smells like booze.
   components:
   - type: NpcFactionMember
     factions:
     - Soviet
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: _Sunrise/Mobs/Animals/bear.rsi
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: bear
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -583,41 +577,33 @@
       amount: 1
 
 - type: entity
+  name: soviet bear
+  id: MobSovietBear
+  parent: MobSovietBearBase
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Sunrise/Mobs/Animals/bear.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: bear
+
+- type: entity
+  name: soviet bear
+  id: MobSovietBearAlt
+  parent: MobSovietBearBase
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Sunrise/Mobs/Animals/bear_soviet.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: bear
+
+- type: entity
   name: soviet space bear
   id: MobSovietSpaceBear
-  parent: MobBearSpace
-  description: Smells like booze.
-  components:
-  - type: NpcFactionMember
-    factions:
-    - Soviet
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      200: Critical
-      300: Dead
-  - type: Stamina
-    baseCritThreshold: 250
-  - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Vodka
-        Quantity: 300
-  - type: MeleeWeapon
-    soundHit:
-      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
-    angle: 0
-    animation: WeaponArcClaw
-    damage:
-      types:
-        Blunt: 10
-        Slash: 20
-  - type: Butcherable
-    spawned:
-    - id: FoodMeatBear
-      amount: 6
-    - id: ChemistryBottleOmnizine
-      amount: 1
+  parent: MobSovietBearBase
 
 # timed despawn spawner
 - type: entity
@@ -642,6 +628,7 @@
       - MobSovietSpecialistAssaultTimed
     rarePrototypes:
       - MobSovietBearTimed
+      - MobSovietBearAltTimed
       - MobSovietSpaceBearTimed
       - MobSovietCaptainTimed
     rareChance: 0.15
@@ -690,3 +677,7 @@
 - type: entity
   parent: [MobSovietTimedDespawn, MobSovietBear]
   id: MobSovietBearTimed
+
+- type: entity
+  parent: [MobSovietTimedDespawn, MobSovietBearAlt]
+  id: MobSovietBearAltTimed
