@@ -5,10 +5,10 @@ namespace Content.Server._Sunrise.Research.Artifact.Effects.RandomTransformation
 [RegisterComponent]
 public sealed partial class ArtifactRandomTransformationComponent : Component
 {
-    [DataField, ViewVariables]
-    public float TransformationPercentRatio = 20f;
+    [DataField]
+    public float TransformationPercentRatio = 0.2f;
 
-    [DataField, ViewVariables]
+    [DataField]
     public float Radius = 12f;
 
     [DataField]
