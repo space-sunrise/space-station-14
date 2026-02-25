@@ -2548,8 +2548,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      350: Critical
-      375: Dead
+      340: Critical
+      350: Dead
   - type: Destructible
     thresholds:
     - trigger:
@@ -2597,14 +2597,13 @@
   - type: MeleeWeapon
     hidden: true
     autoAttack: true
-    attackRate: 4
+    attackRate: 3
     damage:
       types:
         Structural: 40
-        Piercing: 5
-        Slash: 5
-        Blunt: 5
-    bluntStaminaDamageFactor: 0.5
+        Piercing: 13
+        Blunt: 1
+    bluntStaminaDamageFactor: 5
     soundHit:
       path: "/Audio/Items/drill_use.ogg"
   - type: Reflect

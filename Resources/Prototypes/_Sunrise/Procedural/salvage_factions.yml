@@ -221,7 +221,6 @@
       cost: 50
       prob: 0.05
   difficulties:
-    - Moderate
     - Challenging
     - Difficult
     - Impossible
@@ -350,28 +349,52 @@
     - proto: MobSovietSoldierKnifeTimed
       cost: 4
       prob: 0.1
-    - proto: MobSovietSoldierKnifeAltTimed
-      cost: 5
-      prob: 0.1
     - proto: MobSovietSoldierPistolTimed
       cost: 6
       prob: 0.15
     - proto: MobSovietSoldierMosinTimed
       cost: 7
-      prob: 0.2
-    - proto: MobSovietSoldierRevolverTimed
+      prob: 0.14
+    - proto: MobSovietSoldierT1SMGAltTimed
       cost: 7
-      prob: 0.05
-    - proto: MobSovietBreacherShotgunTimed
+      prob: 0.12
+    - proto: MobSovietSoldierMosinAltTimed
+      cost: 7
+      prob: 0.08
+    - proto: MobSovietSoldierT2BottleTimed
+      cost: 7
+      prob: 0.08
+    - proto: MobSovietSoldierT2FinkaTimed
+      cost: 7
+      prob: 0.08
+    - proto: MobSovietSoldierT2RevolverTimed
+      cost: 9
+      prob: 0.07
+    - proto: MobSovietSoldierT2RifleTimed
       cost: 9
       prob: 0.08
-    - proto: MobSovietSpecialistRaiderTimed
+    - proto: MobSovietSoldierT2RifleWTimed
       cost: 9
       prob: 0.06
-    - proto: MobSovietSpecialistAssaultTimed
-      cost: 9
+    - proto: MobSovietSoldierT3ShotgunTimed
+      cost: 12
+      prob: 0.08
+    - proto: MobSovietSoldierT3RifleTimed
+      cost: 12
+      prob: 0.08
+    - proto: MobSovietSoldierT2RaiderTimed
+      cost: 10
       prob: 0.06
+    - proto: MobSovietSoldierT2MechTimed
+      cost: 45
+      prob: 0.02
+    - proto: MobSovietSoldierT3MechTimed
+      cost: 75
+      prob: 0.015
     - proto: MobSovietBearTimed
+      cost: 10
+      prob: 0.04
+    - proto: MobSovietBearAltTimed
       cost: 10
       prob: 0.04
     - proto: MobSovietSpaceBearTimed
@@ -381,7 +404,6 @@
       cost: 20
       prob: 0.03
   difficulties:
-    - Moderate
     - Challenging
     - Difficult
     - Impossible

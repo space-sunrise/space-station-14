@@ -644,6 +644,18 @@
         state: wielded-inhand-right
 
 - type: entity
+  parent: ClothingHandsNoGloves
+  id: ClothingHandsPPSHSoviet
+  suffix: ppsh
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
+        state: wielded-inhand-right
+
+- type: entity
   parent: [ClothingHandsNoGloves, PirateArmorPrivateerInfiltration]
   id: ClothingHandsSKM28
   suffix: skm28
@@ -946,6 +958,33 @@
 
 - type: entity
   parent: [ClothingHandsNoGloves, PirateArmorMechArmorMediumSyndi]
+  id: ClothingHandsMechMinotaur
+  suffix: Mech Minotaur
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha_wield.rsi
+        state: mech-wield-2
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 14
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 35
+        Structural: 150
+    bluntStaminaDamageFactor: 1.5
+    soundHit:
+      collection: PunchHard
+  - type: FireProtection
+    reduction: 0.99
+
+- type: entity
+  parent: [ClothingHandsNoGloves, PirateArmorMechArmorMediumSyndi]
   id: ClothingHandsMechMaxim
   suffix: Mech Maxim
   categories: [ HideSpawnMenu ]
@@ -1014,6 +1053,21 @@
     clothingVisuals:
       gloves:
       - sprite: _Sunrise/Objects/Weapons/Melee/finka.rsi
+        state: inhand-left
+
+- type: entity
+  parent: [ ClothingHandsBlackSMG, PirateArmorUSSPHeavy ]
+  id: ClothingHandsBlackShotgunSoviet
+  suffix: shotgun
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
         state: inhand-left
 
 # This is some proper cursed stuff: due to layering of clothes sprites, gloves displayed under outer clothes

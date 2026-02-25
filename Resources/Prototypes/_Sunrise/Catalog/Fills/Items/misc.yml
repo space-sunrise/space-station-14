@@ -50,3 +50,15 @@
         - id: Handcuffs
         - id: Handcuffs
         - id: HoloprojectorSecurity
+
+- type: entity
+  id: ClothingShoesBootsUSSPFilled
+  parent: ClothingShoesBootsCombat
+  suffix: Filled, Finka
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - Finka
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.35
