@@ -91,12 +91,13 @@
   - type: GuideHelp
     guides:
     - Pumps
-  - type: VentCrawTube
-    containerId: VentCrawTube
-  - type: VentCrawTransit
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlTransit
   - type: ContainerContainer
     containers:
-      VentCrawTube: !type:Container
+      VentCrawlTube: !type:Container
+  # Starlight end
 
 - type: entity
   parent: GasBinaryBase
@@ -170,6 +171,13 @@
     - type: GuideHelp
       guides:
       - Pumps
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlTransit
+    - type: ContainerContainer
+      containers:
+        VentCrawlTube: !type:Container
+    # Starlight end
 
 - type: entity
   parent: GasBinaryBase
@@ -279,12 +287,13 @@
     - type: GuideHelp
       guides:
       - PassiveGate
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawTransit
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlTransit
     - type: ContainerContainer
       containers:
-        VentCrawTube: !type:Container
+        VentCrawlTube: !type:Container
+    # Starlight end
 
 - type: entity
   parent: GasBinaryBase
@@ -346,12 +355,13 @@
     - type: GuideHelp
       guides:
       - ManualValve
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawTransit
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlTransit
     - type: ContainerContainer
       containers:
-        VentCrawTube: !type:Container
+        VentCrawlTube: !type:Container
+    # Starlight end
 
 - type: entity
   parent: GasBinaryBase
@@ -424,12 +434,13 @@
   - type: GuideHelp
     guides:
     - SignalValve
-  - type: VentCrawTube
-    containerId: VentCrawTube
-  - type: VentCrawTransit
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlTransit
   - type: ContainerContainer
     containers:
-      VentCrawTube: !type:Container
+      VentCrawlTube: !type:Container
+  # Starlight end
 
 - type: entity
   parent: GasBinaryBase
@@ -469,14 +480,15 @@
     - type: GuideHelp
       guides:
       - GasCanisters
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawJunction
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
       degrees:
         - 0
     - type: ContainerContainer
       containers:
-        VentCrawTube: !type:Container
+        VentCrawlTube: !type:Container
+    # Starlight end
 
 - type: entity
   parent: GasVentPump

@@ -3,20 +3,20 @@ using Content.Shared.Body.Components;
 using Content.Shared.Tools.Components;
 using Content.Shared.Item;
 using Content.Shared.Movement.Events;
-using Content.Shared.VentCraw.Tube.Components;
-using Content.Shared.VentCraw.Components;
+using Content.Shared.VentCrawl.Tube.Components;
+using Content.Shared.VentCrawl.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 
-namespace Content.Shared.VentCraw;
+namespace Content.Shared.VentCrawl;
 
 /// <summary>
 /// A system that handles the crawling behavior for vent creatures.
 /// </summary>
-public sealed class SharedVentCrawableSystem : EntitySystem
+public sealed class SharedVentCrawlableSystem : EntitySystem
 {
     [Dependency] private readonly SharedVentTubeSystem _ventCrawTubeSystem = default!;
     [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
@@ -24,55 +24,55 @@ public sealed class SharedVentCrawableSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<VentCrawHolderComponent, ComponentStartup>(OnComponentStartup);
-        SubscribeLocalEvent<VentCrawHolderComponent, MoveInputEvent>(OnMoveInput);
+        SubscribeLocalEvent<VentCrawlHolderComponent, ComponentStartup>(OnComponentStartup);
+        SubscribeLocalEvent<VentCrawlHolderComponent, MoveInputEvent>(OnMoveInput);
     }
 
     /// <summary>
-    /// Handles the MoveInputEvent for VentCrawHolderComponent.
+    /// Handles the MoveInputEvent for VentCrawlHolderComponent.
     /// </summary>
-    /// <param name="uid">The EntityUid of the VentCrawHolderComponent.</param>
-    /// <param name="component">The VentCrawHolderComponent instance.</param>
+    /// <param name="uid">The EntityUid of the VentCrawlHolderComponent.</param>
+    /// <param name="component">The VentCrawlHolderComponent instance.</param>
     /// <param name="args">The MoveInputEvent arguments.</param>
-    private void OnMoveInput(EntityUid uid, VentCrawHolderComponent component, ref MoveInputEvent args)
+    private void OnMoveInput(EntityUid uid, VentCrawlHolderComponent holder, ref MoveInputEvent args)
     {
-        if (!TryComp<VentCrawHolderComponent>(uid, out var holder))
+        if (!TryComp<VentCrawlHolderComponent>(uid, out var ventCrawlHolder))
             return;
 
-        if (!EntityManager.EntityExists(holder.CurrentTube))
+        if (!EntityManager.EntityExists(ventCrawlHolder.CurrentTube))
         {
-            var ev = new VentCrawExitEvent();
+            var ev = new VentCrawlExitEvent();
             RaiseLocalEvent(uid, ref ev);
         }
 
-        component.IsMoving = args.State;
-        component.CurrentDirection = args.Dir;
+        ventCrawlHolder.IsMoving = args.State;
+        ventCrawlHolder.CurrentDirection = args.Dir;
     }
 
     /// <summary>
-    /// Handles the ComponentStartup event for VentCrawHolderComponent.
+    /// Handles the ComponentStartup event for VentCrawlHolderComponent.
     /// </summary>
-    /// <param name="uid">The EntityUid of the VentCrawHolderComponent.</param>
-    /// <param name="holder">The VentCrawHolderComponent instance.</param>
+    /// <param name="uid">The EntityUid of the VentCrawlHolderComponent.</param>
+    /// <param name="holder">The VentCrawlHolderComponent instance.</param>
     /// <param name="args">The ComponentStartup arguments.</param>
-    private void OnComponentStartup(EntityUid uid, VentCrawHolderComponent holder, ComponentStartup args)
+    private void OnComponentStartup(EntityUid uid, VentCrawlHolderComponent holder, ComponentStartup args)
     {
-        holder.Container = _containerSystem.EnsureContainer<Container>(uid, nameof(VentCrawHolderComponent));
+        holder.Container = _containerSystem.EnsureContainer<Container>(uid, nameof(VentCrawlHolderComponent));
     }
-    
+
     /// <summary>
-    /// Tries to insert an entity into the VentCrawHolderComponent container.
+    /// Tries to insert an entity into the VentCrawlHolderComponent container.
     /// </summary>
-    /// <param name="uid">The EntityUid of the VentCrawHolderComponent.</param>
+    /// <param name="uid">The EntityUid of the VentCrawlHolderComponent.</param>
     /// <param name="toInsert">The EntityUid of the entity to insert.</param>
-    /// <param name="holder">The VentCrawHolderComponent instance.</param>
+    /// <param name="holder">The VentCrawlHolderComponent instance.</param>
     /// <returns>True if the insertion was successful, otherwise False.</returns>
-    public bool TryInsert(EntityUid uid, EntityUid toInsert, VentCrawHolderComponent? holder = null)
+    public bool TryInsert(EntityUid uid, EntityUid toInsert, VentCrawlHolderComponent? holder = null)
     {
         if (!Resolve(uid, ref holder))
             return false;
@@ -90,13 +90,13 @@ public sealed class SharedVentCrawableSystem : EntitySystem
     }
 
     /// <summary>
-    /// Checks whether the specified entity can be inserted into the container of the VentCrawHolderComponent.
+    /// Checks whether the specified entity can be inserted into the container of the VentCrawlHolderComponent.
     /// </summary>
-    /// <param name="uid">The EntityUid of the VentCrawHolderComponent.</param>
+    /// <param name="uid">The EntityUid of the VentCrawlHolderComponent.</param>
     /// <param name="toInsert">The EntityUid of the entity to be inserted.</param>
-    /// <param name="holder">The VentCrawHolderComponent instance.</param>
+    /// <param name="holder">The VentCrawlHolderComponent instance.</param>
     /// <returns>True if the entity can be inserted into the container; otherwise, False.</returns>
-    private bool CanInsert(EntityUid uid, EntityUid toInsert, VentCrawHolderComponent? holder = null)
+    private bool CanInsert(EntityUid uid, EntityUid toInsert, VentCrawlHolderComponent? holder = null)
     {
         if (!Resolve(uid, ref holder))
             return false;
@@ -109,40 +109,40 @@ public sealed class SharedVentCrawableSystem : EntitySystem
     }
 
     /// <summary>
-    /// Attempts to make the VentCrawHolderComponent enter a VentCrawTubeComponent.
+    /// Attempts to make the VentCrawlHolderComponent enter a VentCrawlTubeComponent.
     /// </summary>
-    /// <param name="holderUid">The EntityUid of the VentCrawHolderComponent.</param>
-    /// <param name="toUid">The EntityUid of the VentCrawTubeComponent to enter.</param>
-    /// <param name="holder">The VentCrawHolderComponent instance.</param>
-    /// <param name="holderTransform">The TransformComponent instance for the VentCrawHolderComponent.</param>
-    /// <param name="to">The VentCrawTubeComponent instance to enter.</param>
-    /// <param name="toTransform">The TransformComponent instance for the VentCrawTubeComponent.</param>
-    /// <returns>True if the VentCrawHolderComponent successfully enters the VentCrawTubeComponent; otherwise, False.</returns>
-    public bool EnterTube(EntityUid holderUid, EntityUid toUid, VentCrawHolderComponent? holder = null, TransformComponent? holderTransform = null, VentCrawTubeComponent? to = null, TransformComponent? toTransform = null)
+    /// <param name="holderUid">The EntityUid of the VentCrawlHolderComponent.</param>
+    /// <param name="toUid">The EntityUid of the VentCrawlTubeComponent to enter.</param>
+    /// <param name="holder">The VentCrawlHolderComponent instance.</param>
+    /// <param name="holderTransform">The TransformComponent instance for the VentCrawlHolderComponent.</param>
+    /// <param name="to">The VentCrawlTubeComponent instance to enter.</param>
+    /// <param name="toTransform">The TransformComponent instance for the VentCrawlTubeComponent.</param>
+    /// <returns>True if the VentCrawlHolderComponent successfully enters the VentCrawlTubeComponent; otherwise, False.</returns>
+    public bool EnterTube(EntityUid holderUid, EntityUid toUid, VentCrawlHolderComponent? holder = null, TransformComponent? holderTransform = null, VentCrawlTubeComponent? to = null, TransformComponent? toTransform = null)
     {
         if (!Resolve(holderUid, ref holder, ref holderTransform))
             return false;
-        if (holder.IsExitingVentCraws)
+        if (holder.IsExitingVentCrawls)
         {
-            Log.Error("Tried entering tube after exiting VentCraws. This should never happen.");
+            Log.Error("Tried entering tube after exiting VentCrawls. This should never happen.");
             return false;
         }
         if (!Resolve(toUid, ref to, ref toTransform))
         {
-            var ev = new VentCrawExitEvent();
+            var ev = new VentCrawlExitEvent();
             RaiseLocalEvent(holderUid, ref ev);
             return false;
         }
 
         foreach (var ent in holder.Container.ContainedEntities)
         {
-            var comp = EnsureComp<BeingVentCrawComponent>(ent);
+            var comp = EnsureComp<BeingVentCrawlComponent>(ent);
             comp.Holder = holderUid;
         }
 
         if (!_containerSystem.Insert(holderUid, to.Contents))
         {
-            var ev = new VentCrawExitEvent();
+            var ev = new VentCrawlExitEvent();
             RaiseLocalEvent(holderUid, ref ev);
             return false;
         }
@@ -156,18 +156,18 @@ public sealed class SharedVentCrawableSystem : EntitySystem
 
         return true;
     }
-    
+
     /// <summary>
     ///  Magic...
     /// </summary>
     public override void Update(float frameTime)
     {
-        var query = EntityQueryEnumerator<VentCrawHolderComponent>();
+        var query = EntityQueryEnumerator<VentCrawlHolderComponent>();
         while (query.MoveNext(out var uid, out var holder))
         {
             if (holder.CurrentDirection == Direction.Invalid)
                 return;
-            
+
             if (holder.CurrentTube == null)
             {
                 continue;
@@ -183,7 +183,7 @@ public sealed class SharedVentCrawableSystem : EntitySystem
                 {
                     if (!EntityManager.EntityExists(holder.CurrentTube))
                     {
-                        var ev = new VentCrawExitEvent();
+                        var ev = new VentCrawlExitEvent();
                         RaiseLocalEvent(uid, ref ev);
                         continue;
                     }
@@ -194,17 +194,17 @@ public sealed class SharedVentCrawableSystem : EntitySystem
                 }
                 else
                 {
-                    var ev = new GetVentCrawsConnectableDirectionsEvent();
+                    var ev = new GetVentCrawlsConnectableDirectionsEvent();
                     RaiseLocalEvent(currentTube, ref ev);
                     if (ev.Connectable.Contains(holder.CurrentDirection))
                     {
-                        var Exitev = new VentCrawExitEvent();
+                        var Exitev = new VentCrawlExitEvent();
                         RaiseLocalEvent(uid, ref Exitev);
                         continue;
                     }
                 }
             }
-            
+
             if (holder.NextTube != null && holder.TimeLeft > 0)
             {
                 var time = frameTime;
@@ -224,28 +224,25 @@ public sealed class SharedVentCrawableSystem : EntitySystem
                 frameTime -= time;
             }
             else if (holder.NextTube != null && holder.TimeLeft == 0)
-            {                
-                if (HasComp<VentCrawEntryComponent>(holder.NextTube.Value) && !holder.FirstEntry)
+            {
+                var welded = false;
+
+                if (TryComp<WeldableComponent>(holder.NextTube.Value, out var weldableComponent))
+                    welded = weldableComponent.IsWelded;
+
+                if (HasComp<VentCrawlEntryComponent>(holder.NextTube.Value) && !holder.FirstEntry && !welded)
                 {
-                    var welded = false;
-                    if (TryComp<WeldableComponent>(holder.NextTube.Value, out var weldableComponent))
-                    {
-                        welded = weldableComponent.IsWelded;
-                    }
-                    if (!welded)
-                    {
-                        var ev = new VentCrawExitEvent();
-                        RaiseLocalEvent(uid, ref ev);
-                    }
+                    var ev = new VentCrawlExitEvent();
+                    RaiseLocalEvent(uid, ref ev);
                 }
                 else
                 {
-                    _containerSystem.Remove(uid, Comp<VentCrawTubeComponent>(currentTube).Contents ,reparent: false, force: true);
+                    _containerSystem.Remove(uid, Comp<VentCrawlTubeComponent>(currentTube).Contents ,reparent: false, force: true);
 
                     if (holder.FirstEntry)
                         holder.FirstEntry = false;
 
-                    if (_gameTiming.CurTime > holder.LastCrawl + VentCrawHolderComponent.CrawlDelay)
+                    if (_gameTiming.CurTime > holder.LastCrawl + VentCrawlHolderComponent.CrawlDelay)
                     {
                         holder.LastCrawl = _gameTiming.CurTime;
                         _audioSystem.PlayPvs(holder.CrawlSound, uid);

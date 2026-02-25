@@ -1,53 +1,53 @@
 using System.Linq;
-using Content.Shared.VentCraw.Tube.Components;
-using Content.Shared.VentCraw.Components;
-using Content.Shared.VentCraw;
+using Content.Shared.VentCrawl.Tube.Components;
+using Content.Shared.VentCrawl.Components;
+using Content.Shared.VentCrawl;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Containers;
 
-namespace Content.Server.VentCraw;
+namespace Content.Server.VentCrawl;
 
-public sealed class VentCrawableSystem : EntitySystem
+public sealed class VentCrawlableSystem : EntitySystem
 {
     [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<VentCrawHolderComponent, VentCrawExitEvent>(OnVentCrawExitEvent);
+        SubscribeLocalEvent<VentCrawlHolderComponent, VentCrawlExitEvent>(OnVentCrawlExitEvent);
     }
-    
+
     /// <summary>
-    /// Exits the vent craws for the specified VentCrawHolderComponent, removing it and any contained entities from the craws.
+    /// Exits the vent craws for the specified VentCrawlHolderComponent, removing it and any contained entities from the craws.
     /// </summary>
-    /// <param name="uid">The EntityUid of the VentCrawHolderComponent.</param>
-    /// <param name="holder">The VentCrawHolderComponent instance.</param>
-    /// <param name="holderTransform">The TransformComponent instance for the VentCrawHolderComponent.</param>
-    private void OnVentCrawExitEvent(EntityUid uid, VentCrawHolderComponent holder, ref VentCrawExitEvent args)
+    /// <param name="uid">The EntityUid of the VentCrawlHolderComponent.</param>
+    /// <param name="holder">The VentCrawlHolderComponent instance.</param>
+    /// <param name="holderTransform">The TransformComponent instance for the VentCrawlHolderComponent.</param>
+    private void OnVentCrawlExitEvent(EntityUid uid, VentCrawlHolderComponent holder, ref VentCrawlExitEvent args)
     {
         var holderTransform = args.holderTransform;
-        
+
         if (Terminating(uid))
             return;
 
         if (!Resolve(uid, ref holderTransform))
             return;
 
-        if (holder.IsExitingVentCraws)
+        if (holder.IsExitingVentCrawls)
         {
-            Log.Error("Tried exiting VentCraws twice. This should never happen.");
+            Log.Error("Tried exiting VentCrawls twice. This should never happen.");
             return;
         }
 
-        holder.IsExitingVentCraws = true;
+        holder.IsExitingVentCrawls = true;
 
         foreach (var entity in holder.Container.ContainedEntities.ToArray())
         {
-            RemComp<BeingVentCrawComponent>(entity);
+            RemComp<BeingVentCrawlComponent>(entity);
 
             var meta = MetaData(entity);
             _containerSystem.Remove(entity, holder.Container, reparent: false, force: true);
@@ -69,7 +69,7 @@ public sealed class VentCrawableSystem : EntitySystem
                 _physicsSystem.WakeBody(entity, body: physics);
             }
         }
-        
+
         EntityManager.DeleteEntity(uid);
     }
 }

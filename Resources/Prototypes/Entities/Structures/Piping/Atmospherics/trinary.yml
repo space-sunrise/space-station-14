@@ -78,16 +78,17 @@
     - type: GuideHelp
       guides:
       - MixingAndFiltering
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawJunction
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
       degrees:
         - 0
         - -90
         - 180
     - type: ContainerContainer
       containers:
-        VentCrawTube: !type:Container
+        VentCrawlTube: !type:Container
+    # Starlight end
 
 - type: entity
   parent: GasFilter
@@ -135,16 +136,17 @@
         !type:PipeNode
         nodeGroupID: Pipe
         pipeDirection: North
-  - type: VentCrawTube
-    containerId: VentCrawTube
-  - type: VentCrawJunction
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlJunction
     degrees:
       - 0
       - -90
       - 180
   - type: ContainerContainer
     containers:
-      VentCrawTube: !type:Container
+      VentCrawlTube: !type:Container
+  # Starlight end
 
 - type: entity
   parent: GasTrinaryBase
@@ -197,16 +199,17 @@
     - type: GuideHelp
       guides:
       - MixingAndFiltering
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawJunction
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
       degrees:
         - 0
         - -90
         - 180
     - type: ContainerContainer
       containers:
-        VentCrawTube: !type:Container
+        VentCrawlTube: !type:Container
+    # Starlight end
 
 - type: entity
   parent: GasMixer
@@ -250,16 +253,17 @@
         pipeDirection: North
   - type: Construction
     node: mixerflipped
-  - type: VentCrawTube
-    containerId: VentCrawTube
-  - type: VentCrawJunction
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlJunction
     degrees:
       - 0
       - -90
       - 180
   - type: ContainerContainer
     containers:
-      VentCrawTube: !type:Container
+      VentCrawlTube: !type:Container
+  # Starlight end
 
 - type: entity
   parent: GasPipeBase
@@ -325,13 +329,14 @@
       - PneumaticValve
       - Pumps
       - Valves
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawJunction
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
       degrees:
         - 0
         - -90
         - 180
     - type: ContainerContainer
       containers:
-        VentCrawTube: !type:Container
+        VentCrawlTube: !type:Container
+    # Starlight end

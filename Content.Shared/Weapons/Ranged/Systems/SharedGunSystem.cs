@@ -41,9 +41,9 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.VentCrawl;
 using Content.Shared.Weapons.Hitscan.Events;
 using Content.Shared._Sunrise.Weapons.DualWield;
-using Content.Shared.VentCraw;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
