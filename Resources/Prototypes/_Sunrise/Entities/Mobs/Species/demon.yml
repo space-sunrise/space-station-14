@@ -27,7 +27,7 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatArkana
+    - id: FoodMeatDemon
       amount: 5
   - type: Speech
     speechSounds: Lizard

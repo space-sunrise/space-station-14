@@ -27,16 +27,16 @@
 
 - type: entity
   parent: FoodMeatSpeciesBase
-  id: FoodMeatArkana
-  name: arkana meat
+  id: FoodMeatDemon
+  name: demon meat
   description: It looks like it will bite back.
   components:
   - type: Sprite
     state: arkana_meat
   - type: Construction
-    graph: SunriseArkanaSteak
+    graph: SunriseDemonSteak
     node: start
-    defaultTarget: arkana steak
+    defaultTarget: demon steak
 
 - type: entity
   parent: FoodMeatPlant
@@ -188,7 +188,7 @@
   - type: Sprite
     state: vulpkanin_meat
   - type: Construction
-    graph: VulpkaninSteak
+    graph: SunriseVulpkaninSteak
     node: start
     defaultTarget: vulpkanin steak
 
@@ -229,16 +229,16 @@
 
 - type: entity
   parent: FoodMeatSpeciesCookedBase
-  id: FoodMeatArkanaCooked
-  name: arkana steak
-  description: A cooked slab of arkana meat.
+  id: FoodMeatDemonCooked
+  name: demon steak
+  description: A cooked slab of demon meat.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Consumable/Food/species_meat.rsi
     state: demon_meat_baked
   - type: Construction
-    graph: SunriseArkanaSteak
-    node: arkana steak
+    graph: SunriseDemonSteak
+    node: demon steak
 
 - type: entity
   parent: FoodMeatSpeciesCookedBase
@@ -341,5 +341,5 @@
     sprite: _Sunrise/Objects/Consumable/Food/species_meat.rsi
     state: vulpkanin_meat_baked
   - type: Construction
-    graph: VulpkaninSteak
+    graph: SunriseVulpkaninSteak
     node: vulpkanin steak

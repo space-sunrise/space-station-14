@@ -1,17 +1,17 @@
 - type: constructionGraph
-  id: SunriseArkanaSteak
+  id: SunriseDemonSteak
   start: start
   graph:
   - node: start
     edges:
-    - to: arkana steak
+    - to: demon steak
       completed:
       - !type:PlaySound
         sound: /Audio/Effects/sizzle.ogg
       steps:
       - minTemperature: 335
-  - node: arkana steak
-    entity: FoodMeatArkanaCooked
+  - node: demon steak
+    entity: FoodMeatDemonCooked
 
 - type: constructionGraph
   id: SunriseFelinidSteak
@@ -119,7 +119,7 @@
     entity: FoodMeatUnathCooked
 
 - type: constructionGraph
-  id: VulpkaninSteak
+  id: SunriseVulpkaninSteak
   start: start
   graph:
   - node: start
