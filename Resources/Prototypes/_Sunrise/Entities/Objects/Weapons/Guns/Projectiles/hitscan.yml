@@ -214,7 +214,7 @@
     armorPenetration: -0.99
     damage:
       types:
-        Blunt: 7.5
+        Blunt: 5
   - type: HitscanPierce
     chance: 0.05
     deviation: 0.05
@@ -247,7 +247,7 @@
     armorPenetration: -0.99
     damage:
       types:
-        Blunt: 4
+        Blunt: 3
   - type: HitscanPierce
     chance: 0.05
     deviation: 0.05

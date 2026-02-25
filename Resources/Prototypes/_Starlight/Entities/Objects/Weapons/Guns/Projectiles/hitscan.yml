@@ -986,7 +986,7 @@
   - type: HitscanBasicDamage
     damage:
       types:
-        Blunt: 15
+        Blunt: 10
   - type: HitscanStaminaDamage
     staminaDamage: 35
   - type: HitscanPierce
