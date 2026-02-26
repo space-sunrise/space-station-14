@@ -10,6 +10,9 @@
     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/cburn-commander.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetCBURNLeader
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -40,6 +43,9 @@
     damageCoefficient: 0.6
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBlueshield
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 - type: entity
   parent: ClothingOuterHardsuitBlueShield
@@ -57,6 +63,9 @@
     - 0,0,4,4 #5X5, can fit in a duffel bag but nothing smaller.
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNTRG
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 - type: entity
   parent: ClothingOuterHardsuitSecurity
@@ -69,6 +78,9 @@
     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/secoff.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecuritySunrise
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 - type: entity
   parent: ClothingOuterHardsuitBrigmedicSunrise
@@ -86,6 +98,9 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPilot
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -116,6 +131,9 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 # USSP
 - type: entity
@@ -165,6 +183,9 @@
     useCharge: 0
   - type: UseDelay
     delay: 10.0
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 - type: entity
   parent: [ ClothingOuterHardsuitBase ]
@@ -203,6 +224,9 @@
     - Hardsuit
     - FullBodyOuter  # SUNRISE EDIT
     - WhitelistChameleon
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -233,6 +257,9 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetLightHardsuitUSSP
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 - type: entity
   parent: [ ClothingOuterHardsuitEngineering, BaseEngineeringContraband ]
@@ -264,6 +291,9 @@
      sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/engineering-compact.rsi
    - type: ToggleableClothing
      clothingPrototype: ClothingHeadHelmetHardsuitEngineeringCompact
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 #Для ивентов
 
@@ -301,6 +331,9 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitUegParatrooper
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -336,6 +369,9 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitUegCap
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 #Pirate YARRRR!!
 #Pirate Hardsuit
@@ -374,6 +410,9 @@
     clothingPrototype: ClothingHeadHelmetHardsuitPirateCap
   - type: StaticPrice
     price: 0
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -410,6 +449,9 @@
     clothingPrototype: ClothingHeadHelmetHardsuitPirateCapSun
   - type: StaticPrice
     price: 0
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -446,6 +488,9 @@
     clothingPrototype: ClothingHeadHelmetHardsuitPrivateer
   - type: StaticPrice
     price: 0
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -482,6 +527,9 @@
     clothingPrototype: ClothingHeadHelmetHardsuitPrivateer
   - type: StaticPrice
     price: 0
+  blacklist:
+    tags:
+    - HumanoidXeno
 ## Pirate end
 
 - type: entity
@@ -522,6 +570,9 @@
           Caustic: 0.5
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetEVA
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 #Syndicate Infiltration Suit
 - type: entity
@@ -605,6 +656,9 @@
     - WhitelistChameleon
   - type: StaticPrice
     price: 8500
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 - type: entity
   parent: ClothingOuterHardsuitSalvage
@@ -643,6 +697,9 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 # Milira
 - type: entity
@@ -736,6 +793,9 @@
     falloff: 3
     softness: 5
     autoRot: true
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 ##Modsuit commaid
 - type: entity
@@ -760,6 +820,9 @@
         Slash: 0.9
         Piercing: 0.9
         Caustic: 0.8
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 ##Modsuit passenger
 - type: entity
@@ -782,6 +845,9 @@
         Slash: 0.9
         Piercing: 0.9
         Caustic: 0.8
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 ##Modsuit representative
 - type: entity
@@ -812,6 +878,9 @@
         Piercing: 0.6
         Heat: 0.8
         Caustic: 0.7
+  blacklist:
+    tags:
+    - HumanoidXeno
 
 ##Modsuit blueshield
 - type: entity
@@ -844,3 +913,6 @@
         Caustic: 0.4
   - type: ExplosionResistance
     damageCoefficient: 0.5
+  blacklist:
+    tags:
+    - HumanoidXeno
