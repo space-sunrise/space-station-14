@@ -7,8 +7,6 @@
   components:
   - type: Sprite
     sprite: Clothing/Head/Hoods/Bio/general.rsi
-  - type: DiseaseImmuneClothing
-    prob: 0.3
   - type: Clothing
     sprite: Clothing/Head/Hoods/Bio/general.rsi
   - type: BreathMask

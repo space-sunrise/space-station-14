@@ -3,6 +3,10 @@
   parent: ClothingHandsBase
   id: ClothingHandsGlovesBoxingBase
   components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Boxing/boxingred.rsi
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Boxing/boxingred.rsi
   - type: StaminaDamageOnHit
     damage: 8 #Stam damage values seem a bit higher than regular damage because of the decay, etc
     # This needs to be moved to boxinggloves
@@ -20,10 +24,6 @@
     tags:
     - Kangaroo
     - WhitelistChameleon
-  # Sunrise-Start
-  - type: DiseaseImmuneClothing
-    prob: 0.2
-  # Sunrise-End
 
 - type: entity
   parent: ClothingHandsGlovesBoxingBase
@@ -191,8 +191,6 @@
   components:
   - type: Sprite
     sprite: Clothing/Hands/Gloves/nitrile.rsi
-  - type: DiseaseImmuneClothing
-    prob: 0.4
   - type: Clothing
     sprite: Clothing/Hands/Gloves/nitrile.rsi
   - type: Fiber

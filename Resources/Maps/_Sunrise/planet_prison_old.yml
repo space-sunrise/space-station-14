@@ -37688,33 +37688,6 @@ entities:
         discountDownTo: {}
         disableRefund: False
         costModifiersBySourceId: {}
-      - id: BaseChance
-        productEntity: null
-        name: listing-disease-base-chance-name
-        discountCategory: null
-        description: listing-disease-base-chance-description
-        categories:
-        - DiseaseEvolutionCategory
-        originalCost:
-          DiseasePoints: 20
-        conditions:
-        - !type:ListingLimitedStockCondition
-          stock: 1
-        icon:
-          sprite: /Textures/_Sunrise/Actions/disease.rsi
-          state: baseChance
-        priority: 0
-        productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: True
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
       - id: UplinkUltrabrightLantern
         productEntity: LanternFlash
         name: uplink-ultrabright-lantern-name
@@ -39848,33 +39821,6 @@ entities:
         discountDownTo: {}
         disableRefund: False
         costModifiersBySourceId: {}
-      - id: Slowness
-        productEntity: null
-        name: listing-disease-slowness-name
-        discountCategory: null
-        description: listing-disease-slowness-description
-        categories:
-        - DiseaseSymptomsCategory
-        originalCost:
-          DiseasePoints: 15
-        conditions:
-        - !type:ListingLimitedStockCondition
-          stock: 1
-        icon:
-          sprite: /Textures/_Sunrise/Actions/disease.rsi
-          state: slowness
-        priority: 0
-        productAction: ActionDiseaseSlowness
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
       - id: UplinkCoalpenKit
         productEntity: CoalpenKitFilled
         name: uplink-coalpen-kit-name
@@ -41014,33 +40960,6 @@ entities:
         icon: null
         priority: 0
         productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
-      - id: Crying
-        productEntity: null
-        name: listing-disease-cry-name
-        discountCategory: null
-        description: listing-disease-cry-description
-        categories:
-        - DiseaseSymptomsCategory
-        originalCost:
-          DiseasePoints: 10
-        conditions:
-        - !type:ListingLimitedStockCondition
-          stock: 1
-        icon:
-          sprite: /Textures/_Sunrise/Actions/disease.rsi
-          state: sob
-        priority: 0
-        productAction: ActionDiseaseCrying
         applyToMob: False
         productUpgradeId: null
         productActionEntity: null
@@ -44915,33 +44834,6 @@ entities:
           Telecrystal: 1
         disableRefund: False
         costModifiersBySourceId: {}
-      - id: Narcolepsy
-        productEntity: null
-        name: listing-disease-narcolepsy-name
-        discountCategory: null
-        description: listing-disease-narcolepsy-description
-        categories:
-        - DiseaseSymptomsCategory
-        originalCost:
-          DiseasePoints: 20
-        conditions:
-        - !type:ListingLimitedStockCondition
-          stock: 1
-        icon:
-          sprite: /Textures/_Sunrise/Actions/disease.rsi
-          state: narcolepsy
-        priority: 0
-        productAction: ActionDiseaseNarcolepsy
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
       - id: UplinkDefibrillatorSyndicate
         productEntity: DefibrillatorSyndicateBiocode
         name: uplink-interdyne-defibrillator-name
@@ -45173,33 +45065,6 @@ entities:
           state: m52
         priority: 0
         productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
-      - id: Bleed
-        productEntity: null
-        name: listing-disease-bleed-name
-        discountCategory: null
-        description: listing-disease-bleed-description
-        categories:
-        - DiseaseSymptomsCategory
-        originalCost:
-          DiseasePoints: 30
-        conditions:
-        - !type:ListingLimitedStockCondition
-          stock: 1
-        icon:
-          sprite: /Textures/_Sunrise/Actions/disease.rsi
-          state: bleed
-        priority: 0
-        productAction: ActionDiseaseBleed
         applyToMob: False
         productUpgradeId: null
         productActionEntity: null
@@ -45836,33 +45701,6 @@ entities:
           Telecrystal: 20
         disableRefund: False
         costModifiersBySourceId: {}
-      - id: Lethal
-        productEntity: null
-        name: listing-disease-lethal-name
-        discountCategory: null
-        description: listing-disease-lethal-description
-        categories:
-        - DiseaseEvolutionCategory
-        originalCost:
-          DiseasePoints: 15
-        conditions:
-        - !type:ListingLimitedStockCondition
-          stock: 1
-        icon:
-          sprite: /Textures/_Sunrise/Actions/disease.rsi
-          state: lethal
-        priority: 0
-        productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: True
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
       - id: UplinkGrenadeFrag
         productEntity: GrenadeFrag
         name: uplink-grenade-frag-contact-name
@@ -46231,33 +46069,6 @@ entities:
           state: box_mre
         priority: 0
         productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
-      - id: Muted
-        productEntity: null
-        name: listing-disease-muted-name
-        discountCategory: null
-        description: listing-disease-muted-description
-        categories:
-        - DiseaseSymptomsCategory
-        originalCost:
-          DiseasePoints: 25
-        conditions:
-        - !type:ListingLimitedStockCondition
-          stock: 1
-        icon:
-          sprite: /Textures/_Sunrise/Actions/disease.rsi
-          state: muted
-        priority: 0
-        productAction: ActionDiseaseMuted
         applyToMob: False
         productUpgradeId: null
         productActionEntity: null
@@ -48510,33 +48321,6 @@ entities:
         discountDownTo: {}
         disableRefund: False
         costModifiersBySourceId: {}
-      - id: Sneeze
-        productEntity: null
-        name: listing-disease-sneeze-name
-        discountCategory: null
-        description: listing-disease-sneeze-description
-        categories:
-        - DiseaseInfectCategory
-        originalCost:
-          DiseasePoints: 20
-        conditions:
-        - !type:ListingLimitedStockCondition
-          stock: 1
-        icon:
-          sprite: /Textures/_Sunrise/Actions/disease.rsi
-          state: sneeze
-        priority: 0
-        productAction: ActionDiseaseSneeze
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
       - id: UplinkMagazineDragunovExtended
         productEntity: MagazineDragunovExtended
         name: null
@@ -50348,33 +50132,6 @@ entities:
         discountDownTo: {}
         disableRefund: False
         costModifiersBySourceId: {}
-      - id: Vomit
-        productEntity: null
-        name: listing-disease-vomit-name
-        discountCategory: null
-        description: listing-disease-vomit-description
-        categories:
-        - DiseaseSymptomsCategory
-        originalCost:
-          DiseasePoints: 25
-        conditions:
-        - !type:ListingLimitedStockCondition
-          stock: 1
-        icon:
-          sprite: /Textures/_Sunrise/Actions/disease.rsi
-          state: vomit
-        priority: 0
-        productAction: ActionDiseaseVomit
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
       - id: UplinkPirateECutlass
         productEntity: EnergyCutlass
         name: null
@@ -51072,33 +50829,6 @@ entities:
         discountDownTo: {}
         disableRefund: False
         costModifiersBySourceId: {}
-      - id: Cough
-        productEntity: null
-        name: listing-disease-cough-name
-        discountCategory: null
-        description: listing-disease-cough-description
-        categories:
-        - DiseaseInfectCategory
-        originalCost:
-          DiseasePoints: 0
-        conditions:
-        - !type:ListingLimitedStockCondition
-          stock: 1
-        icon:
-          sprite: /Textures/_Sunrise/Actions/disease.rsi
-          state: cough
-        priority: 0
-        productAction: ActionDiseaseCough
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: True
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
       - id: UplinkHristovAmmoAP
         productEntity: MagazineBoxAntiMaterielAP
         name: null
@@ -51213,33 +50943,6 @@ entities:
           state: icon
         priority: 0
         productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
-      - id: Blindness
-        productEntity: null
-        name: listing-disease-blindness-name
-        discountCategory: null
-        description: listing-disease-blindness-description
-        categories:
-        - DiseaseSymptomsCategory
-        originalCost:
-          DiseasePoints: 40
-        conditions:
-        - !type:ListingLimitedStockCondition
-          stock: 1
-        icon:
-          sprite: /Textures/_Sunrise/Actions/disease.rsi
-          state: blindness
-        priority: 0
-        productAction: ActionDiseaseBlindness
         applyToMob: False
         productUpgradeId: null
         productActionEntity: null
@@ -52051,31 +51754,6 @@ entities:
         restockTime: 0
         discountDownTo:
           Telecrystal: 6
-        disableRefund: False
-        costModifiersBySourceId: {}
-      - id: InfectCharge
-        productEntity: null
-        name: listing-disease-infect-charge-name
-        discountCategory: null
-        description: listing-disease-infect-charge-description
-        categories:
-        - DiseaseInfectionCategory
-        originalCost:
-          DiseasePoints: 10
-        conditions: null
-        icon:
-          sprite: /Textures/_Sunrise/Actions/disease.rsi
-          state: action
-        priority: 0
-        productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
         disableRefund: False
         costModifiersBySourceId: {}
       - id: UplinkExplosiveGrenade
@@ -60109,33 +59787,6 @@ entities:
         discountDownTo: {}
         disableRefund: False
         costModifiersBySourceId: {}
-      - id: InfectChance
-        productEntity: null
-        name: listing-disease-infect-chance-name
-        discountCategory: null
-        description: listing-disease-infect-chance-description
-        categories:
-        - DiseaseEvolutionCategory
-        originalCost:
-          DiseasePoints: 15
-        conditions:
-        - !type:ListingLimitedStockCondition
-          stock: 1
-        icon:
-          sprite: /Textures/_Sunrise/Actions/disease.rsi
-          state: coughChance
-        priority: 0
-        productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: True
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
       - id: ERTUplinkRiotBulletShield
         productEntity: RiotBulletShield
         name: ntuplink-equip-riotbulletshield-name
@@ -61675,33 +61326,6 @@ entities:
           Telecrystal: 4
         disableRefund: False
         costModifiersBySourceId: {}
-      - id: Shield
-        productEntity: null
-        name: listing-disease-shield-name
-        discountCategory: null
-        description: listing-disease-shield-description
-        categories:
-        - DiseaseEvolutionCategory
-        originalCost:
-          DiseasePoints: 15
-        conditions:
-        - !type:ListingLimitedStockCondition
-          stock: 1
-        icon:
-          sprite: /Textures/_Sunrise/Actions/disease.rsi
-          state: shield
-        priority: 0
-        productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: True
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
       - id: ERTUplinkMedkitBurnFilled
         productEntity: MedkitBurnFilled
         name: null
@@ -61746,33 +61370,6 @@ entities:
           state: telescopic_shield
         priority: 0
         productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
-      - id: Insult
-        productEntity: null
-        name: listing-disease-insult-name
-        discountCategory: null
-        description: listing-disease-insult-description
-        categories:
-        - DiseaseSymptomsCategory
-        originalCost:
-          DiseasePoints: 20
-        conditions:
-        - !type:ListingLimitedStockCondition
-          stock: 1
-        icon:
-          sprite: /Textures/_Sunrise/Actions/disease.rsi
-          state: lethal
-        priority: 0
-        productAction: ActionDiseaseInsult
         applyToMob: False
         productUpgradeId: null
         productActionEntity: null
@@ -62182,33 +61779,6 @@ entities:
           state: stimkit
         priority: 0
         productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
-      - id: Zombie
-        productEntity: null
-        name: listing-disease-zombie-name
-        discountCategory: null
-        description: listing-disease-zombie-description
-        categories:
-        - DiseaseSymptomsCategory
-        originalCost:
-          DiseasePoints: 200
-        conditions:
-        - !type:ListingLimitedStockCondition
-          stock: 1
-        icon:
-          sprite: /Textures/_Sunrise/Actions/disease.rsi
-          state: lethal
-        priority: 0
-        productAction: ActionDiseaseZombie
         applyToMob: False
         productUpgradeId: null
         productActionEntity: null

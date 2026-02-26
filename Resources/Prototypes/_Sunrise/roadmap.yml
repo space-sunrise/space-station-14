@@ -21,9 +21,6 @@
     - name: new-guns-name
       desc: new-guns-desc
       state: Complete
-    - name: smart-viruse-name
-      desc: smart-viruse-desc
-      state: Complete
     - name: cargo-rework-name
       desc: cargo-rework-desc
       state: Complete

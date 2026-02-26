@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "discord: bulbo44kkey, for SUNRISE",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "abductor_chair",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
+    }
+  ]
+}
