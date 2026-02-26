@@ -1,0 +1,19 @@
+- type: cargoProduct
+  id: EmergencyDiseaseMedkit
+  icon:
+    sprite: _Sunrise/Disease/firstaidkits.rsi
+    state: advkit
+  product: CrateDiseaseMedkit
+  cost: 5000
+  category: cargoproduct-category-name-medical
+  group: medical # DS14
+
+- type: cargoProduct
+  id: EmergencySuperDiseaseMedkit
+  icon:
+    sprite: _Sunrise/Disease/firstaidkits.rsi
+    state: blackkit
+  product: CrateSuperDiseaseMedkit
+  cost: 12000
+  category: cargoproduct-category-name-medical
+  group: medical # DS14

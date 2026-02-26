@@ -18,10 +18,10 @@
   id: ClothingMaskPullableBase
   components:
   - type: Mask
-  # Nox-start
+  # Sunrise-disease-start
   - type: DiseaseResistance
     diseaseResistanceCoefficient: 0.1
-  # Nox-end
+  # Sunrise-disease-end
 
 - type: entity
   parent: BaseAction

@@ -112,7 +112,7 @@ namespace Content.Client.HealthAnalyzer.UI
 
             // Alerts
 
-            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true || msg.CureProgress != null; // Nox-disease CureProgress
+            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true || msg.CureProgress != null; // Sunrise-disease-edit CureProgress
 
             AlertsDivider.Visible = showAlerts;
             AlertsContainer.Visible = showAlerts;
@@ -136,7 +136,7 @@ namespace Content.Client.HealthAnalyzer.UI
                     MaxWidth = 300
                 });
 
-            // Nox-disease-start
+            // Sunrise-disease-edit-start
             if (msg.CureProgress != null)
             {
 
@@ -152,7 +152,7 @@ namespace Content.Client.HealthAnalyzer.UI
                     MaxWidth = 300
                 });
             }
-            // Nox-disease-end
+            // Sunrise-disease-edit-end
 
             // Damage Groups
 
