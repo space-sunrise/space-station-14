@@ -161,7 +161,7 @@ public sealed class DiseaseEvolutionConsoleSystem : EntitySystem
             if (TryComp<DiseaseDiagnoserDataServerComponent>(port, out var server))
             {
                 component.DiseaseDiagnoserDataServer = port;
-                server.ConnectedConsole = uid;
+                server.ConnectedEvolutionConsole = uid;
             }
         }
     }

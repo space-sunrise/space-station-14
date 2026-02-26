@@ -37,9 +37,8 @@ public sealed class DiseaseOutbreakRule : StationEventSystem<DiseaseOutbreakRule
                 ents.Add(entity);
         }
 
-        var strainId = DiseaseData.GenerateStrainId();
         if (component.Data == null)
-            component.Data = _diseaseSystem.GenerateDiseaseData(strainId, component.SymptomsByDanger, component.BodyCount);
+            component.Data = _diseaseSystem.GenerateDiseaseData(component.SymptomsByDanger, component.BodyCount);
 
         var validEntities = ents
             .Where(ent => _diseaseSystem.CanInfect(ent, component.Data))
@@ -60,7 +59,7 @@ public sealed class DiseaseOutbreakRule : StationEventSystem<DiseaseOutbreakRule
             _diseaseSystem.InfectEntity(component.Data, picked);
 
             var comp = EnsureComp<PrimaryPacientComponent>(picked);
-            comp.StrainId = strainId;
+            comp.StrainId = component.Data.StrainId;
 
             if (validEntities.Count == 0)
                 break;

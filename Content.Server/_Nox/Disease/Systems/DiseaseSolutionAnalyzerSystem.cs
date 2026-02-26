@@ -244,7 +244,7 @@ public sealed class DiseaseSolutionAnalyzerSystem : EntitySystem
         return diseaseData.Count > 0;
     }
 
-    public void AddSymptom(Entity<DiseaseSolutionAnalyzerComponent?> console, string symptom)
+    public void AddSymptom(Entity<DiseaseSolutionAnalyzerComponent?> console, ProtoId<DiseaseSymptomPrototype> symptom)
     {
         if (!Resolve(console, ref console.Comp, false))
             return;
@@ -254,7 +254,7 @@ public sealed class DiseaseSolutionAnalyzerSystem : EntitySystem
 
         SetStatus((console, console.Comp), DiseaseSolutionAnalyzerStatus.Successfully);
 
-        if (_prototypeManager.Index<DiseaseSymptomPrototype>(symptom) == null)
+        if (!_prototypeManager.TryIndex(symptom, out var _))
             return;
 
         if (!TryGetDiseaseDataFromContainer(console, out var diseaseDataList))
@@ -268,7 +268,7 @@ public sealed class DiseaseSolutionAnalyzerSystem : EntitySystem
         diseaseData.ActiveSymptom.Add(symptom);
     }
 
-    public void AddBody(Entity<DiseaseSolutionAnalyzerComponent?> console, string body)
+    public void AddBody(Entity<DiseaseSolutionAnalyzerComponent?> console, ProtoId<BodyPrototype> body)
     {
         if (!Resolve(console, ref console.Comp, false))
             return;
@@ -278,7 +278,7 @@ public sealed class DiseaseSolutionAnalyzerSystem : EntitySystem
 
         SetStatus((console, console.Comp), DiseaseSolutionAnalyzerStatus.Successfully);
 
-        if (_prototypeManager.Index<BodyPrototype>(body) == null)
+        if (!_prototypeManager.TryIndex(body, out var _))
             return;
 
         if (!TryGetDiseaseDataFromContainer(console, out var diseaseDataList))
@@ -292,7 +292,7 @@ public sealed class DiseaseSolutionAnalyzerSystem : EntitySystem
         diseaseData.BodyWhitelist.Add(body);
     }
 
-    public void RemSymptom(Entity<DiseaseSolutionAnalyzerComponent?> console, string symptom)
+    public void RemSymptom(Entity<DiseaseSolutionAnalyzerComponent?> console, ProtoId<DiseaseSymptomPrototype> symptom)
     {
         if (!Resolve(console, ref console.Comp, false))
             return;
@@ -302,7 +302,7 @@ public sealed class DiseaseSolutionAnalyzerSystem : EntitySystem
 
         SetStatus((console, console.Comp), DiseaseSolutionAnalyzerStatus.Successfully);
 
-        if (_prototypeManager.Index<DiseaseSymptomPrototype>(symptom) == null)
+        if (!_prototypeManager.TryIndex(symptom, out var _))
             return;
 
         if (!TryGetDiseaseDataFromContainer(console, out var diseaseDataList))
@@ -316,7 +316,7 @@ public sealed class DiseaseSolutionAnalyzerSystem : EntitySystem
         diseaseData.ActiveSymptom.Remove(symptom);
     }
 
-    public void RemBody(Entity<DiseaseSolutionAnalyzerComponent?> console, string body)
+    public void RemBody(Entity<DiseaseSolutionAnalyzerComponent?> console, ProtoId<BodyPrototype> body)
     {
         if (!Resolve(console, ref console.Comp, false))
             return;
@@ -326,7 +326,7 @@ public sealed class DiseaseSolutionAnalyzerSystem : EntitySystem
 
         SetStatus((console, console.Comp), DiseaseSolutionAnalyzerStatus.Successfully);
 
-        if (_prototypeManager.Index<BodyPrototype>(body) == null)
+        if (!_prototypeManager.TryIndex(body, out var _))
             return;
 
         if (!TryGetDiseaseDataFromContainer(console, out var diseaseDataList))

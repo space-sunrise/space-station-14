@@ -24,13 +24,9 @@ public sealed class VocalDisruptionSymptom : DiseaseSymptomBase
     {
         base.OnAdded(host, disease);
 
-        if (_entityManager.TryGetComponent<ReplacementAccentComponent>(host, out var component))
-            _oldAccent = component.Accent;
-        else
-        {
-            var comp = _entityManager.AddComponent<ReplacementAccentComponent>(host);
-            comp.Accent = Accent;
-        }
+        var component = _entityManager.EnsureComponent<ReplacementAccentComponent>(host);
+        _oldAccent = component.Accent;
+        component.Accent = Accent;
     }
 
     public override void OnRemoved(EntityUid host, DiseaseComponent disease)

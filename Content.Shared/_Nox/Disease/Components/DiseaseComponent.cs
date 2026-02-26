@@ -53,6 +53,11 @@ public sealed partial class DiseaseComponent : Component
         Data = data;
     }
 
+    public DiseaseComponent()
+    {
+        Data = new DiseaseData();
+    }
+
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public ProtoId<FactionIconPrototype> StatusIcon { get; set; } = "DiseaseFaction";
 

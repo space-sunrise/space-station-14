@@ -25,11 +25,11 @@ public sealed class BlindableSymptom : DiseaseSymptomBase
 
         var system = _entityManager.System<BlindableSystem>();
 
-        if (_entityManager.TryGetComponent<BlindableComponent>(host, out var component))
-        {
-            var damage = component.MaxDamage - component.MinDamage;
-            _eyeTotalDamage = (int)Math.Round(damage - damage * _eyeDamageProcent);
-        }
+        if (!_entityManager.TryGetComponent<BlindableComponent>(host, out var component))
+            return;
+
+        var damage = component.MaxDamage - component.MinDamage;
+        _eyeTotalDamage = (int)Math.Round(damage - damage * _eyeDamageProcent);
 
         system.AdjustEyeDamage((host, component), _eyeTotalDamage);
     }
@@ -40,8 +40,10 @@ public sealed class BlindableSymptom : DiseaseSymptomBase
 
         var system = _entityManager.System<BlindableSystem>();
 
-        if (_entityManager.TryGetComponent<BlindableComponent>(host, out var component))
-            system.AdjustEyeDamage((host, component), -_eyeTotalDamage);
+        if (!_entityManager.TryGetComponent<BlindableComponent>(host, out var component))
+            return;
+
+        system.AdjustEyeDamage((host, component), -_eyeTotalDamage);
     }
 
     public override void OnUpdate(EntityUid host, DiseaseComponent disease)

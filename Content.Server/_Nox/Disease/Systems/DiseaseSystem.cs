@@ -480,9 +480,9 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
     }
 
     public DiseaseData GenerateDiseaseData(
-    string strainId,
     Dictionary<DangerIndicatorSymptom, int> symptomsByDanger,
-    int bodyCount)
+    int bodyCount,
+    string strainId = "")
     {
         var data = CreateNewDisease(strainId);
 

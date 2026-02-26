@@ -98,6 +98,7 @@ public sealed class SentientDiseaseSystem : EntitySystem
             && disease.Data.StrainId == component.Data.StrainId)
         {
             AddPrimaryPatient(uid, args.Target, component);
+            return;
         }
         else if (!_diseaseSystem.CanInfect(args.Target, component.Data))
         {
@@ -363,15 +364,6 @@ public sealed class SentientDiseaseSystem : EntitySystem
         var infectivity = 0f;
         var infectedCount = data != null ? _diseaseSystem.GetQuantityInfected(data.StrainId) : 0;
         var pointsPerSecond = data != null ? data.RegenMutationPoints + infectedCount * ModifyPointsRegenPerInfected : 0;
-
-        if (data != null)
-        {
-            foreach (var sympId in data.ActiveSymptom)
-            {
-                if (_prototypeManager.TryIndex(sympId, out var prototype))
-                    infectivity += prototype.AddInfectivity;
-            }
-        }
 
         if (data != null)
         {
