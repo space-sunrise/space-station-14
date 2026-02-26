@@ -249,7 +249,7 @@ public sealed class SentientDiseaseSystem : EntitySystem
         if (source.Data == null)
             return;
 
-        if (string.IsNullOrEmpty(source.Data.StrainId) || source.Data == null)
+        if (string.IsNullOrEmpty(source.Data.StrainId))
             return;
 
         var query = EntityQueryEnumerator<DiseaseComponent>();

@@ -406,6 +406,9 @@ public sealed class DiseaseSolutionAnalyzerSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
+        if (ent.Comp.Status == DiseaseSolutionAnalyzerStatus.Off)
+            return false;
+
         if (!_container.TryGetContainer(ent, FlaskContainerKey, out var flaskContainer))
             return false;
 

@@ -473,7 +473,7 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         // Должно быть тело!
         if (TryComp<BodyComponent>(target, out var body)
             && body.Prototype != null
-            && !data.BodyWhitelist.Contains(_prototype.Index(body.Prototype.Value)))
+            && !data.BodyWhitelist.Contains(body.Prototype.Value))
             return false;
 
         return true;
@@ -633,7 +633,7 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         if (!Resolve(entity, ref entity.Comp, false))
         {
             _sawmill.Warning($"Entity {entity.Owner} не имеет компонента DiseaseComponent, невозможно получить симптом {typeof(T).Name}.");
-            return default!;
+            return false;
         }
 
         symptom = entity.Comp.ActiveSymptomInstances.OfType<T>().FirstOrDefault();
@@ -666,14 +666,53 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
             return default!;
         }
 
-        if (entity.Comp.ActiveSymptomInstances == null)
-            entity.Comp.ActiveSymptomInstances = new List<IDiseaseSymptom>();
+        var attr = typeof(T).GetCustomAttribute<DiseaseSymptomAttribute>();
+        if (attr == null)
+        {
+            _sawmill.Warning($"Symptom {typeof(T).Name} не имеет атрибута DiseaseSymptomAttribute, невозможно добавить симптом.");
+            return default!;
+        }
 
-        // создаём симптом с таймером
-        var symptom = (T)Activator.CreateInstance(typeof(T), this, _timing, DefaultSymptomWindow)!;
+        ProtoId<DiseaseSymptomPrototype> protoId;
+        try
+        {
+            protoId = attr.Id;
+        }
+        catch (Exception e)
+        {
+            _sawmill.Warning($"Symptom {typeof(T).Name} имеет некорректный protoId '{attr.Id}': {e}.");
+            return default!;
+        }
 
-        if (entity.Comp.ActiveSymptomInstances.Any(s => s.PrototypeId == symptom.PrototypeId))
-            return symptom; // возвращаем существующий симптом, если он уже есть
+        var existing = entity.Comp.ActiveSymptomInstances.FirstOrDefault(s => s.PrototypeId == protoId);
+        if (existing is T existingTyped)
+            return existingTyped;
+
+        if (existing != null)
+        {
+            _sawmill.Warning(
+                $"У сущности {entity.Owner} уже есть симптом с protoId '{protoId}', но его тип {existing.GetType().Name} не совпадает с ожидаемым {typeof(T).Name}."
+            );
+            return default!;
+        }
+
+        IDiseaseSymptom created;
+        try
+        {
+            created = CreateSymptomInstance(protoId);
+        }
+        catch (Exception e)
+        {
+            _sawmill.Warning($"Не удалось создать симптом {typeof(T).Name} (protoId '{protoId}') для сущности {entity.Owner}: {e}.");
+            return default!;
+        }
+
+        if (created is not T symptom)
+        {
+            _sawmill.Warning(
+                $"Фабрика симптомов вернула {created.GetType().Name} вместо {typeof(T).Name} (protoId '{protoId}').");
+            return default!;
+        }
 
         entity.Comp.ActiveSymptomInstances.Add(symptom);
 

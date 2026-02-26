@@ -162,6 +162,9 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return;
 
+        if (ent.Comp.Status == DiseaseDiagnoserStatus.Off)
+            return;
+
         ent.Comp.DiseaseDataCPU = data;
         SetStatus((ent, ent.Comp), DiseaseDiagnoserStatus.Printing);
     }
@@ -465,6 +468,9 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
     public bool CanScanning(Entity<DiseaseDiagnoserComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        if (ent.Comp.Status == DiseaseDiagnoserStatus.Off)
             return false;
 
         if (!_container.TryGetContainer(ent, DnaContainerKey, out var dnaContainer))
