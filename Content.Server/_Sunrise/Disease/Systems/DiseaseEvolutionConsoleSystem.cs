@@ -228,6 +228,12 @@ public sealed class DiseaseEvolutionConsoleSystem : EntitySystem
         }
 
         var newState = GetUserInterfaceState((entity, entity.Comp));
+        if (newState == null)
+        {
+            _uiSystem.CloseUis((entity, userInterface));
+            return;
+        }
+
         _uiSystem.SetUiState((entity, userInterface), DiseaseEvolutionConsoleUiKey.Key, newState);
     }
 
@@ -251,10 +257,10 @@ public sealed class DiseaseEvolutionConsoleSystem : EntitySystem
         UpdateUserInterface((console, console.Comp));
     }
 
-    private DiseaseEvolutionConsoleBoundUserInterfaceState GetUserInterfaceState(Entity<DiseaseEvolutionConsoleComponent?> console)
+    private DiseaseEvolutionConsoleBoundUserInterfaceState? GetUserInterfaceState(Entity<DiseaseEvolutionConsoleComponent?> console)
     {
         if (!Resolve(console, ref console.Comp, false))
-            return default!;
+            return null;
 
         DiseaseData? diseaseData = null;
 

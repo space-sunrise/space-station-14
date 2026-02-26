@@ -213,6 +213,12 @@ public sealed class DiseaseDiagnoserConsoleSystem : EntitySystem
         }
 
         var newState = GetUserInterfaceState((console, console.Comp));
+        if (newState == null)
+        {
+            _uiSystem.CloseUis((console, userInterface));
+            return;
+        }
+
         _uiSystem.SetUiState((console, userInterface), DiseaseDiagnoserConsoleUiKey.Key, newState);
     }
 
@@ -242,10 +248,10 @@ public sealed class DiseaseDiagnoserConsoleSystem : EntitySystem
         UpdateUserInterface((console, console.Comp));
     }
 
-    private DiseaseDiagnoserConsoleBoundUserInterfaceState GetUserInterfaceState(Entity<DiseaseDiagnoserConsoleComponent?> console)
+    private DiseaseDiagnoserConsoleBoundUserInterfaceState? GetUserInterfaceState(Entity<DiseaseDiagnoserConsoleComponent?> console)
     {
         if (!Resolve(console, ref console.Comp, false))
-            return default!;
+            return null;
 
         DiseaseDiagnoserDataServerComponent? dataServer = null;
 

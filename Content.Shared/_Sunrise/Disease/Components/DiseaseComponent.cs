@@ -297,6 +297,8 @@ public sealed partial class DiseaseData : ReagentData
             DefaultMedicineResistance = DefaultMedicineResistance,
             Infectivity = Infectivity,
             SpeedModifier = SpeedModifier,
+            MaxThreshold = MaxThreshold,
+            RegenMutationPoints = RegenMutationPoints,
 
             ActiveSymptom = ActiveSymptom.ToList(),
             BodyWhitelist = BodyWhitelist.ToList(),
