@@ -711,7 +711,7 @@ entities:
     - type: Transform
       pos: -2.5,-2.5
       parent: 1
-- proto: ChairCarp
+- proto: ChairAbductor
   entities:
   - uid: 119
     components:
@@ -1235,7 +1235,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,0.5
       parent: 1
-- proto: Poweredlight
+- proto: AbductorLamp
   entities:
   - uid: 136
     components:
@@ -1246,18 +1246,19 @@ entities:
   - uid: 167
     components:
     - type: Transform
+      rot: 3.141592653589793 rad
       pos: 2.5,3.5
       parent: 1
   - uid: 168
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
+      rot: 0 rad
       pos: 8.5,-2.5
       parent: 1
   - uid: 262
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
+      rot: 0 rad
       pos: 2.5,-2.5
       parent: 1
   - uid: 272
@@ -1269,7 +1270,8 @@ entities:
   - uid: 273
     components:
     - type: Transform
-      pos: 6.5,2.5
+      pos: 6.5, 2.5
+      rot: 3.141592653589793 rad
       parent: 1
 - proto: ReinforcedPlasmaWindow
   entities:

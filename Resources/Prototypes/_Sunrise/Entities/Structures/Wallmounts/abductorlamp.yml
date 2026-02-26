@@ -1,0 +1,17 @@
+- type: entity
+  parent: PoweredlightEmpty
+  name: abductor lamp
+  description: Modern and economical
+  id: AbductorLamp
+  components:
+  - type: PointLight
+    radius: 12
+    energy: 4.5
+    softness: 0.5
+    color: "#F4C1C1"
+  - type: PoweredLight
+    hasLampOnSpawn: LightTube
+  - type: Sprite
+    sprite: _Sunrise/Structures/Wallmounts/abductor_askal_lamp.rsi
+
+
