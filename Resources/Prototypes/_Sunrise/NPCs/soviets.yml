@@ -679,7 +679,7 @@
     thresholds:
       0: Alive
       300: Critical
-      305: Dead
+      301: Dead
   - type: Destructible
     thresholds:
     - trigger:
@@ -784,7 +784,7 @@
   components:
   - type: Loadout
     prototypes:
-    - MobSovietT3Mech
+    - MobSovietGearT3Mech
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -816,8 +816,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      429: Critical
-      430: Dead
+      400: Critical
+      401: Dead
   - type: Destructible
     thresholds:
     - trigger:
