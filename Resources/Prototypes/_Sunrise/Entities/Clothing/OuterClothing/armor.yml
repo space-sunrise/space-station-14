@@ -46,7 +46,7 @@
   - type: Item
     size: Ginormous
   - type: StaminaResistance
-    damageCoefficient: 0.7
+    damageCoefficient: 0.5
   - type: Pierceable
     level: Rock
   - type: Armor
@@ -54,7 +54,7 @@
       coefficients:
         Blunt: 0.45
         Slash: 0.45
-        Piercing: 0.45
+        Piercing: 0.4
         Heat: 0.6
         Radiation: 0.6
         Caustic: 0.6
@@ -69,8 +69,8 @@
   - type: FireProtection
     reduction: 0.4
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.7
+    sprintModifier: 0.7
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.6
   - type: GroupExamine

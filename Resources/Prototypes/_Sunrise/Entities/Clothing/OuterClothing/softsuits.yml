@@ -113,12 +113,12 @@
         Blunt: 0.65
         Slash: 0.75
         Piercing: 0.8
-        Heat: 0.5
-        Radiation: 0.5
-        Caustic: 0.5
+        Heat: 0.45
+        Radiation: 0.7
+        Caustic: 0.7
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.87
+    sprintModifier: 0.87
   - type: StaminaResistance
     damageCoefficient: 0.8
   - type: ClothingSlowOnDamageModifier
@@ -158,12 +158,12 @@
         Radiation: 0.5
         Caustic: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.84
-    sprintModifier: 0.84
+    walkModifier: 0.85
+    sprintModifier: 0.85
   - type: StaminaResistance
     damageCoefficient: 0.75
   - type: ClothingSlowOnDamageModifier
-    modifier: 0.5
+    modifier: 0.75
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
