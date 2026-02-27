@@ -195,7 +195,7 @@
         state: wielded-inhand-left
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsBombadaPirateT1
   suffix: bombada
   categories: [ HideSpawnMenu ]
@@ -240,7 +240,7 @@
         state: inhand-right
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsLCD
   suffix: Chain gun
   categories: [ HideSpawnMenu ]
@@ -300,7 +300,7 @@
         state: wielded-inhand-right
 
 - type: entity
-  parent: [ClothingHandsBlackSMG, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsBlackSMG, PirateArmorEVAScrappers]
   id: ClothingHandsBlackPistol
   suffix: pistol
   categories: [ HideSpawnMenu ]
@@ -315,7 +315,7 @@
         state: inhand-left
 
 - type: entity
-  parent: [ClothingHandsBlackSMG, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsBlackSMG, PirateArmorEVAScrappers]
   id: ClothingHandsMercFlintlock
   suffix: flintlock
   categories: [ HideSpawnMenu ]
@@ -421,7 +421,7 @@
         Structural: 20
 
 - type: entity
-  parent: [ClothingHandsBlackSMG, ClothingHandsSlashArcMeleeBase, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsBlackSMG, ClothingHandsSlashArcMeleeBase, PirateArmorEVAScrappers]
   id: ClothingHandsMercMosin
   suffix: mosin
   categories: [ HideSpawnMenu ]
@@ -518,7 +518,7 @@
         shader: unshaded
 
 - type: entity
-  parent: [ClothingHandsEnergyMeleeBase, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsEnergyMeleeBase, PirateArmorEVAScrappers]
   id: ClothingHandsEPickaxe
   suffix: energy cutlass
   categories: [ HideSpawnMenu ]
@@ -536,7 +536,7 @@
     reflectProb: 0.25
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsSMGForged
   suffix: Forged SMG
   categories: [ HideSpawnMenu ]
@@ -572,7 +572,7 @@
         state: wielded-inhand-right
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsSKM24
   suffix: skm24
   categories: [ HideSpawnMenu ]
@@ -620,7 +620,7 @@
         state: wielded-inhand-right
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsMp38
   suffix: mp38
   categories: [ HideSpawnMenu ]
@@ -692,7 +692,7 @@
         state: wielded-inhand-right
 
 - type: entity
-  parent: [ClothingHandsSlashPunchMeleeBase, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsSlashPunchMeleeBase, PirateArmorEVAScrappers]
   id: ClothingHandsMercCombatKnife
   suffix: knife
   categories: [ HideSpawnMenu ]
@@ -945,7 +945,7 @@
         state: inhand-left
 
 - type: entity
-  parent: [ClothingHandsBlackSMG, PirateArmorPirateEva]
+  parent: [ClothingHandsBlackSMG, PirateArmorEVAScrappers]
   id: ClothingHandsWeaponPka
   suffix: pka
   categories: [ HideSpawnMenu ]
@@ -1107,7 +1107,7 @@
 
 - type: entity
   abstract: true
-  id: PirateArmorPirateEvaArmored
+  id: PirateArmorEVAScrappers
   components:
   - type: Armor
     modifiers:
@@ -1115,20 +1115,6 @@
         Blunt: 0.5
         Slash: 0.55
         Piercing: 0.6
-        Heat: 0.4
-        Radiation: 0.4
-        Caustic: 0.4
-
-- type: entity
-  abstract: true
-  id: PirateArmorPirateEva
-  components:
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.55
-        Slash: 0.65
-        Piercing: 0.7
         Heat: 0.4
         Radiation: 0.4
         Caustic: 0.4
@@ -1319,13 +1305,13 @@
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsBaseNPC, PirateArmorPirateEva]
+  parent: [ClothingHandsBaseNPC, PirateArmorEVAScrappers]
   id: ClothingHandsPirateArmorT1PirateEva
   suffix: pirate T1 EVA armor
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsPirateArmorT1PirateEvaArmored
   suffix: pirate T1 EVA armored armor
   categories: [ HideSpawnMenu ]
@@ -1359,7 +1345,7 @@
         pitch: 0.5
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsMonkeyKnuckleDustersPirateT1
   suffix: monkey knuckle dusters
   categories: [ HideSpawnMenu ]
@@ -1376,7 +1362,7 @@
     animation: WeaponArcFist
 
 - type: entity
-  parent: [ClothingHandsECutlass, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsECutlass, PirateArmorEVAScrappers]
   id: ClothingHandsECutlassPirateT1
   suffix: pirate T1
   categories: [ HideSpawnMenu ]
