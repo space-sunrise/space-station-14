@@ -29,6 +29,7 @@ public sealed class ImplantAdminEui : BaseEui
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IEntityManager _entManager = default!;
+    private readonly ISawmill _sawmill = Logger.GetSawmill("implant-admin-eui");
     // Don't inject SubdermalImplantSystem directly (not registered for arbitrary object injection); resolve via IEntityManager when needed.
     [Dependency] private readonly IConGroupController _groupController = default!;
     // LimbSystem can't be injected here (EUI not a system & system types not registered for arbitrary IoC); resolve via _entManager.System<LimbSystem>() when needed.
@@ -212,9 +213,9 @@ public sealed class ImplantAdminEui : BaseEui
                             container = _entManager.System<SharedContainerSystem>()
                                 .EnsureContainer<ContainerSlot>(partUid, containerId);
                         }
-                        catch
+                        catch (Exception ex)
                         {
-                            // Ignore failures (e.g. invalid slot id) to avoid breaking UI.
+                            _sawmill.Error($"Failed handling organ slot '{slotId}' for part {partUid}: {ex}");
                         }
                     }
 
@@ -375,7 +376,7 @@ public sealed class ImplantAdminEui : BaseEui
                     && _entManager.TryGetComponent(bodyUid, out BodyComponent? bodyComp2))
                 {
                     var limbSystem = _entManager.System<LimbSystem>();
-                    limbSystem.Amputatate((bodyUid, bodyXform!, humanoid!, bodyComp2!), (existing, limbXform!, limbMeta!, existingPart));
+                    limbSystem.Amputate((bodyUid, bodyXform!, humanoid!, bodyComp2!), (existing, limbXform!, limbMeta!));
                     if (_entManager.EntityExists(existing))
                         _entManager.QueueDeleteEntity(existing);
                 }
@@ -539,7 +540,7 @@ public sealed class ImplantAdminEui : BaseEui
                 && _entManager.TryGetComponent(bodyUid, out BodyComponent? bodyComp3))
             {
                 var limbSystem = _entManager.System<LimbSystem>();
-                limbSystem.Amputatate((bodyUid, bodyXform2!, humanoid2!, bodyComp3!), (existing2, limbXform2!, limbMeta2!, existingPart2));
+                limbSystem.Amputate((bodyUid, bodyXform2!, humanoid2!, bodyComp3!), (existing2, limbXform2!, limbMeta2!));
                 if (_entManager.EntityExists(existing2))
                     _entManager.QueueDeleteEntity(existing2);
             }
