@@ -6,7 +6,7 @@ using Robust.Shared.Random;
 namespace Content.Server.Vocalization.Systems;
 
 /// <inheritdoc cref="DatasetVocalizerComponent"/>
-public sealed class DatasetVocalizationSystem : EntitySystem
+public sealed partial class DatasetVocalizationSystem : EntitySystem    // Sunrise-Edit
 {
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -15,27 +15,12 @@ public sealed class DatasetVocalizationSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<DatasetVocalizerComponent, ComponentInit>(OnComponentInit); // Sunrise-Edit
         SubscribeLocalEvent<DatasetVocalizerComponent, TryVocalizeEvent>(OnTryVocalize);
+
+        // Sunrise-Start
+        InitializeSunrise();
+        // Sunrise-End
     }
-    // Sunrise-Start
-    private void OnComponentInit(Entity<DatasetVocalizerComponent> ent, ref ComponentInit args)
-    {
-        var vocalizer = EnsureComp<VocalizerComponent>(ent);
-
-        if (ent.Comp.MinVocalizeInterval is { } min)
-            vocalizer.MinVocalizeInterval = min;
-
-        if (ent.Comp.MaxVocalizeInterval is { } max)
-            vocalizer.MaxVocalizeInterval = max;
-
-        if (vocalizer.MaxVocalizeInterval < vocalizer.MinVocalizeInterval)
-            vocalizer.MaxVocalizeInterval = vocalizer.MinVocalizeInterval;
-
-        if (ent.Comp.HideChat is { } hideChat)
-            vocalizer.HideChat = hideChat;
-    }
-    // Sunrise-End
 
     private void OnTryVocalize(Entity<DatasetVocalizerComponent> ent, ref TryVocalizeEvent args)
     {
