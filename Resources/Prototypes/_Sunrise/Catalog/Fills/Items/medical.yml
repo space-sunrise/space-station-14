@@ -5,20 +5,22 @@
   suffix: Filled
   parent: MedkitCombat
   components:
-  - type: StorageFill
-    contents:
-      - id: MedicatedSuture
-        amount: 2
-      - id: RegenerativeMesh
-        amount: 2
-      - id: PillCanisterHyronalin
-      - id: BurnAutoInjector
-        amount: 2
-      - id: BruteAutoInjector
-        amount: 2
-      - id: SyringeSaline
-        amount: 2
-      - id: PillCanisterDylovene
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedicatedSuture
+          amount: 2
+        - id: RegenerativeMesh
+          amount: 2
+        - id: PillCanisterHyronalin
+        - id: BurnAutoInjector
+          amount: 2
+        - id: BruteAutoInjector
+          amount: 2
+        - id: SyringeSaline
+          amount: 2
+        - id: PillCanisterDylovene
   - type: Storage
     grid:
     - 0,0,3,3
@@ -31,8 +33,10 @@
   suffix: CoalpenKit, Filled
   parent: Medkit
   components:
-  - type: StorageFill
-    contents:
-      - id: CoalAutoInjector
-        amount: 8
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CoalAutoInjector
+          amount: 8
 #Sunrise-end

@@ -19,12 +19,6 @@
     - type: Fiber
       fiberMaterial: fibers-chameleon
     - type: FingerprintMask
-  # Sunrise-Start
-    - type: Biocode
-      factions:
-      - Syndicate
-      - Thief
-  # Sunrise-End
 
 - type: entity
   parent: ClothingHandsChameleon

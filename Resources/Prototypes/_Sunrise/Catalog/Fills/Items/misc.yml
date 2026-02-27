@@ -13,14 +13,16 @@
   parent: ClothingBeltBlueShieldWebbing
   suffix: Filled
   components:
-  - type: StorageFill
-    contents:
-    - id: MedkitCombatFilled
-    - id: Handcuffs
-    - id: Handcuffs
-    - id: Stunbaton
-    - id: GrenadeFlashBang
-    - id: TearGasGrenade
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedkitCombatFilled
+        - id: Handcuffs
+        - id: Handcuffs
+        - id: Stunbaton
+        - id: GrenadeFlashBang
+        - id: HandheldHealthAnalyzer
 
 - type: entity
   id: ClothingShoesBootsBlueShieldFilled
@@ -36,14 +38,15 @@
 
 - type: entity
   id: ClothingBeltSecurityFilledERT
-  parent: ClothingBeltSecurity
+  parent: ClothingBeltMilitaryWebbingERT
   suffix: Filled, ERT
   components:
-  - type: StorageFill
-    contents:
-    - id: Stunbaton
-    - id: Handcuffs
-    - id: HoloprojectorSecurity
-    - id: GrenadeFlashBang
-    - id: TearGasGrenade
-    - id: Truncheon
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Telebaton
+        - id: Whistle
+        - id: Handcuffs
+        - id: Handcuffs
+        - id: HoloprojectorSecurity

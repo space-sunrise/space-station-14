@@ -28,6 +28,9 @@ namespace Content.IntegrationTests.Tests.Buckle
   id: {BuckleDummyId}
   components:
   - type: Buckle
+    # Sunrise edit start
+    unbuckleDoafterTime: 0
+    # Sunrise edit end
   - type: Hands
   - type: ComplexInteraction
   - type: InputMover

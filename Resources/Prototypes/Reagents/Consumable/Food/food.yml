@@ -47,14 +47,14 @@
       - !type:ModifyBleed
         amount: -0.25
       - !type:SatiateHunger #Numbers are balanced with this in mind + it helps limit how much healing you can get from fo
-#sunrise-start
-        Medicine:
-          effects:
-            - !type:HealthChange
-              damage:
-                types:
-                  Mangleness: -0.5
-#sunrise-end
+  #sunrise-start
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Mangleness: -0.5
+  #sunrise-end
   # Lets plants benefit too
   plantMetabolism:
   - !type:PlantAdjustNutrition
@@ -82,15 +82,15 @@
       - !type:ModifyBloodLevel
         amount: 1 # weaker than iron but pretty good all things considered
       - !type:SatiateHunger
-  pricePerUnit: 3
-#sunrise-start
+    #sunrise-start
     Medicine:
       effects:
       - !type:HealthChange
         damage:
           types:
             Mangleness: -0.2
-#sunrise-end
+    #sunrise-end
+  pricePerUnit: 3
 
 - type: reagent
   id: Sugar #Candy and grains
@@ -110,14 +110,14 @@
           reagent: Nutriment
           min: 0.1
         factor: 1
-#sunrise-start
+  #sunrise-start
     Medicine:
       effects:
       - !type:HealthChange
         damage:
           types:
             Mangleness: -0.3
-#sunrise-end
+  #sunrise-end
   plantMetabolism:
   - !type:PlantAdjustNutrition
     amount: 0.1

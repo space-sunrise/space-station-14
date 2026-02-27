@@ -13,6 +13,7 @@
                 <ui:OptionDropDown Name="DropDownLobbyAnimation" Title="{Loc 'ui-options-lobby-animation'}" />
                 <ui:OptionDropDown Name="DropDownLobbyParallax" Title="{Loc 'ui-options-lobby-parallax'}" />
                 <ui:OptionSlider Name="LobbyOpacitySlider" Title="{Loc 'ui-options-lobby-opacity'}" />
+                <CheckBox Name="LobbyUnloadResourcesCheckBox" Text="{Loc 'ui-options-lobby-unload-resources'}" />
 
                 <!-- Combat -->
                 <Label Text="{Loc 'ui-options-sunrise-general-combat'}"

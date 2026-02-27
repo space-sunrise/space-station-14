@@ -22,6 +22,7 @@
     - мя
     - мя.
     - мя!
+    - мявкать
 
 - type: emote
   id: Meow
@@ -49,6 +50,7 @@
     - мяукает
     - мяукает.
     - мяукает!
+    - мяукать
 
 - type: emote
   id: Hisses
@@ -67,6 +69,7 @@
   - шипит
   - шипит.
   - шипит!
+  - шипеть
   - hiss
   - hiss.
   - hiss!
@@ -91,6 +94,7 @@
     - мурчит
     - мурчит.
     - мурчит!
+    - мурчать
     - Purrs
     - Purrs.
     - Purrs!
@@ -151,13 +155,6 @@
     components:
     - BorgChassis
   chatMessages: ["chat-emote-msg-whines"]
-  chatTriggers:
-  - скулит.
-  - скулит!
-  - скулить.
-  - скулить!
-  - скулит
-  - скулить
 
 - type: emote
   id: Scree
@@ -188,6 +185,7 @@
   - скри
   - скри.
   - скри!
+  - верещит
 
 - type: emote
   id: Call
@@ -254,6 +252,7 @@
   - сквуэкает.
   - сквуэкает!
   - сквуэкает?
+  - скрипит
 
 - type: emote
   id: Trill
@@ -285,3 +284,57 @@
   - трещит.
   - трещит!
   - трещит?
+
+- type: emote
+  id: Roars
+  name: chat-emote-name-roar
+  category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+    - PressureImmunity
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-roar"]
+  chatTriggers:
+    - ревёт.
+    - ревёт!
+    - реветь.
+    - реветь!
+    - ревёт
+    - реветь
+    - ревет.
+    - ревет!
+    - ревет
+    - roar
+    - roar.
+    - roar!
+    - roars
+    - roars!
+    - roars.
+
+- type: emote
+  id: Rumbles
+  name: chat-emote-name-rumble
+  category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+    - PressureImmunity
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-rumble"]
+  chatTriggers:
+   - рокочет
+    - рокочет.
+    - рокочет!
+    - рокотать
+    - рокотать.
+    - рокотать!
+    - rumbles
+    - rumbles!
+    - rumbles.

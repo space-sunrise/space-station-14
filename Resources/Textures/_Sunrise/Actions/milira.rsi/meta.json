@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "license": "CLA",
+  "copyright": "SUNRISE",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "toggle_wings"
+    },
+    {
+      "name": "toggle_wings_active"
+    },
+    {
+        "name": "toggle_flight"
+    },
+    {
+        "name": "toggle_flight_active"
+    }
+  ]
+}

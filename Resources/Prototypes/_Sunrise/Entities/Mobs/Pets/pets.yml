@@ -195,6 +195,14 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: vidra
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: vidra
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -676,8 +684,10 @@
       types:
         Blunt: 0.1
   - type: Bloodstream
-    bloodMaxVolume: 50
-    bloodReagent: Honk
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Honk
+        Quantity: 50
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepClown

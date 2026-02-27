@@ -14,9 +14,3 @@
     - type: ChameleonClothing
       slot: [ears]
       default: ClothingHeadsetGrey
-  # Sunrise-Start
-    - type: Biocode
-      factions:
-      - Syndicate
-      - Thief
-  # Sunrise-End

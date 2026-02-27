@@ -81,7 +81,11 @@ public sealed class DamageOverlaySystem : EntitySystem
             return;
 
         if (!_player.TryGetSessionByEntity(args.Origin.Value, out var originSession))
-            return;
+        {
+            // Случай если используется оружие дальнего боя
+            if (!_player.TryGetSessionByEntity(Transform(args.Origin.Value).ParentUid, out originSession))
+                return;
+        }
 
         TryCreatePopup(ent, damageDelta, coords, originSession);
     }

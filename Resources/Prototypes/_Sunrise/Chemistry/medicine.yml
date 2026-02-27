@@ -48,9 +48,8 @@
       effects:
         - !type:ModifyStatusEffect
           effectProto: StatusEffectSeeingRainbow
-          type: Add
+          type: Update
           time: 4
-          refresh: false
 
 - type: reagent
   id: BarozinePlus
@@ -70,15 +69,17 @@
             Heat: 0.4
       - !type:HealthChange
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
+            reagent: BarozinePlus
             min: 50
         damage:
           types:
             Poison: 1
-      - !type:ChemVomit
+      - !type:Vomit
         probability: 0.1
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
+            reagent: BarozinePlus
             min: 30
       - !type:GenericStatusEffect
         key: PressureImmunity

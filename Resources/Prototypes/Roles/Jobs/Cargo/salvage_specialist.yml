@@ -16,6 +16,11 @@
   - Salvage
   - Maintenance
   - External
+  # Sunrise-start
+  extendedAccess:
+  - CargoPurchaseAccess
+  - Mining
+  # Sunrise-end
 
 - type: startingGear
   id: SalvageSpecialistGear

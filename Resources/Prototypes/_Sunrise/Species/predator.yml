@@ -3,13 +3,13 @@
   id: Predator
   name: species-name-predator
   roundStart: true
+  sponsorOnly: true
   prototype: MobPredator
   bodyTypes:
   - PredatorNormal
   markingLimits: MobPredatorMarkingLimits
   dollPrototype: MobPredatorDummy
   skinColoration: Hues
-  sponsorOnly: false
   defaultHeight: 1.05
   defaultWidth: 1.1
   maxHeight: 1.15

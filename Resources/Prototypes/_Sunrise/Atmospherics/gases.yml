@@ -1,36 +1,36 @@
 - type: gas
-  id: 9
+  id: BZ
   name: gases-bz
   specificHeat: 20
   heatCapacityRatio: 1.4
   molarMass: 10
   color: 9370db
   reagent: BZ
-  pricePerMole: 1
+  pricePerMole: 0.3
   gasOverlaySprite: /Textures/_Sunrise/Effects/atmospherics.rsi
   gasOverlayState: bz
 
 - type: gas
-  id: 10
+  id: Healium
   name: gases-healium
   specificHeat: 20
   heatCapacityRatio: 1.4
   molarMass: 10
   color: 8b0000
   reagent: Healium
-  pricePerMole: 12
+  pricePerMole: 0.32
   gasOverlaySprite: /Textures/_Sunrise/Effects/atmospherics.rsi
   gasOverlayState: healium
 
 - type: gas
-  id: 11
+  id: Nitrium
   name: gases-nitrium
   specificHeat: 20
   heatCapacityRatio: 1.4
   molarMass: 30
   color: 8B4513
   reagent: Nitrium
-  pricePerMole: 2
+  pricePerMole: 0.26
   gasOverlaySprite: /Textures/_Sunrise/Effects/atmospherics.rsi
   gasOverlayState: nitriumGas
 

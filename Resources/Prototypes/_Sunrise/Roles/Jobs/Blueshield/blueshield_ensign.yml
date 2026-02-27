@@ -55,3 +55,15 @@
   storage:
     back:
     - HandheldBSOCrewMonitor
+
+- type: chameleonOutfit
+  id: BlueShieldEnsignChameleonOutfit
+  job: BlueShieldEnsign
+  icon: JobIconBlueShield
+  equipment:
+    shoes: ClothingShoesBootsBlueShieldFilled
+    eyes: ClothingEyesGlassesBlueShield
+    head: ClothingHeadHatBeretBlueShield
+    outerClothing: ClothingOuterArmorBlueShield
+    belt: ClothingBeltBlueShieldWebbingFilled
+    gloves: ClothingHandsGlovesCombat

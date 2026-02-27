@@ -28,7 +28,7 @@
     layers:
       - state: foamdart
   - type: StaminaDamageOnCollide # sunrise-added
-    damage: 10 # sunrise-added
+    damage: 15 # sunrise-added
   - type: EmbeddableProjectile
     removalTime: .2
   - type: ThrowingAngle

@@ -1,0 +1,96 @@
+# Head
+
+- type: loadout
+  id: PrisonTraineeCap
+  equipment:
+    head: ClothingHeadCapPrisonTrainee
+
+- type: loadout
+  id: PrisonTraineeBeret
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonTrainee
+      time: 25200 # 7 часов
+  equipment:
+    head: ClothingHeadHatBeretPrisonTrainee
+
+- type: loadout
+  id: PrisonTraineeHat
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonTrainee
+      time: 54000 # 15 часов
+  equipment:
+    head: ClothingHeadHatCapPrisonTrainee
+
+# PDA
+
+- type: loadout
+  id: PrisonTraineePDAPartial
+  equipment:
+    id: PrisonTraineePDAPartial
+
+- type: loadout
+  id: PrisonTraineePDAAdvanced
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonTrainee
+      time: 25200 # 7 часов
+  equipment:
+    id: PrisonTraineePDAAdvanced
+
+- type: loadout
+  id: PrisonTraineePDAComplete
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonTrainee
+      time: 54000 # 15 часов
+  equipment:
+    id: PrisonTraineePDAComplete
+
+# Рабочая униформа
+
+- type: loadout
+  id: PrisonTraineeJumpsuit
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonTrainee
+
+- type: loadout
+  id: PrisonTraineeJumpskirt
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonTrainee
+
+- type: loadout
+  id: PrisonTraineeJumpsuitVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonTrainee
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonTraineeVeteran
+
+- type: loadout
+  id: PrisonTraineeJumpskirtVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonTrainee
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonTraineeVeteran
+

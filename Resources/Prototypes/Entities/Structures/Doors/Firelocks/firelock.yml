@@ -80,7 +80,7 @@
         fix1:
           shape:
             !type:PhysShapeAabb
-            bounds: "-0.49,-0.49,0.49,0.49"  # don't want this colliding with walls or they won't close
+            bounds: "-0.46,-0.46,0.46,0.46" # Sunrise edit - фикс двойных шлюзов
           density: 100
           mask:
           - FullTileMask
@@ -111,6 +111,7 @@
       fuel: 5
       time: 3
     - type: Firelock
+      lockedPryTimeModifier: 0.5 # Sunrise-Add
     - type: Appearance
     - type: WiresVisuals
     - type: WiresPanel
@@ -182,7 +183,7 @@
         fix1:
           shape:
             !type:PhysShapeAabb
-            bounds: "-0.49,-0.49,0.49,0.49"  # don't want this colliding with walls or they won't close
+            bounds: "-0.46,-0.46,0.46,0.46"  # Sunrise edit - фикс двойных шлюзов
           mask:
           - Impassable
           - HighImpassable
@@ -212,7 +213,7 @@
         fix1:
           shape:
             !type:PhysShapeAabb
-            bounds: "-0.49,-0.49,0.49,-0.2" # don't want this colliding with walls or they won't close
+            bounds: "-0.46,-0.46,0.46,-0.2" # Sunrise edit - фикс двойных шлюзов
           mask:
           - Impassable
           - HighImpassable

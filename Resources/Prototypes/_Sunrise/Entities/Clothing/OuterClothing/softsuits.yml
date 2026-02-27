@@ -41,7 +41,7 @@
 
 #Pirate Hardsuit
 - type: entity
-  parent: [ ClothingOuterEVASuitBase, BaseSyndicateContraband ]
+  parent: [ ClothingOuterEVASuitBase, BaseMajorContraband ]
   id: ClothingOuterEVASuitPirateOld
   name: pirate hardsuit
   suffix: Pirate, Sunrise
@@ -74,10 +74,23 @@
   - type: HeldSpeedModifier
   - type: StaticPrice
     price: 2000
+  - type: ContainerContainer
+    containers:
+      beakerSlot: !type:ContainerSlot
+  - type: Inject
+    openCloseDelay: 1
+    autoClose: true
+    autoCloseDelay: 6
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        whitelist:
+          tags:
+          - FitsHardsuit
 
 #Pirate EVA
 - type: entity
-  parent: [ ClothingOuterEVASuitBase, ClothingOuterStorageBase, BaseSyndicateContraband ]
+  parent: [ ClothingOuterEVASuitBase, ClothingOuterStorageBase, BaseMajorContraband ]
   id: ClothingOuterEVASuitPirate
   name: boarding EVA suit
   description: "A battered, duct-taped suit that’s seen more than a few boarding actions. Has a tag on the back that reads: 'Totally not property of an pirate, honest"
@@ -145,12 +158,27 @@
         Radiation: 0.5
         Caustic: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.84
+    sprintModifier: 0.84
   - type: StaminaResistance
     damageCoefficient: 0.75
   - type: ClothingSlowOnDamageModifier
     modifier: 0.5
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      beakerSlot: !type:ContainerSlot
+  - type: Inject
+    openCloseDelay: 1
+    autoClose: true
+    autoCloseDelay: 6
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        whitelist:
+          tags:
+          - FitsHardsuit
 
 - type: entity
   parent: ClothingOuterEVASuitPirateArmored

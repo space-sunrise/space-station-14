@@ -1,5 +1,17 @@
 ﻿- type: entity
   parent: BaseGameRule
+  id: RevolutionarySmugglerStashSpawn
+  components:
+  - type: StationEvent
+    earliestStart: 0
+    duration: 1
+    minimumPlayers: 1
+    weight: 0
+  - type: RandomSpawnRule
+    prototype: RevolutionarySmugglerStash
+
+- type: entity
+  parent: BaseGameRule
   id: DiseaseSpawn
   categories: [ HideSpawnMenu ]
   components:
@@ -64,12 +76,12 @@
     duration: 1
   - type: RuleGrids
   - type: LoadMapRule
-    gridPath: /Maps/_Sunrise/Shuttles/abductor_shuttle.yml
+    gridPath: /Maps/_Sunrise/Shuttles/Antag/abductor_shuttle.yml
   - type: AntagObjectives
     objectives:
     - AbductObjective
-  - type: AntagLoadProfileRule
-    speciesHardOverride: Abductor
+  - type: AntagSpawner # Sunrise-todo: починить AntagLoadProfileRule для бубукторов
+    prototype: MobAbductor
   - type: AntagSelection
     definitions:
     - spawnerPrototype: AbductorScientistSpawner
@@ -122,6 +134,8 @@
         - SimpleHostile
       mindRoles:
       - MindRoleLoneAbductor
+  - type: DynamicRuleCost
+    cost: 100
 
 - type: entity
   id: AbductorVictim
@@ -150,6 +164,8 @@
         sound: /Audio/_Sunrise/Abductor/abductor.ogg
       mindRoles:
       - AbductorVictimRole
+  - type: DynamicRuleCost
+    cost: 70
 
 - type: entity
   parent: BaseGameRule

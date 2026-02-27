@@ -23,6 +23,7 @@
   icon: "JobIconPrisonWorker"
   overrideConsoleVisibility: false
   supervisors: job-supervisors-head-of-prison
+  weight: 4
   alwaysUseSpawner: true
   canBeAntag: false
   displayWeight: 80
@@ -48,24 +49,23 @@
   id: PrisonWorkerGear
   equipment:
     id: PrisonWorkerPDA
-    jumpsuit: UniformPrisonWorkerMetus
-    ears: ClothingHeadsetService
+    ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasic
     belt: ClothingBeltPrisonWorkerMetus
     back: ClothingBackpackSatchelPrisonWorkerMetus
     shoes: ClothingShoesBootsJack
-    pocket1: WeaponPistolG22Metus
+    pocket1: WeaponPistolG22Prison
     pocket2: SecurityWhistle
 
 - type: chameleonOutfit
   id: PrisonWorkerChameleonOutfit
   job: PrisonWorker
   equipment:
-    jumpsuit: UniformPrisonWorkerMetus
-    head: ClothingHeadCapPrisonWorkerMetus
-    ears: ClothingHeadsetService
+    jumpsuit: ClothingUniformJumpsuitPrisonWorker
+    head: ClothingHeadCapPrisonWorker
+    ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasic

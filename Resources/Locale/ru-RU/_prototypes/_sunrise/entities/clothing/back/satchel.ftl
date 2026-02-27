@@ -28,6 +28,9 @@ ent-ClothingBackpackSatchelWhite = белая сумка
     .desc = С этой сумкой вы выглядите очень стильно.
 ent-ClothingBackpackSatchelYellow = жёлтая сумка
     .desc = С этой сумкой вы выглядите очень стильно.
+
+ent-ClothingBackpackSatchelRandomColorSpawner = сумка (случайный цвет)
+    .desc = Сумка случайного цвета.
 # сумки Метус
 ent-ClothingBackpackSatchelHeadOfPrisonMetus = сумка начальника тюрьмы
     .desc = Старая кожа с трещинами, ремень перетянут, запах пыли и металла смешался в нём, как память о годах за закрытыми дверями.
@@ -43,3 +46,5 @@ ent-ClothingBackpackSatchelPrisonScientistMetus = сумка тюремного 
     .desc = Жёсткая сумка с отполированными полосками, словно её владелец боится потерять хоть одну запись.
 ent-ClothingBackpackSatchelPrisonWorkerMetus = сумка тюремного разнорабочего
     .desc = Мешковатая и тяжёлая, наполовину изношенная от постоянной смены инструментов.
+ent-ClothingBackpackSatchelPrisonTraineeMetus = сумка тюремного стажёра
+    .desc = Новая и чистая, ещё хранящая следы свежего начала, с оранжевыми акцентами, отмечающими путь обучения.

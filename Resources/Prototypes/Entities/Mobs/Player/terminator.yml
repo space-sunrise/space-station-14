@@ -24,7 +24,7 @@
   - type: Stamina
     decay: 50
     cooldown: 1
-    critThreshold: 1000
+    baseCritThreshold: 1000
   # immune to space drugs, pax, temporary blindness
   - type: StatusEffects
     allowed:
@@ -40,9 +40,7 @@
     - Muted
     - ForcedSleep
     - StaminaModifier
-    - Jump # Sunrise-Edit
     - Flip # Sunrise-Edit
-    - Fall # Sunrise-Edit
   - type: EmoteAnimation # Sunrise-Edit
   - type: MobState
     allowedStates:
@@ -61,7 +59,7 @@
       types:
         Heat: 6.0
   # slightly wider thresholds
-  - type: Temperature
+  - type: TemperatureDamage
     heatDamageThreshold: 390
     coldDamageThreshold: 240
   # take terminator flesh damage

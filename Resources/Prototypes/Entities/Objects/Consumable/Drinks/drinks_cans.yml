@@ -49,7 +49,7 @@
       drink:
         maxVol: 30
         reagents:
-        - ReagentId: Cola
+        - ReagentId: ColaSunrise # Sunrise-edit
           Quantity: 30
       grindable: *grindable
   - type: Tag
@@ -198,7 +198,7 @@
       drink:
         maxVol: 30
         reagents:
-        - ReagentId: RootBeer
+        - ReagentId: RootBeerSunrise # Sunrise-edit
           Quantity: 30
       grindable: *grindable
   - type: Sprite
@@ -240,7 +240,7 @@
       drink:
         maxVol: 30
         reagents:
-        - ReagentId: SpaceMountainWind
+        - ReagentId: SpaceMountainWindSunrise # Sunrise-edit
           Quantity: 30
       grindable: *grindable
   - type: Sprite
@@ -259,7 +259,7 @@
       drink:
         maxVol: 30
         reagents:
-        - ReagentId: SpaceUp
+        - ReagentId: SpaceUpSunrise # Sunrise-edit
           Quantity: 30
       grindable: *grindable
   - type: Sprite
@@ -278,7 +278,7 @@
       drink:
         maxVol: 30
         reagents:
-        - ReagentId: SolDry
+        - ReagentId: SolDrySunrise # Sunrise-edit
           Quantity: 30
       grindable: *grindable
   - type: Sprite
@@ -297,7 +297,7 @@
       drink:
         maxVol: 30
         reagents:
-        - ReagentId: Starkist
+        - ReagentId: StarkistSunrise # Sunrise-edit
           Quantity: 30
       grindable: *grindable
   - type: Sprite
@@ -335,7 +335,7 @@
       drink:
         maxVol: 30
         reagents:
-        - ReagentId: FourteenLoko
+        - ReagentId: FourteenLokoSunrise # Sunrise-edit
           Quantity: 30
       grindable: *grindable
   - type: Sprite
@@ -354,7 +354,7 @@
       drink:
         maxVol: 30
         reagents:
-        - ReagentId: ChangelingSting
+        - ReagentId: ChangelingStingSunrise # Sunrise-edit
           Quantity: 30
       grindable: *grindable
   - type: Sprite
@@ -373,7 +373,7 @@
       drink:
         maxVol: 30
         reagents:
-        - ReagentId: DrGibb
+        - ReagentId: DrGibbSunrise # Sunrise-edit
           Quantity: 30
       grindable: *grindable
   - type: Sprite
@@ -415,7 +415,7 @@
       drink:
         maxVol: 30
         reagents:
-        - ReagentId: EnergyDrink
+        - ReagentId: EnergyDrinkSunrise # Sunrise-edit
           Quantity: 30
       grindable: *grindable
   - type: Sprite
@@ -434,7 +434,7 @@
       drink:
         maxVol: 30
         reagents:
-        - ReagentId: ShamblersJuice
+        - ReagentId: ShamblersJuiceSunrise # Sunrise-edit
           Quantity: 30
       grindable: *grindable
   - type: Sprite
@@ -453,7 +453,7 @@
       drink:
         maxVol: 30
         reagents:
-        - ReagentId: PwrGame
+        - ReagentId: PwrGameSunrise # Sunrise-edit
           Quantity: 30
       grindable: *grindable
   - type: Sprite

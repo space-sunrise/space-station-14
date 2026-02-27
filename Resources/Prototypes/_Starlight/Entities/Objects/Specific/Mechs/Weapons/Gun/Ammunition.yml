@@ -5,6 +5,7 @@
 - type: entity
   id: ShellShotgunMechIncendiary
   parent: [ShellShotgunIncendiary, MechCartridge]
+  categories: [HideSpawnMenu]
   components:
     - type: CartridgeAmmo
       deleteOnSpawn: true
@@ -12,14 +13,24 @@
 - type: entity
   id: ShellShotgunMech
   parent: [ShellShotgun, MechCartridge]
+  categories: [HideSpawnMenu]
   components:
-    - type: HitScanCartridgeAmmo
+    - type: CartridgeAmmo
       deleteOnSpawn: true
 
 
 - type: entity
   id: CartridgeHeavyRifleRFMJMech
   parent: [CartridgeHeavyRifleRFMJ, MechCartridge]
+  categories: [HideSpawnMenu]
   components:
-    - type: HitScanCartridgeAmmo
+    - type: CartridgeAmmo
       deleteOnSpawn: true
+
+- type: entity
+  id: CartridgePistolImprovisedMech
+  parent: [CartridgePistolImprovised, MechCartridge]
+  categories: [HideSpawnMenu]
+  components:
+  - type: CartridgeAmmo
+    deleteOnSpawn: true

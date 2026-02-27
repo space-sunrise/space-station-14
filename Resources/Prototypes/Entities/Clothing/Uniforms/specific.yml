@@ -38,9 +38,3 @@
     - type: ChameleonClothing
       slot: [innerclothing]
       default: ClothingUniformJumpsuitColorBlack
-  # Sunrise-Start
-    - type: Biocode
-      factions:
-      - Syndicate
-      - Thief
-  # Sunrise-End

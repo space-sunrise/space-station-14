@@ -1,0 +1,14 @@
+<Document>
+  # Дворфы
+
+  <Box>
+    <GuideEntityEmbed Entity="MobDwarf" Caption=""/>
+  </Box>
+
+  Дворфы во многом похожи на людей, но лучше переносят алкоголь, а спиртное их лечит.
+
+  <Box>
+    <GuideEntityEmbed Entity="DrinkBeerBottleFull" Caption=""/>
+  </Box>
+  Дворфам необходимо пить алкоголь для утоления жажды, обычная вода же наоборот сушит их организм.
+</Document>

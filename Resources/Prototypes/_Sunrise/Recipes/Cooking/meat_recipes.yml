@@ -43,3 +43,178 @@
     FoodBowlBig: 1
     SteelLog: 1
     Log: 1
+
+- type: microwaveMealRecipe
+  id: RecipeNianRamen
+  name: nian ramen recipe
+  result: FoodNianRamenBowl
+  time: 20
+  group: Pasta
+  reagents:
+    Soysauce: 10
+    Water: 5
+  solids:
+    FoodBowlBig: 1
+    FoodMeatNian: 2
+    FoodNoodlesBoiled: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDionaSalad
+  name: diona salad recipe
+  result: FoodSaladDiona
+  time: 15
+  group: Salad
+  solids:
+    FoodMeatDionaRoots: 3
+    FoodCarrot: 2
+    FoodApple: 2
+    FoodCabbage: 1
+
+- type: microwaveMealRecipe
+  id: RecipeRoyalXenoSoup
+  name: royal xeno soup recipe
+  result: FoodSoupRoyalXeno
+  time: 20
+  group: Soup
+  reagents:
+    Blood: 15
+  solids:
+    FoodBowlBig: 1
+    FoodMeatXeno: 2
+
+- type: microwaveMealRecipe
+  id: RecipeFacehuggerSoup
+  name: facehugger soup recipe
+  result: FoodSoupFacehugger
+  time: 20
+  group: Soup
+  reagents:
+    Blood: 10
+    Water: 10
+  solids:
+    FoodBowlBig: 1
+    FoodMeatXeno: 1
+
+- type: microwaveMealRecipe
+  id: RecipeBakedResomi
+  name: baked resomi recipe
+  result: FoodMealBakedResomi
+  time: 30
+  group: Savory
+  reagents:
+    Blackpepper: 5
+    TableSalt: 5
+  solids:
+    FoodMeatResomi: 2
+    FoodCarrot: 1
+    FoodCabbage: 1
+    FoodPlate: 1
+
+- type: microwaveMealRecipe
+  id: RecipeMiliraWingsHolyBbq
+  name: milira wings holy bbq recipe
+  result: FoodMealMiliraWingsBarbecue
+  time: 30
+  group: Savory
+  reagents:
+    Holywater: 10
+    BbqSauce: 10
+  solids:
+    FoodMeatMilira: 1
+    FoodMeatCutlet: 3
+    FoodButterSlice: 4
+
+- type: microwaveMealRecipe
+  id: RecipeSlimeBun
+  name: slime bun recipe
+  result: FoodSlimeBun
+  time: 15
+  group: Other
+  reagents:
+    Slime: 10
+    Sugar: 5
+  solids:
+    SentientSlimeCore: 1
+    FoodBreadBun: 1
+
+- type: microwaveMealRecipe
+  id: RecipeUnathCarpNachos
+  name: unath-style nachos recipe
+  result: FoodMealUnathCarpNachos
+  time: 15
+  group: Savory
+  solids:
+    FoodMeatUnath: 3
+    FoodMeatFish: 1
+    FoodMealNachos: 1
+    FoodTomato: 1
+    FoodChiliPepper: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDemonHellChili
+  name: hell chili recipe
+  result: FoodDemonHellChiliBowl
+  time: 20
+  group: Soup
+  reagents:
+    Water: 15
+  solids:
+    FoodBowlBig: 1
+    FoodMeatArkana: 2
+    FoodChiliPepper: 3
+    FoodTomato: 1
+
+- type: microwaveMealRecipe
+  id: RecipeLeTrottinRagout
+  name: le'trottin ragout recipe
+  result: FoodRagoutLeTrottinBowl
+  time: 25
+  group: Soup
+  reagents:
+    Water: 10
+  solids:
+    FoodBowlBig: 1
+    FoodMeatSwine: 2
+    FoodMeatBacon: 3
+    FoodCarrot: 1
+    FoodTomato: 1
+
+- type: microwaveMealRecipe
+  id: RecipeTajawarma
+  name: tajawarma recipe
+  result: FoodTajawarma
+  time: 15
+  group: Savory
+  solids:
+    FoodMeatTajaran: 2
+    FoodCarrot: 1
+    FoodCabbage: 1
+    FoodTomato: 1
+    FoodDoughTortillaFlat: 2
+
+- type: microwaveMealRecipe
+  id: RecipeFelmeni
+  name: felmeni recipe
+  result: FoodFelmeniBowl
+  time: 30
+  group: Soup
+  solids:
+    FoodMeatFelinid: 2
+    FoodDough: 1
+    FoodCarrot: 1
+    FoodCheeseSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeVulpLoaf
+  name: vulp loaf recipe
+  result: FoodVulpLoaf
+  time: 30
+  group: Savory
+  reagents:
+    Holywater: 15
+  solids:
+    FoodMeatVulpkanin: 2
+    FoodDough: 1
+    FoodMeatCutlet: 2
+
+

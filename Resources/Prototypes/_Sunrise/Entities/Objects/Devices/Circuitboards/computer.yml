@@ -128,7 +128,7 @@
   - type: Sprite
     state: cpu_supply
   - type: ComputerBoard
-    prototype: ComputerFineRecords
+    prototype: ComputerContrabandSale
   - type: StaticPrice
     price: 3000
 

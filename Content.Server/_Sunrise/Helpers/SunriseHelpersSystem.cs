@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._Sunrise.Other.StationOnlyDirectSpawn;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Shared._Sunrise.Helpers;
@@ -22,9 +23,12 @@ public sealed partial class SunriseHelpersSystem : SharedSunriseHelpersSystem
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
-    #region Private
+    #region Open Gameticker API
 
-    private bool TryGetRandomStation([NotNullWhen(true)] out EntityUid? station, Func<EntityUid, bool>? filter = null)
+    /// <summary>
+    ///     Utility function for finding a random event-eligible station entity
+    /// </summary>
+    public bool TryGetRandomStation([NotNullWhen(true)] out EntityUid? station, Func<EntityUid, bool>? filter = null)
     {
         var stations = new ValueList<EntityUid>(Count<StationEventEligibleComponent>());
 
@@ -45,15 +49,12 @@ public sealed partial class SunriseHelpersSystem : SharedSunriseHelpersSystem
             return false;
         }
 
+        // TODO: Engine PR.
         station = stations[_random.Next(stations.Count)];
         return true;
     }
 
-    #endregion
-
-    #region Tile
-
-        public bool TryFindRandomTile(out Vector2i tile,
+    public bool TryFindRandomTile(out Vector2i tile,
         [NotNullWhen(true)] out EntityUid? targetStation,
         out EntityUid targetGrid,
         out EntityCoordinates targetCoords)
@@ -82,6 +83,7 @@ public sealed partial class SunriseHelpersSystem : SharedSunriseHelpersSystem
         targetCoords = EntityCoordinates.Invalid;
         targetGrid = EntityUid.Invalid;
 
+        // Weight grid choice by tilecount
         var weights = new Dictionary<Entity<MapGridComponent>, float>();
         foreach (var possibleTarget in station.Comp.Grids)
         {
@@ -109,9 +111,9 @@ public sealed partial class SunriseHelpersSystem : SharedSunriseHelpersSystem
 
             tile = new Vector2i(randomX, randomY);
             if (_atmosphere.IsTileSpace(targetGrid, Transform(targetGrid).MapUid, tile)
-                || _atmosphere.IsTileAirBlocked(targetGrid, tile, mapGridComp: gridComp)
-                || !_map.TryGetTileRef(targetGrid, gridComp, tile, out var tileRef)
-                || tileRef.Tile.IsEmpty)
+                || _atmosphere.IsTileAirBlockedCached(targetGrid, tile)
+                || !_map.TryGetTileRef(targetGrid, gridComp, tile, out var tileRef) // Sunrise added
+                || tileRef.Tile.IsEmpty) // Sunrise added
             {
                 continue;
             }
@@ -125,4 +127,19 @@ public sealed partial class SunriseHelpersSystem : SharedSunriseHelpersSystem
     }
 
     #endregion
+
+    public List<EntityUid> GetSpawnableStations()
+    {
+        var spawnableStations = new List<EntityUid>();
+        var query = EntityQueryEnumerator<StationJobsComponent, StationSpawningComponent>();
+        while (query.MoveNext(out var uid, out _, out _))
+        {
+            if (HasComp<StationOnlyDirectSpawnComponent>(uid))
+                continue;
+
+            spawnableStations.Add(uid);
+        }
+
+        return spawnableStations;
+    }
 }

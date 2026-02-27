@@ -1,22 +1,30 @@
 using System.Numerics;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 
 namespace Content.Shared._Sunrise.Lobby;
 
-[Prototype("lobbyAnimation")]
-public sealed partial class LobbyAnimationPrototype : IPrototype
+[Prototype]
+public sealed partial class LobbyAnimationPrototype : IPrototype, IInheritingPrototype
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
+    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<LobbyAnimationPrototype>))]
+    public string[]? Parents { get; private set; }
+
+    /// <inheritdoc />
+    [NeverPushInheritance, AbstractDataField]
+    public bool Abstract { get; private set; }
+
+    /// <inheritdoc />
     [IdDataField]
-    public string ID { get; set; } = default!;
+    public string ID { get; private set; } = default!;
 
-    [DataField("rawPath", required: true)]
-    public string RawPath = default!;
+    [DataField(required: true)]
+    public string Animation = default!;
 
-    [DataField("scale")]
+    [DataField]
     public Vector2 Scale = new(1f, 1f);
 
-    [DataField("state")]
+    [DataField]
     public string State = "animation";
 }

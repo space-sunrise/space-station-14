@@ -35,7 +35,19 @@
     count: 48
 
 - type: localizedDataset
+  id: PirateUplinkChatter
+  values:
+    prefix: advertisement-pirate-uplink-
+    count: 40
+
+- type: localizedDataset
   id: NarSieAds
   values:
     prefix: advertisement-narsie-
+    count: 8
+
+- type: localizedDataset
+  id: EVAdispenserAds
+  values:
+    prefix: advertisement-evadisp-
     count: 8

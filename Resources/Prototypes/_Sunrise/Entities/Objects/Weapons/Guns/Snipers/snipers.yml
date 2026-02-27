@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   name: Dragunov
   parent: [ BaseWeaponRifle, BaseGunWieldable ]
   id: WeaponSniperDragunov
@@ -39,7 +39,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineDragunov
+        startingItem: MagazineDragunovSP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Dragunov/dragunov_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Dragunov/dragunov_unload.ogg
         priority: 2
@@ -267,9 +267,9 @@
   description: A civilian grade lever action firearm, favored by space cowboys for its reliability and stopping power. Uses .45 magnum ammo.
   components:
   - type: Item
-    size: Huge
+    size: Normal
     shape:
-    - 0,0,4,1
+    - 0,0,3,1
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/n2524/repeater_inhands_64x.rsi
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/n2524/repeater.rsi
@@ -279,7 +279,7 @@
     price: 850
   - type: Gun
     pump: true
-    fireRate: 1.35
+    fireRate: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -321,3 +321,4 @@
   - type: Tag
     tags:
       - WrappedWeapon
+

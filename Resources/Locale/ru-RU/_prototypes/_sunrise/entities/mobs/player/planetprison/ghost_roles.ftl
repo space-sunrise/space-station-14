@@ -21,3 +21,6 @@ ghost-role-information-planet-prison-chef-description = Готовьте пит�
 
 ghost-role-information-planet-prison-prisoner-name = заключённый ПТ
 ghost-role-information-planet-prison-prisoner-description = Отбывайте срок в планетарной тюрьме.
+
+ghost-role-information-planet-prison-trainee-name = тюремный стажёр
+ghost-role-information-planet-prison-trainee-description = Обучайтесь и помогайте в работе планетарной тюрьмы.

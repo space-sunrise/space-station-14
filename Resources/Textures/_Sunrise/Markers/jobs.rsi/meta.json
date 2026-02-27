@@ -59,7 +59,22 @@
         "name": "prisonchef"
     },
     {
+        "name": "prisontrainee"
+    },
+    {
         "name": "planetprisoner"
+    },
+    {
+        "name": "commaid"
+    },
+    {
+        "name": "mailcarrier"
+    },
+    {
+        "name": "roboticist"
+    },
+    {
+        "name": "security_pilot"
     }
   ]
 }

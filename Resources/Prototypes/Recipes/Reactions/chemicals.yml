@@ -313,7 +313,7 @@
     Phosphorus:
      amount: 1
   products:
-    Desoxyephedrine: 2 # Sunrise-Edit # Как-то многовато и много мета производят
+    Desoxyephedrine: 4
 
 - type: reaction
   id: Stimulants

@@ -438,7 +438,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
         uint restock = amount;
 
-        if (type == InventoryType.Regular)
+        if (type == InventoryType.Regular || type == InventoryType.Contraband)
         {
             var chanceOfMissingStock = 1 - restockQuality;
             var result = Randomizer.NextFloat(0, 1);
@@ -447,8 +447,11 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
             if (TryComp<PlayerCountDependentStockComponent>(uid, out var dependentStockComponent))
             {
-                restock = (uint)Math.Floor(
-                    amount + Math.Pow(_player.PlayerCount, 0.8f) * dependentStockComponent.Coefficient);
+                var scale = 1f + Math.Pow(_player.PlayerCount, 0.8f) * dependentStockComponent.Coefficient; // Sunrise start
+                if (scale < 1f)
+                    scale = 1f;
+
+                restock = (uint)Math.Floor(amount * scale); // Sunrise end
             }
 
             restock = Math.Max(restock, 2);

@@ -6,11 +6,14 @@ device-frequency-prototype-name-lights = Умное освещение
 device-frequency-prototype-name-mailing-units = Почтовый блок
 device-frequency-prototype-name-pdas = КПК
 device-frequency-prototype-name-fax = Факс
+device-frequency-prototype-name-messenger = Мессенджер
 device-frequency-prototype-name-basic-device = Базовые устройства
 device-frequency-prototype-name-cyborg-control = Управление киборгами
 device-frequency-prototype-name-robotics-console = Консоль управления робототехникой
 device-frequency-prototype-name-turret = Турель
 device-frequency-prototype-name-turret-control = Управление турелями
+device-frequency-prototype-name-xenoborg = Ксеноборг
+device-frequency-prototype-name-mothership = Материнский корабль
 # prefixes for randomly generated device addresses
 device-address-prefix-vent = Вент-
 device-address-prefix-scrubber = Скр-

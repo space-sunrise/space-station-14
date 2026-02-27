@@ -317,9 +317,9 @@
   - type: SolutionContainerManager
     solutions:
       ammo:
-        maxVol: 10
+        maxVol: 4
   - type: SolutionInjectOnProjectileHit
-    transferAmount: 10
+    transferAmount: 4
     solution: ammo
   - type: PointLight
     enabled: true

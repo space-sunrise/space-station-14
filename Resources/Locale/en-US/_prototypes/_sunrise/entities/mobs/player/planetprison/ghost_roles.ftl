@@ -21,3 +21,6 @@ ghost-role-information-planet-prison-chef-description = Cook meals for the plane
 
 ghost-role-information-planet-prison-prisoner-name = planet prisoner
 ghost-role-information-planet-prison-prisoner-description = Serve your sentence on the planet prison.
+
+ghost-role-information-planet-prison-trainee-name = prison trainee
+ghost-role-information-planet-prison-trainee-description = Learn and assist in the operations of the planetary prison.

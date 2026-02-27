@@ -1,0 +1,16 @@
+ent-ClothingBackpackMessengerPassenger = passenger messenger bag
+    .desc = A trendy looking messenger bag in tasteful colors.
+ent-ClothingBackpackMessengerPilot = pilot messenger bag
+    .desc = A robust messenger bag for shuttle parts.
+ent-ClothingBackpackMessengerMercenary = mercenary messenger bag
+    .desc = A robust messenger bag for war crimes.
+ent-ClothingBackpackMessengerPrivateSecurity = private security messenger bag
+    .desc = A robust messenger bag for committing war crimes on a payroll.
+ent-ClothingBackpackMessengerSyndicate = syndicate messenger bag
+    .desc = A robust messenger bag for waging war against oppressors.
+ent-ClothingBackpackMessengerBloodCult = cultist messenger bag
+    .desc = A watertight messenger bag for loyal Nar'Sie followers.
+ent-ClothingBackpackMessengerArcadia = arcadia messenger bag
+    .desc = { ent-ClothingBackpackMessengerPassenger.desc }
+ent-ClothingBackpackMessengerPirate = pirate messenger bag
+    .desc = A robust messenger bag for war crimes. Yarr.

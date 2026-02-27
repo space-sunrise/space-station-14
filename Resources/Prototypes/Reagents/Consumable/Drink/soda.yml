@@ -154,6 +154,19 @@
   flavor: pwrgamesoda
   color: "#9385bf"
   fizziness: 0.9 # gamers crave the fizz
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 1
+        type: Remove
 
 - type: reagent
   id: RootBeer

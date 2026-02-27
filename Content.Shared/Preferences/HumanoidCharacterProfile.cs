@@ -78,7 +78,7 @@ namespace Content.Shared.Preferences
         public ProtoId<SpeciesPrototype> Species { get; set; } = SharedHumanoidAppearanceSystem.DefaultSpecies;
 
         [DataField]
-        public string Voice { get; set; } = SharedHumanoidAppearanceSystem.DefaultVoice;
+        public ProtoId<TTSVoicePrototype> Voice { get; set; } = SharedHumanoidAppearanceSystem.DefaultVoice;
 
         [DataField]
         public int Age { get; set; } = 18;

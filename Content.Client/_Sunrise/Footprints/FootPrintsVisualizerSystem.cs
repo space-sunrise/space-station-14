@@ -1,7 +1,6 @@
-﻿using Content.Shared._Sunrise.Footprints;
+﻿using Content.Client.Fluids;
+using Content.Shared._Sunrise.Footprints;
 using Robust.Client.GameObjects;
-using Robust.Client.Graphics;
-using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise.Footprints;
@@ -9,10 +8,10 @@ namespace Content.Client._Sunrise.Footprints;
 /// <summary>
 /// Handles the visual appearance and updates of footprint entities on the client
 /// </summary>
-public sealed class FootprintVisualizerSystem : VisualizerSystem<FootprintComponent>
+public sealed class FootprintVisualizerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -21,110 +20,80 @@ public sealed class FootprintVisualizerSystem : VisualizerSystem<FootprintCompon
 
         SubscribeLocalEvent<FootprintComponent, ComponentInit>(OnFootprintInitialized);
         SubscribeLocalEvent<FootprintComponent, ComponentShutdown>(OnFootprintShutdown);
+
+        // Причина по которой нельзя использовать VisualizerSystem<T>
+        SubscribeLocalEvent<FootprintComponent, AppearanceChangeEvent>(OnAppearanceChange, after:[typeof(PuddleSystem)]);
+    }
+
+    private void OnAppearanceChange(EntityUid uid, FootprintComponent component, ref AppearanceChangeEvent args)
+    {
+        UpdateFootprintVisuals((uid, component));
     }
 
     /// <summary>
     /// Initializes the visual appearance of a new footprint
     /// </summary>
-    private void OnFootprintInitialized(EntityUid uid, FootprintComponent component, ComponentInit args)
+    private void OnFootprintInitialized(Entity<FootprintComponent> ent, ref ComponentInit args)
     {
-        if (!TryComp<SpriteComponent>(uid, out var sprite))
-            return;
-
-        InitializeSpriteLayers(sprite);
-        UpdateFootprintVisuals(uid, component, sprite);
+        InitializeSpriteLayers(ent);
+        UpdateFootprintVisuals(ent);
     }
 
     /// <summary>
     /// Cleans up the visual elements when a footprint is removed
     /// </summary>
-    private void OnFootprintShutdown(EntityUid uid, FootprintComponent component, ComponentShutdown args)
+    private void OnFootprintShutdown(Entity<FootprintComponent> ent, ref ComponentShutdown args)
     {
-        if (!TryComp<SpriteComponent>(uid, out var sprite))
-            return;
-
-        RemoveSpriteLayers(sprite);
+        RemoveSpriteLayers(ent);
     }
 
     /// <summary>
     /// Sets up the initial sprite layers for the footprint
     /// </summary>
-    private void InitializeSpriteLayers(SpriteComponent sprite)
+    private void InitializeSpriteLayers(EntityUid uid)
     {
-        sprite.LayerMapReserveBlank(FootprintSpriteLayer.MainLayer);
+        _sprite.LayerMapReserve(uid, FootprintSpriteLayer.MainLayer);
     }
 
     /// <summary>
     /// Removes sprite layers when cleaning up footprint
     /// </summary>
-    private void RemoveSpriteLayers(SpriteComponent sprite)
+    private void RemoveSpriteLayers(EntityUid uid)
     {
-        if (sprite.LayerMapTryGet(FootprintSpriteLayer.MainLayer, out var layer))
-        {
-            sprite.RemoveLayer(layer);
-        }
+        _sprite.LayerMapRemove(uid, FootprintSpriteLayer.MainLayer);
     }
 
     /// <summary>
     /// Updates the visual appearance of a footprint based on its current state
     /// </summary>
-    private void UpdateFootprintVisuals(EntityUid uid, FootprintComponent footprint, SpriteComponent sprite)
+    private void UpdateFootprintVisuals(Entity<FootprintComponent> ent)
     {
-        if (!sprite.LayerMapTryGet(FootprintSpriteLayer.MainLayer, out var layer)
-            || !TryComp<AppearanceComponent>(uid, out var appearance))
+        if (!_sprite.LayerMapTryGet(ent.Owner, FootprintSpriteLayer.MainLayer, out var layer, true))
             return;
 
-        if (!_appearanceSystem.TryGetData<string>(
-                uid,
-                FootprintVisualParameter.VisualState,
-                out var visualState,
-                appearance))
+        if (!_appearance.TryGetData<string>(ent, FootprintVisualParameter.VisualState, out var visualState))
             return;
 
-        UpdateSpriteState(sprite, layer, visualState, footprint.SpritePath);
-        UpdateSpriteColor(sprite, layer, uid, appearance);
+        UpdateSpriteState(ent, layer, visualState, ent.Comp.SpritePath);
+        UpdateSpriteColor(ent);
     }
 
     /// <summary>
     /// Updates the sprite state based on the footprint type
     /// </summary>
-    private void UpdateSpriteState(
-        SpriteComponent sprite,
-        int layer,
-        string state,
-        ResPath spritePath)
+    private void UpdateSpriteState(EntityUid uid, int layer, string state, ResPath spritePath)
     {
-        var stateId = new RSI.StateId(state);
-        sprite.LayerSetState(layer, stateId, spritePath);
+        _sprite.LayerSetRsi(uid, layer, spritePath, state);
     }
 
     /// <summary>
     /// Updates the sprite color based on appearance data
     /// </summary>
-    private void UpdateSpriteColor(
-        SpriteComponent sprite,
-        int layer,
-        EntityUid uid,
-        AppearanceComponent appearance)
+    private void UpdateSpriteColor(EntityUid uid)
     {
-        if (_appearanceSystem.TryGetData<Color>(uid,
-                FootprintVisualParameter.TrackColor,
-                out var color,
-                appearance))
-        {
-            sprite.LayerSetColor(layer, color);
-        }
-    }
-
-    /// <inheritdoc/>
-    protected override void OnAppearanceChange(
-        EntityUid uid,
-        FootprintComponent component,
-        ref AppearanceChangeEvent args)
-    {
-        if (args.Sprite is not { } sprite)
+        if (!_appearance.TryGetData<Color>(uid, FootprintVisualParameter.TrackColor, out var color))
             return;
 
-        UpdateFootprintVisuals(uid, component, sprite);
+        _sprite.SetColor(uid, color);
     }
 }

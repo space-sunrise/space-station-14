@@ -1,0 +1,55 @@
+- type: entity
+  parent: ClothingUniformJumpskirtPrisonRegularBase
+  id: ClothingUniformJumpskirtPrisonDoctor
+  name: prison doctor jumpskirt
+  description: Clinical white fabric with functional cut, designed for swift movement during medical crises where every second counts in a locked-down facility.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#99D2FF"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#99D2FF"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#99D2FF"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: overlay-equipped
+        color: "#99D2FF"
+
+- type: entity
+  parent: ClothingUniformJumpskirtPrisonVeteranBase
+  id: ClothingUniformJumpskirtPrisonDoctorVeteran
+  name: veteran prison doctor jumpskirt
+  description: Enhanced medical skirt uniform with additional pockets and reinforced stitching, bearing the subtle wear of countless emergency interventions in maximum security.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#99D2FF"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#99D2FF"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#99D2FF"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: overlay-equipped
+        color: "#99D2FF"

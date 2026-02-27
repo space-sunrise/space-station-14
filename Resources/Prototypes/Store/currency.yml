@@ -6,34 +6,6 @@
   canWithdraw: true
 
 - type: currency
-  id: Bluecrystal
-  displayName: store-currency-display-bluecrystal
-  cash:
-    1: Bluecrystal1
-  canWithdraw: true
-
-- type: currency
-  id: Crystallite
-  displayName: store-currency-display-crystallite
-  cash:
-    1: Crystallite1
-  canWithdraw: true
-
-- type: currency
-  id: Doubloon
-  displayName: store-currency-display-doubloon
-  cash:
-    1: Doubloon1
-  canWithdraw: true
-
-- type: currency
-  id: Credit
-  displayName: store-currency-display-credit
-  cash:
-    1: SpaceCash
-  canWithdraw: true
-
-- type: currency
   id: StolenEssence
   displayName: store-currency-display-stolen-essence
   canWithdraw: false

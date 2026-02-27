@@ -208,3 +208,18 @@
     steps: 6
     zeroVisible: false
   - type: Appearance
+
+- type: entity
+  id: MagazineGlock22Metus
+  parent: MagazineGlock22
+  components:
+  - type: Tag
+    tags:
+    - MagazinePistolHighCapacityRubber
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistolRubber
+    whitelist:
+      tags:
+      - CartridgePistol
+    capacity: 18

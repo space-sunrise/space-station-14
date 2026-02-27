@@ -188,6 +188,8 @@
     grid:
     - 0,0,19,9
   # Sunrise-start
+  - type: StaticPrice
+    price: 700
   - type: PhysicalComposition
     materialComposition:
       Steel: 1000

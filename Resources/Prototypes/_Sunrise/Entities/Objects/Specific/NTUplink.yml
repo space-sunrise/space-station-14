@@ -174,7 +174,6 @@
   - type: Tag
     tags:
     - NTUplink
-    - Debug
     - ERTRed
     - ERTGamma
     - ERTEpsilon

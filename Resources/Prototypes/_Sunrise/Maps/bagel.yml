@@ -3,6 +3,7 @@
   mapName: 'Bagel'
   mapPath: /Maps/_Sunrise/Station/bagel.yml
   minPlayers: 0
+  maxPlayers: 75
   maxRandomOffset: 0
   randomRotation: false
   stations:
@@ -33,7 +34,6 @@
           Librarian: [ 1, 1 ]
           ServiceWorker: [ 5, 5 ]
           Reporter: [ 2, 2 ]
-          Zookeeper: [ 1, 1 ]
           Barber: [ 1, 1 ]
           #engineering
           ChiefEngineer: [ 1, 1 ]
@@ -102,7 +102,7 @@
         - Zoo
         - MiningOutpost
         - Tesla
-        #- XenobiologyRepair
+        - XenobiologyRepair
         - VirusologyAmbusol
         - Containment
         - WeaponsSecurity
@@ -117,7 +117,7 @@
         - Cyborgs
         - Testing
         - Anomaly
-        #- Replenishment
+        - Replenishment
         - IntelWeapons
         - Reports
         - Reconnaissance
@@ -128,4 +128,7 @@
         - HumanitarianAid
         - PersonnelRecovery
         - CrewEducation
+        - Virology
+        - SampleCollection
+        - Examination
         #- VirusFlesh

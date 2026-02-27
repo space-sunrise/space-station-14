@@ -1,0 +1,179 @@
+# Syndicate base
+- type: dungeonConfig
+  id: SyndicateBase
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - SalvageSyndicateBase
+    presets:
+    - SyndicateBaseLarge
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorDark
+
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorDark
+    contents: SyndicateBaseEntrancePossiblyRigged
+
+  - !type:RoomEntranceDunGen
+    tile: FloorDark
+    contents: SyndicateBaseAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorDark
+    contents: SyndicateBaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorDark
+    contents: SyndicateBaseWindow
+
+  - !type:WallMountDunGen
+    contents: SyndicateBaseWallMounts
+    tile: FloorDark
+
+  - !type:BoundaryWallDunGen
+    wall: WallPlastitanium
+    cornerWall: WallPlastitanium
+    tile: FloorDark
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorDark
+    contents: SyndicateBaseAirlock
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorDark
+    contents: SyndicateBaseAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
+  - !type:CornerClutterDunGen
+    contents: BaseClutter
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: TrimlineS
+      East: TrimlineE
+      North: TrimlineN
+      West: TrimlineW
+    cornerDecals:
+      SouthEast: TrimlineCornerSE
+      SouthWest: TrimlineCornerSW
+      NorthEast: TrimlineCornerNE
+      NorthWest: TrimlineCornerNW
+    pocketDecals:
+      SouthWest: TrimlineCornerSmallSW
+      SouthEast: TrimlineCornerSmallSE
+      NorthWest: TrimlineCornerSmallNW
+      NorthEast: TrimlineCornerSmallNE
+    color: "#6E2323"
+
+- type: entityTable
+  id: SyndicateBaseAirlock
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: AirlockSyndicateNukeopLocked
+      weight: 5
+    - id: AirlockSyndicateLocked
+    - id: ScrapAirlock1
+
+- type: entityTable
+  id: SyndicateBaseWindow
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: Grille
+    - id: MiningWindow
+
+- type: entityTable
+  id: SyndicateBaseEntrancePossiblyRigged
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: AirlockSyndicateNukeopLocked
+    - id: AirlockSyndicateLocked
+    - id: LandMineModular
+      prob: 0.05
+
+- type: entityTable
+  id: SyndicateBaseWallMounts
+  table: !type:GroupSelector
+    children:
+    - id: IntercomCommon
+      weight: 0.2
+    - id: IntercomConstructed
+      weight: 0.25
+    - id: StationMapBroken
+      weight: 0.15
+    - id: ComputerPirateExchangerWallmount
+      weight: 0.05
+    - id: DefibrillatorCabinetFilled
+      weight: 0.5
+    - id: DefibrillatorCabinetFilledOpen
+      weight: 0.5
+    - id: DefibrillatorCabinetOpen
+      weight: 0.5
+    - id: ExtinguisherCabinet
+      weight: 0.5
+    - id: ExtinguisherCabinetFilled
+      weight: 0.5
+    - id: ExtinguisherCabinetOpen
+      weight: 0.5
+    - id: ExtinguisherCabinetFilledOpen
+      weight: 0.5
+    - id: PosterBroken
+      weight: 3
+    - id: RandomPosterContraband
+      weight: 4
+    - id: PosterLegitHotDonkExplosion
+      weight: 0.1
+    - id: PosterLegit12Gauge
+      weight: 0.1
+    - id: PosterContrabandC20r
+      weight: 0.1
+    - id: PosterContrabandSam300
+      weight: 0.1
+    - id: PosterContrabandWaffleCorp
+      weight: 0.1
+    - id: PosterContrabandSyndicateRecruitment
+      weight: 0.1
+    - id: PosterContrabandEnlistGorlex
+      weight: 0.1
+    - id: PosterContrabandCommunistState
+      weight: 0.1
+    - id: PosterLegitOppenhopper
+      weight: 0.1
+    - id: PosterContrabandBountyHunters
+      weight: 0.1
+    - id: PosterContrabandSyndicatePistol
+      weight: 0.1
+    - id: PosterContrabandRevolver
+      weight: 0.1
+    - id: PosterContrabandFreeSyndicateEncryptionKey
+      weight: 0.1
+    - id: PosterContrabandSyndiMechs
+      weight: 0.1
+    - id: PosterContrabandEnergySwords
+      weight: 0.1
+    - id: PosterContrabandDonk
+      weight: 0.1
+    - id: PoweredWarmSmallLight
+      weight: 0.8
+    - id: AlwaysPoweredStrobeDimLight
+      weight: 5
+    - id: AlwaysPoweredlightRed
+      weight: 0.2
+    - id: AlwaysPoweredlightBlack
+      weight: 0.3
+    - id: PoweredlightEmpty
+      weight: 0.8
+    - id: VendingMachineWallMedicalCivilian
+      weight: 0.5
+    - id: VendingMachineWallMedical
+      weight: 0.5

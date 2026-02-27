@@ -1,0 +1,31 @@
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: DoubleBedsheetCosmosPrison
+  result: DoubleBedsheetCosmos
+  materials:
+    Cloth: 2500
+    Durathread: 1500
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: BedsheetCosmosPrison
+  result: BedsheetCosmos
+  materials:
+    Cloth: 2500
+    Durathread: 1500
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: DoubleBedsheetCultPrison
+  result: DoubleBedsheetCult
+  materials:
+    Cloth: 1500
+    Durathread: 1500
+
+- type: latheRecipe
+  parent: BaseSpecifiedBedsheetRecipe
+  id: BedsheetCultPrison
+  result: BedsheetCult
+  materials:
+    Cloth: 1500
+    Durathread: 1500

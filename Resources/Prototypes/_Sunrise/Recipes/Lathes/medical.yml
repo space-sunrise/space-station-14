@@ -1,6 +1,15 @@
 - type: latheRecipe
-  id: HandheldCrewMonitor
-  result: HandheldCrewMonitorEmpty
+  id: ImplanterExtractor
+  result: ImplanterExtractor
+  completetime: 1
+  materials:
+    Glass: 500
+    Steel: 500
+    Silver: 100
+
+- type: latheRecipe
+  id: HandheldEmergencyCrewMonitor
+  result: HandheldEmergencyCrewMonitorEmpty
   categories:
   - Tools
   completetime: 4
@@ -9,6 +18,44 @@
     Steel: 250
     Plastic: 400
     Gold: 100
+    Plasma: 50
+
+- type: latheRecipe
+  id: DefibrillatorCompact
+  result: DefibrillatorCompact
+  categories:
+  - Tools
+  completetime: 5
+  materials:
+    Glass: 50
+    Steel: 250
+    Plastic: 50
+    Silver: 100
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: DnaInjector
+  result: DnaInjector
+  completetime: 3
+  materials:
+    Steel: 400
+    Glass: 300
+    Plastic: 200
+    Silver: 50
+    Plasma: 50
+
+- type: latheRecipe
+  id: AdvancedDefibrillatorCompact
+  result: AdvancedDefibrillatorCompact
+  categories:
+  - Tools
+  completetime: 10
+  materials:
+    Glass: 50
+    Steel: 250
+    Plastic: 50
+    Silver: 100
+    Plasma: 50
 
 - type: latheRecipe
   id: ScalpelAdvanced
@@ -78,18 +125,6 @@
   completetime: 2
   materials:
     Steel: 200
-
-- type: latheRecipe
-  id: HyposprayMedical
-  result: HyposprayMedical
-  categories:
-  - Tools
-  completetime: 3
-  materials:
-    Plastic: 100
-    Steel: 300
-    Plasma: 100
-    Glass: 100
 
 - type: latheRecipe
   id: BlankMediPen

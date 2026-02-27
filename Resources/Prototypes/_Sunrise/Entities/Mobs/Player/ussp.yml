@@ -201,6 +201,10 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
+    - type: GhostPanelAntagonistMarker
+      name: ghost-panel-antagonist-infiltrator-name
+      description: ghost-panel-antagonist-infiltrator-description
+      priority: 11
     - type: NukeOperative
     - type: GhostRole
       name: ghost-role-information-syndie-soldier-teamlead-name
@@ -234,6 +238,10 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
+    - type: GhostPanelAntagonistMarker
+      name: ghost-panel-antagonist-infiltrator-name
+      description: ghost-panel-antagonist-infiltrator-description
+      priority: 11
     - type: NukeOperative
     - type: GhostRole
       name: ghost-role-information-syndie-soldier-name
@@ -292,6 +300,7 @@
       factions:
       - Syndicate
       - Pirate
+    - type: PirateIcon
     - type: GhostRole
       name: ghost-role-information-pirate-name
       description: ghost-role-information-pirate-description
@@ -348,6 +357,7 @@
       factions:
       - Syndicate
       - Pirate
+    - type: PirateIcon
     - type: GhostRole
       name: ghost-role-information-pirate-name
       description: ghost-role-information-pirate-description
@@ -361,3 +371,162 @@
       roleLoadout: [ RoleSurvivalExtended ]
     - type: RandomMetadata
       nameSegments: [NamesDeathCommando]
+
+- type: entity
+  abstract: true
+  id: PirateScoonerReinforcementBase
+  suffix: Pirate
+  components:
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-pirate-name
+    description: ghost-panel-antagonist-pirate-description
+    priority: 45
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+    nameSegments: [NamesDeathCommando]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+  - type: PirateIcon
+
+- type: entity
+  parent: [MobHuman, PirateScoonerReinforcementBase]
+  id: MobHumanPirateScoonerReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerEVAGear ]
+    roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  parent: [MobHuman, PirateScoonerReinforcementBase]
+  id: MobHumanPirateScoonerOldReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerOldEVAGear ]
+    roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  parent: [MobReptilian, PirateScoonerReinforcementBase]
+  id: MobReptilianPirateScoonerReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerEVAGear ]
+    roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  parent: [MobReptilian, PirateScoonerReinforcementBase]
+  id: MobReptilianPirateScoonerOldReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerOldEVAGear ]
+    roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  parent: [MobDwarf, PirateScoonerReinforcementBase]
+  id: MobDwarfPirateScoonerReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerEVAGear ]
+    roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  parent: [MobDwarf, PirateScoonerReinforcementBase]
+  id: MobDwarfPirateScoonerOldReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerOldEVAGear ]
+    roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  parent: [MobVox, PirateScoonerReinforcementBase]
+  id: MobVoxPirateScoonerReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerEVAGear ]
+    roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  parent: [MobVox, PirateScoonerReinforcementBase]
+  id: MobVoxPirateScoonerOldReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerOldEVAGear ]
+    roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  parent: [MobVulpkanin, PirateScoonerReinforcementBase]
+  id: MobVulpkaninPirateScoonerReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerEVAGear ]
+    roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  parent: [MobVulpkanin, PirateScoonerReinforcementBase]
+  id: MobVulpkaninPirateScoonerOldReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerOldEVAGear ]
+    roleLoadout: [ RoleSurvivalExtended ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate

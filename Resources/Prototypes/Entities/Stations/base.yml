@@ -52,9 +52,9 @@
   components:
     - type: SpawnGridAndDockToStation
       grids:
-        - gridPath: /Maps/_Sunrise/Shuttles/mining.yml
+        - gridPath: /Maps/_Sunrise/Shuttles/Salvage/mining.yml
           priorityTag: DockMining
-        - gridPath: /Maps/_Sunrise/Shuttles/security.yml
+        - gridPath: /Maps/_Sunrise/Shuttles/Security/security.yml
           priorityTag: DockSecurity
         - gridPath: /Maps/_Sunrise/Shuttles/personal.yml
           priorityTag: DockPersonal
@@ -124,6 +124,9 @@
           - type: Gravity
             enabled: true
             inherent: true
+          - type: IFF
+            flags: HideLabel
+            color: "#d67e27"
           protos:
           - VGRoid
 

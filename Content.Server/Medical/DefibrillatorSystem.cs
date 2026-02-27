@@ -258,13 +258,12 @@ public sealed class DefibrillatorSystem : EntitySystem
 
         // Sunrise-Start
         // Inject reagents if any are specified
-        if (component.Reagents.Count > 0 && TryComp<BloodstreamComponent>(target, out var bloodstream))
+        if (component.Reagents.Count > 0 &&
+            TryComp<BloodstreamComponent>(target, out var bloodstream) &&
+            _solutionContainer.ResolveSolution(target, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out _))
         {
-            if (_solutionContainer.TryGetSolution(target, bloodstream.BloodReferenceSolution.Name, out var solution))
-            {
-                foreach (var (reagent, amount) in component.Reagents)
-                    _solutionContainer.TryAddReagent(solution.Value, reagent, FixedPoint2.New(amount), out _);
-            }
+            foreach (var (reagent, amount) in component.Reagents)
+                _solutionContainer.TryAddReagent(bloodstream.BloodSolution!.Value, reagent, FixedPoint2.New(amount), out _);
         }
         // Sunrise-End
 

@@ -190,11 +190,11 @@
   description: Aiming this at Security may get you filled with lead.
   components:
   - type: Sprite
-    sprite: Objects/Fun/Foam/foam_crossbow.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/foam_crossbow.rsi # sunrise-edit
     state: icon
   - type: Item
     size: Normal
-    sprite: Objects/Fun/Foam/foam_crossbow.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/foam_crossbow.rsi # sunrise-edit
   - type: Gun
     fireRate: 0.5
     selectedMode: SemiAuto
@@ -202,6 +202,8 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/energycrossbow_shoot.ogg
+    bigTrigger: true # Sunrise-Edit
+    clumsyProof: true # Sunrise-Edit
   - type: BallisticAmmoProvider
     whitelist:
       tags:

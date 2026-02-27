@@ -161,7 +161,6 @@
   - type: ItemBorgModule
     hands:
     - item: CombatKnife
-    - item: WeaponPistolG22AutoBorg
     - item: WeaponLaserBorg
     - item: HoloprojectorSecurityBorg
 

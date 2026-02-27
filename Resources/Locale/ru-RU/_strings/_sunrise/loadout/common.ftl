@@ -1,0 +1,17 @@
+loadout-group-common-misc-items = Другие предметы
+loadout-group-head = Головной убор
+loadout-group-eyes = Глаза
+loadout-group-ears = Уши
+loadout-group-neck = Шея
+loadout-group-jumpsuit = Униформа
+loadout-group-outer-clothing = Верхняя одежда
+loadout-group-belt = Пояс
+loadout-group-gloves = Перчатки
+loadout-group-shoes = Ботинки
+loadout-group-id = Доступ
+loadout-group-pda = КПК
+loadout-group-back = Рюкзак
+loadout-group-storage = С собой
+loadout-group-weapon = Табельное оружие
+loadout-group-weapon-secondary = Дополнительное оружие
+loadout-group-mask = Маска

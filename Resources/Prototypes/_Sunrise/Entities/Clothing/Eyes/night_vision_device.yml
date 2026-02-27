@@ -41,7 +41,7 @@
     slots: [ Eyes ]
   - type: PowerCellDraw
     drawRate: 3.5
-    useRate: 20
+    useCharge: 20
   - type: ItemToggle
     predictable: false # issues between ToggleCellDraw and ItemToggleActiveSound
     onUse: false
@@ -121,7 +121,7 @@
         map: [ "light" ]
   - type: PowerCellDraw
     drawRate: 2
-    useRate: 10
+    useCharge: 10
   - type: ShowSyndicateIcons
   - type: ComponentToggler
     parent: true
@@ -146,7 +146,7 @@
         map: [ "light" ]
   - type: PowerCellDraw
     drawRate: 5
-    useRate: 50
+    useCharge: 50
   - type: ComponentToggler
     parent: true
     components:

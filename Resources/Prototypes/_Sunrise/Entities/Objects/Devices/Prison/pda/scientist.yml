@@ -1,0 +1,32 @@
+- type: entity
+  parent: SecurityMetusPDA
+  id: PrisonScientistPDA
+  name: prison scientist's PDA
+  description: Faded with time, marked by traces of chemicals and burnt corners born from hurried work behind locked doors.
+  components:
+  - type: Pda
+    id: PrisonScientistIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-scientist
+  - type: PdaBorderColor
+    borderColor: "#6b3000"
+    accentVColor: "#390f4e"
+  - type: Icon
+    state: pda-space-prison-scientist
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge
+      - NavigatorCartridge
+      - MessengerCartridge
+      - PhotoCartridge
+  - type: PdaAnimationVisuals
+    animatedState: pda-space-prison-scientist
+    idInsertedLayerState: id_inserted-space-prison

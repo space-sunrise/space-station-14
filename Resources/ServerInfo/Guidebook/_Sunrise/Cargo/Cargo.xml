@@ -1,0 +1,90 @@
+<Document>
+  # Cargo
+
+  Отдел снабжения, также известный как [color=cyan]Cargo[/color], обеспечивает станцию необходимыми ресурсами, такими как топливо и сырьё, а также предметами комфорта вроде лотерейных билетов и плюшевых игрушек.
+
+  Они добывают [color=cyan]спесосы[/color] (валюта станции) разными способами: получают награды, продают разный хлам и занимаются утилизацией, что позволяет закупать всё, что нужно экипажу, у внешних поставщиков. Задача Cargo — удовлетворять потребности всей станции.
+
+  ## Personnel
+
+  Cargo состоит из [color=cyan]техников снабжения[/color] и [color=cyan]специалистов по утилизации[/color] и руководится [color=cyan]Quartermaster[/color].
+
+  <Box>
+    <GuideEntityEmbed Entity="ToyFigurineCargoTech" Caption="Cargo Tech"/>
+    <GuideEntityEmbed Entity="ToyFigurineSalvage" Caption="Salvage"/>
+    <GuideEntityEmbed Entity="ToyFigurineQuartermaster" Caption="QM"/>
+  </Box>
+
+  ## Making Money
+
+  Основная проблема любого отдела Cargo — недостаток денег.
+
+  Cargo зарабатывает, продавая вещи на [color=cyan]Trading Station[/color]. Почти всё на станции имеет экономическую ценность, которую видно через [color=cyan]appraisal tool[/color]. Эта стоимость растёт, когда вы продаёте предмет как часть [textlink="bounty" link="CargoBounties"].
+
+  <Box>
+    <GuideEntityEmbed Entity="AppraisalTool"/>
+    <GuideEntityEmbed Entity="CargoPallet"/>
+    <GuideEntityEmbed Entity="CrateGenericSteel"/>
+  </Box>
+
+  Найдя что-то ценное, доставьте это в [color=cyan]Cargo Bay[/color]. Если оно помещается в [color=cyan]Crate[/color], найдите пустой ящик и сложите туда предметы.
+
+  Когда [color=cyan]Cargo Shuttle[/color] улетел, можно положить всё, что собираетесь продать, на [color=cyan]Cargo Pallets[/color]. После того как шаттл причалит, загрузите в него ящики и всё остальное, что хотите продать.
+
+  <Box>
+    <GuideEntityEmbed Entity="ComputerPalletConsole"/>
+    <GuideEntityEmbed Entity="CargoPalletSell"/>
+    <GuideEntityEmbed Entity="ComputerCargoOrders"/>
+  </Box>
+
+  После загрузки отправьте шаттл на Trade Station. Там переложите продаваемые предметы на зелёные [color=cyan]Cargo Selling Pallets[/color], а затем подходите к [color=cyan]Cargo Sale Computer[/color] и нажимайте [italic]"Sell"[/italic].
+
+  Теперь можно забрать полученные спесосы, вернуться на станцию и положить их в [color=cyan]Cargo Request Computer[/color].
+
+  Ещё больше заработать можно, выполняя [textlink="bounties" link="CargoBounties"] или продавая ценные вещи из [textlink="salvage" link="Salvage"].
+
+  ## Ordering
+
+  <Box>
+    <GuideEntityEmbed Entity="ComputerCargoOrders"/>
+  </Box>
+
+  Каждый заказ начинается с [color=cyan]Cargo Request Computer[/color]. Прежде всего Cargo должен иметь достаточно спесосов. Если денег нет, нужно их добыть.
+
+  Также Cargo сам решает, выполнять заявку или нет. При дефиците можно отказать в менее важных просьбах.
+
+  Чтобы оформить заказ, нажмите на нужный товар, укажите получателя, напишите причину, зачем ему это, и нажмите "Approve".
+
+  Иногда есть публичный Cargo Request Computer; тогда достаточно только подтверждать заявки, которые люди оформили сами.
+
+  <Box>
+    <GuideEntityEmbed Entity="CargoPalletBuy"/>
+    <GuideEntityEmbed Entity="PaperCargoInvoice"/>
+  </Box>
+
+  После этого заказ необходимо доставить со [color=cyan]Trading Station[/color] обратно на станцию.
+
+  На [color=cyan]Cargo Buying Pallets[/color] лежит ящик с заказом. Загрузите его на шаттл и привезите назад.
+
+  Когда ящик окажется на Cargo Dock, прочитайте этикетку [color=cyan]Cargo Invoice[/color], чтобы узнать получателя, и доставьте груз прямо ему.
+
+  ## Piloting
+
+  Заказы доставляет орбитальная [color=cyan]Trade Station[/color], а до станции их везёт [color=cyan]Cargo Shuttle[/color]. Шаттл не летает сам, поэтому его нужно пилотировать на месте или дистанционно.
+
+  <Box>
+    <GuideEntityEmbed Entity="ComputerShuttleCargo"/>
+  </Box>
+
+  Чтобы лететь, найдите [color=cyan]Cargo Shuttle Console[/color]. Одна находится в Cargo Bay, другая — внутри шаттла.
+
+  После взаимодействия откроется навигационный экран. Вот как управлять:
+
+  - Сначала переключитесь на экран [color=yellow]"DOCK"[/color] и [color=yellow]undock[/color] все шлюзы между шаттлом и станцией.
+  - После отсоединения можно пилотировать. [italic]Помните, что вы летите в космосе и импульс сохраняется.[/italic]
+  - Управление: [color=yellow][keybind="ShuttleStrafeUp"][/color] и [color=yellow][keybind="ShuttleStrafeDown"][/color] для движения вверх и вниз, [color=yellow][keybind="ShuttleStrafeLeft"][/color] и [color=yellow][keybind="ShuttleStrafeRight"][/color] для движения влево и вправо, [color=yellow][keybind="ShuttleRotateLeft"][/color] и [color=yellow][keybind="ShuttleRotateRight"][/color] для поворотов, а [color=yellow][keybind="ShuttleBrake"][/color] тормозит.
+  - Потом направьте шаттл к [color=cyan]Trade Station[/color].
+  - Как только прибудете, [color=yellow]dock[/color]итесь к шлюзам и всё готово.
+
+  [textlink="Узнайте о наградах, которые помогут увеличить прибыль на станции." link="CargoBounties"]
+</Document>

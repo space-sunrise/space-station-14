@@ -30,8 +30,6 @@ public sealed partial class LobbyPetPreviewPanel : Control
         IoCManager.InjectDependencies(this);
         _playerCache.CacheChanged += UpdateSelectedPetFromCache;
         UpdateSelectedPetFromCache();
-
-        ChangePetButton.OnPressed += _ => OnChangePetRequested?.Invoke();
     }
 
     private void UpdateSelectedPetFromCache()
@@ -50,7 +48,8 @@ public sealed partial class LobbyPetPreviewPanel : Control
 
     public void SetSummaryText(string value)
     {
-        Summary.Text = value;
+        // Sunrise-Edit
+        //Summary.Text = value;
     }
 
     public void SetPetSelection(string? petSelection)
@@ -71,13 +70,11 @@ public sealed partial class LobbyPetPreviewPanel : Control
 
         if (string.IsNullOrEmpty(_currentPetSelection))
         {
-            SetSummaryText(Loc.GetString("pet-selection-summary-no-select"));
             return;
         }
 
         if (!_prototypeManager.TryIndex<PetSelectionPrototype>(_currentPetSelection, out var petSelectionPrototype))
         {
-            SetSummaryText(Loc.GetString("pet-selection-summary-invalid"));
             return;
         }
 
@@ -93,12 +90,14 @@ public sealed partial class LobbyPetPreviewPanel : Control
         };
         spriteView.SetEntity(dummy);
         ViewBox.AddChild(spriteView);
-        SetSummaryText(Loc.GetString("pet-selection-summary-name", ("name", petSelectionPrototype.LocalizedName)));
     }
 
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
+        
+        _playerCache.CacheChanged -= UpdateSelectedPetFromCache;
+        
         if (_previewDummy != null)
         {
             _entManager.DeleteEntity(_previewDummy.Value);

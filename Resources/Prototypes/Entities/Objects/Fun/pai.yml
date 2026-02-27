@@ -104,7 +104,7 @@
     instantActions:
     - PortableSurveillanceCameraMonitorUnpowered
     - HandheldStationMapUnpowered
-    - HandheldCrewMonitorBorg
+    - HandheldEmergencyCrewMonitorBorg
     entityTargetActions:
     - HandheldHealthAnalyzerUnpowered
   - type: BorgBrain

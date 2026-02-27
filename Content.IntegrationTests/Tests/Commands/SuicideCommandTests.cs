@@ -149,7 +149,7 @@ public sealed class SuicideCommandTests
             damageableComp = entManager.GetComponent<DamageableComponent>(player);
 
             var slashProto = protoMan.Index(DamageType);
-            damageableSystem.ChangeDamage(player, new DamageSpecifier(slashProto, FixedPoint2.New(46.5)), ignoreGlobalModifiers: true, useVariance: false); // Sunrise-Edit
+            damageableSystem.ChangeDamage(player, new DamageSpecifier(slashProto, FixedPoint2.New(46.5)), ignoreGlobalModifiers: true, ignoreVariance: true); // Sunrise-Edit
         });
 
         // Check that running the suicide command kills the player
@@ -251,6 +251,11 @@ public sealed class SuicideCommandTests
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
         var mind = mindSystem.GetMind(player);
 
+        // Sunrise edit start - подарки от праздников ломают тест.
+        // Поэтому выбрасываем все говно, что может помешать
+        handsSystem.TryDrop(player);
+        // Sunrise edit end
+
         MindComponent mindComponent = default;
         MobStateComponent mobStateComp = default;
         MobThresholdsComponent mobThresholdsComp = default;
@@ -325,6 +330,11 @@ public sealed class SuicideCommandTests
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
         var mind = mindSystem.GetMind(player);
+
+        // Sunrise edit start - подарки от праздников ломают тест.
+        // Поэтому выбрасываем все говно, что может помешать
+        handsSystem.TryDrop(player);
+        // Sunrise edit end
 
         MindComponent mindComponent = default;
         MobStateComponent mobStateComp = default;

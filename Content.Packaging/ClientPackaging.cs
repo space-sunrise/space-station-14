@@ -85,7 +85,7 @@ public static class ClientPackaging
         await RobustClientPackaging.WriteClientResources(
             contentDir,
             inputPass,
-            SharedPackaging.AdditionalIgnoredResources,
+            SharedPackaging.AdditionalIgnoredResources.Union(SharedPackaging.ClientOnlyIgnoredResources).ToHashSet(),
             cancel);
 
         inputPass.InjectFinished();

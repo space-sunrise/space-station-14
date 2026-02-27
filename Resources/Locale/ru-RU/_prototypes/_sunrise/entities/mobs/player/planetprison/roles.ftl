@@ -6,3 +6,4 @@ ent-RandomHumanoidPlanetPrisonScientist = роль призрак тюремны
 ent-RandomHumanoidPlanetPrisonDoctor = роль призрак тюремный врач
 ent-RandomHumanoidPlanetPrisonChef = роль призрак тюремный повар
 ent-RandomHumanoidPlanetPrisonPrisoner = роль призрак заключённый ПТ
+ent-RandomHumanoidPlanetPrisonTrainee = роль призрак тюремный стажёр

@@ -1,6 +1,6 @@
 ent-AphrodisiacChemistryBottle = aphrodisiac bottle
     .desc = { ent-BaseChemistryBottleFilled.desc }
-ent-PolytrinicAcidChemistryBottle = { ent-BaseChemistryBottleFilled }
+ent-ChemistryBottlePolytrinicAcid = { ent-BaseChemistryBottleFilled }
     .suffix = polytrinic acid
     .desc = { ent-BaseChemistryBottleFilled.desc }
 ent-JugPunctTranexSunrise = { ent-Jug }

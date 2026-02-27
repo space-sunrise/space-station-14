@@ -25,7 +25,7 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatHuman
+    - id: FoodMeatFelinid
       amount: 2
   - type: HumanoidAppearance
     species: Felinid
@@ -468,7 +468,7 @@
       types:
         Slash: 3
   - type: Stamina
-    critThreshold: 100
+    baseCritThreshold: 100
   - type: FootprintEmitter
   - type: Vocal
     sounds:

@@ -136,3 +136,15 @@
   fireStates: 3
   fireStacks: 2
   temperature: 1500
+
+# Sunrose-start
+- type: explosion # Увы, все из-за любителей абуза с РСУ # Sunrise-TODO: Удалить это когда проблема абуза будет решена
+  id: JustStructuralCharge
+  damagePerIntensity:
+    types:
+      Heat: 1
+      Structural: 25
+  lightColor: Red
+  fireColor: Red
+  texturePath: /Textures/Effects/fire_greyscale.rsi
+# Sunrose-end

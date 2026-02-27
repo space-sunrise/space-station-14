@@ -261,3 +261,10 @@
   proto: Haunted
   biomes:
     - Caves
+
+- type: salvageDungeonMod
+  id: SyndicateBase
+  desc: salvage-dungeon-mod-syndicate-base
+  proto: SyndicateBase
+  biomes:
+    - Snow

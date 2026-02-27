@@ -1,7 +1,7 @@
 # Head
 
 - type: loadout
-  id: PrisonInspector-ClothingHeadHatBowlerHat
+  id: PrisonInspectorBowlerHat
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -13,7 +13,7 @@
 
 
 - type: loadout
-  id: PrisonInspector-ClothingHeadHatIAA
+  id: PrisonInspectorIAAHat
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -24,7 +24,7 @@
     head: ClothingHeadHatIAA
 
 - type: loadout
-  id: PrisonInspector-ClothingHeadHatDetGadget
+  id: PrisonInspectorDetGadget
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -37,12 +37,12 @@
 # Glasses
 
 - type: loadout
-  id: PrisonInspector-ClothingEyesGlassesSunglasses
+  id: PrisonInspectorSunglasses
   equipment:
     eyes: ClothingEyesGlassesSunglasses
 
 - type: loadout
-  id: PrisonInspector-ClothingEyesGlassesNoir
+  id: PrisonInspectorNoirGlasses
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:

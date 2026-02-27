@@ -114,6 +114,12 @@
         },
         {
             "name": "Adjutant"
+        },
+        {
+            "name": "Pirate"
+        },
+        {
+            "name": "Miner"
         }
     ]
 }

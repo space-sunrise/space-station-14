@@ -1,7 +1,5 @@
 ent-BulletAcid2 = acid spit
     .desc = { ent-BaseBullet.desc }
-ent-BulletTaserSunrise = taser bolt
-    .desc = { ent-BaseBullet.desc }
 ent-BulletEMP = EMP impulse
     .desc = { ent-BaseBulletTrigger.desc }
 ent-RadiationBullet = radiation particle
@@ -44,3 +42,9 @@ ent-BoltTempgunVeryHot = very scorching bolt
     .desc = { ent-WatcherBoltMagmawing.desc }
 ent-BoltTempgunVeryCold = very freezing bolt
     .desc = { ent-WatcherBolt.desc }
+ent-BulletImprovisedGrenadeFirebomb = firebomb grenade
+    .desc = { ent-BaseBulletTrigger.desc }
+ent-BulletImprovisedGrenadePipeBomb = pipe bomb grenade
+    .desc = { ent-BaseBulletTrigger.desc }
+ent-BulletImprovisedGrenadeGlass = glass grenade
+    .desc = { ent-BaseBulletTrigger.desc }

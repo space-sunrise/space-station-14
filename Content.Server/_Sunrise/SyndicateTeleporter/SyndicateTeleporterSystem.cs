@@ -48,7 +48,8 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         if (TryComp<BiocodeComponent>(uid, out var biocode) && !_biocode.CanUse(args.User, biocode.Factions))
         {
             if (!string.IsNullOrEmpty(biocode.AlertText))
-                _popup.PopupEntity(biocode.AlertText, args.User, args.User);
+                _popup.PopupEntity(Loc.GetString(biocode.AlertText), args.User, args.User);
+
             args.Handled = true;
             return;
         }

@@ -39,6 +39,7 @@
         layer:
         - MachineLayer
   - type: EntityStorage
+    maxSize: 1.05 # Sunrise edit - неправильные спрайты в ящиках (#3611)
   - type: PlaceableSurface
     isPlaceable: false # defaults to closed.
   - type: Damageable
@@ -78,6 +79,8 @@
   components:
   - type: Weldable
   - type: ResistLocker
+  - type: Pierceable # Sunrise-edit - прострел ящиков
+    level: Wood
 
 - type: entity
   parent: CrateBaseWeldable

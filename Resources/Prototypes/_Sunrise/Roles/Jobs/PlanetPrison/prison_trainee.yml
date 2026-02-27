@@ -1,0 +1,50 @@
+- type: job
+  id: PrisonTrainee
+  name: job-name-prison-trainee
+  description: job-description-prison-trainee
+  playTimeTracker: JobPrisonTrainee
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 36000 # 10h общего времени
+  weight: 2
+  alwaysUseSpawner: true
+  canBeAntag: false
+  startingGear: PrisonTraineeGear
+  icon: "JobIconPrisonTrainee"
+  overrideConsoleVisibility: false
+  supervisors: job-supervisors-head-of-prison
+  displayWeight: 15
+  access:
+    - Security
+    - Medical
+  special:
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: PrisonTraineeGear
+  equipment:
+    ears: ClothingHeadsetSecurity
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorBasic
+    belt: ClothingBeltPrisonTraineeMetus
+    back: ClothingBackpackSatchelPrisonTraineeMetus
+    shoes: ClothingShoesBootsJack
+    pocket1: WeaponPistolG22Prison
+    pocket2: SecurityWhistle
+
+- type: chameleonOutfit
+  id: PrisonTraineeChameleonOutfit
+  job: PrisonTrainee
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonTrainee
+    head: ClothingHeadHatBeretPrisonTrainee
+    ears: ClothingHeadsetSecurity
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorBasic
+    belt: ClothingBeltPrisonTraineeMetus
+    back: ClothingBackpackSatchelPrisonTraineeMetus
+    shoes: ClothingShoesBootsJack
+

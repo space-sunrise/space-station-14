@@ -475,7 +475,7 @@
   - type: Item
     size: Large
     shape:
-    - 0,0,3,2
+    - 0,0,3,1
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi
     layers:
@@ -488,14 +488,14 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -2.5
-    maxAngle: -23
+    minAngle: -3
+    maxAngle: -25
   - type: Gun
-    minAngle: 5.5
+    minAngle: 6
     maxAngle: 45
     angleIncrease: 2.5
     angleDecay: 18
-    fireRate: 7.5
+    fireRate: 6
     selectedMode: FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
@@ -507,7 +507,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolSubMachineGunSIAR52
+        startingItem: MagazinePistolSubMachineGunCaselessExtended
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
@@ -518,6 +518,10 @@
           - MagazinePistol
           - MagazinePistolHighCapacity
           - MagazinePistolCaselessRifle
+          - MagazineRifle
+          - MagazineLightRifle
+          - MagazinePistolDPSubMachineGun
+          - MagazinePistolDP
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistolSP
@@ -526,6 +530,9 @@
           tags:
           - CartridgeCaselessRifle
           - CartridgePistol
+          - CartridgePistolDP
+          - CartridgeRifle
+          - CartridgeLightRifle
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -541,7 +548,7 @@
   - type: Item
     size: Large
     shape:
-    - 0,0,4,2
+    - 0,0,3,1
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi
     layers:
@@ -573,7 +580,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolSubMachineGunSIAR52
+        startingItem: MagazinePistolSubMachineGunCaselessExtended
         insertSound: /Audio/Weapons/Guns/MagIn/lmg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/lmg_magout.ogg
         priority: 2
@@ -717,6 +724,7 @@
         whitelist:
           tags:
           - MagazinePistolDPSubMachineGun
+          - MagazinePistolDP
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber

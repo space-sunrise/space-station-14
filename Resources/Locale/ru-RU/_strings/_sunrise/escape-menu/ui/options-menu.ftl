@@ -3,6 +3,7 @@ ui-options-lobby-background-type = Тип фона лобби
 ui-options-lobby-art = Арт лобби
 ui-options-lobby-animation = Анимация лобби
 ui-options-lobby-parallax = Паралакс лобби
+ui-options-lobby-unload-resources = Выгружать ресурсы лобби из видеопамяти
 ui-options-damage-overlay-enable = Оверлей урона
 ui-options-damage-overlay-structures = Показывать урон по структурам
 ui-options-damage-overlay-self = Показывать урон по себе

@@ -130,6 +130,7 @@
   name: G.O.R.I.L.L.A. gauntlet
   parent: BaseItem
   id: CyberGorillaArm
+  categories: [ HideSpawnMenu ]
   description: A robust piece of research equipment. When powered with an anomaly core, a single blow can launch anomalous objects through the air.
   components:
   - type: Sprite
@@ -153,7 +154,7 @@
       path: "/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg"
   - type: CorePoweredThrower
   - type: MeleeThrowOnHit
-    unanchorOnHit: true
+    unanchorOnHit: Unanchorable
   - type: ItemSlots
     slots:
       core_slot:
@@ -176,12 +177,18 @@
   - type: Prying
     speedModifier: 2
     pryPowered: true
+  # Sunrise-start
+  - type: Construction
+    graph: UpgradeCyberGorilla
+    node: upgraded
+  # Sunrise-end
 
 #G.O.R.I.L.L.A. cyber arm #Syndie Upgrade
 - type: entity
   name: experimental G.O.R.I.L.L.A. gauntlet
   parent: [CyberGorillaArm, BaseScienceContraband]
   id: CyberGorillaArmUpgraded
+  categories: [ HideSpawnMenu ]
   description: A reinforced cybernetic arm equipped with integrated G.O.R.I.L.L.A. gauntlet systems. When powered with an anomaly core, a single strike can hurl anomalous objects or your enemy just like its standalone counterpart.
   components:
   - type: Sprite
@@ -208,7 +215,7 @@
     soundHit:
       path: "/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg"
   - type: MeleeThrowOnHit
-    unanchorOnHit: true
+    unanchorOnHit: Unanchorable
     stunTime: 1.5
   - type: Tool
     qualities:
@@ -251,7 +258,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
     bigTrigger: true
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: AnomalousParticleDeltaStrong
     fireCost: 100
   - type: BatteryWeaponFireModes
@@ -265,7 +272,6 @@
     - proto: AnomalousParticleSigmaStrong
       fireCost: 100
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 25
     autoRechargePauseTime: 1
 
@@ -323,7 +329,6 @@
     proto: RedLightLaser
     fireCost: 75
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 120
     autoRechargePauseTime: 8
   - type: MagazineVisuals
@@ -371,7 +376,7 @@
     slots:
       gun_chamber:
         name: Chamber
-        startingItem: GrenadeFlashContact
+        startingItem: GrenadeFlash
         priority: 1
         whitelist:
           tags:
@@ -414,7 +419,7 @@
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
     projectileSpeed: 15
     bigTrigger: true
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: AirGrenade
     fireCost: 130
   - type: BatteryWeaponFireModes
@@ -427,7 +432,6 @@
     maxCharge: 500
     startingCharge: 500
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 10
   - type: KnockbackByUserTag
     doestContain:

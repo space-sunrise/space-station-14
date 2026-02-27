@@ -10,7 +10,7 @@
     - Lawyer
     - NtrOfficer
 
-- type: department # Surnise-Blueshield
+- type: department # Sunrise-Blueshield
   id: BlueShield
   name: department-Blueshield
   description: department-Blueshield-description
@@ -35,6 +35,7 @@
   - PrisonScientist
   - PrisonDoctor
   - PrisonChef
+  - PrisonTrainee
   # - PrisonGuard
   # - PrisonPilot
   - PlanetPrisoner
@@ -53,6 +54,7 @@
   - PrisonScientist
   - PrisonDoctor
   - PrisonChef
+  - PrisonTrainee
   # - PrisonGuard
   # - PrisonPilot
   editorHidden: true

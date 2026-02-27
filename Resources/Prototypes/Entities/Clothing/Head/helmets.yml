@@ -219,7 +219,7 @@
 
 #Space Ninja Helmet
 - type: entity
-  parent: [ClothingHeadEVAHelmetBase, BaseHighlyIllegalContraband]
+  parent: [ClothingHeadEVAHelmetBase, BaseHighlyIllegalContraband, BaseNightVisionDevice]
   id: ClothingHeadHelmetSpaceNinja
   name: space ninja helmet
   description: What may appear to be a simple black garment is in fact a highly sophisticated nano-weave helmet. Standard issue ninja gear.
@@ -238,6 +238,21 @@
     layers:
       Hair: HEAD
       Snout: HEAD
+  # Sunrise-Start
+  - type: ItemToggle
+    predictable: false
+    onUse: false
+    canActivateInhand: false
+    soundActivate:
+      path: /Audio/_Sunrise/Items/Goggles/activate.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+  - type: NinjaSuitDraw
+    drawRate: 0.1
+  - type: ToggleNinjaSuitDraw
+  # Sunrise-End
 
 #Knight Helmet
 - type: entity
@@ -468,10 +483,10 @@
   - type: Armor
     modifiers: #There's gotta be SOME reason to use this over other helmets.
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
-        Heat: 0.9
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
   - type: HideLayerClothing
     layers:
       Hair: HEAD

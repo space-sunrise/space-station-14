@@ -1,0 +1,67 @@
+- type: entity # Sunrise-TODO: Добавить кастомизацию и возможность менять/Заменять и улучшать броню боргов
+  id: BorgArmorSilicon
+  name: armor plating
+  parent: ClothingOuterBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    layers:
+    - state: mecha_abooster_proj
+      visible: true
+  - type: Clothing
+    slots:
+    - OuterClothing
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 1
+        Slash: 0.7
+        Piercing: 0.6
+        Heat: 0.5
+        Shock: 0.7
+        Caustic: 1
+        Structural: 0.2
+  - type: Unremoveable
+  - type: Pierceable
+    level: Metal
+
+- type: entity
+  id: BorgArmorSiliconMk2
+  name: armor plating Mk2
+  parent: ClothingOuterBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    layers:
+    - state: ripleyupgrade
+      visible: true
+  - type: Clothing
+    slots:
+    - OuterClothing
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.6
+        Piercing: 0.5
+        Heat: 0.5
+        Shock: 0.6
+        Caustic: 1
+        Structural: 0.2
+  - type: Unremoveable
+  - type: Pierceable
+    level: Rock
+
+- type: startingGear
+  id: BorgArmorSiliconLoadout
+  equipment:
+    armor: BorgArmorSilicon
+
+- type: startingGear
+  id: BorgArmorSiliconLoadoutMk2
+  equipment:
+    armor: BorgArmorSiliconMk2

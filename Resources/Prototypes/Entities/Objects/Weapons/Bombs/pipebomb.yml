@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ GrenadeBase, BaseMinorContraband ]
+  parent: [ TimerGrenadeBase, BaseMinorContraband ]
   id: PipeBomb
   name: pipe bomb
   description: An improvised explosive made from pipes and wire.
@@ -28,6 +28,12 @@
     intensitySlope: 5
     maxIntensity: 6
     canCreateVacuum: false
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - HandGrenade
+    - PipeBomb
+  # Sunrise-End
   - type: Appearance
   - type: TimerTriggerVisuals
   - type: Construction

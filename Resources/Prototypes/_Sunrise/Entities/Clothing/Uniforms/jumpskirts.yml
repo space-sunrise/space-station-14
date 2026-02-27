@@ -67,17 +67,6 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformJumpskirtPrisonerGrey
-  name: prisoner's jumpskirt
-  description: Why isn't it orange?
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisoner.rsi
-  - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisoner.rsi
-
-- type: entity
-  parent: ClothingUniformBase
   id: ClothingUniformJumpskirtGuard
   name: prison guard's jumpskirt
   description: Why isn't it red?
@@ -236,3 +225,88 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/sunrisemaid.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/sunrisemaid.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtCaptainWhite
+  name: white captain's jumpskirt
+  description: A sharp white captain's jumpskirt. Stylish enough to intimidate the paperwork into filing itself.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/white_cap_skirt_suit.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/white_cap_skirt_suit.rsi
+
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtCaptainBlack
+  name: black captain's jumpskirt
+  description: A black captain's jumpskirt for maximum drip during emergency meetings. Drama sold separately.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/black_cap_skirt_suit.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/black_cap_skirt_suit.rsi
+
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtTacticalHos
+  name: Tactical HOS uniform
+  description: A stylized service uniform for the Head of Security
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/tacticalhos.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/tacticalhos.rsi
+
+- type: entity
+  parent: UnsensoredClothingUniformBase
+  id: ClothingUniformJumpskirtQipao
+  name: qipao
+  description: A classic Chinese dress.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/qipao.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/qipao.rsi
+
+
+
+  # TODO: Fix dress/shoes layering without taking the outerClothing slot
+- type: entity
+  parent: UnsensoredClothingUniformBase
+  id: ClothingUniformWeddingDressMagnificent
+  name: Magnificent wedding dress
+  description: A dress where the bride is the center of the universe.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/weddingdressmagnificent.rsi
+    - type: Clothing
+      slots: [outerClothing]
+      sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/weddingdressmagnificent.rsi
+
+- type: entity
+  parent: UnsensoredClothingUniformBase
+  id: ClothingUniformWeddingDressBelt
+  name: Wedding dress with belt
+  description: An exquisite challenge to tradition.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/weddingdressbelt.rsi
+    - type: Clothing
+      slots: [outerClothing]
+      sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/weddingdressbelt.rsi
+
+- type: entity
+  parent: UnsensoredClothingUniformBase
+  id: ClothingUniformWeddingDressSplit
+  name: Split wedding dress
+  description: A wedding with a drop of extravagance.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/weddingdresssplit.rsi
+    - type: Clothing
+      slots: [outerClothing]
+      sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/weddingdresssplit.rsi

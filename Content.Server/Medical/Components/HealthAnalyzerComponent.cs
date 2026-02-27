@@ -13,4 +13,10 @@ public sealed partial class HealthAnalyzerComponent : AbstractAnalyzerComponent
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
     public override TimeSpan NextUpdate { get; set; } = TimeSpan.Zero;
+
+    // Sunrise-start
+    [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<DamageContainerPrototype>))]
+    public List<string>? DamageContainers;
+    // Sunrise-end
 }
+

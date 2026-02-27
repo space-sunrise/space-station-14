@@ -30,42 +30,6 @@
 
 - type: entity
   parent: VendingMachine
-  id: VendingMachineMayson
-  name: MaysonMil & YanLu corp
-  description: A vending machine containing products of the company "MaysonMil & YanLu".
-  components:
-  - type: VendingMachine
-    pack: MaysonYanInventory
-    dispenseOnHitChance: 0.25
-    dispenseOnHitThreshold: 2
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    initialStockQuality: 0.33
-  - type: Vocalizer
-  - type: DatasetVocalizer
-    dataset: DiscountDansAds
-  - type: SpeakOnUIClosed
-    pack: DiscountDansGoodbyes
-  - type: Speech
-  - type: Sprite
-    sprite: _Sunrise/Structures/Machines/VendingMachines/mayson.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - texture: Structures/Machines/VendingMachines/maintenance_panel.png
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#6148c7"
-  - type: PlayerCountDependentStock  # Sunrise-vend
-
-- type: entity
-  parent: VendingMachine
   id: VendingMachineClown
   name: HohohonkersVend
   description: Get your honk fix here! Surprise the station with HohohonkersVend — the ultimate machine for hilarious pranks. Hack it, and you'll unlock something special!
@@ -95,3 +59,38 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
+- type: entity
+  parent: VendingMachineSecDrobe
+  id: VendingMachinePrisonDrobe
+  name: PrisonDrobe
+  description: A legacy of old penitentiary modules, adapted for modern facilities with full isolation of staff and inmates.
+  components:
+  - type: VendingMachine
+    pack: PrisonDrobeInventory
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineEVASuitDispenser
+  name: EVA suit dispenser
+  description: A vendor for dispensing EVA suits and helmets for emergency use.
+  components:
+  - type: VendingMachine
+    pack: EVASuitDispenserInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: EVAdispenserAds
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/VendingMachines/evavend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PlayerCountDependentStock

@@ -95,6 +95,11 @@
   name: store-category-security
   priority: 5
 
+- type: storeCategory
+  id: PaintThings
+  name: store-category-paint
+  priority: 99
+
 # disease
 
 - type: storeCategory
@@ -252,6 +257,11 @@
   id: UplinkPirateMechs
   name: store-category-mechs
   priority: 11
+
+- type: storeCategory
+  id: UplinkPirateBundle
+  name: store-category-lootbox
+  priority: 12
 
 - type: storeCategory
   id: UplinkPirateExchanger

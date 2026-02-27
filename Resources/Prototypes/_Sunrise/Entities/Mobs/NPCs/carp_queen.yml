@@ -14,7 +14,7 @@
     description: ghost-role-information-carp-queen-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleGhostRoleFreeAgent
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -30,8 +30,6 @@
       MobCarpServantRainbow: 80
       MobCarpServantHolo: 10
       MobCarpServantDungeon: 10
-  - type: ReplacementAccent
-    remove: true
   - type: Accentless
     removes:
     - type: ReplacementAccent

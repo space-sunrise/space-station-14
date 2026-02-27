@@ -5,13 +5,14 @@
   - type: SolutionContainerManager
     solutions:
       injector:
-        maxVol: 15
+        maxVol: 10
         reagents:
         - ReagentId: Romerol
-          Quantity: 5
+          Quantity: 10
   - type: Injector
-    injectOnly: false
-    toggleState: Inject
+    activeModeProtoId: SyringeInjectMode
+    allowedModes:
+    - SyringeInjectMode
 
 - type: entity
   parent: BaseSyringe
@@ -20,10 +21,11 @@
   - type: SolutionContainerManager
     solutions:
       injector:
-        maxVol: 15
+        maxVol: 10
         reagents:
         - ReagentId: Carol
-          Quantity: 5
+          Quantity: 10
   - type: Injector
-    injectOnly: false
-    toggleState: Inject
+    activeModeProtoId: SyringeInjectMode
+    allowedModes:
+    - SyringeInjectMode

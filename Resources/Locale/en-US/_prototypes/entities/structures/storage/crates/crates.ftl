@@ -85,3 +85,5 @@ ent-CrateTrashCartJani = janitorial trash cart
 ent-InvisibleCrate = { ent-CrateBaseWeldable }
     .suffix = Stealth
     .desc = { ent-CrateBaseWeldable.desc }
+ent-CrateSyndicateSecure = secure syndicate crate
+    .desc = A dark steel crate with red bands and a letter S embossed on the front.

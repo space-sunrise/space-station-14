@@ -15,7 +15,8 @@
   access:
   - Security
   - Brig
-  - Maintenance
+#  - Maintenance #Sunrise-Edit
+  - Service
   - Detective
   - Cryogenics
   - External

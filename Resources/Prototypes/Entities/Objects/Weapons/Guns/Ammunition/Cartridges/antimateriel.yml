@@ -7,8 +7,8 @@
   - type: Tag
     tags:
     - CartridgeAntiMateriel
-  - type: HitScanCartridgeAmmo
-    hitscan: AntiMaterielBulletTrace
+  - type: CartridgeAmmo
+    proto: AntiMaterielBulletTrace
   - type: Sprite
   # sunrise-start
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/12.7x99.rsi

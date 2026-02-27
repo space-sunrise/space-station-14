@@ -79,7 +79,7 @@
     whitelist:
       tags:
         - ShellShotgun
-    capacity: 14
+    capacity: 24 # Sunrise-Edit
 
 - type: entity
   parent: [ ClothingBeltStorageBase, BaseMagicalContraband ]

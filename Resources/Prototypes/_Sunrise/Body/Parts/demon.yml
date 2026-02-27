@@ -2,20 +2,10 @@
 # TODO BODY: Part damage
 - type: entity
   id: PartDemon
-  parent: BaseItem
+  parent: [BaseItem, BasePart]
   name: "demon body part"
   abstract: true
-  components:
-  - type: Damageable
-    damageContainer: Biological
-  - type: BodyPart
-  - type: ContainerContainer
-    containers:
-      bodypart: !type:Container
-        ents: []
-  - type: Tag
-    tags:
-      - Trash
+
 
 - type: entity
   id: TorsoDemon
@@ -35,7 +25,7 @@
 - type: entity
   id: HeadDemon
   name: "demon head"
-  parent: PartDemon
+  parent: [PartDemon, BaseHead]
   components:
   - type: Sprite
     netsync: false
@@ -44,19 +34,6 @@
   - type: Icon
     sprite: _Sunrise/Mobs/Species/Demon/parts.rsi
     state: "head_m"
-  - type: BodyPart
-    partType: Head
-    vital: true
-  - type: Input
-    context: "ghost"
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 0
-    baseSprintSpeed: 0
-  - type: InputMover
-  - type: GhostOnMove
-  - type: Tag
-    tags:
-      - Head
 
 - type: entity
   id: LeftArmDemon

@@ -1,0 +1,120 @@
+<Document>
+  # Ядерные операторы
+
+  <Box>
+    [color=#999999][italic]"OPERATIVES STANDBY. YOUR OBJECTIVES ARE SIMPLE.[/italic][/color]
+  </Box>
+  <Box>
+    [color=#999999][italic]DELIVER THE PAYLOAD AND GET OUT BEFORE THE PAYLOAD DETONATES. BEGIN MISSION."[/italic][/color]
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="PosterContrabandEnlistGorlex" Caption=""/>
+  </Box>
+
+  Вас только что выбрали в ядерные операторы от [color=#ff0000]Синдиката[/color]. Ваша единственная цель — взорвать один из лучших кораблей Nanotrasen, используя ядерное деление.
+
+  ## Операторы
+  Ваша команда состоит из нескольких ролей:
+  - [bold]Операторы[/bold], стандартные солдаты, которые берут на себя грязную работу.
+  - [bold]Хирург[/bold], работающий с реагентами, чтобы делать медикаменты или химическое оружие.
+  - [bold]Командир[/bold], который разрабатывает план и ведёт команду.
+
+  <Box>
+    <GuideEntityEmbed Entity="ClothingOuterHardsuitSyndie"/>
+    <GuideEntityEmbed Entity="ClothingOuterHardsuitSyndieMedic" Caption="corpsman's hardsuit"/>
+    <GuideEntityEmbed Entity="ClothingOuterHardsuitSyndieCommander" Caption="commander's hardsuit"/>
+  </Box>
+
+  Если вас назначили хирургом или командиром, но вы не чувствуете себя готовым, одну из ваших обязанностей может взять на себя напарник.
+
+  ## Диск
+
+  Каждый оператор получает [color=cyan]пинпойнтер[/color], который нужно включить и носить с собой. Он всегда показывает направление на [color=cyan]диск ядерной аутентификации[/color].
+  Диск принадлежит [color=yellow]Капитану[/color], и у него он почти всегда на себе. Следуйте за стрелкой пинпойнтера, чтобы добраться до диска, и [italic]делайте всё, что нужно, чтобы его достать.[/italic]
+
+  <Box>
+    <GuideEntityEmbed Entity="PinpointerNuclear"/>
+    <GuideEntityEmbed Entity="NukeDisk"/>
+  </Box>
+
+  ## Подготовка
+  Каждому члену отряда дают [color=cyan]uplink[/color], чтобы приобрести всё, что понадобится для миссии — как у [textlink="traitors." link="Traitors"]
+
+  <Box>
+    <GuideEntityEmbed Entity="BaseUplinkRadio40TC" Caption="your uplink"/>
+  </Box>
+
+  Вы можете брать те же виды снаряжения, что и предатели, но у вас доступно более качественное снаряжение и больше телекристаллов.
+  <Box>
+    <GuideEntityEmbed Entity="WeaponLightMachineGunL6" Caption="Weaponry"/>
+    <GuideEntityEmbed Entity="MagazineRifleBoxSP" State="icon" Caption="Ammo"/>
+    <GuideEntityEmbed Entity="C4" Caption="Explosives"/>
+    <GuideEntityEmbed Entity="ClothingOuterHardsuitJuggernaut" Caption="Wearables"/>
+    <GuideEntityEmbed Entity="Stimpack" Caption="Chemicals"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ChameleonProjector" Caption="Deception"/>
+    <GuideEntityEmbed Entity="Emag" Caption="Disruption"/>
+    <GuideEntityEmbed Entity="MacroBombImplanter" Caption="Implants"/>
+    <GuideEntityEmbed Entity="BorgChassisSyndicateAssault" Caption="Allies"/>
+    <GuideEntityEmbed Entity="ClothingEyesGlassesOutlawGlasses" Caption="Pointless"/>
+  </Box>
+
+  Вам ещё предстоит решить, [color=red]объявлять ли войну[/color]. Это даст вашей команде [bold]ещё по 40 телекристаллов каждому.[/bold]
+  Однако экипаж сразу узнает о вас и получит достаточно времени, чтобы подготовиться.
+
+  Только [bold]командир[/bold] может объявить войну. Решайте быстро, [italic]предложение ограничено по времени![/italic]
+  <Box>
+    <GuideEntityEmbed Entity="NukeOpsDeclarationOfWar"/>
+  </Box>
+
+  ## Добираемся до станции
+  У вас есть план и снаряжение. Теперь действуйте.
+
+  Возьмите [bold]реактивный ранец[/bold] из арсенала и отправляйтесь с товарищами к [color=cyan]шаттлу[/color].
+  Там вы найдёте [bold]компьютер IFF[/bold], который позволяет скрываться от других кораблей и сканеров, если выключить [italic]Show IFF[/italic] и [italic]Show Vessel[/italic].
+
+  Когда все готовы, включайте FTL и летите на станцию, используя ранец. Не забудьте код, пинпойнтеры и ядерный заряд, если вы его несёте.
+
+  <Box>
+    <GuideEntityEmbed Entity="JetpackBlack"/>
+    <GuideEntityEmbed Entity="ComputerIFFSyndicate"/>
+  </Box>
+
+  ## Ядро и процедура активации
+  На шаттле у вас есть бумага с [color=cyan]кодами ядерной аутентификации[/color]. [bold]Убедитесь, что ID вашего заряда совпадает с указанным на шаттле.[/bold] Если нет, вы активируете чужой заряд на станции.
+
+  - Достаньте [bold]диск ядерной аутентификации[/bold] и вставьте его в ядерный заряд.
+  - Введите [bold]код ядерной аутентификации[/bold] и нажмите "[bold]E[/bold]" на клавиатуре.
+  - [bold]Чтобы начать самоуничтожение, нажмите [color=#EB2D3A]ARM[/color][/bold]. Через 300 секунд заряд взорвётся.
+  - [bold]Охраняйте заряд[/bold], даже если это стоит жизни! Ваша задача не включает возвращение.
+  - Чтобы [bold]разрядить[/bold] заряд, нужно 30 секунд. Его можно вновь активировать, но это снижает шанс успеха.
+  - Если заряд перезарядят, таймер продолжит отсчёт с предыдущего значения.
+
+  <Box>
+    <GuideEntityEmbed Entity="NuclearBomb" Caption="The Nuclear Fission Explosive"/>
+  </Box>
+
+  ## Условия победы
+
+  [color=#00ff00]Победитель[/color] раунда определяется на финальном экране, а также масштаб его победы.
+
+  [bold][color=red]Крупная победа Синдиката![/color][/bold]
+  - Заряд детонирует на станции.
+  - Экипаж эвакуируется, но заряд остаётся включённым.
+  - Заряд доставлен на Центркомм в эвакуационном шаттле.
+
+  [bold][color=red]Малая победа Синдиката[/color][/bold]
+  - Экипаж эвакуируется, но все операторы выживают.
+  - Экипаж сбегает, некоторые операторы гибнут, но экипаж теряет диск.
+
+  [bold][color=#999999]Нейтральная победа[/color][/bold]
+  - Заряд взрывается не на станции.
+
+  [bold][color=green]Малая победа экипажа[/color][/bold]
+  - Экипаж эвакуируется с диском, а некоторые операторы гибнут.
+
+  [bold][color=green]Крупная победа экипажа![/color][/bold]
+  - Все операторы погибают.
+  - Экипаж уничтожает базу ядерных операторов и заряд.
+</Document>

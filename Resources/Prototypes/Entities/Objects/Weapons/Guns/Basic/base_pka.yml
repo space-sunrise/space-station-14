@@ -20,6 +20,7 @@
     angleDecay: 45
     minAngle: 44
     maxAngle: 45
+    bigTrigger: true # Sunrise-Edit
     availableModes:
     - SemiAuto
     soundGunshot:

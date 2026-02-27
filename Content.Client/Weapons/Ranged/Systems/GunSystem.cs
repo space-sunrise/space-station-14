@@ -568,7 +568,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
         var lifetime = 0.4f;
 
-        if (TryComp<TimedDespawnComponent>(gunUid, out var despawn))
+        if (TryComp<TimedDespawnComponent>(ent, out var despawn)) // Sunrise-Edit
         {
             lifetime = despawn.Lifetime;
         }

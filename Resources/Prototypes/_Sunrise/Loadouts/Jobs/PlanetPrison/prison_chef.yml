@@ -1,7 +1,7 @@
 # Head
 
 - type: loadout
-  id: PrisonChef-ClothingHeadCapPrisonChefMetus
+  id: PrisonChefCap
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -9,10 +9,10 @@
       role: JobPrisonChef
       time: 7200 # 2 hrs
   equipment:
-    head: ClothingHeadCapPrisonChefMetus
+    head: ClothingHeadCapPrisonChef
 
 - type: loadout
-  id: PrisonChef-ClothingHeadHatBeretPrisonChefMetus
+  id: PrisonChefBeret
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -20,10 +20,10 @@
       role: JobPrisonChef
       time: 25200 # 7 hrs
   equipment:
-    head: ClothingHeadHatBeretPrisonChefMetus
+    head: ClothingHeadHatBeretPrisonChef
 
 - type: loadout
-  id: PrisonChef-ClothingHeadHatCapPrisonChefMetus
+  id: PrisonChefHat
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -31,16 +31,16 @@
       role: JobPrisonChef
       time: 54000 # 15 hrs
   equipment:
-    head: ClothingHeadHatCapPrisonChefMetus
+    head: ClothingHeadHatCapPrisonChef
 
 - type: loadout
-  id: PrisonChef-ClothingHeadHatChef
+  id: PrisonChefChefHat
   equipment:
     head: ClothingHeadHatChef
   groupBy: "Toque"
 
 - type: loadout
-  id: PrisonChef-ClothingHeadHatChefBlackToque
+  id: PrisonChefBlackToque
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
@@ -50,3 +50,41 @@
   equipment:
     head: ClothingHeadHatChefBlackToque
   groupBy: "Toque"
+
+# Рабочая униформа
+
+- type: loadout
+  id: PrisonChefJumpsuit
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonChef
+
+- type: loadout
+  id: PrisonChefJumpskirt
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonChef
+
+- type: loadout
+  id: PrisonChefJumpsuitVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonChef
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonChefVeteran
+
+- type: loadout
+  id: PrisonChefJumpskirtVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonChef
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonChefVeteran

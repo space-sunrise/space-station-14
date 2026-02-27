@@ -43,14 +43,12 @@
                 MinSize="0 0"
                 SizeFlagsStretchRatio="2"
                 VerticalExpand="True">
-            <BoxContainer
-                Name="PageTextContainer"
-                MinSize="0 0"
-                Orientation="Vertical"
-                SizeFlagsStretchRatio="2"
-                VerticalExpand="True">
+            <!-- Sunrise-Start -->
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                <RichTextLabel Margin="8,8,8,8" Name="PageText" VerticalAlignment="Top"/>
+                <GridContainer Name="ArticlePhotosContainer" Columns="2" HorizontalExpand="True" HSeparationOverride="10" VSeparationOverride="10" Margin="10,0,10,10"/>
             </BoxContainer>
-            <RichTextLabel Margin="8,8,8,8" Name="PageText" VerticalAlignment="Top"/>
+            <!-- Sunrise-End -->
         </ScrollContainer>
     </PanelContainer>
     <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="5,5,5,5">

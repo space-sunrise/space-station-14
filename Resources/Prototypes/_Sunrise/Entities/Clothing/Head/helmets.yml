@@ -31,16 +31,14 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.95
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - FullCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
-  parent: [ClothingHeadBase, BaseRestrictedContraband, BaseFoldable]
+  parent: [ClothingHeadBase, BaseSecurityContraband, BaseFoldable]
   id: ClothingHeadHelmetPubg
   name: Altyn
   description: A fortified helmet used to suppress and incite riots.
@@ -69,13 +67,11 @@
         Piercing: 0.85
   - type: ExplosionResistance
     damageCoefficient: 0.95
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - FullCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 # region ERT Amber EVA
 - type: entity

@@ -216,7 +216,7 @@ public sealed class AnnouncementSpeakerSystem : EntitySystem
     /// <summary>
     /// Gets a voice prototype by ID, with fallback to default voice.
     /// </summary>
-    private bool GetVoicePrototype(string voiceId, [NotNullWhen(true)] out TTSVoicePrototype? voicePrototype)
+    private bool GetVoicePrototype(ProtoId<TTSVoicePrototype> voiceId, [NotNullWhen(true)] out TTSVoicePrototype? voicePrototype)
     {
         if (!_prototypeManager.TryIndex(voiceId, out voicePrototype))
         {

@@ -1,7 +1,7 @@
 using Content.Shared.Actions;
 using Content.Shared.Alert;
 using Content.Shared.Atmos.Components;
-using Content.Shared.Inventory;
+using Content.Shared.Gravity;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Slippery;
 using Robust.Shared.Network;
@@ -11,6 +11,7 @@ namespace Content.Shared._Sunrise.Abilities;
 public sealed class SharedBorgMagbootsSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _sharedActions = default!;
+    [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly INetManager _net = default!;
@@ -18,9 +19,11 @@ public sealed class SharedBorgMagbootsSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<BorgMagbootsComponent, SlipAttemptEvent>(OnSlipAttempt);
         SubscribeLocalEvent<BorgMagbootsComponent, ToggleBorgMagbootsActionEvent>(OnToggleAction);
         SubscribeLocalEvent<BorgMagbootsComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeedModifiers);
+        SubscribeLocalEvent<BorgMagbootsComponent, IsWeightlessEvent>(OnIsWeightless);
         SubscribeLocalEvent<BorgMagbootsComponent, MapInitEvent>(OnInit);
     }
 
@@ -68,10 +71,27 @@ public sealed class SharedBorgMagbootsSystem : EntitySystem
         if (TryComp<MovedByPressureComponent>(user, out var moved))
             moved.Enabled = !state;
 
+        _gravity.RefreshWeightless(user);
+
         if (state)
             _alerts.ShowAlert(user, ent.Comp.MagbootsAlert);
         else
             _alerts.ClearAlert(user, ent.Comp.MagbootsAlert);
+    }
+
+    private void OnIsWeightless(Entity<BorgMagbootsComponent> ent, ref IsWeightlessEvent args)
+    {
+        if (args.Handled || !ent.Comp.On)
+        {
+            return;
+        }
+
+        // do not cancel weightlessness if the person is in off-grid.
+        if (ent.Comp.RequiresGrid && !_gravity.EntityOnGravitySupportingGridOrMap(ent.Owner))
+            return;
+
+        args.IsWeightless = false;
+        args.Handled = true;
     }
 
     private void OnSlipAttempt(EntityUid uid, BorgMagbootsComponent component, SlipAttemptEvent args)

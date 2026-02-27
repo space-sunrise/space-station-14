@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.TTS;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.CollectiveMind;
@@ -18,7 +19,7 @@ public sealed partial class CollectiveMindPrototype : IPrototype
     public Color Color { get; private set; } = Color.Lime;
 
     [DataField("voiceId")]
-    public string? VoiceId { get; private set; } = null;
+    public ProtoId<TTSVoicePrototype>? VoiceId;
 
     [DataField("showAuthor")]
     public bool ShowAuthor { get; private set; } = false;

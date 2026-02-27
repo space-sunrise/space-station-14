@@ -579,6 +579,7 @@ entities:
     - type: OccluderTree
     - type: Shuttle
       dampingModifier: 0.25
+    - type: NukeOpsShuttle
     - type: RadiationGridResistance
     - type: GravityShake
       shakeTimes: 10
@@ -720,14 +721,14 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-5.5
       parent: 1
-- proto: AntimaterialAmmoKit
+- proto: ShotGunKitLarge
   entities:
   - uid: 839
     components:
     - type: Transform
       pos: 1.7495648,-13.532623
       parent: 1
-- proto: APCBasic
+- proto: APCHighCapacitySyndicate
   entities:
   - uid: 18
     components:
@@ -4148,7 +4149,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-27.5
       parent: 1
-- proto: ReinforcedPlasmaWindow
+- proto: PlastitaniumWindow
   entities:
   - uid: 254
     components:
@@ -4768,7 +4769,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -1.5,-2.5
       parent: 1
-- proto: Thruster
+- proto: ThrusterSyndicate
   entities:
   - uid: 659
     components:
@@ -5705,7 +5706,7 @@ entities:
     - type: Transform
       pos: 1.5215412,-12.936018
       parent: 1
-- proto: WeaponSIAR52Biocode
+- proto: WeaponAJ100Biocode
   entities:
   - uid: 565
     components:
@@ -5773,7 +5774,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-27.5
       parent: 1
-- proto: WindoorSecure
+- proto: PlasmaWindoorSecureNukeopLocked
   entities:
   - uid: 831
     components:

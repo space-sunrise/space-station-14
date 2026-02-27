@@ -16,8 +16,8 @@
       - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/HMGs/minigun_shot.ogg
-  - type: ProjectileBatteryAmmoProvider
-    proto: CartridgeRifleSP
+  - type: BatteryAmmoProvider
+    proto: CartridgeRifleFMJ
     fireCost: 5
   - type: Appearance
   - type: AmmoCounter
@@ -43,7 +43,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeHeavyRifleRFMJ
     fireCost: 8
   - type: Appearance
@@ -74,7 +74,7 @@
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
       params:
         volume: -3
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeRifleHeavyFMJ
     fireCost: 8
   - type: Appearance
@@ -92,6 +92,11 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Mech/mecha_piratecannon.rsi
     state: mecha_piratecannon
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_inhands_64x.rsi
+    storedSprite:
+      state: storage
+      sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_storage_64x.rsi
   - type: Gun
     minAngle: -10
     maxAngle: 15
@@ -101,13 +106,50 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CannonBall
     fireCost: 150
   - type: Appearance
   - type: AmmoCounter
   - type: StaticPrice
     price: 3000
+
+- type: entity
+  id: WeaponMechCombatPirateMachineCannon
+  name: Mounted Pirate Machine Cannon
+  description: A unique strange gun given new life as a mech-mounted gun
+  suffix: Mech Weapon, Gun, Combat, Pirate
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_piratecannon_auto.rsi
+    state: mecha_piratecannon
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_inhands_64x.rsi
+    storedSprite:
+      state: storage
+      sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_storage_64x.rsi
+  - type: Gun
+    minAngle: -10
+    maxAngle: 15
+    fireRate: 6.5
+    projectileSpeed: 20
+    bigTrigger: true
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+      params:
+        volume: -1
+        pitch: 1.2
+  - type: BatteryAmmoProvider
+    proto: CannonBallMini
+    fireCost: 25
+  - type: Appearance
+  - type: AmmoCounter
+  - type: StaticPrice
+    price: 4000
 
 - type: entity
   id: WeaponMechCombatPirateGrapeshot
@@ -119,6 +161,11 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Mech/mecha_blunderbuss.rsi
     state: mecha_blunderbuss
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_inhands_64x.rsi
+    storedSprite:
+      state: storage
+      sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_storage_64x.rsi
   - type: Gun
     minAngle: -10
     maxAngle: 15
@@ -128,7 +175,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CannonBallGrapeshot
     fireCost: 75
   - type: Appearance
@@ -146,6 +193,11 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Mech/mecha_blunderbuss.rsi
     state: mecha_blunderbuss
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_inhands_64x.rsi
+    storedSprite:
+      state: storage
+      sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_storage_64x.rsi
   - type: Gun
     minAngle: -10
     maxAngle: 15
@@ -155,7 +207,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CannonBallGrapeshotMini
     fireCost: 25
   - type: Appearance
@@ -173,6 +225,11 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Mech/mecha_piratecannon.rsi
     state: mecha_piratecannon
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_inhands_64x.rsi
+    storedSprite:
+      state: storage
+      sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_storage_64x.rsi
   - type: Gun
     minAngle: -10
     maxAngle: 15
@@ -182,7 +239,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CannonBallGlassshot
     fireCost: 75
   - type: Appearance
@@ -238,7 +295,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: GrenadeFragTimer
     fireCost: 250
   - type: Appearance

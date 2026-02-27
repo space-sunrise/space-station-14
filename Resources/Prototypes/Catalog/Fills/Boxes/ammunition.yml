@@ -44,15 +44,16 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase:
-     id: MagazineLightRifleSP
-      amount: 1
-    - id: MagazineLightRifleHP
-      amount: 1
-    - id: MagazineLightRifleFMJ
-      amount: 1
-    - id: MagazineLightRifleAP
-      amount: 1
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineLightRifleSP
+          amount: 1
+        - id: MagazineLightRifleHP
+          amount: 1
+        - id: MagazineLightRifleFMJ
+          amount: 1
+        - id: MagazineLightRifleAP
+          amount: 1
 
 - type: entity
   name: box of .30 rifle (practice) magazines

@@ -8,6 +8,15 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise.Administration.UI.CustomControls;
 
+/// <summary>
+/// Красивая обертка для логов, поддерживающая форматирование текста.
+/// </summary>
+/// <remarks>
+/// Добавляет в начало файла цветовой индикатор важности логи и выделяет время жирным текстом. <br/>
+/// Дополнительную информацию о сущности выделяет <see cref="InfoColor"/> цветом, чтобы не засорять основную информацию. <br/>
+/// Цвета логов определяются в <see cref="GetTypeSpecificColor"/>
+/// </remarks>
+/// <seealso cref="AdminLogLabel"/>
 public sealed class SunriseAdminLogLabel : RichTextLabel
 {
     private const string InfoColor = "gray";
@@ -91,7 +100,7 @@ public sealed class SunriseAdminLogLabel : RichTextLabel
 
     #endregion
 
-    public SharedAdminLog Log { get; }
+    public new SharedAdminLog Log { get; }
 
     public HSeparator Separator { get; }
 
@@ -100,9 +109,9 @@ public sealed class SunriseAdminLogLabel : RichTextLabel
         Separator.Visible = Visible;
     }
 
-    protected override void Dispose(bool disposing)
+    protected override void ExitedTree()
     {
-        base.Dispose(disposing);
+        base.ExitedTree();
 
         OnVisibilityChanged -= VisibilityChanged;
     }

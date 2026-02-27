@@ -40,16 +40,16 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: MeleeWeapon
-    angle: 60
-    range: 0.9
+    wideAnimationRotation: 0
+    range: 0.95
     damage:
       types:
         Blunt: 8
     bluntStaminaDamageFactor: 2.0
-    attackRate: 1
-    autoAttack: false
+    soundHit:
+      collection: MetalThud
   - type: AltFireMelee
-    attackType: Light
+    attackType: Heavy
 
 - type: entity
   name: combat pistol VP-70
@@ -153,18 +153,19 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_cocked.ogg
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 - type: entity
-  name: Glock-22 Metus
-  description: Made to order for the security of the Metus planetary prison. Semi-automatic design. Uses .35 Auto caliber ammunition.
+  name: Glock-22 Prison
+  description: Manufactured by special order for prison complex security. Semi-automatic firearm chambered in .35 Auto.
   parent: WeaponPistolG22
-  id: WeaponPistolG22Metus
+  id: WeaponPistolG22Prison
   suffix: Sunrise
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22_metus/big.rsi
   - type: Gun
-    fireRate: 3.4
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_shot.ogg
     soundEmpty:
@@ -172,7 +173,29 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        startingItem: MagazinePistolHighCapacityRubber
+        name: Magazine
+        startingItem: MagazineGlock22Metus
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazinePistolHighCapacityRubber
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistolRubber
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistol
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
 
 - type: entity
   name: Glock-22 Auto
@@ -290,7 +313,7 @@
     maxAngle: 16
     angleIncrease: 2.75
     angleDecay: 15
-    fireRate: 4.25
+    fireRate: 4
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -325,6 +348,8 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 - type: entity
   name: Mateba
@@ -341,6 +366,8 @@
     fireRate: 3
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 # Sidearm HOS and Nukies.
 - type: entity
@@ -353,11 +380,11 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle/tiny.rsi
   - type: Gun
-    minAngle: 3.5
-    maxAngle: 15
-    angleIncrease: 5
+    minAngle: 1
+    maxAngle: 20
+    angleIncrease: 7
     angleDecay: 10
-    fireRate: 5
+    fireRate: 4 # 140 dps - 105 for mateba
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -393,6 +420,8 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 - type: entity
   name: Desert Eagle Metus
@@ -454,17 +483,8 @@
   - type: EyeCursorOffset
     maxOffset: 2.5
     pvsIncrease: 0.25
-  # - type: MeleeWeapon
-  #   angle: 60
-  #   range: 0.9
-  #   damage:
-  #     types:
-  #       Blunt: 10
-  #   bluntStaminaDamageFactor: 2.0
-  #   attackRate: 1
-  #   autoAttack: false
-  # - type: AltFireMelee
-  #   attackType: Light
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 - type: entity
   parent: WeaponRevolverSpearhead
@@ -512,6 +532,8 @@
   - type: SpeedModifiedOnWield
     walkModifier: 0.99
     sprintModifier: 0.99
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 - type: entity
   name: Golden Desert Eagle
@@ -523,15 +545,14 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/goldDeagle/tiny.rsi
 
-
 - type: entity
-  name: Tec-9 Tactical
+  name: Tac-Tec
   parent: BaseWeaponPistolSunrise
   id: WeaponPistolTec9
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/tec9tactical/big.rsi
-    scale: 0.63, 0.63
+    scale: 0.65, 0.65
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/tec9tactical/tiny.rsi
   - type: ChamberMagazineAmmoProvider
@@ -546,13 +567,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: BaseMagazinePistolCaselessRifleTec9
+        startingItem: BaseMagazinePistolCaselessRifleExtended
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 1
         whitelist:
           tags:
           - MagazinePistolCaselessRifle
+          - MagazineCaselessRifle
       gun_chamber:
         name: Chamber
         startingItem: CartridgeCaselessRifle

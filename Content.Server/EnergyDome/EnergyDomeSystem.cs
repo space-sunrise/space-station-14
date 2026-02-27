@@ -217,7 +217,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             {
                 _battery.UseCharge(cell.Value.Owner, energyLeak);
 
-                if (cell.Value.Comp.ChargeRate == 0)
+                if (cell.Value.Comp.State == BatteryState.Empty)
                     TurnOff((generatorUid, generatorComp), true);
             }
         }
@@ -226,7 +226,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
         if (TryComp<BatteryComponent>(generatorUid, out var battery)) {
             _battery.UseCharge(generatorUid, energyLeak);
 
-            if (battery.ChargeRate == 0)
+            if (battery.State == BatteryState.Empty)
                 TurnOff((generatorUid, generatorComp), true);
         }
     }
@@ -251,58 +251,53 @@ public sealed partial class EnergyDomeSystem : EntitySystem
     public bool AttemptToggle(Entity<EnergyDomeGeneratorComponent> generator, bool status)
     {
         var parent = Transform(generator.Owner).ParentUid;
+
         if (HasComp<ContainerManagerComponent>(Transform(parent).ParentUid))
+            return false;
+
+        if (TryComp<UseDelayComponent>(generator, out var useDelay) &&
+            _useDelay.IsDelayed((generator, useDelay)))
         {
+            Fail(generator, "energy-dome-recharging");
             return false;
         }
 
-        if (TryComp<UseDelayComponent>(generator, out var useDelay) && _useDelay.IsDelayed(new (generator, useDelay)))
+        if (TryComp<PowerCellSlotComponent>(generator, out _))
         {
-            _audio.PlayPvs(generator.Comp.TurnOffSound, generator);
-            _popup.PopupEntity(
-                    Loc.GetString("energy-dome-recharging"),
-                    generator);
-            return false;
-        }
-
-        if (TryComp<PowerCellComponent>(generator, out var powerCellSlot))
-        {
-            if (!_powerCell.TryGetBatteryFromSlot(generator.Owner, out var cell) &&
-                !HasComp<BatteryComponent>(generator.Owner))
+            if (!_powerCell.TryGetBatteryFromSlot(generator.Owner, out _))
             {
-                _audio.PlayPvs(generator.Comp.TurnOffSound, generator);
-                _popup.PopupEntity(
-                    Loc.GetString("energy-dome-no-cell"),
-                    generator);
+                Fail(generator, "energy-dome-no-cell");
                 return false;
             }
 
             if (!_powerCell.HasDrawCharge(generator.Owner))
             {
-                _audio.PlayPvs(generator.Comp.TurnOffSound, generator);
-                _popup.PopupEntity(
-                    Loc.GetString("energy-dome-no-power"),
-                    generator);
+                Fail(generator, "energy-dome-no-power");
                 return false;
             }
         }
-
-        if (TryComp<BatteryComponent>(generator, out var battery))
+        else if (TryComp<BatteryComponent>(generator, out var battery))
         {
-            if (battery.ChargeRate == 0)
+            if (_battery.GetCharge((generator, battery)) <= 0)
             {
-                _audio.PlayPvs(generator.Comp.TurnOffSound, generator);
-                _popup.PopupEntity(
-                    Loc.GetString("energy-dome-no-power"),
-                    generator);
+                Fail(generator, "energy-dome-no-power");
                 return false;
             }
+        }
+        else
+        {
+            Fail(generator, "energy-dome-no-power");
+            return false;
         }
 
         Toggle(generator, status);
         return true;
     }
-
+    private void Fail(Entity<EnergyDomeGeneratorComponent> generator, string locKey)
+    {
+        _audio.PlayPvs(generator.Comp.TurnOffSound, generator);
+        _popup.PopupEntity(Loc.GetString(locKey), generator);
+    }
     private void Toggle(Entity<EnergyDomeGeneratorComponent> generator, bool status)
     {
         if (status)

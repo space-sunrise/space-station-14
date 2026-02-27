@@ -2,7 +2,6 @@ using JetBrains.Annotations;
 using Content.Shared.MassMedia.Systems;
 using Content.Shared.MassMedia.Components;
 using Robust.Client.UserInterface;
-using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Client.MassMedia.Ui;
@@ -12,6 +11,7 @@ public sealed class NewsWriterBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]
     private NewsWriterMenu? _menu;
+    private PhotoSelectorWindow? _selector; // Sunrise-Edit
 
     public NewsWriterBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -29,6 +29,7 @@ public sealed class NewsWriterBoundUserInterface : BoundUserInterface
 
         _menu.CreateButtonPressed += OnCreateButtonPressed;
         _menu.ArticleEditorPanel.ArticleDraftUpdated += OnArticleDraftUpdated;
+        _menu.ArticleEditorPanel.RequestPhotosPressed += OnRequestPhotosPressed; // Sunrise-Edit
 
         SendMessage(new NewsWriterArticlesRequestMessage());
     }
@@ -36,11 +37,57 @@ public sealed class NewsWriterBoundUserInterface : BoundUserInterface
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
-        if (state is not NewsWriterBoundUserInterfaceState cast)
+        // Sunrise-Start
+        if (state is NewsWriterBoundUserInterfaceState cast)
+        {
+            _menu?.UpdateUI(cast.Articles, cast.PublishEnabled, cast.NextPublish, cast.DraftTitle, cast.DraftContent);
+            if (_menu != null)
+            {
+                _menu.ArticleEditorPanel.PhotoPaths = cast.DraftPhotoPaths != null ? new List<string>(cast.DraftPhotoPaths) : new List<string>();
+                _menu.ArticleEditorPanel.UpdatePhotosUI();
+            }
+        }
+        // Sunrise-End
+    }
+
+    // Sunrise-Start
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    {
+        base.ReceiveMessage(message);
+        if (message is NewsWriterPhotosMessage photosMsg)
+        {
+            if (_selector != null && _selector.IsOpen)
+            {
+                _selector.Populate(photosMsg.Photos);
+                return;
+            }
+
+            _selector = new PhotoSelectorWindow();
+            _selector.PhotoSelected += path =>
+            {
+                if (_menu == null) return;
+                if (!_menu.ArticleEditorPanel.PhotoPaths.Contains(path))
+                {
+                    _menu.ArticleEditorPanel.PhotoPaths.Add(path);
+                    _menu.ArticleEditorPanel.UpdatePhotosUI();
+                    OnArticleDraftUpdated(_menu.ArticleEditorPanel.TitleField.Text, Rope.Collapse(_menu.ArticleEditorPanel.ContentField.TextRope), _menu.ArticleEditorPanel.PhotoPaths);
+                }
+            };
+            _selector.OnClose += () => _selector = null;
+            _selector.Populate(photosMsg.Photos);
+            _selector.OpenCentered();
+        }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+        if (!disposing)
             return;
 
-        _menu?.UpdateUI(cast.Articles, cast.PublishEnabled, cast.NextPublish, cast.DraftTitle, cast.DraftContent);
+        _selector?.Close();
     }
+    // Sunrise-End
 
     private void OnPublishButtonPressed()
     {
@@ -62,7 +109,7 @@ public sealed class NewsWriterBoundUserInterface : BoundUserInterface
             : $"{stringContent[..(SharedNewsSystem.MaxContentLength - 3)]}...";
 
 
-        SendMessage(new NewsWriterPublishMessage(name, content));
+        SendMessage(new NewsWriterPublishMessage(name, content, _menu.ArticleEditorPanel.PhotoPaths)); // Sunrise-Edit
     }
 
     private void OnDeleteButtonPressed(int articleNum)
@@ -78,8 +125,15 @@ public sealed class NewsWriterBoundUserInterface : BoundUserInterface
         SendMessage(new NewsWriterRequestDraftMessage());
     }
 
-    private void OnArticleDraftUpdated(string title, string content)
+    private void OnArticleDraftUpdated(string title, string content, List<string>? photoPaths) // Sunrise-Edit
     {
-        SendMessage(new NewsWriterSaveDraftMessage(title, content));
+        SendMessage(new NewsWriterSaveDraftMessage(title, content, photoPaths)); // Sunrise-Edit
     }
+
+    // Sunrise-Start
+    private void OnRequestPhotosPressed()
+    {
+        SendMessage(new NewsWriterRequestPhotosMessage());
+    }
+    // Sunrise-End
 }

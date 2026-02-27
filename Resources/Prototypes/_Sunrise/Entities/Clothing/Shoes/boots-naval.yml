@@ -10,6 +10,3 @@
     sprite: _Sunrise/Clothing/Shoes/Boots/naval-boots.rsi
   - type: Item
     sprite: _Sunrise/Clothing/Shoes/Boots/naval-boots.rsi
-  - type: Construction
-    graph: NavalBootsCraft
-    node: NavalBoots

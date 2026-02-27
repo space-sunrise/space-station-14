@@ -10,6 +10,7 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 7200 # 2 hrs
+  weight: 3
   alwaysUseSpawner: true
   canBeAntag: false
   startingGear: PrisonScientistGear
@@ -31,23 +32,22 @@
   id: PrisonScientistGear
   equipment:
     id: PrisonScientistPDA
-    jumpsuit: UniformPrisonScientistMetus
-    ears: ClothingHeadsetScience
+    ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasic
     belt: ClothingBeltPrisonScientistMetus
     back: ClothingBackpackSatchelPrisonScientistMetus
     shoes: ClothingShoesBootsJack
-    pocket1: WeaponPistolG22Metus
+    pocket1: WeaponPistolG22Prison
     pocket2: SecurityWhistle
 
 - type: chameleonOutfit
   id: PrisonScientistChameleonOutfit
   job: PrisonScientist
   equipment:
-    jumpsuit: UniformPrisonScientistMetus
-    head: ClothingHeadHatCapPrisonScientistMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonScientistVeteran
+    head: ClothingHeadHatCapPrisonScientist
     ears: ClothingHeadsetScience
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat

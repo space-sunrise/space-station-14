@@ -12,7 +12,7 @@
     whitelist:
       tags:
         - ShellShotgun
-    capacity: 12 # Sunrise-Edit
+    capacity: 8
     soundRack:
       path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
   - type: Item
@@ -30,7 +30,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Shotgun/m12.rsi # Sunrise-Edit
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -38,7 +38,7 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 9 # Sunrise-Edit
     zeroVisible: false
   - type: Appearance
 
@@ -151,19 +151,3 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#72382d"
-
-#Sunrise-Start
-- type: entity
-  id: MagazineShotgunUranium
-  name: ammo drum (.50 Uranium)
-  parent: BaseMagazineShotgun
-  components:
-  - type: BallisticAmmoProvider
-    proto: ShellShotgunUranium
-  - type: Sprite
-    layers:
-    - state: uranium
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-#Sunrise-End

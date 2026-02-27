@@ -379,3 +379,8 @@ reagent-effect-guidebook-plant-seeds-remove =
         [1] Removes the
        *[other] remove the
     } seeds of the plant
+reagent-effect-guidebook-cause-flesh-cultist-infection =
+    { $chance ->
+        [1] Вызывает
+       *[other] вызывают
+    } плотскую инфекцию культиста

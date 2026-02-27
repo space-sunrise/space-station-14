@@ -131,7 +131,6 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             DirtyField(uid, component, nameof(MeleeWeaponComponent.NextAttack));
         }
     }
-
     private void OnMeleeExamineDamage(EntityUid uid, MeleeWeaponComponent component, ref DamageExamineEvent args)
     {
         if (component.Hidden)
@@ -144,44 +143,27 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         _damageExamine.AddDamageExamine(args.Message, Damageable.ApplyUniversalAllModifiers(damageSpec), Loc.GetString("damage-melee"));
     }
-    private void OnMeleeSelected(Entity<MeleeWeaponComponent> ent, ref HandSelectedEvent args)
+    private void OnMeleeSelected(EntityUid uid, MeleeWeaponComponent component, HandSelectedEvent args)
     {
-        var uid = ent.Owner;
+        var attackRate = GetAttackRate(uid, args.User, component);
+        if (attackRate.Equals(0f))
+            return;
 
-        var attackRate = GetAttackRate(uid, args.User, ent);
-        if (attackRate == 0f)
+        if (!component.ResetOnHandSelected)
             return;
 
         if (Paused(uid))
             return;
 
-        if (TryComp<EquipDelayComponent>(uid, out var delayComp))
-        {
-            var delay = delayComp.EquipDelayTime;
-            var curTime = Timing.CurTime;
+        // If someone swaps to this weapon then reset its cd.
+        var curTime = Timing.CurTime;
+        var minimum = curTime + TimeSpan.FromSeconds(1 / attackRate);
 
-            var minimum = curTime + TimeSpan.FromSeconds(delay);
+        if (minimum < component.NextAttack)
+            return;
 
-            if (minimum < ent.Comp.NextAttack)
-                return;
-
-            ent.Comp.NextAttack = minimum;
-
-            DirtyField(uid, ent.Comp, nameof(MeleeWeaponComponent.NextAttack));
-        }
-        else
-        {
-            var curTime = Timing.CurTime;
-
-            var minimum = curTime + TimeSpan.FromSeconds(0.3);
-
-            if (minimum < ent.Comp.NextAttack)
-                return;
-
-            ent.Comp.NextAttack = minimum;
-
-            DirtyField(uid, ent.Comp, nameof(MeleeWeaponComponent.NextAttack));
-        }
+        component.NextAttack = minimum;
+        DirtyField(uid, component, nameof(MeleeWeaponComponent.NextAttack));
     }
 
     private void OnGetBonusMeleeDamage(EntityUid uid, BonusMeleeDamageComponent component, ref GetMeleeDamageEvent args)

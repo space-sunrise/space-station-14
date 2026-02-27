@@ -1,0 +1,139 @@
+﻿{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Made for Sunrise by MCBlackEnergon (ds: mcblackenergon)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "ashwalker",
+            "directions": 4
+        },
+        {
+            "name": "cheeks_1",
+            "directions": 4
+        },
+        {
+            "name": "cheetor",
+            "directions": 4
+        },
+        {
+            "name": "cut_ear_left",
+            "directions": 4
+        },
+        {
+            "name": "cut_ear_right",
+            "directions": 4
+        },
+        {
+            "name": "earring_left",
+            "directions": 4
+        },
+        {
+            "name": "earring_right",
+            "directions": 4
+        },
+        {
+            "name": "ears_floppy",
+            "directions": 4
+        },
+        {
+            "name": "eye_color",
+            "directions": 4
+        },
+        {
+            "name": "jaguar_facemarks",
+            "directions": 4
+        },
+        {
+            "name": "lynx_cheeks",
+            "directions": 4
+        },
+        {
+            "name": "massive_cheeks",
+            "directions": 4
+        },
+        {
+            "name": "painted_back",
+            "directions": 4
+        },
+        {
+            "name": "puffy_cheeks",
+            "directions": 4
+        },
+        {
+            "name": "spotty_shoulders",
+            "directions": 4
+        },
+        {
+            "name": "tail_damaged",
+            "directions": 4
+        },
+        {
+            "name": "ashwalker_l_arm",
+            "directions": 4
+        },
+        {
+            "name": "ashwalker_r_arm",
+            "directions": 4
+        },
+        {
+            "name": "ashwalker_l_leg",
+            "directions": 4
+        },
+        {
+            "name": "ashwalker_r_leg",
+            "directions": 4
+        },
+        {
+            "name": "cheetor_l_arm",
+            "directions": 4
+        },
+        {
+            "name": "cheetor_r_arm",
+            "directions": 4
+        },
+        {
+            "name": "cheetor_l_leg",
+            "directions": 4
+        },
+        {
+            "name": "cheetor_r_leg",
+            "directions": 4
+        },
+        {
+            "name": "painted_back_l_arm",
+            "directions": 4
+        },
+        {
+            "name": "painted_back_r_arm",
+            "directions": 4
+        },
+        {
+            "name": "painted_back_l_leg",
+            "directions": 4
+        },
+        {
+            "name": "painted_back_r_leg",
+            "directions": 4
+        },
+        {
+            "name": "spotty_shoulders_l_arm",
+            "directions": 4
+        },
+        {
+            "name": "spotty_shoulders_r_arm",
+            "directions": 4
+        },
+        {
+            "name": "spotty_shoulders_l_leg",
+            "directions": 4
+        },
+        {
+            "name": "spotty_shoulders_r_leg",
+            "directions": 4
+        }
+    ]
+}

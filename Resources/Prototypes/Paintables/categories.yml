@@ -3,6 +3,10 @@
   groups:
   - AirlockStandard
   - AirlockGlass
+  # Sunrise - start
+  - AirlockDoubleGlass
+  - AirlockTripleGlass
+  # Sunrise - end
 
 - type: paintableGroupCategory
   id: Canisters

@@ -102,6 +102,7 @@
       - map: ["bra"]
       - map: ["pants"]
       - map: ["socks"]
+      - map: ["jumpsuit"]
       # Sunrise-end
       - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
         color: "#ffffff"

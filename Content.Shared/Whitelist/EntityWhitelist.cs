@@ -59,6 +59,9 @@ public sealed partial class EntityWhitelist
     // Sunrise-Start
     [DataField]
     public List<ProtoId<SpeciesPrototype>>? Species;
+
+    [DataField]
+    public List<EntProtoId>? StatusEffects;
     // Sunrise-End
 
     /// <summary>

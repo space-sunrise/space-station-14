@@ -423,7 +423,7 @@
         maxVol: 150
         reagents:
         - ReagentId: Beer
-          Quantity: 150
+          Quantity: 300 #Sunrise-Edit
   - type: Label
     currentLabel: reagent-name-beer
   - type: Sprite

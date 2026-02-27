@@ -54,6 +54,7 @@
   parent: [ ClothingBackpackDuffel, BaseCentcommContraband ]
   id: ClothingBackpackDuffelNanotrasenMedical
   name: nanotrasen duffel bag
+  categories: [ HideSpawnMenu ]
   description: A duffel bag containing a variety of biological containment equipment.
   components:
   - type: Sprite
@@ -167,3 +168,21 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Duffels/yellowduffel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffelCaptain
+  id: ClothingBackpackDuffelCaptainWhite
+  name: white captain's duffel bag
+  description: A white duffel bag with a wide opening and reinforced bottom. Hauls a uniform, a kit, and \"just in case\" gear.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Duffels/white_cap_duffel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffelCaptain
+  id: ClothingBackpackDuffelCaptainBlack
+  name: black captain's duffel bag
+  description: A black duffel bag with a wide opening and reinforced bottom. The practical choice when a regular backpack isn't enough.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Duffels/black_cap_duffel.rsi

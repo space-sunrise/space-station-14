@@ -140,7 +140,11 @@
   loadouts:
   - CaptainHead
   - CaptainCap
-  - EliteCaptainCap #Sunrise-Edit
+  # Sunrise-Start
+  - CaptainCapWhite
+  - CaptainCapBlack
+  - EliteCaptainCap
+  # Sunrise-End
 
 - type: loadoutGroup
   id: CaptainJumpsuit
@@ -150,6 +154,12 @@
   - CaptainJumpskirt
   - CaptainFormalSuit
   - CaptainFormalSkirt
+  # Sunrise - Start: captain cap uniforms
+  - CaptainJumpsuitCapWhite
+  - CaptainJumpsuitCapBlack
+  - CaptainJumpskirtCapWhite
+  - CaptainJumpskirtCapBlack
+  # Sunrise - End
 
 - type: loadoutGroup
   id: CaptainNeck
@@ -159,8 +169,14 @@
   - CaptainCloak
   - CaptainCloakFormal
   - CaptainMantle
-  - CaptainEliteCloak # Sunrise-Edit
-  - CapitainScarf # Sunrise-Edit
+  # Sunrise - Start
+  - CaptainEliteCloak
+  - CaptainScarf
+  - CaptainMantleWhite
+  - CaptainMantleWhiteShoulder
+  - CaptainMantleBlack
+  - CaptainMantleBlackShoulder
+  # Sunrise - End
 
 - type: loadoutGroup
   id: CaptainBackpack
@@ -169,6 +185,26 @@
   - CaptainBackpack
   - CaptainSatchel
   - CaptainDuffel
+  # Sunrise - Start
+  - CaptainBackpackWhite
+  - CaptainBackpackBlack
+  - CaptainSatchelWhite
+  - CaptainSatchelBlack
+  - CaptainDuffelWhite
+  - CaptainDuffelBlack
+  # Sunrise - End
+
+# Sunrise - Start
+- type: loadoutGroup
+  id: CaptainGloves
+  name: loadout-group-captain-gloves
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - CaptainGloves
+  - CaptainGlovesWhite
+  - CaptainGlovesBlack
+# Sunrise - End
 
 - type: loadoutGroup
   id: CaptainOuterClothing
@@ -178,6 +214,8 @@
   - CaptainOuterCoat # Sunrise-Edit
   - CaptainOuterOverCoat  # Sunrise-Edit
   - CaptainWintercoat
+  - CaptainCarapaceWhite # Sunrise-Edit
+  - CaptainCarapaceBlack # Sunrise-Edit
 
 - type: loadoutGroup
   id: CaptainJobTrinkets
@@ -689,6 +727,7 @@
   loadouts:
   - MusicianJumpsuit
   - MusicianJumpskirt
+  - MusicianPunkSuit # Sunrise - Edit
 
 - type: loadoutGroup
   id: MusicianOuterClothing
@@ -696,6 +735,7 @@
   minLimit: 0
   loadouts:
   - MusicianWintercoat
+  - MusicianLeatherJacket # Sunrise - Edit
 
 - type: loadoutGroup
   id: Instruments
@@ -968,6 +1008,7 @@
   - ChiefEngineerCloak
   - ChiefEngineerMantle
   - ChiefEngineerScarf
+  - ChiefEngineerCloakLegacy #Sunrise-edit
   #sunrise-start
   - Sunrise-ScarfRed
   - Sunrise-ScarfOrange
@@ -1166,6 +1207,7 @@
   - ResearchDirectorMantle
   - ResearchDirectorCloak
   - ResearchDirectorScarf # Sunrise-Edit
+  - ResearchDirectorCloakLegacy # Sunrise-edit
 
 - type: loadoutGroup
   id: ResearchDirectorJumpsuit
@@ -1950,16 +1992,9 @@
   - SeniorResearcherPDA
 
 - type: loadoutGroup
-  id: SecurityPDA
-  name: loadout-group-security-id
-  loadouts:
-  - SecurityPDA
-  - SeniorOfficerPDA
-
-- type: loadoutGroup
   id: MedicalDoctorPDA
   name: loadout-group-medical-doctor-id
   loadouts:
   - MedicalPDA
-  - SeniorOfficerPDA
+  - SeniorPhysicianPDA
 # Sunrise-edn

@@ -1,0 +1,70 @@
+<Document>
+  # Воры
+
+  <Box>
+    [color=#999999][italic]"Yoink! I'll be taking that! And that! Ooh, don't mind if I do!"[/italic][/color]
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ClothingNeckCloakVoid" Caption=""/>
+  </Box>
+
+  Воры — мелкие, но хитрые [color=green]преступники[/color], которые не могут удержаться от чужого добра. После последнего ареста вам вставили [bold]имплант пацифиста[/bold], но это не остановит вас от пополнения коллекции.
+
+  ## Искусство кражи
+  В отличие от других антагонистов, [bold]вам важно не попадаться[/bold], потому что имплант не позволит вам атаковать без причины.
+  Вы можете убежать, только если [color=#cb0000]Служба безопасности[/color] начнёт драку, и, так как вы действуете в одиночку, вам некому помочь выбираться из беды.
+
+  Несмотря ни на что, вы успешно вынесете желаемое с помощью настойчивости, ловкости рук, нескольких инструментов и ваших [color=cyan]навыков карманника[/color].
+
+  Эти навыки дают вам преимущество: [bold]умение брать вещи у людей, пока они даже не заметят.[/bold] С практикой вы можете вытащить кошелёк и продолжать разговор.
+
+  Советуют взять перчатки, иначе по отпечаткам вас всё равно выведут.
+
+  ## Инструменты профессии
+  У вас есть ещё два преимущества: [color=cyan]маяк[/color] и [color=cyan]сумка[/color].
+
+  [color=cyan]Маяк[/color] обеспечивает безопасную доставку сокровищ домой, которые сложно тащить на эвакуации. Найдите укромное место, разверните маяк и выставьте координаты убежища.
+  Все блестящие предметы поблизости будут [bold]телепортированы в хранилище по окончании смены,[/bold] что выполнит вашу задачу.
+
+  Однако, если его найдут, он моментально выдаст вас и сделает возврат украденного простым. [bold]Спрячьте его тщательно![/bold]
+
+  <Box>
+    <GuideEntityEmbed Entity="ThiefBeacon"/>
+  </Box>
+
+  В [color=cyan]сумке[/color] могут лежать... всё, что вы успели захватить. [bold]Вы можете выбрать два набора[/bold], чтобы устроить грандиозную аферу.
+
+  <Box>
+    <GuideEntityEmbed Entity="SatchelThief"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="Implanter" Caption="Anatomy"/>
+    <GuideEntityEmbed Entity="C4" Caption="Breacher"/>
+    <GuideEntityEmbed Entity="ChameleonProjector" Caption="Chameleon"/>
+    <GuideEntityEmbed Entity="BaseUplinkRadio" Caption="Communicator"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="NitrousOxideTank" Caption="Sleeper"/>
+    <GuideEntityEmbed Entity="Fulton" Caption="Smuggler"/>
+    <GuideEntityEmbed Entity="Telecrystal" Caption="Syndie"/>
+  </Box>
+
+  ## Центр коллекции
+  Клептомания приведёт вас далеко. Один день вы будете тащить фигурки, другой — крупную промышленную машину.
+
+  Всё равно — рано или поздно всё окажется в коллекции.
+
+  Вы можете украсть предметы, если [bold]они при вас при прибытии в CentComm.[/bold] Если нет, кладите крупные вещи рядом с маяком — [bold]он перенесёт их в хранилище.[/bold]
+
+  Некоторые [italic]живые[/italic] объекты будут неохотно сотрудничать. Убедитесь, что они живы и находятся вместе с вами или маяком к концу смены.
+
+  Среди ваших желаний могут быть, но не ограничиваются:
+
+  <Box>
+    <GuideEntityEmbed Entity="ToyFigurineGreytider" Caption="Figurines"/>
+    <GuideEntityEmbed Entity="PassengerIDCard" Caption="ID cards"/>
+    <GuideEntityEmbed Entity="ChemDispenser" Caption="Structures"/>
+    <GuideEntityEmbed Entity="MobCorgiIan" Caption="Animals/Pets"/>
+  </Box>
+
+</Document>

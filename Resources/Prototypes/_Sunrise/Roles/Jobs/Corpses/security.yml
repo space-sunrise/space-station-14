@@ -1,0 +1,63 @@
+- type: startingGear
+  id: HoSCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHoS
+    ears: ClothingHeadsetSecurity
+    shoes: ClothingShoesBootsJackFilled
+    head: ClothingHeadHatBeretHoS
+    belt: ClothingBeltSecurityFilled
+    pocket1: Handcuffs
+
+- type: startingGear
+  id: SecurityCadetCorpseGear
+  equipment:
+    eyes: ClothingEyesHudSecurity
+    jumpsuit: ClothingUniformSecurityTrooper
+    ears: ClothingHeadsetSecurity
+    shoes: ClothingShoesBootsJack
+    belt: ClothingBeltSecurity
+    outerClothing: ClothingOuterArmorBasic
+
+- type: startingGear
+  id: SecurityOfficerCorpseGear
+  equipment:
+    eyes: ClothingEyesGlassesSecurity
+    jumpsuit: ClothingUniformJumpsuitSec
+    ears: ClothingHeadsetSecurity
+    shoes: ClothingShoesBootsJackFilled
+    belt: ClothingBeltSecurity
+    outerClothing: ClothingOuterArmorBasic
+    pocket1: Handcuffs
+
+- type: startingGear
+  id: DetectiveCorpseGear
+  equipment:
+    eyes: ClothingEyesGlassesNoir
+    jumpsuit: ClothingUniformJumpsuitDetective
+    ears: ClothingHeadsetSecurity
+    shoes: ClothingShoesBootsJackFilled
+    outerClothing: ClothingOuterCoatDetective
+    pocket1: ForensicScanner
+
+- type: startingGear
+  id: BrigMedicCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBrigmedic
+    ears: ClothingHeadsetSecurity
+    shoes: ClothingShoesBootsJack
+    pocket1: Gauze
+
+- type: startingGear
+  id: WardenCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitWarden
+    ears: ClothingHeadsetSecurity
+    shoes: ClothingShoesBootsJack
+    head: ClothingHeadHatBeretWarden
+    pocket1: Handcuffs
+
+- type: startingGear
+  id: PrisonerCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisoner
+    shoes: ClothingShoesColorOrange

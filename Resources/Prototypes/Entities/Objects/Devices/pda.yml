@@ -23,6 +23,7 @@
     - state: "id_inserted"
       map: [ "enum.PdaVisualLayers.IdLight" ]
       shader: "unshaded"
+      visible: false
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
   # Sunrise-End
@@ -77,7 +78,7 @@
     prefix: device-address-prefix-console
     savableAddress: false
   - type: WirelessNetworkConnection
-    range: 500
+    range: 2000 # Sunrise-Edit
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
@@ -85,7 +86,11 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
+    # Sunrise-Start
       - NavigatorCartridge
+      - MessengerCartridge
+      - PhotoCartridge
+    # Sunrise-End
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -162,8 +167,12 @@
     - NotekeeperCartridge
     - NanoTaskCartridge
     - NewsReaderCartridge
-    - NavigatorCartridge
     - WantedListCartridge
+    # Sunrise-Start
+    - NavigatorCartridge
+    - MessengerCartridge
+    - PhotoCartridge
+    # Sunrise-End
 
 - type: entity
   parent: BasePDA
@@ -177,8 +186,12 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
-      - NavigatorCartridge
       - MedTekCartridge
+    # Sunrise-Start
+      - NavigatorCartridge
+      - MessengerCartridge
+      - PhotoCartridge
+    # Sunrise-End
 
 - type: entity
   parent: BasePDA
@@ -337,7 +350,7 @@
        pda-hydro
   # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#55804d"
+    borderColor: "#29722e"
     accentVColor: "#6dcc3d"
   # Sunrise-End
   - type: Icon
@@ -351,6 +364,9 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - PlantAnalyzerCartridge
+      - NavigatorCartridge
+      - MessengerCartridge
+      - PhotoCartridge
 # Sunrise-End
 
 - type: entity
@@ -483,7 +499,7 @@
   # Sunrise-Start
   - type: PdaBorderColor
     borderColor: "#616266"
-    accentVColor: "#198019"
+    accentVColor: "#e6bd45"
   # Sunrise-End
   - type: Icon
     state: pda-chaplain
@@ -533,6 +549,11 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - AstroNavCartridge
+    # Sunrise-Start
+    - NavigatorCartridge
+    - MessengerCartridge
+    - PhotoCartridge
+    # Sunrise-End
 
 - type: entity
   parent: BasePDA
@@ -582,6 +603,11 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - AstroNavCartridge
+    # Sunrise-Start
+      - NavigatorCartridge
+      - MessengerCartridge
+      - PhotoCartridge
+    # Sunrise-End
 
 - type: entity
   parent: BasePDA
@@ -606,7 +632,7 @@
     state: pda-bartender
 
 - type: entity
-  parent: BaseWidePDA
+  parent: BasePDA # Sunrise-Edit
   id: LibrarianPDA
   name: librarian PDA
   description: Smells like books.
@@ -725,9 +751,9 @@
        pda-captain
   # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#e6bd45"
-    accentVColor: "#4b78a6"
-    accentHColor: "#4b78a6"
+    borderColor: "#2e4259"
+    accentVColor: "#e6bd45"
+    accentHColor: "#e6bd45"
   # Sunrise-End
   - type: Icon
     state: pda-captain
@@ -753,9 +779,9 @@
        pda-hop
   # Sunrise-Start
   - type: PdaBorderColor
-    borderColor: "#627350"
-    accentVColor: "#4b78a6"
-    accentHColor: "#4b78a6"
+    borderColor: "#2e4259"
+    accentVColor: "#e6bd45"
+    accentHColor: "#cc3d3d"
   # Sunrise-End
   - type: Icon
     state: pda-hop
@@ -889,6 +915,7 @@
   - type: PdaBorderColor
     borderColor: "#a3b2cc"
     accentVColor: "#2f6e67"
+    accentHColor: "#2f6e67"
   # Sunrise-End
   - type: Icon
     state: pda-paramedic
@@ -998,6 +1025,11 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    # Sunrise-Start
+    - NavigatorCartridge
+    - MessengerCartridge
+    - PhotoCartridge
+    # Sunrise-End
 
 - type: entity
   parent: BaseSecurityPDA
@@ -1016,7 +1048,7 @@
   - type: PdaBorderColor
     borderColor: "#637199"
     accentVColor: "#cc3d3d"
-    accentHColor: "#a3b2cc"
+    accentHColor: "#cc3d3d"
   # Sunrise-End
   - type: Icon
     state: pda-warden
@@ -1080,6 +1112,11 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+    # Sunrise-Start
+      - NavigatorCartridge
+      - MessengerCartridge
+      - PhotoCartridge
+    # Sunrise-End
 
 - type: entity
   parent: CentcomPDA
@@ -1377,6 +1414,11 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+    # Sunrise-Start
+      - NavigatorCartridge
+      - MessengerCartridge
+      - PhotoCartridge
+    # Sunrise-End
 
 - type: entity
   parent: ERTLeaderPDA
@@ -1549,8 +1591,8 @@
   # Sunrise-Start
   - type: PdaBorderColor
     borderColor: "#637199"
-    accentVColor: "#99461d"
-    accentHColor: "#cc3d3d"
+    accentVColor: "#cc3d3d"
+    accentHColor: "#99461d"
   # Sunrise-End
   - type: Icon
     state: pda-detective
@@ -1562,6 +1604,11 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    # Sunrise-Start
+    - NavigatorCartridge
+    - MessengerCartridge
+    - PhotoCartridge
+    # Sunrise-End
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1592,6 +1639,11 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+    # Sunrise-Start
+    - NavigatorCartridge
+    - MessengerCartridge
+    - PhotoCartridge
+    # Sunrise-End
 
 - type: entity
   parent: ClownPDA
@@ -1717,7 +1769,7 @@
   description: Smells like postage stamps and shuttle fuel.
   components:
   - type: Pda
-    id: CargoIDCard
+    id: SeniorCourierIDCard   # Sunrise-edit
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -1757,6 +1809,8 @@
     - NanoTaskCartridge
     - NavigatorCartridge
     - AstroNavCartridge
+    - MessengerCartridge
+    - PhotoCartridge
   # Sunrise-end
 
 - type: entity
@@ -1795,6 +1849,14 @@
     - Syndicate
     - Thief
   # Sunrise-End
+
+- type: entity
+  parent: ChameleonPDA
+  id: ChameleonAgentPDA
+  suffix: Chameleon, Agent ID
+  components:
+  - type: Pda
+    id: AgentIDCard
 
 - type: entity
   parent: BaseWidePDA

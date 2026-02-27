@@ -75,6 +75,7 @@
   - type: ActionGrant
     actions:
     - ActionRevenantShop
+    - ActionRevenantDrain # Sunrise
   - type: Store
     categories:
     - RevenantAbilities

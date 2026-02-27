@@ -7,4 +7,11 @@ public sealed class SharedPackaging
         // MapRenderer outputs into Resources. Avoid these getting included in packaging.
         "MapImages",
     };
+
+    // Sunrise-Start
+    public static readonly IReadOnlySet<string> ClientOnlyIgnoredResources = new HashSet<string>
+    {
+        "NetTextures",
+    };
+    // Sunrise-End
 }

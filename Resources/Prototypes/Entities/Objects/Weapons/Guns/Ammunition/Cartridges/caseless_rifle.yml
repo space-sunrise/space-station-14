@@ -7,7 +7,7 @@
   - type: Tag
     tags:
       - CartridgeCaselessRifle
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     deleteOnSpawn: true
   - type: Sprite
     noRot: false
@@ -26,8 +26,8 @@
   name: cartridge (.25 caseless)
   description: A small caliber utilizing caseless technology, omitting conventional brass casing in favor of hardened propellant. Standard kinetic ammunition is common and useful in most situations.
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletCaselessRifleTrace
+  - type: CartridgeAmmo
+    proto: BulletCaselessRifle
 
 - type: entity
   parent: BaseCartridgeCaselessRifle
@@ -35,8 +35,8 @@
   name: cartridge (.25 caseless practice)
   description: A small caliber utilizing caseless technology, omitting conventional brass casing in favor of hardened propellant. Practice ammunition fires a chalk projectile that stings a little, but otherwise causes no lasting damage.
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletCaselessRiflePracticeTrace
+  - type: CartridgeAmmo
+    proto: BulletCaselessRiflePractice
   - type: Sprite
     layers:
       - state: base

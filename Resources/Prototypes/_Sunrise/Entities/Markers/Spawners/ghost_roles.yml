@@ -56,7 +56,7 @@
     description: ghost-role-information-carp-queen-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleGhostRoleFreeAgent
     raffle:
       settings: default
   - type: GhostRoleMobSpawner

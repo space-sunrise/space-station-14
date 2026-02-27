@@ -2,6 +2,7 @@
   id: Resomi
   name: species-name-resomi
   roundStart: true
+  sponsorOnly: true
   prototype: MobResomi
   bodyTypes:
   - ResomiNormal

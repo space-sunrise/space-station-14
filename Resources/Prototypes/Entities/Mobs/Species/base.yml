@@ -136,9 +136,7 @@
     - RadiationProtection
     - Adrenaline
     - LoveEffect  # Sunrise-Edit
-    - Jump # Sunrise-Edit
     - Flip # Sunrise-Edit
-    - Fall # Sunrise-Edit
   - type: Body
     prototype: Human
     requiredLegs: 2
@@ -245,10 +243,13 @@
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 25
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: CognizinFix
   - type: InjectNeed
+  - type: CanJump
+    isOnlyEmotion: false
+  - type: CanFall
   # Sunrise-End
 
 - type: entity

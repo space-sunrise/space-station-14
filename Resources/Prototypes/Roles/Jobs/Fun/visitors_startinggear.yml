@@ -1847,6 +1847,7 @@
   storage:
     back:
     - Doubloon5
+    - Doubloon5
 
 - type: startingGear
   id: PirateScoonerAltB

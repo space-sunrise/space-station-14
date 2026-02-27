@@ -1,0 +1,157 @@
+- type: entity
+  abstract: true
+  parent: FoodMeatRawBase
+  id: FoodMeatSpeciesBase
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Food/species_meat.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 9
+        - ReagentId: Fat
+          Quantity: 9
+  - type: SliceableFood
+    count: 3
+    slice: FoodMeatCutlet
+  - type: InternalTemperature
+    conductivity: 0.43
+  - type: Construction
+    graph: MeatSteak
+    node: start
+    defaultTarget: meat steak
+  - type: Item
+    storedOffset: -2,1
+
+- type: entity
+  parent: FoodMeatSpeciesBase
+  id: FoodMeatArkana
+  name: arkana meat
+  description: It looks like it will bite back.
+  components:
+  - type: Sprite
+    state: arkana_meat
+
+- type: entity
+  parent: FoodMeatPlant
+  id: FoodMeatDionaRoots
+  name: diona roots
+  description: A bundle of roots. Technically edible. Technically.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Food/species_meat.rsi
+    state: diona_roots
+  - type: Tag
+    tags:
+    - Raw
+    - Meat
+  - type: SliceableFood
+    count: 3
+    slice: FoodMeatCutlet
+
+- type: entity
+  parent: FoodMeatSpeciesBase
+  id: FoodMeatFelinid
+  name: felinid meat
+  description: Purr-fectly normal meat. Definitely.
+  components:
+  - type: Sprite
+    state: felinid_meat
+
+- type: entity
+  parent: FoodMeatSpeciesBase
+  id: FoodMeatMilira
+  name: milira meat
+  description: Smells like barbecue and bad ideas.
+  components:
+  - type: Sprite
+    state: milira_meat
+
+- type: entity
+  parent: FoodMeatSpeciesBase
+  id: FoodMeatNian
+  name: nian meat
+  description: Exotic enough that the label is suspiciously blank.
+  components:
+  - type: Sprite
+    state: nian_meat
+
+- type: entity
+  parent: FoodMeatSpeciesBase
+  id: FoodMeatResomi
+  name: resomi meat
+  description: Light, tender, and full of chirps.
+  components:
+  - type: Sprite
+    state: resomi_meat
+
+- type: entity
+  parent: FoodMeatBase
+  id: FoodMeatSlimeJelly
+  name: slime jelly
+  description: It jiggles in a way that makes eye contact.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - slimy
+  - type: Tag
+    tags:
+    - Raw
+    - Meat
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Slime
+          Quantity: 10
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Slime
+        Quantity: 10
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Food/species_meat.rsi
+    state: slime_jelly
+  - type: Item
+    storedOffset: -1,2
+
+- type: entity
+  parent: FoodMeatSpeciesBase
+  id: FoodMeatSwine
+  name: swine meat
+  description: The station's newest \"mystery meat\". Somehow, it's proud.
+  components:
+  - type: Sprite
+    state: swine_meat
+
+- type: entity
+  parent: FoodMeatSpeciesBase
+  id: FoodMeatTajaran
+  name: tajaran meat
+  description: Fuzzy on the outside, business on the inside.
+  components:
+  - type: Sprite
+    state: tajaran_meat
+
+- type: entity
+  parent: FoodMeatSpeciesBase
+  id: FoodMeatUnath
+  name: unath meat
+  description: Tough, scaly, and surprisingly snackable.
+  components:
+  - type: Sprite
+    state: unath_meat
+
+- type: entity
+  parent: FoodMeatSpeciesBase
+  id: FoodMeatVulpkanin
+  name: vulpkanin meat
+  description: The chef refuses to answer questions.
+  components:
+  - type: Sprite
+    state: vulpkanin_meat

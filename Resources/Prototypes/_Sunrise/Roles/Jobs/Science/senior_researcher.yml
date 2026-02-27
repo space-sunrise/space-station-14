@@ -14,6 +14,7 @@
   access:
   - Research
   - Maintenance
+  - ResearchConsoleAccess
 
 - type: startingGear
   id: SeniorResearcherGear

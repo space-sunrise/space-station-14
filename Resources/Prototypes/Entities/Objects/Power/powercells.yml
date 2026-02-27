@@ -300,7 +300,7 @@
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
-  - type: EmpImmune # Мехи теперь имеют прямой урон от ЭМИ.
+  #- type: EmpImmune # Мехи теперь имеют прямой урон от ЭМИ. Sunrise-Edit: Комент до Фикса Вайтлистов батарей
 
 - type: entity
   id: PowerCageSmall
@@ -355,6 +355,7 @@
   - type: Battery
     maxCharge: 6200
     startingCharge: 6200
+  - type: EmpImmune # Sunrise-Edit: "Эдит" до Фикса Вайтлистов батарей, потом удалим
 
 - type: entity
   id: PowerCageSmallEmpty

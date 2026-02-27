@@ -14,8 +14,8 @@
         - id: Cautery
         - id: Retractor
         - id: Scalpel
-      - id: BoneGel
-      - id: BoneSetter
+        - id: BoneGel
+        - id: BoneSetter
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateMedicalBundle
@@ -35,8 +35,8 @@
         - id: ScalpelAdvanced
         - id: ClothingHandsGlovesNitrile
         - id: EmergencyRollerBedSpawnFolded
-      - id: BoneGel
-      - id: BoneSetterAdvanced
+        - id: BoneGel
+        - id: BoneSetterAdvanced
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -49,9 +49,9 @@
       storagebase: !type:AllSelector
         children:
         - id: WeaponShotgunBulldogBiocode # Sunrise-edit
-      - id: MagazineShotgun
-        amount: 3
-      - id: MagazineShotgunSlug
+        - id: MagazineShotgun
+          amount: 3
+        - id: MagazineShotgunSlug
         - id: ClothingEyesGlassesThermalSyndie # Sunrise-edit
 
 - type: entity
@@ -67,9 +67,9 @@
         - id: WeaponSubMachineGunC20rBiocode # Sunrise-edit
         - id: MagazinePistolSubMachineGun
           amount: 2
-      - id: MagazinePistolSubMachineGunFMJ  # Sunrise-edit
-        amount: 2
-      - id: MagazinePistolSubMachineGunHP # Sunrise-add
+        - id: MagazinePistolSubMachineGunFMJ  # Sunrise-edit
+          amount: 2
+        - id: MagazinePistolSubMachineGunHP # Sunrise-add
 #       - id: SMGSuppressor
 
 - type: entity
@@ -85,9 +85,9 @@
         - id: WeaponRifleEstocBiocode # Sunrise-edit
         - id: MagazineRifle
           amount: 2
-    - id: MagazineRifleFMJ  # Sunrise-edit
-      amount: 2
-    - id: MagazineRifleAP # Sunrise-edit
+        - id: MagazineRifleFMJ  # Sunrise-edit
+          amount: 2
+        - id: MagazineRifleAP # Sunrise-edit
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -99,7 +99,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponRevolverPythonAPBiocode # Sunrise-edit
+        - id: WeaponRevolverPythonAP
         - id: SpeedLoaderMagnumAP
           amount: 2
 
@@ -115,8 +115,8 @@
         children:
         - id: WeaponLightMachineGunL6Biocode # Sunrise-edit
         - id: MagazineRifleBoxSP
-        amount: 2 #Sunrise-add
-      - id: MagazineRifleBoxFMJ #Sunrise-add
+          amount: 2 #Sunrise-add
+        - id: MagazineRifleBoxFMJ #Sunrise-add
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -129,18 +129,18 @@
       storagebase: !type:AllSelector
         children:
         - id: WeaponLauncherChinaLakeBiocode # Sunrise-edit
-      - id: GrenadeBlastContact # Sunrise-edit
-        amount: 1
-      - id: GrenadeFragContact # Sunrise-edit
-        amount: 1
-      - id: GrenadeEMPContact # Sunrise-edit
-        amount: 1
-      - id: GrenadeBlastTimer
-        amount: 2
-      - id: GrenadeFragTimer
-        amount: 2
-      - id: GrenadeEMPTimer
-        amount: 2
+        - id: GrenadeBlast
+          amount: 1
+        - id: GrenadeFrag
+          amount: 1
+        - id: GrenadeEMP
+          amount: 1
+        - id: GrenadeBlastTimer
+          amount: 2
+        - id: GrenadeFragTimer
+          amount: 2
+        - id: GrenadeEMPTimer
+          amount: 2
 
 # Sunrise-start
 - type: entity
@@ -149,21 +149,23 @@
   name: China-Lake bundle
   description: "An old m79 grenade launcher bundled with 11 rounds of various destruction capability."
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponLauncherM79Biocode # Sunrise-edit
-      - id: GrenadeBlastContact # Sunrise-edit
-        amount: 1
-      - id: GrenadeFragContact # Sunrise-edit
-        amount: 1
-      - id: GrenadeEMPContact # Sunrise-edit
-        amount: 1
-      - id: GrenadeBlastTimer
-        amount: 2
-      - id: GrenadeFragTimer
-        amount: 2
-      - id: GrenadeEMPTimer
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponLauncherM79Biocode # Sunrise-edit
+        - id: GrenadeBlast
+          amount: 1
+        - id: GrenadeFrag
+          amount: 1
+        - id: GrenadeEMP
+          amount: 1
+        - id: GrenadeBlastTimer
+          amount: 2
+        - id: GrenadeFragTimer
+          amount: 2
+        - id: GrenadeEMPTimer
+          amount: 2
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -171,21 +173,23 @@
   name: China-Lake bundle
   description: "GL70 grenade launcher bundled with 11 rounds of various destruction capability."
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponGrenadeLauncherGL70Biocode # Sunrise-edit
-      - id: GrenadeBlastContact # Sunrise-edit
-        amount: 1
-      - id: GrenadeFragContact # Sunrise-edit
-        amount: 1
-      - id: GrenadeEMPContact # Sunrise-edit
-        amount: 1
-      - id: GrenadeBlastTimer
-        amount: 2
-      - id: GrenadeFragTimer
-        amount: 2
-      - id: GrenadeEMPTimer
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponGrenadeLauncherGL70Biocode # Sunrise-edit
+        - id: GrenadeBlast
+          amount: 1
+        - id: GrenadeFrag
+          amount: 1
+        - id: GrenadeEMP
+          amount: 1
+        - id: GrenadeBlastTimer
+          amount: 2
+        - id: GrenadeFragTimer
+          amount: 2
+        - id: GrenadeEMPTimer
+          amount: 2
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -193,14 +197,32 @@
   name: C-40r bundle
   description: "Old faithful: The classic C-40r Submachine Gun, bundled with three magazines."
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponSubMachineGunC40rBiocode
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunC40rBiocode
         - id: MagazinePistol40SubMachineGunSP
           amount: 2
         - id: MagazinePistol40SubMachineGunFMJ
           amount: 2
-      - id: MagazinePistol40SubMachineGunHP
+        - id: MagazinePistol40SubMachineGunHP
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledLMGMax
+  name: L6 Saw bundle
+  suffix: L6 Saw-Max
+  description: "More dakka: The iconic L6 lightmachinegun, bundled with 2 box magazines."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponLightMachineGunL6MaxBiocode
+        - id: MagazineRifleBoxSP
+          amount: 2
+        - id: MagazineRifleBoxFMJ
 # Sunrise-end
 
 - type: entity
@@ -218,7 +240,7 @@
           amount: 2
         - id: GrenadeBlastTimer # Sunrise-edit
           amount: 2
-        - id: GrenadeFlashContact # Sunrise-edit
+        - id: GrenadeFlash # Sunrise-edit
           amount: 2
         - id: GrenadeFragTimer # Sunrise-edit
           amount: 2
@@ -337,6 +359,27 @@
         - id: ChameleonControllerImplanter
 
 - type: entity
+  parent: ClothingBackpackChameleon
+  id: ClothingBackpackChameleonFillAgent
+  suffix: Fill, Chameleon, Syndie
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ChameleonAgentPDA
+        - id: ClothingUniformJumpsuitChameleon
+        - id: ClothingOuterChameleon
+        - id: ClothingNeckChameleon
+        - id: ClothingMaskGasChameleon
+        - id: ClothingHeadHatChameleon
+        - id: ClothingHandsChameleon
+        - id: ClothingEyesChameleon
+        - id: ClothingHeadsetChameleon
+        - id: ClothingShoesChameleon
+        - id: ChameleonControllerImplanter
+
+- type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateEVABundle
   name: syndicate EVA bundle
@@ -412,7 +455,7 @@
       storagebase: !type:AllSelector
         children:
         - id: SyringeRomerol
-        - id: WeaponRevolverPythonBiocode # Sunrise-edit
+        - id: WeaponRevolverPython
         - id: MagazineBoxMagnumIncendiary
         - id: PillAmbuzolPlus
         - id: PillAmbuzol
@@ -512,4 +555,5 @@
         children:
         - id: WeaponShotgunHushpup
         - id: BoxLethalshot
+        - id: SpeedLoaderShellShotgun # Sunrise-add
         - id: TreasureCoinIron

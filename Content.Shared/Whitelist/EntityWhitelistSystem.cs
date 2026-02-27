@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Humanoid;
 using Content.Shared.Item;
+using Content.Shared.StatusEffectNew.Components;
 using Content.Shared.Tag;
 using Robust.Shared.Utility;
 
@@ -91,6 +92,25 @@ public sealed class EntityWhitelistSystem : EntitySystem
             }
             else if (list.RequireAll)
                 return false;
+        }
+
+        if (list.StatusEffects != null && TryComp<StatusEffectContainerComponent>(uid, out var statusEffects))
+        {
+            foreach (var item in statusEffects.ActiveStatusEffects!.ContainedEntities)
+            {
+                var proto = MetaData(item).EntityPrototype?.ID;
+
+                if (proto == null)
+                    continue;
+
+                if (list.StatusEffects.Contains(proto))
+                {
+                    if (!list.RequireAll)
+                        return true;
+                }
+                else if (list.RequireAll)
+                    return false;
+            }
         }
         // Sunrise-End
 

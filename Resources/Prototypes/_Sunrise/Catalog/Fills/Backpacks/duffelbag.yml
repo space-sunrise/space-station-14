@@ -2,46 +2,43 @@
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledBauer127
   name: Sniper bundle
-  description: "Iconic heavy anti-materiel sniper rifle with three spare magazines, a large-calibre ammo boxes and thermal goggles."
+  description: Iconic heavy anti-materiel sniper rifle with three spare magazines, a large-calibre ammo boxes and thermal goggles.
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponRifleBauer127Biocode
-      - id: MagazineBauer127
-        amount: 3
-      - id: MagazineBoxAntiMateriel
-      - id: MagazineBauer127Penetrator
-        amount: 2
-      - id: MagazineBauer127Frag
-        amount: 2
-      - id: MagazineBauer127Blast
-        amount: 2
-      - id: MagazineBauer127Emp
-        amount: 2
-      - id: ClothingEyesGlassesSniperThermalSyndie
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleBauer127Biocode
+        - id: MagazineBauer127
+          amount: 3
+        - id: MagazineBoxAntiMateriel
+        - id: MagazineBauer127Penetrator
+          amount: 2
+        - id: MagazineBauer127Frag
+          amount: 2
+        - id: MagazineBauer127Blast
+          amount: 2
+        - id: MagazineBauer127Emp
+          amount: 2
+        - id: ClothingEyesGlassesSniperThermalSyndie
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateAmmo
   id: ClothingBackpackDuffelSyndicateSuperAmmoFilled
   name: ammo bundle
-  description: "Reloading! Contains 4 magazines for the C-20r, 5 drums for the Bulldog, 3 magazines for the Estoc DMR, and 2 ammo boxes for the L6 SAW."
+  description: Reloading! Contains 4 magazines for the C-20r, 5 drums for the Bulldog, 3 magazines for the Estoc DMR, and 2 ammo boxes for the L6 SAW.
   components:
-  - type: StorageFill
-    contents:
-      - id: SMGAmmoKit # Sunrise-edit
-        amount: 1
-      - id: ShotGunKit # Sunrise-edit
-        amount: 1
-      - id: LMGKit # Sunrise-edit
-        amount: 1
-      - id: MMGKit  # Sunrise-edit
-        amount: 1
-      - id: CaselessAmmoKit  # Sunrise-edit
-        amount: 1
-      - id: RifleAmmoKit  # Sunrise-edit
-        amount: 1
-      - id: DragunovAmmoKit  # Sunrise-edit
-        amount: 1
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SMGAmmoKit
+        - id: ShotGunKit
+        - id: LMGKit
+        - id: MMGKit
+        - id: CaselessAmmoKit
+        - id: RifleAmmoKit
+        - id: DragunovAmmoKit
 
 #ERT_Uplink
 - type: entity
@@ -50,13 +47,15 @@
   name: Bundle MP5
   description: MP5 with 4 raspy magazines.
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponSubMachineGunMP5
-    - id: MagazineMP5
-      amount: 1
-    - id: MagazineMP5Extended
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunMP5
+        - id: MagazineMP5
+          amount: 1
+        - id: MagazineMP5Extended
+          amount: 4
 
 - type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunMP7Filled
@@ -64,11 +63,13 @@
   name: Bundle MP7
   description: MP7 with 3 raspy magazines.
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponSubMachineGunMP7
-    - id: MagazinePistolHighCapacityFMJ
-      amount: 3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunMP7
+        - id: MagazinePistolHighCapacityFMJ
+          amount: 3
 
 - type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunWt550
@@ -76,13 +77,15 @@
   name: Bundle WT550
   description: WT550 with 3 raspy magazines FMJ and 2 HP.
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponSubMachineGunWt550
-    - id: MagazinePistolSubMachineGunTopMounted
-      amount: 3
-    - id: MagazinePistolSubMachineGunTopMountedHP
-      amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunWt550
+        - id: MagazinePistolSubMachineGunTopMounted
+          amount: 3
+        - id: MagazinePistolSubMachineGunTopMountedHP
+          amount: 2
 
 - type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunDrozdMk2
@@ -90,13 +93,15 @@
   name: Bundle Drozd Mk2
   description: Drozd Mk2 with 3 raspy magazines FMJ and 2 HP.
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponSubMachineGunDrozdMk2
-    - id: MagazinePistolSubMachineGunFMJ
-      amount: 3
-    - id: MagazinePistolSubMachineGunHP
-      amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunDrozdMk2
+        - id: MagazinePistolSubMachineGunFMJ
+          amount: 3
+        - id: MagazinePistolSubMachineGunHP
+          amount: 2
 
 - type: entity
   id: ClothingBackpackDuffelWeaponRifleLecterFilled
@@ -104,15 +109,16 @@
   name: Bundle lecter Mk2
   description: Lecter Mk2 with 3 raspy FMJ magazines and 2 HP.
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponRifleLecterMk2
-    - id: MagazineRifleFMJ
-      amount: 3
-    - id: MagazineRifleHP
-      amount: 2
-    - id: MagazineRifleSP
-      amount: 1
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleLecterMk2
+        - id: MagazineRifleFMJ
+          amount: 3
+        - id: MagazineRifleHP
+          amount: 2
+        - id: MagazineRifleSP
 
 - type: entity
   id: ClothingBackpackDuffelWeaponRifleM52Filled
@@ -120,15 +126,16 @@
   name: Bundle M-52
   description: Premium assault rifle with 3 raspy FMJ magazines, 2 SP and 1 HP.
   components:
-    - type: StorageFill
-      contents:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
         - id: WeaponRifleM52
         - id: MagazineRifleM52FMJ
           amount: 3
         - id: MagazineRifleM52SP
           amount: 2
         - id: MagazineRifleM52HP
-          amount: 1
 
 - type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunP90Filled
@@ -136,8 +143,10 @@
   name: Bundle p90
   description: P-90 with 4 raspy magazines.
   components:
-    - type: StorageFill
-      contents:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
         - id: WeaponSubMachineGunP90
         - id: MagazineP90
           amount: 2
@@ -150,8 +159,10 @@
   name: Bundle ams42
   description: AMS-42 with 4 raspy magazines.
   components:
-    - type: StorageFill
-      contents:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
         - id: WeaponAMS-42
         - id: MagazineRifleSP
           amount: 4
@@ -162,8 +173,10 @@
   name: Bundle G36
   description: G36 with 4 raspy magazines.
   components:
-    - type: StorageFill
-      contents:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
         - id: WeaponRifleG36
         - id: MagazineRifleSP
           amount: 4
@@ -174,11 +187,13 @@
   name: Bundle Assault Shotgun
   description: Assault Shotgun with 6 raspy speedloaders.
   components:
-    - type: StorageFill
-      contents:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
         - id: WeaponShotgunCycler
         - id: SpeedLoaderShellShotgun
-          amount: 4
+          amount: 2
         - id: SpeedLoaderShotgunSlug
           amount: 2
 
@@ -188,8 +203,10 @@
   name: Bundle Trenchgun 4034
   description: Trenchgun 4034 with 1 Box ammo.
   components:
-    - type: StorageFill
-      contents:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
         - id: WeaponShotgunTrenchgun4034
         - id: BoxLethalshot
         - id: BoxShotgunFlare
@@ -201,8 +218,10 @@
   name: Bundle law12
   description: Law-12 with 1 Box ammo.
   components:
-    - type: StorageFill
-      contents:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
         - id: WeaponShotgunSPAS12
         - id: BoxLethalshot
         - id: BoxShotgunFlare
@@ -214,13 +233,14 @@
   name: Bundle SKM-24
   description: SKM-24 with 6 raspy various magazines.
   components:
-    - type: StorageFill
-      contents:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
         - id: WeaponRifleSKM24Nano
         - id: MagazineLightRifleSP
           amount: 3
         - id: MagazineLightRifleFMJ
-          amount: 1
         - id: MagazineLightRifleHP
           amount: 2
 
@@ -230,8 +250,10 @@
   name: Bundle SKM-24
   description: AR18 with 6 raspy Incendiary magazines.
   components:
-    - type: StorageFill
-      contents:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
         - id: WeaponRifleSKM24
         - id: MagazineLightRifleIncendiary
           amount: 6
@@ -243,11 +265,12 @@
   name: Bundle SKM-28
   description: SKM-28 with 6 raspy various magazines.
   components:
-    - type: StorageFill
-      contents:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
         - id: WeaponRifleSKM28Nano
         - id: MagazineRifleHeavyFMJ
-          amount: 1
         - id: MagazineRifleHeavySP
           amount: 3
         - id: MagazineRifleHeavyHP
@@ -259,8 +282,10 @@
   name: Bundle SKM-28
   description: SKM-28 with 6 raspy Incendiary magazines.
   components:
-    - type: StorageFill
-      contents:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
         - id: WeaponRifleSKM28
         - id: MagazineRifleHeavyIncendiary
           amount: 6
@@ -272,8 +297,10 @@
   name: Bundle br64
   description: BR64 with 2 raspy magazines.
   components:
-    - type: StorageFill
-      contents:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
         - id: WeaponRifleBR64
         - id: MagazineRifleHeavyFMJ
           amount: 2
@@ -284,8 +311,10 @@
   name: Bundle smart gun M492
   description: M492 with 2 raspy SP and FMJ belt-box.
   components:
-    - type: StorageFill
-      contents:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
         - id: WeaponLightMachineGunM492
         - id: MagazineLightRifleBeltBox
         - id: MagazineLightRifleBeltBoxFMJ
@@ -293,11 +322,13 @@
 - type: entity
   id: ClothingBackpackDuffelWeaponLightMachineGunM492CBURN
   parent: ClothingBackpackDuffelCBURN
-  name: Bundle M492 "Incinerator"
+  name: Bundle M492 Incinerator
   description: M492 with 3 raspy Incendiary belt-box.
   components:
-    - type: StorageFill
-      contents:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
         - id: WeaponLightMachineGunM492Cburn
         - id: MagazineLightRifleBeltBoxIncendiary
           amount: 3
@@ -309,24 +340,30 @@
   name: Bundle Hristov
   description: Hristov with 4 raspy .60 10-rounds Box.
   components:
-    - type: StorageFill
-      contents:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
         - id: WeaponSniperHristov
         - id: MagazineBoxAntiMateriel
-          amount: 4
+          amount: 3
 
 - type: entity
   id: ClothingBackpackDuffelWeaponRifleAsh12
   parent: ClothingBackpackDuffelMilitary
   name: Bundle ASH-12
-  description: ASH-12 with 5 magazines and a blueprint.
+  description: ASH-12 with spare magazines and a blueprints.
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponRifleAsh12
-    - id: MagazineAsh12
-      amount: 5
-    - id: BlueprintMagAsh12Slug
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleAsh12
+        - id: MagazineAsh12Slug
+          amount: 1
+        - id: BlueprintMagAsh12Beanbag
+        - id: BlueprintMagAsh12Flare
+        - id: BlueprintMagAsh12Slug
 
 - type: entity
   id: ClothingBackpackDuffelNanotrasenMedicalBundleFilled
@@ -334,42 +371,46 @@
   name: nanotrasen medical bundle
   description: A large duffel bag for holding any medical army goods.
   components:
-    - type: StorageFill
-      contents:
-      - id: DefibrillatorCompact
-      - id: MedkitCombatFilled
-        amount: 3
-      - id: Tourniquet
-        amount: 2
-      - id: MedipenCombatInjector
-        amount: 2
-      - id: CombatMedipen
-        amount: 4
-      - id: PunctAutoInjector
-        amount: 4
-      - id: PyraAutoInjector
-        amount: 4
-      - id: AirlossAutoInjector
-        amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DefibrillatorCompact
+        - id: MedkitCombatFilled
+          amount: 3
+        - id: Tourniquet
+          amount: 2
+        - id: MedipenCombatInjector
+          amount: 2
+        - id: CombatMedipen
+          amount: 4
+        - id: PunctAutoInjector
+          amount: 4
+        - id: PyraAutoInjector
+          amount: 4
+        - id: AirlossAutoInjector
+          amount: 4
 
 - type: entity
   parent: ClothingBackpackDuffelAbductorBundle
   id: ClothingBackpackDuffelAbductorFilled
   suffix: Filled
   components:
-  - type: StorageFill
-    contents:
-      - id: HemostatAbductor
-      - id: SawAbductor
-      - id: DrillAbductor
-      - id: CauteryAbductor
-      - id: RetractorAbductor
-      - id: ScalpelAbductor
-      - id: BoneGelAbductor
-      - id: BoneSetterAbductor
-      - id: NitrousOxideTankFilled
-      - id: NitrousOxideTankFilled
-      - id: ClothingMaskBreath
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: HemostatAbductor
+        - id: SawAbductor
+        - id: DrillAbductor
+        - id: CauteryAbductor
+        - id: RetractorAbductor
+        - id: ScalpelAbductor
+        - id: BoneGelAbductor
+        - id: BoneSetterAbductor
+        - id: NitrousOxideTankFilled
+        - id: NitrousOxideTankFilled
+        - id: ClothingMaskBreath
 
 
 - type: entity
@@ -378,82 +419,92 @@
   name: Minotaur bundle
   description: "Lean and mean: Contains smooth, powerful, highly illegal Shotgun, a 5 12g buckshot drums."
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponShotgunMinotaurBiocode
-    - id: MagazineShotgun
-    - id: MagazineShotgun
-    - id: MagazineShotgun
-    - id: MagazineShotgun
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponShotgunMinotaurBiocode
+        - id: MagazineShotgunXL
+        - id: MagazineShotgunBreach
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledDeagle
   name: Desert Eagle bundle
-  description: "Contains high damage Desert Eagle, a 3 magnum magazines."
+  description: Contains high damage Desert Eagle, a 3 magnum magazines.
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponPistolDeagle
-    - id: MagazineShotgun
-    - id: MagazineShotgun
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolDeagle
+        - id: MagazineDeagle
+          amount: 3
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDufelSyndicateFilledMantisBladeArms
   name: Mantis Blade bundle
-  description: "Contains a pair of cybernetic arms, watch out. You got a psycho on the loose."
+  description: Contains a pair of cybernetic arms, watch out. You got a psycho on the loose.
   components:
-  - type: StorageFill
-    contents:
-    - id: RightArmCyberMantisBlade
-    - id: LeftArmCyberMantisBlade
-    - id: RightHandCyber
-    - id: LeftHandCyber
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: RightArmCyberMantisBlade
+        - id: LeftArmCyberMantisBlade
+        - id: RightHandCyber
+        - id: LeftHandCyber
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledInfiltration
   name: infiltration hardsuit bundle
-  description: "Contains the latest in Syndicate chameleon technology, the infiltration hardsuit."
+  description: Contains the latest in Syndicate chameleon technology, the infiltration hardsuit.
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingOuterHardsuitInfiltrationBiocode
-      - id: ClothingMaskGasSyndicate
-      - id: ClothingHandsGlovesCombatCQC
-      - id: DoubleEmergencyOxygenTankFilled
-      - id: DoubleEmergencyNitrogenTankFilled
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitInfiltrationBiocode
+        - id: ClothingMaskGasSyndicate
+        - id: ClothingHandsGlovesCombatCQC
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: DoubleEmergencyNitrogenTankFilled
 
 - type: entity
   parent: ClothingBackpackMessengerPirate
   id: ClothingBackpackMessengerPirateDecoyKitFilled
   name: decoy bundle
-  description: "Contains visual distractions. Smell and audio coming soon."
+  description: Contains visual distractions. Smell and audio coming soon.
   components:
-  - type: StorageFill
-    contents:
-      - id: BalloonPirate1
-      - id: BalloonPirate2
-      - id: BalloonPirate3
-      - id: BalloonPirate4
-      - id: BalloonPirate5
-      - id: BalloonPirate6
-      - id: BalloonPirate7
-      - id: BalloonPirate8
-      - id: GrenadeDummy
-        amount: 4
-      - id: SnapPop
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: BalloonPirate1
+        - id: BalloonPirate2
+        - id: BalloonPirate3
+        - id: BalloonPirate4
+        - id: BalloonPirate5
+        - id: BalloonPirate6
+        - id: BalloonPirate7
+        - id: BalloonPirate8
+        - id: GrenadeDummy
+          amount: 4
+        - id: SnapPop
+          amount: 2
 
 - type: entity
   id: ClothingBackpackDuffelMilitaryBundleScaf
   parent: ClothingBackpackDuffelMilitary
   name: Scaf bundle
-  description: "Contains the old combat EVA suit."
+  description: Contains the old combat EVA suit.
   components:
-    - type: StorageFill
-      contents:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
         - id: ClothingOuterHardsuitScaf
         - id: ClothingHeadHelmetHardsuitScaf
         - id: DoubleEmergencyOxygenTankFilled
@@ -463,10 +514,12 @@
   id: ClothingBackpackDuffelMilitaryBundlePirateEva
   parent: ClothingBackpackDuffelMilitary
   name: Pirate EVA bundle
-  description: "Contains the old pirate EVA suit."
+  description: Contains the old pirate EVA suit.
   components:
-    - type: StorageFill
-      contents:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
         - id: ClothingHeadHelmetPirateOld
         - id: ClothingOuterEVASuitPirateOld
         - id: DoubleEmergencyOxygenTankFilled
@@ -476,20 +529,19 @@
   id: ClothingBackpackMessengerMercenaryBundleSKM24
   parent: ClothingBackpackMessengerMercenary
   name: SKM-24 bundle
-  description: "Contains the cheap assault rifle."
+  description: Contains the cheap assault rifle.
   components:
-    - type: StorageFill
-      contents:
-        - id: WeaponRifleSKM24
-          orGroup: SKM24
-        - id: WeaponRifleSKM24Syndi
-          orGroup: SKM24
-        - id: WeaponRifleSKM24White
-          orGroup: SKM24
-        - id: WeaponRifleSKM24Nano
-          orGroup: SKM24
-        - id: WeaponRifleSKM24Green
-          orGroup: SKM24
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - !type:GroupSelector
+          children:
+          - id: WeaponRifleSKM24
+          - id: WeaponRifleSKM24Syndi
+          - id: WeaponRifleSKM24White
+          - id: WeaponRifleSKM24Nano
+          - id: WeaponRifleSKM24Green
         - id: MagazineLightRifleFMJ
         - id: MagazineLightRifleSP
         - id: MagazineLightRifleSP
@@ -501,26 +553,43 @@
   id: ClothingBackpackMessengerPirateBundleSKM24Scrap
   parent: ClothingBackpackMessengerPirate
   name: SKM-24 bundle
-  description: "Contains the cheapest assault rifle."
+  description: Contains the cheapest assault rifle.
   components:
-    - type: StorageFill
-      contents:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
         - id: WeaponRifleSKM24Scrap
         - id: MagazineLightRifleImprovised
         - id: MagazineLightRifleImprovised
         - id: MagazineLightRifleImprovised
-        - id: MagazineBoxImprovisedRifle
-          prob: 0.5
-          orGroup: MagRifle
-        - id: MagazineLightRifleFMJ
-          prob: 0.25
-          orGroup: MagRifle
-        - id: MagazineLightRifleAP
-          prob: 0.01
-          orGroup: MagRifle
-        - id: MagazineLightRifleHP
-          prob: 0.4
-          orGroup: MagRifle
-        - id: MagazineLightRifleSP
-          prob: 0.4
-          orGroup: MagRifle
+        - !type:GroupSelector
+          children:
+          - id: MagazineBoxImprovisedRifle
+            weight: 0.5
+          - id: MagazineLightRifleFMJ
+            weight: 0.25
+          - id: MagazineLightRifleAP
+            weight: 0.01
+          - id: MagazineLightRifleHP
+            weight: 0.4
+          - id: MagazineLightRifleSP
+            weight: 0.4
+
+- type: entity
+  id: ClothingBackpackMessengerMercenaryBundleARG
+  parent: ClothingBackpackMessengerMercenary
+  name: ARG bundle
+  description: "Contains the normal assault rifle."
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+          - id: WeaponRifleARG
+          - id: MagazineLightRifleFMJ
+          - id: MagazineLightRifleSP
+          - id: MagazineLightRifleSP
+          - id: MagazineLightRifleHP
+          - id: CigPackSyndicate
+          - id: CheapLighter

@@ -3,13 +3,13 @@
   id: HumanoidXeno
   name: species-name-xeno
   roundStart: true
+  sponsorOnly: true
   prototype: MobHumanoidXeno
   bodyTypes:
   - HumanoidXenoNormal
   markingLimits: MobHumanoidXenoMarkingLimits
   dollPrototype: MobXenoDummy
   skinColoration: Hues
-  sponsorOnly: false
   maleFirstNames: names_xeno_first
   femaleFirstNames: names_xeno_first
   maleLastNames: names_xeno_last

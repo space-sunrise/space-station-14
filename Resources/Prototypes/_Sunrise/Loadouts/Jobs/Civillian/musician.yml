@@ -1,0 +1,11 @@
+﻿# Jumpsuit
+- type: loadout
+  id: MusicianPunkSuit
+  equipment:
+    jumpsuit: ClothingUniformPunksuit
+
+# Outerclothing
+- type: loadout
+  id: MusicianLeatherJacket
+  equipment:
+    outerClothing: ClothingOuterLeatherCoat

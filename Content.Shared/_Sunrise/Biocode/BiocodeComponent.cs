@@ -1,16 +1,15 @@
 using Content.Shared.NPC.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;
+using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.Biocode;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class BiocodeComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("alertText")]
-    public string AlertText = "";
+    [DataField]
+    public string AlertText = "item-biocode-refused";
 
-    [ViewVariables(VVAccess.ReadWrite),
-     DataField("factions", customTypeSerializer:typeof(PrototypeIdHashSetSerializer<NpcFactionPrototype>))]
-    public HashSet<string> Factions = new();
+    [DataField(required: true)]
+    public HashSet<ProtoId<NpcFactionPrototype>> Factions = [];
 }

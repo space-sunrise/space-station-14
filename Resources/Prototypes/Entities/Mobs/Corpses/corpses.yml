@@ -5,16 +5,19 @@
   components:
   - type: Loadout
     prototypes:
-      - HoPGear
-      - ClownGear
-      - MimeGear
-      - JanitorGear
-      - ServiceWorkerGear
-      - MusicianGear
-      - BotanistGear
-      - ChefGear
-      - ChaplainGear
-      - PassengerGear
+    # Sunrise-start
+      - HoPCorpseGear
+      - ClownCorpseGear
+      - MimeCorpseGear
+      - JanitorCorpseGear
+      - ServiceWorkerCorpseGear
+      - MusicianCorpseGear
+      - BotanistCorpseGear
+      - ChefCorpseGear
+      - ChaplainCorpseGear
+      - AssistantCorpseGear
+      - TiderCorpseGear
+    # Sunrise-end
 
 - type: entity
   parent: SalvageHumanCorpse
@@ -23,9 +26,11 @@
   components:
   - type: Loadout
     prototypes:
-    - TechnicalAssistantGear
-    - AtmosphericTechnicianGear
-    - StationEngineerGear
+    # Sunrise-start
+    - TechnicalAssistantCorpseGear
+    - AtmosphericTechnicianCorpseGear
+    - StationEngineerCorpseGear
+    # Sunrise-end
 
 - type: entity
   parent: SalvageHumanCorpse
@@ -34,8 +39,12 @@
   components:
   - type: Loadout
     prototypes:
-    - CargoTechGear
-    - SalvageSpecialistGear
+    # Sunrise-start
+    - CargoTechCorpseGear
+    - MailTechCorpseGear
+    - MinerCorpseGear
+    - SalvageSpecialistCorpseGear
+    # Sunrise-end
 
 - type: entity
   parent: SalvageHumanCorpse
@@ -44,10 +53,14 @@
   components:
   - type: Loadout
     prototypes:
-    - MedicalInternGear
-    - PsychologistGear
-    - ChemistGear
-    - DoctorGear
+    # Sunrise-start
+    - MedicalInternCorpseGear
+    - PsychologistCorpseGear
+    - ChemistCorpseGear
+    - DoctorCorpseGear
+    - VirologistCorpseGear
+    - GeneticsCorpseGear
+    # Sunrise-end
 
 - type: entity
   parent: SalvageHumanCorpse
@@ -56,8 +69,11 @@
   components:
   - type: Loadout
     prototypes:
-    - ResearchAssistantGear
-    - ScientistGear
+    # Sunrise-start
+    - ResearchAssistantCorpseGear
+    - ScientistCorpseGear
+    - RoboticistCorpseGear
+    # Sunrise-end
 
 - type: entity
   parent: SalvageHumanCorpse
@@ -66,10 +82,14 @@
   components:
   - type: Loadout
     prototypes:
-    - SecurityCadetGear
-    - SecurityOfficerGear
-    - DetectiveGear
-    - WardenGear
+    # Sunrise-start
+    - SecurityCadetCorpseGear
+    - SecurityOfficerCorpseGear
+    - DetectiveCorpseGear
+    - BrigMedicCorpseGear
+    - WardenCorpseGear
+    - PrisonerCorpseGear
+    # Sunrise-end
 
 - type: entity
   parent: SalvageHumanCorpse
@@ -78,11 +98,17 @@
   components:
   - type: Loadout
     prototypes:
-    - HoPGear
-    - CentCommOfficialGear # Sunrise-Edit
-    - CaptainGear
-    - HoSGear
-    - ResearchDirectorGear
-    - CMOGear
-    - ChiefEngineerGear
-    - QuartermasterGear
+    # Sunrise-start
+    - HoPCorpseGear
+    - CentcomCorpseGear
+    - CaptainCorpseGear
+    - HoSCorpseGear
+    - ResearchDirectorCorpseGear
+    - CMOCorpseGear
+    - ChiefEngineerCorpseGear
+    - QuartermasterCorpseGear
+    - IAACorpseGear
+    - MagistrateCorpseGear
+    - NTRCorpseGear
+    - BSOCorpseGear
+    # Sunrise-end

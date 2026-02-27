@@ -1,16 +1,15 @@
 ﻿using Content.Server.Atmos.Components;
+using Content.Server.Gravity;
 using Content.Shared._Sunrise.Footprints;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
-using Content.Shared.Mobs.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
-using Content.Shared.GameTicking;
-using Content.Shared.Gravity;
 using Content.Shared.Standing;
+using Robust.Server.GameObjects;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 
@@ -22,23 +21,30 @@ namespace Content.Server._Sunrise.Footprints;
 public sealed class FootprintSystem : EntitySystem
 {
     #region Dependencies
-    [Dependency] private readonly IRobustRandom _random = default!;
+
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly StandingStateSystem _standingStateSystem = default!;
-    [Dependency] private readonly SharedGravitySystem _gravity = default!;
+    [Dependency] private readonly MapSystem _mapSystem = default!;
+    [Dependency] private readonly GravitySystem _gravity = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
+
     #endregion
 
     #region Entity Queries
+
     private EntityQuery<TransformComponent> _transformQuery;
     private EntityQuery<AppearanceComponent> _appearanceQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;
+    private EntityQuery<SolutionContainerManagerComponent> _solutionQuery;
+    private EntityQuery<StandingStateComponent> _standingQuery;
+    private EntityQuery<FootprintComponent> _footprintQuery;
+    private EntityQuery<PressureProtectionComponent> _pressureQuery;
+
     #endregion
 
     public static readonly float FootsVolume = 5;
@@ -47,6 +53,8 @@ public sealed class FootprintSystem : EntitySystem
     // Dictionary to track footprints per tile to prevent overcrowding
     private const int MaxFootprintsPerTile = 6;
     private const int MaxMarksPerTile = 3;
+
+    private readonly HashSet<Entity<FootprintComponent>> _entities = [];
 
     #region Initialization
     /// <summary>
@@ -59,89 +67,96 @@ public sealed class FootprintSystem : EntitySystem
         _transformQuery = GetEntityQuery<TransformComponent>();
         _appearanceQuery = GetEntityQuery<AppearanceComponent>();
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
+        _solutionQuery = GetEntityQuery<SolutionContainerManagerComponent>();
+        _standingQuery = GetEntityQuery<StandingStateComponent>();
+        _footprintQuery = GetEntityQuery<FootprintComponent>();
+        _pressureQuery = GetEntityQuery<PressureProtectionComponent>();
 
         SubscribeLocalEvent<FootprintEmitterComponent, ComponentStartup>(OnEmitterStartup);
         SubscribeLocalEvent<FootprintEmitterComponent, MoveEvent>(OnEntityMove);
         SubscribeLocalEvent<FootprintEmitterComponent, ComponentInit>(OnFootprintEmitterInit);
-        SubscribeLocalEvent<FootprintComponent, SolutionContainerChangedEvent>(OnSolutionUpdate);
-    }
-
-    private void OnSolutionUpdate(Entity<FootprintComponent> entity, ref SolutionContainerChangedEvent args)
-    {
-        UpdateAppearance(entity, args.Solution);
     }
 
     private void OnFootprintEmitterInit(Entity<FootprintEmitterComponent> entity, ref ComponentInit args)
     {
-        _solutionSystem.EnsureSolution(entity.Owner, entity.Comp.FootsSolutionName, out _, FixedPoint2.New(FootsVolume));
-        _solutionSystem.EnsureSolution(entity.Owner, entity.Comp.BodySurfaceSolutionName, out _, FixedPoint2.New(BodySurfaceVolume));
+        _solution.EnsureSolution(entity.Owner, entity.Comp.FootsSolutionName, out _, FixedPoint2.New(FootsVolume));
+        _solution.EnsureSolution(entity.Owner, entity.Comp.BodySurfaceSolutionName, out _, FixedPoint2.New(BodySurfaceVolume));
     }
 
     /// <summary>
     /// Handles initialization of footprint emitter components.
     /// </summary>
-    private void OnEmitterStartup(EntityUid uid, FootprintEmitterComponent component, ComponentStartup args)
+    private void OnEmitterStartup(Entity<FootprintEmitterComponent> ent, ref ComponentStartup args)
     {
         // Add small random variation to step interval
-        component.WalkStepInterval = Math.Max(0f, component.WalkStepInterval + _random.NextFloat(-0.05f, 0.05f));
+        ent.Comp.WalkStepInterval = Math.Max(0f, ent.Comp.WalkStepInterval + _random.NextFloat(-0.05f, 0.05f));
     }
+
     #endregion
 
     #region Event Handlers
+
     /// <summary>
     /// Handles entity movement and creates footprints when appropriate.
     /// </summary>
-    private void OnEntityMove(EntityUid uid, FootprintEmitterComponent emitter, ref MoveEvent args)
+    private void OnEntityMove(Entity<FootprintEmitterComponent> ent, ref MoveEvent args)
     {
-        // Check if footprints should be created
-        if (!_transformQuery.TryComp(uid, out var transform)
-            || !_physicsQuery.TryGetComponent(uid, out var body)
-            || body.BodyStatus == BodyStatus.InAir
-            || _gravity.IsWeightless(uid)
-            || !_mapManager.TryFindGridAt(_transformSystem.GetMapCoordinates((uid, transform)), out var gridUid, out var grid)
-            || !TryComp<SolutionContainerManagerComponent>(uid, out var container))
+        if (!_solutionQuery.TryComp(ent, out var container))
             return;
 
-        var stand = !_standingStateSystem.IsDown(uid);
+        // Eсли нет компонента StandingState, считаем, что мы стоим. Следы приоритетнее, чем мазня.
+        var stand = !_standingQuery.TryComp(ent, out var standing) || standing.Standing;
 
-        var solCont = (uid, container);
+        var solCont = (ent, container);
         Solution solution;
         Entity<SolutionComponent> solComp;
 
         if (stand)
         {
-            if (!_solutionSystem.ResolveSolution(solCont, emitter.FootsSolutionName, ref emitter.FootsSolution, out var footsSolution))
+            if (!_solution.ResolveSolution(solCont, ent.Comp.FootsSolutionName, ref ent.Comp.FootsSolution, out var footsSolution))
                 return;
 
             solution = footsSolution;
-            solComp = emitter.FootsSolution.Value;
+            solComp = ent.Comp.FootsSolution.Value;
         }
         else
         {
-            if (!_solutionSystem.ResolveSolution(solCont, emitter.BodySurfaceSolutionName, ref emitter.BodySurfaceSolution, out var bodySurfaceSolution))
+            if (!_solution.ResolveSolution(solCont, ent.Comp.BodySurfaceSolutionName, ref ent.Comp.BodySurfaceSolution, out var bodySurfaceSolution))
                 return;
 
             solution = bodySurfaceSolution;
-            solComp = emitter.BodySurfaceSolution.Value;
+            solComp = ent.Comp.BodySurfaceSolution.Value;
         }
 
         if (solution.Volume <= 0)
             return;
 
-        var distanceMoved = (transform.LocalPosition - emitter.LastStepPosition).Length();
-        var requiredDistance = stand ? emitter.WalkStepInterval : emitter.DragMarkInterval;
+        // Check if footprints should be created
+        if (!_physicsQuery.TryComp(ent, out var body))
+            return;
+
+        if (body.BodyStatus == BodyStatus.InAir || _gravity.IsWeightless(ent.Owner))
+            return;
+
+        var transform = Transform(ent);
+        var mapCoords = _transform.GetMapCoordinates((ent, transform));
+        if (!_mapManager.TryFindGridAt(mapCoords, out var gridUid, out var grid))
+            return;
+
+        var distanceMoved = (transform.LocalPosition - ent.Comp.LastStepPosition).Length();
+        var requiredDistance = stand ? ent.Comp.WalkStepInterval : ent.Comp.DragMarkInterval;
 
         if (!(distanceMoved > requiredDistance))
             return;
 
         var tileRef = _mapSystem.GetTileRef((gridUid, grid), transform.Coordinates);
 
-
-        var footPrints = new HashSet<Entity<FootprintComponent>>();
-        _lookup.GetLocalEntitiesIntersecting(gridUid, tileRef.GridIndices, footPrints);
+        _entities.Clear();
+        _lookup.GetLocalEntitiesIntersecting(gridUid, tileRef.GridIndices, _entities);
         var dragMarkCount = 0;
         var footPrintCount = 0;
-        foreach (var footPrint in footPrints)
+
+        foreach (var footPrint in _entities)
         {
             switch (footPrint.Comp.PrintType)
             {
@@ -153,6 +168,7 @@ public sealed class FootprintSystem : EntitySystem
                     break;
             }
         }
+
         if (stand)
         {
             if (footPrintCount >= MaxFootprintsPerTile)
@@ -164,21 +180,22 @@ public sealed class FootprintSystem : EntitySystem
                 return;
         }
 
-        emitter.IsRightStep = !emitter.IsRightStep;
+        ent.Comp.IsRightStep = !ent.Comp.IsRightStep;
 
         // Create new footprint entity
-        var footprintEntity = SpawnFootprint(gridUid, emitter, solution, uid, transform, stand);
+        var footprintEntity = SpawnFootprint(gridUid, ent.Comp, solution, ent, transform, stand);
 
         // Update footprint and emitter state
-        UpdateFootprint(footprintEntity, (uid, emitter), solComp, transform, stand);
+        UpdateFootprint(footprintEntity, (ent, ent.Comp), solComp, transform, stand);
 
         // Update emitter state.
-        UpdateEmitterState(emitter, transform);
+        UpdateEmitterState(ent.Comp, transform);
     }
 
     #endregion
 
     #region Footprint Creation and Management
+
     /// <summary>
     /// Creates a new footprint entity at the calculated position.
     /// </summary>
@@ -199,7 +216,7 @@ public sealed class FootprintSystem : EntitySystem
             return entity;
 
         var visualType = DetermineVisualState(emitterOwner, stand);
-        _appearanceSystem.SetData(entity,
+        _appearance.SetData(entity,
             FootprintVisualParameter.VisualState,
             GetStateId(visualType, emitter),
             appearance);
@@ -212,16 +229,17 @@ public sealed class FootprintSystem : EntitySystem
         if (!_appearanceQuery.TryComp(entity, out var appearance))
             return null;
 
-        var rawAlpha = emitterSolution.Volume.Float() / emitterSolution.MaxVolume.Float();
-        var alpha = Math.Clamp((0.8f * rawAlpha) + 0.3f, 0.5f, 1f);
+        var t = emitterSolution.Volume.Float() / emitterSolution.MaxVolume.Float();
+        t = Easings.OutQuad(t);
+        t = MathF.Pow(t, 0.7f);
+        var alpha = Math.Clamp(0.05f + t * 0.7f, 0f, 1f);
 
-        _appearanceSystem.SetData(entity,
+        _appearance.SetData(entity,
             FootprintVisualParameter.TrackColor,
-            emitterSolution.GetColor(_prototypeManager).WithAlpha(alpha),
+            emitterSolution.GetColor(_prototype).WithAlpha(alpha),
             appearance);
 
         return appearance;
-
     }
 
     private string GetStateId(FootprintVisualType visualType, FootprintEmitterComponent emitter)
@@ -231,11 +249,12 @@ public sealed class FootprintSystem : EntitySystem
             FootprintVisualType.BareFootprint => emitter.IsRightStep
                 ? _random.Pick(emitter.RightBareFootState)
                 : _random.Pick(emitter.LeftBareFootState),
+
             FootprintVisualType.ShoeFootprint => _random.Pick(emitter.ShoeFootState),
             FootprintVisualType.SuitFootprint => _random.Pick(emitter.PressureSuitFootState),
             FootprintVisualType.DragMark => _random.Pick(emitter.DraggingStates),
-            _ => throw new ArgumentOutOfRangeException(
-                $"Unknown footprint visual type: {visualType}")
+
+            _ => throw new InvalidOperationException($"Unknown footprint visual type: {visualType}")
         };
     }
 
@@ -261,6 +280,7 @@ public sealed class FootprintSystem : EntitySystem
     #endregion
 
     #region State Management
+
     /// <summary>
     /// Updates emitter state after creating a footprint.
     /// </summary>
@@ -274,21 +294,22 @@ public sealed class FootprintSystem : EntitySystem
     /// </summary>
     private void TransferReagents(EntityUid footprintEntity, Entity<FootprintEmitterComponent> emitter, Entity<SolutionComponent> emitterSolution, bool stand)
     {
-        if (!TryComp<SolutionContainerManagerComponent>(footprintEntity, out var container)
-            || !TryComp<FootprintComponent>(footprintEntity, out var footprint)
-            || !_solutionSystem.ResolveSolution((footprintEntity, container),
+        if (!_solutionQuery.TryComp(footprintEntity, out var container)
+            || !_footprintQuery.TryComp(footprintEntity, out var footprint)
+            || !_solution.ResolveSolution((footprintEntity, container),
                 footprint.ContainerName,
                 ref footprint.SolutionContainer,
-                out var solution))
+                out _))
             return;
 
-        var splitSolution = _solutionSystem.SplitSolution(emitterSolution, stand ? emitter.Comp.TransferVolumeFoot : emitter.Comp.TransferVolumeDragMark);
+        var splitSolution = _solution.SplitSolution(emitterSolution, stand ? emitter.Comp.TransferVolumeFoot : emitter.Comp.TransferVolumeDragMark);
 
-        _solutionSystem.AddSolution(footprint.SolutionContainer.Value, splitSolution);
+        _solution.AddSolution(footprint.SolutionContainer.Value, splitSolution);
     }
     #endregion
 
     #region Utility Methods
+
     /// <summary>
     /// Calculates the position where a footprint should be placed.
     /// </summary>
@@ -324,7 +345,7 @@ public sealed class FootprintSystem : EntitySystem
             state = FootprintVisualType.ShoeFootprint;
 
         if (_inventory.TryGetSlotEntity(uid, "outerClothing", out var suit)
-            && TryComp<PressureProtectionComponent>(suit, out _))
+            && _pressureQuery.TryComp(suit, out _))
             state = FootprintVisualType.SuitFootprint;
 
         return state;

@@ -15,7 +15,7 @@
   access:
   - Security
   - Brig
-  - Maintenance
+  # - Maintenance # Sunrise-Edit
   - External
   - Cryogenics
   special:
@@ -32,7 +32,7 @@
   storage:
     back:
     - Flash
-    - MagazinePistol
+    # - MagazinePistol # Sunrise-Edit
 
 - type: chameleonOutfit
   id: SecurityOfficerChameleonOutfit

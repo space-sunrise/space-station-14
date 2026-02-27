@@ -90,5 +90,7 @@ ent-RoboticsConsoleCircuitboard = robotics control console board
     .desc = A computer printed circuit board for a robotics control console.
 ent-StationAiUploadCircuitboard = AI upload console board
     .desc = A computer printed circuit board for a AI upload console.
+ent-StationAiFixerCircuitboard = AI restoration console board
+    .desc = A computer printed circuit board for an AI restoration console.
 ent-CargoShuttleComputerCircuitboard = cargo shuttle computer board
     .desc = A computer printed circuit board for a cargo shuttle computer.

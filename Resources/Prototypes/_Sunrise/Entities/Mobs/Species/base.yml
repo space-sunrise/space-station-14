@@ -5,6 +5,8 @@
   components:
   - type: Item
     size: Huge
+    shape:
+    - 0,0,4,3
   - type: NestingMob
   - type: MultiHandedItem
   - type: CanEscapeInventory

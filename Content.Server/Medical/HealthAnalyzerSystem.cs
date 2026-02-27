@@ -31,6 +31,7 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
 {
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
 
     /// <inheritdoc/>
     public override void UpdateScannedUser(EntityUid healthAnalyzer, EntityUid target, bool scanMode)
@@ -38,13 +39,23 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
         if (!_uiSystem.HasUi(healthAnalyzer, HealthAnalyzerUiKey.Key))
             return;
 
-        if (!HasComp<DamageableComponent>(target))
+        if (!TryComp<DamageableComponent>(target, out var damageableComponent)) // Sunrise
             return;
 
         var bodyTemperature = float.NaN;
 
         if (TryComp<TemperatureComponent>(target, out var temp))
             bodyTemperature = temp.CurrentTemperature;
+
+        // Sunrise-Start
+        if (!TryComp<HealthAnalyzerComponent>(healthAnalyzer, out var healthAnalyzerComp))
+            return;
+
+        if (healthAnalyzerComp.DamageContainers is not null &&
+            damageableComponent.DamageContainerID is not null &&
+            !healthAnalyzerComp.DamageContainers.Contains(damageableComponent.DamageContainerID))
+            return;
+        // Sunrise-End
 
         var bloodAmount = float.NaN;
         var bleeding = false;
@@ -54,10 +65,9 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
             _solutionContainerSystem.ResolveSolution(target, bloodstream.BloodSolutionName,
                 ref bloodstream.BloodSolution, out var bloodSolution))
         {
-            bloodAmount = bloodSolution.FillFraction;
+            bloodAmount = _bloodstreamSystem.GetBloodLevel(target);
             bleeding = bloodstream.BleedAmount > 0;
         }
-
         // Collect hunger and thirst data as percentages
         float hungerLevel = -1;
         float thirstLevel = -1;

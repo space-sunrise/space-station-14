@@ -129,7 +129,7 @@ public sealed class UplinkSystem : EntitySystem
                 // Sunrtise-Start
 
                 if (pdaUid == null)
-                    return null;
+                    continue;
 
                 if (_tagSystem.HasTag(pdaUid.Value, "SunriseUplink"))
                     continue;

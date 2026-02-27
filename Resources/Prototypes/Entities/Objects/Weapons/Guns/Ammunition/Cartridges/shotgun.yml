@@ -26,6 +26,7 @@
     tags:
     - ShellShotgun
     - ShellShotgunLight
+    - ShotgunSlug # sunrise-add
   - type: Sprite
     layers:
       - state: base
@@ -36,10 +37,10 @@
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunBeanbagTrace
+    proto: PelletShotgunBeanbagTrace
 
 - type: entity
   id: ShellShotgunSlug
@@ -56,10 +57,10 @@
       - state: spent-long
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunSlugTrace
+    proto: PelletShotgunSlugTrace
     # sunrise-start
   - type: Tag
     tags:
@@ -76,6 +77,7 @@
     tags:
     - ShellShotgun
     - ShellShotgunLight
+    - ShotgunSlug # sunrise-add
   - type: Sprite
     layers:
       - state: base
@@ -107,10 +109,10 @@
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunSpreadTrace
+    proto: PelletShotgunSpreadTrace
 
 - type: entity
   id: ShellShotgunIncendiary
@@ -146,10 +148,10 @@
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunPracticeSpreadTrace
+    proto: PelletShotgunPracticeSpreadTrace
 
 - type: entity
   id: ShellTranquilizer
@@ -206,10 +208,10 @@
 #   - type: Construction
 #     graph: ImprovisedShotgunShellGraph
 #     node: shell
-#   - type: HitScanCartridgeAmmo
+#   - type: CartridgeAmmo
 #     soundEject:
 #       collection: ShellEject
-#     hitscan: PelletShotgunImprovisedSpreadTrace
+#     proto: PelletShotgunImprovisedSpreadTrace
 
 - type: entity
   id: ShellShotgunUranium
@@ -227,7 +229,7 @@
       - state: spent-long
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunUraniumSpreadTrace
+    proto: PelletShotgunUraniumSpreadTrace

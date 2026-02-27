@@ -61,8 +61,10 @@
   - AllHostile
   - Dragon
   # Sunrise Edit
+  - Pirate
   - Carps
   - Flesh
+  - Xenoborg
 
 - type: npcFaction
   id: SimpleHostile
@@ -224,6 +226,7 @@
   - Xeno
   - BloodCult
   - Pirate
+  - Dragon
 
 - type: npcFaction
   id: Xenoborg

@@ -16,8 +16,6 @@
   - type: StatusEffects
     allowed:
     - Electrocution
-    - Jump # Sunrise-Edit
-    - Fall # Sunrise-Edit
   - type: Repairable
     # Sunrise-Start
     doAfterDelay: 3

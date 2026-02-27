@@ -6,3 +6,5 @@ ent-ClothingOuterVestSecurityMedic = жилет бригмедика
     .desc = Лёгкий жилет, который носят бригмедики.
 ent-ClothingOuterVestWebSec = тактический жилет СБ
     .desc = Высококачественный бронежилет типа I из прочного синтетического материала. Несмотря на серьёзные бронепластины, он остаётся удивительно гибким и лёгким. Оснащён дополнительными подсумками для снаряжения.
+ent-ClothingOuterVestWebBlue = тактический жилет ОСЩ
+    .desc = { ent-ClothingOuterVestWebSec.desc }

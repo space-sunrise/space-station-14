@@ -47,3 +47,8 @@ ssd_sleep_time = 3600
 
 [transithub]
 arrivals_round_start_spawn = false
+
+# Sunrise-Edit
+[npc]
+disable_without_players = false
+# Sunrise-Edit

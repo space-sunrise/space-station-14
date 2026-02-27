@@ -4,7 +4,6 @@ using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
-using Content.Shared._Sunrise.Misc; // Sunrise-Edit
 
 namespace Content.Server.Spawners.EntitySystems;
 
@@ -31,70 +30,33 @@ public sealed class SpawnPointSystem : EntitySystem
 
         while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
         {
-            // Sunrise-Start
-            var hasRoundStart = EntityManager.HasComponent<RoundStartSpawnPointComponent>(uid);
-            var hasLateJoin = EntityManager.HasComponent<LateJoinSpawnPointComponent>(uid);
-            if (_gameTicker.RunLevel == GameRunLevel.PreRoundLobby)
-            {
-                if (hasLateJoin)
-                    continue;
-            }
-            else if (_gameTicker.RunLevel == GameRunLevel.InRound)
-            {
-                if (hasRoundStart)
-                    continue;
-            }
-            // Sunrise-End
-
             if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                 continue;
 
+            // Sunrise added start
             // Delta-V: Allow setting a desired SpawnPointType
-            if (args.DesiredSpawnPointType != SpawnPointType.Unset)
-            {
-                var isMatchingJob = spawnPoint.SpawnType == SpawnPointType.Job &&
-                                    (args.Job == null || spawnPoint.Job == args.Job);
 
-                switch (args.DesiredSpawnPointType)
-                {
-                    case SpawnPointType.Job when isMatchingJob:
-                    case SpawnPointType.LateJoin when spawnPoint.SpawnType == SpawnPointType.LateJoin:
-                    case SpawnPointType.Observer when spawnPoint.SpawnType == SpawnPointType.Observer:
-                        possiblePositions.Add(xform.Coordinates);
-                        break;
-                    default:
-                        continue;
-                }
-            }
+            // То, что приходит из ивента главнее заданного в спавнпоинте.
+            var spawnPointType = args.DesiredSpawnPointType != SpawnPointType.Unset
+                ? args.DesiredSpawnPointType
+                : spawnPoint.SpawnType;
 
-            if (_gameTicker.RunLevel == GameRunLevel.InRound &&
-                spawnPoint.SpawnType == SpawnPointType.LateJoin &&
-                args.DesiredSpawnPointType != SpawnPointType.Job)
-            {
-                possiblePositions.Add(xform.Coordinates);
-            }
+            var isMatchingJob = string.IsNullOrEmpty(args.Job)
+                                || string.IsNullOrEmpty(spawnPoint.Job)
+                                || spawnPoint.Job == args.Job;
 
-            if ((_gameTicker.RunLevel != GameRunLevel.InRound || args.DesiredSpawnPointType == SpawnPointType.Job) &&
-                spawnPoint.SpawnType == SpawnPointType.Job &&
-                (args.Job == null || spawnPoint.Job == null || spawnPoint.Job == args.Job))
+            switch (spawnPointType)
             {
-                possiblePositions.Add(xform.Coordinates);
-            }
-        }
-
-        // Sunrise-Start
-        if (possiblePositions.Count == 0)
-        {
-            var points3 = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-            while (points3.MoveNext(out var uid, out var spawnPoint, out var xform))
-            {
-                if (spawnPoint.SpawnType != SpawnPointType.LateJoin)
-                    continue;
-                if (_stationSystem.GetOwningStation(uid, xform) == args.Station)
+                case SpawnPointType.Job when isMatchingJob && spawnPoint.SpawnType == SpawnPointType.Job:
+                case SpawnPointType.LateJoin when spawnPoint.SpawnType == SpawnPointType.LateJoin:
+                case SpawnPointType.Observer when spawnPoint.SpawnType == SpawnPointType.Observer:
                     possiblePositions.Add(xform.Coordinates);
+                    break;
+                default:
+                    continue;
             }
+            // Sunrise added end
         }
-        // Sunrise-End
 
         if (possiblePositions.Count == 0)
         {

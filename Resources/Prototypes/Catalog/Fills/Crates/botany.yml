@@ -22,8 +22,8 @@
           amount: 2
         - id: BungoSeeds
           amount: 2
-      - id: LanternfruitSeeds #Sunrise-add
-        amount: 2
+        - id: LanternfruitSeeds #Sunrise-add
+          amount: 2
 
 - type: entity
   parent: CrateHydroSecure

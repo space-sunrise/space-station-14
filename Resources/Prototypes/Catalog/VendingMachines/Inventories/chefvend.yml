@@ -25,4 +25,11 @@
     FoodBoxDonkpocket: 1
     FoodFrozenSandwich: 2
     FoodFrozenSandwichStrawberry: 2
-
+    # Sunrise Start
+    FoodMeatFish: 3 
+    FoodMeatHuman: 3
+    FoodMeatClown: 2
+    FoodMeatAnomaly: 1
+  emaggedInventory:
+    FoodMeatDragon: 2
+    # Sunrise End

@@ -24,8 +24,8 @@
         variation: 0.250
     activatedDamage:
       types:
-        Slash: 26
-        Heat: 26
+        Slash: 16
+        Heat: 16
         Structural: 30
   - type: ItemToggleActiveSound
     activeSound:
@@ -61,9 +61,7 @@
     size: Small
     sprite: Objects/Weapons/Melee/e_sword_double-inhands.rsi
   - type: Reflect
-    reflectProb: 1
-    reflects:
-      - Energy
+    reflectProb: 0.4
   - type: Blocking
     passiveBlockFraction: 0.4
     activeBlockFraction: 0.7

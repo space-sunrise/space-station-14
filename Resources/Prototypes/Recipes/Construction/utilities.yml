@@ -353,6 +353,7 @@
 
 - type: construction
   id: GasPipeStraight
+  name: construction-recipe-gas-pipe-straight #sunrise-edit fix
   graph: GasPipe
   startNode: start
   targetNode: straight

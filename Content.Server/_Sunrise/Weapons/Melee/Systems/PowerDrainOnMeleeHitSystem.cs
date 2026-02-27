@@ -55,7 +55,7 @@ public sealed class PowerDrainOnMeleeHitSystem : EntitySystem
         // Fall back to direct BatteryComponent on the same entity
         if (TryComp<BatteryComponent>(uid, out var directBattery))
         {
-            if (directBattery.ChargeRate < comp.ChargePerHit)
+            if (_battery.GetCharge((uid, directBattery)) < comp.ChargePerHit)
             {
                 args.Handled = true;
                 return;

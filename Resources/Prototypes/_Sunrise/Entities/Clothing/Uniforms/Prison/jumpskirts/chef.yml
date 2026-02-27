@@ -1,0 +1,55 @@
+- type: entity
+  parent: ClothingUniformJumpskirtPrisonRegularBase
+  id: ClothingUniformJumpskirtPrisonChef
+  name: prison chef jumpskirt
+  description: Professional culinary attire with practical design, the hem carrying faint aromas of meals prepared in the shadow of high walls.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffffff"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#ffffff"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#ffffff"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: overlay-equipped
+        color: "#ffffff"
+
+- type: entity
+  parent: ClothingUniformJumpskirtPrisonVeteranBase
+  id: ClothingUniformJumpskirtPrisonChefVeteran
+  name: veteran prison chef jumpskirt
+  description: Masterfully tailored skirt uniform for seasoned culinary experts, bearing the proud marks of countless perfectly executed meals and the wisdom of years spent mastering prison cuisine.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffffff"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#ffffff"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#ffffff"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: overlay-equipped
+        color: "#ffffff"

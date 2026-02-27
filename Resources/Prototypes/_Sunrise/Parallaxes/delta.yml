@@ -3,7 +3,7 @@
   layers:
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/_Sunrise/Parallaxes/NES/MirStationParallaxBG.png"
+        path: "/NetTextures/Parallaxes/MirStationParallaxBG.png"
       slowness: 0.998046875
       scale: "1, 1"
     - texture:
@@ -28,7 +28,7 @@
       slowness: 0.984352
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/_Sunrise/Parallaxes/NES/planet2.png"
+        path: "/NetTextures/Parallaxes/planet2.png"
       slowness: 0.998046875
       scale: "1, 1"
       tiled: false

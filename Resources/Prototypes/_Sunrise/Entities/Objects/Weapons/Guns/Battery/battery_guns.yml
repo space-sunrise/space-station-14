@@ -54,9 +54,9 @@
 
 - type: entity
   name: LNT620 "Spark"
-  parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
+  parent: [ BaseWeaponAutoPowerCell, BaseSecurityContraband ]
   id: WeaponLaserLNT620
-  description: "Automatic Laser NanoTrasen LNT620."
+  description: Automatic Laser NanoTrasen LNT620.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
@@ -75,6 +75,7 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+    bigTrigger: true # Sunrise-Edit
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
   - type: Item
@@ -108,7 +109,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,3,1
+    - 0,0,2,1
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
@@ -118,17 +119,17 @@
     maxCharge: 1500
     startingCharge: 1500
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 60
+    proto: BulletDisabler
+    fireCost: 50
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
-      fireCost: 60
+    - proto: BulletDisabler
+      fireCost: 50
       name: energy-gun-disable
       visualState: disable
-      heldPrefix: disable
-    - proto: RedLaserBeam
-      fireCost: 100
+      heldPrefix: disabler
+    - proto: BulletLaserWindowPiercingMagnum
+      fireCost: 75
       name: energy-gun-lethal
       visualState: lethal
       heldPrefix: lethal
@@ -166,21 +167,19 @@
     maxCharge: 720
     startingCharge: 720
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 60
-    autoRechargePause: true
     autoRechargePauseTime: 6
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
+    proto: BulletDisabler
     fireCost: 90
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
+    - proto: BulletDisabler
       fireCost: 90
       name: energy-gun-disable
       visualState: disable
-      heldPrefix: disable
-    - proto: RedLaserBeam #BulletPulse
+      heldPrefix: disabler
+    - proto: BulletLaserWindowPiercingMagnum
       fireCost: 110
       name: energy-gun-lethal
       visualState: lethal
@@ -215,13 +214,13 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
+    proto: BulletDisabler
     fireCost: 100
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
+    - proto: BulletDisabler
       fireCost: 100
-    - proto: RedLaserBeam
+    - proto: BulletLaserWindowPiercingMagnum
       fireCost: 175
       conditions:
       - !type:AlertLevelCondition
@@ -237,6 +236,8 @@
     magState: mag
     steps: 4
     zeroVisible: true
+  - type: StealTarget
+    stealGroup: OfficerHandgun
   # - type: PointLight
   #   enabled: false
   #   mask: /Textures/Effects/LightMasks/cone.png
@@ -300,16 +301,16 @@
     maxCharge: 1000
     startingCharge: 1000
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
+    proto: BulletDisabler
     fireCost: 50
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
+    - proto: BulletDisabler
       fireCost: 50
       name: energy-gun-disable
       visualState: disable
-      heldPrefix: disable
-    - proto: RedLaserBeam
+      heldPrefix: disabler
+    - proto: BulletLaserWindowPiercingMagnum
       fireCost: 100
       name: energy-gun-lethal
       visualState: lethal
@@ -352,16 +353,16 @@
     maxCharge: 1000
     startingCharge: 1000
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
+    proto: BulletDisabler
     fireCost: 50
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
+    - proto: BulletDisabler
       fireCost: 50
       name: energy-gun-disable
       visualState: disable
-      heldPrefix: disable
-    - proto: RedLaserBeam
+      heldPrefix: disabler
+    - proto: BulletLaserWindowPiercingMagnum
       fireCost: 100
       name: energy-gun-lethal
       visualState: lethal
@@ -381,7 +382,7 @@
   name: Tactical Energy Gun
   parent: BaseWeaponBattery
   id: WeaponEnergyGunTactical
-  description: "A Tactical version of basic hybrid energy gun with two settings: disable and kill. Have auto recharge."
+  description: "A SMG version of basic hybrid energy gun with two settings: disable and kill."
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_tactical.rsi
@@ -396,37 +397,33 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_tactical.rsi
   - type: Item
-    size: Large
+    size: Huge
+    shape:
+    - 0,0,2,1
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-    selectedMode: SemiAuto
-    fireRate: 3.25
+    selectedMode: FullAuto
+    fireRate: 3
     availableModes:
-        - SemiAuto
         - FullAuto
   - type: Battery
-    maxCharge: 1500
-    startingCharge: 1500
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 14 # ~2 minute
-    autoRechargePause: true
-    autoRechargePauseTime: 30
+    maxCharge: 1000
+    startingCharge: 1000
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 49
+    proto: BulletDisablerSmg
+    fireCost: 20
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBoltSmg
-      fireCost: 49
+    - proto: BulletDisablerSmg
+      fireCost: 20
       name: energy-gun-disable
       visualState: disable
-      heldPrefix: disable
-    - proto: RedLaserBeam
-      fireCost: 70
+      heldPrefix: disabler
+    - proto: BulletLaserWindowPiercingMagnum
+      fireCost: 50
       name: energy-gun-lethal
       visualState: lethal
       heldPrefix: lethal
@@ -648,7 +645,7 @@
     maxCharge: 2500
     startingCharge: 2500
   - type: BatteryAmmoProvider
-    proto: XrayLaser
+    proto: CartridgeXrayBeam
     fireCost: 100
   - type: Wieldable
   - type: UseDelay
@@ -800,9 +797,7 @@
     proto: RedLaserBeam # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 50
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 10
-    autoRechargePause: true
     autoRechargePauseTime: 10
   - type: StaticPrice
     price: 7500
@@ -877,15 +872,15 @@
     shape:
     - 0, 0, 1, 1
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
+    proto: BulletDisabler
     fireCost: 50
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
+    - proto: BulletDisabler
       fireCost: 50
       name: energy-gun-disable
       #state: base
-    - proto: RedLaserBeam
+    - proto: BulletLaserWindowPiercingMagnum
       fireCost: 50
       name: energy-gun-lethal
   - type: MagazineVisuals
@@ -914,13 +909,14 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_pistol.rsi
     storedOffset: -2,-5
   - type: MagazineVisuals
     magState: stun
     steps: 5
     zeroVisible: true
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_pistol.rsi
   - type: Gun
     selectedMode: SemiAuto
     availableModes:
@@ -928,16 +924,16 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: BatteryAmmoProvider
-    proto: AdvancedDisablerBolt
-    fireCost: 1000
+    proto: TaserBolt
+    fireCost: 1500
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: AdvancedDisablerBolt
+    - proto: TaserBolt
       fireCost: 1000
       magState: stun
       visualState: stun
     - proto: PulseBeam
-      fireCost: 2000
+      fireCost: 1500
       magState: kill
       visualState: kill
     - proto: DestroyBeam
@@ -982,11 +978,11 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
+    proto: TaserBolt
     fireCost: 1500
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
+    - proto: TaserBolt
       fireCost: 1500
       magState: stun
       visualState: stun
@@ -1038,11 +1034,11 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: BatteryAmmoProvider
-    proto: AdvancedDisablerBolt
+    proto: TaserBolt
     fireCost: 1500
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: AdvancedDisablerBolt
+    - proto: TaserBolt
       fireCost: 1500
       magState: stun
       visualState: stun
@@ -1101,11 +1097,11 @@
     steps: 5
     zeroVisible: true
   - type: BatteryAmmoProvider
-    proto: AdvancedDisablerBolt
+    proto: TaserBolt
     fireCost: 1500
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: AdvancedDisablerBolt
+    - proto: TaserBolt
       fireCost: 1500
       magState: stun
       visualState: stun
@@ -1153,10 +1149,8 @@
     proto: RedLightLaser
     fireCost: 33
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargePauseTime: 1
     autoRechargeRate: 250
-    autoRechargePause: true
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -1179,7 +1173,7 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: ProjectileBatteryAmmoProvider # Sunrise-Edit
+  - type: BatteryAmmoProvider # Sunrise-Edit
     proto: CartridgeXrayBeam # Sunrise-Edit
     fireCost: 100
   - type: MagazineVisuals
@@ -1188,5 +1182,4 @@
     zeroVisible: true
   - type: Appearance
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 30

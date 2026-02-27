@@ -17,7 +17,7 @@
     sprite: _Sunrise/Clothing/Neck/Cloaks/admiral.rsi
 
 - type: entity
-  parent: ClothingCloakBase # SUNRISE EDIT
+  parent: ClothingNeckCloakHos
   id: ClothingNeckCloakHOSCloak
   name: head of security's cloak
   description: The black and red cloak of HOS, symbolizes safety and brutality.
@@ -27,7 +27,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingCloakBase # SUNRISE EDIT
+  parent: ClothingNeckCloakRd
   id: ClothingNeckCloakResearchDirector
   name: research director's cloak
   description: The purple cape with the DNA helix depicted, demonstrates your omniscience and phenomenality.
@@ -37,7 +37,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingCloakBase # SUNRISE EDIT
+  parent: ClothingNeckCloakCap
   id: ClothingEliteNeckCloakCaptain
   name: captain's cloak
   description: The large amount of 24 korat gold, lets you understand your status from afar.
@@ -47,7 +47,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingCloakBase # SUNRISE EDIT
+  parent: ClothingNeckCloakCe
   id: ClothingNeckEliteCloakCECloak
   name: chief engineer's cloak
   description: Weighty but very luxurious white coat with gold ribbons. There is a small label on the back "Change fuel at DAM".
@@ -77,7 +77,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingCloakBase # SUNRISE EDIT
+  parent: ClothingNeckCloakQm
   id: ClothingNeckCloakQM
   name: quartermaster's cloak
   description: A cloak ready to walk with you through blood, pain, mats, xenomorphs, or something more exotic. Emphasizes the wearer's wealth with a large chiseled diamond, until you find out it's junk.
@@ -87,7 +87,7 @@
     state: icon
 
 - type: entity
-  parent: ClothingCloakBase # SUNRISE EDIT
+  parent: ClothingNeckCloakHop
   id: ClothingNeckCloakHOPCloak
   name: head of personal's cloak
   description: Head of Personal's cloak. A blue, gold-embroidered cape that reminds you who's the Boss.
@@ -115,7 +115,7 @@
       toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
-  parent: ClothingCloakBase # SUNRISE EDIT
+  parent: ClothingNeckCloakHos
   id: ClothingNeckCloakDarthHOSCloak
   name: Dark Lord's cloak
   description: A symbolic and awe-inspiring mantle that perfectly depicts the somber majesty of its wearer.
@@ -335,3 +335,21 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+
+- type: entity
+  parent: ClothingNeckCloakRd
+  id: ClothingNeckCloakLegacyRd
+  name: research director's cloak
+  description: A white cloak with violet stripes, showing your status as the arbiter of cutting-edge technology.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/rdlegacy.rsi
+
+- type: entity
+  parent: ClothingNeckCloakCe
+  id: ClothingNeckCloakLegacyCe
+  name: chief engineer's cloak
+  description: A dark green cloak with light blue ornaments, given to those who proved themselves to master the precise art of engineering.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/celegacy.rsi

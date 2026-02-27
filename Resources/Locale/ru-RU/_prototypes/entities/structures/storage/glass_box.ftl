@@ -1,7 +1,7 @@
 ent-BaseGlassBox = { ent-BaseStructureDynamic }
     .desc = { ent-BaseStructureDynamic.desc }
 ent-GlassBox = стеклянный короб
-    .desc = Прочная витрина для дорогостоящего экспоната.
+    .desc = Прочная витрина для дорогостоящего экспоната. Имеет автоматический замок и предполагает изъятие экспоната в зеленый код.
 ent-GlassBoxLaser = { ent-GlassBox }
     .desc = { ent-GlassBox.desc }
     .suffix = Антикварный лазер

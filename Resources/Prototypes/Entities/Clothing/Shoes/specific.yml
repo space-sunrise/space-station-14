@@ -206,12 +206,6 @@
     - type: ChameleonClothing
       slot: [FEET]
       default: ClothingShoesColorBlack
-  # Sunrise-Start
-    - type: Biocode
-      factions:
-      - Syndicate
-      - Thief
-  # Sunrise-End
 
 - type: entity
   parent: ClothingShoesChameleon

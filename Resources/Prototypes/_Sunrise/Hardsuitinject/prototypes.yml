@@ -7,6 +7,7 @@
   id: Ampula
   components:
   - type: Sprite
+    scale: 0.75,0.75
     sprite: _Sunrise/HardsuitInjection/ampula.rsi
     layers:
       - state: beaker
@@ -80,6 +81,8 @@
         reagents:
         - ReagentId: Bicaridine
           Quantity: 15
+        - ReagentId: Epinephrine
+          Quantity: 5
 
 - type: entity
   parent: Ampula
@@ -94,6 +97,10 @@
         reagents:
         - ReagentId: Dermaline
           Quantity: 10
+        - ReagentId: Epinephrine
+          Quantity: 5
+        - ReagentId: Leporazine
+          Quantity: 5
 
 - type: entity
   parent: Ampula

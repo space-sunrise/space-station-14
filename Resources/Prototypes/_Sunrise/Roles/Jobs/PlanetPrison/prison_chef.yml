@@ -14,6 +14,7 @@
   startingGear: PrisonChefGear
   overrideConsoleVisibility: false
   supervisors: job-supervisors-head-of-prison
+  weight: 5
   alwaysUseSpawner: true
   canBeAntag: false
   displayWeight: 40
@@ -34,8 +35,7 @@
   id: PrisonChefGear
   equipment:
     id: PrisonChefPDA
-    jumpsuit: UniformPrisonChefMetus
-    ears: ClothingHeadsetService
+    ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     mask: ClothingMaskItalianMoustache
     gloves: ClothingHandsGlovesCombat
@@ -43,14 +43,14 @@
     belt: ClothingBeltPrisonChefMetus
     back: ClothingBackpackSatchelPrisonChefMetus
     shoes: ClothingShoesBootsJack
-    pocket1: WeaponPistolG22Metus
+    pocket1: WeaponPistolG22Prison
     pocket2: SecurityWhistle
 
 - type: chameleonOutfit
   id: PrisonChefChameleonOutfit
   job: PrisonChef
   equipment:
-    jumpsuit: UniformPrisonChefMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonChef
     head: ClothingHeadHatChefBlackToque
     ears: ClothingHeadsetService
     eyes: ClothingEyesGlassesSunglasses

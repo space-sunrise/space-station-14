@@ -199,6 +199,16 @@
   description: crafting-menu-text-FRR
 
 - type: construction
+  name: crafting-menu-name-FSKM
+  id: WeaponRifleSKM24ScrapEmpty
+  graph: ForgedRifleGraph
+  startNode: start
+  targetNode: shotgun
+  category: construction-category-weapons
+  objectType: Item
+  description: crafting-menu-text-FSKM
+
+- type: construction
   name: crafting-menu-name-IRB
   id: CartridgeLightRifleImprovised
   graph: ImprovisedLightRifleBulletGraph

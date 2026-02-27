@@ -6,6 +6,7 @@ device-frequency-prototype-name-lights = Smart Lights
 device-frequency-prototype-name-mailing-units = Mailing Units
 device-frequency-prototype-name-pdas = PDAs
 device-frequency-prototype-name-fax = Fax
+device-frequency-prototype-name-messenger = Messenger
 device-frequency-prototype-name-basic-device = Basic Devices
 device-frequency-prototype-name-cyborg-control = Cyborg Control
 device-frequency-prototype-name-robotics-console = Robotics Console

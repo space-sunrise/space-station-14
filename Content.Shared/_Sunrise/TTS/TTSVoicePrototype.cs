@@ -6,6 +6,7 @@ namespace Content.Shared._Sunrise.TTS;
 [Prototype("ttsVoice")]
 public sealed partial class TTSVoicePrototype : IPrototype
 {
+    [ViewVariables]
     [IdDataField]
     public string ID { get; private set; } = default!;
 
@@ -15,11 +16,9 @@ public sealed partial class TTSVoicePrototype : IPrototype
     [DataField(required: true)]
     public Sex Sex;
 
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField(required: true)]
     public string Speaker = string.Empty;
 
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField(required: true)]
     public string Provider = string.Empty;
 
