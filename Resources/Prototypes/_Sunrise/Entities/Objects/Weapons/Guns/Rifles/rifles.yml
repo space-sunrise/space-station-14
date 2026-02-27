@@ -635,7 +635,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/tiny.rsi
   - type: WeaponDismantleOnShoot
     dismantleDistance: 4
-    dismantleChance: 0.006 # Примерно 150-200 патронов
+    dismantleChance: 0.005 # Примерно 150-200 патронов
     selfDamage:
       types:
         Blunt: 5
@@ -677,6 +677,30 @@
       - id: CartridgeLightRifleFMJ
         launchAngle: -120
         prob: 0.15
+
+- type: entity
+  parent: WeaponRifleSKM24Scrap
+  id: WeaponRifleSKM24ScrapEmpty
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: null
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineLightRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: null
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifle
 
 - type: entity
   parent: WeaponRifleSKM24

@@ -25,7 +25,7 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatHuman
+    - id: FoodMeatFelinid
       amount: 2
   - type: HumanoidAppearance
     species: Felinid

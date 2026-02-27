@@ -32,7 +32,7 @@
       groups:
         Brute: -0.5
       #Sunrise-Start
-      types: 
+      types:
         Mangleness: -0.03
       #Sunrise-End
   - type: DamageVisuals
@@ -45,7 +45,7 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-      - id: FoodMeatPlant
+      - id: FoodMeatDionaRoots # Sunrise - edit
         amount: 5
   - type: Bloodstream
     bloodReferenceSolution:

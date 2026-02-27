@@ -1,0 +1,44 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Made for SUNRISE by bulbo44kkey (discord)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "arkana_meat"
+        },
+        {
+            "name": "diona_roots"
+        },
+        {
+            "name": "felinid_meat"
+        },
+        {
+            "name": "milira_meat"
+        },
+        {
+            "name": "nian_meat"
+        },
+        {
+            "name": "resomi_meat"
+        },
+        {
+            "name": "slime_jelly"
+        },
+        {
+            "name": "swine_meat"
+        },
+        {
+            "name": "tajaran_meat"
+        },
+        {
+            "name": "unath_meat"
+        },
+        {
+            "name": "vulpkanin_meat"
+        }
+    ]
+}

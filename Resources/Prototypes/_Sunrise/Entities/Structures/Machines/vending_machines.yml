@@ -68,3 +68,29 @@
   components:
   - type: VendingMachine
     pack: PrisonDrobeInventory
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineEVASuitDispenser
+  name: EVA suit dispenser
+  description: A vendor for dispensing EVA suits and helmets for emergency use.
+  components:
+  - type: VendingMachine
+    pack: EVASuitDispenserInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: EVAdispenserAds
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/VendingMachines/evavend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PlayerCountDependentStock

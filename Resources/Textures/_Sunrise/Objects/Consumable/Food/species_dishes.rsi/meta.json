@@ -1,0 +1,51 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Made for SUNRISE by bulbo44kkey (discord)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "baked_resomi"
+        },
+        {
+            "name": "demon_hell_chili"
+        },
+        {
+            "name": "diona_salad"
+        },
+        {
+            "name": "facehugger_soup"
+        },
+        {
+            "name": "felmeni"
+        },
+        {
+            "name": "lizard_carp_nachos"
+        },
+        {
+            "name": "milir_wings_barbecue"
+        },
+        {
+            "name": "nian_ramen"
+        },
+        {
+            "name": "royal_xeno_soup"
+        },
+        {
+            "name": "slime_bun"
+        },
+        {
+            "name": "swine_stew"
+        },
+        {
+            "name": "tajawarma"
+        },
+        {
+            "name": "vulp_loaf"
+        }
+    ]
+}
+

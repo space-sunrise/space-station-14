@@ -1,22 +1,23 @@
 <Document>
-[bold]Станция: {stationName}[/bold]
-[bold]Форма {corpString}/ЮР[/bold]
-[head=2]Судебное решение[/head]
+[head=2][color=#8a2db5][bold]Судебное решение[/bold][/color][/head]
+[color=#8a2db5][bold]{corpString}[/bold][/color][mono] / ЮР[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#8a2db5][bold]Решение[/bold][/color]
 
-[italic]Время от начала смены и дата: {timeString}[/italic]
-
-Представитель судебной власти: (ПОЛНОЕ ИМЯ)
+Представитель судебной власти: (ФИО)
 В должности: Магистрат
 
-Я, (ПОЛНОЕ ИМЯ), как представитель Судебной системы корпорации {corpString}, именем корпорации {corpString} заключаю, что
+Я, (ФИО), как представитель Судебной системы корпорации {corpString}, именем корпорации {corpString} заключаю, что
 
-(ПОЛНОЕ ИМЯ) нарушил XXX статью корпоративного закона корпорации {corpString}.
+(ФИО) нарушил XXX статью корпоративного закона корпорации {corpString}.
 
 [bold]Краткое описание дела:[/bold]
 
 [bold]Приговор:[/bold]
 
+[color=#666666][italic]Место для печатей[/italic][/color]
 
-[italic]Место для печатей[/italic]
 
 </Document>

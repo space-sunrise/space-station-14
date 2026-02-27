@@ -373,7 +373,7 @@
       storagebase: !type:AllSelector
         children:
         - id: FoodDonkpocket
-          amount: 6
+          amount: 12 # Sunrise - Edit
         - id: DonkcoLighter
           prob: 0.10
 
@@ -388,7 +388,7 @@
     containers:
       storagebase:
         id: FoodDonkpocketSpicy
-        amount: 6
+        amount: 12 # Sunrise - Edit
 
 - type: entity
   parent: FoodBoxDonkpocket
@@ -401,7 +401,7 @@
     containers:
       storagebase:
         id: FoodDonkpocketTeriyaki
-        amount: 6
+        amount: 12 # Sunrise - Edit
 
 - type: entity
   parent: FoodBoxDonkpocket
@@ -414,7 +414,7 @@
     containers:
       storagebase:
         id: FoodDonkpocketPizza
-        amount: 6
+        amount: 12 # Sunrise - Edit
 
 - type: entity
   parent: FoodBoxDonkpocket
@@ -427,7 +427,7 @@
     containers:
       storagebase:
         id: FoodDonkpocketStonk
-        amount: 6
+        amount: 12 # Sunrise - Edit
 
 - type: entity
   parent: FoodBoxDonkpocket
@@ -440,7 +440,7 @@
     containers:
       storagebase:
         id: FoodDonkpocketCarp
-        amount: 6
+        amount: 12 # Sunrise - Edit
 
 - type: entity
   parent: FoodBoxDonkpocket
@@ -453,7 +453,7 @@
     containers:
       storagebase:
         id: FoodDonkpocketBerry
-        amount: 6
+        amount: 12 # Sunrise - Edit
 
 - type: entity
   parent: FoodBoxDonkpocket
@@ -466,7 +466,7 @@
     containers:
       storagebase:
         id: FoodDonkpocketHonk
-        amount: 6
+        amount: 12 # Sunrise - Edit
 
 - type: entity
   parent: FoodBoxDonkpocket
@@ -480,7 +480,7 @@
     containers:
       storagebase:
         id: FoodDonkpocketDink
-        amount: 6
+        amount: 12 # Sunrise - Edit
 
 - type: entity
   parent: FoodBoxDonkpocket
@@ -493,7 +493,7 @@
     containers:
       storagebase:
         id: FoodDonkpocketMoth
-        amount: 6
+        amount: 12 # Sunrise - Edit
 
 - type: entity
   id: HappyHonk

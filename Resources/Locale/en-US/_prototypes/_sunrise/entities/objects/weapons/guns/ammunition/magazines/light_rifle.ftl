@@ -20,7 +20,6 @@ ent-MagazinePistolSubMachineGunCaselessExtended = extended magazine (caseless)
     .desc = { ent-BaseMagazineLightRifle.desc }
 ent-MagazineLightRifleImprovised = magazine (.30 rifle improvised)
     .desc = Curved 30-round double stack magazine for combat rifles. Intended to hold improvised ammunition.
-
 ent-MagazineChainGun = chaingun ammo drum
     .desc = Heavy ammo drum for belt-fed chaingun.
 ent-MagazineChainGun300 = chaingun ammo drum

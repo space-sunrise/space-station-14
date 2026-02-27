@@ -255,9 +255,9 @@
   description: Tactical Gloves that may not protect you from finger burns, but will make you cooler.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Hands/Gloves/mercfingerless.rsi
+    sprite: Clothing/Hands/Gloves/mercfingerless.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Hands/Gloves/mercfingerless.rsi
+    sprite: Clothing/Hands/Gloves/mercfingerless.rsi
   - type: Fiber
     fiberMaterial: fibers-insulative
     fiberColor: fibers-black

@@ -79,6 +79,8 @@
   components:
   - type: Weldable
   - type: ResistLocker
+  - type: Pierceable # Sunrise-edit - прострел ящиков
+    level: Wood
 
 - type: entity
   parent: CrateBaseWeldable

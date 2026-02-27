@@ -4,3 +4,5 @@ ent-VendingMachineClown = HohohonkersVend
     .desc = Get your honk fix here! Surprise the station with HohohonkersVend — the ultimate machine for hilarious pranks. Hack it, and you'll unlock something special!
 ent-VendingMachinePrisonDrobe = PrisonDrobe
     .desc = A legacy of old penitentiary modules, adapted for modern facilities with full isolation of staff and inmates.
+ent-VendingMachineEVASuitDispenser = EVA suit dispenser
+    .desc = A vendor for dispensing EVA suits and helmets for emergency use.

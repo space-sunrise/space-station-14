@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Content.Shared.Whitelist;
+﻿using Content.Shared.Whitelist;
 using Content.Shared.Xenoarchaeology.Artifact;
 using Content.Shared.Xenoarchaeology.Artifact.XAE;
 
@@ -10,15 +9,21 @@ public sealed class AddComponentsInRadiusSystem : BaseXAESystem<AddComponentsInR
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
+    private readonly HashSet<Entity<TransformComponent>> _entities = [];
+
     protected override void OnActivated(Entity<AddComponentsInRadiusComponent> ent, ref XenoArtifactNodeActivatedEvent args)
     {
         var coords = Transform(ent).Coordinates;
-        var targets = _lookup.GetEntitiesInRange<TransformComponent>(coords, ent.Comp.Radius)
-            .Where(e => _whitelist.IsWhitelistPassOrNull(ent.Comp.Whitelist, e));
 
-        foreach (var target in targets)
+        _entities.Clear();
+        _lookup.GetEntitiesInRange(coords, ent.Comp.Radius, _entities, ent.Comp.SearchFlags);
+
+        foreach (var target in _entities)
         {
-            EntityManager.AddComponents(target, ent.Comp.Components, false);
+            if (!_whitelist.CheckBoth(target, ent.Comp.Blacklist, ent.Comp.Whitelist))
+                continue;
+
+            EntityManager.AddComponents(target, ent.Comp.Components, ent.Comp.RemoveExistingComponents);
         }
     }
 }

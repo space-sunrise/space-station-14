@@ -1,20 +1,39 @@
 <Document>
-[bold]Станция: {stationName}[/bold]
-[bold]Форма {corpString}/НИО[/bold]
-[head=3]Список дежурства научно-исследовательского отдела[/head]
+[head=3][color=#4f2086][bold]Список дежурства научно-исследовательского отдела[/bold][/color][/head]
+[color=#4f2086][bold]{corpString}[/bold][/color][mono] / НИО[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
 
-[italic]Время от начала смены и дата: {timeString}[/italic]
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#4f2086][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
 
-Составитель документа:
-Должность составителя:
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#4f2086][bold]Содержание[/bold][/color]
 
+[bold]Аномалистика[/bold]
+[mono]
+1) (ФИО)
+2) (ФИО)
+[/mono]
+Дополнительно: (ФИО, ФИО)
 
-Аномалистика: (Имена сотрудников)
+[bold]Ксеноархеология[/bold]
+[mono]
+1) (ФИО)
+2) (ФИО)
+[/mono]
+Дополнительно: (ФИО, ФИО)
 
-Ксеноархеология: (Имена сотрудников)
+[bold]Запросы станции[/bold]
+[mono]
+1) (ФИО)
+2) (ФИО)
+[/mono]
+Дополнительно: (ФИО, ФИО)
 
-Запросы станции: (Имена сотрудников)
+[color=#666666][italic]Место для печатей[/italic][/color]
 
-[italic]Место для печатей[/italic]
 
 </Document>

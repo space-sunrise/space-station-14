@@ -117,7 +117,7 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatSlime
+    - id: FoodMeatSlimeJelly # Sunrise - edit
       amount: 5
   - type: Respirator
     damage:
