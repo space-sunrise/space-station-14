@@ -160,12 +160,12 @@
 
 - type: humanoidBaseSprite
   id: MobPredatorDreadlocks
-  basesprite:
+  baseSprite:
     sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
     state: dreadlocks
 
 - type: humanoidBaseSprite
   id: MobPredatorRings
-  basesprite:
+  baseSprite:
     sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
     state: rings
