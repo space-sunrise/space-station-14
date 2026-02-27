@@ -140,7 +140,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
+      110: Critical
       120: Dead
   - type: Destructible
     thresholds:
@@ -243,11 +243,11 @@
   - type: Puller
     needsHands: false
   - type: Speech
-  - type: Advertise
-    pack: PirateChatterNPC
-    minimumWait: 45
-    maximumWait: 120
-    nextAdvertisementTime: 10
+  - type: DatasetVocalizer
+    dataset: PirateChatterNPC
+    minVocalizeInterval: 45s
+    maxVocalizeInterval: 120s
+    hideChat: true
 
 - type: entity
   abstract: true
@@ -282,11 +282,11 @@
         Slash: 3
         Blunt: 7
         Structural: 15
-  - type: Advertise
-    pack: PirateChatterNPC
-    minimumWait: 998
-    maximumWait: 999
-    nextAdvertisementTime: 10
+  - type: DatasetVocalizer
+    dataset: PirateChatterNPC
+    minVocalizeInterval: 998s
+    maxVocalizeInterval: 999s
+    hideChat: true
 
 - type: entity
   abstract: true
@@ -2053,9 +2053,9 @@
     showExamineText: false
     fireRate: 15
     minAngle: 2
-    maxAngle: 55
-    angleIncrease: 1.25
-    angleDecay: 20
+    maxAngle: 45
+    angleIncrease: 1
+    angleDecay: 30
     selectedMode: FullAuto
     availableModes:
     - FullAuto
