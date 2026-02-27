@@ -102,6 +102,7 @@ public abstract partial class SharedSalvageSystem : EntitySystem
             .EnumeratePrototypes<T>()
             .Where(x => x.Difficulties == null || x.Difficulties.Contains(difficultyId))
             .ToList();
+    // Sunrise-End
         mods.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
         rand.Shuffle(mods);
 
@@ -117,7 +118,6 @@ public abstract partial class SharedSalvageSystem : EntitySystem
 
         throw new InvalidOperationException();
     }
-    // Sunrise-End
 
     // Sunrise-Start
     public T GetMod<T>(System.Random rand, ref float rating, string difficultyId) where T : class, IPrototype, ISalvageMod
@@ -126,6 +126,7 @@ public abstract partial class SharedSalvageSystem : EntitySystem
             .EnumeratePrototypes<T>()
             .Where(x => x.Difficulties == null || x.Difficulties.Contains(difficultyId))
             .ToList();
+    // Sunrise-End
         mods.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
         rand.Shuffle(mods);
 
@@ -141,6 +142,5 @@ public abstract partial class SharedSalvageSystem : EntitySystem
 
         throw new InvalidOperationException();
     }
-    // Sunrise-End
 }
 

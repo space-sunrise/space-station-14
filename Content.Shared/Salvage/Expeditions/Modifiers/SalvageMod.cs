@@ -20,6 +20,6 @@ public sealed partial class SalvageMod : IPrototype, ISalvageMod
     [DataField("cost")]
     public float Cost { get; private set; } = 0f;
 
-    [DataField("difficulties", customTypeSerializer: typeof(PrototypeIdListSerializer<SalvageDifficultyPrototype>))]
+    [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<SalvageDifficultyPrototype>))]
     public List<string>? Difficulties { get; private set; } = null; // Sunrise-Edit
 }

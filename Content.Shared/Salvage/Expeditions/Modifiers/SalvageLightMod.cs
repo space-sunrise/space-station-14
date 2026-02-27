@@ -19,7 +19,7 @@ public sealed partial class SalvageLightMod : IPrototype, IBiomeSpecificMod
     [DataField]
     public List<ProtoId<SalvageBiomeModPrototype>>? Biomes { get; private set; } = null;
 
-    [DataField("difficulties", customTypeSerializer: typeof(PrototypeIdListSerializer<SalvageDifficultyPrototype>))]
+    [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<SalvageDifficultyPrototype>))]
     public List<string>? Difficulties { get; private set; } = null; // Sunrise-Edit
 
     [DataField("color", required: true)] public Color? Color;
