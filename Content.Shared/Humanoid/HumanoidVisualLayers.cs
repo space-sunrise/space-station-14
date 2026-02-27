@@ -32,6 +32,8 @@ namespace Content.Shared.Humanoid
         Fire,
         Back,  // SUNRISE
 
-        Other
+        Other,
+        Rings,
+        Dreadlocks
     }
 }

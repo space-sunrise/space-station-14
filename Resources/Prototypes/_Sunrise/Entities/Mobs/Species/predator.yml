@@ -14,7 +14,7 @@
     dehydrationDamage:
       types:
         Bloodloss: 0.5
-        Asphyxiation: 0.5
+        Asphyxiation: 1
   - type: Perishable
   - type: HumanoidAppearance
     species: Predator
@@ -60,6 +60,7 @@
     prototype: Predator
   - type: FootprintEmitter
   - type: Carriable
+  - type: ToggleableThermalVision
 
 - type: entity
   parent: BaseSpeciesDummy
