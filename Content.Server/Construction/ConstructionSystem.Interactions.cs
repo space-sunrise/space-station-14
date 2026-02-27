@@ -393,7 +393,7 @@ namespace Content.Server.Construction
                         return tempEvent.Result.Value;
                     // Sunrise-start
                     // Фикс щиткода без валидации для HandleStep - чтобы не крашило в дебаге
-                    if (validation && HasComp<InternalTemperatureComponent>(uid) && HasComp<TemperatureComponent>(uid))
+                    if (validation && (HasComp<InternalTemperatureComponent>(uid) || HasComp<TemperatureComponent>(uid)))
                         return HandleResult.Validated;
                     // Sunrise-end
                     // prefer using InternalTemperature since that's more accurate for cooking.
