@@ -10,6 +10,7 @@
     tags:
     - WhitelistChameleon
     - TopCovered # INTERACTIONS
+    - Helmet # SUNRISE
   - type: HideLayerClothing
     layers:
       HeadTop : HEAD

@@ -241,6 +241,7 @@
     tags:
     - FullBodyOuter
     - WhitelistChameleon
+    - Hardsuit
   - type: StaminaResistance
     damageCoefficient: 0.9
   # Sunrise-End
