@@ -631,3 +631,6 @@
 # Закрыто только сверху (шлюяпы, кепки)
 - type: Tag
   id: TopCovered
+
+- type: Tag
+  id: Helmet

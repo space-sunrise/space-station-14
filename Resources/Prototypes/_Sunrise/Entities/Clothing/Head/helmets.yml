@@ -13,9 +13,7 @@
       tags:
       - TopCovered # INTERACTIONS
       - WhitelistChameleon
-  blacklist:
-    tags:
-    - HumanoidXeno
+      - Helmet
   # SUNRISE EDIT
 
 - type: entity
@@ -39,9 +37,7 @@
     - ClothMade
     - FullCovered # INTERACTIONS
     - WhitelistChameleon
-  blacklist:
-    tags:
-    - HumanoidXeno
+    - Helmet
 
 - type: entity
   parent: [ClothingHeadBase, BaseSecurityContraband, BaseFoldable]
@@ -78,9 +74,7 @@
     - ClothMade
     - FullCovered # INTERACTIONS
     - WhitelistChameleon
-  blacklist:
-    tags:
-    - HumanoidXeno
+    - Helmet
 
 # region ERT Amber EVA
 - type: entity
@@ -117,9 +111,6 @@
     - Snout
     - HeadTop
     - HeadSide
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 - type: entity
   parent: ClothingHeadEVAHelmetERTBase
@@ -131,9 +122,9 @@
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_OLD/eva_ert_leader.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_OLD/eva_ert_leader.rsi
-  blacklist:
+  - type: Tag
     tags:
-    - HumanoidXeno
+    - Helmet
 
 - type: entity
   parent: ClothingHeadEVAHelmetERTBase
@@ -145,9 +136,9 @@
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_OLD/eva_ert_chaplain.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_OLD/eva_ert_chaplain.rsi
-  blacklist:
+  - type: Tag
     tags:
-    - HumanoidXeno
+    - Helmet
 
 - type: entity
   parent: ClothingHeadEVAHelmetERTBase
@@ -159,9 +150,9 @@
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_OLD/eva_ert_security.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_OLD/eva_ert_security.rsi
-  blacklist:
+  - type: Tag
     tags:
-    - HumanoidXeno
+    - HelmetEVA
 
 - type: entity
   parent: ClothingHeadEVAHelmetERTBase
@@ -173,9 +164,9 @@
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_OLD/eva_ert_medic.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_OLD/eva_ert_medic.rsi
-  blacklist:
+  - type: Tag
     tags:
-    - HumanoidXeno
+    - Helmet
 
 - type: entity
   parent: ClothingHeadEVAHelmetERTBase
@@ -187,9 +178,9 @@
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_OLD/eva_ert_engineer.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_OLD/eva_ert_engineer.rsi
-  blacklist:
+  - type: Tag
     tags:
-    - HumanoidXeno
+    - Helmet
 
 - type: entity
   parent: ClothingHeadEVAHelmetERTBase
@@ -201,9 +192,9 @@
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_OLD/eva_ert_janitor.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_OLD/eva_ert_janitor.rsi
-  blacklist:
+  - type: Tag
     tags:
-    - HumanoidXeno
+    - Helmet
 
 - type: entity
   parent: ClothingHeadEVAHelmetERTBase
@@ -216,9 +207,9 @@
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_NEW/eva_ert_leader.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_NEW/eva_ert_leader.rsi
-  blacklist:
+  - type: Tag
     tags:
-    - HumanoidXeno
+    - Helmet
 
 - type: entity
   parent: ClothingHeadEVAHelmetERTBase
@@ -231,9 +222,9 @@
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_NEW/eva_ert_chaplain.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_NEW/eva_ert_chaplain.rsi
-  blacklist:
+  - type: Tag
     tags:
-    - HumanoidXeno
+    - Helmet
 
 - type: entity
   parent: ClothingHeadEVAHelmetERTBase
@@ -246,9 +237,9 @@
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_NEW/eva_ert_security.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_NEW/eva_ert_security.rsi
-  blacklist:
+  - type: Tag
     tags:
-    - HumanoidXeno
+    - Helmet
 
 - type: entity
   parent: ClothingHeadEVAHelmetERTBase
@@ -261,9 +252,9 @@
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_NEW/eva_ert_medic.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_NEW/eva_ert_medic.rsi
-  blacklist:
+  - type: Tag
     tags:
-    - HumanoidXeno
+    - Helmet
 
 - type: entity
   parent: ClothingHeadEVAHelmetERTBase
@@ -276,9 +267,9 @@
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_NEW/eva_ert_engineer.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_NEW/eva_ert_engineer.rsi
-  blacklist:
+  - type: Tag
     tags:
-    - HumanoidXeno
+    - Helmet
 
 - type: entity
   parent: ClothingHeadEVAHelmetERTBase
@@ -291,9 +282,9 @@
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_NEW/eva_ert_janitor.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_NEW/eva_ert_janitor.rsi
-  blacklist:
+  - type: Tag
     tags:
-    - HumanoidXeno
+    - Helmet
 
 #Abductor Helmet
 - type: entity
@@ -321,9 +312,6 @@
     - WhitelistChameleon
     - SecurityHelmet
   - type: EyeProtection
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 #Dogi Helmet
 - type: entity
@@ -347,7 +335,5 @@
     tags:
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  blacklist:
-    tags:
-    - HumanoidXeno
+    - Helmet
   # SUNRISE EDIT

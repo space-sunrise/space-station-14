@@ -39,9 +39,6 @@
         Shock: 0.1
         Cold: 0.2
         Radiation: 0.2
-  blacklist:
-    tags:
-    - HumanoidXeno
 # Blueshield Hardsuit
 
 - type: entity
@@ -66,9 +63,6 @@
         Blunt: 0.8
         Slash: 0.8
         Piercing: 0.8
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 - type: entity
   parent: ClothingHeadHelmetHeavyHardsuitUSSP
@@ -81,9 +75,6 @@
     sprite: _Sunrise/Clothing/Head/Hardsuits/ntrguard_head.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hardsuits/ntrguard_head.rsi
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 - type: entity
   parent: ClothingHeadHelmetHardsuitSecurity
@@ -93,9 +84,6 @@
     sprite: _Sunrise/Clothing/Head/Hardsuits/secoff.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hardsuits/secoff.rsi
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
@@ -121,9 +109,6 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 #USSP
 - type: entity
@@ -146,9 +131,6 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 - type: entity
   parent: ClothingHeadHardsuitBase
@@ -170,9 +152,6 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 - type: entity
   parent: ClothingHeadHardsuitBase
@@ -195,9 +174,6 @@
         Piercing: 0.9
         Heat: 0.9
   - type: FlashImmunity
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
@@ -216,9 +192,6 @@
     lowPressureMultiplier: 1000
   - type: EyeProtection
   - type: FlashImmunity
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 #Для ивентов
 
@@ -247,9 +220,6 @@
   - type: FlashImmunity
   - type: EyeProtection
   - type: ShowJobIcons
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
@@ -276,9 +246,6 @@
   - type: FlashImmunity
   - type: EyeProtection
   - type: ShowJobIcons
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 #Pirate Yarrr!!
 
@@ -307,9 +274,6 @@
         Heat: 0.85
   - type: FlashImmunity
   - type: EyeProtection
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 - type: entity
   parent: ClothingHeadHelmetHardsuitPirateCapSun
@@ -323,9 +287,6 @@
     sprite: _Sunrise/Clothing/Head/Hardsuits/piratecaptainhelm.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hardsuits/piratecaptainhelm.rsi
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 - type: entity
   parent: ClothingHeadHelmetHardsuitPirateCapSun
@@ -379,9 +340,6 @@
         Heat: 0.85
         Radiation: 0.9
         Caustic: 0.9
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 - type: entity
   parent: ClothingHeadHardsuitBase #[ ClothingHeadSuitWithLightBase ]
@@ -408,9 +366,6 @@
         Piercing: 0.8
   - type: FlashImmunity
   - type: EyeProtection
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 #Goliath Hardsuit
 - type: entity
@@ -501,9 +456,6 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 ##Modsuits
 #№Modsuit commaid
@@ -520,9 +472,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 #№Modsuit passenger
 - type: entity
@@ -538,9 +487,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 #№Modsuit representative
 - type: entity
@@ -556,9 +502,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 #№Modsuit blueshield
 - type: entity
@@ -580,9 +523,6 @@
         Blunt: 0.8
         Slash: 0.8
         Piercing: 0.8
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 # Milira
 
@@ -605,6 +545,3 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
-  blacklist:
-    tags:
-    - HumanoidXeno

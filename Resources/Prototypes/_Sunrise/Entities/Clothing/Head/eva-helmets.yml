@@ -29,9 +29,6 @@
     unequipSound: /Audio/Mecha/mechmove03.ogg #starlight
     equipDelay: 2 #starlight
     unequipDelay: 2 #starlight
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 #Pirate EVA Helmet
 - type: entity
@@ -55,9 +52,6 @@
         Piercing: 0.85
         Heat: 0.85
   - type: EyeProtection
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 - type: entity
   parent: [ ClothingHeadEVAHelmetBase, PowerCellSlotSmallItem, BaseSyndicateContraband ]
@@ -112,9 +106,6 @@
         Caustic: 0.9
   - type: EyeProtection
   - type: FlashImmunity
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 - type: entity
   parent: ClothingHeadHelmetPirate
@@ -126,9 +117,6 @@
     sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_alt.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_alt.rsi
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 - type: entity
   parent: ClothingHeadHelmetPirate
@@ -140,9 +128,6 @@
     sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_alt2.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_alt2.rsi
-  blacklist:
-    tags:
-    - HumanoidXeno
 
 - type: entity
   parent: ClothingHeadHelmetPirate
@@ -162,6 +147,3 @@
         Piercing: 0.8
         Radiation: 0.9
         Caustic: 0.9
-  blacklist:
-    tags:
-    - HumanoidXeno
