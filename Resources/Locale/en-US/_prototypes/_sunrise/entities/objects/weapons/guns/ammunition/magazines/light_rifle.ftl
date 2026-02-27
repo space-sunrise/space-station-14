@@ -29,13 +29,3 @@ ent-MagazineChainGun200 = chaingun ammo drum
     .desc = { ent-MagazineChainGun.desc }
 ent-MagazineChainGun100 = chaingun ammo drum
     .desc = { ent-MagazineChainGun.desc }
-
-
-ent-MagazineChainGun = chaingun ammo drum
-    .desc = Heavy ammo drum for belt-fed chaingun.
-ent-MagazineChainGun300 = chaingun ammo drum
-    .desc = { ent-MagazineChainGun.desc }
-ent-MagazineChainGun200 = chaingun ammo drum
-    .desc = { ent-MagazineChainGun.desc }
-ent-MagazineChainGun100 = chaingun ammo drum
-    .desc = { ent-MagazineChainGun.desc }
