@@ -7,8 +7,8 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
-using Robust.Client.Console;
 using Robust.Client.UserInterface;
+
 
 namespace Content.Client._Sunrise.Administration.UI.Implants;
 
@@ -16,7 +16,6 @@ namespace Content.Client._Sunrise.Administration.UI.Implants;
 public sealed partial class ImplantAdminWindow : DefaultWindow
 {
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly IClientConsoleHost _console = default!;
 
     public NetEntity TargetEntityId;
     public event Action<string>? OnAddImplant;
