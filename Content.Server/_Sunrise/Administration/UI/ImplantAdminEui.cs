@@ -173,16 +173,7 @@ public sealed class ImplantAdminEui : BaseEui
                     }
                     else
                     {
-                        // Same rationale as for part slots: force-create empty container for visibility.
-                        try
-                        {
-                            container = _entManager.System<SharedContainerSystem>()
-                                .EnsureContainer<ContainerSlot>(partUid, containerId);
-                        }
-                        catch
-                        {
-                            // Ignore failures (e.g. invalid slot id) to avoid breaking UI.
-                        }
+                        // Container does not exist; treat as unavailable/empty for UI purposes.
                     }
 
                     var occupied = container != null && container.ContainedEntities.Count > 0;
