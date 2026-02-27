@@ -108,42 +108,9 @@ public sealed class ImplantAdminEui : BaseEui
                 if (partComp.Body != bodyUid)
                     continue;
 
-                // Ensure expected child slots (hands / feet) exist for arms / legs so they show up even if removed previously.
-                // New logic: don't rely solely on symmetry metadata (may be None / unset in some prototypes); also accept generic names.
-                // Build a temporary list of child part slot ids via system helper (avoids direct Children access for analyzer compliance)
+                // Build a temporary list of child part slot ids via system helper (avoids direct Children access for analyzer compliance).
+                // NOTE: This method is read-only; it does not create or modify part slots, it only reports existing ones.
                 var partSlotIds = sharedBody.EnumeratePartSlots(partUid, partComp).ToList();
-
-                if (partComp.PartType == BodyPartType.Arm || partComp.PartType == BodyPartType.Leg)
-                {
-                    bool hasRequired = partComp.PartType == BodyPartType.Arm
-                        ? partSlotIds.Any(p => p.SlotId.Contains("hand"))
-                        : partSlotIds.Any(p => p.SlotId.Contains("foot"));
-                    if (!hasRequired)
-                    {
-                        var expectedType = partComp.PartType == BodyPartType.Arm ? BodyPartType.Hand : BodyPartType.Foot;
-                        string preferred = partComp.PartType == BodyPartType.Arm
-                            ? (partComp.Symmetry == BodyPartSymmetry.Left ? "left hand" : partComp.Symmetry == BodyPartSymmetry.Right ? "right hand" : "hand")
-                            : (partComp.Symmetry == BodyPartSymmetry.Left ? "left foot" : partComp.Symmetry == BodyPartSymmetry.Right ? "right foot" : "foot");
-                        if (!sharedBody.TryCreatePartSlot(partUid, preferred, expectedType, out _))
-                        {
-                            if (partComp.PartType == BodyPartType.Arm)
-                            {
-                                if (!partSlotIds.Any(p => p.SlotId == "left hand")) sharedBody.TryCreatePartSlot(partUid, "left hand", expectedType, out _);
-                                if (!partSlotIds.Any(p => p.SlotId == "right hand")) sharedBody.TryCreatePartSlot(partUid, "right hand", expectedType, out _);
-                                if (!partSlotIds.Any(p => p.SlotId == "hand")) sharedBody.TryCreatePartSlot(partUid, "hand", expectedType, out _);
-                            }
-                            else
-                            {
-                                if (!partSlotIds.Any(p => p.SlotId == "left foot")) sharedBody.TryCreatePartSlot(partUid, "left foot", expectedType, out _);
-                                if (!partSlotIds.Any(p => p.SlotId == "right foot")) sharedBody.TryCreatePartSlot(partUid, "right foot", expectedType, out _);
-                                if (!partSlotIds.Any(p => p.SlotId == "foot")) sharedBody.TryCreatePartSlot(partUid, "foot", expectedType, out _);
-                            }
-                        }
-                        // Refresh list after potential creation
-                        partSlotIds = sharedBody.EnumeratePartSlots(partUid, partComp).ToList();
-                    }
-                }
-
                 // Child part slots
                 foreach (var (slotId, data) in partSlotIds)
                 {
