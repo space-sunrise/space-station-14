@@ -1,0 +1,24 @@
+<DefaultWindow xmlns="https://spacestation14.io">
+  <TabContainer Name="RootTabs" HorizontalExpand="True" VerticalExpand="True" MinSize="420 480">
+    <BoxContainer Name="TabImplants" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" MinSize="300 380">
+      <BoxContainer Orientation="Horizontal" HorizontalExpand="True" MinSize="0 32" Margin="0 0 0 4">
+        <LineEdit Name="SearchBar" PlaceHolder="Search" HorizontalExpand="True" />
+        <Button Name="AddButton" Text="+" MinSize="32 0" />
+      </BoxContainer>
+      <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
+        <ItemList Name="ImplantList" SelectMode="Single" HorizontalExpand="True" VerticalExpand="True" />
+      </ScrollContainer>
+      <Button Name="RemoveButton" Disabled="True" HorizontalExpand="True" Text="Remove" />
+    </BoxContainer>
+  <BoxContainer Name="TabBody" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" MinSize="300 380">
+      <Label Text="Части тел" Margin="0 0 0 4" />
+      <ScrollContainer HorizontalExpand="True" VerticalExpand="True" Margin="0 0 0 4">
+        <GridContainer Name="PartGrid" Columns="4" HorizontalExpand="True" />
+      </ScrollContainer>
+      <Label Text="Органы" Margin="4 4 0 4" />
+      <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+        <GridContainer Name="OrganGrid" Columns="4" HorizontalExpand="True" />
+      </ScrollContainer>
+    </BoxContainer>
+  </TabContainer>
+</DefaultWindow>

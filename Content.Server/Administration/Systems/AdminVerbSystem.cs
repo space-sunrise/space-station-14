@@ -1,6 +1,7 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.UI;
+using Content.Server._Sunrise.Administration.UI;
 using Content.Server.Disposal.Tube;
 using Content.Server.EUI;
 using Content.Server.Ghost.Roles;
@@ -18,6 +19,8 @@ using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
 using Content.Shared.Mind.Components;
+using Content.Shared.Body.Components;
+using Content.Shared.Implants.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
 using Content.Shared.Silicons.Laws.Components;
@@ -582,6 +585,23 @@ namespace Content.Server.Administration.Systems
                     Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/spill.svg.192dpi.png")),
                     Act = () => OpenEditSolutionsEui(player, args.Target),
                     Impact = LogImpact.Medium // maybe high depending on WHAT reagents they add...
+                };
+                args.Verbs.Add(verb);
+            }
+
+            // Implants management verb (opens implant/limb/organ admin EUI)
+            // Shown only if the admin has VV permissions (same permission the EUI itself enforces)
+            // and the target has either a body or implant container component.
+            if (_groupController.CanCommand(player, "vv") &&
+                (HasComp<BodyComponent>(args.Target) || HasComp<ImplantedComponent>(args.Target)))
+            {
+                var verb = new Verb
+                {
+                    Text = "Импланты", // Intentionally Russian per request; no localization key yet.
+                    Category = VerbCategory.Debug,
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/information.svg.192dpi.png")), // Re-use an organ style icon if available
+                    Act = () => _euiManager.OpenEui(new ImplantAdminEui(GetNetEntity(args.Target)), player),
+                    Impact = LogImpact.Medium
                 };
                 args.Verbs.Add(verb);
             }

@@ -889,5 +889,59 @@ public partial class SharedBodySystem
             }
         }
     }
+
+
+    // Admin / debug helpers (enumeration wrappers to avoid direct dictionary access)
+    /// <summary>
+    /// Enumerates part slots (child body part slots) for the specified part. Returns slot id and slot data.
+    /// </summary>
+    public IEnumerable<(string SlotId, BodyPartSlot Slot)> EnumeratePartSlots(EntityUid partId, BodyPartComponent? part = null)
+    {
+        if (!Resolve(partId, ref part, logMissing: false))
+            yield break;
+
+        // Iterate over a copy of the keys to avoid modification during enumeration issues if caller mutates.
+        foreach (var (id, slot) in part.Children.ToArray())
+        {
+            yield return (id, slot);
+        }
+    }
+
+    /// <summary>
+    /// Enumerates organ slots for the specified part. Returns slot id and organ slot metadata.
+    /// </summary>
+    public IEnumerable<(string SlotId, OrganSlot Slot)> EnumerateOrganSlots(EntityUid partId, BodyPartComponent? part = null)
+    {
+        if (!Resolve(partId, ref part, logMissing: false))
+            yield break;
+
+        foreach (var (id, slot) in part.Organs.ToArray())
+        {
+            yield return (id, slot);
+        }
+    }
+
+    /// <summary>
+    /// Removes (detaches) the body part contained in the specified child slot from the parent part if present.
+    /// Safe wrapper for administrative tooling. Returns true if a part was removed.
+    /// </summary>
+    public bool RemovePartPublic(EntityUid parentPartId, string slotId, BodyPartComponent? parentPart = null)
+    {
+        if (!Resolve(parentPartId, ref parentPart, logMissing: false))
+            return false;
+
+        if (!parentPart.Children.ContainsKey(slotId))
+            return false;
+
+        var containerId = GetPartSlotContainerId(slotId);
+        if (!Containers.TryGetContainer(parentPartId, containerId, out var container))
+            return false;
+
+        if (container.ContainedEntities.Count == 0)
+            return false;
+
+        var child = container.ContainedEntities[0];
+        return Containers.Remove(child, container);
+    }
     #endregion
 }

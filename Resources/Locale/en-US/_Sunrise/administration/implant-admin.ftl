@@ -1,0 +1,19 @@
+ui-yes = Yes
+ui-no = No
+ui-close = Close
+implant-admin-verb = Implants
+implant-admin-window-title = Implants
+implant-admin-add-button = Add
+implant-admin-remove-button = Remove
+implant-admin-search-placeholder = Search
+implant-admin-body-slot-title = Slot: { $slot }
+implant-admin-replace-button = Replace
+implant-admin-confirm-title = Confirmation
+implant-admin-confirm-replace = Replace slot { $slot } with { $proto }?
+implant-admin-confirm-remove = Remove current item from slot { $slot }?
+implant-admin-tab-implants = Implants
+implant-admin-tab-body = Body
+implant-admin-tooltip-part = part
+implant-admin-tooltip-organ = organ
+# Per-slot localization (override or hide). Set value to '-' to hide slot entirely.
+# Example: implant-admin-slot-left-arm = Left Arm

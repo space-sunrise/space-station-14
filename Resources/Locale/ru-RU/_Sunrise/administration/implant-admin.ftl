@@ -1,0 +1,22 @@
+ui-yes = Да
+ui-no = Нет
+ui-close = Закрыть
+implant-admin-verb = Импланты
+implant-admin-window-title = Импланты
+implant-admin-add-button = Добавить
+implant-admin-remove-button = Удалить
+implant-admin-search-placeholder = Поиск
+implant-admin-body-slot-title = Слот: { $slot }
+implant-admin-replace-button = Заменить
+implant-admin-confirm-title = Подтверждение
+implant-admin-confirm-replace = Заменить слот { $slot } на { $proto }?
+implant-admin-confirm-remove = Удалить имплант из слота { $slot }?
+implant-admin-tab-implants = Импланты
+implant-admin-tab-body = Тело
+implant-admin-tooltip-part = часть
+implant-admin-tooltip-organ = орган
+implant-admin-slot-eyes = Глаза
+implant-admin-slot-eyes_implant = Глазные импланты
+implant-admin-slot-left-arm = Левая рука
+# Локализация слотов. Установите '-' чтобы скрыть слот целиком.
+# Пример: implant-admin-slot-left-arm = Левая рука
