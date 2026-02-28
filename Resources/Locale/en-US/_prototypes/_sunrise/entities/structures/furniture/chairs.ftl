@@ -6,3 +6,5 @@ ent-ChairOfficeGrey = grey office chair
     .desc = { ent-ChairOfficeLight.desc }
 ent-ChairBarber = barber's chair
     .desc = { ent-StoolBase.desc }
+ent-ChairAbductor = abductor's chair
+    .desc = Being a kidnapper isn't all about the romance of interstellar travel and experiments in primitive biology. It's also about hours of monotonous sitting in front of monitoring monitors and meticulous work with surgical manipulators. Take care of your spine; kyphosis isn't exactly the hallmark of a tough alien kidnapper.
