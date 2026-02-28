@@ -45,6 +45,7 @@
     - WhitelistChameleon
     - SecurityHelmet
     - TopCovered # INTERACTIONS
+    - Helmet
   - type: HideLayerClothing
     layers:
       Hair: HEAD
@@ -134,6 +135,7 @@
     - WhitelistChameleon
     - SecurityHelmet
     - FullCovered # INTERACTIONS
+    - Helmet
   # SUNRISE EDIT
   - type: HideLayerClothing
     layers:
@@ -170,6 +172,7 @@
     tags:
     - WhitelistChameleon
     - FullCovered # INTERACTIONS
+    - Helmet
   # SUNRISE EDIT
 
 #Janitorial Bombsuit Helmet
@@ -213,6 +216,7 @@
   - type: Tag
     tags:
     - FullCovered # INTERACTIONS
+    - Helmet
   # SUNRISE EDIT
   - type: HideLayerClothing
     layers:
@@ -233,6 +237,7 @@
     tags:
     - WhitelistChameleon
     - FullCovered # INTERACTIONS
+    - Helmet
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: HideLayerClothing
@@ -330,6 +335,7 @@
     - WhitelistChameleon
     - FireHelmet
     - FullCovered # INTERACTIONS
+    - Helmet
   - type: HideLayerClothing
     layers:
       Hair: HEAD
@@ -363,6 +369,7 @@
     - FireHelmet
     - CorgiWearable
     - FullCovered # INTERACTIONS
+    - Helmet
   - type: HideLayerClothing
     layers:
       Hair: HEAD
