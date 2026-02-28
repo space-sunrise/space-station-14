@@ -1,12 +1,4 @@
 # Effect groups
-- type: loadoutEffectGroup
-  id: MasterMaid
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobComMaid
-      time: 36000 # 10 hrs
 
 # Jumpsuit
 - type: loadout
@@ -29,14 +21,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitLawyerBlack
 
-- type: loadout
-  id: ComMaidTacticalJumpskirt
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtTacticalMaid
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MasterMaid
-
 # Head
 - type: loadout
   id: ComMaidHurseHat
@@ -47,14 +31,6 @@
   id: ComMaidBonnyEars
   equipment:
     head: BunnyEars
-
-- type: loadout
-  id: ComMaidTacticalHeadband
-  equipment:
-    head: ClothingHeadHatTacticalMaidHeadband
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MasterMaid
 
 # Backpack
 - type: loadout
@@ -94,12 +70,3 @@
   id: ComMaidGlovesWhite
   equipment:
     gloves: ClothingHandsGlovesColorWhite
-
-- type: loadout
-  id: ComMaidGlovesTactical
-  equipment:
-    gloves: ClothingHandsTacticalMaidGloves
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MasterMaid
-
