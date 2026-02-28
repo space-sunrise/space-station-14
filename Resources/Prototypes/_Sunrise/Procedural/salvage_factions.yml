@@ -221,6 +221,7 @@
       cost: 50
       prob: 0.05
   difficulties:
+    - Moderate
     - Challenging
     - Difficult
     - Impossible
@@ -386,10 +387,10 @@
       cost: 10
       prob: 0.06
     - proto: MobSovietSoldierT2MechTimed
-      cost: 45
+      cost: 50
       prob: 0.02
     - proto: MobSovietSoldierT3MechTimed
-      cost: 75
+      cost: 80
       prob: 0.015
     - proto: MobSovietBearTimed
       cost: 10
@@ -401,9 +402,10 @@
       cost: 12
       prob: 0.04
     - proto: MobSovietCaptainTimed
-      cost: 20
+      cost: 30
       prob: 0.03
   difficulties:
+    - Moderate
     - Challenging
     - Difficult
     - Impossible

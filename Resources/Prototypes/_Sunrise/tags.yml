@@ -603,6 +603,12 @@
   id: SovietDungeon
 
 - type: Tag
+  id: SovietDungeonWEH
+
+- type: Tag
+  id: SovietDungeonRuine
+
+- type: Tag
   id: SovietRuineDungeon
 
 - type: Tag

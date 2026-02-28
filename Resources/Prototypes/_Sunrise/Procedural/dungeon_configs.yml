@@ -246,12 +246,12 @@
 
 # Sunrise: Soviet ruined expedition
 - type: dungeonConfig
-  id: SovietRuineDungeon
+  id: SovietDungeonRuine
   layers:
   - !type:PrefabDunGen
     roomWhitelist:
       tags:
-      - SovietRuineDungeon
+      - SovietDungeonRuine
     presets:
     - Bucket
     - Wow
@@ -307,14 +307,14 @@
       NorthWest: BrickTileWhiteInnerNw
       NorthEast: BrickTileWhiteInnerNe
 
-# Sunrise: Soviet WEH expedition (uses sovietWEH room atlas, vanilla Sunrise tables)
+#========================================================================
 - type: dungeonConfig
-  id: SovietDungeonWeh
+  id: SovietDungeonWEH
   layers:
   - !type:PrefabDunGen
     roomWhitelist:
       tags:
-      - SovietDungeonWeh
+      - SovietDungeonWEH
     presets:
     - Bucket
     - Wow
@@ -322,30 +322,30 @@
     - Tall
 
   - !type:CorridorDunGen
-    width: 5
-    tile: FloorConcreteMono
+    width: 4
+    tile: FloorConcrete
 
   - !type:DungeonEntranceDunGen
     count: 5
-    tile: FloorConcreteMono
+    tile: FloorOldConcreteMono
     contents: SovietDungeonEntrance
 
   - !type:RoomEntranceDunGen
-    tile: FloorConcreteMono
+    tile: FloorOldConcrete
     contents: SovietDungeonRoomEntrance
 
   - !type:EntranceFlankDunGen
-    tile: FloorConcreteMono
+    tile: FloorOldConcrete
     contents: SovietDungeonWindow
 
   - !type:WallMountDunGen
-    tile: FloorConcreteMono
+    tile: FloorOldConcrete
     contents: SovietDungeonWalls
 
   - !type:BoundaryWallDunGen
-    tile: FloorConcreteMono
-    wall: WallBrick
-    cornerWall: WallBrick
+    tile: FloorGrayConcrete
+    wall: WallReinforcedRust
+    cornerWall: WallReinforced
 
   - !type:AutoCablingDunGen
     entity: CableApcExtension
@@ -353,22 +353,139 @@
   - !type:CornerClutterDunGen
     contents: BaseClutter
 
+  - !type:CorridorClutterDunGen
+    contents: SovietCorridorsWeh
+    chance: 0.55
+
   - !type:CorridorDecalSkirtingDunGen
     cardinalDecals:
-      South: BrickTileWhiteLineS
-      East: BrickTileWhiteLineE
-      North: BrickTileWhiteLineN
-      West: BrickTileWhiteLineW
+      South: OldConcreteTrimLineS
+      East: OldConcreteTrimLineE
+      North: OldConcreteTrimLineN
+      West: OldConcreteTrimLineW
     cornerDecals:
-      SouthEast: BrickTileWhiteCornerSe
-      SouthWest: BrickTileWhiteCornerSw
-      NorthEast: BrickTileWhiteCornerNe
-      NorthWest: BrickTileWhiteCornerNw
+      SouthEast: OldConcreteTrimCornerSe
+      SouthWest: OldConcreteTrimCornerSw
+      NorthEast: OldConcreteTrimCornerNe
+      NorthWest: OldConcreteTrimCornerNw
     pocketDecals:
-      SouthWest: BrickTileWhiteInnerSw
-      SouthEast: BrickTileWhiteInnerSe
-      NorthWest: BrickTileWhiteInnerNw
-      NorthEast: BrickTileWhiteInnerNe
+      SouthWest: OldConcreteTrimInnerSw
+      SouthEast: OldConcreteTrimInnerSe
+      NorthWest: OldConcreteTrimInnerNw
+      NorthEast: OldConcreteTrimInnerNe
+
+- type: entityTable
+  id: SovietDungeonEntranceWeh
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: AirlockHatch
+
+- type: entityTable
+  id: SovietDungeonRoomEntranceWeh
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: AirlockHatch
+
+- type: entityTable
+  id: SovietDungeonWindowWeh
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: WallSolidRust
+    - id: PoweredSmallLight
+
+- type: entityTable
+  id: SovietDungeonWallsWeh
+  table: !type:GroupSelector
+    children:
+    # Posters
+    - id: PosterContrabandCommunistState
+    - id: PosterContrabandPunchShit
+    - id: PosterContrabandRevolt
+    - id: PosterContrabandRise
+    - id: PosterLegitWorkForAFuture
+
+- type: entityTable
+  id: SovietCorridorsWeh
+  table: !type:GroupSelector
+    children:
+    # Posters
+    - id: VendingMachineSovietSoda
+    - id: MachineFrameDestroyed
+    - id: Rack
+      weight: 6
+    - id: PoweredLightPostSmall
+      weight: 6
+    - id: Table
+      weight: 6
+    - id: BannerSovietRegular
+    - id: DecalSpawnerBloodSplatters
+      weight: 6
+    - id: GenericTank
+      weight: 6
+    - id: ClosetRadiationSuitFilled
+    - id: ClosetRadiationSuit
+    - id: DecalSpawnerDirtWide
+      weight: 15
+    - id: MobSovietTimedSpawner
+    - id: DecalSpawnerGraffiti
+      weight: 15
+    - id: RandomSpawner
+      weight: 15
+    - id: OreBox
+      weight: 22
+    - id: MaintenancePlantSpawner
+      weight: 6
+    - id: MaintenanceWeaponSpawner
+    - id: MaintenanceToolSpawner
+      weight: 6
+    - id: RandomMercenaryCorpseSpawner
+    - id: RandomSovietCorpseSpawner
+    - id: RandomArtifactSpawner20
+    - id: SpawnMobOreCrab
+      weight: 8
+    - id: LootSpawnerMedicalMinor
+    - id: LootSpawnerMaterialsSupplementary
+    - id: SalvageCanisterSpawner
+    - id: SalvageSpawnerScrapCommon
+    - id: SalvageSpawnerScrapValuable
+    - id: SalvageSpawnerTreasure
+    - id: SalvageLootSpawner
+    - id: BaseBarrelChemRadioactiveFilledUranium
+    - id: Bonfire
+      weight: 7
+    - id: BarrelFlaming
+      weight: 3
+    - id: AcousticGuitarInstrument
+    - id: SpawnerCrateUSSP
+    - id: LandMineExplosive
+    - id: PuddleBlood
+    - id: PuddleVomit
+    - id: BarrelChemFilledLube
+    - id: BarrelChemEmpty
+    - id: BarrelChemFilledPhosphorus
+    - id: BarrelChemFilledChlorine
+    - id: ClothingOuterArmorSovietPlateRandomSpawner
+      weight: 0.3
+    - id: MobSovietSoldierT2FinkaTimed
+      weight: 0.1
+    - id: MobSovietSoldierT2BottleTimed
+      weight: 0.1
+    - id: MobSovietBearAltTimed
+      weight: 0.08
+    - id: MobSovietSoldierMosinAltTimed
+      weight: 0.03
+    - id: MobSovietSoldierMosinTimed
+      weight: 0.03
+    - id: MobSovietSoldierT1SMGAltTimed
+      weight: 0.01
+    - id: MobSovietSoldierT2RifleTimed
+      weight: 0.005
+    - id: MobRandomSovietUSSPCorpse
+      weight: 0.005
+#========================================================================
 
 # Sunrise: Ship wreck expedition
 - type: dungeonConfig

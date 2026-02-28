@@ -91,6 +91,7 @@
   - BloodCult
   - Pirate
   - Soviet
+
 - type: npcFaction
   id: SimpleNeutral
 

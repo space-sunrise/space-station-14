@@ -15,7 +15,24 @@
 - type: salvageDungeonMod
   id: SovietStronghold
   desc: salvage-dungeon-mod-soviet-stronghold
-  proto: SovietDungeonWeh
+  proto: SovietDungeonWEH
+  biomes:
+    - Lava
+    - Grasslands
+    - Caves
+    - Snow
+  difficulties:
+    - Moderate
+    - Challenging
+    - Difficult
+  factions:
+    - Soviets
+    - PiratesT1
+
+- type: salvageDungeonMod
+  id: SovietStrongholdClassic
+  desc: salvage-dungeon-mod-soviet-stronghold
+  proto: SovietDungeon
   biomes:
     - Lava
     - Grasslands
@@ -59,7 +76,7 @@
 - type: salvageDungeonMod
   id: SovietRuineStronghold
   desc: salvage-dungeon-mod-soviet-stronghold
-  proto: SovietRuineDungeon
+  proto: SovietDungeonRuine
   biomes:
     - Lava
     - Grasslands
