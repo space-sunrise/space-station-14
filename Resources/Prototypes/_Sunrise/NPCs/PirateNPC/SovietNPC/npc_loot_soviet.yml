@@ -327,6 +327,8 @@
       prob: 0.7
     - id: PirateCashSpawner08
       prob: 0.7
+    - id: PirateCashSpawner08
+      prob: 0.5
     - id: LootSpawnerIndustrial
       prob: 0.3
     sound:
@@ -342,7 +344,21 @@
     - id: BoxShotgunSlug
       prob: 0.4
     - id: BoxShotgunSlug
-      prob: 0.2
+      prob: 0.15
+    - id: MagazineShotgunEmpty
+      prob: 0.5
+    - id: MagazineShotgunEmpty
+      prob: 0.3
+    - id: MagazineShotgunSlug
+      prob: 0.15
+    - id: MagazineShotgunSlug
+      prob: 0.15
+    - id: MagazineShotgun
+      prob: 0.15
+    - id: MagazineShotgun
+      prob: 0.1
+    - id: MagazineShotgunIncendiary
+      prob: 0.1
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 

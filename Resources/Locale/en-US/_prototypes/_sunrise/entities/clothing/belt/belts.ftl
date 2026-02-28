@@ -53,5 +53,7 @@ ent-ClothingBeltSovietMarineWebbing = SSF marine chest rig
 ent-ClothingBeltSovietMarineWebbingFilled = { ent-ClothingBeltSovietMarineWebbing }
     .suffix = Filled
     .desc = { ent-ClothingBeltSovietMarineWebbing.desc }
+ent-ClothingBeltLightSovietMarineWebbing = SSF light chest rig
+    .desc = A set of light webbing worn by soviet soldiers.
 ent-ClothingBeltSalvageMercWebbing = scrapper webbing
     .desc = Ideal for storing everything from tools, ammo, and salvage.

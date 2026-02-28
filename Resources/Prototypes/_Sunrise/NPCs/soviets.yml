@@ -10,10 +10,10 @@
   categories: [ Spawner ]
   components:
   # Allows ghosts/admins to quickly warp to soviets from the ghost teleport panel
-  # - type: GhostPanelAntagonistMarker
-  #   name: ghost-panel-antagonist-soviet-name
-  #   description: ghost-panel-antagonist-soviet-description
-  #   priority: 45
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-soviet-name
+    description: ghost-panel-antagonist-soviet-description
+    priority: 45
   - type: Damageable
     damageModifierSet: MobPirateT1
   - type: NpcFactionMember
@@ -113,15 +113,15 @@
       Male: MaleHuman
       Female: FemaleHuman
       Unsexed: MaleHuman
-  # - type: GhostRole
-  #   prob: 0.1
-  #   makeSentient: true
-  #   name: ghost-role-information-expedition-soviet-name
-  #   description: ghost-role-information-expedition-soviet-description
-  #   rules: ghost-role-information-expedition-soviet-rules
-  #   raffle:
-  #     settings: short
-  # - type: GhostTakeoverAvailable
+  - type: GhostRole
+    prob: 0.05
+    makeSentient: true
+    name: ghost-role-information-expedition-soviet-name
+    description: ghost-role-information-expedition-soviet-description
+    rules: ghost-role-information-expedition-soviet-rules
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
   - type: GhostOnMove
     mustBeDead: true
   - type: Puller

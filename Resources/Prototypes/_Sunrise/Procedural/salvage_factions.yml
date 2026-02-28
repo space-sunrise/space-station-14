@@ -380,12 +380,12 @@
     - proto: MobSovietT3ShotgunTimed
       cost: 12
       prob: 0.08
-    - proto: MobSovietT3ShotgunUraniumTimed
+    - proto: MobSovietT3ShotgunIncendiaryTimed
       cost: 14
       prob: 0.04
     - proto: MobSovietT3RifleTimed
       cost: 12
-      prob: 0.08
+      prob: 0.1
     - proto: MobSovietT2RaiderTimed
       cost: 10
       prob: 0.06
