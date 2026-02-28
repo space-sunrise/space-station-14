@@ -56,3 +56,5 @@ ent-ClothingBeltSovietMarineWebbing = РПС морпеха СССП
 ent-ClothingBeltSovietMarineWebbingFilled = { ent-ClothingBeltSovietMarineWebbing }
     .suffix = Заполнен
     .desc = { ent-ClothingBeltSovietMarineWebbing.desc }
+ent-ClothingBeltSalvageMercWebbing = разгрузка мусорщика
+    .desc = Идеально подходит для хранения инструментов, боеприпасов и добычи.

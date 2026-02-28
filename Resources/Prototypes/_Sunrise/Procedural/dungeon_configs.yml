@@ -469,20 +469,22 @@
     - id: BarrelChemFilledChlorine
     - id: ClothingOuterArmorSovietPlateRandomSpawner
       weight: 0.3
-    - id: MobSovietSoldierT2FinkaTimed
+    - id: MobSovietT2FinkaTimed
       weight: 0.1
-    - id: MobSovietSoldierT2BottleTimed
+    - id: MobSovietT2BottleTimed
       weight: 0.1
     - id: MobSovietBearAltTimed
       weight: 0.08
-    - id: MobSovietSoldierMosinAltTimed
+    - id: MobSovietMosinAltTimed
       weight: 0.03
-    - id: MobSovietSoldierMosinTimed
+    - id: MobSovietMosinTimed
       weight: 0.03
-    - id: MobSovietSoldierT1SMGAltTimed
+    - id: MobSovietT1SMGAltTimed
       weight: 0.01
-    - id: MobSovietSoldierT2RifleTimed
+    - id: MobSovietT2RifleTimed
       weight: 0.005
+    - id: MobSovietT3ShotgunUraniumTimed
+      weight: 0.004
     - id: MobRandomSovietUSSPCorpse
       weight: 0.005
 #========================================================================

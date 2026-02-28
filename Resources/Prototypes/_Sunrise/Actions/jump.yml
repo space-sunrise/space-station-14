@@ -26,7 +26,7 @@
     itemIconStyle: NoItem
     icon:
       sprite: _Sunrise/Actions/resomi.rsi
-      state: jump
+      state: bird_call
   - type: LimitedCharges
     maxCharges: 3
   - type: AutoRecharge

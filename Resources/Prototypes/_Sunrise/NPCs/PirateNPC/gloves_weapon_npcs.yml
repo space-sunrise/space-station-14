@@ -308,9 +308,6 @@
   - type: Clothing
     clothingVisuals:
       gloves:
-      - sprite: Clothing/Hands/Gloves/Color/color.rsi
-        state: equipped-HAND
-        color: "#535353"
       - sprite: Objects/Weapons/Guns/Pistols/viper.rsi
         state: inhand-left
 
@@ -1064,11 +1061,8 @@
   - type: Clothing
     clothingVisuals:
       gloves:
-      - sprite: Clothing/Hands/Gloves/Color/color.rsi
-        state: equipped-HAND
-        color: "#535353"
-      - sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
-        state: inhand-left
+      - sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
+        state: wielded-inhand-right
 
 # This is some proper cursed stuff: due to layering of clothes sprites, gloves displayed under outer clothes
 # So in order to make wielded weapon visible, I'm using neck slot which is drawn on top of outer suit layer.

@@ -1,4 +1,64 @@
 # MERCENARY NPC LOOT
+- type: entity
+  parent: MercenaryWebbingBox
+  id: SovietMarineWebbingBox
+  name: ussp bundle
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/soviet_webbing.rsi
+    state: icon
+
+- type: entity
+  parent: MercenaryWebbingBox
+  id: SovietLightWebbingBox
+  name: ussp bundle
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/lightsovietwebbing.rsi
+    state: icon
+
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: SovietMessengerGiftBox
+  name: soviet gear bundle
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#6a6a36"
+    - state: icon-sling
+      color: "#6a6a36"
+    - state: icon-clasp
+      color: "#bbbb7a"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#6a6a36"
+      - state: sling-equipped-BACKPACK
+        color: "#6a6a36"
+      - state: clasp-equipped-BACKPACK
+        color: "#bbbb7a"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#6a6a36"
+      - state: clasp-inhand-left
+        color: "#bbbb7a"
+      right:
+      - state: base-inhand-right
+        color: "#6a6a36"
+      - state: clasp-inhand-right
+        color: "#bbbb7a"
 
 #region TIER 1
 - type: entity
@@ -14,8 +74,8 @@
     - id: WeaponPistolMk58
       prob: 0.9
     # Armor
-    - id: ClothingOuterVestWebMerc
-      prob: 0.4
+    - id: ClothingOuterArmorSovietPlateRandomSpawner
+      prob: 0.6
 
     - id: PirateMedSpawner01
     # Bonus Loot T1
@@ -29,7 +89,7 @@
       path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: MercenaryWebbingBox
+  parent: SovietLightWebbingBox
   id: ClothingBeltWebbingSovietTier1Pistol
   categories: [ HideSpawnMenu ]
   components:
@@ -50,7 +110,7 @@
       path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: MercenaryDuffelGiftBox
+  parent: SovietMessengerGiftBox
   id: ClothingBackpackDuffelMercenaryTier1Mosin
   categories: [ HideSpawnMenu ]
   components:
@@ -62,9 +122,8 @@
     - id: WeaponSniperMosin
       prob: 0.9
     # Armor
-    - id: ClothingOuterVestWebMerc
-      prob: 0.4
-
+    - id: ClothingOuterArmorSovietPlateRandomSpawner
+      prob: 0.6
     - id: PirateMedSpawner01
     # Bonus Loot T2
     - id: PirateCashSpawner03
@@ -84,7 +143,7 @@
       path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: MercenaryWebbingBox
+  parent: SovietMarineWebbingBox
   id: ClothingBeltWebbingMercenaryTier1Mosin
   categories: [ HideSpawnMenu ]
   components:
@@ -203,7 +262,7 @@
       path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: MercenaryWebbingBox
+  parent: SovietMarineWebbingBox
   id: ClothingBeltWebbingSovietTier2Revolver
   categories: [ HideSpawnMenu ]
   components:
@@ -236,12 +295,25 @@
     # Cash
     - id: PirateCashSpawner03
     # Weapons
-    - id: WeaponShotgunKammerer
-      prob: 0.6
-    # Armor
-    - id: ClothingOuterArmorBasicSlim
+    - id: WeaponShotgunGA12
+      prob: 0.75
+      orGroup: Weapons
+    - id: WeaponShotgunCombat
+      prob: 0.5
+      orGroup: Weapons
+    - id: WeaponShotgunBulldogBiocode
       prob: 0.4
-
+      orGroup: Weapons
+    - id: WeaponShotgunBulldog
+      prob: 0.1
+      orGroup: Weapons
+    - id: MagazineShotgunXL
+      prob: 0.05
+      orGroup: Weapons
+    # Armor
+    - id: ClothingOuterHeavyHardsuitUSSP
+      prob: 0.3
+      orGroup: Weapons
     - id: PirateMedSpawner01
     # Bonus Loot T2
     - id: PirateCashSpawner03
@@ -261,7 +333,7 @@
       path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: MercenaryWebbingBox
+  parent: SovietMarineWebbingBox
   id: ClothingBeltWebbingMercenaryTier2Shotgun
   categories: [ HideSpawnMenu ]
   components:
@@ -313,7 +385,7 @@
       path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: MercenaryWebbingBox
+  parent: SovietMarineWebbingBox
   id: ClothingBeltMercenaryTier3Medic
   categories: [ HideSpawnMenu ]
   components:
@@ -391,13 +463,10 @@
       path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: MercenaryWebbingBox
+  parent: SovietMarineWebbingBox
   id: ClothingBeltMercenaryTier3Assault
   categories: [ HideSpawnMenu ]
   components:
-  - type: Sprite
-    sprite: Clothing/Belt/militarywebbing.rsi
-    state: icon
   - type: SpawnItemsOnUse
     items:
     - id: MagazineRifleFMJ
@@ -429,8 +498,8 @@
     - id: WeaponSniperDragunov
       prob: 0.25
     # Armor
-    - id: ClothingOuterVestWebMerc
-      prob: 0.4
+    - id: ClothingOuterArmorSovietPlateRandomSpawner
+      prob: 0.6
     # Items
     - id: MagazineBoxRifleMachineFMJ
       prob: 0.7

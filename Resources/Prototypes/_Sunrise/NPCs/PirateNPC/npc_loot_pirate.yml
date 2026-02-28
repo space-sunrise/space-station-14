@@ -772,7 +772,7 @@
       path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: MercenaryWebbingBox
+  parent: SovietLightWebbingBox
   id: ClothingBeltWebbingMercenaryTier1Pistol
   categories: [ HideSpawnMenu ]
   components:

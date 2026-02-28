@@ -347,49 +347,52 @@
   id: Soviets
   desc: salvage-faction-soviets
   entries:
-    - proto: MobSovietSoldierKnifeTimed
+    - proto: MobSovietKnifeTimed
       cost: 4
       prob: 0.1
-    - proto: MobSovietSoldierPistolTimed
+    - proto: MobSovietPistolTimed
       cost: 6
       prob: 0.15
-    - proto: MobSovietSoldierMosinTimed
+    - proto: MobSovietMosinTimed
       cost: 7
       prob: 0.14
-    - proto: MobSovietSoldierT1SMGAltTimed
+    - proto: MobSovietT1SMGAltTimed
       cost: 7
       prob: 0.12
-    - proto: MobSovietSoldierMosinAltTimed
+    - proto: MobSovietMosinAltTimed
       cost: 7
       prob: 0.08
-    - proto: MobSovietSoldierT2BottleTimed
+    - proto: MobSovietT2BottleTimed
       cost: 7
       prob: 0.08
-    - proto: MobSovietSoldierT2FinkaTimed
+    - proto: MobSovietT2FinkaTimed
       cost: 7
       prob: 0.08
-    - proto: MobSovietSoldierT2RevolverTimed
+    - proto: MobSovietT2RevolverTimed
       cost: 9
       prob: 0.07
-    - proto: MobSovietSoldierT2RifleTimed
+    - proto: MobSovietT2RifleTimed
       cost: 9
       prob: 0.08
-    - proto: MobSovietSoldierT2RifleWTimed
+    - proto: MobSovietT2RifleWTimed
       cost: 9
       prob: 0.06
-    - proto: MobSovietSoldierT3ShotgunTimed
+    - proto: MobSovietT3ShotgunTimed
       cost: 12
       prob: 0.08
-    - proto: MobSovietSoldierT3RifleTimed
+    - proto: MobSovietT3ShotgunUraniumTimed
+      cost: 14
+      prob: 0.04
+    - proto: MobSovietT3RifleTimed
       cost: 12
       prob: 0.08
-    - proto: MobSovietSoldierT2RaiderTimed
+    - proto: MobSovietT2RaiderTimed
       cost: 10
       prob: 0.06
-    - proto: MobSovietSoldierT2MechTimed
+    - proto: MobSovietT2MechTimed
       cost: 50
       prob: 0.02
-    - proto: MobSovietSoldierT3MechTimed
+    - proto: MobSovietT3MechTimed
       cost: 80
       prob: 0.015
     - proto: MobSovietBearTimed

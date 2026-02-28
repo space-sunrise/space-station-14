@@ -191,7 +191,7 @@
   parent:
   - MobSovietBase
   - MobHumanoidHostileAISimpleMelee
-  id: MobSovietSoldierKnife
+  id: MobSovietKnife
   description: Low-ranking soldiers armed with a variety of surplus weapons.
   components:
   - type: Loadout
@@ -202,11 +202,9 @@
     layers:
     - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
       state: human
-    - sprite: Clothing/Uniforms/Jumpsuit/mercenary.rsi
+    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
       state: equipped-INNERCLOTHING
-    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/alcoholichka.rsi
-      state: equipped-INNERCLOTHING
-    - sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
+    - sprite: _Starlight/Objects/Clothing/OuterClothing/Armor/sovietflak.rsi
       state: equipped-OUTERCLOTHING
     - sprite: Clothing/Mask/merc.rsi
       state: equipped-MASK
@@ -218,7 +216,7 @@
   parent:
   - MobMovementSpeedModifierRanged
   - MobSovietBase
-  id: MobSovietSoldierPistol
+  id: MobSovietPistol
   description: Low-ranking soldiers armed with a variety of surplus weapons.
   components:
   - type: Loadout
@@ -229,16 +227,16 @@
     layers:
     - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
       state: human
-    - sprite: Clothing/Uniforms/Jumpsuit/mercenary.rsi
+    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
       state: equipped-INNERCLOTHING
-    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/alcoholichka.rsi
-      state: equipped-INNERCLOTHING
-    - sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
+    - sprite: _Starlight/Objects/Clothing/OuterClothing/Armor/sovietflak.rsi
       state: equipped-OUTERCLOTHING
     - sprite: Clothing/Mask/merc.rsi
       state: equipped-MASK
     - sprite: Clothing/Head/Helmets/merc_helmet.rsi
       state: equipped-HELMET
+    - sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+      state: equipped-HAND
   - type: BasicEntityAmmoProvider
     proto: CartridgePistolFMJ
     capacity: 11
@@ -261,7 +259,7 @@
 - type: entity
   name: soldier
   parent: MobSovietBase
-  id: MobSovietSoldierMosin
+  id: MobSovietMosin
   description: Low-ranking soldiers armed with a variety of surplus weapons.
   components:
   - type: Loadout
@@ -299,7 +297,7 @@
   parent:
   - MobMovementSpeedModifierRanged
   - MobSovietBase
-  id: MobSovietSoldierT1SMGAlt
+  id: MobSovietT1SMGAlt
   description: A Soviet drifter armed in light smg.
   components:
   - type: Loadout
@@ -339,8 +337,8 @@
 
 - type: entity
   name: soldier
-  parent: MobSovietSoldierMosin
-  id: MobSovietSoldierMosinAlt
+  parent: MobSovietMosin
+  id: MobSovietMosinAlt
   description: A Soviet marksman in old civilian winter gear.
   components:
   - type: Loadout
@@ -369,7 +367,7 @@
   - MobSovietMarineMelee
   - MobSovietBase
   - MobHumanoidHostileAISimpleMelee
-  id: MobSovietSoldierT2Bottle
+  id: MobSovietT2Bottle
   description: Booze marine with most dangerous weapon. Bottle roze!.
   components:
   - type: Loadout
@@ -393,7 +391,7 @@
   - MobSovietMarineMelee
   - MobSovietBase
   - MobHumanoidHostileAISimpleMelee
-  id: MobSovietSoldierT2Finka
+  id: MobSovietT2Finka
   description: Booze marine with most dangerous weapon. Bottle roze!.
   components:
   - type: Loadout
@@ -417,7 +415,7 @@
   - MobSovietMarineMelee
   - MobMovementSpeedModifierRanged
   - MobSovietBase
-  id: MobSovietSoldierT2Revolver
+  id: MobSovietT2Revolver
   description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
   components:
   - type: Loadout
@@ -456,8 +454,8 @@
   name: marine ranger
   parent:
   - MobSovietMarineRanged
-  - MobSovietSoldierT3Rifle
-  id: MobSovietSoldierT2Rifle
+  - MobSovietT3Rifle
+  id: MobSovietT2Rifle
   description: A marine veteran in battered USSP uniform.
   components:
   - type: Loadout
@@ -481,8 +479,8 @@
   name: marine ranger
   parent:
   - MobSovietMarineRanged
-  - MobSovietSoldierT3Rifle
-  id: MobSovietSoldierT2RifleW
+  - MobSovietT3Rifle
+  id: MobSovietT2RifleW
   description: A marine veteran in an old winter command coat.
   components:
   - type: Loadout
@@ -511,7 +509,7 @@
   parent:
   - MobSovietMarineRanged
   - MobSovietBase
-  id: MobSovietSoldierT2Raider
+  id: MobSovietT2Raider
   components:
   - type: Loadout
     prototypes:
@@ -558,7 +556,7 @@
   - MobSovietMarineRanged
   - MobMovementSpeedModifierRanged
   - MobSovietBase
-  id: MobSovietSoldierT3Shotgun
+  id: MobSovietT3Shotgun
   description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
   components:
   - type: Loadout
@@ -584,26 +582,34 @@
       path: /Audio/_Sunrise/Effects/silence.ogg
   - type: BasicEntityAmmoProvider
     proto: ShellShotgun
-    capacity: 7
-    count: 7
+    capacity: 8
+    count: 8
   - type: Gun
-    showExamineText: false
     fireRate: 2
-    minAngle: 10
-    maxAngle: 20
-    angleIncrease: 5
-    angleDecay: 3
-    selectedMode: SemiAuto
+    selectedMode: FullAuto
     availableModes:
-    - SemiAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    - FullAuto
+    soundGunshot:
+      collection: xm1014
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+
+- type: entity
+  parent:
+  - MobSovietT3Shotgun
+  id: MobSovietT3ShotgunIncendiary
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ShellShotgunIncendiary
+    capacity: 8
+    count: 8
 
 - type: entity
   name: marine ranger
   parent:
   - MobMovementSpeedModifierRanged
   - MobSovietBase
-  id: MobSovietSoldierT3Rifle
+  id: MobSovietT3Rifle
   components:
   - type: Loadout
     prototypes:
@@ -617,6 +623,9 @@
       state: equipped-OUTERCLOTHING
     - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-light.rsi
       state: equipped-HELMET
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-light.rsi
+      state: on-equipped-HELMET
+      shader: unshaded
   - type: BatteryAmmoProvider
     proto: CartridgeLightRifleFMJ
     fireCost: 1
@@ -642,7 +651,7 @@
   name: Molot
   description: The Light Mech USSP, a communist variant of the Gygax, features light armor and a powerful auto-shotgun gun.
   parent: [MobHostileBossBase, MobSovietBase, MobPirateSparkEffectBase]
-  id: MobSovietSoldierT2Mech
+  id: MobSovietT2Mech
   components:
   - type: Loadout
     prototypes:
@@ -780,7 +789,7 @@
   name: Doll House
   description: The Heavy Mech USSP, a communist variant of the Durand, features stronger armor and a powerful machine gun.
   parent: [MobHostileBossBase, MobSovietBase, MobPirateSparkEffectBase]
-  id: MobSovietSoldierT3Mech
+  id: MobSovietT3Mech
   components:
   - type: Loadout
     prototypes:
@@ -1102,22 +1111,23 @@
       state: icon
   - type: RandomSpawner
     prototypes:
-      - MobSovietSoldierKnifeTimed
-      - MobSovietSoldierPistolTimed
-      - MobSovietSoldierMosinTimed
-      - MobSovietSoldierT1SMGAltTimed
-      - MobSovietSoldierMosinAltTimed
-      - MobSovietSoldierT2BottleTimed
-      - MobSovietSoldierT2FinkaTimed
-      - MobSovietSoldierT2RevolverTimed
-      - MobSovietSoldierT2RifleTimed
-      - MobSovietSoldierT2RifleWTimed
-      - MobSovietSoldierT3ShotgunTimed
-      - MobSovietSoldierT3RifleTimed
-      - MobSovietSoldierT2RaiderTimed
+      - MobSovietKnifeTimed
+      - MobSovietPistolTimed
+      - MobSovietMosinTimed
+      - MobSovietT1SMGAltTimed
+      - MobSovietMosinAltTimed
+      - MobSovietT2BottleTimed
+      - MobSovietT2FinkaTimed
+      - MobSovietT2RevolverTimed
+      - MobSovietT2RifleTimed
+      - MobSovietT2RifleWTimed
+      - MobSovietT3ShotgunTimed
+      - MobSovietT3ShotgunIncendiaryTimed
+      - MobSovietT3RifleTimed
+      - MobSovietT2RaiderTimed
     rarePrototypes:
-      - MobSovietSoldierT2MechTimed
-      - MobSovietSoldierT3MechTimed
+      - MobSovietT2MechTimed
+      - MobSovietT3MechTimed
       - MobSovietBearTimed
       - MobSovietBearAltTimed
       - MobSovietSpaceBearTimed
@@ -1126,64 +1136,68 @@
 
 # region Timed-despawn soviet variants (inherit original + MobSovietTimedDespawn)
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierKnife]
-  id: MobSovietSoldierKnifeTimed
+  parent: [MobSovietTimedDespawn, MobSovietKnife]
+  id: MobSovietKnifeTimed
 
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierPistol]
-  id: MobSovietSoldierPistolTimed
+  parent: [MobSovietTimedDespawn, MobSovietPistol]
+  id: MobSovietPistolTimed
 
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierMosin]
-  id: MobSovietSoldierMosinTimed
+  parent: [MobSovietTimedDespawn, MobSovietMosin]
+  id: MobSovietMosinTimed
 
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierT1SMGAlt]
-  id: MobSovietSoldierT1SMGAltTimed
+  parent: [MobSovietTimedDespawn, MobSovietT1SMGAlt]
+  id: MobSovietT1SMGAltTimed
 
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierMosinAlt]
-  id: MobSovietSoldierMosinAltTimed
+  parent: [MobSovietTimedDespawn, MobSovietMosinAlt]
+  id: MobSovietMosinAltTimed
 
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierT2Bottle]
-  id: MobSovietSoldierT2BottleTimed
+  parent: [MobSovietTimedDespawn, MobSovietT2Bottle]
+  id: MobSovietT2BottleTimed
 
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierT2Finka]
-  id: MobSovietSoldierT2FinkaTimed
+  parent: [MobSovietTimedDespawn, MobSovietT2Finka]
+  id: MobSovietT2FinkaTimed
 
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierT2Revolver]
-  id: MobSovietSoldierT2RevolverTimed
+  parent: [MobSovietTimedDespawn, MobSovietT2Revolver]
+  id: MobSovietT2RevolverTimed
 
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierT2Rifle]
-  id: MobSovietSoldierT2RifleTimed
+  parent: [MobSovietTimedDespawn, MobSovietT2Rifle]
+  id: MobSovietT2RifleTimed
 
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierT2RifleW]
-  id: MobSovietSoldierT2RifleWTimed
+  parent: [MobSovietTimedDespawn, MobSovietT2RifleW]
+  id: MobSovietT2RifleWTimed
 
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierT3Shotgun]
-  id: MobSovietSoldierT3ShotgunTimed
+  parent: [MobSovietTimedDespawn, MobSovietT3Shotgun]
+  id: MobSovietT3ShotgunTimed
 
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierT3Rifle]
-  id: MobSovietSoldierT3RifleTimed
+  parent: [MobSovietTimedDespawn, MobSovietT3ShotgunIncendiary]
+  id: MobSovietT3ShotgunIncendiaryTimed
 
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierT2Raider]
-  id: MobSovietSoldierT2RaiderTimed
+  parent: [MobSovietTimedDespawn, MobSovietT3Rifle]
+  id: MobSovietT3RifleTimed
 
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierT2Mech]
-  id: MobSovietSoldierT2MechTimed
+  parent: [MobSovietTimedDespawn, MobSovietT2Raider]
+  id: MobSovietT2RaiderTimed
 
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierT3Mech]
-  id: MobSovietSoldierT3MechTimed
+  parent: [MobSovietTimedDespawn, MobSovietT2Mech]
+  id: MobSovietT2MechTimed
+
+- type: entity
+  parent: [MobSovietTimedDespawn, MobSovietT3Mech]
+  id: MobSovietT3MechTimed
 
 - type: entity
   parent: [MobSovietTimedDespawn, MobSovietCaptain]
@@ -1203,17 +1217,17 @@
 
 # Backward-compat timed aliases for old IDs used by procedural spawners/maps.
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierKnife]
-  id: MobSovietSoldierKnifeAltTimed
+  parent: [MobSovietTimedDespawn, MobSovietKnife]
+  id: MobSovietKnifeAltTimed
 
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierT2Rifle]
-  id: MobSovietSoldierT2RifleWAssaultTimed
+  parent: [MobSovietTimedDespawn, MobSovietT2Rifle]
+  id: MobSovietT2RifleWAssaultTimed
 
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierT2Rifle]
-  id: MobSovietSoldierT2RifleWAssaultGreenTimed
+  parent: [MobSovietTimedDespawn, MobSovietT2Rifle]
+  id: MobSovietT2RifleWAssaultGreenTimed
 
 - type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSoldierT2RifleW]
-  id: MobSovietSoldierT2RifleWAssaultWinterTimed
+  parent: [MobSovietTimedDespawn, MobSovietT2RifleW]
+  id: MobSovietT2RifleWAssaultWinterTimed
