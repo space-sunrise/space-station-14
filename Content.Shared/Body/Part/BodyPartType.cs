@@ -18,9 +18,9 @@ namespace Content.Shared.Body.Part
         Foot,
         Tail,
         Back,
-        // Sunrise - start
+        // Sunrise - Start
         Dreadlocks,
         Rings
-        // Sunrise - end
+        // Sunrise - End
     }
 }

@@ -33,9 +33,9 @@ namespace Content.Shared.Humanoid
         Back,  // SUNRISE
 
         Other,
-        // Sunrise - start
+        // Sunrise - Start
         Rings,
         Dreadlocks
-        // Sunrise - end
+        // Sunrise - End
     }
 }
