@@ -27,7 +27,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 15 #sunrise-edit
+        Blunt: 10
   - type: StaminaDamageOnCollide
     damage: 35 #sunrise-edit, 3 hits to stun
 
