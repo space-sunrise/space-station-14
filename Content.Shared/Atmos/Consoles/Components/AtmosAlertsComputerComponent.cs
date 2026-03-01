@@ -243,14 +243,9 @@ public sealed class AtmosAlertsComputerDeviceSilencedMessage : BoundUserInterfac
 
 // Sunrise-start
 [Serializable, NetSerializable]
-public sealed class AtmosAlertsComputerAlertSoundToggleMessage : BoundUserInterfaceMessage
+public sealed class AtmosAlertsComputerAlertSoundToggleMessage(bool enabled) : BoundUserInterfaceMessage
 {
-    public bool Enabled;
-
-    public AtmosAlertsComputerAlertSoundToggleMessage(bool enabled)
-    {
-        Enabled = enabled;
-    }
+    public bool Enabled = enabled;
 }
 // Sunrise-end
 

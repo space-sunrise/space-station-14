@@ -204,7 +204,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
                     _appearance.SetData(ent, AtmosAlertsComputerVisuals.ComputerLayerScreen, (int) highestAlert, entAppearance);
 
                 // Sunrise-start
-                if (HasComp<ActivatableUIRequiresPowerCellComponent>(ent) && TryComp<PowerCellDrawComponent>(ent, out _))
+                if (HasComp<ActivatableUIRequiresPowerCellComponent>(ent) && HasComp<PowerCellDrawComponent>(ent))
                 {
                     if (_cell.HasActivatableCharge(ent) || _cell.HasDrawCharge(ent))
                     {
