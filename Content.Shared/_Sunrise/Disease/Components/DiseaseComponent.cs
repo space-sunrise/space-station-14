@@ -178,6 +178,13 @@ public sealed partial class DiseaseData : ReagentData
     [DataField]
     public List<ProtoId<BodyPrototype>> BodyWhitelist = new();
 
+    /// <summary>
+    ///     Цвет штамма.
+    /// </summary>
+    [DataField]
+    [ViewVariables(VVAccess.ReadOnly)]
+    public Color Color = Color.Yellow;
+
     public DiseaseData()
     {
         InitializeWhitelist();

@@ -19,6 +19,7 @@ public sealed class SentientDiseaseSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly DiseaseSystem _diseaseSystem = default!;
+    [Dependency] private readonly DiseaseInfectionCloudSystem _diseaseCloud = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -261,6 +262,8 @@ public sealed class SentientDiseaseSystem : EntitySystem
                 _diseaseSystem.RefreshSymptoms((diseaseUid, diseaseComponent));
             }
         }
+
+        _diseaseCloud.UpdateInfectionForStrain(source.Data);
     }
 
     public bool TryAddPrimaryInfected(EntityUid uid, EntityUid target, SentientDiseaseComponent? component = null)

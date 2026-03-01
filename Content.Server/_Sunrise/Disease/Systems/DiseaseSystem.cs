@@ -23,6 +23,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Physics;
 using Content.Shared._Sunrise.Disease.Symptoms;
+using Robust.Shared.Toolshed.Syntax;
 
 namespace Content.Server._Sunrise.Disease.Systems;
 
@@ -548,6 +549,27 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         RaiseLocalEvent(uid, new CureDiseaseEvent(uid));
 
         RemComp<DiseaseComponent>(uid);
+    }
+
+    public float GetInfectionInfectivity(EntityUid target, DiseaseComponent? component = null)
+    {
+        if (!Resolve(target, ref component))
+            return 0f;
+
+        return GetInfectionInfectivity(target, component.Data);
+    }
+
+    public float GetInfectionInfectivity(EntityUid target, DiseaseData data)
+    {
+        var infectivity = data.Infectivity;
+
+        foreach (var symptomId in data.ActiveSymptom)
+        {
+            if (_prototype.TryIndex(symptomId, out var proto))
+                infectivity += proto.AddInfectivity;
+        }
+
+        return infectivity;
     }
 
     /// <summary>

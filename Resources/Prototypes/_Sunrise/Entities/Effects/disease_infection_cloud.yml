@@ -1,0 +1,32 @@
+- type: entity
+  id: SunriseDiseaseInfectionCloud
+  name: infection cloud
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: Fixtures
+    fixtures:
+      cloud:
+        hard: false
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+  - type: TimedDespawn
+    lifetime: 10
+  - type: ActiveEdgeSpreader
+  - type: EdgeSpreader
+    id: SunriseDiseaseCloud
+  - type: DiseaseInfectionCloud
+    infectionChance: 0.3
+    spreadAmount: 4
+  - type: Tag
+    tags:
+    - HideContextMenu

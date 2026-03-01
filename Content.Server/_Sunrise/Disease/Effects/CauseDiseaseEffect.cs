@@ -54,15 +54,7 @@ public sealed partial class CauseDiseaseEntityEffectsSystem : EntityEffectSystem
             return;
 
         var infectionData = (DiseaseData)data.CloneForInfection();
-        var infectivity = 0f;
-        infectionData.Infectivity = data.Infectivity;
-
-        // Фоллбек: считаем по симптомам
-        foreach (var symptomId in infectionData.ActiveSymptom)
-        {
-            if (_prototypeManager.TryIndex(symptomId, out var proto))
-                infectivity += proto.AddInfectivity;
-        }
+        var infectivity = _diseaseSystem.GetInfectionInfectivity(entity.Owner, infectionData);
 
         var finalChance = Math.Clamp(infectivity, 0f, 1.0f);
 
