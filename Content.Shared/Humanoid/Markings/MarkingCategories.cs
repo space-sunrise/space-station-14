@@ -49,10 +49,10 @@ namespace Content.Shared.Humanoid.Markings
                 HumanoidVisualLayers.RFoot => MarkingCategories.Legs,
                 HumanoidVisualLayers.Tail => MarkingCategories.Tail,
                 HumanoidVisualLayers.Back => MarkingCategories.Back, // SUNRISE
-                // Sunrise start
+                // Sunrise - start
                 HumanoidVisualLayers.Dreadlocks => MarkingCategories.Dreadlocks,
                 HumanoidVisualLayers.Rings => MarkingCategories.Rings,
-                // Sunrise end
+                // Sunrise - end
                 _ => MarkingCategories.Overlay,
             };
         }
