@@ -21,7 +21,6 @@
     - type: VampireAction
       bloodToUnlock: 0
       bloodCost: 0
-
 - type: entity
   parent: BaseAction
   id: ActionVampireGlare

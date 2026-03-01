@@ -18,6 +18,7 @@ vampire-not-enough-blood = Недостаточно крови.
 vampire-mouth-covered = Ваш рот закрыт!
 vampire-drink-invalid-target = Вы не можете пить кровь вампиров или их рабов.
 vampire-target-protected-by-faith = Этот человек защищён своей верой!
+vampire-target-sickly = Кровь этой персоны грязна и должна быть очищена.
 vampire-drink-target-maxed = Вы уже выпили { $amount } единиц крови у этой цели.
 vampire-drink-target-hard-max = Вы выпили максимум крови у этой цели ({ $amount } единиц).
 vampire-full-power-achieved = Ваша вампирическая сущность достигает полной силы!
