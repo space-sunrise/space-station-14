@@ -19,8 +19,10 @@ namespace Content.Shared.Humanoid.Markings
         Tail,
         Overlay,
         Back, // SUNRISE
-        Dreadlocks, // SUNRISE
-        Rings // SUNRISE
+        // Sunrise start
+        Dreadlocks,
+        Rings
+        // Sunrise end
     }
 
     public static class MarkingCategoriesConversion
@@ -47,8 +49,10 @@ namespace Content.Shared.Humanoid.Markings
                 HumanoidVisualLayers.RFoot => MarkingCategories.Legs,
                 HumanoidVisualLayers.Tail => MarkingCategories.Tail,
                 HumanoidVisualLayers.Back => MarkingCategories.Back, // SUNRISE
+                // Sunrise start
                 HumanoidVisualLayers.Dreadlocks => MarkingCategories.Dreadlocks,
                 HumanoidVisualLayers.Rings => MarkingCategories.Rings,
+                // Sunrise end
                 _ => MarkingCategories.Overlay,
             };
         }

@@ -15,8 +15,6 @@ public static class BodyParts
         "left foot" => BodyPartType.Foot,
         "right foot" => BodyPartType.Foot,
         "tail" => BodyPartType.Tail,
-        "dreadlocks" => BodyPartType.Dreadlocks,
-        "rings" => BodyPartType.Rings,
         _ => BodyPartType.Other,
     };
 }
