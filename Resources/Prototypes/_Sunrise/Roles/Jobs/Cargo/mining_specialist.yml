@@ -12,7 +12,7 @@
   icon: "JobIconMiner"
   startingGear: MiningSpecialistGear
   supervisors: job-supervisors-qm
-  canBeAntag: false #Работать а не антажить!
+  canBeAntag: true
   access:
   - Cargo
   - Salvage
