@@ -5,8 +5,8 @@ barsign-prototype-description-alcoholic = Наливай и всё. Наступ
 
 ## RNDmoment
 
-barsign-prototype-name-RNDmoment = РНД ситуация
-barsign-prototype-description-RNDmoment = Справится ли РНД в этот раз?
+barsign-prototype-name-RNDmoment = НИО ситуация
+barsign-prototype-description-RNDmoment = Справится ли НИО в этот раз?
 
 ## Aliensjaws
 

@@ -729,6 +729,8 @@
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellRobotTool
         locked: true
+  - type: PowerCellDraw
+    useCharge: 0
 
 - type: entity
   name: borg plasma cutter
