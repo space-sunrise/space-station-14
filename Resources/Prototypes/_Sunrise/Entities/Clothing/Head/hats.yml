@@ -211,7 +211,7 @@
 # SUNRISE EDIT
 - type: entity
   parent: ClothingHeadHatDetGadget
-  id: Sunrise-ClothingHeadHatDetGadget
+  id: SunriseClothingHeadHatDetGadget
 # SUNRISE EDIT
 
 - type: entity

@@ -19,6 +19,7 @@
         mask:
         - MachineMask
         layer:
+        - Opaque # Sunrise-Edit
         - GlassAirlockLayer
   - type: InteractionOutline
   - type: Construction
