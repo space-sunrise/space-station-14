@@ -1,7 +1,6 @@
 using Content.Shared.Atmos;
 using Content.Shared.Procedural; // Sunrise-Edit
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List; // Sunrise-Edit
 
 namespace Content.Shared.Salvage.Expeditions.Modifiers;
 

@@ -1,3 +1,6 @@
+using Content.Shared.Procedural; // Sunrise-Edit
+using Robust.Shared.Prototypes;
+
 namespace Content.Shared.Salvage.Expeditions.Modifiers;
 
 public interface ISalvageMod
@@ -12,5 +15,5 @@ public interface ISalvageMod
     /// </summary>
     float Cost { get; }
 
-    List<string>? Difficulties { get; } // Sunrise-Edit
+    List<ProtoId<SalvageDifficultyPrototype>>? Difficulties { get; } // Sunrise-Edit
 }

@@ -1,6 +1,5 @@
-using Content.Shared.Procedural;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List; // Sunrise-Edit
+using Content.Shared.Procedural; // Sunrise-Edit
 
 namespace Content.Shared.Salvage.Expeditions.Modifiers;
 
@@ -19,16 +18,14 @@ public sealed partial class SalvageDungeonModPrototype : IPrototype, IBiomeSpeci
     [DataField]
     public List<ProtoId<SalvageBiomeModPrototype>>? Biomes { get; private set; } = null;
 
-    // Sunrise-Start
-    [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<SalvageDifficultyPrototype>))]
-    public List<string>? Difficulties { get; private set; } = null;
+    [DataField]
+    public List<ProtoId<SalvageDifficultyPrototype>>? Difficulties { get; private set; } = null; // Sunrise-Edit
 
     /// <summary>
     /// Which factions can spawn on this dungeon; any if empty.
     /// </summary>
     [DataField]
     public List<ProtoId<SalvageFactionPrototype>>? Factions { get; private set; } = null;
-    // Sunrise-End
 
     /// <summary>
     /// The config to use for spawning the dungeon.
