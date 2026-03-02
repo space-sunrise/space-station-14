@@ -3,3 +3,9 @@
   files:
     - /Audio/_Sunrise/Voice/Swine/swine_scream1.ogg
     - /Audio/_Sunrise/Voice/Swine/swine_scream2.ogg
+
+- type: soundCollection
+  id: SwineOinks
+  files:
+    - /Audio/_Sunrise/Voice/Swine/swine_oink_1.ogg
+    - /Audio/_Sunrise/Voice/Swine/swine_oink_2.ogg

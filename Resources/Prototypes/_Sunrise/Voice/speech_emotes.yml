@@ -110,7 +110,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: [хрю!]
+  chatMessages: [хрюкает!]
   chatTriggers:
   - хрюкает.
   - хрюкает!

@@ -137,6 +137,8 @@
   sounds:
     Scream:
       collection: SwineScreams
+    Oink:
+      collection: SwineOinks
     Laugh:
       collection: MaleLaugh
     Sneeze:
