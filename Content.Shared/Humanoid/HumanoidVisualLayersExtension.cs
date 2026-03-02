@@ -91,10 +91,12 @@ namespace Content.Shared.Humanoid
                     // use the Sublayers method to hide the rest of the parts,
                     // if that's what you're looking for
                     return HumanoidVisualLayers.Head;
+                // Sunrise - Start
                 case BodyPartType.Dreadlocks:
                     return HumanoidVisualLayers.Dreadlocks;
                 case BodyPartType.Rings:
                     return HumanoidVisualLayers.Rings;
+                // Sunrise - End
                 case BodyPartType.Arm:
                     switch (part.Symmetry)
                     {
