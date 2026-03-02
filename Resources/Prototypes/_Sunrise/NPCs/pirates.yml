@@ -518,6 +518,7 @@
   - type: Sprite
     layers:
     - state: red
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: RandomSpawner

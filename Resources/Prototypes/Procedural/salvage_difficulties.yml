@@ -27,6 +27,7 @@
   modifierBudget: 3
   color: "#D381C996"
   recommendedPlayers: 4
+  delay: 900 # 15 mins
   probability: 1
 
 - type: salvageDifficulty
@@ -47,7 +48,7 @@
   mobBudget: 450
   modifierBudget: 1
   color: "#DE3A3A96"
-  recommendedPlayers: 99
+  recommendedPlayers: 69
   delay: 3600 # 60 mins
   probability: 0.3
 # Sunrise-End

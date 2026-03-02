@@ -127,6 +127,7 @@
   - type: Sprite
     layers:
     - state: red
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: RandomSpawner
@@ -596,6 +597,7 @@
   - type: Sprite
     layers:
     - state: red
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
@@ -633,7 +635,7 @@
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: two
     - sprite: Objects/Materials/materials.rsi
       state: steel
   - type: EntityTableSpawner
@@ -670,7 +672,7 @@
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: two
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
@@ -707,7 +709,7 @@
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: two
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
@@ -744,7 +746,7 @@
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: two
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
@@ -781,7 +783,7 @@
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: two
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
@@ -818,7 +820,7 @@
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: two
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
@@ -855,7 +857,7 @@
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: two
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
@@ -893,7 +895,7 @@
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: three
     - sprite: Objects/Materials/materials.rsi
       state: steel
   - type: EntityTableSpawner
@@ -930,7 +932,7 @@
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
@@ -967,7 +969,7 @@
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
@@ -1004,7 +1006,7 @@
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
@@ -1041,7 +1043,7 @@
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
@@ -1078,7 +1080,7 @@
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
@@ -1115,7 +1117,7 @@
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
@@ -1152,7 +1154,7 @@
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner

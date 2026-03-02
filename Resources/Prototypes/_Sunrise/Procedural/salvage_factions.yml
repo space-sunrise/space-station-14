@@ -105,19 +105,19 @@
       prob: 0.1
     # squad spawners
     - proto: MobPirateT1LMGSquadTimedSpawner
-      cost: 25
+      cost: 30
       prob: 0.15
     - proto: MobPirateT1BreachSquadTimedSpawner
-      cost: 25
+      cost: 30
       prob: 0.15
     - proto: MobPirateT1AssaultSquadTimedSpawner
-      cost: 25
+      cost: 30
       prob: 0.15
     - proto: MobPirateT1HeavySquadTimedSpawner
       cost: 30
       prob: 0.1
     - proto: MobPirateT1InfiltratorSquadTimedSpawner
-      cost: 25
+      cost: 30
       prob: 0.15
     - proto: MobPirateT1MonkeySquadTimedSpawner
       cost: 20
@@ -147,6 +147,7 @@
     DefenseStructure: WeaponTurretPirateDisposable
     Megafauna: MobPirateT1BossTimed
 
+# region T2
 - type: salvageFaction
   id: PiratesT2
   desc: salvage-faction-pirates
@@ -237,29 +238,29 @@
       prob: 0.05
     # squad spawners
     - proto: MobPirateT2LMGSquadTimedSpawner
-      cost: 25
+      cost: 30
       prob: 0.08
     - proto: MobPirateT2BreachSquadTimedSpawner
-      cost: 25
+      cost: 20
       prob: 0.08
     - proto: MobPirateT2AssaultSquadTimedSpawner
-      cost: 25
+      cost: 30
       prob: 0.08
     - proto: MobPirateT2HeavySquadTimedSpawner
-      cost: 25
-      prob: 0.06
+      cost: 40
+      prob: 0.05
     - proto: MobPirateT2InfiltratorSquadTimedSpawner
-      cost: 25
+      cost: 30
       prob: 0.08
     # unique squads
     - proto: MobPirateT2ControlSquadTimedSpawner
-      cost: 25
+      cost: 35
       prob: 0.07
     - proto: MobPirateT2AntiCrowdSquadTimedSpawner
-      cost: 25
+      cost: 30
       prob: 0.07
     - proto: MobPirateT2RandomSquadTimedSpawner
-      cost: 20
+      cost: 25
       prob: 0.02
     # borgs
     - proto: MobPirateT1BorgAssaultTimed
@@ -379,36 +380,54 @@
       prob: 0.04
     # squad spawners
     - proto: MobPirateT3LMGSquadTimedSpawner
-      cost: 25
+      cost: 45
       prob: 0.1
     - proto: MobPirateT3BreachSquadTimedSpawner
-      cost: 25
+      cost: 35
       prob: 0.08
     - proto: MobPirateT3AssaultSquadTimedSpawner
-      cost: 25
+      cost: 40
       prob: 0.08
     - proto: MobPirateT3HeavySquadTimedSpawner
-      cost: 25
+      cost: 55
       prob: 0.08
     - proto: MobPirateT3InfiltratorSquadTimedSpawner
-      cost: 25
+      cost: 40
       prob: 0.08
     # T1 add
+    - proto: MobPirateT1LMGSquadTimedSpawner
+      cost: 16
+      prob: 0.05
+    - proto: MobPirateT1BreachSquadTimedSpawner
+      cost: 16
+      prob: 0.05
+    - proto: MobPirateT1AssaultSquadTimedSpawner
+      cost: 16
+      prob: 0.05
+    - proto: MobPirateT1HeavySquadTimedSpawner
+      cost: 16
+      prob: 0.05
+    - proto: MobPirateT1InfiltratorSquadTimedSpawner
+      cost: 16
+      prob: 0.05
+    - proto: MobPirateT1MonkeySquadTimedSpawner
+      cost: 16
+      prob: 0.05
     - proto: MobPirateT1RandomSquadTimedSpawner
-      cost: 20
-      prob: 0.15
+      cost: 15
+      prob: 0.02
     # unique squads
     - proto: MobPirateT3ShieldPhalanxTimedSpawner
       cost: 35
       prob: 0.08
     - proto: MobPirateT3SuppressorSquadTimedSpawner
-      cost: 25
+      cost: 55
       prob: 0.08
     - proto: MobPirateT3UniversalSquadTimedSpawner
-      cost: 25
+      cost: 40
       prob: 0.08
     - proto: MobPirateT3RandomSquadTimedSpawner
-      cost: 30
+      cost: 45
       prob: 0.02
     # borgs
     - proto: MobPirateT1BorgAssaultTimed
