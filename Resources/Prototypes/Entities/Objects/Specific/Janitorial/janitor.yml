@@ -84,7 +84,7 @@
       generated:
         reagents:
         - ReagentId: Water
-          Quantity: 5
+          Quantity: 5 # Sunrise Edit
     - type: SolutionPurge
       solution: absorbed
       preserve:
