@@ -3,35 +3,35 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 
 namespace Content.Client._Sunrise.Administration.UI.Bwoink
+
+/// <summary>
+/// This window connects to a BwoinkSystem channel. BwoinkSystem manages the rest.
+/// </summary>
+[GenerateTypedNameReferences]
+public sealed partial class SunriseBwoinkWindow : DefaultWindow
 {
-    /// <summary>
-    /// This window connects to a BwoinkSystem channel. BwoinkSystem manages the rest.
-    /// </summary>
-    [GenerateTypedNameReferences]
-    public sealed partial class SunriseBwoinkWindow : DefaultWindow
+    public SunriseBwoinkWindow()
     {
-        public SunriseBwoinkWindow()
+        RobustXamlLoader.Load(this);
+
+        Bwoink.ChannelSelector.OnSelectionChanged += sel =>
         {
-            RobustXamlLoader.Load(this);
-
-            Bwoink.ChannelSelector.OnSelectionChanged += sel =>
+            if (sel is null)
             {
-                if (sel is null)
-                {
-                    Title = Loc.GetString("bwoink-title-none-selected");
-                    return;
-                }
+                Title = Loc.GetString("bwoink-title-none-selected");
+                return;
+            }
 
-                Title = $"{sel.CharacterName} / {sel.Username} | {Loc.GetString("generic-playtime-title")}: ";
+            Title = $"{sel.CharacterName} / {sel.Username} | {Loc.GetString("generic-playtime-title")}: ";
 
-                Title += sel.OverallPlaytime != null ? sel.PlaytimeString : Loc.GetString("generic-unknown-title");
-            };
+            Title += sel.OverallPlaytime != null ? sel.PlaytimeString : Loc.GetString("generic-unknown-title");
+        };
 
-            OnOpen += () =>
-            {
-                Bwoink.ChannelSelector.StopFiltering();
-                Bwoink.PopulateList();
-            };
-        }
+        OnOpen += () =>
+        {
+            Bwoink.ChannelSelector.StopFiltering();
+            Bwoink.PopulateList();
+        };
     }
 }
+
