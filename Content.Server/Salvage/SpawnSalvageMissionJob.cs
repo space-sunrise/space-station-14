@@ -258,7 +258,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             }
         }
 
-        var allLoot = _prototypeManager.Index<SalvageLootPrototype>(difficultyProto.LootPrototypeId); // Sunrise-Edit: per-difficulty loot pool.
+        var allLoot = _prototypeManager.Index<SalvageLootPrototype>(difficultyProto.LootPrototype); // Sunrise-Edit: per-difficulty loot pool.
         var lootBudget = difficultyProto.LootBudget;
 
         foreach (var rule in allLoot.LootRules)

@@ -148,7 +148,8 @@ public sealed partial class SalvageSystem
         var difficulties = _prototypeManager
             .EnumeratePrototypes<SalvageDifficultyPrototype>()
             .Where(d => d.Delay <= roundDuration && d.Probability > 0f)
-            .ToList(d => d.ID);
+            .Select(d => d.ID)
+            .ToList();
 
         if (difficulties.Count == 0)
             return;
@@ -159,7 +160,7 @@ public sealed partial class SalvageSystem
             {
                 Index = component.NextIndex,
                 Seed = _random.Next(),
-                Difficulty = _random.Pick(difficulties), // Sunrise-Edit
+                Difficulty = difficulties[_random.Next(difficulties.Count)], // Sunrise-Edit
             };
 
             component.Missions[component.NextIndex++] = mission;
