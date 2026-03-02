@@ -2,7 +2,7 @@
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 
-namespace Content.Client._Sunrise.Administration.UI.Bwoink
+namespace Content.Client._Sunrise.Administration.UI.Bwoink;
 
 /// <summary>
 /// This window connects to a BwoinkSystem channel. BwoinkSystem manages the rest.
