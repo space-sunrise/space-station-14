@@ -3,7 +3,7 @@
 # This accent makes speech more formal by expanding common abbreviations
 
 # Russian abbreviations moved from chatsanitize
-accent-formal-words-97 = нио
+accent-formal-words-97 = рнд
 accent-formal-words-replace-97 = Научный отдел
 accent-formal-words-98 = сб
 accent-formal-words-replace-98 = служба безопасности
