@@ -284,6 +284,8 @@
   id: SecurityGlasses
   name: loadout-group-security-glasses
   loadouts:
+  minLimit: 1
+  maxLimit: 1
   - SecurityEyesHud
   - SecurityEyesGlasses
   - SecurityEyesEyepatchHud

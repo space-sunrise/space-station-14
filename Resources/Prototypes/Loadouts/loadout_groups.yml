@@ -1409,7 +1409,7 @@
 - type: loadoutGroup
   id: SecurityHead
   name: loadout-group-security-head
-  minLimit: 0
+  minLimit: 1 # Sunrise Edit
   loadouts:
   - SecurityHelmet
   - SecurityBeret

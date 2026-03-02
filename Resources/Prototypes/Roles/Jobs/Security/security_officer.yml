@@ -28,7 +28,7 @@
   equipment:
     # eyes: ClothingEyesGlassesSecurity # Sunrise Edit
     ears: ClothingHeadsetSecurity
-    # head: ClothingHeadHelmetBasi # Sunrise Edit
+    # head: ClothingHeadHelmetBasic # Sunrise Edit
     gloves: ClothingHandsGlovesColorBlack
   storage:
     back:
