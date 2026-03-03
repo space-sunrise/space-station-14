@@ -322,3 +322,14 @@
     tags:
     - Kangaroo
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlack
+  id: ClothingHandsTacticalMaidGlovesFake
+  name: tactical maid gloves
+  description: Tactical maid gloves, every self-respecting maid should be able to discreetly eliminate her goals.
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/tacticalmaidgloves.rsi
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/tacticalmaidgloves.rsi

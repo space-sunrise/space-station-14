@@ -1352,6 +1352,7 @@
   loadouts:
   - ComMaidHurseHat
   - ComMaidBonnyEars
+  - ComMaidTacticalHeadband
 
 - type: loadoutGroup
   id: ComMaidJumpsuit
@@ -1361,6 +1362,7 @@
   - ComMaidSunriseJumpskirt
   - ComMaidBunnyUniform
   - ComMaidJumpsuitLawyerBlack
+  - ComMaidTacticalJumpskirt
 
 - type: loadoutGroup
   id: ComMaidBackpack
@@ -1391,6 +1393,7 @@
   loadouts:
   - ComMaidBunnyManjets
   - ComMaidGlovesWhite
+  - ComMaidGlovesTactical
 
 # Planet Prison - General
 
