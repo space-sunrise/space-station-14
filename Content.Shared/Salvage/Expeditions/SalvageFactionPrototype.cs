@@ -14,8 +14,8 @@ public sealed partial class SalvageFactionPrototype : IPrototype
     [ViewVariables(VVAccess.ReadWrite), DataField("entries", required: true)]
     public List<SalvageMobEntry> MobGroups = new();
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<SalvageDifficultyPrototype>))] // Sunrise-Edit
-    public List<string>? Difficulties { get; private set; } = null; // Sunrise-Edit
+    [DataField] // Sunrise-Edit
+    public List<ProtoId<SalvageDifficultyPrototype>>? Difficulties { get; private set; } = null; // Sunrise-Edit
 
     /// <summary>
     /// Miscellaneous data for factions.

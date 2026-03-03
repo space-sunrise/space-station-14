@@ -5,6 +5,9 @@ namespace Content.Shared.Procedural;
 
 public sealed partial class SalvageDifficultyPrototype : IPrototype
 {
+    [DataField]
+    public string LootPrototype = "SalvageLoot";
+
     /// <summary>
     /// Minimum round time after which this difficulty can appear.
     /// </summary>

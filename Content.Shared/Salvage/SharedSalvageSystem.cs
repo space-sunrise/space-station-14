@@ -74,26 +74,6 @@ public abstract partial class SharedSalvageSystem : EntitySystem
     }
 
     // Sunrise-Start
-    public SalvageFactionPrototype GetFactionPrototype(List<ProtoId<SalvageFactionPrototype>>? dungeonFactions, string difficultyId, System.Random rand)
-    {
-        var factionProtos = _proto.EnumeratePrototypes<SalvageFactionPrototype>().ToList();
-
-        if (dungeonFactions != null && dungeonFactions.Count > 0)
-            factionProtos = dungeonFactions.ConvertAll(new Converter<ProtoId<SalvageFactionPrototype>, SalvageFactionPrototype>(_proto.Index));
-
-        var byDifficulty = factionProtos
-            .Where(x => x.Difficulties == null || x.Difficulties.Contains(difficultyId))
-            .ToList();
-
-        if (byDifficulty.Count > 0)
-            factionProtos = byDifficulty;
-
-        factionProtos.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
-        return factionProtos[rand.Next(factionProtos.Count)];
-    }
-    // Sunrise-End
-
-    // Sunrise-Start
     public T GetBiomeMod<T>(string biome, System.Random rand, ref float rating, string difficultyId) where T : class, IPrototype, IBiomeSpecificMod
     {
         var mods = _proto
