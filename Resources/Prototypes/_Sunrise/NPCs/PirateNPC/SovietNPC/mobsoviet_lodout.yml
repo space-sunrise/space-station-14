@@ -2,7 +2,7 @@
 - type: startingGear
   id: MobSovietGearMeleeT1Alt
   equipment:
-    gloves: ClothingHandsFinka
+    gloves: ClothingHandsFinkaSovietFlak
     pocket1: SpaceCash500
     pocket2: BrokenBottle
     shoes: ClothingShoesBootsMerc
@@ -10,7 +10,7 @@
 - type: startingGear
   id: MobSovietGearRangedT1
   equipment:
-    gloves: ClothingHandsBlackPistol
+    gloves: ClothingHandsBlackPistolSovietFlak
     back: ClothingBackpackDuffelMercenaryTier1Pistol
     belt: ClothingBeltWebbingSovietTier1Pistol
     shoes: ClothingShoesBootsMerc
@@ -18,7 +18,7 @@
 - type: startingGear
   id: MobSovietGearRangedAltT1
   equipment:
-    gloves: ClothingHandsMercMosin
+    gloves: ClothingHandsMercMosinSovietNoOuter
     back: ClothingBackpackDuffelMercenaryTier1Mosin
     belt: ClothingBeltWebbingMercenaryTier1Mosin
     shoes: ClothingShoesBootsMerc
@@ -26,14 +26,14 @@
 - type: startingGear
   id: MobSovietGearRangedSMG
   equipment:
-    gloves: ClothingHandsMp38
+    gloves: ClothingHandsMp38SovietNoOuter
     shoes: ClothingShoesBootsWork
     pocket1: MagazinePistolSubMachineGunEmpty
 
 - type: startingGear
   id: MobSovietGearRangedRifleMosin
   equipment:
-    gloves: ClothingHandsMercMosin
+    gloves: ClothingHandsMercMosinSovietNoOuter
     shoes: ClothingShoesBootsWork
     pocket1: SpeedLoaderHeavyRifleRFMJ
 
@@ -41,7 +41,7 @@
 - type: startingGear
   id: MobSovietGearMeleeT2
   equipment:
-    gloves: ClothingHandsBottle
+    gloves: ClothingHandsBottleSovietNoOuter
     pocket1: SpaceCash1000
     pocket2: DrinkVodkizineBottleFull
     shoes: ClothingShoesBootsUSSPFilled
@@ -49,7 +49,7 @@
 - type: startingGear
   id: MobSovietGearMeleeT2Alt
   equipment:
-    gloves: ClothingHandsFinka
+    gloves: ClothingHandsFinkaSovietNoOuter
     pocket1: FinkaAdmeme
     pocket2: SpaceCash1000
     shoes: ClothingShoesBootsUSSPFilled
@@ -57,7 +57,7 @@
 - type: startingGear
   id: MobSovietGearRangedRifleSKM24Green
   equipment:
-    gloves: ClothingHandsSKM24G
+    gloves: ClothingHandsSKM24GSovietNoOuter
     shoes: ClothingShoesBootsUSSPFilled
     pocket1: MagazineLightRifleEmpty
     belt: TrashBagAmmo
@@ -65,7 +65,7 @@
 - type: startingGear
   id: MobSovietGearRangedRifleSKM24W
   equipment:
-    gloves: ClothingHandsSKM24B
+    gloves: ClothingHandsSKM24BSovietWinter
     shoes: ClothingShoesBootsUSSPFilled
     pocket1: PouchAmmoFilledLightRifle
     pocket2: MedkitCombatFilled
@@ -73,7 +73,7 @@
 - type: startingGear
   id: MobSovietGearRangedT2
   equipment:
-    gloves: ClothingHandsMercRevolvers
+    gloves: ClothingHandsMercRevolversSovietHoSTrench
     back: ClothingBackpackDuffelMercenaryTier2Revolver
     belt: ClothingBeltWebbingSovietTier2Revolver
     shoes: ClothingShoesBootsUSSPFilled
@@ -81,7 +81,7 @@
 - type: startingGear
   id: MobSovietGearRangedAltT2
   equipment:
-    gloves: ClothingHandsBlackShotgunSoviet
+    gloves: ClothingHandsBlackShotgunSovietUSSPHeavy
     back: ClothingBackpackDuffelMercenaryTier2Shotgun
     belt: ClothingBeltWebbingMercenaryTier2Shotgun
     shoes: ClothingShoesBootsUSSPFilled
@@ -90,7 +90,7 @@
 - type: startingGear
   id: MobSovietGearT2Raider
   equipment:
-    gloves: ClothingHandsPPSHSoviet
+    gloves: ClothingHandsPPSHSovietNoOuter
     belt: ClothingBeltBandolierT2PPSH
     shoes: ClothingShoesBootsUSSPFilled
     pocket1: DoubleEmergencyOxygenTankFilled
@@ -99,7 +99,7 @@
 - type: startingGear
   id: MobSovietGearRangedT3Alt
   equipment:
-    gloves: ClothingHandsSKM24G
+    gloves: ClothingHandsSKM24GSovietUSSPLight
     back: ClothingBackpackDuffelMercenaryTier3Assault
     belt: ClothingBeltMercenaryTier3Assault
     shoes: ClothingShoesBootsUSSPFilled
@@ -108,7 +108,7 @@
 - type: startingGear
   id: MobSovietGearTier4Captain
   equipment:
-    gloves: ClothingHandsDragunov
+    gloves: ClothingHandsDragunovSovietUSSPHeavy
     back: ClothingBackpackDuffelMercenaryTier4Captain
     shoes: ClothingShoesBootsUSSPFilled
 

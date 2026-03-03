@@ -168,7 +168,7 @@
         state: inhand-left
 
 - type: entity
-  parent: [ClothingHandsBlackSMG, PirateArmorPirateHardsuit]
+  parent: [ClothingHandsBlackSMG, PirateArmorEVAScrappers]
   id: ClothingHandsBlackPirateCannon
   suffix: pirate cannon
   categories: [ HideSpawnMenu ]
@@ -469,7 +469,7 @@
         state: inhand-left
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateHardsuit]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingCutlassRevolver
   suffix: cutlass, revolver
   categories: [ HideSpawnMenu ]
@@ -859,7 +859,7 @@
       collection: MetalThud
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateHardsuit]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingWeaponGauntletDrill
   suffix: drill
   categories: [ HideSpawnMenu ]
@@ -1064,6 +1064,138 @@
       - sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
         state: wielded-inhand-right
 
+# Soviet armor modifiers for NPC gloves
+- type: entity
+  abstract: true
+  id: SovietArmorNoArmor
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+
+- type: entity
+  abstract: true
+  id: SovietArmorFlak
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.6
+        Heat: 0.6
+        Radiation: 0.9
+
+- type: entity
+  abstract: true
+  id: SovietArmorHoSTrench
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.7
+        Caustic: 0.75
+
+- type: entity
+  abstract: true
+  id: SovietArmorUSSPLight
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.5
+        Heat: 0.65
+        Caustic: 0.7
+
+- type: entity
+  abstract: true
+  id: SovietArmorUSSPHeavy
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        Heat: 0.4
+        Radiation: 0.4
+        Caustic: 0.4
+
+# Soviet-specific glove variants to avoid changing pirate loadouts
+- type: entity
+  parent: [ClothingHandsFinka, SovietArmorFlak]
+  id: ClothingHandsFinkaSovietFlak
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsFinka, SovietArmorNoArmor]
+  id: ClothingHandsFinkaSovietNoOuter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsBlackPistol, SovietArmorFlak]
+  id: ClothingHandsBlackPistolSovietFlak
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsMercMosin, SovietArmorNoArmor]
+  id: ClothingHandsMercMosinSovietNoOuter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsMp38, SovietArmorNoArmor]
+  id: ClothingHandsMp38SovietNoOuter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsBottle, SovietArmorNoArmor]
+  id: ClothingHandsBottleSovietNoOuter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsSKM24G, SovietArmorNoArmor]
+  id: ClothingHandsSKM24GSovietNoOuter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsSKM24G, SovietArmorUSSPLight]
+  id: ClothingHandsSKM24GSovietUSSPLight
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsSKM24B, SovietArmorNoArmor]
+  id: ClothingHandsSKM24BSovietWinter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsMercRevolvers, SovietArmorHoSTrench]
+  id: ClothingHandsMercRevolversSovietHoSTrench
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsBlackShotgunSoviet, SovietArmorUSSPHeavy]
+  id: ClothingHandsBlackShotgunSovietUSSPHeavy
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsPPSHSoviet, SovietArmorNoArmor]
+  id: ClothingHandsPPSHSovietNoOuter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsDragunov, SovietArmorUSSPHeavy]
+  id: ClothingHandsDragunovSovietUSSPHeavy
+  categories: [ HideSpawnMenu ]
+
 # This is some proper cursed stuff: due to layering of clothes sprites, gloves displayed under outer clothes
 # So in order to make wielded weapon visible, I'm using neck slot which is drawn on top of outer suit layer.
 
@@ -1102,20 +1234,6 @@
 - type: entity
   abstract: true
   id: PirateArmorEVAScrappers
-  components:
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.5
-        Slash: 0.55
-        Piercing: 0.6
-        Heat: 0.4
-        Radiation: 0.4
-        Caustic: 0.4
-
-- type: entity
-  abstract: true
-  id: PirateArmorPirateHardsuit
   components:
   - type: Armor
     modifiers:
@@ -1362,7 +1480,7 @@
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsECutlass, PirateArmorPirateHardsuit]
+  parent: [ClothingHandsECutlass, PirateArmorEVAScrappers]
   id: ClothingHandsECutlassPirateT2
   suffix: pirate T2
   categories: [ HideSpawnMenu ]
