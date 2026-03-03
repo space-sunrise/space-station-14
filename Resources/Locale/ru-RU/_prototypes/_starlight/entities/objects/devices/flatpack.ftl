@@ -5,8 +5,8 @@ ent-SupermatterFlatpackAnchored = плоский набор Суперматер
     .desc = Плоский набор, используемый для постройки кристалла Суперматерии.
 ent-SupermatterFlatpack = упаковка Суперматерии
     .desc = Универсально-сборная упаковка, используемый для постройки кристалла Суперматерии.
-ent-ResearchAndDevelopmentServerFlatpack = упаковка сервера НИО
+ent-ResearchAndDevelopmentServerFlatpack = упаковка сервера РнД
     .desc = Упаковка для сборки сервера исследований.
-ent-ResearchAndDevelopmentComputerFlatpack = упаковка консоли НИО
+ent-ResearchAndDevelopmentComputerFlatpack = упаковка консоли РнД
     .desc = Упаковка для сборки исследовательского компьютера.
 
