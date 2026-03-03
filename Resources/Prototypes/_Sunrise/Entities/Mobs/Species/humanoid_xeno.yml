@@ -30,8 +30,8 @@
     coldDamageThreshold: -150
   - type: Speech
     speechVerb: LargeMob
-    effect: EffectNightVisioSpecies
   - type: ToggleableNightVision
+    effect: EffectNightVisionXeno
   - type: MeleeWeapon
     hidden: true
     soundHit:
