@@ -1,0 +1,12 @@
+ent-ClothingBackpackSecuritySecblu = { ent-ClothingBackpackSecurity }
+    .desc = { ent-ClothingBackpackSecurity.desc }
+ent-ClothingBackpackDuffelSecuritySecblu = { ent-ClothingBackpackDuffelSecurity }
+    .desc = { ent-ClothingBackpackDuffelSecurity.desc }
+ent-ClothingBackpackSatchelSecuritySecblu = { ent-ClothingBackpackSatchelSecurity }
+    .desc = { ent-ClothingBackpackSatchelSecurity.desc }
+ent-ClothingBackpackSecuritySecred = { ent-ClothingBackpackSecurity }
+    .desc = { ent-ClothingBackpackSecurity.desc }
+ent-ClothingBackpackDuffelSecuritySecred = { ent-ClothingBackpackDuffelSecurity }
+    .desc = { ent-ClothingBackpackDuffelSecurity.desc }
+ent-ClothingBackpackSatchelSecuritySecred = { ent-ClothingBackpackSatchelSecurity }
+    .desc = { ent-ClothingBackpackSatchelSecurity.desc }

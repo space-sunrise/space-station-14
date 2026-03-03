@@ -1,0 +1,16 @@
+ent-ClothingHeadHatBeretSecuritySecblu = { ent-ClothingHeadHatBeretSecurity }
+    .desc = { ent-ClothingHeadHatBeretSecurity.desc }
+ent-ClothingHeadHatBeretWardenSecblu = { ent-ClothingHeadHatBeretWarden }
+    .desc = { ent-ClothingHeadHatBeretWarden.desc }
+ent-ClothingHeadHatSecsoftSecblu = { ent-ClothingHeadHatSecsoft }
+    .desc = { ent-ClothingHeadHatSecsoft.desc }
+ent-ClothingHeadHatSecsoftFlippedSecblu = { ent-ClothingHeadHatSecsoftFlipped }
+    .desc = { ent-ClothingHeadHatSecsoftFlipped.desc }
+ent-ClothingHeadHatBeretSecuritySecred = { ent-ClothingHeadHatBeretSecurity }
+    .desc = { ent-ClothingHeadHatBeretSecurity.desc }
+ent-ClothingHeadHatBeretWardenSecred = { ent-ClothingHeadHatBeretWarden }
+    .desc = { ent-ClothingHeadHatBeretWarden.desc }
+ent-ClothingHeadHatSecsoftSecred = { ent-ClothingHeadHatSecsoft }
+    .desc = { ent-ClothingHeadHatSecsoft.desc }
+ent-ClothingHeadHatSecsoftFlippedSecred = { ent-ClothingHeadHatSecsoftFlipped }
+    .desc = { ent-ClothingHeadHatSecsoftFlipped.desc }

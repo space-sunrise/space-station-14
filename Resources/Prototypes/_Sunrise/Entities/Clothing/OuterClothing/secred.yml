@@ -1,0 +1,19 @@
+- type: entity
+  parent: ClothingOuterCoatWarden
+  id: ClothingOuterCoatWardenSecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/OuterClothing/Coats/warden.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/OuterClothing/Coats/warden.rsi
+
+- type: entity
+  parent: ClothingOuterWinterWarden
+  id: ClothingOuterWinterWardenSecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/OuterClothing/WinterCoats/coatwardenarmored.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/OuterClothing/WinterCoats/coatwardenarmored.rsi

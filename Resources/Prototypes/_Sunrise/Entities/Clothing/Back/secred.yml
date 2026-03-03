@@ -1,0 +1,29 @@
+- type: entity
+  parent: ClothingBackpackSecurity
+  id: ClothingBackpackSecuritySecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/Back/Backpacks/security.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/Back/Backpacks/security.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffelSecurity
+  id: ClothingBackpackDuffelSecuritySecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/Back/Duffels/security.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/Back/Duffels/security.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchelSecurity
+  id: ClothingBackpackSatchelSecuritySecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/Back/Satchels/security.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/Back/Satchels/security.rsi
