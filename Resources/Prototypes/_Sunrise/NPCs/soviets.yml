@@ -19,6 +19,7 @@
   - type: NpcFactionMember
     factions:
     - Soviet
+  - type: NpcVeteranFollower
   - type: FootprintEmitter
   - type: MobThresholds
     thresholds:
@@ -559,6 +560,9 @@
   id: MobSovietT3Shotgun
   description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
   components:
+  - type: Tag
+    tags:
+    - NpcVeteranLeader
   - type: Loadout
     prototypes:
     - MobSovietGearRangedAltT2
@@ -611,6 +615,9 @@
   - MobSovietBase
   id: MobSovietT3Rifle
   components:
+  - type: Tag
+    tags:
+    - NpcVeteranLeader
   - type: Loadout
     prototypes:
     - MobSovietGearRangedT3Alt
@@ -937,6 +944,9 @@
   id: MobSovietCaptain
   description: The leaders of these bands of brigands, a mercenary captain is both cruel and lethally effective. Exercise caution.
   components:
+  - type: Tag
+    tags:
+    - NpcBoss
   - type: Loadout
     prototypes:
     - MobSovietGearTier4Captain
@@ -1231,3 +1241,4 @@
 - type: entity
   parent: [MobSovietTimedDespawn, MobSovietT2RifleW]
   id: MobSovietT2RifleWAssaultWinterTimed
+

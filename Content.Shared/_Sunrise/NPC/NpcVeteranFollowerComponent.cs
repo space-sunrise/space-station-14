@@ -4,9 +4,15 @@ using Robust.Shared.Serialization.Manager.Attributes;
 namespace Content.Shared._Sunrise.NPC;
 
 [RegisterComponent]
-[ComponentProtoName("PirateVeteranFollower")]
-public sealed partial class PirateVeteranFollowerComponent : Component
+[ComponentProtoName("NpcVeteranFollower")]
+public sealed partial class NpcVeteranFollowerComponent : Component
 {
+    [DataField]
+    public string BossTag = "NpcBoss";
+
+    [DataField]
+    public string VeteranLeaderTag = "NpcVeteranLeader";
+
     [DataField]
     public float SearchRadius = 35f;
 

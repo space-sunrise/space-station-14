@@ -71,10 +71,10 @@
   id: CarpRiftHealTarget
 
 - type: Tag
-  id: PirateBoss
+  id: NpcBoss
 
 - type: Tag
-  id: PirateVeteranLeader
+  id: NpcVeteranLeader
 
 - type: Tag
   id: Felinid

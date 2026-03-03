@@ -13,10 +13,8 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.NPC;
 
-public sealed class PirateVeteranFollowerSystem : EntitySystem
+public sealed class NpcVeteranFollowerSystem : EntitySystem
 {
-    private const string PirateBossTag = "PirateBoss";
-    private const string PirateVeteranLeaderTag = "PirateVeteranLeader";
     private const float FastAcquireDelay = 5f;
 
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -34,7 +32,7 @@ public sealed class PirateVeteranFollowerSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<PirateVeteranFollowerComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<NpcVeteranFollowerComponent, MapInitEvent>(OnMapInit);
     }
 
     public override void Update(float frameTime)
@@ -46,10 +44,10 @@ public sealed class PirateVeteranFollowerSystem : EntitySystem
 
         _nextUpdate = _timing.CurTime + UpdateCooldown;
 
-        var query = EntityQueryEnumerator<PirateVeteranFollowerComponent>();
+        var query = EntityQueryEnumerator<NpcVeteranFollowerComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (_tag.HasTag(uid, PirateBossTag) || !_mobState.IsAlive(uid))
+            if (_tag.HasTag(uid, comp.BossTag) || !_mobState.IsAlive(uid))
                 continue;
 
             comp.RecheckAccumulator -= (float) UpdateCooldown.TotalSeconds;
@@ -61,9 +59,9 @@ public sealed class PirateVeteranFollowerSystem : EntitySystem
         }
     }
 
-    private void OnMapInit(Entity<PirateVeteranFollowerComponent> ent, ref MapInitEvent args)
+    private void OnMapInit(Entity<NpcVeteranFollowerComponent> ent, ref MapInitEvent args)
     {
-        if (_tag.HasTag(ent, PirateBossTag) || !_mobState.IsAlive(ent))
+        if (_tag.HasTag(ent, ent.Comp.BossTag) || !_mobState.IsAlive(ent))
             return;
 
         var foundTarget = TryAssignFollowTarget(ent, ent.Comp);
@@ -77,7 +75,7 @@ public sealed class PirateVeteranFollowerSystem : EntitySystem
         ent.Comp.RecheckAccumulator = _random.NextFloat() * maxDelay;
     }
 
-    private bool TryAssignFollowTarget(EntityUid uid, PirateVeteranFollowerComponent comp)
+    private bool TryAssignFollowTarget(EntityUid uid, NpcVeteranFollowerComponent comp)
     {
         _nearby.Clear();
         _lookup.GetEntitiesInRange(uid, comp.SearchRadius, _nearby);
@@ -86,7 +84,7 @@ public sealed class PirateVeteranFollowerSystem : EntitySystem
         var ownMap = ownXform.MapID;
         var ownPos = ownXform.MapPosition.Position;
 
-        var isVeteran = _tag.HasTag(uid, PirateVeteranLeaderTag);
+        var isVeteran = _tag.HasTag(uid, comp.VeteranLeaderTag);
 
         EntityUid? closestVeteran = null;
         var closestVeteranDistance = float.MaxValue;
@@ -106,7 +104,7 @@ public sealed class PirateVeteranFollowerSystem : EntitySystem
                 continue;
 
             var distance = (candidateXform.MapPosition.Position - ownPos).LengthSquared();
-            if (_tag.HasTag(candidate, PirateBossTag))
+            if (_tag.HasTag(candidate, comp.BossTag))
             {
                 if (distance >= closestBossDistance)
                     continue;
@@ -116,7 +114,7 @@ public sealed class PirateVeteranFollowerSystem : EntitySystem
                 continue;
             }
 
-            if (_tag.HasTag(candidate, PirateVeteranLeaderTag))
+            if (_tag.HasTag(candidate, comp.VeteranLeaderTag))
             {
                 if (distance >= closestVeteranDistance)
                     continue;

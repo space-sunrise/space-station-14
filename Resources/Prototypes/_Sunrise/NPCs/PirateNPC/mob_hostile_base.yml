@@ -208,7 +208,7 @@
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
-    - PirateBoss
+    - NpcBoss
 #endregion
 
 #region Inventories
@@ -422,3 +422,4 @@
     deleteOrgans: true
     gib: false
     useArgumentEntity: true
+
