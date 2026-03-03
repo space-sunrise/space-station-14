@@ -238,6 +238,10 @@
       state: equipped-HELMET
     - sprite: Clothing/Hands/Gloves/mercfingerless.rsi
       state: equipped-HAND
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/_Sunrise/Effects/silence.ogg
   - type: BasicEntityAmmoProvider
     proto: CartridgePistolFMJ
     capacity: 11
