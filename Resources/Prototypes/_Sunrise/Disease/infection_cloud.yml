@@ -1,0 +1,51 @@
+- type: entity
+  id: DiseaseInfectionCloud
+  name: зараженное облако
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  # categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Visibility
+    layer: 16
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: Fixtures
+    fixtures:
+      cloud:
+        hard: false
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+  - type: TimedDespawn
+    lifetime: 300
+  - type: ActiveEdgeSpreader
+  - type: EdgeSpreader
+    id: SunriseDiseaseCloud
+  - type: DiseaseInfectionCloud
+    cloudPrototype: DiseaseInfectionCloud
+  - type: Sprite
+    sprite: _Sunrise/Disease/cloude.rsi
+    noRot: true
+    state: icon
+    drawdepth: Effects
+
+- type: entity
+  parent: [ClothingEyesBase]
+  id: DiseaseDetectorEyesGlasses
+  name: очки вирусолога
+  description: Очки, которые позволяют видеть зараженные объекты.
+  components:
+  - type: DiseaseInfectionDetectorClothing
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/meson.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/meson.rsi

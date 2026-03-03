@@ -24,6 +24,11 @@ public enum BedRegenerationType
 public struct BaseDiseaseSettings
 {
     /// <summary>
+    ///     Бит видимости для отображения заражённых облаков (DiseaseInfectionCloud).
+    /// </summary>
+    public const int DiseaseInfectionVisibilityFlag = 1 << 4;
+
+    /// <summary>
     ///     Стандартная цена для удаления тела.
     /// </summary>
     public const int StaticPriceDeleteBody = 1000;

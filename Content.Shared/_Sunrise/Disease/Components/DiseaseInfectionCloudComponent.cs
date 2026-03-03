@@ -13,9 +13,6 @@ public sealed partial class DiseaseInfectionCloudComponent : Component
     [DataField]
     public int SpreadAmount = 4;
 
-    [DataField]
-    public EntProtoId CloudPrototype = "SunriseDiseaseInfectionCloud";
-
     [ViewVariables]
     public DiseaseData? Data;
 

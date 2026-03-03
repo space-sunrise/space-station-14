@@ -1,5 +1,6 @@
 using Content.Server.Spreader;
 using Content.Shared._Sunrise.Disease.Components;
+using Content.Shared.Examine;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Events;
@@ -14,7 +15,7 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    private static readonly EntProtoId CloudPrototype = "SunriseDiseaseInfectionCloud";
+    private static readonly EntProtoId CloudPrototype = "DiseaseInfectionCloud";
 
     public override void Initialize()
     {
@@ -23,6 +24,22 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
         SubscribeLocalEvent<DiseaseInfectionCloudComponent, StartCollideEvent>(OnStartCollide);
         SubscribeLocalEvent<DiseaseInfectionCloudComponent, SpreadNeighborsEvent>(OnSpreadNeighbors);
         SubscribeLocalEvent<DiseaseInfectionCloudComponent, ComponentGetState>(OnGetState);
+        SubscribeLocalEvent<DiseaseInfectionCloudComponent, ExaminedEvent>(OnExamine);
+    }
+
+    private void OnExamine(EntityUid uid, DiseaseInfectionCloudComponent component, ExaminedEvent args)
+    {
+        if (component.Data == null)
+            return;
+
+        var strainId = string.IsNullOrWhiteSpace(component.Data.StrainId)
+            ? "неизвестная"
+            : component.Data.StrainId;
+
+        var infectivityPercent = (component.InfectionChance * 100f).ToString("0");
+
+        args.PushMarkup(Loc.GetString("disease-infection-cloud-examine-strain", ("strain", strainId)));
+        args.PushMarkup(Loc.GetString("disease-infection-cloud-examine-infectivity", ("infectivity", infectivityPercent)));
     }
 
     private void OnGetState(EntityUid uid, DiseaseInfectionCloudComponent component, ref ComponentGetState args)
@@ -58,7 +75,7 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
         SpawnCloud(
             ent.Comp.Data!,
             coords,
-            ent.Comp.CloudPrototype,
+            CloudPrototype,
             ent.Comp.Source ?? ent.Owner,
             ent.Comp.SpreadAmount - 1);
 
@@ -121,7 +138,7 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
         return true;
     }
 
-    public bool CanSpawnCloud(EntityCoordinates coordinates, float checkRange = 0.01f)
+    public bool CanSpawnCloud(EntityCoordinates coordinates, float checkRange = 0f)
     {
         foreach (var _ in _entityLookup.GetEntitiesInRange<DiseaseInfectionCloudComponent>(coordinates, checkRange))
         {
@@ -147,12 +164,12 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
         cloud.Source = source;
         cloud.InfectionChance = _disease.GetInfectionInfectivity(source ?? uid, cloud.Data);
         cloud.SpreadAmount = spreadAmount;
-        cloud.CloudPrototype = cloudPrototype;
+
+        Dirty(uid, cloud);
 
         if (cloud.SpreadAmount > 0)
         {
-            var component = EnsureComp<ActiveEdgeSpreaderComponent>(uid);
-            Dirty(uid, component);
+            EnsureComp<ActiveEdgeSpreaderComponent>(uid);
         }
         else
             RemCompDeferred<ActiveEdgeSpreaderComponent>(uid);

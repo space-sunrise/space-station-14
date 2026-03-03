@@ -23,7 +23,6 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Physics;
 using Content.Shared._Sunrise.Disease.Symptoms;
-using Robust.Shared.Toolshed.Syntax;
 
 namespace Content.Server._Sunrise.Disease.Systems;
 

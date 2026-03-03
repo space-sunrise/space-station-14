@@ -14,19 +14,33 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<DiseaseInfectionCloudComponent, ComponentHandleState>(OnHandleState);
+        SubscribeLocalEvent<DiseaseInfectionCloudComponent, ComponentInit>(OnInit);
     }
 
-    private void OnHandleState(EntityUid uid, DiseaseInfectionCloudComponent component, ref ComponentHandleState args)
+    private void OnHandleState(Entity<DiseaseInfectionCloudComponent> entity, ref ComponentHandleState args)
     {
         if (args.Current is not DiseaseInfectionCloudComponentState state)
             return;
 
-        if (!TryComp<SpriteComponent>(uid, out var sprite))
+        SetColorCloud((entity, entity.Comp), state.Color);
+    }
+
+    private void OnInit(Entity<DiseaseInfectionCloudComponent> entity, ref ComponentInit args)
+    {
+        SetColorCloud((entity, entity.Comp), entity.Comp.Data?.Color ?? Color.White);
+    }
+
+    public void SetColorCloud(Entity<DiseaseInfectionCloudComponent?> entity, Color color)
+    {
+        if (!Resolve(entity, ref entity.Comp, false))
+            return;
+
+        if (!TryComp<SpriteComponent>(entity, out var sprite))
             return;
 
         for (var i = 0; i < sprite.AllLayers.Count(); i++)
         {
-            _sprite.LayerSetColor((uid, sprite), i, state.Color);
+            _sprite.LayerSetColor((entity, sprite), i, color);
         }
     }
 }

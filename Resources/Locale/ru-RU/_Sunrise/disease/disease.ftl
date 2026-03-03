@@ -310,6 +310,9 @@ sentient-disease-description = На станции появился разумн
 disease-collector-has-data = Образец взят у пациента.
 disease-collector-not-has-data = Биологический материал не обнаружен.
 
+disease-infection-cloud-examine-strain = Штамм: { $strain }
+disease-infection-cloud-examine-infectivity = Заразность: { $infectivity }%
+
 
 health-analyzer-window-entity-infected-text =
     Заражён вирусом.
