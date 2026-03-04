@@ -11,12 +11,14 @@ namespace Content.Client.VoiceMask;
 [GenerateTypedNameReferences]
 public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
 {
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Sunrise-Edit
     public Action<string>? OnNameChange;
     public Action<string?>? OnVerbChange;
     public Action<string>? OnVoiceChange; // Sunrise-Edit
+    public Action<string>? OnVoicePreview; // Sunrise-Edit
 
     private List<(string, string)> _verbs = new();
-    private List<TTSVoicePrototype> _voices = new(); // Sunrise-Edit
+    private List<TTSVoicePrototype> _voiceList = new(); // Sunrise-Edit
 
     private string? _verb;
 
@@ -68,28 +70,31 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
     }
 
     // Sunrise-Start
-    public void ReloadVoices(IPrototypeManager proto)
+    public void LoadVoiceList(IPrototypeManager proto)
     {
-        VoiceSelector.OnItemSelected += args =>
-        {
-            VoiceSelector.SelectId(args.Id);
-            if (VoiceSelector.SelectedMetadata != null)
-                OnVoiceChange!((string)VoiceSelector.SelectedMetadata);
-        };
-        _voices = proto
+        _voiceList.Clear();
+        _voiceList.AddRange(proto
             .EnumeratePrototypes<TTSVoicePrototype>()
-            .Where(o => o.RoundStart)
-            .OrderBy(o => Loc.GetString(o.Name))
-            .ToList();
-        for (var i = 0; i < _voices.Count; i++)
+            .Where(v => v.RoundStart)
+            .OrderBy(v => Loc.GetString(v.Name)));
+    }
+        private void SetupButtons()
+    {
+        VoiceOptionButton.OnItemSelected += args =>
         {
-            var name = Loc.GetString(_voices[i].Name);
-            VoiceSelector.AddItem(name);
-            VoiceSelector.SetItemMetadata(i, _voices[i].ID);
-        }
+            VoiceOptionButton.SelectId(args.Id);
+            var voice = _voiceList[args.Id];
+            OnVoiceChange?.Invoke(voice.ID);
+        };
 
-        if (_voices.Count > 0)
-            TTSContainer.Visible = true;
+        VoicePlayButton.OnPressed += _ =>
+        {
+            if (VoiceOptionButton.SelectedId != null)
+            {
+                var voice = _voiceList[VoiceOptionButton.SelectedId];
+                OnVoicePreview?.Invoke(voice.ID);
+            }
+        };
     }
     // Sunrise-End
 
@@ -108,9 +113,26 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
         }
 
         // Sunrise-Start
-        var voiceIdx = _voices.FindIndex(v => v.ID == voice);
-        if (voiceIdx != -1)
-            VoiceSelector.Select(voiceIdx);
+        VoiceOptionButton.Clear();
+
+        var selectedIndex = 0;
+        for (var i = 0; i < _voiceList.Count; i++)
+        {
+            var voiceProto = _voiceList[i];
+            var nameProto = Loc.GetString(voiceProto.Name);
+
+            VoiceOptionButton.AddItem(nameProto, i);
+
+            if (voiceProto.ID == voice)
+            {
+                selectedIndex = i;
+            }
+        }
+
+        if (_voiceList.Count > 0)
+        {
+            VoiceOptionButton.SelectId(selectedIndex);
+        }
         // Sunrise-End
     }
 }

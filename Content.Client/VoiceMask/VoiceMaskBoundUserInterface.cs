@@ -1,5 +1,7 @@
-using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared._Sunrise.SunriseCCVars; // Sunrise-Edit
+using Content.Shared._Sunrise.TTS; // Sunrise-Edit
 using Content.Shared.VoiceMask;
+using Content.Client._Sunrise.TTS; // Sunrise-Edit
 using Robust.Client.UserInterface;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
@@ -15,6 +17,7 @@ public sealed class VoiceMaskBoundUserInterface : BoundUserInterface
 
     public VoiceMaskBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
+        IoCManager.InjectDependencies(this); // Sunrise-Edit
     }
 
     protected override void Open()
@@ -27,13 +30,14 @@ public sealed class VoiceMaskBoundUserInterface : BoundUserInterface
         // Sunrise-Start
         if (IoCManager.Resolve<IConfigurationManager>().GetCVar(SunriseCCVars.TTSEnabled))
         {
-            _window.ReloadVoices(IoCManager.Resolve<IPrototypeManager>());
+            _window.LoadVoiceList(IoCManager.Resolve<IPrototypeManager>());
         }
         // Sunrise-End
 
         _window.OnNameChange += OnNameSelected;
         _window.OnVerbChange += verb => SendMessage(new VoiceMaskChangeVerbMessage(verb));
-        _window.OnVoiceChange += voice => SendMessage(new VoiceMaskChangeVoiceMessage(voice)); // Sunrise-Edit
+        _window.OnVoiceChange += OnVoiceChange; // Sunrise-Edit
+        _window.OnVoicePreview += OnVoicePreview; // Sunrise-Edit
     }
 
     private void OnNameSelected(string name)
@@ -43,6 +47,7 @@ public sealed class VoiceMaskBoundUserInterface : BoundUserInterface
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {
+        base.UpdateState(state); // Sunrise-Edit
         if (state is not VoiceMaskBuiState cast || _window == null)
         {
             return;
@@ -50,6 +55,17 @@ public sealed class VoiceMaskBoundUserInterface : BoundUserInterface
 
         _window.UpdateState(cast.Name, cast.Voice, cast.Verb); // Sunrise-Edit
     }
+
+    // Sunrise-Start
+    private void OnVoiceChange(string voiceId)
+    {
+        SendMessage(new VoiceMaskChangeVoiceMessage(voiceId));
+    }
+    private void OnVoicePreview(string voiceId)
+    {
+        EntMan.System<TTSSystem>().RequestPreviewTts(voiceId);
+    }
+    // Sunrise-End
 
     protected override void Dispose(bool disposing)
     {
