@@ -5,7 +5,7 @@
     mode: SnapgridCenter
     snap:
     - Wall
-  # categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform
     anchored: true
@@ -31,12 +31,18 @@
   - type: EdgeSpreader
     id: SunriseDiseaseCloud
   - type: DiseaseInfectionCloud
-    cloudPrototype: DiseaseInfectionCloud
   - type: Sprite
     sprite: _Sunrise/Disease/cloude.rsi
     noRot: true
     state: icon
     drawdepth: Effects
+
+- type: entity
+  id: NewDataDiseaseInfectionCloud
+  parent: DiseaseInfectionCloud
+  components:
+  - type: DiseaseInfectionCloud
+    newData: true
 
 - type: entity
   parent: [ClothingEyesBase]

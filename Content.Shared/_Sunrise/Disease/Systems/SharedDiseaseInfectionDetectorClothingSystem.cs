@@ -1,5 +1,4 @@
 using Content.Shared._Sunrise.Disease.Components;
-using Content.Shared._Sunrise.Disease;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 
@@ -8,6 +7,7 @@ namespace Content.Shared._Sunrise.Disease.Systems;
 public sealed class SharedDiseaseInfectionDetectorClothingSystem : EntitySystem
 {
     [Dependency] private readonly SharedEyeSystem _eye = default!;
+
     public const SlotFlags ValidSlots =
         SlotFlags.HEAD |
         SlotFlags.EYES |

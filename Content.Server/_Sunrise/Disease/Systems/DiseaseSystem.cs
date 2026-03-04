@@ -351,7 +351,10 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         ProbInfect(host.Comp.Data, target, host);
     }
 
-    public void ProbInfect(DiseaseData data, EntityUid target, EntityUid? host = null, float? chance = null)
+    /// <summary>
+    ///     Если у сущности есть DiseaseComponent, то не используем CalcInfectionInfectivity, т.к. он уже расчитан для этого случая.
+    /// </summary>
+    public void ProbInfect(DiseaseData data, EntityUid target, EntityUid? host = null, float? infectivity = null)
     {
         var ev = new ProbInfectAttemptEvent(target, false, host);
         RaiseLocalEvent(target, ev);
@@ -369,7 +372,7 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         }
 
         // Вычисляем шанс заражения
-        var finalChance = chance ?? GetDiseaseInfectionChance(target, data);
+        var finalChance = GetDiseaseInfectionChance(target, data, infectivity);
 
         // Бросаем шанс
         if (_random.Prob(finalChance))
@@ -550,15 +553,15 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         RemComp<DiseaseComponent>(uid);
     }
 
-    public float GetInfectionInfectivity(EntityUid target, DiseaseComponent? component = null)
+    public float CalcInfectionInfectivity(EntityUid target, DiseaseComponent? component = null)
     {
         if (!Resolve(target, ref component))
             return 0f;
 
-        return GetInfectionInfectivity(target, component.Data);
+        return CalcInfectionInfectivity(component.Data);
     }
 
-    public float GetInfectionInfectivity(EntityUid target, DiseaseData data)
+    public float CalcInfectionInfectivity(DiseaseData data)
     {
         var infectivity = data.Infectivity;
 
@@ -617,17 +620,23 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         data.MedicineResistance[medicine] = newResistance;
     }
 
-    private float GetDiseaseInfectionChance(EntityUid target, DiseaseComponent component)
+    private float GetDiseaseInfectionChance(Entity<DiseaseComponent?> entity, float? infectivity = null)
     {
-        return GetDiseaseInfectionChance(target, component.Data);
+        if (!Resolve(entity, ref entity.Comp, false))
+            return 0f;
+
+        return GetDiseaseInfectionChance(entity.Owner, entity.Comp.Data, infectivity);
     }
 
-    private float GetDiseaseInfectionChance(EntityUid target, DiseaseData data)
+    private float GetDiseaseInfectionChance(EntityUid target, DiseaseData data, float? infectivity = null)
     {
         var resistanceQuery = new DiseaseResistanceQueryEvent(ProtectiveSlots);
         RaiseLocalEvent(target, resistanceQuery);
 
-        var finalChance = data.Infectivity - resistanceQuery.TotalCoefficient;
+        var finalChance = (infectivity ?? data.Infectivity) - resistanceQuery.TotalCoefficient;
+
+        if (infectivity.HasValue)
+            finalChance = infectivity.Value;
 
         // от 0 до 100%
         finalChance = Math.Clamp(finalChance, 0f, 1.0f);

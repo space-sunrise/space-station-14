@@ -75,6 +75,17 @@ public sealed partial class DiseaseData : ReagentData
 {
     private static long _strainIdCounter;
 
+    private DiseaseData(bool initializeDefaults)
+    {
+        InitializeWhitelist();
+
+        if (!initializeDefaults)
+            return;
+
+        Color = GenerateRandomColor();
+        EnsureStrainId();
+    }
+
     /// <summary>
     ///     ID штамма.
     /// </summary>
@@ -186,16 +197,28 @@ public sealed partial class DiseaseData : ReagentData
     public Color Color = Color.Yellow;
 
     public DiseaseData()
+        : this(true)
     {
-        InitializeWhitelist();
-        EnsureStrainId();
     }
 
     public DiseaseData(string strainId)
+        : this(true)
     {
-        InitializeWhitelist();
         StrainId = strainId;
         EnsureStrainId();
+    }
+
+    private static Color GenerateRandomColor()
+    {
+        static float NextFloat(float min, float max)
+        {
+            return min + (float)System.Random.Shared.NextDouble() * (max - min);
+        }
+
+        return new Color(
+            NextFloat(0.15f, 1f),
+            NextFloat(0.15f, 1f),
+            NextFloat(0.15f, 1f));
     }
 
     private void EnsureStrainId()
@@ -293,7 +316,7 @@ public sealed partial class DiseaseData : ReagentData
 
     public override ReagentData Clone()
     {
-        return new DiseaseData
+        return new DiseaseData(false)
         {
             StrainId = StrainId,
             MutationPoints = MutationPoints,
@@ -306,6 +329,7 @@ public sealed partial class DiseaseData : ReagentData
             SpeedModifier = SpeedModifier,
             MaxThreshold = MaxThreshold,
             RegenMutationPoints = RegenMutationPoints,
+            Color = Color,
 
             ActiveSymptom = ActiveSymptom.ToList(),
             BodyWhitelist = BodyWhitelist.ToList(),
@@ -330,11 +354,12 @@ public sealed partial class DiseaseData : ReagentData
     /// </summary>
     public ReagentData CloneForInfection()
     {
-        return new DiseaseData
+        return new DiseaseData(false)
         {
             StrainId = StrainId,
             ActiveSymptom = ActiveSymptom.ToList(),
             BodyWhitelist = BodyWhitelist.ToList(),
+            Color = Color,
 
             MedicineResistance = MedicineResistance
                 .ToDictionary(kvp => kvp.Key, kvp => kvp.Value),

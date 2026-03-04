@@ -1,5 +1,4 @@
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.Disease.Components;
@@ -14,7 +13,10 @@ public sealed partial class DiseaseInfectionCloudComponent : Component
     public int SpreadAmount = 4;
 
     [ViewVariables]
-    public DiseaseData? Data;
+    public DiseaseData? Data = null;
+
+    [DataField]
+    public bool NewData = false;
 
     [ViewVariables]
     public EntityUid? Source;
@@ -26,7 +28,7 @@ public sealed partial class DiseaseInfectionCloudComponent : Component
 
     public DiseaseInfectionCloudComponent()
     {
-        Data = new DiseaseData();
+        Data = null;
     }
 }
 

@@ -1,0 +1,34 @@
+uniform highp float contaminationAmount;
+uniform highp vec4 contaminationColor;
+
+highp float hash(highp vec2 p)
+{
+    return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
+}
+
+void fragment()
+{
+    highp vec4 baseColor = zTexture(UV);
+    const highp float alphaCutoff = 0.45;
+    const highp float blockSize = 2.0;
+
+    if (baseColor.a <= alphaCutoff)
+    {
+        COLOR = zAdjustResult(baseColor);
+        return;
+    }
+
+    highp vec2 pixelUv = floor(UV / TEXTURE_PIXEL_SIZE);
+    highp vec2 blockUv = floor(pixelUv / blockSize);
+    highp float noise = hash(blockUv);
+
+    if (noise <= contaminationAmount)
+    {
+        highp vec3 contaminationRgb = contaminationColor.rgb * baseColor.a;
+        highp vec3 mixed = mix(baseColor.rgb, contaminationRgb, 0.7);
+        COLOR = zAdjustResult(vec4(mixed, baseColor.a));
+        return;
+    }
+
+    COLOR = zAdjustResult(baseColor);
+}

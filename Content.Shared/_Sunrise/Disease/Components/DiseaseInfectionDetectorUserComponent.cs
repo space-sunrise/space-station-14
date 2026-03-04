@@ -1,3 +1,5 @@
+using Content.Shared._Sunrise.TimeWindow;
+
 namespace Content.Shared._Sunrise.Disease.Components;
 
 [RegisterComponent]

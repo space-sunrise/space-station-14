@@ -27,7 +27,7 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
 
     private void OnInit(Entity<DiseaseInfectionCloudComponent> entity, ref ComponentInit args)
     {
-        SetColorCloud((entity, entity.Comp), entity.Comp.Data?.Color ?? Color.White);
+        SetColorCloud((entity, entity.Comp), entity.Comp.Data?.Color ?? Color.Transparent);
     }
 
     public void SetColorCloud(Entity<DiseaseInfectionCloudComponent?> entity, Color color)

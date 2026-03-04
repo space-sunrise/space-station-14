@@ -129,7 +129,7 @@ public sealed class DiseaseMutationSystem : EntitySystem
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/dot.svg.192dpi.png")),
             Act = () =>
             {
-                _disease.ProbInfect((uid, disease), args.User);
+                _disease.ProbInfect(disease.Data, args.User);
                 _disease.CureDisease(uid, disease);
             },
             Impact = LogImpact.Medium

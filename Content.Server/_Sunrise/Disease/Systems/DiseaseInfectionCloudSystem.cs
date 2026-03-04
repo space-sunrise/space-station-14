@@ -12,6 +12,7 @@ namespace Content.Server._Sunrise.Disease.Systems;
 public sealed class DiseaseInfectionCloudSystem : EntitySystem
 {
     [Dependency] private readonly DiseaseSystem _disease = default!;
+    [Dependency] private readonly DiseaseContaminationSystem _contamination = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
@@ -21,10 +22,21 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<DiseaseInfectionCloudComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<DiseaseInfectionCloudComponent, StartCollideEvent>(OnStartCollide);
         SubscribeLocalEvent<DiseaseInfectionCloudComponent, SpreadNeighborsEvent>(OnSpreadNeighbors);
         SubscribeLocalEvent<DiseaseInfectionCloudComponent, ComponentGetState>(OnGetState);
         SubscribeLocalEvent<DiseaseInfectionCloudComponent, ExaminedEvent>(OnExamine);
+    }
+
+    private void OnInit(Entity<DiseaseInfectionCloudComponent> ent, ref ComponentInit args)
+    {
+        if (ent.Comp.NewData)
+            ent.Comp.Data = new DiseaseData();
+        else
+            ent.Comp.Data = null;
+
+        Dirty(ent, ent.Comp);
     }
 
     private void OnExamine(EntityUid uid, DiseaseInfectionCloudComponent component, ExaminedEvent args)
@@ -44,15 +56,13 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
 
     private void OnGetState(EntityUid uid, DiseaseInfectionCloudComponent component, ref ComponentGetState args)
     {
-        if (component.Data == null)
-            return;
-
-        args.State = new DiseaseInfectionCloudComponentState(component.Data.Color);
+        args.State = new DiseaseInfectionCloudComponentState(component.Data?.Color ?? Color.Yellow);
     }
 
     private void OnStartCollide(Entity<DiseaseInfectionCloudComponent> ent, ref StartCollideEvent args)
     {
         TryInfectOnCollide((ent.Owner, ent.Comp), args.OtherEntity);
+        _contamination.TryContaminateFromCloud((ent.Owner, ent.Comp), args.OtherEntity);
     }
 
     private void OnSpreadNeighbors(Entity<DiseaseInfectionCloudComponent> ent, ref SpreadNeighborsEvent args)
@@ -77,7 +87,7 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
             coords,
             CloudPrototype,
             ent.Comp.Source ?? ent.Owner,
-            ent.Comp.SpreadAmount - 1);
+            0);
 
         ent.Comp.SpreadAmount--;
         args.Updates--;
@@ -94,7 +104,7 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
         if (!CanInfectOnCollide(cloud, target))
             return false;
 
-        _disease.ProbInfect(cloud.Comp.Data!, target, cloud.Comp.Source ?? cloud.Owner, cloud.Comp.InfectionChance);
+        _disease.ProbInfect(cloud.Comp.Data!, target, cloud.Comp.Source ?? cloud.Owner, infectivity: cloud.Comp.InfectionChance);
         return true;
     }
 
@@ -162,7 +172,7 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
 
         cloud.Data = (DiseaseData)disease.CloneForInfection();
         cloud.Source = source;
-        cloud.InfectionChance = _disease.GetInfectionInfectivity(source ?? uid, cloud.Data);
+        cloud.InfectionChance = _disease.CalcInfectionInfectivity(cloud.Data);
         cloud.SpreadAmount = spreadAmount;
 
         Dirty(uid, cloud);
@@ -188,7 +198,7 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
             if (cloud.Data == null || cloud.Data.StrainId != data.StrainId)
                 continue;
 
-            cloud.InfectionChance = _disease.GetInfectionInfectivity(cloud.Source ?? uid, cloud.Data);
+            cloud.InfectionChance = _disease.CalcInfectionInfectivity(cloud.Data);
             cloud.Data = (DiseaseData)data.CloneForInfection();
             Dirty(uid, cloud);
         }

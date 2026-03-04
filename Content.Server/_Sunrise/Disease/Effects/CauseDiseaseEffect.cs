@@ -54,10 +54,8 @@ public sealed partial class CauseDiseaseEntityEffectsSystem : EntityEffectSystem
             return;
 
         var infectionData = (DiseaseData)data.CloneForInfection();
-        var infectivity = _diseaseSystem.GetInfectionInfectivity(entity.Owner, infectionData);
+        var infectivity = _diseaseSystem.CalcInfectionInfectivity(infectionData);
 
-        var finalChance = Math.Clamp(infectivity, 0f, 1.0f);
-
-        _diseaseSystem.ProbInfect(data, entity.Owner, chance: finalChance);
+        _diseaseSystem.ProbInfect(data, entity.Owner, infectivity: infectivity);
     }
 }
