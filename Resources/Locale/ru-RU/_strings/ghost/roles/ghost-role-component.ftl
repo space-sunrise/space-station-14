@@ -299,7 +299,7 @@ ghost-role-information-rules-expedition-pirate-antagonist =
     Помните, что вы как [color=red][bold]NPC-пират[/bold][/color] [bold]ограничены[/bold] временем: через [color=red][bold]20 минут[/bold][/color] вас автоматически переместят в наблюдателя.
     Вы не помните ничего из своей предыдущей жизни и не помните ничего из того, что узнали, будучи призраком.
 ghost-role-information-expedition-soviet-name = Солдат из Бункера
-ghost-role-information-expedition-pirate-description = Смирно, солдат! Не позволяйте годам службы и алкоголизму сломить вас. Вы — боец вооружённых сил СССП. Выполните приказ и защитите аванпост.
+ghost-role-information-expedition-soviet-description = Смирно, солдат! Не позволяйте годам службы и алкоголизму сломить вас. Вы — боец вооружённых сил СССП. Выполните приказ и защитите аванпост.
 ghost-role-information-rules-expedition-soviet-antagonist =
     Вы — [color=red][bold]NPC-солдат[/bold][/color]. Ваши намерения вредят станции и её экипажу.
     Вы должны [bold]защищать[/bold] свою территорию и сотрудничать с другими NPC.
