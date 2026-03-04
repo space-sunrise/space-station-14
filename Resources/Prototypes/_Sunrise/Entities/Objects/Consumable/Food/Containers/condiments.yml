@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseFoodCondimentPacket
   id: FoodCondimentPacketSmetana
-  name: Smetana
+  name: smetana
   description: Sour cream which is popular in the USSP.
   components:
   - type: SolutionContainerManager
@@ -9,7 +9,7 @@
       food:
         maxVol: 10
         reagents:
-        - ReagentId: Smetana
+        - ReagentId: smetana
           Quantity: 10
   - type: Icon
     sprite: _Sunrise/Objects/Consumable/Food/condiments.rsi
@@ -22,7 +22,7 @@
 - type: entity
   parent: BaseFoodCondimentPacket
   id: FoodCondimentPacketHoney
-  name: Honey
+  name: honey
   description: Thick, sweet liquid produced by bees from flower nectar.
   components:
   - type: SolutionContainerManager
@@ -30,7 +30,7 @@
       food:
         maxVol: 10
         reagents:
-        - ReagentId: Honey
+        - ReagentId: honey
           Quantity: 10
   - type: Icon
     sprite: _Sunrise/Objects/Consumable/Food/condiments.rsi
