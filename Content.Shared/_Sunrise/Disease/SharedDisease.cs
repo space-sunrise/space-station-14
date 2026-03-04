@@ -15,7 +15,7 @@ namespace Content.Shared._Sunrise.Disease;
 public sealed class DiseaseResistanceQueryEvent : EntityEventArgs, IInventoryRelayEvent
 {
     public SlotFlags TargetSlots { get; }
-    public float TotalCoefficient = 1f;
+    public float TotalCoefficient = 0f;
 
     public DiseaseResistanceQueryEvent(SlotFlags slots)
     {

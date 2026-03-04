@@ -628,7 +628,7 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         var resistanceQuery = new DiseaseResistanceQueryEvent(ProtectiveSlots);
         RaiseLocalEvent(target, resistanceQuery);
 
-        var finalChance = data.Infectivity * resistanceQuery.TotalCoefficient;
+        var finalChance = data.Infectivity - resistanceQuery.TotalCoefficient;
 
         // от 0 до 100%
         finalChance = Math.Clamp(finalChance, 0f, 1.0f);
