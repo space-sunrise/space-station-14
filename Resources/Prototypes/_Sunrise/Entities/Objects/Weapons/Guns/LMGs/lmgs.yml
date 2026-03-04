@@ -450,9 +450,9 @@
     maxAngle: 0
   - type: Gun
     minAngle: 1
-    maxAngle: 50
+    maxAngle: 45
     angleIncrease: 1
-    angleDecay: 20
+    angleDecay: 25
     fireRate: 15
     soundGunshot:
       collection: L6
@@ -503,7 +503,7 @@
     maxOffset: 3
     pvsIncrease: 0.3
   - type: WeaponDismantleOnShoot
-    dismantleChance: 0.003 # 59% chance per 300 shots
+    dismantleChance: 0.002 # 50% chance per 300 shots
     dismantleDistance: 1
     items:
       - id: WeaponMachineGunLCGEmpty

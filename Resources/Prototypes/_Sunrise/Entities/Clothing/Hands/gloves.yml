@@ -46,7 +46,7 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_black.rsi
   - type: Fiber
-    fiberMaterial: fibers-nitrile
+    fiberMaterial: fibers-nitrile-black
   - type: FingerprintMask
   # SUNRISE EDIT
   - type: Tag
@@ -70,7 +70,7 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_green.rsi
   - type: Fiber
-    fiberMaterial: fibers-nitrile
+    fiberMaterial: fibers-nitrile-green
   - type: FingerprintMask
   # SUNRISE EDIT
   - type: Tag
@@ -94,7 +94,7 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_orange.rsi
   - type: Fiber
-    fiberMaterial: fibers-nitrile
+    fiberMaterial: fibers-nitrile-orange
   - type: FingerprintMask
   # SUNRISE EDIT
   - type: Tag
@@ -118,7 +118,7 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_red.rsi
   - type: Fiber
-    fiberMaterial: fibers-nitrile
+    fiberMaterial: fibers-nitrile-red
   - type: FingerprintMask
   # SUNRISE EDIT
   - type: Tag
@@ -142,7 +142,7 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_blue.rsi
   - type: Fiber
-    fiberMaterial: fibers-nitrile
+    fiberMaterial: fibers-nitrile-blue
   - type: FingerprintMask
   # SUNRISE EDIT
   - type: Tag

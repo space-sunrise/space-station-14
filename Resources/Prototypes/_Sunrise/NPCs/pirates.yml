@@ -132,6 +132,7 @@
   - type: NpcFactionMember
     factions:
     - Pirate
+  - type: PirateVeteranFollower
   - type: CollectiveMind
     minds:
     - Pirate
@@ -139,8 +140,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      120: Critical
-      125: Dead
+      110: Critical
+      120: Dead
   - type: Destructible
     thresholds:
     - trigger:
@@ -241,20 +242,12 @@
     mustBeDead: true
   - type: Puller
     needsHands: false
-
-# For Expedition NPC
-- type: entity
-  abstract: true
-  id: MobPirateTimedDespawn
-  components:
-  - type: TimedDespawn
-    lifetime: 1200 # 20 minutes
-  - type: GhostRole
-    name: ghost-role-information-expedition-pirate-name
-    description: ghost-role-information-expedition-pirate-description
-    rules: ghost-role-information-rules-expedition-pirate-antagonist
-    raffle:
-      settings: short
+  - type: Speech
+  - type: DatasetVocalizer
+    dataset: PirateChatterNPC
+    minVocalizeInterval: 45s
+    maxVocalizeInterval: 120s
+    hideChat: true
 
 - type: entity
   abstract: true
@@ -289,6 +282,11 @@
         Slash: 3
         Blunt: 7
         Structural: 15
+  - type: DatasetVocalizer
+    dataset: PirateChatterNPC
+    minVocalizeInterval: 998s
+    maxVocalizeInterval: 999s
+    hideChat: true
 
 - type: entity
   abstract: true
@@ -432,10 +430,12 @@
       - MobPirateT1KnifeStinger
       - MobPirateT1KnifeFirebomb
       - MobPirateT1KnifeBola
+      - MobPirateT1KnifeEMP
       - MobPirateT1MonkeyKnuckleDusters
       - MobPirateT1Pickaxe
 
       - MobPirateT1Pistol
+      - MobPirateT1Medic
       - MobPirateT1Mosin
       - MobPirateT1PKA
       - MobPirateT1MonkeyFlareGun
@@ -499,6 +499,7 @@
       - MobPirateT2MachineCannon
       - MobPirateT2DoubleFlintlock
       - MobPirateT2DoubleRevolver
+      - MobPirateT2Medic
     rarePrototypes:
       - MobPirateT2RevolverCutlass
       - MobPirateT2Grapeshot
@@ -534,6 +535,7 @@
       - MobPirateT3LaserCannon
       - MobPirateT3Revolver
       - MobPirateT3SMG
+      - MobPirateT3Medic
     rarePrototypes:
       - MobPirateT3L6
       - MobPirateT3Tachanka
@@ -561,486 +563,6 @@
       - MobPirateT2Spawner
       - MobPirateT3Spawner
 
-# timed despawn spawners
-- type: entity
-  name: pirate T1 spawner (despawn)
-  id: MobPirateT1TimedSpawner
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-    - state: red
-    - state: one
-    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
-      state: icon
-  - type: RandomSpawner
-    prototypes:
-      - MobPirateT1KnifeTimed
-      - MobPirateT1KnifeTearGasTimed
-      - MobPirateT1KnifeStingerTimed
-      - MobPirateT1KnifeFirebombTimed
-      - MobPirateT1KnifeBolaTimed
-      - MobPirateT1MonkeyKnuckleDustersTimed
-      - MobPirateT1PickaxeTimed
-      - MobPirateT1PistolTimed
-      - MobPirateT1MosinTimed
-      - MobPirateT1PKATimed
-      - MobPirateT1MonkeyFlareGunTimed
-      - MobPirateT1MonkeyFlareGunCoinTimed
-      - MobPirateT1MonkeyFlareGunIncendiaryTimed
-      - MobPirateT1MonkeyFlareGunUraniumTimed
-      - MobPirateT1ScrapSMGTimed
-      - MobPirateT1SMGTimed
-      - MobPirateT1FlintlockTimed
-    rarePrototypes:
-      - MobPirateT1MonkeyFireBombTimed
-      - MobPirateT1MonkeyEDaggerTimed
-      - MobPirateT1HunterTimed
-      - MobPirateT1HunterSmashTimed
-      - MobPirateT1BombardierFireTimed
-      - MobPirateT1BombardierGlassTimed
-      - MobPirateT1BombardierPipeTimed
-      - MobPirateT1ECutlassTimed
-      - MobPirateT1EPickaxeTimed
-      - MobPirateT1PlasmaCutterTimed
-      - MobPirateT1ScrapRifleTimed
-      - MobPirateT1RifleTimed
-      - MobPirateT1LCGTimed
-      - MobPirateT1BorgAssaultTimed
-      - MobPirateT1BorgMiningTimed
-      - MobPirateT1BorgDerelictTimed
-    rareChance: 0.2
-
-- type: entity
-  name: pirate T2 spawner (despawn)
-  id: MobPirateT2TimedSpawner
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-    - state: red
-    - state: two
-    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
-      state: icon
-  - type: RandomSpawner
-    prototypes:
-
-      - MobPirateT2CutlassTimed
-      - MobPirateT2ECutlassTimed
-      - MobPirateT2ECutlassTearGasTimed
-      - MobPirateT2ECutlassStingerTimed
-      - MobPirateT2ECutlassFirebombTimed
-      - MobPirateT2ECutlassBolaTimed
-      - MobPirateT2ECutlassFuzeCannonBallTimed
-      - MobPirateT2SledgehammerTimed
-      - MobPirateT2GauntletDrillTimed
-
-      - MobPirateT2ShotgunTimed
-      - MobPirateT2ShotgunMiniBallTimed
-      - MobPirateT2ShotgunGlassTimed
-      - MobPirateT2MusketTimed
-      - MobPirateT2MusketEMPTimed
-      - MobPirateT2MusketBlastTimed
-      - MobPirateT2MusketFragTimed
-      - MobPirateT2MusketPenetratorTimed
-      - MobPirateT2MachineCannonTimed
-      - MobPirateT2DoubleFlintlockTimed
-      - MobPirateT2DoubleRevolverTimed
-    rarePrototypes:
-      - MobPirateT2RevolverCutlassTimed
-      - MobPirateT2GrapeshotTimed
-      - MobPirateT2CannoballTimed
-      - MobPirateT2MechTimed
-      - MobPirateT2JuggernautTimed
-      - MobPirateT2JuggernautMGTimed
-      - MobPirateT1BorgAssaultTimed
-      - MobPirateT2BorgAssaultTimed
-      - MobPirateT1BorgMiningTimed
-    rareChance: 0.15
-
-- type: entity
-  name: pirate T3 spawner (despawn)
-  id: MobPirateT3TimedSpawner
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-    - state: red
-    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
-      state: icon
-  - type: RandomSpawner
-    prototypes:
-
-      - MobPirateT3BolaTimed
-      - MobPirateT3StunTimed
-
-      - MobPirateT3Shield1984Timed
-      - MobPirateT3ShieldSMGTimed
-      - MobPirateT3DMRTimed
-      - MobPirateT3Rifle2Timed
-      - MobPirateT3RifleTimed
-      - MobPirateT3LaserSMGTimed
-      - MobPirateT3LaserCannonTimed
-      - MobPirateT3RevolverTimed
-      - MobPirateT3SMGTimed
-    rarePrototypes:
-      - MobPirateT3L6Timed
-      - MobPirateT3TachankaTimed
-      - MobPirateT3RPDTimed
-      - MobPirateT3GrenadierTimed
-      - MobPirateT3InfiltratorTimed
-      - MobPirateT3SniperTimed
-      - MobPirateT1BorgAssaultTimed
-      - MobPirateT3BorgAssaultTimed
-    rareChance: 0.15
-
-# mixed all tiers spawner (despawn)
-- type: entity
-  name: pirate T1-T3 spawner (despawn)
-  id: MobPirateAllTiersTimedSpawner
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-    - state: red
-    - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
-      state: icon
-  - type: RandomSpawner
-    prototypes:
-      - MobPirateT1TimedSpawner
-      - MobPirateT2TimedSpawner
-      - MobPirateT3TimedSpawner
-
-# region Timed-despan pirate variants (inherit original + MobPirateTimedDespawn)
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1Knife]
-  id: MobPirateT1KnifeTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1KnifeTearGas]
-  id: MobPirateT1KnifeTearGasTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1KnifeStinger]
-  id: MobPirateT1KnifeStingerTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1KnifeFirebomb]
-  id: MobPirateT1KnifeFirebombTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1KnifeBola]
-  id: MobPirateT1KnifeBolaTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1MonkeyKnuckleDusters]
-  id: MobPirateT1MonkeyKnuckleDustersTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1Pickaxe]
-  id: MobPirateT1PickaxeTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1Pistol]
-  id: MobPirateT1PistolTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1Mosin]
-  id: MobPirateT1MosinTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1PKA]
-  id: MobPirateT1PKATimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1MonkeyFlareGun]
-  id: MobPirateT1MonkeyFlareGunTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1MonkeyFlareGunCoin]
-  id: MobPirateT1MonkeyFlareGunCoinTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1MonkeyFlareGunIncendiary]
-  id: MobPirateT1MonkeyFlareGunIncendiaryTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1MonkeyFlareGunUranium]
-  id: MobPirateT1MonkeyFlareGunUraniumTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1ScrapSMG]
-  id: MobPirateT1ScrapSMGTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1SMG]
-  id: MobPirateT1SMGTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1Flintlock]
-  id: MobPirateT1FlintlockTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1MonkeyFireBomb]
-  id: MobPirateT1MonkeyFireBombTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1MonkeyEDagger]
-  id: MobPirateT1MonkeyEDaggerTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1Hunter]
-  id: MobPirateT1HunterTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1HunterSmash]
-  id: MobPirateT1HunterSmashTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1BombardierFire]
-  id: MobPirateT1BombardierFireTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1BombardierGlass]
-  id: MobPirateT1BombardierGlassTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1BombardierPipe]
-  id: MobPirateT1BombardierPipeTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1ECutlass]
-  id: MobPirateT1ECutlassTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1EPickaxe]
-  id: MobPirateT1EPickaxeTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1PlasmaCutter]
-  id: MobPirateT1PlasmaCutterTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1ScrapRifle]
-  id: MobPirateT1ScrapRifleTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1Rifle]
-  id: MobPirateT1RifleTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1LCG]
-  id: MobPirateT1LCGTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1RifleAlt]
-  id: MobPirateT1RifleAltTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1BorgAssault]
-  id: MobPirateT1BorgAssaultTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2BorgAssault]
-  id: MobPirateT2BorgAssaultTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3BorgAssault]
-  id: MobPirateT3BorgAssaultTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1BorgMining]
-  id: MobPirateT1BorgMiningTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1BorgDerelict]
-  id: MobPirateT1BorgDerelictTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2Cutlass]
-  id: MobPirateT2CutlassTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2ECutlass]
-  id: MobPirateT2ECutlassTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2ECutlassTearGas]
-  id: MobPirateT2ECutlassTearGasTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2ECutlassStinger]
-  id: MobPirateT2ECutlassStingerTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2ECutlassFirebomb]
-  id: MobPirateT2ECutlassFirebombTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2ECutlassBola]
-  id: MobPirateT2ECutlassBolaTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2ECutlassFuzeCannonBall]
-  id: MobPirateT2ECutlassFuzeCannonBallTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2Sledgehammer]
-  id: MobPirateT2SledgehammerTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2GauntletDrill]
-  id: MobPirateT2GauntletDrillTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2Shotgun]
-  id: MobPirateT2ShotgunTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2ShotgunMiniBall]
-  id: MobPirateT2ShotgunMiniBallTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2ShotgunGlass]
-  id: MobPirateT2ShotgunGlassTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2Musket]
-  id: MobPirateT2MusketTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2MusketEMP]
-  id: MobPirateT2MusketEMPTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2MusketBlast]
-  id: MobPirateT2MusketBlastTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2MusketFrag]
-  id: MobPirateT2MusketFragTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2MusketPenetrator]
-  id: MobPirateT2MusketPenetratorTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2MachineCannon]
-  id: MobPirateT2MachineCannonTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2DoubleFlintlock]
-  id: MobPirateT2DoubleFlintlockTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2DoubleRevolver]
-  id: MobPirateT2DoubleRevolverTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2RevolverCutlass]
-  id: MobPirateT2RevolverCutlassTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2Grapeshot]
-  id: MobPirateT2GrapeshotTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2Cannoball]
-  id: MobPirateT2CannoballTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2Mech]
-  id: MobPirateT2MechTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2Juggernaut]
-  id: MobPirateT2JuggernautTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2JuggernautMG]
-  id: MobPirateT2JuggernautMGTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3Bola]
-  id: MobPirateT3BolaTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3Stun]
-  id: MobPirateT3StunTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3Shield1984]
-  id: MobPirateT3Shield1984Timed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3ShieldSMG]
-  id: MobPirateT3ShieldSMGTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3DMR]
-  id: MobPirateT3DMRTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3Rifle2]
-  id: MobPirateT3Rifle2Timed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3Rifle]
-  id: MobPirateT3RifleTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3LaserSMG]
-  id: MobPirateT3LaserSMGTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3LaserCannon]
-  id: MobPirateT3LaserCannonTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3Revolver]
-  id: MobPirateT3RevolverTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3SMG]
-  id: MobPirateT3SMGTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3L6]
-  id: MobPirateT3L6Timed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3Tachanka]
-  id: MobPirateT3TachankaTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3RPD]
-  id: MobPirateT3RPDTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3Grenadier]
-  id: MobPirateT3GrenadierTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3Infiltrator]
-  id: MobPirateT3InfiltratorTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3Sniper]
-  id: MobPirateT3SniperTimed
-
-# boss timed variants
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT1Boss]
-  id: MobPirateT1BossTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT2Boss]
-  id: MobPirateT2BossTimed
-
-- type: entity
-  parent: [MobPirateTimedDespawn, MobPirateT3Boss]
-  id: MobPirateT3BossTimed
-# endregion Timed variants
 # Variations
 # region Melee Tier 1
 - type: entity
@@ -1337,6 +859,15 @@
     count: 1
 
 - type: entity
+  parent: MobPirateT1Knife
+  id: MobPirateT1KnifeEMP
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: EmpGrenade
+    capacity: 1
+    count: 1
+
+- type: entity
   name: Scrap boarder
   description: Swings with the characteristic Vshuuu Vshuuu sound of an energy sword, constantly showing off just how awesome these Eeeee-blades are.
   parent: [MobMovementSpeedModifierEVAMelee, MobPirateBase]
@@ -1359,6 +890,13 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+    - PirateVeteranLeader
 
 - type: entity
   name: Scrap miner
@@ -1383,6 +921,13 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+    - PirateVeteranLeader
 
 - type: entity
   name: Scrap miner
@@ -1434,6 +979,13 @@
   id: MobPirateT1Hunter
   description: Veteran scrappers, these salvagers are wealthy enough to explore abandoned ruins for the adrenaline rush and adventure alone.
   components:
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+    - PirateVeteranLeader
   - type: Loadout
     prototypes:
     - MobPirateT1HunterGear
@@ -1497,6 +1049,13 @@
   id: MobPirateT1HunterSmash
   description: Veteran scrappers, these salvagers are bulky enough to use heavy crusher-axe.
   components:
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+    - PirateVeteranLeader
   - type: Loadout
     prototypes:
     - MobPirateT1HunterSmashGear
@@ -1618,6 +1177,13 @@
       params:
         variation: 0.09
         volume: -6
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+    - PirateVeteranLeader
 
 - type: entity
   name: powder bird
@@ -1713,6 +1279,175 @@
     availableModes:
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+
+- type: entity
+  name: Scrap medic
+  description: A field medic for the raiding team. Keeps pirates in fighting shape with a nearby restorative aura.
+  parent: MobPirateT1Pistol
+  id: MobPirateT1Medic
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT1MedicGear
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Critical
+      100: Dead
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/OuterClothing/Suits/pirateeva.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _Sunrise/Clothing/OuterClothing/Vests/armor_sec_med.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/neckgaiter.rsi
+      state: equipped-MASK
+    - sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_old.rsi
+      state: equipped-HELMET
+    - sprite: Clothing/Head/Bandanas/blue.rsi
+      state: equipped-HELMET
+  - type: BasicEntityAmmoProvider
+    proto: CartridgePistol40SP
+    capacity: 7
+    count: 7
+  - type: AoEHeal
+    threshold: 0.9
+    damage:
+      groups:
+        Brute: -20
+        Burn: -10
+        Airloss: -5
+    whitelist:
+      components:
+      - PirateVeteranFollower
+
+- type: entity
+  name: pirate medic
+  description: A better-equipped pirate combat medic. Keeps the assault wave alive with stronger restorative support.
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2Ranged]
+  id: MobPirateT2Medic
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT2MedicGear
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Critical
+      100: Dead
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Eyes/Hud/medpatch.rsi
+      state: equipped-EYES
+    - sprite: Clothing/OuterClothing/Hardsuits/piratecaptain.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _Sunrise/Clothing/Head/Helmets/pirate_eva_old.rsi
+      state: equipped-HELMET
+    - sprite: Clothing/Head/Bandanas/blue.rsi
+      state: equipped-HELMET
+    - sprite: _Sunrise/Clothing/Head/Hats/cmospecialhat.rsi
+      state: off-equipped-HELMET
+    - sprite: Clothing/OuterClothing/Coats/labcoat_cmo.rsi
+      state: open-equipped-OUTERCLOTHING
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+  - type: BasicEntityAmmoProvider
+    proto: CartridgePistol40SP
+    capacity: 7
+    count: 7
+  - type: Gun
+    showExamineText: false
+    minAngle: 8
+    maxAngle: 18
+    angleIncrease: 3
+    angleDecay: 4
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+  - type: AoEHeal
+    threshold: 0.9
+    damage:
+      groups:
+        Brute: -20
+        Burn: -10
+        Airloss: -5
+    whitelist:
+      components:
+      - PirateVeteranFollower
+
+- type: entity
+  name: Privateer combat medic
+  description: A hired privateer medic. Fast hands, better stimulants, and enough firepower to stay relevant.
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3Ranged]
+  id: MobPirateT3Medic
+  components:
+  - type: Loadout
+    prototypes:
+    - MobPirateT3MedicGear
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Critical
+      100: Dead
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/privateer.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/neckgaiter.rsi
+      state: equipped-MASK
+    - sprite: _Sunrise/Clothing/OuterClothing/Vests/armor_sec_med.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/privateer.rsi
+      state: equipped-HELMET
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/privateer.rsi
+      state: on-equipped-HELMET
+      shader: unshaded
+    - sprite: _Sunrise/Clothing/Head/Hats/cmospecialhat.rsi
+      state: off-equipped-HELMET
+    - sprite: Objects/Tanks/oxygen.rsi
+      state: equipped-SUITSTORAGE
+    - sprite: Clothing/Hands/Gloves/nitrile.rsi
+      state: equipped-HAND
+      color: "#3CB57C"
+  - type: BatteryAmmoProvider
+    proto: CartridgePistolSP
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 3
+    autoRechargeRate: 999
+  - type: Battery
+    maxCharge: 10
+    startingCharge: 10
+  - type: Gun
+    showExamineText: false
+    minAngle: 3
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 6
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+  - type: AoEHeal
+    threshold: 0.9
+    damage:
+      groups:
+        Brute: -30
+        Burn: -20
+        Airloss: -10
+    whitelist:
+      components:
+      - PirateVeteranFollower
 
 - type: entity
   name: Scrap rifleman
@@ -1849,6 +1584,13 @@
   id: MobPirateT1SMG
   description: In a team where everyone is armed with whatever they could grab, he picked up a rifle � at least it used to be one�
   components:
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+    - PirateVeteranLeader
   - type: Loadout
     prototypes:
     - MobPirateT1SMGGear
@@ -1938,6 +1680,13 @@
         pitch: 0.8
     soundEmpty:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+    - PirateVeteranLeader
 
 - type: entity
   name: Scrap veteran gunner
@@ -1945,6 +1694,13 @@
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
   id: MobPirateT1Rifle
   components:
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+    - PirateVeteranLeader
   - type: Loadout
     prototypes:
     - MobPirateT1RifleGear
@@ -2297,9 +2053,9 @@
     showExamineText: false
     fireRate: 15
     minAngle: 2
-    maxAngle: 55
-    angleIncrease: 1.25
-    angleDecay: 20
+    maxAngle: 45
+    angleIncrease: 1
+    angleDecay: 30
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -2363,6 +2119,13 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/bolathrow.ogg
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+    - PirateVeteranLeader
 
 - type: entity
   name: pirate boarder
@@ -3564,6 +3327,13 @@
   - type: EyeCursorOffset
     maxOffset: 7
     pvsIncrease: 0.7
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+    - PirateVeteranLeader
 
 - type: entity
   name: Privateer rifleman
@@ -3643,6 +3413,13 @@
     - actionId: ActionGravityJump
       minRange: 0
       maxRange: 3
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+    - PirateVeteranLeader
 
 - type: entity
   name: Privateer machinegunner
@@ -3650,6 +3427,13 @@
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3Ranged]
   id: MobPirateT3L6
   components:
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+    - PirateVeteranLeader
   - type: Loadout
     prototypes:
     - MobPirateT3L6Gear
