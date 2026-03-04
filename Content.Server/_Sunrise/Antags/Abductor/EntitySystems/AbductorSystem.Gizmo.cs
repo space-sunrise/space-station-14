@@ -54,7 +54,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
             return;
         }
 
-        if (HasComp<DnaComponent>(target))
+        if (HasComp<DnaComponent>(args.Target))
             GizmoUse(ent, args.Target.Value, args.User);
     }
 
