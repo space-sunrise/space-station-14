@@ -102,7 +102,7 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
     }
     // Sunrise-End
 
-    public void UpdateState(string name, string voice, string? verb) // Sunrise-TTS
+    public void UpdateState(string name, string voice, string? verb) // Sunrise-Edit
     {
         NameSelector.Text = name;
         _verb = verb;
@@ -134,9 +134,7 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
         }
 
         if (_voiceList.Count > 0)
-        {
             VoiceOptionButton.SelectId(selectedIndex);
-        }
         // Sunrise-End
     }
 }

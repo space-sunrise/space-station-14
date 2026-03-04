@@ -14,7 +14,7 @@ using Content.Shared.Popups;
 using System;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Starlight.Medical.Surgery;
-using Content.Shared.Forensics.Components; // Sunrise-Edit
+using Content.Shared.Forensics.Components;
 
 namespace Content.Server._Sunrise.Antags.Abductor;
 
@@ -36,7 +36,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     {
         if (args.HitEntities.Count != 1) return;
         var target = args.HitEntities[0];
-        if (!HasComp<SurgeryTargetComponent>(target)) return;
+        if (!HasComp<DnaComponent>(target)) return;
         GizmoUse(ent, target, args.User);
     }
 
@@ -54,13 +54,13 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
             return;
         }
 
-        if (HasComp<SurgeryTargetComponent>(args.Target))
+        if (HasComp<DnaComponent>(target))
             GizmoUse(ent, args.Target.Value, args.User);
     }
 
     private void GizmoUse(Entity<AbductorGizmoComponent> ent, EntityUid target, EntityUid user)
     {
-        if (!HasComp<DnaComponent>(target)) return; // Sunrise Edit
+        if (!HasComp<DnaComponent>(target)) return;
         var time = TimeSpan.FromSeconds(6);
         if (_tags.HasTag(target, _abductor))
             time = TimeSpan.FromSeconds(0.5);
