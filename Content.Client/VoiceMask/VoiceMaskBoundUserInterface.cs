@@ -27,16 +27,11 @@ public sealed class VoiceMaskBoundUserInterface : BoundUserInterface
         _window = this.CreateWindow<VoiceMaskNameChangeWindow>();
         _window.ReloadVerbs(_protomanager);
         _window.AddVerbs();
-        // Sunrise-Start
-        if (IoCManager.Resolve<IConfigurationManager>().GetCVar(SunriseCCVars.TTSEnabled))
-        {
-            _window.LoadVoiceList(IoCManager.Resolve<IPrototypeManager>());
-        }
-        // Sunrise-End
+        _window.LoadVoiceList(IoCManager.Resolve<IPrototypeManager>()); // Sunrise-Edit
 
         _window.OnNameChange += OnNameSelected;
         _window.OnVerbChange += verb => SendMessage(new VoiceMaskChangeVerbMessage(verb));
-        _window.OnVoiceChange += OnVoiceChange; // Sunrise-Edit
+        _window.OnVoiceSelected += OnVoiceSelected; // Sunrise-Edit
         _window.OnVoicePreview += OnVoicePreview; // Sunrise-Edit
     }
 
@@ -57,7 +52,7 @@ public sealed class VoiceMaskBoundUserInterface : BoundUserInterface
     }
 
     // Sunrise-Start
-    private void OnVoiceChange(string voiceId)
+    private void OnVoiceSelected(string voiceId)
     {
         SendMessage(new VoiceMaskChangeVoiceMessage(voiceId));
     }

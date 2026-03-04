@@ -14,7 +14,7 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Sunrise-Edit
     public Action<string>? OnNameChange;
     public Action<string?>? OnVerbChange;
-    public Action<string>? OnVoiceChange; // Sunrise-Edit
+    public Action<string>? OnVoiceSelected; // Sunrise-Edit
     public Action<string>? OnVoicePreview; // Sunrise-Edit
 
     private List<(string, string)> _verbs = new();
@@ -25,6 +25,7 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
     public VoiceMaskNameChangeWindow()
     {
         RobustXamlLoader.Load(this);
+        IoCManager.InjectDependencies(this); // Sunrise-Edit
 
         NameSelectorSet.OnPressed += _ =>
         {
@@ -36,6 +37,9 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
             OnVerbChange?.Invoke((string?) args.Button.GetItemMetadata(args.Id));
             SpeechVerbSelector.SelectId(args.Id);
         };
+
+        LoadVoiceList(_prototypeManager); // Sunrise-Edit
+        SetupButtons(); // Sunrise-Edit
     }
 
     public void ReloadVerbs(IPrototypeManager proto)
@@ -84,7 +88,7 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
         {
             VoiceOptionButton.SelectId(args.Id);
             var voice = _voiceList[args.Id];
-            OnVoiceChange?.Invoke(voice.ID);
+            OnVoiceSelected?.Invoke(voice.ID);
         };
 
         VoicePlayButton.OnPressed += _ =>
