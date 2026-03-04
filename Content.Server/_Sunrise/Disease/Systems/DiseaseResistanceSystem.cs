@@ -20,7 +20,7 @@ public sealed partial class DiseaseResistanceSystem : EntitySystem
 
     private void OnResistanceQuery(Entity<DiseaseResistanceComponent> ent, ref InventoryRelayedEvent<DiseaseResistanceQueryEvent> query)
     {
-        query.Args.TotalCoefficient *= ent.Comp.DiseaseResistanceCoefficient;
+        query.Args.TotalCoefficient += ent.Comp.DiseaseResistanceCoefficient;
     }
 
     private void OnArmorExamine(Entity<DiseaseResistanceComponent> ent, ref ArmorExamineEvent args)
