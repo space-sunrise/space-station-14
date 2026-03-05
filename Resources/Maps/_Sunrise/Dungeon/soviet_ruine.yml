@@ -4,8 +4,8 @@ meta:
   engineVersion: 271.1.0
   forkId: ""
   forkVersion: ""
-  time: 02/22/2026 17:16:47
-  entityCount: 1755
+  time: 03/05/2026 17:50:47
+  entityCount: 1759
 maps:
 - 1
 grids:
@@ -6840,6 +6840,11 @@ entities:
     - type: Transform
       pos: 17.5,8.5
       parent: 1
+  - uid: 1743
+    components:
+    - type: Transform
+      pos: 16.5,12.5
+      parent: 1
   - uid: 1746
     components:
     - type: Transform
@@ -6851,36 +6856,6 @@ entities:
     components:
     - type: Transform
       pos: 14.5,3.5
-      parent: 1
-  - uid: 1743
-    components:
-    - type: Transform
-      pos: 16.5,16.5
-      parent: 1
-  - uid: 1744
-    components:
-    - type: Transform
-      pos: 20.5,13.5
-      parent: 1
-  - uid: 1745
-    components:
-    - type: Transform
-      pos: 17.5,12.5
-      parent: 1
-  - uid: 1749
-    components:
-    - type: Transform
-      pos: 11.5,15.5
-      parent: 1
-  - uid: 1750
-    components:
-    - type: Transform
-      pos: 10.5,12.5
-      parent: 1
-  - uid: 1751
-    components:
-    - type: Transform
-      pos: 14.5,19.5
       parent: 1
   - uid: 1752
     components:
@@ -8101,6 +8076,44 @@ entities:
     - type: Transform
       pos: 2.5,6.5
       parent: 1
+- proto: RailingRound
+  entities:
+  - uid: 1749
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 17.5,44.5
+      parent: 1
+  - uid: 1750
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 19.5,44.5
+      parent: 1
+  - uid: 1751
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 21.5,44.5
+      parent: 1
+  - uid: 1756
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 21.5,47.5
+      parent: 1
+  - uid: 1757
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 19.5,47.5
+      parent: 1
+  - uid: 1758
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 17.5,47.5
+      parent: 1
 - proto: RandomMercenaryCorpseSpawner
   entities:
   - uid: 1697
@@ -8637,6 +8650,25 @@ entities:
         path: /Audio/Effects/closetclose.ogg
       openSound: !type:SoundPathSpecifier
         path: /Audio/Effects/closetopen.ogg
+- proto: SovietSquadInfantryTimed
+  entities:
+  - uid: 1759
+    components:
+    - type: Transform
+      pos: 18.5,14.5
+      parent: 1
+- proto: SovietSquadPatrolTimed
+  entities:
+  - uid: 1744
+    components:
+    - type: Transform
+      pos: 11.5,13.5
+      parent: 1
+  - uid: 1745
+    components:
+    - type: Transform
+      pos: 14.5,20.5
+      parent: 1
 - proto: SpawnMechHauler
   entities:
   - uid: 720

@@ -415,27 +415,30 @@
     - id: VendingMachineSovietSoda
     - id: MachineFrameDestroyed
     - id: Rack
-      weight: 6
+      weight: 4
     - id: PoweredLightPostSmall
-      weight: 6
+      weight: 4
     - id: Table
-      weight: 6
+      weight: 4
     - id: BannerSovietRegular
     - id: DecalSpawnerBloodSplatters
       weight: 6
+    - id: MobTick
+      weight: 8
     - id: GenericTank
-      weight: 6
+      weight: 4
     - id: ClosetRadiationSuitFilled
     - id: ClosetRadiationSuit
     - id: DecalSpawnerDirtWide
       weight: 15
-    - id: MobSovietTimedSpawner
     - id: DecalSpawnerGraffiti
       weight: 15
     - id: RandomSpawner
       weight: 15
     - id: OreBox
-      weight: 22
+      weight: 18
+    - id: Barricade
+      weight: 10
     - id: MaintenancePlantSpawner
       weight: 6
     - id: MaintenanceWeaponSpawner
@@ -445,7 +448,15 @@
     - id: RandomSovietCorpseSpawner
     - id: RandomArtifactSpawner20
     - id: SpawnMobOreCrab
-      weight: 8
+      weight: 10
+    - id: MobQuartzCrab
+      weight: 5
+    - id: MobSaltCrab
+      weight: 5
+    - id: MobPlasmaCrab
+      weight: 5
+    - id: MobIronCrab
+      weight: 5
     - id: LootSpawnerMedicalMinor
     - id: LootSpawnerMaterialsSupplementary
     - id: SalvageCanisterSpawner
@@ -469,22 +480,22 @@
     - id: BarrelChemFilledChlorine
     - id: ClothingOuterArmorSovietPlateRandomSpawner
       weight: 0.3
+    - id: SovietSquadPatrolTimed
+      weight: 0.005
     - id: MobSovietT2FinkaTimed
       weight: 0.1
     - id: MobSovietT2BottleTimed
       weight: 0.1
     - id: MobSovietBearAltTimed
       weight: 0.08
-    - id: MobSovietMosinAltTimed
+    - id: MobSovietT1MosinAltTimed
       weight: 0.03
-    - id: MobSovietMosinTimed
+    - id: MobSovietT1MosinTimed
       weight: 0.03
     - id: MobSovietT1SMGAltTimed
       weight: 0.01
     - id: MobSovietT2RifleTimed
       weight: 0.005
-    - id: MobSovietT3ShotgunIncendiaryTimed
-      weight: 0.004
     - id: MobRandomSovietUSSPCorpse
       weight: 0.005
 #========================================================================

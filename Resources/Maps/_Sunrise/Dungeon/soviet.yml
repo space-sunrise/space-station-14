@@ -4,8 +4,8 @@ meta:
   engineVersion: 271.1.0
   forkId: ""
   forkVersion: ""
-  time: 02/22/2026 18:34:28
-  entityCount: 1656
+  time: 03/05/2026 17:48:24
+  entityCount: 1654
 maps:
 - 1
 grids:
@@ -1441,6 +1441,13 @@ entities:
     components:
     - type: Transform
       pos: 22.5,36.5
+      parent: 1
+- proto: BoxMagazineLightRifle
+  entities:
+  - uid: 1078
+    components:
+    - type: Transform
+      pos: 13.567827,26.59724
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -6556,13 +6563,6 @@ entities:
     - type: Transform
       pos: 7.5,21.5
       parent: 1
-- proto: MagazineBoxLightRifleBig
-  entities:
-  - uid: 1178
-    components:
-    - type: Transform
-      pos: 13.503313,26.611032
-      parent: 1
 - proto: MagazineBoxLightRifleSP
   entities:
   - uid: 1179
@@ -7610,6 +7610,44 @@ entities:
     - type: Transform
       pos: 2.5,6.5
       parent: 1
+- proto: RailingRound
+  entities:
+  - uid: 1079
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 21.5,44.5
+      parent: 1
+  - uid: 1080
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 21.5,47.5
+      parent: 1
+  - uid: 1081
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 19.5,47.5
+      parent: 1
+  - uid: 1082
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 17.5,47.5
+      parent: 1
+  - uid: 1178
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 19.5,44.5
+      parent: 1
+  - uid: 1501
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 17.5,44.5
+      parent: 1
 - proto: ReinforcedWindow
   entities:
   - uid: 1357
@@ -7916,6 +7954,13 @@ entities:
     components:
     - type: Transform
       pos: 5.779181,27.532673
+      parent: 1
+- proto: SovietSquadPatrolTimed
+  entities:
+  - uid: 1503
+    components:
+    - type: Transform
+      pos: 14.5,20.5
       parent: 1
 - proto: SpawnMechHauler
   entities:
@@ -8481,60 +8526,30 @@ entities:
     - type: Transform
       pos: 13.5,3.5
       parent: 1
-  - uid: 1501
-    components:
-    - type: Transform
-      pos: 17.5,47.5
-      parent: 1
   - uid: 1502
     components:
     - type: Transform
       pos: 17.5,46.5
-      parent: 1
-  - uid: 1503
-    components:
-    - type: Transform
-      pos: 17.5,44.5
       parent: 1
   - uid: 1504
     components:
     - type: Transform
       pos: 17.5,43.5
       parent: 1
-  - uid: 1505
-    components:
-    - type: Transform
-      pos: 21.5,47.5
-      parent: 1
   - uid: 1506
     components:
     - type: Transform
       pos: 21.5,46.5
-      parent: 1
-  - uid: 1507
-    components:
-    - type: Transform
-      pos: 21.5,44.5
       parent: 1
   - uid: 1508
     components:
     - type: Transform
       pos: 21.5,43.5
       parent: 1
-  - uid: 1509
-    components:
-    - type: Transform
-      pos: 19.5,47.5
-      parent: 1
   - uid: 1510
     components:
     - type: Transform
       pos: 19.5,46.5
-      parent: 1
-  - uid: 1511
-    components:
-    - type: Transform
-      pos: 19.5,44.5
       parent: 1
   - uid: 1512
     components:
@@ -8639,8 +8654,23 @@ entities:
     - type: Transform
       pos: 1.5,36.5
       parent: 1
+- proto: VendingMachineWallMedicalCivilian
+  entities:
+  - uid: 1507
+    components:
+    - type: Transform
+      pos: 3.5,20.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: WallBrick
   entities:
+  - uid: 1505
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,20.5
+      parent: 1
   - uid: 1531
     components:
     - type: Transform

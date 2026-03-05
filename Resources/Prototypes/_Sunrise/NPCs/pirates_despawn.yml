@@ -47,12 +47,12 @@
       - MobPirateT1SMGTimed
       - MobPirateT1FlintlockTimed
     rarePrototypes:
-      - MobPirateT1LMGSquadTimedSpawner
-      - MobPirateT1BreachSquadTimedSpawner
-      - MobPirateT1AssaultSquadTimedSpawner
-      - MobPirateT1HeavySquadTimedSpawner
-      - MobPirateT1InfiltratorSquadTimedSpawner
-      - MobPirateT1MonkeySquadTimedSpawner
+      - PirateSquadT1LMGTimed
+      - PirateSquadT1BreachTimed
+      - PirateSquadT1AssaultTimed
+      - PirateSquadT1HeavyTimed
+      - PirateSquadT1InfiltratorTimed
+      - PirateSquadT1MonkeyTimed
       - MobPirateT1MonkeyFireBombTimed
       - MobPirateT1MonkeyEDaggerTimed
       - MobPirateT1HunterTimed
@@ -201,15 +201,17 @@
 
 - type: entity
   name: pirate T1 LMG squad spawner (despawn)
-  id: MobPirateT1LMGSquadTimedSpawner
+  id: PirateSquadT1LMGTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
     - state: one
-    - sprite: Objects/Materials/materials.rsi
-      state: steel
+    - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/light_chaingun/big.rsi
+      state: base
+    - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/light_chaingun/big.rsi
+      state: mag-0
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT1LMGSquadTimedTable
@@ -239,7 +241,7 @@
 
 - type: entity
   name: pirate T1 breach squad spawner (despawn)
-  id: MobPirateT1BreachSquadTimedSpawner
+  id: PirateSquadT1BreachTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -276,7 +278,7 @@
 
 - type: entity
   name: pirate T1 assault squad spawner (despawn)
-  id: MobPirateT1AssaultSquadTimedSpawner
+  id: PirateSquadT1AssaultTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -316,7 +318,7 @@
 
 - type: entity
   name: pirate T1 heavy squad spawner (despawn)
-  id: MobPirateT1HeavySquadTimedSpawner
+  id: PirateSquadT1HeavyTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -353,7 +355,7 @@
 
 - type: entity
   name: pirate T1 infiltrator squad spawner (despawn)
-  id: MobPirateT1InfiltratorSquadTimedSpawner
+  id: PirateSquadT1InfiltratorTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -401,7 +403,7 @@
 
 - type: entity
   name: pirate monkey squad spawner (despawn)
-  id: MobPirateT1MonkeySquadTimedSpawner
+  id: PirateSquadT1MonkeyTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -464,7 +466,7 @@
 
 - type: entity
   name: pirate T1 random squad spawner (despawn)
-  id: MobPirateT1RandomSquadTimedSpawner
+  id: PirateSquadT1RandomTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -529,7 +531,7 @@
 
 - type: entity
   name: pirate T2 random squad spawner (despawn)
-  id: MobPirateT2RandomSquadTimedSpawner
+  id: PirateSquadT2RandomTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -591,7 +593,7 @@
 
 - type: entity
   name: pirate T3 random squad spawner (despawn)
-  id: MobPirateT3RandomSquadTimedSpawner
+  id: PirateSquadT3RandomTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -629,15 +631,17 @@
 
 - type: entity
   name: pirate T2 LMG squad spawner (despawn)
-  id: MobPirateT2LMGSquadTimedSpawner
+  id: PirateSquadT2LMGTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
     - state: two
-    - sprite: Objects/Materials/materials.rsi
-      state: steel
+    - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon.rsi
+      state: base
+    - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon.rsi
+      state: mag-3
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT2LMGSquadTimedTable
@@ -666,7 +670,7 @@
 
 - type: entity
   name: pirate T2 breach squad spawner (despawn)
-  id: MobPirateT2BreachSquadTimedSpawner
+  id: PirateSquadT2BreachTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -703,7 +707,7 @@
 
 - type: entity
   name: pirate T2 assault squad spawner (despawn)
-  id: MobPirateT2AssaultSquadTimedSpawner
+  id: PirateSquadT2AssaultTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -740,7 +744,7 @@
 
 - type: entity
   name: pirate T2 heavy squad spawner (despawn)
-  id: MobPirateT2HeavySquadTimedSpawner
+  id: PirateSquadT2HeavyTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -777,7 +781,7 @@
 
 - type: entity
   name: pirate T2 infiltrator squad spawner (despawn)
-  id: MobPirateT2InfiltratorSquadTimedSpawner
+  id: PirateSquadT2InfiltratorTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -814,7 +818,7 @@
 
 - type: entity
   name: pirate T2 control squad spawner (despawn)
-  id: MobPirateT2ControlSquadTimedSpawner
+  id: PirateSquadT2ControlTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -851,7 +855,7 @@
 
 - type: entity
   name: pirate T2 anti crowd squad spawner (despawn)
-  id: MobPirateT2AntiCrowdSquadTimedSpawner
+  id: PirateSquadT2AntiCrowdTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -889,15 +893,15 @@
 
 - type: entity
   name: pirate T3 LMG squad spawner (despawn)
-  id: MobPirateT3LMGSquadTimedSpawner
+  id: PirateSquadT3LMGTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
     - state: three
-    - sprite: Objects/Materials/materials.rsi
-      state: steel
+    - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/l6.rsi
+      state: base
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT3LMGSquadTimedTable
@@ -926,7 +930,7 @@
 
 - type: entity
   name: pirate T3 breach squad spawner (despawn)
-  id: MobPirateT3BreachSquadTimedSpawner
+  id: PirateSquadT3BreachTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -963,7 +967,7 @@
 
 - type: entity
   name: pirate T3 assault squad spawner (despawn)
-  id: MobPirateT3AssaultSquadTimedSpawner
+  id: PirateSquadT3AssaultTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -1000,7 +1004,7 @@
 
 - type: entity
   name: pirate T3 heavy squad spawner (despawn)
-  id: MobPirateT3HeavySquadTimedSpawner
+  id: PirateSquadT3HeavyTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -1037,7 +1041,7 @@
 
 - type: entity
   name: pirate T3 infiltrator squad spawner (despawn)
-  id: MobPirateT3InfiltratorSquadTimedSpawner
+  id: PirateSquadT3InfiltratorTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -1074,7 +1078,7 @@
 
 - type: entity
   name: pirate T3 shield phalanx squad spawner (despawn)
-  id: MobPirateT3ShieldPhalanxTimedSpawner
+  id: PirateSquadT3ShieldPhalanxTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -1111,7 +1115,7 @@
 
 - type: entity
   name: pirate T3 suppressor squad spawner (despawn)
-  id: MobPirateT3SuppressorSquadTimedSpawner
+  id: PirateSquadT3SuppressorTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -1148,7 +1152,7 @@
 
 - type: entity
   name: pirate T3 universal squad spawner (despawn)
-  id: MobPirateT3UniversalSquadTimedSpawner
+  id: PirateSquadT3UniversalTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -1509,3 +1513,4 @@
   parent: [MobPirateTimedDespawn, MobPirateT3Boss]
   id: MobPirateT3BossTimed
 # region Timed END
+

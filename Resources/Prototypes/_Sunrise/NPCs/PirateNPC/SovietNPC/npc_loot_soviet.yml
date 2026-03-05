@@ -1,3 +1,38 @@
+# region Loot Spawners
+- type: entity
+  parent: ClothingOuterArmorSovietPlate
+  id: SovietSoldierPoolLootSpawner
+  name: soviet soldier loot spawner
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: SoldierTable01
+    offset: 0
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: SoldierTable01
+  table: !type:AllSelector
+    children:
+    - id: ClothingHeadHelmetMerc
+      prob: 0.15
+    - id: ClothingMaskGasMerc
+      prob: 0.15
+    - id: ClothingUniformJumpsuitSoviet
+      prob: 0.15
+    - id: ClothingBackpackMerc
+      prob: 0.15
+    - id: ClothingBeltLightSovietMarineWebbing
+      prob: 0.1
+    - id: ClothingOuterArmorSovietPlateRandomSpawner
+      prob: 0.1
+    - id: ClothingHandsGlovesMercFingerless
+      prob: 0.1
+    - id: ClothingHandsMercGlovesCombat
+      prob: 0.05
+    - id: ClothingBackpackMessengerMercenary
+      prob: 0.05
+
 # MERCENARY NPC LOOT
 - type: entity
   parent: MercenaryWebbingBox
@@ -61,6 +96,164 @@
         color: "#bbbb7a"
 
 #region TIER 1
+# SL
+- type: entity
+  parent: SovietLightWebbingBox
+  id: ClothingBeltWebbingSovietTier1SKM24SL
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponRifleSKM24Green
+      prob: 0.25
+    - id: MagazineLightRifleEmpty
+      prob: 0.8
+    - id: MagazineLightRifleEmpty
+      prob: 0.6
+    - id: MagazineLightRifleFMJ
+      prob: 0.4
+    - id: MagazineLightRifleFMJ
+      prob: 0.2
+    - id: MagazineLightRifleAP
+      prob: 0.01
+    - id: Tourniquet
+      prob: 0.3
+    - id: Tourniquet
+      prob: 0.1
+    - id: ExShrapnelGrenade
+      prob: 0.1
+    - id: ExShrapnelGrenade
+      prob: 0.05
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: SovietLightWebbingBox
+  id: ClothingBeltWebbingSovietTier1PPSHSL
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponSubMachineGunPPSH
+      prob: 0.25
+    - id: MagazinePistolSubMachineGunPPSH
+      prob: 0.3
+    - id: MagazinePistolSubMachineGunPPSH
+      prob: 0.25
+    - id: MagazinePistolSubMachineGunPPSH
+      prob: 0.1
+    - id: MagazinePistolSubMachineGunPPSHExtended
+      prob: 0.05
+    - id: SovietSoldierPoolLootSpawner
+    - id: Tourniquet
+      prob: 0.3
+    - id: Tourniquet
+      prob: 0.1
+    - id: ExShrapnelGrenade
+      prob: 0.2
+    - id: ExShrapnelGrenade
+      prob: 0.05
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+###
+
+- type: entity
+  parent: SovietLightWebbingBox
+  id: ClothingBeltWebbingSovietTier1SKM24
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponRifleSKM24Green
+      prob: 0.25
+    - id: MagazineLightRifleEmpty
+      prob: 0.8
+    - id: MagazineLightRifleEmpty
+      prob: 0.6
+    - id: MagazineLightRifleFMJ
+      prob: 0.4
+    - id: MagazineLightRifleFMJ
+      prob: 0.2
+    - id: MagazineLightRifleAP
+      prob: 0.01
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: ClothingBackpackDuffelMercenaryTier1Medic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponGrapplingGun
+    # Cash
+    - id: PirateCashSpawner06
+    - id: PirateCashSpawner07
+      prob: 0.5
+    # Weapons
+    - id: WeaponPistolM1984
+      prob: 0.25
+      orGroup: Weapon
+    - id: WeaponSubMachineGunPPSH
+      prob: 0.05
+      orGroup: Weapon
+    - id: MagazinePistolSubMachineGunPPSH
+      prob: 0.4
+      orGroup: Weapon
+    - id: MagazinePistolSubMachineGunPPSH
+      prob: 0.25
+    - id: SovietSoldierPoolLootSpawner
+    - id: Tourniquet
+      prob: 0.3
+    - id: Tourniquet
+      prob: 0.1
+    # Items
+    - id: ClothingBeltMedicalFilled
+      prob: 0.85
+    # Bonus Loot T1
+    - id: PirateAmpulaSpawnerT3
+    - id: PirateMedSpawner03
+      prob: 0.75
+    - id: PirateMedSpawner02
+      prob: 0.5
+    - id: NukeOpsMedkitSpawner
+      prob: 0.25
+    - id: NukeOpsMedkitBruteSpawner
+      prob: 0.25
+    - id: NukeOpsMedkitSpawner
+      prob: 0.25
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: SovietLightWebbingBox
+  id: ClothingBeltMedSovietTier1Medic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/cmo.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    # Bonus Loot T3
+    - id: PirateAmpulaSpawnerT3
+      prob: 0.3
+    - id: PirateMedSpawner03
+      prob: 0.3
+    - id: PirateMedSpawner03
+      prob: 0.15
+    - id: PirateMedSpawner02
+      prob: 0.15
+    - id: NukeOpsMedkitSpawner
+      prob: 0.1
+    - id: NukeOpsMedkitBruteSpawner
+      prob: 0.1
+    - id: NukeOpsMedkitSpawner
+      prob: 0.1
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
 - type: entity
   parent: MercenaryDuffelGiftBox
   id: ClothingBackpackDuffelMercenaryTier1Pistol
@@ -75,15 +268,11 @@
       prob: 0.9
     # Armor
     - id: ClothingOuterArmorSovietPlateRandomSpawner
-      prob: 0.6
-
     - id: PirateMedSpawner01
     # Bonus Loot T1
     - id: PirateCashSpawner08
       prob: 0.9
     - id: PirateCashSpawner03
-      prob: 0.7
-    - id: LootSpawnerIndustrial
       prob: 0.7
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -110,6 +299,118 @@
       path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
+  parent: BandolierBox
+  id: ClothingBackpackDuffelMercenaryTier1MMG
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Syndicate/ammo_bag.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: PirateCashSpawner08
+    # Weapons
+    - id: WeaponLightMachineGunDP28
+      prob: 0.05
+      orGroup: DP28Pool
+    - id: WeaponPistolHIB88M4
+      prob: 0.5
+      orGroup: DP28Pool
+    - id: CrateAmmunitionSmallLightRifle
+      prob: 0.25
+      orGroup: DP28Pool
+    # Armor
+    - id: SovietSoldierPoolLootSpawner
+    - id: PirateMedSpawner01
+    # Bonus Loot T1
+    - id: PirateCashSpawner08
+      prob: 0.9
+    - id: PirateCashSpawner03
+      prob: 0.7
+    - id: LootSpawnerIndustrial
+      prob: 0.7
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: ClothingBackpackDuffelMercenaryTier1LMG
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: PirateCashSpawner08
+    # Weapons
+    - id: WeaponLightMachineGunRPD
+      prob: 0.05
+      orGroup: MgPool
+    - id: WeaponPistolHIB88M4
+      prob: 0.5
+      orGroup: MgPool
+    - id: MagazineLightRifleBeltBoxFMJ
+      prob: 0.3
+      orGroup: MgPool
+    - id: MagazineLightRifleBeltBoxAP
+      prob: 0.15
+      orGroup: MgPool
+    # Armor
+    - id: SovietSoldierPoolLootSpawner
+    - id: PirateMedSpawner01
+    # Bonus Loot T1
+    - id: PirateCashSpawner08
+      prob: 0.9
+    - id: PirateCashSpawner03
+      prob: 0.7
+    - id: LootSpawnerIndustrial
+      prob: 0.7
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: BandolierBox
+  id: ClothingBeltBandolierT1MMGSoviet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Items
+    - id: PirateMedSpawner03
+    - id: MagazinePistol
+      prob: 0.3
+    - id: MagazinePistolEmpty
+      amount: 2
+      prob: 0.4
+    - id: MagazineLightRifleMaxim
+      prob: 0.1
+    - id: MagazineLightRifleMaxim
+      prob: 0.1
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: BandolierBox
+  id: ClothingBeltBandolierT1LMGSoviet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Items
+    - id: PirateMedSpawner03
+    - id: MagazinePistol
+      prob: 0.3
+    - id: MagazinePistolEmpty
+      amount: 2
+      prob: 0.4
+    - id: MagazineLightRifleBeltBoxEmpty
+      prob: 0.25
+    - id: MagazineLightRifleBeltBoxFMJ
+      prob: 0.15
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
   parent: SovietMessengerGiftBox
   id: ClothingBackpackDuffelMercenaryTier1Mosin
   categories: [ HideSpawnMenu ]
@@ -122,8 +423,7 @@
     - id: WeaponSniperMosin
       prob: 0.9
     # Armor
-    - id: ClothingOuterArmorSovietPlateRandomSpawner
-      prob: 0.6
+    - id: SovietSoldierPoolLootSpawner
     - id: PirateMedSpawner01
     # Bonus Loot T2
     - id: PirateCashSpawner03
@@ -369,34 +669,75 @@
   components:
   - type: SpawnItemsOnUse
     items:
+    - id: WeaponGrapplingGun
     # Cash
+    - id: PirateCashSpawner06
     - id: PirateCashSpawner07
-    # Weapons
-    - id: WeaponEnergyGun
-      prob: 0.9
-    - id: SawElectric
-      prob: 0.7
-    # Armor
-    # Items
-    - id: LootSpawnerMedicalMinor
-      prob: 0.45
-    - id: PirateMedSpawner01
-    # Bonus Loot T3
-    - id: PirateCashSpawner07
-      prob: 0.9
-    - id: PirateCashSpawner07
-      prob: 0.9
-    - id: PirateCashSpawner03
-      prob: 0.7
-    - id: PirateCashSpawner03
-      prob: 0.7
-    - id: LootSpawnerIndustrial
-      amount: 2
-      prob: 0.7
-    - id: SalvageLootSpawner
       prob: 0.5
-    - id: LootSpawnerIndustrial
+    # Weapons
+    - id: WeaponPistolM1984
+      prob: 0.5
+      orGroup: PistolT3Pool
+    - id: WeaponPistolViper
+      prob: 0.5
+      orGroup: PistolT3Pool
+    - id: MagazineBoxPistolSP
+      prob: 0.7
+    # Items
+    - id: ClothingBeltMedicalFilled
+      prob: 0.85
+    # Bonus Loot T3
+    - id: PirateAmpulaSpawnerT3
+    - id: PirateMedSpawner03
+    - id: PirateMedSpawner03
+      prob: 0.8
+    - id: PirateMedSpawner02
+      prob: 0.6
+    - id: NukeOpsMedkitSpawner
+      prob: 0.6
+    - id: NukeOpsMedkitBruteSpawner
+      prob: 0.5
+    - id: NukeOpsMedkitSpawner
+      prob: 0.5
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: SovietLightWebbingBox
+  id: ClothingBeltMedSovietTier3Pistol
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/cmo.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: MagazinePistol
+      prob: 0.9
+    - id: MagazinePistolEmpty
+      prob: 0.9
+    - id: MagazinePistolEmpty
+      prob: 0.8
+    - id: MagazinePistolEmpty
+      amount: 2
       prob: 0.4
+    - id: MagazineBoxPistolFMJ
+      prob: 0.3
+    # Bonus Loot T3
+    - id: PirateAmpulaSpawnerT3
+      prob: 0.4
+    - id: PirateMedSpawner03
+      prob: 0.4
+    - id: PirateMedSpawner03
+      prob: 0.25
+    - id: PirateMedSpawner02
+      prob: 0.25
+    - id: NukeOpsMedkitSpawner
+      prob: 0.15
+    - id: NukeOpsMedkitBruteSpawner
+      prob: 0.15
+    - id: NukeOpsMedkitSpawner
+      prob: 0.15
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -514,8 +855,7 @@
     - id: WeaponSniperDragunov
       prob: 0.25
     # Armor
-    - id: ClothingOuterArmorSovietPlateRandomSpawner
-      prob: 0.6
+    - id: SovietSoldierPoolLootSpawner
     # Items
     - id: MagazineBoxRifleMachineFMJ
       prob: 0.7

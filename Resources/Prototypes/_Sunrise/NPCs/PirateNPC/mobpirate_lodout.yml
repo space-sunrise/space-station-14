@@ -385,7 +385,7 @@
 - type: startingGear
   id: MobPirateT3RPDGear
   equipment:
-    gloves: ClothingHandsRPD
+    gloves: ClothingHandsPirateRPD
     belt: ClothingBeltAssaultT3RPD
     pocket1: StimkitFilled
     pocket2: AutoMenderBruteFilled
@@ -529,7 +529,7 @@
 - type: startingGear
   id: MobPirateGearRangedT4LMG
   equipment:
-    gloves: ClothingHandsDp28
+    gloves: ClothingHandsPirateDP28
     belt: ClothingBeltBandolierT4LMG
     pocket1: PouchAmmo
 

@@ -5,7 +5,23 @@
     gloves: ClothingHandsFinkaSovietFlak
     pocket1: SpaceCash500
     pocket2: BrokenBottle
-    shoes: ClothingShoesBootsMerc
+    shoes: ClothingShoesBootsUSSPFilled
+
+- type: startingGear
+  id: MobSovietGearRangedT1Dp28
+  equipment:
+    gloves: ClothingHandsSovietFlakDP28
+    back: ClothingBackpackDuffelMercenaryTier1MMG
+    belt: ClothingBeltBandolierT1MMGSoviet
+    shoes: ClothingShoesBootsUSSPFilled
+
+- type: startingGear
+  id: MobSovietGearRangedT1RPD
+  equipment:
+    gloves: ClothingHandsSovietFlakRPD
+    back: ClothingBackpackDuffelMercenaryTier1LMG
+    belt: ClothingBeltBandolierT1LMGSoviet
+    shoes: ClothingShoesBootsUSSPFilled
 
 - type: startingGear
   id: MobSovietGearRangedT1
@@ -13,7 +29,7 @@
     gloves: ClothingHandsBlackPistolSovietFlak
     back: ClothingBackpackDuffelMercenaryTier1Pistol
     belt: ClothingBeltWebbingSovietTier1Pistol
-    shoes: ClothingShoesBootsMerc
+    shoes: ClothingShoesBootsUSSPFilled
 
 - type: startingGear
   id: MobSovietGearRangedAltT1
@@ -21,7 +37,7 @@
     gloves: ClothingHandsMercMosinSovietNoOuter
     back: ClothingBackpackDuffelMercenaryTier1Mosin
     belt: ClothingBeltWebbingMercenaryTier1Mosin
-    shoes: ClothingShoesBootsMerc
+    shoes: ClothingShoesBootsUSSPFilled
 
 - type: startingGear
   id: MobSovietGearRangedSMG
@@ -36,6 +52,53 @@
     gloves: ClothingHandsMercMosinSovietNoOuter
     shoes: ClothingShoesBootsWork
     pocket1: SpeedLoaderHeavyRifleRFMJ
+
+- type: startingGear
+  id: MobSovietGearT1Medic
+  equipment:
+    gloves: ClothingHandsPPSHSovietFlak
+    back: ClothingBackpackDuffelMercenaryTier1Medic
+    belt: ClothingBeltMedSovietTier1Medic
+    pocket1: HandheldHealthAnalyzer
+    pocket2: MedkitAdvancedFilled
+    shoes: ClothingShoesBootsUSSPFilled
+
+- type: startingGear
+  id: MobSovietGearSKM24
+  equipment:
+    gloves: ClothingHandsSKM24BSovietFlak
+    pocket1: PouchAmmoFilledLightRifle
+    pocket2: MedkitFilled
+    belt: ClothingBeltWebbingSovietTier1SKM24
+    shoes: ClothingShoesBootsUSSPFilled
+
+- type: startingGear
+  id: MobSovietGearPPSH
+  equipment:
+    gloves: ClothingHandsPPSHSovietFlak
+    belt: ClothingBeltWebbingSovietTier1PPSHSL
+    pocket1: ChemistryBottleSaline
+    pocket2: MedkitFilled
+    shoes: ClothingShoesBootsUSSPFilled
+
+# Squad Leader`s
+- type: startingGear
+  id: MobSovietGearSKM24SL
+  equipment:
+    gloves: ClothingHandsSKM24BSovietFlak
+    pocket1: PouchAmmoFilledLightRifle
+    pocket2: MedkitCombatFilled
+    belt: ClothingBeltWebbingSovietTier1SKM24SL
+    shoes: ClothingShoesBootsUSSPFilled
+
+- type: startingGear
+  id: MobSovietGearPPSHSL
+  equipment:
+    gloves: ClothingHandsPPSHSovietFlak
+    belt: ClothingBeltWebbingSovietTier1PPSHSL
+    pocket1: ChemistryBottleSaline
+    pocket2: MedkitCombatFilled
+    shoes: ClothingShoesBootsUSSPFilled
 
 # Tier 2 # Marine (Blue beret)
 - type: startingGear
@@ -87,6 +150,16 @@
     shoes: ClothingShoesBootsUSSPFilled
 
 # Tier 3 # Marine-Hardsuit
+- type: startingGear
+  id: MobSovietGearT3Medic
+  equipment:
+    gloves: ClothingHandsPythonGSovietUSSPLight
+    back: ClothingBackpackDuffelMercenaryTier3Medic
+    belt: ClothingBeltMedSovietTier3Pistol
+    shoes: ClothingShoesBootsUSSPFilled
+    pocket1: HandheldHealthAnalyzer
+    pocket2: StimkitFilled
+
 - type: startingGear
   id: MobSovietGearT2Raider
   equipment:

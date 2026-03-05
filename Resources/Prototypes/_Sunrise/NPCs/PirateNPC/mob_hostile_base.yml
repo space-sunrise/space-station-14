@@ -193,6 +193,7 @@
   id: MobHostileBossBase
   abstract: true
   parent:
+  - MobDungeonAtmos
   - MobEnhancedMovement
   - MobStaminaBoss
   - MobMovementSpeedModifierBoss
