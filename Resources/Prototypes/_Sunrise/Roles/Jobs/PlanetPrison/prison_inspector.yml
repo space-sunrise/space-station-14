@@ -64,7 +64,7 @@
   job: PrisonInspector
   equipment:
     jumpsuit: ClothingUniformJumpsuitArmouredBlack
-    head: Sunrise-ClothingHeadHatDetGadget
+    head: SunriseClothingHeadHatDetGadget
     ears: ClothingHeadsetCommand
     gloves: ClothingHandsGlovesForensic
     outerClothing: ClothingOuterArmorBasic

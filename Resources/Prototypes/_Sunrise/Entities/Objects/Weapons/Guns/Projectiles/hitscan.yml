@@ -220,7 +220,7 @@
     deviation: 0.05
     pierceLevel: Wood
   - type: HitscanRicochet
-    chance: 0.99
+    chance: 0.70
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -242,18 +242,18 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanStaminaDamage
-    staminaDamage: 10
+    staminaDamage: 8.5
   - type: HitscanBasicDamage
     armorPenetration: -0.99
     damage:
       types:
-        Blunt: 2
+        Blunt: 3
   - type: HitscanPierce
     chance: 0.05
     deviation: 0.05
     pierceLevel: Wood
   - type: HitscanRicochet
-    chance: 0.99
+    chance: 0.6
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
