@@ -9,7 +9,7 @@
       food:
         maxVol: 10
         reagents:
-        - ReagentId: smetana
+        - ReagentId: Smetana
           Quantity: 10
   - type: Icon
     sprite: _Sunrise/Objects/Consumable/Food/condiments.rsi
@@ -30,7 +30,7 @@
       food:
         maxVol: 10
         reagents:
-        - ReagentId: honey
+        - ReagentId: Honey
           Quantity: 10
   - type: Icon
     sprite: _Sunrise/Objects/Consumable/Food/condiments.rsi
