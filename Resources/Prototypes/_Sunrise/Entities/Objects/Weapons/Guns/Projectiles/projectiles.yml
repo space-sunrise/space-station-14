@@ -1052,3 +1052,29 @@
   - type: SolutionInjectOnProjectileHit
     transferAmount: 3
     solution: bolt
+
+- type: entity
+  parent: BaseBulletRubber
+  id: BulletMagnumProjectileRubber
+  categories: [ HideSpawnMenu ]
+  name: bullet (.45 magnum rubber)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 5
+  - type: StaminaDamageOnCollide
+    damage: 20
+
+- type: entity
+  parent: BaseBulletRubber
+  id: BulletPistolProjectileRubber
+  categories: [ HideSpawnMenu ]
+  name: bullet (.35 auto rubber)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+  - type: StaminaDamageOnCollide
+    damage: 9
