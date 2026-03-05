@@ -10,11 +10,14 @@ void fragment()
 {
     highp vec4 baseColor = zTexture(UV);
     const highp float alphaCutoff = 0.45;
-    const highp float blockSize = 2.0;
+    const highp float blockSize = 4.0;
+    // Визуальный потолок: максимум 90% блоков окрашиваются, чтобы оставались
+    // чистые участки спрайта и эффект выглядел как отдельные пиксели, а не заливка.
+    const highp float maxVisualAmount = 0.90;
 
     if (baseColor.a <= alphaCutoff)
     {
-        COLOR = zAdjustResult(baseColor);
+        COLOR = baseColor;
         return;
     }
 
@@ -22,13 +25,13 @@ void fragment()
     highp vec2 blockUv = floor(pixelUv / blockSize);
     highp float noise = hash(blockUv);
 
-    if (noise <= contaminationAmount)
+    highp float visualAmount = (1 - contaminationAmount) * maxVisualAmount;
+
+    if (noise <= visualAmount)
     {
-        highp vec3 contaminationRgb = contaminationColor.rgb * baseColor.a;
-        highp vec3 mixed = mix(baseColor.rgb, contaminationRgb, 0.7);
-        COLOR = zAdjustResult(vec4(mixed, baseColor.a));
+        COLOR = baseColor;
         return;
     }
 
-    COLOR = zAdjustResult(baseColor);
+    COLOR = contaminationColor;
 }

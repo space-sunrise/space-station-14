@@ -113,7 +113,14 @@ public sealed class DiseaseContaminationSystem : EntitySystem
             return;
 
         instance.SetParameter("contaminationAmount", Math.Clamp(contamination.Contamination, 0f, 1f));
-        instance.SetParameter("contaminationColor", contamination.Color);
+
+        // Если цвет прозрачный/чёрный (напр. данные ещё не пришли с сервера),
+        // используем fallback, чтобы блоки заражения не были невидимыми.
+        var color = contamination.Color;
+        if (color.R + color.G + color.B < 0.01f)
+            color = Color.FromHex("#7FBF3F");
+
+        instance.SetParameter("contaminationColor", color);
         sprite.PostShader = instance;
     }
 
