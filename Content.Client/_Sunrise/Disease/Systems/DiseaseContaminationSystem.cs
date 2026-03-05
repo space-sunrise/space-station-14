@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
 using Content.Shared._Sunrise.Disease;
 using Content.Shared._Sunrise.Disease.Components;
 using Robust.Client.GameObjects;
@@ -57,25 +55,31 @@ public sealed class DiseaseContaminationSystem : EntitySystem
 
     private void OnPlayerAttached(Entity<DiseaseInfectionDetectorUserComponent> ent, ref LocalPlayerAttachedEvent args)
     {
-        _eye.RefreshVisibilityMask(args.Equipee);
+        _eye.RefreshVisibilityMask(args.Entity);
         UpdateAllContaminationShaders();
     }
 
     private void OnPlayerDetached(Entity<DiseaseInfectionDetectorUserComponent> ent, ref LocalPlayerDetachedEvent args)
     {
-        _eye.RefreshVisibilityMask(args.Equipee);
+        _eye.RefreshVisibilityMask(args.Entity);
         UpdateAllContaminationShaders();
     }
 
     private void OnDetectorUserStartup(Entity<DiseaseInfectionDetectorUserComponent> ent, ref ComponentStartup args)
     {
-        _eye.RefreshVisibilityMask(args.Equipee);
+        if (_player.LocalEntity != ent.Owner)
+            return;
+
+        _eye.RefreshVisibilityMask(ent.Owner);
         UpdateAllContaminationShaders();
     }
 
     private void OnDetectorUserShutdown(Entity<DiseaseInfectionDetectorUserComponent> ent, ref ComponentShutdown args)
     {
-        _eye.RefreshVisibilityMask(args.Equipee);
+        if (_player.LocalEntity != ent.Owner)
+            return;
+
+        _eye.RefreshVisibilityMask(ent.Owner);
         UpdateAllContaminationShaders();
     }
     
@@ -107,7 +111,7 @@ public sealed class DiseaseContaminationSystem : EntitySystem
         var shouldShow = CanSeeContamination() && contamination.Contamination > 0f;
         if (!shouldShow)
         {
-            ClearShader(uid, sprite);
+            ClearShader((uid, sprite));
             return;
         }
 
@@ -133,8 +137,8 @@ public sealed class DiseaseContaminationSystem : EntitySystem
         if (!_shaderInstances.TryGetValue(ent.Owner, out var instance))
             return;
 
-        if (sprite.PostShader == instance)
-            sprite.PostShader = null;
+        if (ent.Comp.PostShader == instance)
+            ent.Comp.PostShader = null;
 
         _shaderInstances.Remove(ent.Owner);
     }
