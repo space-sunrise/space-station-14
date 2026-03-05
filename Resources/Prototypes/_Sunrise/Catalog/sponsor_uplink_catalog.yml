@@ -1818,7 +1818,7 @@
   id: UplinkSunriseProtoAdvMop
   productEntity: ProtoAdvMop
   cost:
-    Suntick: 40
+    Suntick: 35
   categories:
   - ServiceThings
   conditions:

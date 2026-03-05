@@ -1,0 +1,13 @@
+marking-PredatorDreadlocksShort1 = Короткие дреды
+marking-PredatorDreadlocksShort2 = Короткие дреды (альт)
+marking-PredatorDreadlocksShoulderLength = Дреды до плеч
+marking-PredatorDreadLong = Длинные дреды
+marking-PredatorDreadlocksTailDown = Низкий хвост
+marking-PredatorDreadlocksTailUp = Высокий хвост
+marking-PredatorBodySpots = Пятна
+marking-PredatorBodyStripes = Полоски
+marking-PredatorArmsSpots = Пятна
+marking-PredatorArmsStripes = Полоски
+marking-PredatorLegsStripes = Полоски
+marking-PredatorRings1 = Кольца
+marking-PredatorRings2 = Кольца (альт)
