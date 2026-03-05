@@ -33,6 +33,13 @@ public sealed class DiseaseContaminationSystem : EntitySystem
 
         SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
+
+        SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, GetVisMaskEvent>(OnGetVisMask);
+    }
+
+    private void OnGetVisMask(Entity<DiseaseInfectionDetectorUserComponent> ent, ref GetVisMaskEvent args)
+    {
+        args.VisibilityMask |= BaseDiseaseSettings.DiseaseInfectionVisibilityFlag;
     }
 
     private void OnContaminationStartup(Entity<DiseaseContaminationComponent> ent, ref ComponentStartup args)
@@ -50,26 +57,25 @@ public sealed class DiseaseContaminationSystem : EntitySystem
 
     private void OnPlayerAttached(Entity<DiseaseInfectionDetectorUserComponent> ent, ref LocalPlayerAttachedEvent args)
     {
+        _eye.RefreshVisibilityMask(args.Equipee);
         UpdateAllContaminationShaders();
     }
 
     private void OnPlayerDetached(Entity<DiseaseInfectionDetectorUserComponent> ent, ref LocalPlayerDetachedEvent args)
     {
-        UpdateAllContaminationShaders();
-    }
-
-    private void OnContaminationStartup(Entity<DiseaseContaminationComponent> ent, ref ComponentStartup args)
-    {
+        _eye.RefreshVisibilityMask(args.Equipee);
         UpdateAllContaminationShaders();
     }
 
     private void OnDetectorUserStartup(Entity<DiseaseInfectionDetectorUserComponent> ent, ref ComponentStartup args)
     {
+        _eye.RefreshVisibilityMask(args.Equipee);
         UpdateAllContaminationShaders();
     }
 
     private void OnDetectorUserShutdown(Entity<DiseaseInfectionDetectorUserComponent> ent, ref ComponentShutdown args)
     {
+        _eye.RefreshVisibilityMask(args.Equipee);
         UpdateAllContaminationShaders();
     }
     

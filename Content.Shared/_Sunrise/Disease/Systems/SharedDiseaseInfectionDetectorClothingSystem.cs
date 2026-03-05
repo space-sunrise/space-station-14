@@ -19,12 +19,6 @@ public sealed class SharedDiseaseInfectionDetectorClothingSystem : EntitySystem
 
         SubscribeLocalEvent<DiseaseInfectionDetectorClothingComponent, GotEquippedEvent>(OnGotEquipped);
         SubscribeLocalEvent<DiseaseInfectionDetectorClothingComponent, GotUnequippedEvent>(OnGotUnequipped);
-        SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, GetVisMaskEvent>(OnGetVisMask);
-    }
-
-    private void OnGetVisMask(Entity<DiseaseInfectionDetectorUserComponent> ent, ref GetVisMaskEvent args)
-    {
-        args.VisibilityMask |= BaseDiseaseSettings.DiseaseInfectionVisibilityFlag;
     }
 
     private void OnGotEquipped(Entity<DiseaseInfectionDetectorClothingComponent> ent, ref GotEquippedEvent args)
@@ -34,11 +28,6 @@ public sealed class SharedDiseaseInfectionDetectorClothingSystem : EntitySystem
 
         var user = EnsureComp<DiseaseInfectionDetectorUserComponent>(args.Equipee);
         user.Count++;
-
-        if (user.Count > 1)
-            return;
-
-        _eye.RefreshVisibilityMask(args.Equipee);
     }
 
     private void OnGotUnequipped(Entity<DiseaseInfectionDetectorClothingComponent> ent, ref GotUnequippedEvent args)
@@ -55,6 +44,5 @@ public sealed class SharedDiseaseInfectionDetectorClothingSystem : EntitySystem
             return;
 
         RemComp<DiseaseInfectionDetectorUserComponent>(args.Equipee);
-        _eye.RefreshVisibilityMask(args.Equipee);
     }
 }
