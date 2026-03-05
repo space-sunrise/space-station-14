@@ -481,16 +481,6 @@
   - type: InstantAction
     event: !type:GravityJumpEvent {}
 
-# Sunrise - Start
-- type: entity
-  parent: ActionVulpkaninGravityJump
-  id: ActionXenoGravityJump
-  components:
-  - type: Action
-    useDelay: 6
-  - type: InstantAction
-# Sunrise - End
-
 - type: entity
   parent: BaseToggleAction
   id: ActionToggleRootable
