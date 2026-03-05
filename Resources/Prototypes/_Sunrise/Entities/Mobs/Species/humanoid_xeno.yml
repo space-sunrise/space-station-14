@@ -56,6 +56,8 @@
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
         color: "#44944A"
+  - type: Stamina
+    baseCritThreshold: 125
   - type: JumpAbility
     action: ActionXenoGravityJump
     canCollide: true
