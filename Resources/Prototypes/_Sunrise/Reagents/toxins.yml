@@ -22,7 +22,7 @@
         ignoreResistances: false
         damage:
           types:
-            Caustic: 10
+            Caustic: 5
       - !type:Emote
         conditions:
         - !type:TagCondition
