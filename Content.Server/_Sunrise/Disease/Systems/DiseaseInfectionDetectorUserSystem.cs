@@ -1,6 +1,7 @@
 using Content.Shared._Sunrise.Disease.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
+using Robust.Shared.Player;
 
 namespace Content.Server._Sunrise.Disease.Systems;
 
@@ -15,8 +16,8 @@ public sealed class DiseaseInfectionDetectorUserSystem : EntitySystem
         SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, ComponentStartup>(OnDetectorUserStartup);
         SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, ComponentShutdown>(OnDetectorUserShutdown);
 
-        SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
+        SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, PlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, PlayerDetachedEvent>(OnPlayerDetached);
 
         SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, GetVisMaskEvent>(OnGetVisMask);
     }
@@ -26,23 +27,23 @@ public sealed class DiseaseInfectionDetectorUserSystem : EntitySystem
         args.VisibilityMask |= BaseDiseaseSettings.DiseaseInfectionVisibilityFlag;
     }
 
-    private void OnPlayerAttached(Entity<DiseaseInfectionDetectorUserComponent> ent, ref LocalPlayerAttachedEvent args)
+    private void OnPlayerAttached(Entity<DiseaseInfectionDetectorUserComponent> ent, ref PlayerAttachedEvent args)
     {
-        _eye.RefreshVisibilityMask(args.Equipee);
+        _eye.RefreshVisibilityMask(ent.Owner);
     }
 
-    private void OnPlayerDetached(Entity<DiseaseInfectionDetectorUserComponent> ent, ref LocalPlayerDetachedEvent args)
+    private void OnPlayerDetached(Entity<DiseaseInfectionDetectorUserComponent> ent, ref PlayerDetachedEvent args)
     {
-        _eye.RefreshVisibilityMask(args.Equipee);
+        _eye.RefreshVisibilityMask(ent.Owner);
     }
 
     private void OnDetectorUserStartup(Entity<DiseaseInfectionDetectorUserComponent> ent, ref ComponentStartup args)
     {
-        _eye.RefreshVisibilityMask(args.Equipee);
+        _eye.RefreshVisibilityMask(ent.Owner);
     }
 
     private void OnDetectorUserShutdown(Entity<DiseaseInfectionDetectorUserComponent> ent, ref ComponentShutdown args)
     {
-        _eye.RefreshVisibilityMask(args.Equipee);
+        _eye.RefreshVisibilityMask(ent.Owner);
     }
 }
