@@ -465,8 +465,8 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
 
         if (TryComp<DiseaseComponent>(target, out var targetDiseaseComp))
         {
-            // Сила вируса определяется по количеству симптомов
-            if (targetDiseaseComp.Data.ActiveSymptom.Count >= data.ActiveSymptom.Count)
+            // Сила вируса определяется по количеству симптомов            
+            if (!ThisDiseasIsStronger(data, targetDiseaseComp.Data))
                 return false;
         }
 
@@ -480,6 +480,17 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
             return false;
 
         return true;
+    }
+
+    /// <summary>
+    ///     Если левая болезнь сильнее правой, возвращает true.
+    /// </summary>
+    public bool ThisDiseasIsStronger(DiseaseData left, DiseaseData right)
+    {
+        if (left.ActiveSymptom.Count > right.ActiveSymptom.Count)
+            return true;
+        
+        return false;
     }
 
     public DiseaseData GenerateDiseaseData(

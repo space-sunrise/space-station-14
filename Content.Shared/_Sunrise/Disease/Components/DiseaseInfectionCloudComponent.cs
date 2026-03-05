@@ -6,8 +6,6 @@ namespace Content.Shared._Sunrise.Disease.Components;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class DiseaseInfectionCloudComponent : Component
 {
-    [DataField]
-    public float InfectionChance = 0.3f;
 
     [DataField]
     public int SpreadAmount = 4;
@@ -15,6 +13,9 @@ public sealed partial class DiseaseInfectionCloudComponent : Component
     [ViewVariables]
     public DiseaseData? Data = null;
 
+    /// <summary>
+    ///     Создаёт новую инфекцию при инициализации.
+    /// </summary>
     [DataField]
     public bool NewData = false;
 
