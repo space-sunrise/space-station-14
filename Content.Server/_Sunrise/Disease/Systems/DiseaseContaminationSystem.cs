@@ -61,17 +61,20 @@ public sealed class DiseaseContaminationSystem : EntitySystem
         if (cloud.Comp.Data == null)
             return false;
 
-        var contamination = new DiseaseContaminationComponent();
-        
-        if (!TryComp<DiseaseContaminationComponent>(target, out contamination) || contamination.Data == null)
-            contamination.Data = (DiseaseData)cloud.Comp.Data.CloneForInfection();
+        var cloudData = cloud.Comp.Data;
 
-        if (_disease.ThisDiseasIsStronger(cloud.Comp.Data, contamination.Data))
-            contamination.Data = (DiseaseData)cloud.Comp.Data.CloneForInfection();
-    
-        var gain = Math.Max(0.01f, contamination.Data.Infectivity * contamination.CollisionContaminationGain);
+        var contamination = EnsureComp<DiseaseContaminationComponent>(target);
+
+        var contaminationData = contamination.Data;
+        if (contaminationData == null || _disease.ThisDiseasIsStronger(cloudData, contaminationData))
+        {
+            contaminationData = (DiseaseData)cloudData.CloneForInfection();
+            contamination.Data = contaminationData;
+        }
+
+        var gain = Math.Max(0.01f, contaminationData.Infectivity * contamination.CollisionContaminationGain);
         contamination.Contamination = Math.Clamp(contamination.Contamination + gain, 0f, 1f);
-        contamination.Color = cloud.Comp.Data.Color;
+        contamination.Color = cloudData.Color;
 
         Dirty(target, contamination);
         return true;

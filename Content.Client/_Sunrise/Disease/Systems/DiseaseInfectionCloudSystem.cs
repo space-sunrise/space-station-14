@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared._Sunrise.Disease.Components;
 using Robust.Client.GameObjects;
 using Robust.Shared.GameStates;
@@ -14,7 +13,6 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<DiseaseInfectionCloudComponent, ComponentHandleState>(OnHandleState);
-        SubscribeLocalEvent<DiseaseInfectionCloudComponent, ComponentInit>(OnInit);
     }
 
     private void OnHandleState(Entity<DiseaseInfectionCloudComponent> entity, ref ComponentHandleState args)
@@ -25,22 +23,14 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
         SetColorCloud((entity, entity.Comp), state.Color);
     }
 
-    private void OnInit(Entity<DiseaseInfectionCloudComponent> entity, ref ComponentInit args)
-    {
-        SetColorCloud((entity, entity.Comp), entity.Comp.Data?.Color ?? Color.Transparent);
-    }
-
     public void SetColorCloud(Entity<DiseaseInfectionCloudComponent?> entity, Color color)
     {
         if (!Resolve(entity, ref entity.Comp, false))
             return;
 
-        if (!TryComp<SpriteComponent>(entity, out var sprite))
+        if (!TryComp<SpriteComponent>(entity.Owner, out var sprite))
             return;
 
-        for (var i = 0; i < sprite.AllLayers.Count(); i++)
-        {
-            _sprite.LayerSetColor((entity, sprite), i, color);
-        }
+        _sprite.SetColor((entity.Owner, sprite), color);
     }
 }

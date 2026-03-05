@@ -14,7 +14,6 @@ public sealed class DiseaseContaminationSystem : EntitySystem
 
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly EyeSystem _eye = default!;
     private readonly Dictionary<EntityUid, ShaderInstance> _shaderInstances = new();
 
     public override void Initialize()
@@ -31,13 +30,6 @@ public sealed class DiseaseContaminationSystem : EntitySystem
 
         SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
-
-        SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, GetVisMaskEvent>(OnGetVisMask);
-    }
-
-    private void OnGetVisMask(Entity<DiseaseInfectionDetectorUserComponent> ent, ref GetVisMaskEvent args)
-    {
-        args.VisibilityMask |= BaseDiseaseSettings.DiseaseInfectionVisibilityFlag;
     }
 
     private void OnContaminationStartup(Entity<DiseaseContaminationComponent> ent, ref ComponentStartup args)
@@ -55,13 +47,11 @@ public sealed class DiseaseContaminationSystem : EntitySystem
 
     private void OnPlayerAttached(Entity<DiseaseInfectionDetectorUserComponent> ent, ref LocalPlayerAttachedEvent args)
     {
-        _eye.RefreshVisibilityMask(args.Entity);
         UpdateAllContaminationShaders();
     }
 
     private void OnPlayerDetached(Entity<DiseaseInfectionDetectorUserComponent> ent, ref LocalPlayerDetachedEvent args)
     {
-        _eye.RefreshVisibilityMask(args.Entity);
         UpdateAllContaminationShaders();
     }
 
@@ -70,7 +60,6 @@ public sealed class DiseaseContaminationSystem : EntitySystem
         if (_player.LocalEntity != ent.Owner)
             return;
 
-        _eye.RefreshVisibilityMask(ent.Owner);
         UpdateAllContaminationShaders();
     }
 
@@ -79,10 +68,9 @@ public sealed class DiseaseContaminationSystem : EntitySystem
         if (_player.LocalEntity != ent.Owner)
             return;
 
-        _eye.RefreshVisibilityMask(ent.Owner);
         UpdateAllContaminationShaders();
     }
-    
+
     private void OnContaminationState(Entity<DiseaseContaminationComponent> ent, ref ComponentHandleState args)
     {
         if (args.Current is not DiseaseContaminationComponentState state)
