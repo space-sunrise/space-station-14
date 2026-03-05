@@ -22,9 +22,6 @@
   - type: Construction
     graph: ClothingHeadHelmetMakeshiftGraph
     node: helmet
-  - type: Tag
-    tags:
-    - Helmet
 
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseMinorContraband]
@@ -47,9 +44,6 @@
     unequipSound: /Audio/Effects/metal_scrape1.ogg
     equipDelay: 1.5
     unequipDelay: 1
-  - type: Tag
-    tags:
-    - Helmet
 
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseMinorContraband]
@@ -72,9 +66,6 @@
     unequipSound: /Audio/Effects/metal_scrape1.ogg
     equipDelay: 1.25
     unequipDelay: 1
-  - type: Tag
-    tags:
-    - Helmet
 
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseMajorContraband]
@@ -97,6 +88,3 @@
     unequipSound: /Audio/Effects/metal_scrape1.ogg
     equipDelay: 1.25
     unequipDelay: 1
-  - type: Tag
-    tags:
-    - Helmet

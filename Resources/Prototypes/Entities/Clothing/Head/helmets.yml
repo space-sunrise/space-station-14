@@ -10,7 +10,9 @@
     tags:
     - WhitelistChameleon
     - TopCovered # INTERACTIONS
-    - Helmet # SUNRISE
+    # Sunrise - Start
+    - Helmet
+    # Sunrise - End
   - type: HideLayerClothing
     layers:
       HeadTop : HEAD
@@ -45,7 +47,9 @@
     - WhitelistChameleon
     - SecurityHelmet
     - TopCovered # INTERACTIONS
+    # Sunrise - Start
     - Helmet
+    # Sunrise - End
   - type: HideLayerClothing
     layers:
       Hair: HEAD
@@ -237,7 +241,9 @@
     tags:
     - WhitelistChameleon
     - FullCovered # INTERACTIONS
+  # Sunrise - Start
     - Helmet
+  # Sunrise - End
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: HideLayerClothing
@@ -335,7 +341,9 @@
     - WhitelistChameleon
     - FireHelmet
     - FullCovered # INTERACTIONS
+  # Sunrise - Start
     - Helmet
+  # Sunrise - End
   - type: HideLayerClothing
     layers:
       Hair: HEAD
@@ -369,7 +377,9 @@
     - FireHelmet
     - CorgiWearable
     - FullCovered # INTERACTIONS
+  # Sunrise - Start
     - Helmet
+  # Sunrise - End
   - type: HideLayerClothing
     layers:
       Hair: HEAD
