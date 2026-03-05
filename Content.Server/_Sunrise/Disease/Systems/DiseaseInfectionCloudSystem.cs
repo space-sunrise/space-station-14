@@ -48,7 +48,7 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
             ? "неизвестная"
             : component.Data.StrainId;
 
-        var infectivityPercent = (component.InfectionChance * 100f).ToString("0");
+        var infectivityPercent = (_disease.CalcInfectionInfectivity(component.Data) * 100f).ToString("0");
 
         args.PushMarkup(Loc.GetString("disease-infection-cloud-examine-strain", ("strain", strainId)));
         args.PushMarkup(Loc.GetString("disease-infection-cloud-examine-infectivity", ("infectivity", infectivityPercent)));
@@ -104,7 +104,7 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
         if (!CanInfectOnCollide(cloud, target))
             return false;
 
-        _disease.ProbInfect(cloud.Comp.Data!, target, cloud.Comp.Source ?? cloud.Owner, infectivity: cloud.Comp.InfectionChance);
+        _disease.ProbInfect(cloud.Comp.Data!, target, cloud.Comp.Source ?? cloud.Owner, infectivity: _disease.CalcInfectionInfectivity(cloud.Comp.Data!));
         return true;
     }
 
@@ -172,7 +172,6 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
 
         cloud.Data = (DiseaseData)disease.CloneForInfection();
         cloud.Source = source;
-        cloud.InfectionChance = _disease.CalcInfectionInfectivity(cloud.Data);
         cloud.SpreadAmount = spreadAmount;
 
         Dirty(uid, cloud);
@@ -198,7 +197,6 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
             if (cloud.Data == null || cloud.Data.StrainId != data.StrainId)
                 continue;
 
-            cloud.InfectionChance = _disease.CalcInfectionInfectivity(cloud.Data);
             cloud.Data = (DiseaseData)data.CloneForInfection();
             Dirty(uid, cloud);
         }

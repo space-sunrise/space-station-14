@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using Content.Shared._Sunrise.Disease;
 using Content.Shared._Sunrise.Disease.Components;
 using Robust.Client.GameObjects;
@@ -15,42 +17,22 @@ public sealed class DiseaseContaminationSystem : EntitySystem
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly EyeSystem _eye = default!;
-
     private readonly Dictionary<EntityUid, ShaderInstance> _shaderInstances = new();
-    private float _visibilityRefreshAccumulator;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<DiseaseContaminationComponent, ComponentStartup>(OnContaminationStartup);
         SubscribeLocalEvent<DiseaseContaminationComponent, ComponentHandleState>(OnContaminationState);
+
+        SubscribeLocalEvent<DiseaseContaminationComponent, ComponentStartup>(OnContaminationStartup);
         SubscribeLocalEvent<DiseaseContaminationComponent, ComponentShutdown>(OnContaminationShutdown);
+
+        SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, ComponentStartup>(OnDetectorUserStartup);
         SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, ComponentShutdown>(OnDetectorUserShutdown);
 
-        SubscribeLocalEvent<LocalPlayerDetachedEvent>(OnLocalPlayerDetached);
-    }
-
-    public override void FrameUpdate(float frameTime)
-    {
-        base.FrameUpdate(frameTime);
-
-        var player = _player.LocalEntity;
-        if (player != null && HasComp<DiseaseInfectionDetectorUserComponent>(player.Value))
-        {
-            UpdateAllContaminationShaders();
-
-            _visibilityRefreshAccumulator += frameTime;
-            if (_visibilityRefreshAccumulator < 1f)
-                return;
-
-            _visibilityRefreshAccumulator -= 1f;
-            _eye.RefreshVisibilityMask(player.Value);
-        }
-        else
-        {
-            _visibilityRefreshAccumulator = 0f;
-        }
+        SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
     }
 
     private void OnContaminationStartup(Entity<DiseaseContaminationComponent> ent, ref ComponentStartup args)
@@ -58,6 +40,39 @@ public sealed class DiseaseContaminationSystem : EntitySystem
         UpdateShader(ent.Owner, ent.Comp);
     }
 
+    private void OnContaminationShutdown(Entity<DiseaseContaminationComponent> ent, ref ComponentShutdown args)
+    {
+        if (!TryComp<SpriteComponent>(ent.Owner, out var sprite))
+            return;
+
+        ClearShader((ent.Owner, sprite));
+    }
+
+    private void OnPlayerAttached(Entity<DiseaseInfectionDetectorUserComponent> ent, ref LocalPlayerAttachedEvent args)
+    {
+        UpdateAllContaminationShaders();
+    }
+
+    private void OnPlayerDetached(Entity<DiseaseInfectionDetectorUserComponent> ent, ref LocalPlayerDetachedEvent args)
+    {
+        UpdateAllContaminationShaders();
+    }
+
+    private void OnContaminationStartup(Entity<DiseaseContaminationComponent> ent, ref ComponentStartup args)
+    {
+        UpdateAllContaminationShaders();
+    }
+
+    private void OnDetectorUserStartup(Entity<DiseaseInfectionDetectorUserComponent> ent, ref ComponentStartup args)
+    {
+        UpdateAllContaminationShaders();
+    }
+
+    private void OnDetectorUserShutdown(Entity<DiseaseInfectionDetectorUserComponent> ent, ref ComponentShutdown args)
+    {
+        UpdateAllContaminationShaders();
+    }
+    
     private void OnContaminationState(Entity<DiseaseContaminationComponent> ent, ref ComponentHandleState args)
     {
         if (args.Current is not DiseaseContaminationComponentState state)
@@ -67,28 +82,6 @@ public sealed class DiseaseContaminationSystem : EntitySystem
         ent.Comp.Color = state.Color;
 
         UpdateShader(ent.Owner, ent.Comp);
-    }
-
-    private void OnContaminationShutdown(Entity<DiseaseContaminationComponent> ent, ref ComponentShutdown args)
-    {
-        if (!TryComp<SpriteComponent>(ent.Owner, out var sprite))
-            return;
-
-        ClearShader(ent.Owner, sprite);
-    }
-
-    private void OnDetectorUserShutdown(Entity<DiseaseInfectionDetectorUserComponent> ent, ref ComponentShutdown args)
-    {
-        if (!TryComp<SpriteComponent>(ent.Owner, out var sprite))
-            return;
-
-        ClearShader(ent.Owner, sprite);
-    }
-
-
-    private void OnLocalPlayerDetached(LocalPlayerDetachedEvent args)
-    {
-        UpdateAllContaminationShaders();
     }
 
     private void UpdateAllContaminationShaders()
@@ -126,15 +119,18 @@ public sealed class DiseaseContaminationSystem : EntitySystem
         sprite.PostShader = instance;
     }
 
-    private void ClearShader(EntityUid uid, SpriteComponent sprite)
+    private void ClearShader(Entity<SpriteComponent?> ent)
     {
-        if (!_shaderInstances.TryGetValue(uid, out var instance))
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
+        if (!_shaderInstances.TryGetValue(ent.Owner, out var instance))
             return;
 
         if (sprite.PostShader == instance)
             sprite.PostShader = null;
 
-        _shaderInstances.Remove(uid);
+        _shaderInstances.Remove(ent.Owner);
     }
 
     private bool CanSeeContamination()

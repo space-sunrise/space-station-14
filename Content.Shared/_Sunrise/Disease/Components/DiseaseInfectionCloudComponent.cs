@@ -6,7 +6,6 @@ namespace Content.Shared._Sunrise.Disease.Components;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class DiseaseInfectionCloudComponent : Component
 {
-
     [DataField]
     public int SpreadAmount = 4;
 
