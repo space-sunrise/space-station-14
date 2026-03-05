@@ -483,18 +483,12 @@
 
 # Sunrise - Start
 - type: entity
-  parent: BaseAction
+  parent: ActionVulpkaninGravityJump
   id: ActionXenoGravityJump
-  name: Leap
-  description: Use your agile legs to leap a short distance. Be careful not to bump into anything!
   components:
   - type: Action
     useDelay: 6
-    icon:
-      sprite: Interface/Actions/jump.rsi
-      state: icon
   - type: InstantAction
-    event: !type:GravityJumpEvent {}
 # Sunrise - End
 
 - type: entity
