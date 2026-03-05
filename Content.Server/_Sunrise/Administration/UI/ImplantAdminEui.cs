@@ -8,6 +8,7 @@ using Content.Server.Implants; // for concrete SubdermalImplantSystem
 using Content.Shared.Implants.Components;
 using Content.Shared.Eui;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Prototypes;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Body.Organ;
@@ -101,14 +102,9 @@ public sealed class ImplantAdminEui : BaseEui
         {
             // Traverse root part tree to collect part slot containers
             var sharedBody = _entManager.System<SharedBodySystem>();
-            // We need to walk all BodyPartComponents that belong to this body to list child slot availability.
-            // Simpler: iterate all BodyPartComponents with this body and inspect their Children / Organs dictionaries.
-            var query = _entManager.EntityQueryEnumerator<BodyPartComponent>();
-            while (query.MoveNext(out var partUid, out var partComp))
+            // Enumerate only currently attached body parts (connected to root), excluding detached leftovers.
+            foreach (var (partUid, partComp) in sharedBody.GetBodyChildren(bodyUid.Value, body))
             {
-                if (partComp.Body != bodyUid)
-                    continue;
-
                 // Build a temporary list of child part slot ids via system helper (avoids direct Children access for analyzer compliance).
                 // NOTE: This method is read-only; it does not create or modify part slots, it only reports existing ones.
                 var partSlotIds = sharedBody.EnumeratePartSlots(partUid, partComp).ToList();
@@ -270,11 +266,8 @@ public sealed class ImplantAdminEui : BaseEui
         EntityUid parentPartUid = default;
         BodyPartComponent? parentPart = null;
         ContainerManagerComponent? parentContMan = null;
-        var query = _entManager.EntityQueryEnumerator<BodyPartComponent>();
-        while (query.MoveNext(out var partUid, out var partComp))
+        foreach (var (partUid, partComp) in sharedBody.GetBodyChildren(bodyUid, body))
         {
-            if (partComp.Body != bodyUid)
-                continue;
             if (!_entManager.TryGetComponent(partUid, out ContainerManagerComponent? contManTemp))
                 continue;
 
@@ -288,20 +281,6 @@ public sealed class ImplantAdminEui : BaseEui
             {
                 var children = partComp.Children;
                 hasSlotLocal = children.ContainsKey(msg.SlotId);
-                if (!hasSlotLocal)
-                {
-                    var lower = msg.SlotId.ToLowerInvariant();
-                    if (partComp.PartType == BodyPartType.Arm && lower.Contains("hand"))
-                    {
-                        if (sharedBody.TryCreatePartSlot(partUid, msg.SlotId, BodyPartType.Hand, out _))
-                            hasSlotLocal = true;
-                    }
-                    else if (partComp.PartType == BodyPartType.Leg && lower.Contains("foot"))
-                    {
-                        if (sharedBody.TryCreatePartSlot(partUid, msg.SlotId, BodyPartType.Foot, out _))
-                            hasSlotLocal = true;
-                    }
-                }
             }
 
             if (!hasSlotLocal)
@@ -336,14 +315,14 @@ public sealed class ImplantAdminEui : BaseEui
             }
             else if (_entManager.TryGetComponent(existing, out BodyPartComponent? existingPart))
             {
-                if (_entManager.TryGetComponent(bodyUid, out HumanoidAppearanceComponent? humanoid)
-                    && _entManager.TryGetComponent(existing, out TransformComponent? limbXform)
-                    && _entManager.TryGetComponent(existing, out MetaDataComponent? limbMeta)
-                    && _entManager.TryGetComponent(bodyUid, out TransformComponent? bodyXform)
-                    && _entManager.TryGetComponent(bodyUid, out BodyComponent? bodyComp2))
+                if (_entManager.TryGetComponent(bodyUid, out HumanoidAppearanceComponent? humanoid))
                 {
                     var limbSystem = _entManager.System<LimbSystem>();
-                    limbSystem.Amputate((bodyUid, bodyXform!, humanoid!, bodyComp2!), (existing, limbXform!, limbMeta!));
+                    var bodyXform = _entManager.EnsureComponent<TransformComponent>(bodyUid);
+                    var bodyComp2 = _entManager.EnsureComponent<BodyComponent>(bodyUid);
+                    var limbXform = _entManager.EnsureComponent<TransformComponent>(existing);
+                    var limbMeta = _entManager.EnsureComponent<MetaDataComponent>(existing);
+                    limbSystem.Amputate((bodyUid, bodyXform, humanoid, bodyComp2), (existing, limbXform, limbMeta));
                     if (_entManager.EntityExists(existing))
                         _entManager.QueueDeleteEntity(existing);
                 }
@@ -430,13 +409,74 @@ public sealed class ImplantAdminEui : BaseEui
             {
                 var limbSystem = _entManager.System<LimbSystem>();
                 attached2 = limbSystem.AttachLimb((bodyUid, humanoidAttach!), msg.SlotId, (parentPartUid, parentPartAttach!), (spawnedPart, limbPart2!));
+                if (!attached2)
+                {
+                    _entManager.QueueDeleteEntity(spawnedPart);
+                    return;
+                }
             }
-            if (!attached2)
+            else if (!attached2)
             {
                 if (!sharedBody.CanAttachPart(parentPartUid, msg.SlotId, spawnedPart) || !sharedBody.AttachPart(parentPartUid, msg.SlotId, spawnedPart))
                 {
                     _entManager.QueueDeleteEntity(spawnedPart);
                     return;
+                }
+            }
+
+            // If an arm is replaced with a default arm prototype, auto-attach connected default parts (e.g. hand)
+            // from the body's prototype when corresponding slots are empty.
+            if (_entManager.TryGetComponent(spawnedPart, out BodyPartComponent? attachedPart)
+                && attachedPart.PartType == BodyPartType.Arm
+                && _entManager.TryGetComponent(bodyUid, out BodyComponent? bodyComp4)
+                && bodyComp4.Prototype != null
+                && _prototypeManager.TryIndex(bodyComp4.Prototype.Value, out BodyPrototype? bodyProto)
+                && bodyProto.Slots.TryGetValue(msg.SlotId, out var parentSlotProto)
+                && _entManager.TryGetComponent(spawnedPart, out ContainerManagerComponent? newArmCont))
+            {
+                var limbSystem = _entManager.System<LimbSystem>();
+                var sharedContainer = _entManager.System<SharedContainerSystem>();
+
+                foreach (var childSlotId in parentSlotProto.Connections)
+                {
+                    var childContainerId = SharedBodySystem.GetPartSlotContainerId(childSlotId);
+                    if (!newArmCont.TryGetContainer(childContainerId, out var childContainer))
+                    {
+                        childContainer = sharedContainer.EnsureContainer<ContainerSlot>(spawnedPart, childContainerId);
+                    }
+
+                    if (childContainer.ContainedEntities.Count > 0)
+                        continue;
+
+                    if (!bodyProto.Slots.TryGetValue(childSlotId, out var childSlotProto) || childSlotProto.Part == null)
+                        continue;
+
+                    var childPartUid = _entManager.SpawnEntity(childSlotProto.Part.Value, _entManager.GetComponent<TransformComponent>(bodyUid).Coordinates);
+                    if (!_entManager.TryGetComponent(childPartUid, out BodyPartComponent? childPartComp))
+                    {
+                        _entManager.QueueDeleteEntity(childPartUid);
+                        continue;
+                    }
+
+                    var attachedChild = false;
+                    if (_entManager.TryGetComponent(bodyUid, out HumanoidAppearanceComponent? humanoidAttach2)
+                        && _entManager.TryGetComponent(spawnedPart, out BodyPartComponent? parentArmPart))
+                    {
+                        attachedChild = limbSystem.AttachLimb((bodyUid, humanoidAttach2), childSlotId, (spawnedPart, parentArmPart), (childPartUid, childPartComp));
+                    }
+
+                    if (!attachedChild)
+                    {
+                        if (_entManager.TryGetComponent(bodyUid, out HumanoidAppearanceComponent? _))
+                        {
+                            _entManager.QueueDeleteEntity(childPartUid);
+                        }
+                        else if (!sharedBody.CanAttachPart(spawnedPart, childSlotId, childPartUid)
+                            || !sharedBody.AttachPart(spawnedPart, childSlotId, childPartUid))
+                        {
+                            _entManager.QueueDeleteEntity(childPartUid);
+                        }
+                    }
                 }
             }
         }
@@ -457,11 +497,8 @@ public sealed class ImplantAdminEui : BaseEui
         EntityUid parentPartUid = default;
         BodyPartComponent? parentPart = null;
         ContainerManagerComponent? parentContMan = null;
-        var query = _entManager.EntityQueryEnumerator<BodyPartComponent>();
-        while (query.MoveNext(out var partUid, out var partComp))
+        foreach (var (partUid, partComp) in sharedBody.GetBodyChildren(bodyUid, body))
         {
-            if (partComp.Body != bodyUid)
-                continue;
             if (!_entManager.TryGetComponent(partUid, out ContainerManagerComponent? contManTemp))
                 continue;
             bool hasSlotLocal;
@@ -500,14 +537,14 @@ public sealed class ImplantAdminEui : BaseEui
         }
         else if (_entManager.TryGetComponent(existing2, out BodyPartComponent? existingPart2))
         {
-            if (_entManager.TryGetComponent(bodyUid, out HumanoidAppearanceComponent? humanoid2)
-                && _entManager.TryGetComponent(existing2, out TransformComponent? limbXform2)
-                && _entManager.TryGetComponent(existing2, out MetaDataComponent? limbMeta2)
-                && _entManager.TryGetComponent(bodyUid, out TransformComponent? bodyXform2)
-                && _entManager.TryGetComponent(bodyUid, out BodyComponent? bodyComp3))
+            if (_entManager.TryGetComponent(bodyUid, out HumanoidAppearanceComponent? humanoid2))
             {
                 var limbSystem = _entManager.System<LimbSystem>();
-                limbSystem.Amputate((bodyUid, bodyXform2!, humanoid2!, bodyComp3!), (existing2, limbXform2!, limbMeta2!));
+                var bodyXform2 = _entManager.EnsureComponent<TransformComponent>(bodyUid);
+                var bodyComp3 = _entManager.EnsureComponent<BodyComponent>(bodyUid);
+                var limbXform2 = _entManager.EnsureComponent<TransformComponent>(existing2);
+                var limbMeta2 = _entManager.EnsureComponent<MetaDataComponent>(existing2);
+                limbSystem.Amputate((bodyUid, bodyXform2, humanoid2, bodyComp3), (existing2, limbXform2, limbMeta2));
                 if (_entManager.EntityExists(existing2))
                     _entManager.QueueDeleteEntity(existing2);
             }

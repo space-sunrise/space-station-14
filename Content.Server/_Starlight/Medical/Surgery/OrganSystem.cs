@@ -51,7 +51,7 @@ public sealed partial class OrganSystem : EntitySystem
     {
         foreach (var comp in (ent.Comp.Components ?? []).Values)
             if (EntityManager.HasComponent(args.Body, comp.Component.GetType()))
-                EntityManager.RemoveComponent(args.Body, _compFactory.GetComponent(comp.Component.GetType()));
+                EntityManager.RemoveComponent(args.Body, comp.Component.GetType());
     }
 
     //

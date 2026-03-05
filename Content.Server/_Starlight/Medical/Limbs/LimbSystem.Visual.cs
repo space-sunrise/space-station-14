@@ -13,6 +13,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
     public void AddLimbVisual(Entity<HumanoidAppearanceComponent> body, Entity<BodyPartComponent> limb)
     {
         var layers = new List<HumanoidVisualLayers>();
+        var clearedAnyCustomLayer = false;
         foreach (var partLimbId in _body.GetBodyPartAdjacentParts(limb, limb.Comp).Concat([limb]))
         {
             if (!TryComp(partLimbId, out BodyPartComponent? partLimb)) continue;
@@ -28,7 +29,16 @@ public sealed partial class LimbSystem : SharedLimbSystem
                 var @base = _prototype.Index(baseLayerStorage.Layer.Value);
                 _humanoidAppearanceSystem.SetBaseLayerColor(body, layer.Value, @base.MatchSkin ? body.Comp.SkinColor : Color.White, true, body.Comp);
             }
+            else
+            {
+                if (body.Comp.CustomBaseLayers.Remove(layer.Value))
+                    clearedAnyCustomLayer = true;
+            }
         }
+
+        if (clearedAnyCustomLayer)
+            Dirty(body.Owner, body.Comp);
+
         _humanoidAppearanceSystem.SetLayersVisibility(body!, layers, true);
     }
     private void RemoveLimbVisual(Entity<TransformComponent, HumanoidAppearanceComponent, BodyComponent> body, Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb)
