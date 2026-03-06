@@ -61,3 +61,11 @@
     antagPrototype: AbductorVictim
     roleType: SoloAntagonist
   - type: AbductorVictimRole
+
+- type: entity
+  parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostCorporateAligned
+  name: Ghost Role (Corporate Aligned)
+  components:
+  - type: MindRole
+    roleType: CorporateAligned

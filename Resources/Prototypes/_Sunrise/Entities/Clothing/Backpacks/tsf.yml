@@ -27,7 +27,7 @@
     proto: robot
   - type: Speech
     speechVerb: Robotic
-    speechSounds: PhoneSpeak
+    speechSounds: Borg
   - type: Appearance
   - type: GenericVisualizer
     visuals:

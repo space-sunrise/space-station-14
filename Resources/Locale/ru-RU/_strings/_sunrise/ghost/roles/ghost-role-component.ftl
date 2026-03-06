@@ -41,3 +41,9 @@ ghost-role-information-tsf-marine-name = Морпех Транс-Солнечн�
 ghost-role-information-tsf-leader-name = Командир отряда морпехов Транс-Солнечной Федерации
 ghost-role-information-tsf-MARSOC-name = Морпех MARSOC Транс-Солнечной Федерации
 ghost-role-information-tsf-marine-desc = Вы — морпех Транс-Солнечной Федерации. Выполняйте назначенную задачу.
+job-rules-corporate-aligned = Вы на стороне {role-type-corporate-aligned-name}.
+                              Вы должны служить интересам NanoTrasen и Центрального Командования, даже если они расходятся с интересами станции.
+                              Помните: вы НЕ служите экипажу.
+job-rules-tsf-aligned = Вы на стороне {role-type-tsf-aligned-name}.
+                        Вы должны служить интересам Транс-Солнечной Федерации.
+                        Помните: вы НЕ служите экипажу.

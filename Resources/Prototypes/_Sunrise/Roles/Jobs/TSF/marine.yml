@@ -11,8 +11,7 @@
         time: 18000 # 5h
   setPreference: false
   icon: JobIconTSF
-  rules: job-rules-corporate-aligned
-  supervisors: job-supervisors-none
+  supervisors: job-supervisors-nobody
   canBeAntag: false
   accessGroups:
   - AllAccess
@@ -133,7 +132,7 @@
     - CrowbarRed
     - MedkitCombatFilled
     belt:
-    - SpeedLoaderMagnumBasic
+    - SpeedLoaderMagnumFMJ
     - BoxLethalshot
     - BoxLethalshot
   inhand:
@@ -161,12 +160,12 @@
 - type: startingGear
   id: TSFTraderGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitCargoAlt
+    jumpsuit: ClothingUniformJumpsuitCargo
     back: ClothingBackpackCargo
     shoes: ClothingShoesColorBlack
-    eyes: ClothingEyesHudSkills
+    eyes: ClothingEyesHudCommand
     belt: BoxFolderPlasticClipboard
-    head: ClothingHeadHatBeretCargoFormal
+    head: ClothingHeadHatBeretQM
     id: TSFIdCardTrader
     ears: ClothingHeadsetTSFTrader
     pocket1: Pen

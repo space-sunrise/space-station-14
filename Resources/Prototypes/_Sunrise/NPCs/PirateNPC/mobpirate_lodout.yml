@@ -521,6 +521,15 @@
     pocket2: StimkitFilled
 
 - type: startingGear
+  id: MobPirateT3JuggernautGear
+  equipment:
+    gloves: ClothingHMachineGunJugg
+    back: PowerpackMG100Half
+    belt: ClothingBeltAssaultT3MG
+    pocket1: MedkitCombatFilled
+    pocket2: StimkitFilled
+
+- type: startingGear
   id: MobPirateGearMeleeT4Alt
   equipment:
     gloves: ClothingHandsGorilla

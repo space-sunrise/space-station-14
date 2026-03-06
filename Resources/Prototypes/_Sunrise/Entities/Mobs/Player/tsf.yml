@@ -68,13 +68,7 @@
     - type: GhostRole
       name: ghost-role-information-tsf-marine-name
       description: ghost-role-information-tsf-marine-desc
-      rules: ghost-role-information-nonantagonist-rules
-      requirements:
-      - !type:OverallPlaytimeRequirement
-          time: 72000 # 20h
-      - !type:DepartmentTimeRequirement
-          department: Security
-          time: 18000 # 5h
+      rules: ghost-role-information-corporate-aligned-rules
       raffle:
         settings: default
       mindRoles:
