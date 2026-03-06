@@ -22,11 +22,12 @@ disease-collector-is-used = Предмет уже был использован.
 disease-collector-warn-target = Вам лезут в рот.
 drug-collector-dna-not-found = Неизвестно.
 
-reagent-name-viral-solution = вирусный раствор
+reagent-name-viral-solution = раствор с заболеваниями
 reagent-desc-viral-solution = Стерильный физиологический раствор с суспензией активного квантового вируса, способного выдерживать FTL-транспортировку.
 reagent-physical-desc-clear = прозрачная жидкость
 
-reagent-effect-guidebook-cause-disease = Заражает вирусом
+reagent-effect-guidebook-cause-disease = Заражает заболеванием
+reagent-effect-guidebook-antiseptic = Убивает болезни
 
 reagent-effect-guidebook-damage-disease =
     { $chance ->
@@ -265,6 +266,10 @@ ent-ChemistryBottleSeptomycin = { ent-BaseChemistryBottleFilled }
 
 reagent-name-necrovir = некровир
 reagent-desc-necrovir = Крайне токсичный противовирусный препарат, разрушающий инфекцию вместе с тканями носителя.
+
+reagent-name-antiseptic = антисептик
+reagent-desc-antiseptic = Антисептический раствор, подавляющий инфекцию и обеззараживающий поверхность.
+reagent-physical-desc-antiseptic = резко пахнущая жидкость
 
 ent-ChemistryBottleNecrovir = { ent-BaseChemistryBottleFilled }
     .suffix = некровир
