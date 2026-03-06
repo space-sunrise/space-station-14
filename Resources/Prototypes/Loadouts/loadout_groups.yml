@@ -1541,6 +1541,8 @@
   loadouts:
   - RedJumpsuit
   - RedJumpskirt
+  - BlueJumpsuit #Sunrise-Edit
+  - BlueJumpskirt #Sunrise-Edit
 
 - type: loadoutGroup
   id: SecurityCadetJobTrinkets
