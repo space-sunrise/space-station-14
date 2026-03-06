@@ -19,11 +19,11 @@
       "directions": 4
     },
     {
-      "name": "overlay-inhand-left",
+      "name": "inhand-left",
       "directions": 4
     },
     {
-      "name": "overlay-inhand-right",
+      "name": "inhand-right",
       "directions": 4
     }
   ]
