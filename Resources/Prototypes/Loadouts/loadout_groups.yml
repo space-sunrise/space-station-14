@@ -1341,6 +1341,12 @@
   - HeadofSecurityFormalSkirt
   - HeadofSecurityJumpsuitHoSOld  #Sunrise-Edit
   - HeadofSecurityJumpsuitUSSPBlack #Sunrise-Edit
+  - HeadofSecurityJumpsuitSecred #Sunrise-Edit
+  - HeadofSecurityJumpskirtSecred #Sunrise-Edit
+  - HeadofSecurityTurtleneckSecred #Sunrise-Edit
+  - HeadofSecurityTurtleneckSkirtSecred #Sunrise-Edit
+  - HeadofSecurityFormalSuitSecred #Sunrise-Edit
+  - HeadofSecurityFormalSkirtSecred #Sunrise-Edit
 
 - type: loadoutGroup
   id: HeadofSecurityNeck
@@ -1383,12 +1389,15 @@
   - WardenBeret
   - ClothingHeadHatCapWardenAlt # Sunrise-Edit
 
+
 - type: loadoutGroup
   id: WardenJumpsuit
   name: loadout-group-warden-jumpsuit
   loadouts:
   - WardenJumpsuit
   - WardenJumpskirt
+  - WardenJumpsuitSecred #Sunrise-Edit
+  - WardenJumpskirtSecred #Sunrise-Edit
 
 - type: loadoutGroup
   id: WardenOuterClothing
@@ -1397,6 +1406,8 @@
   - WardenCoat
   - WardenArmoredWinterCoat
   - ClothingOuterCoatWardenAlt # Sunrise-Edit
+  - WardenCoatSecred #Sunrise-Edit
+  - WardenArmoredWinterCoatSecred #Sunrise-Edit
 
 - type: loadoutGroup
   id: WardenJobTrinkets
@@ -1415,6 +1426,8 @@
   - SecurityBeret
   - SecurityHat
   - TrooperHat
+  - SecurityBeretSecred #Sunrise-Edit
+  - SecurityHatSecred #Sunrise-Edit
 
 - type: loadoutGroup
   id: SecurityJumpsuit
@@ -1427,6 +1440,10 @@
 #  - SeniorOfficerJumpsuit # Sunrise-Edit
 #  - SeniorOfficerJumpskirt # Sunrise-Edit
   - TrooperUniform
+  - SecurityJumpsuitSecred #Sunrise-Edit
+  - SecurityJumpskirtSecred #Sunrise-Edit
+  - SecurityJumpsuitGreySecred #Sunrise-Edit
+  - SecurityJumpskirtGreySecred #Sunrise-Edit
 
 - type: loadoutGroup
   id: SecurityBackpack
@@ -1435,6 +1452,9 @@
   - SecurityBackpack
   - SecuritySatchel
   - SecurityDuffel
+  - SecurityBackpackSecred #Sunrise-Edit
+  - SecuritySatchelSecred #Sunrise-Edit
+  - SecurityDuffelSecred #Sunrise-Edit
 
 - type: loadoutGroup
   id: SecurityBelt

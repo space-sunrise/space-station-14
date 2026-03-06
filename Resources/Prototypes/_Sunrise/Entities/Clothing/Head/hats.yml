@@ -701,3 +701,43 @@
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadHatBeretSecurity
+  id: ClothingHeadHatBeretSecuritySecblu
+  suffix: Secblu
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secblu/Head/Hats/beret_security.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secblu/Head/Hats/beret_security.rsi
+
+- type: entity
+  parent: ClothingHeadHatBeretWarden
+  id: ClothingHeadHatBeretWardenSecblu
+  suffix: Secblu
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secblu/Head/Hats/beret_warden.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secblu/Head/Hats/beret_warden.rsi
+
+- type: entity
+  parent: ClothingHeadHatBeretSecurity
+  id: ClothingHeadHatBeretSecuritySecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/Head/Hats/beret_security.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/Head/Hats/beret_security.rsi
+
+- type: entity
+  parent: ClothingHeadHatBeretWarden
+  id: ClothingHeadHatBeretWardenSecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/Head/Hats/beret_warden.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/Head/Hats/beret_warden.rsi

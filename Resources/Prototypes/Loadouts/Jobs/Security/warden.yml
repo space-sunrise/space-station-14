@@ -7,7 +7,7 @@
 - type: loadout
   id: WardenBeret
   equipment:
-    head: ClothingHeadHatBeretWarden
+    head: ClothingHeadHatBeretWardenSecblu # Sunrise-Edit
 # Sunrise_Start
 - type: loadout
   id: ClothingHeadHatCapWardenAlt
@@ -19,26 +19,48 @@
 - type: loadout
   id: WardenJumpsuit
   equipment:
-    jumpsuit: ClothingUniformJumpsuitWarden
+    jumpsuit: ClothingUniformJumpsuitWardenSecblu # Sunrise-Edit
 
 - type: loadout
   id: WardenJumpskirt
   equipment:
-    jumpsuit: ClothingUniformJumpskirtWarden
+    jumpsuit: ClothingUniformJumpskirtWardenSecblu # Sunrise-Edit
+
+#Sunrise-Start
+- type: loadout
+  id: WardenJumpsuitSecred
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitWardenSecred
+
+- type: loadout
+  id: WardenJumpskirtSecred
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtWardenSecred
+#Sunrise-End
 
 # OuterClothing
 - type: loadout
   id: WardenCoat
   equipment:
-    outerClothing: ClothingOuterCoatWarden
+    outerClothing: ClothingOuterCoatWardenSecblu # Sunrise-Edit
 
 - type: loadout
   id: WardenArmoredWinterCoat
   equipment:
-    outerClothing: ClothingOuterWinterWarden
+    outerClothing: ClothingOuterWinterWardenSecblu # Sunrise-Edit
 # Sunrise_Start
 - type: loadout
   id: ClothingOuterCoatWardenAlt
   equipment:
     outerClothing: ClothingOuterCoatWardenAlt
+
+- type: loadout
+  id: WardenCoatSecred
+  equipment:
+    outerClothing: ClothingOuterCoatWardenSecred
+
+- type: loadout
+  id: WardenArmoredWinterCoatSecred
+  equipment:
+    outerClothing: ClothingOuterWinterWardenSecred
 # Sunrise_End

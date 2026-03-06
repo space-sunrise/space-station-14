@@ -256,6 +256,8 @@
   loadouts:
   - JumpsuitSeniorOfficer
   - JumpskirtSeniorOfficer
+  - JumpsuitSeniorOfficerSecred
+  - JumpskirtSeniorOfficerSecred
 
 - type: loadoutGroup
   id: SeniorResearcherJumpsuit

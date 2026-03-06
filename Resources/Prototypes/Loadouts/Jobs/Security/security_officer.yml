@@ -22,43 +22,77 @@
 - type: loadout
   id: SecurityHat
   equipment:
-    head: ClothingHeadHatSecsoft
+    head: ClothingHeadHatSecsoftSecblu # Sunrise-Edit
 
 - type: loadout
   id: SecurityBeret
   equipment:
-    head: ClothingHeadHatBeretSecurity
+    head: ClothingHeadHatBeretSecuritySecblu # Sunrise-Edit
 
 - type: loadout
   id: TrooperHat
   equipment:
     head: ClothingHeadHatSecurityTrooper
 
+#Sunrise-Start
+- type: loadout
+  id: SecurityHatSecred
+  equipment:
+    head: ClothingHeadHatSecsoftSecred
+
+- type: loadout
+  id: SecurityBeretSecred
+  equipment:
+    head: ClothingHeadHatBeretSecuritySecred
+#Sunrise-End
+
 # Jumpsuit
 - type: loadout
   id: SecurityJumpsuit
   equipment:
-    jumpsuit: ClothingUniformJumpsuitSec
+    jumpsuit: ClothingUniformJumpsuitSecSecblu # Sunrise-Edit
 
 - type: loadout
   id: SecurityJumpskirt
   equipment:
-    jumpsuit: ClothingUniformJumpskirtSec
+    jumpsuit: ClothingUniformJumpskirtSecSecblu # Sunrise-Edit
 
 - type: loadout
   id: SecurityJumpsuitGrey
   equipment:
-    jumpsuit: ClothingUniformJumpsuitSecGrey
+    jumpsuit: ClothingUniformJumpsuitSecGreySecblu # Sunrise-Edit
 
 - type: loadout
   id: SecurityJumpskirtGrey
   equipment:
-    jumpsuit: ClothingUniformJumpskirtSecGrey
+    jumpsuit: ClothingUniformJumpskirtSecGreySecblu # Sunrise-Edit
 
 - type: loadout
   id: TrooperUniform
   equipment:
     jumpsuit: ClothingUniformSecurityTrooper
+
+#Sunrise-Start
+- type: loadout
+  id: SecurityJumpsuitSecred
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecSecred
+
+- type: loadout
+  id: SecurityJumpskirtSecred
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSecSecred
+
+- type: loadout
+  id: SecurityJumpsuitGreySecred
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecGreySecred
+
+- type: loadout
+  id: SecurityJumpskirtGreySecred
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSecGreySecred
+#Sunrise-End
 
 - type: loadout
   id: SeniorOfficerJumpsuit
@@ -80,17 +114,34 @@
 - type: loadout
   id: SecurityBackpack
   equipment:
-    back: ClothingBackpackSecurity
+    back: ClothingBackpackSecuritySecblu # Sunrise-Edit
 
 - type: loadout
   id: SecuritySatchel
   equipment:
-    back: ClothingBackpackSatchelSecurity
+    back: ClothingBackpackSatchelSecuritySecblu # Sunrise-Edit
 
 - type: loadout
   id: SecurityDuffel
   equipment:
-    back: ClothingBackpackDuffelSecurity
+    back: ClothingBackpackDuffelSecuritySecblu # Sunrise-Edit
+
+#Sunrise-Start
+- type: loadout
+  id: SecurityBackpackSecred
+  equipment:
+    back: ClothingBackpackSecuritySecred
+
+- type: loadout
+  id: SecuritySatchelSecred
+  equipment:
+    back: ClothingBackpackSatchelSecuritySecred
+
+- type: loadout
+  id: SecurityDuffelSecred
+  equipment:
+    back: ClothingBackpackDuffelSecuritySecred
+#Sunrise-End
 
 # Belt
 - type: loadout

@@ -351,7 +351,7 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/hos_overcoat.rsi
 
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase] 
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase]
   id: ClothingOuterAerostaticBomberJacketArmored
   name: armored aerostatic bomber jacket
   description: A jacket once worn by the revolutionary air brigades during the Antecentennial Revolution. There are quite a few pockets on the inside, mostly for storing notebooks and compasses.
@@ -632,3 +632,23 @@
       - ClothMade
       - NudeFull
       - WhitelistChameleon
+
+- type: entity
+  parent: ClothingOuterCoatWarden
+  id: ClothingOuterCoatWardenSecblu
+  suffix: Secblu
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secblu/OuterClothing/Coats/warden.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secblu/OuterClothing/Coats/warden.rsi
+
+- type: entity
+  parent: ClothingOuterCoatWarden
+  id: ClothingOuterCoatWardenSecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/OuterClothing/Coats/warden.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/OuterClothing/Coats/warden.rsi

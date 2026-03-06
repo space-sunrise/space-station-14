@@ -34,3 +34,7 @@ ent-ClothingBackpackYellow = желтый рюкзак
     .desc = Это просто рюкзак, но он прекрасен.
 ent-ClothingBackpackRandomColorSpawner = рюкзак (случайный цвет)
     .desc = Рюкзак случайного цвета.
+ent-ClothingBackpackSecuritySecblu = { ent-ClothingBackpackSecurity }
+    .desc = { ent-ClothingBackpackSecurity.desc }
+ent-ClothingBackpackSecuritySecred = { ent-ClothingBackpackSecurity }
+    .desc = { ent-ClothingBackpackSecurity.desc }

@@ -34,3 +34,7 @@ ent-ClothingBackpackDuffelYellow = yellow duffel
     .desc = This duffel bag looks great.
 ent-ClothingBackpackDuffelRandomColorSpawner = duffel bag (random color)
     .desc = A duffel bag of a random color.
+ent-ClothingBackpackDuffelSecuritySecblu = { ent-ClothingBackpackDuffelSecurity }
+    .desc = { ent-ClothingBackpackDuffelSecurity.desc }
+ent-ClothingBackpackDuffelSecuritySecred = { ent-ClothingBackpackDuffelSecurity }
+    .desc = { ent-ClothingBackpackDuffelSecurity.desc }

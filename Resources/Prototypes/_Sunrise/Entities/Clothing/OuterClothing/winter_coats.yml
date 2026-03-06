@@ -35,3 +35,23 @@
       - NudeBottom  # INTERACTIONS
       - WhitelistChameleon
   # SUNRISE EDIT
+
+- type: entity
+  parent: ClothingOuterWinterWarden
+  id: ClothingOuterWinterWardenSecblu
+  suffix: Secblu
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secblu/OuterClothing/WinterCoats/coatwarden.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secblu/OuterClothing/WinterCoats/coatwarden.rsi
+
+- type: entity
+  parent: ClothingOuterWinterWarden
+  id: ClothingOuterWinterWardenSecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/OuterClothing/WinterCoats/coatwardenarmored.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/OuterClothing/WinterCoats/coatwardenarmored.rsi

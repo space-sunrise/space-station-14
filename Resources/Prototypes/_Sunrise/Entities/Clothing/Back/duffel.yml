@@ -186,3 +186,23 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Duffels/black_cap_duffel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffelSecurity
+  id: ClothingBackpackDuffelSecuritySecblu
+  suffix: Secblu
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secblu/Back/Duffels/security.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secblu/Back/Duffels/security.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffelSecurity
+  id: ClothingBackpackDuffelSecuritySecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/Back/Duffels/security.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/Back/Duffels/security.rsi

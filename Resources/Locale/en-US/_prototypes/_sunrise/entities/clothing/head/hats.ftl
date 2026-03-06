@@ -82,4 +82,12 @@ ent-ClothingHeadHatSwanOne = Alex
     .desc = Ha-ha-ha...We had a nice walk.
 ent-ClothingHeadHatChefBlackToque = chef's black toque
     .desc = Worn at the edges but proudly holds its shape, a symbol of skill and many hours spent in the kitchen.
+ent-ClothingHeadHatBeretSecuritySecblu = { ent-ClothingHeadHatBeretSecurity }
+    .desc = { ent-ClothingHeadHatBeretSecurity.desc }
+ent-ClothingHeadHatBeretWardenSecblu = { ent-ClothingHeadHatBeretWarden }
+    .desc = { ent-ClothingHeadHatBeretWarden.desc }
+ent-ClothingHeadHatBeretSecuritySecred = { ent-ClothingHeadHatBeretSecurity }
+    .desc = { ent-ClothingHeadHatBeretSecurity.desc }
+ent-ClothingHeadHatBeretWardenSecred = { ent-ClothingHeadHatBeretWarden }
+    .desc = { ent-ClothingHeadHatBeretWarden.desc }
 

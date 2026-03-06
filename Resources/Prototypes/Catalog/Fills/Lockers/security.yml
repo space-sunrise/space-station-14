@@ -34,8 +34,10 @@
     - id: ClothingEyesGlassesSecurity
     - id: ClothingHandsGlovesCombat
     - id: ClothingShoesBootsJack
-    - id: ClothingOuterCoatWarden
-    - id: ClothingOuterWinterWarden
+    - id: ClothingOuterCoatWardenSecblu # Sunrise-Edit
+    - id: ClothingOuterWinterWardenSecblu # Sunrise-Edit
+    - id: ClothingOuterCoatWardenSecred # Sunrise-Edit
+    - id: ClothingOuterWinterWardenSecred # Sunrise-Edit
     - id: RubberStampWarden
     - id: DoorRemoteArmory
     - id: HoloprojectorSecurity
@@ -75,7 +77,9 @@
       prob: 0.8
     - id: WeaponDisabler
     - id: WeaponTaser
-    - id: ClothingUniformJumpsuitSecGrey
+    - id: ClothingUniformJumpsuitSecGreySecblu # Sunrise-Edit
+      prob: 0.3
+    - id: ClothingUniformJumpsuitSecGreySecred # Sunrise-Edit
       prob: 0.3
     - id: ClothingHeadHelmetBasic
     - id: ClothingOuterArmorBasic

@@ -43,3 +43,33 @@
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCyansoft]
   id: ClothingHeadHatCyansoftFlipped
   name: cyan cap
+
+- type: entity
+  parent: ClothingHeadHatSecsoft
+  id: ClothingHeadHatSecsoftSecblu
+  suffix: Secblu
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secblu/Head/Soft/secsoft.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secblu/Head/Soft/secsoft.rsi
+
+- type: entity
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatSecsoftSecblu]
+  id: ClothingHeadHatSecsoftFlippedSecblu
+  suffix: Secblu
+
+- type: entity
+  parent: ClothingHeadHatSecsoft
+  id: ClothingHeadHatSecsoftSecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/Head/Soft/secsoft.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/Head/Soft/secsoft.rsi
+
+- type: entity
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatSecsoftSecred]
+  id: ClothingHeadHatSecsoftFlippedSecred
+  suffix: Secred

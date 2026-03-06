@@ -1,21 +1,30 @@
 - type: vendingMachineInventory
   id: SecDrobeInventory
   startingInventory:
-    ClothingBackpackSecurity: 3
-    ClothingBackpackSatchelSecurity: 3
-    ClothingBackpackDuffelSecurity: 3
-    ClothingUniformJumpsuitSec: 3
+    ClothingBackpackSecuritySecblu: 3 # Sunrise-Edit
+    ClothingBackpackSatchelSecuritySecblu: 3 # Sunrise-Edit
+    ClothingBackpackDuffelSecuritySecblu: 3 # Sunrise-Edit
+    ClothingHeadHatBeretSecuritySecblu: 3 # Sunrise-Edit
+    ClothingHeadHatSecsoftSecblu: 3 # Sunrise-Edit
+    ClothingUniformJumpsuitSecSecblu: 3 # Sunrise-Edit
+    ClothingUniformJumpskirtSecSecblu: 3 # Sunrise-Edit
+    ClothingUniformJumpsuitSecGreySecblu: 3 # Sunrise-Edit
+    ClothingUniformJumpskirtSecGreySecblu: 3 # Sunrise-Edit
     ClothingShoesBootsJack: 3
-    ClothingHeadHatBeretSecurity: 3
-    ClothingHeadHatSecsoft: 3
+    ClothingBackpackSecuritySecred: 3 # Sunrise-Edit
+    ClothingBackpackSatchelSecuritySecred: 3 # Sunrise-Edit
+    ClothingBackpackDuffelSecuritySecred: 3 # Sunrise-Edit
     ClothingHeadBandRed: 3
     ClothingMaskNeckGaiterRed: 3
     ClothingHandsGlovesColorBlack: 3
     ClothingHandsGlovesFingerless: 3
-    ClothingUniformJumpskirtSec: 3
-    ClothingUniformJumpsuitSecGrey: 3
-    ClothingUniformJumpskirtSecGrey: 3
-    ClothingUniformJumpsuitSecBlue: 3
+    ClothingHeadHatBeretSecuritySecred: 3 # Sunrise-Edit
+    ClothingHeadHatSecsoftSecred: 3 # Sunrise-Edit
+    ClothingUniformJumpsuitSecSecred: 3 # Sunrise-Edit
+    ClothingUniformJumpskirtSecSecred: 3 # Sunrise-Edit
+    ClothingUniformJumpsuitSecGreySecred: 3 # Sunrise-Edit
+    ClothingUniformJumpskirtSecGreySecred: 3 # Sunrise-Edit
+    ClothingUniformJumpsuitSecBlueSecred: 3 # Sunrise-Edit
     ClothingHeadsetSecurity: 3
     ClothingOuterWinterSec: 2
     ClothingOuterArmorBasic: 2

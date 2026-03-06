@@ -48,3 +48,7 @@ ent-ClothingBackpackSatchelPrisonWorkerMetus = сумка тюремного р�
     .desc = Мешковатая и тяжёлая, наполовину изношенная от постоянной смены инструментов.
 ent-ClothingBackpackSatchelPrisonTraineeMetus = сумка тюремного стажёра
     .desc = Новая и чистая, ещё хранящая следы свежего начала, с оранжевыми акцентами, отмечающими путь обучения.
+ent-ClothingBackpackSatchelSecuritySecblu = { ent-ClothingBackpackSatchelSecurity }
+    .desc = { ent-ClothingBackpackSatchelSecurity.desc }
+ent-ClothingBackpackSatchelSecuritySecred = { ent-ClothingBackpackSatchelSecurity }
+    .desc = { ent-ClothingBackpackSatchelSecurity.desc }

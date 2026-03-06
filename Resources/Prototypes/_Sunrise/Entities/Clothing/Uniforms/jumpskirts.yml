@@ -310,3 +310,199 @@
     - type: Clothing
       slots: [outerClothing]
       sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/weddingdresssplit.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtHoS
+  id: ClothingUniformJumpskirtHoSSecblu
+  suffix: Secblu
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/hos.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/hos.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+- type: entity
+  parent: ClothingUniformJumpskirtHosFormal
+  id: ClothingUniformJumpskirtHosFormalSecblu
+  suffix: Secblu
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/hosformaldress.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/hosformaldress.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtHoSAlt
+  id: ClothingUniformJumpskirtHoSAltSecblu
+  suffix: Secblu
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/hos_alt.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/hos_alt.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtHoSParadeMale
+  id: ClothingUniformJumpskirtHoSParadeMaleSecblu
+  suffix: Secblu
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/hos_parade.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/hos_parade.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtSec
+  id: ClothingUniformJumpskirtSecSecblu
+  suffix: Secblu
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/security.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/security.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+- type: entity
+  parent: ClothingUniformJumpskirtSecGrey
+  id: ClothingUniformJumpskirtSecGreySecblu
+  suffix: Secblu
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/security_grey.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/security_grey.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtSeniorOfficer
+  id: ClothingUniformJumpskirtSeniorOfficerSecblu
+  suffix: Secblu
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/senior_officer.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/senior_officer.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtWarden
+  id: ClothingUniformJumpskirtWardenSecblu
+  suffix: Secblu
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/warden.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/warden.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+- type: entity
+  parent: ClothingUniformJumpskirtHoS
+  id: ClothingUniformJumpskirtHoSSecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/hos.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/hos.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+- type: entity
+  parent: ClothingUniformJumpskirtHosFormal
+  id: ClothingUniformJumpskirtHosFormalSecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/hosformaldress.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/hosformaldress.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtHoSAlt
+  id: ClothingUniformJumpskirtHoSAltSecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/hos_alt.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/hos_alt.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtHoSParadeMale
+  id: ClothingUniformJumpskirtHoSParadeMaleSecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/hos_parade.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/hos_parade.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtSec
+  id: ClothingUniformJumpskirtSecSecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/security.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/security.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+- type: entity
+  parent: ClothingUniformJumpskirtSecGrey
+  id: ClothingUniformJumpskirtSecGreySecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/security_grey.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/security_grey.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtSeniorOfficer
+  id: ClothingUniformJumpskirtSeniorOfficerSecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/senior_officer.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/senior_officer.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtWarden
+  id: ClothingUniformJumpskirtWardenSecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/warden.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/warden.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right

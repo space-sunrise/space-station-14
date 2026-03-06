@@ -74,3 +74,7 @@ ent-ClothingOuterLeatherCoatOpened = leather jacket
     .desc = Perfect for performances!
 ent-ClothingOuterAerostaticBomberJacketArmored = armored aerostatic bomber jacket
     .desc = A jacket once worn by the revolutionary air brigades during the Antecentennial Revolution. There are quite a few pockets on the inside, mostly for storing notebooks and compasses.
+ent-ClothingOuterCoatWardenSecblu = { ent-ClothingOuterCoatWarden }
+    .desc = { ent-ClothingOuterCoatWarden.desc }
+ent-ClothingOuterCoatWardenSecred = { ent-ClothingOuterCoatWarden }
+    .desc = { ent-ClothingOuterCoatWarden.desc }

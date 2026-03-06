@@ -74,3 +74,7 @@ ent-ClothingOuterLeatherCoatOpened = кожаная куртка
     .desc = Прекрасно подходит для выступлений!
 ent-ClothingOuterAerostaticBomberJacketArmored = бронированная аэростатическая куртка-бомбер
     .desc = Куртка, которую носили революционные воздушные бригады во время Мировой революции. Внутри довольно много карманов, в основном для хранения блокнотов и компасов.
+ent-ClothingOuterCoatWardenSecblu = { ent-ClothingOuterCoatWarden }
+    .desc = { ent-ClothingOuterCoatWarden.desc }
+ent-ClothingOuterCoatWardenSecred = { ent-ClothingOuterCoatWarden }
+    .desc = { ent-ClothingOuterCoatWarden.desc }

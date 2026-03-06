@@ -47,3 +47,7 @@ ent-ClothingBackpackSatchelPrisonWorkerMetus = prison worker satchel
     .desc = Baggy and heavy, half worn out from constant tool changes.
 ent-ClothingBackpackSatchelPrisonTraineeMetus = prison trainee satchel
     .desc = New and clean, still bearing the marks of a fresh start, with orange accents marking the path of learning.
+ent-ClothingBackpackSatchelSecuritySecblu = { ent-ClothingBackpackSatchelSecurity }
+    .desc = { ent-ClothingBackpackSatchelSecurity.desc }
+ent-ClothingBackpackSatchelSecuritySecred = { ent-ClothingBackpackSatchelSecurity }
+    .desc = { ent-ClothingBackpackSatchelSecurity.desc }

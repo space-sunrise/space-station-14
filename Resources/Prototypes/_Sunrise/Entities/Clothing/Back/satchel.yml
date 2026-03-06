@@ -384,3 +384,23 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Satchels/black_cap_satchel.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchelSecurity
+  id: ClothingBackpackSatchelSecuritySecblu
+  suffix: Secblu
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secblu/Back/Satchels/security.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secblu/Back/Satchels/security.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchelSecurity
+  id: ClothingBackpackSatchelSecuritySecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/Back/Satchels/security.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/Back/Satchels/security.rsi

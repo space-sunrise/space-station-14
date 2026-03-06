@@ -180,3 +180,23 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Backpacks/black_cap_backpack.rsi
+
+- type: entity
+  parent: ClothingBackpackSecurity
+  id: ClothingBackpackSecuritySecblu
+  suffix: Secblu
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secblu/Back/Backpacks/security.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secblu/Back/Backpacks/security.rsi
+
+- type: entity
+  parent: ClothingBackpackSecurity
+  id: ClothingBackpackSecuritySecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/Back/Backpacks/security.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/Back/Backpacks/security.rsi
