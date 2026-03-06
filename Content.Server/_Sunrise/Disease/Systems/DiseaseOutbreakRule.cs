@@ -58,7 +58,7 @@ public sealed class DiseaseOutbreakRule : StationEventSystem<DiseaseOutbreakRule
 
             _diseaseSystem.InfectEntity(component.Data, picked);
 
-            var comp = EnsureComp<PrimaryPacientComponent>(picked);
+            var comp = EnsureComp<PrimaryPatientComponent>(picked);
             comp.StrainId = component.Data.StrainId;
 
             if (validEntities.Count == 0)

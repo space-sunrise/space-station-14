@@ -9,7 +9,7 @@ using Content.Shared.Popups;
 
 namespace Content.Server._Sunrise.Disease.Systems;
 
-public sealed class PrimaryPacientSystem : EntitySystem
+public sealed class PrimaryPatientSystem : EntitySystem
 {
     [Dependency] private readonly SentientDiseaseSystem _sentientDiseaseSystem = default!;
     [Dependency] private readonly DiseaseSystem _disease = default!;
@@ -20,14 +20,14 @@ public sealed class PrimaryPacientSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<PrimaryPacientComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<PrimaryPacientComponent, CureDiseaseEvent>(OnCureDisease);
-        SubscribeLocalEvent<PrimaryPacientComponent, ComponentRemove>(OnRemove);
+        SubscribeLocalEvent<PrimaryPatientComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<PrimaryPatientComponent, CureDiseaseEvent>(OnCureDisease);
+        SubscribeLocalEvent<PrimaryPatientComponent, ComponentRemove>(OnRemove);
 
-        SubscribeLocalEvent<PrimaryPacientComponent, EnterCryostorageEvent>(OnMindRemoved);
+        SubscribeLocalEvent<PrimaryPatientComponent, EnterCryostorageEvent>(OnMindRemoved);
     }
 
-    private void OnMindRemoved(EntityUid uid, PrimaryPacientComponent component, EnterCryostorageEvent args)
+    private void OnMindRemoved(EntityUid uid, PrimaryPatientComponent component, EnterCryostorageEvent args)
     {
         if (!TryComp<SentientDiseaseComponent>(component.SentientDisease, out var sentientDiseaseComp))
             return;
@@ -47,7 +47,7 @@ public sealed class PrimaryPacientSystem : EntitySystem
         _disease.CureDisease(uid);
     }
 
-    private void OnInit(Entity<PrimaryPacientComponent> entity, ref ComponentInit args)
+    private void OnInit(Entity<PrimaryPatientComponent> entity, ref ComponentInit args)
     {
         _timedWindowSystem.Reset(entity.Comp.UpdateWindow);
     }
@@ -56,7 +56,7 @@ public sealed class PrimaryPacientSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<PrimaryPacientComponent, DiseaseComponent>();
+        var query = EntityQueryEnumerator<PrimaryPatientComponent, DiseaseComponent>();
         while (query.MoveNext(out var uid, out var component, out var diseaseComponent))
         {
             if (_timedWindowSystem.IsExpired(component.UpdateWindow))
@@ -67,12 +67,12 @@ public sealed class PrimaryPacientSystem : EntitySystem
         }
     }
 
-    private void OnCureDisease(EntityUid uid, PrimaryPacientComponent component, CureDiseaseEvent args)
+    private void OnCureDisease(EntityUid uid, PrimaryPatientComponent component, CureDiseaseEvent args)
     {
-        RemComp<PrimaryPacientComponent>(uid);
+        RemComp<PrimaryPatientComponent>(uid);
     }
 
-    private void OnRemove(EntityUid uid, PrimaryPacientComponent component, ComponentRemove args)
+    private void OnRemove(EntityUid uid, PrimaryPatientComponent component, ComponentRemove args)
     {
         if (component.SentientDisease != null
             && TryComp<SentientDiseaseComponent>(component.SentientDisease, out var sentientDisease))

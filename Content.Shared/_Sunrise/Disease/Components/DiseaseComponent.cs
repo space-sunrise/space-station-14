@@ -26,7 +26,7 @@ public sealed partial class DiseaseComponent : Component
     /// </summary>
     [DataField]
     [ViewVariables(VVAccess.ReadOnly)]
-    public MobState PatientState = new();
+    public MobState PatientState = MobState.Invalid;
 
     /// <summary>
     ///     Данные об вирусе.

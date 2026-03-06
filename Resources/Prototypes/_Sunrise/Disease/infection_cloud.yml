@@ -31,6 +31,9 @@
   - type: EdgeSpreader
     id: SunriseDiseaseCloud
   - type: DiseaseInfectionCloud
+  - type: Reactive
+    groups:
+      Antiseptic: [Touch]
   - type: Sprite
     sprite: _Sunrise/Disease/cloude.rsi
     noRot: true

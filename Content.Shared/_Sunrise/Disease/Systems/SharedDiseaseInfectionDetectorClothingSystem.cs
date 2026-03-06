@@ -1,10 +1,8 @@
-using Content.Server._Sunrise.Disease.Components;
-using Content.Shared._Sunrise.Disease;
 using Content.Shared._Sunrise.Disease.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 
-namespace Content.Server._Sunrise.Disease.Systems;
+namespace Content.Shared._Sunrise.Disease.Systems;
 
 public sealed class SharedDiseaseInfectionDetectorClothingSystem : EntitySystem
 {
@@ -23,11 +21,30 @@ public sealed class SharedDiseaseInfectionDetectorClothingSystem : EntitySystem
         SubscribeLocalEvent<DiseaseInfectionDetectorClothingComponent, GotUnequippedEvent>(OnGotUnequipped);
 
         SubscribeLocalEvent<DiseaseInfectionDetectorUserComponent, GetVisMaskEvent>(OnGetVisMask);
+
+        SubscribeLocalEvent<DiseaseSandboxVisibilityComponent, GetVisMaskEvent>(OnSandboxGetVisMask);
+        SubscribeLocalEvent<DiseaseSandboxVisibilityComponent, ComponentStartup>(OnSandboxStartup);
+        SubscribeLocalEvent<DiseaseSandboxVisibilityComponent, ComponentShutdown>(OnSandboxShutdown);
     }
 
     private void OnGetVisMask(Entity<DiseaseInfectionDetectorUserComponent> ent, ref GetVisMaskEvent args)
     {
         args.VisibilityMask |= BaseDiseaseSettings.DiseaseInfectionVisibilityFlag;
+    }
+
+    private void OnSandboxGetVisMask(Entity<DiseaseSandboxVisibilityComponent> ent, ref GetVisMaskEvent args)
+    {
+        args.VisibilityMask |= BaseDiseaseSettings.DiseaseInfectionVisibilityFlag;
+    }
+
+    private void OnSandboxStartup(Entity<DiseaseSandboxVisibilityComponent> ent, ref ComponentStartup args)
+    {
+        _eye.RefreshVisibilityMask(ent.Owner);
+    }
+
+    private void OnSandboxShutdown(Entity<DiseaseSandboxVisibilityComponent> ent, ref ComponentShutdown args)
+    {
+        _eye.RefreshVisibilityMask(ent.Owner);
     }
 
     private void OnGotEquipped(Entity<DiseaseInfectionDetectorClothingComponent> ent, ref GotEquippedEvent args)

@@ -8,10 +8,10 @@
       - ShowAntagIcons
   icon:
     sprite: /Textures/_Sunrise/Disease/antag_icons.rsi
-    state: Pacient
+    state: Patient
 
 - type: factionIcon
-  id: PrimaryPacientFaction
+  id: PrimaryPatientFaction
   priority: 11
   visibleToGhosts: false
   showTo:
@@ -20,7 +20,7 @@
       - ShowAntagIcons
   icon:
     sprite: /Textures/_Sunrise/Disease/antag_icons.rsi
-    state: PrimaryPacient
+    state: PrimaryPatient
 
 - type: antag
   id: SentientDisease

@@ -6,6 +6,7 @@ using Content.Shared._Sunrise.Disease.Components;
 using Content.Shared._Sunrise.TimeWindow;
 using Content.Shared.Chat;
 using Content.Shared._Sunrise.Disease.Symptoms;
+using Content.Server._Sunrise.Disease.Systems;
 
 namespace Content.Server._Sunrise.Disease.Symptoms;
 
@@ -36,11 +37,14 @@ public sealed class RashSymptom : DiseaseSymptomBase
     public override void DoEffect(EntityUid host, DiseaseComponent disease)
     {
         var chatSystem = _entityManager.System<ChatSystem>();
+        var diseaseInfectionCloudSystem = _entityManager.System<DiseaseInfectionCloudSystem>();
 
         chatSystem.TrySendInGameICMessage(host,
                             RashEmote,
                             InGameICChatType.Emote,
                             ChatTransmitRange.Normal);
+
+        diseaseInfectionCloudSystem.TrySpawnCloud((host, disease), out _);
     }
 
     public override void ApplyDataEffect(DiseaseData data, bool add)

@@ -24,7 +24,7 @@ public sealed class SentientDiseaseSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly TimedWindowSystem _timedWindowSystem = default!;
-    private const int PrimaryPacientPrice = 1000;
+    private const int PrimaryPatientPrice = 1000;
     private const int ModifyPointsRegenPerInfected = 2;
     public override void Initialize()
     {
@@ -123,7 +123,7 @@ public sealed class SentientDiseaseSystem : EntitySystem
         if (component.Data == null)
             return;
 
-        var totalPrice = PrimaryPacientPrice * component.FactPrimaryInfected;
+        var totalPrice = PrimaryPatientPrice * component.FactPrimaryInfected;
         var missingPoints2 = totalPrice - component.Data.MutationPoints;
 
         if (component.Data.MutationPoints < totalPrice)
@@ -274,7 +274,7 @@ public sealed class SentientDiseaseSystem : EntitySystem
         if (component.FactPrimaryInfected >= component.MaxPrimaryInfected)
             return false;
 
-        if (HasComp<PrimaryPacientComponent>(target))
+        if (HasComp<PrimaryPatientComponent>(target))
             return false;
 
         if (HasComp<DiseaseComponent>(target))
@@ -288,7 +288,7 @@ public sealed class SentientDiseaseSystem : EntitySystem
         component.CurrentPrimaryInfected.Add(target);
         component.FactPrimaryInfected++;
 
-        var primary = new PrimaryPacientComponent(uid, component.Data.StrainId);
+        var primary = new PrimaryPatientComponent(uid, component.Data.StrainId);
 
         AddComp(target, primary);
 

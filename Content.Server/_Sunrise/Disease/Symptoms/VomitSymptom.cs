@@ -34,11 +34,11 @@ public sealed class VomitSymptom : DiseaseSymptomBase
 
     public override void DoEffect(EntityUid host, DiseaseComponent disease)
     {
-        var diseaseSystem = _entityManager.System<DiseaseSystem>();
         var vomitSystem = _entityManager.System<VomitSystem>();
+        var diseaseInfectionCloudSystem = _entityManager.System<DiseaseInfectionCloudSystem>();
 
         vomitSystem.Vomit(host);
-        diseaseSystem.InfectAround(host);
+        diseaseInfectionCloudSystem.TrySpawnCloud((host, disease), out _);
     }
 
     public override void ApplyDataEffect(DiseaseData data, bool add)

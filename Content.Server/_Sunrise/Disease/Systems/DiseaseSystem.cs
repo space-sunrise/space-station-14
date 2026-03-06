@@ -82,7 +82,6 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         SubscribeLocalEvent<DiseaseComponent, CureDiseaseEvent>(OnCureDisease);
         SubscribeLocalEvent<DiseaseComponent, EntityZombifiedEvent>(OnEntityZombified);
 
-        RashInitialize();
         AddSpeedInitialize();
     }
 
@@ -343,18 +342,18 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
     /// <summary>
     ///     Заразить с вероятностью.
     /// </summary>
-    public void ProbInfect(Entity<DiseaseComponent?> host, EntityUid target)
+    public void ProbInfect(Entity<DiseaseComponent?> host, EntityUid target, bool ignoreResistance = false, float? infectivity = null)
     {
         if (!Resolve(host, ref host.Comp, false))
             return;
 
-        ProbInfect(host.Comp.Data, target, host);
+        ProbInfect(host.Comp.Data, target, host, ignoreResistance, infectivity);
     }
 
     /// <summary>
     ///     Если у сущности есть DiseaseComponent, то не используем CalcInfectionInfectivity, т.к. он уже расчитан для этого случая.
     /// </summary>
-    public void ProbInfect(DiseaseData data, EntityUid target, EntityUid? host = null, float? infectivity = null)
+    public void ProbInfect(DiseaseData data, EntityUid target, EntityUid? host = null, bool ignoreResistance = false, float? infectivity = null)
     {
         var ev = new ProbInfectAttemptEvent(target, false, host);
         RaiseLocalEvent(target, ev);
@@ -372,7 +371,10 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         }
 
         // Вычисляем шанс заражения
-        var finalChance = GetDiseaseInfectionChance(target, data, infectivity);
+        var finalChance = infectivity ?? data.Infectivity;
+
+        if (!ignoreResistance)
+            finalChance = GetDiseaseInfectionChance(target, data, infectivity);
 
         // Бросаем шанс
         if (_random.Prob(finalChance))
@@ -403,10 +405,10 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         }
 
         // Проверяем PrimaryPatient и другой штамм
-        if (TryComp<PrimaryPacientComponent>(target, out var pacientComponent)
-            && pacientComponent.StrainId != data.StrainId)
+        if (TryComp<PrimaryPatientComponent>(target, out var patientComponent)
+            && patientComponent.StrainId != data.StrainId)
         {
-            RemComp<PrimaryPacientComponent>(target);
+            RemComp<PrimaryPatientComponent>(target);
         }
 
         // В любом случае копируем остальные данные (например, симптомы, тела и т.п.)
@@ -489,7 +491,7 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
     {
         if (left.ActiveSymptom.Count > right.ActiveSymptom.Count)
             return true;
-        
+
         return false;
     }
 

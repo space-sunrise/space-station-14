@@ -18,23 +18,23 @@ public sealed class DiseaseSystem : SharedDiseaseSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<DiseaseComponent, GetStatusIconsEvent>(GetPacient);
-        SubscribeLocalEvent<PrimaryPacientComponent, GetStatusIconsEvent>(GetPrimaryPacient);
+        SubscribeLocalEvent<DiseaseComponent, GetStatusIconsEvent>(GetPatient);
+        SubscribeLocalEvent<PrimaryPatientComponent, GetStatusIconsEvent>(GetPrimaryPatient);
     }
 
-    private void GetPacient(Entity<DiseaseComponent> ent, ref GetStatusIconsEvent args)
+    private void GetPatient(Entity<DiseaseComponent> ent, ref GetStatusIconsEvent args)
     {
         if (_player.LocalEntity == ent)
             return;
 
-        if (HasComp<PrimaryPacientComponent>(ent))
+        if (HasComp<PrimaryPatientComponent>(ent))
             return;
 
         if (_prototype.TryIndex(ent.Comp.StatusIcon, out var iconPrototype))
             args.StatusIcons.Add(iconPrototype);
     }
 
-    private void GetPrimaryPacient(Entity<PrimaryPacientComponent> ent, ref GetStatusIconsEvent args)
+    private void GetPrimaryPatient(Entity<PrimaryPatientComponent> ent, ref GetStatusIconsEvent args)
     {
         if (_player.LocalEntity == ent)
             return;

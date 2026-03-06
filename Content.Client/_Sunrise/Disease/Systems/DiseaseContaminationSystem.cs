@@ -5,6 +5,7 @@ using Robust.Client.Graphics;
 using Robust.Shared.GameStates;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using YamlDotNet.Serialization.NamingConventions;
 
 namespace Content.Client._Sunrise.Disease.Systems;
 
@@ -52,7 +53,7 @@ public sealed class DiseaseContaminationSystem : EntitySystem
 
     private void OnPlayerDetached(Entity<DiseaseInfectionDetectorUserComponent> ent, ref LocalPlayerDetachedEvent args)
     {
-        UpdateAllContaminationShaders();
+        ClearAllContaminationShaders();
     }
 
     private void OnDetectorUserStartup(Entity<DiseaseInfectionDetectorUserComponent> ent, ref ComponentStartup args)
@@ -68,7 +69,7 @@ public sealed class DiseaseContaminationSystem : EntitySystem
         if (_player.LocalEntity != ent.Owner)
             return;
 
-        UpdateAllContaminationShaders();
+        ClearAllContaminationShaders();
     }
 
     private void OnContaminationState(Entity<DiseaseContaminationComponent> ent, ref ComponentHandleState args)
@@ -88,6 +89,15 @@ public sealed class DiseaseContaminationSystem : EntitySystem
         while (query.MoveNext(out var uid, out var contamination))
         {
             UpdateShader(uid, contamination);
+        }
+    }
+
+    private void ClearAllContaminationShaders()
+    {
+        var query = EntityQueryEnumerator<DiseaseContaminationComponent, SpriteComponent>();
+        while (query.MoveNext(out var uid, out _, out var sprite))
+        {
+            ClearShader((uid, sprite));
         }
     }
 

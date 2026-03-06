@@ -9,6 +9,7 @@ using Content.Shared._Sunrise.TimeWindow;
 using Robust.Shared.Prototypes;
 using Content.Shared.Chat;
 using Content.Shared._Sunrise.Disease.Symptoms;
+using Robust.Shared.Physics;
 
 namespace Content.Server._Sunrise.Disease.Symptoms;
 
@@ -39,7 +40,7 @@ public sealed class CoughSymptom : DiseaseSymptomBase
     public override void DoEffect(EntityUid host, DiseaseComponent disease)
     {
         var chatSystem = _entityManager.System<ChatSystem>();
-        var diseaseSystem = _entityManager.System<DiseaseSystem>();
+        var diseaseInfectionCloudSystem = _entityManager.System<DiseaseInfectionCloudSystem>();
 
         // Почему-то проигрывается вместе со звуком
         chatSystem.TryEmoteWithChat(host,
@@ -47,7 +48,7 @@ public sealed class CoughSymptom : DiseaseSymptomBase
                             ChatTransmitRange.HideChat,
                             ignoreActionBlocker: true);
 
-        diseaseSystem.InfectAround(host);
+        diseaseInfectionCloudSystem.TrySpawnCloud((host, disease), out _);
     }
 
     public override void ApplyDataEffect(DiseaseData data, bool add)

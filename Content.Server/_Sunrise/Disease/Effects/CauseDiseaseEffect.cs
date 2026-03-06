@@ -9,8 +9,6 @@ using Content.Shared._Sunrise.Disease.Effects;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.EntityEffects;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.Disease.Effects;
 
@@ -19,8 +17,6 @@ public sealed partial class CauseDiseaseEntityEffectsSystem : EntityEffectSystem
 {
     [Dependency] private readonly DiseaseSystem _diseaseSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     protected override void Effect(Entity<BloodstreamComponent> entity, ref EntityEffectEvent<CauseDiseaseEffect> args)
     {
         DiseaseData? data = null;
@@ -56,6 +52,7 @@ public sealed partial class CauseDiseaseEntityEffectsSystem : EntityEffectSystem
         var infectionData = (DiseaseData)data.CloneForInfection();
         var infectivity = _diseaseSystem.CalcInfectionInfectivity(infectionData);
 
-        _diseaseSystem.ProbInfect(data, entity.Owner, infectivity: infectivity);
+        // вот не понятно, может же быть реаетивный реагент, тогда резисты нужно учитывать?
+        _diseaseSystem.ProbInfect(data, entity.Owner, infectivity: infectivity, ignoreResistance: true);
     }
 }

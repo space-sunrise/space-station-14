@@ -1,7 +1,11 @@
 using Content.Shared._Sunrise.Disease.Components;
 using Content.Shared._Sunrise.TimeWindow;
+using Content.Shared.Chemistry;
+using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Mobs.Components;
+using NetCord;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.Disease.Systems;
 
@@ -9,6 +13,7 @@ public sealed class DiseaseContaminationSystem : EntitySystem
 {
     [Dependency] private readonly DiseaseSystem _disease = default!;
     [Dependency] private readonly TimedWindowSystem _timedWindow = default!;
+    private readonly ProtoId<ReactiveGroupPrototype> _antisepticGroup = "Antiseptic";
 
     public override void Initialize()
     {
@@ -51,6 +56,21 @@ public sealed class DiseaseContaminationSystem : EntitySystem
     private void OnContaminationInit(Entity<DiseaseContaminationComponent> ent, ref ComponentInit args)
     {
         _timedWindow.Reset(ent.Comp.SpreadWindow);
+        EnsureReactive(ent);
+    }
+
+    /// <summary>
+    ///     Гарантирует, что у заражённой сущности есть ReactiveComponent с группой Acidic,
+    ///     чтобы антисептик мог на неё подействовать.
+    /// </summary>
+    private void EnsureReactive(EntityUid uid)
+    {
+        var reactive = EnsureComp<ReactiveComponent>(uid);
+        reactive.ReactiveGroups ??= new();
+        if (!reactive.ReactiveGroups.ContainsKey(_antisepticGroup))
+            reactive.ReactiveGroups[_antisepticGroup] = [ReactionMethod.Touch];
+        else
+            reactive.ReactiveGroups[_antisepticGroup].Add(ReactionMethod.Touch);
     }
 
     public bool TryContaminateFromCloud(Entity<DiseaseInfectionCloudComponent?> cloud, EntityUid target)

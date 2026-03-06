@@ -86,7 +86,6 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
             ent.Comp.Data!,
             coords,
             CloudPrototype,
-            ent.Comp.Source ?? ent.Owner,
             0);
 
         ent.Comp.SpreadAmount--;
@@ -104,7 +103,7 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
         if (!CanInfectOnCollide(cloud, target))
             return false;
 
-        _disease.ProbInfect(cloud.Comp.Data!, target, cloud.Comp.Source ?? cloud.Owner, infectivity: _disease.CalcInfectionInfectivity(cloud.Comp.Data!));
+        _disease.ProbInfect(cloud.Comp.Data!, target, infectivity: _disease.CalcInfectionInfectivity(cloud.Comp.Data!));
         return true;
     }
 
@@ -120,14 +119,27 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
     }
 
     public bool TrySpawnCloud(
-        DiseaseData disease,
-        EntityCoordinates coordinates,
+        Entity<DiseaseComponent?> host,
         out EntityUid cloud,
-        EntityUid? source = null,
         int spreadAmount = 4,
         float checkRange = 0.01f)
     {
-        return TrySpawnCloud(disease, coordinates, CloudPrototype, out cloud, source, spreadAmount, checkRange);
+        cloud = EntityUid.Invalid;
+
+        if (!Resolve(host, ref host.Comp, false))
+            return false;
+
+        return TrySpawnCloud(host.Comp.Data, Transform(host).Coordinates, CloudPrototype, out cloud, spreadAmount, checkRange);
+    }
+
+    public bool TrySpawnCloud(
+        DiseaseData disease,
+        EntityCoordinates coordinates,
+        out EntityUid cloud,
+        int spreadAmount = 4,
+        float checkRange = 0.01f)
+    {
+        return TrySpawnCloud(disease, coordinates, CloudPrototype, out cloud, spreadAmount, checkRange);
     }
 
     public bool TrySpawnCloud(
@@ -135,7 +147,6 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
         EntityCoordinates coordinates,
         EntProtoId cloudPrototype,
         out EntityUid cloud,
-        EntityUid? source = null,
         int spreadAmount = 4,
         float checkRange = 0.01f)
     {
@@ -144,7 +155,7 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
         if (!CanSpawnCloud(coordinates, checkRange))
             return false;
 
-        cloud = SpawnCloud(disease, coordinates, cloudPrototype, source, spreadAmount);
+        cloud = SpawnCloud(disease, coordinates, cloudPrototype, spreadAmount);
         return true;
     }
 
@@ -162,7 +173,6 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
         DiseaseData disease,
         EntityCoordinates coordinates,
         EntProtoId cloudPrototype,
-        EntityUid? source = null,
         int spreadAmount = 4)
     {
         var uid = Spawn(cloudPrototype, coordinates);
@@ -171,7 +181,6 @@ public sealed class DiseaseInfectionCloudSystem : EntitySystem
             return uid;
 
         cloud.Data = (DiseaseData)disease.CloneForInfection();
-        cloud.Source = source;
         cloud.SpreadAmount = spreadAmount;
 
         Dirty(uid, cloud);

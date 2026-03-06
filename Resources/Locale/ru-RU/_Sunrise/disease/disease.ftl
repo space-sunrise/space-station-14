@@ -322,3 +322,6 @@ disease-infection-cloud-examine-infectivity = Заразность: { $infectivi
 health-analyzer-window-entity-infected-text =
     Заражён вирусом.
     Состояние излечения организма: { $progress }%
+
+# Песочница
+sandbox-window-toggle-disease-button = Отображение заболеваний

@@ -196,7 +196,7 @@ public abstract partial class SharedDiseaseSystem : EntitySystem
         if (_mobState.IsDead(entity))
             return false;
 
-        if (HasComp<PrimaryPacientComponent>(entity)
+        if (HasComp<PrimaryPatientComponent>(entity)
             || HasComp<ZombieComponent>(entity))
             return false;
 
