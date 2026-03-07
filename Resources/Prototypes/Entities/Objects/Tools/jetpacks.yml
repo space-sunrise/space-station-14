@@ -50,6 +50,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
+    requireActivated: false
   - type: HeldSpeedModifier
   # Sunrise end
   - type: GasTank
@@ -132,6 +133,13 @@
     sprite: Objects/Tanks/Jetpacks/black.rsi
     slots:
       - Back
+  # Sunrise edit start
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+    requireActivated: false
+  - type: HeldSpeedModifier
+  # Sunrise edit end
   - type: StaticPrice
     price: 1000
 
@@ -178,6 +186,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
+    requireActivated: false
   - type: HeldSpeedModifier
   # Sunrise edit end
 
