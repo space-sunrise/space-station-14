@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Interaction;
 using Content.Shared.ActionBlocker;
+using Content.Shared.GameTicking;
 using Content.Shared.Instruments;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
@@ -15,7 +16,18 @@ public sealed partial class InstrumentSystem
     [Dependency] private readonly InteractionSystem _interaction = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
 
+    // Надеюсь у нас не будет раундов по 100000000 часов
     private readonly Dictionary<NetUserId, SessionMidiRateLimitData> _sessionMidiRateLimits = [];
+
+    private void InitializeAbuse()
+    {
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanUp);
+    }
+
+    private void OnCleanUp(RoundRestartCleanupEvent ev)
+    {
+        _sessionMidiRateLimits.Clear();
+    }
 
     private bool TryValidateInstrumentRequest(
         NetEntity netUid,

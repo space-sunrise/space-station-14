@@ -68,6 +68,10 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
         SubscribeLocalEvent<InstrumentComponent, ComponentGetState>(OnStrumentGetState);
 
+        // Sunrise added start
+        InitializeAbuse();
+        // Sunrise added end
+
         _conHost.RegisterCommand("addtoband", AddToBandCommand);
     }
 
