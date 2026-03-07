@@ -21,7 +21,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 80
-      Bluespace: 20
+      Uranium: 20
   - type: SolutionRegeneration
     solution: spray
     generated:

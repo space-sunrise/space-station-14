@@ -126,4 +126,3 @@
     sprite: _Sunrise/Objects/Specific/Chemistry/vial_bluespace.rsi
   - type: StaticPrice
     price: 100
-    vendPrice: 100

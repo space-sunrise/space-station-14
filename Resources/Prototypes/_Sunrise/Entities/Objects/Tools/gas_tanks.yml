@@ -22,6 +22,11 @@
     sprite: _Sunrise/Objects/Tanks/bluespace_pocket_tank.rsi
   - type: Item
     sprite: _Sunrise/Objects/Tanks/bluespace_pocket_tank.rsi
+    storedSprite:
+      state: icon
+      sprite: _Sunrise/Objects/Tanks/bluespace_pocket_tank.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Tanks/bluespace_pocket_tank.rsi
   - type: GasTank
     outputPressure: 21.3
     air:
