@@ -13,3 +13,17 @@
     air:
       volume: 20
       temperature: 293.15
+
+- type: entity
+  parent: DoubleEmergencyOxygenTank
+  id: SmallBluespaceAirTank
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tanks/bluespace_pocket_tank.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Tanks/bluespace_pocket_tank.rsi
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 10
+      temperature: 293.15
