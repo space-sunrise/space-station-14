@@ -48,6 +48,7 @@
       reagents:
       - ReagentId: FluorosulfuricAcidHumanoidXeno
         Quantity: 300
+  - type: ProtectedFromStepTriggers
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Xenomorph
