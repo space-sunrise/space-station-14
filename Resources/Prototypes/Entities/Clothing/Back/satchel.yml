@@ -197,7 +197,7 @@
   - type: Storage
     maxItemSize: Huge
     grid:
-    - 0,0,19,9
+    - 0,0,17,7 # Sunrise-Edit
   # Sunrise-start
   - type: Clothing
     sprite: _Sunrise/Clothing/Back/Satchels/holding.rsi
