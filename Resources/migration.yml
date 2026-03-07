@@ -303,7 +303,7 @@ CartridgeRifleRubber: CartridgeRifleSP # Sunrise-Edit
 CartridgeCaselessRifleRubber: CartridgeCaselessRifle
 # Sunrise-Edit
 # MagazinePistolRubber: MagazinePistol
-MagazinePistolSubMachineGunRubber: MagazinePistolSubMachineGunSP # Sunrise-Edit
+#MagazinePistolSubMachineGunRubber: MagazinePistolSubMachineGunSP # Sunrise-Edit
 MagazinePistolCaselessRifleRubber: MagazinePistolCaselessRifle
 # Sunrise-Edit
 # MagazineMagnumRubber: MagazineMagnum
