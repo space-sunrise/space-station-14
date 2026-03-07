@@ -46,6 +46,12 @@
     quickEquip: false
     slots:
     - Back
+  # Sunrise start
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: HeldSpeedModifier
+  # Sunrise end
   - type: GasTank
     outputPressure: 21.3
     air:
@@ -168,6 +174,12 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: JetpackCaptainFilled
+  # Sunrise edit start
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: HeldSpeedModifier
+  # Sunrise edit end
 
 # Filled captain
 - type: entity
