@@ -2,6 +2,7 @@ dynamic-appearance-verb = Изменить внешность
 dynamic-appearance-window-title = Редактор внешности
 dynamic-appearance-save = Сохранить
 dynamic-appearance-reset = Сбросить
+dynamic-appearance-name-label = Имя
 dynamic-appearance-skin-color-label = Цвет кожи
 dynamic-appearance-eye-color-label = Цвет глаз
 dynamic-appearance-markings-label = Маркировки

@@ -20,11 +20,17 @@ public sealed partial class DynamicAppearanceWindow
     public void UpdateState(DynamicAppearanceBUIState buiState)
     {
         _draftState = buiState.State;
+        _allowedFields = buiState.AllowedFields;
         _speciesProto = _protoMan.TryIndex<SpeciesPrototype>(_draftState.Species, out var sp) ? sp : null;
 
         // Resolve the entity for preview
         _previewEntity = _entManager.GetEntity(buiState.Entity);
 
+        // Apply allowed-fields visibility before refreshing controls so users
+        // only interact with sections they are permitted to change.
+        RefreshAllowedFields();
+
+        RefreshName();
         RefreshAge();
         RefreshSex();
         RefreshPronouns();
@@ -37,7 +43,28 @@ public sealed partial class DynamicAppearanceWindow
         RefreshPreview();
     }
 
+    // ═══════════ Allowed-fields visibility ═══════════
+
+    /// <summary>
+    /// Shows or hides UI sections based on the server-provided <see cref="_allowedFields"/> whitelist.
+    /// </summary>
+    private void RefreshAllowedFields()
+    {
+        NameSection.Visible = _allowedFields.HasFlag(DynamicAppearanceFields.Name);
+        SexSection.Visible = _allowedFields.HasFlag(DynamicAppearanceFields.Sex);
+        PronounsSection.Visible = _allowedFields.HasFlag(DynamicAppearanceFields.Pronouns);
+        SkinColorSection.Visible = _allowedFields.HasFlag(DynamicAppearanceFields.SkinColor);
+        EyeColorSection.Visible = _allowedFields.HasFlag(DynamicAppearanceFields.EyeColor);
+        HairSection.Visible = _allowedFields.HasFlag(DynamicAppearanceFields.Hair);
+        MarkingsSection.Visible = _allowedFields.HasFlag(DynamicAppearanceFields.Markings);
+    }
+
     // ═══════════ Individual refresh methods ═══════════
+
+    private void RefreshName()
+    {
+        NameEdit.Text = _draftState.Name;
+    }
 
     private void RefreshAge()
     {
@@ -92,8 +119,16 @@ public sealed partial class DynamicAppearanceWindow
 
     private void RebuildVoiceList()
     {
+        // Collect sponsor-owned prototype IDs so we can show/hide sponsor-only voices.
+        // Sunrise-Sponsors-Start
+        var clientSponsorProtos = _sponsorsMgr?.GetClientPrototypes()?.ToHashSet()
+                                  ?? new HashSet<string>();
+        // Sunrise-Sponsors-End
+
         _filteredVoices = _protoMan.EnumeratePrototypes<TTSVoicePrototype>()
-            .Where(v => v.RoundStart && HumanoidCharacterProfile.CanHaveVoice(v, _draftState.Sex))
+            .Where(v => v.RoundStart
+                        && HumanoidCharacterProfile.CanHaveVoice(v, _draftState.Sex)
+                        && (!v.SponsorOnly || clientSponsorProtos.Contains(v.ID))) // Sunrise-Sponsors
             .OrderBy(v => v.Name)
             .ToList();
 

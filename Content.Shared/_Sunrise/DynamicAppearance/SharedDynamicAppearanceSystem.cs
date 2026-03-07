@@ -14,6 +14,25 @@ public enum DynamicAppearanceUiKey
 }
 
 /// <summary>
+/// Flags indicating which appearance fields a player is allowed to edit in <see cref="DynamicAppearanceComponent"/>.
+/// </summary>
+[Flags]
+[Serializable, NetSerializable]
+public enum DynamicAppearanceFields
+{
+    None     = 0,
+    Name     = 1 << 0,
+    Sex      = 1 << 1,
+    Pronouns = 1 << 2,
+    SkinColor = 1 << 3,
+    EyeColor = 1 << 4,
+    Hair     = 1 << 5,
+    Markings = 1 << 6,
+
+    All = Name | Sex | Pronouns | SkinColor | EyeColor | Hair | Markings,
+}
+
+/// <summary>
 /// Complete snapshot of the editable appearance fields.
 /// Used in BUI messages, BUI state, and as the local draft in the editor window.
 /// </summary>
@@ -29,7 +48,8 @@ public record struct DynamicAppearanceState(
     Color EyeColor,
     Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo> CustomBaseLayers,
     float Width,
-    float Height
+    float Height,
+    string Name
 );
 
 /// <summary>
@@ -47,7 +67,8 @@ public sealed class DynamicAppearanceSaveMessage : BoundUserInterfaceMessage
 }
 
 /// <summary>
-/// Server → Client: full appearance snapshot + the entity being edited (for preview).
+/// Server → Client: full appearance snapshot + the entity being edited (for preview) +
+/// which fields the player is permitted to edit.
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class DynamicAppearanceBUIState : BoundUserInterfaceState
@@ -59,9 +80,16 @@ public sealed class DynamicAppearanceBUIState : BoundUserInterfaceState
     /// </summary>
     public NetEntity Entity { get; }
 
-    public DynamicAppearanceBUIState(DynamicAppearanceState state, NetEntity entity)
+    /// <summary>
+    /// Bitmask of appearance fields the player is allowed to edit.
+    /// The client should disable/hide controls for fields not in this set.
+    /// </summary>
+    public DynamicAppearanceFields AllowedFields { get; }
+
+    public DynamicAppearanceBUIState(DynamicAppearanceState state, NetEntity entity, DynamicAppearanceFields allowedFields)
     {
         State = state;
         Entity = entity;
+        AllowedFields = allowedFields;
     }
 }

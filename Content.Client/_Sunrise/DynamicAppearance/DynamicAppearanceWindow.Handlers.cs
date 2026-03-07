@@ -19,6 +19,16 @@ public sealed partial class DynamicAppearanceWindow
         ResetButton.OnPressed += _ => OnReset?.Invoke();
     }
 
+    // ═══════════ Name ═══════════
+
+    private void InitNameHandlers()
+    {
+        NameEdit.OnTextChanged += args =>
+        {
+            _draftState.Name = args.Text;
+        };
+    }
+
     // ═══════════ Age ═══════════
 
     private void InitAgeHandlers()

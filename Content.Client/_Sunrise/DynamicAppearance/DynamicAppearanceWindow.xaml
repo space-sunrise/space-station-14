@@ -16,6 +16,13 @@
             <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
                 <BoxContainer Orientation="Vertical" HorizontalExpand="True">
 
+                    <!-- ── Name ── -->
+                    <BoxContainer Name="NameSection" HorizontalExpand="True" Margin="4 2">
+                        <Label Text="{Loc 'dynamic-appearance-name-label'}" />
+                        <Control HorizontalExpand="True" />
+                        <LineEdit Name="NameEdit" MinSize="160 0" HorizontalAlignment="Right" />
+                    </BoxContainer>
+
                     <!-- ── Age ── -->
                     <BoxContainer HorizontalExpand="True" Margin="4 2">
                         <Label Text="{Loc 'dynamic-appearance-age-label'}" />
@@ -23,28 +30,30 @@
                         <LineEdit Name="AgeEdit" MinSize="50 0" HorizontalAlignment="Right" />
                     </BoxContainer>
 
-                    <!-- ── Sex ── -->
-                    <BoxContainer HorizontalExpand="True" Margin="4 2">
-                        <Label Text="{Loc 'dynamic-appearance-sex-label'}" />
-                        <Control HorizontalExpand="True" />
-                        <OptionButton Name="SexButton" HorizontalAlignment="Right" />
+                    <!-- ── Sex + TTS voice ── (grouped because voice picker re-filters on sex change) -->
+                    <BoxContainer Name="SexSection" Orientation="Vertical" HorizontalExpand="True">
+                        <BoxContainer HorizontalExpand="True" Margin="4 2">
+                            <Label Text="{Loc 'dynamic-appearance-sex-label'}" />
+                            <Control HorizontalExpand="True" />
+                            <OptionButton Name="SexButton" HorizontalAlignment="Right" />
+                        </BoxContainer>
+
+                        <!-- TTS voice (hidden if TTS disabled) -->
+                        <BoxContainer Name="TTSContainer" Visible="False" Orientation="Vertical" Margin="4 2">
+                            <BoxContainer HorizontalExpand="True">
+                                <Label Text="{Loc 'dynamic-appearance-voice-label'}" />
+                                <Control HorizontalExpand="True" />
+                                <Button Name="VoicePlayButton" Text="{Loc 'humanoid-profile-editor-voice-play'}" />
+                                <OptionButton Name="VoiceButton" HorizontalAlignment="Right" MinSize="160 0" />
+                            </BoxContainer>
+                        </BoxContainer>
                     </BoxContainer>
 
                     <!-- ── Pronouns ── -->
-                    <BoxContainer HorizontalExpand="True" Margin="4 2">
+                    <BoxContainer Name="PronounsSection" HorizontalExpand="True" Margin="4 2">
                         <Label Text="{Loc 'dynamic-appearance-pronouns-label'}" />
                         <Control HorizontalExpand="True" />
                         <OptionButton Name="PronounsButton" HorizontalAlignment="Right" />
-                    </BoxContainer>
-
-                    <!-- ── TTS voice (hidden if TTS disabled) ── -->
-                    <BoxContainer Name="TTSContainer" Visible="False" Orientation="Vertical" Margin="4 2">
-                        <BoxContainer HorizontalExpand="True">
-                            <Label Text="{Loc 'dynamic-appearance-voice-label'}" />
-                            <Control HorizontalExpand="True" />
-                            <Button Name="VoicePlayButton" Text="{Loc 'humanoid-profile-editor-voice-play'}" />
-                            <OptionButton Name="VoiceButton" HorizontalAlignment="Right" MinSize="160 0" />
-                        </BoxContainer>
                     </BoxContainer>
 
                     <!-- ── Height ── -->
@@ -64,25 +73,25 @@
                     </BoxContainer>
 
                     <!-- ── Skin color ── -->
-                    <BoxContainer Orientation="Vertical" Margin="8 4" HorizontalExpand="True">
+                    <BoxContainer Name="SkinColorSection" Orientation="Vertical" Margin="8 4" HorizontalExpand="True">
                         <Label Text="{Loc 'dynamic-appearance-skin-color-label'}" StyleClasses="LabelHeading" />
                         <BoxContainer Name="SkinColorContainer" Orientation="Vertical" HorizontalExpand="True" />
                     </BoxContainer>
 
                     <!-- ── Eye color ── -->
-                    <BoxContainer Orientation="Vertical" Margin="8 4" HorizontalExpand="True">
+                    <BoxContainer Name="EyeColorSection" Orientation="Vertical" Margin="8 4" HorizontalExpand="True">
                         <Label Text="{Loc 'dynamic-appearance-eye-color-label'}" StyleClasses="LabelHeading" />
                         <humanoid:EyeColorPicker Name="EyeColorPicker" />
                     </BoxContainer>
 
                     <!-- ── Hair ── -->
-                    <BoxContainer Orientation="Horizontal" Margin="8 4" SeparationOverride="4">
+                    <BoxContainer Name="HairSection" Orientation="Horizontal" Margin="8 4" SeparationOverride="4">
                         <humanoid:SingleMarkingPicker Name="HairPicker" Category="Hair" />
                         <humanoid:SingleMarkingPicker Name="FacialHairPicker" Category="FacialHair" />
                     </BoxContainer>
 
                     <!-- ── Body markings ── -->
-                    <BoxContainer Orientation="Vertical" Margin="8 4" VerticalExpand="True" HorizontalExpand="True">
+                    <BoxContainer Name="MarkingsSection" Orientation="Vertical" Margin="8 4" VerticalExpand="True" HorizontalExpand="True">
                         <Label Text="{Loc 'dynamic-appearance-markings-label'}" StyleClasses="LabelHeading" />
                         <humanoid:MarkingPicker Name="Markings" IgnoreCategories="Hair,FacialHair" />
                     </BoxContainer>
