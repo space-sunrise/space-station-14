@@ -102,6 +102,7 @@
   - LauncherSyringe
   - MiniSyringe
   - BluespacePillPatchCanister # Sunrise-Add
+  - JugBluespace # Sunrise-Add
 
 - type: latheRecipePack
   id: MedicalBoards

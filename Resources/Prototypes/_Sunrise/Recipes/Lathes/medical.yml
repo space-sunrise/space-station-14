@@ -1,4 +1,9 @@
 - type: latheRecipe
+  id: JugBluespace
+  result: JugBluespace
+  parent: BluespaceBeaker # same size, 1:1 recipe
+
+- type: latheRecipe
   id: ImplanterExtractor
   result: ImplanterExtractor
   completetime: 1
