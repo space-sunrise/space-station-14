@@ -1,3 +1,4 @@
+using Content.Client.Administration.Managers;
 using Content.Shared._Sunrise.DynamicAppearance;
 using Robust.Client.GameObjects;
 
@@ -10,6 +11,7 @@ namespace Content.Client._Sunrise.DynamicAppearance;
 /// </summary>
 public sealed class DynamicAppearanceUiValidationSystem : EntitySystem
 {
+    [Dependency] private readonly IClientAdminManager _admin = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -24,6 +26,9 @@ public sealed class DynamicAppearanceUiValidationSystem : EntitySystem
         {
             return;
         }
+
+        if (_admin.IsAdmin())
+            return;
 
         if (ent.Comp.AllowedFields == DynamicAppearanceFields.None || args.Actor != ent.Owner)
             args.Cancel();

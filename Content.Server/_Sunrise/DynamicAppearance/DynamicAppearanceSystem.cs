@@ -68,9 +68,6 @@ public sealed class DynamicAppearanceSystem : EntitySystem
 
     private void OnComponentStartup(EntityUid uid, DynamicAppearanceComponent component, ComponentStartup args)
     {
-        if (component.AllowedFields == DynamicAppearanceFields.None)
-            return;
-
         if (TryComp<UserInterfaceComponent>(uid, out var ui))
         {
             var interfaceData = new InterfaceData("Content.Client._Sunrise.DynamicAppearance.DynamicAppearanceBoundUserInterface");
@@ -115,6 +112,9 @@ public sealed class DynamicAppearanceSystem : EntitySystem
         {
             return;
         }
+
+        if (_admin.IsAdmin(args.Actor))
+            return;
 
         if (!CanOpenAppearanceUi(ent, args.Actor))
             args.Cancel();

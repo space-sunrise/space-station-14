@@ -118,7 +118,8 @@ public sealed partial class DynamicAppearanceWindow
                 continue;
 
             var copy = _entManager.SpawnEntity(proto.ID, MapCoordinates.Nullspace);
-            _inventorySystem.TryEquip(dummy, copy, slot.Name, silent: true, force: true);
+            if(!_inventorySystem.TryEquip(dummy, copy, slot.Name, silent: true, force: true))
+                _entManager.DeleteEntity(copy);
         }
     }
 
