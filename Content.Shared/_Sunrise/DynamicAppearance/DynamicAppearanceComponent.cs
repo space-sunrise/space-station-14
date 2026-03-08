@@ -7,7 +7,7 @@ namespace Content.Shared._Sunrise.DynamicAppearance;
 /// Use <see cref="AllowedFields"/> to restrict which categories can be changed,
 /// including whether the species itself may be changed.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class DynamicAppearanceComponent : Component
 {
     /// <summary>
@@ -15,13 +15,13 @@ public sealed partial class DynamicAppearanceComponent : Component
     /// The server enforces this on save and the client hides disabled controls automatically.
     /// Defaults to <see cref="DynamicAppearanceFields.None"/>.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public DynamicAppearanceFields AllowedFields = DynamicAppearanceFields.None;
 
     /// <summary>
     /// Delay before an appearance save is applied.
     /// Admins bypass this entirely.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public TimeSpan SaveDelay = TimeSpan.FromSeconds(3);
 }

@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using Content.Server.Administration.Managers;
 using Content.Server.DoAfter;
 using Content.Shared._Sunrise.DynamicAppearance;
+using Content.Shared._Sunrise.TTS;
 using Content.Shared.CCVar;
 using Content.Shared.DoAfter;
 using Content.Shared.Humanoid;
@@ -52,6 +53,7 @@ public sealed class DynamicAppearanceSystem : EntitySystem
         SubscribeLocalEvent<DynamicAppearanceComponent, ComponentRemove>(OnComponentRemove);
         SubscribeLocalEvent<DynamicAppearanceComponent, BoundUIOpenedEvent>(OnUiOpened);
         SubscribeLocalEvent<DynamicAppearanceComponent, BoundUIClosedEvent>(OnUiClosed);
+        SubscribeLocalEvent<DynamicAppearanceComponent, BoundUserInterfaceMessageAttempt>(OnUiMessageAttempt);
         SubscribeLocalEvent<DynamicAppearanceComponent, DynamicAppearanceSaveDoAfterEvent>(OnSaveDoAfter);
         SubscribeLocalEvent<DynamicAppearanceComponent, GetVerbsEvent<AlternativeVerb>>(OnVerbsRequest);
 
@@ -66,6 +68,9 @@ public sealed class DynamicAppearanceSystem : EntitySystem
 
     private void OnComponentStartup(EntityUid uid, DynamicAppearanceComponent component, ComponentStartup args)
     {
+        if (component.AllowedFields == DynamicAppearanceFields.None)
+            return;
+
         if (TryComp<UserInterfaceComponent>(uid, out var ui))
         {
             var interfaceData = new InterfaceData("Content.Client._Sunrise.DynamicAppearance.DynamicAppearanceBoundUserInterface");
@@ -103,21 +108,26 @@ public sealed class DynamicAppearanceSystem : EntitySystem
         ClearAdminOverride(ent.Owner, args.Actor);
     }
 
+    private void OnUiMessageAttempt(Entity<DynamicAppearanceComponent> ent, ref BoundUserInterfaceMessageAttempt args)
+    {
+        if (args.UiKey is not DynamicAppearanceUiKey.Key
+            || args.Message is not OpenBoundInterfaceMessage)
+        {
+            return;
+        }
+
+        if (!CanOpenAppearanceUi(ent, args.Actor))
+            args.Cancel();
+    }
+
     #endregion
 
     #region Verb
 
     private void OnVerbsRequest(EntityUid uid, DynamicAppearanceComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!_admin.IsAdmin(args.User))
-        {
-            // Прячем меню, если редактировать нечего
-            if (component.AllowedFields == DynamicAppearanceFields.None)
-                return;
-            // Только владелец может открыть BUI, если он не админ.
-            if (args.User != uid)
-                return;
-        }
+        if (!CanOpenAppearanceUi((uid, component), args.User))
+            return;
 
         if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
             return;
@@ -242,7 +252,8 @@ public sealed class DynamicAppearanceSystem : EntitySystem
             targetSex = speciesProto.Sexes[0];
         }
 
-        if (targetSex != humanoid.Sex)
+        var sexChanged = targetSex != humanoid.Sex;
+        if (sexChanged)
             _humanoid.SetSex(ent, targetSex, false, humanoid);
 
         // ── Markings ──
@@ -287,8 +298,19 @@ public sealed class DynamicAppearanceSystem : EntitySystem
         if (allowed.HasFlag(DynamicAppearanceFields.Sex) || speciesChanged)
         {
             // TTS voice is gated behind Sex: the voice picker re-filters on each sex change.
-            if (!string.IsNullOrEmpty(state.Voice))
-                _humanoid.SetTTSVoice(ent, state.Voice, humanoid);
+            var targetVoice = humanoid.Voice;
+            if (!string.IsNullOrEmpty(state.Voice)
+                && TryGetValidVoice(state.Voice, targetSex, sponsorProtos, ignoreRestrictions, out var voiceId))
+            {
+                targetVoice = voiceId;
+            }
+            else if (sexChanged || speciesChanged)
+            {
+                targetVoice = SharedHumanoidAppearanceSystem.DefaultSexVoice[targetSex];
+            }
+
+            if (!string.IsNullOrEmpty(targetVoice) && targetVoice != humanoid.Voice)
+                _humanoid.SetTTSVoice(ent, targetVoice, humanoid);
         }
 
         // ── Skin color ──
@@ -322,11 +344,6 @@ public sealed class DynamicAppearanceSystem : EntitySystem
             humanoid.Width = Math.Clamp(width, speciesProto.MinWidth, speciesProto.MaxWidth);
             humanoid.Height = Math.Clamp(height, speciesProto.MinHeight, speciesProto.MaxHeight);
         }
-
-        // ── Custom base layers ──
-        humanoid.CustomBaseLayers.Clear();
-        foreach (var (layer, info) in state.CustomBaseLayers)
-            humanoid.CustomBaseLayers[layer] = info;
 
         // ── Name ──
         if (allowed.HasFlag(DynamicAppearanceFields.Name)
@@ -421,6 +438,17 @@ public sealed class DynamicAppearanceSystem : EntitySystem
         return name.Trim();
     }
 
+    private bool CanOpenAppearanceUi(Entity<DynamicAppearanceComponent> ent, EntityUid actor)
+    {
+        if (_admin.IsAdmin(actor))
+            return true;
+
+        if (ent.Comp.AllowedFields == DynamicAppearanceFields.None)
+            return false;
+
+        return actor == ent.Owner;
+    }
+
     private bool TryGetValidSpecies(string requestedSpecies, HashSet<string>? sponsorProtos, bool ignoreRestrictions, out string species)
     {
         species = requestedSpecies;
@@ -438,6 +466,27 @@ public sealed class DynamicAppearanceSystem : EntitySystem
             return false;
 
         return true;
+    }
+
+    private bool TryGetValidVoice(string requestedVoice, Sex sex, HashSet<string>? sponsorProtos, bool ignoreRestrictions, out string voice)
+    {
+        voice = requestedVoice;
+
+        if (!_prototypeManager.TryIndex<TTSVoicePrototype>(requestedVoice, out var voiceProto))
+            return false;
+
+        if (ignoreRestrictions)
+            return true;
+
+        if (!voiceProto.RoundStart)
+            return false;
+
+        if (voiceProto.SponsorOnly && (sponsorProtos == null || !sponsorProtos.Contains(requestedVoice)))
+            return false;
+
+        return sex == Sex.Unsexed
+            || voiceProto.Sex == sex
+            || voiceProto.Sex == Sex.Unsexed;
     }
 
     /// <summary>

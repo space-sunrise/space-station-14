@@ -1,10 +1,15 @@
-﻿using Content.Shared._Sunrise.DynamicAppearance;
+﻿using Content.Client.Administration.Managers;
+using Content.Shared._Sunrise.DynamicAppearance;
+using Robust.Client.Player;
 using Robust.Client.UserInterface;
 
 namespace Content.Client._Sunrise.DynamicAppearance;
 
 public sealed class DynamicAppearanceBoundUserInterface : BoundUserInterface
 {
+    [Dependency] private readonly IClientAdminManager _adminManager = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+
     [ViewVariables]
     private DynamicAppearanceWindow? _window;
 
@@ -17,6 +22,9 @@ public sealed class DynamicAppearanceBoundUserInterface : BoundUserInterface
 
     protected override void Open()
     {
+        if (!CanOpenLocally())
+            return;
+
         base.Open();
 
         _window = this.CreateWindow<DynamicAppearanceWindow>();
@@ -46,6 +54,21 @@ public sealed class DynamicAppearanceBoundUserInterface : BoundUserInterface
 
         if (_lastPermissions != null)
             _window.UpdatePermissions(_lastPermissions);
+    }
+
+    private bool CanOpenLocally()
+    {
+        if (_adminManager.IsAdmin())
+            return true;
+
+        if (_playerManager.LocalEntity is not { } localPlayer)
+            return false;
+
+        if (localPlayer != Owner)
+            return false;
+
+        return EntMan.TryGetComponent(Owner, out DynamicAppearanceComponent? component)
+               && component.AllowedFields != DynamicAppearanceFields.None;
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
