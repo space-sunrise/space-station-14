@@ -6850,7 +6850,7 @@ entities:
     - type: Transform
       pos: 18.5,16.5
       parent: 1
-- proto: MobSovietTimedSpawner
+- proto: MobSovietT1TimedSpawner
   entities:
   - uid: 1742
     components:

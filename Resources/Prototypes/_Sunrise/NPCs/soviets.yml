@@ -433,7 +433,7 @@
         Brute: -20
         Burn: -10
         Airloss: -5
-        Poison: -5
+        Toxin: -5
     whitelist:
       components:
       - NpcVeteranFollower
@@ -468,8 +468,8 @@
       minRange: 1
       maxRange: 0
     - actionId: ActionSovietSerzhantGrenade
-      minRange: 8
-      maxRange: 10
+      minRange: 9
+      maxRange: 12
 
 - type: entity
   name: soldier
@@ -984,7 +984,7 @@
         Brute: -30
         Burn: -20
         Airloss: -10
-        Poison: -10
+        Toxin: -10
     whitelist:
       components:
       - NpcVeteranFollower
@@ -1577,6 +1577,34 @@
   parent: MobSovietBearBase
 
 # timed despawn spawner
+- type: entity
+  name: soviet spawner T1 (despawn)
+  id: MobSovietT1TimedSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Sunrise/Structures/Decoration/banner.rsi
+      state: banner_ussp
+  - type: RandomSpawner
+    prototypes:
+      - MobSovietT1KnifeTimed
+      - MobSovietT1PistolTimed
+      - MobSovietT1MosinTimed
+      - MobSovietT1SMGAltTimed
+      - MobSovietT1MosinAltTimed
+    rarePrototypes:
+      - SovietSquadInfantryTimed
+      - SovietSquadInfantry2Timed
+      - SovietSquadPatrolTimed
+      - SovietSquadSmgTimed
+      - SovietSquadLmgTimed
+      - SovietSquadPatrolTimed
+      - MobSovietBearTimed
+      - MobSovietBearAltTimed
+    rareChance: 0.05
+
 - type: entity
   name: soviet spawner (despawn)
   id: MobSovietTimedSpawner
