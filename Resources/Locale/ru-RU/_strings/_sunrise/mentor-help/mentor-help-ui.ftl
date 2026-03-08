@@ -59,7 +59,7 @@ mentor-help-new-ticket-error-message = Пожалуйста, опишите ва
 # Statistics dialog
 mentor-help-statistics-title = Статистика ментор помощи
 mentor-help-statistics-header = Статистика работы менторов
-mentor-help-statistics-content = Здесь будет отображаться статистика по количеству взятых тикетов каждым ментором.
+mentor-help-statistics-content = Здесь будет отображаться статистика по количеству закрытых тикетов и сообщений каждого ментора.
 
 
 mentor-help-status-label = Статус: {$status}
@@ -79,5 +79,9 @@ help-choice-mhelp-desc-label = [color=#CCCCCC][font size=12]• Ментор-п�
 help-kwoink-play-sound = Звук сообщений
 
 mentor-help-statistics-column-mentor = Ментор
-mentor-help-statistics-column-tickets = Взятых тикетов
+mentor-help-statistics-column-tickets = Закрытых тикетов
 mentor-help-statistics-column-messages = Сообщений
+mentor-help-statistics-period-week = За неделю
+mentor-help-statistics-period-month = За месяц
+mentor-help-statistics-period-all-time = За все время
+mentor-help-statistics-no-data = Нет данных о статистике менторов

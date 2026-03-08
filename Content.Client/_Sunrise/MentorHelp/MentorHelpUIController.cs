@@ -511,6 +511,7 @@ public sealed class PlayerMentorHelpUIHandler : IMentorHelpUIHandler
         _window.MentorHelp.Initialize(_mentorHelpSystem, _ownerUserId, false);
         _window.OnClose += () =>
         {
+            _window?.MentorHelp.Cleanup();
             IsOpen = false;
             CurrentTicketId = null;
             OnClose?.Invoke();
@@ -606,6 +607,7 @@ public sealed class MentorMentorHelpUIHandler : IMentorHelpUIHandler
         _window.MentorHelp.Initialize(_mentorHelpSystem, _ownerUserId, true);
         _window.OnClose += () =>
         {
+            _window?.MentorHelp.Cleanup();
             IsOpen = false;
             CurrentTicketId = null;
             OnClose?.Invoke();

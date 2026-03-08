@@ -9,12 +9,18 @@ namespace Content.Client._Sunrise.MentorHelp
     [GenerateTypedNameReferences]
     public sealed partial class MentorHelpStatisticsDialog : DefaultWindow
     {
+        [Dependency] private readonly ILocalizationManager _loc = default!;
+
         private MentorHelpSystem? _mentorHelpSystem;
 
         public MentorHelpStatisticsDialog()
         {
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
+
+            StatisticsTabContainer.SetTabTitle(0, _loc.GetString("mentor-help-statistics-period-week"));
+            StatisticsTabContainer.SetTabTitle(1, _loc.GetString("mentor-help-statistics-period-month"));
+            StatisticsTabContainer.SetTabTitle(2, _loc.GetString("mentor-help-statistics-period-all-time"));
 
             CloseButton.OnPressed += _ => Close();
         }
@@ -26,6 +32,7 @@ namespace Content.Client._Sunrise.MentorHelp
 
             _mentorHelpSystem = mentorHelpSystem;
             _mentorHelpSystem.OnStatisticsReceived += OnStatisticsReceived;
+            _mentorHelpSystem.OnTicketUpdated += OnTicketUpdated;
         }
 
         public void Uninitialize()
@@ -33,28 +40,39 @@ namespace Content.Client._Sunrise.MentorHelp
             if (_mentorHelpSystem != null)
             {
                 _mentorHelpSystem.OnStatisticsReceived -= OnStatisticsReceived;
+                _mentorHelpSystem.OnTicketUpdated -= OnTicketUpdated;
                 _mentorHelpSystem = null;
             }
         }
 
-        private void OnStatisticsReceived(object? sender, MentorHelpStatisticsMessage message)
+        private void OnTicketUpdated(object? sender, MentorHelpTicketUpdateMessage message)
         {
-            UpdateStatistics(message.Statistics);
+            if (!IsOpen)
+                return;
+
+            _mentorHelpSystem?.RequestStatistics();
         }
 
-        private void UpdateStatistics(List<MentorHelpStatisticsData> statistics)
+        private void OnStatisticsReceived(object? sender, MentorHelpStatisticsMessage message)
         {
-            StatisticsContainer.RemoveAllChildren();
+            UpdateStatistics(WeekStatisticsContainer, message.WeekStatistics);
+            UpdateStatistics(MonthStatisticsContainer, message.MonthStatistics);
+            UpdateStatistics(AllTimeStatisticsContainer, message.AllTimeStatistics);
+        }
+
+        private void UpdateStatistics(BoxContainer container, List<MentorHelpStatisticsData> statistics)
+        {
+            container.RemoveAllChildren();
 
             if (statistics.Count == 0)
             {
                 var noDataLabel = new Label
                 {
-                    Text = "Нет данных о статистике менторов", // а не локализирую, бугагагага
+                    Text = _loc.GetString("mentor-help-statistics-no-data"),
                     HorizontalAlignment = HAlignment.Center,
                     StyleClasses = { "LabelSubText" }
                 };
-                StatisticsContainer.AddChild(noDataLabel);
+                container.AddChild(noDataLabel);
                 return;
             }
 
@@ -62,7 +80,7 @@ namespace Content.Client._Sunrise.MentorHelp
             {
                 var entry = new StatisticsEntryControl();
                 entry.UpdateData(stat);
-                StatisticsContainer.AddChild(entry);
+                container.AddChild(entry);
             }
         }
 

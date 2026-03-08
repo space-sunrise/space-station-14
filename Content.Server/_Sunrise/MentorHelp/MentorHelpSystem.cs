@@ -37,7 +37,14 @@ namespace Content.Server._Sunrise.MentorHelp
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
         private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
-        private List<MentorHelpStatisticsData>? _mentorStatsCache;
+        private sealed class MentorStatisticsCache
+        {
+            public List<MentorHelpStatisticsData> WeekStatistics { get; init; } = new();
+            public List<MentorHelpStatisticsData> MonthStatistics { get; init; } = new();
+            public List<MentorHelpStatisticsData> AllTimeStatistics { get; init; } = new();
+        }
+
+        private MentorStatisticsCache? _mentorStatsCache;
         private DateTimeOffset? _mentorStatsCacheTime;
         private readonly float _mentorCacheInterval = 10;
 
@@ -261,6 +268,7 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 ticket.UpdatedAt = DateTimeOffset.UtcNow;
                 await _dbManager.UpdateMentorHelpTicketAsync(ticket);
+                InvalidateStatisticsCache();
 
                 Log.Info($"Player {session.Name} ({session.UserId}) replied to ticket #{message.TicketId}");
 
@@ -322,6 +330,7 @@ namespace Content.Server._Sunrise.MentorHelp
                 ticket.UpdatedAt = DateTimeOffset.UtcNow;
 
                 await _dbManager.UpdateMentorHelpTicketAsync(ticket);
+                InvalidateStatisticsCache();
 
                 Log.Info($"Player {session.Name} ({session.UserId}) closed ticket #{ticket.Id}");
 
@@ -446,6 +455,100 @@ namespace Content.Server._Sunrise.MentorHelp
             // For now, return null
             return null;
         }
+        private void InvalidateStatisticsCache() // Чистка кеша
+        {
+            _mentorStatsCache = null;
+            _mentorStatsCacheTime = null;
+        }
+
+        private async Task<MentorStatisticsCache> BuildStatisticsCacheAsync(DateTimeOffset now)
+        {
+            var weekStatistics = await _dbManager.GetMentorHelpStatisticsAsync(now.AddDays(-7)); // Неделя
+            var monthStatistics = await _dbManager.GetMentorHelpStatisticsAsync(now.AddMonths(-1)); // Месяц
+            var allTimeStatistics = await _dbManager.GetMentorHelpStatisticsAsync(null); // Все время
+
+            var mentorUserIds = new HashSet<Guid>();
+
+            foreach (var stat in weekStatistics)
+            {
+                mentorUserIds.Add(stat.MentorUserId);
+            }
+
+            foreach (var stat in monthStatistics)
+            {
+                mentorUserIds.Add(stat.MentorUserId);
+            }
+
+            foreach (var stat in allTimeStatistics)
+            {
+                mentorUserIds.Add(stat.MentorUserId);
+            }
+
+            var activeMentorIds = new HashSet<Guid>();
+
+            foreach (var mentorUserId in mentorUserIds)
+            {
+                var mentorNetUserId = new NetUserId(mentorUserId);
+                var isMentor = false;
+
+                if (_playerManager.TryGetSessionById(mentorNetUserId, out var mentorSession))
+                    isMentor = _adminManager.GetAdminData(mentorSession)?.HasFlag(AdminFlags.Mentor) ?? false;
+
+                else
+                {
+                    var adminData = await _adminManager.LoadAdminData(mentorNetUserId);
+                    isMentor = adminData != null && adminData.Value.dat.Flags.HasFlag(AdminFlags.Mentor);
+                }
+
+                if (!isMentor)
+                    continue;
+
+                activeMentorIds.Add(mentorUserId);
+            }
+
+            var mentorNames = await _dbManager.GetPlayerNamesBatchAsync(activeMentorIds);
+
+            return new MentorStatisticsCache
+            {
+                WeekStatistics = ConvertStatistics(weekStatistics, mentorNames),
+                MonthStatistics = ConvertStatistics(monthStatistics, mentorNames),
+                AllTimeStatistics = ConvertStatistics(allTimeStatistics, mentorNames)
+            };
+        }
+
+        private static List<MentorHelpStatisticsData> ConvertStatistics(List<MentorHelpStatistics> statistics, Dictionary<Guid, string> mentorNames)
+        {
+            var result = new List<MentorHelpStatisticsData>(statistics.Count);
+
+            foreach (var stat in statistics)
+            {
+                if (!mentorNames.TryGetValue(stat.MentorUserId, out var mentorName))
+                    continue;
+
+                result.Add(new MentorHelpStatisticsData
+                {
+                    MentorName = mentorName,
+                    TicketsClosed = stat.TicketsClosed,
+                    MessagesCount = stat.MessagesCount
+                });
+            }
+
+            result.Sort((left, right) =>
+            {
+                var compare = right.TicketsClosed.CompareTo(left.TicketsClosed);
+                if (compare != 0)
+                    return compare;
+
+                compare = right.MessagesCount.CompareTo(left.MessagesCount);
+                if (compare != 0)
+                    return compare;
+
+                return string.Compare(left.MentorName, right.MentorName, StringComparison.Ordinal);
+            });
+
+            return result;
+        }
+
         protected override async void OnRequestStatisticsMessage(MentorHelpRequestStatisticsMessage message, EntitySessionEventArgs eventArgs)
         {
             var session = eventArgs.SenderSession;
@@ -460,38 +563,17 @@ namespace Content.Server._Sunrise.MentorHelp
             {
                 var now = DateTimeOffset.UtcNow;
                 var cacheValid = _mentorStatsCache != null && _mentorStatsCacheTime != null && (now - _mentorStatsCacheTime.Value).TotalMinutes < _mentorCacheInterval;
-                List<MentorHelpStatisticsData> statisticsData;
-                if (cacheValid)
-                {
-                    statisticsData = _mentorStatsCache!;
-                }
-                else
-                {
-                    var statistics = await _dbManager.GetMentorHelpStatisticsAsync();
-                    statisticsData = new List<MentorHelpStatisticsData>();
 
-                    foreach (var stat in statistics)
-                    {
-                        var adminData = await _adminManager.LoadAdminData(new NetUserId(stat.MentorUserId));
-                        if (adminData == null)
-                            continue;
-                        if (!adminData.Value.dat.Flags.HasFlag(AdminFlags.Mentor))
-                            continue;
-                        var mentorName = await GetPlayerNameAsync(stat.MentorUserId);
-                        statisticsData.Add(new MentorHelpStatisticsData
-                        {
-                            MentorName = mentorName,
-                            TicketsClaimed = stat.TicketsClaimed,
-                            MessagesCount = stat.MessagesCount
-                        });
-                    }
-
-                    statisticsData = statisticsData.OrderByDescending((s) => s.TicketsClaimed).ToList();
-                    _mentorStatsCache = statisticsData;
+                if (!cacheValid)
+                {
+                    _mentorStatsCache = await BuildStatisticsCacheAsync(now);
                     _mentorStatsCacheTime = now;
                 }
 
-                RaiseNetworkEvent(new MentorHelpStatisticsMessage(statisticsData), session.Channel);
+                RaiseNetworkEvent(new MentorHelpStatisticsMessage(
+                    _mentorStatsCache!.WeekStatistics,
+                    _mentorStatsCache.MonthStatistics,
+                    _mentorStatsCache.AllTimeStatistics), session.Channel);
             }
             catch (Exception ex)
             {

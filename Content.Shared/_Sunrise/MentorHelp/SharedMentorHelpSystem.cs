@@ -36,7 +36,7 @@ namespace Content.Shared._Sunrise.MentorHelp
     public struct MentorHelpStatistics
     {
         public Guid MentorUserId { get; set; }
-        public int TicketsClaimed { get; set; }
+        public int TicketsClosed { get; set; }
         public int MessagesCount { get; set; }
     }
 
@@ -170,7 +170,7 @@ namespace Content.Shared._Sunrise.MentorHelp
     public sealed class MentorHelpStatisticsData
     {
         public string MentorName { get; set; } = string.Empty;
-        public int TicketsClaimed { get; set; }
+        public int TicketsClosed { get; set; }
         public int MessagesCount { get; set; }
     }
 
@@ -187,9 +187,14 @@ namespace Content.Shared._Sunrise.MentorHelp
     /// Сообщение с результатами статистики по менторам
     /// </summary>
     [Serializable, NetSerializable]
-    public sealed class MentorHelpStatisticsMessage(List<MentorHelpStatisticsData> statistics) : EntityEventArgs
+    public sealed class MentorHelpStatisticsMessage(
+        List<MentorHelpStatisticsData> weekStatistics,
+        List<MentorHelpStatisticsData> monthStatistics,
+        List<MentorHelpStatisticsData> allTimeStatistics) : EntityEventArgs
     {
-        public readonly List<MentorHelpStatisticsData> Statistics = statistics;
+        public readonly List<MentorHelpStatisticsData> WeekStatistics = weekStatistics;
+        public readonly List<MentorHelpStatisticsData> MonthStatistics = monthStatistics;
+        public readonly List<MentorHelpStatisticsData> AllTimeStatistics = allTimeStatistics;
     }
 
     /// <summary>
