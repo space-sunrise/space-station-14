@@ -25,7 +25,7 @@
     state: comfy-brown
   - type: Construction
     graph: Seat
-    node: chairComfyBrown
+    node: chairComfy
 
 - type: entity
   name: grey office chair

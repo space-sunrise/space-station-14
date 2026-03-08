@@ -105474,11 +105474,8 @@ entities:
   - uid: 14359
     components:
     - type: Transform
-      anchored: True
       pos: -0.5,45.5
       parent: 2
-    - type: Physics
-      bodyType: Static
     - type: Lock
       locked: True
     - type: PointLight

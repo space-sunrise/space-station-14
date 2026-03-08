@@ -3320,14 +3320,12 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
-    - type: PhysicsMap
     - parallax: PebbleStation
       type: Parallax
     - type: Broadphase
     - type: OccluderTree
     - type: LoadedMap
     - type: GridTree
-    - type: MovedGrids
 - proto: AcousticGuitarInstrument
   entities:
   - uid: 3654
@@ -49450,20 +49448,6 @@ entities:
   - uid: 11425
     components:
     - pos: 38.500504,-10.493017
-      parent: 8
-      type: Transform
-- proto: HandheldCrewMonitor
-  entities:
-  - uid: 895
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 0.65742,22.819193
-      parent: 8
-      type: Transform
-  - uid: 897
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 0.75117,22.610716
       parent: 8
       type: Transform
 - proto: HandheldGPSBasic

@@ -827,7 +827,7 @@
     - item: MopItem
     - item: BorgBucket
     - item: BorgSprayBottle
-    - item: HoloprojectorJanitorBorg # Sunrise-Edit
+    - item: HoloprojectorBorg
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: cleaning-module }
 
@@ -845,7 +845,7 @@
     hands:
     #- item: AdvMopItem # Sunrise-Edit
     - item: BorgMegaSprayBottle
-    - item: HoloprojectorJanitorBorg # Sunrise-Edit
+    - item: HoloprojectorBorg
     - item: BorgDropper
     - item: Beaker
       hand:

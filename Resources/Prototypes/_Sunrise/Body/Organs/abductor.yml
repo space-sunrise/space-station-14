@@ -103,6 +103,11 @@
     layers:
       - state: lung-l
       - state: lung-r
+  - type: SolutionContainerManager
+    solutions:
+      Lung:
+        maxVol: 100
+        canReact: false
   - type: Lung
     alert: LowNitrogen
 

@@ -485,7 +485,7 @@
 ## Pirate end
 
 - type: entity
-  parent: ClothingOuterHardsuitEVA
+  parent: [ ClothingOuterHardsuitEVA, BaseChameleon ]
   id: ClothingOuterHardsuitChameleon
   name: syndicate chameleon
   description: Looking at his material, Sci-fi images inadvertently pop up in your head.
@@ -522,6 +522,9 @@
           Caustic: 0.5
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetEVA
+    - type: ContainerContainer
+      containers:
+        toggleable-clothing: !type:ContainerSlot
 
 #Syndicate Infiltration Suit
 - type: entity
@@ -583,6 +586,8 @@
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+      beakerSlot: !type:ContainerSlot
   - type: ItemSlots
     slots:
       cell_slot:
@@ -718,6 +723,7 @@
   - type: ContainerContainer
     containers:
       beakerSlot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
   - type: Inject
     openCloseDelay: 1.5
     autoClose: true

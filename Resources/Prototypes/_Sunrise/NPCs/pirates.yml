@@ -1883,6 +1883,7 @@
   - type: Battery
     maxCharge: 15
     startingCharge: 15
+    pricePerJoule: 0
   - type: Gun
     showExamineText: false
     fireRate: 8
@@ -1909,6 +1910,7 @@
   - type: Battery
     maxCharge: 20
     startingCharge: 20
+    pricePerJoule: 0
 
 - type: entity
   parent: MobPirateT1BorgAssault
@@ -1919,6 +1921,7 @@
   - type: Battery
     maxCharge: 20
     startingCharge: 20
+    pricePerJoule: 0
 
 - type: entity
   name: Derelict mining borg

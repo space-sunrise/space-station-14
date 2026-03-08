@@ -30,6 +30,16 @@
 - type: latheRecipePack
   id: SurgeryDynamicSunrise
   recipes:
+  # Base surgery recipes unlocked by SurgeryTech.
+  - BoneSetter
+  - BoneGel
+  - Scalpel
+  - Retractor
+  - Cautery
+  - Saw
+  - Hemostat
+  # SurgeryTechAdvanced unlocks.
+  - Drill
   - RetractorAdvanced
   - ScalpelAdvanced
   - BoneSetterAdvanced
@@ -57,6 +67,8 @@
   - ImplantCaseHack
   #
   - ImplantCaseBulwark
+  #
+  - ImplantCaseBonesaw
   #
   - ImplantCaseGorilla
   #

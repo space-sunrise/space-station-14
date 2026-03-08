@@ -31419,9 +31419,14 @@ entities:
 - proto: ActionToggleLight
   entities:
   - uid: 22
+    mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 21
+    - type: Action
+      originalIconColor: '#FFFFFFFF'
+      container: 21
   - uid: 26
     mapInit: true
     paused: true
@@ -125818,14 +125823,6 @@ entities:
     - type: Transform
       pos: 0.5054932,-11.351017
       parent: 2
-- proto: ClothingNeckCloakDarthHOSCloak
-  entities:
-  - uid: 17534
-    components:
-    - type: Transform
-      parent: 17533
-    - type: Physics
-      canCollide: False
 - proto: ClothingNeckCloakHerald
   entities:
   - uid: 17537
@@ -126161,14 +126158,6 @@ entities:
     - type: Transform
       pos: 49.5,-37.5
       parent: 2
-    - type: Physics
-      canCollide: False
-- proto: ClothingOuterWinterHoSUnarmored
-  entities:
-  - uid: 17535
-    components:
-    - type: Transform
-      parent: 17533
     - type: Physics
       canCollide: False
 - proto: ClothingOuterWinterMusician
@@ -141491,22 +141480,6 @@ entities:
     - type: Transform
       pos: 72.5,-7.5
       parent: 2
-    - type: Storage
-      storedItems:
-        17534:
-          position: 0,0
-          _rotation: South
-        17535:
-          position: 1,0
-          _rotation: South
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 17534
-          - 17535
 - proto: DresserQuarterMasterFilled
   entities:
   - uid: 19880

@@ -545,3 +545,9 @@
   - Pants
   - Socks
   - Contributors
+
+- type: roleLoadout
+  id: RoleSurvivalScooner
+  groups:
+  - SurvivalExtended
+  - GroupSpeciesBreathTool

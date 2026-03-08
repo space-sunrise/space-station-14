@@ -75,7 +75,6 @@
   sprites:
     Head: MobTajaranSlimHead
     Hair: MobHumanoidAnyMarking
-    FacialHair: MobHumanoidAnyMarking
     Chest: MobTajaranSlimTorso
     Eyes: MobTajaranEyes
     LArm: MobTajaranSlimLArm
@@ -97,6 +96,9 @@
   points:
     Hair:
       points: 1
+      required: false
+    FacialHair:
+      points: 0
       required: false
     Chest:
       points: 1

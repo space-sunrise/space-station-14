@@ -81597,15 +81597,6 @@ entities:
     - type: Transform
       pos: -48.338486,-17.319532
       parent: 2
-- proto: ClothingHeadHatDogEars
-  entities:
-  - uid: 10129
-    components:
-    - type: Transform
-      parent: 10128
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ClothingHeadHatFedoraBrown
   entities:
   - uid: 10130
@@ -84369,8 +84360,7 @@ entities:
         entity_storage: !type:Container
           showEnts: False
           occludes: True
-          ents:
-          - 10129
+          ents: []
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -98075,8 +98065,7 @@ entities:
       pos: -16.5,47.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 68
 - proto: Fireplace
@@ -143503,7 +143492,6 @@ entities:
           occludes: True
           ents:
           - 1044
-          - 1052
           - 1046
           - 1047
           - 1050
@@ -160692,22 +160680,6 @@ entities:
     - type: Transform
       pos: 24.148243,-13.192209
       parent: 2
-- proto: RubberStampMime
-  entities:
-  - uid: 20405
-    components:
-    - type: Transform
-      pos: 27.742582,-12.3142805
-      parent: 2
-- proto: RubberStampPsychologist
-  entities:
-  - uid: 1052
-    components:
-    - type: Transform
-      parent: 1043
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: RubberStampTrader
   entities:
   - uid: 20406
@@ -178972,8 +178944,7 @@ entities:
       pos: -13.5,-42.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
     - type: DeviceLinkSource
       linkedPorts:
         10459:

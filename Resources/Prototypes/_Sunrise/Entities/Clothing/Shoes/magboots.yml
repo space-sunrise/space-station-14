@@ -58,13 +58,16 @@
     sprite: _Sunrise/Clothing/Shoes/magboots-atmos.rsi
   - type: ApcPowerReceiver
     needsPower: false
-    powerLoad: 0
+    powerLoad: 1
   - type: Item
     size: Huge
   - type: Charger
     slotId: charger_slot
     portable: true
     chargeRate: 10
+  - type: ContainerContainer
+    containers:
+      charger_slot: !type:ContainerSlot
   - type: ItemSlots
     slots:
       charger_slot:
