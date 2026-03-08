@@ -522,9 +522,9 @@ namespace Content.Server._Sunrise.MentorHelp
 
             return new MentorStatisticsCache
             {
-                WeekStatistics = ConvertStatistics(weekStatistics, mentorNames),
-                MonthStatistics = ConvertStatistics(monthStatistics, mentorNames),
-                AllTimeStatistics = ConvertStatistics(allTimeStatistics, mentorNames)
+                WeekStatistics = ConvertStatistics(weekStatistics, mentorNames, activeMentorIds),
+                MonthStatistics = ConvertStatistics(monthStatistics, mentorNames, activeMentorIds),
+                AllTimeStatistics = ConvertStatistics(allTimeStatistics, mentorNames, activeMentorIds)
             };
         }
 
@@ -551,12 +551,18 @@ namespace Content.Server._Sunrise.MentorHelp
             return flags.HasFlag(flag);
         }
 
-        private static List<MentorHelpStatisticsData> ConvertStatistics(List<MentorHelpStatistics> statistics, Dictionary<Guid, string> mentorNames)
+        private static List<MentorHelpStatisticsData> ConvertStatistics(
+            List<MentorHelpStatistics> statistics,
+            Dictionary<Guid, string> mentorNames,
+            HashSet<Guid> activeMentorIds)
         {
             var result = new List<MentorHelpStatisticsData>(statistics.Count);
 
             foreach (var stat in statistics)
             {
+                if (!activeMentorIds.Contains(stat.MentorUserId))
+                    continue;
+
                 mentorNames.TryGetValue(stat.MentorUserId, out var mentorName);
 
                 result.Add(new MentorHelpStatisticsData
@@ -597,12 +603,14 @@ namespace Content.Server._Sunrise.MentorHelp
             {
                 var now = DateTimeOffset.UtcNow;
                 var cacheValid = _mentorStatsCache != null && _mentorStatsCacheTime != null && (now - _mentorStatsCacheTime.Value).TotalMinutes < _mentorCacheInterval;
+                var cacheToSend = _mentorStatsCache;
 
                 if (!cacheValid)
                 {
                     var cacheVersion = _mentorStatsCacheVersion;
                     now = DateTimeOffset.UtcNow;
                     var cache = await BuildStatisticsCacheAsync(now);
+                    cacheToSend = cache;
 
                     if (cacheVersion == _mentorStatsCacheVersion)
                     {
@@ -612,9 +620,9 @@ namespace Content.Server._Sunrise.MentorHelp
                 }
 
                 RaiseNetworkEvent(new MentorHelpStatisticsMessage(
-                    _mentorStatsCache!.WeekStatistics,
-                    _mentorStatsCache.MonthStatistics,
-                    _mentorStatsCache.AllTimeStatistics), session.Channel);
+                    cacheToSend!.WeekStatistics,
+                    cacheToSend.MonthStatistics,
+                    cacheToSend.AllTimeStatistics), session.Channel);
             }
             catch (Exception ex)
             {
