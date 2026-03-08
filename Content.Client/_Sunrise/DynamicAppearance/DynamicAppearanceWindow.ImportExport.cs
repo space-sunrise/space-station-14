@@ -282,9 +282,15 @@ public sealed partial class DynamicAppearanceWindow
             profile.Appearance.FacialHairMarkingEffect);
 
         if (!_protoMan.TryIndex<SpeciesPrototype>(profile.Species, out var speciesProto))
-            return new MarkingSet(importedMarkings);
+        {
+            _sawmill.Warning($"Imported appearance profile referenced unknown species '{profile.Species}'. Falling back to generic marking validation.");
+            var fallback = new MarkingSet(importedMarkings);
+            fallback.EnsureValid(_markingManager);
+            return fallback;
+        }
 
         var set = new MarkingSet(importedMarkings, speciesProto.MarkingPoints, _markingManager, _protoMan);
+        set.EnsureValid(_markingManager);
         set.EnsureSpecies(profile.Species, skinColor, _markingManager, _protoMan);
         set.EnsureSexes(profile.Sex, _markingManager);
         return set;
@@ -363,6 +369,7 @@ public sealed partial class DynamicAppearanceWindow
             return new MarkingSet(merged);
 
         var set = new MarkingSet(merged, speciesProto.MarkingPoints, _markingManager, _protoMan);
+        set.EnsureValid(_markingManager);
         set.EnsureSpecies(species, skinColor, _markingManager, _protoMan);
         set.EnsureSexes(sex, _markingManager);
         set.EnsureDefault(skinColor, eyeColor, _markingManager);

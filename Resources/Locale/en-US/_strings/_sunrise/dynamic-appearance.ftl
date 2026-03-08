@@ -3,6 +3,7 @@ dynamic-appearance-window-title = Dynamic Appearance Editor
 dynamic-appearance-verb = Modify Appearance
 dynamic-appearance-save = Save
 dynamic-appearance-reset = Reset
+dynamic-appearance-name-label = Name
 dynamic-appearance-skin-color-label = Skin Color
 dynamic-appearance-eye-color-label = Eye Color
 dynamic-appearance-markings-label = Markings

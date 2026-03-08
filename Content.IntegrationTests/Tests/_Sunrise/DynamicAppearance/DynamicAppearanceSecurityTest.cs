@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Content.Client.Administration.Managers;
 using Content.Server.Administration.Managers;
 using Content.IntegrationTests.Tests.Interaction;
@@ -151,6 +152,47 @@ public abstract class DynamicAppearanceSecurityTestBase : InteractionTest
                 "DynamicAppearance accepted a forged custom base layer even though the UI has no such control.");
         });
     }
+
+    protected async Task AssertMalformedMarkingPayloadRejected(NetEntity target)
+    {
+        var state = default(DynamicAppearanceState);
+        await Server.WaitPost(() => state = BuildState(SEntMan, SEntMan.GetEntity(target)));
+
+        await Server.WaitPost(() =>
+        {
+            var uid = SEntMan.GetEntity(target);
+            var humanoid = SEntMan.GetComponent<HumanoidAppearanceComponent>(uid);
+            var protoMan = Server.ResolveDependency<IPrototypeManager>();
+            var markingManager = Server.ResolveDependency<MarkingManager>();
+
+            var markings = state.MarkingSet.GetForwardEnumerator().Select(marking => new Marking(marking)).ToList();
+
+            if (markings.Count == 0)
+            {
+                var fallback = markingManager.Markings.Values.First(proto =>
+                    markingManager.CanBeApplied(humanoid.Species, humanoid.Sex, proto, protoMan));
+                markings.Add(fallback.AsMarking());
+            }
+
+            markings[0] = new Marking(markings[0].MarkingId, new List<Color>());
+            state = state with { MarkingSet = new MarkingSet(markings) };
+        });
+
+        await SendBui(DynamicAppearanceUiKey.Key, new DynamicAppearanceSaveMessage(state), target);
+
+        await Server.WaitAssertion(() =>
+        {
+            var uid = SEntMan.GetEntity(target);
+            var humanoid = SEntMan.GetComponent<HumanoidAppearanceComponent>(uid);
+            var protoMan = Server.ResolveDependency<IPrototypeManager>();
+
+            Assert.That(
+                humanoid.MarkingSet.GetForwardEnumerator().All(marking =>
+                    protoMan.Index<MarkingPrototype>(marking.MarkingId).Sprites.Count == marking.MarkingColors.Count),
+                Is.True,
+                "DynamicAppearance accepted a malformed marking payload with an invalid color count.");
+        });
+    }
 }
 
 [TestFixture]
@@ -191,6 +233,18 @@ public sealed class DynamicAppearanceSecurityTest : DynamicAppearanceSecurityTes
             "Owner failed to open their own DynamicAppearance UI.");
 
         await AssertCustomBaseLayerInjectionRejected(Player);
+    }
+
+    [Test]
+    public async Task OwnerCannotInjectMalformedMarkingPayloadViaSaveMessage()
+    {
+        Target = Player;
+
+        await OpenAppearanceUi(Player);
+        Assert.That(TryGetBui(DynamicAppearanceUiKey.Key, out _, Player), Is.True,
+            "Owner failed to open their own DynamicAppearance UI.");
+
+        await AssertMalformedMarkingPayloadRejected(Player);
     }
 }
 

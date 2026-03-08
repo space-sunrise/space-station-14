@@ -33,6 +33,7 @@ public sealed class DynamicAppearanceSystem : EntitySystem
 {
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
+    [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
@@ -247,6 +248,15 @@ public sealed class DynamicAppearanceSystem : EntitySystem
         if (speciesChanged)
             _humanoid.SetBodyType(ent, humanoid.BodyType, false, humanoid);
 
+        var skinStrategy = _prototypeManager.Index(speciesProto.SkinColoration).Strategy;
+        var targetSkinColor = skinStrategy.EnsureVerified(
+            allowed.HasFlag(DynamicAppearanceFields.SkinColor)
+                ? state.SkinColor
+                : humanoid.SkinColor);
+        var targetEyeColor = allowed.HasFlag(DynamicAppearanceFields.EyeColor)
+            ? state.EyeColor
+            : humanoid.EyeColor;
+
         var targetSex = humanoid.Sex;
         if (allowed.HasFlag(DynamicAppearanceFields.Sex))
         {
@@ -264,11 +274,15 @@ public sealed class DynamicAppearanceSystem : EntitySystem
             _humanoid.SetSex(ent, targetSex, false, humanoid);
 
         // ── Markings ──
-        // Always run species + sponsor filtering regardless of whitelist,
-        // so malicious clients cannot inject illegal markings.
-        var filteredMarkings = FilterMarkings(state.MarkingSet, humanoid.Species);
-        if (!ignoreRestrictions)
-            filteredMarkings = FilterSponsorMarkings(filteredMarkings, sponsorProtos);
+        // Always normalize and filter incoming markings regardless of whitelist,
+        // so malicious clients cannot inject malformed or illegal payloads.
+        var sanitizedMarkings = SanitizeIncomingMarkings(
+            state.MarkingSet,
+            humanoid.Species,
+            targetSex,
+            targetSkinColor,
+            sponsorProtos,
+            ignoreRestrictions);
 
         // Only apply to the humanoid component for the categories the component allows.
         // Categories outside the allowed set are preserved from the current appearance.
@@ -285,7 +299,7 @@ public sealed class DynamicAppearanceSystem : EntitySystem
             mergedMarkings.AddRange(markings.Select(marking => new Marking(marking)));
         }
 
-        foreach (var (category, markings) in filteredMarkings.Markings)
+        foreach (var (category, markings) in sanitizedMarkings.Markings)
         {
             var isHairCategory = category is MarkingCategories.Hair or MarkingCategories.FacialHair;
 
@@ -297,8 +311,10 @@ public sealed class DynamicAppearanceSystem : EntitySystem
             mergedMarkings.AddRange(markings.Select(marking => new Marking(marking)));
         }
 
-        var newSet = new MarkingSet(mergedMarkings, speciesProto.MarkingPoints);
-        newSet.EnsureSexes(humanoid.Sex);
+        var newSet = new MarkingSet(mergedMarkings, speciesProto.MarkingPoints, _markingManager, _prototypeManager);
+        newSet.EnsureValid(_markingManager);
+        newSet.EnsureSpecies(humanoid.Species, targetSkinColor, _markingManager, _prototypeManager);
+        newSet.EnsureSexes(targetSex, _markingManager);
         humanoid.MarkingSet = newSet;
 
         // ── Voice ──
@@ -328,19 +344,16 @@ public sealed class DynamicAppearanceSystem : EntitySystem
             _humanoid.SetTTSVoice(ent, targetVoice, humanoid);
 
         // ── Skin color ──
-        if (allowed.HasFlag(DynamicAppearanceFields.SkinColor))
-            _humanoid.SetSkinColor(ent, state.SkinColor, humanoid: humanoid);
-        else if (speciesChanged)
-            _humanoid.SetSkinColor(ent, humanoid.SkinColor, false, true, humanoid);
+        if (allowed.HasFlag(DynamicAppearanceFields.SkinColor) || speciesChanged)
+            _humanoid.SetSkinColor(ent, targetSkinColor, humanoid: humanoid);
 
         // ── Eye color ──
-        if (allowed.HasFlag(DynamicAppearanceFields.EyeColor))
-            humanoid.EyeColor = state.EyeColor;
+        humanoid.EyeColor = targetEyeColor;
 
         // Preview applies species defaults through `LoadProfile()`, so mirror that here.
         // This ensures species-specific default markings are actually present in-game
         // after a species swap, even if the client draft itself doesn't contain them.
-        humanoid.MarkingSet.EnsureDefault(humanoid.SkinColor, humanoid.EyeColor);
+        humanoid.MarkingSet.EnsureDefault(humanoid.SkinColor, humanoid.EyeColor, _markingManager);
 
         // ── Gender / Pronouns ──
         if (allowed.HasFlag(DynamicAppearanceFields.Pronouns))
@@ -597,6 +610,9 @@ public sealed class DynamicAppearanceSystem : EntitySystem
         if (!_prototypeManager.TryIndex<TTSVoicePrototype>(requestedVoice, out var voiceProto))
             return false;
 
+        if (!ValidateVoiceSex(voiceProto, sex))
+            return false;
+
         if (ignoreRestrictions)
             return true;
 
@@ -606,7 +622,7 @@ public sealed class DynamicAppearanceSystem : EntitySystem
         if (voiceProto.SponsorOnly && (sponsorProtos == null || !sponsorProtos.Contains(requestedVoice)))
             return false;
 
-        return ValidateVoiceSex(voiceProto, sex);
+        return true;
     }
 
     private bool ValidateVoiceSex(TTSVoicePrototype voiceProto, Sex sex)
@@ -617,29 +633,25 @@ public sealed class DynamicAppearanceSystem : EntitySystem
     }
 
     /// <summary>
-    /// Filters a marking set to only keep markings allowed for the given species.
+    /// Deep-clones a client-supplied marking payload, repairs malformed entries,
+    /// and strips anything the current species / sex / sponsor rules should not allow.
     /// </summary>
-    private MarkingSet FilterMarkings(MarkingSet originalSet, string species)
+    private MarkingSet SanitizeIncomingMarkings(
+        MarkingSet originalSet,
+        string species,
+        Sex sex,
+        Color skinColor,
+        HashSet<string>? sponsorProtos,
+        bool ignoreRestrictions)
     {
-        var filtered = new MarkingSet();
+        var sanitized = new MarkingSet(originalSet);
+        sanitized.EnsureValid(_markingManager);
+        sanitized.EnsureSpecies(species, skinColor, _markingManager, _prototypeManager);
+        sanitized.EnsureSexes(sex, _markingManager);
 
-        foreach (var (category, markings) in originalSet.Markings)
-        {
-            foreach (var marking in markings)
-            {
-                if (!_prototypeManager.TryIndex<MarkingPrototype>(marking.MarkingId, out var proto))
-                    continue;
-
-                if (proto.SpeciesRestrictions == null
-                    || proto.SpeciesRestrictions.Count == 0
-                    || proto.SpeciesRestrictions.Contains(species))
-                {
-                    filtered.AddBack(category, marking);
-                }
-            }
-        }
-
-        return filtered;
+        return ignoreRestrictions
+            ? sanitized
+            : FilterSponsorMarkings(sanitized, sponsorProtos);
     }
 
     /// <summary>
