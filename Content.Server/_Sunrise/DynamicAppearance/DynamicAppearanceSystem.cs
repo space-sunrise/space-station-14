@@ -1,14 +1,19 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Server.Administration.Managers;
+using Content.Server.Access.Systems;
 using Content.Server.DoAfter;
+using Content.Server.StationRecords.Systems;
 using Content.Shared._Sunrise.DynamicAppearance;
+using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.CCVar;
 using Content.Shared.DoAfter;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Preferences;
+using Content.Shared.StationRecords;
 using Content.Shared.Verbs;
 using Content.Sunrise.Interfaces.Shared;
 using Robust.Server.GameObjects;
@@ -33,6 +38,8 @@ public sealed class DynamicAppearanceSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IAdminManager _admin = default!;
+    [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
+    [Dependency] private readonly IdCardSystem _idCard = default!;
 
     // Sunrise-Sponsors
     private ISharedSponsorsManager? _sponsorsManager;
@@ -361,6 +368,7 @@ public sealed class DynamicAppearanceSystem : EntitySystem
                 _meta.SetEntityName(ent, name);
         }
 
+        UpdateStationRecord(ent);
         Dirty(ent, humanoid);
         SendState(ent, humanoid, ent.Comp1);
     }
@@ -384,6 +392,113 @@ public sealed class DynamicAppearanceSystem : EntitySystem
     #endregion
 
     #region Helpers
+
+    private void UpdateStationRecord(Entity<DynamicAppearanceComponent, HumanoidAppearanceComponent> ent)
+    {
+        if (!TryGetStationRecordKey(ent.Owner, out var key)
+            || !_stationRecords.TryGetRecord<GeneralStationRecord>(key, out var record))
+        {
+            return;
+        }
+
+        var meta = MetaData(ent.Owner);
+        record.Name = meta.EntityName;
+        record.Age = ent.Comp2.Age;
+        record.Species = ent.Comp2.Species;
+        record.Gender = ent.Comp2.Gender;
+        record.HumanoidProfile = BuildHumanoidProfile(record.HumanoidProfile, ent.Comp2, meta.EntityName);
+
+        _stationRecords.Synchronize(key);
+    }
+
+    private bool TryGetStationRecordKey(EntityUid uid, out StationRecordKey key)
+    {
+        if (TryComp<StationRecordKeyStorageComponent>(uid, out var keyStorage)
+            && keyStorage.Key is { } directKey)
+        {
+            key = directKey;
+            return true;
+        }
+
+        if (_idCard.TryFindIdCard(uid, out var idCard)
+            && TryComp<StationRecordKeyStorageComponent>(idCard.Owner, out keyStorage)
+            && keyStorage.Key is { } cardKey)
+        {
+            key = cardKey;
+            return true;
+        }
+
+        key = StationRecordKey.Invalid;
+        return false;
+    }
+
+    private HumanoidCharacterProfile BuildHumanoidProfile(HumanoidCharacterProfile? currentProfile, HumanoidAppearanceComponent humanoid, string name)
+    {
+        var profile = currentProfile != null
+            ? new HumanoidCharacterProfile(currentProfile)
+            : HumanoidCharacterProfile.DefaultWithSpecies(humanoid.Species);
+
+        var hairMarking = humanoid.MarkingSet.TryGetCategory(MarkingCategories.Hair, out var hairList)
+            ? hairList.FirstOrDefault()
+            : null;
+
+        var facialHairMarking = humanoid.MarkingSet.TryGetCategory(MarkingCategories.FacialHair, out var facialList)
+            ? facialList.FirstOrDefault()
+            : null;
+
+        var hairId = hairMarking?.MarkingId ?? HairStyles.DefaultHairStyle;
+        var hairColor = hairMarking != null && hairMarking.MarkingColors.Count > 0
+            ? hairMarking.MarkingColors[0]
+            : Color.Black;
+
+        var facialId = facialHairMarking?.MarkingId ?? HairStyles.DefaultFacialHairStyle;
+        var facialColor = facialHairMarking != null && facialHairMarking.MarkingColors.Count > 0
+            ? facialHairMarking.MarkingColors[0]
+            : Color.Black;
+
+        var hairEffectType = MarkingEffectType.Color;
+        MarkingEffect? hairEffect = null;
+        if (hairMarking != null && hairMarking.MarkingEffects.Count > 0)
+        {
+            hairEffect = hairMarking.MarkingEffects[0].Clone();
+            hairEffectType = hairEffect.Type;
+        }
+
+        var facialEffectType = MarkingEffectType.Color;
+        MarkingEffect? facialEffect = null;
+        if (facialHairMarking != null && facialHairMarking.MarkingEffects.Count > 0)
+        {
+            facialEffect = facialHairMarking.MarkingEffects[0].Clone();
+            facialEffectType = facialEffect.Type;
+        }
+
+        var allMarkings = humanoid.MarkingSet.GetForwardEnumerator().Select(marking => new Marking(marking)).ToList();
+
+        var appearance = new HumanoidCharacterAppearance(
+            hairId,
+            hairColor,
+            facialId,
+            facialColor,
+            humanoid.EyeColor,
+            humanoid.SkinColor,
+            allMarkings,
+            hairEffectType,
+            hairEffect,
+            facialEffectType,
+            facialEffect,
+            humanoid.Width,
+            humanoid.Height);
+
+        return profile
+            .WithName(name)
+            .WithSpecies(humanoid.Species)
+            .WithSex(humanoid.Sex)
+            .WithGender(humanoid.Gender)
+            .WithAge(humanoid.Age)
+            .WithVoice(humanoid.Voice)
+            .WithBodyType(humanoid.BodyType)
+            .WithCharacterAppearance(appearance);
+    }
 
     private void SendState(EntityUid uid, HumanoidAppearanceComponent humanoid, DynamicAppearanceComponent component)
     {
