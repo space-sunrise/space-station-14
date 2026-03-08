@@ -226,10 +226,39 @@ public sealed partial class DynamicAppearanceWindow
 
     private void UpdateSizeLabels()
     {
-        HeightLabel.Text = Loc.GetString("dynamic-appearance-height-label",
-            ("value", (int)Math.Round(HeightSlider.Value * 100f)));
-        WidthLabel.Text = Loc.GetString("dynamic-appearance-width-label",
-            ("value", (int)Math.Round(WidthSlider.Value * 100f)));
+        if (_speciesProto == null)
+        {
+            HeightLabel.Text = Loc.GetString("dynamic-appearance-height-label",
+                ("value", (int)Math.Round(HeightSlider.Value * 100f)));
+            WidthLabel.Text = Loc.GetString("dynamic-appearance-width-label",
+                ("value", (int)Math.Round(WidthSlider.Value * 100f)));
+            return;
+        }
+
+        var height = ConvertSliderToHeight(
+            sliderValue: HeightSlider.Value,
+            minSlider: _speciesProto.MinHeight,
+            maxSlider: _speciesProto.MaxHeight,
+            minHeightCm: _speciesProto.MinHeightCm,
+            maxHeightCm: _speciesProto.MaxHeightCm);
+
+        var weight = _speciesProto.StandardWeight
+                     + _speciesProto.StandardDensity * (WidthSlider.Value * HeightSlider.Value - 1f);
+
+        HeightLabel.Text = Loc.GetString("humanoid-profile-editor-height-label",
+            ("height", Math.Round(height)));
+        WidthLabel.Text = Loc.GetString("humanoid-profile-editor-width-label",
+            ("weight", Math.Round(weight)));
+    }
+
+    private static float ConvertSliderToHeight(float sliderValue, float minSlider, float maxSlider, float minHeightCm, float maxHeightCm)
+    {
+        var denom = maxSlider - minSlider;
+        if (MathF.Abs(denom) < 0.0001f)
+            return minHeightCm;
+
+        var normalized = (sliderValue - minSlider) / denom;
+        return minHeightCm + normalized * (maxHeightCm - minHeightCm);
     }
 
     private void RefreshSkinColor()
