@@ -72,7 +72,7 @@ public sealed partial class DynamicAppearanceWindow
         {
             var profile = BuildProfileFromDraft().WithName(_draftState.Name);
             var dataNode = _humanoidSystem.ToDataNode(profile);
-            await using var writer = new StreamWriter(file.Value.fileStream);
+            await using var writer = new StreamWriter(file.Value.fileStream, leaveOpen: false);
             dataNode.Write(writer);
         }
         catch (Exception exc)
@@ -82,7 +82,6 @@ public sealed partial class DynamicAppearanceWindow
         finally
         {
             EndImportExport();
-            await file.Value.fileStream.DisposeAsync();
         }
     }
 

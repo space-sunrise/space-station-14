@@ -225,9 +225,9 @@ public sealed class DynamicAppearanceSystem : EntitySystem
 
         // ── Resolve sponsor markings for this session ──
         HashSet<string>? sponsorProtos = null;
-        if (_sponsorsManager != null && TryComp<ActorComponent>(actor, out var actorComp))
+        if (_sponsorsManager != null && TryComp<ActorComponent>(ent.Owner, out var targetActorComp))
         {
-            if (_sponsorsManager.TryGetPrototypes(actorComp.PlayerSession.UserId, out var sp))
+            if (_sponsorsManager.TryGetPrototypes(targetActorComp.PlayerSession.UserId, out var sp))
                 sponsorProtos = [.. sp];
         }
 

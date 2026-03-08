@@ -93,7 +93,7 @@ public sealed partial class DynamicAppearanceWindow
         _speciesValues.Clear();
 
         var availableSpecies = _protoMan.EnumeratePrototypes<SpeciesPrototype>()
-            .Where(species => species.RoundStart)
+            .Where(species => _overrideRestrictions || species.RoundStart)
             .ToList();
 
         if (!string.IsNullOrEmpty(_draftState.Species)
