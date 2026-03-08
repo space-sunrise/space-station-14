@@ -320,8 +320,7 @@
     weightlessFriction: 0.3
     weightlessModifier: 1
 
-# Sunrise-Start
-#USSP
+# Sunrise start - port SSF marine jetpack from Starlight
 - type: entity
   id: JetpackSSFMarine
   parent: [BaseJetpack] #, BaseSovietContraband]
@@ -330,15 +329,19 @@
   description: Standard issued soviet-made jetpack for the kosmos.
   components:
     - type: Item
-      sprite: _Starlight/Objects/Tanks/Jetpacks/marine_jetpack.rsi
+      sprite: _Sunrise/Objects/Tanks/Jetpacks/marine_jetpack.rsi
     - type: Sprite
-      sprite: _Starlight/Objects/Tanks/Jetpacks/marine_jetpack.rsi
+      sprite: _Sunrise/Objects/Tanks/Jetpacks/marine_jetpack.rsi
     - type: Clothing
-      sprite: _Starlight/Objects/Tanks/Jetpacks/marine_jetpack.rsi
+      sprite: _Sunrise/Objects/Tanks/Jetpacks/marine_jetpack.rsi
       slots:
         - Back
         - suitStorage
         - Belt
+    - type: ClothingSpeedModifier
+      walkModifier: 1.0
+      sprintModifier: 1.0
+    - type: HeldSpeedModifier
 
 - type: entity
   id: JetpackSSFMarineFilled
@@ -347,11 +350,11 @@
   description: Standard issued soviet-made jetpack for the kosmos.
   components:
     - type: Item
-      sprite: _Starlight/Objects/Tanks/Jetpacks/marine_jetpack.rsi
+      sprite: _Sunrise/Objects/Tanks/Jetpacks/marine_jetpack.rsi
     - type: Sprite
-      sprite: _Starlight/Objects/Tanks/Jetpacks/marine_jetpack.rsi
+      sprite: _Sunrise/Objects/Tanks/Jetpacks/marine_jetpack.rsi
     - type: Clothing
-      sprite: _Starlight/Objects/Tanks/Jetpacks/marine_jetpack.rsi
+      sprite: _Sunrise/Objects/Tanks/Jetpacks/marine_jetpack.rsi
       slots:
         - Back
         - suitStorage
@@ -364,4 +367,4 @@
         moles:
           - 1.025689525 # oxygen
           - 1.025689525 # nitrogen
-# Sunrise-End
+# Sunrise end
