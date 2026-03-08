@@ -557,12 +557,11 @@ namespace Content.Server._Sunrise.MentorHelp
 
             foreach (var stat in statistics)
             {
-                if (!mentorNames.TryGetValue(stat.MentorUserId, out var mentorName))
-                    continue;
+                mentorNames.TryGetValue(stat.MentorUserId, out var mentorName);
 
                 result.Add(new MentorHelpStatisticsData
                 {
-                    MentorName = mentorName,
+                    MentorName = mentorName ?? "Unknown",
                     TicketsClosed = stat.TicketsClosed,
                     MessagesCount = stat.MessagesCount
                 });
@@ -601,18 +600,14 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 if (!cacheValid)
                 {
-                    while (true)
+                    var cacheVersion = _mentorStatsCacheVersion;
+                    now = DateTimeOffset.UtcNow;
+                    var cache = await BuildStatisticsCacheAsync(now);
+
+                    if (cacheVersion == _mentorStatsCacheVersion)
                     {
-                        var cacheVersion = _mentorStatsCacheVersion;
-                        now = DateTimeOffset.UtcNow;
-                        var cache = await BuildStatisticsCacheAsync(now);
-
-                        if (cacheVersion != _mentorStatsCacheVersion)
-                            continue;
-
                         _mentorStatsCache = cache;
                         _mentorStatsCacheTime = now;
-                        break;
                     }
                 }
 
@@ -769,11 +764,12 @@ namespace Content.Server._Sunrise.MentorHelp
                 _sponsorsManager.TryGetOocTitle(senderUserId, out var oocTitle);
 
                 var sponsorTitle = oocTitle is null ? "" : $"\\[{FormattedMessage.EscapeText(oocTitle)}\\]";
+                var sponsorPrefix = sponsorTitle == "" ? "" : $"{sponsorTitle} ";
                 if (oocColor != null)
-                    formatterSender = $"[color={oocColor.Value.ToHex()}]{sponsorTitle} {escapedUsername}[/color]";
+                    formatterSender = $"[color={oocColor.Value.ToHex()}]{sponsorPrefix}{escapedUsername}[/color]";
 
                 else
-                    formatterSender = $"{sponsorTitle} {escapedUsername}";
+                    formatterSender = $"{sponsorPrefix}{escapedUsername}";
             }
             else
                 formatterSender = escapedUsername;
