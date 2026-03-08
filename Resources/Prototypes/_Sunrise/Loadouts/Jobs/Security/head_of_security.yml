@@ -1,0 +1,71 @@
+- type: loadout
+  id: HeadofSecurityJumpsuitSecblu
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHoSSecblu
+  groupBy: "jumpsuit"
+
+- type: loadout
+  id: HeadofSecurityJumpskirtSecblu
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtHoSSecblu
+  groupBy: "jumpskirt"
+
+- type: loadout
+  id: HeadofSecurityTurtleneckSecblu
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHoSAltSecblu
+  groupBy: "jumpsuit"
+
+- type: loadout
+  id: HeadofSecurityTurtleneckSkirtSecblu
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtHoSAltSecblu
+  groupBy: "jumpskirt"
+
+- type: loadout
+  id: HeadofSecurityFormalSuitSecblu
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHosFormalSecblu
+  groupBy: "jumpsuit"
+
+- type: loadout
+  id: HeadofSecurityFormalSkirtSecblu
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtHosFormalSecblu
+  groupBy: "jumpskirt"
+
+- type: loadout
+  id: HeadofSecurityJumpsuitSecred
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHoSSecred
+  groupBy: "jumpsuit"
+
+- type: loadout
+  id: HeadofSecurityJumpskirtSecred
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtHoSSecred
+  groupBy: "jumpskirt"
+
+- type: loadout
+  id: HeadofSecurityTurtleneckSecred
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHoSAltSecred
+  groupBy: "jumpsuit"
+
+- type: loadout
+  id: HeadofSecurityTurtleneckSkirtSecred
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtHoSAltSecred
+  groupBy: "jumpskirt"
+
+- type: loadout
+  id: HeadofSecurityFormalSuitSecred
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHosFormalSecred
+  groupBy: "jumpsuit"
+
+- type: loadout
+  id: HeadofSecurityFormalSkirtSecred
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtHosFormalSecred
+  groupBy: "jumpskirt"

@@ -1,0 +1,92 @@
+# Head
+- type: loadout
+  id: SecurityHatSecblu
+  equipment:
+    head: ClothingHeadHatSecsoftSecblu
+
+- type: loadout
+  id: SecurityBeretSecblu
+  equipment:
+    head: ClothingHeadHatBeretSecuritySecblu
+
+- type: loadout
+  id: SecurityHatSecred
+  equipment:
+    head: ClothingHeadHatSecsoftSecred
+
+- type: loadout
+  id: SecurityBeretSecred
+  equipment:
+    head: ClothingHeadHatBeretSecuritySecred
+
+# Jumpsuit
+- type: loadout
+  id: SecurityJumpsuitSecblu
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecSecblu
+
+- type: loadout
+  id: SecurityJumpskirtSecblu
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSecSecblu
+
+- type: loadout
+  id: SecurityJumpsuitGreySecblu
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecGreySecblu
+
+- type: loadout
+  id: SecurityJumpskirtGreySecblu
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSecGreySecblu
+
+- type: loadout
+  id: SecurityJumpsuitSecred
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecSecred
+
+- type: loadout
+  id: SecurityJumpskirtSecred
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSecSecred
+
+- type: loadout
+  id: SecurityJumpsuitGreySecred
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecGreySecred
+
+- type: loadout
+  id: SecurityJumpskirtGreySecred
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSecGreySecred
+
+# Back
+- type: loadout
+  id: SecurityBackpackSecblu
+  equipment:
+    back: ClothingBackpackSecuritySecblu
+
+- type: loadout
+  id: SecuritySatchelSecblu
+  equipment:
+    back: ClothingBackpackSatchelSecuritySecblu
+
+- type: loadout
+  id: SecurityDuffelSecblu
+  equipment:
+    back: ClothingBackpackDuffelSecuritySecblu
+
+- type: loadout
+  id: SecurityBackpackSecred
+  equipment:
+    back: ClothingBackpackSecuritySecred
+
+- type: loadout
+  id: SecuritySatchelSecred
+  equipment:
+    back: ClothingBackpackSatchelSecuritySecred
+
+- type: loadout
+  id: SecurityDuffelSecred
+  equipment:
+    back: ClothingBackpackDuffelSecuritySecred

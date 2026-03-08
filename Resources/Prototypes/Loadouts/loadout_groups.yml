@@ -1333,14 +1333,20 @@
   id: HeadofSecurityJumpsuit
   name: loadout-group-head-of-security-jumpsuit
   loadouts:
-  - HeadofSecurityJumpsuit
-  - HeadofSecurityJumpskirt
-  - HeadofSecurityTurtleneck
-  - HeadofSecurityTurtleneckSkirt
-  - HeadofSecurityFormalSuit
-  - HeadofSecurityFormalSkirt
+#  - HeadofSecurityJumpsuit # Sunrise-Edit
+#  - HeadofSecurityJumpskirt # Sunrise-Edit
+#  - HeadofSecurityTurtleneck # Sunrise-Edit
+#  - HeadofSecurityTurtleneckSkirt # Sunrise-Edit
+#  - HeadofSecurityFormalSuit # Sunrise-Edit
+#  - HeadofSecurityFormalSkirt # Sunrise-Edit
   - HeadofSecurityJumpsuitHoSOld  #Sunrise-Edit
   - HeadofSecurityJumpsuitUSSPBlack #Sunrise-Edit
+  - HeadofSecurityJumpsuitSecblu #Sunrise-Edit
+  - HeadofSecurityJumpskirtSecblu #Sunrise-Edit
+  - HeadofSecurityTurtleneckSecblu #Sunrise-Edit
+  - HeadofSecurityTurtleneckSkirtSecblu #Sunrise-Edit
+  - HeadofSecurityFormalSuitSecblu #Sunrise-Edit
+  - HeadofSecurityFormalSkirtSecblu #Sunrise-Edit
   - HeadofSecurityJumpsuitSecred #Sunrise-Edit
   - HeadofSecurityJumpskirtSecred #Sunrise-Edit
   - HeadofSecurityTurtleneckSecred #Sunrise-Edit
@@ -1386,7 +1392,8 @@
   minLimit: 0
   loadouts:
   - WardenHead
-  - WardenBeret
+#  - WardenBeret # Sunrise-Edit
+  - WardenBeretSecblu # Sunrise-Edit
   - ClothingHeadHatCapWardenAlt # Sunrise-Edit
 
 
@@ -1394,8 +1401,10 @@
   id: WardenJumpsuit
   name: loadout-group-warden-jumpsuit
   loadouts:
-  - WardenJumpsuit
-  - WardenJumpskirt
+#  - WardenJumpsuit # Sunrise-Edit
+#  - WardenJumpskirt # Sunrise-Edit
+  - WardenJumpsuitSecblu #Sunrise-Edit
+  - WardenJumpskirtSecblu #Sunrise-Edit
   - WardenJumpsuitSecred #Sunrise-Edit
   - WardenJumpskirtSecred #Sunrise-Edit
 
@@ -1403,9 +1412,11 @@
   id: WardenOuterClothing
   name: loadout-group-warden-outerclothing
   loadouts:
-  - WardenCoat
-  - WardenArmoredWinterCoat
+#  - WardenCoat # Sunrise-Edit
+#  - WardenArmoredWinterCoat # Sunrise-Edit
   - ClothingOuterCoatWardenAlt # Sunrise-Edit
+  - WardenCoatSecblu #Sunrise-Edit
+  - WardenArmoredWinterCoatSecblu #Sunrise-Edit
   - WardenCoatSecred #Sunrise-Edit
   - WardenArmoredWinterCoatSecred #Sunrise-Edit
 
@@ -1423,9 +1434,11 @@
   minLimit: 0
   loadouts:
   - SecurityHelmet
-  - SecurityBeret
-  - SecurityHat
+#  - SecurityBeret # Sunrise-Edit
+#  - SecurityHat # Sunrise-Edit
   - TrooperHat
+  - SecurityBeretSecblu #Sunrise-Edit
+  - SecurityHatSecblu #Sunrise-Edit
   - SecurityBeretSecred #Sunrise-Edit
   - SecurityHatSecred #Sunrise-Edit
 
@@ -1433,13 +1446,17 @@
   id: SecurityJumpsuit
   name: loadout-group-security-jumpsuit
   loadouts:
-  - SecurityJumpsuit
-  - SecurityJumpskirt
-  - SecurityJumpsuitGrey
-  - SecurityJumpskirtGrey
+#  - SecurityJumpsuit # Sunrise-Edit
+#  - SecurityJumpskirt # Sunrise-Edit
+#  - SecurityJumpsuitGrey # Sunrise-Edit
+#  - SecurityJumpskirtGrey # Sunrise-Edit
 #  - SeniorOfficerJumpsuit # Sunrise-Edit
 #  - SeniorOfficerJumpskirt # Sunrise-Edit
   - TrooperUniform
+  - SecurityJumpsuitSecblu #Sunrise-Edit
+  - SecurityJumpskirtSecblu #Sunrise-Edit
+  - SecurityJumpsuitGreySecblu #Sunrise-Edit
+  - SecurityJumpskirtGreySecblu #Sunrise-Edit
   - SecurityJumpsuitSecred #Sunrise-Edit
   - SecurityJumpskirtSecred #Sunrise-Edit
   - SecurityJumpsuitGreySecred #Sunrise-Edit
@@ -1449,9 +1466,12 @@
   id: SecurityBackpack
   name: loadout-group-security-backpack
   loadouts:
-  - SecurityBackpack
-  - SecuritySatchel
-  - SecurityDuffel
+#  - SecurityBackpack # Sunrise-Edit
+#  - SecuritySatchel # Sunrise-Edit
+#  - SecurityDuffel # Sunrise-Edit
+  - SecurityBackpackSecblu #Sunrise-Edit
+  - SecuritySatchelSecblu #Sunrise-Edit
+  - SecurityDuffelSecblu #Sunrise-Edit
   - SecurityBackpackSecred #Sunrise-Edit
   - SecuritySatchelSecred #Sunrise-Edit
   - SecurityDuffelSecred #Sunrise-Edit

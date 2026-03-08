@@ -92,37 +92,37 @@
 - type: loadout
   id: HeadofSecurityJumpsuit
   equipment:
-    jumpsuit: ClothingUniformJumpsuitHoSSecblu # Sunrise-Edit
+    jumpsuit: ClothingUniformJumpsuitHoS
   groupBy: "jumpsuit"
 
 - type: loadout
   id: HeadofSecurityJumpskirt
   equipment:
-    jumpsuit: ClothingUniformJumpskirtHoSSecblu # Sunrise-Edit
+    jumpsuit: ClothingUniformJumpskirtHoS
   groupBy: "jumpskirt"
 
 - type: loadout
   id: HeadofSecurityTurtleneck
   equipment:
-    jumpsuit: ClothingUniformJumpsuitHoSAltSecblu # Sunrise-Edit
+    jumpsuit: ClothingUniformJumpsuitHoSAlt
   groupBy: "jumpsuit"
 
 - type: loadout
   id: HeadofSecurityTurtleneckSkirt
   equipment:
-    jumpsuit: ClothingUniformJumpskirtHoSAltSecblu # Sunrise-Edit
+    jumpsuit: ClothingUniformJumpskirtHoSAlt
   groupBy: "jumpskirt"
 
 - type: loadout
   id: HeadofSecurityFormalSuit
   equipment:
-    jumpsuit: ClothingUniformJumpsuitHosFormalSecblu # Sunrise-Edit
+    jumpsuit: ClothingUniformJumpsuitHosFormal
   groupBy: "jumpsuit"
 
 - type: loadout
   id: HeadofSecurityFormalSkirt
   equipment:
-    jumpsuit: ClothingUniformJumpskirtHosFormalSecblu # Sunrise-Edit
+    jumpsuit: ClothingUniformJumpskirtHosFormal
   groupBy: "jumpskirt"
 
 #Sunrise-Start
@@ -140,42 +140,6 @@
   sponsorOnly: false
   equipment:
     jumpsuit: ClothingUniformJumpsuitUSSPBlack
-
-- type: loadout
-  id: HeadofSecurityJumpsuitSecred
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitHoSSecred
-  groupBy: "jumpsuit"
-
-- type: loadout
-  id: HeadofSecurityJumpskirtSecred
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtHoSSecred
-  groupBy: "jumpskirt"
-
-- type: loadout
-  id: HeadofSecurityTurtleneckSecred
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitHoSAltSecred
-  groupBy: "jumpsuit"
-
-- type: loadout
-  id: HeadofSecurityTurtleneckSkirtSecred
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtHoSAltSecred
-  groupBy: "jumpskirt"
-
-- type: loadout
-  id: HeadofSecurityFormalSuitSecred
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitHosFormalSecred
-  groupBy: "jumpsuit"
-
-- type: loadout
-  id: HeadofSecurityFormalSkirtSecred
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtHosFormalSecred
-  groupBy: "jumpskirt"
 #Sunrise-End
 
 # Head

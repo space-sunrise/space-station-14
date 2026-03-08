@@ -1,10 +1,10 @@
 - type: loadout
-  id: JumpsuitSeniorOfficer
+  id: JumpsuitSeniorOfficerSecblu
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorOfficerSecblu
 
 - type: loadout
-  id: JumpskirtSeniorOfficer
+  id: JumpskirtSeniorOfficerSecblu
   equipment:
     jumpsuit: ClothingUniformJumpskirtSeniorOfficerSecblu
 
