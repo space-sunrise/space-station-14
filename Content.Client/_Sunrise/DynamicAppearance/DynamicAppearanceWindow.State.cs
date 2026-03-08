@@ -368,6 +368,8 @@ public sealed partial class DynamicAppearanceWindow
         if (!speciesProto.Sexes.Contains(_draftState.Sex))
             _draftState.Sex = speciesProto.Sexes[0];
 
+        _draftState.BodyType = ResolvePreviewBodyType();
+
         _draftState.Age = Math.Clamp(_draftState.Age, speciesProto.MinAge, speciesProto.MaxAge);
         _draftState.Width = speciesProto.DefaultWidth;
         _draftState.Height = speciesProto.DefaultHeight;

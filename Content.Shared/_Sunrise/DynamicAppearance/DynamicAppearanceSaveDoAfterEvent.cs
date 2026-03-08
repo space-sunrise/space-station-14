@@ -27,6 +27,7 @@ public sealed partial class DynamicAppearanceSaveDoAfterEvent : DoAfterEvent
             State.SkinColor,
             State.EyeColor,
             new Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo>(State.CustomBaseLayers),
+            State.BodyType,
             State.Width,
             State.Height,
             State.Name));

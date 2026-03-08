@@ -528,6 +528,7 @@ public sealed class DynamicAppearanceSystem : EntitySystem
                     humanoid.SkinColor,
                     humanoid.EyeColor,
                     humanoid.CustomBaseLayers,
+                    humanoid.BodyType,
                     humanoid.Width,
                     humanoid.Height,
                     meta.EntityName

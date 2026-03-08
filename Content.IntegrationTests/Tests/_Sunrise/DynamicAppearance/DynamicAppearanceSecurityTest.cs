@@ -100,6 +100,7 @@ public abstract class DynamicAppearanceSecurityTestBase : InteractionTest
             humanoid.SkinColor,
             humanoid.EyeColor,
             new Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo>(humanoid.CustomBaseLayers),
+            humanoid.BodyType,
             humanoid.Width,
             humanoid.Height,
             meta.EntityName);

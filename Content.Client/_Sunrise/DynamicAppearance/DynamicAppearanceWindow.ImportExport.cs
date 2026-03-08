@@ -207,6 +207,7 @@ public sealed partial class DynamicAppearanceWindow
             state.SkinColor,
             state.EyeColor,
             new Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo>(state.CustomBaseLayers),
+            state.BodyType,
             state.Width,
             state.Height,
             state.Name);

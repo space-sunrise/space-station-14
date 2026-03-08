@@ -60,6 +60,7 @@ public sealed partial class DynamicAppearanceWindow
         SexButton.OnItemSelected += args =>
         {
             _draftState.Sex = _sexValues[args.Id];
+            _draftState.BodyType = ResolvePreviewBodyType();
             SexButton.SelectId(args.Id);
 
             if (_ttsEnabled)

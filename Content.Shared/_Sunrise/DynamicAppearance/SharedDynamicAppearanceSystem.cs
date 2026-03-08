@@ -51,6 +51,7 @@ public record struct DynamicAppearanceState(
     Color SkinColor,
     Color EyeColor,
     Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo> CustomBaseLayers,
+    string BodyType,
     float Width,
     float Height,
     string Name

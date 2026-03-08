@@ -7,6 +7,7 @@ using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Inventory;
 using Content.Shared.Preferences;
+using Content.Shared._Sunrise;
 using Robust.Client.Utility;
 using Robust.Shared.Map;
 using Direction = Robust.Shared.Maths.Direction;
@@ -118,7 +119,7 @@ public sealed partial class DynamicAppearanceWindow
                 continue;
 
             var copy = _entManager.SpawnEntity(proto.ID, MapCoordinates.Nullspace);
-            if(!_inventorySystem.TryEquip(dummy, copy, slot.Name, silent: true, force: true))
+            if (!_inventorySystem.TryEquip(dummy, copy, slot.Name, silent: true, force: true))
                 _entManager.DeleteEntity(copy);
         }
     }
@@ -134,6 +135,12 @@ public sealed partial class DynamicAppearanceWindow
 
         var profile = BuildProfileFromDraft();
         _humanoidSystem.LoadProfile(_dummyEntity, profile);
+
+        if (!_entManager.TryGetComponent(_dummyEntity, out HumanoidAppearanceComponent? humanoid))
+            return;
+
+        humanoid.CustomBaseLayers = new Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo>(_draftState.CustomBaseLayers);
+        _humanoidSystem.RefreshAppearance(_dummyEntity, humanoid);
     }
 
     private void DestroyDummy()
@@ -206,10 +213,7 @@ public sealed partial class DynamicAppearanceWindow
             _draftState.Width,
             _draftState.Height);
 
-        // Use the correct body type for the species so non-human species (e.g. slime) render
-        // with their proper sprites instead of falling back to the default human body type.
-        var bodyType = _speciesProto?.BodyTypes.FirstOrDefault()
-            ?? SharedHumanoidAppearanceSystem.DefaultBodyType;
+        var bodyType = ResolvePreviewBodyType();
 
         return HumanoidCharacterProfile
             .DefaultWithSpecies(_draftState.Species)
@@ -219,5 +223,39 @@ public sealed partial class DynamicAppearanceWindow
             .WithAge(_draftState.Age)
             .WithVoice(_draftState.Voice)
             .WithBodyType(bodyType);
+    }
+
+    private string ResolvePreviewBodyType()
+    {
+        var preferredBodyType = _draftState.BodyType;
+
+        if (string.IsNullOrEmpty(preferredBodyType)
+            && _entManager.TryGetComponent(_previewEntity, out HumanoidAppearanceComponent? humanoid))
+        {
+            preferredBodyType = humanoid.BodyType;
+        }
+
+        if (_speciesProto != null)
+        {
+            var validBodyTypes = _speciesProto.BodyTypes
+                .Select(id => _protoMan.Index<BodyTypePrototype>(id))
+                .Where(proto => !proto.SexRestrictions.Contains(_draftState.Sex.ToString()))
+                .ToList();
+
+            if (validBodyTypes.Count > 0)
+            {
+                if (!string.IsNullOrEmpty(preferredBodyType)
+                    && validBodyTypes.Any(proto => proto.ID == preferredBodyType))
+                {
+                    return preferredBodyType;
+                }
+
+                return validBodyTypes[0].ID;
+            }
+        }
+
+        return !string.IsNullOrEmpty(preferredBodyType)
+            ? preferredBodyType
+            : SharedHumanoidAppearanceSystem.DefaultBodyType;
     }
 }

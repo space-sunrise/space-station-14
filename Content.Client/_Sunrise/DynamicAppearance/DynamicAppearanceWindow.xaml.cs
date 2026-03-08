@@ -67,6 +67,7 @@ public sealed partial class DynamicAppearanceWindow : DefaultWindow
         Color.White,
         Color.White,
         new Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo>(),
+        SharedHumanoidAppearanceSystem.DefaultBodyType,
         1f,
         1f,
         string.Empty
