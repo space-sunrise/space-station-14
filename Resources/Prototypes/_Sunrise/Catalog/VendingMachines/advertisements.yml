@@ -38,7 +38,7 @@
   id: SovietChatterNPC
   values:
     prefix: advertisement-soviethumanoid-
-    count: 58
+    count: 66
 
 - type: localizedDataset
   id: PirateUplinkChatter
