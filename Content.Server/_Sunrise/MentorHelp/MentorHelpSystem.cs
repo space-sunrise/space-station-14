@@ -485,6 +485,8 @@ namespace Content.Server._Sunrise.MentorHelp
             }
 
             var activeMentorIds = new HashSet<Guid>();
+            Dictionary<Guid, Admin>? offlineAdminsByUserId = null;
+            Dictionary<int, AdminRank>? adminRanksById = null;
 
             foreach (var mentorUserId in mentorUserIds)
             {
@@ -496,8 +498,15 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 else
                 {
-                    var adminData = await _adminManager.LoadAdminData(mentorNetUserId);
-                    isMentor = adminData != null && adminData.Value.dat.Flags.HasFlag(AdminFlags.Mentor);
+                    if (offlineAdminsByUserId == null || adminRanksById == null)
+                    {
+                        var (admins, adminRanks) = await _dbManager.GetAllAdminAndRanksAsync();
+                        offlineAdminsByUserId = admins.ToDictionary(admin => admin.Item1.UserId, admin => admin.Item1);
+                        adminRanksById = adminRanks.ToDictionary(rank => rank.Id);
+                    }
+
+                    isMentor = offlineAdminsByUserId.TryGetValue(mentorUserId, out var adminData) &&
+                        HasAdminFlag(adminData, adminRanksById, AdminFlags.Mentor);
                 }
 
                 if (!isMentor)
@@ -514,6 +523,29 @@ namespace Content.Server._Sunrise.MentorHelp
                 MonthStatistics = ConvertStatistics(monthStatistics, mentorNames),
                 AllTimeStatistics = ConvertStatistics(allTimeStatistics, mentorNames)
             };
+        }
+
+        private static bool HasAdminFlag(Admin admin, Dictionary<int, AdminRank> adminRanksById, AdminFlags flag)
+        {
+            if (admin.Suspended || admin.Deadminned)
+                return false;
+
+            var flags = AdminFlags.None;
+
+            if (admin.AdminRankId != null &&
+                adminRanksById.TryGetValue(admin.AdminRankId.Value, out var adminRank))
+                flags = AdminFlagsHelper.NamesToFlags(adminRank.Flags.Select(rankFlag => rankFlag.Flag));
+
+            foreach (var dbFlag in admin.Flags)
+            {
+                var adminFlag = AdminFlagsHelper.NameToFlag(dbFlag.Flag);
+                if (dbFlag.Negative)
+                    flags &= ~adminFlag;
+                else
+                    flags |= adminFlag;
+            }
+
+            return flags.HasFlag(flag);
         }
 
         private static List<MentorHelpStatisticsData> ConvertStatistics(List<MentorHelpStatistics> statistics, Dictionary<Guid, string> mentorNames)
@@ -682,46 +714,30 @@ namespace Content.Server._Sunrise.MentorHelp
             var senderData = await _dbManager.GetPlayerRecordByUserId(senderUserId);
             var username = "";
             if (senderData != null)
-            {
                 username = senderData.LastSeenUserName;
-            }
 
             string formatterSender;
             var adminPrefix = "";
 
             if (_config.GetCVar(SunriseCCVars.MentorHelpAdminPrefix) && senderAdminData is not null && senderAdminData.Value.dat.Title is not null)
-            {
                 adminPrefix = $"[bold]\\[{senderAdminData.Value.dat.Title}\\][/bold] ";
-            }
 
-            if (senderAdminData is not null &&
-                senderAdminData.Value.dat.Flags ==
-                AdminFlags.Mentor)
-            {
+            if (senderAdminData is not null && senderAdminData.Value.dat.HasFlag(AdminFlags.Mentor) && senderAdminData.Value.dat.Flags == AdminFlags.Mentor)
                 formatterSender = $"[color=purple]{adminPrefix}{username}[/color]";
-            }
-            else if (senderAdminData is not null && senderAdminData.Value.dat.Flags.HasFlag(AdminFlags.Mentor))
-            {
+            else if (senderAdminData is not null && senderAdminData.Value.dat.HasFlag(AdminFlags.Mentor))
                 formatterSender = $"[color=red]{adminPrefix}{username}[/color]";
-            }
             else if (_sponsorsManager != null)
             {
                 _sponsorsManager.TryGetOocColor(senderUserId, out var oocColor);
                 _sponsorsManager.TryGetOocTitle(senderUserId, out var oocTitle);
                 var sponsorTitle = oocTitle is null ? "" : $"\\[{oocTitle}\\]";
                 if (oocColor != null)
-                {
                     formatterSender = $"[color={oocColor.Value.ToHex()}]{sponsorTitle} {username}[/color]";
-                }
                 else
-                {
                     formatterSender = $"{sponsorTitle} {username}";
-                }
             }
             else
-            {
                 formatterSender = $"{username}";
-            }
 
             return new MentorHelpMessageData
             {

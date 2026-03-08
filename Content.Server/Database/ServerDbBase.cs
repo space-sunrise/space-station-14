@@ -1880,7 +1880,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
             var ticketsQuery = db.DbContext.MentorHelpTickets
                 .AsNoTracking()
-                .Where(t => t.ClosedByUserId != null && t.ClosedAt != null);
+                .Where(t => t.Status == MentorHelpTicketStatus.Closed && t.AssignedToUserId != null && t.ClosedAt != null);
 
             var messagesQuery = db.DbContext.MentorHelpMessages
                 .AsNoTracking()
@@ -1903,7 +1903,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             }
 
             var ticketsData = await ticketsQuery
-                .Select(t => new { t.ClosedByUserId, t.ClosedAt })
+                .Select(t => new { t.AssignedToUserId, t.ClosedAt })
                 .ToListAsync();
 
             var messagesData = await messagesQuery
@@ -1917,7 +1917,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             }
 
             var tickets = ticketsData
-                .GroupBy(t => t.ClosedByUserId!.Value)
+                .GroupBy(t => t.AssignedToUserId!.Value)
                 .Select(g => new { MentorUserId = g.Key, TicketsClosed = g.Count() })
                 .ToList();
 
