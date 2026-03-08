@@ -75,7 +75,7 @@ public sealed partial class DynamicAppearanceWindow
 
     private void ApplyPreviewRotation()
     {
-        SpriteView.OverrideDirection = (Direction) ((int) _previewRotation % 4 * 2);
+        SpriteView.OverrideDirection = (Direction)((int)_previewRotation % 4 * 2);
     }
 
     // ═══════════ Dummy lifecycle ═══════════

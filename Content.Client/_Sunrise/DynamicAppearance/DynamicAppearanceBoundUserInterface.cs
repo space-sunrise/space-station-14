@@ -9,6 +9,7 @@ public sealed class DynamicAppearanceBoundUserInterface : BoundUserInterface
     private DynamicAppearanceWindow? _window;
 
     private DynamicAppearanceBUIState? _lastState;
+    private DynamicAppearancePermissionsMessage? _lastPermissions;
 
     public DynamicAppearanceBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -34,9 +35,17 @@ public sealed class DynamicAppearanceBoundUserInterface : BoundUserInterface
                 _window?.UpdateState(_lastState);
         };
 
+        _window.OnAdminOverrideChanged += enabled =>
+        {
+            SendMessage(new DynamicAppearanceSetAdminOverrideMessage(enabled));
+        };
+
         // If the server already pushed a state before Open(), apply it now.
         if (_lastState != null)
             _window.UpdateState(_lastState);
+
+        if (_lastPermissions != null)
+            _window.UpdatePermissions(_lastPermissions);
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -48,5 +57,16 @@ public sealed class DynamicAppearanceBoundUserInterface : BoundUserInterface
 
         _lastState = data;
         _window?.UpdateState(data);
+    }
+
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    {
+        base.ReceiveMessage(message);
+
+        if (message is not DynamicAppearancePermissionsMessage permissions)
+            return;
+
+        _lastPermissions = permissions;
+        _window?.UpdatePermissions(permissions);
     }
 }

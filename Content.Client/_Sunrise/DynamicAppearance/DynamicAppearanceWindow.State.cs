@@ -20,7 +20,7 @@ public sealed partial class DynamicAppearanceWindow
     public void UpdateState(DynamicAppearanceBUIState buiState)
     {
         _draftState = buiState.State;
-        _allowedFields = buiState.AllowedFields;
+        _baseAllowedFields = buiState.AllowedFields;
         _speciesProto = _protoMan.TryIndex<SpeciesPrototype>(_draftState.Species, out var sp) ? sp : null;
 
         // Resolve the entity for preview
@@ -31,6 +31,7 @@ public sealed partial class DynamicAppearanceWindow
         RefreshAllowedFields();
 
         RefreshName();
+        RefreshSpecies();
         RefreshAge();
         RefreshSex();
         RefreshPronouns();
@@ -43,6 +44,16 @@ public sealed partial class DynamicAppearanceWindow
         RefreshPreview();
     }
 
+    public void UpdatePermissions(DynamicAppearancePermissionsMessage permissions)
+    {
+        _canOverrideRestrictions = permissions.CanOverrideRestrictions;
+        _overrideRestrictions = permissions.OverrideRestrictions;
+
+        RefreshAdminOverride();
+        RefreshAllowedFields();
+        RefreshSpecies();
+    }
+
     // ═══════════ Allowed-fields visibility ═══════════
 
     /// <summary>
@@ -50,13 +61,18 @@ public sealed partial class DynamicAppearanceWindow
     /// </summary>
     private void RefreshAllowedFields()
     {
-        NameSection.Visible = _allowedFields.HasFlag(DynamicAppearanceFields.Name);
-        SexSection.Visible = _allowedFields.HasFlag(DynamicAppearanceFields.Sex);
-        PronounsSection.Visible = _allowedFields.HasFlag(DynamicAppearanceFields.Pronouns);
-        SkinColorSection.Visible = _allowedFields.HasFlag(DynamicAppearanceFields.SkinColor);
-        EyeColorSection.Visible = _allowedFields.HasFlag(DynamicAppearanceFields.EyeColor);
-        HairSection.Visible = _allowedFields.HasFlag(DynamicAppearanceFields.Hair);
-        MarkingsSection.Visible = _allowedFields.HasFlag(DynamicAppearanceFields.Markings);
+        var allowedFields = GetEffectiveAllowedFields();
+
+        NameSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.Name);
+        SpeciesSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.Species);
+        AgeSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.Age);
+        SexSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.Sex);
+        PronounsSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.Pronouns);
+        SizeSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.Size);
+        SkinColorSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.SkinColor);
+        EyeColorSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.EyeColor);
+        HairSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.Hair);
+        MarkingsSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.Markings);
     }
 
     // ═══════════ Individual refresh methods ═══════════
@@ -64,6 +80,48 @@ public sealed partial class DynamicAppearanceWindow
     private void RefreshName()
     {
         NameEdit.Text = _draftState.Name;
+    }
+
+    private void RefreshSpecies()
+    {
+        SpeciesButton.Clear();
+        _speciesValues.Clear();
+
+        var availableSpecies = _protoMan.EnumeratePrototypes<SpeciesPrototype>()
+            .Where(species => species.RoundStart)
+            .ToList();
+
+        if (!string.IsNullOrEmpty(_draftState.Species)
+            && _protoMan.TryIndex<SpeciesPrototype>(_draftState.Species, out var currentSpecies)
+            && availableSpecies.All(species => species.ID != currentSpecies.ID))
+        {
+            availableSpecies.Add(currentSpecies);
+        }
+
+        availableSpecies.Sort((a, b) =>
+            string.Compare(Loc.GetString(a.Name), Loc.GetString(b.Name), StringComparison.CurrentCultureIgnoreCase));
+
+        var sponsorSpecies = _sponsorsMgr?.GetClientPrototypes().ToHashSet() ?? new HashSet<string>();
+
+        for (var i = 0; i < availableSpecies.Count; i++)
+        {
+            var species = availableSpecies[i];
+            var name = Loc.GetString(species.Name);
+
+            SpeciesButton.AddItem(name, i);
+            _speciesValues.Add(species);
+
+            if (species.SponsorOnly
+                && !_overrideRestrictions
+                && !sponsorSpecies.Contains(species.ID))
+            {
+                SpeciesButton.SetItemDisabled(SpeciesButton.GetIdx(i), true);
+                SpeciesButton.SetItemText(SpeciesButton.GetIdx(i), Loc.GetString("sponsor-marking", ("name", name)));
+            }
+
+            if (_draftState.Species == species.ID)
+                SpeciesButton.SelectId(i);
+        }
     }
 
     private void RefreshAge()
@@ -169,9 +227,9 @@ public sealed partial class DynamicAppearanceWindow
     private void UpdateSizeLabels()
     {
         HeightLabel.Text = Loc.GetString("dynamic-appearance-height-label",
-            ("value", (int) Math.Round(HeightSlider.Value * 100f)));
+            ("value", (int)Math.Round(HeightSlider.Value * 100f)));
         WidthLabel.Text = Loc.GetString("dynamic-appearance-width-label",
-            ("value", (int) Math.Round(WidthSlider.Value * 100f)));
+            ("value", (int)Math.Round(WidthSlider.Value * 100f)));
     }
 
     private void RefreshSkinColor()
@@ -232,5 +290,53 @@ public sealed partial class DynamicAppearanceWindow
             _draftState.Sex,
             _draftState.SkinColor,
             _draftState.EyeColor);
+    }
+
+    private void RefreshAdminOverride()
+    {
+        _updatingAdminOverrideButton = true;
+        AdminOverrideButton.Visible = _canOverrideRestrictions;
+        AdminOverrideButton.Pressed = _overrideRestrictions;
+        _updatingAdminOverrideButton = false;
+    }
+
+    private DynamicAppearanceFields GetEffectiveAllowedFields()
+    {
+        return _overrideRestrictions ? DynamicAppearanceFields.All : _baseAllowedFields;
+    }
+
+    private void ApplySpeciesChange(string newSpecies)
+    {
+        if (!_protoMan.TryIndex<SpeciesPrototype>(newSpecies, out var speciesProto))
+            return;
+
+        _draftState.Species = newSpecies;
+        _speciesProto = speciesProto;
+
+        var strategy = _protoMan.Index(speciesProto.SkinColoration).Strategy;
+        _draftState.SkinColor = strategy.EnsureVerified(_draftState.SkinColor);
+
+        if (!speciesProto.Sexes.Contains(_draftState.Sex))
+            _draftState.Sex = speciesProto.Sexes[0];
+
+        _draftState.Age = Math.Clamp(_draftState.Age, speciesProto.MinAge, speciesProto.MaxAge);
+        _draftState.Width = speciesProto.DefaultWidth;
+        _draftState.Height = speciesProto.DefaultHeight;
+
+        var markings = new MarkingSet(_draftState.MarkingSet);
+        markings.EnsureSpecies(newSpecies, _draftState.SkinColor, _markingManager, _protoMan);
+
+        var rebuiltMarkings = new MarkingSet(markings.GetForwardEnumerator().ToList(), speciesProto.MarkingPoints, _markingManager, _protoMan);
+        rebuiltMarkings.EnsureSexes(_draftState.Sex, _markingManager);
+        _draftState.MarkingSet = rebuiltMarkings;
+
+        RefreshAge();
+        RefreshSex();
+        RefreshVoice();
+        RefreshSizeSliders();
+        RefreshSkinColor();
+        RefreshHairPickers();
+        RefreshBodyMarkings();
+        RefreshPreview();
     }
 }

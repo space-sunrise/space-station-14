@@ -18,18 +18,21 @@ public enum DynamicAppearanceUiKey
 /// </summary>
 [Flags]
 [Serializable, NetSerializable]
-public enum DynamicAppearanceFields
+public enum DynamicAppearanceFields : uint
 {
-    None     = 0,
-    Name     = 1 << 0,
-    Sex      = 1 << 1,
-    Pronouns = 1 << 2,
-    SkinColor = 1 << 3,
-    EyeColor = 1 << 4,
-    Hair     = 1 << 5,
-    Markings = 1 << 6,
+    None = 0,
+    Name = 1 << 0,
+    Age = 1 << 1,
+    Size = 1 << 2,
+    Sex = 1 << 3,
+    Pronouns = 1 << 4,
+    SkinColor = 1 << 5,
+    EyeColor = 1 << 6,
+    Hair = 1 << 7,
+    Markings = 1 << 8,
+    Species = 1 << 9,
 
-    All = Name | Sex | Pronouns | SkinColor | EyeColor | Hair | Markings,
+    All = Name | Age | Size | Sex | Pronouns | SkinColor | EyeColor | Hair | Markings | Species,
 }
 
 /// <summary>
@@ -63,6 +66,36 @@ public sealed class DynamicAppearanceSaveMessage : BoundUserInterfaceMessage
     public DynamicAppearanceSaveMessage(DynamicAppearanceState state)
     {
         State = state;
+    }
+}
+
+/// <summary>
+/// Client → Server: toggles the admin-only restriction override for the current editor session.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class DynamicAppearanceSetAdminOverrideMessage : BoundUserInterfaceMessage
+{
+    public bool Enabled { get; }
+
+    public DynamicAppearanceSetAdminOverrideMessage(bool enabled)
+    {
+        Enabled = enabled;
+    }
+}
+
+/// <summary>
+/// Server → Client: actor-specific permission overlay for the appearance editor.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class DynamicAppearancePermissionsMessage : BoundUserInterfaceMessage
+{
+    public bool CanOverrideRestrictions { get; }
+    public bool OverrideRestrictions { get; }
+
+    public DynamicAppearancePermissionsMessage(bool canOverrideRestrictions, bool overrideRestrictions)
+    {
+        CanOverrideRestrictions = canOverrideRestrictions;
+        OverrideRestrictions = overrideRestrictions;
     }
 }
 

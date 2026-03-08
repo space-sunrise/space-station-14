@@ -17,6 +17,14 @@ public sealed partial class DynamicAppearanceWindow
     {
         SaveButton.OnPressed += _ => OnSave?.Invoke();
         ResetButton.OnPressed += _ => OnReset?.Invoke();
+
+        AdminOverrideButton.OnToggled += args =>
+        {
+            if (_updatingAdminOverrideButton)
+                return;
+
+            OnAdminOverrideChanged?.Invoke(args.Pressed);
+        };
     }
 
     // ═══════════ Name ═══════════
@@ -43,6 +51,12 @@ public sealed partial class DynamicAppearanceWindow
 
     private void InitSexHandlers()
     {
+        SpeciesButton.OnItemSelected += args =>
+        {
+            SpeciesButton.SelectId(args.Id);
+            ApplySpeciesChange(_speciesValues[args.Id].ID);
+        };
+
         SexButton.OnItemSelected += args =>
         {
             _draftState.Sex = _sexValues[args.Id];

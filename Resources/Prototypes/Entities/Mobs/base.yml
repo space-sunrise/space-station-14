@@ -43,6 +43,8 @@
   - type: TTS
   - type: DamageOverlay
   - type: EmoteAnimation
+  - type: DynamicAppearance
+    allowedFields: None
   - type: CustomLimbVisualizer
     displacements:
       LHand:

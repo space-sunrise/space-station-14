@@ -37,6 +37,9 @@ public sealed partial class DynamicAppearanceWindow : DefaultWindow
     /// <summary>Fired when the user presses Reset.</summary>
     public event Action? OnReset;
 
+    /// <summary>Fired when an admin toggles restriction override.</summary>
+    public event Action<bool>? OnAdminOverrideChanged;
+
     // ═══════════ Dependencies ═══════════
 
     private readonly IEntityManager _entManager;
@@ -78,6 +81,7 @@ public sealed partial class DynamicAppearanceWindow : DefaultWindow
 
     // ═══════════ OptionButton backing lists ═══════════
 
+    private readonly List<SpeciesPrototype> _speciesValues = new();
     private readonly List<Sex> _sexValues = new();
     private readonly List<Gender> _genderValues = new();
     private List<TTSVoicePrototype> _filteredVoices = new();
@@ -85,7 +89,10 @@ public sealed partial class DynamicAppearanceWindow : DefaultWindow
 
     // ═══════════ Allowed fields (whitelist from server) ═══════════
 
-    private DynamicAppearanceFields _allowedFields = DynamicAppearanceFields.All;
+    private DynamicAppearanceFields _baseAllowedFields = DynamicAppearanceFields.All;
+    private bool _canOverrideRestrictions;
+    private bool _overrideRestrictions;
+    private bool _updatingAdminOverrideButton;
 
     // ═══════════ Sponsor data (for client-side marking filter) ═══════════
 
