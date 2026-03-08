@@ -1,7 +1,6 @@
 # Gloves with fake weapon visuals for NPCs
 - type: entity
   abstract: true
-  parent: BaseItem
   id: ClothingHandsBaseNPC
   components:
   - type: Clothing

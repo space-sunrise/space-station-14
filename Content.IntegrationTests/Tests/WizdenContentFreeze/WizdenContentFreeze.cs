@@ -15,6 +15,7 @@ public sealed class WizdenContentFreeze
     ///
     /// https://github.com/space-wizards/space-station-14/issues/8524
     /// </summary>
+    [Ignore("We are not Wizden")] // Sunrise-edit
     [Test]
     public async Task MicrowaveRecipesFreezeTest()
     {

@@ -221,6 +221,8 @@
       - GasAnalyzer
       - HandLabeler
       - TrashOnSolutionEmpty
+      - Lube
+      - Glue
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector

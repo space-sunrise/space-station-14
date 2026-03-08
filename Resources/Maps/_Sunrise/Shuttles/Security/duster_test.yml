@@ -1064,8 +1064,7 @@ entities:
       pos: 2.5,5.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 2
   - uid: 108
@@ -1075,8 +1074,7 @@ entities:
       pos: 0.5,9.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 2
   - uid: 109
@@ -1086,8 +1084,7 @@ entities:
       pos: -1.5,5.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 2
 - proto: FirelockGlass

@@ -60,6 +60,7 @@
   - type: Storage
     grid:
     - 0,0,1,1
+    maxItemSize: Normal
   - type: Item
     size: Normal
   - type: AccessReader

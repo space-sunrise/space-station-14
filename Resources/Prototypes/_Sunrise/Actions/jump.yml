@@ -1,8 +1,8 @@
 - type: entity
   id: Jump
   categories: [ HideSpawnMenu ]
-  name: jump-action-name
-  description: jump-action-description
+  name: Jump
+  description: Lets you perform a powerful jump in the selected direction.
   components:
   - type: Action
     useDelay: 20

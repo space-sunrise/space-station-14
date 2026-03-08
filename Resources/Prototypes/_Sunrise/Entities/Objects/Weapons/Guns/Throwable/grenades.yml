@@ -18,6 +18,9 @@
   - type: ProjectileGrenade
     fillPrototype: PelletClusterLessLethal
     capacity: 30
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
   - type: ExplodeOnTrigger
     keysIn:
     - timer

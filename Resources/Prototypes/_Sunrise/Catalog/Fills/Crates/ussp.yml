@@ -55,7 +55,7 @@
         layer:
         - MachineLayer
   - type: StaticPrice
-    price: 50
+    price: 75
 
 - type: entity
   parent: CrateAmmunitionSmall
@@ -114,7 +114,7 @@
         - id: MagazineDragunovUranium
 
 - type: entity
-  parent: BaseStructureDynamic
+  parent: [ BaseStructureDynamic, BasePaperLabelable ]
   id: CrateShelfMosin
   name: old wooden crate
   description: A large wooden crate designed for storing ancient rifles.
@@ -188,6 +188,7 @@
     containers:
       paper_label: !type:ContainerSlot
       storagebase: !type:Container {}
+      entity_storage: !type:Container {}
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Wood

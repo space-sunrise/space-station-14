@@ -318,6 +318,8 @@
   - type: Lubed
     slipStrength: 3
     slipsLeft: 3
+  - type: NameModifier
+    baseName: Kardashev-Mosin
   - type: Tag
     tags:
       - WrappedWeapon

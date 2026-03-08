@@ -14,13 +14,15 @@
           tags:
           - Knife
           - Sidearm
+  - type: ContainerContainer
+    containers:
+      item: !type:ContainerSlot
 
 - type: entity
   parent: BunnyShoes
   id: BunnyShoesFilled
   suffix: Bunny, Filled
   components:
-  - type: EntityTableContainerFill
   - type: ContainerFill
     containers:
       item:

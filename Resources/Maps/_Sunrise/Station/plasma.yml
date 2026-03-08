@@ -179199,8 +179199,7 @@ entities:
       pos: -74.5,-0.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 2378
 - proto: WeaponFlareGunSecurity

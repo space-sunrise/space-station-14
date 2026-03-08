@@ -2559,8 +2559,7 @@ entities:
       pos: -6.5,-0.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 832
   - uid: 719
@@ -2570,8 +2569,7 @@ entities:
       pos: -5.5,-0.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 832
 - proto: FirelockGlass
@@ -2589,8 +2587,7 @@ entities:
       pos: -8.5,2.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
 - proto: FuelDispenser
   entities:
   - uid: 185

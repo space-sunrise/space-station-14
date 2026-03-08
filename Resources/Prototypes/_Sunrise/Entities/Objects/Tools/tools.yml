@@ -151,6 +151,8 @@
   - type: Tool
     qualities:
       - Anchoring
+    useSound:
+      path: /Audio/Items/ratchet.ogg
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:

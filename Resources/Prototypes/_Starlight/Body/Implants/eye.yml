@@ -23,6 +23,7 @@
   - type: FunctionalOrgan
     comps:
     - type: EyeProtection
+    - type: FlashImmunity
 
 # needs arguments system
 #- type: entity
