@@ -41,7 +41,7 @@
 
                     <!-- ── Sex + TTS voice ── (grouped because voice picker re-filters on sex change) -->
                     <BoxContainer Name="SexSection" Orientation="Vertical" HorizontalExpand="True">
-                        <BoxContainer HorizontalExpand="True" Margin="4 2">
+                        <BoxContainer Name="SexRow" HorizontalExpand="True" Margin="4 2">
                             <Label Text="{Loc 'dynamic-appearance-sex-label'}" />
                             <Control HorizontalExpand="True" />
                             <OptionButton Name="SexButton" HorizontalAlignment="Right" />

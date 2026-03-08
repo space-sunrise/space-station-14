@@ -7,7 +7,7 @@
   # SUNRISE EDIT
   - type: Interactions
   - type: DynamicAppearance
-    allowedFields: Age, Size, Sex, Pronouns, SkinColor, EyeColor, Hair, Markings
+    allowedFields: Age, Size, Sex, Pronouns, SkinColor, EyeColor, Hair, Markings, Voice
   # SUNRISE EDIT
   - type: Hunger
   - type: Thirst

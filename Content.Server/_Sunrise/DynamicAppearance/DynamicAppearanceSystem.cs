@@ -294,24 +294,31 @@ public sealed class DynamicAppearanceSystem : EntitySystem
         newSet.EnsureSexes(humanoid.Sex);
         humanoid.MarkingSet = newSet;
 
-        // ── Sex ──
-        if (allowed.HasFlag(DynamicAppearanceFields.Sex) || speciesChanged)
+        // ── Voice ──
+        var targetVoice = humanoid.Voice;
+        // Если поле разрешено для изменения и клиент указал верный голос (с проверкой на новый пол), то применяем его.
+        if (
+            allowed.HasFlag(DynamicAppearanceFields.Voice)
+            && !string.IsNullOrEmpty(state.Voice)
+            && TryGetValidVoice(state.Voice, targetSex, sponsorProtos, ignoreRestrictions, out var voiceId)
+        )
         {
-            // TTS voice is gated behind Sex: the voice picker re-filters on each sex change.
-            var targetVoice = humanoid.Voice;
-            if (!string.IsNullOrEmpty(state.Voice)
-                && TryGetValidVoice(state.Voice, targetSex, sponsorProtos, ignoreRestrictions, out var voiceId))
-            {
-                targetVoice = voiceId;
-            }
-            else if (sexChanged || speciesChanged)
-            {
-                targetVoice = SharedHumanoidAppearanceSystem.DefaultSexVoice[targetSex];
-            }
-
-            if (!string.IsNullOrEmpty(targetVoice) && targetVoice != humanoid.Voice)
-                _humanoid.SetTTSVoice(ent, targetVoice, humanoid);
+            targetVoice = voiceId;
         }
+        // Иначе проверяем изменился ли пол, и если да, то подходит ли текущий голос под новый пол. Если нет, то ставим дефолтный голос для нового пола.
+        else if (
+            sexChanged
+            && !(
+                _prototypeManager.TryIndex<TTSVoicePrototype>(targetVoice, out var voiceProto)
+                && ValidateVoiceSex(voiceProto, targetSex)
+            )
+        )
+        {
+            targetVoice = SharedHumanoidAppearanceSystem.DefaultSexVoice[targetSex];
+        }
+
+        if (!string.IsNullOrEmpty(targetVoice) && targetVoice != humanoid.Voice)
+            _humanoid.SetTTSVoice(ent, targetVoice, humanoid);
 
         // ── Skin color ──
         if (allowed.HasFlag(DynamicAppearanceFields.SkinColor))
@@ -484,6 +491,11 @@ public sealed class DynamicAppearanceSystem : EntitySystem
         if (voiceProto.SponsorOnly && (sponsorProtos == null || !sponsorProtos.Contains(requestedVoice)))
             return false;
 
+        return ValidateVoiceSex(voiceProto, sex);
+    }
+
+    private bool ValidateVoiceSex(TTSVoicePrototype voiceProto, Sex sex)
+    {
         return sex == Sex.Unsexed
             || voiceProto.Sex == sex
             || voiceProto.Sex == Sex.Unsexed;

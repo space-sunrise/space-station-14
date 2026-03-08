@@ -52,6 +52,7 @@ public sealed partial class DynamicAppearanceWindow
         RefreshAdminOverride();
         RefreshAllowedFields();
         RefreshSpecies();
+        RefreshVoice();
     }
 
     // ═══════════ Allowed-fields visibility ═══════════
@@ -62,11 +63,15 @@ public sealed partial class DynamicAppearanceWindow
     private void RefreshAllowedFields()
     {
         var allowedFields = GetEffectiveAllowedFields();
+        var sexAllowed = allowedFields.HasFlag(DynamicAppearanceFields.Sex);
+        var voiceAllowed = _ttsEnabled && allowedFields.HasFlag(DynamicAppearanceFields.Voice);
 
         NameSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.Name);
         SpeciesSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.Species);
         AgeSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.Age);
-        SexSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.Sex);
+        SexSection.Visible = sexAllowed || voiceAllowed;
+        SexRow.Visible = sexAllowed;
+        TTSContainer.Visible = voiceAllowed;
         PronounsSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.Pronouns);
         SizeSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.Size);
         SkinColorSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.SkinColor);
@@ -171,8 +176,17 @@ public sealed partial class DynamicAppearanceWindow
 
     private void RefreshVoice()
     {
-        if (_ttsEnabled)
-            RebuildVoiceList();
+        if (!_ttsEnabled)
+            return;
+
+        if (!GetEffectiveAllowedFields().HasFlag(DynamicAppearanceFields.Voice))
+        {
+            _filteredVoices.Clear();
+            VoiceButton.Clear();
+            return;
+        }
+
+        RebuildVoiceList();
     }
 
     private void RebuildVoiceList()
@@ -182,21 +196,25 @@ public sealed partial class DynamicAppearanceWindow
         var clientSponsorProtos = _sponsorsMgr?.GetClientPrototypes()?.ToHashSet()
                                   ?? new HashSet<string>();
         // Sunrise-Sponsors-End
+        var ignoreRestrictions = _overrideRestrictions;
 
-        _filteredVoices = _protoMan.EnumeratePrototypes<TTSVoicePrototype>()
-            .Where(v => v.RoundStart
+        var voiceEntries = _protoMan.EnumeratePrototypes<TTSVoicePrototype>()
+            .Where(v => (ignoreRestrictions || v.RoundStart)
                         && HumanoidCharacterProfile.CanHaveVoice(v, _draftState.Sex)
-                        && (!v.SponsorOnly || clientSponsorProtos.Contains(v.ID))) // Sunrise-Sponsors
-            .OrderBy(v => v.Name)
+                        && (ignoreRestrictions || !v.SponsorOnly || clientSponsorProtos.Contains(v.ID))) // Sunrise-Sponsors
+            .Select(v => (Voice: v, DisplayName: Loc.GetString(v.Name)))
+            .OrderBy(v => v.DisplayName, StringComparer.CurrentCultureIgnoreCase)
             .ToList();
+
+        _filteredVoices = voiceEntries.Select(v => v.Voice).ToList();
 
         VoiceButton.Clear();
         var selectIdx = 0;
 
-        for (var i = 0; i < _filteredVoices.Count; i++)
+        for (var i = 0; i < voiceEntries.Count; i++)
         {
-            var voice = _filteredVoices[i];
-            VoiceButton.AddItem(voice.Name, i);
+            var voice = voiceEntries[i].Voice;
+            VoiceButton.AddItem(voiceEntries[i].DisplayName, i);
 
             if (voice.ID == _draftState.Voice)
                 selectIdx = i;

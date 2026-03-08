@@ -1,3 +1,5 @@
+using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Markings;
 using Content.Shared.DoAfter;
 using Robust.Shared.Serialization;
 
@@ -13,5 +15,20 @@ public sealed partial class DynamicAppearanceSaveDoAfterEvent : DoAfterEvent
         State = state;
     }
 
-    public override DoAfterEvent Clone() => this;
+    public override DoAfterEvent Clone()
+    {
+        return new DynamicAppearanceSaveDoAfterEvent(new DynamicAppearanceState(
+            new MarkingSet(State.MarkingSet),
+            State.Species,
+            State.Sex,
+            State.Age,
+            State.Gender,
+            State.Voice,
+            State.SkinColor,
+            State.EyeColor,
+            new Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo>(State.CustomBaseLayers),
+            State.Width,
+            State.Height,
+            State.Name));
+    }
 }

@@ -31,8 +31,9 @@ public enum DynamicAppearanceFields : uint
     Hair = 1 << 7,
     Markings = 1 << 8,
     Species = 1 << 9,
+    Voice = 1 << 10,
 
-    All = Name | Age | Size | Sex | Pronouns | SkinColor | EyeColor | Hair | Markings | Species,
+    All = Name | Age | Size | Sex | Pronouns | SkinColor | EyeColor | Hair | Markings | Species | Voice,
 }
 
 /// <summary>
