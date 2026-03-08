@@ -41,7 +41,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = bountyName,
             Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Misc/id_cards.rsi"), "centcom"),
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Interface/Misc/job_icons.rsi"), "Syndicate"),
             Act = () =>
             {
                 AssignTraitorBounty(args.Target);
