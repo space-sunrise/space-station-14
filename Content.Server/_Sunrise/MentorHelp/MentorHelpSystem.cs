@@ -17,6 +17,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.MentorHelp
 {
@@ -46,6 +47,7 @@ namespace Content.Server._Sunrise.MentorHelp
 
         private MentorStatisticsCache? _mentorStatsCache;
         private DateTimeOffset? _mentorStatsCacheTime;
+        private uint _mentorStatsCacheVersion;
         private readonly float _mentorCacheInterval = 10;
 
         public override void Initialize()
@@ -457,6 +459,7 @@ namespace Content.Server._Sunrise.MentorHelp
         }
         private void InvalidateStatisticsCache() // Чистка кеша
         {
+            _mentorStatsCacheVersion++;
             _mentorStatsCache = null;
             _mentorStatsCacheTime = null;
         }
@@ -598,8 +601,19 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 if (!cacheValid)
                 {
-                    _mentorStatsCache = await BuildStatisticsCacheAsync(now);
-                    _mentorStatsCacheTime = now;
+                    while (true)
+                    {
+                        var cacheVersion = _mentorStatsCacheVersion;
+                        now = DateTimeOffset.UtcNow;
+                        var cache = await BuildStatisticsCacheAsync(now);
+
+                        if (cacheVersion != _mentorStatsCacheVersion)
+                            continue;
+
+                        _mentorStatsCache = cache;
+                        _mentorStatsCacheTime = now;
+                        break;
+                    }
                 }
 
                 RaiseNetworkEvent(new MentorHelpStatisticsMessage(
@@ -737,29 +751,32 @@ namespace Content.Server._Sunrise.MentorHelp
 
             string formatterSender;
             var adminPrefix = "";
+            var escapedUsername = FormattedMessage.EscapeText(username);
 
             if (_config.GetCVar(SunriseCCVars.MentorHelpAdminPrefix) && senderAdminData?.Title is not null)
-                adminPrefix = $"[bold]\\[{senderAdminData.Title}\\][/bold] ";
+                adminPrefix = $"[bold]\\[{FormattedMessage.EscapeText(senderAdminData.Title)}\\][/bold] ";
 
 
             if (senderAdminData != null && senderAdminData.HasFlag(AdminFlags.Mentor) && senderAdminData.Flags == AdminFlags.Mentor)
-                formatterSender = $"[color=purple]{adminPrefix}{username}[/color]";
+                formatterSender = $"[color=purple]{adminPrefix}{escapedUsername}[/color]";
 
             else if (senderAdminData != null && senderAdminData.HasFlag(AdminFlags.Mentor))
-                formatterSender = $"[color=red]{adminPrefix}{username}[/color]";
+                formatterSender = $"[color=red]{adminPrefix}{escapedUsername}[/color]";
 
             else if (_sponsorsManager != null)
             {
                 _sponsorsManager.TryGetOocColor(senderUserId, out var oocColor);
                 _sponsorsManager.TryGetOocTitle(senderUserId, out var oocTitle);
-                var sponsorTitle = oocTitle is null ? "" : $"\\[{oocTitle}\\]";
+
+                var sponsorTitle = oocTitle is null ? "" : $"\\[{FormattedMessage.EscapeText(oocTitle)}\\]";
                 if (oocColor != null)
-                    formatterSender = $"[color={oocColor.Value.ToHex()}]{sponsorTitle} {username}[/color]";
+                    formatterSender = $"[color={oocColor.Value.ToHex()}]{sponsorTitle} {escapedUsername}[/color]";
+
                 else
-                    formatterSender = $"{sponsorTitle} {username}";
+                    formatterSender = $"{sponsorTitle} {escapedUsername}";
             }
             else
-                formatterSender = username;
+                formatterSender = escapedUsername;
 
             return new MentorHelpMessageData
             {
