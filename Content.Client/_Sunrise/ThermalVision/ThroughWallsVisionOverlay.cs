@@ -56,8 +56,7 @@ public sealed class ThroughWallsVisionOverlay : Overlay
 
     protected override void Draw(in OverlayDrawArgs args)
     {
-        var spriteSystem = _entityManager.System<SpriteSystem>();
-        _spriteSystem = spriteSystem;
+        _spriteSystem = _entityManager.System<SpriteSystem>();
         _camoQuery = _entityManager.GetEntityQuery<XRayCamoComponent>();
 
         if (ScreenTexture == null)
