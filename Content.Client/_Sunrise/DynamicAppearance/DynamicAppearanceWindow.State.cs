@@ -203,8 +203,10 @@ public sealed partial class DynamicAppearanceWindow
                         && HumanoidCharacterProfile.CanHaveVoice(v, _draftState.Sex)
                         && (ignoreRestrictions || !v.SponsorOnly || clientSponsorProtos.Contains(v.ID))) // Sunrise-Sponsors
             .Select(v => (Voice: v, DisplayName: Loc.GetString(v.Name)))
-            .OrderBy(v => v.DisplayName, StringComparer.CurrentCultureIgnoreCase)
             .ToList();
+
+        voiceEntries.Sort((a, b) =>
+            string.Compare(a.DisplayName, b.DisplayName, StringComparison.CurrentCultureIgnoreCase));
 
         _filteredVoices = voiceEntries.Select(v => v.Voice).ToList();
 
