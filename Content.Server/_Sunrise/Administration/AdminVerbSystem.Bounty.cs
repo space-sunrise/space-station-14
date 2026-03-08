@@ -1,6 +1,7 @@
 using Content.Server.Antag;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking.Rules.Components;
+using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Database;
@@ -57,7 +58,7 @@ public sealed partial class AdminVerbSystem
         if (!_mindSystem.TryGetMind(target, out var targetMindId, out var targetMind))
             return;
 
-        var targetName = targetMind.CharacterName ?? "Unknown";
+        var targetName = targetMind.CharacterName ?? Name(target);
         var jobName = _jobSystem.MindTryGetJobName(targetMindId);
 
         var traitorCount = 0;
@@ -69,6 +70,10 @@ public sealed partial class AdminVerbSystem
             {
                 // Don't assign a kill objective targeting themselves
                 if (mind.Owner == targetMindId)
+                    continue;
+
+                // Skip if this traitor already has a kill objective on the same target
+                if (HasKillObjectiveOn(mind.Comp, targetMindId))
                     continue;
 
                 // Spawn the objective entity
@@ -99,5 +104,23 @@ public sealed partial class AdminVerbSystem
                 traitorCount++;
             }
         }
+    }
+
+    /// <summary>
+    /// Checks if the mind already has a KillPersonCondition objective targeting the given mind.
+    /// </summary>
+    private bool HasKillObjectiveOn(MindComponent mind, EntityUid targetMindId)
+    {
+        foreach (var objective in mind.Objectives)
+        {
+            if (TryComp<KillPersonConditionComponent>(objective, out _) &&
+                TryComp<TargetObjectiveComponent>(objective, out var targetObj) &&
+                targetObj.Target == targetMindId)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
