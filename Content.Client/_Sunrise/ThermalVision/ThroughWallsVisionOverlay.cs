@@ -13,6 +13,7 @@ public sealed class ThroughWallsVisionOverlay : Overlay
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+
     private SpriteSystem _spriteSystem = default!;
     private readonly ContainerSystem _containerSystem;
     private readonly TransformSystem _transform;
@@ -55,8 +56,7 @@ public sealed class ThroughWallsVisionOverlay : Overlay
 
     protected override void Draw(in OverlayDrawArgs args)
     {
-        if (_entityManager.SystemOrNull<SpriteSystem>() is not { } spriteSystem)
-            return;
+        var spriteSystem = _entityManager.System<SpriteSystem>();
         _spriteSystem = spriteSystem;
         _camoQuery = _entityManager.GetEntityQuery<XRayCamoComponent>();
 
