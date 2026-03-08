@@ -38,9 +38,4 @@
   id: WardenArmoredWinterCoat
   equipment:
     outerClothing: ClothingOuterWinterWarden
-# Sunrise_Start
-- type: loadout
-  id: ClothingOuterCoatWardenAlt
-  equipment:
-    outerClothing: ClothingOuterCoatWardenAlt
-# Sunrise_End
+
