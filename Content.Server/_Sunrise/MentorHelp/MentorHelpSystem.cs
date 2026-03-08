@@ -710,22 +710,44 @@ namespace Content.Server._Sunrise.MentorHelp
         private async Task<MentorHelpMessageData> ConvertToMessageDataAsync(MentorHelpMessage message)
         {
             var senderUserId = new NetUserId(message.SenderUserId);
-            var senderAdminData = await _adminManager.LoadAdminData(senderUserId);
-            var senderData = await _dbManager.GetPlayerRecordByUserId(senderUserId);
-            var username = "";
-            if (senderData != null)
-                username = senderData.LastSeenUserName;
+
+            AdminData? senderAdminData = null;
+            string? username = null;
+
+            if (_playerManager.TryGetSessionById(senderUserId, out var senderSession))
+            {
+                senderAdminData = _adminManager.GetAdminData(senderSession);
+                username = senderSession.Name;
+            }
+
+            else
+            {
+                var loadedAdminData = await _adminManager.LoadAdminData(senderUserId);
+                if (loadedAdminData is not null)
+                    senderAdminData = loadedAdminData.Value.dat;
+            }
+
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                var senderData = await _dbManager.GetPlayerRecordByUserId(senderUserId);
+                username = senderData?.LastSeenUserName;
+            }
+
+            username ??= "Unknown";
 
             string formatterSender;
             var adminPrefix = "";
 
-            if (_config.GetCVar(SunriseCCVars.MentorHelpAdminPrefix) && senderAdminData is not null && senderAdminData.Value.dat.Title is not null)
-                adminPrefix = $"[bold]\\[{senderAdminData.Value.dat.Title}\\][/bold] ";
+            if (_config.GetCVar(SunriseCCVars.MentorHelpAdminPrefix) && senderAdminData?.Title is not null)
+                adminPrefix = $"[bold]\\[{senderAdminData.Title}\\][/bold] ";
 
-            if (senderAdminData is not null && senderAdminData.Value.dat.HasFlag(AdminFlags.Mentor) && senderAdminData.Value.dat.Flags == AdminFlags.Mentor)
+
+            if (senderAdminData != null && senderAdminData.HasFlag(AdminFlags.Mentor) && senderAdminData.Flags == AdminFlags.Mentor)
                 formatterSender = $"[color=purple]{adminPrefix}{username}[/color]";
-            else if (senderAdminData is not null && senderAdminData.Value.dat.HasFlag(AdminFlags.Mentor))
+
+            else if (senderAdminData != null && senderAdminData.HasFlag(AdminFlags.Mentor))
                 formatterSender = $"[color=red]{adminPrefix}{username}[/color]";
+
             else if (_sponsorsManager != null)
             {
                 _sponsorsManager.TryGetOocColor(senderUserId, out var oocColor);
@@ -737,7 +759,7 @@ namespace Content.Server._Sunrise.MentorHelp
                     formatterSender = $"{sponsorTitle} {username}";
             }
             else
-                formatterSender = $"{username}";
+                formatterSender = username;
 
             return new MentorHelpMessageData
             {

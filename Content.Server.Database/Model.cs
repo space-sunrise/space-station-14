@@ -1367,7 +1367,7 @@ namespace Content.Server.Database
     /// Represents a mentor help ticket
     /// </summary>
     [Table("mentor_help_tickets"), Index(nameof(PlayerId)), Index(nameof(AssignedToUserId)), Index(nameof(Status)),
-        Index(nameof(ClosedAt), nameof(ClosedByUserId))]
+        Index(nameof(ClosedAt), nameof(AssignedToUserId))]
     public class MentorHelpTicket
     {
         [Key]

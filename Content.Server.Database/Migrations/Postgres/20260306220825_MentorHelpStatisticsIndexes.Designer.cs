@@ -24,8 +24,7 @@ namespace Content.Server.Database.Migrations.Postgres
 
             modelBuilder.Entity("Content.Server.Database.MentorHelpTicket", b =>
                 {
-                    b.HasIndex("ClosedAt", "ClosedByUserId")
-                        .HasDatabaseName("IX_mentor_help_tickets_closed_at_closed_by_user_id");
+                    b.HasIndex("ClosedAt", "AssignedToUserId").HasDatabaseName("IX_mentor_help_tickets_closed_at_assigned_to_user_id");
                 });
 
         }

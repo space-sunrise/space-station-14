@@ -9,9 +9,9 @@ namespace Content.Server.Database.Migrations.Postgres
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateIndex(
-                name: "IX_mentor_help_tickets_closed_at_closed_by_user_id",
+                name: "IX_mentor_help_tickets_closed_at_assigned_to_user_id",
                 table: "mentor_help_tickets",
-                columns: new[] { "closed_at", "closed_by_user_id" });
+                columns: new[] { "closed_at", "assigned_to_user_id" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_mentor_help_messages_sent_at_sender_user_id",
@@ -22,7 +22,7 @@ namespace Content.Server.Database.Migrations.Postgres
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropIndex(
-                name: "IX_mentor_help_tickets_closed_at_closed_by_user_id",
+                name: "IX_mentor_help_tickets_closed_at_assigned_to_user_id",
                 table: "mentor_help_tickets");
 
             migrationBuilder.DropIndex(

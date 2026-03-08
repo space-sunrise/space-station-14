@@ -59,12 +59,6 @@ namespace Content.Client._Sunrise.MentorHelp
         public event Action<string>? InputTextChanged;
         private static readonly Type[] TagsAllowed =
         [
-            typeof(BoldItalicTag),
-            typeof(BoldTag),
-            typeof(BulletTag),
-            typeof(ColorTag),
-            typeof(HeadingTag),
-            typeof(ItalicTag),
             typeof(EmojiTag)
         ];
 
@@ -528,7 +522,7 @@ namespace Content.Client._Sunrise.MentorHelp
                 {
                     HorizontalExpand = true
                 };
-                var parsedMessage = message.Message;
+                var parsedMessage = FormattedMessage.EscapeText(message.Message);
                 if (_entManager.TrySystem<ClientEmojiSystem>(out var emojiSystem))
                     parsedMessage = emojiSystem.ParseEmojis(parsedMessage);
 
