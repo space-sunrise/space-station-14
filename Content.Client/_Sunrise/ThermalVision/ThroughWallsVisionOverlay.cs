@@ -21,7 +21,7 @@ public sealed class ThroughWallsVisionOverlay : Overlay
     public override bool RequestScreenTexture => true;
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
 
-    public readonly bool ApplyCamo;
+    private readonly bool ApplyCamo;
     private EntityQuery<XRayCamoComponent> _camoQuery = default!;
     public ThroughWallsVisionOverlay(bool applyCamo = false)
     {
