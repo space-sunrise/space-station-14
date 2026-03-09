@@ -363,6 +363,9 @@ public sealed class DynamicAppearanceSystem : EntitySystem
         newSet.EnsureValid(_markingManager);
         newSet.EnsureSpecies(humanoid.Species, targetSkinColor, _markingManager, _prototypeManager);
         newSet.EnsureSexes(targetSex, _markingManager);
+        if (speciesChanged)
+            newSet = ReapplyMarkingsForSpecies(newSet, speciesProto, humanoid.Species, targetSex, targetSkinColor, targetEyeColor);
+
         humanoid.MarkingSet = newSet;
 
         // ── Voice ──
@@ -930,6 +933,95 @@ public sealed class DynamicAppearanceSystem : EntitySystem
         return sex == Sex.Unsexed
             || voiceProto.Sex == sex
             || voiceProto.Sex == Sex.Unsexed;
+    }
+
+    private MarkingSet ReapplyMarkingsForSpecies(
+        MarkingSet source,
+        SpeciesPrototype speciesProto,
+        string species,
+        Sex sex,
+        Color skinColor,
+        Color eyeColor)
+    {
+        var rebuilt = new MarkingSet(speciesProto.MarkingPoints, _markingManager, _prototypeManager);
+        var forcedMarkings = new List<(Marking Source, MarkingPrototype Prototype)>();
+
+        foreach (var (_, markings) in source.Markings)
+        {
+            foreach (var marking in markings)
+            {
+                if (!_prototypeManager.TryIndex<MarkingPrototype>(marking.MarkingId, out var prototype))
+                    continue;
+
+                if (prototype.ForcedColoring)
+                {
+                    forcedMarkings.Add((marking, prototype));
+                    continue;
+                }
+
+                rebuilt.AddBack(prototype.MarkingCategory, RebuildMarking(marking, prototype, species, skinColor, eyeColor, rebuilt));
+            }
+        }
+
+        foreach (var (sourceMarking, prototype) in forcedMarkings)
+        {
+            rebuilt.AddBack(prototype.MarkingCategory, RebuildMarking(sourceMarking, prototype, species, skinColor, eyeColor, rebuilt, preserveColors: false));
+        }
+
+        rebuilt.EnsureValid(_markingManager);
+        rebuilt.EnsureSpecies(species, skinColor, _markingManager, _prototypeManager);
+        rebuilt.EnsureSexes(sex, _markingManager);
+        return rebuilt;
+    }
+
+    private Marking RebuildMarking(
+        Marking source,
+        MarkingPrototype prototype,
+        string species,
+        Color skinColor,
+        Color eyeColor,
+        MarkingSet rebuiltSet,
+        bool preserveColors = true)
+    {
+        var rebuilt = prototype.AsMarking();
+        rebuilt.Forced = source.Forced;
+        rebuilt.Visible = source.Visible;
+
+        var matchesSkin = _markingManager.MustMatchSkin(species, prototype.BodyPart, out _, _prototypeManager);
+        var colors = preserveColors
+            ? source.MarkingColors
+            : MarkingColoring.GetMarkingLayerColors(prototype, skinColor, eyeColor, rebuiltSet);
+
+        for (var i = 0; i < rebuilt.MarkingColors.Count && i < colors.Count; i++)
+        {
+            rebuilt.SetColor(i, NormalizeMarkingColor(colors[i], matchesSkin));
+        }
+
+        for (var i = 0; i < rebuilt.MarkingEffects.Count && i < source.MarkingEffects.Count; i++)
+        {
+            rebuilt.SetMarkingEffect(i, NormalizeMarkingEffect(source.MarkingEffects[i], matchesSkin));
+        }
+
+        return rebuilt;
+    }
+
+    private Color NormalizeMarkingColor(Color color, bool matchesSkin)
+    {
+        return matchesSkin ? color : color.WithAlpha(1f);
+    }
+
+    private MarkingEffect NormalizeMarkingEffect(MarkingEffect effect, bool matchesSkin)
+    {
+        var clone = effect.Clone();
+        if (matchesSkin)
+            return clone;
+
+        foreach (var (key, color) in clone.Colors.ToArray())
+        {
+            clone.Colors[key] = color.WithAlpha(1f);
+        }
+
+        return clone;
     }
 
     /// <summary>
