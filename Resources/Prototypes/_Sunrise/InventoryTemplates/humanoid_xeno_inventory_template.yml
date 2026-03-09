@@ -1,7 +1,6 @@
 - type: inventoryTemplate
   id: humanoidxeno
   slots:
-  # Sunrise-start
   - name: bra
     slotTexture: bra
     slotFlags: BRA
@@ -16,7 +15,6 @@
     uiWindowPos: 3,1
     strippingWindowPos: 2,2
     displayName: Pants
-  # Sunrise-end
   - name: jumpsuit
     slotTexture: uniform
     slotFlags: INNERCLOTHING

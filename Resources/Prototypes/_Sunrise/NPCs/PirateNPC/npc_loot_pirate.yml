@@ -23,16 +23,8 @@
     slots:
     - back
     sprite: Clothing/Back/Backpacks/merc.rsi
-    clothingVisuals:
-      back:
-      - state: equipped-BACKPACK
   - type: Item
     size: Huge
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
 
 - type: entity
   parent: MercenaryDuffelGiftBox
@@ -178,7 +170,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Belt/syndieRPS.rsi
+    sprite: _Sunrise/Clothing/Belt/syndie_rps.rsi
     state: icon
 
 - type: entity
@@ -1935,11 +1927,6 @@
     sprintModifier: 0.5
   - type: Item
     size: Ginormous
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
   - type: SpawnItemsOnUse
     items:
     - id: WeaponGrapplingGun
@@ -2034,11 +2021,6 @@
     sprintModifier: 0.5
   - type: Item
     size: Ginormous
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
   - type: SpawnItemsOnUse
     items:
     - id: WeaponGrapplingGun
@@ -2123,11 +2105,6 @@
     sprintModifier: 0.5
   - type: Item
     size: Ginormous
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
   - type: SpawnItemsOnUse
     items:
     - id: WeaponGrapplingGun
@@ -2225,11 +2202,6 @@
     sprintModifier: 0.5
   - type: Item
     size: Ginormous
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
   - type: SpawnItemsOnUse
     items:
     - id: WeaponGrapplingGun
@@ -2556,11 +2528,6 @@
     - state: base
   - type: Item
     sprite: _Starlight/Objects/Weapons/Melee/forged_buckler_shield.rsi
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
   - type: SpawnItemsOnUse
     items:
     # Cash
@@ -3914,11 +3881,6 @@
     sprintModifier: 0.5
   - type: Item
     size: Ginormous
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
   - type: SpawnItemsOnUse
     items:
     - id: WeaponGrapplingGun
@@ -4011,5 +3973,4 @@
       prob: 0.4
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
-
 

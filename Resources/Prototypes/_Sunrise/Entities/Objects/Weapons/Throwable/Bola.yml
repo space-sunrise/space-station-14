@@ -5,7 +5,7 @@
   description: Linked together with some spare cuffs and metal.
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Throwable/bola/bolasecurity.rsi
+    sprite: _Sunrise/Objects/Weapons/Throwable/bola/bola_security.rsi
     state: icon
   - type: Ensnaring
     walkSpeed: 0.6
@@ -24,7 +24,7 @@
   description: Linked together with some spare cuffs and metal.
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Throwable/bola/bolasyndicate.rsi
+    sprite: _Sunrise/Objects/Weapons/Throwable/bola/bola_syndicate.rsi
     state: icon
   - type: Ensnaring
     freeTime: 2.5

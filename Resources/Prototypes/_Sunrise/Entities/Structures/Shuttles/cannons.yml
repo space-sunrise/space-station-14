@@ -46,7 +46,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal-127.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_127.rsi
     scale: 1.1, 1.1
     layers:
     - state: bal-127
@@ -109,7 +109,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal-127-2.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_127_2.rsi
     scale: 1.05, 1.05
     layers:
     - state: bal-127-2
@@ -191,7 +191,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal-127-4.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_127_4.rsi
     scale: 1.05, 1.05
     layers:
     - state: bal-127
@@ -273,7 +273,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal-308.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_308.rsi
     layers:
     - state: bal-308
     - state: mag-13
@@ -485,7 +485,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/tesla-2.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/tesla_2.rsi
     layers:
     - state: tsl-300c
     - state: mag-unshaded-4
