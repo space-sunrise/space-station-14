@@ -13,12 +13,14 @@ using Content.Shared.DoAfter;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Content.Shared.StationRecords;
 using Content.Shared.Verbs;
 using Content.Sunrise.Interfaces.Shared;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
+using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -42,6 +44,7 @@ public sealed class DynamicAppearanceSystem : EntitySystem
     [Dependency] private readonly IAdminManager _admin = default!;
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
 
     // Sunrise-Sponsors
     private ISharedSponsorsManager? _sponsorsManager;
@@ -270,7 +273,10 @@ public sealed class DynamicAppearanceSystem : EntitySystem
         var targetBodyType = ResolveValidBodyType(speciesProto, targetSex, requestedBodyType);
 
         if (speciesChanged)
+        {
             _humanoid.SetSpecies(ent, targetSpecies, false, humanoid);
+            SyncSpeciesInventory(ent.Owner, speciesProto);
+        }
 
         var sexChanged = targetSex != humanoid.Sex;
         if (sexChanged)
@@ -411,6 +417,24 @@ public sealed class DynamicAppearanceSystem : EntitySystem
     #endregion
 
     #region Helpers
+
+    private void SyncSpeciesInventory(EntityUid uid, SpeciesPrototype speciesProto)
+    {
+        if (!HasComp<InventoryComponent>(uid))
+            return;
+
+        var prototypeEntity = Spawn(speciesProto.Prototype, MapCoordinates.Nullspace);
+
+        try
+        {
+            if (TryComp<InventoryComponent>(prototypeEntity, out var sourceInventory))
+                _inventory.CopyComponent((prototypeEntity, sourceInventory), uid);
+        }
+        finally
+        {
+            QueueDel(prototypeEntity);
+        }
+    }
 
     private void UpdateStationRecord(Entity<DynamicAppearanceComponent, HumanoidAppearanceComponent> ent)
     {

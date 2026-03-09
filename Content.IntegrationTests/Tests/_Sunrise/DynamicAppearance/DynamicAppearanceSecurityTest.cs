@@ -6,6 +6,7 @@ using Content.IntegrationTests.Tests.Interaction;
 using Content.Shared._Sunrise.DynamicAppearance;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
+using Content.Shared.Inventory;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Maths;
 using Robust.Shared.IoC;
@@ -406,6 +407,63 @@ public sealed class DynamicAppearanceOnlyNameSecurityTest : DynamicAppearanceSec
                 var meta = SEntMan.GetComponent<MetaDataComponent>(SEntMan.GetEntity(Player));
                 Assert.That(meta.EntityName, Is.EqualTo(modifiedState.Name),
                     "DynamicAppearance did not accept a save message that edited the name field even though name editing was the only allowed edit.");
+            });
+        });
+    }
+}
+
+[TestFixture]
+public sealed class DynamicAppearanceSpeciesInventorySyncTest : DynamicAppearanceSecurityTestBase
+{
+    private const string SpeciesEditingProtoId = "MobHumanSpeciesEditing";
+
+    protected override string PlayerPrototype => SpeciesEditingProtoId;
+
+    [TestPrototypes]
+    private const string SpeciesEditingTestProto = """
+- type: entity
+  parent: MobHuman
+  id: MobHumanSpeciesEditing
+  components:
+  - type: DynamicAppearance
+    allowedFields: Species, BodyType
+    saveDelay: 0
+""";
+
+    [Test]
+    public async Task OwnerSpeciesChangeUpdatesInventorySpeciesData()
+    {
+        Target = Player;
+
+        await OpenAppearanceUi(Player);
+        Assert.That(TryGetBui(DynamicAppearanceUiKey.Key, out _, Player), Is.True,
+            "Owner failed to open their own DynamicAppearance UI.");
+
+        var state = default(DynamicAppearanceState);
+        await Server.WaitPost(() => state = BuildState(SEntMan, SEntMan.GetEntity(Player)));
+
+        state = state with
+        {
+            Species = "Reptilian",
+            BodyType = "ReptilianNormal",
+        };
+
+        await SendBui(DynamicAppearanceUiKey.Key, new DynamicAppearanceSaveMessage(state), Player);
+
+        await Server.WaitAssertion(() =>
+        {
+            var uid = SEntMan.GetEntity(Player);
+            var humanoid = SEntMan.GetComponent<HumanoidAppearanceComponent>(uid);
+            var inventory = SEntMan.GetComponent<InventoryComponent>(uid);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(humanoid.Species, Is.EqualTo("Reptilian"),
+                    "DynamicAppearance failed to apply the requested species.");
+                Assert.That(humanoid.BodyType, Is.EqualTo("ReptilianNormal"),
+                    "DynamicAppearance failed to apply the target species body type.");
+                Assert.That(inventory.SpeciesId, Is.EqualTo("reptilian"),
+                    "Inventory species visuals were not refreshed after changing species.");
             });
         });
     }
