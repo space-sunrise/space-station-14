@@ -236,23 +236,7 @@ public sealed partial class DynamicAppearanceWindow
         }
 
         if (_speciesProto != null)
-        {
-            var validBodyTypes = _speciesProto.BodyTypes
-                .Select(id => _protoMan.Index<BodyTypePrototype>(id))
-                .Where(proto => !proto.SexRestrictions.Contains(_draftState.Sex.ToString()))
-                .ToList();
-
-            if (validBodyTypes.Count > 0)
-            {
-                if (!string.IsNullOrEmpty(preferredBodyType)
-                    && validBodyTypes.Any(proto => proto.ID == preferredBodyType))
-                {
-                    return preferredBodyType;
-                }
-
-                return validBodyTypes[0].ID;
-            }
-        }
+            return ResolveValidBodyType(_speciesProto, _draftState.Sex, preferredBodyType);
 
         return !string.IsNullOrEmpty(preferredBodyType)
             ? preferredBodyType

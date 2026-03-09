@@ -60,13 +60,28 @@ public sealed partial class DynamicAppearanceWindow
         SexButton.OnItemSelected += args =>
         {
             _draftState.Sex = _sexValues[args.Id];
-            _draftState.BodyType = ResolvePreviewBodyType();
             SexButton.SelectId(args.Id);
+            RefreshBodyTypes();
 
             if (_ttsEnabled)
                 RebuildVoiceList();
 
             RefreshBodyMarkings();
+            RefreshDummyPreview();
+        };
+    }
+
+    // ═══════════ Body type ═══════════
+
+    private void InitBodyTypeHandlers()
+    {
+        BodyTypeButton.OnItemSelected += args =>
+        {
+            if (args.Id < 0 || args.Id >= _bodyTypeValues.Count)
+                return;
+
+            _draftState.BodyType = _bodyTypeValues[args.Id].ID;
+            BodyTypeButton.SelectId(args.Id);
             RefreshDummyPreview();
         };
     }

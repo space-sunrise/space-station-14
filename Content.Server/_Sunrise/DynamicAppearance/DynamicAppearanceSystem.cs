@@ -4,6 +4,7 @@ using Content.Server.Administration.Managers;
 using Content.Server.Access.Systems;
 using Content.Server.DoAfter;
 using Content.Server.StationRecords.Systems;
+using Content.Shared._Sunrise;
 using Content.Shared._Sunrise.DynamicAppearance;
 using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared._Sunrise.TTS;
@@ -239,14 +240,8 @@ public sealed class DynamicAppearanceSystem : EntitySystem
         }
 
         var speciesChanged = targetSpecies != humanoid.Species;
-        if (speciesChanged)
-            _humanoid.SetSpecies(ent, targetSpecies, false, humanoid);
-
-        if (!_prototypeManager.TryIndex<SpeciesPrototype>(humanoid.Species, out var speciesProto))
+        if (!_prototypeManager.TryIndex<SpeciesPrototype>(targetSpecies, out var speciesProto))
             return;
-
-        if (speciesChanged)
-            _humanoid.SetBodyType(ent, humanoid.BodyType, false, humanoid);
 
         var skinStrategy = _prototypeManager.Index(speciesProto.SkinColoration).Strategy;
         var targetSkinColor = skinStrategy.EnsureVerified(
@@ -269,9 +264,20 @@ public sealed class DynamicAppearanceSystem : EntitySystem
             targetSex = speciesProto.Sexes[0];
         }
 
+        var requestedBodyType = allowed.HasFlag(DynamicAppearanceFields.BodyType)
+            ? state.BodyType
+            : (string)humanoid.BodyType;
+        var targetBodyType = ResolveValidBodyType(speciesProto, targetSex, requestedBodyType);
+
+        if (speciesChanged)
+            _humanoid.SetSpecies(ent, targetSpecies, false, humanoid);
+
         var sexChanged = targetSex != humanoid.Sex;
         if (sexChanged)
             _humanoid.SetSex(ent, targetSex, false, humanoid);
+
+        if (speciesChanged || sexChanged || targetBodyType != humanoid.BodyType)
+            _humanoid.SetBodyType(ent, targetBodyType, false, humanoid);
 
         // ── Markings ──
         // Always normalize and filter incoming markings regardless of whitelist,
@@ -621,6 +627,39 @@ public sealed class DynamicAppearanceSystem : EntitySystem
             return false;
 
         if (voiceProto.SponsorOnly && (sponsorProtos == null || !sponsorProtos.Contains(requestedVoice)))
+            return false;
+
+        return true;
+    }
+
+    private string ResolveValidBodyType(SpeciesPrototype speciesProto, Sex sex, string? requestedBodyType)
+    {
+        if (!string.IsNullOrEmpty(requestedBodyType)
+            && TryGetValidBodyType(speciesProto, sex, requestedBodyType, out var bodyType))
+        {
+            return bodyType;
+        }
+
+        foreach (var speciesBodyType in speciesProto.BodyTypes)
+        {
+            if (TryGetValidBodyType(speciesProto, sex, speciesBodyType, out bodyType))
+                return bodyType;
+        }
+
+        return speciesProto.BodyTypes.FirstOrDefault() ?? SharedHumanoidAppearanceSystem.DefaultBodyType;
+    }
+
+    private bool TryGetValidBodyType(SpeciesPrototype speciesProto, Sex sex, string requestedBodyType, out string bodyType)
+    {
+        bodyType = requestedBodyType;
+
+        if (!speciesProto.BodyTypes.Contains(requestedBodyType))
+            return false;
+
+        if (!_prototypeManager.TryIndex<BodyTypePrototype>(requestedBodyType, out var bodyTypeProto))
+            return false;
+
+        if (bodyTypeProto.SexRestrictions.Contains(sex.ToString()))
             return false;
 
         return true;

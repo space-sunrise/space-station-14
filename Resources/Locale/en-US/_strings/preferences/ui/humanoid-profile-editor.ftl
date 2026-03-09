@@ -2,6 +2,7 @@ humanoid-profile-editor-randomize-everything-button = Randomize everything
 humanoid-profile-editor-name-label = Name:
 humanoid-profile-editor-name-random-button = Randomize
 humanoid-profile-editor-appearance-tab = Appearance
+humanoid-profile-editor-body-type-label = Body type:
 humanoid-profile-editor-clothing = Show clothing
 humanoid-profile-editor-clothing-show = Show
 humanoid-profile-editor-sex-label = Sex:

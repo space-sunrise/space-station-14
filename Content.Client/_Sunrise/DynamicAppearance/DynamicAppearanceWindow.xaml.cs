@@ -1,4 +1,5 @@
 ﻿using Content.Client.Humanoid;
+using Content.Shared._Sunrise;
 using Content.Shared._Sunrise.DynamicAppearance;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.TTS;
@@ -90,6 +91,7 @@ public sealed partial class DynamicAppearanceWindow : DefaultWindow
 
     private readonly List<SpeciesPrototype> _speciesValues = new();
     private readonly List<Sex> _sexValues = new();
+    private readonly List<BodyTypePrototype> _bodyTypeValues = new();
     private readonly List<Gender> _genderValues = new();
     private List<TTSVoicePrototype> _filteredVoices = new();
     private readonly bool _ttsEnabled;
@@ -146,6 +148,7 @@ public sealed partial class DynamicAppearanceWindow : DefaultWindow
         InitNameHandlers();
         InitAgeHandlers();
         InitSexHandlers();
+        InitBodyTypeHandlers();
         InitPronounsHandlers();
         InitVoiceHandlers();
         InitSizeHandlers();

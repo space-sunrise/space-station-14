@@ -58,6 +58,13 @@
                         </BoxContainer>
                     </BoxContainer>
 
+                    <!-- ── Body type ── -->
+                    <BoxContainer Name="BodyTypeSection" HorizontalExpand="True" Margin="4 2">
+                        <Label Text="{Loc 'humanoid-profile-editor-body-type-label'}" />
+                        <Control HorizontalExpand="True" />
+                        <OptionButton Name="BodyTypeButton" HorizontalAlignment="Right" MinSize="160 0" />
+                    </BoxContainer>
+
                     <!-- ── Pronouns ── -->
                     <BoxContainer Name="PronounsSection" HorizontalExpand="True" Margin="4 2">
                         <Label Text="{Loc 'dynamic-appearance-pronouns-label'}" />

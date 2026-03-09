@@ -126,6 +126,12 @@ public sealed partial class DynamicAppearanceWindow
 
         updated.Species = targetSpecies;
         updated.Sex = targetSex;
+        updated.BodyType = ResolveValidBodyType(
+            speciesProto,
+            targetSex,
+            allowed.HasFlag(DynamicAppearanceFields.BodyType)
+                ? profile.BodyType
+                : updated.BodyType);
 
         var targetSkinColor = updated.SkinColor;
         var strategy = _protoMan.Index(speciesProto.SkinColoration).Strategy;
@@ -185,6 +191,7 @@ public sealed partial class DynamicAppearanceWindow
         RefreshSpecies();
         RefreshAge();
         RefreshSex();
+        RefreshBodyTypes();
         RefreshPronouns();
         RefreshVoice();
         RefreshSizeSliders();

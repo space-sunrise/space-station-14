@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Sunrise;
 using Content.Shared._Sunrise.DynamicAppearance;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.Humanoid;
@@ -34,6 +35,7 @@ public sealed partial class DynamicAppearanceWindow
         RefreshSpecies();
         RefreshAge();
         RefreshSex();
+        RefreshBodyTypes();
         RefreshPronouns();
         RefreshVoice();
         RefreshSizeSliders();
@@ -52,6 +54,7 @@ public sealed partial class DynamicAppearanceWindow
         RefreshAdminOverride();
         RefreshAllowedFields();
         RefreshSpecies();
+        RefreshBodyTypes();
         RefreshVoice();
     }
 
@@ -72,6 +75,7 @@ public sealed partial class DynamicAppearanceWindow
         SexSection.Visible = sexAllowed || voiceAllowed;
         SexRow.Visible = sexAllowed;
         TTSContainer.Visible = voiceAllowed;
+        BodyTypeSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.BodyType);
         PronounsSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.Pronouns);
         SizeSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.Size);
         SkinColorSection.Visible = allowedFields.HasFlag(DynamicAppearanceFields.SkinColor);
@@ -172,6 +176,28 @@ public sealed partial class DynamicAppearanceWindow
         var genderIdx = _genderValues.IndexOf(_draftState.Gender);
         if (genderIdx >= 0)
             PronounsButton.SelectId(genderIdx);
+    }
+
+    private void RefreshBodyTypes()
+    {
+        _bodyTypeValues.Clear();
+        BodyTypeButton.Clear();
+
+        if (_speciesProto == null)
+            return;
+
+        _bodyTypeValues.AddRange(GetValidBodyTypes(_speciesProto, _draftState.Sex));
+        var resolvedBodyType = ResolveValidBodyType(_speciesProto, _draftState.Sex, _draftState.BodyType);
+        _draftState.BodyType = resolvedBodyType;
+
+        for (var i = 0; i < _bodyTypeValues.Count; i++)
+        {
+            BodyTypeButton.AddItem(Loc.GetString(_bodyTypeValues[i].Name), i);
+        }
+
+        var index = _bodyTypeValues.FindIndex(proto => proto.ID == resolvedBodyType);
+        if (index >= 0)
+            BodyTypeButton.SelectId(index);
     }
 
     private void RefreshVoice()
@@ -354,6 +380,38 @@ public sealed partial class DynamicAppearanceWindow
         return _overrideRestrictions ? DynamicAppearanceFields.All : _baseAllowedFields;
     }
 
+    private List<BodyTypePrototype> GetValidBodyTypes(SpeciesPrototype speciesProto, Sex sex)
+    {
+        return speciesProto.BodyTypes
+            .Select(id => _protoMan.Index<BodyTypePrototype>(id))
+            .Where(proto => !proto.SexRestrictions.Contains(sex.ToString()))
+            .ToList();
+    }
+
+    private string ResolveValidBodyType(SpeciesPrototype speciesProto, Sex sex, string? preferredBodyType)
+    {
+        var validBodyTypes = GetValidBodyTypes(speciesProto, sex);
+
+        if (validBodyTypes.Count > 0)
+        {
+            if (!string.IsNullOrEmpty(preferredBodyType)
+                && validBodyTypes.Any(proto => proto.ID == preferredBodyType))
+            {
+                return preferredBodyType;
+            }
+
+            return validBodyTypes[0].ID;
+        }
+
+        if (!string.IsNullOrEmpty(preferredBodyType)
+            && speciesProto.BodyTypes.Contains(preferredBodyType))
+        {
+            return preferredBodyType;
+        }
+
+        return speciesProto.BodyTypes.FirstOrDefault() ?? SharedHumanoidAppearanceSystem.DefaultBodyType;
+    }
+
     private void ApplySpeciesChange(string newSpecies)
     {
         if (!_protoMan.TryIndex<SpeciesPrototype>(newSpecies, out var speciesProto))
@@ -368,7 +426,7 @@ public sealed partial class DynamicAppearanceWindow
         if (!speciesProto.Sexes.Contains(_draftState.Sex))
             _draftState.Sex = speciesProto.Sexes[0];
 
-        _draftState.BodyType = ResolvePreviewBodyType();
+        _draftState.BodyType = ResolveValidBodyType(speciesProto, _draftState.Sex, _draftState.BodyType);
 
         _draftState.Age = Math.Clamp(_draftState.Age, speciesProto.MinAge, speciesProto.MaxAge);
         _draftState.Width = speciesProto.DefaultWidth;
@@ -383,6 +441,7 @@ public sealed partial class DynamicAppearanceWindow
 
         RefreshAge();
         RefreshSex();
+        RefreshBodyTypes();
         RefreshVoice();
         RefreshSizeSliders();
         RefreshSkinColor();

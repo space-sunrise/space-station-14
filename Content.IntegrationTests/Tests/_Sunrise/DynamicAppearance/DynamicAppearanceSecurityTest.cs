@@ -19,6 +19,7 @@ public abstract class DynamicAppearanceSecurityTestBase : InteractionTest
     protected const string LockedAppearanceProtoId = "MobSlimePersonLockedAppearance";
     protected const string OnlyNameEditingProtoId = "MobSlimePersonOnlyNameEditing";
     private const string SponsorOnlyVoiceId = "Biden";
+    protected const string InjectedBodyTypeId = "HumanSlimMale";
     private const string InjectedHeadLayerId = "MobHumanSlimHeadMale";
 
     public override async Task Setup()
@@ -127,6 +128,26 @@ public abstract class DynamicAppearanceSecurityTestBase : InteractionTest
         });
     }
 
+    protected async Task AssertInvalidBodyTypeInjectionRejected(NetEntity target)
+    {
+        var state = default(DynamicAppearanceState);
+        await Server.WaitPost(() => state = BuildState(SEntMan, SEntMan.GetEntity(target)));
+
+        state = state with
+        {
+            BodyType = InjectedBodyTypeId,
+        };
+
+        await SendBui(DynamicAppearanceUiKey.Key, new DynamicAppearanceSaveMessage(state), target);
+
+        await Server.WaitAssertion(() =>
+        {
+            var humanoid = SEntMan.GetComponent<HumanoidAppearanceComponent>(SEntMan.GetEntity(target));
+            Assert.That(humanoid.BodyType, Is.Not.EqualTo(InjectedBodyTypeId),
+                "DynamicAppearance accepted an invalid body type through a forged save payload.");
+        });
+    }
+
     protected async Task AssertCustomBaseLayerInjectionRejected(NetEntity target)
     {
         var state = default(DynamicAppearanceState);
@@ -225,6 +246,18 @@ public sealed class DynamicAppearanceSecurityTest : DynamicAppearanceSecurityTes
     }
 
     [Test]
+    public async Task OwnerCannotInjectInvalidBodyTypeViaSaveMessage()
+    {
+        Target = Player;
+
+        await OpenAppearanceUi(Player);
+        Assert.That(TryGetBui(DynamicAppearanceUiKey.Key, out _, Player), Is.True,
+            "Owner failed to open their own DynamicAppearance UI.");
+
+        await AssertInvalidBodyTypeInjectionRejected(Player);
+    }
+
+    [Test]
     public async Task OwnerCannotInjectCustomBaseLayersViaSaveMessage()
     {
         Target = Player;
@@ -320,6 +353,7 @@ public sealed class DynamicAppearanceOnlyNameSecurityTest : DynamicAppearanceSec
                 Sex = Sex.Unsexed,
                 Gender = Robust.Shared.Enums.Gender.Neuter,
                 Species = "Vulpkanin",
+                BodyType = InjectedBodyTypeId,
                 SkinColor = Color.DarkOrange,
                 EyeColor = Color.Cyan,
                 MarkingSet = new MarkingSet(new List<Marking>
@@ -350,6 +384,9 @@ public sealed class DynamicAppearanceOnlyNameSecurityTest : DynamicAppearanceSec
                 // Species
                 Assert.That(humanoid.Species, Is.Not.EqualTo(modifiedState.Species),
                     "DynamicAppearance accepted a save message that edited the species field even though only name editing was allowed.");
+                // Body type
+                Assert.That(humanoid.BodyType, Is.Not.EqualTo(modifiedState.BodyType),
+                    "DynamicAppearance accepted a save message that edited the body type field even though only name editing was allowed.");
                 // Skin Color
                 Assert.That(humanoid.SkinColor, Is.Not.EqualTo(modifiedState.SkinColor),
                     "DynamicAppearance accepted a save message that edited the skin color field even though only name editing was allowed.");
