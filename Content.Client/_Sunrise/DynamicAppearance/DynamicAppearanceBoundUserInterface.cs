@@ -22,6 +22,9 @@ public sealed class DynamicAppearanceBoundUserInterface : BoundUserInterface
 
     protected override void Open()
     {
+        if (IsOpened || _window != null)
+            return;
+
         if (!CanOpenLocally())
             return;
 
@@ -54,6 +57,12 @@ public sealed class DynamicAppearanceBoundUserInterface : BoundUserInterface
 
         if (_lastPermissions != null)
             _window.UpdatePermissions(_lastPermissions);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        _window = null;
+        base.Dispose(disposing);
     }
 
     private bool CanOpenLocally()
