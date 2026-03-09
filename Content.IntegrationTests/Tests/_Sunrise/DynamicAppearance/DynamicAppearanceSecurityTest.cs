@@ -7,6 +7,8 @@ using Content.Shared._Sunrise.DynamicAppearance;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Inventory;
+using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Maths;
 using Robust.Shared.IoC;
@@ -435,9 +437,26 @@ public sealed class DynamicAppearanceSpeciesInventorySyncTest : DynamicAppearanc
     {
         Target = Player;
 
+        var oldUid = EntityUid.Invalid;
+        const float hungerValue = 87f;
+        const float thirstValue = 123f;
+
         await OpenAppearanceUi(Player);
         Assert.That(TryGetBui(DynamicAppearanceUiKey.Key, out _, Player), Is.True,
             "Owner failed to open their own DynamicAppearance UI.");
+
+        await Server.WaitPost(() =>
+        {
+            oldUid = SEntMan.GetEntity(Player);
+
+            var hungerSystem = Server.System<HungerSystem>();
+            var thirstSystem = Server.System<ThirstSystem>();
+            var hunger = SEntMan.GetComponent<HungerComponent>(oldUid);
+            var thirst = SEntMan.GetComponent<ThirstComponent>(oldUid);
+
+            hungerSystem.SetHunger(oldUid, hungerValue, hunger);
+            thirstSystem.SetThirst(oldUid, thirst, thirstValue);
+        });
 
         var state = default(DynamicAppearanceState);
         await Server.WaitPost(() => state = BuildState(SEntMan, SEntMan.GetEntity(Player)));
@@ -452,18 +471,47 @@ public sealed class DynamicAppearanceSpeciesInventorySyncTest : DynamicAppearanc
 
         await Server.WaitAssertion(() =>
         {
-            var uid = SEntMan.GetEntity(Player);
-            var humanoid = SEntMan.GetComponent<HumanoidAppearanceComponent>(uid);
-            var inventory = SEntMan.GetComponent<InventoryComponent>(uid);
+            var uid = EntityUid.Invalid;
+            HumanoidAppearanceComponent? humanoid = null;
+            InventoryComponent? inventory = null;
+
+            var query = SEntMan.AllEntityQueryEnumerator<HumanoidAppearanceComponent, InventoryComponent>();
+            while (query.MoveNext(out var candidate, out var candidateHumanoid, out var candidateInventory))
+            {
+                if (candidate == oldUid
+                    || candidateHumanoid.Species != "Reptilian"
+                    || candidateInventory.SpeciesId != "reptilian")
+                {
+                    continue;
+                }
+
+                uid = candidate;
+                humanoid = candidateHumanoid;
+                inventory = candidateInventory;
+                break;
+            }
+
+            Assert.That(uid, Is.Not.EqualTo(EntityUid.Invalid),
+                "DynamicAppearance did not leave behind a valid replacement body after changing species.");
+
+            var hunger = SEntMan.GetComponent<HungerComponent>(uid);
+            var thirst = SEntMan.GetComponent<ThirstComponent>(uid);
+            var hungerSystem = Server.System<HungerSystem>();
 
             Assert.Multiple(() =>
             {
+                Assert.That(uid, Is.Not.EqualTo(oldUid),
+                    "DynamicAppearance did not replace the body entity when changing species.");
                 Assert.That(humanoid.Species, Is.EqualTo("Reptilian"),
                     "DynamicAppearance failed to apply the requested species.");
                 Assert.That(humanoid.BodyType, Is.EqualTo("ReptilianNormal"),
                     "DynamicAppearance failed to apply the target species body type.");
                 Assert.That(inventory.SpeciesId, Is.EqualTo("reptilian"),
                     "Inventory species visuals were not refreshed after changing species.");
+                Assert.That(hungerSystem.GetHunger(hunger), Is.EqualTo(hungerValue).Within(0.2f),
+                    "DynamicAppearance did not preserve hunger when rebuilding the body from the new species prototype.");
+                Assert.That(thirst.CurrentThirst, Is.EqualTo(thirstValue).Within(0.2f),
+                    "DynamicAppearance did not preserve thirst when rebuilding the body from the new species prototype.");
             });
         });
     }

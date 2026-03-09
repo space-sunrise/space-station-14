@@ -1,23 +1,39 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Server.Administration.Managers;
+using Content.Server.Cloning;
 using Content.Server.Access.Systems;
 using Content.Server.DoAfter;
+using Content.Server.Inventory;
 using Content.Server.StationRecords.Systems;
+using Content.Server._Sunrise.Mood;
 using Content.Shared._Sunrise;
 using Content.Shared._Sunrise.DynamicAppearance;
+using Content.Shared._Sunrise.Mood;
 using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared._Sunrise.TTS;
+using Content.Shared.Buckle;
 using Content.Shared.CCVar;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Implants.Components;
 using Content.Shared.Inventory;
+using Content.Shared.Mind;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Preferences;
+using Content.Shared.StatusEffectNew.Components;
 using Content.Shared.StationRecords;
+using Content.Shared.Storage;
 using Content.Shared.Verbs;
 using Content.Sunrise.Interfaces.Shared;
+using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -44,7 +60,18 @@ public sealed class DynamicAppearanceSystem : EntitySystem
     [Dependency] private readonly IAdminManager _admin = default!;
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly ServerInventorySystem _inventory = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly SharedBuckleSystem _buckle = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private readonly HungerSystem _hunger = default!;
+    [Dependency] private readonly ThirstSystem _thirst = default!;
+    [Dependency] private readonly MoodSystem _mood = default!;
+    [Dependency] private readonly CloningSystem _cloning = default!;
 
     // Sunrise-Sponsors
     private ISharedSponsorsManager? _sponsorsManager;
@@ -223,6 +250,9 @@ public sealed class DynamicAppearanceSystem : EntitySystem
     private void DoSaveAppearance(Entity<DynamicAppearanceComponent, HumanoidAppearanceComponent> ent, EntityUid actor, DynamicAppearanceState state)
     {
         var humanoid = ent.Comp2;
+        var actorSession = TryComp<ActorComponent>(actor, out var actorComp)
+            ? actorComp.PlayerSession
+            : null;
 
         var ignoreRestrictions = HasAdminOverride(ent.Owner, actor);
         var allowed = ignoreRestrictions ? DynamicAppearanceFields.All : ent.Comp1.AllowedFields;
@@ -271,11 +301,17 @@ public sealed class DynamicAppearanceSystem : EntitySystem
             ? state.BodyType
             : (string)humanoid.BodyType;
         var targetBodyType = ResolveValidBodyType(speciesProto, targetSex, requestedBodyType);
+        var reopenedOnReplacement = false;
 
         if (speciesChanged)
         {
-            _humanoid.SetSpecies(ent, targetSpecies, false, humanoid);
-            SyncSpeciesInventory(ent.Owner, speciesProto);
+            var swapped = RespawnAsSpeciesPrototype(ent, speciesProto);
+            if (swapped == null)
+                return;
+
+            ent = swapped.Value;
+            humanoid = ent.Comp2;
+            reopenedOnReplacement = actorSession != null;
         }
 
         var sexChanged = targetSex != humanoid.Sex;
@@ -396,6 +432,9 @@ public sealed class DynamicAppearanceSystem : EntitySystem
         UpdateStationRecord(ent);
         Dirty(ent, humanoid);
         SendState(ent, humanoid, ent.Comp1);
+
+        if (reopenedOnReplacement && actorSession != null)
+            _ui.OpenUi(ent.Owner, DynamicAppearanceUiKey.Key, actorSession);
     }
 
     private void OnAdminOverrideMessage(Entity<DynamicAppearanceComponent> ent, ref DynamicAppearanceSetAdminOverrideMessage args)
@@ -418,21 +457,159 @@ public sealed class DynamicAppearanceSystem : EntitySystem
 
     #region Helpers
 
-    private void SyncSpeciesInventory(EntityUid uid, SpeciesPrototype speciesProto)
+    private Entity<DynamicAppearanceComponent, HumanoidAppearanceComponent>? RespawnAsSpeciesPrototype(
+        Entity<DynamicAppearanceComponent, HumanoidAppearanceComponent> ent,
+        SpeciesPrototype speciesProto)
     {
-        if (!HasComp<InventoryComponent>(uid))
-            return;
+        var uid = ent.Owner;
+        _ui.CloseUi(uid, DynamicAppearanceUiKey.Key);
+        _buckle.TryUnbuckle(uid, uid, true);
 
-        var prototypeEntity = Spawn(speciesProto.Prototype, MapCoordinates.Nullspace);
+        var transform = Transform(uid);
+        var replacement = Spawn(
+            speciesProto.Prototype,
+            _transform.GetMapCoordinates(uid, transform),
+            rotation: _transform.GetWorldRotation(uid));
 
-        try
+        if (_container.TryGetContainingContainer((uid, transform, null), out var container))
+            _container.Insert(replacement, container);
+
+        if (!TryComp<HumanoidAppearanceComponent>(replacement, out var replacementHumanoid))
         {
-            if (TryComp<InventoryComponent>(prototypeEntity, out var sourceInventory))
-                _inventory.CopyComponent((prototypeEntity, sourceInventory), uid);
+            QueueDel(replacement);
+            return null;
         }
-        finally
+
+        var replacementDynamic = EnsureComp<DynamicAppearanceComponent>(replacement);
+        replacementDynamic.AllowedFields = ent.Comp1.AllowedFields;
+        replacementDynamic.SaveDelay = ent.Comp1.SaveDelay;
+
+        _meta.SetEntityName(replacement, MetaData(uid).EntityName);
+        TransferSpeciesSwapState(uid, replacement);
+        MoveAdminOverrides(uid, replacement);
+
+        if (_mind.TryGetMind(uid, out var mindId, out var mind))
+            _mind.TransferTo(mindId, replacement, mind: mind);
+
+        QueueDel(uid);
+        Dirty(replacement, replacementDynamic);
+        Dirty(replacement, replacementHumanoid);
+
+        return (replacement, replacementDynamic, replacementHumanoid);
+    }
+
+    private void TransferSpeciesSwapState(EntityUid source, EntityUid target)
+    {
+        TransferDamage(source, target);
+        TransferInventory(source, target);
+        TransferNutrition(source, target);
+        TransferMood(source, target);
+        TransferRecordKey(source, target);
+
+        if (TryComp<StorageComponent>(source, out var sourceStorage)
+            && TryComp<StorageComponent>(target, out var targetStorage))
         {
-            QueueDel(prototypeEntity);
+            _cloning.CopyStorage((source, sourceStorage), (target, targetStorage));
+        }
+
+        if (TryComp<ImplantedComponent>(source, out var sourceImplants))
+            _cloning.CopyImplants((source, sourceImplants), target, copyStorage: true);
+
+        if (TryComp<StatusEffectContainerComponent>(source, out var sourceStatus)
+            && TryComp<StatusEffectContainerComponent>(target, out var targetStatus))
+        {
+            _cloning.CopyStatusEffects((source, sourceStatus), (target, targetStatus));
+        }
+    }
+
+    private void TransferDamage(EntityUid source, EntityUid target)
+    {
+        if (!TryComp<DamageableComponent>(target, out var targetDamage)
+            || !_mobThreshold.GetScaledDamage(source, target, out var damage)
+            || damage == null)
+        {
+            return;
+        }
+
+        _damageable.SetDamage((target, targetDamage), damage);
+    }
+
+    private void TransferInventory(EntityUid source, EntityUid target)
+    {
+        _inventory.TransferEntityInventories(source, target);
+
+        foreach (var held in _hands.EnumerateHeld(source))
+        {
+            _hands.TryDrop(source, held, checkActionBlocker: false);
+            _hands.TryPickupAnyHand(target, held, checkActionBlocker: false);
+        }
+    }
+
+    private void TransferNutrition(EntityUid source, EntityUid target)
+    {
+        if (TryComp<HungerComponent>(source, out var sourceHunger)
+            && TryComp<HungerComponent>(target, out var targetHunger))
+        {
+            _hunger.SetHunger(target, _hunger.GetHunger(sourceHunger), targetHunger);
+        }
+
+        if (TryComp<ThirstComponent>(source, out var sourceThirst)
+            && TryComp<ThirstComponent>(target, out var targetThirst))
+        {
+            _thirst.SetThirst(target, targetThirst, sourceThirst.CurrentThirst);
+        }
+    }
+
+    private void TransferMood(EntityUid source, EntityUid target)
+    {
+        if (!TryComp<MoodComponent>(source, out var sourceMood)
+            || !TryComp<MoodComponent>(target, out var targetMood))
+        {
+            return;
+        }
+
+        targetMood.CurrentMoodLevel = sourceMood.CurrentMoodLevel;
+        targetMood.CurrentMoodThreshold = sourceMood.CurrentMoodThreshold;
+        targetMood.LastThreshold = sourceMood.LastThreshold;
+        targetMood.CritThresholdBeforeModify = sourceMood.CritThresholdBeforeModify;
+
+        targetMood.CategorisedEffects.Clear();
+        foreach (var (category, effect) in sourceMood.CategorisedEffects)
+        {
+            targetMood.CategorisedEffects[category] = effect;
+        }
+
+        targetMood.UncategorisedEffects.Clear();
+        foreach (var (effectId, effectValue) in sourceMood.UncategorisedEffects)
+        {
+            targetMood.UncategorisedEffects[effectId] = effectValue;
+        }
+
+        var netMood = EnsureComp<NetMoodComponent>(target);
+        netMood.CurrentMoodLevel = sourceMood.CurrentMoodLevel;
+        netMood.NeutralMoodThreshold = sourceMood.MoodThresholds.GetValueOrDefault(MoodThreshold.Neutral);
+
+        _mood.UpdateAppearance(target, targetMood);
+    }
+
+    private void TransferRecordKey(EntityUid source, EntityUid target)
+    {
+        if (!TryComp<StationRecordKeyStorageComponent>(source, out var sourceKey)
+            || sourceKey.Key == null)
+        {
+            return;
+        }
+
+        EnsureComp<StationRecordKeyStorageComponent>(target).Key = sourceKey.Key;
+    }
+
+    private void MoveAdminOverrides(EntityUid source, EntityUid target)
+    {
+        var toMove = _adminOverrides.Where(entry => entry.Target == source).ToArray();
+        foreach (var entry in toMove)
+        {
+            _adminOverrides.Remove(entry);
+            _adminOverrides.Add((target, entry.UserId));
         }
     }
 
