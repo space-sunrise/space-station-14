@@ -255,7 +255,7 @@ public sealed class DynamicAppearanceSystem : EntitySystem
             : null;
 
         var ignoreRestrictions = HasAdminOverride(ent.Owner, actor);
-        var allowed = ignoreRestrictions ? DynamicAppearanceFields.All : ent.Comp1.AllowedFields;
+        var allowed = ignoreRestrictions ? DynamicAppearanceFields.All : GetAllowedFields(ent.Comp1);
 
         // ── Resolve sponsor markings for this session ──
         HashSet<string>? sponsorProtos = null;
@@ -484,7 +484,7 @@ public sealed class DynamicAppearanceSystem : EntitySystem
         }
 
         var replacementDynamic = EnsureComp<DynamicAppearanceComponent>(replacement);
-        replacementDynamic.AllowedFields = ent.Comp1.AllowedFields;
+        replacementDynamic.InheritedAllowedFields = ent.Comp1.InheritedAllowedFields | (GetAllowedFields(ent.Comp1) & DynamicAppearanceFields.Species);
         replacementDynamic.SaveDelay = ent.Comp1.SaveDelay;
 
         _meta.SetEntityName(replacement, MetaData(uid).EntityName);
@@ -803,7 +803,7 @@ public sealed class DynamicAppearanceSystem : EntitySystem
                     meta.EntityName
                 ),
                 GetNetEntity(uid),
-                component.AllowedFields
+                GetAllowedFields(component)
             ));
     }
 
@@ -848,7 +848,7 @@ public sealed class DynamicAppearanceSystem : EntitySystem
         if (_admin.IsAdmin(actor))
             return true;
 
-        if (ent.Comp.AllowedFields == DynamicAppearanceFields.None)
+        if (GetAllowedFields(ent.Comp) == DynamicAppearanceFields.None)
             return false;
 
         return actor == ent.Owner;
@@ -933,6 +933,11 @@ public sealed class DynamicAppearanceSystem : EntitySystem
         return sex == Sex.Unsexed
             || voiceProto.Sex == sex
             || voiceProto.Sex == Sex.Unsexed;
+    }
+
+    private DynamicAppearanceFields GetAllowedFields(DynamicAppearanceComponent component)
+    {
+        return component.AllowedFields | component.InheritedAllowedFields;
     }
 
     private MarkingSet ReapplyMarkingsForSpecies(
