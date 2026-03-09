@@ -30,8 +30,6 @@
     coldDamageThreshold: -150
   - type: Speech
     speechVerb: LargeMob
-  - type: ToggleableNightVision
-    effect: EffectNightVisionXeno
   - type: MeleeWeapon
     hidden: true
     soundHit:
@@ -53,6 +51,8 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Xenomorph
+  - type: ToggleableNightVision
+    effect: EffectNightVisionXeno
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
