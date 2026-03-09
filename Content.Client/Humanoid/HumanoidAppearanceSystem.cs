@@ -22,6 +22,7 @@ namespace Content.Client.Humanoid;
 
 public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 {
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
@@ -39,7 +40,15 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
     private void OnHandleState(EntityUid uid, HumanoidAppearanceComponent component, ref AfterAutoHandleStateEvent args)
     {
-        UpdateSprite((uid, component, Comp<SpriteComponent>(uid)));
+        // Sunrise-Start
+        // Немного отредактировал хэндлер ивента для корректного обновления внешки
+        // Без AppearanceSystem.OnChangeData ивент не будет обновлять корректно одежду при смене типа тела.
+        // (также как наверное много чего ещё, что я не заметил со своим скудным тестированием)
+        var sprite = Comp<SpriteComponent>(uid);
+        UpdateSprite((uid, component, sprite));
+
+        _appearance.OnChangeData(uid, sprite);
+        // Sunrise-End
     }
 
     private void OnCvarChanged(bool value)

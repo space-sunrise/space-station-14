@@ -67,7 +67,7 @@ public sealed partial class DynamicAppearanceWindow
                 RebuildVoiceList();
 
             RefreshBodyMarkings();
-            RefreshDummyPreview();
+            RefreshPreview();
         };
     }
 
@@ -82,7 +82,7 @@ public sealed partial class DynamicAppearanceWindow
 
             _draftState.BodyType = _bodyTypeValues[args.Id].ID;
             BodyTypeButton.SelectId(args.Id);
-            RefreshDummyPreview();
+            RefreshPreview();
         };
     }
 

@@ -12,6 +12,7 @@ namespace Content.Client._Sunrise.DynamicAppearance;
 public sealed class DynamicAppearanceUiValidationSystem : EntitySystem
 {
     [Dependency] private readonly IClientAdminManager _admin = default!;
+
     public override void Initialize()
     {
         base.Initialize();

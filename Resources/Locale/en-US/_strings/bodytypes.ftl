@@ -1,4 +1,3 @@
-humanoid-profile-editor-body-type-label = Body Type:
 body-normal = Normal
 body-slim = Slim
 body-slim-f = Slim
