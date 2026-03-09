@@ -632,5 +632,7 @@
 - type: Tag
   id: TopCovered
 
+# head
+# обозначает вещь, как твёрдый шлем
 - type: Tag
   id: Helmet
