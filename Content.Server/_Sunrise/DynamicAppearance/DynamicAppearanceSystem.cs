@@ -536,6 +536,21 @@ public sealed class DynamicAppearanceSystem : EntitySystem
 
     private void TransferInventory(EntityUid source, EntityUid target)
     {
+        EntityUid? idItem = null;
+        var pocketItems = new List<EntityUid>();
+        if (TryComp<InventoryComponent>(source, out var sourceInventory))
+        {
+            _inventory.TryGetSlotEntity(source, "id", out idItem, sourceInventory);
+
+            if (_inventory.TryGetContainerSlotEnumerator((source, sourceInventory), out var sourceSlots, SlotFlags.POCKET))
+            {
+                while (sourceSlots.NextItem(out var item))
+                {
+                    pocketItems.Add(item);
+                }
+            }
+        }
+
         _inventory.TransferEntityInventories(source, target);
 
         foreach (var held in _hands.EnumerateHeld(source))
@@ -543,6 +558,50 @@ public sealed class DynamicAppearanceSystem : EntitySystem
             _hands.TryDrop(source, held, checkActionBlocker: false);
             _hands.TryPickupAnyHand(target, held, checkActionBlocker: false);
         }
+
+        if (!TryComp<InventoryComponent>(target, out var targetInventory))
+            return;
+
+        if (idItem != null
+            && !Deleted(idItem.Value)
+            && !IsInInventory(target, targetInventory, idItem.Value))
+        {
+            _inventory.TryEquip(target, idItem.Value, "id", true, true, inventory: targetInventory, triggerHandContact: true);
+        }
+
+        if (pocketItems.Count == 0)
+            return;
+
+        var targetPocketSlots = targetInventory.Slots
+            .Where(slot => slot.SlotFlags.HasFlag(SlotFlags.POCKET))
+            .ToArray();
+
+        foreach (var item in pocketItems)
+        {
+            if (Deleted(item) || IsInInventory(target, targetInventory, item))
+                continue;
+
+            foreach (var slot in targetPocketSlots)
+            {
+                if (_inventory.TryGetSlotEntity(target, slot.Name, out _, targetInventory))
+                    continue;
+
+                if (_inventory.TryEquip(target, item, slot.Name, true, true, inventory: targetInventory, triggerHandContact: true))
+                    break;
+            }
+        }
+    }
+
+    private bool IsInInventory(EntityUid owner, InventoryComponent inventory, EntityUid item)
+    {
+        var slots = _inventory.GetSlotEnumerator((owner, inventory));
+        while (slots.NextItem(out var inventoryItem))
+        {
+            if (inventoryItem == item)
+                return true;
+        }
+
+        return false;
     }
 
     private void TransferNutrition(EntityUid source, EntityUid target)
