@@ -48,7 +48,6 @@ loadout-group-pathologist-mask = { loadout-group-mask }
 loadout-group-pathologist-neck = { loadout-group-neck }
 loadout-group-pathologist-outerclothing = { loadout-group-outer-clothing }
 loadout-group-pathologist-shoes = { loadout-group-shoes }
-loadout-group-pepper-spray = { loadout-group-common-misc-items }
 loadout-group-prisoner-jumpsuit = { loadout-group-jumpsuit }
 loadout-group-prison-guard-backpack = { loadout-group-back }
 loadout-group-prison-guard-head = { loadout-group-head }
@@ -101,4 +100,3 @@ loadout-group-prison-security-loot = { loadout-group-storage }
 
 loadout-group-prison-jumpsuit = { loadout-group-jumpsuit }
 
-loadout-group-medical-glasses = { loadout-group-glasses }
