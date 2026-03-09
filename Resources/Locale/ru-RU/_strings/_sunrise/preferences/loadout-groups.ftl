@@ -18,7 +18,6 @@ loadout-group-brigmedic-jumpsuit = { loadout-group-jumpsuit }
 loadout-group-cargo-technician-gloves = { loadout-group-gloves }
 loadout-group-cargo-technician-mask = { loadout-group-mask }
 loadout-group-cargo-technician-neck = { loadout-group-neck }
-loadout-group-cargo-trinkets = { loadout-group-trinkets }
 loadout-group-centcomm-operator-head-hat = { loadout-group-head }
 loadout-group-centcomm-operator-jumpsuit = { loadout-group-jumpsuit }
 loadout-group-chemist-gloves = { loadout-group-gloves }
@@ -33,13 +32,11 @@ loadout-group-chief-engineer-mask = { loadout-group-mask }
 loadout-group-chief-medical-officer-gloves = { loadout-group-gloves }
 loadout-group-chief-medical-officer-mask = { loadout-group-mask }
 loadout-group-corporate-law = { loadout-group-common-misc-items }
-loadout-group-engineering-trinkets = { loadout-group-trinkets }
 loadout-group-hos-gun = { loadout-group-weapon }
 loadout-group-mail-backpack = { loadout-group-back }
 loadout-group-mail-jumpsuit = { loadout-group-jumpsuit }
 loadout-group-captain-gloves = { loadout-group-gloves }
 loadout-group-medical-doctor-neck = { loadout-group-neck }
-loadout-group-medical-trinkets = { loadout-group-trinkets }
 loadout-group-nanotrasenrepresentative-jumpsuit = { loadout-group-jumpsuit }
 loadout-group-nanotrasenrepresentative-outerclothing = { loadout-group-outer-clothing }
 loadout-group-paramedic-gloves = { loadout-group-gloves }
@@ -104,7 +101,6 @@ loadout-group-commaid-gloves = { loadout-group-gloves }
 
 loadout-group-hats = { loadout-group-head }
 
-loadout-group-prison-trinkets = { loadout-group-trinkets }
 loadout-group-prisoner-loot = { loadout-group-storage }
 loadout-group-prison-security-loot = { loadout-group-storage }
 
