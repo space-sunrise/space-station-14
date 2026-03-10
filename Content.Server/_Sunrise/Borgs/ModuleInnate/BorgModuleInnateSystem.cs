@@ -44,7 +44,7 @@ public sealed class BorgModuleInnateSystem : EntitySystem
     private EntityQuery<BatteryComponent> _batteryQuery;
     private EntityQuery<BorgChassisComponent> _borgChassisQuery;
 
-    private TimeSpan _lastChargeBalanceTime;
+    private TimeSpan _nextChargeBalanceTime;
 
     public override void Initialize()
     {
@@ -67,10 +67,10 @@ public sealed class BorgModuleInnateSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        if (_timing.CurTime - _lastChargeBalanceTime < TimeSpan.FromSeconds(ChargeBalanceInterval))
+        if (_timing.CurTime < _nextChargeBalanceTime)
             return;
 
-        _lastChargeBalanceTime = _timing.CurTime;
+        _nextChargeBalanceTime = _timing.CurTime + TimeSpan.FromSeconds(ChargeBalanceInterval);
 
         BalanceInnateItemCharges();
     }
