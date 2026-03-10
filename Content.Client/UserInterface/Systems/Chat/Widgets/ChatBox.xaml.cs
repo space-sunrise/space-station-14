@@ -1,4 +1,4 @@
-using Content.Client._Sunrise.Chat; // RMC14-edit
+using Content.Client._Sunrise.Chat; // Sunrise-edit
 using Content.Client.UserInterface.Systems.Chat.Controls;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
@@ -54,7 +54,7 @@ public partial class ChatBox : UIWidget
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly ILogManager _log = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly CMAntirepeat _cmAntirepeat = default!; // Sunrise
+    [Dependency] private readonly CMAntirepeat _cmAntirepeat = default!; // Sunrise-edit
 
     private readonly ISawmill _sawmill;
     private readonly ChatUIController _controller;
@@ -143,7 +143,7 @@ public partial class ChatBox : UIWidget
 
         var color = msg.MessageColorOverride ?? msg.Channel.TextColor();
 
-        AddLine(msg.WrappedMessage, color, msg.SenderEntity, msg.Message, msg.Channel, msg.RepeatCheckSender); // RMC14-edit
+        AddLine(msg.WrappedMessage, color, msg.SenderEntity, msg.Message, msg.Channel, msg.RepeatCheckSender); // Sunrise-edit
     }
 
     private void OnHighlightsUpdated(string highlights)
@@ -190,7 +190,7 @@ public partial class ChatBox : UIWidget
     private void ClearChatContents()
     {
         Contents.Clear();
-        RepeatQueue.Clear();
+        RepeatQueue.Clear(); // Sunrise-edit
 
         foreach (var child in Contents.Children.ToArray())
         {
@@ -202,7 +202,7 @@ public partial class ChatBox : UIWidget
     }
     // Sunrise-End
 
-    public void AddLine(string message, Color color, NetEntity sender, string unwrapped, ChatChannel channel, bool repeatCheckSender) // RMC14-Edit
+    public void AddLine(string message, Color color, NetEntity sender, string unwrapped, ChatChannel channel, bool repeatCheckSender) // Sunrise-Edit
     {
         // Sunrise-Start
         var allowEmoji = channel == ChatChannel.None ||
