@@ -2,7 +2,7 @@ using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Server.Popups;
 using Content.Shared.Actions;
-using Content.Shared.Damage; // Sunrise-Edit
+using Content.Shared.Damage.Systems; // Sunrise-Edit
 using Content.Shared.Devour; // Sunrise-Edit
 using Content.Shared.Devour.Components;
 using Content.Shared.Dragon;
