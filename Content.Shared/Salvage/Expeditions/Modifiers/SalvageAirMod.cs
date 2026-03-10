@@ -1,5 +1,4 @@
 using Content.Shared.Atmos;
-using Content.Shared.Procedural; // Sunrise-Edit
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Salvage.Expeditions.Modifiers;
@@ -26,9 +25,6 @@ public sealed partial class SalvageAirMod : IPrototype, IBiomeSpecificMod
     /// <inheritdoc/>
     [DataField]
     public List<ProtoId<SalvageBiomeModPrototype>>? Biomes { get; private set; } = null;
-
-    [DataField]
-    public List<ProtoId<SalvageDifficultyPrototype>>? Difficulties { get; private set; } = null; // Sunrise-Edit
 
     /// <summary>
     /// Set to true if this planet will have no atmosphere.

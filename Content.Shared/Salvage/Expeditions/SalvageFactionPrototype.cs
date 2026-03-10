@@ -1,6 +1,4 @@
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List; // Sunrise-Edit
-using Content.Shared.Procedural; // Sunrise-Edit
 
 namespace Content.Shared.Salvage.Expeditions;
 
@@ -13,9 +11,6 @@ public sealed partial class SalvageFactionPrototype : IPrototype
 
     [ViewVariables(VVAccess.ReadWrite), DataField("entries", required: true)]
     public List<SalvageMobEntry> MobGroups = new();
-
-    [DataField] // Sunrise-Edit
-    public List<ProtoId<SalvageDifficultyPrototype>>? Difficulties { get; private set; } = null; // Sunrise-Edit
 
     /// <summary>
     /// Miscellaneous data for factions.

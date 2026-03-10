@@ -1,5 +1,5 @@
 using Robust.Shared.Prototypes;
-using Content.Shared.Procedural; // Sunrise-Edit
+using Content.Shared.Procedural;
 
 namespace Content.Shared.Salvage.Expeditions.Modifiers;
 
@@ -17,9 +17,6 @@ public sealed partial class SalvageDungeonModPrototype : IPrototype, IBiomeSpeci
     /// <inheridoc/>
     [DataField]
     public List<ProtoId<SalvageBiomeModPrototype>>? Biomes { get; private set; } = null;
-
-    [DataField]
-    public List<ProtoId<SalvageDifficultyPrototype>>? Difficulties { get; private set; } = null; // Sunrise-Edit
 
     /// <summary>
     /// Which factions can spawn on this dungeon; any if empty.

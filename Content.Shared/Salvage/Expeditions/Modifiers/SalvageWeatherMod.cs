@@ -1,5 +1,4 @@
 using Content.Shared.Weather;
-using Content.Shared.Procedural; // Sunrise-Edit
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -19,9 +18,6 @@ public sealed partial class SalvageWeatherMod : IPrototype, IBiomeSpecificMod
     /// <inheritdoc/>
     [DataField]
     public List<ProtoId<SalvageBiomeModPrototype>>? Biomes { get; private set; } = null;
-
-    [DataField]
-    public List<ProtoId<SalvageDifficultyPrototype>>? Difficulties { get; private set; } = null; // Sunrise-Edit
 
     /// <summary>
     /// Weather prototype to use on the planet.

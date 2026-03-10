@@ -1,9 +1,6 @@
-using Content.Shared.Procedural; // Sunrise-Edit
-using Robust.Shared.Prototypes;
-
 namespace Content.Shared.Salvage.Expeditions.Modifiers;
 
-public interface ISalvageMod
+public partial interface ISalvageMod
 {
     /// <summary>
     /// Player-friendly version describing this modifier.
@@ -15,5 +12,4 @@ public interface ISalvageMod
     /// </summary>
     float Cost { get; }
 
-    List<ProtoId<SalvageDifficultyPrototype>>? Difficulties { get; } // Sunrise-Edit
 }

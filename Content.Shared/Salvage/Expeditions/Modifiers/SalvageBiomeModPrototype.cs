@@ -1,5 +1,4 @@
 using Content.Shared.Parallax.Biomes;
-using Content.Shared.Procedural; // Sunrise-Edit
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -26,9 +25,6 @@ public sealed partial class SalvageBiomeModPrototype : IPrototype, ISalvageMod
     /// </summary>
     [DataField("weather")]
     public bool Weather = true;
-
-    [DataField]
-    public List<ProtoId<SalvageDifficultyPrototype>>? Difficulties { get; private set; } = null; // Sunrise-Edit
 
     [DataField("biome", required: true, customTypeSerializer:typeof(PrototypeIdSerializer<BiomeTemplatePrototype>))]
     public string? BiomePrototype;

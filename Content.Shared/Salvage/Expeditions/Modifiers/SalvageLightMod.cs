@@ -1,5 +1,4 @@
 using Robust.Shared.Prototypes;
-using Content.Shared.Procedural; // Sunrise-Edit
 namespace Content.Shared.Salvage.Expeditions.Modifiers;
 
 [Prototype("salvageLightMod")]
@@ -16,9 +15,6 @@ public sealed partial class SalvageLightMod : IPrototype, IBiomeSpecificMod
     /// <inheritdoc/>
     [DataField]
     public List<ProtoId<SalvageBiomeModPrototype>>? Biomes { get; private set; } = null;
-
-    [DataField]
-    public List<ProtoId<SalvageDifficultyPrototype>>? Difficulties { get; private set; } = null; // Sunrise-Edit
 
     [DataField("color", required: true)] public Color? Color;
 }

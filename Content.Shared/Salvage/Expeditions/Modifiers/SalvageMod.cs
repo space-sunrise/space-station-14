@@ -1,5 +1,4 @@
 using Robust.Shared.Prototypes;
-using Content.Shared.Procedural; // Sunrise-Edit
 namespace Content.Shared.Salvage.Expeditions.Modifiers;
 
 /// <summary>
@@ -18,6 +17,4 @@ public sealed partial class SalvageMod : IPrototype, ISalvageMod
     [DataField("cost")]
     public float Cost { get; private set; } = 0f;
 
-    [DataField]
-    public List<ProtoId<SalvageDifficultyPrototype>>? Difficulties { get; private set; } = null; // Sunrise-Edit
 }
