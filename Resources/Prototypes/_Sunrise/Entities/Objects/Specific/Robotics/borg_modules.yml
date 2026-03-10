@@ -553,4 +553,4 @@
   - type: BorgModuleIcon
     icon:
       sprite: Interface/Actions/actions_borg.rsi
-      state: gardening-module }
+      state: gardening-module
