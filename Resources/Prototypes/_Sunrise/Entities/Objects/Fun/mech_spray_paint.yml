@@ -47,7 +47,7 @@
 # Ripley-Aluminizer
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Ripley, Aluminizer
+  suffix: Ripley, Aluminizer
   id: MechPaintRipleyAluminizer
   components:
   - type: Sprite
@@ -77,7 +77,7 @@
 # Ripley-Combat Ripley
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Ripley, Combat Ripley
+  suffix: Ripley, Combat Ripley
   id: MechPaintRipleyCombatRipley
   components:
   - type: Sprite
@@ -107,7 +107,7 @@
 # Ripley-Firestarter
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Ripley, Firestarter
+  suffix: Ripley, Firestarter
   id: MechPaintRipleyFirestarter
   components:
   - type: Sprite
@@ -137,7 +137,7 @@
 # Ripley-Hauler
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Ripley, Hauler
+  suffix: Ripley, Hauler
   id: MechPaintRipleyHauler
   components:
   - type: Sprite
@@ -167,7 +167,7 @@
 # Ripley-Reaper
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Ripley, Reaper
+  suffix: Ripley, Reaper
   id: MechPaintRipleyReaper
   components:
   - type: Sprite
@@ -197,7 +197,7 @@
 # Ripley-Zairjah
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Ripley, Zairjah
+  suffix: Ripley, Zairjah
   id: MechPaintRipleyZairjah
   components:
   - type: Sprite
@@ -258,7 +258,7 @@
 # Clarke-Orangey
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Clarke, Orangey
+  suffix: Clarke, Orangey
   id: MechPaintClarkeOrangey
   components:
   - type: Sprite
@@ -288,7 +288,7 @@
 # Gygax-Molot
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Gygax, Molot
+  suffix: Gygax, Molot
   id: MechPaintGygaxMolot
   components:
   - type: Sprite
@@ -318,7 +318,7 @@
 # Gygax-Black
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Gygax, Contraband
+  suffix: Gygax, Contraband
   id: MechPaintGygaxBlack
   components:
   - type: Sprite
@@ -348,7 +348,7 @@
 # Gygax-White
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Gygax, Legal
+  suffix: Gygax, Legal
   id: MechPaintGygaxWhite
   components:
   - type: Sprite
@@ -378,7 +378,7 @@
 #Gygax-Pirate
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Gygax, Pirate
+  suffix: Gygax, Pirate
   id: MechPaintGygaxPirate
   components:
   - type: Sprite
@@ -409,7 +409,7 @@
 
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Gygax
+  suffix: Gygax
   id: MechPaintGygax
   components:
   - type: Sprite
@@ -439,7 +439,7 @@
 
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Gygax, Old
+  suffix: Gygax, Old
   id: MechPaintGygaxOld
   components:
   - type: Sprite
@@ -468,7 +468,7 @@
 #Durand-Old
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Durand, Old
+  suffix: Durand, Old
   id: MechPaintDurandOld
   components:
   - type: Sprite
@@ -498,7 +498,7 @@
 
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Durand, Unathi
+  suffix: Durand, Unathi
   id: MechPaintDurandUnathi
   components:
   - type: Sprite
@@ -528,7 +528,7 @@
 
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Durand , Shire
+  suffix: Durand , Shire
   id: MechPaintDurandShire
   components:
   - type: Sprite
@@ -558,7 +558,7 @@
 
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Durand , Dollhouse
+  suffix: Durand , Dollhouse
   id: MechPaintDurandDollhouse
   components:
   - type: Sprite
@@ -588,7 +588,7 @@
 
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Durand , Executor
+  suffix: Durand , Executor
   id: MechPaintDurandExecutor
   components:
   - type: Sprite
@@ -618,7 +618,7 @@
 
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Mauler , Meowler
+  suffix: Mauler , Meowler
   id: MechPaintMaulerMeowler
   components:
   - type: Sprite
@@ -646,7 +646,7 @@
 
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Dollhouse , Warboss
+  suffix: Dollhouse , Warboss
   id: MechPaintDollHouseWarboss
   components:
   - type: Sprite
