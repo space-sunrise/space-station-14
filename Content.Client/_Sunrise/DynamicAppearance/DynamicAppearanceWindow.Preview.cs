@@ -140,7 +140,6 @@ public sealed partial class DynamicAppearanceWindow
             return;
 
         humanoid.CustomBaseLayers = new Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo>(_draftState.CustomBaseLayers);
-        _humanoidSystem.RefreshAppearance(_dummyEntity, humanoid);
     }
 
     private void DestroyDummy()

@@ -261,16 +261,6 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         UpdateSprite((uid, humanoid, Comp<SpriteComponent>(uid)));
     }
 
-    // Sunrise added start - local preview UIs need a way to force sprite rebuilds after mutating custom base layers.
-    public void RefreshAppearance(EntityUid uid, HumanoidAppearanceComponent? humanoid = null, SpriteComponent? sprite = null)
-    {
-        if (!Resolve(uid, ref humanoid, false) || !Resolve(uid, ref sprite, false))
-            return;
-
-        UpdateSprite((uid, humanoid, sprite));
-    }
-    // Sunrise added end
-
     private void ApplyMarkingSet(Entity<HumanoidAppearanceComponent, SpriteComponent> entity)
     {
         var humanoid = entity.Comp1;
