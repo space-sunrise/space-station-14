@@ -75,7 +75,7 @@ namespace Content.Client.IoC
             collection.Register<ContributorsManager>();
             collection.Register<PlayerCacheManager>();
             collection.Register<NetTexturesManager>();
-            collection.Register<CMAntirepeat>();
+            collection.Register<Antirepeat>();
             SunriseClientContentIoC.Register();
             collection.Register<CustomInteractionService, CustomInteractionService>(true);
             // Sunrise-End

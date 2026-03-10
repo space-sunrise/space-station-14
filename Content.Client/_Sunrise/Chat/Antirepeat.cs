@@ -7,7 +7,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise.Chat;
 
-public sealed class CMAntirepeat
+public sealed class Antirepeat
 {
     [Dependency] private readonly IConfigurationManager _config = default!;
 

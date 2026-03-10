@@ -54,7 +54,7 @@ public partial class ChatBox : UIWidget
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly ILogManager _log = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly CMAntirepeat _cmAntirepeat = default!; // Sunrise-edit
+    [Dependency] private readonly Antirepeat _antirepeat = default!; // Sunrise-edit
 
     private readonly ISawmill _sawmill;
     private readonly ChatUIController _controller;
@@ -219,7 +219,7 @@ public partial class ChatBox : UIWidget
         formatted.AddMarkupOrThrow(message);
         formatted.Pop();
         // Sunrise-Start
-        if (_cmAntirepeat.TryRepetition(this, Contents, formatted, sender, unwrapped, channel, repeatCheckSender))
+        if (_antirepeat.TryRepetition(this, Contents, formatted, sender, unwrapped, channel, repeatCheckSender))
             return;
         // Sunrise-End
         Contents.AddMessage(formatted);

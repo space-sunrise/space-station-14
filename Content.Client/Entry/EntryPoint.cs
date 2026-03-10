@@ -91,7 +91,7 @@ namespace Content.Client.Entry
         [Dependency] private readonly ContributorsManager _contributorsManager = default!; // Sunrise-Edit
         [Dependency] private readonly PlayerCacheManager _playerCacheManager = default!; // Sunrise-Edit
         [Dependency] private readonly NetTexturesManager _netTexturesManager = default!; // Sunrise-Edit
-        [Dependency] private readonly CMAntirepeat _cmAntirepeat = default!; // Sunrise-Edit
+        [Dependency] private readonly Antirepeat _antirepeat = default!; // Sunrise-Edit
 
         public override void PreInit()
         {
@@ -167,7 +167,7 @@ namespace Content.Client.Entry
             _contributorsManager.Initialize(); // Sunrise-Edit
             _playerCacheManager.Initialize(); // Sunrise-Edit
             _netTexturesManager.Initialize(); // Sunrise-Edit
-            _cmAntirepeat.Initialize(); // Sunrise-Edit
+            _antirepeat.Initialize(); // Sunrise-Edit
 
             // Sunrise-Sponsors-Start
             SunriseClientEntry.Init();
