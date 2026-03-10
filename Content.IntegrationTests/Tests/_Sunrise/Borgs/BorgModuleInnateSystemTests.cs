@@ -291,34 +291,34 @@ public sealed class BorgModuleInnateSystemTests
             Assert.Multiple(() =>
             {
                 Assert.That(container, Is.Not.Null,
-                    "InnateItemsContainer должен быть инициализирован сразу после установки модуля");
+                    "InnateItemsContainer should be initialized by the system after module installation");
                 Assert.That(container!.ContainedEntities, Has.Count.EqualTo(1),
-                    "Должен быть ровно 1 предмет (1 UseItem) в контейнере после установки");
+                    "There should be exactly 1 item (1 UseItem) in the container after installation");
             });
 
             // Для каждого UseItem создаётся один экшен ModuleInnateUseItemAction
             Assert.That(innateComp.Actions, Has.Count.EqualTo(1),
-                "Для одного UseItem должен быть создан ровно 1 экшен");
+                "For one UseItem, exactly one action should be created");
 
             // Сохраняем ссылку на созданный предмет для проверки после удаления
             var spawnedItem = container!.ContainedEntities[0];
             Assert.That(entMan.EntityExists(spawnedItem), Is.True,
-                "Созданный предмет должен существовать в мире");
+                "Created item should exist in the world");
 
             // Изымаем модуль
             borgSystem.UninstallModule((borg, borgComp), (module, moduleComp));
 
             // Предмет должен быть полностью удалён из Entity Manager
             Assert.That(entMan.EntityExists(spawnedItem), Is.False,
-                "Созданный встроенный предмет должен быть УДАЛЁН из мира при изъятии модуля");
+                "Created innate item should be DELETED from the world when the module is uninstalled");
 
             // Ссылка на контейнер очищается в null
             Assert.That(innateComp.InnateItemsContainer, Is.Null,
-                "InnateItemsContainer должен стать null после изъятия модуля");
+                "InnateItemsContainer should become null after module is uninstalled");
 
             // Список экшенов должен быть очищен
             Assert.That(innateComp.Actions, Is.Empty,
-                "Список Actions должен быть пустым после изъятия модуля");
+                "Actions list should be empty after module is uninstalled");
         });
 
         await pair.CleanReturnAsync();
@@ -385,9 +385,9 @@ public sealed class BorgModuleInnateSystemTests
 
             // Проверяем что батарея борга теперь доступна (50%)
             Assert.That(powerCellSystem.TryGetBatteryFromSlot(borg, out var borgBattery), Is.True,
-                "Борг должен иметь батарею в слоте после вставки ячейки");
+                "Borg should have a battery in the cell_slot after inserting the cell");
             Assert.That(batterySystem.GetChargeLevel(borgBattery!.Value), Is.EqualTo(0.5f).Within(0.01f),
-                "Батарея борга должна быть на 50% в начале теста");
+                "Borg's battery should be at 50% at the start of the test");
 
             var borgComp = entMan.GetComponent<BorgChassisComponent>(borg);
             var moduleComp = entMan.GetComponent<BorgModuleComponent>(module);
@@ -405,7 +405,7 @@ public sealed class BorgModuleInnateSystemTests
 
             // Предмет должен начинать на 100% согласно прототипу TestBorgInnateItemWithBattery
             Assert.That(batterySystem.GetChargeLevel((item, itemBattery)), Is.EqualTo(1.0f).Within(0.01f),
-                "Батарея встроенного предмета должна быть на 100% в начале теста");
+                "Innate item's battery should be at 100% at the start of the test");
         });
 
         // ── Этап 2: Продвигаем время ─────────────────────────────────
@@ -419,10 +419,10 @@ public sealed class BorgModuleInnateSystemTests
         {
             // Батарея борга должна вырасти с 500 до ~600
             Assert.That(powerCellSystem.TryGetBatteryFromSlot(borg, out var borgBattery), Is.True,
-                "Батарея борга должна быть доступна после балансировки");
+                "Borg's battery should be available after balancing");
             var borgCharge = batterySystem.GetCharge(borgBattery!.Value);
             Assert.That(borgCharge, Is.GreaterThan(500f),
-                "Заряд борга должен был УВЕЛИЧИТЬСЯ после балансировки (50% → ~60%). Текущий показатель: " + borgCharge);
+                $"Borg's charge should have INCREASED after balancing (50% → ~60%), because borg battery recharging is allowed. Current value: {borgCharge}");
 
             // Батарея предмета должна уменьшиться с 500 до ~300
             var innateComp = entMan.GetComponent<BorgModuleInnateComponent>(module);
@@ -430,13 +430,13 @@ public sealed class BorgModuleInnateSystemTests
             var itemBattery = entMan.GetComponent<BatteryComponent>(item);
             var itemCharge = batterySystem.GetCharge((item, itemBattery));
             Assert.That(itemCharge, Is.LessThan(500f),
-                "Заряд предмета должен был УМЕНЬШИТЬСЯ после балансировки (100% → ~60%). Текущий показатель: " + itemCharge);
+                $"Innate item's charge should have DECREASED after balancing (100% → ~60%), because borg battery recharging is allowed. Current value: {itemCharge}");
 
             // Оба заряда должны стать равными (~60% от своего максимума)
             var borgLevel = borgCharge / borgBattery.Value.Comp.MaxCharge;
             var itemLevel = itemCharge / itemBattery.MaxCharge;
             Assert.That(borgLevel, Is.EqualTo(itemLevel).Within(0.02f),
-                "Уровень заряда борга и предмета должны совпадать после балансировки");
+                "Borg's and innate item's charge levels should match after balancing");
         });
 
         await pair.CleanReturnAsync();
