@@ -38,9 +38,7 @@ entities:
     - type: Transform
     - type: Map
       mapPaused: True
-    - type: PhysicsMap
     - type: GridTree
-    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
     - type: LoadedMap
@@ -14707,20 +14705,6 @@ entities:
     - type: Transform
       pos: -14.472164,-4.010972
       parent: 2
-- proto: HandheldCrewMonitor
-  entities:
-  - uid: 1620
-    components:
-    - type: Transform
-      pos: 10.650544,-4.5766006
-      parent: 2
-  - uid: 2057
-    components:
-    - type: Transform
-      parent: 858
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: HandTeleporter
   entities:
   - uid: 2682

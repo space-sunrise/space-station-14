@@ -6,7 +6,7 @@
   description: A pressure resistant and fireproof hood worn by special cleanup units.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Head/Hardsuits/cburn-commander.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/cburn_commander.rsi
     layers:
     - state: icon
     - state: icon-unshaded
@@ -119,9 +119,9 @@
   description: A heavily armored USSP spacesuit designed for High command or elite squad member.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-elite.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_elite.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-elite.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_elite.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -140,9 +140,9 @@
   description: A heavily armored USSP spacesuit designed for combat operations in extreme conditions. Reinforced armor protects against firearms and energy weapons, radiation and explosions. It is used by elite units to protect strategic facilities.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-heavy.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_heavy.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-heavy.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_heavy.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -161,9 +161,9 @@
   description: A lightweight combat suit designed for rapid response and mobile operations. The light armor provides protection against firearms and allows for high maneuverability. The Grom-P is used by assault troops for fast and effective combat operations.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-light.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_light.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-light.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_light.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
@@ -183,9 +183,9 @@
   description: An engineering hardsuit helmet designed for working in low-pressure, high radioactive environments.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Head/Hardsuits/engineering-compact.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/engineering_compact.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Head/Hardsuits/engineering-compact.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/engineering_compact.rsi
   - type: PointLight
     color: cyan
   - type: PressureProtection

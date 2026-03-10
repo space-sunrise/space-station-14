@@ -990,8 +990,7 @@ entities:
       pos: 4.5,4.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 17
   - uid: 102
@@ -1001,8 +1000,7 @@ entities:
       pos: -1.5,0.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 17
   - uid: 225
@@ -1011,8 +1009,7 @@ entities:
       pos: 0.5,4.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 17
   - uid: 278
@@ -1022,8 +1019,7 @@ entities:
       pos: 0.5,-3.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 17
   - uid: 292
@@ -1033,8 +1029,7 @@ entities:
       pos: 4.5,-3.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 17
 - proto: GasVentScrubber
@@ -1045,8 +1040,7 @@ entities:
       pos: 1.5,-2.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 17
 - proto: GravityGeneratorMini

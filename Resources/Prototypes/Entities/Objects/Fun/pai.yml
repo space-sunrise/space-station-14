@@ -108,6 +108,9 @@
     entityTargetActions:
     - HandheldHealthAnalyzerUnpowered
   - type: BorgBrain
+  - type: ContainerContainer
+    containers:
+      innate_items: !type:Container
   # Sunrise-End
   - type: ChangeVoiceInContainer
     whitelist:

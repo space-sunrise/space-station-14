@@ -16,7 +16,7 @@
   components:
   - type: Objective
     icon:
-      sprite: _Sunrise/Mobs/Species/Cyberlimbs/dubious-organs.rsi
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/dubious_organs.rsi
       state: gland
   - type: NumberObjective
     min: 6

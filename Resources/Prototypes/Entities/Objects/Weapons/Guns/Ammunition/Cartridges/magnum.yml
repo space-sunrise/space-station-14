@@ -16,6 +16,15 @@
   - type: SpentAmmoVisuals
 
 - type: entity
+  parent: BaseCartridgeMagnum
+  id: CartridgeMagnum
+  name: cartridge (.45 magnum)
+  description: Heavy magnum cartridge mostly used by revolvers. Standard kinetic ammunition is common and useful in most situations.
+  components:
+  - type: CartridgeAmmo
+    proto: BulletMagnum
+
+- type: entity
   id: CartridgeMagnumRubber
   name: cartridge (.45 magnum rubber)
   parent: BaseCartridgeMagnum

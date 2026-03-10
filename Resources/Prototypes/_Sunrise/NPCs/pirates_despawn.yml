@@ -207,7 +207,7 @@
     layers:
     - state: red
     - state: one
-    - sprite: Objects/Materials/materials.rsi
+    - sprite: Objects/Materials/Sheets/metal.rsi
       state: steel
   - type: EntityTableSpawner
     table: !type:NestedSelector
@@ -634,7 +634,7 @@
     layers:
     - state: red
     - state: one
-    - sprite: Objects/Materials/materials.rsi
+    - sprite: Objects/Materials/Sheets/metal.rsi
       state: steel
   - type: EntityTableSpawner
     table: !type:NestedSelector
@@ -894,7 +894,7 @@
     layers:
     - state: red
     - state: one
-    - sprite: Objects/Materials/materials.rsi
+    - sprite: Objects/Materials/Sheets/metal.rsi
       state: steel
   - type: EntityTableSpawner
     table: !type:NestedSelector

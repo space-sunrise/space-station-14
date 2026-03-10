@@ -2,7 +2,7 @@
   # Ксеноморфы (гуманоидные)
 
   <Box>
-    <GuideEntityEmbed Entity="MobHumanoidXeno" Caption=""/>
+    <GuideEntityEmbed Entity="MobXenoDummy" Caption=""/>
   </Box>
 
   Гуманоидные ксеноморфы устойчивы к перепадам давления и обладают кислотной кровью.

@@ -98,8 +98,7 @@
 - type: loadout
   id: ComMaidGlovesTactical
   equipment:
-    gloves: ClothingHandsTacticalMaidGloves
+    gloves: ClothingHandsTacticalMaidGlovesFake
   effects:
   - !type:GroupLoadoutEffect
     proto: MasterMaid
-

@@ -81349,7 +81349,7 @@ entities:
       parent: 2
 - proto: ComputerAtmosMonitoring
   entities:
-  - uid: 8792
+  - uid: 30743
     components:
     - type: Transform
       rot: 1.5707963267948966 rad

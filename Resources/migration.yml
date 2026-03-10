@@ -986,4 +986,8 @@ ClothingOuterSuitAreopagite: null
 SuitStorageBlueshield: SuitStorageBlueShield
 GunSafeIonRifle: GunSafeSuperIonRifle
 GunSafeSMRTGun: GunSafeSuperweaponSmartGun
+
+#2026-02-28
+CartridgeRifle: CartridgeRifleSP
+MagazinePistolHighCapacity: MagazinePistolHighCapacitySP
 # region Sunrise-End

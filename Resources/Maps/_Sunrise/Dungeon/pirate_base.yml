@@ -5571,9 +5571,7 @@ entities:
       pos: 19.605373,46.560425
       parent: 1
     - type: UserInterface
-      actors:
-        enum.StorageUiKey.Key:
-        - invalid
+      actors: {}
     - type: Physics
       canCollide: False
     - type: ActiveUserInterface

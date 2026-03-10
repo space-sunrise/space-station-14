@@ -95,7 +95,7 @@
   description: This duffel bag looks great.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Duffels/blackduffel.rsi
+    sprite: _Sunrise/Clothing/Back/Duffels/black_duffel.rsi
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -104,7 +104,7 @@
   description: This duffel bag looks great.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Duffels/blueduffel.rsi
+    sprite: _Sunrise/Clothing/Back/Duffels/blue_duffel.rsi
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -113,7 +113,7 @@
   description: This duffel bag looks great.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Duffels/cianduffel.rsi
+    sprite: _Sunrise/Clothing/Back/Duffels/cian_duffel.rsi
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -122,7 +122,7 @@
   description: This duffel bag looks great.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Duffels/greenduffel.rsi
+    sprite: _Sunrise/Clothing/Back/Duffels/green_duffel.rsi
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -131,7 +131,7 @@
   description: This duffel bag looks great.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Duffels/orangeduffel.rsi
+    sprite: _Sunrise/Clothing/Back/Duffels/orange_duffel.rsi
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -140,7 +140,7 @@
   description: This duffel bag looks great.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Duffels/purpleduffel.rsi
+    sprite: _Sunrise/Clothing/Back/Duffels/purple_duffel.rsi
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -149,7 +149,7 @@
   description: This duffel bag looks great.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Duffels/redduffel.rsi
+    sprite: _Sunrise/Clothing/Back/Duffels/red_duffel.rsi
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -158,7 +158,7 @@
   description: This duffel bag looks great.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Duffels/whiteduffel.rsi
+    sprite: _Sunrise/Clothing/Back/Duffels/white_duffel.rsi
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -167,7 +167,7 @@
   description: This duffel bag looks great.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Duffels/yellowduffel.rsi
+    sprite: _Sunrise/Clothing/Back/Duffels/yellow_duffel.rsi
 
 - type: entity
   parent: ClothingBackpackDuffelCaptain

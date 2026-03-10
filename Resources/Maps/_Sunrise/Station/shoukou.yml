@@ -3043,12 +3043,10 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
-    - type: PhysicsMap
     - type: Broadphase
     - type: OccluderTree
     - type: LoadedMap
     - type: GridTree
-    - type: MovedGrids
 - proto: AirAlarm
   entities:
   - uid: 738
@@ -25515,28 +25513,6 @@ entities:
   - uid: 11358
     components:
     - pos: 29.33867,-10.338079
-      parent: 34
-      type: Transform
-- proto: ClothingHeadHatCatEars
-  entities:
-  - uid: 130
-    components:
-    - pos: -46.46319,-13.539515
-      parent: 34
-      type: Transform
-  - uid: 146
-    components:
-    - pos: -46.43541,-13.789515
-      parent: 34
-      type: Transform
-  - uid: 169
-    components:
-    - pos: -50.42152,-13.442293
-      parent: 34
-      type: Transform
-  - uid: 170
-    components:
-    - pos: -50.46319,-13.608959
       parent: 34
       type: Transform
 - proto: ClothingHeadHatCone
