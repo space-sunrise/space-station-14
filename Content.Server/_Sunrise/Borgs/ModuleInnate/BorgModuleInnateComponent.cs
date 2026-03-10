@@ -13,10 +13,13 @@ public sealed partial class BorgModuleInnateComponent : Component
     // Важно для кастомных экшенов - делайте их Temporary.
     [DataField]
     public EntProtoId InnateUseItemAction = "ModuleInnateUseItemAction";
+
     [DataField]
     public EntProtoId InnateToggleItemAction = "ModuleInnateToggleItemAction";
+
     [DataField]
     public EntProtoId InnateInteractionItemAction = "ModuleInnateInteractionItemAction";
+
     /// <summary>
     /// Множитель потребления энергии предметами модуля
     /// </summary>
