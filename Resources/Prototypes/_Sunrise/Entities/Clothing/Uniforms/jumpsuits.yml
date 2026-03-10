@@ -192,9 +192,9 @@
   description: Greatly tailored set of pants, t-shirt and windbreaker. Features a distinctive two stripe, name print "Red Sickle".
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-black.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas_black.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-black.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas_black.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -203,9 +203,9 @@
   description: White version of the popular USSP Olympians sports uniform, has two black stripes on each part of the set. Fashionable, stylish and bright!
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-white.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas_white.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-white.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas_white.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -338,9 +338,9 @@
   name: blueshield's jumpsuit
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/blueshield-js.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/blueshield_js.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/blueshield-js.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/blueshield_js.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -373,13 +373,11 @@
     sprite: Clothing/Uniforms/Shorts/Color/red.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Shorts/Color/red.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClownSuit
     - NudeTop # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingUniformBase

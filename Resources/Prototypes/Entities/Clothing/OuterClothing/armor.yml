@@ -295,8 +295,8 @@
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
     damageCoefficient: 0.45
   - type: ClothingSpeedModifier
-    walkModifier: 0.95 # Sunrise-Edit
-    sprintModifier: 0.95 # Sunrise-Edit
+    walkModifier: 1 # Sunrise-Edit
+    sprintModifier: 1 # Sunrise-Edit
   #Shoulder mounted flashlight
   - type: ToggleableVisuals
     spriteLayer: light

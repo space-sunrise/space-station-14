@@ -113,10 +113,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902_feed.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/dl6902_feed.rsi
     state: icon
   - type: Item
-    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902_feed.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/dl6902_feed.rsi
     size: Huge
     shape:
     - 0,0,6,4

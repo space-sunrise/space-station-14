@@ -443,7 +443,7 @@
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_Pistol.ogg
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_P.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/eg_p.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

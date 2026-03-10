@@ -127,7 +127,7 @@
     capacity: 200
   - type: Item
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Dl6902mag.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/dl6902_mag.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 8

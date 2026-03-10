@@ -46342,7 +46342,7 @@ entities:
           Telecrystal: 18
         conditions: null
         icon:
-          sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi
+          sprite: _Sunrise/Objects/Weapons/Guns/SMGs/iar_52.rsi
           state: icon
         priority: 0
         productAction: null
@@ -46822,7 +46822,7 @@ entities:
             sizes: null
             components: null
         icon:
-          sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902.rsi
+          sprite: _Sunrise/Objects/Weapons/Guns/LMGs/dl6902.rsi
           state: icon
         priority: 0
         productAction: null
@@ -49212,7 +49212,7 @@ entities:
             sizes: null
             components: null
         icon:
-          sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Dl6902mag.rsi
+          sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/dl6902_mag.rsi
           state: base
         priority: 0
         productAction: null
@@ -54453,7 +54453,7 @@ entities:
             components: null
           whitelist: null
         icon:
-          sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi
+          sprite: _Sunrise/Objects/Weapons/Guns/SMGs/aj_100.rsi
           state: icon
         priority: 0
         productAction: null
@@ -58167,7 +58167,7 @@ entities:
           Telecrystal: 3
         conditions: null
         icon:
-          sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/IAR-52mag.rsi
+          sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/iar_52_mag.rsi
           state: base
         priority: 0
         productAction: null

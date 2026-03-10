@@ -64,7 +64,7 @@
   - type: Item
     size: Normal
   - type: AccessReader
-    access: [ [ "Armory" ],[ "Medical" ],[ "Research" ] ] # ГСБ/Вард, РНД и Мед Отдел
+    access: [ [ "Armory" ],[ "Medical" ],[ "Research" ] ] # ГСБ/Вард, НИО и Мед Отдел
 
 - type: entity
   parent: [ BaseImplantCase, BaseMedicalContraband ]

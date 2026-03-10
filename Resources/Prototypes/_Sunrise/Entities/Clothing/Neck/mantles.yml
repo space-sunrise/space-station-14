@@ -5,9 +5,9 @@
   description: Extraordinary decorative drape over the shoulders.
   components:
     - type: Sprite
-      sprite: _Sunrise/Clothing/Neck/Mantles/ERTmantle.rsi
+      sprite: _Sunrise/Clothing/Neck/Mantles/ertmantle.rsi
     - type: Clothing
-      sprite: _Sunrise/Clothing/Neck/Mantles/ERTmantle.rsi
+      sprite: _Sunrise/Clothing/Neck/Mantles/ertmantle.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -27,9 +27,9 @@
   description: Kys.
   components:
     - type: Sprite
-      sprite: _Sunrise/Clothing/Neck/Mantles/HoSmantle.rsi
+      sprite: _Sunrise/Clothing/Neck/Mantles/hos_mantle.rsi
     - type: Clothing
-      sprite: _Sunrise/Clothing/Neck/Mantles/HoSmantle.rsi
+      sprite: _Sunrise/Clothing/Neck/Mantles/hos_mantle.rsi
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]

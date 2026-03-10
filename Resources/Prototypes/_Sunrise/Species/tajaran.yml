@@ -18,7 +18,6 @@
   youngAge: 23
   oldAge: 46
   maxAge: 49
-  # Sunrise-Edit
   buttScan:
     sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
     state: human # SUNRISE-TODO: Спрайт жопы таяров

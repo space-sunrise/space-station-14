@@ -159,6 +159,8 @@
       collection: MaleCry
     Whistle:
       collection: Whistles
+    Oink:
+      collection: SwineOinks
     SevereCough:
       collection: MaleSevereCough
   params:

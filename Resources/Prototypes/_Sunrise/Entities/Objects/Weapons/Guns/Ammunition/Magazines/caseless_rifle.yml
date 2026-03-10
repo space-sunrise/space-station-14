@@ -24,7 +24,7 @@
     capacity: 35
   - type: Item
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/IAR-52mag.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/iar_52_mag.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 8

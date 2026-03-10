@@ -226,7 +226,7 @@
     shape:
     - 0,0,6,3
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/dl6902.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
