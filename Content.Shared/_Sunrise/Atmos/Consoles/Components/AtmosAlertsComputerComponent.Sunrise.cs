@@ -14,9 +14,6 @@ public sealed partial class AtmosAlertsComputerBoundInterfaceState
         bool doAtmosAlert)
         : this(airAlarms, fireAlarms, focusData)
     {
-        AirAlarms = airAlarms;
-        FireAlarms = fireAlarms;
-        FocusData = focusData;
         DoAtmosAlert = doAtmosAlert;
     }
 }
