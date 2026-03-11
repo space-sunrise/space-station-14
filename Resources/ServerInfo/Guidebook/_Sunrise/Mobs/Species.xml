@@ -23,7 +23,7 @@
   </Box>
   <Box>
     <GuideEntityEmbed Entity="MobPredator" Caption="Яутжа"/>
-    <GuideEntityEmbed Entity="MobHumanoidXeno" Caption="Ксеноморф"/>
+    <GuideEntityEmbed Entity="MobXenoDummy" Caption="Ксеноморф"/>
     <GuideEntityEmbed Entity="MobDemon" Caption="Аркана"/>
     <GuideEntityEmbed Entity="MobResomi" Caption="Резоми"/>
   </Box>

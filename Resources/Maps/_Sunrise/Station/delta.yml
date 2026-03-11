@@ -31419,9 +31419,14 @@ entities:
 - proto: ActionToggleLight
   entities:
   - uid: 22
+    mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 21
+    - type: Action
+      originalIconColor: '#FFFFFFFF'
+      container: 21
   - uid: 26
     mapInit: true
     paused: true
@@ -125818,14 +125823,6 @@ entities:
     - type: Transform
       pos: 0.5054932,-11.351017
       parent: 2
-- proto: ClothingNeckCloakDarthHOSCloak
-  entities:
-  - uid: 17534
-    components:
-    - type: Transform
-      parent: 17533
-    - type: Physics
-      canCollide: False
 - proto: ClothingNeckCloakHerald
   entities:
   - uid: 17537
@@ -126161,14 +126158,6 @@ entities:
     - type: Transform
       pos: 49.5,-37.5
       parent: 2
-    - type: Physics
-      canCollide: False
-- proto: ClothingOuterWinterHoSUnarmored
-  entities:
-  - uid: 17535
-    components:
-    - type: Transform
-      parent: 17533
     - type: Physics
       canCollide: False
 - proto: ClothingOuterWinterMusician
@@ -130598,7 +130587,7 @@ entities:
     - type: NavMapBeacon
       text: Аномалистика
     - type: WarpPoint
-      location: РнД - Аномалии
+      location: НИО - Аномалии
 - proto: DefaultStationBeaconArmory
   entities:
   - uid: 18161
@@ -131023,7 +131012,7 @@ entities:
       pos: -9.5,-25.5
       parent: 2
     - type: NavMapBeacon
-      text: РНД
+      text: НИО
 - proto: DefaultStationBeaconRobotics
   entities:
   - uid: 18204
@@ -131054,7 +131043,7 @@ entities:
     - type: NavMapBeacon
       text: Научный
     - type: WarpPoint
-      location: Научный - РНД
+      location: Научный - НИО
 - proto: DefaultStationBeaconSecurity
   entities:
   - uid: 18207
@@ -141491,22 +141480,6 @@ entities:
     - type: Transform
       pos: 72.5,-7.5
       parent: 2
-    - type: Storage
-      storedItems:
-        17534:
-          position: 0,0
-          _rotation: South
-        17535:
-          position: 1,0
-          _rotation: South
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 17534
-          - 17535
 - proto: DresserQuarterMasterFilled
   entities:
   - uid: 19880
@@ -214257,7 +214230,7 @@ entities:
         А когда понес сдавать все и началось. Они. Зомби. Всё рухнуло в секунды. Все главы. Весь мой отдел. КМ. Все. Я в техтоннели нырнул, как крот. Высунулся, а коридор кишит ими. Снова зарылся.
 
 
-        Осторожно продвигался в РНД, благо совсем рядом с карго. Двери закрыты. Хорошо, был ученый один, не трус, впустил. Мы вдвоем борга СБ достали с коридора, пока зомби разошлись, очень он кстати пришелся. Осматривались… а потом я один остался, куда то учёный смылся. И тут он... Старший Инженер... сам уже один из них был. Борг отстреливался, но патроны кончились, пошел врукопашную, дубинкой. Я петлял, уворачивался. Минуты три, не меньше… но одолели. Не укусил... Хотя прям на волоске было. Снял с него карту капитана, скафандр, всякое. Теперь у меня были доступы ко всем дверям!
+        Осторожно продвигался в НИО, благо совсем рядом с карго. Двери закрыты. Хорошо, был ученый один, не трус, впустил. Мы вдвоем борга СБ достали с коридора, пока зомби разошлись, очень он кстати пришелся. Осматривались… а потом я один остался, куда то учёный смылся. И тут он... Старший Инженер... сам уже один из них был. Борг отстреливался, но патроны кончились, пошел врукопашную, дубинкой. Я петлял, уворачивался. Минуты три, не меньше… но одолели. Не укусил... Хотя прям на волоске было. Снял с него карту капитана, скафандр, всякое. Теперь у меня были доступы ко всем дверям!
 
 
         Поплелся к шлюзу. Нашел по дороге мелкую фелинидку-ботаника. В ящике затаилась, трясется. Вытащил, успокоил... Но она решила там остаться, ну и оставил, сказал что вернусь ещё за ней, но нужен был шаттл, чтобы слинять. Выдвинулся в карго, Нашел шаттл и в космос. Летал вокруг станции, в иллюминаторы светил, выживших искал. Одного нашел, потом еще… собрал человек шесть. К другому шаттлу подались там тоже народ жался. Вместе, мы дождались спецотряда РХБЗЗ, которые прилетели нас спасать, и пристыковались к их шаттлу.
@@ -255416,7 +255389,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Коридор (РНД, мед отсек, юг)
+      id: Коридор (НИО, мед отсек, юг)
   - uid: 34990
     components:
     - type: Transform
@@ -255889,7 +255862,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraScience
       nameSet: True
-      id: РнД
+      id: НИО
   - uid: 35042
     components:
     - type: Transform

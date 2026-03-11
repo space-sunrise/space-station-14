@@ -41,6 +41,8 @@
   - MagazineRifleHeavyIncendiary # Sunrise-Add
   - MagazineBoxHeavyRifleIncendiary # Sunrise-Add
   - MagazineRifleBoxIncendiary # Sunrise-Add
+  - MagazineLightRifleBeltBoxIncendiary # Sunrise-Add
+  - SpeedLoaderShotgunIncendiary # Sunrise-Add
   radioChannels: # Sunrise-Add
   - Security
 
@@ -110,6 +112,7 @@
   - MagazineBoxHeavyRifleUranium # Sunrise-Add
   - MagazineRifleBoxUranium # Sunrise-Add
   - MagazineLightRifleBeltBoxUranium # Sunrise-Add
+  - SpeedLoaderShotgunUranium # Sunrise-Add
   radioChannels: # Sunrise-Add
   - Security
 

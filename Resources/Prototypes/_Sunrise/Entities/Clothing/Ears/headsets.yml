@@ -45,7 +45,7 @@
         - EncryptionKeySecurity
         - EncryptionKeyCommon
     - type: Sprite
-      sprite: _Sunrise/Clothing/Ears/Headsets/servicesecurity.rsi
+      sprite: _Sunrise/Clothing/Ears/Headsets/service_security.rsi
 
 - type: entity
   parent: ClothingHeadset
@@ -61,7 +61,7 @@
         - EncryptionKeyCommon
         - EncryptionKeyCommand
     - type: Sprite
-      sprite: _Sunrise/Clothing/Ears/Headsets/servicesecurity.rsi
+      sprite: _Sunrise/Clothing/Ears/Headsets/service_security.rsi
 
 - type: entity
   parent: ClothingHeadset
@@ -92,7 +92,7 @@
         - EncryptionKeyLaw
         - EncryptionKeyCommon
     - type: Sprite
-      sprite: _Sunrise/Clothing/Ears/Headsets/servicesecurity.rsi
+      sprite: _Sunrise/Clothing/Ears/Headsets/service_security.rsi
 
 - type: entity
   parent: [ClothingHeadset, BaseCommandContraband]

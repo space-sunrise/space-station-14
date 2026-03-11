@@ -54,6 +54,8 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Xenomorph
+  - type: ToggleableNightVision
+    effect: EffectNightVisionXeno
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:

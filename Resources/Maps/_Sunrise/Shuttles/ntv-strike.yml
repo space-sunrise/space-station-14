@@ -251,8 +251,6 @@ entities:
     - pos: -0.5,-1.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 91
@@ -267,8 +265,6 @@ entities:
     - pos: 1.5,-1.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 93
@@ -276,8 +272,6 @@ entities:
     - pos: -1.5,-1.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 94
@@ -285,8 +279,6 @@ entities:
     - pos: -2.5,-1.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 95
@@ -329,8 +321,6 @@ entities:
     - pos: -1.5,-8.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 102
@@ -352,8 +342,6 @@ entities:
     - pos: -0.5,-8.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 121
@@ -368,8 +356,6 @@ entities:
     - pos: 0.5,-8.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
 - proto: CableHV
@@ -386,8 +372,6 @@ entities:
     - pos: -1.5,-1.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
 - proto: CableMV
@@ -397,8 +381,6 @@ entities:
     - pos: -0.5,-1.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 89
@@ -406,8 +388,6 @@ entities:
     - pos: -1.5,-1.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
 - proto: ChairPilotSeat
@@ -677,8 +657,6 @@ entities:
       type: Transform
     - enabled: True
       type: PointLight
-    - enabled: True
-      type: AmbientSound
     - type: ActiveEmergencyLight
   - uid: 144
     components:
@@ -688,8 +666,6 @@ entities:
       type: Transform
     - enabled: True
       type: PointLight
-    - enabled: True
-      type: AmbientSound
     - type: ActiveEmergencyLight
 - proto: FoodBoxPizzaFilled
   entities:
@@ -785,8 +761,6 @@ entities:
       pos: -2.5,-5.5
       parent: 62
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#0000FFFF'
       type: AtmosPipeColor
   - uid: 116
@@ -794,8 +768,6 @@ entities:
     - pos: 0.5,-0.5
       parent: 62
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#0000FFFF'
       type: AtmosPipeColor
 - proto: GeneratorBasic15kW

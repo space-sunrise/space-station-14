@@ -27,12 +27,16 @@
 
 - type: entity
   parent: FoodMeatSpeciesBase
-  id: FoodMeatArkana
-  name: arkana meat
+  id: FoodMeatDemon
+  name: demon meat
   description: It looks like it will bite back.
   components:
   - type: Sprite
     state: arkana_meat
+  - type: Construction
+    graph: SunriseDemonSteak
+    node: start
+    defaultTarget: demon steak
 
 - type: entity
   parent: FoodMeatPlant
@@ -59,6 +63,10 @@
   components:
   - type: Sprite
     state: felinid_meat
+  - type: Construction
+    graph: SunriseFelinidSteak
+    node: start
+    defaultTarget: felinid steak
 
 - type: entity
   parent: FoodMeatSpeciesBase
@@ -68,6 +76,10 @@
   components:
   - type: Sprite
     state: milira_meat
+  - type: Construction
+    graph: SunriseMiliraSteak
+    node: start
+    defaultTarget: milira steak
 
 - type: entity
   parent: FoodMeatSpeciesBase
@@ -77,6 +89,10 @@
   components:
   - type: Sprite
     state: nian_meat
+  - type: Construction
+    graph: SunriseNianSteak
+    node: start
+    defaultTarget: nian steak
 
 - type: entity
   parent: FoodMeatSpeciesBase
@@ -86,6 +102,10 @@
   components:
   - type: Sprite
     state: resomi_meat
+  - type: Construction
+    graph: SunriseResomiSteak
+    node: start
+    defaultTarget: resomi steak
 
 - type: entity
   parent: FoodMeatBase
@@ -128,6 +148,10 @@
   components:
   - type: Sprite
     state: swine_meat
+  - type: Construction
+    graph: SunriseSwineSteak
+    node: start
+    defaultTarget: swine steak
 
 - type: entity
   parent: FoodMeatSpeciesBase
@@ -137,6 +161,10 @@
   components:
   - type: Sprite
     state: tajaran_meat
+  - type: Construction
+    graph: SunriseTajaranSteak
+    node: start
+    defaultTarget: tajaran steak
 
 - type: entity
   parent: FoodMeatSpeciesBase
@@ -146,6 +174,10 @@
   components:
   - type: Sprite
     state: unath_meat
+  - type: Construction
+    graph: SunriseUnathSteak
+    node: start
+    defaultTarget: unath steak
 
 - type: entity
   parent: FoodMeatSpeciesBase
@@ -155,3 +187,159 @@
   components:
   - type: Sprite
     state: vulpkanin_meat
+  - type: Construction
+    graph: SunriseVulpkaninSteak
+    node: start
+    defaultTarget: vulpkanin steak
+
+- type: entity
+  abstract: true
+  parent: FoodMeatBase
+  id: FoodMeatSpeciesCookedBase
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - Meat
+    - Steak
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 5
+  - type: SliceableFood
+    count: 3
+    slice: FoodMeatCutletCooked
+  - type: FoodSequenceElement
+    entries:
+      Burger: MeatSteak
+      Taco: MeatSteak
+  - type: Item
+    storedOffset: -2,1
+    inhandVisuals:
+      left:
+      - state: plain-cooked-inhand-left
+        sprite: Objects/Consumable/Food/meat.rsi
+      right:
+      - state: plain-cooked-inhand-right
+        sprite: Objects/Consumable/Food/meat.rsi
+
+- type: entity
+  parent: FoodMeatSpeciesCookedBase
+  id: FoodMeatDemonCooked
+  name: demon steak
+  description: A cooked slab of demon meat.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Food/species_meat.rsi
+    state: demon_meat_baked
+  - type: Construction
+    graph: SunriseDemonSteak
+    node: demon steak
+
+- type: entity
+  parent: FoodMeatSpeciesCookedBase
+  id: FoodMeatFelinidCooked
+  name: felinid steak
+  description: A cooked slab of felinid meat.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Food/species_meat.rsi
+    state: felinid_meat_baked
+  - type: Construction
+    graph: SunriseFelinidSteak
+    node: felinid steak
+
+- type: entity
+  parent: FoodMeatSpeciesCookedBase
+  id: FoodMeatMiliraCooked
+  name: milira steak
+  description: A cooked slab of milira meat.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Food/species_meat.rsi
+    state: milira_meat_baked
+  - type: Construction
+    graph: SunriseMiliraSteak
+    node: milira steak
+
+- type: entity
+  parent: FoodMeatSpeciesCookedBase
+  id: FoodMeatNianCooked
+  name: nian steak
+  description: A cooked slab of nian meat.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Food/species_meat.rsi
+    state: nian_meat_baked
+  - type: Construction
+    graph: SunriseNianSteak
+    node: nian steak
+
+- type: entity
+  parent: FoodMeatSpeciesCookedBase
+  id: FoodMeatResomiCooked
+  name: resomi steak
+  description: A cooked slab of resomi meat.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Food/species_meat.rsi
+    state: resomi_meat_baked
+  - type: Construction
+    graph: SunriseResomiSteak
+    node: resomi steak
+
+- type: entity
+  parent: FoodMeatSpeciesCookedBase
+  id: FoodMeatSwineCooked
+  name: swine steak
+  description: A cooked slab of swine meat.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Food/species_meat.rsi
+    state: swine_meat_baked
+  - type: Construction
+    graph: SunriseSwineSteak
+    node: swine steak
+
+- type: entity
+  parent: FoodMeatSpeciesCookedBase
+  id: FoodMeatTajaranCooked
+  name: tajaran steak
+  description: A cooked slab of tajaran meat.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Food/species_meat.rsi
+    state: tajaran_meat_baked
+  - type: Construction
+    graph: SunriseTajaranSteak
+    node: tajaran steak
+
+- type: entity
+  parent: FoodMeatSpeciesCookedBase
+  id: FoodMeatUnathCooked
+  name: unath steak
+  description: A cooked slab of unath meat.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Food/species_meat.rsi
+    state: unath_meat_baked
+  - type: Construction
+    graph: SunriseUnathSteak
+    node: unath steak
+
+- type: entity
+  parent: FoodMeatSpeciesCookedBase
+  id: FoodMeatVulpkaninCooked
+  name: vulpkanin steak
+  description: A cooked slab of vulpkanin meat.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Food/species_meat.rsi
+    state: vulpkanin_meat_baked
+  - type: Construction
+    graph: SunriseVulpkaninSteak
+    node: vulpkanin steak

@@ -8,12 +8,10 @@
       sprite: _Sunrise/Clothing/Head/Helmets/security_medic.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/Head/Helmets/security_medic.rsi
-  # SUNRISE EDIT
     - type: Tag
       tags:
       - TopCovered # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: [HelmetSounds, ClothingHeadBase]
@@ -291,9 +289,7 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.95
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT

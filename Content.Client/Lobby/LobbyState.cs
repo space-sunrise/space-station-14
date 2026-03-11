@@ -110,8 +110,6 @@ namespace Content.Client.Lobby
 
             UpdateLobbyUi();
 
-            Lobby!.LocalChangelogBody.CleanChangelog();
-
             var lobbyChangelogs = _cfg.GetCVar(SunriseCCVars.LobbyChangelogsList).Split(',');
 
             var changelogs = new List<ChangelogManager.Changelog>();
@@ -643,11 +641,11 @@ namespace Content.Client.Lobby
                 {
                     // First try to get from cache
                     bool fromCache = _resourceCache.TryGetResource<RSIResource>(targetPath, out rsiResource);
-                    
+
                     if (fromCache && rsiResource != null)
                     {
                         _sawmill.Debug($"RSI resource found in cache: {targetPath}");
-                        
+
                         // Verify that cached resource is still valid by checking if the state exists
                         // This is important after reconnection when files in VFS may have been cleared
                         if (!rsiResource.RSI.TryGetState(requiredState, out _))
@@ -658,7 +656,7 @@ namespace Content.Client.Lobby
                             rsiResource = null;
                         }
                     }
-                    
+
                     if (!fromCache)
                     {
                         _sawmill.Debug($"RSI resource not in cache or invalid, attempting to load: {targetPath}");

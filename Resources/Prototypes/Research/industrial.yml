@@ -154,6 +154,7 @@
   - HellfireFreezerMachineCircuitBoard
   - PortableScrubberMachineCircuitBoard
   - HolofanProjector
+  - FireExtinguisherBluespace # Sunrise-add
   technologyPrerequisites:
   - AtmosphericTech
 
