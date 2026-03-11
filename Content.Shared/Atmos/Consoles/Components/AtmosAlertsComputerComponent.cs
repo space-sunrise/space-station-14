@@ -113,7 +113,7 @@ public struct AtmosAlertsFocusDeviceData
 }
 
 [Serializable, NetSerializable]
-public sealed class AtmosAlertsComputerBoundInterfaceState : BoundUserInterfaceState
+public sealed partial class AtmosAlertsComputerBoundInterfaceState : BoundUserInterfaceState // Sunrise - edit добавлено partial
 {
     /// <summary>
     /// A list of all air alarms
@@ -130,12 +130,6 @@ public sealed class AtmosAlertsComputerBoundInterfaceState : BoundUserInterfaceS
     /// </summary>
     public AtmosAlertsFocusDeviceData? FocusData;
 
-    // Sunrise-start
-    /// <summary>
-    /// Управление пищалкой
-    /// </summary>
-    public bool DoAtmosAlert;
-    // Sunrise-end
 
     /// <summary>
     /// Sends data from the server to the client to populate the atmos monitoring console UI
@@ -146,16 +140,6 @@ public sealed class AtmosAlertsComputerBoundInterfaceState : BoundUserInterfaceS
         FireAlarms = fireAlarms;
         FocusData = focusData;
     }
-
-    // Sunrise-start
-    public AtmosAlertsComputerBoundInterfaceState(AtmosAlertsComputerEntry[] airAlarms, AtmosAlertsComputerEntry[] fireAlarms, AtmosAlertsFocusDeviceData? focusData, bool doAtmosAlert)
-    {
-        AirAlarms = airAlarms;
-        FireAlarms = fireAlarms;
-        FocusData = focusData;
-        DoAtmosAlert = doAtmosAlert;
-    }
-    // Sunrise-end
 }
 
 [Serializable, NetSerializable]
