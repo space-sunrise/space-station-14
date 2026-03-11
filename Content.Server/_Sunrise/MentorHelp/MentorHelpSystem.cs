@@ -467,38 +467,30 @@ namespace Content.Server._Sunrise.MentorHelp
         private async Task<MentorStatisticsCache> BuildStatisticsCacheAsync(DateTimeOffset now)
         {
             var weekStatistics = await _dbManager.GetMentorHelpStatisticsAsync(now.AddDays(-7)); // Неделя
-            var monthStatistics = await _dbManager.GetMentorHelpStatisticsAsync(now.AddMonths(-1)); // Месяц
-            var allTimeStatistics = await _dbManager.GetMentorHelpStatisticsAsync(null); // Все время
-
+            var monthStatistics = await _dbManager.GetMentorHelpStatisticsAsync(now.AddMonths(-1)); // Месяц 
+            var allTimeStatistics = await _dbManager.GetMentorHelpStatisticsAsync(null); // За все время
+        
             var mentorUserIds = new HashSet<Guid>();
-
+        
             foreach (var stat in weekStatistics)
-            {
                 mentorUserIds.Add(stat.MentorUserId);
-            }
-
+        
             foreach (var stat in monthStatistics)
-            {
                 mentorUserIds.Add(stat.MentorUserId);
-            }
-
+        
             foreach (var stat in allTimeStatistics)
-            {
                 mentorUserIds.Add(stat.MentorUserId);
-            }
-
+        
             var activeMentorIds = new HashSet<Guid>();
             Dictionary<Guid, Admin>? offlineAdminsByUserId = null;
             Dictionary<int, AdminRank>? adminRanksById = null;
-
+        
             foreach (var mentorUserId in mentorUserIds)
             {
-                var mentorNetUserId = new NetUserId(mentorUserId);
-                var isMentor = false;
-
-                if (_playerManager.TryGetSessionById(mentorNetUserId, out var mentorSession))
+                bool isMentor;
+        
+                if (_playerManager.TryGetSessionById(new NetUserId(mentorUserId), out var mentorSession))
                     isMentor = _adminManager.GetAdminData(mentorSession)?.HasFlag(AdminFlags.Mentor) ?? false;
-
                 else
                 {
                     if (offlineAdminsByUserId == null || adminRanksById == null)
@@ -507,19 +499,17 @@ namespace Content.Server._Sunrise.MentorHelp
                         offlineAdminsByUserId = admins.ToDictionary(admin => admin.Item1.UserId, admin => admin.Item1);
                         adminRanksById = adminRanks.ToDictionary(rank => rank.Id);
                     }
-
-                    isMentor = offlineAdminsByUserId.TryGetValue(mentorUserId, out var adminData) &&
-                        HasAdminFlag(adminData, adminRanksById, AdminFlags.Mentor);
+        
+                    isMentor = offlineAdminsByUserId.TryGetValue(mentorUserId, out var adminData)
+                        && HasAdminFlag(adminData, adminRanksById, AdminFlags.Mentor);
                 }
-
-                if (!isMentor)
-                    continue;
-
-                activeMentorIds.Add(mentorUserId);
+        
+                if (isMentor)
+                    activeMentorIds.Add(mentorUserId);
             }
-
+        
             var mentorNames = await _dbManager.GetPlayerNamesBatchAsync(activeMentorIds);
-
+        
             return new MentorStatisticsCache
             {
                 WeekStatistics = ConvertStatistics(weekStatistics, mentorNames, activeMentorIds),
