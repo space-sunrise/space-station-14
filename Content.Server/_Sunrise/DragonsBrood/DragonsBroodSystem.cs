@@ -2,11 +2,13 @@ using Content.Server.Construction.Completions;
 using Content.Server.Dragon;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 
 namespace Content.Server._Sunrise.DragonsBrood;
 
 public sealed class DragonsBroodSystem : EntitySystem
 {
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     public override void Initialize()
     {
@@ -18,7 +20,7 @@ public sealed class DragonsBroodSystem : EntitySystem
 
     private void OnMobStateChanged(Entity<DragonsBroodComponent> ent, ref MobStateChangedEvent args)
     {
-        if (args.NewMobState != MobState.Dead)
+        if (_mobState.IsAlive(ent.Owner))
             return;
 
         if (!TryComp<DragonRiftComponent>(ent.Comp.MotherRift, out var dragonRift))
@@ -29,7 +31,7 @@ public sealed class DragonsBroodSystem : EntitySystem
 
     private void OnShutdown(Entity<DragonsBroodComponent> ent, ref ComponentShutdown args)
     {
-        if (TryComp<MobStateComponent>(ent.Owner, out var mobStateComp) && mobStateComp.CurrentState == MobState.Dead)
+        if (_mobState.IsAlive(ent.Owner))
             return;
 
         if (!TryComp<DragonRiftComponent>(ent.Comp.MotherRift, out var dragonRift))
