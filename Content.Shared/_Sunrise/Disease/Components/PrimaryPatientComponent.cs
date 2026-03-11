@@ -13,7 +13,7 @@ public sealed partial class PrimaryPatientComponent : Component
 {
     [DataField]
     [ViewVariables(VVAccess.ReadOnly)]
-    public string StrainId;
+    public string StrainId = "";
 
     [DataField]
     [ViewVariables(VVAccess.ReadOnly)]
@@ -40,6 +40,9 @@ public sealed partial class PrimaryPatientComponent : Component
     {
         StrainId = strainId;
     }
+
+    public PrimaryPatientComponent()
+    { }
 
     [DataField]
     [ViewVariables(VVAccess.ReadOnly)]

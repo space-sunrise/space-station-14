@@ -7,7 +7,7 @@
   - type: Action
     useDelay: 1
     icon:
-      sprite: _DeadSpace/Disease/disease.rsi
+      sprite: _Sunrise/Disease/disease.rsi
       state: icon
   - type: InstantAction
     event: !type:ShopMutationActionEvent
@@ -21,7 +21,7 @@
   - type: Action
     useDelay: 5
     icon:
-      sprite: _DeadSpace/Disease/disease.rsi
+      sprite: _Sunrise/Disease/disease.rsi
       state: primary
   - type: TargetAction
   - type: EntityTargetAction
@@ -36,7 +36,7 @@
   - type: Action
     useDelay: 1
     icon:
-      sprite: _DeadSpace/Disease/disease.rsi
+      sprite: _Sunrise/Disease/disease.rsi
       state: teleport
   - type: InstantAction
     event: !type:TeleportToPrimaryPatientEvent
