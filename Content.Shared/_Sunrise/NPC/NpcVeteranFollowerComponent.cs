@@ -4,7 +4,6 @@ using Robust.Shared.Serialization.Manager.Attributes;
 namespace Content.Shared._Sunrise.NPC;
 
 [RegisterComponent]
-[ComponentProtoName("NpcVeteranFollower")]
 public sealed partial class NpcVeteranFollowerComponent : Component
 {
     [DataField]
