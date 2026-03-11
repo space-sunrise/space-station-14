@@ -1,4 +1,5 @@
 using Content.Server.Antag;
+using Content.Server.Antag.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Objectives.Components;
@@ -45,7 +46,7 @@ public sealed partial class AdminVerbSystem
             Icon = new SpriteSpecifier.Rsi(new("/Textures/Interface/Misc/job_icons.rsi"), "Syndicate"),
             Act = () =>
             {
-                AssignTraitorBounty(args.Target);
+                AssignTraitorBounty(args.Target, player);
             },
             Impact = LogImpact.Extreme,
             Message = string.Join(": ", bountyName, Loc.GetString("admin-smite-traitor-bounty-description")),
@@ -53,7 +54,7 @@ public sealed partial class AdminVerbSystem
         args.Verbs.Add(bounty);
     }
 
-    private void AssignTraitorBounty(EntityUid target)
+    private void AssignTraitorBounty(EntityUid target, ICommonSession admin)
     {
         if (!_mindSystem.TryGetMind(target, out var targetMindId, out var targetMind))
             return;
@@ -66,6 +67,9 @@ public sealed partial class AdminVerbSystem
 
         while (query.MoveNext(out var ruleUid, out _))
         {
+            if (!HasComp<AntagSelectionComponent>(ruleUid))
+                continue;
+
             foreach (var mind in _antag.GetAntagMinds(ruleUid))
             {
                 // Don't assign a kill objective targeting themselves
@@ -104,6 +108,11 @@ public sealed partial class AdminVerbSystem
                 traitorCount++;
             }
         }
+
+        _chatManager.DispatchServerMessage(admin,
+            Loc.GetString("admin-bounty-card-result",
+                ("count", traitorCount),
+                ("targetName", targetName)));
     }
 
     /// <summary>
