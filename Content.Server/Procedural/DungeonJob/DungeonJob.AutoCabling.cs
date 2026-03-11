@@ -68,9 +68,8 @@ public sealed partial class DungeonJob
         while (remaining.Count > 0)
         {
             if (frontier.Count == 0)
-            {
-                // We may start from a disconnected node; initialize all traversal state for it.
-                var newStart = remaining.First();
+{
+var newStart = remaining.First();
                 frontier.Enqueue(newStart, 0f);
                 costSoFar[newStart] = 0f; // Sunrise-Edit
                 lastDirection[newStart] = Direction.Invalid;
