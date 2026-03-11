@@ -8,7 +8,7 @@ namespace Content.IntegrationTests.Tests._Sunrise.MentorHelp;
 public sealed class MentorHelpTicketQueryTests : MentorHelpStatisticsTestBase
 {
     [Test]
-    public async Task OrdersPlayerTicketsByCreatedAtDescending()
+    public async Task OrdersByCreatedAtDesc()
     {
         await using var pair = await PoolManager.GetServerClient();
         var db = GetDb(pair.Server);
@@ -51,7 +51,7 @@ public sealed class MentorHelpTicketQueryTests : MentorHelpStatisticsTestBase
     }
 
     [Test]
-    public async Task FiltersAdminTicketQueriesAndOrdersByUpdatedAt()
+    public async Task FiltersAdminQueriesByUpdatedAt()
     {
         await using var pair = await PoolManager.GetServerClient();
         var db = GetDb(pair.Server);
