@@ -160,7 +160,7 @@ public sealed partial class SalvageSystem
             {
                 Index = component.NextIndex,
                 Seed = _random.Next(),
-                Difficulty = difficulties[_random.Next(difficulties.Count)], // Sunrise-Edit
+                Difficulty = _random.Pick(difficulties), // Sunrise-Edit
             };
 
             component.Missions[component.NextIndex++] = mission;
