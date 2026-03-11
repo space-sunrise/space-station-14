@@ -1013,11 +1013,11 @@
     layers:
     - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
       state: human
-    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-heavy.rsi
+    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_heavy.rsi
       state: equipped-OUTERCLOTHING
-    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-heavy.rsi
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_heavy.rsi
       state: equipped-HELMET
-    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-heavy.rsi
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_heavy.rsi
       state: on-equipped-HELMET
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
@@ -1413,7 +1413,7 @@
     layers:
     - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
       state: human
-    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-heavy.rsi
+    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_heavy.rsi
       state: equipped-OUTERCLOTHING
     - sprite: Clothing/Mask/merc.rsi
       state: equipped-MASK
