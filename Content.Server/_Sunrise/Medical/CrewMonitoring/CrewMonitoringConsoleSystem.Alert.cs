@@ -1,5 +1,4 @@
 using Content.Server.Power.EntitySystems;
-using Content.Shared.Ghost;
 using Content.Shared.Medical.CrewMonitoring;
 using Content.Shared.Morgue.Components;
 using Content.Shared.Power.Components;
@@ -97,20 +96,21 @@ public sealed partial class CrewMonitoringConsoleSystem
 
     private void AddToggleVerb(Entity<CrewMonitoringCorpseAlertComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
     {
+        if (!ent.Comp.ShowToggleVerb)
+            return;
+
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        if (TryComp<GhostComponent>(args.User, out var ghost) && ghost.CanGhostInteract)
-            return;
-
-        InteractionVerb verb = new();
-
-        verb.Text = _loc.GetString(ent.Comp.DoCorpseAlert
+        var text = _loc.GetString(ent.Comp.DoCorpseAlert
             ? "item-toggle-deactivate-alert"
             : "item-toggle-activate-alert");
 
-        verb.Act = () => ToggleAlert(ent);
-        args.Verbs.Add(verb);
+        args.Verbs.Add(new InteractionVerb
+        {
+            Text = text,
+            Act = () => ToggleAlert(ent),
+        });
     }
 
     public void ToggleAlert(Entity<CrewMonitoringCorpseAlertComponent> ent)
