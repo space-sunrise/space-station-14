@@ -1295,3 +1295,56 @@
     Steel: 500
     Plastic: 150
     Gold: 50
+
+### Grenades
+- type: latheRecipe
+  id: GrenadeEMP
+  result: GrenadeEMP
+  completetime: 3
+  materials:
+    Steel: 150
+    Plastic: 100
+    Glass: 20
+
+- type: latheRecipe
+  id: GrenadeBlast
+  result: GrenadeBlast
+  completetime: 3
+  materials:
+    Steel: 450
+    Plastic: 300
+    Gold: 150
+
+- type: latheRecipe
+  id: GrenadeFrag
+  result: GrenadeFrag
+  completetime: 3
+  materials:
+    Steel: 500
+    Plastic: 150
+    Gold: 50
+
+# Pirate cannon (PirateTechFab)
+# NOTE: PirateTechFab has materialUseMultiplier: 0.6, and lathe recipes apply discount by default.
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: CannonBallMini
+  result: CannonBallMini
+  materials:
+    Steel: 10
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: CannonBallGrapeshotMini
+  result: CannonBallGrapeshotMini
+  materials:
+    Steel: 20
+    Cloth: 10
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCannonBallMini
+  result: MagazineCannonBallMini
+  materials:
+    Steel: 500
+    Cloth: 200

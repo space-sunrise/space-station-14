@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Content.Server._Sunrise.Helpers;
+using Content.Shared._Sunrise.Helpers;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Xenoarchaeology.Artifact;
@@ -16,50 +16,57 @@ public sealed class ArtifactRandomTransformationSystem : BaseXAESystem<ArtifactR
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SunriseHelpersSystem _helpers = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+
+    private readonly HashSet<Entity<ItemComponent>> _items = [];
+    private readonly HashSet<Entity<InventoryComponent>> _inventories = [];
+    private readonly List<EntityUid> _inventoryItems = [];
 
     protected override void OnActivated(Entity<ArtifactRandomTransformationComponent> ent, ref XenoArtifactNodeActivatedEvent args)
     {
         var coords = Transform(ent).Coordinates;
-        var entities = _lookup.GetEntitiesInRange<ItemComponent>(coords, ent.Comp.Radius)
-            .Select(e => e.Owner)
-            .ToHashSet();
 
-        SearchPlayersInventoryForItems(ent, coords, out var inventoryItems);
+        _items.Clear();
+        _lookup.GetEntitiesInRange(coords, ent.Comp.Radius, _items);
 
-        ReduceAndTransform(ent, inventoryItems);
-        ReduceAndTransform(ent, entities);
+        SearchPlayersInventoryForItems(ent, coords);
+
+        ReduceAndTransform(ent, _inventoryItems);
+        ReduceAndTransform(ent, _items.Select(e => e.Owner).ToList());
     }
 
-    private void SearchPlayersInventoryForItems(Entity<ArtifactRandomTransformationComponent> ent, EntityCoordinates coords, out HashSet<EntityUid> items)
+    private void SearchPlayersInventoryForItems(Entity<ArtifactRandomTransformationComponent> ent, EntityCoordinates coords)
     {
-        var players = _lookup.GetEntitiesInRange<InventoryComponent>(coords, ent.Comp.Radius);
-        items = [];
+        _inventories.Clear();
+        _lookup.GetEntitiesInRange(coords, ent.Comp.Radius, _inventories);
 
-        foreach (var player in players)
+        _inventoryItems.Clear();
+        foreach (var player in _inventories)
         {
-            var inventorySlots = _inventory.GetSlotEnumerator(player.Owner);
+            var inventorySlots = _inventory.GetSlotEnumerator(player.AsNullable());
 
             while (inventorySlots.MoveNext(out var slot))
             {
                 if (!_inventory.TryGetSlotEntity(player, slot.ID, out var itemUid))
                     continue;
 
-                items.Add(itemUid.Value);
+                _inventoryItems.Add(itemUid.Value);
             }
         }
     }
 
-    private void ReduceAndTransform(Entity<ArtifactRandomTransformationComponent> ent, IReadOnlyCollection<EntityUid> entities)
+    private void ReduceAndTransform(Entity<ArtifactRandomTransformationComponent> ent, List<EntityUid> entities)
     {
-        var items = _helpers.GetPercentageOfHashSet(entities, ent.Comp.TransformationPercentRatio);
+        var filtered = entities
+            .ShuffleRobust(_random)
+            .TakePercentage(ent.Comp.TransformationPercentRatio)
+            .ToList();
 
-        DoTransformation(ent, items);
+        DoTransformation(ent, filtered);
     }
 
-    private void DoTransformation(Entity<ArtifactRandomTransformationComponent> ent, IEnumerable<EntityUid> items)
+    private void DoTransformation(Entity<ArtifactRandomTransformationComponent> ent, List<EntityUid> items)
     {
         foreach (var item in items)
         {

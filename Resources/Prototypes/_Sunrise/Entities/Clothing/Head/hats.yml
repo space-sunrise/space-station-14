@@ -64,9 +64,9 @@
   description: A blue beret made of durathread with a genuine golden badge, denoting its owner as a Leader of ERT.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Head/Hats/ERT_leader_beret.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/ert_leader_beret.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Head/Hats/ERT_leader_beret.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/ert_leader_beret.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -85,7 +85,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadHatWarden
   id: ClothingHeadHatCapWardenAlt
   name: warden's police hat
   description: It's a special blue hat issued to the Warden of a security force.
@@ -208,11 +208,9 @@
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
 
-# SUNRISE EDIT
 - type: entity
   parent: ClothingHeadHatDetGadget
-  id: Sunrise-ClothingHeadHatDetGadget
-# SUNRISE EDIT
+  id: SunriseClothingHeadHatDetGadget
 
 - type: entity
   parent: ClothingHeadBase

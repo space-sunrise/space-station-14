@@ -1,6 +1,8 @@
 ﻿- type: entity
   id: BaseRandomItemXenoArtifactComponents
   categories: [ HideSpawnMenu ]
+  abstract: true
+  nospawn: true
   components:
   - type: XenoArtifact
     nodeCount:
@@ -25,6 +27,7 @@
         occludes: True
         ents: []
   - type: RadiationReceiver
+  - type: Actions
   - type: Reactive
     groups:
       Flammable: [Touch]

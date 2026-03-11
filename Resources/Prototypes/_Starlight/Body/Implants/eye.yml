@@ -23,6 +23,7 @@
   - type: FunctionalOrgan
     comps:
     - type: EyeProtection
+    - type: FlashImmunity
 
 # needs arguments system
 #- type: entity
@@ -68,6 +69,7 @@
     - type: ShowJobIcons
     - type: ShowMindShieldIcons
     - type: ShowCriminalRecordIcons
+    - type: FlashImmunity
 
 - type: entity
   id: EyeImplantSyndie

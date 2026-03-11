@@ -582,12 +582,14 @@
   name: ARG bundle
   description: "Contains the normal assault rifle."
   components:
-    - type: StorageFill
-      contents:
-        - id: WeaponRifleARG
-        - id: MagazineLightRifleFMJ
-        - id: MagazineLightRifleSP
-        - id: MagazineLightRifleSP
-        - id: MagazineLightRifleHP
-        - id: CigPackSyndicate
-        - id: CheapLighter
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+          - id: WeaponRifleARG
+          - id: MagazineLightRifleFMJ
+          - id: MagazineLightRifleSP
+          - id: MagazineLightRifleSP
+          - id: MagazineLightRifleHP
+          - id: CigPackSyndicate
+          - id: CheapLighter

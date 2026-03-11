@@ -30,7 +30,7 @@
   flavor: alcohol
   color: "#3cc44a"
   metamorphicSprite:
-    sprite: _Sunrise/Objects/Consumable/Drinks/badTouch.rsi
+    sprite: _Sunrise/Objects/Consumable/Drinks/bad_touch.rsi
     state: icon_empty
   metamorphicMaxFillLevels: 6
   metamorphicFillBaseName: fill-
@@ -116,7 +116,7 @@
   flavor: alcohol
   color: "#d9b09e"
   metamorphicSprite:
-    sprite: _Sunrise/Objects/Consumable/Drinks/darkAndStormy.rsi
+    sprite: _Sunrise/Objects/Consumable/Drinks/dark_and_stormy.rsi
     state: icon_empty
   metamorphicMaxFillLevels: 6
   metamorphicFillBaseName: fill-
@@ -139,7 +139,7 @@
   flavor: alcohol
   color: "#e9c886"
   metamorphicSprite:
-    sprite: _Sunrise/Objects/Consumable/Drinks/maiTai.rsi
+    sprite: _Sunrise/Objects/Consumable/Drinks/mai_tai.rsi
     state: icon_empty
   metamorphicMaxFillLevels: 6
   metamorphicFillBaseName: fill-
@@ -185,7 +185,7 @@
   flavor: alcohol
   color: "#f49c18"
   metamorphicSprite:
-    sprite: _Sunrise/Objects/Consumable/Drinks/oldFashioned.rsi
+    sprite: _Sunrise/Objects/Consumable/Drinks/old_fashioned.rsi
     state: icon_empty
   metamorphicMaxFillLevels: 6
   metamorphicFillBaseName: fill-

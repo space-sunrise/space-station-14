@@ -1,5 +1,5 @@
 ent-WeaponLauncherRL5 = RL-5
-    .desc = { ent-BaseWeaponLauncher.desc }
+    .desc = Древний ручной реактивный гранатомёт.
 ent-WeaponGrenadeLauncherGL70 = GL-70
     .desc = GL-70 - это стандартный гранатомёт, используемый армией Земли для зачистки территорий и проведения крупных взрывов.
 ent-WeaponGrenadeLauncherGL70Flash = GL-70

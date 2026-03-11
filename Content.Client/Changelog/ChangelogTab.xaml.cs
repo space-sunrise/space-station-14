@@ -28,43 +28,32 @@ public sealed partial class ChangelogTab : Control
         IoCManager.InjectDependencies(this);
     }
 
-    // Sunrise-Start
-    public void CleanChangelog()
-    {
-        ChangelogBody.Children.Clear();
-    }
-    // Sunrise-End
-
     public void PopulateChangelog(ChangelogManager.Changelog changelog)
-{
-    var byDay = changelog.Entries
-        .GroupBy(e => e.Time.ToLocalTime().Date)
-        .OrderByDescending(c => c.Key);
-
-    var hasRead = changelog.Name != MainChangelogName ||
-                  _changelog.MaxId <= _changelog.LastReadId;
-
-    foreach (var dayEntries in byDay)
     {
-        var day = dayEntries.Key;
+        var byDay = changelog.Entries
+            .GroupBy(e => e.Time.ToLocalTime().Date)
+            .OrderByDescending(c => c.Key);
 
-        var groupedEntries = dayEntries
-            .GroupBy(c => c.Id <= _changelog.LastReadId)
-            .OrderBy(g => g.Key)
-            .Select(g => new
-            {
-                g.Key,
-                Entries = g.OrderByDescending(e => e.Time) // Сортировка по времени в убывающем порядке
-            });
+        var hasRead = changelog.Name != MainChangelogName ||
+                      _changelog.MaxId <= _changelog.LastReadId;
 
-        string dayNice;
-        var today = DateTime.Today;
-        if (day == today)
-            dayNice = Loc.GetString("changelog-today");
-        else if (day == today.AddDays(-1))
-            dayNice = Loc.GetString("changelog-yesterday");
-        else
-            dayNice = day.ToShortDateString();
+        foreach (var dayEntries in byDay)
+        {
+            var day = dayEntries.Key;
+
+            var groupedEntries = dayEntries
+                .GroupBy(c => (c.Author, Read: c.Id <= _changelog.LastReadId))
+                .OrderBy(c => c.Key.Read)
+                .ThenBy(c => c.Key.Author);
+
+            string dayNice;
+            var today = DateTime.Today;
+            if (day == today)
+                dayNice = Loc.GetString("changelog-today");
+            else if (day == today.AddDays(-1))
+                dayNice = Loc.GetString("changelog-yesterday");
+            else
+                dayNice = day.ToShortDateString();
 
             ChangelogBody.AddChild(new Label
             {
@@ -73,81 +62,79 @@ public sealed partial class ChangelogTab : Control
                 Margin = new Thickness(4, 6, 0, 0)
             });
 
-        var first = true;
+            var first = true;
 
-        foreach (var groupedEntry in groupedEntries)
-        {
-            var read = groupedEntry.Key;
-
-            if (!first)
+            foreach (var groupedEntry in groupedEntries)
             {
-                ChangelogBody.AddChild(new Control { Margin = new Thickness(4) });
-            }
+                var (author, read) = groupedEntry.Key;
 
-            if (read && !hasRead)
-            {
-                hasRead = true;
-
-                var upArrow =
-                    _resourceCache.GetTexture("/Textures/Interface/Changelog/up_arrow.svg.192dpi.png");
-
-                var readDivider = new BoxContainer
+                if (!first)
                 {
-                    Orientation = LayoutOrientation.Vertical
-                };
+                    ChangelogBody.AddChild(new Control { Margin = new Thickness(4) });
+                }
 
-                var hBox = new BoxContainer
+                if (read && !hasRead)
                 {
-                    Orientation = LayoutOrientation.Horizontal,
-                    HorizontalAlignment = HAlignment.Center,
-                    Children =
+                    hasRead = true;
+
+                    var upArrow =
+                        _resourceCache.GetTexture("/Textures/Interface/Changelog/up_arrow.svg.192dpi.png");
+
+                    var readDivider = new BoxContainer
                     {
-                        new TextureRect
+                        Orientation = LayoutOrientation.Vertical
+                    };
+
+                    var hBox = new BoxContainer
+                    {
+                        Orientation = LayoutOrientation.Horizontal,
+                        HorizontalAlignment = HAlignment.Center,
+                        Children =
                         {
-                            Texture = upArrow,
-                            ModulateSelfOverride = Color.FromHex("#888"),
-                            TextureScale = new Vector2(0.5f, 0.5f),
-                            Margin = new Thickness(4, 3),
-                            VerticalAlignment = VAlignment.Bottom
-                        },
-                        new Label
-                        {
-                            Align = Label.AlignMode.Center,
-                            Text = Loc.GetString("changelog-new-changes"),
-                            FontColorOverride = Color.FromHex("#888"),
-                        },
-                        new TextureRect
-                        {
-                            Texture = upArrow,
-                            ModulateSelfOverride = Color.FromHex("#888"),
-                            TextureScale = new Vector2(0.5f, 0.5f),
-                            Margin = new Thickness(4, 3),
-                            VerticalAlignment = VAlignment.Bottom
+                            new TextureRect
+                            {
+                                Texture = upArrow,
+                                ModulateSelfOverride = Color.FromHex("#888"),
+                                TextureScale = new Vector2(0.5f, 0.5f),
+                                Margin = new Thickness(4, 3),
+                                VerticalAlignment = VAlignment.Bottom
+                            },
+                            new Label
+                            {
+                                Align = Label.AlignMode.Center,
+                                Text = Loc.GetString("changelog-new-changes"),
+                                FontColorOverride = Color.FromHex("#888"),
+                            },
+                            new TextureRect
+                            {
+                                Texture = upArrow,
+                                ModulateSelfOverride = Color.FromHex("#888"),
+                                TextureScale = new Vector2(0.5f, 0.5f),
+                                Margin = new Thickness(4, 3),
+                                VerticalAlignment = VAlignment.Bottom
+                            }
                         }
-                    }
-                };
+                    };
 
                     readDivider.AddChild(hBox);
                     readDivider.AddChild(new PanelContainer { StyleClasses = { StyleClass.LowDivider } });
                     ChangelogBody.AddChild(readDivider);
 
-                if (first)
-                    readDivider.SetPositionInParent(ChangelogBody.ChildCount - 2);
-            }
+                    if (first)
+                        readDivider.SetPositionInParent(ChangelogBody.ChildCount - 2);
+                }
 
-            first = false;
+                first = false;
 
-            foreach (var changeEntry in groupedEntry.Entries)
-            {
                 var authorLabel = new RichTextLabel
                 {
                     Margin = new Thickness(6, 0, 0, 0),
                 };
                 authorLabel.SetMessage(
-                    FormattedMessage.FromMarkupOrThrow(Loc.GetString("changelog-author-changed", ("author", FormattedMessage.EscapeText(changeEntry.Author)))));
+                    FormattedMessage.FromMarkupOrThrow(Loc.GetString("changelog-author-changed", ("author", FormattedMessage.EscapeText(author)))));
                 ChangelogBody.AddChild(authorLabel);
 
-                foreach (var change in changeEntry.Changes)
+                foreach (var change in groupedEntry.SelectMany(c => c.Changes))
                 {
                     var text = new RichTextLabel();
                     text.SetMessage(FormattedMessage.FromUnformatted(change.Message));
@@ -165,7 +152,6 @@ public sealed partial class ChangelogTab : Control
             }
         }
     }
-}
 
     private TextureRect GetIcon(ChangelogLineType type)
     {

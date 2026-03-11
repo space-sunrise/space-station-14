@@ -92173,26 +92173,12 @@ entities:
     - type: Transform
       pos: -19.639711,39.734726
       parent: 2
-- proto: RubberStampClown
-  entities:
-  - uid: 12846
-    components:
-    - type: Transform
-      pos: -41.031456,28.5956
-      parent: 2
 - proto: RubberStampDenied
   entities:
   - uid: 12847
     components:
     - type: Transform
       pos: -19.389711,39.609726
-      parent: 2
-- proto: RubberStampMime
-  entities:
-  - uid: 12848
-    components:
-    - type: Transform
-      pos: -41.209343,23.558546
       parent: 2
 - proto: SalvageMagnet
   entities:

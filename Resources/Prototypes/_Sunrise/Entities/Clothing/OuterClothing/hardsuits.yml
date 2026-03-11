@@ -5,9 +5,9 @@
   description: A lightweight yet strong exosuit used for special cleanup operations.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/cburn-commander.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/cburn_commander.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/cburn-commander.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/cburn_commander.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetCBURNLeader
 
@@ -125,9 +125,9 @@
   description: A heavily armored USSP spacesuit designed for combat operations in extreme conditions. Reinforced armor protects against firearms and energy weapons, radiation and explosions. It is used by elite units to protect strategic facilities.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-elite.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_elite.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-elite.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_elite.rsi
   - type: FireProtection
     reduction: 0.8
   - type: Item
@@ -173,11 +173,11 @@
   description: A heavily armored USSP spacesuit designed for combat operations in extreme conditions. Reinforced armor protects against firearms and energy weapons, radiation and explosions. It is used by elite units to protect strategic facilities.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-heavy.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_heavy.rsi
   - type: Item
     size: Huge
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-heavy.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_heavy.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -211,9 +211,9 @@
   description: A lightweight combat suit designed for rapid response and mobile operations. The light armor provides protection against firearms and allows for high maneuverability. The Grom-P is used by assault troops for fast and effective combat operations.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-light.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_light.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-light.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_light.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
@@ -259,9 +259,9 @@
      walkModifier: 0.85
      sprintModifier: 0.85
    - type: Sprite
-     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/engineering-compact.rsi
+     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/engineering_compact.rsi
    - type: Clothing
-     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/engineering-compact.rsi
+     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/engineering_compact.rsi
    - type: ToggleableClothing
      clothingPrototype: ClothingHeadHelmetHardsuitEngineeringCompact
 
@@ -485,7 +485,7 @@
 ## Pirate end
 
 - type: entity
-  parent: ClothingOuterHardsuitEVA
+  parent: [ ClothingOuterHardsuitEVA, BaseChameleon ]
   id: ClothingOuterHardsuitChameleon
   name: syndicate chameleon
   description: Looking at his material, Sci-fi images inadvertently pop up in your head.
@@ -522,6 +522,9 @@
           Caustic: 0.5
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetEVA
+    - type: ContainerContainer
+      containers:
+        toggleable-clothing: !type:ContainerSlot
 
 #Syndicate Infiltration Suit
 - type: entity
@@ -583,6 +586,8 @@
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+      beakerSlot: !type:ContainerSlot
   - type: ItemSlots
     slots:
       cell_slot:
@@ -597,6 +602,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+    requireActivated: false
   - type: HeldSpeedModifier
   - type: Tag
     tags:
@@ -672,7 +678,7 @@
     walkModifier: 0.85
     sprintModifier: 0.85
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitMilira
+    clothingPrototype: ClothingHeadHelmetEVAMilira
   - type: ClothingWhitelist
     whitelist:
       tags:
@@ -717,6 +723,7 @@
   - type: ContainerContainer
     containers:
       beakerSlot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
   - type: Inject
     openCloseDelay: 1.5
     autoClose: true

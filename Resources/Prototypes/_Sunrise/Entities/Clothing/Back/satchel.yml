@@ -293,7 +293,7 @@
   description: You look very stylish with this satchel.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Satchels/blacksatchel.rsi
+    sprite: _Sunrise/Clothing/Back/Satchels/black_satchel.rsi
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -302,7 +302,7 @@
   description: You look very stylish with this satchel.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Satchels/bluesatchel.rsi
+    sprite: _Sunrise/Clothing/Back/Satchels/blue_satchel.rsi
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -311,7 +311,7 @@
   description: You look very stylish with this satchel.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Satchels/ciansatchel.rsi
+    sprite: _Sunrise/Clothing/Back/Satchels/cian_satchel.rsi
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -320,7 +320,7 @@
   description: You look very stylish with this satchel.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Satchels/greensatchel.rsi
+    sprite: _Sunrise/Clothing/Back/Satchels/green_satchel.rsi
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -329,7 +329,7 @@
   description: You look very stylish with this satchel.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Satchels/orangesatchel.rsi
+    sprite: _Sunrise/Clothing/Back/Satchels/orange_satchel.rsi
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -338,7 +338,7 @@
   description: You look very stylish with this satchel.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Satchels/purplesatchel.rsi
+    sprite: _Sunrise/Clothing/Back/Satchels/purple_satchel.rsi
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -347,7 +347,7 @@
   description: You look very stylish with this satchel.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Satchels/redsatchel.rsi
+    sprite: _Sunrise/Clothing/Back/Satchels/red_satchel.rsi
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -356,7 +356,7 @@
   description: You look very stylish with this satchel.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Satchels/whitesatchel.rsi
+    sprite: _Sunrise/Clothing/Back/Satchels/white_satchel.rsi
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -365,7 +365,7 @@
   description: You look very stylish with this satchel.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Satchels/yellowsatchel.rsi
+    sprite: _Sunrise/Clothing/Back/Satchels/yellow_satchel.rsi
 
 - type: entity
   parent: ClothingBackpackSatchelCaptain

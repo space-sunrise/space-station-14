@@ -148,6 +148,14 @@
           0.2
         ]
      ]
-    }
+    },
+     {
+      "name": "neo_tail",
+      "directions": 4
+	},
+     {
+      "name": "ravage_tail",
+      "directions": 4
+	}
   ]
 }

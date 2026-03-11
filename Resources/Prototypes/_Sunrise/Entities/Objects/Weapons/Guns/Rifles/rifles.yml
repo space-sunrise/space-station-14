@@ -86,67 +86,6 @@
         knockback: 0.1
 
 - type: entity
-  name: AKMS
-  parent: BaseWeaponRifle
-  id: WeaponRifleAKM
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/big.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-0
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
-  - type: Item
-    size: Huge
-    shape:
-    - 0,0,3,2
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
-  - type: Gun
-    minAngle: 2.9
-    maxAngle: 22
-    angleIncrease: 2
-    angleDecay: 12
-    fireRate: 5
-    soundGunshot:
-      collection: ak47
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineLightRifleSP
-        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
-        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineLightRifle
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgeLightRifleSP
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeLightRifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
-  - type: Wieldable
-  - type: UseDelay
-    delay: 0.5
-  - type: ChamberMagazineAmmoProvider
-    soundRack:
-      path: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_cocked.ogg
-
-- type: entity
   name: AKM-U
   parent: BaseWeaponRifle
   id: WeaponRifleAKMU
@@ -696,7 +635,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/tiny.rsi
   - type: WeaponDismantleOnShoot
     dismantleDistance: 4
-    dismantleChance: 0.006 # Примерно 150-200 патронов
+    dismantleChance: 0.005 # Примерно 150-200 патронов
     selfDamage:
       types:
         Blunt: 5
@@ -740,6 +679,30 @@
         prob: 0.15
 
 - type: entity
+  parent: WeaponRifleSKM24Scrap
+  id: WeaponRifleSKM24ScrapEmpty
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: null
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineLightRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: null
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifle
+
+- type: entity
   parent: WeaponRifleSKM24
   id: WeaponRifleSKM24Syndi
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. Spare option if you lost all your telecrystals at the casino.
@@ -752,7 +715,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Syndicate/tiny.rsi
 
 - type: entity
-  parent: WeaponRifleSKM24
+  parent: [BaseSecurityContraband, WeaponRifleSKM24]
   id: WeaponRifleSKM24Nano
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. Money doesn't smell.
   components:
@@ -853,7 +816,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm28/Syndicate/tiny.rsi
 
 - type: entity
-  parent: WeaponRifleSKM28
+  parent: [BaseSecurityContraband, WeaponRifleSKM28]
   id: WeaponRifleSKM28Nano
   description: A marksman conversion of the standard SKM-24. Features an extended heavy barrel, reworked internals, and a mounted optical sight. Chambered in .308. Money doesn't smell.
   components:

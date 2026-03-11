@@ -59,14 +59,12 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
-    - type: PhysicsMap
     - type: Broadphase
     - type: OccluderTree
     - parallax: AngleStation
       type: Parallax
     - type: LoadedMap
     - type: GridTree
-    - type: MovedGrids
   - uid: 9
     components:
     - type: MetaData
@@ -90862,13 +90860,6 @@ entities:
   - uid: 3525
     components:
     - pos: 57.71922,-11.758063
-      parent: 9
-      type: Transform
-- proto: RubberStampCE
-  entities:
-  - uid: 4287
-    components:
-    - pos: 26.3755,-85.544
       parent: 9
       type: Transform
 - proto: RubberStampDenied

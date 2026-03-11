@@ -13,13 +13,15 @@
     maxItemSize: Small
     grid:
     - 0,0,2,3
-  - type: StorageFill
-    contents:
-      - id: MagazineRifleFMJ
-        amount: 2
-      - id: MagazineRifleSP
-        amount: 1
-      - id: MagazineRifleHP
-        amount: 1
-      - id: MagazineRifleAP
-        amount: 1
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineRifleFMJ
+          amount: 2
+        - id: MagazineRifleSP
+          amount: 1
+        - id: MagazineRifleHP
+          amount: 1
+        - id: MagazineRifleAP
+          amount: 1

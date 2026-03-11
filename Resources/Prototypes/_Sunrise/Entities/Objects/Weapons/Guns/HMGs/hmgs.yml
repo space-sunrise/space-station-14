@@ -91,6 +91,8 @@
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
+      storagebase: !type:Container
+      weapon_slot: !type:ContainerSlot
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Powerpacks/Powerpacks/backpack.rsi
     layers:
@@ -111,10 +113,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902_feed.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/dl6902_feed.rsi
     state: icon
   - type: Item
-    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902_feed.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/dl6902_feed.rsi
     size: Huge
     shape:
     - 0,0,6,4
@@ -188,9 +190,14 @@
     - 0,0,6,4
   - type: ExplosionResistance
     damageCoefficient: 0.1
-  - type: StorageFill
-    contents:
-      - id: CrazyGlue
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CrazyGlue
+      weapon_slot: !type:AllSelector
+        children:
+        - id: WeaponDL6902PowerPack
   - type: ItemSlots
     slots:
       weapon_slot:
@@ -198,10 +205,6 @@
         whitelist:
           components:
           - ClothingSlotAmmoProvider
-  - type: ContainerFill
-    containers:
-      weapon_slot:
-      - WeaponDL6902PowerPack
   - type: StaticPrice
     price: 5500
   - type: Tag

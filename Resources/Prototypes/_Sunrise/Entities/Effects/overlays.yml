@@ -16,7 +16,7 @@
   components:
   - type: PointLight
     color: "#12ac27"
-    energy: 0.8
+    energy: 0.5
     radius: 20
     softness: 20
 
@@ -30,6 +30,18 @@
     energy: 0.05
     radius: 6
     softness: 20
+
+- type: entity
+  id: EffectNightVisionXeno
+  categories: [ HideSpawnMenu ]
+  name: night vision
+  components:
+  - type: PointLight
+    color: "#b0c430"
+    energy: 0.8
+    radius: 20
+    softness: 20
+  - type: BlackAndWhiteOverlay
 
 - type: entity
   id: EffectNightVisionHandcraft
@@ -49,7 +61,7 @@
   components:
   - type: PointLight
     color: "#d61b1b"
-    energy: 0.8
+    energy: 0.5
     radius: 20
     softness: 20
 
@@ -60,6 +72,6 @@
   components:
   - type: PointLight
     color: "#FF9833FF"
-    energy: 0.6
+    energy: 0.5
     radius: 16
     softness: 20

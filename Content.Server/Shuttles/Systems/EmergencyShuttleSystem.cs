@@ -117,7 +117,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
         SubscribeLocalEvent<StationEmergencyShuttleComponent, StationPostInitEvent>(OnStationStartup);
         SubscribeLocalEvent<StationTransitHubComponent, ComponentShutdown>(OnCentcommShutdown); // Sunrise-Edit
-        SubscribeLocalEvent<StationTransitHubComponent, ComponentInit>(OnTransitHubInit); // Sunrise-Edit
+        SubscribeLocalEvent<StationTransitHubComponent, MapInitEvent>(OnTransitHubInit); // Sunrise-Edit
 
         SubscribeLocalEvent<EmergencyShuttleComponent, FTLStartedEvent>(OnEmergencyFTL);
         SubscribeLocalEvent<EmergencyShuttleComponent, FTLCompletedEvent>(OnEmergencyFTLComplete);
@@ -450,7 +450,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
         //_audio.PlayGlobal(audioFile, Filter.Broadcast(), true);
     }
 
-    private void OnTransitHubInit(EntityUid uid, StationTransitHubComponent component, ComponentInit args) // Sunrise-Edit
+    private void OnTransitHubInit(EntityUid uid, StationTransitHubComponent component, MapInitEvent args) // Sunrise-Edit
     {
         // This is handled on map-init, so that centcomm has finished initializing by the time the StationPostInitEvent
         // gets raised

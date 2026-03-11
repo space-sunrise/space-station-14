@@ -1,3 +1,12 @@
+- type: loadoutEffectGroup
+  id: Brigmedic5h
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBrigmedic
+      time: 18000 #5 hrs
+
 - type: loadout
   id: BrigmedicBackpack
   equipment:
@@ -22,3 +31,148 @@
   id: BrigmedicJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtBrigmedic
+
+# Injectors
+- type: loadout
+  id: AutoInjectorEmergency1
+  storage:
+    back:
+    - EmergencyMedipen
+
+- type: loadout
+  id: AutoInjectorEmergency2
+  storage:
+    back:
+    - EmergencyMedipen
+
+- type: loadout
+  id: AutoInjectorBrute1
+  storage:
+    back:
+    - BruteAutoInjector
+
+- type: loadout
+  id: AutoInjectorBrute2
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Brigmedic5h
+  storage:
+    back:
+    - BruteAutoInjector
+
+- type: loadout
+  id: AutoInjectorBurn1
+  storage:
+    back:
+    - BurnAutoInjector
+
+- type: loadout
+  id: AutoInjectorBurn2
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Brigmedic5h
+  storage:
+    back:
+    - BurnAutoInjector
+
+- type: loadout
+  id: AutoInjectorPuncturase1
+  storage:
+    back:
+    - PunctAutoInjector
+
+- type: loadout
+  id: AutoInjectorPuncturase2
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Brigmedic5h
+  storage:
+    back:
+    - PunctAutoInjector
+
+- type: loadout
+  id: AutoInjectorBruiz1
+  storage:
+    back:
+    - BruizAutoInjector
+
+- type: loadout
+  id: AutoInjectorBruiz2
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Brigmedic5h
+  storage:
+    back:
+    - BruizAutoInjector
+
+- type: loadout
+  id: AutoInjectorLacer1
+  storage:
+    back:
+    - LacerAutoInjector
+
+- type: loadout
+  id: AutoInjectorLacer2
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Brigmedic5h
+  storage:
+    back:
+    - LacerAutoInjector
+
+- type: loadout
+  id: AutoInjectorPyrazine1
+  storage:
+    back:
+    - PyraAutoInjector
+
+- type: loadout
+  id: AutoInjectorPyrazine2
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Brigmedic5h
+  storage:
+    back:
+    - PyraAutoInjector
+
+- type: loadout
+  id: AutoInjectorAirloss
+  storage:
+    back:
+    - AirlossAutoInjector
+
+- type: loadout
+  id: AutoInjectorPoison
+  storage:
+    back:
+    - AntiPoisonMedipen
+
+- type: loadout
+  id: AutoInjectorRadiation
+  storage:
+    back:
+    - RadAutoInjector
+
+- type: loadout
+  id: AutoInjectorCoal
+  storage:
+    back:
+    - CoalAutoInjector
+
+- type: loadout
+  id: AutoInjectorPoly
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Brigmedic5h
+  storage:
+    back:
+    - PolyAutoInjector
+
+- type: loadout
+  id: AutoInjectorStellibinin
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Brigmedic5h
+  storage:
+    back:
+    - StellibininAutoInjector

@@ -14,6 +14,11 @@
   - type: Body
     prototype: Tajaran
     requiredLegs: 2
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatTajaran
+      amount: 5
   - type: TajaranAccent
   - type: Hunger
   - type: Speech

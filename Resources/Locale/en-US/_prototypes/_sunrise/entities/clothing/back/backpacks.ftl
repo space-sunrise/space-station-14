@@ -32,3 +32,5 @@ ent-ClothingBackpackWhite = white backpack
     .desc = It's just a backpack, but it's beautiful.
 ent-ClothingBackpackYellow = yellow backpack
     .desc = It's just a backpack, but it's beautiful.
+ent-ClothingBackpackRandomColorSpawner = backpack (random color)
+    .desc = A backpack of a random color.
