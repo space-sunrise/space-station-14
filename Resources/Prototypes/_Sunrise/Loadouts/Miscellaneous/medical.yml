@@ -135,118 +135,118 @@
 #Neck
 
 - type: loadout
-  id: Sunrise-Stethoscope
+  id: SunriseStethoscope
   equipment:
     neck: ClothingNeckStethoscope
 
 #Mask
 
 - type: loadout
-  id: Sunrise-MedicalMask
+  id: SunriseMedicalMask
   equipment:
     mask: ClothingMaskBreathMedical
 
 
 - type: loadout
-  id: Sunrise-MedicalMaskRed
+  id: SunriseMedicalMaskRed
   equipment:
     mask: ClothingMaskBreathMedicalRed
 
 
 - type: loadout
-  id: Sunrise-MedicalMaskGreen
+  id: SunriseMedicalMaskGreen
   equipment:
     mask: ClothingMaskBreathMedicalGreen
 
 
 - type: loadout
-  id: Sunrise-MedicalMaskOrange
+  id: SunriseMedicalMaskOrange
   equipment:
     mask: ClothingMaskBreathMedicalOrange
 
 
 - type: loadout
-  id: Sunrise-MedicalMaskBlack
+  id: SunriseMedicalMaskBlack
   equipment:
     mask: ClothingMaskBreathMedicalBlack
 
 - type: loadout
-  id: Sunrise-MedicalMaskBlue
+  id: SunriseMedicalMaskBlue
   equipment:
     mask: ClothingMaskBreathMedicalBlue
 
 - type: loadout
-  id: Sunrise-MedicalSterileBlack
+  id: SunriseMedicalSterileBlack
   equipment:
     mask: ClothingMaskSterileBlack
 
 - type: loadout
-  id: Sunrise-MedicalSterileBlue
+  id: SunriseMedicalSterileBlue
   equipment:
     mask: ClothingMaskSterileBlue
 
 - type: loadout
-  id: Sunrise-MedicalSterileGreen
+  id: SunriseMedicalSterileGreen
   equipment:
     mask: ClothingMaskSterileGreen
 
 - type: loadout
-  id: Sunrise-MedicalSterileOrange
+  id: SunriseMedicalSterileOrange
   equipment:
     mask: ClothingMaskSterileOrange
 
 - type: loadout
-  id: Sunrise-MedicalSterileRed
+  id: SunriseMedicalSterileRed
   equipment:
     mask: ClothingMaskSterileRed
 
-# #Gloves
+#Gloves
 
-# - type: loadout
-#   id: Sunrise-GlovesNitrileBlack # Sunrise-TODO: Не добавлять, пока не сделаете им уникальные для каждой волокна, ибо на момент комита тут все "нитриловые"
-#   equipment:
-#     gloves: ClothingHandsGlovesNitrileBlack
+- type: loadout
+  id: SunriseGlovesNitrileBlack
+  equipment:
+    gloves: ClothingHandsGlovesNitrileBlack
 
-# - type: loadout
-#   id: Sunrise-GlovesNitrileGreen
-#   equipment:
-#     gloves: ClothingHandsGlovesNitrileGreen
+- type: loadout
+  id: SunriseGlovesNitrileGreen
+  equipment:
+    gloves: ClothingHandsGlovesNitrileGreen
 
-# - type: loadout
-#   id: Sunrise-GlovesNitrileOrange
-#   equipment:
-#     gloves: ClothingHandsGlovesNitrileOrange
+- type: loadout
+  id: SunriseGlovesNitrileOrange
+  equipment:
+    gloves: ClothingHandsGlovesNitrileOrange
 
-# - type: loadout
-#   id: Sunrise-GlovesNitrileRed
-#   equipment:
-#     gloves: ClothingHandsGlovesNitrileRed
+- type: loadout
+  id: SunriseGlovesNitrileRed
+  equipment:
+    gloves: ClothingHandsGlovesNitrileRed
 
-# - type: loadout
-#   id: Sunrise-GlovesNitrileBlue
-#   equipment:
-#     gloves: ClothingHandsGlovesNitrileBlue
+- type: loadout
+  id: SunriseGlovesNitrileBlue
+  equipment:
+    gloves: ClothingHandsGlovesNitrileBlue
 
 # Когда появятся вирусолог и генетик, перенести к ним (если появятся конечно)
 
 - type: loadout
-  id: Sunrise-WinterGen
+  id: SunriseWinterGen
   equipment:
     outerClothing: ClothingOuterWinterGen
 
 - type: loadout
-  id: Sunrise-CoatLabGene
+  id: SunriseCoatLabGene
   equipment:
     outerClothing: ClothingOuterCoatLabGene
 
 
 - type: loadout
-  id: Sunrise-WinterViro
+  id: SunriseWinterViro
   equipment:
     outerClothing: ClothingOuterWinterViro
 
 
 - type: loadout
-  id: Sunrise-CoatLabViro
+  id: SunriseCoatLabViro
   equipment:
     outerClothing: ClothingOuterCoatLabViro

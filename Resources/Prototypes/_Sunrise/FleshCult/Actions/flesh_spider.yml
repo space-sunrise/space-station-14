@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseAction
   id: FleshSpiderWebAction
-  name: spider-web-action-name
-  description: spider-web-action-description
+  name: Web Weaving
+  description: Creates webs around you.
   categories: [ HideSpawnMenu ]
   components:
     - type: Action

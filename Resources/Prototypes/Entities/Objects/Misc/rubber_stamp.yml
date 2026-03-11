@@ -306,7 +306,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: Wizard
+    stampedName: wizard-stamp
     stampedColor: "#881bc1"
     stampState: "paper_stamp-wizard"
   - type: Sprite

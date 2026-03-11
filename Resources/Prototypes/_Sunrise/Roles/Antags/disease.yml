@@ -33,6 +33,7 @@
         mask:
         - GhostImpassable
   - type: MovementIgnoreGravity
+  - type: GravityAffected
   - type: Damageable
     damageContainer: Biological
   - type: Examiner

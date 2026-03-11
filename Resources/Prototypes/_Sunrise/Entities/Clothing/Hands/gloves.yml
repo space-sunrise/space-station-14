@@ -46,15 +46,13 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_black.rsi
   - type: Fiber
-    fiberMaterial: fibers-nitrile
+    fiberMaterial: fibers-nitrile-black
   - type: FingerprintMask
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - SmoothGloves # INTERACTIONS
     - ClothMade
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 
 - type: entity
@@ -70,15 +68,13 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_green.rsi
   - type: Fiber
-    fiberMaterial: fibers-nitrile
+    fiberMaterial: fibers-nitrile-green
   - type: FingerprintMask
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - SmoothGloves # INTERACTIONS
     - ClothMade
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 
 - type: entity
@@ -94,15 +90,13 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_orange.rsi
   - type: Fiber
-    fiberMaterial: fibers-nitrile
+    fiberMaterial: fibers-nitrile-orange
   - type: FingerprintMask
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - SmoothGloves # INTERACTIONS
     - ClothMade
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 
 - type: entity
@@ -118,15 +112,13 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_red.rsi
   - type: Fiber
-    fiberMaterial: fibers-nitrile
+    fiberMaterial: fibers-nitrile-red
   - type: FingerprintMask
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - SmoothGloves # INTERACTIONS
     - ClothMade
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 
 - type: entity
@@ -142,15 +134,13 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_blue.rsi
   - type: Fiber
-    fiberMaterial: fibers-nitrile
+    fiberMaterial: fibers-nitrile-blue
   - type: FingerprintMask
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - SmoothGloves # INTERACTIONS
     - ClothMade
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHandsBase
@@ -247,3 +237,90 @@
     - type: Clothing
       sprite: _Sunrise/Clothing/Hands/Gloves/black_cap_gloves.rsi
     - type: Insulated
+
+- type: entity
+  parent: ClothingHandsSmooth
+  id: ClothingHandsGlovesCombatFingerless
+  name: mercenary fingerless gloves
+  description: Tactical Gloves that may not protect you from finger burns, but will make you cooler.
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+    fiberColor: fibers-black
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 0 # no protection
+  - type: MeleeWeapon
+    attackRate: 2
+    damage:
+      types:
+        Blunt: 6
+    bluntStaminaDamageFactor: 1.3
+
+    soundHit:
+      collection: Punch
+    animation: WeaponArcFist
+    mustBeEquippedToUse: true
+
+- type: entity
+  parent: ClothingHandsGlovesNorthStar
+  id: CornivoreGloves
+  name: gloves of cornivore
+  description: We don't know if you're thirsty for blood... but... these gloves definitely are!!! They're saturated with a special toxin.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/cornivoregloves.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/cornivoregloves.rsi
+  - type: MeleeWeapon
+    autoAttack: true
+    attackRate: 4
+    damage:
+      types:
+        Slash: 8
+  - type: InjectOnHit
+    limit: 20
+    reagents:
+      - ReagentId: Hemorrhinol
+        Quantity: 5
+      - ReagentId: Warfarin
+        Quantity: 5
+      - ReagentId: Lexorin
+        Quantity: 0.2
+  - type: Fiber
+    fiberMaterial: fibers-leather
+    fiberColor: fibers-blue
+  - type: FingerprintMask
+  - type: MeleeSpeech
+  - type: ActivatableUI
+    key: enum.MeleeSpeechUiKey.Key
+    verbOnly: true
+  - type: Actions
+  - type: UserInterface
+    interfaces:
+      enum.MeleeSpeechUiKey.Key:
+        type: MeleeSpeechBoundUserInterface
+  - type: Insulated
+  - type: StaticPrice
+    price: 2500
+  - type: Tag
+    tags:
+    - Kangaroo
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlack
+  id: ClothingHandsTacticalMaidGlovesFake
+  name: tactical maid gloves
+  description: Tactical maid gloves, every self-respecting maid should be able to discreetly eliminate her goals.
+  suffix: Fake
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/tacticalmaidgloves.rsi
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/tacticalmaidgloves.rsi

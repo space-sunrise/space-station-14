@@ -6,7 +6,7 @@
   - CaptainNeck
   - CaptainJumpsuit
   - CaptainBackpack
-  - CaptainGloves # Sunrise - Added
+  - CaptainGloves # Sunrise Edit
   - CaptainOuterClothing
   - Survival
   - Trinkets
@@ -306,18 +306,12 @@
   - GroupTankHarness
   - QuartermasterHead
 #  - QuartermasterNeck #Sunrise-edit
-  # Sunrise-start
-  - SunriseQuartermasterMask
-  # Sunrise-end
+  - SunriseQuartermasterMask # Sunrise Edit
   - QuartermasterJumpsuit
-  # Sunrise-start
-  - SunriseQuartermasterGloves
-  # Sunrise-end
+  - SunriseQuartermasterGloves # Sunrise Edit
   - CargoTechnicianBackpack
   - QuartermasterOuterClothing
-  # Sunrise-start
-  - QuartermasterNeck
-  # Sunrise-end
+  - QuartermasterNeck # Sunrise Edit
   - QuartermasterShoes
   - Glasses
   - Survival
@@ -337,18 +331,12 @@
   groups:
   - GroupTankHarness
   - CargoTechnicianHead
-  # Sunrise-start
-  - SunriseCargoTechMask
-  # Sunrise-end
+  - SunriseCargoTechMask # Sunrise Edit
   - CargoTechnicianJumpsuit
-  # Sunrise-start
-  - SunriseCargoTechGloves
-  # Sunrise-end
+  - SunriseCargoTechGloves # Sunrise Edit
   - CargoTechnicianBackpack
   - CargoTechnicianOuterClothing
-  # Sunrise-start
-  - SunriseCargoTechNeck
-  # Sunrise-end
+  - SunriseCargoTechNeck # Sunrise Edit
   - CargoTechnicianShoes
   - CargoTechnicianID
   - Glasses
@@ -375,9 +363,7 @@
   # Sunrise-end
   - SalvageSpecialistBackpack
   - SalvageSpecialistOuterClothing
-  # Sunrise-start
-  - SunriseSalvageNeck
-  # Sunrise-end
+  - SunriseSalvageNeck # Sunrise Edit
   - SalvageSpecialistShoes
   - Glasses
   - Survival
@@ -398,19 +384,13 @@
   groups:
   - GroupTankHarness
   - ChiefEngineerHead
-  # Sunrise-start
-  - SunriseCEMask
-  # Sunrise-end
+  - SunriseCEMask # Sunrise Edit
   - ChiefEngineerJumpsuit
-  # Sunrise-start
-  - SunriseCEGloves
-  # Sunrise-end
+  - SunriseCEGloves # Sunrise Edit
   - ChiefEngineerBackpack # Sunrise-Edit
 #  - ChiefEngineerNeck # Sunrise-Edit
   - ChiefEngineerOuterClothing
-  # Sunrise-start
-  - ChiefEngineerNeck
-  # Sunrise-end
+  - ChiefEngineerNeck # Sunrise Edit
   - ChiefEngineerShoes
   - SurvivalExtended
   - Trinkets
@@ -428,14 +408,10 @@
   id: JobTechnicalAssistant
   groups:
   - GroupTankHarness
-  # Sunrise-start
-  - StationEngineerHead
-  - StationSunriseEngineerMask
-  # Sunrise-end
+  - StationEngineerHead # Sunrise Edit
+  - StationSunriseEngineerMask # Sunrise Edit
   - TechnicalAssistantJumpsuit
-  # Sunrise-start
-  - StationSunriseEngineerGloves
-  # Sunrise-end
+  - StationSunriseEngineerGloves # Sunrise Edit
   - StationEngineerBackpack
   # Sunrise-start
   - StationEngineerOuterClothing
@@ -459,18 +435,12 @@
   groups:
   - GroupTankHarness
   - StationEngineerHead
-   # Sunrise-start
-  - StationSunriseEngineerMask
-   # Sunrise-end
+  - StationSunriseEngineerMask # Sunrise Edit
   - StationEngineerJumpsuit
-   # Sunrise-start
-  - StationSunriseEngineerGloves
-   # Sunrise-end
+  - StationSunriseEngineerGloves # Sunrise Edit
   - StationEngineerBackpack
   - StationEngineerOuterClothing
-   # Sunrise-start
-  - StationSunriseEngineerNeck
-   # Sunrise-end
+  - StationSunriseEngineerNeck # Sunrise Edit
   - StationEngineerShoes
   - StationEngineerID
   - SurvivalExtended
@@ -489,19 +459,13 @@
   id: JobAtmosphericTechnician
   groups:
   - GroupTankHarness
-  # Sunrise-start
-  - SunriseAtmosHead
-  - SunriseAtmosMask
-  # Sunrise-end
+  - SunriseAtmosHead # Sunrise Edit
+  - SunriseAtmosMask # Sunrise Edit
   - AtmosphericTechnicianJumpsuit
-  # Sunrise-start
-  - SunriseAtmosGloves
-  # Sunrise-end
+  - SunriseAtmosGloves # Sunrise Edit
   - AtmosphericTechnicianBackpack
   - AtmosphericTechnicianOuterClothing
-  # Sunrise-start
-  - SunriseAtmosNeck
-  # Sunrise-end
+  - SunriseAtmosNeck # Sunrise Edit
   - AtmosphericTechnicianShoes
   - SurvivalExtended
   - Trinkets
@@ -633,6 +597,7 @@
   - SecurityHead
   - SecurityJumpsuit
   - SecurityBackpack
+  - SecurityGlasses # Sunrise Edit
   - SecurityOuterClothing
   - SecurityShoes
   - SecurityPDA
@@ -697,13 +662,9 @@
   - GroupTankHarness
   - ChiefMedicalOfficerHead
 #  - MedicalMask   #Sunrise-edit
-# Sunrise-start
-  - SunriseChiefMedicalOfficerMask
-# Sunrise-end
+  - SunriseChiefMedicalOfficerMask # Sunrise Edit
   - ChiefMedicalOfficerJumpsuit
-# Sunrise-start
-  - SunriseChiefMedicalOfficerGloves
-# Sunrise-end
+  - SunriseChiefMedicalOfficerGloves # Sunrise Edit
 #  - MedicalGloves  #Sunrise-edit
   - MedicalBackpack
   - ChiefMedicalOfficerOuterClothing
@@ -732,9 +693,7 @@
   - MedicalGloves
   - MedicalBackpack
   - MedicalDoctorOuterClothing
-  # Sunrise-start
-  - SunriseMedicalDoctorNeck
-  # Sunrise-end
+  - SunriseMedicalDoctorNeck # Sunrise Edit
   - MedicalShoes
   - MedicalDoctorPDA
   - MedicalEyewear
@@ -754,14 +713,10 @@
   id: JobMedicalIntern
   groups:
   - GroupTankHarness
-  # Sunrise-start
-  - MedicalDoctorHead
-  - MedicalMask
-  # Sunrise-end
+  - MedicalDoctorHead # Sunrise Edit
+  - MedicalMask # Sunrise Edit
   - MedicalInternJumpsuit
-  # Sunrise-start
-  - MedicalGloves
-  # Sunrise-end
+  - MedicalGloves # Sunrise Edit
   - MedicalBackpack
   # Sunrise-start
   - MedicalDoctorOuterClothing
@@ -785,16 +740,12 @@
   id: JobChemist
   groups:
   - GroupTankHarness
-  # Sunrise-start
-  - SunriseChemistHead
-  - SunriseChemistMask
-  # Sunrise-end
+  - SunriseChemistHead # Sunrise Edit
+  - SunriseChemistMask # Sunrise Edit
 #  - MedicalMask   #Sunrise-edit
   - ChemistJumpsuit
 #    - MedicalGloves #Sunrise-edit
-  # Sunrise-start
-  - SunriseChemistGloves
-  # Sunrise-end
+  - SunriseChemistGloves # Sunrise Edit
   - ChemistBackpack
   - ChemistOuterClothing
   # Sunrise-start
@@ -821,19 +772,13 @@
   - GroupTankHarness
   - ParamedicHead
 #  - MedicalMask   #Sunrise-edit
-  # Sunrise-start
-  - SunriseParamedicMask
-  # Sunrise-end
+  - SunriseParamedicMask # Sunrise Edit
   - ParamedicJumpsuit
 #  - MedicalGloves #Sunrise-edit
-  # Sunrise-start
-  - SunriseParamedicGloves
-  # Sunrise-end
+  - SunriseParamedicGloves # Sunrise Edit
   - MedicalBackpack
   - ParamedicOuterClothing
-  # Sunrise-start
-  - SunriseParamedicNeck
-  # Sunrise-end
+  - SunriseParamedicNeck # Sunrise Edit
   - ParamedicShoes
   - MedicalEyewear
   - SurvivalMedical

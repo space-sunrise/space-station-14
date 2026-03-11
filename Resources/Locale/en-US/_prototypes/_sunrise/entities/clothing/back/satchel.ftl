@@ -28,6 +28,8 @@ ent-ClothingBackpackSatchelWhite = white satchel
     .desc = You look very stylish with this satchel.
 ent-ClothingBackpackSatchelYellow = yellow satchel
     .desc = You look very stylish with this satchel.
+ent-ClothingBackpackSatchelRandomColorSpawner = satchel (random color)
+    .desc = A satchel of a random color.
 # Metus satchels
 ent-ClothingBackpackSatchelHeadOfPrisonMetus = head of prison satchel
     .desc = Old leather with cracks, the strap pulled too tight, the smell of dust and metal mixed within it like a memory of years spent behind closed doors.

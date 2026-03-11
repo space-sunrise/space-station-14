@@ -32,7 +32,7 @@
       role: JobPrisonInspector
       time: 54000 # 15 hrs
   equipment:
-    head: Sunrise-ClothingHeadHatDetGadget
+    head: SunriseClothingHeadHatDetGadget
 
 # Glasses
 

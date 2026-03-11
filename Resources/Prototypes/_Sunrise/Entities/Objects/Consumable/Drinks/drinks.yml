@@ -27,7 +27,7 @@
         - ReagentId: BadTouch
           Quantity: 30
   - type: Icon
-    sprite: _Sunrise/Objects/Consumable/Drinks/badTouch.rsi
+    sprite: _Sunrise/Objects/Consumable/Drinks/bad_touch.rsi
     state: icon
 
 - type: entity
@@ -75,7 +75,7 @@
         - ReagentId: DarkAndStormy
           Quantity: 30
   - type: Icon
-    sprite: _Sunrise/Objects/Consumable/Drinks/darkAndStormy.rsi
+    sprite: _Sunrise/Objects/Consumable/Drinks/dark_and_stormy.rsi
     state: icon
 
 - type: entity
@@ -117,7 +117,7 @@
         - ReagentId: MaiTai
           Quantity: 30
   - type: Icon
-    sprite: _Sunrise/Objects/Consumable/Drinks/maiTai.rsi
+    sprite: _Sunrise/Objects/Consumable/Drinks/mai_tai.rsi
     state: icon
 
 - type: entity
@@ -149,7 +149,7 @@
         - ReagentId: OldFashioned
           Quantity: 30
   - type: Icon
-    sprite: _Sunrise/Objects/Consumable/Drinks/oldFashioned.rsi
+    sprite: _Sunrise/Objects/Consumable/Drinks/old_fashioned.rsi
     state: icon
 
 - type: entity

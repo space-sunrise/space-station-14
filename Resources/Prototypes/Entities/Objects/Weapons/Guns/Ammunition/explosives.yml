@@ -182,8 +182,8 @@
     proto: BulletCannonBall
     deleteOnSpawn: true
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    state: ball
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi # Sunrise-Edit
+    state: blastball # Sunrise-Edit
 
 - type: entity
   id: CannonBallGrapeshot

@@ -221,10 +221,14 @@
       - GasAnalyzer
       - HandLabeler
       - TrashOnSolutionEmpty
-  - type: StorageFill
-    contents:
-      - id: DrinkSpaceLube
-      - id: CrazyGlue
+      - Lube
+      - Glue
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DrinkSpaceLube
+        - id: CrazyGlue
 
 - type: entity
   id: MagazineSMGCap
@@ -397,13 +401,15 @@
   - type: Storage
     grid:
     - 0,0,6,3
-  - type: StorageFill
-    contents:
-      - id: WeaponSubMachineGunC20rFake
-      - id: MagazineSMGCap
-        amount: 2
-      - id: MagazineSMGFoam
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunC20rFake
+        - id: MagazineSMGCap
+          amount: 2
+        - id: MagazineSMGFoam
+          amount: 2
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -415,9 +421,11 @@
   - type: Storage
     grid:
     - 0,0,6,3
-  - type: StorageFill
-    contents:
-      - id: WeaponLightMachineGunL6Fake
-      - id: MagazineCapBox
-        amount: 2
-      - id: MagazineFoamBoxSunrise
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponLightMachineGunL6Fake
+        - id: MagazineCapBox
+          amount: 2
+        - id: MagazineFoamBoxSunrise

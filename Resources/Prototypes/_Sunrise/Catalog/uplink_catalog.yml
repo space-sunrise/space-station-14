@@ -334,7 +334,7 @@
   id: UplinkMagazinePistolSubMachineGunCaselessExtended
   name: uplink-magazine-siar52-name
   description: uplink-magazine-siar52-desc
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/IAR-52mag.rsi, state: base }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/iar_52_mag.rsi, state: base }
   productEntity: MagazinePistolSubMachineGunCaselessExtended
   discountCategory: usualDiscounts
   discountDownTo:
@@ -348,7 +348,7 @@
   id: UplinkMagazineDl6902
   name: uplink-magazine-dl6902-name
   description: uplink-magazine-dl6902-desc
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Dl6902mag.rsi, state: base }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/dl6902_mag.rsi, state: base }
   productEntity: MagazineDl6902
   discountCategory: usualDiscounts
   discountDownTo:
@@ -925,7 +925,7 @@
   name: uplink-aj100-name
   productEntity: BriefcaseWeaponAJ100Filled
   description: uplink-aj100-desc
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi, state: icon }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/aj_100.rsi, state: icon }
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 8
@@ -945,7 +945,7 @@
   name: uplink-clothing-backpack-syndie-aj100-name
   productEntity: ClothingBackpackSyndieAJ100Filled
   description: uplink-clothing-backpack-syndie-aj100-desc
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi, state: icon }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/aj_100.rsi, state: icon }
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 10
@@ -1018,11 +1018,30 @@
       - LoneOpsUplink
 
 - type: listing
+  id: UplinkL6SawBundleMax
+  name: uplink-l6-sawmax-bundle-name
+  description: uplink-l6-sawmax-bundle-desc
+  icon: { sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledLMGMax
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 20
+  cost:
+    Telecrystal: 25
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+
+- type: listing
   id: UplinkClothingBackpackSyndieDL6902Filled
   name: uplink-clothing-backpack-syndie-dl6902-name
   productEntity: ClothingBackpackSyndieDL6902Filled
   description: uplink-clothing-backpack-syndie-dl6902-desc
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902.rsi, state: icon }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/LMGs/dl6902.rsi, state: icon }
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 20
@@ -1044,9 +1063,9 @@
   description: uplink-power-backpack-dl6902-desc
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 22
+    Telecrystal: 20
   cost:
-    Telecrystal: 38
+    Telecrystal: 35
   categories:
   - UplinkWeaponry
   conditions:
@@ -1061,7 +1080,7 @@
   name: uplink-siar52-name
   productEntity: BriefcaseWeaponSIAR52Filled
   description: uplink-siar52-desc
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi, state: icon }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/iar_52.rsi, state: icon }
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 8
@@ -1081,7 +1100,7 @@
   name: uplink-clothing-backpack-syndie-siar52-name
   productEntity: ClothingBackpackSyndieSIAR52Filled
   description: uplink-clothing-backpack-syndie-siar52-name
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi, state: icon }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/iar_52.rsi, state: icon }
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 15
@@ -1540,6 +1559,19 @@
   - UplinkWeaponry
 
 - type: listing
+  id: UplinkHomerunBat
+  name: uplink-homerun-bat-name
+  description: uplink-homerun-bat-desc
+  productEntity: HomerunBat
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 7
+  categories:
+  - UplinkWeaponry
+
+- type: listing
   id: UplinkEswordNuke
   name: uplink-esword-name
   description: uplink-esword-desc
@@ -1557,7 +1589,6 @@
     whitelist:
       tags:
       - NukeOpsUplink
-      - LoneOpsUplink
 
 - type: listing
   id: UplinkPolytrinicAcidChemistryBottle
@@ -1571,6 +1602,21 @@
     Telecrystal: 4
   categories:
   - UplinkChemicals
+
+- type: listing
+  id: UplinkCleanerKit
+  name: uplink-cleaner-kit-name
+  description: uplink-cleaner-kit-desc
+  productEntity: ToolboxArtisticFilledCleaner
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkDisruption
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
 
 - type: listing
   id: UplinkExplosiveCollarsKit
@@ -2072,6 +2118,50 @@
       - SyndieAgentUplink
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: UplinkProtoAdrenalImplanter
+  name: uplink-proto-adrenal-implanter-name
+  description: uplink-proto-adrenal-implanter-desc
+  icon: { sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi, state: microstimpen }
+  productEntity: ProtoAdrenalImplanter
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkImplants
+
+- type: listing
+  id: UplinkAdrenalImplanter
+  name: uplink-adrenal-implanter-name
+  description: uplink-adrenal-implanter-desc
+  icon: { sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi, state: stimpen }
+  productEntity: AdrenalImplanter
+  cost:
+    Telecrystal: 7
+  categories:
+  - UplinkImplants
+
+- type: listing
+  id: UplinkStimpackImplanter
+  name: uplink-stimpack-implanter-name
+  description: uplink-stimpack-implanter-desc
+  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: stimpen }
+  productEntity: StimpackImplanter
+  cost:
+    Telecrystal: 9
+  categories:
+  - UplinkImplants
+
+- type: listing
+  id: UplinkNutrimentImplanter
+  name: uplink-nutriment-implanter-name
+  description: uplink-nutriment-implanter-desc
+  icon: { sprite: Objects/Consumable/Food/burger.rsi, state: bigbite }
+  productEntity: NutrimentImplanter
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkImplants
 # Jobs
 
 - type: listing
@@ -2395,6 +2485,22 @@
     stock: 1
 
 - type: listing
+  id: uplinkWeaponEnergyCrossbow
+  name: uplink-energy-crossbow-name
+  description: uplink-energy-crossbow-desc
+  productEntity: WeaponEnergyCrossbowLarge
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: uplinkWeaponShotgunMinotaur
   name: uplink-minotaur-name
   description: uplink-minotaur-desc
@@ -2455,19 +2561,6 @@
   categories:
   - UplinkWeaponry
 
-# - type: listing # Sunrise-TODO: Fix this
-#   id: uplinkWeaponPistolStechkin
-#   name: uplink-stechkin-name
-#   description: uplink-stechkin-desc
-#   productEntity: WeaponPistolStechkin
-#   discountCategory: rareDiscounts
-#   discountDownTo:
-#     Telecrystal: 3
-#   cost:
-#     Telecrystal: 6
-#   categories:
-#   - UplinkWeaponry
-
 - type: listing
   id: UplinkGrenadeLauncherM79
   name: uplink-grenade-launcher-m79-name
@@ -2519,7 +2612,7 @@
   discountDownTo:
     Telecrystal: 20
   cost:
-    Telecrystal: 35
+    Telecrystal: 30
   categories:
   - UplinkWeaponry
   conditions:
@@ -2883,3 +2976,39 @@
     Telecrystal: 3
   categories:
     - UplinkExplosives
+
+- type: listing
+  id: UplinkEshieldTraitor
+  name: uplink-eshield-name
+  description: uplink-eshield-desc
+  icon:
+    sprite: /Textures/Objects/Weapons/Melee/e_shield.rsi
+    state: eshield-on
+  productEntity: EnergyShieldBiocode
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 6
+  categories:
+    - UplinkWeaponry
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+          - LoneOpsUplink
+          - AssaultOpsUplink
+
+- type: listing
+  id: UplinkCornivoreGloves
+  name: uplink-cornivoregloves-name
+  description: uplink-cornivoregloves-desc
+  productEntity: CornivoreGlovesBiocode
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkWeaponry

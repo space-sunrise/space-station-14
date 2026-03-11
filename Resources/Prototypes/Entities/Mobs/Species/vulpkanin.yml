@@ -17,6 +17,13 @@
     state: full
   - type: Body
     prototype: Vulpkanin
+  # Sunrise-start
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatVulpkanin
+      amount: 5
+  # Sunrise-end
   - type: Speech
     speechSounds: Vulpkanin
     speechVerb: Vulpkanin

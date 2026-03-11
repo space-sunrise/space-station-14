@@ -112,6 +112,8 @@
     stateDoorClosed: generic_door
   - type: StaticPrice
     price: 75
+  - type: Pierceable # Sunrise-edit - прострел ящиков
+    level: Wood
 
 # steel closet base (that can be constructed/deconstructed)
 - type: entity
@@ -315,3 +317,5 @@
     stateDoorOpen: base
     stateDoorClosed: door
   - type: LockVisuals
+  - type: Pierceable # Sunrise-edit - прострел ящиков
+    level: Wood

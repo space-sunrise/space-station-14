@@ -2107,9 +2107,7 @@ entities:
           - 626
           - 627
     - type: UserInterface
-      actors:
-        enum.StorageUiKey.Key:
-        - invalid
+      actors: {}
     - type: ActiveUserInterface
 - proto: ComputerIdUSSP
   entities:

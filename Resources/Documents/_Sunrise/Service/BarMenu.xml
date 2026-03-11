@@ -1,14 +1,16 @@
 <Document>
-[bold]Станция: {stationName}[/bold]
-[bold]Форма {corpString}/СРВ-ПД[/bold]
-[head=2]Меню бара[/head]
+[head=2][color=#165634][bold]Меню бара[/bold][/color][/head]
+[color=#165634][bold]{corpString}[/bold][/color][mono] / СРВ-ПД[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
 
-[italic]Время от начала смены и дата: {timeString}[/italic]
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#165634][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
 
-Составитель документа:
-Должность составителя:
-
-
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#165634][bold]Содержание[/bold][/color]
 
 Ассортимент безалкогольных напитков:
 
@@ -18,6 +20,7 @@
 
 Особые напитки для гостей и сотрудников станции:
 
-[italic]Место для печатей[/italic]
+[color=#666666][italic]Место для печатей[/italic][/color]
+
 
 </Document>

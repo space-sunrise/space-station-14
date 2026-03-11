@@ -25,8 +25,11 @@
   - type: GunRequiresWield
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 2
-    pvsIncrease: 0.2
-  - type: Gun
+    maxOffset: 3
+    pvsIncrease: 0.3
   - type: StaticPrice
     price: 2000
+  - type: BasicEntityAmmoProvider
+    proto: EnergyCrossbowBoltLarge
+    capacity: 1
+    count: 1

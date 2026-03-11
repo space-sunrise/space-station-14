@@ -22,10 +22,10 @@ public sealed class SpiralMovementSystem : EntitySystem
     public override void Initialize()
     {
         UpdatesOutsidePrediction = true;
-        SubscribeLocalEvent<SpiralMovementComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<SpiralMovementComponent, MapInitEvent>(OnInit);
     }
 
-    private void OnInit(EntityUid uid, SpiralMovementComponent component, ComponentInit args)
+    private void OnInit(EntityUid uid, SpiralMovementComponent component, MapInitEvent args)
     {
         if (component.OriginCoordinates is not null || component.SpawnTime is not null)
             return;

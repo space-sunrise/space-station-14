@@ -5,13 +5,13 @@
     Dragon: 1
     Revenant: 1
     # Sunrise-start
-    Pirate: 1
-    PirateSmall: 0.25
+    Pirate: 0.75
+    PirateSmall: 0.2
     LoneOperative: 0.25
-    Instigator: 0.25
+    Instigator: 0.2
     Infiltrator: 0.5
     Abductors: 0.5
-    Clown: 1
+    Clown: 0.5
     NinjaBackup: 0.75
     Rod: 0.75
     Wizard: 0.1

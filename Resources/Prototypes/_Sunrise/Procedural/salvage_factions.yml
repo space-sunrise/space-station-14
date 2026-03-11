@@ -4,32 +4,42 @@
   entries:
     # melee
     - proto: MobPirateT1KnifeTimed
-      prob: 0.25
+      prob: 0.05
+    - proto: MobPirateT1KnifeTearGasTimed
+      prob: 0.05
+    - proto: MobPirateT1KnifeStingerTimed
+      prob: 0.05
+    - proto: MobPirateT1KnifeFirebombTimed
+      prob: 0.05
+    - proto: MobPirateT1KnifeBolaTimed
+      prob: 0.05
+    - proto: MobPirateT1KnifeEMPTimed
+      prob: 0.05
     - proto: MobPirateT1MonkeyKnuckleDustersTimed
-      prob: 0.25
+      prob: 0.2
     - proto: MobPirateT1PickaxeTimed
       prob: 0.25
     - proto: MobPirateT1MonkeyEDaggerTimed
-      cost: 3
       prob: 0.1
     - proto: MobPirateT1ECutlassTimed
-      cost: 5
+      cost: 2
       prob: 0.05
     - proto: MobPirateT1EPickaxeTimed
-      cost: 5
+      cost: 2
       prob: 0.1
     - proto: MobPirateT1HunterTimed
-      cost: 5
+      cost: 2
       prob: 0.1
     - proto: MobPirateT1HunterSmashTimed
-      cost: 6
+      cost: 3
       prob: 0.08
     # range
     - proto: MobPirateT1PistolTimed
-      cost: 2
       prob: 0.2
-    - proto: MobPirateT1MosinTimed
+    - proto: MobPirateT1MedicTimed
       cost: 2
+      prob: 0.08
+    - proto: MobPirateT1MosinTimed
       prob: 0.2
     - proto: MobPirateT1PKATimed
       prob: 0.2
@@ -42,37 +52,65 @@
     - proto: MobPirateT1MonkeyFlareGunUraniumTimed
       prob: 0.03
     - proto: MobPirateT1ScrapSMGTimed
-      cost: 3
+      cost: 2
       prob: 0.1
     - proto: MobPirateT1SMGTimed
-      cost: 4
-      prob: 0.1
-    - proto: MobPirateT1MonkeyFireBombTimed
       cost: 3
       prob: 0.1
+    - proto: MobPirateT1MonkeyFireBombTimed
+      cost: 2
+      prob: 0.1
     - proto: MobPirateT1BombardierFireTimed
-      cost: 4
-      prob: 0.05
+      cost: 3
+      prob: 0.04
     - proto: MobPirateT1BombardierGlassTimed
-      cost: 4
-      prob: 0.05
+      cost: 3
+      prob: 0.04
     - proto: MobPirateT1BombardierPipeTimed
-      cost: 4
-      prob: 0.05
+      cost: 3
+      prob: 0.04
     - proto: MobPirateT1FlintlockTimed
       prob: 0.2
     - proto: MobPirateT1PlasmaCutterTimed
-      cost: 5
+      cost: 2
       prob: 0.1
     - proto: MobPirateT1ScrapRifleTimed
-      cost: 6
+      cost: 2
       prob: 0.1
     - proto: MobPirateT1RifleTimed
-      cost: 6
+      cost: 3
       prob: 0.1
+    - proto: MobPirateT1RifleAltTimed
+      cost: 3
+      prob: 0.1
+    - proto: MobPirateT1LCGTimed
+      cost: 3
+      prob: 0.02
+    # squad spawners
+    - proto: MobPirateT1LMGSquadTimedSpawner
+      cost: 7
+      prob: 0.15
+    - proto: MobPirateT1BreachSquadTimedSpawner
+      cost: 7
+      prob: 0.15
+    - proto: MobPirateT1AssaultSquadTimedSpawner
+      cost: 7
+      prob: 0.15
+    - proto: MobPirateT1HeavySquadTimedSpawner
+      cost: 9
+      prob: 0.1
+    - proto: MobPirateT1InfiltratorSquadTimedSpawner
+      cost: 7
+      prob: 0.15
+    - proto: MobPirateT1MonkeySquadTimedSpawner
+      cost: 6
+      prob: 0.15
+    - proto: MobPirateT1RandomSquadTimedSpawner
+      cost: 7
+      prob: 0.02
     # borgs
     - proto: MobPirateT1BorgAssaultTimed
-      cost: 3
+      cost: 2
       prob: 0.05
     - proto: MobPirateT1BorgMiningTimed
       cost: 2
@@ -81,11 +119,11 @@
       cost: 1
       prob: 0.15
     - proto: MobPirateT1BossTimed
-      cost: 5
+      cost: 10
       prob: 0.05
   configs:
     DefenseStructure: ComputerPirateExchanger
-    Megafauna: MobPirateT1Boss
+    Megafauna: MobPirateT1BossTimed
 
 - type: salvageFaction
   id: PiratesT2
@@ -93,15 +131,30 @@
   entries:
     # melee
     - proto: MobPirateT2CutlassTimed
-      prob: 0.1
+      prob: 0.15
     - proto: MobPirateT2ECutlassTimed
+      cost: 1
+      prob: 0.1
+    - proto: MobPirateT2ECutlassTearGasTimed
+      cost: 1
+      prob: 0.1
+    - proto: MobPirateT2ECutlassStingerTimed
+      cost: 1
+      prob: 0.1
+    - proto: MobPirateT2ECutlassFirebombTimed
+      cost: 1
+      prob: 0.1
+    - proto: MobPirateT2ECutlassBolaTimed
+      cost: 1
+      prob: 0.1
+    - proto: MobPirateT2ECutlassFuzeCannonBallTimed
       cost: 2
       prob: 0.1
     - proto: MobPirateT2SledgehammerTimed
-      cost: 2
+      cost: 1
       prob: 0.1
     - proto: MobPirateT2GauntletDrillTimed
-      cost: 2
+      cost: 1
       prob: 0.1
     # range
     - proto: MobPirateT2ShotgunTimed
@@ -129,6 +182,9 @@
       prob: 0.1
     - proto: MobPirateT2DoubleRevolverTimed
       prob: 0.1
+    - proto: MobPirateT2MedicTimed
+      cost: 2
+      prob: 0.08
     # rare
     - proto: MobPirateT2RevolverCutlassTimed
       cost: 3
@@ -140,27 +196,59 @@
       cost: 5
       prob: 0.04
     - proto: MobPirateT2MechTimed
-      cost: 7
+      cost: 5
       prob: 0.03
     - proto: MobPirateT2JuggernautTimed
-      cost: 7
+      cost: 5
       prob: 0.04
+    - proto: MobPirateT2JuggernautMGTimed
+      cost: 5
+      prob: 0.03
+    # squad spawners
+    - proto: MobPirateT2LMGSquadTimedSpawner
+      cost: 9
+      prob: 0.08
+    - proto: MobPirateT2BreachSquadTimedSpawner
+      cost: 9
+      prob: 0.08
+    - proto: MobPirateT2AssaultSquadTimedSpawner
+      cost: 9
+      prob: 0.08
+    - proto: MobPirateT2HeavySquadTimedSpawner
+      cost: 9
+      prob: 0.06
+    - proto: MobPirateT2InfiltratorSquadTimedSpawner
+      cost: 9
+      prob: 0.08
+    # unique squads
+    - proto: MobPirateT2ControlSquadTimedSpawner
+      cost: 9
+      prob: 0.07
+    - proto: MobPirateT2AntiCrowdSquadTimedSpawner
+      cost: 9
+      prob: 0.07
+    - proto: MobPirateT2RandomSquadTimedSpawner
+      cost: 9
+      prob: 0.02
     # borgs
     - proto: MobPirateT1BorgAssaultTimed
+      cost: 1
+      prob: 0.05
+    - proto: MobPirateT2BorgAssaultTimed
       cost: 2
       prob: 0.1
     - proto: MobPirateT1BorgMiningTimed
       cost: 1
-      prob: 0.1
+      prob: 0.05
     - proto: MobPirateT1BorgDerelictTimed
       cost: 1
-      prob: 0.1
+      prob: 0.05
     - proto: MobPirateT2BossTimed
-      cost: 5
-      prob: 0.1
+      cost: 10
+      prob: 0.05
   configs:
     DefenseStructure: ComputerPirateExchanger
-    Megafauna: MobPirateT2Boss
+    Megafauna: MobPirateT2BossTimed
 
 - type: salvageFaction
   id: PiratesT3
@@ -176,6 +264,9 @@
     - proto: MobPirateT1ECutlassTimed
       cost: 1
       prob: 0.05
+    - proto: MobPirateT1Spawner
+      cost: 1
+      prob: 0.01
     # range
     - proto: MobPirateT1BombardierFireTimed
       cost: 1
@@ -228,6 +319,9 @@
     - proto: MobPirateT3SMGTimed
       cost: 2
       prob: 0.15
+    - proto: MobPirateT3MedicTimed
+      cost: 3
+      prob: 0.08
     # rare
     - proto: MobPirateT3L6Timed
       cost: 5
@@ -236,7 +330,7 @@
       cost: 5
       prob: 0.05
     - proto: MobPirateT3TachankaTimed
-      cost: 6
+      cost: 5
       prob: 0.04
     - proto: MobPirateT3GrenadierTimed
       cost: 5
@@ -247,10 +341,45 @@
     - proto: MobPirateT3SniperTimed
       cost: 5
       prob: 0.03
+    # squad spawners
+    - proto: MobPirateT3LMGSquadTimedSpawner
+      cost: 9
+      prob: 0.08
+    - proto: MobPirateT3BreachSquadTimedSpawner
+      cost: 9
+      prob: 0.08
+    - proto: MobPirateT3AssaultSquadTimedSpawner
+      cost: 9
+      prob: 0.08
+    - proto: MobPirateT3HeavySquadTimedSpawner
+      cost: 9
+      prob: 0.06
+    - proto: MobPirateT3InfiltratorSquadTimedSpawner
+      cost: 9
+      prob: 0.07
+    # unique squads
+    - proto: MobPirateT3ShieldPhalanxTimedSpawner
+      cost: 19
+      prob: 0.07
+    - proto: MobPirateT3SuppressorSquadTimedSpawner
+      cost: 9
+      prob: 0.06
+    - proto: MobPirateT3UniversalSquadTimedSpawner
+      cost: 9
+      prob: 0.07
+    - proto: MobPirateT3RandomSquadTimedSpawner
+      cost: 10
+      prob: 0.02
     # borgs
     - proto: MobPirateT1BorgAssaultTimed
       cost: 1
+      prob: 0.02
+    - proto: MobPirateT2BorgAssaultTimed
+      cost: 1
       prob: 0.05
+    - proto: MobPirateT3BorgAssaultTimed
+      cost: 2
+      prob: 0.1
     - proto: MobPirateT1BorgMiningTimed
       cost: 1
       prob: 0.02
@@ -258,8 +387,8 @@
       cost: 1
       prob: 0.02
     - proto: MobPirateT3BossTimed
-      cost: 5
-      prob: 0.1
+      cost: 10
+      prob: 0.05
   configs:
     DefenseStructure: ComputerPirateExchanger
-    Megafauna: MobPirateT3Boss
+    Megafauna: MobPirateT3BossTimed

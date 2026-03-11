@@ -42,6 +42,7 @@
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
+  - type: Airtight
   # Sunrise-End
   - type: Destructible
     thresholds:

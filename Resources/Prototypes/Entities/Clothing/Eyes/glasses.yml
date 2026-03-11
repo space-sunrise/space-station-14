@@ -324,7 +324,7 @@
     soundFailToActivate:
       path: /Audio/Machines/button.ogg
   - type: NinjaSuitDraw
-    drawRate: 2
+    drawRate: 1
     useRate: 1
   - type: ToggleNinjaSuitDraw
   - type: UseDelay

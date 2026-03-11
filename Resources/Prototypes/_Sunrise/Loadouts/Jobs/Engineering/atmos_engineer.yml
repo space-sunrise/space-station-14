@@ -1,5 +1,5 @@
 - type: loadout
-  id: Sunrise-AtmosBeret
+  id: SunriseAtmosBeret
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
