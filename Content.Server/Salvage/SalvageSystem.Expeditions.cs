@@ -10,6 +10,7 @@ using Content.Shared.Shuttles.Components;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.GameStates;
+using Robust.Shared.Random; // Sunrise-Edit
 
 namespace Content.Server.Salvage;
 

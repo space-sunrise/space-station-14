@@ -19,12 +19,6 @@ public sealed partial class SalvageDungeonModPrototype : IPrototype, IBiomeSpeci
     public List<ProtoId<SalvageBiomeModPrototype>>? Biomes { get; private set; } = null;
 
     /// <summary>
-    /// Which factions can spawn on this dungeon; any if empty.
-    /// </summary>
-    [DataField]
-    public List<ProtoId<SalvageFactionPrototype>>? Factions { get; private set; } = null;
-
-    /// <summary>
     /// The config to use for spawning the dungeon.
     /// </summary>
     [DataField(required: true)]
