@@ -41,6 +41,6 @@
     proto: BigMasterCE
 
 - type: loadout
-  id: Sunrise-BeretCE
+  id: SunriseBeretCE
   equipment:
     head: ClothingHeadHatBeretCE

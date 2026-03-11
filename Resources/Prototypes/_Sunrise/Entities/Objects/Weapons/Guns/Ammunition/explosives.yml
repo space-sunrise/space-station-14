@@ -171,6 +171,18 @@
   - type: TimerTriggerVisuals
 
 - type: entity
+  id: CannonBallAntiMateriel
+  name:  plasteel cannonball
+  parent: BaseCannonBall
+  components:
+  - type: CartridgeAmmo
+    proto: BulletAntiMaterielCannonBall
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: ball
+
+- type: entity
   id: CannonBallMini
   name: cannonball
   suffix: Pirate
@@ -344,6 +356,9 @@
   - type: SpentAmmoVisuals
     state: spent
     suffix: false
+  - type: Tag
+    tags:
+    - ImprovisedGrenade
 
 - type: entity
   id: ImprovisedGrenadePipebomb
@@ -364,6 +379,9 @@
   - type: SpentAmmoVisuals
     state: spent
     suffix: false
+  - type: Tag
+    tags:
+    - ImprovisedGrenade
 
 - type: entity
   id: ImprovisedGrenadeGlass
@@ -384,3 +402,6 @@
   - type: SpentAmmoVisuals
     state: spent
     suffix: false
+  - type: Tag
+    tags:
+    - ImprovisedGrenade

@@ -1,0 +1,22 @@
+﻿<Document>
+  # Технологии
+
+  Все технологии имеют стоимость и требование по уровню (tier) для исследования. Разблокировка открывает различные рецепты, которые можно печатать на разных станках.
+
+  Различные технологии и их дисциплины перечислены ниже.
+
+  ## Промышленность
+  <GuideTechDisciplineEmbed Discipline="Industrial"/>
+
+  ## Арсенал
+  <GuideTechDisciplineEmbed Discipline="Arsenal"/>
+
+  ## Экспериментальные
+  <GuideTechDisciplineEmbed Discipline="Experimental"/>
+
+  ## Гражданские услуги
+  <GuideTechDisciplineEmbed Discipline="CivilianServices"/>
+
+  ## Биохимия
+  <GuideTechDisciplineEmbed Discipline="Biochemical"/>
+</Document>

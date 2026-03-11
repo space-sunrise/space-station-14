@@ -9,10 +9,10 @@
     uncuffTime: 4.5
     breakoutTime: 30
     stunBonus: 1.0
-    cuffedRSI: _Sunrise/Abductor/Objects/Misc/handcuffs.rsi
+    cuffedRSI: _Sunrise/Abductor/Objects/Misc/handcuffs_abductor.rsi
     bodyIconState: body-overlay
   - type: Sprite
-    sprite: _Sunrise/Abductor/Objects/Misc/handcuffs.rsi
+    sprite: _Sunrise/Abductor/Objects/Misc/handcuffs_abductor.rsi
     state: handcuff
   - type: GuideHelp
     guides:

@@ -148,6 +148,16 @@
     enabled: true
     radius: 3
     color: blue
+  # Sunrise-Start
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Dead
+  - type: NpcFactionMember
+    factions:
+      - NanoTrasen
+  # Sunrise-End
   - type: Clickable
   - type: ContainmentField
     throwForce: 0
@@ -155,7 +165,7 @@
     thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 100 # Sunrise - Edit
+          damage: 60
         behaviors:
           - !type:DoActsBehavior
             acts: [ "Destruction" ]

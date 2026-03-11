@@ -2,6 +2,7 @@
   id: WeaponMechDebugBallistic
   parent: [ BaseMechWeaponRange, DebugMechEquipment ] # Debug equipment dose has all whitelist tags.
   suffix: Mech Weapon, DEBUG, Ballistic
+  categories: [ Debug ] # Sunrise-Add
   name: debug bang
   components:
   - type: Sprite
@@ -38,6 +39,7 @@
   id: WeaponMechDebugLaser
   name: debug pow
   suffix: Mech Weapon, DEBUG, Laser
+  categories: [ Debug ] # Sunrise-Add
   parent: [ BaseMechWeaponRange, DebugMechEquipment ]
   description: A weapon using light amplified by the stimulated emission of radiation.
   components:
@@ -70,6 +72,7 @@
   name: debug tew
   description: A self-defense weapon that exhausts organic targets, weakening them until they collapse.
   suffix: Mech Weapon, DEBUG, Disabler
+  categories: [ Debug ] # Sunrise-Add
   parent: [ BaseMechWeaponRange, DebugMechEquipment ]
   components:
   - type: Sprite

@@ -25,7 +25,7 @@
     state: comfy-brown
   - type: Construction
     graph: Seat
-    node: chairComfyBrown
+    node: chairComfy
 
 - type: entity
   name: grey office chair
@@ -56,3 +56,13 @@
   components:
   - type: Construction
     deconstructionTarget: null
+
+- type: entity
+  id: ChairAbductor
+  parent: ChairBase
+  name: chair abductor
+  description: cool chair for cool vulp
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Furniture/abductor_chair.rsi
+    state: abductor_chair

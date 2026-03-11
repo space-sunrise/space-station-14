@@ -1,9 +1,17 @@
-﻿- type: entity
+- type: entity
   parent: CrateGeneric
   id: CrateAmmunitionSmall
   name: old small ammunition crate
   components:
   - type: EntityStorage
+    whitelist:
+      components:
+      - BallisticAmmoProvider
+      - CartridgeAmmo
+  - type: MultiHandedItem
+  - type: Item
+    size: Ginormous
+    sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_small.rsi
   - type: Sprite
     sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_small.rsi
     layers:
@@ -40,14 +48,14 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.3,-0.4,0.3,0.19"
-        density: 50
+          bounds: "-0.2,-0.15,0.2,0.19"
+        density: 300
         mask:
         - CrateMask #this is so they can go under plastic flaps
         layer:
         - MachineLayer
   - type: StaticPrice
-    price: 125
+    price: 75
 
 - type: entity
   parent: CrateAmmunitionSmall
@@ -55,10 +63,38 @@
   name: old small ammunition crate
   suffix: Filled
   components:
-  - type: StorageFill
-    contents:
-      - id: SpeedLoaderHeavyRifleRFMJ
-        amount: 16
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SpeedLoaderHeavyRifleRFMJ
+          amount: 16
+
+- type: entity
+  parent: CrateAmmunitionSmall
+  id: CrateAmmunitionSmallLightRifleAP
+  name: old small ammunition crate
+  suffix: Filled, AP
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SpeedLoaderHeavyRifleRAP
+          amount: 16
+
+- type: entity
+  parent: CrateAmmunitionSmall
+  id: CrateAmmunitionSmallLightRifleIncendiary
+  name: old small ammunition crate
+  suffix: Filled, Incendiary
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SpeedLoaderHeavyRifleRIncendiary
+          amount: 16
 
 - type: entity
   parent: CrateAmmunitionSmall
@@ -66,17 +102,19 @@
   name: old small ammunition crate
   suffix: Filled, Sniper
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponSniperDragunov
-      - id: MagazineDragunovSP
-        amount: 2
-      - id: MagazineDragunovIncendiary
-        amount: 2
-      - id: MagazineDragunovUranium
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponSniperDragunov
+        - id: MagazineDragunovSP
+          amount: 2
+        - id: MagazineDragunovIncendiary
+          amount: 2
+        - id: MagazineDragunovUranium
 
 - type: entity
-  parent: BaseStructureDynamic
+  parent: [ BaseStructureDynamic, BasePaperLabelable ]
   id: CrateShelfMosin
   name: old wooden crate
   description: A large wooden crate designed for storing ancient rifles.
@@ -109,10 +147,12 @@
       tags:
         - WrappedWeapon
     maxItemSize: Huge
-  - type: StorageFill
-    contents:
-      - id: WrappedMosin
-        amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WrappedMosin
+          amount: 4
   - type: EntityStorageVisuals
     stateDoorOpen: open
     stateDoorClosed: closed
@@ -148,6 +188,7 @@
     containers:
       paper_label: !type:ContainerSlot
       storagebase: !type:Container {}
+      entity_storage: !type:Container {}
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Wood
@@ -174,12 +215,12 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
 
-# Упакованная Винтовка для ящика мосинок
+# ??????????? ???????? ??? ????? ???????
 - type: entity
   parent: [BaseItem, BaseSecurityContraband]
   id: WrappedMosin
   name: wrapped mosin rifle
-  description: A Kardashev-Mosin relic rifle, created 670 years ago. Hermetically sealed for eternal storage — heavily greased with cosmic lubricant, tightly wrapped in packing paper, and forgotten until the next war. Ammunition not included.
+  description: A Kardashev-Mosin relic rifle, created 670 years ago. Hermetically sealed for eternal storage � heavily greased with cosmic lubricant, tightly wrapped in packing paper, and forgotten until the next war. Ammunition not included.
   components:
   - type: Item
     size: Huge

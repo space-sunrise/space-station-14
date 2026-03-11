@@ -9,6 +9,15 @@
       time: 20h
 
 - type: loadoutEffectGroup
+  id: MisterBlueShit5
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBlueShield
+      time: 5h
+
+- type: loadoutEffectGroup
   id: MisterBlueShit50
   effects:
   - !type:JobRequirementLoadoutEffect
@@ -63,10 +72,33 @@
     belt: ClothingBeltBlueShieldWebbingFilled
 
 - type: loadout
+  id: BlueshieldACP14
+  inhand:
+  - ACP14Box
+
+- type: loadout
   id: BlueshieldWT550
   inhand:
   - ClothingBackpackDuffelWeaponSubMachineGunWt550
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MisterBlueShit5
 
+- type: loadout
+  id: BlueshieldLecterMk2
+  inhand:
+  - ClothingBackpackDuffelWeaponRifleLecterFilled
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MisterBlueShit5
+
+- type: loadout
+  id: BlueshieldVP78
+  inhand:
+  - VP78Box
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MisterBlueShit
 
 - type: loadout
   id: BlueshieldAsh12

@@ -34,6 +34,7 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
         SubscribeLocalEvent<WingToggleComponent, MapInitEvent>(OnWingToggleMapInit);
         SubscribeLocalEvent<WingToggleComponent, ComponentShutdown>(OnWingToggleShutdown);
         SubscribeLocalEvent<WingToggleComponent, ToggleActionEvent>(OnWingToggleAction);
+        SubscribeLocalEvent<WingToggleComponent, WingForceClose>(OnWingClose);
     }
 
     private void OnWingToggleMapInit(Entity<WingToggleComponent> ent, ref MapInitEvent args)
@@ -59,7 +60,7 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
         args.Handled = TryToggleWings(ent);
     }
 
-    public bool TryToggleWings(Entity<WingToggleComponent> ent, HumanoidAppearanceComponent? humanoid = null)
+    public bool TryToggleWings(Entity<WingToggleComponent> ent, HumanoidAppearanceComponent? humanoid = null, bool forceClose = false)
     {
         if (!Resolve(ent.Owner, ref humanoid, false))
             return false;
@@ -67,16 +68,13 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
         if (!humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.Tail, out var markings) || markings.Count == 0)
             return false;
 
-        if (TryComp<WingFlightComponent>(ent, out var wingFlight) && wingFlight.InertiaActive)
+        if (TryComp<WingFlightComponent>(ent, out var wingFlight) && wingFlight.InertiaActive && !forceClose)
             return false;
 
-        if (!ent.Comp.WingsOpened)
+        if ((!forceClose || !ent.Comp.WingsOpened) && !CanOpenWings(ent))
         {
-            if (!CanOpenWings(ent))
-            {
-                _popup.PopupEntity(Loc.GetString("wing-toggle-open-blocked"), ent.Owner, ent.Owner, PopupType.Medium);
-                return false;
-            }
+            _popup.PopupEntity(Loc.GetString("wing-toggle-open-blocked"), ent, ent, PopupType.Medium);
+            return false;
         }
 
         var openTarget = !ent.Comp.WingsOpened;
@@ -143,5 +141,10 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
             return;
 
         _actions.SetToggled(ent.Comp.ActionEntity.Value, ent.Comp.WingsOpened);
+    }
+
+    private void OnWingClose(Entity<WingToggleComponent> ent, ref WingForceClose args)
+    {
+        TryToggleWings(ent, forceClose: true);
     }
 }

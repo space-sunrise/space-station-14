@@ -6,3 +6,10 @@ ent-SunflowerCrown = sunflower crown
     .desc = A bright flower crown made out sunflowers that is sure to brighten up anyone's day!
 ent-ClothingHeadRabbitHat = rabbit hat
     .desc = A warm hat with ears on top will show off your cute personality and keep you warm on a cold evening !!
+ent-ClothingHeadBowWhite = white bow
+    .desc = A neat hair bow.
+ent-ClothingHeadBowRed = red bow
+    .desc = { ent-ClothingHeadBowWhite.desc }
+ent-ClothingHeadBowBlack = black bow
+    .desc = { ent-ClothingHeadBowWhite.desc }
+

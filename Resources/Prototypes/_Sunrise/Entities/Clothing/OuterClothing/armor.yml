@@ -357,7 +357,6 @@
         - type: ExplosionResistance
           damageCoefficient: 0.5
 
-# Starlight
 - type: entity
   parent: ClothingOuterArmorBasic
   id: ClothingOuterArmorPlate

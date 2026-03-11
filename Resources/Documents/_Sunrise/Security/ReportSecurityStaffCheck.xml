@@ -1,28 +1,26 @@
 <Document>
-[bold]Станция: {stationName}[/bold]
-[bold]Форма {corpString}/СБ-КОД[/bold]
-[head=3]Отчет о проверки КЗ и СРП сотрудников СБ[/head]
+[head=3][color=#5a0f0f][bold]Отчёт о проверке КЗ и СРП сотрудников СБ[/bold][/color][/head]
+[color=#b52d2d][bold]{corpString}[/bold][/color][mono] / СБ-КОМ[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#b52d2d][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
 
-[italic]Время от начала смены и дата: {timeString}[/italic]
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#b52d2d][bold]Отчёт[/bold][/color]
 
- Составитель документа:
- Должность составителя:
-
-
-
-1) Оценка знаний КЗ и СРП сотрудника (имя и фамилия сотрудника): (оценка знаний)
-
+[mono]
+1) Сотрудник: (ФИО)
+   Оценка знаний КЗ/СРП: (оценка)
 2)
+[/mono]
 
-.
+Проверяющий: (ФИО)
+Должность проверяющего: (ДОЛЖНОСТЬ)
 
-.
+[color=#666666][italic]Место для печатей[/italic][/color]
 
-Проверяющий: (имя и фамилия проверяющего)
-
-Должность проверяющего:
-
-
- [italic]Место для печатей[/italic]
 
 </Document>

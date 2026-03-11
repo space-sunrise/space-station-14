@@ -273,7 +273,8 @@
     state: icon
   - type: Item
     size: Ginormous
-    sprite: _Sunrise/Objects/Weapons/Melee/crusher_broadaxe-inhands.rsi
+    # Sunrise-edit
+    sprite: _Sunrise/Objects/Weapons/Melee/crusher_broadaxe_inhands.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Melee/crusher_broadaxe.rsi
     quickEquip: false

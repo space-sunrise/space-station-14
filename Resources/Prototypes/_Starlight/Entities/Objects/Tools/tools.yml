@@ -13,13 +13,13 @@
   - type: Item
     sprite: _Starlight/Objects/Tools/makeshift_omnitool.rsi
   - type: Prying
-    enabled: false
     speedModifier: 0.25
   - type: ToolTileCompatible
     delay: 4
   - type: Tool
     qualities:
-      - Screwing
+      - Prying
+    useSound: /Audio/Items/crowbar.ogg
     speedModifier: 0.25
   - type: MeleeWeapon
     wideAnimationRotation: -135

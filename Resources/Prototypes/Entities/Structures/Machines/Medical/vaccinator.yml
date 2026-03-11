@@ -39,4 +39,5 @@
     containers:
       machine_board: !type:Container
       machine_parts: !type:Container
+      mixer: !type:ContainerSlot
   - type: RequireProjectileTarget

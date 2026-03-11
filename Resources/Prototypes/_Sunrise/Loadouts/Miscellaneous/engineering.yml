@@ -179,29 +179,29 @@
  #Head
 
 - type: loadout
-  id: Sunrise-EngineerHeadBeret
+  id: SunriseEngineerHeadBeret
   equipment:
     head: ClothingHeadHatBeretEngineering
 
 
 
 - type: loadout
-  id: Sunrise-HardhatYellowDark
+  id: SunriseHardhatYellowDark
   equipment:
     head: ClothingHeadHatHardhatYellowDark
 
 - type: loadout
-  id: Sunrise-HardhatBlue
+  id: SunriseHardhatBlue
   equipment:
     head: ClothingHeadHatHardhatBlue
 
 - type: loadout
-  id: Sunrise-HardhatWhite
+  id: SunriseHardhatWhite
   equipment:
     head: ClothingHeadHatHardhatWhite
 
 - type: loadout
-  id: Sunrise-HardhatArmored
+  id: SunriseHardhatArmored
   equipment:
     head: ClothingHeadHatHardhatArmored
 

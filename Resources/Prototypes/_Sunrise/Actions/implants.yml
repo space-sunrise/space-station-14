@@ -47,3 +47,105 @@
     icon: { sprite: Mobs/Species/Terminator/parts.rsi, state: skull_icon }
     useDelay: 3
     itemIconStyle: BigAction
+
+- type: entity
+  parent: BaseImplantAction
+  id: ActionActivateProtoAdrenalImplant
+  name: Activate proto-adrenal
+  description: Injects a small dose of ephedrine and epinephrine.
+  components:
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: AutoRecharge
+    rechargeDuration: 360
+  - type: Action
+    checkCanInteract: false
+    checkConsciousness: false
+    useDelay: 1
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+      state: microstimpen
+
+- type: entity
+  parent: BaseImplantAction
+  id: ActionActivateAdrenalImplant
+  name: Activate adrenal
+  description: Injects a strong dose of ephedrine and epinephrine.
+  components:
+  - type: LimitedCharges
+    maxCharges: 2
+  - type: AutoRecharge
+    rechargeDuration: 300
+  - type: Action
+    checkCanInteract: false
+    checkConsciousness: false
+    useDelay: 1
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi
+      state: stimpen
+
+- type: entity
+  parent: BaseImplantAction
+  id: ActionActivateStimpackImplant
+  name: Activate stimpack
+  description: Injects a large dose of stimulants.
+  components:
+  - type: LimitedCharges
+    maxCharges: 2
+  - type: AutoRecharge
+    rechargeDuration: 240
+  - type: Action
+    checkCanInteract: false
+    checkConsciousness: false
+    useDelay: 1
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Objects/Specific/Medical/medipen.rsi
+      state: stimpen
+
+- type: entity
+  parent: BaseImplantAction
+  id: ActionActivateNutrimentImplant
+  name: Activate nutriment
+  description: Injects vitamins, saline, and nutriment.
+  components:
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: AutoRecharge
+    rechargeDuration: 180
+  - type: Action
+    checkCanInteract: false
+    checkConsciousness: false
+    useDelay: 1
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Objects/Consumable/Food/burger.rsi
+      state: bigbite
+
+- type: entity
+  parent: BaseImplantAction
+  id: ActionActivateReviverImplant
+  name: Activate reviver
+  description: Triggers an adrenaline surge with a focused discharge to the heart and a cocktail of reagents.
+  components:
+  - type: Action
+    checkCanInteract: false
+    checkConsciousness: false
+    useDelay: 6
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: _Sunrise/Entities/Objects/Implants/implants.rsi
+      state: reviver_implant
+  - type: InstantAction
+    event: !type:ActivateImplantEvent
+  - type: LimitedCharges
+    maxCharges: 2
+  - type: AutoRecharge
+    rechargeDuration: 60

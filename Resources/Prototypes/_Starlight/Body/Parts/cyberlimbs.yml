@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: PartCyber
   parent: [BaseItem, BasePart]
   name: "cyber body part"
@@ -184,13 +184,14 @@
       action: ActionToggleCyberHandLeft
       sound:
         path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+    - type: LimbItemStorage
       items:
         - ScalpelCyber
         - RetractorCyber
-        # - CauteryCyber #Заменяет ScalpelCyber
+        # - CauteryCyber # Заменяет ScalpelCyber
         - SawCyber
         # - HemostatCyber
-        - BoneGelSetterCyber #Заменяет BoneSetterCyberЭ
+        - BoneGelSetterCyber # Заменяет BoneSetterCyber
         - DrillCyber
     - type: WithAttachedBodyParts
       parts:
@@ -218,6 +219,7 @@
       action: ActionToggleCyberHandRight
       sound:
         path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+    - type: LimbItemStorage
       items:
         - ScalpelCyber
         - RetractorCyber
@@ -253,6 +255,7 @@
       action: ActionToggleCyberHandLeft
       sound:
         path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+    - type: LimbItemStorage
       items:
         - WrenchCyber
         - ScrewdriverCyber
@@ -285,6 +288,7 @@
       action: ActionToggleCyberHandRight
       sound:
         path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+    - type: LimbItemStorage
       items:
         - WrenchCyber
         - ScrewdriverCyber
@@ -318,6 +322,7 @@
       action: ActionToggleCyberHandLeft
       sound:
         path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+    - type: LimbItemStorage
       items:
         - EnergyShieldCyber
     - type: WithAttachedBodyParts
@@ -346,6 +351,7 @@
       action: ActionToggleCyberHandRight
       sound:
         path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+    - type: LimbItemStorage
       items:
         - EnergyShieldCyber
     - type: WithAttachedBodyParts
@@ -375,6 +381,7 @@
       action: ActionToggleCyberHandLeft
       sound:
         path: /Audio/Effects/metal_scrape1.ogg
+    - type: LimbItemStorage
       items:
         - CyberMantisBlade
     - type: WithAttachedBodyParts
@@ -400,6 +407,7 @@
       action: ActionToggleCyberHandRight
       sound:
         path: /Audio/Effects/metal_scrape1.ogg
+    - type: LimbItemStorage
       items:
         - CyberMantisBlade
     - type: WithAttachedBodyParts
@@ -426,6 +434,7 @@
       action: ActionToggleCyberHandLeft
       sound:
         path: /Audio/Effects/metal_scrape1.ogg
+    - type: LimbItemStorage
       items:
         - ScalpelRipper
         - RetractorRipper
@@ -463,6 +472,7 @@
       action: ActionToggleCyberHandRight
       sound:
         path: /Audio/Effects/metal_scrape1.ogg
+    - type: LimbItemStorage
       items:
         - ScalpelRipper
         - RetractorRipper

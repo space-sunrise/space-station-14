@@ -8,3 +8,47 @@
   heatCapacity: 10000
   weather: true
   indestructible: true
+
+- type: tile
+  id: FloorAbductorShield
+  name: tiles-abductor-floor-shield
+  sprite: /Textures/_Sunrise/Abductor/Tiles/abductor_tile2.png
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  indestructible: true
+
+- type: tile
+  id: FloorAbductorTetris
+  name: tiles-abductor-floor-tetris
+  sprite: /Textures/_Sunrise/Abductor/Tiles/abductor_tile3.png
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  indestructible: true
+
+- type: tile
+  id: FloorAbductorCoolDesign
+  name: tiles-abductor-floor-cooldesign
+  sprite: /Textures/_Sunrise/Abductor/Tiles/abductor_tile4.png
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  indestructible: true
+
+- type: tile
+  id: FloorAbductorCute
+  name: tiles-abductor-floor-cute
+  sprite: /Textures/_Sunrise/Abductor/Tiles/abductor_tile5.png
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  indestructible: true

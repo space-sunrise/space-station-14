@@ -144,11 +144,11 @@
         key: Muted
         component: Muted
         type: Add
-        time: 80
+        time: 30
 
 - type: reagent
   id: NocturineAbductor
-  name: reagent-name-nocturine
+  name: reagent-name-nocturine-abductor
   group: Narcotics
   desc: reagent-desc-nocturine
   physicalDesc: reagent-physical-desc-powdery
@@ -157,12 +157,15 @@
   meltingPoint: 128.0
   metabolisms:
     Narcotic:
-      effects:
+      effects: # It would be nice to have speech slurred or mumbly, but accents are a bit iffy atm. Same for distortion effects.
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 0.65
+        sprintSpeedModifier: 0.65
       - !type:ModifyStatusEffect
         conditions:
         - !type:ReagentCondition
           reagent: NocturineAbductor
           min: 8
         effectProto: StatusEffectForcedSleeping
-        time: 120
-        type: Add
+        time: 12
+        delay: 4

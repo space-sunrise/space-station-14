@@ -12,13 +12,16 @@ public sealed class ArtifactModifyHungerSystem : BaseXAESystem<ArtifactModifyHun
     [Dependency] private readonly HungerSystem _hunger = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
+    private readonly HashSet<Entity<HungerComponent>> _entities = [];
+
     protected override void OnActivated(Entity<ArtifactModifyHungerComponent> ent, ref XenoArtifactNodeActivatedEvent args)
     {
-        var humans = _lookup.GetEntitiesInRange<HungerComponent>(Transform(ent).Coordinates, ent.Comp.Range);
+        _entities.Clear();
+        _lookup.GetEntitiesInRange(Transform(ent).Coordinates, ent.Comp.Range, _entities);
 
-        foreach (var uid in humans)
+        foreach (var uid in _entities)
         {
-            var modifier = _random.NextFloat(-1f, 1f);
+            var modifier = _random.NextFloat(ent.Comp.MinModifier, ent.Comp.MaxModifier);
             _hunger.ModifyHunger(uid, modifier * ent.Comp.Amount);
         }
     }

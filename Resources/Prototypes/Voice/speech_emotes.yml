@@ -25,11 +25,16 @@
     - yells
     - yelled
     - yelling
-    # Russian-Localization-Start
+    # Sunrise-start
     - кричит
     - орёт
+    - орет
     - визжит
-    # Russian-Localization-End
+    - кричать
+    - визжать
+    - вопит
+    - вопить
+    # Sunrise-end
 
 - type: emote
   id: Laugh
@@ -59,14 +64,18 @@
     - chortle
     - chortles
     - chortling
-  # Russian-Localization-Start
+  # Sunrise-start
     - смеется
     - смеётся
     - хохочет
+    - ржёт
+    - ржет
+    - ржать
     - хихикает
     - хихикнул
     - хихикнула
-  # Russian-Localization-End
+    - смеяться
+  # Sunrise-end
 
 - type: emote
   id: Honk
@@ -85,9 +94,17 @@
     - honks
     - honked
     - honking
-  # Russian-Localization-Start
+  # Sunrise-start
     - хонк
-  # Russian-Localization-End
+    - гудит
+    - гудеть
+    - сигналит
+    - сигналить
+    - бибикает
+    - бибикать
+    - бибикнул
+    - бибикнула
+  # Sunrise-end
 
 - type: emote
   id: Sigh
@@ -105,11 +122,12 @@
     - sigh
     - sighs
     - sighed
-  # Russian-Localization-Start
+  # Sunrise-start
     - вздыхает
     - вздохнул
     - вздохнула
-  # Russian-Localization-End
+    - вздыхать
+  # Sunrise-end
 
 - type: emote
   id: Whistle
@@ -127,10 +145,13 @@
     - whistle
     - whistles
     - whistleblowing
-  # Russian-Localization-Start
+  # Sunrise-start
     - свистит
     - свистнул
-  # Russian-Localization-End
+    - свистеть
+    - присвистывает
+    - присвистнуть
+  # Sunrise-end
 
 - type: emote
   id: Crying
@@ -151,10 +172,17 @@
     - sob
     - sobs
     - sobbing
-  # Russian-Localization-Start
+  # Sunrise-start
     - плачет
     - рыдает
-  # Russian-Localization-End
+    - плакать
+    - хнычет
+    - хныкать
+    - хныкает
+    - хныкнул
+    - хныкнула
+    - рыдать
+  # Sunrise-end
 
 - type: emote
   id: Squish
@@ -173,9 +201,12 @@
     - squish
     - squishing
     - squishes
-  # Russian-Localization-Start
+  # Sunrise-start
     - хлюпает
-  # Russian-Localization-End
+    - хлюпать
+    - чавкает
+    - чавкать
+  # Sunrise-end
 
 - type: emote
   id: Chitter
@@ -194,9 +225,10 @@
    - chitter
    - chitters
    - chittered
-  # Russian-Localization-Start
+  # Sunrise-start
    - стрекочет
-  # Russian-Localization-End
+   - стрекотать
+  # Sunrise-end
 
 - type: emote
   id: Squeak
@@ -215,9 +247,10 @@
    - squeak
    - squeaks
    - squeaked
-  # Russian-Localization-Start
+  # Sunrise-start
    - пищит
-  # Russian-Localization-End
+   - пищать
+  # Sunrise-end
 
 - type: emote
   id: Click
@@ -235,10 +268,11 @@
   chatTriggers:
    - click
    - clicks
-  # Russian-Localization-Start
+  # Sunrise-start
    - клац
    - клацает
-  # Russian-Localization-End
+   - клацать
+  # Sunrise-end
 
 # Vulpkanin
 - type: emote
@@ -258,6 +292,12 @@
   - barks
   - barked
   - barking
+  # Sunrise-start
+  - лает
+  - гавкает
+  - гавкать
+  - лаять
+  # Sunrise-end
 
 - type: emote
   id: Snarl
@@ -276,6 +316,11 @@
   - snarls
   - snarled
   - snarling
+  # Sunrise-start
+  - оскалиться
+  - оскаливается
+  - скалится
+  # Sunrise-end
 
 - type: emote
   id: Whine
@@ -294,6 +339,14 @@
   - whines
   - whined
   - whining
+  # Sunrise-start
+  - скулит.
+  - скулит!
+  - скулить.
+  - скулить!
+  - скулит
+  - скулить
+  # Sunrise-end
 
 - type: emote
   id: Howl
@@ -312,6 +365,11 @@
   - howls
   - howling
   - howled
+  # Sunrise-start
+  - воет
+  - завывает
+  - выть
+  # Sunrise-end
 
 - type: emote
   id: Growl
@@ -330,6 +388,10 @@
   - growls
   - growled
   - growling
+  # Sunrise-start
+  - рычит
+  - рычать
+  # Sunrise-end
 
 # hand emotes
 - type: emote
@@ -348,7 +410,7 @@
     - claps
     - clapping
     - clapped
-    # Russian-Localization-Start
+    # Sunrise-start
     - хлопает
     - хлопнул
     - хлопнула
@@ -356,7 +418,8 @@
     - хлопнул в ладоши
     - хлопнула в ладоши
     - апплодирует
-    # Russian-Localization-End
+    - хлопать
+    # Sunrise-end
 
 - type: emote
   id: ClapSingle
@@ -376,6 +439,11 @@
     - claps her hands together
     - claps his hands together
     - claps its hands together
+    # Sunrise-start
+    - один хлопок
+    - одиночный хлопок
+    - хлопок
+    # Sunrise-end
 
 - type: emote
   id: Snap
@@ -402,7 +470,7 @@
     - snaps its fingers
     - snapping fingers
     - snapped fingers
-    # Russian-Localization-Start
+    # Sunrise-start
     - щелкает
     - щелкнул
     - щелкнула
@@ -415,7 +483,9 @@
     - щёлкает пальцами
     - щёлкнул пальцами
     - щёлкнула пальцами
-    # Russian-Localization-End
+    - щелкать пальцами
+    - щёлкать пальцами
+    # Sunrise-end
 
 - type: emote
   id: Thump
@@ -441,6 +511,14 @@
     - thumps her tail
     - thumps his tail
     - thumps its tail
+    # Sunrise-start
+    - вилять хвостом
+    - шлёпает хвостом
+    - шлепает хвостом
+    - бьёт хвостом
+    - бьет хвостом
+    - хлещет хвостом
+    # Sunrise-end
 
 - type: emote
   id: Salute
@@ -457,12 +535,13 @@
   chatTriggers:
     - salute
     - salutes
-  # Russian-Localization-Start
+  # Sunrise-start
     - салютует
     - отдаёт честь
     - отдал честь
     - отдала честь
-  # Russian-Localization-End
+    - салютовать
+  # Sunrise-end
 
 - type: emote
   id: Gasp
@@ -477,6 +556,10 @@
    - gasped
 #Sunrise-start
    - задыхается
+   - задыхаться
+   - задохнулся
+   - задохнулась
+   - задохнуться
 #Sunrise-end
 
 - type: emote
@@ -489,6 +572,10 @@
   chatMessages: ["chat-emote-msg-deathgasp"]
   chatTriggers:
   - deathgasp
+  # Sunrise-start
+  - предсмертный хрип
+  - смертельный хрип
+  # Sunrise-end
 
 - type: emote
   id: MonkeyDeathgasp
@@ -519,11 +606,12 @@
     - buzz
     - buzzed
     - buzzes
-  # Russian-Localization-Start
+  # Sunrise-start
     - жужжит
     - зажужжал
     - зажужжала
-  # Russian-Localization-End
+    - жужжать
+  # Sunrise-end
 
 - type: emote
   id: Weh
@@ -558,12 +646,13 @@
     - chirps
     - chirped
     - chirping
-  # Russian-Localization-Start
+  # Sunrise-start
     - чирикает
     - чирикает.
     - чирикает?
     - чирикает!
-  # Russian-Localization-End
+    - чирикать
+  # Sunrise-end
 
 # Machine Emotes
 - type: emote
@@ -583,9 +672,16 @@
     - beeps
     - beeped
     - beeping
-  # Russian-Localization-Start
+  # Sunrise-start
     - бип
-  # Russian-Localization-End
+    - бипает
+    - бипнуть
+    - бипнул
+    - бипнула
+    - пик
+    - пикает
+    - пикать
+  # Sunrise-end
 
 - type: emote
   id: Chime
@@ -604,9 +700,15 @@
     - chimes
     - chimed
     - chiming
-  # Russian-Localization-Start
+  # Sunrise-start
     - дзынь
-  # Russian-Localization-End
+    - динь
+    - динь-динь
+    - дзынькает
+    - дзынькать
+    - звенит
+    - звенеть
+  # Sunrise-end
 
 - type: emote
   id: Buzz-Two
@@ -631,14 +733,14 @@
     - buzzes twice
     - buzzing twice
     - buzzed twice
-  # Russian-Localization-Start
+  # Sunrise-start
     - бипбуп
     - бип буп
     - бип-буп
     - бипбип
     - бип бип
     - бип-бип
-  # Russian-Localization-End
+  # Sunrise-end
 
 - type: emote
   id: Ping
@@ -657,6 +759,10 @@
     - pings
     - pinged
     - pinging
-  # Russian-Localization-Start
+  # Sunrise-start
     - пинг
-  # Russian-Localization-End
+    - пингует
+    - пинговать
+    - пингнул
+    - пингнула
+  # Sunrise-end

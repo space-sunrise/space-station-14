@@ -50,6 +50,11 @@
     - RadioImplant
     - ChameleonControllerImplant
     - VoiceMaskImplant
+    - ProtoAdrenalImplant
+    - AdrenalImplant
+    - StimpackImplant
+    - NutrimentImplant
+    - ReviverImplant
     deimplantFailureDamage:
       types:
         Cellular: 50

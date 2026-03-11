@@ -4,21 +4,41 @@
   name: Security Webbing crate
   description: Contains two Security Webbing. Requires Security access to open.
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingBeltSecurityWebbing
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingBeltSecurityWebbing
+          amount: 2
 
 - type: entity
   id: CrateSecurityGlovesCombat
   parent: CrateSecgear
   name: Gloves Combat crate
-  description: Contains three Gloves Combat. Requires Security access to open.
+  description: Contains three combat gloves (may include fingerless variants). Requires Security access to open.
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingHandsGlovesCombat
-        amount: 3
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:GroupSelector
+          children:
+          - id: ClothingHandsGlovesCombat
+            weight: 0.75
+          - id: ClothingHandsGlovesCombatFingerless
+            weight: 0.25
+        - !type:GroupSelector
+          children:
+          - id: ClothingHandsGlovesCombat
+            weight: 0.5
+          - id: ClothingHandsGlovesCombatFingerless
+            weight: 0.5
+        - !type:GroupSelector
+          children:
+          - id: ClothingHandsGlovesCombat
+            weight: 0.25
+          - id: ClothingHandsGlovesCombatFingerless
+            weight: 0.75
 
 - type: entity
   id: CrateSecuritySWAT
@@ -26,14 +46,16 @@
   name: SWAT armor crate
   description: Contains a SWAT kit. One heavy armor suit with special forces helmet, special forces gas mask and combat Swat boots. To open it, the Security Service access level is required.
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingOuterArmorSWAT
-      - id: ClothingMaskGasSwat
-      - id: ClothingShoesSwat
-      - id: ClothingHeadHelmetSwat
-      - id: ClothingBeltSecurity
-      - id: CombatKnife
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterArmorSWAT
+        - id: ClothingMaskGasSwat
+        - id: ClothingShoesSwat
+        - id: ClothingHeadHelmetSwat
+        - id: ClothingBeltSecurity
+        - id: CombatKnife
 
 - type: entity
   id: CrateSecurityArmorReflective
@@ -41,10 +63,12 @@
   name: reflective armor crate
   description: Contains a 2 reflective armor. To open it, the Security Service access level is required.
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingOuterArmorReflective
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterArmorReflective
+          amount: 2
 
 - type: entity
   id: CrateSecurityArmorHeatAbsorb
@@ -52,10 +76,12 @@
   name: heat absorb armor crate
   description: Contains a 2 heat absorb armor. To open it, the Security Service access level is required.
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingOuterArmorHeatAbsorb
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterArmorHeatAbsorb
+          amount: 2
 
 - type: entity
   id: CrateSecurityArmorStab
@@ -63,21 +89,25 @@
   name: stab armor crate
   description: Contains a 2 heat absorb armor. To open it, the Security Service access level is required.
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingOuterArmorStab
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterArmorStab
+          amount: 2
 
 - type: entity
   id: CrateSecurityArmorPlate
   parent: CrateSecgear
-  name: heat absorb armor crate
+  name: plate-carrier armor crate
   description: Contains a 2 plate armor. To open it, the Security Service access level is required.
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingOuterArmorPlate
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterArmorPlate
+          amount: 2
 
 - type: entity
   id: CrateSecurityHoly
@@ -85,17 +115,19 @@
   name: exorcism crate
   description: Contains a 2 Holy shotgun ammobox and one flask of Holy water. To open it, the Security Service access level is required. Ameno dori me Ameno!
   components:
-  - type: StorageFill
-    contents:
-      - id: BoxShotgunHoly
-        amount: 2
-      - id: DrinkHolyWaterFull
-      - id: FoodGarlic
-        amount: 3
-      - id: WeaponShotgunDoubleBarreledRubber
-        prob: 0.25
-      - id: Bible
-        prob: 0.1
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BoxShotgunHoly
+          amount: 2
+        - id: DrinkHolyWaterFull
+        - id: FoodGarlic
+          amount: 3
+        - id: WeaponShotgunDoubleBarreledRubber
+          prob: 0.25
+        - id: Bible
+          prob: 0.1
 
 - type: entity
   id: CrateSecurityDebugArmorCrate
@@ -104,19 +136,21 @@
   description: Contains most basics armors. To open it, the Security Service access level is required.
   suffix: DEBUG
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingOuterVestArmorSec
-      - id: ClothingOuterArmorBasic
-      - id: ClothingOuterArmorBasicSlim
-      - id: ClothingOuterArmorBlueShield
-      - id: ClothingOuterArmorHeatAbsorb
-      - id: ClothingOuterArmorStab
-      - id: ClothingOuterArmorPlate
-      - id: ClothingOuterArmorBulletproof
-      - id: VestSecUpgradeStab
-      - id: VestSecUpgradeHeat
-      - id: VestSecUpgradeBulletHeavy
-      - id: VestSecUpgradeReflective
-      - id: VestSecUpgradeBullet
-      - id: VestSecUpgradeWeb
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterVestArmorSec
+        - id: ClothingOuterArmorBasic
+        - id: ClothingOuterArmorBasicSlim
+        - id: ClothingOuterArmorBlueShield
+        - id: ClothingOuterArmorHeatAbsorb
+        - id: ClothingOuterArmorStab
+        - id: ClothingOuterArmorPlate
+        - id: ClothingOuterArmorBulletproof
+        - id: VestSecUpgradeStab
+        - id: VestSecUpgradeHeat
+        - id: VestSecUpgradeBulletHeavy
+        - id: VestSecUpgradeReflective
+        - id: VestSecUpgradeBullet
+        - id: VestSecUpgradeWeb

@@ -411,66 +411,76 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
         return GetAllInventory(uid, component).Where(_ => _.Amount > 0).ToList();
     }
-    //Sunrise-edit-start
-    private void AddInventoryFromPrototype(EntityUid uid,
-    Dictionary<string, uint>? entries,
-    InventoryType type,
-    VendingMachineComponent? component = null,
-    float restockQuality = 1.0f)
-{
-    if (!Resolve(uid, ref component) || entries == null)
-        return;
-
-    Dictionary<string, VendingMachineInventoryEntry> inventory = type switch
+    private void AddInventoryFromPrototype(EntityUid uid, Dictionary<string, uint>? entries,
+        InventoryType type,
+        VendingMachineComponent? component = null, float restockQuality = 1.0f)
     {
-        InventoryType.Regular    => component.Inventory,
-        InventoryType.Emagged    => component.EmaggedInventory,
-        InventoryType.Contraband => component.ContrabandInventory,
-        _ => null!
-    };
-    if (inventory == null)
-        return;
-
-    foreach (var (id, amount) in entries)
-    {
-        if (!PrototypeManager.HasIndex<EntityPrototype>(id))
-            continue;
-
-        uint restock = amount;
-
-        if (type == InventoryType.Regular || type == InventoryType.Contraband)
+        if (!Resolve(uid, ref component) || entries == null)
         {
-            var chanceOfMissingStock = 1 - restockQuality;
-            var result = Randomizer.NextFloat(0, 1);
-            if (result < chanceOfMissingStock)
-                restock = (uint)Math.Floor(amount * result / chanceOfMissingStock);
+            return;
+        }
 
-            if (TryComp<PlayerCountDependentStockComponent>(uid, out var dependentStockComponent))
+        Dictionary<string, VendingMachineInventoryEntry> inventory;
+        switch (type)
+        {
+            case InventoryType.Regular:
+                inventory = component.Inventory;
+                break;
+            case InventoryType.Emagged:
+                inventory = component.EmaggedInventory;
+                break;
+            case InventoryType.Contraband:
+                inventory = component.ContrabandInventory;
+                break;
+            default:
+                return;
+        }
+
+        foreach (var (id, amount) in entries)
+        {
+            if (PrototypeManager.HasIndex<EntityPrototype>(id))
             {
-                var scale = 1f + Math.Pow(_player.PlayerCount, 0.8f) * dependentStockComponent.Coefficient; // Sunrise start
-                if (scale < 1f)
-                    scale = 1f;
+                var restock = amount;
+                var chanceOfMissingStock = 1 - restockQuality;
 
-                restock = (uint)Math.Floor(amount * scale); // Sunrise end
+                var result = Randomizer.NextFloat(0, 1);
+                if (result < chanceOfMissingStock)
+                {
+                    restock = (uint) Math.Floor(amount * result / chanceOfMissingStock);
+                }
+
+                // Sunrise start
+                if (type == InventoryType.Regular || type == InventoryType.Contraband)
+                {
+                    if (TryComp<PlayerCountDependentStockComponent>(uid, out var dependentStockComponent))
+                    {
+                        var scale = 1f + Math.Pow(_player.PlayerCount, 0.8f) * dependentStockComponent.Coefficient;
+                        if (scale < 1f)
+                            scale = 1f;
+
+                        restock = (uint) Math.Floor(amount * scale);
+                    }
+
+                    restock = Math.Max(restock, 1);
+                }
+                else
+                {
+                    var isSustenance = component.PackPrototypeId == "SustenanceInventory";
+                    restock = isSustenance ? 1u : 2u;
+                }
+                // Sunrise end
+
+                if (inventory.TryGetValue(id, out var entry))
+                    // Prevent a machine's stock from going over three times
+                    // the prototype's normal amount. This is an arbitrary
+                    // number and meant to be a convenience for someone
+                    // restocking a machine who doesn't want to force vend out
+                    // all the items just to restock one empty slot without
+                    // losing the rest of the restock.
+                    entry.Amount = Math.Min(entry.Amount + amount, 3 * restock);
+                else
+                    inventory.Add(id, new VendingMachineInventoryEntry(type, id, restock));
             }
-
-            restock = Math.Max(restock, 2);
-        }
-        else
-        {
-            var isSustenance = component.PackPrototypeId == "SustenanceInventory";
-            restock = isSustenance ? 1u : 2u;
-        }
-
-        if (inventory.TryGetValue(id, out var entry))
-        {
-            entry.Amount = Math.Min(entry.Amount + restock, 3 * amount);
-        }
-        else
-        {
-            inventory.Add(id, new VendingMachineInventoryEntry(type, id, restock));
         }
     }
-}
-    //Sunrise-edit-end
 }

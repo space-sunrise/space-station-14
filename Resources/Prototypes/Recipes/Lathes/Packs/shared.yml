@@ -60,6 +60,8 @@
   - HandHeldMassScanner
   - ClothingMaskWeldingGas
   - SignallerAdvanced
+  - BluespaceAirTank # Sunrise edit - upstream fix for techfab recipe visibility
+  - SmallBluespaceAirTank # Sunrise edit - upstream fix for techfab recipe visibility
 
 - type: latheRecipePack
   id: SalvageSecurityBoards

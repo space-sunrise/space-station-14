@@ -33,9 +33,7 @@
         color: "#000000"
   - type: TemperatureProtection
     coolingCoefficient: 0.3
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - NudeFull  # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT

@@ -40,7 +40,7 @@
       - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingOuterStorageBase, ClothingOuterVestArmorSec, BaseSecurityContraband]
+  parent: [ClothingOuterVestArmorSec, ClothingOuterStorageBase, BaseSecurityContraband]
   id: ClothingOuterVestWebSec
   name: security web vest
   description: A high-quality Type I armored vest made from a hard synthetic material. It's surprisingly flexible and light, despite formidable armor plating.
