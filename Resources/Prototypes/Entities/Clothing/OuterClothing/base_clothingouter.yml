@@ -185,6 +185,10 @@
           tags:
           - FitsHardsuit # Sunrise-End
   - type: GroupExamine
+  # Sunrise-start
+  - type: BedHealModifierClothing
+    multiplier: 0.25
+  # Sunrise-end
   - type: Tag
     tags:
     - Hardsuit
@@ -236,6 +240,10 @@
   - type: HideLayerClothing
     slots:
     - Tail
+  # Sunrise-start
+  - type: BedHealModifierClothing
+    multiplier: 0.25
+  # Sunrise-end
   # Sunrise-Start
   - type: Tag
     tags:

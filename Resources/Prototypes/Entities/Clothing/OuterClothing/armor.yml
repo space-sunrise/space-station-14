@@ -25,6 +25,10 @@
         Heat: 0.80
   - type: ExplosionResistance
     damageCoefficient: 0.90
+  # Sunrise-start
+  - type: BedHealModifierClothing
+    multiplier: 0.25
+  # Sunrise-end
   # Sunrise-Start
   - type: Tag
     tags:
@@ -152,6 +156,10 @@
   - type: ExplosionResistance
     damageCoefficient: 0.65
   - type: GroupExamine
+  # Sunrise-start
+  - type: BedHealModifierClothing
+    multiplier: 0.25
+  # Sunrise-end
 
 - type: entity
   parent: [ClothingOuterArmorBaseCarapace, BaseCommandContraband]

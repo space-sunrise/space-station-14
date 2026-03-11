@@ -14,7 +14,8 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Bed;
 
-public sealed class BedSystem : EntitySystem
+
+public sealed partial class BedSystem : EntitySystem // Sunrise-edit Добавлено partial
 {
     [Dependency] private readonly ActionContainerSystem _actConts = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
@@ -160,6 +161,11 @@ public sealed class BedSystem : EntitySystem
         var query = EntityQueryEnumerator<HealOnBuckleHealingComponent, HealOnBuckleComponent, StrapComponent>();
         while (query.MoveNext(out var uid, out _, out var bedComponent, out var strapComponent))
         {
+            // Sunrise-start Кровать может быть в космосе... Думаю это поможет.
+            if (!Transform(uid).Anchored)
+                continue;
+            // Sunrise-end
+
             if (_timing.CurTime < bedComponent.NextHealTime)
                 continue;
 
@@ -180,6 +186,7 @@ public sealed class BedSystem : EntitySystem
                 if (_sleepingQuery.HasComp(healedEntity))
                     damage *= bedComponent.SleepMultiplier;
 
+                damage *= GetSunriseHealingMultiplier(healedEntity); // Sunrise-edit уменьшаем хил если одет скафандр и т.д борьба с кроватью в космосе.
                 _damageableSystem.TryChangeDamage(healedEntity, damage, true, origin: uid);
             }
         }
