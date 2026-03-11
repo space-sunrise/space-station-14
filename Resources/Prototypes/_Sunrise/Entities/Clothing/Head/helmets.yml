@@ -11,9 +11,9 @@
   # SUNRISE EDIT
     - type: Tag
       tags:
+      - Helmet
       - TopCovered # INTERACTIONS
       - WhitelistChameleon
-      - Helmet
   # SUNRISE EDIT
 
 - type: entity
