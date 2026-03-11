@@ -8,7 +8,7 @@ namespace Content.IntegrationTests.Tests._Sunrise.MentorHelp;
 public sealed class MentorHelpStatisticsAggregationTests : MentorHelpStatisticsTestBase
 {
     [Test]
-    public async Task CountsAssignedMentorForPlayerSelfClosedTicketsAndExcludesPlayerReplies()
+    public async Task CountsAssignedMentorForSelfClosed()
     {
         await using var pair = await PoolManager.GetServerClient();
         var db = GetDb(pair.Server);
@@ -55,7 +55,7 @@ public sealed class MentorHelpStatisticsAggregationTests : MentorHelpStatisticsT
     }
 
     [Test]
-    public async Task SkipsClosedTicketsWithoutAssignedMentor()
+    public async Task SkipsWithoutAssignedMentor()
     {
         await using var pair = await PoolManager.GetServerClient();
         var db = GetDb(pair.Server);
@@ -97,7 +97,7 @@ public sealed class MentorHelpStatisticsAggregationTests : MentorHelpStatisticsT
     }
 
     [Test]
-    public async Task SkipsClosedTicketsWithoutClosedAt()
+    public async Task SkipsWithoutClosedAt()
     {
         await using var pair = await PoolManager.GetServerClient();
         var db = GetDb(pair.Server);
