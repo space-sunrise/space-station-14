@@ -16,9 +16,7 @@
     - CorgiWearable
     - FullBodyOuter # SUNRISE EDIT
     - WhitelistChameleon
-    # Sunrise - Start
-    - Hardsuit
-    # Sunrise - End
+    - Hardsuit # Sunrise Edit
 
 #Syndicate EVA
 - type: entity
@@ -37,9 +35,7 @@
     - MonkeyWearable
     - FullBodyOuter # SUNRISE EDIT
     - WhitelistChameleon
-    # Sunrise - Start
-    - Hardsuit
-    # Sunrise - End
+    - Hardsuit # Sunrise Edit
   - type: StaticPrice
     price: 1000 # Helmet is 500
 
@@ -73,9 +69,7 @@
     - ScurretWearable
     - MonkeyWearable
     - WhitelistChameleon
-    # Sunrise - Start
-    - Hardsuit
-    # Sunrise - End
+    - Hardsuit # Sunrise Edit
 
 #Prisoner EVA
 - type: entity
@@ -101,9 +95,7 @@
     - MonkeyWearable
     - FullBodyOuter # SUNRISE EDIT
     - WhitelistChameleon
-    # Sunrise - Start
-    - Hardsuit
-    # Sunrise - End
+    - Hardsuit # Sunrise Edit
 
 #NTSRA Voidsuit / Ancient Voidsuit
 - type: entity
@@ -190,6 +182,4 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
-    # Sunrise - Start
-    - Hardsuit
-    # Sunrise - End
+    - Hardsuit # Sunrise Edit
