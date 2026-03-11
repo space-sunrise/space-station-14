@@ -166,8 +166,8 @@ public sealed partial class DragonSystem : EntitySystem
             return;
         }
 
-        // cant put a rift on a construction
-        var bodies = _physics.GetEntitiesIntersectingBody(uid, (int)CollisionGroup.BulletImpassable);
+        // cant put a rift on anything that mob can't pass;
+        var bodies = _physics.GetEntitiesIntersectingBody(uid, (int)CollisionGroup.MobMask);
 
         if (bodies.Count > 0)
         {
