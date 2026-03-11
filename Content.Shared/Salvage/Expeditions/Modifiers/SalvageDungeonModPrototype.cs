@@ -1,5 +1,5 @@
-using Robust.Shared.Prototypes;
 using Content.Shared.Procedural;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Salvage.Expeditions.Modifiers;
 
