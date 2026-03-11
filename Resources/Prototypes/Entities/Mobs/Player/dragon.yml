@@ -105,6 +105,7 @@
   - type: Temperature
   - type: TemperatureDamage
     heatDamageThreshold: 2400
+  - type: ZombieImmune # Sunrise-edit
   - type: Metabolizer
     solutionOnBody: false
     updateInterval: 0.25
@@ -226,7 +227,12 @@
     # Sunrise-Start
     damageOnDevour:
       types:
-        Caustic: 120
+        Caustic: 50
+    digestionDamage:
+      types:
+        Caustic: 10
+    digestionDamageInterval: 30
+    digestionDuration: 720
     # Sunrise-End
   - type: GhostRole
     mindRoles:

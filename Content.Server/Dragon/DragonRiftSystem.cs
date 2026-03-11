@@ -1,7 +1,9 @@
 using Content.Server.Chat.Systems;
+using Content.Server.Destructible; // Sunrise-edit
 using Content.Server.NPC;
 using Content.Server.NPC.Systems;
 using Content.Server.Pinpointer;
+using Content.Shared.Damage.Systems; // Sunrise-edit
 using Content.Shared.Dragon;
 using Content.Shared.Examine;
 using Content.Shared.Sprite;
@@ -10,6 +12,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Serialization.Manager;
 using System.Numerics;
 using Content.Shared.Damage.Components;
+using Robust.Shared.Audio; // Sunrise-edit
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
@@ -25,8 +28,11 @@ namespace Content.Server.Dragon;
 /// </summary>
 public sealed class DragonRiftSystem : EntitySystem
 {
+    private static readonly SoundSpecifier RiftWarningSound = new SoundPathSpecifier("/Audio/Misc/notice1.ogg"); // Sunrise-edit
+
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly DragonSystem _dragon = default!;
+    [Dependency] private readonly DestructibleSystem _destructible = default!; // Sunrise-edit
     [Dependency] private readonly ISerializationManager _serManager = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
@@ -40,6 +46,7 @@ public sealed class DragonRiftSystem : EntitySystem
         SubscribeLocalEvent<DragonRiftComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<DragonRiftComponent, AnchorStateChangedEvent>(OnAnchorChange);
         SubscribeLocalEvent<DragonRiftComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<DragonRiftComponent, DamageChangedEvent>(OnDamageChanged); // Sunrise-edit
         SubscribeLocalEvent<DragonsBroodDeadEvent>(OnDragonsBroodDead); // Sunrise-Add
     }
 
@@ -69,6 +76,7 @@ public sealed class DragonRiftSystem : EntitySystem
                 comp.Accumulator = comp.MaxAccumulator;
                 RemComp<DamageableComponent>(uid);
                 comp.State = DragonRiftState.Finished;
+                EnsureFinishedSharkSpawn(uid, comp, xform); // Sunrise-edit
                 Dirty(uid, comp);
             }
             else if (comp.State != DragonRiftState.Finished)
@@ -91,10 +99,21 @@ public sealed class DragonRiftSystem : EntitySystem
                 var msg = Loc.GetString("carp-rift-warning",
                     ("location", FormattedMessage.RemoveMarkupOrThrow(_navMap.GetNearestBeaconString((uid, xform)))));
                 _chat.DispatchGlobalAnnouncement(msg, playDefault: false, colorOverride: Color.Red);
-                _audio.PlayGlobal("/Audio/Misc/notice1.ogg", Filter.Broadcast(), true);
+                _audio.PlayGlobal(RiftWarningSound, Filter.Broadcast(), true); // Sunrise-edit
                 _navMap.SetBeaconEnabled(uid, true);
             }
-
+            // Sunrise-start
+            if (comp.State != DragonRiftState.Finished)
+            {
+                TrySpawnChargeShark(uid, comp, xform, 0.5f, ref comp.SpawnedSharkAtHalfCharge);
+                TrySpawnChargeShark(uid, comp, xform, 0.75f, ref comp.SpawnedSharkAtSeventyFiveCharge);
+            }
+            else
+            {
+                EnsureFinishedSharkSpawn(uid, comp, xform);
+                TrySpawnPeriodicFinishedSharks(uid, comp, xform, frameTime);
+            }
+            // Sunrise-end
             if (comp.SpawnAccumulator > comp.SpawnCooldown)
             {
                 comp.SpawnAccumulator -= comp.SpawnCooldown;
@@ -134,7 +153,66 @@ public sealed class DragonRiftSystem : EntitySystem
     }
 
     private void CheckMaxSpawn(DragonRiftComponent comp) => comp.IsSpawnAccumulating = comp.AliveCarps < comp.MaxAliveCarps;
-    // Sunrise-End
+
+    // Sunrise-start
+    private void OnDamageChanged(Entity<DragonRiftComponent> ent, ref DamageChangedEvent args)
+    {
+        if (!args.DamageIncreased || ent.Comp.SpawnedSharkAtLowHealth)
+            return;
+
+        if (!TryComp<DestructibleComponent>(ent, out var destructible) ||
+            !_destructible.TryGetDestroyedAt((ent, destructible), out var destroyedAt))
+        {
+            return;
+        }
+
+        var remainingHealth = (destroyedAt.Value - args.Damageable.TotalDamage).Float();
+        if (remainingHealth > ent.Comp.SharkLowHealthThreshold)
+            return;
+
+        ent.Comp.SpawnedSharkAtLowHealth = true;
+        SpawnBonusShark(ent.Owner, ent.Comp, Transform(ent));
+    }
+
+    private void TrySpawnChargeShark(EntityUid uid, DragonRiftComponent comp, TransformComponent xform, float chargeThreshold, ref bool spawned)
+    {
+        if (spawned || comp.MaxAccumulator <= 0f || comp.Accumulator < comp.MaxAccumulator * chargeThreshold)
+            return;
+
+        spawned = true;
+        SpawnBonusShark(uid, comp, xform);
+    }
+
+    private void EnsureFinishedSharkSpawn(EntityUid uid, DragonRiftComponent comp, TransformComponent xform)
+    {
+        if (comp.SpawnedSharkAtFullCharge)
+            return;
+
+        comp.SpawnedSharkAtFullCharge = true;
+        SpawnBonusShark(uid, comp, xform);
+    }
+
+    private void TrySpawnPeriodicFinishedSharks(EntityUid uid, DragonRiftComponent comp, TransformComponent xform, float frameTime)
+    {
+        if (comp.SharkSpawnCooldown <= 0f)
+            return;
+
+        comp.SharkSpawnAccumulator += frameTime;
+        while (comp.SharkSpawnAccumulator >= comp.SharkSpawnCooldown)
+        {
+            comp.SharkSpawnAccumulator -= comp.SharkSpawnCooldown;
+            SpawnBonusShark(uid, comp, xform);
+        }
+    }
+
+    private void SpawnBonusShark(EntityUid uid, DragonRiftComponent comp, TransformComponent xform)
+    {
+        var shark = Spawn(comp.SharkSpawnPrototype, xform.Coordinates);
+
+        if (comp.Dragon != null)
+            _npc.SetBlackboard(shark, NPCBlackboard.FollowTarget, new EntityCoordinates(comp.Dragon.Value, Vector2.Zero));
+    }
+    // Sunrise-end
 
     private void OnExamined(EntityUid uid, DragonRiftComponent component, ExaminedEvent args)
     {

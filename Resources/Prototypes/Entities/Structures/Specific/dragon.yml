@@ -6,6 +6,9 @@
     mode: SnapgridCenter
   components:
   - type: DragonRift
+    sharkSpawn: MobSharkDragon
+    sharkSpawnCooldown: 180
+    sharkLowHealthThreshold: 100
   - type: Transform
     anchored: true
   - type: Physics

@@ -286,6 +286,15 @@
           Bloodloss: 5
 
 - type: entity
+  parent: MobShark
+  id: MobSharkDragon
+  suffix: DragonBrood
+  components:
+    - type: HTN
+      rootTask:
+        task: DragonCarpCompound
+
+- type: entity
   id: MobSharkSalvage
   parent: MobShark
   suffix: "Salvage Ruleset"

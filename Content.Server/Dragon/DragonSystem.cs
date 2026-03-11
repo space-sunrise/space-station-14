@@ -2,9 +2,6 @@ using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Server.Popups;
 using Content.Shared.Actions;
-using Content.Shared.Damage.Systems; // Sunrise-Edit
-using Content.Shared.Devour; // Sunrise-Edit
-using Content.Shared.Devour.Components;
 using Content.Shared.Dragon;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
@@ -38,7 +35,6 @@ public sealed partial class DragonSystem : EntitySystem
 
     // Sunrise-Start
     [Dependency] private readonly PhysicsSystem _physics = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     // Sunrise-End
 
     private EntityQuery<CarpRiftsConditionComponent> _objQuery;
@@ -67,7 +63,6 @@ public sealed partial class DragonSystem : EntitySystem
         SubscribeLocalEvent<DragonComponent, RefreshMovementSpeedModifiersEvent>(OnDragonMove);
         SubscribeLocalEvent<DragonComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<DragonComponent, EntityZombifiedEvent>(OnZombified);
-        SubscribeLocalEvent<DragonDevourMobEvent>(OnDragonDevourMob); // Sunrise-Edit
     }
 
     public override void Update(float frameTime)
@@ -160,7 +155,7 @@ public sealed partial class DragonSystem : EntitySystem
         // Sunrise-Start
 
         // Have to be on a station
-        if (!HasComp<StationMemberComponent>(xform.ParentUid))
+        if (!HasComp<StationMemberComponent>(xform.GridUid!.Value))
         {
             _popup.PopupEntity(Loc.GetString("carp-rift-not-station"), uid, uid);
             return;
@@ -241,19 +236,6 @@ public sealed partial class DragonSystem : EntitySystem
         if (comp.SoundRoar != null)
             _audio.PlayPvs(comp.SoundRoar, uid);
     }
-
-    // Sunrise-Start
-    private void OnDragonDevourMob(DragonDevourMobEvent args)
-    {
-        if (!TryComp<DragonComponent>(args.Devourer, out var dragonComp))
-            return;
-
-        if (args.Devoured.Comp.CurrentState != MobState.Dead)
-        {
-            _damageableSystem.TryChangeDamage(args.Devoured.Owner, dragonComp.DamageOnDevour, ignoreResistances: true);
-        }
-    }
-    //Suntise-End
 
     /// <summary>
     /// Delete all rifts this dragon made.

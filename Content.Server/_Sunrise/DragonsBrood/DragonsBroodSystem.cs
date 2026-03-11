@@ -1,4 +1,3 @@
-using Content.Server.Construction.Completions;
 using Content.Server.Dragon;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -31,7 +30,7 @@ public sealed class DragonsBroodSystem : EntitySystem
 
     private void OnShutdown(Entity<DragonsBroodComponent> ent, ref ComponentShutdown args)
     {
-        if (_mobState.IsAlive(ent.Owner))
+        if (!_mobState.IsAlive(ent.Owner))
             return;
 
         if (!TryComp<DragonRiftComponent>(ent.Comp.MotherRift, out var dragonRift))

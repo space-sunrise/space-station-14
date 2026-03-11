@@ -70,6 +70,15 @@ namespace Content.Server.Dragon
         // Sunrise-Start
         [DataField(required: true)]
         public DamageSpecifier DamageOnDevour = default!;
+
+        [DataField(required: true)]
+        public DamageSpecifier DigestionDamage = default!;
+
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public float DigestionDamageInterval = 30f;
+
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public float DigestionDuration = 720f;
         // Sunrise-End
     }
 }

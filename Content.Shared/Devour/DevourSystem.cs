@@ -114,11 +114,15 @@ public sealed class DevourSystem : EntitySystem
         // If the devoured thing meets the stomach whitelist criteria, add it to the stomach
         if (args.Args.Target != null && _whitelistSystem.IsWhitelistPass(ent.Comp.StomachStorageWhitelist, (EntityUid)args.Args.Target))
         {
-            _containerSystem.Insert(args.Args.Target.Value, ent.Comp.Stomach);
             // Sunrise-Start
-            if (TryComp(args.Args.Target, out MobStateComponent? mobState))
+            var target = args.Args.Target.Value;
+            if (!_containerSystem.Insert(target, ent.Comp.Stomach))
+                return;
+
+
+            if (TryComp(target, out MobStateComponent? mobState))
             {
-                RaiseLocalEvent(new DragonDevourMobEvent(args.Args.User, (args.Args.Target.Value, mobState)));
+                RaiseLocalEvent(new DragonDevourMobEvent(args.Args.User, (target, mobState)));
             }
             // Sunrise-End
         }
@@ -150,7 +154,5 @@ public sealed partial class DevourActionEvent : EntityTargetActionEvent;
 public sealed partial class DevourDoAfterEvent : SimpleDoAfterEvent;
 
 // Sunrise-Start
-[Serializable]
-public record struct DragonDevourMobEvent(EntityUid Devourer, Entity<MobStateComponent> Devoured);
+public readonly record struct DragonDevourMobEvent(EntityUid Devourer, Entity<MobStateComponent> Devoured);
 // Sunrise-End
-
