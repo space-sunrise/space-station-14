@@ -16,7 +16,6 @@
       Типы патронов
       </Box>
     </ColorBox>
-
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
       Пистолетный (.35)
@@ -26,16 +25,17 @@
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - [color=#3F47DB]SP[/color]
-      - [color=#F5514C]HP[/color] (экспансивные)
-      - [color=#B68F0E]FMJ[/color]
-      - [color=#540000]AP[/color] (бронебойные)
-      - [color=#00c1b8]Резиновые[/color]
-      - [color=#dbdbdb]Учебные[/color]
-      - [color=#ff6e52]Зажигательные[/color]
-      - [color=#65fe08]Урановые[/color]
+      - [color=#3F47DB]SP[/color] (16 колющего, бронепробитие -13%)
+      - [color=#F5514C]HP[/color] (21 колющего, бронепробитие -100%)
+      - [color=#B68F0E]FMJ[/color] (11 колющего, бронепробитие 25%)
+      - [color=#540000]AP[/color] (11 колющего, бронепробитие 69%)
+      - [color=#00c1b8]Резиновые[/color] (3 дробящего, 8.5 выносливости, бронепробитие -99%)
+      - [color=#dbdbdb]Учебные[/color] (2 дробящего)
+      - [color=#ff6e52]Зажигательные[/color] (12 колющего, 4 тепла)
+      - [color=#65fe08]Урановые[/color] (6 радиации, 10 колющего)
       </Box>
     </ColorBox>
+
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
       Тяжёлый пистолетный (.40)
@@ -45,13 +45,12 @@
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - [color=#3F47DB]SP[/color]
-      - [color=#F5514C]HP[/color] (экспансивные)
-      - [color=#B68F0E]FMJ[/color]
-      - [color=#540000]AP[/color] (бронебойные)
+      - [color=#3F47DB]SP[/color] (20 колющего, бронепробитие -50%)
+      - [color=#F5514C]HP[/color] (26 колющего, бронепробитие -100%)
+      - [color=#B68F0E]FMJ[/color] (16 колющего, бронепробитие 15%)
+      - [color=#540000]AP[/color] (14 колющего, бронепробитие 50%)
       </Box>
     </ColorBox>
-
 
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
@@ -62,14 +61,14 @@
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - [color=#3F47DB]SP[/color]
-      - [color=#F5514C]HP[/color] (экспансивные)
-      - [color=#B68F0E]FMJ[/color]
-      - [color=#540000]AP[/color] (бронебойные)
-      - [color=#00c1b8]Резиновые[/color]
-      - [color=#dbdbdb]Учебные[/color]
-      - [color=#ff6e52]Зажигательные[/color]
-      - [color=#65fe08]Урановые[/color]
+      - [color=#3F47DB]SP[/color] (35 колющего, бронепробитие -13%)
+      - [color=#F5514C]HP[/color] (45 колющего, бронепробитие -100%)
+      - [color=#B68F0E]FMJ[/color] (25 колющего, бронепробитие 25%)
+      - [color=#540000]AP[/color] (25 колющего, бронепробитие 69%)
+      - [color=#00c1b8]Резиновые[/color] (5 дробящего, 20 выносливости, бронепробитие -99%)
+      - [color=#dbdbdb]Учебные[/color] (2 дробящего)
+      - [color=#ff6e52]Зажигательные[/color] (26 колющего, 9 тепла)
+      - [color=#65fe08]Урановые[/color] (15 радиации, 20 колющего)
       </Box>
     </ColorBox>
 
@@ -82,13 +81,13 @@
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - [color=#3F47DB]SP[/color]
-      - [color=#F5514C]HP[/color] (экспансивные)
-      - [color=#B68F0E]FMJ[/color]
-      - [color=#540000]AP[/color] (бронебойные)
-      - [color=#dbdbdb]Учебные[/color]
-      - [color=#ff6e52]Зажигательные[/color]
-      - [color=#65fe08]Урановые[/color]
+      - [color=#3F47DB]SP[/color] (17 колющего, бронепробитие -13%)
+      - [color=#F5514C]HP[/color] (23 колющего, бронепробитие -100%)
+      - [color=#B68F0E]FMJ[/color] (12 колющего, бронепробитие 25%)
+      - [color=#540000]AP[/color] (12 колющего, бронепробитие 69%)
+      - [color=#dbdbdb]Учебные[/color] (2 дробящего)
+      - [color=#ff6e52]Зажигательные[/color] (12 колющего, 5 тепла)
+      - [color=#65fe08]Урановые[/color] (7 радиации, 8 колющего)
       </Box>
     </ColorBox>
 
@@ -101,13 +100,13 @@
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - [color=#3F47DB]SP[/color]
-      - [color=#F5514C]HP[/color] (экспансивные)
-      - [color=#B68F0E]FMJ[/color]
-      - [color=#540000]AP[/color] (бронебойные)
-      - [color=#dbdbdb]Учебные[/color]
-      - [color=#ff6e52]Зажигательные[/color]
-      - [color=#65fe08]Урановые[/color]
+      - [color=#3F47DB]SP[/color] (19 колющего, бронепробитие -13%)
+      - [color=#F5514C]HP[/color] (25 колющего, бронепробитие -100%)
+      - [color=#B68F0E]FMJ[/color] (13 колющего, бронепробитие 25%)
+      - [color=#540000]AP[/color] (13 колющего, бронепробитие 69%)
+      - [color=#dbdbdb]Учебные[/color] (2 дробящего)
+      - [color=#ff6e52]Зажигательные[/color] (14 колющего, 5 тепла)
+      - [color=#65fe08]Урановые[/color] (9 радиации, 10 колющего)
       </Box>
     </ColorBox>
 
@@ -120,14 +119,14 @@
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - [color=#3F47DB]SP[/color]
-      - [color=#F5514C]HP[/color] (экспансивные)
-      - [color=#B68F0E]FMJ[/color]
-      - [color=#540000]AP[/color] (бронебойные)
-      - [color=#dbdbdb]Учебные[/color]
-      - [color=#ff6e52]Зажигательные[/color]
-      - [color=#65fe08]Урановые[/color]
-      - [color=#7f009b]Артиллерийский[/color] (.308 космос)
+      - [color=#3F47DB]SP[/color] (25 колющего, 10 по структурам, бронепробитие -13%)
+      - [color=#F5514C]HP[/color] (30 колющего, бронепробитие -90%)
+      - [color=#B68F0E]FMJ[/color] (20 колющего, 5 по структурам, бронепробитие 25%)
+      - [color=#540000]AP[/color] (20 колющего, 2 по структурам, бронепробитие 69%)
+      - [color=#dbdbdb]Учебные[/color] (5 дробящего)
+      - [color=#ff6e52]Зажигательные[/color] (20 колющего, 5 тепла)
+      - [color=#65fe08]Урановые[/color] (10 радиации, 12 колющего)
+      - [color=#7f009b]Артиллерийский[/color] (19 колющего, дальнобойный)
       </Box>
     </ColorBox>
 
@@ -140,8 +139,8 @@
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - [color=#B68F0E]Обычные[/color]
-      - [color=#dbdbdb]Учебные[/color]
+      - [color=#B68F0E]Обычные[/color] (19 колющего)
+      - [color=#dbdbdb]Учебные[/color] (2 дробящего)
       </Box>
     </ColorBox>
 
@@ -154,11 +153,11 @@
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - [color=#9b0000]Бронебойные[/color]
-      - [color=#7f009b]Антиматериальный[/color]
-      - [color=#7ea53b]Осколочный[/color]
-      - [color=#8d6425]Взрывной[/color]
-      - [color=#005396]ЭМИ[/color]
+      - [color=#9b0000]Бронебойные[/color] (75 колющего, 226 по структурам, бронепробитие 35%)
+      - [color=#7f009b]Антиматериальный[/color] (75 колющего, 226 по структурам)
+      - [color=#7ea53b]Осколочный[/color] (взрыв 25, кластер x10)
+      - [color=#8d6425]Взрывной[/color] (взрыв 50)
+      - [color=#005396]ЭМИ[/color] (ЭМИ 3 тайла)
       </Box>
     </ColorBox>
 
@@ -174,22 +173,22 @@
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - [color=#F4001F]Дробь[/color]
-      - Пулевой/Слаг
-      - [color=#149A1E]Травматический[/color]
-      - [color=#FFFF0B]Фальшфейер[/color]
-      - [color=#FFFF0B]Зажигательный[/color]
-      - [color=#0096FF]Пробивной[/color]
-      - [color=#5da0b5]Флешетта[/color]
-      - [color=#dbdbdb]Учебный[/color]
-      - [color=#49CECE]Транквилизатор[/color]
-      - [color=#65fe08]Урановый[/color]
-      - Самодельная [color=#555555]картечь[/color]
-      - Самодельный [color=#FFFF0B]Зажигательный[/color]
-      - Самодельный [color=#65fe08]Урановый[/color]
-      - Самодельный ([color=#caa44a]монетная пуля[/color])
-      - [color=#149A1E]Алкогольный[/color]
-      - [color=#e4e4e4]Святой[/color]
+      - [color=#F4001F]Дробь[/color] (5 колющего, 5 по структурам, x12, бронепробитие -15%)
+      - Пулевой/Слаг (40 колющего, 15 по структурам, бронепробитие 5%)
+      - [color=#149A1E]Травматический[/color] (10 дробящего, 35 выносливости)
+      - [color=#FFFF0B]Фальшфейер[/color] (5 тепла, поджог)
+      - [color=#FFFF0B]Зажигательный[/color] (7 колющего, 3 тепла, x6)
+      - [color=#0096FF]Пробивной[/color] (5 колющего, 20 по структурам, x12)
+      - [color=#5da0b5]Флешетта[/color] (4 колющего, 4 по структурам, 3 выносливости, x8, бронепробитие 40%)
+      - [color=#dbdbdb]Учебный[/color] (1 дробящего, x12)
+      - [color=#49CECE]Транквилизатор[/color] (1 дробящего, 9 ед. хлоралгидрата)
+      - [color=#65fe08]Урановый[/color] (2 радиации, 3 колющего, x10)
+      - Самодельная [color=#555555]картечь[/color] (2 колющего, 2 режущего, x14)
+      - Самодельный [color=#FFFF0B]Зажигательный[/color] (1.5 колющего, 1.5 режущего, 7 тепла, x6)
+      - Самодельный [color=#65fe08]Урановый[/color] (1.5 колющего, 1.5 режущего, 2.5 радиации, x10)
+      - Самодельный ([color=#caa44a]монетная пуля[/color]) (14 колющего, x2)
+      - [color=#149A1E]Алкогольный[/color] (1 дробящего, 35 ед. реагентов)
+      - [color=#e4e4e4]Святой[/color] (2 дробящего, 18 святого)
       </Box>
     </ColorBox>
   </Table>

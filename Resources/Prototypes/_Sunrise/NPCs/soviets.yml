@@ -671,7 +671,7 @@
     layers:
     - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
       state: human
-    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-white.rsi
+    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas_white.rsi
       state: equipped-INNERCLOTHING
     - sprite: Clothing/OuterClothing/Coats/gentlecoat.rsi
       state: equipped-OUTERCLOTHING
@@ -712,7 +712,7 @@
     layers:
     - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
       state: human
-    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-white.rsi
+    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas_white.rsi
       state: equipped-INNERCLOTHING
     - sprite: Clothing/OuterClothing/Coats/gentlecoat.rsi
       state: equipped-OUTERCLOTHING
@@ -943,11 +943,11 @@
     layers:
     - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
       state: human
-    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-light.rsi
+    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_light.rsi
       state: equipped-OUTERCLOTHING
-    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-light.rsi
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_light.rsi
       state: equipped-HELMET
-    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-light.rsi
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_light.rsi
       state: on-equipped-HELMET
       shader: unshaded
     - sprite: _Sunrise/Clothing/OuterClothing/Vests/armor_sec_med.rsi
@@ -1070,11 +1070,11 @@
     layers:
     - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
       state: human
-    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-light.rsi
+    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_light.rsi
       state: equipped-OUTERCLOTHING
-    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-light.rsi
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_light.rsi
       state: equipped-HELMET
-    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-light.rsi
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_light.rsi
       state: on-equipped-HELMET
       shader: unshaded
   - type: BatteryAmmoProvider
