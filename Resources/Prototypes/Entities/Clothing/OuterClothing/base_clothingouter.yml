@@ -243,8 +243,6 @@
   # Sunrise-start
   - type: BedHealModifierClothing
     multiplier: 0.25
-  # Sunrise-end
-  # Sunrise-Start
   - type: Tag
     tags:
     - FullBodyOuter
