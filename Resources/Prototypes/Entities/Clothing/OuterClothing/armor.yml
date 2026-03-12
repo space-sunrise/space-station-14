@@ -28,16 +28,14 @@
   # Sunrise-start
   - type: BedHealModifierClothing
     multiplier: 0.25
-  # Sunrise-end
-  # Sunrise-Start
   - type: Tag
     tags:
     - Vest
     - NudeBottom # INTERACTIONS
     - WhitelistChameleon
   - type: ArmorSparkEffect #starlight
-  - type: StaminaResistance # Sunrise-Add
-    damageCoefficient: 0.9 # Sunrise-Add
+  - type: StaminaResistance
+    damageCoefficient: 0.9
   # Sunrise-End
 
 #Standard armor vest, allowed for security and bartenders
