@@ -1,19 +1,16 @@
+using Content.Server._Sunrise.Disease.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Spreader;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Maps;
 using Content.Shared.Trigger;
-using Content.Shared.Trigger.Components.Effects;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 
-namespace Content.Server.Trigger.Systems;
+namespace Content.Server._Sunrise.Disease.Systems;
 
-/// <summary>
-/// Handles creating smoke when <see cref="SmokeOnTriggerComponent"/> is triggered.
-/// </summary>
-public sealed class SmokeOnTriggerSystem : EntitySystem
+public sealed class DiseaseSmokeOnTriggerSystem : EntitySystem
 {
     [Dependency] private readonly IMapManager _mapMan = default!;
     [Dependency] private readonly MapSystem _map = default!;
@@ -26,10 +23,10 @@ public sealed class SmokeOnTriggerSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SmokeOnTriggerComponent, TriggerEvent>(OnTrigger);
+        SubscribeLocalEvent<DiseaseSmokeOnTriggerComponent, TriggerEvent>(OnTrigger);
     }
 
-    private void OnTrigger(Entity<SmokeOnTriggerComponent> ent, ref TriggerEvent args)
+    private void OnTrigger(Entity<DiseaseSmokeOnTriggerComponent> ent, ref TriggerEvent args)
     {
         if (args.Key != null && !ent.Comp.KeysIn.Contains(args.Key))
             return;
@@ -39,7 +36,6 @@ public sealed class SmokeOnTriggerSystem : EntitySystem
         if (target == null)
             return;
 
-        // TODO: move all of this into an API function in SmokeSystem
         var xform = Transform(target.Value);
         var mapCoords = _transform.GetMapCoordinates(target.Value, xform);
         if (!_mapMan.TryFindGridAt(mapCoords, out var gridUid, out var gridComp) ||
@@ -61,7 +57,7 @@ public sealed class SmokeOnTriggerSystem : EntitySystem
             return;
         }
 
-        _smoke.StartSmoke(smoke, ent.Comp.Solution, (float)ent.Comp.Duration.TotalSeconds, ent.Comp.SpreadAmount, smokeComp);
+        _smoke.StartSmoke(smoke, ent.Comp.Solution.Clone(), (float) ent.Comp.Duration.TotalSeconds, ent.Comp.SpreadAmount, smokeComp);
 
         args.Handled = true;
     }

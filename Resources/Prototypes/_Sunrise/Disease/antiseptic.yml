@@ -44,7 +44,7 @@
         enum.PowerDeviceVisualLayers.Powered:
           True: { state: gsensor1 }
           False: { state: gsensor0 }
-  - type: SmokeOnTrigger
+  - type: DiseaseSmokeOnTrigger
     duration: 10
     spreadAmount: 25
     smokePrototype: Smoke
