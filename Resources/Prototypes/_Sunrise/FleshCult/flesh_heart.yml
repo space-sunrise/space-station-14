@@ -3,6 +3,7 @@
   parent: BaseStructure
   name: Flesh Heart
   description: Flesh Heart
+  categories: [ Spawner ]
   placement:
     mode: AlignTileAny
   components:

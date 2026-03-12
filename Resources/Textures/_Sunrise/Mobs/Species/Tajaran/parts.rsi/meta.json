@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "taken from https://github.com/ParadiseSS13/Paradise/commit/924e8cc949a40ea64a978656dbbc0b43b4a8f33a and modified by EmoGarbage",
+  "copyright": "taken from https://github.com/ParadiseSS13/Paradise/commit/924e8cc949a40ea64a978656dbbc0b43b4a8f33a full resprited by bulbo44kkey (discord)",
   "size": {
     "x": 32,
     "y": 32
@@ -70,6 +70,22 @@
                 [0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15],
                 [0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15]
             ]
+        },
+        {
+            "name": "l_foot_curved",
+            "directions": 4
+        },
+        {
+            "name": "l_leg_curved",
+            "directions": 4
+        },
+        {
+            "name": "r_foot_curved",
+            "directions": 4
+        },
+        {
+            "name": "r_leg_curved",
+            "directions": 4
         }
     ]
 }

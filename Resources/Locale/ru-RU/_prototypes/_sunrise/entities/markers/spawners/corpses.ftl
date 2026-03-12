@@ -1,0 +1,10 @@
+ent-RandomSyndicateCorpseSpawner = спавнер случайного трупа синдиката
+    .desc = { ent-SalvageHumanCorpseSpawner.desc }
+ent-RandomNukieCorpseSpawner = спавнер случайного трупа ядерного оперативника
+    .desc = { ent-SalvageHumanCorpseSpawner.desc }
+ent-RandomSovietCorpseSpawner = спавнер случайного советского трупа
+    .desc = { ent-SalvageHumanCorpseSpawner.desc }
+ent-RandomMercenaryCorpseSpawner = спавнер случайного трупа наёмника
+    .desc = { ent-SalvageHumanCorpseSpawner.desc }
+ent-RandomPirateCorpseSpawner = спавнер случайного трупа пирата
+    .desc = { ent-SalvageHumanCorpseSpawner.desc }

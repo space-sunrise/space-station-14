@@ -13,10 +13,10 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
 {
     public Action<string>? OnNameChange;
     public Action<string?>? OnVerbChange;
-    public Action<string>? OnVoiceChange; // Sunrise-TTS
+    public Action<string>? OnVoiceChange; // Sunrise-Edit
 
     private List<(string, string)> _verbs = new();
-    private List<TTSVoicePrototype> _voices = new(); // Sunrise-TTS
+    private List<TTSVoicePrototype> _voices = new(); // Sunrise-Edit
 
     private string? _verb;
 
@@ -67,7 +67,7 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
             SpeechVerbSelector.SelectId(id);
     }
 
-    // Sunrise-TTS-Start
+    // Sunrise-Start
     public void ReloadVoices(IPrototypeManager proto)
     {
         VoiceSelector.OnItemSelected += args =>
@@ -91,7 +91,7 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
         if (_voices.Count > 0)
             TTSContainer.Visible = true;
     }
-    // Sunrise-TTS-End
+    // Sunrise-End
 
     public void UpdateState(string name, string voice, string? verb) // Sunrise-TTS
     {
@@ -107,10 +107,10 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
             }
         }
 
-        // Sunrise-TTS-Start
+        // Sunrise-Start
         var voiceIdx = _voices.FindIndex(v => v.ID == voice);
         if (voiceIdx != -1)
             VoiceSelector.Select(voiceIdx);
-        // Sunrise-TTS-End
+        // Sunrise-End
     }
 }

@@ -3,7 +3,6 @@ using Content.Shared.Ninja.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
 namespace Content.Shared.Ninja.Components;
 
@@ -72,11 +71,11 @@ public sealed partial class NinjaSuitComponent : Component
     public float EmpConsumption = 100000f;
 
     /// <summary>
-    /// How long the EMP effects last for, in seconds
+    /// How long the EMP effects last for
     /// </summary>
     [DataField]
-    public float EmpDuration = 60f;
-
+    public TimeSpan EmpDuration = TimeSpan.FromSeconds(60);
+    // Sunrise-Start
     /// <summary>
     /// The action id for creating a smoke grenade
     /// </summary>
@@ -105,7 +104,8 @@ public sealed partial class NinjaSuitComponent : Component
     /// Battery charge used to create a flashbang grenade.
     /// </summary>
     [DataField]
-    public float FlashbangGrenadeCharge = 120f;
+    public float FlashbangGrenadeCharge = 30;
+    // Sunrise-End
 }
 
 public sealed partial class RecallKatanaEvent : InstantActionEvent;

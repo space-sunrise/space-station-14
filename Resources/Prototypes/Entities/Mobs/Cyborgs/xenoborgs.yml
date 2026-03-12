@@ -43,6 +43,7 @@
       - BorgModuleCable
       - XenoborgModuleAccessBreaker
       - XenoborgModuleFireExtinguisher
+  - type: ShowElectrocutionHUD
   - type: ShowHealthBars
     damageContainers:
     - Inorganic
@@ -91,8 +92,8 @@
   - type: MobThresholds # tankier
     thresholds:
       0: Alive
-      250: Critical
-      500: Dead
+      300: Critical # Sunrise-edit
+      750: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
@@ -103,7 +104,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 190
+        damage: 240 # Sunrise-edit
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -112,19 +113,33 @@
             volume: 5
     - trigger:
         !type:DamageTrigger
-        damage: 750
+        damage: 900 # Sunrise-edit
       behaviors:
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PinpointerMothership: # drop a pinpointer to the mothership upon being destructed
+            min: 1
+            max: 1
       - !type:EmptyContainersBehaviour
         containers:
         - borg_brain
+        - borg_module
         - cell_slot
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: Repairable
-    doAfterDelay: 25 # more HP, more time to heal
+    # Sunrise-start
+    # - type: Repairable
+    #   doAfterDelay: 25 # more HP, more time to heal
+  - type: Reflect
+    reflectProb: 0.05
+    spread: 180
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
+    reflects:
+    - NonEnergy
+    # Sunrise-end
   - type: ContainerFill
     containers:
       borg_brain:
@@ -138,7 +153,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHigh
+        startingItem: PowerCellXenoborgSmall # Sunrise-edit # Компромисс на наличие ЭМИ оружия у станции
 
 - type: entity
   parent: [ BaseXenoborgChassis, BaseXenoborgTransponder ]
@@ -166,6 +181,7 @@
   - type: FootstepModifier # it flies instead of walking
     footstepSoundCollection:
       collection: FootstepHoverXenoborg
+  - type: MovementAlwaysTouching # it flies in space with tiny thrusters
   - type: FlashImmunity
   - type: BorgChassis
     maxModules: 4
@@ -290,7 +306,15 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHighPrinted
+        startingItem: PowerCellXenoborgSmallPrinted # Sunrise-edit
+    # Sunrise-start
+  - type: Reflect
+    reflectProb: 0.05
+    spread: 180
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
+    reflects:
+    - NonEnergy
+    # Sunrise-end
 
 - type: entity
   parent: XenoborgScout

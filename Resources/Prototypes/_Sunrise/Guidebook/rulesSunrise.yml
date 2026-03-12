@@ -2,84 +2,84 @@
   id: SunriseRuleset
   name: guide-entry-sr-rules
   ruleEntry: true
-  text: "/ServerInfo/Guidebook/ServerRules/SunriseRules.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/ServerRules/SunriseRules.xml"
 
 - type: guideEntry
   id: RuleSR0
   name: guide-entry-sr-rule-0
   ruleEntry: true
   priority: 0
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR0DBAD.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/CoreRules/RuleSR0DBAD.xml"
 
 - type: guideEntry
   id: RuleSR1
   name: guide-entry-sr-rule-1
   ruleEntry: true
   priority: 1
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR1Decay.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/CoreRules/RuleSR1Decay.xml"
 
 - type: guideEntry
   id: RuleSR2
   name: guide-entry-sr-rule-2
   ruleEntry: true
   priority: 2
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR2Kill.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/CoreRules/RuleSR2Kill.xml"
 
 - type: guideEntry
   id: RuleSR3
   name: guide-entry-sr-rule-3
   ruleEntry: true
   priority: 3
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR3VGA.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/CoreRules/RuleSR3VGA.xml"
 
 - type: guideEntry
   id: RuleSR4
   name: guide-entry-sr-rule-4
   ruleEntry: true
   priority: 4
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR4LC.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/CoreRules/RuleSR4LC.xml"
 
 - type: guideEntry
   id: RuleSR5
   name: guide-entry-sr-rule-5
   ruleEntry: true
   priority: 5
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR5.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/CoreRules/RuleSR5.xml"
 
 - type: guideEntry
   id: RuleSR6
   name: guide-entry-sr-rule-6
   ruleEntry: true
   priority: 6
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR6RPA.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/CoreRules/RuleSR6RPA.xml"
 
 - type: guideEntry
   id: RuleSR7
   name: guide-entry-sr-rule-7
   ruleEntry: true
   priority: 7
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR7SA.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/CoreRules/RuleSR7SA.xml"
 
 - type: guideEntry
   id: RuleSR8
   name: guide-entry-sr-rule-8
   ruleEntry: true
   priority: 8
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR8VH.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/CoreRules/RuleSR8VH.xml"
 
 - type: guideEntry
   id: RuleSR9
   name: guide-entry-sr-rule-9
   ruleEntry: true
   priority: 9
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR9ERP.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/CoreRules/RuleSR9ERP.xml"
 
 - type: guideEntry
   id: RuleSR10
   name: guide-entry-sr-rule-10
   ruleEntry: true
   priority: 10
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR10Exploit.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/CoreRules/RuleSR10Exploit.xml"
 
 ### Подпункты к 3 правилу
 
@@ -89,14 +89,14 @@
   name: guide-entry-sr-rule-3-1
   ruleEntry: true
   priority: 1
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/RolePlayRules/RuleSRRP1PG.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/RolePlayRules/RuleSRRP1PG.xml"
 
 - type: guideEntry
   id: RuleSRRP2
   name: guide-entry-sr-rule-3-2
   ruleEntry: true
   priority: 2
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/RolePlayRules/RuleSRRP2MG.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/RolePlayRules/RuleSRRP2MG.xml"
 
 
 - type: guideEntry
@@ -104,21 +104,21 @@
   name: guide-entry-sr-rule-3-3
   ruleEntry: true
   priority: 3
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/RolePlayRules/RuleSRRP3MK.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/RolePlayRules/RuleSRRP3MK.xml"
 
 - type: guideEntry
   id: RuleSRRP4
   name: guide-entry-sr-rule-3-4
   ruleEntry: true
   priority: 4
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/RolePlayRules/RuleSRRP4ICinOOC.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/RolePlayRules/RuleSRRP4ICinOOC.xml"
 
 - type: guideEntry
   id: RuleSRRP5
   name: guide-entry-sr-rule-3-5
   ruleEntry: true
   priority: 5
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/RolePlayRules/RuleSRRP5Multikey.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/RolePlayRules/RuleSRRP5Multikey.xml"
 
 
 - type: guideEntry
@@ -126,14 +126,14 @@
   name: guide-entry-sr-rule-3-6
   ruleEntry: true
   priority: 6
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/RolePlayRules/RuleSRRP6SK.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/RolePlayRules/RuleSRRP6SK.xml"
 
 - type: guideEntry
   id: RuleSRRP7
   name: guide-entry-sr-rule-3-7
   ruleEntry: true
   priority: 7
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/RolePlayRules/RuleSRRP7ORL.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/RolePlayRules/RuleSRRP7ORL.xml"
 
 
 - type: guideEntry
@@ -141,14 +141,14 @@
   name: guide-entry-sr-rule-3-8
   ruleEntry: true
   priority: 8
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/RolePlayRules/RuleSRRP8DH.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/RolePlayRules/RuleSRRP8DH.xml"
 
 - type: guideEntry
   id: RuleSRRP9
   name: guide-entry-sr-rule-3-9
   ruleEntry: true
   priority: 9
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/RolePlayRules/RuleSRRP9RE.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/RolePlayRules/RuleSRRP9RE.xml"
 
   ### Прецеденты/исключения
 
@@ -157,123 +157,123 @@
   name: guide-entry-sr-rule-excep-0
   ruleEntry: true
   priority: 1
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER0.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/PrecedentExceptionRules/PER0.xml"
 
 - type: guideEntry
   id: PER1
   name: guide-entry-sr-rule-excep-1
   ruleEntry: true
   priority: 2
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER1.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/PrecedentExceptionRules/PER1.xml"
 
 - type: guideEntry
   id: PER2
   name: guide-entry-sr-rule-excep-2
   ruleEntry: true
   priority: 3
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER2.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/PrecedentExceptionRules/PER2.xml"
 
 - type: guideEntry
   id: PER3
   name: guide-entry-sr-rule-excep-3
   ruleEntry: true
   priority: 4
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER4.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/PrecedentExceptionRules/PER4.xml"
 
 - type: guideEntry
   id: PER3_1
   name: guide-entry-sr-rule-excep-3-1
   ruleEntry: true
   priority: 5
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER3.1.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/PrecedentExceptionRules/PER3.1.xml"
 
 - type: guideEntry
   id: PER3_2
   name: guide-entry-sr-rule-excep-3-2
   ruleEntry: true
   priority: 6
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER3.2.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/PrecedentExceptionRules/PER3.2.xml"
 
 - type: guideEntry
   id: PER3_3
   name: guide-entry-sr-rule-excep-3-3
   ruleEntry: true
   priority: 6
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER3.3.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/PrecedentExceptionRules/PER3.3.xml"
 
 - type: guideEntry
   id: PER3_4
   name: guide-entry-sr-rule-excep-3-4
   ruleEntry: true
   priority: 6
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER3.4.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/PrecedentExceptionRules/PER3.4.xml"
 
 - type: guideEntry
   id: PER3_6
   name: guide-entry-sr-rule-excep-3-6
   ruleEntry: true
   priority: 7
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER3.6.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/PrecedentExceptionRules/PER3.6.xml"
 
 - type: guideEntry
   id: PER3_7
   name: guide-entry-sr-rule-excep-3-7
   ruleEntry: true
   priority: 7
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER3.7.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/PrecedentExceptionRules/PER3.7.xml"
 
 - type: guideEntry
   id: PER4
   name: guide-entry-sr-rule-excep-4
   ruleEntry: true
   priority: 8
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER4.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/PrecedentExceptionRules/PER4.xml"
 
 - type: guideEntry
   id: PER6
   name: guide-entry-sr-rule-excep-6
   ruleEntry: true
   priority: 9
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER6.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/PrecedentExceptionRules/PER6.xml"
 
 - type: guideEntry
   id: PER7
   name: guide-entry-sr-rule-excep-7
   ruleEntry: true
   priority: 10
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER7.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/PrecedentExceptionRules/PER7.xml"
 
 - type: guideEntry
   id: PER8
   name: guide-entry-sr-rule-excep-8
   ruleEntry: true
   priority: 11
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER8.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/PrecedentExceptionRules/PER8.xml"
 
 - type: guideEntry
   id: PER10
   name: guide-entry-sr-rule-excep-10
   ruleEntry: true
   priority: 12
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER10.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/PrecedentExceptionRules/PER10.xml"
 
 - type: guideEntry
   id: CEP
   name: guide-entry-sr-rule-cep
   ruleEntry: true
   priority: 1
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/AdditionalRules/CEP.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/AdditionalRules/CEP.xml"
 
 - type: guideEntry
   id: CCP
   name: guide-entry-sr-rule-ccp
   ruleEntry: true
   priority: 2
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/AdditionalRules/CCP.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/AdditionalRules/CCP.xml"
 
 - type: guideEntry
   id: PANA
   name: guide-entry-sr-rule-pana
   ruleEntry: true
   priority: 3
-  text: "/ServerInfo/Guidebook/ServerRules/RulesSR/AdditionalRules/PANA.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/RulesSR/AdditionalRules/PANA.xml"

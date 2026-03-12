@@ -1,0 +1,21 @@
+- type: vendingMachineInventory
+  id: PrisonDrobeInventory
+  startingInventory:
+    ClothingUniformJumpskirtPrisonRegularBase: 3
+    ClothingUniformJumpsuitPrisonRegularBase: 3
+    ClothingUniformJumpskirtPrisonVeteranBase: 3
+    ClothingUniformJumpsuitPrisonVeteranBase: 3
+    ClothingHeadsetSecurity: 3
+    ClothingOuterVestArmorSec: 3
+    ClothingShoesBootsCombat: 3
+    ClothingShoesBootsCowboyBlack: 3
+    ClothingShoesBootsJack: 3
+    HandheldCamera: 3
+    PepperSprayBottleBlue: 2
+    ClothingHandsGlovesColorBlack: 3
+    ClothingBeltPrisonGuardianMetus: 3
+    ClothingBackpackPrisonGuard: 3
+    ClothingBackpackSatchelPrisonGuard: 3
+    ClothingHeadCapPrisonGuard: 3
+    ClothingHeadPrisonGuard: 3
+    ClothingHeadHatBeretPrisonGuard: 3

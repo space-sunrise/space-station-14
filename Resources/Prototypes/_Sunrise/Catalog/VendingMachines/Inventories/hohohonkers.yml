@@ -1,10 +1,22 @@
 - type: vendingMachineInventory
   id: HohohonkersInventory
   startingInventory:
-    FakeGrenade: 3
+    FakeGrenade: 2
     ClownFakeNukewest: 1
+    ClothingBeltMilitaryWebbingFake: 1
     ToySwordDoubled: 2
     FaketAnomalyIceFlatpack: 2
-    ClusterSyndyFlashGrenade: 5
-    FirecrackerBundle: 4
-    FirecrackerBox: 4
+    FirecrackerBundle: 3
+    FirecrackerBox: 3
+    BoxDonkSoftBox: 1
+    FoamCrossbow: 1
+  contrabandInventory:
+    ToyFigurineClown: 1
+    RevolverCapGun: 1
+    BoxCartridgeCap: 1
+    ClusterSyndyFlashGrenade: 2
+    SyndieTrickyBomb: 2
+  emaggedInventory:
+    ClothingBackpackDuffelSMGFake: 1
+    ClothingBackpackDuffell6Fake: 1
+    SyndicateBombFake: 1

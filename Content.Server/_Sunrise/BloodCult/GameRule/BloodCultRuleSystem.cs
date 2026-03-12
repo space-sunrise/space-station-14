@@ -397,6 +397,9 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         {
             foreach (var userAction in actionsComponent.Actions)
             {
+                if (TerminatingOrDeleted(userAction))
+                    continue;
+
                 var entityPrototypeId = MetaData(userAction).EntityPrototype?.ID;
                 if (entityPrototypeId != null && BloodCultistComponent.CultistActions.Contains(entityPrototypeId))
                     _actionsSystem.RemoveAction(uid, userAction);

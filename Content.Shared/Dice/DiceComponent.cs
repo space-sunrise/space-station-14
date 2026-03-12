@@ -23,8 +23,11 @@ public sealed partial class DiceComponent : Component
     [DataField]
     public int Offset { get; private set; } = 0;
 
+    // Sunrise-Edit
     [DataField]
-    public int Sides { get; private set; } = 20;
+    [AutoNetworkedField]
+    public int Sides { get; set; } = 20;
+    // Sunrise-Edit-End
 
     /// <summary>
     ///     The currently displayed value.
@@ -33,4 +36,17 @@ public sealed partial class DiceComponent : Component
     [AutoNetworkedField]
     public int CurrentValue { get; set; } = 20;
 
+    [DataField]
+    [AutoNetworkedField]
+    public int StartFromSide { get; set; } = 1;
+
+    public void SetSides(int startValue, int endValue)
+    {
+        StartFromSide = startValue;
+        Sides = endValue;
+        CurrentValue = endValue;
+    }
+
+    [DataField("IsNotStandardDice")]
+    public bool IsNotStandardDice = false;
 }

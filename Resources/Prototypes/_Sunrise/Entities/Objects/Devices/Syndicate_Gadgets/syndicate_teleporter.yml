@@ -14,7 +14,7 @@
     teleportationValue: 4
     damageOnBlocked:
       types:
-        Cellular: 25
+        Cellular: 10
   - type: UseDelay
     delay: 0.5
   - type: LimitedCharges

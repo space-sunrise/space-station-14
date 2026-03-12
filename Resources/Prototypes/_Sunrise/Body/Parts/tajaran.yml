@@ -130,3 +130,45 @@
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
       state: "r_foot"
+
+- type: entity
+  id: LeftLegTajaranCurved
+  name: "left tajaran leg"
+  parent: [PartTajaran, BaseLeftLeg]
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
+      state: "l_leg_curved"
+    - type: MovementBodyPart
+      walkSpeed: 2.7
+      sprintSpeed: 4.6
+
+- type: entity
+  id: RightLegTajaranCurved
+  name: "right tajaran leg"
+  parent: [PartTajaran, BaseRightLeg]
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
+      state: "r_leg_curved"
+    - type: MovementBodyPart
+      walkSpeed: 2.7
+      sprintSpeed: 4.6
+
+- type: entity
+  id: LeftFootTajaranCurved
+  name: "left tajaran foot"
+  parent: [PartTajaran, BaseLeftFoot]
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
+      state: "l_foot_curved"
+
+- type: entity
+  id: RightFootTajaranCurved
+  name: "right tajaran foot"
+  parent: [PartTajaran, BaseRightFoot]
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
+      state: "r_foot_curved"

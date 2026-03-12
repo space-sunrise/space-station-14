@@ -113,5 +113,4 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<bool> DiscordNewsWebhookSendDuringRound =
         CVarDef.Create("discord.news_webhook_send_during_round", false, CVar.SERVERONLY);
-
 }

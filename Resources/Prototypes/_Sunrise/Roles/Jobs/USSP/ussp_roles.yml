@@ -257,8 +257,9 @@
     eyes: ClothingEyesHudSyndicate
     back: ClothingBackpackDuffelSyndicate
     outerClothing: ClothingOuterArmorRaidBiocode
-    shoes: ClothingShoesBootsCombatFilled
+    shoes: ClothingShoesBootsMagSyndie
     gloves: ClothingHandsGlovesCombatCQC
+    ears: ClothingHeadsetAltSyndicateNoKey
     id: SyndiOperativePDA
     belt: ClothingBeltMilitaryWebbingMedRaidFilled
     pocket1: WeaponPistolViper
@@ -269,6 +270,8 @@
     - PinpointerSyndicateNuclear
     - DeathRattleImplanter
     - RadioImplanter
+    - DeathRattleImplanter
+    - ScramImplanterProto
 
 - type: startingGear
   id: SyndicateRaidTeamLeaderGear
@@ -278,3 +281,70 @@
     head: ClothingHeadHatOutlawHat
     pocket1: BaseUplinkRadio25TC
     pocket2: EnergySword
+
+# Pirate
+- type: startingGear
+  id: PirateScoonerEVAGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPirate
+    eyes: ClothingEyesEyepatch
+    back: ClothingBackpackMessengerPirate
+    head: ClothingHeadHelmetPirate
+    ears: ClothingHeadsetFreelanceNoKey
+    outerClothing: ClothingOuterEVASuitPirate
+    shoes: ClothingShoesBootsMagPirate
+    id: PiratePDA
+    belt: JetpackMiniFilled
+    pocket1: WeaponRevolverPirate
+    pocket2: CombatKnife
+  storage:
+    back:
+    - AppraisalTool
+    - DeathRattleImplanterFreelance
+    - RadioImplanterFreelance
+    - SpeedLoaderMagnumSP
+    - MagazineBoxMagnumSP
+    - CigPackSyndicate
+    - CheapLighter
+    - PinpointerPirate
+    - Doubloon15
+    - Doubloon5
+    - CrowbarOrange
+
+- type: startingGear
+  id: PirateScoonerOldEVAGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPirate
+    back: ClothingBackpackMessengerPirate
+    ears: ClothingHeadsetFreelanceNoKey
+    head: ClothingHeadBandBlack
+    outerClothing: ClothingOuterHardsuitPirateEVA
+    shoes: ClothingShoesBootsMagPirate
+    id: PiratePDA
+    belt: JetpackMiniFilled
+    pocket1: WeaponPistolFlintlock
+    pocket2: MagazineBoxMagnumSP
+  storage:
+    back:
+    - AppraisalTool
+    - DeathRattleImplanterFreelance
+    - RadioImplanterFreelance
+    - CigPackSyndicate
+    - CheapLighter
+    - PinpointerPirate
+    - Doubloon5
+    - Doubloon5
+    - CrowbarImprovised
+    - CartridgeMagnumAP
+    - CartridgeMagnumAP
+    - CartridgeMagnumAP
+
+# Syndicate Operative Outfit - Monkey
+- type: startingGear
+  id: PirateGearMonkeyFake
+  equipment:
+    head: ClothingHeadBandBlack
+    jumpsuit: ClothingUniformJumpsuitPirate
+    mask: CigaretteSyndicate
+    ears: ClothingHeadsetFreelanceNoKey
+    id:  PiratePDAMusicPassengerId

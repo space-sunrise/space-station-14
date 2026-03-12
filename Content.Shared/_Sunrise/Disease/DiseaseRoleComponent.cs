@@ -37,8 +37,8 @@ public sealed partial class DiseaseRoleComponent : Component
 
     [DataField] public int SickOfAllTime = 0;
 
-    [DataField("newBloodReagent", customTypeSerializer: typeof(PrototypeIdSerializer<ReagentPrototype>))]
-    public string NewBloodReagent = "ZombieBlood";
+    [DataField("newBloodReagent")]
+    public List<string> NewBloodReagent = new() { "ZombieBlood" };
 }
 
 [Serializable, NetSerializable]
@@ -46,7 +46,7 @@ public struct SymptomData
 {
     [DataField("minLevel")]
     public int MinLevel;
-    
+
     [DataField("maxLevel")]
     public int MaxLevel;
 

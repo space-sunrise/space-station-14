@@ -12,7 +12,7 @@
     sprite: _Sunrise/Clothing/Mask/pilotmask.rsi
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskGasAtmos
   id: ClothingMaskGasAtmosian
   name: atmosian's gas mask
   description: An improved gas mask used by the Atmosians. Fireproof!
@@ -55,12 +55,10 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/death.rsi
   - type: BreathMask
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - WhitelistChameleon
     - FaceCovered # INTERACTIONS
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingMaskGasAtmos
@@ -89,7 +87,7 @@
   - type: IngestionBlocker
 
 - type: entity
-  parent: ClothingMaskGasAtmos
+  parent: ClothingMaskGasSecurity
   id: ClothingMaskIAA
   name: elite gas mask
   description: Black gas mask with gold-plated element above the visor made of durable glass. You do not have to breathe the same air as the defendants. Protects against flares.
@@ -98,9 +96,6 @@
     sprite: _Sunrise/Clothing/Mask/iaamask.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/iaamask.rsi
-  - type: BreathMask
-  - type: IngestionBlocker
-  - type: FlashImmunity
 
 - type: entity
   parent: ClothingMaskGasAtmos
@@ -284,12 +279,10 @@
     sprite: _Sunrise/Clothing/Mask/blueshield.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/blueshield.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - WhitelistChameleon
     - FaceCovered # INTERACTIONS
-  # SUNRISE EDIT
 
 - type: entity
   parent: [ ClothingMaskBase, BaseMajorContraband ]
@@ -302,9 +295,7 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/dogi_mask.rsi
   - type: BreathMask
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - WhitelistChameleon
     - FaceCovered # INTERACTIONS
-  # SUNRISE EDIT

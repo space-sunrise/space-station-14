@@ -27,3 +27,27 @@
   values:
     prefix: advertisement-liberation-
     count: 31
+
+- type: localizedDataset
+  id: PirateChatterNPC
+  values:
+    prefix: advertisement-piratehumanoid-
+    count: 68
+
+- type: localizedDataset
+  id: PirateUplinkChatter
+  values:
+    prefix: advertisement-pirate-uplink-
+    count: 40
+
+- type: localizedDataset
+  id: NarSieAds
+  values:
+    prefix: advertisement-narsie-
+    count: 8
+
+- type: localizedDataset
+  id: EVAdispenserAds
+  values:
+    prefix: advertisement-evadisp-
+    count: 8

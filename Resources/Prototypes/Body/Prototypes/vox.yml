@@ -9,7 +9,7 @@
       - torso
       organs:
         brain: OrganHumanBrain
-        eyes: OrganHumanEyes
+        eyes: OrganVoxEyes
     # Sunrise-start
         tongue: OrganHumanTongue
         eye_implant: null
@@ -26,7 +26,7 @@
         lungs: OrganVoxLungs
         stomach: OrganVoxStomach
         liver: OrganVoxLiver
-        kidneys: OrganHumanKidneys
+        kidneys: OrganVoxKidneys
         cavity: null # Sunrise-edit
     right arm:
       part: RightArmVox

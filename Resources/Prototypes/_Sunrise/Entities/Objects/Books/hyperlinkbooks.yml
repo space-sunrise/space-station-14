@@ -12,6 +12,9 @@
     - Book
   - type: StaticPrice
     price: 35
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
 
 - type: entity
   parent: BaseHyperLinkBook

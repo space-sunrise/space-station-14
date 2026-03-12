@@ -19,9 +19,9 @@
       - !type:SatiateThirst
         factor: 2
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
       - !type:ModifyStatusEffect
         effectProto: StatusEffectDrowsiness
         time: 1
@@ -47,9 +47,9 @@
       - !type:SatiateThirst
         factor: 4
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
 
 - type: reagent
   id: ChangelingSting
@@ -89,9 +89,9 @@
       - !type:SatiateThirst
         factor: 2
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
       - !type:ModifyStatusEffect
         effectProto: StatusEffectDrowsiness
         time: 2
@@ -154,6 +154,19 @@
   flavor: pwrgamesoda
   color: "#9385bf"
   fizziness: 0.9 # gamers crave the fizz
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 1
+        type: Remove
 
 - type: reagent
   id: RootBeer
@@ -221,9 +234,9 @@
       - !type:SatiateThirst
         factor: 4
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
 
 - type: reagent
   id: SpaceMountainWind
@@ -284,9 +297,9 @@
       - !type:SatiateThirst
         factor: 2
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
       - !type:AdjustReagent
         reagent: Theobromine
         amount: 0.1
@@ -294,9 +307,9 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:OrganType
-          type: Slime
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [Slime]
+          inverted: true
         damage:
           types:
             Poison: 1

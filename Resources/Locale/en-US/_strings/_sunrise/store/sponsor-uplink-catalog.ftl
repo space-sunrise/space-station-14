@@ -147,6 +147,7 @@ uplink-sunrise-clothing-belt-hos-name = Security's Belt
 uplink-sunrise-clothing-head-hat-cap-black-name = Old Leather USSP Cap
 uplink-sunrise-clothing-head-hat-cap-leather-hos-name = Head Of Security's Leather Cap
 uplink-sunrise-clothing-neck-cloak-hos-cloak-name = Head Of Security's Cloak
+uplink-sunrise-tactical-hos-uniform-name = Tactical HoS uniform
 
 ## Research Director
 
@@ -168,7 +169,6 @@ uplink-sunrise-clothing-shoes-elite-captain-name = Captain's Boots
 uplink-sunrise-clothing-breath-mask-name = Medical Respirator
 uplink-sunrise-clothing-belt-medical-name = Chief Medical Officer's Medical Belt
 uplink-sunrise-clothing-outer-coat-overcoat-name = Chief Medical Officer's Lab Coat
-uplink-sunrise-clothing-neck-cmo-cloak-name = Chief Medical Officer's Cloak
 uplink-sunrise-clothing-special-head-hat-hardhat-name = Chief Medical Officer's Medical Cap
 uplink-sunrise-clothing-head-hat-cap-cmo-name = Medical's Beret
 
@@ -217,6 +217,7 @@ uplink-sunrise-pill-canister-hyronalin-name = Баночка для таблет
 uplink-sunrise-pill-canister-dexalin-name = Баночка для таблеток (дексалин)
 uplink-sunrise-bloodpack-name = Пакет крови (10 шт)
 uplink-sunrise-gauze-name = Марлевый бинт (10 шт)
+uplink-sunrise-clothing-neck-med-cloak-name = Cloak of Compassion
 
 ## Research
 
@@ -257,3 +258,14 @@ uplink-sunrise-mob-mothroach-name = Mothroach
 uplink-sunrise-player-borg-generic-name = Borg
 uplink-sunrise-boombox-name = Boombox
 uplink-sunrise-tape-player-name = Tape player
+
+## Paint
+
+uplink-sunrise-spray-paint-desc = A tin of spray paint.
+uplink-sunrise-spray-paint-blue-name = Spray paint (blue)
+uplink-sunrise-spray-paint-black-name = Spray paint (black)
+uplink-sunrise-spray-paint-red-name = Spray paint (red)
+uplink-sunrise-spray-paint-green-name = Spray paint (green)
+uplink-sunrise-spray-paint-orange-name = Spray paint (orange)
+uplink-sunrise-spray-paint-purple-name = Spray paint (purple)
+uplink-sunrise-spray-paint-white-name = Spray paint (white)

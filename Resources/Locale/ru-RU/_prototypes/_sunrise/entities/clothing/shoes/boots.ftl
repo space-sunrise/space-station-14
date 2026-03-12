@@ -8,3 +8,7 @@ ent-ClothingShoesUSSPBlack = кожаные ботинки СССП
     .desc = Старая вещица, прямиком из СССП.
 ent-ClothingShoesEliteCaptain = капитанские ботинки
     .desc = Конструкция ботинок имеет смягчающий эффект который даёт комфорт капитанского уровня.
+ent-ClothingShoesBootsMajima = модные туфли
+    .desc = Модные туфли со стальным носком.
+ent-ClothingShoesBootsMettaton = модные опиум шузы
+    .desc = Модные опиум шузы прямиком из 80х годов.

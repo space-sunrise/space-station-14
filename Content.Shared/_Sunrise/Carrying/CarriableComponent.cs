@@ -7,10 +7,9 @@ namespace Content.Shared._Sunrise.Carrying
     public sealed partial class CarriableComponent : Component
     {
         /// <summary>
-        ///     необходимое количество свободных рук
-        ///     что-бы взять сущность
+        ///     Необходимое количество свободных рук чтобы взять сущность
         /// </summary>
-        [DataField("freeHandsRequired")]
+        [DataField]
         public int FreeHandsRequired = 2;
 
         [DataField]
@@ -18,5 +17,11 @@ namespace Content.Shared._Sunrise.Carrying
 
         [DataField]
         public float SprintSpeedModifier = 0.6f;
+
+        /// <summary>
+        ///     Если true, то переносить этот объект могут только мобы с компонентом NestingMobComponent
+        /// </summary>
+        [DataField]
+        public bool RequiresNestingMob = false;
     }
 }

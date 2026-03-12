@@ -1,0 +1,48 @@
+- type: entity
+  parent: BaseItem
+  abstract: true
+  id: BaseArrowRoulette
+  save: true
+  description: Spin the oxygen tank - last century
+  components:
+  - type: Anchorable
+    delay: 2
+  - type: Spinner
+
+- type: entity
+  id: ArrowRouletteErot
+  name: Arrow of Erot
+  parent: BaseArrowRoulette
+  components:
+  - type: Sprite
+    offset: -0.00,0.00
+    sprite: _Sunrise/Objects/Fun/lucky_arrow.rsi
+    state: arrow_red
+  - type: Item
+    size: Small
+    inhandVisuals:
+      left:
+      - sprite: _Sunrise/Objects/Fun/lucky_arrow_inhand.rsi
+        state: inhand_left_red
+      right:
+      - sprite: _Sunrise/Objects/Fun/lucky_arrow_inhand.rsi
+        state: inhand_right_red
+
+- type: entity
+  id: ArrowRouletteEros
+  name: Arrow of Eros
+  parent: BaseArrowRoulette
+  components:
+  - type: Sprite
+    offset: -0.00,-0.00
+    sprite: _Sunrise/Objects/Fun/lucky_arrow.rsi
+    state: arrow_blue
+  - type: Item
+    size: Small
+    inhandVisuals:
+      left:
+      - sprite: _Sunrise/Objects/Fun/lucky_arrow_inhand.rsi
+        state: inhand_left_blue
+      right:
+      - sprite: _Sunrise/Objects/Fun/lucky_arrow_inhand.rsi
+        state: inhand_right_blue

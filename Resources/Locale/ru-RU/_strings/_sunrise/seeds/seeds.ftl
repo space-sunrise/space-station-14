@@ -1,0 +1,16 @@
+seeds-plaststeelcap-name = пластсталешляпник
+seeds-plaststeelcap-display-name = пластсталешляпник
+seeds-glasscap-name = стеклошляпник
+seeds-glasscap-display-name = стеклошляпник
+seeds-cannabis-vita-name = каннабис вита
+seeds-cannabis-vita-display-name = каннабис вита
+seeds-barrelmelon-name = бочкодыня
+seeds-barrelmelon-display-name = бочкодыня
+seeds-lanternfruit-name = фонарный фрукт
+seeds-lanternfruit-display-name = фонарный фрукт
+seeds-redrose-name = красная роза
+seeds-redrose-display-name = красная роза
+seeds-whiterose-name = белая роза
+seeds-whiterose-display-name = белая роза
+seeds-sunflower-name = подсолнух
+seeds-sunflower-display-name = подсолнух

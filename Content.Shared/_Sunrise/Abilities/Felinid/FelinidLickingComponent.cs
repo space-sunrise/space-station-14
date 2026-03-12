@@ -1,17 +1,15 @@
 using Content.Shared.Damage;
-using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared._Sunrise.Abilities.Felinid;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class FelinidLickingComponent : Component
 {
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string ActionLickingWoundsId = "ActionLickingWounds";
+    [DataField]
+    public EntProtoId ActionLickingWoundsId = "ActionLickingWounds";
 
     [DataField(required: true)]
     public DamageSpecifier Damage = default!;
@@ -26,8 +24,11 @@ public sealed partial class FelinidLickingComponent : Component
     public TimeSpan Delay = TimeSpan.FromSeconds(3f);
 
     [DataField]
-    public SoundSpecifier? HealingBeginSound = null;
+    public SoundSpecifier? HealingBeginSound;
 
     [DataField]
-    public SoundSpecifier? HealingEndSound = null;
+    public SoundSpecifier? HealingEndSound;
+
+    [ViewVariables, AutoNetworkedField]
+    public EntityUid? Action;
 }

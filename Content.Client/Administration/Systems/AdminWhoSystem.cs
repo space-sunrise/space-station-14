@@ -1,4 +1,5 @@
 using Content.Shared.Administration;
+using Robust.Shared.Network;
 
 namespace Content.Client.Administration.Systems;
 
@@ -12,7 +13,7 @@ public sealed class AdminWhoSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeNetworkEvent<AdminWhoResponseEvent>(OnAdminWhoResponse);
     }
 

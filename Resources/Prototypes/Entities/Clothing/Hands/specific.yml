@@ -6,7 +6,9 @@
   suffix: Chameleon
   components:
     - type: Tag
-      tags: [] # ignore "WhitelistChameleon" tag
+      tags: # ignore "WhitelistChameleon" tag
+      - ClothMade
+      - Recyclable
     - type: Sprite
       sprite: Clothing/Hands/Gloves/Color/black.rsi
     - type: Clothing
@@ -17,12 +19,6 @@
     - type: Fiber
       fiberMaterial: fibers-chameleon
     - type: FingerprintMask
-  # Sunrise-Start
-    - type: Biocode
-      factions:
-      - Syndicate
-      - Thief
-  # Sunrise-End
 
 - type: entity
   parent: ClothingHandsChameleon

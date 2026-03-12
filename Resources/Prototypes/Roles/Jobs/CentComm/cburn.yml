@@ -37,8 +37,8 @@
     belt: ClothingBeltBandolier
   storage:
     back:
-    - WeaponShotgunDoubleBarreled
-    - BoxShotgunIncendiary
+    # - WeaponShotgunDoubleBarreled #Sunrise-Edit
+    # - BoxShotgunIncendiary #Sunrise-Edit
     - GrenadeFlashBang
     - PillAmbuzolPlus
     - PillAmbuzol
@@ -61,7 +61,6 @@
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesSecurity
     ears: ClothingHeadsetAltCentCom
-    # gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterSoftsuitCBURN
     shoes: ClothingShoesBootsCombatFilled
     id: CBURNPDA
@@ -71,12 +70,17 @@
     head: ClothingHeadSoftsuitCBURN
   storage:
     back:
-    - WeaponGunLaserCarbineAutomatic
-    - MagazineBatteryLr60
-    - MagazineBatteryLr60
-    - MagazineBatteryLr30
+    - GrenadeFlashBang
+    - GrenadeFlashBang
     - GrenadeFlashBang
     - PillAmbuzolPlus
     - PillAmbuzol
+    - PillAmbuzol
+    - PillAmbuzol
+    - SyringeAmbuzol
     - ClothingHandsPowerGlovesUplinkNTERTCBURN
+    - FireExtinguisherMini
+    - MedkitCombatFilled
+    - MedkitBurnFilled
+    - MedkitToxinFilled
 # Sunrise-end

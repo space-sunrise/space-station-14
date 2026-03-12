@@ -30,6 +30,8 @@ namespace Content.Server._Sunrise.PlanetPrison
         [ValidatePrototypeId<EntityPrototype>]
         private const string EscapeObjective = "PlanetPrisonerEscapeObjective";
         [ValidatePrototypeId<EntityPrototype>]
+        private const string StayFreeObjective = "PlanetPrisonerStayFreeObjective";
+        [ValidatePrototypeId<EntityPrototype>]
         private const string GameRule = "PlanetPrison";
 
         private const float EscapeDistance = 150f;
@@ -166,6 +168,7 @@ namespace Content.Server._Sunrise.PlanetPrison
             _roleSystem.MindAddRole(mindId, MindRole);
 
             _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
+            _mindSystem.TryAddObjective(mindId, mind, StayFreeObjective);
 
             planetPrisonRule.PrisonersMinds.Add((mindId, Name(uid)));
         }

@@ -22,7 +22,7 @@
       groups:
         Brute: 9
       types:
-        Structural: 40 # ~10 seconds for solid wall / ~21 secods for reinforced wall
+        Structural: 30 # ~10 seconds for solid wall / ~21 secods for reinforced wall #Sunrise-edit
 
 - type: entity
   id: WeaponMechMelleDrillDiamond
@@ -48,4 +48,4 @@
       groups:
         Brute: 18
       types:
-        Structural: 60 # ~3 seconds for solid wall / 9 seconds for reinforced wall
+        Structural: 50 # ~3 seconds for solid wall / 9 seconds for reinforced wall #Sunrise-edit

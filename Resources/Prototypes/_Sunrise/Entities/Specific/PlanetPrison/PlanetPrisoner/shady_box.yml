@@ -1,0 +1,64 @@
+- type: entity
+  id: PresentRandomPrisoner
+  parent: [PresentBase, BaseItem]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/PlanetPrison/PlanetPrisoner/shady_box.rsi
+    layers:
+      - state: shady_box
+  - type: SpawnItemsOnUse
+    items:
+      - id: MysteryFigureBoxTrash
+      # Mobs
+      - id: MobTick
+        orGroup: GiftPool
+      - id: MobMouseCancer
+        orGroup: GiftPool
+      - id: DehydratedSpaceCarp
+        orGroup: GiftPool
+      - id: SyndicateSpongeWrapped
+        orGroup: GiftPool
+      # Effects
+      - id: AdminInstantEffectEMP
+        orGroup: GiftPool
+      - id: AdminInstantEffectFlash
+        orGroup: GiftPool
+      - id: AdminInstantEffectTearGas
+        orGroup: GiftPool
+      # Loot
+      - id: LootSpawnerEncryptionKey
+        orGroup: GiftPool
+      - id: LootSpawnerIndustrialFluff
+        orGroup: GiftPool
+      - id: LootSpawnerMedicalMinor
+        orGroup: GiftPool
+      - id: MaintenanceWeaponSpawner
+        orGroup: GiftPool
+      - id: MaintenanceToolSpawner
+        orGroup: GiftPool
+      - id: PlanetPrisonerIDCard
+        orGroup: GiftPool
+      - id: RandomOrganDubious
+        orGroup: GiftPool
+      - id: ScalpelShiv
+        orGroup: GiftPool
+      # RnD
+      - id: ComplexXenoArtifactItem
+        orGroup: GiftPool
+      - id: RandomBoard
+        orGroup: GiftPool
+      - id: AutolatheMachineCircuitboard
+        orGroup: GiftPool
+      - id: InterrogatorMachineCircuitboard
+        orGroup: GiftPool
+      - id: ResearchDisk10000
+        orGroup: GiftPool
+      # Trash
+      - id: RandomSpawner100
+        orGroup: GiftPool
+      - id: TreasureSampleTube
+        orGroup: GiftPool
+      - id: ScrapTube
+        orGroup: GiftPool
+    sound:
+      path: /Audio/Effects/unwrap.ogg

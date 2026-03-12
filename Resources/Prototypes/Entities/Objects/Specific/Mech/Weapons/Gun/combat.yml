@@ -9,15 +9,15 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_pulse
   - type: Gun
-    fireRate: 1.8
+    fireRate: 1.75
     selectedMode: FullAuto
     availableModes:
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: Pulse # Sunrise-Edit
-    fireCost: 65
+    fireCost: 80
   - type: Appearance
   - type: AmmoCounter
 
@@ -32,15 +32,15 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_immolator
   - type: Gun
-    fireRate: 0.8
-    selectedMode: SemiAuto
+    fireRate: 2
+    selectedMode: FullAuto
     availableModes:
-      - SemiAuto
+      - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: HitscanBatteryAmmoProvider
-    proto: RedHeavyLaser # Sunrise-Edit
-    fireCost: 50
+  - type: BatteryAmmoProvider
+    proto: IgnitionRedLaser # Sunrise-Edit
+    fireCost: 35
   - type: Appearance
   - type: AmmoCounter
 
@@ -61,9 +61,9 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/Bauer127/bauer127_shot.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeAntiMateriel
-    fireCost: 120
+    fireCost: 125
   - type: Appearance
   - type: AmmoCounter
 
@@ -78,17 +78,23 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_solaris
   - type: Gun
-    fireRate: 1.75
-    selectedMode: SemiAuto
+    fireRate: 1.5
+    selectedMode: FullAuto
     availableModes:
-      - SemiAuto
+      - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-  - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser # Sunrise-Edit
-    fireCost: 35
+  - type: BatteryAmmoProvider
+    proto: RedHeavyLaser # Sunrise-Edit
+    fireCost: 28
   - type: Appearance
   - type: AmmoCounter
+  - type: Tag
+    tags:
+    - PaddyMech
+  - type: Battery
+    maxCharge: 240
+    startingCharge: 240
 
 - type: entity
   id: WeaponMechCombatFiredartLaser
@@ -101,17 +107,20 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_firedart
   - type: Gun
-    fireRate: 2.5
-    selectedMode: SemiAuto
+    fireRate: 2
+    selectedMode: FullAuto
     availableModes:
-      - SemiAuto
+      - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaser
-    fireCost: 20
+    fireCost: 14
   - type: Appearance
   - type: AmmoCounter
+  - type: Tag
+    tags:
+    - PaddyMech
 
 - type: entity
   id: WeaponMechCombatTeslaCannon
@@ -124,19 +133,19 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_wholegen
   - type: Gun
-    projectileSpeed: 10
-    projectileSpeedModified: 10
-    fireRate: 1
-    selectedMode: SemiAuto
+    projectileSpeed: 6
+    projectileSpeedModified: 8
+    fireRate: 0.8
+    selectedMode: FullAuto
     availableModes:
-      - SemiAuto
+      - FullAuto
     soundGunshot:
       path: /Audio/Effects/Lightning/lightningshock.ogg
       params:
         variation: 0.2
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: TeslaGunBullet
-    fireCost: 55
+    fireCost: 100
   - type: Appearance
   - type: AmmoCounter
 
@@ -151,17 +160,20 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_disabler
   - type: Gun
-    fireRate: 2
-    selectedMode: SemiAuto
+    fireRate: 1.75
+    selectedMode: FullAuto
     availableModes:
-      - SemiAuto
+      - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletDisablerSmgSpread
-    fireCost: 45
+    fireCost: 30
   - type: Appearance
   - type: AmmoCounter
+  - type: Tag
+    tags:
+    - PaddyMech
 
 - type: entity
   id: WeaponMechCombatTaser
@@ -180,11 +192,14 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: TaserBolt
     fireCost: 40
   - type: Appearance
   - type: AmmoCounter
+  - type: Tag
+    tags:
+    - PaddyMech
 
 - type: entity
   id: WeaponMechCombatShotgun
@@ -197,15 +212,15 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_scatter
   - type: Gun
-    fireRate: 1.45
+    fireRate: 1.3
     selectedMode: FullAuto
     availableModes:
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
-  - type: ProjectileBatteryAmmoProvider
-    proto: ShellShotgun
-    fireCost: 50
+  - type: BatteryAmmoProvider
+    proto: ShellShotgunMech
+    fireCost: 75
   - type: Appearance
   - type: AmmoCounter
 
@@ -220,14 +235,14 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_carbine
   - type: Gun
-    fireRate: 1.45
+    fireRate: 1.3
     selectedMode: FullAuto
     availableModes:
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
-  - type: ProjectileBatteryAmmoProvider
-    proto: ShellShotgunIncendiary
+  - type: BatteryAmmoProvider
+    proto: ShellShotgunMechIncendiary
     fireCost: 75
   - type: Appearance
   - type: AmmoCounter
@@ -247,14 +262,14 @@
     maxAngle: 10
     fireRate: 5
     shotsPerBurst: 3
-    burstCooldown: 0.6
+    burstCooldown: 0.75
     selectedMode: Burst
     availableModes:
       - Burst
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/garand/garand.ogg
-  - type: ProjectileBatteryAmmoProvider
-    proto: CartridgeHeavyRifleRFMJ #CartridgeLightRifleSP
+  - type: BatteryAmmoProvider
+    proto: CartridgeHeavyRifleRFMJMech #CartridgeLightRifleSP
     fireCost: 10
   - type: Appearance
   - type: AmmoCounter
@@ -279,7 +294,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: EmpPulse
     fireCost: 400
   - type: Appearance
@@ -303,7 +318,7 @@
     maxAngle: 10
     fireRate: 5
     shotsPerBurst: 3
-    burstCooldown: 0.6
+    burstCooldown: 0.75
     selectedMode: Burst
     availableModes:
       - Burst
@@ -311,11 +326,14 @@
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaserBeam
     fireCost: 20
   - type: Appearance
   - type: AmmoCounter
+  - type: Tag
+    tags:
+    - PaddyMech
 
 - type: entity
   id: WeaponMechCombatXray
@@ -328,17 +346,20 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_xray
   - type: Gun
-    fireRate: 1.25
-    selectedMode: SemiAuto
+    fireRate: 2
+    selectedMode: FullAuto
     availableModes:
-      - SemiAuto
+      - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeXrayBeam
-    fireCost: 60
+    fireCost: 50
   - type: Appearance
   - type: AmmoCounter
+  - type: Battery
+    maxCharge: 400
+    startingCharge: 400
 
 - type: entity
   id: WeaponMechCombatMissileRack8
@@ -365,7 +386,7 @@
       - Burst
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletWeakRocket
     fireCost: 100
   - type: Appearance
@@ -385,20 +406,42 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_missilerack_six
   - type: Gun
-    fireRate: 0.25
+    fireRate: 0.75
+    projectileSpeed: 23
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
-  - type: ProjectileBatteryAmmoProvider
-    proto: GrenadeBlastContact # Sunrise-Edit
+  - type: BatteryAmmoProvider
+    proto: GrenadeBlast
     fireCost: 300
   - type: Appearance
   - type: AmmoCounter
   - type: Battery
     maxCharge: 1800
     startingCharge: 1800
+
+# Sunrise-start
+- type: entity
+  id: WeaponMechCombatMissileRack8Frag
+  name: BRM-8 Missile Rack
+  description: Tubes must be reloaded from the outside.
+  suffix: Mech Weapon, Gun, Combat, Missile
+  parent: WeaponMechCombatMissileRack6
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_missilerack
+  - type: Gun
+    fireRate: 0.75
+  - type: BatteryAmmoProvider
+    proto: CartridgeRocketFrag
+    fireCost: 200
+  - type: Battery
+    maxCharge: 1800
+    startingCharge: 1800
+# Sunrise-end
 
 - type: entity
   id: WeaponMechCombatFlashbangLauncher
@@ -419,8 +462,11 @@
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletGrenadeFlashBang # Sunrise-Edit
     fireCost: 60
   - type: Appearance
   - type: AmmoCounter
+  - type: Tag
+    tags:
+    - PaddyMech

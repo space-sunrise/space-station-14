@@ -52,3 +52,25 @@
     sprite: _Sunrise/Clothing/Shoes/cptshoes.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Shoes/cptshoes.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesBootsMajima
+  name: cool yakuza boots
+  description: very cool
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/majima.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/majima.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesBootsMettaton
+  name: cool yakuza boots
+  description: very cool
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/metaton.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/metaton.rsi

@@ -1,6 +1,6 @@
 - type: entity
   name: BaseWeaponLauncher
-  parent: BaseItem
+  parent: [ BaseItem, BaseGunWieldable ]
   id: BaseWeaponLauncher
   description: A rooty tooty point and shooty.
   abstract: true
@@ -19,6 +19,14 @@
     containers:
       ballistic-ammo: !type:Container
         ents: []
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 25 # Slower than a bullet, same speed as our old projectile limit.
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
   # Sunrise start
   - type: EmitSoundOnPickup
     sound:
@@ -41,7 +49,7 @@
 
 - type: entity
   name: china lake
-  parent: [BaseWeaponLauncher, BaseGunWieldable, BaseSyndicateContraband]
+  parent: [BaseWeaponLauncher, BaseSyndicateContraband]
   id: WeaponLauncherChinaLake
   description: PLOOP.
   components:
@@ -62,19 +70,12 @@
   - type: AmmoCounter
   - type: Gun
     pump: true
-    fireRate: 1
-    selectedMode: SemiAuto
-    availableModes:
-      - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
-    projectileSpeed: 15 # Sunrise-Edit
   - type: BallisticAmmoProvider
     whitelist:
       tags:
         - Grenade
-    capacity: 3 # Sunrise-Edit
-    proto: GrenadeFragTimer
+    capacity: 3
+    proto: GrenadeFrag
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: GunRequiresWield
@@ -82,10 +83,10 @@
     price: 10000
 
 - type: entity
-  parent: [ BaseWeaponLauncher, BaseGunWieldable, BaseMajorContraband ]
+  parent: [ BaseWeaponLauncher, BaseMajorContraband ]
   id: WeaponLauncherHydra
   name: hydra
-  description: PLOOP... FSSSSSS
+  description: PLOOP... FSSSSSS...
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/hydra_launcher.rsi
@@ -100,13 +101,6 @@
   - type: Item
     size: Huge
   - type: AmmoCounter
-  - type: Gun
-    fireRate: 1
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
   - type: GunRequiresWield
   - type: ContainerContainer
     containers:
@@ -124,6 +118,14 @@
       path: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
+
+- type: entity
+  parent: [WeaponLauncherHydra]
+  id: WeaponLauncherHydraLethal
+  suffix: frag
+  components:
+  - type: RevolverAmmoProvider
+    proto: GrenadeFrag
 
 - type: entity
   name: RPG-7
@@ -204,12 +206,12 @@
       layers:
         - state: icon
           map: ["enum.GunVisualLayers.Base"]
-    - containers:
+    - type: ContainerContainer
+      containers:
         balistic-ammo: !type:Container
           ents: []
         ballistic-ammo: !type:Container
           ents: []
-      type: ContainerContainer
     - type: Clothing
       sprite: Objects/Weapons/Guns/Launchers/pirate_cannon.rsi
     - type: Gun
@@ -332,6 +334,7 @@
       soundGunshot: /Audio/Weapons/Guns/Gunshots/harpoon.ogg
       fireRate: 0.5
       clumsyProof: true
+      bigTrigger: true # Sunrise-Edit
     - type: BasicEntityAmmoProvider
       proto: GrapplingHook
       capacity: 1
@@ -352,6 +355,33 @@
             True: { state: base-unshaded }
             False: { state: base-unshaded-off }
     - type: PacifismAllowedGun
+
+- type: entity
+  parent: BaseItem
+  id: WeaponStickyHand
+  name: sticky hand
+  description: They're saying you're reaching. They're saying it's a stretch. You'll show them all, and you'll stick it to them.
+  components:
+  - type: AmmoCounter
+  - type: GrapplingGun
+    cycleSound: /Audio/Misc/woosh.ogg
+    ropeSprite:
+      sprite: Objects/Weapons/Guns/Launchers/sticky_hand.rsi
+      state: rope
+  - type: Gun
+    soundGunshot: /Audio/Misc/stickystretch.ogg
+    fireRate: 0.5
+    clumsyProof: true
+    soundEmpty: /Audio/Misc/boing.ogg
+  - type: BasicEntityAmmoProvider
+    proto: StickyHandPalm
+    capacity: 1
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Launchers/sticky_hand.rsi
+    state: base
+  - type: UseDelay
+    delay: 1.5
+  - type: PacifismAllowedGun
 
 # Admeme
 - type: entity
@@ -447,9 +477,6 @@
   description: It fires large meteors.
   components:
   - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-        - CartridgeRocket
     proto: MeteorMedium
 
 - type: entity
@@ -460,7 +487,4 @@
   description: It fires slow immovable rods.
   components:
   - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-        - CartridgeRocket
     proto: ImmovableRodSlow

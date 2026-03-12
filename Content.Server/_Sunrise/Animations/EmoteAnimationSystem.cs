@@ -1,4 +1,5 @@
-﻿using Content.Server.Chat.Systems;
+﻿using System.Reflection.Metadata;
+using Content.Server.Chat.Systems;
 using Content.Shared._Sunrise.Animations;
 using Content.Shared._Sunrise.Flip;
 using Content.Shared._Sunrise.Jump;
@@ -6,6 +7,7 @@ using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Emoting;
 using Content.Shared.Gravity;
 using Content.Shared.Standing;
@@ -30,20 +32,11 @@ public sealed class EmoteAnimationSystem : EntitySystem
     {
         SubscribeLocalEvent<EmoteAnimationComponent, ComponentGetState>(OnGetState);
         SubscribeLocalEvent<EmoteAnimationComponent, EmoteEvent>(OnEmote);
-        SubscribeLocalEvent<EmoteAnimationComponent, PlayEmoteMessage>(OnPlayEmote);
     }
 
-    private void OnPlayEmote(EntityUid uid, EmoteAnimationComponent component, PlayEmoteMessage args)
+    private void OnGetState(Entity<EmoteAnimationComponent> ent, ref ComponentGetState args)
     {
-        if (!_prototypeManager.TryIndex(args.ProtoId, out var proto))
-            return;
-
-        _chat.TryEmoteWithChat(uid, proto.ID);
-    }
-
-    private void OnGetState(EntityUid uid, EmoteAnimationComponent component, ref ComponentGetState args)
-    {
-        args.State = new EmoteAnimationComponent.EmoteAnimationComponentState(component.AnimationId);
+        args.State = new EmoteAnimationComponent.EmoteAnimationComponentState(ent.Comp.AnimationId);
     }
 
     private void OnEmote(EntityUid uid, EmoteAnimationComponent component, ref EmoteEvent args)
@@ -82,7 +75,7 @@ public sealed class EmoteAnimationSystem : EntitySystem
         if (emoteId == "FallOnNeck")
         {
             var damage = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Blunt"), 100);
-            _damageableSystem.TryChangeDamage(uid, damage, true, useVariance: false, useModifier: false);
+            _damageableSystem.ChangeDamage(uid, damage, true, ignoreVariance: true, ignoreGlobalModifiers: true);
         }
 
         component.AnimationId = emoteId;

@@ -20,10 +20,12 @@
     angleDecay: 45
     minAngle: 44
     maxAngle: 45
+    bigTrigger: true # Sunrise-Edit
     availableModes:
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+    projectileSpeed: 25
   - type: AmmoCounter
   - type: Appearance
   - type: GenericVisualizer

@@ -31,8 +31,8 @@
 
 # Shared between secfab and emagged autolathe
 #- type: latheRecipePack
-#  id: SecurityAmmoStatic
-#  recipes:
+  #  id: SecurityAmmoStatic
+  #  recipes:
   #- BoxLethalshot
   #- BoxShotgunSlug
   #- MagazineBoxLightRifle
@@ -49,9 +49,6 @@
   #- MagazinePistolSubMachineGunTopMountedEmpty
   #- MagazineRifle
   #- MagazineRifleEmpty
-  #- MagazineShotgun
-  #- MagazineShotgunEmpty
-  #- MagazineShotgunSlug
   #- SpeedLoaderMagnum
   #- SpeedLoaderMagnumEmpty
 
@@ -84,12 +81,23 @@
   - ShuttleGunFriendshipCircuitboard
   - ShuttleGunPerforatorCircuitboard
   - ShuttleGunSvalinnMachineGunCircuitboard
+  # Sunrise-Start
+  - ShuttleGunLongbowCircuitboard
+  - ShuttleGunVympelCircuitboard
+  - ShuttleGunSquallCircuitboard
+  - ShuttleGunQuadlingCircuitboard
+  - ShuttleGunBeamstormMachineGunCircuitboard
+  - ShuttleGunTeslaOrionCircuitboard
+  - ShuttleGunTeslaHyperionCircuitboard
+  # Sunrise-End
 
 - type: latheRecipePack
   parent:
   - ScienceExplosives # sec gets everything for modular grenade making that sci does
   id: SecurityExplosives
   recipes:
+  - CableDetStack1
+  - EmptyDetonator
   - ExplosivePayload
   - ShellBlastArtillery # Sunrise-Edit
   - ShellEMPArtillery # Sunrise-Edit
@@ -120,8 +128,8 @@
   - MagazinePistolSubMachineGunUranium
   - MagazineRifleIncendiary
   - MagazineRifleUranium
-  - MagazineShotgunBeanbag
-  - MagazineShotgunIncendiary
+  #- MagazineShotgunBeanbag # Sunrise-Edit
+  #- MagazineShotgunIncendiary # Sunrise-Edit
   - SpeedLoaderMagnumIncendiary
   - SpeedLoaderMagnumUranium
 

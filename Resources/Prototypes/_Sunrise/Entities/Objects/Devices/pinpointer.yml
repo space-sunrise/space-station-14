@@ -1,0 +1,112 @@
+﻿- type: entity
+  parent: PinpointerBase
+  name: freelance pinpointer
+  description: A handheld tracking device that leads to the direction of your shuttle.
+  id: PinpointerPirate
+  suffix: Pirate
+  components:
+  - type: Sprite
+    layers:
+    - state: pinpointer_thief
+      map: ["enum.PinpointerLayers.Base"]
+    - state: pinonnull
+      map: ["enum.PinpointerLayers.Screen"]
+      shader: unshaded
+      visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#3a3a3a"
+      - state: inhand-left-stripe
+        color: "#3a3a3a"
+      - state: inhand-left-top
+      right:
+      - state: inhand-right-base
+        color: "#3a3a3a"
+      - state: inhand-right-stripe
+        color: "#3a3a3a"
+      - state: inhand-right-top
+  - type: Icon
+    state: pinpointer_thief
+  - type: Pinpointer
+    component: AbductorDispencer
+    targetName: shuttle
+  - type: Clothing
+    quickEquip: true
+    slots:
+    - neck
+
+- type: entity
+  parent: PinpointerBase
+  name: pinpointer
+  description: A handheld tracking device that leads to the direction of something funny.
+  id: PinpointerSmugglerRevolutionaryStash
+  suffix: Revolutionary
+  components:
+  - type: Sprite
+    scale: 0.8,0.8
+    layers:
+    - state: pinpointer-crewprox
+      map: ["enum.PinpointerLayers.Base"]
+    - state: pinonnull
+      map: ["enum.PinpointerLayers.Screen"]
+      shader: unshaded
+      visible: false
+  - type: Item
+    size: Tiny
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#1e1c9a"
+      - state: inhand-left-stripe
+        color: "#1e1c9a"
+      - state: inhand-left-top
+      right:
+      - state: inhand-right-base
+        color: "#1e1c9a"
+      - state: inhand-right-stripe
+        color: "#1e1c9a"
+      - state: inhand-right-top
+  - type: Icon
+    state: pinpointer-crewprox
+  - type: Pinpointer
+    component: AbductorHumanObservationConsole # Спаси и сохрани
+    targetName: stash
+
+- type: entity
+  parent: PinpointerBase
+  name: contra pinpointer
+  description: A handheld tracking device that leads to the direction of contra stash.
+  id: PinpointerSmugglerStash
+  suffix: Admeme
+  components:
+  - type: Sprite
+    scale: 0.8,0.8
+    layers:
+    - state: pinpointer-crewprox
+      map: ["enum.PinpointerLayers.Base"]
+    - state: pinonnull
+      map: ["enum.PinpointerLayers.Screen"]
+      shader: unshaded
+      visible: false
+  - type: Item
+    size: Tiny
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#1e1c9a"
+      - state: inhand-left-stripe
+        color: "#1e1c9a"
+      - state: inhand-left-top
+      right:
+      - state: inhand-right-base
+        color: "#1e1c9a"
+      - state: inhand-right-stripe
+        color: "#1e1c9a"
+      - state: inhand-right-top
+  - type: Icon
+    state: pinpointer-crewprox
+  - type: Pinpointer
+    component: AnchoredStorageFilter # Спаси и сохрани
+    targetName: stash

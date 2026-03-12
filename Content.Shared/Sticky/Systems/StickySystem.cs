@@ -68,7 +68,7 @@ public sealed class StickySystem : EntitySystem
 
         // check whitelist and blacklist
         if (_whitelist.IsWhitelistFail(comp.Whitelist, target) ||
-            _whitelist.IsBlacklistPass(comp.Blacklist, target))
+            _whitelist.IsWhitelistPass(comp.Blacklist, target))
             return false;
 
         var attemptEv = new AttemptEntityStickEvent(target, user);
@@ -141,7 +141,8 @@ public sealed class StickySystem : EntitySystem
         }
 
         // start unsticking object
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, comp.UnstickDelay, new StickyDoAfterEvent(), uid, target: uid)
+        // Use the surface we are stuck to as the target for range/access checks; the sticky item itself is in a container and fails accessibility checks.
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, comp.UnstickDelay, new StickyDoAfterEvent(), uid, target: stuckTo) // Sunrise-Add
         {
             BreakOnMove = true,
             NeedHand = true,

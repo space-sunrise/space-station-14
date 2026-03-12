@@ -1,3 +1,31 @@
+
+- type: loadoutEffectGroup
+  id: MisterBlueShit
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBlueShield
+      time: 20h
+
+- type: loadoutEffectGroup
+  id: MisterBlueShit5
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBlueShield
+      time: 5h
+
+- type: loadoutEffectGroup
+  id: MisterBlueShit50
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBlueShield
+      time: 50h
+
 - type: loadout
   id: BlueShieldBackpack
   equipment:
@@ -39,11 +67,43 @@
     neck: ClothingBSMantle
 
 - type: loadout
-  id: AssaultBeltBS
-  equipment:
-    belt: ClothingBeltAssaultFilled
-
-- type: loadout
   id: BlueShieldWebbing
   equipment:
     belt: ClothingBeltBlueShieldWebbingFilled
+
+- type: loadout
+  id: BlueshieldACP14
+  inhand:
+  - ACP14Box
+
+- type: loadout
+  id: BlueshieldWT550
+  inhand:
+  - ClothingBackpackDuffelWeaponSubMachineGunWt550
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MisterBlueShit5
+
+- type: loadout
+  id: BlueshieldLecterMk2
+  inhand:
+  - ClothingBackpackDuffelWeaponRifleLecterFilled
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MisterBlueShit5
+
+- type: loadout
+  id: BlueshieldVP78
+  inhand:
+  - VP78Box
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MisterBlueShit
+
+- type: loadout
+  id: BlueshieldAsh12
+  inhand:
+  - ClothingBackpackDuffelWeaponRifleAsh12
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MisterBlueShit50

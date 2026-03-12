@@ -1,9 +1,9 @@
 - type: guideEntry
   id: Disease
   name: guide-entry-disease
-  text: "/ServerInfo/Guidebook/Antagonist/Disease.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/Antagonist/Disease.xml"
 
 - type: guideEntry
   id: Changelings
   name: guide-entry-changelings
-  text: "/ServerInfo/Guidebook/Antagonist/Changelings.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/Antagonist/Changelings.xml"

@@ -58,6 +58,7 @@
     - RequestModernization
     - RequestRequestToEstablishThreatLevel
     - SearchPermission
+    - SearchPermissionDepartment
     - Sentence
     - ShuttleRegistrationRequest
     - StatementHealth

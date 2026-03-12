@@ -12,5 +12,6 @@
   contrabandInventory:
     DrinkColaBottleFull: 2
     DrinkChangelingStingCan: 2
+    DrinkBeerCan: 2 #Sunrise-Edit
   emaggedInventory:
     DrinkNukieCan: 2

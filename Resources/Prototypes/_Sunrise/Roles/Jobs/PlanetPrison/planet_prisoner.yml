@@ -2,17 +2,18 @@
   id: PlanetPrisoner
   name: job-name-planet-prisoner
   description: job-description-planet-prisoner
-  playTimeTracker: JobPrisoner
+  playTimeTracker: JobPlanetPrisoner
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 36000 # 10 hrs
   startingGear: PlanetPrisonerGear
+  weight: 9
   alwaysUseSpawner: true
   canBeAntag: false
   icon: "JobIconPrisoner"
   overrideConsoleVisibility: false
   supervisors: job-supervisors-security
-  displayWeight: 0
+  displayWeight: 10
   special:
     - !type:AddImplantSpecial
       implants: [ TrackingImplant ]
@@ -24,7 +25,6 @@
   id: PlanetPrisonerGear
   equipment:
     shoes: ClothingShoesBootsPrisonerGrey
-    id: PlanetPrisonerPDA
     ears: ClothingHeadsetGrey
 
 - type: chameleonOutfit

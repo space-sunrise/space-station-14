@@ -29,7 +29,7 @@ public sealed class ShowMindShieldIconsSystem : EquipmentHudSystem<ShowMindShiel
         if (_standing.IsDown(uid)) // Sunrise-standing
             return;
 
-        if (component.IsEnabled && _prototype.TryIndex(component.MindShieldStatusIcon, out var fakeStatusIconPrototype))
+        if (component.IsEnabled && _prototype.Resolve(component.MindShieldStatusIcon, out var fakeStatusIconPrototype))
             ev.StatusIcons.Add(fakeStatusIconPrototype);
     }
 
@@ -41,7 +41,7 @@ public sealed class ShowMindShieldIconsSystem : EquipmentHudSystem<ShowMindShiel
         if (_standing.IsDown(uid)) // Sunrise-standing
             return;
 
-        if (_prototype.TryIndex(component.MindShieldStatusIcon, out var iconPrototype))
+        if (_prototype.Resolve(component.MindShieldStatusIcon, out var iconPrototype))
             ev.StatusIcons.Add(iconPrototype);
     }
 }

@@ -1,11 +1,8 @@
 using System.Globalization;
-using System.Linq;
 using Content.Server._Sunrise.Chat.Sanitization;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
-using Content.Server.Radio.Components;
-using Content.Server.VoiceMask;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -130,7 +127,7 @@ public sealed class RadioSystem : EntitySystem
         // Sunrise-End
 
         SpeechVerbPrototype speech;
-        if (evt.SpeechVerb != null && _prototype.TryIndex(evt.SpeechVerb, out var evntProto))
+        if (evt.SpeechVerb != null && _prototype.Resolve(evt.SpeechVerb, out var evntProto))
             speech = evntProto;
         else
             speech = _chat.GetSpeechVerb(messageSource, message);

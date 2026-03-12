@@ -169,7 +169,7 @@
   - type: PointLight
     enabled: false
     radius: 1.5
-    energy: 1.5
+    energy: 2.7
     color: white
     netsync: false
   # Sunrise-start
@@ -184,7 +184,7 @@
 
 - type: entity
   name: pen
-  parent: [BaseMeleeWeaponEnergy, VoiceLock]
+  parent: [BaseMeleeWeaponEnergy, SelectableLock]
   id: EnergyDagger
   suffix: E-Dagger
   description: 'A dark ink pen.'
@@ -223,7 +223,7 @@
     - type: Contraband
       severity: Syndicate
   - type: Sprite
-    sprite: Objects/Weapons/Melee/e_dagger.rsi
+    sprite: _Sunrise/Objects/Weapons/Melee/e_dagger.rsi # Sunrise-Edit
     layers:
     - state: e_sword
     - state: e_sword_blade
@@ -233,11 +233,11 @@
       map: [ "blade" ]
   - type: Item
     size: Tiny
-    sprite: Objects/Weapons/Melee/e_dagger.rsi
+    sprite: _Sunrise/Objects/Weapons/Melee/e_dagger.rsi # Sunrise-Edit
   - type: PointLight
     enabled: false
     radius: 1.5
-    energy: 1.5
+    energy: 2.7
     color: white
     netsync: false
   - type: MeleeWeapon
@@ -285,7 +285,7 @@
     state: e_dagger
   - type: SpawnItemsOnUse
     items:
-    - id: EnergyDaggerBiocode # Sunrise-Edit
+    - id: EnergyDagger
     sound:
       path: /Audio/Effects/unwrap.ogg
 

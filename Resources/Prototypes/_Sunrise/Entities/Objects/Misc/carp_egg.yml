@@ -1,0 +1,44 @@
+- type: entity
+  parent: FoodEggBase
+  id: MobCarpEgg
+  name: carp egg
+  description: A pulsing mass, waiting to hatch.
+  components:
+  - type: Appearance
+  - type: Sprite
+    layers:
+    - sprite: _Sunrise/Objects/Misc/egg_carp_queen.rsi
+      state: icon
+      map: [ base ]
+    - sprite: _Sunrise/Objects/Misc/egg_carp_queen.rsi
+      state: overlay-icon
+      map: [ overlay ]
+  - type: Item
+    sprite: _Sunrise/Objects/Misc/egg_carp_queen.rsi
+    size: Tiny
+  - type: PointLight
+    radius: 1.5
+    energy: 3
+    color: "#4faffb"
+  - type: CarpEgg
+    requiredVolume: 15
+    checkInterval: 3
+    hatchDelay: 5
+    maxWaitWithoutLiquid: 30
+    queenCheckRange: 3
+    friendSearchRange: 3
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: desecration
+      - !type:SpillBehavior
+        solution: food
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+
+

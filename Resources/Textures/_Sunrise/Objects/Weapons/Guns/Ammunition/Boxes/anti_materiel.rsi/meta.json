@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from vgstation at commit https://github.com/vgstation-coders/vgstation13/commit/ca674eff9d23e04357b7609ef7e07eadfc1a993f, modified by ps3moira (github)",
+  "copyright": "Taken from vgstation at commit https://github.com/vgstation-coders/vgstation13/commit/ca674eff9d23e04357b7609ef7e07eadfc1a993f, modified by ps3moira (github) modified again by KaiserMaus(github)",
   "size": {
     "x": 32,
     "y": 32
@@ -9,6 +9,18 @@
   "states": [
     {
       "name": "base"
+    },
+    {
+      "name": "emp"
+    },
+    {
+      "name": "ap"
+    },
+    {
+      "name": "frag"
+    },
+    {
+      "name": "blast"
     },
     {
       "name": "mag-1"

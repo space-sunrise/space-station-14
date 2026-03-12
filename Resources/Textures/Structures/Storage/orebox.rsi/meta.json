@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "tgstation at fb1012102257b7b0a08d861fd2b8ba963c416e93, cut into layers by mirrorcult",
+  "copyright": "tgstation at fb1012102257b7b0a08d861fd2b8ba963c416e93, cut into layers by mirrorcult, inhand sprites by KaiserMaus(Github)",
   "size": {
     "x": 32,
     "y": 32
@@ -12,6 +12,15 @@
     },
     {
       "name": "orebox-top"
+    },
+    {
+      "name": "inhand-left"
+    },
+    {
+      "name": "inhand-right"
+    },
+    {
+      "name": "equipped-BACKPACK"
     }
   ]
 }

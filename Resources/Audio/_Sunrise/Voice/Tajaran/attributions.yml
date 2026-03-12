@@ -1,0 +1,9 @@
+- files: ["tajaran_hisses.ogg"]
+  license: "Custom"
+  copyright: "taken from zvukipro.com and redacted @banumbas(github)"
+  source: https://zvukipro.com/jivotnie/1241-zvuki-pumy.html
+
+- files: ["tajaran_growl.ogg"]
+  license: "Custom"
+  copyright: "taken from zvukipro.com"
+  source: https://zvukipro.com/jivotnie/2307-zvuki-dalnevostochnogo-leoparda.html

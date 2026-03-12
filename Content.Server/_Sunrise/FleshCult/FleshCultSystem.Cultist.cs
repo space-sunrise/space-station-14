@@ -24,6 +24,7 @@ using Content.Shared.Popups;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
 using Content.Shared.Tag;
+using Content.Shared.Temperature.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
@@ -269,7 +270,7 @@ public sealed partial class FleshCultSystem
 
     private void OnColdTempImmunityMutation(EntityUid uid, FleshCultistComponent component, FleshCultistColdTempImmunityMutationEvent args)
     {
-        if (TryComp<TemperatureComponent>(uid, out var tempComponent))
+        if (TryComp<TemperatureDamageComponent>(uid, out var tempComponent))
             tempComponent.ColdDamageThreshold = 0;
     }
 

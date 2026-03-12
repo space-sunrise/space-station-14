@@ -17,12 +17,16 @@
     - Human
     - Moth
     - Reptilian
-    - Swine # Sunrise-Edit
-    - Felinid # Sunrise-Edit
-    - Vulpkanin # Sunrise-Edit
-    - Predator # Sunrise-Edit
-    - Tajaran # Sunrise-Edit
-    - Demon # Sunrise-Edit
+    - Vulpkanin
+    # Sunrise-Start
+    - Swine
+    - Felinid
+    - Predator
+    - Tajaran
+    - Demon
+    - Milira
+    - Resomi
+    # Sunrise-End
 
 - type: loadoutEffectGroup
   id: EffectSpeciesVox
@@ -80,12 +84,16 @@
     - Dwarf
     - Human
     - Reptilian
-    - Swine # Sunrise-Edit - Fix missing emergency kit for swine mime
-    - Felinid # Sunrise-Edit
-    - Vulpkanin # Sunrise-Edit
-    - Predator # Sunrise-Edit
-    - Tajaran # Sunrise-Edit
-    - Demon # Sunrise-Edit
+    - Vulpkanin
+    # Sunrise-Start
+    - Swine
+    - Felinid
+    - Predator
+    - Tajaran
+    - Demon
+    - Milira
+    - Resomi
+    # Sunrise-End
 
 - type: loadoutEffectGroup
   id: OxygenBreatherMimeMoth
@@ -196,6 +204,29 @@
   storage:
     back:
     - BoxSurvivalSyndicateNitrogen
+
+# Military / Double Extended
+- type: loadout
+  id: EmergencyOxygenMilitaryDouble
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreather
+  equipment:
+    pocket1: DoubleEmergencyOxygenTankFilled
+  storage:
+    back:
+    - BoxSurvivalMilitaryDouble
+
+- type: loadout
+  id: EmergencyNitrogenMilitaryDouble
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NitrogenBreather
+  equipment:
+    pocket1: DoubleEmergencyNitrogenTankFilled
+  storage:
+    back:
+    - BoxSurvivalMilitaryDoubleNitrogen
 
 # Pre-equipped species gear
 

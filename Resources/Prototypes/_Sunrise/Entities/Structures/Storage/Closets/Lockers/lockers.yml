@@ -1,3 +1,234 @@
+# region base GunSafe
+- type: entity
+  id: GunSafeSunrise
+  parent: GunSafe
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/Gunsafes/lethal.rsi
+    noRot: true
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: base
+    stateDoorOpen: open
+    stateDoorClosed: door
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+
+- type: entity
+  id: GunSafeBaseSecureSunrise
+  parent: GunSafeSunrise
+  suffix: Armory, Locked
+  components:
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: entity
+  id: GunSafeHandgunSunrise
+  parent: GunSafeSunrise
+  name: handgun safe
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/Gunsafes/small_lethal.rsi
+    noRot: true
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+
+- type: entity
+  id: GunSafeHandgunBaseSecureSunrise
+  parent: GunSafeHandgunSunrise
+  suffix: Armory, Locked
+  components:
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: entity
+  id: GunSafeNonlethalHandgunSunrise
+  parent: GunSafeSunrise
+  name: non-lethal handgun safe
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/Gunsafes/small_nonlethal.rsi
+    noRot: true
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.2"
+        density: 150
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  id: GunSafeNonlethalHandgunBaseSecureSunrise
+  parent: GunSafeNonlethalHandgunSunrise
+  suffix: Security, Locked
+  components:
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: GunSafeNonlethalSunrise
+  parent: GunSafeSunrise
+  name: non-lethal safe
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/Gunsafes/nonlethal.rsi
+    noRot: true
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+
+- type: entity
+  id: GunSafeNonlethalBaseSecureSunrise
+  parent: GunSafeNonlethalSunrise
+  suffix: Security, Locked
+  components:
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: GunSafeSyndicateSunrise
+  parent: GunSafeSunrise
+  name: syndicate gun safe
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/Gunsafes/syndicate.rsi
+    noRot: true
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+
+- type: entity
+  id: GunSafeSyndicateBaseSecureSunrise
+  parent: GunSafeSyndicateSunrise
+  suffix: Syndicate, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateAgent"]]
+
+- type: entity
+  id: GunSafeSuperweapon
+  parent: GunSafeSunrise
+  name: superweapon gun safe
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/Gunsafes/super.rsi
+    noRot: true
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.2"
+        density: 800
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  id: GunSafeSuperweaponBaseSecure
+  parent: GunSafeSuperweapon
+  suffix: Armory, Locked
+  components:
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: entity
+  id: GunSafeSuperweaponSecureGamma
+  description: Heavy reinforced safe delivered from NanoTrasen Smart Arms Division for field testing. Autounlocked at Gamma code.
+  parent: GunSafeSuperweapon
+  suffix: Gamma, Locked
+  components:
+  - type: AccessReader
+    access: [["CentralCommand"]]
+    alertAccesses:
+      gamma: GammaAlertAccesses
+  - type: Tag
+    tags:
+    - EmagImmune
+    - AccessBreakerImmune
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 900
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Anchorable
+    flags:
+    - Anchorable
+# region End
+
 - type: entity
   id: LockerBlueShield
   parent: LockerBaseSecure
@@ -61,15 +292,6 @@
     access: [["Security"]]
 
 - type: entity
-  parent: GunSafe
-  id: GunSafeIonRifle
-  name: ion rifle safe
-  components:
-  - type: StorageFill
-    contents:
-    - id: WeaponIONRifle
-
-- type: entity
   id: ClosetPatologoanatom
   name: patologoanatom's locker
   parent: LockerBaseSecure
@@ -106,20 +328,22 @@
   parent: ClosetPatologoanatom
   suffix: Filled
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingUniformJumpsuitMedicalDoctor
-    - id: HandheldHealthAnalyzer
-    - id: BoxForensicPad
-    - id: ClothingHeadsetMedical
-    - id: HeadSkeleton
-    - id: ClothingHeadHatPatologonatHat
-    - id: Scalpel
-    - id: ClothingHandsGlovesNitrile
-    - id: ClothingShoesColorBlack
-    - id: RubberStampPath
-    - id: ClothingOuterHospitalGown
-      amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitMedicalDoctor
+        - id: HandheldHealthAnalyzer
+        - id: BoxForensicPad
+        - id: ClothingHeadsetMedical
+        - id: HeadSkeleton
+        - id: ClothingHeadHatPatologonatHat
+        - id: Scalpel
+        - id: ClothingHandsGlovesNitrile
+        - id: ClothingShoesColorBlack
+        - id: RubberStampPath
+        - id: ClothingOuterHospitalGown
+          amount: 2
 
 - type: entity
   id: LockerMiningSpecialist
@@ -149,20 +373,64 @@
   name: mining specialist's equipment
   description: Nevermind the pickaxe.
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingOuterHardsuitSalvage
-    - id: ToolboxMechanicalFilledAllTools
-    - id: ClothingMaskGasExplorer
-    - id: AirTankFilled
-    - id: RadioHandheld
-    - id: OreBag
-    - id: Nanopaste
-    - id: WeaponProtoKineticAccelerator
-    - id: HandHeldMassScanner
-    - id: PKAUpgradeRange
-      prob: 0.1
-    - id: PKAUpgradeFireRate
-      prob: 0.1
-    - id: PKAUpgradeDamage
-      prob: 0.1
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitSalvage
+        - id: ToolboxMechanicalFilledAllTools
+        - id: ClothingMaskGasExplorer
+        - id: AirTankFilled
+        - id: RadioHandheld
+        - id: OreBag
+        - id: Nanopaste
+        - id: WeaponProtoKineticAccelerator
+        - id: HandHeldMassScanner
+        - id: EnergyPickaxe
+          prob: 0.2
+        - id: PKAUpgradeRange
+          prob: 0.15
+        - id: PKAUpgradeFireRate
+          prob: 0.15
+        - id: PKAUpgradeDamage
+          prob: 0.15
+
+# Representative
+- type: entity
+  id: LockerRepresentative
+  name: representative locker
+  parent: LockerBaseSecure
+  components:
+  - type: Appearance
+  - type: AccessReader
+    access: [["Ntrep"]]
+  - type: EntityStorageVisuals
+    stateBaseClosed: hop
+    stateDoorOpen: hop_open
+    stateDoorClosed: representative_door
+
+- type: entity
+  id: LockerRepresentativeEmpty
+  name: representative locker
+  parent: LockerBaseSecure
+  suffix: Empty
+  components:
+  - type: Appearance
+  - type: AccessReader
+    access: [["Ntrep"]]
+  - type: EntityStorageVisuals
+    stateBaseClosed: hop
+    stateDoorOpen: hop_open
+    stateDoorClosed: representative_door
+
+- type: entity
+  id: LockerRepresentativeFilled
+  parent: LockerRepresentative
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: HandheldFax
+

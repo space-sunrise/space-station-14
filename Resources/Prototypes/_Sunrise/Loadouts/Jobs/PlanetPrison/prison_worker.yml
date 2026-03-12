@@ -1,0 +1,66 @@
+# Head
+
+- type: loadout
+  id: PrisonWorkerCap
+  equipment:
+    head: ClothingHeadCapPrisonWorker
+
+- type: loadout
+  id: PrisonWorkerBeret
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonWorker
+      time: 25200 # 7 часов
+  equipment:
+    head: ClothingHeadHatBeretPrisonWorker
+
+- type: loadout
+  id: PrisonWorkerHat
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonWorker
+      time: 54000 # 15 часов
+  equipment:
+    head: ClothingHeadHatCapPrisonWorker
+
+# Рабочая униформа
+
+- type: loadout
+  id: PrisonWorkerJumpsuit
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonWorker
+
+- type: loadout
+  id: PrisonWorkerJumpskirt
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonWorker
+
+- type: loadout
+  id: PrisonWorkerJumpsuitVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonWorker
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonWorkerVeteran
+
+- type: loadout
+  id: PrisonWorkerJumpskirtVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonWorker
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonWorkerVeteran

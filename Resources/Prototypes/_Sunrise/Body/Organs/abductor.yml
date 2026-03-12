@@ -6,7 +6,6 @@
   - type: Sprite
     sprite: _Sunrise/Abductor/Mobs/Species/Abductor/organs.rsi
   - type: Organ
-  - type: Food
   - type: Extractable
     grindableSolutionName: organ
   - type: SolutionContainerManager
@@ -104,6 +103,11 @@
     layers:
       - state: lung-l
       - state: lung-r
+  - type: SolutionContainerManager
+    solutions:
+      Lung:
+        maxVol: 100
+        canReact: false
   - type: Lung
     alert: LowNitrogen
 

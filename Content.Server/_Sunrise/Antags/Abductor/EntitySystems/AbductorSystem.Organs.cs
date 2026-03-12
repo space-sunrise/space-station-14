@@ -22,6 +22,7 @@ using Content.Shared._Sunrise.VentCraw;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Starlight.Medical.Surgery.Events;
 using Content.Server.Objectives.Components;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Sunrise.Antags.Abductor;
 

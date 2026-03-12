@@ -1,0 +1,64 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Modified from existing sprites. by KaiserMaus (GitHub)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+        "name": "afolded"
+        },
+        {
+        "name": "aballoon",
+        "directions": 4
+        },
+        {
+        "name": "bfolded"
+        },
+        {
+        "name": "bballoon",
+        "directions": 4
+        },
+        {
+        "name": "cfolded"
+        },
+        {
+        "name": "cballoon",
+        "directions": 4
+        },
+        {
+        "name": "dfolded"
+        },
+        {
+        "name": "dballoon",
+        "directions": 4
+        },
+        {
+        "name": "jfolded"
+        },
+        {
+        "name": "jballoon",
+        "directions": 4
+        },
+        {
+        "name": "efolded"
+        },
+        {
+        "name": "eballoon",
+        "directions": 4
+        },
+        {
+        "name": "ofolded"
+        },
+        {
+        "name": "oballoon",
+        "directions": 4
+        },
+        {
+        "name": "fballoon",
+        "directions": 4
+        }
+]
+}

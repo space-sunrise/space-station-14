@@ -3,7 +3,7 @@
   id: CyberlimbRArmBishop
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -18,7 +18,7 @@
   id: CyberlimbLArmBishop
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -33,7 +33,7 @@
   id: CyberlimbRHandBishop
   bodyPart: RHand
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -48,7 +48,7 @@
   id: CyberlimbLHandBishop
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -63,7 +63,7 @@
   id: CyberlimbRLegBishop
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -78,7 +78,7 @@
   id: CyberlimbLLegBishop
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -93,7 +93,7 @@
   id: CyberlimbLFootBishop
   bodyPart: LFoot
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -108,7 +108,7 @@
   id: CyberlimbRFootBishop
   bodyPart: RFoot
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -123,7 +123,7 @@
   id: CyberlimbTorsoBishop
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -139,7 +139,7 @@
   id: CyberlimbRArmHephaestus
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -154,7 +154,7 @@
   id: CyberlimbLArmHephaestus
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -169,7 +169,7 @@
   id: CyberlimbRHandHephaestus
   bodyPart: RHand
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -184,7 +184,7 @@
   id: CyberlimbLHandHephaestus
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -199,7 +199,7 @@
   id: CyberlimbRLegHephaestus
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -214,7 +214,7 @@
   id: CyberlimbLLegHephaestus
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -229,7 +229,7 @@
   id: CyberlimbLFootHephaestus
   bodyPart: LFoot
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -244,7 +244,7 @@
   id: CyberlimbRFootHephaestus
   bodyPart: RFoot
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -259,7 +259,7 @@
   id: CyberlimbTorsoHephaestus
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -275,7 +275,7 @@
   id: CyberlimbRArmHephaestusTitan
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -290,7 +290,7 @@
   id: CyberlimbLArmHephaestusTitan
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -305,7 +305,7 @@
   id: CyberlimbRHandHephaestusTitan
   bodyPart: RHand
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -320,7 +320,7 @@
   id: CyberlimbLHandHephaestusTitan
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -335,7 +335,7 @@
   id: CyberlimbRLegHephaestusTitan
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -350,7 +350,7 @@
   id: CyberlimbLLegHephaestusTitan
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -365,7 +365,7 @@
   id: CyberlimbLFootHephaestusTitan
   bodyPart: LFoot
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -380,7 +380,7 @@
   id: CyberlimbRFootHephaestusTitan
   bodyPart: RFoot
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -395,7 +395,7 @@
   id: CyberlimbTorsoHephaestusTitan
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -411,7 +411,7 @@
   id: CyberlimbRArmMorpheus
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -426,7 +426,7 @@
   id: CyberlimbLArmMorpheus
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -441,7 +441,7 @@
   id: CyberlimbRHandMorpheus
   bodyPart: RHand
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -456,7 +456,7 @@
   id: CyberlimbLHandMorpheus
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -471,7 +471,7 @@
   id: CyberlimbRLegMorpheus
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -486,7 +486,7 @@
   id: CyberlimbLLegMorpheus
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -501,7 +501,7 @@
   id: CyberlimbLFootMorpheus
   bodyPart: LFoot
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -516,7 +516,7 @@
   id: CyberlimbRFootMorpheus
   bodyPart: RFoot
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -531,7 +531,7 @@
   id: CyberlimbTorsoMorpheus
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -548,7 +548,7 @@
   id: CyberlimbRArmWardtakahashi
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -563,7 +563,7 @@
   id: CyberlimbLArmWardtakahashi
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -578,7 +578,7 @@
   id: CyberlimbRHandWardtakahashi
   bodyPart: RHand
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -593,7 +593,7 @@
   id: CyberlimbLHandWardtakahashi
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -608,7 +608,7 @@
   id: CyberlimbRLegWardtakahashi
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -623,7 +623,7 @@
   id: CyberlimbLLegWardtakahashi
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -638,7 +638,7 @@
   id: CyberlimbLFootWardtakahashi
   bodyPart: LFoot
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -653,7 +653,7 @@
   id: CyberlimbRFootWardtakahashi
   bodyPart: RFoot
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -668,7 +668,7 @@
   id: CyberlimbTorsoWardtakahashiMale
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sexRestriction: Male
   sponsorOnly: false
   coloring:
@@ -684,7 +684,7 @@
   id: CyberlimbTorsoWardtakahashiFemale
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sexRestriction: Female
   sponsorOnly: false
   coloring:
@@ -701,7 +701,7 @@
   id: CyberlimbRArmZenghu
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -716,7 +716,7 @@
   id: CyberlimbLArmZenghu
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -731,7 +731,7 @@
   id: CyberlimbRHandZenghu
   bodyPart: RHand
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -746,7 +746,7 @@
   id: CyberlimbLHandZenghu
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -761,7 +761,7 @@
   id: CyberlimbRLegZenghu
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -776,7 +776,7 @@
   id: CyberlimbLLegZenghu
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -791,7 +791,7 @@
   id: CyberlimbLFootZenghu
   bodyPart: LFoot
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -806,7 +806,7 @@
   id: CyberlimbRFootZenghu
   bodyPart: RFoot
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -821,7 +821,7 @@
   id: CyberlimbTorsoZenghu
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -837,7 +837,7 @@
   id: CyberlimbRArmNanotrasen
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -852,7 +852,7 @@
   id: CyberlimbLArmNanotrasen
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -867,7 +867,7 @@
   id: CyberlimbRHandNanotrasen
   bodyPart: RHand
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -882,7 +882,7 @@
   id: CyberlimbLHandNanotrasen
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -897,7 +897,7 @@
   id: CyberlimbRLegNanotrasen
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -912,7 +912,7 @@
   id: CyberlimbLLegNanotrasen
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -927,7 +927,7 @@
   id: CyberlimbLFootNanotrasen
   bodyPart: LFoot
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -942,7 +942,7 @@
   id: CyberlimbRFootNanotrasen
   bodyPart: RFoot
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -957,7 +957,7 @@
   id: CyberlimbTorsoNanotrasen
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -973,7 +973,7 @@
   id: CyberlimbRArmXion
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -988,7 +988,7 @@
   id: CyberlimbLArmXion
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -1003,7 +1003,7 @@
   id: CyberlimbRHandXion
   bodyPart: RHand
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -1018,7 +1018,7 @@
   id: CyberlimbLHandXion
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -1033,7 +1033,7 @@
   id: CyberlimbRLegXion
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -1048,7 +1048,7 @@
   id: CyberlimbLLegXion
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -1063,7 +1063,7 @@
   id: CyberlimbLFootXion
   bodyPart: LFoot
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -1078,7 +1078,7 @@
   id: CyberlimbRFootXion
   bodyPart: RFoot
   markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:
@@ -1093,7 +1093,7 @@
   id: CyberlimbTorsoXion
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  speciesRestriction: [ Human, Dwarf, Arachnid, Demon, Felinid, Swine ] # Sunrise-edit
   sponsorOnly: false
   coloring:
     default:

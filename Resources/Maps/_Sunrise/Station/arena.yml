@@ -64,12 +64,10 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
-    - type: PhysicsMap
     - type: Broadphase
     - type: OccluderTree
     - type: LoadedMap
     - type: GridTree
-    - type: MovedGrids
   - uid: 6747
     components:
     - type: MetaData
@@ -101891,19 +101889,6 @@ entities:
     - pos: 36.311977,45.306423
       parent: 6747
       type: Transform
-- proto: HandheldCrewMonitor
-  entities:
-  - uid: 3734
-    components:
-    - pos: 17.30297,-21.424147
-      parent: 6747
-      type: Transform
-  - uid: 3735
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 26.529438,-34.388866
-      parent: 6747
-      type: Transform
 - proto: HandheldGPSBasic
   entities:
   - uid: 5738
@@ -123946,13 +123931,6 @@ entities:
   - uid: 2423
     components:
     - pos: 10.555807,-29.268282
-      parent: 6747
-      type: Transform
-- proto: RubberStampQm
-  entities:
-  - uid: 16855
-    components:
-    - pos: 58.403893,15.714694
       parent: 6747
       type: Transform
 - proto: SalvageCanisterSpawner

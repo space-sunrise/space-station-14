@@ -90,3 +90,9 @@
 
 - type: Tag
   id: BrigmedicBeltEquip
+
+- type: Tag
+  id: TiderAnvilMats
+
+- type: Tag
+  id: TiderAnvilParts

@@ -1,34 +1,37 @@
 using System.Numerics;
 using System.Threading;
-using Content.Server.Administration.Components;
+using System.Numerics;
+using System.Threading;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Electrocution;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.GhostKick;
-using Content.Server.Medical;
 using Content.Server.Nutrition.EntitySystems;
+using Content.Server.Physics.Components;
 using Content.Server.Pointing.Components;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
+using Content.Server.Roles;
 using Content.Server.Speech.Components;
 using Content.Server.Storage.EntitySystems;
 using Content.Server.Tabletop;
 using Content.Server.Tabletop.Components;
+using Content.Shared.Actions;
 using Content.Server.Terminator.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Components;
+using Content.Shared.Administration.Systems;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
-using Content.Shared.Clumsy;
 using Content.Shared.Clothing.Components;
+using Content.Shared.Clumsy;
 using Content.Shared.Cluwne;
 using Content.Shared.Coordinates;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
@@ -37,6 +40,7 @@ using Content.Shared.Gravity;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
+using Content.Shared.Medical;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -44,7 +48,10 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
+using Content.Shared.Polymorph;
 using Content.Shared.Popups;
+using Content.Shared.Silicons.Laws;
+using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Slippery;
 using Content.Shared.Storage.Components;
 using Content.Shared.Tabletop.Components;
@@ -55,14 +62,21 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Spawners;
 using Robust.Shared.Utility;
 using Timer = Robust.Shared.Timing.Timer;
+using Content.Shared.Damage;
 
 namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminVerbSystem
 {
+    private readonly ProtoId<PolymorphPrototype> LizardSmite = "AdminLizardSmite";
+    private readonly ProtoId<PolymorphPrototype> VulpkaninSmite = "AdminVulpSmite";
+
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
@@ -80,6 +94,7 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly RoleSystem _role = default!;
     [Dependency] private readonly TabletopSystem _tabletopSystem = default!;
     [Dependency] private readonly TerminatorSystem _terminator = default!;
     [Dependency] private readonly VomitSystem _vomitSystem = default!;
@@ -92,6 +107,12 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly IAdminLogManager _adminLogManager = default!;
 
     private static int _lastTestedEventIndex = 0;
+
+    private readonly EntProtoId _actionViewLawsProtoId = "ActionViewLaws";
+    private readonly ProtoId<SiliconLawsetPrototype> _crewsimovLawset = "Crewsimov";
+
+    private readonly EntProtoId _siliconMindRole = "MindRoleSiliconBrain";
+    private const string SiliconLawBoundUserInterface = "SiliconLawBoundUserInterface";
 
     // All smite verbs have names so invokeverb works.
     private void AddSmiteVerbs(GetVerbsEvent<Verb> args)
@@ -139,7 +160,6 @@ public sealed partial class AdminVerbSystem
             {
                 _sharedGodmodeSystem.EnableGodmode(args.Target); // So they don't suffocate.
                 EnsureComp<TabletopDraggableComponent>(args.Target);
-                RemComp<PhysicsComponent>(args.Target); // So they can be dragged around.
                 var xform = Transform(args.Target);
                 _popupSystem.PopupEntity(Loc.GetString("admin-smite-chess-self"),
                     args.Target,
@@ -242,11 +262,11 @@ public sealed partial class AdminVerbSystem
                                 MobState.Dead,
                                 out var deadThreshold))
                             return; // whelp.
-                        damageToDeal = deadThreshold.Value.Int() - (int) damageable.TotalDamage;
+                        damageToDeal = deadThreshold.Value.Int() - (int)damageable.TotalDamage;
                     }
                     else
                     {
-                        damageToDeal = criticalThreshold.Value.Int() - (int) damageable.TotalDamage;
+                        damageToDeal = criticalThreshold.Value.Int() - (int)damageable.TotalDamage;
                     }
 
                     if (damageToDeal <= 0)
@@ -476,7 +496,7 @@ public sealed partial class AdminVerbSystem
             {
                 Text = pinballName,
                 Category = VerbCategory.Smite,
-                Icon = new SpriteSpecifier.Rsi(new ("/Textures/Objects/Fun/Balls/basketball.rsi"), "icon"),
+                Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Fun/Balls/basketball.rsi"), "icon"),
                 Act = () =>
                 {
                     var xform = Transform(args.Target);
@@ -621,12 +641,31 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Misc/killsign.rsi"), "icon"),
                 Act = () =>
                 {
-                    EnsureComp<KillSignComponent>(args.Target);
+                    EnsureComp<KillSignComponent>(args.Target, out var comp);
+                    comp.HideFromOwner = false; // We set it to false anyway, in case the hidden smite was used beforehand.
+                    Dirty(args.Target, comp);
                 },
                 Impact = LogImpact.Extreme,
                 Message = string.Join(": ", killSignName, Loc.GetString("admin-smite-kill-sign-description"))
             };
             args.Verbs.Add(killSign);
+
+            var hiddenKillSignName = Loc.GetString("admin-smite-kill-sign-hidden-name").ToLowerInvariant();
+            Verb hiddenKillSign = new()
+            {
+                Text = hiddenKillSignName,
+                Category = VerbCategory.Smite,
+                Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Misc/killsign.rsi"), "icon-hidden"),
+                Act = () =>
+                {
+                    EnsureComp<KillSignComponent>(args.Target, out var comp);
+                    comp.HideFromOwner = true;
+                    Dirty(args.Target, comp);
+                },
+                Impact = LogImpact.Extreme,
+                Message = string.Join(": ", hiddenKillSignName, Loc.GetString("admin-smite-kill-sign-hidden-description"))
+            };
+            args.Verbs.Add(hiddenKillSign);
 
             var cluwneName = Loc.GetString("admin-smite-cluwne-name").ToLowerInvariant();
             Verb cluwne = new()
@@ -720,7 +759,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = instrumentationName,
             Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ("/Textures/Objects/Fun/Instruments/h_synthesizer.rsi"), "supersynth"),
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Fun/Instruments/h_synthesizer.rsi"), "supersynth"),
             Act = () =>
             {
                 _polymorphSystem.PolymorphEntity(args.Target, "AdminInstrumentSmite");
@@ -758,15 +797,30 @@ public sealed partial class AdminVerbSystem
         {
             Text = reptilianName,
             Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ("/Textures/Objects/Fun/Plushies/lizard.rsi"), "icon"),
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Fun/Plushies/lizard.rsi"), "icon"),
             Act = () =>
             {
-                _polymorphSystem.PolymorphEntity(args.Target, "AdminLizardSmite");
+                _polymorphSystem.PolymorphEntity(args.Target, LizardSmite);
             },
             Impact = LogImpact.Extreme,
             Message = string.Join(": ", reptilianName, Loc.GetString("admin-smite-reptilian-species-swap-description"))
         };
         args.Verbs.Add(reptilian);
+
+        var vulpName = Loc.GetString("admin-smite-vulpkanin-species-swap-name").ToLowerInvariant();
+        Verb vulp = new()
+        {
+            Text = vulpName,
+            Category = VerbCategory.Smite,
+            Icon = new SpriteSpecifier.Rsi(new ("/Textures/Objects/Fun/Balls/tennisball.rsi"), "icon"),
+            Act = () =>
+            {
+                _polymorphSystem.PolymorphEntity(args.Target, VulpkaninSmite);
+            },
+            Impact = LogImpact.Extreme,
+            Message = string.Join(": ", vulpName, Loc.GetString("admin-smite-vulpkanin-species-swap-description"))
+        };
+        args.Verbs.Add(vulp);
 
         var lockerName = Loc.GetString("admin-smite-locker-stuff-name").ToLowerInvariant();
         Verb locker = new()
@@ -1018,42 +1072,94 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(crawler);
 
-        Verb terminate = new()
+        var siliconName = Loc.GetString("admin-smite-silicon-laws-bound-name").ToLowerInvariant();
+        Verb silicon = new()
         {
-            Text = "admin-smite-terminate-name",
+            Text = siliconName,
             Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ("Mobs/Species/Terminator/parts.rsi"), "skull_icon"),
+            Icon = new SpriteSpecifier.Rsi(new("Interface/Actions/actions_borg.rsi"), "state-laws"),
             Act = () =>
             {
-                if (!TryComp<MindContainerComponent>(args.Target, out var mindContainer) || mindContainer.Mind == null)
-                    return;
+                var userInterfaceComp = EnsureComp<UserInterfaceComponent>(args.Target);
+                _uiSystem.SetUi((args.Target, userInterfaceComp), SiliconLawsUiKey.Key, new InterfaceData(SiliconLawBoundUserInterface));
 
-                var coords = Transform(args.Target).Coordinates;
-                var mindId = mindContainer.Mind.Value;
-                _terminator.CreateSpawner(coords, mindId);
+                if (!HasComp<SiliconLawBoundComponent>(args.Target))
+                {
+                    EnsureComp<SiliconLawBoundComponent>(args.Target);
+                    _actions.AddAction(args.Target, _actionViewLawsProtoId);
+                }
 
-                _popupSystem.PopupEntity(Loc.GetString("admin-smite-terminate-prompt"), args.Target,
+                EnsureComp<SiliconLawProviderComponent>(args.Target);
+                _siliconLawSystem.SetLaws(_siliconLawSystem.GetLawset(_crewsimovLawset).Laws, args.Target);
+
+                if (_mindSystem.TryGetMind(args.Target, out var mindId, out _))
+                    _role.MindAddRole(mindId, _siliconMindRole);
+
+                _popupSystem.PopupEntity(Loc.GetString("admin-smite-silicon-laws-bound-self"), args.Target,
                     args.Target, PopupType.LargeCaution);
             },
             Impact = LogImpact.Extreme,
-            Message = Loc.GetString("admin-smite-terminate-description")
+            Message = string.Join(": ", siliconName, Loc.GetString("admin-smite-silicon-laws-bound-description"))
         };
-        args.Verbs.Add(terminate);
+        args.Verbs.Add(silicon);
 
-        Verb randomDeath = new()
+        var homingRodName = Loc.GetString("admin-smite-homing-rod-name").ToLowerInvariant();
+        Verb homingRod = new()
         {
-            Text = "admin-smite-random-death-name",
+            Text = homingRodName,
             Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/die.svg.192dpi.png")),
+            Icon = new SpriteSpecifier.Rsi(new("Objects/Specific/Security/target.rsi"), "target_s"),
             Act = () =>
             {
-                RandomDeath(args.Target);
+                var speed = 25f; // It don't miss brother.
+                var distance = 350f;
+                HomingLaunchSequence(args.Target, "ImmovableRodKeepTiles", distance, speed); // todo: swap the proto for an EntityTable GetSpawns once rod rule rework
             },
             Impact = LogImpact.Extreme,
-            Message = Loc.GetString("admin-smite-random-death-description")
+            Message = string.Join(": ", homingRodName, Loc.GetString("admin-smite-homing-rod-description"))
         };
-        args.Verbs.Add(randomDeath);
+        args.Verbs.Add(homingRod);
 
+        var homingRodSlowName = Loc.GetString("admin-smite-homing-rod-slow-name").ToLowerInvariant();
+        Verb homingRodSlow = new()
+        {
+            Text = homingRodSlowName,
+            Category = VerbCategory.Smite,
+            Icon = new SpriteSpecifier.Rsi(new("Objects/Specific/Security/target.rsi"), "target_c"),
+            Act = () =>
+            {
+                var speed = 5f; // slightly faster than default sprint speed 4.5
+                if (TryComp<MovementSpeedModifierComponent>(args.Target, out var movement))
+                    speed = movement.CurrentSprintSpeed + 0.001f;// run
+                var distance = 200f; // its kinda slow so were just gonna cheat a bit.
+                HomingLaunchSequence(args.Target, "ImmovableRodKeepTiles", distance, speed);
+            },
+            Impact = LogImpact.Extreme,
+            Message = string.Join(": ", homingRodSlowName, Loc.GetString("admin-smite-homing-rod-slow-description"))
+        };
+        args.Verbs.Add(homingRodSlow);
+    }
+
+    public void HomingLaunchSequence(EntityUid target, EntProtoId proto, float distance, float speed)
+    {
+        // ToDo: Reuse some spawning code from whereever the rod rule ends up.
+        // I would do it now but theres a massive rod rewrite, and I don't wanna poke it for this.
+        // find reasonable spawn location (use gamerule and find rod?) but respect map not on grid etc etc
+
+        var offset = new Random(target.Id).NextAngle().RotateVec(new Vector2(distance, 0));
+        var spawnCoords = _transformSystem.GetMapCoordinates(target).Offset(offset);
+        var rod = Spawn(proto, spawnCoords);
+        // Here we abuse the ChasingWalkComp by making it skip targetting logic and dialling its frequency up
+        EnsureComp<ChasingWalkComponent>(rod, out var chasingComp);
+        chasingComp.NextChangeVectorTime = TimeSpan.MaxValue; // we just want it to never change
+        chasingComp.ChasingEntity = target;
+        chasingComp.ImpulseInterval = .1f; // skrrt skrrrrrrt skrrrt
+        chasingComp.RotateWithImpulse = true;
+        chasingComp.MaxSpeed = speed;
+        chasingComp.Speed = speed; // tell me lies, tell me sweet little lies.
+
+        if (TryComp<TimedDespawnComponent>(rod, out var despawn))
+            despawn.Lifetime = offset.Length() / speed * 3; // exists thrice as long as it takes to get to you.
     }
 
     public void RandomDeath(EntityUid target)
@@ -1093,7 +1199,7 @@ public sealed partial class AdminVerbSystem
                 { "Radiation", GetDamageToKill(target) }
             }
         };
-        _damageable.SetDamage(target, Comp<DamageableComponent>(target), damageSpecifier);
+        _damageable.SetDamage(target, damageSpecifier);
     }
 
     private void Scorched(EntityUid target)
@@ -1118,7 +1224,7 @@ public sealed partial class AdminVerbSystem
                         { "Heat", GetDamageToKill(target) - 50 }
                     }
                 };
-                _damageable.SetDamage(target, Comp<DamageableComponent>(target), damageSpecifier);
+                _damageable.SetDamage(target, damageSpecifier);
             });
         }
     }
@@ -1146,7 +1252,7 @@ public sealed partial class AdminVerbSystem
                 { "Toxin", GetDamageToKill(target) }
             }
         };
-        _damageable.SetDamage(target, Comp<DamageableComponent>(target), damageSpecifier);
+        _damageable.SetDamage(target, damageSpecifier);
     }
 
     private void BluespaceAway(EntityUid target)
@@ -1182,6 +1288,6 @@ public sealed partial class AdminVerbSystem
             }
         };
 
-        _damageable.SetDamage(target, Comp<DamageableComponent>(target), damageSpecifier);
+        _damageable.SetDamage(target, damageSpecifier);
     }
 }

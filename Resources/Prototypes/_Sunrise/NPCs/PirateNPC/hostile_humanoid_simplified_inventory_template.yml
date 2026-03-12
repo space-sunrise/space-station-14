@@ -1,0 +1,60 @@
+- type: inventoryTemplate
+  id: hostilehumanoidsimplified
+  slots:
+    - name: pocket1
+      slotTexture: pocket
+      fullTextureName: template_small
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 3
+      uiWindowPos: 0,3
+      strippingWindowPos: 0,0
+      displayName: Pocket 1
+
+    - name: pocket2
+      slotTexture: pocket
+      fullTextureName: template_small
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 3
+      uiWindowPos: 2,3
+      strippingWindowPos: 1,0
+      displayName: Pocket 2
+
+    - name: belt
+      slotTexture: belt
+      fullTextureName: template_small
+      slotFlags: BELT
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 3,1
+      strippingWindowPos: 1,1
+      displayName: Belt
+
+    - name: back
+      slotTexture: back
+      fullTextureName: template_small
+      slotFlags: BACK
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 3,0
+      strippingWindowPos: 0,2
+      displayName: Back
+
+# "Not strippable", "hidden"
+
+    - name: gloves
+      stripTime: 999999
+      slotTexture: gloves
+      slotFlags: GLOVES
+      uiWindowPos: 3,0
+      strippingWindowPos: 0,1
+      displayName: Gloves
+
+    - name: shoes
+      slotTexture: shoes
+      slotFlags: FEET
+      stripTime: 999999
+      uiWindowPos: 3,0
+      strippingWindowPos: 0,1
+      displayName: Shoes

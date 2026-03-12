@@ -14,6 +14,12 @@
       "name": "drozd"
     },
     {
+      "name": "m52"
+    },
+    {
+      "name": "ik60"
+    },
+    {
       "name": "adv-mop"
     },
     {
@@ -21,9 +27,6 @@
     },
     {
       "name": "ams42"
-    },
-    {
-      "name": "ar18"
     },
     {
       "name": "lr30"
@@ -137,6 +140,9 @@
       "name": "flash"
     },
     {
+      "name": "cycler"
+    },
+    {
       "name": "flare_box"
     },
     {
@@ -185,7 +191,10 @@
       "name": "lnt620"
     },
     {
-      "name": "m28"
+      "name": "m492"
+    },
+    {
+      "name": "m492cburn"
     },
     {
       "name": "mag_br64"
@@ -398,12 +407,6 @@
       "name": "wt550"
     },
     {
-      "name": "xm1014"
-    },
-    {
-      "name": "zauer"
-    },
-    {
       "name": "box_40"
     },
     {
@@ -411,6 +414,27 @@
     },
     {
       "name": "box_40_sp"
+    },
+    {
+      "name": "skm24"
+    },
+    {
+      "name": "skm28"
+    },
+    {
+      "name": "skm28nano"
+    },
+    {
+      "name": "skm24nano"
+    },
+    {
+      "name": "342fmj"
+    },
+    {
+      "name": "342ap"
+    },
+    {
+      "name": "342incendiary"
     }
   ]
 }

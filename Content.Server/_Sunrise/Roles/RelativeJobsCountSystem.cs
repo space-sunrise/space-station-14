@@ -116,6 +116,10 @@ public sealed class RelativeJobsCountSystem : EntitySystem
             return;
         }
 
+        // Если TotalMaxCount равен -1 (без ограничений), не вычитаем из него
+        if (station.Comp.TotalMaxCount[settings.TargetJob] == -1)
+            return;
+
         station.Comp.TotalMaxCount[settings.TargetJob] -= value;
     }
 

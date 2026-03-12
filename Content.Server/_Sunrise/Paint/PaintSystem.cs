@@ -94,7 +94,7 @@ public sealed class PaintSystem : SharedPaintSystem
         if (args.Target is not { Valid: true } target)
             return;
 
-        if (!_openable.IsOpen(entity))
+        if (_openable.IsClosed(entity))
         {
             _popup.PopupEntity(Loc.GetString("paint-closed", ("used", args.Used)), args.User, args.User, PopupType.Medium);
             return;

@@ -30,7 +30,12 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
 
-    private static readonly string[] _bloodReagents = { "DiseaseBloodFirst", "DiseaseBloodSecond", "DiseaseBloodThird" };
+    private static readonly List<string> _bloodReagents = new()
+    {
+        "DiseaseBloodFirst",
+        "DiseaseBloodSecond",
+        "DiseaseBloodThird"
+    };
 
     [ValidatePrototypeId<EntityPrototype>] private const string DiseaseShopId = "ActionDiseaseShop";
 
@@ -87,7 +92,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
                 _sharedCharges.SetCharges((actionId.Value, limitCharges), charges);
             }
         }
-        component.NewBloodReagent = _random.Pick(_bloodReagents);
+        component.NewBloodReagent.Add(_random.Pick(_bloodReagents));
         component.Symptoms.Add("Headache", new SymptomData(1, 4));
     }
 
@@ -118,7 +123,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         infoText.AppendLine("├─ " + Loc.GetString("disease-info-infected-count") + ": " + component.Infected.Count);
         infoText.Append("└─ " + Loc.GetString("disease-info-total-infected") + ": " + component.SickOfAllTime);
 
-        _popup.PopupEntity(infoText.ToString(), uid, PopupType.Large);
+        _popup.PopupEntity(infoText.ToString(), uid, uid, PopupType.Large);
     }
 
 

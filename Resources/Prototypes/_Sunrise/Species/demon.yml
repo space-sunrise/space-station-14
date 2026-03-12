@@ -1,4 +1,4 @@
-- type: species
+﻿- type: species
   id: Demon
   name: species-name-demon
   roundStart: true
@@ -26,7 +26,7 @@
     Chest: MobDemonTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
-    Tail: MobDemonTail
+    Tail: MobHumanoidAnyMarking
     Eyes: MobHumanoidEyes
     LArm: MobDemonLArm
     RArm: MobDemonRArm
@@ -36,6 +36,7 @@
     RLeg: MobDemonRLeg
     LFoot: MobDemonLFoot
     RFoot: MobDemonRFoot
+    Back: MobHumanoidAnyMarking
 
 - type: bodyType
   id: DemonSlim
@@ -50,7 +51,7 @@
     Chest: MobDemonSlimTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
-    Tail: MobDemonTail
+    Tail: MobHumanoidAnyMarking
     Eyes: MobHumanoidEyes
     LArm: MobDemonSlimLArm
     RArm: MobDemonSlimRArm
@@ -60,6 +61,7 @@
     RLeg: MobDemonSlimRLeg
     LFoot: MobDemonSlimLFoot
     RFoot: MobDemonSlimRFoot
+    Back: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobDemonMarkingLimits
@@ -81,7 +83,8 @@
       required: false
     Tail:
       points: 1
-      required: false
+      required: true
+      defaultMarkings: [ DemonTailDefault ]
     Snout:
       points: 1
       required: false
@@ -90,6 +93,9 @@
       required: false
     Arms:
       points: 2
+      required: false
+    Back:
+      points: 1
       required: false
 
 - type: humanoidBaseSprite
@@ -175,12 +181,6 @@
   baseSprite:
     sprite: _Sunrise/Mobs/Species/Demon/parts.rsi
     state: r_foot
-
-- type: humanoidBaseSprite
-  id: MobDemonTail
-  baseSprite:
-    sprite: _Sunrise/Mobs/Species/Demon/parts.rsi
-    state: tail
 
 - type: humanoidBaseSprite
   id: MobDemonSlimHead

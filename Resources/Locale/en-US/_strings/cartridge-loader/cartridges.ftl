@@ -6,6 +6,8 @@ nano-task-program-name = NanoTask
 news-read-program-name = Station news
 
 crew-manifest-program-name = Crew manifest
+messenger-program-name = RobustChat
+photo-program-name = FlashSnap
 crew-manifest-cartridge-loading = Loading ...
 
 net-probe-program-name = NetProbe
@@ -95,6 +97,8 @@ wanted-list-status-label = [color=darkgray]status:[/color] {$status ->
         [detained] [color=#b18644]detained[/color]
         [paroled] [color=green]paroled[/color]
         [discharged] [color=green]discharged[/color]
+        [hostile] [color=darkred]hostile[/color]
+        [eliminated] [color=gray]eliminated[/color]
         *[other] none
     }
 

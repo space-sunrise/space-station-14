@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "license": null,
+  "copyright": "Terraria Calamity Mode",
+  "size": {
+    "x": 100,
+    "y": 118
+  },
+  "states": [
+   {
+      "name": "draedon_animated",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    }
+  ]
+}

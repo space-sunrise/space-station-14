@@ -1,0 +1,134 @@
+- type: constructionGraph
+  id: SunriseDemonSteak
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: demon steak
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: demon steak
+    entity: FoodMeatDemonCooked
+
+- type: constructionGraph
+  id: SunriseFelinidSteak
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: felinid steak
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: felinid steak
+    entity: FoodMeatFelinidCooked
+
+- type: constructionGraph
+  id: SunriseMiliraSteak
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: milira steak
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: milira steak
+    entity: FoodMeatMiliraCooked
+
+- type: constructionGraph
+  id: SunriseNianSteak
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: nian steak
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: nian steak
+    entity: FoodMeatNianCooked
+
+- type: constructionGraph
+  id: SunriseResomiSteak
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: resomi steak
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: resomi steak
+    entity: FoodMeatResomiCooked
+
+- type: constructionGraph
+  id: SunriseSwineSteak
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: swine steak
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: swine steak
+    entity: FoodMeatSwineCooked
+
+- type: constructionGraph
+  id: SunriseTajaranSteak
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: tajaran steak
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: tajaran steak
+    entity: FoodMeatTajaranCooked
+
+- type: constructionGraph
+  id: SunriseUnathSteak
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: unath steak
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: unath steak
+    entity: FoodMeatUnathCooked
+
+- type: constructionGraph
+  id: SunriseVulpkaninSteak
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: vulpkanin steak
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: vulpkanin steak
+    entity: FoodMeatVulpkaninCooked

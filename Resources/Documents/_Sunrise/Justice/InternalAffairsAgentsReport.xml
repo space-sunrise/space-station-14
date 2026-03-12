@@ -1,0 +1,22 @@
+<Document>
+[head=2][color=#8a2db5][bold]Отчёт о внутреннем расследовании[/bold][/color][/head]
+[color=#8a2db5][bold]{corpString}[/bold][/color][mono] / ЮР-КОД[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#8a2db5][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#8a2db5][bold]Отчёт[/bold][/color]
+
+Я, (ФИО), как Агент Внутренних Дел, сообщаю, что в ходе внутренней проверки, запрошенной (ФИО), в должности (ДОЛЖНОСТЬ), по причине (ПРИЧИНА ПРОВЕРКИ), были выявлены следующие нарушения:
+
+Также хочу сообщить о следующем:
+
+[color=#666666][italic]Место для печатей[/italic][/color]
+
+
+</Document>

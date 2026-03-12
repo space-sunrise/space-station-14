@@ -39,8 +39,8 @@ namespace Content.Server.Holiday
         private IHolidayGreet _greet = new DefaultHolidayGreet();
 
         // Sunrise-Start
-        [DataField("greetColor")]
-        private Color? _color;
+        [DataField]
+        public Color? Color;
         // Sunrise-End
 
         [DataField("celebrate")]
@@ -55,13 +55,6 @@ namespace Content.Server.Holiday
         {
             return _greet.Greet(this);
         }
-
-        // Sunrise-Start
-        public Color? GreetColor()
-        {
-            return _color;
-        }
-        // Sunrise-End
 
         /// <summary>
         ///     Called before the round starts to set up any festive shenanigans.

@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "license": "CLA",
+    "copyright": "Icon created by github:ladm202, Inhands by banumbas(discord)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon"
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4
+        }
+    ]
+}

@@ -11,8 +11,7 @@ public sealed partial class ObjectiveUnlockCondition : ListingCondition
 {
     public override bool Condition(ListingConditionArgs args)
     {
-        var minds = args.EntityManager.System<SharedMindSystem>();
-        if (!minds.TryGetMind(args.Buyer, out _, out var mind))
+        if (!args.EntityManager.TryGetComponent(args.Buyer, out MindComponent? mind))
             return false;
 
         var unlocker = args.EntityManager.System<StoreUnlockerSystem>();

@@ -1,0 +1,66 @@
+# Head
+
+- type: loadout
+  id: PrisonScientistCap
+  equipment:
+    head: ClothingHeadCapPrisonScientist
+
+- type: loadout
+  id: PrisonScientistBeret
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonScientist
+      time: 25200 # 7 часов
+  equipment:
+    head: ClothingHeadHatBeretPrisonScientist
+
+- type: loadout
+  id: PrisonScientistHat
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonScientist
+      time: 54000 # 15 часов
+  equipment:
+    head: ClothingHeadHatCapPrisonScientist
+
+# Рабочая униформа
+
+- type: loadout
+  id: PrisonScientistJumpsuit
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonScientist
+
+- type: loadout
+  id: PrisonScientistJumpskirt
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonScientist
+
+- type: loadout
+  id: PrisonScientistJumpsuitVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonScientist
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonScientistVeteran
+
+- type: loadout
+  id: PrisonScientistJumpskirtVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonScientist
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonScientistVeteran

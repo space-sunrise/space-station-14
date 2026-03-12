@@ -1,4 +1,12 @@
 ent-BaseStructureFlatpack = плоский набор для базовой конструкции
     .desc = Плоский набор, используемый для постройки чего-либо.
-ent-SupermatterFlatpack = плоский набор Суперматерии
+ent-SupermatterFlatpackAnchored = плоский набор Суперматерии
+    .suffix = Закрепленный
     .desc = Плоский набор, используемый для постройки кристалла Суперматерии.
+ent-SupermatterFlatpack = упаковка Суперматерии
+    .desc = Универсально-сборная упаковка, используемый для постройки кристалла Суперматерии.
+ent-ResearchAndDevelopmentServerFlatpack = упаковка сервера РнД
+    .desc = Упаковка для сборки сервера исследований.
+ent-ResearchAndDevelopmentComputerFlatpack = упаковка консоли РнД
+    .desc = Упаковка для сборки исследовательского компьютера.
+

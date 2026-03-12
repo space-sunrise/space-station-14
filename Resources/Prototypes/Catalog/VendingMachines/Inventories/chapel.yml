@@ -31,7 +31,11 @@
     ClothingHeadWhiteVeil: 1
     ClothingHeadBlackVeil: 1
     RedFlowers: 3
-    BlueFlowers: 3 
+    BlueFlowers: 3
+    ClothingUniformSadSkirt: 2
+    ClothingUniformWeddingDressMagnificent: 1
+    ClothingUniformWeddingDressBelt: 1
+    ClothingUniformWeddingDressSplit: 1
     # Sunrise-End
   contrabandInventory:
     FoodBakedBunHotX: 2

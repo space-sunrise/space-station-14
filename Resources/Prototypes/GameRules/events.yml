@@ -167,6 +167,10 @@
   - type: BureaucraticErrorRule
     ignoredJobs:
     - StationAi
+    - ResearchAssistant
+    - MedicalIntern
+    - SecurityCadet
+    - TechnicalAssistant
 
 - type: entity
   id: ClericalError
@@ -196,11 +200,17 @@
   parent: BaseGameRule
   id: DragonSpawn
   components:
+  # Sunrise-start
+  - type: GameRule
+    delay:
+      min: 900
+      max: 900
+  # Sunrise-end
   - type: StationEvent
     weight: 6.5
     earliestStart: 40
     reoccurrenceDelay: 20
-    minimumPlayers: 50 #Sunrise-edit
+    minimumPlayers: 60 #Sunrise-edit
     duration: null
   - type: SpaceSpawnRule
     spawnDistance: 0
@@ -227,6 +237,12 @@
   parent: BaseGameRule
   id: NinjaSpawn
   components:
+  # Sunrise-start
+  - type: GameRule
+    delay:
+      min: 60
+      max: 600
+  # Sunrise-end
   - type: StationEvent
     weight: 6
     duration: null
@@ -340,7 +356,7 @@
     duration: 1
     earliestStart: 30
     reoccurrenceDelay: 60
-    minimumPlayers: 10
+    minimumPlayers: 30
   - type: AntagSelection
     agentName: wizard-round-end-name
     definitions:
@@ -546,6 +562,7 @@
     minimumPlayers: 40
     weight: 0 # Sunrise-edit: Нахуя оно блядь вообще надо
     duration: 1
+    occursDuringRoundEnd: false
   - type: ZombieRule
   - type: AntagSelection
     definitions:
@@ -825,7 +842,6 @@
       max: 1
       pickPlayer: false
 
-#Sunrise-start
 - type: entity
   parent: BaseGameRule
   id: DerelictSyndicateAssaultCyborgSpawn
@@ -846,67 +862,3 @@
       min: 1
       max: 1
       pickPlayer: false
-
-- type: entity
-  parent: BaseGameRule
-  id: DerelictSyndicateReaperCyborgSpawn
-  components:
-  - type: StationEvent
-    weight: 1
-    earliestStart: 25
-    reoccurrenceDelay: 20
-    minimumPlayers: 15
-    duration: null
-  - type: SpaceSpawnRule
-    spawnDistance: 0
-  - type: AntagSpawner
-    prototype: PlayerBorgSyndicateReaperDerelictGhostRoleSunrise
-  - type: AntagSelection
-    definitions:
-    - spawnerPrototype: SpawnPointGhostDerelictSyndicateReaperCyborg
-      min: 1
-      max: 1
-      pickPlayer: false
-
-- type: entity
-  parent: BaseGameRule
-  id: DerelictSyndicateSaboteurCyborgSpawn
-  components:
-  - type: StationEvent
-    weight: 1
-    earliestStart: 25
-    reoccurrenceDelay: 20
-    minimumPlayers: 15
-    duration: null
-  - type: SpaceSpawnRule
-    spawnDistance: 0
-  - type: AntagSpawner
-    prototype: PlayerBorgSyndicateSaboteurDerelictGhostRoleSunrise
-  - type: AntagSelection
-    definitions:
-    - spawnerPrototype: SpawnPointGhostDerelictSyndicateSaboteurCyborg
-      min: 1
-      max: 1
-      pickPlayer: false
-
-- type: entity
-  parent: BaseGameRule
-  id: DerelictSyndicateMedicalCyborgSpawn
-  components:
-  - type: StationEvent
-    weight: 1
-    earliestStart: 25
-    reoccurrenceDelay: 20
-    minimumPlayers: 15
-    duration: null
-  - type: SpaceSpawnRule
-    spawnDistance: 0
-  - type: AntagSpawner
-    prototype: PlayerBorgSyndicateMedicalDerelictGhostRoleSunrise
-  - type: AntagSelection
-    definitions:
-    - spawnerPrototype: SpawnPointGhostDerelictSyndicateMedicalCyborg
-      min: 1
-      max: 1
-      pickPlayer: false
-#Sunrise-End

@@ -18,3 +18,7 @@ ent-ClothingNeckVitezstviPin = Vitezstvi pin
     .desc = The pin of corporation Vitezstvi.
 ent-ClothingNeckReedIndustriesPin = reed industries pin
     .desc = The pin of corporation Reed Industries.
+ent-ClothingNeckPlanetPrisonCellblockPin = cellblock pin
+    .desc = The pin of the forgotten cellblock.
+ent-ClothingNeckPlanetPrisonLockdownPin = lockdown pin
+    .desc = The pin of the lifelong Lockdown.

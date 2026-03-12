@@ -1,10 +1,11 @@
 - type: entity
   parent: BaseAction
   id: ActionLickingWounds
+  name: Licking wounds
+  description: You will begin to lick the wounds, and stop the bleeding a little bit, while the essence must necessarily be undressed.
   categories: [ HideSpawnMenu ]
   components:
     - type: Action
-      temporary: true
       useDelay: 6
       icon:
         sprite: /Textures/_Sunrise/Actions/felionoid.rsi

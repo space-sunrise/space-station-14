@@ -247,6 +247,14 @@
       red: RedAlertAccesses
       blue: BlueAlertAccessesHOS
       gamma: GammaAlertAccesses
+
+- type: entity
+  parent: LockableButton
+  id: LockableButtonNukeOps
+  suffix: NukeOps
+  components:
+  - type: AccessReader
+    access: [["NuclearOperative"]]
     # Sunrise-end
 
 - type: entity

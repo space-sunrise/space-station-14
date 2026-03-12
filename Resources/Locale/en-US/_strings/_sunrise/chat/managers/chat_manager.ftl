@@ -3,16 +3,9 @@ chat-speech-verb-felinid-2 = "мяукает"
 chat-speech-verb-felinid-3 = "мяукает"
 chat-speech-verb-felinid-4 = "мурлычет"
 chat-speech-verb-name-felinid = "мяуканье"
-chat-speech-verb-vulpkanin-1 = "рычит"
-chat-speech-verb-vulpkanin-2 = "лает"
-chat-speech-verb-vulpkanin-3 = "рычит"
-chat-speech-verb-vulpkanin-4 = "лает"
-chat-speech-verb-vulpkanin-5 = "пищит"
-chat-speech-verb-name-vulpkanin = "рычание"
 chat-speech-verb-name-swine = "хрюканье"
 chat-speech-verb-swine-1 = "визжит"
 chat-speech-verb-swine-2 = "хрюкает"
-
 chat-speech-verb-name-resomi = Resomi
 chat-speech-verb-resomi-1 = squawks
 chat-speech-verb-resomi-2 = chirps

@@ -1,5 +1,5 @@
 ﻿- type: entity
-  parent: [ClothingOuterBase, BaseChameleon]
+  parent: [ClothingOuterBase, AllowSuitStorageClothingGasTanks, BaseChameleon]
   id: ClothingOuterChameleon
   name: vest
   description: A thick vest with a rubbery, water-resistant shell.
@@ -24,9 +24,3 @@
           Slash: 0.95
           Heat: 0.90
       showArmorOnExamine: false
-  # Sunrise-Start
-    - type: Biocode
-      factions:
-      - Syndicate
-      - Thief
-  # Sunrise-End

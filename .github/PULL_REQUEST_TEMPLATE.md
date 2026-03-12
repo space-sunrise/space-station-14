@@ -1,4 +1,5 @@
-<!-- Пожалуйста прочитайте эту статью перед тем как выложить PR, чтобы избежать лишних правок в процессе осмотра: https://docs.spacestation14.io/en/getting-started/pr-guideline -->
+<!-- Guidelines: https://docs.spacestation14.io/en/getting-started/pr-guideline -->
+
 <!-- Текст в стрелочках является комментариями - они не будут видны в вашем PR. -->
 
 ## Кратное описание

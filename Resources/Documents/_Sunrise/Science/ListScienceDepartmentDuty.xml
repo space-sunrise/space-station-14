@@ -1,0 +1,39 @@
+<Document>
+[head=3][color=#4f2086][bold]Список дежурства научно-исследовательского отдела[/bold][/color][/head]
+[color=#4f2086][bold]{corpString}[/bold][/color][mono] / НИО[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#4f2086][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#4f2086][bold]Содержание[/bold][/color]
+
+[bold]Аномалистика[/bold]
+[mono]
+1) (ФИО)
+2) (ФИО)
+[/mono]
+Дополнительно: (ФИО, ФИО)
+
+[bold]Ксеноархеология[/bold]
+[mono]
+1) (ФИО)
+2) (ФИО)
+[/mono]
+Дополнительно: (ФИО, ФИО)
+
+[bold]Запросы станции[/bold]
+[mono]
+1) (ФИО)
+2) (ФИО)
+[/mono]
+Дополнительно: (ФИО, ФИО)
+
+[color=#666666][italic]Место для печатей[/italic][/color]
+
+
+</Document>

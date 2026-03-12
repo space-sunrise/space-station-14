@@ -1,4 +1,5 @@
 using Content.Server.Radio.EntitySystems;
+using Content.Server._Sunrise.Messenger;
 using Content.Shared.Radio;
 using Content.Shared.Salvage;
 using Robust.Server.GameObjects;
@@ -45,6 +46,7 @@ namespace Content.Server.Salvage
         [Dependency] private readonly ShuttleConsoleSystem _shuttleConsoles = default!;
         [Dependency] private readonly StationSystem _station = default!;
         [Dependency] private readonly UserInterfaceSystem _ui = default!;
+        [Dependency] private readonly MessengerServerSystem _messenger = default!;
 
         private EntityQuery<MapGridComponent> _gridQuery;
         private EntityQuery<TransformComponent> _xformQuery;
@@ -64,8 +66,14 @@ namespace Content.Server.Salvage
         private void Report(EntityUid source, string channelName, string messageKey, params (string, object)[] args)
         {
             var message = args.Length == 0 ? Loc.GetString(messageKey) : Loc.GetString(messageKey, args);
-            var channel = _prototypeManager.Index<RadioChannelPrototype>(channelName);
-            _radioSystem.SendRadioMessage(source, message, channel, source);
+            // var channel = _prototypeManager.Index<RadioChannelPrototype>(channelName);
+            // _radioSystem.SendRadioMessage(source, message, channel, source);
+
+            if (_messenger.GetServerEntity(_station.GetOwningStation(source)) is var (server, _) &&
+                _messenger.GetGroupIdByRadioChannel(channelName) is { } groupId)
+            {
+                _messenger.SendSystemMessageToGroup(server, groupId, message);
+            }
         }
 
         public override void Update(float frameTime)

@@ -1,0 +1,22 @@
+<Document>
+[head=2][color=#193e7b][bold]Отчёт о работе сотрудника[/bold][/color][/head]
+[color=#193e7b][bold]{corpString}[/bold][/color][mono] / КОМ[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#193e7b][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#193e7b][bold]Отчёт[/bold][/color]
+
+Я, (ФИО), в должности (ДОЛЖНОСТЬ), в ходе исполнения своих обязанностей выполнил положенный объём работ.
+Прошу принять результат работ Главой отдела (наименование отдела).
+Произведенные работы:
+
+[color=#666666][italic]Место для печатей[/italic][/color]
+
+
+</Document>

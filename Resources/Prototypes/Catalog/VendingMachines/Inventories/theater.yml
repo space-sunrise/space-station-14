@@ -17,16 +17,24 @@
     ClothingHeadHatPwig: 2
     ClothingOuterRobesJudge: 2
     ClothingOuterPoncho: 2
-    ClothingOuterCoatMansport: 2  #sunrise-edit
-    ClothingOuterCoatJilldress: 2 #sunrise-edit
-    ClothingOuterKigurumiPanda: 4 #sunrise-edit
-    ClothingFairyWings: 2 #sunrise-edit
-    ClothingLosyashWings: 2 #sunrise-edit
-    ClothingDemonWings : 2 #sunrise-edit
-    ClothingArchangelWings: 2 #sunrise-edit
-    ClothingTechWings : 2 #sunrise-edit
-    ClothingVoidWings : 2 #sunrise-edit
-    ClothingNormalWings : 2 #sunrise-edit
+    # Sunrise - Start
+    ClothingOuterCoatMansport: 2
+    ClothingOuterCoatJilldress: 2
+    ClothingOuterKigurumiPanda: 4
+    ClothingFairyWings: 2
+    ClothingLosyashWings: 2
+    ClothingDemonWings : 2
+    ClothingArchangelWings: 2
+    ClothingTechWings : 2
+    ClothingVoidWings : 2
+    ClothingNormalWings : 2
+    ClothingUniformPencilSkirt : 4
+    ClothingUniformMajimaTishka : 3
+    ClothingUniformMetatonTishka : 3
+    ClothingShoesBootsMettaton : 3
+    ClothingShoesBootsMajima : 3
+    ClothingUniformJumpskirtQipao: 2
+    # Sunrise - End
     ClothingHeadHatSantahat: 2
     ClothingOuterSanta: 2
     ClothingHeadHatSkub: 2
@@ -72,6 +80,7 @@
     ClothingShoesBling: 1
     ClothingShoesBootsCowboyFancy: 1
     ClothingOuterDogi: 1
+    ClothingOuterSuitCarp: 1
     ClothingHeadHelmetDogi: 1
     ClothingMaskDogi: 1
     UmbrellaEntity: 1

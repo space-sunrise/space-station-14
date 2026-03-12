@@ -1,2 +1,10 @@
-ent-CartridgeAntiMateriel = патрон (.60 антиматериальный)
+ent-CartridgeAntiMateriel = патрон (15мм антиматериальный)
+    .desc = { ent-BaseCartridge.desc }
+ent-CartridgeAntiMaterielPenetrator = патрон (15мм бронебойный)
+    .desc = { ent-BaseCartridge.desc }
+ent-CartridgeAntiMaterielBlast = патрон (15мм разрывной)
+    .desc = { ent-BaseCartridge.desc }
+ent-CartridgeAntiMaterielFrag = патрон (15мм осколочный)
+    .desc = { ent-BaseCartridge.desc }
+ent-CartridgeAntiMaterielEmp = патрон (15мм ЭМИ)
     .desc = { ent-BaseCartridge.desc }

@@ -72,6 +72,10 @@
         type: StoreBoundUserInterface
   - type: Visibility
     layer: 2 #ghost vis layer
+  - type: ActionGrant
+    actions:
+    - ActionRevenantShop
+    - ActionRevenantDrain # Sunrise
   - type: Store
     categories:
     - RevenantAbilities

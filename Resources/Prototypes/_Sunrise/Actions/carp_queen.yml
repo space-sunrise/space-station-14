@@ -1,0 +1,91 @@
+- type: entity
+  parent: BaseAction
+  id: ActionCarpQueenSummon
+  name: carp-queen-action-summon
+  description: carp-queen-action-summon-desc
+  components:
+  - type: Action
+    useDelay: 3
+    icon:
+      sprite: _Sunrise/Interface/Actions/actions_carp_queen.rsi
+      state: carpQueenEgg
+  - type: InstantAction
+    event: !type:CarpQueenSummonActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCarpQueenOrderStay
+  name: carp-queen-action-stay
+  description: carp-queen-action-stay-desc
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: _Sunrise/Interface/Actions/actions_carp_queen.rsi
+      state: stayOff
+    iconOn:
+      sprite: _Sunrise/Interface/Actions/actions_carp_queen.rsi
+      state: stay
+    priority: 5
+  - type: InstantAction
+    event: !type:CarpQueenOrderActionEvent
+      type: Stay
+
+- type: entity
+  parent: BaseAction
+  id: ActionCarpQueenOrderFollow
+  name: carp-queen-action-follow
+  description: carp-queen-action-follow-desc
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: _Sunrise/Interface/Actions/actions_carp_queen.rsi
+      state: followOff
+    iconOn:
+      sprite: _Sunrise/Interface/Actions/actions_carp_queen.rsi
+      state: follow
+    priority: 6
+  - type: InstantAction
+    event: !type:CarpQueenOrderActionEvent
+      type: Follow
+
+- type: entity
+  parent: BaseAction
+  id: ActionCarpQueenOrderKill
+  name: carp-queen-action-kill
+  description: carp-queen-action-kill-desc
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: _Sunrise/Interface/Actions/actions_carp_queen.rsi
+      state: attackOff
+    iconOn:
+      sprite: _Sunrise/Interface/Actions/actions_carp_queen.rsi
+      state: attack
+    priority: 7
+  - type: InstantAction
+    event: !type:CarpQueenOrderActionEvent
+      type: Kill
+
+- type: entity
+  parent: BaseAction
+  id: ActionCarpQueenOrderLoose
+  name: carp-queen-action-loose
+  description: carp-queen-action-loose-desc
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: _Sunrise/Interface/Actions/actions_carp_queen.rsi
+      state: looseOff
+    iconOn:
+      sprite: _Sunrise/Interface/Actions/actions_carp_queen.rsi
+      state: loose
+    priority: 8
+  - type: InstantAction
+    event: !type:CarpQueenOrderActionEvent
+      type: Loose
+
+

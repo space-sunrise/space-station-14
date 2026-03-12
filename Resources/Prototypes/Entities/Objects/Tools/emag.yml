@@ -7,10 +7,10 @@
   components:
   - type: Emag
   - type: Sprite
-    sprite: Objects/Tools/emag.rsi
+    sprite: _Sunrise/Objects/Tools/emag.rsi # Sunrise-Edit
     state: icon
   - type: Item
-    sprite: Objects/Tools/emag.rsi
+    sprite: _Sunrise/Objects/Tools/emag.rsi # Sunrise-Edit
     storedRotation: -90
 
 - type: entity

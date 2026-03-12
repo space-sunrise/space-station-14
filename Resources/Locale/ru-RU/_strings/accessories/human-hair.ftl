@@ -196,3 +196,4 @@ marking-HumanHairVeryshortovereyealternate = Очень короткая (Чер
 marking-HumanHairVlongfringe = Очень короткая (Чёлка)
 marking-HumanHairVolaju = Воладзю
 marking-HumanHairWisp = Пряди
+marking-HumanHairCatTail = Хвостик (Кошачий)

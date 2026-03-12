@@ -1,11 +1,12 @@
 ﻿using Content.Server.Inventory;
-using Content.Server.Radio.Components;
 using Content.Server.Radio.EntitySystems;
+using Content.Server.Station.Systems;
 using Content.Server.StationRecords.Systems;
-using Content.Shared.Access;
+using Content.Server._Sunrise.Messenger;
 using Content.Shared.Inventory;
 using Content.Shared.Radio;
 using Content.Shared.Roles;
+using Content.Shared.Radio.Components;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.StationRecords;
@@ -23,6 +24,8 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
     [Dependency] private readonly ServerInventorySystem _inventorySystem = default!;
     [Dependency] private readonly RadioSystem _radioSystem = default!;
     [Dependency] private readonly StationRecordsSystem _record = default!;
+    [Dependency] private readonly MessengerServerSystem _messenger = default!;
+    [Dependency] private readonly StationSystem _station = default!;
 
     protected override void SelectBorgModule(Entity<BorgSwitchableTypeComponent> ent, ProtoId<BorgTypePrototype> borgType)
     {
@@ -68,7 +71,7 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
         }
 
         // Configure special components
-        if (Prototypes.TryIndex(ent.Comp.SelectedBorgType, out var previousPrototype))
+        if (Prototypes.Resolve(ent.Comp.SelectedBorgType, out var previousPrototype))
         {
             if (previousPrototype.AddComponents is { } removeComponents)
                 EntityManager.RemoveComponents(ent, removeComponents);
@@ -130,8 +133,14 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
 
     private void Report(EntityUid source, string channelName, string message)
     {
-        var channel = Prototypes.Index<RadioChannelPrototype>(channelName);
-        _radioSystem.SendRadioMessage(source, message, channel, source);
+        // var channel = Prototypes.Index<RadioChannelPrototype>(channelName);
+        // _radioSystem.SendRadioMessage(source, message, channel, source);
+
+        if (_messenger.GetServerEntity(_station.GetOwningStation(source)) is var (server, _) &&
+            _messenger.GetGroupIdByRadioChannel(channelName) is { } groupId)
+        {
+            _messenger.SendSystemMessageToGroup(server, groupId, message);
+        }
     }
     // Sunrise-End
 }

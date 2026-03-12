@@ -34,8 +34,8 @@
   - type: Appearance
 
 # Magazines
-# - type: entity # Sunrise-edtit #Moved to rifle.yml
-#   id: MagazineLightRifleBoxSP
+# - type: entity # Sunrise-edtit #Moved to _sunrise/xxx/rifle.yml
+#   id: MagazineRifleBoxSP
 #   name: "L6 SAW magazine box (.30 rifle SP)"
 #   parent: BaseMagazineLightRifle
 #   description: Box containing a 100-round belt of linked .30 rifle rounds, used by light machine guns such as the L6. Intended to hold general-purpose kinetic ammunition.
@@ -69,94 +69,6 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: MagazineLightRifleSP
-  name: "magazine (.30 rifle SP)"
-  parent: BaseMagazineLightRifle
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleSP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: stripe
-      color: "#575EF5"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#575EF5"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#575EF5"
-
-
-- type: entity
-  id: MagazineLightRifleHP
-  name: "magazine (.30 rifle HP)"
-  parent: BaseMagazineLightRifle
-  description: Curved 30-round double stack magazine for combat rifles. Intended to hold general-purpose kinetic ammunition.
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleHP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: stripe
-      color: "#F5514C"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#F5514C"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#F5514C"
-
-- type: entity
-  id: MagazineLightRifleFMJ
-  name: "magazine (.30 rifle FMJ)"
-  parent: BaseMagazineLightRifle
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleFMJ
-
-- type: entity
-  id: MagazineLightRifleAP
-  name: "magazine (.30 rifle AP)"
-  parent: BaseMagazineLightRifle
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleAP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: stripe
-      color: "#540000"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#540000"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#540000"
 
 - type: entity
   id: MagazineLightRiflePractice

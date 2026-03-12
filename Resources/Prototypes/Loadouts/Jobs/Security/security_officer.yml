@@ -1,28 +1,17 @@
-# Sunrise-Edit
-## Senior Time
-#- type: loadoutEffectGroup
-#  id: SeniorOfficer
-#  effects:
-#  - !type:JobRequirementLoadoutEffect
-#    requirement:
-#      !type:RoleTimeRequirement
-#      role: JobWarden
-#      time: 21600 #6 hrs
-#  - !type:JobRequirementLoadoutEffect
-#    requirement:
-#      !type:DepartmentTimeRequirement
-#      department: Security
-#      time: 216000 # 60 hrs
-
-#Security Star
+# Senior Time
 - type: loadoutEffectGroup
-  id: SecurityStarWorthy
+  id: SeniorOfficer
   effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:DepartmentTimeRequirement
-        department: Security
-        time: 360000 #100 hrs
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobWarden
+      time: 6h
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Security
+      time: 60h
 
 # Head
 - type: loadout
@@ -71,22 +60,21 @@
   equipment:
     jumpsuit: ClothingUniformSecurityTrooper
 
-# Sunrise-Edit
-#- type: loadout
-#  id: SeniorOfficerJumpsuit
-#  effects:
-#  - !type:GroupLoadoutEffect
-#    proto: SeniorOfficer
-#  equipment:
-#    jumpsuit: ClothingUniformJumpsuitSeniorOfficer
-#
-#- type: loadout
-#  id: SeniorOfficerJumpskirt
-#  effects:
-#  - !type:GroupLoadoutEffect
-#    proto: SeniorOfficer
-#  equipment:
-#    jumpsuit: ClothingUniformJumpskirtSeniorOfficer
+- type: loadout
+  id: SeniorOfficerJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorOfficer
+
+- type: loadout
+  id: SeniorOfficerJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSeniorOfficer
 
 # Back
 - type: loadout
@@ -122,11 +110,6 @@
     outerClothing: ClothingOuterArmorBasic
 
 - type: loadout
-  id: ArmorVestSec
-  equipment:
-    outerClothing: ClothingOuterVestArmorSec # Sunrise-Edit
-
-- type: loadout
   id: ArmorVestSlim
   equipment:
     outerClothing: ClothingOuterArmorBasicSlim
@@ -151,28 +134,26 @@
   id: SecurityWinterBoots
   equipment:
     shoes: ClothingShoesBootsWinterSecFilled
-
-# Sunrise-Edit
-# PDA
-#- type: loadout
-#  id: SecurityPDA
-#  equipment:
-#    id: SecurityPDA
-#
-#- type: loadout
-#  id: SeniorOfficerPDA
-#  effects:
-#  - !type:GroupLoadoutEffect
-#    proto: SeniorOfficer
-#  equipment:
-#    id: SeniorOfficerPDA
-
-# Misc
+#Sunrise-Start
 - type: loadout
-  id: SecStar
+  id: ClothingShoesGreenLizardskin
+  equipment:
+    shoes: ClothingShoesGreenLizardskin
   effects:
   - !type:GroupLoadoutEffect
-    proto: SecurityStarWorthy
-  storage:
-    back:
-    - Dinkystar
+    proto: MasterDetective
+#Sunrise-End
+
+# PDA
+- type: loadout
+  id: SecurityPDA
+  equipment:
+    id: SecurityPDA
+
+- type: loadout
+  id: SeniorOfficerPDA
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    id: SecuritySergeantPDA #SeniorOfficerPDA Sunrise-edit

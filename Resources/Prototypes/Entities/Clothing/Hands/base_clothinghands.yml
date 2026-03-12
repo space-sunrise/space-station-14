@@ -14,7 +14,7 @@
         volume: -4
         maxDistance: 3
     # Sunrise added end
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: Item
     size: Small
@@ -95,16 +95,3 @@
   components:
   - type: StaticPrice
     price: 275
-
-# SUNRISE EDIT
-- type: entity
-  abstract: true
-  parent: ClothingHandsBase
-  id: ClothingHandsSmooth
-  components:
-  - type: Tag
-    tags:
-    - ClothMade
-    - SmoothGloves # INTERACTIONS
-    - WhitelistChameleon
-# SUNRISE EDIT

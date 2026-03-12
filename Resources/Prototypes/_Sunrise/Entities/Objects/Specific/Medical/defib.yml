@@ -1,8 +1,8 @@
 - type: entity
   id: AdvancedDefibrillator
-  parent: [BaseDefibrillator, BaseGrandTheftContraband]
+  parent: [DefibrillatorCompact, BaseGrandTheftContraband]
   name: advanced defibrillator
-  description: One-handed, compact, no need to charge. Does “BZZ!” just as well as a regular defibrillator.
+  description: One-handed, compact, no need to charge. Does advanced “BZZ!” that jumpstart a heart and flood it with adrenaline.
   components:
     - type: Sprite
       sprite: _Sunrise/Entities/Objects/Specific/Medical/advanced_defib.rsi
@@ -29,3 +29,126 @@
       - HighRiskItem
     - type: StealTarget
       stealGroup: AdvancedDefibrillator
+    - type: Defibrillator
+      doAfterDuration: 1.8
+      allowUseOnAlive: true
+      reagents:
+        Omnizine: 2
+        Epinephrine: 5
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellMicroreactor
+          disableEject: true
+          locked: true
+    - type: PowerCellDraw
+      useCharge: 110
+    - type: PowerDrainOnMeleeHit
+      chargePerHit: 60
+    - type: MeleeWeapon
+      wideAnimationRotation: -135
+      angle: 0
+      animation: WeaponArcThrust
+      damage:
+        types:
+          Blunt: 5
+    - type: ItemToggleMeleeWeapon
+      activatedSoundOnHit:
+        path: /Audio/Items/Defib/defib_zap.ogg
+        params:
+          variation: 0.250
+      activatedSoundOnHitNoDamage:
+        path: /Audio/Items/Defib/defib_zap.ogg
+        params:
+          variation: 0.250
+          volume: -10
+      activatedDamage:
+        types:
+          Blunt: 5
+          Shock: 8
+
+- type: entity
+  id: AdvancedDefibrillatorCompact
+  parent: [ DefibrillatorCompact, BaseMedicalContraband ]
+  name: advanced compact defibrillator
+  description: One-handed, compact, and advanced. Delivers an advanced “BZZ!”, jumpstarting the heart and flooding the body with adrenaline.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Entities/Objects/Specific/Medical/advanced_defibsmall.rsi
+    - type: Defibrillator
+      doAfterDuration: 1.8
+      allowUseOnAlive: true
+      reagents:
+        Epinephrine: 5
+    - type: PowerCellDraw
+      useCharge: 100
+    - type: PowerDrainOnMeleeHit
+      chargePerHit: 75
+    - type: MeleeWeapon
+      wideAnimationRotation: -135
+      angle: 0
+      animation: WeaponArcThrust
+      damage:
+        types:
+          Blunt: 5
+    - type: ItemToggleMeleeWeapon
+      activatedSoundOnHit:
+        path: /Audio/Items/Defib/defib_zap.ogg
+        params:
+          variation: 0.250
+      activatedSoundOnHitNoDamage:
+        path: /Audio/Items/Defib/defib_zap.ogg
+        params:
+          variation: 0.250
+          volume: -10
+      activatedDamage:
+        types:
+          Blunt: 5
+          Shock: 5
+
+- type: entity
+  id: AbductorDefibrillator
+  parent: [ DefibrillatorCompact, ClothingBeltBase ]
+  name: abductor defibrillator
+  description: An alien defibrillator belt so advanced that it does not consider death a final state. The heart is restarted before the body can even realize it.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Entities/Objects/Specific/Medical/adbuctor_defib.rsi
+    - type: Clothing
+      sprite: _Sunrise/Entities/Objects/Specific/Medical/adbuctor_defib.rsi
+    - type: Defibrillator
+      doAfterDuration: 0.25
+      zapHeal:
+        types:
+          Asphyxiation: -75
+          Cellular: -10
+      allowUseOnAlive: true
+      reagents:
+        Omnizine: 10
+        Epinephrine: 10
+        BarozinePlus: 5
+        Inaprovaline: 5
+        DexalinPlus: 5
+        Saline: 5
+        Dermaline: 5
+        Rororium: 5
+        Necrosol: 5
+        Opporozidone: 5
+        Doxarubixadone: 5
+        JuiceThatMakesYouWeh: 1
+        Laughter: 1
+        Tazinide: 3
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellAntiqueProto
+          disableEject: true
+          locked: true
+    - type: PowerCellDraw
+      useCharge: 200
+    - type: Item
+      size: Ginormous
+    - type: ToggleCellDraw
+    - type: MultiHandedItem

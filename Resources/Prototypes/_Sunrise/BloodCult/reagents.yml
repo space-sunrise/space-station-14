@@ -11,7 +11,7 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:HasTag
+        - !type:TagCondition
           tag: "Cultist"
         damage:
           groups:
@@ -21,9 +21,9 @@
             Brute: -2
       - !type:HealthChange
         conditions:
-        - !type:HasTag
+        - !type:TagCondition
           tag: "Cultist"
-          invert: true
+          inverted: true
         damage:
           groups:
             Burn: 2

@@ -1,0 +1,24 @@
+<Document>
+[head=2][color=#165634][bold]Свидетельство о заключении брака[/bold][/color][/head]
+[color=#165634][bold]{corpString}[/bold][/color][mono] / СРВ[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#165634][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#165634][bold]Содержание[/bold][/color]
+
+Я, (ФИО), в должности (ДОЛЖНОСТЬ), заключаю брак между:
+⠀(ФИО), в должности (ДОЛЖНОСТЬ)
+⠀...
+⠀(ФИО), в должности (ДОЛЖНОСТЬ)
+После заключения брака брачующимся были присвоены следующие полные имена:
+
+[color=#666666][italic]Место для печатей[/italic][/color]
+
+
+</Document>

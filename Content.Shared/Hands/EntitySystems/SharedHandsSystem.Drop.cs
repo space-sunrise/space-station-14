@@ -3,6 +3,7 @@ using Content.Shared.Database;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory.VirtualItem;
+using Content.Shared.Storage.Components;
 using Content.Shared.Tag;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -20,6 +21,7 @@ public abstract partial class SharedHandsSystem
     private void InitializeDrop()
     {
         SubscribeLocalEvent<HandsComponent, EntRemovedFromContainerMessage>(HandleEntityRemoved);
+        SubscribeLocalEvent<HandsComponent, EntityStorageIntoContainerAttemptEvent>(OnEntityStorageDump);
     }
 
     protected virtual void HandleEntityRemoved(EntityUid uid, HandsComponent hands, EntRemovedFromContainerMessage args)
@@ -37,6 +39,14 @@ public abstract partial class SharedHandsSystem
 
         if (TryComp(args.Entity, out VirtualItemComponent? @virtual))
             _virtualSystem.DeleteVirtualItem((args.Entity, @virtual), uid);
+    }
+
+
+    private void OnEntityStorageDump(Entity<HandsComponent> ent, ref EntityStorageIntoContainerAttemptEvent args)
+    {
+        // If you're physically carrying an EntityStroage which tries to dump its contents out,
+        // we want those contents to fall to the floor.
+        args.Cancelled = true;
     }
 
     private bool ShouldIgnoreRestrictions(EntityUid user)
@@ -155,6 +165,20 @@ public abstract partial class SharedHandsSystem
         var origin = new MapCoordinates(itemPos, itemXform.MapID);
         var target = TransformSystem.ToMapCoordinates(targetDropLocation.Value);
         TransformSystem.SetWorldPositionRotation(entity.Value, GetFinalDropCoordinates(ent, origin, target, entity.Value), itemRot);
+
+        // Sunrise-Edit - анимации выкидывания предметов на землю
+        // Это почти полная копипаста анимации из TryPickup()
+        var currentCoords = TransformSystem.GetMoverCoordinates(entity.Value);
+        var currentMapCoords = TransformSystem.GetMapCoordinates(entity.Value);
+
+        if (itemXform.MapID == userXform.MapID
+            && (currentMapCoords.Position - TransformSystem.GetMapCoordinates(ent, userXform).Position).Length() <= MaxAnimationRange
+            && MetaData(entity.Value).VisibilityMask == MetaData(ent).VisibilityMask) // Don't animate aghost pickups.
+        {
+            _storage.PlayPickupAnimation(entity.Value, userXform.Coordinates, currentCoords, itemXform.LocalRotation, ent);
+        }
+        // Sunrise-Edit
+
         return true;
     }
 

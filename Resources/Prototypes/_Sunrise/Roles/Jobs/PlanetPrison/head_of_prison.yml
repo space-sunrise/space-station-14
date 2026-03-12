@@ -4,13 +4,13 @@
   description: job-description-head-of-prison
   playTimeTracker: JobHeadOfPrison
   requirements:
-  - !type:RoleTimeRequirement
-    role: JobHeadOfSecurity
-    time: 36000 #10 hrs # Sunrise-RoleTime
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 108000 #30 hrs # Sunrise-RoleTime
-  weight: 10
+    - !type:DepartmentTimeRequirement
+      department: PlanetPrison
+      time: 108000 # 30 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 # 5 hrs
+  weight: 9
   startingGear: HeadOfPrisonGear
   icon: "JobIconHeadOfPrison"
   overrideConsoleVisibility: false
@@ -21,31 +21,35 @@
   radioBold: true
   displayWeight: 100
   accessGroups:
-  - AllAccess
+    - AllAccess
   special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: HeadOfPrisonGear
   equipment:
     id: HeadOfPrisonPDA
-    jumpsuit: ClothingUniformJumpsuitHoSOld
     head: ClothingHeadHatBeretHoS
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltCommand
-    belt: ClothingBeltPrisonGuardianFilled
+    belt: ClothingBeltHeadOfPrisonMetus
+    back: ClothingBackpackSatchelHeadOfPrisonMetus
     neck: ClothingNeckCloakHOSCloak
-    pocket1: WeaponPistolDeagle
+    shoes: ClothingShoesBootsJack
+    pocket1: WeaponPistolDeagleMetus
     pocket2: MagazineDeagle
     outerClothing: ClothingOuterArmorRiot
-  storage:
-    belt:
-      - RadioHandheldSecurity
-      - Flash
 
 - type: chameleonOutfit
   id: HeadOfPrisonChameleonOutfit
   job: HeadOfPrison
   equipment:
-    jumpsuit: ClothingUniformJumpsuitHoSGrey
+    jumpsuit: ClothingUniformJumpsuitHoSOld
+    head: ClothingHeadHatBeretHoS
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetAltCommand
+    belt: ClothingBeltPrisonGuardianMetus
+    back: ClothingBackpackSatchelPrisonGuard
+    neck: ClothingNeckCloakHOSCloak
+    outerClothing: ClothingOuterArmorRiot

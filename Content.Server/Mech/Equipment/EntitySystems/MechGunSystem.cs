@@ -3,6 +3,7 @@ using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.Equipment.Components;
+using Content.Shared.Power.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Weapons.Ranged.Events;
 
@@ -34,13 +35,13 @@ public sealed class MechGunSystem : EntitySystem
             || !TryComp<MechComponent>(mechEquipment.EquipmentOwner.Value, out var mech))
             return;
 
-        var chargeDelta = component.MaxCharge - component.CurrentCharge;
+        var chargeDelta = component.MaxCharge - _battery.GetCharge((uid, component));
         // TODO: The battery charge of the mech would be spent directly when fired.
         if (chargeDelta <= 0
             || mech.Energy - chargeDelta < 0
             || !_mech.TryChangeEnergy(mechEquipment.EquipmentOwner.Value, -chargeDelta, mech))
             return;
 
-        _battery.SetCharge(uid, component.MaxCharge, component);
+        _battery.SetCharge(uid, component.MaxCharge);
     }
 }

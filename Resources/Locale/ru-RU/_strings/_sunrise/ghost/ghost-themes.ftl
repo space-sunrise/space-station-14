@@ -52,3 +52,4 @@ ghost-theme-revenant = Ревенант
 ghost-theme-holo-carp = Голографический карп
 ghost-theme-holo-girl = Голографическая Девушка
 ghost-theme-pirate = Кровожадный Пират
+ghost-theme-draedon = Дрэйдон

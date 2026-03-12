@@ -62,6 +62,13 @@
       - WeaponMinigunMG100
 
 - type: entity
+  id: PowerpackMinigunMG100Incendiary
+  parent: PowerpackMinigunMG100
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleIncendiary
+
+- type: entity
   id: BasePowerpackMG100
   parent: BaseItem
   abstract: true
@@ -84,6 +91,8 @@
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
+      storagebase: !type:Container
+      weapon_slot: !type:ContainerSlot
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Powerpacks/Powerpacks/backpack.rsi
     layers:
@@ -104,18 +113,18 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902_feed.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/dl6902_feed.rsi
     state: icon
   - type: Item
-    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902_feed.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/dl6902_feed.rsi
     size: Huge
     shape:
     - 0,0,6,4
   - type: Gun
     minAngle: 5
-    maxAngle: 90
-    angleIncrease: 2.5
-    angleDecay: 30
+    maxAngle: 80
+    angleIncrease: 1.5
+    angleDecay: 40
     fireRate: 8
     selectedMode: FullAuto
     availableModes:
@@ -170,8 +179,8 @@
     whitelist:
       tags:
       - CartridgeLightRifle
-    proto: CartridgeLightRifleSP
-    capacity: 1000
+    proto: CartridgeLightRifleFMJ
+    capacity: 1200
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
@@ -181,6 +190,14 @@
     - 0,0,6,4
   - type: ExplosionResistance
     damageCoefficient: 0.1
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CrazyGlue
+      weapon_slot: !type:AllSelector
+        children:
+        - id: WeaponDL6902PowerPack
   - type: ItemSlots
     slots:
       weapon_slot:
@@ -188,10 +205,6 @@
         whitelist:
           components:
           - ClothingSlotAmmoProvider
-  - type: ContainerFill
-    containers:
-      weapon_slot:
-      - WeaponDL6902PowerPack
   - type: StaticPrice
     price: 5500
   - type: Tag

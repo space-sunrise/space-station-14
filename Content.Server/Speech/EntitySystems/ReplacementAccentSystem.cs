@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.Prototypes;
 using Content.Shared.Speech;
+using Content.Shared.StatusEffectNew; // Sunrise-Edit
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -25,6 +26,7 @@ namespace Content.Server.Speech.EntitySystems
         public override void Initialize()
         {
             SubscribeLocalEvent<ReplacementAccentComponent, AccentGetEvent>(OnAccent);
+            SubscribeLocalEvent<ReplacementAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed); // Sunrise-Edit
 
             _proto.PrototypesReloaded += OnPrototypesReloaded;
         }
@@ -39,6 +41,11 @@ namespace Content.Server.Speech.EntitySystems
         private void OnAccent(EntityUid uid, ReplacementAccentComponent component, AccentGetEvent args)
         {
             args.Message = ApplyReplacements(args.Message, component.Accent);
+        }
+
+        private void OnAccentRelayed(EntityUid uid, ReplacementAccentComponent component, ref StatusEffectRelayedEvent<AccentGetEvent> args) // Sunrise-Edit
+        {
+            args.Args.Message = ApplyReplacements(args.Args.Message, component.Accent); // Sunrise-Edit
         }
 
         /// <summary>
@@ -128,7 +135,7 @@ namespace Content.Server.Speech.EntitySystems
                     var firstLoc = _loc.GetString(first);
                     var replaceLoc = _loc.GetString(replace);
 
-                    var regex = new Regex($@"(?<!\w){firstLoc}(?!\w)", RegexOptions.IgnoreCase);
+                    var regex = new Regex($@"(?<![\w']){firstLoc}(?![\w'])", RegexOptions.IgnoreCase);
 
                     return (regex, replaceLoc);
 

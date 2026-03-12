@@ -13,6 +13,8 @@ namespace Content.Client.StationRecords;
 [GenerateTypedNameReferences]
 public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
 {
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+
     public Action<uint?>? OnKeySelected;
 
     public Action<StationRecordFilterType, string>? OnFiltersChanged;
@@ -36,6 +38,7 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
     public GeneralStationRecordConsoleWindow()
     {
         RobustXamlLoader.Load(this);
+        IoCManager.InjectDependencies(this);
 
         // Sunrise added start
         _entity = IoCManager.Resolve<IEntityManager>();
@@ -69,7 +72,7 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
 
         StationRecordsFilterType.OnItemSelected += eventArgs =>
         {
-            var type = (StationRecordFilterType) eventArgs.Id;
+            var type = (StationRecordFilterType)eventArgs.Id;
 
             if (_currentFilterType != type)
             {

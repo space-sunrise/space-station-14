@@ -1,5 +1,7 @@
 # Tier 2
 
+
+# Tier 3
 - type: technology
   id: IndustrialRobotic
   name: research-technology-industrial-robotics
@@ -7,15 +9,14 @@
     sprite: _Sunrise/Structures/Machines/hyper_exosuit_fabricator.rsi
     state: fab-idle
   discipline: Experimental
-  tier: 2
-  cost: 7500
+  tier: 3
+  cost: 15000
   recipeUnlocks:
   - ExosuitFabricatorHyperConvectionMachineCircuitboard
   technologyPrerequisites:
   - BasicRobotics
   - IndustrialEngineering
-
-# Tier 3
+  - Phazon
 
 - type: technology
   id: Phazon

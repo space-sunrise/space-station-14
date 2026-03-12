@@ -102,8 +102,10 @@
         0: Alive
         150: Dead
     - type: Bloodstream
-      bloodMaxVolume: 300
-      bloodReagent: Blood
+      bloodReferenceSolution:
+        reagents:
+        - ReagentId: Blood
+          Quantity: 300
     - type: MovementSpeedModifier
       baseWalkSpeed: 4.5
       baseSprintSpeed: 5
@@ -197,12 +199,12 @@
         Dead:
           Base: dead
     - type: Bloodstream
-      bloodMaxVolume: 500
-      bloodReagent: Blood
+      bloodReferenceSolution:
+        reagents:
+        - ReagentId: Blood
+          Quantity: 500
     - type: InputMover
     - type: MobMover
-    - type: Physics
-      bodyType: Dynamic
     - type: MovementSpeedModifier
       baseWalkSpeed: 3.5
       baseSprintSpeed: 4.5
@@ -355,8 +357,10 @@
         Dead:
           Base: bat_dead
     - type: Bloodstream
-      bloodMaxVolume: 50
-      bloodReagent: Blood
+      bloodReferenceSolution:
+        reagents:
+        - ReagentId: Blood
+          Quantity: 50
     - type: Vocal
       sounds:
         Unsexed: FleshWormEmote
@@ -440,8 +444,6 @@
       equippedPrefix: fleshhugger
       slots:
         - MASK
-    - type: Physics
-      bodyType: Dynamic
     - type: Fixtures
       fixtures:
         fix1:
@@ -455,8 +457,10 @@
             - SmallMobLayer
     - type: Speech
     - type: Bloodstream
-      bloodMaxVolume: 10
-      bloodReagent: Blood
+      bloodReferenceSolution:
+        reagents:
+        - ReagentId: Blood
+          Quantity: 10
     - type: GhostRole
       allowMovement: true
       allowSpeech: true
@@ -514,8 +518,6 @@
     - type: Vocal
       sounds:
         Unsexed: FleshWormEmote
-    - type: Physics
-      bodyType: Dynamic
     - type: Fixtures
       fixtures:
         fix1:
@@ -529,8 +531,10 @@
             - SmallMobLayer
     - type: Speech
     - type: Bloodstream
-      bloodMaxVolume: 10
-      bloodReagent: Blood
+      bloodReferenceSolution:
+        reagents:
+        - ReagentId: Blood
+          Quantity: 10
     - type: MeleeWeapon
       hidden: true
       soundHit:

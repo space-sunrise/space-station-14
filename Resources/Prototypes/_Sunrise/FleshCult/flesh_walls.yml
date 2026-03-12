@@ -26,11 +26,10 @@
     - Flesh
     - Wall
     - Window
-  - type: Temperature
+  - type: TemperatureDamage
     heatDamage:
       types:
         Heat: 5
-    coldDamage: {}
   - type: Flammable
     fireSpread: true
     damage:

@@ -8,6 +8,8 @@
   - vvread
   - vvwrite
   - vvinvoke
+  # Sunrise-Edit
+  # - spin
 
 - Flags: DEBUG
   Commands:
@@ -15,7 +17,6 @@
   - inrangeunoccluded
   - lsgrid
   - lsmap
-  - listplayers
   - loc
   - mem
   - netaudit
@@ -70,7 +71,6 @@
   - pvs_override_info
   - merge_grids
 
-
 - Flags: MAPPING
   Commands:
   - addmap
@@ -90,14 +90,12 @@
 
 - Flags: ADMIN
   Commands:
-  - listplayers
   - tp
   - tpto
 
-- Flags: FUN
+- Flags: PII
   Commands:
-  - tippy
-  - tip
+  - listplayers
 
 - Flags: SERVER
   Commands:
@@ -134,7 +132,7 @@
   - fuck
   - replay_recording_start
   - replay_recording_stop
-  - spin
+  - spin # Sunrise-Edit
 
 - Flags: QUERY
   Commands:

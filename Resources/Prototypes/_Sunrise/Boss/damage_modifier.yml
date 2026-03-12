@@ -8,4 +8,4 @@
     Radiation: 0.0 # 100% resistance
     Shock: 0.2 # 80% resistance
     Bloodloss: 0 # 100% resistance
-    Holy: 1
+    Holy: 1.5 # -50% resistance

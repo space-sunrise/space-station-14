@@ -1,0 +1,28 @@
+<Document>
+[head=3][color=#5e481d][bold]Приказ на закупку ресурсов, оборудования[/bold][/color][/head]
+[color=#5e481d][bold]{corpString}[/bold][/color][mono] / КОМ[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#5e481d][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#5e481d][bold]Приказ[/bold][/color]
+
+Перечень товаров для заказа:
+
+Место доставки товара:
+
+[color=#5e481d][bold]Причина[/bold][/color]
+[mono]
+1)
+2)
+[/mono]
+
+[color=#666666][italic]Место для печатей[/italic][/color]
+
+
+</Document>

@@ -40,29 +40,13 @@
     currencyWhitelist:
     - WizCoin
 
-# NTUplink Sunrise-start
 - type: entity
-  id: StorePresetNTUplink
+  id: StorePresetChangeling
   abstract: true
   components:
   - type: Store
-    name: store-preset-name-ntuplink
+    name: store-preset-name-changeling
     categories:
-    - NTAutoGun
-    - NTLasers
-    - NTPistols
-    - NTAmmo
-    - NTMedicine
-    - NTAdditional
-    - NTexplosive
-    - NTMechs
-    - NTSanitary
-    - NTEngineering
-    #- NTCBURN
-    - NTEquipment
+    - ChangelingAbilities
     currencyWhitelist:
-    - Bluecrystal
-    - Crystallite
-    balance:
-      Telecrystal: 0
-# Sunrise-end
+    - ChangelingDNA

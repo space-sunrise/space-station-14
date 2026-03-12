@@ -16,8 +16,6 @@ ent-ClothingUniformJumpsuitBlueShield = blueshield's uniform
     .desc = On style.
 ent-ClothingUniformJumpsuitNTRG = NTRG's uniform
     .desc = On style.
-ent-ClothingUniformJumpsuitPrisonerGrey = prisoner's suit
-    .desc = Why isn't it orange?
 ent-ClothingUniformJumpsuitPrisonGuard = prison guard's suit
     .desc = Why isn't it red?
 ent-ClothingUniformJumpsuitPilot = security pilot's suit
@@ -68,3 +66,21 @@ ent-ClothingUniformJumpsuitAbductor = abductor uniform
     .desc = { ent-UnsensoredClothingUniformBase.desc }
 ent-UniformSecurityShortsRed = security shorts
     .desc = These are shorts, not boxers.
+ent-ClothingUniformPencilSkirt = pencil skirt
+    .desc = A classic wardrobe staple featuring a straight, fitted cut.
+ent-ClothingUniformSadSkirt = mourning skirt
+    .desc = A skirt with a strict silhouette, made of thick dark fabric, in the Gothic style.
+ent-ClothingUniformMajimaTishka = fashionable yakuza uniform
+    .desc = Snake print blazer, black leather belt with silver buckle.
+ent-ClothingUniformMetatonTishka = fashionable musician uniform
+    .desc = Who needs arms with legs like these!
+
+# Sunrise - Captain cap uniforms
+ent-ClothingUniformJumpsuitCaptainWhite = captain's white uniform
+    .desc = Crisp, shiny, and 100% allergic to grease. Causes uncontrollable saluting and paperwork cravings.
+ent-ClothingUniformJumpsuitCaptainBlack = captain's black uniform
+    .desc = For when you need to look like a legend, not a laundry accident. Hides coffee stains and questionable decisions.
+ent-ClothingUniformPunksuit = punksuit
+    .desc = Challenge the dress code!
+
+

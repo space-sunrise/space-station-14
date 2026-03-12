@@ -10,6 +10,8 @@ using Content.Shared.Mobs.Components;
 using Content.Shared._Starlight.Actions.Stasis;
 using Content.Shared.Body.Components;
 using Robust.Shared.Player;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server._Starlight.Actions.Stasis;
 

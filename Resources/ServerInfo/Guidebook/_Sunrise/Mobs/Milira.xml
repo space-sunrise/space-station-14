@@ -1,0 +1,22 @@
+<Document>
+  # Милира
+
+  <Box>
+    <GuideEntityEmbed Entity="MobMilira" Caption=""/>
+  </Box>
+
+  Милира обладают крыльями (их можно раскрывать и складывать).
+  Они чувствительны к высоким температурам.
+
+  Они получают [color=#ffa500]на 15% больше дробящего и теплового урона[/color],
+  [color=#ffa500]на 10% больше режущего и колющего урона[/color],
+  но [color=#1e90ff]на 30% меньше урона от холода[/color].
+
+  <Box>
+    <GuideEntityEmbed Entity="ClothingOuterArmorMiliraLight" Caption=""/>
+    <GuideEntityEmbed Entity="ClothingOuterArmorMiliraHeavy" Caption=""/>
+    <GuideEntityEmbed Entity="ClothingOuterHardsuitMilira" Caption=""/>
+  </Box>
+
+  Обычная броня и скафандры блокируют милирам свободное раскрытие крыльев, но особая броня специально для них позволяет раскрывать крылья и летать.
+</Document>

@@ -92,7 +92,7 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/pens.rsi
-    state: pen-maid
+    state: pen_maid
   - type: Item
     sprite: _Sunrise/Objects/Misc/pens.rsi
-    heldPrefix: pen-maid
+    heldPrefix: pen_maid

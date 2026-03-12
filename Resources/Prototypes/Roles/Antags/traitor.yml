@@ -4,11 +4,11 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-syndicate-agent-objective
+  guides: [ Traitors ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 36000 # 10h # Sunrise-RoleTime
+    time: 1h
   playTimeTracker: AntagSyndicateAgent # Sunrise-Edit
-  guides: [ Traitors ]
   # Sunrise-Edit
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
@@ -24,7 +24,7 @@
   guides: [ Traitors ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 36000 # 10h
+    time: 1h
 
 # Syndicate Operative Outfit - Monkey
 - type: startingGear

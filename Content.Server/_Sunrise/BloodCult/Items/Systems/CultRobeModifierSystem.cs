@@ -1,6 +1,8 @@
 ﻿using Content.Server._Sunrise.BloodCult.Items.Components;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;

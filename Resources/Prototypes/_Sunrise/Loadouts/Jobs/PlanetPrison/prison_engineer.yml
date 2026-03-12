@@ -1,0 +1,84 @@
+# Head
+
+- type: loadout
+  id: PrisonEngineerCap
+  equipment:
+    head: ClothingHeadCapPrisonEngineer
+
+- type: loadout
+  id: PrisonEngineerBeret
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonEngineer
+      time: 25200 # 7 часов
+  equipment:
+    head: ClothingHeadHatBeretPrisonEngineer
+
+- type: loadout
+  id: PrisonEngineerHat
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonEngineer
+      time: 54000 # 15 часов
+  equipment:
+    head: ClothingHeadHatCapPrisonEngineer
+
+# PDA
+
+- type: loadout
+  id: PrisonEngineerPDAScreenZap
+  equipment:
+    id: PrisonEngineerPDAScreenZap
+
+- type: loadout
+  id: PrisonEngineerPDAScreenPoint
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonEngineer
+      time: 36000 # 10 часов
+  equipment:
+    id: PrisonEngineerPDAScreenPoint
+
+# Рабочая униформа
+
+- type: loadout
+  id: PrisonEngineerJumpsuit
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonEngineer
+
+- type: loadout
+  id: PrisonEngineerJumpskirt
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonEngineer
+
+- type: loadout
+  id: PrisonEngineerJumpsuitVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonEngineer
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonEngineerVeteran
+
+- type: loadout
+  id: PrisonEngineerJumpskirtVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonEngineer
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonEngineerVeteran

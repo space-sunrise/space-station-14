@@ -1,0 +1,28 @@
+- type: entity
+  id: PresentMasksHM
+  parent: [PresentBase, BaseStorageItem]
+  name: present 50 blessing
+  description: For agents who want to hide their identity in style,with love by Egor Semenov.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Decoration/miamihotline.rsi
+    layers:
+      - state: present
+  - type: SpawnItemsOnUse
+    items:
+      - id: ClothingHeadHatTony
+        orGroup: ClothingHeadHat
+      - id: ClothingHeadHatBear
+        orGroup: ClothingHeadHat
+      - id: ClothingHeadHatBiker
+        orGroup: ClothingHeadHat
+      - id: ClothingHeadHatZebra
+        orGroup: ClothingHeadHat
+      - id: ClothingHeadHatSwanTwo
+        orGroup: ClothingHeadHat
+      - id: ClothingHeadHatSwanOne
+        orGroup: ClothingHeadHat
+      - id: ClothingHeadHatRichard
+        orGroup: ClothingHeadHat
+    sound:
+      path: /Audio/Effects/unwrap.ogg

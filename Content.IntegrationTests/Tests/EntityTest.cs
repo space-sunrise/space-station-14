@@ -109,11 +109,6 @@ namespace Content.IntegrationTests.Tests
                     .ToList();
                 foreach (var protoId in protoIds)
                 {
-                    // Sunrise-Start
-                    if (protoId == "Envelope")
-                        continue;
-                    // Sunrise-End
-
                     entityMan.SpawnEntity(protoId, map.GridCoords);
                 }
             });
@@ -247,6 +242,10 @@ namespace Content.IntegrationTests.Tests
                 "StationEvent",
                 "TimedDespawn",
 
+                // Sunrise added start
+                "StationTransitHub",
+                // Sunrise added end
+
                 // makes an announcement on mapInit.
                 "AnnounceOnSpawn",
             };
@@ -276,7 +275,7 @@ namespace Content.IntegrationTests.Tests
 
             // We consider only non-audio entities, as some entities will just play sounds when they spawn.
             int Count(IEntityManager ent) => ent.EntityCount - ent.Count<AudioComponent>();
-            IEnumerable<EntityUid> Entities(IEntityManager entMan) => entMan.GetEntities().Where(entMan.HasComponent<AudioComponent>);
+            IEnumerable<EntityUid> Entities(IEntityManager entMan) => entMan.GetEntities().Where(e => !entMan.HasComponent<AudioComponent>(e));
 
             await Assert.MultipleAsync(async () =>
             {
@@ -316,8 +315,8 @@ namespace Content.IntegrationTests.Tests
                     // Check that the number of entities has gone back to the original value.
                     Assert.That(Count(server.EntMan), Is.EqualTo(count), $"Server prototype {protoId} failed on deletion: count didn't reset properly\n" +
                         BuildDiffString(serverEntities, Entities(server.EntMan), server.EntMan));
-                    Assert.That(client.EntMan.EntityCount, Is.EqualTo(clientCount), $"Client prototype {protoId} failed on deletion: count didn't reset properly:\n" +
-                        $"Expected {clientCount} and found {client.EntMan.EntityCount}.\n" +
+                    Assert.That(Count(client.EntMan), Is.EqualTo(clientCount), $"Client prototype {protoId} failed on deletion: count didn't reset properly:\n" +
+                        $"Expected {clientCount} and found {Count(client.EntMan)}.\n" +
                         $"Server count was {count}.\n" +
                         BuildDiffString(clientEntities, Entities(client.EntMan), client.EntMan));
                 }

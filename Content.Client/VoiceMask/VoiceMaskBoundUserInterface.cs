@@ -24,16 +24,16 @@ public sealed class VoiceMaskBoundUserInterface : BoundUserInterface
         _window = this.CreateWindow<VoiceMaskNameChangeWindow>();
         _window.ReloadVerbs(_protomanager);
         _window.AddVerbs();
-        // Sunrise-TTS-Start
+        // Sunrise-Start
         if (IoCManager.Resolve<IConfigurationManager>().GetCVar(SunriseCCVars.TTSEnabled))
         {
             _window.ReloadVoices(IoCManager.Resolve<IPrototypeManager>());
         }
-        // Sunrise-TTS-End
+        // Sunrise-End
 
         _window.OnNameChange += OnNameSelected;
         _window.OnVerbChange += verb => SendMessage(new VoiceMaskChangeVerbMessage(verb));
-        _window.OnVoiceChange += voice => SendMessage(new VoiceMaskChangeVoiceMessage(voice)); // Sunrise-TTS
+        _window.OnVoiceChange += voice => SendMessage(new VoiceMaskChangeVoiceMessage(voice)); // Sunrise-Edit
     }
 
     private void OnNameSelected(string name)
@@ -48,7 +48,7 @@ public sealed class VoiceMaskBoundUserInterface : BoundUserInterface
             return;
         }
 
-        _window.UpdateState(cast.Name, cast.Voice, cast.Verb); // Sunrise-TTS
+        _window.UpdateState(cast.Name, cast.Voice, cast.Verb); // Sunrise-Edit
     }
 
     protected override void Dispose(bool disposing)

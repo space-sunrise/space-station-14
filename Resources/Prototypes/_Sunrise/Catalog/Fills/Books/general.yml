@@ -1,19 +1,21 @@
 - type: entity
-  name: blue shield encryption key box
   parent: BoxEncryptionKeyPassenger
   id: BoxEncryptionKeyLaw
+  name: law encryption key box
   components:
-  - type: StorageFill
-    contents:
-    - id: EncryptionKeyLaw
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: EncryptionKeyLaw
+        amount: 4
 
 - type: entity
-  name: blue shield encryption key box
   parent: BoxEncryptionKeyPassenger
   id: BoxEncryptionKeyBlueShield
+  name: blue shield encryption key box
   components:
-  - type: StorageFill
-    contents:
-    - id: EncryptionKeyBlueShield
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: EncryptionKeyBlueShield
+        amount: 4

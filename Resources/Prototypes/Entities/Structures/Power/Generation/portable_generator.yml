@@ -161,8 +161,8 @@
       maxTargetPower: 30000
       targetPower: 30000
       optimalPower: 30000
-      # 15 minutes at max output
-      optimalBurnRate: 0.0333333
+      # 45 minutes at max output
+      optimalBurnRate: 0.0111111 # Sunrise-Edit
       # a decent curve that goes up to about an hour at 5 kW.
       fuelEfficiencyConstant: 0.75
     - type: SolidFuelGeneratorAdapter
@@ -222,8 +222,8 @@
       maxTargetPower: 50000
       targetPower: 50000
       optimalPower: 50000
-      # 30 minutes at full power
-      optimalBurnRate: 0.016666666
+      # 60 minutes at full power
+      optimalBurnRate: 0.008333333 # Sunrise-Edit
       # Barely save any fuel from reducing power output
       fuelEfficiencyConstant: 0.1
     - type: SolidFuelGeneratorAdapter

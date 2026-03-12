@@ -3,11 +3,10 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._Sunrise.Abilities.Resomi;
 
 /// <summary>
-/// Маркер: сущность находится в активной фазе способности (резоми-ры́вок и т.п.).
-/// Используется для запрета падения/лежа во время исполнения.
+/// Marker component used while the Resomi jump ability is active to block certain interactions (e.g. falling).
 /// </summary>
 /// <remarks>
-/// Добавляется/снимается на сервере ResomiSkillSystem; читается в SharedStandingStateSystem.
+/// Added and removed by <see cref="Content.Server._Sunrise.Abilities.Jump.JumpSkillSystem"/> on the server; consumed by <see cref="SharedResomiAbilitySystem"/>.
 /// </remarks>
 [RegisterComponent, NetworkedComponent]
-public sealed partial class ResomiActiveAbilityComponent  : Component {}
+public sealed partial class ResomiActiveAbilityComponent : Component {}

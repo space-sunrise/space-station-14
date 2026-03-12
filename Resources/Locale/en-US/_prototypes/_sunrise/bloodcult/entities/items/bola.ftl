@@ -1,2 +1,3 @@
-ent-CultBola = Бола
-    .desc = Твёрдо сплетённые верёвки с утяжелителями на концах. Идеальный инструмент для обездвиживания противников.
+ent-CultBola = bloody bola
+    .desc = Crystal ropes made of blood with skulls at the ends. An ideal tool for immobilizing opponents.
+    .suffix = BIOCODE

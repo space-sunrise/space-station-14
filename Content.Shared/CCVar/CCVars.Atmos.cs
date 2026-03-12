@@ -57,12 +57,13 @@ public sealed partial class CCVars
     ///     Also looks weird on slow spacing for unrelated reasons. If you do want to enable this, you should probably turn on instaspacing.
     /// </summary>
     public static readonly CVarDef<bool> MonstermosRipTiles =
-        CVarDef.Create("atmos.monstermos_rip_tiles", false, CVar.SERVERONLY);
+        CVarDef.Create("atmos.monstermos_rip_tiles", true, CVar.SERVERONLY); // Sunrise-Edit
 
     /// <summary>
     ///     Whether explosive depressurization will cause the grid to gain an impulse.
     ///     Needs <see cref="MonstermosEqualization"/> and <see cref="MonstermosDepressurization"/> to be enabled to work.
     /// </summary>
+    // Sunrise FIXME: При включении вызывает исключение в ShuttleSystem.Impact из-за MeteorSystem при отключенном якоре
     public static readonly CVarDef<bool> AtmosGridImpulse =
         CVarDef.Create("atmos.grid_impulse", false, CVar.SERVERONLY);
 
@@ -150,4 +151,31 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<float> AtmosTankFragment =
         CVarDef.Create("atmos.max_explosion_range", 26f, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Whether atmospherics will process delta-pressure damage on entities with a DeltaPressureComponent.
+    /// Entities with this component will take damage if they are exposed to a pressure difference
+    /// above the minimum pressure threshold defined in the component.
+    /// </summary>
+    // TODO: Needs CVARs for global configuration, like min pressure, max damage, etc.
+    public static readonly CVarDef<bool> DeltaPressureDamage =
+        CVarDef.Create("atmos.delta_pressure_damage", true, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Number of entities to submit for parallel processing per processing run.
+    /// Low numbers may suffer from thinning out the work per job and leading to threads waiting,
+    /// or seeing a lot of threading overhead.
+    /// High numbers may cause Atmospherics to exceed its time budget per tick, as it will not
+    /// check its time often enough to know if it's exceeding it.
+    /// </summary>
+    public static readonly CVarDef<int> DeltaPressureParallelToProcessPerIteration =
+        CVarDef.Create("atmos.delta_pressure_parallel_process_per_iteration", 1000, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Number of entities to process per processing job.
+    /// Low numbers may cause Atmospherics to see high threading overhead,
+    /// high numbers may cause Atmospherics to distribute the work unevenly.
+    /// </summary>
+    public static readonly CVarDef<int> DeltaPressureParallelBatchSize =
+        CVarDef.Create("atmos.delta_pressure_parallel_batch_size", 10, CVar.SERVERONLY);
 }

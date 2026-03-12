@@ -29,6 +29,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Localization;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.StatsBoard;
 

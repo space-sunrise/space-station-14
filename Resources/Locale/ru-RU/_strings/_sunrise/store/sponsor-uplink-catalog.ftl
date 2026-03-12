@@ -149,6 +149,7 @@ uplink-sunrise-clothing-belt-hos-name = Пояс службы безопасно
 uplink-sunrise-clothing-head-hat-cap-black-name = Старая кожаная фуражка СССП
 uplink-sunrise-clothing-head-hat-cap-leather-hos-name = Кожаная фуражка главы службы безопасности
 uplink-sunrise-clothing-neck-cloak-hos-cloak-name = Плащ главы службы безопасности
+uplink-sunrise-tactical-hos-uniform-name = Тактическая форма ГСБ
 
 ## Research Director
 
@@ -170,7 +171,6 @@ uplink-sunrise-clothing-shoes-elite-captain-name = Капитанские бот
 uplink-sunrise-clothing-breath-mask-name = Медицинский респиратор
 uplink-sunrise-clothing-belt-medical-name = Медицинский пояс главного врача
 uplink-sunrise-clothing-outer-coat-overcoat-name = Лабораторный халат главного врача
-uplink-sunrise-clothing-neck-cmo-cloak-name = Плащ главного врача
 uplink-sunrise-clothing-special-head-hat-hardhat-name = Медицинская шапочка главного врача
 uplink-sunrise-clothing-head-hat-cap-cmo-name = Медицинский берет
 
@@ -220,6 +220,7 @@ uplink-sunrise-pill-canister-hyronalin-name = Баночка для таблет
 uplink-sunrise-pill-canister-dexalin-name = Баночка для таблеток (дексалин)
 uplink-sunrise-bloodpack-name = Пакет крови (10 шт)
 uplink-sunrise-gauze-name = Марлевый бинт (10 шт)
+uplink-sunrise-clothing-neck-med-cloak-name = Плащ сострадания
 
 ## Research
 
@@ -260,3 +261,14 @@ uplink-sunrise-mob-mothroach-name = Таракан
 uplink-sunrise-player-borg-generic-name = Борг
 uplink-sunrise-boombox-name = Бумбокс
 uplink-sunrise-tape-player-name = Магнитофон
+
+## Paint
+
+uplink-sunrise-spray-paint-desc = Баночка аэрозольной краски.
+uplink-sunrise-spray-paint-blue-name = Баллончик краски (синий)
+uplink-sunrise-spray-paint-black-name = Баллончик краски (чёрный)
+uplink-sunrise-spray-paint-red-name = Баллончик краски (красный)
+uplink-sunrise-spray-paint-green-name = Баллончик краски (зелёный)
+uplink-sunrise-spray-paint-orange-name = Баллончик краски (оранжевый)
+uplink-sunrise-spray-paint-purple-name = Баллончик краски (фиолетовый)
+uplink-sunrise-spray-paint-white-name = Баллончик краски (белый)

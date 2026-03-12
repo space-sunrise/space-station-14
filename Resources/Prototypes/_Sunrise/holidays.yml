@@ -8,7 +8,7 @@
   greet:
     !type:Custom
     text: holiday-custom-vigers-ray-birthday
-  greetColor: gold
+  color: gold
 
 - type: holidayGiveawayItem
   id: VigersRayBirthdayGiveawayPresent
@@ -43,7 +43,7 @@
   greet:
     !type:Custom
     text: holiday-custom-helloween
-  greetColor: orange
+  color: orange
 
 - type: holidayGiveawayItem
   id: HelloweenGiveawayCandle

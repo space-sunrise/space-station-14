@@ -1,28 +1,740 @@
 - type: reagent
-  id: FourteenLokoPlus
-  name: reagent-name-fourteen-loko-plus
+  id: ColaSunrise
+  name: reagent-name-cola-sunrise
   parent: BaseSoda
-  desc: reagent-desc-fourteen-loko-plus
+  desc: reagent-desc-cola
   physicalDesc: reagent-physical-desc-fizzy
-  flavor: fourteen_loko_soda_plus
-  color: "#fcf6de"
+  flavor: soda
+  color: "#6c2828"
+  recognizable: true
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/colaglass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
   metabolisms:
     Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
         conditions:
-        - !type:OrganType
-          type: Dwarf
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 1
+        type: Remove
+      - !type:AdjustTemperature
+        amount: -2000
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 310
+        amount: -6000
+
+- type: reagent
+  id: ChangelingStingSunrise
+  name: reagent-name-changeling-sting-sunrise
+  parent: BaseSoda
+  desc: reagent-desc-changeling-sting
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: soda
+  color: "#2E6671"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:Polymorph
+        prototype: ChangelingStingHuman
+        probability: 0.083
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:AdjustReagent
+        reagent: ChangelingStingSunrise
+        amount: -1000
+        probability: 0.083
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:Polymorph
+        prototype: ChangelingStingReptilian
+        probability: 0.167
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:AdjustReagent
+        reagent: ChangelingStingSunrise
+        amount: -1000
+        probability: 0.167
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:Polymorph
+        prototype: ChangelingStingTajaran
+        probability: 0.25
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:AdjustReagent
+        reagent: ChangelingStingSunrise
+        amount: -1000
+        probability: 0.25
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:Polymorph
+        prototype: ChangelingStingSlime
+        probability: 0.333
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:AdjustReagent
+        reagent: ChangelingStingSunrise
+        amount: -1000
+        probability: 0.333
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:Polymorph
+        prototype: ChangelingStingMoth
+        probability: 0.417
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:AdjustReagent
+        reagent: ChangelingStingSunrise
+        amount: -1000
+        probability: 0.417
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:Polymorph
+        prototype: ChangelingStingSwine
+        probability: 0.5
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:AdjustReagent
+        reagent: ChangelingStingSunrise
+        amount: -1000
+        probability: 0.5
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:Polymorph
+        prototype: ChangelingStingResomi
+        probability: 0.583
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:AdjustReagent
+        reagent: ChangelingStingSunrise
+        amount: -1000
+        probability: 0.583
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:Polymorph
+        prototype: ChangelingStingVox
+        probability: 0.667
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:AdjustReagent
+        reagent: ChangelingStingSunrise
+        amount: -1000
+        probability: 0.667
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:Polymorph
+        prototype: ChangelingStingVulpkanin
+        probability: 0.75
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:AdjustReagent
+        reagent: ChangelingStingSunrise
+        amount: -1000
+        probability: 0.75
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:Polymorph
+        prototype: ChangelingStingFelinid
+        probability: 0.833
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:AdjustReagent
+        reagent: ChangelingStingSunrise
+        amount: -1000
+        probability: 0.833
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:Polymorph
+        prototype: ChangelingStingHumanoidXeno
+        probability: 0.917
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:AdjustReagent
+        reagent: ChangelingStingSunrise
+        amount: -1000
+        probability: 0.917
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:Polymorph
+        prototype: ChangelingStingHumanRename
+        probability: 1
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+      - !type:AdjustReagent
+        reagent: ChangelingStingSunrise
+        amount: -1000
+        probability: 1
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingStingSunrise
+          min: 25
+
+- type: reagent
+  id: DrGibbSunrise
+  name: reagent-name-dr-gibb-sunrise
+  parent: BaseSoda
+  desc: reagent-desc-dr-gibb
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: drgibb
+  color: "#102000"
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/dr_gibb_glass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Poison:
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:ReagentCondition
+          reagent: DrGibbSunrise
+          min: 2
+        type: Local
+        visualType: LargeCaution
+        messages: ["dr-gibbs-presence"]
+        probability: 0.2
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: DrGibbSunrise
+          min: 2
+        probability: 0.0001
+        damage:
+          types:
+            Blunt: 2000
+      - !type:AdjustTemperature
+        amount: -1500
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 310
+        amount: -6000
+
+- type: reagent
+  id: EnergyDrinkSunrise
+  name: reagent-name-energy-drink-sunrise
+  parent: BaseSoda
+  desc: reagent-desc-energy-drink
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: energydrink
+  color: "#ffffbf"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 2
+        type: Remove
+      - !type:GenericStatusEffect
+        key: ShockProtection
+        component: Insulated
+        time: 1.25
+        type: Add
+        conditions:
+        - !type:ReagentCondition
+          reagent: EnergyDrinkSunrise
+          min: 5
+      - !type:Jitter
+        conditions:
+        - !type:ReagentCondition
+          reagent: EnergyDrinkSunrise
+          min: 10
+      - !type:AdjustTemperature
+        amount: -1500
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 310
+        amount: -6000
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.1
+  fizziness: 0.4
+
+- type: reagent
+  id: PwrGameSunrise
+  name: reagent-name-pwr-game-sunrise
+  parent: BaseSoda
+  desc: reagent-desc-pwr-game
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: pwrgamesoda
+  color: "#9385bf"
+  fizziness: 0.9 # gamers crave the fizz
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 1
+        type: Remove
+      - !type:AdjustTemperature
+        amount: -2000
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 310
+        amount: -6000
     Narcotic:
       effects:
-      - !type:MovespeedModifier
-        walkSpeedModifier: 1.16
-        sprintSpeedModifier: 1.16
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStimulantsStamina
+        time: 2
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStunned
+        time: 2
+        type: Remove
+      - !type:ModifyKnockdown
+        time: 2
+        type: Remove
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectForcedSleeping
+        time: 2
+        type: Remove
+      - !type:GenericStatusEffect
+        key: Adrenaline
+        component: IgnoreSlowOnDamage
+        time: 2
+
+- type: reagent
+  id: RootBeerSunrise
+  name: reagent-name-root-beer-sunrise
+  parent: BaseSoda
+  desc: reagent-desc-root-beer
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: rootbeersoda
+  color: "#381c07"
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/rootbeerglass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 6
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 1
+        type: Remove
+      - !type:AdjustTemperature
+        amount: -2000
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 310
+        amount: -6000
     Poison:
       effects:
       - !type:HealthChange
         damage:
           types:
-            Poison: 1.4
+            Poison: -1
+            Blunt: -2
+            Slash: -2
+            Piercing: -2
+            Bloodloss: -1
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+        - !type:ReagentCondition
+          reagent: RootBeerSunrise
+          min: 50
+        damage:
+          types:
+            Asphyxiation: 1
+            Poison: 1
+  plantMetabolism:
+    - !type:PlantAdjustNutrition
+      amount: 0.05
+    - !type:PlantAdjustWeeds
+      probability: 0.025
+      amount: 1
+    - !type:PlantAdjustPests
+      probability: 0.025
+      amount: 1
+    - !type:RobustHarvest {}
+
+- type: reagent
+  id: RootBeerFloatSunrise
+  name: reagent-name-root-beer-float-sunrise
+  parent: BaseSoda
+  desc: reagent-desc-root-beer-float
+  physicalDesc: reagent-physical-desc-fizzy-and-creamy
+  flavor: rootbeerfloat
+  color: "#4f361f"
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/rootbeerfloatglass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 7
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  fizziness: 0.4
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 1
+        type: Remove
+      - !type:AdjustTemperature
+        amount: -2000
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 310
+        amount: -6000
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -1
+            Blunt: -2
+            Slash: -2
+            Piercing: -2
+            Bloodloss: -1
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+        - !type:ReagentCondition
+          reagent: RootBeerFloatSunrise
+          min: 50
+        damage:
+          types:
+            Asphyxiation: 1
+            Poison: 1
+  plantMetabolism:
+    - !type:PlantAdjustNutrition
+      amount: 0.05
+    - !type:PlantAdjustWeeds
+      probability: 0.025
+      amount: 1
+    - !type:PlantAdjustPests
+      probability: 0.025
+      amount: 1
+    - !type:RobustHarvest {}
+
+- type: reagent
+  id: SolDrySunrise
+  name: reagent-name-sol-dry-sunrise
+  parent: BaseSoda
+  desc: reagent-desc-sol-dry
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: gingersoda
+  color: "#ccb87e"
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/sol_dry_glass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:AdjustTemperature
+        amount: -2000
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 310
+        amount: -6000
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -1
+      - !type:CleanBloodstream
+        excluded: Charcoal
+        cleanseRate: 2
+
+- type: reagent
+  id: SpaceMountainWindSunrise
+  name: reagent-name-space-mountain-wind-sunrise
+  parent: BaseSoda
+  desc: reagent-desc-space-mountain-wind
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: sodacitrus
+  color: "#a6fa5a"
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/space_mountain_wind_glass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 1
+        type: Remove
+      - !type:AdjustTemperature
+        amount: -2000
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 310
+        amount: -6000
+      - !type:HealthChange
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Critical
+        damage:
+          types:
+            Asphyxiation: -2
+
+- type: reagent
+  id: SpaceUpSunrise
+  name: reagent-name-space-up-sunrise
+  parent: BaseSoda
+  desc: reagent-desc-space-up
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: spaceup
+  color: "#e3e3e37d"
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/space-up_glass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 6
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      - !type:GenericStatusEffect
+        key: PressureImmunity
+        component: PressureImmunity
+        time: 1
+        type: Add
+        probability: 0.5
+        conditions:
+        - !type:ReagentCondition
+          reagent: SpaceUpSunrise
+          min: 10
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+      - !type:Jitter
+      - !type:Emote
+        emote: Scream
+        probability: 0.05
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "barozine-effect-muscle-contract" ]
+        probability: 0.1
+      - !type:HealthChange
+        damage:
+          types:
+            Blunt: -1
+
+- type: reagent
+  id: StarkistSunrise
+  name: reagent-name-starkist-sunrise
+  parent: BaseSoda
+  desc: reagent-desc-starkist
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: starkistsoda
+  color: "#9F3400"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 1
+        type: Remove
+      - !type:HealthChange
+        damage:
+          types:
+            Cold: -1
+      - !type:AdjustTemperature
+        amount: 2000
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          max: 310
+        amount: 6000
+
+- type: reagent
+  id: FourteenLokoSunrise
+  name: reagent-name-fourteen-loko-sunrise
+  parent: BaseSoda
+  desc: reagent-desc-fourteen-loko
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: fourteenlokosoda
+  color: "#deb928"
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/fourteen_loko_glass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.1
+    Poison:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Slime]
+          inverted: true
+        damage:
+          types:
+            Poison: 1
+    Narcotic:
+      effects:
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.16
+        sprintSpeedModifier: 1.16
+
+- type: reagent
+  id: ShamblersJuiceSunrise
+  name: reagent-name-shamblers-juice-sunrise
+  parent: BaseSoda
+  desc: reagent-desc-shamblers-juice
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: metallic
+  color: "#66538F"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectZombieAccent
+        time: 2
+        type: Add
+        conditions:
+        - !type:ReagentCondition
+          reagent: ShamblersJuiceSunrise
+          min: 15
+      - !type:CureZombieInfection
+        probability: 0.35
+        conditions:
+        - !type:ReagentCondition
+          reagent: ShamblersJuiceSunrise
+          min: 15
+      - !type:AdjustTemperature
+        amount: -2000
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 310
+        amount: -6000

@@ -1,5 +1,14 @@
-- type: gameMapPool
-  id: DefaultMapPool
-  maps: # Sunrise edit - так как прототипы карт закомментированы, нужно и отсюда убрать
-  - Empty
-  - Exo
+#- type: gameMapPool # Sunrise-edit
+#  id: DefaultMapPool
+#  maps:
+#  - Bagel
+#  - Box
+#  - Elkridge
+#  - Fland
+#  - Marathon
+#  - Oasis
+#  - Packed
+#  - Plasma
+#  - Reach
+#  - Exo
+#  - Snowball

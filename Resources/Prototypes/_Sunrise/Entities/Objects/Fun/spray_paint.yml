@@ -37,6 +37,10 @@
     closeable: true
     closeSound:
       path: /Audio/Effects/pop_high.ogg
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 15
+      Plastic: 15
 
 # Paints
 
@@ -136,6 +140,9 @@
   id: SprayPaintBlue
   suffix: Blue
   components:
+  - type: Icon
+    sprite: _Sunrise/Interface/Misc/spray_paint_icons.rsi
+    state: spray_blue
   - type: Sprite
     sprite: Objects/Fun/spraycans.rsi
     layers:
@@ -159,6 +166,9 @@
   id: SprayPaintRed
   suffix: Red
   components:
+  - type: Icon
+    sprite: _Sunrise/Interface/Misc/spray_paint_icons.rsi
+    state: spray_red
   - type: Sprite
     sprite: Objects/Fun/spraycans.rsi
     layers:
@@ -182,6 +192,9 @@
   id: SprayPaintGreen
   suffix: Green
   components:
+  - type: Icon
+    sprite: _Sunrise/Interface/Misc/spray_paint_icons.rsi
+    state: spray_green
   - type: Sprite
     sprite: Objects/Fun/spraycans.rsi
     layers:
@@ -205,6 +218,9 @@
   id: SprayPaintBlack
   suffix: Black
   components:
+  - type: Icon
+    sprite: _Sunrise/Interface/Misc/spray_paint_icons.rsi
+    state: spray_black
   - type: Sprite
     sprite: Objects/Fun/spraycans.rsi
     layers:
@@ -228,6 +244,9 @@
   id: SprayPaintOrange
   suffix: Orange
   components:
+  - type: Icon
+    sprite: _Sunrise/Interface/Misc/spray_paint_icons.rsi
+    state: spray_orange
   - type: Sprite
     sprite: Objects/Fun/spraycans.rsi
     layers:
@@ -251,6 +270,9 @@
   id: SprayPaintPurple
   suffix: Purple
   components:
+  - type: Icon
+    sprite: _Sunrise/Interface/Misc/spray_paint_icons.rsi
+    state: spray_purple
   - type: Sprite
     sprite: Objects/Fun/spraycans.rsi
     layers:
@@ -274,6 +296,9 @@
   id: SprayPaintWhite
   suffix: White
   components:
+  - type: Icon
+    sprite: _Sunrise/Interface/Misc/spray_paint_icons.rsi
+    state: spray_white
   - type: Sprite
     sprite: Objects/Fun/spraycans.rsi
     layers:

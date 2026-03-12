@@ -86,3 +86,16 @@
   - type: Appearance
   - type: Ricochetable
     chance: 1
+
+- type: entity
+  parent: WallPlastitaniumIndestructible
+  id: WallCultIndestructible
+  name: cult wall
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/cult.rsi
+  - type: Icon
+    sprite: Structures/Walls/cult.rsi
+  - type: IconSmooth
+    key: walls
+    base: cult

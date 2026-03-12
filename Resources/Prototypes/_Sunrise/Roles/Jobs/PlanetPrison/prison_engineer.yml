@@ -7,6 +7,10 @@
     - !type:DepartmentTimeRequirement
       department: Engineering
       time: 7200 # 2 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 7200 # 2 hrs
+  weight: 7
   alwaysUseSpawner: true
   canBeAntag: false
   startingGear: PrisonEngineerGear
@@ -21,6 +25,7 @@
   - Engineering
   - External
   - Atmospherics
+  - Medical
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -28,27 +33,26 @@
 - type: startingGear
   id: PrisonEngineerGear
   equipment:
-    id: PrisonEngineerPDA
-    jumpsuit: ClothingUniformJumpsuitEngineering
-    head: ClothingHeadHatBeretEngineering
     ears: ClothingHeadsetJEngineering
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasic
-    belt: ClothingBeltUtilityEngineering
-    back: ClothingBackpackEngineering
+    belt: ClothingBeltPrisonEngineerMetus
+    back: ClothingBackpackSatchelPrisonEngineerMetus
     shoes: ClothingShoesBootsJack
-    pocket1: SecurityWhistle
-    pocket2: WeaponDisabler
-  storage:
-    back:
-      - Stunbaton
-      - RadioHandheldSecurity
-      - Flash
-      - GrenadeFlashBang
-      - Handcuffs
-      - FlashlightSeclite
+    pocket1: WeaponPistolG22Prison
+    pocket2: SecurityWhistle
 
 - type: chameleonOutfit
   id: PrisonEngineerChameleonOutfit
   job: PrisonEngineer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonEngineer
+    head: ClothingHeadHatCapPrisonEngineer
+    ears: ClothingHeadsetJEngineering
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorBasic
+    belt: ClothingBeltPrisonEngineerMetus
+    back: ClothingBackpackSatchelPrisonEngineerMetus
+    shoes: ClothingShoesBootsJack

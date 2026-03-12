@@ -1,22 +1,121 @@
 - type: latheRecipe
+  id: BioGenHandheldSoil
+  result: HandheldSoil
+  categories:
+  - Materials
+  completetime: 3
+  materials:
+    Biomass: 75
+
+- type: latheRecipe
+  id: BioClothingBeltPlant
+  result: ClothingBeltPlant
+  categories:
+  - Materials
+  completetime: 5
+  materials:
+    Biomass: 20
+
+- type: latheRecipe
+  id: BioClothingBeltUtility
+  result: ClothingBeltUtility
+  categories:
+  - Materials
+  completetime: 5
+  materials:
+    Biomass: 20
+
+- type: latheRecipe
+  id: BioClothingBeltMedical
+  result: ClothingBeltMedical
+  categories:
+  - Materials
+  completetime: 5
+  materials:
+    Biomass: 20
+
+- type: latheRecipe
+  id: BioClothingBeltJanitor
+  result: ClothingBeltJanitor
+  categories:
+  - Materials
+  completetime: 5
+  materials:
+    Biomass: 20
+
+- type: latheRecipe
+  id: BioClothingBeltStorageWaistbag
+  result: ClothingBeltStorageWaistbag
+  categories:
+  - Materials
+  completetime: 5
+  materials:
+    Biomass: 20
+
+- type: latheRecipe
+  id: BioClothingBeltChef
+  result: ClothingBeltChef
+  categories:
+  - Materials
+  completetime: 5
+  materials:
+    Biomass: 20
+
+- type: latheRecipe
+  id: BioCowCube
+  result: CowCube
+  completetime: 3
+  materials:
+    Biomass: 240
+
+- type: latheRecipe
+  id: BioGoatCube
+  result: GoatCube
+  completetime: 3
+  materials:
+    Biomass: 75
+
+- type: latheRecipe
+  id: BioMothroachCube
+  result: MothroachCube
+  completetime: 45 # prevent biblical floods
+  materials:
+    Biomass: 20 # a lot of materials wasted due to complex genetics
+
+- type: latheRecipe
+  id: BioMouseCube
+  result: MouseCube
+  completetime: 3
+  materials:
+    Biomass: 12
+
+- type: latheRecipe
+  id: BioCockroachCube
+  result: CockroachCube
+  completetime: 3
+  materials:
+    Biomass: 16
+
+- type: latheRecipe
+  id: BioPigCube
+  result: PigCube
+  completetime: 3
+  materials:
+    Biomass: 55
+
+- type: latheRecipe
+  id: BioChikenCube
+  result: ChikenCube
+  completetime: 3
+  materials:
+    Biomass: 16
+
+- type: latheRecipe
   id: BioSheetOfficePaper
   result: SheetOfficePaper1
   completetime: 1
   materials:
     Biomass: 2
-
-- type: latheRecipe
-  id: BioGenUnstableMutagen
-  resultReagents:
-    UnstableMutagen: 10
-  categories:
-  - Chemicals
-  icon:
-    sprite: Objects/Specific/Chemistry/bottle.rsi
-    state: bottle-1
-  completetime: 1
-  materials:
-    Biomass: 40
 
 - type: latheRecipe
   id: BioGenNitroKill

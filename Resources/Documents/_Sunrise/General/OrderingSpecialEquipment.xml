@@ -1,0 +1,27 @@
+<Document>
+[head=3][color=#2b2f73][bold]Заказ специального снаряжения[/bold][/color][/head]
+[color=#5056d8][bold]{corpString}[/bold][/color][mono] / КОД-ЦК[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#5056d8][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#5056d8][bold]Содержание[/bold][/color]
+
+Я, (ФИО), в должности (ДОЛЖНОСТЬ), прошу Центральное командование предоставить специальное снаряжение станции.
+Перечень запрашиваемого снаряжения:
+
+[color=#5056d8][bold]Причина запроса[/bold][/color]
+[mono]
+1)
+2)
+[/mono]
+
+[color=#666666][italic]Место для печатей[/italic][/color]
+
+
+</Document>

@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/15121b534f4ef10339d96412e22fe3ce4d15a45d/icons/obj/coins.dmi resprited by KaiserMaus",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "silver"
+    },
+    {
+      "name": "silver_2"
+    },
+    {
+      "name": "silver_3"
+    },
+    {
+      "name": "gold"
+    },
+    {
+      "name": "gold_2"
+    },
+    {
+      "name": "gold_3"
+    },
+    {
+      "name": "iron"
+    },
+    {
+      "name": "iron_2"
+    },
+    {
+      "name": "iron_3"
+    },
+    {
+      "name": "diamond"
+    }
+  ]
+}

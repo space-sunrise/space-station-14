@@ -1,6 +1,6 @@
 - type: entity
   id: MagazineP90
-  name: P90 magazine
+  name: P90 magazine (SP)
   parent: BaseItem
   components:
   - type: Tag
@@ -30,6 +30,38 @@
     steps: 6
     zeroVisible: false
   - type: Appearance
+
+- type: entity
+  id: MagazineP90HP
+  name: P90 magazine (HP)
+  parent: MagazineP90
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolHP
+
+- type: entity
+  id: MagazineP90FMJ
+  name: P90 magazine (FMJ)
+  parent: MagazineP90
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolFMJ
+
+- type: entity
+  id: MagazineP90Incendiary
+  name: P90 magazine (incendiary)
+  parent: MagazineP90
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolIncendiary
+
+- type: entity
+  id: MagazineP90AP
+  name: P90 magazine (AP)
+  parent: MagazineP90
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolAP
 
 - type: entity
   id: MagazineMP7
@@ -98,13 +130,13 @@
   - type: Appearance
 
 - type: entity
-  id: MagazinePPSH41
+  id: MagazinePistolSubMachineGunPPSHExtended
   name: PPSH magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-    - MagazinePPSH41
+    - MagazineSMGPPSH
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgePistolSP  # 57x28
@@ -129,13 +161,6 @@
     steps: 2
     zeroVisible: false
   - type: Appearance
-
-- type: entity
-  parent: MagazinePPSH41
-  id: MagazinePPSH41Extended
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 85
 
 - type: entity
   parent: MagazineMP5
@@ -183,3 +208,18 @@
     steps: 6
     zeroVisible: false
   - type: Appearance
+
+- type: entity
+  id: MagazineGlock22Metus
+  parent: MagazineGlock22
+  components:
+  - type: Tag
+    tags:
+    - MagazinePistolHighCapacityRubber
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistolRubber
+    whitelist:
+      tags:
+      - CartridgePistol
+    capacity: 18

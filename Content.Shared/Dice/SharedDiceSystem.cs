@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.Dice;
 using Content.Shared.Examine;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
@@ -20,6 +21,8 @@ public abstract class SharedDiceSystem : EntitySystem
         SubscribeLocalEvent<DiceComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<DiceComponent, LandEvent>(OnLand);
         SubscribeLocalEvent<DiceComponent, ExaminedEvent>(OnExamined);
+        // Sunrise-Edit
+        SubscribeLocalEvent<DiceComponent, ChangeDiceSetValueMessage>(OnChangeDiceSetValueMessage);
     }
 
     private void OnUseInHand(Entity<DiceComponent> entity, ref UseInHandEvent args)
@@ -41,7 +44,16 @@ public abstract class SharedDiceSystem : EntitySystem
         //No details check, since the sprite updates to show the side.
         using (args.PushGroup(nameof(DiceComponent)))
         {
-            args.PushMarkup(Loc.GetString("dice-component-on-examine-message-part-1", ("sidesAmount", entity.Comp.Sides)));
+            // Sunrise-Edit
+            if (entity.Comp.IsNotStandardDice)
+            {
+                args.PushMarkup(Loc.GetString("dice-component-on-examine-message-part-3", ("startSide", entity.Comp.StartFromSide), ("endSide", entity.Comp.Sides)));
+            }
+            else
+            {
+                args.PushMarkup(Loc.GetString("dice-component-on-examine-message-part-1", ("sidesAmount", entity.Comp.Sides)));
+            }
+            // Sunrise-Edit-End
             args.PushMarkup(Loc.GetString("dice-component-on-examine-message-part-2",
                 ("currentSide", entity.Comp.CurrentValue)));
         }
@@ -74,7 +86,9 @@ public abstract class SharedDiceSystem : EntitySystem
     {
         var rand = new System.Random((int)_timing.CurTick.Value);
 
-        var roll = rand.Next(1, entity.Comp.Sides + 1);
+        // Sunrise-Edit
+        var roll = rand.Next(entity.Comp.StartFromSide, entity.Comp.Sides + 1);
+        // Sunrise-Edit-End
         SetCurrentSide(entity, roll);
 
         var popupString = Loc.GetString("dice-component-on-roll-land",
@@ -82,5 +96,13 @@ public abstract class SharedDiceSystem : EntitySystem
             ("currentSide", entity.Comp.CurrentValue));
         _popup.PopupPredicted(popupString, entity, user);
         _audio.PlayPredicted(entity.Comp.Sound, entity, user);
+    }
+
+    // Sunrise-Edit
+    private void OnChangeDiceSetValueMessage(Entity<DiceComponent> entity, ref ChangeDiceSetValueMessage args)
+    {
+        entity.Comp.SetSides((int)args.StartValue, (int)args.EndValue);
+        _popup.PopupPredicted(Loc.GetString("comp-change-dice-sides-amount", ("startAmount", (int)args.StartValue), ("endAmount", (int)args.EndValue)), entity, entity.Owner);
+        Dirty(entity);
     }
 }

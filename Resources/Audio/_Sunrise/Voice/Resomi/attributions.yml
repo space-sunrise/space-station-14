@@ -2,3 +2,28 @@
   license: "CC-BY-SA-3.0"
   copyright: "Taken from public wildlife sound library xeno-canto.org"
   source: "https://xeno-canto.org"
+
+- files: ["resomi_chirp1.ogg", "resomi_chirp2.ogg", "resomi_chirp3.ogg", "resomi_chirp4.ogg", "resomi_chirp5.ogg"]
+  copyright: "Bird Chirps by whiskeyecho, Taken from https://freesound.org/"
+  license: "CC0-1.0"
+  source: https://freesound.org/s/727256/
+
+- files: ["resomi_whistle.ogg"]
+  copyright: "CanaryArtie-3.wav by ReadeOnly, Taken from https://freesound.org/"
+  license: "CC0-1.0"
+  source: https://freesound.org/s/85403/
+
+- files: ["resomi_laugh1.ogg", "resomi_laugh2.ogg", "resomi_laugh3.ogg"]
+  copyright: "galah0X.wav by ImmergoMedia, Taken from https://freesound.org/"
+  license: "CC0-1.0"
+  source: https://freesound.org/people/ImmergoMedia/
+
+- files: ["resomi_trill1.ogg", "resomi_trill2.ogg", "resomi_trill3.ogg"]
+  copyright: "Taken from https://pixabay.com/"
+  license: "CC0-1.0"
+  source: "https://pixabay.com/sound-effects/cat-trilling-75541/"
+
+- files: ["resomi_cry.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from https://pixelbay.com/"
+  source: "https://pixabay.com/sound-effects/an-eagle-squawking-overhead-226774/"

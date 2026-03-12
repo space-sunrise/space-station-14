@@ -1,0 +1,301 @@
+# region Base
+- type: entity
+  abstract: true
+  parent: [ BaseItem, BaseSecurityContraband ]
+  id: BaseMagazineShotgunXL
+  name: XL ammo drum (.50 shells)
+  components:
+  - type: Tag
+    tags:
+    - MagazineShotgun
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - ShellShotgun
+    capacity: 16
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
+  - type: Item
+    shape:
+    - 0,0,1,1
+    size: Small
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#d73307"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#d73307"
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    scale: 1.1,1.1
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Shotgun/m16.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 17
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineAsh12
+  name: "ash-12 magazine(.50 slug)"
+  parent: [ BaseItem, BaseSecurityContraband ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - MagazineAsh12
+  - type: Sprite
+    scale: 0.8,0.8
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/ash12.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - ShotgunSlug
+    capacity: 10
+    proto: ShellShotgunSlug
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: MagazineVisuals
+    magState: mag
+    steps: 9
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineAsh12Slug
+  name: ash-12 magazine slug
+  parent: BaseMagazineAsh12
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#780606"
+
+- type: entity
+  id: MagazineAsh12Beanbag
+  name: ash-12 magazine beanbag
+  parent: BaseMagazineAsh12
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#149A1E"
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunBeanbag
+
+- type: entity
+  id: MagazineAsh12Flare
+  name: ash-12 magazine flare
+  parent: BaseMagazineAsh12
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#FFFF0B"
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunFlare
+
+# region Bulldog
+- type: entity
+  id: MagazineShotgunBreach
+  name: ammo drum (.50 breaching)
+  parent: BaseMagazineShotgun
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunBreaching
+  - type: Sprite
+    layers:
+    - state: breach
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#0096FF"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#0096FF"
+
+- type: entity
+  parent: BaseMagazineShotgun
+  id: MagazineShotgunFlechette
+  name: ammo drum (.50 flechette)
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunFlechette
+  - type: Sprite
+    layers:
+    - state: flechette
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#5da0b5"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#5da0b5"
+
+- type: entity
+  id: MagazineShotgunUranium
+  name: ammo drum (.50 Uranium)
+  parent: BaseMagazineShotgun
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunUranium
+  - type: Sprite
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#40F57A"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#40F57A"
+
+# region XL drummag
+- type: entity
+  parent: BaseMagazineShotgunXL
+  id: MagazineShotgunFlechetteXL
+  name: XL ammo drum (.50 flechette)
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunFlechette
+  - type: Sprite
+    layers:
+    - state: flechette
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#5da0b5"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#5da0b5"
+
+- type: entity
+  parent: BaseMagazineShotgunXL
+  id: MagazineShotgunIncendiaryXL
+  name: XL ammo drum (.50 incendiary)
+  description: A extra-large drum magazine used by some military-grade automatic shotguns. Intended to hold self-igniting incendiary ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunIncendiary
+  - type: Sprite
+    layers:
+    - state: flame
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#72382d"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#72382d"
+
+- type: entity
+  parent: BaseMagazineShotgunXL
+  id: MagazineShotgunXL
+  name: XL ammo drum (.50 pellet)
+  description: A extra-large  drum magazine used by some military-grade automatic shotguns. Intended to hold general-purpose kinetic ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgun
+  - type: Sprite
+    layers:
+    - state: pellets
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ba7710"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ba7710"
+
+- type: entity
+  parent: BaseMagazineShotgunXL
+  id: MagazineShotgunSlugXL
+  name: XL ammo drum (.50 slug)
+  description: A extra-large  drum magazine used by some military-grade automatic shotguns. Intended to hold long-ranged slug ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunSlug
+  - type: Sprite
+    layers:
+    - state: slug
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#72382d"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#72382d"

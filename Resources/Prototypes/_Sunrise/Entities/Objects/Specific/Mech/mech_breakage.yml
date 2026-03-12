@@ -1,0 +1,412 @@
+- type: entity
+  id: MechRipleyBoardSpawnerLow
+  name: mech ripley board spawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - RipleyCentralElectronics
+    - RipleyPeripheralsElectronics
+    chance: 0.1
+    offset: 0.2
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  id: MechGygaxBoardSpawnerLow
+  name: mech gygax board spawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - GygaxCentralElectronics
+    - GygaxPeripheralsElectronics
+    - GygaxTargetingElectronics
+    chance: 0.1
+    offset: 0.2
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  id: MechDurandBoardSpawnerLow
+  name: mech durand board spawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - DurandCentralElectronics
+    - DurandPeripheralsElectronics
+    - DurandTargetingElectronics
+    chance: 0.1
+    offset: 0.2
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  id: MechPartSpawnerLow20
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    chance: 0.2
+    offset: 0.2
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  id: MechPartSpawnerLow10
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    chance: 0.1
+    offset: 0.2
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  id: MechRipleyHarnessSpawnerLow
+  name: mech ripley harness spawner
+  parent: MechPartSpawnerLow20
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - RipleyHarness
+
+- type: entity
+  id: MechRipleyLArmSpawnerLow
+  name: mech ripley left arm spawner
+  parent: MechPartSpawnerLow20
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - RipleyLArm
+
+- type: entity
+  id: MechRipleyRArmSpawnerLow
+  name: mech ripley right arm spawner
+  parent: MechPartSpawnerLow20
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - RipleyRArm
+
+- type: entity
+  id: MechRipleyLLegSpawnerLow
+  name: mech ripley left leg spawner
+  parent: MechPartSpawnerLow20
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - RipleyLLeg
+
+- type: entity
+  id: MechRipleyRLegSpawnerLow
+  name: mech ripley right leg spawner
+  parent: MechPartSpawnerLow20
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - RipleyRLeg
+
+- type: entity
+  id: MechGygaxHarnessSpawnerLow
+  name: mech gygax harness spawner
+  parent: MechPartSpawnerLow20
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - GygaxHarness
+
+- type: entity
+  id: MechGygaxHeadSpawnerLow
+  name: mech gygax head spawner
+  parent: MechPartSpawnerLow20
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - GygaxHead
+
+- type: entity
+  id: MechGygaxLArmSpawnerLow
+  name: mech gygax left arm spawner
+  parent: MechPartSpawnerLow20
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - GygaxLArm
+
+- type: entity
+  id: MechGygaxRArmSpawnerLow
+  name: mech gygax right arm spawner
+  parent: MechPartSpawnerLow20
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - GygaxRArm
+
+- type: entity
+  id: MechGygaxLLegSpawnerLow
+  name: mech gygax left leg spawner
+  parent: MechPartSpawnerLow20
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - GygaxLLeg
+
+- type: entity
+  id: MechGygaxRLegSpawnerLow
+  name: mech gygax right leg spawner
+  parent: MechPartSpawnerLow20
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - GygaxRLeg
+
+- type: entity
+  id: MechGygaxArmorPlateSpawnerLow
+  name: mech gygax armor plate spawner
+  parent: MechPartSpawnerLow10
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - GygaxArmorPlate
+
+- type: entity
+  id: MechDurandHarnessSpawnerLow
+  name: mech durand harness spawner
+  parent: MechPartSpawnerLow20
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - DurandHarness
+
+- type: entity
+  id: MechDurandHeadSpawnerLow
+  name: mech durand head spawner
+  parent: MechPartSpawnerLow20
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - DurandHead
+
+- type: entity
+  id: MechDurandLArmSpawnerLow
+  name: mech durand left arm spawner
+  parent: MechPartSpawnerLow20
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - DurandLArm
+
+- type: entity
+  id: MechDurandRArmSpawnerLow
+  name: mech durand right arm spawner
+  parent: MechPartSpawnerLow20
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - DurandRArm
+
+- type: entity
+  id: MechDurandLLegSpawnerLow
+  name: mech durand left leg spawner
+  parent: MechPartSpawnerLow20
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - DurandLLeg
+
+- type: entity
+  id: MechDurandRLegSpawnerLow
+  name: mech durand right leg spawner
+  parent: MechPartSpawnerLow20
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - DurandRLeg
+
+- type: entity
+  id: MechDurandArmorPlateSpawnerLow
+  name: mech durand armor plate spawner
+  parent: MechPartSpawnerLow10
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - DurandArmorPlate
+
+- type: entity
+  id: MechBreakageRipley
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 700
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ScrapSteel:
+            min: 1
+            max: 4
+          MechRipleyHarnessSpawnerLow:
+            min: 1
+            max: 1
+          MechRipleyLArmSpawnerLow:
+            min: 1
+            max: 1
+          MechRipleyRArmSpawnerLow:
+            min: 1
+            max: 1
+          MechRipleyLLegSpawnerLow:
+            min: 1
+            max: 1
+          MechRipleyRLegSpawnerLow:
+            min: 1
+            max: 1
+          MechRipleyBoardSpawnerLow:
+            min: 1
+            max: 1
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: MechBreakageGygax
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ScrapSteel:
+            min: 2
+            max: 4
+          MechGygaxHarnessSpawnerLow:
+            min: 1
+            max: 1
+          MechGygaxHeadSpawnerLow:
+            min: 1
+            max: 1
+          MechGygaxLArmSpawnerLow:
+            min: 1
+            max: 1
+          MechGygaxRArmSpawnerLow:
+            min: 1
+            max: 1
+          MechGygaxLLegSpawnerLow:
+            min: 1
+            max: 1
+          MechGygaxRLegSpawnerLow:
+            min: 1
+            max: 1
+          MechGygaxArmorPlateSpawnerLow:
+            min: 1
+            max: 1
+          MechGygaxBoardSpawnerLow:
+            min: 1
+            max: 1
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: MechBreakageDurand
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ScrapSteel:
+            min: 2
+            max: 4
+          MechDurandHarnessSpawnerLow:
+            min: 1
+            max: 1
+          MechDurandHeadSpawnerLow:
+            min: 1
+            max: 1
+          MechDurandLArmSpawnerLow:
+            min: 1
+            max: 1
+          MechDurandRArmSpawnerLow:
+            min: 1
+            max: 1
+          MechDurandLLegSpawnerLow:
+            min: 1
+            max: 1
+          MechDurandRLegSpawnerLow:
+            min: 1
+            max: 1
+          MechDurandArmorPlateSpawnerLow:
+            min: 1
+            max: 1
+          MechDurandBoardSpawnerLow:
+            min: 1
+            max: 1
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: MechBreakageMarauderFamily
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ScrapSteel:
+            min: 2
+            max: 4
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]

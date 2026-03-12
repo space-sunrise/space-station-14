@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by KAVALDi, modified from actions_rat_king.rsi and carp.rsi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "carpQueenEgg"
+    },
+    {
+      "name": "attack"
+    },
+    {
+      "name": "attackOff"
+    },
+    {
+      "name": "follow"
+    },
+    {
+      "name": "followOff"
+    },
+    {
+      "name": "loose"
+    },
+    {
+      "name": "looseOff"
+    },
+    {
+      "name": "stay"
+    },
+    {
+      "name": "stayOff"
+    }
+  ]
+}

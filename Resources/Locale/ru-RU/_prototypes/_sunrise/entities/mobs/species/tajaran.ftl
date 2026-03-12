@@ -1,4 +1,4 @@
-ent-BaseMobTajaran = { ent-BaseMobSpeciesOrganic }
+ent-BaseMobTajaran = Урист МакТаяран
     .desc = { ent-BaseMobSpeciesOrganic.desc }
-ent-MobTajaranDummy = Таяран МакХендс
-    .desc = Модель таярана, предназначенная для настройки персонажа.
+ent-MobTajaranDummy = { ent-BaseSpeciesDummy }
+    .desc = { ent-BaseSpeciesDummy.desc }

@@ -2,6 +2,7 @@
   id: WeaponMechDebugBallistic
   parent: [ BaseMechWeaponRange, DebugMechEquipment ] # Debug equipment dose has all whitelist tags.
   suffix: Mech Weapon, DEBUG, Ballistic
+  categories: [ Debug ] # Sunrise-Add
   name: debug bang
   components:
   - type: Sprite
@@ -25,7 +26,7 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: AmmoCounter
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgeLightRifleSP
     fireCost: 9
   - type: MagazineVisuals
@@ -38,6 +39,7 @@
   id: WeaponMechDebugLaser
   name: debug pow
   suffix: Mech Weapon, DEBUG, Laser
+  categories: [ Debug ] # Sunrise-Add
   parent: [ BaseMechWeaponRange, DebugMechEquipment ]
   description: A weapon using light amplified by the stimulated emission of radiation.
   components:
@@ -49,7 +51,7 @@
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 19
   - type: MagazineVisuals
@@ -70,6 +72,7 @@
   name: debug tew
   description: A self-defense weapon that exhausts organic targets, weakening them until they collapse.
   suffix: Mech Weapon, DEBUG, Disabler
+  categories: [ Debug ] # Sunrise-Add
   parent: [ BaseMechWeaponRange, DebugMechEquipment ]
   components:
   - type: Sprite
@@ -87,7 +90,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 19
   - type: MagazineVisuals

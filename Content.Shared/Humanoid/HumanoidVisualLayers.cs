@@ -13,6 +13,7 @@ namespace Content.Shared.Humanoid
         Chest,
         Head,
         Snout,
+        SnoutCover, // things layered over snouts (i.e. noses)
         HeadSide, // side parts (i.e., frills)
         HeadTop,  // top parts (i.e., ears)
         Eyes,
@@ -31,6 +32,10 @@ namespace Content.Shared.Humanoid
         Fire,
         Back,  // SUNRISE
 
-        Other
+        Other,
+        // Sunrise - Start
+        Rings,
+        Dreadlocks
+        // Sunrise - End
     }
 }

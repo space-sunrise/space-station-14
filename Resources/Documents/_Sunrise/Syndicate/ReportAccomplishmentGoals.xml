@@ -1,0 +1,17 @@
+<Document>
+[head=2][color=#4a0010][bold]Отчёт о достижении целей[/bold][/color][/head]
+[color=#b00020][bold]СНД[/bold][/color][mono] / КОМ-С[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#b00020][bold]Отчёт[/bold][/color]
+
+Позывной Агента:
+
+Я, (позывной агента), успешно выполнил поставленные передо мной руководством Синдиката цели. Прошу принять отчёт о выполнении.
+Отчёт:
+
+[color=#666666][italic]Место для печатей[/italic][/color]
+
+
+</Document>

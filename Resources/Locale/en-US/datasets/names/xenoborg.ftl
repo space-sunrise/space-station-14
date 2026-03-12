@@ -58,3 +58,26 @@ names-xenoborg-dataset-57 = Piece De Destruction
 names-xenoborg-dataset-58 = Talos
 names-xenoborg-dataset-59 = Aggrobot
 names-xenoborg-dataset-60 = Backstabber
+#
+names-xenoborg-dataset-61 = FridgeUnit
+names-xenoborg-dataset-62 = EvilCabinet
+names-xenoborg-dataset-63 = EvilBall
+names-xenoborg-dataset-64 = METAton
+names-xenoborg-dataset-65 = GlamourK1ll
+names-xenoborg-dataset-66 = MeatCollector3000
+names-xenoborg-dataset-67 = ZipFile
+names-xenoborg-dataset-68 = BrainSnatcher
+names-xenoborg-dataset-69 = ScrapCollector
+names-xenoborg-dataset-70 = Errorina404
+names-xenoborg-dataset-71 = NoBalance
+names-xenoborg-dataset-72 = MommasFav
+names-xenoborg-dataset-73 = Dust S.0.S
+names-xenoborg-dataset-74 = Glad0S
+names-xenoborg-dataset-75 = Gib.exe
+names-xenoborg-dataset-76 = General Griefsky
+names-xenoborg-dataset-77 = Lieutenant Beepsky
+names-xenoborg-dataset-78 = Assault-O-Tron
+names-xenoborg-dataset-79 = DEBAG
+names-xenoborg-dataset-80 = W.U.L.P.A
+names-xenoborg-dataset-81 = Robust-O-Tron
+#

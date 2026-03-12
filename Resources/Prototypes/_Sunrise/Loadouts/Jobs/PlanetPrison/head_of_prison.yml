@@ -1,0 +1,17 @@
+# Рабочая униформа
+
+- type: loadout
+  id: HeadOfPrisonJumpsuitAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHoSAlt
+
+- type: loadout
+  id: HeadOfPrisonJumpsuitOld
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobHeadOfPrison
+      time: 36000 # 10 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHoSOld

@@ -15,7 +15,6 @@ namespace Content.Shared.Clothing;
 public sealed class SharedMagbootsSystem : EntitySystem
 {
     [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly ItemToggleSystem _toggle = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
@@ -28,7 +27,6 @@ public sealed class SharedMagbootsSystem : EntitySystem
         SubscribeLocalEvent<MagbootsComponent, ClothingGotEquippedEvent>(OnGotEquipped);
         SubscribeLocalEvent<MagbootsComponent, ClothingGotUnequippedEvent>(OnGotUnequipped);
         SubscribeLocalEvent<MagbootsComponent, IsWeightlessEvent>(OnIsWeightless);
-        SubscribeLocalEvent<BorgMagbootsComponent, IsWeightlessEvent>(OnIsWeightless);
         SubscribeLocalEvent<MagbootsComponent, InventoryRelayedEvent<IsWeightlessEvent>>(OnIsWeightless);
     }
 
@@ -54,7 +52,7 @@ public sealed class SharedMagbootsSystem : EntitySystem
         if (TryComp<MovedByPressureComponent>(user, out var moved))
             moved.Enabled = !state;
 
-        _gravity.RefreshWeightless(user, !state);
+        _gravity.RefreshWeightless(user);
 
         if (state)
             _alerts.ShowAlert(user, ent.Comp.MagbootsAlert);
@@ -63,19 +61,6 @@ public sealed class SharedMagbootsSystem : EntitySystem
     }
 
     private void OnIsWeightless(Entity<MagbootsComponent> ent, ref IsWeightlessEvent args)
-    {
-        if (args.Handled || !_toggle.IsActivated(ent.Owner))
-            return;
-
-        // do not cancel weightlessness if the person is in off-grid.
-        if (ent.Comp.RequiresGrid && !_gravity.EntityOnGravitySupportingGridOrMap(ent.Owner))
-            return;
-
-        args.IsWeightless = false;
-        args.Handled = true;
-    }
-
-    private void OnIsWeightless(Entity<BorgMagbootsComponent> ent, ref IsWeightlessEvent args)
     {
         if (args.Handled || !_toggle.IsActivated(ent.Owner))
             return;

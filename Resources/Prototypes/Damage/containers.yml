@@ -31,8 +31,8 @@
   supportedTypes:
     - Heat
     - Shock
-    - Caustic
-    - Structural
+    - Caustic # Sunrise-Edit
+    - Structural # Sunrise-Edit
     - Mangleness # Sunrise-Edit
 
 

@@ -40,7 +40,27 @@
             "cwd": "${workspaceFolder}/Content.YAMLLinter",
             "console": "internalConsole",
             "stopAtEntry": false
-        }
+        },
+        {
+            "name": "Server - Release",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build - Release",
+            "program": "${workspaceFolder}/bin/Content.Server/Content.Server.dll",
+            "args": [""],
+            "console": "integratedTerminal",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Client - Release",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build - Release",
+            "program": "${workspaceFolder}/bin/Content.Client/Content.Client.dll",
+            "args": [],
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
     ],
     "compounds": [
         {
@@ -50,6 +70,14 @@
                 "Client"
             ],
             "preLaunchTask": "build"
+        },
+        {
+            "name": "Server/Client - Release",
+            "configurations": [
+                "Server - Release",
+                "Client - Release"
+            ],
+            "preLaunchTask": "build - Release"
         }
     ]
 }

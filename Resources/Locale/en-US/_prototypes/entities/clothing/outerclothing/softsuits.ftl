@@ -10,3 +10,5 @@ ent-ClothingOuterHardsuitAncientEVA = NTSRA voidsuit
     .desc = An ancient space suit, designed by the NTSRA branch of CentComm. It is very finely crafted, allowing for greater mobility than most modern space suits.
 ent-ClothingOuterHardsuitVoidParamed = paramedic void suit
     .desc = A void suit made for paramedics.
+ent-ClothingOuterSoftsuitCBURN = CBURN EVA suit
+    .desc = A heavy, durable EVA bio-suit used for special cleanup operations.

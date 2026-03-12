@@ -20,6 +20,7 @@ using Content.Shared.Alert;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Inventory;
 using Content.Shared.Maps;
 using Content.Shared.Movement.Pulling.Systems;
@@ -54,6 +55,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
         [Dependency] private readonly EmpSystem _empSystem = default!;
         [Dependency] private readonly EntityManager _entityManager = default!;
+        [Dependency] private readonly SharedStackSystem _stack = default!;
         [Dependency] private readonly EuiManager _euiManager = default!;
         [Dependency] private readonly FlammableSystem _flammableSystem = default!;
         [Dependency] private readonly FlashSystem _flashSystem = default!;

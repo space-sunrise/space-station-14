@@ -169,7 +169,7 @@ public sealed class VigersRaySystem : EntitySystem
             _paracusiaSystem.SetTime(pSession.AttachedEntity.Value, 0.1f, 300, paracusia);
             _paracusiaSystem.SetDistance(pSession.AttachedEntity.Value, 7f, paracusia);
             var narcolepsy = EnsureComp<NarcolepsyComponent>(pSession.AttachedEntity.Value);
-            _narcolepsySystem.SetTime(pSession.AttachedEntity.Value, new Vector2(300, 600), new Vector2(10, 30), narcolepsy);
+            _narcolepsySystem.AdjustNarcolepsyTimer((pSession.AttachedEntity.Value, narcolepsy), TimeSpan.FromSeconds(3));
             EnsureComp<FrontalLispComponent>(pSession.AttachedEntity.Value);
             EnsureComp<DisarmProneComponent>(pSession.AttachedEntity.Value);
             if (TryComp<CreamPiedComponent>(pSession.AttachedEntity.Value, out var creamPied))

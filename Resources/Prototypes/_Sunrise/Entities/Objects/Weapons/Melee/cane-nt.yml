@@ -5,7 +5,7 @@
   description: A cane with special engraving on it. It seems well suited for fending off assailants...
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Melee/cane-nt.rsi
+    sprite: _Sunrise/Objects/Weapons/Melee/cane_nt.rsi
     layers:
     - state: cane-nt
       map: [ "enum.ToggleableVisuals.Layer" ]

@@ -7,6 +7,14 @@
   components:
   - type: Action
 
+# base proto for an action that requires a DoAfter
+- type: entity
+  abstract: true
+  parent: BaseAction
+  id: BaseDoAfterAction
+  components:
+  - type: DoAfterArgs
+
 # an action that is done all in le head and cant be prevented by any means
 - type: entity
   abstract: true
@@ -140,10 +148,9 @@
     maxCharges: 3
   # Sunrise-Start
   - type: AutoRecharge
-    rechargeDuration: 120
+    rechargeDuration: 300
   # Sunrise-End
   - type: Action
-    useDelay: 5 # Sunrise-Edit
     checkCanInteract: false
     itemIconStyle: BigAction
     priority: -20
@@ -176,7 +183,7 @@
     maxCharges: 3
   # Sunrise-Start
   - type: AutoRecharge
-    rechargeDuration: 120
+    rechargeDuration: 600
   # Sunrise-End
   - type: Action
     checkCanInteract: false
@@ -186,28 +193,6 @@
     icon:
       sprite: Objects/Weapons/Grenades/empgrenade.rsi
       state: icon
-
-# Sunrise-Start  #PR Wiz #31782
-- type: entity
-  id: ActionActivateSmokeGrenadeImplant
-  name: Activate Smoke Grenade
-  description: Create a small cloud of smoke around you.
-  components:
-  - type: Action
-    checkCanInteract: false
-    useDelay: 5
-    itemIconStyle: BigAction
-    priority: -20
-    icon:
-      sprite: Objects/Weapons/Grenades/smoke.rsi
-      state: icon
-  - type: InstantAction
-    event: !type:ActivateImplantEvent
-  - type: LimitedCharges
-    maxCharges: 3
-  - type: AutoRecharge
-    rechargeDuration: 120
-# Sunrise-End
 
 - type: entity
   parent: BaseImplantAction
@@ -219,7 +204,7 @@
     maxCharges: 2
   # Sunrise-Start
   - type: AutoRecharge
-    rechargeDuration: 360
+    rechargeDuration: 600
   # Sunrise-End
   - type: Action
     checkCanInteract: false
@@ -295,6 +280,17 @@
     icon: { sprite: Interface/Actions/voice-mask.rsi, state: icon }
   - type: InstantAction
     event: !type:VoiceMaskSetNameEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionShootWater
+  name: Spray water!
+  description: Spray water towards your enemies.
+  components:
+  - type: Action
+    icon: { sprite: Clothing/Neck/Misc/pins.rsi, state: flower }
+  - type: InstantAction
+    event: !type:SprayLiquidEvent
 
 - type: entity
   parent: BaseAction
@@ -376,19 +372,6 @@
     icon: { sprite: Objects/Fun/bikehorn.rsi, state: icon }
     useDelay: 1
 
-# Sunrise-Start
-- type: entity
-  parent: BaseImplantAction
-  id: ActionActivateBorgLaughImplant
-  name: "[color=red]Laugh[/color]"
-  description: Activates your creepy laugh implant, which will produce the signature sound of the Syndicate cyborg.
-  components:
-  - type: Action
-    icon: { sprite: Mobs/Species/Terminator/parts.rsi, state: skull_icon }
-    useDelay: 2.75
-    itemIconStyle: BigAction
-# Sunrise-End
-
 - type: entity
   parent: BaseAction
   id: ActionFireStarter
@@ -459,6 +442,17 @@
     useDelay: 1
     itemIconStyle: BigAction
 
+#  TODO: Add back once we have animated tails again. Were removed due to the sprite rework, causing all of them to not fit anymore.
+# - type: entity
+#   parent: ActionToggleWagging
+#   id: ActionToggleWaggingVulpkanin
+#   components:
+#   - type: Action
+#     icon: { sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi, state: tail-wag-icon }
+#     iconOn: { sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi, state: tail-wag-icon }
+#     itemIconStyle: NoItem
+#     useDelay: 1 # Prevents Emote Spam
+
 - type: entity
   parent: BaseAction
   id: ActionGravityJump
@@ -467,6 +461,20 @@
   components:
   - type: Action
     useDelay: 8
+    icon:
+      sprite: Interface/Actions/jump.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:GravityJumpEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionVulpkaninGravityJump
+  name: Leap
+  description: Use your agile legs to leap a short distance. Be careful not to bump into anything!
+  components:
+  - type: Action
+    useDelay: 12
     icon:
       sprite: Interface/Actions/jump.rsi
       state: icon
@@ -496,3 +504,24 @@
     itemIconStyle: BigAction
   - type: InstantAction
     event: !type:ChameleonControllerOpenMenuEvent
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionIntrinsicStore
+  name: Store
+  description: Opens the store
+  components:
+  - type: Action
+    icon: Interface/Actions/shop.png
+  - type: InstantAction
+    event: !type:IntrinsicStoreActionEvent
+
+- type: entity
+  parent: ActionChangeVoiceMask
+  id: ActionChangeVoiceMaskImplant
+  components:
+  - type: Action
+    icon: { sprite: Interface/Actions/voice-mask.rsi, state: icon }
+    itemIconStyle: BigAction
+
+

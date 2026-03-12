@@ -77,6 +77,8 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
+  - Milira
   randomizeName: false
   components:
     - type: GhostRole
@@ -87,16 +89,20 @@
         settings: short
       mindRoles:
       - MindRoleGhostRoleFamiliar
+      job: DeathSquad
     - type: Loadout
       prototypes: [ DeathSquadGear ]
-      roleLoadout: [ RoleSurvivalEVA ]
+      # roleLoadout: [ RoleSurvivalEVA ] # sunrise-edit
     - type: RandomMetadata
       nameSegments:
         - NamesMilitaryFirstLeader
         - NamesMilitaryLast
       nameFormat: name-format-ert
-
-
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: FootstepThud
+        params:
+          volume: -6
 ## ERT Leader
 
 - type: entity
@@ -133,6 +139,8 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
+  - Milira
   randomizeName: false
   components:
     - type: GhostRole
@@ -180,6 +188,8 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
+  - Milira
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -219,6 +229,8 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
+  - Milira
   components:
     - type: GhostRole
       name: ghost-role-information-ert-leader-name
@@ -267,6 +279,8 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
+  - Milira
   parent: ERTLeader
   components:
     - type: BibleUser
@@ -315,6 +329,8 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
+  - Milira
   parent: ERTChaplain
   components:
     - type: GhostRole
@@ -365,6 +381,8 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
+  - Milira
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -412,6 +430,8 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
+  - Milira
   parent: ERTJanitor
   components:
     - type: GhostRole
@@ -461,6 +481,8 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
+  - Milira
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -508,6 +530,8 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
+  - Milira
   parent: ERTEngineer
   components:
     - type: GhostRole
@@ -557,6 +581,8 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
+  - Milira
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -604,6 +630,8 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
+  - Milira
   parent: ERTSecurity
   components:
     - type: GhostRole
@@ -642,6 +670,8 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
+  - Milira
   parent: ERTSecurityEVA
   components:
     - type: GhostRole
@@ -691,6 +721,8 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
+  - Milira
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -738,6 +770,8 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
+  - Milira
   parent: ERTMedical
   components:
     - type: GhostRole
@@ -782,6 +816,8 @@
   - Dwarf
   - HumanoidXeno
   - Predator
+  - Resomi
+  - Milira
   components:
     - type: Loadout
       prototypes: [CBURNGear]
@@ -792,6 +828,7 @@
       rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
+      job: CBURN
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -829,6 +866,7 @@
       rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: default
+      job: CentralCommandOfficial
     - type: Loadout
       prototypes: [ CentCommOfficialGear ] # Sunrise-Edit
       roleLoadout: [ RoleSurvivalStandard ]
@@ -855,6 +893,7 @@
   - Felinid
   - HumanoidXeno
   - Predator
+  - Milira
   components:
     - type: RandomHumanoidAppearance
       randomizeName: false
@@ -880,6 +919,7 @@
   - Felinid
   - HumanoidXeno
   - Predator
+  - Milira
   components:
     - type: RandomHumanoidAppearance
       randomizeName: false

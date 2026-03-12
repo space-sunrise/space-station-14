@@ -3,6 +3,7 @@ using System.Linq;
 using Content.Shared._Sunrise;
 using Content.Shared._Sunrise.TTS;
 using System.Numerics;
+using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared.CCVar;
 using Content.Shared.Decals;
 using Content.Shared.Examine;
@@ -43,7 +44,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     [Dependency] private readonly ISerializationManager _serManager = default!;
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly GrammarSystem _grammarSystem = default!;
-    [Dependency] private readonly SharedIdentitySystem _identity = default!;
+    [Dependency] private readonly IdentitySystem _identity = default!;
     private ISharedSponsorsManager? _sponsors;
 
     public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
@@ -129,7 +130,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         }
 
         if (string.IsNullOrEmpty(humanoid.Initial)
-            || !_proto.TryIndex(humanoid.Initial, out HumanoidProfilePrototype? startingSet))
+            || !_proto.Resolve(humanoid.Initial, out HumanoidProfilePrototype? startingSet))
         {
             LoadProfile(uid, HumanoidCharacterProfile.DefaultWithSpecies(humanoid.Species), humanoid);
             return;
@@ -197,20 +198,6 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         targetHumanoid.BodyType = sourceHumanoid.BodyType;
         targetHumanoid.Width = sourceHumanoid.Width; //Sunrise
         targetHumanoid.Height = sourceHumanoid.Height; //Sunrise
-
-        //Sunrise start: Copy gradient settings
-        targetHumanoid.HairGradientEnabled = sourceHumanoid.HairGradientEnabled;
-        targetHumanoid.HairGradientSecondaryColor = sourceHumanoid.HairGradientSecondaryColor;
-        targetHumanoid.HairGradientDirection = sourceHumanoid.HairGradientDirection;
-        targetHumanoid.FacialHairGradientEnabled = sourceHumanoid.FacialHairGradientEnabled;
-        targetHumanoid.FacialHairGradientSecondaryColor = sourceHumanoid.FacialHairGradientSecondaryColor;
-        targetHumanoid.FacialHairGradientDirection = sourceHumanoid.FacialHairGradientDirection;
-        targetHumanoid.AllMarkingsGradientEnabled = sourceHumanoid.AllMarkingsGradientEnabled;
-        targetHumanoid.AllMarkingsGradientSecondaryColor = sourceHumanoid.AllMarkingsGradientSecondaryColor;
-        targetHumanoid.AllMarkingsGradientDirection = sourceHumanoid.AllMarkingsGradientDirection;
-        targetHumanoid.CachedHairColor = sourceHumanoid.CachedHairColor;
-        targetHumanoid.CachedFacialHairColor = sourceHumanoid.CachedFacialHairColor;
-        //Sunrise end
 
         SetSex(target, sourceHumanoid.Sex, false, targetHumanoid);
         SetGender((target, targetHumanoid), sourceHumanoid.Gender);
@@ -348,14 +335,15 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         if (!Resolve(uid, ref humanoid))
             return;
 
-        if (!_proto.TryIndex<SpeciesPrototype>(humanoid.Species, out var species))
+        if (!_proto.Resolve<SpeciesPrototype>(humanoid.Species, out var species))
         {
             return;
         }
 
-        if (verify && !SkinColor.VerifySkinColor(species.SkinColoration, skinColor))
+        if (verify && _proto.Resolve(species.SkinColoration, out var index))
         {
-            skinColor = SkinColor.ValidSkinTone(species.SkinColoration, skinColor);
+            var strategy = index.Strategy;
+            skinColor = strategy.EnsureVerified(skinColor);
         }
 
         humanoid.SkinColor = skinColor;
@@ -483,13 +471,13 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         if (_markingManager.Markings.TryGetValue(profile.Appearance.HairStyleId, out var hairPrototype) &&
             _markingManager.CanBeApplied(profile.Species, profile.Sex, hairPrototype, _proto))
         {
-            AddMarking(uid, profile.Appearance.HairStyleId, hairColor, false);
+            AddMarking(uid, profile.Appearance.HairStyleId, hairColor, false, markingEffect: profile.Appearance.HairMarkingEffect);
         }
 
         if (_markingManager.Markings.TryGetValue(profile.Appearance.FacialHairStyleId, out var facialHairPrototype) &&
             _markingManager.CanBeApplied(profile.Species, profile.Sex, facialHairPrototype, _proto))
         {
-            AddMarking(uid, profile.Appearance.FacialHairStyleId, facialHairColor, false);
+            AddMarking(uid, profile.Appearance.FacialHairStyleId, facialHairColor, false, markingEffect: profile.Appearance.FacialHairMarkingEffect);
         }
 
         humanoid.MarkingSet.EnsureSpecies(profile.Species, profile.Appearance.SkinColor, _markingManager, _proto);
@@ -521,20 +509,6 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         humanoid.Width = profile.Appearance.Width; //Sunrise
         humanoid.Height = profile.Appearance.Height; //Sunrise
 
-        //Sunrise start: Load gradient settings from profile
-        humanoid.HairGradientEnabled = profile.Appearance.HairGradientEnabled;
-        humanoid.HairGradientSecondaryColor = profile.Appearance.HairGradientSecondaryColor;
-        humanoid.HairGradientDirection = profile.Appearance.HairGradientDirection;
-        humanoid.FacialHairGradientEnabled = profile.Appearance.FacialHairGradientEnabled;
-        humanoid.FacialHairGradientSecondaryColor = profile.Appearance.FacialHairGradientSecondaryColor;
-        humanoid.FacialHairGradientDirection = profile.Appearance.FacialHairGradientDirection;
-        humanoid.AllMarkingsGradientEnabled = profile.Appearance.AllMarkingsGradientEnabled;
-        humanoid.AllMarkingsGradientSecondaryColor = profile.Appearance.AllMarkingsGradientSecondaryColor;
-        humanoid.AllMarkingsGradientDirection = profile.Appearance.AllMarkingsGradientDirection;
-        // Set cached hair colors for gradient shader
-        humanoid.CachedHairColor = hairColor;
-        humanoid.CachedFacialHairColor = facialHairColor; //Sunrise end
-
         Dirty(uid, humanoid);
     }
 
@@ -547,7 +521,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     /// <param name="sync">Whether to immediately sync this marking or not</param>
     /// <param name="forced">If this marking was forced (ignores marking points)</param>
     /// <param name="humanoid">Humanoid component of the entity</param>
-    public void AddMarking(EntityUid uid, string marking, Color? color = null, bool sync = true, bool forced = false, HumanoidAppearanceComponent? humanoid = null)
+    public void AddMarking(EntityUid uid, string marking, Color? color = null, bool sync = true, bool forced = false, HumanoidAppearanceComponent? humanoid = null, MarkingEffect? markingEffect = null)
     {
         if (!Resolve(uid, ref humanoid)
             || !_markingManager.Markings.TryGetValue(marking, out var prototype))
@@ -562,6 +536,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             for (var i = 0; i < prototype.Sprites.Count; i++)
             {
                 markingObject.SetColor(i, color.Value);
+                if(markingEffect != null)
+                    markingObject.SetMarkingEffect(i, markingEffect);
             }
         }
 
@@ -610,7 +586,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
     // Sunrise-TTS-Start
     // ReSharper disable once InconsistentNaming
-    public void SetTTSVoice(EntityUid uid, string voiceId, HumanoidAppearanceComponent humanoid)
+    public void SetTTSVoice(EntityUid uid, ProtoId<TTSVoicePrototype> voiceId, HumanoidAppearanceComponent humanoid)
     {
         if (!TryComp<TTSComponent>(uid, out var comp))
             return;

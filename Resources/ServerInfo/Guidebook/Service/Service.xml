@@ -1,9 +1,9 @@
 <Document>
-# Сервис
-[color=#9fed58]Сервис[/color] поддерживает чистоту, эффективность и порядок на станции, чтобы все остальные отделы могли лучше выполнять свои задачи и поддерживать свой персонал довольным. Они также занимаются большей частью документации на станции.
+# Service
+[color=#9fed58]Service[/color] keeps the station clean, efficient and sane so that all other departments can do their jobs better and keep their staff happy. They also end up doing most of the paperwork on the station.
 
-## Персонал
-Персонал [color=#9fed58]Сервиса[/color] состоит из Работников сервиса, Поваров, Ботаников, Барменов, Уборщиков, Духовенства, Клоунов, Мимов, Музыкантов, Юристов, Библиотекарей и Пассажиров. Отделом [color=#9fed58]Сервиса[/color] руководит Глава Персонала.
+## Personnel
+[color=#9fed58]Service[/color]'s staff is made up of Service Workers, Chefs, Botanists, Bartenders, Janitors, Chaplains, Clowns, Mimes, Musicians, Lawyers, Librarians and Passengers. Service is run by the Head of Personnel.
 
   <Box>
     <GuideEntityEmbed Entity="ToyFigurineChef" Caption="Chef"/>
@@ -24,11 +24,11 @@
     <GuideEntityEmbed Entity="ToyFigurineHeadOfPersonnel" Caption="HoP"/>
   </Box>
 
-## Совместная Работа
-Несмотря на свою разнообразность, [color=#9fed58]Сервис[/color] часто является наиболее [color=#a4885c]взаимосвязанным[/color] отделом.
-Многие [color=#9fed58]служебные[/color] обязанности требуют [color=#a4885c]сотрудничества[/color] между работниками.
-Повару часто нужны ингредиенты, которые эффективно вырастают только у ботаников. Бармен может попросить бананы, которые только клоуны носят в избытке.
-Юрист может пригласить мима поиграть в шарады, чтобы убедить магистрата в невиновности их клиента.
+## Working Together
+[color=#9fed58]Service[/color], despite being the most diverse, tends to be the most [color=#a4885c]interlinked[/color] department by far.
+Most [color=#9fed58]Service[/color] jobs require [color=#a4885c]cooperation[/color] between workers.
+Chefs often need ingredients that only botanists can grow efficiently. The bartender may request bananas that only clowns carry in abundance.
+The lawyer may invite the mime to play charades to convince the judge that their client is innocent.
 
-Много [color=#a4885c]сотрудничества[/color] необходимо как внутри, так и за пределами [color=#9fed58]Сервиса[/color]. Часто другие отделы нуждаются в помощи [color=#9fed58]Сервиса[/color], поэтому будьте на чеку.
+A lot of [color=#a4885c]collaboration[/color] is necessary within and without [color=#9fed58]Service[/color]. Often times, [color=#9fed58]Service[/color] is required by other departments, so be on your toes.
 </Document>

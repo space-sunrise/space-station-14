@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: names_xeno_first
+  values:
+    prefix: names-xenomorph-first-dataset-
+    count: 400

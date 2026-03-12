@@ -877,6 +877,7 @@
         Bloodloss:
           -0.8
   - type: Temperature
+  - type: TemperatureDamage
     heatDamageThreshold: 800
     coldDamageThreshold: 0
   - type: MeleeWeapon
@@ -888,8 +889,6 @@
   - type: Item
     sprite: Mobs/Pets/Smile/smile.rsi
     size: Huge
-  - type: SentienceTarget
-    flavorKind: station-event-random-sentience-flavor-slime
   - type: MobPrice
     price: 3000 # it is a truly valuable creature
   - type: GhostRole
@@ -1017,4 +1016,7 @@
       gender: male
   - type: Loadout
     prototypes: [ MobPollyGear ]
-
+# Sunrise Edit start
+  - type: TTS
+    voice: Dornan
+# Sunrise Edit end

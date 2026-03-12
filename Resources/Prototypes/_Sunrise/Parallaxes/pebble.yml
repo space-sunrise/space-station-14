@@ -3,7 +3,7 @@
   layers:
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/_Sunrise/Parallaxes/Pebble.png"
+        path: "/NetTextures/Parallaxes/Pebble.png"
       slowness: 0.98
       scale: 0.5,0.5
     - texture:

@@ -19,12 +19,12 @@
       - Guardian # no holoparasite macrobomb wombo combo
       tags:
       - Unimplantable
-    currentMode: Inject #Sunrise-Edit
+    currentMode: Inject  # Sunrise-Edit
     implanterSlot:
       name: Implant
-      ejectOnBreak: true #Sunrise-Edit
-      swap: false #Sunrise-Edit
-      locked: True
+      ejectOnBreak: true  # Sunrise-Edit
+      swap: false  # Sunrise-Edit
+      locked: false  # Sunrise-Edit
       priority: 0
       whitelist:
         tags:
@@ -49,10 +49,18 @@
     - FakeMindShieldImplant
     - RadioImplant
     - ChameleonControllerImplant
+    - VoiceMaskImplant
+    - ProtoAdrenalImplant
+    - AdrenalImplant
+    - StimpackImplant
+    - NutrimentImplant
+    - ReviverImplant
     deimplantFailureDamage:
       types:
         Cellular: 50
         Heat: 10
+        Radiation: 15  # Sunrise-Edit
+        Caustic: 15  # Sunrise-Edit
   - type: Sprite
     sprite: Objects/Specific/Medical/implanter.rsi
     state: implanter0
@@ -86,15 +94,19 @@
 - type: entity
   id: Implanter
   parent: BaseImplanter
-  description: A disposable syringe exclusively designed for the injection and extraction of subdermal implants.
+  name: implanter
+  description: A disposable syringe exclusively designed for the injection of subdermal implants.
   components:
+  - type: Implanter
+    currentMode: Inject  # Sunrise-Edit
+    implantOnly: true  # Sunrise-Edit
   - type: Tag
     tags:
     - Trash
 
 - type: entity
-  parent: Implanter
   id: ImplanterAdmeme
+  parent: ImplanterExtractor # Sunrise-edit
   suffix: Admeme
   components:
   - type: Implanter
@@ -127,7 +139,7 @@
   id: BaseImplantOnlyImplanterSyndi
   parent: [BaseImplantOnlyImplanter, BaseSyndicateContraband]
   name: syndicate implanter
-  description: A compact disposable syringe exclusively designed for the injection of subdermal implants. Make sure to scrub it with soap or a rag to remove residual DNA after use!
+  description: A compact disposable syringe exclusively designed for the injection of subdermal implants. Make sure to scrub it with soap to remove residual DNA after use!
   abstract: true
   components:
   - type: Item
@@ -256,6 +268,14 @@
   components:
   - type: Implanter
     implant: ChameleonControllerImplant
+
+- type: entity
+  id: VoiceMaskImplanter
+  name: identity mask implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: VoiceMaskImplant
 
 #Nuclear Operative/Special implanters
 

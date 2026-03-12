@@ -152,6 +152,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
             // TODO: someone suggested listing all alive? revs maybe implement at some point
         }
+        args.AddLine("");
     }
 
     private void OnGetBriefing(EntityUid uid, RevolutionaryRoleComponent comp, ref GetBriefingEvent args)
@@ -182,14 +183,6 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             !_mobState.IsAlive(ev.Target) ||
             HasComp<ZombieComponent>(ev.Target))
         {
-            return;
-        }
-
-        // Check if the user has a ban on "Revolutionary"
-        // Check if the user has a ban on "Revolutionary"
-        if (mind != null && mind.UserId.HasValue && _banManager.IsAntagBanned(mind.UserId.Value, "Rev"))
-        {
-            KillDueToBan(ev.Target);
             return;
         }
 

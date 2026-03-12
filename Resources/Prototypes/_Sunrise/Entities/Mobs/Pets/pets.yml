@@ -67,9 +67,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 # Заготовленные ентити питомцев
 
@@ -109,9 +106,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -144,9 +138,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -179,9 +170,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -195,6 +183,14 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: vidra
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: vidra
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -214,9 +210,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -249,9 +242,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -274,9 +264,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMobCorgiIan
@@ -297,9 +284,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMcGriff
@@ -320,9 +304,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMobSlimesPet
@@ -343,9 +324,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -368,9 +346,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -393,9 +368,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -418,9 +390,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -443,9 +412,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMobCrabAtmos
@@ -466,9 +432,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMobPossumMorty
@@ -489,9 +452,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMobPossumPoppy
@@ -512,9 +472,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMobPaperwork
@@ -535,9 +492,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMobCorgiIanOld
@@ -558,9 +512,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMobGoose
@@ -581,9 +532,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMobClownGoblin
@@ -604,9 +552,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: meepo_dota_2
   - type: VentCrawler
@@ -676,8 +621,10 @@
       types:
         Blunt: 0.1
   - type: Bloodstream
-    bloodMaxVolume: 50
-    bloodReagent: Honk
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Honk
+        Quantity: 50
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepClown
@@ -726,9 +673,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -751,6 +695,3 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile

@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
+using Content.Server._Sunrise.Helpers;
 using Content.Server._Sunrise.Station;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
@@ -13,7 +14,6 @@ using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
 using Content.Shared.CCVar;
-using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
@@ -45,7 +45,11 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly AdminSystem _admin = default!;
         [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!;
         [Dependency] private readonly ArrivalsSystem _arrivals = default!;
-        [Dependency] private readonly NewLifeSystem _newLifeSystem = default!; // Sunrise-Edit
+
+        // Sunrise added start
+        [Dependency] private readonly NewLifeSystem _newLife = default!;
+        [Dependency] private readonly SunriseHelpersSystem _helpers = default!;
+        // Sunrise added end
 
         public static readonly EntProtoId ObserverPrototypeName = "MobObserver";
         public static readonly EntProtoId AdminObserverPrototypeName = "AdminObserver";
@@ -153,12 +157,13 @@ namespace Content.Server.GameTicking
             var character = GetPlayerProfile(player);
 
             var jobBans = _banManager.GetJobBans(player.UserId);
-            if (jobBans == null || jobId != null && jobBans.Contains(jobId))
+            if (jobBans == null || jobId != null && jobBans.Contains(jobId)) //TODO: use IsRoleBanned directly?
                 return;
 
             if (jobId != null)
             {
-                var ev = new IsJobAllowedEvent(player, new ProtoId<JobPrototype>(jobId));
+                var jobs = new List<ProtoId<JobPrototype>> {jobId};
+                var ev = new IsRoleAllowedEvent(player, jobs, null);
                 RaiseLocalEvent(ref ev);
                 if (ev.Cancelled)
                     return;
@@ -181,7 +186,10 @@ namespace Content.Server.GameTicking
 
             if (station == EntityUid.Invalid)
             {
-                var stations = GetSpawnableStations();
+                // Sunrise edit start - фикс спавна на ЦК вместо девмапы
+                var stations = _helpers.GetSpawnableStations();
+                // Sunrise edit end
+
                 _robustRandom.Shuffle(stations);
                 if (stations.Count == 0)
                     station = EntityUid.Invalid;
@@ -196,8 +204,8 @@ namespace Content.Server.GameTicking
             }
 
             // Sunrise-NewLife-Start
-            _newLifeSystem.AddUsedCharactersForRespawn(player.UserId, _prefsManager.GetPreferences(player.UserId).SelectedCharacterIndex);
-            _newLifeSystem.SetNextAllowRespawn(player.UserId, _gameTiming.CurTime + TimeSpan.FromMinutes(_newLifeSystem.NewLifeTimeout));
+            _newLife.AddUsedCharactersForRespawn(player.UserId, _prefsManager.GetPreferences(player.UserId).SelectedCharacterIndex);
+            _newLife.SetNextAllowRespawn(player.UserId, _gameTiming.CurTime + TimeSpan.FromMinutes(_newLife.NewLifeTimeout));
             // Sunrise-NewLife-End
 
             string speciesId;
@@ -271,50 +279,18 @@ namespace Content.Server.GameTicking
                 return;
             }
 
-            PlayerJoinGame(player, silent);
+            // Sunrise edit start - почему-то тут проебан тип спавна,
+            // что приводит к тому, что ивент о спавне игрока не знает, куда его спавнить.
+            // Учитывая, что у нас система из Delta-V с этими спавнпоинтами - я думаю, что тут наша ошибка, а не виздена.
+            var spawnPointType = lateJoin ? SpawnPointType.LateJoin : SpawnPointType.Job;
 
-            var data = player.ContentData();
-
-            DebugTools.AssertNotNull(data);
-
-            var newMind = _mind.CreateMind(data!.UserId, character.Name);
-            _mind.SetUserId(newMind, data.UserId);
-
-            var jobPrototype = _prototypeManager.Index<JobPrototype>(jobId);
-
-            _playTimeTrackings.PlayerRolesChanged(player);
-
-            var overall = _playTimeTracking.GetOverallPlaytime(player);
-
-            EntityUid? mobMaybe = null;
-            var spawnPointType = SpawnPointType.Unset;
-            if (jobPrototype.AlwaysUseSpawner)
-            {
-                lateJoin = false;
-                spawnPointType = SpawnPointType.Job;
-            }
-            else
-            {
-                if (_cfg.GetCVar(SunriseCCVars.ArrivalsRoundStartSpawn) && overall > TimeSpan.FromHours(_cfg.GetCVar(SunriseCCVars.ArrivalsMinHours)) || RunLevel == GameRunLevel.InRound)
-                {
-                    mobMaybe = _arrivals.SpawnPlayersOnArrivals(station, jobPrototype, character);
-                }
-            }
-
-            if (mobMaybe == null)
-                mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, jobPrototype, character, spawnPointType: spawnPointType);
-            var mob = mobMaybe!.Value;
+            DoSpawn(player, character, station, jobId, silent, out var mob, out var jobPrototype, out var jobName, spawnPointType);
+            // Sunrise edit end
 
             // Sunrise-Start
             if (HasComp<StationAntagsTargetsComponent>(station))
-                EntityManager.AddComponent<AntagTargetComponent>(mob);
+                EnsureComp<AntagTargetComponent>(mob);
             // Sunrise-End
-
-            _mind.TransferTo(newMind, mob);
-
-            _roles.MindAddJobRole(newMind, silent: silent, jobPrototype: jobId);
-            var jobName = _jobs.MindTryGetJobName(newMind);
-            _admin.UpdatePlayerList(player);
 
             if (lateJoin && !silent)
             {
@@ -389,6 +365,44 @@ namespace Content.Server.GameTicking
                 character,
                 canBeAntag); // Sunrise-Edit
             RaiseLocalEvent(mob, aev, true);
+        }
+
+        /// <summary>
+        /// Creates a mob on the specified station, creates the new mind, equips job-specific starting gear and loadout
+        /// </summary>
+        public void DoSpawn(
+            ICommonSession player,
+            HumanoidCharacterProfile character,
+            EntityUid station,
+            string jobId,
+            bool silent,
+            out EntityUid mob,
+            out JobPrototype jobPrototype,
+            out string jobName,
+            SpawnPointType spawnPointType = SpawnPointType.Unset) // Sunrise added
+        {
+            PlayerJoinGame(player, silent);
+
+            var data = player.ContentData();
+
+            DebugTools.AssertNotNull(data);
+
+            var newMind = _mind.CreateMind(data!.UserId, character.Name);
+            _mind.SetUserId(newMind, data.UserId);
+
+            jobPrototype = _prototypeManager.Index<JobPrototype>(jobId);
+
+            _playTimeTrackings.PlayerRolesChanged(player);
+
+            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, jobId, character, spawnPointType: spawnPointType);
+            DebugTools.AssertNotNull(mobMaybe);
+            mob = mobMaybe!.Value;
+
+            _mind.TransferTo(newMind, mob);
+
+            _roles.MindAddJobRole(newMind, silent: silent, jobPrototype: jobId);
+            jobName = _jobs.MindTryGetJobName(newMind);
+            _admin.UpdatePlayerList(player);
         }
 
         public void Respawn(ICommonSession player)

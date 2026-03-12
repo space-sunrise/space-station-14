@@ -1,23 +1,11 @@
 - type: entity
-  parent: DrinkBase
+  parent: BaseSqueezeBottle
   id: DrinkInc
   name: inc tube
   description:
   components:
-  - type: Openable
-    sound:
-      collection: packetOpenSounds
   - type: Sprite
     sprite: Objects/Consumable/Drinks/lube-tube.rsi
-    layers:
-    - state: icon
-      map: ["enum.OpenableVisuals.Layer"]
-    - state: fill1
-      map: [ "enum.SolutionContainerLayers.Fill" ]
-      visible: false
-    - state: icon-front
-      map: [ "enum.SolutionContainerLayers.Overlay" ]
-  - type: Appearance
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -25,14 +13,25 @@
         reagents:
         - ReagentId: Inc
           Quantity: 30
-  - type: SolutionContainerVisuals
-    maxFillLevels: 6
-    fillBaseName: fill
-  - type: GenericVisualizer
-    visuals:
-      enum.OpenableVisuals.Opened:
-        enum.OpenableVisuals.Layer:
-          True: {state: "icon_open"}
-          False: {state: "icon"}
-  - type: TrashOnSolutionEmpty
-    solution: drink
+
+# Find your nearest Sci and give them a gift :o)
+- type: entity
+  parent: BluespaceBeaker
+  id: BottomlessArtifexium
+  name: bottomless artifexium beaker
+  suffix: DEBUG
+  description: This anomalous beaker infinitely produces artifexium and as such is to be closely guarded such that it doesn't fall in the wrong hands.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 1000
+        reagents:
+        - ReagentId: Artifexium
+          Quantity: 1000
+  - type: SolutionRegeneration
+    solution: beaker
+    generated:
+      reagents:
+      - ReagentId: Artifexium
+        Quantity: 200

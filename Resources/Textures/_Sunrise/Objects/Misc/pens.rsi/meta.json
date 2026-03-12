@@ -1,35 +1,14 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Sprited by discord: Mascot_valera and fr1zya",
+  "copyright": "Made for Space Sunrise by gardsnake",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "pen_ce"
-    },
-    {
-      "name": "pen_cmo"
-    },
-    {
-      "name": "pen_hos"
-    },
-    {
-      "name": "pen_qm"
-    },
-    {
-      "name": "pen_rd"
-    },
-    {
-      "name": "pen_ueg"
-    },
-    {
-        "name": "pen_hop"
-    },
-    {
-        "name": "pen-maid"
+      "name": "pen"
     },
     {
       "name": "pen-inhand-left",
@@ -40,12 +19,40 @@
       "directions": 4
     },
     {
-      "name": "pen-maid-inhand-left",
+      "name": "overpriced_pen"
+    },
+    {
+      "name": "overpriced_pen-inhand-left",
       "directions": 4
     },
     {
-      "name": "pen-maid-inhand-right",
+      "name": "overpriced_pen-inhand-right",
       "directions": 4
+    },
+    {
+      "name": "pen_centcom"
+    },
+    {
+      "name": "pen_centcom-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "pen_centcom-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "pen_maid"
+    },
+    {
+      "name": "pen_maid-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "pen_maid-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "pen_ueg"
     },
     {
       "name": "pen_ueg-inhand-left",
@@ -54,6 +61,111 @@
     {
       "name": "pen_ueg-inhand-right",
       "directions": 4
+    },
+    {
+      "name": "pen_cap"
+    },
+    {
+      "name": "pen_cap-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "pen_cap-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "pen_ce"
+    },
+    {
+      "name": "pen_ce-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "pen_ce-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "pen_cmo"
+    },
+    {
+      "name": "pen_cmo-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "pen_cmo-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "pen_hop"
+    },
+    {
+      "name": "pen_hop-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "pen_hop-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "pen_hos"
+    },
+    {
+      "name": "pen_hos-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "pen_hos-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "pen_qm"
+    },
+    {
+      "name": "pen_qm-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "pen_qm-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "pen_rd"
+    },
+    {
+      "name": "pen_rd-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "pen_rd-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "pen_wizard"
+    },
+    {
+      "name": "pen_wizard-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "pen_wizard-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "luxury_pen"
+    },
+    {
+      "name": "luxury_pen-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "luxury_pen-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "pen_blue"
+    },
+    {
+      "name": "pen_red"
     }
   ]
 }

@@ -63,11 +63,11 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Slash: 16  # Sunrise-edit
+        Slash: 12
         Piercing: 8
   - type: Body
     prototype: Rat
-    requiredLegs: 1 # TODO: More than 1 leg
+    requiredLegs: 0 # TODO: Make more than 1 leg, set to 0 to avoid sprint speed being reset by the body system
   - type: Hunger # probably should be prototyped
     thresholds:
       Overfed: 300 # Sunrise-Edit
@@ -108,10 +108,11 @@
       - CannotSuicide
       - FootstepSound
   - type: NoSlip
+  - type: Rummager
   - type: RatKing
-    hungerPerArmyUse: 7  # Sunrise-edit
-    hungerPerDomainUse: 25  # Sunrise-edit
-    hungerPerGuardUse: 100  # High cost for guards
+    hungerPerArmyUse: 8  # Sunrise-edit
+    hungerPerDomainUse: 20  # Sunrise-edit
+    hungerPerGuardUse: 80  # High cost for guards
   - type: MobsterAccent
   - type: Speech
     speechVerb: SmallMob
@@ -192,6 +193,11 @@
     description: ghost-panel-antagonist-rats-description
     priority: 110
   - type: NightVision
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 60
   # Sunrise edit end
   - type: VentCrawler # Sunrise-edit
   - type: CombatMode
@@ -210,9 +216,6 @@
         2.0
       FollowRange: !type:Single
         3.0
-  - type: Bloodstream
-    bloodReagent: Blood
-    bloodMaxVolume: 60
   - type: Reactive
     groups:
       Flammable: [Touch]
@@ -265,7 +268,7 @@
       - !type:GibBehavior
         recursive: false
   - type: Stamina
-    critThreshold: 60
+    baseCritThreshold: 60
   - type: MeleeWeapon
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
@@ -277,7 +280,7 @@
         Piercing: 3
   - type: Body
     prototype: Rat
-    requiredLegs: 1 # TODO: More than 1 leg
+    requiredLegs: 0 # TODO: Make more than 1 leg, set to 0 to avoid sprint speed being reset by the body system
   - type: Hunger # probably should be prototyped
     thresholds:
       Overfed: 200
@@ -354,8 +357,10 @@
   - type: Bloodstream
     bleedReductionAmount: 1
     bloodRefreshAmount: 2.5
-    bloodReagent: Blood
-    bloodMaxVolume: 200
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 200
   - type: Reactive
     groups:
       Flammable: [Touch]
@@ -366,6 +371,7 @@
   - type: Sprite
     drawdepth: SmallMobs
     sprite: Mobs/Animals/buffrat.rsi
+    scale: 0.8, 0.8
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: regalrat
@@ -389,7 +395,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      290: Critical
+      250: Critical
       300: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
@@ -408,7 +414,7 @@
       - !type:GibBehavior
         recursive: false
   - type: Stamina
-    critThreshold: 250
+    baseCritThreshold: 250
   - type: MeleeSpeech
   - type: UserInterface
     interfaces:
@@ -420,11 +426,9 @@
     attackRate: 1.5
     damage:
       types:
-        Slash: 2 # Additional claw damage
-        Piercing: 1 # Additional claw damage
-        Blunt: 15 # Strong guard attack
-        Structural: 10 # Strong guard attack
-    bluntStaminaDamageFactor: 1.5
+        Blunt: 10
+        Structural: 10
+    bluntStaminaDamageFactor: 1.75
     soundHit:
       collection: PunchHard
     animation: WeaponArcFist
@@ -489,8 +493,8 @@
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
   - type: RatKing
-    hungerPerArmyUse: 25
-    hungerPerDomainUse: 50
+    hungerPerArmyUse: 20
+    hungerPerDomainUse: 30
     hungerPerGuardUse: 1000 # Sunrise-TODO: Скрыть акшен ему
   - type: GhostRole
     makeSentient: true
@@ -508,14 +512,21 @@
     - NamesRatGuard
     - NamesRatGuardTitle
     nameFormat: name-format-regal-rat
+  - type: ActionGrant
+    actions:
+    - ActionChangeBorgVoice
 # Sunrise-end
 
-- type: weightedRandomEntity
+- type: entityTable
   id: RatKingLoot
-  weights:
-    RandomSpawner100: 66 #garbage
-    FoodCheese: 28 #food
-    IngotGold1: 5 #loot
+  table: !type:GroupSelector
+    children:
+    - id: RandomSpawner100
+      weight: 66
+    - id: FoodCheese
+      weight: 28
+    - id: IngotGold1
+      weight: 5
 
 - type: entity
   parent: BaseAction

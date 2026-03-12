@@ -1,0 +1,25 @@
+<Document>
+[head=2][color=#4d1f1f][bold]Обращение к начальнику тюрьмы[/bold][/color][/head]
+[color=#8a3a3a][bold]{corpString}[/bold][/color][mono] / ПД-КТК[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#8a3a3a][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#8a3a3a][bold]Содержание[/bold][/color]
+
+Я, (ФИО), в должности (ДОЛЖНОСТЬ), прошу (ФИО), в должности начальника космической тюрьмы корпорации, рассмотреть моё обращение.
+
+Содержание обращения:
+
+
+Причины его написания:
+
+[color=#666666][italic]Место для печатей[/italic][/color]
+
+
+</Document>

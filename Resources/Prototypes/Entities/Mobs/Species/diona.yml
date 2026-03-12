@@ -32,7 +32,7 @@
       groups:
         Brute: -0.5
       #Sunrise-Start
-      types: 
+      types:
         Mangleness: -0.03
       #Sunrise-End
   - type: DamageVisuals
@@ -45,10 +45,13 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-      - id: FoodMeatPlant
+      - id: FoodMeatDionaRoots # Sunrise - edit
         amount: 5
   - type: Bloodstream
-    bloodReagent: Sap
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Sap
+        Quantity: 300
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -58,17 +61,16 @@
     - reagents: [Water, SpaceCleaner]
       methods: [Touch]
       effects:
-      - !type:WashCreamPieReaction
+      - !type:WashCreamPie
     - reagents: [ PlantBGone ]
       methods: [ Touch ]
       effects:
       - !type:HealthChange
-        scaleByQuantity: true
         damage:
           types:
-            Blunt: 0.1
-            Slash: 0.1
-            Piercing: 0.15
+            Blunt: 0.05
+            Slash: 0.05
+            Piercing: 0.075
       - !type:PopupMessage
         type: Local
         visualType: Large
@@ -78,10 +80,9 @@
       methods: [ Touch ]
       effects:
       - !type:HealthChange
-        scaleByQuantity: true
         damage:
           types:
-            Poison: 0.25
+            Poison: 0.125
       - !type:PopupMessage
         type: Local
         visualType: Large

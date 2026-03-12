@@ -2,13 +2,13 @@
 
 namespace Content.Shared._Sunrise.BloodCult;
 
-[Prototype("bloodCult")]
-public sealed class BloodCultPrototype : IPrototype
+[Prototype]
+public sealed partial class BloodCultPrototype : IPrototype
 {
     [IdDataField]
-    public string ID { get; } = null!;
+    public string ID { get; private set; } = null!;
 
-    [DataField( required: true)]
+    [DataField(required: true)]
     public BloodCultType? CultType;
 
     [DataField(required: true)]

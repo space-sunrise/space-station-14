@@ -1,0 +1,4 @@
+- type: sourcePort
+  id: WrongCode
+  name: signal-port-name-wrong-code
+  description: signal-port-description-wrong-code

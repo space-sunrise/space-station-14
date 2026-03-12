@@ -19,12 +19,48 @@ public sealed partial class ResearchSystem
     private void InitializeConsole()
     {
         SubscribeLocalEvent<ResearchConsoleComponent, ConsoleUnlockTechnologyMessage>(OnConsoleUnlock);
+        SubscribeLocalEvent<ResearchConsoleComponent, ConsoleRediscoverTechnologyMessage>(OnRediscoverTechnology);
         SubscribeLocalEvent<ResearchConsoleComponent, BeforeActivatableUIOpenEvent>(OnConsoleBeforeUiOpened);
         SubscribeLocalEvent<ResearchConsoleComponent, ResearchServerPointsChangedEvent>(OnPointsChanged);
         SubscribeLocalEvent<ResearchConsoleComponent, ResearchRegistrationChangedEvent>(OnConsoleRegistrationChanged);
         SubscribeLocalEvent<ResearchConsoleComponent, TechnologyDatabaseModifiedEvent>(OnConsoleDatabaseModified);
         SubscribeLocalEvent<ResearchConsoleComponent, TechnologyDatabaseSynchronizedEvent>(OnConsoleDatabaseSynchronized);
         SubscribeLocalEvent<ResearchConsoleComponent, GotEmaggedEvent>(OnEmagged);
+    }
+
+    private void OnRediscoverTechnology(
+        EntityUid uid,
+        ResearchConsoleComponent console,
+        ConsoleRediscoverTechnologyMessage args
+    )
+    {
+        var act = args.Actor;
+
+        if (!this.IsPowered(uid, EntityManager))
+            return;
+
+        if (!HasAccess(uid, act))
+        {
+            _popup.PopupEntity(Loc.GetString("research-console-no-access-popup"), act);
+            return;
+        }
+
+        if (!TryGetClientServer(uid, out var serverEnt, out var serverComponent))
+            return;
+
+        if(serverComponent.NextRediscover > _timing.CurTime)
+            return;
+
+        var rediscoverCost = serverComponent.RediscoverCost;
+        if (rediscoverCost > serverComponent.Points)
+            return;
+
+        serverComponent.NextRediscover = _timing.CurTime + serverComponent.RediscoverInterval;
+
+        ModifyServerPoints(serverEnt.Value, -rediscoverCost);
+        UpdateTechnologyCards(serverEnt.Value);
+        SyncClientWithServer(uid);
+        UpdateConsoleInterface(uid);
     }
 
     private void OnConsoleUnlock(EntityUid uid, ResearchConsoleComponent component, ConsoleUnlockTechnologyMessage args)
@@ -37,7 +73,7 @@ public sealed partial class ResearchSystem
         if (!PrototypeManager.TryIndex<TechnologyPrototype>(args.Id, out var technologyPrototype))
             return;
 
-        if (TryComp<AccessReaderComponent>(uid, out var access) && !_accessReader.IsAllowed(act, uid, access))
+        if (!HasAccess(uid, act))
         {
             _popup.PopupEntity(Loc.GetString("research-console-no-access-popup"), act);
             return;
@@ -58,16 +94,36 @@ public sealed partial class ResearchSystem
                 ("amount", technologyPrototype.Cost),
                 ("approver", getIdentityEvent.Title ?? string.Empty)
             );
-            _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
+            // _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
 
-            if (technologyPrototype.RadioChannels.Any())
+            // Sunrise-Start
+            if (_messenger.GetServerEntity(_stationSystem.GetOwningStation(uid)) is var (server, _))
+            {
+                var mainGroupId = _messenger.GetGroupIdByRadioChannel(component.AnnouncementChannel);
+                if (mainGroupId != null)
+                    _messenger.SendSystemMessageToGroup(server, mainGroupId, message);
+
+                if (technologyPrototype.RadioChannels.Any())
+                {
+                    foreach (var radioChannelId in technologyPrototype.RadioChannels)
+                    {
+                        var groupId = _messenger.GetGroupIdByRadioChannel(radioChannelId);
+
+                        if (groupId != null)
+                            _messenger.SendSystemMessageToGroup(server, groupId, message);
+                    }
+                }
+            }
+
+            /*if (technologyPrototype.RadioChannels.Any())
                 foreach (var radioChannelId in technologyPrototype.RadioChannels)
                 {
                     if (PrototypeManager.TryIndex(radioChannelId, out var radioChannel))
                     {
                         _radio.SendRadioMessage(uid, message, radioChannel, uid, escapeMarkup: false);
                     }
-                }
+                }*/
+            // Sunrise-End
         }
 
 
@@ -85,17 +141,17 @@ public sealed partial class ResearchSystem
         if (!Resolve(uid, ref component, ref clientComponent, false))
             return;
 
-        ResearchConsoleBoundInterfaceState state;
 
-        if (TryGetClientServer(uid, out _, out var serverComponent, clientComponent))
+        var points = 0;
+        var nextRediscover = TimeSpan.MaxValue;
+        var rediscoverCost = 0;
+        if (TryGetClientServer(uid, out _, out var serverComponent, clientComponent) && clientComponent.ConnectedToServer)
         {
-            var points = clientComponent.ConnectedToServer ? serverComponent.Points : 0;
-            state = new ResearchConsoleBoundInterfaceState(points);
+            points = serverComponent.Points;
+            nextRediscover = serverComponent.NextRediscover;
+            rediscoverCost = serverComponent.RediscoverCost;
         }
-        else
-        {
-            state = new ResearchConsoleBoundInterfaceState(default);
-        }
+        var state = new ResearchConsoleBoundInterfaceState(points, nextRediscover, rediscoverCost);
 
         _uiSystem.SetUiState(uid, ResearchConsoleUiKey.Key, state);
     }
@@ -133,5 +189,10 @@ public sealed partial class ResearchSystem
             return;
 
         args.Handled = true;
+    }
+
+    private bool HasAccess(EntityUid uid, EntityUid act)
+    {
+        return TryComp<AccessReaderComponent>(uid, out var access) && _accessReader.IsAllowed(act, uid, access);
     }
 }

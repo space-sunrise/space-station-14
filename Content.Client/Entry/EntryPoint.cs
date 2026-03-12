@@ -1,5 +1,6 @@
 using Content.Client._RMC14.Explosion;
 using Content.Client._RMC14.Xenonids.Screech;
+using Content.Client._Sunrise;
 using Content.Client._Sunrise.Contributors;
 using Content.Client._Sunrise.Entry;
 using Content.Client._Sunrise.PlayerCache;
@@ -88,26 +89,29 @@ namespace Content.Client.Entry
         [Dependency] private readonly ServersHubManager _serversHubManager = default!; // Sunrise-Hub
         [Dependency] private readonly ContributorsManager _contributorsManager = default!; // Sunrise-Edit
         [Dependency] private readonly PlayerCacheManager _playerCacheManager = default!; // Sunrise-Edit
+        [Dependency] private readonly NetTexturesManager _netTexturesManager = default!; // Sunrise-Edit
 
-        public override void Init()
+        public override void PreInit()
         {
-            ClientContentIoC.Register();
+            ClientContentIoC.Register(Dependencies);
 
             foreach (var callback in TestingCallbacks)
             {
                 var cast = (ClientModuleTestingCallbacks) callback;
                 cast.ClientBeforeIoC?.Invoke();
             }
+        }
 
-            IoCManager.BuildGraph();
-            IoCManager.InjectDependencies(this);
+        public override void Init()
+        {
+            Dependencies.BuildGraph();
+            Dependencies.InjectDependencies(this);
 
             _contentLoc.Initialize();
             _componentFactory.DoAutoRegistrations();
             _componentFactory.IgnoreMissingComponents();
 
             // Do not add to these, they are legacy.
-            _componentFactory.RegisterClass<SharedGravityGeneratorComponent>();
             _componentFactory.RegisterClass<SharedAmeControllerComponent>();
             // Do not add to the above, they are legacy
 
@@ -122,8 +126,6 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("htnPrimitive");
             _prototypeManager.RegisterIgnore("gameMap");
             _prototypeManager.RegisterIgnore("gameMapPool");
-            // Sunrise-Edit
-            // _prototypeManager.RegisterIgnore("lobbyBackground");
             _prototypeManager.RegisterIgnore("gamePreset");
             _prototypeManager.RegisterIgnore("noiseChannel");
             _prototypeManager.RegisterIgnore("playerConnectionWhitelist");
@@ -162,6 +164,7 @@ namespace Content.Client.Entry
             _serversHubManager.Initialize(); // Sunrise-Hub
             _contributorsManager.Initialize(); // Sunrise-Edit
             _playerCacheManager.Initialize(); // Sunrise-Edit
+            _netTexturesManager.Initialize(); // Sunrise-Edit
 
             // Sunrise-Sponsors-Start
             SunriseClientEntry.Init();
@@ -176,12 +179,6 @@ namespace Content.Client.Entry
 
             _configManager.SetCVar("interactions.window_pos_x", 0); // Sunrise-Edit
             _configManager.SetCVar("interactions.window_pos_y", 0); // Sunrise-Edit
-        }
-
-        public override void Shutdown()
-        {
-            base.Shutdown();
-            _titleWindowManager.Shutdown();
         }
 
         public override void PostInit()
@@ -268,6 +265,7 @@ namespace Content.Client.Entry
             if (level == ModUpdateLevel.FramePreEngine)
             {
                 _debugMonitorManager.FrameUpdate();
+                _netTexturesManager.Update(frameEventArgs.DeltaSeconds); // Sunrise-Edit
             }
 
             if (level == ModUpdateLevel.PreEngine)

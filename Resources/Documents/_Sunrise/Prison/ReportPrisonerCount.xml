@@ -1,0 +1,28 @@
+<Document>
+[head=2][color=#4d1f1f][bold]Отчёт о численности заключённых[/bold][/color][/head]
+[color=#8a3a3a][bold]{corpString}[/bold][/color][mono] / КТК-КОД[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#8a3a3a][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#8a3a3a][bold]Отчёт[/bold][/color]
+
+Состояние заключённых:
+
+Количество заключённых:
+
+Количество свободных/не заполненных камер:
+
+Состояние камер:
+
+Количество попыток побега:
+
+[color=#666666][italic]Место для печатей[/italic][/color]
+
+
+</Document>

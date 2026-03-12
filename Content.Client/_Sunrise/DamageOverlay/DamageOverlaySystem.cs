@@ -1,36 +1,63 @@
 using Content.Shared._Sunrise.DamageOverlay;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Shared.Configuration;
+using Robust.Shared.Network;
 
 namespace Content.Client._Sunrise.DamageOverlay;
 
 public sealed class DamageOverlaySystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly INetManager _netManager = default!;
+
+    private bool _damageOverlayEnabled;
+    private bool _damageOverlaySelf;
+    private bool _damageOverlayStructures;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        _cfg.OnValueChanged(SunriseCCVars.DamageOverlayEnable, OnDamageOverlayOptionChanged, true);
-        _cfg.OnValueChanged(SunriseCCVars.DamageOverlaySelf, OnDamageOverlayOptionChanged, true);
-        _cfg.OnValueChanged(SunriseCCVars.DamageOverlayStructures, OnDamageOverlayOptionChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.DamageOverlayEnable, OnDamageOverlayEnableChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.DamageOverlaySelf, OnDamageOverlaySelfChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.DamageOverlayStructures, OnDamageOverlayStructuresChanged, true);
+
+        _netManager.Connected += OnConnected;
     }
 
     public override void Shutdown()
     {
         base.Shutdown();
 
-        _cfg.UnsubValueChanged(SunriseCCVars.DamageOverlayEnable, OnDamageOverlayOptionChanged);
-        _cfg.UnsubValueChanged(SunriseCCVars.DamageOverlaySelf, OnDamageOverlayOptionChanged);
-        _cfg.UnsubValueChanged(SunriseCCVars.DamageOverlayStructures, OnDamageOverlayOptionChanged);
+        _cfg.UnsubValueChanged(SunriseCCVars.DamageOverlayEnable, OnDamageOverlayEnableChanged);
+        _cfg.UnsubValueChanged(SunriseCCVars.DamageOverlaySelf, OnDamageOverlaySelfChanged);
+        _cfg.UnsubValueChanged(SunriseCCVars.DamageOverlayStructures, OnDamageOverlayStructuresChanged);
     }
 
-    private void OnDamageOverlayOptionChanged(bool option)
+    private void OnDamageOverlayEnableChanged(bool option)
     {
-        var enable = _cfg.GetCVar(SunriseCCVars.DamageOverlayEnable);
-        var enableSelf = _cfg.GetCVar(SunriseCCVars.DamageOverlaySelf);
-        var enableStructures = _cfg.GetCVar(SunriseCCVars.DamageOverlayStructures);
-        RaiseNetworkEvent(new DamageOverlayOptionEvent(enable, enableSelf, enableStructures));
+        _damageOverlayEnabled = option;
+    }
+
+    private void OnDamageOverlaySelfChanged(bool option)
+    {
+        _damageOverlaySelf = option;
+    }
+
+    private void OnDamageOverlayStructuresChanged(bool option)
+    {
+        _damageOverlayStructures = option;
+        if (_netManager.IsConnected)
+            SendDamageOverlayOptions();
+    }
+
+    private void SendDamageOverlayOptions()
+    {
+        RaiseNetworkEvent(new DamageOverlayOptionEvent(_damageOverlayEnabled, _damageOverlaySelf, _damageOverlayStructures));
+    }
+
+    private async void OnConnected(object? sender, NetChannelArgs e)
+    {
+        SendDamageOverlayOptions();
     }
 }

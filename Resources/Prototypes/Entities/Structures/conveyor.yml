@@ -12,7 +12,7 @@
   - type: Transform
     anchored: true
   - type: Sprite
-    sprite: Structures/conveyor.rsi
+    sprite: _Sunrise/Structures/conveyor.rsi # Sunrise-Edit
     state: conveyor_stopped_cw
     drawdepth: HighFloorObjects
   - type: ApcPowerReceiver
@@ -29,10 +29,7 @@
           - 0.50,0.50
           - -0.50,0.50
         layer:
-        - Impassable
-        - MidImpassable
-        - LowImpassable
-        - DoorPassable
+        - ConveyorMask
         hard: False
   - type: Conveyor
   - type: DeviceNetwork
@@ -80,7 +77,7 @@
     tags:
     - ConveyorAssembly
   - type: Sprite
-    sprite: Structures/conveyor.rsi
+    sprite: _Sunrise/Structures/conveyor.rsi # Sunrise-Edit
     state: conveyor_loose
   - type: Construction
     graph: ConveyorGraph

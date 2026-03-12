@@ -1,0 +1,17 @@
+- type: entity
+  parent: BaseCartridge
+  id: CartridgeXrayBeam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: XrayLaserBeam
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance

@@ -63,15 +63,6 @@
     access: [["CentralCommand"]]
 
 - type: entity
-  parent: AirlockHatchMaintenance
-  id: AirlockHatchMaintenanceLocked
-  name: Maintenance Hatch
-  suffix: Maint, Locked
-  components:
-  - type: AccessReader
-    access: [["Maintenance"]]
-
-- type: entity
   parent: AirlockHatch
   id: AirlockHatchSyndicateLocked
   name: Syndicate Hatch

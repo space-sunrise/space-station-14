@@ -281,6 +281,8 @@
     canRestock:
     - NanoMedInventory
     - NanoMedPlusInventory
+    - NanoMedCivilianInventory
+    - NanoMedCivilianWallInventory
   - type: Sprite
     layers:
     - state: base
@@ -336,7 +338,7 @@
     - SpaceUpInventory
     - SodaInventory
     - DrGibbInventory
-    - SmiteInventory 
+    - SmiteInventory
   - type: Sprite
     layers:
     - state: base
@@ -418,6 +420,7 @@
     canRestock:
     - TankDispenserEVAInventory
     - TankDispenserEngineeringInventory
+    - EVASuitDispenserInventory # Sunrise-Edit
   - type: Sprite
     layers:
     - state: base

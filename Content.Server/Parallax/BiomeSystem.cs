@@ -128,7 +128,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             SetSeed(uid, component, _random.Next());
         }
 
-        if (_proto.TryIndex(component.Template, out var biome))
+        if (_proto.Resolve(component.Template, out var biome))
             SetTemplate(uid, component, biome);
 
         var xform = Transform(uid);
@@ -257,7 +257,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
     private void OnFTLStarted(ref FTLStartedEvent ev)
     {
-        var targetMap = _transform.ToMapCoordinates(ev.TargetCoordinates);
+        var targetMap = _transform.ToMapCoordinates(ev.TargetCoordinates, logError: false); // Sunrise-edit
         var targetMapUid = _mapSystem.GetMapOrInvalid(targetMap.MapId);
 
         if (!TryComp<BiomeComponent>(targetMapUid, out var biome))

@@ -16,7 +16,7 @@
   - type: ActivatableUI
     key: enum.GhostRoleRadioUiKey.Key
   - type: EmitSoundOnUse
-    sound: /Audio/Misc/emergency_meeting.ogg
+    sound: /Audio/_Sunrise/Misc/emergency_meeting.ogg
 
 - type: entity
   parent: ReinforcementRadio

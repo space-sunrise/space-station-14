@@ -1,5 +1,6 @@
 ﻿using Content.Shared._Sunrise.Boss.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
@@ -21,10 +22,10 @@ public sealed class SpiralMovementSystem : EntitySystem
     public override void Initialize()
     {
         UpdatesOutsidePrediction = true;
-        SubscribeLocalEvent<SpiralMovementComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<SpiralMovementComponent, MapInitEvent>(OnInit);
     }
 
-    private void OnInit(EntityUid uid, SpiralMovementComponent component, ComponentInit args)
+    private void OnInit(EntityUid uid, SpiralMovementComponent component, MapInitEvent args)
     {
         if (component.OriginCoordinates is not null || component.SpawnTime is not null)
             return;

@@ -6,7 +6,7 @@
   abstract: true
   components:
   - type: Sprite
-    layers: 
+    layers:
     - state: mender
       map: ["enum.SolutionContainerLayers.Base"]
     - state: mender1
@@ -25,7 +25,7 @@
     maxFillLevels: 3
     fillBaseName: mender
     solutionName: injector
-    
+
 - type: entity
   id: AutoMenderBrute
   name: brute automender
@@ -42,19 +42,19 @@
     reagentsToDrain:
     - ReagentId: Bicaridine
       Quantity: 0.5
-    delay: 0.5
+    delay: 0.2
     damageContainers:
       - Biological
     damage:
       groups:
-        Brute: -2.5 #Sunrise-Edit
+        Brute: -2
       types: #Sunrise-Edit
-        Mangleness: 0.05 #Sunrise-Edit
+        Mangleness: 0.01 #Sunrise-Edit
     healingBeginSound:
       path: "/Audio/_Starlight/Items/Medical/mender.ogg"
     healingEndSound:
       path: "/Audio/_Starlight/Items/Medical/mender2.ogg"
-      
+
 - type: entity
   suffix: Filled
   parent: AutoMenderBrute
@@ -63,11 +63,11 @@
   - type: SolutionContainerManager
     solutions:
       injector:
-        maxVol: 30
+        maxVol: 35
         reagents:
         - ReagentId: Bicaridine
-          Quantity: 30
-      
+          Quantity: 35
+
 - type: entity
   id: AutoMenderBurn
   name: burn automender
@@ -82,19 +82,19 @@
       Quantity: 0.5
     damageContainers:
       - Biological
-    delay: 0.5
+    delay: 0.2
     damage:
       types:
-        Heat: -2 #Sunrise-Edit
-        Cold: -2 #Sunrise-Edit
-        Shock: -2 #Sunrise-Edit
+        Heat: -1.5
+        Cold: -1.5
+        Shock: -1.5
         Caustic: -1
-        Mangleness: 0.1 #Sunrise-Edit
+        Mangleness: 0.01 #Sunrise-Edit
     healingBeginSound:
       path: "/Audio/_Starlight/Items/Medical/mender.ogg"
     healingEndSound:
       path: "/Audio/_Starlight/Items/Medical/mender2.ogg"
-      
+
 - type: entity
   suffix: Filled
   parent: AutoMenderBurn

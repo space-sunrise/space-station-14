@@ -1760,7 +1760,7 @@ entities:
     - type: GridFill
       addComponents:
       - type: NukeOpsShuttle
-      path: /Maps/_Sunrise/Shuttles/infiltrator.yml # Sunrise-edit
+      path: /Maps/Shuttles/infiltrator.yml
   - uid: 2481
     components:
     - type: Transform

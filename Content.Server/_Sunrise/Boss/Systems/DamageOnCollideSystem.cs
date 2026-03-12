@@ -1,6 +1,8 @@
 ﻿using Content.Shared._Sunrise.Boss.Components;
 using Content.Shared._Sunrise.Boss.Systems;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Throwing;
 using Content.Shared.Whitelist;
 using Robust.Shared.Physics.Components;
@@ -54,7 +56,7 @@ public sealed class DamageOnCollideSystem : SharedDamageOnCollideSystem
 
     public void Damage(EntityUid uid, DamageOnCollideComponent component)
     {
-        if (_whitelist.IsBlacklistPass(component.Blacklist, uid))
+        if (_whitelist.IsWhitelistFail(component.Blacklist, uid))
             return;
         _damageable.TryChangeDamage(uid, component.Damage);
     }

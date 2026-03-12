@@ -1,6 +1,7 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Destructible;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Systems;
@@ -56,8 +57,8 @@ public sealed class MeteorSystem : EntitySystem
         var trueDamage = FixedPoint2.Min(maxMeteorDamage, threshold);
 
         var damage = component.DamageTypes * trueDamage;
-        _damageable.TryChangeDamage(args.OtherEntity, damage, true, origin: uid);
-        _damageable.TryChangeDamage(uid, damage);
+        _damageable.TryChangeDamage(args.OtherEntity, damage, true, origin: uid, ignoreVariance: true); // Sunrise-edit
+        _damageable.TryChangeDamage(uid, damage, ignoreVariance: true); // Sunrise-edit
 
         if (!TerminatingOrDeleted(args.OtherEntity))
             component.HitList.Add(args.OtherEntity);

@@ -4,11 +4,10 @@ using Content.Server.GameTicking;
 using Content.Server.Maps;
 using Content.Server.Parallax;
 using Content.Server.Shuttles.Systems;
-using Content.Shared._Sunrise.AlwaysPoweredMap;
 using Content.Shared._Sunrise.Shuttles;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Light.Components;
-using Content.Shared.Parallax.Biomes;
+using Content.Shared.Maps;
 using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
@@ -21,6 +20,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.PlanetPrison;
 
+// TODO: Рефактор с целью устранения варнингов и перехода системы на более современное API
 public sealed class PlanetPrisonStationSystem : EntitySystem
 {
     [Dependency] private readonly ISharedPlayerManager _player = default!;
@@ -35,13 +35,12 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
 
-    private ISawmill _sawmill = default!;
-
     public override void Initialize()
     {
-        _sawmill = Logger.GetSawmill("station.prison");
         SubscribeLocalEvent<PlanetPrisonStationComponent, ComponentInit>(OnPlanetPrisonStationInit);
         SubscribeLocalEvent<PlanetPrisonStationComponent, ComponentShutdown>(OnPrisonShutdown);
+
+        Log.Level = LogLevel.Info;
     }
 
     private void OnPrisonShutdown(EntityUid uid, PlanetPrisonStationComponent component, ComponentShutdown args)
@@ -87,17 +86,17 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             return;
         }
 
-        var station = _random.Pick(component.Stations);
+        var station = ChooseType(component);
 
-        if (!_protoManager.TryIndex<BiomeTemplatePrototype>(_random.Pick(component.Biomes), out var biome))
+        if (!_protoManager.TryIndex(_random.Pick(component.Biomes), out var biome))
         {
-            _sawmill.Warning("No Prison map found, skipping setup.");
+            Log.Warning("No Prison map found, skipping setup.");
             return;
         }
 
-        if (!_protoManager.TryIndex<GameMapPrototype>(station, out var gameMap))
+        if (!_protoManager.TryIndex(station, out var gameMap))
         {
-            _sawmill.Warning("No Prison map found, skipping setup.");
+            Log.Warning("No Prison map found, skipping setup.");
             return;
         }
 
@@ -111,7 +110,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
         if (uids.Count != 1)
         {
-            _sawmill.Warning("Prison station have more 1 grid.");
+            Log.Warning("Prison station have more 1 grid.");
             QueueDel(component.Entity);
             component.Entity = EntityUid.Invalid;
 
@@ -140,6 +139,12 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         var destComp = _entManager.EnsureComponent<FTLDestinationComponent>(mapUid);
         destComp.BeaconsOnly = true;
         _shuttle.SetFTLWhitelist(mapUid, component.ShuttleWhitelist);
+    }
 
+    private ProtoId<GameMapPrototype> ChooseType(PlanetPrisonStationComponent component)
+    {
+        return _cfg.GetCVar(SunriseCCVars.PlanetPrisonModern)
+            ? _random.Pick(component.StationsModern)
+            : _random.Pick(component.StationsOld);
     }
 }

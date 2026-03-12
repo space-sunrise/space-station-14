@@ -21,7 +21,6 @@
     tags:
       - Trash
   # Sunrise-start
-  - type: SurgeryTarget
   - type: UserInterface
     interfaces:
       enum.SurgeryUIKey.Key:
@@ -48,9 +47,6 @@
     vital: true
   - type: Input
     context: "ghost"
-  - type: Tag
-    tags:
-      - Head
 
 - type: entity
   id: BaseLeftArm

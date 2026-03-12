@@ -9,9 +9,6 @@
   id: ClickTestBase
   suffix: DEBUG
   components:
-  - type: Tag
-    tags:
-      - Debug
   - type: Clickable
   - type: InteractionOutline
   - type: Sprite
@@ -23,6 +20,7 @@
   id: ClickTestRotatingCornerVisible
   name: ClickTestRotatingCornerVisible
   parent: ClickTestBase
+  categories: [ Debug ] # Sunrise-Add
   components:
   - type: Clickable
   - type: InteractionOutline
@@ -41,6 +39,7 @@
   id: ClickTestRotatingCornerInvisible
   name: ClickTestRotatingCornerInvisible
   parent: ClickTestBase
+  categories: [ Debug ] # Sunrise-Add
   components:
   - type: Clickable
     bounds:
@@ -66,6 +65,7 @@
   id: ClickTestFixedCornerVisible
   name: ClickTestFixedCornerVisible
   parent: ClickTestBase
+  categories: [ Debug ] # Sunrise-Add
   components:
   - type: Clickable
   - type: InteractionOutline
@@ -76,6 +76,7 @@
   id: ClickTestFixedCornerInvisible
   name: ClickTestFixedCornerInvisible
   parent: ClickTestBase
+  categories: [ Debug ] # Sunrise-Add
   components:
   - type: Clickable
     bounds:

@@ -5,6 +5,7 @@ using Content.Shared.Chat.Prototypes;
 using Content.Shared.Input;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input.Binding;
+using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -15,9 +16,11 @@ public sealed partial class JumpSystem : SharedJumpSystem
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly INetManager _netManager = default!;
 
     private TimeSpan _lastJumpTime;
     private static TimeSpan _jumpCooldown;
+    private bool _jumpSoundDisabled;
 
     private static readonly ProtoId<EmotePrototype> EmoteJumpProto = "Jump";
 
@@ -31,6 +34,13 @@ public sealed partial class JumpSystem : SharedJumpSystem
 
         _cfg.OnValueChanged(SunriseCCVars.JumpSoundDisable, OnJumpSoundEnabledOptionChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.JumpCooldown, OnJumpCooldownChanged, true);
+
+        _netManager.Connected += OnConnected;
+    }
+
+    private async void OnConnected(object? sender, NetChannelArgs e)
+    {
+        RaiseNetworkEvent(new ClientOptionDisableJumpSoundEvent(_jumpSoundDisabled));
     }
 
     public override void Shutdown()
@@ -46,7 +56,9 @@ public sealed partial class JumpSystem : SharedJumpSystem
 
     private void OnJumpSoundEnabledOptionChanged(bool option)
     {
-        RaiseNetworkEvent(new ClientOptionDisableJumpSoundEvent(option));
+        _jumpSoundDisabled = option;
+        if (_netManager.IsConnected)
+            RaiseNetworkEvent(new ClientOptionDisableJumpSoundEvent(_jumpSoundDisabled));
     }
 
     private void Jump(ICommonSession? session)

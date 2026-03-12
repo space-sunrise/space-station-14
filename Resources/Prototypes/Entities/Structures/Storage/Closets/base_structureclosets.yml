@@ -1,6 +1,6 @@
 - type: entity
   id: ClosetBase
-  parent: BaseStructureDynamic
+  parent: [ BaseStructureDynamic, BasePaperLabelableVisualized ]
   name: closet
   description: A standard-issue Nanotrasen storage unit.
   abstract: true
@@ -25,17 +25,6 @@
       sprite: Structures/Storage/closet_labels.rsi
       map: ["enum.PaperLabelVisuals.Layer"]
   - type: MovedByPressure
-  - type: PaperLabel
-    labelSlot:
-      insertVerbText: comp-paper-label-insert
-      ejectVerbText: comp-paper-label-eject
-      whitelist:
-        components:
-        - Paper
-      blacklist:
-        tags:
-        - Book
-  - type: ItemSlots
   - type: DamageOnHighSpeedImpact
     damage:
       types:
@@ -81,13 +70,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 100
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 150
+        damage: 50
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -123,6 +112,8 @@
     stateDoorClosed: generic_door
   - type: StaticPrice
     price: 75
+  - type: Pierceable # Sunrise-edit - прострел ящиков
+    level: Wood
 
 # steel closet base (that can be constructed/deconstructed)
 - type: entity
@@ -177,13 +168,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 100
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 150
+        damage: 50
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -326,3 +317,5 @@
     stateDoorOpen: base
     stateDoorClosed: door
   - type: LockVisuals
+  - type: Pierceable # Sunrise-edit - прострел ящиков
+    level: Wood

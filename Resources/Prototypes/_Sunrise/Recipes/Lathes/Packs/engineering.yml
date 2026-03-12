@@ -39,3 +39,8 @@
   - CellRechargerCircuitboard
   - WeaponCapacitorRechargerCircuitboard
   - FreezerElectronics
+
+- type: latheRecipePack
+  id: Modsuits
+  recipes:
+  - ModsuitCore

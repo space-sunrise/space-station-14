@@ -1,4 +1,6 @@
-﻿#nullable enable
+#nullable enable
+using System.Linq;
+using Robust.Shared.Audio.Components;
 using Robust.Shared.Console;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -29,13 +31,21 @@ public sealed partial class MindTests
         await pair.RunTicksSync(5);
 
         Assert.That(pair.Server.EntMan.EntityCount, Is.EqualTo(0));
-
-        foreach (var ent in pair.Client.EntMan.GetEntities())
+        // Sunrise-start: GreetingsSystem spawns audio entity
+        await pair.Client.WaitPost(() =>
         {
-            Console.WriteLine(pair.Client.EntMan.ToPrettyString(ent));
-        }
-		
-		Console.WriteLine($"Client entity count: {pair.Client.EntMan.EntityCount}");
+            var entMan = pair.Client.EntMan;
+            var audioEnts = entMan.GetEntities()
+                .Where(entMan.HasComponent<AudioComponent>)
+                .ToArray();
+
+            foreach (var audioEnt in audioEnts)
+            {
+                entMan.DeleteEntity(audioEnt);
+            }
+        });
+        // Sunrise-end
+        await pair.RunTicksSync(5);
 
         Assert.That(pair.Client.EntMan.EntityCount, Is.EqualTo(0));
 
@@ -62,3 +72,4 @@ public sealed partial class MindTests
         await pair.CleanReturnAsync();
     }
 }
+

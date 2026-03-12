@@ -1,0 +1,55 @@
+- type: localizedDataset
+  id: NamesMilitaryFirstLeaderAmber
+  values:
+    prefix: names-military-leaderamber-first-dataset-
+    count: 3
+
+- type: localizedDataset
+  id: NamesMilitaryFirstLeaderRed
+  values:
+    prefix: names-military-leaderred-first-dataset-
+    count: 3
+
+- type: localizedDataset
+  id: NamesMilitaryFirstLeaderGamma
+  values:
+    prefix: names-military-leadergamma-first-dataset-
+    count: 3
+
+# Security Names
+- type: localizedDataset
+  id: NamesMilitaryFirstAmber
+  values:
+    prefix: names-military-trooperamber-first-dataset-
+    count: 3
+
+- type: localizedDataset
+  id: NamesMilitaryFirstRed
+  values:
+    prefix: names-military-trooperred-first-dataset-
+    count: 3
+
+- type: localizedDataset
+  id: NamesMilitaryFirstGamma
+  values:
+    prefix: names-military-troopergamma-first-dataset-
+    count: 3
+
+# Specialist Names
+- type: localizedDataset
+  id: NamesMilitaryFirstAmberSpecial
+  values:
+    prefix: names-military-specialistamber-first-dataset-
+    count: 3
+
+- type: localizedDataset
+  id: NamesMilitaryFirstRedSpecial
+  values:
+    prefix: names-military-specialistred-first-dataset-
+    count: 3
+
+- type: localizedDataset
+  id: NamesMilitaryFirstGammaSpecial
+  values:
+    prefix: names-military-specialistgamma-first-dataset-
+    count: 3

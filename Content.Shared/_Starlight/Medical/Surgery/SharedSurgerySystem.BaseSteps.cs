@@ -1,6 +1,8 @@
 ﻿using Content.Shared.Body.Part;
+using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
 using Content.Shared.DoAfter;
+using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Item.ItemToggle.Components;
@@ -24,6 +26,7 @@ public abstract partial class SharedSurgerySystem
         SubscribeLocalEvent<SurgeryClearProgressComponent, SurgeryStepCompleteEvent>(OnClearProgressStep);
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryStepEvent>(OnStep);
         SubscribeLocalEvent<SurgeryTargetComponent, SurgeryDoAfterEvent>(OnTargetDoAfter);
+        SubscribeLocalEvent<SurgeryTargetComponent, AccessibleOverrideEvent>(OnOverrideAccess);
 
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryCanPerformStepEvent>(OnCanPerformStep);
 
@@ -69,6 +72,24 @@ public abstract partial class SharedSurgerySystem
         RaiseLocalEvent(step, ref evComplete);
 
         RefreshUI(ent);
+    }
+
+    private void OnOverrideAccess(Entity<SurgeryTargetComponent> ent, ref AccessibleOverrideEvent args)
+    {
+        // Check if the entity is the target to avoid giving the hooked entity access to everything.
+        // If we already have access we don't need to run more code.
+        if (args.Accessible || args.Target != ent.Owner)
+            return;
+
+        var xform = Transform(ent);
+        var root = _containers.GetContainingContainers((ent, xform)).FirstOrDefault(x => x.ID == SharedBodySystem.BodyRootContainerId); //get the root container
+        if (root == null)
+            return;
+        if (!_interaction.CanAccess(args.User, root.Owner))
+            return;
+
+        args.Accessible = true;
+        args.Handled = true;
     }
 
     private void OnClearProgressStep(Entity<SurgeryClearProgressComponent> ent, ref SurgeryStepCompleteEvent args)
@@ -148,7 +169,7 @@ public abstract partial class SharedSurgerySystem
 
         if (args.Invalid != StepInvalidReason.None)
             return;
-        
+
         if (_inventory.TryGetContainerSlotEnumerator(args.Body, out var enumerator, args.TargetSlots))
         {
             var items = 0f;
@@ -270,7 +291,7 @@ public abstract partial class SharedSurgerySystem
             foreach (var requirementId in requirementsIds)
             {
                 if (!_entitySystem.TryGetSingleton(requirementId, out var requirement)
-                    && GetNextStep(body, part, requirement, requirements) is { } requiredNext 
+                    && GetNextStep(body, part, requirement, requirements) is { } requiredNext
                     && IsSurgeryValid(body, part, requirementId, requiredNext.Surgery.Comp.Steps[requiredNext.Step], out _, out _, out _))
                     return requiredNext;
             }
@@ -296,8 +317,8 @@ public abstract partial class SharedSurgerySystem
             foreach (var requirement in requirements)
             {
                 if (!_entitySystem.TryGetSingleton(requirement, out var requiredEnt)
-                    || !TryComp(requiredEnt, out SurgeryComponent? requiredComp) 
-                    || !PreviousStepsComplete(body, part, (requiredEnt, requiredComp), step) 
+                    || !TryComp(requiredEnt, out SurgeryComponent? requiredComp)
+                    || !PreviousStepsComplete(body, part, (requiredEnt, requiredComp), step)
                     && IsSurgeryValid(body, part, requirement, step, out _, out _, out _))
                     return false;
             }

@@ -182,7 +182,7 @@
     generated:
       reagents:
       - ReagentId: WeldingFuel
-        Quantity: 0.5 # Sunrise-Edit
+        Quantity: 1 # Sunrise-Edit
   - type: RequiresEyeProtection
     statusEffectTime: 5 # less harmful; sunglasses can block it
 
@@ -212,12 +212,17 @@
     enabled: false
     radius: 1.0
     color: orange
+  # Sunrise-start
+  - type: Tag
+    tags:
+    - EmergencyWelder
+  # Sunrise-end
 
 - type: entity
   parent: [ Welder, BaseXenoborgContraband ]
   id: RefuelingWelder
-  name: refuling welding tool
-  description: "An slow welder that can refuel itself over time."
+  name: refueling welding tool
+  description: "A slow welder that can refuel itself over time."
   components:
   - type: Tool
     speedModifier: 0.5

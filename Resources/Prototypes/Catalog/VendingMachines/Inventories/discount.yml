@@ -7,6 +7,7 @@
     DrinkEnergyDrinkCan: 4
     FoodSnackPopcorn: 3
     FoodSnackEnergy: 3
+    FoodSnackMaysonEnergy: 2 # sunrise-add
     CigPackMixed: 2
     DiscountDanLighter: 1
   contrabandInventory:

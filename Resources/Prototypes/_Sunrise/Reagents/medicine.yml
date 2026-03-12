@@ -1,0 +1,111 @@
+- type: reagent
+  id: H-32
+  name: reagent-name-h-32
+  group: Medicine
+  desc: reagent-desc-h-32
+  physicalDesc: reagent-physical-desc-h-32
+  flavor: medicine
+  color: "#cc1a79"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      metabolismRate: 1.0
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:TemperatureCondition
+          max: 213.0
+        damage:
+          types:
+            Radiation: -4
+
+- type: reagent
+  id: Antidon
+  name: reagent-name-antidon
+  group: Medicine
+  desc: reagent-desc-antidon
+  physicalDesc: reagent-physical-desc-antidon
+  flavor: medicine
+  color: "#8A2BE2"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      metabolismRate: 1.0
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:TemperatureCondition
+          max: 213.0
+        damage:
+          types:
+            Poison: -6
+
+- type: reagent
+  id: Brutedon
+  name: reagent-name-brutedon
+  group: Medicine
+  desc: reagent-desc-brutedon
+  physicalDesc: reagent-physical-desc-brutedon
+  flavor: medicine
+  color: "#FFFF00"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      metabolismRate: 1.0
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:TemperatureCondition
+          max: 213.0
+        damage:
+          groups:
+            Brute: -6
+
+- type: reagent
+  id: Celliminol
+  name: reagent-name-celliminol
+  group: Medicine
+  desc: reagent-desc-celliminol
+  physicalDesc: reagent-physical-desc-celliminol
+  flavor: medicine
+  color: "#81eb81"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0
+          damage:
+            types:
+             Cellular: -5
+             Mangleness: -1.25
+
+- type: reagent
+  id: Nutricryokomp
+  name: reagent-name-nutricryokomp
+  group: Medicine
+  desc: reagent-desc-nutricryokomp
+  physicalDesc: reagent-physical-desc-nutricryokomp
+  flavor: medicine
+  color: "#cfc434ff"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      effects:
+        - !type:ModifyBloodLevel
+          amount: 1
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0
+        - !type:SatiateThirst
+          factor: 4
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0
+        - !type:SatiateHunger
+          factor: 1
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0

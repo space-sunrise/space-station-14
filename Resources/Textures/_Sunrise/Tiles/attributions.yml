@@ -1,6 +1,16 @@
 # Attempted to keep the files in alphabetical order so its easier to audit.
 # Finding individual authors is an unfeasible task. If you can reference the author please do so.
 
+- files: ["lattice_s_r.png"] #S/N_L/R states to
+  license: "CLA"
+  copyright: "Sokol9BL"
+  source: "https://github.com/space-sunrise/space-station-14"
+
+- files: ["plating_s_r.png"] #S/N_L/R states to
+  license: "CLA"
+  copyright: "Sokol9BL"
+  source: "https://github.com/space-sunrise/space-station-14"
+
 - files: ["light-fancy-wood.png"]
   license: "CLA"
   copyright: "Taked from ParadiseSS13"

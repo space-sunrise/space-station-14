@@ -27,6 +27,7 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Coordinates;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared._Sunrise.Nesting;
 
 namespace Content.Shared._Sunrise.Carrying;
 
@@ -337,6 +338,14 @@ public sealed class SharedCarryingSystem : EntitySystem
     {
         if (!Resolve(carried, ref carriedComp, false))
             return false;
+
+        if (carriedComp.RequiresNestingMob)
+        {
+            var ev = new CanCarryEvent(carrier);
+            RaiseLocalEvent(carried, ev);
+            if (ev.Cancelled)
+                return false;
+        }
 
         if (!HasComp<MapGridComponent>(Transform(carrier).ParentUid))
             return false;

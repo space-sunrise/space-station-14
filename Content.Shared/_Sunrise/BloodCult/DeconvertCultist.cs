@@ -6,48 +6,37 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
-using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Shared._Sunrise.BloodCult;
 
-[ImplicitDataDefinitionForInheritors]
-[MeansImplicitUse]
-public sealed partial class DeconvertCultist : EntityEffect
+public sealed partial class DeconvertCultistEntityEffectSystem : EntityEffectSystem<BloodCultistComponent, DeconvertCultist>
 {
-    public override bool ShouldLog => true;
+    [Dependency] private readonly SharedStunSystem _sharedStunSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _sharedPopupSystem = default!;
+    [Dependency] private readonly EntityManager _entityManager = default!;
 
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    protected override void Effect(Entity<BloodCultistComponent> entity, ref EntityEffectEvent<DeconvertCultist> args)
     {
-        return Loc.GetString("reagent-effect-guidebook-deconvert-cultist");
-    }
+        var uid = entity.Owner;
 
-    public override void Effect(EntityEffectBaseArgs args)
-    {
-        var uid = args.TargetEntity;
-
-        if (!args.EntityManager.TryGetComponent(uid, out BloodCultistComponent? component))
-            return;
-
-        if (component.HolyConvertToken != null)
+        if (entity.Comp.HolyConvertToken != null)
             return;
 
         var random = new System.Random();
-        var convert = random.Next(1, 101) <= component.HolyConvertChance;
+        var convert = random.Next(1, 101) <= entity.Comp.HolyConvertChance;
         if (!convert)
             return;
 
-        args.EntityManager.System<SharedStunSystem>()
-            .TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(5f));
-        var target = Identity.Name(uid, args.EntityManager);
-        args.EntityManager.System<SharedPopupSystem>()
-            .PopupEntity(Loc.GetString("holy-water-started-converting", ("target", target)), uid);
+        _sharedStunSystem.TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(5f));
+        var target = Identity.Name(uid, _entityManager);
+        _sharedPopupSystem.PopupEntity(Loc.GetString("holy-water-started-converting", ("target", target)), uid);
 
-        component.HolyConvertToken = new CancellationTokenSource();
-        Timer.Spawn(TimeSpan.FromSeconds(component.HolyConvertTime),
-            () => ConvertCultist(uid, args.EntityManager),
-            component.HolyConvertToken.Token);
+        entity.Comp.HolyConvertToken = new CancellationTokenSource();
+        Timer.Spawn(TimeSpan.FromSeconds(entity.Comp.HolyConvertTime),
+            () => ConvertCultist(uid, _entityManager),
+            entity.Comp.HolyConvertToken.Token);
     }
 
     private void ConvertCultist(EntityUid uid, IEntityManager entityManager)
@@ -62,5 +51,13 @@ public sealed partial class DeconvertCultist : EntityEffect
         if (entityManager.HasComponent<CultMemberComponent>(uid))
             entityManager.RemoveComponent<CultMemberComponent>(uid);
         entityManager.System<TagSystem>().RemoveTag(uid, "Cultist");
+    }
+}
+
+public sealed partial class DeconvertCultist : EntityEffectBase<DeconvertCultist>
+{
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    {
+        return Loc.GetString("entity-effect-guidebook-cure-zombie-infection", ("chance", Probability));
     }
 }

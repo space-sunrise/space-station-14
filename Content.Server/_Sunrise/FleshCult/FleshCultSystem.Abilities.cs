@@ -157,14 +157,17 @@ public sealed partial class FleshCultSystem
                     }
                     else
                     {
-                        if (!component.BloodWhitelist.Contains(bloodstream.BloodReagent))
+                        foreach (var reagent in bloodstream.BloodReferenceSolution.Contents)
                         {
-                            _popup.PopupEntity(
-                                Loc.GetString("flesh-cultist-devout-target-not-have-flesh"),
-                                uid, uid);
-                            return;
+                            if (!component.BloodWhitelist.Contains(reagent.Reagent.Prototype))
+                            {
+                                _popup.PopupEntity(
+                                    Loc.GetString("flesh-cultist-devout-target-not-have-flesh"),
+                                    uid, uid);
+                                return;
+                            }
                         }
-                        if (bloodstream.BloodMaxVolume < 30)
+                        if ((int)bloodstream.BloodReferenceSolution.MaxVolume < 30)
                         {
                             _popup.PopupEntity(
                                 Loc.GetString("flesh-cultist-devout-target-invalid"),
@@ -172,7 +175,7 @@ public sealed partial class FleshCultSystem
                             return;
                         }
                     }
-                    var saturation = MatchSaturation(bloodstream.BloodMaxVolume.Value / 100, hasAppearance);
+                    var saturation = MatchSaturation((int)bloodstream.BloodReferenceSolution.MaxVolume / 100, hasAppearance);
                     if (TryComp<FleshCultistComponent>(uid, out var fleshCultistComponent) &&
                         fleshCultistComponent.Hunger + saturation >= fleshCultistComponent.MaxHunger)
                     {
@@ -290,9 +293,9 @@ public sealed partial class FleshCultSystem
             hasAppearance = true;
         }
 
-        var saturation = MatchSaturation(bloodstream.BloodMaxVolume.Value / 100, hasAppearance);
-        var evolutionPoint = MatchEvolutionPoint(bloodstream.BloodMaxVolume.Value / 100, hasAppearance);
-        var healPoint = MatchHealPoint(bloodstream.BloodMaxVolume.Value / 100, hasAppearance);
+        var saturation = MatchSaturation((int)bloodstream.BloodReferenceSolution.MaxVolume / 100, hasAppearance);
+        var evolutionPoint = MatchEvolutionPoint((int)bloodstream.BloodReferenceSolution.MaxVolume / 100, hasAppearance);
+        var healPoint = MatchHealPoint((int)bloodstream.BloodReferenceSolution.MaxVolume / 100, hasAppearance);
 
         RemComp<BloodstreamComponent>(args.Args.Target.Value);
 
@@ -418,7 +421,7 @@ public sealed partial class FleshCultSystem
 
         if (TryComp<CuffableComponent>(uid, out var cuffableComponent) && cuffableComponent.CuffedHandCount > 0)
         {
-            _cuffable.Uncuff(uid, uid, cuffableComponent.LastAddedCuffs);
+            _cuffable.Uncuff(uid, uid, cuffableComponent.Container.ContainedEntities[^1]);
         }
 
         foreach (var hand in _handsSystem.EnumerateHands(uid))

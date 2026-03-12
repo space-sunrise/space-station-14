@@ -130,6 +130,7 @@
   name: G.O.R.I.L.L.A. gauntlet
   parent: BaseItem
   id: CyberGorillaArm
+  categories: [ HideSpawnMenu ]
   description: A robust piece of research equipment. When powered with an anomaly core, a single blow can launch anomalous objects through the air.
   components:
   - type: Sprite
@@ -153,7 +154,7 @@
       path: "/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg"
   - type: CorePoweredThrower
   - type: MeleeThrowOnHit
-    unanchorOnHit: true
+    unanchorOnHit: Unanchorable
   - type: ItemSlots
     slots:
       core_slot:
@@ -176,12 +177,18 @@
   - type: Prying
     speedModifier: 2
     pryPowered: true
+  # Sunrise-start
+  - type: Construction
+    graph: UpgradeCyberGorilla
+    node: upgraded
+  # Sunrise-end
 
 #G.O.R.I.L.L.A. cyber arm #Syndie Upgrade
 - type: entity
   name: experimental G.O.R.I.L.L.A. gauntlet
   parent: [CyberGorillaArm, BaseScienceContraband]
   id: CyberGorillaArmUpgraded
+  categories: [ HideSpawnMenu ]
   description: A reinforced cybernetic arm equipped with integrated G.O.R.I.L.L.A. gauntlet systems. When powered with an anomaly core, a single strike can hurl anomalous objects or your enemy just like its standalone counterpart.
   components:
   - type: Sprite
@@ -208,7 +215,7 @@
     soundHit:
       path: "/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg"
   - type: MeleeThrowOnHit
-    unanchorOnHit: true
+    unanchorOnHit: Unanchorable
     stunTime: 1.5
   - type: Tool
     qualities:
@@ -251,7 +258,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
     bigTrigger: true
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: AnomalousParticleDeltaStrong
     fireCost: 100
   - type: BatteryWeaponFireModes
@@ -265,7 +272,6 @@
     - proto: AnomalousParticleSigmaStrong
       fireCost: 100
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 25
     autoRechargePauseTime: 1
 
@@ -319,11 +325,10 @@
     - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLightLaser
     fireCost: 75
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 120
     autoRechargePauseTime: 8
   - type: MagazineVisuals
@@ -337,7 +342,7 @@
   name: Grenade Thrower "Rumbler"
   parent: [WeaponGrenadeLauncherSecurity, BaseMajorContraband]
   id: CyberGrenadeThrower
-  description: A single-shot, break-action integrated grenade launcher. Capable of firing a variety of grenades and hand grenades and artillery casing.
+  description: A single-shot, break-action integrated grenade launcher. Capable of firing a variety of grenades and hand grenades and small artillery casing.
   components:
   - type: Reflect
     reflectProb: 0.05
@@ -354,27 +359,49 @@
       - state: base
         map: ["enum.GunVisualLayers.Base"]
   - type: Gun
-    fireRate: 2
+    fireRate: 0.1
+    minAngle: 6
+    maxAngle: 18
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
-    projectileSpeed: 18
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+    projectileSpeed: 15
     bigTrigger: true
   - type: UseDelayOnShoot
   - type: UseDelay
-    delay: 1
+    delay: 8
   - type: ItemSlots
     slots:
       gun_chamber:
         name: Chamber
-        startingItem: GrenadeFlashTimer
+        startingItem: GrenadeFlash
         priority: 1
         whitelist:
           tags:
           - Grenade
           - HandGrenadeAmmo
+          - CartridgeAntiMateriel
+          - ShellShotgun
+          - ShellShotgunImprovised
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 4
+        staminaMultiplier: 30
+      Felinid:
+        knockback: 2 #half of what resomi take
+        staminaMultiplier: 30
+      AnomalyHost:
+        knockback: 1 #half of what Xeno take
+        staminaMultiplier: 25
+      HumanoidXeno:
+        knockback: 1
+        staminaMultiplier: 20
+      Predator:
+        knockback: 1
+        staminaMultiplier: 15
 
 # Atmos Thrower
 - type: entity
@@ -384,7 +411,7 @@
   description: A one-of-a-kind prototype of emergency repair module mounted in arm that uses various engi grenade configurations.
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Tools/advanced-rcd.rsi
+    sprite: _Sunrise/Objects/Tools/advanced_rcd.rsi
     state: icon
   - type: Gun
     fireRate: 2
@@ -392,7 +419,7 @@
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
     projectileSpeed: 15
     bigTrigger: true
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: AirGrenade
     fireCost: 130
   - type: BatteryWeaponFireModes
@@ -405,7 +432,6 @@
     maxCharge: 500
     startingCharge: 500
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 10
   - type: KnockbackByUserTag
     doestContain:

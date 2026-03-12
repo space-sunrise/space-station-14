@@ -69,3 +69,20 @@
   products:
     HemostaticPowder: 2
 
+- type: reaction
+  id: Retroindralyne
+  impact: Medium
+  minTemp: 478
+  reactants:
+    Arithrazine:
+      amount: 1
+    Fluorine:
+      amount: 1
+    PotassiumIodide:
+      amount: 1
+    SodiumHydroxide:
+      amount: 1
+    Oil:
+      amount: 1
+  products:
+    Retroindralyne: 3

@@ -6,6 +6,8 @@ using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Pylon;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Doors.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Maps;
@@ -210,7 +212,7 @@ public sealed class PylonSystem : EntitySystem
                     _blood.TryModifyBleedAmount((playerEntity, bloodstream), -comp.BleedReductionAmount);
                 }
 
-                if (_blood.GetBloodLevelPercentage((playerEntity, bloodstream)) < bloodstream.BloodMaxVolume)
+                if (_blood.GetBloodLevel((playerEntity, bloodstream)) < bloodstream.BloodReferenceSolution.MaxVolume)
                 {
                     _blood.TryModifyBloodLevel((playerEntity, bloodstream), comp.BloodRefreshAmount);
                 }

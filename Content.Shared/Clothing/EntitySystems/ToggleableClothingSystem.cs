@@ -13,6 +13,9 @@ using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared._Sunrise.Modsuit; //Sunrise-Edit
+using Content.Shared._Sunrise.PersonalBiocode;
+using Content.Shared.Forensics.Components;
 
 namespace Content.Shared.Clothing.EntitySystems;
 
@@ -238,7 +241,22 @@ public sealed class ToggleableClothingSystem : EntitySystem
     {
         if (component.Container == null || component.ClothingUid == null)
             return;
+        //Sunrise-Start
+        if (TryComp<ModsuitComponent>(target, out var modSuitComp) && !modSuitComp.IsActivated)
+        {
+            _popupSystem.PopupClient(Loc.GetString("modsuit-equip-failure"), user, user, PopupType.MediumCaution); 
+            return;
+        }
 
+        if (modSuitComp != null && TryComp<PersonalBiocodeComponent>(component.ClothingUid, out var suitBiocodeComp) && suitBiocodeComp.IsAuthorized == true)
+        {
+            if (TryComp<DnaComponent>(user, out var PersonNDA) && suitBiocodeComp.DNA != PersonNDA.DNA)
+            {
+                _popupSystem.PopupClient(Loc.GetString("biocode-equip-failure"), user, user, PopupType.MediumCaution);     
+                return;    
+            }
+        }
+        //Sunrise-End
         var parent = Transform(target).ParentUid;
         if (component.Container.ContainedEntity == null)
             _inventorySystem.TryUnequip(user, parent, component.Slot, force: true);

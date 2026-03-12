@@ -1,112 +1,91 @@
-using Content.Shared._Sunrise.Abilities.Resomi;
 using Content.Shared._Sunrise.Jump;
-using Content.Shared.ActionBlocker;
-using Content.Shared.Chat;
-using Content.Shared.Chat.Prototypes;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Gravity;
+using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
-using Content.Shared.Standing;
+using Content.Shared.Movement.Systems;
+using Content.Shared.Popups;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
-using Robust.Shared.Configuration;
-using Robust.Shared.Network;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Systems;
+using Content.Shared.Throwing;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 
 namespace Content.Shared._Sunrise.SunriseStanding;
 
 public sealed class SunriseStandingStateSystem : EntitySystem
 {
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ActionBlockerSystem _blocker = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly ThrowingSystem _throwing = default!;
 
     private readonly EntProtoId _fallStatusEffectKey = "StatusEffectFall";
-    private readonly ProtoId<EmotePrototype> _emoteFallOnNeckProto = "FallOnNeck";
-
-    private static float _fallDeadChance;
-
     public const float FallModifier = 0.2f;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<CrawlerComponent, KnockedDownEvent>(OnDown);
-        SubscribeLocalEvent<FallComponent, TileFrictionEvent>(OnFallTileFriction);
-        SubscribeLocalEvent<FallComponent, UpdateCanMoveEvent>(OnMoveAttempt);
-        SubscribeLocalEvent<FallComponent, ComponentStartup>(UpdateCanMove);
-        SubscribeLocalEvent<FallComponent, ComponentShutdown>(UpdateCanMove);
-
-        _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.FallDeadChance, OnFallDeadChanceChanged, true);
+        SubscribeLocalEvent<CanFallComponent, KnockedDownEvent>(OnDown);
+        SubscribeLocalEvent<CanFallComponent, MoveInputEvent>(OnMoveInput);
     }
-    private void OnFallDeadChanceChanged(float value)
+    private void OnMoveInput(Entity<CanFallComponent> ent, ref MoveInputEvent args)
     {
-        _fallDeadChance = value;
+        ent.Comp.IsMoving = args.Entity.Comp.HeldMoveButtons != MoveButtons.None;
     }
-
-    private void UpdateCanMove(EntityUid uid, FallComponent component, EntityEventArgs args)
+    private void OnDown(Entity<CanFallComponent> ent, ref KnockedDownEvent ev)
     {
-        _blocker.UpdateCanMove(uid);
-    }
-
-    private void OnMoveAttempt(EntityUid uid, FallComponent component, UpdateCanMoveEvent args)
-    {
-        if (component.LifeStage > ComponentLifeStage.Running)
+        if (_gravity.IsWeightless(ent.Owner))
             return;
 
-        args.Cancel();
-    }
-
-    private void OnFallTileFriction(EntityUid uid, FallComponent component, ref TileFrictionEvent args)
-    {
-        args.Modifier *= FallModifier;
-    }
-
-    private void OnDown(EntityUid uid, CrawlerComponent comp, KnockedDownEvent ev)
-    {
-        if (_gravity.IsWeightless(uid))
+        if (!ent.Comp.IsMoving)
             return;
 
-        Fall(uid);
+        Fall(ent);
     }
 
-    public void Fall(EntityUid uid)
+    public void Fall(Entity<CanFallComponent> ent)
     {
-        if (!TryComp<PhysicsComponent>(uid, out var physics) || HasComp<JumpComponent>(uid))
+        if (HasComp<ActiveLeaperComponent>(ent))
+            return;
+
+        if (!TryComp<StaminaComponent>(ent, out var stamina))
+            return;
+
+        var threshold = stamina.CritThreshold * (1 - ent.Comp.MinimumStamina);
+
+        if (stamina.StaminaDamage >= threshold)
+        {
+            _popup.PopupPredicted(Loc.GetString("cant-fall-no-stamina"), null, ent, ent);
+            return;
+        }
+
+        if (_statusEffects.HasEffectComp<JumpStatusEffectComponent>(ent))
             return;
 
         var ev = new FallAttemptEvent();
-        RaiseLocalEvent(uid, ref ev);
+        RaiseLocalEvent(ent, ref ev);
         if (ev.Cancelled)
             return;
 
-        if (!TryComp<KnockedDownComponent>(uid, out var knockedDown))
+        if (!TryComp<KnockedDownComponent>(ent, out var knockedDown))
             return;
 
         if (knockedDown.AutoStand)
             return;
 
-        var velocity = physics.LinearVelocity;
+        var xform = Transform(ent);
+        var throwing = xform.LocalRotation.ToWorldVec() * ent.Comp.FallDistance;
+        var direction = xform.Coordinates.Offset(throwing); // to make the character jump in the direction he's looking
 
-        if (velocity.LengthSquared() < 0.1f)
-            return;
+        _throwing.TryThrow(ent, direction, ent.Comp.FallVelocity);
 
-        _physics.SetLinearVelocity(uid, physics.LinearVelocity * 4f, body: physics);
-        _statusEffects.TryAddStatusEffectDuration(uid,
+        _statusEffects.TryAddStatusEffectDuration(ent,
             _fallStatusEffectKey,
-            TimeSpan.FromSeconds(1));
+            ent.Comp.Duration);
 
-        if (_random.Prob(_fallDeadChance) && _net.IsServer)
-        {
-            RaiseLocalEvent(uid, new PlayEmoteMessage(_emoteFallOnNeckProto));
-        }
+        _stamina.TakeStaminaDamage(ent, stamina.CritThreshold * ent.Comp.StaminaDamage, null, ent, ent, ignoreResist: true);
     }
 }

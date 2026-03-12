@@ -6,6 +6,7 @@
   components:
   - type: Clickable
   - type: MovementIgnoreGravity
+  - type: GravityAffected
   - type: Sprite
     sprite: _Sunrise/AssaultOperatives/sunray.rsi
     drawdepth: Effects
@@ -40,6 +41,7 @@
           radius: 2
         density: 1
         hard: false
+        friction: 0
         mask:
           - Impassable
           - BulletImpassable

@@ -1,0 +1,6 @@
+- type: mixingCategory
+  id: Vaccinator
+  verbText: mixing-verb-vaccinator
+  icon:
+    sprite: Structures/Machines/vaccinator.rsi
+    state: icon

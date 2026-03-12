@@ -36,3 +36,7 @@ news-write-ui-richtext-tooltip = News articles support rich text
 
 news-pda-notification-header = New news article
 news-publish-admin-announcement = {$actor} published news article {$title} by {$author}
+news-write-ui-photos-label = Photos:
+news-write-ui-add-photo-text = Add Photo
+news-write-ui-select-photo-title = Select PDA Photo
+news-write-ui-no-photos = No photos found on PDA

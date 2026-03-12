@@ -8,10 +8,11 @@
     equipDelay: 2
     unequipDelay: 20
   - type: Explosive
-    explosionType: Default
-    totalIntensity: 200
-    intensitySlope: 5
-    maxIntensity: 4
+    explosionType: MicroBomb
+    totalIntensity: 150
+    intensitySlope: 500
+    maxIntensity: 30
+    canCreateVacuum: false
   - type: ExplodeOnTrigger
   - type: ExpCollar
     initialStripDelay: 0
@@ -20,8 +21,8 @@
       path: /Audio/Effects/beep1.ogg
     damage:
       groups:
-        Brute: 300
-        Burn: 300
+        Brute: 400
+        Burn: 400
   - type: StaticPrice
     price: 3000
 

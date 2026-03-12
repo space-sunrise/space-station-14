@@ -37,6 +37,7 @@
   - ElectricGrillMachineCircuitboard
   - BoozeDispenserMachineCircuitboard
   - SodaDispenserMachineCircuitboard
+  - SmartFridgeCircuitboard
 
 - type: latheRecipePack
   id: HydroponicsStatic
@@ -67,7 +68,7 @@
 - type: latheRecipePack
   id: ServiceBoards
   recipes:
-  - BiofabricatorMachineCircuitboard
+  #- BiofabricatorMachineCircuitboard # Sunrise-edit
   - FatExtractorMachineCircuitboard
   - HydroponicsTrayMachineCircuitboard # roundstart gear being unlocked roundstart when
   - SeedExtractorMachineCircuitboard # ^

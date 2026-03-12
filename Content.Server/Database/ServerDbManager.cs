@@ -198,6 +198,7 @@ namespace Content.Server.Database
             ImmutableTypedHwid? hwId);
         Task<PlayerRecord?> GetPlayerRecordByUserName(string userName, CancellationToken cancel = default);
         Task<PlayerRecord?> GetPlayerRecordByUserId(NetUserId userId, CancellationToken cancel = default);
+        Task<Dictionary<Guid, string>> GetPlayerNamesBatchAsync(IEnumerable<Guid> userIds, CancellationToken cancel = default);
         #endregion
 
         #region Connection Logs
@@ -691,6 +692,12 @@ namespace Content.Server.Database
         {
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.GetPlayerRecordByUserId(userId, cancel));
+        }
+
+        public Task<Dictionary<Guid, string>> GetPlayerNamesBatchAsync(IEnumerable<Guid> userIds, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetPlayerNamesBatchAsync(userIds, cancel));
         }
 
         public Task<int> AddConnectionLogAsync(

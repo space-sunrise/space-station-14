@@ -1,0 +1,20 @@
+<Document>
+[head=3][color=#8a2db5][bold]Запрос о лишении юридической защиты[/bold][/color][/head]
+[color=#8a2db5][bold]{corpString}[/bold][/color][mono] / ЮР-ЦК[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#8a2db5][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#8a2db5][bold]Запрос[/bold][/color]
+
+Я, (ФИО), в должности (ДОЛЖНОСТЬ), прошу лишить юридической неприкосновенности сотрудника (ФИО) в должности (ДОЛЖНОСТЬ), по причине: (сама причина)
+
+[color=#666666][italic]Место для печатей[/italic][/color]
+
+
+</Document>

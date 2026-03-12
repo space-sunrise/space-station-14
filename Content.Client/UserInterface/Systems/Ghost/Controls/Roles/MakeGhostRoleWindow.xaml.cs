@@ -62,8 +62,8 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             RaffleMaxDuration.ValueChanged += OnRaffleDurationChanged;
 
 
-            RaffleButton.AddItem(Loc.GetString("make-ghost-role-menu-raffle-disabled"), RaffleDontRaffleId);
-            RaffleButton.AddItem(Loc.GetString("make-ghost-role-menu-raffle-custom"), RaffleCustomRaffleId);
+            RaffleButton.AddItem(Loc.GetString("make-ghost-roles-window-raffle-not-button"), RaffleDontRaffleId);
+            RaffleButton.AddItem(Loc.GetString("make-ghost-roles-window-raffle-custom-settings-button"), RaffleCustomRaffleId);
 
             var raffleProtos =
                 _prototypeManager.EnumeratePrototypes<GhostRoleRaffleSettingsPrototype>();
@@ -73,15 +73,9 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             {
                 _rafflePrototypes.Add(raffleProto);
                 var s = raffleProto.Settings;
-
-                var label = Loc.GetString(
-                    "make-ghost-role-menu-raffle-custom-new",
-                    ("ID", raffleProto.ID),
-                    ("initial", s.InitialDuration),
-                    ("max", s.MaxDuration),
-                    ("extends", s.JoinExtendsDurationBy)
-                );
-                    RaffleButton.AddItem(label, idx++);
+                var label =
+                    Loc.GetString("make-ghost-roles-window-raffle-settings-label", ("id", raffleProto.ID), ("initialDuration", s.InitialDuration), ("maxDuration", s.MaxDuration), ("joinExtendsDurationBy", s.JoinExtendsDurationBy));
+                RaffleButton.AddItem(label, idx++);
             }
 
             MakeButton.OnPressed += OnMakeButtonPressed;
@@ -98,7 +92,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             if (RaffleInitialDuration.Value > RaffleMaxDuration.Value)
             {
                 MakeButton.Disabled = true;
-                MakeButton.ToolTip = Loc.GetString("make-ghost-role-menu-duration-initial-error");
+                MakeButton.ToolTip = Loc.GetString("make-ghost-roles-window-raffle-warning-tooltip");
             }
             else
             {

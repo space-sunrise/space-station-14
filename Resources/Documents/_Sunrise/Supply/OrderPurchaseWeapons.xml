@@ -1,0 +1,26 @@
+<Document>
+[head=3][color=#5e481d][bold]Заказ на закупку вооружения[/bold][/color][/head]
+[color=#5e481d][bold]{corpString}[/bold][/color][mono] / СБ-СНБ[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#5e481d][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#5e481d][bold]Содержание[/bold][/color]
+
+Я, (ФИО), в должности (ДОЛЖНОСТЬ), произвожу заказ боевого оружия и (или) боевых приспособлений через отдел Снабжения.
+
+[color=#5e481d][bold]Причина заказа[/bold][/color]
+[mono]
+1)
+2)
+[/mono]
+
+[color=#666666][italic]Место для печатей[/italic][/color]
+
+
+</Document>

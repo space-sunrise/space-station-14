@@ -1,8 +1,8 @@
 using System.Linq;
-using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible.Thresholds;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
@@ -45,7 +45,7 @@ namespace Content.IntegrationTests.Tests.Destructible
 #pragma warning disable NUnit2045 // Interdependent assertions.
                 Assert.DoesNotThrow(() =>
                 {
-                    sEntityManager.System<DamageableSystem>().TryChangeDamage(sDestructibleEntity, bruteDamage, true, useModifier: false, useVariance: false); // Sunrise-Edit
+                    sEntityManager.System<DamageableSystem>().ChangeDamage(sDestructibleEntity, bruteDamage, true, ignoreGlobalModifiers: true, ignoreVariance: true); // Sunrise-Edit
                 });
 
                 Assert.That(sTestThresholdListenerSystem.ThresholdsReached, Has.Count.EqualTo(1));
@@ -59,7 +59,7 @@ namespace Content.IntegrationTests.Tests.Destructible
                     Assert.That(threshold.Behaviors, Has.Count.EqualTo(3));
                 });
 
-                var spawnEntitiesBehavior = (SpawnEntitiesBehavior) threshold.Behaviors.Single(b => b is SpawnEntitiesBehavior);
+                var spawnEntitiesBehavior = (SpawnEntitiesBehavior)threshold.Behaviors.Single(b => b is SpawnEntitiesBehavior);
 
                 Assert.Multiple(() =>
                 {

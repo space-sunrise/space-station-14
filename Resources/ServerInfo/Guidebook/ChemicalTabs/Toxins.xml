@@ -1,5 +1,5 @@
 <Document>
-# Токсины
-Химические вещества в этом списке содержат токсины, которые вызывают определенные эффекты и могут привести к смерти. Используйте с осторожностью.
+# Toxins
+The chemicals in this list contain toxins that induce certain effects and can cause death. Use responsibly.
 <GuideReagentGroupEmbed Group="Toxins"/>
 </Document>

@@ -85,3 +85,125 @@
       Manipulator: 5
       Steel: 5
       CableHV: 2
+
+# Sunrise-start
+- type: entity
+  id: ShuttleGunLongbowCircuitboard
+  parent: BaseMachineCircuitboard
+  name: BAL-127 "Longbow" machine board
+  description: A machine printed circuit board for an BAL-127 "Longbow".
+  suffix: DO NOT MAP, Machine Board
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShuttleGunLongbow
+    stackRequirements:
+      Manipulator: 5
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: ShuttleGunVympelCircuitboard
+  parent: BaseMachineCircuitboard
+  name: BAL-127-2 "Vympel" machine board
+  description: A machine printed circuit board for an BAL-127-2 "Vympel".
+  suffix: DO NOT MAP, Machine Board
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShuttleGunVympel
+    stackRequirements:
+      Manipulator: 10
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: ShuttleGunSquallCircuitboard
+  parent: BaseMachineCircuitboard
+  name: BAL-308 "Squall" machine board
+  description: A machine printed circuit board for an BAL-308 "Squall".
+  suffix: DO NOT MAP, Machine Board
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShuttleGunSquall
+    stackRequirements:
+      Manipulator: 5
+      Steel: 5
+      CableHV: 5
+
+- type: entity
+  id: ShuttleGunQuadlingCircuitboard
+  parent: BaseMachineCircuitboard
+  name: BAL-127-4 "Quadling" machine board
+  description: A machine printed circuit board for an BAL-127-4 "Quadling".
+  suffix: DO NOT MAP, Machine Board
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShuttleGunQuadling
+    stackRequirements:
+      Manipulator: 10
+      Steel: 10
+      CableHV: 5
+      Uranium: 2
+
+- type: entity
+  id: ShuttleGunTeslaOrionCircuitboard
+  parent: BaseMachineCircuitboard
+  name: TSL-200c "Orion" machine board
+  description: A machine printed circuit board for an TSL-200c "Orion".
+  suffix: DO NOT MAP, Machine Board
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShuttleGunTeslaOrion
+    stackRequirements:
+      Manipulator: 6
+      Steel: 5
+      CableHV: 5
+
+- type: entity
+  id: ShuttleGunTeslaHyperionCircuitboard
+  parent: BaseMachineCircuitboard
+  name: TSL-300c "Hyperion" machine board
+  description: A machine printed circuit board for an TSL-300c "Hyperion".
+  suffix: DO NOT MAP, Machine Board
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShuttleGunTeslaHyperion
+    stackRequirements:
+      Manipulator: 10
+      Steel: 10
+      CableHV: 5
+
+- type: entity
+  id: ShuttleGunBeamstormMachineGunCircuitboard
+  parent: BaseMachineCircuitboard
+  name: LSE-800c "Beamstorm machine gun" machine board
+  description: A machine printed circuit board for an LSE-800c "Beamstorm machine gun".
+  suffix: DO NOT MAP, Machine Board
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShuttleGunBeamstormMachineGun
+    stackRequirements:
+      Manipulator: 4
+      Steel: 10
+      CableHV: 5
+# Sunrise-end

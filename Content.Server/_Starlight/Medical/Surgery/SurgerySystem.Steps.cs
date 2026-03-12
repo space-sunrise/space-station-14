@@ -7,18 +7,18 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
-using Content.Shared.Damage;
 using Content.Shared.Humanoid;
 using Content.Shared.Traits.Assorted;
-using Microsoft.CodeAnalysis;
 using Content.Server._Starlight.Medical.Limbs;
 using Content.Server.Administration.Systems;
+using Content.Shared.Bed.Sleep;
+using Content.Shared.Damage.Components;
 
 
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
-//  
+//
 //This file is already overloaded with responsibilities,
 //it’s time to break its functionality into different systems.
 //However, I don’t want to touch the official systems, so I need to come up with extensions for them.
@@ -27,6 +27,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly IComponentFactory _compFactory = default!;
     [Dependency] private readonly LimbSystem _limbSystem = default!;
     [Dependency] private readonly StarlightEntitySystem _entity = default!;
+    [Dependency] private readonly SleepingSystem _sleeping = default!;
 
     public void InitializeSteps()
     {
@@ -135,11 +136,11 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
     private void OnStepEmoteEffectComplete(Entity<SurgeryStepEmoteEffectComponent> ent, ref SurgeryStepEvent args)
     {
-        
-        if (!HasComp<PainNumbnessComponent>(args.Body))
-        {
-             _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);
-        }
+
+        if (!HasComp<PainNumbnessStatusEffectComponent>(args.Body) && !HasComp<SleepingComponent>(args.Body))
+            _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);
+        else
+            _sleeping.TryWaking(args.Body); // If the patient sleeping without n2o or reagents, wake them up.
     }
 
     private void OnStepSpawnComplete(Entity<SurgeryStepSpawnEffectComponent> ent, ref SurgeryStepEvent args)
@@ -148,7 +149,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             SpawnAtPosition(ent.Comp.Entity, xform.Coordinates);
     }
 
-    private void OnStepAttachLimbComplete(Entity<SurgeryStepAttachLimbEffectComponent> _, string slot, ref SurgeryStepEvent args) 
+    private void OnStepAttachLimbComplete(Entity<SurgeryStepAttachLimbEffectComponent> _, string slot, ref SurgeryStepEvent args)
         => args.IsCancelled = args.Tools.Count == 0
             || !(args.Tools.FirstOrDefault() is var limdId)
             || !TryComp<BodyPartComponent>(limdId, out var limb)
@@ -157,18 +158,18 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             || !_limbSystem.AttachLimb((args.Body, humanoid), slot, (args.Part, part), (limdId, limb));
 
     private void OnStepAttachItemComplete(Entity<SurgeryStepAttachLimbEffectComponent> ent, string slot, ref SurgeryStepEvent args)
-        => args.IsCancelled = args.Tools.Count == 0 
-            || !(args.Tools.FirstOrDefault() is var itemId) 
-            || !TryComp(itemId, out MetaDataComponent? metadata) 
-            || HasComp<BodyPartComponent>(itemId) 
-            || !TryComp(args.Part, out BodyPartComponent? limb) 
+        => args.IsCancelled = args.Tools.Count == 0
+            || !(args.Tools.FirstOrDefault() is var itemId)
+            || !TryComp(itemId, out MetaDataComponent? metadata)
+            || HasComp<BodyPartComponent>(itemId)
+            || !TryComp(args.Part, out BodyPartComponent? limb)
             || !_limbSystem.AttachItem(args.Body, slot, (args.Part, limb), (itemId, metadata));
 
     private void OnStepAmputationComplete(Entity<SurgeryStepAmputationEffectComponent> ent, ref SurgeryStepEvent args)
     {
-        if (_entity.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Body, out var body) 
-            && _entity.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(args.Part, out var limb))
-            _limbSystem.Amputatate(body, limb);
+        if (_entity.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Body, out var body)
+            && _entity.TryEntity<TransformComponent, MetaDataComponent>(args.Part, out var limb))
+            _limbSystem.Amputate(body, limb);
     }
 
     private void CustomLimbRemoved(Entity<CustomLimbMarkerComponent> ent, ref ComponentRemove args)

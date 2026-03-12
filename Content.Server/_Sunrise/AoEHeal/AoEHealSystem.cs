@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Whitelist;
 using Robust.Shared.Timing;
@@ -45,7 +47,7 @@ public sealed class AoEHealSystem : EntitySystem
                     target.Comp.Damage.GetTotal() < threshold * (1f - aoEHealComponent.Threshold)) // Не лечим если урона мало
                     continue;
 
-                _damageableSystem.TryChangeDamage(target, aoEHealComponent.Damage);
+                _damageableSystem.TryChangeDamage(target.Owner, aoEHealComponent.Damage);
             }
         }
     }

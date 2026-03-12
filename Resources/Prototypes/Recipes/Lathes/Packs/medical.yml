@@ -12,10 +12,12 @@
   recipes:
   - Beaker
   - LargeBeaker
+  - Ampula # Sunrise-Edit
   - Syringe
   - PillCanister
   - HandLabeler
   - BaseChemistryEmptyVial
+  - Dropper
 
 - type: latheRecipePack
   parent: BasicChemistryStatic
@@ -74,7 +76,7 @@
   - MedkitBrute
   - MedkitAdvanced
   - MedkitRadiation
-  - MedkitCombat
+  #- MedkitCombat # Sunrise-Edit
 
 - type: latheRecipePack
   id: MedicalBoardsStatic
@@ -97,8 +99,11 @@
   - SyringeCryostasis
   - BluespaceBeaker
   - SyringeBluespace
+  - VialBluespace # Sunrise-Add
   - LauncherSyringe
   - MiniSyringe
+  - BluespacePillPatchCanister # Sunrise-Add
+  - JugBluespace # Sunrise-Add
 
 - type: latheRecipePack
   id: MedicalBoards
@@ -106,3 +111,8 @@
   - StasisBedMachineCircuitboard
   - CryoPodMachineCircuitboard
   - BiomassReclaimerMachineCircuitboard
+  # Sunrise-start
+  - CloningConsoleComputerCircuitboard
+  - CloningPodMachineCircuitboard
+  - MedicalScannerMachineCircuitboard
+  # Sunrise-end

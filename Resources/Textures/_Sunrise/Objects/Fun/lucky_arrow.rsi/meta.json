@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "copyright": "Sprited by vimenant2 (discord)",
+	"license": "CLA",
+    "size": {
+        "x": 32,
+        "y": 48
+    },
+    "states": [
+        {
+            "name": "arrow_blue",
+            "directions": 1
+        },
+        {
+            "name": "arrow_red",
+            "directions": 1
+        }
+    ]
+}

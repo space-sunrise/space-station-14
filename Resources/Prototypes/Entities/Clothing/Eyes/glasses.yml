@@ -261,7 +261,7 @@
     - type: ThermalVision
   - type: PowerCellDraw
     drawRate: 3.5
-    useRate: 20
+    useCharge: 20
   - type: ItemToggle
     predictable: false # issues between ToggleCellDraw and ItemToggleActiveSound
     onUse: false
@@ -294,11 +294,7 @@
       - WhitelistChameleon
 
 - type: entity
-  parent: [
-      ClothingEyesBase,
-      BaseMajorContraband,
-      BaseNightVisionDevice,
-    ] # Sunrise-Edit
+  parent: [ClothingEyesBase, BaseHighlyIllegalContraband,BaseNightVisionDevice]
   id: ClothingEyesVisorNinja
   name: ninja visor
   description: An advanced visor protecting a ninja's eyes from flashing lights.
@@ -309,6 +305,14 @@
     sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
   - type: FlashImmunity
   # Sunrise-Start
+  - type: ToggleClothing
+    action: ActionToggleThermalVision
+    disableOnUnequip: true
+    targetSlot: eyes
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: ThermalVision
   - type: ItemToggle
     predictable: false
     onUse: false
@@ -320,12 +324,15 @@
     soundFailToActivate:
       path: /Audio/Machines/button.ogg
   - type: NinjaSuitDraw
-    drawRate: 0.5
+    drawRate: 1
+    useRate: 1
   - type: ToggleNinjaSuitDraw
+  - type: UseDelay
+    delay: 1
   # Sunrise-End
 
 - type: entity
-  parent: ClothingEyesBase
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
   id: ClothingEyesGlassesNoir
   name: noir-tech glasses
   description: A pair of glasses that simulate what the world looked like before the invention of color.

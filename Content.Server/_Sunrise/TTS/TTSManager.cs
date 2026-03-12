@@ -29,6 +29,7 @@ public sealed class TTSManager
         "Amount of wanted TTS audio.");
 
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly ILogManager _logMan = default!;
 
     private readonly HttpClient _httpClient = new();
 
@@ -37,7 +38,7 @@ public sealed class TTSManager
 
     public void Initialize()
     {
-        _sawmill = Logger.GetSawmill("tts");
+        _sawmill = _logMan.GetSawmill("tts");
         _cfg.OnValueChanged(SunriseCCVars.TTSApiUrl, OnApiUrlChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.TTSApiToken, OnApiTokenChanged, true);
     }

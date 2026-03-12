@@ -15,6 +15,7 @@ using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
@@ -93,7 +94,8 @@ public sealed partial class FleshCultSystem : EntitySystem
         "Vox",
         "HumanoidXeno",
         "Predator",
-        "Tajaran"
+        "Tajaran",
+        "Milira"
     ];
 
     public override void Initialize()
@@ -118,3 +120,4 @@ public sealed partial class FleshCultSystem : EntitySystem
         UpdateHeart(frameTime);
     }
 }
+

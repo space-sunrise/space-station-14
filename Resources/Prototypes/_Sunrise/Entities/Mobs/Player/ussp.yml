@@ -201,6 +201,10 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
+    - type: GhostPanelAntagonistMarker
+      name: ghost-panel-antagonist-infiltrator-name
+      description: ghost-panel-antagonist-infiltrator-description
+      priority: 11
     - type: NukeOperative
     - type: GhostRole
       name: ghost-role-information-syndie-soldier-teamlead-name
@@ -234,6 +238,10 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
+    - type: GhostPanelAntagonistMarker
+      name: ghost-panel-antagonist-infiltrator-name
+      description: ghost-panel-antagonist-infiltrator-description
+      priority: 11
     - type: NukeOperative
     - type: GhostRole
       name: ghost-role-information-syndie-soldier-name
@@ -248,3 +256,277 @@
       roleLoadout: [ RoleSurvivalSyndicate ]
     - type: RandomMetadata
       nameSegments: [NamesDeathCommando]
+
+# Pirate
+- type: entity
+  name: Scooner spawner
+  id: ScoonerReinforcementSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Decoration/banner.rsi
+        state: banner_syndicate
+  - type: RandomSpawner
+    prototypes:
+    - RandomHumanoidScoonerReinforcement
+
+- type: entity
+  id: RandomHumanoidScoonerReinforcement
+  name: Scooner
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner_syndicate
+    - type: RandomHumanoidSpawner
+      settings: ScoonerReinforcementSettings
+
+- type: randomHumanoidSettings
+  id: ScoonerReinforcementSettings
+  speciesBlacklist:
+  - Diona
+  - Felinid
+  - Moth
+  - Arachnid
+  - Demon
+  - SlimePerson
+  - HumanoidXeno
+  - Predator
+  - Resomi
+  parent: EventHumanoid
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+      - Pirate
+    - type: PirateIcon
+    - type: GhostRole
+      name: ghost-role-information-pirate-name
+      description: ghost-role-information-pirate-description
+      rules: ghost-role-information-rules-team-antagonist
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: Loadout
+      prototypes: [ PirateScoonerEVAGear ]
+      roleLoadout: [ RoleSurvivalScooner ]
+    - type: RandomMetadata
+      nameSegments: [NamesDeathCommando]
+
+- type: entity
+  name: Scooner spawner
+  id: OldScoonerReinforcementSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Decoration/banner.rsi
+        state: banner_syndicate
+  - type: RandomSpawner
+    prototypes:
+    - RandomHumanoidOldScoonerReinforcement
+
+- type: entity
+  id: RandomHumanoidOldScoonerReinforcement
+  name: Scooner
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner_syndicate
+    - type: RandomHumanoidSpawner
+      settings: OldScoonerReinforcementSettings
+
+- type: randomHumanoidSettings
+  id: OldScoonerReinforcementSettings
+  speciesBlacklist:
+  - Diona
+  - Felinid
+  - Moth
+  - Arachnid
+  - Demon
+  - SlimePerson
+  - HumanoidXeno
+  - Predator
+  - Resomi
+  parent: EventHumanoid
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+      - Pirate
+    - type: PirateIcon
+    - type: GhostRole
+      name: ghost-role-information-pirate-name
+      description: ghost-role-information-pirate-description
+      rules: ghost-role-information-rules-team-antagonist
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: Loadout
+      prototypes: [ PirateScoonerOldEVAGear ]
+      roleLoadout: [ RoleSurvivalScooner ]
+    - type: RandomMetadata
+      nameSegments: [NamesDeathCommando]
+
+- type: entity
+  abstract: true
+  id: PirateScoonerReinforcementBase
+  suffix: Pirate
+  components:
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-pirate-name
+    description: ghost-panel-antagonist-pirate-description
+    priority: 45
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+    nameSegments: [NamesDeathCommando]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+  - type: PirateIcon
+
+- type: entity
+  parent: [MobHuman, PirateScoonerReinforcementBase]
+  id: MobHumanPirateScoonerReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerEVAGear ]
+    roleLoadout: [ RoleSurvivalScooner ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  parent: [MobHuman, PirateScoonerReinforcementBase]
+  id: MobHumanPirateScoonerOldReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerOldEVAGear ]
+    roleLoadout: [ RoleSurvivalScooner ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  parent: [MobReptilian, PirateScoonerReinforcementBase]
+  id: MobReptilianPirateScoonerReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerEVAGear ]
+    roleLoadout: [ RoleSurvivalScooner ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  parent: [MobReptilian, PirateScoonerReinforcementBase]
+  id: MobReptilianPirateScoonerOldReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerOldEVAGear ]
+    roleLoadout: [ RoleSurvivalScooner ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  parent: [MobDwarf, PirateScoonerReinforcementBase]
+  id: MobDwarfPirateScoonerReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerEVAGear ]
+    roleLoadout: [ RoleSurvivalScooner ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  parent: [MobDwarf, PirateScoonerReinforcementBase]
+  id: MobDwarfPirateScoonerOldReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerOldEVAGear ]
+    roleLoadout: [ RoleSurvivalScooner ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  parent: [MobVox, PirateScoonerReinforcementBase]
+  id: MobVoxPirateScoonerReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerEVAGear ]
+    roleLoadout: [ RoleSurvivalScooner ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  parent: [MobVox, PirateScoonerReinforcementBase]
+  id: MobVoxPirateScoonerOldReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerOldEVAGear ]
+    roleLoadout: [ RoleSurvivalScooner ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  parent: [MobVulpkanin, PirateScoonerReinforcementBase]
+  id: MobVulpkaninPirateScoonerReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerEVAGear ]
+    roleLoadout: [ RoleSurvivalScooner ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  parent: [MobVulpkanin, PirateScoonerReinforcementBase]
+  id: MobVulpkaninPirateScoonerOldReinforcement
+  name: pirate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [ PirateScoonerOldEVAGear ]
+    roleLoadout: [ RoleSurvivalScooner ]
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+    - Pirate

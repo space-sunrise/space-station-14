@@ -66,7 +66,7 @@ namespace Content.Server.GameTicking
                     if (preset.Hide)
                         jObject["preset"] = Loc.GetString("gamemode-title-hide");
                     else
-                        jObject["preset"] = Loc.GetString(preset.ModeTitle);
+                        jObject["preset"] = (Decoy == null) ? Loc.GetString(preset.ModeTitle) : Loc.GetString(Decoy.ModeTitle);
                 }
                 if (_runLevel >= GameRunLevel.InRound)
                 {

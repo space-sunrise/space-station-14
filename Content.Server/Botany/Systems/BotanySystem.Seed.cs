@@ -149,7 +149,20 @@ public sealed partial class BotanySystem : EntitySystem
 
     public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityCoordinates position, int yieldMod = 1)
     {
-        var totalYield = CalculateTotalYield(proto.Yield, yieldMod);
+        // Sunrise-start
+        // var totalYield = 0;
+        // if (proto.Yield > -1)
+        // {
+        //     if (yieldMod < 0)
+        //         totalYield = proto.Yield;
+        //     else
+        //         totalYield = proto.Yield * yieldMod;
+
+        //     totalYield = Math.Max(1, totalYield);
+        // }
+        // Sunrise-end
+
+        var totalYield = CalculateTotalYield(proto.Yield, yieldMod); // Sunrise-edit, если тут появится конфликт, значит оффы мерджнули анализатор растений и надо все эдиты убрать
         var products = new List<EntityUid>();
 
         if (totalYield > 1 || proto.HarvestRepeat != HarvestType.NoRepeat)

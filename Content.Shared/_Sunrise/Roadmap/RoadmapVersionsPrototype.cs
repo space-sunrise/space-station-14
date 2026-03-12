@@ -4,9 +4,9 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Sunrise.Roadmap;
 
 [Prototype]
-public sealed class RoadmapVersionsPrototype : IPrototype
+public sealed partial class RoadmapVersionsPrototype : IPrototype
 {
-    [IdDataField] public string ID { get; } = default!;
+    [IdDataField] public string ID { get; private set; } = default!;
     [DataField]
     public string Fork { get; set; } = "SUNRISE";
 

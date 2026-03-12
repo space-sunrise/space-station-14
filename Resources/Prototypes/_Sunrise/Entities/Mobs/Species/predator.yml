@@ -47,7 +47,10 @@
       - FootstepSound
       - DoorBumpOpener
   - type: Bloodstream
-    bloodReagent: FluorosulfuricAcidPredator
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: FluorosulfuricAcidPredator
+        Quantity: 300
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:

@@ -1,0 +1,22 @@
+<Document>
+[head=3][color=#8a2db5][bold]Жалоба на нарушение трудового порядка[/bold][/color][/head]
+[color=#8a2db5][bold]{corpString}[/bold][/color][mono] / ПД-КОД[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#8a2db5][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#8a2db5][bold]Содержание[/bold][/color]
+
+Я, (ФИО), в должности (ДОЛЖНОСТЬ), считаю, что в ходе работы отдела (наименование отдела) были допущены следующие нарушения:
+
+Прошу провести внутреннюю проверку по данным фактам нарушений.
+
+[color=#666666][italic]Место для печатей[/italic][/color]
+
+
+</Document>

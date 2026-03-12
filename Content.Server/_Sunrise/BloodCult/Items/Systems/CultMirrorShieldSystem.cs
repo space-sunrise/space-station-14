@@ -13,11 +13,13 @@ using Content.Shared._Sunrise.Events;
 using Content.Shared.Blocking;
 using Content.Shared.Body.Events;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
@@ -164,6 +166,10 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
     /// </summary>
     private void OnIllusionInit(EntityUid uid, CultMirrorIllusionComponent component, ComponentInit args)
     {
+        EnsureComp<MobStateComponent>(uid);
+        EnsureComp<MobThresholdsComponent>(uid);
+        EnsureComp<DamageableComponent>(uid);
+
         _mobThreshold.SetMobStateThreshold(uid, 15, MobState.Critical);
         _mobThreshold.SetMobStateThreshold(uid, 20, MobState.Dead);
     }

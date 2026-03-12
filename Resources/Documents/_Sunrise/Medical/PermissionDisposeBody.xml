@@ -1,0 +1,21 @@
+<Document>
+[head=2][color=#0b6a8b][bold]Разрешение на утилизацию тела[/bold][/color][/head]
+[color=#0b6a8b][bold]{corpString}[/bold][/color][mono] / МЕД[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#0b6a8b][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#0b6a8b][bold]Содержание[/bold][/color]
+
+Я, (ФИО), в должности (ДОЛЖНОСТЬ), разрешаю утилизировать тело (ФИО), в должности (ДОЛЖНОСТЬ) в связи с невозможностью его реанимации и клонирования.
+Способ утилизации:
+
+[color=#666666][italic]Место для печатей[/italic][/color]
+
+
+</Document>

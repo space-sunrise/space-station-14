@@ -12,8 +12,77 @@
 - type: entity
   id: CreepyLaughImplanter
   name: creepy laugh implanter
-  suffix: Sunrise, Laugh
+  suffix: Creepy laugh
   parent: BaseImplantOnlyImplanterSyndi
   components:
     - type: Implanter
       implant: CreepyLaughImplant
+
+- type: entity
+  id: RadioImplanterFreelance
+  name: freelance radio implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: RadioImplantFreelance
+
+- type: entity
+  id: DeathRattleImplanterFreelance
+  name: freelance death rattle implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: DeathRattleImplantFreelance
+
+- type: entity
+  id: ScramImplanterProto
+  name: scram implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: ScramImplantProto
+
+- type: entity
+  id: ProtoAdrenalImplanter
+  name: proto-adrenal implanter
+  suffix: Proto adrenal
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: ProtoAdrenalImplant
+
+- type: entity
+  id: AdrenalImplanter
+  name: adrenal implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  suffix: Adrenal
+  components:
+  - type: Implanter
+    implant: AdrenalImplant
+
+- type: entity
+  id: StimpackImplanter
+  name: stimpack implanter
+  suffix: Stimpack
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: StimpackImplant
+
+- type: entity
+  id: NutrimentImplanter
+  name: nutriment implanter
+  suffix: Nutriment
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: NutrimentImplant
+
+- type: entity
+  id: ReviverImplanter
+  name: reviver implanter
+  suffix: Reviver
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: ReviverImplant

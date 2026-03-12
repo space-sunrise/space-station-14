@@ -12,7 +12,7 @@
       color: "#008DFE"
     - type: EmitSoundOnSpawn
       sound:
-        path: /Audio/Effects/electrical_short_circuit2.ogg
+        path: /Audio/_Sunrise/Effects/electrical_short_circuit2.ogg
     - type: TimedDespawn
       lifetime: 0.6
     - type: EvaporationSparkle
@@ -34,7 +34,7 @@
       color: "#008DFE"
     - type: EmitSoundOnSpawn
       sound:
-        path: /Audio/Effects/electrical_short_circuit2.ogg
+        path: /Audio/_Sunrise/Effects/electrical_short_circuit2.ogg
     - type: TimedDespawn
       lifetime: 0.6
     - type: EvaporationSparkle

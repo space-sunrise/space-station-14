@@ -167,7 +167,7 @@ namespace Content.Server.Cargo.Systems
 
             // Find our order again. It might have been dispatched or approved already
             var order = orderDatabase.Orders[component.Account].Find(order => args.OrderId == order.OrderId && !order.Approved);
-            if (order == null || !_protoMan.TryIndex(order.Account, out var account))
+            if (order == null || !_protoMan.Resolve(order.Account, out var account))
             {
                 return;
             }
@@ -242,9 +242,17 @@ namespace Content.Server.Cargo.Systems
                     ("orderAmount", order.OrderQuantity),
                     ("approver", order.Approver ?? string.Empty),
                     ("cost", cost));
-                _radio.SendRadioMessage(uid, message, account.RadioChannel, uid, escapeMarkup: false);
+                // Sunrise-Start
+                /*_radio.SendRadioMessage(uid, message, account.RadioChannel, uid, escapeMarkup: false);
                 if (CargoOrderConsoleComponent.BaseAnnouncementChannel != account.RadioChannel)
-                    _radio.SendRadioMessage(uid, message, CargoOrderConsoleComponent.BaseAnnouncementChannel, uid, escapeMarkup: false);
+                    _radio.SendRadioMessage(uid, message, CargoOrderConsoleComponent.BaseAnnouncementChannel, uid, escapeMarkup: false);*/
+
+                if (_messenger.GetServerEntity(_station.GetOwningStation(uid)) is var (server, _) &&
+                    _messenger.GetGroupIdByRadioChannel(CargoOrderConsoleComponent.BaseAnnouncementChannel) is { } groupId)
+                {
+                    _messenger.SendSystemMessageToGroup(server, groupId, message);
+                }
+                // Sunrise-End
             }
 
             ConsolePopup(args.Actor, Loc.GetString("cargo-console-trade-station", ("destination", MetaData(ev.FulfillmentEntity.Value).EntityName)));
@@ -322,7 +330,7 @@ namespace Content.Server.Cargo.Systems
 
         private void OnAddOrderMessageSlipPrinter(EntityUid uid, CargoOrderConsoleComponent component, CargoConsoleAddOrderMessage args, CargoProductPrototype product)
         {
-            if (!_protoMan.TryIndex(component.Account, out var account))
+            if (!_protoMan.Resolve(component.Account, out var account))
                 return;
 
             if (Timing.CurTime < component.NextPrintTime)

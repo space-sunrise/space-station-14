@@ -58,6 +58,11 @@
   copyright: "Taken from TG station."
   source: "https://github.com/tgstation/tgstation/blob/d4f678a1772007ff8d7eddd21cf7218c8e07bfc0/sound/machines/warning-buzzer.ogg"
 
+- files: ["warning_buzzer_xenoborg.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made by Toast (Discord)"
+  source: "https://github.com/space-wizards/space-station-14/pull/36935"
+
 - files: ["anomaly_sync_connect.ogg"]
   license: "CC0-1.0"
   copyright: "Created by newagesoup, convert to ogg mono by TheShuEd"
@@ -108,7 +113,7 @@
   copyright: "cmorris035"
   source: "https://freesound.org/people/cmorris035/sounds/319152/"
 
-- files: ["airlock_open.ogg", "airlock_close.ogg"]
+- files: ["airlock_open.ogg", "airlock_close.ogg", "airlock_deny.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "/tg/station"
   source: "https://github.com/tgstation/tgstation/tree/5f5002b21253354c20ea224be3f604d79299b37e/sound/machines"
@@ -158,11 +163,6 @@
   copyright: "dakamakat on freesound.org"
   source: "https://freesound.org/people/Dakamakat/sounds/717370/"
 
-- files: ["airlock_deny.ogg"]
-  license: "CC-BY-SA-3.0"
-  copyright: "/vgstation-coders/vgstation13"
-  source: "https://github.com/vgstation-coders/vgstation13/blob/Bleeding-Edge/sound/machines/denied.ogg"
-
 - files:
   - twobeep.ogg
   - chime.ogg
@@ -196,12 +196,6 @@
   license: "CC0-1.0"
   copyright: "Created by fspera, converted to OGG and modified by chromiumboy."
   source: "https://freesound.org/people/fspera/sounds/528111/"
-
-- files: ["energyshield_up.ogg"]
-  license: "CC0-1.0"
-  copyright: "unfa on freesound.org"
-  source: "https://freesound.org/people/unfa/sounds/584173/"
-
 - files:
   - airlock_emergencyoff.ogg
   - airlock_emergencyon.ogg
@@ -220,17 +214,3 @@
   license: "CC-BY-3.0"
   copyright: "Created by Tomlija, converted to OGG and modified by themias."
   source: "https://freesound.org/people/Tomlija/sounds/99565/"
-- files: ["energyshield_down.ogg"]
-  license: "CC-BY-4.0"
-  copyright: "SilverIllusionist on freesound.org"
-  source: "https://freesound.org/people/SilverIllusionist/sounds/673556/"
-
-- files: ["energyshield_ambient.ogg"]
-  license: "CC0-1.0"
-  copyright: "julianmateo_ on freesound.org"
-  source: "https://freesound.org/people/julianmateo_/sounds/524165/"
-
-- files: ["energyshield_parry.ogg"]
-  license: "CC-BY-4.0"
-  copyright: "Robinhood76 on freesound.org"
-  source: "https://freesound.org/people/Robinhood76/sounds/107613/"

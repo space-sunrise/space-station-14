@@ -11,6 +11,8 @@
     - ArtilleryShell
   - type: Item
     size: Small
+    shape:
+    - 0,0,0,2
   - type: Sprite
 
 - type: entity
@@ -19,9 +21,10 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: BulletShellFragArtillery
+    proto: BulletGrenadeFrag
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    scale: 0.8, 1.15
     layers:
     - state: frag
       map: ["enum.AmmoVisualLayers.Base"]
@@ -36,9 +39,10 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: ShellBatonArtillery
+    proto: BulletGrenadeBaton
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    scale: 1.2, 1.4
     layers:
     - state: baton
       map: ["enum.AmmoVisualLayers.Base"]
@@ -53,9 +57,10 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: BulletShellBlastArtillery
+    proto: BulletGrenadeBlast
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    scale: 0.8, 1.15
     layers:
     - state: blast
       map: ["enum.AmmoVisualLayers.Base"]
@@ -70,9 +75,10 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: BulletShellFlashArtillery
+    proto: BulletGrenadeFlash
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    scale: 0.8, 1.15
     layers:
     - state: flash
       map: ["enum.AmmoVisualLayers.Base"]
@@ -87,9 +93,10 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: BulletShellEMPArtillery
+    proto: BulletGrenadeEMP
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    scale: 1.2, 1.4
     layers:
     - state: emp
       map: ["enum.AmmoVisualLayers.Base"]
@@ -102,9 +109,18 @@
 - type: entity
   id: CannonBallEMPshot
   name: EMPshot
-  suffix: Pirate, Sunrise
+  suffix: Pirate
   parent: BaseCannonBall
   components:
+  - type: TriggerOnLand
+  - type: EmpOnTrigger
+    range: 2
+    energyConsumption: 30000
+    disableDuration: 10
+  - type: SpawnOnTrigger
+    proto: CannonBallGlassshot
+    useMapCoords: true
+  - type: DeleteOnTrigger
   - type: CartridgeAmmo
     proto: BulletEMP
     deleteOnSpawn: true
@@ -115,16 +131,94 @@
 - type: entity
   id: CannonBallFuze
   name: fuzed cannonball
-  suffix: Pirate, Sunrise
+  suffix: Pirate
   parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeBlastTimer
+    proto: BulletFuzeCannonBall
     deleteOnSpawn: true
+  - type: TriggerOnUse
+  - type: TimerTrigger
+    delay: 2
+    examinable: true
+    initialBeepDelay: 0
+    beepSound: /Audio/Effects/lightburn.ogg
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 150
+    intensitySlope: 5
+    maxIntensity: 10
+    canCreateVacuum: false
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterLessLethal
+    capacity: 20
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     state: fuzeball
+  - type: GenericVisualizer
+    visuals:
+      enum.Trigger.TriggerVisuals.VisualState:
+        enum.ConstructionVisuals.Layer:
+          Primed: { state: primed }
+          Unprimed: { state: fuzeball }
+  - type: Appearance
+  - type: TimerTriggerVisuals
 
+- type: entity
+  id: CannonBallAntiMateriel
+  name:  plasteel cannonball
+  parent: BaseCannonBall
+  components:
+  - type: CartridgeAmmo
+    proto: BulletAntiMaterielCannonBall
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: ball
+
+- type: entity
+  id: CannonBallMini
+  name: cannonball
+  suffix: Pirate
+  parent: BaseCannonBall
+  components:
+  - type: Item
+    size: Tiny
+  - type: CartridgeAmmo
+    proto: PelletGrapeshot
+    deleteOnSpawn: true
+  - type: Sprite
+    scale: 0.6,0.6
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: ball
+  - type: Tag
+    tags:
+    - CannonBallMini
+
+- type: entity
+  id: CannonBallGrapeshotMini
+  name: grapeshot
+  suffix: Pirate
+  parent: BaseCartridge
+  components:
+  - type: CartridgeAmmo
+    proto: PelletShotgunImprovisedSpreadTraceLarge
+    deleteOnSpawn: true
+  - type: Sprite
+    scale: 0.75,0.75
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: grapeshot
+  - type: Tag
+    tags:
+    - CannonBallMini
+
+# Launcher
 - type: entity
   id: GrenadeBlastTimer
   name: timer blast grenade
@@ -140,23 +234,6 @@
   - type: Appearance
   - type: SpentAmmoVisuals
     state: blast
-    suffix: false
-
-- type: entity
-  id: GrenadeFlashTimer
-  name: timer flash grenade
-  parent: BaseGrenade
-  components:
-  - type: CartridgeAmmo
-    proto: BulletGrenadeFlashTimer
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    layers:
-    - state: flash
-      map: ["enum.AmmoVisualLayers.Base"]
-  - type: Appearance
-  - type: SpentAmmoVisuals
-    state: flash
     suffix: false
 
 - type: entity
@@ -192,3 +269,139 @@
   - type: SpentAmmoVisuals
     state: frag
     suffix: false
+
+# mech
+- type: entity
+  id: CartridgeRocketFrag
+  name: frag rocket
+  parent: [BaseItem, BaseMajorContraband]
+  description: A frag warhead designed for the RPG-7 launcher. Has tubular shape.
+  components:
+  - type: Tag
+    tags:
+      - CartridgeRocket
+  - type: Item
+    size: Small
+  - type: CartridgeAmmo
+    proto: BulletfragRocket
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: rpg
+  - type: StaticPrice
+    price: 20
+
+# region Improvised
+- type: entity
+  id: ImprovisedGrenadeCasingEmpty
+  name: empty improvised casing
+  description: A hollow homemade shotgun shell that can be filled with a somewhat deadly variety of makeshift pellets.
+  parent: [BaseItem, BaseMinorContraband ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/explosives.rsi
+    layers:
+    - state: casing
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      shell:
+        maxVol: 5
+  - type: MixableSolution
+    solution: shell
+  - type: FitsInDispenser
+    solution: shell
+  - type: RefillableSolution
+    solution: shell
+  - type: DrainableSolution
+    solution: shell
+  - type: ExaminableSolution
+    solution: shell
+  - type: DrawableSolution
+    solution: shell
+  - type: InjectableSolution
+    solution: shell
+  - type: SolutionTransfer
+  - type: SolutionItemStatus
+    solution: shell
+  - type: Spillable
+    solution: shell
+  - type: Construction
+    graph: ImprovisedGrenadeCasing
+    node: casing
+  - type: Tag
+    tags:
+    - ImprovisedGrenadeEmpty
+  - type: GuideHelp
+    guides:
+    - SunriseImprovisedGrenadeCasing
+
+- type: entity
+  id: ImprovisedGrenadeFirebomb
+  name: grenade firebomb
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletImprovisedGrenadeFirebomb
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/explosives.rsi
+    layers:
+    - state: ied
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Construction
+    graph: ImprovisedGrenadeCasing
+    node: firebomb
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: spent
+    suffix: false
+  - type: Tag
+    tags:
+    - ImprovisedGrenade
+
+- type: entity
+  id: ImprovisedGrenadePipebomb
+  name: grenade pipebomb
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletImprovisedGrenadePipeBomb
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/explosives.rsi
+    layers:
+    - state: pipebomb
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Construction
+    graph: ImprovisedGrenadeCasing
+    node: pipebomb
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: spent
+    suffix: false
+  - type: Tag
+    tags:
+    - ImprovisedGrenade
+
+- type: entity
+  id: ImprovisedGrenadeGlass
+  name: grenade glassshot
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletImprovisedGrenadeGlass
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/explosives.rsi
+    layers:
+    - state: glass
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Construction
+    graph: ImprovisedGrenadeCasing
+    node: glass
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: spent
+    suffix: false
+  - type: Tag
+    tags:
+    - ImprovisedGrenade

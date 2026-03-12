@@ -19,7 +19,7 @@
   - type: PhysicalComposition # 50% of the amount of cloth you'd obtain upon butchering
     materialComposition:
       Cloth: 100
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:
@@ -45,16 +45,3 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
-
-  # SUNRISE EDIT
-- type: entity
-  abstract: true
-  parent: ClothingNeckBase
-  id: ClothingCloakBase
-  components:
-  - type: Tag
-    tags:
-    - OpenNeck # INTERACTIONS
-    - ClothMade
-    - WhitelistChameleon
-# SUNRISE EDIT

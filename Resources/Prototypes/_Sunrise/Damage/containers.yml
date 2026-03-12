@@ -24,3 +24,5 @@
   id: Rift
   supportedGroups:
   - Brute
+  supportedTypes:
+  - Heat

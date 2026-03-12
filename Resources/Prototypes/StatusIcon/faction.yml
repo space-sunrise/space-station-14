@@ -46,6 +46,7 @@
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: HeadRevolutionary
 
+# sunrise-start
 - type: factionIcon
   id: VampireFaction
   isShaded: true
@@ -57,6 +58,19 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: Vampire
+
+- type: factionIcon
+  id: PirateFaction
+  isShaded: true
+  priority: 11
+  showTo:
+    components:
+      - ShowAntagIcons
+      - PirateIcon
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: Pirate
+# sunrise-end
 
 - type: factionIcon
   id: SyndicateFaction

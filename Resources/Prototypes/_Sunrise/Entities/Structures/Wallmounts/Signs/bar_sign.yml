@@ -1,0 +1,17 @@
+- type: entity
+  parent: BaseBarSign
+  id: BarSignAliensJaws
+  name: Aliens Jaws
+  description: Get both your jaws ready for some acidic drinks!
+  components:
+  - type: BarSign
+    current: aliensjaws
+
+- type: entity
+  parent: BaseBarSign
+  id: BarSignRNDmoment
+  name: RND Moment
+  description: Will RND manage this time?
+  components:
+  - type: BarSign
+    current: rndmoment

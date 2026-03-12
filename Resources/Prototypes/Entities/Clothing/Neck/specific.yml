@@ -6,7 +6,9 @@
   suffix: Chameleon
   components:
     - type: Tag
-      tags: [] # ignore "WhitelistChameleon" tag
+      tags: # ignore "WhitelistChameleon" tag
+      - ClothMade
+      - Recyclable
     - type: Sprite
       sprite: Clothing/Neck/Scarfs/red.rsi
     - type: Clothing
@@ -14,9 +16,3 @@
     - type: ChameleonClothing
       slot: [NECK]
       default: ClothingNeckScarfStripedRed
-  # Sunrise-Start
-    - type: Biocode
-      factions:
-      - Syndicate
-      - Thief
-  # Sunrise-End

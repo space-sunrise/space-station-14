@@ -12245,14 +12245,12 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
-    - type: PhysicsMap
     - parallax: TortugaStation
       type: Parallax
     - type: Broadphase
     - type: OccluderTree
     - type: LoadedMap
     - type: GridTree
-    - type: MovedGrids
 - proto: AcousticGuitarInstrument
   entities:
   - uid: 17773
@@ -122439,19 +122437,6 @@ entities:
     - pos: -13.48976,97.73778
       parent: 33
       type: Transform
-- proto: HandheldCrewMonitor
-  entities:
-  - uid: 5988
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 15.564779,12.543604
-      parent: 33
-      type: Transform
-  - uid: 18550
-    components:
-    - pos: -60.405083,17.614191
-      parent: 33
-      type: Transform
 - proto: HandheldGPSBasic
   entities:
   - uid: 18551
@@ -146493,13 +146478,6 @@ entities:
   - uid: 28218
     components:
     - pos: -80.57155,9.697547
-      parent: 33
-      type: Transform
-- proto: RubberStampQm
-  entities:
-  - uid: 16414
-    components:
-    - pos: 23.626114,-24.087452
       parent: 33
       type: Transform
 - proto: SalvageCanisterSpawner

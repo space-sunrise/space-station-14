@@ -1,9 +1,11 @@
 ﻿using Content.Server.Bed.Cryostorage;
 using Content.Server.Body.Components;
+using Content.Server.Polymorph.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Bed.Cryostorage;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
@@ -86,6 +88,9 @@ public sealed class CryoTeleportationSystem : EntitySystem
                 || HasComp<ZombieComponent>(uid))
                 continue;
 
+            if (HasComp<PolymorphedEntityComponent>(uid))
+                continue;
+
             // Check if the entity has a brain - if no brain, don't teleport to cryo
             // This prevents brainless bodies (e.g., during brain transplant surgery) from being auto-teleported
             var hasBrain = false;
@@ -126,7 +131,7 @@ public sealed class CryoTeleportationSystem : EntitySystem
 
             var container = _container.EnsureContainer<ContainerSlot>(cryoStorage.Value, "storage");
 
-            if (!_container.Insert(uid, container))
+            if (_container.Insert(uid, container))
                 _cryostorage.HandleEnterCryostorage((uid, containedComp), comp.UserId);
         }
     }

@@ -1,4 +1,4 @@
-﻿- type: shader
+- type: shader
   id: NVDDisplay
   kind: source
   path: "/Textures/_Sunrise/Shaders/NVDDisplay.swsl"
@@ -34,3 +34,13 @@
     NightVisionBoost: 2.0
     NightVisionThreshold: 0.3
     BlueTintIntensity: 0.6
+
+- type: shader
+  id: Gradient
+  kind: source
+  path: "/Textures/_Sunrise/Shaders/gradient.swsl"
+
+- type: shader
+  id: RoughGradient
+  kind: source
+  path: "/Textures/_Sunrise/Shaders/gradient_rough.swsl"

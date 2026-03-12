@@ -1,22 +1,29 @@
 using Content.Server.Medical.Components;
 using System.Diagnostics.CodeAnalysis;
-using Content.Server.AbstractAnalyzer;
 using Content.Server.Body.Components;
 using Content.Server.Temperature.Components;
 using Content.Shared.Body.Components;
 using Content.Shared._Sunrise.Research.Artifact;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.MedicalScanner;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
-using Content.Shared.Traits.Assorted;
+using Content.Shared.PowerCell;
+using Content.Shared.Temperature.Components;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
+using Robust.Shared.Timing;
+using Content.Server.Body.Systems;
+using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.Interaction.Events;
+using Content.Shared.AbstractAnalyzer;
 
 namespace Content.Server.Medical;
 
@@ -24,6 +31,7 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
 {
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
 
     /// <inheritdoc/>
     public override void UpdateScannedUser(EntityUid healthAnalyzer, EntityUid target, bool scanMode)
@@ -31,8 +39,13 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
         if (!_uiSystem.HasUi(healthAnalyzer, HealthAnalyzerUiKey.Key))
             return;
 
-        if (!TryComp<DamageableComponent>(target, out var damageableComponent)) // Sunrise-Edit
+        if (!TryComp<DamageableComponent>(target, out var damageableComponent)) // Sunrise
             return;
+
+        var bodyTemperature = float.NaN;
+
+        if (TryComp<TemperatureComponent>(target, out var temp))
+            bodyTemperature = temp.CurrentTemperature;
 
         // Sunrise-Start
         if (!TryComp<HealthAnalyzerComponent>(healthAnalyzer, out var healthAnalyzerComp))
@@ -44,11 +57,6 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
             return;
         // Sunrise-End
 
-        var bodyTemperature = float.NaN;
-
-        if (TryComp<TemperatureComponent>(target, out var temp))
-            bodyTemperature = temp.CurrentTemperature;
-
         var bloodAmount = float.NaN;
         var bleeding = false;
         var unrevivable = false;
@@ -57,13 +65,9 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
             _solutionContainerSystem.ResolveSolution(target, bloodstream.BloodSolutionName,
                 ref bloodstream.BloodSolution, out var bloodSolution))
         {
-            bloodAmount = bloodSolution.FillFraction;
+            bloodAmount = _bloodstreamSystem.GetBloodLevel(target);
             bleeding = bloodstream.BleedAmount > 0;
         }
-
-        if (TryComp<UnrevivableComponent>(target, out var unrevivableComp) && unrevivableComp.Analyzable)
-            unrevivable = true;
-
         // Collect hunger and thirst data as percentages
         float hungerLevel = -1;
         float thirstLevel = -1;
@@ -83,6 +87,9 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
         // Sunrise edit start - новый триггер
         RaiseLocalEvent(target, new EntityAnalyzedEvent ());
         // Sunrise edit end
+
+        if (TryComp<UnrevivableComponent>(target, out var unrevivableComp) && unrevivableComp.Analyzable)
+            unrevivable = true;
 
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
             GetNetEntity(target),

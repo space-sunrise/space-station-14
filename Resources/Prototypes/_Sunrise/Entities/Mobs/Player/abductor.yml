@@ -33,6 +33,10 @@
   - type: Loadout
     prototypes:
       - AbductorScientistGear
+  - type: GhostPanelAntagonistMarker
+    name: abductors-ghost-role-name
+    description: abductors-ghost-role-desc
+    priority: 65
 
 - type: entity
   name: abductor agent
@@ -52,6 +56,10 @@
   - type: Loadout
     prototypes:
       - AbductorAgentGear
+  - type: GhostPanelAntagonistMarker
+    name: abductors-ghost-role-name
+    description: abductors-ghost-role-desc
+    priority: 65
 
 - type: startingGear
   id: AbductorScientistGear
@@ -98,9 +106,11 @@
   id: AbductorAgentSpawner
   components:
   - type: GhostRole
-    name: abductors-ghost-role-name
+    name: abductors-ghost-role-agent
     description: abductors-ghost-role-desc
     rules: abductors-ghost-role-rules
+    mindRoles:
+    - MindRoleLoneAbductor
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -127,9 +137,11 @@
   id: AbductorScientistSpawner
   components:
   - type: GhostRole
-    name: abductors-ghost-role-name
+    name: abductors-ghost-role-scientist
     description: abductors-ghost-role-desc
     rules: abductors-ghost-role-rules
+    mindRoles:
+    - MindRoleLoneAbductor
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:

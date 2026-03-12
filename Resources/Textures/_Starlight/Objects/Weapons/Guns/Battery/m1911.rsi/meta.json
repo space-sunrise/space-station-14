@@ -77,11 +77,27 @@
             "name": "destroy-unshaded-4"
         },
         {
-            "name": "inhand-left",
+            "name": "stun-inhand-left",
             "directions": 4
         },
         {
-            "name": "inhand-right",
+            "name": "stun-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "kill-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "kill-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "destroy-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "destroy-inhand-right",
             "directions": 4
         }
     ]

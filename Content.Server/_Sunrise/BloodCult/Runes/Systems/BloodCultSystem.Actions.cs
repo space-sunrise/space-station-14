@@ -4,7 +4,6 @@ using Content.Server.Body.Components;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible.Thresholds.Behaviors;
-using Content.Server.Destructible.Thresholds.Triggers;
 using Content.Shared._Sunrise.BloodCult;
 using Content.Shared._Sunrise.BloodCult.Actions;
 using Content.Shared._Sunrise.BloodCult.Components;
@@ -13,7 +12,9 @@ using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Cuffs.Components;
+using Content.Shared.Destructible;
 using Content.Shared.Destructible.Thresholds;
+using Content.Shared.Destructible.Thresholds.Triggers;
 using Content.Shared.DoAfter;
 using Content.Shared.Doors.Components;
 using Content.Shared.Hands.Components;
@@ -246,7 +247,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 return;
 
             if (HasComp<BorgChassisComponent>(args.Target))
-                _empSystem.EmpPulse(_transformSystem.GetMapCoordinates(args.Target), 2, 100000, 5f);
+                _empSystem.EmpPulse(_transformSystem.GetMapCoordinates(args.Target), 2, 100000, TimeSpan.FromSeconds(5));
 
             _stunSystem.TryAddParalyzeDuration(args.Target, TimeSpan.FromSeconds(3));
             _stuttering.DoStutter(args.Target, TimeSpan.FromSeconds(30), true);
@@ -319,8 +320,8 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             BloodCultistComponent component,
             CultEmpPulseTargetActionEvent args)
         {
-            _empSystem.EmpPulse(_transformSystem.GetMapCoordinates(uid), 5, 10000, 5f);
-            _empSystem.EmpPulse(_transformSystem.GetMapCoordinates(uid), 2, 100000, 10f);
+            _empSystem.EmpPulse(_transformSystem.GetMapCoordinates(uid), 5, 10000, TimeSpan.FromSeconds(5));
+            _empSystem.EmpPulse(_transformSystem.GetMapCoordinates(uid), 2, 100000, TimeSpan.FromSeconds(10));
 
             args.Handled = true;
         }
@@ -380,7 +381,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                     if (!_entityManager.TryGetComponent<StackComponent>(material, out var stackNew))
                         return;
 
-                    stackNew.Count = count;
+                    _stack.SetCount((material, stackNew), count);
 
                     _popupSystem.PopupEntity(Loc.GetString($"Пласталь превращается в {MetaData(material).EntityName}!"),
                         args.Performer,

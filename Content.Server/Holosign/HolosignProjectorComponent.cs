@@ -15,5 +15,13 @@ namespace Content.Server.Holosign
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite), DataField("chargeUse")]
         public float ChargeUse = 50f;
+
+        // Sunrise - Start
+        /// <summary>
+        /// How many holosigns can be in one tile at once.
+        /// </summary>
+        [DataField]
+        public int CountPerTileLimit = 3;
+        // Sunrise - End
     }
 }

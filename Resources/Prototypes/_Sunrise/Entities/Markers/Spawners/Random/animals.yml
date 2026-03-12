@@ -104,6 +104,12 @@
     - ClothingHeadHatWeldingMaskFlame
     - ClothingHeadHatWeldingMaskFlameBlue
     - ClothingHeadHatWeldingMaskPainted
+    - ClothingHeadHatTony
+    - ClothingHeadHatBear
+    - ClothingHeadHatBiker
+    - ClothingHeadHatZebra
+    - ClothingHeadHatSwanTwo
+    - ClothingHeadHatSwanOne
     rareChance: 0.03
     prototypes:
     - ClothingHeadHatAnimalCat

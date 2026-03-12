@@ -4,6 +4,7 @@ lobbyenabled = false
 # Dev map for faster loading & convenience
 map = "Dev"
 role_timers = false
+role_loadout_timers = false
 
 [events]
 enabled = false
@@ -37,6 +38,7 @@ preload_grids = false
 
 [admin]
 see_own_notes = true
+new_player_threshold = 120
 
 [ic]
 random_characters = true
@@ -45,3 +47,8 @@ ssd_sleep_time = 3600
 
 [transithub]
 arrivals_round_start_spawn = false
+
+# Sunrise-Edit
+[npc]
+disable_without_players = false
+# Sunrise-Edit

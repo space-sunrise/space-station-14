@@ -20,11 +20,8 @@
   equipment:
     neck: ClothingNeckHorrific
   effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobDetective
-      time: 72000 #20 hrs
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective
 
 # Jumpsuit
 - type: loadout
@@ -91,7 +88,6 @@
       role: JobDetective
       time: 360000 #100 hrs
 
-
 #Weapons Detective
 
 - type: loadout
@@ -136,4 +132,19 @@
   - !type:GroupLoadoutEffect
     proto: MasterDetective100h
 
+- type: loadout
+  id: ClothingUniformJumpSuitSuperStarCop20h
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSuperstarCop
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective
+
+- type: loadout
+  id: ClothingOuterDiscoAssBlazerDetective20h
+  equipment:
+    outerClothing: ClothingOuterDiscoAssBlazerDetective
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective
 #Sunrise-End

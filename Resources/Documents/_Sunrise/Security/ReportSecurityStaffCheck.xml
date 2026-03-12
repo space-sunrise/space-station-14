@@ -1,0 +1,26 @@
+<Document>
+[head=3][color=#5a0f0f][bold]Отчёт о проверке КЗ и СРП сотрудников СБ[/bold][/color][/head]
+[color=#b52d2d][bold]{corpString}[/bold][/color][mono] / СБ-КОМ[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#b52d2d][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#b52d2d][bold]Отчёт[/bold][/color]
+
+[mono]
+1) Сотрудник: (ФИО)
+   Оценка знаний КЗ/СРП: (оценка)
+2)
+[/mono]
+
+Проверяющий: (ФИО)
+Должность проверяющего: (ДОЛЖНОСТЬ)
+
+[color=#666666][italic]Место для печатей[/italic][/color]
+
+
+</Document>

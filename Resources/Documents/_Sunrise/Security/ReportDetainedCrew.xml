@@ -1,0 +1,25 @@
+<Document>
+[head=3][color=#5a0f0f][bold]Информация о задержанных за смену[/bold][/color][/head]
+[color=#b52d2d][bold]{corpString}[/bold][/color][mono] / СБ-КОМ[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#b52d2d][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#b52d2d][bold]Содержание[/bold][/color]
+
+[mono]
+1) Задержанный: (ФИО), (ДОЛЖНОСТЬ)
+   Причина/действия: (описание)
+   Срок заключения: (время)/перманентно
+   Нарушенные статьи КЗ: (номер/перечень)
+2)
+[/mono]
+
+[color=#666666][italic]Место для печатей[/italic][/color]
+
+
+</Document>

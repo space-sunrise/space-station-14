@@ -38,8 +38,7 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: Food
-    solution: food
+  - type: Edible
     delay: 7
     forceFeedDelay: 7
   - type: FlavorProfile
@@ -66,6 +65,7 @@
   - type: EmitSoundOnUse
     sound:
       path: /Audio/_Sunrise/Items/Handling/paper_use.ogg
+    handle: false
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/_Sunrise/Items/Handling/paper_drop.ogg
@@ -150,9 +150,6 @@
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
-  - type: GuideHelp
-    guides:
-    - ArtifactReports
   - type: PaperVisuals
     headerImagePath: "/Textures/Interface/Paper/paper_heading_artifact_analyzer.svg.96dpi.png"
     headerMargin: 0.0, 0.0, 0.0, 16.0
@@ -429,6 +426,10 @@
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
+    # Sunrise edit start - пендосы ебанные. PaperVisuals требуется этот слой. Я сделал его фиктивным
+    - map: [ "enum.PaperVisualLayers.Writing" ]
+      visible: false
+    # Sunrise edit end
   - type: Paper
     content: envelope-default-message
   - type: PaperVisuals
@@ -447,6 +448,8 @@
         insertSound: /Audio/Effects/packetrip.ogg
         ejectSound: /Audio/Effects/packetrip.ogg
         whitelist:
+          components:
+            - Cash
           tags:
             - Paper
   - type: ActivatableUI
@@ -462,7 +465,7 @@
     tags:
     - Trash
     - Document
-  #- type: Appearance, hide stamp marks until we have some kind of displacement
+  - type: Appearance # Sunrise edit - ебанный рот это нужно для работы FireVisuals
   - type: Flammable
     fireSpread: true
     canResistFire: false

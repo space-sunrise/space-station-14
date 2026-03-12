@@ -85,10 +85,10 @@
         - ClothingOuterArmorBulletproof
         - WeaponRifleM16A4 # Sunrise-Edit
         - WeaponDisabler
-#        - WeaponPistolMk58
-#        - WeaponRifleLecter
-#        - WeaponSubMachineGunDrozd
-#        - WeaponLaserCarbine
+        - WeaponPistolMk58
+        - WeaponRifleLecter
+        - WeaponSubMachineGunDrozd
+        - WeaponLaserCarbine
         - WeaponShotgunTrenchgun4034 # Sunrise-Edit
       chance: 0.95
       offset: 0.0
@@ -112,10 +112,10 @@
       prototypes:
         - WeaponRifleM16A4 # Sunrise-Edit
         - WeaponDisabler
-#        - WeaponPistolMk58
-#        - WeaponRifleLecter
-#        - WeaponSubMachineGunDrozd
-#        - WeaponLaserCarbine
+        - WeaponPistolMk58
+        - WeaponRifleLecter
+        - WeaponSubMachineGunDrozd
+        - WeaponLaserCarbine
         - WeaponShotgunTrenchgun4034 # Sunrise-Edit
       chance: 0.95
       offset: 0.0

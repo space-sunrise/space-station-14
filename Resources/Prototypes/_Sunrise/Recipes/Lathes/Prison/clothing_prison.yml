@@ -1,0 +1,378 @@
+# Jumpskirts Regular
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitPrisonDoctor
+  result: ClothingUniformJumpsuitPrisonDoctor
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitPrisonChef
+  result: ClothingUniformJumpsuitPrisonChef
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitPrisonEngineer
+  result: ClothingUniformJumpsuitPrisonEngineer
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitPrisonScientist
+  result: ClothingUniformJumpsuitPrisonScientist
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitPrisonTrainee
+  result: ClothingUniformJumpsuitPrisonTrainee
+
+# Jumpsuits Veteran
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitPrisonDoctorVeteran
+  result: ClothingUniformJumpsuitPrisonDoctorVeteran
+  materials:
+    Cloth: 4000
+    Durathread: 2000
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitPrisonChefVeteran
+  result: ClothingUniformJumpsuitPrisonChefVeteran
+  materials:
+    Cloth: 4000
+    Durathread: 2000
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitPrisonEngineerVeteran
+  result: ClothingUniformJumpsuitPrisonEngineerVeteran
+  materials:
+    Cloth: 4000
+    Durathread: 2000
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitPrisonScientistVeteran
+  result: ClothingUniformJumpsuitPrisonScientistVeteran
+  materials:
+    Cloth: 4000
+    Durathread: 2000
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitPrisonWorkerVeteran
+  result: ClothingUniformJumpsuitPrisonWorkerVeteran
+  materials:
+    Cloth: 4000
+    Durathread: 2000
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitPrisonTraineeVeteran
+  result: ClothingUniformJumpsuitPrisonTraineeVeteran
+  materials:
+    Cloth: 4000
+    Durathread: 2000
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitPrisonWorker
+  result: ClothingUniformJumpsuitPrisonWorker
+
+# Jumpskirts Regular
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtPrisonDoctor
+  result: ClothingUniformJumpskirtPrisonDoctor
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtPrisonChef
+  result: ClothingUniformJumpskirtPrisonChef
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtPrisonEngineer
+  result: ClothingUniformJumpskirtPrisonEngineer
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtPrisonScientist
+  result: ClothingUniformJumpskirtPrisonScientist
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtPrisonWorker
+  result: ClothingUniformJumpskirtPrisonWorker
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtPrisonTrainee
+  result: ClothingUniformJumpskirtPrisonTrainee
+
+# Jumpskirts Veteran
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtPrisonDoctorVeteran
+  result: ClothingUniformJumpskirtPrisonDoctorVeteran
+  materials:
+    Cloth: 4000
+    Durathread: 2000
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtPrisonChefVeteran
+  result: ClothingUniformJumpskirtPrisonChefVeteran
+  materials:
+    Cloth: 4000
+    Durathread: 2000
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtPrisonEngineerVeteran
+  result: ClothingUniformJumpskirtPrisonEngineerVeteran
+  materials:
+    Cloth: 4000
+    Durathread: 2000
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtPrisonScientistVeteran
+  result: ClothingUniformJumpskirtPrisonScientistVeteran
+  materials:
+    Cloth: 4000
+    Durathread: 2000
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtPrisonWorkerVeteran
+  result: ClothingUniformJumpskirtPrisonWorkerVeteran
+  materials:
+    Cloth: 4000
+    Durathread: 2000
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtPrisonTraineeVeteran
+  result: ClothingUniformJumpskirtPrisonTraineeVeteran
+  materials:
+    Cloth: 4000
+    Durathread: 2000
+
+# Base versions
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitPrisonRegularBase
+  result: ClothingUniformJumpsuitPrisonRegularBase
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitPrisonVeteranBase
+  result: ClothingUniformJumpsuitPrisonVeteranBase
+  materials:
+    Cloth: 5000
+    Durathread: 3000
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtPrisonRegularBase
+  result: ClothingUniformJumpskirtPrisonRegularBase
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtPrisonVeteranBase
+  result: ClothingUniformJumpskirtPrisonVeteranBase
+  materials:
+    Cloth: 5000
+    Durathread: 3000
+
+# Prison hats/caps/berets per role (non-command hats)
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretPrisonDoctor
+  result: ClothingHeadHatBeretPrisonDoctor
+  materials:
+    Cloth: 1500
+    Durathread: 1500
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatCapPrisonDoctor
+  result: ClothingHeadHatCapPrisonDoctor
+  materials:
+    Cloth: 3000
+    Durathread: 3000
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadCapPrisonDoctor
+  result: ClothingHeadCapPrisonDoctor
+  materials:
+    Cloth: 300
+    Durathread: 200
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretPrisonChef
+  result: ClothingHeadHatBeretPrisonChef
+  materials:
+    Cloth: 1500
+    Durathread: 1500
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatCapPrisonChef
+  result: ClothingHeadHatCapPrisonChef
+  materials:
+    Cloth: 3000
+    Durathread: 3000
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadCapPrisonChef
+  result: ClothingHeadCapPrisonChef
+  materials:
+    Cloth: 300
+    Durathread: 200
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretPrisonEngineer
+  result: ClothingHeadHatBeretPrisonEngineer
+  materials:
+    Cloth: 1500
+    Durathread: 1500
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatCapPrisonEngineer
+  result: ClothingHeadHatCapPrisonEngineer
+  materials:
+    Cloth: 3000
+    Durathread: 3000
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadCapPrisonEngineer
+  result: ClothingHeadCapPrisonEngineer
+  materials:
+    Cloth: 300
+    Durathread: 200
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretPrisonScientist
+  result: ClothingHeadHatBeretPrisonScientist
+  materials:
+    Cloth: 1500
+    Durathread: 1500
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatCapPrisonScientist
+  result: ClothingHeadHatCapPrisonScientist
+  materials:
+    Cloth: 3000
+    Durathread: 3000
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadCapPrisonScientist
+  result: ClothingHeadCapPrisonScientist
+  materials:
+    Cloth: 300
+    Durathread: 200
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretPrisonWorker
+  result: ClothingHeadHatBeretPrisonWorker
+  materials:
+    Cloth: 1500
+    Durathread: 1500
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatCapPrisonWorker
+  result: ClothingHeadHatCapPrisonWorker
+  materials:
+    Cloth: 3000
+    Durathread: 3000
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadCapPrisonWorker
+  result: ClothingHeadCapPrisonWorker
+  materials:
+    Cloth: 300
+    Durathread: 200
+
+# Prison Trainee hats
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretPrisonTrainee
+  result: ClothingHeadHatBeretPrisonTrainee
+  materials:
+    Cloth: 1500
+    Durathread: 1500
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatCapPrisonTrainee
+  result: ClothingHeadHatCapPrisonTrainee
+  materials:
+    Cloth: 3000
+    Durathread: 3000
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadCapPrisonTrainee
+  result: ClothingHeadCapPrisonTrainee
+  materials:
+    Cloth: 300
+    Durathread: 200
+
+# Generic guard hats (already have recipes elsewhere, added here only if missing)
+# Note: ClothingHeadHatBeretPrisonGuard and ClothingHeadCapPrisonGuard recipes exist in _Sunrise/Recipes/Lathes/clothing.yml
+
+# HoS cloak as Neck clothing
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckCloakHOSCloak
+  result: ClothingNeckCloakHOSCloak
+  materials:
+    Cloth: 1000
+    Durathread: 1500
+
+# Chef black toque (entity exists in _Sunrise/Entities/Clothing/Head/hats.yml)
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatChefBlackToque
+  result: ClothingHeadHatChefBlackToque
+  materials:
+    Cloth: 3000
+    Durathread: 1500
+
+# Chef white hat into Hats category
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatChef
+  result: ClothingHeadHatChef
+  materials:
+    Cloth: 300
+
+# Prison variants for vanilla items with custom cost
+
+# Optional prisoner stock uniforms (grey variant)
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitPrisonerGrey
+  result: ClothingUniformJumpsuitPrisonerGrey
+
+# Head of Prison highlights
+- type: latheRecipe
+  parent: BaseCommandJumpsuitRecipe
+  id: ClothingUniformJumpsuitHoSOld
+  result: ClothingUniformJumpsuitHoSOld
+  materials:
+    Cloth: 3000
+    Durathread: 1500

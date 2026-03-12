@@ -9,6 +9,7 @@ using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Value;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio;
+using Content.Shared.GameTicking.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.GameTicking
@@ -99,7 +100,7 @@ namespace Content.Shared.GameTicking
     {
         public bool IsRoundStarted { get; }
         // Sunrise-Start
-        public string? LobbyType { get; }
+        public ProtoId<LobbyBackgroundPrototype>? LobbyType { get; }
         public string? LobbyParallax { get; }
         public string? LobbyAnimation { get; }
         public string? LobbyArt { get; }
@@ -110,7 +111,7 @@ namespace Content.Shared.GameTicking
         public TimeSpan RoundStartTimeSpan { get; }
         public bool Paused { get; }
 
-        public TickerLobbyStatusEvent(bool isRoundStarted, string? lobbyType, string? lobbyBackground, string? lobbyParallax, string? lobbyAnimation, bool youAreReady, TimeSpan startTime, TimeSpan preloadTime, TimeSpan roundStartTimeSpan, bool paused)
+        public TickerLobbyStatusEvent(bool isRoundStarted, ProtoId<LobbyBackgroundPrototype>? lobbyType, string? lobbyBackground, string? lobbyParallax, string? lobbyAnimation, bool youAreReady, TimeSpan startTime, TimeSpan preloadTime, TimeSpan roundStartTimeSpan, bool paused)
         {
             IsRoundStarted = isRoundStarted;
             // Sunrise-Start

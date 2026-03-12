@@ -37,3 +37,15 @@ public sealed class TargetBeforeDefibrillatorZapsEvent : BeforeDefibrillatorZaps
 {
     public TargetBeforeDefibrillatorZapsEvent(EntityUid entityUsingDefib, EntityUid defib, EntityUid defibtarget) : base(entityUsingDefib, defib, defibtarget) { }
 }
+
+// Sunrise-Start
+/// <summary>
+///     This event is raised to check if the defibrillator can be used.
+///     Systems can cancel this event to prevent defibrillation.
+/// </summary>
+[ByRefEvent]
+public record struct SunriseCanZapEvent(EntityUid Defibrillator, EntityUid Target, EntityUid? User)
+{
+    public bool Cancelled = false;
+}
+// Sunrise-End

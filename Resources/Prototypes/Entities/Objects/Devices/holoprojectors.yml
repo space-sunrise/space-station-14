@@ -37,18 +37,19 @@
 
 - type: entity
   parent: Holoprojector
-  id: HoloprojectorJanitorBorg # Sunrise-Edit
+  id: HoloprojectorBorg
   suffix: borg
   name: holosign projector
   description: A modified holographic sign projector for use in custodial cyborgs. Automatically self-charges.
   components:
   - type: HolosignProjector
     chargeUse: 240
+    countPerTileLimit: 2   # Sunrise - Added
   - type: ItemSlots
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellRobotTool
+        startingItem: PowerCellMicroreactor
         disableEject: true
         swap: false
 
@@ -62,6 +63,7 @@
   - type: HolosignProjector
     signProto: HoloPeel
     chargeUse: 240
+    countPerTileLimit: 2   # Sunrise - Added
   - type: Sprite
     sprite: Objects/Devices/Holoprojectors/peel.rsi
     state: icon
@@ -82,6 +84,7 @@
   - type: HolosignProjector
     signProto: HoloFan
     chargeUse: 120
+    countPerTileLimit: 2   # Sunrise - Added
   - type: Sprite
     sprite: Objects/Devices/Holoprojectors/atmos.rsi
     state: icon
@@ -128,7 +131,10 @@
   components:
     - type: HolosignProjector
       signProto: HolosignForcefield
-      chargeUse: 120
+      # Sunrise - Start
+      chargeUse: 350
+      countPerTileLimit: 1
+      # Sunrise - End
     - type: Sprite
       sprite: Objects/Devices/Holoprojectors/field.rsi
       state: icon
@@ -157,6 +163,7 @@
     - type: HolosignProjector
       signProto: HolosignSecurity
       chargeUse: 90
+      countPerTileLimit: 2   # Sunrise - Added
     - type: Sprite
       sprite: Objects/Devices/Holoprojectors/security.rsi
       state: icon

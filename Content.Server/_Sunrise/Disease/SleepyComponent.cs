@@ -1,5 +1,6 @@
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using System.Numerics;
+using Content.Shared.Traits.Assorted;
 
 namespace Content.Server.Traits.Assorted;
 

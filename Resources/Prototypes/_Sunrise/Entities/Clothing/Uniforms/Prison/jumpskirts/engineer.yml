@@ -1,0 +1,55 @@
+- type: entity
+  parent: ClothingUniformJumpskirtPrisonRegularBase
+  id: ClothingUniformJumpskirtPrisonEngineer
+  name: prison engineer jumpskirt
+  description: Utility-focused design with tool belts in mind, bearing subtle scorch marks from emergency repairs when systems fail under maximum security.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffd900"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#ffd900"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#ffd900"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: overlay-equipped
+        color: "#ffd900"
+
+- type: entity
+  parent: ClothingUniformJumpskirtPrisonVeteranBase
+  id: ClothingUniformJumpskirtPrisonEngineerVeteran
+  name: veteran prison engineer jumpskirt
+  description: Battle-hardened engineering skirt uniform worn by master technicians who've kept the facility's systems running through countless crises, their expertise forged in the fires of emergency repairs.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: overlay-icon
+      color: "#ffd900"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+        color: "#ffd900"
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+        color: "#ffd900"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: overlay-equipped
+        color: "#ffd900"

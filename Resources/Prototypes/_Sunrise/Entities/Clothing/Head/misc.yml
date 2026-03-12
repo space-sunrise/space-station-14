@@ -48,3 +48,16 @@
   - type: Construction
     graph: SunflowerCrown
     node: SunflowerCrown
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadRabbitHat
+  name: rabbit hat
+  description: A fluffy hat resembling a bunny. Perfect for those who want to look adorable.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Misc/rabbithat.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Misc/rabbithat.rsi
+    quickEquip: true

@@ -8,8 +8,8 @@
     tags:
       - Cartridge
       - CartridgeBattery
-  - type: HitScanCartridgeAmmo
-    hitscan: RedLaserBeam
+  - type: CartridgeAmmo
+    proto: RedLaserBeam
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Casings/laser_casing.rsi
     scale: 0.80, 0.80
@@ -27,5 +27,5 @@
   name: cartridge (laser)
   parent: BaseCartridgeBattery
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: RedLaserBeam
+  - type: CartridgeAmmo
+    proto: RedLaserBeam

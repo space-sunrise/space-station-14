@@ -17,3 +17,23 @@
   license: "CC-BY-3.0"
   copyright: "Created by mrjajkes"
   source: "https://www.youtube.com/watch?v=f5URIS00IIc"
+
+- files: ["nukemass.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Created by mrjajkes"
+  source: "https://www.youtube.com/watch?v=gLSyt7AaqQM"
+
+- files: ["last_call.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Created by mrjajkes"
+  source: "https://www.youtube.com/watch?v=io105Eq-CrA"
+
+- files: ["sponsored-by-syndicate.ogg"]
+  license: "Custom"
+  copyright: "Sponsored By Syndicate by mrjajkes is licensed under the following terms: free use and modification with proper credit to the original creator, excluding usage by FulpStation, White Dream, and any ERP/sexually-oriented servers, or for commercial use unless granted permission by the author. For commercial use (Patreon is fine). please contact the author to discuss details."
+  source: "https://youtu.be/vO_dMp4d3ew"
+
+- files: ["clearly_nuclear.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Created by mrjajkes"
+  source: "https://www.youtube.com/watch?v=chix8uz-oUQ"

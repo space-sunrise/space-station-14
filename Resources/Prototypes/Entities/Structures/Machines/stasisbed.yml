@@ -14,7 +14,7 @@
   - type: Sprite
     sprite: Structures/Machines/stasis_bed.rsi
     noRot: true
-    drawdepth: Puddles #Sunrise-add
+    drawdepth: HighFloorObjects #Sunrise-add
     layers:
     - state: icon
     - state: unlit

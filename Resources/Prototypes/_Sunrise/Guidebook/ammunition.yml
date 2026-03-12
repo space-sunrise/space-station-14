@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: SunriseAmmunition
+  name: guide-entry-ammunition
+  text: "/ServerInfo/Guidebook/_Sunrise/Ammunition.xml"
+  priority: 6

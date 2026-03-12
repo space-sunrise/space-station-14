@@ -90,10 +90,10 @@
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
           tags:
-            - PowerCage # Sunrise-edit
-  - type: HitscanBatteryAmmoProvider
+            - PowerCell
+  - type: BatteryAmmoProvider
     proto: RedShuttleMediumLaser #RedLightLaser
-    fireCost: 30 # Sunrise-edit #changed from 50 to 30
+    fireCost: 20 # Sunrise-edit
 
 - type: entity
   id: ShuttleGunPerforator
@@ -147,7 +147,7 @@
         whitelist:
           tags:
             - PowerCage
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedShuttleLaser
     fireCost: 150
 

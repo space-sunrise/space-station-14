@@ -3,8 +3,8 @@
 namespace Content.Shared._Sunrise.Mood;
 
 [Prototype]
-public sealed class MoodCategoryPrototype : IPrototype
+public sealed partial class MoodCategoryPrototype : IPrototype
 {
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 }

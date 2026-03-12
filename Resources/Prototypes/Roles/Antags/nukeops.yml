@@ -7,10 +7,7 @@
   objective: roles-antag-nuclear-operative-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 36000 # 10h # Sunrise-RoleTime
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 18000 # 5h # Sunrise-RoleTime
+    time: 5h
   guides: [ NuclearOperatives ]
   # Sunrise-Edit
   previewIcon:
@@ -26,13 +23,10 @@
   objective: roles-antag-nuclear-operative-medic-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 36000 # 10h # Sunrise-RoleTime
+    time: 5h
   - !type:RoleTimeRequirement
-    role: JobMedicalDoctor
-    time: 18000 # 5h # Sunrise-RoleTime
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 18000 # 5h # Sunrise-RoleTime
+    role: JobChemist
+    time: 3h
   guides: [ NuclearOperatives ]
   # Sunrise-Edit
   previewIcon:
@@ -48,10 +42,10 @@
   objective: roles-antag-nuclear-operative-commander-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 72000 # 20h # Sunrise-RoleTime
+    time: 5h
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 36000 # 10h # Sunrise-RoleTime
+    time: 5h
   # should be changed to nukie playtime when thats tracked (wyci)
   guides: [ NuclearOperatives ]
   # Sunrise-Edit
@@ -82,13 +76,15 @@
 #Nuclear Operative Gear
 - type: startingGear
   id: SyndicateOperativeGearFull
+  #parent: SyndicateOperativeGearFullNoUplink
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
     back: ClothingBackpackDuffelSyndicate
     shoes: ClothingShoesBootsCombatFilled
-    id: SyndiPDA
+    id: SyndiOperativePDA
   storage:
     back:
+    - WeaponPistolViper
     - PinpointerSyndicateNuclear
     - DeathAcidifierImplanter
 
@@ -157,7 +153,7 @@
 #Lone Operative Gear
 - type: startingGear
   id: SyndicateLoneOperativeGearFull
-  parent: SyndicateOperativeGearFullNoUplink
+  #parent: SyndicateOperativeGearFull
+  parent: SyndicateOperativeGearFullNoUplink # Sunrise-Edit
   equipment:
     pocket2: BaseUplinkRadio60TC
-

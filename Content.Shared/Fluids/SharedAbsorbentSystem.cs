@@ -32,6 +32,7 @@ public abstract class SharedAbsorbentSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedItemSystem _item = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!; // Sunrise-edit
+    [Dependency] private readonly ILocalizationManager _loc = default!; // Sunrise-edit
 
     public override void Initialize()
     {
@@ -68,14 +69,15 @@ public abstract class SharedAbsorbentSystem : EntitySystem
         }
 
         var coordinates = args.ClickLocation;
-        var footPrints = new HashSet<Entity<FootprintComponent>>();
-
         var gridUid = _transform.GetGrid(coordinates);
         if (!TryComp<MapGridComponent>(gridUid, out var grid))
             return;
 
         var tileCoordinates = _mapSystem.CoordinatesToTile(gridUid.Value, grid, coordinates);
         var tileRef = _mapSystem.GetTileRef(gridUid.Value, grid, tileCoordinates);
+        var tileCenterPos = _mapSystem.GridTileToLocal(gridUid.Value, grid, tileRef.GridIndices);
+
+        var footPrints = new HashSet<Entity<FootprintComponent>>();
         var entities = _lookup.GetLocalEntitiesIntersecting(tileRef, ent.Comp.FootprintEnlargement);
 
         foreach (var entity in entities)
@@ -91,7 +93,6 @@ public abstract class SharedAbsorbentSystem : EntitySystem
             if (!SolutionContainer.TryGetSolution(args.Used, ent.Comp.SolutionName, out var absorberSoln))
                 return;
 
-            var tileCenterPos = _mapSystem.GridTileToLocal(gridUid.Value, grid, tileRef.GridIndices);
             CleanFootprints(args.User, args.Used, ent.Comp, absorberSoln.Value, footPrints, tileCenterPos);
             args.Handled = true;
             return;
@@ -103,7 +104,7 @@ public abstract class SharedAbsorbentSystem : EntitySystem
 
     // Sunrise-Start
     public void CleanFootprints(EntityUid user, EntityUid used, AbsorbentComponent absorber,
-        Entity<SolutionComponent> absorberSoln, HashSet<Entity<FootprintComponent>> footPrints,
+        Entity<SolutionComponent> absorberSoln, IEnumerable<Entity<FootprintComponent>> footPrints,
         EntityCoordinates targetCoords)
     {
         var soundPlayed = false;
@@ -122,7 +123,7 @@ public abstract class SharedAbsorbentSystem : EntitySystem
             // No material
             if (available == FixedPoint2.Zero)
             {
-                _popups.PopupEntity(Loc.GetString("mopping-system-no-water", ("used", used)), user, user);
+                TryPopupNoWater(user, used);
                 return;
             }
 
@@ -164,8 +165,24 @@ public abstract class SharedAbsorbentSystem : EntitySystem
 
         _melee.DoLunge(user, used, Angle.Zero, localPos, null, false);
     }
-    // Sunrise-End
 
+    private void TryPopupNoWater(EntityUid user, EntityUid used)
+    {
+        if (TryComp(used, out UseDelayComponent? useDelay) && _useDelay.IsDelayed((used, useDelay)))
+            return;
+
+        var message = _loc.GetString("mopping-system-no-water", ("used", used));
+
+        if (HasComp<ItemComponent>(used))
+            _popups.PopupClient(message, user, user);
+
+        else
+            _popups.PopupEntity(message, user, user);
+
+        if (useDelay != null)
+            _useDelay.TryResetDelay((used, useDelay));
+    }
+    // Sunrise-End
     private void OnAbsorbentSolutionChange(Entity<AbsorbentComponent> ent, ref SolutionContainerChangedEvent args)
     {
         if (!SolutionContainer.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out _, out var solution))

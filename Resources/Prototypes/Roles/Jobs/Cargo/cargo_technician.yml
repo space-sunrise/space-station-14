@@ -12,6 +12,7 @@
   - Maintenance
   extendedAccess:
   - Salvage
+  - CargoPurchaseAccess # Sunrise-add
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: BoxingDay
@@ -20,7 +21,6 @@
 - type: startingGear
   id: CargoTechGear
   equipment:
-    id: CargoPDA
     ears: ClothingHeadsetCargo
     pocket1: AppraisalTool
   #storage:

@@ -1,0 +1,19 @@
+﻿{
+    "version": 1,
+    "license": "CLA",
+    "copyright": "Made for Space Sunrise by gardsnake (Github)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "equipped-EARS",
+            "directions": 4
+        },
+        {
+            "name": "icon"
+        }
+    ]
+}
+

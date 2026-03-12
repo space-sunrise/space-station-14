@@ -1,17 +1,15 @@
 - type: reaction
-  id: Aphrodisiac
-  minTemp: 120
-  maxTemp: 300
-  effects:
-  - !type:CreateEntityReactionEffect
-    entity: EffectHearts
-  priority: 100
+  id: CrushedPhosphorus
+  impact: Low
+  quantized: true
+  minTemp: 500
   reactants:
-    Omnizine:
+    Phosphorus:
+      amount: 4
+    Hydrogen:
       amount: 2
-    Leporazine:
-      amount: 3
-    Wine:
-      amount: 3
-  products:
-    Aphrodisiac: 5
+    Ethanol:
+      amount: 2
+  effects:
+    - !type:SpawnEntity
+      entity: CrushedPhosphorus1

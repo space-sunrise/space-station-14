@@ -33,21 +33,23 @@
     magState: disable
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 50
+  - type: BatteryAmmoProvider
+    proto: BulletDisabler
+    fireCost: 62.5
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
-      fireCost: 50
+    - proto: BulletDisabler
+      fireCost: 62.5
       visualState: disable
       magState: disable
       heldPrefix: disable4
-    - proto: TaserBolt
+    - proto: BulletTaser
       fireCost: 166
       visualState: stun
       magState: stun
       heldPrefix: stun4
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 - type: entity
   name: dominator
@@ -74,40 +76,39 @@
     access: [["Security"]]
   - type: Item
     storedOffset: 1,-5
+  - type: Gun
+    fireRate: 2
+    projectileSpeed: 35 # any higher and this causes issues in lag
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 15
-    autoRechargePause: true
+    autoRechargeRate: 8
     autoRechargePauseTime: 10
-  - type: HitscanBatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 50
+  - type: BatteryAmmoProvider
+    proto: BulletDisabler
+    fireCost: 62.5
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
-      fireCost: 50
+    - proto: BulletDisabler
+      fireCost: 62.5
       magState: disable
-    - proto: TaserBolt
-      fireCost: 166
+    - proto: BulletTaser
+      fireCost: 200
       magState: stun
       conditions:
       - !type:AlertLevelCondition
         alertLevels:
-        - blue
         - violet
         - yellow
         - red
         - gamma
-    - proto: RedLaserBeam
-      fireCost: 66.6
+        - epsilon
+        - delta
+    - proto: RedMediumLaser
+      fireCost: 125
       magState: lethal
-      conditions:
-      - !type:AlertLevelCondition
-        alertLevels:
-        - violet
-        - yellow
-        - red
-        - gamma
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 - type: entity
   name: X-01 multiphase energy gun
@@ -135,35 +136,33 @@
     size: Normal
     shape:
     - 0, 0, 1, 1
+    heldPrefix: disabler
   - type: MagazineVisuals
     magState: disable
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 40
+  - type: BatteryAmmoProvider
+    proto: BulletDisabler
+    fireCost: 75
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/multiphase_gun.rsi
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
-      fireCost: 40
+    - proto: BulletDisabler
+      fireCost: 75
       magState: disable
       visualState: disable-unshaded
-    - proto: RedLaserBeam
-      fireCost: 75
+      heldPrefix: disabler
+    - proto: RedMediumLaser
+      fireCost: 150
       magState: kill
       visualState: kill-unshaded
+      heldPrefix: lethal
     - proto: DestroyBeam
-      fireCost: 750
+      fireCost: 300
       magState: destroy
       visualState: destroy-unshaded
-      conditions:
-      - !type:AlertLevelCondition
-        alertLevels:
-        - gamma
-    - proto: EmpPulse
-      fireCost: 600
-      magState: ion
-      visualState: ion-unshaded
+      heldPrefix: destroy
       conditions:
       - !type:AlertLevelCondition
         alertLevels:
@@ -171,14 +170,35 @@
         - yellow
         - red
         - gamma
+        - epsilon
+        - delta
+    - proto: BulletEMP
+      fireCost: 300
+      magState: ion
+      visualState: ion-unshaded
+      heldPrefix: special
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - violet
+        - yellow
+        - red
+        - gamma
+        - epsilon
+        - delta
+        - blue
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: Battery
     maxCharge: 1500
     startingCharge: 1500
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 10
-    autoRechargePause: true
-    autoRechargePauseTime: 15
+    autoRechargeRate: 8
+    autoRechargePauseTime: 8
   - type: Tag
     tags:
     - HighRiskItem
@@ -189,13 +209,12 @@
     stealGroup: WeaponEnergyGunMultiphase
 
 - type: entity
-  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband ]
+  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband ]
   id: WeaponIonRifle
   name: ion rifle
-  suffix: Ion Centcomm
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Battery/ion_rifle.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -205,19 +224,16 @@
   - type: Item
     size: Ginormous
   - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
     quickEquip: false
     slots:
     - Back
+    - SuitStorage
   - type: Gun
-    fireRate: 0.6
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 40 #25sec+60Sec Pause
-    autoRechargePause: true
-    autoRechargePauseTime: 60
-  - type: HitscanBatteryAmmoProvider
-    proto: EmpPulse
-    fireCost: 250
+    fireRate: 0.5
+  - type: BatteryAmmoProvider
+    proto: BulletEMP
+    fireCost: 125
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -227,8 +243,8 @@
   - type: GunRequiresWield
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 8
-    pvsIncrease: 0.5
+    maxOffset: 7
+    pvsIncrease: 0.7
 
 - type: entity
   parent: [BaseWeaponBattery, BaseSecurityContraband ]
@@ -248,14 +264,9 @@
     shape:
     - 0, 0, 3, 1
   - type: Gun
-    fireRate: 0.6
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 40 #100sec+60Sec Pause
-    autoRechargePause: true
-    autoRechargePauseTime: 60
-  - type: HitscanBatteryAmmoProvider
-    proto: EmpPulse
+    fireRate: 0.5
+  - type: BatteryAmmoProvider
+    proto: BulletEMP
     fireCost: 250
   - type: MagazineVisuals
     magState: mag
@@ -282,7 +293,7 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: IgnitionRedLaser
     fireCost: 62.5
   - type: StaticPrice
@@ -303,7 +314,7 @@
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DecloneBolt
     fireCost: 200
   - type: MagazineVisuals
@@ -331,27 +342,30 @@
     size: Small
     shape:
     - 0, 0, 1, 1
+    heldPrefix: stun
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 200
   - type: MagazineVisuals
     magState: stun
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
-    proto: TaserBolt
+  - type: BatteryAmmoProvider
+    proto: BulletTaser
     fireCost: 100
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: TaserBolt
+    - proto: BulletTaser
       fireCost: 100
       magState: stun
-    - proto: RedLaserBeam
+      heldPrefix: stun
+    - proto: RedMediumLaser
       fireCost: 100
       magState: kill
+      heldPrefix: kill
     - proto: DestroyBeam
       fireCost: 100
       magState: destroy
+      heldPrefix: destroy
 
 - type: entity
   name: PDW-9 taser pistol
@@ -373,20 +387,22 @@
     size: Small
     shape:
     - 0, 0, 1, 1
+  - type: Gun
+    bigTrigger: true # Sunrise-Edit
   - type: MagazineVisuals
     magState: disable
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 75
+  - type: BatteryAmmoProvider
+    proto: BulletTaser
+    fireCost: 150
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
-      fireCost: 75
+    - proto: BulletTaser
+      fireCost: 150
       magState: disable
       visualState: disable
-    - proto: RedLaserBeam
+    - proto: RedMediumLaser
       fireCost: 100
       magState: kill
       visualState: kill
@@ -415,8 +431,8 @@
     slots:
     - Back
   - type: Gun
-    fireRate: 0.1
-  - type: HitscanBatteryAmmoProvider
+    fireRate: 0.2
+  - type: BatteryAmmoProvider
     proto: SniperBolt
     fireCost: 100
   - type: MagazineVisuals
@@ -427,8 +443,8 @@
   - type: GunRequiresWield
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 5
-    pvsIncrease: 0.3
+    maxOffset: 8
+    pvsIncrease: 0.8
 
 - type: entity
   name: ANNIHILATOR
@@ -449,7 +465,7 @@
     magState: destroy
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DestroyBeam
     fireCost: 100
   - type: BatteryWeaponFireModes
@@ -462,7 +478,6 @@
     maxCharge: 2000
     startingCharge: 2000
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 500
 
 - type: entity
@@ -481,13 +496,11 @@
       - state: mag-unshaded-4
         map: ["enum.GunVisualLayers.MagUnshaded"]
         shader: unshaded
-    - type: ProjectileBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       proto: ProjectilePolyboltJohnToe
       fireCost: 200
     - type: BatterySelfRecharger
-      autoRecharge: true
       autoRechargeRate: 40 #every 5 seconds another becomes toe.
-      autoRechargePause: false
     - type: MagazineVisuals
       magState: mag
       steps: 5

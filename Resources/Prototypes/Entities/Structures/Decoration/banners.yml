@@ -54,7 +54,7 @@
   description: A banner displaying the colors of the cargo department. Not. Cargonia.
   components:
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
+    sprite: _Sunrise/Structures/Decoration/banner.rsi # Sunrise - edit
     state: banner_cargo
 
 - type: entity
@@ -64,7 +64,7 @@
   description: A banner displaying the colors of the engineering department. Scrungularty.
   components:
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
+    sprite: _Sunrise/Structures/Decoration/banner.rsi # Sunrise - edit
     state: banner_engineering
 
 - type: entity
@@ -74,7 +74,7 @@
   description: A banner displaying the colors of the medical department. How sterile.
   components:
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
+    sprite: _Sunrise/Structures/Decoration/banner.rsi # Sunrise - edit
     state: banner_medical
 
 - type: entity
@@ -84,7 +84,7 @@
   description: A banner displaying revolution. Viva!
   components:
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
+    sprite: _Sunrise/Structures/Decoration/banner.rsi # Sunrise - edit
     state: banner_revolution
 
 - type: entity
@@ -94,7 +94,7 @@
   description: A banner from which, according to the syndicate, you should feel hatred for NT.
   components:
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
+    sprite: _Sunrise/Structures/Decoration/banner.rsi # Sunrise - edit
     state: banner_syndicate
 
 - type: entity
@@ -104,7 +104,7 @@
   description: A banner displaying the colors of the science department. Where science has no bounds, and regulations are rarely followed.
   components:
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
+    sprite: _Sunrise/Structures/Decoration/banner.rsi # Sunrise - edit
     state: banner_science
 
 - type: entity
@@ -114,7 +114,7 @@
   description: A banner displaying the colors of the security department. You're surprised it's not vandalised.
   components:
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
+    sprite: _Sunrise/Structures/Decoration/banner.rsi # Sunrise - edit
     state: banner_security
 
 - type: entity
@@ -124,7 +124,7 @@
   description: A banner displaying the color blue. Dabudidabudai.
   components:
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
+    sprite: _Sunrise/Structures/Decoration/banner.rsi # Sunrise - edit
     state: banner-blue
 
 - type: entity
@@ -134,7 +134,7 @@
   description: A banner displaying the color red. The edgy one.
   components:
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
+    sprite: _Sunrise/Structures/Decoration/banner.rsi # Sunrise - edit
     state: banner-red
 
 - type: entity
@@ -144,7 +144,7 @@
   description: A banner displaying the color yellow. Reminds you of ducks and lemon stands.
   components:
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
+    sprite: _Sunrise/Structures/Decoration/banner.rsi # Sunrise - edit
     state: banner-yellow
 
 - type: entity
@@ -154,7 +154,7 @@
   description: A banner displaying the color green. Grass, leaves, guacamole.
   components:
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
+    sprite: _Sunrise/Structures/Decoration/banner.rsi # Sunrise - edit
     state: banner-green
 
 
@@ -165,5 +165,5 @@
   description: A banner displaying USSP. Prepare to Combat COMRAD!.
   components:
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
+    sprite: _Sunrise/Structures/Decoration/banner.rsi
     state: banner_ussp #Sunrise-end

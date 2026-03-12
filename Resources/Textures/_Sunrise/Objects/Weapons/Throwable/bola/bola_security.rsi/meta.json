@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Energy bola icon taken from tgstation at commit https://github.com/tgstation/tgstation/commit/b3e22d34474afbee7b84ba282ce0a9b8f332d377 inhand sprite by @banumbas (discord)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+            "delays":
+            [
+                [0.1, 0.1]
+            ]
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4
+        }
+    ]
+}

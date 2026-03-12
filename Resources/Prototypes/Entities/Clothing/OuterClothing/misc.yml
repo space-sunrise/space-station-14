@@ -129,9 +129,9 @@
   description: An ordinary cardboard box with holes cut in the sides.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Misc/cardborg.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Misc/cardborg.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/OuterClothing/Misc/cardborg.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Misc/cardborg.rsi # Sunrise-Edit
   - type: TypingIndicatorClothing
     proto: robot
   - type: Tag

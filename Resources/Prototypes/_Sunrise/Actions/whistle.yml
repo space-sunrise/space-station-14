@@ -1,0 +1,9 @@
+- type: entity
+  parent: BaseToggleAction
+  id: ActionWhistle
+  name: Action Whistle
+  description: STOP RIGHT THERE!
+  components:
+  - type: Action
+    useDelay: 3
+    icon: { sprite: Objects/Fun/whistles.rsi , state: whistle }

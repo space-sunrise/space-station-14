@@ -1,7 +1,53 @@
-﻿- type: entity
+﻿# spawn animation, spawns actual narsie when it ends
+- type: entity
+  id: MobHellspawnBossSpawn
+  suffix: Spawn
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Mobs/Demons/hellspawn.rsi
+    layers:
+    - state: spawn
+    - state: spawn_unshaded
+      shader: unshaded
+    drawdepth: Ghosts
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: TimedDespawn
+    lifetime: 3.2
+  - type: SpawnOnDespawn
+    prototype: MobHellspawnBoss
+  - type: AmbientSound
+    range: 13
+    volume: 15
+    sound:
+      path: /Audio/Animals/space_dragon_roar.ogg
+  - type: PointLight
+    radius: 1.6
+    energy: 4.5
+    color: "#ff4242"
+    castShadows: false
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    delay: 1
+  - type: ExplodeOnTrigger
+    keysIn: [timer]
+  - type: Explosive
+    explosionType: JustStructuralCharge
+    totalIntensity: 125
+    intensitySlope: 5
+    maxIntensity: 75
+    deleteAfterExplosion: false
+    canCreateVacuum: false
+
+- type: entity
   parent: MobHellspawn
   id: MobHellspawnBoss
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ]
+  suffix: Boss
   components:
   - type: Damageable
     damageContainer: BiologicalMetaphysical
@@ -35,6 +81,12 @@
     thresholds:
       0: Alive
       750: Dead
+  - type: Stamina
+    baseCritThreshold: 450
+    stunTime: 2
+  - type: AmbientSound
+    sound: /Audio/Ambience/ambiodd.ogg
+    range: 15
   # Abilities start
   - type: NPCUseActionWhenTargetInRange
     actions:
@@ -56,10 +108,7 @@
       - Hellspawn
       - GlassBeaker
       - DrinkBottle
-      - DrinkGlass
       - DrinkCan
-      - DrinkCup
-      - DrinkSpaceGlue
   - type: HellSpawnInvincibility
   - type: HellSpawn
   - type: HellSpawnTentacle
@@ -69,10 +118,15 @@
     hidden: true
     soundHit:
       path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    bluntStaminaDamageFactor: 1.2
     damage:
       types:
-        Blunt: 50
-        Structural: 70
+        Blunt: 40
+        Slash: 10
+        Structural: 50
+  - type: MeleeThrowOnHit
+    distance: 2
+    speed: 12
   # Abilities end
   - type: Butcherable
     spawned:
@@ -80,20 +134,106 @@
       prob: 0.5
     - id: ClothingUniformJumpsuitGalaxyRed
       prob: 0.5
-    - id: ResearchDiskDebug
-      prob: 0.05
-    - id: ClothingNeckGoldmedal
-      prob: 0.5
+    - id: PKAUpgradeDamage
+      prob: 0.25
+    - id: PKAUpgradeFireRate
+      prob: 0.25
+    - id: PKAUpgradeRange
+      prob: 0.25
     - id: PowerCellAntiqueProto
       prob: 0.2
-    - id: ClothingOuterHardsuitMaxim
+    - id: ArtifactFragment
+      amount: 3
+    - id: ComplexXenoArtifactItem
+      prob: 0.5
+    - id: MedipenCombatInjector
       prob: 0.2
-    - id: HyperEutacticBlade
+    - id: LeftArmCyberGorillaUpgraded
+      prob: 0.15
+    - id: CultPylon
+      prob: 0.1
+    - id: ReaperCultPylon
+      prob: 0.1
+    - id: NarbeeCultPylon
+      prob: 0.1
+    - id: NarsieCultPylon
+      prob: 0.1
+    # Meme
+    - id: ClothingNeckGoldmedal
+      prob: 0.5
+    - id: BibleNarsie
+      prob: 0.4
+    - id: MobGoliath
+      prob: 0.2
+    - id: MobBasilisk
+      prob: 0.2
+    - id: SoulShardGhost
+      prob: 0.15
+    - id: MobSkeletonPirate
+      prob: 0.1
+    - id: SpawnPointGhostParadoxClone
+      prob: 0.1
+    - id: SpawnPointGhostParadoxClone
+      prob: 0.1
+    - id: SpawnPointGhostParadoxClone
+      prob: 0.1
+    - id: ResearchDiskDebug
+      prob: 0.05
+    - id: ClothingHeadHatUshanka
+      prob: 0.2
+    - id: PFigurineChaminaM
+      prob: 0.01
+    - id: PFigurinePirateJugger
+      prob: 0.01
+    # Armors
+    - id: ClothingOuterHardsuitSalvage
+      prob: 0.25
+    - id: ClothingOuterHardsuitGoliath
+      prob: 0.2
+    - id: ClothingOuterHardsuitMaxim
+      prob: 0.15
+    - id: ClothingOuterSoftsuitCBURN
+      prob: 0.1
+    # Weapons
+    - id: WeaponLaserGun
+      prob: 0.05
+    - id: WeaponSubMachineGunPPSH
+      prob: 0.05
+    - id: WeaponSniperDragunov
+      prob: 0.05
+    - id: WeaponLightMachineGunDP28
+      prob: 0.05
+    - id: Musket
+      prob: 0.05
+    - id: WeaponRevolverPirate
+      prob: 0.05
+    - id: WeaponPistolFlintlock
+      prob: 0.05
+    - id: WeaponShotgunGA12
+      prob: 0.05
+    - id: WeaponPistolM1984
+      prob: 0.05
+    - id: ClothingHandsPowerGlovesNoUplink
       prob: 0.05
     - id: WeaponMeleeMoltenCollider
-      prob: 0.3
+      prob: 0.05
     - id: WeaponMeleeMoltenAmputator
+      prob: 0.05
+    - id: WeaponShotgunCycler
+      prob: 0.05
+    - id: HyperEutacticBlade
+      prob: 0.05
+    # Boss lunch
+    - id: MaterialGoliathHide1
+      prob: 0.25
+    - id: MaterialGoliathHide1
       prob: 0.2
+    - id: MaterialGoliathHide1
+      prob: 0.15
+    - id: FoodMeatGoliath
+      prob: 0.15
+    - id: FoodMeatGoliath
+      prob: 0.1
   - type: Destructible
     thresholds:
     - trigger:
@@ -121,7 +261,9 @@
   - type: Tag
     tags:
     - Hellspawn
-
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
 
 - type: entity
   parent: AltarFangs
@@ -130,20 +272,20 @@
   placement:
     mode: SnapgridCenter
   components:
-#  - type: UserInterface
-#    interfaces:
-#      enum.HellSpawnArenaUiKey.Key:
-#        type: HellSpawnArenaConsoleBoundUserInterface
-#  - type: ActivatableUI
-#    key: enum.HellSpawnArenaUiKey.Key
-#  - type: HellSpawnConsole
+  - type: UserInterface
+    interfaces:
+      enum.HellSpawnArenaUiKey.Key:
+        type: HellSpawnArenaConsoleBoundUserInterface
+  - type: ActivatableUI
+    key: enum.HellSpawnArenaUiKey.Key
+  - type: HellSpawnConsole
   - type: Godmode
   - type: BlockedTool
 
 - type: entity
   id: HellSpawnCultist
   parent: MobHuman
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ]
   components:
   - type: NpcFactionMember
     factions:
@@ -157,7 +299,59 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      5: Dead
+      50: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 50
+    damage:
+      types:
+        Blunt: 3.75
+  - type: AmbientSound
+    range: 13
+    volume: -5
+    sound:
+      path: /Audio/_Sunrise/BloodCult/narsie_summoned.ogg
+
+- type: entity
+  id: HellSpawnCultistDummy
+  parent: MobHuman
+  # categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes:
+    - CultistGear
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: TimedDespawn
+    lifetime: 15
+  - type: SpawnOnDespawn
+    prototype: CultTeleportOutEffect
+  - type: AmbientSound
+    range: 6
+    volume: 2
+    sound:
+      path: /Audio/_Sunrise/BloodCult/enter_blood.ogg
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Dead
+  - type: PointLight
+    radius: 1
+    energy: 2
+    color: "#ff4242"
+    castShadows: false
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: Vocalizer
+    minVocalizeInterval: 3s
+    maxVocalizeInterval: 6s
+    hideChat: true
+  - type: DatasetVocalizer
+    dataset: NarSieAds
 
 - type: entity
   parent: BaseBulletIncendiary
@@ -194,6 +388,7 @@
     damage:
       types:
         Heat: 15
+        Blunt: 5
   - type: IgniteOnCollide
     fireStacks: 1
     count: 10

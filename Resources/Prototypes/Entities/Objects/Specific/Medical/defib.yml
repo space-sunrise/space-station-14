@@ -48,7 +48,7 @@
   - type: MultiHandedItem
   - type: ToggleCellDraw
   - type: PowerCellDraw
-    useRate: 100
+    useCharge: 100
 
 - type: entity
   id: DefibrillatorEmpty
@@ -86,7 +86,7 @@
     size: Normal
   - type: ToggleCellDraw
   - type: PowerCellDraw
-    useRate: 100
+    useCharge: 100
   - type: Defibrillator
     zapHeal:
       types:
@@ -112,6 +112,26 @@
       - state: ready
         map: ["enum.PowerDeviceVisualLayers.Powered"]
         shader: unshaded
+  # Sunrise-Start
+  - type: Defibrillator
+    doAfterDuration: 1
+    allowUseOnAlive: true
+    reagents:
+      Omnizine: 10
+      Epinephrine: 5
+      Necrosol: 5
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmallNuclear
+        disableEject: true
+        locked: true
+  - type: PowerCellDraw
+    useCharge: 40
+  - type: PowerDrainOnMeleeHit
+    chargePerHit: 30
+  # Sunrise-End
   - type: MeleeWeapon
     damage:
       types:

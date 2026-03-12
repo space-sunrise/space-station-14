@@ -1,0 +1,69 @@
+- type: ghostRole
+  id: PirateScoonerHuman
+  name: ghost-role-information-pirate-human-name
+  description: ghost-role-information-pirate-description
+  rules: ghost-role-information-rules-team-antagonist
+  entityPrototype: MobHumanPirateScoonerReinforcement
+
+- type: ghostRole
+  id: PirateScoonerReptilian
+  name: ghost-role-information-pirate-reptilian-name
+  description: ghost-role-information-pirate-description
+  rules: ghost-role-information-rules-team-antagonist
+  entityPrototype: MobReptilianPirateScoonerReinforcement
+
+- type: ghostRole
+  id: PirateScoonerDwarf
+  name: ghost-role-information-pirate-dwarf-name
+  description: ghost-role-information-pirate-description
+  rules: ghost-role-information-rules-team-antagonist
+  entityPrototype: MobDwarfPirateScoonerReinforcement
+
+- type: ghostRole
+  id: PirateScoonerVox
+  name: ghost-role-information-pirate-vox-name
+  description: ghost-role-information-pirate-description
+  rules: ghost-role-information-rules-team-antagonist
+  entityPrototype: MobVoxPirateScoonerReinforcement
+
+- type: ghostRole
+  id: PirateScoonerVulpkanin
+  name: ghost-role-information-pirate-vulpkanin-name
+  description: ghost-role-information-pirate-description
+  rules: ghost-role-information-rules-team-antagonist
+  entityPrototype: MobVulpkaninPirateScoonerReinforcement
+
+- type: ghostRole
+  id: PirateScoonerHumanOld
+  name: ghost-role-information-pirate-human-name
+  description: ghost-role-information-pirate-description
+  rules: ghost-role-information-rules-team-antagonist
+  entityPrototype: MobHumanPirateScoonerOldReinforcement
+
+- type: ghostRole
+  id: PirateScoonerReptilianOld
+  name: ghost-role-information-pirate-reptilian-name
+  description: ghost-role-information-pirate-description
+  rules: ghost-role-information-rules-team-antagonist
+  entityPrototype: MobReptilianPirateScoonerOldReinforcement
+
+- type: ghostRole
+  id: PirateScoonerDwarfOld
+  name: ghost-role-information-pirate-dwarf-name
+  description: ghost-role-information-pirate-description
+  rules: ghost-role-information-rules-team-antagonist
+  entityPrototype: MobDwarfPirateScoonerOldReinforcement
+
+- type: ghostRole
+  id: PirateScoonerVoxOld
+  name: ghost-role-information-pirate-vox-name
+  description: ghost-role-information-pirate-description
+  rules: ghost-role-information-rules-team-antagonist
+  entityPrototype: MobVoxPirateScoonerOldReinforcement
+
+- type: ghostRole
+  id: PirateScoonerVulpkaninOld
+  name: ghost-role-information-pirate-vulpkanin-name
+  description: ghost-role-information-pirate-description
+  rules: ghost-role-information-rules-team-antagonist
+  entityPrototype: MobVulpkaninPirateScoonerOldReinforcement

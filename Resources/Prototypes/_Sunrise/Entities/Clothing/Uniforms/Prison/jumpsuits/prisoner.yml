@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPrisonerGrey
+  name: prisoner's jumpsuit
+  description: Why isn't it orange?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Prison/Jumpsuit/prisoner.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Prison/Jumpsuit/prisoner.rsi

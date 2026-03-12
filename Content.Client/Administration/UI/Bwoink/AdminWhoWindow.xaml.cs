@@ -28,9 +28,6 @@ namespace Content.Client.Administration.UI.Bwoink
         {
             _adminWhoSystem = system;
             _adminWhoSystem.OnAdminWhoUpdate += OnAdminListReceived;
-
-            // Request the list when the window is initialized
-            RefreshAdminList();
         }
 
         public void Uninitialize()

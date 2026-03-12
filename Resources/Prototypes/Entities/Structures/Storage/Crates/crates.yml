@@ -343,6 +343,9 @@
     sprite: Structures/Storage/Crates/weapon.rsi
   - type: AccessReader
     access: [["Armory"]]
+  - type: Pierceable # Sunrise-edit - прострел ящиков
+    level: Metal
+
 
 - type: entity
   parent: [ CrateBaseSecure, BaseSecurityContraband ]
@@ -373,6 +376,19 @@
       blue: BlueAlertAccessesHOS
       gamma: GammaAlertAccesses
     # Sunrise-end
+
+- type: entity
+  parent: CrateBaseSecure
+  id: CrateSyndicateSecure
+  name: secure syndicate crate
+  description: A dark steel crate with red bands and a letter S embossed on the front.
+  components:
+  - type: Icon
+    sprite: Structures/Storage/Crates/syndicate_secure.rsi
+  - type: Sprite
+    sprite: Structures/Storage/Crates/syndicate_secure.rsi
+  - type: AccessReader
+    access: [["SyndicateAgent", "NuclearOperative"]]
 
 - type: entity
   parent: CrateGeneric
@@ -531,6 +547,8 @@
         - CrateMask #this is so they can go under plastic flaps
         layer:
         - MachineLayer
+  - type: Paintable
+    group: null
 
 - type: entity
   id: CrateLockBoxEngineering
@@ -863,7 +881,7 @@
 - type: entity
   parent: CrateGenericSteel
   id: CrateSyndicate
-  name: Syndicate crate
+  name: syndicate crate
   description: A dark steel crate with red bands and a letter S embossed on the front.
   components:
   - type: Icon

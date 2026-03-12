@@ -214,7 +214,7 @@ public sealed partial class RevenantComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite), DataField("drainDamageMin")]
     public int DrainDamageMin = 1;
-    
+
     [ViewVariables(VVAccess.ReadWrite), DataField("drainDamageMax")]
     public int DrainDamageMax = 9;
 
@@ -248,7 +248,4 @@ public sealed partial class RevenantComponent : Component
     [DataField("harvestingState")]
     public string HarvestingState = "harvesting";
     #endregion
-
-    [DataField] public EntityUid? Action;
-    [DataField] public EntityUid? DrainAction; // Sunrise-edit
 }

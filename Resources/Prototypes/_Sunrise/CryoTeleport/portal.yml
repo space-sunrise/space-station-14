@@ -8,7 +8,7 @@
   - type: Physics
     bodyType: Static
   - type: Sprite
-    sprite: /Textures/Effects/portal.rsi
+    sprite: /Textures/_Sunrise/Effects/portal.rsi # Sunrise-Edit
     layers:
     - state: portal-blue
   - type: Fixtures

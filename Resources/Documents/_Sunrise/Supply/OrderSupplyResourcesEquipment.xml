@@ -1,0 +1,30 @@
+<Document>
+[head=2][color=#5e481d][bold]Заказ на закупку ресурсов, снаряжения[/bold][/color][/head]
+[color=#5e481d][bold]{corpString}[/bold][/color][mono] / КОД-СНБ[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#5e481d][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
+
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#5e481d][bold]Содержание[/bold][/color]
+
+Перечень товаров для заказа:
+
+
+Место доставки товара:
+
+
+[color=#5e481d][bold]Причина[/bold][/color]
+[mono]
+1)
+2)
+[/mono]
+
+[color=#666666][italic]Место для печатей[/italic][/color]
+
+
+</Document>

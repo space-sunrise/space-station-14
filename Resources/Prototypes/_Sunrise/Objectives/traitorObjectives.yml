@@ -5,7 +5,8 @@
   - type: Objective
     difficulty: 3
   - type: NotJobRequirement
-    job: BlueShieldOfficer
+    jobs:
+    - BlueShieldOfficer
   - type: StealCondition
     stealGroup: WeaponEnergyGunMultiphase
     owner: офицер «Синий щит»
@@ -14,6 +15,9 @@
   parent: BaseCMOStealObjective
   id: CMOAdvancedDefibrillatorStealObjective
   components:
+  - type: NotJobRequirement
+    jobs:
+    - ChiefMedicalOfficer
   - type: StealCondition
     stealGroup: AdvancedDefibrillator
 
@@ -24,7 +28,7 @@
   components:
   - type: Objective
     # its hard to steal and leaves evidence, but you can get away with it.
-    difficulty: 3.5
+    difficulty: 3
   - type: NotCommandRequirement
   - type: StealCondition
     stealGroup: PlutoniumCore
@@ -37,10 +41,9 @@
   parent: BaseTraitorStealObjective
   id: HandheldFaxStealObjective
   components:
-  - type: Objective
-    difficulty: 1.5
   - type: NotJobRequirement
-    job: NanoTrasenRepresentative
+    jobs:
+    - NanoTrasenRepresentative
   - type: StealCondition
     stealGroup: HandheldFax
     owner: job-name-ntrep

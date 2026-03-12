@@ -1,4 +1,5 @@
 ﻿using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared._Sunrise.TTS;
@@ -13,7 +14,6 @@ public sealed partial class TTSComponent : Component
     /// <summary>
     /// Prototype of used voice for TTS.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("voice", customTypeSerializer: typeof(PrototypeIdSerializer<TTSVoicePrototype>))]
-    public string? VoicePrototypeId { get; set; } = "Voljin"; // Fish-edit: Default voice when component is freshly added
+    [DataField("voice")]
+    public ProtoId<TTSVoicePrototype>? VoicePrototypeId;
 }

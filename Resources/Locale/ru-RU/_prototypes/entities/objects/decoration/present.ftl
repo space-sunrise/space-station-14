@@ -23,3 +23,4 @@ ent-PresentTrash = обёрточная бумага
 ent-PresentRandomAsh = { ent-PresentBase }
     .suffix = Заполненный, Пепел
     .desc = { ent-PresentBase.desc }
+

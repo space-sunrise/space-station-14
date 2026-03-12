@@ -258,7 +258,9 @@ public sealed partial class DockingSystem
                     var gridPosition = new EntityCoordinates(targetGrid, Vector2.Transform(Vector2.Zero, cacheMatty));
                     var spawnPosition = new EntityCoordinates(targetGridXform.MapUid!.Value, _transform.ToMapCoordinates(gridPosition).Position);
 
-                    var dockedBounds = new Box2Rotated(shuttleAABB.Translated(spawnPosition.Position), cacheTargetAngle, spawnPosition.Position);
+                    // TODO: use tight bounds
+                    var targetWorldAngle = (targetGridAngle + cacheTargetAngle).Reduced();
+                    var dockedBounds = new Box2Rotated(shuttleAABB.Translated(spawnPosition.Position), targetWorldAngle, spawnPosition.Position);
 
                     var grids = new List<Entity<MapGridComponent>>();
                     _mapManager.FindGridsIntersecting(targetGridXform.MapID, dockedBounds, ref grids, includeMap: false);

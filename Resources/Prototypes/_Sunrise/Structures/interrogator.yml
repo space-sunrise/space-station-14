@@ -48,7 +48,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Machine
-    board: ImplantExtractorMachineCircuitboard
+    board: InterrogatorMachineCircuitboard
   - type: WiresPanel
   - type: ApcPowerReceiver
     powerLoad: 200
@@ -70,10 +70,10 @@
     board: InterrogatorMachineCircuitboard
 
 - type: entity
-  id: ImplantExtractorMachineCircuitboard
+  id: InterrogatorMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: implant scan machine board
-  description: A machine printed circuit board for a implant extractor.
+  name: interrogator machine board
+  description: A machine printed circuit board for a interrogator.
   components:
   - type: Sprite
     state: medical
@@ -83,12 +83,3 @@
       Manipulator: 4
       Glass: 1
       Cable: 1
-
-- type: entity
-  id: InterrogatorMachineCircuitboard
-  parent: ImplantExtractorMachineCircuitboard
-  name: interrogator machine board
-  description: A machine printed circuit board for a interrogator.
-  components:
-  - type: Sprite
-    state: medical
