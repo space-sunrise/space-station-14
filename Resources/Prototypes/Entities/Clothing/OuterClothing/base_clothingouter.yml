@@ -185,18 +185,19 @@
           tags:
           - FitsHardsuit # Sunrise-End
   - type: GroupExamine
-  # Sunrise-start
-  - type: BedHealModifierClothing
-    multiplier: 0.25
-  # Sunrise-end
   - type: Tag
     tags:
     - Hardsuit
     - WhitelistChameleon
     - FullBodyOuter # Sunrise-Edit
     - WhitelistChameleonSuit #Sunrise-edit
-  - type: StaminaResistance #Sunrise-added
-    damageCoefficient: 0.8 #Sunrise-added
+  # Sunrise-start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  - type: BedHealModifierClothing
+    multiplier: 0.25
+  - type: ArmorSparkEffect #starlight
+  # Sunrise-end
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: DamageOnInteractProtection
@@ -207,7 +208,6 @@
   - type: HideLayerClothing
     slots:
     - Tail
-  - type: ArmorSparkEffect #starlight
 
 - type: entity
   abstract: true
