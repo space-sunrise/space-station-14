@@ -2616,6 +2616,13 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+    - NpcVeteranLeader
 
 - type: entity
   name: Shrap'nel Thunder

@@ -169586,7 +169586,7 @@ entities:
     - type: Transform
       pos: -45.5,47.5
       parent: 2
-- proto: StorageCanisterBase
+- proto: StorageCanister
   entities:
   - uid: 6467
     components:

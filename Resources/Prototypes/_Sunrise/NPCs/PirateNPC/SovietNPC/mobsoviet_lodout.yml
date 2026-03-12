@@ -191,8 +191,8 @@
     gloves: ClothingHandsMechMinotaur
     pocket1: GygaxTargetingElectronics
     pocket2: GygaxPeripheralsElectronics
-    shoes: GygaxCentralElectronics
-    back: ClothingBackOreCrateTier2Gygax
+    shoes: ClothingBackOreCrateTier2Gygax
+    back: GygaxCentralElectronics
     belt: MechPaintGygaxMolot
 
 - type: startingGear
@@ -201,6 +201,6 @@
     gloves: ClothingHandsMechMaxim
     pocket1: DurandCentralElectronics
     pocket2: DurandPeripheralsElectronics
-    shoes: DurandTargetingElectronics
-    back: ClothingBackOreCrateTier3Mech
+    shoes: ClothingBackOreCrateTier3Mech
+    back: DurandTargetingElectronics
     belt: MechPaintDurandDollhouse

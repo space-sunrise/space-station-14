@@ -44,6 +44,8 @@
   - type: Sprite
     sprite: _Sunrise/Clothing/Belt/soviet_webbing.rsi
     state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/soviet_webbing.rsi
 
 - type: entity
   parent: MercenaryWebbingBox
@@ -55,6 +57,8 @@
   - type: Sprite
     sprite: _Sunrise/Clothing/Belt/lightsovietwebbing.rsi
     state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/lightsovietwebbing.rsi
 
 - type: entity
   parent: MercenaryDuffelGiftBox
@@ -888,6 +892,11 @@
   id: ClothingBackOreCrateTier2Gygax
   categories: [ HideSpawnMenu ]
   components:
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - feet
+    sprite: /Textures/Structures/Storage/orebox.rsi
   - type: Sprite
     noRot: true
     sprite: /Textures/Structures/Storage/orebox.rsi

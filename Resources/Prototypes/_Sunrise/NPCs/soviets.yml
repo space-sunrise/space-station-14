@@ -210,7 +210,6 @@
     nameFormat: name-format-ert
   - type: Tag
     tags:
-    - NpcVeteranLeader
     - DoorBumpOpener
     - FootstepSound
   - type: ActionGun
@@ -1002,7 +1001,6 @@
     voice: TfEngineer
   - type: Tag
     tags:
-    - NpcVeteranLeader
     - DoorBumpOpener
     - FootstepSound
   - type: Loadout

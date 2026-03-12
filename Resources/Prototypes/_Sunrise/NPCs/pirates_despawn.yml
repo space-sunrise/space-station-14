@@ -267,7 +267,7 @@
       id: MobPirateT1ScrapRifleTimed
       prob: 1
     - !type:EntSelector
-      id: MobPirateT1SMGTimed
+      id: MobPirateT1PistolTimed
       prob: 1
     - !type:EntSelector
       id: MobPirateT1ScrapSMGTimed
@@ -653,7 +653,7 @@
   table: !type:AllSelector
     children:
     - !type:EntSelector
-      id: MobPirateT2ECutlassTimed
+      id: MobPirateT2CutlassTimed
       prob: 1
     - !type:EntSelector
       id: MobPirateT2ECutlassBolaTimed
@@ -767,7 +767,7 @@
       id: MobPirateT2RevolverCutlassTimed
       prob: 1
     - !type:EntSelector
-      id: MobPirateT2ECutlassStingerTimed
+      id: MobPirateT2CutlassTimed
       prob: 1
     - !type:EntSelector
       id: MobPirateT2DoubleRevolverTimed
@@ -810,7 +810,7 @@
       id: MobPirateT2ShotgunGlassTimed
       prob: 1
     - !type:EntSelector
-      id: MobPirateT2RevolverCutlassTimed
+      id: MobPirateT2DoubleFlintlockTimed
       prob: 1
     - !type:EntSelector
       id: MobPirateT2ECutlassBolaTimed
