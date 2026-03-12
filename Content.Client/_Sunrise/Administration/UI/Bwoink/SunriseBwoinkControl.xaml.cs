@@ -30,6 +30,8 @@ public sealed partial class SunriseBwoinkControl : Control
     private PlayerInfo? _currentPlayer;
     private int _newPlayerThreshold;
 
+
+    // TODO: разрезать конструктор на методы для улучшения читаемости
     public SunriseBwoinkControl()
     {
         RobustXamlLoader.Load(this);
