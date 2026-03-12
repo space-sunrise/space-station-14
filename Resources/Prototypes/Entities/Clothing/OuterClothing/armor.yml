@@ -27,7 +27,7 @@
     damageCoefficient: 0.90
   # Sunrise-start
   - type: BedHealModifierClothing
-    multiplier: 0.25
+    multiplier: 0.40
   - type: Tag
     tags:
     - Vest
