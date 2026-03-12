@@ -1,0 +1,61 @@
+using System;
+using Robust.Shared.Audio.Midi;
+
+#pragma warning disable IDE0130
+namespace Content.Server.Instruments;
+
+internal static class InstrumentMidiValidation
+{
+    public static bool IsValidChannel(int channel)
+    {
+        return channel >= 0 && channel < RobustMidiEvent.MaxChannels;
+    }
+
+    public static bool IsValidBatch(ReadOnlySpan<RobustMidiEvent> midiEvents)
+    {
+        if (midiEvents.IsEmpty)
+            return false;
+
+        foreach (var midiEvent in midiEvents)
+        {
+            if (!IsValidEvent(midiEvent))
+                return false;
+        }
+
+        return true;
+    }
+
+    public static bool IsValidEvent(RobustMidiEvent midiEvent)
+    {
+        return midiEvent.MidiCommand switch
+        {
+            RobustMidiCommand.NoteOff => IsSevenBit(midiEvent.Key) && IsSevenBit(midiEvent.Velocity),
+            RobustMidiCommand.NoteOn => IsSevenBit(midiEvent.Key) && IsSevenBit(midiEvent.Velocity),
+            RobustMidiCommand.AfterTouch => IsSevenBit(midiEvent.Key) && IsSevenBit(midiEvent.Value),
+            RobustMidiCommand.ControlChange => IsSevenBit(midiEvent.Control) && IsSevenBit(midiEvent.Value),
+            RobustMidiCommand.ProgramChange => IsSevenBit(midiEvent.Program),
+            RobustMidiCommand.ChannelPressure => IsSevenBit(midiEvent.Pressure),
+            RobustMidiCommand.PitchBend => IsSevenBit(midiEvent.Data1) && IsSevenBit(midiEvent.Data2),
+            RobustMidiCommand.SystemMessage => IsValidSystemMessage(midiEvent),
+            _ => false
+        };
+    }
+
+    private static bool IsValidSystemMessage(RobustMidiEvent midiEvent)
+    {
+        if (midiEvent.Data2 != 0)
+            return false;
+
+        return midiEvent.Data1 switch
+        {
+            0x0B => true,
+            0x00 => midiEvent.Status == 0xFF,
+            _ => false
+        };
+    }
+
+    private static bool IsSevenBit(int value)
+    {
+        return value is >= 0 and <= 0x7F;
+    }
+}

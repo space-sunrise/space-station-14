@@ -449,7 +449,9 @@
   recipeUnlocks:
   - BluespaceBeaker
   - SyringeBluespace
+  - VialBluespace # Sunrise-Add
   - BluespacePillPatchCanister # Sunrise-Add
+  - JugBluespace # Sunrise-Add
   radioChannels:
   - Medical
 

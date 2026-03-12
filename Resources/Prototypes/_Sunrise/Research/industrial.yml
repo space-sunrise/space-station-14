@@ -105,3 +105,19 @@
   cost: 15000
   recipeUnlocks:
   - ModsuitCore
+
+- type: technology
+  id: BluespaceGasTanks
+  name: research-technology-bluespace-gas-tanks
+  icon:
+    sprite: _Sunrise/Objects/Tanks/bluespace_air_tank.rsi
+    state: icon
+  discipline: Industrial
+  tier: 3
+  cost: 7500
+  recipeUnlocks:
+  - BluespaceAirTank
+  - SmallBluespaceAirTank
+  technologyPrerequisites:
+  - AdvancedAtmospherics
+  - BluespaceStorage

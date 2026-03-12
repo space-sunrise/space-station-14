@@ -295,7 +295,7 @@ ghost-role-information-expedition-pirate-rules = Вы [color=red][bold]Умны�
 ghost-role-information-rules-expedition-pirate-antagonist =
     Вы — [color=red][bold]NPC-пират[/bold][/color]. Ваши намерения вредят станции и её экипажу.
     Вы должны [bold]защищать[/bold] свою территорию и сотрудничать с другими пиратами.
-    Вам [color=green][bold]можно[/bold][/color] покинуть экспедицию на шаттле, но [color=red][bold]только[/bold][/color] если [color=orange][bold]утилизаторы[/bold][/color] (живые или мёртвые) находятся на шаттле.
+    Вам [color=red][bold]НЕЛЬЗЯ[/bold][/color] покинуть экспедицию на шаттле.
     Помните, что вы как [color=red][bold]NPC-пират[/bold][/color] [bold]ограничены[/bold] временем: через [color=red][bold]20 минут[/bold][/color] вас автоматически переместят в наблюдателя.
     Вы не помните ничего из своей предыдущей жизни и не помните ничего из того, что узнали, будучи призраком.
 ghost-role-information-expedition-soviet-name = Солдат из Бункера

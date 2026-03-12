@@ -25,4 +25,3 @@ loadout-group-engineering-trinkets = Engineering Trinkets
 loadout-group-medical-trinkets = Medical Trinkets
 loadout-group-prison-trinkets = Prison Trinkets
 loadout-group-bodycam = Bodycam
-loadout-group-pepper-spray = Pepper spray
