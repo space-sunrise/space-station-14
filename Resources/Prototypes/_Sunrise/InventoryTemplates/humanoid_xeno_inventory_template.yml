@@ -121,3 +121,10 @@
     uiWindowPos: 3,0
     strippingWindowPos: 0,5
     displayName: Back
+  - name: socks
+    slotTexture: socks
+    slotFlags: SOCKS
+    stripTime: 3
+    uiWindowPos: 3,0
+    strippingWindowPos: 2,3
+    displayName: Socks
