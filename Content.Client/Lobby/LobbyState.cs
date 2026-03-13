@@ -144,6 +144,7 @@ namespace Content.Client.Lobby
             _cfg.OnValueChanged(SunriseCCVars.LobbyArt, OnLobbyArtChanged, true);
             _cfg.OnValueChanged(SunriseCCVars.LobbyAnimation, OnLobbyAnimationChanged, true);
             _cfg.OnValueChanged(SunriseCCVars.LobbyParallax, OnLobbyParallaxChanged, true);
+            _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundPreset, OnLobbyBackgroundPresetChanged, true);
 
             // Subscribe to resource loaded events
             _netTexturesManager.ResourceLoaded += OnNetworkResourceLoaded;
@@ -165,8 +166,7 @@ namespace Content.Client.Lobby
             // Sunrise-Start
             // Explicitly restore lobby background after reconnection
             // This ensures the background is loaded even if CVar events were called before Lobby initialization
-            UpdateLobbyType();
-            UpdateCurrentLobbyBackground();
+            ApplyConfiguredLobbyBackground();
             // Sunrise-End
         }
 
@@ -194,6 +194,7 @@ namespace Content.Client.Lobby
 
             // Unsubscribe from resource loaded events
             _netTexturesManager.ResourceLoaded -= OnNetworkResourceLoaded;
+            _cfg.UnsubValueChanged(SunriseCCVars.LobbyBackgroundPreset, OnLobbyBackgroundPresetChanged);
         }
 
         private void RefreshServersHubHeader(List<ServerHubEntry> servers)
@@ -281,33 +282,7 @@ namespace Content.Client.Lobby
 
         private void LobbyStatusUpdated()
         {
-            // Sunrise-Start
-            UpdateLobbyType();
-            // Only update the selected background type, not all of them
-            var backgroundType = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
-            if (backgroundType == "Random" && _gameTicker.LobbyType != null)
-            {
-                backgroundType = _gameTicker.LobbyType;
-            }
-
-            if (!Enum.TryParse(backgroundType, out LobbyBackgroundType lobbyBackgroundType))
-            {
-                lobbyBackgroundType = LobbyBackgroundType.Parallax; // Default
-            }
-
-            switch (lobbyBackgroundType)
-            {
-                case LobbyBackgroundType.Parallax:
-                    UpdateLobbyParallax();
-                    break;
-                case LobbyBackgroundType.Art:
-                    UpdateLobbyArt();
-                    break;
-                case LobbyBackgroundType.Animation:
-                    UpdateLobbyAnimation();
-                    break;
-            }
-            // Sunrise-End
+            ApplyConfiguredLobbyBackground();
             UpdateLobbyUi();
         }
 
@@ -457,16 +432,15 @@ namespace Content.Client.Lobby
             UpdateLobbyParallax();
         }
 
+        private void OnLobbyBackgroundPresetChanged(string presetId)
+        {
+            ApplyConfiguredLobbyBackground();
+        }
+
         private void SetLobbyAnimation(string lobbyAnimation)
         {
-            var backgroundType = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
-            if (backgroundType == "Random" && _gameTicker.LobbyType != null)
-            {
-                backgroundType = _gameTicker.LobbyType;
-            }
-
-            if (!Enum.TryParse(backgroundType, out LobbyBackgroundType lobbyBackgroundType) ||
-                lobbyBackgroundType != LobbyBackgroundType.Animation)
+            if (ResolveLobbyBackgroundType(_cfg.GetCVar(SunriseCCVars.LobbyBackgroundType)) !=
+                LobbyBackgroundType.Animation)
             {
                 ClearLobbyAnimationState();
                 return;
@@ -519,14 +493,8 @@ namespace Content.Client.Lobby
 
         private void SetLobbyArt(string lobbyArt)
         {
-            var backgroundType = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
-            if (backgroundType == "Random" && _gameTicker.LobbyType != null)
-            {
-                backgroundType = _gameTicker.LobbyType;
-            }
-
-            if (!Enum.TryParse(backgroundType, out LobbyBackgroundType lobbyBackgroundType) ||
-                lobbyBackgroundType != LobbyBackgroundType.Art)
+            if (ResolveLobbyBackgroundType(_cfg.GetCVar(SunriseCCVars.LobbyBackgroundType)) !=
+                LobbyBackgroundType.Art)
             {
                 return;
             }
@@ -575,17 +543,9 @@ namespace Content.Client.Lobby
 
         private void SetLobbyParallax(string lobbyParallax)
         {
-            // Check if parallax background type is currently selected
-            var backgroundType = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
-            if (backgroundType == "Random" && _gameTicker.LobbyType != null)
+            if (ResolveLobbyBackgroundType(_cfg.GetCVar(SunriseCCVars.LobbyBackgroundType)) !=
+                LobbyBackgroundType.Parallax)
             {
-                backgroundType = _gameTicker.LobbyType;
-            }
-
-            if (!Enum.TryParse(backgroundType, out LobbyBackgroundType lobbyBackgroundType) ||
-                lobbyBackgroundType != LobbyBackgroundType.Parallax)
-            {
-                // Parallax is not the selected background type, don't load it
                 return;
             }
 
@@ -629,12 +589,9 @@ namespace Content.Client.Lobby
             Lobby!.LobbyParallax = lobbyParallaxPrototype.Parallax;
         }
 
-        private void UpdateLobbyType()
+        private void ApplyConfiguredLobbyBackground()
         {
-            if (_cfg.GetCVar(SunriseCCVars.LobbyBackgroundType) != "Random")
-                return;
-
-            SetLobbyBackgroundType("Random");
+            SetLobbyBackgroundType(_cfg.GetCVar(SunriseCCVars.LobbyBackgroundType));
         }
 
         private void UpdateLobbyAnimation()
@@ -683,62 +640,41 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            switch (ResolveLobbyBackgroundType(_cfg.GetCVar(SunriseCCVars.LobbyBackgroundType)))
-            {
-                case LobbyBackgroundType.Animation:
-                    UpdateLobbyAnimation();
-                    break;
-
-                case LobbyBackgroundType.Art:
-                    UpdateLobbyArt();
-                    break;
-
-                case LobbyBackgroundType.Parallax:
-                    UpdateLobbyParallax();
-                    break;
-            }
-        }
-
-        private void UpdateCurrentLobbyBackground()
-        {
-            switch (ResolveLobbyBackgroundType(_cfg.GetCVar(SunriseCCVars.LobbyBackgroundType)))
-            {
-                case LobbyBackgroundType.Parallax:
-                    UpdateLobbyParallax();
-                    break;
-                case LobbyBackgroundType.Art:
-                    UpdateLobbyArt();
-                    break;
-                case LobbyBackgroundType.Animation:
-                    UpdateLobbyAnimation();
-                    break;
-            }
+            ApplyConfiguredLobbyBackground();
         }
 
         private LobbyBackgroundType ResolveLobbyBackgroundType(string configuredType)
         {
+            var allowedTypes = GetAllowedLobbyBackgroundTypes();
+
             if (configuredType == "Random")
-                return ResolveServerOrRandomLobbyBackgroundType();
+                return ResolveServerOrRandomLobbyBackgroundType(allowedTypes);
 
-            if (Enum.TryParse<LobbyBackgroundType>(configuredType, true, out var resolvedType))
+            if (Enum.TryParse<LobbyBackgroundType>(configuredType, true, out var resolvedType) &&
+                allowedTypes.Contains(resolvedType))
+            {
                 return resolvedType;
+            }
 
-            var fallbackType = ResolveServerOrRandomLobbyBackgroundType();
-            _sawmill.Debug($"Saved lobby background type '{configuredType}' is invalid. Using transient fallback '{fallbackType}' for this session.");
+            var fallbackType = ResolveServerOrRandomLobbyBackgroundType(allowedTypes);
+            _sawmill.Debug($"Saved lobby background type '{configuredType}' is invalid or unavailable for the current preset. Using transient fallback '{fallbackType}' for this session.");
             return fallbackType;
         }
 
-        private LobbyBackgroundType ResolveServerOrRandomLobbyBackgroundType()
+        private LobbyBackgroundType ResolveServerOrRandomLobbyBackgroundType(IReadOnlyList<LobbyBackgroundType>? allowedTypes = null)
         {
-            if (Enum.TryParse<LobbyBackgroundType>(_gameTicker.LobbyType, true, out var serverType))
-                return serverType;
+            allowedTypes ??= GetAllowedLobbyBackgroundTypes();
 
-            return _random.Pick(new[]
+            if (Enum.TryParse<LobbyBackgroundType>(_gameTicker.LobbyType, true, out var serverType) &&
+                allowedTypes.Contains(serverType))
             {
-                LobbyBackgroundType.Animation,
-                LobbyBackgroundType.Parallax,
-                LobbyBackgroundType.Art
-            });
+                return serverType;
+            }
+
+            if (allowedTypes.Count == 0)
+                return LobbyBackgroundType.Parallax;
+
+            return _random.Pick(allowedTypes);
         }
 
         private string? ResolveLobbyPrototypeId<TPrototype>(
@@ -747,51 +683,130 @@ namespace Content.Client.Lobby
             string prototypeKind)
             where TPrototype : class, IPrototype
         {
-            if (configuredId == "Random")
-                return ResolveServerOrRandomLobbyPrototypeId<TPrototype>(serverFallbackId);
+            var allowedIds = GetAllowedLobbyPrototypeIds<TPrototype>();
 
-            if (TryResolveLobbyPrototypeId<TPrototype>(configuredId, out var resolvedConfiguredId))
+            if (configuredId == "Random")
+                return ResolveServerOrRandomLobbyPrototypeId<TPrototype>(serverFallbackId, allowedIds);
+
+            if (TryResolveLobbyPrototypeId(configuredId, allowedIds, out var resolvedConfiguredId))
                 return resolvedConfiguredId;
 
-            var fallbackId = ResolveServerOrRandomLobbyPrototypeId<TPrototype>(serverFallbackId);
+            var fallbackId = ResolveServerOrRandomLobbyPrototypeId<TPrototype>(serverFallbackId, allowedIds);
             if (fallbackId != null)
             {
-                _sawmill.Debug($"Saved lobby {prototypeKind} '{configuredId}' is invalid. Using transient fallback '{fallbackId}' for this session.");
+                _sawmill.Debug($"Saved lobby {prototypeKind} '{configuredId}' is invalid or unavailable for the current preset. Using transient fallback '{fallbackId}' for this session.");
                 return fallbackId;
             }
 
-            _sawmill.Debug($"Saved lobby {prototypeKind} '{configuredId}' is invalid and no fallback {prototypeKind} is available.");
+            _sawmill.Debug($"Saved lobby {prototypeKind} '{configuredId}' is invalid or unavailable for the current preset and no fallback {prototypeKind} is available.");
             return null;
         }
 
-        private string? ResolveServerOrRandomLobbyPrototypeId<TPrototype>(string? serverFallbackId)
+        private string? ResolveServerOrRandomLobbyPrototypeId<TPrototype>(string? serverFallbackId, HashSet<string> allowedIds)
             where TPrototype : class, IPrototype
         {
-            if (TryResolveLobbyPrototypeId<TPrototype>(serverFallbackId, out var resolvedServerFallback))
+            if (TryResolveLobbyPrototypeId(serverFallbackId, allowedIds, out var resolvedServerFallback))
                 return resolvedServerFallback;
 
-            var candidates = _protoMan.EnumeratePrototypes<TPrototype>().ToList();
-            if (candidates.Count == 0)
+            if (allowedIds.Count == 0)
                 return null;
 
-            return _random.Pick(candidates).ID;
+            return _random.Pick(allowedIds.ToArray());
         }
 
-        private bool TryResolveLobbyPrototypeId<TPrototype>(
+        private bool TryResolveLobbyPrototypeId(
             string? candidateId,
+            HashSet<string> allowedIds,
             [NotNullWhen(true)] out string? resolvedId)
-            where TPrototype : class, IPrototype
         {
             resolvedId = null;
 
             if (string.IsNullOrWhiteSpace(candidateId) || candidateId == "Random")
                 return false;
 
-            if (!_protoMan.TryIndex<TPrototype>(candidateId, out var prototype))
+            if (!allowedIds.Contains(candidateId))
                 return false;
 
-            resolvedId = prototype.ID;
+            resolvedId = candidateId;
             return true;
+        }
+
+        private IReadOnlyList<LobbyBackgroundType> GetAllowedLobbyBackgroundTypes()
+        {
+            var availableTypes = new List<LobbyBackgroundType>();
+
+            if (GetAllowedLobbyAnimationIds().Count > 0)
+                availableTypes.Add(LobbyBackgroundType.Animation);
+
+            if (GetAllowedLobbyParallaxIds().Count > 0)
+                availableTypes.Add(LobbyBackgroundType.Parallax);
+
+            if (GetAllowedLobbyArtIds().Count > 0)
+                availableTypes.Add(LobbyBackgroundType.Art);
+
+            if (availableTypes.Count > 0)
+                return availableTypes;
+
+            var fallbackTypes = new List<LobbyBackgroundType>();
+
+            if (_protoMan.EnumeratePrototypes<LobbyAnimationPrototype>().Any())
+                fallbackTypes.Add(LobbyBackgroundType.Animation);
+
+            if (_protoMan.EnumeratePrototypes<LobbyParallaxPrototype>().Any())
+                fallbackTypes.Add(LobbyBackgroundType.Parallax);
+
+            if (_protoMan.EnumeratePrototypes<LobbyArtPrototype>().Any())
+                fallbackTypes.Add(LobbyBackgroundType.Art);
+
+            return fallbackTypes;
+        }
+
+        private HashSet<string> GetAllowedLobbyPrototypeIds<TPrototype>()
+            where TPrototype : class, IPrototype
+        {
+            return typeof(TPrototype) switch
+            {
+                var type when type == typeof(LobbyArtPrototype) => GetAllowedLobbyArtIds(),
+                var type when type == typeof(LobbyAnimationPrototype) => GetAllowedLobbyAnimationIds(),
+                var type when type == typeof(LobbyParallaxPrototype) => GetAllowedLobbyParallaxIds(),
+                _ => _protoMan.EnumeratePrototypes<TPrototype>().Select(x => x.ID).ToHashSet()
+            };
+        }
+
+        private HashSet<string> GetAllowedLobbyArtIds()
+        {
+            var preset = GetCurrentLobbyBackgroundPreset();
+            return _protoMan.EnumeratePrototypes<LobbyArtPrototype>()
+                .Where(x => preset == null || preset.AllArtsAllowed || preset.WhitelistArts.Contains(x.ID))
+                .Select(x => x.ID)
+                .ToHashSet();
+        }
+
+        private HashSet<string> GetAllowedLobbyAnimationIds()
+        {
+            var preset = GetCurrentLobbyBackgroundPreset();
+            return _protoMan.EnumeratePrototypes<LobbyAnimationPrototype>()
+                .Where(x => preset == null || preset.AllAnimationsAllowed || preset.WhitelistAnimations.Contains(x.ID))
+                .Select(x => x.ID)
+                .ToHashSet();
+        }
+
+        private HashSet<string> GetAllowedLobbyParallaxIds()
+        {
+            var preset = GetCurrentLobbyBackgroundPreset();
+            return _protoMan.EnumeratePrototypes<LobbyParallaxPrototype>()
+                .Where(x => preset == null || preset.AllParallaxesAllowed || preset.WhitelistParallaxes.Contains(x.ID))
+                .Select(x => x.ID)
+                .ToHashSet();
+        }
+
+        private LobbyBackgroundPresetPrototype? GetCurrentLobbyBackgroundPreset()
+        {
+            var presetId = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundPreset);
+            if (_protoMan.TryIndex<LobbyBackgroundPresetPrototype>(presetId, out var preset))
+                return preset;
+
+            return null;
         }
 
         private void ApplyLobbyAnimationState(NetTexturesManager.NetTextureAnimationState state, Vector2 scale)

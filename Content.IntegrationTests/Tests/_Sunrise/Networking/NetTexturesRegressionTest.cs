@@ -9,6 +9,7 @@ using Content.Client.GameTicking.Managers;
 using Content.Client.Lobby;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.NetTextures;
+using Robust.Client.ResourceManagement;
 using Robust.Shared.GameObjects;
 using Robust.Client.State;
 using Robust.Shared.ContentPack;
@@ -165,6 +166,72 @@ public sealed class NetTexturesRegressionTest
     }
 
     [Test]
+    public async Task SavedUnavailableWhitelistedLobbyArtUsesTransientAllowedFallbackWithoutMutatingSettings()
+    {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings
+        {
+            InLobby = true,
+            Dirty = true
+        });
+
+        var client = pair.Client;
+        var stateManager = client.Resolve<IStateManager>();
+        var resourceCache = client.Resolve<IResourceCache>();
+        var clientProtoMan = client.Resolve<IPrototypeManager>();
+        var serverProtoMan = pair.Server.Resolve<IPrototypeManager>();
+
+        const string presetId = "NetTexturesRegressionWhitelistArtOnly";
+        const string allowedArtId = "NetTexturesRegressionAllowedWhitelistArt";
+        const string deniedArtId = "NetTexturesRegressionDeniedWhitelistArt";
+        const string allowedArtPath = "Logo/logo.png";
+        const string deniedArtPath = "Interface/VerbIcons/delete_transparent.svg.192dpi.png";
+        var whitelistPrototype = $$"""
+- type: lobbyArt
+  id: {{allowedArtId}}
+  background: {{allowedArtPath}}
+- type: lobbyArt
+  id: {{deniedArtId}}
+  background: {{deniedArtPath}}
+- type: lobbyBackgroundPreset
+  id: {{presetId}}
+  whitelistArts:
+  - {{allowedArtId}}
+""";
+
+        await pair.Server.WaitPost(() =>
+        {
+            serverProtoMan.LoadString(whitelistPrototype, overwrite: true);
+            serverProtoMan.ResolveResults();
+        });
+        await client.WaitPost(() =>
+        {
+            clientProtoMan.LoadString(whitelistPrototype, overwrite: true);
+            clientProtoMan.ResolveResults();
+            client.CfgMan.SetCVar(SunriseCCVars.LobbyArt, deniedArtId);
+            client.CfgMan.SetCVar(SunriseCCVars.LobbyBackgroundType, "Art");
+        });
+
+        pair.Server.CfgMan.SetCVar(SunriseCCVars.LobbyBackgroundPreset, presetId);
+        await pair.RunTicksSync(10);
+
+        await client.WaitAssertion(() =>
+        {
+            var lobbyState = stateManager.CurrentState as LobbyState;
+            Assert.That(resourceCache.TryGetResource<TextureResource>(new ResPath("/Textures/Logo/logo.png"), out var allowedTextureResource), Is.True);
+            Assert.That(resourceCache.TryGetResource<TextureResource>(new ResPath("/Textures/Interface/VerbIcons/delete_transparent.svg.192dpi.png"), out var deniedTextureResource), Is.True);
+            Assert.That(lobbyState, Is.Not.Null);
+            Assert.That(lobbyState!.Lobby, Is.Not.Null);
+            Assert.That(lobbyState.Lobby!.LoadingAnimationContainer.Visible, Is.False);
+            Assert.That(lobbyState.Lobby.LobbyArt.Visible, Is.True);
+            Assert.That(lobbyState.Lobby.LobbyArt.Texture, Is.EqualTo(allowedTextureResource!.Texture));
+            Assert.That(lobbyState.Lobby.LobbyArt.Texture, Is.Not.EqualTo(deniedTextureResource!.Texture));
+            Assert.That(client.CfgMan.GetCVar(SunriseCCVars.LobbyArt), Is.EqualTo(deniedArtId));
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
     public async Task InvalidSavedNetworkLobbyAnimationUsesTransientFallbackWithoutMutatingSettings()
     {
         await using var pair = await PoolManager.GetServerClient(new PoolSettings
@@ -215,6 +282,71 @@ public sealed class NetTexturesRegressionTest
             Assert.That(lobbyState.Lobby.LobbyAnimation.Visible, Is.True);
             Assert.That(lobbyState.Lobby.LobbyAnimation.DisplayRect.Texture, Is.Not.Null);
             Assert.That(client.CfgMan.GetCVar(SunriseCCVars.LobbyAnimation), Is.EqualTo(invalidAnimationId));
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task AnimationOnlyWhitelistFallsBackFromSavedArtTypeWithoutBlackScreen()
+    {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings
+        {
+            InLobby = true,
+            Dirty = true
+        });
+
+        var client = pair.Client;
+        var stateManager = client.Resolve<IStateManager>();
+        var clientGameTicker = client.Resolve<IEntityManager>().System<ClientGameTicker>();
+        var clientProtoMan = client.Resolve<IPrototypeManager>();
+        var serverProtoMan = pair.Server.Resolve<IPrototypeManager>();
+
+        const string presetId = "NetTexturesRegressionWhitelistAnimationOnly";
+        const string animationId = "NetTexturesRegressionWhitelistedAnimation";
+        const string deniedArtId = "NetTexturesRegressionUnusedArt";
+        var whitelistPrototype = $$"""
+- type: lobbyAnimation
+  id: {{animationId}}
+  animation: _Sunrise/loading.rsi
+  state: loading
+- type: lobbyArt
+  id: {{deniedArtId}}
+  background: Logo/logo.png
+- type: lobbyBackgroundPreset
+  id: {{presetId}}
+  whitelistAnimations:
+  - {{animationId}}
+""";
+
+        await pair.Server.WaitPost(() =>
+        {
+            serverProtoMan.LoadString(whitelistPrototype, overwrite: true);
+            serverProtoMan.ResolveResults();
+        });
+        await client.WaitPost(() =>
+        {
+            clientProtoMan.LoadString(whitelistPrototype, overwrite: true);
+            clientProtoMan.ResolveResults();
+            client.CfgMan.SetCVar(SunriseCCVars.LobbyArt, deniedArtId);
+            client.CfgMan.SetCVar(SunriseCCVars.LobbyBackgroundType, "Art");
+        });
+
+        pair.Server.CfgMan.SetCVar(SunriseCCVars.LobbyBackgroundPreset, presetId);
+        await pair.RunTicksSync(10);
+
+        await client.WaitAssertion(() =>
+        {
+            var lobbyState = stateManager.CurrentState as LobbyState;
+            Assert.That(lobbyState, Is.Not.Null);
+            Assert.That(lobbyState!.Lobby, Is.Not.Null);
+            Assert.That(clientGameTicker.LobbyType, Is.EqualTo("Animation"));
+            Assert.That(clientGameTicker.LobbyAnimation?.ToString(), Is.EqualTo(animationId));
+            Assert.That(lobbyState.Lobby!.LoadingAnimationContainer.Visible, Is.False);
+            Assert.That(lobbyState.Lobby.LobbyAnimation.Visible, Is.True);
+            Assert.That(lobbyState.Lobby.LobbyAnimation.DisplayRect.Texture, Is.Not.Null);
+            Assert.That(lobbyState.Lobby.LobbyArt.Visible, Is.False);
+            Assert.That(client.CfgMan.GetCVar(SunriseCCVars.LobbyBackgroundType), Is.EqualTo("Art"));
         });
 
         await pair.CleanReturnAsync();
