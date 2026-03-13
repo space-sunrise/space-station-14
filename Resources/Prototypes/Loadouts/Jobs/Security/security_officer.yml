@@ -34,8 +34,6 @@
   equipment:
     head: ClothingHeadHatSecurityTrooper
 
-# Jumpsuit
-- type: loadout
   id: SecurityJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitSec
@@ -62,8 +60,6 @@
 
 - type: loadout
   id: SeniorOfficerJumpsuit
-  effects:
-  - !type:GroupLoadoutEffect
     proto: SeniorOfficer
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorOfficer
