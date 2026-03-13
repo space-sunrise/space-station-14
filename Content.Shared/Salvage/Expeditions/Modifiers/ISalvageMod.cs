@@ -1,6 +1,6 @@
 namespace Content.Shared.Salvage.Expeditions.Modifiers;
 
-public partial interface ISalvageMod
+public partial interface ISalvageMod // Sunrise - edit 
 {
     /// <summary>
     /// Player-friendly version describing this modifier.
