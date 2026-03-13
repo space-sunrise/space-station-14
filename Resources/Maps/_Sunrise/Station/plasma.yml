@@ -72252,7 +72252,7 @@ entities:
       pos: -120.5,-39.5
       parent: 2
     - type: WarpPoint
-      location: Стойка РНД
+      location: Стойка НИО
 - proto: DefaultStationBeaconRobotics
   entities:
   - uid: 11031
@@ -72284,7 +72284,7 @@ entities:
       pos: -117.5,-45.5
       parent: 2
     - type: WarpPoint
-      location: РНД
+      location: НИО
 - proto: DefaultStationBeaconSecurity
   entities:
   - uid: 11035
@@ -82689,7 +82689,7 @@ entities:
   - uid: 12806
     components:
     - type: MetaData
-      name: факс дальнего действия (РНД)
+      name: факс дальнего действия (НИО)
     - type: Transform
       pos: -118.5,-40.5
       parent: 2
@@ -137091,7 +137091,7 @@ entities:
 
         - Подключить солнечные батареи
 
-        - Подключить РНД к электросети [italic](Другие ребята забыли об этом?)[/italic]
+        - Подключить НИО к электросети [italic](Другие ребята забыли об этом?)[/italic]
 
 
 
@@ -179199,8 +179199,7 @@ entities:
       pos: -74.5,-0.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 2378
 - proto: WeaponFlareGunSecurity

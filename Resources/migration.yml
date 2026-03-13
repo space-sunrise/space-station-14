@@ -303,7 +303,7 @@ CartridgeRifleRubber: CartridgeRifleSP # Sunrise-Edit
 CartridgeCaselessRifleRubber: CartridgeCaselessRifle
 # Sunrise-Edit
 # MagazinePistolRubber: MagazinePistol
-MagazinePistolSubMachineGunRubber: MagazinePistolSubMachineGunSP # Sunrise-Edit
+#MagazinePistolSubMachineGunRubber: MagazinePistolSubMachineGunSP # Sunrise-Edit
 MagazinePistolCaselessRifleRubber: MagazinePistolCaselessRifle
 # Sunrise-Edit
 # MagazineMagnumRubber: MagazineMagnum
@@ -986,4 +986,8 @@ ClothingOuterSuitAreopagite: null
 SuitStorageBlueshield: SuitStorageBlueShield
 GunSafeIonRifle: GunSafeSuperIonRifle
 GunSafeSMRTGun: GunSafeSuperweaponSmartGun
+
+#2026-02-28
+CartridgeRifle: CartridgeRifleSP
+MagazinePistolHighCapacity: MagazinePistolHighCapacitySP
 # region Sunrise-End

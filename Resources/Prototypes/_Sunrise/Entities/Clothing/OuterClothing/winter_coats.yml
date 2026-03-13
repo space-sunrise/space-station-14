@@ -28,7 +28,6 @@
       - state: winterbits-equipped-OUTERCLOTHING
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterColorCyan
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - ClothMade

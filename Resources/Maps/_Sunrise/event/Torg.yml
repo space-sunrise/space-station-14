@@ -268,8 +268,7 @@ entities:
       pos: 1.5,2.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
   - uid: 426
@@ -278,8 +277,7 @@ entities:
       pos: 1.5,10.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
   - uid: 427
@@ -288,8 +286,7 @@ entities:
       pos: 1.5,13.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
 - proto: APCBasic
@@ -993,8 +990,7 @@ entities:
       pos: 5.5,4.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
   - uid: 144
@@ -1003,8 +999,7 @@ entities:
       pos: -2.5,11.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
   - uid: 150
@@ -1013,8 +1008,7 @@ entities:
       pos: -3.5,11.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
   - uid: 151
@@ -1023,8 +1017,7 @@ entities:
       pos: 3.5,11.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
   - uid: 152
@@ -1033,8 +1026,7 @@ entities:
       pos: 4.5,11.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
   - uid: 153
@@ -1043,8 +1035,7 @@ entities:
       pos: 1.5,11.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
   - uid: 154
@@ -1053,8 +1044,7 @@ entities:
       pos: 0.5,11.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
   - uid: 155
@@ -1063,8 +1053,7 @@ entities:
       pos: -0.5,11.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
   - uid: 156
@@ -1073,8 +1062,7 @@ entities:
       pos: 0.5,7.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
   - uid: 157
@@ -1083,8 +1071,7 @@ entities:
       pos: 3.5,7.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
   - uid: 158
@@ -1093,8 +1080,7 @@ entities:
       pos: -2.5,7.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
   - uid: 169
@@ -1103,8 +1089,7 @@ entities:
       pos: 1.5,4.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
   - uid: 171
@@ -1113,8 +1098,7 @@ entities:
       pos: -2.5,4.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
 - proto: GasOutletInjector
@@ -1413,8 +1397,7 @@ entities:
       pos: 0.5,2.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
     - type: AtmosPipeColor
@@ -1426,8 +1409,7 @@ entities:
       pos: 1.5,9.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
     - type: AtmosPipeColor
@@ -1438,8 +1420,7 @@ entities:
       pos: 0.5,13.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
     - type: AtmosPipeColor
@@ -1453,8 +1434,7 @@ entities:
       pos: -0.5,2.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
     - type: AtmosPipeColor
@@ -1466,8 +1446,7 @@ entities:
       pos: 0.5,10.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
     - type: AtmosPipeColor
@@ -1478,8 +1457,7 @@ entities:
       pos: -0.5,13.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 159
     - type: AtmosPipeColor

@@ -280,6 +280,16 @@
   - WeaponDisabler
   - WeaponTaser
 
+- type: loadoutGroup
+  id: SecurityGlasses
+  name: loadout-group-security-glasses
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - SecurityEyesHud
+  - SecurityEyesGlasses
+  - SecurityEyesEyepatchHud
+
 # Security Cadet
 - type: loadoutGroup
   id: SunriseWeaponCadet

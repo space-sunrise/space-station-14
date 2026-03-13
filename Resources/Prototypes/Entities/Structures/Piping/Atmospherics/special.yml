@@ -68,4 +68,6 @@
   components:
   - type: Stealth
   - type: StealthOnMove
+    passiveVisibilityRate: 0
+    movementVisibilityRate: 0
 # Sunrise-end

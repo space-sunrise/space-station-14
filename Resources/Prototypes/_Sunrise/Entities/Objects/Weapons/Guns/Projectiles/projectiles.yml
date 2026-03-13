@@ -13,6 +13,9 @@
       types:
         Blunt: 5
     deleteOnCollide: false
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
   - type: StartTimerOnShoot
   - type: TimerTrigger
     delay: 2

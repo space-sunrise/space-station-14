@@ -68,7 +68,7 @@
 - type: latheRecipePack
   id: ServiceBoards
   recipes:
-  - BiofabricatorMachineCircuitboard
+  #- BiofabricatorMachineCircuitboard # Sunrise-edit
   - FatExtractorMachineCircuitboard
   - HydroponicsTrayMachineCircuitboard # roundstart gear being unlocked roundstart when
   - SeedExtractorMachineCircuitboard # ^

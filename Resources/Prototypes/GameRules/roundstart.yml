@@ -577,12 +577,6 @@
   parent: BaseGameRule
   components:
   - type: BasicStationEventScheduler
-    # Sunrise-Start
-    minimumTimeUntilFirstEvent: 600 # 10 mins
-    minMaxEventTiming:
-      min: 600 # 10 mins
-      max: 900 # 15 mins
-    # Sunrise-End
     scheduledGameRules: !type:NestedSelector
       tableId: BasicGameRulesTable
 

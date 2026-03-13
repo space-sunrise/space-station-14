@@ -41,13 +41,17 @@
   - type: AtmosAlertsComputer
     beepSound:
       path: /Audio/_Sunrise/Effects/beeps.ogg
+      # Sunrise - Start
+      params:
+        volume: -5
+      # Sunrise - End
   - type: ActivatableUI
     singleUser: true
     key: enum.AtmosAlertsComputerUiKey.Key
   - type: UserInterface
     interfaces:
         enum.AtmosAlertsComputerUiKey.Key:
-            type: AtmosAlertsComputerBoundUserInterface
+            type: SunriseAtmosAlertsComputerBoundUserInterface # Sunrise - edit
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
   - type: GuideHelp

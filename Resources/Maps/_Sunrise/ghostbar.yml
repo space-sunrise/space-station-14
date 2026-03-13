@@ -58,9 +58,7 @@ entities:
     - type: Transform
     - type: Map
       mapPaused: True
-    - type: PhysicsMap
     - type: GridTree
-    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
     - type: LoadedMap
@@ -3190,33 +3188,6 @@ entities:
     - type: Transform
       pos: 16.5,-10.5
       parent: 2
-- proto: APECircuitboard
-  entities:
-  - uid: 2866
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: ArtifactAnalyzerMachineCircuitboard
-  entities:
-  - uid: 2856
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: ArtifactCrusherMachineCircuitboard
-  entities:
-  - uid: 2842
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 2164
@@ -3268,24 +3239,6 @@ entities:
     - type: Transform
       pos: 15.5,-2.5
       parent: 2
-- proto: AutolatheHyperConvectionMachineCircuitboard
-  entities:
-  - uid: 2864
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: AutolatheMachineCircuitboard
-  entities:
-  - uid: 2859
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: BarSign
   entities:
   - uid: 1496
@@ -3420,15 +3373,6 @@ entities:
     - type: Transform
       pos: 17.5,-47.5
       parent: 2
-- proto: BiofabricatorMachineCircuitboard
-  entities:
-  - uid: 2851
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: BlastDoor
   entities:
   - uid: 1769
@@ -3449,15 +3393,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -6.5,-10.5
       parent: 2
-- proto: BlockGameArcadeComputerCircuitboard
-  entities:
-  - uid: 2861
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: BluespaceBeaker
   entities:
   - uid: 2970
@@ -3874,15 +3809,6 @@ entities:
     - type: Transform
       pos: -29.5,2.5
       parent: 2
-- proto: CargoTelepadMachineCircuitboard
-  entities:
-  - uid: 2848
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: Carpet
   entities:
   - uid: 1472
@@ -5406,15 +5332,6 @@ entities:
     - type: Transform
       pos: 16.5,-10.5
       parent: 2
-- proto: CloningPodMachineCircuitboard
-  entities:
-  - uid: 2844
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ClosetChefFilled
   entities:
   - uid: 218
@@ -5735,15 +5652,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 8.5,-51.5
       parent: 2
-- proto: CondenserMachineCircuitBoard
-  entities:
-  - uid: 2855
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: CrateArtifactContainer
   entities:
   - uid: 2669
@@ -5875,15 +5783,6 @@ entities:
     - type: Transform
       pos: -23.541016,0.59176356
       parent: 2
-- proto: CryoPodMachineCircuitboard
-  entities:
-  - uid: 2839
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: CultAltarSpawner
   entities:
   - uid: 1937
@@ -5967,15 +5866,6 @@ entities:
     - type: Transform
       pos: 11.311359,-13.583601
       parent: 2
-- proto: DiagnoserMachineCircuitboard
-  entities:
-  - uid: 2867
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: DrinkAbsintheGlass
   entities:
   - uid: 1461
@@ -7120,15 +7010,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 15.5,-0.5
       parent: 2
-- proto: GyroscopeMachineCircuitboard
-  entities:
-  - uid: 2862
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: HeadVulpkanin
   entities:
   - uid: 1662
@@ -7139,24 +7020,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -13.4150715,-18.70814
       parent: 2
-- proto: HellfireFreezerMachineCircuitBoard
-  entities:
-  - uid: 2853
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: HellfireHeaterMachineCircuitBoard
-  entities:
-  - uid: 2845
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: HighSecCaptainLocked
   entities:
   - uid: 1965
@@ -7290,13 +7153,6 @@ entities:
       parent: 2
 - proto: HydroponicsTrayMachineCircuitboard
   entities:
-  - uid: 2860
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
   - uid: 2941
     components:
     - type: Transform
@@ -7307,15 +7163,6 @@ entities:
     - type: Transform
       pos: 21.428116,-10.2640505
       parent: 2
-- proto: IDComputerCircuitboard
-  entities:
-  - uid: 2840
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: KitchenMicrowave
   entities:
   - uid: 53
@@ -7647,15 +7494,6 @@ entities:
     - type: Transform
       pos: 17.5,-48.5
       parent: 2
-- proto: MedicalRecordsComputerCircuitboard
-  entities:
-  - uid: 2841
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: MedicalScannerMachineCircuitboard
   entities:
   - uid: 2639
@@ -7663,15 +7501,6 @@ entities:
     - type: Transform
       pos: 16.349323,-10.524979
       parent: 2
-- proto: MedicalTechFabCircuitboard
-  entities:
-  - uid: 2865
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: MicrowaveMachineCircuitboard
   entities:
   - uid: 2031
@@ -8509,24 +8338,6 @@ entities:
     - type: Transform
       pos: -4.5,-14.5
       parent: 2
-- proto: PowerCageRechargerCircuitboard
-  entities:
-  - uid: 2846
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: PowerComputerCircuitboard
-  entities:
-  - uid: 2847
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: Poweredlight
   entities:
   - uid: 2762
@@ -9975,15 +9786,6 @@ entities:
     - type: Transform
       pos: 13.5,-13.5
       parent: 2
-- proto: ReagentGrinderMachineCircuitboard
-  entities:
-  - uid: 2852
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ReinforcedWindow
   entities:
   - uid: 697
@@ -10043,15 +9845,6 @@ entities:
     - type: Transform
       pos: -20.5,-2.5
       parent: 2
-- proto: ResearchComputerCircuitboard
-  entities:
-  - uid: 2850
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: RevolverCapGun
   entities:
   - uid: 2903
@@ -10590,13 +10383,6 @@ entities:
       parent: 2
 - proto: SMESMachineCircuitboard
   entities:
-  - uid: 2857
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
   - uid: 2915
     components:
     - type: Transform
@@ -10646,15 +10432,6 @@ entities:
     - type: Transform
       pos: 22.478554,-13.293984
       parent: 2
-- proto: SolarControlComputerCircuitboard
-  entities:
-  - uid: 2854
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: SpacemenFigureSpawner
   entities:
   - uid: 2749
@@ -10669,15 +10446,6 @@ entities:
     - type: Transform
       pos: -8.5,-5.5
       parent: 2
-- proto: SpaceVillainArcadeComputerCircuitboard
-  entities:
-  - uid: 2858
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: SpawnMobAlexander
   entities:
   - uid: 1206
@@ -10862,15 +10630,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -8.5,-0.5
       parent: 2
-- proto: StationRecordsComputerCircuitboard
-  entities:
-  - uid: 2849
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: StatueVenusBlue
   entities:
   - uid: 1208
@@ -11046,15 +10805,6 @@ entities:
     - type: Transform
       pos: 16.5,-10.5
       parent: 2
-- proto: SurveillanceWirelessCameraAnchoredCircuitboard
-  entities:
-  - uid: 2838
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: SyringeRomerolNT
   entities:
   - uid: 630
@@ -12166,15 +11916,6 @@ entities:
     - type: Transform
       pos: 6.6013417,24.384796
       parent: 2
-- proto: VaccinatorMachineCircuitboard
-  entities:
-  - uid: 2863
-    components:
-    - type: Transform
-      parent: 2837
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: VariantCubeBox
   entities:
   - uid: 937

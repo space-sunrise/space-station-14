@@ -67,13 +67,11 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/captain.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/captain.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - Vest
     - NudeBottom  # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingOuterCoatCaptain
@@ -102,13 +100,11 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.8
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClothMade
     - NudeBottom # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -127,13 +123,11 @@
         Slash: 0.8
         Piercing: 0.75
         Heat: 0.9
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - Vest
       - NudeBottom  # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingOuterStorageFoldableBase
@@ -157,13 +151,11 @@
   id: ClothingOuterCoatNtrepOpen
   name: nt representive jacket
   components:
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - Vest
       - NudeBottom  # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -178,13 +170,11 @@
     modifiers:
       coefficients:
         Caustic: 0.75
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - Vest
       - NudeBottom  # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: [ClothingOuterWinterCoat, BaseCommandContraband]
@@ -196,13 +186,11 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/adjutantcoat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/adjutantcoat.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - Vest
       - NudeBottom  # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: [ClothingOuterCoatAdjutant, BaseCommandContraband]
@@ -214,13 +202,11 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cecoat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cecoat.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - Vest
       - NudeBottom  # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingOuterCoatLabCmo
@@ -238,13 +224,11 @@
   id: ClothingOuterCoatLabCMOOvercoatOpened
   name: cmo lab coat
   components:
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - Vest
       - NudeFull  # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: [ClothingOuterCoatHOP, BaseCommandContraband]
@@ -256,13 +240,11 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/hopcoat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/hopcoat.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - Vest
       - NudeBottom  # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingOuterCoatHoSGreatcoat
@@ -274,13 +256,11 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/hos_coat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/hos_coat.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - Vest
       - NudeBottom  # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -292,13 +272,11 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/iaacoat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/iaacoat.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - Vest
       - NudeBottom  # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -331,13 +309,11 @@
   id: ClothingOuterCoatLabResearchDirectorOpened
   name: research director lab coat
   components:
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - Vest
       - NudeFull  # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingOuterCoatHoSGreatcoat
@@ -376,13 +352,11 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/kim.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/kim.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - Vest
       - NudeBottom  # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingOuterBase
@@ -394,13 +368,11 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - Vest
       - NudeBottom  # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingOuterCoatHoSTrench
@@ -423,13 +395,11 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/atmosian.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/atmosian.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - Vest
       - NudeBottom  # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingOuterBase
@@ -441,13 +411,11 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/coatchristmas.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/coatchristmas.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - Vest
       - NudeFull  # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingOuterStorageFoldableBase
@@ -470,26 +438,22 @@
     damageCoefficient: 0.85
   - type: Item
     size: Huge
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - Vest
       - NudeBottom  # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterArmorNTRGLead]
   id: ClothingOuterArmorNTRGLeadOpened
   name: trenchcoat NTRG Sqaud
   components:
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - Vest
       - NudeFull  # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: [ClothingOuterArmorBasic, ClothingOuterStorageBase]
@@ -560,7 +524,7 @@
   description: Dark blue waterproof jacket with reflective details.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/Coats/naval-jacket.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/naval_jacket.rsi
     layers:
     - state: icon
     - state: icon-unshaded
@@ -568,7 +532,7 @@
     - state: icon-unshaded
       shader: shaded
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/Coats/naval-jacket.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/naval_jacket.rsi
     clothingVisuals:
       outerClothing:
       - state: equipped-OUTERCLOTHING

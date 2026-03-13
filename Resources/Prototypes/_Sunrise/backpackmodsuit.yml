@@ -20,11 +20,6 @@
     grid:
     - 0,0,6,3
     maxItemSize: Huge
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: []
-      toggleable-clothing: !type:ContainerSlot
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:
@@ -47,6 +42,11 @@
         whitelist:
           tags:
             - ModsuitCore
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+      toggleable-clothing: !type:ContainerSlot
+      modsuit_core: !type:ContainerSlot
   - type: Modsuit
     roundStartBiocode: true
 
@@ -159,6 +159,10 @@
       clothingPrototype: ClothingOuterHardsuitERTJanitor
       requiredSlot: back
       slot: outerClothing
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+        toggleable-clothing: !type:ContainerSlot
 
 #ОБР охрана
 - type: entity
@@ -172,6 +176,10 @@
       clothingPrototype: ClothingOuterHardsuitERTSecurity
       requiredSlot: back
       slot: outerClothing
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+        toggleable-clothing: !type:ContainerSlot
 
 #ОБР медик
 - type: entity
@@ -185,6 +193,10 @@
       clothingPrototype: ClothingOuterHardsuitERTMedical
       requiredSlot: back
       slot: outerClothing
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+        toggleable-clothing: !type:ContainerSlot
 
 #ОБР лидер
 - type: entity
@@ -198,6 +210,10 @@
       clothingPrototype: ClothingOuterHardsuitERTLeader
       requiredSlot: back
       slot: outerClothing
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+        toggleable-clothing: !type:ContainerSlot
 
 #ОБР инженер
 - type: entity
@@ -211,6 +227,10 @@
       clothingPrototype: ClothingOuterHardsuitERTEngineer
       requiredSlot: back
       slot: outerClothing
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+        toggleable-clothing: !type:ContainerSlot
 
 #ОБР священник
 - type: entity
@@ -224,3 +244,7 @@
       clothingPrototype: ClothingOuterHardsuitERTChaplain
       requiredSlot: back
       slot: outerClothing
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+        toggleable-clothing: !type:ContainerSlot

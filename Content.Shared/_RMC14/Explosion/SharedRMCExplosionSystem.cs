@@ -29,6 +29,11 @@ public abstract class SharedRMCExplosionSystem : EntitySystem
     // Sunrise edit start
     public void DoEffect(Entity<CMExplosionEffectComponent> ent)
     {
+        // Cleanup may fire trigger paths while parents are already terminating.
+        // Spawning effects on such coordinates logs transform errors and breaks tests.
+        if (TerminatingOrDeleted(ent))
+            return;
+
         if (!TryComp<ExplosiveComponent>(ent, out var explosionComponent))
             return;
 

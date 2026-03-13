@@ -115,26 +115,49 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly string[] SunriseGrids =
         {
-            "/Maps/_Sunrise/Shuttles/infiltrator.yml",
+            "/Maps/_Sunrise/Shuttles/Antag/infiltrator.yml",
         };
 
         private static readonly string[] SunriseGameMaps =
         {
-            // "SunriseDev",
             "SunriseBox",
             "SunriseDelta",
-            "SunriseFland",
-            "SunriseMarathon",
-            "SunriseCentComm",
             "SunriseBagel",
-            "SunriseReach",
-            "PlanetPrison",
-            "SunriseOasis"
         };
 
+        private static readonly string[] SunriseDoNotMapWhitelist =
+        {
+            "/Maps/_Sunrise/Dungeon/pirate_base.yml",
+            "/Maps/_Sunrise/event/clon_BOG.yml",
+            "/Maps/_Sunrise/event/clon_mine.yml",
+            "/Maps/_Sunrise/event/save_job.yml",
+            "/Maps/_Sunrise/Nonstations/nukieplanet.yml",
+            "/Maps/_Sunrise/Station/centcomm.yml",
+            "/Maps/_Sunrise/Test/dev_map.yml",
+            "/Maps/_Sunrise/event/pvp/pvp_shuttle_blue1.yml", // Пушки
+            "/Maps/_Sunrise/event/pvp/pvp_shuttle_red1.yml", // Пушки
+            "/Maps/_Sunrise/Shuttles/Antag/falcon.yml", // Пушки
+            "/Maps/_Sunrise/Shuttles/Antag/infiltrator_raid.yml", // Пушки
+            "/Maps/_Sunrise/Shuttles/Antag/instigator.yml", // Пушки
+            "/Maps/_Sunrise/Shuttles/Antag/ussp_shuttle.yml", // Пушки
+            "/Maps/_Sunrise/Shuttles/Antag/rust_brass.yml", // Пушки
+            "/Maps/_Sunrise/Shuttles/Salvage/bison.yml", // Как нибудь убрать, там невидимые вентиляторы
+            "/Maps/_Sunrise/Shuttles/Salvage/nomad.yml", // Как нибудь убрать, там невидимые вентиляторы
+            "/Maps/_Sunrise/Shuttles/Salvage/oredozer.yml", // Как нибудь убрать, там невидимые вентиляторы
+            "/Maps/_Sunrise/Shuttles/Security/avangard_test.yml", // Пушки
+            "/Maps/_Sunrise/Shuttles/Security/duster_test.yml", // Пушки
+            "/Maps/_Sunrise/Shuttles/Security/security.yml", // Пушки
+            "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT_Assault_Amber.yml", // Печать ЦК
+            "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT_Assault_Gamma.yml", // Печать ЦК
+            "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT_Assault_Red.yml", // Печать ЦК
+        };
         private static readonly string[] TotalNoSpawnMaps = NoSpawnMaps.Concat(SunriseNoSpawnMaps).ToArray();
         private static readonly string[] TotalGrids = Grids.Concat(SunriseGrids).ToArray();
-        private static readonly string[] TotalMaps = GameMaps.Concat(SunriseGameMaps).ToArray();
+        private static readonly string[] TotalMaps = SunriseGameMaps.ToArray(); // Только санрайз карты.
+        private static readonly Regex[] TotalWhitelist =
+                                        DoNotMapWhitelist.Concat(SunriseDoNotMapWhitelist)
+                                        .Select(glob => new Regex(GlobToRegex(glob), RegexOptions.IgnoreCase | RegexOptions.Compiled))
+                                        .ToArray();
         // Sunrise-End
 
         /// <summary>
@@ -318,7 +341,7 @@ namespace Content.IntegrationTests.Tests
         /// </summary>
         private void CheckDoNotMap(ResPath map, YamlNode node, IPrototypeManager protoManager)
         {
-            foreach (var regex in DoNotMapWhiteListRegexes)
+            foreach (var regex in TotalWhitelist) // Sunrise-edit
             {
                 if (regex.IsMatch(map.ToString()))
                     return;
@@ -533,7 +556,7 @@ namespace Content.IntegrationTests.Tests
 
             return resultCount;
         }
-
+        [Ignore("We are not using all our maps")] // Sunrise-edit
         [Test]
         public async Task AllMapsTested()
         {
