@@ -20,7 +20,7 @@ namespace Content.Server._Sunrise;
 /// Uses High Bandwidth Transfer (WebSocket) to avoid blocking main game traffic.
 /// Textures are loaded into MemoryContentRoot on the client.
 /// </summary>
-    public sealed class NetTexturesManager
+public sealed class NetTexturesManager
 {
     /// <summary>
     /// Transfer key for server -> client texture downloads via WebSocket
@@ -50,6 +50,9 @@ namespace Content.Server._Sunrise;
     /// </summary>
     public Action<PdaPhotoCaptureMessage>? OnPhotoCaptureMessage { get; set; }
 
+    /// <summary>
+    /// Registers the request, fallback, and photo handlers used by the server-side NetTextures pipeline.
+    /// </summary>
     public void Initialize()
     {
         _sawmill = _logManager.GetSawmill("network.textures");
@@ -77,6 +80,10 @@ namespace Content.Server._Sunrise;
         _sawmill.Info("Cleared all dynamic NetTexture resources due to round restart.");
     }
 
+    /// <summary>
+    /// Handles a client resource request after resolving the sender session and validating the path.
+    /// </summary>
+    /// <param name="msg">The incoming resource request.</param>
     private void OnRequestNetworkResource(RequestNetworkResourceMessage msg)
     {
         if (!_playerManager.TryGetSessionByChannel(msg.MsgChannel, out var session))
@@ -149,6 +156,8 @@ namespace Content.Server._Sunrise;
     /// If the path points to a directory (e.g., .rsi), all files in that directory are sent.
     /// If the path points to a file, only that file is sent.
     /// </summary>
+    /// <param name="session">The recipient session.</param>
+    /// <param name="resourcePath">The validated rooted resource path to send.</param>
     private async void SendResource(ICommonSession session, ResPath resourcePath)
     {
         var startTime = DateTime.UtcNow;
@@ -194,6 +203,15 @@ namespace Content.Server._Sunrise;
         }
     }
 
+    /// <summary>
+    /// Collects the files that should be sent for a requested resource path.
+    /// </summary>
+    /// <remarks>
+    /// A file request yields one uploaded file. An RSI directory request yields every child file using upload paths
+    /// relative to the requested directory.
+    /// </remarks>
+    /// <param name="resourcePath">The validated rooted resource path.</param>
+    /// <returns>The ordered list of uploaded files to transfer.</returns>
     private List<(ResPath Relative, byte[] Data)> CollectFilesToSend(ResPath resourcePath)
     {
         var filesToSend = new List<(ResPath Relative, byte[] Data)>();
@@ -249,6 +267,9 @@ namespace Content.Server._Sunrise;
     /// <summary>
     /// Collects a single file for transfer.
     /// </summary>
+    /// <param name="filePath">The rooted file path to collect.</param>
+    /// <param name="filesToSend">The destination collection for the transfer payload.</param>
+    /// <returns><see langword="true"/> if the file was read successfully.</returns>
     private bool CollectSingleFile(ResPath filePath, List<(ResPath Relative, byte[] Data)> filesToSend)
     {
         if (!_resourceManager.TryContentFileRead(filePath, out var stream))
@@ -272,6 +293,8 @@ namespace Content.Server._Sunrise;
     /// <summary>
     /// Fallback method: sends resources via regular network messages if WebSocket transfer fails.
     /// </summary>
+    /// <param name="session">The recipient session.</param>
+    /// <param name="files">The files that still need to be delivered.</param>
     private void SendResourceFallback(ICommonSession session, List<(ResPath Relative, byte[] Data)> files)
     {
         var chunkCount = 0;
@@ -288,6 +311,13 @@ namespace Content.Server._Sunrise;
         _sawmill.Debug($"Sent {files.Count} files via fallback ({chunkCount} chunk messages) to {session.Name}");
     }
 
+    /// <summary>
+    /// Splits one uploaded file into ordered chunk messages for the fallback transport path.
+    /// </summary>
+    /// <param name="relativePath">The relative client upload path of the file.</param>
+    /// <param name="data">The raw file bytes to split.</param>
+    /// <param name="chunkSize">The target maximum chunk size in bytes.</param>
+    /// <returns>The chunk sequence needed to reconstruct the file on the client.</returns>
     internal static IEnumerable<NetTextureResourceChunkMessage> CreateFallbackChunks(
         ResPath relativePath,
         byte[] data,
@@ -319,6 +349,8 @@ namespace Content.Server._Sunrise;
     /// Writes files to a transfer stream using the same format as SharedNetworkResourceManager.
     /// Format: [pathLength: uint32][dataLength: uint32][path: bytes][data: bytes][continue: byte]...
     /// </summary>
+    /// <param name="stream">The writable transfer stream.</param>
+    /// <param name="files">The files to encode into the transfer stream.</param>
     private static async Task WriteFileStream(Stream stream, IEnumerable<(ResPath Relative, byte[] Data)> files)
     {
         var lengthBytes = new byte[4];

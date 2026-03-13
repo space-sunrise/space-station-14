@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using Robust.Shared.Utility;
@@ -9,8 +10,14 @@ namespace Content.Client._Sunrise;
 
 public sealed partial class NetTexturesManager
 {
+    #region Upload Completion
     private const int MaxUploadStepsPerFrame = 2;
 
+    /// <summary>
+    /// Commits a fully uploaded texture into the ready resource map and notifies listeners.
+    /// </summary>
+    /// <param name="resourcePath">The consumer-facing resource path.</param>
+    /// <param name="loadedTexture">The uploaded texture entry.</param>
     private void FinishPreparedTexture(string resourcePath, LoadedTextureEntry loadedTexture)
     {
         _preparingResources.Remove(resourcePath);
@@ -23,6 +30,11 @@ public sealed partial class NetTexturesManager
         ResourceLoaded?.Invoke(resourcePath);
     }
 
+    /// <summary>
+    /// Commits a fully uploaded RSI animation set into the ready resource map and notifies listeners.
+    /// </summary>
+    /// <param name="resourcePath">The consumer-facing resource path.</param>
+    /// <param name="loadedRsi">The uploaded RSI entry.</param>
     private void FinishPreparedRsi(string resourcePath, LoadedRsiEntry loadedRsi)
     {
         _preparingResources.Remove(resourcePath);
@@ -35,6 +47,12 @@ public sealed partial class NetTexturesManager
         ResourceLoaded?.Invoke(resourcePath);
     }
 
+    /// <summary>
+    /// Processes a bounded number of staged GPU upload steps for the current frame.
+    /// </summary>
+    /// <remarks>
+    /// Upload work is intentionally spread across frames so large RSI resources do not monopolize the main thread.
+    /// </remarks>
     private void ProcessPreparedUploads()
     {
         var stepsRemaining = MaxUploadStepsPerFrame;
@@ -73,6 +91,11 @@ public sealed partial class NetTexturesManager
         }
     }
 
+    /// <summary>
+    /// Records a resource failure and prevents it from being treated as ready.
+    /// </summary>
+    /// <param name="resourcePath">The failing resource path.</param>
+    /// <param name="reason">The failure reason used for logging.</param>
     private void MarkResourceFailed(string resourcePath, string reason)
     {
         _preparingResources.Remove(resourcePath);
@@ -80,7 +103,14 @@ public sealed partial class NetTexturesManager
         _failedResources.Add(resourcePath);
         _sawmill.Warning($"Failed to prepare NetTexture {resourcePath}: {reason}");
     }
+    #endregion
 
+    #region Resource Decoding
+    /// <summary>
+    /// Verifies that an uploaded RSI directory contains all files required for safe decode.
+    /// </summary>
+    /// <param name="relativePath">The relative uploaded RSI path.</param>
+    /// <returns><see langword="true"/> if all required RSI files are present.</returns>
     private bool CheckRsiFilesComplete(ResPath relativePath)
     {
         try
@@ -117,6 +147,12 @@ public sealed partial class NetTexturesManager
         }
     }
 
+    /// <summary>
+    /// Decodes a non-RSI uploaded image into an intermediate texture payload.
+    /// </summary>
+    /// <param name="resourcePath">The normalized uploaded resource path.</param>
+    /// <param name="cancellationToken">The current session cancellation token.</param>
+    /// <returns>The decoded texture payload ready for staged upload.</returns>
     private PreparedTexture DecodeTexture(ResPath resourcePath, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -127,6 +163,16 @@ public sealed partial class NetTexturesManager
         return new PreparedTexture(image);
     }
 
+    /// <summary>
+    /// Decodes an uploaded RSI directory into per-frame image payloads ready for staged upload.
+    /// </summary>
+    /// <remarks>
+    /// The decode path validates metadata, image dimensions, frame references, and direction counts before any
+    /// uploaded state is exposed to consumers.
+    /// </remarks>
+    /// <param name="resourcePath">The normalized uploaded RSI path.</param>
+    /// <param name="cancellationToken">The current session cancellation token.</param>
+    /// <returns>The prepared RSI payload ready for staged upload.</returns>
     private PreparedRsi DecodeRsi(ResPath resourcePath, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -195,4 +241,5 @@ public sealed partial class NetTexturesManager
 
         return new PreparedRsi(metadata.LoadParameters, states);
     }
+    #endregion
 }
