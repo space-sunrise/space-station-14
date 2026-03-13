@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,7 +7,6 @@ using Content.IntegrationTests.Pair;
 using Content.Client.Lobby;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.NetTextures;
-using NUnit.Framework;
 using Robust.Client.State;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Network;
@@ -21,7 +19,7 @@ using SixLabors.ImageSharp.PixelFormats;
 using ClientNetTexturesManager = Content.Client._Sunrise.NetTexturesManager;
 using ServerNetTexturesManager = Content.Server._Sunrise.NetTexturesManager;
 
-namespace Content.IntegrationTests.Tests.Networking;
+namespace Content.IntegrationTests.Tests._Sunrise.Networking;
 
 [TestFixture]
 [TestOf(typeof(ClientNetTexturesManager))]
