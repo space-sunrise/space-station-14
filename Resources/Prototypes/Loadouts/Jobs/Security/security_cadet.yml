@@ -9,7 +9,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtColorRed
 
-# Sumrise_Start
+# Sunrise-Start
 - type: loadoutEffectGroup
   id: MasterCadet5h
   effects:
@@ -69,4 +69,4 @@
   id: CadetWeaponDisabler
   startingGear: WeaponDisabler
 
-# sunrise end
+# Sunrise-End

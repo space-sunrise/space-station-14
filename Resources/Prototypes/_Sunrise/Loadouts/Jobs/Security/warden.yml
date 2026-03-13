@@ -4,6 +4,11 @@
   equipment:
     head: ClothingHeadHatBeretWardenSecblu
 
+- type: loadout
+  id: WardenBeretSecred
+  equipment:
+    head: ClothingHeadHatBeretWardenSecred
+
 # Jumpsuit
 - type: loadout
   id: WardenJumpsuitSecblu
