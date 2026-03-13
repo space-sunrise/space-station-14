@@ -50,9 +50,9 @@
   suffix: Secblu
   components:
   - type: Sprite
-    sprite: _Sunrise/Secblu/Head/Soft/secsoft.rsi
+    sprite: _Sunrise/Secblu/Head/Soft/sec_soft.rsi
   - type: Clothing
-    sprite: _Sunrise/Secblu/Head/Soft/secsoft.rsi
+    sprite: _Sunrise/Secblu/Head/Soft/sec_soft.rsi
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatSecsoftSecblu]
@@ -65,9 +65,9 @@
   suffix: Secred
   components:
   - type: Sprite
-    sprite: _Sunrise/Secred/Head/Soft/secsoft.rsi
+    sprite: _Sunrise/Secred/Head/Soft/sec_soft.rsi
   - type: Clothing
-    sprite: _Sunrise/Secred/Head/Soft/secsoft.rsi
+    sprite: _Sunrise/Secred/Head/Soft/sec_soft.rsi
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatSecsoftSecred]

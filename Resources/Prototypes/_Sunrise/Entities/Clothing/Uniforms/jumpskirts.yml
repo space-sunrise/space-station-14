@@ -320,12 +320,7 @@
     sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/hos.rsi
   - type: Clothing
     sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/hos.rsi
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
+
 
 - type: entity
   parent: ClothingUniformJumpskirtHosFormal
@@ -333,9 +328,9 @@
   suffix: Secblu
   components:
   - type: Sprite
-    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/hosformaldress.rsi
+    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/hos_formal_dress.rsi
   - type: Clothing
-    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/hosformaldress.rsi
+    sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/hos_formal_dress.rsi
 
 - type: entity
   parent: ClothingUniformJumpskirtHoSAlt
@@ -366,12 +361,7 @@
     sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/security.rsi
   - type: Clothing
     sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/security.rsi
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
+
 
 - type: entity
   parent: ClothingUniformJumpskirtSecGrey
@@ -402,12 +392,7 @@
     sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/warden.rsi
   - type: Clothing
     sprite: _Sunrise/Secblu/Uniforms/Jumpskirt/warden.rsi
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
+
 
 - type: entity
   parent: ClothingUniformJumpskirtHoS
@@ -418,12 +403,7 @@
     sprite: _Sunrise/Secred/Uniforms/Jumpskirt/hos.rsi
   - type: Clothing
     sprite: _Sunrise/Secred/Uniforms/Jumpskirt/hos.rsi
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
+
 
 - type: entity
   parent: ClothingUniformJumpskirtHosFormal
@@ -431,9 +411,9 @@
   suffix: Secred
   components:
   - type: Sprite
-    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/hosformaldress.rsi
+    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/hos_formal_dress.rsi
   - type: Clothing
-    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/hosformaldress.rsi
+    sprite: _Sunrise/Secred/Uniforms/Jumpskirt/hos_formal_dress.rsi
 
 - type: entity
   parent: ClothingUniformJumpskirtHoSAlt
@@ -464,12 +444,7 @@
     sprite: _Sunrise/Secred/Uniforms/Jumpskirt/security.rsi
   - type: Clothing
     sprite: _Sunrise/Secred/Uniforms/Jumpskirt/security.rsi
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
+
 
 - type: entity
   parent: ClothingUniformJumpskirtSecGrey
@@ -500,9 +475,4 @@
     sprite: _Sunrise/Secred/Uniforms/Jumpskirt/warden.rsi
   - type: Clothing
     sprite: _Sunrise/Secred/Uniforms/Jumpskirt/warden.rsi
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
+

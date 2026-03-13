@@ -254,12 +254,8 @@
   id: SeniorOfficerJumpsuit
   name: loadout-group-senior-officer-jumpsuit
   loadouts:
-#  - JumpsuitSeniorOfficer
-#  - JumpskirtSeniorOfficer
-  - JumpsuitSeniorOfficerSecblu
-  - JumpskirtSeniorOfficerSecblu
-  - JumpsuitSeniorOfficerSecred
-  - JumpskirtSeniorOfficerSecred
+  - JumpsuitSeniorOfficer
+  - JumpskirtSeniorOfficer
 
 - type: loadoutGroup
   id: SeniorResearcherJumpsuit

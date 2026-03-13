@@ -42,9 +42,9 @@
   suffix: Secblu
   components:
   - type: Sprite
-    sprite: _Sunrise/Secblu/OuterClothing/WinterCoats/coatwarden.rsi
+    sprite: _Sunrise/Secblu/OuterClothing/WinterCoats/coat_warden.rsi
   - type: Clothing
-    sprite: _Sunrise/Secblu/OuterClothing/WinterCoats/coatwarden.rsi
+    sprite: _Sunrise/Secblu/OuterClothing/WinterCoats/coat_warden.rsi
 
 - type: entity
   parent: ClothingOuterWinterWarden
@@ -52,6 +52,6 @@
   suffix: Secred
   components:
   - type: Sprite
-    sprite: _Sunrise/Secred/OuterClothing/WinterCoats/coatwardenarmored.rsi
+    sprite: _Sunrise/Secred/OuterClothing/WinterCoats/coat_warden_armored.rsi
   - type: Clothing
-    sprite: _Sunrise/Secred/OuterClothing/WinterCoats/coatwardenarmored.rsi
+    sprite: _Sunrise/Secred/OuterClothing/WinterCoats/coat_warden_armored.rsi

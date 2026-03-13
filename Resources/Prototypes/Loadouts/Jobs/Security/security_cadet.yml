@@ -9,18 +9,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtColorRed
 
-#Sunrise-Start
-- type: loadout
-  id: BlueJumpsuit
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitColorDarkBlue
-
-- type: loadout
-  id: BlueJumpskirt
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitColorDarkBlue
-#Sunrise-End
-
 # Sumrise_Start
 - type: loadoutEffectGroup
   id: MasterCadet5h
