@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
@@ -11,7 +12,9 @@ namespace Content.Client._Sunrise;
 public sealed partial class NetTexturesManager
 {
     #region Upload Completion
-    private const int MaxUploadStepsPerFrame = 2;
+    private const int MinUploadBudgetBytes = 512 * 1024;
+    private const int MaxUploadBudgetBytes = 8 * 1024 * 1024;
+    private const int UploadBytesPerSecond = 96 * 1024 * 1024;
 
     /// <summary>
     /// Commits a fully uploaded texture into the ready resource map and notifies listeners.
@@ -53,11 +56,15 @@ public sealed partial class NetTexturesManager
     /// <remarks>
     /// Upload work is intentionally spread across frames so large RSI resources do not monopolize the main thread.
     /// </remarks>
-    private void ProcessPreparedUploads()
+    private void ProcessPreparedUploads(float frameTime)
     {
-        var stepsRemaining = MaxUploadStepsPerFrame;
+        var budgetRemaining = Math.Clamp(
+            (int) (frameTime * UploadBytesPerSecond),
+            MinUploadBudgetBytes,
+            MaxUploadBudgetBytes);
+        var processedAny = false;
 
-        while (stepsRemaining > 0 && _preparedUploads.Count > 0)
+        while (_preparedUploads.Count > 0 && (!processedAny || budgetRemaining > 0))
         {
             var upload = _preparedUploads.Peek();
 
@@ -69,8 +76,10 @@ public sealed partial class NetTexturesManager
 
             try
             {
+                var estimatedCost = Math.Max(1, upload.EstimateStepCostBytes(this));
                 var completed = upload.ProcessStep(this, _sessionCts.Token);
-                stepsRemaining--;
+                budgetRemaining -= estimatedCost;
+                processedAny = true;
 
                 if (!completed)
                     continue;
@@ -113,6 +122,9 @@ public sealed partial class NetTexturesManager
     /// <returns><see langword="true"/> if all required RSI files are present.</returns>
     private bool CheckRsiFilesComplete(ResPath relativePath)
     {
+        if (_rsiCompleteness.TryGetValue(relativePath, out var cached))
+            return cached.IsComplete;
+
         try
         {
             var uploadedPath = (new ResPath(UploadedPrefix) / relativePath).ToRootedPath();
@@ -127,6 +139,10 @@ public sealed partial class NetTexturesManager
                 if (metadata.States.Length == 0)
                     return false;
 
+                var completeness = new RsiCompletenessEntry();
+                completeness.MarkPresent("meta.json");
+                completeness.SetMetadata(metadata);
+
                 foreach (var state in metadata.States)
                 {
                     if (string.IsNullOrWhiteSpace(state.Name))
@@ -135,7 +151,11 @@ public sealed partial class NetTexturesManager
                     var pngPath = (uploadedPath / $"{state.Name}.png").ToRootedPath();
                     if (!_resourceManager.ContentFileExists(pngPath))
                         return false;
+
+                    completeness.MarkPresent($"{state.Name}.png");
                 }
+
+                _rsiCompleteness[relativePath] = completeness;
             }
 
             return true;

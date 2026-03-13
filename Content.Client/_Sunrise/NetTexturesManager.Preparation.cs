@@ -18,7 +18,7 @@ public sealed partial class NetTexturesManager
         if (_pendingResources.Count == 0)
             return;
 
-        var toPrepare = new List<(string ResourcePath, ResPath ResPath)>();
+        _resourcesReadyToPrepare.Clear();
 
         foreach (var (resourcePath, resPath) in _pendingResources)
         {
@@ -27,7 +27,7 @@ public sealed partial class NetTexturesManager
 
             if (IsResourceComplete(resPath))
             {
-                toPrepare.Add((resourcePath, resPath));
+                _resourcesReadyToPrepare.Add((resourcePath, resPath));
                 continue;
             }
 
@@ -35,10 +35,12 @@ public sealed partial class NetTexturesManager
                 RequestResource(resourcePath);
         }
 
-        foreach (var (resourcePath, resPath) in toPrepare)
+        foreach (var (resourcePath, resPath) in _resourcesReadyToPrepare)
         {
             StartPreparingResource(resourcePath, resPath);
         }
+
+        _resourcesReadyToPrepare.Clear();
     }
 
     /// <summary>
@@ -155,8 +157,15 @@ public sealed partial class NetTexturesManager
         _failedResources.Clear();
         _netTexturesContentRoot.Clear();
         _prepareRequests.Clear();
+        _resourcesReadyToPrepare.Clear();
+        _rsiCompleteness.Clear();
         _prepareWorkerRunning = false;
         _activePrepareRequestId = 0;
+
+        lock (_pendingTransferBatches)
+        {
+            _pendingTransferBatches.Clear();
+        }
 
         while (_preparedUploads.Count > 0)
         {

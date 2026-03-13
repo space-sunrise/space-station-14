@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Threading;
 using Robust.Client.Graphics;
+using Robust.Client.Utility;
 using Robust.Shared.Graphics;
 using Robust.Shared.Graphics.RSI;
+using Robust.Shared.Maths;
 using Robust.Shared.Utility;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
@@ -53,6 +55,7 @@ public sealed partial class NetTexturesManager
         public string ResourcePath { get; } = resourcePath;
         public int Generation { get; } = generation;
 
+        public abstract int EstimateStepCostBytes(NetTexturesManager manager);
         public abstract bool ProcessStep(NetTexturesManager manager, CancellationToken cancellationToken);
         public abstract void Commit(NetTexturesManager manager);
         public abstract void Dispose();
@@ -61,24 +64,68 @@ public sealed partial class NetTexturesManager
     private sealed class PreparedTextureUploadJob(string resourcePath, int generation, PreparedTexture prepared)
         : PreparedUploadJob(resourcePath, generation)
     {
+        private const int UploadTileSize = 1024;
+
         private PreparedTexture? _prepared = prepared;
+        private OwnedTexture? _texture;
         private LoadedTextureEntry? _loadedTexture;
+        private Rgba32[]? _tileBuffer;
+        private int _nextTileX;
+        private int _nextTileY;
+
+        public override int EstimateStepCostBytes(NetTexturesManager manager)
+        {
+            var prepared = _prepared;
+            if (prepared == null)
+                return 0;
+
+            var remainingWidth = prepared.Image.Width - _nextTileX;
+            var remainingHeight = prepared.Image.Height - _nextTileY;
+            if (remainingWidth <= 0 || remainingHeight <= 0)
+                return 0;
+
+            var tileWidth = Math.Min(UploadTileSize, remainingWidth);
+            var tileHeight = Math.Min(UploadTileSize, remainingHeight);
+            return tileWidth * tileHeight * 4;
+        }
 
         public override bool ProcessStep(NetTexturesManager manager, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
             var prepared = _prepared ?? throw new InvalidOperationException($"Texture upload job for {ResourcePath} has no prepared image");
-            try
-            {
-                _loadedTexture = new LoadedTextureEntry(manager._clyde.LoadTextureFromImage(prepared.Image, ResourcePath));
-                return true;
-            }
-            finally
-            {
-                prepared.Dispose();
-                _prepared = null;
-            }
+
+            _texture ??= manager._clyde.CreateBlankTexture<Rgba32>(
+                (prepared.Image.Width, prepared.Image.Height),
+                ResourcePath);
+
+            var tileWidth = Math.Min(UploadTileSize, prepared.Image.Width - _nextTileX);
+            var tileHeight = Math.Min(UploadTileSize, prepared.Image.Height - _nextTileY);
+            var tilePixelCount = tileWidth * tileHeight;
+            if (_tileBuffer == null || _tileBuffer.Length < tilePixelCount)
+                _tileBuffer = new Rgba32[tilePixelCount];
+
+            CopyTextureTile(prepared.Image, _nextTileX, _nextTileY, tileWidth, tileHeight, _tileBuffer);
+            _texture.SetSubImage(
+                new Vector2i(_nextTileX, _nextTileY),
+                new Vector2i(tileWidth, tileHeight),
+                _tileBuffer.AsSpan(0, tilePixelCount));
+
+            _nextTileX += tileWidth;
+            if (_nextTileX < prepared.Image.Width)
+                return false;
+
+            _nextTileX = 0;
+            _nextTileY += tileHeight;
+            if (_nextTileY < prepared.Image.Height)
+                return false;
+
+            _loadedTexture = new LoadedTextureEntry(_texture);
+            _texture = null;
+
+            prepared.Dispose();
+            _prepared = null;
+            return true;
         }
 
         public override void Commit(NetTexturesManager manager)
@@ -95,9 +142,41 @@ public sealed partial class NetTexturesManager
             _prepared?.Dispose();
             _prepared = null;
 
+            _texture?.Dispose();
+            _texture = null;
+            _tileBuffer = null;
+
             _loadedTexture?.Dispose();
             _loadedTexture = null;
         }
+
+        private static void CopyTextureTile(
+            Image<Rgba32> source,
+            int tileX,
+            int tileY,
+            int tileWidth,
+            int tileHeight,
+            Rgba32[] destination)
+        {
+            var sourcePixels = source.GetPixelSpan();
+            var sourceWidth = source.Width;
+            var destinationSpan = destination.AsSpan(0, tileWidth * tileHeight);
+
+            for (var row = 0; row < tileHeight; row++)
+            {
+                var sourceOffset = (tileY + row) * sourceWidth + tileX;
+                var destinationOffset = row * tileWidth;
+                sourcePixels.Slice(sourceOffset, tileWidth)
+                    .CopyTo(destinationSpan.Slice(destinationOffset, tileWidth));
+            }
+        }
+    }
+
+    private sealed class TransferPublishBatch(int generation, List<(ResPath Relative, byte[] Data)> files, int totalBytes)
+    {
+        public int Generation { get; } = generation;
+        public List<(ResPath Relative, byte[] Data)> Files { get; } = files;
+        public int TotalBytes { get; } = totalBytes;
     }
 
     private sealed class PreparedRsiUploadJob(string resourcePath, int generation, PreparedRsi prepared)
@@ -108,6 +187,21 @@ public sealed partial class NetTexturesManager
         private LoadedRsiEntry? _loadedRsi;
         private int _stateIndex;
         private int _frameIndex;
+
+        public override int EstimateStepCostBytes(NetTexturesManager manager)
+        {
+            var prepared = _prepared;
+            if (prepared == null || _stateIndex >= prepared.States.Count)
+                return 0;
+
+            var state = prepared.States[_stateIndex];
+            if (_frameIndex >= state.Frames.Count)
+                return 0;
+
+            var frame = state.Frames[_frameIndex];
+            var image = frame.Image;
+            return image == null ? 0 : image.Width * image.Height * 4;
+        }
 
         public override bool ProcessStep(NetTexturesManager manager, CancellationToken cancellationToken)
         {
@@ -242,54 +336,41 @@ public sealed partial class NetTexturesManager
     #endregion
 
     #region Transfer State
-    private sealed class FallbackChunkAssembly(int totalChunks) : IDisposable
+    private sealed class FallbackChunkAssembly(int totalChunks, int totalLength) : IDisposable
     {
-        private readonly byte[]?[] _chunks = new byte[totalChunks][];
+        private readonly bool[] _receivedChunkFlags = new bool[totalChunks];
+        private byte[]? _buffer = new byte[totalLength];
 
         public int TotalChunks { get; } = totalChunks;
+        public int TotalLength { get; } = totalLength;
         public bool IsComplete { get; private set; }
-        private int _receivedChunks;
+        private int _receivedChunkCount;
 
-        public void StoreChunk(int chunkIndex, byte[] data)
+        public void StoreChunk(int chunkIndex, int chunkOffset, byte[] data)
         {
-            if (_chunks[chunkIndex] != null)
+            if (_receivedChunkFlags[chunkIndex])
                 return;
 
-            _chunks[chunkIndex] = data;
-            _receivedChunks++;
-            IsComplete = _receivedChunks == TotalChunks;
+            var buffer = _buffer ?? throw new InvalidOperationException("Cannot store a fallback chunk after the assembled NetTextures buffer was taken");
+            Array.Copy(data, 0, buffer, chunkOffset, data.Length);
+            _receivedChunkFlags[chunkIndex] = true;
+            _receivedChunkCount++;
+            IsComplete = _receivedChunkCount == TotalChunks;
         }
 
-        public byte[] Combine()
+        public byte[] TakeCompletedData()
         {
-            if (!IsComplete)
-                throw new InvalidOperationException("Cannot combine incomplete fallback NetTextures chunks");
+            if (!IsComplete || _buffer == null)
+                throw new InvalidOperationException("Cannot take incomplete fallback NetTextures data");
 
-            var totalLength = 0;
-            foreach (var chunk in _chunks)
-            {
-                totalLength += chunk!.Length;
-            }
-
-            var combined = new byte[totalLength];
-            var offset = 0;
-
-            foreach (var chunk in _chunks)
-            {
-                var chunkData = chunk!;
-                Array.Copy(chunkData, 0, combined, offset, chunkData.Length);
-                offset += chunkData.Length;
-            }
-
-            return combined;
+            var buffer = _buffer;
+            _buffer = null;
+            return buffer;
         }
 
         public void Dispose()
         {
-            for (var i = 0; i < _chunks.Length; i++)
-            {
-                _chunks[i] = null;
-            }
+            _buffer = null;
         }
     }
     #endregion
@@ -375,6 +456,61 @@ public sealed partial class NetTexturesManager
         public readonly string Name = name;
         public readonly int? Directions = directions;
         public readonly float[][]? Delays = delays;
+    }
+
+    private sealed class RsiCompletenessEntry
+    {
+        private readonly HashSet<string> _presentFiles = new();
+        private HashSet<string>? _requiredFiles;
+
+        public bool IsComplete { get; private set; }
+
+        public void MarkPresent(string fileName)
+        {
+            if (!_presentFiles.Add(fileName))
+                return;
+
+            UpdateCompleteness();
+        }
+
+        public void SetMetadata(RsiMetadataData metadata)
+        {
+            var requiredFiles = new HashSet<string>
+            {
+                "meta.json"
+            };
+
+            foreach (var state in metadata.States)
+            {
+                if (string.IsNullOrWhiteSpace(state.Name))
+                    continue;
+
+                requiredFiles.Add($"{state.Name}.png");
+            }
+
+            _requiredFiles = requiredFiles;
+            UpdateCompleteness();
+        }
+
+        private void UpdateCompleteness()
+        {
+            if (_requiredFiles == null || _presentFiles.Count < _requiredFiles.Count)
+            {
+                IsComplete = false;
+                return;
+            }
+
+            foreach (var requiredFile in _requiredFiles)
+            {
+                if (!_presentFiles.Contains(requiredFile))
+                {
+                    IsComplete = false;
+                    return;
+                }
+            }
+
+            IsComplete = true;
+        }
     }
     #endregion
 }

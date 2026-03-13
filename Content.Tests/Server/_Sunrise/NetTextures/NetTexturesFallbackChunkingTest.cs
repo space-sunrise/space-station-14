@@ -24,7 +24,9 @@ public sealed class NetTexturesFallbackChunkingTest
         Assert.That(chunks, Has.Length.EqualTo(4));
         Assert.That(chunks.Select(chunk => chunk.RelativePath).Distinct().Single(), Is.EqualTo(relativePath.ToString()));
         Assert.That(chunks.Select(chunk => chunk.TotalChunks).Distinct().Single(), Is.EqualTo(chunks.Length));
+        Assert.That(chunks.Select(chunk => chunk.TotalLength).Distinct().Single(), Is.EqualTo(payload.Length));
         Assert.That(chunks.Select(chunk => chunk.ChunkIndex), Is.EqualTo(Enumerable.Range(0, chunks.Length)));
+        Assert.That(chunks.Select(chunk => chunk.ChunkOffset), Is.EqualTo(new[] { 0, 32 * 1024, 64 * 1024, 96 * 1024 }));
 
         var rebuilt = chunks
             .OrderBy(chunk => chunk.ChunkIndex)

@@ -14,6 +14,8 @@ public sealed class NetTextureResourceChunkMessage : NetMessage
     public string RelativePath { get; set; } = string.Empty;
     public int ChunkIndex { get; set; }
     public int TotalChunks { get; set; }
+    public int ChunkOffset { get; set; }
+    public int TotalLength { get; set; }
     public byte[] Data { get; set; } = Array.Empty<byte>();
 
     public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
@@ -21,6 +23,8 @@ public sealed class NetTextureResourceChunkMessage : NetMessage
         RelativePath = buffer.ReadString();
         ChunkIndex = buffer.ReadInt32();
         TotalChunks = buffer.ReadInt32();
+        ChunkOffset = buffer.ReadInt32();
+        TotalLength = buffer.ReadInt32();
 
         var dataLength = buffer.ReadInt32();
         Data = buffer.ReadBytes(dataLength);
@@ -31,6 +35,8 @@ public sealed class NetTextureResourceChunkMessage : NetMessage
         buffer.Write(RelativePath);
         buffer.Write(ChunkIndex);
         buffer.Write(TotalChunks);
+        buffer.Write(ChunkOffset);
+        buffer.Write(TotalLength);
         buffer.Write(Data.Length);
         buffer.Write(Data);
     }

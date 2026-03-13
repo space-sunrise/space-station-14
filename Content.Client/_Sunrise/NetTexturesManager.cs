@@ -22,6 +22,9 @@ public sealed partial class NetTexturesManager
     #region Constants
     private const string TransferKeyNetTextures = "TransferKeyNetTextures";
     private const string UploadedPrefix = "/Uploaded";
+    private const int MinTransferPublishBudgetBytes = 512 * 1024;
+    private const int MaxTransferPublishBudgetBytes = 8 * 1024 * 1024;
+    private const int TransferPublishBytesPerSecond = 64 * 1024 * 1024;
     #endregion
 
     #region Dependencies
@@ -43,8 +46,11 @@ public sealed partial class NetTexturesManager
     private readonly Dictionary<string, LoadedTextureEntry> _loadedTextures = new();
     private readonly Dictionary<string, LoadedRsiEntry> _loadedRsis = new();
     private readonly Queue<PreparedUploadJob> _preparedUploads = new();
+    private readonly Queue<TransferPublishBatch> _pendingTransferBatches = new();
     private readonly Dictionary<ResPath, FallbackChunkAssembly> _fallbackChunkAssemblies = new();
     private readonly Queue<PreparationRequest> _prepareRequests = new();
+    private readonly List<(string ResourcePath, ResPath ResPath)> _resourcesReadyToPrepare = new();
+    private readonly Dictionary<ResPath, RsiCompletenessEntry> _rsiCompleteness = new();
 
     private CancellationTokenSource _sessionCts = new();
     private int _sessionGeneration;
@@ -85,11 +91,14 @@ public sealed partial class NetTexturesManager
     /// <param name="frameTime">The elapsed frame time in seconds.</param>
     public void Update(float frameTime)
     {
+        if (_pendingTransferBatches.Count != 0)
+            ProcessPendingTransferBatches(frameTime);
+
         if (_pendingResources.Count != 0)
             UpdatePendingResources();
 
         if (_preparedUploads.Count != 0)
-            ProcessPreparedUploads();
+            ProcessPreparedUploads(frameTime);
     }
     #endregion
 }

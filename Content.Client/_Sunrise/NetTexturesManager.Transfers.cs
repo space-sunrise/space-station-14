@@ -1,3 +1,4 @@
+using System;
 using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.IO;
@@ -61,17 +62,24 @@ public sealed partial class NetTexturesManager
             return;
         }
 
+        if (message.TotalLength < 0 || message.ChunkOffset < 0 || message.ChunkOffset + message.Data.Length > message.TotalLength)
+        {
+            _sawmill.Warning($"Rejected malformed NetTextures fallback chunk bounds for {message.RelativePath}: offset {message.ChunkOffset}, length {message.Data.Length}, total {message.TotalLength}");
+            return;
+        }
+
         var relativePath = new ResPath(message.RelativePath).Clean().ToRelativePath();
 
         if (!_fallbackChunkAssemblies.TryGetValue(relativePath, out var assembly) ||
-            assembly.TotalChunks != message.TotalChunks)
+            assembly.TotalChunks != message.TotalChunks ||
+            assembly.TotalLength != message.TotalLength)
         {
             assembly?.Dispose();
-            assembly = new FallbackChunkAssembly(message.TotalChunks);
+            assembly = new FallbackChunkAssembly(message.TotalChunks, message.TotalLength);
             _fallbackChunkAssemblies[relativePath] = assembly;
         }
 
-        assembly.StoreChunk(message.ChunkIndex, message.Data);
+        assembly.StoreChunk(message.ChunkIndex, message.ChunkOffset, message.Data);
 
         if (!assembly.IsComplete)
             return;
@@ -81,7 +89,7 @@ public sealed partial class NetTexturesManager
         {
             var files = new List<(ResPath Relative, byte[] Data)>(1)
             {
-                (relativePath, assembly.Combine())
+                (relativePath, assembly.TakeCompletedData())
             };
 
             PublishFiles(files);
@@ -98,14 +106,26 @@ public sealed partial class NetTexturesManager
     /// <param name="files">The files to publish under <c>/Uploaded</c>.</param>
     internal void PublishFiles(List<(ResPath Relative, byte[] Data)> files)
     {
+        PublishFiles(files, updatePendingResources: true);
+    }
+
+    /// <summary>
+    /// Publishes received raw files into the mounted in-memory uploaded root and optionally refreshes pending consumers.
+    /// </summary>
+    /// <param name="files">The files to publish under <c>/Uploaded</c>.</param>
+    /// <param name="updatePendingResources">Whether to revisit pending resource readiness immediately.</param>
+    internal void PublishFiles(List<(ResPath Relative, byte[] Data)> files, bool updatePendingResources)
+    {
         foreach (var (relative, data) in files)
         {
             _sawmill.Verbose($"Storing NetTexture: {relative} ({ByteHelpers.FormatBytes(data.Length)})");
             _netTexturesContentRoot.AddOrUpdateFile(relative, data);
+            TrackPublishedFile(relative, data);
             _failedResources.Remove(GetUploadedResourcePath(relative));
         }
 
-        UpdatePendingResources();
+        if (updatePendingResources)
+            UpdatePendingResources();
     }
     #endregion
 
@@ -123,23 +143,10 @@ public sealed partial class NetTexturesManager
         {
             using (stream)
             {
-                var files = ReadTransferStream(stream);
-                var totalSize = 0L;
-                foreach (var (_, data) in files)
-                {
-                    totalSize += data.Length;
-                }
-
-                _taskManager.RunOnMainThread(() =>
-                {
-                    if (generation != _sessionGeneration)
-                        return;
-
-                    PublishFiles(files);
-                });
+                var (fileCount, totalSize) = ReadTransferStream(stream, generation);
 
                 var totalTime = (DateTime.UtcNow - startTime).TotalMilliseconds;
-                _sawmill.Info($"[NetTextures] Received {files.Count} files ({ByteHelpers.FormatBytes(totalSize)}) via transfer in {totalTime:F0}ms");
+                _sawmill.Info($"[NetTextures] Received {fileCount} files ({ByteHelpers.FormatBytes(totalSize)}) via transfer in {totalTime:F0}ms");
             }
         }
         catch (Exception e)
@@ -151,15 +158,19 @@ public sealed partial class NetTexturesManager
 
     #region Transfer Parsing
     /// <summary>
-    /// Reads the NetTextures transfer stream into a list of uploaded files.
+    /// Reads the NetTextures transfer stream into publish batches that can be drained incrementally on the main thread.
     /// </summary>
     /// <param name="stream">The transfer stream to parse.</param>
-    /// <returns>The ordered list of files contained in the stream.</returns>
-    private List<(ResPath Relative, byte[] Data)> ReadTransferStream(Stream stream)
+    /// <param name="generation">The session generation captured when the transfer started.</param>
+    /// <returns>The total file count and total byte size parsed from the stream.</returns>
+    private (int FileCount, long TotalBytes) ReadTransferStream(Stream stream, int generation)
     {
         var files = new List<(ResPath Relative, byte[] Data)>();
         var lengthBytes = new byte[4];
         var continueByte = new byte[1];
+        var totalSize = 0L;
+        var totalFiles = 0;
+        var batchBytes = 0;
 
         while (true)
         {
@@ -180,13 +191,26 @@ public sealed partial class NetTexturesManager
             ReadExactly(stream, data);
 
             files.Add((new ResPath(Encoding.UTF8.GetString(pathData)), data));
+            totalFiles++;
+            totalSize += data.Length;
+            batchBytes += data.Length;
+
+            if (batchBytes >= MaxTransferPublishBudgetBytes)
+            {
+                EnqueueTransferPublishBatch(new TransferPublishBatch(generation, files, batchBytes));
+                files = new List<(ResPath Relative, byte[] Data)>();
+                batchBytes = 0;
+            }
 
             ReadExactly(stream, continueByte);
             if (continueByte[0] == 0)
                 break;
         }
 
-        return files;
+        if (files.Count > 0)
+            EnqueueTransferPublishBatch(new TransferPublishBatch(generation, files, batchBytes));
+
+        return (totalFiles, totalSize);
     }
 
     /// <summary>
@@ -205,6 +229,109 @@ public sealed partial class NetTexturesManager
 
             offset += read;
         }
+    }
+    #endregion
+
+    #region Transfer Publication
+    /// <summary>
+    /// Queues one parsed transfer batch for later publication on the main thread.
+    /// </summary>
+    /// <param name="batch">The parsed transfer batch.</param>
+    private void EnqueueTransferPublishBatch(TransferPublishBatch batch)
+    {
+        lock (_pendingTransferBatches)
+        {
+            _pendingTransferBatches.Enqueue(batch);
+        }
+    }
+
+    /// <summary>
+    /// Publishes a bounded amount of already parsed transfer data on the main thread.
+    /// </summary>
+    /// <param name="frameTime">The current frame time used to derive a per-frame publish budget.</param>
+    private void ProcessPendingTransferBatches(float frameTime)
+    {
+        var budgetRemaining = Math.Clamp(
+            (int) (frameTime * TransferPublishBytesPerSecond),
+            MinTransferPublishBudgetBytes,
+            MaxTransferPublishBudgetBytes);
+        var publishedAny = false;
+
+        while (true)
+        {
+            TransferPublishBatch? batch;
+            lock (_pendingTransferBatches)
+            {
+                if (_pendingTransferBatches.Count == 0 || (publishedAny && budgetRemaining <= 0))
+                    break;
+
+                batch = _pendingTransferBatches.Dequeue();
+            }
+
+            if (batch.Generation != _sessionGeneration)
+                continue;
+
+            PublishFiles(batch.Files, updatePendingResources: false);
+            budgetRemaining -= Math.Max(1, batch.TotalBytes);
+            publishedAny = true;
+        }
+
+    }
+    #endregion
+
+    #region Completeness Tracking
+    /// <summary>
+    /// Updates incremental completeness state for uploaded RSI resources as individual files arrive.
+    /// </summary>
+    /// <param name="relativePath">The uploaded relative file path.</param>
+    /// <param name="data">The uploaded file bytes.</param>
+    private void TrackPublishedFile(ResPath relativePath, byte[] data)
+    {
+        if (!TryGetRsiFile(relativePath, out var rsiRelativePath, out var fileName))
+            return;
+
+        if (!_rsiCompleteness.TryGetValue(rsiRelativePath, out var completeness))
+        {
+            completeness = new RsiCompletenessEntry();
+            _rsiCompleteness[rsiRelativePath] = completeness;
+        }
+
+        completeness.MarkPresent(fileName);
+
+        if (!fileName.Equals("meta.json", StringComparison.Ordinal))
+            return;
+
+        try
+        {
+            using var metaStream = new MemoryStream(data, writable: false);
+            completeness.SetMetadata(LoadRsiMetadata(metaStream));
+        }
+        catch (Exception ex)
+        {
+            _sawmill.Debug($"Failed to parse uploaded RSI metadata for {rsiRelativePath}: {ex.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Determines whether an uploaded file belongs to an RSI directory and returns its directory-local file name.
+    /// </summary>
+    /// <param name="relativePath">The uploaded relative file path.</param>
+    /// <param name="rsiRelativePath">The uploaded RSI directory path when the method returns <see langword="true"/>.</param>
+    /// <param name="fileName">The file name inside the RSI directory.</param>
+    /// <returns><see langword="true"/> if the file belongs to an RSI directory.</returns>
+    private static bool TryGetRsiFile(ResPath relativePath, out ResPath rsiRelativePath, out string fileName)
+    {
+        fileName = relativePath.Filename;
+        rsiRelativePath = relativePath.Directory.ToRelativePath();
+
+        if (fileName == "." || !IsRsiPath(rsiRelativePath.ToRootedPath()))
+        {
+            rsiRelativePath = default;
+            fileName = string.Empty;
+            return false;
+        }
+
+        return true;
     }
     #endregion
 }

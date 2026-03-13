@@ -204,6 +204,57 @@ public sealed class NetTexturesRegressionTest
     }
 
     [Test]
+    public async Task LargeStillTextureLoadsAcrossMultipleUploadTiles()
+    {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings
+        {
+            Connected = false,
+            Dirty = true
+        });
+
+        var client = pair.Client;
+        var manager = client.ResolveDependency<ClientNetTexturesManager>();
+        const string resourcePath = "/NetTextures/Test/large-art.png";
+        var relativePath = new ResPath(resourcePath).ToRelativePath();
+        var loadedCount = 0;
+
+        void Handler(string path)
+        {
+            if (path == resourcePath)
+                Interlocked.Increment(ref loadedCount);
+        }
+
+        await client.WaitPost(() => manager.ResourceLoaded += Handler);
+
+        try
+        {
+            await client.WaitPost(() => manager.PublishFiles(new List<(ResPath Relative, byte[] Data)>
+            {
+                (relativePath, CreatePngBytes(1400, 1300, seed: 51))
+            }));
+
+            await client.WaitAssertion(() => Assert.That(manager.EnsureResource(resourcePath), Is.False));
+            await WaitUntilTextureReady(client, manager, resourcePath, maxTicks: 180);
+
+            await client.WaitAssertion(() =>
+            {
+                Assert.That(manager.TryGetTexture(resourcePath, out var texture), Is.True);
+                Assert.That(texture, Is.Not.Null);
+                Assert.That(texture!.Width, Is.EqualTo(1400));
+                Assert.That(texture.Height, Is.EqualTo(1300));
+            });
+
+            Assert.That(Volatile.Read(ref loadedCount), Is.EqualTo(1));
+        }
+        finally
+        {
+            await client.WaitPost(() => manager.ResourceLoaded -= Handler);
+        }
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
     public async Task PartialRsiRequiresAllStateImagesBeforeReady()
     {
         await using var pair = await PoolManager.GetServerClient(new PoolSettings
@@ -412,6 +463,8 @@ public sealed class NetTexturesRegressionTest
             RelativePath = message.RelativePath,
             ChunkIndex = message.ChunkIndex,
             TotalChunks = message.TotalChunks,
+            ChunkOffset = message.ChunkOffset,
+            TotalLength = message.TotalLength,
             Data = message.Data.ToArray()
         };
     }
