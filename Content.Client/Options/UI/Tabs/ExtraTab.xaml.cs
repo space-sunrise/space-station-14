@@ -50,30 +50,32 @@ public sealed partial class ExtraTab : Control
 
         Control.AddOptionCheckBox(SunriseCCVars.PlayHeartBeatSound, PlayHeartbeatSound);
 
+        var lobbyBackgroundOptions = GetLobbyBackgroundOptions();
+
         _lobbyBackgroundTypeOption = Control.AddOption(new SunriseOptionDropDownCVar<string>(
             Control,
             _cfg,
             SunriseCCVars.LobbyBackgroundType,
             DropDownLobbyBackgroundType,
-            BuildLobbyBackgroundTypeOptions()));
+            BuildLobbyBackgroundTypeOptions(lobbyBackgroundOptions.BackgroundTypes)));
         _lobbyArtOption = Control.AddOption(new SunriseOptionDropDownCVar<string>(
             Control,
             _cfg,
             SunriseCCVars.LobbyArt,
             DropDownLobbyArt,
-            BuildLobbyArtOptions()));
+            BuildLobbyArtOptions(lobbyBackgroundOptions.Arts)));
         _lobbyAnimationOption = Control.AddOption(new SunriseOptionDropDownCVar<string>(
             Control,
             _cfg,
             SunriseCCVars.LobbyAnimation,
             DropDownLobbyAnimation,
-            BuildLobbyAnimationOptions()));
+            BuildLobbyAnimationOptions(lobbyBackgroundOptions.Animations)));
         _lobbyParallaxOption = Control.AddOption(new SunriseOptionDropDownCVar<string>(
             Control,
             _cfg,
             SunriseCCVars.LobbyParallax,
             DropDownLobbyParallax,
-            BuildLobbyParallaxOptions()));
+            BuildLobbyParallaxOptions(lobbyBackgroundOptions.Parallaxes)));
 
         _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundType, OnLobbyBackgroundTypeChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundPreset, OnLobbyBackgroundPresetChanged, true);
@@ -121,10 +123,12 @@ public sealed partial class ExtraTab : Control
 
     private void RefreshLobbyBackgroundOptions()
     {
-        _lobbyBackgroundTypeOption.ReplaceOptions(BuildLobbyBackgroundTypeOptions());
-        _lobbyArtOption.ReplaceOptions(BuildLobbyArtOptions());
-        _lobbyAnimationOption.ReplaceOptions(BuildLobbyAnimationOptions());
-        _lobbyParallaxOption.ReplaceOptions(BuildLobbyParallaxOptions());
+        var lobbyBackgroundOptions = GetLobbyBackgroundOptions();
+
+        _lobbyBackgroundTypeOption.ReplaceOptions(BuildLobbyBackgroundTypeOptions(lobbyBackgroundOptions.BackgroundTypes));
+        _lobbyArtOption.ReplaceOptions(BuildLobbyArtOptions(lobbyBackgroundOptions.Arts));
+        _lobbyAnimationOption.ReplaceOptions(BuildLobbyAnimationOptions(lobbyBackgroundOptions.Animations));
+        _lobbyParallaxOption.ReplaceOptions(BuildLobbyParallaxOptions(lobbyBackgroundOptions.Parallaxes));
         OnLobbyBackgroundTypeChanged(_cfg.GetCVar(SunriseCCVars.LobbyBackgroundType));
         Control.ValueChanged();
     }
@@ -145,14 +149,15 @@ public sealed partial class ExtraTab : Control
         return LobbyBackgroundType.Parallax;
     }
 
-    private List<SunriseOptionDropDownCVar<string>.ValueOption> BuildLobbyBackgroundTypeOptions()
+    private List<SunriseOptionDropDownCVar<string>.ValueOption> BuildLobbyBackgroundTypeOptions(
+        IReadOnlyList<LobbyBackgroundType> allowedTypes)
     {
         var options = new List<SunriseOptionDropDownCVar<string>.ValueOption>
         {
             new("Random", Loc.GetString("background-type-Random")),
         };
 
-        foreach (var backgroundType in GetAllowedLobbyBackgroundTypes())
+        foreach (var backgroundType in allowedTypes)
         {
             var label = Loc.GetString($"background-type-{backgroundType}");
             options.Add(new SunriseOptionDropDownCVar<string>.ValueOption(backgroundType.ToString(), label));
@@ -161,14 +166,15 @@ public sealed partial class ExtraTab : Control
         return options;
     }
 
-    private List<SunriseOptionDropDownCVar<string>.ValueOption> BuildLobbyArtOptions()
+    private List<SunriseOptionDropDownCVar<string>.ValueOption> BuildLobbyArtOptions(
+        IReadOnlyList<LobbyArtPrototype> allowedArts)
     {
         var options = new List<SunriseOptionDropDownCVar<string>.ValueOption>
         {
             new("Random", Loc.GetString("lobby-art-Random")),
         };
 
-        foreach (var lobbyArt in GetAllowedLobbyArts())
+        foreach (var lobbyArt in allowedArts)
         {
             var label = Loc.GetString($"lobby-art-{lobbyArt.ID}");
             options.Add(new SunriseOptionDropDownCVar<string>.ValueOption(lobbyArt.ID, label));
@@ -177,14 +183,15 @@ public sealed partial class ExtraTab : Control
         return options;
     }
 
-    private List<SunriseOptionDropDownCVar<string>.ValueOption> BuildLobbyAnimationOptions()
+    private List<SunriseOptionDropDownCVar<string>.ValueOption> BuildLobbyAnimationOptions(
+        IReadOnlyList<LobbyAnimationPrototype> allowedAnimations)
     {
         var options = new List<SunriseOptionDropDownCVar<string>.ValueOption>
         {
             new("Random", Loc.GetString("lobby-animation-Random")),
         };
 
-        foreach (var lobbyAnimation in GetAllowedLobbyAnimations())
+        foreach (var lobbyAnimation in allowedAnimations)
         {
             var label = Loc.GetString($"lobby-animation-{lobbyAnimation.ID}");
             options.Add(new SunriseOptionDropDownCVar<string>.ValueOption(lobbyAnimation.ID, label));
@@ -193,14 +200,15 @@ public sealed partial class ExtraTab : Control
         return options;
     }
 
-    private List<SunriseOptionDropDownCVar<string>.ValueOption> BuildLobbyParallaxOptions()
+    private List<SunriseOptionDropDownCVar<string>.ValueOption> BuildLobbyParallaxOptions(
+        IReadOnlyList<LobbyParallaxPrototype> allowedParallaxes)
     {
         var options = new List<SunriseOptionDropDownCVar<string>.ValueOption>
         {
             new("Random", Loc.GetString("lobby-parallax-Random")),
         };
 
-        foreach (var lobbyParallax in GetAllowedLobbyParallaxes())
+        foreach (var lobbyParallax in allowedParallaxes)
         {
             var label = Loc.GetString($"lobby-parallax-{lobbyParallax.ID}");
             options.Add(new SunriseOptionDropDownCVar<string>.ValueOption(lobbyParallax.ID, label));
@@ -211,47 +219,73 @@ public sealed partial class ExtraTab : Control
 
     private IReadOnlyList<LobbyBackgroundType> GetAllowedLobbyBackgroundTypes()
     {
+        var preset = GetCurrentLobbyBackgroundPreset();
+        return GetAllowedLobbyBackgroundTypes(
+            GetAllowedLobbyArts(preset),
+            GetAllowedLobbyAnimations(preset),
+            GetAllowedLobbyParallaxes(preset));
+    }
+
+    private (
+        IReadOnlyList<LobbyBackgroundType> BackgroundTypes,
+        IReadOnlyList<LobbyArtPrototype> Arts,
+        IReadOnlyList<LobbyAnimationPrototype> Animations,
+        IReadOnlyList<LobbyParallaxPrototype> Parallaxes)
+        GetLobbyBackgroundOptions()
+    {
+        var preset = GetCurrentLobbyBackgroundPreset();
+        var allowedArts = GetAllowedLobbyArts(preset);
+        var allowedAnimations = GetAllowedLobbyAnimations(preset);
+        var allowedParallaxes = GetAllowedLobbyParallaxes(preset);
+
+        return (
+            GetAllowedLobbyBackgroundTypes(allowedArts, allowedAnimations, allowedParallaxes),
+            allowedArts,
+            allowedAnimations,
+            allowedParallaxes);
+    }
+
+    private static IReadOnlyList<LobbyBackgroundType> GetAllowedLobbyBackgroundTypes(
+        IReadOnlyCollection<LobbyArtPrototype> allowedArts,
+        IReadOnlyCollection<LobbyAnimationPrototype> allowedAnimations,
+        IReadOnlyCollection<LobbyParallaxPrototype> allowedParallaxes)
+    {
         var availableTypes = new List<LobbyBackgroundType>();
 
-        if (GetAllowedLobbyAnimations().Any())
+        if (allowedAnimations.Count > 0)
             availableTypes.Add(LobbyBackgroundType.Animation);
 
-        if (GetAllowedLobbyParallaxes().Any())
+        if (allowedParallaxes.Count > 0)
             availableTypes.Add(LobbyBackgroundType.Parallax);
 
-        if (GetAllowedLobbyArts().Any())
+        if (allowedArts.Count > 0)
             availableTypes.Add(LobbyBackgroundType.Art);
 
         if (availableTypes.Count > 0)
             return availableTypes;
 
-        foreach (var backgroundType in Enum.GetValues<LobbyBackgroundType>())
-        {
-            availableTypes.Add(backgroundType);
-        }
-
-        return availableTypes;
+        return Enum.GetValues<LobbyBackgroundType>();
     }
 
-    private IEnumerable<LobbyArtPrototype> GetAllowedLobbyArts()
+    private List<LobbyArtPrototype> GetAllowedLobbyArts(LobbyBackgroundPresetPrototype? preset)
     {
-        var preset = GetCurrentLobbyBackgroundPreset();
         return _prototypeManager.EnumeratePrototypes<LobbyArtPrototype>()
-            .Where(x => preset == null || preset.AllArtsAllowed || preset.WhitelistArts.Contains(x.ID));
+            .Where(x => preset == null || preset.AllArtsAllowed || preset.WhitelistArts.Contains(x.ID))
+            .ToList();
     }
 
-    private IEnumerable<LobbyAnimationPrototype> GetAllowedLobbyAnimations()
+    private List<LobbyAnimationPrototype> GetAllowedLobbyAnimations(LobbyBackgroundPresetPrototype? preset)
     {
-        var preset = GetCurrentLobbyBackgroundPreset();
         return _prototypeManager.EnumeratePrototypes<LobbyAnimationPrototype>()
-            .Where(x => preset == null || preset.AllAnimationsAllowed || preset.WhitelistAnimations.Contains(x.ID));
+            .Where(x => preset == null || preset.AllAnimationsAllowed || preset.WhitelistAnimations.Contains(x.ID))
+            .ToList();
     }
 
-    private IEnumerable<LobbyParallaxPrototype> GetAllowedLobbyParallaxes()
+    private List<LobbyParallaxPrototype> GetAllowedLobbyParallaxes(LobbyBackgroundPresetPrototype? preset)
     {
-        var preset = GetCurrentLobbyBackgroundPreset();
         return _prototypeManager.EnumeratePrototypes<LobbyParallaxPrototype>()
-            .Where(x => preset == null || preset.AllParallaxesAllowed || preset.WhitelistParallaxes.Contains(x.ID));
+            .Where(x => preset == null || preset.AllParallaxesAllowed || preset.WhitelistParallaxes.Contains(x.ID))
+            .ToList();
     }
 
     private LobbyBackgroundPresetPrototype? GetCurrentLobbyBackgroundPreset()

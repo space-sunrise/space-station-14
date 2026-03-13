@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using Content.Shared._Sunrise.CartridgeLoader.Cartridges;
 using Content.Shared._Sunrise.NetTextures;
@@ -22,6 +23,9 @@ public sealed partial class NetTexturesManager
     #region Constants
     private const string TransferKeyNetTextures = "TransferKeyNetTextures";
     private const string UploadedPrefix = "/Uploaded";
+    private const uint MaxTransferPathLength = 4 * 1024;
+    private const uint MaxTransferFileSize = 128 * 1024 * 1024;
+    private const uint MaxTransferPayloadLength = MaxTransferPathLength + MaxTransferFileSize;
     private const int MinTransferPublishBudgetBytes = 512 * 1024;
     private const int MaxTransferPublishBudgetBytes = 8 * 1024 * 1024;
     private const int TransferPublishBytesPerSecond = 64 * 1024 * 1024;
@@ -49,7 +53,7 @@ public sealed partial class NetTexturesManager
     private readonly Queue<TransferPublishBatch> _pendingTransferBatches = new();
     private readonly Dictionary<ResPath, FallbackChunkAssembly> _fallbackChunkAssemblies = new();
     private readonly Queue<PreparationRequest> _prepareRequests = new();
-    private readonly List<(string ResourcePath, ResPath ResPath)> _resourcesReadyToPrepare = new();
+    private readonly List<(string ResourceKey, ResPath ResPath)> _resourcesReadyToPrepare = new();
     private readonly Dictionary<ResPath, RsiCompletenessEntry> _rsiCompleteness = new();
 
     private CancellationTokenSource _sessionCts = new();
@@ -58,6 +62,46 @@ public sealed partial class NetTexturesManager
     private int _nextPrepareRequestId;
     private bool _prepareWorkerRunning;
     private ISawmill _sawmill = default!;
+    #endregion
+
+    #region Helpers
+    /// <summary>
+    /// Reads the current session generation with interlocked semantics for background-worker handoff.
+    /// </summary>
+    private int ReadSessionGeneration()
+    {
+        return Interlocked.CompareExchange(ref _sessionGeneration, 0, 0);
+    }
+
+    /// <summary>
+    /// Advances the reconnect generation and returns the new value.
+    /// </summary>
+    private int AdvanceSessionGeneration()
+    {
+        return Interlocked.Increment(ref _sessionGeneration);
+    }
+
+    /// <summary>
+    /// Returns whether an exception is an expected RSI metadata parse failure without hard-linking banned types.
+    /// </summary>
+    private static bool IsHandledRsiMetadataException(Exception ex)
+    {
+        for (var type = ex.GetType(); type != null; type = type.BaseType)
+        {
+            if (type == typeof(InvalidDataException))
+                return true;
+
+            if (type.FullName is
+                "YamlDotNet.Core.YamlException" or
+                "System.FormatException" or
+                "System.OverflowException")
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
     #endregion
 
     #region Events

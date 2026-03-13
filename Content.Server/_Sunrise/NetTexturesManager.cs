@@ -27,7 +27,6 @@ public sealed class NetTexturesManager
     /// Transfer key for server -> client texture downloads via WebSocket
     /// </summary>
     private const string TransferKeyNetTextures = "TransferKeyNetTextures";
-    private const int FallbackChunkSize = 64 * 1024;
     private const int MaxConcurrentTransferWorkers = 2;
 
     [Dependency] private readonly IResourceManager _resourceManager = default!;
@@ -439,12 +438,12 @@ public sealed class NetTexturesManager
 
         using (stream)
         {
-            var totalChunks = Math.Max(1, (file.Length + FallbackChunkSize - 1) / FallbackChunkSize);
+            var totalChunks = Math.Max(1, (file.Length + NetTextureConstants.MaxChunkSize - 1) / NetTextureConstants.MaxChunkSize);
 
             for (var chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++)
             {
-                var offset = chunkIndex * FallbackChunkSize;
-                var chunkLength = Math.Min(FallbackChunkSize, file.Length - offset);
+                var offset = chunkIndex * NetTextureConstants.MaxChunkSize;
+                var chunkLength = Math.Min(NetTextureConstants.MaxChunkSize, file.Length - offset);
                 var chunkData = new byte[chunkLength];
                 ReadExactly(stream, chunkData, chunkLength);
 
@@ -473,7 +472,7 @@ public sealed class NetTexturesManager
     internal static IEnumerable<NetTextureResourceChunkMessage> CreateFallbackChunks(
         ResPath relativePath,
         byte[] data,
-        int chunkSize = FallbackChunkSize)
+        int chunkSize = NetTextureConstants.MaxChunkSize)
     {
         if (chunkSize <= 0)
             throw new ArgumentOutOfRangeException(nameof(chunkSize));
@@ -508,7 +507,7 @@ public sealed class NetTexturesManager
     private async Task WriteFileStream(Stream stream, IReadOnlyList<TransferResourceEntry> files)
     {
         var continueByte = new byte[1];
-        var buffer = ArrayPool<byte>.Shared.Rent(FallbackChunkSize);
+        var buffer = ArrayPool<byte>.Shared.Rent(NetTextureConstants.MaxChunkSize);
         var headerBuffer = Array.Empty<byte>();
 
         try

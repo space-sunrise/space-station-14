@@ -1,3 +1,4 @@
+using System.IO;
 using Lidgren.Network;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
@@ -27,6 +28,12 @@ public sealed class NetTextureResourceChunkMessage : NetMessage
         TotalLength = buffer.ReadInt32();
 
         var dataLength = buffer.ReadInt32();
+        if (dataLength < 0 || dataLength > NetTextureConstants.MaxChunkSize)
+        {
+            throw new InvalidDataException(
+                $"NetTextures chunk length {dataLength} is outside the allowed range 0..{NetTextureConstants.MaxChunkSize}.");
+        }
+
         Data = buffer.ReadBytes(dataLength);
     }
 

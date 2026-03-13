@@ -50,9 +50,9 @@ public sealed partial class NetTexturesManager
         }
     }
 
-    private abstract class PreparedUploadJob(string resourcePath, int generation) : IDisposable
+    private abstract class PreparedUploadJob(string resourceKey, int generation) : IDisposable
     {
-        public string ResourcePath { get; } = resourcePath;
+        public string ResourceKey { get; } = resourceKey;
         public int Generation { get; } = generation;
 
         public abstract int EstimateStepCostBytes(NetTexturesManager manager);
@@ -93,11 +93,11 @@ public sealed partial class NetTexturesManager
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var prepared = _prepared ?? throw new InvalidOperationException($"Texture upload job for {ResourcePath} has no prepared image");
+            var prepared = _prepared ?? throw new InvalidOperationException($"Texture upload job for {ResourceKey} has no prepared image");
 
             _texture ??= manager._clyde.CreateBlankTexture<Rgba32>(
                 (prepared.Image.Width, prepared.Image.Height),
-                ResourcePath);
+                ResourceKey);
 
             var tileWidth = Math.Min(UploadTileSize, prepared.Image.Width - _nextTileX);
             var tileHeight = Math.Min(UploadTileSize, prepared.Image.Height - _nextTileY);
@@ -131,9 +131,9 @@ public sealed partial class NetTexturesManager
         public override void Commit(NetTexturesManager manager)
         {
             if (_loadedTexture == null)
-                throw new InvalidOperationException($"Texture upload job for {ResourcePath} completed without a loaded texture");
+                throw new InvalidOperationException($"Texture upload job for {ResourceKey} completed without a loaded texture");
 
-            manager.FinishPreparedTexture(ResourcePath, _loadedTexture);
+            manager.FinishPreparedTexture(ResourceKey, _loadedTexture);
             _loadedTexture = null;
         }
 
@@ -207,7 +207,7 @@ public sealed partial class NetTexturesManager
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var prepared = _prepared ?? throw new InvalidOperationException($"RSI upload job for {ResourcePath} has no prepared states");
+            var prepared = _prepared ?? throw new InvalidOperationException($"RSI upload job for {ResourceKey} has no prepared states");
 
             while (_stateIndex < prepared.States.Count)
             {
@@ -222,7 +222,7 @@ public sealed partial class NetTexturesManager
                 var frame = state.Frames[_frameIndex];
                 try
                 {
-                    var texture = manager._clyde.LoadTextureFromImage(frame.Image!, $"{ResourcePath}:{state.StateId}:{frame.SourceIndex}", prepared.LoadParameters);
+                    var texture = manager._clyde.LoadTextureFromImage(frame.Image!, $"{ResourceKey}:{state.StateId}:{frame.SourceIndex}", prepared.LoadParameters);
                     _textures.Add(texture);
                     state.UploadedFrames[frame.SourceIndex] = texture;
                 }
@@ -258,9 +258,9 @@ public sealed partial class NetTexturesManager
         public override void Commit(NetTexturesManager manager)
         {
             if (_loadedRsi == null)
-                throw new InvalidOperationException($"RSI upload job for {ResourcePath} completed without a loaded RSI");
+                throw new InvalidOperationException($"RSI upload job for {ResourceKey} completed without a loaded RSI");
 
-            manager.FinishPreparedRsi(ResourcePath, _loadedRsi);
+            manager.FinishPreparedRsi(ResourceKey, _loadedRsi);
             _loadedRsi = null;
         }
 
@@ -427,7 +427,7 @@ public sealed partial class NetTexturesManager
             var dirIndex = Directions switch
             {
                 RsiDirectionType.Dir1 => 0,
-                RsiDirectionType.Dir4 => Math.Min((int) direction, 3),
+                RsiDirectionType.Dir4 => (int) direction.RoundToCardinal(),
                 _ => (int) direction
             };
 
@@ -437,9 +437,9 @@ public sealed partial class NetTexturesManager
     #endregion
 
     #region Metadata Models
-    private sealed class PreparationRequest(string resourcePath, ResPath resPath, int generation)
+    private sealed class PreparationRequest(string resourceKey, ResPath resPath, int generation)
     {
-        public readonly string ResourcePath = resourcePath;
+        public readonly string ResourceKey = resourceKey;
         public readonly ResPath ResPath = resPath;
         public readonly int Generation = generation;
     }
@@ -463,7 +463,9 @@ public sealed partial class NetTexturesManager
         private readonly HashSet<string> _presentFiles = new();
         private HashSet<string>? _requiredFiles;
 
+        public bool HasMetadata => _requiredFiles != null;
         public bool IsComplete { get; private set; }
+        public string? MetadataFailureReason { get; private set; }
 
         public void MarkPresent(string fileName)
         {
@@ -488,8 +490,16 @@ public sealed partial class NetTexturesManager
                 requiredFiles.Add($"{state.Name}.png");
             }
 
+            MetadataFailureReason = null;
             _requiredFiles = requiredFiles;
             UpdateCompleteness();
+        }
+
+        public void SetMetadataFailure(string reason)
+        {
+            MetadataFailureReason = reason;
+            _requiredFiles = null;
+            IsComplete = false;
         }
 
         private void UpdateCompleteness()

@@ -24,23 +24,28 @@ public sealed partial class NetTexturesManager
         if (string.IsNullOrWhiteSpace(resourcePath))
             return false;
 
-        if (IsResourceLoaded(resourcePath))
+        var resPath = ToResPath(resourcePath);
+        var resourceKey = resPath.ToString();
+
+        if (IsResourceLoaded(resourceKey))
             return true;
 
-        if (_failedResources.Contains(resourcePath))
+        if (_failedResources.Contains(resourceKey))
             return false;
 
-        var resPath = ToResPath(resourcePath);
-        if (IsResourceComplete(resPath))
+        if (!TryCheckResourceComplete(resourceKey, resPath, out var isComplete))
+            return false;
+
+        if (isComplete)
         {
-            StartPreparingResource(resourcePath, resPath);
-            return IsResourceLoaded(resourcePath);
+            StartPreparingResource(resourceKey, resPath);
+            return IsResourceLoaded(resourceKey);
         }
 
-        _pendingResources[resourcePath] = resPath;
+        _pendingResources[resourceKey] = resPath;
 
-        if (!_requestedResources.Contains(resourcePath))
-            RequestResource(resourcePath);
+        if (!_requestedResources.Contains(resourceKey))
+            RequestResource(resourceKey);
 
         return false;
     }
@@ -55,13 +60,18 @@ public sealed partial class NetTexturesManager
     /// </returns>
     public bool TryGetTexture(string resourcePath, out Texture? texture)
     {
-        if (_loadedTextures.TryGetValue(resourcePath, out var loaded))
+        texture = null;
+
+        if (string.IsNullOrWhiteSpace(resourcePath))
+            return false;
+
+        var resourceKey = ToResPath(resourcePath).ToString();
+        if (_loadedTextures.TryGetValue(resourceKey, out var loaded))
         {
             texture = loaded.Texture;
             return true;
         }
 
-        texture = null;
         return false;
     }
 
@@ -78,7 +88,11 @@ public sealed partial class NetTexturesManager
     {
         state = null;
 
-        if (!_loadedRsis.TryGetValue(resourcePath, out var loaded))
+        if (string.IsNullOrWhiteSpace(resourcePath))
+            return false;
+
+        var resourceKey = ToResPath(resourcePath).ToString();
+        if (!_loadedRsis.TryGetValue(resourceKey, out var loaded))
             return false;
 
         return loaded.States.TryGetValue(stateId, out state);

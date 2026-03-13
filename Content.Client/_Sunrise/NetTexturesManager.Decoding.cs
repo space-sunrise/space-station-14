@@ -19,35 +19,35 @@ public sealed partial class NetTexturesManager
     /// <summary>
     /// Commits a fully uploaded texture into the ready resource map and notifies listeners.
     /// </summary>
-    /// <param name="resourcePath">The consumer-facing resource path.</param>
+    /// <param name="resourceKey">The normalized resource key.</param>
     /// <param name="loadedTexture">The uploaded texture entry.</param>
-    private void FinishPreparedTexture(string resourcePath, LoadedTextureEntry loadedTexture)
+    private void FinishPreparedTexture(string resourceKey, LoadedTextureEntry loadedTexture)
     {
-        _preparingResources.Remove(resourcePath);
-        _pendingResources.Remove(resourcePath);
+        _preparingResources.Remove(resourceKey);
+        _pendingResources.Remove(resourceKey);
 
-        if (_loadedTextures.Remove(resourcePath, out var oldTexture))
+        if (_loadedTextures.Remove(resourceKey, out var oldTexture))
             oldTexture.Dispose();
 
-        _loadedTextures[resourcePath] = loadedTexture;
-        ResourceLoaded?.Invoke(resourcePath);
+        _loadedTextures[resourceKey] = loadedTexture;
+        ResourceLoaded?.Invoke(resourceKey);
     }
 
     /// <summary>
     /// Commits a fully uploaded RSI animation set into the ready resource map and notifies listeners.
     /// </summary>
-    /// <param name="resourcePath">The consumer-facing resource path.</param>
+    /// <param name="resourceKey">The normalized resource key.</param>
     /// <param name="loadedRsi">The uploaded RSI entry.</param>
-    private void FinishPreparedRsi(string resourcePath, LoadedRsiEntry loadedRsi)
+    private void FinishPreparedRsi(string resourceKey, LoadedRsiEntry loadedRsi)
     {
-        _preparingResources.Remove(resourcePath);
-        _pendingResources.Remove(resourcePath);
+        _preparingResources.Remove(resourceKey);
+        _pendingResources.Remove(resourceKey);
 
-        if (_loadedRsis.Remove(resourcePath, out var oldRsi))
+        if (_loadedRsis.Remove(resourceKey, out var oldRsi))
             oldRsi.Dispose();
 
-        _loadedRsis[resourcePath] = loadedRsi;
-        ResourceLoaded?.Invoke(resourcePath);
+        _loadedRsis[resourceKey] = loadedRsi;
+        ResourceLoaded?.Invoke(resourceKey);
     }
 
     /// <summary>
@@ -68,7 +68,7 @@ public sealed partial class NetTexturesManager
         {
             var upload = _preparedUploads.Peek();
 
-            if (upload.Generation != _sessionGeneration)
+            if (upload.Generation != ReadSessionGeneration())
             {
                 _preparedUploads.Dequeue().Dispose();
                 continue;
@@ -90,12 +90,12 @@ public sealed partial class NetTexturesManager
             catch (OperationCanceledException)
             {
                 _preparedUploads.Dequeue().Dispose();
-                _preparingResources.Remove(upload.ResourcePath);
+                _preparingResources.Remove(upload.ResourceKey);
             }
             catch (Exception ex)
             {
                 _preparedUploads.Dequeue().Dispose();
-                MarkResourceFailed(upload.ResourcePath, ex.Message);
+                MarkResourceFailed(upload.ResourceKey, ex.Message);
             }
         }
     }
@@ -103,14 +103,14 @@ public sealed partial class NetTexturesManager
     /// <summary>
     /// Records a resource failure and prevents it from being treated as ready.
     /// </summary>
-    /// <param name="resourcePath">The failing resource path.</param>
+    /// <param name="resourceKey">The failing normalized resource key.</param>
     /// <param name="reason">The failure reason used for logging.</param>
-    private void MarkResourceFailed(string resourcePath, string reason)
+    private void MarkResourceFailed(string resourceKey, string reason)
     {
-        _preparingResources.Remove(resourcePath);
-        _pendingResources.Remove(resourcePath);
-        _failedResources.Add(resourcePath);
-        _sawmill.Warning($"Failed to prepare NetTexture {resourcePath}: {reason}");
+        _preparingResources.Remove(resourceKey);
+        _pendingResources.Remove(resourceKey);
+        _failedResources.Add(resourceKey);
+        _sawmill.Warning($"Failed to prepare NetTexture {resourceKey}: {reason}");
     }
     #endregion
 
@@ -123,48 +123,59 @@ public sealed partial class NetTexturesManager
     private bool CheckRsiFilesComplete(ResPath relativePath)
     {
         if (_rsiCompleteness.TryGetValue(relativePath, out var cached))
-            return cached.IsComplete;
-
-        try
         {
-            var uploadedPath = (new ResPath(UploadedPrefix) / relativePath).ToRootedPath();
-            var metaPath = (uploadedPath / "meta.json").ToRootedPath();
+            if (cached.MetadataFailureReason != null)
+                throw new InvalidDataException(cached.MetadataFailureReason);
 
-            if (!_resourceManager.TryContentFileRead(metaPath, out var metaStream))
-                return false;
+            if (cached.HasMetadata)
+                return cached.IsComplete;
+        }
 
-            using (metaStream)
+        var uploadedPath = (new ResPath(UploadedPrefix) / relativePath).ToRootedPath();
+        var metaPath = (uploadedPath / "meta.json").ToRootedPath();
+
+        if (!_resourceManager.TryContentFileRead(metaPath, out var metaStream))
+            return false;
+
+        using (metaStream)
+        {
+            RsiMetadataData metadata;
+            try
             {
-                var metadata = LoadRsiMetadata(metaStream);
-                if (metadata.States.Length == 0)
-                    return false;
+                metadata = LoadRsiMetadata(metaStream);
+            }
+            catch (Exception ex)
+            {
+                if (!IsHandledRsiMetadataException(ex))
+                    throw;
 
-                var completeness = new RsiCompletenessEntry();
-                completeness.MarkPresent("meta.json");
-                completeness.SetMetadata(metadata);
-
-                foreach (var state in metadata.States)
-                {
-                    if (string.IsNullOrWhiteSpace(state.Name))
-                        return false;
-
-                    var pngPath = (uploadedPath / $"{state.Name}.png").ToRootedPath();
-                    if (!_resourceManager.ContentFileExists(pngPath))
-                        return false;
-
-                    completeness.MarkPresent($"{state.Name}.png");
-                }
-
-                _rsiCompleteness[relativePath] = completeness;
+                _sawmill.Debug($"Failed to parse RSI metadata while checking completeness for {relativePath}: {ex}");
+                throw new InvalidDataException($"Failed to parse RSI metadata for {relativePath}", ex);
             }
 
-            return true;
+            if (metadata.States.Length == 0)
+                return false;
+
+            var completeness = new RsiCompletenessEntry();
+            completeness.MarkPresent("meta.json");
+            completeness.SetMetadata(metadata);
+
+            foreach (var state in metadata.States)
+            {
+                if (string.IsNullOrWhiteSpace(state.Name))
+                    return false;
+
+                var pngPath = (uploadedPath / $"{state.Name}.png").ToRootedPath();
+                if (!_resourceManager.ContentFileExists(pngPath))
+                    return false;
+
+                completeness.MarkPresent($"{state.Name}.png");
+            }
+
+            _rsiCompleteness[relativePath] = completeness;
         }
-        catch (Exception ex)
-        {
-            _sawmill.Debug($"Error checking RSI completeness for {relativePath}: {ex.Message}");
-            return false;
-        }
+
+        return true;
     }
 
     /// <summary>
@@ -227,7 +238,7 @@ public sealed partial class NetTexturesManager
 
             var pngPath = (uploadedPath / $"{state.Name}.png").ToRootedPath();
             using var stateStream = _resourceManager.ContentFileRead(pngPath);
-            var image = Image.Load<Rgba32>(stateStream);
+            using var image = Image.Load<Rgba32>(stateStream);
 
             if (image.Width % frameSize.X != 0 || image.Height % frameSize.Y != 0)
                 throw new InvalidDataException($"RSI state {state.Name} in {resourcePath} has invalid image size {image.Width}x{image.Height}");

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Text.Json;
 using System.Threading;
 using Content.IntegrationTests.Pair;
@@ -13,6 +14,7 @@ using Robust.Client.ResourceManagement;
 using Robust.Shared.GameObjects;
 using Robust.Client.State;
 using Robust.Shared.ContentPack;
+using Robust.Shared.Log;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -555,6 +557,39 @@ public sealed class NetTexturesRegressionTest
     }
 
     [Test]
+    public async Task CorruptRsiMetadataMarksPendingResourceFailed()
+    {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings
+        {
+            Connected = false,
+            Dirty = true
+        });
+
+        var client = pair.Client;
+        var manager = client.ResolveDependency<ClientNetTexturesManager>();
+        const string resourcePath = "/NetTextures/Test/corrupt-meta.rsi";
+
+        await client.WaitPost(() => client.CfgMan.SetCVar(RTCVars.FailureLogLevel, LogLevel.Error));
+        await client.WaitPost(() => Assert.That(manager.EnsureResource(resourcePath), Is.False));
+
+        await client.WaitPost(() => manager.PublishFiles(new List<(ResPath Relative, byte[] Data)>
+        {
+            (new ResPath($"{resourcePath}/meta.json").ToRelativePath(), Encoding.UTF8.GetBytes("{"))
+        }));
+
+        await client.WaitAssertion(() =>
+        {
+            Assert.That(GetPrivateField<HashSet<string>>(manager, "_failedResources"), Contains.Item(resourcePath));
+            Assert.That(GetPrivateField<Dictionary<string, ResPath>>(manager, "_pendingResources").ContainsKey(resourcePath), Is.False);
+            Assert.That(manager.TryGetAnimationState(resourcePath, "idle", out _), Is.False);
+        });
+
+        await client.WaitPost(() => Assert.That(manager.EnsureResource(resourcePath), Is.False));
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
     public async Task IncompleteFallbackAssemblyDoesNotSurviveLobbyReconnect()
     {
         await using var pair = await PoolManager.GetServerClient(new PoolSettings
@@ -762,35 +797,13 @@ public sealed class NetTexturesRegressionTest
         string? lobbyAnimation = null,
         string? lobbyArt = null)
     {
-        if (lobbyType != null)
-            SetAutoProperty(gameTicker, nameof(ClientGameTicker.LobbyType), lobbyType);
-
-        if (lobbyParallax != null)
-            SetAutoProperty(gameTicker, nameof(ClientGameTicker.LobbyParallax), lobbyParallax);
-
-        if (lobbyAnimation != null)
-            SetAutoProperty(gameTicker, nameof(ClientGameTicker.LobbyAnimation), lobbyAnimation);
-
-        if (lobbyArt != null)
-            SetAutoProperty(gameTicker, nameof(ClientGameTicker.LobbyArt), lobbyArt);
+        gameTicker.SetTestFallbacks(lobbyType, lobbyParallax, lobbyAnimation, lobbyArt);
     }
 
-    private static void SetAutoProperty(object instance, string propertyName, object? value)
+    private static T GetPrivateField<T>(object instance, string fieldName)
     {
-        var field = instance.GetType().GetField($"<{propertyName}>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
-        Assert.That(field, Is.Not.Null, $"Failed to find auto-property backing field for {propertyName}.");
-        var fieldType = field!.FieldType;
-        var boxedValue = value;
-
-        if (value is string stringValue)
-        {
-            var underlyingType = Nullable.GetUnderlyingType(fieldType) ?? fieldType;
-            if (underlyingType.IsGenericType && underlyingType.GetGenericTypeDefinition() == typeof(ProtoId<>))
-            {
-                boxedValue = Activator.CreateInstance(underlyingType, stringValue);
-            }
-        }
-
-        field.SetValue(instance, boxedValue);
+        var field = instance.GetType().GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
+        Assert.That(field, Is.Not.Null, $"Failed to find private field {fieldName}.");
+        return (T) field!.GetValue(instance)!;
     }
 }

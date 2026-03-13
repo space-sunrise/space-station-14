@@ -25,7 +25,7 @@ public sealed partial class NetTexturesManager
     /// <param name="transfer">The transfer payload received from the server.</param>
     private void ReceiveNetTexturesTransfer(TransferReceivedEvent transfer)
     {
-        var generation = _sessionGeneration;
+        var generation = ReadSessionGeneration();
 
         _ = Task.Run(() => ReceiveNetTexturesTransferWorker(transfer.DataStream, generation));
     }
@@ -178,11 +178,20 @@ public sealed partial class NetTexturesManager
             var pathLength = BinaryPrimitives.ReadUInt32LittleEndian(lengthBytes);
             if (pathLength > int.MaxValue)
                 throw new InvalidDataException($"NetTextures transfer path length is too large: {pathLength}");
+            if (pathLength > MaxTransferPathLength)
+                throw new InvalidDataException($"NetTextures transfer path length exceeds protocol limit: {pathLength}");
 
             ReadExactly(stream, lengthBytes);
             var dataLength = BinaryPrimitives.ReadUInt32LittleEndian(lengthBytes);
             if (dataLength > int.MaxValue)
                 throw new InvalidDataException($"NetTextures transfer file length is too large: {dataLength}");
+            if (dataLength > MaxTransferFileSize)
+                throw new InvalidDataException($"NetTextures transfer file length exceeds protocol limit: {dataLength}");
+            if ((ulong) pathLength + dataLength > MaxTransferPayloadLength)
+            {
+                throw new InvalidDataException(
+                    $"NetTextures transfer entry payload exceeds protocol limit: path={pathLength}, data={dataLength}");
+            }
 
             var pathData = new byte[(int) pathLength];
             ReadExactly(stream, pathData);
@@ -268,7 +277,7 @@ public sealed partial class NetTexturesManager
                 batch = _pendingTransferBatches.Dequeue();
             }
 
-            if (batch.Generation != _sessionGeneration)
+            if (batch.Generation != ReadSessionGeneration())
                 continue;
 
             PublishFiles(batch.Files, updatePendingResources: false);
@@ -308,7 +317,12 @@ public sealed partial class NetTexturesManager
         }
         catch (Exception ex)
         {
-            _sawmill.Debug($"Failed to parse uploaded RSI metadata for {rsiRelativePath}: {ex.Message}");
+            if (!IsHandledRsiMetadataException(ex))
+                throw;
+
+            var reason = $"Failed to parse RSI metadata for {rsiRelativePath}: {ex.Message}";
+            _sawmill.Debug(reason);
+            completeness.SetMetadataFailure(reason);
         }
     }
 

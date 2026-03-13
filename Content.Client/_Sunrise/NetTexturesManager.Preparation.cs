@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Shared._Sunrise.NetTextures;
@@ -20,24 +21,27 @@ public sealed partial class NetTexturesManager
 
         _resourcesReadyToPrepare.Clear();
 
-        foreach (var (resourcePath, resPath) in _pendingResources)
+        foreach (var (resourceKey, resPath) in _pendingResources)
         {
-            if (IsResourceLoaded(resourcePath) || _preparingResources.Contains(resourcePath))
+            if (IsResourceLoaded(resourceKey) || _preparingResources.Contains(resourceKey))
                 continue;
 
-            if (IsResourceComplete(resPath))
+            if (!TryCheckResourceComplete(resourceKey, resPath, out var isComplete))
+                continue;
+
+            if (isComplete)
             {
-                _resourcesReadyToPrepare.Add((resourcePath, resPath));
+                _resourcesReadyToPrepare.Add((resourceKey, resPath));
                 continue;
             }
 
-            if (!_requestedResources.Contains(resourcePath))
-                RequestResource(resourcePath);
+            if (!_requestedResources.Contains(resourceKey))
+                RequestResource(resourceKey);
         }
 
-        foreach (var (resourcePath, resPath) in _resourcesReadyToPrepare)
+        foreach (var (resourceKey, resPath) in _resourcesReadyToPrepare)
         {
-            StartPreparingResource(resourcePath, resPath);
+            StartPreparingResource(resourceKey, resPath);
         }
 
         _resourcesReadyToPrepare.Clear();
@@ -46,43 +50,43 @@ public sealed partial class NetTexturesManager
     /// <summary>
     /// Queues a complete resource for decode and upload preparation.
     /// </summary>
-    /// <param name="resourcePath">The consumer-facing resource path.</param>
+    /// <param name="resourceKey">The normalized resource key.</param>
     /// <param name="resPath">The normalized resource path.</param>
-    private void StartPreparingResource(string resourcePath, ResPath resPath)
+    private void StartPreparingResource(string resourceKey, ResPath resPath)
     {
-        if (IsResourceLoaded(resourcePath))
+        if (IsResourceLoaded(resourceKey))
         {
-            _pendingResources.Remove(resourcePath);
+            _pendingResources.Remove(resourceKey);
             return;
         }
 
-        if (!_preparingResources.Add(resourcePath))
+        if (!_preparingResources.Add(resourceKey))
             return;
 
-        _prepareRequests.Enqueue(new PreparationRequest(resourcePath, resPath, _sessionGeneration));
+        _prepareRequests.Enqueue(new PreparationRequest(resourceKey, resPath, ReadSessionGeneration()));
         TryStartNextPreparation();
     }
 
     /// <summary>
     /// Sends a one-time network request for a resource that is not yet present locally.
     /// </summary>
-    /// <param name="resourcePath">The requested resource path.</param>
-    private void RequestResource(string resourcePath)
+    /// <param name="resourceKey">The normalized requested resource path.</param>
+    private void RequestResource(string resourceKey)
     {
-        if (_requestedResources.Contains(resourcePath))
+        if (_requestedResources.Contains(resourceKey))
             return;
 
         if (!_netManager.IsConnected)
         {
-            _sawmill.Debug($"Cannot request resource {resourcePath}: client not connected to server");
+            _sawmill.Debug($"Cannot request resource {resourceKey}: client not connected to server");
             return;
         }
 
-        _requestedResources.Add(resourcePath);
+        _requestedResources.Add(resourceKey);
 
         var msg = new RequestNetworkResourceMessage
         {
-            ResourcePath = resourcePath
+            ResourcePath = resourceKey
         };
 
         _netManager.ClientSendMessage(msg);
@@ -91,11 +95,11 @@ public sealed partial class NetTexturesManager
     /// <summary>
     /// Checks whether the resource already has a fully prepared ready-to-use representation.
     /// </summary>
-    /// <param name="resourcePath">The consumer-facing resource path.</param>
+    /// <param name="resourceKey">The normalized resource key.</param>
     /// <returns><see langword="true"/> if the resource is already loaded.</returns>
-    private bool IsResourceLoaded(string resourcePath)
+    private bool IsResourceLoaded(string resourceKey)
     {
-        return _loadedTextures.ContainsKey(resourcePath) || _loadedRsis.ContainsKey(resourcePath);
+        return _loadedTextures.ContainsKey(resourceKey) || _loadedRsis.ContainsKey(resourceKey);
     }
 
     /// <summary>
@@ -115,6 +119,31 @@ public sealed partial class NetTexturesManager
 
         var uploadedPath = (new ResPath(UploadedPrefix) / relativePath).ToRootedPath();
         return _resourceManager.ContentFileExists(uploadedPath);
+    }
+
+    /// <summary>
+    /// Checks resource completeness and converts corrupt payloads into terminal failures.
+    /// </summary>
+    /// <param name="resourceKey">The normalized resource key.</param>
+    /// <param name="resPath">The normalized resource path.</param>
+    /// <param name="isComplete">Whether the resource files are complete enough to prepare.</param>
+    /// <returns>
+    /// <see langword="true"/> when the completeness check succeeded; otherwise <see langword="false"/> after the
+    /// resource has been marked failed.
+    /// </returns>
+    private bool TryCheckResourceComplete(string resourceKey, ResPath resPath, out bool isComplete)
+    {
+        try
+        {
+            isComplete = IsResourceComplete(resPath);
+            return true;
+        }
+        catch (InvalidDataException ex)
+        {
+            MarkResourceFailed(resourceKey, ex.Message);
+            isComplete = false;
+            return false;
+        }
     }
     #endregion
 
@@ -145,7 +174,7 @@ public sealed partial class NetTexturesManager
     /// </remarks>
     private void ResetState()
     {
-        _sessionGeneration++;
+        AdvanceSessionGeneration();
 
         _sessionCts.Cancel();
         _sessionCts.Dispose();
@@ -204,13 +233,15 @@ public sealed partial class NetTexturesManager
         if (_prepareWorkerRunning)
             return;
 
+        var currentGeneration = ReadSessionGeneration();
+
         while (_prepareRequests.Count > 0)
         {
             var request = _prepareRequests.Dequeue();
-            if (request.Generation != _sessionGeneration)
+            if (request.Generation != currentGeneration)
                 continue;
 
-            if (!_preparingResources.Contains(request.ResourcePath))
+            if (!_preparingResources.Contains(request.ResourceKey))
                 continue;
 
             _prepareWorkerRunning = true;
@@ -240,12 +271,12 @@ public sealed partial class NetTexturesManager
             if (IsRsiPath(request.ResPath))
             {
                 var prepared = DecodeRsi(request.ResPath, cancellationToken);
-                upload = new PreparedRsiUploadJob(request.ResourcePath, request.Generation, prepared);
+                upload = new PreparedRsiUploadJob(request.ResourceKey, request.Generation, prepared);
             }
             else
             {
                 var prepared = DecodeTexture(request.ResPath, cancellationToken);
-                upload = new PreparedTextureUploadJob(request.ResourcePath, request.Generation, prepared);
+                upload = new PreparedTextureUploadJob(request.ResourceKey, request.Generation, prepared);
             }
         }
         catch (OperationCanceledException)
@@ -278,16 +309,18 @@ public sealed partial class NetTexturesManager
             _activePrepareRequestId = 0;
         }
 
+        var currentGeneration = ReadSessionGeneration();
+
         if (upload != null)
         {
-            if (request.Generation == _sessionGeneration)
+            if (request.Generation == currentGeneration)
                 _preparedUploads.Enqueue(upload);
             else
                 upload.Dispose();
         }
-        else if (error != null && request.Generation == _sessionGeneration)
+        else if (error != null && request.Generation == currentGeneration)
         {
-            MarkResourceFailed(request.ResourcePath, error.Message);
+            MarkResourceFailed(request.ResourceKey, error.Message);
         }
 
         TryStartNextPreparation();
