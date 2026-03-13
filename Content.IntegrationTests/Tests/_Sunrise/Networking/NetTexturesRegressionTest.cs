@@ -1,12 +1,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.Json;
 using System.Threading;
 using Content.IntegrationTests.Pair;
+using Content.Client.GameTicking.Managers;
 using Content.Client.Lobby;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.NetTextures;
+using Robust.Shared.GameObjects;
 using Robust.Client.State;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Network;
@@ -109,6 +112,109 @@ public sealed class NetTexturesRegressionTest
             Assert.That(lobbyState.Lobby!.LoadingAnimationContainer.Visible, Is.False);
             Assert.That(lobbyState.Lobby.LobbyAnimation.Visible, Is.True);
             Assert.That(lobbyState.Lobby.LobbyAnimation.DisplayRect.Texture, Is.Not.Null);
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task InvalidSavedLobbyArtUsesTransientFallbackWithoutMutatingSettings()
+    {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings
+        {
+            InLobby = true,
+            Dirty = true
+        });
+
+        var client = pair.Client;
+        var stateManager = client.Resolve<IStateManager>();
+        var protoMan = client.Resolve<IPrototypeManager>();
+        var entityManager = client.Resolve<IEntityManager>();
+
+        const string fallbackArtId = "NetTexturesRegressionFallbackArt";
+        const string invalidArtId = "NetTexturesRegressionMissingArt";
+        const string artPrototype = """
+- type: lobbyArt
+  id: NetTexturesRegressionFallbackArt
+  background: Logo/logo.png
+""";
+
+        await client.WaitPost(() =>
+        {
+            protoMan.LoadString(artPrototype, overwrite: true);
+            protoMan.ResolveResults();
+            SetLobbyTickerFallbacks(entityManager.System<ClientGameTicker>(), lobbyArt: fallbackArtId);
+            client.CfgMan.SetCVar(SunriseCCVars.LobbyArt, invalidArtId);
+            client.CfgMan.SetCVar(SunriseCCVars.LobbyBackgroundType, "Art");
+        });
+
+        await pair.RunTicksSync(5);
+
+        await client.WaitAssertion(() =>
+        {
+            var lobbyState = stateManager.CurrentState as LobbyState;
+            Assert.That(lobbyState, Is.Not.Null);
+            Assert.That(lobbyState!.Lobby, Is.Not.Null);
+            Assert.That(lobbyState.Lobby!.LoadingAnimationContainer.Visible, Is.False);
+            Assert.That(lobbyState.Lobby.LobbyArt.Visible, Is.True);
+            Assert.That(lobbyState.Lobby.LobbyArt.Texture, Is.Not.Null);
+            Assert.That(client.CfgMan.GetCVar(SunriseCCVars.LobbyArt), Is.EqualTo(invalidArtId));
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task InvalidSavedNetworkLobbyAnimationUsesTransientFallbackWithoutMutatingSettings()
+    {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings
+        {
+            InLobby = true,
+            Dirty = true
+        });
+
+        var client = pair.Client;
+        var manager = client.ResolveDependency<ClientNetTexturesManager>();
+        var stateManager = client.Resolve<IStateManager>();
+        var protoMan = client.Resolve<IPrototypeManager>();
+        var entityManager = client.Resolve<IEntityManager>();
+
+        const string fallbackAnimationId = "NetTexturesRegressionFallbackAnimation";
+        const string invalidAnimationId = "NetTexturesRegressionMissingAnimation";
+        const string animationResourcePath = "/NetTextures/Test/invalid-saved-animation.rsi";
+        const string animationStateId = "idle";
+        const string animationPrototype = """
+- type: lobbyAnimation
+  id: NetTexturesRegressionFallbackAnimation
+  animation: /NetTextures/Test/invalid-saved-animation.rsi
+  state: idle
+""";
+
+        await client.WaitPost(() =>
+        {
+            protoMan.LoadString(animationPrototype, overwrite: true);
+            protoMan.ResolveResults();
+            SetLobbyTickerFallbacks(entityManager.System<ClientGameTicker>(), lobbyAnimation: fallbackAnimationId);
+            manager.PublishFiles(new List<(ResPath Relative, byte[] Data)>
+            {
+                (new ResPath($"{animationResourcePath}/meta.json").ToRelativePath(), CreateRsiMetaJson([animationStateId])),
+                (new ResPath($"{animationResourcePath}/{animationStateId}.png").ToRelativePath(), CreatePngBytes(16, 16, seed: 61))
+            });
+            client.CfgMan.SetCVar(SunriseCCVars.LobbyAnimation, invalidAnimationId);
+            client.CfgMan.SetCVar(SunriseCCVars.LobbyBackgroundType, "Animation");
+        });
+
+        await pair.RunTicksSync(5);
+
+        await client.WaitAssertion(() =>
+        {
+            var lobbyState = stateManager.CurrentState as LobbyState;
+            Assert.That(lobbyState, Is.Not.Null);
+            Assert.That(lobbyState!.Lobby, Is.Not.Null);
+            Assert.That(lobbyState.Lobby!.LoadingAnimationContainer.Visible, Is.False);
+            Assert.That(lobbyState.Lobby.LobbyAnimation.Visible, Is.True);
+            Assert.That(lobbyState.Lobby.LobbyAnimation.DisplayRect.Texture, Is.Not.Null);
+            Assert.That(client.CfgMan.GetCVar(SunriseCCVars.LobbyAnimation), Is.EqualTo(invalidAnimationId));
         });
 
         await pair.CleanReturnAsync();
@@ -515,5 +621,44 @@ public sealed class NetTexturesRegressionTest
         using var stream = new MemoryStream();
         image.SaveAsPng(stream);
         return stream.ToArray();
+    }
+
+    private static void SetLobbyTickerFallbacks(
+        ClientGameTicker gameTicker,
+        string? lobbyType = null,
+        string? lobbyParallax = null,
+        string? lobbyAnimation = null,
+        string? lobbyArt = null)
+    {
+        if (lobbyType != null)
+            SetAutoProperty(gameTicker, nameof(ClientGameTicker.LobbyType), lobbyType);
+
+        if (lobbyParallax != null)
+            SetAutoProperty(gameTicker, nameof(ClientGameTicker.LobbyParallax), lobbyParallax);
+
+        if (lobbyAnimation != null)
+            SetAutoProperty(gameTicker, nameof(ClientGameTicker.LobbyAnimation), lobbyAnimation);
+
+        if (lobbyArt != null)
+            SetAutoProperty(gameTicker, nameof(ClientGameTicker.LobbyArt), lobbyArt);
+    }
+
+    private static void SetAutoProperty(object instance, string propertyName, object? value)
+    {
+        var field = instance.GetType().GetField($"<{propertyName}>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+        Assert.That(field, Is.Not.Null, $"Failed to find auto-property backing field for {propertyName}.");
+        var fieldType = field!.FieldType;
+        var boxedValue = value;
+
+        if (value is string stringValue)
+        {
+            var underlyingType = Nullable.GetUnderlyingType(fieldType) ?? fieldType;
+            if (underlyingType.IsGenericType && underlyingType.GetGenericTypeDefinition() == typeof(ProtoId<>))
+            {
+                boxedValue = Activator.CreateInstance(underlyingType, stringValue);
+            }
+        }
+
+        field.SetValue(instance, boxedValue);
     }
 }
