@@ -3,6 +3,7 @@ using System.Buffers.Binary;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Content.Shared._Sunrise.CartridgeLoader.Cartridges;
 using Content.Shared._Sunrise.NetTextures;
@@ -34,7 +35,6 @@ public sealed class NetTexturesManager
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly ITransferManager _transferManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     private ISawmill _sawmill = default!;
     private const string AllowedPrefix = "/NetTextures/";
@@ -44,12 +44,12 @@ public sealed class NetTexturesManager
     /// Key is the relative upload path used on the client (e.g. "NetTextures/Messenger/photo_123.png").
     /// </summary>
     private readonly Dictionary<ResPath, byte[]> _dynamicResources = new();
-    private readonly object _dynamicResourcesLock = new();
+    private readonly Lock _dynamicResourcesLock = new();
     private readonly Queue<TransferRequest> _pendingTransferRequests = new();
-    private readonly object _transferQueueLock = new();
+    private readonly Lock _transferQueueLock = new();
     private readonly Dictionary<ResPath, StaticTransferBundle> _staticBundles = new();
     private readonly Dictionary<ResPath, Task<StaticTransferBundle?>> _staticBundleTasks = new();
-    private readonly object _staticBundleLock = new();
+    private readonly Lock _staticBundleLock = new();
     private int _activeTransferWorkers;
 
     /// <summary>
@@ -74,17 +74,22 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Clears all dynamically registered in-memory resources.
-    /// Used during round restarts to prevent memory leaks.
+    /// Clears round-scoped NetTextures caches during round restarts to prevent memory growth.
     /// </summary>
-    public void ClearDynamicResources()
+    public void ClearRoundCaches()
     {
         lock (_dynamicResourcesLock)
         {
             _dynamicResources.Clear();
         }
 
-        _sawmill.Info("Cleared all dynamic NetTexture resources due to round restart.");
+        lock (_staticBundleLock)
+        {
+            _staticBundles.Clear();
+            _staticBundleTasks.Clear();
+        }
+
+        _sawmill.Info("Cleared NetTextures round caches due to round restart.");
     }
 
     /// <summary>
@@ -279,7 +284,7 @@ public sealed class NetTexturesManager
         }
 
         var bundle = await GetOrCreateStaticBundleAsync(resourcePath).ConfigureAwait(false);
-        return bundle?.Files ?? Array.Empty<TransferResourceEntry>();
+        return bundle?.Files ?? [];
     }
 
     /// <summary>
@@ -635,7 +640,7 @@ public sealed class NetTexturesManager
     /// <param name="resourcePath">Rooted resource path, e.g. "/NetTextures/Messenger/photo_123.png".</param>
     public void UnregisterDynamicResource(string resourcePath)
     {
-        var path = resourcePath.StartsWith("/")
+        var path = resourcePath.StartsWith('/')
             ? new ResPath(resourcePath)
             : new ResPath("/") / resourcePath;
 

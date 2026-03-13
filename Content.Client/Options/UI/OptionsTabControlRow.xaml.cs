@@ -209,6 +209,13 @@ public sealed partial class OptionsTabControlRow : Control
         UpdateButtonState();
     }
 
+    // Sunrise added start - allow UI refreshes without implying a user edit
+    public void RefreshButtonState()
+    {
+        UpdateButtonState();
+    }
+    // Sunrise added end
+
     private void UpdateButtonState()
     {
         var anyModified = _options.Any(option => option.IsModified());

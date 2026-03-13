@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using Content.Shared._Sunrise.CartridgeLoader.Cartridges;
@@ -61,6 +59,7 @@ public sealed partial class NetTexturesManager
     private int _activePrepareRequestId;
     private int _nextPrepareRequestId;
     private bool _prepareWorkerRunning;
+    private bool _initialized;
     private ISawmill _sawmill = default!;
     #endregion
 
@@ -91,10 +90,10 @@ public sealed partial class NetTexturesManager
             if (type == typeof(InvalidDataException))
                 return true;
 
-            if (type.FullName is
-                "YamlDotNet.Core.YamlException" or
-                "System.FormatException" or
-                "System.OverflowException")
+            if (type.FullName
+                is "YamlDotNet.Core.YamlException"
+                or "System.FormatException"
+                or "System.OverflowException")
             {
                 return true;
             }
@@ -117,6 +116,10 @@ public sealed partial class NetTexturesManager
     /// </summary>
     public void Initialize()
     {
+        if (_initialized)
+            return;
+
+        _initialized = true;
         _sawmill = _logManager.GetSawmill("network.textures");
 
         _resourceManager.AddRoot(new ResPath(UploadedPrefix), _netTexturesContentRoot);
@@ -135,8 +138,11 @@ public sealed partial class NetTexturesManager
     /// <param name="frameTime">The elapsed frame time in seconds.</param>
     public void Update(float frameTime)
     {
-        if (_pendingTransferBatches.Count != 0)
-            ProcessPendingTransferBatches(frameTime);
+        lock (_pendingTransferBatches)
+        {
+            if (_pendingTransferBatches.Count != 0)
+                ProcessPendingTransferBatches(frameTime);
+        }
 
         if (_pendingResources.Count != 0)
             UpdatePendingResources();

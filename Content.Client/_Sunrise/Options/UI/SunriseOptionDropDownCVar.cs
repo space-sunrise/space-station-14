@@ -9,6 +9,8 @@ namespace Content.Client._Sunrise.Options.UI;
 /// </summary>
 public sealed class SunriseOptionDropDownCVar<T> : BaseOptionCVar<T> where T : notnull
 {
+    private readonly IConfigurationManager _cfg;
+    private readonly CVarDef<T> _cVar;
     private readonly OptionDropDown _dropDown;
     private ItemEntry[] _entries;
 
@@ -25,6 +27,8 @@ public sealed class SunriseOptionDropDownCVar<T> : BaseOptionCVar<T> where T : n
         OptionDropDown dropDown,
         IReadOnlyCollection<ValueOption> options) : base(controller, cfg, cVar)
     {
+        _cfg = cfg;
+        _cVar = cVar;
         _dropDown = dropDown;
         _entries = [];
 
@@ -35,6 +39,26 @@ public sealed class SunriseOptionDropDownCVar<T> : BaseOptionCVar<T> where T : n
             dropDown.Button.SelectId(args.Id);
             ValueChanged();
         };
+    }
+
+    public override void LoadValue()
+    {
+        Value = ResolveAvailableValue(_cfg.GetCVar(_cVar));
+    }
+
+    public override void ResetToDefault()
+    {
+        Value = ResolveAvailableValue(_cVar.DefaultValue);
+    }
+
+    public override bool IsModified()
+    {
+        return !IsValueEqual(Value, ResolveAvailableValue(_cfg.GetCVar(_cVar)));
+    }
+
+    public override bool IsModifiedFromDefault()
+    {
+        return !IsValueEqual(Value, ResolveAvailableValue(_cVar.DefaultValue));
     }
 
     public void ReplaceOptions(IReadOnlyCollection<ValueOption> options)
@@ -87,15 +111,34 @@ public sealed class SunriseOptionDropDownCVar<T> : BaseOptionCVar<T> where T : n
         return false;
     }
 
+    private T ResolveAvailableValue(T value)
+    {
+        return TryFindValueId(value, out var id)
+            ? _entries[id].Key
+            : _entries[0].Key;
+    }
+
     private int FindValueId(T value)
+    {
+        if (TryFindValueId(value, out var id))
+            return id;
+
+        return 0;
+    }
+
+    private bool TryFindValueId(T value, out int id)
     {
         for (var i = 0; i < _entries.Length; i++)
         {
             if (IsValueEqual(_entries[i].Key, value))
-                return i;
+            {
+                id = i;
+                return true;
+            }
         }
 
-        return 0;
+        id = 0;
+        return false;
     }
 
     public sealed class ValueOption(T key, string label)

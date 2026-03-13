@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
@@ -31,8 +32,6 @@ namespace Content.IntegrationTests.Tests._Sunrise.Networking;
 [TestOf(typeof(ClientNetTexturesManager))]
 public sealed class NetTexturesRegressionTest
 {
-    private const int FallbackChunkSize = 64 * 1024;
-
     [Test]
     public async Task LocalLobbyArtLoadsWithoutNetTextures()
     {
@@ -610,7 +609,7 @@ public sealed class NetTexturesRegressionTest
         var relativePath = new ResPath(resourcePath).ToRelativePath();
         var uploadedPath = manager.GetUploadedPath(resourcePath);
         var payload = CreatePngBytes(256, 256, seed: 44, noisy: true);
-        var chunks = ServerNetTexturesManager.CreateFallbackChunks(relativePath, payload, FallbackChunkSize).ToArray();
+        var chunks = ServerNetTexturesManager.CreateFallbackChunks(relativePath, payload, NetTextureConstants.MaxChunkSize).ToArray();
         var loadedCount = 0;
         void Handler(string path)
         {
@@ -618,7 +617,7 @@ public sealed class NetTexturesRegressionTest
                 Interlocked.Increment(ref loadedCount);
         }
 
-        Assert.That(payload.Length, Is.GreaterThan(FallbackChunkSize));
+        Assert.That(payload.Length, Is.GreaterThan(NetTextureConstants.MaxChunkSize));
         Assert.That(chunks.Length, Is.GreaterThan(1));
 
         await client.WaitAssertion(() =>
@@ -670,6 +669,94 @@ public sealed class NetTexturesRegressionTest
         await pair.CleanReturnAsync();
     }
 
+    [Test]
+    public async Task LateTransferBatchFromPreviousSessionIsIgnoredAfterLobbyReconnect()
+    {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings
+        {
+            InLobby = true,
+            Dirty = true
+        });
+
+        var client = pair.Client;
+        var server = pair.Server;
+        var manager = client.ResolveDependency<ClientNetTexturesManager>();
+        var resources = client.ResolveDependency<IResourceManager>();
+        var stateManager = client.Resolve<IStateManager>();
+        var netManager = client.ResolveDependency<IClientNetManager>();
+        var playerManager = server.ResolveDependency<Robust.Server.Player.IPlayerManager>();
+
+        const string resourcePath = "/NetTextures/Test/late-transfer-reconnect.png";
+        var relativePath = new ResPath(resourcePath).ToRelativePath();
+        var uploadedPath = manager.GetUploadedPath(resourcePath);
+        var png = CreatePngBytes(32, 32, seed: 71, noisy: true);
+        var loadedCount = 0;
+
+        void Handler(string path)
+        {
+            if (path == resourcePath)
+                Interlocked.Increment(ref loadedCount);
+        }
+
+        await client.WaitAssertion(() =>
+        {
+            Assert.That(stateManager.CurrentState, Is.TypeOf<LobbyState>());
+            manager.ResourceLoaded += Handler;
+        });
+
+        try
+        {
+            var previousGeneration = 0;
+            await client.WaitPost(() => previousGeneration = GetPrivateField<int>(manager, "_sessionGeneration"));
+
+            var username = playerManager.Sessions.Single().Name;
+            await DisconnectAndReconnectToLobby(pair, netManager, username);
+
+            await client.WaitPost(() => InvokePrivateMethod(
+                manager,
+                "ReceiveNetTexturesTransferWorker",
+                CreateTransferStream([(relativePath, png)]),
+                previousGeneration));
+
+            await pair.RunTicksSync(10);
+
+            await client.WaitAssertion(() =>
+            {
+                Assert.That(stateManager.CurrentState, Is.TypeOf<LobbyState>());
+                Assert.That(resources.ContentFileExists(uploadedPath), Is.False);
+                Assert.That(manager.TryGetTexture(resourcePath, out _), Is.False);
+            });
+            Assert.That(Volatile.Read(ref loadedCount), Is.Zero);
+
+            var currentGeneration = 0;
+            await client.WaitPost(() => currentGeneration = GetPrivateField<int>(manager, "_sessionGeneration"));
+            Assert.That(currentGeneration, Is.Not.EqualTo(previousGeneration));
+
+            await client.WaitPost(() => InvokePrivateMethod(
+                manager,
+                "ReceiveNetTexturesTransferWorker",
+                CreateTransferStream([(relativePath, png)]),
+                currentGeneration));
+
+            await client.WaitAssertion(() => Assert.That(resources.ContentFileExists(uploadedPath), Is.True));
+            await client.WaitPost(() => _ = manager.EnsureResource(resourcePath));
+            await WaitUntilTextureReady(client, manager, resourcePath, maxTicks: 120);
+
+            await client.WaitAssertion(() =>
+            {
+                Assert.That(manager.TryGetTexture(resourcePath, out var texture), Is.True);
+                Assert.That(texture, Is.Not.Null);
+            });
+            Assert.That(Volatile.Read(ref loadedCount), Is.EqualTo(1));
+        }
+        finally
+        {
+            await client.WaitPost(() => manager.ResourceLoaded -= Handler);
+        }
+
+        await pair.CleanReturnAsync();
+    }
+
     private static async Task DisconnectAndReconnectToLobby(
         TestPair pair,
         IClientNetManager netManager,
@@ -704,6 +791,44 @@ public sealed class NetTexturesRegressionTest
             await client.WaitPost(() => ready = manager.TryGetTexture(resourcePath, out _));
             return ready;
         }, maxTicks: maxTicks);
+    }
+
+    private static MemoryStream CreateTransferStream(List<(ResPath Relative, byte[] Data)> files)
+    {
+        var stream = new MemoryStream();
+        using (var writer = new BinaryWriter(stream, Encoding.UTF8, leaveOpen: true))
+        {
+            for (var i = 0; i < files.Count; i++)
+            {
+                var (relative, data) = files[i];
+                var pathBytes = Encoding.UTF8.GetBytes(relative.ToString());
+
+                writer.Write((uint) pathBytes.Length);
+                writer.Write((uint) data.Length);
+                writer.Write(pathBytes);
+                writer.Write(data);
+                writer.Write(i == files.Count - 1 ? (byte) 0 : (byte) 1);
+            }
+        }
+
+        stream.Position = 0;
+        return stream;
+    }
+
+    private static void InvokePrivateMethod(object instance, string methodName, params object[] args)
+    {
+        var method = instance.GetType().GetMethod(methodName, BindingFlags.Instance | BindingFlags.NonPublic);
+        Assert.That(method, Is.Not.Null, $"Failed to find private method {methodName}.");
+
+        try
+        {
+            method!.Invoke(instance, args);
+        }
+        catch (TargetInvocationException ex) when (ex.InnerException != null)
+        {
+            ExceptionDispatchInfo.Capture(ex.InnerException).Throw();
+            throw;
+        }
     }
 
     private static async Task WaitUntilAnimationStateReady(
