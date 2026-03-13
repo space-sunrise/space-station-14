@@ -23,9 +23,15 @@
     <ProjectReference Include="..\Content.Shared\Content.Shared.csproj" />
     <ProjectReference Include="..\Sunrise\Content.Sunrise.Interfaces.Server\Content.Sunrise.Interfaces.Server.csproj" />
   </ItemGroup>
+  <ItemGroup Condition="Exists('..\SunrisePrivate\Content.Server')">
+    <Compile Include="..\SunrisePrivate\Content.Server\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+  <PropertyGroup Condition="Exists('..\SunrisePrivate\Content.Server')">
+    <DefineConstants>$(DefineConstants);SUNRISE_PRIVATE</DefineConstants>
+  </PropertyGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
   <Import Project="..\RobustToolbox\Imports\Lidgren.props" />
   <Import Project="..\RobustToolbox\Imports\Server.props" />
   <Import Project="..\RobustToolbox\Imports\Shared.props" />
   <Import Project="..\RobustToolbox\Imports\Packaging.props" />
-</Project>
+ </Project>

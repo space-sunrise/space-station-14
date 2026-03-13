@@ -39,7 +39,6 @@
         Shock: 0.1
         Cold: 0.2
         Radiation: 0.2
-
 # Blueshield Hardsuit
 
 - type: entity

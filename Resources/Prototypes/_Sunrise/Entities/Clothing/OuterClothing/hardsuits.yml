@@ -482,6 +482,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitPrivateer
   - type: StaticPrice
     price: 0
+
 ## Pirate end
 
 - type: entity
