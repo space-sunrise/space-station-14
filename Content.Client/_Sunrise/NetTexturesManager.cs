@@ -201,7 +201,7 @@ public sealed partial class NetTexturesManager
         PublishFiles([(message.RelativePath, message.Data)]);
     }
 
-    private void ReceiveFallbackChunk(NetTextureResourceChunkMessage message)
+    internal void ReceiveFallbackChunk(NetTextureResourceChunkMessage message)
     {
         if (message.TotalChunks <= 0 || message.ChunkIndex < 0 || message.ChunkIndex >= message.TotalChunks)
         {
@@ -235,7 +235,7 @@ public sealed partial class NetTexturesManager
         }
     }
 
-    private void PublishFiles(List<(ResPath Relative, byte[] Data)> files)
+    internal void PublishFiles(List<(ResPath Relative, byte[] Data)> files)
     {
         foreach (var (relative, data) in files)
         {

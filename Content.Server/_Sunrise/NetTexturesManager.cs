@@ -278,28 +278,41 @@ namespace Content.Server._Sunrise;
 
         foreach (var (relativePath, data) in files)
         {
-            var totalChunks = Math.Max(1, (data.Length + FallbackChunkSize - 1) / FallbackChunkSize);
-
-            for (var chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++)
+            foreach (var message in CreateFallbackChunks(relativePath, data))
             {
-                var offset = chunkIndex * FallbackChunkSize;
-                var chunkLength = Math.Min(FallbackChunkSize, data.Length - offset);
-                var chunkData = new byte[chunkLength];
-                Buffer.BlockCopy(data, offset, chunkData, 0, chunkLength);
-
-                session.Channel.SendMessage(new NetTextureResourceChunkMessage
-                {
-                    RelativePath = relativePath.ToString(),
-                    ChunkIndex = chunkIndex,
-                    TotalChunks = totalChunks,
-                    Data = chunkData
-                });
-
+                session.Channel.SendMessage(message);
                 chunkCount++;
             }
         }
 
         _sawmill.Debug($"Sent {files.Count} files via fallback ({chunkCount} chunk messages) to {session.Name}");
+    }
+
+    internal static IEnumerable<NetTextureResourceChunkMessage> CreateFallbackChunks(
+        ResPath relativePath,
+        byte[] data,
+        int chunkSize = FallbackChunkSize)
+    {
+        if (chunkSize <= 0)
+            throw new ArgumentOutOfRangeException(nameof(chunkSize));
+
+        var totalChunks = Math.Max(1, (data.Length + chunkSize - 1) / chunkSize);
+
+        for (var chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++)
+        {
+            var offset = chunkIndex * chunkSize;
+            var chunkLength = Math.Min(chunkSize, data.Length - offset);
+            var chunkData = new byte[chunkLength];
+            Buffer.BlockCopy(data, offset, chunkData, 0, chunkLength);
+
+            yield return new NetTextureResourceChunkMessage
+            {
+                RelativePath = relativePath.ToString(),
+                ChunkIndex = chunkIndex,
+                TotalChunks = totalChunks,
+                Data = chunkData
+            };
+        }
     }
 
     /// <summary>
