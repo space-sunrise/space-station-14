@@ -1,18 +1,13 @@
-using System;
-using System.Collections.Generic;
 using System.Buffers.Binary;
 using System.IO;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Robust.Client.Graphics;
 using Robust.Shared.Graphics;
 using Robust.Shared.Graphics.RSI;
-using Robust.Shared.Maths;
 using Robust.Shared.Utility;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
-using SixLabors.ImageSharp.Processing;
 using YamlDotNet.RepresentationModel;
 
 namespace Content.Client._Sunrise;
@@ -105,7 +100,7 @@ public sealed partial class NetTexturesManager
         var newIndices = new List<int>[dirCount];
         for (var d = 0; d < dirCount; d++)
         {
-            newIndices[d] = new List<int>();
+            newIndices[d] = [];
         }
 
         var finished = false;
@@ -339,11 +334,10 @@ public sealed partial class NetTexturesManager
     private sealed class LoadedRsiEntry(List<OwnedTexture> textures, Dictionary<string, NetTextureAnimationState> states) : IDisposable
     {
         public readonly Dictionary<string, NetTextureAnimationState> States = states;
-        private readonly List<OwnedTexture> _textures = textures;
 
         public void Dispose()
         {
-            foreach (var texture in _textures)
+            foreach (var texture in textures)
             {
                 texture.Dispose();
             }

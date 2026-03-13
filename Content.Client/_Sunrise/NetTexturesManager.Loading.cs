@@ -1,12 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Threading;
-using System.Threading.Tasks;
-using Robust.Client.Graphics;
-using Robust.Shared.Graphics;
-using Robust.Shared.Graphics.RSI;
-using Robust.Shared.Maths;
 using Robust.Shared.Utility;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
