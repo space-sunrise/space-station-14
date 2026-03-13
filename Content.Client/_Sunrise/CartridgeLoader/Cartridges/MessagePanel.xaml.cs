@@ -190,10 +190,9 @@ public sealed partial class MessagePanel : PanelContainer
     {
         try
         {
-            var uploadedPath = _netTexturesManager.GetUploadedPath(imagePath);
-            if (_resourceCache.TryGetResource<TextureResource>(uploadedPath, out var textureResource))
+            if (_netTexturesManager.TryGetTexture(imagePath, out var texture))
             {
-                ImagePreview.Texture = textureResource.Texture;
+                ImagePreview.Texture = texture;
                 ImageButton.Visible = true;
             }
             else

@@ -5,7 +5,6 @@ using Content.Client._Sunrise;
 using Content.Client.Resources;
 using Content.Client.IoC;
 using Robust.Client.Graphics;
-using Robust.Client.ResourceManagement;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;
@@ -30,7 +29,6 @@ public sealed partial class ImageParallaxTextureSource : IParallaxTextureSource
         {
             // Use NetTexturesManager for dynamic loading
             var netTexturesManager = IoCManager.Resolve<NetTexturesManager>();
-            var resourceCache = IoCManager.Resolve<IResourceCache>();
             var resourceManager = IoCManager.Resolve<IResourceManager>();
             var netManager = IoCManager.Resolve<IClientNetManager>();
 
@@ -59,8 +57,6 @@ public sealed partial class ImageParallaxTextureSource : IParallaxTextureSource
             // Ensure the resource is available
             var isAvailable = netTexturesManager.EnsureResource(pathStr);
 
-            ResPath targetPath = netTexturesManager.GetUploadedPath(pathStr);
-
             if (!isAvailable)
             {
                 // Resource is being requested, wait for it to load
@@ -78,13 +74,11 @@ public sealed partial class ImageParallaxTextureSource : IParallaxTextureSource
 
                 try
                 {
-                    // Also check immediately in case it loads very fast
-                    var relativePath = new ResPath(pathStr).ToRelativePath();
-                    var checkPath = new ResPath("/Uploaded") / relativePath;
-                    if (resourceManager.ContentFileExists(checkPath.ToRootedPath()))
+                    if (netTexturesManager.TryGetTexture(pathStr, out var readyTexture))
                     {
                         netTexturesManager.ResourceLoaded -= OnResourceLoaded;
-                        tcs.TrySetResult(true);
+                        if (readyTexture != null)
+                            return readyTexture;
                     }
                     else
                     {
@@ -106,10 +100,10 @@ public sealed partial class ImageParallaxTextureSource : IParallaxTextureSource
                 }
             }
 
-            // Try to get the texture resource
-            if (resourceCache.TryGetResource<TextureResource>(targetPath, out var textureResource))
+            if (netTexturesManager.TryGetTexture(pathStr, out var texture))
             {
-                return textureResource.Texture;
+                if (texture != null)
+                    return texture;
             }
 
             // Fallback to original path if network texture loading failed

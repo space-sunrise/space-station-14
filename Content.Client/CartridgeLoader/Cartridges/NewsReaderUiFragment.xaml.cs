@@ -109,18 +109,16 @@ public sealed partial class NewsReaderUiFragment : BoxContainer
 
                 if (_netTexturesManager.EnsureResource(path))
                 {
-                    var uploaded = _netTexturesManager.GetUploadedPath(path);
-                    if (_resourceCache.TryGetResource<TextureResource>(uploaded, out var tex))
-                        textureRect.Texture = tex.Texture;
+                    if (_netTexturesManager.TryGetTexture(path, out var texture))
+                        textureRect.Texture = texture;
                 }
                 else
                 {
                     void OnLoaded(string loadedPath)
                     {
                         if (loadedPath != path) return;
-                        var uploaded = _netTexturesManager.GetUploadedPath(path);
-                        if (_resourceCache.TryGetResource<TextureResource>(uploaded, out var tex))
-                            textureRect.Texture = tex.Texture;
+                        if (_netTexturesManager.TryGetTexture(path, out var texture))
+                            textureRect.Texture = texture;
                         _netTexturesManager.ResourceLoaded -= OnLoaded;
                     }
                     _netTexturesManager.ResourceLoaded += OnLoaded;

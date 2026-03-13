@@ -1,6 +1,4 @@
-using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Content.Client._Sunrise;
 using Content.Client._Sunrise.Contributors;
 using Content.Client._Sunrise.Latejoin;
@@ -17,7 +15,6 @@ using Content.Shared._Sunrise.Contributors;
 using Robust.Client;
 using Robust.Client.Console;
 using Robust.Client.ResourceManagement;
-using Robust.Client.Upload;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
@@ -34,6 +31,7 @@ using Content.Shared._Sunrise.ServersHub;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.GameTicking;
 using Robust.Shared.ContentPack;
+using Robust.Shared.Graphics.RSI;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Serialization.Markdown.Mapping;
@@ -66,9 +64,9 @@ namespace Content.Client.Lobby
         private ContentAudioSystem _contentAudioSystem = default!;
         private ISawmill _sawmill = default!;
 
-        // Track loaded resources for unloading
-        private ResPath? _currentAnimationPath;
-        private ResPath? _currentArtPath;
+        private NetTexturesManager.NetTextureAnimationState? _currentAnimationState;
+        private int _currentAnimationFrame;
+        private float _currentAnimationFrameTime;
 
         private const string LoadingRsiPath = "/Textures/_Sunrise/loading.rsi";
         private const string LoadingState = "loading";
@@ -202,20 +200,9 @@ namespace Content.Client.Lobby
             Lobby!.ReadyButton.OnPressed -= OnReadyPressed;
             Lobby!.ReadyButton.OnToggled -= OnReadyToggled;
 
-            // Unload lobby resources if CVar is enabled
-            if (_cfg.GetCVar(SunriseCCVars.LobbyUnloadResources))
-            {
-                if (_currentAnimationPath.HasValue)
-                {
-                    UnloadResource(_currentAnimationPath.Value);
-                    _currentAnimationPath = null;
-                }
-                if (_currentArtPath.HasValue)
-                {
-                    UnloadResource(_currentArtPath.Value);
-                    _currentArtPath = null;
-                }
-            }
+            _currentAnimationState = null;
+            _currentAnimationFrame = 0;
+            _currentAnimationFrameTime = 0f;
 
             Lobby = null;
 
@@ -267,6 +254,8 @@ namespace Content.Client.Lobby
 
         public override void FrameUpdate(FrameEventArgs e)
         {
+            UpdateLobbyAnimationFrame(e.DeltaSeconds);
+
             if (_gameTicker.IsGameStarted)
             {
                 var roundTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
@@ -450,6 +439,7 @@ namespace Content.Client.Lobby
             switch (lobbyBackgroundTypeString)
             {
                 case LobbyBackgroundType.Parallax:
+                    _currentAnimationState = null;
                     Lobby!.LobbyAnimation.Visible = false;
                     Lobby!.LobbyArt.Visible = false;
                     Lobby!.ShowParallax = true;
@@ -457,6 +447,7 @@ namespace Content.Client.Lobby
                     UpdateLobbyParallax();
                     break;
                 case LobbyBackgroundType.Art:
+                    _currentAnimationState = null;
                     Lobby!.LobbyAnimation.Visible = false;
                     Lobby!.LobbyArt.Visible = true;
                     Lobby!.ShowParallax = false;
@@ -505,7 +496,6 @@ namespace Content.Client.Lobby
 
         private void SetLobbyAnimation(string lobbyAnimation)
         {
-            // Check if animation background type is currently selected
             var backgroundType = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
             if (backgroundType == "Random" && _gameTicker.LobbyType != null)
             {
@@ -515,202 +505,44 @@ namespace Content.Client.Lobby
             if (!Enum.TryParse(backgroundType, out LobbyBackgroundType lobbyBackgroundType) ||
                 lobbyBackgroundType != LobbyBackgroundType.Animation)
             {
-                // Animation is not the selected background type, don't load it
+                _currentAnimationState = null;
                 return;
             }
 
             if (!_protoMan.TryIndex<LobbyAnimationPrototype>(lobbyAnimation, out var lobbyAnimationPrototype))
                 return;
 
-            // Lobby may be null during reconnection or before initialization
-            // This is normal, just return silently - the animation will be set when Lobby is initialized
             if (Lobby == null)
             {
                 _sawmill.Debug("SetLobbyAnimation called before Lobby initialization, skipping");
                 return;
             }
 
-            // Hide old animation and show loading animation immediately (before any resource checks)
             Lobby!.LobbyAnimation.Visible = false;
             ShowLoadingAnimation();
-
-            // Unload previous animation if CVar is enabled
-            if (_cfg.GetCVar(SunriseCCVars.LobbyUnloadResources) && _currentAnimationPath.HasValue)
-            {
-                UnloadResource(_currentAnimationPath.Value);
-            }
+            _currentAnimationState = null;
 
             var rsiPath = lobbyAnimationPrototype.Animation;
-
-            // Ensure the path ends with .rsi for RSI resources
             if (!rsiPath.EndsWith(".rsi") && !rsiPath.EndsWith(".rsi/"))
             {
                 _sawmill.Warning($"Invalid RSI path format: {rsiPath}. Expected path ending with .rsi");
                 return;
             }
 
-            // Check if resource is available, request if not
-            var isAvailable = _netTexturesManager.EnsureResource(rsiPath);
+            if (!_netTexturesManager.EnsureResource(rsiPath))
+                return;
 
-            ResPath targetPath;
-            if (isAvailable)
+            if (!_netTexturesManager.TryGetAnimationState(rsiPath, lobbyAnimationPrototype.State, out var state) || state == null)
             {
-                // Resource is available, use uploaded path
-                targetPath = _netTexturesManager.GetUploadedPath(rsiPath);
-            }
-            else
-            {
-                // Resource is being requested, try to use uploaded path first
-                var uploadedPath = _netTexturesManager.GetUploadedPath(rsiPath);
-                var metaPath = (uploadedPath / "meta.json").ToRootedPath();
-
-                // Check if uploaded resource exists
-                if (_resource.ContentFileExists(metaPath))
-                {
-                    targetPath = uploadedPath;
-                }
-                else
-                {
-                    // Resource not available yet, don't try to load it (will cause error)
-                    // The resource will be loaded when it arrives via NetworkResourceUploadMessage
-                    return;
-                }
+                _sawmill.Debug($"Lobby animation state '{lobbyAnimationPrototype.State}' is not ready yet for {rsiPath}");
+                return;
             }
 
-            // Try to set the animation, handle errors gracefully
-            try
-            {
-                // Check if meta.json exists (basic check)
-                var metaPath = (targetPath / "meta.json").ToRootedPath();
-                if (!_resource.ContentFileExists(metaPath))
-                {
-                    _sawmill.Debug($"RSI meta.json doesn't exist yet: {metaPath}, waiting for network load");
-                    return;
-                }
-
-                var requiredState = lobbyAnimationPrototype.State;
-
-                // Before attempting to load, verify all required PNG files exist in VFS
-                // This prevents FileNotFoundException when RSI tries to load animation.png
-                try
-                {
-                    if (!_resource.TryContentFileRead(metaPath, out var metaStream))
-                    {
-                        _sawmill.Debug($"Cannot read meta.json: {metaPath}, waiting for network load");
-                        return;
-                    }
-
-                    using (metaStream)
-                    {
-                        using var reader = new StreamReader(metaStream);
-                        var jsonText = reader.ReadToEnd();
-
-                        // Extract state names from JSON to verify PNG files exist
-                        var namePattern = new Regex(@"""name""\s*:\s*""([^""]+)""", RegexOptions.Compiled);
-                        var matches = namePattern.Matches(jsonText);
-
-                        foreach (Match match in matches)
-                        {
-                            if (match.Groups.Count < 2)
-                                continue;
-
-                            var stateName = match.Groups[1].Value;
-                            if (string.IsNullOrEmpty(stateName))
-                                continue;
-
-                            // Verify PNG file exists in VFS before attempting to load RSI
-                            var pngPath = (targetPath / $"{stateName}.png").ToRootedPath();
-                            if (!_resource.ContentFileExists(pngPath))
-                            {
-                                _sawmill.Debug($"RSI PNG file not yet available in VFS: {pngPath}, waiting for network load");
-                                return;
-                            }
-                        }
-                    }
-                }
-                catch (Exception checkEx)
-                {
-                    _sawmill.Debug($"Error verifying RSI files before load: {checkEx.Message}, waiting for network load");
-                    return;
-                }
-
-                // Try to get the resource - this will load it if not cached
-                // We don't check for individual files, just try to load and see if it works
-                RSIResource? rsiResource = null;
-                try
-                {
-                    // First try to get from cache
-                    bool fromCache = _resourceCache.TryGetResource<RSIResource>(targetPath, out rsiResource);
-
-                    if (fromCache && rsiResource != null)
-                    {
-                        _sawmill.Debug($"RSI resource found in cache: {targetPath}");
-
-                        // Verify that cached resource is still valid by checking if the state exists
-                        // This is important after reconnection when files in VFS may have been cleared
-                        if (!rsiResource.RSI.TryGetState(requiredState, out _))
-                        {
-                            _sawmill.Debug($"Cached RSI resource is invalid (state '{requiredState}' not found), attempting to reload: {targetPath}");
-                            // Resource in cache is invalid, try to reload it
-                            fromCache = false;
-                            rsiResource = null;
-                        }
-                    }
-
-                    if (!fromCache)
-                    {
-                        _sawmill.Debug($"RSI resource not in cache or invalid, attempting to load: {targetPath}");
-                        // Use useFallback: false to detect if resource actually loaded or fallback was used
-                        // This prevents us from thinking the resource loaded when it actually failed
-                        rsiResource = _resourceCache.GetResource<RSIResource>(targetPath, useFallback: false);
-                        _sawmill.Debug($"Successfully loaded RSI resource: {targetPath}");
-                    }
-                }
-                catch (FileNotFoundException)
-                {
-                    // Resource file doesn't exist, wait for it to be loaded
-                    // This can happen if meta.json exists but PNG files are still loading
-                    _sawmill.Debug($"RSI resource not found yet: {targetPath}, waiting for network load");
-                    return;
-                }
-                catch (Exception loadEx)
-                {
-                    // If loading failed, wait for resource to be fully loaded
-                    // This can happen if files are partially loaded
-                    _sawmill.Debug($"Failed to load lobby animation RSI: {targetPath}. Error: {loadEx.Message}. Waiting for complete resource.");
-                    return;
-                }
-
-                // Final verification that the resource actually loaded correctly by checking if the state exists
-                if (rsiResource == null || !rsiResource.RSI.TryGetState(requiredState, out _))
-                {
-                    _sawmill.Debug($"RSI state '{requiredState}' not found in loaded resource: {targetPath}, waiting for complete resource");
-                    return;
-                }
-
-                if (rsiResource != null)
-                {
-                    Lobby!.LobbyAnimation.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(targetPath, lobbyAnimationPrototype.State));
-                    Lobby!.LobbyAnimation.DisplayRect.TextureScale = lobbyAnimationPrototype.Scale;
-                    Lobby!.LobbyAnimation.Visible = true;
-                    HideLoadingAnimation();
-                    _currentAnimationPath = targetPath;
-                }
-                else
-                {
-                    _sawmill.Warning($"Failed to load lobby animation RSI: {targetPath}. Resource not found in cache.");
-                    ShowLoadingAnimation();
-                }
-            }
-            catch (Exception ex)
-            {
-                _sawmill.Warning($"Exception while setting lobby animation {lobbyAnimation}: {ex.Message}");
-            }
+            ApplyLobbyAnimationState(state, lobbyAnimationPrototype.Scale);
         }
 
         private void SetLobbyArt(string lobbyArt)
         {
-            // Check if art background type is currently selected
             var backgroundType = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
             if (backgroundType == "Random" && _gameTicker.LobbyType != null)
             {
@@ -720,80 +552,35 @@ namespace Content.Client.Lobby
             if (!Enum.TryParse(backgroundType, out LobbyBackgroundType lobbyBackgroundType) ||
                 lobbyBackgroundType != LobbyBackgroundType.Art)
             {
-                // Art is not the selected background type, don't load it
                 return;
             }
 
             if (!_protoMan.TryIndex<LobbyArtPrototype>(lobbyArt, out var lobbyArtPrototype))
                 return;
 
-            // Lobby may be null during reconnection or before initialization
-            // This is normal, just return silently - the art will be set when Lobby is initialized
             if (Lobby == null)
             {
                 _sawmill.Debug("SetLobbyArt called before Lobby initialization, skipping");
                 return;
             }
 
-            // Hide old art and show loading animation immediately
             Lobby!.LobbyArt.Visible = false;
             ShowLoadingAnimation();
 
-            // Unload previous art if CVar is enabled
-            if (_cfg.GetCVar(SunriseCCVars.LobbyUnloadResources) && _currentArtPath.HasValue)
-            {
-                UnloadResource(_currentArtPath.Value);
-            }
-
             var imagePath = lobbyArtPrototype.Background;
 
-            // Check if resource is available, request if not
-            var isAvailable = _netTexturesManager.EnsureResource(imagePath);
+            if (!_netTexturesManager.EnsureResource(imagePath))
+                return;
 
-            ResPath targetPath;
-            if (isAvailable)
+            if (!_netTexturesManager.TryGetTexture(imagePath, out var texture) || texture == null)
             {
-                // Resource is available, use uploaded path
-                targetPath = _netTexturesManager.GetUploadedPath(imagePath);
-            }
-            else
-            {
-                // Resource is being requested, try to use uploaded path first
-                var uploadedPath = _netTexturesManager.GetUploadedPath(imagePath);
-
-                // Check if uploaded resource exists
-                if (_resource.ContentFileExists(uploadedPath))
-                {
-                    targetPath = uploadedPath;
-                }
-                else
-                {
-                    // Resource not available yet, show loading animation
-                    // The resource will be loaded when it arrives via NetworkResourceUploadMessage
-                    return;
-                }
+                _sawmill.Debug($"Lobby art texture is not ready yet for {imagePath}");
+                return;
             }
 
-            // Try to set the art, handle errors gracefully
-            try
-            {
-                if (_resourceCache.TryGetResource<TextureResource>(targetPath, out var textureResource))
-                {
-                    Lobby!.LobbyArt.Texture = textureResource.Texture;
-                    Lobby!.LobbyArt.Visible = true;
-                    HideLoadingAnimation();
-                    _currentArtPath = targetPath;
-                }
-                else
-                {
-                    _sawmill.Warning($"Failed to load lobby art texture: {targetPath}");
-                    // Keep loading animation visible
-                }
-            }
-            catch (Exception ex)
-            {
-                _sawmill.Warning($"Exception while setting lobby art {lobbyArt}: {ex.Message}");
-            }
+            Lobby!.LobbyArt.Texture = texture;
+            Lobby!.LobbyArt.Visible = true;
+            HideLoadingAnimation();
         }
 
         private void SetLobbyParallax(string lobbyParallax)
@@ -987,6 +774,42 @@ namespace Content.Client.Lobby
             }
         }
 
+        private void ApplyLobbyAnimationState(NetTexturesManager.NetTextureAnimationState state, Vector2 scale)
+        {
+            if (Lobby == null)
+                return;
+
+            _currentAnimationState = state;
+            _currentAnimationFrame = 0;
+            _currentAnimationFrameTime = state.GetDelay(0);
+
+            Lobby.LobbyAnimation.DisplayRect.Texture = state.Frame0;
+            Lobby.LobbyAnimation.DisplayRect.TextureScale = scale;
+            Lobby.LobbyAnimation.Visible = true;
+            HideLoadingAnimation();
+        }
+
+        private void UpdateLobbyAnimationFrame(float frameTime)
+        {
+            if (Lobby == null || _currentAnimationState == null || !_currentAnimationState.IsAnimated)
+                return;
+
+            var oldFrame = _currentAnimationFrame;
+
+            _currentAnimationFrameTime -= frameTime;
+            while (_currentAnimationFrameTime <= 0f)
+            {
+                _currentAnimationFrame = (_currentAnimationFrame + 1) % _currentAnimationState.FrameCount;
+                _currentAnimationFrameTime += _currentAnimationState.GetDelay(_currentAnimationFrame);
+            }
+
+            if (_currentAnimationFrame != oldFrame)
+            {
+                Lobby.LobbyAnimation.DisplayRect.Texture =
+                    _currentAnimationState.GetFrame(RsiDirection.South, _currentAnimationFrame);
+            }
+        }
+
         /// <summary>
         /// Shows loading animation on the currently visible background element.
         /// </summary>
@@ -1014,108 +837,6 @@ namespace Content.Client.Lobby
             if (Lobby != null)
             {
                 Lobby.LoadingAnimationContainer.Visible = false;
-            }
-        }
-
-        /// <summary>
-        /// Checks if all RSI files are present by reading meta.json and verifying all PNG files exist.
-        /// Uses simple string parsing instead of JsonDocument to avoid sandbox restrictions.
-        /// </summary>
-        private bool CheckRsiFilesComplete(ResPath rsiPath, ResPath metaPath)
-        {
-            try
-            {
-                // Read meta.json
-                if (!_resource.TryContentFileRead(metaPath, out var metaStream))
-                {
-                    return false;
-                }
-
-                using (metaStream)
-                {
-                    // Read JSON text
-                    using var reader = new StreamReader(metaStream);
-                    var jsonText = reader.ReadToEnd();
-
-                    // Simple regex to extract state names from JSON
-                    // Matches "name": "statename" patterns
-                    var namePattern = new Regex(@"""name""\s*:\s*""([^""]+)""", RegexOptions.Compiled);
-                    var matches = namePattern.Matches(jsonText);
-
-                    if (matches.Count == 0)
-                    {
-                        // No states found, might be invalid JSON or empty states array
-                        return false;
-                    }
-
-                    // Check if all PNG files for each state exist
-                    foreach (Match match in matches)
-                    {
-                        if (match.Groups.Count < 2)
-                            continue;
-
-                        var stateName = match.Groups[1].Value;
-                        if (string.IsNullOrEmpty(stateName))
-                        {
-                            continue;
-                        }
-
-                        // Check if PNG file exists for this state
-                        var pngPath = (rsiPath / $"{stateName}.png").ToRootedPath();
-                        if (!_resource.ContentFileExists(pngPath))
-                        {
-                            _sawmill.Debug($"RSI file missing: {pngPath}");
-                            return false;
-                        }
-                    }
-                }
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _sawmill.Debug($"Error checking RSI files completeness: {ex.Message}");
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Unloads a resource from video memory by disposing it.
-        /// TODO: Full resource unloading from cache is not currently possible due to sandbox restrictions.
-        /// The ResourceCache does not expose a public API to remove resources from its internal cache.
-        /// Reflection cannot be used in the client sandbox environment.
-        /// This method currently only disposes the resource, but it remains in the cache.
-        /// When the engine provides a proper API for resource cache management, this should be updated.
-        /// </summary>
-        private void UnloadResource(ResPath resourcePath)
-        {
-            try
-            {
-                bool unloaded = false;
-
-                // Try to unload RSI resource
-                if (_resourceCache.TryGetResource<RSIResource>(resourcePath, out var rsiResource))
-                {
-                    rsiResource.Dispose();
-                    unloaded = true;
-                    _sawmill.Debug($"Disposed RSI resource: {resourcePath} (still in cache due to sandbox limitations)");
-                }
-                // Try to unload texture resource
-                else if (_resourceCache.TryGetResource<TextureResource>(resourcePath, out var textureResource))
-                {
-                    textureResource.Dispose();
-                    unloaded = true;
-                    _sawmill.Debug($"Disposed texture resource: {resourcePath} (still in cache due to sandbox limitations)");
-                }
-
-                if (!unloaded)
-                {
-                    _sawmill.Debug($"Resource not found in cache: {resourcePath}");
-                }
-            }
-            catch (Exception ex)
-            {
-                _sawmill.Warning($"Failed to unload resource {resourcePath}: {ex.Message}");
             }
         }
 

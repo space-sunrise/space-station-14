@@ -10,7 +10,6 @@ using Robust.Shared.ContentPack;
 using Robust.Shared.Network;
 using Robust.Shared.Network.Transfer;
 using Robust.Shared.Player;
-using Robust.Shared.Upload;
 using Robust.Shared.Utility;
 using ByteHelpers = Robust.Shared.Utility.ByteHelpers;
 
@@ -27,6 +26,7 @@ namespace Content.Server._Sunrise;
     /// Transfer key for server -> client texture downloads via WebSocket
     /// </summary>
     private const string TransferKeyNetTextures = "TransferKeyNetTextures";
+    private const int FallbackChunkSize = 64 * 1024;
 
     [Dependency] private readonly IResourceManager _resourceManager = default!;
     [Dependency] private readonly IServerNetManager _netManager = default!;
@@ -43,6 +43,7 @@ namespace Content.Server._Sunrise;
     /// Key is the relative upload path used on the client (e.g. "NetTextures/Messenger/photo_123.png").
     /// </summary>
     private readonly Dictionary<ResPath, byte[]> _dynamicResources = new();
+    private readonly object _dynamicResourcesLock = new();
 
     /// <summary>
     /// Callback for handling photo captures. PhotoCartridgeSystem registers itself here.
@@ -53,6 +54,7 @@ namespace Content.Server._Sunrise;
     {
         _sawmill = _logManager.GetSawmill("network.textures");
         _netManager.RegisterNetMessage<RequestNetworkResourceMessage>(OnRequestNetworkResource);
+        _netManager.RegisterNetMessage<NetTextureResourceChunkMessage>();
 
         _netManager.RegisterNetMessage<PdaPhotoCaptureMessage>(
             msg => OnPhotoCaptureMessage?.Invoke(msg),
@@ -67,7 +69,11 @@ namespace Content.Server._Sunrise;
     /// </summary>
     public void ClearDynamicResources()
     {
-        _dynamicResources.Clear();
+        lock (_dynamicResourcesLock)
+        {
+            _dynamicResources.Clear();
+        }
+
         _sawmill.Info("Cleared all dynamic NetTexture resources due to round restart.");
     }
 
@@ -148,58 +154,21 @@ namespace Content.Server._Sunrise;
         var startTime = DateTime.UtcNow;
         _sawmill.Debug($"[NetTextures] Starting transfer of {resourcePath} to {session.Name}");
 
-        var filesToSend = new List<(ResPath Relative, byte[] Data)>();
-
-        var relativeUploadPath = resourcePath.ToRelativePath();
-        if (_dynamicResources.TryGetValue(relativeUploadPath, out var dynamicData))
+        List<(ResPath Relative, byte[] Data)> filesToSend;
+        try
         {
-            filesToSend.Add((relativeUploadPath, dynamicData));
+            filesToSend = await Task.Run(() => CollectFilesToSend(resourcePath)).ConfigureAwait(true);
         }
-        else
+        catch (Exception ex)
         {
+            _sawmill.Warning($"Failed to collect NetTextures resource {resourcePath} for {session.Name}: {ex.Message}");
+            return;
+        }
 
-            var files = _resourceManager.ContentFindFiles(resourcePath).ToList();
-
-            if (files.Count == 0)
-            {
-                if (!_resourceManager.ContentFileExists(resourcePath))
-                {
-                    _sawmill.Warning($"Resource not found: {resourcePath}");
-                    return;
-                }
-
-                if (!CollectSingleFile(resourcePath, filesToSend))
-                    return;
-            }
-            else
-            {
-                foreach (var filePath in files)
-                {
-                    if (!filePath.TryRelativeTo(resourcePath, out var relativePath))
-                        continue;
-
-                    var relativePathValue = relativePath.Value;
-
-                    if (!_resourceManager.TryContentFileRead(filePath, out var stream))
-                    {
-                        _sawmill.Warning($"Failed to read file: {filePath}");
-                        continue;
-                    }
-
-                    using (stream)
-                    {
-                        var data = new byte[stream.Length];
-                        stream.Read(data, 0, data.Length);
-
-                        var relativeUploadPath2 = resourcePath.ToRelativePath();
-                        var uploadedPath = relativeUploadPath2 / relativePathValue;
-
-                        filesToSend.Add((uploadedPath, data));
-                    }
-                }
-
-                _sawmill.Debug($"Collected resource directory {resourcePath} ({files.Count} files) for {session.Name}");
-            }
+        if (filesToSend.Count == 0)
+        {
+            _sawmill.Warning($"Resource not found: {resourcePath}");
+            return;
         }
 
         try
@@ -211,7 +180,7 @@ namespace Content.Server._Sunrise;
                     MessageKey = TransferKeyNetTextures
                 });
 
-            await WriteFileStream(transferStream, filesToSend);
+            await WriteFileStream(transferStream, filesToSend).ConfigureAwait(false);
 
             var totalTime = (DateTime.UtcNow - startTime).TotalMilliseconds;
             var transferTime = (DateTime.UtcNow - transferStartTime).TotalMilliseconds;
@@ -223,6 +192,58 @@ namespace Content.Server._Sunrise;
             _sawmill.Warning($"Failed to send resource via High Bandwidth Transfer to {session.Name}: {ex.Message}");
             SendResourceFallback(session, filesToSend);
         }
+    }
+
+    private List<(ResPath Relative, byte[] Data)> CollectFilesToSend(ResPath resourcePath)
+    {
+        var filesToSend = new List<(ResPath Relative, byte[] Data)>();
+        var relativeUploadPath = resourcePath.ToRelativePath();
+
+        lock (_dynamicResourcesLock)
+        {
+            if (_dynamicResources.TryGetValue(relativeUploadPath, out var dynamicData))
+            {
+                filesToSend.Add((relativeUploadPath, dynamicData));
+                return filesToSend;
+            }
+        }
+
+        var files = _resourceManager.ContentFindFiles(resourcePath).ToList();
+        if (files.Count == 0)
+        {
+            if (!_resourceManager.ContentFileExists(resourcePath))
+                return filesToSend;
+
+            CollectSingleFile(resourcePath, filesToSend);
+            return filesToSend;
+        }
+
+        foreach (var filePath in files)
+        {
+            if (!filePath.TryRelativeTo(resourcePath, out var relativePath))
+                continue;
+
+            var relativePathValue = relativePath.Value;
+
+            if (!_resourceManager.TryContentFileRead(filePath, out var stream))
+            {
+                _sawmill.Warning($"Failed to read file: {filePath}");
+                continue;
+            }
+
+            using (stream)
+            {
+                var data = new byte[stream.Length];
+                stream.Read(data, 0, data.Length);
+
+                var relativeUploadPath2 = resourcePath.ToRelativePath();
+                var uploadedPath = relativeUploadPath2 / relativePathValue;
+                filesToSend.Add((uploadedPath, data));
+            }
+        }
+
+        _sawmill.Debug($"Collected resource directory {resourcePath} ({files.Count} files)");
+        return filesToSend;
     }
 
     /// <summary>
@@ -253,12 +274,32 @@ namespace Content.Server._Sunrise;
     /// </summary>
     private void SendResourceFallback(ICommonSession session, List<(ResPath Relative, byte[] Data)> files)
     {
+        var chunkCount = 0;
+
         foreach (var (relativePath, data) in files)
         {
-            var uploadMsg = new NetworkResourceUploadMessage(data, relativePath);
-            session.Channel.SendMessage(uploadMsg);
+            var totalChunks = Math.Max(1, (data.Length + FallbackChunkSize - 1) / FallbackChunkSize);
+
+            for (var chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++)
+            {
+                var offset = chunkIndex * FallbackChunkSize;
+                var chunkLength = Math.Min(FallbackChunkSize, data.Length - offset);
+                var chunkData = new byte[chunkLength];
+                Buffer.BlockCopy(data, offset, chunkData, 0, chunkLength);
+
+                session.Channel.SendMessage(new NetTextureResourceChunkMessage
+                {
+                    RelativePath = relativePath.ToString(),
+                    ChunkIndex = chunkIndex,
+                    TotalChunks = totalChunks,
+                    Data = chunkData
+                });
+
+                chunkCount++;
+            }
         }
-        _sawmill.Debug($"Sent {files.Count} files via fallback (regular network) to {session.Name}");
+
+        _sawmill.Debug($"Sent {files.Count} files via fallback ({chunkCount} chunk messages) to {session.Name}");
     }
 
     /// <summary>
@@ -277,23 +318,23 @@ namespace Content.Server._Sunrise;
             if (!first)
             {
                 continueByte[0] = 1;
-                await stream.WriteAsync(continueByte);
+                await stream.WriteAsync(continueByte).ConfigureAwait(false);
             }
 
             first = false;
 
             BinaryPrimitives.WriteUInt32LittleEndian(lengthBytes, (uint)Encoding.UTF8.GetByteCount(relative.CanonPath));
-            await stream.WriteAsync(lengthBytes);
+            await stream.WriteAsync(lengthBytes).ConfigureAwait(false);
 
             BinaryPrimitives.WriteUInt32LittleEndian(lengthBytes, (uint)data.Length);
-            await stream.WriteAsync(lengthBytes);
+            await stream.WriteAsync(lengthBytes).ConfigureAwait(false);
 
-            await stream.WriteAsync(Encoding.UTF8.GetBytes(relative.CanonPath));
-            await stream.WriteAsync(data);
+            await stream.WriteAsync(Encoding.UTF8.GetBytes(relative.CanonPath)).ConfigureAwait(false);
+            await stream.WriteAsync(data).ConfigureAwait(false);
         }
 
         continueByte[0] = 0;
-        await stream.WriteAsync(continueByte);
+        await stream.WriteAsync(continueByte).ConfigureAwait(false);
     }
 
     /// <summary>
@@ -317,7 +358,11 @@ namespace Content.Server._Sunrise;
         }
 
         var relativeUploadPath = path.ToRelativePath();
-        _dynamicResources[relativeUploadPath] = data;
+        lock (_dynamicResourcesLock)
+        {
+            _dynamicResources[relativeUploadPath] = data;
+        }
+
         _sawmill.Debug($"Registered dynamic NetTexture resource: {relativeUploadPath}");
     }
 
@@ -334,9 +379,12 @@ namespace Content.Server._Sunrise;
         path = path.Clean();
         var relativeUploadPath = path.ToRelativePath();
 
-        if (_dynamicResources.Remove(relativeUploadPath))
+        lock (_dynamicResourcesLock)
         {
-            _sawmill.Debug($"Unregistered dynamic NetTexture resource: {relativeUploadPath}");
+            if (_dynamicResources.Remove(relativeUploadPath))
+            {
+                _sawmill.Debug($"Unregistered dynamic NetTexture resource: {relativeUploadPath}");
+            }
         }
     }
 }
