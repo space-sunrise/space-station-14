@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 using Content.Client._Sunrise;
 using Content.Client._Sunrise.Contributors;
 using Content.Client._Sunrise.Latejoin;
@@ -14,6 +15,7 @@ using Content.Shared.CCVar;
 using Content.Shared._Sunrise.Contributors;
 using Robust.Client;
 using Robust.Client.Console;
+using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -35,7 +37,9 @@ using Robust.Shared.Graphics.RSI;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Serialization.Markdown.Mapping;
+using Robust.Shared.Serialization.TypeSerializers.Implementations;
 using Content.Shared.GameTicking.Prototypes;
+using ClientRsi = Robust.Client.Graphics.RSI;
 
 namespace Content.Client.Lobby
 {
@@ -65,6 +69,7 @@ namespace Content.Client.Lobby
         private ISawmill _sawmill = default!;
 
         private NetTexturesManager.NetTextureAnimationState? _currentAnimationState;
+        private ClientRsi.State? _currentLocalAnimationState;
         private int _currentAnimationFrame;
         private float _currentAnimationFrameTime;
 
@@ -200,9 +205,7 @@ namespace Content.Client.Lobby
             Lobby!.ReadyButton.OnPressed -= OnReadyPressed;
             Lobby!.ReadyButton.OnToggled -= OnReadyToggled;
 
-            _currentAnimationState = null;
-            _currentAnimationFrame = 0;
-            _currentAnimationFrameTime = 0f;
+            ClearLobbyAnimationState();
 
             Lobby = null;
 
@@ -439,7 +442,7 @@ namespace Content.Client.Lobby
             switch (lobbyBackgroundTypeString)
             {
                 case LobbyBackgroundType.Parallax:
-                    _currentAnimationState = null;
+                    ClearLobbyAnimationState();
                     Lobby!.LobbyAnimation.Visible = false;
                     Lobby!.LobbyArt.Visible = false;
                     Lobby!.ShowParallax = true;
@@ -447,7 +450,7 @@ namespace Content.Client.Lobby
                     UpdateLobbyParallax();
                     break;
                 case LobbyBackgroundType.Art:
-                    _currentAnimationState = null;
+                    ClearLobbyAnimationState();
                     Lobby!.LobbyAnimation.Visible = false;
                     Lobby!.LobbyArt.Visible = true;
                     Lobby!.ShowParallax = false;
@@ -505,7 +508,7 @@ namespace Content.Client.Lobby
             if (!Enum.TryParse(backgroundType, out LobbyBackgroundType lobbyBackgroundType) ||
                 lobbyBackgroundType != LobbyBackgroundType.Animation)
             {
-                _currentAnimationState = null;
+                ClearLobbyAnimationState();
                 return;
             }
 
@@ -520,25 +523,38 @@ namespace Content.Client.Lobby
 
             Lobby!.LobbyAnimation.Visible = false;
             ShowLoadingAnimation();
-            _currentAnimationState = null;
+            ClearLobbyAnimationState();
 
             var rsiPath = lobbyAnimationPrototype.Animation;
             if (!rsiPath.EndsWith(".rsi") && !rsiPath.EndsWith(".rsi/"))
             {
                 _sawmill.Warning($"Invalid RSI path format: {rsiPath}. Expected path ending with .rsi");
+                HideLoadingAnimation();
                 return;
             }
 
-            if (!_netTexturesManager.EnsureResource(rsiPath))
-                return;
-
-            if (!_netTexturesManager.TryGetAnimationState(rsiPath, lobbyAnimationPrototype.State, out var state) || state == null)
+            if (UsesNetworkLobbyResource(rsiPath))
             {
-                _sawmill.Debug($"Lobby animation state '{lobbyAnimationPrototype.State}' is not ready yet for {rsiPath}");
+                if (!_netTexturesManager.EnsureResource(rsiPath))
+                    return;
+
+                if (!_netTexturesManager.TryGetAnimationState(rsiPath, lobbyAnimationPrototype.State, out var state) || state == null)
+                {
+                    _sawmill.Debug($"Lobby animation state '{lobbyAnimationPrototype.State}' is not ready yet for {rsiPath}");
+                    return;
+                }
+
+                ApplyLobbyAnimationState(state, lobbyAnimationPrototype.Scale);
                 return;
             }
 
-            ApplyLobbyAnimationState(state, lobbyAnimationPrototype.Scale);
+            if (!TryGetLocalLobbyAnimationState(rsiPath, lobbyAnimationPrototype.State, out var localState))
+            {
+                HideLoadingAnimation();
+                return;
+            }
+
+            ApplyLobbyAnimationState(localState, lobbyAnimationPrototype.Scale);
         }
 
         private void SetLobbyArt(string lobbyArt)
@@ -569,16 +585,30 @@ namespace Content.Client.Lobby
 
             var imagePath = lobbyArtPrototype.Background;
 
-            if (!_netTexturesManager.EnsureResource(imagePath))
-                return;
-
-            if (!_netTexturesManager.TryGetTexture(imagePath, out var texture) || texture == null)
+            if (UsesNetworkLobbyResource(imagePath))
             {
-                _sawmill.Debug($"Lobby art texture is not ready yet for {imagePath}");
+                if (!_netTexturesManager.EnsureResource(imagePath))
+                    return;
+
+                if (!_netTexturesManager.TryGetTexture(imagePath, out var texture) || texture == null)
+                {
+                    _sawmill.Debug($"Lobby art texture is not ready yet for {imagePath}");
+                    return;
+                }
+
+                Lobby!.LobbyArt.Texture = texture;
+                Lobby!.LobbyArt.Visible = true;
+                HideLoadingAnimation();
                 return;
             }
 
-            Lobby!.LobbyArt.Texture = texture;
+            if (!TryGetLocalLobbyTexture(imagePath, out var localTexture))
+            {
+                HideLoadingAnimation();
+                return;
+            }
+
+            Lobby!.LobbyArt.Texture = localTexture;
             Lobby!.LobbyArt.Visible = true;
             HideLoadingAnimation();
         }
@@ -780,6 +810,23 @@ namespace Content.Client.Lobby
                 return;
 
             _currentAnimationState = state;
+            _currentLocalAnimationState = null;
+            _currentAnimationFrame = 0;
+            _currentAnimationFrameTime = state.GetDelay(0);
+
+            Lobby.LobbyAnimation.DisplayRect.Texture = state.Frame0;
+            Lobby.LobbyAnimation.DisplayRect.TextureScale = scale;
+            Lobby.LobbyAnimation.Visible = true;
+            HideLoadingAnimation();
+        }
+
+        private void ApplyLobbyAnimationState(ClientRsi.State state, Vector2 scale)
+        {
+            if (Lobby == null)
+                return;
+
+            _currentAnimationState = null;
+            _currentLocalAnimationState = state;
             _currentAnimationFrame = 0;
             _currentAnimationFrameTime = state.GetDelay(0);
 
@@ -791,23 +838,103 @@ namespace Content.Client.Lobby
 
         private void UpdateLobbyAnimationFrame(float frameTime)
         {
-            if (Lobby == null || _currentAnimationState == null || !_currentAnimationState.IsAnimated)
+            if (Lobby == null)
                 return;
 
             var oldFrame = _currentAnimationFrame;
+            if (_currentAnimationState != null)
+            {
+                if (!_currentAnimationState.IsAnimated)
+                    return;
+
+                _currentAnimationFrameTime -= frameTime;
+                while (_currentAnimationFrameTime <= 0f)
+                {
+                    _currentAnimationFrame = (_currentAnimationFrame + 1) % _currentAnimationState.FrameCount;
+                    _currentAnimationFrameTime += _currentAnimationState.GetDelay(_currentAnimationFrame);
+                }
+
+                if (_currentAnimationFrame != oldFrame)
+                {
+                    Lobby.LobbyAnimation.DisplayRect.Texture =
+                        _currentAnimationState.GetFrame(RsiDirection.South, _currentAnimationFrame);
+                }
+
+                return;
+            }
+
+            if (_currentLocalAnimationState == null || !_currentLocalAnimationState.IsAnimated)
+                return;
 
             _currentAnimationFrameTime -= frameTime;
             while (_currentAnimationFrameTime <= 0f)
             {
-                _currentAnimationFrame = (_currentAnimationFrame + 1) % _currentAnimationState.FrameCount;
-                _currentAnimationFrameTime += _currentAnimationState.GetDelay(_currentAnimationFrame);
+                _currentAnimationFrame = (_currentAnimationFrame + 1) % _currentLocalAnimationState.DelayCount;
+                _currentAnimationFrameTime += _currentLocalAnimationState.GetDelay(_currentAnimationFrame);
             }
 
             if (_currentAnimationFrame != oldFrame)
             {
                 Lobby.LobbyAnimation.DisplayRect.Texture =
-                    _currentAnimationState.GetFrame(RsiDirection.South, _currentAnimationFrame);
+                    _currentLocalAnimationState.GetFrame(RsiDirection.South, _currentAnimationFrame);
             }
+        }
+
+        private void ClearLobbyAnimationState()
+        {
+            _currentAnimationState = null;
+            _currentLocalAnimationState = null;
+            _currentAnimationFrame = 0;
+            _currentAnimationFrameTime = 0f;
+        }
+
+        private static bool UsesNetworkLobbyResource(string resourcePath)
+        {
+            return resourcePath.TrimStart('/').StartsWith("NetTextures/", StringComparison.Ordinal);
+        }
+
+        private static ResPath GetLocalLobbyResourcePath(string resourcePath)
+        {
+            if (resourcePath.StartsWith("/", StringComparison.Ordinal))
+                return new ResPath(resourcePath).Clean();
+
+            if (resourcePath.StartsWith("Textures/", StringComparison.Ordinal))
+                return (ResPath.Root / resourcePath).Clean();
+
+            return (SpriteSpecifierSerializer.TextureRoot / resourcePath).Clean();
+        }
+
+        private bool TryGetLocalLobbyTexture(string resourcePath, [NotNullWhen(true)] out Texture? texture)
+        {
+            var localPath = GetLocalLobbyResourcePath(resourcePath);
+
+            if (_resourceCache.TryGetResource<TextureResource>(localPath, out var textureResource))
+            {
+                texture = textureResource.Texture;
+                return true;
+            }
+
+            _sawmill.Warning($"Failed to load local lobby art texture: {localPath}");
+            texture = null;
+            return false;
+        }
+
+        private bool TryGetLocalLobbyAnimationState(string resourcePath, string stateId, [NotNullWhen(true)] out ClientRsi.State? state)
+        {
+            var localPath = GetLocalLobbyResourcePath(resourcePath);
+
+            if (!_resourceCache.TryGetResource<RSIResource>(localPath, out var rsiResource))
+            {
+                _sawmill.Warning($"Failed to load local lobby animation RSI: {localPath}");
+                state = null;
+                return false;
+            }
+
+            if (rsiResource.RSI.TryGetState(stateId, out state))
+                return true;
+
+            _sawmill.Warning($"Failed to find local lobby animation state '{stateId}' in {localPath}");
+            return false;
         }
 
         /// <summary>

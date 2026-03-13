@@ -6,11 +6,13 @@ using System.Text.Json;
 using System.Threading;
 using Content.IntegrationTests.Pair;
 using Content.Client.Lobby;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.NetTextures;
 using NUnit.Framework;
 using Robust.Client.State;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.UnitTesting;
 using SixLabors.ImageSharp;
@@ -26,6 +28,93 @@ namespace Content.IntegrationTests.Tests.Networking;
 public sealed class NetTexturesRegressionTest
 {
     private const int FallbackChunkSize = 64 * 1024;
+
+    [Test]
+    public async Task LocalLobbyArtLoadsWithoutNetTextures()
+    {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings
+        {
+            InLobby = true,
+            Dirty = true
+        });
+
+        var client = pair.Client;
+        var stateManager = client.Resolve<IStateManager>();
+        var protoMan = client.Resolve<IPrototypeManager>();
+
+        const string artId = "NetTexturesRegressionLocalArt";
+        const string artPrototype = """
+- type: lobbyArt
+  id: NetTexturesRegressionLocalArt
+  background: Logo/logo.png
+""";
+
+        await client.WaitPost(() =>
+        {
+            protoMan.LoadString(artPrototype, overwrite: true);
+            protoMan.ResolveResults();
+            client.CfgMan.SetCVar(SunriseCCVars.LobbyArt, artId);
+            client.CfgMan.SetCVar(SunriseCCVars.LobbyBackgroundType, "Art");
+        });
+
+        await pair.RunTicksSync(5);
+
+        await client.WaitAssertion(() =>
+        {
+            var lobbyState = stateManager.CurrentState as LobbyState;
+            Assert.That(lobbyState, Is.Not.Null);
+            Assert.That(lobbyState!.Lobby, Is.Not.Null);
+            Assert.That(lobbyState.Lobby!.LoadingAnimationContainer.Visible, Is.False);
+            Assert.That(lobbyState.Lobby.LobbyArt.Visible, Is.True);
+            Assert.That(lobbyState.Lobby.LobbyArt.Texture, Is.Not.Null);
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task LocalLobbyAnimationLoadsWithoutNetTextures()
+    {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings
+        {
+            InLobby = true,
+            Dirty = true
+        });
+
+        var client = pair.Client;
+        var stateManager = client.Resolve<IStateManager>();
+        var protoMan = client.Resolve<IPrototypeManager>();
+
+        const string animationId = "NetTexturesRegressionLocalAnimation";
+        const string animationPrototype = """
+- type: lobbyAnimation
+  id: NetTexturesRegressionLocalAnimation
+  animation: _Sunrise/loading.rsi
+  state: loading
+""";
+
+        await client.WaitPost(() =>
+        {
+            protoMan.LoadString(animationPrototype, overwrite: true);
+            protoMan.ResolveResults();
+            client.CfgMan.SetCVar(SunriseCCVars.LobbyAnimation, animationId);
+            client.CfgMan.SetCVar(SunriseCCVars.LobbyBackgroundType, "Animation");
+        });
+
+        await pair.RunTicksSync(5);
+
+        await client.WaitAssertion(() =>
+        {
+            var lobbyState = stateManager.CurrentState as LobbyState;
+            Assert.That(lobbyState, Is.Not.Null);
+            Assert.That(lobbyState!.Lobby, Is.Not.Null);
+            Assert.That(lobbyState.Lobby!.LoadingAnimationContainer.Visible, Is.False);
+            Assert.That(lobbyState.Lobby.LobbyAnimation.Visible, Is.True);
+            Assert.That(lobbyState.Lobby.LobbyAnimation.DisplayRect.Texture, Is.Not.Null);
+        });
+
+        await pair.CleanReturnAsync();
+    }
 
     [Test]
     public async Task DisconnectFromLobbyClearsLoadedTextureAndAllowsReload()
