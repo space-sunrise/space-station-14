@@ -8,15 +8,19 @@ using System.Threading.Tasks;
 using Robust.Client.Graphics;
 using Robust.Shared.Graphics;
 using Robust.Shared.Graphics.RSI;
+using Robust.Shared.Maths;
 using Robust.Shared.Utility;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
+using YamlDotNet.RepresentationModel;
 
 namespace Content.Client._Sunrise;
 
 public sealed partial class NetTexturesManager
 {
+    private static readonly float[] OneFrameDelay = new float[] { 1f };
+
     private static float[][] NormalizeDelays(float[][]? delays, int dirCount)
     {
         if (delays == null)
@@ -24,7 +28,7 @@ public sealed partial class NetTexturesManager
             var result = new float[dirCount][];
             for (var i = 0; i < dirCount; i++)
             {
-                result[i] = [1];
+                result[i] = OneFrameDelay;
             }
 
             return result;
@@ -36,7 +40,7 @@ public sealed partial class NetTexturesManager
         var normalized = new float[dirCount][];
         for (var i = 0; i < dirCount; i++)
         {
-            normalized[i] = delays[i].Length == 0 ? [1] : delays[i];
+            normalized[i] = delays[i].Length == 0 ? OneFrameDelay : delays[i];
         }
 
         return normalized;
@@ -56,14 +60,14 @@ public sealed partial class NetTexturesManager
                 singleIndices[i] = i;
             }
 
-            return (output, [singleIndices]);
+            return (output, new[] { singleIndices });
         }
 
         const float fixedPointResolution = 1000;
 
         var dirCount = delays.Length;
         var iDelays = new int[dirCount][];
-        Span<int> dirLengths = stackalloc int[dirCount];
+        var dirLengths = new int[dirCount];
         var maxLength = 0;
 
         for (var d = 0; d < dirCount; d++)
@@ -89,15 +93,13 @@ public sealed partial class NetTexturesManager
             iDelays[d][^1] += diff;
         }
 
-        Span<int> dirIndexOffsets = stackalloc int[dirCount];
-        dirIndexOffsets.Fill(0);
+        var dirIndexOffsets = new int[dirCount];
         for (var i = 0; i < dirCount - 1; i++)
         {
             dirIndexOffsets[i + 1] = dirIndexOffsets[i] + delays[i].Length;
         }
 
-        Span<int> dirDelayOffsets = stackalloc int[dirCount];
-        dirDelayOffsets.Fill(0);
+        var dirDelayOffsets = new int[dirCount];
 
         var newDelays = new List<int>();
         var newIndices = new List<int>[dirCount];
@@ -106,7 +108,8 @@ public sealed partial class NetTexturesManager
             newIndices[d] = new List<int>();
         }
 
-        while (true)
+        var finished = false;
+        while (!finished)
         {
             var minDelay = int.MaxValue;
 
@@ -122,19 +125,23 @@ public sealed partial class NetTexturesManager
 
             for (var d = 0; d < dirCount; d++)
             {
-                ref var offset = ref dirDelayOffsets[d];
-                ref var delay = ref iDelays[d][offset];
-                delay -= minDelay;
+                var offset = dirDelayOffsets[d];
+                var delay = iDelays[d][offset] - minDelay;
+                iDelays[d][offset] = delay;
 
                 if (delay == 0)
+                {
                     offset += 1;
+                    dirDelayOffsets[d] = offset;
+                }
 
                 if (offset == iDelays[d].Length)
-                    goto done;
+                {
+                    finished = true;
+                    break;
+                }
             }
         }
-
-        done:
 
         var floatDelays = new float[newDelays.Count];
         for (var i = 0; i < newDelays.Count; i++)
@@ -180,7 +187,7 @@ public sealed partial class NetTexturesManager
         return new NetTextureAnimationState(state.StateId, directionType, state.FoldedDelays, frames);
     }
 
-    private async Task<List<(ResPath Relative, byte[] Data)>> ReadTransferStream(Stream stream)
+    private List<(ResPath Relative, byte[] Data)> ReadTransferStream(Stream stream)
     {
         var files = new List<(ResPath Relative, byte[] Data)>();
         var lengthBytes = new byte[4];
@@ -188,25 +195,25 @@ public sealed partial class NetTexturesManager
 
         while (true)
         {
-            await stream.ReadExactlyAsync(lengthBytes).ConfigureAwait(false);
+            ReadExactly(stream, lengthBytes);
             var pathLength = BinaryPrimitives.ReadUInt32LittleEndian(lengthBytes);
             if (pathLength > int.MaxValue)
                 throw new InvalidDataException($"NetTextures transfer path length is too large: {pathLength}");
 
-            await stream.ReadExactlyAsync(lengthBytes).ConfigureAwait(false);
+            ReadExactly(stream, lengthBytes);
             var dataLength = BinaryPrimitives.ReadUInt32LittleEndian(lengthBytes);
             if (dataLength > int.MaxValue)
                 throw new InvalidDataException($"NetTextures transfer file length is too large: {dataLength}");
 
             var pathData = new byte[(int) pathLength];
-            await stream.ReadExactlyAsync(pathData).ConfigureAwait(false);
+            ReadExactly(stream, pathData);
 
             var data = new byte[(int) dataLength];
-            await stream.ReadExactlyAsync(data).ConfigureAwait(false);
+            ReadExactly(stream, data);
 
             files.Add((new ResPath(Encoding.UTF8.GetString(pathData)), data));
 
-            await stream.ReadExactlyAsync(continueByte).ConfigureAwait(false);
+            ReadExactly(stream, continueByte);
             if (continueByte[0] == 0)
                 break;
         }
@@ -214,39 +221,82 @@ public sealed partial class NetTexturesManager
         return files;
     }
 
-    private Task RunOnMainThreadAsync(Action callback)
+    private static void ReadExactly(Stream stream, byte[] buffer)
     {
-        var tcs = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-        _taskManager.RunOnMainThread(() =>
+        var offset = 0;
+        while (offset < buffer.Length)
         {
-            try
-            {
-                callback();
-                tcs.TrySetResult();
-            }
-            catch (Exception ex)
-            {
-                tcs.TrySetException(ex);
-            }
-        });
-        return tcs.Task;
+            var read = stream.Read(buffer, offset, buffer.Length - offset);
+            if (read == 0)
+                throw new InvalidDataException("Unexpected end of NetTextures transfer stream");
+
+            offset += read;
+        }
     }
 
-    private Task<T> RunOnMainThreadAsync<T>(Func<T> callback)
+    private static RsiMetadataData LoadRsiMetadata(Stream metaStream)
     {
-        var tcs = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);
-        _taskManager.RunOnMainThread(() =>
+        using var reader = new StreamReader(metaStream, Encoding.UTF8, true, 4096, leaveOpen: true);
+        var yaml = new YamlStream();
+        yaml.Load(reader);
+
+        if (yaml.Documents.Count != 1 || yaml.Documents[0].RootNode is not YamlMappingNode root)
+            throw new InvalidDataException("RSI metadata root must be a mapping");
+
+        if (!root.TryGetNode("size", out YamlMappingNode? sizeNode))
+            throw new InvalidDataException("RSI metadata is missing size");
+
+        if (!sizeNode.TryGetNode("x", out var sizeXNode) || !sizeNode.TryGetNode("y", out var sizeYNode))
+            throw new InvalidDataException("RSI metadata size is incomplete");
+
+        if (!root.TryGetNode("states", out YamlSequenceNode? statesNode) || statesNode.Children.Count == 0)
+            throw new InvalidDataException("RSI metadata is missing states");
+
+        var states = new RsiStateMetadataData[statesNode.Children.Count];
+        for (var i = 0; i < statesNode.Children.Count; i++)
         {
-            try
+            if (statesNode.Children[i] is not YamlMappingNode stateNode)
+                throw new InvalidDataException("RSI metadata state must be a mapping");
+
+            if (!stateNode.TryGetNode("name", out var nameNode))
+                throw new InvalidDataException("RSI metadata state is missing name");
+
+            int? directions = null;
+            if (stateNode.TryGetNode("directions", out var directionsNode))
+                directions = directionsNode.AsInt();
+
+            float[][]? delays = null;
+            if (stateNode.TryGetNode("delays", out YamlSequenceNode? delayRowsNode))
+                delays = ReadRsiDelays(delayRowsNode);
+
+            states[i] = new RsiStateMetadataData(nameNode.AsString(), directions, delays);
+        }
+
+        var loadParameters = TextureLoadParameters.Default;
+        if (root.TryGetNode("load", out YamlMappingNode? loadNode))
+            loadParameters = TextureLoadParameters.FromYaml(loadNode);
+
+        return new RsiMetadataData(new Vector2i(sizeXNode.AsInt(), sizeYNode.AsInt()), states, loadParameters);
+    }
+
+    private static float[][] ReadRsiDelays(YamlSequenceNode delayRowsNode)
+    {
+        var rows = new float[delayRowsNode.Children.Count][];
+        for (var rowIndex = 0; rowIndex < delayRowsNode.Children.Count; rowIndex++)
+        {
+            if (delayRowsNode.Children[rowIndex] is not YamlSequenceNode delayRowNode)
+                throw new InvalidDataException("RSI delay rows must be sequences");
+
+            var row = new float[delayRowNode.Children.Count];
+            for (var frameIndex = 0; frameIndex < delayRowNode.Children.Count; frameIndex++)
             {
-                tcs.TrySetResult(callback());
+                row[frameIndex] = delayRowNode.Children[frameIndex].AsFloat();
             }
-            catch (Exception ex)
-            {
-                tcs.TrySetException(ex);
-            }
-        });
-        return tcs.Task;
+
+            rows[rowIndex] = row;
+        }
+
+        return rows;
     }
 
     private static bool IsRsiPath(ResPath path)
@@ -367,7 +417,7 @@ public sealed partial class NetTexturesManager
         : PreparedUploadJob(resourcePath, generation)
     {
         private PreparedRsi? _prepared = prepared;
-        private readonly List<OwnedTexture> _textures = [];
+        private readonly List<OwnedTexture> _textures = new();
         private LoadedRsiEntry? _loadedRsi;
         private int _stateIndex;
         private int _frameIndex;
@@ -412,7 +462,7 @@ public sealed partial class NetTexturesManager
             if (_stateIndex < prepared.States.Count)
                 return false;
 
-            var states = new Dictionary<string, NetTextureAnimationState>(prepared.States.Count, StringComparer.Ordinal);
+            var states = new Dictionary<string, NetTextureAnimationState>(prepared.States.Count);
             foreach (var state in prepared.States)
             {
                 states[state.StateId] = CreateAnimationState(state);
@@ -538,7 +588,7 @@ public sealed partial class NetTexturesManager
             foreach (var chunk in _chunks)
             {
                 var chunkData = chunk!;
-                Buffer.BlockCopy(chunkData, 0, combined, offset, chunkData.Length);
+                Array.Copy(chunkData, 0, combined, offset, chunkData.Length);
                 offset += chunkData.Length;
             }
 
@@ -580,28 +630,24 @@ public sealed partial class NetTexturesManager
         }
     }
 
-    private sealed class RsiMetadataJson
+    private sealed class PreparationRequest(string resourcePath, ResPath resPath, int generation)
     {
-        public RsiSizeJson? Size { get; set; }
-        public RsiStateJson[]? States { get; set; }
-        public RsiLoadJson? Load { get; set; }
+        public readonly string ResourcePath = resourcePath;
+        public readonly ResPath ResPath = resPath;
+        public readonly int Generation = generation;
     }
 
-    private sealed class RsiSizeJson
+    private sealed class RsiMetadataData(Vector2i size, RsiStateMetadataData[] states, TextureLoadParameters loadParameters)
     {
-        public int X { get; set; }
-        public int Y { get; set; }
+        public readonly Vector2i Size = size;
+        public readonly RsiStateMetadataData[] States = states;
+        public readonly TextureLoadParameters LoadParameters = loadParameters;
     }
 
-    private sealed class RsiStateJson
+    private sealed class RsiStateMetadataData(string name, int? directions, float[][]? delays)
     {
-        public string Name { get; set; } = string.Empty;
-        public int? Directions { get; set; }
-        public float[][]? Delays { get; set; }
-    }
-
-    private sealed class RsiLoadJson
-    {
-        public bool Srgb { get; set; } = true;
+        public readonly string Name = name;
+        public readonly int? Directions = directions;
+        public readonly float[][]? Delays = delays;
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Buffers.Binary;
 using System.IO;
 using System.Text;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Shared._Sunrise.CartridgeLoader.Cartridges;
@@ -30,11 +29,6 @@ public sealed partial class NetTexturesManager
     private const string TransferKeyNetTextures = "TransferKeyNetTextures";
     private const string UploadedPrefix = "/Uploaded";
 
-    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)
-    {
-        PropertyNameCaseInsensitive = true
-    };
-
     [Dependency] private readonly IClientNetManager _netManager = default!;
     [Dependency] private readonly IResourceManager _resourceManager = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
@@ -52,10 +46,13 @@ public sealed partial class NetTexturesManager
     private readonly Dictionary<string, LoadedRsiEntry> _loadedRsis = new();
     private readonly Queue<PreparedUploadJob> _preparedUploads = new();
     private readonly Dictionary<ResPath, FallbackChunkAssembly> _fallbackChunkAssemblies = new();
-    private readonly SemaphoreSlim _prepareSemaphore = new(1, 1);
+    private readonly Queue<PreparationRequest> _prepareRequests = new();
 
     private CancellationTokenSource _sessionCts = new();
     private int _sessionGeneration;
+    private int _activePrepareRequestId;
+    private int _nextPrepareRequestId;
+    private bool _prepareWorkerRunning;
     private ISawmill _sawmill = default!;
 
     public event Action<string>? ResourceLoaded;
@@ -161,44 +158,19 @@ public sealed partial class NetTexturesManager
     {
         var generation = _sessionGeneration;
 
-        _ = Task.Run(async () =>
-        {
-            var startTime = DateTime.UtcNow;
-
-            try
-            {
-                await using var stream = transfer.DataStream;
-                var files = await ReadTransferStream(stream).ConfigureAwait(false);
-
-                await RunOnMainThreadAsync(() =>
-                {
-                    if (generation != _sessionGeneration)
-                        return;
-
-                    PublishFiles(files);
-                }).ConfigureAwait(false);
-
-                var totalSize = 0L;
-                foreach (var (_, data) in files)
-                {
-                    totalSize += data.Length;
-                }
-
-                var totalTime = (DateTime.UtcNow - startTime).TotalMilliseconds;
-                _sawmill.Info($"[NetTextures] Received {files.Count} files ({ByteHelpers.FormatBytes(totalSize)}) via transfer in {totalTime:F0}ms");
-            }
-            catch (Exception e)
-            {
-                _sawmill.Error($"Error while receiving NetTextures transfer: {e}");
-            }
-        });
+        _ = Task.Run(() => ReceiveNetTexturesTransferWorker(transfer.DataStream, generation));
     }
 
 #pragma warning disable CS0618
     private void ReceiveFallbackUpload(NetworkResourceUploadMessage message)
 #pragma warning restore CS0618
     {
-        PublishFiles([(message.RelativePath, message.Data)]);
+        var files = new List<(ResPath Relative, byte[] Data)>(1)
+        {
+            (message.RelativePath, message.Data)
+        };
+
+        PublishFiles(files);
     }
 
     internal void ReceiveFallbackChunk(NetTextureResourceChunkMessage message)
@@ -227,7 +199,12 @@ public sealed partial class NetTexturesManager
         _fallbackChunkAssemblies.Remove(relativePath);
         try
         {
-            PublishFiles([(relativePath, assembly.Combine())]);
+            var files = new List<(ResPath Relative, byte[] Data)>(1)
+            {
+                (relativePath, assembly.Combine())
+            };
+
+            PublishFiles(files);
         }
         finally
         {
@@ -286,9 +263,8 @@ public sealed partial class NetTexturesManager
         if (!_preparingResources.Add(resourcePath))
             return;
 
-        var generation = _sessionGeneration;
-        var cancellationToken = _sessionCts.Token;
-        _ = PrepareResourceAsync(resourcePath, resPath, generation, cancellationToken);
+        _prepareRequests.Enqueue(new PreparationRequest(resourcePath, resPath, _sessionGeneration));
+        TryStartNextPreparation();
     }
 
     private void RequestResource(string resourcePath)
@@ -337,6 +313,9 @@ public sealed partial class NetTexturesManager
         _preparingResources.Clear();
         _failedResources.Clear();
         _netTexturesContentRoot.Clear();
+        _prepareRequests.Clear();
+        _prepareWorkerRunning = false;
+        _activePrepareRequestId = 0;
 
         while (_preparedUploads.Count > 0)
         {
@@ -379,5 +358,119 @@ public sealed partial class NetTexturesManager
 
         var uploadedPath = (new ResPath(UploadedPrefix) / relativePath).ToRootedPath();
         return _resourceManager.ContentFileExists(uploadedPath);
+    }
+
+    private void ReceiveNetTexturesTransferWorker(Stream stream, int generation)
+    {
+        var startTime = DateTime.UtcNow;
+
+        try
+        {
+            using (stream)
+            {
+                var files = ReadTransferStream(stream);
+                var totalSize = 0L;
+                foreach (var (_, data) in files)
+                {
+                    totalSize += data.Length;
+                }
+
+                _taskManager.RunOnMainThread(() =>
+                {
+                    if (generation != _sessionGeneration)
+                        return;
+
+                    PublishFiles(files);
+                });
+
+                var totalTime = (DateTime.UtcNow - startTime).TotalMilliseconds;
+                _sawmill.Info($"[NetTextures] Received {files.Count} files ({ByteHelpers.FormatBytes(totalSize)}) via transfer in {totalTime:F0}ms");
+            }
+        }
+        catch (Exception e)
+        {
+            _sawmill.Error($"Error while receiving NetTextures transfer: {e}");
+        }
+    }
+
+    private void TryStartNextPreparation()
+    {
+        if (_prepareWorkerRunning)
+            return;
+
+        while (_prepareRequests.Count > 0)
+        {
+            var request = _prepareRequests.Dequeue();
+            if (request.Generation != _sessionGeneration)
+                continue;
+
+            if (!_preparingResources.Contains(request.ResourcePath))
+                continue;
+
+            _prepareWorkerRunning = true;
+            var requestId = ++_nextPrepareRequestId;
+            _activePrepareRequestId = requestId;
+            var cancellationToken = _sessionCts.Token;
+            _ = Task.Run(() => PrepareResourceWorker(request, requestId, cancellationToken));
+            return;
+        }
+    }
+
+    private void PrepareResourceWorker(PreparationRequest request, int requestId, CancellationToken cancellationToken)
+    {
+        PreparedUploadJob? upload = null;
+        Exception? error = null;
+
+        try
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
+            if (IsRsiPath(request.ResPath))
+            {
+                var prepared = DecodeRsi(request.ResPath, cancellationToken);
+                upload = new PreparedRsiUploadJob(request.ResourcePath, request.Generation, prepared);
+            }
+            else
+            {
+                var prepared = DecodeTexture(request.ResPath, cancellationToken);
+                upload = new PreparedTextureUploadJob(request.ResourcePath, request.Generation, prepared);
+            }
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        catch (Exception ex)
+        {
+            error = ex;
+        }
+
+        _taskManager.RunOnMainThread(() => FinishPreparationWorker(request, requestId, upload, error));
+    }
+
+    private void FinishPreparationWorker(
+        PreparationRequest request,
+        int requestId,
+        PreparedUploadJob? upload,
+        Exception? error)
+    {
+        if (_activePrepareRequestId == requestId)
+        {
+            _prepareWorkerRunning = false;
+            _activePrepareRequestId = 0;
+        }
+
+        if (upload != null)
+        {
+            if (request.Generation == _sessionGeneration)
+                _preparedUploads.Enqueue(upload);
+            else
+                upload.Dispose();
+        }
+        else if (error != null && request.Generation == _sessionGeneration)
+        {
+            MarkResourceFailed(request.ResourcePath, error.Message);
+        }
+
+        TryStartNextPreparation();
     }
 }

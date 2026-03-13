@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Robust.Client.Graphics;
@@ -18,76 +17,6 @@ namespace Content.Client._Sunrise;
 public sealed partial class NetTexturesManager
 {
     private const int MaxUploadStepsPerFrame = 2;
-
-    private async Task PrepareResourceAsync(string resourcePath, ResPath resPath, int generation, CancellationToken cancellationToken)
-    {
-        var acquired = false;
-
-        try
-        {
-            await _prepareSemaphore.WaitAsync(cancellationToken).ConfigureAwait(false);
-            acquired = true;
-
-            if (IsRsiPath(resPath))
-            {
-                var preparedRsi = await PrepareRsiAsync(resPath, cancellationToken).ConfigureAwait(false);
-
-                await RunOnMainThreadAsync(() =>
-                {
-                    if (generation != _sessionGeneration)
-                    {
-                        preparedRsi.Dispose();
-                        return;
-                    }
-
-                    _preparedUploads.Enqueue(new PreparedRsiUploadJob(resourcePath, generation, preparedRsi));
-                }).ConfigureAwait(false);
-            }
-            else
-            {
-                var preparedTexture = await PrepareTextureAsync(resPath, cancellationToken).ConfigureAwait(false);
-
-                await RunOnMainThreadAsync(() =>
-                {
-                    if (generation != _sessionGeneration)
-                    {
-                        preparedTexture.Dispose();
-                        return;
-                    }
-
-                    _preparedUploads.Enqueue(new PreparedTextureUploadJob(resourcePath, generation, preparedTexture));
-                }).ConfigureAwait(false);
-            }
-        }
-        catch (OperationCanceledException)
-        {
-        }
-        catch (Exception ex)
-        {
-            await RunOnMainThreadAsync(() =>
-            {
-                if (generation != _sessionGeneration)
-                    return;
-
-                MarkResourceFailed(resourcePath, ex.Message);
-            }).ConfigureAwait(false);
-        }
-        finally
-        {
-            if (acquired)
-                _prepareSemaphore.Release();
-        }
-    }
-
-    private async Task<PreparedTexture> PrepareTextureAsync(ResPath resPath, CancellationToken cancellationToken)
-    {
-        return await Task.Run(() => DecodeTexture(resPath, cancellationToken), cancellationToken).ConfigureAwait(false);
-    }
-
-    private async Task<PreparedRsi> PrepareRsiAsync(ResPath resPath, CancellationToken cancellationToken)
-    {
-        return await Task.Run(() => DecodeRsi(resPath, cancellationToken), cancellationToken).ConfigureAwait(false);
-    }
 
     private void FinishPreparedTexture(string resourcePath, LoadedTextureEntry loadedTexture)
     {
@@ -171,8 +100,8 @@ public sealed partial class NetTexturesManager
 
             using (metaStream)
             {
-                var metadata = JsonSerializer.Deserialize<RsiMetadataJson>(metaStream, JsonOptions);
-                if (metadata?.States == null || metadata.States.Length == 0)
+                var metadata = LoadRsiMetadata(metaStream);
+                if (metadata.States.Length == 0)
                     return false;
 
                 foreach (var state in metadata.States)
@@ -213,25 +142,14 @@ public sealed partial class NetTexturesManager
         var metaPath = (uploadedPath / "meta.json").ToRootedPath();
 
         using var metaStream = _resourceManager.ContentFileRead(metaPath);
-        var metadata = JsonSerializer.Deserialize<RsiMetadataJson>(metaStream, JsonOptions)
-            ?? throw new InvalidDataException($"Failed to parse RSI metadata for {resourcePath}");
+        var metadata = LoadRsiMetadata(metaStream);
 
-        if (metadata.Size == null || metadata.States == null || metadata.States.Length == 0)
+        if (metadata.States.Length == 0)
             throw new InvalidDataException($"RSI metadata for {resourcePath} is incomplete");
 
-        var frameSize = new Vector2i(metadata.Size.X, metadata.Size.Y);
+        var frameSize = metadata.Size;
         if (frameSize.X <= 0 || frameSize.Y <= 0)
             throw new InvalidDataException($"RSI metadata for {resourcePath} has invalid frame size {frameSize}");
-
-        var loadParameters = TextureLoadParameters.Default;
-        if (metadata.Load != null)
-        {
-            loadParameters = new TextureLoadParameters
-            {
-                SampleParameters = TextureSampleParameters.Default,
-                Srgb = metadata.Load.Srgb
-            };
-        }
 
         var states = new List<PreparedRsiState>(metadata.States.Length);
         foreach (var state in metadata.States)
@@ -282,6 +200,6 @@ public sealed partial class NetTexturesManager
             states.Add(new PreparedRsiState(state.Name, dirCount, foldedDelays, foldedIndices, frames));
         }
 
-        return new PreparedRsi(loadParameters, states);
+        return new PreparedRsi(metadata.LoadParameters, states);
     }
 }
