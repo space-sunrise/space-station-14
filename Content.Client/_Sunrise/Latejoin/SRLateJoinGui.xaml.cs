@@ -159,6 +159,9 @@ public sealed partial class SRLateJoinGui : FancyWindow
 
                 var job = _prototypeManager.Index(jobId);
 
+                var isDisabled = !_playManager.IsAllowed(job, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var denyReason);
+
+                // Основная кнопка должности
                 var newButton = new SRLateJoinJobButton(station, jobId, _gameTicker, _prototypeManager);
                 newButton.OnPressed += _ =>
                 {
@@ -167,14 +170,13 @@ public sealed partial class SRLateJoinGui : FancyWindow
                     Close();
                 };
 
-                if (!_playManager.IsAllowed(job, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var denyReason))
+                if (isDisabled)
                 {
                     newButton.Disabled = true;
-                    newButton.ToolTip = denyReason.ToString();
+                    newButton.ToolTip = denyReason?.ToString();
                 }
 
                 JobList.AddChild(newButton);
-
                 _buttons.Add(jobId, newButton);
             }
         }
