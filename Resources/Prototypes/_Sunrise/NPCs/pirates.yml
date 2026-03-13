@@ -2768,14 +2768,14 @@
     proto: CartridgeMagnumAP
     fireCost: 10
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 6
+    autoRechargePauseTime: 10
     autoRechargeRate: 999
   - type: Battery
     maxCharge: 20
     startingCharge: 20
   - type: Gun
     showExamineText: false
-    fireRate: 12
+    fireRate: 10
     minAngle: 1
     maxAngle: 8
     selectedMode: SemiAuto
