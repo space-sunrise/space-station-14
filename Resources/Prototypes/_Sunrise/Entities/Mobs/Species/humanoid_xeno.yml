@@ -26,6 +26,11 @@
   - type: Temperature
     currentTemperature: 310.15
   - type: TemperatureDamage
+    heatDamageThreshold: 320
+    coldDamageThreshold: 0
+    coldDamage:
+      types:
+        Cold: -0.05
     heatDamage:
       types:
         Heat: 3
