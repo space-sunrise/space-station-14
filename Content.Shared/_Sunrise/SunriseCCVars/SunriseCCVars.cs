@@ -245,7 +245,7 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("cryo_teleport.enable", true, CVar.SERVERONLY);
 
     public static readonly CVarDef<int> CryoTeleportTransferDelay =
-        CVarDef.Create("cryo_teleport.transfer_delay", 5, CVar.SERVERONLY);
+        CVarDef.Create("cryo_teleport.transfer_delay", 10, CVar.SERVERONLY);
 
     /*
      * Damage

@@ -51,6 +51,7 @@
       reagents:
       - ReagentId: FluorosulfuricAcidHumanoidXeno
         Quantity: 300
+  - type: ProtectedFromStepTriggers
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Xenomorph
@@ -61,6 +62,8 @@
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
         color: "#44944A"
+  - type: Stamina
+    baseCritThreshold: 125
   - type: Sprite
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
