@@ -21,4 +21,9 @@ public sealed class SunriseServerEntry
         IoCManager.Resolve<AntiNukeManager>().Initialize();
 #endif
     }
+
+    public static void PostInit()
+    {
+
+    }
 }
