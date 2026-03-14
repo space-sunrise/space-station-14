@@ -15,6 +15,10 @@ namespace Content.Client.Options.UI.Tabs;
 [GenerateTypedNameReferences]
 public sealed partial class ExtraTab : Control
 {
+    // Sunrise added start - centralize the shared Random option token
+    private const string LobbyBackgroundRandom = "Random";
+    // Sunrise added end
+
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly ILogManager _log = default!;
@@ -111,7 +115,7 @@ public sealed partial class ExtraTab : Control
     private void OnLobbyBackgroundTypeChanged(string lobbyBackgroundTypeString)
     {
         var allowedTypes = GetAllowedLobbyBackgroundTypes();
-        if (lobbyBackgroundTypeString == "Random")
+        if (lobbyBackgroundTypeString == LobbyBackgroundRandom)
         {
             DropDownLobbyArt.Visible = allowedTypes.Contains(LobbyBackgroundType.Art);
             DropDownLobbyAnimation.Visible = allowedTypes.Contains(LobbyBackgroundType.Animation);
@@ -134,7 +138,9 @@ public sealed partial class ExtraTab : Control
         _lobbyAnimationOption.ReplaceOptions(BuildLobbyAnimationOptions(lobbyBackgroundOptions.Animations));
         _lobbyParallaxOption.ReplaceOptions(BuildLobbyParallaxOptions(lobbyBackgroundOptions.Parallaxes));
 
-        OnLobbyBackgroundTypeChanged(_cfg.GetCVar(SunriseCCVars.LobbyBackgroundType));
+        // Sunrise edit start - use the current dropdown selection after replacing options
+        OnLobbyBackgroundTypeChanged((string?) DropDownLobbyBackgroundType.Button.SelectedMetadata ?? LobbyBackgroundRandom);
+        // Sunrise edit end
         Control.RefreshButtonState();
     }
 
@@ -159,7 +165,7 @@ public sealed partial class ExtraTab : Control
     {
         var options = new List<SunriseOptionDropDownCVar<string>.ValueOption>
         {
-            new("Random", Loc.GetString("background-type-Random")),
+            new(LobbyBackgroundRandom, Loc.GetString("background-type-Random")),
         };
 
         foreach (var backgroundType in allowedTypes)
@@ -176,7 +182,7 @@ public sealed partial class ExtraTab : Control
     {
         var options = new List<SunriseOptionDropDownCVar<string>.ValueOption>
         {
-            new("Random", Loc.GetString("lobby-art-Random")),
+            new(LobbyBackgroundRandom, Loc.GetString("lobby-art-Random")),
         };
 
         foreach (var lobbyArt in allowedArts)
@@ -193,7 +199,7 @@ public sealed partial class ExtraTab : Control
     {
         var options = new List<SunriseOptionDropDownCVar<string>.ValueOption>
         {
-            new("Random", Loc.GetString("lobby-animation-Random")),
+            new(LobbyBackgroundRandom, Loc.GetString("lobby-animation-Random")),
         };
 
         foreach (var lobbyAnimation in allowedAnimations)
@@ -210,7 +216,7 @@ public sealed partial class ExtraTab : Control
     {
         var options = new List<SunriseOptionDropDownCVar<string>.ValueOption>
         {
-            new("Random", Loc.GetString("lobby-parallax-Random")),
+            new(LobbyBackgroundRandom, Loc.GetString("lobby-parallax-Random")),
         };
 
         foreach (var lobbyParallax in allowedParallaxes)

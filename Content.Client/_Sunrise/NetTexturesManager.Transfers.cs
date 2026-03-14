@@ -54,30 +54,52 @@ public sealed partial class NetTexturesManager
     /// <param name="message">The incoming fallback chunk.</param>
     internal void ReceiveFallbackChunk(NetTextureResourceChunkMessage message)
     {
-        if (message.TotalChunks <= 0 || message.ChunkIndex < 0 || message.ChunkIndex >= message.TotalChunks)
+        var totalChunks = message.TotalChunks;
+        var chunkIndex = message.ChunkIndex;
+        var totalLength = message.TotalLength;
+        var chunkOffset = message.ChunkOffset;
+        var chunkLength = message.Data.Length;
+        var chunkEnd = (long) chunkOffset + chunkLength;
+
+        if (totalChunks <= 0 ||
+            totalChunks > NetTextureConstants.MaxFallbackChunkCount ||
+            chunkIndex < 0 ||
+            chunkIndex >= totalChunks)
         {
-            _sawmill.Warning($"Rejected malformed NetTextures fallback chunk for {message.RelativePath}: chunk {message.ChunkIndex + 1}/{message.TotalChunks}");
+            _sawmill.Warning(
+                $"Rejected malformed NetTextures fallback chunk for {message.RelativePath}: chunk {(long) chunkIndex + 1}/{totalChunks}, limit {NetTextureConstants.MaxFallbackChunkCount}");
             return;
         }
 
-        if (message.TotalLength < 0 || message.ChunkOffset < 0 || message.ChunkOffset + message.Data.Length > message.TotalLength)
+        if (totalLength < 0 || (uint) totalLength > NetTextureConstants.MaxTransferFileSize)
         {
-            _sawmill.Warning($"Rejected malformed NetTextures fallback chunk bounds for {message.RelativePath}: offset {message.ChunkOffset}, length {message.Data.Length}, total {message.TotalLength}");
+            _sawmill.Warning(
+                $"Rejected malformed NetTextures fallback chunk length for {message.RelativePath}: total {totalLength}, limit {NetTextureConstants.MaxTransferFileSize}");
+            return;
+        }
+
+        if (chunkLength > NetTextureConstants.MaxChunkSize ||
+            chunkOffset < 0 ||
+            chunkLength > totalLength ||
+            chunkEnd > totalLength)
+        {
+            _sawmill.Warning(
+                $"Rejected malformed NetTextures fallback chunk bounds for {message.RelativePath}: offset {chunkOffset}, length {chunkLength}, total {totalLength}");
             return;
         }
 
         var relativePath = new ResPath(message.RelativePath).Clean().ToRelativePath();
 
         if (!_fallbackChunkAssemblies.TryGetValue(relativePath, out var assembly) ||
-            assembly.TotalChunks != message.TotalChunks ||
-            assembly.TotalLength != message.TotalLength)
+            assembly.TotalChunks != totalChunks ||
+            assembly.TotalLength != totalLength)
         {
             assembly?.Dispose();
-            assembly = new FallbackChunkAssembly(message.TotalChunks, message.TotalLength);
+            assembly = new FallbackChunkAssembly(totalChunks, totalLength);
             _fallbackChunkAssemblies[relativePath] = assembly;
         }
 
-        assembly.StoreChunk(message.ChunkIndex, message.ChunkOffset, message.Data);
+        assembly.StoreChunk(chunkIndex, chunkOffset, message.Data);
 
         if (!assembly.IsComplete)
             return;
@@ -176,16 +198,16 @@ public sealed partial class NetTexturesManager
             var pathLength = BinaryPrimitives.ReadUInt32LittleEndian(lengthBytes);
             if (pathLength > int.MaxValue)
                 throw new InvalidDataException($"NetTextures transfer path length is too large: {pathLength}");
-            if (pathLength > MaxTransferPathLength)
+            if (pathLength > NetTextureConstants.MaxTransferPathLength)
                 throw new InvalidDataException($"NetTextures transfer path length exceeds protocol limit: {pathLength}");
 
             ReadExactly(stream, lengthBytes);
             var dataLength = BinaryPrimitives.ReadUInt32LittleEndian(lengthBytes);
             if (dataLength > int.MaxValue)
                 throw new InvalidDataException($"NetTextures transfer file length is too large: {dataLength}");
-            if (dataLength > MaxTransferFileSize)
+            if (dataLength > NetTextureConstants.MaxTransferFileSize)
                 throw new InvalidDataException($"NetTextures transfer file length exceeds protocol limit: {dataLength}");
-            if ((ulong) pathLength + dataLength > MaxTransferPayloadLength)
+            if ((ulong) pathLength + dataLength > NetTextureConstants.MaxTransferPayloadLength)
             {
                 throw new InvalidDataException(
                     $"NetTextures transfer entry payload exceeds protocol limit: path={pathLength}, data={dataLength}");

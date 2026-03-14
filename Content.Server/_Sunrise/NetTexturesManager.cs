@@ -192,21 +192,48 @@ public sealed class NetTexturesManager
     /// </summary>
     private async Task ProcessTransferQueueWorker()
     {
-        while (true)
+        var shouldStartWorker = false;
+
+        try
         {
-            TransferRequest request;
-            lock (_transferQueueLock)
+            while (true)
             {
-                if (_pendingTransferRequests.Count == 0)
+                TransferRequest request;
+                lock (_transferQueueLock)
                 {
-                    _activeTransferWorkers--;
-                    return;
+                    if (_pendingTransferRequests.Count == 0)
+                        return;
+
+                    request = _pendingTransferRequests.Dequeue();
                 }
 
-                request = _pendingTransferRequests.Dequeue();
+                try
+                {
+                    await SendResourceAsync(request.Session, request.ResourcePath).ConfigureAwait(false);
+                }
+                catch (Exception ex)
+                {
+                    _sawmill.Error(
+                        $"Unhandled exception while sending NetTextures resource {request.ResourcePath} to {request.Session.Name}: {ex}");
+                }
+            }
+        }
+        finally
+        {
+            lock (_transferQueueLock)
+            {
+                _activeTransferWorkers--;
+
+                if (_pendingTransferRequests.Count > 0 &&
+                    _activeTransferWorkers < MaxConcurrentTransferWorkers)
+                {
+                    _activeTransferWorkers++;
+                    shouldStartWorker = true;
+                }
             }
 
-            await SendResourceAsync(request.Session, request.ResourcePath).ConfigureAwait(false);
+            if (shouldStartWorker)
+                _ = Task.Run(ProcessTransferQueueWorker);
         }
     }
 
@@ -376,6 +403,14 @@ public sealed class NetTexturesManager
     /// <returns><see langword="true"/> if the file was read successfully.</returns>
     private bool TryAddContentFile(ResPath filePath, ResPath relativePath, List<TransferResourceEntry> filesToSend)
     {
+        var relativePathLength = Encoding.UTF8.GetByteCount(relativePath.CanonPath);
+        if ((uint) relativePathLength > NetTextureConstants.MaxTransferPathLength)
+        {
+            _sawmill.Warning(
+                $"Skipping NetTexture file with a relative path longer than the supported transfer limit: {relativePath} ({relativePathLength} > {NetTextureConstants.MaxTransferPathLength})");
+            return false;
+        }
+
         if (!_resourceManager.TryContentFileRead(filePath, out var stream))
         {
             _sawmill.Warning($"Failed to read file: {filePath}");
@@ -384,9 +419,10 @@ public sealed class NetTexturesManager
 
         using (stream)
         {
-            if (stream.Length > int.MaxValue)
+            if (stream.Length < 0 || stream.Length > NetTextureConstants.MaxTransferFileSize)
             {
-                _sawmill.Warning($"Skipping NetTexture file larger than supported transfer size: {filePath}");
+                _sawmill.Warning(
+                    $"Skipping NetTexture file larger than the supported transfer size: {filePath} ({stream.Length} > {NetTextureConstants.MaxTransferFileSize})");
                 return false;
             }
 
@@ -692,4 +728,3 @@ public sealed class NetTexturesManager
         }
     }
 }
-

@@ -210,6 +210,12 @@ public sealed partial class OptionsTabControlRow : Control
     }
 
     // Sunrise added start - allow UI refreshes without implying a user edit
+    /// <summary>
+    /// <see cref="RefreshButtonState"/> updates the options buttons without implying user-driven edits.
+    /// </summary>
+    /// <remarks>
+    /// Unlike <see cref="ValueChanged"/>, <see cref="RefreshButtonState"/> only re-evaluates the current button state.
+    /// </remarks>
     public void RefreshButtonState()
     {
         UpdateButtonState();

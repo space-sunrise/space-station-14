@@ -567,23 +567,32 @@ public sealed class NetTexturesRegressionTest
         var client = pair.Client;
         var manager = client.ResolveDependency<ClientNetTexturesManager>();
         const string resourcePath = "/NetTextures/Test/corrupt-meta.rsi";
+        var previousFailureLogLevel = LogLevel.Warning;
 
-        await client.WaitPost(() => client.CfgMan.SetCVar(RTCVars.FailureLogLevel, LogLevel.Error));
-        await client.WaitPost(() => Assert.That(manager.EnsureResource(resourcePath), Is.False));
-
-        await client.WaitPost(() => manager.PublishFiles(new List<(ResPath Relative, byte[] Data)>
+        await client.WaitPost(() => previousFailureLogLevel = client.CfgMan.GetCVar(RTCVars.FailureLogLevel));
+        try
         {
-            (new ResPath($"{resourcePath}/meta.json").ToRelativePath(), Encoding.UTF8.GetBytes("{"))
-        }));
+            await client.WaitPost(() => client.CfgMan.SetCVar(RTCVars.FailureLogLevel, LogLevel.Error));
+            await client.WaitPost(() => Assert.That(manager.EnsureResource(resourcePath), Is.False));
 
-        await client.WaitAssertion(() =>
+            await client.WaitPost(() => manager.PublishFiles(new List<(ResPath Relative, byte[] Data)>
+            {
+                (new ResPath($"{resourcePath}/meta.json").ToRelativePath(), Encoding.UTF8.GetBytes("{"))
+            }));
+
+            await client.WaitAssertion(() =>
+            {
+                Assert.That(GetPrivateField<HashSet<string>>(manager, "_failedResources"), Contains.Item(resourcePath));
+                Assert.That(GetPrivateField<Dictionary<string, ResPath>>(manager, "_pendingResources").ContainsKey(resourcePath), Is.False);
+                Assert.That(manager.TryGetAnimationState(resourcePath, "idle", out _), Is.False);
+            });
+
+            await client.WaitPost(() => Assert.That(manager.EnsureResource(resourcePath), Is.False));
+        }
+        finally
         {
-            Assert.That(GetPrivateField<HashSet<string>>(manager, "_failedResources"), Contains.Item(resourcePath));
-            Assert.That(GetPrivateField<Dictionary<string, ResPath>>(manager, "_pendingResources").ContainsKey(resourcePath), Is.False);
-            Assert.That(manager.TryGetAnimationState(resourcePath, "idle", out _), Is.False);
-        });
-
-        await client.WaitPost(() => Assert.That(manager.EnsureResource(resourcePath), Is.False));
+            await client.WaitPost(() => client.CfgMan.SetCVar(RTCVars.FailureLogLevel, previousFailureLogLevel));
+        }
 
         await pair.CleanReturnAsync();
     }

@@ -21,9 +21,6 @@ public sealed partial class NetTexturesManager
     #region Constants
     private const string TransferKeyNetTextures = "TransferKeyNetTextures";
     private const string UploadedPrefix = "/Uploaded";
-    private const uint MaxTransferPathLength = 4 * 1024;
-    private const uint MaxTransferFileSize = 128 * 1024 * 1024;
-    private const uint MaxTransferPayloadLength = MaxTransferPathLength + MaxTransferFileSize;
     private const int MinTransferPublishBudgetBytes = 512 * 1024;
     private const int MaxTransferPublishBudgetBytes = 8 * 1024 * 1024;
     private const int TransferPublishBytesPerSecond = 64 * 1024 * 1024;
