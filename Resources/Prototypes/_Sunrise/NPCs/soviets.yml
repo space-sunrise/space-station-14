@@ -9,6 +9,10 @@
   id: MobSovietBase
   categories: [ Spawner ]
   components:
+  - type: Climbing
+  - type: Tag
+    tags:
+    - DoorBumpOpener
   # Allows ghosts/admins to quickly warp to soviets from the ghost teleport panel
   - type: GhostPanelAntagonistMarker
     name: ghost-panel-antagonist-soviet-name
