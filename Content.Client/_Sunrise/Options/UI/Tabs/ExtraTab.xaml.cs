@@ -1,5 +1,4 @@
 using Content.Client.Audio;
-using Content.Client._Sunrise.Options.UI;
 using Content.Shared._Sunrise.Lobby;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.GameTicking;
@@ -10,7 +9,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client.Options.UI.Tabs;
+namespace Content.Client._Sunrise.Options.UI.Tabs;
 
 [GenerateTypedNameReferences]
 public sealed partial class ExtraTab : Control
