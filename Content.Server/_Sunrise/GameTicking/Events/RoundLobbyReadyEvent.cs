@@ -2,7 +2,4 @@
 namespace Content.Server._Sunrise.GameTicking.Events;
 
 [ByRefEvent]
-public record struct RoundLobbyReadyEvent(int RoundId)
-{
-    public int RoundId = RoundId;
-}
+public record struct RoundLobbyReadyEvent(int RoundId);

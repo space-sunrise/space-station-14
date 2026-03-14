@@ -92,10 +92,12 @@ public sealed partial class ContentAudioSystem
         switch (args.NewState)
         {
             case LobbyState:
+                StopRoundEndMusic(); // Sunrise added
                 StartLobbyMusic();
                 break;
             default:
                 EndLobbyMusic();
+                StopRoundEndMusic(); // Sunrise added
                 break;
         }
     }
@@ -103,6 +105,7 @@ public sealed partial class ContentAudioSystem
     private void OnLeave(object? sender, PlayerEventArgs args)
     {
         EndLobbyMusic();
+        StopRoundEndMusic(); // Sunrise added
     }
 
     private void LobbyMusicVolumeCVarChanged(float volume)
