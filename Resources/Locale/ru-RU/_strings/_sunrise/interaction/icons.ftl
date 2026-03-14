@@ -15,3 +15,7 @@ interaction-icon-name-friendly-shoulder-massage-icon = Массаж спины
 interaction-icon-name-friendly-tail-hug-icon = Сплестись хвостами
 interaction-icon-name-friendly-tail-icon = Хвостик
 interaction-icon-name-friendly-pat-horns-icon = Гладить рожки
+interaction-icon-name-wing-pat = Поглаживание крыльев
+interaction-icon-name-wing-scratch = Почесывание крыльев
+interaction-icon-name-wing = Крылья
+interaction-icon-name-wing-pull = Дернуть за крылья
