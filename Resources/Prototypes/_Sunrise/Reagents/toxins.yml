@@ -41,8 +41,8 @@
           inverted: true
         damage:
           types:
-            Caustic: 2
-            Poison: 10
+            Caustic: 1
+            Poison: 14
       - !type:PopupMessage
         conditions:
         - !type:TagCondition
