@@ -21,10 +21,10 @@ public sealed partial class GameTicker
 
     private void RaiseRoundEndMusicEvent(TimeSpan roundDuration)
     {
-        if (!TryResolveRoundEndMusic(roundDuration, out var music))
+        if (!TryResolveRoundEndMusic(roundDuration, out var tracks))
             return;
 
-        RaiseNetworkEvent(new RoundEndMusicEvent(music));
+        RaiseNetworkEvent(new RoundEndMusicEvent(tracks));
     }
 
     private void RaiseRoundLobbyReadyEvent()
@@ -33,31 +33,31 @@ public sealed partial class GameTicker
         RaiseLocalEvent(ref ev);
     }
 
-    private bool TryResolveRoundEndMusic(TimeSpan roundDuration, [NotNullWhen(true)] out SoundSpecifier? sound)
+    private bool TryResolveRoundEndMusic(TimeSpan roundDuration, [NotNullWhen(true)] out List<RoundEndMusicTrack>? tracks)
     {
-        sound = null;
+        tracks = null;
 
         var selection = new RoundEndMusicSelectionEvent(RoundId, roundDuration, CurrentPreset?.ID);
         RaiseLocalEvent(ref selection);
 
         if (selection.Handheld && !selection.Cancelled && selection.Sound != null)
         {
-            sound = selection.Sound;
+            tracks = [new RoundEndMusicTrack(selection.Sound)];
             return true;
         }
 
-        if (TryResolveRoundEndMusicPool(_roundEndMusicPool, out sound))
+        if (TryResolveRoundEndMusicPool(_roundEndMusicPool, out tracks))
             return true;
 
-        if (TryResolveRoundEndCollection(_cfg.GetCVar(CCVars.LobbyMusicCollection), out sound))
+        if (TryResolveRoundEndCollection(_cfg.GetCVar(CCVars.LobbyMusicCollection), out tracks))
             return true;
 
         return false;
     }
 
-    private bool TryResolveRoundEndCollection(string? collectionId, [NotNullWhen(true)] out SoundSpecifier? sound)
+    private bool TryResolveRoundEndCollection(string? collectionId, [NotNullWhen(true)] out List<RoundEndMusicTrack>? tracks)
     {
-        sound = null;
+        tracks = null;
 
         if (string.IsNullOrWhiteSpace(collectionId))
             return false;
@@ -68,13 +68,13 @@ public sealed partial class GameTicker
             return false;
         }
 
-        sound = new SoundCollectionSpecifier(collectionId);
+        tracks = new() {new RoundEndMusicTrack(new SoundCollectionSpecifier(collectionId))};
         return true;
     }
 
-    private bool TryResolveRoundEndMusicPool(string? prototypeId, [NotNullWhen(true)] out SoundSpecifier? sound)
+    private bool TryResolveRoundEndMusicPool(string? prototypeId, [NotNullWhen(true)] out List<RoundEndMusicTrack>? tracks)
     {
-        sound = null;
+        tracks = null;
 
         if (string.IsNullOrWhiteSpace(prototypeId))
             return false;
@@ -85,37 +85,18 @@ public sealed partial class GameTicker
             return false;
         }
 
-        var weightedTracks = new Dictionary<RoundEndMusicEntry, float>();
+        tracks = [];
         foreach (var track in pool.Tracks)
         {
             if (track.Weight <= 0f)
                 continue;
 
-            weightedTracks[track] = track.Weight;
+            tracks.Add(new RoundEndMusicTrack(track.Sound, track.Weight));
         }
 
-        if (weightedTracks.Count == 0)
+        if (tracks.Count == 0)
             return false;
 
-        var totalWeight = 0f;
-        foreach (var weight in weightedTracks.Values)
-        {
-            totalWeight += weight;
-        }
-
-        var roll = _robustRandom.NextFloat() * totalWeight;
-        var cumulative = 0f;
-
-        foreach (var (track, weight) in weightedTracks)
-        {
-            cumulative += weight;
-            if (roll > cumulative)
-                continue;
-
-            sound = track.Sound;
-            return true;
-        }
-
-        return false;
+        return true;
     }
 }
