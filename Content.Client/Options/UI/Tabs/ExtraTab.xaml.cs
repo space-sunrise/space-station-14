@@ -53,6 +53,7 @@ public sealed partial class ExtraTab : Control
         Control.AddOptionCheckBox(SunriseCCVars.TapePlayerClientEnabled, TapePlayerClientCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.JumpSoundDisable, JumpSoundDisableCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.VoteMusicDisable, VoteMusicDisableCheckBox);
+        Control.AddOptionCheckBox(SunriseCCVars.RoundEndMusicEnabled, RoundEndMusicCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.MuteGhostRoleNotification, MuteGhostRoleNotificationCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.TracesEnabled, TracesCheckBox);
 
@@ -278,7 +279,9 @@ public sealed partial class ExtraTab : Control
         var fallbackType = Enum.GetValues<LobbyBackgroundType>().First();
         _sawmill.Warning(
             $"No lobby background asset types are allowed for the current preset; falling back to {fallbackType}.");
-        return [fallbackType];
+        // Sunrise edit start - avoid collection-expression lowering to CollectionsMarshal.SetCount, which fails sandbox type checks
+        return new List<LobbyBackgroundType> { fallbackType };
+        // Sunrise edit end
     }
 
     private List<LobbyArtPrototype> GetAllowedLobbyArts(LobbyBackgroundPresetPrototype? preset)
