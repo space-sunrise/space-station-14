@@ -150,9 +150,9 @@
     - MothWingsWitchwing
     - MothWingsUnderwing
   interactionMessages:
-  - "%user резко дергает за крыло %target"
-  - "%user грубо дергает за крыло %target"
-  - "%user неожиданно дергает крыло %target"
+  - "%user резко дёргает за крылья %target"
+  - "%user грубо дёргает за крылья %target"
+  - "%user неожиданно дёргает за крылья %target"
   cooldown: 3
 
 - type: interaction

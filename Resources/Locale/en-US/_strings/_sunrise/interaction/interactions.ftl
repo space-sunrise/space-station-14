@@ -37,7 +37,7 @@ interaction-name-pat-tail = Pet tail
 # wings.yml
 interaction-name-wing-pat = Pet wings
 interaction-name-wing-scratch = Scratch wings
-interaction-name-wing-pull = Pull wing
+interaction-name-wing-pull = Pull wings
 interaction-name-wing-hug = Hug with wings
 interaction-name-wing-cover = Cover with wings
 interaction-name-wing-rub = Rub wings

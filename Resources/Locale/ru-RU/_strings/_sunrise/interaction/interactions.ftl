@@ -35,9 +35,9 @@ interaction-name-neck-nuzzle = Потереться мордочкой о шею
 # tail.yml
 interaction-name-pat-tail = Погладить хвост
 # wings.yml
-interaction-name-wing-pat = Погладить крылышки
-interaction-name-wing-scratch = Почесать крылышки
-interaction-name-wing-pull = Подергать за крыло
+interaction-name-wing-pat = Погладить крылья
+interaction-name-wing-scratch = Почесать крылья
+interaction-name-wing-pull = Дёрнуть за крылья
 interaction-name-wing-hug = Обнять крыльями
 interaction-name-wing-cover = Укрыть крыльями
 interaction-name-wing-rub = Потереться крыльями
