@@ -1,16 +1,15 @@
 using Content.Shared._Sunrise.Disease;
 using Content.Server.GameTicking.Rules;
 using Content.Shared.GameTicking.Components;
-using Robust.Server.GameObjects;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
 using Content.Shared.Store;
-using System.Linq;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Map;
+using Content.Server.Chat.Systems;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Disease;
 
@@ -20,10 +19,19 @@ public sealed class SmallDiseaseRuleSystem : GameRuleSystem<SmallDiseaseRuleComp
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly ChatSystem _chatSystem = default!;
 
     protected override void Started(EntityUid uid, SmallDiseaseRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
+
+        Timer.Spawn(TimeSpan.FromMinutes(6), () =>
+        {
+            var message = Loc.GetString("disease-biohazard-announcement");
+            var sender = Loc.GetString("disease-biohazard-announcement-sender");
+
+            _chatSystem.DispatchGlobalAnnouncement(message, sender, playDefault: true, colorOverride: Color.Red);
+        });
 
         // 1. Find potential victims (Humanoid, Has Mind, Not Dead, Not Sick)
         var query = EntityQueryEnumerator<HumanoidAppearanceComponent, MindContainerComponent, MobStateComponent, TransformComponent>();
