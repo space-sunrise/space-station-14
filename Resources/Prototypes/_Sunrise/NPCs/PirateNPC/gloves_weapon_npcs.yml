@@ -1272,12 +1272,12 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.55
-        Piercing: 0.6
-        Heat: 0.3
-        Radiation: 0.4
-        Caustic: 0.4
+        Blunt: 0.6
+        Slash: 0.65
+        Piercing: 0.7
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
 
 - type: entity
   abstract: true

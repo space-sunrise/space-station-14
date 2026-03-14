@@ -610,11 +610,13 @@
       state: equipped-HELMET
     - sprite: Objects/Weapons/Guns/Shotguns/flaregun.rsi
       state: inhand-left
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
   - type: BasicEntityAmmoProvider
     proto: ShellShotgunImprovised
   - type: Gun
     showExamineText: false
-    fireRate: 0.4
+    fireRate: 0.3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -1423,7 +1425,7 @@
     proto: CartridgePistolSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 3
+    autoRechargePauseTime: 5
     autoRechargeRate: 999
   - type: Battery
     maxCharge: 10
@@ -1557,7 +1559,7 @@
     proto: CartridgeLightRifleImprovised
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 3
+    autoRechargePauseTime: 5
     autoRechargeRate: 99
   - type: Battery
     maxCharge: 30
@@ -1617,7 +1619,7 @@
     proto: CartridgePistolSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 2
+    autoRechargePauseTime: 5
     autoRechargeRate: 99
   - type: Battery
     maxCharge: 30
@@ -1660,7 +1662,7 @@
     proto: CartridgeLightRifleSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 3
+    autoRechargePauseTime: 5
     autoRechargeRate: 99
   - type: Battery
     maxCharge: 20
@@ -1879,7 +1881,7 @@
     proto: CartridgeLightRifleImprovised
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 2
+    autoRechargePauseTime: 5
     autoRechargeRate: 99
   - type: Battery
     maxCharge: 15
@@ -1907,7 +1909,7 @@
   id: MobPirateT2BorgAssault
   components:
   - type: BatteryAmmoProvider
-    proto: CartridgeRifleFMJ
+    proto: CartridgeRifleSP
   - type: Battery
     maxCharge: 20
     startingCharge: 20
@@ -2721,7 +2723,7 @@
     proto: CartridgeMagnumImprovised
     fireCost: 10
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 2
+    autoRechargePauseTime: 3
     autoRechargeRate: 999
   - type: Battery
     maxCharge: 20
@@ -2983,7 +2985,7 @@
     proto: CannonBallMini
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 3
+    autoRechargePauseTime: 5
     autoRechargeRate: 999
   - type: Battery
     maxCharge: 15
@@ -3255,7 +3257,7 @@
     proto: CartridgeHeavyRifleRFMJ
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 8
+    autoRechargePauseTime: 9
     autoRechargeRate: 999
   - type: Battery
     maxCharge: 47
@@ -3368,7 +3370,7 @@
     proto: CartridgeLightRifleFMJ
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 3
+    autoRechargePauseTime: 5
     autoRechargeRate: 99
   - type: Battery
     maxCharge: 30
@@ -3461,7 +3463,7 @@
     proto: CartridgeRifleSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 2
+    autoRechargePauseTime: 5
     autoRechargeRate: 999
   - type: Battery
     maxCharge: 50
@@ -3638,7 +3640,7 @@
     proto: RedLightLaser
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 2
+    autoRechargePauseTime: 5
     autoRechargeRate: 999
   - type: Battery
     maxCharge: 20

@@ -11,6 +11,7 @@
     - SpaceShip
     - Bucket
     - Wow
+    - Tall
 
   - !type:CorridorDunGen
     width: 5

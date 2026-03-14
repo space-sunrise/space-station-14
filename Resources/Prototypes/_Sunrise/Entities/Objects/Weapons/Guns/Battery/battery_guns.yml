@@ -754,8 +754,8 @@
   - type: EmpImmune
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 6
-    pvsIncrease: 0.6
+    maxOffset: 4
+    pvsIncrease: 0.4
   - type: StaticPrice
     price: 3500
 
