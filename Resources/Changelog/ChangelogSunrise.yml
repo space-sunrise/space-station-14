@@ -3328,3 +3328,14 @@
   id: 1704
   time: '2026-03-13T01:05:08.0000000+00:00'
   url: https://github.com/space-sunrise/sunrise-station/pull/4034
+- author: ThereDrD
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u043E \u043D\u0435\
+      \u043B\u043E\u0432\u043A\u043E\u0435 \u043C\u043E\u043B\u0447\u0430\u043D\u0438\
+      \u0435 \u0432 \u043B\u043E\u0431\u0431\u0438, \u043C\u0443\u0437\u044B\u043A\
+      \u0430 \u0442\u0435\u043F\u0435\u0440\u044C \u0438\u0433\u0440\u0430\u0435\u0442\
+      \ \u043A\u0430\u043A \u043D\u0443\u0436\u043D\u043E."
+    type: Fix
+  id: 1705
+  time: '2026-03-14T04:52:40.0000000+00:00'
+  url: https://github.com/space-sunrise/sunrise-station/pull/4041

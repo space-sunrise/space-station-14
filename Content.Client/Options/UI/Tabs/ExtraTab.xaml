@@ -35,6 +35,7 @@
                 <CheckBox Name="TapePlayerClientCheckBox" Text="{Loc 'ui-options-tape-player-enabled'}" />
                 <CheckBox Name="JumpSoundDisableCheckBox" Text="{Loc 'ui-options-jump-sound-disable'}" />
                 <CheckBox Name="VoteMusicDisableCheckBox" Text="{Loc 'ui-options-vote-music-disable'}" />
+                <CheckBox Name="RoundEndMusicCheckBox" Text="{Loc 'ui-options-sunrise-round-end-music'}" />
                 <CheckBox Name="MuteGhostRoleNotificationCheckBox" Text="{Loc 'ui-options-mute-new-ghost-roles'}" />
                 <CheckBox Name="PlayHeartbeatSound" Text="{Loc 'ui-options-play-heartbeat-sound'}" />
 
