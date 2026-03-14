@@ -3,26 +3,20 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared._Sunrise.Disease;
 using System.Numerics;
-using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
-using Content.Shared.Interaction.Events;
 using Robust.Server.GameObjects;
-using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Content.Shared.Humanoid;
-using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Content.Server.Popups;
 using Content.Shared.Popups;
 using Content.Server.Chat;
 using Content.Shared.Stunnable;
 using Content.Shared.Damage.Prototypes;
-using Content.Shared.Damage;
 using Content.Server.Emoting.Systems;
 using Content.Server.Speech.EntitySystems;
 using Content.Shared.FixedPoint;
-using Content.Server.Medical;
 using Content.Server.Traits.Assorted;
 using Content.Shared.Body.Components;
 using Content.Shared.Chat;
@@ -48,6 +42,7 @@ public sealed class SickSystem : SharedSickSystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
     private EntityLookupSystem Lookup => _entityManager.System<EntityLookupSystem>();
     public override void Initialize()
     {
@@ -154,6 +149,16 @@ public sealed class SickSystem : SharedSickSystem
                     diseaseComp.SickOfAllTime++;
                     AddMoney(component.owner, 5);
                     _popupSystem.PopupEntity(Loc.GetString("disease-infect-reward", ("points", 5)), component.owner, component.owner, PopupType.Medium);
+
+                    var state = new DiseaseInfoState(
+                        diseaseComp.BaseInfectChance,
+                        diseaseComp.CoughSneezeInfectChance,
+                        diseaseComp.Lethal,
+                        diseaseComp.Shield,
+                        diseaseComp.Infected.Count,
+                        diseaseComp.SickOfAllTime
+                    );
+                    _ui.SetUiState(component.owner, DiseaseInfoUiKey.Key, state);
 
                     component.Inited = true;
                 }

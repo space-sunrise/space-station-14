@@ -7,7 +7,7 @@
   cost:
     DiseasePoints: 0
   categories:
-  - DiseaseInfectCategory
+  - DiseaseSymptomsCategory
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
