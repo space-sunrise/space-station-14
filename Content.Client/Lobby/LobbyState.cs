@@ -44,6 +44,7 @@ using ClientRsi = Robust.Client.Graphics.RSI;
 
 namespace Content.Client.Lobby
 {
+    // TODO: Полностью скопировать в папку санрайза, это сбросить до состояния оффов или закоментировать
     public sealed class LobbyState : Robust.Client.State.State
     {
         [Dependency] private readonly IBaseClient _baseClient = default!;
@@ -147,12 +148,13 @@ namespace Content.Client.Lobby
             Lobby.LoadingAnimation.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(new ResPath(LoadingRsiPath), LoadingState));
             Lobby.LoadingAnimationContainer.Visible = false;
 
-
+            // Sunrise edit start - avoid eager startup callbacks from reloading lobby assets several times
             _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundType, OnLobbyBackgroundTypeChanged, false);
             _cfg.OnValueChanged(SunriseCCVars.LobbyArt, OnLobbyArtChanged, false);
             _cfg.OnValueChanged(SunriseCCVars.LobbyAnimation, OnLobbyAnimationChanged, false);
             _cfg.OnValueChanged(SunriseCCVars.LobbyParallax, OnLobbyParallaxChanged, false);
             _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundPreset, OnLobbyBackgroundPresetChanged, false);
+            // Sunrise edit end
 
             // Subscribe to resource loaded events
             _netTexturesManager.ResourceLoaded += OnNetworkResourceLoaded;
@@ -291,7 +293,9 @@ namespace Content.Client.Lobby
 
         private void LobbyStatusUpdated()
         {
+            // Sunrise added start - a new server status must reset transient lobby fallback choices
             ClearTransientLobbySelections();
+            // Sunrise added end
             ApplyConfiguredLobbyBackground();
             UpdateLobbyUi();
         }
@@ -508,14 +512,13 @@ namespace Content.Client.Lobby
 
             if (UsesNetworkLobbyResource(rsiPath))
             {
+                // Sunrise added start - do not request lobby animations over NetTextures until a fresh lobby status arrives
                 if (!_gameTicker.HasLobbyStatus)
                 {
-                    _sawmill.Debug($"Deferring network lobby animation '{lobbyAnimation}' until fresh lobby status arrives.");
                     HideLoadingAnimation();
                     return;
                 }
-
-                _sawmill.Debug($"Requesting lobby animation '{lobbyAnimation}' from '{rsiPath}' (server animation: '{_gameTicker.LobbyAnimation ?? "<null>"}').");
+                // Sunrise added end
 
                 if (!_netTexturesManager.EnsureResource(rsiPath))
                     return;
@@ -652,7 +655,7 @@ namespace Content.Client.Lobby
                 return;
 
             var animationSetting = _cfg.GetCVar(SunriseCCVars.LobbyAnimation);
-            if (ShouldDeferRandomLobbyChoice(animationSetting, "animation"))
+            if (ShouldDeferRandomLobbyChoice(animationSetting))
                 return;
 
             var resolvedAnimation = ResolveLobbyPrototypeId<LobbyAnimationPrototype>(
@@ -670,7 +673,7 @@ namespace Content.Client.Lobby
                 return;
 
             var artSetting = _cfg.GetCVar(SunriseCCVars.LobbyArt);
-            if (ShouldDeferRandomLobbyChoice(artSetting, "art"))
+            if (ShouldDeferRandomLobbyChoice(artSetting))
                 return;
 
             var resolvedArt = ResolveLobbyPrototypeId<LobbyArtPrototype>(
@@ -688,7 +691,7 @@ namespace Content.Client.Lobby
                 return;
 
             var parallaxSetting = _cfg.GetCVar(SunriseCCVars.LobbyParallax);
-            if (ShouldDeferRandomLobbyChoice(parallaxSetting, "parallax"))
+            if (ShouldDeferRandomLobbyChoice(parallaxSetting))
                 return;
 
             var resolvedParallax = ResolveLobbyPrototypeId<LobbyParallaxPrototype>(
@@ -721,11 +724,10 @@ namespace Content.Client.Lobby
             if (_gameTicker.HasLobbyStatus)
                 return false;
 
-            _sawmill.Debug("Deferring random lobby background type until fresh lobby status arrives.");
             return true;
         }
 
-        private bool ShouldDeferRandomLobbyChoice(string configuredChoice, string choiceKind)
+        private bool ShouldDeferRandomLobbyChoice(string configuredChoice)
         {
             if (!configuredChoice.Equals("Random", StringComparison.OrdinalIgnoreCase))
                 return false;
@@ -733,7 +735,6 @@ namespace Content.Client.Lobby
             if (_gameTicker.HasLobbyStatus)
                 return false;
 
-            _sawmill.Debug($"Deferring random lobby {choiceKind} until fresh lobby status arrives.");
             return true;
         }
 
@@ -815,6 +816,7 @@ namespace Content.Client.Lobby
             return null;
         }
 
+        // Sunrise added start - transient lobby fallback cache for random selections and invalid saved ids
         private void ClearTransientLobbySelections()
         {
             _transientLobbyBackgroundType = null;
@@ -888,6 +890,7 @@ namespace Content.Client.Lobby
                     break;
             }
         }
+        // Sunrise added end
 
         private string? ResolveServerOrRandomLobbyPrototypeId<TPrototype>(string? serverFallbackId, HashSet<string> allowedIds)
             where TPrototype : class, IPrototype

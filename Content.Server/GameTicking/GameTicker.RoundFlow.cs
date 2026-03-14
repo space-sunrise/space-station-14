@@ -761,8 +761,7 @@ namespace Content.Server.GameTicking
             // Move everybody currently in the server to lobby.
             foreach (var player in _playerManager.Sessions)
             {
-                // A fresh status broadcast follows after cleanup completes.
-                PlayerJoinLobby(player, sendStatus: false);
+                PlayerJoinLobby(player);
             }
 
             // Round restart cleanup event, so entity systems can reset.
