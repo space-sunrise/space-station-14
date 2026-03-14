@@ -67,7 +67,6 @@
       tags:
       - SecurityHelmet
       - HelmetEVA
-      - FullCovered
       - Helmet
   - name: pocket1
     slotTexture: pocket

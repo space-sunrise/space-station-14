@@ -241,9 +241,6 @@
     tags:
     - WhitelistChameleon
     - FullCovered # INTERACTIONS
-  # Sunrise - Start
-    - Helmet
-  # Sunrise - End
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: HideLayerClothing

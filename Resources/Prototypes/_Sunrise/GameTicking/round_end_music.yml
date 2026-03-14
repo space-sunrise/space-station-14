@@ -1,6 +1,6 @@
 # Example
 
-- type: roundEndMusicPool
+- type: RoundEndMusicPool
   id: SunriseRoundEndMusic
   tracks:
   - sound:
