@@ -145,7 +145,7 @@ public sealed class NetTexturesRegressionTest
         {
             protoMan.LoadString(artPrototype, overwrite: true);
             protoMan.ResolveResults();
-            SetLobbyTickerFallbacks(entityManager.System<ClientGameTicker>(), lobbyArt: fallbackArtId);
+            SetLobbyTickerFallbacks(entityManager.System<ClientGameTicker>(), hasLobbyStatus: true, lobbyArt: fallbackArtId);
             client.CfgMan.SetCVar(SunriseCCVars.LobbyArt, invalidArtId);
             client.CfgMan.SetCVar(SunriseCCVars.LobbyBackgroundType, "Art");
         });
@@ -262,7 +262,7 @@ public sealed class NetTexturesRegressionTest
         {
             protoMan.LoadString(animationPrototype, overwrite: true);
             protoMan.ResolveResults();
-            SetLobbyTickerFallbacks(entityManager.System<ClientGameTicker>(), lobbyAnimation: fallbackAnimationId);
+            SetLobbyTickerFallbacks(entityManager.System<ClientGameTicker>(), hasLobbyStatus: true, lobbyAnimation: fallbackAnimationId);
             manager.PublishFiles(new List<(ResPath Relative, byte[] Data)>
             {
                 (new ResPath($"{animationResourcePath}/meta.json").ToRelativePath(), CreateRsiMetaJson([animationStateId])),
@@ -926,12 +926,13 @@ public sealed class NetTexturesRegressionTest
 
     private static void SetLobbyTickerFallbacks(
         ClientGameTicker gameTicker,
+        bool hasLobbyStatus,
         string? lobbyType = null,
         string? lobbyParallax = null,
         string? lobbyAnimation = null,
         string? lobbyArt = null)
     {
-        gameTicker.SetTestFallbacks(lobbyType, lobbyParallax, lobbyAnimation, lobbyArt);
+        gameTicker.SetTestFallbacks(hasLobbyStatus, lobbyType, lobbyParallax, lobbyAnimation, lobbyArt);
     }
 
     private static T GetPrivateField<T>(object instance, string fieldName)

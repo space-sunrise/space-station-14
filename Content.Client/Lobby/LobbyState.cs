@@ -205,6 +205,10 @@ namespace Content.Client.Lobby
 
             // Unsubscribe from resource loaded events
             _netTexturesManager.ResourceLoaded -= OnNetworkResourceLoaded;
+            _cfg.UnsubValueChanged(SunriseCCVars.LobbyBackgroundType, OnLobbyBackgroundTypeChanged);
+            _cfg.UnsubValueChanged(SunriseCCVars.LobbyArt, OnLobbyArtChanged);
+            _cfg.UnsubValueChanged(SunriseCCVars.LobbyAnimation, OnLobbyAnimationChanged);
+            _cfg.UnsubValueChanged(SunriseCCVars.LobbyParallax, OnLobbyParallaxChanged);
             _cfg.UnsubValueChanged(SunriseCCVars.LobbyBackgroundPreset, OnLobbyBackgroundPresetChanged);
         }
 
