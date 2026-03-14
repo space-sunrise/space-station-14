@@ -51,11 +51,28 @@ public sealed class NetTexturesManager
     private readonly Dictionary<ResPath, Task<StaticTransferBundle?>> _staticBundleTasks = new();
     private readonly Lock _staticBundleLock = new();
     private int _activeTransferWorkers;
+    private int _transferGeneration;
 
     /// <summary>
     /// Callback for handling photo captures. PhotoCartridgeSystem registers itself here.
     /// </summary>
     public Action<PdaPhotoCaptureMessage>? OnPhotoCaptureMessage { get; set; }
+
+    private int ReadTransferGeneration()
+    {
+        return Interlocked.CompareExchange(ref _transferGeneration, 0, 0);
+    }
+
+    private bool IsTransferGenerationCurrent(int requestGeneration)
+    {
+        return requestGeneration == ReadTransferGeneration();
+    }
+
+    private void ThrowIfTransferStale(int requestGeneration)
+    {
+        if (!IsTransferGenerationCurrent(requestGeneration))
+            throw new OperationCanceledException("Stale NetTextures transfer request.");
+    }
 
     /// <summary>
     /// Registers the request, fallback, and photo handlers used by the server-side NetTextures pipeline.
@@ -89,7 +106,13 @@ public sealed class NetTexturesManager
             _staticBundleTasks.Clear();
         }
 
-        _sawmill.Info("Cleared NetTextures round caches due to round restart.");
+        lock (_transferQueueLock)
+        {
+            _pendingTransferRequests.Clear();
+            Interlocked.Increment(ref _transferGeneration);
+        }
+
+        _sawmill.Info("Cleared NetTextures round caches and invalidated stale transfers due to round restart.");
     }
 
     /// <summary>
@@ -174,7 +197,7 @@ public sealed class NetTexturesManager
 
         lock (_transferQueueLock)
         {
-            _pendingTransferRequests.Enqueue(new TransferRequest(session, resourcePath));
+            _pendingTransferRequests.Enqueue(new TransferRequest(session, resourcePath, _transferGeneration));
 
             if (_activeTransferWorkers < MaxConcurrentTransferWorkers)
             {
@@ -209,7 +232,7 @@ public sealed class NetTexturesManager
 
                 try
                 {
-                    await SendResourceAsync(request.Session, request.ResourcePath).ConfigureAwait(false);
+                    await SendResourceAsync(request.Session, request.ResourcePath, request.Generation).ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
@@ -244,8 +267,14 @@ public sealed class NetTexturesManager
     /// </summary>
     /// <param name="session">The recipient session.</param>
     /// <param name="resourcePath">The validated rooted resource path to send.</param>
-    private async Task SendResourceAsync(ICommonSession session, ResPath resourcePath)
+    private async Task SendResourceAsync(ICommonSession session, ResPath resourcePath, int requestGeneration)
     {
+        if (!IsTransferGenerationCurrent(requestGeneration))
+        {
+            _sawmill.Debug($"[NetTextures] Skipping stale transfer request of {resourcePath} to {session.Name}");
+            return;
+        }
+
         var startTime = DateTime.UtcNow;
         _sawmill.Debug($"[NetTextures] Starting transfer of {resourcePath} to {session.Name}");
 
@@ -253,9 +282,16 @@ public sealed class NetTexturesManager
         try
         {
             filesToSend = await CollectFilesToSendAsync(resourcePath).ConfigureAwait(false);
+            ThrowIfTransferStale(requestGeneration);
         }
         catch (Exception ex)
         {
+            if (ex is OperationCanceledException && !IsTransferGenerationCurrent(requestGeneration))
+            {
+                _sawmill.Debug($"[NetTextures] Aborted stale transfer request of {resourcePath} to {session.Name}");
+                return;
+            }
+
             _sawmill.Warning($"Failed to collect NetTextures resource {resourcePath} for {session.Name}: {ex.Message}");
             return;
         }
@@ -268,6 +304,7 @@ public sealed class NetTexturesManager
 
         try
         {
+            ThrowIfTransferStale(requestGeneration);
             var transferStartTime = DateTime.UtcNow;
             await using var transferStream = _transferManager.StartTransfer(session.Channel,
                 new TransferStartInfo
@@ -275,7 +312,8 @@ public sealed class NetTexturesManager
                     MessageKey = TransferKeyNetTextures
                 });
 
-            await WriteFileStream(transferStream, filesToSend).ConfigureAwait(false);
+            await WriteFileStream(transferStream, filesToSend, requestGeneration).ConfigureAwait(false);
+            ThrowIfTransferStale(requestGeneration);
 
             var totalTime = (DateTime.UtcNow - startTime).TotalMilliseconds;
             var transferTime = (DateTime.UtcNow - transferStartTime).TotalMilliseconds;
@@ -289,8 +327,14 @@ public sealed class NetTexturesManager
         }
         catch (Exception ex)
         {
+            if (ex is OperationCanceledException && !IsTransferGenerationCurrent(requestGeneration))
+            {
+                _sawmill.Debug($"[NetTextures] Canceled stale in-flight transfer of {resourcePath} to {session.Name}");
+                return;
+            }
+
             _sawmill.Warning($"Failed to send resource via High Bandwidth Transfer to {session.Name}: {ex.Message}");
-            SendResourceFallback(session, filesToSend);
+            SendResourceFallback(session, filesToSend, requestGeneration);
         }
     }
 
@@ -437,16 +481,19 @@ public sealed class NetTexturesManager
     /// </summary>
     /// <param name="session">The recipient session.</param>
     /// <param name="files">The files that still need to be delivered.</param>
-    private void SendResourceFallback(ICommonSession session, IReadOnlyList<TransferResourceEntry> files)
+    private void SendResourceFallback(ICommonSession session, IReadOnlyList<TransferResourceEntry> files, int requestGeneration)
     {
         var chunkCount = 0;
 
         foreach (var file in files)
         {
+            ThrowIfTransferStale(requestGeneration);
+
             if (file.DynamicData != null)
             {
                 foreach (var message in CreateFallbackChunks(file.RelativePath, file.DynamicData))
                 {
+                    ThrowIfTransferStale(requestGeneration);
                     session.Channel.SendMessage(message);
                     chunkCount++;
                 }
@@ -454,7 +501,7 @@ public sealed class NetTexturesManager
                 continue;
             }
 
-            chunkCount += SendContentFileFallback(session, file);
+            chunkCount += SendContentFileFallback(session, file, requestGeneration);
         }
 
         _sawmill.Debug($"Sent {files.Count} files via fallback ({chunkCount} chunk messages) to {session.Name}");
@@ -466,7 +513,7 @@ public sealed class NetTexturesManager
     /// <param name="session">The recipient session.</param>
     /// <param name="file">The static file descriptor to send.</param>
     /// <returns>The number of chunk messages emitted for this file.</returns>
-    private int SendContentFileFallback(ICommonSession session, TransferResourceEntry file)
+    private int SendContentFileFallback(ICommonSession session, TransferResourceEntry file, int requestGeneration)
     {
         if (file.ContentPath == null)
             return 0;
@@ -483,6 +530,7 @@ public sealed class NetTexturesManager
 
             for (var chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++)
             {
+                ThrowIfTransferStale(requestGeneration);
                 var offset = chunkIndex * NetTextureConstants.MaxChunkSize;
                 var chunkLength = Math.Min(NetTextureConstants.MaxChunkSize, file.Length - offset);
                 var chunkData = new byte[chunkLength];
@@ -545,7 +593,7 @@ public sealed class NetTexturesManager
     /// </summary>
     /// <param name="stream">The writable transfer stream.</param>
     /// <param name="files">The files to encode into the transfer stream.</param>
-    private async Task WriteFileStream(Stream stream, IReadOnlyList<TransferResourceEntry> files)
+    private async Task WriteFileStream(Stream stream, IReadOnlyList<TransferResourceEntry> files, int requestGeneration)
     {
         var continueByte = new byte[1];
         var buffer = ArrayPool<byte>.Shared.Rent(NetTextureConstants.MaxChunkSize);
@@ -557,6 +605,8 @@ public sealed class NetTexturesManager
 
             foreach (var file in files)
             {
+                ThrowIfTransferStale(requestGeneration);
+
                 if (!first)
                 {
                     continueByte[0] = 1;
@@ -579,7 +629,7 @@ public sealed class NetTexturesManager
                 BinaryPrimitives.WriteUInt32LittleEndian(headerBuffer.AsSpan(4, 4), (uint) file.Length);
                 Array.Copy(pathBytes, 0, headerBuffer, 8, pathBytes.Length);
                 await stream.WriteAsync(headerBuffer.AsMemory(0, requiredHeaderLength)).ConfigureAwait(false);
-                await WriteTransferData(stream, file, buffer).ConfigureAwait(false);
+                await WriteTransferData(stream, file, buffer, requestGeneration).ConfigureAwait(false);
             }
 
             continueByte[0] = 0;
@@ -600,8 +650,10 @@ public sealed class NetTexturesManager
     /// <param name="stream">The destination transfer stream.</param>
     /// <param name="file">The transfer file descriptor to write.</param>
     /// <param name="buffer">The pooled copy buffer used for static files.</param>
-    private async Task WriteTransferData(Stream stream, TransferResourceEntry file, byte[] buffer)
+    private async Task WriteTransferData(Stream stream, TransferResourceEntry file, byte[] buffer, int requestGeneration)
     {
+        ThrowIfTransferStale(requestGeneration);
+
         if (file.DynamicData != null)
         {
             await stream.WriteAsync(file.DynamicData).ConfigureAwait(false);
@@ -614,6 +666,7 @@ public sealed class NetTexturesManager
         using var contentStream = _resourceManager.ContentFileRead(file.ContentPath.Value);
         while (true)
         {
+            ThrowIfTransferStale(requestGeneration);
             var read = await contentStream.ReadAsync(buffer.AsMemory(0, buffer.Length)).ConfigureAwait(false);
             if (read == 0)
                 break;
@@ -695,10 +748,11 @@ public sealed class NetTexturesManager
     /// <summary>
     /// One file scheduled for transfer to the client.
     /// </summary>
-    private sealed class TransferRequest(ICommonSession session, ResPath resourcePath)
+    private sealed class TransferRequest(ICommonSession session, ResPath resourcePath, int generation)
     {
         public ICommonSession Session { get; } = session;
         public ResPath ResourcePath { get; } = resourcePath;
+        public int Generation { get; } = generation;
     }
 
     /// <summary>

@@ -229,14 +229,15 @@ namespace Content.Server.GameTicking
             RaiseNetworkEvent(new TickerJoinGameEvent(), session.Channel);
         }
 
-        private void PlayerJoinLobby(ICommonSession session)
+        private void PlayerJoinLobby(ICommonSession session, bool sendStatus = true)
         {
             _playerGameStatuses[session.UserId] = LobbyEnabled ? PlayerGameStatus.NotReadyToPlay : PlayerGameStatus.ReadyToPlay;
             _db.AddRoundPlayers(RoundId, session.UserId);
 
             var client = session.Channel;
             RaiseNetworkEvent(new TickerJoinLobbyEvent(), client);
-            RaiseNetworkEvent(GetStatusMsg(session), client);
+            if (sendStatus)
+                RaiseNetworkEvent(GetStatusMsg(session), client);
             RaiseNetworkEvent(GetInfoMsg(), client);
             RaiseLocalEvent(new PlayerJoinedLobbyEvent(session));
         }
