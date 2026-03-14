@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
 using Content.Server.Forensics;
@@ -306,6 +306,7 @@ public sealed partial class
             return false;
 
         component.IsDeathPending = true;
+        component.IsTransformationPending = false;
 
         var coordinates = Transform(uid).Coordinates;
         var abommob = Spawn(component.FleshMutationMobId, _transformSystem.GetMapCoordinates(uid));
@@ -330,7 +331,7 @@ public sealed partial class
 
         while (query.MoveNext(out var uid, out var cultist))
         {
-            if (cultist.IsDeathPending)
+            if (cultist.IsTransformationPending)
             {
                 // Check if entity is still dead and complete the transformation
                 if (TryComp<MobStateComponent>(uid, out var mobState) && mobState.CurrentState == MobState.Dead)
@@ -358,6 +359,7 @@ public sealed partial class
             if (cultist.Hunger < 0)
             {
                 // ParasiteComesOut(cultist.Owner, cultist);
+                cultist.IsTransformationPending = true;
                 ParasiteComesOut(uid, cultist);
                 continue;
             }

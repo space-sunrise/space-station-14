@@ -1,4 +1,4 @@
-﻿using Content.Shared.Alert;
+using Content.Shared.Alert;
 using Content.Shared.FixedPoint;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
@@ -51,6 +51,11 @@ public sealed partial class FleshCultistComponent : Component
     /// <summary>
     /// Flag to indicate that the entity is already in the process of dying/gibbing.
     /// </summary>
-    [ViewVariables]
     public bool IsDeathPending = false;
+
+    /// <summary>
+    /// Flag to indicate that the entity is scheduled for transformation.
+    /// </summary>
+    [ViewVariables]
+    public bool IsTransformationPending = false;
 }

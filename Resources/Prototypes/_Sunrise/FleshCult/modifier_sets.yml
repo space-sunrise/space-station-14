@@ -1,8 +1,8 @@
-﻿- type: damageModifierSet
+- type: damageModifierSet
   id: FleshMob
   coefficients:
     Heat: 2.0
-    Pierce: 0.8
+    Piercing: 0.8 # Sunrise-Fix
     Blunt: 0.8
 
 - type: damageModifierSet
