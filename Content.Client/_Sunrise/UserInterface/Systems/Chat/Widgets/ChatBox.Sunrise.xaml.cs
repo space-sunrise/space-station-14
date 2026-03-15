@@ -2,6 +2,7 @@
 using Content.Client._Sunrise.UserInterface.CustomControls;
 using Content.Client._Sunrise.UserInterface.RichText;
 using Content.Shared.CCVar;
+using Content.Shared.Chat;
 using Robust.Client.UserInterface.RichText;
 
 namespace Content.Client.UserInterface.Systems.Chat.Widgets;
@@ -11,7 +12,7 @@ public partial class ChatBox
     // По умолчаюнию разрешены только RichTextEntry.DefaultTags.
     // Теги ниже нужны для корректного отображения иконок в чате
 
-    private static readonly Type[] TagsAllowed =
+    private static readonly Type[] BaseTags =
     [
         typeof(BoldItalicTag),
         typeof(BoldTag),
@@ -19,19 +20,21 @@ public partial class ChatBox
         typeof(ColorTag),
         typeof(HeadingTag),
         typeof(ItalicTag),
+        typeof(TextureTag),
+        typeof(EntityTextureTag),
         typeof(RadioIconTag),
+    ];
+
+    private static readonly Type[] TagsEmoji =
+    [
+        ..BaseTags,
         typeof(EmojiTag),
     ];
 
-    private static readonly Type[] TagsAllowedNoEmoji =
+    private static readonly Type[] TagsAdminChannel =
     [
-        typeof(BoldItalicTag),
-        typeof(BoldTag),
-        typeof(BulletTag),
-        typeof(ColorTag),
-        typeof(HeadingTag),
-        typeof(ItalicTag),
-        typeof(RadioIconTag),
+        ..TagsEmoji,
+        typeof(CommandLinkTag),
     ];
 
     private EmojiSystem? _emoji;
@@ -70,5 +73,16 @@ public partial class ChatBox
                 _emojiPicker.OpenCentered();
             };
         }
+    }
+
+    private static Type[] GetAllowedTags(ChatChannel channel, bool emojiAllowed)
+    {
+        if ((channel & ChatChannel.AdminRelated) != 0)
+            return TagsAdminChannel;
+
+        if (emojiAllowed)
+            return TagsEmoji;
+
+        return BaseTags;
     }
 }

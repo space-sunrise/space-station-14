@@ -56,7 +56,7 @@ public sealed class AdminCommandLoggerSystem : EntitySystem
 
         _adminLog.Add(
             LogType.AdminCommands,
-            LogImpact.High,
+            LogImpact.Extreme,
             $"Administrator {player:player} executed command [{argStr}]");
     }
 

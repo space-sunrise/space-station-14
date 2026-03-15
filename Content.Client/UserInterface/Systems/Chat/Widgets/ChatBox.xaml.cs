@@ -144,7 +144,7 @@ public partial class ChatBox : UIWidget
         if (allowEmoji && SharedEmojiSystem.IsContainsAnyEmoji(message))
             message = _emoji.ParseEmojis(message);
 
-        var tags = allowEmoji ? TagsAllowed : TagsAllowedNoEmoji;
+        var tags = GetAllowedTags(channel, allowEmoji);
         // Sunrise-End
 
         var formatted = new FormattedMessage(3);
