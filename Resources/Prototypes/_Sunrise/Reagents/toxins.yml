@@ -41,7 +41,7 @@
           inverted: true
         damage:
           types:
-            Caustic: 4.5
+            Caustic: 7
       - !type:PopupMessage
         conditions:
         - !type:TagCondition
