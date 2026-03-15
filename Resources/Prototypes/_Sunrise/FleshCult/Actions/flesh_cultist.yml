@@ -37,7 +37,7 @@
   - type: Action
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistAdrenalin.png
     itemIconStyle: NoItem
-    useDelay: 90 # Fish-edit
+    useDelay: 90 
     checkCanInteract: false
   - type: InstantAction
     event: !type:FleshCultistAdrenalinActionEvent
@@ -82,10 +82,10 @@
   - type: Action
     icon: _Sunrise/FleshCult/Interface/Actions/fleshThrowHugger.png
     itemIconStyle: NoItem
-    useDelay: 180 # Fish-edit
+    useDelay: 180 
     checkCanInteract: false
   - type: TargetAction
-    range: 300 # Fish-edit
+    range: 300 
   - type: WorldTargetAction
     event: !type:FleshCultistThrowHuggerActionEvent
 
