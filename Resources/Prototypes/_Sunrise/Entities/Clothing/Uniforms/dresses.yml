@@ -1,0 +1,132 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: UniformDressMaidBlue
+  name: Blue maid dress
+  description: Cute blue dress.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/maid_blue.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/maid_blue.rsi
+    displacement:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/Basic/displacement.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: UniformDressMaidLong
+  name: Long maid dress
+  description: No sexualization. I am severe maid and I will harm you with my mop for harassing or dirth on my perfectly clean floor.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/maid_long.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/maid_long.rsi
+    displacement:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/Basic/displacement.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: UniformDressMaidPink
+  name: Pink maid dress
+  description: PINK!!!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/maid_pink.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/maid_pink.rsi
+    displacement:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/Basic/displacement.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: UniformDressSexy
+  name: Sexy dress
+  description: I hope the one who wears it is a woman. If they're not, then you're in trouble.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/sexy_dress.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/sexy_dress.rsi
+    displacement:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/Basic/displacement.rsi
+            state: jumpsuit
+
+- type: entity
+  parent: ClothingUniformBase
+  id: UniformDressSuccubusBlack
+  name: Black succubus dress
+  description: Hot succubus dress.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/succubus_black.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/succubus_black.rsi
+    displacement:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/Basic/displacement.rsi
+            state: jumpsuit
+
+- type: entity
+  parent: ClothingUniformBase
+  id: UniformDressSuccubusWhite
+  name: White succubus dress
+  description: Hot succubus dress.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/succubus_white.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/succubus_white.rsi
+    displacement:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/Basic/displacement.rsi
+            state: jumpsuit
+
+- type: entity
+  parent: ClothingUniformBase
+  id: UniformDressTango
+  name: Tango dress
+  description: Hot and passionate.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/tango_dress.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/tango_dress.rsi
+    displacement:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/Basic/displacement.rsi
+            state: jumpsuit
+
+- type: entity
+  parent: ClothingUniformBase
+  id: UniformDressXeno
+  name: Xeno dress
+  description: Mate, I think this mysterious person holds a facehugger under skirt...
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/xeno_dress.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/xeno_dress.rsi
+    displacement:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/Basic/displacement.rsi
+            state: jumpsuit
