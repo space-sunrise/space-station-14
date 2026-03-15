@@ -10,9 +10,9 @@
   description: A shambling mass of flesh, animated through anomalous energy.
   abstract: true
   components:
-    - type: Body # Sunrise-Fix
+    - type: Body
       prototype: Animal
-    - type: Climbing # Sunrise-Fix
+    - type: Climbing 
     - type: Reactive
       groups:
         Flammable: [Touch]
