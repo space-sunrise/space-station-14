@@ -1,21 +1,14 @@
-using System.Linq;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
-using Content.Server.Forensics;
 using Content.Shared._Sunrise.NightVision.Components;
 using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared._Sunrise.FleshCult;
 using Content.Shared.Actions.Components;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
 using Content.Shared.Cuffs.Components;
-using Content.Shared.Damage;
 using Content.Shared.Electrocution;
 using Content.Shared.FixedPoint;
 using Content.Shared.Flash.Components;
-using Content.Shared.Forensics.Components;
 using Content.Shared.Humanoid;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -25,18 +18,15 @@ using Content.Shared.Store.Components;
 using Content.Shared.Tag;
 using Content.Shared.Temperature.Components;
 using Robust.Shared.Audio;
-using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.FleshCult;
 
 /// <summary>
 /// System for managing Flesh Cultist components and their related events and behaviors.
 /// </summary>
-public sealed partial class
-    FleshCultSystem
+public sealed partial class FleshCultSystem
 {
     [ValidatePrototypeId<CollectiveMindPrototype>]
     private const string FleshCollectiveMindProto = "FleshCult";
