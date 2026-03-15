@@ -46,6 +46,7 @@ job-alt-title-nt-diplomat = CC Consultant
 job-alt-title-gas-technician = Gas Technician
 job-alt-title-chief-mechanic = Chief Mechanic
 job-alt-title-technician = Technician
+job-alt-title-technician-intern = Technician Intern
 job-alt-title-engineering-intern = Engineering Intern
 job-alt-title-foreman = Foreman
 job-alt-title-brigadier = Brigadier
