@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -14,6 +13,7 @@ using Content.Client.Lobby;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.NetTextures;
 using Robust.Client.ResourceManagement;
+using Robust.Shared;
 using Robust.Shared.GameObjects;
 using Robust.Client.State;
 using Robust.Shared.ContentPack;
@@ -287,7 +287,7 @@ public sealed class NetTexturesRegressionTest
                        lobbyState.Lobby.LobbyAnimation.DisplayRect.Texture != null &&
                        client.CfgMan.GetCVar(SunriseCCVars.LobbyAnimation) == invalidAnimationId;
             },
-            TimeSpan.FromSeconds(10),
+            timeoutSeconds: 10,
             "network lobby animation transient fallback to finish loading");
 
         await client.WaitAssertion(() =>
@@ -814,7 +814,7 @@ public sealed class NetTexturesRegressionTest
         await WaitUntilClientCondition(
             client,
             () => manager.TryGetTexture(resourcePath, out _),
-            ConvertTicksToAsyncTimeout(maxTicks),
+            ConvertLegacyTickBudgetToSeconds(maxTicks),
             $"texture '{resourcePath}' to become ready",
             () => DescribeTextureLoadState(manager, resourcePath));
     }
@@ -867,7 +867,7 @@ public sealed class NetTexturesRegressionTest
         await WaitUntilClientCondition(
             client,
             () => manager.TryGetAnimationState(resourcePath, stateId, out _),
-            ConvertTicksToAsyncTimeout(maxTicks),
+            ConvertLegacyTickBudgetToSeconds(maxTicks),
             $"animation state '{stateId}' for '{resourcePath}' to become ready",
             () => DescribeAnimationLoadState(manager, resourcePath, stateId));
     }
@@ -875,24 +875,27 @@ public sealed class NetTexturesRegressionTest
     private static async Task WaitUntilClientCondition(
         RobustIntegrationTest.ClientIntegrationInstance client,
         Func<bool> predicate,
-        TimeSpan timeout,
+        int timeoutSeconds,
         string description,
         Func<string> diagnostics = null,
-        int tickStep = 1,
-        int pollDelayMs = 10)
+        int tickStep = 5,
+        int pollDelayMs = 5)
     {
-        var stopwatch = Stopwatch.StartNew();
+        var maxTicks = GetTickBudgetForSeconds(client, timeoutSeconds);
+        var ticksAwaited = 0;
 
-        while (stopwatch.Elapsed < timeout)
+        await client.WaitIdleAsync();
+
+        while (ticksAwaited < maxTicks)
         {
-            await client.WaitIdleAsync();
-
             var ready = false;
             await client.WaitPost(() => ready = predicate());
             if (ready)
                 return;
 
-            await client.WaitRunTicks(tickStep);
+            var ticksToRun = Math.Min(tickStep, maxTicks - ticksAwaited);
+            await client.WaitRunTicks(ticksToRun);
+            ticksAwaited += ticksToRun;
 
             if (pollDelayMs > 0)
                 await Task.Delay(pollDelayMs);
@@ -903,14 +906,22 @@ public sealed class NetTexturesRegressionTest
             await client.WaitPost(() => debugState = diagnostics());
 
         Assert.Fail(
-            $"Condition did not pass after {timeout.TotalSeconds:F1}s while waiting for {description}." +
+            $"Condition did not pass after {maxTicks} ticks while waiting for {description}." +
             (string.IsNullOrEmpty(debugState) ? string.Empty : $"\n{debugState}"));
     }
 
-    private static TimeSpan ConvertTicksToAsyncTimeout(int maxTicks)
+    private static int ConvertLegacyTickBudgetToSeconds(int maxTicks)
     {
-        var seconds = Math.Max(5, maxTicks / 12);
-        return TimeSpan.FromSeconds(seconds);
+        var defaultTickrate = CVars.NetTickrate.DefaultValue;
+        return Math.Max(5, (int) Math.Ceiling((double) maxTicks / defaultTickrate));
+    }
+
+    private static int GetTickBudgetForSeconds(
+        RobustIntegrationTest.ClientIntegrationInstance client,
+        int timeoutSeconds)
+    {
+        var tickrate = Math.Max(1, client.CfgMan.GetCVar(CVars.NetTickrate));
+        return Math.Max(1, timeoutSeconds * tickrate);
     }
 
     private static string DescribeTextureLoadState(ClientNetTexturesManager manager, string resourcePath)
