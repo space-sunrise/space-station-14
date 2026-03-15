@@ -83,6 +83,7 @@
   suffix: empty
   components:
   - type: BallisticAmmoProvider
+    proto: null
     mayTransfer: true
     whitelist:
       tags:
