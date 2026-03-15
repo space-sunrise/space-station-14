@@ -163,7 +163,7 @@
   id: CombatEquipment
   name: research-technology-combat-equipment
   icon:
-    sprite: _Sunrise/Clothing/Shoes/magboots-combat.rsi
+    sprite: _Sunrise/Clothing/Shoes/magboots_combat.rsi
     state: icon
   discipline: Arsenal
   tier: 2

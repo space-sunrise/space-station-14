@@ -28,7 +28,6 @@
   - type: Strap
     position: Down
     rotation: -90
-    # Sunrise-Edit
     buckleOffsets:
       - "0,-0.15"
       - "0,0.25"

@@ -5,10 +5,10 @@
   description: Combat magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Shoes/magboots-combat.rsi
+    sprite: _Sunrise/Clothing/Shoes/magboots_combat.rsi
     state: icon
   - type: Clothing
-    sprite: _Sunrise/Clothing/Shoes/magboots-combat.rsi
+    sprite: _Sunrise/Clothing/Shoes/magboots_combat.rsi
   - type: Magboots
   - type: ClothingSpeedModifier
     walkModifier: 0.9
@@ -23,10 +23,10 @@
   description: Repainted combat magnets to match the colors of pirates.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Shoes/magboots-pirate.rsi
+    sprite: _Sunrise/Clothing/Shoes/magboots_pirate.rsi
     state: icon
   - type: Clothing
-    sprite: _Sunrise/Clothing/Shoes/magboots-pirate.rsi
+    sprite: _Sunrise/Clothing/Shoes/magboots_pirate.rsi
   - type: Magboots
 
 - type: entity
@@ -36,10 +36,10 @@
   description: Security magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Shoes/magboots-sec.rsi
+    sprite: _Sunrise/Clothing/Shoes/magboots_sec.rsi
     state: icon
   - type: Clothing
-    sprite: _Sunrise/Clothing/Shoes/magboots-sec.rsi
+    sprite: _Sunrise/Clothing/Shoes/magboots_sec.rsi
   - type: Magboots
   - type: ClothingSpeedModifier
     walkModifier: 0.75
@@ -53,9 +53,9 @@
   name: Atmos magboots
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Shoes/magboots-atmos.rsi
+    sprite: _Sunrise/Clothing/Shoes/magboots_atmos.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Shoes/magboots-atmos.rsi
+    sprite: _Sunrise/Clothing/Shoes/magboots_atmos.rsi
   - type: ApcPowerReceiver
     needsPower: false
     powerLoad: 1

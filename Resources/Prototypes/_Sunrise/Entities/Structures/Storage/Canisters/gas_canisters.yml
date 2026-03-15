@@ -154,6 +154,21 @@
   - type: Lock
     locked: true
 
+- type: entity
+  id: LiquidPlasmaCanisterSunrise
+  parent: PlasmaCanister
+  name: liquid plasma canister
+  description: A canister that can contain any type of gas. This one is supposed to contain liquid plasma. It can be attached to connector ports using a wrench.
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+      moles:
+        Plasma: 18710.71051 # plasma
+      temperature: 72
+  - type: AccessReader
+    access: [["Atmospherics"]]
+
 
 - type: entity
   parent: GasCanisterBrokenBase

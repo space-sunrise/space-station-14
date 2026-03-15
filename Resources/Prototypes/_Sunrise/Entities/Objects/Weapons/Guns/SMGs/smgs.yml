@@ -419,14 +419,14 @@
     shape:
     - 0,0,4,2
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/MS-42.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ms_42.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/MS-42.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ms_42.rsi
   - type: Gun
     minAngle: 10
     maxAngle: 35
@@ -477,14 +477,14 @@
     shape:
     - 0,0,3,1
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/aj_100.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/aj_100.rsi
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
@@ -550,14 +550,14 @@
     shape:
     - 0,0,3,1
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/iar_52.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/iar_52.rsi
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus

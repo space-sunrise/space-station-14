@@ -19,9 +19,9 @@
   description: Pretty roomy ammunition storage.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Belt/syndieRPS.rsi
+    sprite: _Sunrise/Clothing/Belt/syndie_rps.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Belt/syndieRPS.rsi
+    sprite: _Sunrise/Clothing/Belt/syndie_rps.rsi
 
 - type: entity
   parent: ClothingBeltStorageBase

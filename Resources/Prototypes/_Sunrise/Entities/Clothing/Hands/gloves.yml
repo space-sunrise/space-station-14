@@ -48,13 +48,11 @@
   - type: Fiber
     fiberMaterial: fibers-nitrile-black
   - type: FingerprintMask
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - SmoothGloves # INTERACTIONS
     - ClothMade
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 
 - type: entity
@@ -72,13 +70,11 @@
   - type: Fiber
     fiberMaterial: fibers-nitrile-green
   - type: FingerprintMask
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - SmoothGloves # INTERACTIONS
     - ClothMade
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 
 - type: entity
@@ -96,13 +92,11 @@
   - type: Fiber
     fiberMaterial: fibers-nitrile-orange
   - type: FingerprintMask
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - SmoothGloves # INTERACTIONS
     - ClothMade
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 
 - type: entity
@@ -120,13 +114,11 @@
   - type: Fiber
     fiberMaterial: fibers-nitrile-red
   - type: FingerprintMask
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - SmoothGloves # INTERACTIONS
     - ClothMade
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 
 - type: entity
@@ -144,13 +136,11 @@
   - type: Fiber
     fiberMaterial: fibers-nitrile-blue
   - type: FingerprintMask
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - SmoothGloves # INTERACTIONS
     - ClothMade
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingHandsBase

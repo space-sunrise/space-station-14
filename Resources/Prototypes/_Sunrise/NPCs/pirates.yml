@@ -1072,7 +1072,7 @@
     - sprite: _Sunrise/Clothing/Head/Hardsuits/goliathhelm.rsi
       state: equipped-head-light
       shader: unshaded
-    - sprite: _Sunrise/Objects/Weapons/Melee/crusher_broadaxe-inhands.rsi
+    - sprite: _Sunrise/Objects/Weapons/Melee/crusher_broadaxe_inhands.rsi
       state: wielded-inhand-left
   - type: Gun
     soundGunshot: /Audio/Weapons/plasma_cutter.ogg
@@ -2412,7 +2412,7 @@
     - sprite: _Sunrise/Mobs/Species/Templates/gladiator.rsi
       state: human-unshaded
       shader: unshaded
-    - sprite: _Sunrise/Objects/Weapons/Melee/crusher_broadaxe-inhands.rsi
+    - sprite: _Sunrise/Objects/Weapons/Melee/crusher_broadaxe_inhands.rsi
       state: wielded-inhand-left
   - type: MobThresholds
     thresholds:
@@ -3533,11 +3533,11 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-heavy.rsi
+    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_heavy.rsi
       state: equipped-OUTERCLOTHING
-    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-heavy.rsi
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_heavy.rsi
       state: equipped-HELMET
-    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-heavy.rsi
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_heavy.rsi
       state: on-equipped-HELMET
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
@@ -3711,11 +3711,11 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-heavy.rsi
+    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_heavy.rsi
       state: equipped-OUTERCLOTHING
-    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-heavy.rsi
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_heavy.rsi
       state: equipped-HELMET
-    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-heavy.rsi
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_heavy.rsi
       state: on-equipped-HELMET
       shader: unshaded
   - type: RechargeBasicEntityAmmo
@@ -4095,4 +4095,3 @@
   - type: GhostRole
     prob: 0.35
     makeSentient: true
-

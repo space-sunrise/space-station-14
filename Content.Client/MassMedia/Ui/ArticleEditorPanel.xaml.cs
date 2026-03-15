@@ -227,9 +227,8 @@ public sealed partial class ArticleEditorPanel : Control
 
         private void UpdateTexture()
         {
-            var uploaded = _netTextures.GetUploadedPath(_path);
-            if (_cache.TryGetResource<TextureResource>(uploaded, out var tex))
-                _textureRect.Texture = tex.Texture;
+            if (_netTextures.TryGetTexture(_path, out var texture))
+                _textureRect.Texture = texture;
         }
 
         protected override void Dispose(bool disposing)

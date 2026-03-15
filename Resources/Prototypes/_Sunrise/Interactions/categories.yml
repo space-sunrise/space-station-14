@@ -13,3 +13,7 @@
 - type: interactionCategory
   id: Neck
   name: interaction-category-name-neck
+
+- type: interactionCategory
+  id: Wings
+  name: interaction-category-name-wings
