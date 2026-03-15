@@ -37,8 +37,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     private Angle? _rotation;
 
     private Dictionary<NetEntity, List<DockingPortState>> _docks = new();
-    private List<RadarBlipData> _blips = new(); // _Starlight
-    private List<RadarLaserData> _lasers = new(); // _Starlight
+    private List<RadarBlipData> _blips = new(); // Sunrise-Edit
+    private List<RadarLaserData> _lasers = new(); // Sunrise-Edit
 
     public bool ShowIFF { get; set; } = true;
     public bool ShowDocks { get; set; } = true;
@@ -125,8 +125,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         RotateWithEntity = state.RotateWithEntity;
 
         _docks = state.Docks;
-        _blips = state.Blips; // _Starlight
-        _lasers = state.Lasers; // _Starlight
+        _blips = state.Blips; // Sunrise-Edit
+        _lasers = state.Lasers; // Sunrise-Edit
     }
 
     protected override void Draw(DrawingHandleScreen handle)
@@ -281,7 +281,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             DrawDocks(handle, gUid, curGridToView);
         }
 
-        // _Starlight - shaped radar blips and laser beam lines
+        // Sunrise-Edit - shaped radar blips and laser beam lines
         // Draw radar blips (shaped markers) for large projectiles etc.
         var blipWorldToView = worldToShuttle * shuttleToView;
         foreach (var blip in _blips)
@@ -307,7 +307,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             }
         }
 
-        // _Starlight - Apollo laser beam traces
+        // Sunrise-Edit - Apollo laser beam traces
         // Draw transient laser beam lines (e.g. Apollo hitscan shots).
         foreach (var laser in _lasers)
         {
@@ -402,7 +402,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         handle.DrawPrimitives(DrawPrimitiveTopology.LineStrip, outline, color);
     }
 
-    // _Starlight
+    // Sunrise-Edit
     /// <summary>
     /// Draws a filled circle blip on the radar screen (used for rockets).
     /// </summary>
@@ -414,7 +414,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         handle.DrawCircle(center, r, color, false);  // outline
     }
 
-    // _Starlight
+    // Sunrise-Edit
     /// <summary>
     /// Draws a filled axis-aligned square blip on the radar screen (used for shells).
     /// </summary>

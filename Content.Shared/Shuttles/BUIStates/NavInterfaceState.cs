@@ -1,5 +1,5 @@
-﻿using System.Numerics; // _Starlight
-using Content.Shared.Shuttles.Components; // _Starlight
+using System.Numerics; // Sunrise-Edit
+using Content.Shared.Shuttles.Components; // Sunrise-Edit
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 
@@ -30,12 +30,12 @@ public sealed class NavInterfaceState
     /// </summary>
     public List<RadarBlipData> Blips = new();
 
-    // _Starlight - transient laser beam traces for hitscan shuttle guns (e.g. Apollo)
+    // Sunrise-Edit - transient laser beam traces for hitscan shuttle guns (e.g. Apollo)
     /// <summary>
     /// Transient laser beam traces to draw on radar (for hitscan weapons such as the Apollo).
     /// Each entry represents a fired beam; entries are expired server-side after a short duration.
     /// </summary>
-    public List<RadarLaserData> Lasers = new(); // _Starlight
+    public List<RadarLaserData> Lasers = new(); // Sunrise-Edit
 
     public NavInterfaceState(
         float maxRange,
@@ -66,9 +66,9 @@ public readonly struct RadarBlipData
     public readonly float Scale;
 
     /// <summary>Which shape to render at this blip's position.</summary>
-    public readonly BlipShape Shape; // _Starlight
+    public readonly BlipShape Shape; // Sunrise-Edit
 
-    public RadarBlipData(NetCoordinates coordinates, Color color, float scale = 1f, BlipShape shape = BlipShape.Triangle) // _Starlight - added shape parameter
+    public RadarBlipData(NetCoordinates coordinates, Color color, float scale = 1f, BlipShape shape = BlipShape.Triangle) // Sunrise-Edit - added shape parameter
     {
         Coordinates = coordinates;
         Color = color;
@@ -77,7 +77,7 @@ public readonly struct RadarBlipData
     }
 }
 
-// _Starlight
+// Sunrise-Edit
 /// <summary>
 /// A transient laser beam drawn as a line on radar.
 /// Origin is in entity-relative coordinates; the endpoint is origin + Direction * Length (in map space).
