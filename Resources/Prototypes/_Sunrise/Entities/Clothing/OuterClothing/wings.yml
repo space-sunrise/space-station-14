@@ -8,12 +8,6 @@
     sprite: _Sunrise/Clothing/OuterClothing/Wings/succubus_dress_black.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Wings/succubus_dress_black.rsi
-  - type: ToggleableClothing
-    clothingPrototype: UniformDressSuccubusBlack
-    slot: outer
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
   parent: ClothingOuterBase
@@ -25,9 +19,3 @@
     sprite: _Sunrise/Clothing/OuterClothing/Wings/succubus_dress_white.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Wings/succubus_dress_white.rsi
-  - type: ToggleableClothing
-    clothingPrototype: UniformDressSuccubusWhite
-    slot: outer
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
