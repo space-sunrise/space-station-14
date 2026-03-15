@@ -1511,7 +1511,7 @@
   name: plushie centcom masa
   components:
   - type: Sprite
-    sprite: _Fish/Objects/Fun/toys.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: centcom-masa
   - type: UseDelay
     delay: 4
