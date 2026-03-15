@@ -223,6 +223,8 @@
   - type: StationAiVision # Sunrise-edit
     enabled: false
 
+# PAI Actions
+
 - type: entity
   parent: ActionIntrinsicStore
   id: ActionPAIOpenShop

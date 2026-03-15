@@ -94,6 +94,12 @@
   name: store-category-objectives
   priority: 13 # Sunrise-Edit
 
+#nukie delivery
+
+- type: storeCategory
+  id: NukieDelivery
+  name: store-category-nukie-delivery
+
 #revenant
 - type: storeCategory
   id: RevenantAbilities

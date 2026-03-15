@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Client.Gameplay;
+using Content.Shared.CCVar;
 using Content.Shared.CombatMode;
 using Content.Shared.Effects;
 using Content.Shared.Hands.Components;
@@ -15,6 +16,7 @@ using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Client.State;
+using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
@@ -32,6 +34,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
 
@@ -78,7 +81,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         var altDown = _inputSystem.CmdStates.GetState(EngineKeyFunctions.UseSecondary);
         var meleeGunAttack = _inputSystem.CmdStates.GetState(ContentKeyFunctions.MeleeGunAttack); // Sunrise-Edit
 
-        if (weapon.AutoAttack || useDown != BoundKeyState.Down && altDown != BoundKeyState.Down)
+        if (weapon.AutoAttack || useDown != BoundKeyState.Down && altDown != BoundKeyState.Down || _cfg.GetCVar(CCVars.ControlHoldToAttackMelee))
         {
             if (weapon.Attacking)
             {
@@ -182,18 +185,26 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
             return;
         }
 
-        var targetMap = TransformSystem.ToMapCoordinates(coordinates);
+        // Resolve attacker and use its transform for ray origin and ignore.
+        var attacker = user;
+        var getAttackerEv = new GetMeleeAttackerEntityEvent();
+        RaiseLocalEvent(user, ref getAttackerEv);
+        if (getAttackerEv.Handled && getAttackerEv.Attacker != null)
+            attacker = getAttackerEv.Attacker.Value;
 
-        if (targetMap.MapId != userXform.MapID)
+        var targetMap = TransformSystem.ToMapCoordinates(coordinates);
+        var attackerXform = _xformQuery.TryGetComponent(attacker, out var aXform) ? aXform : userXform;
+
+        if (targetMap.MapId != attackerXform.MapID)
             return;
 
-        var userPos = TransformSystem.GetWorldPosition(userXform);
-        var direction = targetMap.Position - userPos;
+        var attackerPos = TransformSystem.GetWorldPosition(attackerXform);
+        var direction = targetMap.Position - attackerPos;
         var distance = MathF.Min(component.Range, direction.Length());
 
         // This should really be improved. GetEntitiesInArc uses pos instead of bounding boxes.
         // Server will validate it with InRangeUnobstructed.
-        var entities = GetNetEntityList(ArcRayCast(userPos, direction.ToWorldAngle(), component.Angle, distance, userXform.MapID, user).ToList());
+        var entities = GetNetEntityList(ArcRayCast(attackerPos, direction.ToWorldAngle(), component.Angle, distance, attackerXform.MapID, attacker).ToList());
         RaisePredictiveEvent(new HeavyAttackEvent(GetNetEntity(meleeUid), entities.GetRange(0, Math.Min(MaxTargets, entities.Count)), GetNetCoordinates(coordinates)));
     }
 
