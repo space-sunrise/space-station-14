@@ -96,3 +96,15 @@
 
 - type: Tag
   id: TiderAnvilParts
+
+- type: Tag
+  id: Cartridge280mmSlug
+
+- type: Tag
+  id: Grenade120mm
+
+- type: Tag
+  id: Magazine60mmRocket
+
+- type: Tag
+  id: MagazineGrenade120mm
