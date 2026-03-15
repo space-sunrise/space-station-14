@@ -172,12 +172,15 @@
   - type: Gun
     projectileSpeed: 40
     fireRate: 0.5
-    selectedMode: SemiAuto
+    burstFireRate: 4
+    shotsPerBurst: 3
+    burstCooldown: 1.5
+    selectedMode: Burst
     angleDecay: 20
     minAngle: 0
     maxAngle: 8
     availableModes:
-    - SemiAuto
+    - Burst
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
       params:

@@ -104,6 +104,9 @@
   id: Grenade120mm
 
 - type: Tag
+  id: Cartridge60mmRocket
+
+- type: Tag
   id: Magazine60mmRocket
 
 - type: Tag
