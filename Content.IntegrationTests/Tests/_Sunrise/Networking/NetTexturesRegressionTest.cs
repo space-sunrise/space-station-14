@@ -60,7 +60,9 @@ public sealed class NetTexturesRegressionTest
             client.CfgMan.SetCVar(SunriseCCVars.LobbyBackgroundType, "Art");
         });
 
-        await pair.RunTicksSync(5);
+        // Uploaded RSI fallback preparation spans ticks and idle phases, so a plain WaitAssertion
+        // can observe a stale loading overlay on slower CI runners.
+        await pair.ReallyBeIdle(10);
 
         await client.WaitAssertion(() =>
         {
