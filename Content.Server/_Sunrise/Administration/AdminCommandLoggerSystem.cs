@@ -28,6 +28,8 @@ public sealed class AdminCommandLoggerSystem : EntitySystem
     private static readonly HashSet<string> LogBlacklist = new(StringComparer.OrdinalIgnoreCase)
     {
         "asay",
+        "deadmin",
+        "readmin",
     };
 
 #region Life cycle
