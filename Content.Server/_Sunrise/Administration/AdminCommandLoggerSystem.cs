@@ -32,7 +32,7 @@ public sealed class AdminCommandLoggerSystem : EntitySystem
         "readmin",
     };
 
-#region Life cycle
+    #region Life cycle
 
     public override void Initialize()
     {
