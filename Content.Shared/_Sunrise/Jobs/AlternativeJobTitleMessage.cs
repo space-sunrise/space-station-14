@@ -9,14 +9,9 @@ namespace Content.Shared._Sunrise.Jobs;
 /// чтобы выбрать альтернативное название должности.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class SelectAlternativeJobTitleMsg : EntityEventArgs
+public sealed class SelectAlternativeJobTitleMsg(ProtoId<JobPrototype> jobId, LocId alternativeTitle)
+    : EntityEventArgs
 {
-    public ProtoId<JobPrototype> JobId;
-    public LocId AlternativeTitle;
-
-    public SelectAlternativeJobTitleMsg(ProtoId<JobPrototype> jobId, LocId alternativeTitle)
-    {
-        JobId = jobId;
-        AlternativeTitle = alternativeTitle;
-    }
+    public ProtoId<JobPrototype> JobId = jobId;
+    public LocId AlternativeTitle = alternativeTitle;
 }
