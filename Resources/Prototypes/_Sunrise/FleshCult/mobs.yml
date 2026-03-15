@@ -236,7 +236,7 @@
         types:
           Slash: 15
           Blunt: 25
-          Structural: 30 # Fish-edit
+          Structural: 30
     - type: GhostRole
       allowMovement: true
       allowSpeech: true
