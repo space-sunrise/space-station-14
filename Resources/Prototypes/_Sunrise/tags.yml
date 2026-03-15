@@ -648,3 +648,13 @@
 # обозначает вещь, как твёрдый шлем
 - type: Tag
   id: Helmet
+
+# emotes
+# Используется для whitelist у MonkeyDeathgasp и blacklist у DefaultDeathgasp.
+- type: Tag
+  id: MonkeyDeathgasp
+
+# emotes
+# Используется для whitelist у ScurretDeathgasp и blacklist у DefaultDeathgasp.
+- type: Tag
+  id: ScurretDeathgasp
