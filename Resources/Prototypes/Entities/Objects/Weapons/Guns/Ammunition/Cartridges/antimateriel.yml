@@ -35,7 +35,7 @@
     - Cartridge
     - CartridgeAntiMateriel
   - type: CartridgeAmmo
-    proto: BulletAntiMateriel
+    proto: BulletAntiMaterielTracked
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/12.7x99.rsi
     layers:

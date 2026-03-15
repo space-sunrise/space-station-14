@@ -742,6 +742,72 @@
   - type: StaminaDamageOnCollide
     damage: 80
 
+- type: entity
+  id: BulletCannonBallTracked
+  parent: BulletCannonBall
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FF8844"
+    scale: 1
+    shape: Circle
+    requireInSpace: true
+
+- type: entity
+  id: BulletEMPCannonBallTracked
+  parent: BulletEMP
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#44B7FF"
+    scale: 1
+    shape: Circle
+    requireInSpace: true
+
+- type: entity
+  id: BulletFuzeCannonBallTracked
+  parent: BulletFuzeCannonBall
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FF8844"
+    scale: 1
+    shape: Circle
+    requireInSpace: true
+
+- type: entity
+  id: BulletAntiMaterielCannonBallTracked
+  parent: BulletAntiMaterielCannonBall
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FF6666"
+    scale: 1
+    shape: Circle
+    requireInSpace: true
+
+- type: entity
+  id: PelletGrapeshotSpreadTracked
+  parent: PelletGrapeshotSpread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FFC95A"
+    scale: 0.5
+    shape: Circle
+    requireInSpace: true
+
+- type: entity
+  id: PelletGlassSpreadTracked
+  parent: PelletGlassSpread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#9EE6FF"
+    scale: 0.5
+    shape: Circle
+    requireInSpace: true
+
 # This is supposed to spawn shrapnel and stuff so uhh... TODO?
 - type: entity
   id: BulletGrenadeFragTimer
@@ -811,6 +877,11 @@
         Structural: 15
   - type: StaminaDamageOnCollide
     damage: 5
+  - type: RadarBlip
+    color: "#7f009b"
+    scale: 0.1
+    shape: Triangle
+    requireInSpace: true
 
 # .60 small grenade (1/3 power of China Lake)
 - type: entity
@@ -838,6 +909,11 @@
     triggerKey: trigger
     fillPrototype: PelletClusterLessLethal
     capacity: 10
+  - type: RadarBlip
+    color: "#9ACD32"
+    scale: 0.3
+    shape: Square
+    requireInSpace: true
 
 - type: entity
   id: BulletAntiMaterielBlast
@@ -857,6 +933,11 @@
     intensitySlope: 4
     maxIntensity: 10
     canCreateVacuum: false
+  - type: RadarBlip
+    color: "#FFAA33"
+    scale: 0.3
+    shape: Square
+    requireInSpace: true
 
 - type: entity
   id: BulletAntiMaterielEMP
@@ -884,6 +965,77 @@
     damage:
       types:
         Shock: 15
+  - type: RadarBlip
+    color: "#4DB8FF"
+    scale: 0.3
+    shape: Square
+    requireInSpace: true
+
+- type: entity
+  id: BulletAntiMaterielTracked
+  parent: BulletAntiMateriel
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.3
+    shape: Triangle
+    requireInSpace: true
+
+- type: entity
+  id: BulletGrenadeFragArtillery
+  parent: BulletGrenadeFrag
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#9ACD32"
+    scale: 0.75
+    shape: Square
+    requireInSpace: true
+
+- type: entity
+  id: BulletGrenadeBatonArtillery
+  parent: BulletGrenadeBaton
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FFD700"
+    scale: 0.75
+    shape: Square
+    requireInSpace: true
+
+- type: entity
+  id: BulletGrenadeBlastArtillery
+  parent: BulletGrenadeBlast
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FFAA33"
+    scale: 0.75
+    shape: Square
+    requireInSpace: true
+
+- type: entity
+  id: BulletGrenadeFlashArtillery
+  parent: BulletGrenadeFlash
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FFFFCC"
+    scale: 0.75
+    shape: Square
+    requireInSpace: true
+
+- type: entity
+  id: BulletGrenadeEMPArtillery
+  parent: BulletGrenadeEMP
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#4DB8FF"
+    scale: 0.75
+    shape: Square
+    requireInSpace: true
 
 - type: entity
   id: BulletPlasma

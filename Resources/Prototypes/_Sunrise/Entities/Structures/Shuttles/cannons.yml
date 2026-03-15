@@ -404,7 +404,11 @@
             - PowerCage
   - type: BatteryAmmoProvider
     proto: RedShuttleMediumLaser
-    fireCost: 30
+    fireCost: 20
+  - type: RadarLaserTracker
+    laserColor: "#FF44FF"
+    traceDuration: 0.5
+    maxRange: 40
 
 # TSL Tesla
 - type: entity
