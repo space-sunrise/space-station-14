@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -274,7 +276,19 @@ public sealed class NetTexturesRegressionTest
             client.CfgMan.SetCVar(SunriseCCVars.LobbyBackgroundType, "Animation");
         });
 
-        await pair.RunTicksSync(5);
+        await WaitUntilClientCondition(
+            client,
+            () =>
+            {
+                var lobbyState = stateManager.CurrentState as LobbyState;
+                return lobbyState?.Lobby != null &&
+                       !lobbyState.Lobby.LoadingAnimationContainer.Visible &&
+                       lobbyState.Lobby.LobbyAnimation.Visible &&
+                       lobbyState.Lobby.LobbyAnimation.DisplayRect.Texture != null &&
+                       client.CfgMan.GetCVar(SunriseCCVars.LobbyAnimation) == invalidAnimationId;
+            },
+            TimeSpan.FromSeconds(10),
+            "network lobby animation transient fallback to finish loading");
 
         await client.WaitAssertion(() =>
         {
@@ -797,12 +811,12 @@ public sealed class NetTexturesRegressionTest
         string resourcePath,
         int maxTicks)
     {
-        await PoolManager.WaitUntil(client, async () =>
-        {
-            var ready = false;
-            await client.WaitPost(() => ready = manager.TryGetTexture(resourcePath, out _));
-            return ready;
-        }, maxTicks: maxTicks);
+        await WaitUntilClientCondition(
+            client,
+            () => manager.TryGetTexture(resourcePath, out _),
+            ConvertTicksToAsyncTimeout(maxTicks),
+            $"texture '{resourcePath}' to become ready",
+            () => DescribeTextureLoadState(manager, resourcePath));
     }
 
     private static MemoryStream CreateTransferStream(List<(ResPath Relative, byte[] Data)> files)
@@ -850,12 +864,88 @@ public sealed class NetTexturesRegressionTest
         string stateId,
         int maxTicks)
     {
-        await PoolManager.WaitUntil(client, async () =>
+        await WaitUntilClientCondition(
+            client,
+            () => manager.TryGetAnimationState(resourcePath, stateId, out _),
+            ConvertTicksToAsyncTimeout(maxTicks),
+            $"animation state '{stateId}' for '{resourcePath}' to become ready",
+            () => DescribeAnimationLoadState(manager, resourcePath, stateId));
+    }
+
+    private static async Task WaitUntilClientCondition(
+        RobustIntegrationTest.ClientIntegrationInstance client,
+        Func<bool> predicate,
+        TimeSpan timeout,
+        string description,
+        Func<string> diagnostics = null,
+        int tickStep = 1,
+        int pollDelayMs = 10)
+    {
+        var stopwatch = Stopwatch.StartNew();
+
+        while (stopwatch.Elapsed < timeout)
         {
+            await client.WaitIdleAsync();
+
             var ready = false;
-            await client.WaitPost(() => ready = manager.TryGetAnimationState(resourcePath, stateId, out _));
-            return ready;
-        }, maxTicks: maxTicks);
+            await client.WaitPost(() => ready = predicate());
+            if (ready)
+                return;
+
+            await client.WaitRunTicks(tickStep);
+
+            if (pollDelayMs > 0)
+                await Task.Delay(pollDelayMs);
+        }
+
+        string debugState = null;
+        if (diagnostics != null)
+            await client.WaitPost(() => debugState = diagnostics());
+
+        Assert.Fail(
+            $"Condition did not pass after {timeout.TotalSeconds:F1}s while waiting for {description}." +
+            (string.IsNullOrEmpty(debugState) ? string.Empty : $"\n{debugState}"));
+    }
+
+    private static TimeSpan ConvertTicksToAsyncTimeout(int maxTicks)
+    {
+        var seconds = Math.Max(5, maxTicks / 12);
+        return TimeSpan.FromSeconds(seconds);
+    }
+
+    private static string DescribeTextureLoadState(ClientNetTexturesManager manager, string resourcePath)
+    {
+        var resourceKey = new ResPath(resourcePath).Clean().ToString();
+        var pendingResources = GetPrivateField<Dictionary<string, ResPath>>(manager, "_pendingResources");
+        var preparingResources = GetPrivateField<HashSet<string>>(manager, "_preparingResources");
+        var failedResources = GetPrivateField<HashSet<string>>(manager, "_failedResources");
+        var prepareRequests = GetPrivateField<ICollection>(manager, "_prepareRequests");
+        var preparedUploads = GetPrivateField<ICollection>(manager, "_preparedUploads");
+        var workerRunning = GetPrivateField<bool>(manager, "_prepareWorkerRunning");
+
+        return $"NetTextures state for {resourceKey}: pending={pendingResources.ContainsKey(resourceKey)}, " +
+               $"preparing={preparingResources.Contains(resourceKey)}, failed={failedResources.Contains(resourceKey)}, " +
+               $"workerRunning={workerRunning}, queuedRequests={prepareRequests.Count}, preparedUploads={preparedUploads.Count}.";
+    }
+
+    private static string DescribeAnimationLoadState(
+        ClientNetTexturesManager manager,
+        string resourcePath,
+        string stateId)
+    {
+        var resourceKey = new ResPath(resourcePath).Clean().ToString();
+        var pendingResources = GetPrivateField<Dictionary<string, ResPath>>(manager, "_pendingResources");
+        var preparingResources = GetPrivateField<HashSet<string>>(manager, "_preparingResources");
+        var failedResources = GetPrivateField<HashSet<string>>(manager, "_failedResources");
+        var prepareRequests = GetPrivateField<ICollection>(manager, "_prepareRequests");
+        var preparedUploads = GetPrivateField<ICollection>(manager, "_preparedUploads");
+        var workerRunning = GetPrivateField<bool>(manager, "_prepareWorkerRunning");
+        var hasState = manager.TryGetAnimationState(resourcePath, stateId, out _);
+
+        return $"NetTextures state for {resourceKey}#{stateId}: pending={pendingResources.ContainsKey(resourceKey)}, " +
+               $"preparing={preparingResources.Contains(resourceKey)}, failed={failedResources.Contains(resourceKey)}, " +
+               $"workerRunning={workerRunning}, queuedRequests={prepareRequests.Count}, preparedUploads={preparedUploads.Count}, " +
+               $"stateReady={hasState}.";
     }
 
     private static async Task DispatchFallbackChunk(
