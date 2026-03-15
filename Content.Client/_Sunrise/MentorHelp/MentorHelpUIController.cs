@@ -1,3 +1,4 @@
+using Content.Client._Sunrise.Lobby.UI;
 using Content.Client.Administration.Managers;
 using Content.Client.Gameplay;
 using Content.Client.Lobby;
@@ -48,7 +49,7 @@ public sealed class MentorHelpUIController : UIController, IOnSystemChanged<Ment
     private static readonly SoundSpecifier? MentorHelpSound =
         new SoundPathSpecifier("/Audio/_Sunrise/Effects/adminticketopen.ogg", AudioParams.Default.WithVolume(-3f));
 
-    private Button? LobbyMHelpButton => (UIManager.ActiveScreen as LobbyGui)?.MHelpButton;
+    private Button? LobbyMHelpButton => (UIManager.ActiveScreen as SunriseLobbyGui)?.MHelpButton;
     private MenuButton? GameMHelpButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.MHelpButton;
 
     protected override string SawmillName => "c.s.go.es.mhelp";

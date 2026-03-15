@@ -868,6 +868,7 @@ SupermatterSliver: null
 CartridgePistol: null
 AtmosDeviceFanTinyDev: AtmosDeviceFanTiny
 AtmosDeviceFanDirectionalDev: AtmosDeviceFanDirectional
+GasMinerPlasma: null # Temporary Sunrise migration entry until GasMinerPlasma is removed from all maps.
 MagazineBR64Extended: null
 MagazineBR64: null
 MagazineAR18Extended: null

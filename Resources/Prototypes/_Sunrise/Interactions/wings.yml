@@ -1,0 +1,292 @@
+- type: interaction
+  id: WingsPat
+  name: interaction-name-wing-pat
+  icon: WingPat
+  category: Wings
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  - !type:BodyAreaTagCondition
+    checkInitiator: true
+    checkTarget: false
+    categories: [ "ладони" ]
+    requireExposed: true
+  - !type:HasMarkingCondition
+    checkInitiator: false
+    checkTarget: true
+    markingWhitelist:
+    - MiliraWingBasic
+    - MiliraWingBasicOpen
+    - MiliraWingBasicFlight
+    - MothWingsDefault
+    - MothWingsCharred
+    - MothWingsDbushy
+    - MothWingsDeathhead
+    - MothWingsFan
+    - MothWingsDfan
+    - MothWingsFeathery
+    - MothWingsFirewatch
+    - MothWingsGothic
+    - MothWingsJungle
+    - MothWingsLadybug
+    - MothWingsMaple
+    - MothWingsMoffra
+    - MothWingsOakworm
+    - MothWingsPlasmafire
+    - MothWingsPointy
+    - MothWingsRoyal
+    - MothWingsStellar
+    - MothWingsStriped
+    - MothWingsSwirly
+    - MothWingsWhitefly
+    - MothWingsWitchwing
+    - MothWingsUnderwing
+  interactionMessages:
+  - "%user нежно гладит пальчиками крылышки %target"
+  - "%user трепетно касается крыльев %target"
+  - "%user ласково поглаживает крылышки %target"
+  - "%user бережно ласкает крылья %target"
+  - "%user аккуратно гладит крылья %target"
+  interactionSounds:
+  - FriendlyStroke
+  cooldown: 3
+
+- type: interaction
+  id: WingsScratch
+  name: interaction-name-wing-scratch
+  icon: WingScratch
+  category: Wings
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  - !type:BodyAreaTagCondition
+    checkInitiator: true
+    checkTarget: false
+    categories: [ "ладони" ]
+    requireExposed: true
+  - !type:HasMarkingCondition
+    checkInitiator: false
+    checkTarget: true
+    markingWhitelist:
+    - MiliraWingBasic
+    - MiliraWingBasicOpen
+    - MiliraWingBasicFlight
+    - MothWingsDefault
+    - MothWingsCharred
+    - MothWingsDbushy
+    - MothWingsDeathhead
+    - MothWingsFan
+    - MothWingsDfan
+    - MothWingsFeathery
+    - MothWingsFirewatch
+    - MothWingsGothic
+    - MothWingsJungle
+    - MothWingsLadybug
+    - MothWingsMaple
+    - MothWingsMoffra
+    - MothWingsOakworm
+    - MothWingsPlasmafire
+    - MothWingsPointy
+    - MothWingsRoyal
+    - MothWingsStellar
+    - MothWingsStriped
+    - MothWingsSwirly
+    - MothWingsWhitefly
+    - MothWingsWitchwing
+    - MothWingsUnderwing
+  interactionMessages:
+  - "%user нежно чешет крылышки %target, массируя их у основания"
+  - "%user ласково почесывает %target за крылышками"
+  - "%user нежно перебирает перышки %target"
+  interactionSounds:
+  - FriendlyStroke
+  cooldown: 3
+
+- type: interaction
+  id: WingsPull
+  name: interaction-name-wing-pull
+  icon: WingPull
+  category: Wings
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  - !type:BodyAreaTagCondition
+    checkInitiator: true
+    checkTarget: false
+    categories: [ "ладони" ]
+    requireExposed: true  
+  - !type:HasVisualLayerCondition
+    checkTarget: true
+    checkInitiator: false
+    layer: Tail
+  - !type:HasMarkingCondition
+    checkInitiator: false
+    checkTarget: true
+    markingWhitelist:
+    - MiliraWingBasic
+    - MiliraWingBasicOpen
+    - MiliraWingBasicFlight
+    - MothWingsDefault
+    - MothWingsCharred
+    - MothWingsDbushy
+    - MothWingsDeathhead
+    - MothWingsFan
+    - MothWingsDfan
+    - MothWingsFeathery
+    - MothWingsFirewatch
+    - MothWingsGothic
+    - MothWingsJungle
+    - MothWingsLadybug
+    - MothWingsMaple
+    - MothWingsMoffra
+    - MothWingsOakworm
+    - MothWingsPlasmafire
+    - MothWingsPointy
+    - MothWingsRoyal
+    - MothWingsStellar
+    - MothWingsStriped
+    - MothWingsSwirly
+    - MothWingsWhitefly
+    - MothWingsWitchwing
+    - MothWingsUnderwing
+  interactionMessages:
+  - "%user резко дёргает за крылья %target"
+  - "%user грубо дёргает за крылья %target"
+  - "%user неожиданно дёргает за крылья %target"
+  cooldown: 3
+
+- type: interaction
+  id: WingsHug
+  name: interaction-name-wing-hug
+  icon: Wing
+  category: Wings
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  - !type:HasMarkingCondition
+    checkInitiator: true
+    checkTarget: false
+    markingWhitelist:
+    - MiliraWingBasic
+    - MiliraWingBasicOpen
+    - MiliraWingBasicFlight
+    - MothWingsDefault
+    - MothWingsCharred
+    - MothWingsDbushy
+    - MothWingsDeathhead
+    - MothWingsFan
+    - MothWingsDfan
+    - MothWingsFeathery
+    - MothWingsFirewatch
+    - MothWingsGothic
+    - MothWingsJungle
+    - MothWingsLadybug
+    - MothWingsMaple
+    - MothWingsMoffra
+    - MothWingsOakworm
+    - MothWingsPlasmafire
+    - MothWingsPointy
+    - MothWingsRoyal
+    - MothWingsStellar
+    - MothWingsStriped
+    - MothWingsSwirly
+    - MothWingsWhitefly
+    - MothWingsWitchwing
+    - MothWingsUnderwing
+  interactionMessages:
+  - "%user нежно обнимает %target своими крыльями"
+  - "%user укутывает %target в свои крылья"
+  - "%user ласково прижимает к себе %target, укрывая крыльями"
+  interactionSounds:
+  - FriendlyStroke
+  cooldown: 5
+
+- type: interaction
+  id: WingsCover
+  name: interaction-name-wing-cover
+  icon: Wing
+  category: Wings
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  - !type:HasMarkingCondition
+    checkInitiator: true
+    checkTarget: false
+    markingWhitelist:
+    - MiliraWingBasic
+    - MiliraWingBasicOpen
+    - MiliraWingBasicFlight
+    - MothWingsDefault
+    - MothWingsCharred
+    - MothWingsDbushy
+    - MothWingsDeathhead
+    - MothWingsFan
+    - MothWingsDfan
+    - MothWingsFeathery
+    - MothWingsFirewatch
+    - MothWingsGothic
+    - MothWingsJungle
+    - MothWingsLadybug
+    - MothWingsMaple
+    - MothWingsMoffra
+    - MothWingsOakworm
+    - MothWingsPlasmafire
+    - MothWingsPointy
+    - MothWingsRoyal
+    - MothWingsStellar
+    - MothWingsStriped
+    - MothWingsSwirly
+    - MothWingsWhitefly
+    - MothWingsWitchwing
+    - MothWingsUnderwing
+  interactionMessages:
+  - "%user заботливо укрывает %target своими крыльями"
+  - "%user прячет %target под своими крылышками"
+  interactionSounds:
+  - FriendlyStroke
+  cooldown: 5
+
+- type: interaction
+  id: WingsRub
+  name: interaction-name-wing-rub
+  icon: Wing
+  category: Wings
+  appearConditions:
+  - !type:HasTargetCondition
+    allowSelfTargeting: false
+  - !type:HasMarkingCondition
+    checkInitiator: true
+    checkTarget: false
+    markingWhitelist:
+    - MiliraWingBasic
+    - MiliraWingBasicOpen
+    - MiliraWingBasicFlight
+    - MothWingsDefault
+    - MothWingsCharred
+    - MothWingsDbushy
+    - MothWingsDeathhead
+    - MothWingsFan
+    - MothWingsDfan
+    - MothWingsFeathery
+    - MothWingsFirewatch
+    - MothWingsGothic
+    - MothWingsJungle
+    - MothWingsLadybug
+    - MothWingsMaple
+    - MothWingsMoffra
+    - MothWingsOakworm
+    - MothWingsPlasmafire
+    - MothWingsPointy
+    - MothWingsRoyal
+    - MothWingsStellar
+    - MothWingsStriped
+    - MothWingsSwirly
+    - MothWingsWhitefly
+    - MothWingsWitchwing
+    - MothWingsUnderwing
+  interactionMessages:
+  - "%user ласково трется своими крылышками о %target"
+  - "%user нежно приглаживает %target своими крыльями"
+  interactionSounds:
+  - FriendlyStroke
+  cooldown: 5

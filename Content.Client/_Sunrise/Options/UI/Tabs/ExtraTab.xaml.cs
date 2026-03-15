@@ -1,5 +1,4 @@
 using Content.Client.Audio;
-using Content.Client._Sunrise.Options.UI;
 using Content.Shared._Sunrise.Lobby;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.GameTicking;
@@ -10,18 +9,17 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client.Options.UI.Tabs;
+namespace Content.Client._Sunrise.Options.UI.Tabs;
 
 [GenerateTypedNameReferences]
 public sealed partial class ExtraTab : Control
 {
-    // Sunrise added start - centralize the shared Random option token
-    private const string LobbyBackgroundRandom = "Random";
-    // Sunrise added end
+    public const string LobbyBackgroundRandom = "Random";
 
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!;
 
     private readonly ISawmill _sawmill;
 
@@ -86,9 +84,6 @@ public sealed partial class ExtraTab : Control
             DropDownLobbyParallax,
             BuildLobbyParallaxOptions(lobbyBackgroundOptions.Parallaxes)));
 
-        _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundType, OnLobbyBackgroundTypeChanged, true);
-        _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundPreset, OnLobbyBackgroundPresetChanged, true);
-
         Control.AddOptionPercentSlider(SunriseCCVars.LobbyOpacity, LobbyOpacitySlider);
         Control.AddOptionCheckBox(SunriseCCVars.LobbyUnloadResources, LobbyUnloadResourcesCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.DamageOverlayEnable, DamageOverlayEnableCheckBox);
@@ -101,9 +96,18 @@ public sealed partial class ExtraTab : Control
         Control.Initialize();
     }
 
+    protected override void EnteredTree()
+    {
+        base.EnteredTree();
+
+        _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundType, OnLobbyBackgroundTypeChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundPreset, OnLobbyBackgroundPresetChanged, true);
+    }
+
     protected override void ExitedTree()
     {
         base.ExitedTree();
+
         _cfg.UnsubValueChanged(SunriseCCVars.LobbyBackgroundType, OnLobbyBackgroundTypeChanged);
         _cfg.UnsubValueChanged(SunriseCCVars.LobbyBackgroundPreset, OnLobbyBackgroundPresetChanged);
     }
@@ -139,18 +143,15 @@ public sealed partial class ExtraTab : Control
         _lobbyAnimationOption.ReplaceOptions(BuildLobbyAnimationOptions(lobbyBackgroundOptions.Animations));
         _lobbyParallaxOption.ReplaceOptions(BuildLobbyParallaxOptions(lobbyBackgroundOptions.Parallaxes));
 
-        // Sunrise edit start - use the current dropdown selection after replacing options
         OnLobbyBackgroundTypeChanged((string?) DropDownLobbyBackgroundType.Button.SelectedMetadata ?? LobbyBackgroundRandom);
-        // Sunrise edit end
+
         Control.RefreshButtonState();
     }
 
-    private LobbyBackgroundType ResolveAllowedLobbyBackgroundType(
-        string configuredType,
-        IReadOnlyList<LobbyBackgroundType> allowedTypes)
+    private static LobbyBackgroundType ResolveAllowedLobbyBackgroundType(string configuredType, IReadOnlyList<LobbyBackgroundType> allowedTypes)
     {
-        if (Enum.TryParse<LobbyBackgroundType>(configuredType, true, out var resolvedType) &&
-            allowedTypes.Contains(resolvedType))
+        if (Enum.TryParse<LobbyBackgroundType>(configuredType, true, out var resolvedType)
+            && allowedTypes.Contains(resolvedType))
         {
             return resolvedType;
         }
@@ -166,12 +167,12 @@ public sealed partial class ExtraTab : Control
     {
         var options = new List<SunriseOptionDropDownCVar<string>.ValueOption>
         {
-            new(LobbyBackgroundRandom, Loc.GetString("background-type-Random")),
+            new(LobbyBackgroundRandom, _loc.GetString("background-type-Random")),
         };
 
         foreach (var backgroundType in allowedTypes)
         {
-            var label = Loc.GetString($"background-type-{backgroundType}");
+            var label = _loc.GetString($"background-type-{backgroundType}");
             options.Add(new SunriseOptionDropDownCVar<string>.ValueOption(backgroundType.ToString(), label));
         }
 
@@ -183,12 +184,12 @@ public sealed partial class ExtraTab : Control
     {
         var options = new List<SunriseOptionDropDownCVar<string>.ValueOption>
         {
-            new(LobbyBackgroundRandom, Loc.GetString("lobby-art-Random")),
+            new(LobbyBackgroundRandom, _loc.GetString("lobby-art-Random")),
         };
 
         foreach (var lobbyArt in allowedArts)
         {
-            var label = Loc.GetString($"lobby-art-{lobbyArt.ID}");
+            var label = _loc.GetString($"lobby-art-{lobbyArt.ID}");
             options.Add(new SunriseOptionDropDownCVar<string>.ValueOption(lobbyArt.ID, label));
         }
 
@@ -200,12 +201,12 @@ public sealed partial class ExtraTab : Control
     {
         var options = new List<SunriseOptionDropDownCVar<string>.ValueOption>
         {
-            new(LobbyBackgroundRandom, Loc.GetString("lobby-animation-Random")),
+            new(LobbyBackgroundRandom, _loc.GetString("lobby-animation-Random")),
         };
 
         foreach (var lobbyAnimation in allowedAnimations)
         {
-            var label = Loc.GetString($"lobby-animation-{lobbyAnimation.ID}");
+            var label = _loc.GetString($"lobby-animation-{lobbyAnimation.ID}");
             options.Add(new SunriseOptionDropDownCVar<string>.ValueOption(lobbyAnimation.ID, label));
         }
 
@@ -217,12 +218,12 @@ public sealed partial class ExtraTab : Control
     {
         var options = new List<SunriseOptionDropDownCVar<string>.ValueOption>
         {
-            new(LobbyBackgroundRandom, Loc.GetString("lobby-parallax-Random")),
+            new(LobbyBackgroundRandom, _loc.GetString("lobby-parallax-Random")),
         };
 
         foreach (var lobbyParallax in allowedParallaxes)
         {
-            var label = Loc.GetString($"lobby-parallax-{lobbyParallax.ID}");
+            var label = _loc.GetString($"lobby-parallax-{lobbyParallax.ID}");
             options.Add(new SunriseOptionDropDownCVar<string>.ValueOption(lobbyParallax.ID, label));
         }
 
@@ -279,9 +280,8 @@ public sealed partial class ExtraTab : Control
         var fallbackType = Enum.GetValues<LobbyBackgroundType>().First();
         _sawmill.Warning(
             $"No lobby background asset types are allowed for the current preset; falling back to {fallbackType}.");
-        // Sunrise edit start - avoid collection-expression lowering to CollectionsMarshal.SetCount, which fails sandbox type checks
+
         return new List<LobbyBackgroundType> { fallbackType };
-        // Sunrise edit end
     }
 
     private List<LobbyArtPrototype> GetAllowedLobbyArts(LobbyBackgroundPresetPrototype? preset)
