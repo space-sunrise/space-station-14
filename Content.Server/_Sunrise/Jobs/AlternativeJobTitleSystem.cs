@@ -18,10 +18,10 @@ namespace Content.Server._Sunrise.Jobs;
 /// </summary>
 public sealed class AlternativeJobTitleSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedIdCardSystem _cardSystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly SharedIdCardSystem _card = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly StationRecordsSystem _recordsSystem = default!;
+    [Dependency] private readonly StationRecordsSystem _records = default!;
 
     public override void Initialize()
     {
@@ -40,7 +40,7 @@ public sealed class AlternativeJobTitleSystem : EntitySystem
         if (!profile.JobAlternativeTitles.TryGetValue(jobId, out var altTitleLocId))
             return null;
 
-        if (!_prototypeManager.TryIndex<JobPrototype>(jobId, out var jobProto))
+        if (!_prototype.TryIndex<JobPrototype>(jobId, out var jobProto))
             return null;
 
         if (!jobProto.AlternativeTitles.Contains(altTitleLocId))
@@ -59,7 +59,7 @@ public sealed class AlternativeJobTitleSystem : EntitySystem
             return;
 
         ev.Record.JobTitle = title;
-        _recordsSystem.Synchronize(ev.Key);
+        _records.Synchronize(ev.Key);
     }
 
     private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent ev)
@@ -82,6 +82,6 @@ public sealed class AlternativeJobTitleSystem : EntitySystem
         if (!TryComp<IdCardComponent>(cardId, out _))
             return;
 
-        _cardSystem.TryChangeJobTitle(cardId, title);
+        _card.TryChangeJobTitle(cardId, title);
     }
 }
