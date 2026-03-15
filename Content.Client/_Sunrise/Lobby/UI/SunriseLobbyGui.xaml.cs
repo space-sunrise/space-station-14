@@ -114,7 +114,7 @@ public sealed partial class SunriseLobbyGui : UIScreen
         ServerInfoHider.Texture = ServerInfoContent.Visible ? IconExpanded : IconCollapsed;
         CharacterInfoHider.Texture = CharacterInfoContent.Visible ? IconExpanded : IconCollapsed;
         ChatHider.Texture = ChatContent.Visible ? IconExpanded : IconCollapsed;
-        UserProfileHider.Texture = CharacterInfoContent.Visible ? IconExpanded : IconCollapsed;
+        UserProfileHider.Texture = UserProfileContent.Visible ? IconExpanded : IconCollapsed;
 
         ServersHubHider.Modulate = Palettes.Gold.Base;
         ContributorsHider.Modulate = Palettes.Gold.Base;
@@ -216,10 +216,11 @@ public sealed partial class SunriseLobbyGui : UIScreen
         foreach (var layer in _parallax.GetParallaxLayers(LobbyParallax))
         {
             var tex = layer.Texture;
-            var texSize = new Vector2i(
-                (tex.Size.X * (int)Size.X * 1) / 1920,
-                (tex.Size.Y * (int)Size.X * 1) / 1920
-            );
+
+            var scaledWidth = Math.Max(1, (tex.Size.X * Math.Max(1, (int) Size.X)) / 1920);
+            var scaledHeight = Math.Max(1, (tex.Size.Y * Math.Max(1, (int) Size.X)) / 1920);
+            var texSize = new Vector2i(scaledWidth, scaledHeight);
+
             var ourSize = PixelSize;
 
             var currentTime = (float) _timing.RealTime.TotalSeconds;

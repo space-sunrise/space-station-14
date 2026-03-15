@@ -170,7 +170,7 @@
                                             HorizontalExpand="True"
                                             Name="UserProfileHeaderLabel"
                                             StyleClasses="LabelHeading"
-                                            Text="Профиль"
+                                            Text="{Loc 'lobby-gui-profile'}"
                                             VAlign="Center" />
                                         <TextureRect
                                             Access="Public"
@@ -212,7 +212,7 @@
                                             HorizontalExpand="True"
                                             Name="ServersHubHeaderLabel"
                                             StyleClasses="LabelHeading"
-                                            Text="Сейчас играет: 0/0"
+                                            Text="{Loc 'lobby-gui-now-playing'}"
                                             VAlign="Center" />
                                         <TextureRect
                                             Access="Public"
