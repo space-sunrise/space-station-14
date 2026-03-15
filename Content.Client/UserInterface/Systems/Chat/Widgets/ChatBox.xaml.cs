@@ -143,14 +143,15 @@ public partial class ChatBox : UIWidget
 
         if (allowEmoji && SharedEmojiSystem.IsContainsAnyEmoji(message))
             message = _emoji.ParseEmojis(message);
+
+        var tags = allowEmoji ? TagsAllowed : TagsAllowedNoEmoji;
         // Sunrise-End
 
         var formatted = new FormattedMessage(3);
         formatted.PushColor(color);
         formatted.AddMarkupOrThrow(message);
         formatted.Pop();
-        Contents.AddMessage(formatted);
-        Contents.SetMessage(^1, formatted, allowEmoji ? TagsAllowed : TagsAllowedNoEmoji); // Sunrise-Edit
+        Contents.AddMessage(formatted, tags);
     }
 
     public void Focus(ChatSelectChannel? channel = null)
