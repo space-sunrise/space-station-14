@@ -1,4 +1,5 @@
-﻿using Content.Client._Sunrise.Messenger;
+﻿using System.Linq;
+using Content.Client._Sunrise.Messenger;
 using Content.Client._Sunrise.UserInterface.CustomControls;
 using Content.Client._Sunrise.UserInterface.RichText;
 using Content.Shared.CCVar;
@@ -37,6 +38,8 @@ public partial class ChatBox
         typeof(CommandLinkTag),
     ];
 
+    private const string VerticalScrollName = "_v_scroll";
+
     private EmojiSystem? _emoji;
 
     private EmojiPickerWindow? _emojiPicker;
@@ -72,6 +75,17 @@ public partial class ChatBox
                 _emojiPicker.OnClose += () => _emojiPicker = null;
                 _emojiPicker.OpenCentered();
             };
+        }
+    }
+
+    private void ClearChatContents()
+    {
+        Contents.Clear();
+
+        foreach (var child in Contents.Children.ToArray())
+        {
+            if (child.Name != VerticalScrollName)
+                Contents.RemoveChild(child);
         }
     }
 

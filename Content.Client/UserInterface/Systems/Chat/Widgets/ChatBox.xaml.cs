@@ -120,21 +120,6 @@ public partial class ChatBox : UIWidget
         _controller.UpdateHighlights(highlighs);
     }
 
-    // Sunrise-Start
-    private void ClearChatContents()
-    {
-        Contents.Clear();
-
-        foreach (var child in Contents.Children.ToArray())
-        {
-            if (child.Name != "_v_scroll")
-            {
-                Contents.RemoveChild(child);
-            }
-        }
-    }
-    // Sunrise-End
-
     public void AddLine(string message, Color color, ChatChannel channel = ChatChannel.None)
     {
         // Sunrise-Start
