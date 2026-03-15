@@ -1505,6 +1505,32 @@
       params:
         volume: 100
 
+  - type: entity
+  parent: BasePlushie
+  id: PlushieCentcomMasa
+  name: plushie centcom masa
+  components:
+  - type: Sprite
+    sprite: _Fish/Objects/Fun/toys.rsi
+    state: centcom-masa
+  - type: UseDelay
+    delay: 4
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/cat_meow.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Animals/cat_meow.ogg
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/cat_meow.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/cat_meow.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/cat_meow.ogg
+
 # region Figurine
 # Только для Фигурок. Покусаю!
 - type: entity

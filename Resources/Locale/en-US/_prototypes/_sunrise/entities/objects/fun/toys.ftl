@@ -184,3 +184,5 @@ PlushieVelma = Eustachius Gorky
     .desc = { ent-BasePlushie.desc }
 PlushieSeyaa = Seya-Tanaka
     .desc = { ent-BasePlushie.desc }
+ent-PlushieCentcomMasa = Plushie Centcom Masa
+    .desc = { ent-BasePlushie.desc }
