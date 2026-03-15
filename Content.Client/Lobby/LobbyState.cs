@@ -26,6 +26,8 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Numerics;
 using System.Threading.Tasks;
+using Content.Client._Sunrise.Lobby.UI;
+using Content.Client._Sunrise.Options.UI.Tabs;
 using Content.Client.Changelog;
 using Content.Client.Parallax.Managers;
 using Content.Shared._Sunrise.Lobby;
@@ -39,6 +41,7 @@ using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.TypeSerializers.Implementations;
 using Robust.Shared.Random;
+using Robust.Shared.Input;
 using Content.Shared.GameTicking.Prototypes;
 using ClientRsi = Robust.Client.Graphics.RSI;
 
@@ -87,8 +90,10 @@ namespace Content.Client.Lobby
         private const string LoadingRsiPath = "/Textures/_Sunrise/loading.rsi";
         private const string LoadingState = "loading";
 
-        protected override Type? LinkedScreenType { get; } = typeof(LobbyGui);
-        public LobbyGui? Lobby;
+        protected override Type? LinkedScreenType { get; } = typeof(SunriseLobbyGui);
+        public SunriseLobbyGui? Lobby;
+        private ChangelogManager.Changelog? _combinedLobbyChangelog;
+        private bool _lobbyChangelogLoaded;
 
         protected override void Startup()
         {
@@ -99,7 +104,7 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            Lobby = (LobbyGui) _userInterfaceManager.ActiveScreen;
+            Lobby = (SunriseLobbyGui) _userInterfaceManager.ActiveScreen;
 
             var chatController = _userInterfaceManager.GetUIController<ChatUIController>();
             _gameTicker = _entityManager.System<ClientGameTicker>();
@@ -135,9 +140,8 @@ namespace Content.Client.Lobby
                 var changelog = _serialization.Read<ChangelogManager.Changelog>(node, notNullableOverride: true);
                 changelogs.Add(changelog);
             }
-            var combinedChangelog = _changelogManager.MergeChangelogs(changelogs);
-
-            Lobby.LocalChangelogBody.PopulateChangelog(combinedChangelog);
+            _combinedLobbyChangelog = _changelogManager.MergeChangelogs(changelogs);
+            _lobbyChangelogLoaded = false;
             Lobby.LobbyAnimation.DisplayRect.Stretch = TextureRect.StretchMode.KeepAspectCovered;
             Lobby.LobbyAnimation.DisplayRect.HorizontalExpand = true;
             Lobby.LobbyAnimation.DisplayRect.VerticalExpand = true;
@@ -161,6 +165,7 @@ namespace Content.Client.Lobby
             // Sunrise-End
 
             Lobby.CharacterPreview.CharacterSetupButton.OnPressed += OnSetupPressed;
+            Lobby.ChangelogHider.OnKeyBindUp += OnChangelogHiderKeyBindUp;
             Lobby.ReadyButton.OnPressed += OnReadyPressed;
             Lobby.ReadyButton.OnToggled += OnReadyToggled;
 
@@ -192,11 +197,14 @@ namespace Content.Client.Lobby
             _voteManager.ClearPopupContainer();
 
             Lobby!.CharacterPreview.CharacterSetupButton.OnPressed -= OnSetupPressed;
+            Lobby!.ChangelogHider.OnKeyBindUp -= OnChangelogHiderKeyBindUp;
             Lobby!.ReadyButton.OnPressed -= OnReadyPressed;
             Lobby!.ReadyButton.OnToggled -= OnReadyToggled;
 
             ClearLobbyAnimationState();
             ClearTransientLobbySelections();
+            _combinedLobbyChangelog = null;
+            _lobbyChangelogLoaded = false;
 
             Lobby = null;
 
@@ -224,7 +232,7 @@ namespace Content.Client.Lobby
             Lobby!.ContributorsHeaderLabel.Text = Loc.GetString("contributors-header-count", ("count", contributors.Count));
         }
 
-        public void SwitchState(LobbyGui.LobbyGuiState state)
+        public void SwitchState(SunriseLobbyGui.LobbyGuiState state)
         {
             // Yeah I hate this but LobbyState contains all the badness for now.
             Lobby?.SwitchState(state);
@@ -233,7 +241,24 @@ namespace Content.Client.Lobby
         private void OnSetupPressed(BaseButton.ButtonEventArgs args)
         {
             SetReady(false);
-            Lobby?.SwitchState(LobbyGui.LobbyGuiState.CharacterSetup);
+            Lobby?.SwitchState(SunriseLobbyGui.LobbyGuiState.CharacterSetup);
+        }
+
+        private void OnChangelogHiderKeyBindUp(GUIBoundKeyEventArgs args)
+        {
+            if (args.Function != EngineKeyFunctions.Use)
+                return;
+
+            EnsureLobbyChangelogPopulated();
+        }
+
+        private void EnsureLobbyChangelogPopulated()
+        {
+            if (_lobbyChangelogLoaded || _combinedLobbyChangelog == null || Lobby == null)
+                return;
+
+            Lobby.LocalChangelogBody.PopulateChangelog(_combinedLobbyChangelog);
+            _lobbyChangelogLoaded = true;
         }
 
         private void OnReadyPressed(BaseButton.ButtonEventArgs args)
@@ -396,12 +421,16 @@ namespace Content.Client.Lobby
             }
 
             _lastLobbyBackgroundTypeSetting = lobbyBackgroundTypeString;
-            SetLobbyBackgroundType(lobbyBackgroundTypeString);
+            ApplyConfiguredLobbyBackground();
         }
 
         public void SetLobbyBackgroundType(string lobbyBackgroundString)
         {
-            SetLobbyBackgroundType(ResolveLobbyBackgroundType(lobbyBackgroundString));
+            var resolvedBackgroundType = ResolveLobbyBackgroundType(lobbyBackgroundString);
+            if (resolvedBackgroundType == null)
+                return;
+
+            SetLobbyBackgroundType(resolvedBackgroundType.Value);
         }
 
         private void SetLobbyBackgroundType(LobbyBackgroundType lobbyBackgroundTypeString)
@@ -486,7 +515,7 @@ namespace Content.Client.Lobby
 
         private void SetLobbyAnimation(string lobbyAnimation)
         {
-            if (ResolveLobbyBackgroundType(_cfg.GetCVar(SunriseCCVars.LobbyBackgroundType)) !=
+            if (ResolveLobbyBackgroundType(GetConfiguredLobbyBackgroundTypeSetting()) !=
                 LobbyBackgroundType.Animation)
             {
                 ClearLobbyAnimationState();
@@ -548,7 +577,7 @@ namespace Content.Client.Lobby
 
         private void SetLobbyArt(string lobbyArt)
         {
-            if (ResolveLobbyBackgroundType(_cfg.GetCVar(SunriseCCVars.LobbyBackgroundType)) !=
+            if (ResolveLobbyBackgroundType(GetConfiguredLobbyBackgroundTypeSetting()) !=
                 LobbyBackgroundType.Art)
             {
                 return;
@@ -598,7 +627,7 @@ namespace Content.Client.Lobby
 
         private void SetLobbyParallax(string lobbyParallax)
         {
-            if (ResolveLobbyBackgroundType(_cfg.GetCVar(SunriseCCVars.LobbyBackgroundType)) !=
+            if (ResolveLobbyBackgroundType(GetConfiguredLobbyBackgroundTypeSetting()) !=
                 LobbyBackgroundType.Parallax)
             {
                 return;
@@ -646,22 +675,13 @@ namespace Content.Client.Lobby
 
         private void ApplyConfiguredLobbyBackground()
         {
-            var configuredType = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
-            if (ShouldDeferRandomLobbyBackgroundType(configuredType))
-                return;
-
+            var configuredType = GetConfiguredLobbyBackgroundTypeSetting();
             SetLobbyBackgroundType(configuredType);
         }
 
         private void UpdateLobbyAnimation()
         {
-            if (ShouldDeferRandomLobbyBackgroundType(_cfg.GetCVar(SunriseCCVars.LobbyBackgroundType)))
-                return;
-
             var animationSetting = _cfg.GetCVar(SunriseCCVars.LobbyAnimation);
-            if (ShouldDeferRandomLobbyChoice(animationSetting))
-                return;
-
             var resolvedAnimation = ResolveLobbyPrototypeId<LobbyAnimationPrototype>(
                 animationSetting,
                 _gameTicker.LobbyAnimation,
@@ -673,13 +693,7 @@ namespace Content.Client.Lobby
 
         private void UpdateLobbyArt()
         {
-            if (ShouldDeferRandomLobbyBackgroundType(_cfg.GetCVar(SunriseCCVars.LobbyBackgroundType)))
-                return;
-
             var artSetting = _cfg.GetCVar(SunriseCCVars.LobbyArt);
-            if (ShouldDeferRandomLobbyChoice(artSetting))
-                return;
-
             var resolvedArt = ResolveLobbyPrototypeId<LobbyArtPrototype>(
                 artSetting,
                 _gameTicker.LobbyArt,
@@ -691,13 +705,7 @@ namespace Content.Client.Lobby
 
         private void UpdateLobbyParallax()
         {
-            if (ShouldDeferRandomLobbyBackgroundType(_cfg.GetCVar(SunriseCCVars.LobbyBackgroundType)))
-                return;
-
             var parallaxSetting = _cfg.GetCVar(SunriseCCVars.LobbyParallax);
-            if (ShouldDeferRandomLobbyChoice(parallaxSetting))
-                return;
-
             var resolvedParallax = ResolveLobbyPrototypeId<LobbyParallaxPrototype>(
                 parallaxSetting,
                 _gameTicker.LobbyParallax,
@@ -720,39 +728,25 @@ namespace Content.Client.Lobby
             ApplyConfiguredLobbyBackground();
         }
 
-        private bool ShouldDeferRandomLobbyBackgroundType(string configuredType)
+        private string GetConfiguredLobbyBackgroundTypeSetting()
         {
-            if (!configuredType.Equals("Random", StringComparison.OrdinalIgnoreCase))
-                return false;
-
-            if (_gameTicker.HasLobbyStatus)
-                return false;
-
-            return true;
+            return _lastLobbyBackgroundTypeSetting ?? _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
         }
 
-        private bool ShouldDeferRandomLobbyChoice(string configuredChoice)
-        {
-            if (!configuredChoice.Equals("Random", StringComparison.OrdinalIgnoreCase))
-                return false;
-
-            if (_gameTicker.HasLobbyStatus)
-                return false;
-
-            return true;
-        }
-
-        private LobbyBackgroundType ResolveLobbyBackgroundType(string configuredType)
+        private LobbyBackgroundType? ResolveLobbyBackgroundType(string configuredType)
         {
             var allowedTypes = GetAllowedLobbyBackgroundTypes();
 
-            if (configuredType == "Random")
+            if (configuredType == ExtraTab.LobbyBackgroundRandom)
             {
                 if (_transientLobbyBackgroundType is { } cachedType &&
                     allowedTypes.Contains(cachedType))
                 {
                     return cachedType;
                 }
+
+                if (!_gameTicker.HasLobbyStatus)
+                    return null;
 
                 var resolvedRandomType = ResolveServerOrRandomLobbyBackgroundType(allowedTypes);
                 _transientLobbyBackgroundType = resolvedRandomType;
@@ -762,13 +756,42 @@ namespace Content.Client.Lobby
             if (Enum.TryParse<LobbyBackgroundType>(configuredType, true, out var resolvedType) &&
                 allowedTypes.Contains(resolvedType))
             {
+                if (!_gameTicker.HasLobbyStatus &&
+                    !CanResolveLobbyBackgroundTypeWithoutStatus(resolvedType))
+                {
+                    return null;
+                }
+
                 return resolvedType;
             }
+
+            if (!_gameTicker.HasLobbyStatus)
+                return null;
 
             var fallbackType = ResolveServerOrRandomLobbyBackgroundType(allowedTypes);
             _transientLobbyBackgroundType = fallbackType;
             _sawmill.Debug($"Saved lobby background type '{configuredType}' is invalid or unavailable for the current preset. Using transient fallback '{fallbackType}' for this session.");
             return fallbackType;
+        }
+
+        private bool CanResolveLobbyBackgroundTypeWithoutStatus(LobbyBackgroundType backgroundType)
+        {
+            return backgroundType switch
+            {
+                LobbyBackgroundType.Animation => ResolveLobbyPrototypeId<LobbyAnimationPrototype>(
+                    _cfg.GetCVar(SunriseCCVars.LobbyAnimation),
+                    _gameTicker.LobbyAnimation,
+                    "animation") != null,
+                LobbyBackgroundType.Parallax => ResolveLobbyPrototypeId<LobbyParallaxPrototype>(
+                    _cfg.GetCVar(SunriseCCVars.LobbyParallax),
+                    _gameTicker.LobbyParallax,
+                    "parallax") != null,
+                LobbyBackgroundType.Art => ResolveLobbyPrototypeId<LobbyArtPrototype>(
+                    _cfg.GetCVar(SunriseCCVars.LobbyArt),
+                    _gameTicker.LobbyArt,
+                    "art") != null,
+                _ => false
+            };
         }
 
         private LobbyBackgroundType ResolveServerOrRandomLobbyBackgroundType(IReadOnlyList<LobbyBackgroundType>? allowedTypes = null)
@@ -795,10 +818,13 @@ namespace Content.Client.Lobby
         {
             var allowedIds = GetAllowedLobbyPrototypeIds<TPrototype>();
 
-            if (configuredId == "Random")
+            if (configuredId == ExtraTab.LobbyBackgroundRandom)
             {
                 if (TryGetTransientLobbyPrototypeSelection<TPrototype>(allowedIds, out var cachedId))
                     return cachedId;
+
+                if (!_gameTicker.HasLobbyStatus)
+                    return null;
 
                 var resolvedRandomId = ResolveServerOrRandomLobbyPrototypeId<TPrototype>(serverFallbackId, allowedIds);
                 CacheTransientLobbyPrototypeSelection<TPrototype>(resolvedRandomId);
@@ -807,6 +833,9 @@ namespace Content.Client.Lobby
 
             if (TryResolveLobbyPrototypeId(configuredId, allowedIds, out var resolvedConfiguredId))
                 return resolvedConfiguredId;
+
+            if (!_gameTicker.HasLobbyStatus)
+                return null;
 
             var fallbackId = ResolveServerOrRandomLobbyPrototypeId<TPrototype>(serverFallbackId, allowedIds);
             if (fallbackId != null)
@@ -915,7 +944,7 @@ namespace Content.Client.Lobby
         {
             resolvedId = null;
 
-            if (string.IsNullOrWhiteSpace(candidateId) || candidateId == "Random")
+            if (string.IsNullOrWhiteSpace(candidateId) || candidateId == ExtraTab.LobbyBackgroundRandom)
                 return false;
 
             if (!allowedIds.Contains(candidateId))

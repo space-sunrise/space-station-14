@@ -14,7 +14,7 @@ namespace Content.Client._Sunrise.Options.UI.Tabs;
 [GenerateTypedNameReferences]
 public sealed partial class ExtraTab : Control
 {
-    private const string LobbyBackgroundRandom = "Random";
+    public const string LobbyBackgroundRandom = "Random";
 
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;

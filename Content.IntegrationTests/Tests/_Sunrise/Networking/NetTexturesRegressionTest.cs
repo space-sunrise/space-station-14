@@ -746,6 +746,7 @@ public sealed class NetTexturesRegressionTest
                 "ReceiveNetTexturesTransferWorker",
                 CreateTransferStream([(relativePath, png)]),
                 currentGeneration));
+            await pair.RunTicksSync(1);
 
             await client.WaitAssertion(() => Assert.That(resources.ContentFileExists(uploadedPath), Is.True));
             await client.WaitPost(() => _ = manager.EnsureResource(resourcePath));
