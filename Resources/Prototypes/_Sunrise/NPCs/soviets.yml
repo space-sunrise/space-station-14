@@ -10,9 +10,6 @@
   categories: [ Spawner ]
   components:
   - type: Climbing
-  - type: Tag
-    tags:
-    - DoorBumpOpener
   # Allows ghosts/admins to quickly warp to soviets from the ghost teleport panel
   - type: GhostPanelAntagonistMarker
     name: ghost-panel-antagonist-soviet-name
@@ -216,6 +213,7 @@
     tags:
     - DoorBumpOpener
     - FootstepSound
+    - CanPilot
   - type: ActionGun
     action: ActionSovietSerzhantGrenade
     gunProto: GunSovietSerzhantGrenade
@@ -1007,6 +1005,7 @@
     tags:
     - DoorBumpOpener
     - FootstepSound
+    - CanPilot
   - type: Loadout
     prototypes:
     - MobSovietGearRangedAltT2
@@ -1219,6 +1218,7 @@
     tags:
     - DoorBumpOpener
     - FootstepSound
+    - CanPilot
     - Pickaxe
     - NpcBoss
   - type: Magboots
@@ -1379,10 +1379,11 @@
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Tag
     tags:
+    - NpcBoss
     - DoorBumpOpener
     - FootstepSound
+    - CanPilot
     - Pickaxe
-    - NpcBoss
   - type: EyeCursorOffset
     maxOffset: 5
     pvsIncrease: 0.6
@@ -1407,6 +1408,7 @@
     - NpcBoss
     - DoorBumpOpener
     - FootstepSound
+    - CanPilot
   - type: Loadout
     prototypes:
     - MobSovietGearTier4Captain
