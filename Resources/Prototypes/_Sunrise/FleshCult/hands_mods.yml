@@ -74,7 +74,7 @@
       delay: 6
     - type: UseDelayOnMeleeHit
     - type: MeleeThrowOnHit
-      stunTime: 0 # Fish-edit
+      stunTime: 0
       activateOnThrown: true
       distance: 6
       speed: 7
@@ -82,8 +82,8 @@
       attackRate: 0.5
       damage:
         types:
-          Blunt: 25 # Fish-edit
-          Structural: 35 # Fish-edit
+          Blunt: 25
+          Structural: 35
       soundHit:
         collection: MetalThud
     - type: Item
@@ -115,8 +115,8 @@
       attackRate: 1.2
       damage:
         types:
-          Piercing: 9 # Fish-edit
-          Slash: 10 # Fish-edit
+          Piercing: 9
+          Slash: 10
       resistanceBypass: true
       soundHit:
           path: /Audio/Weapons/bladeslice.ogg
