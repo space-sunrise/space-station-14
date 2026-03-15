@@ -86,9 +86,7 @@ public sealed class DragonRiftSystem : EntitySystem
 
             // Sunrise-Start
             if (comp.IsSpawnAccumulating)
-            {
                 comp.SpawnAccumulator += frameTime;
-            }
             // Sunrise-End
 
             if (comp.State < DragonRiftState.AlmostFinished && comp.Accumulator > comp.MaxAccumulator / 2f)

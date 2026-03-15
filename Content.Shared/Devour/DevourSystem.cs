@@ -119,7 +119,6 @@ public sealed class DevourSystem : EntitySystem
             if (!_containerSystem.Insert(target, ent.Comp.Stomach))
                 return;
 
-
             if (TryComp(target, out MobStateComponent? mobState))
             {
                 RaiseLocalEvent(new DragonDevourMobEvent(args.Args.User, (target, mobState)));

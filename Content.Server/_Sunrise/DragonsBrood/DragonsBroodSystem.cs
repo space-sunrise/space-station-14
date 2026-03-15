@@ -19,7 +19,7 @@ public sealed class DragonsBroodSystem : EntitySystem
 
     private void OnMobStateChanged(Entity<DragonsBroodComponent> ent, ref MobStateChangedEvent args)
     {
-        if (_mobState.IsAlive(ent.Owner))
+        if (args.OldMobState != MobState.Alive)
             return;
 
         if (!TryComp<DragonRiftComponent>(ent.Comp.MotherRift, out var dragonRift))

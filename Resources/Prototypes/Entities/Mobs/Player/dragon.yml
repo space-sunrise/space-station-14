@@ -6,6 +6,7 @@
   description: A flying leviathan, loosely related to space carps.
   abstract: true
   components:
+  - type: AntiRottingContainer # Sunrise-edit
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -216,7 +217,6 @@
   id: MobDragon
   components:
   # Sunrise edit start
-  - type: AntiRottingContainer
   - type: GhostPanelAntagonistMarker
     name: ghost-panel-antagonist-dragon-name
     description: ghost-panel-antagonist-dragon-description
