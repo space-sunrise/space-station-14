@@ -383,7 +383,7 @@ public sealed class EmojiPickerWindow : DefaultWindow
 
     private void SaveFavoriteEmojis()
     {
-        var emojiCodesStr = string.Join(",", _favoriteEmojis);
+        var emojiCodesStr = string.Join(",", _favoriteEmojis.Select(e => e.Code));
         _cfg.SetCVar(SunriseCCVars.MessengerFavoriteEmojis, emojiCodesStr);
         _cfg.SaveToFile();
     }
