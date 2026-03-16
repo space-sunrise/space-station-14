@@ -1,0 +1,87 @@
+- type: entity
+  parent: [ BaseXenoborgChassis, BaseXenoborgTransponder ]
+  id: XenoReaper
+  name: reaper xenoborg
+  suffix: with brain
+  description: A man-machine hybrid that aims to replicate itself. They love extracting brains to insert into fresh Xenoborg chassis to grow their army. This is a reaper type, a stealthy infiltration unit designed for sabotage and assassination.
+  components:
+  - type: BorgTransponder
+    name: reaper xenoborg
+    sprite:
+      sprite: _Sunrise/Mobs/Silicon/xenoreaper.rsi
+      state: xeno_reaper
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Silicon/xenoreaper.rsi
+    layers:
+    - state: xeno_reaper
+    - state: xeno_reaper_e
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: xeno_reaper_l
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: BorgChassis
+    maxModules: 4
+    hasMindState: xeno_reaper_e
+    noMindState: xeno_reaper_e_r
+    moduleWhitelist:
+      tags:
+      - XenoborgModuleGeneric
+      - BorgModuleSecurity
+      - BorgModuleGeneric
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - MMIFilled
+      borg_module:
+      - XenoborgModuleBasic
+      - XenoborgModuleTool
+      - XenoborgModuleSword
+      - XenoborgModuleAccessBreaker
+      - XenoborgModuleJammer
+  - type: Inventory
+    templateId: XenoborgReaper
+  - type: InventorySlots
+  - type: Body
+    prototype: Reaper
+  - type: Hands
+    showInHands: true
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: xeno_reaper
+      Critical:
+        Base: xeno_reaper_critical
+      Dead:
+        Base: xeno_reaper_dead
+  - type: Vocal
+    sounds:
+      Unsexed: Reaper
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: Footstep2CyborgLegs
+      params:
+        volume: -15
+
+- type: entity
+  parent: XenoReaper
+  id: XenoReaperPrinted
+  suffix: no brain
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - MMI
+      borg_module:
+      - XenoborgModuleBasic
+      - XenoborgModuleTool
+      - XenoborgModuleSword
+      - XenoborgModuleAccessBreaker
+      - XenoborgModuleJammer
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHighPrinted
