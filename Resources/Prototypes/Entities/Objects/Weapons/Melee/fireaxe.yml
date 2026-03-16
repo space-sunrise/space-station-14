@@ -59,7 +59,7 @@
   components:
   #Sunrise-start
   - type: IgniteOnMeleeHit
-    fireStacks: 3
+    fireStacks: 1
   - type: MeleeWeapon
     wideAnimationRotation: 135
     swingLeft: true
