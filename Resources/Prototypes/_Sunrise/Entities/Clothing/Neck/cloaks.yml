@@ -353,3 +353,13 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/celegacy.rsi
+
+- type: entity
+  parent: ClothingCloakBase
+  id: ClothingNeckCloakArbiter
+  name: arbiter cloak
+  description: A dark mantle with gold edging and a ceremonial cut. Useful chiefly for silhouette, hierarchy, and obstructing modesty.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/arbiter_cloak.rsi
+    state: icon

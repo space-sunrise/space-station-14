@@ -74,3 +74,25 @@
     sprite: _Sunrise/Clothing/Shoes/metaton.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Shoes/metaton.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsArbiter
+  name: arbiter shoes
+  description: Black dress shoes with gold hardware and a heavy sole. They announce their owner a moment before the door does.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/Boots/arbiter_shoes.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/Boots/arbiter_shoes.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsRedMist
+  name: red mist boots
+  description: Field boots in a dark finish with reinforced shaping. Meant for long movement and short conversations.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/Boots/redmist_shoes.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/Boots/redmist_shoes.rsi

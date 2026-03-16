@@ -12,3 +12,7 @@ ent-ClothingShoesBootsMajima = fashionable shoes
     .desc = Fashionable shoes with steel toes.
 ent-ClothingShoesBootsMettaton = fashionable opium clothing style shoes
     .desc = Fashionable opium shoes straight from the 80s.
+ent-ClothingShoesBootsArbiter = arbiter shoes
+    .desc = Black dress shoes with gold hardware and a heavy sole. They announce their owner a moment before the door does.
+ent-ClothingShoesBootsRedMist = red mist boots
+    .desc = Field boots in a dark finish with reinforced shaping. Meant for long movement and short conversations.

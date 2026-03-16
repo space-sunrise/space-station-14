@@ -66,3 +66,5 @@ ent-ClothingNeckCloakLegacyRd = research director's cloak
     .desc = A white cloak with violet stripes, showing your status as the arbiter of cutting-edge technology.
 ent-ClothingNeckCloakLegacyCe = chief engineer's cloak
     .desc = A dark green cloak with light blue ornaments, given to those who proved themselves to master the precise art of engineering.
+ent-ClothingNeckCloakArbiter = arbiter cloak
+    .desc = A dark mantle with gold edging and a ceremonial cut. Useful chiefly for silhouette, hierarchy, and obstructing modesty.

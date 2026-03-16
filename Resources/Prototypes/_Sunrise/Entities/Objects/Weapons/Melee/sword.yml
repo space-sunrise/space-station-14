@@ -143,3 +143,41 @@
         path: /Audio/_Sunrise/Medical/Surgery/scalpel1.ogg
       endSound:
         path: /Audio/_Sunrise/Medical/Surgery/scalpel2.ogg
+
+- type: entity
+  name: mimicry blade
+  parent: [BaseSword, BaseMajorContraband]
+  id: WeaponMeleeMimicry
+  description: A broad red blade with embedded eyes and an organic surface. It has the composure of an object and the etiquette of neither steel nor flesh.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Melee/redmist_blade.rsi
+    scale: 0.8, 0.8
+  - type: MeleeWeapon
+    attackRate: 0.7
+    range: 1.8
+    damage:
+      types:
+        Slash: 24
+        Structural: 12
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    soundSwing:
+      path: /Audio/Weapons/slash.ogg
+  - type: InjectOnHit
+    limit: 10
+    reagents:
+    - ReagentId: Hemorrhinol
+      Quantity: 2
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Melee/redmist_blade.rsi
+    storedSprite:
+      state: icon
+      sprite: _Sunrise/Objects/Weapons/Melee/redmist_blade.rsi
+    size: Large
+    shape:
+    - 0,0,1,3
+  - type: DisarmMalus
+    malus: 0.2
+  - type: StaticPrice
+    price: 666

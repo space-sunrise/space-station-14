@@ -82,5 +82,9 @@ ent-ClothingUniformJumpsuitCaptainBlack = captain's black uniform
     .desc = For when you need to look like a legend, not a laundry accident. Hides coffee stains and questionable decisions.
 ent-ClothingUniformPunksuit = punksuit
     .desc = Challenge the dress code!
+ent-ClothingUniformJumpsuitArbiter = arbiter uniform
+    .desc = Black service wear with gold seam work and a rigid front. It reads less as clothing and more as a written decision.
+ent-ClothingUniformJumpsuitRedMist = red mist suit
+    .desc = A fitted combat garment in dark cloth with pale metal accents. Built for movement, not reassurance.
 
 
