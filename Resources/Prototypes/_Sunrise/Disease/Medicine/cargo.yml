@@ -6,7 +6,7 @@
   product: CrateDiseaseMedkit
   cost: 5000
   category: cargoproduct-category-name-medical
-  group: medical # DS14
+  group: market
 
 - type: cargoProduct
   id: EmergencySuperDiseaseMedkit
@@ -16,4 +16,4 @@
   product: CrateSuperDiseaseMedkit
   cost: 12000
   category: cargoproduct-category-name-medical
-  group: medical # DS14
+  group: market

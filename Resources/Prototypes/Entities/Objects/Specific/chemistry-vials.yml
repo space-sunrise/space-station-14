@@ -11,7 +11,7 @@
     - Trash
     - CentrifugeCompatible
     - Bottle # Sunrise-Edit
-    - DiagnoserFlask # DS14
+    - DiagnoserFlask # Sunrise-Edit
   - type: PhysicalComposition
     materialComposition:
       Glass: 25
