@@ -99,6 +99,7 @@
     laserColor: "#FF44FF"
     traceDuration: 0.5
     maxRange: 40
+  - type: GunneryTrackable
     # Sunrise-End
 
 - type: entity
@@ -161,6 +162,7 @@
     laserColor: "#FF44FF"
     traceDuration: 0.75
     maxRange: 60
+  - type: GunneryTrackable
     # Sunrise-End
 
 # ---- Launchers ----
@@ -371,6 +373,7 @@
     count: 5
   - type: Machine
     board: ShuttleGunKineticCircuitboard
+  - type: GunneryTrackable # Sunrise-Add
 
 - type: entity
   parent: ShuttleGunBase
@@ -420,3 +423,4 @@
   - type: DeviceLinkSink
     ports:
     - Trigger
+  - type: GunneryTrackable # Sunrise-Add

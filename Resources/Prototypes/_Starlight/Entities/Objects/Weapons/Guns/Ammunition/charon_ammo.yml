@@ -12,6 +12,26 @@
     - Cartridge280mmSlug
   - type: Item
     size: Huge
+    shape:
+    - 0,0,5,1
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: MultiHandedItem
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 12
 
 # M381 CHARYBDIS 280mm 26.5kg Slug
 # A massive kinetic penetrator. Pierces through targets and structures before detonating.
@@ -39,6 +59,22 @@
     suffix: false
   - type: StaticPrice
     price: 2000
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CartridgeCharon280mmSlugDamaged:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 # M381 CHARYBDIS 280mm 40KG Subnuclear Slug
 # A subnuclear warhead. Detonates on impact with a catastrophic area-of-effect blast.
@@ -66,3 +102,70 @@
     suffix: false
   - type: StaticPrice
     price: 8000
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CartridgeCharon280mmSubnuclearDamaged:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: BaseCharon280mmCartridge
+  id: CartridgeCharon280mmSlugDamaged
+  name: damaged M381 CHARYBDIS 280mm 26.5kg slug
+  description: >-
+    A damaged M381 CHARYBDIS slug. Structural integrity is compromised,
+    reducing ballistic and explosive performance by roughly 30%.
+  suffix: Slug, Damaged
+  components:
+  - type: CartridgeAmmo
+    proto: BulletCharon280mmSlugDamaged
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Artillery Ammo/charon_ammo.rsi
+    layers:
+    - state: railgun_slug
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: railgun_slug
+    suffix: false
+  - type: StaticPrice
+    price: 1400
+
+- type: entity
+  parent: BaseCharon280mmCartridge
+  id: CartridgeCharon280mmSubnuclearDamaged
+  name: damaged M381 CHARYBDIS 280mm 40kg subnuclear slug
+  description: >-
+    A damaged M381 subnuclear slug. The warhead is degraded and unstable,
+    reducing explosive yield and radiation output by roughly 30%.
+  suffix: Subnuclear, Damaged
+  components:
+  - type: CartridgeAmmo
+    proto: BulletCharon280mmSubnuclearDamaged
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Artillery Ammo/charon_ammo.rsi
+    layers:
+    - state: subnuclear
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: subnuclear
+    suffix: false
+  - type: StaticPrice
+    price: 5600

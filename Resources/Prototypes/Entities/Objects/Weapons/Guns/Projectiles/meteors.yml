@@ -91,7 +91,7 @@
   # Sunrise-Start
   - type: RadarBlip
     color: "#FF9966"
-    scale: 0.1
+    scale: 0.2
     shape: Circle
     requireInSpace: true
   # Sunrise-End

@@ -11,8 +11,11 @@ public sealed class GunneryConsoleWindow : FancyWindow
 {
     // ── Callbacks to BUI ───────────────────────────────────────────────────
 
-    /// <summary>Invoked when the player fires a cannon. Args: (cannon entity, world target).</summary>
-    public Action<NetEntity, EntityCoordinates>? OnFireRequested;
+    /// <summary>Invoked when the player starts firing a cannon. Args: (cannon entity, world target).</summary>
+    public Action<NetEntity, EntityCoordinates>? OnFireStarted;
+
+    /// <summary>Invoked when the player stops firing.</summary>
+    public Action? OnFireStopped;
 
     /// <summary>Invoked continuously while player steers a guided projectile.</summary>
     public Action<EntityCoordinates>? OnGuidanceUpdate;
@@ -38,7 +41,8 @@ public sealed class GunneryConsoleWindow : FancyWindow
         _guidanceLabel = FindControl<Label>("GuidanceLabel");
 
         // Wire radar-control callbacks to window-level callbacks.
-        _radarControl.OnFireRequested  = (cannon, target) => OnFireRequested?.Invoke(cannon, target);
+        _radarControl.OnFireStarted    = (cannon, target) => OnFireStarted?.Invoke(cannon, target);
+        _radarControl.OnFireStopped    = () => OnFireStopped?.Invoke();
         _radarControl.OnGuidanceUpdate = target => OnGuidanceUpdate?.Invoke(target);
 
         // Sync cannon-list selection to radar control.

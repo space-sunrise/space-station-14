@@ -61,7 +61,7 @@
       tags:
         - CartridgeAntiMateriel
     proto: CartridgeAntiMateriel
-    capacity: 30
+    capacity: 45
     fillDelay: 0.15
   - type: ContainerContainer
     containers:

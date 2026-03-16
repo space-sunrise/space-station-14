@@ -32,9 +32,29 @@
     energy: 3
     color: "#ffaa22"
   - type: RadarBlip
-    color: "#FF6600"
+    color: "#FF6666"
     scale: 1.2
     requireInSpace: true
+
+- type: entity
+  id: BulletCharon280mmSlugDamaged
+  name: damaged M381 CHARYBDIS 280mm slug
+  parent: BulletCharon280mmSlug
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 350
+        Blunt: 105
+        Structural: 420
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 245
+    intensitySlope: 7
+    maxIntensity: 20
+    canCreateVacuum: true
 
 # M381 CHARYBDIS 280mm 40KG Subnuclear Slug
 # Does not pierce - detonates on first impact with a devastating subnuclear explosion.
@@ -67,4 +87,21 @@
     requireInSpace: true
   - type: RadiationSource   # subnuclear residue
     intensity: 8
+    slope: 0.5
+
+- type: entity
+  id: BulletCharon280mmSubnuclearDamaged
+  name: damaged M381 CHARYBDIS 280mm subnuclear slug
+  parent: BulletCharon280mmSubnuclear
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 980
+    intensitySlope: 2.8
+    maxIntensity: 42
+    canCreateVacuum: true
+    requireInSpace: true
+  - type: RadiationSource
+    intensity: 5.6
     slope: 0.5

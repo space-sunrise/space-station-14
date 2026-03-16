@@ -8,13 +8,21 @@ namespace Content.Shared._Starlight.Weapons.Gunnery;
 /// at the specified world-space target coordinates.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class GunneryConsoleFireMessage : BoundUserInterfaceMessage
+public sealed class GunneryConsoleFireStartMessage : BoundUserInterfaceMessage
 {
     /// <summary>The cannon (gun entity) that should fire.</summary>
     public NetEntity Cannon;
 
     /// <summary>World-space target coordinates.</summary>
     public NetCoordinates Target;
+}
+
+/// <summary>
+/// Sent by the client when the player releases LMB to stop continuous fire.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class GunneryConsoleFireStopMessage : BoundUserInterfaceMessage
+{
 }
 
 /// <summary>

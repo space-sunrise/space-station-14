@@ -26,8 +26,9 @@ namespace Content.Client._Starlight.Weapons.Gunnery;
 ///
 /// Input:
 /// • Click on cannon diamond → select that cannon.
-/// • Click on open space (with cannon selected) → fire at cursor.
-/// • Hold LMB while guided projectile is active → steer rocket toward cursor.
+/// • LMB on open space (with cannon selected) → single shot at cursor.
+/// • Hold RMB on open space (with cannon selected) → automatic fire at cursor.
+/// • Hold RMB while guided projectile is active → steer rocket toward cursor.
 /// </summary>
 public sealed class GunneryRadarControl : BaseShuttleControl
 {
@@ -53,7 +54,9 @@ public sealed class GunneryRadarControl : BaseShuttleControl
     public HashSet<NetEntity> SelectedCannons = new();
 
     private Vector2? _cursorRelativePos;  // control-local pixel position
-    private bool     _lmbHeld;
+    private bool     _rmbHeld;
+    private bool     _fireHeld;
+    private bool     _lmbConsumedBySelection;
 
     private List<Entity<MapGridComponent>> _grids = new();
 
@@ -62,8 +65,11 @@ public sealed class GunneryRadarControl : BaseShuttleControl
 
     // ── Callbacks ──────────────────────────────────────────────────────────
 
-    /// <summary>Invoked when the player clicks to fire a cannon. Args: (cannon NetEntity, target EntityCoordinates).</summary>
-    public Action<NetEntity, EntityCoordinates>? OnFireRequested;
+    /// <summary>Invoked when the player starts firing a cannon. Args: (cannon NetEntity, target EntityCoordinates).</summary>
+    public Action<NetEntity, EntityCoordinates>? OnFireStarted;
+
+    /// <summary>Invoked when the player stops continuous fire.</summary>
+    public Action? OnFireStopped;
 
     /// <summary>Invoked continuously while LMB is held with an active guided projectile.</summary>
     public Action<EntityCoordinates>? OnGuidanceUpdate;
@@ -112,36 +118,80 @@ public sealed class GunneryRadarControl : BaseShuttleControl
     {
         base.KeyBindDown(args);
 
+        // Sunrise-Start
         if (args.Function == EngineKeyFunctions.UIClick)
-            _lmbHeld = true;
+        {
+            _cursorRelativePos = args.RelativePixelPosition;
+            _lmbConsumedBySelection = false;
+
+            if (_coordinates == null || _rotation == null)
+                return;
+
+            // LMB on cannon blip changes selection.
+            _lmbConsumedBySelection = TrySelectCannonAt(args.RelativePixelPosition);
+            return;
+        }
+
+        if (args.Function != EngineKeyFunctions.UIRightClick)
+            return;
+
+        _rmbHeld = true;
+        _cursorRelativePos = args.RelativePixelPosition;
+
+        if (_coordinates == null || _rotation == null)
+            return;
+
+        // RMB is used for guided-projectile steering when available.
+        if (_trackedGuidedProjectile != null)
+            return;
+
+        if (SelectedCannons.Count == 0)
+            return;
+
+        var worldPos = ScreenToWorld(args.RelativePixelPosition);
+        foreach (var selected in SelectedCannons)
+            OnFireStarted?.Invoke(selected, worldPos);
+
+        _fireHeld = true;
+        // Sunrise-End
     }
 
     protected override void KeyBindUp(GUIBoundKeyEventArgs args)
     {
         base.KeyBindUp(args);
 
-        if (args.Function != EngineKeyFunctions.UIClick)
+        // Sunrise-Start
+        if (args.Function == EngineKeyFunctions.UIClick)
+        {
+            if (_coordinates == null || _rotation == null)
+                return;
+
+            // Click was used to toggle cannon selection, don't interpret as fire.
+            if (_lmbConsumedBySelection)
+                return;
+
+            // While guidance is active, LMB is reserved for steering only.
+            if (_trackedGuidedProjectile != null || SelectedCannons.Count == 0)
+                return;
+
+            var worldPos = ScreenToWorld(args.RelativePixelPosition);
+            foreach (var selected in SelectedCannons)
+                OnFireStarted?.Invoke(selected, worldPos);
+            OnFireStopped?.Invoke();
+            return;
+        }
+
+        if (args.Function != EngineKeyFunctions.UIRightClick)
             return;
 
-        _lmbHeld = false;
+        _rmbHeld = false;
 
-        // Don't fire if we can't resolve world coords.
-        if (_coordinates == null || _rotation == null)
+        if (!_fireHeld)
             return;
 
-        var clickPos  = args.RelativePixelPosition;
-        var worldPos  = ScreenToWorld(clickPos);
-
-        // Check if click landed on a cannon blip — if so, select it.
-        if (TrySelectCannonAt(clickPos))
-            return;
-
-        // Otherwise: fire all selected cannons toward click position.
-        if (SelectedCannons.Count == 0)
-            return;
-
-        foreach (var selected in SelectedCannons)
-            OnFireRequested?.Invoke(selected, worldPos);
+        _fireHeld = false;
+        OnFireStopped?.Invoke();
+        // Sunrise-End
     }
 
     protected override void MouseMove(GUIMouseMoveEventArgs args)
@@ -150,8 +200,8 @@ public sealed class GunneryRadarControl : BaseShuttleControl
 
         _cursorRelativePos = args.RelativePixelPosition;
 
-        // While LMB is held and a guided projectile is active, send guidance.
-        if (_lmbHeld && _trackedGuidedProjectile != null && _coordinates != null && _rotation != null)
+        // While RMB is held and a guided projectile is active, send guidance.
+        if (_rmbHeld && _trackedGuidedProjectile != null && _coordinates != null && _rotation != null)
         {
             var worldPos = ScreenToWorld(args.RelativePixelPosition);
             OnGuidanceUpdate?.Invoke(worldPos);

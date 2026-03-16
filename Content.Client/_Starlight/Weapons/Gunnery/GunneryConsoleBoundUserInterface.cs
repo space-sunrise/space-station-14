@@ -20,14 +20,19 @@ public sealed class GunneryConsoleBoundUserInterface : BoundUserInterface
         base.Open();
         _window = this.CreateWindow<GunneryConsoleWindow>();
 
-        _window.OnFireRequested = (cannon, target) =>
+        _window.OnFireStarted = (cannon, target) =>
         {
             // Convert EntityCoordinates → NetCoordinates for the network message.
-            SendPredictedMessage(new GunneryConsoleFireMessage
+            SendPredictedMessage(new GunneryConsoleFireStartMessage
             {
                 Cannon = cannon,
                 Target = EntMan.GetNetCoordinates(target),
             });
+        };
+
+        _window.OnFireStopped = () =>
+        {
+            SendPredictedMessage(new GunneryConsoleFireStopMessage());
         };
 
         _window.OnGuidanceUpdate = target =>

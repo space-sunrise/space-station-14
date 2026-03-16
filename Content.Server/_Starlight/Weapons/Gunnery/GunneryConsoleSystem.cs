@@ -4,6 +4,7 @@ using Content.Server.UserInterface;
 using Content.Shared._Starlight.Weapons.Gunnery;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Server.GameObjects;
@@ -41,7 +42,8 @@ public sealed class GunneryConsoleSystem : EntitySystem
 
         Subs.BuiEvents<GunneryConsoleComponent>(GunneryConsoleUiKey.Key, subs =>
         {
-            subs.Event<GunneryConsoleFireMessage>(OnFireMessage);
+            subs.Event<GunneryConsoleFireStartMessage>(OnFireStartMessage);
+            subs.Event<GunneryConsoleFireStopMessage>(OnFireStopMessage);
             subs.Event<GunneryConsoleGuidanceMessage>(OnGuidanceMessage);
         });
     }
@@ -51,6 +53,11 @@ public sealed class GunneryConsoleSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        // Handle held-fire every frame so automatic weapons keep their native cadence.
+        var heldFireQuery = AllEntityQuery<GunneryConsoleComponent>();
+        while (heldFireQuery.MoveNext(out var consoleUid, out var consoleComp))
+            ProcessHeldFire(consoleUid, consoleComp);
 
         _updateTimer += frameTime;
         if (_updateTimer < UpdateInterval)
@@ -93,13 +100,63 @@ public sealed class GunneryConsoleSystem : EntitySystem
         }
     }
 
-    private void OnFireMessage(EntityUid uid, GunneryConsoleComponent comp, GunneryConsoleFireMessage msg)
+    private void OnFireStartMessage(EntityUid uid, GunneryConsoleComponent comp, GunneryConsoleFireStartMessage msg)
     {
         var cannon = GetEntity(msg.Cannon);
         if (!TryComp<GunComponent>(cannon, out var gunComp))
             return;
 
         var targetCoords = GetCoordinates(msg.Target);
+        comp.ReleaseRequested = false;
+        comp.HeldCannons[cannon] = targetCoords;
+        TryFireCannon(comp, cannon, gunComp, targetCoords);
+    }
+
+    private void OnFireStopMessage(EntityUid uid, GunneryConsoleComponent comp, GunneryConsoleFireStopMessage msg)
+    {
+        comp.ReleaseRequested = true;
+    }
+
+    private void ProcessHeldFire(EntityUid uid, GunneryConsoleComponent comp)
+    {
+        if (comp.HeldCannons.Count == 0)
+            return;
+
+        var invalid = new List<EntityUid>();
+        foreach (var (cannon, targetCoords) in comp.HeldCannons)
+        {
+            if (!Exists(cannon) || !TryComp<GunComponent>(cannon, out var gunComp))
+            {
+                invalid.Add(cannon);
+                continue;
+            }
+
+            // On release: full-auto and semi stop immediately. Burst is allowed to finish.
+            if (comp.ReleaseRequested
+                && gunComp.SelectedMode != SelectiveFire.Burst
+                && !gunComp.BurstActivated)
+            {
+                invalid.Add(cannon);
+                continue;
+            }
+
+            TryFireCannon(comp, cannon, gunComp, targetCoords);
+
+            if (comp.ReleaseRequested && !gunComp.BurstActivated)
+                invalid.Add(cannon);
+        }
+
+        foreach (var bad in invalid)
+            comp.HeldCannons.Remove(bad);
+
+        if (comp.ReleaseRequested && comp.HeldCannons.Count == 0)
+            comp.ReleaseRequested = false;
+    }
+
+    private void TryFireCannon(GunneryConsoleComponent comp, EntityUid cannon, GunComponent gunComp, EntityCoordinates targetCoords)
+    {
+        if (!_gun.CanShoot(gunComp))
+            return;
 
         // Rotate cannon to face the target before firing so it visually aims correctly.
         var cannonMapPos = _transform.GetMapCoordinates(cannon);

@@ -102,6 +102,10 @@
     radius: 3.5
     color: blue
     energy: 0.75
+  - type: RadarBlip
+    color: "#55B8FF"
+    scale: 1.1
+    requireInSpace: true
 
 - type: entity
   name: EMP impulse
@@ -128,6 +132,10 @@
     radius: 4
     color: blue
     energy: 1
+  - type: RadarBlip
+    color: "#339CFF"
+    scale: 1.35
+    requireInSpace: true
   - type: ContainerContainer
     containers:
       cluster-payload: !type:Container
@@ -180,6 +188,10 @@
       path: /Audio/Effects/tesla.ogg
     range: 15
     volume: -5
+  - type: RadarBlip
+    color: "#2F8BFF"
+    scale: 1.25
+    requireInSpace: true
 
 - type: entity
   parent: BaseBullet
@@ -748,7 +760,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RadarBlip
-    color: "#FF8844"
+    color: "#FFDD00"
     scale: 1
     shape: Circle
     requireInSpace: true
@@ -770,7 +782,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RadarBlip
-    color: "#FF8844"
+    color: "#FFDD00"
     scale: 1
     shape: Circle
     requireInSpace: true
@@ -792,18 +804,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RadarBlip
-    color: "#FFC95A"
-    scale: 0.5
-    shape: Circle
-    requireInSpace: true
-
-- type: entity
-  id: PelletGlassSpreadTracked
-  parent: PelletGlassSpread
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: RadarBlip
-    color: "#9EE6FF"
+    color: "#FF6666"
     scale: 0.5
     shape: Circle
     requireInSpace: true
@@ -878,8 +879,8 @@
   - type: StaminaDamageOnCollide
     damage: 5
   - type: RadarBlip
-    color: "#7f009b"
-    scale: 0.1
+    color: "#FF6A6A"
+    scale: 0.3
     shape: Triangle
     requireInSpace: true
 
@@ -999,7 +1000,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RadarBlip
-    color: "#FFD700"
+    color: "#FF6A6A"
     scale: 0.75
     shape: Square
     requireInSpace: true
@@ -1021,7 +1022,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RadarBlip
-    color: "#FFFFCC"
+    color: "#FF6A6A"
     scale: 0.75
     shape: Square
     requireInSpace: true

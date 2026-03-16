@@ -41,7 +41,7 @@
 - type: entity
   id: ShuttleGunLongbow
   parent: [ShuttleGunBase, ConstructibleMachine]
-  name: BAL-127 "Longbow"
+  name: BAL-15 "Longbow"
   description: A powerful stationary heavy autocanon. A cartridge is required for use.
   categories: [ DoNotMap ]
   components:
@@ -78,6 +78,7 @@
         pitch: 1.1
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: GunneryTrackable
   - type: Machine
     board: ShuttleGunLongbowCircuitboard
   - type: MagazineAmmoProvider
@@ -104,7 +105,7 @@
 - type: entity
   id: ShuttleGunVympel
   parent: [ShuttleGunBase, ConstructibleMachine]
-  name: BAL-127-2 "Vympel"
+  name: BAL-15-2 "Vympel"
   description: A powerful stationary twin heavy autocanon. A cartridge is required for use.
   categories: [ DoNotMap ]
   components:
@@ -151,6 +152,7 @@
         pitch: 1.2
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: GunneryTrackable
   - type: Machine
     board: ShuttleGunVympelCircuitboard
   - type: BallisticAmmoProvider
@@ -186,7 +188,7 @@
 - type: entity
   id: ShuttleGunQuadling
   parent: [ShuttleGunBase, ConstructibleMachine]
-  name: BAL-127-4 "Quadling"
+  name: BAL-15-4 "Quadling"
   description: THE POWER OF ELEVE... ahem, four barrels. Stationary quad heavy autocanon.
   categories: [ DoNotMap ]
   components:
@@ -233,6 +235,7 @@
         pitch: 1.9
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: GunneryTrackable
   - type: Machine
     board: ShuttleGunQuadlingCircuitboard
   - type: BallisticAmmoProvider
@@ -313,6 +316,7 @@
         pitch: 0.8
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: GunneryTrackable
   - type: Machine
     board: ShuttleGunSquallCircuitboard
   - type: Fixtures
@@ -385,6 +389,7 @@
       path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
       params:
         variation: 0.05
+  - type: GunneryTrackable
   - type: MagazineVisuals
     magState: mag
     steps: 10
@@ -448,6 +453,7 @@
       path: /Audio/Effects/Lightning/lightningshock.ogg
       params:
         variation: 0.2
+  - type: GunneryTrackable
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -518,6 +524,7 @@
       path: /Audio/Effects/Lightning/lightningshock.ogg
       params:
         variation: 0.2
+  - type: GunneryTrackable
   - type: MagazineVisuals
     magState: mag
     steps: 5

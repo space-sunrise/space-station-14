@@ -180,7 +180,9 @@
     deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    state: ball
+    layers:
+    - state: ball
+      color: "#8C8C8C"
 
 - type: entity
   id: CannonBallMini
