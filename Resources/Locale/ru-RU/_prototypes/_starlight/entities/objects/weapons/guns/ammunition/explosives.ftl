@@ -1,2 +1,2 @@
-ent-GrenadeCleanadeSyndicate = "чистата" гранатный выстрел
-    .desc = Модифицированный выстрел чистаты с синдикатской начинкой.
+﻿ent-GrenadeCleanadeSyndicate = { ent-GrenadeCleanade }
+    .desc = { ent-GrenadeCleanade.desc }

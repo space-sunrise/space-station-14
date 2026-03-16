@@ -127,7 +127,7 @@
     damage:
       types:
         Heat: 10
-  
+
 - type: entity
   name : disabler bolt
   id: BulletEnergySMGDisabler
@@ -155,7 +155,7 @@
 - type: entity
   parent: [ BulletGrenadeCleanade, BaseSyndicateContraband ]
   id: BulletGrenadeCleanadeSyndicate
-  name: evil cleanade grenade round
+  name: cleanade grenade
   categories: [ HideSpawnMenu ]
   components:
   - type: SmokeOnTrigger
@@ -164,7 +164,7 @@
     smokePrototype: Foam
     solution:
       reagents:
-      - ReagentId: SyndicateSpaceCleaner
+      - ReagentId: UniversalSolvent
         Quantity: 15
 
 - type: entity

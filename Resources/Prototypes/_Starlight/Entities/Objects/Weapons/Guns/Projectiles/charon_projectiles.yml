@@ -101,7 +101,6 @@
     intensitySlope: 2.8
     maxIntensity: 42
     canCreateVacuum: true
-    requireInSpace: true
   - type: RadiationSource
     intensity: 5.6
     slope: 0.5

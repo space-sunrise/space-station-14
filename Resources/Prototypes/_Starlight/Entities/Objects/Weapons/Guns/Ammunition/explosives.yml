@@ -1,7 +1,7 @@
 - type: entity
   parent: [ GrenadeCleanade, BaseSyndicateContraband ]
   id: GrenadeCleanadeSyndicate
-  name: '"cleanade" grenade round'
+  suffix: Syndicate
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeCleanadeSyndicate
