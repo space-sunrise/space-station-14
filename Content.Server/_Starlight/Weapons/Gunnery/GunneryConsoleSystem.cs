@@ -6,6 +6,7 @@ using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
@@ -30,15 +31,14 @@ public sealed class GunneryConsoleSystem : EntitySystem
 
     private const float UpdateInterval = 0.25f;
     private float _updateTimer;
+    private readonly Dictionary<EntityUid, PendingFireContext> _pendingFireContexts = new();
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<GunneryConsoleComponent, ComponentStartup>(OnStartup);
-
-        // Associate newly spawned guided projectiles with the console that fired them.
-        SubscribeLocalEvent<GuidedProjectileComponent, ComponentStartup>(OnGuidedProjectileStartup);
+        SubscribeLocalEvent<GunComponent, AmmoShotEvent>(OnAmmoShot);
 
         Subs.BuiEvents<GunneryConsoleComponent>(GunneryConsoleUiKey.Key, subs =>
         {
@@ -77,39 +77,37 @@ public sealed class GunneryConsoleSystem : EntitySystem
         UpdateState(uid, comp);
     }
 
-    /// <summary>
-    /// When a new guided projectile spawns, claim it for the console that most
-    /// recently fired (within a 200 ms window).
-    /// </summary>
-    private void OnGuidedProjectileStartup(EntityUid uid, GuidedProjectileComponent guided, ComponentStartup args)
+    private void OnAmmoShot(EntityUid uid, GunComponent gun, AmmoShotEvent args)
     {
-        var threshold = TimeSpan.FromMilliseconds(200);
+        if (!_pendingFireContexts.TryGetValue(uid, out var pending))
+            return;
 
-        var consoleQuery = AllEntityQuery<GunneryConsoleComponent, TransformComponent>();
-        while (consoleQuery.MoveNext(out var consoleUid, out var consoleComp, out _))
+        if (!TryComp<GunneryConsoleComponent>(pending.Console, out var consoleComp))
+            return;
+
+        foreach (var projectileUid in args.FiredProjectiles)
         {
-            if (_timing.CurTime - consoleComp.LastFireTime > threshold)
+            if (!TryComp<GuidedProjectileComponent>(projectileUid, out var guided))
                 continue;
 
-            // Claim this projectile and immediately enable tracking toward the fire target.
-            guided.Controller      = consoleUid;
-            guided.SteeringTarget  = consoleComp.LastFireTargetPos;
-            guided.Active          = true;
-            consoleComp.TrackedGuidedProjectile = uid;
-            break;
+            guided.Controller = pending.Console;
+            guided.SteeringTarget = pending.Target;
+            guided.Active = true;
+            consoleComp.TrackedGuidedProjectile = projectileUid;
         }
     }
 
     private void OnFireStartMessage(EntityUid uid, GunneryConsoleComponent comp, GunneryConsoleFireStartMessage msg)
     {
         var cannon = GetEntity(msg.Cannon);
-        if (!TryComp<GunComponent>(cannon, out var gunComp))
+        var targetCoords = GetCoordinates(msg.Target);
+
+        if (!TryValidateFireRequest(uid, comp, cannon, targetCoords, out var gunComp))
             return;
 
-        var targetCoords = GetCoordinates(msg.Target);
         comp.ReleaseRequested = false;
         comp.HeldCannons[cannon] = targetCoords;
-        TryFireCannon(comp, cannon, gunComp, targetCoords);
+        TryFireCannon(uid, comp, cannon, gunComp, targetCoords);
     }
 
     private void OnFireStopMessage(EntityUid uid, GunneryConsoleComponent comp, GunneryConsoleFireStopMessage msg)
@@ -125,7 +123,7 @@ public sealed class GunneryConsoleSystem : EntitySystem
         var invalid = new List<EntityUid>();
         foreach (var (cannon, targetCoords) in comp.HeldCannons)
         {
-            if (!Exists(cannon) || !TryComp<GunComponent>(cannon, out var gunComp))
+            if (!TryValidateFireRequest(uid, comp, cannon, targetCoords, out var gunComp))
             {
                 invalid.Add(cannon);
                 continue;
@@ -140,7 +138,7 @@ public sealed class GunneryConsoleSystem : EntitySystem
                 continue;
             }
 
-            TryFireCannon(comp, cannon, gunComp, targetCoords);
+            TryFireCannon(uid, comp, cannon, gunComp, targetCoords);
 
             if (comp.ReleaseRequested && !gunComp.BurstActivated)
                 invalid.Add(cannon);
@@ -153,7 +151,7 @@ public sealed class GunneryConsoleSystem : EntitySystem
             comp.ReleaseRequested = false;
     }
 
-    private void TryFireCannon(GunneryConsoleComponent comp, EntityUid cannon, GunComponent gunComp, EntityCoordinates targetCoords)
+    private void TryFireCannon(EntityUid consoleUid, GunneryConsoleComponent comp, EntityUid cannon, GunComponent gunComp, EntityCoordinates targetCoords)
     {
         if (!_gun.CanShoot(gunComp))
             return;
@@ -176,11 +174,27 @@ public sealed class GunneryConsoleSystem : EntitySystem
 
         // Pass cannon as the "user" so AttemptShoot uses the cannon's world position as the
         // projectile spawn origin instead of the player's position.
-        _gun.AttemptShoot(cannon, cannon, gunComp, targetCoords);
+        _pendingFireContexts[cannon] = new PendingFireContext
+        {
+            Console = consoleUid,
+            Target = targetMapPos.Position,
+        };
+
+        try
+        {
+            _gun.AttemptShoot(cannon, cannon, gunComp, targetCoords);
+        }
+        finally
+        {
+            _pendingFireContexts.Remove(cannon);
+        }
     }
 
     private void OnGuidanceMessage(EntityUid uid, GunneryConsoleComponent comp, GunneryConsoleGuidanceMessage msg)
     {
+        if (!TryGetConsoleMap(uid, out var consoleMapCoords))
+            return;
+
         // If no projectile tracked yet, try to find one controlled by this console.
         if (comp.TrackedGuidedProjectile == null || !Exists(comp.TrackedGuidedProjectile.Value))
         {
@@ -195,7 +209,22 @@ public sealed class GunneryConsoleSystem : EntitySystem
             return;
         }
 
-        var targetMapCoords = _transform.ToMapCoordinates(GetCoordinates(msg.Target));
+        // Never trust client-side steering targets: only allow controlling projectiles
+        // that this console owns and only toward coordinates on the same map.
+        if (guided.Controller != uid || !TryGetConsoleMap(comp.TrackedGuidedProjectile.Value, out var projectileMapCoords))
+        {
+            comp.TrackedGuidedProjectile = null;
+            return;
+        }
+
+        var targetCoords = GetCoordinates(msg.Target);
+        if (!Exists(targetCoords.EntityId))
+            return;
+
+        var targetMapCoords = _transform.ToMapCoordinates(targetCoords);
+        if (targetMapCoords.MapId != consoleMapCoords.MapId || targetMapCoords.MapId != projectileMapCoords.MapId)
+            return;
+
         guided.SteeringTarget = targetMapCoords.Position;
         guided.Active         = true;
         guided.Controller     = uid;
@@ -304,5 +333,71 @@ public sealed class GunneryConsoleSystem : EntitySystem
         }
 
         return null;
+    }
+
+    private bool TryValidateFireRequest(
+        EntityUid consoleUid,
+        GunneryConsoleComponent consoleComp,
+        EntityUid cannon,
+        EntityCoordinates targetCoords,
+        out GunComponent gunComp)
+    {
+        gunComp = default!;
+
+        if (!Exists(cannon))
+            return false;
+
+        if (!TryComp<GunComponent>(cannon, out var gun) || !HasComp<GunneryTrackableComponent>(cannon))
+            return false;
+        gunComp = gun;
+
+        if (!TryGetConsoleGrid(consoleUid, out var consoleGrid))
+            return false;
+
+        if (!TryComp<TransformComponent>(cannon, out var cannonXform) || cannonXform.GridUid != consoleGrid)
+            return false;
+
+        if (!TryGetConsoleMap(consoleUid, out var consoleMapCoords))
+            return false;
+
+        var cannonMapCoords = _transform.GetMapCoordinates(cannon, cannonXform);
+        if (cannonMapCoords.MapId != consoleMapCoords.MapId)
+            return false;
+
+        if (!Exists(targetCoords.EntityId))
+            return false;
+
+        var targetMapCoords = _transform.ToMapCoordinates(targetCoords);
+        if (targetMapCoords.MapId != consoleMapCoords.MapId)
+            return false;
+
+        var maxRangeSq = consoleComp.MaxRange * consoleComp.MaxRange;
+        if ((targetMapCoords.Position - consoleMapCoords.Position).LengthSquared() > maxRangeSq)
+            return false;
+
+        return true;
+    }
+
+    private bool TryGetConsoleGrid(EntityUid consoleUid, out EntityUid gridUid)
+    {
+        gridUid = default;
+        var xform = Transform(consoleUid);
+        if (xform.GridUid == null || !HasComp<MapGridComponent>(xform.GridUid.Value))
+            return false;
+
+        gridUid = xform.GridUid.Value;
+        return true;
+    }
+
+    private bool TryGetConsoleMap(EntityUid uid, out MapCoordinates mapCoords)
+    {
+        mapCoords = _transform.GetMapCoordinates(uid);
+        return mapCoords.MapId != MapId.Nullspace;
+    }
+
+    private struct PendingFireContext
+    {
+        public EntityUid Console;
+        public Vector2 Target;
     }
 }

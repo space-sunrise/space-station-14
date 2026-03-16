@@ -1,7 +1,7 @@
 - type: entity
   id: SignalButtonLongbow
   parent: SignalButton
-  name: Longbow 127 Fire Button
+  name: Longbow 15 Fire Button
   suffix: Autolink
   components:
     - type: AutoLinkTransmitter
@@ -10,7 +10,7 @@
 - type: entity
   id: SignalButtonVympel
   parent: SignalButton
-  name: Vympel 127-2 Fire Button
+  name: Vympel 15-2 Fire Button
   suffix: Autolink
   components:
     - type: AutoLinkTransmitter
@@ -19,7 +19,7 @@
 - type: entity
   id: SignalButtonQuadling
   parent: SignalButton
-  name: Quadling 127-4 Fire Button
+  name: Quadling 15-4 Fire Button
   suffix: Autolink
   components:
     - type: AutoLinkTransmitter

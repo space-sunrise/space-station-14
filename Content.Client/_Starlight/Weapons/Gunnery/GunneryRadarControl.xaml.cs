@@ -110,6 +110,20 @@ public sealed class GunneryRadarControl : BaseShuttleControl
         _lasers  = nav.Lasers;
         _cannons = state.Cannons;
         _trackedGuidedProjectile = state.TrackedGuidedProjectile;
+
+        // Server list is authoritative: remove any stale client selection.
+        if (SelectedCannons.Count > 0)
+        {
+            var availableCannons = new HashSet<NetEntity>();
+            foreach (var cannon in _cannons)
+            {
+                availableCannons.Add(cannon.Entity);
+            }
+
+            var changed = SelectedCannons.RemoveWhere(c => !availableCannons.Contains(c)) > 0;
+            if (changed)
+                OnSelectionChanged?.Invoke();
+        }
     }
 
     // ── Input ──────────────────────────────────────────────────────────────
