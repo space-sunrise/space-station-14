@@ -10,6 +10,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Collections;
 using Robust.Shared.Input;
+using Robust.Shared.Localization;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
@@ -47,6 +48,7 @@ public sealed class GunneryRadarControl : BaseShuttleControl
     private List<RadarLaserData>                     _lasers = new();
     private List<CannonBlipData>                     _cannons = new();
     private NetEntity?                               _trackedGuidedProjectile;
+    private readonly HashSet<NetEntity>              _availableCannons = new();
 
     // ── UI state ───────────────────────────────────────────────────────────
 
@@ -54,9 +56,11 @@ public sealed class GunneryRadarControl : BaseShuttleControl
     public HashSet<NetEntity> SelectedCannons = new();
 
     private Vector2? _cursorRelativePos;  // control-local pixel position
+    private Vector2? _lockedFireCursorRelativePos; // Frozen while automatic fire is active.
     private bool     _rmbHeld;
     private bool     _fireHeld;
     private bool     _lmbConsumedBySelection;
+    private bool     _pendingPrimaryRelease;
 
     private List<Entity<MapGridComponent>> _grids = new();
 
@@ -71,7 +75,7 @@ public sealed class GunneryRadarControl : BaseShuttleControl
     /// <summary>Invoked when the player stops continuous fire.</summary>
     public Action? OnFireStopped;
 
-    /// <summary>Invoked continuously while LMB is held with an active guided projectile.</summary>
+    /// <summary>Invoked continuously while RMB is held with an active guided projectile.</summary>
     public Action<EntityCoordinates>? OnGuidanceUpdate;
 
     // ── Cannon click feedback ──────────────────────────────────────────────
@@ -111,19 +115,13 @@ public sealed class GunneryRadarControl : BaseShuttleControl
         _cannons = state.Cannons;
         _trackedGuidedProjectile = state.TrackedGuidedProjectile;
 
-        // Server list is authoritative: remove any stale client selection.
-        if (SelectedCannons.Count > 0)
+        _availableCannons.Clear();
+        foreach (var cannon in _cannons)
         {
-            var availableCannons = new HashSet<NetEntity>();
-            foreach (var cannon in _cannons)
-            {
-                availableCannons.Add(cannon.Entity);
-            }
-
-            var changed = SelectedCannons.RemoveWhere(c => !availableCannons.Contains(c)) > 0;
-            if (changed)
-                OnSelectionChanged?.Invoke();
+            _availableCannons.Add(cannon.Entity);
         }
+
+        PruneSelectionToAvailableCannons();
     }
 
     // ── Input ──────────────────────────────────────────────────────────────
@@ -135,6 +133,11 @@ public sealed class GunneryRadarControl : BaseShuttleControl
         // Sunrise-Start
         if (args.Function == EngineKeyFunctions.UIClick)
         {
+            // Ignore synthetic/secondary click events while RMB input is active.
+            if (_rmbHeld)
+                return;
+
+            _pendingPrimaryRelease = true;
             _cursorRelativePos = args.RelativePixelPosition;
             _lmbConsumedBySelection = false;
 
@@ -148,6 +151,8 @@ public sealed class GunneryRadarControl : BaseShuttleControl
 
         if (args.Function != EngineKeyFunctions.UIRightClick)
             return;
+
+        PruneSelectionToAvailableCannons();
 
         _rmbHeld = true;
         _cursorRelativePos = args.RelativePixelPosition;
@@ -166,6 +171,7 @@ public sealed class GunneryRadarControl : BaseShuttleControl
         foreach (var selected in SelectedCannons)
             OnFireStarted?.Invoke(selected, worldPos);
 
+        _lockedFireCursorRelativePos = args.RelativePixelPosition;
         _fireHeld = true;
         // Sunrise-End
     }
@@ -177,8 +183,15 @@ public sealed class GunneryRadarControl : BaseShuttleControl
         // Sunrise-Start
         if (args.Function == EngineKeyFunctions.UIClick)
         {
+            if (!_pendingPrimaryRelease)
+                return;
+
+            _pendingPrimaryRelease = false;
+
             if (_coordinates == null || _rotation == null)
                 return;
+
+            PruneSelectionToAvailableCannons();
 
             // Click was used to toggle cannon selection, don't interpret as fire.
             if (_lmbConsumedBySelection)
@@ -199,6 +212,8 @@ public sealed class GunneryRadarControl : BaseShuttleControl
             return;
 
         _rmbHeld = false;
+        _lockedFireCursorRelativePos = null;
+        _pendingPrimaryRelease = false;
 
         if (!_fireHeld)
             return;
@@ -212,7 +227,10 @@ public sealed class GunneryRadarControl : BaseShuttleControl
     {
         base.MouseMove(args);
 
-        _cursorRelativePos = args.RelativePixelPosition;
+        if (_fireHeld && _trackedGuidedProjectile == null && _lockedFireCursorRelativePos != null)
+            _cursorRelativePos = _lockedFireCursorRelativePos;
+        else
+            _cursorRelativePos = args.RelativePixelPosition;
 
         // While RMB is held and a guided projectile is active, send guidance.
         if (_rmbHeld && _trackedGuidedProjectile != null && _coordinates != null && _rotation != null)
@@ -419,15 +437,28 @@ public sealed class GunneryRadarControl : BaseShuttleControl
         // ── Guidance indicator ─────────────────────────────────────────────
         if (_trackedGuidedProjectile != null)
         {
-            const string GuidanceText = "GUIDANCE ACTIVE — hold LMB to steer";
-            var dim = handle.GetDimensions(Font, GuidanceText, 1f);
+            var guidanceText = Loc.GetString("gunnery-guidance-active-hint");
+            var dim = handle.GetDimensions(Font, guidanceText, 1f);
             handle.DrawString(Font,
                 new Vector2(PixelWidth / 2f - dim.X / 2f, PixelHeight - dim.Y - 8f),
-                GuidanceText, Color.LimeGreen);
+                guidanceText, Color.LimeGreen);
         }
     }
 
     // ── Private helpers ────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Keeps client-side selection in sync with authoritative server cannon list.
+    /// </summary>
+    private void PruneSelectionToAvailableCannons()
+    {
+        if (SelectedCannons.Count == 0)
+            return;
+
+        var changed = SelectedCannons.RemoveWhere(c => !_availableCannons.Contains(c)) > 0;
+        if (changed)
+            OnSelectionChanged?.Invoke();
+    }
 
     /// <summary>Converts a control-local pixel position to EntityCoordinates.</summary>
     private EntityCoordinates ScreenToWorld(Vector2 relativePos)

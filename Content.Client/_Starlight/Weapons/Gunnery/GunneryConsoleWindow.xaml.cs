@@ -3,6 +3,7 @@ using Content.Shared._Starlight.Weapons.Gunnery;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
+using Robust.Shared.Localization;
 using Robust.Shared.Map;
 
 namespace Content.Client._Starlight.Weapons.Gunnery;
@@ -79,7 +80,7 @@ public sealed class GunneryConsoleWindow : FancyWindow
 
         // Guidance indicator.
         _guidanceLabel.Text = state.TrackedGuidedProjectile != null
-            ? "GUIDANCE ACTIVE"
+            ? Loc.GetString("gunnery-guidance-active")
             : string.Empty;
 
         UpdateStatus();

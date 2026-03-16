@@ -33,7 +33,7 @@ public sealed partial class RadarLaserTrackerComponent : Component
 
     /// <summary>
     /// Active laser traces: (origin in map space, normalized fire direction, expiry game time).
-    /// Populated by <see cref="Content.Server.Shuttles.Systems.RadarLaserSystem"/> on each shot.
+    /// Populated by <see cref="Content.Server._Starlight.Shuttles.Systems.RadarLaserSystem"/> on each shot.
     /// </summary>
     [ViewVariables]
     public List<(MapCoordinates Origin, Vector2 Direction, float ExpiryTime)> Traces = new();

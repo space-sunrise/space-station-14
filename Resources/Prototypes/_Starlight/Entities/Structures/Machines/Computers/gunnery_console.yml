@@ -17,6 +17,7 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: GunneryConsole
+  - type: RadarConsole
   - type: ActivatableUI
     key: enum.GunneryConsoleUiKey.Key
   - type: UserInterface
