@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+using System.Numerics;
+using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.UserInterface;
 using Content.Shared._Starlight.Weapons.Gunnery;
@@ -278,6 +279,26 @@ public sealed class GunneryConsoleSystem : EntitySystem
                 blip.Color,
                 blip.Scale,
                 blip.Shape));
+        }
+
+        // Populate laser traces from hitscan shuttle guns with RadarLaserTrackerComponent.
+        var laserQuery = AllEntityQuery<RadarLaserTrackerComponent, TransformComponent>();
+        while (laserQuery.MoveNext(out var laserUid, out var tracker, out var laserXform))
+        {
+            if (laserXform.MapID != consoleMapCoords.MapId)
+                continue;
+
+            foreach (var (origin, dir, _) in tracker.Traces)
+            {
+                if ((origin.Position - consoleMapCoords.Position).LengthSquared() > maxRangeSq)
+                    continue;
+
+                navState.Lasers.Add(new RadarLaserData(
+                    GetNetCoordinates(laserXform.Coordinates),
+                    dir,
+                    tracker.MaxRange,
+                    tracker.LaserColor));
+            }
         }
 
         // Build cannon blip list: all GunneryTrackable guns on the same grid.
