@@ -14190,7 +14190,7 @@ entities:
     - type: Transform
       pos: 38.5,62.5
       parent: 1
-- proto: MobPirateAllTiersTimedSpawner
+- proto: MobPirateAllTiersExpeditionSpawner
   entities:
   - uid: 2665
     components:
@@ -14232,7 +14232,7 @@ entities:
     - type: Transform
       pos: 37.5,63.5
       parent: 1
-- proto: MobPirateT1TimedSpawner
+- proto: MobPirateT1ExpeditionSpawner
   entities:
   - uid: 2474
     components:
@@ -14384,7 +14384,7 @@ entities:
     - type: Transform
       pos: 15.5,1.5
       parent: 1
-- proto: MobPirateT2TimedSpawner
+- proto: MobPirateT2ExpeditionSpawner
   entities:
   - uid: 2282
     components:
@@ -14421,7 +14421,7 @@ entities:
     - type: Transform
       pos: 22.5,1.5
       parent: 1
-- proto: MobPirateT3TimedSpawner
+- proto: MobPirateT3ExpeditionSpawner
   entities:
   - uid: 1834
     components:

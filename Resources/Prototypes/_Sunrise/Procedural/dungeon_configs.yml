@@ -427,7 +427,7 @@
     - id: MobTick
       weight: 8
     - id: GenericTank
-      weight: 4
+      weight: 3.2
     - id: ClosetRadiationSuitFilled
     - id: ClosetRadiationSuit
     - id: DecalSpawnerDirtWide
@@ -437,7 +437,7 @@
     - id: RandomSpawner
       weight: 15
     - id: OreBox
-      weight: 18
+      weight: 14.4
     - id: Barricade
       weight: 10
     - id: MaintenancePlantSpawner
@@ -447,6 +447,7 @@
       weight: 6
     - id: RandomMercenaryCorpseSpawner
     - id: RandomSovietCorpseSpawner
+      weight: 0.25
     - id: RandomArtifactSpawner20
     - id: SpawnMobOreCrab
       weight: 8
@@ -461,41 +462,54 @@
     - id: LootSpawnerMedicalMinor
     - id: LootSpawnerMaterialsSupplementary
     - id: SalvageCanisterSpawner
+      weight: 0.8
+    - id: OxygenCanister
+      weight: 0.8
+    - id: NitrogenCanister
+      weight: 0.8
+    - id: PlasmaCanister
+      weight: 0.8
     - id: SalvageSpawnerScrapCommon
     - id: SalvageSpawnerScrapValuable
     - id: SalvageSpawnerTreasure
     - id: SalvageLootSpawner
     - id: BaseBarrelChemRadioactiveFilledUranium
+      weight: 0.8
     - id: Bonfire
       weight: 7
     - id: BarrelFlaming
       weight: 3
     - id: AcousticGuitarInstrument
     - id: SpawnerCrateUSSP
+      weight: 0.35
     - id: LandMineExplosive
     - id: PuddleBlood
     - id: PuddleVomit
     - id: BarrelChemFilledLube
+      weight: 0.8
     - id: BarrelChemEmpty
+      weight: 0.8
     - id: BarrelChemFilledPhosphorus
+      weight: 0.8
     - id: BarrelChemFilledChlorine
+      weight: 0.8
     - id: ClothingOuterArmorSovietPlateRandomSpawner
       weight: 0.3
-    - id: SovietSquadPatrolTimed
+    - id: SovietSquadPatrol
       weight: 0.005
-    - id: MobSovietT2FinkaTimed
+    - id: MobSovietT2Finka
       weight: 0.1
-    - id: MobSovietT2BottleTimed
+    - id: MobSovietT2Bottle
       weight: 0.1
-    - id: MobSovietBearAltTimed
+    - id: MobSovietBearAlt
       weight: 0.08
-    - id: MobSovietT1MosinAltTimed
+    - id: MobSovietT1MosinAlt
       weight: 0.03
-    - id: MobSovietT1MosinTimed
+    - id: MobSovietT1Mosin
       weight: 0.03
-    - id: MobSovietT1SMGAltTimed
+    - id: MobSovietT1SMGAlt
       weight: 0.01
-    - id: MobSovietT2RifleTimed
+    - id: MobSovietT2Rifle
       weight: 0.005
     - id: MobRandomSovietUSSPCorpse
       weight: 0.005

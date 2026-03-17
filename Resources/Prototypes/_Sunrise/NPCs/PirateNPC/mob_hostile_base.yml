@@ -343,6 +343,9 @@
       types: {}
     damageRecovery:
       types: {}
+  - type: MeleeWeapon
+    hidden: true
+    animation: WeaponArcInvisibleNPC
 
 # NonHuman NPC base, no equipment, immune to vacuum/low pressure
 - type: entity
@@ -412,6 +415,9 @@
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
+  - type: MeleeWeapon
+    hidden: true
+    animation: WeaponArcInvisibleNPC
 
 #region Gibb
 - type: entity

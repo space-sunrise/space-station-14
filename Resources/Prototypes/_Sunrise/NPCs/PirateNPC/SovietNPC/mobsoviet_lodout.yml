@@ -181,7 +181,7 @@
 - type: startingGear
   id: MobSovietGearTier4Captain
   equipment:
-    gloves: ClothingHandsDragunovSovietUSSPHeavy
+    gloves: ClothingHandsType88SovietUSSPHeavy
     back: ClothingBackpackDuffelMercenaryTier4Captain
     shoes: ClothingShoesBootsUSSPFilled
 

@@ -16954,7 +16954,7 @@ entities:
     - type: Transform
       pos: 3.4635706,21.612839
       parent: 1
-- proto: MobSovietT1TimedSpawner
+- proto: MobSovietT1ExpeditionSpawner
   entities:
   - uid: 3519
     components:

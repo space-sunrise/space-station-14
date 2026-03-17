@@ -28,9 +28,8 @@ ent-MobSovietT1SLRifle = советский сержант-стрелок
     .desc = Сержант советского отделения, вооружённый винтовкой и полевым снаряжением командира.
 ent-MobSovietT1SerzhantSMG = советский сержант-автоматчик
     .desc = Сержант советского отделения, вооружённый скорострельным пистолетом-пулемётом.
-ent-MobSovietT1PPSH = { ent-MobSovietT1SerzhantSMG }
-    .desc = { ent-MobSovietT1SerzhantSMG.desc }
-
+ent-MobSovietT1PPSH = { ent-MobSovietT1SMGAlt }
+    .desc = { ent-MobSovietT1SMGAlt.desc }
 ent-MobSovietT2Bottle = десантник
     .desc = Десантник, идущий в ближний бой с бутылкой.
 ent-MobSovietT2Finka = десантник
@@ -201,3 +200,6 @@ ent-MobSovietTimedDespawn = база таймед-деспавна
 ent-MobSovietTimedSpawner = советский таймед-спавнер
     .desc = Случайно спавнит советских экспедиционных бойцов с деспавном по времени.
     .suffix = Деспавн
+
+action-speech-soviet-grenade = Граната!
+action-speech-soviet-smoke = Дым!!
