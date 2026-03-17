@@ -1,9 +1,6 @@
 using Content.Server.StationRecords.Systems;
-using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.GameTicking;
-using Content.Shared.Inventory;
-using Content.Shared.PDA;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
@@ -20,7 +17,6 @@ public sealed class AlternativeJobTitleSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedIdCardSystem _card = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly StationRecordsSystem _records = default!;
 
     public override void Initialize()
@@ -72,16 +68,9 @@ public sealed class AlternativeJobTitleSystem : EntitySystem
             return;
 
         // Находим ID-карту игрока
-        if (!_inventory.TryGetSlotEntity(ev.Mob, "id", out var idUid))
+        if (!_card.TryFindIdCard(ev.Mob, out var idCard))
             return;
 
-        var cardId = idUid.Value;
-        if (TryComp<PdaComponent>(idUid, out var pdaComponent) && pdaComponent.ContainedId != null)
-            cardId = pdaComponent.ContainedId.Value;
-
-        if (!TryComp<IdCardComponent>(cardId, out _))
-            return;
-
-        _card.TryChangeJobTitle(cardId, title);
+        _card.TryChangeJobTitle(idCard, title);
     }
 }
