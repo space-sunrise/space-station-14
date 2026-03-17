@@ -1948,7 +1948,7 @@
       id: MobSovietT1RPD
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1SKMTimed
+      id: MobSovietT1SKM
       prob: 1
 
 - type: entity
