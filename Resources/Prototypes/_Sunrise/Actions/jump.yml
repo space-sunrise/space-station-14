@@ -15,3 +15,21 @@
     checkCanAccess: false
   - type: WorldTargetAction
     event: !type:JumpActionEvent
+
+- type: entity
+  parent: Jump
+  id: JumpMoth
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/resomi.rsi
+      state: bird_call
+  - type: LimitedCharges
+    maxCharges: 3
+  - type: AutoRecharge
+    rechargeDuration: 30
+  - type: WorldTargetAction
+    event: !type:JumpActionEvent

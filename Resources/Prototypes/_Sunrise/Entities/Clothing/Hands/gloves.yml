@@ -241,13 +241,13 @@
 - type: entity
   parent: ClothingHandsSmooth
   id: ClothingHandsGlovesCombatFingerless
-  name: mercenary fingerless gloves
+  name: combat fingerless gloves
   description: Tactical Gloves that may not protect you from finger burns, but will make you cooler.
   components:
   - type: Sprite
-    sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+    sprite: _Sunrise/Clothing/Hands/Gloves/combatfingerless.rsi
   - type: Clothing
-    sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+    sprite: _Sunrise/Clothing/Hands/Gloves/combatfingerless.rsi
   - type: Fiber
     fiberMaterial: fibers-insulative
     fiberColor: fibers-black

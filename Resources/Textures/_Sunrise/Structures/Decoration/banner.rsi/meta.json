@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "resprited by seraphimttt (Discord) | SUNRISE ",
+  "copyright": "resprited by seraphimttt (Discord) | SUNRISE, Made Banner1-5 by BORT and JustAdler for https://github.com/ss14Starlight/space-station-14 ",
   "size": {
     "x": 32,
     "y": 32
@@ -42,6 +42,24 @@
     },
     {
       "name": "banner_ussp"
+    },
+    {
+      "name": "banner0"
+    },
+    {
+      "name": "banner1"
+    },
+    {
+      "name": "banner2"
+    },
+    {
+      "name": "banner3"
+    },
+    {
+      "name": "banner4"
+    },
+    {
+      "name": "banner5"
     }
   ]
 }

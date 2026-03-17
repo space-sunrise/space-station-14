@@ -47,12 +47,12 @@
       - MobPirateT1SMGTimed
       - MobPirateT1FlintlockTimed
     rarePrototypes:
-      - MobPirateT1LMGSquadTimedSpawner
-      - MobPirateT1BreachSquadTimedSpawner
-      - MobPirateT1AssaultSquadTimedSpawner
-      - MobPirateT1HeavySquadTimedSpawner
-      - MobPirateT1InfiltratorSquadTimedSpawner
-      - MobPirateT1MonkeySquadTimedSpawner
+      - PirateSquadT1LMGTimed
+      - PirateSquadT1BreachTimed
+      - PirateSquadT1AssaultTimed
+      - PirateSquadT1HeavyTimed
+      - PirateSquadT1InfiltratorTimed
+      - PirateSquadT1MonkeyTimed
       - MobPirateT1MonkeyFireBombTimed
       - MobPirateT1MonkeyEDaggerTimed
       - MobPirateT1HunterTimed
@@ -127,6 +127,7 @@
   - type: Sprite
     layers:
     - state: red
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: RandomSpawner
@@ -200,20 +201,21 @@
 
 - type: entity
   name: pirate T1 LMG squad spawner (despawn)
-  id: MobPirateT1LMGSquadTimedSpawner
+  id: PirateSquadT1LMGTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
     - state: one
-    - sprite: Objects/Materials/Sheets/metal.rsi
-      state: steel
+    - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/light_chaingun/big.rsi
+      state: base
+    - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/light_chaingun/big.rsi
+      state: mag-0
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT1LMGSquadTimedTable
     # Spread squad members so they don't stack in one tile.
-    offset: 2.0
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
@@ -238,7 +240,7 @@
 
 - type: entity
   name: pirate T1 breach squad spawner (despawn)
-  id: MobPirateT1BreachSquadTimedSpawner
+  id: PirateSquadT1BreachTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -250,7 +252,6 @@
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT1BreachSquadTimedTable
-    offset: 2.2
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
@@ -264,7 +265,7 @@
       id: MobPirateT1ScrapRifleTimed
       prob: 1
     - !type:EntSelector
-      id: MobPirateT1SMGTimed
+      id: MobPirateT1PistolTimed
       prob: 1
     - !type:EntSelector
       id: MobPirateT1ScrapSMGTimed
@@ -275,7 +276,7 @@
 
 - type: entity
   name: pirate T1 assault squad spawner (despawn)
-  id: MobPirateT1AssaultSquadTimedSpawner
+  id: PirateSquadT1AssaultTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -287,7 +288,6 @@
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT1AssaultSquadTimedTable
-    offset: 2.2
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
@@ -315,7 +315,7 @@
 
 - type: entity
   name: pirate T1 heavy squad spawner (despawn)
-  id: MobPirateT1HeavySquadTimedSpawner
+  id: PirateSquadT1HeavyTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -327,7 +327,6 @@
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT1HeavySquadTimedTable
-    offset: 2.4
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
@@ -352,7 +351,7 @@
 
 - type: entity
   name: pirate T1 infiltrator squad spawner (despawn)
-  id: MobPirateT1InfiltratorSquadTimedSpawner
+  id: PirateSquadT1InfiltratorTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -364,7 +363,6 @@
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT1InfiltratorSquadTimedTable
-    offset: 2.2
     deleteSpawnerAfterSpawn: true
 
 - type: entity
@@ -383,7 +381,6 @@
     - MobPirateT1MonkeyFireBombTimed
     - MobPirateT1MonkeyEDaggerTimed
     deleteSpawnerAfterSpawn: true
-    offset: 0.8
 
 - type: entityTable
   id: PirateT1MonkeySquadTimedTable
@@ -400,7 +397,7 @@
 
 - type: entity
   name: pirate monkey squad spawner (despawn)
-  id: MobPirateT1MonkeySquadTimedSpawner
+  id: PirateSquadT1MonkeyTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -412,7 +409,6 @@
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT1MonkeySquadTimedTable
-    offset: 2.6
     deleteSpawnerAfterSpawn: true
 
 # region Random tier squads
@@ -439,7 +435,6 @@
     - MobPirateT1ScrapRifleTimed
     - MobPirateT1FlintlockTimed
     deleteSpawnerAfterSpawn: true
-    offset: 0.8
 
 - type: entityTable
   id: PirateT1RandomSquadTimedTable
@@ -463,7 +458,7 @@
 
 - type: entity
   name: pirate T1 random squad spawner (despawn)
-  id: MobPirateT1RandomSquadTimedSpawner
+  id: PirateSquadT1RandomTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -475,7 +470,6 @@
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT1RandomSquadTimedTable
-    offset: 2.4
     deleteSpawnerAfterSpawn: true
 
 - type: entity
@@ -504,7 +498,6 @@
     - MobPirateT2DoubleRevolverTimed
     - MobPirateT2MedicTimed
     deleteSpawnerAfterSpawn: true
-    offset: 0.8
 
 - type: entityTable
   id: PirateT2RandomSquadTimedTable
@@ -528,7 +521,7 @@
 
 - type: entity
   name: pirate T2 random squad spawner (despawn)
-  id: MobPirateT2RandomSquadTimedSpawner
+  id: PirateSquadT2RandomTimed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -540,7 +533,6 @@
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT2RandomSquadTimedTable
-    offset: 2.5
     deleteSpawnerAfterSpawn: true
 
 - type: entity
@@ -566,7 +558,6 @@
     - MobPirateT3SniperTimed
     - MobPirateT3MedicTimed
     deleteSpawnerAfterSpawn: true
-    offset: 0.8
 
 - type: entityTable
   id: PirateT3RandomSquadTimedTable
@@ -590,18 +581,18 @@
 
 - type: entity
   name: pirate T3 random squad spawner (despawn)
-  id: MobPirateT3RandomSquadTimedSpawner
+  id: PirateSquadT3RandomTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT3RandomSquadTimedTable
-    offset: 2.6
     deleteSpawnerAfterSpawn: true
 
 # region T2 squad
@@ -627,19 +618,20 @@
 
 - type: entity
   name: pirate T2 LMG squad spawner (despawn)
-  id: MobPirateT2LMGSquadTimedSpawner
+  id: PirateSquadT2LMGTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
-    - state: one
-    - sprite: Objects/Materials/Sheets/metal.rsi
-      state: steel
+    - state: two
+    - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon.rsi
+      state: base
+    - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon.rsi
+      state: mag-3
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT2LMGSquadTimedTable
-    offset: 2.2
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
@@ -647,7 +639,7 @@
   table: !type:AllSelector
     children:
     - !type:EntSelector
-      id: MobPirateT2ECutlassTimed
+      id: MobPirateT2CutlassTimed
       prob: 1
     - !type:EntSelector
       id: MobPirateT2ECutlassBolaTimed
@@ -664,19 +656,18 @@
 
 - type: entity
   name: pirate T2 breach squad spawner (despawn)
-  id: MobPirateT2BreachSquadTimedSpawner
+  id: PirateSquadT2BreachTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: two
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT2BreachSquadTimedTable
-    offset: 2.2
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
@@ -701,19 +692,18 @@
 
 - type: entity
   name: pirate T2 assault squad spawner (despawn)
-  id: MobPirateT2AssaultSquadTimedSpawner
+  id: PirateSquadT2AssaultTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: two
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT2AssaultSquadTimedTable
-    offset: 2.2
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
@@ -738,19 +728,18 @@
 
 - type: entity
   name: pirate T2 heavy squad spawner (despawn)
-  id: MobPirateT2HeavySquadTimedSpawner
+  id: PirateSquadT2HeavyTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: two
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT2HeavySquadTimedTable
-    offset: 2.4
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
@@ -761,7 +750,7 @@
       id: MobPirateT2RevolverCutlassTimed
       prob: 1
     - !type:EntSelector
-      id: MobPirateT2ECutlassStingerTimed
+      id: MobPirateT2CutlassTimed
       prob: 1
     - !type:EntSelector
       id: MobPirateT2DoubleRevolverTimed
@@ -775,19 +764,18 @@
 
 - type: entity
   name: pirate T2 infiltrator squad spawner (despawn)
-  id: MobPirateT2InfiltratorSquadTimedSpawner
+  id: PirateSquadT2InfiltratorTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: two
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT2InfiltratorSquadTimedTable
-    offset: 2.2
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
@@ -804,7 +792,7 @@
       id: MobPirateT2ShotgunGlassTimed
       prob: 1
     - !type:EntSelector
-      id: MobPirateT2RevolverCutlassTimed
+      id: MobPirateT2DoubleFlintlockTimed
       prob: 1
     - !type:EntSelector
       id: MobPirateT2ECutlassBolaTimed
@@ -812,19 +800,18 @@
 
 - type: entity
   name: pirate T2 control squad spawner (despawn)
-  id: MobPirateT2ControlSquadTimedSpawner
+  id: PirateSquadT2ControlTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: two
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT2ControlSquadTimedTable
-    offset: 2.3
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
@@ -849,19 +836,18 @@
 
 - type: entity
   name: pirate T2 anti crowd squad spawner (despawn)
-  id: MobPirateT2AntiCrowdSquadTimedSpawner
+  id: PirateSquadT2AntiCrowdTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: two
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT2AntiCrowdSquadTimedTable
-    offset: 2.3
     deleteSpawnerAfterSpawn: true
 
 # region T3 squad
@@ -887,19 +873,18 @@
 
 - type: entity
   name: pirate T3 LMG squad spawner (despawn)
-  id: MobPirateT3LMGSquadTimedSpawner
+  id: PirateSquadT3LMGTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
-    - state: one
-    - sprite: Objects/Materials/Sheets/metal.rsi
-      state: steel
+    - state: three
+    - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/l6.rsi
+      state: base
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT3LMGSquadTimedTable
-    offset: 2.2
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
@@ -924,19 +909,18 @@
 
 - type: entity
   name: pirate T3 breach squad spawner (despawn)
-  id: MobPirateT3BreachSquadTimedSpawner
+  id: PirateSquadT3BreachTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT3BreachSquadTimedTable
-    offset: 2.2
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
@@ -961,19 +945,18 @@
 
 - type: entity
   name: pirate T3 assault squad spawner (despawn)
-  id: MobPirateT3AssaultSquadTimedSpawner
+  id: PirateSquadT3AssaultTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT3AssaultSquadTimedTable
-    offset: 2.2
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
@@ -998,19 +981,18 @@
 
 - type: entity
   name: pirate T3 heavy squad spawner (despawn)
-  id: MobPirateT3HeavySquadTimedSpawner
+  id: PirateSquadT3HeavyTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT3HeavySquadTimedTable
-    offset: 2.4
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
@@ -1035,19 +1017,18 @@
 
 - type: entity
   name: pirate T3 infiltrator squad spawner (despawn)
-  id: MobPirateT3InfiltratorSquadTimedSpawner
+  id: PirateSquadT3InfiltratorTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT3InfiltratorSquadTimedTable
-    offset: 2.2
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
@@ -1072,19 +1053,18 @@
 
 - type: entity
   name: pirate T3 shield phalanx squad spawner (despawn)
-  id: MobPirateT3ShieldPhalanxTimedSpawner
+  id: PirateSquadT3ShieldPhalanxTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT3ShieldPhalanxTimedTable
-    offset: 2.3
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
@@ -1109,19 +1089,18 @@
 
 - type: entity
   name: pirate T3 suppressor squad spawner (despawn)
-  id: MobPirateT3SuppressorSquadTimedSpawner
+  id: PirateSquadT3SuppressorTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT3SuppressorSquadTimedTable
-    offset: 2.3
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
@@ -1146,19 +1125,18 @@
 
 - type: entity
   name: pirate T3 universal squad spawner (despawn)
-  id: MobPirateT3UniversalSquadTimedSpawner
+  id: PirateSquadT3UniversalTimed
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
     - state: red
-    - state: one
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: PirateT3UniversalSquadTimedTable
-    offset: 2.3
     deleteSpawnerAfterSpawn: true
 
 # region Timed-Start
@@ -1507,3 +1485,4 @@
   parent: [MobPirateTimedDespawn, MobPirateT3Boss]
   id: MobPirateT3BossTimed
 # region Timed END
+

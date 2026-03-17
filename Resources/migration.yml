@@ -987,8 +987,10 @@ ClothingOuterSuitAreopagite: null
 SuitStorageBlueshield: SuitStorageBlueShield
 GunSafeIonRifle: GunSafeSuperIonRifle
 GunSafeSMRTGun: GunSafeSuperweaponSmartGun
-
+ComfyBrownChair: ComfyChairBrown
 #2026-02-28
 CartridgeRifle: CartridgeRifleSP
 MagazinePistolHighCapacity: MagazinePistolHighCapacitySP
+StorageCanisterBase: StorageCanister
 # region Sunrise-End
+

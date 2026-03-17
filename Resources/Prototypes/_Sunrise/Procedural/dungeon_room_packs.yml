@@ -75,3 +75,9 @@
   size: 3,5
   rooms:
     - 0,0,3,5
+
+- type: dungeonRoomPack
+  id: SovietWarehouse50x50
+  size: 50,50
+  rooms:
+    - 0,0,50,50

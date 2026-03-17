@@ -185931,7 +185931,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -30.531166,15.787823
       parent: 2
-- proto: StorageCanisterBase
+- proto: StorageCanister
   entities:
   - uid: 29969
     components:

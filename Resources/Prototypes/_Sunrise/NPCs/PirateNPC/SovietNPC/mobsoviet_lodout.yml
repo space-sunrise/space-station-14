@@ -1,0 +1,206 @@
+# Tier 1 # Partisan and Soldier
+- type: startingGear
+  id: MobSovietGearMeleeT1Alt
+  equipment:
+    gloves: ClothingHandsFinkaSovietFlak
+    pocket1: SpaceCash500
+    pocket2: BrokenBottle
+    shoes: ClothingShoesBootsUSSPFilled
+
+- type: startingGear
+  id: MobSovietGearRangedT1Dp28
+  equipment:
+    gloves: ClothingHandsSovietFlakDP28
+    back: ClothingBackpackDuffelMercenaryTier1MMG
+    belt: ClothingBeltBandolierT1MMGSoviet
+    shoes: ClothingShoesBootsUSSPFilled
+
+- type: startingGear
+  id: MobSovietGearRangedT1RPD
+  equipment:
+    gloves: ClothingHandsSovietFlakRPD
+    back: ClothingBackpackDuffelMercenaryTier1LMG
+    belt: ClothingBeltBandolierT1LMGSoviet
+    shoes: ClothingShoesBootsUSSPFilled
+
+- type: startingGear
+  id: MobSovietGearRangedT1
+  equipment:
+    gloves: ClothingHandsBlackPistolSovietFlak
+    back: ClothingBackpackDuffelMercenaryTier1Pistol
+    belt: ClothingBeltWebbingSovietTier1Pistol
+    shoes: ClothingShoesBootsUSSPFilled
+
+- type: startingGear
+  id: MobSovietGearRangedAltT1
+  equipment:
+    gloves: ClothingHandsMercMosinSovietNoOuter
+    back: ClothingBackpackDuffelMercenaryTier1Mosin
+    belt: ClothingBeltWebbingMercenaryTier1Mosin
+    shoes: ClothingShoesBootsUSSPFilled
+
+- type: startingGear
+  id: MobSovietGearRangedSMG
+  equipment:
+    gloves: ClothingHandsMp38SovietNoOuter
+    shoes: ClothingShoesBootsWork
+    pocket1: MagazinePistolSubMachineGunEmpty
+
+- type: startingGear
+  id: MobSovietGearRangedRifleMosin
+  equipment:
+    gloves: ClothingHandsMercMosinSovietNoOuter
+    shoes: ClothingShoesBootsWork
+    pocket1: SpeedLoaderHeavyRifleRFMJ
+
+- type: startingGear
+  id: MobSovietGearT1Medic
+  equipment:
+    gloves: ClothingHandsPPSHSovietFlak
+    back: ClothingBackpackDuffelMercenaryTier1Medic
+    belt: ClothingBeltMedSovietTier1Medic
+    pocket1: HandheldHealthAnalyzer
+    pocket2: MedkitAdvancedFilled
+    shoes: ClothingShoesBootsUSSPFilled
+
+- type: startingGear
+  id: MobSovietGearSKM24
+  equipment:
+    gloves: ClothingHandsSKM24BSovietFlak
+    pocket1: PouchAmmoFilledLightRifle
+    pocket2: MedkitFilled
+    belt: ClothingBeltWebbingSovietTier1SKM24
+    shoes: ClothingShoesBootsUSSPFilled
+
+- type: startingGear
+  id: MobSovietGearPPSH
+  equipment:
+    gloves: ClothingHandsPPSHSovietFlak
+    belt: ClothingBeltWebbingSovietTier1PPSHSL
+    pocket1: ChemistryBottleSaline
+    pocket2: MedkitFilled
+    shoes: ClothingShoesBootsUSSPFilled
+
+# Squad Leader`s
+- type: startingGear
+  id: MobSovietGearSKM24SL
+  equipment:
+    gloves: ClothingHandsSKM24BSovietFlak
+    pocket1: PouchAmmoFilledLightRifle
+    pocket2: MedkitCombatFilled
+    belt: ClothingBeltWebbingSovietTier1SKM24SL
+    shoes: ClothingShoesBootsUSSPFilled
+
+- type: startingGear
+  id: MobSovietGearPPSHSL
+  equipment:
+    gloves: ClothingHandsPPSHSovietFlak
+    belt: ClothingBeltWebbingSovietTier1PPSHSL
+    pocket1: ChemistryBottleSaline
+    pocket2: MedkitCombatFilled
+    shoes: ClothingShoesBootsUSSPFilled
+
+# Tier 2 # Marine (Blue beret)
+- type: startingGear
+  id: MobSovietGearMeleeT2
+  equipment:
+    gloves: ClothingHandsBottleSovietNoOuter
+    pocket1: SpaceCash1000
+    pocket2: DrinkVodkizineBottleFull
+    shoes: ClothingShoesBootsUSSPFilled
+
+- type: startingGear
+  id: MobSovietGearMeleeT2Alt
+  equipment:
+    gloves: ClothingHandsFinkaSovietNoOuter
+    pocket1: FinkaAdmeme
+    pocket2: SpaceCash1000
+    shoes: ClothingShoesBootsUSSPFilled
+
+- type: startingGear
+  id: MobSovietGearRangedRifleSKM24Green
+  equipment:
+    gloves: ClothingHandsSKM24GSovietNoOuter
+    shoes: ClothingShoesBootsUSSPFilled
+    pocket1: MagazineLightRifleEmpty
+    belt: TrashBagAmmo
+
+- type: startingGear
+  id: MobSovietGearRangedRifleSKM24W
+  equipment:
+    gloves: ClothingHandsSKM24BSovietWinter
+    shoes: ClothingShoesBootsUSSPFilled
+    pocket1: PouchAmmoFilledLightRifle
+    pocket2: MedkitCombatFilled
+
+- type: startingGear
+  id: MobSovietGearRangedT2
+  equipment:
+    gloves: ClothingHandsMercRevolversSovietHoSTrench
+    back: ClothingBackpackDuffelMercenaryTier2Revolver
+    belt: ClothingBeltWebbingSovietTier2Revolver
+    shoes: ClothingShoesBootsUSSPFilled
+
+- type: startingGear
+  id: MobSovietGearRangedAltT2
+  equipment:
+    gloves: ClothingHandsBlackShotgunSovietUSSPHeavy
+    back: ClothingBackpackDuffelMercenaryTier2Shotgun
+    belt: ClothingBeltWebbingMercenaryTier2Shotgun
+    shoes: ClothingShoesBootsUSSPFilled
+
+# Tier 3 # Marine-Hardsuit
+- type: startingGear
+  id: MobSovietGearT3Medic
+  equipment:
+    gloves: ClothingHandsPythonGSovietUSSPLight
+    back: ClothingBackpackDuffelMercenaryTier3Medic
+    belt: ClothingBeltMedSovietTier3Pistol
+    shoes: ClothingShoesBootsUSSPFilled
+    pocket1: HandheldHealthAnalyzer
+    pocket2: StimkitFilled
+
+- type: startingGear
+  id: MobSovietGearT2Raider
+  equipment:
+    gloves: ClothingHandsPPSHSovietNoOuter
+    belt: ClothingBeltBandolierT2PPSH
+    shoes: ClothingShoesBootsUSSPFilled
+    pocket1: DoubleEmergencyOxygenTankFilled
+    pocket2: ChemistryBottleSaline
+
+- type: startingGear
+  id: MobSovietGearRangedT3Alt
+  equipment:
+    gloves: ClothingHandsSKM24GSovietUSSPLight
+    back: ClothingBackpackDuffelMercenaryTier3Assault
+    belt: ClothingBeltMercenaryTier3Assault
+    shoes: ClothingShoesBootsUSSPFilled
+
+# Tier 4
+- type: startingGear
+  id: MobSovietGearTier4Captain
+  equipment:
+    gloves: ClothingHandsDragunovSovietUSSPHeavy
+    back: ClothingBackpackDuffelMercenaryTier4Captain
+    shoes: ClothingShoesBootsUSSPFilled
+
+- type: startingGear
+  id: MobSovietGearT2Mech
+  equipment:
+    gloves: ClothingHandsMechMinotaur
+    pocket1: GygaxTargetingElectronics
+    pocket2: GygaxPeripheralsElectronics
+    shoes: ClothingBackOreCrateTier2Gygax
+    back: GygaxCentralElectronics
+    belt: MechPaintGygaxMolot
+
+- type: startingGear
+  id: MobSovietGearT3Mech
+  equipment:
+    gloves: ClothingHandsMechMaxim
+    pocket1: DurandCentralElectronics
+    pocket2: DurandPeripheralsElectronics
+    shoes: ClothingBackOreCrateTier3Mech
+    back: DurandTargetingElectronics
+    belt: MechPaintDurandDollhouse

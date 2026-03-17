@@ -132,7 +132,7 @@
   - type: NpcFactionMember
     factions:
     - Pirate
-  - type: PirateVeteranFollower
+  - type: NpcVeteranFollower
   - type: CollectiveMind
     minds:
     - Pirate
@@ -140,8 +140,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      110: Critical
-      120: Dead
+      100: Critical
+      130: Dead
   - type: Destructible
     thresholds:
     - trigger:
@@ -258,13 +258,13 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Critical
+      75: Critical
       100: Dead
   - type: PassiveDamage
     allowedStates:
     - Alive
     - Critical
-    damageCap: 100
+    damageCap: 95
   - type: Stamina
     baseCritThreshold: 100
   - type: Butcherable
@@ -518,6 +518,7 @@
   - type: Sprite
     layers:
     - state: red
+    - state: three
     - sprite: Objects/Misc/Handy_Flags/pirate_handy_flag.rsi
       state: icon
   - type: RandomSpawner
@@ -609,11 +610,13 @@
       state: equipped-HELMET
     - sprite: Objects/Weapons/Guns/Shotguns/flaregun.rsi
       state: inhand-left
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
   - type: BasicEntityAmmoProvider
     proto: ShellShotgunImprovised
   - type: Gun
     showExamineText: false
-    fireRate: 0.4
+    fireRate: 0.3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -896,7 +899,7 @@
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
-    - PirateVeteranLeader
+    - NpcVeteranLeader
 
 - type: entity
   name: Scrap miner
@@ -927,7 +930,7 @@
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
-    - PirateVeteranLeader
+    - NpcVeteranLeader
 
 - type: entity
   name: Scrap miner
@@ -985,7 +988,7 @@
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
-    - PirateVeteranLeader
+    - NpcVeteranLeader
   - type: Loadout
     prototypes:
     - MobPirateT1HunterGear
@@ -1055,7 +1058,7 @@
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
-    - PirateVeteranLeader
+    - NpcVeteranLeader
   - type: Loadout
     prototypes:
     - MobPirateT1HunterSmashGear
@@ -1183,7 +1186,7 @@
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
-    - PirateVeteranLeader
+    - NpcVeteranLeader
 
 - type: entity
   name: powder bird
@@ -1322,7 +1325,7 @@
         Airloss: -5
     whitelist:
       components:
-      - PirateVeteranFollower
+      - NpcVeteranFollower
 
 - type: entity
   name: pirate medic
@@ -1381,7 +1384,7 @@
         Airloss: -5
     whitelist:
       components:
-      - PirateVeteranFollower
+      - NpcVeteranFollower
 
 - type: entity
   name: Privateer combat medic
@@ -1422,7 +1425,7 @@
     proto: CartridgePistolSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 3
+    autoRechargePauseTime: 5
     autoRechargeRate: 999
   - type: Battery
     maxCharge: 10
@@ -1447,7 +1450,7 @@
         Airloss: -10
     whitelist:
       components:
-      - PirateVeteranFollower
+      - NpcVeteranFollower
 
 - type: entity
   name: Scrap rifleman
@@ -1490,7 +1493,7 @@
 
 - type: entity
   name: Scrap raider
-  description: Loves guns. Has built as many weapons with his own hands as he�s blown up. Armed with an improvised SMG.
+  description: Loves guns. Has built as many weapons with his own hands as heï¿½s blown up. Armed with an improvised SMG.
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
   id: MobPirateT1ScrapSMG
   components:
@@ -1533,7 +1536,7 @@
   name: Scrap Automatic
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
   id: MobPirateT1ScrapRifle
-  description: In a team where everyone is armed with whatever they could grab, he picked up a rifle � at least it used to be one�
+  description: In a team where everyone is armed with whatever they could grab, he picked up a rifle ï¿½ at least it used to be oneï¿½
   components:
   - type: Loadout
     prototypes:
@@ -1556,7 +1559,7 @@
     proto: CartridgeLightRifleImprovised
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 3
+    autoRechargePauseTime: 5
     autoRechargeRate: 99
   - type: Battery
     maxCharge: 30
@@ -1582,7 +1585,7 @@
   name: Scrap raider
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
   id: MobPirateT1SMG
-  description: In a team where everyone is armed with whatever they could grab, he picked up a rifle � at least it used to be one�
+  description: In a team where everyone is armed with whatever they could grab, he picked up a rifle ï¿½ at least it used to be oneï¿½
   components:
   - type: Tag
     tags:
@@ -1590,7 +1593,7 @@
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
-    - PirateVeteranLeader
+    - NpcVeteranLeader
   - type: Loadout
     prototypes:
     - MobPirateT1SMGGear
@@ -1616,7 +1619,7 @@
     proto: CartridgePistolSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 2
+    autoRechargePauseTime: 5
     autoRechargeRate: 99
   - type: Battery
     maxCharge: 30
@@ -1659,7 +1662,7 @@
     proto: CartridgeLightRifleSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 3
+    autoRechargePauseTime: 5
     autoRechargeRate: 99
   - type: Battery
     maxCharge: 20
@@ -1686,7 +1689,7 @@
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
-    - PirateVeteranLeader
+    - NpcVeteranLeader
 
 - type: entity
   name: Scrap veteran gunner
@@ -1700,7 +1703,7 @@
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
-    - PirateVeteranLeader
+    - NpcVeteranLeader
   - type: Loadout
     prototypes:
     - MobPirateT1RifleGear
@@ -1878,7 +1881,7 @@
     proto: CartridgeLightRifleImprovised
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 2
+    autoRechargePauseTime: 5
     autoRechargeRate: 99
   - type: Battery
     maxCharge: 15
@@ -1906,7 +1909,7 @@
   id: MobPirateT2BorgAssault
   components:
   - type: BatteryAmmoProvider
-    proto: CartridgeRifleFMJ
+    proto: CartridgeRifleSP
   - type: Battery
     maxCharge: 20
     startingCharge: 20
@@ -2128,7 +2131,7 @@
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
-    - PirateVeteranLeader
+    - NpcVeteranLeader
 
 - type: entity
   name: pirate boarder
@@ -2187,7 +2190,7 @@
 
 - type: entity
   name: pirate breacher
-  description: A boarding team member armed with a sledgehammer, capable of breaking through an airlock � or someone�s skull.
+  description: A boarding team member armed with a sledgehammer, capable of breaking through an airlock ï¿½ or someoneï¿½s skull.
   parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2Melee]
   id: MobPirateT2Sledgehammer
   components:
@@ -2224,10 +2227,10 @@
     soundGunshot: /Audio/Weapons/bolathrow.ogg
   - type: SlowOnDamage
     speedModifierThresholds:
-      40: 1.05
-      80: 1.15
-      110: 1.25
-      130: 1.3
+      25: 1.05
+      50: 1.15
+      75: 1.25
+      80: 1.3
 
 - type: entity
   name: pirate breacher
@@ -2310,12 +2313,12 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: WeldingFuel
-        Quantity: 300
+        Quantity: 500
   - type: MobThresholds
     thresholds:
       0: Alive
-      350: Critical
-      375: Dead
+      340: Critical
+      350: Dead
   - type: Destructible
     thresholds:
     - trigger:
@@ -2363,14 +2366,13 @@
   - type: MeleeWeapon
     hidden: true
     autoAttack: true
-    attackRate: 4
+    attackRate: 3
     damage:
       types:
         Structural: 40
-        Piercing: 5
-        Slash: 5
-        Blunt: 5
-    bluntStaminaDamageFactor: 0.5
+        Piercing: 13
+        Blunt: 1
+    bluntStaminaDamageFactor: 5
     soundHit:
       path: "/Audio/Items/drill_use.ogg"
   - type: Reflect
@@ -2525,7 +2527,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      240: Critical
+      230: Critical
       250: Dead
   - type: PassiveDamage
     allowedStates:
@@ -2541,21 +2543,19 @@
         volume: -8
   - type: SlowOnDamage
     speedModifierThresholds:
-      50: 1.05
-      75: 1.1
-      100: 1.2
-      125: 1.3
-      150: 1.4
-      175: 1.5
-      200: 1.6
-      215: 1.8
-      225: 2
+      50: 1.1
+      75: 1.2
+      100: 1.3
+      125: 1.4
+      150: 1.5
+      175: 1.75
+      200: 2
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
-    baseSprintSpeed: 1.75
+    baseSprintSpeed: 1.5
     baseAcceleration: 10
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.1
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -2616,10 +2616,17 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+    - NpcVeteranLeader
 
 - type: entity
   name: Shrap'nel Thunder
-  description: Turns everything into cheese with holes. Claims that �shrapnel is just another form of art.
+  description: Turns everything into cheese with holes. Claims that ï¿½shrapnel is just another form of art.
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2Ranged]
   id: MobPirateT2Grapeshot
   components:
@@ -2716,7 +2723,7 @@
     proto: CartridgeMagnumImprovised
     fireCost: 10
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 2
+    autoRechargePauseTime: 3
     autoRechargeRate: 999
   - type: Battery
     maxCharge: 20
@@ -2761,14 +2768,14 @@
     proto: CartridgeMagnumAP
     fireCost: 10
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 6
+    autoRechargePauseTime: 10
     autoRechargeRate: 999
   - type: Battery
     maxCharge: 20
     startingCharge: 20
   - type: Gun
     showExamineText: false
-    fireRate: 12
+    fireRate: 10
     minAngle: 1
     maxAngle: 8
     selectedMode: SemiAuto
@@ -2978,7 +2985,7 @@
     proto: CannonBallMini
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 3
+    autoRechargePauseTime: 5
     autoRechargeRate: 999
   - type: Battery
     maxCharge: 15
@@ -3250,7 +3257,7 @@
     proto: CartridgeHeavyRifleRFMJ
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 8
+    autoRechargePauseTime: 9
     autoRechargeRate: 999
   - type: Battery
     maxCharge: 47
@@ -3275,7 +3282,7 @@
 
 - type: entity
   name: Scrapshade
-  description: Boo! Scared? Don�t worry, I won�t hurt you.
+  description: Boo! Scared? Donï¿½t worry, I wonï¿½t hurt you.
   parent: MobPirateT3DMR
   id: MobPirateT3Infiltrator
   components:
@@ -3336,7 +3343,7 @@
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
-    - PirateVeteranLeader
+    - NpcVeteranLeader
 
 - type: entity
   name: Privateer rifleman
@@ -3363,7 +3370,7 @@
     proto: CartridgeLightRifleFMJ
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 3
+    autoRechargePauseTime: 5
     autoRechargeRate: 99
   - type: Battery
     maxCharge: 30
@@ -3422,7 +3429,7 @@
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
-    - PirateVeteranLeader
+    - NpcVeteranLeader
 
 - type: entity
   name: Privateer machinegunner
@@ -3436,7 +3443,7 @@
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
-    - PirateVeteranLeader
+    - NpcVeteranLeader
   - type: Loadout
     prototypes:
     - MobPirateT3L6Gear
@@ -3456,7 +3463,7 @@
     proto: CartridgeRifleSP
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 2
+    autoRechargePauseTime: 5
     autoRechargeRate: 999
   - type: Battery
     maxCharge: 50
@@ -3633,7 +3640,7 @@
     proto: RedLightLaser
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 2
+    autoRechargePauseTime: 5
     autoRechargeRate: 999
   - type: Battery
     maxCharge: 20
@@ -3699,7 +3706,7 @@
 
 - type: entity
   name: Privateer grenadier
-  description: Covered in fireworks and explosives. Hasn�t heard of safety regulations or just ignores them loudly.
+  description: Covered in fireworks and explosives. Hasnï¿½t heard of safety regulations or just ignores them loudly.
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3Ranged]
   id: MobPirateT3Grenadier
   components:
@@ -3782,7 +3789,7 @@
 # region Tier 1-3 Boss
 - type: entity
   name: Captain Rustfist
-  description: An old salvage veteran, more metal than man. His fists creak, his armor�s held together by bolts and faith, and if he swings at you, it�s best to play dead and hope he buys it.
+  description: An old salvage veteran, more metal than man. His fists creak, his armorï¿½s held together by bolts and faith, and if he swings at you, itï¿½s best to play dead and hope he buys it.
   parent: [MobHostileBossBase, MobPirateBase, MobPirateSparkEffectBase]
   id: MobPirateT1Boss
   components:
@@ -3806,21 +3813,6 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MeatLaserImpact
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Radiation
-        damage: 15
-      behaviors:
-      - !type:PopupBehavior
-        popup: mouth-taste-metal
-        popupType: LargeCaution
-        targetOnly: true
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Radiation
-        damage: 40
-      behaviors:
-      - !type:VomitBehavior
   - type: Sprite
     scale: 1.18,1.08
     drawdepth: Mobs
@@ -3897,21 +3889,6 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MeatLaserImpact
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Radiation
-        damage: 15
-      behaviors:
-      - !type:PopupBehavior
-        popup: mouth-taste-metal
-        popupType: LargeCaution
-        targetOnly: true
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Radiation
-        damage: 40
-      behaviors:
-      - !type:VomitBehavior
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -3952,6 +3929,15 @@
   parent: [MobHostileBossBase, MobPirateBaseT3Ranged, MobPirateSparkEffectBase]
   id: MobPirateT3Boss
   components:
+  - type: NPCUseActionWhenTargetInRange
+    delay: 2
+    actions:
+    - actionId: ActionHellSpawnSpiral
+      minRange: 6
+      maxRange: 0
+    - actionId: ActionActivateBorgLaughImplant
+      minRange: 1
+      maxRange: 0
   - type: Loadout
     prototypes:
     - MobPirateT3MechGear
@@ -3982,7 +3968,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: WeldingFuel
-        Quantity: 300
+        Quantity: 500
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -4005,21 +3991,6 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MeatLaserImpact
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Radiation
-        damage: 15
-      behaviors:
-      - !type:PopupBehavior
-        popup: mouth-taste-metal
-        popupType: LargeCaution
-        targetOnly: true
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Radiation
-        damage: 40
-      behaviors:
-      - !type:VomitBehavior
   - type: PassiveDamage
     allowedStates:
     - Alive
@@ -4089,8 +4060,6 @@
   - type: HellSpawnSpiral
   - type: AutoImplant
     implants:
-    - SmokeScreenImplant
-    - ScramImplant
     - CreepyLaughImplant
   - type: GhostRole
     prob: 0.35
