@@ -55,6 +55,6 @@ public sealed class InfiltrationSuitSystem : EntitySystem
         if (!_tag.HasTag(suit.Value, InfiltrationSuitTag))
             return;
 
-        _toggle.TryDeactivate(suit.Value, uid);
+        _toggle.TryDeactivate(suit.Value, uid, predicted: false);
     }
 }
