@@ -1,6 +1,9 @@
 using Content.Server.StationRecords.Systems;
+using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
+using Content.Shared.Cloning.Events;
 using Content.Shared.GameTicking;
+using Content.Shared.PDA;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
@@ -25,6 +28,8 @@ public sealed class AlternativeJobTitleSystem : EntitySystem
         SubscribeLocalEvent<AfterGeneralRecordCreatedEvent>(OnAfterGeneralRecordCreated);
         // Обновляем ID-карту после спавна
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
+        // Копируем название должности при клонировании
+        SubscribeLocalEvent<PdaComponent, CloningItemEvent>(OnClonePda);
     }
 
     /// <summary>
@@ -72,5 +77,19 @@ public sealed class AlternativeJobTitleSystem : EntitySystem
             return;
 
         _card.TryChangeJobTitle(idCard, title);
+    }
+
+    private void OnClonePda(Entity<PdaComponent> ent, ref CloningItemEvent args)
+    {
+        if (ent.Comp.ContainedId is not { } originalCardUid)
+            return;
+
+        if (!TryComp<IdCardComponent>(originalCardUid, out var originalCard))
+            return;
+
+        if (!_card.TryGetIdCard(args.CloneUid, out var cloneCard))
+            return;
+
+        _card.TryChangeJobTitle(cloneCard, originalCard.LocalizedJobTitle);
     }
 }
