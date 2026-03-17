@@ -298,7 +298,6 @@
   components:
     - type: NpcFactionMember
       factions:
-      - Syndicate
       - Pirate
     - type: PirateIcon
     - type: GhostRole
@@ -355,7 +354,6 @@
   components:
     - type: NpcFactionMember
       factions:
-      - Syndicate
       - Pirate
     - type: PirateIcon
     - type: GhostRole
@@ -387,7 +385,6 @@
     nameSegments: [NamesDeathCommando]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
   - type: PirateIcon
 
@@ -402,7 +399,6 @@
     roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
 
 - type: entity
@@ -416,7 +412,6 @@
     roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
 
 - type: entity
@@ -430,7 +425,6 @@
     roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
 
 - type: entity
@@ -444,7 +438,6 @@
     roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
 
 - type: entity
@@ -458,7 +451,6 @@
     roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
 
 - type: entity
@@ -472,7 +464,6 @@
     roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
 
 - type: entity
@@ -486,7 +477,6 @@
     roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
 
 - type: entity
@@ -500,7 +490,6 @@
     roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
 
 - type: entity
@@ -514,7 +503,6 @@
     roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
 
 - type: entity
@@ -528,5 +516,4 @@
     roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate

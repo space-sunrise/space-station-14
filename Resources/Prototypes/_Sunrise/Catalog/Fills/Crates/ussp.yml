@@ -149,7 +149,7 @@
     maxItemSize: Huge
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:AllSelector
+      storagebase: !type:AllSelector
         children:
         - id: WrappedMosin
           amount: 4
@@ -273,3 +273,29 @@
     - WrappedWeapon
 
 
+
+- type: entity
+  name: USSP crate spawner
+  id: SpawnerCrateUSSP
+  parent: MarkerBase
+  suffix: Spawner, USSP Crates
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_small.rsi
+      state: base
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: USSPCrates
+
+- type: entityTable
+  id: USSPCrates
+  table: !type:GroupSelector
+    children:
+    - id: CrateAmmunitionSmall
+    - id: CrateAmmunitionSmallLightRifle
+    - id: CrateAmmunitionSmallLightRifleAP
+    - id: CrateAmmunitionSmallLightRifleIncendiary
+    - id: CrateAmmunitionSmallDragunov
+    - id: CrateShelfMosin

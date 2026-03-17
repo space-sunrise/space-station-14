@@ -18,7 +18,8 @@
   - FleshHuman
   - Flesh
   - BloodCult
-
+  - Pirate
+  - Soviet
 - type: npcFaction
   id: NanoTrasen
   hostile:
@@ -38,7 +39,7 @@
   - Flesh
   - BloodCult
   - Pirate
-
+  - Soviet
 - type: npcFaction
   id: Mouse
   hostile:
@@ -62,6 +63,7 @@
   - Dragon
   # Sunrise Edit
   - Pirate
+  - Soviet
   - Carps
   - Flesh
   - Xenoborg
@@ -88,6 +90,7 @@
   - Flesh
   - BloodCult
   - Pirate
+  - Soviet
 
 - type: npcFaction
   id: SimpleNeutral
@@ -112,7 +115,7 @@
   - Flesh
   - BloodCult
   - Pirate
-
+  - Soviet
 - type: npcFaction
   id: Xeno
   hostile:
@@ -134,7 +137,7 @@
   - Flesh
   - BloodCult
   - Pirate
-
+  - Soviet
 - type: npcFaction
   id: Zombie
   hostile:
@@ -157,7 +160,7 @@
   - Flesh
   - BloodCult
   - Pirate
-
+  - Soviet
 - type: npcFaction
   id: Revolutionary
   hostile:
@@ -175,7 +178,7 @@
   - Flesh
   - BloodCult
   - Pirate
-
+  - Soviet
 - type: npcFaction
   id: AllHostile
   hostile:
@@ -200,7 +203,7 @@
   - Flesh
   - BloodCult
   - Pirate
-
+  - Soviet
 - type: npcFaction
   id: Wizard
   hostile:
@@ -226,7 +229,7 @@
   - Xeno
   - BloodCult
   - Pirate
-  - Dragon
+  - Soviet
 
 - type: npcFaction
   id: Xenoborg
@@ -247,9 +250,12 @@
   # Sunrise Edit
   - Thief
   - Carps
+  - Dragon
   - Vampire
   - FleshHuman
   - Flesh
   - Xeno
   - BloodCult
   - Pirate
+  - Soviet
+

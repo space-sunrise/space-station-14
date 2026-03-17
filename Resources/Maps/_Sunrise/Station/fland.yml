@@ -199246,7 +199246,7 @@ entities:
     - type: Transform
       pos: 15.5,-13.5
       parent: 2
-- proto: VendingMachineMayson
+- proto: VendingMachineDiscount
   entities:
   - uid: 30401
     components:

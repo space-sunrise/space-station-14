@@ -193,6 +193,7 @@
   id: MobHostileBossBase
   abstract: true
   parent:
+  - MobDungeonAtmos
   - MobEnhancedMovement
   - MobStaminaBoss
   - MobMovementSpeedModifierBoss
@@ -208,7 +209,7 @@
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
-    - PirateBoss
+    - NpcBoss
 #endregion
 
 #region Inventories
@@ -309,6 +310,7 @@
   - MobHumanoidHostileAIComplex
   id: MobHumanoidHostileBase
   components:
+  - type: Climbing
   - type: NPCRetaliation
     attackMemoryLength: 10
   - type: MobMover
@@ -422,3 +424,4 @@
     deleteOrgans: true
     gib: false
     useArgumentEntity: true
+

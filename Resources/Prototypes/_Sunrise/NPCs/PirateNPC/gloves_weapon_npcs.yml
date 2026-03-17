@@ -167,7 +167,7 @@
         state: inhand-left
 
 - type: entity
-  parent: [ClothingHandsBlackSMG, PirateArmorPirateHardsuit]
+  parent: [ClothingHandsBlackSMG, PirateArmorEVAScrappers]
   id: ClothingHandsBlackPirateCannon
   suffix: pirate cannon
   categories: [ HideSpawnMenu ]
@@ -194,7 +194,7 @@
         state: wielded-inhand-left
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsBombadaPirateT1
   suffix: bombada
   categories: [ HideSpawnMenu ]
@@ -239,7 +239,7 @@
         state: inhand-right
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsLCD
   suffix: Chain gun
   categories: [ HideSpawnMenu ]
@@ -251,7 +251,7 @@
         state: wielded-inhand-right
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPrivateerArmored]
+  parent: ClothingHandsNoGloves
   id: ClothingHandsRPD
   suffix: RPD
   categories: [ HideSpawnMenu ]
@@ -299,7 +299,7 @@
         state: wielded-inhand-right
 
 - type: entity
-  parent: [ClothingHandsBlackSMG, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsBlackSMG, PirateArmorEVAScrappers]
   id: ClothingHandsBlackPistol
   suffix: pistol
   categories: [ HideSpawnMenu ]
@@ -307,14 +307,11 @@
   - type: Clothing
     clothingVisuals:
       gloves:
-      - sprite: Clothing/Hands/Gloves/Color/color.rsi
-        state: equipped-HAND
-        color: "#535353"
       - sprite: Objects/Weapons/Guns/Pistols/viper.rsi
         state: inhand-left
 
 - type: entity
-  parent: [ClothingHandsBlackSMG, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsBlackSMG, PirateArmorEVAScrappers]
   id: ClothingHandsMercFlintlock
   suffix: flintlock
   categories: [ HideSpawnMenu ]
@@ -420,7 +417,7 @@
         Structural: 20
 
 - type: entity
-  parent: [ClothingHandsBlackSMG, ClothingHandsSlashArcMeleeBase, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsBlackSMG, ClothingHandsSlashArcMeleeBase, PirateArmorEVAScrappers]
   id: ClothingHandsMercMosin
   suffix: mosin
   categories: [ HideSpawnMenu ]
@@ -428,6 +425,8 @@
   - type: Clothing
     clothingVisuals:
       gloves:
+      - sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+        state: equipped-HAND
       - sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
         state: wielded-inhand-right
   - type: MeleeWeapon
@@ -469,7 +468,7 @@
         state: inhand-left
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateHardsuit]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingCutlassRevolver
   suffix: cutlass, revolver
   categories: [ HideSpawnMenu ]
@@ -515,7 +514,7 @@
         shader: unshaded
 
 - type: entity
-  parent: [ClothingHandsEnergyMeleeBase, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsEnergyMeleeBase, PirateArmorEVAScrappers]
   id: ClothingHandsEPickaxe
   suffix: energy cutlass
   categories: [ HideSpawnMenu ]
@@ -533,7 +532,7 @@
     reflectProb: 0.25
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsSMGForged
   suffix: Forged SMG
   categories: [ HideSpawnMenu ]
@@ -569,7 +568,7 @@
         state: wielded-inhand-right
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsSKM24
   suffix: skm24
   categories: [ HideSpawnMenu ]
@@ -605,7 +604,19 @@
         state: wielded-inhand-right
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorPrivateer]
+  id: ClothingHandsSKM24G
+  suffix: skm24
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Green/tiny.rsi
+        state: wielded-inhand-right
+
+- type: entity
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsMp38
   suffix: mp38
   categories: [ HideSpawnMenu ]
@@ -619,6 +630,18 @@
 - type: entity
   parent: [ClothingHandsNoGloves, PirateArmorPrivateer]
   id: ClothingHandsPPSH
+  suffix: ppsh
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
+        state: wielded-inhand-right
+
+- type: entity
+  parent: ClothingHandsNoGloves
+  id: ClothingHandsPPSHSoviet
   suffix: ppsh
   categories: [ HideSpawnMenu ]
   components:
@@ -653,9 +676,9 @@
         state: wielded-inhand-right
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPrivateerArmored]
+  parent: ClothingHandsNoGloves
   id: ClothingHandsDp28
-  suffix: skm28
+  suffix: Dp28
   categories: [ HideSpawnMenu ]
   components:
   - type: Clothing
@@ -665,7 +688,7 @@
         state: wielded-inhand-right
 
 - type: entity
-  parent: [ClothingHandsSlashPunchMeleeBase, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsSlashPunchMeleeBase, PirateArmorEVAScrappers]
   id: ClothingHandsMercCombatKnife
   suffix: knife
   categories: [ HideSpawnMenu ]
@@ -835,7 +858,7 @@
       collection: MetalThud
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateHardsuit]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingWeaponGauntletDrill
   suffix: drill
   categories: [ HideSpawnMenu ]
@@ -918,7 +941,7 @@
         state: inhand-left
 
 - type: entity
-  parent: [ClothingHandsBlackSMG, PirateArmorPirateEva]
+  parent: [ClothingHandsBlackSMG, PirateArmorEVAScrappers]
   id: ClothingHandsWeaponPka
   suffix: pka
   categories: [ HideSpawnMenu ]
@@ -928,6 +951,33 @@
       gloves:
       - sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
         state: wielded-inhand-left
+
+- type: entity
+  parent: [ClothingHandsNoGloves, PirateArmorMechArmorMediumSyndi]
+  id: ClothingHandsMechMinotaur
+  suffix: Mech Minotaur
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha_wield.rsi
+        state: mech-wield-2
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 14
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 35
+        Structural: 150
+    bluntStaminaDamageFactor: 1.5
+    soundHit:
+      collection: PunchHard
+  - type: FireProtection
+    reduction: 1
 
 - type: entity
   parent: [ClothingHandsNoGloves, PirateArmorMechArmorMediumSyndi]
@@ -954,7 +1004,232 @@
     soundHit:
       collection: PunchHard
   - type: FireProtection
-    reduction: 0.99
+    reduction: 1
+
+- type: entity
+  parent: ClothingHandsNoGloves
+  id: ClothingHandsBottle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+        state: equipped-HAND
+      - sprite: _Sunrise/Objects/Misc/broken_bottle.rsi
+        state: inhand-left
+  - type: Reflect
+    reflectProb: 0.01
+  - type: MeleeWeapon
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 5
+        Structural: 15
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+
+- type: entity
+  parent: ClothingHandsNoGloves
+  id: ClothingHandsFinka
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Reflect
+    reflectProb: 0.01
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 2
+    damage:
+      types:
+        Slash: 9
+        Structural: 15
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Sunrise/Objects/Weapons/Melee/finka.rsi
+        state: inhand-left
+
+- type: entity
+  parent: [ ClothingHandsBlackSMG, PirateArmorUSSPHeavy ]
+  id: ClothingHandsBlackShotgunSoviet
+  suffix: shotgun
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
+        state: wielded-inhand-right
+
+# Soviet armor modifiers for NPC gloves
+- type: entity
+  abstract: true
+  id: SovietArmorNoArmor
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+
+- type: entity
+  abstract: true
+  id: SovietArmorFlak
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.55
+        Heat: 0.6
+        Radiation: 0.9
+
+- type: entity
+  abstract: true
+  id: SovietArmorHoSTrench
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.7
+        Caustic: 0.75
+
+- type: entity
+  abstract: true
+  id: SovietArmorUSSPLight
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.5
+        Heat: 0.65
+        Caustic: 0.7
+
+- type: entity
+  abstract: true
+  id: SovietArmorUSSPHeavy
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        Heat: 0.4
+        Radiation: 0.4
+        Caustic: 0.4
+
+- type: entity
+  parent: [ClothingHandsDp28, PirateArmorPrivateerArmored]
+  id: ClothingHandsPirateDP28
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsRPD, PirateArmorPrivateerArmored]
+  id: ClothingHandsPirateRPD
+  categories: [ HideSpawnMenu ]
+
+# Soviet-specific glove variants to avoid changing pirate loadouts
+- type: entity
+  parent: [ClothingHandsFinka, SovietArmorFlak]
+  id: ClothingHandsFinkaSovietFlak
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsFinka, SovietArmorNoArmor]
+  id: ClothingHandsFinkaSovietNoOuter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsBlackPistol, SovietArmorFlak]
+  id: ClothingHandsBlackPistolSovietFlak
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsDp28, SovietArmorFlak]
+  id: ClothingHandsSovietFlakDP28
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsRPD, SovietArmorFlak]
+  id: ClothingHandsSovietFlakRPD
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsMercMosin, SovietArmorNoArmor]
+  id: ClothingHandsMercMosinSovietNoOuter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsMp38, SovietArmorNoArmor]
+  id: ClothingHandsMp38SovietNoOuter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsBottle, SovietArmorNoArmor]
+  id: ClothingHandsBottleSovietNoOuter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsSKM24G, SovietArmorNoArmor]
+  id: ClothingHandsSKM24GSovietNoOuter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsSKM24G, SovietArmorUSSPLight]
+  id: ClothingHandsSKM24GSovietUSSPLight
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsBlackPython, SovietArmorUSSPLight]
+  id: ClothingHandsPythonGSovietUSSPLight
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsSKM24B, SovietArmorFlak]
+  id: ClothingHandsSKM24BSovietFlak
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsSKM24B, SovietArmorNoArmor]
+  id: ClothingHandsSKM24BSovietWinter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsMercRevolvers, SovietArmorHoSTrench]
+  id: ClothingHandsMercRevolversSovietHoSTrench
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsBlackShotgunSoviet, SovietArmorUSSPHeavy]
+  id: ClothingHandsBlackShotgunSovietUSSPHeavy
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsPPSHSoviet, SovietArmorFlak]
+  id: ClothingHandsPPSHSovietFlak
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsPPSHSoviet, SovietArmorNoArmor]
+  id: ClothingHandsPPSHSovietNoOuter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsDragunov, SovietArmorUSSPHeavy]
+  id: ClothingHandsDragunovSovietUSSPHeavy
+  categories: [ HideSpawnMenu ]
+
 # This is some proper cursed stuff: due to layering of clothes sprites, gloves displayed under outer clothes
 # So in order to make wielded weapon visible, I'm using neck slot which is drawn on top of outer suit layer.
 
@@ -992,45 +1267,17 @@
 
 - type: entity
   abstract: true
-  id: PirateArmorPirateEvaArmored
+  id: PirateArmorEVAScrappers
   components:
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.55
-        Piercing: 0.6
-        Heat: 0.4
-        Radiation: 0.4
-        Caustic: 0.4
-
-- type: entity
-  abstract: true
-  id: PirateArmorPirateEva
-  components:
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.55
+        Blunt: 0.6
         Slash: 0.65
         Piercing: 0.7
-        Heat: 0.4
-        Radiation: 0.4
-        Caustic: 0.4
-
-- type: entity
-  abstract: true
-  id: PirateArmorPirateHardsuit
-  components:
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.5
-        Slash: 0.55
-        Piercing: 0.6
-        Heat: 0.3
-        Radiation: 0.4
-        Caustic: 0.4
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
 
 - type: entity
   abstract: true
@@ -1204,13 +1451,13 @@
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsBaseNPC, PirateArmorPirateEva]
+  parent: [ClothingHandsBaseNPC, PirateArmorEVAScrappers]
   id: ClothingHandsPirateArmorT1PirateEva
   suffix: pirate T1 EVA armor
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsPirateArmorT1PirateEvaArmored
   suffix: pirate T1 EVA armored armor
   categories: [ HideSpawnMenu ]
@@ -1244,7 +1491,7 @@
         pitch: 0.5
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsMonkeyKnuckleDustersPirateT1
   suffix: monkey knuckle dusters
   categories: [ HideSpawnMenu ]
@@ -1261,14 +1508,13 @@
     animation: WeaponArcFist
 
 - type: entity
-  parent: [ClothingHandsECutlass, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsECutlass, PirateArmorEVAScrappers]
   id: ClothingHandsECutlassPirateT1
   suffix: pirate T1
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsECutlass, PirateArmorPirateHardsuit]
+  parent: [ClothingHandsECutlass, PirateArmorEVAScrappers]
   id: ClothingHandsECutlassPirateT2
   suffix: pirate T2
   categories: [ HideSpawnMenu ]
-

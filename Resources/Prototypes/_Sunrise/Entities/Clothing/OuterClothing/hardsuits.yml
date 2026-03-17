@@ -503,6 +503,7 @@
     - type: Biocode
       factions:
       - Syndicate
+      - Pirate
       - Thief
     - type: ChameleonClothing
       slot: [outerClothing]

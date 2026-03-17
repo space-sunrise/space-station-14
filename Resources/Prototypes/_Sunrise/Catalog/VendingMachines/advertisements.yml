@@ -35,6 +35,12 @@
     count: 68
 
 - type: localizedDataset
+  id: SovietChatterNPC
+  values:
+    prefix: advertisement-soviethumanoid-
+    count: 66
+
+- type: localizedDataset
   id: PirateUplinkChatter
   values:
     prefix: advertisement-pirate-uplink-

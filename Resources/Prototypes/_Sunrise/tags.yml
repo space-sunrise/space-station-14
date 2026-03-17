@@ -71,10 +71,10 @@
   id: CarpRiftHealTarget
 
 - type: Tag
-  id: PirateBoss
+  id: NpcBoss
 
 - type: Tag
-  id: PirateVeteranLeader
+  id: NpcVeteranLeader
 
 - type: Tag
   id: Felinid
@@ -598,6 +598,27 @@
 
 - type: Tag
   id: Milira
+
+- type: Tag
+  id: SovietPinsExped
+
+- type: Tag
+  id: ShipWreck
+
+- type: Tag
+  id: SovietDungeon
+
+- type: Tag
+  id: SovietDungeonWEH
+
+- type: Tag
+  id: SovietDungeonRuine
+
+- type: Tag
+  id: SovietRuineDungeon
+
+- type: Tag
+  id: SovietWarehouse
 
 ### INTERACTION TAGS ###
 # Как одежда закрывает/не закрывает ту или иную область тела

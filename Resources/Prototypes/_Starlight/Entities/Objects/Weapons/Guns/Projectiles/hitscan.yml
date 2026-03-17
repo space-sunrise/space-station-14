@@ -641,14 +641,14 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
-    armorPenetration: 0.3
+    armorPenetration: 0.4
     damage:
       types:
         Piercing: 5
   - type: HitscanStaminaDamage
-    staminaDamage: 2
+    staminaDamage: 3
   - type: HitscanPierce
-    chance: 0.4
+    chance: 0.6
     deviation: 0.05
     pierceLevel: Metal
   - type: HitscanRicochet

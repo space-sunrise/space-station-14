@@ -49,6 +49,11 @@ public sealed partial class DungeonJob
             return;
 
         var startNodes = new List<Vector2i>(cableTiles);
+         // Sunrise-Start
+        // No power nodes found in this dungeon, nothing to connect.
+        if (startNodes.Count == 0)
+            return;
+         // Sunrise-End
         random.Shuffle(startNodes);
         var start = startNodes[0];
         var remaining = new HashSet<Vector2i>(startNodes);
@@ -66,6 +71,7 @@ public sealed partial class DungeonJob
             {
                 var newStart = remaining.First();
                 frontier.Enqueue(newStart, 0f);
+                costSoFar[newStart] = 0f; // Sunrise-Edit
                 lastDirection[newStart] = Direction.Invalid;
             }
 
