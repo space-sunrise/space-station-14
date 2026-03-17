@@ -1,10 +1,9 @@
-using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Inventory;
-using Content.Shared.Stealth;
+using Content.Shared.Item.ItemToggle;
 using Content.Shared.Tag;
 using Content.Shared.Weapons.Melee.Events;
-using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Prototypes;
 
@@ -12,8 +11,8 @@ namespace Content.Server._Sunrise;
 
 public sealed class InfiltrationSuitSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStealthSystem _stealth = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly ItemToggleSystem _toggle = default!;
     [Dependency] private readonly TagSystem _tag = default!;
 
     private static readonly ProtoId<TagPrototype> InfiltrationSuitTag = "InfiltrationSuit";
@@ -22,28 +21,25 @@ public sealed class InfiltrationSuitSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<DamageChangedEvent>(OnDamageTaken);
-        SubscribeLocalEvent<AttemptMeleeEvent>(OnMeleeAttack);
-        SubscribeLocalEvent<OnNonEmptyGunShotEvent>(OnShoot);
+        SubscribeLocalEvent<InventoryComponent, DamageChangedEvent>(OnDamageTaken);
+        SubscribeLocalEvent<InventoryComponent, MeleeAttackEvent>(OnMeleeAttack);
+        SubscribeLocalEvent<GunComponent, OnNonEmptyGunShotEvent>(OnShoot);
     }
 
-    private void OnDamageTaken(DamageChangedEvent args)
+    private void OnDamageTaken(Entity<InventoryComponent> ent, ref DamageChangedEvent args)
     {
         if (!args.DamageIncreased)
             return;
 
-        TryUncloakSuit(args.Damageable.Owner);
+        TryUncloakSuit(ent.Owner);
     }
 
-    private void OnMeleeAttack(ref AttemptMeleeEvent args)
+    private void OnMeleeAttack(Entity<InventoryComponent> ent, ref MeleeAttackEvent args)
     {
-        if (args.Cancelled)
-            return;
-
-        TryUncloakSuit(args.User);
+        TryUncloakSuit(ent.Owner);
     }
 
-    private void OnShoot(ref OnNonEmptyGunShotEvent args)
+    private void OnShoot(Entity<GunComponent> ent, ref OnNonEmptyGunShotEvent args)
     {
         TryUncloakSuit(args.User);
     }
@@ -59,7 +55,6 @@ public sealed class InfiltrationSuitSystem : EntitySystem
         if (!_tag.HasTag(suit.Value, InfiltrationSuitTag))
             return;
 
-        _stealth.SetEnabled(uid, false);
-        _stealth.SetEnabled(suit.Value, false);
+        _toggle.TryDeactivate(suit.Value, uid);
     }
 }
