@@ -48,17 +48,18 @@ public sealed class InfiltrationSuitSystem : EntitySystem
         TryUncloakSuit(args.User);
     }
 
-    private void TryUncloakSuit(EntityUid wearer)
+    private void TryUncloakSuit(EntityUid uid)
     {
-        if (!TryComp<InventoryComponent>(wearer, out var inventory))
+        if (!TryComp<InventoryComponent>(uid, out var inventory))
             return;
 
-        if (!_inventory.TryGetSlotEntity(wearer, "outerClothing", out var suit, inventory))
+        if (!_inventory.TryGetSlotEntity(uid, "outerClothing", out var suit, inventory))
             return;
 
         if (!_tag.HasTag(suit.Value, InfiltrationSuitTag))
             return;
 
+        _stealth.SetEnabled(uid, false);
         _stealth.SetEnabled(suit.Value, false);
     }
 }
