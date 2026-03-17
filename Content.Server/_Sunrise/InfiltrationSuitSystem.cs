@@ -27,7 +27,7 @@ public sealed class InfiltrationSuitSystem : EntitySystem
         SubscribeLocalEvent<OnNonEmptyGunShotEvent>(OnShoot);
     }
 
-    private void OnDamageTaken(ref DamageChangedEvent args)
+    private void OnDamageTaken(DamageChangedEvent args)
     {
         if (!args.DamageIncreased)
             return;
