@@ -3,6 +3,7 @@
   name: pirate T1 spawner
   id: MobPirateT1ExpeditionSpawner
   parent: MarkerBase
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -60,6 +61,7 @@
   name: pirate T2 spawner
   id: MobPirateT2ExpeditionSpawner
   parent: MarkerBase
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -108,6 +110,7 @@
   name: pirate T3 spawner
   id: MobPirateT3ExpeditionSpawner
   parent: MarkerBase
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -146,6 +149,7 @@
   name: pirate T1-T3 spawner
   id: MobPirateAllTiersExpeditionSpawner
   parent: MarkerBase
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:

@@ -1351,6 +1351,7 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Critical
+    - Dead
   - type: RemoveComponentsOnTrigger
     triggerOnce: true
     components:
@@ -1429,6 +1430,7 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Critical
+    - Dead
   - type: RemoveComponentsOnTrigger
     triggerOnce: true
     components:
@@ -1514,6 +1516,7 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Critical
+    - Dead
   - type: RemoveComponentsOnTrigger
     triggerOnce: true
     components:

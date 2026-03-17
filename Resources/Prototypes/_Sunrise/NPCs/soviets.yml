@@ -290,7 +290,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    useDelay: 15
+    useDelay: 30
     checkCanInteract: false
     icon:
       sprite: Objects/Weapons/Grenades/smoke.rsi
@@ -486,6 +486,11 @@
     whitelist:
       components:
       - NpcVeteranFollower
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
 
 - type: entity
   name: soldier
@@ -1247,7 +1252,7 @@
   - type: SpawnOnTrigger
     proto: MobSovietT2Rifle
   - type: GibOnTrigger
-    targetUser: true
+    targetUser: false
   - type: Destructible
     thresholds:
     - trigger:
@@ -1402,7 +1407,7 @@
   - type: SpawnOnTrigger
     proto: MobSovietT2Rifle
   - type: GibOnTrigger
-    targetUser: true
+    targetUser: false
   - type: Destructible
     thresholds:
     - trigger:
