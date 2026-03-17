@@ -40,7 +40,6 @@ tape_counter = 1
 
 for tape in tapes_data:
     tape_id = tape['id']
-    tape_name = tape['name']
 
     if tape_id == "BaseMusicTape":
         continue
@@ -52,7 +51,6 @@ for tape in tapes_data:
     listing = {
         'type': 'listing',
         'id': f'UplinkSunrise{tape_id}',
-        'name': tape_name,
         'productEntity': tape_id,
         'icon': icon_value,
         'cost': {'Suntick': 3},
