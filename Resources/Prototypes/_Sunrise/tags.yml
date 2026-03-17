@@ -18,6 +18,9 @@
   id: NoSpinOnThrow
 
 - type: Tag
+  id: InfiltrationSuit
+
+- type: Tag
   id: ShowWires
 
 # Uplinks

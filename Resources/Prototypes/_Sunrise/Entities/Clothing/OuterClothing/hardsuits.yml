@@ -611,6 +611,7 @@
     - Hardsuit
     - FullBodyOuter # SUNRISE EDIT
     - WhitelistChameleon
+    - InfiltrationSuit
   - type: StaticPrice
     price: 8500
 
