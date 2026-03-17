@@ -82,4 +82,6 @@ ent-ClothingHeadHatSwanOne = Alex
     .desc = Ha-ha-ha...We had a nice walk.
 ent-ClothingHeadHatChefBlackToque = chef's black toque
     .desc = Worn at the edges but proudly holds its shape, a symbol of skill and many hours spent in the kitchen.
-
+ent-ClothingHeadHatZombie = zombie mask
+    .desc = "Grrroul..."
+    equipped-name-prefix = zumbified { $baseName }

@@ -699,3 +699,26 @@
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatZombie
+  name: zombie mask
+  description: 'Grrroul...'
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/zombie.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/zombie.rsi
+  - type: IngestionBlocker
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+    - FullCovered # INTERACTIONS
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
+    - FacialHair

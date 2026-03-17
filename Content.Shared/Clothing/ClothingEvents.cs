@@ -1,6 +1,7 @@
 
 using Content.Shared.Actions;
 using Content.Shared.Clothing.Components;
+using Content.Shared.NameModifier.EntitySystems; // Sunrise - Edit
 
 namespace Content.Shared.Clothing;
 
@@ -57,6 +58,13 @@ public sealed class EquipmentVisualsUpdatedEvent : EntityEventArgs
         Slot = slot;
         RevealedLayers = revealedLayers;
     }
+
+    // Sunrise - Start
+    private void OnRefreshNameModifiers(Entity<ClothingComponent> entity, ref RefreshNameModifiersEvent args)
+    {
+        args.AddModifier("equipped-name-prefix");
+    }
+    // Sunrise - End
 }
 
 public sealed partial class ToggleMaskEvent : InstantActionEvent { }
