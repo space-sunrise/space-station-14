@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 271.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 03/18/2026 15:53:23
+  entityCount: 749
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   8: Space
   4: FloorAsteroidSand
@@ -529,6 +540,7 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
+    - type: ExplosionAirtightGrid
 - proto: AirlockAssemblySyndicateGlass
   entities:
   - uid: 20
@@ -536,7 +548,7 @@ entities:
     - type: Transform
       pos: 2.5,0.5
       parent: 1
-- proto: AirlockHatchSyndicate
+- proto: AirlockHatchSyndicateLocked
   entities:
   - uid: 399
     components:
@@ -546,8 +558,6 @@ entities:
       parent: 1
     - type: AccessReader
       accessListsOriginal: []
-      access:
-      - - SyndicateAgent
 - proto: AirlockSyndicate
   entities:
   - uid: 49
@@ -575,33 +585,21 @@ entities:
   - uid: 34
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
+      rot: -1.5707963267948966 rad
       pos: 11.5,-4.5
       parent: 1
-    - type: AccessReader
-      accessListsOriginal: []
-      access:
-      - - SyndicateAgent
   - uid: 35
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
+      rot: -1.5707963267948966 rad
       pos: 11.5,-5.5
       parent: 1
-    - type: AccessReader
-      accessListsOriginal: []
-      access:
-      - - SyndicateAgent
   - uid: 389
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
+      rot: -1.5707963267948966 rad
       pos: 1.5,2.5
       parent: 1
-    - type: AccessReader
-      accessListsOriginal: []
-      access:
-      - - SyndicateAgent
 - proto: AsteroidRock
   entities:
   - uid: 6
@@ -2457,8 +2455,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
 - proto: CrateMaterialBasicResource
@@ -2526,7 +2524,7 @@ entities:
       pos: 4.5,4.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -9677.64
+      secondsUntilStateChange: -9829.379
       state: Closing
 - proto: DebugAPCRecharging
   entities:
@@ -2802,6 +2800,13 @@ entities:
     - type: Transform
       pos: 14.415848,-5.1083965
       parent: 1
+- proto: JetpackBlackFilled
+  entities:
+  - uid: 745
+    components:
+    - type: Transform
+      pos: -2.8676815,-12.252484
+      parent: 1
 - proto: KitchenElectricGrill
   entities:
   - uid: 444
@@ -2843,8 +2848,6 @@ entities:
       parent: 1
     - type: AccessReader
       accessListsOriginal: []
-      access:
-      - - SyndicateAgent
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -2864,8 +2867,6 @@ entities:
       parent: 1
     - type: AccessReader
       accessListsOriginal: []
-      access:
-      - - SyndicateAgent
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -2885,8 +2886,6 @@ entities:
       parent: 1
     - type: AccessReader
       accessListsOriginal: []
-      access:
-      - - SyndicateAgent
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -2906,8 +2905,6 @@ entities:
       parent: 1
     - type: AccessReader
       accessListsOriginal: []
-      access:
-      - - SyndicateAgent
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -2963,6 +2960,18 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
+- proto: MobPirateT1Spawner
+  entities:
+  - uid: 748
+    components:
+    - type: Transform
+      pos: -3.5,-11.5
+      parent: 1
+  - uid: 749
+    components:
+    - type: Transform
+      pos: -0.5,-11.5
+      parent: 1
 - proto: NukeOpsMedkitBruteSpawner
   entities:
   - uid: 688
@@ -2994,32 +3003,24 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 11.5,0.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 513
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 10.5,-1.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 514
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 11.5,-1.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 515
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 12.5,0.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
 - proto: PlasmaWindowDirectional
   entities:
   - uid: 151
@@ -3028,30 +3029,22 @@ entities:
       rot: 3.141592653589793 rad
       pos: 13.5,-16.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 309
     components:
     - type: Transform
       pos: 6.5,-12.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 319
     components:
     - type: Transform
       pos: 4.5,-12.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 398
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 11.5,-16.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
 - proto: PlastitaniumWindow
   entities:
   - uid: 51
@@ -3704,6 +3697,11 @@ entities:
     - type: Transform
       pos: 3.5,3.5
       parent: 1
+  - uid: 747
+    components:
+    - type: Transform
+      pos: -1.5,-4.5
+      parent: 1
 - proto: SalvageSpawnerScrapCommon75
   entities:
   - uid: 716
@@ -4017,6 +4015,13 @@ entities:
     components:
     - type: Transform
       pos: 4.4210815,-10.391296
+      parent: 1
+- proto: ToolboxSyndicateFilled
+  entities:
+  - uid: 746
+    components:
+    - type: Transform
+      pos: -2.5193005,-12.111859
       parent: 1
 - proto: ToyFigurineCaptain
   entities:
@@ -4999,15 +5004,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,4.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 320
     components:
     - type: Transform
       pos: 5.5,-12.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
     - type: AccessReader
       accessListsOriginal: []
       access:
@@ -5019,8 +5020,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 12.5,-16.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
     - type: AccessReader
       accessListsOriginal: []
       access:
@@ -5033,36 +5032,26 @@ entities:
     - type: Transform
       pos: 11.5,0.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 516
     components:
     - type: Transform
       pos: 12.5,0.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 517
     components:
     - type: Transform
       pos: 10.5,0.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 518
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 10.5,-1.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 519
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 11.5,-1.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
 ...
