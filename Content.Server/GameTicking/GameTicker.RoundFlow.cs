@@ -633,6 +633,9 @@ namespace Content.Server.GameTicking
                 sound
             );
             RaiseNetworkEvent(roundEndMessageEvent);
+            // Sunrise added start - scoreboard music is separate from round-restart sounds.
+            RaiseRoundEndMusicEvent(roundDuration);
+            // Sunrise added end
             RaiseLocalEvent(roundEndMessageEvent);
             RaiseLocalEvent(new RoundEndedEvent(RoundId, roundDuration));
 
@@ -705,6 +708,11 @@ namespace Content.Server.GameTicking
             // Sunrise-End
             ResettingCleanup();
             IncrementRoundNumber();
+
+            // Sunrise added start - let systems send fresh lobby-only state after cleanup finishes.
+            RaiseRoundLobbyReadyEvent();
+            // Sunrise added end
+
             SendRoundStartingDiscordMessage();
 
             if (!LobbyEnabled)

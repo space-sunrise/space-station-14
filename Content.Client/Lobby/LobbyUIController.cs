@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Client._Sunrise.Lobby.UI;
 using Content.Client._Sunrise.Pets;
 using Content.Client.Guidebook;
 using Content.Shared._Sunrise.Pets;
@@ -167,14 +168,22 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         if (_stateManager.CurrentState is not LobbyState)
             return;
 
-        ReloadCharacterSetup();
+        RefreshLobbyPreview();
+
+        if (_characterSetup?.Visible == true)
+            ReloadCharacterSetup();
+
         RefreshPetPreview();
     }
 
     public void OnStateEntered(LobbyState state)
     {
         PreviewPanel?.SetLoaded(_preferencesManager.ServerDataLoaded);
-        ReloadCharacterSetup();
+        RefreshLobbyPreview();
+
+        if (_characterSetup?.Visible == true)
+            ReloadCharacterSetup();
+
         RefreshPetPreview();
     }
 
@@ -301,7 +310,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
         if (_stateManager.CurrentState is LobbyState lobbyGui)
         {
-            lobbyGui.SwitchState(LobbyGui.LobbyGuiState.Default);
+            lobbyGui.SwitchState(SunriseLobbyGui.LobbyGuiState.Default);
         }
     }
 

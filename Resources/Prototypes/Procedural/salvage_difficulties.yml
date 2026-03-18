@@ -1,12 +1,55 @@
+# Sunrise-Start
+- type: salvageDifficulty
+  id: Easy
+  lootPrototype: SalvageLootEasy
+  lootBudget: 15
+  mobBudget: 15
+  modifierBudget: 1
+  color: "#9FED5896"
+  recommendedPlayers: 2
+  probability: 0.3
+
 - type: salvageDifficulty
   id: Moderate
+  lootPrototype: SalvageLootModerate
   lootBudget: 30
   mobBudget: 25
   modifierBudget: 2
   color: "#52B4E996"
-  recommendedPlayers: 2
+  recommendedPlayers: 3
+  delay: 600 # 10 mins
+  probability: 0.5
 
-    #9FED5896
-    #EFB34196
-    #DE3A3A96
-    #D381C996
+- type: salvageDifficulty
+  id: Challenging
+  lootPrototype: SalvageLootChallenging
+  lootBudget: 90
+  mobBudget: 75
+  modifierBudget: 3
+  color: "#D381C996"
+  recommendedPlayers: 4
+  delay: 900 # 15 mins
+  probability: 1
+
+- type: salvageDifficulty
+  id: Difficult
+  lootPrototype: SalvageLootDifficult
+  lootBudget: 270
+  mobBudget: 225
+  modifierBudget: 1
+  color: "#EFB34196"
+  recommendedPlayers: 5
+  delay: 1800 # 30 mins
+  probability: 0.5
+
+- type: salvageDifficulty
+  id: Impossible
+  lootPrototype: SalvageLootImpossible
+  lootBudget: 675
+  mobBudget: 450
+  modifierBudget: 1
+  color: "#DE3A3A96"
+  recommendedPlayers: 69
+  delay: 3600 # 60 mins
+  probability: 0.3
+# Sunrise-End

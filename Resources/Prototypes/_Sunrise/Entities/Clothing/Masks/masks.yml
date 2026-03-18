@@ -55,12 +55,10 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/death.rsi
   - type: BreathMask
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - WhitelistChameleon
     - FaceCovered # INTERACTIONS
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingMaskGasAtmos
@@ -281,12 +279,10 @@
     sprite: _Sunrise/Clothing/Mask/blueshield.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/blueshield.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - WhitelistChameleon
     - FaceCovered # INTERACTIONS
-  # SUNRISE EDIT
 
 - type: entity
   parent: [ ClothingMaskBase, BaseMajorContraband ]
@@ -299,9 +295,7 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/dogi_mask.rsi
   - type: BreathMask
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - WhitelistChameleon
     - FaceCovered # INTERACTIONS
-  # SUNRISE EDIT

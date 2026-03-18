@@ -5,13 +5,13 @@
   suffix: CE
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Tools/advanced-rcd.rsi
+    sprite: _Sunrise/Objects/Tools/advanced_rcd.rsi
     layers:
     - state: icon
     - state: icon-ANM-Full
       shader: unshaded
   - type: Clothing
-    sprite: _Sunrise/Objects/Tools/advanced-rcd.rsi
+    sprite: _Sunrise/Objects/Tools/advanced_rcd.rsi
   - type: AutoRecharge
     rechargeDuration: 15
 

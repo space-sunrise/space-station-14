@@ -549,6 +549,7 @@
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained.
   components:
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Base/big.rsi
     layers:
     - state: icon
@@ -604,6 +605,7 @@
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. Saved is earned. Wood replaced with cheap plastic.
   components:
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/White/big.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/White/tiny.rsi
@@ -616,6 +618,7 @@
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. The favorite color of low-income mercenaries and ordinary USSP members.
   components:
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Green/big.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Green/tiny.rsi
@@ -628,6 +631,7 @@
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. This specimen has seen some rough stuff...and not just once.
   components:
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/big.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/tiny.rsi
@@ -681,7 +685,6 @@
 - type: entity
   parent: WeaponRifleSKM24Scrap
   id: WeaponRifleSKM24ScrapEmpty
-  categories: [ HideSpawnMenu ]
   components:
   - type: ItemSlots
     slots:
@@ -708,6 +711,7 @@
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. Spare option if you lost all your telecrystals at the casino.
   components:
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Syndicate/big.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Syndicate/tiny.rsi
@@ -720,6 +724,7 @@
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. Money doesn't smell.
   components:
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Nano/big.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Nano/tiny.rsi

@@ -347,7 +347,7 @@
   - type: UserInterface
     interfaces:
       enum.AtmosAlertsComputerUiKey.Key:
-        type: AtmosAlertsComputerBoundUserInterface
+        type: SunriseAtmosAlertsComputerBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: WirelessNetworkConnection

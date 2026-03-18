@@ -99,9 +99,11 @@
   - SyringeCryostasis
   - BluespaceBeaker
   - SyringeBluespace
+  - VialBluespace # Sunrise-Add
   - LauncherSyringe
   - MiniSyringe
   - BluespacePillPatchCanister # Sunrise-Add
+  - JugBluespace # Sunrise-Add
 
 - type: latheRecipePack
   id: MedicalBoards

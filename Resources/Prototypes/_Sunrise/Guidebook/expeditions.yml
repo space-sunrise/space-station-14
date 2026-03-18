@@ -5,6 +5,7 @@
   priority: 5
   children:
   - MobsExpeditionGuidePirates
+  - MobsExpeditionGuideSoviets
   - MobsExpeditionGuideXenos
   - MobsExpeditionGuideCarps
 
@@ -12,6 +13,11 @@
   id: MobsExpeditionGuidePirates
   name: guide-entry-expedition-pirates
   text: "/ServerInfo/Guidebook/_Sunrise/MobsHostileExpedition/pirates.xml"
+
+- type: guideEntry
+  id: MobsExpeditionGuideSoviets
+  name: guide-entry-expedition-soviets
+  text: "/ServerInfo/Guidebook/_Sunrise/MobsHostileExpedition/soviets.xml"
 
 - type: guideEntry
   id: MobsExpeditionGuideXenos
