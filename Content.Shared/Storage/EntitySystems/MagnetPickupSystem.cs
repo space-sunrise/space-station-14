@@ -3,7 +3,7 @@ using Content.Shared.Storage.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
-using Content.Shared.Silicons.Laws.Components; // Sunrise Edit
+using Content.Shared.Silicons.Borgs.Components; // Sunrise Edit
 
 namespace Content.Shared.Storage.EntitySystems;
 
@@ -23,13 +23,13 @@ public sealed class MagnetPickupSystem : EntitySystem
     private static readonly TimeSpan ScanDelay = TimeSpan.FromSeconds(1);
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
-    private EntityQuery<SiliconLawProviderComponent> _siliconQuery; // Sunrise Edit
+    private EntityQuery<BorgChassisComponent> _borgQuery; // Sunrise Edit
 
     public override void Initialize()
     {
         base.Initialize();
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
-        _siliconQuery = GetEntityQuery<SiliconLawProviderComponent>(); // Sunrise Edit
+        _borgQuery = GetEntityQuery<BorgChassisComponent>(); // Sunrise Edit
         SubscribeLocalEvent<MagnetPickupComponent, MapInitEvent>(OnMagnetMapInit);
     }
 
@@ -53,7 +53,7 @@ public sealed class MagnetPickupSystem : EntitySystem
             Dirty(uid, comp);
 
             // Sunrise Edit Start
-            if (!_siliconQuery.HasComponent(xform.ParentUid))
+            if (!_borgQuery.HasComponent(xform.ParentUid))
             {
                 if (!_inventory.TryGetContainingSlot((uid, xform, meta), out var slotDef) ||
                     (slotDef.SlotFlags & comp.SlotFlags) == 0x0)
