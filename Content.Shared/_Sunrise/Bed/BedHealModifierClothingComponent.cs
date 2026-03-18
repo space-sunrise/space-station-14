@@ -1,6 +1,8 @@
+using Robust.Shared.GameStates;
+
 namespace Content.Shared._Sunrise.Bed;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class BedHealModifierClothingComponent : Component
 {
     [DataField]

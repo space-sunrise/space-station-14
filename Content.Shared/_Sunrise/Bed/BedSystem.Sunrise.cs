@@ -19,8 +19,7 @@ public sealed partial class BedSystem
             if (!TryComp<BedHealModifierClothingComponent>(item, out var modifier))
                 continue;
 
-            if (modifier.Multiplier < multiplier)
-                multiplier = modifier.Multiplier;
+            multiplier = Math.Min(multiplier, modifier.Multiplier);
         }
 
         return multiplier;

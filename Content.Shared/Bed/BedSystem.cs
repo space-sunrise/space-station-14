@@ -158,13 +158,15 @@ public sealed partial class BedSystem : EntitySystem // Sunrise-edit Добав�
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<HealOnBuckleHealingComponent, HealOnBuckleComponent, StrapComponent>();
-        while (query.MoveNext(out var uid, out _, out var bedComponent, out var strapComponent))
+        // Sunrise-start Добавлен TransformComponent для проверки на якорность кровати
+        var query = EntityQueryEnumerator<HealOnBuckleHealingComponent, HealOnBuckleComponent, StrapComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out _, out var bedComponent, out var strapComponent, out var xform)) // Добавлено xform
+        // Sunrise-end
         {
-            // Sunrise-start Кровать может быть в космосе... Думаю это поможет.
-            if (!Transform(uid).Anchored)
+            // Sunrise-Start
+            if (!xform.Anchored)
                 continue;
-            // Sunrise-end
+            // Sunrise-End
 
             if (_timing.CurTime < bedComponent.NextHealTime)
                 continue;
