@@ -3,6 +3,7 @@ using Content.Shared.Storage.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
+using Content.Shared.Silicons.Laws.Components;
 
 namespace Content.Shared.Storage.EntitySystems;
 
@@ -22,11 +23,13 @@ public sealed class MagnetPickupSystem : EntitySystem
     private static readonly TimeSpan ScanDelay = TimeSpan.FromSeconds(1);
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
+    private EntityQuery<SiliconLawProviderComponent> _siliconQuery;
 
     public override void Initialize()
     {
         base.Initialize();
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
+        _siliconQuery = GetEntityQuery<SiliconLawProviderComponent>();
         SubscribeLocalEvent<MagnetPickupComponent, MapInitEvent>(OnMagnetMapInit);
     }
 
@@ -49,11 +52,14 @@ public sealed class MagnetPickupSystem : EntitySystem
             comp.NextScan += ScanDelay;
             Dirty(uid, comp);
 
-            if (!_inventory.TryGetContainingSlot((uid, xform, meta), out var slotDef))
-                continue;
-
-            if ((slotDef.SlotFlags & comp.SlotFlags) == 0x0)
-                continue;
+            if (!_siliconQuery.HasComponent(xform.ParentUid))
+            {
+                if (!_inventory.TryGetContainingSlot((uid, xform, meta), out var slotDef) ||
+                    (slotDef.SlotFlags & comp.SlotFlags) == 0x0)
+                {
+                    continue;
+                }
+            }
 
             // No space
             if (!_storage.HasSpace((uid, storage)))

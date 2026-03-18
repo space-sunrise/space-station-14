@@ -37,5 +37,3 @@
     - type: Storage
       grid:
       - 0,0,9,5
-    - type: MagnetPickup # Sunrise-add
-      range: 3.75 # Sunrise-add
