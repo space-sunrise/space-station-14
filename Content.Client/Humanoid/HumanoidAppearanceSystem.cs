@@ -1,43 +1,35 @@
 using System.Linq;
-using System.Numerics;
-using Content.Client._Sunrise.MarkingEffectsClient;
 using Content.Client.DisplacementMap;
 using Content.Shared.CCVar;
-using Content.Shared.Humanoid;
-using Content.Shared.CCVar;
-using Content.Shared._Sunrise;
-using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared.DisplacementMap;
+using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Robust.Client.GameObjects;
-using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Client.Humanoid;
 
-public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
+public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem // Sunrise-edit Добавлено partial
 {
-    private static readonly float MirrorPixelCompensation = 1f / EyeManager.PixelsPerMeter; // Sunrise - Edit
-
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly DisplacementMapSystem _displacement = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!; // Sunrise - Edit
-    [Dependency] private readonly IEyeManager _eyeManager = default!; // Sunrise - Edit
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<HumanoidAppearanceComponent, AfterAutoHandleStateEvent>(OnHandleState);
-        SubscribeLocalEvent<HumanoidAppearanceComponent, MoveEvent>(OnMoved); // Sunrise - Edit
+
+        InitializeSunrise(); // Sunrise-edit
+
         //Subs.CVar(_configurationManager, CCVars.AccessibilityClientCensorNudity, OnCvarChanged, true);
         //Subs.CVar(_configurationManager, CCVars.AccessibilityServerCensorNudity, OnCvarChanged, true);
     }
@@ -63,114 +55,15 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
         var humanoidAppearance = entity.Comp1;
         var sprite = entity.Comp2;
-        // Sunrise - Start
-        var scale = new Vector2(humanoidAppearance.Width, humanoidAppearance.Height);
 
-        _sprite.SetScale(entity.Owner, scale);
-        // Sunrise - End
+        UpdateSpriteSunrise(entity); // Sunrise-edit
+
         sprite[_sprite.LayerMapReserve((entity.Owner, sprite), HumanoidVisualLayers.Eyes)].Color = humanoidAppearance.EyeColor;
     }
 
     private static bool IsHidden(HumanoidAppearanceComponent humanoid, HumanoidVisualLayers layer)
         => humanoid.HiddenLayers.ContainsKey(layer) || humanoid.PermanentlyHidden.Contains(layer);
 
-    // Sunrise - Start
-
-    private void OnMoved(EntityUid uid, HumanoidAppearanceComponent component, ref MoveEvent args)
-    {
-        if (!component.HairMirrored ||
-            args.OldRotation.GetCardinalDir() == args.NewRotation.GetCardinalDir() ||
-            !TryComp(uid, out SpriteComponent? sprite))
-        {
-            return;
-        }
-
-        UpdateHairMirroring((uid, component, sprite));
-    }
-
-    private Direction GetCurrentVisualDirection(EntityUid uid)
-    {
-        var angle = _transform.GetWorldRotation(uid) + _eyeManager.CurrentEye.Rotation;
-        return angle.GetCardinalDir();
-    }
-
-    // Меняем местами состояния волос на западе/востоке.
-    private static SpriteComponent.DirectionOffset GetHairDirOffset(Direction direction, bool shouldMirror)
-    {
-        if (!shouldMirror)
-            return SpriteComponent.DirectionOffset.None;
-
-        return direction is Direction.East or Direction.West
-            ? SpriteComponent.DirectionOffset.Flip
-            : SpriteComponent.DirectionOffset.None;
-    }
-
-    // Относительно камеры отражение по x исключительно только к северу и югу.
-    private static bool ShouldApplyMirrorCompensation(Direction direction, bool shouldMirror)
-    {
-        return shouldMirror && direction is Direction.North or Direction.South;
-    }
-
-    private void ApplyHairMirroring(Entity<SpriteComponent> spriteEnt, string layerId, bool shouldMirror, Direction direction)
-    {
-        if (!_sprite.TryGetLayer((spriteEnt.Owner, spriteEnt.Comp), layerId, out var existingLayer, false))
-            return;
-
-        var offset = existingLayer.Offset;
-        var targetDirOffset = GetHairDirOffset(direction, shouldMirror);
-        var hadMirrorCompensation = existingLayer.Scale.X < 0f && existingLayer.DirOffset == SpriteComponent.DirectionOffset.None;
-        var shouldApplyCompensation = ShouldApplyMirrorCompensation(direction, shouldMirror);
-
-        // Решение - проблемы: смещалось по пикселю.
-        if (hadMirrorCompensation)
-            offset.X += MirrorPixelCompensation;
-
-        if (shouldApplyCompensation)
-            offset.X -= MirrorPixelCompensation;
-
-        _sprite.LayerSetDirOffset((spriteEnt.Owner, spriteEnt.Comp), layerId, targetDirOffset);
-        _sprite.LayerSetOffset((spriteEnt.Owner, spriteEnt.Comp), layerId, offset);
-        // Отражение волос по x
-        _sprite.LayerSetScale((spriteEnt.Owner, spriteEnt.Comp), layerId, shouldMirror ? new Vector2(-1f, 1f) : Vector2.One);
-    }
-
-    public void UpdateHairMirroringForDirection(EntityUid uid, Direction direction)
-    {
-        if (!TryComp(uid, out HumanoidAppearanceComponent? humanoid) ||
-            !TryComp(uid, out SpriteComponent? sprite))
-        {
-            return;
-        }
-
-        UpdateHairMirroring((uid, humanoid, sprite), direction);
-    }
-
-    private void UpdateHairMirroring(Entity<HumanoidAppearanceComponent, SpriteComponent> entity, Direction? forcedDirection = null)
-    {
-        if (!entity.Comp1.HairMirrored)
-            return;
-
-        var visualDirection = forcedDirection ?? GetCurrentVisualDirection(entity.Owner);
-
-        if (!entity.Comp1.MarkingSet.TryGetCategory(MarkingCategories.Hair, out var hairMarkings))
-            return;
-
-        foreach (var marking in hairMarkings)
-        {
-            if (!_markingManager.TryGetMarking(marking, out var markingPrototype))
-                continue;
-
-            foreach (var markingSprite in markingPrototype.Sprites)
-            {
-                if (markingSprite is not SpriteSpecifier.Rsi rsi)
-                    continue;
-
-                var layerId = $"{markingPrototype.ID}-{rsi.RsiState}";
-                ApplyHairMirroring((entity.Owner, entity.Comp2), layerId, true, visualDirection);
-            }
-        }
-    }
-    // Sunrise - End
     private void UpdateLayers(Entity<HumanoidAppearanceComponent, SpriteComponent> entity)
     {
         var component = entity.Comp1;
@@ -180,7 +73,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         component.BaseLayers.Clear();
 
         // add default species layers
-        var bodyTypeProto = _prototypeManager.Index(component.BodyType); // Sunrise-Edit
+        var bodyTypeProto = GetBodyTypePrototypeSunrise(component); // Sunrise-edit
         foreach (var (key, id) in bodyTypeProto.Sprites)
         {
             oldLayers.Remove(key);
@@ -288,24 +181,15 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             ? profile.Appearance.SkinColor.WithAlpha(hairAlpha)
             : profile.Appearance.HairColor;
 
-        var hairMarkingEffects = profile.Appearance.HairMarkingEffect != null
-            ? new List<MarkingEffect> { profile.Appearance.HairMarkingEffect }
-            : new List<MarkingEffect>();
 
-        var hair = new Marking(profile.Appearance.HairStyleId,
-            new[] { hairColor },
-            hairMarkingEffects);
+        var hair = CreateHairMarkingSunrise(profile, hairColor); // Sunrise-edit
 
-        var facialHairMarkingEffects = profile.Appearance.FacialHairMarkingEffect != null
-            ? new List<MarkingEffect> { profile.Appearance.FacialHairMarkingEffect }
-            : new List<MarkingEffect>();
 
         var facialHairColor = _markingManager.MustMatchSkin(profile.Species, HumanoidVisualLayers.FacialHair, out var facialHairAlpha, _prototypeManager)
             ? profile.Appearance.SkinColor.WithAlpha(facialHairAlpha)
             : profile.Appearance.FacialHairColor;
-        var facialHair = new Marking(profile.Appearance.FacialHairStyleId,
-            new[] { facialHairColor },
-            facialHairMarkingEffects);
+
+        var facialHair = CreateFacialHairMarkingSunrise(profile, facialHairColor); // Sunrise-edit
 
         if (_markingManager.CanBeApplied(profile.Species, profile.Sex, hair, _prototypeManager))
         {
@@ -348,9 +232,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         humanoid.Species = profile.Species;
         humanoid.SkinColor = profile.Appearance.SkinColor;
         humanoid.EyeColor = profile.Appearance.EyeColor;
-        humanoid.Width = profile.Appearance.Width; // Sunrise
-        humanoid.Height = profile.Appearance.Height; // Sunrise
-        humanoid.HairMirrored = profile.Appearance.HairMirrored; // Sunrise-edit
+
+        LoadProfileSunrise(profile, humanoid); // Sunrise-edit
 
         UpdateSprite((uid, humanoid, Comp<SpriteComponent>(uid)));
     }
@@ -358,7 +241,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
     private void ApplyMarkingSet(Entity<HumanoidAppearanceComponent, SpriteComponent> entity)
     {
         var humanoid = entity.Comp1;
-        var sprite = entity.Comp2;
+        var sunriseState = CreateMarkingSetStateSunrise(entity); // Sunrise-edit
 
         // I am lazy and I CBF resolving the previous mess, so I'm just going to nuke the markings.
         // Really, markings should probably be a separate component altogether.
@@ -376,7 +259,10 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             {
                 if (_markingManager.TryGetMarking(marking, out var markingPrototype))
                 {
-                    ApplyMarking(markingPrototype, marking.MarkingColors, marking.Visible, entity, marking.MarkingEffects); // Sunrise-Edit
+                    ApplyMarking(markingPrototype, marking.MarkingColors, marking.Visible, entity);
+
+                    ApplyMarkingSunrise(markingPrototype, marking.MarkingEffects, marking.Visible, entity, sunriseState); // Sunrise-edit
+
                     //if (markingPrototype.BodyPart == HumanoidVisualLayers.UndergarmentTop)
                     //    applyUndergarmentTop = false;
                     //else if (markingPrototype.BodyPart == HumanoidVisualLayers.UndergarmentBottom)
@@ -384,6 +270,9 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                 }
             }
         }
+
+        FinalizeMarkingSetSunrise(entity.Owner, sunriseState); // Sunrise-edit
+
 
         humanoid.ClientOldMarkings = new MarkingSet(humanoid.MarkingSet);
 
@@ -466,11 +355,10 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
     //     }
     // }
 
-    public void ApplyMarking(MarkingPrototype markingPrototype, // Sunrise-Edit
+    public void ApplyMarking(MarkingPrototype markingPrototype,
         IReadOnlyList<Color>? colors,
         bool visible,
-        Entity<HumanoidAppearanceComponent, SpriteComponent> entity,
-        IReadOnlyList<MarkingEffect>? markingEffects = null)
+        Entity<HumanoidAppearanceComponent, SpriteComponent> entity)
     {
         var humanoid = entity.Comp1;
         var sprite = entity.Comp2;
@@ -481,9 +369,6 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         visible &= !IsHidden(humanoid, markingPrototype.BodyPart);
         visible &= humanoid.BaseLayers.TryGetValue(markingPrototype.BodyPart, out var setting)
            && setting.AllowsMarkings;
-
-        var shouldMirror = markingPrototype.BodyPart == HumanoidVisualLayers.Hair && humanoid.HairMirrored; // Sunrise-edit
-        var visualDirection = shouldMirror ? GetCurrentVisualDirection(entity.Owner) : Direction.Invalid; // Sunrise-edit
 
         for (var j = 0; j < markingPrototype.Sprites.Count; j++)
         {
@@ -502,64 +387,23 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             }
 
             _sprite.LayerSetVisible((entity.Owner, sprite), layerId, visible);
-            // Sunrise - Start
-            if (markingPrototype.BodyPart == HumanoidVisualLayers.Hair)
-            {
-                ApplyHairMirroring((entity.Owner, sprite), layerId, shouldMirror, visualDirection);
-            }
-            // Sunrise - End
 
             if (!visible || setting == null) // this is kinda implied
                 continue;
 
-            // Sunrise-Edit-Start
-            // // Okay so if the marking prototype is modified but we load old marking data this may no longer be valid
-            // // and we need to check the index is correct.
-            // // So if that happens just default to white?
-            // if (colors != null && j < colors.Count)
-            // {
-            //     _sprite.LayerSetColor((entity.Owner, sprite), layerId, colors[j]);
-            // }
-            // else
-            // {
-            //     _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
-            // }
-
-            ShaderInstance? shaderOverride = null;
-
-
-            if (markingEffects != null && j < markingEffects.Count && markingEffects[j].Type != MarkingEffectType.Color)
+            if (colors != null && j < colors.Count)
             {
-                float texWidth = sprite.AllLayers.Max(x => x.PixelSize.X);
-                float texHeight = sprite.AllLayers.Max(x => x.PixelSize.Y);
-                var shaderName = markingEffects[j].Type.ToString();
-                var instance = _prototypeManager.Index<ShaderPrototype>(shaderName).InstanceUnique();
-                shaderOverride = instance;
-
-                instance.ApplyShaderParams(markingEffects[j], new Vector2(texWidth, texHeight));
-
-                sprite.LayerSetShader(layerId, instance);
-                _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
+                _sprite.LayerSetColor((entity.Owner, sprite), layerId, colors[j]);
             }
             else
             {
-                if (colors != null && j < colors.Count)
-                {
-                    _sprite.LayerSetColor((entity.Owner, sprite), layerId, colors[j]);
-                }
-                else
-                {
-                    _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
-                }
+                _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
             }
-            //Sunrise-Edit-End
 
             var displacementData = GetMarkingDisplacement(entity.Owner, markingPrototype.BodyPart, humanoid);
             if (displacementData != null && markingPrototype.CanBeDisplaced)
             {
-                // TODO: в шейдер нужно ещё вставлять displacementSize, сейчас в нём хардкод 127
-                // TODO: костыль пиздец, когда появится возможность устанавливать 2 шейдера на один леер - удалить эту хуйню (shaderOverride)
-                _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), targetLayer + j + 1, layerId, out _, shaderOverride); // Sunrise-Edit
+                _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), targetLayer + j + 1, layerId, out _);
             }
         }
     }
@@ -653,7 +497,10 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             foreach (var marking in markingList)
             {
                 if (_markingManager.TryGetMarking(marking, out var markingPrototype) && markingPrototype.BodyPart == layer)
-                    ApplyMarking(markingPrototype, marking.MarkingColors, marking.Visible, (ent, ent.Comp, sprite), marking.MarkingEffects); // Sunrise-Edit
+                {
+                    ApplyMarking(markingPrototype, marking.MarkingColors, marking.Visible, (ent, ent.Comp, sprite));
+                    ApplyMarkingSunrise(markingPrototype, marking.MarkingEffects, marking.Visible, (ent, ent.Comp, sprite), null); // Sunrise-edit
+                }
             }
         }
     }

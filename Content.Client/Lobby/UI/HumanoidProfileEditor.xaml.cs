@@ -108,7 +108,6 @@ namespace Content.Client.Lobby.UI
         private ColorSelectorSliders _rgbSkinColorSelector;
 
         private bool _isDirty;
-        private bool _updatingHairMirroring; // Sunrise - Edit
 
         private static readonly ProtoId<GuideEntryPrototype> DefaultSpeciesGuidebook = "Species";
 
@@ -330,35 +329,10 @@ namespace Content.Client.Lobby.UI
 
             #region Hair
 
-            // Sunrise gradient edit start
-            HairStylePicker.OnExtendedColorChanged += newColor =>
-            {
-                if (Profile is null)
-                    return;
-
-                if (newColor.marking.MarkingEffects.Count == 0)
-                    return;
-
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairExtendedColor(newColor.marking.MarkingEffects[0]));
-                UpdateCMarkingsHair();
-                ReloadPreview();
-            };
-
-            FacialHairPicker.OnExtendedColorChanged += newColor =>
-            {
-                if (Profile is null)
-                    return;
-
-                if (newColor.marking.MarkingEffects.Count == 0)
-                    return;
-
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairExtendedColor(newColor.marking.MarkingEffects[0]));
-                UpdateCMarkingsFacialHair();
-                ReloadPreview();
-            };
-            // Sunrise gradient edit end
+            // Sunrise-start
+            HairStylePicker.OnExtendedColorChanged += OnHairStyleExtendedColorChangedSunrise;
+            FacialHairPicker.OnExtendedColorChanged += OnFacialHairStyleExtendedColorChangedSunrise;
+            // Sunrise-end
 
             HairStylePicker.OnMarkingSelect += newStyle =>
             {
@@ -369,22 +343,7 @@ namespace Content.Client.Lobby.UI
                 ReloadPreview();
             };
 
-            HairStylePicker.OnColorChanged += newColor =>
-            {
-                if (Profile is null)
-                    return;
-
-                // Sunrise edit start - градиенты
-                if (newColor.marking.MarkingColors.Count == 0)
-                    return;
-                // Sunrise edit end
-
-                var newExtended = newColor.marking.MarkingEffects[0].Clone();
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairColor(newColor.marking.MarkingColors[0], newExtended)); // sunrise gradient edit
-                UpdateCMarkingsHair();
-                ReloadPreview();
-            };
+            HairStylePicker.OnColorChanged += OnHairStyleColorChangedSunrise; // Sunrise-edit
 
             FacialHairPicker.OnMarkingSelect += newStyle =>
             {
@@ -395,22 +354,7 @@ namespace Content.Client.Lobby.UI
                 ReloadPreview();
             };
 
-            FacialHairPicker.OnColorChanged += newColor =>
-            {
-                if (Profile is null)
-                    return;
-
-                // Sunrise edit start - градиенты
-                if (newColor.marking.MarkingColors.Count == 0)
-                    return;
-                // Sunrise edit end
-
-                var newExtended = newColor.marking.MarkingEffects[0].Clone();
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairColor(newColor.marking.MarkingColors[0], newExtended)); // sunrise gradient edit
-                UpdateCMarkingsFacialHair();
-                ReloadPreview();
-            };
+            FacialHairPicker.OnColorChanged += OnFacialHairStyleColorChangedSunrise; // Sunrise-edit
 
             HairStylePicker.OnSlotRemove += _ =>
             {
@@ -476,18 +420,7 @@ namespace Content.Client.Lobby.UI
                 ReloadPreview();
             };
 
-            // Sunrise - Start
-            HairMirroring.OnToggled += args =>
-            {
-                if (Profile is null || _updatingHairMirroring)
-                    return;
-
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairMirroring(args.Pressed)
-                );
-                ReloadPreview();
-            };
-            // Sunrise - End
+            HairMirroring.OnToggled += OnHairMirroringToggledSunrise; // Sunrise-edit
 
             #endregion Hair
 
@@ -926,9 +859,7 @@ namespace Content.Client.Lobby.UI
             UpdateTtsVoicesControls(); // Sunrise-TTS
             UpdateBodyTypes();
             UpdateHairPickers();
-            UpdateHairMirroringControls(); // Sunrise - Edit
-            UpdateCMarkingsHair();
-            UpdateCMarkingsFacialHair();
+            UpdateHairControlsSunrise(); // Sunrise-edit
 
             RefreshAntags();
             RefreshJobs();
@@ -1734,20 +1665,6 @@ namespace Content.Client.Lobby.UI
                 Profile.Species,
                 1);
         }
-
-        // Sunrise - Start
-        private void UpdateHairMirroringControls()
-        {
-            if (Profile == null)
-            {
-                return;
-            }
-
-            _updatingHairMirroring = true;
-            HairMirroring.Pressed = Profile.Appearance.HairMirrored;
-            _updatingHairMirroring = false;
-        }
-        // Sunrise - End
 
         private static List<Marking> CreateHairMarkings(
             string styleId,

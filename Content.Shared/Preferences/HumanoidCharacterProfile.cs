@@ -9,7 +9,6 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Traits;
-using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -28,7 +27,6 @@ namespace Content.Shared.Preferences
     [Serializable, NetSerializable]
     public sealed partial class HumanoidCharacterProfile : ICharacterProfile
     {
-        private static readonly Regex RestrictedNameRegex = new("[^А-Яа-яA-Za-zёЁ0-9, ,\\-,'.]"); // Sunrise-edit
         private static readonly Regex ICNameCaseRegex = new(@"^(?<word>\w)|\b(?<word>\w)(?=\w*$)");
 
         /// <summary>
@@ -257,13 +255,7 @@ namespace Content.Shared.Preferences
                 bodyType = speciesPrototype.BodyTypes.First();
             }
 
-            // Sunrise-TTS-Start
-            var voiceId = random.Pick(prototypeManager
-                .EnumeratePrototypes<TTSVoicePrototype>()
-                .Where(o => CanHaveVoice(o, sex) && !o.SponsorOnly)
-                .ToArray()
-            ).ID;
-            // Sunrise-TTS-End
+            var voiceId = PickRandomVoiceSunrise(prototypeManager, random, sex); // Sunrise-edit
 
             var gender = Gender.Epicene;
 
@@ -321,13 +313,6 @@ namespace Content.Shared.Preferences
         {
             return new(this) { Species = species };
         }
-
-        // Sunrise-TTS-Start
-        public HumanoidCharacterProfile WithVoice(string voice)
-        {
-            return new(this) { Voice = voice };
-        }
-        // Sunrise-TTS-End
 
         public HumanoidCharacterProfile WithBodyType(string bodyType)
         {
@@ -575,10 +560,7 @@ namespace Content.Shared.Preferences
 
             name = name.Trim();
 
-            if (configManager.GetCVar(CCVars.RestrictedNames))
-            {
-                name = RestrictedNameRegex.Replace(name, string.Empty);
-            }
+            name = RestrictNameSunrise(name, configManager); // Sunrise-edit
 
             if (configManager.GetCVar(CCVars.ICNameCase))
             {
@@ -591,19 +573,7 @@ namespace Content.Shared.Preferences
                 name = GetName(Species, gender);
             }
 
-            // Sunrise-Start
-            IoCManager.Instance!.TryResolveType<ISharedSponsorsManager>(out var sponsors);
-            var maxDescLength = configManager.GetCVar(SunriseCCVars.FlavorTextBaseLength);
-            if (sponsors != null)
-            {
-                if (sponsors.IsSponsor(session.UserId))
-                    maxDescLength = sponsors.GetSizeFlavor(session.UserId);
-                if (!sponsors.IsAllowedFlavor(session.UserId) && configManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly))
-                {
-                    FlavorText = string.Empty;
-                }
-            }
-            // Sunrise-End
+            var maxDescLength = GetMaxFlavorLengthSunrise(session, configManager); // Sunrise-edit
 
             string flavortext;
             if (FlavorText.Length > maxDescLength) // Sunrise-Edit
@@ -685,11 +655,7 @@ namespace Content.Shared.Preferences
             _traitPreferences.Clear();
             _traitPreferences.UnionWith(GetValidTraits(traits, prototypeManager));
 
-            // Sunrise-TTS-Start
-            prototypeManager.TryIndex<TTSVoicePrototype>(Voice, out var voice);
-            if (voice is null || !CanHaveVoice(voice, Sex))
-                Voice = SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
-            // Sunrise-TTS-End
+            EnsureVoiceValidSunrise(prototypeManager, sex); // Sunrise-edit
 
             // Checks prototypes exist for all loadouts and dump / set to default if not.
             var toRemove = new ValueList<string>();
@@ -752,13 +718,6 @@ namespace Content.Shared.Preferences
 
             return result;
         }
-
-        // Sunrise-TTS-Start
-        public static bool CanHaveVoice(TTSVoicePrototype voice, Sex sex)
-        {
-            return voice.RoundStart && sex == Sex.Unsexed || (voice.Sex == sex || voice.Sex == Sex.Unsexed);
-        }
-        // Sunrise-TTS-End
 
         public ICharacterProfile Validated(ICommonSession session, IDependencyCollection collection, string[] sponsorPrototypes)
         {
