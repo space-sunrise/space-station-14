@@ -1073,8 +1073,8 @@
   id: MobSovietT3Medic
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3.4
-    baseSprintSpeed: 3.4
+    baseWalkSpeed: 2.8
+    baseSprintSpeed: 2.8
   - type: TTS
     voice: TfMedic
   - type: Loadout
