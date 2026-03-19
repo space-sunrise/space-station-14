@@ -1,24 +1,24 @@
 <Document>
-[bold]Станция: {stationName}[/bold]
-[bold]Форма {corpString}/МЕД-КОД[/bold]
-[head=2]Отчет об используемых за смену препаратах[/head]
+[head=2][color=#0b6a8b][bold]Отчёт об используемых за смену препаратах[/bold][/color][/head]
+[color=#0b6a8b][bold]{corpString}[/bold][/color][mono] / МЕД-КОМ[/mono]
+[color=#666666][bold]Станция:[/bold][/color] {stationName}
+[color=#666666][bold]Время:[/bold][/color] {timeString}
 
-[italic]Время от начала смены и дата: {timeString}[/italic]
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#0b6a8b][bold]Составитель[/bold][/color]
+[mono]ФИО:      [/mono]
+[mono]Должность:[/mono]
 
-Составитель документа:
-Должность составителя:
-
+[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
+[color=#0b6a8b][bold]Отчёт[/bold][/color]
 
 На смене, станции {stationName}, используются следующие препараты:
-
+[mono]
 1) (название препарата)
-
 2)
+[/mono]
 
-.
+[color=#666666][italic]Место для печатей[/italic][/color]
 
-.
-
-[italic]Место для печатей[/italic]
 
 </Document>

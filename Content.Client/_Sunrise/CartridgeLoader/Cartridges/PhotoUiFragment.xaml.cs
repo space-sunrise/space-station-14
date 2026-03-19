@@ -362,11 +362,8 @@ public sealed class PhotoItemControl : ContainerButton
     {
         try
         {
-            var uploadedPath = _netTexturesManager.GetUploadedPath(imagePath);
-            if (_resourceCache.TryGetResource<TextureResource>(uploadedPath, out var textureResource))
-            {
-                 _previewRect.Texture = textureResource.Texture;
-            }
+            if (_netTexturesManager.TryGetTexture(imagePath, out var texture))
+                _previewRect.Texture = texture;
         }
         catch (Exception)
         {

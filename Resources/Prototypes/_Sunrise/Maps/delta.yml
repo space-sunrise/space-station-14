@@ -92,17 +92,17 @@
             #law (2-4)
             IAA: [ 1, 1 ]
             Lawyer: [ 1, 3 ]
-            # silicon (12-23)
+            # silicon (11)
             StationAi: [ 1, 1 ]
-            Borg: [ 1, 2 ]
-            EngineerBorg: [ 1, 2 ]
-            MiningBorg: [ 1, 2 ]
-            JanitorBorg: [ 1, 2 ]
-            ServiceBorg: [ 1, 2 ]
-            ClownBorg: [ 1, 2 ]
-            PeaceBorg: [ 1, 2 ]
-            MedicalBorg: [ 2, 4 ]
-            SecurityBorg: [ 2, 4 ]
+            Borg: [ 3, 3 ]
+            EngineerBorg: [ 1, 1 ]
+            MiningBorg: [ 1, 1 ]
+            JanitorBorg: [ 1, 1 ]
+            ServiceBorg: [ 1, 1 ]
+            ClownBorg: [ 1, 1 ]
+            PeaceBorg: [ 1, 1 ]
+            MedicalBorg: [ 1, 1 ]
+            SecurityBorg: [ 1, 1 ]
         - type: StationGoal
           goals:
           - Shuttle

@@ -86,6 +86,10 @@
   - Glasses
   - GlassesJamjar
   - GlassesJensen
+  # Sunrise-start
+  - GlassesCheapSunglasses
+  - GlassesStuttering
+  # Sunrise-end
 
 - type: loadoutGroup
   id: GroupTankHarness
@@ -789,21 +793,21 @@
   - QuartermasterHead
   - QuartermasterBeret
 #Sunrise-start
-  - Sunrise-BandOrange
-  - Sunrise-BandYellow
-  - Sunrise-BandBrown
-  - Sunrise-BandPurple
+  - SunriseBandOrange
+  - SunriseBandYellow
+  - SunriseBandBrown
+  - SunriseBandPurple
   - StationEngineerHardhatOrange
   - StationEngineerHardhatYellow
-  - Sunrise-HardhatYellowDark
-  - Sunrise-HatOrangesoft
-  - Sunrise-HatYellowsoft
-  - Sunrise-HatBrownsoft
-  - Sunrise-BrownFlatcap
-  - Sunrise-FedoraBrown
-  - Sunrise-CatBrown
-  - Sunrise-HelmetCosmonaut
-  - Sunrise-HideBear
+  - SunriseHardhatYellowDark
+  - SunriseHatOrangesoft
+  - SunriseHatYellowsoft
+  - SunriseHatBrownsoft
+  - SunriseBrownFlatcap
+  - SunriseFedoraBrown
+  - SunriseCatBrown
+  - SunriseHelmetCosmonaut
+  - SunriseHideBear
 #Sunrise-end
 
 - type: loadoutGroup
@@ -825,11 +829,11 @@
   - QuartermasterMantle
   - QuartermasterScarf # Sunrise-Edit
 #Sunrise-start
-  - Sunrise-ScarfOrange
-  - Sunrise-ScarfYellow
-  - Sunrise-ScarfBrown
-  - Sunrise-ScarfPurple
-  - Sunrise-BedsheetCosmos
+  - SunriseScarfOrange
+  - SunriseScarfYellow
+  - SunriseScarfBrown
+  - SunriseScarfPurple
+  - SunriseBedsheetCosmos
 #Sunrise-end
 
 - type: loadoutGroup
@@ -840,14 +844,14 @@
   - QuartermasterWintercoat
 #Sunrise-start
   - SalvageSpecialistWintercoat
-  - Sunrise-WinterColorOrange
-  - Sunrise-WinterColorYellow
-  - Sunrise-WinterColorBrown
-  - Sunrise-WinterColorLightBrown
-  - Sunrise-WinterColorPurple
-  - Sunrise-PonchoClassic
-  - Sunrise-CoatBomber
-  - Sunrise-CoatTrench
+  - SunriseWinterColorOrange
+  - SunriseWinterColorYellow
+  - SunriseWinterColorBrown
+  - SunriseWinterColorLightBrown
+  - SunriseWinterColorPurple
+  - SunrisePonchoClassic
+  - SunriseCoatBomber
+  - SunriseCoatTrench
 #Sunrise-end
 
 - type: loadoutGroup
@@ -858,10 +862,10 @@
   - CargoWinterBoots
 #Sunrise-start
   - BlackShoes
-  - Sunrise-OrangeShoes
-  - Sunrise-YellowShoes
-  - Sunrise-ShoesPurple
-  - Sunrise-ShoesLeather
+  - SunriseOrangeShoes
+  - SunriseYellowShoes
+  - SunriseShoesPurple
+  - SunriseShoesLeather
 #Sunrise-end
 
 - type: loadoutGroup
@@ -878,15 +882,15 @@
   loadouts:
   - CargoTechnicianHead
 #Sunrise-start
-  - Sunrise-BandOrange
-  - Sunrise-BandYellow
-  - Sunrise-BandBrown
-  - Sunrise-HatOrangesoft
-  - Sunrise-HatYellowsoft
-  - Sunrise-HatBrownsoft
-  - Sunrise-BrownFlatcap
-  - Sunrise-CatBrown
-  - Sunrise-HelmetCosmonaut
+  - SunriseBandOrange
+  - SunriseBandYellow
+  - SunriseBandBrown
+  - SunriseHatOrangesoft
+  - SunriseHatYellowsoft
+  - SunriseHatBrownsoft
+  - SunriseBrownFlatcap
+  - SunriseCatBrown
+  - SunriseHelmetCosmonaut
 #Sunrise-end
 
 - type: loadoutGroup
@@ -911,12 +915,12 @@
   loadouts:
   - CargoTechnicianWintercoat
 #Sunrise-start
-  - Sunrise-WinterColorOrange
-  - Sunrise-WinterColorYellow
-  - Sunrise-WinterColorBrown
-  - Sunrise-WinterColorLightBrown
-  - Sunrise-PonchoClassic
-  - Sunrise-CoatBomber
+  - SunriseWinterColorOrange
+  - SunriseWinterColorYellow
+  - SunriseWinterColorBrown
+  - SunriseWinterColorLightBrown
+  - SunrisePonchoClassic
+  - SunriseCoatBomber
 #Sunrise-end
 
 - type: loadoutGroup
@@ -926,8 +930,8 @@
   - BlackShoes
   - CargoWinterBoots
 #Sunrise-start
-  - Sunrise-OrangeShoes
-  - Sunrise-YellowShoes
+  - SunriseOrangeShoes
+  - SunriseYellowShoes
   - BrownShoes
 #Sunrise-end
 
@@ -960,13 +964,13 @@
   loadouts:
   - SalvageSpecialistWintercoat
 #Sunrise-start
-  - Sunrise-WinterColorOrange
-  - Sunrise-WinterColorYellow
-  - Sunrise-WinterColorBrown
-  - Sunrise-WinterColorLightBrown
-  - Sunrise-WinterColorPurple
-  - Sunrise-PonchoClassic
-  - Sunrise-CoatBomber
+  - SunriseWinterColorOrange
+  - SunriseWinterColorYellow
+  - SunriseWinterColorBrown
+  - SunriseWinterColorLightBrown
+  - SunriseWinterColorPurple
+  - SunrisePonchoClassic
+  - SunriseCoatBomber
 #Sunrise-end
 
 - type: loadoutGroup
@@ -977,10 +981,10 @@
   - CargoWinterBoots
 #Sunrise-start
   - BlackShoes
-  - Sunrise-OrangeShoes
-  - Sunrise-YellowShoes
+  - SunriseOrangeShoes
+  - SunriseYellowShoes
   - BrownShoes
-  - Sunrise-ShoesPurple
+  - SunriseShoesPurple
 #Sunrise-end
 
 - type: loadoutGroup
@@ -1008,13 +1012,14 @@
   - ChiefEngineerCloak
   - ChiefEngineerMantle
   - ChiefEngineerScarf
+  - ChiefEngineerCloakLegacy #Sunrise-edit
   #sunrise-start
-  - Sunrise-ScarfRed
-  - Sunrise-ScarfOrange
-  - Sunrise-ScarfYellow
-  - Sunrise-ScarfCyan
-  - Sunrise-ScarfLightBlue
-  - Sunrise-TieRed
+  - SunriseScarfRed
+  - SunriseScarfOrange
+  - SunriseScarfYellow
+  - SunriseScarfCyan
+  - SunriseScarfLightBlue
+  - SunriseTieRed
   #Sunrise-end
 
 - type: loadoutGroup
@@ -1024,14 +1029,14 @@
   loadouts:
   - ChiefEngineerWintercoat
   #Sunrise-start
-  - Sunrise-WinterColorrColorWhite
-  - Sunrise-ClothingOuterFlannelWhite
+  - SunriseWinterColorWhite
+  - SunriseClothingOuterFlannelWhite
   - StationEngineerOuterVest
   - StationEngineerWintercoat
   - AtmosphericTechnicianWintercoat
-  - Sunrise-WinterColorrColorRed
-  - Sunrise-WinterColorOrange
-  - Sunrise-WinterColorYellow
+  - SunriseWinterColorRed
+  - SunriseWinterColorOrange
+  - SunriseWinterColorYellow
   #Sunrise-end
 
 - type: loadoutGroup
@@ -1042,9 +1047,9 @@
   - EngineeringWinterBoots
 #sunrise-start
   - WhiteShoes
-  - Sunrise-RedShoes
-  - Sunrise-OrangeShoes
-  - Sunrise-YellowShoes
+  - SunriseRedShoes
+  - SunriseOrangeShoes
+  - SunriseYellowShoes
 #Sunrise-end
 
 - type: loadoutGroup
@@ -1074,20 +1079,20 @@
   minLimit: 0
   loadouts:
 #sunrise-start
-  - Sunrise-EngineerHeadBeret
-  - Sunrise-AtmosBeret
-  - Sunrise-BandRed
-  - Sunrise-BandOrange
-  - Sunrise-BandYellow
-  - Sunrise-HardhatYellowDark
+  - SunriseEngineerHeadBeret
+  - SunriseAtmosBeret
+  - SunriseBandRed
+  - SunriseBandOrange
+  - SunriseBandYellow
+  - SunriseHardhatYellowDark
 #Sunrise-end
   - StationEngineerHardhatYellow
   - StationEngineerHardhatOrange
   - StationEngineerHardhatRed
 #sunrise-start
-  - Sunrise-HatRedsoft
-  - Sunrise-HatOrangesoft
-  - Sunrise-HatYellowsoft
+  - SunriseHatRedsoft
+  - SunriseHatOrangesoft
+  - SunriseHatYellowsoft
 #Sunrise-end
 
 - type: loadoutGroup
@@ -1114,9 +1119,9 @@
   - StationEngineerOuterVest
   - StationEngineerWintercoat
 #sunrise-start
-  - Sunrise-WinterColorrColorRed
-  - Sunrise-WinterColorOrange
-  - Sunrise-WinterColorYellow
+  - SunriseWinterColorRed
+  - SunriseWinterColorOrange
+  - SunriseWinterColorYellow
 #sunrise-end
 - type: loadoutGroup
   id: StationEngineerShoes
@@ -1125,9 +1130,9 @@
   - WorkBoots
   - EngineeringWinterBoots
 #sunrise-start
-  - Sunrise-RedShoes
-  - Sunrise-OrangeShoes
-  - Sunrise-YellowShoes
+  - SunriseRedShoes
+  - SunriseOrangeShoes
+  - SunriseYellowShoes
 #sunrise-end
 
 - type: loadoutGroup
@@ -1153,9 +1158,9 @@
   - AtmosphericTechnicianWintercoat
 #sunrise-start
   - StationEngineerOuterVest
-  - Sunrise-WinterColorrColorRed
-  - Sunrise-WinterColorOrange
-  - Sunrise-WinterColorYellow
+  - SunriseWinterColorRed
+  - SunriseWinterColorOrange
+  - SunriseWinterColorYellow
 #sunrise-end
 
 - type: loadoutGroup
@@ -1173,9 +1178,9 @@
   - WhiteShoes
   - EngineeringWinterBoots
 #sunrise-start
-  - Sunrise-RedShoes
-  - Sunrise-OrangeShoes
-  - Sunrise-YellowShoes
+  - SunriseRedShoes
+  - SunriseOrangeShoes
+  - SunriseYellowShoes
 #sunrise-end
 
 - type: loadoutGroup
@@ -1206,6 +1211,7 @@
   - ResearchDirectorMantle
   - ResearchDirectorCloak
   - ResearchDirectorScarf # Sunrise-Edit
+  - ResearchDirectorCloakLegacy # Sunrise-edit
 
 - type: loadoutGroup
   id: ResearchDirectorJumpsuit
@@ -1407,7 +1413,7 @@
 - type: loadoutGroup
   id: SecurityHead
   name: loadout-group-security-head
-  minLimit: 0
+  minLimit: 1 # Sunrise-Edit
   loadouts:
   - SecurityHelmet
   - SecurityBeret
@@ -1559,11 +1565,11 @@
   - PurpleSurgeryCap
   - HatPatologonatHat
   - ParamedicHead
-  - Sunrise-HatBlacksoft
-  - Sunrise-HatRedsoft
-  - Sunrise-HatOrangesoft
-  - Sunrise-HatCyansoft
-  - Sunrise-HatBluesoft
+  - SunriseHatBlacksoft
+  - SunriseHatRedsoft
+  - SunriseHatOrangesoft
+  - SunriseHatCyansoft
+  - SunriseHatBluesoft
   - MedicalHeadMirror
 # Sunrise-end
 
@@ -1585,23 +1591,23 @@
   - ChiefMedicalOfficerWintercoat
 # Sunrise-start
   - RegularLabCoat
-  - Sunrise-CoatLabViro
+  - SunriseCoatLabViro
   - ChemistLabCoat
-  - Sunrise-CoatLabGene
+  - SunriseCoatLabGene
   - CoatLabSeniorPhysician
   - CoatPatologoanatom
-  - Sunrise-WinterViro
+  - SunriseWinterViro
   - ChemistWintercoat
-  - Sunrise-WinterGen
+  - SunriseWinterGen
   - MedicalDoctorWintercoat
   - ParamedicWintercoat
-  - Sunrise-WinterColorrColorWhite
-  - Sunrise-WinterColorBlack
-  - Sunrise-WinterColorrColorRed
-  - Sunrise-WinterColorOrange
-  - Sunrise-WinterColorGreen
-  - Sunrise-WinterColorCyan
-  - Sunrise-WinterColorBlue
+  - SunriseWinterColorWhite
+  - SunriseWinterColorBlack
+  - SunriseWinterColorRed
+  - SunriseWinterColorOrange
+  - SunriseWinterColorGreen
+  - SunriseWinterColorCyan
+  - SunriseWinterColorBlue
   - ParamedicWindbreaker
 # Sunrise-end
 
@@ -1614,13 +1620,13 @@
   - ChiefMedicalOfficerMantle
   - ChiefMedicalOfficerScarf # Sunrise-Edit
 # Sunrise-start
-  - Sunrise-ScarfRed
-  - Sunrise-ScarfOrange
-  - Sunrise-ScarfGreen
-  - Sunrise-ScarfLightBlue
-  - Sunrise-ScarfCyan
-  - Sunrise-ScarfBlue
-  - Sunrise-Stethoscope
+  - SunriseScarfRed
+  - SunriseScarfOrange
+  - SunriseScarfGreen
+  - SunriseScarfLightBlue
+  - SunriseScarfCyan
+  - SunriseScarfBlue
+  - SunriseStethoscope
 # Sunrise-end
 
 - type: loadoutGroup
@@ -1631,10 +1637,10 @@
 # Sunrise-start
   - WhiteShoes
   - BlackShoes
-  - Sunrise-RedShoes
-  - Sunrise-OrangeShoes
-  - Sunrise-ShoesGreen
-  - Sunrise-ShoesCyan
+  - SunriseRedShoes
+  - SunriseOrangeShoes
+  - SunriseShoesGreen
+  - SunriseShoesCyan
   - BlueShoes
 # Sunrise-end
   - MedicalWinterBoots
@@ -1658,9 +1664,9 @@
   - PurpleSurgeryCap
   - NurseHat
 # Sunrise-start
-  - Sunrise-HatRedsoft
-  - Sunrise-HatOrangesoft
-  - Sunrise-HatCyansoft
+  - SunriseHatRedsoft
+  - SunriseHatOrangesoft
+  - SunriseHatCyansoft
 # Sunrise-end
 
 - type: loadoutGroup
@@ -1680,10 +1686,10 @@
   loadouts:
   - RegularLabCoat
   # Sunrise-start
-  - Sunrise-WinterColorrColorWhite
-  - Sunrise-WinterColorrColorRed
-  - Sunrise-WinterColorGreen
-  - Sunrise-WinterColorCyan
+  - SunriseWinterColorWhite
+  - SunriseWinterColorRed
+  - SunriseWinterColorGreen
+  - SunriseWinterColorCyan
 # Sunrise-end
   - MedicalDoctorWintercoat
 
@@ -1701,10 +1707,10 @@
   loadouts:
   - WhiteShoes
 # Sunrise-start
-  - Sunrise-RedShoes
-  - Sunrise-OrangeShoes
-  - Sunrise-ShoesGreen
-  - Sunrise-ShoesCyan
+  - SunriseRedShoes
+  - SunriseOrangeShoes
+  - SunriseShoesGreen
+  - SunriseShoesCyan
 # Sunrise-end
   - MedicalWinterBoots
 
@@ -1715,12 +1721,12 @@
   loadouts:
   - LatexGloves
 # Sunrise-start
-  - Sunrise-WhiteGloves
-  - Sunrise-RedGloves
-  - Sunrise-GreenGloves
-  - Sunrise-TealGloves
-  # - Sunrise-GlovesNitrileRed
-  # - Sunrise-GlovesNitrileGreen
+  - SunriseWhiteGloves
+  - SunriseRedGloves
+  - SunriseGreenGloves
+  - SunriseTealGloves
+  - SunriseGlovesNitrileRed
+  - SunriseGlovesNitrileGreen
 # Sunrise-end
   - NitrileGloves
 
@@ -1730,14 +1736,14 @@
   minLimit: 0
   loadouts:
 # Sunrise-start
-  - Sunrise-MedicalSterileRed
-  - Sunrise-MedicalSterileGreen
+  - SunriseMedicalSterileRed
+  - SunriseMedicalSterileGreen
 # Sunrise-end
   - SterileMask
 # Sunrise-start
-  - Sunrise-MedicalMaskRed
-  - Sunrise-MedicalMaskGreen
-  - Sunrise-MedicalMask
+  - SunriseMedicalMaskRed
+  - SunriseMedicalMaskGreen
+  - SunriseMedicalMask
 # Sunrise-end
 
 - type: loadoutGroup
@@ -1774,18 +1780,15 @@
   minLimit: 0
   loadouts:
   - RegularLabCoat
-# Sunrise-start
-  - RegularLabCoat
-# Sunrise-end
   - ChemistLabCoat
   - ChemistWintercoat
 # Sunrise-start
   - MedicalDoctorWintercoat
-  - Sunrise-WinterColorrColorWhite
-  - Sunrise-WinterColorrColorRed
-  - Sunrise-WinterColorOrange
-  - Sunrise-WinterColorGreen
-  - Sunrise-WinterColorCyan
+  - SunriseWinterColorWhite
+  - SunriseWinterColorRed
+  - SunriseWinterColorOrange
+  - SunriseWinterColorGreen
+  - SunriseWinterColorCyan
 # Sunrise-end
 
 - type: loadoutGroup
@@ -1818,10 +1821,10 @@
   - ParamedicHead
   - ParamedicBeret # Sunrise-Edit
 # Sunrise-start
-  - Sunrise-HatRedsoft
-  - Sunrise-HatOrangesoft
-  - Sunrise-HatCyansoft
-  - Sunrise-HatBluesoft
+  - SunriseHatRedsoft
+  - SunriseHatOrangesoft
+  - SunriseHatCyansoft
+  - SunriseHatBluesoft
   - MedicalHeadMirror
 # Sunrise-end
 
@@ -1844,11 +1847,11 @@
 # Sunrise-end
   - ParamedicWintercoat
 # Sunrise-start
-  - Sunrise-WinterColorrColorWhite
-  - Sunrise-WinterColorrColorRed
-  - Sunrise-WinterColorGreen
-  - Sunrise-WinterColorCyan
-  - Sunrise-WinterColorBlue
+  - SunriseWinterColorWhite
+  - SunriseWinterColorRed
+  - SunriseWinterColorGreen
+  - SunriseWinterColorCyan
+  - SunriseWinterColorBlue
 # Sunrise-end
 
 - type: loadoutGroup
@@ -1856,11 +1859,10 @@
   name: loadout-group-paramedic-shoes
   loadouts:
 # Sunrise-start
-  - WhiteShoes
-  - Sunrise-RedShoes
-  - Sunrise-OrangeShoes
-  - Sunrise-ShoesGreen
-  - Sunrise-ShoesCyan
+  - SunriseRedShoes
+  - SunriseOrangeShoes
+  - SunriseShoesGreen
+  - SunriseShoesCyan
 # Sunrise-end
   - BlueShoes
   - WhiteShoes

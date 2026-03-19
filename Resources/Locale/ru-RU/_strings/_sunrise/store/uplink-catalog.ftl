@@ -2,6 +2,7 @@
 
 uplink-core-extraction-toolbox-name = Набор инструментов для извлечения ядра
 uplink-core-extraction-toolbox-desc = Ящик с инструментами, в котором есть все необходимое для извлечения плутониевого сердечника ядерной бомбы. Инструкции в комплект не входят.
+uplink-exploding-syndicate-empbomb-desc = Большая закреплённая ЭМИ-бомба, которая выводит электронику из строя, если её вовремя не обезвредить. Таймер настраивается, минимальное значение — 180 секунд; идеально подходит для выведения инфраструктуры из строя.
 
 ## Magazines
 
@@ -24,6 +25,10 @@ uplink-grenade-blast-contact-name = контактная Фугасная гра
 uplink-grenade-blast-contact-desc = Фугасная граната. Совместима с "China-Lake" и "GL-70". Взрывается при контакте с целью.
 uplink-grenade-emp-contact-name = контактная ЭМИ граната
 uplink-grenade-emp-contact-desc = ЭМИ граната. Совместима с "China-Lake" и "GL-70". Взрывается при контакте с целью.
+uplink-grenade-frag-name = Осколочная граната
+uplink-grenade-frag-desc = Осколочная граната. Совместима с "China-Lake".
+uplink-grenade-blast-name = Фугасная граната
+uplink-grenade-blast-desc = Фугасная граната. Совместима с "China-Lake".
 uplink-magazine-siar52-name = Магазин ПП (.25 безгильзовый)
 uplink-magazine-siar52-desc = Магазин ПП на 30 патронов. Совместим с SIAR-52.
 uplink-magazine-bauer127-extended-name = расширенный магазин Bauer127 (15мм антиматериальные)
@@ -103,6 +108,8 @@ uplink-swat-helmet-syndicate-name = Шлем Спецназа
 uplink-swat-helmet-syndicate-desc = Прочный шлем, созданный специально для тех, кто ценит целостность своей головы и конфиденциальность своих коварных замыслов. Окрашен в фирменные цвета спецназа Синдиката.
 uplink-syndicate-rapier-name = Рапира Синдиката
 uplink-syndicate-rapier-desc = Элегантная рапира из пластитана с алмазным остриём, созданная для точечных и смертельных ударов. При умелом использовании способна игнорировать большинство видов индивидуальной защиты. Поставляется в собственных ножнах.
+uplink-homerun-bat-name = Бита «Хоум-ран»
+uplink-homerun-bat-desc = Отправляйте врагов в полёт. Хей, бей, бей, бей, БЕЙ!
 uplink-clothing-backpack-syndie-aj100-name = Набор ПП AJ-100
 uplink-clothing-backpack-syndie-aj100-desc = Включает в себя пистолет-пулемёт AJ-100 что имеет универсальную шахту магазина и может использовать большинство магазинов для ПП и пистолетов и два магазина безгильзовых патронов в наборе.
 uplink-aj100-name = AJ-100
@@ -262,3 +269,5 @@ uplink-syndicate-teleporter-desc = Экспериментальное устро
 
 ## Disruption
 
+uplink-cleaner-kit-name = Набор уборщика
+uplink-cleaner-kit-desc = Уберите любые улики. Содержит пару космо-очистителей, две гранаты и кусочек мыла. К сожалению без вилки..

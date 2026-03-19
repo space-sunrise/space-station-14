@@ -549,6 +549,7 @@
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained.
   components:
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Base/big.rsi
     layers:
     - state: icon
@@ -604,6 +605,7 @@
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. Saved is earned. Wood replaced with cheap plastic.
   components:
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/White/big.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/White/tiny.rsi
@@ -616,6 +618,7 @@
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. The favorite color of low-income mercenaries and ordinary USSP members.
   components:
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Green/big.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Green/tiny.rsi
@@ -628,6 +631,7 @@
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. This specimen has seen some rough stuff...and not just once.
   components:
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/big.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/tiny.rsi
@@ -635,7 +639,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/tiny.rsi
   - type: WeaponDismantleOnShoot
     dismantleDistance: 4
-    dismantleChance: 0.006 # Примерно 150-200 патронов
+    dismantleChance: 0.005 # Примерно 150-200 патронов
     selfDamage:
       types:
         Blunt: 5
@@ -679,11 +683,35 @@
         prob: 0.15
 
 - type: entity
+  parent: WeaponRifleSKM24Scrap
+  id: WeaponRifleSKM24ScrapEmpty
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: null
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineLightRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: null
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifle
+
+- type: entity
   parent: WeaponRifleSKM24
   id: WeaponRifleSKM24Syndi
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. Spare option if you lost all your telecrystals at the casino.
   components:
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Syndicate/big.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Syndicate/tiny.rsi
@@ -696,6 +724,7 @@
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. Money doesn't smell.
   components:
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Nano/big.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Nano/tiny.rsi

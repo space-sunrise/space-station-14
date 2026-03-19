@@ -59,6 +59,7 @@
   # - PrisonPilot
   editorHidden: true
   manifestHidden: true
+  primary: false
 
 - type: department
   id: CentralCommand

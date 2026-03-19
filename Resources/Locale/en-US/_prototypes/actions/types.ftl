@@ -84,3 +84,5 @@ ent-ActionToggleRootable = action-name-toggle-rootable
     .desc = action-description-toggle-rootable
 ent-ActionChameleonController = Control clothing
     .desc = Change your entire outfit fast!
+ent-ActionWhistle = Whistle
+    .desc = STOP RIGHT THERE!

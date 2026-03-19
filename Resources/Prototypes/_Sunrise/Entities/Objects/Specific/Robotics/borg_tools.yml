@@ -552,7 +552,7 @@
   description: Cybersun cyborg heavy machine gun with extended magazine.
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/dl6902.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -656,7 +656,7 @@
   description: High-speed SMG, equipped with a universal connector for other types of pistol magazines.
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/iar_52.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -729,6 +729,8 @@
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellRobotTool
         locked: true
+  - type: PowerCellDraw
+    useCharge: 0
 
 - type: entity
   name: borg plasma cutter

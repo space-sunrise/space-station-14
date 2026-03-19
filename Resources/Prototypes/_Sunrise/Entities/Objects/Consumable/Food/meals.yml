@@ -1,0 +1,30 @@
+- type: entity
+  name: nutrient paste meal
+  parent: FoodMealBase
+  id: FoodThaSlop #tha slop
+  description: A synthetic mixture of protein, carbohydrates, and vitamins, amino acids and minerals. Everything the body needs, and absolutely disgusting.
+  components:
+    - type: FlavorProfile
+      flavors:
+        - thaslop
+    - type: Edible
+      trash:
+        - FoodPacketMRETrash
+    - type: Sprite
+      sprite: _Sunrise/Objects/Consumable/Food/thaslop.rsi
+      layers:
+        - state: thaslop
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 30
+          reagents:
+            - ReagentId: Nutriment
+              Quantity: 20
+            - ReagentId: Vitamin
+              Quantity: 5
+            - ReagentId: Protein
+              Quantity: 5
+    - type: Tag
+      tags:
+        - Meat

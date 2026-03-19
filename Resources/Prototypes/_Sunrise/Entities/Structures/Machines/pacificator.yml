@@ -47,6 +47,10 @@
             max: 1
   - type: Machine
     board: PacificatorCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
   - type: Pacificator
     range: 128
     idlePower: 15

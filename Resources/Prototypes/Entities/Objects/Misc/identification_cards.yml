@@ -1023,6 +1023,12 @@
     interfaces:
       enum.AgentIDCardUiKey.Key:
         type: AgentIDCardBoundUserInterface
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+  # Sunrise-Start
+  - type: PresetIdCard
+    setAccess: false
+  # Sunrise-End
 
 - type: entity
   parent: AgentIDCard

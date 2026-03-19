@@ -5,7 +5,7 @@
   description: An operative's backpack with increased capacity.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Backpacks/syndiebackpack.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/syndie_backpack.rsi
 
 - type: entity
   parent: ClothingBackpack
@@ -27,7 +27,7 @@
   description: Holds the kit of CentComm's most feared agents.
   components:
     - type: Sprite
-      sprite: _Sunrise/Clothing/Back/Backpacks/deathsquad-backpack.rsi
+      sprite: _Sunrise/Clothing/Back/Backpacks/deathsquad_backpack.rsi
     - type: ExplosionResistance
       damageCoefficient: 0.1
 
@@ -74,7 +74,7 @@
   description: An operative's backpack with increased capacity.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Backpacks/ntrgbackpack.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/ntrg_backpack.rsi
   - type: Storage
     maxItemSize: Huge
     grid:
@@ -89,7 +89,7 @@
   description: It's just a backpack, but it's beautiful.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Backpacks/blackbackpack.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/black_backpack.rsi
 
 - type: entity
   parent: ClothingBackpack
@@ -98,7 +98,7 @@
   description: It's just a backpack, but it's beautiful.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Backpacks/bluebackpack.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/blue_backpack.rsi
 
 - type: entity
   parent: ClothingBackpack
@@ -107,7 +107,7 @@
   description: It's just a backpack, but it's beautiful.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Backpacks/cianbackpack.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/cian_backpack.rsi
 
 - type: entity
   parent: ClothingBackpack
@@ -116,7 +116,7 @@
   description: It's just a backpack, but it's beautiful.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Backpacks/greenbackpack.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/green_backpack.rsi
 
 - type: entity
   parent: ClothingBackpack
@@ -125,7 +125,7 @@
   description: It's just a backpack, but it's beautiful.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Backpacks/orangebackpack.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/orange_backpack.rsi
 
 - type: entity
   parent: ClothingBackpack
@@ -134,7 +134,7 @@
   description: It's just a backpack, but it's beautiful.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Backpacks/purplebackpack.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/purple_backpack.rsi
 
 - type: entity
   parent: ClothingBackpack
@@ -143,7 +143,7 @@
   description: It's just a backpack, but it's beautiful.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Backpacks/redbackpack.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/red_backpack.rsi
 
 - type: entity
   parent: ClothingBackpack
@@ -152,7 +152,7 @@
   description: It's just a backpack, but it's beautiful.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Backpacks/whitebackpack.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/white_backpack.rsi
 
 - type: entity
   parent: ClothingBackpack
@@ -161,7 +161,7 @@
   description: It's just a backpack, but it's beautiful.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Back/Backpacks/yellowbackpack.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/yellow_backpack.rsi
 
 - type: entity
   parent: ClothingBackpackCaptain

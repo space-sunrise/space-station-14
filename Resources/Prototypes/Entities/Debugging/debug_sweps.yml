@@ -26,6 +26,7 @@
   name: bang hitscan gibber
   parent: WeaponHitscanDebug
   id: WeaponHitscanDebugGib
+  categories: [ Debug ] # Sunrise-Add
   components:
   - type: BatteryAmmoProvider
     proto: DebugLaserGib
@@ -135,6 +136,7 @@
   name: bang stick 100dmg
   parent: MeleeDebugGib
   id: MeleeDebug100
+  categories: [ Debug ] # Sunrise-Add
   components:
   - type: MeleeWeapon
     damage:
@@ -145,6 +147,7 @@
   name: bang stick 200dmg
   parent: MeleeDebugGib
   id: MeleeDebug200
+  categories: [ Debug ] # Sunrise-Add
   components:
   - type: MeleeWeapon
     damage:

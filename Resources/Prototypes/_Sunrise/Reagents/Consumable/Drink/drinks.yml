@@ -21,7 +21,7 @@
   physicalDesc: reagent-physical-desc-strong-smell
   flavor: chamomile_tincture
   metamorphicSprite:
-    sprite: _Sunrise/Objects/Consumable/Drinks/chamomileTincture.rsi
+    sprite: _Sunrise/Objects/Consumable/Drinks/chamomile_tincture.rsi
     state: icon_empty
   metamorphicMaxFillLevels: 4
   metamorphicFillBaseName: fill-

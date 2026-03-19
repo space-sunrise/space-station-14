@@ -6734,7 +6734,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -6.5,-36.5
       parent: 2
-- proto: CrateArmoryM16A4
+- proto: GunSafeRifleM16A4
   entities:
   - uid: 714
     components:
@@ -18240,7 +18240,7 @@ entities:
     - type: Transform
       pos: 16.5,10.5
       parent: 2
-- proto: VendingMachineMayson
+- proto: VendingMachineDiscount
   entities:
   - uid: 2599
     components:

@@ -1,4 +1,4 @@
-ent-MercenaryDuffelGiftBox = набор снаряжения наемника
+ent-MercenaryDuffelGiftBox = набор снаряжения наёмника
     .desc = Лутбоксы? Тут?
     .suffix = Лут НПС
 ent-PirateMessengerGiftBox = пиратский набор снаряжения
@@ -13,7 +13,7 @@ ent-SyndiBaglGiftBox = набор сумки Синдиката
 ent-ScrapperDuffelGiftBox = набор скраппера
     .desc = { ent-MercenaryDuffelGiftBox.desc }
     .suffix = { ent-MercenaryDuffelGiftBox.suffix }
-ent-MercenaryWebbingBox = набор боеприпасов наемника
+ent-MercenaryWebbingBox = набор боеприпасов наёмника
     .desc = Лутбоксы? Тут?
     .suffix = Лут НПС
 ent-MilitaryWebbingBox = военный набор боеприпасов

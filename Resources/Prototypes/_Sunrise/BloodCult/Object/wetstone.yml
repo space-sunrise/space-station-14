@@ -3,7 +3,6 @@
   parent: BaseItem
   components:
     - type: Sharpener
-      # Sunrise - Edit
       slashDamageBonus:
         types:
           Slash: 5

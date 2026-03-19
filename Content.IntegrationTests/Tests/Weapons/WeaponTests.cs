@@ -1,5 +1,6 @@
 ﻿using Content.IntegrationTests.Tests.Interaction;
 using Content.Shared.Damage.Components;
+using Content.Shared.Input;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Wieldable.Components;
@@ -54,8 +55,14 @@ public sealed class WeaponTests : InteractionTest
 
         await AttemptShoot(urist);
         updatedAmmo = gunSystem.GetAmmoCount(mosinEnt);
+        // Sunrise-start
+        Assert.That(updatedAmmo, Is.EqualTo(startAmmo), "Mosin should keep ammo count until the bolt is cycled!");
 
-        Assert.That(updatedAmmo, Is.EqualTo(startAmmo - 1), "Mosin failed to discharge appropriate amount of ammo!");
+        await PressKey(ContentKeyFunctions.CockGun);
+        updatedAmmo = gunSystem.GetAmmoCount(mosinEnt);
+
+        Assert.That(updatedAmmo, Is.EqualTo(startAmmo - 1), "Mosin failed to discharge appropriate amount of ammo after cycling!");
+        // Sunrise-end
         Assert.That(damageComp.TotalDamage.Value,
             Is.GreaterThan(0),
             "Mosin was fired but urist sustained no damage!");
