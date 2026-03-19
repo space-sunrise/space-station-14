@@ -338,6 +338,69 @@
       path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
+  parent: BandolierBox
+  id: ClothingBackpackDuffelMercenaryTier1MMG2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Syndicate/ammo_bag.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: PirateCashSpawner08
+    - id: PirateCashSpawner08
+    # Weapons
+    - id: WeaponLightMachineGunMG60
+      prob: 0.05
+      orGroup: DP28Pool
+    - id: WeaponLightMachineGunMG60Empty
+      prob: 0.25
+      orGroup: DP28Pool
+    - id: WeaponPistolHIB88M4
+      prob: 0.3
+      orGroup: DP28Pool
+    - id: CrateAmmunitionSmallLightRifle
+      prob: 0.15
+      orGroup: DP28Pool
+    - id: MagazineBoxRifleMachineFMJ
+      amount: 5
+      prob: 0.15
+      orGroup: DP28Pool
+    # Armor
+    - id: SovietSoldierPoolLootSpawner
+    - id: PirateMedSpawner01
+    # Bonus Loot T1
+    - id: PirateCashSpawner08
+      prob: 0.9
+    - id: PirateCashSpawner03
+      prob: 0.7
+    - id: LootSpawnerIndustrial
+      prob: 0.7
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: BandolierBox
+  id: ClothingBeltBandolierT1SovietMMG2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Items
+    - id: PirateMedSpawner03
+    - id: MagazinePistol
+      prob: 0.6
+    - id: MagazinePistolEmpty
+      prob: 0.3
+    - id: MagazineLightMachineGunMG60
+      prob: 0.1
+    - id: MagazineLightMachineGunMG60
+      prob: 0.1
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
   parent: MercenaryDuffelGiftBox
   id: ClothingBackpackDuffelMercenaryTier1LMG
   categories: [ HideSpawnMenu ]
@@ -831,15 +894,26 @@
   - type: SpawnItemsOnUse
     items:
     - id: MagazineRifleFMJ
-      prob: 0.4
+      amount: 2
+      prob: 0.6
     - id: MagazineRifleFMJ
+      amount: 2
+      prob: 0.5
+    - id: MagazineRifleAP
+      amount: 2
       prob: 0.2
-    - id: MagazineBoxRifleFMJ
+    - id: MagazineBoxLightRifleFMJ
       prob: 0.3
+    - id: MagazineBoxLightRifleFMJ
+      prob: 0.25
+    - id: MagazineBoxLightRifleFMJ
+      prob: 0.1
     - id: Tourniquet
       prob: 0.4
-    - id: MagazineBoxRifleMachineFMJ
-      prob: 0.1
+    - id: ExShrapnelGrenade
+      prob: 0.35
+    - id: SmokeGrenade
+      prob: 0.35
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 

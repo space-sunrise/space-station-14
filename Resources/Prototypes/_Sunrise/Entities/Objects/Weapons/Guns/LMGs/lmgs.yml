@@ -26,9 +26,10 @@
     angleDecay: 20
     fireRate: 6.5
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
+      collection: m249 # Sunrise-Edit
       params:
-        volume: 1
+        volume: 10
+        pitch: 1.1
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -70,6 +71,30 @@
     walkModifier: 0.85
     sprintModifier: 0.85
   - type: HeldSpeedModifier
+
+- type: entity
+  name: MG-60
+  parent: WeaponLightMachineGunMG60
+  id: WeaponLightMachineGunMG60Empty
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: null
+        insertSound: /Audio/_Sunrise/Weapons/Guns/LMGs/reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/LMGs/unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineLightMachineGunMG60
+      gun_chamber:
+        name: Chamber
+        startingItem: null
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeHeavyRifleR
 
 - type: entity
   name: RPD

@@ -5,3 +5,5 @@ ent-AbductorHumanObservationConsole = human observation console
 ent-AbductorHumanObservationConsoleEye = abductor eye
     .desc = The abductor's viewer.
     .suffix = DO NOT MAP
+ent-SlopDispenser = nutrient paste dispenser
+    .desc = Produces tha slop using biomass. Can also convert plants to biomass for direct use.

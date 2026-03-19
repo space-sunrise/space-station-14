@@ -516,6 +516,9 @@
     - proto: SovietSquadLmg
       cost: 20
       prob: 0.15
+    - proto: SovietSquadMmg
+      cost: 25
+      prob: 0.12
     - proto: SovietSquadLightMechanized
       cost: 80
       prob: 0.1

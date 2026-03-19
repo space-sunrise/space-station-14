@@ -2566,6 +2566,11 @@
     - state: base
   - type: Item
     sprite: _Starlight/Objects/Weapons/Melee/forged_buckler_shield.rsi
+    inhandVisuals:
+      left:
+      - state: base
+      right:
+      - state: base
   - type: SpawnItemsOnUse
     items:
     # Cash
