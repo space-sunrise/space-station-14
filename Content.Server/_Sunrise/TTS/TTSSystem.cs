@@ -204,7 +204,14 @@ public sealed partial class TTSSystem : EntitySystem
                 }
 
                 // Play announcement sound via PVS from this speaker
-                var audioParams = AudioParams.Default.WithVolume(-2f * speakerComp.VolumeModifier).WithMaxDistance(speakerComp.Range);
+                var audioParams = (ev.AnnouncementSoundParams ?? AudioParams.Default).WithMaxDistance(speakerComp.Range);
+
+                if (speakerComp.VolumeModifier <= 0f)
+                    audioParams = audioParams.WithVolume(float.NegativeInfinity);
+
+                else if (speakerComp.VolumeModifier != 1f)
+                    audioParams = audioParams.AddVolume(SharedAudioSystem.GainToVolume(speakerComp.VolumeModifier));
+
                 _audioSystem.PlayPvs(ev.AnnouncementSound, speaker, audioParams);
             }
         }
@@ -234,13 +241,16 @@ public sealed partial class TTSSystem : EntitySystem
             if (_ignoredRecipients.Contains(actor.PlayerSession))
                 continue;
 
-            var heardSpeakers = new List<NetEntity>();
+            var heardSpeakers = new List<MultiSpeakerTtsSource>();
             foreach (var (speakerUid, speakerComp) in speakerData)
             {
                 if (Transform(speakerUid).Coordinates.TryDistance(EntityManager, playerXform.Coordinates, out var dist) &&
                     dist <= speakerComp.Range)
                 {
-                    heardSpeakers.Add(GetNetEntity(speakerUid));
+                    heardSpeakers.Add(new MultiSpeakerTtsSource(
+                        _xforms.GetMapCoordinates(speakerUid),
+                        speakerComp.VolumeModifier,
+                        speakerComp.Range));
                 }
             }
             if (heardSpeakers.Count > 0)
