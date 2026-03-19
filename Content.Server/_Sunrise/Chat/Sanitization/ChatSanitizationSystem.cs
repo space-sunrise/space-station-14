@@ -174,6 +174,9 @@ public sealed partial class ChatSanitizationSystem : EntitySystem
 
     private static bool IsProhibitedCharacter(char ch)
     {
+        if (ch is '卐' or '卍')
+            return true;
+
         if (ch is '\t' or '\n' or '\r')
             return false;
 
