@@ -14,4 +14,5 @@ ent-JetpackSSFMarine = джетпак морпеха СССП
     .suffix = Пустой
     .desc = Стандартный советский джетпак для работы в космосе.
 ent-JetpackSSFMarineFilled = джетпак морпеха СССП
+    .suffix = Полный
     .desc = { ent-JetpackSSFMarine.desc }

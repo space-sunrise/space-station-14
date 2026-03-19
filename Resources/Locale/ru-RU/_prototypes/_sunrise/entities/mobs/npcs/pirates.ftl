@@ -281,8 +281,8 @@ ent-MobPirateT2RandomUnitExpeditionSpawner = пиратский спавнер �
 ent-MobPirateT3RandomUnitExpeditionSpawner = пиратский спавнер случайного бойца T3
     .desc = Случайно спавнит бойца пиратской экспедиции T3.
 
-ent-OrganLootSpawner = спавнер пиратской добычи органов
-    .desc = Спавнит таблицу органической добычи пиратов.
+ent-OrganLootSpawner = спавнер органов
+    .desc = Спавнит органы.
 ent-MobPirateBase = пират (база)
 ent-MobPirateMonkey = пират-обезьяна (база)
 ent-MobPirateBaseT2 = пират T2 (база)

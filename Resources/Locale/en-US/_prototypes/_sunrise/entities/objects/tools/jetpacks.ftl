@@ -14,4 +14,5 @@ ent-JetpackSSFMarine = SSF marine jetpack
     .suffix = Empty
     .desc = Standard issued Soviet-made jetpack for use in space.
 ent-JetpackSSFMarineFilled = SSF marine jetpack
+    .suffix = Filled
     .desc = { ent-JetpackSSFMarine.desc }

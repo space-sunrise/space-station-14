@@ -1,21 +1,21 @@
 ent-MobSovietBase = товарищ
-    .desc = Советский рейдер, закаленный боями в глубоком космосе.
+    .desc = Советский боец, закаленный боями в глубоком космосе.
 
 ent-MobSovietT1Knife = советский боец
-    .desc = Рядовой советский рейдер, вооруженный для ближнего боя.
+    .desc = Рядовой советский боец, вооруженный для ближнего боя.
 ent-MobSovietKnifeAlt = { ent-MobSovietT1Knife }
     .desc = { ent-MobSovietT1Knife.desc }
 
 ent-MobSovietT1Pistol = советский пистолетчик
-    .desc = Рядовой советский рейдер с устаревшим табельным оружием.
+    .desc = Рядовой советский боец с устаревшим табельным оружием.
 ent-MobSovietT1Dp28 = советский пулеметчик
-    .desc = Рядовой советский рейдер с ручным пулеметом ДП-28.
+    .desc = Рядовой советский боец с ручным пулеметом ДП-28.
 ent-MobSovietT1RPD = { ent-MobSovietT1Dp28 }
-    .desc = { ent-MobSovietT1Dp28.desc }
+    .desc = Рядовой советский боец с штурмовым ручным пулеметом РПД-Ш.
 ent-MobSovietT1PKM = { ent-MobSovietT1Dp28 }
-    .desc = { ent-MobSovietT1Dp28.desc }
+    .desc = Низкоранговый советский боец, вооружённый пулемётом ПКМ.
 ent-MobSovietT1Mosin = советский стрелок
-    .desc = Рядовой советский рейдер с надежной старой винтовкой.
+    .desc = Рядовой советский боец с надежной старой винтовкой.
 ent-MobSovietT1SMGAlt = советский автоматчик
     .desc = Советский боец с легким пистолет-пулеметом.
 ent-MobSovietT1MosinAlt = { ent-MobSovietT1Mosin }
@@ -23,7 +23,7 @@ ent-MobSovietT1MosinAlt = { ent-MobSovietT1Mosin }
 ent-MobSovietT1MosinAlt2 = { ent-MobSovietT1Mosin }
     .desc = { ent-MobSovietT1Mosin.desc }
 ent-MobSovietT1SKM = советский стрелок
-    .desc = Рядовой советский рейдер, вооружённый винтовкой СКМ-24.
+    .desc = Рядовой советский боец, вооружённый винтовкой СКМ-24.
 ent-MobSovietT1Medic = советский боевой медик
     .desc = Советский боевой медик, поддерживающий отряд на передовой.
 ent-MobSovietT1SLRifle = советский сержант-стрелок
@@ -51,7 +51,7 @@ ent-MobSovietT3Rifle = космодесантник
 ent-MobSovietT3Medic = космодесантник-медик
     .desc = Закаленный в боях советский медик, поддерживающий отряд на передовой.
 
-ent-MobSovietT2Raider = десантник-рейдер
+ent-MobSovietT2Raider = советский десантник
     .desc = Закалённый ветеран десанта, вооружённый скорострельным ПП.
 ent-MobSovietT2RifleWAssault = советский штурмовик
     .desc = Опытный специалист, оснащенный для затяжной перестрелки.
