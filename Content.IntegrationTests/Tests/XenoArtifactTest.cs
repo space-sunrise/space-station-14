@@ -1,7 +1,12 @@
+using System;
 using System.Linq;
+using Content.Server._Sunrise.Research.Artifact.Effects.RandomTransformation;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Xenoarchaeology.Artifact;
 using Content.Shared.Xenoarchaeology.Artifact.Components;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests;
 
@@ -415,5 +420,101 @@ public sealed class XenoArtifactTest
         await server.WaitRunTicks(1);
 
         await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task ArtifactRandomTransformationCandidatesStayWithinSafeItemPool()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var map = await pair.CreateTestMap();
+
+        await server.WaitPost(() =>
+        {
+            var entManager = server.EntMan;
+            var prototypeManager = server.ResolveDependency<IPrototypeManager>();
+            var system = entManager.System<ArtifactRandomTransformationSystem>();
+
+            var effect = entManager.SpawnEntity("SunriseEffectRandomTransformation", map.MapCoords);
+            var effectEnt = (effect, entManager.GetComponent<ArtifactRandomTransformationComponent>(effect));
+
+            var allowedUnsafe = prototypeManager.EnumeratePrototypes<EntityPrototype>()
+                .Where(proto => system.CanTransformInto(effectEnt, proto))
+                .Where(proto =>
+                    !proto.Components.ContainsKey("Item") ||
+                    !proto.MapSavable ||
+                    HasBlockedMarker(proto.ID) ||
+                    HasBlockedMarker(proto.SetSuffix))
+                .Select(proto => proto.ID)
+                .ToList();
+
+            Assert.That(allowedUnsafe, Is.Empty,
+                $"Unsafe prototypes passed the random transformation filter: {string.Join(", ", allowedUnsafe)}");
+
+            Assert.That(system.CanTransformInto(effectEnt, prototypeManager.Index<EntityPrototype>("Crowbar")), Is.True);
+            Assert.That(system.CanTransformInto(effectEnt, prototypeManager.Index<EntityPrototype>("ToolDebug")), Is.False);
+            Assert.That(system.CanTransformInto(effectEnt, prototypeManager.Index<EntityPrototype>("WeaponPistolDebug")), Is.False);
+            Assert.That(system.CanTransformInto(effectEnt, prototypeManager.Index<EntityPrototype>("AdminHypo")), Is.False);
+            Assert.That(system.CanTransformInto(effectEnt, prototypeManager.Index<EntityPrototype>("AdminPDA")), Is.False);
+            Assert.That(system.CanTransformInto(effectEnt, prototypeManager.Index<EntityPrototype>("NukeCodePaper")), Is.False);
+            Assert.That(system.CanTransformInto(effectEnt, prototypeManager.Index<EntityPrototype>("NukeCodePaperStation")), Is.False);
+            Assert.That(system.CanTransformInto(effectEnt, prototypeManager.Index<EntityPrototype>("Singularity")), Is.False);
+        });
+        await server.WaitRunTicks(1);
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task ArtifactRandomTransformationDisabledCVarMakesNodeDoNothing()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var map = await pair.CreateTestMap();
+
+        EntityUid originalItem = default;
+
+        await server.WaitPost(() =>
+        {
+            server.CfgMan.SetCVar(SunriseCCVars.ArtifactRandomTransformationEnabled, false);
+
+            var entManager = server.EntMan;
+            var artifact = entManager.SpawnEntity("ComplexXenoArtifactItem", map.MapCoords);
+            var node = entManager.SpawnEntity("SunriseEffectRandomTransformation", map.MapCoords);
+            originalItem = entManager.SpawnEntity("Crowbar", map.MapCoords);
+
+            var artifactEnt = (artifact, entManager.GetComponent<XenoArtifactComponent>(artifact));
+            var nodeEnt = (node, entManager.GetComponent<XenoArtifactNodeComponent>(node));
+            var targetCoords = entManager.GetComponent<TransformComponent>(originalItem).Coordinates;
+            var ev = new XenoArtifactNodeActivatedEvent(artifactEnt, nodeEnt, null, originalItem, targetCoords);
+
+            entManager.EventBus.RaiseLocalEvent(node, ref ev);
+        });
+
+        await server.WaitRunTicks(2);
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(server.EntMan.EntityExists(originalItem), Is.True,
+                "Random transformation node changed an item while disabled by cvar.");
+        });
+
+        await server.WaitPost(() =>
+        {
+            server.CfgMan.SetCVar(
+                SunriseCCVars.ArtifactRandomTransformationEnabled,
+                SunriseCCVars.ArtifactRandomTransformationEnabled.DefaultValue);
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    private static bool HasBlockedMarker(string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return false;
+
+        return value.Contains("Debug", StringComparison.OrdinalIgnoreCase) ||
+               value.Contains("Admin", StringComparison.OrdinalIgnoreCase) ||
+               value.Contains("Admeme", StringComparison.OrdinalIgnoreCase);
     }
 }

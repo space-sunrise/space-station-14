@@ -22,4 +22,13 @@ public sealed partial class ArtifactRandomTransformationComponent : Component
 
     [DataField]
     public HashSet<EntProtoId>? PrototypeBlacklistExceptions;
+
+    [DataField]
+    public HashSet<string>? RequiredComponents;
+
+    [DataField]
+    public HashSet<string>? PrototypeIdBlacklistSubstrings;
+
+    [DataField]
+    public HashSet<string>? PrototypeSuffixBlacklistSubstrings;
 }
