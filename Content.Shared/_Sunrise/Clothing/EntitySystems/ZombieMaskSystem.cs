@@ -15,6 +15,7 @@ public sealed class ZombieMaskSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<ZombieMaskComponent, RefreshNameModifiersEvent>(OnRefreshNameModifiers);
     }
     private void OnRefreshNameModifiers(Entity<ZombieMaskComponent> entity, ref RefreshNameModifiersEvent args)
