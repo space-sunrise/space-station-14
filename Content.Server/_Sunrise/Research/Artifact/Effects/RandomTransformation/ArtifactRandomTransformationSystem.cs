@@ -40,7 +40,7 @@ public sealed partial class ArtifactRandomTransformationSystem : BaseXAESystem<A
 
         _cfg.OnValueChanged(
             SunriseCCVars.ArtifactRandomTransformationEnabled,
-            enabled => _enabled = enabled,
+            OnArtifactRandomTransformationEnabledChanged,
             true);
 
         SubscribeLocalEvent<ArtifactRandomTransformationComponent, ComponentStartup>(OnStartup);
@@ -54,7 +54,7 @@ public sealed partial class ArtifactRandomTransformationSystem : BaseXAESystem<A
         base.Shutdown();
 
         _cfg.UnsubValueChanged(SunriseCCVars.ArtifactRandomTransformationEnabled,
-            enabled => _enabled = enabled);
+            OnArtifactRandomTransformationEnabledChanged);
     }
 
     protected override void OnActivated(Entity<ArtifactRandomTransformationComponent> ent, ref XenoArtifactNodeActivatedEvent args)
@@ -81,5 +81,10 @@ public sealed partial class ArtifactRandomTransformationSystem : BaseXAESystem<A
         TryTransformItems(_inventoryItems, ent.Comp.TransformationPercentRatio, candidates);
         TryTransformItems(_worldItems, ent.Comp.TransformationPercentRatio, candidates);
         return true;
+    }
+
+    private void OnArtifactRandomTransformationEnabledChanged(bool newValue)
+    {
+        _enabled = newValue;
     }
 }

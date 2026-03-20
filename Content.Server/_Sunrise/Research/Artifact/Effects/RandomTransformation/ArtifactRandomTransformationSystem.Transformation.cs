@@ -73,9 +73,6 @@ public sealed partial class ArtifactRandomTransformationSystem
 
     private static int GetTransformCount(int sourceCount, float transformationRatio)
     {
-        if (sourceCount == 0 || transformationRatio <= 0f)
-            return 0;
-
-        return (int) (sourceCount * transformationRatio);
+        return Math.Max(1, (int) (sourceCount * transformationRatio));
     }
 }
