@@ -1,5 +1,7 @@
 ent-RailingEnd = railing
+    .desc = { ent-BaseRailing.desc }
 ent-RailingEndAlt = { ent-RailingEnd }
+    .desc = { ent-RailingEnd.desc }
 ent-BaseRailingYellow = railing
     .desc = Basic railing meant to protect idiots like you from falling.
 ent-RailingYellow = { ent-BaseRailingYellow }
