@@ -10,10 +10,7 @@ steal-target-groups-captain-id-card = ID карта капитана
 steal-target-groups-jetpack-captain-filled = капитанский джетпак
 steal-target-groups-weapon-antique-laser = антикварный лазерный пистолет
 steal-target-groups-nuke-disk = диск ядерной аутентификации
-steal-target-groups-weapon-energy-shot-gun = энергетический дробовик
-steal-target-groups-multiphase = X-01 мультифазный энергетический карабин
-steal-target-groups-plutonium = плутониевое ядро
-steal-target-groups-advanced-defibrillator = продвинутый дефибриллятор
+steal-target-groups-weapon-energy-magnum = энерго магнум
 # Thief Collection
 steal-target-groups-figurines = фигурка
 steal-target-groups-heads-cloaks = плащи глав
@@ -24,7 +21,7 @@ steal-target-groups-door-remotes = Пульт от шлюзов
 steal-target-groups-encryption-keys = ключ шифрования
 steal-target-groups-technology-disks = технологический диск
 steal-target-groups-id-cards = ID карта
-steal-target-groups-lamps = Лампа
+steal-target-groups-lamps = ЛАМПА
 # Thief single item
 steal-target-groups-forensic-scanner = криминалистический сканер
 steal-target-groups-flippo-engraved-lighter = гравированная зажигалка флиппо детектива

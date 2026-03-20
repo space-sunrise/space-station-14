@@ -1026,10 +1026,6 @@
       enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
   # Sunrise-Start
-  - type: Biocode
-    factions:
-    - Syndicate
-    - Thief
   - type: PresetIdCard
     setAccess: false
   # Sunrise-End

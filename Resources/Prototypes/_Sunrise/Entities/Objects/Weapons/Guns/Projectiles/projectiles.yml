@@ -354,9 +354,13 @@
   parent: BulletGrenadeExplosive
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Grenades/grenade.rsi
+    layers:
+      - state: primed
   - type: ProjectileGrenade
     fillPrototype: PelletClusterLessLethal
-    capacity: 45
+    capacity: 30
 
 - type: entity
   id: BulletSmokeGrenade
@@ -385,6 +389,20 @@
       path: /Audio/Items/smoke_grenade_prime.ogg
       params:
         volume: 15
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  id: BulletSmokeGrenadeQuick
+  name: quick smoke grenade
+  parent: BulletSmokeGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 10
+    spreadAmount: 20
   - type: TimedDespawn
     lifetime: 3
 
