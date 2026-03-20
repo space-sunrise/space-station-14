@@ -429,7 +429,7 @@ namespace Content.Shared.Preferences
         {
             return new(this)
             {
-                _jobAlternativeTitles = altTitles,
+                _jobAlternativeTitles = new Dictionary<ProtoId<JobPrototype>, LocId>(altTitles),
             };
         }
         // Sunrise-End
