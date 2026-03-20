@@ -89,10 +89,10 @@ public sealed partial class ChatSanitizationSystem : EntitySystem
 
     private static void HandleSoftSanitization(ref TrySendChatMessageEvent args)
     {
+        args.Message = StripProhibitedCharacters(args.Message);
+
         if (MightContainUrl(args.Message))
             args.Message = UrlRegex().Replace(args.Message, string.Empty);
-
-        args.Message = StripProhibitedCharacters(args.Message);
     }
 
     private bool ContainsProhibitedContent(string message, [NotNullWhen(true)] out string? reason)
