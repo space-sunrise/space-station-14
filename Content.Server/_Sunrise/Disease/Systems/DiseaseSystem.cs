@@ -648,9 +648,6 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
 
         var finalChance = (infectivity ?? data.Infectivity) - resistanceQuery.TotalCoefficient;
 
-        if (infectivity.HasValue)
-            finalChance = infectivity.Value;
-
         // от 0 до 100%
         finalChance = Math.Clamp(finalChance, 0f, 1.0f);
 

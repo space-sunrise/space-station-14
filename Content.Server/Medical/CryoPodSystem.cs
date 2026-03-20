@@ -74,8 +74,7 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
             null,
             null,
             null,
-            null,
-            infectionLevel // Sunrise-disease-edit
+            cureProgress: infectionLevel // Sunrise-disease-edit
         ));
     }
 
