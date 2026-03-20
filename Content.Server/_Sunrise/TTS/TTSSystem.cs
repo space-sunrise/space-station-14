@@ -3,16 +3,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Content.Server._Sunrise.AnnouncementSpeaker;
 using Content.Server.Chat.Systems;
-using Content.Server.GameTicking;
 using Content.Server.Power.Components;
 using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared._Sunrise.AnnouncementSpeaker.Components;
 using Content.Shared._Sunrise.AnnouncementSpeaker.Events;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
-using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -55,6 +52,7 @@ public sealed partial class TTSSystem : EntitySystem
     private bool _isEnabled;
     private string _defaultAnnounceVoice = "Hanson";
     private List<ICommonSession> _ignoredRecipients = new();
+    private const float AnnouncementTtsVolumeModifier = 0.75f; // громкость объявлений в динамиках по сравнению с обычной речью
     private const float WhisperVoiceVolumeModifier = 0.6f; // how far whisper goes in world units
     private const int WhisperVoiceRange = 3; // how far whisper goes in world units
     private string _radioEffect = string.Empty;
@@ -255,7 +253,7 @@ public sealed partial class TTSSystem : EntitySystem
             }
             if (heardSpeakers.Count > 0)
             {
-                var evMulti = new PlayMultiSpeakerTTSEvent(heardSpeakers, ev.TtsData);
+                var evMulti = new PlayMultiSpeakerTTSEvent(heardSpeakers, ev.TtsData, volume: AnnouncementTtsVolumeModifier);
                 RaiseNetworkEvent(evMulti, actor.PlayerSession);
             }
         }

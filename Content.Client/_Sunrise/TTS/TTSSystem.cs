@@ -29,6 +29,7 @@ public sealed class TTSSystem : EntitySystem
     [Dependency] private readonly IDependencyCollection _dependencyCollection = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly INetManager _netManager = default!;
+    [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
 
     private ISawmill _sawmill = default!;
     private static readonly MemoryContentRoot ContentRoot = new();
@@ -224,8 +225,7 @@ public sealed class TTSSystem : EntitySystem
 
     private (EntityUid Entity, AudioComponent Component)? PlayTTSResourceAtCoordinates(AudioResource res, EntityCoordinates coordinates, AudioParams? audioParams = null)
     {
-        var finalParams = audioParams ?? AudioParams.Default;
-        return _audio.PlayStatic(res.AudioStream, coordinates, null, finalParams);
+        return _audio.PlayStatic(res.AudioStream, coordinates, null, audioParams);
     }
 
     private void FinalizeTtsResource(ResPath filePath)
@@ -240,7 +240,6 @@ public sealed class TTSSystem : EntitySystem
             return;
 
         var audioRes = AddTtsAudioResource(ev.SoundData);
-        var xformSystem = EntityManager.System<SharedTransformSystem>();
 
         if (audioRes == null)
             return;
@@ -255,7 +254,7 @@ public sealed class TTSSystem : EntitySystem
             if (volumeModifier <= 0f)
                 continue;
 
-            var coordinates = xformSystem.ToCoordinates(speaker.Coordinates);
+            var coordinates = _xformSystem.ToCoordinates(speaker.Coordinates);
 
             if (!coordinates.IsValid(EntityManager))
                 continue;

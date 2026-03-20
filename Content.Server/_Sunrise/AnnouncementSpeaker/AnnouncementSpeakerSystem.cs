@@ -25,26 +25,10 @@ public sealed class AnnouncementSpeakerSystem : EntitySystem
     /// <summary>
     /// Represents a queued announcement waiting to be played.
     /// </summary>
-    private sealed class QueuedAnnouncement
+    private sealed record QueuedAnnouncement(EntityUid Station, string Message, ResolvedSoundSpecifier? AnnouncementSound,
+        AudioParams? AnnouncementSoundParams, string? AnnounceVoice, byte[]? TtsData)
     {
-        public EntityUid Station { get; set; }
-        public string Message { get; set; } = "";
-        public ResolvedSoundSpecifier? AnnouncementSound { get; set; }
-        public AudioParams? AnnouncementSoundParams { get; set; }
-        public string? AnnounceVoice { get; set; }
-        public byte[]? TtsData { get; set; }
-        public TimeSpan QueuedAt { get; set; }
-
-        public QueuedAnnouncement(EntityUid station, string message, ResolvedSoundSpecifier? announcementSound,
-            AudioParams? announcementSoundParams, string? announceVoice, byte[]? ttsData)
-        {
-            Station = station;
-            Message = message;
-            AnnouncementSound = announcementSound;
-            AnnouncementSoundParams = announcementSoundParams;
-            AnnounceVoice = announceVoice;
-            TtsData = ttsData;
-        }
+        public TimeSpan QueuedAt { get; init; }
     }
 
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
