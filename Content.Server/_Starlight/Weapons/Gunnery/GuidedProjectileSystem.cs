@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Content.Shared.Projectiles; // Sunrise-Edit
 using Content.Shared._Starlight.Weapons.Gunnery;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
@@ -64,6 +65,14 @@ public sealed class GuidedProjectileSystem : EntitySystem
             }
 
             _physics.SetLinearVelocity(uid, newDir * currentSpeed, body: physics);
+
+            // Sunrise-Start
+            // Keep projectile visuals pointed in the current flight direction.
+            if (TryComp<ProjectileComponent>(uid, out var projectile))
+                _transform.SetWorldRotation(uid, newDir.ToWorldAngle() + projectile.Angle);
+            else
+                _transform.SetWorldRotation(uid, newDir.ToWorldAngle());
+            // Sunrise-End
         }
     }
 }
