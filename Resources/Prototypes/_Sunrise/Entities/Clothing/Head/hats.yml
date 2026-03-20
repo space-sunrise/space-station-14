@@ -686,22 +686,6 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadCaptainCapBlack
-  name: captain's cap (black)
-  description: A black officer cap made for the captain.
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Clothing/Head/Hats/black_cap_hat.rsi
-  - type: Clothing
-    sprite: _Sunrise/Clothing/Head/Hats/black_cap_hat.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - TopCovered # INTERACTIONS
-    - WhitelistChameleon
-
-- type: entity
-  parent: ClothingHeadBase
   id: ClothingHeadHatZombie
   name: zombie mask
   description: 'Grrroul...'
@@ -722,3 +706,19 @@
     - HeadSide
     - FacialHair
   - type: ZombieMask
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadCaptainCapBlack
+  name: captain's cap (black)
+  description: A black officer cap made for the captain.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/black_cap_hat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/black_cap_hat.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - TopCovered # INTERACTIONS
+    - WhitelistChameleon
