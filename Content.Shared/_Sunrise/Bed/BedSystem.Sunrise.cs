@@ -16,7 +16,7 @@ public sealed partial class BedSystem
         var enumerator = _inventorySystem.GetSlotEnumerator((healedEntity, inventory), SlotFlags.WITHOUT_POCKET);
         while (enumerator.NextItem(out var item))
         {
-            if (!TryComp<BedHealModifierClothingComponent>(item, out var modifier))
+            if (!_bedHealModifierClothingQuery.TryComp(item, out var modifier))
                 continue;
 
             multiplier = Math.Min(multiplier, modifier.Multiplier);
