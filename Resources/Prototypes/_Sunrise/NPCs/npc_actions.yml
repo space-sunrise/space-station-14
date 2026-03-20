@@ -264,6 +264,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
+    useDelay: 5
     icon: { sprite : Objects/Weapons/Guns/Revolvers/python.rsi, state: icon }
     priority: 2
     itemIconStyle: BigAction
