@@ -105,3 +105,19 @@
           amount: 1
         - id: MagazinePistol40HP
           amount: 1
+
+- type: entity
+  parent: PouchAmmo
+  id: PouchAmmoFilledLightRifle
+  suffix: Filled, light rifle
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineLightRifleFMJ
+          amount: 2
+        - id: MagazineLightRifleSP
+          amount: 1
+        - id: MagazineLightRifleHP
+          amount: 1

@@ -16,7 +16,7 @@
 
 - type: entity
   name: comfy brown chair
-  id: ComfyBrownChair
+  id: ComfyChairBrown
   parent: ChairBase
   description: It looks comfy.
   components:
@@ -25,7 +25,7 @@
     state: comfy-brown
   - type: Construction
     graph: Seat
-    node: chairComfyBrown
+    node: chairComfy
 
 - type: entity
   name: grey office chair

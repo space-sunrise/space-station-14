@@ -6,7 +6,7 @@
   molarMass: 10
   color: 9370db
   reagent: BZ
-  pricePerMole: 0.3
+  pricePerMole: 0.75
   gasOverlaySprite: /Textures/_Sunrise/Effects/atmospherics.rsi
   gasOverlayState: bz
 
@@ -18,7 +18,7 @@
   molarMass: 10
   color: 8b0000
   reagent: Healium
-  pricePerMole: 0.32
+  pricePerMole: 1.75
   gasOverlaySprite: /Textures/_Sunrise/Effects/atmospherics.rsi
   gasOverlayState: healium
 
@@ -30,7 +30,7 @@
   molarMass: 30
   color: 8B4513
   reagent: Nitrium
-  pricePerMole: 0.26
+  pricePerMole: 1.5
   gasOverlaySprite: /Textures/_Sunrise/Effects/atmospherics.rsi
   gasOverlayState: nitriumGas
 

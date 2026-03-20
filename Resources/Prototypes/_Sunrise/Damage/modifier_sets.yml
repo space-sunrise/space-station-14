@@ -88,11 +88,13 @@
   id: MobPirateT1
   coefficients:
     Caustic: 0.5
+    Radiation: 0.5
 
 - type: damageModifierSet
   id: MobPirateT2
   coefficients:
     Caustic: 0.5
+    Radiation: 0.5
     Bloodloss: 0.7
     Mangleness: 0.7
 
@@ -100,6 +102,7 @@
   id: MobPirateT3
   coefficients:
     Caustic: 0.5
+    Radiation: 0.5
     Bloodloss: 0.5
     Mangleness: 0.5
 

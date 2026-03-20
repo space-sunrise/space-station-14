@@ -7,4 +7,9 @@
       solutions:
         stomach:
           maxVol: 200
+        food:
+          maxVol: 5
+          reagents:
+          - ReagentId: UncookedAnimalProteins
+            Quantity: 5
     - type: Stomach

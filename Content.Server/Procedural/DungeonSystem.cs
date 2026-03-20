@@ -184,7 +184,9 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
         if (!_loader.TryLoadGeneric(proto.AtlasPath, out var res, opts) || !res.Maps.TryFirstOrNull(out var map))
             throw new Exception($"Failed to load dungeon template.");
 
-        comp = AddComp<DungeonAtlasTemplateComponent>(map.Value.Owner);
+        // The loaded template map may already have this marker (e.g. from prior load/reuse),
+        // so we must not hard-fail on duplicate component add.
+        comp = EnsureComp<DungeonAtlasTemplateComponent>(map.Value.Owner); // Sunrise-Edit
         comp.Path = proto.AtlasPath;
         return map.Value.Comp.MapId;
     }

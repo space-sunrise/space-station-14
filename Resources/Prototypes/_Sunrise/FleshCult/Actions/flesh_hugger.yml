@@ -1,8 +1,7 @@
-﻿- type: entity
+- type: entity
   parent: BaseAction
   id: FleshHuggerJump
-  name: flesh-hugger-jump-name
-  description: flesh-hugger-jump-description
+  name: Jump
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -18,8 +17,7 @@
 - type: entity
   parent: BaseAction
   id: FleshHuggerGetOff
-  name: flesh-hugger-get-off-name
-  description: flesh-hugger-get-off-description
+  name: Get Off Face
   categories: [ HideSpawnMenu ]
   components:
   - type: Action

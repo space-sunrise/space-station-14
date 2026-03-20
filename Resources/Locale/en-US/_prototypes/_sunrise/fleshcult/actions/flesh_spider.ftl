@@ -1,2 +1,2 @@
-ent-FleshSpiderWebAction = spider-web-action-name
-    .desc = spider-web-action-description
+ent-FleshSpiderWebAction = Web Weaving
+    .desc = Creates webs around you.

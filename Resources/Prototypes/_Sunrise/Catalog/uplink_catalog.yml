@@ -334,7 +334,7 @@
   id: UplinkMagazinePistolSubMachineGunCaselessExtended
   name: uplink-magazine-siar52-name
   description: uplink-magazine-siar52-desc
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/IAR-52mag.rsi, state: base }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/iar_52_mag.rsi, state: base }
   productEntity: MagazinePistolSubMachineGunCaselessExtended
   discountCategory: usualDiscounts
   discountDownTo:
@@ -348,7 +348,7 @@
   id: UplinkMagazineDl6902
   name: uplink-magazine-dl6902-name
   description: uplink-magazine-dl6902-desc
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Dl6902mag.rsi, state: base }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/dl6902_mag.rsi, state: base }
   productEntity: MagazineDl6902
   discountCategory: usualDiscounts
   discountDownTo:
@@ -925,7 +925,7 @@
   name: uplink-aj100-name
   productEntity: BriefcaseWeaponAJ100Filled
   description: uplink-aj100-desc
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi, state: icon }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/aj_100.rsi, state: icon }
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 8
@@ -945,7 +945,7 @@
   name: uplink-clothing-backpack-syndie-aj100-name
   productEntity: ClothingBackpackSyndieAJ100Filled
   description: uplink-clothing-backpack-syndie-aj100-desc
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi, state: icon }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/aj_100.rsi, state: icon }
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 10
@@ -1041,7 +1041,7 @@
   name: uplink-clothing-backpack-syndie-dl6902-name
   productEntity: ClothingBackpackSyndieDL6902Filled
   description: uplink-clothing-backpack-syndie-dl6902-desc
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902.rsi, state: icon }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/LMGs/dl6902.rsi, state: icon }
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 20
@@ -1080,7 +1080,7 @@
   name: uplink-siar52-name
   productEntity: BriefcaseWeaponSIAR52Filled
   description: uplink-siar52-desc
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi, state: icon }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/iar_52.rsi, state: icon }
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 8
@@ -1100,7 +1100,7 @@
   name: uplink-clothing-backpack-syndie-siar52-name
   productEntity: ClothingBackpackSyndieSIAR52Filled
   description: uplink-clothing-backpack-syndie-siar52-name
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi, state: icon }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/iar_52.rsi, state: icon }
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 15

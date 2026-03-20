@@ -25,15 +25,17 @@
         Heat: 0.80
   - type: ExplosionResistance
     damageCoefficient: 0.90
-  # Sunrise-Start
+  # Sunrise-start
+  - type: BedHealModifierClothing
+    multiplier: 0.40
   - type: Tag
     tags:
     - Vest
     - NudeBottom # INTERACTIONS
     - WhitelistChameleon
   - type: ArmorSparkEffect #starlight
-  - type: StaminaResistance # Sunrise-Add
-    damageCoefficient: 0.9 # Sunrise-Add
+  - type: StaminaResistance
+    damageCoefficient: 0.9
   # Sunrise-End
 
 #Standard armor vest, allowed for security and bartenders
@@ -152,6 +154,10 @@
   - type: ExplosionResistance
     damageCoefficient: 0.65
   - type: GroupExamine
+  # Sunrise-start
+  - type: BedHealModifierClothing
+    multiplier: 0.25
+  # Sunrise-end
 
 - type: entity
   parent: [ClothingOuterArmorBaseCarapace, BaseCommandContraband]
@@ -295,8 +301,8 @@
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
     damageCoefficient: 0.45
   - type: ClothingSpeedModifier
-    walkModifier: 0.95 # Sunrise-Edit
-    sprintModifier: 0.95 # Sunrise-Edit
+    walkModifier: 1 # Sunrise-Edit
+    sprintModifier: 1 # Sunrise-Edit
   #Shoulder mounted flashlight
   - type: ToggleableVisuals
     spriteLayer: light

@@ -37,7 +37,7 @@
 
 - type: entity
   parent: Holoprojector
-  id: HoloprojectorJanitorBorg # Sunrise-Edit
+  id: HoloprojectorBorg
   suffix: borg
   name: holosign projector
   description: A modified holographic sign projector for use in custodial cyborgs. Automatically self-charges.
@@ -49,7 +49,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellRobotTool
+        startingItem: PowerCellMicroreactor
         disableEject: true
         swap: false
 

@@ -27,7 +27,6 @@
   - type: Item
     size: Huge
 
-#Sunrise-start
 - type: entity
   id: CoalpenKitFilled
   suffix: CoalpenKit, Filled
@@ -39,4 +38,3 @@
         children:
         - id: CoalAutoInjector
           amount: 8
-#Sunrise-end

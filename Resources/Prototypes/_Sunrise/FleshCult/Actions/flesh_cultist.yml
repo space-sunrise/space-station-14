@@ -1,8 +1,8 @@
-﻿- type: entity
+- type: entity
   parent: BaseAction
   id: FleshCultistShop
-  name: flesh-cultist-shop-name
-  description: flesh-cultist-shop-desc
+  name: Evolution Shop
+  description: Here you can buy active abilities and passive upgrades.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -14,8 +14,8 @@
 - type: entity
   parent: BaseAction
   id: FleshCultistBlade
-  name: flesh-cultist-blade-name
-  description: flesh-cultist-blade-desc
+  name: Flesh Blade
+  description: Transforms your active hand into a deadly blade of flesh and bone.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -30,8 +30,8 @@
 - type: entity
   parent: BaseAction
   id: FleshCultistAdrenalin
-  name: flesh-cultist-adrenalin-name
-  description: flesh-cultist-adrenalin-desc
+  name: Epinephrine Synthesis
+  description: The parasite synthesizes and injects epinephrine, increasing speed and stun resistance.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -45,8 +45,8 @@
 - type: entity
   parent: BaseAction
   id: FleshCultistCreateFleshHeart
-  name: flesh-cultist-create-flesh-heart-name
-  description: flesh-cultist-create-flesh-heart-desc
+  name: Create Flesh Heart
+  description: Creates a flesh heart in front of you. Activating it is your primary objective.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -59,8 +59,8 @@
 - type: entity
   parent: BaseAction
   id: FleshCultistClaw
-  name: flesh-cultist-claw-name
-  description: flesh-cultist-claw-desc
+  name: Flesh Claw
+  description: Transforms your active hand into a functional claw of flesh and bone.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -75,8 +75,8 @@
 - type: entity
   parent: BaseAction
   id: FleshCultistThrowHugger
-  name: flesh-cultist-throw-hugger-name
-  description: flesh-cultist-throw-hugger-desc
+  name: Throw Facehugger
+  description: Create and throw a flesh facehugger at your enemies.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -92,8 +92,8 @@
 - type: entity
   parent: BaseAction
   id: FleshCultistAcidSpit
-  name: flesh-cultist-acid-spit-name
-  description: flesh-cultist-acid-spit-desc
+  name: Acid Spit
+  description: Spit acid at your enemies.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -109,8 +109,8 @@
 - type: entity
   parent: BaseAction
   id: FleshCultistFist
-  name: flesh-cultist-fist-name
-  description: flesh-cultist-fist-desc
+  name: Flesh Fist
+  description: Transforms your active hand into a massive flesh fist that can break structures.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -125,8 +125,8 @@
 - type: entity
   parent: BaseAction
   id: FleshCultistSpikeGun
-  name: flesh-cultist-spike-gun-name
-  description: flesh-cultist-spike-gun-desc
+  name: Spike Gun Arm
+  description: Transforms your active hand into a deadly flesh spike gun.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -141,8 +141,8 @@
 - type: entity
   parent: BaseAction
   id: FleshCultistArmor
-  name: flesh-cultist-armor-name
-  description: flesh-cultist-armor-desc
+  name: Flesh Armor
+  description: Encases you in armor of flesh and bone.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -160,8 +160,8 @@
 - type: entity
   parent: BaseAction
   id: FleshCultistHeavyArmor
-  name: flesh-cultist-heavy-armor-name
-  description: flesh-cultist-heavy-armor-desc
+  name: Heavy Flesh Armor
+  description: Encases you in heavy armor of flesh and bone.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -179,8 +179,8 @@
 - type: entity
   parent: BaseAction
   id: FleshCultistSpiderlegs
-  name: flesh-cultist-spider-legs-name
-  description: flesh-cultist-spider-legs-desc
+  name: Spider Form
+  description: Transforms part of your body into a spider form, granting speed and some protection.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -200,8 +200,8 @@
 - type: entity
   parent: BaseAction
   id: FleshCultistAbsorbBloodPool
-  name: flesh-cultist-absorb-blood-pool-name
-  description: flesh-cultist-absorb-blood-pool-desc
+  name: Absorb Blood Pool
+  description: Allows you to absorb blood pools to heal.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -214,8 +214,8 @@
 - type: entity
   parent: BaseAction
   id: FleshCultistDevour
-  name: flesh-cultist-devour-name
-  description: flesh-cultist-devour-desc
+  name: Devour Corpse
+  description: Devour a flesh creature to gain evolution points and heal wounds.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action

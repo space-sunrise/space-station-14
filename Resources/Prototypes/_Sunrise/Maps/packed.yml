@@ -79,15 +79,15 @@
             Lawyer: [ 3, 3 ]
             # silicon
             StationAi: [ 1, 1 ]
-            Borg: [ 2, 2 ]
-            EngineerBorg: [ 2, 2 ]
-            MiningBorg: [ 2, 2 ]
-            JanitorBorg: [ 2, 2 ]
-            ServiceBorg: [ 2, 2 ]
-            ClownBorg: [ 2, 2 ]
-            PeaceBorg: [ 2, 2 ]
-            MedicalBorg: [ 4, 4 ]
-            SecurityBorg: [ 4, 4 ]
+            Borg: [ 3, 3 ]
+            EngineerBorg: [ 1, 1 ]
+            MiningBorg: [ 1, 1 ]
+            JanitorBorg: [ 1, 1 ]
+            ServiceBorg: [ 1, 1 ]
+            ClownBorg: [ 1, 1 ]
+            PeaceBorg: [ 1, 1 ]
+            MedicalBorg: [ 1, 1 ]
+            SecurityBorg: [ 1, 1 ]
         - type: StationGoal
           goals:
           - Shuttle

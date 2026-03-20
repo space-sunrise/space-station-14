@@ -721,7 +721,7 @@ namespace Content.Server._Sunrise.MentorHelp
             AdminData? senderAdminData = null;
             string? username = null;
 
-            if (_playerManager.TryGetSessionById(senderUserId, out var senderSession))
+            if (_config.GetCVar(SunriseCCVars.MentorHelpAdminPrefixEnabled) && senderAdminData is not null && senderAdminData.Value.dat.Title is not null)
             {
                 senderAdminData = _adminManager.GetAdminData(senderSession);
                 username = senderSession.Name;

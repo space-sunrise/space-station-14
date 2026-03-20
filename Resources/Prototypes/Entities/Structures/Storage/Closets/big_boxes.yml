@@ -68,7 +68,7 @@
     - type: CardboardBox
       quiet: true
     - type: Stealth
-      mirage: false # Sunrise-Edit
+      mirage: true # Sunrise-Edit
       hadOutline: true
       examineThreshold: 0.9 # Sunrise-Edit
     - type: StealthOnMove

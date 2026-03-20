@@ -26,6 +26,7 @@
           - None
   - type: Clickable
   - type: MovementIgnoreGravity
+  - type: GravityAffected
   - type: Pylon
     tileConvertCooldown: 0.1
     convertEverything: true

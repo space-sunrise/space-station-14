@@ -24,6 +24,8 @@
     stateDoorClosed: door
   - type: Transform
     anchored: true
+  - type: Physics
+    bodyType: Static
 
 - type: entity
   id: GunSafeBaseSecureSunrise
