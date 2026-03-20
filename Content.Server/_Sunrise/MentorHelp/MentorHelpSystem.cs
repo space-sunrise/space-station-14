@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
@@ -25,7 +24,7 @@ namespace Content.Server._Sunrise.MentorHelp
     /// Server-side mentor help system for managing tickets
     /// </summary>
     [UsedImplicitly]
-    public sealed class MentorHelpSystem : SharedMentorHelpSystem
+    public sealed partial class MentorHelpSystem : SharedMentorHelpSystem
     {
         private const string RateLimitKey = "MentorHelp";
 
@@ -167,10 +166,10 @@ namespace Content.Server._Sunrise.MentorHelp
                     return;
                 }
 
+
                 if (ticket.AssignedToUserId.HasValue && ticket.AssignedToUserId.Value != session.UserId.UserId)
-                {
                     return;
-                }
+
 
                 // Claim the ticket
                 ticket.AssignedToUserId = session.UserId.UserId;
@@ -178,6 +177,7 @@ namespace Content.Server._Sunrise.MentorHelp
                 ticket.UpdatedAt = DateTimeOffset.UtcNow;
 
                 await _dbManager.UpdateMentorHelpTicketAsync(ticket);
+                InvalidateStatisticsCache();
 
                 Log.Info($"Mentor {session.Name} ({session.UserId}) claimed ticket #{ticket.Id}");
 
@@ -258,15 +258,13 @@ namespace Content.Server._Sunrise.MentorHelp
                     ticket.Status = MentorHelpTicketStatus.Assigned;
                 }
                 else if (hasMentorPerms)
-                {
                     // Mentor replied, awaiting player response
                     ticket.Status = MentorHelpTicketStatus.AwaitingResponse;
-                }
+
                 else if (isTicketOwner && ticket.Status == MentorHelpTicketStatus.AwaitingResponse)
-                {
                     // Player replied, mark as assigned again
                     ticket.Status = MentorHelpTicketStatus.Assigned;
-                }
+
 
                 ticket.UpdatedAt = DateTimeOffset.UtcNow;
                 await _dbManager.UpdateMentorHelpTicketAsync(ticket);
@@ -285,9 +283,7 @@ namespace Content.Server._Sunrise.MentorHelp
                     var userId = new NetUserId(ticket.PlayerId);
 
                     if (_playerManager.TryGetSessionById(userId, out var authorSession))
-                    {
                         RaiseNetworkEvent(new MentorHelpOpenTicketMessage(ticket.Id), authorSession.Channel);
-                    }
                 }
             }
             catch (Exception ex)
@@ -355,10 +351,8 @@ namespace Content.Server._Sunrise.MentorHelp
                 List<MentorHelpTicket> tickets;
 
                 if (message.OnlyMine)
-                {
-                    // Player requesting their own tickets (both open and closed)
                     tickets = await _dbManager.GetMentorHelpTicketsByPlayerAsync(session.UserId.UserId);
-                }
+
                 else
                 {
                     // Mentor/admin requesting all tickets (both open and closed)
@@ -374,26 +368,7 @@ namespace Content.Server._Sunrise.MentorHelp
                     tickets = openTickets.Concat(closedTickets).ToList();
                 }
 
-                // Collect all unique user IDs for batch loading
-                var userIds = new HashSet<Guid>();
-                foreach (var ticket in tickets)
-                {
-                    userIds.Add(ticket.PlayerId);
-                    if (ticket.AssignedToUserId.HasValue)
-                        userIds.Add(ticket.AssignedToUserId.Value);
-                    if (ticket.ClosedByUserId.HasValue)
-                        userIds.Add(ticket.ClosedByUserId.Value);
-                }
-
-                // Load all player names in one batch query
-                var playerNames = await _dbManager.GetPlayerNamesBatchAsync(userIds);
-
-                // Convert tickets to data using cached names
-                var ticketDataList = new List<MentorHelpTicketData>();
-                foreach (var ticket in tickets)
-                {
-                    ticketDataList.Add(ConvertToTicketData(ticket, playerNames));
-                }
+                var ticketDataList = await GetTicketDataListAsync(tickets);
 
                 RaiseNetworkEvent(new MentorHelpTicketsListMessage(ticketDataList), session.Channel);
             }
@@ -433,6 +408,7 @@ namespace Content.Server._Sunrise.MentorHelp
                 ticket.UpdatedAt = DateTimeOffset.UtcNow;
 
                 await _dbManager.UpdateMentorHelpTicketAsync(ticket);
+                InvalidateStatisticsCache();
 
                 Log.Info($"Mentor {session.Name} ({session.UserId}) unassigned ticket #{ticket.Id}");
 
@@ -451,11 +427,11 @@ namespace Content.Server._Sunrise.MentorHelp
             return adminData?.HasFlag(AdminFlags.Mentor) ?? false;
         }
 
-        private async Task<int?> GetServerIdAsync()
+        private Task<int?> GetServerIdAsync()
         {
             // Implementation would depend on how server ID is tracked
             // For now, return null
-            return null;
+            return Task.FromResult<int?>(null);
         }
         private void InvalidateStatisticsCache() // Чистка кеша
         {
@@ -467,49 +443,14 @@ namespace Content.Server._Sunrise.MentorHelp
         private async Task<MentorStatisticsCache> BuildStatisticsCacheAsync(DateTimeOffset now)
         {
             var weekStatistics = await _dbManager.GetMentorHelpStatisticsAsync(now.AddDays(-7)); // Неделя
-            var monthStatistics = await _dbManager.GetMentorHelpStatisticsAsync(now.AddMonths(-1)); // Месяц 
+            var monthStatistics = await _dbManager.GetMentorHelpStatisticsAsync(now.AddMonths(-1)); // Месяц
             var allTimeStatistics = await _dbManager.GetMentorHelpStatisticsAsync(null); // За все время
-        
-            var mentorUserIds = new HashSet<Guid>();
-        
-            foreach (var stat in weekStatistics)
-                mentorUserIds.Add(stat.MentorUserId);
-        
-            foreach (var stat in monthStatistics)
-                mentorUserIds.Add(stat.MentorUserId);
-        
-            foreach (var stat in allTimeStatistics)
-                mentorUserIds.Add(stat.MentorUserId);
-        
-            var activeMentorIds = new HashSet<Guid>();
-            Dictionary<Guid, Admin>? offlineAdminsByUserId = null;
-            Dictionary<int, AdminRank>? adminRanksById = null;
-        
-            foreach (var mentorUserId in mentorUserIds)
-            {
-                bool isMentor;
-        
-                if (_playerManager.TryGetSessionById(new NetUserId(mentorUserId), out var mentorSession))
-                    isMentor = _adminManager.GetAdminData(mentorSession)?.HasFlag(AdminFlags.Mentor) ?? false;
-                else
-                {
-                    if (offlineAdminsByUserId == null || adminRanksById == null)
-                    {
-                        var (admins, adminRanks) = await _dbManager.GetAllAdminAndRanksAsync();
-                        offlineAdminsByUserId = admins.ToDictionary(admin => admin.Item1.UserId, admin => admin.Item1);
-                        adminRanksById = adminRanks.ToDictionary(rank => rank.Id);
-                    }
-        
-                    isMentor = offlineAdminsByUserId.TryGetValue(mentorUserId, out var adminData)
-                        && HasAdminFlag(adminData, adminRanksById, AdminFlags.Mentor);
-                }
-        
-                if (isMentor)
-                    activeMentorIds.Add(mentorUserId);
-            }
-        
+
+            var mentorUserIds = CollectMentorUserIds(weekStatistics, monthStatistics, allTimeStatistics);
+            var activeMentorIds = await GetActiveMentorIdsAsync(mentorUserIds);
+
             var mentorNames = await _dbManager.GetPlayerNamesBatchAsync(activeMentorIds);
-        
+
             return new MentorStatisticsCache
             {
                 WeekStatistics = ConvertStatistics(weekStatistics, mentorNames, activeMentorIds),
@@ -541,7 +482,7 @@ namespace Content.Server._Sunrise.MentorHelp
             return flags.HasFlag(flag);
         }
 
-        private static List<MentorHelpStatisticsData> ConvertStatistics(
+        private List<MentorHelpStatisticsData> ConvertStatistics(
             List<MentorHelpStatistics> statistics,
             Dictionary<Guid, string> mentorNames,
             HashSet<Guid> activeMentorIds)
@@ -557,7 +498,7 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 result.Add(new MentorHelpStatisticsData
                 {
-                    MentorName = mentorName ?? "Unknown",
+                    MentorName = mentorName ?? Loc.GetString("mentor-help-unknown-user"),
                     TicketsClosed = stat.TicketsClosed,
                     MessagesCount = stat.MessagesCount
                 });
@@ -591,26 +532,10 @@ namespace Content.Server._Sunrise.MentorHelp
 
             try
             {
-                var now = DateTimeOffset.UtcNow;
-                var cacheValid = _mentorStatsCache != null && _mentorStatsCacheTime != null && (now - _mentorStatsCacheTime.Value).TotalMinutes < _mentorCacheInterval;
-                var cacheToSend = _mentorStatsCache;
-
-                if (!cacheValid)
-                {
-                    var cacheVersion = _mentorStatsCacheVersion;
-                    now = DateTimeOffset.UtcNow;
-                    var cache = await BuildStatisticsCacheAsync(now);
-                    cacheToSend = cache;
-
-                    if (cacheVersion == _mentorStatsCacheVersion)
-                    {
-                        _mentorStatsCache = cache;
-                        _mentorStatsCacheTime = now;
-                    }
-                }
+                var cacheToSend = await GetStatisticsCacheAsync();
 
                 RaiseNetworkEvent(new MentorHelpStatisticsMessage(
-                    cacheToSend!.WeekStatistics,
+                    cacheToSend.WeekStatistics,
                     cacheToSend.MonthStatistics,
                     cacheToSend.AllTimeStatistics), session.Channel);
             }
@@ -644,15 +569,7 @@ namespace Content.Server._Sunrise.MentorHelp
                     return;
                 }
 
-                var allMessages = await _dbManager.GetMentorHelpMessagesByTicketAsync(message.TicketId);
-                var messageDatas = new List<MentorHelpMessageData>();
-                foreach (var msg in allMessages.OrderBy(m => m.SentAt))
-                {
-                    if (!hasMentorPerms && msg.IsStaffOnly)
-                        continue;
-
-                    messageDatas.Add(await ConvertToMessageDataAsync(msg));
-                }
+                var messageDatas = await GetTicketMessagesDataAsync(message.TicketId, hasMentorPerms);
 
                 RaiseNetworkEvent(new MentorHelpTicketMessagesMessage(message.TicketId, messageDatas), session.Channel);
                 Log.Info("Sent {0} messages for ticket #{1} to {2} ({3})", messageDatas.Count, message.TicketId, session.Name, session.UserId);
@@ -667,110 +584,36 @@ namespace Content.Server._Sunrise.MentorHelp
         private MentorHelpTicketData ConvertToTicketData(MentorHelpTicket ticket, Dictionary<Guid, string> playerNames)
         {
             playerNames.TryGetValue(ticket.PlayerId, out var playerName);
-            var assignedToName = ticket.AssignedToUserId.HasValue && playerNames.TryGetValue(ticket.AssignedToUserId.Value, out var assignedName) ? assignedName : null;
-            var closedByName = ticket.ClosedByUserId.HasValue && playerNames.TryGetValue(ticket.ClosedByUserId.Value, out var closedName) ? closedName : null;
 
-            return new MentorHelpTicketData
-            {
-                Id = ticket.Id,
-                PlayerId = new NetUserId(ticket.PlayerId),
-                PlayerName = playerName ?? "Unknown",
-                AssignedToUserId = ticket.AssignedToUserId.HasValue ? new NetUserId(ticket.AssignedToUserId.Value) : null,
-                AssignedToName = assignedToName,
-                Subject = ticket.Subject,
-                Status = ticket.Status,
-                CreatedAt = ticket.CreatedAt.DateTime,
-                UpdatedAt = ticket.UpdatedAt.DateTime,
-                ClosedAt = ticket.ClosedAt?.DateTime,
-                ClosedByUserId = ticket.ClosedByUserId.HasValue ? new NetUserId(ticket.ClosedByUserId.Value) : null,
-                ClosedByName = closedByName,
-                RoundId = ticket.RoundId,
-                HasUnreadMessages = false // Would need to implement read tracking
-            };
+            return CreateTicketData(
+                ticket,
+                playerName ?? Loc.GetString("mentor-help-unknown-user"),
+                TryGetPlayerName(playerNames, ticket.AssignedToUserId),
+                TryGetPlayerName(playerNames, ticket.ClosedByUserId));
         }
 
         private async Task<MentorHelpTicketData> ConvertToTicketDataAsync(MentorHelpTicket ticket)
         {
-            var playerName = await GetPlayerNameAsync(ticket.PlayerId);
-            var assignedToName = ticket.AssignedToUserId.HasValue ? await GetPlayerNameAsync(ticket.AssignedToUserId.Value) : null;
-            var closedByName = ticket.ClosedByUserId.HasValue ? await GetPlayerNameAsync(ticket.ClosedByUserId.Value) : null;
+            var playerNameTask = GetPlayerNameAsync(ticket.PlayerId);
+            var assignedToNameTask = GetOptionalPlayerNameAsync(ticket.AssignedToUserId);
+            var closedByNameTask = GetOptionalPlayerNameAsync(ticket.ClosedByUserId);
 
-            return new MentorHelpTicketData
-            {
-                Id = ticket.Id,
-                PlayerId = new NetUserId(ticket.PlayerId),
-                PlayerName = playerName,
-                AssignedToUserId = ticket.AssignedToUserId.HasValue ? new NetUserId(ticket.AssignedToUserId.Value) : null,
-                AssignedToName = assignedToName,
-                Subject = ticket.Subject,
-                Status = ticket.Status,
-                CreatedAt = ticket.CreatedAt.DateTime,
-                UpdatedAt = ticket.UpdatedAt.DateTime,
-                ClosedAt = ticket.ClosedAt?.DateTime,
-                ClosedByUserId = ticket.ClosedByUserId.HasValue ? new NetUserId(ticket.ClosedByUserId.Value) : null,
-                ClosedByName = closedByName,
-                RoundId = ticket.RoundId,
-                HasUnreadMessages = false // Would need to implement read tracking
-            };
+            var playerName = await playerNameTask;
+            var assignedToName = await assignedToNameTask;
+            var closedByName = await closedByNameTask;
+
+            return CreateTicketData(
+                ticket,
+                playerName,
+                assignedToName,
+                closedByName);
         }
 
         private async Task<MentorHelpMessageData> ConvertToMessageDataAsync(MentorHelpMessage message)
         {
             var senderUserId = new NetUserId(message.SenderUserId);
+            var (username, senderAdminData) = await ResolveMessageSenderContextAsync(senderUserId);
 
-            AdminData? senderAdminData = null;
-            string? username = null;
-
-            if (_config.GetCVar(SunriseCCVars.MentorHelpAdminPrefixEnabled) && senderAdminData is not null && senderAdminData.Value.dat.Title is not null)
-            {
-                senderAdminData = _adminManager.GetAdminData(senderSession);
-                username = senderSession.Name;
-            }
-
-            else
-            {
-                var loadedAdminData = await _adminManager.LoadAdminData(senderUserId);
-                if (loadedAdminData is not null)
-                    senderAdminData = loadedAdminData.Value.dat;
-            }
-
-            if (string.IsNullOrWhiteSpace(username))
-            {
-                var senderData = await _dbManager.GetPlayerRecordByUserId(senderUserId);
-                username = senderData?.LastSeenUserName;
-            }
-
-            username ??= "Unknown";
-
-            string formatterSender;
-            var adminPrefix = "";
-            var escapedUsername = FormattedMessage.EscapeText(username);
-
-            if (_config.GetCVar(SunriseCCVars.MentorHelpAdminPrefix) && senderAdminData?.Title is not null)
-                adminPrefix = $"[bold]\\[{FormattedMessage.EscapeText(senderAdminData.Title)}\\][/bold] ";
-
-
-            if (senderAdminData != null && senderAdminData.HasFlag(AdminFlags.Mentor) && senderAdminData.Flags == AdminFlags.Mentor)
-                formatterSender = $"[color=purple]{adminPrefix}{escapedUsername}[/color]";
-
-            else if (senderAdminData != null && senderAdminData.HasFlag(AdminFlags.Mentor))
-                formatterSender = $"[color=red]{adminPrefix}{escapedUsername}[/color]";
-
-            else if (_sponsorsManager != null)
-            {
-                _sponsorsManager.TryGetOocColor(senderUserId, out var oocColor);
-                _sponsorsManager.TryGetOocTitle(senderUserId, out var oocTitle);
-
-                var sponsorTitle = oocTitle is null ? "" : $"\\[{FormattedMessage.EscapeText(oocTitle)}\\]";
-                var sponsorPrefix = sponsorTitle == "" ? "" : $"{sponsorTitle} ";
-                if (oocColor != null)
-                    formatterSender = $"[color={oocColor.Value.ToHex()}]{sponsorPrefix}{escapedUsername}[/color]";
-
-                else
-                    formatterSender = $"{sponsorPrefix}{escapedUsername}";
-            }
-            else
-                formatterSender = escapedUsername;
 
             return new MentorHelpMessageData
             {
@@ -778,7 +621,7 @@ namespace Content.Server._Sunrise.MentorHelp
                 TicketId = message.TicketId,
                 SenderUserId = senderUserId,
                 SenderName = username,
-                FormattedSender = formatterSender,
+                FormattedSender = FormatMessageSender(username, senderUserId, senderAdminData),
                 Message = message.Message,
                 SentAt = message.SentAt.DateTime,
                 IsStaffOnly = message.IsStaffOnly
@@ -787,12 +630,11 @@ namespace Content.Server._Sunrise.MentorHelp
 
         private async Task<string> GetPlayerNameAsync(Guid userId)
         {
-            var playerData = await _dbManager.GetPlayerRecordByUserId(new NetUserId(userId));
-            var name = playerData?.LastSeenUserName;
+            var name = await GetStoredPlayerNameAsync(new NetUserId(userId));
             if (string.IsNullOrWhiteSpace(name))
             {
-                Log.Warning($"GetPlayerNameAsync: No name found for userId {userId}, returning 'Unknown'.");
-                return "Unknown";
+                Log.Warning($"GetPlayerNameAsync: No name found for userId {userId}, returning localized fallback name.");
+                return Loc.GetString("mentor-help-unknown-user");
             }
             return name;
         }
@@ -824,9 +666,7 @@ namespace Content.Server._Sunrise.MentorHelp
 
             // Notify the player (if not staff-only)
             if (!messageData.IsStaffOnly && _playerManager.TryGetSessionById(ticketData.PlayerId, out var playerSession))
-            {
-                RaiseNetworkEvent(new MentorHelpTicketMessagesMessage(ticketData.Id, messageDatas), playerSession.Channel);
-            }
+                RaiseNetworkEvent(new MentorHelpTicketMessagesMessage(ticketData.Id, GetPlayerVisibleMessages(messageDatas)), playerSession.Channel);
 
             // Notify mentors
             var mentors = GetTargetMentors();

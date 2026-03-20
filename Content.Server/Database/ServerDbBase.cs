@@ -1878,9 +1878,23 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             await using var db = await GetDb();
             var isSqlite = db.DbContext.Database.ProviderName?.Contains("Sqlite") == true;
 
-            var ticketsQuery = db.DbContext.MentorHelpTickets
+            var handledTicketsQuery = db.DbContext.MentorHelpMessages
                 .AsNoTracking()
-                .Where(t => t.Status == MentorHelpTicketStatus.Closed && t.AssignedToUserId != null && t.ClosedAt != null);
+                .Join(
+                    db.DbContext.MentorHelpTickets.AsNoTracking().Where(ticket => ticket.AssignedToUserId != null),
+                    message => message.TicketId,
+                    ticket => ticket.Id,
+                    (message, ticket) => new
+                    {
+                        message.TicketId,
+                        message.SenderUserId,
+                        message.SentAt,
+                        ticket.PlayerId,
+                        AssignedMentorId = ticket.AssignedToUserId!.Value
+                    })
+                .Where(activity =>
+                    activity.SenderUserId == activity.AssignedMentorId &&
+                    activity.SenderUserId != activity.PlayerId);
 
             var messagesQuery = db.DbContext.MentorHelpMessages
                 .AsNoTracking()
@@ -1897,13 +1911,10 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 .Where(message => message.SenderUserId != message.PlayerId);
 
             if (from != null && !isSqlite)
-            {
-                ticketsQuery = ticketsQuery.Where(t => t.ClosedAt >= from);
                 messagesQuery = messagesQuery.Where(m => m.SentAt >= from);
-            }
 
-            var ticketsData = await ticketsQuery
-                .Select(t => new { t.AssignedToUserId, t.ClosedAt })
+            var handledTicketsData = await handledTicketsQuery
+                .Select(ticket => new { ticket.TicketId, ticket.AssignedMentorId, ticket.SentAt })
                 .ToListAsync();
 
             var messagesData = await messagesQuery
@@ -1911,47 +1922,55 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 .ToListAsync();
 
             if (from != null && isSqlite)
-            {
-                ticketsData = ticketsData.Where(t => t.ClosedAt >= from).ToList();
                 messagesData = messagesData.Where(m => m.SentAt >= from).ToList();
-            }
 
-            var tickets = ticketsData
-                .GroupBy(t => t.AssignedToUserId!.Value)
-                .Select(g => new { MentorUserId = g.Key, TicketsClosed = g.Count() })
+            var handledTickets = handledTicketsData
+                .GroupBy(ticket => new { ticket.AssignedMentorId, ticket.TicketId })
+                .Select(group => new
+                {
+                    MentorUserId = group.Key.AssignedMentorId,
+                    FirstHandledAt = group.Min(ticket => ticket.SentAt)
+                });
+
+            if (from != null)
+                handledTickets = handledTickets.Where(ticket => ticket.FirstHandledAt >= from);
+
+            var ticketStats = handledTickets
+                .GroupBy(ticket => ticket.MentorUserId)
+                .Select(group => new { MentorUserId = group.Key, TicketsClosed = group.Count() })
                 .ToList();
 
-            var messages = messagesData
-                .GroupBy(m => m.SenderUserId)
-                .Select(g => new { MentorUserId = g.Key, MessagesCount = g.Count() })
+            var messageStats = messagesData
+                .GroupBy(message => message.SenderUserId)
+                .Select(group => new { MentorUserId = group.Key, MessagesCount = group.Count() })
                 .ToList();
 
             var stats = new Dictionary<Guid, MentorHelpStatistics>();
 
-            foreach (var t in tickets)
+            foreach (var ticketStat in ticketStats)
             {
-                stats[t.MentorUserId] = new MentorHelpStatistics
+                stats[ticketStat.MentorUserId] = new MentorHelpStatistics
                 {
-                    MentorUserId = t.MentorUserId,
-                    TicketsClosed = t.TicketsClosed,
+                    MentorUserId = ticketStat.MentorUserId,
+                    TicketsClosed = ticketStat.TicketsClosed,
                     MessagesCount = 0
                 };
             }
 
-            foreach (var m in messages)
+            foreach (var messageStat in messageStats)
             {
-                if (stats.TryGetValue(m.MentorUserId, out var stat))
+                if (stats.TryGetValue(messageStat.MentorUserId, out var stat))
                 {
-                    stat.MessagesCount = m.MessagesCount;
-                    stats[m.MentorUserId] = stat;
+                    stat.MessagesCount = messageStat.MessagesCount;
+                    stats[messageStat.MentorUserId] = stat;
                 }
                 else
                 {
-                    stats[m.MentorUserId] = new MentorHelpStatistics
+                    stats[messageStat.MentorUserId] = new MentorHelpStatistics
                     {
-                        MentorUserId = m.MentorUserId,
+                        MentorUserId = messageStat.MentorUserId,
                         TicketsClosed = 0,
-                        MessagesCount = m.MessagesCount
+                        MessagesCount = messageStat.MessagesCount
                     };
                 }
             }

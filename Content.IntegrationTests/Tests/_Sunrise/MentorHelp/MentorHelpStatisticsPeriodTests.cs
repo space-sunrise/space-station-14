@@ -20,22 +20,18 @@ public sealed class MentorHelpStatisticsPeriodTests : MentorHelpStatisticsTestBa
         var boundaryTicket = CreateTicket(
             playerId,
             mentorId,
-            MentorHelpTicketStatus.Closed,
+            MentorHelpTicketStatus.Assigned,
             from.AddDays(-1),
-            from,
-            from,
-            mentorId);
+            ReferenceTime.AddMinutes(-10));
 
-        var oldClosedTicket = CreateTicket(
+        var oldHandledTicket = CreateTicket(
             playerId,
             mentorId,
-            MentorHelpTicketStatus.Closed,
+            MentorHelpTicketStatus.Assigned,
             from.AddDays(-2),
-            from.AddTicks(-1),
-            from.AddTicks(-1),
-            mentorId);
+            ReferenceTime.AddMinutes(-20));
 
-        var messageTicket = CreateTicket(
+        var playerOnlyMessageTicket = CreateTicket(
             playerId,
             mentorId,
             MentorHelpTicketStatus.Assigned,
@@ -43,12 +39,12 @@ public sealed class MentorHelpStatisticsPeriodTests : MentorHelpStatisticsTestBa
             ReferenceTime.AddMinutes(-30));
 
         await db.AddMentorHelpTicketAsync(boundaryTicket);
-        await db.AddMentorHelpTicketAsync(oldClosedTicket);
-        await db.AddMentorHelpTicketAsync(messageTicket);
+        await db.AddMentorHelpTicketAsync(oldHandledTicket);
+        await db.AddMentorHelpTicketAsync(playerOnlyMessageTicket);
 
-        await db.AddMentorHelpMessageAsync(CreateMessage(messageTicket.Id, mentorId, "mentor boundary", from));
-        await db.AddMentorHelpMessageAsync(CreateMessage(messageTicket.Id, mentorId, "mentor old", from.AddTicks(-1)));
-        await db.AddMentorHelpMessageAsync(CreateMessage(messageTicket.Id, playerId, "player boundary", from));
+        await db.AddMentorHelpMessageAsync(CreateMessage(boundaryTicket.Id, mentorId, "mentor boundary", from));
+        await db.AddMentorHelpMessageAsync(CreateMessage(oldHandledTicket.Id, mentorId, "mentor old", from.AddTicks(-1)));
+        await db.AddMentorHelpMessageAsync(CreateMessage(playerOnlyMessageTicket.Id, playerId, "player boundary", from));
 
         var statistics = GetStatisticsByMentor(await db.GetMentorHelpStatisticsAsync(from));
 
