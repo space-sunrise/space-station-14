@@ -67,4 +67,4 @@ ent-ClothingNeckCloakLegacyRd = research director's cloak
 ent-ClothingNeckCloakLegacyCe = chief engineer's cloak
     .desc = A dark green cloak with light blue ornaments, given to those who proved themselves to master the precise art of engineering.
 ent-ClothingNeckCloakArbiter = arbiter cloak
-    .desc = A dark mantle with gold edging and a ceremonial cut. Useful chiefly for silhouette, hierarchy, and obstructing modesty.
+    .desc = A dense mantle with gold edging. When drawn around you it makes a distinctly "expensive" rustle, creating a pocket of protection from damage and noise. The main danger in this cozy cocoon is dozing off in the middle of a dull meeting.

@@ -13,6 +13,6 @@ ent-ClothingShoesBootsMajima = fashionable shoes
 ent-ClothingShoesBootsMettaton = fashionable opium clothing style shoes
     .desc = Fashionable opium shoes straight from the 80s.
 ent-ClothingShoesBootsArbiter = arbiter shoes
-    .desc = Black dress shoes with gold hardware and a heavy sole. They announce their owner a moment before the door does.
+    .desc = Heavy shoes with gold hardware. They pinch a little at the sides, testing your composure, but the sole is a true pocket of warmth. In them you can stand for hours on the icy floor of an archive without fearing a chill.
 ent-ClothingShoesBootsRedMist = red mist boots
     .desc = Field boots in a dark finish with reinforced shaping. Meant for long movement and short conversations.

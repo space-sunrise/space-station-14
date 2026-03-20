@@ -601,7 +601,7 @@
   parent: ClothingOuterCoatHoSTrench
   id: ClothingOuterCoatArbiter
   name: arbiter coat
-  description: A structured overcoat with black panels, gold fittings, and very little softness. It resembles formal attire after a dispute with military doctrine.
+  description: A huge construction of black panels with gold buckles. It looks monumental, but in a narrow library aisle it turns into a treacherous trap: the important thing is not to tangle in your own hems and plant your face into a shelf.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Coats/arbiter_coat.rsi

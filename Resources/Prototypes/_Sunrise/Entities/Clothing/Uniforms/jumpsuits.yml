@@ -479,7 +479,7 @@
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitArbiter
   name: arbiter uniform
-  description: Black service wear with gold seam work and a rigid front. It reads less as clothing and more as a written decision.
+  description: A black tunic with gold stitching. It is cut so tight that your posture goes straight as the spine of a new book. The main trouble is that it is almost impossible to breathe in it or bend for a dropped pen without risking the seams.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/arbiter_uniform.rsi
