@@ -83,4 +83,10 @@ ent-ClothingUniformJumpsuitCaptainBlack = captain's black uniform
 ent-ClothingUniformPunksuit = punksuit
     .desc = Challenge the dress code!
 
+ent-ClothingUSSPMarine = USSP space-marine jumpsuit
+    .desc = A striped undershirt and simple trousers of the USSP space marines. Worn under a combat spacesuit, because even armor should know who is inside it.
 
+
+
+ent-ClothingUniformJumpsuitSoviet = Soviet jumpsuit
+    .desc = A standard jumpsuit worn by Soviet military personnel.

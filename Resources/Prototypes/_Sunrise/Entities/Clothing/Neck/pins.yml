@@ -237,3 +237,16 @@
     tags:
     - WhitelistChameleon
     - OpenNeck # INTERACTIONS
+
+- type: entity
+  parent: ClothingNeckUSSPPin
+  id: ClothingNeckUSSPPinNPC
+  name: USSP pin
+  description: The pin of United Soviet Socialist Planet. This one looks like old one after years of service with bits of rust.
+  suffix: Expedition
+  components:
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - OpenNeck
+    - SovietPinsExped # For salvage quest

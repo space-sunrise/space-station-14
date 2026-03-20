@@ -43,7 +43,7 @@
   parent: [ShuttleGunBase, ConstructibleMachine]
   name: BAL-127 "Longbow"
   description: A powerful stationary heavy autocanon. A cartridge is required for use.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_127.rsi
@@ -106,7 +106,7 @@
   parent: [ShuttleGunBase, ConstructibleMachine]
   name: BAL-127-2 "Vympel"
   description: A powerful stationary twin heavy autocanon. A cartridge is required for use.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_127_2.rsi
@@ -188,7 +188,7 @@
   parent: [ShuttleGunBase, ConstructibleMachine]
   name: BAL-127-4 "Quadling"
   description: THE POWER OF ELEVE... ahem, four barrels. Stationary quad heavy autocanon.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_127_4.rsi
@@ -270,7 +270,7 @@
   parent: [ShuttleGunBase, ConstructibleMachine]
   name: BAL-308 "Squall"
   description: A powerful stationary minigun. A cartridge is required for use.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_308.rsi
@@ -354,7 +354,7 @@
   parent: [ ShuttleGunBase, ConstructibleMachine]
   name: LSE-800c "Beamstorm machine gun"
   description: Advance stationary laser unit. Effective against live targets and electronics. Uses the power cage to fire, and has an extremely high rate of fire.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/laser.rsi
@@ -412,7 +412,7 @@
   parent: [ ShuttleGunBase, ConstructibleMachine]
   name: TSL-200c "Orion"
   description: Hi-tech stationary energy unit based on the principle of an experimental Tesla engine.. Effective against electronics. Uses the power cage to fire tesla or ion bolt.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/tesla.rsi
@@ -482,7 +482,7 @@
   parent: [ ShuttleGunBase, ConstructibleMachine]
   name: TSL-300c "Hyperion"
   description: Hi-tech stationary energy unit based on the principle of an experimental Tesla engine.. Effective against electronics. Uses the power cage to fire tesla or ion bolt.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/tesla_2.rsi

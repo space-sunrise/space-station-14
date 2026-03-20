@@ -1,6 +1,4 @@
 #pragma warning disable IDE0130
-using Content.Shared.GameTicking.Prototypes;
-using Robust.Shared.Prototypes;
 
 namespace Content.Client.GameTicking.Managers;
 
@@ -10,11 +8,14 @@ public sealed partial class ClientGameTicker
     /// Test-only hook for integration tests that need deterministic lobby fallback values.
     /// </summary>
     internal void SetTestFallbacks(
+        bool hasLobbyStatus,
         string? lobbyType = null,
         string? lobbyParallax = null,
         string? lobbyAnimation = null,
         string? lobbyArt = null)
     {
+        HasLobbyStatus = hasLobbyStatus;
+
         if (lobbyType != null)
             LobbyType = lobbyType;
 
@@ -22,7 +23,7 @@ public sealed partial class ClientGameTicker
             LobbyParallax = lobbyParallax;
 
         if (lobbyAnimation != null)
-            LobbyAnimation = new ProtoId<LobbyBackgroundPrototype>(lobbyAnimation);
+            LobbyAnimation = lobbyAnimation;
 
         if (lobbyArt != null)
             LobbyArt = lobbyArt;

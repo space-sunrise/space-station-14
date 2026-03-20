@@ -6220,7 +6220,7 @@ entities:
     - type: Transform
       pos: -6.54773,6.2703114
       parent: 1
-- proto: WeaponTurretSyndicate
+- proto: WeaponTurretPirate
   entities:
   - uid: 42
     components:
@@ -6252,7 +6252,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -11.5,-16.5
       parent: 1
-- proto: WeaponTurretSyndicateDisposable
+- proto: WeaponTurretPirateDisposable
   entities:
   - uid: 731
     components:

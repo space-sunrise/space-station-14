@@ -148,6 +148,9 @@
   id: StorageCanister
   name: storage canister
   components:
+    - type: Construction
+      graph: StorageCanister
+      node: done
     - type: Sprite
       layers:
         - state: yellow
