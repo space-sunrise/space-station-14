@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +13,7 @@ using Content.Client.Lobby;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.NetTextures;
 using Robust.Client.ResourceManagement;
+using Robust.Shared;
 using Robust.Shared.GameObjects;
 using Robust.Client.State;
 using Robust.Shared.ContentPack;
@@ -60,7 +62,9 @@ public sealed class NetTexturesRegressionTest
             client.CfgMan.SetCVar(SunriseCCVars.LobbyBackgroundType, "Art");
         });
 
-        await pair.RunTicksSync(5);
+        // Uploaded RSI fallback preparation spans ticks and idle phases, so a plain WaitAssertion
+        // can observe a stale loading overlay on slower CI runners.
+        await pair.ReallyBeIdle(10);
 
         await client.WaitAssertion(() =>
         {
@@ -145,7 +149,7 @@ public sealed class NetTexturesRegressionTest
         {
             protoMan.LoadString(artPrototype, overwrite: true);
             protoMan.ResolveResults();
-            SetLobbyTickerFallbacks(entityManager.System<ClientGameTicker>(), lobbyArt: fallbackArtId);
+            SetLobbyTickerFallbacks(entityManager.System<ClientGameTicker>(), hasLobbyStatus: true, lobbyArt: fallbackArtId);
             client.CfgMan.SetCVar(SunriseCCVars.LobbyArt, invalidArtId);
             client.CfgMan.SetCVar(SunriseCCVars.LobbyBackgroundType, "Art");
         });
@@ -262,7 +266,7 @@ public sealed class NetTexturesRegressionTest
         {
             protoMan.LoadString(animationPrototype, overwrite: true);
             protoMan.ResolveResults();
-            SetLobbyTickerFallbacks(entityManager.System<ClientGameTicker>(), lobbyAnimation: fallbackAnimationId);
+            SetLobbyTickerFallbacks(entityManager.System<ClientGameTicker>(), hasLobbyStatus: true, lobbyAnimation: fallbackAnimationId);
             manager.PublishFiles(new List<(ResPath Relative, byte[] Data)>
             {
                 (new ResPath($"{animationResourcePath}/meta.json").ToRelativePath(), CreateRsiMetaJson([animationStateId])),
@@ -272,7 +276,19 @@ public sealed class NetTexturesRegressionTest
             client.CfgMan.SetCVar(SunriseCCVars.LobbyBackgroundType, "Animation");
         });
 
-        await pair.RunTicksSync(5);
+        await WaitUntilClientCondition(
+            client,
+            () =>
+            {
+                var lobbyState = stateManager.CurrentState as LobbyState;
+                return lobbyState?.Lobby != null &&
+                       !lobbyState.Lobby.LoadingAnimationContainer.Visible &&
+                       lobbyState.Lobby.LobbyAnimation.Visible &&
+                       lobbyState.Lobby.LobbyAnimation.DisplayRect.Texture != null &&
+                       client.CfgMan.GetCVar(SunriseCCVars.LobbyAnimation) == invalidAnimationId;
+            },
+            timeoutSeconds: 10,
+            "network lobby animation transient fallback to finish loading");
 
         await client.WaitAssertion(() =>
         {
@@ -746,6 +762,7 @@ public sealed class NetTexturesRegressionTest
                 "ReceiveNetTexturesTransferWorker",
                 CreateTransferStream([(relativePath, png)]),
                 currentGeneration));
+            await pair.RunTicksSync(1);
 
             await client.WaitAssertion(() => Assert.That(resources.ContentFileExists(uploadedPath), Is.True));
             await client.WaitPost(() => _ = manager.EnsureResource(resourcePath));
@@ -794,12 +811,12 @@ public sealed class NetTexturesRegressionTest
         string resourcePath,
         int maxTicks)
     {
-        await PoolManager.WaitUntil(client, async () =>
-        {
-            var ready = false;
-            await client.WaitPost(() => ready = manager.TryGetTexture(resourcePath, out _));
-            return ready;
-        }, maxTicks: maxTicks);
+        await WaitUntilClientCondition(
+            client,
+            () => manager.TryGetTexture(resourcePath, out _),
+            ConvertLegacyTickBudgetToSeconds(maxTicks),
+            $"texture '{resourcePath}' to become ready",
+            () => DescribeTextureLoadState(manager, resourcePath));
     }
 
     private static MemoryStream CreateTransferStream(List<(ResPath Relative, byte[] Data)> files)
@@ -847,12 +864,99 @@ public sealed class NetTexturesRegressionTest
         string stateId,
         int maxTicks)
     {
-        await PoolManager.WaitUntil(client, async () =>
+        await WaitUntilClientCondition(
+            client,
+            () => manager.TryGetAnimationState(resourcePath, stateId, out _),
+            ConvertLegacyTickBudgetToSeconds(maxTicks),
+            $"animation state '{stateId}' for '{resourcePath}' to become ready",
+            () => DescribeAnimationLoadState(manager, resourcePath, stateId));
+    }
+
+    private static async Task WaitUntilClientCondition(
+        RobustIntegrationTest.ClientIntegrationInstance client,
+        Func<bool> predicate,
+        int timeoutSeconds,
+        string description,
+        Func<string> diagnostics = null,
+        int tickStep = 5,
+        int pollDelayMs = 5)
+    {
+        var maxTicks = GetTickBudgetForSeconds(client, timeoutSeconds);
+        var ticksAwaited = 0;
+
+        await client.WaitIdleAsync();
+
+        while (ticksAwaited < maxTicks)
         {
             var ready = false;
-            await client.WaitPost(() => ready = manager.TryGetAnimationState(resourcePath, stateId, out _));
-            return ready;
-        }, maxTicks: maxTicks);
+            await client.WaitPost(() => ready = predicate());
+            if (ready)
+                return;
+
+            var ticksToRun = Math.Min(tickStep, maxTicks - ticksAwaited);
+            await client.WaitRunTicks(ticksToRun);
+            ticksAwaited += ticksToRun;
+
+            if (pollDelayMs > 0)
+                await Task.Delay(pollDelayMs);
+        }
+
+        string debugState = null;
+        if (diagnostics != null)
+            await client.WaitPost(() => debugState = diagnostics());
+
+        Assert.Fail(
+            $"Condition did not pass after {maxTicks} ticks while waiting for {description}." +
+            (string.IsNullOrEmpty(debugState) ? string.Empty : $"\n{debugState}"));
+    }
+
+    private static int ConvertLegacyTickBudgetToSeconds(int maxTicks)
+    {
+        var defaultTickrate = CVars.NetTickrate.DefaultValue;
+        return Math.Max(5, (int) Math.Ceiling((double) maxTicks / defaultTickrate));
+    }
+
+    private static int GetTickBudgetForSeconds(
+        RobustIntegrationTest.ClientIntegrationInstance client,
+        int timeoutSeconds)
+    {
+        var tickrate = Math.Max(1, client.CfgMan.GetCVar(CVars.NetTickrate));
+        return Math.Max(1, timeoutSeconds * tickrate);
+    }
+
+    private static string DescribeTextureLoadState(ClientNetTexturesManager manager, string resourcePath)
+    {
+        var resourceKey = new ResPath(resourcePath).Clean().ToString();
+        var pendingResources = GetPrivateField<Dictionary<string, ResPath>>(manager, "_pendingResources");
+        var preparingResources = GetPrivateField<HashSet<string>>(manager, "_preparingResources");
+        var failedResources = GetPrivateField<HashSet<string>>(manager, "_failedResources");
+        var prepareRequests = GetPrivateField<ICollection>(manager, "_prepareRequests");
+        var preparedUploads = GetPrivateField<ICollection>(manager, "_preparedUploads");
+        var workerRunning = GetPrivateField<bool>(manager, "_prepareWorkerRunning");
+
+        return $"NetTextures state for {resourceKey}: pending={pendingResources.ContainsKey(resourceKey)}, " +
+               $"preparing={preparingResources.Contains(resourceKey)}, failed={failedResources.Contains(resourceKey)}, " +
+               $"workerRunning={workerRunning}, queuedRequests={prepareRequests.Count}, preparedUploads={preparedUploads.Count}.";
+    }
+
+    private static string DescribeAnimationLoadState(
+        ClientNetTexturesManager manager,
+        string resourcePath,
+        string stateId)
+    {
+        var resourceKey = new ResPath(resourcePath).Clean().ToString();
+        var pendingResources = GetPrivateField<Dictionary<string, ResPath>>(manager, "_pendingResources");
+        var preparingResources = GetPrivateField<HashSet<string>>(manager, "_preparingResources");
+        var failedResources = GetPrivateField<HashSet<string>>(manager, "_failedResources");
+        var prepareRequests = GetPrivateField<ICollection>(manager, "_prepareRequests");
+        var preparedUploads = GetPrivateField<ICollection>(manager, "_preparedUploads");
+        var workerRunning = GetPrivateField<bool>(manager, "_prepareWorkerRunning");
+        var hasState = manager.TryGetAnimationState(resourcePath, stateId, out _);
+
+        return $"NetTextures state for {resourceKey}#{stateId}: pending={pendingResources.ContainsKey(resourceKey)}, " +
+               $"preparing={preparingResources.Contains(resourceKey)}, failed={failedResources.Contains(resourceKey)}, " +
+               $"workerRunning={workerRunning}, queuedRequests={prepareRequests.Count}, preparedUploads={preparedUploads.Count}, " +
+               $"stateReady={hasState}.";
     }
 
     private static async Task DispatchFallbackChunk(
@@ -926,12 +1030,13 @@ public sealed class NetTexturesRegressionTest
 
     private static void SetLobbyTickerFallbacks(
         ClientGameTicker gameTicker,
+        bool hasLobbyStatus,
         string? lobbyType = null,
         string? lobbyParallax = null,
         string? lobbyAnimation = null,
         string? lobbyArt = null)
     {
-        gameTicker.SetTestFallbacks(lobbyType, lobbyParallax, lobbyAnimation, lobbyArt);
+        gameTicker.SetTestFallbacks(hasLobbyStatus, lobbyType, lobbyParallax, lobbyAnimation, lobbyArt);
     }
 
     private static T GetPrivateField<T>(object instance, string fieldName)

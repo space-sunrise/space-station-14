@@ -10,3 +10,5 @@ ent-HealiumCanisterBroken = { ent-GasCanisterBrokenBase }
     .desc = { ent-GasCanisterBrokenBase.desc }
 ent-NitriumCanisterBroken = { ent-GasCanisterBrokenBase }
     .desc = { ent-GasCanisterBrokenBase.desc }
+ent-LiquidPlasmaCanisterSunrise = канистра сжиженной плазмы
+    .desc = Канистра, в которой может содержаться газ любого вида. В этой, предположительно, содержится сжиженная плазма. Можно прикрепить к порту коннектора с помощью гаечного ключа.

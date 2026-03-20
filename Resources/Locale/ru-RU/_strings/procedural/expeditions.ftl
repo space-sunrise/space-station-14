@@ -66,3 +66,10 @@ salvage-dungeon-mod-snowy-labs = Снежная лаборатория
 salvage-dungeon-mod-experiment = Эксперимент
 salvage-dungeon-mod-haunted = Призраки
 salvage-dungeon-mod-mineshaft = Шахта
+
+# Sunrise-Start
+salvage-expedition-difficulty-Easy = Лёгкая
+salvage-expedition-difficulty-Challenging = Повышенная
+salvage-expedition-difficulty-Difficult = Сложная
+salvage-expedition-difficulty-Impossible = Невозможная
+# Sunrise-End

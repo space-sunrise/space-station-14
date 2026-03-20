@@ -1,5 +1,4 @@
 using Robust.Shared.Prototypes;
-
 namespace Content.Shared.Salvage.Expeditions.Modifiers;
 
 /// <summary>
@@ -17,4 +16,5 @@ public sealed partial class SalvageMod : IPrototype, ISalvageMod
     /// </summary>
     [DataField("cost")]
     public float Cost { get; private set; } = 0f;
+
 }

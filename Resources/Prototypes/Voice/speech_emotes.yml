@@ -569,6 +569,12 @@
   whitelist:
     components:
     - MobState
+  # Sunrise-start
+  blacklist:
+    tags:
+    - MonkeyDeathgasp
+    - ScurretDeathgasp
+  # Sunrise-end
   chatMessages: ["chat-emote-msg-deathgasp"]
   chatTriggers:
   - deathgasp
@@ -581,12 +587,22 @@
   id: MonkeyDeathgasp
   name: chat-emote-name-deathgasp
   icon: Interface/Emotes/deathgasp.png
+  # Sunrise-start
+  whitelist:
+    tags:
+    - MonkeyDeathgasp
+  # Sunrise-end
   chatMessages: ["chat-emote-msg-deathgasp-monkey"]
 
 - type: emote
   id: ScurretDeathgasp
   name: chat-emote-name-deathgasp
   icon: Interface/Emotes/deathgasp.png
+  # Sunrise-start
+  whitelist:
+    tags:
+    - ScurretDeathgasp
+  # Sunrise-end
   chatMessages: ["chat-emote-msg-deathgasp-scurret"]
 
 - type: emote

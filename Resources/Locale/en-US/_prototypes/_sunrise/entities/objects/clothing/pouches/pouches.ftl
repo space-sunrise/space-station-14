@@ -10,3 +10,6 @@ ent-PouchAmmo = ammo pouch
 ent-PouchAmmoFilledSMG = ammo pouch
     .suffix = Filled SMG
     .desc = { ent-PouchAmmo.desc }
+ent-PouchAmmoFilledLightRifle = ammo pouch
+    .suffix = Filled Light Rifle
+    .desc = { ent-PouchAmmo.desc }

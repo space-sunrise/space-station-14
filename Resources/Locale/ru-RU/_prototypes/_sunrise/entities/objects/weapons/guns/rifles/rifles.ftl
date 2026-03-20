@@ -25,6 +25,7 @@ ent-WeaponRifleSKM24Green = SKM-24
 ent-WeaponRifleSKM24Scrap = SKM-24
     .desc = Дешевый и надежный. Достаточно огневой мощи, малая точность. Легко чинится, тяжело контролировать при длительной стрельбе. Этот экземпляр повидал всякое... и не раз.
 ent-WeaponRifleSKM24ScrapEmpty = { ent-WeaponRifleSKM24Scrap }
+    .suffix = Пусто
     .desc = { ent-WeaponRifleSKM24Scrap.desc }
 ent-WeaponRifleSKM24Syndi = SKM-24
     .desc = Дешевый и надежный. Достаточно огневой мощи, малая точность. Легко чинится, тяжело контролировать при длительной стрельбе. Запасной вариант, если вы проиграли все телекристаллы в казино.
