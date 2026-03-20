@@ -718,7 +718,7 @@
     - FullCovered # INTERACTIONS
   - type: HideLayerClothing
     slots:
-    - Hair
     - HeadTop
     - HeadSide
     - FacialHair
+  - type: ZombieMask

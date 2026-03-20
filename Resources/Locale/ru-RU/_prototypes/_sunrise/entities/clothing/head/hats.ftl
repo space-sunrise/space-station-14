@@ -86,4 +86,3 @@ ent-ClothingHeadHatChefBlackToque = чёрный поварской колпак
     .desc = Потёртый по краям, но гордо держит форму, символ мастерства и многих часов работы на кухне.
 ent-ClothingHeadHatZombie = маска зомби
     .desc = "Грраууул..."
-    equipped-name-prefix = замбированный { $baseName }
