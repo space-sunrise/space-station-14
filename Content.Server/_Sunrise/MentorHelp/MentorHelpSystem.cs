@@ -607,7 +607,7 @@ namespace Content.Server._Sunrise.MentorHelp
             string formatterSender;
             var adminPrefix = "";
 
-            if (_config.GetCVar(SunriseCCVars.MentorHelpAdminPrefix) && senderAdminData is not null && senderAdminData.Value.dat.Title is not null)
+            if (_config.GetCVar(SunriseCCVars.MentorHelpAdminPrefixEnabled) && senderAdminData is not null && senderAdminData.Value.dat.Title is not null)
             {
                 adminPrefix = $"[bold]\\[{senderAdminData.Value.dat.Title}\\][/bold] ";
             }
