@@ -6753,7 +6753,7 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-- proto: MobPirateT2TimedSpawner
+- proto: MobPirateT2ExpeditionSpawner
   entities:
   - uid: 1293
     components:
@@ -6850,7 +6850,7 @@ entities:
     - type: Transform
       pos: 18.5,16.5
       parent: 1
-- proto: MobSovietT1TimedSpawner
+- proto: MobSovietT1ExpeditionSpawner
   entities:
   - uid: 1742
     components:
@@ -8650,14 +8650,14 @@ entities:
         path: /Audio/Effects/closetclose.ogg
       openSound: !type:SoundPathSpecifier
         path: /Audio/Effects/closetopen.ogg
-- proto: SovietSquadInfantryTimed
+- proto: SovietSquadInfantry
   entities:
   - uid: 1759
     components:
     - type: Transform
       pos: 18.5,14.5
       parent: 1
-- proto: SovietSquadPatrolTimed
+- proto: SovietSquadPatrol
   entities:
   - uid: 1744
     components:

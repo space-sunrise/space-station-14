@@ -25,6 +25,9 @@
         Piercing: 15
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Melee/finka.rsi
+    storedSprite:
+      state: storage
+      sprite: _Sunrise/Objects/Weapons/Melee/finka.rsi
   - type: StaticPrice
     price: 1250
 

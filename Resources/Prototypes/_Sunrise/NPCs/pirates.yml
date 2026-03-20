@@ -142,6 +142,27 @@
       0: Alive
       100: Critical
       130: Dead
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Gun
+    - type: Reflect
+    - type: HellSpawnRush
+  - type: AddComponentsOnTrigger
+    triggerOnce: true
+    removeExisting: true
+    components:
+    - type: TimedDespawn
+      lifetime: 180
+    - type: Strippable
+    - type: Pullable
+  - type: TimedRemoveComponents
+    removeAfter: 0
+    components:
+    - type: Pullable
   - type: Destructible
     thresholds:
     - trigger:
@@ -205,7 +226,6 @@
     rechargeCooldown: 3
     rechargeSound:
       path: /Audio/_Sunrise/Effects/silence.ogg
-  - type: Strippable
   - type: Tool
     speedModifier: 11
     qualities:
@@ -544,7 +564,6 @@
       - MobPirateT3Grenadier
       - MobPirateT3Infiltrator
       - MobPirateT3Sniper
-      - MobPirateT3BorgAssault
     rareChance: 0.2
 
 # mixed all tiers spawner
@@ -1289,13 +1308,16 @@
   parent: MobPirateT1Pistol
   id: MobPirateT1Medic
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.25
+    baseSprintSpeed: 2.25
   - type: Loadout
     prototypes:
     - MobPirateT1MedicGear
   - type: MobThresholds
     thresholds:
       0: Alive
-      90: Critical
+      80: Critical
       100: Dead
   - type: Sprite
     drawdepth: Mobs
@@ -1326,6 +1348,23 @@
     whitelist:
       components:
       - NpcVeteranFollower
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: AoEHeal
+      threshold: 0.9
+      damage:
+        groups:
+          Brute: -20
+          Burn: -10
+          Airloss: -5
+      whitelist:
+        components:
+        - NpcVeteranFollower
 
 - type: entity
   name: pirate medic
@@ -1333,13 +1372,16 @@
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2Ranged]
   id: MobPirateT2Medic
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.25
+    baseSprintSpeed: 2.25
   - type: Loadout
     prototypes:
     - MobPirateT2MedicGear
   - type: MobThresholds
     thresholds:
       0: Alive
-      90: Critical
+      80: Critical
       100: Dead
   - type: Sprite
     drawdepth: Mobs
@@ -1385,6 +1427,23 @@
     whitelist:
       components:
       - NpcVeteranFollower
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: AoEHeal
+      threshold: 0.9
+      damage:
+        groups:
+          Brute: -20
+          Burn: -10
+          Airloss: -5
+      whitelist:
+        components:
+        - NpcVeteranFollower
 
 - type: entity
   name: Privateer combat medic
@@ -1392,13 +1451,16 @@
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3Ranged]
   id: MobPirateT3Medic
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.25
+    baseSprintSpeed: 2.25
   - type: Loadout
     prototypes:
     - MobPirateT3MedicGear
   - type: MobThresholds
     thresholds:
       0: Alive
-      90: Critical
+      80: Critical
       100: Dead
   - type: Sprite
     drawdepth: Mobs
@@ -1451,6 +1513,23 @@
     whitelist:
       components:
       - NpcVeteranFollower
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: AoEHeal
+      threshold: 0.9
+      damage:
+        groups:
+          Brute: -30
+          Burn: -20
+          Airloss: -10
+      whitelist:
+        components:
+        - NpcVeteranFollower
 
 - type: entity
   name: Scrap rifleman
@@ -2319,6 +2398,13 @@
       0: Alive
       340: Critical
       350: Dead
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: SpawnOnTrigger
+    proto: MobPirateT2RevolverCutlass
+  - type: GibOnTrigger
+    targetUser: true
   - type: Destructible
     thresholds:
     - trigger:
@@ -3974,6 +4060,13 @@
       0: Alive
       449: Critical
       450: Dead
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: SpawnOnTrigger
+    proto: MobPirateT3Revolver
+  - type: GibOnTrigger
+    targetUser: true
   - type: Destructible
     thresholds:
     - trigger:

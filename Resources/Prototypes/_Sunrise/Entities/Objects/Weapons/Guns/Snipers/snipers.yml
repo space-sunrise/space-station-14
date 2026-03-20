@@ -324,3 +324,48 @@
     tags:
       - WrappedWeapon
 
+- type: entity
+  parent: WeaponRifleBauer127
+  name: Type 88
+  id: WeaponRifleType88AMR
+  description: The standard issue AMR of the USSP, the Type 88 typically loaded with armor-piercing 15mm rounds in a 7 round magazine.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Snipers/type88/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Snipers/type88/tiny.rsi
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
+    sprite: _Sunrise/Objects/Weapons/Guns/Snipers/type88/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -43
+  - type: Gun
+    pump: true
+    projectileSpeed: 30
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    fireRate: 0.75
+    minAngle: 24
+    maxAngle: 45
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/Bauer127/bauer127_shot.ogg
+      params:
+        volume: -1
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/empty.ogg
+  - type: Appearance
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.4
+    sprintModifier: 0.4
+  - type: EyeCursorOffset
+    maxOffset: 5
+    pvsIncrease: 0.5

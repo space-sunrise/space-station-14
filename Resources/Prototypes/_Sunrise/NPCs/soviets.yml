@@ -1,4 +1,4 @@
-# Base
+﻿# Base
 - type: entity
   abstract: true
   parent:
@@ -30,6 +30,14 @@
       0: Alive
       100: Critical
       130: Dead
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: AddComponentsOnTrigger
+    triggerOnce: true
+    removeExisting: true
+    components:
+    - type: Strippable
   - type: Destructible
     thresholds:
     - trigger:
@@ -93,7 +101,6 @@
     rechargeCooldown: 2
     rechargeSound:
       path: /Audio/_Sunrise/Effects/silence.ogg
-  - type: Strippable
   - type: Tool
     speedModifier: 10
     qualities:
@@ -209,11 +216,6 @@
     - NamesMilitaryFirstGamma
     - NamesLast
     nameFormat: name-format-ert
-  - type: Tag
-    tags:
-    - DoorBumpOpener
-    - FootstepSound
-    - CanPilot
   - type: ActionGun
     action: ActionSovietSerzhantGrenade
     gunProto: GunSovietSerzhantGrenade
@@ -261,6 +263,46 @@
     range: 0
   - type: WorldTargetAction
     event: !type:ActionGunShootEvent
+  - type: SpeakOnAction
+    sentence: action-speech-soviet-grenade
+
+- type: entity
+  id: GunSovietT3SmokeGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 30
+    rechargeSound:
+      path: /Audio/_Sunrise/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletSmokeGrenadeQuick
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+
+- type: entity
+  id: ActionSovietT3SmokeGrenade
+  parent: BaseAction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 30
+    checkCanInteract: false
+    icon:
+      sprite: Objects/Weapons/Grenades/smoke.rsi
+      state: icon
+    itemIconStyle: NoItem
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+  - type: SpeakOnAction
+    sentence: action-speech-soviet-smoke
 
 # T2 Marine features
 - type: entity
@@ -310,15 +352,6 @@
       minRange: 1
       maxRange: 0
 
-# For Expedition NPC
-- type: entity
-  abstract: true
-  id: MobSovietTimedDespawn
-  components:
-  - type: TimedDespawn
-    lifetime: 1200 # 20 minutes
-
-
 # Variations
 #region Tier 1
 # Squad Leader`s
@@ -353,6 +386,12 @@
     availableModes:
     - FullAuto
     soundGunshot: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_shot.ogg
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+    - NpcVeteranLeader
 
 - type: entity
   name: serzhant smg
@@ -388,6 +427,12 @@
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/ppsh.ogg
     soundEmpty:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+    - NpcVeteranLeader
 
 # regular
 - type: entity
@@ -397,6 +442,9 @@
   - MobSovietT1SerzhantSMG
   id: MobSovietT1Medic
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.7
+    baseSprintSpeed: 2.7
   - type: TTS
     voice: TfMedic
   - type: Loadout
@@ -438,6 +486,11 @@
     whitelist:
       components:
       - NpcVeteranFollower
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
 
 - type: entity
   name: soldier
@@ -449,6 +502,11 @@
   - type: Loadout
     prototypes:
     - MobSovietGearSKM24
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
 
 - type: entity
   name: soldier
@@ -471,6 +529,11 @@
     - actionId: ActionSovietSerzhantGrenade
       minRange: 9
       maxRange: 12
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
 
 - type: entity
   name: soldier
@@ -651,7 +714,7 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
+    soundGunshot: /Audio/_Starlight/Weapons/Guns/Gunshots/mosin.ogg
 
 - type: entity
   name: soldier
@@ -929,6 +992,9 @@
   - MobSovietBase
   id: MobSovietT3Medic
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.4
+    baseSprintSpeed: 3.4
   - type: TTS
     voice: TfMedic
   - type: Loadout
@@ -962,7 +1028,7 @@
     proto: CartridgePistolFMJ
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 3
+    autoRechargePauseTime: 4
     autoRechargeRate: 999
   - type: Battery
     maxCharge: 10
@@ -989,6 +1055,20 @@
     whitelist:
       components:
       - NpcVeteranFollower
+  - type: ActionGun
+    action: ActionSovietT3SmokeGrenade
+    gunProto: GunSovietT3SmokeGrenade
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGravityJumpQuick
+      minRange: 4
+      maxRange: 0
+    - actionId: ActionScream
+      minRange: 1
+      maxRange: 0
+    - actionId: ActionSovietT3SmokeGrenade
+      minRange: 5
+      maxRange: 12
 
 - type: entity
   name: marine
@@ -1040,6 +1120,20 @@
       collection: xm1014
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: ActionGun
+    action: ActionSovietT3SmokeGrenade
+    gunProto: GunSovietT3SmokeGrenade
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGravityJumpQuick
+      minRange: 4
+      maxRange: 0
+    - actionId: ActionScream
+      minRange: 1
+      maxRange: 0
+    - actionId: ActionSovietT3SmokeGrenade
+      minRange: 5
+      maxRange: 12
 
 - type: entity
   parent:
@@ -1082,7 +1176,7 @@
     proto: CartridgeLightRifleFMJ
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 3
+    autoRechargePauseTime: 4
     autoRechargeRate: 99
   - type: Battery
     maxCharge: 30
@@ -1098,6 +1192,17 @@
     availableModes:
     - FullAuto
     soundGunshot: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_shot.ogg
+  - type: ActionGun
+    action: ActionSovietT3SmokeGrenade
+    gunProto: GunSovietT3SmokeGrenade
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionScream
+      minRange: 1
+      maxRange: 0
+    - actionId: ActionSovietT3SmokeGrenade
+      minRange: 5
+      maxRange: 12
 
 - type: entity
   name: Molot
@@ -1141,6 +1246,13 @@
       0: Alive
       300: Critical
       301: Dead
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: SpawnOnTrigger
+    proto: MobSovietT2Rifle
+  - type: GibOnTrigger
+    targetUser: false
   - type: Destructible
     thresholds:
     - trigger:
@@ -1289,6 +1401,13 @@
       0: Alive
       400: Critical
       401: Dead
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: SpawnOnTrigger
+    proto: MobSovietT2Rifle
+  - type: GibOnTrigger
+    targetUser: false
   - type: Destructible
     thresholds:
     - trigger:
@@ -1430,27 +1549,32 @@
     - sprite: _Sunrise/Clothing/Neck/Cloaks/securityofficer.rsi
       state: equipped-NECK
   - type: BatteryAmmoProvider
-    proto: CartridgeHeavyRifleRFMJ
+    proto: CartridgeAntiMateriel
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 7
+    autoRechargePauseTime: 15
     autoRechargeRate: 999
   - type: Battery
-    maxCharge: 10
-    startingCharge: 10
+    maxCharge: 7
+    startingCharge: 7
   - type: Gun
     showExamineText: false
-    fireRate: 2
+    fireRate: 0.7
     minAngle: 3
     maxAngle: 25
     angleIncrease: 3
-    angleDecay: 3
+    angleDecay: 5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-    soundGunshot: /Audio/_Sunrise/Weapons/Guns/Snipers/Dragunov/dragunov_shot.ogg
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/Bauer127/bauer127_shot.ogg
+      params:
+        volume: -1
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/empty.ogg
   - type: EyeCursorOffset
-    maxOffset: 10
+    maxOffset: 5
     pvsIncrease: 1
   # Ghost role stuff
   - type: GhostRole
@@ -1470,7 +1594,7 @@
     actions:
     - actionId: ActionSideArmFan
       minRange: 0
-      maxRange: 3
+      maxRange: 2
 
 - type: entity
   id: GunSideArmFan
@@ -1483,19 +1607,18 @@
       path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
   - type: BasicEntityAmmoProvider
     proto: CartridgeMagnumIncendiary
-    capacity: 6
-    count: 6
+    capacity: 5
+    count: 5
   - type: Gun
-    minAngle: 2
-    maxAngle: 8
-    fireRate: 6
+    minAngle: 3
+    maxAngle: 9
+    fireRate: 3
     selectedMode: FullAuto
     availableModes:
       - FullAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/revolver.ogg
     soundEmpty: null
-    projectileSpeed: 30
+    projectileSpeed: 20
 
 - type: entity
   id: ActionSideArmFan
@@ -1580,10 +1703,10 @@
   id: MobSovietSpaceBear
   parent: MobSovietBearBase
 
-# timed despawn spawner
+# expedition spawner
 - type: entity
-  name: soviet spawner T1 (despawn)
-  id: MobSovietT1TimedSpawner
+  name: soviet spawner T1
+  id: MobSovietT1ExpeditionSpawner
   parent: MarkerBase
   components:
   - type: Sprite
@@ -1593,25 +1716,25 @@
       state: banner_ussp
   - type: RandomSpawner
     prototypes:
-      - MobSovietT1KnifeTimed
-      - MobSovietT1PistolTimed
-      - MobSovietT1MosinTimed
-      - MobSovietT1SMGAltTimed
-      - MobSovietT1MosinAltTimed
+      - MobSovietT1Knife
+      - MobSovietT1Pistol
+      - MobSovietT1Mosin
+      - MobSovietT1SMGAlt
+      - MobSovietT1MosinAlt
     rarePrototypes:
-      - SovietSquadInfantryTimed
-      - SovietSquadInfantry2Timed
-      - SovietSquadPatrolTimed
-      - SovietSquadSmgTimed
-      - SovietSquadLmgTimed
-      - SovietSquadPatrolTimed
-      - MobSovietBearTimed
-      - MobSovietBearAltTimed
+      - SovietSquadInfantry
+      - SovietSquadInfantry2
+      - SovietSquadPatrol
+      - SovietSquadSmg
+      - SovietSquadLmg
+      - SovietSquadPatrol
+      - MobSovietBear
+      - MobSovietBearAlt
     rareChance: 0.05
 
 - type: entity
-  name: soviet spawner (despawn)
-  id: MobSovietTimedSpawner
+  name: soviet spawner
+  id: MobSovietExpeditionSpawner
   parent: MarkerBase
   components:
   - type: Sprite
@@ -1621,65 +1744,65 @@
       state: banner_ussp
   - type: RandomSpawner
     prototypes:
-      - MobSovietT1KnifeTimed
-      - MobSovietT1PistolTimed
-      - MobSovietT1RPDTimed
-      - MobSovietT1MosinTimed
-      - MobSovietT1SMGAltTimed
-      - MobSovietT1MosinAltTimed
-      - MobSovietT2BottleTimed
-      - MobSovietT2FinkaTimed
-      - MobSovietT2RevolverTimed
-      - MobSovietT2RifleTimed
-      - MobSovietT2RifleWTimed
-      - MobSovietT3ShotgunTimed
-      - MobSovietT3ShotgunIncendiaryTimed
-      - MobSovietT3RifleTimed
-      - MobSovietT2RaiderTimed
+      - MobSovietT1Knife
+      - MobSovietT1Pistol
+      - MobSovietT1RPD
+      - MobSovietT1Mosin
+      - MobSovietT1SMGAlt
+      - MobSovietT1MosinAlt
+      - MobSovietT2Bottle
+      - MobSovietT2Finka
+      - MobSovietT2Revolver
+      - MobSovietT2Rifle
+      - MobSovietT2RifleW
+      - MobSovietT3Shotgun
+      - MobSovietT3ShotgunIncendiary
+      - MobSovietT3Rifle
+      - MobSovietT2Raider
     rarePrototypes:
-      - SovietSquadInfantryTimed
-      - SovietSquadInfantry2Timed
-      - SovietSquadAssaultTimed
-      - SovietSquadSmgTimed
-      - SovietSquadLmgTimed
-      - SovietSquadPatrolTimed
-      - SovietSquadLightMechanizedTimed
-      - SovietSquadHeavyMechanizedTimed
-      - MobSovietT2MechTimed
-      - MobSovietT3MechTimed
-      - MobSovietBearTimed
-      - MobSovietBearAltTimed
-      - MobSovietSpaceBearTimed
-      - MobSovietCaptainTimed
-    rareChance: 0.15
+      - SovietSquadInfantry
+      - SovietSquadInfantry2
+      - SovietSquadAssault
+      - SovietSquadSmg
+      - SovietSquadLmg
+      - SovietSquadPatrol
+      - SovietSquadLightMechanized
+      - SovietSquadHeavyMechanized
+      - MobSovietT2Mech
+      - MobSovietT3Mech
+      - MobSovietBear
+      - MobSovietBearAlt
+      - MobSovietSpaceBear
+      - MobSovietCaptain
+    rareChance: 0.08
 
 # region Soviet timed squads
 - type: entityTable
-  id: SovietInfantrySquadTimedTable
+  id: SovietInfantrySquadTable
   table: !type:AllSelector
     children:
     - !type:EntSelector
-      id: MobSovietT1SerzhantSMGTimed
+      id: MobSovietT1SerzhantSMG
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1MosinAlt2Timed
+      id: MobSovietT1MosinAlt2
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1MosinTimed
+      id: MobSovietT1Mosin
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1MosinAlt2Timed
+      id: MobSovietT1MosinAlt2
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1MosinAlt2Timed
+      id: MobSovietT1MosinAlt2
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1MedicTimed
+      id: MobSovietT1Medic
       prob: 1
 
 - type: entity
-  name: soviet infantry squad spawner (despawn)
-  id: SovietSquadInfantryTimed
+  name: soviet infantry squad spawner
+  id: SovietSquadInfantry
   parent: MarkerBase
   components:
   - type: Sprite
@@ -1690,36 +1813,37 @@
     - sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
       state: base
   - type: EntityTableSpawner
+    offset: 1
     table: !type:NestedSelector
-      tableId: SovietInfantrySquadTimedTable
+      tableId: SovietInfantrySquadTable
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
-  id: SovietInfantry2SquadTimedTable
+  id: SovietInfantry2SquadTable
   table: !type:AllSelector
     children:
     - !type:EntSelector
-      id: MobSovietT1SerzhantSMGTimed
+      id: MobSovietT1SerzhantSMG
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1Dp28Timed
+      id: MobSovietT1Dp28
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1MosinAlt2Timed
+      id: MobSovietT1MosinAlt2
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1MosinTimed
+      id: MobSovietT1Mosin
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1MosinAlt2Timed
+      id: MobSovietT1MosinAlt2
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1MedicTimed
+      id: MobSovietT1Medic
       prob: 1
 
 - type: entity
-  name: soviet infantry squad 2 spawner (despawn)
-  id: SovietSquadInfantry2Timed
+  name: soviet infantry squad 2 spawner
+  id: SovietSquadInfantry2
   parent: MarkerBase
   components:
   - type: Sprite
@@ -1730,36 +1854,37 @@
     - sprite: _Starlight/Objects/Weapons/Guns/LMGs/DP28.rsi
       state: base
   - type: EntityTableSpawner
+    offset: 1
     table: !type:NestedSelector
-      tableId: SovietInfantry2SquadTimedTable
+      tableId: SovietInfantry2SquadTable
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
-  id: SovietAssaultSquadTimedTable
+  id: SovietAssaultSquadTable
   table: !type:AllSelector
     children:
     - !type:EntSelector
-      id: MobSovietT1SLRifleTimed
+      id: MobSovietT1SLRifle
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1SKMTimed
+      id: MobSovietT1SKM
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1SKMTimed
+      id: MobSovietT1SKM
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1SKMTimed
+      id: MobSovietT1SKM
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1RPDTimed
+      id: MobSovietT1RPD
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1MedicTimed
+      id: MobSovietT1Medic
       prob: 1
 
 - type: entity
-  name: soviet assault squad spawner (despawn)
-  id: SovietSquadAssaultTimed
+  name: soviet assault squad spawner
+  id: SovietSquadAssault
   parent: MarkerBase
   components:
   - type: Sprite
@@ -1772,33 +1897,34 @@
     - sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Base/big.rsi
       state: mag-0
   - type: EntityTableSpawner
+    offset: 1
     table: !type:NestedSelector
-      tableId: SovietAssaultSquadTimedTable
+      tableId: SovietAssaultSquadTable
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
-  id: SovietSmgSquadTimedTable
+  id: SovietSmgSquadTable
   table: !type:AllSelector
     children:
     - !type:EntSelector
-      id: MobSovietT1SerzhantSMGTimed
+      id: MobSovietT1SerzhantSMG
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1MedicTimed
+      id: MobSovietT1Medic
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1PPSHTimed
+      id: MobSovietT1PPSH
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1PPSHTimed
+      id: MobSovietT1PPSH
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1PPSHTimed
+      id: MobSovietT1PPSH
       prob: 1
 
 - type: entity
-  name: soviet smg squad spawner (despawn)
-  id: SovietSquadSmgTimed
+  name: soviet smg squad spawner
+  id: SovietSquadSmg
   parent: MarkerBase
   components:
   - type: Sprite
@@ -1811,27 +1937,28 @@
     - sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ppsh41/big.rsi
       state: mag-0
   - type: EntityTableSpawner
+    offset: 1
     table: !type:NestedSelector
-      tableId: SovietSmgSquadTimedTable
+      tableId: SovietSmgSquadTable
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
-  id: SovietLmgSquadTimedTable
+  id: SovietLmgSquadTable
   table: !type:AllSelector
     children:
     - !type:EntSelector
-      id: MobSovietT1SLRifleTimed
+      id: MobSovietT1SLRifle
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1Dp28Timed
+      id: MobSovietT1RPD
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1MosinAlt2Timed
+      id: MobSovietT1SKM
       prob: 1
 
 - type: entity
-  name: soviet machinegun squad spawner (despawn)
-  id: SovietSquadLmgTimed
+  name: soviet machinegun squad spawner
+  id: SovietSquadLmg
   parent: MarkerBase
   components:
   - type: Sprite
@@ -1839,30 +1966,31 @@
     - state: red
     - sprite: _Sunrise/Structures/Decoration/banner.rsi
       state: banner_ussp
-    - sprite: _Starlight/Objects/Weapons/Guns/LMGs/DP28.rsi
-      state: base
+    - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/rpd/big.rsi
+      state: icon
   - type: EntityTableSpawner
+    offset: 1
     table: !type:NestedSelector
-      tableId: SovietLmgSquadTimedTable
+      tableId: SovietLmgSquadTable
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
-  id: SovietPatrolSquadTimedTable
+  id: SovietPatrolSquadTable
   table: !type:AllSelector
     children:
     - !type:EntSelector
-      id: MobSovietT1SLRifleTimed
+      id: MobSovietT1SLRifle
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1SKMTimed
+      id: MobSovietT1SKM
       prob: 1
     - !type:EntSelector
-      id: MobSovietT1SKMTimed
+      id: MobSovietT1SKM
       prob: 1
 
 - type: entity
-  name: soviet patrol squad spawner (despawn)
-  id: SovietSquadPatrolTimed
+  name: soviet patrol squad spawner
+  id: SovietSquadPatrol
   parent: MarkerBase
   components:
   - type: Sprite
@@ -1873,30 +2001,31 @@
     - sprite: Objects/Tools/binoculars.rsi
       state: icon
   - type: EntityTableSpawner
+    offset: 1
     table: !type:NestedSelector
-      tableId: SovietPatrolSquadTimedTable
+      tableId: SovietPatrolSquadTable
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
-  id: SovietLightMechanizedSquadTimedTable
+  id: SovietLightMechanizedSquadTable
   table: !type:AllSelector
     children:
     - !type:EntSelector
-      id: MobSovietT2MechTimed
+      id: MobSovietT2Mech
       prob: 1
     - !type:EntSelector
-      id: MobSovietT3RifleTimed
+      id: MobSovietT3Rifle
       prob: 1
     - !type:EntSelector
-      id: MobSovietT3RifleTimed
+      id: MobSovietT3Rifle
       prob: 1
     - !type:EntSelector
-      id: MobSovietT3ShotgunTimed
+      id: MobSovietT3Shotgun
       prob: 1
 
 - type: entity
-  name: soviet light mechanized squad spawner (despawn)
-  id: SovietSquadLightMechanizedTimed
+  name: soviet light mechanized squad spawner
+  id: SovietSquadLightMechanized
   parent: MarkerBase
   components:
   - type: Sprite
@@ -1907,36 +2036,37 @@
     - sprite: Objects/Specific/Mech/gygax.rsi
       state: molot
   - type: EntityTableSpawner
+    offset: 1
     table: !type:NestedSelector
-      tableId: SovietLightMechanizedSquadTimedTable
+      tableId: SovietLightMechanizedSquadTable
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable
-  id: SovietHeavyMechanizedSquadTimedTable
+  id: SovietHeavyMechanizedSquadTable
   table: !type:AllSelector
     children:
     - !type:EntSelector
-      id: MobSovietT3MechTimed
+      id: MobSovietT3Mech
       prob: 1
     - !type:EntSelector
-      id: MobSovietT3MedicTimed
+      id: MobSovietT3Medic
       prob: 1
     - !type:EntSelector
-      id: MobSovietT3RifleTimed
+      id: MobSovietT3Rifle
       prob: 1
     - !type:EntSelector
-      id: MobSovietT3RifleTimed
+      id: MobSovietT3Rifle
       prob: 1
     - !type:EntSelector
-      id: MobSovietT3RifleTimed
+      id: MobSovietT3Rifle
       prob: 1
     - !type:EntSelector
-      id: MobSovietT3ShotgunIncendiaryTimed
+      id: MobSovietT3ShotgunIncendiary
       prob: 1
 
 - type: entity
-  name: soviet heavy mechanized squad spawner (despawn)
-  id: SovietSquadHeavyMechanizedTimed
+  name: soviet heavy mechanized squad spawner
+  id: SovietSquadHeavyMechanized
   parent: MarkerBase
   components:
   - type: Sprite
@@ -1947,126 +2077,10 @@
     - sprite: Objects/Specific/Mech/durand.rsi
       state: dollhouse
   - type: EntityTableSpawner
+    offset: 1
     table: !type:NestedSelector
-      tableId: SovietHeavyMechanizedSquadTimedTable
+      tableId: SovietHeavyMechanizedSquadTable
     deleteSpawnerAfterSpawn: true
-
-# region Timed-despawn soviet variants (inherit original + MobSovietTimedDespawn)
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT1Knife]
-  id: MobSovietT1KnifeTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT1Pistol]
-  id: MobSovietT1PistolTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT1Dp28]
-  id: MobSovietT1Dp28Timed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT1SLRifle]
-  id: MobSovietT1SLRifleTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT1SerzhantSMG]
-  id: MobSovietT1SerzhantSMGTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT1SKM]
-  id: MobSovietT1SKMTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT1PPSH]
-  id: MobSovietT1PPSHTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT1Medic]
-  id: MobSovietT1MedicTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT1MosinAlt2]
-  id: MobSovietT1MosinAlt2Timed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT1RPD]
-  id: MobSovietT1RPDTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT1Mosin]
-  id: MobSovietT1MosinTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT1SMGAlt]
-  id: MobSovietT1SMGAltTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT1MosinAlt]
-  id: MobSovietT1MosinAltTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT2Bottle]
-  id: MobSovietT2BottleTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT2Finka]
-  id: MobSovietT2FinkaTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT2Revolver]
-  id: MobSovietT2RevolverTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT2Rifle]
-  id: MobSovietT2RifleTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT2RifleW]
-  id: MobSovietT2RifleWTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT3Shotgun]
-  id: MobSovietT3ShotgunTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT3ShotgunIncendiary]
-  id: MobSovietT3ShotgunIncendiaryTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT3Rifle]
-  id: MobSovietT3RifleTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT3Medic]
-  id: MobSovietT3MedicTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT2Raider]
-  id: MobSovietT2RaiderTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT2Mech]
-  id: MobSovietT2MechTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT3Mech]
-  id: MobSovietT3MechTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietCaptain]
-  id: MobSovietCaptainTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietSpaceBear]
-  id: MobSovietSpaceBearTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietBear]
-  id: MobSovietBearTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietBearAlt]
-  id: MobSovietBearAltTimed
 
 # Backward-compat aliases for old Tier 1 IDs used by procedural spawners/maps.
 - type: entity
@@ -2084,37 +2098,3 @@
 - type: entity
   parent: MobSovietT1MosinAlt
   id: MobSovietMosinAlt
-
-- type: entity
-  parent: MobSovietT1KnifeTimed
-  id: MobSovietKnifeTimed
-
-- type: entity
-  parent: MobSovietT1PistolTimed
-  id: MobSovietPistolTimed
-
-- type: entity
-  parent: MobSovietT1MosinTimed
-  id: MobSovietMosinTimed
-
-- type: entity
-  parent: MobSovietT1MosinAltTimed
-  id: MobSovietMosinAltTimed
-
-# Backward-compat timed aliases for old IDs used by procedural spawners/maps.
-- type: entity
-  parent: MobSovietT1KnifeTimed
-  id: MobSovietKnifeAltTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT2Rifle]
-  id: MobSovietT2RifleWAssaultTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT2Rifle]
-  id: MobSovietT2RifleWAssaultGreenTimed
-
-- type: entity
-  parent: [MobSovietTimedDespawn, MobSovietT2RifleW]
-  id: MobSovietT2RifleWAssaultWinterTimed
-

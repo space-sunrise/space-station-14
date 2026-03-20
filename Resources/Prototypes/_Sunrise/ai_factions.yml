@@ -98,6 +98,7 @@
     - BloodCult
     - Soviet
     - SpiderClan
+    - UraniumCrab
 
 - type: npcFaction
   id: Soviet
@@ -122,3 +123,10 @@
     - BloodCult
     - Pirate
     - SpiderClan
+    - UraniumCrab
+
+- type: npcFaction
+  id: UraniumCrab
+  hostile:
+    - Pirate
+    - Soviet

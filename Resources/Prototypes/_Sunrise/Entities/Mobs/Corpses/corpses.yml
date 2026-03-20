@@ -54,6 +54,25 @@
     - SovietCorpseGearC
     - SovietCorpseGearD
     - SovietCorpseGearF
+    # Non-EVA entries are intentionally duplicated to reduce EVA overall chance.
+    - SovietCorpseGearMarine
+    - SovietCorpseGearMarineB
+    - SovietCorpseGearMarineC
+    - SovietCorpseGearMarineD
+    - SovietCorpseGearMarineF
+    - SovietCorpseGearOfficer
+    - SovietCorpseGearOfficerB
+    - SovietCorpseGearA
+    - SovietCorpseGearB
+    - SovietCorpseGearC
+    - SovietCorpseGearD
+    - SovietCorpseGearF
+    # Double duplicated for lovering chance.
+    - SovietCorpseGearA
+    - SovietCorpseGearB
+    - SovietCorpseGearC
+    - SovietCorpseGearD
+    - SovietCorpseGearF
 
 - type: entity
   parent: SalvageHumanCorpse

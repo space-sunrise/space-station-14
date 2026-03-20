@@ -393,6 +393,20 @@
     lifetime: 3
 
 - type: entity
+  id: BulletSmokeGrenadeQuick
+  name: quick smoke grenade
+  parent: BulletSmokeGrenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 10
+    spreadAmount: 20
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
   id: BulletAirGrenade
   parent: BaseBulletGrenade
   name: air grenade

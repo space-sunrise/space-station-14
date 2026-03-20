@@ -854,19 +854,21 @@
     # Cash
     - id: PirateCashSpawner06
     # Weapons
-    - id: WeaponSniperDragunovBiocode
-      prob: 0.8
-    - id: WeaponSniperDragunov
-      prob: 0.25
+    - id: WeaponRifleType88AMRBiocode
+      prob: 0.65
+      orGroup: PistolT3Pool
+    - id: WeaponRifleType88AMR
+      prob: 0.4
+      orGroup: PistolT3Pool
     # Armor
     - id: SovietSoldierPoolLootSpawner
     # Items
-    - id: MagazineBoxRifleMachineFMJ
+    - id: MagazineBauer127
       prob: 0.7
-    - id: MagazineBoxRifleMachineBig
+    - id: MagazineBauer127Large
       prob: 0.3
     - id: PirateMedSpawner01
-    - id: MagazineBoxRifleMachineAP
+    - id: MagazineBauer127Penetrator
       prob: 0.1
     - id: AmmoTechFabCircuitboard
       prob: 0.1

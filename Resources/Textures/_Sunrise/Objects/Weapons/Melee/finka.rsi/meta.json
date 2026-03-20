@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Darkrell",
+    "copyright": "Darkrell, storage by KaiserMaus",
     "size": {
         "x": 32,
         "y": 32
@@ -9,6 +9,9 @@
     "states": [
         {
             "name": "icon"
+        },
+        {
+            "name": "storage"
         },
         {
             "name": "inhand-left",
