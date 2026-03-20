@@ -1,0 +1,12 @@
+ent-JetpackImprovised = самодельный джетпак
+    .suffix = Пустой
+    .desc = Это реактивный ранец. Он вмещает 1,5 л газа.
+ent-JetpackImprovisedFilled = самодельный джетпак
+    .suffix = Полный
+    .desc = { ent-JetpackImprovised.desc }
+ent-JetpackVoidEngineer = джетпак старшего инженера
+    .suffix = Пустой
+    .desc = Это реактивный ранец. Он вмещает 5 л газа.
+ent-JetpackVoidEngineerFilled = джетпак старшего инженера
+    .suffix = Полный
+    .desc = { ent-JetpackVoidEngineer.desc }

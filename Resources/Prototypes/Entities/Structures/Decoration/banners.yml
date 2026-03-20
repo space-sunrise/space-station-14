@@ -157,8 +157,19 @@
     sprite: _Sunrise/Structures/Decoration/banner.rsi # Sunrise - edit
     state: banner-green
 
+# Sunrise-start
+- type: entity
+  parent: BaseSign
+  id: BaseWallBanner
+  abstract: true
+  components:
+  - type: WallMount
+    arc: 360
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _Sunrise/Structures/Decoration/banner.rsi
 
-- type: entity #Sunrise-start
+- type: entity
   id: BannerUSSP
   parent: BannerBase
   name: USSP banner
@@ -166,4 +177,63 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Decoration/banner.rsi
-    state: banner_ussp #Sunrise-end
+    state: banner_ussp
+
+- type: entity
+  parent: BaseWallBanner
+  id: BannerWallHammer
+  name: revolutionary wall banner
+  description: Gone are the days of oppression and the unfair treatment of contractors! URAA!
+  components:
+  - type: Sprite
+    state: banner0
+
+- type: entity
+  parent: BaseWallBanner
+  id: BannerWallSoviet
+  name: USSP wall banner
+  description: Banner of the United Soviet Socialist Planets. Hang it up. Obey it. Try not to salute by reflex.
+  components:
+  - type: Sprite
+    state: banner1
+
+- type: entity
+  id: BannerSovietRegular
+  parent: BannerBase
+  name: USSP banner
+  description: Banner of the United Soviet Socialist Planets. Features the glorious hammer and wrench. Symbols of industry, progress, fraternity and fixing what you broke.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Decoration/banner.rsi
+    state: banner2
+
+- type: entity
+  id: BannerSovietHammer
+  parent: BannerBase
+  name: revolutionary banner
+  description: Gone are the days of oppression and the unfair treatment of contractors! URAA!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Decoration/banner.rsi
+    state: banner3
+
+- type: entity
+  id: BannerSNKVD
+  parent: BannerBase
+  name: soviet SNKVD banner
+  description: One wrong move and you're dead comrade. For good.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Decoration/banner.rsi
+    state: banner4
+
+- type: entity
+  id: BannerSGKB
+  parent: BannerBase
+  name: soviet SKB banner
+  description: Implementing workers rights. Yeah, we do that in your stations. You're welcome.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Decoration/banner.rsi
+    state: banner5
+# Sunrise-end

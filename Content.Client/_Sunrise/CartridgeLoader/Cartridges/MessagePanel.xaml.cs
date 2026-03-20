@@ -25,7 +25,7 @@ public sealed partial class MessagePanel : PanelContainer
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly NetTexturesManager _netTexturesManager = default!;
 
-    private ClientEmojiSystem? EmojiSystem => _entitySystemManager.GetEntitySystemOrNull<ClientEmojiSystem>();
+    private EmojiSystem? EmojiSystem => _entitySystemManager.GetEntitySystemOrNull<EmojiSystem>();
     private SpriteSystem GetSpriteSystem() => _entitySystemManager.GetEntitySystem<SpriteSystem>();
 
     /// <summary>

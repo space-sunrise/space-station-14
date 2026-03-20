@@ -463,3 +463,14 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/punksuit.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/punksuit.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitOperative
+  id: ClothingUniformJumpsuitSoviet
+  name: Soviet Jumpsuit
+  description: A standard jumpsuit worn by Soviet military personnel.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi

@@ -99,6 +99,8 @@
   - type: Sprite
     sprite: Clothing/Back/Duffels/leather.rsi
     state: icon
+  - type: Clothing
+    sprite: Clothing/Back/Duffels/leather.rsi
 
 - type: entity
   parent: MercenaryDuffelGiftBox
@@ -110,6 +112,8 @@
   - type: Sprite
     sprite: Clothing/Back/Duffels/syndicate.rsi
     state: icon
+  - type: Clothing
+    sprite: Clothing/Back/Duffels/syndicate.rsi
 
 - type: entity
   parent: MercenaryDuffelGiftBox
@@ -121,6 +125,8 @@
   - type: Sprite
     sprite: Clothing/Back/Duffels/salvage.rsi
     state: icon
+  - type: Clothing
+    sprite: Clothing/Back/Duffels/salvage.rsi
 
 ## BELT - for ammo and mags
 - type: entity
@@ -150,6 +156,8 @@
   - type: Sprite
     sprite: Clothing/Belt/militarywebbing.rsi
     state: icon
+  - type: Clothing
+    sprite: Clothing/Belt/militarywebbing.rsi
 
 - type: entity
   parent: MercenaryWebbingBox
@@ -161,6 +169,8 @@
   - type: Sprite
     sprite: Clothing/Belt/assault.rsi
     state: icon
+  - type: Clothing
+    sprite: Clothing/Belt/assault.rsi
 
 - type: entity
   parent: [NpcLootBase, ClothingBeltSyndieWebbing]
@@ -172,6 +182,8 @@
   - type: Sprite
     sprite: _Sunrise/Clothing/Belt/syndie_rps.rsi
     state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/syndie_rps.rsi
 
 - type: entity
   parent: MercenaryWebbingBox
@@ -183,6 +195,8 @@
   - type: Sprite
     sprite: Clothing/Belt/salvagewebbing.rsi
     state: icon
+  - type: Clothing
+    sprite: Clothing/Belt/salvagewebbing.rsi
 
 - type: entity
   parent: MercenaryWebbingBox
@@ -194,6 +208,8 @@
   - type: Sprite
     sprite: Clothing/Belt/bandolier.rsi
     state: icon
+  - type: Clothing
+    sprite: Clothing/Belt/bandolier.rsi
 
 - type: entity
   parent: MercenaryWebbingBox
@@ -205,6 +221,8 @@
     sprite: Clothing/Belt/waistbag_leather.rsi
     layers:
     - state: icon
+  - type: Clothing
+    sprite: Clothing/Belt/waistbag_leather.rsi
   - type: Item
     size: Huge
 
@@ -918,7 +936,7 @@
       path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: MercenaryWebbingBox
+  parent: SovietLightWebbingBox
   id: ClothingBeltWebbingMercenaryTier1Pistol
   categories: [ HideSpawnMenu ]
   components:
@@ -1147,8 +1165,8 @@
     - id: PirateCashSpawner01
     - id: PirateCashSpawner03
     # Weapons
-    - id: WeaponLightMachineGunRPD
-      prob: 0.15
+    - id: WeaponMachineGunLCGEmpty
+      prob: 0.25
     # Items
     - id: WeaponMachineGunLCGEmpty
       orGroup: AmmoMGPool
@@ -1913,6 +1931,11 @@
   id: ClothingBackOreCrateTier1Mech
   categories: [ HideSpawnMenu ]
   components:
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - feet
+    sprite: /Textures/Structures/Storage/orebox.rsi
   - type: Sprite
     noRot: true
     sprite: /Textures/Structures/Storage/orebox.rsi
@@ -2007,6 +2030,11 @@
   id: ClothingBackOreCrateTier1Cyborg
   categories: [ HideSpawnMenu ]
   components:
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - feet
+    sprite: /Textures/Structures/Storage/orebox.rsi
   - type: Sprite
     noRot: true
     sprite: /Textures/Structures/Storage/orebox.rsi
@@ -2091,6 +2119,11 @@
   id: ClothingBackOreCrateTier2Cyborg
   categories: [ HideSpawnMenu ]
   components:
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - feet
+    sprite: /Textures/Structures/Storage/orebox.rsi
   - type: Sprite
     noRot: true
     sprite: /Textures/Structures/Storage/orebox.rsi
@@ -2188,6 +2221,11 @@
   id: ClothingBackOreCrateTier3Mech
   categories: [ HideSpawnMenu ]
   components:
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - feet
+    sprite: /Textures/Structures/Storage/orebox.rsi
   - type: Sprite
     noRot: true
     sprite: /Textures/Structures/Storage/orebox.rsi
@@ -3867,6 +3905,11 @@
   id: ClothingBackOreCrateBoss
   categories: [ HideSpawnMenu ]
   components:
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - feet
+    sprite: /Textures/Structures/Storage/orebox.rsi
   - type: Sprite
     noRot: true
     sprite: /Textures/Structures/Storage/orebox.rsi

@@ -1,5 +1,3 @@
-using System.Linq;
-using Robust.Shared.Network;
 #if SUNRISE_PRIVATE
 using Content.Server._SunrisePrivate.AntiNuke;
 using Content.Shared._Sunrise.NetTextures;
@@ -26,25 +24,6 @@ public sealed class SunriseServerEntry
 
     public static void PostInit()
     {
-        var netManager = IoCManager.Resolve<IServerNetManager>();
-        var field = netManager.GetType().GetField("_netPeers", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-        var netPeers = (System.Collections.IEnumerable)field?.GetValue(netManager)!;
-        var firstPeerData = netPeers.Cast<object>().FirstOrDefault();
 
-        if (firstPeerData != null)
-        {
-            var peerField = firstPeerData.GetType().GetField("Peer");
-            var lidgrenPeer = (Lidgren.Network.NetPeer)peerField?.GetValue(firstPeerData)!;
-
-            var logMethod = typeof(Lidgren.Network.NetPeer).GetMethod("LogWarning", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance, new[] { typeof(string) });
-
-            // These SHOULD NOT appear (suppressed by patch)
-            logMethod?.Invoke(lidgrenPeer, new object[] { "Socket threw exception; would block - send buffer full? Increase in NetPeerConfiguration" });
-            logMethod?.Invoke(lidgrenPeer, new object[] { "Ignoring multiple Connect() most likely due to a delayed Approval" });
-            logMethod?.Invoke(lidgrenPeer, new object[] { "Received unhandled library message Ping from 127.0.0.1:1234" });
-
-            // This SHOULD appear
-            logMethod?.Invoke(lidgrenPeer, new object[] { "TEST: This log should NOT be suppressed" });
-        }
     }
 }

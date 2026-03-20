@@ -1,0 +1,12 @@
+ent-JetpackImprovised = improvised jetpack
+    .suffix = Empty
+    .desc = It's a jetpack. It can hold 1.5 L of gas.
+ent-JetpackImprovisedFilled = improvised jetpack
+    .suffix = Filled
+    .desc = { ent-JetpackImprovised.desc }
+ent-JetpackVoidEngineer = chief engineer's void jetpack
+    .suffix = Empty
+    .desc = It's a jetpack. It can hold 5 L of gas.
+ent-JetpackVoidEngineerFilled = chief engineer's void jetpack
+    .suffix = Filled
+    .desc = { ent-JetpackVoidEngineer.desc }
