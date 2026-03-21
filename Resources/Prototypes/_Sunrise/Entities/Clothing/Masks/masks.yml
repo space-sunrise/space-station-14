@@ -315,9 +315,10 @@
     tags:
     - WhitelistChameleon
     - ClothMade
+    - FaceCovered # INTERACTIONS
   - type: HideLayerClothing
     slots:
     - FacialHair
   - type: ModifyWearerName
-    #locId: equipped-name-prefix
-    #priority: unequipped-name-prefix
+    locId: equipped-name-prefix
+    priority: 0
