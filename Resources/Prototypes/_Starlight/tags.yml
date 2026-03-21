@@ -58,6 +58,21 @@
 - type: Tag
   id: MagazineSMGPPSH
 
+- type: Tag # Sunrise-Add
+  id: Cartridge75mmDravon
+
+- type: Tag # Sunrise-Add
+  id: Cartridge90mmAK570
+
+- type: Tag # Sunrise-Add
+  id: Cartridge240mmLeviathan
+
+- type: Tag # Sunrise-Add
+  id: MagazineDravon75mm
+
+- type: Tag # Sunrise-Add
+  id: MagazineAK570_90mm
+
 - type: Tag
   id: MagazineSMGUzi
 
