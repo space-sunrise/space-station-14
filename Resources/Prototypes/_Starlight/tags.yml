@@ -132,3 +132,7 @@
 
 - type: Tag
   id: MagazineGrenade120mm
+
+- type: Tag
+  id: Stairs
+

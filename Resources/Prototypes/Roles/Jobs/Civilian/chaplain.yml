@@ -6,6 +6,12 @@
   startingGear: ChaplainGear
   icon: "JobIconChaplain"
   supervisors: job-supervisors-hop
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-preacher
+  - job-alt-title-clergy
+  - job-alt-title-religious-scholar
+  # Sunrise-End
   access:
   - Chapel
   - Maintenance

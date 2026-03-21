@@ -6,6 +6,12 @@
   startingGear: PassengerGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-everyone
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-tourist
+  - job-alt-title-civilian
+  - job-alt-title-colonist
+  # Sunrise-End
   access:
   - Maintenance
 
