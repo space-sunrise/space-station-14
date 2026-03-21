@@ -1,0 +1,70 @@
+# Sunrise-specific civilian and wildcard loadout groups.
+
+- type: loadoutGroup
+  id: SunriseCommonBackpack
+  name: loadout-group-backpack
+  loadouts:
+  - CommonBackpack
+  - CommonSatchel
+  - CommonDuffel
+  - CommonModsuit
+
+- type: loadoutGroup
+  id: SunriseMusicianJumpsuit
+  name: loadout-group-musician-jumpsuit
+  loadouts:
+  - MusicianJumpsuit
+  - MusicianJumpskirt
+  - MusicianPunkSuit
+
+- type: loadoutGroup
+  id: SunriseMusicianOuterClothing
+  name: loadout-group-musician-outerclothing
+  minLimit: 0
+  loadouts:
+  - MusicianWintercoat
+  - MusicianLeatherJacket
+
+- type: loadoutGroup
+  id: SunriseJanitorJumpsuit
+  name: loadout-group-janitor-jumpsuit
+  loadouts:
+  - JanitorJumpsuit
+  - JanitorJumpskirt
+  - MaidJumpskirt
+
+- type: loadoutGroup
+  id: SunriseInstruments
+  name: loadout-group-instruments
+  minLimit: 1
+  maxLimit: 3
+  loadouts:
+  - Glockenspiel
+  - MusicBox
+  - Xylophone
+  - Microphone
+  - Synthesizer
+  - Kalimba
+  - Woodblock
+  - ElectricGuitar
+  - BassGuitar
+  - RockGuitar
+  - AcousticGuitar
+  - Banjo
+  - Violin
+  - Viola
+  - Cello
+  - Trumpet
+  - Trombone
+  - FrenchHorn
+  - Euphonium
+  - Saxophone
+  - Accordion
+  - Harmonica
+  - Clarinet
+  - Flute
+  - Recorder
+  - PanFlute
+  - Ocarina
+  - Bagpipe
+  - SuperSynthesizer

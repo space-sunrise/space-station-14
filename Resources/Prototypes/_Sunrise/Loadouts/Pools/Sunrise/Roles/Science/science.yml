@@ -1,0 +1,56 @@
+- type: roleLoadout
+  id: SunriseJobResearchDirector
+  groups:
+  - GroupTankHarness
+  - SunriseResearchDirectorNeck
+  - ResearchDirectorJumpsuit
+  - ScientistBackpack
+  - ResearchDirectorOuterClothing
+  - ScientistGloves
+  - ResearchDirectorShoes
+  - SunriseGlasses
+  - SunriseSurvival
+  - SunriseTrinkets
+  - ResearchDirectorJobTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobScientist
+  groups:
+  - GroupTankHarness
+  - ScientistNeck
+  - ScientistJumpsuit
+  - ScientistBackpack
+  - ScientistOuterClothing
+  - ScientistGloves
+  - ScientistShoes
+  - SunriseScientistPDA
+  - SunriseGlasses
+  - SunriseSurvival
+  - SunriseTrinkets
+  - ScientistJobTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobResearchAssistant
+  groups:
+  - GroupTankHarness
+  - ResearchAssistantJumpsuit
+  - ScientistBackpack
+  - SunriseGlasses
+  - SunriseSurvival
+  - SunriseTrinkets
+  - ResearchAssistantJobTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors

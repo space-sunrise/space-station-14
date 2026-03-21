@@ -15,7 +15,7 @@ namespace Content.Shared.Clothing;
 /// <summary>
 /// Assigns a loadout to an entity based on the RoleLoadout prototype
 /// </summary>
-public sealed class LoadoutSystem : EntitySystem
+public sealed partial class LoadoutSystem : EntitySystem // Sunrise-edit Добавлен partial
 {
     // Shared so we can predict it for placement manager.
 
