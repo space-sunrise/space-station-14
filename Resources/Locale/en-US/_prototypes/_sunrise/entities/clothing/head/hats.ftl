@@ -80,7 +80,5 @@ ent-ClothingHeadHatSwanTwo = Esh
     .desc = We're all going to die here.
 ent-ClothingHeadHatSwanOne = Alex
     .desc = Ha-ha-ha...We had a nice walk.
-ent-ClothingHeadHatZombie = zombie mask
-    .desc = "Grrroul..."
 ent-ClothingHeadHatChefBlackToque = chef's black toque
     .desc = Worn at the edges but proudly holds its shape, a symbol of skill and many hours spent in the kitchen.

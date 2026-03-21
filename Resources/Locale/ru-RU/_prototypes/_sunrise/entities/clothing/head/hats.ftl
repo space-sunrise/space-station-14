@@ -82,7 +82,5 @@ ent-ClothingHeadHatSwanTwo = Эш
     .desc = Мы все тут подохнем.
 ent-ClothingHeadHatSwanOne = Алекс
     .desc = Ха-ха-ха...Мы неплохо погуляли.
-ent-ClothingHeadHatZombie = маска зомби
-    .desc = "Грраууул..."
 ent-ClothingHeadHatChefBlackToque = чёрный поварской колпак
     .desc = Потёртый по краям, но гордо держит форму, символ мастерства и многих часов работы на кухне.
