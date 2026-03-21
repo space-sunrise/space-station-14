@@ -105,6 +105,7 @@
   - type: RadarBlip
     color: "#55B8FF"
     scale: 1.1
+    shape: Circle # Sunrise-Edit
     requireInSpace: true
 
 - type: entity
@@ -135,6 +136,7 @@
   - type: RadarBlip
     color: "#339CFF"
     scale: 1.35
+    shape: Circle # Sunrise-Edit
     requireInSpace: true
   - type: ContainerContainer
     containers:
@@ -191,7 +193,16 @@
   - type: RadarBlip
     color: "#2F8BFF"
     scale: 1.25
+    shape: Circle # Sunrise-Edit
     requireInSpace: true
+
+- type: entity
+  id: TeslaGunBulletOrion # Sunrise-Add
+  parent: TeslaGunBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    shape: Circle
 
 - type: entity
   parent: BaseBullet

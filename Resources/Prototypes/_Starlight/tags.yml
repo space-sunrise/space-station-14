@@ -73,6 +73,12 @@
 - type: Tag # Sunrise-Add
   id: MagazineAK570_90mm
 
+- type: Tag # Sunrise-Add
+  id: Cartridge50mmRocket
+
+- type: Tag # Sunrise-Add
+  id: Magazine50mmRocket
+
 - type: Tag
   id: MagazineSMGUzi
 

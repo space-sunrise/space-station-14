@@ -5,7 +5,7 @@ ent-ShuttleGunApollo = LSE-3500c "Apollo"
     .desc = A devastating heavy laser cannon system designed for siege warfare. Fires an extremely powerful laser beam that melts through armor and structures. Slow recharge time between shots.
 
 ent-ShuttleGunRocketVanyk60mm = RCT-60 "Vanyk"
-    .desc = A rapid-fire 60mm rocket launcher system designed for sustained fire. Launches rockets in bursts of 3. Uses magazine-fed ammunition with 30-round capacity.
+    .desc = A 60mm single-shot rocket launcher system. Each pull of the trigger launches one rocket. Accurate and reliable, well suited for precision strikes against individual targets. Uses magazine-fed 30-round capacity.
 
 ent-ShuttleGunCharon = RL-280 "Charon"
     .desc = A single-shot electromagnetic railgun of unparalleled destructive capability. Accelerates a 280mm slug to devastating velocities. Requires manual loading of each round into the open chamber before firing. Named for the devouring whirlpool of legend - because that is what awaits those who face one.

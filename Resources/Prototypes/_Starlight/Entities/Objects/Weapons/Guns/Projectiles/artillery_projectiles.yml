@@ -142,7 +142,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Artillery Ammo/charon_ammo.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/ArtilleryAmmo/charon_ammo.rsi # Sunrise-Edit
     layers:
       - state: railgun_slug
     scale: 2, 2
@@ -178,7 +178,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Artillery Ammo/charon_ammo.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/ArtilleryAmmo/charon_ammo.rsi # Sunrise-Edit
     layers:
       - state: subnuclear
     scale: 2, 2

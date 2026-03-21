@@ -19,8 +19,8 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeAabb
-          bounds: "-0.4,-0.4,0.4,0.4"
+          !type:PhysShapeCircle
+          radius: 0.45
         density: 500
         mask:
         - MachineMask
@@ -42,13 +42,13 @@
   - type: Gun
     projectileSpeed: 50
     fireRate: 1.0
-    burstFireRate: 4
+    burstFireRate: 6 # Sunrise
     shotsPerBurst: 2
     burstCooldown: 52.5
     selectedMode: Burst
     angleDecay: 30
-    minAngle: 0
-    maxAngle: 10
+    minAngle: 5 # Sunrise
+    maxAngle: 15 # Sunrise
     availableModes:
     - Burst
     soundGunshot:
@@ -79,6 +79,11 @@
     shape: Square
     requireInSpace: true
   - type: GunneryTrackable
+  - type: AutoLoader # Sunrise-Add
+    container: gun_magazine
+    whitelist:
+      tags:
+      - MagazineGrenade120mm
   - type: StaticPrice
     price: 5000
 
@@ -137,10 +142,15 @@
     shape: Square
     requireInSpace: true
   - type: GunneryTrackable
+  - type: AutoLoader # Sunrise-Add
+    container: cell_slot
+    whitelist:
+      tags:
+      - PowerCage
 
 # Vanyk-MK2 60mm Rocket Launcher - Multi-rocket burst fire system
 - type: entity
-  id: ShuttleGunVanyk
+  id: ShuttleGunRocketVanyk60mm
   parent: ShuttleGunBase
   name: Vanyk-MK2 Multi-Rocket System
   description: A 60mm single-shot rocket launcher system. Each pull of the trigger launches one rocket. Accurate and reliable, well suited for precision strikes against individual targets. Uses magazine-fed 30-round capacity.
@@ -165,8 +175,8 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeAabb
-          bounds: "-0.4,-0.4,0.4,0.4"
+          !type:PhysShapeCircle
+          radius: 0.45
         density: 500
         mask:
         - MachineMask
@@ -223,6 +233,11 @@
     shape: Circle
     requireInSpace: true
   - type: GunneryTrackable
+  - type: AutoLoader # Sunrise-Add
+    container: gun_magazine
+    whitelist:
+      tags:
+      - Magazine60mmRocket
   - type: StaticPrice
     price: 6000
 
@@ -307,82 +322,87 @@
   - type: StaticPrice
     price: 25000
 
-# SSG-TARNYX EMP Grenade Cannon - lobs EMP grenades, 4-round capacity
-- type: entity
-  id: ShuttleGunTarnyx
-  parent: ShuttleGunBase
-  name: SSG-TARNYX EMP Grenade Cannon
-  description: A heavy-duty electromagnetic grenade lobber. Fires EMP grenades in a wide arc, designed to saturate an area with electromagnetic pulses and disable enemy ship systems. Holds 4 rounds. Does not cause structural damage.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/tarnyx.rsi
-    granularLayersRendering: true
-    layers:
-    - sprite: _Starlight/Objects/Weapons/Guns/Turrets/pointdefense.rsi
-      state: support
-      renderingStrategy: NoRotation
-    - state: space_artillery
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Physics
-    bodyType: Dynamic
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.4,-0.4,0.4,0.4"
-        density: 500
-        mask:
-        - MachineMask
-        layer:
-        - MachineLayer
-  - type: Anchorable
-    delay: 90
-  - type: Pullable
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 300
-      behaviors:
-        - !type:ChangeConstructionNodeBehavior
-          node: machineFrame
-        - !type:DoActsBehavior
-          acts: ["Destruction"]
-  - type: Gun
-    projectileSpeed: 25
-    fireRate: 0.5
-    selectedMode: SemiAuto
-    angleDecay: 30
-    minAngle: 0
-    maxAngle: 20
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
-      params:
-        pitch: 0.7
-        volume: 4
-    soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-        - Grenade
-    capacity: 4
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-  - type: Appearance
-  - type: RadarBlip
-    color: "#FFEE00"
-    scale: 1.0
-    shape: Square
-    requireInSpace: true
-  - type: GunneryTrackable
-  - type: StaticPrice
-    price: 5500
+# SSG-TARNYX EMP Grenade Cannon - lobs EMP grenades, 4-round capacity #Бесполезный хлам
+# - type: entity
+#   id: ShuttleGunTarnyx
+#   parent: ShuttleGunBase
+#   name: SSG-TARNYX EMP Grenade Cannon
+#   description: A heavy-duty electromagnetic grenade lobber. Fires EMP grenades in a wide arc, designed to saturate an area with electromagnetic pulses and disable enemy ship systems. Holds 4 rounds. Does not cause structural damage.
+#   components:
+#   - type: Sprite
+#     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/tarnyx.rsi
+#     granularLayersRendering: true
+#     layers:
+#     - sprite: _Starlight/Objects/Weapons/Guns/Turrets/pointdefense.rsi
+#       state: support
+#       renderingStrategy: NoRotation
+#     - state: space_artillery
+#   - type: ContainerContainer
+#     containers:
+#       ballistic-ammo: !type:Container
+#   - type: Physics
+#     bodyType: Dynamic
+#   - type: Fixtures
+#     fixtures:
+#       fix1:
+#         shape:
+#           !type:PhysShapeAabb
+#           bounds: "-0.4,-0.4,0.4,0.4"
+#         density: 500
+#         mask:
+#         - MachineMask
+#         layer:
+#         - MachineLayer
+#   - type: Anchorable
+#     delay: 90
+#   - type: Pullable
+#   - type: Destructible
+#     thresholds:
+#     - trigger:
+#         !type:DamageTrigger
+#         damage: 300
+#       behaviors:
+#         - !type:ChangeConstructionNodeBehavior
+#           node: machineFrame
+#         - !type:DoActsBehavior
+#           acts: ["Destruction"]
+#   - type: Gun
+#     projectileSpeed: 25
+#     fireRate: 0.5
+#     selectedMode: SemiAuto
+#     angleDecay: 30
+#     minAngle: 0
+#     maxAngle: 20
+#     availableModes:
+#     - SemiAuto
+#     soundGunshot:
+#       path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+#       params:
+#         pitch: 0.7
+#         volume: 4
+#     soundEmpty:
+#       path: /Audio/Weapons/Guns/Empty/empty.ogg
+#   - type: BallisticAmmoProvider
+#     whitelist:
+#       tags:
+#         - Grenade
+#     capacity: 4
+#     soundInsert:
+#       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+#   - type: Appearance
+#   - type: RadarBlip
+#     color: "#FFEE00"
+#     scale: 1.0
+#     shape: Square
+#     requireInSpace: true
+#   - type: GunneryTrackable
+#   - type: AutoLoader # Sunrise-Add
+#     container: ballistic-ammo
+#     whitelist:
+#       tags:
+#       - Grenade
+#   - type: StaticPrice
+#     price: 5500
 
 # ADMP-27 VESPERA 50mm Rapid-Fire Missile Rack
 - type: entity
@@ -471,6 +491,11 @@
     shape: Circle
     requireInSpace: true
   - type: GunneryTrackable
+  - type: AutoLoader # Sunrise-Add
+    container: gun_magazine
+    whitelist:
+      tags:
+      - Magazine50mmRocket
   - type: StaticPrice
     price: 6000
 
@@ -520,14 +545,14 @@
     minAngle: 0
     maxAngle: 5
     soundGunshot:
-      path: /Audio/_Starlight/Weapons/Shuttleguns/slammer.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg # Sunrise-Edit
       params:
         variation: 0.05
         volume: 5
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatteryAmmoProvider
-    proto: 20mmBullet
+    proto: BulletLightRifleTraceFMJ # Sunrise-Edit
     fireCost: 1
   - type: Battery
     maxCharge: 50
@@ -623,6 +648,11 @@
     shape: Square
     requireInSpace: true
   - type: GunneryTrackable
+  - type: AutoLoader # Sunrise-Add
+    container: gun_magazine
+    whitelist:
+      tags:
+      - MagazineDravon75mm
   - type: StaticPrice
     price: 7500
 
@@ -702,6 +732,11 @@
     shape: Square
     requireInSpace: true
   - type: GunneryTrackable
+  - type: AutoLoader # Sunrise-Add
+    container: gun_magazine
+    whitelist:
+      tags:
+      - MagazineAK570_90mm
   - type: StaticPrice
     price: 7000
 
@@ -921,7 +956,7 @@
     slots:
       cell_slot:
         name: Power Cage
-        startingItem: PowerCageHigh # Sunrise-Edit
+        startingItem: PowerCageOmega # Sunrise-Edit
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
@@ -940,5 +975,10 @@
     shape: Square
     requireInSpace: true
   - type: GunneryTrackable
+  - type: AutoLoader # Sunrise-Add
+    container: cell_slot
+    whitelist:
+      tags:
+      - PowerCage
   - type: StaticPrice
     price: 28000

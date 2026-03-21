@@ -4,15 +4,20 @@
 # Base Charybdis 280mm cartridge (abstract)
 - type: entity
   abstract: true
-  parent: [BaseItem, BaseMajorContraband]
+  parent: [BaseCartridge, BaseMajorContraband] # Sunrise-Edit
   id: BaseCharon280mmCartridge
   name: base 280mm Charybdis cartridge
+  categories: [ HideSpawnMenu ] # Sunrise-Add
   components:
   - type: Tag
     tags:
     - Cartridge280mmSlug
   - type: Item
-    size: Huge
+    size: Ginormous # Sunrise-Edit
+  - type: DamageOnLand # Sunrise-Add
+    damage:
+      types:
+        Blunt: 100
 
 # M381 CHARYBDIS 280mm 26.5kg Slug
 # A massive kinetic penetrator. Pierces through targets and structures before detonating.
@@ -30,7 +35,7 @@
     proto: BulletCharon280mmSlug
     deleteOnSpawn: true
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Artillery Ammo/charon_ammo.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/ArtilleryAmmo/charon_ammo.rsi # Sunrise-Edit
     layers:
     - state: railgun_slug
       map: ["enum.AmmoVisualLayers.Base"]
@@ -57,7 +62,7 @@
     proto: BulletCharon280mmSubnuclear
     deleteOnSpawn: true
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Artillery Ammo/charon_ammo.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/ArtilleryAmmo/charon_ammo.rsi # Sunrise-Edit
     layers:
     - state: subnuclear
       map: ["enum.AmmoVisualLayers.Base"]
@@ -76,6 +81,7 @@
   parent: [BaseItem, BaseMajorContraband]
   id: BaseDravon75mmShell
   name: base 75mm Dravon shell
+  categories: [ HideSpawnMenu ] # Sunrise-Add
   components:
   - type: Tag
     tags:
@@ -158,6 +164,7 @@
   parent: [BaseItem, BaseMajorContraband]
   id: BaseAK570_90mmShell
   name: base 90mm AK570 shell
+  categories: [ HideSpawnMenu ] # Sunrise-Add
   components:
   - type: Tag
     tags:
@@ -238,8 +245,9 @@
 - type: entity
   abstract: true
   parent: [BaseItem, BaseMajorContraband]
-  id: BaseLeviathan240mmShell
+  id: BaseLeviathanShell # Sunrise-Edit
   name: base 240mm Leviathan shell
+  categories: [ HideSpawnMenu ] # Sunrise-Add
   components:
   - type: Tag
     tags:
@@ -249,7 +257,7 @@
 
 # Leviathan 240mm HE Shell
 - type: entity
-  parent: BaseLeviathan240mmShell
+  parent: BaseLeviathanShell # Sunrise-Edit
   id: CartridgeLeviathan240mmHE
   name: LVT-240 240mm HE artillery shell
   description: >-

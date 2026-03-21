@@ -61,8 +61,8 @@
       tags:
         - CartridgeAntiMateriel
     proto: CartridgeAntiMateriel
-    capacity: 45
-    fillDelay: 0.15
+    capacity: 40
+    fillDelay: 0.1
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
