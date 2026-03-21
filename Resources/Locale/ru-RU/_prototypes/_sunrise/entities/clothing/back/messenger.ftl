@@ -17,3 +17,6 @@ ent-ClothingBackpackMessengerPirate = пиратская сумка-мессен
 
 ent-ClothingBackpackMessengerPirateBundleSKM24Scrap = набор SKM-24 (хлам)
     .desc = Содержит самую дешёвую штурмовую винтовку.
+
+ent-ClothingBackpackMessengerMercenaryBundleARG = набор ARG
+    .desc = Содержит стандартную штурмовую винтовку.

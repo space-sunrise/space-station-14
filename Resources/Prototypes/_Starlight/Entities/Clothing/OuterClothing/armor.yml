@@ -95,7 +95,7 @@
     damageCoefficient: 0.85
 
 - type: entity
-  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing ] #BaseSovietContraband
+  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseSovietContraband]
   categories: [ HideSpawnMenu ]
   id: ClothingOuterArmorSovietPlate
   name: soviet armor vest

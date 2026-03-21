@@ -165,6 +165,9 @@ public sealed partial class ChatSystem : SharedChatSystem
     {
         if (TryComp<AbductorComponent>(source, out var comp))
         {
+            if (!TryProcessSunriseChatMessage(source, ref message, InGameICChatType.CollectiveMind))
+                return;
+
             _prototypeManager.TryIndex<CollectiveMindPrototype>(comp.AbductorCollectiveMindProto, out var channel);
             SendCollectiveMindChat(source, message, channel);
             return;
@@ -189,13 +192,8 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
 
         // Sunrise added start - для санитизации чата
-        var trySendEvent = new TrySendChatMessageEvent(message, desiredType);
-        RaiseLocalEvent(source, trySendEvent);
-
-        if (trySendEvent.Cancelled)
+        if (!TryProcessSunriseChatMessage(source, ref message, desiredType))
             return;
-
-        message = trySendEvent.Message;
         // Sunrise added end
 
         ignoreActionBlocker = CheckIgnoreSpeechBlocker(source, ignoreActionBlocker);
@@ -296,13 +294,8 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
 
         // Sunrise added start - для санитизации чата
-        var trySendEvent = new TrySendChatMessageEvent(message, oocChatType: type);
-        RaiseLocalEvent(source, trySendEvent);
-
-        if (trySendEvent.Cancelled)
+        if (!TryProcessSunriseChatMessage(source, ref message, oocChatType: type))
             return;
-
-        message = trySendEvent.Message;
         // Sunrise added end
 
         message = SanitizeInGameOOCMessage(message);
@@ -494,16 +487,6 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (!sourseCollectiveMindComp.Minds.Contains(collectiveMind.ID))
             return;
-
-        // Sunrise added start - для санитизации чата
-        var trySendEvent = new TrySendChatMessageEvent(message, InGameICChatType.CollectiveMind);
-        RaiseLocalEvent(source, trySendEvent);
-
-        if (trySendEvent.Cancelled)
-            return;
-
-        message = trySendEvent.Message;
-        // Sunrise added end
 
         var clients = Filter.Empty();
         var receivers = new HashSet<EntityUid>();

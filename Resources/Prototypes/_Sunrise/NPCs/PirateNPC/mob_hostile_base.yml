@@ -52,8 +52,8 @@
     damageCap: 125
     damage:
       groups:
-        Brute: -1
-        Burn: -1
+        Brute: -0.5
+        Burn: -0.5
         Airloss: -1
         Genetic: -1
 
@@ -68,10 +68,10 @@
     damageCap: 125
     damage:
       groups:
-        Brute: -2
-        Burn: -2
-        Airloss: -3
-        Genetic: -3
+        Brute: -1
+        Burn: -1
+        Airloss: -1.5
+        Genetic: -1.5
 
 - type: entity
   id: MobPassiveRegenStrong
@@ -343,6 +343,11 @@
       types: {}
     damageRecovery:
       types: {}
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 200 # Less Messy around
   - type: MeleeWeapon
     hidden: true
     animation: WeaponArcInvisibleNPC
@@ -415,6 +420,11 @@
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 150
   - type: MeleeWeapon
     hidden: true
     animation: WeaponArcInvisibleNPC
