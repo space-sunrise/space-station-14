@@ -253,7 +253,7 @@ public sealed partial class TTSSystem : EntitySystem
             }
             if (heardSpeakers.Count > 0)
             {
-                var evMulti = new PlayMultiSpeakerTTSEvent(heardSpeakers, ev.TtsData, volume: AnnouncementTtsVolumeModifier);
+                var evMulti = new PlayMultiSpeakerTTSEvent(heardSpeakers, ev.TtsData, volumeModifier: AnnouncementTtsVolumeModifier);
                 RaiseNetworkEvent(evMulti, actor.PlayerSession);
             }
         }

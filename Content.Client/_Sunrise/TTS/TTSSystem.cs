@@ -248,8 +248,8 @@ public sealed class TTSSystem : EntitySystem
         {
             var volumeModifier = speaker.VolumeModifier;
 
-            if (ev.Volume != null)
-                volumeModifier *= ev.Volume.Value;
+            if (ev.VolumeModifier != null)
+                volumeModifier *= ev.VolumeModifier.Value;
 
             if (volumeModifier <= 0f)
                 continue;
