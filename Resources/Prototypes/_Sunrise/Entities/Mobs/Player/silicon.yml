@@ -336,3 +336,26 @@
     laws: SyndicateStatic
   - type: StaticPrice
     price: 2000
+
+- type: entity
+  id: PlayerBorgChassisSyndicateSpiderBattery
+  parent: BorgChassisSyndicateSpider
+  suffix: Battery, Module
+  components:
+  - type: NukeOperative
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - Sofia
+      borg_module:
+      - BorgModuleSyndicateCombatAdvanced
+      - BorgModuleSyndicateHypoAdvanced
+      - BorgModuleSyndicatePentration
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSyndicate
+  - type: AutoImplant
+    implants:
+    - SmokeScreenImplant

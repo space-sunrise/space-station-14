@@ -1017,3 +1017,96 @@
         reagents:
         - ReagentId: Water
           Quantity: 2
+
+# region BorgChassisSyndicateSpider
+
+- type: entity
+  name: Viper
+  parent: BaseItem
+  id: WeaponPistolViperBorgChassisSyndicateSpider
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    minAngle: 2
+    maxAngle: 50
+    angleIncrease: 1.75
+    angleDecay: 15
+    fireRate: 5
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeRifle
+    capacity: 16
+    proto: CartridgeRifleSP
+    cycleable: false
+  - type: BallisticAmmoSelfRefiller
+    autoRefillRate: 10s
+    affectedByEmp: true
+  - type: AmmoCounter
+
+- type: entity
+  parent: HypoBorgStandard
+  id: HypoSyndicateBorgExtended
+  name: robot hypospray
+  description: A hypospray that can switch through several reagents.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 10
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: Nocturine
+        Quantity: 0.25
+  - type: SolutionRegenerationSwitcher
+    options:
+    - ReagentId: Nocturine
+      Quantity: 0.25
+    - ReagentId: Ephedrine
+      Quantity: 0.25
+    - ReagentId: Epinephrine
+      Quantity: 0.25
+    keepSolution: false
+  - type: BorgHypospray
+
+- type: entity
+  parent: [BaseJammer, BaseXenoborgContraband]
+  id: RadioJammerSyndicateBorg
+  name: syndicate cyborg radio jammer
+  suffix: Syndicate
+  description: Syndicate cyborg radio jammer.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadioJammer
+    settings:
+    - wattage: 2
+      range: 4
+      message: radio-jammer-component-set-message-low
+      name: radio-jammer-component-setting-low
+    - wattage: 4
+      range: 6
+      message: radio-jammer-component-set-message-high
+      name: radio-jammer-component-setting-high
+    frequenciesExcluded:
+    - 1213 # syndicate frequency
+
+# region end

@@ -319,3 +319,52 @@
     - item: XenoborgLaserMinigun
   - type: BorgModuleIcon
     icon: { sprite: _Sunrise/Interface/Actions/actions_borg.rsi, state: xenoborg-laser3-module }
+
+# region BorgChassisSyndicateSpider
+
+- type: entity
+  id: BorgModuleSyndicateCombatAdvanced
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  name: advanced combat syndicate cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate
+  - type: ItemBorgModule
+    hands:
+    - item: WeaponPistolViperBorgChassisSyndicateSpider
+    - item: SyndicateRapier
+
+- type: entity
+  id: BorgModuleSyndicateHypoAdvanced
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  name: advanced hypo syndicate cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate
+  - type: ItemBorgModule
+    hands:
+    - item: HypoSyndicateBorgExtended
+    - item: CloakingDevice
+    - item: RadioJammerSyndicateBorg
+    - item: ChameleonProjector
+
+- type: entity
+  id: BorgModuleSyndicatePentration
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  name: syndicate pentration cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate
+  - type: ItemBorgModule
+    hands:
+    - item: SyndicateJawsOfLife
+    - item: Emag
+    - item: PinpointerIcarus
+
+# region end

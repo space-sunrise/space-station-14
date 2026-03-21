@@ -78,3 +78,10 @@ ent-BorgShakerSoda = раздатчик сервисного киборга (г�
     .desc = { ent-BaseBorgShaker.desc }
 ent-BorgShakerBooze = раздатчик сервисного киборга (алкоголь)
     .desc = { ent-BaseBorgShaker.desc }
+
+ent-WeaponPistolViperBorgChassisSyndicateSpider = Гадюка
+ent-HypoSyndicateBorgExtended = гипоспрей киборга
+    .desc = Гипоспрей, способный переключаться между несколькими реагентами.
+ent-RadioJammerSyndicateBorg = глушитель связи киборга
+    .desc = Глушитель связи Синдиката.
+    .suffix = Синдикат
