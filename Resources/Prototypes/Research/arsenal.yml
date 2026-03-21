@@ -299,7 +299,9 @@
   - ShellEMPArtillery # Sunrise-Edit
   - PowerCageHigh
   - ShuttleGunDusterCircuitboard
-  - ShuttleGunLongbowCircuitboard # Sunrise-start
+  # Sunrise-start
+  - ComputerGunneryCircuitboard
+  - ShuttleGunLongbowCircuitboard
   - ShuttleGunVympelCircuitboard
   - ShuttleGunTeslaOrionCircuitboard
   - ShuttleGunBeamstormMachineGunCircuitboard
@@ -313,7 +315,8 @@
   - MagazineBoxBelt127Artillery
   - MagazineBoxBelt127Blast
   - MagazineBoxBelt127Frag
-  - MagazineBoxBelt127Emp # Sunrise-end
+  - MagazineBoxBelt127Emp
+  # Sunrise-end
   technologyPrerequisites:
   - BasicShuttleArmament
   radioChannels: # Sunrise-Add
