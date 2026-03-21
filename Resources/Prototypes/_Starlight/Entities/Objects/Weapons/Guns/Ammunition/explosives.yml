@@ -36,15 +36,16 @@
   components:
   - type: CartridgeAmmo
     proto: BulletGrenade120mmBlast
+    deleteOnSpawn: true # SR
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    scale: 1,0.9
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
-    - state: blast
+    - state: blast120mm
       map: ["enum.AmmoVisualLayers.Base"]
+  - type: Item
+    heldPrefix: blast120
   - type: Appearance
-  - type: SpentAmmoVisuals
-    state: blast
-    suffix: false
   - type: StaticPrice
     price: 500
 
@@ -76,31 +77,32 @@
   - type: Item
     size: Huge
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/120mm_cartridge.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-4
+    - state: mag-6
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 5
+    steps: 7
     zeroVisible: false
   - type: StaticPrice
     price: 800
+  - type: MultiHandedItem
 
-- type: entity
-  parent: Magazine120mmGrenadeBlast
-  id: Magazine120mmGrenadeBlastEmpty
-  name: 120mm blast grenade magazine (empty)
-  suffix: empty
-  components:
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    whitelist:
-      tags:
-        - Grenade120mm
-    capacity: 20
+# - type: entity
+#   parent: Magazine120mmGrenadeBlast
+#   id: Magazine120mmGrenadeBlastEmpty
+#   name: 120mm blast grenade magazine (empty)
+#   suffix: empty
+#   components:
+#   - type: BallisticAmmoProvider
+#     mayTransfer: true
+#     whitelist:
+#       tags:
+#         - Grenade120mm
+#     capacity: 20
 
 
 # 60mm Rocket Ammunition
