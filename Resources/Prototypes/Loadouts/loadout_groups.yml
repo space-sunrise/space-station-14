@@ -930,6 +930,13 @@
   - EngineeringWinterBoots
 
 - type: loadoutGroup
+  id: StationEngineerID
+  name: loadout-group-station-engineer-id
+  loadouts:
+  - StationEngineerPDA
+  - SeniorEngineerPDA
+
+- type: loadoutGroup
   id: StationEngineerJobTrinkets
   name: loadout-group-jobtrinkets
   minLimit: 0
@@ -1076,6 +1083,14 @@
   loadouts:
   - LatexGloves
   - PurpleGloves
+
+- type: loadoutGroup
+  id: ScientistPDA
+  name: loadout-group-scientist-id
+  loadouts:
+  - ScientistPDA
+  - SeniorResearcherPDA
+
 
 - type: loadoutGroup
   id: ScientistJobTrinkets
@@ -1391,6 +1406,13 @@
   loadouts:
   - WhiteShoes
   - MedicalWinterBoots
+
+- type: loadoutGroup
+  id: MedicalDoctorPDA
+  name: loadout-group-medical-doctor-id
+  loadouts:
+  - MedicalPDA
+  - SeniorPhysicianPDA
 
 - type: loadoutGroup
   id: MedicalGloves

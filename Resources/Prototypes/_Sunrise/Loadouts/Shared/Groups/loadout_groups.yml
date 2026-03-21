@@ -125,6 +125,7 @@
   - AutoInjectorRadiation
   - AutoInjectorPoly
   - AutoInjectorStellibinin
+
 - type: loadoutGroup
   id: NanoTrasenRepresentativeJumpsuit
   name: loadout-group-nanotrasenrepresentative-jumpsuit
