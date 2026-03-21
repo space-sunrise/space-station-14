@@ -1056,7 +1056,7 @@
     proto: CartridgeRifleSP
     cycleable: false
   - type: BallisticAmmoSelfRefiller
-    autoRefillRate: 10s
+    autoRefillRate: 2s
     affectedByEmp: true
   - type: AmmoCounter
 
