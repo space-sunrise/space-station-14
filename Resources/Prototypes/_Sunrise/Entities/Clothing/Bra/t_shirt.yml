@@ -72,7 +72,7 @@
       right:
       - state: inhand-right
         color: "#d6c617"
-      lrft:
+      left:
       - state: inhand-left
         color: "#d6c617"
 
