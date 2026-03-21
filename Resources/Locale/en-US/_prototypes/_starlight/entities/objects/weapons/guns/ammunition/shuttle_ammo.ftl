@@ -16,7 +16,7 @@ ent-CartridgeDravon75mmHE = DVN-75 75mm HE shell
 ent-MagazineDravon75mmHE = DVN-75 75mm HE shell magazine
     .desc = A 15-round magazine of 75mm HE shells for the Dravon cannon system.
 
-ent-CartridgeAK570_90mmHE = AK-90 90mm HE shell
+ent-Cartridge90mmAutoHE = AK-90 90mm HE shell
     .desc = A 90mm high-explosive artillery shell for the AK570 cannon system. Heavier than the Dravon's 75mm round, with a larger explosive yield.
 
 ent-MagazineAK570_90mmHE = AK-90 90mm HE shell magazine

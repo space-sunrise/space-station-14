@@ -1,5 +1,5 @@
-ent-ShuttleGunSvalinnMachineGunCircuitboard = LSE-400c "Пулемёт Свалинн" (машинная плата)
-    .desc = Печатная плата LSE-400c "Пулемёт Свалинн".
+ent-ShuttleGunSvalinnMachineGunCircuitboard = LSE-400b "Пулемёт Свалинн" (машинная плата)
+    .desc = Печатная плата LSE-400b "Пулемёт Свалинн".
     .suffix = НЕ МАППИТЬ, Машинная плата
 ent-ShuttleGunPerforatorCircuitboard = LSE-1200c "Перфоратор" (машинная плата)
     .desc = Печатная плата LSE-1200c "Перфоратор".

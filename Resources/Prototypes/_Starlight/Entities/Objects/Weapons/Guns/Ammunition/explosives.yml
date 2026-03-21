@@ -183,18 +183,18 @@
   - type: StaticPrice
     price: 600
 
-- type: entity
-  parent: Magazine60mmRocket
-  id: Magazine60mmRocketEmpty
-  name: 60mm rocket magazine (empty)
-  suffix: empty
-  components:
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    whitelist:
-      tags:
-        - Cartridge60mmRocket
-    capacity: 30
+# - type: entity
+#   parent: Magazine60mmRocket
+#   id: Magazine60mmRocketEmpty
+#   name: 60mm rocket magazine (empty)
+#   suffix: empty
+#   components:
+#   - type: BallisticAmmoProvider
+#     mayTransfer: true
+#     whitelist:
+#       tags:
+#         - Cartridge60mmRocket
+#     capacity: 30
 
 
 # 50mm Rocket Ammunition

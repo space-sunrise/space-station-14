@@ -9,7 +9,12 @@
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/cyerxa_120mm.rsi
-    state: space_artillery
+    granularLayersRendering: true
+    layers:
+    - sprite: Structures/Machines/station_anchor.rsi
+      state: station_anchor
+      renderingStrategy: NoRotation
+    - state: space_artillery
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -20,7 +25,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.45
+          radius: 0.6
         density: 500
         mask:
         - MachineMask
@@ -406,7 +411,7 @@
 
 # ADMP-27 VESPERA 50mm Rapid-Fire Missile Rack
 - type: entity
-  id: WeaponTurretVespera
+  id: WeaponTurretVespera50mm
   parent: ShuttleGunBase
   name: ADMP-27 VESPERA 50mm Rapid-Fire Missile Rack
   description: A rapid-fire swarm missile rack. Saturates targets with guided warheads to overwhelm defenses.
@@ -581,7 +586,12 @@
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/Dravon.rsi
-    state: space_artillery
+    granularLayersRendering: true
+    layers:
+    - sprite: _Starlight/Objects/Weapons/Guns/Turrets/pointdefense.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - state: space_artillery
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -591,8 +601,8 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeAabb
-          bounds: "-0.4,-0.4,0.4,0.4"
+          !type:PhysShapeCircle
+          radius: 0.4
         density: 500
         mask:
         - MachineMask
@@ -613,7 +623,7 @@
           acts: ["Destruction"]
   - type: Gun
     projectileSpeed: 37   # halved range
-    fireRate: 0.9
+    fireRate: 1
     selectedMode: FullAuto
     angleDecay: 30
     minAngle: 0
@@ -664,8 +674,14 @@
   description: A rapid-fire 90mm artillery cannon optimized for overwhelming volume of fire. Higher caliber than the Dravon with more explosive force per shell, though its shorter barrel means slightly less range. Magazine-fed, 20-round capacity.
   components:
   - type: Sprite
+    scale: 1.25,1.25
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/AK570.rsi
-    state: space_artillery
+    granularLayersRendering: true
+    layers:
+    - sprite: _Starlight/Objects/Weapons/Guns/Turrets/pointdefense.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - state: space_artillery
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -675,8 +691,8 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeAabb
-          bounds: "-0.4,-0.4,0.4,0.4"
+          !type:PhysShapeCircle
+          radius: 0.45
         density: 500
         mask:
         - MachineMask
@@ -697,12 +713,17 @@
           acts: ["Destruction"]
   - type: Gun
     projectileSpeed: 18   # halved range
-    fireRate: 1.2
-    selectedMode: FullAuto
-    angleDecay: 30
-    minAngle: 0
-    maxAngle: 10
+    fireRate: 1.5
+    burstFireRate: 3
+    burstCooldown: 2
+    shotsPerBurst: 4
+    selectedMode: Burst
+    angleDecay: 20
+    minAngle: 1
+    maxAngle: 15
+    angleIncrease: 3
     availableModes:
+    - Burst
     - FullAuto
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Shuttleguns/120mm_mortar.ogg
@@ -749,7 +770,12 @@
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/Leviathan.rsi
-    state: space_artillery
+    granularLayersRendering: true
+    layers:
+    - sprite: Structures/Machines/station_anchor.rsi
+      state: station_anchor
+      renderingStrategy: NoRotation
+    - state: space_artillery
   - type: ContainerContainer
     containers:
       ballistic_chamber: !type:ContainerSlot
@@ -759,8 +785,8 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeAabb
-          bounds: "-0.8,-0.8,0.8,0.8"
+          !type:PhysShapeCircle
+          radius: 0.8
         density: 900
         mask:
         - MachineMask

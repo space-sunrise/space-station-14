@@ -1,6 +1,6 @@
 ent-ShuttleGunBase = пушка щиттла
     .desc = { "" }
-ent-ShuttleGunSvalinnMachineGun = LSE-400c "Пулемёт Свалинн"
+ent-ShuttleGunSvalinnMachineGun = LSE-400b "Пулемёт Свалинн"
     .desc = Базовая стационарная лазерная установка. Эффективна против живой силы и электроприборов. Для стрельбы использует обычые батареи и обладает чрезвычайно высокой скорострельностью.
     .suffix = НЕ МАППИТЬ
 ent-ShuttleGunPerforator = LSE-1200c "Перфоратор"

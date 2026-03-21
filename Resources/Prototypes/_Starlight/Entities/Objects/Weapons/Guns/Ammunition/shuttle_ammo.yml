@@ -104,8 +104,9 @@
     deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    scale: 0.8, 1.15
     layers:
-    - state: blast
+    - state: flash
       map: ["enum.AmmoVisualLayers.Base"]
   - type: Appearance
   - type: SpentAmmoVisuals
@@ -175,7 +176,7 @@
 # AK570 90mm HE Shell
 - type: entity
   parent: BaseAK570_90mmShell
-  id: CartridgeAK570_90mmHE
+  id: Cartridge90mmAutoHE
   name: AK-90 90mm HE shell
   description: >-
     A 90mm high-explosive artillery shell for the AK570 cannon system.
@@ -187,8 +188,9 @@
     deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    scale: 1.3, 1.3
     layers:
-    - state: blast
+    - state: baton
       map: ["enum.AmmoVisualLayers.Base"]
   - type: Appearance
   - type: SpentAmmoVisuals
@@ -212,7 +214,7 @@
     whitelist:
       tags:
         - Cartridge90mmAK570
-    proto: CartridgeAK570_90mmHE
+    proto: Cartridge90mmAutoHE
     capacity: 20
     soundRack:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
