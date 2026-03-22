@@ -1,0 +1,162 @@
+#EVENT CONTENT
+
+#NeoNVD
+- type: entity
+  name: NeoNVD
+  abstract: true
+  id: InHelmetNightVisionDevice
+  parent: [BaseItem]
+  components:
+  - type: UseDelay
+    delay: 5.0
+  - type: ToggleClothing
+    action: NVDToggleAction
+    mustEquip: true
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionSyndie
+
+#NeoSyndi Stalker Hardsuit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, InHelmetNightVisionDevice]
+  id: ClothingHeadHelmetHardsuitStalker
+  categories: [ HideSpawnMenu ]
+  name: cybersun stalker helmet
+  description: Packed with advanced military electronics, perfect for searching and intimidating.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/NeoSyndicate/Clothing/Head/Hardsuits/stalker_cybersun.rsi
+  - type: Clothing
+    sprite: _Sunrise/NeoSyndicate/Clothing/Head/Hardsuits/stalker_cybersun.rsi
+  - type: ItemToggle
+    predictable: false # issues between ToggleCellDraw and ItemToggleActiveSound
+    onUse: false
+    soundActivate:
+      path: /Audio/_Sunrise/Items/Goggles/activate.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.7
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+#Gorlex Phanthom Suit
+- type: entity
+  parent: [ClothingHeadHardsuitBase, ShowSecurityIcons, InHelmetNightVisionDevice] #[ ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitGorlexPhantom
+  categories: [ HideSpawnMenu ]
+  name: gorlex phanthom helmet
+  description: Cutting edge tech are making this thing cost a million, made by partners from Cybersun, as usual.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/NeoSyndicate/Clothing/Head/Hardsuits/gorlex_phanthom.rsi
+  - type: Clothing
+    sprite: _Sunrise/NeoSyndicate/Clothing/Head/Hardsuits/gorlex_phanthom.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 10000
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+  - type: ItemToggle
+    predictable: false # issues between ToggleCellDraw and ItemToggleActiveSound
+    onUse: false
+    canActivateInhand: false
+    soundActivate:
+      path: /Audio/_Sunrise/Items/Goggles/activate.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: ShowSyndicateIcons
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+#Gorlex Reclaimer Suit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ShowSecurityIcons ]
+  id: ClothingHeadHelmetHardsuitGorlexReclaimer
+  categories: [ HideSpawnMenu ]
+  name: gorlex reclaimer helmet
+  description: Reliable and well-equipped, have a built-in identification system.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/NeoSyndicate/Clothing/Head/Hardsuits/gorlex_reclaimer.rsi
+  - type: Clothing
+    sprite: _Sunrise/NeoSyndicate/Clothing/Head/Hardsuits/gorlex_reclaimer.rsi
+  - type: PointLight
+    color: green
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: ShowSyndicateIcons
+
+#Gorlex Medic Suit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ShowSecurityIcons ]
+  id: ClothingHeadHelmetHardsuitGorlexMedic
+  categories: [ HideSpawnMenu ]
+  name: gorlex medic helmet
+  description: Reliable and well-equippedm, have a built-in system for medical analysis.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/NeoSyndicate/Clothing/Head/Hardsuits/gorlex_medic.rsi
+  - type: Clothing
+    sprite: _Sunrise/NeoSyndicate/Clothing/Head/Hardsuits/gorlex_medic.rsi
+  - type: PointLight
+    color: green
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.8
+        Piercing: 0.9
+        Heat: 0.9
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: ShowSyndicateIcons
+  - type: ShowHealthBars
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+

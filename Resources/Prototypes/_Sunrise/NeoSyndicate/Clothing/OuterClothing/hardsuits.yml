@@ -1,0 +1,220 @@
+#EVENT CONTENT
+
+#NeoSyndi Stalker Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSyndicateContraband]
+  id: ClothingOuterHardsuitStalker
+  name: cybersun stalker suit
+  description: The latest armored hardsuit from Cybersun advanced R&D division. It has not yet entered mass production and may not even be patented.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/stalker_cybersun.rsi
+  - type: Clothing
+    sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/stalker_cybersun.rsi
+  - type: Item
+    size: huge
+    sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/stalker_cybersun.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.5
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.4
+        Piercing: 0.3
+        Heat: 0.4
+        Radiation: 0.2
+        Caustic: 0.4
+        Bloodloss: 0.5
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1.1
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitStalker
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+
+#Gorlex Phanthom Suit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, AllowSuitStorageClothing, BaseToggleClothing]
+  id: ClothingOuterHardsuitGorlexPhantom
+  name: gorlex phanthom suit
+  description: Seeing it for the first time? As expected...
+  components:
+  - type: Sprite
+    sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_phanthom.rsi
+  - type: Clothing
+    sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_phanthom.rsi
+  - type: Item
+    size: Huge
+    sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_phanthom.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.4
+        Heat: 0.4
+        Radiation: 0.5
+        Caustic: 0.5
+        Bloodloss: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.75
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+    disableOnUnequip: true
+    targetSlot: outerClothing
+  - type: ItemToggle
+    canActivateInhand: false
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      mirage: false
+      hadOutline: true
+      examineThreshold: 0.7
+    - type: StealthOnMove
+      passiveVisibilityRate: -1
+      movementVisibilityRate: 0.2
+  - type: PowerCellDraw
+    drawRate: 1.7 # 900 seconds on the default cell
+  - type: ToggleCellDraw
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSyndicate
+        disableEject: true
+        whitelist:
+          tags:
+            - PowerCell
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitGorlexPhantom
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 1
+  - type: HeldSpeedModifier
+  - type: Tag
+    tags:
+    - Hardsuit
+    - FullBodyOuter
+    - WhitelistChameleon
+
+#Gorlex Reclaimer Suit
+- type: entity
+  parent: [ClothingOuterHardsuitBase]
+  id: ClothingOuterHardsuitGorlexReclaimer
+  name: gorlex reclaimer suit
+  description: Made for fast assault and capturing area or destroying an unsuspecting rival, design has been tested over hundreds of battles.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_reclaimer.rsi
+  - type: Clothing
+    sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_reclaimer.rsi
+  - type: Item
+    size: huge
+    sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_reclaimer.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.5
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.5
+        Piercing: 0.4
+        Heat: 0.1
+        Radiation: 0.2
+        Caustic: 0.2
+        Bloodloss: 0.7
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.25
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitGorlexReclaimer
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+
+#Gorlex Medic Suit
+- type: entity
+  parent: [ClothingOuterHardsuitBase]
+  id: ClothingOuterHardsuitGorlexMedic
+  name: gorlex medic suit
+  description: Gorlex tactical medic suit, well isolated from environmental hazards.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_medic.rsi
+  - type: Clothing
+    sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_medic.rsi
+  - type: Item
+    size: huge
+    sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_medic.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.5
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.3
+        Piercing: 0.3
+        Heat: 0.2
+        Radiation: 0.05
+        Caustic: 0.1
+        Bloodloss: 0.4
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.30
+  - type: ClothingSpeedModifier
+    walkModifier: 1.2
+    sprintModifier: 1
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitGorlexMedic
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
