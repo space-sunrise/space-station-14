@@ -1141,7 +1141,7 @@ namespace Content.Client.Lobby.UI
                     // Sunrise-end
 
                     // If no loadout found then disabled button
-                    if (!protoManager.TryIndex(effectiveJobLoadoutId, out RoleLoadoutPrototype? roleLoadoutProto))  // Sunrise-edit
+                    if (!protoManager.TryIndex<RoleLoadoutPrototype>(effectiveJobLoadoutId, out var roleLoadoutProto))  // Sunrise-edit
                     {
                         loadoutWindowBtn.Disabled = true;
                     }
