@@ -109,7 +109,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         var jobLoadout = LoadoutSystem.GetJobPrototype(prototype?.ID);
 
         // Sunrise-start
-        var effectiveJobLoadout = LoadoutSystem.GetEffectiveRolePrototype(jobLoadout, _prototypeManager, _configurationManager);
+        var effectiveJobLoadout = LoadoutSystem.GetEffectiveRolePrototype(jobLoadout, _prototypeManager);
         if (_prototypeManager.TryIndex(effectiveJobLoadout, out RoleLoadoutPrototype? roleProto))
         // Sunrise-end
         {

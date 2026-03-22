@@ -1137,7 +1137,7 @@ namespace Content.Client.Lobby.UI
 
                     // Sunrise-start
                     var jobLoadoutId = LoadoutSystem.GetJobPrototype(job.ID);
-                    var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, protoManager, _cfgManager);
+                    var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, protoManager);
                     // Sunrise-end
 
                     // If no loadout found then disabled button

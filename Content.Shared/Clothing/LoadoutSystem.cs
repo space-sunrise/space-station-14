@@ -30,6 +30,8 @@ public sealed partial class LoadoutSystem : EntitySystem // Sunrise-edit Доб�
 
         // Wait until the character has all their organs before we give them their loadout
         SubscribeLocalEvent<LoadoutComponent, MapInitEvent>(OnMapInit, after: [typeof(SharedBodySystem)]);
+
+        InitializeSunrise(); // Sunrise-edit
     }
 
     public static string GetJobPrototype(string? loadout)

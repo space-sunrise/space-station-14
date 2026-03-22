@@ -425,7 +425,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         var sponsorPrototypes = _sponsorsManager?.GetClientPrototypes().ToArray() ?? [];
 
         var jobLoadoutId = LoadoutSystem.GetJobPrototype(job.ID);
-        var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototypeManager, _configurationManager);
+        var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototypeManager);
         if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(effectiveJobLoadoutId))
         // Sunrise-end
         {
@@ -596,7 +596,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
             // Sunrise-start
             var jobLoadoutId = LoadoutSystem.GetJobPrototype(job.ID);
-            var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototypeManager, _configurationManager);
+            var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototypeManager);
             if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(effectiveJobLoadoutId))
             // Sunrise-end
             {

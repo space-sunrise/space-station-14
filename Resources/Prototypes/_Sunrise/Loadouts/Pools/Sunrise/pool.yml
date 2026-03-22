@@ -1,39 +1,17 @@
 - type: loadoutPool
+  id: BaseLoadoutPool
+  abstract: true
+  roleLoadouts: {}
+
+- type: loadoutPool
   id: SunriseLoadout
-  roleLoadouts:
-    JobCaptain: SunriseJobCaptain
-    JobHeadOfPersonnel: SunriseJobHeadOfPersonnel
-    JobQuartermaster: SunriseJobQuartermaster
-    JobPassenger: SunriseJobPassenger
-    JobBartender: SunriseJobBartender
-    JobServiceWorker: SunriseJobServiceWorker
-    JobChef: SunriseJobChef
-    JobLibrarian: SunriseJobLibrarian
-    JobLawyer: SunriseJobLawyer
-    JobChaplain: SunriseJobChaplain
-    JobJanitor: SunriseJobJanitor
-    JobBotanist: SunriseJobBotanist
-    JobClown: SunriseJobClown
-    JobMime: SunriseJobMime
-    JobMusician: SunriseJobMusician
-    JobCargoTechnician: SunriseJobCargoTechnician
-    JobSalvageSpecialist: SunriseJobSalvageSpecialist
-    JobChiefEngineer: SunriseJobChiefEngineer
-    JobTechnicalAssistant: SunriseJobTechnicalAssistant
-    JobStationEngineer: SunriseJobStationEngineer
-    JobAtmosphericTechnician: SunriseJobAtmosphericTechnician
-    JobResearchDirector: SunriseJobResearchDirector
-    JobScientist: SunriseJobScientist
-    JobResearchAssistant: SunriseJobResearchAssistant
-    JobHeadOfSecurity: SunriseJobHeadOfSecurity
-    JobWarden: SunriseJobWarden
-    JobSecurityOfficer: SunriseJobSecurityOfficer
-    JobDetective: SunriseJobDetective
-    JobSecurityCadet: SunriseJobSecurityCadet
-    JobChiefMedicalOfficer: SunriseJobChiefMedicalOfficer
-    JobMedicalDoctor: SunriseJobMedicalDoctor
-    JobMedicalIntern: SunriseJobMedicalIntern
-    JobChemist: SunriseJobChemist
-    JobParamedic: SunriseJobParamedic
-    JobReporter: SunriseJobReporter
-    JobPsychologist: SunriseJobPsychologist
+  parent:
+  - BaseLoadoutPool
+  - BaseLoadoutPoolCommand
+  - BaseLoadoutPoolCargo
+  - BaseLoadoutPoolCivilian
+  - BaseLoadoutPoolEngineering
+  - BaseLoadoutPoolScience
+  - BaseLoadoutPoolSecurity
+  - BaseLoadoutPoolMedical
+  - BaseLoadoutPoolWildcards

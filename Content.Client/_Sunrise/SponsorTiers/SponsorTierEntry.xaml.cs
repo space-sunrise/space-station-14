@@ -262,7 +262,7 @@ public sealed partial class SponsorTierEntry : Control
                 _lobbyUIController.GiveDummyJobClothes(dummyEnt, humanoid, roleProto);
 
                 var jobLoadoutId = LoadoutSystem.GetJobPrototype(roleProto.ID);
-                var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototypeManager, _configManager);
+                var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototypeManager);
                 if (_prototypeManager.HasIndex(effectiveJobLoadoutId))
                 {
                     var loadout = humanoid.GetLoadoutOrDefault(jobLoadoutId, _playerManager.LocalSession, humanoid.Species, _entityManager, _prototypeManager, sponsorPrototypes);
@@ -412,7 +412,7 @@ public sealed partial class SponsorTierEntry : Control
                 _lobbyUIController.GiveDummyJobClothes(dummyEnt, humanoid, roleProto);
 
                 var jobLoadoutId = LoadoutSystem.GetJobPrototype(roleProto.ID);
-                var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototypeManager, _configManager);
+                var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototypeManager);
                 if (_prototypeManager.HasIndex(effectiveJobLoadoutId))
                 {
                     var loadout = humanoid.GetLoadoutOrDefault(jobLoadoutId, _playerManager.LocalSession, humanoid.Species, _entityManager, _prototypeManager, sponsorPrototypes);
@@ -467,7 +467,7 @@ public sealed partial class SponsorTierEntry : Control
                 _lobbyUIController.GiveDummyJobClothes(dummyEnt, humanoid, roleProto);
 
                 var jobLoadoutId = LoadoutSystem.GetJobPrototype(roleProto.ID);
-                var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototypeManager, _configManager);
+                var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototypeManager);
                 if (_prototypeManager.HasIndex(effectiveJobLoadoutId))
                 {
                     var loadout = humanoid.GetLoadoutOrDefault(jobLoadoutId, _playerManager.LocalSession, humanoid.Species, _entityManager, _prototypeManager, sponsorPrototypes);

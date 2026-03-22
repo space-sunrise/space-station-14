@@ -99,7 +99,7 @@ public sealed class ChameleonControllerSystem : SharedChameleonControllerSystem
         profile.Loadouts.TryGetValue(jobProtoId, out customRoleLoadout);
 
         // Sunrise-start
-        var effectiveJobProtoId = LoadoutSystem.GetEffectiveRolePrototype(jobProtoId, _proto, _configManager);
+        var effectiveJobProtoId = LoadoutSystem.GetEffectiveRolePrototype(jobProtoId, _proto);
         if (!_proto.HasIndex<RoleLoadoutPrototype>(effectiveJobProtoId))
         // Sunrise-end
             return;

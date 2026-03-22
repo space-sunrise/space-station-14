@@ -69,7 +69,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
         var configManager = collection.Resolve<IConfigurationManager>();
 
         // Sunrise-start
-        var effectiveRole = LoadoutSystem.GetEffectiveRolePrototype(Role, protoManager, configManager);
+        var effectiveRole = LoadoutSystem.GetEffectiveRolePrototype(Role, protoManager);
         if (!protoManager.TryIndex(effectiveRole, out var roleProto))
         // Sunrise-end
         {
@@ -222,8 +222,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
 
         var collection = IoCManager.Instance!;
         // Sunrise-start
-        var configManager = collection.Resolve<IConfigurationManager>();
-        var effectiveRole = LoadoutSystem.GetEffectiveRolePrototype(Role, protoManager, configManager);
+        var effectiveRole = LoadoutSystem.GetEffectiveRolePrototype(Role, protoManager);
         var roleProto = protoManager.Index(effectiveRole);
         // Sunrise-end
 

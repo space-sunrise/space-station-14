@@ -8,21 +8,29 @@ namespace Content.Shared.Clothing;
 
 public sealed partial class LoadoutSystem
 {
-    public static ProtoId<RoleLoadoutPrototype> GetEffectiveJobPrototype(string? loadout, IPrototypeManager protoMan,
-        IConfigurationManager configManager)
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+
+    private static bool _customLoadoutEnabled = SunriseCCVars.CustomLoadoutEnabled.DefaultValue;
+    private static string _loadoutPool = SunriseCCVars.LoadoutPool.DefaultValue;
+
+    private void InitializeSunrise()
     {
-        var rolePrototype = GetJobPrototype(loadout);
-        return GetEffectiveRolePrototype(rolePrototype, protoMan, configManager);
+        Subs.CVar(_cfg, SunriseCCVars.CustomLoadoutEnabled, value => _customLoadoutEnabled = value, true);
+        Subs.CVar(_cfg, SunriseCCVars.LoadoutPool, value => _loadoutPool = value, true);
     }
 
-    public static ProtoId<RoleLoadoutPrototype> GetEffectiveRolePrototype(ProtoId<RoleLoadoutPrototype> rolePrototype,
-        IPrototypeManager protoMan, IConfigurationManager configManager)
+    public static ProtoId<RoleLoadoutPrototype> GetEffectiveJobPrototype(string? loadout, IPrototypeManager protoMan)
     {
-        if (!configManager.GetCVar(SunriseCCVars.CustomLoadoutEnabled))
+        var rolePrototype = GetJobPrototype(loadout);
+        return GetEffectiveRolePrototype(rolePrototype, protoMan);
+    }
+
+    public static ProtoId<RoleLoadoutPrototype> GetEffectiveRolePrototype(ProtoId<RoleLoadoutPrototype> rolePrototype, IPrototypeManager protoMan)
+    {
+        if (!_customLoadoutEnabled)
             return rolePrototype;
 
-        var poolId = configManager.GetCVar(SunriseCCVars.LoadoutPool);
-        if (!protoMan.TryIndex<LoadoutPoolPrototype>(poolId, out var poolProto))
+        if (!protoMan.TryIndex<LoadoutPoolPrototype>(_loadoutPool, out var poolProto))
             return rolePrototype;
 
         if (poolProto.RoleLoadouts.TryGetValue(rolePrototype, out var overridePrototype) && protoMan.HasIndex(overridePrototype))

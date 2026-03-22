@@ -98,7 +98,7 @@ public sealed class OutfitSystem : EntitySystem
 
             // Sunrise-start
             var jobProtoId = LoadoutSystem.GetJobPrototype(job.ID);
-            var effectiveJobProtoId = LoadoutSystem.GetEffectiveRolePrototype(jobProtoId, _prototypeManager, _configurationManager);
+            var effectiveJobProtoId = LoadoutSystem.GetEffectiveRolePrototype(jobProtoId, _prototypeManager);
 
             if (!_prototypeManager.TryIndex(effectiveJobProtoId, out RoleLoadoutPrototype? jobProto))
             // Sunrise-end
