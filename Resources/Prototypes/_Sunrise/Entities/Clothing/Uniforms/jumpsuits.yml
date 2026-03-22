@@ -474,3 +474,15 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformUndershirt
+  name: undershirt
+  description: Plain daily wear.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/undershirt.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/undershirt.rsi
+    equippedState: equipped-INNERCLOTHING

@@ -94,3 +94,5 @@ ent-ClothingUSSPMarine = комбинезон космопехотинца СС�
 
 ent-ClothingUniformJumpsuitSoviet = советский комбинезон
     .desc = Стандартный комбинезон, который носят военнослужащие СССП.
+ent-ClothingUniformUndershirt = нижняя майка
+    .desc = Обычная повседневная вещь.
