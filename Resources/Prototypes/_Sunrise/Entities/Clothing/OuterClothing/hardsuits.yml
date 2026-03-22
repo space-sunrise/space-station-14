@@ -563,6 +563,7 @@
     action: ActionTogglePhaseCloak
     disableOnUnequip: true
     targetSlot: outerClothing
+  - type: BreakDisguiseOnAction
   - type: ItemToggle
     canActivateInhand: false
   - type: ComponentToggler
@@ -611,7 +612,6 @@
     - Hardsuit
     - FullBodyOuter # SUNRISE EDIT
     - WhitelistChameleon
-    - InfiltrationSuit
   - type: StaticPrice
     price: 8500
 

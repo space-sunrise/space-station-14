@@ -1,21 +1,20 @@
+using Content.Shared._Sunrise.Clothing.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Inventory;
 using Content.Shared.Item.ItemToggle;
-using Content.Shared.Tag;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
-using Robust.Shared.Prototypes;
 
-namespace Content.Server._Sunrise;
+namespace Content.Server._Sunrise.Clothing.EntitySystems;
 
-public sealed class InfiltrationSuitSystem : EntitySystem
+/// <summary>
+/// Deactivates equipped disguising clothing when the wearer takes damage, attacks, or shoots.
+/// </summary>
+public sealed class BreakDisguiseOnActionSystem : EntitySystem
 {
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-
-    private static readonly ProtoId<TagPrototype> InfiltrationSuitTag = "InfiltrationSuit";
 
     public override void Initialize()
     {
@@ -31,30 +30,31 @@ public sealed class InfiltrationSuitSystem : EntitySystem
         if (!args.DamageIncreased)
             return;
 
-        TryUncloakSuit(ent.Owner);
+        BreakWornDisguises(ent);
     }
 
     private void OnMeleeAttack(Entity<InventoryComponent> ent, ref MeleeAttackEvent args)
     {
-        TryUncloakSuit(ent.Owner);
+        BreakWornDisguises(ent);
     }
 
     private void OnShoot(Entity<GunComponent> ent, ref OnNonEmptyGunShotEvent args)
     {
-        TryUncloakSuit(args.User);
+        if (!TryComp<InventoryComponent>(args.User, out var inventory))
+            return;
+
+        BreakWornDisguises((args.User, inventory));
     }
 
-    private void TryUncloakSuit(EntityUid uid)
+    private void BreakWornDisguises(Entity<InventoryComponent> ent)
     {
-        if (!TryComp<InventoryComponent>(uid, out var inventory))
-            return;
+        var enumerator = _inventory.GetSlotEnumerator((ent.Owner, ent.Comp));
+        while (enumerator.NextItem(out var item))
+        {
+            if (!HasComp<BreakDisguiseOnActionComponent>(item))
+                continue;
 
-        if (!_inventory.TryGetSlotEntity(uid, "outerClothing", out var suit, inventory))
-            return;
-
-        if (!_tag.HasTag(suit.Value, InfiltrationSuitTag))
-            return;
-
-        _toggle.TryDeactivate(suit.Value, uid);
+            _toggle.TryDeactivate(item, ent.Owner);
+        }
     }
 }
