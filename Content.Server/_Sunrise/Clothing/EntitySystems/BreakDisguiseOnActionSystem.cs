@@ -4,8 +4,6 @@ using Content.Shared.Clothing.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Inventory;
 using Content.Shared.Item.ItemToggle;
-using Content.Shared.Item.ItemToggle.Components;
-using Content.Shared.Timing;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
@@ -20,7 +18,6 @@ public sealed class BreakDisguiseOnActionSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
 
     public override void Initialize()
     {
@@ -29,7 +26,6 @@ public sealed class BreakDisguiseOnActionSystem : EntitySystem
         SubscribeLocalEvent<InventoryComponent, DamageChangedEvent>(OnDamageTaken);
         SubscribeLocalEvent<InventoryComponent, MeleeAttackEvent>(OnMeleeAttack);
         SubscribeLocalEvent<GunComponent, OnNonEmptyGunShotEvent>(OnShoot);
-        SubscribeLocalEvent<BreakDisguiseOnActionComponent, ItemToggleActivateAttemptEvent>(OnActivateAttempt);
     }
 
     private void OnDamageTaken(Entity<InventoryComponent> ent, ref DamageChangedEvent args)
@@ -51,15 +47,6 @@ public sealed class BreakDisguiseOnActionSystem : EntitySystem
             return;
 
         BreakWornDisguises((args.User, inventory));
-    }
-
-    private void OnActivateAttempt(Entity<BreakDisguiseOnActionComponent> ent, ref ItemToggleActivateAttemptEvent args)
-    {
-        if (!_useDelay.IsDelayed((ent.Owner, null)))
-            return;
-
-        args.Cancelled = true;
-        args.Popup = Loc.GetString(ent.Comp.CooldownPopup);
     }
 
     private void BreakWornDisguises(Entity<InventoryComponent> ent)
@@ -84,9 +71,6 @@ public sealed class BreakDisguiseOnActionSystem : EntitySystem
     {
         if (ent.Comp.Cooldown <= TimeSpan.Zero)
             return;
-
-        _useDelay.SetLength((ent.Owner, null), ent.Comp.Cooldown);
-        _useDelay.TryResetDelay(ent.Owner);
 
         if (!TryComp<ToggleClothingComponent>(ent, out var toggleClothing) || toggleClothing.ActionEntity == null)
             return;

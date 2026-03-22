@@ -11,10 +11,4 @@ public sealed partial class BreakDisguiseOnActionComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan Cooldown = TimeSpan.Zero;
-
-    /// <summary>
-    /// Popup shown when the wearer tries to reactivate the disguise during cooldown.
-    /// </summary>
-    [DataField]
-    public LocId CooldownPopup = "break-disguise-on-action-cooldown";
 }
