@@ -130,7 +130,7 @@
     clumsyProof: true
   - type: BatteryAmmoProvider
     proto: FoodPieBananaCream
-    fireCost: 60
+    fireCost: 90
   - type: Battery
     maxCharge: 90
     startingCharge: 90
