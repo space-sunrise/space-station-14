@@ -50,3 +50,15 @@ ent-ClothingBeltPrisonWorkerMetus = пояс тюремного разнораб
     .desc = Тяжёлый и грубый, следы ударов и прожжённая кожа, всё, что скопилось с работы в разных частях тюрьмы.
 ent-ClothingBeltPrisonTraineeMetus = пояс тюремного стажёра
     .desc = Свежий и новый, ещё учится нести вес ответственности, отмечен оранжевым, показывающим путь вперёд.
+
+ent-ClothingBeltSovietMarineWebbing = РПС коспеха СССП
+    .desc = Тактическая ременно-плечевая система, которую носят элитные советские морпехи.
+ent-ClothingBeltSovietMarineWebbingFilled = { ent-ClothingBeltSovietMarineWebbing }
+    .suffix = Заполнен
+    .desc = { ent-ClothingBeltSovietMarineWebbing.desc }
+ent-ClothingBeltLightSovietMarineWebbing = лёгкая РПС СССП
+    .desc = Лёгкая разгрузочная система, используемая советскими солдатами.
+ent-ClothingBeltSalvageMercWebbing = разгрузка мусорщика
+    .desc = Идеально подходит для хранения инструментов, боеприпасов и добычи.
+ent-ClothingSovietBandolier = советский патронташ
+    .desc = Пахнет маслом, потом и сомнительными решениями.

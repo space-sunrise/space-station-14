@@ -25,3 +25,10 @@
   sprite:
     sprite: _Sunrise/Objects/Devices/handled_fax.rsi
     state: icon
+
+- type: stealTargetGroup
+  id: JetpackChiefEngineerFilled
+  name: steal-target-groups-jetpack-ce
+  sprite:
+    sprite: _Sunrise/Objects/Tanks/Jetpacks/ce_void.rsi
+    state: icon

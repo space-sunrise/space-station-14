@@ -216,13 +216,6 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> PlanetPrisonModern =
         CVarDef.Create("planet_prison.modern", true, CVar.SERVERONLY);
 
-    /*
-     * MaxLoadedChunks
-     */
-
-    public static readonly CVarDef<int> MaxLoadedChunks =
-        CVarDef.Create("chunk.max", 100, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);
-
     /**
      * Roadmap
      */
@@ -245,7 +238,7 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("cryo_teleport.enable", true, CVar.SERVERONLY);
 
     public static readonly CVarDef<int> CryoTeleportTransferDelay =
-        CVarDef.Create("cryo_teleport.transfer_delay", 10, CVar.SERVERONLY);
+        CVarDef.Create("cryo_teleport.transfer_delay", 6, CVar.SERVERONLY);
 
     /*
      * Damage
@@ -419,20 +412,6 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("damage_overlay.structures", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /*
-     * Radio chat icons
-     */
-
-    public static readonly CVarDef<bool> ChatIconsEnable =
-        CVarDef.Create("chat_icon.enable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    /*
-     * Pointing chat visuals
-     */
-
-    public static readonly CVarDef<bool> ChatPointingVisuals =
-        CVarDef.Create("chat_icon_pointing.enable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    /*
      * Mute new ghost role sound
      */
 
@@ -475,45 +454,18 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<float> ItemToArtifactRatio =
         CVarDef.Create("random_artifacts.ratio", 0.55f, CVar.SERVER | CVar.ARCHIVE);
 
-    /*
-     * AntiSpam params
-     */
-    public static readonly CVarDef<bool> AntiSpamEnable =
-        CVarDef.Create("anti_spam.enable", false, CVar.SERVER | CVar.ARCHIVE);
-    public static readonly CVarDef<int> AntiSpamCounterShort =
-        CVarDef.Create("anti_spam.counter_short", 1, CVar.SERVER | CVar.ARCHIVE);
-    public static readonly CVarDef<int> AntiSpamCounterLong =
-        CVarDef.Create("anti_spam.counter_long", 2, CVar.SERVER | CVar.ARCHIVE);
-    public static readonly CVarDef<float> AntiSpamMuteDuration =
-        CVarDef.Create("anti_spam.mute_duration", 10f, CVar.SERVER | CVar.ARCHIVE);
-    public static readonly CVarDef<float> AntiSpamTimeShort =
-        CVarDef.Create("anti_spam.time_short", 1.5f, CVar.SERVER | CVar.ARCHIVE);
-    public static readonly CVarDef<float> AntiSpamTimeLong =
-        CVarDef.Create("anti_spam.time_long", 5f, CVar.SERVER | CVar.ARCHIVE);
+    /// <summary>
+    /// Включён ли узел артефакта, который превращает ближайшие предметы в случайные.
+    /// При отключении уже сгенерированные узлы активируются без эффекта.
+    /// </summary>
+    public static readonly CVarDef<bool> ArtifactRandomTransformationEnabled =
+        CVarDef.Create("artifact.random_transformation.enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
 
     /// <summary>
     /// Вроде все очевидно
     /// </summary>
     public static readonly CVarDef<string> IpWhitelist =
         CVarDef.Create("admin.ip_whitelist", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
-
-    /*
-     * Chat sanitization
-     */
-
-    /// <summary>
-    /// Включена ли санитизация чата (антиспам от набегаторов)
-    /// </summary>
-    public static readonly CVarDef<bool> ChatSanitizationEnable =
-        CVarDef.Create("chatsan.enable", true, CVar.SERVER | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Контроллирует поведение санитизации.
-    /// Агрессивное: если сообщение не проходит критерии - блокировать полностью его.
-    /// Обычное: в сообщении, которое не проходит критерии, удалять не проходящие критерии части.
-    /// </summary>
-    public static readonly CVarDef<bool> ChatSanitizationAggressive =
-        CVarDef.Create("chatsan.aggressive", true, CVar.SERVER | CVar.ARCHIVE);
 
     public static readonly CVarDef<bool> TracesEnabled =
         CVarDef.Create("opt.traces_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
@@ -545,24 +497,6 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<string> DocumentTemplatePool =
         CVarDef.Create("doc.template_pool", "Sunrise", CVar.SERVER | CVar.ARCHIVE);
 
-    public static readonly CVarDef<bool> MentorHelpAdminPrefix =
-        CVarDef.Create("mentor_help.admin_prefix", true, CVar.SERVERONLY);
-
-    public static readonly CVarDef<float> MentorHelpRateLimitPeriod =
-        CVarDef.Create("mentor_help.rate_limit_period", 2f, CVar.SERVERONLY);
-
-    public static readonly CVarDef<int> MentorHelpRateLimitCount =
-        CVarDef.Create("mentor_help.rate_limit_count", 10, CVar.SERVERONLY);
-
-    public static readonly CVarDef<bool> MentorHelpSoundEnabled =
-        CVarDef.Create("mentor_help.mentor_help_sound_enabled", true, CVar.ARCHIVE | CVar.CLIENTONLY);
-
-    /// <summary>
-    /// Авто-открывать тикет при получении нового сообщения (только для автора и назначенного ментора).
-    /// </summary>
-    public static readonly CVarDef<bool> MentorHelpAutoOpenOnNewMessage =
-        CVarDef.Create("mentor_help.auto_open_on_new_message", false, CVar.ARCHIVE | CVar.CLIENTONLY);
-
     public static readonly CVarDef<bool> GameIPBlockingEnabled =
         CVarDef.Create("game.ipblocking_enabled", true, CVar.SERVERONLY);
 
@@ -575,48 +509,25 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<int> GameIPBlockingUnhandledMessageRateLimit =
         CVarDef.Create("game.ipblocking_unhandled_message_rate_limit", 10, CVar.SERVERONLY);
 
-    /*
-     * Messenger Emoji
-     */
-
-    /// <summary>
-    /// Недавно использованные смайлики в мессенджере (разделены запятыми, максимум 5).
-    /// </summary>
-    public static readonly CVarDef<string> MessengerRecentEmojis =
-        CVarDef.Create("messenger.recent_emojis", "", CVar.ARCHIVE | CVar.CLIENTONLY);
-
-    /// <summary>
-    /// Избранные смайлики в мессенджере (разделены запятыми).
-    /// </summary>
-    public static readonly CVarDef<string> MessengerFavoriteEmojis =
-        CVarDef.Create("messenger.favorite_emojis", "", CVar.ARCHIVE | CVar.CLIENTONLY);
 
     /*
-     * Messenger Spam
-     */
+    LOADOUTS
+    */
 
     /// <summary>
-    /// Enables the mechanic where players receive spam messages on their PDA.
+    /// Включает кастомный пул loadout
+    /// Если выключено, используется стандартный пул из loadout-прототипов
+    /// Имя пула задаётся в custom_loadout.pool
     /// </summary>
-    public static readonly CVarDef<bool> MessengerSpamEnabled =
-        CVarDef.Create("messenger.spam_enabled", true, CVar.SERVERONLY);
+    public static readonly CVarDef<bool> CustomLoadoutEnabled =
+        CVarDef.Create("custom_loadout.enabled", true, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 
     /// <summary>
-    /// Minimum time between spam waves in seconds.
+    /// Имя кастомного пула loadout
+    /// Используется только если custom_loadout.enabled = true
+    /// Варианты: "SunriseLoadout"
     /// </summary>
-    public static readonly CVarDef<float> MessengerSpamMinTime =
-        CVarDef.Create("messenger.spam_min_time", 300f, CVar.SERVERONLY);
-
-    /// <summary>
-    /// Maximum time between spam waves in seconds.
-    /// </summary>
-    public static readonly CVarDef<float> MessengerSpamMaxTime =
-        CVarDef.Create("messenger.spam_max_time", 600f, CVar.SERVERONLY);
-
-    /// <summary>
-    /// Percentage of players (0.0 to 1.0) who will receive spam during a wave.
-    /// </summary>
-    public static readonly CVarDef<float> MessengerSpamPlayerPercentage =
-        CVarDef.Create("messenger.spam_player_percentage", 0.4f, CVar.SERVERONLY);
+    public static readonly CVarDef<string> LoadoutPool =
+        CVarDef.Create("custom_loadout.pool", "SunriseLoadout", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 
 }

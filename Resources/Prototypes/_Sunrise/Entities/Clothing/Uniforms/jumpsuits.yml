@@ -474,7 +474,6 @@
   - type: Clothing
     sprite: _Sunrise/Secblu/Uniforms/Jumpsuit/hos.rsi
 
-
 - type: entity
   parent: ClothingUniformJumpsuitHosFormal
   id: ClothingUniformJumpsuitHosFormalSecblu
@@ -626,7 +625,6 @@
   - type: Clothing
     sprite: _Sunrise/Secred/Uniforms/Jumpsuit/security.rsi
 
-
 - type: entity
   parent: ClothingUniformJumpsuitSecBlue
   id: ClothingUniformJumpsuitSecBlueSecred
@@ -667,3 +665,13 @@
   - type: Clothing
     sprite: _Sunrise/Secred/Uniforms/Jumpsuit/warden.rsi
 
+- type: entity
+  parent: ClothingUniformJumpsuitOperative
+  id: ClothingUniformJumpsuitSoviet
+  name: Soviet Jumpsuit
+  description: A standard jumpsuit worn by Soviet military personnel.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi

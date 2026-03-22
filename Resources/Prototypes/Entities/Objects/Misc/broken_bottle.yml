@@ -15,8 +15,12 @@
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: Sprite
-    sprite: Objects/Misc/broken_bottle.rsi
+    sprite: _Sunrise/Objects/Misc/broken_bottle.rsi # Sunrise-Edit
     state: icon
+  # Sunrise-Start
+  - type: Item
+    sprite: _Sunrise/Objects/Misc/broken_bottle.rsi
+  # Sunrise-End
   - type: DamageOtherOnHit
     damage:
       types:

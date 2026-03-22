@@ -92,3 +92,7 @@ ent-ClothingHeadHatBeretSecuritySecred = { ent-ClothingHeadHatBeretSecurity }
     .desc = { ent-ClothingHeadHatBeretSecurity.desc }
 ent-ClothingHeadHatBeretWardenSecred = { ent-ClothingHeadHatBeretWarden }
     .desc = { ent-ClothingHeadHatBeretWarden.desc }
+ent-SunriseClothingHeadHatDetGadget = { ent-ClothingHeadHatDetGadget }
+    .desc = { ent-ClothingHeadHatDetGadget.desc }
+ent-ClothingHeadHatUshankaAlt = { ent-ClothingHeadHatUshanka }
+    .desc = { ent-ClothingHeadHatUshanka.desc }

@@ -22,7 +22,7 @@ public sealed class RadioIconTag : BaseTextureTag
     {
         control = null;
 
-        if (_cfg.GetCVar(SunriseCCVars.ChatIconsEnable))
+        if (_cfg.GetCVar(SunriseCCVars.ChatIconsEnabled))
         {
             if (!node.Attributes.TryGetValue("path", out var rawPath) || !rawPath.TryGetString(out var path))
                 return false;

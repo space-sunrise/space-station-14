@@ -14,7 +14,7 @@
     - AnomalyPyroclastic
     - AnomalyGravity
     - AnomalyElectricity
-    - AnomalyFlesh
+    - RandomFleshAnomalySpawner # Sunrise edit
     - AnomalyBluespace
     - AnomalyIce
     - RandomRockAnomalySpawner

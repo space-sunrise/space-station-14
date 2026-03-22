@@ -28,9 +28,11 @@ public sealed class AdminCommandLoggerSystem : EntitySystem
     private static readonly HashSet<string> LogBlacklist = new(StringComparer.OrdinalIgnoreCase)
     {
         "asay",
+        "deadmin",
+        "readmin",
     };
 
-#region Life cycle
+    #region Life cycle
 
     public override void Initialize()
     {
@@ -56,7 +58,7 @@ public sealed class AdminCommandLoggerSystem : EntitySystem
 
         _adminLog.Add(
             LogType.AdminCommands,
-            LogImpact.High,
+            LogImpact.Extreme,
             $"Administrator {player:player} executed command [{argStr}]");
     }
 

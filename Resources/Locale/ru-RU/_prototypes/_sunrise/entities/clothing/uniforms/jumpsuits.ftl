@@ -129,3 +129,8 @@ ent-ClothingUniformJumpsuitSeniorOfficerSecred = { ent-ClothingUniformJumpsuitSe
 ent-ClothingUniformJumpsuitWardenSecred = { ent-ClothingUniformJumpsuitWarden }
     .desc = { ent-ClothingUniformJumpsuitWarden.desc }
 
+ent-ClothingUSSPMarine = комбинезон космопехотинца СССП
+    .desc = Полосатая тельняшка и простые брюки космопехоты СССП. Носятся под боевым скафандром, ведь даже броня должна знать, кто внутри.
+
+ent-ClothingUniformJumpsuitSoviet = советский комбинезон
+    .desc = Стандартный комбинезон, который носят военнослужащие СССП.

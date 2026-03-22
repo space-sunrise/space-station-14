@@ -26,6 +26,7 @@ namespace Content.Client._Sunrise.MentorHelp
         private const float HoverColorLerp = 0.06f;
 
         private MentorHelpTicketData? _ticketData;
+        private bool _hasUnreadMessages;
         private bool _newMessageFromAuthor;
         private bool _isHovering;
 
@@ -64,9 +65,10 @@ namespace Content.Client._Sunrise.MentorHelp
             };
         }
 
-        public void UpdateData(MentorHelpTicketData ticketData)
+        public void UpdateData(MentorHelpTicketData ticketData, bool hasUnreadMessages)
         {
             _ticketData = ticketData;
+            _hasUnreadMessages = hasUnreadMessages;
 
             IdLabel.Text = $"#{ticketData.Id}";
             PlayerLabel.Text = ticketData.PlayerName;
@@ -106,7 +108,7 @@ namespace Content.Client._Sunrise.MentorHelp
             if (BackgroundColorPanel.PanelOverride is not StyleBoxFlat panel || _ticketData == null)
                 return;
 
-            var isUnread = _ticketData.HasUnreadMessages;
+            var isUnread = _hasUnreadMessages;
             var isAuthorUnread = isUnread && _newMessageFromAuthor;
             var isUnassigned = !isUnread && _ticketData.AssignedToUserId == null;
             var isClosed = _ticketData.Status == MentorHelpTicketStatus.Closed;

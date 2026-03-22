@@ -9,6 +9,7 @@ research-technology-mechanized-medical-treatment = Механизированн�
 research-technology-handcraft-nvd = Кустарные ПНВ
 research-technology-basic-nvd = Продвинутое ПНВ
 research-technology-basic-thermals = Термальные Сканеры
+research-technology-slop-dispenser = Питательно и точка
 research-technology-modsuits = Ядра Р.И.Г-ов
 research-technology-extended-amunitions = Расширенные магазины
 research-technology-phazon = Фазон
