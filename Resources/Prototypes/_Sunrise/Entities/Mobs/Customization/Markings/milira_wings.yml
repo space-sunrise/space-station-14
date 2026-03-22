@@ -29,6 +29,12 @@
   id: MiliraWingMechanical
   bodyPart: Tail
   markingCategory: Tail
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
   speciesRestriction: [Milira]
   sprites:
   - sprite: _Sunrise/Mobs/Customization/Milira/wings_mechanical.rsi
