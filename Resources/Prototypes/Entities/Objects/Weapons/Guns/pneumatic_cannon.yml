@@ -118,7 +118,7 @@
     layers:
     - state: piecannon
   - type: Gun
-    fireRate: 18
+    fireRate: 1
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -130,7 +130,7 @@
     clumsyProof: true
   - type: BatteryAmmoProvider
     proto: FoodPieBananaCream
-    fireCost: 30
+    fireCost: 180
   - type: Battery
     maxCharge: 90
     startingCharge: 90
