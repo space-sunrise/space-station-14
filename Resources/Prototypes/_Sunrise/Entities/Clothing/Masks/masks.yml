@@ -319,6 +319,7 @@
   - type: HideLayerClothing
     slots:
     - FacialHair
-  - type: ModifyWearerName
-    locId: equipped-name-prefix
-    priority: 0
+  # надо фиксить систему компонента и вероятно сам компонент
+  #- type: ModifyWearerName
+    #locId: equipped-name-prefix
+   # priority: 0
