@@ -866,6 +866,7 @@ BaseUplinkNTERT100BC: null
 BaseUplinkNTERT200BC: null
 SupermatterSliver: null
 CartridgePistol: null
+VendingMachineSecDrobe: VendingMachineSecDrobeSunrise
 AtmosDeviceFanTinyDev: AtmosDeviceFanTiny
 AtmosDeviceFanDirectionalDev: AtmosDeviceFanDirectional
 MagazineBR64Extended: null

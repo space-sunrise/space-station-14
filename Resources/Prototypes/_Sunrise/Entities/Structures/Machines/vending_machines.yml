@@ -62,6 +62,13 @@
 
 - type: entity
   parent: VendingMachineSecDrobe
+  id: VendingMachineSecDrobeSunrise
+  components:
+  - type: VendingMachine
+    pack: SecDrobeSunriseInventory
+
+- type: entity
+  parent: VendingMachineSecDrobeSunrise
   id: VendingMachinePrisonDrobe
   name: PrisonDrobe
   description: A legacy of old penitentiary modules, adapted for modern facilities with full isolation of staff and inmates.

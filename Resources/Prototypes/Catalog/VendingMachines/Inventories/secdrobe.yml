@@ -1,50 +1,33 @@
 - type: vendingMachineInventory
   id: SecDrobeInventory
   startingInventory:
-    ClothingBackpackSecuritySecblu: 3 # Sunrise-Edit
-    ClothingBackpackSatchelSecuritySecblu: 3 # Sunrise-Edit
-    ClothingBackpackDuffelSecuritySecblu: 3 # Sunrise-Edit
-    ClothingHeadHatBeretSecuritySecblu: 3 # Sunrise-Edit
-    ClothingHeadHatSecsoftSecblu: 3 # Sunrise-Edit
-    ClothingUniformJumpsuitSecSecblu: 3 # Sunrise-Edit
-    ClothingUniformJumpskirtSecSecblu: 3 # Sunrise-Edit
-    ClothingUniformJumpsuitSecGreySecblu: 3 # Sunrise-Edit
-    ClothingUniformJumpskirtSecGreySecblu: 3 # Sunrise-Edit
+    ClothingBackpackSecurity: 3
+    ClothingBackpackSatchelSecurity: 3
+    ClothingBackpackDuffelSecurity: 3
+    ClothingUniformJumpsuitSec: 3
     ClothingShoesBootsJack: 3
-    ClothingBackpackSecuritySecred: 3 # Sunrise-Edit
-    ClothingBackpackSatchelSecuritySecred: 3 # Sunrise-Edit
-    ClothingBackpackDuffelSecuritySecred: 3 # Sunrise-Edit
+    ClothingHeadHatBeretSecurity: 3
+    ClothingHeadHatSecsoft: 3
     ClothingHeadBandRed: 3
     ClothingMaskNeckGaiterRed: 3
     ClothingHandsGlovesColorBlack: 3
     ClothingHandsGlovesFingerless: 3
-    ClothingHeadHatBeretSecuritySecred: 3 # Sunrise-Edit
-    ClothingHeadHatSecsoftSecred: 3 # Sunrise-Edit
-    ClothingUniformJumpsuitSecSecred: 3 # Sunrise-Edit
-    ClothingUniformJumpskirtSecSecred: 3 # Sunrise-Edit
-    ClothingUniformJumpsuitSecGreySecred: 3 # Sunrise-Edit
-    ClothingUniformJumpskirtSecGreySecred: 3 # Sunrise-Edit
-    ClothingUniformJumpsuitSecBlueSecred: 3 # Sunrise-Edit
+    ClothingUniformJumpskirtSec: 3
+    ClothingUniformJumpsuitSecGrey: 3
+    ClothingUniformJumpskirtSecGrey: 3
+    ClothingUniformJumpsuitSecBlue: 3
     ClothingHeadsetSecurity: 3
     ClothingOuterWinterSec: 2
     ClothingOuterArmorBasic: 2
     ClothingNeckScarfStripedRed: 3
     ClothingOuterArmorBasicSlim: 2
-    ClothingOuterVestArmorSec : 1 # Sunrise-Edit
     ClothingEyesBlindfold: 1
     ClothingShoesBootsCombat: 1
     ClothingShoesBootsWinterSec: 2
     ClothingHeadHelmetJustice: 1
-    ClothingShoesBootsCowboyBlack: 1 # Sunrise-Edit
-    ClothingHeadHatCowboyBlack: 1 # Sunrise-Edit
-    HandheldCamera: 3  # Sunrise-Edit
-    PepperSprayBottleBlue: 2  # Sunrise-Edit
   contrabandInventory:
     ClothingMaskClownSecurity: 1
     ClothingMaskMimeSecurity: 1
     ToyFigurineSecurity: 1
     ToyFigurineWarden: 1
     ToyFigurineHeadOfSecurity: 1
-  emaggedInventory:
-    ClothingHeadHatCowboyBountyHunter: 1 # Sunrise Edit
-    ClothingShoesBootsSyndieFilled: 1 # Sunrise Edit
