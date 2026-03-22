@@ -118,7 +118,7 @@
     layers:
     - state: piecannon
   - type: Gun
-    fireRate: 2
+    fireRate: 18
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
