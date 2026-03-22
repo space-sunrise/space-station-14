@@ -159,7 +159,7 @@
       visualState: kill-unshaded
       heldPrefix: lethal
     - proto: DestroyBeam
-      fireCost: 300
+      fireCost: 175
       magState: destroy
       visualState: destroy-unshaded
       heldPrefix: destroy
