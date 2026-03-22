@@ -256,7 +256,12 @@
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/Charon.rsi
-    state: space_artillery
+    granularLayersRendering: true
+    layers:
+    - sprite: _Starlight/Objects/Weapons/Guns/Turrets/pointdefense.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - state: space_artillery
   - type: ContainerContainer
     containers:
       ballistic_chamber: !type:ContainerSlot
@@ -519,6 +524,12 @@
       state: support
       renderingStrategy: NoRotation
     - state: space_artillery
+      map: ["enum.GunVisualLayers.Base"]
+    - state: space_artillery
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
   - type: Physics
     bodyType: Dynamic
   - type: Fixtures
@@ -551,14 +562,14 @@
     minAngle: 0
     maxAngle: 5
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg # Sunrise-Edit
+      path: /Audio/_Starlight/Weapons/Shuttleguns/slammer.ogg
       params:
         variation: 0.05
         volume: 5
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatteryAmmoProvider
-    proto: BulletLightRifleTraceFMJ # Sunrise-Edit
+    proto: 20mmBullet
     fireCost: 1
   - type: Battery
     maxCharge: 50
@@ -856,7 +867,15 @@
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/Scylla.rsi
-    state: space_artillery
+    granularLayersRendering: true
+    layers:
+    - sprite: Structures/Machines/station_anchor.rsi
+      state: station_anchor
+      renderingStrategy: NoRotation
+    - sprite: Structures/Machines/station_anchor.rsi
+      state: station_anchor_unlit
+      renderingStrategy: NoRotation
+    - state: space_artillery
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
@@ -983,7 +1002,7 @@
     slots:
       cell_slot:
         name: Power Cage
-        startingItem: PowerCageOmega # Sunrise-Edit
+        startingItem: PowerCageOmega
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:

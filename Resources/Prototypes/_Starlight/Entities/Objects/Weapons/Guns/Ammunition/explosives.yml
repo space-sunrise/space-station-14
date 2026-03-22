@@ -87,9 +87,9 @@
     magState: mag
     steps: 7
     zeroVisible: false
+  - type: MultiHandedItem
   - type: StaticPrice
     price: 800
-  - type: MultiHandedItem
 
 # - type: entity
 #   parent: Magazine120mmGrenadeBlast
@@ -147,7 +147,7 @@
   parent: BaseMagazineGrenade
   id: Magazine60mmRocket
   name: 60mm rocket magazine
-  description: A high-capacity 30-round magazine loaded with 60mm rockets for the Vanyk-MK2 shuttle cannon system.
+  description: A high-capacity 16-round magazine loaded with 60mm rockets for the Vanyk-MK2 shuttle cannon system.
   components:
   - type: Tag
     tags:
@@ -158,7 +158,7 @@
       tags:
         - Cartridge60mmRocket
     proto: Cartridge60mmRocket
-    capacity: 30
+    capacity: 16
     soundRack:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
       params:
@@ -266,16 +266,18 @@
   - type: Item
     size: Huge
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi
+    noRot: true
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/50mm_cartridge_rct.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-4
+    - state: mag-6
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 5
-    zeroVisible: false
+    steps: 7
+    zeroVisible: true
+  - type: MultiHandedItem
   - type: StaticPrice
     price: 600
 
