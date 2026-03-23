@@ -97,25 +97,6 @@
     - type: StealthOnMove
       passiveVisibilityRate: -1
       movementVisibilityRate: 0.2
-  - type: PowerCellDraw
-    drawRate: 1.7 # 900 seconds on the default cell
-  - type: ToggleCellDraw
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-    fitsInCharger: false
-  - type: ContainerContainer
-    containers:
-      cell_slot: !type:ContainerSlot
-        toggleable-clothing: !type:ContainerSlot {}
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSyndicate
-        disableEject: true
-        whitelist:
-          tags:
-            - PowerCell
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitGorlexPhantom
   - type: ClothingSpeedModifier
