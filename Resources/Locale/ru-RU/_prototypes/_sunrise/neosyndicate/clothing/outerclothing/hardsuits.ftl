@@ -3,6 +3,6 @@ ent-ClothingOuterHardsuitStalker = скафандр сталкера Cybersun
 ent-ClothingOuterHardsuitGorlexPhantom = скафандр фантома Gorlex
     .desc = Видишь его в первый раз? Ожидаемо...
 ent-ClothingOuterHardsuitGorlexReclaimer = скафандр перехватчика Gorlex
-    .desc = Создан для быстрой атаки и захвата территорий или уничтожения не подозревающего противника. Проверен сотней сражений.
+    .desc = Создан для быстрой атаки и захвата точки, проверен сотней сражений.
 ent-ClothingOuterHardsuitGorlexMedic = скафандр медика Gorlex
     .desc = Тактический скафандр медика, хорошо изолирован от внешних угроз.
