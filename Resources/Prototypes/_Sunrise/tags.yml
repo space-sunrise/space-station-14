@@ -587,6 +587,9 @@
   id: Sunflower
 
 - type: Tag
+  id: WhiteLily
+
+- type: Tag
   id: Table
 
 - type: Tag

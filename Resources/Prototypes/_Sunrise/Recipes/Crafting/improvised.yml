@@ -159,3 +159,13 @@
   targetNode: bombarda
   category: construction-category-weapons
   objectType: Item
+
+- type: construction
+  name: construction-graph-tag-white-lily-crown
+  id: WhiteLilyCrown
+  graph: WhiteLilyCrown
+  startNode: start
+  targetNode: WhiteLilyCrown
+  category: construction-category-misc
+  objectType: Item
+  description: construction-graph-tag-white-lily-crown-desc
