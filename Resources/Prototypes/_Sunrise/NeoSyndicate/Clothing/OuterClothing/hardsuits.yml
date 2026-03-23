@@ -46,20 +46,20 @@
     - Hardsuit
     - WhitelistChameleon
 
-#Gorlex Phanthom Suit
+#Gorlex Phantom Suit
 - type: entity
   parent: [ClothingOuterHardsuitBase, AllowSuitStorageClothing, BaseToggleClothing]
   id: ClothingOuterHardsuitGorlexPhantom
-  name: gorlex phanthom suit
+  name: gorlex phantom suit
   description: Seeing it for the first time? As expected...
   components:
   - type: Sprite
-    sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_phanthom.rsi
+    sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_phantom.rsi
   - type: Clothing
-    sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_phanthom.rsi
+    sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_phantom.rsi
   - type: Item
     size: Huge
-    sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_phanthom.rsi
+    sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_phantom.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 10000
@@ -106,6 +106,7 @@
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
+        toggleable-clothing: !type:ContainerSlot {}
   - type: ItemSlots
     slots:
       cell_slot:

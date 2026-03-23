@@ -56,18 +56,18 @@
     tags:
     - WhitelistChameleon
 
-#Gorlex Phanthom Suit
+#Gorlex Phantom Suit
 - type: entity
   parent: [ClothingHeadHardsuitBase, ShowSecurityIcons, InHelmetNightVisionDevice] #[ ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitGorlexPhantom
   categories: [ HideSpawnMenu ]
-  name: gorlex phanthom helmet
+  name: gorlex phantom helmet
   description: Cutting edge tech are making this thing cost a million, made by partners from Cybersun, as usual.
   components:
   - type: Sprite
-    sprite: _Sunrise/NeoSyndicate/Clothing/Head/Hardsuits/gorlex_phanthom.rsi
+    sprite: _Sunrise/NeoSyndicate/Clothing/Head/Hardsuits/gorlex_phantom.rsi
   - type: Clothing
-    sprite: _Sunrise/NeoSyndicate/Clothing/Head/Hardsuits/gorlex_phanthom.rsi
+    sprite: _Sunrise/NeoSyndicate/Clothing/Head/Hardsuits/gorlex_phantom.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 10000
@@ -133,7 +133,7 @@
   id: ClothingHeadHelmetHardsuitGorlexMedic
   categories: [ HideSpawnMenu ]
   name: gorlex medic helmet
-  description: Reliable and well-equippedm, have a built-in system for medical analysis.
+  description: Reliable and well-equipped, have a built-in system for medical analysis.
   components:
   - type: Sprite
     sprite: _Sunrise/NeoSyndicate/Clothing/Head/Hardsuits/gorlex_medic.rsi
