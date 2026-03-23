@@ -1,6 +1,4 @@
 using System.Numerics;
-using Content.Server._Starlight.Shuttles.Systems; // Sunrise-Edit
-using Content.Server.Shuttles.Components; // Sunrise-Edit
 using Content.Server.UserInterface;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
@@ -9,45 +7,19 @@ using Content.Shared.PowerCell;
 using Content.Shared.Movement.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Timing; // Sunrise-Edit
 
 namespace Content.Server.Shuttles.Systems;
 
-public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
+// Sunrise-Edit - split with Sunrise partial for radar blips / laser traces.
+public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem
 {
     [Dependency] private readonly ShuttleConsoleSystem _console = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!; // Sunrise-Edit
-    [Dependency] private readonly RadarLaserSystem _laserSystem = default!; // Sunrise-Edit
-    [Dependency] private readonly IGameTiming _timing = default!; // Sunrise-Edit
-
-    // Sunrise-Edit - periodic blip/laser update
-    // How often (in seconds) to push fresh blip state to all open radar consoles.
-    private const float BlipUpdateInterval = 0.25f;
-    private float _blipUpdateTimer = 0f;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<RadarConsoleComponent, ComponentStartup>(OnRadarStartup);
-    }
-
-    public override void Update(float frameTime) // Sunrise-Edit
-    {
-        base.Update(frameTime);
-        _blipUpdateTimer += frameTime;
-        if (_blipUpdateTimer < BlipUpdateInterval)
-            return;
-        _blipUpdateTimer = 0f;
-
-        // Sunrise-Edit - prune expired Apollo laser traces before syncing state
-        _laserSystem.PruneExpiredTraces((float)_timing.CurTime.TotalSeconds);
-
-        var query = AllEntityQuery<RadarConsoleComponent>();
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            UpdateState(uid, comp);
-        }
     }
 
     private void OnRadarStartup(EntityUid uid, RadarConsoleComponent component, ComponentStartup args)
@@ -83,43 +55,7 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
             }
 
             state.RotateWithEntity = !component.FollowEntity;
-
-            // Sunrise-Edit - populate blips and laser traces
-            // Populate radar blips for entities with RadarBlipComponent (e.g. artillery shells)
-            var consoleMapCoords = _transformSystem.GetMapCoordinates(uid);
-            var maxRangeSq = state.MaxRange * state.MaxRange;
-            var blipQuery = AllEntityQuery<RadarBlipComponent, TransformComponent>();
-            while (blipQuery.MoveNext(out var blipUid, out var blip, out var blipXform))
-            {
-                if (blip.RequireInSpace && blipXform.GridUid != null)
-                    continue;
-                if (blipXform.MapID != consoleMapCoords.MapId)
-                    continue;
-                var blipMapCoords = _transformSystem.GetMapCoordinates(blipUid, blipXform);
-                if ((blipMapCoords.Position - consoleMapCoords.Position).LengthSquared() > maxRangeSq)
-                    continue;
-                state.Blips.Add(new RadarBlipData(GetNetCoordinates(blipXform.Coordinates), blip.Color, blip.Scale, blip.Shape)); // Sunrise-Edit - shape
-            }
-
-            // Sunrise-Edit - Apollo hitscan laser beam traces
-            // Populate laser traces from hitscan guns with RadarLaserTrackerComponent.
-            var laserQuery = AllEntityQuery<RadarLaserTrackerComponent, TransformComponent>();
-            while (laserQuery.MoveNext(out var laserUid, out var tracker, out var laserXform))
-            {
-                if (laserXform.MapID != consoleMapCoords.MapId)
-                    continue;
-                foreach (var (origin, dir, _) in tracker.Traces)
-                {
-                    // Only show traces from guns within radar range.
-                    if ((origin.Position - consoleMapCoords.Position).LengthSquared() > maxRangeSq)
-                        continue;
-                    state.Lasers.Add(new RadarLaserData(
-                        GetNetCoordinates(laserXform.Coordinates),
-                        dir,
-                        tracker.MaxRange,
-                        tracker.LaserColor));
-                }
-            }
+            PopulateSunriseRadarState(uid, state); // Sunrise-Edit - populate Sunrise radar overlays in partial.
 
             _uiSystem.SetUiState(uid, RadarConsoleUiKey.Key, new NavBoundUserInterfaceState(state));
         }

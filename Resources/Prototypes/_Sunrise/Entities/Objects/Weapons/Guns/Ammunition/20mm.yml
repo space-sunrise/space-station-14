@@ -10,7 +10,7 @@
         Blunt: 25
         Piercing: 75
   - type: TimedDespawn
-    lifetime: 2
+    lifetime: 3
   - type: PointLight
     radius: 3.5
     energy: 0.5
