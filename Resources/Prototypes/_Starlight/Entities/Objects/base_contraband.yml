@@ -1,11 +1,4 @@
 ﻿- type: entity
-  id: BaseSovietContraband
-  abstract: true
-  components:
-  - type: Contraband
-    severity: Soviet
-
-- type: entity
   id: BaseTSFContraband
   abstract: true
   components:
