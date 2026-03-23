@@ -9,7 +9,7 @@
         Structural: 10
         Blunt: 25
         Piercing: 75
-  - type: TimedDespawn
+  - type: TimedDespawn #
     lifetime: 3
   - type: PointLight
     radius: 3.5
