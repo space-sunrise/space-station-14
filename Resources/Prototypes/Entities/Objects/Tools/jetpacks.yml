@@ -344,7 +344,7 @@
 # Sunrise start - port SSF marine jetpack from Starlight
 - type: entity
   id: JetpackSSFMarine
-  parent: [BaseJetpack] #, BaseSovietContraband]
+  parent: [BaseJetpack, BaseSovietContraband]
   name: SSF marine jetpack
   suffix: Empty
   description: Standard issued soviet-made jetpack for the kosmos.
@@ -366,7 +366,7 @@
 
 - type: entity
   id: JetpackSSFMarineFilled
-  parent: [JetpackSSFMarine] #, BaseSovietContraband]
+  parent: [JetpackSSFMarine, BaseSovietContraband]
   name: SSF marine jetpack
   description: Standard issued soviet-made jetpack for the kosmos.
   components:

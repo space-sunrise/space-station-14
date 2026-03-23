@@ -24,8 +24,8 @@ public sealed partial class MessengerServerSystem
     private void InitializeSpam()
     {
         Subs.CVar(_cfg, SunriseCCVars.MessengerSpamEnabled, OnSpamEnabledChanged, true);
-        Subs.CVar(_cfg, SunriseCCVars.MessengerSpamMinTime, OnSpamMinTimeChanged, true);
-        Subs.CVar(_cfg, SunriseCCVars.MessengerSpamMaxTime, OnSpamMaxTimeChanged, true);
+        Subs.CVar(_cfg, SunriseCCVars.MessengerSpamMinInterval, OnSpamMinTimeChanged, true);
+        Subs.CVar(_cfg, SunriseCCVars.MessengerSpamMaxInterval, OnSpamMaxTimeChanged, true);
         Subs.CVar(_cfg, SunriseCCVars.MessengerSpamPlayerPercentage, OnSpamPlayerPercentageChanged, true);
     }
 

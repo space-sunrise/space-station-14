@@ -16,6 +16,14 @@
     shoes: ClothingShoesBootsUSSPFilled
 
 - type: startingGear
+  id: MobSovietGearRangedT1PKM
+  equipment:
+    gloves: ClothingHandsSovietFlakPKM
+    back: ClothingBackpackDuffelMercenaryTier1MMG2
+    belt: ClothingBeltBandolierT1SovietMMG2
+    shoes: ClothingShoesBootsUSSPFilled
+
+- type: startingGear
   id: MobSovietGearRangedT1RPD
   equipment:
     gloves: ClothingHandsSovietFlakRPD

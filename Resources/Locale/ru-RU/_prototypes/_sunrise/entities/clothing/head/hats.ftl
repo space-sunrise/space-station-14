@@ -84,3 +84,7 @@ ent-ClothingHeadHatSwanOne = Алекс
     .desc = Ха-ха-ха...Мы неплохо погуляли.
 ent-ClothingHeadHatChefBlackToque = чёрный поварской колпак
     .desc = Потёртый по краям, но гордо держит форму, символ мастерства и многих часов работы на кухне.
+ent-SunriseClothingHeadHatDetGadget = { ent-ClothingHeadHatDetGadget }
+    .desc = { ent-ClothingHeadHatDetGadget.desc }
+ent-ClothingHeadHatUshankaAlt = { ent-ClothingHeadHatUshanka }
+    .desc = { ent-ClothingHeadHatUshanka.desc }

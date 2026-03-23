@@ -7,6 +7,7 @@
       tags:
       - SalvageSyndicateBase
     presets:
+    - SyndicateBaseAnyChanceSmall
     - SyndicateBaseMedium
     - SpaceShip
     - Bucket
@@ -317,10 +318,11 @@
       tags:
       - SovietDungeonWEH
     presets:
-    - Bucket
-    - Wow
-    - SpaceShip
-    - Tall
+    - SovietWEHBucket
+    - SovietWEHWow
+    - SovietWEHSpaceShip
+    - SovietWEHTall
+    - SovietWEHAnyChance
 
   - !type:CorridorDunGen
     width: 4

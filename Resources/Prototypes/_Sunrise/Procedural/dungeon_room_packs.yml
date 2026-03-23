@@ -81,3 +81,21 @@
   size: 50,50
   rooms:
     - 0,0,50,50
+
+- type: dungeonRoomPack
+  id: SovietWEH17x15
+  size: 17,15
+  rooms:
+    - 0,0,17,15
+
+- type: dungeonRoomPack
+  id: SovietWEH17x6
+  size: 17,6
+  rooms:
+    - 0,0,17,6
+
+- type: dungeonRoomPack
+  id: SovietWEH12x6
+  size: 12,6
+  rooms:
+    - 0,0,12,6

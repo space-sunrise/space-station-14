@@ -21,5 +21,6 @@ research-technology-advanced-implants = Advanced Implants
 research-technology-handcraft-nvd = Кустарные ПНВ
 research-technology-basic-nvd = Продвинутое ПНВ
 research-technology-basic-thermals = Thermal Scanners
+research-technology-slop-dispenser = Nutritious, full stop
 research-technology-cloning = Cloning Systems
 research-technology-bluespace-gas-tanks = Bluespace Gas Tanks

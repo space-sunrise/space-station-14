@@ -1,0 +1,214 @@
+# Sunrise-specific medical loadout groups.
+
+- type: loadoutGroup
+  id: SunriseChiefMedicalOfficerHead
+  name: loadout-group-chief-medical-officer-head
+  minLimit: 0
+  loadouts:
+  - ChiefMedicalOfficerBeret
+  - ParamedicBeret
+  - CMOMedicalHeadMirror
+  - BeretSeniorPhysician
+  - MedicalBeret
+  - ChemistBeret
+  - PatologonatBeret
+  - NurseHat
+  - BlueSurgeryCap
+  - GreenSurgeryCap
+  - PurpleSurgeryCap
+  - HatPatologonatHat
+  - ParamedicHead
+  - SunriseHatBlacksoft
+  - SunriseHatRedsoft
+  - SunriseHatOrangesoft
+  - SunriseHatCyansoft
+  - SunriseHatBluesoft
+  - MedicalHeadMirror
+
+- type: loadoutGroup
+  id: SunriseChiefMedicalOfficerOuterClothing
+  name: loadout-group-chief-medical-officer-outerclothing
+  minLimit: 0
+  loadouts:
+  - ChiefMedicalOfficerLabCoat
+  - ChiefMedicalOfficerWintercoat
+  - RegularLabCoat
+  - SunriseCoatLabViro
+  - ChemistLabCoat
+  - SunriseCoatLabGene
+  - CoatLabSeniorPhysician
+  - CoatPatologoanatom
+  - SunriseWinterViro
+  - ChemistWintercoat
+  - SunriseWinterGen
+  - MedicalDoctorWintercoat
+  - ParamedicWintercoat
+  - SunriseWinterColorWhite
+  - SunriseWinterColorBlack
+  - SunriseWinterColorRed
+  - SunriseWinterColorOrange
+  - SunriseWinterColorGreen
+  - SunriseWinterColorCyan
+  - SunriseWinterColorBlue
+  - ParamedicWindbreaker
+
+- type: loadoutGroup
+  id: SunriseChiefMedicalOfficerNeck
+  name: loadout-group-chief-medical-officer-neck
+  minLimit: 0
+  loadouts:
+  - ChiefMedicalOfficerCloak
+  - ChiefMedicalOfficerMantle
+  - ChiefMedicalOfficerScarf
+  - SunriseScarfRed
+  - SunriseScarfOrange
+  - SunriseScarfGreen
+  - SunriseScarfLightBlue
+  - SunriseScarfCyan
+  - SunriseScarfBlue
+  - SunriseStethoscope
+
+- type: loadoutGroup
+  id: SunriseChiefMedicalOfficerShoes
+  name: loadout-group-chief-medical-officer-shoes
+  loadouts:
+  - BrownShoes
+  - WhiteShoes
+  - BlackShoes
+  - SunriseRedShoes
+  - SunriseOrangeShoes
+  - SunriseShoesGreen
+  - SunriseShoesCyan
+  - BlueShoes
+  - MedicalWinterBoots
+
+- type: loadoutGroup
+  id: SunriseMedicalDoctorHead
+  name: loadout-group-medical-doctor-head
+  minLimit: 0
+  loadouts:
+  - MedicalBeret
+  - MedicalHeadMirror
+  - BlueSurgeryCap
+  - GreenSurgeryCap
+  - PurpleSurgeryCap
+  - NurseHat
+  - SunriseHatRedsoft
+  - SunriseHatOrangesoft
+  - SunriseHatCyansoft
+
+- type: loadoutGroup
+  id: SunriseMedicalDoctorOuterClothing
+  name: loadout-group-medical-doctor-outerclothing
+  minLimit: 0
+  loadouts:
+  - RegularLabCoat
+  - SunriseWinterColorWhite
+  - SunriseWinterColorRed
+  - SunriseWinterColorGreen
+  - SunriseWinterColorCyan
+  - MedicalDoctorWintercoat
+
+- type: loadoutGroup
+  id: SunriseMedicalShoes
+  name: loadout-group-medical-doctor-shoes
+  loadouts:
+  - WhiteShoes
+  - SunriseRedShoes
+  - SunriseOrangeShoes
+  - SunriseShoesGreen
+  - SunriseShoesCyan
+  - MedicalWinterBoots
+
+- type: loadoutGroup
+  id: SunriseMedicalGloves
+  name: loadout-group-medical-gloves
+  minLimit: 0
+  loadouts:
+  - LatexGloves
+  - SunriseWhiteGloves
+  - SunriseRedGloves
+  - SunriseGreenGloves
+  - SunriseTealGloves
+  - SunriseGlovesNitrileRed
+  - SunriseGlovesNitrileGreen
+  - NitrileGloves
+
+- type: loadoutGroup
+  id: SunriseMedicalMask
+  name: loadout-group-medical-mask
+  minLimit: 0
+  loadouts:
+  - SunriseMedicalSterileRed
+  - SunriseMedicalSterileGreen
+  - SterileMask
+  - SunriseMedicalMaskRed
+  - SunriseMedicalMaskGreen
+  - SunriseMedicalMask
+
+- type: loadoutGroup
+  id: SunriseChemistOuterClothing
+  name: loadout-group-chemist-outerclothing
+  minLimit: 0
+  loadouts:
+  - RegularLabCoat
+  - ChemistLabCoat
+  - ChemistWintercoat
+  - MedicalDoctorWintercoat
+  - SunriseWinterColorWhite
+  - SunriseWinterColorRed
+  - SunriseWinterColorOrange
+  - SunriseWinterColorGreen
+  - SunriseWinterColorCyan
+
+- type: loadoutGroup
+  id: SunriseParamedicHead
+  name: loadout-group-paramedic-head
+  minLimit: 0
+  loadouts:
+  - MedicalBeret
+  - NurseHat
+  - BlueSurgeryCap
+  - GreenSurgeryCap
+  - PurpleSurgeryCap
+  - ParamedicHead
+  - ParamedicBeret
+  - SunriseHatRedsoft
+  - SunriseHatOrangesoft
+  - SunriseHatCyansoft
+  - SunriseHatBluesoft
+  - MedicalHeadMirror
+
+- type: loadoutGroup
+  id: SunriseParamedicOuterClothing
+  name: loadout-group-paramedic-outerclothing
+  minLimit: 0
+  loadouts:
+  - ParamedicWindbreaker
+  - RegularLabCoat
+  - MedicalDoctorWintercoat
+  - ParamedicWintercoat
+  - SunriseWinterColorWhite
+  - SunriseWinterColorRed
+  - SunriseWinterColorGreen
+  - SunriseWinterColorCyan
+  - SunriseWinterColorBlue
+
+- type: loadoutGroup
+  id: SunriseParamedicShoes
+  name: loadout-group-paramedic-shoes
+  loadouts:
+  - SunriseRedShoes
+  - SunriseOrangeShoes
+  - SunriseShoesGreen
+  - SunriseShoesCyan
+  - BlueShoes
+  - WhiteShoes
+  - MedicalWinterBoots
+
+- type: loadoutGroup
+  id: SunriseMedicalDoctorPDA
+  name: loadout-group-medical-doctor-id
+  loadouts:
+  - MedicalPDA
+  - SeniorPhysicianPDA

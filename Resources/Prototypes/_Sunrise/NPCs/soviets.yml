@@ -33,11 +33,26 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: Reflect
   - type: AddComponentsOnTrigger
     triggerOnce: true
     removeExisting: true
     components:
+    - type: TimedDespawn
+      lifetime: 180
     - type: Strippable
+    - type: Pullable
+  - type: TimedRemoveComponents
+    removeAfter: 0
+    components:
+    - type: Pullable
   - type: Destructible
     thresholds:
     - trigger:
@@ -476,16 +491,36 @@
       state: equipped-HAND
       color: "#3CB57C"
   - type: AoEHeal
+    range: 5
     threshold: 0.9
     damage:
       groups:
         Brute: -20
         Burn: -10
-        Airloss: -5
-        Toxin: -5
+        Airloss: -10
+        Toxin: -10
     whitelist:
       components:
       - NpcVeteranFollower
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: AoEHeal
+      range: 5
+      threshold: 0.9
+      damage:
+        groups:
+          Brute: -20
+          Burn: -10
+          Airloss: -10
+          Toxin: -10
+      whitelist:
+        components:
+        - NpcVeteranFollower
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -626,6 +661,51 @@
   - type: EyeCursorOffset
     maxOffset: 3
     pvsIncrease: 0.3
+
+- type: entity
+  name: soldier
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobSovietBase
+  - SovietSoldierBase
+  id: MobSovietT1PKM
+  components:
+  - type: TTS
+    voice: TfHeavy
+  - type: Loadout
+    prototypes:
+    - MobSovietGearRangedT1PKM
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 2.8
+  - type: BatteryAmmoProvider
+    proto: CartridgeHeavyRifleRFMJ
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 4
+    autoRechargeRate: 999
+  - type: Battery
+    maxCharge: 25
+    startingCharge: 25
+  - type: Gun
+    showExamineText: false
+    fireRate: 6.5
+    minAngle: 5
+    maxAngle: 60
+    angleIncrease: 1
+    angleDecay: 20
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      collection: m249 # Sunrise-Edit
+      params:
+        volume: 10
+        pitch: 1.1
+    soundEmpty:
+      path: /Audio/_Sunrise/Effects/silence.ogg
+  - type: EyeCursorOffset
+    maxOffset: 2
+    pvsIncrease: 0.2
 
 - type: entity
   name: soldier
@@ -993,8 +1073,8 @@
   id: MobSovietT3Medic
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3.4
-    baseSprintSpeed: 3.4
+    baseWalkSpeed: 2.8
+    baseSprintSpeed: 2.8
   - type: TTS
     voice: TfMedic
   - type: Loadout
@@ -1045,16 +1125,36 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: AoEHeal
+    range: 5
     threshold: 0.9
     damage:
       groups:
         Brute: -30
         Burn: -20
-        Airloss: -10
-        Toxin: -10
+        Airloss: -20
+        Toxin: -20
     whitelist:
       components:
       - NpcVeteranFollower
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: AoEHeal
+      range: 5
+      threshold: 0.9
+      damage:
+        groups:
+          Brute: -30
+          Burn: -20
+          Airloss: -20
+          Toxin: -20
+      whitelist:
+        components:
+        - NpcVeteranFollower
   - type: ActionGun
     action: ActionSovietT3SmokeGrenade
     gunProto: GunSovietT3SmokeGrenade
@@ -1240,7 +1340,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: WeldingFuel
-        Quantity: 400
+        Quantity: 200
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1285,8 +1385,8 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3.5
-  - type: Damageable
-    damageModifierSet: MediumArmorSyndi
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
   - type: Repairable
     fuelCost: 25
     doAfterDelay: 10
@@ -1395,7 +1495,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: WeldingFuel
-        Quantity: 400
+        Quantity: 200
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1456,8 +1556,8 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
     baseSprintSpeed: 2.25
-  - type: Damageable
-    damageModifierSet: MediumArmorSyndi
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
   - type: Repairable
     fuelCost: 25
     doAfterDelay: 10
@@ -1657,7 +1757,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: Vodka
-        Quantity: 300
+        Quantity: 150
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
@@ -1727,6 +1827,7 @@
       - SovietSquadPatrol
       - SovietSquadSmg
       - SovietSquadLmg
+      - SovietSquadMmg
       - SovietSquadPatrol
       - MobSovietBear
       - MobSovietBearAlt
@@ -1765,6 +1866,7 @@
       - SovietSquadAssault
       - SovietSquadSmg
       - SovietSquadLmg
+      - SovietSquadMmg
       - SovietSquadPatrol
       - SovietSquadLightMechanized
       - SovietSquadHeavyMechanized
@@ -1952,12 +2054,9 @@
     - !type:EntSelector
       id: MobSovietT1RPD
       prob: 1
-    - !type:EntSelector
-      id: MobSovietT1SKM
-      prob: 1
 
 - type: entity
-  name: soviet machinegun squad spawner
+  name: soviet light machinegun squad spawner
   id: SovietSquadLmg
   parent: MarkerBase
   components:
@@ -1972,6 +2071,35 @@
     offset: 1
     table: !type:NestedSelector
       tableId: SovietLmgSquadTable
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: SovietMmgSquadTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobSovietT1SLRifle
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1PKM
+      prob: 1
+
+- type: entity
+  name: soviet medium machinegun squad spawner
+  id: SovietSquadMmg
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Sunrise/Structures/Decoration/banner.rsi
+      state: banner_ussp
+    - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/mg60/big.rsi
+      state: icon
+  - type: EntityTableSpawner
+    offset: 1
+    table: !type:NestedSelector
+      tableId: SovietMmgSquadTable
     deleteSpawnerAfterSpawn: true
 
 - type: entityTable

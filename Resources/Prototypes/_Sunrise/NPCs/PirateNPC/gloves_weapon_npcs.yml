@@ -713,6 +713,18 @@
         state: wielded-inhand-right
 
 - type: entity
+  parent: ClothingHandsNoGloves
+  id: ClothingHandsPKM
+  suffix: PKM
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/mg60/tiny.rsi
+        state: wielded-inhand-right
+
+- type: entity
   parent: [ClothingHandsSlashPunchMeleeBase, PirateArmorEVAScrappers]
   id: ClothingHandsMercCombatKnife
   suffix: knife
@@ -1211,6 +1223,11 @@
 - type: entity
   parent: [ClothingHandsDp28, SovietArmorFlak, SovietMeleeNoArc]
   id: ClothingHandsSovietFlakDP28
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsPKM, SovietArmorFlak, SovietMeleeNoArc]
+  id: ClothingHandsSovietFlakPKM
   categories: [ HideSpawnMenu ]
 
 - type: entity
