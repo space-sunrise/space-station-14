@@ -58,14 +58,6 @@ namespace Content.Server.Atmos.Components
         public int SuperconductivityTilesCount => SuperconductivityTiles.Count;
 
         [ViewVariables]
-        //SunRise start
-        public readonly HashSet<TileAtmosphere> ChargedElectrovaeTiles = new(1000);
-
-        [ViewVariables]
-        public int ChargedElectrovaeTilesCount => ChargedElectrovaeTiles.Count;
-
-        [ViewVariables]
-        //SunRise end
         public HashSet<TileAtmosphere> HighPressureDelta = new(1000);
 
         [ViewVariables]

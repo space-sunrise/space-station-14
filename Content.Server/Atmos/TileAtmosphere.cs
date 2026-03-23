@@ -10,7 +10,7 @@ namespace Content.Server.Atmos;
 /// Use the public APIs in <see cref="AtmosphereSystem"/> instead.
 /// </summary>
 [Access(typeof(AtmosphereSystem), typeof(GasTileOverlaySystem), typeof(AtmosDebugOverlaySystem))]
-public sealed class TileAtmosphere : IGasMixtureHolder
+public sealed partial class TileAtmosphere : IGasMixtureHolder
 {
     /// <summary>
     /// The last cycle this tile's air was archived into <see cref="AirArchived"/>.
@@ -106,14 +106,6 @@ public sealed class TileAtmosphere : IGasMixtureHolder
     public Hotspot Hotspot;
 
     /// <summary>
-    ///SunRise end
-    /// Current <see cref="ChargedElectrovaeEffect"/> information for this tile.
-    /// </summary>
-    [ViewVariables]
-    public ChargedElectrovaeEffect ChargedEffect;
-
-    /// <summary>
-    ///SunRise end
     /// Points to the direction of the recipient tile for pressure equalization logic
     /// (Monstermos or HighPressureDelta otherwise).
     /// </summary>
