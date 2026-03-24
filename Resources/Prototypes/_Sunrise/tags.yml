@@ -206,6 +206,9 @@
 
 # Magazines
 - type: Tag
+  id: HeavyAmmoBelt127
+
+- type: Tag
   id: MagazineACP14
 
 - type: Tag

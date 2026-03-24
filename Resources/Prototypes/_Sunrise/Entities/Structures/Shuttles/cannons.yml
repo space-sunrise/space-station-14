@@ -173,12 +173,12 @@
     burstFireRate: 6
     shotsPerBurst: 4
     burstCooldown: 1
-    minAngle: 3
-    maxAngle: 20
+    minAngle: 5
+    maxAngle: 30
     angleIncrease: 1
     angleDecay: 20
     projectileSpeed: 33
-    fireRate: 3
+    fireRate: 2
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
       params:
@@ -188,17 +188,21 @@
   - type: GunneryTrackable
   - type: Machine
     board: ShuttleGunVympelCircuitboard
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-        - CartridgeAntiMateriel
-    capacity: 40
-    proto: Null
-    soundInsert:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
-      params:
-        pitch: 1.2
-        variation: 0.08
+  - type: MagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        priority: 2
+        whitelist:
+          tags:
+          - HeavyAmmoBelt127
+        insertSound:
+          path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+          params:
+            pitch: 1.2
+            variation: 0.08
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
   - type: MagazineVisuals
     magState: mag
     steps: 15
@@ -262,14 +266,14 @@
     - Burst
     - FullAuto
     burstFireRate: 12
-    shotsPerBurst: 8
-    burstCooldown: 2
-    minAngle: 4
-    maxAngle: 25
+    shotsPerBurst: 10
+    burstCooldown: 3
+    minAngle: 5
+    maxAngle: 30
     angleIncrease: 1
-    angleDecay: 25
+    angleDecay: 20
     projectileSpeed: 30
-    fireRate: 6
+    fireRate: 4
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
       params:
@@ -283,7 +287,7 @@
     whitelist:
       tags:
         - CartridgeAntiMateriel
-    capacity: 80
+    capacity: 100
     proto: null
     soundInsert:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
