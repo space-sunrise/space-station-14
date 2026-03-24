@@ -12,7 +12,6 @@
   - type: Clothing
     sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/stalker_cybersun.rsi
   - type: Item
-    size: huge
     sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/stalker_cybersun.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.02
@@ -121,7 +120,6 @@
   - type: Clothing
     sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_reclaimer.rsi
   - type: Item
-    size: huge
     sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_reclaimer.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.05
@@ -167,7 +165,6 @@
   - type: Clothing
     sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_medic.rsi
   - type: Item
-    size: huge
     sprite: _Sunrise/NeoSyndicate/Clothing/OuterClothing/Hardsuits/gorlex_medic.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.05
