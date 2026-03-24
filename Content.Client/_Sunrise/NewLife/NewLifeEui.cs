@@ -74,6 +74,8 @@ public sealed class NewLifeEui : BaseEui
         {
             _window.UpdateValidationState(newLifeState);
             _window.UpdateCharactersList(newLifeState.Characters, newLifeState.UsedCharactersForRespawn);
+            _window.UpdateStationList(new Dictionary<NetEntity, string>(), default);
+            _window.UpdateRolesList(new List<NewLifeRolesInfo>());
             _window.UpdateJobs(newLifeState.Jobs);
             _window.UpdateNextRespawn(newLifeState.NextRespawnTime);
             return;

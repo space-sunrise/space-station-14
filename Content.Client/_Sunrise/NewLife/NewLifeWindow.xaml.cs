@@ -26,6 +26,7 @@ public sealed partial class NewLifeWindow : DefaultWindow
     public NewLifeWindow(IGameTiming timing)
     {
         RobustXamlLoader.Load(this);
+        IoCManager.InjectDependencies(this);
         _timing = timing;
         Spawn.OnPressed += OnSpawnPressed;
 

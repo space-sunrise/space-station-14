@@ -71,16 +71,22 @@ public sealed class NewLifeSystem : SharedNewLifeSystem
     }
 
 
+    private NewLifeUserData EnsureRoundData(NetUserId userId)
+    {
+        if (!_newLifeRoundData.TryGetValue(userId, out var data))
+            _newLifeRoundData[userId] = data = new NewLifeUserData();
+
+        return data;
+    }
+
     public void SetNextAllowRespawn(NetUserId userId, TimeSpan nextRespawnTime)
     {
-        if (_newLifeRoundData.TryGetValue(userId, out var data))
-            data.NextAllowRespawn = nextRespawnTime;
+        EnsureRoundData(userId).NextAllowRespawn = nextRespawnTime;
     }
 
     public void AddUsedCharactersForRespawn(NetUserId userId, int usedCharacter)
     {
-        if (_newLifeRoundData.TryGetValue(userId, out var data))
-            data.UsedCharactersForRespawn.Add(usedCharacter);
+        EnsureRoundData(userId).UsedCharactersForRespawn.Add(usedCharacter);
     }
 
     private bool TryGetUsedCharactersForRespawn(NetUserId userId, [NotNullWhen(true)] out List<int>? usedCharactersForRespawn)
