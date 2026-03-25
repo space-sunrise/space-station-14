@@ -334,7 +334,7 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponPistolViperBorgChassisSyndicateSpider
-    - item: SyndicateRapier
+    - item: CyberMantisBlade
 
 - type: entity
   id: BorgModuleSyndicateHypoAdvanced
