@@ -26,6 +26,7 @@
           - Sheet
           - RawMaterial
     - type: Lathe
+      producingSound: /Audio/Items/squeezebottle.ogg
       idleState: icon
       runningState: building
       staticPacks:

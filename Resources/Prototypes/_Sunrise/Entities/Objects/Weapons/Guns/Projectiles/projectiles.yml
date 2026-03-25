@@ -1,4 +1,4 @@
-# region Base Bullets
+# region Base Projectiles
 - type: entity
   id: BaseBulletGrenade
   parent: BaseItem
@@ -32,8 +32,9 @@
         - ItemMask
         restitution: 0.05
         friction: 0.5
-# region end
+# endregion Base Projectiles
 
+# region Sunrise ION
 - type: entity
   id: BulletAcid2
   name: acid spit
@@ -51,7 +52,6 @@
     - type: Ammo
       muzzleFlash: null
 
-# Sunrise-ION
 - type: entity
   name: EMP impulse
   parent: BaseBulletTrigger
@@ -219,7 +219,9 @@
     reflective:
     - Energy
 
-# Mechs
+# endregion Sunrise ION
+
+# region Mech Projectiles
 - type: entity
   id: BulletfragRocket
   name: frag rocket
@@ -255,7 +257,9 @@
     sound:
       path: /Audio/Effects/Grenades/Supermatter/supermatter_loop.ogg
 
-# Shells that used for friendship and duster
+# endregion Mech Projectiles
+
+# region Utility Shells
 
 - type: entity
   id: BulletShellBatonArtillery
@@ -315,7 +319,9 @@
     color: blue
     energy: 0.5
 
-# Grenades Handheld
+# endregion Utility Shells
+
+# region Hand Grenades
 - type: entity
   id: BulletGrenadeExplosive
   name: explosive grenade
@@ -562,7 +568,9 @@
     sound:
       path: /Audio/Effects/countdown.ogg
 
-# Grenades Handheld  Pellet
+# endregion Hand Grenades
+
+# region Pellet Grenades
 - type: entity
   id: BulletGrenadeIncendiary
   name: incendiary grenade
@@ -593,7 +601,7 @@
       params:
         volume: 5
   - type: TimedDespawn
-    lifetime: 3.55
+    lifetime: 2
 
 - type: entity
   id: BulletGrenadeShrapnel
@@ -622,6 +630,10 @@
   - type: ProjectileGrenade
     fillPrototype: PelletClusterRubber
     capacity: 30
+
+# endregion Pellet Grenades
+
+# region Timed Grenades & Artillery
 
 - type: entity
   id: BulletFireBomb
@@ -759,8 +771,9 @@
     - Structural
   - type: StaminaDamageOnCollide
     damage: 80
+# endregion Timed Grenades And Artillery
 
-# This is supposed to spawn shrapnel and stuff so uhh... TODO?
+# region Timed Utility Grenades
 - type: entity
   id: BulletGrenadeFragTimer
   name: frag grenade
@@ -829,8 +842,9 @@
         Structural: 15
   - type: StaminaDamageOnCollide
     damage: 5
+# endregion Timed Utility Grenades
 
-# .60 small grenade (1/3 power of China Lake)
+# region Anti-Materiel Grenade Bullets
 - type: entity
   id: BulletAntiMaterielFrag
   name: frag bullet
@@ -903,6 +917,10 @@
       types:
         Shock: 15
 
+# endregion Anti-Materiel Grenade Bullets
+
+# region Energy Projectiles
+
 - type: entity
   id: BulletPlasma
   parent: BaseBullet
@@ -943,6 +961,10 @@
     proto: BulletPlasma
     count: 3
     spread: 25
+
+# endregion Energy Projectiles
+
+# region Improvised Grenade Projectiles
 
 - type: entity
   id: BulletImprovisedGrenadeFirebomb
@@ -1032,6 +1054,24 @@
     capacity: 16
 
 - type: entity
+  id: BulletImprovisedGrenadeGlassShrapnel
+  name: glass shrapnel grenade
+  parent: BulletGrenadeShrapnel
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/explosives.rsi
+    layers:
+      - state: glass
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterLessLethal
+    capacity: 16
+
+# endregion Improvised Grenade Projectiles
+
+# region Special Utility Projectiles
+
+- type: entity
   parent: BaseBullet
   id: EnergyCrossbowBoltLarge
   categories: [ HideSpawnMenu ]
@@ -1074,6 +1114,10 @@
     transferAmount: 3
     solution: bolt
 
+# endregion Special Utility Projectiles
+
+# region Rubber Bullets
+
 - type: entity
   parent: BaseBulletRubber
   id: BulletMagnumProjectileRubber
@@ -1099,3 +1143,5 @@
         Blunt: 3
   - type: StaminaDamageOnCollide
     damage: 9
+
+# endregion Rubber Bullets

@@ -1,7 +1,13 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using Content.Server._Sunrise.Research.Artifact.Effects.RandomTransformation;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Xenoarchaeology.Artifact;
 using Content.Shared.Xenoarchaeology.Artifact.Components;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests;
 
@@ -415,5 +421,164 @@ public sealed class XenoArtifactTest
         await server.WaitRunTicks(1);
 
         await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task ArtifactRandomTransformationCandidatesStayWithinSafeItemPool()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var map = await pair.CreateTestMap();
+
+        await server.WaitPost(() =>
+        {
+            var entManager = server.EntMan;
+            var prototypeManager = server.ResolveDependency<IPrototypeManager>();
+            var system = entManager.System<ArtifactRandomTransformationSystem>();
+
+            var effect = entManager.SpawnEntity("SunriseEffectRandomTransformation", map.MapCoords);
+            var effectComp = entManager.GetComponent<ArtifactRandomTransformationComponent>(effect);
+            var effectEnt = (effect, effectComp);
+
+            var allowedUnsafe = prototypeManager.EnumeratePrototypes<EntityPrototype>()
+                .Where(proto => system.CanTransformInto(effectEnt, proto))
+                .Where(proto =>
+                    ViolatesBaseCandidateRules(proto) ||
+                    MatchesConfiguredBlacklist(effectComp, prototypeManager, proto))
+                .Select(proto => proto.ID)
+                .ToList();
+
+            Assert.That(allowedUnsafe, Is.Empty,
+                $"Unsafe prototypes passed the random transformation filter: {string.Join(", ", allowedUnsafe)}");
+
+            var safePrototype = prototypeManager.EnumeratePrototypes<EntityPrototype>()
+                .FirstOrDefault(proto => system.CanTransformInto(effectEnt, proto));
+
+            Assert.That(safePrototype, Is.Not.Null,
+                "Random transformation filter produced no valid prototypes from the configured artifact effect.");
+            Assert.That(ViolatesBaseCandidateRules(safePrototype!), Is.False);
+            Assert.That(MatchesConfiguredBlacklist(effectComp, prototypeManager, safePrototype!), Is.False);
+        });
+        await server.WaitRunTicks(1);
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task ArtifactRandomTransformationDisabledCVarMakesNodeDoNothing()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var map = await pair.CreateTestMap();
+
+        EntityUid originalItem = default;
+
+        await server.WaitPost(() =>
+        {
+            server.CfgMan.SetCVar(SunriseCCVars.ArtifactRandomTransformationEnabled, false);
+
+            var entManager = server.EntMan;
+            var artifact = entManager.SpawnEntity("ComplexXenoArtifactItem", map.MapCoords);
+            var node = entManager.SpawnEntity("SunriseEffectRandomTransformation", map.MapCoords);
+            originalItem = entManager.SpawnEntity("Crowbar", map.MapCoords);
+
+            var artifactEnt = (artifact, entManager.GetComponent<XenoArtifactComponent>(artifact));
+            var nodeEnt = (node, entManager.GetComponent<XenoArtifactNodeComponent>(node));
+            var targetCoords = entManager.GetComponent<TransformComponent>(originalItem).Coordinates;
+            var ev = new XenoArtifactNodeActivatedEvent(artifactEnt, nodeEnt, null, originalItem, targetCoords);
+
+            entManager.EventBus.RaiseLocalEvent(node, ref ev);
+        });
+
+        await server.WaitRunTicks(2);
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(server.EntMan.EntityExists(originalItem), Is.True,
+                "Random transformation node changed an item while disabled by cvar.");
+        });
+
+        await server.WaitPost(() =>
+        {
+            server.CfgMan.SetCVar(
+                SunriseCCVars.ArtifactRandomTransformationEnabled,
+                SunriseCCVars.ArtifactRandomTransformationEnabled.DefaultValue);
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    private static bool ViolatesBaseCandidateRules(EntityPrototype proto)
+    {
+        return proto.Abstract || !proto.MapSavable;
+    }
+
+    private static bool MatchesConfiguredBlacklist(
+        ArtifactRandomTransformationComponent component,
+        IPrototypeManager prototypeManager,
+        EntityPrototype proto)
+    {
+        if (component.RequiredComponents != null)
+        {
+            foreach (var requiredComponent in component.RequiredComponents)
+            {
+                if (!proto.Components.ContainsKey(requiredComponent))
+                    return true;
+            }
+        }
+
+        if (component.PrototypeBlacklist != null && component.PrototypeBlacklist.Contains(proto.ID))
+            return true;
+
+        var isException = component.PrototypeBlacklistExceptions != null &&
+                          component.PrototypeBlacklistExceptions.Contains(proto.ID);
+
+        if (!isException && component.PrototypeBlacklist != null)
+        {
+            foreach (var parent in prototypeManager.EnumerateAllParents<EntityPrototype>(proto.ID))
+            {
+                if (component.PrototypeBlacklist.Contains(parent.id))
+                    return true;
+            }
+        }
+
+        if (component.ComponentBlacklist != null)
+        {
+            foreach (var componentId in proto.Components.Keys)
+            {
+                if (component.ComponentBlacklist.Contains(componentId))
+                    return true;
+            }
+        }
+
+        if (component.CategoryBlacklist != null)
+        {
+            foreach (var category in proto.Categories)
+            {
+                if (component.CategoryBlacklist.Contains(category.ID))
+                    return true;
+            }
+        }
+
+        if (ContainsBlacklistedSubstring(proto.ID, component.PrototypeIdBlacklistSubstrings))
+            return true;
+
+        if (ContainsBlacklistedSubstring(proto.SetSuffix, component.PrototypeSuffixBlacklistSubstrings))
+            return true;
+
+        return false;
+    }
+
+    private static bool ContainsBlacklistedSubstring(string? value, IReadOnlyCollection<string>? blacklist)
+    {
+        if (string.IsNullOrWhiteSpace(value) || blacklist == null)
+            return false;
+
+        foreach (var substring in blacklist)
+        {
+            if (value.Contains(substring, StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+
+        return false;
     }
 }

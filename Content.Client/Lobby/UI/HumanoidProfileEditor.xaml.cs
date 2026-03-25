@@ -1135,8 +1135,13 @@ namespace Content.Client.Lobby.UI
                     var collection = IoCManager.Instance!;
                     var protoManager = collection.Resolve<IPrototypeManager>();
 
+                    // Sunrise-start
+                    var jobLoadoutId = LoadoutSystem.GetJobPrototype(job.ID);
+                    var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, protoManager);
+                    // Sunrise-end
+
                     // If no loadout found then disabled button
-                    if (!protoManager.TryIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID), out var roleLoadoutProto))
+                    if (!protoManager.TryIndex<RoleLoadoutPrototype>(effectiveJobLoadoutId, out var roleLoadoutProto))  // Sunrise-edit
                     {
                         loadoutWindowBtn.Disabled = true;
                     }
@@ -1148,12 +1153,12 @@ namespace Content.Client.Lobby.UI
                             RoleLoadout? loadout = null;
 
                             // Clone so we don't modify the underlying loadout.
-                            Profile?.Loadouts.TryGetValue(LoadoutSystem.GetJobPrototype(job.ID), out loadout);
+                            Profile?.Loadouts.TryGetValue(jobLoadoutId, out loadout); // Sunrise-edit
                             loadout = loadout?.Clone();
 
                             if (loadout == null)
                             {
-                                loadout = new RoleLoadout(roleLoadoutProto.ID);
+                                loadout = new RoleLoadout(jobLoadoutId);  // Sunrise-edit
                                 loadout.SetDefault(Profile, _playerManager.LocalSession, _prototypeManager, sponsorPrototypes);
                             }
 
@@ -1163,6 +1168,53 @@ namespace Content.Client.Lobby.UI
 
                     _jobPriorities.Add((job.ID, selector));
                     jobContainer.AddChild(selector);
+
+                    // Sunrise-Start: Альтернативные названия должностей
+                    if (job.AlternativeTitles.Count > 0)
+                    {
+                        var altTitleBtn = new OptionButton()
+                        {
+                            Margin = new Thickness(5f, 0f),
+                        };
+
+                        // Стандартное название
+                        altTitleBtn.AddItem(job.LocalizedName, 0);
+
+                        for (var i = 0; i < job.AlternativeTitles.Count; i++)
+                        {
+                            altTitleBtn.AddItem(Loc.GetString(job.AlternativeTitles[i]), i + 1);
+                        }
+
+                        // Выбор самого названия
+                        if (Profile != null &&
+                            Profile.JobAlternativeTitles.TryGetValue(job.ID, out var savedAltTitle))
+                        {
+                            var idx = job.AlternativeTitles.IndexOf(savedAltTitle);
+                            if (idx >= 0)
+                                altTitleBtn.SelectId(idx + 1);
+                        }
+
+                        altTitleBtn.OnItemSelected += args =>
+                        {
+                            altTitleBtn.SelectId(args.Id);
+                            if (args.Id == 0)
+                            {
+                                Profile = Profile?.WithJobAlternativeTitle(job.ID, null);
+                            }
+                            else
+                            {
+                                var altTitle = job.AlternativeTitles[args.Id - 1];
+                                Profile = Profile?.WithJobAlternativeTitle(job.ID, altTitle);
+                            }
+
+                            SetDirty();
+                        };
+
+                        // Замена названия должности на выпадающий список
+                        selector.ReplaceTitleWith(altTitleBtn);
+                    }
+                    // Sunrise-End
+
                     jobContainer.AddChild(loadoutWindowBtn);
                     category.AddChild(jobContainer);
                 }

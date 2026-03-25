@@ -1,0 +1,11 @@
+- type: technology
+  id: SlopDispenserTech
+  name: research-technology-slop-dispenser
+  icon:
+    sprite: _Sunrise/Structures/Machines/slop_machine.rsi
+    state: icon
+  discipline: CivilianServices
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+    - SlopDispenserMachineCircuitboard

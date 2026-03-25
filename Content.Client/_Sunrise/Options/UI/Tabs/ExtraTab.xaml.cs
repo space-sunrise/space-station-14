@@ -90,8 +90,8 @@ public sealed partial class ExtraTab : Control
         Control.AddOptionCheckBox(SunriseCCVars.DamageOverlaySelf, DamageOverlaySelfCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.DamageOverlayStructures, DamageOverlayStructuresCheckBox);
 
-        Control.AddOptionCheckBox(SunriseCCVars.ChatIconsEnable, ChatIconsEnableCheckBox);
-        Control.AddOptionCheckBox(SunriseCCVars.ChatPointingVisuals, ChatPointingVisualsEnableCheckBox);
+        Control.AddOptionCheckBox(SunriseCCVars.ChatIconsEnabled, ChatIconsEnableCheckBox);
+        Control.AddOptionCheckBox(SunriseCCVars.ChatPointingVisualsEnabled, ChatPointingVisualsEnableCheckBox);
 
         Control.Initialize();
     }

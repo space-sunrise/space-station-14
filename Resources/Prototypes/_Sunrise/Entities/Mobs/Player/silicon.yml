@@ -268,30 +268,6 @@
         startingItem: PowerCellSyndicate
 
 - type: entity
-  id: DeathSquadDirectivesCircuitBoard
-  parent: BaseElectronics
-  name: circuit board (Death Squad Directives)
-  description: An electronics board containing the Death Squad Directives lawset.
-  components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
-  - type: SiliconLawProvider
-    laws: DeathSquadLawset
-
-- type: entity
-  id: ERTDirectivesCircuitBoard
-  parent: BaseElectronics
-  name: circuit board (ERT Directives)
-  description: An electronics board containing the ERT Directives lawset.
-  components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
-  - type: SiliconLawProvider
-    laws: ERTLawset
-
-- type: entity
   id: SyndieIntellicard
   name: Syndieintellicard
   description: A storage device for AIs but from evil guys!
@@ -323,16 +299,3 @@
   - type: StaticPrice
     price: 500
 
-- type: entity
-  id: SyndicateCircuitBoard
-  parent: BaseElectronics
-  name: law board (Syndicate)
-  description: An electronics board containing the Sindicate lawset.
-  components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
-  - type: SiliconLawProvider
-    laws: SyndicateStatic
-  - type: StaticPrice
-    price: 2000

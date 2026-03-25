@@ -60,3 +60,6 @@ ent-MechPaintDurandExecutor = { ent-MechPaintBase }
 ent-MechPaintMaulerMeowler = { ent-MechPaintBase }
     .suffix = Маулер, Meowler
     .desc = Баночка аэрозольной краски. На этикетке написано Маулер "МЯУлер".
+ent-MechPaintDollHouseWarboss = { ent-MechPaintBase }
+    .suffix = Варбосс, Dollhouse
+    .desc = Баночка аэрозольной краски. На этикетке написано Варбосс "Dollhouse".

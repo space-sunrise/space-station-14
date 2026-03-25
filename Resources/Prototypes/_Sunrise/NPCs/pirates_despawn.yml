@@ -16,7 +16,6 @@
       - MobPirateT1Knife
       - MobPirateT1KnifeTearGas
       - MobPirateT1KnifeStinger
-      - MobPirateT1KnifeFirebomb
       - MobPirateT1KnifeBola
       - MobPirateT1KnifeEMP
       - MobPirateT1MonkeyKnuckleDusters
@@ -77,8 +76,6 @@
       - MobPirateT2ECutlassTearGas
       - MobPirateT2ECutlassStinger
       - MobPirateT2ECutlassFirebomb
-      - MobPirateT2ECutlassBola
-      - MobPirateT2ECutlassFuzeCannonBall
       - MobPirateT2Sledgehammer
       - MobPirateT2GauntletDrill
 
@@ -414,7 +411,6 @@
     - MobPirateT1Knife
     - MobPirateT1KnifeTearGas
     - MobPirateT1KnifeStinger
-    - MobPirateT1KnifeFirebomb
     - MobPirateT1KnifeBola
     - MobPirateT1KnifeEMP
     - MobPirateT1Pickaxe
@@ -473,7 +469,6 @@
   - type: RandomSpawner
     prototypes:
     - MobPirateT2Cutlass
-    - MobPirateT2ECutlassBola
     - MobPirateT2ECutlassStinger
     - MobPirateT2Sledgehammer
     - MobPirateT2GauntletDrill
@@ -637,9 +632,6 @@
       id: MobPirateT2Cutlass
       prob: 1
     - !type:EntSelector
-      id: MobPirateT2ECutlassBola
-      prob: 1
-    - !type:EntSelector
       id: MobPirateT2Shotgun
       prob: 1
     - !type:EntSelector
@@ -793,10 +785,6 @@
     - !type:EntSelector
       id: MobPirateT2DoubleFlintlock
       prob: 1
-    - !type:EntSelector
-      id: MobPirateT2ECutlassBola
-      prob: 1
-
 - type: entity
   name: pirate T2 control squad spawner
   id: PirateSquadT2Control

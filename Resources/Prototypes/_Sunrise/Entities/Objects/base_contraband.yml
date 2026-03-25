@@ -13,3 +13,11 @@
   components:
   - type: Contraband
     allowedJobs: [ SalvageSpecialist ]
+
+- type: entity
+  id: BaseSovietContraband
+  parent: BaseMajorContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Soviet

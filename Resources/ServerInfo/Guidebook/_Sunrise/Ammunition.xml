@@ -112,7 +112,7 @@
 
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      Тяжёлый винтовочный (.308 / 7,62ммR)
+      Тяжёлый винтовочный (.308 / 7,62R)
       <GuideEntityEmbed Entity="CartridgeRifleHeavyFMJ" Caption="Патрон" Scale="1.0"/>
       <GuideEntityEmbed Entity="MagazineBoxHeavyRifleFMJ" Caption="Коробка" Scale="0.9"/>
       </Box>

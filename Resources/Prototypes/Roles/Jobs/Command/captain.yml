@@ -27,6 +27,13 @@
   canBeAntag: false
   displayWeight: 100 # Sunrise-Edit
   radioBold: true # Sunrise-Edit
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-commander
+  - job-alt-title-station-lord
+  - job-alt-title-chief-director
+  #- job-alt-title-passenger-plus # однажди может быть появится
+  # Sunrise-End
   accessGroups:
   - AllAccess
   special:

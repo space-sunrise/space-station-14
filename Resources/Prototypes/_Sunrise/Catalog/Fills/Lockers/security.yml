@@ -629,7 +629,7 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector
-      weight: 75
+      weight: 70
       children:
       - id: GunSafePistolMk58
       - id: GunSafePistolG22
@@ -647,6 +647,8 @@
       - id: GunSafePistolVP78
       - id: GunSafePistolM1984
       - id: GunSafeSubMachineGunSkorpion
+    - id: SpawnerSafeLethal
+      weight: 5
 
 # ShotGuns Spawner
 - type: entity
@@ -671,7 +673,7 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector
-      weight: 85
+      weight: 80
       children:
       - id: GunSafeShotgunTrenchgun4034
       - id: GunSafeShotgunKammerer
@@ -686,6 +688,8 @@
       - id: GunSafeShotgunSPAS12
       - id: GunSafeShotgunEnforcer
       - id: GunSafeShotgunCombat
+    - id: SpawnerSafeLethal
+      weight: 5
 
 # Rifle Spawner
 - type: entity
@@ -710,7 +714,7 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector
-      weight: 75
+      weight: 70
       children:
       - id: GunSafeRifleLecter
     - !type:GroupSelector
@@ -723,6 +727,8 @@
       children:
       - id: GunSafeRifleM16A4
       - id: GunSafeRifleFamas
+    - id: SpawnerSafeLethal
+      weight: 5
 
 # SMG Spawner
 - type: entity
@@ -747,11 +753,11 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector
-      weight: 75
+      weight: 70
       children:
       - id: GunSafeSubMachineGunDrozd
     - !type:GroupSelector
-      weight: 25
+      weight: 20
       children:
       - id: GunSafeSubMachineGunDrozdMk2
       - id: GunSafeSubMachineGunWt550
@@ -761,6 +767,8 @@
       - id: GunSafeSubMachineGunMP7
       - id: GunSafeSubMachineGunSP91RC
       - id: GunSafeSubMachineGunVector
+    - id: SpawnerSafeLethal
+      weight: 5
 
 # Laser/energy Spawner
 - type: entity
@@ -785,7 +793,7 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector
-      weight: 75
+      weight: 70
       children:
       - id: GunSafeEnergyGun
       - id: GunSafeLaserCarbine
@@ -797,4 +805,62 @@
     - !type:GroupSelector
       weight: 5
       children:
+      - id: GunSafeEnergyGunMini
+    - id: SpawnerSafeLethal
+      weight: 5
+
+# Universal lethal safes spawner
+- type: entity
+  name: Armory Safe Spawner
+  id: SpawnerSafeLethal
+  parent: MarkerBase
+  suffix: Spawner Safe Universal Lethal
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: _Sunrise/Structures/Storage/Gunsafes/lethal.rsi
+          state: base
+        - sprite: _Sunrise/Structures/Storage/Gunsafes/lethal.rsi
+          state: rifle
+    - type: EntityTableSpawner
+      table: !type:NestedSelector
+        tableId: LethalSafes
+
+- type: entityTable
+  id: LethalSafes
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 25
+      children:
+      - id: GunSafeShotgunTrenchgun4034
+      - id: GunSafeShotgunRiot
+      - id: GunSafeShotgunSPAS12
+      - id: GunSafeShotgunCombat
+      - id: GunSafeShotgunEnforcer
+    - !type:GroupSelector
+      weight: 25
+      children:
+      - id: GunSafeSubMachineGunDrozd
+      - id: GunSafeSubMachineGunDrozdMk2
+      - id: GunSafeSubMachineGunWt550
+      - id: GunSafeSubMachineGunMP7
+      - id: GunSafeSubMachineGunSP91RC
+      - id: GunSafeSubMachineGunVector
+    - !type:GroupSelector
+      weight: 25
+      children:
+      - id: GunSafeRifleLecter
+      - id: GunSafeRifleAKMU
+      - id: GunSafeRifleLecterMk2
+      - id: GunSafeRifleM16A4
+      - id: GunSafeRifleFamas
+    - !type:GroupSelector
+      weight: 25
+      children:
+      - id: GunSafeEnergyGun
+      - id: GunSafeLaserCarbine
+      - id: GunSafeEnergyGunSMG
+      - id: GunSafeLaserGunSMG
       - id: GunSafeEnergyGunMini
