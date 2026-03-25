@@ -365,6 +365,8 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Pants/Woman/captain_black.rsi
     equippedState: female_thong
+  - type: StaticPrice
+    price: 3333
 
 - type: entity
   parent: ClothingPantsStorageBase
@@ -378,6 +380,8 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Pants/Woman/captain_white.rsi
     equippedState: female_thong
+  - type: StaticPrice
+    price: 1333
 
 - type: entity
   parent: ClothingPantsStorageBase
@@ -547,6 +551,8 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Pants/Man/captain_black.rsi
     equippedState: male_boxers
+  - type: StaticPrice
+    price: 3666
 
 - type: entity
   parent: ClothingPantsStorageBase
@@ -560,6 +566,8 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Pants/Man/captain_white.rsi
     equippedState: male_boxers
+  - type: StaticPrice
+    price: 1666
 
 - type: entity
   parent: ClothingPantsStorageBase

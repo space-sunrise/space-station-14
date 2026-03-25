@@ -218,6 +218,8 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Bra/captain_black.rsi
     equippedState: female_bralette
+  - type: StaticPrice
+    price: 3333
 
 - type: entity
   parent: ClothingBraStorageBase
@@ -231,6 +233,8 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Bra/captain_white.rsi
     equippedState: female_bralette
+  - type: StaticPrice
+    price: 1500
 
 - type: entity
   parent: ClothingBraStorageBase

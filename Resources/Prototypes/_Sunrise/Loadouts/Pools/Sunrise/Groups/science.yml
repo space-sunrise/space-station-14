@@ -16,3 +16,54 @@
   loadouts:
   - ScientistPDA
   - SeniorResearcherPDA
+
+- type: loadoutGroup
+  id: SunriseResearchDirectorBra
+  name: loadout-group-research-director-bra
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ResearchDirectorBra
+  - StraplessBra
+  - WhiteNekoBra
+  - BlackNekoBra
+  - AssblastusaBra
+  - BikiniBra
+  - BraletteBra
+  - CommieBra
+  - KinkyBra
+  - LaceBra
+  - SportBra
+  - ThongBra
+  - UkBra
+
+- type: loadoutGroup
+  id: SunriseResearchDirectorPants
+  name: loadout-group-research-director-pants
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ResearchDirectorThong
+  - ResearchDirectorBoxers
+  - StraplessWomanPants
+  - BoxersManPants
+  - AssblastusaManPants
+  - BriefsManPants
+  - CommieManPants
+  - HeartsManPants
+  - KinkyManPants
+  - LongjohnsManPants
+  - MankiniManPants
+  - StripeManPants
+  - UkManPants
+  - NekoWhiteWomanPants
+  - NekoBlackWomanPants
+  - AssblastusaWomanPants
+  - BikiniWomanPants
+  - BraletteWomanPants
+  - CommieWomanPants
+  - KinkyWomanPants
+  - LaceWomanPants
+  - SportWomanPants
+  - ThongWomanPants
+  - UkWomanPants
