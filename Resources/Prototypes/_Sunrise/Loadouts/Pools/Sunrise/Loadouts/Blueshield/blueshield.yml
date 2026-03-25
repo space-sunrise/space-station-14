@@ -107,3 +107,31 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: MisterBlueShit50
+
+- type: loadout
+  id: BlueShieldBra
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:GroupLoadoutEffect
+    proto: MisterBlueShit5
+  equipment:
+    bra: ClothingBraBlueshield
+
+- type: loadout
+  id: BlueShieldThong
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:GroupLoadoutEffect
+    proto: MisterBlueShit5
+  equipment:
+    pants: ClothingPantsWomanBlueshield
+
+- type: loadout
+  id: BlueShieldBoxers
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MisterBlueShit5
+  equipment:
+    pants: ClothingPantsManBlueshield
