@@ -355,6 +355,32 @@
 
 - type: entity
   parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanCaptainBlack
+  name: women's black thong "Captain"
+  description: A black thong for the captain.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/captain_black.rsi
+    state: female_thong_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/captain_black.rsi
+    equippedState: female_thong
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanCaptainWhite
+  name: women's white thong "Captain"
+  description: A white thong for the captain.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/captain_white.rsi
+    state: female_thong_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/captain_white.rsi
+    equippedState: female_thong
+
+- type: entity
+  parent: ClothingPantsStorageBase
   id: ClothingPantsWomanHeadOfPersonnel
   name: women's thong "Head of Personnel"
   description: A thong in head of personnel colors.
@@ -473,7 +499,7 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManAdjutant
-  name: men's boxers "Adjutant"
+  name: boxers "Adjutant"
   description: Boxers in adjutant colors.
   components:
   - type: Sprite
@@ -486,7 +512,7 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManCMO
-  name: men's boxers "CMO"
+  name: boxers "CMO"
   description: Boxers in chief medical officer colors.
   components:
   - type: Sprite
@@ -499,7 +525,7 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManCaptain
-  name: men's boxers "Captain"
+  name: boxers "Captain"
   description: Boxers in captain colors.
   components:
   - type: Sprite
@@ -511,8 +537,34 @@
 
 - type: entity
   parent: ClothingPantsStorageBase
+  id: ClothingPantsManCaptainBlack
+  name: black boxers "Captain"
+  description: Black boxers for the captain.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/captain_black.rsi
+    state: male_boxers_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/captain_black.rsi
+    equippedState: male_boxers
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManCaptainWhite
+  name: white boxers "Captain"
+  description: White boxers for the captain.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/captain_white.rsi
+    state: male_boxers_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/captain_white.rsi
+    equippedState: male_boxers
+
+- type: entity
+  parent: ClothingPantsStorageBase
   id: ClothingPantsManHeadOfPersonnel
-  name: men's boxers "Head of Personnel"
+  name: boxers "Head of Personnel"
   description: Boxers in head of personnel colors.
   components:
   - type: Sprite
@@ -525,7 +577,7 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManHeadOfSecurity
-  name: men's boxers "Head of Security"
+  name: boxers "Head of Security"
   description: Boxers in head of security colors.
   components:
   - type: Sprite
@@ -538,7 +590,7 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManQuartermaster
-  name: men's boxers "Quartermaster"
+  name: boxers "Quartermaster"
   description: Boxers in quartermaster colors.
   components:
   - type: Sprite
@@ -551,7 +603,7 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManResearchDirector
-  name: men's boxers "Research Director"
+  name: boxers "Research Director"
   description: Boxers in research director colors.
   components:
   - type: Sprite
@@ -564,7 +616,7 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManBlueshield
-  name: men's boxers "Blueshield"
+  name: boxers "Blueshield"
   description: Boxers in blueshield colors.
   components:
   - type: Sprite
@@ -577,7 +629,7 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManChiefEngineer
-  name: men's boxers "Chief Engineer"
+  name: boxers "Chief Engineer"
   description: Boxers in chief engineer colors.
   components:
   - type: Sprite
