@@ -60,6 +60,9 @@
   - type: Tag
     tags:
     - NoXeno
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
   # Sunrise - End
 
 # stuff common to all military boots
@@ -82,6 +85,9 @@
   - type: Tag
     tags:
     - NoXeno
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
   # Sunrise - End
 
 - type: entity
@@ -112,6 +118,9 @@
   - type: Tag
     tags:
     - NoXeno
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
   # Sunrise - End
 
 # Sunrise - Start
