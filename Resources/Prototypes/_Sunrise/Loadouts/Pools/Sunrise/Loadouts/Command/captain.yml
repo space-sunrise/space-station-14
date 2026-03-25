@@ -22,7 +22,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobCaptain
-      time: 35h
+      time: 45h
   equipment:
     head: ClothingHeadCaptainCapBlack
 
@@ -44,7 +44,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobCaptain
-      time: 35h
+      time: 45h
   equipment:
     jumpsuit: ClothingUniformJumpsuitCaptainBlack
 
@@ -66,7 +66,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobCaptain
-      time: 35h
+      time: 45h
   equipment:
     jumpsuit: ClothingUniformJumpskirtCaptainBlack
 
@@ -113,7 +113,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobCaptain
-      time: 35h
+      time: 45h
   equipment:
     neck: ClothingNeckMantleCaptainBlack
 
@@ -124,7 +124,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobCaptain
-      time: 35h
+      time: 45h
   equipment:
     neck: ClothingNeckMantleCaptainBlackShoulder
 
@@ -146,7 +146,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobCaptain
-      time: 35h
+      time: 45h
   equipment:
     back: ClothingBackpackCaptainBlack
 
@@ -168,7 +168,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobCaptain
-      time: 35h
+      time: 45h
   equipment:
     back: ClothingBackpackSatchelCaptainBlack
 
@@ -190,7 +190,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobCaptain
-      time: 35h
+      time: 45h
   equipment:
     back: ClothingBackpackDuffelCaptainBlack
 
@@ -217,7 +217,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobCaptain
-      time: 35h
+      time: 45h
   equipment:
     gloves: ClothingHandsGlovesCaptainCapBlack
 
@@ -250,7 +250,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobCaptain
-      time: 35h
+      time: 45h
   equipment:
     outerClothing: ClothingOuterArmorCaptainCarapaceBlack
 
