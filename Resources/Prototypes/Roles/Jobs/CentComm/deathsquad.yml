@@ -24,7 +24,7 @@
     back: ClothingDeathSquadronBackpack # Sunrise-edit
     mask: ClothingMaskGasDeathSquad
     eyes: ClothingEyesHudSecurity
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltDeathSquad # Sunrise-edit
     # gloves: ClothingHandsGlovesCombat # Sunrise-edit
     outerClothing: ClothingOuterHardsuitDeathsquad
     shoes: ClothingShoesBootsMagAdv

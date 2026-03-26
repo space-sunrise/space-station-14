@@ -17,10 +17,6 @@
   canBeAntag: true # Sunrise-Edit
   radioBold: true # Sunrise-Edit
   displayWeight: 50 # Sunrise-Edit
-  # Sunrise-Start
-  alternativeTitles:
-  - job-alt-title-science-lead
-  # Sunrise-End
   access:
   - Research
   - Command

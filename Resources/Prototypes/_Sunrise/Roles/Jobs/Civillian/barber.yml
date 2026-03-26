@@ -8,8 +8,6 @@
   startingGear: BarberGear
   icon: "JobIconBarber"
   supervisors: job-supervisors-hop
-  alternativeTitles:
-  - job-alt-title-stylist
   access:
   - Barber
   - Service

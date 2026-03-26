@@ -11,10 +11,6 @@
   icon: "JobIconMedicalDoctor"
   supervisors: job-supervisors-cmo
   displayWeight: 20  # Sunrise
-  # Sunrise-Start
-  alternativeTitles:
-  - job-alt-title-surgeon
-  # Sunrise-End
   access:
   - Medical
   - Maintenance

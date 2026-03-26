@@ -9,12 +9,6 @@
   startingGear: ClownGear
   icon: "JobIconClown"
   supervisors: job-supervisors-hop
-  # Sunrise-Start
-  alternativeTitles:
-  - job-alt-title-jester
-  - job-alt-title-comedian
-  - job-alt-title-harlequin
-  # Sunrise-End
   access:
   - Theatre
   - Maintenance

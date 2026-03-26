@@ -4,12 +4,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicRaycast
-    maxDistance: 80.0
+    maxDistance: 45.0
   - type: HitscanBasicDamage
     damage:
       types:
-        Heat: 20
-        Structural: 13
+        Heat: 10
+        Structural: 10
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi

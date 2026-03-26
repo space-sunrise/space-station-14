@@ -11,10 +11,6 @@
   icon: "JobIconStationEngineer"
   supervisors: job-supervisors-ce
   displayWeight: 10  # Sunrise
-  # Sunrise-Start
-  alternativeTitles:
-  - job-alt-title-technician
-  # Sunrise-End
   access:
   - Maintenance
   - Engineering

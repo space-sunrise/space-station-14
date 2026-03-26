@@ -102,6 +102,11 @@
     radius: 3.5
     color: blue
     energy: 0.75
+  - type: RadarBlip
+    color: "#55B8FF"
+    scale: 1.1
+    shape: Circle # Sunrise-Edit
+    requireInSpace: true
 
 - type: entity
   name: EMP impulse
@@ -128,6 +133,11 @@
     radius: 4
     color: blue
     energy: 1
+  - type: RadarBlip
+    color: "#339CFF"
+    scale: 1.35
+    shape: Circle # Sunrise-Edit
+    requireInSpace: true
   - type: ContainerContainer
     containers:
       cluster-payload: !type:Container
@@ -180,6 +190,19 @@
       path: /Audio/Effects/tesla.ogg
     range: 15
     volume: -5
+  - type: RadarBlip
+    color: "#2F8BFF"
+    scale: 1.25
+    shape: Circle # Sunrise-Edit
+    requireInSpace: true
+
+- type: entity
+  id: TeslaGunBulletOrion # Sunrise-Add
+  parent: TeslaGunBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    shape: Circle
 
 - type: entity
   parent: BaseBullet
@@ -773,6 +796,61 @@
     damage: 80
 # endregion Timed Grenades And Artillery
 
+- type: entity
+  id: BulletCannonBallTracked
+  parent: BulletCannonBall
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FFDD00"
+    scale: 1
+    shape: Circle
+    requireInSpace: true
+
+- type: entity
+  id: BulletEMPCannonBallTracked
+  parent: BulletEMP
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#44B7FF"
+    scale: 1
+    shape: Circle
+    requireInSpace: true
+
+- type: entity
+  id: BulletFuzeCannonBallTracked
+  parent: BulletFuzeCannonBall
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FFDD00"
+    scale: 1
+    shape: Circle
+    requireInSpace: true
+
+- type: entity
+  id: BulletAntiMaterielCannonBallTracked
+  parent: BulletAntiMaterielCannonBall
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FF6666"
+    scale: 1
+    shape: Circle
+    requireInSpace: true
+
+- type: entity
+  id: PelletGrapeshotSpreadTracked
+  parent: PelletGrapeshotSpread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FF6666"
+    scale: 0.5
+    shape: Circle
+    requireInSpace: true
+
 # region Timed Utility Grenades
 - type: entity
   id: BulletGrenadeFragTimer
@@ -842,6 +920,11 @@
         Structural: 15
   - type: StaminaDamageOnCollide
     damage: 5
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.3
+    shape: Triangle
+    requireInSpace: true
 # endregion Timed Utility Grenades
 
 # region Anti-Materiel Grenade Bullets
@@ -870,6 +953,11 @@
     triggerKey: trigger
     fillPrototype: PelletClusterLessLethal
     capacity: 10
+  - type: RadarBlip
+    color: "#9ACD32"
+    scale: 0.3
+    shape: Square
+    requireInSpace: true
 
 - type: entity
   id: BulletAntiMaterielBlast
@@ -889,6 +977,11 @@
     intensitySlope: 4
     maxIntensity: 10
     canCreateVacuum: false
+  - type: RadarBlip
+    color: "#FFAA33"
+    scale: 0.3
+    shape: Square
+    requireInSpace: true
 
 - type: entity
   id: BulletAntiMaterielEMP
@@ -916,6 +1009,77 @@
     damage:
       types:
         Shock: 15
+  - type: RadarBlip
+    color: "#4DB8FF"
+    scale: 0.3
+    shape: Square
+    requireInSpace: true
+
+- type: entity
+  id: BulletAntiMaterielTracked
+  parent: BulletAntiMateriel
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.3
+    shape: Triangle
+    requireInSpace: true
+
+- type: entity
+  id: BulletGrenadeFragArtillery
+  parent: BulletGrenadeFrag
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#9ACD32"
+    scale: 0.75
+    shape: Square
+    requireInSpace: true
+
+- type: entity
+  id: BulletGrenadeBatonArtillery
+  parent: BulletGrenadeBaton
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.75
+    shape: Square
+    requireInSpace: true
+
+- type: entity
+  id: BulletGrenadeBlastArtillery
+  parent: BulletGrenadeBlast
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FFAA33"
+    scale: 0.75
+    shape: Square
+    requireInSpace: true
+
+- type: entity
+  id: BulletGrenadeFlashArtillery
+  parent: BulletGrenadeFlash
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.75
+    shape: Square
+    requireInSpace: true
+
+- type: entity
+  id: BulletGrenadeEMPArtillery
+  parent: BulletGrenadeEMP
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#4DB8FF"
+    scale: 0.75
+    shape: Square
+    requireInSpace: true
 
 # endregion Anti-Materiel Grenade Bullets
 
