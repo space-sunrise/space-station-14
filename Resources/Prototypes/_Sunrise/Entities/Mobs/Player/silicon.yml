@@ -332,7 +332,7 @@
   - type: GhostTakeoverAvailable
 
 - type: entity
-  parent: SyndicateSaboteurBorgChassisDerelict
+  parent: SyndicateSaboteurBorgChassisDerelictSunrise
   id: PlayerSyndicateSaboteurBorgDerelict
   suffix: Battery, Module
   components:
