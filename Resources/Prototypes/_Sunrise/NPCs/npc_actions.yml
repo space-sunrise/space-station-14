@@ -1,0 +1,276 @@
+# region Grenade
+- type: entity
+  id: GunGrenadeExplosiveShrapnel
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 75
+    rechargeSound:
+      path: /Audio/_Sunrise/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletGrenadeExplosiveShrapnel
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 8
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+
+- type: entity
+  id: ActionGunGrenadeExplosiveShrapnel
+  parent: BaseAction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 75
+    checkCanInteract: false
+    icon:
+      sprite: Objects/Weapons/Grenades/grenade.rsi
+      state: icon
+    itemIconStyle: NoItem
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+  - type: SpeakOnAction
+    sentence: action-speech-soviet-grenade
+
+- type: entity
+  id: GunGrenadeSmoke
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 30
+    rechargeSound:
+      path: /Audio/_Sunrise/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletSmokeGrenadeQuick
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+
+- type: entity
+  id: ActionGunGrenadeSmoke
+  parent: BaseAction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 75
+    checkCanInteract: false
+    icon:
+      sprite: Objects/Weapons/Grenades/smoke.rsi
+      state: icon
+    itemIconStyle: NoItem
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+  - type: SpeakOnAction
+    sentence: action-speech-soviet-smoke
+
+- type: entity
+  id: ActionGunGrenadeStinger
+  parent: BaseAction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 75
+    checkCanInteract: false
+    icon:
+      sprite: Objects/Weapons/Grenades/stingergrenade.rsi
+      state: icon
+    itemIconStyle: NoItem
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: BulletGrenadeStinger
+      speed: 8
+  - type: SpeakOnAction
+    sentence: action-speech-pirate-grenade-stinger
+
+- type: entity
+  id: ActionGunGrenadeIncendiary
+  parent: BaseAction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 75
+    checkCanInteract: false
+    icon:
+      sprite: Objects/Weapons/Grenades/pyrogrenade.rsi
+      state: icon
+    itemIconStyle: NoItem
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: BulletGrenadeIncendiary
+      speed: 8
+  - type: SpeakOnAction
+    sentence: action-speech-pirate-grenade-incendiary
+
+- type: entity
+  id: ActionGunGrenadeShrapnel
+  parent: BaseAction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 75
+    checkCanInteract: false
+    icon:
+      sprite: Objects/Weapons/Grenades/shrapnelgrenade.rsi
+      state: icon
+    itemIconStyle: NoItem
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: BulletGrenadeShrapnel
+      speed: 8
+  - type: SpeakOnAction
+    sentence: action-speech-pirate-grenade-shrapnel
+
+- type: entity
+  id: ActionGunGrenadeFireBomb
+  parent: BaseAction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 75
+    checkCanInteract: false
+    icon:
+      sprite: Objects/Weapons/Bombs/ied.rsi
+      state: icon
+    itemIconStyle: NoItem
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: BulletImprovisedGrenadeFirebomb
+      speed: 8
+  - type: SpeakOnAction
+    sentence: action-speech-pirate-grenade-firebomb
+
+- type: entity
+  id: ActionGunGrenadeGlassShrapnel
+  parent: BaseAction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 75
+    checkCanInteract: false
+    icon:
+      sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/explosives.rsi
+      state: glass
+    itemIconStyle: NoItem
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: BulletImprovisedGrenadeGlassShrapnel
+      speed: 8
+  - type: SpeakOnAction
+    sentence: action-speech-pirate-grenade-glass-shrapnel
+
+- type: entity
+  id: ActionGunGrenadeFuzeBall
+  parent: BaseAction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 75
+    checkCanInteract: false
+    icon:
+      sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+      state: fuzeball
+    itemIconStyle: NoItem
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: BulletFuzeCannonBall
+      speed: 8
+  - type: SpeakOnAction
+    sentence: action-speech-pirate-grenade-fuze-ball
+
+- type: entity
+  id: ActionGunGrenadeSmokeSpell
+  parent: BaseAction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 30
+    checkCanInteract: false
+    icon:
+      sprite: Objects/Weapons/Grenades/smoke.rsi
+      state: icon
+    itemIconStyle: NoItem
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: BulletSmokeGrenadeQuick
+      speed: 8
+  - type: SpeakOnAction
+    sentence: action-speech-soviet-smoke
+  # endregion
+
+# region Soviet
+- type: entity
+  id: GunSideArmFan
+  name: trusty Lucky 45
+  description: Shoots bullets.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
+  - type: BasicEntityAmmoProvider
+    proto: CartridgeMagnumIncendiary
+    capacity: 5
+    count: 5
+  - type: Gun
+    minAngle: 3
+    maxAngle: 9
+    fireRate: 3
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+    soundEmpty: null
+    projectileSpeed: 20
+
+- type: entity
+  id: ActionSideArmFan
+  parent: BaseAction
+  name: "[color=yellow]Lucky 45[/color]"
+  description: "Luck always beats skill, ya weasel. [color=yellow]5 second between ammo recharges.[/color]"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 5
+    icon: { sprite : Objects/Weapons/Guns/Revolvers/python.rsi, state: icon }
+    priority: 2
+    itemIconStyle: BigAction
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+  # endregion

@@ -103,8 +103,6 @@ ent-MobPirateAllTiersSpawner = pirate T1-T3 spawner
 
 ent-MobPirateT1KnifeBola = scrap breacher
     .desc = A scrap breacher equipped with a bola.
-ent-MobPirateT1KnifeFirebomb = scrap breacher
-    .desc = A scrap breacher carrying incendiary ordnance.
 ent-MobPirateT1KnifeStinger = scrap breacher
     .desc = A scrap breacher carrying stinger grenades.
 ent-MobPirateT1KnifeTearGas = scrap breacher
@@ -124,3 +122,9 @@ ent-MobPirateT2ShotgunMiniBall = pirate blunderbuss
 ent-MobPirateT3BorgAssault = assault borg
     .desc = An elite pirate assault borg.
 
+action-speech-pirate-grenade-stinger = Flash out!!
+action-speech-pirate-grenade-shrapnel = Shrapnel!!
+action-speech-pirate-grenade-incendiary = Incendiary!!
+action-speech-pirate-grenade-fuze-ball = Anchor in your ass!!
+action-speech-pirate-grenade-glass-shrapnel = Junk bomb!!
+action-speech-pirate-grenade-firebomb = Fireball!!
