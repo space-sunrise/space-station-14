@@ -353,7 +353,7 @@
     - item: ChameleonProjector
 
 - type: entity
-  id: BorgModuleSyndicatePentration
+  id: BorgModuleSyndicatePenetration
   parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
   name: syndicate pentration cyborg module
   components:

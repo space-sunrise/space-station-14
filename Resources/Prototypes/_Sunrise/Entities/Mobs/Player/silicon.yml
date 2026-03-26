@@ -350,7 +350,7 @@
       borg_module:
       - BorgModuleSyndicateCombatAdvanced
       - BorgModuleSyndicateHypoAdvanced
-      - BorgModuleSyndicatePentration
+      - BorgModuleSyndicatePenetration
   - type: ItemSlots
     slots:
       cell_slot:
