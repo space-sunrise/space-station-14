@@ -355,7 +355,7 @@
 - type: entity
   id: BorgModuleSyndicatePenetration
   parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
-  name: syndicate pentration cyborg module
+  name: syndicate penetration cyborg module
   components:
   - type: Sprite
     layers:
