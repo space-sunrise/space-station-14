@@ -240,6 +240,57 @@
   - UkWomanPants
 
 - type: loadoutGroup
+  id: AdjutantBra
+  name: loadout-group-adj-bra
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - AdjutantBra
+  - StraplessBra
+  - WhiteNekoBra
+  - BlackNekoBra
+  - AssblastusaBra
+  - BikiniBra
+  - BraletteBra
+  - CommieBra
+  - KinkyBra
+  - LaceBra
+  - SportBra
+  - ThongBra
+  - UkBra
+
+- type: loadoutGroup
+  id: AdjutantPants
+  name: loadout-group-adj-pants
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - AdjutantThong
+  - AdjutantBoxers
+  - StraplessWomanPants
+  - BoxersManPants
+  - AssblastusaManPants
+  - BriefsManPants
+  - CommieManPants
+  - HeartsManPants
+  - KinkyManPants
+  - LongjohnsManPants
+  - MankiniManPants
+  - StripeManPants
+  - UkManPants
+  - NekoWhiteWomanPants
+  - NekoBlackWomanPants
+  - AssblastusaWomanPants
+  - BikiniWomanPants
+  - BraletteWomanPants
+  - CommieWomanPants
+  - KinkyWomanPants
+  - LaceWomanPants
+  - SportWomanPants
+  - ThongWomanPants
+  - UkWomanPants
+
+- type: loadoutGroup
   id: BlueshieldGun
   name: loadout-group-blueshield-gun
   minLimit: 1
