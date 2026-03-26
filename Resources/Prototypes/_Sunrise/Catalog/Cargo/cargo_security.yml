@@ -29,16 +29,6 @@
   group: market
 
 - type: cargoProduct
-  id: SecurityReflective
-  icon:
-    sprite: Clothing/OuterClothing/Armor/armor_reflec.rsi
-    state: icon
-  product: CrateSecurityArmorReflective
-  cost: 1250
-  category: cargoproduct-category-name-security
-  group: market
-
-- type: cargoProduct
   id: SecurityHeatAbsorb
   icon:
     sprite: _Starlight/Clothing/OuterClothing/Armor/heatabsorbent.rsi
