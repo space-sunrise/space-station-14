@@ -3,16 +3,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Content.Server._Sunrise.AnnouncementSpeaker;
 using Content.Server.Chat.Systems;
-using Content.Server.GameTicking;
 using Content.Server.Power.Components;
 using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared._Sunrise.AnnouncementSpeaker.Components;
 using Content.Shared._Sunrise.AnnouncementSpeaker.Events;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
-using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -55,6 +52,7 @@ public sealed partial class TTSSystem : EntitySystem
     private bool _isEnabled;
     private string _defaultAnnounceVoice = "Hanson";
     private List<ICommonSession> _ignoredRecipients = new();
+    private const float AnnouncementTtsVolumeModifier = 0.75f; // громкость объявлений в динамиках по сравнению с обычной речью
     private const float WhisperVoiceVolumeModifier = 0.6f; // how far whisper goes in world units
     private const int WhisperVoiceRange = 3; // how far whisper goes in world units
     private string _radioEffect = string.Empty;
@@ -204,7 +202,14 @@ public sealed partial class TTSSystem : EntitySystem
                 }
 
                 // Play announcement sound via PVS from this speaker
-                var audioParams = AudioParams.Default.WithVolume(-2f * speakerComp.VolumeModifier).WithMaxDistance(speakerComp.Range);
+                var audioParams = (ev.AnnouncementSoundParams ?? AudioParams.Default).WithMaxDistance(speakerComp.Range);
+
+                if (speakerComp.VolumeModifier <= 0f)
+                    audioParams = audioParams.WithVolume(float.NegativeInfinity);
+
+                else if (speakerComp.VolumeModifier != 1f)
+                    audioParams = audioParams.AddVolume(SharedAudioSystem.GainToVolume(speakerComp.VolumeModifier));
+
                 _audioSystem.PlayPvs(ev.AnnouncementSound, speaker, audioParams);
             }
         }
@@ -234,18 +239,21 @@ public sealed partial class TTSSystem : EntitySystem
             if (_ignoredRecipients.Contains(actor.PlayerSession))
                 continue;
 
-            var heardSpeakers = new List<NetEntity>();
+            var heardSpeakers = new List<MultiSpeakerTtsSource>();
             foreach (var (speakerUid, speakerComp) in speakerData)
             {
                 if (Transform(speakerUid).Coordinates.TryDistance(EntityManager, playerXform.Coordinates, out var dist) &&
                     dist <= speakerComp.Range)
                 {
-                    heardSpeakers.Add(GetNetEntity(speakerUid));
+                    heardSpeakers.Add(new MultiSpeakerTtsSource(
+                        _xforms.GetMapCoordinates(speakerUid),
+                        speakerComp.VolumeModifier,
+                        speakerComp.Range));
                 }
             }
             if (heardSpeakers.Count > 0)
             {
-                var evMulti = new PlayMultiSpeakerTTSEvent(heardSpeakers, ev.TtsData);
+                var evMulti = new PlayMultiSpeakerTTSEvent(heardSpeakers, ev.TtsData, volumeModifier: AnnouncementTtsVolumeModifier);
                 RaiseNetworkEvent(evMulti, actor.PlayerSession);
             }
         }
