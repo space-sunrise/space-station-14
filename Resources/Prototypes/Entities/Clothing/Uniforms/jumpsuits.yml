@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitDeathSquad
   name: death squad uniform
@@ -813,9 +813,9 @@
   description: A suit for special occasions.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/hos_formal.rsi
+    sprite: Clothing/Uniforms/Jumpsuit/hosformal.rsi
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/hos_formal.rsi
+    sprite: Clothing/Uniforms/Jumpsuit/hosformal.rsi
 
 - type: entity
   parent: [UnsensoredClothingUniformBase, BaseSyndicateContraband]

@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtBartender
   name: bartender's uniform
@@ -508,9 +508,9 @@
   description: A dress for special occasions.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/hos_formal_dress.rsi
+    sprite: Clothing/Uniforms/Jumpskirt/hosformaldress.rsi
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/hos_formal_dress.rsi
+    sprite: Clothing/Uniforms/Jumpskirt/hosformaldress.rsi
 
 - type: entity
   parent: [UnsensoredClothingUniformSkirtBase, BaseSyndicateContraband]

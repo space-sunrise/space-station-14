@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   parent: [ClothingHeadBaseButcherable, BaseFoldable]
   id: ClothingHeadHeadHatBaseFlippable
   abstract: true
@@ -280,9 +280,9 @@
   description: A baseball cap colored to match security's uniforms.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Soft/sec_soft.rsi
+    sprite: Clothing/Head/Soft/secsoft.rsi
   - type: Clothing
-    sprite: Clothing/Head/Soft/sec_soft.rsi
+    sprite: Clothing/Head/Soft/secsoft.rsi
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatSecsoft]
