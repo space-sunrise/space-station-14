@@ -122,11 +122,10 @@
 
   defaultModules:
   - BorgModuleStandart
+  - BorgModuleTool
   - BorgModuleMining
   - BorgModuleTraversal
   - BorgModuleAppraisal
-  - BorgModuleMiningCombat
-
   radioChannels:
   - Supply
   - Science
@@ -138,17 +137,6 @@
       volume: -15
 
   addComponents:
-  - type: BorgJetpack
-    acceleration: 1
-    friction: 0.3
-    weightlessModifier: 1.3
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.JetpackVisuals.Enabled:
-        enum.JetpackVisuals.Layer:
-          True: {state: icon-on}
-          False: {state: icon}
   - type: InnateItem
     instantActions:
     - HandheldStationMapUnpowered

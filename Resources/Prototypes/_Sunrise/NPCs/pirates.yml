@@ -2476,8 +2476,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      340: Critical
-      350: Dead
+      330: Critical
+      331: Dead
   - type: TriggerOnMobstateChange
     mobState:
     - Dead

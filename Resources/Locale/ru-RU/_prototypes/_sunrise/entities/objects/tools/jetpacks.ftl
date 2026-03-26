@@ -16,3 +16,6 @@ ent-JetpackSSFMarine = джетпак морпеха СССП
 ent-JetpackSSFMarineFilled = джетпак морпеха СССП
     .suffix = Полный
     .desc = { ent-JetpackSSFMarine.desc }
+ent-JetpackBorg = реактивный ранец борга
+    .suffix = Бесконечный
+    .desc = { ent-JetpackXenoborg.desc }
