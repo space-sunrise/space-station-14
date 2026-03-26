@@ -69,3 +69,11 @@
   components:
   - type: MindRole
     roleType: CorporateAligned
+
+- type: entity
+  parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostTSFAligned
+  name: Ghost Role (TSF Aligned)
+  components:
+  - type: MindRole
+    roleType: TSFAligned
