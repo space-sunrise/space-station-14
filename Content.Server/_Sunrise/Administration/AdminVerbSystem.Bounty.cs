@@ -2,6 +2,7 @@ using Content.Server.Antag;
 using Content.Server.Antag.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking.Rules.Components;
+using Content.Server.Objectives;
 using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Shared.Administration;
@@ -24,6 +25,7 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly SharedJobSystem _jobSystem = default!;
     [Dependency] private readonly TargetObjectiveSystem _targetObjective = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
 
     private void AddBountySmiteVerb(GetVerbsEvent<Verb> args)
     {
@@ -64,10 +66,11 @@ public sealed partial class AdminVerbSystem
 
         var traitorCount = 0;
         var query = EntityQueryEnumerator<TraitorRuleComponent>();
+        var antagQuery = GetEntityQuery<AntagSelectionComponent>();
 
         while (query.MoveNext(out var ruleUid, out _))
         {
-            if (!HasComp<AntagSelectionComponent>(ruleUid))
+            if (!antagQuery.HasComponent(ruleUid))
                 continue;
 
             foreach (var mind in _antag.GetAntagMinds(ruleUid))
@@ -80,10 +83,11 @@ public sealed partial class AdminVerbSystem
                 if (HasKillObjectiveOn(mind.Comp, targetMindId))
                     continue;
 
-                // Spawn the objective entity
-                var objectiveUid = Spawn("AdminBountyKillObjective");
+                // Create the objective through the objective system (validates ObjectiveComponent, runs assignment hooks)
+                if (_objectivesSystem.TryCreateObjective(mind.Owner, mind.Comp, "AdminBountyKillObjective") is not { } objectiveUid)
+                    continue;
 
-                // Set the target on the objective
+                // Set the target on the objective (must be done after creation since it's a runtime value)
                 _targetObjective.SetTarget(objectiveUid, targetMindId);
 
                 // Set the entity name (title) for the objective
