@@ -16,10 +16,6 @@
   supervisors: job-supervisors-hos
   canBeAntag: false
   displayWeight: 70  # Sunrise
-  # Sunrise-Start
-  alternativeTitles:
-  - job-alt-title-jailer
-  # Sunrise-End
   access:
   - Security
   - Brig
