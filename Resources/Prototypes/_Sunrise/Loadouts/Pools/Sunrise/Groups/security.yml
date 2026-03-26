@@ -15,14 +15,21 @@
   id: SunriseHeadofSecurityJumpsuit
   name: loadout-group-head-of-security-jumpsuit
   loadouts:
-  - HeadofSecurityJumpsuit
-  - HeadofSecurityJumpskirt
-  - HeadofSecurityTurtleneck
-  - HeadofSecurityTurtleneckSkirt
-  - HeadofSecurityFormalSuit
-  - HeadofSecurityFormalSkirt
+  - HeadofSecurityJumpsuitSecblu
+  - HeadofSecurityJumpskirtSecblu
+  - HeadofSecurityTurtleneckSecblu
+  - HeadofSecurityTurtleneckSkirtSecblu
+  - HeadofSecurityFormalSuitSecblu
+  - HeadofSecurityFormalSkirtSecblu
+  - HeadofSecurityJumpsuitSecred
+  - HeadofSecurityJumpskirtSecred
+  - HeadofSecurityTurtleneckSecred
+  - HeadofSecurityTurtleneckSkirtSecred
+  - HeadofSecurityFormalSuitSecred
+  - HeadofSecurityFormalSkirtSecred
   - HeadofSecurityJumpsuitHoSOld
   - HeadofSecurityJumpsuitUSSPBlack
+
 
 - type: loadoutGroup
   id: SunriseHeadofSecurityNeck
@@ -51,17 +58,72 @@
   name: loadout-group-warden-head
   minLimit: 0
   loadouts:
-  - WardenHead
-  - WardenBeret
+  - WardenBeretSecred
   - ClothingHeadHatCapWardenAlt
 
 - type: loadoutGroup
   id: SunriseWardenOuterClothing
   name: loadout-group-warden-outerclothing
   loadouts:
-  - WardenCoat
-  - WardenArmoredWinterCoat
   - ClothingOuterCoatWardenAlt
+  - WardenCoatSecblu
+  - WardenArmoredWinterCoatSecblu
+  - WardenCoatSecred
+  - WardenArmoredWinterCoatSecred
+
+- type: loadoutGroup
+  id: SunriseWardenJumpsuit
+  name: loadout-group-warden-jumpsuit
+  loadouts:
+  - WardenJumpsuitSecblu
+  - WardenJumpskirtSecblu
+  - WardenJumpsuitSecred
+  - WardenJumpskirtSecred
+
+- type: loadoutGroup
+  id: SunriseSecurityHead
+  name: loadout-group-security-head
+  loadouts:
+  - SecurityHelmet
+  - TrooperHat
+  - SecurityBeretSecblu
+  - SecurityHatSecblu
+  - SecurityBeretSecred
+  - SecurityHatSecred
+
+- type: loadoutGroup
+  id: SunriseSecurityJumpsuit
+  name: loadout-group-security-jumpsuit
+  loadouts:
+  - TrooperUniform
+  - SecurityJumpsuitSecblu
+  - SecurityJumpskirtSecblu
+  - SecurityJumpsuitGreySecblu
+  - SecurityJumpskirtGreySecblu
+  - SecurityJumpsuitSecred
+  - SecurityJumpskirtSecred
+  - SecurityJumpsuitGreySecred
+  - SecurityJumpskirtGreySecred
+
+- type: loadoutGroup
+  id: SunriseSecurityBackpack
+  name: loadout-group-security-backpack
+  loadouts:
+  - SecurityBackpackSecblu
+  - SecuritySatchelSecblu
+  - SecurityDuffelSecblu
+  - SecurityBackpackSecred
+  - SecuritySatchelSecred
+  - SecurityDuffelSecred
+
+- type: loadoutGroup
+  id: SunriseSecurityCadetJumpsuit
+  name: loadout-group-security-cadet-jumpsuit
+  loadouts:
+  - RedJumpsuit
+  - RedJumpskirt
+  - CadetJumpsuitDarkBlue
+  - CadetJumpskirtDarkBlue
 
 - type: loadoutGroup
   id: SunriseDetectiveNeck
