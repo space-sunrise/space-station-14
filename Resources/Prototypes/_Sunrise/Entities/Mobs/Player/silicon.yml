@@ -300,6 +300,38 @@
     price: 500
 
 - type: entity
+  parent: SyndicateReaperBorgChassisDerelictSunrise
+  id: PlayerSyndicateReaperBorgDerelict
+  suffix: Battery, Module
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - PositronicBrain
+      borg_module:
+      - BorgModuleSyndicateGeneric
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+  - type: RandomMetadata
+    nameSegments: [NamesDeathCommando]
+
+- type: entity
+  parent: PlayerSyndicateReaperBorgDerelict
+  id: PlayerBorgSyndicateReaperDerelictGhostRoleSunrise
+  suffix: Ghost role
+  components:
+  - type: GhostRole
+    name: ghost-role-information-derelict-syndicate-reaper-cyborg-name
+    description: ghost-role-information-derelict-syndicate-reaper-cyborg-description
+    rules: ghost-role-information-silicon-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+
+- type: entity
   parent: SyndicateSaboteurBorgChassisDerelict
   id: PlayerSyndicateSaboteurBorgDerelict
   suffix: Battery, Module
