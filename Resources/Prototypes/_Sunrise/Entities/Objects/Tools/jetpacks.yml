@@ -59,6 +59,12 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: JetpackChiefEngineerFilled
+  - type: GasRegeneration
+    airRegenerate:
+      volume: 5
+      temperature: 293.15
+      moles:
+      - 0.0005
 
 - type: entity
   id: JetpackVoidEngineerFilled
