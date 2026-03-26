@@ -71,6 +71,65 @@
   parent: BasePortableSurveillanceCameraMonitor
   suffix: Handheld, Unpowered
 
+# Handheld Gunnery Console
+
+- type: entity
+  parent: BaseItem
+  id: BaseHandheldGunneryConsole
+  name: portable gunnery console
+  description: A portable tactical console for remote aiming and firing of linked shuttle cannons.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/portable_camera_viewer.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: monitor
+      shader: unshaded
+      visible: true
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: GunneryConsole
+  - type: RadarConsole
+  - type: ActivatableUI
+    key: enum.GunneryConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.GunneryConsoleUiKey.Key:
+        type: GunneryConsoleBoundUserInterface
+  - type: Appearance
+
+- type: entity
+  id: HandheldGunneryConsole
+  parent:
+  - BaseHandheldGunneryConsole
+  - BaseHandheldComputer
+  suffix: HandHeld, Powered
+
+- type: entity
+  id: HandheldGunneryConsoleEmpty
+  parent: HandheldGunneryConsole
+  suffix: HandHeld, Empty
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/portable_camera_viewer.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: monitor
+      shader: unshaded
+      visible: false
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  id: HandheldGunneryConsoleUnpowered
+  parent: BaseHandheldGunneryConsole
+  suffix: Handheld, Unpowered
+
 # Handheld Criminal Records
 
 - type: entity
