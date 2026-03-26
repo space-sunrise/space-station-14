@@ -4,8 +4,8 @@
   - LawyerNeck
   - LawyerJumpsuit
   - CommonBackpack
-  - Trinkets
-  - Survival
+  - SunriseTrinkets
+  - SunriseSurvival
   - GroupSpeciesBreathTool
   - Bra
   - Pants
@@ -16,8 +16,8 @@
   id: JobMagistrat
   groups:
   - CommonBackpack
-  - Trinkets
-  - Survival
+  - SunriseTrinkets
+  - SunriseSurvival
   - GroupSpeciesBreathTool
   - Bra
   - Pants
@@ -29,7 +29,7 @@
   groups:
   - UniformNTR
   - BackNTR
-  - Trinkets
+  - SunriseTrinkets
   - SecurityTrinkets
   - GroupSpeciesBreathTool
   - Bra
@@ -44,7 +44,7 @@
   - BrigmedicBackpack
   - BrigmedicInjectors
   - SurvivalSecurity
-  - Trinkets
+  - SunriseTrinkets
   - SecurityTrinkets
   - GroupSpeciesBreathTool
   - SunriseSecurityGun
@@ -58,8 +58,8 @@
   groups:
   - CentCommOperatorHats
   - CentCommOperatorJumpsuit
-  - Trinkets
-  - Survival
+  - SunriseTrinkets
+  - SunriseSurvival
   - GroupSpeciesBreathTool
   - Bra
   - Pants
@@ -71,8 +71,8 @@
   groups:
   - CentCommOperatorHats
   - CentCommOperatorJumpsuit
-  - Trinkets
-  - Survival
+  - SunriseTrinkets
+  - SunriseSurvival
   - GroupSpeciesBreathTool
   - Bra
   - Pants
@@ -86,7 +86,7 @@
   - BlueShieldJumpsuit
   - BlueShieldBackpack
   - BlueShieldBelt
-  - Trinkets
+  - SunriseTrinkets
   - SurvivalSecurity
   - GroupSpeciesBreathTool
   - Bra
@@ -102,7 +102,7 @@
   - BlueShieldBackpack
   - BlueShieldBelt
   - BlueshieldGun
-  - Trinkets
+  - SunriseTrinkets
   - SurvivalSecurity
   - GroupSpeciesBreathTool
   - Bra
@@ -120,7 +120,7 @@
   - SecurityShoes
   - SunriseSecurityGun
   - SurvivalSecurity
-  - Trinkets
+  - SunriseTrinkets
   - SecurityTrinkets
   - GroupSpeciesBreathTool
   - Bra
@@ -131,13 +131,13 @@
 - type: roleLoadout
   id: JobSeniorResearcher
   groups:
-  - Glasses
+  - SunriseGlasses
   - SeniorResearcherJumpsuit
   - ScientistGloves
   - ScientistBackpack
   - ScientistShoes
-  - Survival
-  - Trinkets
+  - SunriseSurvival
+  - SunriseTrinkets
   - GroupSpeciesBreathTool
   - Bra
   - Pants
@@ -148,7 +148,7 @@
   id: JobSeniorPhysician
   groups:
   - SeniorPhysicianHead
-  - Glasses
+  - SunriseGlasses
   - SeniorPhysicianMask
   - SeniorPhysicianNeck
   - SeniorPhysicianJumpsuit
@@ -158,7 +158,7 @@
   - SeniorPhysicianBelt
   - SeniorPhysicianShoes
   - SurvivalMedical
-  - Trinkets
+  - SunriseTrinkets
   - MedicalTrinkets
   - GroupSpeciesBreathTool
   - Bra
@@ -170,7 +170,7 @@
   id: JobMedicalPathologist
   groups:
   - PathologistHead
-  - Glasses
+  - SunriseGlasses
   - PathologistMask
   - PathologistNeck
   - MedicalDoctorJumpsuit
@@ -180,7 +180,7 @@
   - MedicalBackpack
   - GroupTankHarness
   - SurvivalMedical
-  - Trinkets
+  - SunriseTrinkets
   - MedicalTrinkets
   - GroupSpeciesBreathToolMedical
   - Bra
@@ -199,8 +199,8 @@
   - SeniorEngineerGloves
   - SeniorEngineerShoes
   - StationSeniorEngineerBackpack
-  - SurvivalExtended
-  - Trinkets
+  - SunriseSurvivalExtended
+  - SunriseTrinkets
   - TrinketsEngineering
   - GroupSpeciesBreathTool
   - Bra
@@ -217,8 +217,8 @@
   - RoboticistOuterClothing
   - ScientistBackpack
   - ScientistShoes
-  - Survival
-  - Trinkets
+  - SunriseSurvival
+  - SunriseTrinkets
   - GroupSpeciesBreathTool
   - Bra
   - Pants
@@ -234,7 +234,7 @@
   - SecurityBackpack
   - SunriseSecurityGun
   - SurvivalSecurity
-  - Trinkets
+  - SunriseTrinkets
   - SecurityTrinkets
   - GroupSpeciesBreathTool
   - Bra
@@ -405,8 +405,8 @@
   - NanoTrasenRepresentativeJumpsuit
   - NanoTrasenRepresentativeOuterClothing
   - NanoTrasenRepresentativeBackpack
-  - Survival
-  - Trinkets
+  - SunriseSurvival
+  - SunriseTrinkets
   - GroupSpeciesBreathTool
   - Bra
   - Pants
@@ -418,8 +418,8 @@
   groups:
   - BarberJumpsuit
   - CommonBackpack
-  - Survival
-  - Trinkets
+  - SunriseSurvival
+  - SunriseTrinkets
   - GroupSpeciesBreathTool
   - Bra
   - Pants
@@ -433,8 +433,8 @@
   - AdjutantJumpsuit
   - AdjutantOuterClothing
   - AdjutantBackpack
-  - Survival
-  - Trinkets
+  - SunriseSurvival
+  - SunriseTrinkets
   - GroupSpeciesBreathTool
   - Bra
   - Pants
@@ -449,9 +449,9 @@
   - SunriseCargoTechGloves
   - CargoTechnicianBackpack
   - GroupTankHarness
-  - Survival
+  - SunriseSurvival
   - TrinketsCargo
-  - Trinkets
+  - SunriseTrinkets
   - GroupSpeciesBreathTool
   - Bra
   - Pants
@@ -461,7 +461,7 @@
 - type: roleLoadout
   id: RoleSurvivalAssaultOps
   groups:
-  - SurvivalSyndicate
+  - SunriseSurvivalSyndicate
   - GroupSpeciesBreathTool
   - GroupPocketTankDouble
   - Contributors
@@ -470,16 +470,16 @@
   id: JobMiningSpecialist
   groups:
   - SunriseSalvageHead
-  - Glasses
+  - SunriseGlasses
   - SunriseSalvageMask
   - SunriseSalvageNeck
-  - SalvageSpecialistOuterClothing
+  - SunriseSalvageSpecialistOuterClothing
   - SunriseSalvageGloves
-  - SalvageSpecialistShoes
+  - SunriseSalvageSpecialistShoes
   - SalvageSpecialistBackpack
   - GroupTankHarness
-  - Survival
-  - Trinkets
+  - SunriseSurvival
+  - SunriseTrinkets
   - TrinketsCargo
   - GroupSpeciesBreathTool
   - Bra
@@ -538,8 +538,8 @@
   - ComMaidGloves
   - ComMaidShoes
   - ComMaidBackpack
-  - Survival
-  - Trinkets
+  - SunriseSurvival
+  - SunriseTrinkets
   - GroupSpeciesBreathTool
   - Bra
   - Pants
@@ -549,5 +549,5 @@
 - type: roleLoadout
   id: RoleSurvivalScooner
   groups:
-  - SurvivalExtended
+  - SunriseSurvivalExtended
   - GroupSpeciesBreathTool

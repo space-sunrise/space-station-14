@@ -58,6 +58,7 @@ ent-ClothingUniformJumpsuitAtmosSyndie = Акробатический комби
     .desc = { ent-ClothingUniformJumpsuitAtmos.desc }
 ent-ClothingUniformJumpsuitArmouredBlack = чёрный адвокатский костюм
     .desc = Казалось бы, простой деловой костюм... пока не отлетела пуля...
+    .suffix = бронированный
 ent-ClothingUniformJumpsuitBlueshieldJS = комбинезон синего щита
     .desc = { ent-ClothingUniformBase.desc }
 ent-ClothingUniformJumpsuitMiningSpecialist = комбинезон специалиста по добыче

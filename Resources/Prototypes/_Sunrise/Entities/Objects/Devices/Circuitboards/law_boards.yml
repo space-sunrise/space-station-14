@@ -1,0 +1,23 @@
+- type: entity
+  id: DeathSquadDirectivesCircuitBoard
+  parent: BaseElectronics
+  name: circuit board (Death Squad Directives)
+  description: An electronics board containing the Death Squad Directives lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: DeathSquadLawset
+
+- type: entity
+  id: ERTDirectivesCircuitBoard
+  parent: BaseElectronics
+  name: circuit board (ERT Directives)
+  description: An electronics board containing the ERT Directives lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: ERTLawset

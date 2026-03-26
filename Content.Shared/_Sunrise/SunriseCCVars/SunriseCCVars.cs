@@ -509,4 +509,25 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<int> GameIPBlockingUnhandledMessageRateLimit =
         CVarDef.Create("game.ipblocking_unhandled_message_rate_limit", 10, CVar.SERVERONLY);
 
+
+    /*
+    LOADOUTS
+    */
+
+    /// <summary>
+    /// Включает кастомный пул loadout
+    /// Если выключено, используется стандартный пул из loadout-прототипов
+    /// Имя пула задаётся в custom_loadout.pool
+    /// </summary>
+    public static readonly CVarDef<bool> CustomLoadoutEnabled =
+        CVarDef.Create("custom_loadout.enabled", true, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Имя кастомного пула loadout
+    /// Используется только если custom_loadout.enabled = true
+    /// Варианты: "SunriseLoadout"
+    /// </summary>
+    public static readonly CVarDef<string> LoadoutPool =
+        CVarDef.Create("custom_loadout.pool", "SunriseLoadout", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
 }

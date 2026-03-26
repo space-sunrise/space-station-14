@@ -9,3 +9,12 @@
   id: MusicianLeatherJacket
   equipment:
     outerClothing: ClothingOuterLeatherCoat
+
+- type: loadoutEffectGroup
+  id: MusicGoldenInstrument
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMusician
+      time: 360000 #100 hrs

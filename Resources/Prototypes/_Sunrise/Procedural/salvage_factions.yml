@@ -12,9 +12,6 @@
     - proto: MobPirateT1KnifeStinger
       cost: 4
       prob: 0.15
-    - proto: MobPirateT1KnifeFirebomb
-      cost: 4
-      prob: 0.1
     - proto: MobPirateT1KnifeBola
       cost: 4
       prob: 0.15
@@ -163,23 +160,17 @@
       cost: 4
       prob: 0.05
     - proto: MobPirateT2ECutlass
-      cost: 4
-      prob: 0.05
+      cost: 7
+      prob: 0.02
     - proto: MobPirateT2ECutlassTearGas
-      cost: 4
-      prob: 0.05
+      cost: 7
+      prob: 0.02
     - proto: MobPirateT2ECutlassStinger
-      cost: 5
-      prob: 0.05
+      cost: 7
+      prob: 0.02
     - proto: MobPirateT2ECutlassFirebomb
-      cost: 5
-      prob: 0.05
-    - proto: MobPirateT2ECutlassBola
-      cost: 5
-      prob: 0.05
-    - proto: MobPirateT2ECutlassFuzeCannonBall
-      cost: 8
-      prob: 0.05
+      cost: 7
+      prob: 0.02
     # range
     - proto: MobPirateT2Shotgun
       cost: 6
