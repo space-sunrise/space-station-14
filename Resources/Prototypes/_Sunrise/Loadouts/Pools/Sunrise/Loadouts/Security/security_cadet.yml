@@ -6,7 +6,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Security
-      time: 18000 #5 hrs
+      time: 5h
 
 - type: loadoutEffectGroup
   id: MasterCadet10h
@@ -15,7 +15,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Security
-      time: 36000 #10 hrs
+      time: 10h
 
 - type: loadoutEffectGroup
   id: MasterCadet20h
@@ -24,7 +24,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Security
-      time: 72000 #20 hrs
+      time: 20h
 
 # Weapons
 - type: loadout

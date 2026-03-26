@@ -1,5 +1,5 @@
 - type: vendingMachineInventory
-  id: SecDrobeSunriseInventory
+  id: SunriseSecDrobeInventory
   startingInventory:
     ClothingBackpackSecuritySecblu: 3
     ClothingBackpackSatchelSecuritySecblu: 3

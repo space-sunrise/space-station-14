@@ -4,7 +4,6 @@
   - SunriseHeadofSecurityHead
   - SunriseHeadofSecurityNeck
   - SunriseHeadofSecurityJumpsuit
-#  - SecurityBackpack
   - SunriseSecurityBackpack
   - SecurityBelt
   - SunriseHeadofSecurityOuterClothing
@@ -24,8 +23,6 @@
   id: SunriseJobWarden
   groups:
   - SunriseWardenHead
-#  - WardenJumpsuit
-#  - SecurityBackpack
   - SunriseWardenJumpsuit
   - SunriseSecurityBackpack
   - SecurityBelt
@@ -45,9 +42,6 @@
 - type: roleLoadout
   id: SunriseJobSecurityOfficer
   groups:
-  # - SecurityHead
-  # - SecurityJumpsuit
-  # - SecurityBackpack
   - SunriseSecurityHead
   - SunriseSecurityJumpsuit
   - SunriseSecurityBackpack
@@ -73,7 +67,6 @@
   - DetectiveHead
   - SunriseDetectiveNeck
   - DetectiveJumpsuit
-#  - SecurityBackpack
   - SunriseSecurityBackpack
   - SunriseDetectiveOuterClothing
   - SecurityShoes
@@ -91,9 +84,7 @@
 - type: roleLoadout
   id: SunriseJobSecurityCadet
   groups:
-#  - SecurityCadetJumpsuit
   - SunriseSecurityCadetJumpsuit
-#  - SecurityBackpack
   - SunriseSecurityBackpack
   - SunriseSurvivalSecurity
   - SunriseTrinkets

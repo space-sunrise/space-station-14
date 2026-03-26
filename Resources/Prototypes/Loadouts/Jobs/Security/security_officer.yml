@@ -34,6 +34,7 @@
   equipment:
     head: ClothingHeadHatSecurityTrooper
 
+# Jumpsuit
 - type: loadout
   id: SecurityJumpsuit
   equipment:

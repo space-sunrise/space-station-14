@@ -65,7 +65,7 @@
   id: VendingMachineSecDrobeSunrise
   components:
   - type: VendingMachine
-    pack: SecDrobeSunriseInventory
+    pack: SunriseSecDrobeInventory
 
 - type: entity
   parent: VendingMachineSecDrobeSunrise
