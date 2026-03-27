@@ -11,10 +11,10 @@ public sealed partial class CCVars
         CVarDef.Create("midi.max_events_per_batch", 1024, CVar.REPLICATED | CVar.SERVER); // Sunrise edit
 
     public static readonly CVarDef<int> MaxMidiBatchesDropped =
-        CVarDef.Create("midi.max_batches_dropped", 4, CVar.SERVERONLY); // Sunrise edit
+        CVarDef.Create("midi.max_batches_dropped", 2, CVar.SERVERONLY); // Sunrise edit
 
     public static readonly CVarDef<int> MaxMidiLaggedBatches =
-        CVarDef.Create("midi.max_lagged_batches", 32, CVar.SERVERONLY); // Sunrise edit
+        CVarDef.Create("midi.max_lagged_batches", 8, CVar.SERVERONLY); // Sunrise edit
 
     /// <summary>
     /// Defines the max amount of characters to allow in the "Midi channel selector".
