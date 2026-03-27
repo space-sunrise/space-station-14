@@ -129,6 +129,8 @@
     priority: 45
   - type: Damageable
     damageModifierSet: MobPirateT1
+  - type: ExplosionResistance
+    damageCoefficient: 0.25
   - type: NpcFactionMember
     factions:
     - Pirate
@@ -1417,6 +1419,7 @@
   - type: AoEHeal
     range: 4
     threshold: 0.9
+    aliveTargets: false
     damage:
       groups:
         Brute: -20
@@ -1435,6 +1438,7 @@
     - type: AoEHeal
       range: 4
       threshold: 0.9
+      aliveTargets: false
       damage:
         groups:
           Brute: -20
@@ -1496,8 +1500,9 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: AoEHeal
-    range: 4
+    range: 5
     threshold: 0.9
+    aliveTargets: false
     damage:
       groups:
         Brute: -20
@@ -1514,8 +1519,9 @@
     triggerOnce: true
     components:
     - type: AoEHeal
-      range: 4
+      range: 5
       threshold: 0.9
+      aliveTargets: false
       damage:
         groups:
           Brute: -20
@@ -1584,8 +1590,9 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: AoEHeal
-    range: 4
+    range: 6
     threshold: 0.9
+    aliveTargets: false
     damage:
       groups:
         Brute: -30
@@ -1602,8 +1609,9 @@
     triggerOnce: true
     components:
     - type: AoEHeal
-      range: 4
+      range: 6
       threshold: 0.9
+      aliveTargets: false
       damage:
         groups:
           Brute: -30
@@ -2476,8 +2484,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      340: Critical
-      350: Dead
+      330: Critical
+      331: Dead
   - type: TriggerOnMobstateChange
     mobState:
     - Dead

@@ -205,7 +205,7 @@
     - state: icon-mining
   - type: ItemBorgModule
     hands:
-    - item: JetpackVoidFilled
+    - item: JetpackBorg
   - type: BorgModuleIcon
     icon: { sprite: Objects/Tanks/Jetpacks/void.rsi, state: icon }
 

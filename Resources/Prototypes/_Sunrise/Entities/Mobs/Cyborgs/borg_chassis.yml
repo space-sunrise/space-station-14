@@ -574,6 +574,10 @@
     node: derelictcyborg
 
 - type: entity
+  id: SyndicateSaboteurBorgChassisDerelict
+  parent: SyndicateSaboteurBorgChassisDerelictSunrise
+
+- type: entity
   parent: BaseBorgChassisSyndicateDerelict
   id: SyndicateMedicalBorgChassisDerelictSunrise
   name: derelict syndicate medical cyborg

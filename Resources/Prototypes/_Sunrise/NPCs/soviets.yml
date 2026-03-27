@@ -20,6 +20,8 @@
     - MobsExpeditionGuideSoviets
   - type: Damageable
     damageModifierSet: MobPirateT1
+  - type: ExplosionResistance
+    damageCoefficient: 0.25
   - type: NpcFactionMember
     factions:
     - Soviet
@@ -428,6 +430,7 @@
   - type: AoEHeal
     range: 5
     threshold: 0.9
+    aliveTargets: false
     damage:
       groups:
         Brute: -20
@@ -447,6 +450,7 @@
     - type: AoEHeal
       range: 5
       threshold: 0.9
+      aliveTargets: false
       damage:
         groups:
           Brute: -20
@@ -1060,7 +1064,7 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: AoEHeal
-    range: 5
+    range: 7
     threshold: 0.9
     damage:
       groups:
@@ -1079,7 +1083,7 @@
     triggerOnce: true
     components:
     - type: AoEHeal
-      range: 5
+      range: 7
       threshold: 0.9
       damage:
         groups:
