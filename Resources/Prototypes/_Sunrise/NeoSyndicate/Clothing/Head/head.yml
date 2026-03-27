@@ -5,7 +5,7 @@
   name: NeoNVD
   abstract: true
   id: InHelmetNightVisionDevice
-  parent: [BaseItem]
+  parent: BaseItem
   components:
   - type: UseDelay
     delay: 5.0
