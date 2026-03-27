@@ -89,6 +89,9 @@
   maxLimit: 1
   loadouts:
   - ChiefMedicalOfficerBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
   - StraplessBra
   - WhiteNekoBra
   - BlackNekoBra
@@ -110,6 +113,9 @@
   loadouts:
   - ChiefMedicalOfficerThong
   - ChiefMedicalOfficerBoxers
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
   - StraplessWomanPants
   - BoxersManPants
   - AssblastusaManPants

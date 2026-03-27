@@ -72,6 +72,9 @@
   - CaptainBra
   - CaptainBraWhite
   - CaptainBraBlack
+  - PinkBra
+  - PurpleBra
+  - BlackBra
   - StraplessBra
   - WhiteNekoBra
   - BlackNekoBra
@@ -97,6 +100,9 @@
   - CaptainBoxers
   - CaptainBoxersWhite
   - CaptainBoxersBlack
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
   - StraplessWomanPants
   - BoxersManPants
   - AssblastusaManPants
@@ -147,6 +153,9 @@
   maxLimit: 1
   loadouts:
   - HoPBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
   - StraplessBra
   - WhiteNekoBra
   - BlackNekoBra
@@ -168,6 +177,9 @@
   loadouts:
   - HoPThong
   - HoPBoxers
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
   - StraplessWomanPants
   - BoxersManPants
   - AssblastusaManPants
@@ -263,6 +275,9 @@
   maxLimit: 1
   loadouts:
   - QuartermasterBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
   - StraplessBra
   - WhiteNekoBra
   - BlackNekoBra
@@ -284,6 +299,9 @@
   loadouts:
   - QuartermasterThong
   - QuartermasterBoxers
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
   - StraplessWomanPants
   - BoxersManPants
   - AssblastusaManPants

@@ -49,6 +49,9 @@
   maxLimit: 1
   loadouts:
   - ChiefEngineerBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
   - StraplessBra
   - WhiteNekoBra
   - BlackNekoBra
@@ -70,6 +73,9 @@
   loadouts:
   - ChiefEngineerThong
   - ChiefEngineerBoxers
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
   - StraplessWomanPants
   - BoxersManPants
   - AssblastusaManPants

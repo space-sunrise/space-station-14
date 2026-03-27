@@ -24,6 +24,9 @@
   maxLimit: 1
   loadouts:
   - ResearchDirectorBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
   - StraplessBra
   - WhiteNekoBra
   - BlackNekoBra
@@ -45,6 +48,9 @@
   loadouts:
   - ResearchDirectorThong
   - ResearchDirectorBoxers
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
   - StraplessWomanPants
   - BoxersManPants
   - AssblastusaManPants
