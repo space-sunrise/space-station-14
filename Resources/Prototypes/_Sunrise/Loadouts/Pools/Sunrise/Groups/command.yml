@@ -69,12 +69,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - CaptainBra
-  - CaptainBraWhite
-  - CaptainBraBlack
-  - PinkBra
-  - PurpleBra
-  - BlackBra
   - StraplessBra
   - WhiteNekoBra
   - BlackNekoBra
@@ -87,6 +81,12 @@
   - SportBra
   - ThongBra
   - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
+  - CaptainBra
+  - CaptainBraWhite
+  - CaptainBraBlack
 
 - type: loadoutGroup
   id: SunriseCaptainPants
@@ -94,15 +94,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - CaptainThong
-  - CaptainThongWhite
-  - CaptainThongBlack
-  - CaptainBoxers
-  - CaptainBoxersWhite
-  - CaptainBoxersBlack
-  - PinkWomanPants
-  - PurpleWomanPants
-  - BlackWomanPants
   - StraplessWomanPants
   - BoxersManPants
   - AssblastusaManPants
@@ -125,6 +116,15 @@
   - SportWomanPants
   - ThongWomanPants
   - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
+  - CaptainThong
+  - CaptainThongWhite
+  - CaptainThongBlack
+  - CaptainBoxers
+  - CaptainBoxersWhite
+  - CaptainBoxersBlack
 
 - type: loadoutGroup
   id: SunriseCaptainOuterClothing
@@ -152,10 +152,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - HoPBra
-  - PinkBra
-  - PurpleBra
-  - BlackBra
   - StraplessBra
   - WhiteNekoBra
   - BlackNekoBra
@@ -168,6 +164,10 @@
   - SportBra
   - ThongBra
   - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
+  - HoPBra
 
 - type: loadoutGroup
   id: SunriseHoPPants
@@ -175,11 +175,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - HoPThong
-  - HoPBoxers
-  - PinkWomanPants
-  - PurpleWomanPants
-  - BlackWomanPants
   - StraplessWomanPants
   - BoxersManPants
   - AssblastusaManPants
@@ -202,6 +197,11 @@
   - SportWomanPants
   - ThongWomanPants
   - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
+  - HoPThong
+  - HoPBoxers
 
 - type: loadoutGroup
   id: SunriseQuartermasterNeck
@@ -274,10 +274,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - QuartermasterBra
-  - PinkBra
-  - PurpleBra
-  - BlackBra
   - StraplessBra
   - WhiteNekoBra
   - BlackNekoBra
@@ -290,6 +286,10 @@
   - SportBra
   - ThongBra
   - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
+  - QuartermasterBra
 
 - type: loadoutGroup
   id: SunriseQuartermasterPants
@@ -297,11 +297,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - QuartermasterThong
-  - QuartermasterBoxers
-  - PinkWomanPants
-  - PurpleWomanPants
-  - BlackWomanPants
   - StraplessWomanPants
   - BoxersManPants
   - AssblastusaManPants
@@ -324,3 +319,8 @@
   - SportWomanPants
   - ThongWomanPants
   - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
+  - QuartermasterThong
+  - QuartermasterBoxers

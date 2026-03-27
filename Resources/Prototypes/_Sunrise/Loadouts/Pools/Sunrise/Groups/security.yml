@@ -52,10 +52,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - HeadofSecurityBra
-  - PinkBra
-  - PurpleBra
-  - BlackBra
   - StraplessBra
   - WhiteNekoBra
   - BlackNekoBra
@@ -68,6 +64,10 @@
   - SportBra
   - ThongBra
   - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
+  - HeadofSecurityBra
 
 - type: loadoutGroup
   id: SunriseHeadofSecurityPants
@@ -75,11 +75,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - HeadofSecurityThong
-  - HeadofSecurityBoxers
-  - PinkWomanPants
-  - PurpleWomanPants
-  - BlackWomanPants
   - StraplessWomanPants
   - BoxersManPants
   - AssblastusaManPants
@@ -102,6 +97,11 @@
   - SportWomanPants
   - ThongWomanPants
   - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
+  - HeadofSecurityThong
+  - HeadofSecurityBoxers
 
 - type: loadoutGroup
   id: SunriseWardenHead

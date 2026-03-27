@@ -23,10 +23,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - ResearchDirectorBra
-  - PinkBra
-  - PurpleBra
-  - BlackBra
   - StraplessBra
   - WhiteNekoBra
   - BlackNekoBra
@@ -39,6 +35,10 @@
   - SportBra
   - ThongBra
   - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
+  - ResearchDirectorBra
 
 - type: loadoutGroup
   id: SunriseResearchDirectorPants
@@ -46,11 +46,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - ResearchDirectorThong
-  - ResearchDirectorBoxers
-  - PinkWomanPants
-  - PurpleWomanPants
-  - BlackWomanPants
   - StraplessWomanPants
   - BoxersManPants
   - AssblastusaManPants
@@ -73,3 +68,8 @@
   - SportWomanPants
   - ThongWomanPants
   - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
+  - ResearchDirectorThong
+  - ResearchDirectorBoxers

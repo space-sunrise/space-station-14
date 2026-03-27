@@ -88,10 +88,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - ChiefMedicalOfficerBra
-  - PinkBra
-  - PurpleBra
-  - BlackBra
   - StraplessBra
   - WhiteNekoBra
   - BlackNekoBra
@@ -104,6 +100,10 @@
   - SportBra
   - ThongBra
   - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
+  - ChiefMedicalOfficerBra
 
 - type: loadoutGroup
   id: SunriseChiefMedicalOfficerPants
@@ -111,11 +111,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - ChiefMedicalOfficerThong
-  - ChiefMedicalOfficerBoxers
-  - PinkWomanPants
-  - PurpleWomanPants
-  - BlackWomanPants
   - StraplessWomanPants
   - BoxersManPants
   - AssblastusaManPants
@@ -138,6 +133,11 @@
   - SportWomanPants
   - ThongWomanPants
   - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
+  - ChiefMedicalOfficerThong
+  - ChiefMedicalOfficerBoxers
 
 - type: loadoutGroup
   id: SunriseMedicalDoctorHead

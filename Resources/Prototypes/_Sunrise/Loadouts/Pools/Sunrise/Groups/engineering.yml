@@ -48,10 +48,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - ChiefEngineerBra
-  - PinkBra
-  - PurpleBra
-  - BlackBra
   - StraplessBra
   - WhiteNekoBra
   - BlackNekoBra
@@ -64,6 +60,10 @@
   - SportBra
   - ThongBra
   - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
+  - ChiefEngineerBra
 
 - type: loadoutGroup
   id: SunriseChiefEngineerPants
@@ -71,11 +71,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - ChiefEngineerThong
-  - ChiefEngineerBoxers
-  - PinkWomanPants
-  - PurpleWomanPants
-  - BlackWomanPants
   - StraplessWomanPants
   - BoxersManPants
   - AssblastusaManPants
@@ -98,6 +93,11 @@
   - SportWomanPants
   - ThongWomanPants
   - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
+  - ChiefEngineerThong
+  - ChiefEngineerBoxers
 
 - type: loadoutGroup
   id: SunriseStationEngineerHead

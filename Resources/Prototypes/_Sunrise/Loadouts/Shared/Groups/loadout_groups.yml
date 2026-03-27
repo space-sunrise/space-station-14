@@ -197,10 +197,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - BlueShieldBra
-  - PinkBra
-  - PurpleBra
-  - BlackBra
   - StraplessBra
   - WhiteNekoBra
   - BlackNekoBra
@@ -213,6 +209,10 @@
   - SportBra
   - ThongBra
   - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
+  - BlueShieldBra
 
 - type: loadoutGroup
   id: BlueShieldPants
@@ -220,11 +220,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - BlueShieldThong
-  - BlueShieldBoxers
-  - PinkWomanPants
-  - PurpleWomanPants
-  - BlackWomanPants
   - StraplessWomanPants
   - BoxersManPants
   - AssblastusaManPants
@@ -247,6 +242,11 @@
   - SportWomanPants
   - ThongWomanPants
   - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
+  - BlueShieldThong
+  - BlueShieldBoxers
 
 - type: loadoutGroup
   id: AdjutantBra
@@ -254,10 +254,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - AdjutantBra
-  - PinkBra
-  - PurpleBra
-  - BlackBra
   - StraplessBra
   - WhiteNekoBra
   - BlackNekoBra
@@ -270,6 +266,10 @@
   - SportBra
   - ThongBra
   - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
+  - AdjutantBra
 
 - type: loadoutGroup
   id: AdjutantPants
@@ -277,11 +277,6 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - AdjutantThong
-  - AdjutantBoxers
-  - PinkWomanPants
-  - PurpleWomanPants
-  - BlackWomanPants
   - StraplessWomanPants
   - BoxersManPants
   - AssblastusaManPants
@@ -307,6 +302,8 @@
   - PinkWomanPants
   - PurpleWomanPants
   - BlackWomanPants
+  - AdjutantThong
+  - AdjutantBoxers
 
 - type: loadoutGroup
   id: BlueshieldGun
