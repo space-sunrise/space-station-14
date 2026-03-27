@@ -96,6 +96,6 @@ public sealed class AlternativeJobTitleSystem : EntitySystem
         if (!TryComp<IdCardComponent>(cloneCardUid, out var cloneCardComp))
             return;
 
-        _card.TryChangeJobTitle((cloneCardUid, cloneCardComp), originalCard.LocalizedJobTitle);
+        _card.TryChangeJobTitle(cloneCardUid, originalCard.LocalizedJobTitle, cloneCardComp);
     }
 }
