@@ -489,13 +489,15 @@ namespace Content.Server.Database
 
     // Sunrise-Start
     public class JobAlternativeTitle
-    {
+{
         public int Id { get; set; }
         public Profile Profile { get; set; } = null!;
         public int ProfileId { get; set; }
+        [MaxLength(128)]
         public string JobName { get; set; } = null!;
+        [MaxLength(128)]
         public string Title { get; set; } = null!;
-    }
+}
     // Sunrise-End
 
     #region Loadouts

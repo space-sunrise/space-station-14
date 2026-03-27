@@ -18,8 +18,8 @@ namespace Content.Server.Database.Migrations.Postgres
                     job_alternative_title_id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     profile_id = table.Column<int>(type: "integer", nullable: false),
-                    job_name = table.Column<string>(type: "text", nullable: false),
-                    title = table.Column<string>(type: "text", nullable: false)
+                    job_name = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
+                    title = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false)
                 },
                 constraints: table =>
                 {

@@ -17,8 +17,8 @@ namespace Content.Server.Database.Migrations.Sqlite
                     job_alternative_title_id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     profile_id = table.Column<int>(type: "INTEGER", nullable: false),
-                    job_name = table.Column<string>(type: "TEXT", nullable: false),
-                    title = table.Column<string>(type: "TEXT", nullable: false)
+                    job_name = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
+                    title = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false)
                 },
                 constraints: table =>
                 {

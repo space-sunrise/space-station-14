@@ -712,6 +712,7 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Property<string>("JobName")
                         .IsRequired()
+                        .HasMaxLength(128)
                         .HasColumnType("TEXT")
                         .HasColumnName("job_name");
 
@@ -721,6 +722,7 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Property<string>("Title")
                         .IsRequired()
+                        .HasMaxLength(128)
                         .HasColumnType("TEXT")
                         .HasColumnName("title");
 

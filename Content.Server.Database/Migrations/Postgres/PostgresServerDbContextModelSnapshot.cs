@@ -754,7 +754,8 @@ namespace Content.Server.Database.Migrations.Postgres
 
                     b.Property<string>("JobName")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
                         .HasColumnName("job_name");
 
                     b.Property<int>("ProfileId")
@@ -763,7 +764,8 @@ namespace Content.Server.Database.Migrations.Postgres
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
                         .HasColumnName("title");
 
                     b.HasKey("Id")
