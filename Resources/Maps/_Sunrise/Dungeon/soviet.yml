@@ -7955,7 +7955,7 @@ entities:
     - type: Transform
       pos: 5.779181,27.532673
       parent: 1
-- proto: SovietSquadPatrolTimed
+- proto: SovietSquadPatrol
   entities:
   - uid: 1503
     components:

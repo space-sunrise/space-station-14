@@ -159,3 +159,13 @@
   targetNode: bombarda
   category: construction-category-weapons
   objectType: Item
+
+- type: construction
+  id: JetpackImprovised
+  graph: JetpackImprovisedGraph
+  startNode: start
+  targetNode: jetpack
+  category: construction-category-tools
+  objectType: Item
+  name: ent-JetpackImprovised
+  description: ent-JetpackImprovised.desc

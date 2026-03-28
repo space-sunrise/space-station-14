@@ -10,23 +10,21 @@
   - type: Item
     size: Ginormous
   - type: MeleeWeapon
-    attackRate: 0.75
+    attackRate: 0.7
     range: 1.70
     damage:
       types:
-        Blunt: 15
-        Piercing: 3
-        Structural: 10
+        Blunt: 5
+        Structural: 25
     soundHit:
       collection: MetalThud
-    bluntStaminaDamageFactor: 1.50 # 15 stamina damage
+    bluntStaminaDamageFactor: 1.5
   - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 5
-        Piercing: 2
-        Structural: 25
+        Blunt: 20
+        Structural: 110
   - type: Tool
     qualities:
       - Prying

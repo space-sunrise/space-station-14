@@ -1,6 +1,6 @@
 - type: entity
   name: finka
-  parent: CombatKnife #, BaseSovietContraband]
+  parent: [BaseSovietContraband, CombatKnife]
   id: Finka
   description: Legendary SNKVD dagger, an excellent melee weapon, and it's said there was a secret technique for throwing this knife.
   components:
@@ -25,12 +25,15 @@
         Piercing: 15
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Melee/finka.rsi
+    storedSprite:
+      state: storage
+      sprite: _Sunrise/Objects/Weapons/Melee/finka.rsi
   - type: StaticPrice
     price: 1250
 
 - type: entity
   name: ForceableFollow finka
-  parent: Finka #, BaseSovietContraband]
+  parent: [BaseSovietContraband, Finka]
   id: FinkaAdmeme
   suffix: Admeme
   description: Legendary SNKVD dagger, an excellent melee weapon, and it's said there was a secret technique for throwing this knife.

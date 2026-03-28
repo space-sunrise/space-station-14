@@ -17,6 +17,7 @@
   modifierBudget: 2
   color: "#52B4E996"
   recommendedPlayers: 3
+  delay: 600 # 10 mins
   probability: 0.5
 
 - type: salvageDifficulty

@@ -2673,7 +2673,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 10.355728,34.269657
       parent: 1
-- proto: MobPirateT1TimedSpawner
+- proto: MobPirateT1ExpeditionSpawner
   entities:
   - uid: 40
     components:

@@ -129,6 +129,16 @@
     - Pirate
 
 - type: entity
+  parent: WeaponRifleType88AMR
+  id: WeaponRifleType88AMRBiocode
+  suffix: BIOCODE
+  components:
+  - type: FactionWeaponBlocker
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
   parent: WeaponSIAR52
   id: WeaponSIAR52Biocode
   suffix: BIOCODE

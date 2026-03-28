@@ -13,7 +13,7 @@ public sealed partial class NpcVeteranFollowerComponent : Component
     public string VeteranLeaderTag = "NpcVeteranLeader";
 
     [DataField]
-    public float SearchRadius = 35f;
+    public float SearchRadius = 25f;
 
     [DataField]
     public float RecheckCooldown = 30f;

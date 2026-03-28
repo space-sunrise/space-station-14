@@ -42,7 +42,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasicSlim
     id: ERTLeaderPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltERT #Sunrise-Edit
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolN1984
     pocket2: FlashlightSeclite
@@ -66,7 +66,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTLeader
     id: ERTLeaderPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltERT #Sunrise-Edit
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolN1984
     pocket2: FlashlightSeclite
@@ -90,7 +90,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTLeader
     id: ERTLeaderPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltERT #Sunrise-Edit
     belt: ClothingBeltSecurityFilled
     pocket1: MagazineRifleSP
     pocket2: MagazineRifleIncendiary
@@ -148,7 +148,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasicSlim
     id: ERTChaplainPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltERT #Sunrise-Edit
     belt: ClothingBeltStorageWaistbag
     pocket1: Flare
     pocket2: DrinkWaterBottleFull
@@ -179,7 +179,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTChaplain
     id: ERTChaplainPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltERT #Sunrise-Edit
     belt: ClothingBeltStorageWaistbag
     pocket1: Flare
     pocket2: DrinkWaterBottleFull
@@ -246,7 +246,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasicSlim
     id: ERTEngineerPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltERT #Sunrise-Edit
     belt: ClothingBeltChiefEngineerFilled
     pocket1: Flare
     pocket2: GasAnalyzer
@@ -274,7 +274,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTEngineer
     id: ERTEngineerPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltERT #Sunrise-Edit
     belt: ClothingBeltChiefEngineerFilled
     pocket1: Flare
     pocket2: GasAnalyzer
@@ -334,7 +334,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasicSlim
     id: ERTSecurityPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltERT #Sunrise-Edit
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolMk58
     pocket2: FlashlightSeclite
@@ -358,7 +358,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTSecurity
     id: ERTSecurityPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltERT #Sunrise-Edit
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolMk58
     pocket2: FlashlightSeclite
@@ -382,7 +382,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTSecurity
     id: ERTSecurityPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltERT #Sunrise-Edit
     belt: ClothingBeltSecurityFilled
     pocket1: MagazineRifleFMJ #Sunrise-Edit
     pocket2: MagazineRifleFMJ #Sunrise-Edit
@@ -443,7 +443,7 @@
     gloves: ClothingHandsGlovesNitrile
     outerClothing: ClothingOuterArmorBasicSlim
     id: ERTMedicPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltERT #Sunrise-Edit
     belt: ClothingBeltMedicalFilled
     pocket1: Flare
   storage:
@@ -467,7 +467,7 @@
     gloves: ClothingHandsGlovesNitrile
     outerClothing: ClothingOuterHardsuitERTMedical
     id: ERTMedicPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltERT #Sunrise-Edit
     belt: ClothingBeltMedicalFilled
     pocket1: Flare
   storage:
@@ -518,7 +518,7 @@
     gloves: ClothingHandsGlovesColorPurple
     outerClothing: ClothingOuterArmorBasicSlim
     id: ERTJanitorPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltERT #Sunrise-Edit
     belt: ClothingBeltJanitorFilled
     pocket1: Flare
   storage:
@@ -540,7 +540,7 @@
     gloves: ClothingHandsGlovesColorPurple
     outerClothing: ClothingOuterHardsuitERTJanitor
     id: ERTJanitorPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltERT #Sunrise-Edit
     belt: ClothingBeltJanitorFilled
     pocket1: Flare
   storage:

@@ -58,6 +58,7 @@ ent-ClothingUniformJumpsuitAtmosSyndie = Акробатический комби
     .desc = { ent-ClothingUniformJumpsuitAtmos.desc }
 ent-ClothingUniformJumpsuitArmouredBlack = чёрный адвокатский костюм
     .desc = Казалось бы, простой деловой костюм... пока не отлетела пуля...
+    .suffix = бронированный
 ent-ClothingUniformJumpsuitBlueshieldJS = комбинезон синего щита
     .desc = { ent-ClothingUniformBase.desc }
 ent-ClothingUniformJumpsuitMiningSpecialist = комбинезон специалиста по добыче
@@ -96,5 +97,9 @@ ent-ClothingUniformJumpsuitSoviet = советский комбинезон
 
 ent-ClothingUniformJumpsuitArbiter = форма Арбитра
     .desc = Черный китель с золотой прострочкой. Затянут так, что осанка становится прямой, как корешок новой книги. Главная беда - в нем почти невозможно вдохнуть или наклониться за упавшей ручкой без риска для швов.
+
 ent-ClothingUniformJumpsuitRedMist = костюм Красного Тумана
     .desc = Приталенный боевой костюм из тёмной ткани со светлыми металлическими акцентами. Рассчитан на движение, а не на утешение.
+    
+ent-ClothingUniformUndershirt = нижняя майка
+    .desc = Обычная повседневная вещь.

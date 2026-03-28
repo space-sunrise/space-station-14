@@ -1,3 +1,6 @@
+ent-ClothingUniformJumpskirtPrisonRegularBase = prison regular jumpskirt
+    .desc = A standard skirt uniform worn by prison staff in their daily duties.
+
 ent-ClothingUniformJumpskirtPrisonChef = prison chef jumpskirt
     .desc = Professional culinary attire with practical design, the hem carrying faint aromas of meals prepared in the shadow of high walls.
 

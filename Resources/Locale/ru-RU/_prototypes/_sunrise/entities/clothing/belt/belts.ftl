@@ -60,3 +60,5 @@ ent-ClothingBeltLightSovietMarineWebbing = лёгкая РПС СССП
     .desc = Лёгкая разгрузочная система, используемая советскими солдатами.
 ent-ClothingBeltSalvageMercWebbing = разгрузка мусорщика
     .desc = Идеально подходит для хранения инструментов, боеприпасов и добычи.
+ent-ClothingSovietBandolier = советский патронташ
+    .desc = Пахнет маслом, потом и сомнительными решениями.

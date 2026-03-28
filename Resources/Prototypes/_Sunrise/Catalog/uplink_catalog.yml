@@ -367,7 +367,7 @@
 # region SR-127
 - type: listing
   id: UplinkMagazineBauer127
-  description: uplink-magazine-127-desc
+  description: uplink-magazine-15-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi, state: base_icon }
   productEntity: MagazineBauer127
   cost:

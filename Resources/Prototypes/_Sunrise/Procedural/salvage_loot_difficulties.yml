@@ -14,8 +14,8 @@
         - proto: BluespaceBeaker
           cost: 2
         - proto: CyborgEndoskeleton
-          cost: 3
           prob: 0.5
+          cost: 3
         - proto: ChemDispenserMachineCircuitboard
           cost: 2
         - proto: CircuitImprinter
@@ -28,8 +28,8 @@
         - proto: FoodBoxDonkpocketCarp
           prob: 0.5
         - proto: CrateSalvageEquipment
-          cost: 3
           prob: 0.5
+          cost: 3
         - proto: GasRecycler
           cost: 2
         - proto: GeneratorRTG
@@ -37,8 +37,8 @@
         - proto: GravityGeneratorMini
           cost: 2
         - proto: GyroscopeUnanchored
-          cost: 2
           prob: 0.1
+          cost: 2
         - proto: MedicalScannerMachineCircuitboard
           cost: 2
         - proto: NuclearBombKeg
@@ -51,36 +51,36 @@
         - proto: RandomArtifactSpawner
           cost: 2
         - proto: RandomCargoCorpseSpawner
-          cost: 1
           prob: 0.5
+          cost: 1
         - proto: RandomCommandCorpseSpawner
+          prob: 0.5
           cost: 3
-          prob: 0.5
         - proto: RandomEngineerCorpseSpawner
-          cost: 1
           prob: 0.5
+          cost: 1
         - proto: RandomMedicCorpseSpawner
-          cost: 1
           prob: 0.5
+          cost: 1
         - proto: RandomScienceCorpseSpawner
-          cost: 1
           prob: 0.5
+          cost: 1
         - proto: RandomSecurityCorpseSpawner
-          cost: 1
           prob: 0.5
+          cost: 1
         - proto: RandomServiceCorpseSpawner
+          prob: 0.5
           cost: 1
-          prob: 0.5
         - proto: ResearchAndDevelopmentServerMachineCircuitboard
-          cost: 5
           prob: 0.5
+          cost: 5
         - proto: ResearchDisk10000
           prob: 0.5
         - proto: ResearchDisk5000
           prob: 0.5
         - proto: RipleyHarness
-          cost: 3
           prob: 0.5
+          cost: 3
         - proto: SpaceCash1000
         - proto: SpaceCash10000
           cost: 10
@@ -89,8 +89,8 @@
         - proto: SpaceCash5000
           cost: 5
         - proto: TechnologyDiskRare
-          cost: 5
           prob: 0.5
+          cost: 5
         - proto: ThrusterUnanchored
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -112,8 +112,8 @@
         - proto: BluespaceBeaker
           cost: 2
         - proto: CyborgEndoskeleton
-          cost: 3
           prob: 0.5
+          cost: 3
         - proto: ChemDispenserMachineCircuitboard
           cost: 2
         - proto: CircuitImprinter
@@ -126,8 +126,8 @@
         - proto: FoodBoxDonkpocketCarp
           prob: 0.5
         - proto: CrateSalvageEquipment
-          cost: 3
           prob: 0.5
+          cost: 3
         - proto: GasRecycler
           cost: 2
         - proto: GeneratorRTG
@@ -135,8 +135,8 @@
         - proto: GravityGeneratorMini
           cost: 2
         - proto: GyroscopeUnanchored
-          cost: 2
           prob: 0.1
+          cost: 2
         - proto: MedicalScannerMachineCircuitboard
           cost: 2
         - proto: NuclearBombKeg
@@ -148,42 +148,42 @@
         - proto: PortableGeneratorSuperPacman
           cost: 3
         - proto: PowerCellAntiqueProto
-          cost: 5
           prob: 0.5
+          cost: 5
         - proto: ProtolatheMachineCircuitboard
         - proto: RandomArtifactSpawner
           cost: 2
         - proto: RandomCargoCorpseSpawner
-          cost: 2
           prob: 0.5
+          cost: 2
         - proto: RandomCommandCorpseSpawner
-          cost: 5
           prob: 0.5
+          cost: 5
         - proto: RandomEngineerCorpseSpawner
-          cost: 2
           prob: 0.5
+          cost: 2
         - proto: RandomMedicCorpseSpawner
-          cost: 2
           prob: 0.5
+          cost: 2
         - proto: RandomScienceCorpseSpawner
-          cost: 2
           prob: 0.5
+          cost: 2
         - proto: RandomSecurityCorpseSpawner
-          cost: 2
           prob: 0.5
+          cost: 2
         - proto: RandomServiceCorpseSpawner
+          prob: 0.5
           cost: 2
-          prob: 0.5
         - proto: ResearchAndDevelopmentServerMachineCircuitboard
-          cost: 5
           prob: 0.5
+          cost: 5
         - proto: ResearchDisk10000
           prob: 0.5
         - proto: ResearchDisk5000
           prob: 0.5
         - proto: RipleyHarness
-          cost: 3
           prob: 0.5
+          cost: 3
         - proto: SpaceCash1000
         - proto: SpaceCash10000
           cost: 10
@@ -192,15 +192,13 @@
         - proto: SpaceCash5000
           cost: 5
         - proto: TechnologyDiskRare
-          cost: 5
           prob: 0.5
+          cost: 5
         - proto: ThrusterUnanchored
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
           cost: 3
 
-# Loot table
-# Main loot table for random spawns
 - type: salvageLoot
   id: SalvageLootChallenging
   loots:
@@ -217,8 +215,8 @@
         - proto: BluespaceBeaker
           cost: 2
         - proto: CyborgEndoskeleton
-          cost: 3
           prob: 0.5
+          cost: 3
         - proto: ChemDispenserMachineCircuitboard
           cost: 2
         - proto: CircuitImprinter
@@ -231,21 +229,21 @@
         - proto: FoodBoxDonkpocketCarp
           prob: 0.5
         - proto: CrateSalvageEquipment
-          cost: 3
           prob: 0.5
+          cost: 3
         - proto: NuclearBombKeg
           cost: 5
         - proto: ChemistryBottleOmnizine
           prob: 0.5
         - proto: PowerCellAntiqueProto
-          cost: 5
           prob: 0.5
+          cost: 5
         - proto: ProtolatheMachineCircuitboard
         - proto: RandomArtifactSpawner
           cost: 2
         - proto: ResearchAndDevelopmentServerMachineCircuitboard
-          cost: 5
           prob: 0.5
+          cost: 5
         - proto: ResearchDisk10000
           prob: 0.5
         - proto: ResearchDisk5000
@@ -257,12 +255,11 @@
         - proto: SpaceCash5000
           cost: 5
         - proto: TechnologyDiskRare
-          cost: 5
           prob: 0.5
+          cost: 5
         - proto: WeaponTeslaGun
           prob: 0.1
           cost: 2
-
         - proto: WeaponPistolViper
           prob: 0.5
           cost: 4
@@ -272,14 +269,12 @@
         - proto: WeaponShotgunDoubleBarreledRubber
           prob: 0.5
           cost: 5
-
         - proto: MagazineBoxPistolUranium
           prob: 0.8
           cost: 8
         - proto: MagazineBoxPistolIncendiary
           prob: 0.8
           cost: 8
-
         - proto: BoxBeanbag
           prob: 0.6
           cost: 10
@@ -304,7 +299,6 @@
         - proto: BoxShellTranquilizer
           prob: 0.3
           cost: 15
-
         - proto: MagazineBoxPistolSP
           prob: 0.2
           cost: 1
@@ -323,7 +317,6 @@
         - proto: MagazineBoxPistolAP
           prob: 0.05
           cost: 4
-
         - proto: GrenadeBaton
           prob: 0.3
           cost: 3
@@ -336,28 +329,71 @@
         - proto: GrenadeEMP
           prob: 0.3
           cost: 3
+        - proto: LeftArmCyber
+          prob: 0.4
+          cost: 10
+        - proto: RightArmCyber
+          prob: 0.4
+          cost: 10
+        - proto: LeftArmCyberRipper
+          prob: 0.2
+          cost: 15
+        - proto: RightArmCyberRipper
+          prob: 0.2
+          cost: 15
+        - proto: LeftArmCyberMechwright
+          prob: 0.2
+          cost: 15
+        - proto: RightArmCyberMechwright
+          prob: 0.2
+          cost: 15
+        - proto: LeftLegCyber
+          prob: 0.4
+          cost: 10
+        - proto: RightLegCyber
+          prob: 0.4
+          cost: 10
+        - proto: EyeImplantMedical
+          prob: 0.2
+          cost: 5
+        - proto: EyeImplantWelding
+          prob: 0.2
+          cost: 5
+        - proto: EyeImplantSecurity
+          prob: 0.2
+          cost: 5
+        - proto: EyeImplantSyndie
+          prob: 0.1
+          cost: 10
 
-# Loot table
-# Main loot table for random spawns
 - type: salvageLoot
   id: SalvageLootDifficult
   loots:
     - !type:RandomSpawnsLoot
       entries:
         - proto: AmmoTechFabCircuitboard
-          cost: 2
           prob: 0.2
+          cost: 2
         - proto: ResearchDisk10000
           prob: 0.3
-
-        - proto: WeaponRifleAk
+        - proto: CrateAmmunitionSmallSKM24
           prob: 0.1
           cost: 50
-
+        - proto: CrateShelfMosin
+          prob: 0.15
+          cost: 15
+        - proto: CrateAmmunitionSmallLightRifle
+          prob: 0.15
+          cost: 8
+        - proto: CrateAmmunitionSmallLightRifleIncendiary
+          prob: 0.15
+          cost: 12
+        - proto: CrateAmmunitionSmallLightRifleAP
+          prob: 0.15
+          cost: 20
         - proto: MagazineLightRifleEmpty
           prob: 0.2
           cost: 3
-
         - proto: MagazineBoxPistolSP
           prob: 0.2
           cost: 10
@@ -376,7 +412,6 @@
         - proto: MagazineBoxPistolAP
           prob: 0.05
           cost: 40
-
         - proto: MagazineBoxLightRifleSP
           prob: 0.2
           cost: 10
@@ -401,7 +436,66 @@
         - proto: ExGrenade
           prob: 0.3
           cost: 10
-
+        - proto: LeftArmCyber
+          prob: 0.6
+          cost: 10
+        - proto: RightArmCyber
+          prob: 0.6
+          cost: 10
+        - proto: LeftArmCyberRipper
+          prob: 0.4
+          cost: 15
+        - proto: RightArmCyberRipper
+          prob: 0.4
+          cost: 15
+        - proto: LeftArmCyberMechwright
+          prob: 0.4
+          cost: 15
+        - proto: RightArmCyberMechwright
+          prob: 0.4
+          cost: 15
+        - proto: LeftArmCyberGorilla
+          prob: 0.2
+          cost: 20
+        - proto: RightArmCyberGorilla
+          prob: 0.2
+          cost: 20
+        - proto: LeftArmCyberBulwark
+          prob: 0.2
+          cost: 20
+        - proto: RightArmCyberBulwark
+          prob: 0.2
+          cost: 20
+        - proto: LeftArmCyberReaper
+          prob: 0.2
+          cost: 20
+        - proto: RightArmCyberReaper
+          prob: 0.2
+          cost: 20
+        - proto: LeftArmCyberMantisBlade
+          prob: 0.2
+          cost: 20
+        - proto: RightArmCyberMantisBlade
+          prob: 0.2
+          cost: 20
+        - proto: LeftLegCyber
+          prob: 0.6
+          cost: 10
+        - proto: RightLegCyber
+          prob: 0.6
+          cost: 10
+        - proto: EyeImplantMedical
+          prob: 0.2
+          cost: 5
+        - proto: EyeImplantWelding
+          prob: 0.2
+          cost: 5
+        - proto: EyeImplantSecurity
+          prob: 0.2
+          cost: 5
+        - proto: EyeImplantSyndie
+          prob: 0.1
+          cost: 10
         - proto: Wristwatch
           prob: 0.8
           cost: 3
@@ -417,7 +511,8 @@
         - proto: MusicBoxInstrument
           prob: 0.2
           cost: 2
-
+        - proto: DrinkVodkizineBottleFull
+          cost: 3
         - proto: MedkitBruteFilled
           cost: 6
         - proto: MedkitBurnFilled
@@ -426,34 +521,41 @@
           cost: 6
         - proto: MedkitToxinFilled
           cost: 6
+        - proto: MedkitAdvancedFilled
+          prob: 0.1
+          cost: 12
+        - proto: MedkitCombatFilled
+          prob: 0.1
+          cost: 16
 
-# Loot table
-# Main loot table for random spawns
 - type: salvageLoot
   id: SalvageLootImpossible
   loots:
     - !type:RandomSpawnsLoot
       entries:
         - proto: AmmoTechFabCircuitboard
-          cost: 2
           prob: 0.2
+          cost: 2
         - proto: ResearchDisk10000
           prob: 0.3
-        - proto: WeaponRifleAk
+        - proto: CrateAmmunitionSmallDP28
           prob: 0.01
-          cost: 45
-        - proto: WeaponRifleSKM24
+          cost: 50
+        - proto: CrateAmmunitionSmallSKM24
+          prob: 0.1
+          cost: 20
+        - proto: CrateShelfMosin
           prob: 0.15
-          cost: 45
-        - proto: WeaponTeslaGun
-          prob: 0.08
-          cost: 28
-        - proto: WeaponPistolViper
-          prob: 0.35
-          cost: 6
-        - proto: WeaponShotgunDoubleBarreled
-          prob: 0.25
-          cost: 12
+          cost: 10
+        - proto: CrateAmmunitionSmallLightRifle
+          prob: 0.15
+          cost: 5
+        - proto: CrateAmmunitionSmallLightRifleIncendiary
+          prob: 0.15
+          cost: 10
+        - proto: CrateAmmunitionSmallLightRifleAP
+          prob: 0.15
+          cost: 15
         - proto: MagazineLightRifleEmpty
           prob: 0.2
           cost: 3
@@ -467,14 +569,14 @@
           prob: 0.2
           cost: 10
         - proto: MagazineBoxPistolUranium
-          prob: 0.15
-          cost: 16
-        - proto: MagazineBoxPistolIncendiary
-          prob: 0.15
-          cost: 16
-        - proto: MagazineBoxPistolAP
           prob: 0.1
-          cost: 32
+          cost: 20
+        - proto: MagazineBoxPistolIncendiary
+          prob: 0.1
+          cost: 20
+        - proto: MagazineBoxPistolAP
+          prob: 0.05
+          cost: 40
         - proto: MagazineBoxLightRifleSP
           prob: 0.2
           cost: 10
@@ -485,35 +587,80 @@
           prob: 0.2
           cost: 10
         - proto: MagazineBoxLightRifleUranium
-          prob: 0.15
-          cost: 16
-        - proto: MagazineBoxLightRifleIncendiary
-          prob: 0.15
-          cost: 16
-        - proto: MagazineBoxLightRifleAP
           prob: 0.1
-          cost: 32
+          cost: 20
+        - proto: MagazineBoxLightRifleIncendiary
+          prob: 0.1
+          cost: 20
+        - proto: MagazineBoxLightRifleAP
+          prob: 0.05
+          cost: 40
         - proto: GrenadeIncendiary
           prob: 0.3
           cost: 10
         - proto: ExGrenade
           prob: 0.3
           cost: 10
-        - proto: GrenadeFrag
+        - proto: LeftArmCyber
+          prob: 0.6
+          cost: 5
+        - proto: RightArmCyber
+          prob: 0.6
+          cost: 5
+        - proto: LeftArmCyberRipper
+          prob: 0.4
+          cost: 10
+        - proto: RightArmCyberRipper
+          prob: 0.4
+          cost: 10
+        - proto: LeftArmCyberMechwright
+          prob: 0.4
+          cost: 10
+        - proto: RightArmCyberMechwright
+          prob: 0.4
+          cost: 10
+        - proto: LeftArmCyberGorilla
           prob: 0.2
-          cost: 8
-        - proto: GrenadeEMP
+          cost: 15
+        - proto: RightArmCyberGorilla
           prob: 0.2
-          cost: 8
-        - proto: BoxShotgunIncendiary
+          cost: 15
+        - proto: LeftArmCyberBulwark
           prob: 0.2
-          cost: 14
-        - proto: BoxShotgunUranium
+          cost: 15
+        - proto: RightArmCyberBulwark
           prob: 0.2
-          cost: 14
-        - proto: BoxShellTranquilizer
+          cost: 15
+        - proto: LeftArmCyberReaper
           prob: 0.2
-          cost: 14
+          cost: 15
+        - proto: RightArmCyberReaper
+          prob: 0.2
+          cost: 15
+        - proto: LeftArmCyberMantisBlade
+          prob: 0.2
+          cost: 15
+        - proto: RightArmCyberMantisBlade
+          prob: 0.2
+          cost: 15
+        - proto: LeftLegCyber
+          prob: 0.6
+          cost: 5
+        - proto: RightLegCyber
+          prob: 0.6
+          cost: 5
+        - proto: EyeImplantMedical
+          prob: 0.2
+          cost: 5
+        - proto: EyeImplantWelding
+          prob: 0.2
+          cost: 5
+        - proto: EyeImplantSecurity
+          prob: 0.2
+          cost: 5
+        - proto: EyeImplantSyndie
+          prob: 0.1
+          cost: 10
         - proto: Wristwatch
           prob: 0.8
           cost: 3
@@ -529,11 +676,20 @@
         - proto: MusicBoxInstrument
           prob: 0.2
           cost: 2
+        - proto: DrinkVodkizineBottleFull
+          cost: 3
         - proto: MedkitBruteFilled
-          cost: 6
+          cost: 5
         - proto: MedkitBurnFilled
-          cost: 6
+          cost: 5
         - proto: MedkitRadiationFilled
-          cost: 6
+          cost: 5
         - proto: MedkitToxinFilled
+          cost: 5
+        - proto: MedkitAdvancedFilled
+          prob: 0.3
           cost: 6
+        - proto: MedkitCombatFilled
+          prob: 0.2
+          cost: 8
+

@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseItem] #, BaseSovietContraband]
+  parent: [BaseItem, BaseSovietContraband]
   id: SovietDeskFlag
   name: soviet desk flag
   description: Belikov. Have you dug up my mole yet?
@@ -14,7 +14,7 @@
   id: RevolutionaryHeldBanner
   name: revolutionary banner
   description: A towering revolutionary banner that makes you an easy target. A makarov in the other hand is recommended.
-  parent: [BaseItem] #, BaseSovietContraband]
+  parent: [BaseItem, BaseSovietContraband]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/rev_flag.rsi

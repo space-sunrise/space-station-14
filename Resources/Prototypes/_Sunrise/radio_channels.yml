@@ -36,3 +36,19 @@
   frequency: 1991
   color: "#890000"
   longRange: false
+
+- type: radioChannel
+  id: DeathSquad
+  name: chat-radio-deathsquad
+  keycode: 'э'
+  frequency: 1340
+  color: "#a93fff"
+  longRange: true
+
+- type: radioChannel
+  id: ERT
+  name: chat-radio-ert
+  keycode: 'ж'
+  frequency: 1360
+  color: "#00ffd9"
+  longRange: true
