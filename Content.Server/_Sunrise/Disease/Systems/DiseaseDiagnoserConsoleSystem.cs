@@ -40,10 +40,10 @@ public sealed class DiseaseDiagnoserConsoleSystem : EntitySystem
         if (!_powerReceiverSystem.IsPowered(uid))
             return;
 
-        var dataServer = new DiseaseDiagnoserDataServerComponent();
         var diagnoser = new DiseaseDiagnoserComponent();
 
-        if (component.DiseaseDiagnoserDataServer == null || !TryComp(component.DiseaseDiagnoserDataServer, out dataServer))
+        if (component.DiseaseDiagnoserDataServer == null 
+            || !TryComp<DiseaseDiagnoserDataServerComponent>(component.DiseaseDiagnoserDataServer, out var dataServer))
             return;
 
         switch (args.Button)
