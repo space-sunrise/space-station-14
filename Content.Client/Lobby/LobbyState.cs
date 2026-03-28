@@ -106,12 +106,10 @@ namespace Content.Client.Lobby
 
             Lobby = (SunriseLobbyGui) _userInterfaceManager.ActiveScreen;
 
-            var chatController = _userInterfaceManager.GetUIController<ChatUIController>();
             _gameTicker = _entityManager.System<ClientGameTicker>();
             _contentAudioSystem = _entityManager.System<ContentAudioSystem>();
             _contentAudioSystem.LobbySoundtrackChanged += UpdateLobbySoundtrackInfo;
-
-            chatController.SetMainChat(true);
+            Lobby.Chat.Main = true;
 
             _voteManager.SetPopupContainer(Lobby.VoteContainer);
             LayoutContainer.SetAnchorPreset(Lobby, LayoutContainer.LayoutPreset.Wide);
@@ -187,8 +185,9 @@ namespace Content.Client.Lobby
 
         protected override void Shutdown()
         {
-            var chatController = _userInterfaceManager.GetUIController<ChatUIController>();
-            chatController.SetMainChat(false);
+            if (Lobby != null)
+                Lobby.Chat.Main = false;
+
             _gameTicker.InfoBlobUpdated -= UpdateLobbyUi;
             _gameTicker.LobbyStatusUpdated -= LobbyStatusUpdated;
             _gameTicker.LobbyLateJoinStatusUpdated -= LobbyLateJoinStatusUpdated;
