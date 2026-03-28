@@ -106,10 +106,13 @@ namespace Content.Client.Lobby
 
             Lobby = (SunriseLobbyGui) _userInterfaceManager.ActiveScreen;
 
+            // Sunrise edit - ФИКС ХОТКЕЕВ. НЕ ТРОГАТЬ ЕПТА
+            // var chatController = _userInterfaceManager.GetUIController<ChatUIController>();
+
             _gameTicker = _entityManager.System<ClientGameTicker>();
             _contentAudioSystem = _entityManager.System<ContentAudioSystem>();
             _contentAudioSystem.LobbySoundtrackChanged += UpdateLobbySoundtrackInfo;
-            Lobby.Chat.Main = true;
+            Lobby.Chat.Main = true; // Sunrise edit - ФИКС ХОТКЕЕВ. НЕ ТРОГАТЬ ЕПТА
 
             _voteManager.SetPopupContainer(Lobby.VoteContainer);
             LayoutContainer.SetAnchorPreset(Lobby, LayoutContainer.LayoutPreset.Wide);
