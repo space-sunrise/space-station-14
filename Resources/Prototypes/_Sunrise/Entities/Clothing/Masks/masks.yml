@@ -304,7 +304,7 @@
   parent: ClothingMaskBase
   id: ClothingMaskZombie
   name: zombie mask
-  description: 'Grrroul...'
+  description: Grrroul...
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Mask/zombie.rsi
