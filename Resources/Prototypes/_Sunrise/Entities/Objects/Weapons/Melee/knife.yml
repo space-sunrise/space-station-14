@@ -79,7 +79,6 @@
   - type: Tool
     qualities:
     - Prying
-    speed: 1.2
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Melee/tactical_axe.rsi
     storedSprite:
