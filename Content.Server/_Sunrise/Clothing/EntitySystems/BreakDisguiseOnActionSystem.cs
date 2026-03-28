@@ -15,7 +15,7 @@ namespace Content.Server._Sunrise.Clothing.EntitySystems;
 /// </summary>
 public sealed class BreakDisguiseOnActionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly ItemToggleSystem _toggle = default!;
 
