@@ -564,7 +564,6 @@
     disableOnUnequip: true
     targetSlot: outerClothing
   - type: BreakDisguiseOnAction
-    cooldown: 10
   - type: ItemToggle
     canActivateInhand: false
   - type: ComponentToggler

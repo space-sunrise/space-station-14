@@ -1,4 +1,4 @@
-namespace Content.Shared._Sunrise.Clothing.Components;
+namespace Content.Server._Sunrise.Clothing.Components;
 
 /// <summary>
 /// Makes disguise clothing automatically deactivate when the wearer is revealed by combat actions.
@@ -10,5 +10,5 @@ public sealed partial class BreakDisguiseOnActionComponent : Component
     /// How long the disguise stays unavailable after being forcibly broken.
     /// </summary>
     [DataField]
-    public TimeSpan Cooldown = TimeSpan.Zero;
+    public TimeSpan Cooldown = TimeSpan.FromSeconds(10);
 }

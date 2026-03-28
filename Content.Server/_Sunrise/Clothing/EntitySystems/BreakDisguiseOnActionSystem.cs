@@ -1,5 +1,4 @@
 using Content.Shared.Actions;
-using Content.Shared._Sunrise.Clothing.Components;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Inventory;
@@ -7,6 +6,8 @@ using Content.Shared.Item.ItemToggle;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
+using Content.Server.Actions;
+using Content.Server._Sunrise.Clothing.Components;
 
 namespace Content.Server._Sunrise.Clothing.EntitySystems;
 
@@ -15,7 +16,7 @@ namespace Content.Server._Sunrise.Clothing.EntitySystems;
 /// </summary>
 public sealed class BreakDisguiseOnActionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly ItemToggleSystem _toggle = default!;
 
