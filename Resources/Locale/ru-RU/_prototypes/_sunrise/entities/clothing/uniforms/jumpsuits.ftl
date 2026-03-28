@@ -96,5 +96,5 @@ ent-ClothingUSSPMarine = комбинезон космопехотинца СС�
 ent-ClothingUniformJumpsuitSoviet = советский комбинезон
     .desc = Стандартный комбинезон, который носят военнослужащие СССП.
 
-ent-ClothingUniformJumpsuitMilirUniform = бодисьют Милир
+ent-ClothingUniformJumpsuitMilirUniform = облегающий комбинезон милир
     .desc = Простой облегающий бодик, адаптированный под анатомию милиров.
