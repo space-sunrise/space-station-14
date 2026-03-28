@@ -418,6 +418,9 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         RaiseLocalEvent(target, ev);
     }
 
+    /// <summary>
+    ///     Лучшие коэффициенты лекарственной устойчивости передаются от источника к цели и наоборот.
+    /// </summary>
     private void MergeMedicineResistance(DiseaseData source, DiseaseData target)
     {
         foreach (var kvp in source.MedicineResistance)

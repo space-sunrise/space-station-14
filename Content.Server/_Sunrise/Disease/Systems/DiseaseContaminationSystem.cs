@@ -2,8 +2,6 @@ using Content.Shared._Sunrise.Disease.Components;
 using Content.Shared._Sunrise.TimeWindow;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Reaction;
-using Content.Shared.Mobs.Components;
-using NetCord;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 

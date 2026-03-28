@@ -37,6 +37,11 @@ public sealed partial class EnsureDiseaseIntoSolutionSystem : EntitySystem
 
     private void Apply(Entity<EnsureDiseaseIntoSolutionComponent> ent)
     {
+        if (ent.Comp.ReagentAdded)
+            return;
+
+        ent.Comp.ReagentAdded = true;
+
         if (!TryComp<SolutionContainerManagerComponent>(ent.Owner, out var solutionContainerManager))
             return;
 

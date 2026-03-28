@@ -9,6 +9,9 @@ namespace Content.Server._Sunrise.Disease.Components;
 public sealed partial class EnsureDiseaseIntoSolutionComponent : Component
 {
     [ViewVariables(VVAccess.ReadOnly)]
+    public bool ReagentAdded = false;
+
+    [ViewVariables(VVAccess.ReadOnly)]
     [DataField]
     public DiseaseData? Data = null;
 }
