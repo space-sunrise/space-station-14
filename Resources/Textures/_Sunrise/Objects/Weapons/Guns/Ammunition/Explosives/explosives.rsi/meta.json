@@ -67,6 +67,15 @@
         },
         {
             "name": "blast120mm"
+        },
+        {
+            "name": "nuke240mm"
+        },
+        {
+            "name": "blast240mm"
+        },
+        {
+            "name": "cluster240mm"
         }
     ]
 }

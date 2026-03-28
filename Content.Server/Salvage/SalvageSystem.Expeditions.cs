@@ -20,7 +20,7 @@ public sealed partial class SalvageSystem
      * Handles setup / teardown of salvage expeditions.
      */
 
-    private const int MissionLimit = 4; // Sunrise-Edit
+    private const int MissionLimit = 5; // Sunrise-Edit
 
     private readonly JobQueue _salvageQueue = new();
     private readonly List<(SpawnSalvageMissionJob Job, CancellationTokenSource CancelToken)> _salvageJobs = new();

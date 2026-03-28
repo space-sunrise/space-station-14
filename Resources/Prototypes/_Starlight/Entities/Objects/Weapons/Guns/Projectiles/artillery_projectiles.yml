@@ -78,10 +78,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
-      - state: grenade
-    scale: 3.0, 3.0
+      - state: blast240mm
+    scale: 1.5, 1.5
+  - type: Projectile
+    angle: 180
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
@@ -99,6 +101,130 @@
     scale: 2.0
     shape: Triangle
     requireInSpace: true
+
+- type: entity
+  id: BulletLeviathan240mmNuke
+  name: LVT-240N 240mm nuclear shell
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+      - state: nuke240mm
+    scale: 1.5, 1.5
+  - type: Projectile
+    angle: 180
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 20000
+    intensitySlope: 5
+    maxIntensity: 50
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterSubnuclearShrapnel
+    capacity: 90
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: PointLight
+    enabled: true
+    radius: 8
+    energy: 6
+    color: "#88ff00"
+  - type: RadarBlip
+    color: "#88FF00"
+    scale: 2.3
+    shape: Triangle
+    requireInSpace: true
+
+- type: entity
+  id: BulletLeviathan240mmCluster
+  name: LVT-240C 240mm cluster shell
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+      - state: cluster240mm
+    scale: 1.5, 1.5
+  - type: Projectile
+    angle: 180
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletSyndyClusterGrenade
+    capacity: 12
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: PointLight
+    enabled: true
+    radius: 6
+    energy: 4
+    color: "#ff8844"
+  - type: RadarBlip
+    color: "#FF8844"
+    scale: 2.0
+    shape: Triangle
+    requireInSpace: true
+
+- type: entity
+  id: BulletSyndieMiniBomb
+  name: syndicate mini-bomb projectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+    scale: 1.2, 1.2
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Minibomb
+    totalIntensity: 200
+    intensitySlope: 30
+    maxIntensity: 60
+  - type: PointLight
+    enabled: true
+    radius: 2.5
+    energy: 2.2
+    color: "#ff4444"
+
+- type: entity
+  id: BulletSyndyClusterGrenade
+  name: syndicate cluster projectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+    scale: 1.6, 1.6
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletSyndieMiniBomb
+    capacity: 3
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: PointLight
+    enabled: true
+    radius: 3
+    energy: 2.8
+    color: "#ff6655"
 
 
 # --- CYERXA 120mm ---
@@ -121,6 +247,16 @@
     intensitySlope: 8
     maxIntensity: 30
     canCreateVacuum: true
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterLethal
+    capacity: 30
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
   - type: PointLight
     enabled: true
     radius: 3
@@ -131,6 +267,44 @@
     scale: 1.0
     shape: Square
     requireInSpace: true
+
+- type: entity
+  id: Grenade120mmBlastRupture
+  name: damaged 120mm grenade rupture
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: false
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    delay: 0
+    keyOut: timer
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 90
+    intensitySlope: 8
+    maxIntensity: 12
+    canCreateVacuum: true
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: timer
+    fillPrototype: PelletClusterLethal
+    capacity: 30
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: PointLight
+    enabled: true
+    radius: 2.5
+    energy: 1.8
+    color: "#ff8800"
+  - type: TimedDespawn
+    lifetime: 2
 
 # --- CHARYBDIS 280mm ---
 
@@ -145,8 +319,9 @@
     sprite: _Starlight/Objects/Weapons/Guns/ArtilleryAmmo/charon_ammo.rsi # Sunrise-Edit
     layers:
       - state: railgun_slug
-    scale: 2, 2
+    scale:  1.3, 1.3
   - type: Projectile
+    angle: -90
     damage:
       types:
         Piercing: 500
@@ -170,6 +345,31 @@
     shape: Triangle
     requireInSpace: true
 
+- type: entity
+  id: BulletCharon280mmSlugDamaged75
+  name: M381 CHARYBDIS 280mm slug
+  parent: BulletCharon280mmSlug
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    angle: -90
+    damage:
+      types:
+        Piercing: 375
+        Blunt: 110
+        Structural: 450
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 263
+    intensitySlope: 10
+    maxIntensity: 21
+    canCreateVacuum: true
+  - type: PointLight
+    enabled: true
+    radius: 4
+    energy: 3
+    color: "#ff6600"
+
 # M381 CHARYBDIS 280mm 40kg Subnuclear Slug
 - type: entity
   id: BulletCharon280mmSubnuclear
@@ -181,8 +381,9 @@
     sprite: _Starlight/Objects/Weapons/Guns/ArtilleryAmmo/charon_ammo.rsi # Sunrise-Edit
     layers:
       - state: subnuclear
-    scale: 2, 2
+    scale:  1.3, 1.3
   - type: Projectile
+    angle: -90
     damage:
       types:
         Piercing: 600
@@ -196,6 +397,16 @@
     intensitySlope: 6
     maxIntensity: 60
     canCreateVacuum: true
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterSubnuclearShrapnel
+    capacity: 30
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
   - type: PointLight
     enabled: true
     radius: 8
@@ -206,3 +417,143 @@
     scale: 2.0
     shape: Triangle
     requireInSpace: true
+
+- type: entity
+  id: BulletCharon280mmSubnuclearDamaged75
+  name: M381 CHARYBDIS 280mm subnuclear slug
+  parent: BulletCharon280mmSubnuclear
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    angle: -90
+    damage:
+      types:
+        Piercing: 450
+        Blunt: 150
+        Structural: 600
+        Radiation: 75
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 600
+    intensitySlope: 6
+    maxIntensity: 45
+    canCreateVacuum: true
+  - type: PointLight
+    enabled: true
+    radius: 6
+    energy: 4.5
+    color: "#88ff00"
+
+- type: entity
+  id: BulletCharon280mmSubnuclearDamaged50
+  name: M381 CHARYBDIS 280mm subnuclear slug
+  parent: BulletCharon280mmSubnuclear
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    angle: -90
+    damage:
+      types:
+        Piercing: 300
+        Blunt: 100
+        Structural: 400
+        Radiation: 50
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 400
+    intensitySlope: 6
+    maxIntensity: 30
+    canCreateVacuum: true
+  - type: PointLight
+    enabled: true
+    radius: 5
+    energy: 3.5
+    color: "#88ff00"
+
+- type: entity
+  id: CharonSubnuclearRupture25
+  name: damaged subnuclear shell rupture
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: false
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    delay: 0
+    keyOut: timer
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 200
+    intensitySlope: 6
+    maxIntensity: 15
+    canCreateVacuum: true
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: timer
+    fillPrototype: PelletClusterSubnuclearShrapnel
+    capacity: 30
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: PointLight
+    enabled: true
+    radius: 4
+    energy: 3
+    color: "#66ff66"
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
+  id: PelletClusterSubnuclearShrapnel
+  name: rad shrapnel
+  categories: [ HideSpawnMenu ]
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: shard
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+    embedOnThrow: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        density: 5
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,-0.1"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Piercing: 25
+        Radiation: 5
+  - type: PointLight
+    enabled: true
+    radius: 3
+    energy: 2.2
+    color: "#55ff55"
+  - type: RadiationSource
+    intensity: 0.8
+    slope: 0.1
+  - type: TimedDespawn
+    lifetime: 90
+  - type: Tag
+    tags:
+    - Arrow

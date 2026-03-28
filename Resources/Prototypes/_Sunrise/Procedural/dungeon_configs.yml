@@ -229,6 +229,10 @@
   - !type:CornerClutterDunGen
     contents: BaseClutter
 
+  - !type:CorridorClutterDunGen
+    contents: SovietFloorLights
+    chance: 0.05
+
   - !type:CorridorDecalSkirtingDunGen
     cardinalDecals:
       South: BrickTileWhiteLineS
@@ -291,6 +295,10 @@
 
   - !type:CornerClutterDunGen
     contents: BaseClutter
+
+  - !type:CorridorClutterDunGen
+    contents: SovietFloorLights
+    chance: 0.05
 
   - !type:CorridorDecalSkirtingDunGen
     cardinalDecals:
@@ -413,7 +421,7 @@
 - type: entityTable
   id: SovietCorridorsWeh
   table: !type:GroupSelector
-    children:
+  children:
     # Posters
     - id: VendingMachineSovietSoda
     - id: MachineFrameDestroyed
@@ -575,6 +583,10 @@
   - !type:CornerClutterDunGen
     contents: BaseClutter
 
+  - !type:CorridorClutterDunGen
+    contents: SovietFloorLights
+    chance: 0.05
+
   - !type:CorridorDecalSkirtingDunGen
     cardinalDecals:
       South: BrickTileWhiteLineS
@@ -620,7 +632,7 @@
 - type: entityTable
   id: SovietDungeonWalls
   table: !type:GroupSelector
-    children:
+  children:
     - id: IntercomConstructed
       weight: 0.2
     - id: StationMapBroken
@@ -631,5 +643,13 @@
       weight: 2
     - id: PoweredWarmSmallLight
       weight: 0.7
+    - id: AlwaysPoweredStrobeDimLight
+      weight: 0.35
     - id: PoweredlightEmpty
       weight: 0.6
+
+- type: entityTable
+  id: SovietFloorLights
+  table: !type:GroupSelector
+  children:
+    - id: PoweredFloorlight

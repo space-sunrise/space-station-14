@@ -22,6 +22,17 @@
     damageModifierSet: MobPirateT1
   - type: ExplosionResistance
     damageCoefficient: 0.25
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: NpcFactionMember
     factions:
     - Soviet
@@ -48,7 +59,7 @@
     removeExisting: true
     components:
     - type: TimedDespawn
-      lifetime: 180
+      lifetime: 300
     - type: Strippable
     - type: Pullable
   - type: TimedRemoveComponents
@@ -204,8 +215,8 @@
   components:
   - type: DatasetVocalizer
     dataset: SovietChatterNPCVeteran
-    minVocalizeInterval: 30s
-    maxVocalizeInterval: 60s
+    minVocalizeInterval: 45s
+    maxVocalizeInterval: 90s
     hideChat: true
 
 - type: entity
@@ -244,9 +255,6 @@
     - NamesMilitaryFirstGamma
     - NamesLast
     nameFormat: name-format-ert
-  - type: ActionGun
-    action: ActionGunGrenadeExplosiveShrapnel
-    gunProto: GunGrenadeExplosiveShrapnel
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionScream
@@ -407,6 +415,7 @@
       0: Alive
       90: Critical
       100: Dead
+  - type: ShowHealthBars
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -428,6 +437,7 @@
       state: equipped-HAND
       color: "#3CB57C"
   - type: AoEHeal
+    healSelf: false
     range: 5
     threshold: 0.9
     aliveTargets: false
@@ -448,6 +458,7 @@
     triggerOnce: true
     components:
     - type: AoEHeal
+      healSelf: false
       range: 5
       threshold: 0.9
       aliveTargets: false
@@ -492,9 +503,6 @@
   - type: Loadout
     prototypes:
     - MobSovietGearPPSH
-  - type: ActionGun
-    action: ActionGunGrenadeExplosiveShrapnel
-    gunProto: GunGrenadeExplosiveShrapnel
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionScream
@@ -772,14 +780,16 @@
     showExamineText: false
     fireRate: 5
     selectedMode: FullAuto
-    minAngle: 2
+    minAngle: 6
     maxAngle: 25
-    angleIncrease: 2
-    angleDecay: 7
+    angleIncrease: 1
+    angleDecay: 10
     availableModes:
     - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/smg.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
 
 - type: entity
   name: soldier
@@ -1024,6 +1034,7 @@
       0: Alive
       90: Critical
       100: Dead
+  - type: ShowHealthBars
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1064,6 +1075,7 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: AoEHeal
+    healSelf: false
     range: 7
     threshold: 0.9
     damage:
@@ -1083,6 +1095,7 @@
     triggerOnce: true
     components:
     - type: AoEHeal
+      healSelf: false
       range: 7
       threshold: 0.9
       damage:
@@ -1094,9 +1107,6 @@
       whitelist:
         components:
         - NpcVeteranFollower
-  - type: ActionGun
-    action: ActionGunGrenadeSmoke
-    gunProto: GunGrenadeSmoke
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionGravityJumpQuick
@@ -1105,7 +1115,7 @@
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
-    - actionId: ActionGunGrenadeSmoke
+    - actionId: ActionGunGrenadeExplosiveShrapnelSpell
       minRange: 5
       maxRange: 12
 
@@ -1159,9 +1169,6 @@
       collection: xm1014
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: ActionGun
-    action: ActionGunGrenadeSmoke
-    gunProto: GunGrenadeSmoke
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionGravityJumpQuick
@@ -1170,7 +1177,7 @@
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
-    - actionId: ActionGunGrenadeSmoke
+    - actionId: ActionGunGrenadeExplosiveShrapnelSpell
       minRange: 5
       maxRange: 12
 
@@ -1231,15 +1238,12 @@
     availableModes:
     - FullAuto
     soundGunshot: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_shot.ogg
-  - type: ActionGun
-    action: ActionGunGrenadeSmoke
-    gunProto: GunGrenadeSmoke
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
-    - actionId: ActionGunGrenadeSmoke
+    - actionId: ActionGunGrenadeExplosiveShrapnelSpell
       minRange: 5
       maxRange: 12
 
@@ -1372,7 +1376,6 @@
     - CanPilot
     - Pickaxe
     - NpcBoss
-  - type: Magboots
   - type: HellSpawnRush
     blacklist:
       tags:
@@ -1545,7 +1548,6 @@
   - type: EyeCursorOffset
     maxOffset: 5
     pvsIncrease: 0.6
-  - type: Magboots
   - type: AutoImplant
     implants:
     - SmokeScreenImplant
@@ -2125,3 +2127,5 @@
 - type: entity
   parent: MobSovietT1MosinAlt
   id: MobSovietMosinAlt
+
+

@@ -335,6 +335,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener # No paint unique ripley
+    - FootstepSound
 
 # Ripley MK-II "Death"
 - type: entity
