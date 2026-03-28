@@ -52,21 +52,38 @@
     angle: 90
 
 - type: entity
-  name: tactical Axe
-  parent: [BaseSecurityCargoContraband, CombatKnife]
-  id: FinkaAdmeme
-  suffix: Admeme
-  description: Legendary SNKVD dagger, an excellent melee weapon, and it's said there was a secret technique for throwing this knife.
+  name: tactical axe
+  parent: [CombatKnife]
+  id: TacticalAxe
+  description: Tactical axe issued to special units. Designed for breaching and brutal close-quarters combat.
   components:
   - type: Tag
     tags:
-    - ForceableFollow
     - CombatKnife
     - Knife
-  - type: Item
-    sprite: _Sunrise/Objects/Weapons/Melee/finka_admeme.rsi
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Melee/finka_admeme.rsi
+    sprite: _Sunrise/Objects/Weapons/Melee/tactical_axe.rsi
     state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.17
+    damage:
+      types:
+        Slash: 12
+  - type: DamageOtherOnHit
+    ignoreResistances: true
+    damage:
+      types:
+        Slash: 10
+        Structural: 6
+  - type: Tool
+    qualities:
+    - Prying
+    speed: 1.2
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Melee/tactical_axe.rsi
+    storedSprite:
+      state: storage
+      sprite: _Sunrise/Objects/Weapons/Melee/tactical_axe.rsi
   - type: ThrowingAngle
     angle: 90
