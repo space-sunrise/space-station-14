@@ -361,7 +361,7 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         if (ev.Cancel)
             return;
 
-        if (!CanInfect(target, data) && !_tag.HasTag(target, IgnoreCanInfectTag))
+        if (!CanInfect(target, data))
             return;
 
         if (_tag.HasTag(target, DiseaseAlwaysInfectableTag))
@@ -452,6 +452,9 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
 
     public bool CanInfect(EntityUid target, DiseaseData data)
     {
+        if (_tag.HasTag(target, IgnoreCanInfectTag))
+            return true;
+
         if (HasComp<ZombieComponent>(target)
             || HasComp<PendingZombieComponent>(target))
             return false;

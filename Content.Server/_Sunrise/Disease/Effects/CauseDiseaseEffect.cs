@@ -52,7 +52,8 @@ public sealed partial class CauseDiseaseEntityEffectsSystem : EntityEffectSystem
         var infectionData = (DiseaseData)data.CloneForInfection();
         var infectivity = _diseaseSystem.CalcInfectionInfectivity(infectionData);
 
-        // вот не понятно, может же быть реаетивный реагент, тогда резисты нужно учитывать?
+        // вот не понятно, может же быть реактивный реагент, тогда резисты нужно учитывать? Если понадобится реактивный,
+        // тогда добавьте флаг
         _diseaseSystem.ProbInfect(data, entity.Owner, infectivity: infectivity, ignoreResistance: true);
     }
 }

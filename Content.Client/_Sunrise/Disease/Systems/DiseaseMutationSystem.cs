@@ -7,28 +7,21 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._Sunrise.Disease.Systems;
 
-public sealed class DiseaseMutationSystem : EntitySystem
+public sealed class DiseaseMutationSystem : VisualizerSystem<DiseaseMutationComponent>
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<DiseaseMutationComponent, AppearanceChangeEvent>(OnAppearanceChange);
-    }
-    private void OnAppearanceChange(EntityUid uid, DiseaseMutationComponent component, ref AppearanceChangeEvent args)
+    protected override void OnAppearanceChange(EntityUid uid, DiseaseMutationComponent component, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
             return;
 
-        if (_appearance.TryGetData<bool>(uid, DiseaseMutationVisuals.infected, out var infected, args.Component))
-        {
-            if (infected)
-                _sprite.LayerSetRsiState(uid, 0, component.InfectedState);
-            else
-                _sprite.LayerSetRsiState(uid, 0, component.State);
-        }
+        if (!AppearanceSystem.TryGetData<bool>(uid, DiseaseMutationVisuals.infected, out var infected, args.Component))
+            return;
+
+        var sprite = new Entity<SpriteComponent>(uid, args.Sprite);
+
+        if (infected)
+            SpriteSystem.LayerSetRsiState(sprite.AsNullable(), 0, component.InfectedState);
+        else
+            SpriteSystem.LayerSetRsiState(sprite.AsNullable(), 0, component.State);
     }
 }

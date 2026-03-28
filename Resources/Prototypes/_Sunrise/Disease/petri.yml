@@ -12,7 +12,7 @@
     anchored: true
   - type: SolutionContainerManager
   - type: InjectableSolution
-    solution: chemicals
+    solution: bloodstream
   - type: Bloodstream
     bloodlossThreshold: 0
     bleedAmount: 0
