@@ -642,6 +642,7 @@
     - MonkeyWearable
     - Hardsuit
     - FullBodyOuter # SUNRISE EDIT
+    - NoPaint # Sunrise-Add
     - WhitelistChameleon
     - CorgiWearable
     - ScurretWearable
@@ -733,6 +734,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - NoPaint # Sunrise-Add
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -774,7 +776,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
-
+    - NoPaint # Sunrise-Add
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
@@ -830,6 +832,7 @@
     - CorgiWearable
     - Hardsuit
     - FullBodyOuter # SUNRISE EDIT
+    - NoPaint # Sunrise-Add
     - WhitelistChameleon
 
 #Wizard Hardsuit
