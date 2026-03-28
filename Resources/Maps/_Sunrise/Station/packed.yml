@@ -47113,7 +47113,7 @@ entities:
       pos: 57.5,20.5
       parent: 2
     - type: FaxMachine
-      name: РнД
+      name: НИО
   - uid: 7321
     components:
     - type: Transform

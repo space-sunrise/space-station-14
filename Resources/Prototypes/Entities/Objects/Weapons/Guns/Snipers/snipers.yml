@@ -50,8 +50,8 @@
       collection: SnipersDrop
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 5
-    pvsIncrease: 0.5
+    maxOffset: 2
+    pvsIncrease: 0.2
   - type: KnockbackByUserTag
     doestContain:
       Resomi:

@@ -1530,6 +1530,7 @@
   - type: IdExaminable
   - type: Tag
     tags:
+    - MonkeyDeathgasp # Sunrise-edit
     - VimPilot
     - DoorBumpOpener
     - AnomalyHost

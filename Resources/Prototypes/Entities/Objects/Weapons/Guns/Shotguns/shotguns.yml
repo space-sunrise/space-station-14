@@ -1,6 +1,6 @@
 - type: entity
   name: BaseWeaponShotgun
-  parent: [BaseItem, GunMedium]
+  parent: [BaseItem, GunMedium, BaseGunShotgunSound] # Sunrise edit - shotgun handling sounds
   id: BaseWeaponShotgunAny
   description: A rooty tooty point and shooty.
   abstract: true
@@ -85,7 +85,7 @@
 - type: entity
   name: Bulldog
   # Don't parent to BaseWeaponShotgun because it differs significantly
-  parent: [BaseItem, BaseGunWieldable, BaseSyndicateContraband, GunLight]
+  parent: [BaseItem, BaseGunWieldable, BaseSyndicateContraband, GunLight, BaseGunShotgunSound] # Sunrise edit - shotgun handling sounds
   id: WeaponShotgunBulldog
   description: An automatic magazine-fed shotgun for close-quarters combat. Kicks like a mule on steroids. Uses .50 shotgun shells.
   components:

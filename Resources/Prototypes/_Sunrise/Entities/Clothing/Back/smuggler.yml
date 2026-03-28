@@ -229,6 +229,77 @@
     - id: Flash
     - id: ImplanterExtractor
 
+- type: entityTable
+  id: SmugglerSunriseImprovisedAmmoCompactTable
+  table: !type:GroupSelector
+    children:
+    - id: ShellShotgunImprovisedEmpty
+    - id: ShellShotgunImprovisedIncendiary
+    - id: ShellShotgunImprovisedUranium
+    - id: MagazineBoxImprovisedPistol
+    - id: MagazineBoxImprovisedRifle
+    - id: MagazineBoxImprovisedMagnum
+    - id: MagazineBoxImprovisedShotgun
+    - id: SpeedLoaderLightRifle
+    - id: SpeedLoaderMagnumAP
+    - id: MagazinePistolSubMachineGunImprovisedFilled
+    - id: MagazinePistolImprovisedFilled
+    - id: CartridgeAntiMateriel
+      weight: 0.35
+
+- type: entityTable
+  id: SmugglerSunriseMedItemsCompactTable
+  table: !type:GroupSelector
+    children:
+    - id: Gauze
+    - id: Brutepack
+    - id: RegenerativeMesh
+    - id: MedicatedSuture
+    - id: Bloodpack
+    - id: EmergencyMedipen
+    - id: BruteAutoInjector
+    - id: BurnAutoInjector
+    - id: PunctAutoInjector
+    - id: CombatMedipen
+    - id: Stimpack
+
+- type: entityTable
+  id: SmugglerSunriseGrenadesCompactTable
+  table: !type:GroupSelector
+    children:
+    - id: ImprovisedGrenadeCasingEmpty
+    - id: ImprovisedGrenadeFirebomb
+    - id: ImprovisedGrenadePipebomb
+    - id: ImprovisedGrenadeGlass
+    - id: PipeBomb
+    - id: PipeBombCable
+      weight: 0.75
+    - id: FireBomb
+    - id: FireBombEmpty
+    - id: FireBombFuel
+    - id: CleanerGrenadeAcidBox
+    - id: TearGasGrenade
+    - id: GrenadeStinger
+
+- type: entityTable
+  id: SmugglerSunriseRevolutionaryHeavyTable
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: SmugglerSunriseForgedPartsTable
+    - !type:NestedSelector
+      tableId: SmugglerSunriseLeftArmImplantsTable
+      weight: 0.75
+    - !type:NestedSelector
+      tableId: SmugglerSunriseImplantersTable
+      weight: 0.75
+    - !type:NestedSelector
+      tableId: SmugglerSunriseRareWeaponsTable
+      weight: 0.45
+    - !type:NestedSelector
+      tableId: SmugglerSunriseMeleeWeaponsTable
+      weight: 0.9
+
 - type: entity
   parent: ClothingBackpackSatchelSmugglerUnanchored
   id: ClothingBackpackSmugglerRevolutionaryFilled
@@ -260,43 +331,29 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
   - type: AbductorHumanObservationConsole # Спаси и сохрани
+  - type: Physics
+    bodyType: Static
 
 #Table
 - type: entityTable
   id: FillSmugglerBackpackRevolutionary
-  table: !type:GroupSelector
-    rolls: !type:RangeNumberSelector
-      range: 9, 12
+  table: !type:AllSelector
     children:
     - !type:NestedSelector
-      tableId: SmugglerSunriseImprovisedAmmoTable
-    - !type:NestedSelector
-      tableId: SmugglerSunriseImprovisedAmmoTable
-    - !type:NestedSelector
-      tableId: SmugglerSunriseImprovisedAmmoTable
-    - !type:NestedSelector
-      tableId: SmugglerSunriseMaterialsTable
-      weight: 0.5
-    - !type:NestedSelector
-      tableId: SmugglerSunriseMaterialsTable
-      weight: 0.6
-    - !type:NestedSelector
-      tableId: SmugglerSunriseMedItemsTable
-    - !type:NestedSelector
-      tableId: SmugglerSunriseLeftArmImplantsTable
-    - !type:NestedSelector
-      tableId: SmugglerSunriseImplantersTable
-    - !type:NestedSelector
-      tableId: SmugglerSunriseGrenadesTable
-    - !type:NestedSelector
-      tableId: SmugglerSunriseGrenadesTable
-    - !type:NestedSelector
-      tableId: SmugglerSunriseForgedPartsTable
-    - !type:NestedSelector
-      tableId: SmugglerSunriseForgedPartsTable
-    - !type:NestedSelector
-      tableId: SmugglerSunriseRareWeaponsTable
-      weight: 0.3
-    - !type:NestedSelector
-      tableId: SmugglerSunriseMeleeWeaponsTable
-      weight: 0.6
+      tableId: SmugglerSunriseRevolutionaryHeavyTable
+    - !type:GroupSelector
+      rolls: !type:RangeNumberSelector
+        range: 8, 10
+      children:
+      - !type:NestedSelector
+        tableId: SmugglerSunriseImprovisedAmmoCompactTable
+        weight: 2
+      - !type:NestedSelector
+        tableId: SmugglerSunriseGrenadesCompactTable
+        weight: 1.6
+      - !type:NestedSelector
+        tableId: SmugglerSunriseMedItemsCompactTable
+        weight: 1.6
+      - !type:NestedSelector
+        tableId: SmugglerSunriseMaterialsTable
+        weight: 1.1

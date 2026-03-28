@@ -58,6 +58,7 @@ ent-ClothingUniformJumpsuitAtmosSyndie = Акробатический комби
     .desc = { ent-ClothingUniformJumpsuitAtmos.desc }
 ent-ClothingUniformJumpsuitArmouredBlack = чёрный адвокатский костюм
     .desc = Казалось бы, простой деловой костюм... пока не отлетела пуля...
+    .suffix = бронированный
 ent-ClothingUniformJumpsuitBlueshieldJS = комбинезон синего щита
     .desc = { ent-ClothingUniformBase.desc }
 ent-ClothingUniformJumpsuitMiningSpecialist = комбинезон специалиста по добыче
@@ -89,3 +90,8 @@ ent-ClothingUniformJumpsuitCaptainBlack = чёрный комбинезон ка
 ent-ClothingUniformPunksuit = панк-костюм
     .desc = Брось вызов гардеробу!
 
+ent-ClothingUSSPMarine = комбинезон космопехотинца СССП
+    .desc = Полосатая тельняшка и простые брюки космопехоты СССП. Носятся под боевым скафандром, ведь даже броня должна знать, кто внутри.
+
+ent-ClothingUniformJumpsuitSoviet = советский комбинезон
+    .desc = Стандартный комбинезон, который носят военнослужащие СССП.

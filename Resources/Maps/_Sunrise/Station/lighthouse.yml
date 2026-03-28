@@ -7364,14 +7364,12 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
-    - type: PhysicsMap
     - type: Broadphase
     - type: OccluderTree
     - parallax: LighthouseStation
       type: Parallax
     - type: LoadedMap
     - type: GridTree
-    - type: MovedGrids
 - proto: AcousticGuitarInstrument
   entities:
   - uid: 2179
@@ -100368,13 +100366,6 @@ entities:
   - uid: 2319
     components:
     - pos: 21.702955,8.673329
-      parent: 100
-      type: Transform
-- proto: RubberStampQm
-  entities:
-  - uid: 19829
-    components:
-    - pos: -36.400394,-6.391084
       parent: 100
       type: Transform
 - proto: SalvageMagnet

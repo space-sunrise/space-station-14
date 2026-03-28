@@ -90,6 +90,10 @@
     followEntity: true
   - type: CargoOrderConsole
   - type: CrewMonitoringConsole
+    # Sunrise - Start отключаем verb
+  - type: CrewMonitoringCorpseAlert
+    showToggleVerb: false
+    # Sunrise - End
   - type: GeneralStationRecordConsole
     canDeleteEntries: true
   - type: DeviceNetwork

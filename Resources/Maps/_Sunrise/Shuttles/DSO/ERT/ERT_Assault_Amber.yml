@@ -3309,8 +3309,6 @@ entities:
       pos: -0.5,1.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 275
   - uid: 274
@@ -3319,8 +3317,6 @@ entities:
       pos: 2.5,1.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 275
 - proto: WeaponEnergyTurretSecurityControlPanel

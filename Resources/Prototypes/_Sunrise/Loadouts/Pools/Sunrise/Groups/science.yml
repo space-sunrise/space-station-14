@@ -1,0 +1,18 @@
+# Sunrise-specific science loadout groups.
+
+- type: loadoutGroup
+  id: SunriseResearchDirectorNeck
+  name: loadout-group-research-director-neck
+  minLimit: 0
+  loadouts:
+  - ResearchDirectorMantle
+  - ResearchDirectorCloak
+  - ResearchDirectorScarf
+  - ResearchDirectorCloakLegacy
+
+- type: loadoutGroup
+  id: SunriseScientistPDA
+  name: loadout-group-scientist-id
+  loadouts:
+  - ScientistPDA
+  - SeniorResearcherPDA

@@ -1,0 +1,78 @@
+<Document>
+  # Коммунисты
+
+  Коммунисты — организованная враждебная фракция экспедиций, которая делает ставку на отделения и взаимную поддержку.
+  В отличие от разрозненных групп пиратов, советские бойцы чаще работают в отрядах: лидер + стрелки + медик.
+
+  # Бойцы Регулярной Армии
+  [bold][color=#a4885c]Общие характеристики:[/color][/bold]
+  - [bold][color=#a4885c]Здоровье:[/color][/bold] обычно 100; у медиков 80
+  - [bold][color=#a4885c]Скорость:[/color][/bold] 3.5 м/с (базовые стрелковые шаблоны)
+  - [bold][color=#a4885c]Защита брони (Flak):[/color][/bold] [color=red]Blunt[/color] 15% [color=red]Slash[/color] 15% [color=yellow]Piercing[/color] 45% [color=orange]Heat[/color] 40%
+  - [bold][color=#a4885c]Особенности:[/color][/bold] слабая штатная броня, давление числом, качественные патроны и метание разрывных гранат.
+
+  <Box>
+  <GuideEntityEmbed Entity="MobSovietT1Pistol" Caption=""/>
+  <GuideEntityEmbed Entity="MobSovietT1Mosin" Caption=""/>
+  <GuideEntityEmbed Entity="MobSovietT1SMGAlt" Caption=""/>
+  <GuideEntityEmbed Entity="MobSovietT1Dp28" Caption=""/>
+  <GuideEntityEmbed Entity="MobSovietT1RPD" Caption=""/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="MobSovietT1SLRifle" Caption=""/>
+  <GuideEntityEmbed Entity="MobSovietT1SerzhantSMG" Caption=""/>
+  <GuideEntityEmbed Entity="MobSovietT1SKM" Caption=""/>
+  <GuideEntityEmbed Entity="MobSovietT1PPSH" Caption=""/>
+  <GuideEntityEmbed Entity="MobSovietT1Medic" Caption=""/>
+  </Box>
+
+  - [bold][color=#a4885c]Роли:[/color][/bold] сержанты отрядов, стрелки, автоматчики, пулемётчики и медики.
+
+  # Бойцы Десанта
+  [bold][color=#a4885c]Общие характеристики:[/color][/bold]
+  - [bold][color=#a4885c]Здоровье:[/color][/bold] обычно 100; у медиков 80
+  - [bold][color=#a4885c]Скорость:[/color][/bold] базово 3.5 м/с, у морпехов рывок до 4.5 м/с
+  - [bold][color=#a4885c]Защита брони:[/color][/bold] 15% / 50% (обычно [color=red]Blunt[/color] и [color=red]Slash[/color] около 15%, [color=yellow]Piercing[/color] до 50%)
+  - [bold][color=#a4885c]Особенности:[/color][/bold] прыжок/перекаты, более плотная экипировка, усиленные роли прорыва
+
+  <Box>
+  <GuideEntityEmbed Entity="MobSovietT2Revolver" Caption=""/>
+  <GuideEntityEmbed Entity="MobSovietT2Rifle" Caption=""/>
+  <GuideEntityEmbed Entity="MobSovietT2RifleW" Caption=""/>
+  <GuideEntityEmbed Entity="MobSovietT2Raider" Caption=""/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="MobSovietT3Shotgun" Caption=""/>
+  <GuideEntityEmbed Entity="MobSovietT2Mech" Caption=""/>
+  <GuideEntityEmbed Entity="MobSovietT3Rifle" Caption=""/>
+  <GuideEntityEmbed Entity="MobSovietT3Medic" Caption=""/>
+  </Box>
+
+  # Отрядная тактика
+  Коммунистические группы чаще появляются готовыми составами:
+  - Пехотные отделения (лидер + стрелки + медик)
+  - Отделения автоматчиков и пулемётные группы а так же патрульные группы
+  - Лёгкие и тяжёлые [bold][color=#FF3B3BFF]МЕХ[/color][/bold]анизированные отряды
+
+  В бою это означает более устойчивое постоянное давление и меньше "одиночных" целей.
+
+  # Командиры и тяжёлая поддержка
+  [bold][color=#a4885c]Общие характеристики:[/color][/bold]
+  - [bold][color=#a4885c]Капитан:[/color][/bold] скорость 4.5 м/с, роль лидера и огневого усиления
+  - [bold][color=#a4885c]Лёгкий мех (Молот):[/color][/bold] 300 HP, повышенная броня корпуса
+  - [bold][color=#a4885c]Тяжёлый мех:[/color][/bold] 400 HP, максимальная стойкость и подавление
+  - [bold][color=#a4885c]Боевые медведи:[/color][/bold] до 300 HP, высокий урон в ближнем бою
+
+  <Box>
+  <GuideEntityEmbed Entity="MobSovietCaptain" Caption=""/>
+  <GuideEntityEmbed Entity="MobSovietT2Mech" Caption=""/>
+  <GuideEntityEmbed Entity="MobSovietT3Mech" Caption=""/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="MobSovietBear" Caption=""/>
+  <GuideEntityEmbed Entity="MobSovietBearAlt" Caption=""/>
+  <GuideEntityEmbed Entity="MobSovietSpaceBear" Caption=""/>
+  </Box>
+
+  - [bold][color=#a4885c]Угроза:[/color][/bold] У НИХ БОЕВОЙ МЕДВЕДЬ!!!
+</Document>

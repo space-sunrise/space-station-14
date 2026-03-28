@@ -41,6 +41,9 @@
   id: MobDionaMarkingLimits
   onlyWhitelisted: true
   points:
+    FacialHair:
+      points: 0
+      required: false
     Head:
       points: 2
       required: false

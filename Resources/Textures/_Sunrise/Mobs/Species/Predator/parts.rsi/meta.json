@@ -57,6 +57,14 @@
     {
       "name": "torso_m",
       "directions": 4
+    },
+    {
+        "name": "rings",
+        "directions": 4
+    },
+    {
+        "name": "dreadlocks",
+        "directions": 4
     }
   ]
 }

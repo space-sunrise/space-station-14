@@ -1366,7 +1366,8 @@ namespace Content.Server.Database
     /// <summary>
     /// Represents a mentor help ticket
     /// </summary>
-    [Table("mentor_help_tickets"), Index(nameof(PlayerId)), Index(nameof(AssignedToUserId)), Index(nameof(Status))]
+    [Table("mentor_help_tickets"), Index(nameof(PlayerId)), Index(nameof(AssignedToUserId)), Index(nameof(Status)),
+        Index(nameof(ClosedAt), nameof(AssignedToUserId))]
     public class MentorHelpTicket
     {
         [Key]
@@ -1430,7 +1431,8 @@ namespace Content.Server.Database
     /// <summary>
     /// Represents a message in a mentor help ticket
     /// </summary>
-    [Table("mentor_help_messages"), Index(nameof(TicketId)), Index(nameof(SentAt))]
+    [Table("mentor_help_messages"), Index(nameof(TicketId)), Index(nameof(SentAt)),
+        Index(nameof(SentAt), nameof(SenderUserId))]
     public class MentorHelpMessage
     {
         [Key]

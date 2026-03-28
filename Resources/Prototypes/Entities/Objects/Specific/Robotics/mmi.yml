@@ -98,9 +98,16 @@
 #      stopSearchVerbPopup: positronic-brain-stopped-searching
 #      job: Borg
     - type: BlockMovement
-      blockInteraction: false
     - type: Examiner
-
+    - type: BorgBrain
+    - type: IntrinsicRadioReceiver
+    - type: IntrinsicRadioTransmitter
+      channels:
+      - Binary
+    - type: ActiveRadio
+      channels:
+      - Binary
+      - Common
     - type: NameIdentifier
       group: PositronicBrain
     - type: DoAfter

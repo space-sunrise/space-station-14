@@ -20,6 +20,6 @@ public sealed class NetTexturesCleanupSystem : EntitySystem
 
     private void OnRoundRestart(RoundRestartCleanupEvent ev)
     {
-        _netTexturesManager.ClearDynamicResources();
+        _netTexturesManager.ClearRoundCaches();
     }
 }

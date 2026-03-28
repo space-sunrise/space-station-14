@@ -1,0 +1,1 @@
+xenoarch-trigger-tip-electrovae = Электровей

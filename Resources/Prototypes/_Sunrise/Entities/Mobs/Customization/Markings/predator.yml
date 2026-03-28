@@ -1,0 +1,116 @@
+- type: marking
+  id: PredatorDreadlocksShort1
+  bodyPart: Dreadlocks
+  markingCategory: Dreadlocks
+  speciesRestriction: [Predator]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Predator/dreadlocks.rsi
+    state: dreadlocks_1
+
+- type: marking
+  id: PredatorDreadlocksShort2
+  bodyPart: Dreadlocks
+  markingCategory: Dreadlocks
+  speciesRestriction: [Predator]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Predator/dreadlocks.rsi
+    state: dreadlocks_2
+
+- type: marking
+  id: PredatorDreadlocksShoulderLength
+  bodyPart: Dreadlocks
+  markingCategory: Dreadlocks
+  speciesRestriction: [Predator]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Predator/dreadlocks.rsi
+    state: dreadlocks_3
+
+- type: marking
+  id: PredatorDreadLong
+  bodyPart: Dreadlocks
+  markingCategory: Dreadlocks
+  speciesRestriction: [Predator]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Predator/dreadlocks.rsi
+    state: dreadlocks_4
+
+- type: marking
+  id: PredatorDreadlocksTailDown
+  bodyPart: Dreadlocks
+  markingCategory: Dreadlocks
+  speciesRestriction: [Predator]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Predator/dreadlocks.rsi
+    state: dreadlocks_5
+
+- type: marking
+  id: PredatorDreadlocksTailUp
+  bodyPart: Dreadlocks
+  markingCategory: Dreadlocks
+  speciesRestriction: [Predator]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Predator/dreadlocks.rsi
+    state: dreadlocks_6
+
+- type: marking
+  id: PredatorBodySpots
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Predator]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Predator/body.rsi
+    state: spots_body
+
+- type: marking
+  id: PredatorBodyStripes
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Predator]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Predator/body.rsi
+    state: stripes_body
+
+- type: marking
+  id: PredatorArmsSpots
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Predator]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Predator/arms.rsi
+    state: spots_arms
+
+- type: marking
+  id: PredatorArmsStripes
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Predator]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Predator/arms.rsi
+    state: stripes_arms
+
+- type: marking
+  id: PredatorLegsStripes
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Predator]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Predator/legs.rsi
+    state: stripes_legs
+
+- type: marking
+  id: PredatorRings1
+  bodyPart: Rings
+  markingCategory: Rings
+  speciesRestriction: [Predator]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Predator/rings.rsi
+    state: rings
+
+- type: marking
+  id: PredatorRings2
+  bodyPart: Rings
+  markingCategory: Rings
+  speciesRestriction: [Predator]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Predator/rings.rsi
+    state: rings_2

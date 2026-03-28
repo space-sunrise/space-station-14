@@ -1,3 +1,4 @@
+
 - type: job
   id: SecurityOfficer
   name: job-name-security
@@ -25,9 +26,9 @@
 - type: startingGear
   id: SecurityOfficerGear
   equipment:
-    eyes: ClothingEyesGlassesSecurity
+    # eyes: ClothingEyesGlassesSecurity # Sunrise Edit
     ears: ClothingHeadsetSecurity
-    head: ClothingHeadHelmetBasic
+    # head: ClothingHeadHelmetBasic # Sunrise Edit
     gloves: ClothingHandsGlovesColorBlack
   storage:
     back:

@@ -6,25 +6,25 @@ public sealed partial class IcarusBeamComponent : Component
     /// <summary>
     ///     Beam moving speed.
     /// </summary>
-    [DataField("speed")]
+    [DataField]
     public float Speed = 8f;
 
     /// <summary>
     ///     The beam will be automatically cleaned up after this time.
     /// </summary>
-    [DataField("lifetime")]
+    [DataField]
     public TimeSpan Lifetime = TimeSpan.FromSeconds(200);
 
     /// <summary>
     ///     With this set to true, beam will automatically set the tiles under them to space.
     /// </summary>
-    [DataField("destroyTiles")]
+    [DataField]
     public bool DestroyTiles = true;
 
-    [DataField("destroyRadius")]
+    [DataField]
     public float DestroyRadius = 4f;
 
-    [DataField("flameRadius")]
+    [DataField]
     public float FlameRadius = 8f;
 
     public TimeSpan LifetimeEnd;

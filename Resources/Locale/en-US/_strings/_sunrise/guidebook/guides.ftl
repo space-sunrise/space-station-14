@@ -1,5 +1,6 @@
 guide-entry-expeditions = Экспедиции
 guide-entry-expedition-pirates = Пираты
+guide-entry-expedition-soviets = Коммунисты
 guide-entry-expedition-xenos = Ксено
 guide-entry-expedition-carps = Карпы
 

@@ -1,0 +1,19 @@
+- type: reagent
+  id: Smetana
+  name: reagent-name-smetana
+  group: Foods
+  desc: reagent-desc-smetana
+  physicalDesc: reagent-physical-desc-creamy
+  flavor: creamy
+  color: white
+  recognizable: false
+
+- type: reagent
+  id: Honey
+  name: reagent-name-honey
+  group: Foods
+  desc: reagent-desc-honey
+  physicalDesc: reagent-physical-desc-thick
+  flavor: sweet
+  color: "#ffdf6a"
+  recognizable: true

@@ -24,10 +24,15 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             SubscribeLocalEvent<JuggernautCreateWallActionEvent>(OnJuggernautCreateWall);
 
-            SubscribeLocalEvent<ConstructComponent, ComponentInit>(OnConstructInit);
+            SubscribeLocalEvent<ConstructComponent, MapInitEvent>(OnConstructMapInit);
         }
 
-        private void OnConstructInit(EntityUid uid, ConstructComponent component, ComponentInit args)
+        private void OnConstructMapInit(EntityUid uid, ConstructComponent component, MapInitEvent args)
+        {
+            InitializeConstructActions(uid, component);
+        }
+
+        private void InitializeConstructActions(EntityUid uid, ConstructComponent component)
         {
             var ev = new UpdateCultAppearance();
             RaiseLocalEvent(ev);

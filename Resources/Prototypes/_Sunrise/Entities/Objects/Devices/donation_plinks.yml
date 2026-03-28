@@ -51,7 +51,6 @@
       - SunriseUplink
 
 ##################
-#    SUNRISE     #
 ##################
 
 - type: entity

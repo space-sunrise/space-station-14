@@ -1,4 +1,3 @@
-using Content.Client.Administration.Systems;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface.Controllers;
 
@@ -49,13 +48,9 @@ namespace Content.Client._Sunrise.MentorHelp
         public void ToggleStatistics()
         {
             if (_dialog?.IsOpen == true)
-            {
                 CloseStatistics();
-            }
             else
-            {
                 OpenStatistics();
-            }
         }
 
         public void CloseStatistics()
