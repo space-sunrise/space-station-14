@@ -5,7 +5,6 @@ using Robust.Client.Graphics;
 using Robust.Shared.GameStates;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using YamlDotNet.Serialization.NamingConventions;
 
 namespace Content.Client._Sunrise.Disease.Systems;
 

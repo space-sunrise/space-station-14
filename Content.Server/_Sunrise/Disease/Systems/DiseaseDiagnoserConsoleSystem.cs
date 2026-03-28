@@ -43,6 +43,9 @@ public sealed class DiseaseDiagnoserConsoleSystem : EntitySystem
         var dataServer = new DiseaseDiagnoserDataServerComponent();
         var diagnoser = new DiseaseDiagnoserComponent();
 
+        if (component.DiseaseDiagnoserDataServer == null || !TryComp(component.DiseaseDiagnoserDataServer, out dataServer))
+            return;
+
         switch (args.Button)
         {
             case UiButton.StartAnalys:
@@ -55,9 +58,6 @@ public sealed class DiseaseDiagnoserConsoleSystem : EntitySystem
                 }
             case UiButton.DeleteData:
                 {
-                    if (component.DiseaseDiagnoserDataServer == null || !TryComp(component.DiseaseDiagnoserDataServer, out dataServer))
-                        return;
-
                     if (string.IsNullOrEmpty(args.Strain))
                         return;
 
@@ -67,9 +67,6 @@ public sealed class DiseaseDiagnoserConsoleSystem : EntitySystem
             case UiButton.GenerateDisease:
                 {
                     if (component.DiseaseDiagnoser == null || !TryComp(component.DiseaseDiagnoser, out diagnoser))
-                        return;
-
-                    if (component.DiseaseDiagnoserDataServer == null || !TryComp(component.DiseaseDiagnoserDataServer, out dataServer))
                         return;
 
                     if (string.IsNullOrEmpty(args.Strain))
@@ -85,10 +82,7 @@ public sealed class DiseaseDiagnoserConsoleSystem : EntitySystem
                     if (component.DiseaseDiagnoser == null || !TryComp(component.DiseaseDiagnoser, out diagnoser))
                         return;
 
-                    if (component.DiseaseDiagnoserDataServer == null || !TryComp(component.DiseaseDiagnoserDataServer, out dataServer))
-                        return;
-
-                    if (String.IsNullOrEmpty(args.Strain))
+                    if (string.IsNullOrEmpty(args.Strain))
                         return;
 
                     DiseaseData? data = _dataServer.GetData((component.DiseaseDiagnoserDataServer.Value, dataServer), args.Strain);

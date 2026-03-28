@@ -8,10 +8,10 @@
     },
     "states": [
 		{
-			"name": "Patient"
+			"name": "Pacient"
 		},
 		{
-			"name": "PrimaryPatient"
+			"name": "PrimaryPacient"
 		}
     ]
 }
