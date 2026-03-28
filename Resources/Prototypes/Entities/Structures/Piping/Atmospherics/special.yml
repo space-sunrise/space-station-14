@@ -62,12 +62,11 @@
   id: AtmosDeviceFanDirectionalInvisible
   parent: AtmosDeviceFanDirectional
   name: directional Invisible fan
-  categories: [ DoNotMap ]
   placement:
      mode: SnapgridCenter
   components:
   - type: Stealth
   - type: StealthOnMove
-    passiveVisibilityRate: 0
-    movementVisibilityRate: 0
+    passiveVisibilityRate: -10
+    movementVisibilityRate: 1
 # Sunrise-end
