@@ -25,6 +25,7 @@
   - type: EnergyDomeGenerator
     damageEnergyDraw: 1
     domePrototype: EnergyDomeCult
+    requireEquippedToUse: true
   - type: UseDelay
     delay: 10.0
   # Нихуя технологии у культистов да?
@@ -59,6 +60,9 @@
     - Energy
     - NonEnergy
   - type: ReturnItemOnThrow
+  - type: Biocode
+    factions:
+    - BloodCult
   - type: CultMirrorShield
   - type: Blocking
     passiveBlockModifier:

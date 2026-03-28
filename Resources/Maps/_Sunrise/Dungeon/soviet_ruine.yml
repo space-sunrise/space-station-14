@@ -4,8 +4,8 @@ meta:
   engineVersion: 271.1.0
   forkId: ""
   forkVersion: ""
-  time: 03/05/2026 17:50:47
-  entityCount: 1759
+  time: 03/28/2026 17:10:43
+  entityCount: 1765
 maps:
 - 1
 grids:
@@ -311,6 +311,13 @@ entities:
       parent: 1
 - proto: APCHyperCapacity
   entities:
+  - uid: 623
+    components:
+    - type: Transform
+      pos: 18.5,22.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 955
     components:
     - type: Transform
@@ -322,6 +329,29 @@ entities:
     components:
     - type: Transform
       pos: 24.5,22.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 1762
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 11.5,14.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 1763
+    components:
+    - type: Transform
+      pos: 3.5,20.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 1765
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,20.5
       parent: 1
     - type: Fixtures
       fixtures: {}
@@ -5409,7 +5439,7 @@ entities:
   - uid: 1070
     components:
     - type: Transform
-      pos: 3.287221,20.78797
+      pos: 4.115916,20.303202
       parent: 1
 - proto: CigarGoldCase
   entities:
@@ -5667,41 +5697,11 @@ entities:
     - type: Transform
       pos: 13.5,20.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-    - type: ItemSlots
   - uid: 1172
     components:
     - type: Transform
       pos: 13.5,19.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-    - type: ItemSlots
 - proto: Crematorium
   entities:
   - uid: 1427
@@ -6333,11 +6333,6 @@ entities:
     - type: Transform
       pos: 22.503414,22.65932
       parent: 1
-  - uid: 1160
-    components:
-    - type: Transform
-      pos: 18.73258,22.586405
-      parent: 1
 - proto: GasPassiveVent
   entities:
   - uid: 511
@@ -6800,11 +6795,6 @@ entities:
     - type: Transform
       pos: 12.5,25.5
       parent: 1
-  - uid: 1734
-    components:
-    - type: Transform
-      pos: 20.5,14.5
-      parent: 1
   - uid: 1735
     components:
     - type: Transform
@@ -6840,22 +6830,32 @@ entities:
     - type: Transform
       pos: 17.5,8.5
       parent: 1
-  - uid: 1743
-    components:
-    - type: Transform
-      pos: 16.5,12.5
-      parent: 1
-  - uid: 1746
-    components:
-    - type: Transform
-      pos: 18.5,16.5
-      parent: 1
 - proto: MobSovietT1ExpeditionSpawner
   entities:
+  - uid: 1160
+    components:
+    - type: Transform
+      pos: 12.5,15.5
+      parent: 1
+  - uid: 1734
+    components:
+    - type: Transform
+      pos: 13.5,13.5
+      parent: 1
   - uid: 1742
     components:
     - type: Transform
       pos: 14.5,3.5
+      parent: 1
+  - uid: 1743
+    components:
+    - type: Transform
+      pos: 9.5,13.5
+      parent: 1
+  - uid: 1744
+    components:
+    - type: Transform
+      pos: 5.5,35.5
       parent: 1
   - uid: 1752
     components:
@@ -6876,6 +6876,16 @@ entities:
     components:
     - type: Transform
       pos: 20.5,45.5
+      parent: 1
+  - uid: 1760
+    components:
+    - type: Transform
+      pos: 10.5,42.5
+      parent: 1
+  - uid: 1761
+    components:
+    - type: Transform
+      pos: 11.5,39.5
       parent: 1
 - proto: Multitool
   entities:
@@ -8396,7 +8406,7 @@ entities:
   - uid: 1101
     components:
     - type: Transform
-      pos: 3.660244,20.310263
+      pos: 4.069041,19.967264
       parent: 1
 - proto: ShelfMetal
   entities:
@@ -8659,11 +8669,6 @@ entities:
       parent: 1
 - proto: SovietSquadPatrol
   entities:
-  - uid: 1744
-    components:
-    - type: Transform
-      pos: 11.5,13.5
-      parent: 1
   - uid: 1745
     components:
     - type: Transform
@@ -8908,7 +8913,7 @@ entities:
   - uid: 1195
     components:
     - type: Transform
-      pos: 3.4711351,20.656025
+      pos: 4.1237283,20.85789
       parent: 1
 - proto: TableCarpet
   entities:
@@ -9118,11 +9123,6 @@ entities:
     components:
     - type: Transform
       pos: 16.5,38.5
-      parent: 1
-  - uid: 623
-    components:
-    - type: Transform
-      pos: 18.5,22.5
       parent: 1
   - uid: 624
     components:
@@ -9431,6 +9431,17 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 12.5,14.5
+      parent: 1
+  - uid: 1746
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 18.5,22.5
+      parent: 1
+  - uid: 1764
+    components:
+    - type: Transform
+      pos: 3.5,20.5
       parent: 1
 - proto: WaterVaporCanister
   entities:

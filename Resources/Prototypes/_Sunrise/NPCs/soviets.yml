@@ -46,6 +46,8 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
+  - type: TimedDespawn
+    lifetime: 3600
   - type: RemoveComponentsOnTrigger
     triggerOnce: true
     components:
@@ -59,7 +61,7 @@
     removeExisting: true
     components:
     - type: TimedDespawn
-      lifetime: 300
+      lifetime: 600
     - type: Strippable
     - type: Pullable
   - type: TimedRemoveComponents
@@ -158,7 +160,7 @@
     makeSentient: true
     name: ghost-role-information-expedition-soviet-name
     description: ghost-role-information-expedition-soviet-description
-    rules: ghost-role-information-expedition-soviet-rules
+    rules: ghost-role-information-rules-expedition-soviet-antagonist
     raffle:
       settings: short
   - type: GhostTakeoverAvailable
@@ -443,7 +445,7 @@
     aliveTargets: false
     damage:
       groups:
-        Brute: -20
+        Brute: -15
         Burn: -10
         Airloss: -10
         Toxin: -10
@@ -464,7 +466,7 @@
       aliveTargets: false
       damage:
         groups:
-          Brute: -20
+          Brute: -15
           Burn: -10
           Airloss: -10
           Toxin: -10
@@ -678,9 +680,9 @@
     showExamineText: false
     fireRate: 7.5
     minAngle: 5
-    maxAngle: 60
-    angleIncrease: 4
-    angleDecay: 20
+    maxAngle: 50
+    angleIncrease: 3
+    angleDecay: 25
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -1080,10 +1082,10 @@
     threshold: 0.9
     damage:
       groups:
-        Brute: -30
-        Burn: -20
-        Airloss: -20
-        Toxin: -20
+        Brute: -20
+        Burn: -15
+        Airloss: -15
+        Toxin: -15
     whitelist:
       components:
       - NpcVeteranFollower
@@ -1100,10 +1102,10 @@
       threshold: 0.9
       damage:
         groups:
-          Brute: -30
-          Burn: -20
-          Airloss: -20
-          Toxin: -20
+          Brute: -20
+          Burn: -15
+          Airloss: -15
+          Toxin: -15
       whitelist:
         components:
         - NpcVeteranFollower

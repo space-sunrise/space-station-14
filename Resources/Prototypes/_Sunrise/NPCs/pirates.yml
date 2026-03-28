@@ -158,6 +158,8 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
+  - type: TimedDespawn
+    lifetime: 3600
   - type: RemoveComponentsOnTrigger
     triggerOnce: true
     components:
@@ -173,7 +175,7 @@
     removeExisting: true
     components:
     - type: TimedDespawn
-      lifetime: 300
+      lifetime: 600
     - type: Strippable
     - type: Pullable
   - type: TimedRemoveComponents

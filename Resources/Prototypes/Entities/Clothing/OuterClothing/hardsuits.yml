@@ -261,6 +261,7 @@
   - type: EnergyDomeGenerator
     damageEnergyDraw: 6
     domePrototype: EnergyDomeSmallPink
+    requireEquippedToUse: true
   - type: PowerCellDraw
     drawRate: 0
     useCharge: 0

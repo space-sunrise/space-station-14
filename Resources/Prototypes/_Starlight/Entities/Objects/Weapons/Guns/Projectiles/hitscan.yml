@@ -1042,7 +1042,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
-    armorPenetration: -0.15 # Sunrise-edit
+    armorPenetration: -0.2 # Sunrise-edit
     damage:
       types:
         Piercing: 5

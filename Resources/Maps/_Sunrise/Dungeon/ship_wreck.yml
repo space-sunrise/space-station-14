@@ -2439,7 +2439,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 8.5,4.5
       parent: 1
-- proto: GunSafeShotgunEnforcer
+- proto: SpawnerSafeShotguns
   entities:
   - uid: 319
     components:
