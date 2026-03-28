@@ -1117,6 +1117,9 @@
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 5
+      maxRange: 12
     - actionId: ActionGunGrenadeExplosiveShrapnelSpell
       minRange: 5
       maxRange: 12
@@ -1179,6 +1182,9 @@
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 5
+      maxRange: 12
     - actionId: ActionGunGrenadeExplosiveShrapnelSpell
       minRange: 5
       maxRange: 12
@@ -1242,9 +1248,15 @@
     soundGunshot: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_shot.ogg
   - type: NPCUseActionWhenTargetInRange
     actions:
+    - actionId: ActionGravityJumpQuick
+      minRange: 4
+      maxRange: 0
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 5
+      maxRange: 12
     - actionId: ActionGunGrenadeExplosiveShrapnelSpell
       minRange: 5
       maxRange: 12
