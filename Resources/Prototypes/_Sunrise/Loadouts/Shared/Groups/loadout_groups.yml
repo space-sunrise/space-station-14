@@ -89,6 +89,9 @@
   - SportWomanPants
   - ThongWomanPants
   - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
 
 - type: loadoutGroup
   id: BrigmedicBackpack
