@@ -106,6 +106,33 @@
     bra: ClothingBraUk
 
 - type: loadout
+  id: PinkBra
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraPink
+
+- type: loadout
+  id: PurpleBra
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraPurple
+
+- type: loadout
+  id: BlackBra
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraBlack
+
+- type: loadout
   id: ChristmasBra
   sponsorOnly: false
   effects:

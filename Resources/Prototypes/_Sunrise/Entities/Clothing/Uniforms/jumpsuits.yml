@@ -477,11 +477,23 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformUndershirt
+  name: undershirt
+  description: Plain daily wear.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/undershirt.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/undershirt.rsi
+    equippedState: equipped-INNERCLOTHING
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformJumpsuitMilirUniform
-  name: milir Bodysuit
+  name: millir Bodysuit
   description: A simple, form-fitting bodysuit tailored for Milir anatomy.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/milirs_uniform.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/milirs_unifrom.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/milirs_uniform.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/milirs_unifrom.rsi

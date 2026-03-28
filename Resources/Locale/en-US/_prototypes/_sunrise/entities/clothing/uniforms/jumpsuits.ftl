@@ -90,3 +90,5 @@ ent-ClothingUSSPMarine = USSP space-marine jumpsuit
 
 ent-ClothingUniformJumpsuitSoviet = Soviet jumpsuit
     .desc = A standard jumpsuit worn by Soviet military personnel.
+ent-ClothingUniformUndershirt = undershirt
+    .desc = Plain daily wear.
