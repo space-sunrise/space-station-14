@@ -44,3 +44,40 @@
   id: SunriseBeretCE
   equipment:
     head: ClothingHeadHatBeretCE
+
+- type: loadout
+  id: ChiefEngineerBra
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChiefEngineer
+      time: 5h
+  equipment:
+    bra: ClothingBraChiefEngineer
+
+- type: loadout
+  id: ChiefEngineerThong
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChiefEngineer
+      time: 5h
+  equipment:
+    pants: ClothingPantsWomanChiefEngineer
+
+- type: loadout
+  id: ChiefEngineerBoxers
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChiefEngineer
+      time: 5h
+  equipment:
+    pants: ClothingPantsManChiefEngineer
