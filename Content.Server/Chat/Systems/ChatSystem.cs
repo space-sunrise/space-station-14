@@ -943,13 +943,14 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (entRange == MessageRangeCheckResult.Disallowed)
                 continue;
             // Sunrise-start
-            // Проверка на наличие видимости для эмоутов
-            if (
-                channel == ChatChannel.Emotes
-                && session.AttachedEntity is not null
-                && !_examineSystem.InRangeUnOccluded(source, session.AttachedEntity.Value, VoiceRange)
-            )
-                continue;
+            // Проверка на наличие прямой видимости для эмоутов
+            if (channel == ChatChannel.Emotes)
+            {
+                var ev = new VisibilityCheckEvent(source, session.AttachedEntity, VoiceRange);
+                RaiseLocalEvent(ev);
+                if (ev.Cancelled)
+                    continue;
+            }
             // Sunrise-end
             var entHideChat = entRange == MessageRangeCheckResult.HideChat;
             _chatManager.ChatMessageToOne(channel, message, wrappedMessage, source, entHideChat, session.Channel, author: author, colorOverride: color);
