@@ -35,3 +35,6 @@ ent-SurveillanceCameraWirelessRouterConstructed = { ent-SurveillanceCameraWirele
 ent-SurveillanceCameraWirelessRouterEntertainment = { ent-SurveillanceCameraWirelessRouterBase }
     .suffix = Развлекательный
     .desc = { ent-SurveillanceCameraWirelessRouterBase.desc }
+ent-SurveillanceCameraWirelessRouterXenoborg = { ent-SurveillanceCameraWirelessRouterBase }
+    .suffix = Ксеноборги
+    .desc = { ent-SurveillanceCameraWirelessRouterBase.desc }

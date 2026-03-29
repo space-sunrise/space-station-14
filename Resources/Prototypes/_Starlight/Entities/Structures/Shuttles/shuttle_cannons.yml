@@ -869,11 +869,11 @@
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/Scylla.rsi
     granularLayersRendering: true
     layers:
-    - sprite: Structures/Machines/station_anchor.rsi
-      state: station_anchor
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: support
       renderingStrategy: NoRotation
-    - sprite: Structures/Machines/station_anchor.rsi
-      state: station_anchor_unlit
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_open
       renderingStrategy: NoRotation
     - state: space_artillery
   - type: ContainerContainer
