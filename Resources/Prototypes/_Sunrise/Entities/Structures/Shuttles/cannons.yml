@@ -410,7 +410,7 @@
   id: ShuttleGunBeamstormMachineGun
   parent: [ ShuttleGunBase, ConstructibleMachine]
   name: LSE-800e "Beamstorm machine gun"
-  description: Advance stationary laser unit. Effective against live targets and electronics. Draws directly from the ship's APC grid, and has an extremely high rate of fire.
+  description: Advanced stationary laser unit. Effective against live targets and electronics. Draws directly from the ship's APC grid, and has an extremely high rate of fire.
   #categories: [ DoNotMap ]
   components:
   - type: Sprite

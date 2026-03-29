@@ -96,6 +96,19 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
     private void OnAfterInteract(Entity<EnergyDomeGeneratorComponent> generator, ref AfterInteractEvent args)
     {
+        if (!_containerSystem.ContainsEntity(args.User, generator.Owner))
+            return;
+
+        if (generator.Comp.RequireEquippedToUse &&
+            !_inventory.TryGetContainingSlot((generator.Owner, Transform(generator.Owner), MetaData(generator.Owner)), out _))
+            return;
+
+        if (TryComp<BiocodeComponent>(generator.Owner, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+
         if (generator.Comp.CanInteractUse)
             AttemptToggle(generator, !generator.Comp.Enabled);
     }

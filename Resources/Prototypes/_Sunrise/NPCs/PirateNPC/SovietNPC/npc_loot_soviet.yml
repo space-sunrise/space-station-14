@@ -557,7 +557,7 @@
     state: icon
   - type: SpawnItemsOnUse
     items:
-    - id: MagazineBoxLightRifleFMJ
+    - id: MagazineBoxRifleMachineFMJ
       prob: 0.4
     - id: SpeedLoaderHeavyRifleRFMJ
       prob: 0.9
@@ -565,7 +565,7 @@
       prob: 0.9
     - id: SpeedLoaderHeavyRifleRFMJ
       prob: 0.2
-    - id: MagazineBoxLightRifleBig
+    - id: MagazineBoxRifleMachineBig
       prob: 0.1
     - id: SovietSmokingSpawner
     sound:

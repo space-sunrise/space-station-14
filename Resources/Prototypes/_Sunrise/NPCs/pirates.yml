@@ -1775,7 +1775,7 @@
   name: Scrap raider
   parent: [MobMovementSpeedModifierEVARanged, MobPirateVeteranChatterBase]
   id: MobPirateT1SMG
-  description: In a team where everyone is armed with whatever they could grab, he picked up a rifle - at least it used to be one.
+  description: In a team where everyone is armed with whatever they could grab, he picked up an SMG - and somehow made it work.  
   components:
   - type: Tag
     tags:
