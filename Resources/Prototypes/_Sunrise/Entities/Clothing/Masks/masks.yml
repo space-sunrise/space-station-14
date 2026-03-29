@@ -322,4 +322,4 @@
   # надо фиксить систему компонента и вероятно сам компонент
   #- type: ModifyWearerName
     #locId: equipped-name-prefix
-   # priority: 0
+    #priority: 0

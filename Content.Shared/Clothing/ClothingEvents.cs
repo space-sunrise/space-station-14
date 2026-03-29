@@ -57,7 +57,6 @@ public sealed class EquipmentVisualsUpdatedEvent : EntityEventArgs
         Slot = slot;
         RevealedLayers = revealedLayers;
     }
-
 }
 
 public sealed partial class ToggleMaskEvent : InstantActionEvent { }
