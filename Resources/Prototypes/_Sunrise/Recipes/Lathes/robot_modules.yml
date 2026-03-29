@@ -135,3 +135,23 @@
   parent: BaseBorgModuleRecipe
   id: BorgModuleGardening
   result: BorgModuleGardening
+
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
+  id: BorgModulePaperwork
+  result: BorgModulePaperwork
+
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
+  id: BorgModuleBartender
+  result: BorgModuleBartender
+
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
+  id: BorgModuleCooking
+  result: BorgModuleCooking
+
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
+  id: BorgModuleExtensiveGardening
+  result: BorgModuleExtensiveGardening

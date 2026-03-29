@@ -91,3 +91,7 @@
   - BorgModuleService
   - BorgModuleGardening
   - BorgModuleHarvesting
+  - BorgModulePaperwork
+  - BorgModuleBartender
+  - BorgModuleCooking
+  - BorgModuleExtensiveGardening
