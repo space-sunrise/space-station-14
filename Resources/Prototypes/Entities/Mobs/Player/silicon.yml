@@ -190,6 +190,7 @@
   name: AI core
   description: The latest in Artificial Intelligences.
   parent:
+  - BaseMob
   - BaseStructure
   - AiHolder
   suffix: Empty
@@ -197,6 +198,8 @@
   - type: Anchorable
     flags:
     - None
+  - type: Physics
+    bodyType: KinematicController
   - type: Rotatable
   - type: WarpPoint
     blacklist:
@@ -278,13 +281,10 @@
     sprite: Mobs/Silicon/station_ai.rsi
     layers:
     - state: base
+      map: ["enum.StationAiVisualLayers.Core"]
     - state: ai_empty
-      map: ["enum.StationAiVisualLayers.Base"]
+      map: ["enum.StationAiVisualLayers.Screen"]
       shader: unshaded
-    - state: ai
-      map: ["enum.StationAiVisualLayers.Icon"]
-      shader: unshaded
-      visible: false
     - state: ai_unpowered
       map: ["enum.PowerDeviceVisualLayers.Powered"]
       visible: false
@@ -308,14 +308,20 @@
           False: { visible: true }
           True: { visible: false }
       enum.StationAiVisuals.Broken:
-        enum.StationAiVisualLayers.Base:
+        enum.StationAiVisualLayers.Screen:
           False: { state: ai_empty }
           True: { state: ai_error }
   - type: ActionGrant
     actions:
     - ActionUnVisitCore
-  - type: Physics
-    bodyType: Static
+  - type: Tag
+    tags:
+    - Structure
+    - FootstepSound
+    - DoorBumpOpener
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepBorg
   - type: InteractionPopup
     interactSuccessString: petting-success-station-ai
     interactFailureString: petting-failure-station-ai

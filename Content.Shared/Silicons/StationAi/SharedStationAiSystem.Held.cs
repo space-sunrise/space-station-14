@@ -1,6 +1,7 @@
 using Content.Shared.Actions.Events;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Mind.Components;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Serialization;
@@ -27,6 +28,8 @@ public abstract partial class SharedStationAiSystem
         SubscribeLocalEvent<StationAiHeldComponent, InteractionAttemptEvent>(OnHeldInteraction);
         SubscribeLocalEvent<StationAiHeldComponent, AttemptRelayActionComponentChangeEvent>(OnHeldRelay);
         SubscribeLocalEvent<StationAiHeldComponent, JumpToCoreEvent>(OnCoreJump);
+        SubscribeLocalEvent<StationAiHeldComponent, VisitCoreEvent>(OnCoreVisit);
+        SubscribeLocalEvent<VisitingMindComponent, UnVisitCoreEvent>(OnCoreUnVisit);
 
         SubscribeLocalEvent<TryGetIdentityShortInfoEvent>(OnTryGetIdentityShortInfo);
     }
@@ -52,6 +55,44 @@ public abstract partial class SharedStationAiSystem
             return;
 
         _xforms.DropNextTo(core.Comp.RemoteEntity.Value, core.Owner);
+    }
+
+    private void OnCoreVisit(Entity<StationAiHeldComponent> ent, ref VisitCoreEvent args)
+    {
+        if (!TryGetCore(ent.Owner, out var core) || core.Comp?.RemoteEntity == null)
+            return;
+
+        if (!_mind.TryGetMind(ent.Owner, out var mindId, out var mind))
+            return;
+
+        _mind.Visit(mindId, core, mind);
+        _xforms.Unanchor(core);
+
+        if (!TryComp<AppearanceComponent>(core, out var app))
+            return;
+
+        _appearance.SetData(core, StationAiVisualState.Key, StationAiState.Standing, app);
+    }
+
+    private void OnCoreUnVisit(Entity<VisitingMindComponent> ent, ref UnVisitCoreEvent args)
+    {
+        // Re-anchoring is desirable, but failing it should not block returning control
+        // back to the remote eye.
+        if (!Transform(ent.Owner).Anchored)
+            _xforms.AnchorEntity(ent.Owner);
+
+        if (ent.Comp.MindId != null)
+            _mind.UnVisit(ent.Comp.MindId.Value);
+
+        if (!TryComp(ent.Owner, out StationAiCoreComponent? coreComp) || coreComp.RemoteEntity == null)
+            return;
+
+        _xforms.DropNextTo(coreComp.RemoteEntity.Value, ent.Owner);
+
+        if (!TryComp<AppearanceComponent>(ent.Owner, out var app))
+            return;
+
+        _appearance.SetData(ent.Owner, StationAiVisualState.Key, StationAiState.Occupied, app);
     }
 
     /// <summary>

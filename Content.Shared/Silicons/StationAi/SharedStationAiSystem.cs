@@ -573,6 +573,12 @@ public abstract partial class SharedStationAiSystem : EntitySystem
             return;
         }
 
+        // Keep core visualizer state in sync for the leggy animation system.
+        var coreState = state;
+        if (coreState is StationAiState.Hologram or StationAiState.Rebooting)
+            coreState = StationAiState.Occupied;
+        _appearance.SetData(entity.Owner, StationAiVisualState.Key, coreState);
+
         // The AI core is empty
         if (state == StationAiState.Empty)
         {
@@ -638,14 +644,35 @@ public sealed partial class JumpToCoreEvent : InstantActionEvent
 
 }
 
+public sealed partial class VisitCoreEvent : InstantActionEvent
+{
+
+}
+
+public sealed partial class UnVisitCoreEvent : InstantActionEvent
+{
+
+}
+
 [Serializable, NetSerializable]
 public sealed partial class IntellicardDoAfterEvent : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public enum StationAiVisualState : byte
+{
+    Key,
+}
 
 [Serializable, NetSerializable]
 public enum StationAiVisualLayers : byte
 {
     Base,
     Icon,
+    // Alias names for leggy visualizer compatibility.
+    Core = Base,
+    Screen = Icon,
+    CoreStanding,
+    ScreenStanding,
 }
 
 [Serializable, NetSerializable]
@@ -662,4 +689,7 @@ public enum StationAiState : byte
     Dead,
     Rebooting,
     Hologram,
+    Up,
+    Down,
+    Standing,
 }
