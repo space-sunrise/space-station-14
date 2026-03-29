@@ -448,40 +448,40 @@
       cost: 4
       prob: 0.04
     - proto: MobSovietT1Pistol
-      cost: 6
+      cost: 4
       prob: 0.06
     - proto: MobSovietT1Mosin
-      cost: 7
+      cost: 5
       prob: 0.06
     - proto: MobSovietT1SMGAlt
       cost: 7
       prob: 0.05
     - proto: MobSovietT1MosinAlt
-      cost: 7
+      cost: 5
       prob: 0.04
     - proto: MobSovietT2Bottle
-      cost: 7
+      cost: 5
       prob: 0.04
     - proto: MobSovietT2Finka
-      cost: 7
+      cost: 5
       prob: 0.04
     - proto: MobSovietT2Revolver
-      cost: 9
+      cost: 8
       prob: 0.03
     - proto: MobSovietT2Rifle
-      cost: 9
+      cost: 8
       prob: 0.04
     - proto: MobSovietT2RifleW
-      cost: 9
+      cost: 8
       prob: 0.03
     - proto: MobSovietT3Shotgun
-      cost: 12
+      cost: 18
       prob: 0.03
     - proto: MobSovietT3ShotgunIncendiary
-      cost: 14
+      cost: 20
       prob: 0.02
     - proto: MobSovietT3Rifle
-      cost: 12
+      cost: 15
       prob: 0.04
     - proto: MobSovietT2Raider
       cost: 10
@@ -490,28 +490,28 @@
       cost: 15
       prob: 0.2
     - proto: SovietSquadInfantry
-      cost: 35
+      cost: 40
       prob: 0.15
     - proto: SovietSquadInfantry2
-      cost: 40
+      cost: 45
       prob: 0.1
     - proto: SovietSquadSmg
-      cost: 35
-      prob: 0.1
-    - proto: SovietSquadAssault
       cost: 40
       prob: 0.1
+    - proto: SovietSquadAssault
+      cost: 45
+      prob: 0.1
     - proto: SovietSquadLmg
-      cost: 20
+      cost: 25
       prob: 0.15
     - proto: SovietSquadMmg
-      cost: 25
+      cost: 30
       prob: 0.12
     - proto: SovietSquadLightMechanized
-      cost: 80
+      cost: 100
       prob: 0.1
     - proto: SovietSquadHeavyMechanized
-      cost: 120
+      cost: 150
       prob: 0.05
     - proto: MobSovietBear
       cost: 10
@@ -520,11 +520,11 @@
       cost: 10
       prob: 0.02
     - proto: MobSovietSpaceBear
-      cost: 12
+      cost: 10
       prob: 0.02
     - proto: MobSovietCaptain
-      cost: 30
-      prob: 0.03
+      cost: 50
+      prob: 0.05
   difficulties:
     - Moderate
     - Challenging

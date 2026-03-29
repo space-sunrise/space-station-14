@@ -721,7 +721,7 @@
       orGroup: Weapons
     # Armor
     - id: ClothingOuterHeavyHardsuitUSSP
-      prob: 0.3
+      prob: 0.25
       orGroup: Weapons
     - id: PirateMedSpawner01
     # Bonus Loot T2
@@ -795,6 +795,8 @@
     - id: MagazineBoxPistolSP
       prob: 0.7
     # Items
+    - id: ClothingOuterLightHardsuitUSSP
+      prob: 0.25
     - id: ClothingBeltMedicalFilled
       prob: 0.85
     # Bonus Loot T3
@@ -907,7 +909,7 @@
       prob: 0.05
     # Armor
     - id: ClothingOuterLightHardsuitUSSP
-      prob: 0.2
+      prob: 0.25
     - id: ClothingMaskGasMerc
       prob: 0.3
     # Items

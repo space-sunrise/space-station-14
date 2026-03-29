@@ -30,21 +30,20 @@
     - Soviets
     - PiratesT1
 
-# - type: salvageDungeonMod # Sunrise-TODO Ждет ремапа
-#   id: SovietStrongholdClassic
-#   desc: salvage-dungeon-mod-soviet-stronghold
-#   proto: SovietDungeon
-#   biomes:
-#     - Lava
-#     - Grasslands
-#     - Caves
-#     - Snow
-#   difficulties:
-#     - Challenging
-#     - Difficult
-#     - Impossible
-#   factions:
-#     - Soviets
+- type: salvageDungeonMod
+  id: SovietStrongholdClassic
+  desc: salvage-dungeon-mod-soviet-stronghold
+  proto: SovietDungeon
+  biomes:
+    - Lava
+    - Grasslands
+    - Caves
+    - Snow
+  difficulties:
+    - Difficult
+    - Impossible
+  factions:
+    - Soviets
 
 # - type: salvageDungeonMod
 #   id: SovietStrategicResourcesWarehouse
@@ -70,25 +69,6 @@
     - Difficult
     - Impossible
   factions:
-    - PiratesT1
-    - PiratesT2
-    - PiratesT3
-
-- type: salvageDungeonMod
-  id: SovietRuineStronghold
-  desc: salvage-dungeon-mod-soviet-stronghold
-  proto: SovietDungeonRuine
-  biomes:
-    - Lava
-    - Grasslands
-    - Caves
-    - Snow
-  difficulties:
-    - Challenging
-    - Difficult
-    - Impossible
-  factions:
-    - Soviets
     - PiratesT1
     - PiratesT2
     - PiratesT3

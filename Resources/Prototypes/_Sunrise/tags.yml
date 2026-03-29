@@ -618,9 +618,6 @@
   id: SovietDungeonWEH
 
 - type: Tag
-  id: SovietDungeonRuine
-
-- type: Tag
   id: SovietWarehouse
 
 ### INTERACTION TAGS ###

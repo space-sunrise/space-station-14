@@ -180,11 +180,11 @@
   - type: CartridgeAmmo
     proto: BulletCharon280mmSubnuclearDamaged75
     deleteOnSpawn: true
-  - type: DamageOnLand
+  - type: DamageOnLand # Sunrise-Add
     ignoreResistances: true
     damage:
       types:
-        Blunt: 0
+        Blunt: 100
   - type: StaticPrice
     price: 6000
 
@@ -214,11 +214,11 @@
   - type: CartridgeAmmo
     proto: BulletCharon280mmSubnuclearDamaged50
     deleteOnSpawn: true
-  - type: DamageOnLand
+  - type: DamageOnLand # Sunrise-Add
     ignoreResistances: true
     damage:
       types:
-        Blunt: 0
+        Blunt: 100
   - type: StaticPrice
     price: 4000
 
@@ -405,6 +405,13 @@
     - Cartridge240mmLeviathan
   - type: Item
     size: Ginormous
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+  - type: Damageable
+    damageContainer: Inorganic
 
 # Leviathan 240mm HE Shell
 - type: entity
@@ -417,6 +424,19 @@
     Requires manual chamber loading.
   suffix: HE
   components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CartridgeLeviathan240mmHEDamaged75:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: CartridgeAmmo
     proto: BulletLeviathan240mmHE
     deleteOnSpawn: true
@@ -434,7 +454,80 @@
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: StaticPrice
-    price: 3500
+    price: 11984
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+
+# Leviathan 240mm HE Shell (Damaged, 75%)
+- type: entity
+  parent: CartridgeLeviathan240mmHE
+  id: CartridgeLeviathan240mmHEDamaged75
+  name: 240mm HE artillery shell
+  description: >-
+    A damaged 240mm HE shell with partially degraded internals.
+    Estimated combat effectiveness: 75%.
+  suffix: HE, Damaged 75%
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CartridgeLeviathan240mmHEDamaged50:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CartridgeAmmo
+    proto: BulletLeviathan240mmHE
+    deleteOnSpawn: true
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+  - type: StaticPrice
+    price: 5000
+
+# Leviathan 240mm HE Shell (Damaged, 50%)
+- type: entity
+  parent: CartridgeLeviathan240mmHE
+  id: CartridgeLeviathan240mmHEDamaged50
+  name: 240mm HE artillery shell
+  description: >-
+    A critically damaged 240mm HE shell. One more hard impact may trigger catastrophic failure.
+    Estimated combat effectiveness: 50%.
+  suffix: HE, Damaged 50%
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          LeviathanHERupture25:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CartridgeAmmo
+    proto: BulletLeviathan240mmHE
+    deleteOnSpawn: true
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+  - type: StaticPrice
+    price: 0
 
 # Leviathan 240mm Nuke Shell
 - type: entity
@@ -447,6 +540,19 @@
     Requires manual chamber loading.
   suffix: Nuclear
   components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CartridgeLeviathan240mmNukeDamaged75:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: CartridgeAmmo
     proto: BulletLeviathan240mmNuke
     deleteOnSpawn: true
@@ -461,7 +567,88 @@
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: StaticPrice
-    price: 9000
+    price: 19984
+
+# Leviathan 240mm Nuke Shell (Damaged, 75%)
+- type: entity
+  parent: CartridgeLeviathan240mmNuke
+  id: CartridgeLeviathan240mmNukeDamaged75
+  name: 240mm nuclear artillery shell
+  description: >-
+    A damaged nuclear 240mm shell with compromised casing and degraded internals.
+    Estimated combat effectiveness: 75%.
+  suffix: Nuclear, Damaged 75%
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CartridgeLeviathan240mmNukeDamaged50:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CartridgeAmmo
+    proto: BulletLeviathan240mmNuke
+    deleteOnSpawn: true
+  - type: PointLight
+    enabled: true
+    radius: 2
+    energy: 0.8
+    color: "#52ff39"
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+  - type: StaticPrice
+    price: -9999
+
+# Leviathan 240mm Nuke Shell (Damaged, 50%)
+- type: entity
+  parent: CartridgeLeviathan240mmNuke
+  id: CartridgeLeviathan240mmNukeDamaged50
+  name: 240mm nuclear artillery shell
+  description: >-
+    A critically damaged nuclear shell. One more hard impact may trigger catastrophic rupture.
+    Estimated combat effectiveness: 50%.
+  suffix: Nuclear, Damaged 50%
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          LeviathanNukeRupture25:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CartridgeAmmo
+    proto: BulletLeviathan240mmNuke
+    deleteOnSpawn: true
+  - type: PointLight
+    enabled: true
+    radius: 2
+    energy: 2.5
+    color: "#52ff39"
+  - type: RadiationSource
+    intensity: 0.8
+    slope: 0.1
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+  - type: StaticPrice
+    price: -99999
 
 # Leviathan 240mm Cluster Shell
 - type: entity
@@ -474,6 +661,19 @@
     Requires manual chamber loading.
   suffix: Cluster
   components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CartridgeLeviathan240mmClusterDamaged75:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: CartridgeAmmo
     proto: BulletLeviathan240mmCluster
     deleteOnSpawn: true
@@ -491,5 +691,73 @@
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: StaticPrice
-    price: 7000
+    price: 15000
+
+# Leviathan 240mm Cluster Shell (Damaged, 75%)
+- type: entity
+  parent: CartridgeLeviathan240mmCluster
+  id: CartridgeLeviathan240mmClusterDamaged75
+  name: 240mm cluster artillery shell
+  description: >-
+    A damaged 240mm cluster shell with unstable dispersal internals.
+    Estimated combat effectiveness: 75%.
+  suffix: Cluster, Damaged 75%
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CartridgeLeviathan240mmClusterDamaged50:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CartridgeAmmo
+    proto: BulletLeviathan240mmCluster
+    deleteOnSpawn: true
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+  - type: StaticPrice
+    price: 5000
+
+# Leviathan 240mm Cluster Shell (Damaged, 50%)
+- type: entity
+  parent: CartridgeLeviathan240mmCluster
+  id: CartridgeLeviathan240mmClusterDamaged50
+  name: 240mm cluster artillery shell
+  description: >-
+    A critically damaged cluster shell. One more hard impact may trigger an uncontrolled payload rupture.
+    Estimated combat effectiveness: 50%.
+  suffix: Cluster, Damaged 50%
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          LeviathanClusterRupture25:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CartridgeAmmo
+    proto: BulletLeviathan240mmCluster
+    deleteOnSpawn: true
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+  - type: StaticPrice
+    price: 0
 

@@ -177,6 +177,119 @@
     requireInSpace: true
 
 - type: entity
+  id: LeviathanHERupture25
+  name: damaged 240mm HE shell rupture
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+      - state: blast240mm
+  - type: Transform
+    anchored: false
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    delay: 0
+    keyOut: timer
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 225
+    intensitySlope: 5
+    maxIntensity: 12
+    canCreateVacuum: true
+  - type: PointLight
+    enabled: true
+    radius: 4
+    energy: 3
+    color: "#ff6600"
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
+  id: LeviathanNukeRupture25
+  name: damaged 240mm nuclear shell rupture
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+      - state: nuke240mm
+  - type: Transform
+    anchored: false
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    delay: 10
+    beepSound:
+      path: /Audio/Machines/Nuke/nuke_alarm.ogg
+      params:
+        volume: 15
+    initialBeepDelay: 0
+    beepInterval: 10
+    keyOut: timer
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 5000
+    intensitySlope: 5
+    maxIntensity: 25
+    canCreateVacuum: true
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: timer
+    fillPrototype: PelletClusterSubnuclearShrapnel
+    capacity: 90
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: PointLight
+    enabled: true
+    radius: 6
+    energy: 4.5
+    color: "#88ff00"
+  - type: TimerTrigger
+    delay: 11
+
+- type: entity
+  id: LeviathanClusterRupture25
+  name: damaged 240mm cluster shell rupture
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+      - state: cluster240mm
+  - type: Transform
+    anchored: false
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    delay: 0
+    keyOut: timer
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: timer
+    fillPrototype: BulletSyndyClusterGrenade
+    capacity: 12
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: PointLight
+    enabled: true
+    radius: 4
+    energy: 2.5
+    color: "#ff8844"
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
   id: BulletSyndieMiniBomb
   name: syndicate mini-bomb projectile
   parent: BaseBulletTrigger
