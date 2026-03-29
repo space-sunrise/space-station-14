@@ -2,7 +2,7 @@
   parent: ClothingUniformBase
   id: UniformDressMaidBlue
   name: blue maid dress
-  description: Cute blue dress.
+  description: Feel yourself like a character from anime!
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Dresses/maid_blue.rsi
@@ -13,7 +13,7 @@
   parent: ClothingUniformBase
   id: UniformDressMaidLong
   name: long maid dress
-  description: No sexualization. I am severe maid and I will harm you with my mop for harassing or dirt on my perfectly clean floor.
+  description:  For connoisseurs of classic sundresses and practicality.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Dresses/maid_long.rsi
@@ -24,7 +24,7 @@
   parent: ClothingUniformBase
   id: UniformDressMaidPink
   name: pink maid dress
-  description: PINK!!!
+  description: Feel yourself like a character from anime!
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Dresses/maid_pink.rsi
@@ -35,7 +35,7 @@
   parent: ClothingUniformBase
   id: UniformDressSexy
   name: sexy dress
-  description: I hope the one who wears it is a woman. If they're not, then you're in trouble.
+  description: A centimeter of fabric slipping and you're arrested by the Security!
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Dresses/sexy_dress.rsi
@@ -46,7 +46,7 @@
   parent: ClothingUniformBase
   id: UniformDressSuccubusBlack
   name: black succubus dress
-  description: Hot succubus dress.
+  description: This dress exudes an infernal magic...wings as a gift!
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Dresses/succubus_black.rsi
@@ -63,7 +63,7 @@
   parent: ClothingUniformBase
   id: UniformDressSuccubusWhite
   name: white succubus dress
-  description: Hot succubus dress.
+  description: This dress exudes an infernal magic...wings as a gift!
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Dresses/succubus_white.rsi
@@ -80,7 +80,7 @@
   parent: ClothingUniformBase
   id: UniformDressTango
   name: tango dress
-  description: Hot and passionate.
+  description: Feel the rythm, twirling to the "La cumparsita"!
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Dresses/tango_dress.rsi
@@ -91,7 +91,7 @@
   parent: ClothingUniformBase
   id: UniformDressXeno
   name: xeno dress
-  description: Mate, I think this mysterious person holds a facehugger under skirt...
+  description: Elegance and horror in one.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Dresses/xeno_dress.rsi
