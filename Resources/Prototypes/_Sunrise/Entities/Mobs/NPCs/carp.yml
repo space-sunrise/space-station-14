@@ -6,3 +6,12 @@
     - type: HTN
       rootTask:
         task: DragonCarpCompound
+
+- type: entity
+  parent: MobShark
+  id: MobSharkDragon
+  suffix: DragonBrood
+  components:
+    - type: HTN
+      rootTask:
+        task: DragonCarpCompound

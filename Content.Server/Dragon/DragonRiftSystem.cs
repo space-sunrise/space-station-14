@@ -42,8 +42,8 @@ public sealed partial class DragonRiftSystem : EntitySystem // Sunrise-edit
         SubscribeLocalEvent<DragonRiftComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<DragonRiftComponent, AnchorStateChangedEvent>(OnAnchorChange);
         SubscribeLocalEvent<DragonRiftComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<DragonRiftComponent, DamageChangedEvent>(OnDamageChanged); // Sunrise-edit
-        SubscribeLocalEvent<DragonsBroodDeadEvent>(OnDragonsBroodDead); // Sunrise-Add
+        SubscribeLocalEvent<DragonRiftComponent, DamageChangedEvent>(OnDamageChanged); // Sunrise-add
+        SubscribeLocalEvent<DragonsBroodDeadEvent>(OnDragonsBroodDead); // Sunrise-add
     }
 
     private void OnGetState(Entity<DragonRiftComponent> ent, ref ComponentGetState args)
@@ -81,7 +81,7 @@ public sealed partial class DragonRiftSystem : EntitySystem // Sunrise-edit
             }
 
             // Sunrise-Start
-            if (comp.IsSpawnAccumulating)
+            if (comp.IsCarpSpawnAccumulating)
                 comp.SpawnAccumulator += frameTime;
             // Sunrise-End
 
@@ -129,7 +129,7 @@ public sealed partial class DragonRiftSystem : EntitySystem // Sunrise-edit
                 {
                     AddComp(ent, new DragonsBroodComponent { MotherRift = uid });
                     comp.AliveCarps++;
-                    CheckMaxSpawn(comp);
+                    CheckMaxCarpSpawn(comp);
                 }
 
                 // Sunrise-End

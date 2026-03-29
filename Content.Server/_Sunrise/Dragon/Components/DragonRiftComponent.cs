@@ -8,11 +8,20 @@ public sealed partial class DragonRiftComponent
     [DataField]
     public int MaxAliveCarps = 16;
 
+    [DataField]
+    public int MaxAliveSharks = 6;
+
     [ViewVariables(VVAccess.ReadOnly)]
     public int AliveCarps;
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public bool IsSpawnAccumulating = true;
+    public int AliveSharks;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public bool IsCarpSpawnAccumulating = true;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public bool IsSharkSpawnAccumulating = true;
 
     [DataField("sharkSpawn", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string SharkSpawnPrototype = "MobShark";

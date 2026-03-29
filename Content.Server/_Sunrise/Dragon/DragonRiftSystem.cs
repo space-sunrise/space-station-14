@@ -1,3 +1,4 @@
+using Content.Shared.Sprite;
 namespace Content.Server.Dragon;
 
 using Content.Server.Destructible;
@@ -11,14 +12,34 @@ public partial class DragonRiftSystem
 {
     private void OnDragonsBroodDead(DragonsBroodDeadEvent args)
     {
-        if (args.Rift.Comp.AliveCarps > 0)
-            args.Rift.Comp.AliveCarps--;
+        if (!TryComp<DragonRiftComponent>(args.Brood.Comp.MotherRift, out var comp))
+            return;
 
-        CheckMaxSpawn(args.Rift.Comp);
+        var entProtoName = Prototype(args.Brood.Owner)?.ID;
+
+        if (entProtoName is null)
+            return;
+
+        if (entProtoName == "MobCarp")
+        {
+            if (comp.AliveCarps > 0)
+                comp.AliveCarps--;
+            CheckMaxCarpSpawn(comp);
+        }
+
+        if (entProtoName == "MobSharkDragon")
+        {
+            if (comp.AliveSharks > 0)
+                comp.AliveSharks--;
+            CheckMaxSharkSpawn(comp);
+        }
     }
 
-    private void CheckMaxSpawn(DragonRiftComponent comp) =>
-        comp.IsSpawnAccumulating = comp.AliveCarps < comp.MaxAliveCarps;
+    private void CheckMaxCarpSpawn(DragonRiftComponent comp) =>
+        comp.IsCarpSpawnAccumulating = comp.AliveCarps < comp.MaxAliveCarps;
+
+    private void CheckMaxSharkSpawn(DragonRiftComponent comp) =>
+        comp.IsSharkSpawnAccumulating = comp.AliveSharks < comp.MaxAliveSharks;
 
     private void OnDamageChanged(Entity<DragonRiftComponent> ent, ref DamageChangedEvent args)
     {
@@ -62,17 +83,32 @@ public partial class DragonRiftSystem
         if (comp.SharkSpawnCooldown <= 0f)
             return;
 
-        comp.SharkSpawnAccumulator += frameTime;
-        while (comp.SharkSpawnAccumulator >= comp.SharkSpawnCooldown)
+        if (comp.IsSharkSpawnAccumulating)
+            comp.SharkSpawnAccumulator += frameTime;
+
+        while (
+            comp.SharkSpawnAccumulator >= comp.SharkSpawnCooldown
+            && comp.AliveSharks < comp.MaxAliveSharks
+        )
         {
             comp.SharkSpawnAccumulator -= comp.SharkSpawnCooldown;
             SpawnShark(uid, comp, xform);
         }
     }
 
+    // Does not check for max alive sharks, but increases the count
     private void SpawnShark(EntityUid uid, DragonRiftComponent comp, TransformComponent xform)
     {
         var shark = Spawn(comp.SharkSpawnPrototype, xform.Coordinates);
+        comp.AliveSharks++;
+
+        // Updating look to match the dragon
+        if (TryComp<RandomSpriteComponent>(comp.Dragon, out var randomSprite))
+        {
+            var spawnedSprite = EnsureComp<RandomSpriteComponent>(shark);
+            _serManager.CopyTo(randomSprite, ref spawnedSprite, notNullableOverride: true);
+            Dirty(shark, spawnedSprite);
+        }
 
         if (comp.Dragon is not null)
             _npc.SetBlackboard(shark, NPCBlackboard.FollowTarget, new EntityCoordinates(comp.Dragon.Value, Vector2.Zero));

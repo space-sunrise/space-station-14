@@ -86,7 +86,7 @@ public sealed class DragonDigestionSystem : EntitySystem
     {
         RemCompDeferred<DragonDigestingComponent>(uid);
 
-        if (!TryComp<BodyComponent>(uid, out var body))
+        if (TryComp<BodyComponent>(uid, out var body))
         {
             _body.GibBody(uid, gibOrgans: true, body: body, launchGibs: false);
             return;

@@ -1,6 +1,4 @@
-using Content.Server.Dragon;
 using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 
 namespace Content.Server._Sunrise.DragonsBrood;
@@ -22,10 +20,7 @@ public sealed class DragonsBroodSystem : EntitySystem
         if (args.OldMobState != MobState.Alive)
             return;
 
-        if (!TryComp<DragonRiftComponent>(ent.Comp.MotherRift, out var dragonRift))
-            return;
-
-        RaiseLocalEvent(new DragonsBroodDeadEvent((ent.Comp.MotherRift, dragonRift)));
+        RaiseLocalEvent(new DragonsBroodDeadEvent(ent));
     }
 
     private void OnShutdown(Entity<DragonsBroodComponent> ent, ref ComponentShutdown args)
@@ -33,12 +28,9 @@ public sealed class DragonsBroodSystem : EntitySystem
         if (!_mobState.IsAlive(ent.Owner))
             return;
 
-        if (!TryComp<DragonRiftComponent>(ent.Comp.MotherRift, out var dragonRift))
-            return;
-
-        RaiseLocalEvent(new DragonsBroodDeadEvent((ent.Comp.MotherRift, dragonRift)));
+        RaiseLocalEvent(new DragonsBroodDeadEvent(ent));
     }
 }
 
 [Serializable]
-public record struct DragonsBroodDeadEvent(Entity<DragonRiftComponent> Rift);
+public record struct DragonsBroodDeadEvent(Entity<DragonsBroodComponent> Brood);

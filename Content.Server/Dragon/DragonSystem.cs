@@ -8,14 +8,14 @@ using Content.Shared.Maps;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components; // Sunrise-Edit
+using Content.Shared.Mobs.Components; // Sunrise-add
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.NPC.Systems;
-using Content.Shared.Physics; // Sunrise-Edit
-using Content.Shared.Station.Components; // Sunrise-Edit
+using Content.Shared.Physics; // Sunrise-add
+using Content.Shared.Station.Components; // Sunrise-add
 using Content.Shared.Zombies;
-using Robust.Server.GameObjects; // Sunrise-Edit
+using Robust.Server.GameObjects; // Sunrise-add
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -35,9 +35,7 @@ public sealed partial class DragonSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
 
-    // Sunrise-Start
-    [Dependency] private readonly PhysicsSystem _physics = default!;
-    // Sunrise-End
+    [Dependency] private readonly PhysicsSystem _physics = default!; // Sunrise-add
 
     private EntityQuery<CarpRiftsConditionComponent> _objQuery;
 
