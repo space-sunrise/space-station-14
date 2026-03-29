@@ -77,8 +77,6 @@ public sealed class BorgModuleInnateSystem : EntitySystem
 
     // Батарейки, которые будут отбалансированы (используется BalanceInnateItemCharges)
     private List<Entity<BatteryComponent>> _batteriesToBalance = [];
-    private Dictionary<EntityUid, (BorgChassisComponent Chassis, PowerCellSlotComponent CellSlot, List<BorgModuleInnateComponent> Modules)> _borgInfo = [];
-
     /// <summary>
     /// Раз в секунду балансирует заряд между батарейкой борга и предметами, которые тоже имеют батарею.
     /// </summary>
@@ -86,8 +84,6 @@ public sealed class BorgModuleInnateSystem : EntitySystem
     {
         var borgQuery = EntityQueryEnumerator<BorgWithInnateModulesComponent, BorgChassisComponent>();
 
-        // Батарейки, которые будут отбалансированы, включая батарею борга
-        var batteriesToBalance = new List<Entity<BatteryComponent>> { };
         while (borgQuery.MoveNext(out var borgUid, out var innateModules, out var chassis))
         {
             // Пытаемся получить основную батарею борга.
@@ -99,8 +95,8 @@ public sealed class BorgModuleInnateSystem : EntitySystem
             if (borgCharge <= 5f || borgBattery.Value.Comp.MaxCharge <= 5f)
                 continue;
 
-            batteriesToBalance.Clear();
-            batteriesToBalance.Add(borgBattery.Value);
+            _batteriesToBalance.Clear();
+            _batteriesToBalance.Add(borgBattery.Value);
             // Нужные значения для балансировки
             var totalChargeToBalance = borgCharge;
             var totalMaxChargeToBalance = borgBattery.Value.Comp.MaxCharge;
@@ -127,7 +123,7 @@ public sealed class BorgModuleInnateSystem : EntitySystem
                         continue;
 
                     // Добавляем в список балансировки
-                    batteriesToBalance.Add(itemBattery);
+                    _batteriesToBalance.Add(itemBattery);
                     // Ведём учет общего заряда / максимального заряда для балансировки
                     // Умножаем на PowerUseCoefficient для уменьшения потребления
                     totalChargeToBalance += _battery.GetCharge(itemBattery.AsNullable()) * moduleComp.PowerUseCoefficient;
@@ -138,7 +134,7 @@ public sealed class BorgModuleInnateSystem : EntitySystem
             // Считаем уровень балансировки
             var setLevel = totalChargeToBalance / totalMaxChargeToBalance;
             // Раздаем заряд каждой батарее обратно в балансированном виде
-            foreach (var battery in batteriesToBalance)
+            foreach (var battery in _batteriesToBalance)
             {
                 _battery.SetCharge((battery.Owner, battery.Comp), setLevel * battery.Comp.MaxCharge);
             }
@@ -291,7 +287,8 @@ public sealed class BorgModuleInnateSystem : EntitySystem
     )
     {
         var item = CreateInnateItem(itemProto, module, container);
-        var ev = new ModuleInnateUseItemEvent(item);
+        var ev = new ModuleInnateUseItemEvent();
+        ev.Item = item;
         var action = CreateAction(item, module.Owner, ev, module.Comp.InnateUseItemAction);
         AssignAction(chassis, module, action);
     }
@@ -307,7 +304,8 @@ public sealed class BorgModuleInnateSystem : EntitySystem
     )
     {
         var item = CreateInnateItem(itemProto, module, container);
-        var ev = new ModuleInnateInteractionItemEvent(item);
+        var ev = new ModuleInnateInteractionItemEvent();
+        ev.Item = item;
         var action = CreateAction(item, module.Owner, ev, module.Comp.InnateInteractionItemAction);
         AssignAction(chassis, module, action);
     }
@@ -323,7 +321,8 @@ public sealed class BorgModuleInnateSystem : EntitySystem
     )
     {
         var item = CreateInnateItem(itemProto, module, container);
-        var ev = new ModuleInnateToggleItemEvent(item);
+        var ev = new ModuleInnateToggleItemEvent();
+        ev.Item = item;
         var action = CreateAction(item, module.Owner, ev, module.Comp.InnateToggleItemAction);
         AssignAction(chassis, module, action);
     }

@@ -7,11 +7,6 @@ namespace Content.Shared._Sunrise.Borgs.ModuleInnate;
 /// </summary>
 public sealed partial class ModuleInnateToggleItemEvent : InstantActionEvent
 {
-    public readonly EntityUid Item;
-
-    public ModuleInnateToggleItemEvent(EntityUid item)
-        : this()
-    {
-        Item = item;
-    }
+    [DataField]
+    public EntityUid Item;
 }

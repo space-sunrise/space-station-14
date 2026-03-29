@@ -7,11 +7,6 @@ namespace Content.Shared._Sunrise.Borgs.ModuleInnate;
 /// </summary>
 public sealed partial class ModuleInnateInteractionItemEvent : EntityTargetActionEvent
 {
-    public readonly EntityUid Item;
-
-    public ModuleInnateInteractionItemEvent(EntityUid item)
-        : this()
-    {
-        Item = item;
-    }
+    [DataField]
+    public EntityUid Item;
 }
