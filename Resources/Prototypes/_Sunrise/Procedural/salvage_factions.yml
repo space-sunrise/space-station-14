@@ -187,11 +187,8 @@
     - proto: MobPirateT2MusketEMP
       cost: 2
       prob: 0.03
-    - proto: MobPirateT2MusketBlast
-      cost: 6
-      prob: 0.03
     - proto: MobPirateT2MusketFrag
-      cost: 7
+      cost: 6
       prob: 0.03
     - proto: MobPirateT2MusketPenetrator
       cost: 6

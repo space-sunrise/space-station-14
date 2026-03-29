@@ -971,7 +971,7 @@ entities:
     - type: Transform
       pos: 44.44285,2.6182559
       parent: 1
-- proto: ComputerBossTravel
+- proto: SpawnComputerBossTravel
   entities:
   - uid: 4
     components:

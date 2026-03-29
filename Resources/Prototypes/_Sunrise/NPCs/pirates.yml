@@ -592,7 +592,6 @@
       - MobPirateT2ShotgunGlass
       - MobPirateT2Musket
       - MobPirateT2MusketEMP
-      - MobPirateT2MusketBlast
       - MobPirateT2MusketFrag
       - MobPirateT2MusketPenetrator
       - MobPirateT2MachineCannon
@@ -3121,16 +3120,6 @@
   components:
   - type: BasicEntityAmmoProvider
     proto: CartridgeAntiMaterielEmp
-
-- type: entity
-  name: pirate musketeer
-  description: Armed with an antique large-caliber musket. Color of tip on ammo in his bandolier was brown.
-  parent: MobPirateT2Musket
-  id: MobPirateT2MusketBlast
-  suffix: Blast
-  components:
-  - type: BasicEntityAmmoProvider
-    proto: CartridgeAntiMaterielBlast
 
 - type: entity
   name: pirate musketeer
