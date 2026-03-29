@@ -17,6 +17,12 @@ research-technology-secrange-cyberlimbs = Security range Cyberlimbs
 research-technology-nightvision-eyes = Nightvision Eye Implants
 research-technology-thermalvision-eyes = Thermalvision Eye Implants
 research-technology-advanced-implants = Advanced Implants
+research-technology-borg-base-security-modules = Borg base security modules
+research-technology-borg-base-generic-modules = Borg base generic modules
+research-technology-borg-base-medical-modules = Borg base medical modules
+research-technology-borg-base-service-modules = Borg base civilianservices modules
+research-technology-borg-base-engineers-modules = Borg base craft modules
+research-technology-borg-base-cargo-modules = Borg base mining modules
 
 research-technology-handcraft-nvd = Кустарные ПНВ
 research-technology-basic-nvd = Продвинутое ПНВ
