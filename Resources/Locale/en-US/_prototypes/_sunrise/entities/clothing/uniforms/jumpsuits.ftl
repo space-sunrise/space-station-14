@@ -82,6 +82,10 @@ ent-ClothingUniformJumpsuitCaptainBlack = captain's black uniform
     .desc = For when you need to look like a legend, not a laundry accident. Hides coffee stains and questionable decisions.
 ent-ClothingUniformPunksuit = punksuit
     .desc = Challenge the dress code!
+ent-ClothingUniformJumpsuitArbiter = arbiter uniform
+    .desc = A black tunic with gold stitching. It is cut so tight that your posture goes straight as the spine of a new book. The main trouble is that it is almost impossible to breathe in it or bend for a dropped pen without risking the seams.
+ent-ClothingUniformJumpsuitRedMist = red mist suit
+    .desc = A fitted combat garment in dark cloth with pale metal accents. Built for movement, not reassurance.
 
 ent-ClothingUSSPMarine = USSP space-marine jumpsuit
     .desc = A striped undershirt and simple trousers of the USSP space marines. Worn under a combat spacesuit, because even armor should know who is inside it.
@@ -90,3 +94,5 @@ ent-ClothingUSSPMarine = USSP space-marine jumpsuit
 
 ent-ClothingUniformJumpsuitSoviet = Soviet jumpsuit
     .desc = A standard jumpsuit worn by Soviet military personnel.
+ent-ClothingUniformUndershirt = undershirt
+    .desc = Plain daily wear.

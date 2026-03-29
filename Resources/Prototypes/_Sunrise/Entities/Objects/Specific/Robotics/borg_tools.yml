@@ -970,7 +970,7 @@
   - type: SolutionContainerManager
     solutions:
       drink:
-        maxVol: 100
+        maxVol: 30
   - type: MixableSolution
     solution: drink
   - type: Shakeable
@@ -1017,3 +1017,65 @@
         reagents:
         - ReagentId: Water
           Quantity: 2
+
+- type: entity
+  id: BorgSodaDispenser
+  parent: SodaDispenserEmpty
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DrinkCoconutWaterJugBorg
+        - id: DrinkCoffeeJugBorg
+        - id: DrinkColaBottleFullBorg
+        - id: DrinkCreamCartonXLBorg
+        - id: DrinkDrGibbJugBorg
+        - id: DrinkEnergyDrinkJugBorg
+        - id: DrinkGreenTeaJugBorg
+        - id: DrinkIceJugBorg
+        - id: DrinkJuiceLemonBottleFullBorg
+        - id: DrinkJuiceLimeCartonXLBorg
+        - id: DrinkJuiceOrangeCartonXLBorg
+        - id: DrinkLemonLimeJugBorg
+        - id: DrinkMilkBottleFullBorg
+        - id: DrinkRootBeerJugBorg
+        - id: DrinkSodaWaterBottleFullBorg
+        - id: DrinkSpaceMountainWindBottleFullBorg
+        - id: DrinkSolDryBottleFullBorg
+        - id: DrinkSpaceUpBottleFullBorg
+        - id: DrinkSugarJugBorg
+        - id: DrinkTeaJugBorg
+        - id: DrinkTonicWaterBottleFullBorg
+        - id: DrinkWaterMelonJuiceJugBorg
+  - type: ApcPowerReceiver
+    needsPower: false
+
+- type: entity
+  id: BorgBoozeDispenser
+  parent: BoozeDispenserEmpty
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DrinkAbsintheBottleFullBorg
+        - id: DrinkAleBottleFullGrowlerBorg
+        - id: DrinkBeerGrowlerBorg
+        - id: DrinkBlueCuracaoBottleFullBorg
+        - id: DrinkChampagneBottleFullBorg
+        - id: DrinkCoffeeLiqueurBottleFullBorg
+        - id: DrinkCognacBottleFullBorg
+        - id: DrinkGrenadineBottleFullBorg
+        - id: DrinkGinBottleFullBorg
+        - id: DrinkMeadJugBorg
+        - id: DrinkRumBottleFullBorg
+        - id: DrinkTequilaBottleFullBorg
+        - id: DrinkVermouthBottleFullBorg
+        - id: DrinkVodkaBottleFullBorg
+        - id: DrinkWhiskeyBottleFullBorg
+        - id: DrinkWineBottleFullBorg
+  - type: ApcPowerReceiver
+    needsPower: false
