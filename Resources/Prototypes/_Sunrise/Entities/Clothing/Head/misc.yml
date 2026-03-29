@@ -36,7 +36,7 @@
   parent: ClothingHeadBase
   id: SunflowerCrown
   name: sunflower crown
-  description: A bright flower crown made out white lilies that is sure to brighten up anyone's day!
+  description: A bright flower crown made out sunflowers that is sure to brighten up anyone's day!
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Misc/sunflower_crown.rsi
