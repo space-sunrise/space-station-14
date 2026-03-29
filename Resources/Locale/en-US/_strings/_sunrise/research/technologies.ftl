@@ -20,8 +20,8 @@ research-technology-advanced-implants = Advanced Implants
 research-technology-borg-base-security-modules = Borg base security modules
 research-technology-borg-base-generic-modules = Borg base generic modules
 research-technology-borg-base-medical-modules = Borg base medical modules
-research-technology-borg-base-service-modules = Borg base civilianservices modules
-research-technology-borg-base-engineers-modules = Borg base craft modules
+research-technology-borg-base-service-modules = Borg base service modules
+research-technology-borg-base-engineers-modules = Borg base engineering modules
 research-technology-borg-base-cargo-modules = Borg base mining modules
 
 research-technology-handcraft-nvd = Кустарные ПНВ
