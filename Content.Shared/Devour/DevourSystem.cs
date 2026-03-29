@@ -120,9 +120,7 @@ public sealed class DevourSystem : EntitySystem
                 return;
 
             if (TryComp(target, out MobStateComponent? mobState))
-            {
                 RaiseLocalEvent(new DragonDevourMobEvent(args.Args.User, (target, mobState)));
-            }
             // Sunrise-End
         }
         //TODO: Figure out a better way of removing structures via devour that still entails standing still and waiting for a DoAfter. Somehow.

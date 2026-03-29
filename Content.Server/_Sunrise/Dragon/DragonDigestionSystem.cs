@@ -2,13 +2,9 @@ using Content.Server._Sunrise.Dragon.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Dragon;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
-using Content.Shared.Body.Organ;
 using Content.Shared.Devour;
 using Content.Shared.Devour.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Content.Shared.Mobs.Systems;
@@ -90,12 +86,13 @@ public sealed class DragonDigestionSystem : EntitySystem
     {
         RemCompDeferred<DragonDigestingComponent>(uid);
 
-        if (TryComp<BodyComponent>(uid, out var body))
+        if (!TryComp<BodyComponent>(uid, out var body))
         {
             _body.GibBody(uid, gibOrgans: true, body: body, launchGibs: false);
             return;
         }
 
-        QueueDel(uid);
+        if (!TerminatingOrDeleted(uid))
+            QueueDel(uid);
     }
 }

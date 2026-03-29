@@ -17,6 +17,7 @@ using Content.Shared.Station.Components; // Sunrise-Edit
 using Content.Shared.Zombies;
 using Robust.Server.GameObjects; // Sunrise-Edit
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server.Dragon;
