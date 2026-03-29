@@ -29,10 +29,6 @@ namespace Content.Client.UserInterface.Controls
         /// <summary>Skips CalcSnappingFactor so IgnoreDimension is always used instead of FixedStretchSize.
         /// Required for 16:9 fill modes — snap would produce centered bars on all sides.</summary>
         public bool Is169Mode { get; set; }
-
-        /// <summary>Full-screen width in UI pixels, set by ViewportUIController.
-        /// Used by Separated mode to match the same horizontal FoV as Default UI.</summary>
-        public int FullScreenWidthRef { get; set; }
         // Sunrise-End
 
         public MainViewport()
@@ -58,7 +54,7 @@ namespace Content.Client.UserInterface.Controls
             base.EnteredTree();
 
             _vpManager.AddViewport(this);
-            UpdateCfg(); // Sunrise-Edit: ensure config is applied when entering UI tree
+            UpdateCfg();
         }
 
         protected override void ExitedTree()
@@ -89,7 +85,7 @@ namespace Content.Client.UserInterface.Controls
                         "bilinear" => ScalingViewportStretchMode.Bilinear,
                         _ => ScalingViewportStretchMode.Nearest
                     };
-                    // Sunrise-Start: Revised Pivot Logic
+                    // Sunrise-Start
                     var localVerticalFit = _cfg.GetCVar(CCVars.ViewportVerticalFit) && _cfg.GetCVar(CCVars.ViewportStretch);
                     if (localVerticalFit)
                     {
