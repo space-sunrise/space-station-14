@@ -29,6 +29,9 @@
   - Stockingslpink
   - StockingsOrange
   - StockingsPurple
+  - StockingsWhiteSheer
+  - StockingsBlackSheer
+  - StockingsGarter
   - ThighAceSocks
   - ThighAsblastusaSocks
   - ThighBeeSocks
@@ -55,6 +58,9 @@
   - SportBra
   - ThongBra
   - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
 
 - type: loadoutGroup
   id: Pants
@@ -83,6 +89,9 @@
   - SportWomanPants
   - ThongWomanPants
   - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
 
 - type: loadoutGroup
   id: BrigmedicBackpack
@@ -184,6 +193,120 @@
   loadouts:
   - BlueShieldMantle
   - BlueShieldCoat
+
+- type: loadoutGroup
+  id: BlueShieldBra
+  name: loadout-group-blueshield-bra
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StraplessBra
+  - WhiteNekoBra
+  - BlackNekoBra
+  - AssblastusaBra
+  - BikiniBra
+  - BraletteBra
+  - CommieBra
+  - KinkyBra
+  - LaceBra
+  - SportBra
+  - ThongBra
+  - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
+  - BlueShieldBra
+
+- type: loadoutGroup
+  id: BlueShieldPants
+  name: loadout-group-blueshield-pants
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StraplessWomanPants
+  - BoxersManPants
+  - AssblastusaManPants
+  - BriefsManPants
+  - CommieManPants
+  - HeartsManPants
+  - KinkyManPants
+  - LongjohnsManPants
+  - MankiniManPants
+  - StripeManPants
+  - UkManPants
+  - NekoWhiteWomanPants
+  - NekoBlackWomanPants
+  - AssblastusaWomanPants
+  - BikiniWomanPants
+  - BraletteWomanPants
+  - CommieWomanPants
+  - KinkyWomanPants
+  - LaceWomanPants
+  - SportWomanPants
+  - ThongWomanPants
+  - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
+  - BlueShieldThong
+  - BlueShieldBoxers
+
+- type: loadoutGroup
+  id: AdjutantBra
+  name: loadout-group-adj-bra
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StraplessBra
+  - WhiteNekoBra
+  - BlackNekoBra
+  - AssblastusaBra
+  - BikiniBra
+  - BraletteBra
+  - CommieBra
+  - KinkyBra
+  - LaceBra
+  - SportBra
+  - ThongBra
+  - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
+  - AdjutantBra
+
+- type: loadoutGroup
+  id: AdjutantPants
+  name: loadout-group-adj-pants
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StraplessWomanPants
+  - BoxersManPants
+  - AssblastusaManPants
+  - BriefsManPants
+  - CommieManPants
+  - HeartsManPants
+  - KinkyManPants
+  - LongjohnsManPants
+  - MankiniManPants
+  - StripeManPants
+  - UkManPants
+  - NekoWhiteWomanPants
+  - NekoBlackWomanPants
+  - AssblastusaWomanPants
+  - BikiniWomanPants
+  - BraletteWomanPants
+  - CommieWomanPants
+  - KinkyWomanPants
+  - LaceWomanPants
+  - SportWomanPants
+  - ThongWomanPants
+  - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
+  - AdjutantThong
+  - AdjutantBoxers
 
 - type: loadoutGroup
   id: BlueshieldGun
