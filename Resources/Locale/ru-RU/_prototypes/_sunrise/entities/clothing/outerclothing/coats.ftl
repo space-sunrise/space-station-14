@@ -78,3 +78,7 @@ ent-ClothingOuterCoatWardenSecblu = { ent-ClothingOuterCoatWarden }
     .desc = { ent-ClothingOuterCoatWarden.desc }
 ent-ClothingOuterCoatWardenSecred = { ent-ClothingOuterCoatWarden }
     .desc = { ent-ClothingOuterCoatWarden.desc }
+ent-ClothingOuterCoatArbiter = плащ Арбитра
+    .desc = Огромная конструкция из черных полотен с золотыми пряжками. Выглядит монументально, но в узком книжном проходе превращается в коварную ловушку: главное - не запутаться в собственных полах и не уйти лицом в стеллаж.
+ent-ClothingOuterCoatRedMist = плащ Красного Тумана
+    .desc = Длинный плащ из тёмной ткани с серебряными застёжками и открытой ременной сборкой. Скорее предмет кампании, чем украшение.

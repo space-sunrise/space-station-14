@@ -8,6 +8,11 @@
       - PANTS
   - type: Item
     size: Tiny
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
   - type: Sprite
     state: icon
 

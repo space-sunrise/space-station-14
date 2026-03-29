@@ -14,8 +14,6 @@
   overrideConsoleVisibility: false
   supervisors: job-supervisors-security
   displayWeight: 10
-  alternativeTitles:
-  - job-alt-title-convict
   special:
     - !type:AddImplantSpecial
       implants: [ TrackingImplant ]

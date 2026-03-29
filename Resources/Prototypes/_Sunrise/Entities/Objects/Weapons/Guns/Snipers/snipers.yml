@@ -31,7 +31,6 @@
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/Dragunov/dragunov_shot.ogg
       params:
         volume: -1
-  - type: BallisticAmmoProvider
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/Dragunov/dragunov_cocked.ogg

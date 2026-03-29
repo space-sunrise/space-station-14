@@ -13,8 +13,6 @@
   icon: JobIconBlueShield
   supervisors: job-supervisors-centcom
   canBeAntag: false
-  alternativeTitles:
-  - job-alt-title-bodyguard
   access:
     - Command
     - Bar
@@ -67,4 +65,4 @@
     eyes: ClothingEyesGlassesBlueShield
     outerClothing: ClothingOuterArmorBlueShield
     gloves: ClothingHandsGlovesCombat
-
+    

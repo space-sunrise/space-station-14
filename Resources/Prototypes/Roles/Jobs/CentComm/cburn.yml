@@ -27,7 +27,7 @@
     back: ClothingBackpackDuffelCBURN
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesSecurity
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltERT #Sunrise-Edit
     # gloves: ClothingHandsGlovesCombat #Sunrise-Edit
     outerClothing: ClothingOuterHardsuitCBURN
     shoes: ClothingShoesBootsCombatFilled
@@ -42,6 +42,7 @@
     - GrenadeFlashBang
     - PillAmbuzolPlus
     - PillAmbuzol
+    - TacticalAxe #Sunrise-Edit
     - ClothingHandsPowerGlovesUplinkNTERTCBURN #Sunrise-Edit
 
 - type: chameleonOutfit
@@ -60,7 +61,7 @@
     back: ClothingBackpackDuffelCBURN
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesSecurity
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltERT #Sunrise-Edit
     outerClothing: ClothingOuterSoftsuitCBURN
     shoes: ClothingShoesBootsCombatFilled
     id: CBURNPDA
@@ -83,4 +84,5 @@
     - MedkitCombatFilled
     - MedkitBurnFilled
     - MedkitToxinFilled
+    - TacticalAxe
 # Sunrise-end
