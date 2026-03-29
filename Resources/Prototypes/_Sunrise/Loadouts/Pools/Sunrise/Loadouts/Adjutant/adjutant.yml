@@ -1,3 +1,12 @@
+- type: loadoutEffectGroup
+  id: Adjutant5h
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobAdjutant
+      time: 5h
+
 - type: loadout
   id: AdjutantJumpskirt
   equipment:
@@ -42,6 +51,34 @@
   id: AdjutantCoat
   equipment:
     outerClothing: ClothingOuterCoatAdjutant
+
+- type: loadout
+  id: AdjutantBra
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:GroupLoadoutEffect
+    proto: Adjutant5h
+  equipment:
+    bra: ClothingBraAdjutant
+
+- type: loadout
+  id: AdjutantThong
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:GroupLoadoutEffect
+    proto: Adjutant5h
+  equipment:
+    pants: ClothingPantsWomanAdjutant
+
+- type: loadout
+  id: AdjutantBoxers
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Adjutant5h
+  equipment:
+    pants: ClothingPantsManAdjutant
 
 
 

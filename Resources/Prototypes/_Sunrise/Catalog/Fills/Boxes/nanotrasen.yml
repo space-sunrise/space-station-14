@@ -91,6 +91,49 @@
     - state: stinger
 
 - type: entity
+  parent: BaseItem
+  id: BoxArbiterBundle
+  name: arbiter bundle
+  description: A sealed package containing the Arbiter set. Ordered, austere, and packaged with unnecessary confidence.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Storage/Boxes/arbiter_bundle.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: _Sunrise/Objects/Storage/Boxes/arbiter_bundle.rsi
+    size: Normal
+  - type: SpawnItemsOnUse
+    items:
+    - id: ClothingUniformJumpsuitArbiter
+    - id: ClothingOuterCoatArbiter
+    - id: ClothingShoesBootsArbiter
+    - id: ClothingNeckCloakArbiter
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: BaseItem
+  id: BoxRedMistBundle
+  name: red mist bundle
+  description: A sealed package containing the Red Mist set. Functional, severe, and unconcerned with second impressions.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Storage/Boxes/redmist_bundle.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: _Sunrise/Objects/Storage/Boxes/redmist_bundle.rsi
+    size: Normal
+  - type: SpawnItemsOnUse
+    items:
+    - id: ClothingUniformJumpsuitRedMist
+    - id: ClothingOuterCoatRedMist
+    - id: ClothingShoesBootsRedMist
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
   name: MetalFoamGrenade box
   parent: BoxCardboard
   id: BoxMetalFoamGrenade

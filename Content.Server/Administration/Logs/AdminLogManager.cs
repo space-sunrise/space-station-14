@@ -21,6 +21,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Reflection;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -636,6 +637,12 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
     }
 
     // Sunrise-Start
+    private static readonly Regex LogHighlightRegex = new Regex(@"(\bEntId=\d+\b|(?<=\()(\b\d+/[^\)]+|\bn\d+\b)(?=\)))|\b(dropped|picked up|inserted|removed|equipped|unequipped|thrown|wielded|unwielded|loaded|unloaded|spawned|deleted|shot|attacked|damaged|hit|exploded|fired|clicked|knocked down|activated|interacted|opened|closed|locked|unlocked|anchored|unanchored|welded|unwelded|bolted|unbolted|connected|disconnected|joined|left|banned|kicked|suicided|died|revived|cloned|respawned|joined|left|refilled|drained|poured|ingested|vomited|collapsed|unconscious|rejuvenated|mounted|dismounted)\b", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+    private const string Gray = "\u001b[90m";
+    private const string Cyan = "\u001b[36m";
+    private const string Reset = "\u001b[0m";
+    private const string White = "\u001b[37m";
+
     private async Task SaveLogsToLoki(List<AdminLog> logs)
     {
         if (logs.Count == 0 || string.IsNullOrEmpty(_lokiUrl)) return;
@@ -658,8 +665,19 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
                     nanoTime = lastNano + 1;
                 lastNano = nanoTime;
 
+                // Create a formatted version for display: IDs in gray, actions in cyan, rest in white
+                var colorizedMessage = LogHighlightRegex.Replace(log.Message, m =>
+                {
+                    if (m.Value.Contains('(') || m.Value.Contains('=') || (m.Value.Length > 0 && char.IsDigit(m.Value[0])))
+                        return $"{Gray}{m.Value}{White}";
+
+                    return $"{Cyan}{m.Value}{White}";
+                });
+                var formattedMessage = $"{White}{colorizedMessage}{Reset}";
+
                 // Fast manual serialization of the AdminLog POCO to avoid IoC/reflection overhead
-                var jsonLine = $"{{\"id\":{log.Id},\"roundId\":{log.RoundId},\"type\":{(int)log.Type},\"impact\":{(int)log.Impact},\"date\":\"{log.Date:O}\",\"message\":{JsonSerializer.Serialize(log.Message)},\"json\":{log.Json.RootElement.GetRawText()}}}";
+                // We send both 'message' (clean for search) and 'message_fmt' (colored for display)
+                var jsonLine = $"{{\"id\":{log.Id},\"roundId\":{log.RoundId},\"type\":{(int)log.Type},\"impact\":{(int)log.Impact},\"date\":\"{log.Date:O}\",\"message\":{JsonSerializer.Serialize(log.Message)},\"message_fmt\":{JsonSerializer.Serialize(formattedMessage)},\"json\":{log.Json.RootElement.GetRawText()}}}";
 
                 stream.Values.Add(new[] { nanoTime.ToString(), jsonLine });
             }

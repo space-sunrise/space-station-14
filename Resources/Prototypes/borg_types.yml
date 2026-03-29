@@ -298,17 +298,23 @@
     - BorgModuleGeneric
     - BorgModuleService
 
+  # Sunrise-Start
   defaultModules:
   - BorgModuleStandart
   - BorgModuleMusique
-  - BorgModuleService
+  - BorgModulePaperwork
+  - BorgModuleBartender
+  - BorgModuleCooking
   - BorgModuleClowning
-  - BorgModuleGardening
-  - BorgModuleHarvesting
+  - BorgModuleExtensiveGardening
+  # Sunrise-End
 
   radioChannels:
   - Science
   - Service
+
+  addComponents:
+  - type: SolutionScanner
 
   # Visual
   inventoryTemplateId: borgTall

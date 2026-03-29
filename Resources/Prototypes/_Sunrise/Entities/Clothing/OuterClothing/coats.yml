@@ -327,7 +327,7 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/hos_overcoat.rsi
 
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase] 
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase]
   id: ClothingOuterAerostaticBomberJacketArmored
   name: armored aerostatic bomber jacket
   description: A jacket once worn by the revolutionary air brigades during the Antecentennial Revolution. There are quite a few pockets on the inside, mostly for storing notebooks and compasses.
@@ -596,3 +596,42 @@
       - ClothMade
       - NudeFull
       - WhitelistChameleon
+
+- type: entity
+  parent: ClothingOuterCoatHoSTrench
+  id: ClothingOuterCoatArbiter
+  name: arbiter coat
+  description: A huge construction of black panels with gold buckles. It looks monumental, but in a narrow library aisle it turns into a treacherous trap the important thing is not to tangle in your own hems and plant your face into a shelf.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/arbiter_coat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/arbiter_coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.66
+        Slash: 0.66
+        Piercing: 0.7
+        Heat: 0.66
+        Caustic: 0.7
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatRedMist
+  name: red mist coat
+  description: A long coat in dark fabric with silver fasteners and exposed strap work. More campaign article than decoration.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/redmist_coat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/redmist_coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.82
+        Slash: 0.78
+        Piercing: 0.82
+        Heat: 0.95
+  - type: ExplosionResistance
+    damageCoefficient: 0.95

@@ -474,3 +474,48 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitArbiter
+  name: arbiter uniform
+  description: A black tunic with gold stitching. It is cut so tight that your posture goes straight as the spine of a new book. The main trouble is that it is almost impossible to breathe in it or bend for a dropped pen without risking the seams.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/arbiter_uniform.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/arbiter_uniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitRedMist
+  name: red mist suit
+  description: A fitted combat garment in dark cloth with pale metal accents. Built for movement, not reassurance.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/redmist_uniform.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/redmist_uniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformUndershirt
+  name: undershirt
+  description: Plain daily wear.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/undershirt.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/undershirt.rsi
+    equippedState: equipped-INNERCLOTHING
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMilirUniform
+  name: millir bodysuit
+  description: A simple, form-fitting bodysuit tailored for Milir anatomy.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/milirs_unifrom.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/milirs_unifrom.rsi
