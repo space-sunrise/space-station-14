@@ -699,3 +699,18 @@
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadHatUshanka
+  id: ClothingHeadHatUshankaAlt
+  components:
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/ushanka.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/ushanka.rsi
+    layers:
+    - state: icon
+      map: [ "unfoldedLayer" ]
+    - state: icon-up
+      map: ["foldedLayer"]
+      visible: false

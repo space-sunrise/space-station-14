@@ -288,6 +288,10 @@
           0.5
         ]
       ]
+    },
+    {
+      "name": "dollhouse-unshaded",
+      "directions": 4
     }
   ]
 }

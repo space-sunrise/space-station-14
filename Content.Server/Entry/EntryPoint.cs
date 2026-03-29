@@ -115,6 +115,9 @@ namespace Content.Server.Entry
 
             PatchManager.Patch(_log);
 
+            // Sunrise-Edit: Отключаем предупреждения Lidgren (спам "Socket threw exception; would block").
+            _cfg.OverrideDefault(Robust.Shared.CVars.NetLidgrenLogWarning, false);
+
             LoadConfigPresets(_cfg, _res, _log.GetSawmill("configpreset"));
 
             var aczProvider = new ContentMagicAczProvider(Dependencies);

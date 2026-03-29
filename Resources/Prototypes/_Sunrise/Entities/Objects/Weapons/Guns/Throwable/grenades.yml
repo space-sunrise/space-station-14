@@ -13,9 +13,11 @@
   parent: [TimerGrenadeBase, BaseSyndicateContraband]
   id: ExShrapnelGrenade
   components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Grenades/grenade.rsi
   - type: ProjectileGrenade
-    fillPrototype: PelletClusterLethal
-    capacity: 15
+    fillPrototype: PelletClusterLessLethal
+    capacity: 30
   - type: ContainerContainer
     containers:
       cluster-payload: !type:Container

@@ -29,6 +29,7 @@
   - type: FireProtection
     reduction: 0.5
   - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
     attackRate: 1.25
     damage:
       types:
@@ -37,7 +38,7 @@
     bluntStaminaDamageFactor: 1
     soundHit:
       collection: Punch
-    animation: WeaponArcFist
+    animation: WeaponArcInvisibleNPC
     mustBeEquippedToUse: true
 
 - type: entity
@@ -49,6 +50,8 @@
     distance: 0.8
     speed: 6
   - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
+    animation: WeaponArcInvisibleNPC
     attackRate: 0.75
     wideAnimationRotation: -135
     damage:
@@ -65,11 +68,12 @@
   abstract: true
   components:
   - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
     hidden: true
     attackRate: 1
     altDisarm: false
     angle: 0
-    animation: WeaponArcSlash
+    animation: WeaponArcInvisibleNPC
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
 
@@ -79,11 +83,12 @@
   abstract: true
   components:
   - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
     hidden: true
     attackRate: 1.5
     altDisarm: false
     angle: 0
-    animation: WeaponArcPunch
+    animation: WeaponArcInvisibleNPC
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
 
@@ -105,11 +110,12 @@
     sound:
       path: /Audio/Weapons/ebladehum.ogg
   - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
     hidden: true
     attackRate: 1.3
     altDisarm: false
     angle: 0
-    animation: WeaponArcPunch
+    animation: WeaponArcInvisibleNPC
     damage:
       types:
         Slash: 10
@@ -167,7 +173,7 @@
         state: inhand-left
 
 - type: entity
-  parent: [ClothingHandsBlackSMG, PirateArmorPirateHardsuit]
+  parent: [ClothingHandsBlackSMG, PirateArmorEVAScrappers]
   id: ClothingHandsBlackPirateCannon
   suffix: pirate cannon
   categories: [ HideSpawnMenu ]
@@ -194,7 +200,7 @@
         state: wielded-inhand-left
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsBombadaPirateT1
   suffix: bombada
   categories: [ HideSpawnMenu ]
@@ -239,7 +245,7 @@
         state: inhand-right
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsLCD
   suffix: Chain gun
   categories: [ HideSpawnMenu ]
@@ -251,7 +257,7 @@
         state: wielded-inhand-right
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPrivateerArmored]
+  parent: ClothingHandsNoGloves
   id: ClothingHandsRPD
   suffix: RPD
   categories: [ HideSpawnMenu ]
@@ -299,7 +305,7 @@
         state: wielded-inhand-right
 
 - type: entity
-  parent: [ClothingHandsBlackSMG, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsBlackSMG, PirateArmorEVAScrappers]
   id: ClothingHandsBlackPistol
   suffix: pistol
   categories: [ HideSpawnMenu ]
@@ -307,14 +313,11 @@
   - type: Clothing
     clothingVisuals:
       gloves:
-      - sprite: Clothing/Hands/Gloves/Color/color.rsi
-        state: equipped-HAND
-        color: "#535353"
       - sprite: Objects/Weapons/Guns/Pistols/viper.rsi
         state: inhand-left
 
 - type: entity
-  parent: [ClothingHandsBlackSMG, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsBlackSMG, PirateArmorEVAScrappers]
   id: ClothingHandsMercFlintlock
   suffix: flintlock
   categories: [ HideSpawnMenu ]
@@ -394,6 +397,8 @@
     distance: 0.7
     speed: 10
   - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
+    animation: WeaponArcInvisibleNPC
     attackRate: 0.5
     soundHit:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
@@ -413,6 +418,8 @@
       - sprite: Objects/Weapons/Guns/Snipers/musket.rsi
         state: wielded-inhand-right
   - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
+    animation: WeaponArcInvisibleNPC
     damage:
       types:
         Piercing: 15
@@ -420,7 +427,7 @@
         Structural: 20
 
 - type: entity
-  parent: [ClothingHandsBlackSMG, ClothingHandsSlashArcMeleeBase, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsBlackSMG, ClothingHandsSlashArcMeleeBase, PirateArmorEVAScrappers]
   id: ClothingHandsMercMosin
   suffix: mosin
   categories: [ HideSpawnMenu ]
@@ -428,9 +435,13 @@
   - type: Clothing
     clothingVisuals:
       gloves:
+      - sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+        state: equipped-HAND
       - sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
         state: wielded-inhand-right
   - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
+    animation: WeaponArcInvisibleNPC
     damage:
       types:
         Piercing: 12
@@ -469,7 +480,7 @@
         state: inhand-left
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateHardsuit]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingCutlassRevolver
   suffix: cutlass, revolver
   categories: [ HideSpawnMenu ]
@@ -484,11 +495,12 @@
   - type: Reflect
     reflectProb: 0.15
   - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
     hidden: true
     attackRate: 1.25
     altDisarm: false
     angle: 0
-    animation: WeaponArcPunch
+    animation: WeaponArcInvisibleNPC
     damage:
       types:
         Slash: 17
@@ -515,7 +527,7 @@
         shader: unshaded
 
 - type: entity
-  parent: [ClothingHandsEnergyMeleeBase, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsEnergyMeleeBase, PirateArmorEVAScrappers]
   id: ClothingHandsEPickaxe
   suffix: energy cutlass
   categories: [ HideSpawnMenu ]
@@ -533,7 +545,7 @@
     reflectProb: 0.25
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsSMGForged
   suffix: Forged SMG
   categories: [ HideSpawnMenu ]
@@ -569,7 +581,19 @@
         state: wielded-inhand-right
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorUSSPHeavy]
+  id: ClothingHandsType88
+  suffix: type88
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Sunrise/Objects/Weapons/Guns/Snipers/type88/tiny.rsi
+        state: wielded-inhand-right
+
+- type: entity
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsSKM24
   suffix: skm24
   categories: [ HideSpawnMenu ]
@@ -605,7 +629,19 @@
         state: wielded-inhand-right
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorPrivateer]
+  id: ClothingHandsSKM24G
+  suffix: skm24
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Green/tiny.rsi
+        state: wielded-inhand-right
+
+- type: entity
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsMp38
   suffix: mp38
   categories: [ HideSpawnMenu ]
@@ -619,6 +655,18 @@
 - type: entity
   parent: [ClothingHandsNoGloves, PirateArmorPrivateer]
   id: ClothingHandsPPSH
+  suffix: ppsh
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
+        state: wielded-inhand-right
+
+- type: entity
+  parent: ClothingHandsNoGloves
+  id: ClothingHandsPPSHSoviet
   suffix: ppsh
   categories: [ HideSpawnMenu ]
   components:
@@ -653,9 +701,9 @@
         state: wielded-inhand-right
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPrivateerArmored]
+  parent: ClothingHandsNoGloves
   id: ClothingHandsDp28
-  suffix: skm28
+  suffix: Dp28
   categories: [ HideSpawnMenu ]
   components:
   - type: Clothing
@@ -665,7 +713,19 @@
         state: wielded-inhand-right
 
 - type: entity
-  parent: [ClothingHandsSlashPunchMeleeBase, PirateArmorPirateEvaArmored]
+  parent: ClothingHandsNoGloves
+  id: ClothingHandsPKM
+  suffix: PKM
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/mg60/tiny.rsi
+        state: wielded-inhand-right
+
+- type: entity
+  parent: [ClothingHandsSlashPunchMeleeBase, PirateArmorEVAScrappers]
   id: ClothingHandsMercCombatKnife
   suffix: knife
   categories: [ HideSpawnMenu ]
@@ -678,9 +738,11 @@
       - sprite: Objects/Weapons/Melee/combat_knife.rsi
         state: inhand-left
   - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
+    animation: WeaponArcInvisibleNPC
     damage:
       types:
-        Slash: 12
+        Slash: 7
 
 - type: entity
   parent: [ClothingHandsSlashPunchMeleeBase, PirateArmorPrivateer]
@@ -696,6 +758,8 @@
       - sprite: Objects/Weapons/Throwable/bola.rsi
         state: inhand-left
   - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
+    animation: WeaponArcInvisibleNPC
     damage:
       types:
         Slash: 15
@@ -734,11 +798,12 @@
     sound:
       path: /Audio/Weapons/ebladehum.ogg
   - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
     hidden: true
     attackRate: 1
     altDisarm: false
     angle: 0
-    animation: WeaponArcPunch
+    animation: WeaponArcInvisibleNPC
     damage:
       types:
         Slash: 10
@@ -774,10 +839,11 @@
     delay: 3
   - type: UseDelayOnMeleeHit
   - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
     attackRate: 0.75
     angle: 0
     bluntStaminaDamageFactor: 1.5
-    animation: WeaponArcFist
+    animation: WeaponArcInvisibleNPC
     wideAnimationRotation: -135
     damage:
       types:
@@ -803,6 +869,8 @@
       - sprite: Objects/Weapons/Melee/cutlass.rsi
         state: inhand-right
   - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
+    animation: WeaponArcInvisibleNPC
     damage:
       types:
         Slash: 16
@@ -824,6 +892,8 @@
       - sprite: Objects/Weapons/Melee/sledgehammer.rsi
         state: wielded-inhand-right
   - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
+    animation: WeaponArcInvisibleNPC
     attackRate: 1
     wideAnimationRotation: -135
     damage:
@@ -835,7 +905,7 @@
       collection: MetalThud
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateHardsuit]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingWeaponGauntletDrill
   suffix: drill
   categories: [ HideSpawnMenu ]
@@ -846,7 +916,8 @@
       - sprite: _Sunrise/Objects/Weapons/Melee/moledrill.rsi
         state: inhand-right
   - type: MeleeWeapon
-    animation: WeaponArcThrust
+    wideAnimation: WeaponArcInvisibleNPC
+    animation: WeaponArcInvisibleNPC
     autoAttack: true
     angle: 0
     wideAnimationRotation: -90
@@ -918,7 +989,7 @@
         state: inhand-left
 
 - type: entity
-  parent: [ClothingHandsBlackSMG, PirateArmorPirateEva]
+  parent: [ClothingHandsBlackSMG, PirateArmorEVAScrappers]
   id: ClothingHandsWeaponPka
   suffix: pka
   categories: [ HideSpawnMenu ]
@@ -928,6 +999,35 @@
       gloves:
       - sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
         state: wielded-inhand-left
+
+- type: entity
+  parent: [ClothingHandsNoGloves, PirateArmorMechArmorMediumSyndi]
+  id: ClothingHandsMechMinotaur
+  suffix: Mech Minotaur
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Sunrise/Objects/Specific/Mech/mecha_wield.rsi
+        state: mech-wield-2
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 14
+  - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
+    animation: WeaponArcInvisibleNPC
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 35
+        Structural: 150
+    bluntStaminaDamageFactor: 1.5
+    soundHit:
+      collection: PunchHard
+  - type: FireProtection
+    reduction: 1
 
 - type: entity
   parent: [ClothingHandsNoGloves, PirateArmorMechArmorMediumSyndi]
@@ -944,6 +1044,8 @@
     distance: 1
     speed: 14
   - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
+    animation: WeaponArcInvisibleNPC
     hidden: true
     attackRate: 1
     damage:
@@ -954,7 +1056,255 @@
     soundHit:
       collection: PunchHard
   - type: FireProtection
-    reduction: 0.99
+    reduction: 1
+
+- type: entity
+  parent: ClothingHandsNoGloves
+  id: ClothingHandsBottle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+        state: equipped-HAND
+      - sprite: _Sunrise/Objects/Misc/broken_bottle.rsi
+        state: inhand-left
+  - type: Reflect
+    reflectProb: 0.01
+  - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
+    animation: WeaponArcInvisibleNPC
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 5
+        Structural: 15
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+
+- type: entity
+  parent: ClothingHandsNoGloves
+  id: ClothingHandsFinka
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Reflect
+    reflectProb: 0.01
+  - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
+    animation: WeaponArcInvisibleNPC
+    wideAnimationRotation: -135
+    attackRate: 2
+    damage:
+      types:
+        Slash: 9
+        Structural: 15
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _Sunrise/Objects/Weapons/Melee/finka.rsi
+        state: inhand-left
+
+- type: entity
+  parent: [ ClothingHandsBlackSMG, PirateArmorUSSPHeavy ]
+  id: ClothingHandsBlackShotgunSoviet
+  suffix: shotgun
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
+        state: wielded-inhand-right
+
+# Soviet armor modifiers for NPC gloves
+- type: entity
+  abstract: true
+  id: SovietArmorNoArmor
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+
+- type: entity
+  abstract: true
+  id: SovietArmorFlak
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.55
+        Heat: 0.6
+        Radiation: 0.9
+
+- type: entity
+  abstract: true
+  id: SovietArmorHoSTrench
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.7
+        Caustic: 0.75
+
+- type: entity
+  abstract: true
+  id: SovietArmorUSSPLight
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.5
+        Heat: 0.65
+        Caustic: 0.7
+
+- type: entity
+  abstract: true
+  id: SovietArmorUSSPHeavy
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        Heat: 0.4
+        Radiation: 0.4
+        Caustic: 0.4
+
+- type: entity
+  abstract: true
+  id: SovietMeleeNoArc
+  components:
+  - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
+    hidden: true
+    animation: WeaponArcInvisibleNPC
+
+- type: entity
+  parent: [ClothingHandsDp28, PirateArmorPrivateerArmored]
+  id: ClothingHandsPirateDP28
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsRPD, PirateArmorPrivateerArmored]
+  id: ClothingHandsPirateRPD
+  categories: [ HideSpawnMenu ]
+
+# Soviet-specific glove variants to avoid changing pirate loadouts
+- type: entity
+  parent: [ClothingHandsFinka, SovietArmorFlak, SovietMeleeNoArc]
+  id: ClothingHandsFinkaSovietFlak
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsFinka, SovietArmorNoArmor, SovietMeleeNoArc]
+  id: ClothingHandsFinkaSovietNoOuter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsBlackPistol, SovietArmorFlak, SovietMeleeNoArc]
+  id: ClothingHandsBlackPistolSovietFlak
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsDp28, SovietArmorFlak, SovietMeleeNoArc]
+  id: ClothingHandsSovietFlakDP28
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsPKM, SovietArmorFlak, SovietMeleeNoArc]
+  id: ClothingHandsSovietFlakPKM
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsRPD, SovietArmorFlak, SovietMeleeNoArc]
+  id: ClothingHandsSovietFlakRPD
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsMercMosin, SovietArmorNoArmor, SovietMeleeNoArc]
+  id: ClothingHandsMercMosinSovietNoOuter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsMp38, SovietArmorNoArmor, SovietMeleeNoArc]
+  id: ClothingHandsMp38SovietNoOuter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsBottle, SovietArmorNoArmor, SovietMeleeNoArc]
+  id: ClothingHandsBottleSovietNoOuter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsSKM24G, SovietArmorNoArmor, SovietMeleeNoArc]
+  id: ClothingHandsSKM24GSovietNoOuter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsSKM24G, SovietArmorUSSPLight, SovietMeleeNoArc]
+  id: ClothingHandsSKM24GSovietUSSPLight
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsBlackPython, SovietArmorUSSPLight, SovietMeleeNoArc]
+  id: ClothingHandsPythonGSovietUSSPLight
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsSKM24B, SovietArmorFlak, SovietMeleeNoArc]
+  id: ClothingHandsSKM24BSovietFlak
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsSKM24B, SovietArmorNoArmor, SovietMeleeNoArc]
+  id: ClothingHandsSKM24BSovietWinter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsMercRevolvers, SovietArmorHoSTrench, SovietMeleeNoArc]
+  id: ClothingHandsMercRevolversSovietHoSTrench
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsBlackShotgunSoviet, SovietArmorUSSPHeavy, SovietMeleeNoArc]
+  id: ClothingHandsBlackShotgunSovietUSSPHeavy
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsPPSHSoviet, SovietArmorFlak, SovietMeleeNoArc]
+  id: ClothingHandsPPSHSovietFlak
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsPPSHSoviet, SovietArmorNoArmor, SovietMeleeNoArc]
+  id: ClothingHandsPPSHSovietNoOuter
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsDragunov, SovietArmorUSSPHeavy, SovietMeleeNoArc]
+  id: ClothingHandsDragunovSovietUSSPHeavy
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHandsType88, SovietArmorUSSPHeavy, SovietMeleeNoArc]
+  id: ClothingHandsType88SovietUSSPHeavy
+  categories: [ HideSpawnMenu ]
+
 # This is some proper cursed stuff: due to layering of clothes sprites, gloves displayed under outer clothes
 # So in order to make wielded weapon visible, I'm using neck slot which is drawn on top of outer suit layer.
 
@@ -992,45 +1342,17 @@
 
 - type: entity
   abstract: true
-  id: PirateArmorPirateEvaArmored
+  id: PirateArmorEVAScrappers
   components:
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.55
-        Piercing: 0.6
-        Heat: 0.4
-        Radiation: 0.4
-        Caustic: 0.4
-
-- type: entity
-  abstract: true
-  id: PirateArmorPirateEva
-  components:
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.55
+        Blunt: 0.6
         Slash: 0.65
         Piercing: 0.7
-        Heat: 0.4
-        Radiation: 0.4
-        Caustic: 0.4
-
-- type: entity
-  abstract: true
-  id: PirateArmorPirateHardsuit
-  components:
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.5
-        Slash: 0.55
-        Piercing: 0.6
-        Heat: 0.3
-        Radiation: 0.4
-        Caustic: 0.4
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
 
 - type: entity
   abstract: true
@@ -1204,13 +1526,13 @@
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsBaseNPC, PirateArmorPirateEva]
+  parent: [ClothingHandsBaseNPC, PirateArmorEVAScrappers]
   id: ClothingHandsPirateArmorT1PirateEva
   suffix: pirate T1 EVA armor
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsPirateArmorT1PirateEvaArmored
   suffix: pirate T1 EVA armored armor
   categories: [ HideSpawnMenu ]
@@ -1236,6 +1558,8 @@
     distance: 0.7
     speed: 10
   - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
+    animation: WeaponArcInvisibleNPC
     attackRate: 0.5
     soundHit:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
@@ -1244,12 +1568,13 @@
         pitch: 0.5
 
 - type: entity
-  parent: [ClothingHandsNoGloves, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsNoGloves, PirateArmorEVAScrappers]
   id: ClothingHandsMonkeyKnuckleDustersPirateT1
   suffix: monkey knuckle dusters
   categories: [ HideSpawnMenu ]
   components:
   - type: MeleeWeapon
+    wideAnimation: WeaponArcInvisibleNPC
     attackRate: 1.5
     damage:
       types:
@@ -1258,17 +1583,16 @@
     bluntStaminaDamageFactor: 1.75
     soundHit:
       collection: Punch
-    animation: WeaponArcFist
+    animation: WeaponArcInvisibleNPC
 
 - type: entity
-  parent: [ClothingHandsECutlass, PirateArmorPirateEvaArmored]
+  parent: [ClothingHandsECutlass, PirateArmorEVAScrappers]
   id: ClothingHandsECutlassPirateT1
   suffix: pirate T1
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsECutlass, PirateArmorPirateHardsuit]
+  parent: [ClothingHandsECutlass, PirateArmorEVAScrappers]
   id: ClothingHandsECutlassPirateT2
   suffix: pirate T2
   categories: [ HideSpawnMenu ]
-

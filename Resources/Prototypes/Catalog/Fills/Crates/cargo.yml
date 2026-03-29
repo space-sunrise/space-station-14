@@ -96,6 +96,9 @@
     - id: PlasmaCanister
     - id: TritiumCanister
     - id: WaterVaporCanister
+    #Sunrise - Start
+    - id: ElectrovaeCanister
+    #Sunrise - End
 
 - type: entityTable
   id: LotteryWeaponsEntityTable

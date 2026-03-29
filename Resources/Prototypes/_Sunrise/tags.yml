@@ -71,10 +71,10 @@
   id: CarpRiftHealTarget
 
 - type: Tag
-  id: PirateBoss
+  id: NpcBoss
 
 - type: Tag
-  id: PirateVeteranLeader
+  id: NpcVeteranLeader
 
 - type: Tag
   id: Felinid
@@ -205,6 +205,9 @@
   id: SpeedLoaderShotgun
 
 # Magazines
+- type: Tag
+  id: HeavyAmmoBelt127
+
 - type: Tag
   id: MagazineACP14
 
@@ -569,6 +572,9 @@
   id: Coin
 
 - type: Tag
+  id: ClownKudzu
+
+- type: Tag
   id: Geranium
 
 - type: Tag
@@ -598,6 +604,27 @@
 
 - type: Tag
   id: Milira
+
+- type: Tag
+  id: SovietPinsExped
+
+- type: Tag
+  id: ShipWreck
+
+- type: Tag
+  id: SovietDungeon
+
+- type: Tag
+  id: SovietDungeonWEH
+
+- type: Tag
+  id: SovietDungeonRuine
+
+- type: Tag
+  id: SovietRuineDungeon
+
+- type: Tag
+  id: SovietWarehouse
 
 ### INTERACTION TAGS ###
 # Как одежда закрывает/не закрывает ту или иную область тела
@@ -648,3 +675,17 @@
 # обозначает вещь, как твёрдый шлем
 - type: Tag
   id: Helmet
+
+# emotes
+# Используется для whitelist у MonkeyDeathgasp и blacklist у DefaultDeathgasp.
+- type: Tag
+  id: MonkeyDeathgasp
+
+# emotes
+# Используется для whitelist у ScurretDeathgasp и blacklist у DefaultDeathgasp.
+- type: Tag
+  id: ScurretDeathgasp
+
+# Medicine
+- type: Tag
+  id: AutoMender  # Используется для whitelist у ClothingBeltMedical =3

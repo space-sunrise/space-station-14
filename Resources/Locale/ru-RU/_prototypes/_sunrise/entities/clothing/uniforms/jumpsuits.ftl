@@ -58,6 +58,7 @@ ent-ClothingUniformJumpsuitAtmosSyndie = Акробатический комби
     .desc = { ent-ClothingUniformJumpsuitAtmos.desc }
 ent-ClothingUniformJumpsuitArmouredBlack = чёрный адвокатский костюм
     .desc = Казалось бы, простой деловой костюм... пока не отлетела пуля...
+    .suffix = бронированный
 ent-ClothingUniformJumpsuitBlueshieldJS = комбинезон синего щита
     .desc = { ent-ClothingUniformBase.desc }
 ent-ClothingUniformJumpsuitMiningSpecialist = комбинезон специалиста по добыче
@@ -88,4 +89,19 @@ ent-ClothingUniformJumpsuitCaptainBlack = чёрный комбинезон ка
     .desc = Когда нужно выглядеть как легенда, а не как несчастный случай в прачечной. Прячет пятна кофе и сомнительные решения.
 ent-ClothingUniformPunksuit = панк-костюм
     .desc = Брось вызов гардеробу!
+ent-ClothingUSSPMarine = комбинезон космопехотинца СССП
+    .desc = Полосатая тельняшка и простые брюки космопехоты СССП. Носятся под боевым скафандром, ведь даже броня должна знать, кто внутри.
 
+ent-ClothingUniformJumpsuitSoviet = советский комбинезон
+    .desc = Стандартный комбинезон, который носят военнослужащие СССП.
+
+ent-ClothingUniformJumpsuitArbiter = форма Арбитра
+    .desc = Черный китель с золотой прострочкой. Затянут так, что осанка становится прямой, как корешок новой книги. Главная беда - в нем почти невозможно вдохнуть или наклониться за упавшей ручкой без риска для швов.
+
+ent-ClothingUniformJumpsuitRedMist = костюм Красного Тумана
+    .desc = Приталенный боевой костюм из тёмной ткани со светлыми металлическими акцентами. Рассчитан на движение, а не на утешение.
+    
+ent-ClothingUniformUndershirt = нижняя майка
+    .desc = Обычная повседневная вещь.
+ent-ClothingUniformJumpsuitMilirUniform = облегающий комбинезон милир
+    .desc = Простой облегающий бодик, адаптированный под анатомию милиров.

@@ -111,7 +111,32 @@
           amount: 2
         - id: MagazineDragunovIncendiary
           amount: 2
-        - id: MagazineDragunovUranium
+
+- type: entity
+  parent: CrateAmmunitionSmall
+  id: CrateAmmunitionSmallDP28
+  name: old small ammunition crate
+  suffix: Filled, DP-28
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponLightMachineGunDP28
+
+- type: entity
+  parent: CrateAmmunitionSmall
+  id: CrateAmmunitionSmallSKM24
+  name: old small ammunition crate
+  suffix: Filled, SKM-24
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponRifleSKM24
+        - id: MagazineLightRifleFMJ
+        - id: MagazineLightRifleAP
 
 - type: entity
   parent: [ BaseStructureDynamic, BasePaperLabelable ]
@@ -149,7 +174,7 @@
     maxItemSize: Huge
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:AllSelector
+      storagebase: !type:AllSelector
         children:
         - id: WrappedMosin
           amount: 4
@@ -215,7 +240,6 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
 
-# ??????????? ???????? ??? ????? ???????
 - type: entity
   parent: [BaseItem, BaseSecurityContraband]
   id: WrappedMosin
@@ -273,3 +297,39 @@
     - WrappedWeapon
 
 
+
+- type: entity
+  name: USSP crate spawner
+  id: SpawnerCrateUSSP
+  parent: MarkerBase
+  suffix: Spawner, USSP Crates
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_small.rsi
+      state: base
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: USSPCrates
+
+- type: entityTable
+  id: USSPCrates
+  table: !type:GroupSelector
+    children:
+    - id: CrateAmmunitionSmall
+      weight: 1
+    - id: CrateAmmunitionSmallLightRifle
+      weight: 1
+    - id: CrateAmmunitionSmallLightRifleAP
+      weight: 0.5
+    - id: CrateAmmunitionSmallLightRifleIncendiary
+      weight: 0.6
+    - id: CrateAmmunitionSmallDragunov
+      weight: 0.15
+    - id: CrateAmmunitionSmallDP28
+      weight: 0.15
+    - id: CrateAmmunitionSmallSKM24
+      weight: 0.3
+    - id: CrateShelfMosin
+      weight: 0.6

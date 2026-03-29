@@ -249271,7 +249271,7 @@ entities:
     - type: Transform
       pos: -71.5,-28.5
       parent: 2
-- proto: StorageCanisterBase
+- proto: StorageCanister
   entities:
   - uid: 34804
     components:
