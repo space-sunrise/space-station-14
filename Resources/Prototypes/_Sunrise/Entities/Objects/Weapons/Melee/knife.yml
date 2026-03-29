@@ -71,7 +71,6 @@
       types:
         Slash: 12
   - type: DamageOtherOnHit
-    ignoreResistances: true
     damage:
       types:
         Slash: 10
