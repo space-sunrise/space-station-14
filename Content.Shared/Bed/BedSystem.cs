@@ -14,7 +14,8 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Bed;
 
-public sealed class BedSystem : EntitySystem
+
+public sealed partial class BedSystem : EntitySystem // Sunrise-edit Добавлено partial
 {
     [Dependency] private readonly ActionContainerSystem _actConts = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
@@ -27,6 +28,7 @@ public sealed class BedSystem : EntitySystem
     [Dependency] private readonly SleepingSystem _sleepingSystem = default!;
 
     private EntityQuery<SleepingComponent> _sleepingQuery;
+    private EntityQuery<BedHealModifierClothingComponent> _bedHealModifierClothingQuery; // Sunrise-edit
 
     public override void Initialize()
     {
@@ -49,6 +51,7 @@ public sealed class BedSystem : EntitySystem
         SubscribeLocalEvent<StasisBedBuckledComponent, GetMetabolicMultiplierEvent>(OnStasisGetMetabolicMultiplier);
 
         _sleepingQuery = GetEntityQuery<SleepingComponent>();
+        _bedHealModifierClothingQuery = GetEntityQuery<BedHealModifierClothingComponent>(); // Sunrise-edit
     }
 
     // Sunrise-Start
@@ -157,9 +160,16 @@ public sealed class BedSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<HealOnBuckleHealingComponent, HealOnBuckleComponent, StrapComponent>();
-        while (query.MoveNext(out var uid, out _, out var bedComponent, out var strapComponent))
+        // Sunrise-start Добавлен TransformComponent для проверки на якорность кровати
+        var query = EntityQueryEnumerator<HealOnBuckleHealingComponent, HealOnBuckleComponent, StrapComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out _, out var bedComponent, out var strapComponent, out var xform)) // Добавлено xform
+        // Sunrise-end
         {
+            // Sunrise-Start
+            if (!xform.Anchored)
+                continue;
+            // Sunrise-End
+
             if (_timing.CurTime < bedComponent.NextHealTime)
                 continue;
 
@@ -180,6 +190,7 @@ public sealed class BedSystem : EntitySystem
                 if (_sleepingQuery.HasComp(healedEntity))
                     damage *= bedComponent.SleepMultiplier;
 
+                damage *= GetSunriseHealingMultiplier(healedEntity); // Sunrise-edit уменьшаем хил если одет скафандр и т.д борьба с кроватью в космосе.
                 _damageableSystem.TryChangeDamage(healedEntity, damage, true, origin: uid);
             }
         }

@@ -429,3 +429,84 @@
         - id: CombatMedipen
         - id: CombatMedipen
         - id: CombatMedipen
+
+- type: entity
+  parent: [BaseSovietContraband, ClothingBeltStorageBase]
+  id: ClothingSovietBandolier
+  name: marine bandolier
+  description: Smells of oil, sweat, and questionable decisions.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/soviet_bandolier.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/soviet_bandolier.rsi
+  - type: Item
+    size: Normal
+  - type: Storage
+    whitelist:
+      tags:
+        - Radio
+        - Knife
+        - ShellShotgun
+        - Cartridge
+      components:
+        - BallisticAmmoProvider
+        - Ammo
+
+- type: entity
+  parent: [BaseSovietContraband, ClothingBeltMilitaryWebbingMedSunrise, ContentsExplosionResistanceBase]
+  id: ClothingBeltSovietMarineWebbing
+  name: SSF marine chest rig
+  description:  A set of tactical webbing worn by the iconic soviet elite marines.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/soviet_webbing.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/soviet_webbing.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+
+- type: entity
+  parent: ClothingBeltSovietMarineWebbing
+  id: ClothingBeltSovietMarineWebbingFilled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedkitCombatFilled
+        - id: Tourniquet
+        - id: Tourniquet
+        - id: ExShrapnelGrenade
+        - id: MagazineBoxLightRifleBig
+        - id: MagazineLightRifleFMJ
+        - id: MagazineLightRifleFMJ
+        - id: MagazineLightRifleFMJ
+        - id: MagazineLightRifleFMJ
+
+- type: entity
+  parent: [BaseSovietContraband, ClothingBeltMilitaryWebbingMedSunrise, ContentsExplosionResistanceBase]
+  id: ClothingBeltLightSovietMarineWebbing
+  name: SSF light chest rig
+  description:  A set of light webbing worn by the soviet soldier.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/lightsovietwebbing.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/lightsovietwebbing.rsi
+
+- type: entity
+  parent: [BaseSovietContraband, ClothingBeltStorageBase]
+  id: ClothingBeltSalvageMercWebbing
+  name: scrapper webbing
+  description: Ideal for storing everything from tools, ammo, and salvage.
+  components:
+    - type: Storage
+      grid:
+        - 0,0,1,0 #left
+        - 0,1,0,1 #left - cube
+        - 3,0,10,1
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Belt/salvage.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/Belt/salvage.rsi

@@ -1,7 +1,7 @@
 - type: entity
   id: SignalButtonLongbow
   parent: SignalButton
-  name: Longbow 127 Fire Button
+  name: Longbow 15 Fire Button
   suffix: Autolink
   components:
     - type: AutoLinkTransmitter
@@ -10,7 +10,7 @@
 - type: entity
   id: SignalButtonVympel
   parent: SignalButton
-  name: Vympel 127-2 Fire Button
+  name: Vympel 15-2 Fire Button
   suffix: Autolink
   components:
     - type: AutoLinkTransmitter
@@ -19,7 +19,7 @@
 - type: entity
   id: SignalButtonQuadling
   parent: SignalButton
-  name: Quadling 127-4 Fire Button
+  name: Quadling 15-4 Fire Button
   suffix: Autolink
   components:
     - type: AutoLinkTransmitter
@@ -41,15 +41,23 @@
 - type: entity
   id: ShuttleGunLongbow
   parent: [ShuttleGunBase, ConstructibleMachine]
-  name: BAL-127 "Longbow"
+  name: BAL-15 "Longbow"
   description: A powerful stationary heavy autocanon. A cartridge is required for use.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_127.rsi
-    scale: 1.1, 1.1
+    granularLayersRendering: true
+    #scale: 1.1, 1.1
     layers:
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_open
+      renderingStrategy: NoRotation
     - state: bal-127
+      map: ["enum.GunVisualLayers.Base"]
     - state: mag-7
       map: ["enum.GunVisualLayers.Mag"]
   - type: ContainerContainer
@@ -78,6 +86,7 @@
         pitch: 1.1
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: GunneryTrackable
   - type: Machine
     board: ShuttleGunLongbowCircuitboard
   - type: MagazineAmmoProvider
@@ -85,6 +94,18 @@
     magState: mag
     steps: 8
     zeroVisible: false
+  - type: Fixtures # Sunrise-Add
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -98,21 +119,34 @@
           params:
             pitch: 2
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: AutoLoader # Sunrise-Add
+    container: gun_magazine
+    whitelist:
+      tags:
+      - MagazineBauer127
   - type: AutoLinkReceiver
     channel: Longbow
 
 - type: entity
   id: ShuttleGunVympel
   parent: [ShuttleGunBase, ConstructibleMachine]
-  name: BAL-127-2 "Vympel"
+  name: BAL-15-2 "Vympel"
   description: A powerful stationary twin heavy autocanon. A cartridge is required for use.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_127_2.rsi
-    scale: 1.05, 1.05
+    granularLayersRendering: true
+    scale: 0.85, 0.85
     layers:
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_open
+      renderingStrategy: NoRotation
     - state: bal-127-2
+      map: ["enum.GunVisualLayers.Base"]
     - state: mag-14
       map: ["enum.GunVisualLayers.Mag"]
   - type: ContainerContainer
@@ -136,34 +170,39 @@
     availableModes:
     - Burst
     - FullAuto
-    burstFireRate: 5
-    shotsPerBurst: 6
+    burstFireRate: 6
+    shotsPerBurst: 4
     burstCooldown: 1
-    minAngle: 3
-    maxAngle: 20
+    minAngle: 5
+    maxAngle: 30
     angleIncrease: 1
     angleDecay: 20
-    projectileSpeed: 35
-    fireRate: 2.5
+    projectileSpeed: 33
+    fireRate: 2
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
       params:
         pitch: 1.2
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: GunneryTrackable
   - type: Machine
     board: ShuttleGunVympelCircuitboard
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-        - CartridgeAntiMateriel
-    capacity: 30
-    proto: Null
-    soundInsert:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
-      params:
-        pitch: 1.2
-        variation: 0.08
+  - type: MagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        priority: 2
+        whitelist:
+          tags:
+          - HeavyAmmoBelt127
+        insertSound:
+          path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+          params:
+            pitch: 1.2
+            variation: 0.08
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
   - type: MagazineVisuals
     magState: mag
     steps: 15
@@ -172,8 +211,8 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeAabb
-          bounds: "-0.5,-0.3,0.5,0.3"
+          !type:PhysShapeCircle
+          radius: 0.45
         density: 125
         mask:
         - MachineMask
@@ -186,15 +225,23 @@
 - type: entity
   id: ShuttleGunQuadling
   parent: [ShuttleGunBase, ConstructibleMachine]
-  name: BAL-127-4 "Quadling"
+  name: BAL-15-4 "Quadling"
   description: THE POWER OF ELEVE... ahem, four barrels. Stationary quad heavy autocanon.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_127_4.rsi
-    scale: 1.05, 1.05
+    granularLayersRendering: true
+    scale: 0.85, 0.85
     layers:
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_open
+      renderingStrategy: NoRotation
     - state: bal-127
+      map: ["enum.GunVisualLayers.Base"]
     - state: mag-13
       map: ["enum.GunVisualLayers.Mag"]
   - type: ContainerContainer
@@ -218,14 +265,14 @@
     availableModes:
     - Burst
     - FullAuto
-    burstFireRate: 10
-    shotsPerBurst: 8
-    burstCooldown: 2
-    minAngle: 4
-    maxAngle: 25
+    burstFireRate: 12
+    shotsPerBurst: 10
+    burstCooldown: 3
+    minAngle: 5
+    maxAngle: 30
     angleIncrease: 1
-    angleDecay: 25
-    projectileSpeed: 32
+    angleDecay: 20
+    projectileSpeed: 30
     fireRate: 4
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
@@ -233,13 +280,14 @@
         pitch: 1.9
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: GunneryTrackable
   - type: Machine
     board: ShuttleGunQuadlingCircuitboard
   - type: BallisticAmmoProvider
     whitelist:
       tags:
         - CartridgeAntiMateriel
-    capacity: 90
+    capacity: 100
     proto: null
     soundInsert:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
@@ -254,8 +302,8 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.3,0.45,0.3"
+          !type:PhysShapeCircle
+          radius: 0.45
         density: 200
         mask:
         - MachineMask
@@ -270,12 +318,20 @@
   parent: [ShuttleGunBase, ConstructibleMachine]
   name: BAL-308 "Squall"
   description: A powerful stationary minigun. A cartridge is required for use.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_308.rsi
+    granularLayersRendering: true
     layers:
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_open
+      renderingStrategy: NoRotation
     - state: bal-308
+      map: ["enum.GunVisualLayers.Base"]
     - state: mag-13
       map: ["enum.GunVisualLayers.Mag"]
   - type: ContainerContainer
@@ -302,17 +358,18 @@
     fireRate: 12
     burstFireRate: 25
     shotsPerBurst: 20
-    burstCooldown: 1.5
-    minAngle: 6
-    maxAngle: 50
+    burstCooldown: 0.75
+    minAngle: 1
+    maxAngle: 45
     angleIncrease: 0.75
-    angleDecay: 50
+    angleDecay: 25
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/HMGs/minigun_shot.ogg
       params:
         pitch: 0.8
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: GunneryTrackable
   - type: Machine
     board: ShuttleGunSquallCircuitboard
   - type: Fixtures
@@ -354,7 +411,7 @@
   parent: [ ShuttleGunBase, ConstructibleMachine]
   name: LSE-800c "Beamstorm machine gun"
   description: Advance stationary laser unit. Effective against live targets and electronics. Uses the power cage to fire, and has an extremely high rate of fire.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/laser.rsi
@@ -385,6 +442,7 @@
       path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
       params:
         variation: 0.05
+  - type: GunneryTrackable
   - type: MagazineVisuals
     magState: mag
     steps: 10
@@ -404,7 +462,11 @@
             - PowerCage
   - type: BatteryAmmoProvider
     proto: RedShuttleMediumLaser
-    fireCost: 30
+    fireCost: 20
+  - type: RadarLaserTracker
+    laserColor: "#FF44FF"
+    traceDuration: 0.5
+    maxRange: 40
 
 # TSL Tesla
 - type: entity
@@ -412,7 +474,7 @@
   parent: [ ShuttleGunBase, ConstructibleMachine]
   name: TSL-200c "Orion"
   description: Hi-tech stationary energy unit based on the principle of an experimental Tesla engine.. Effective against electronics. Uses the power cage to fire tesla or ion bolt.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/tesla.rsi
@@ -444,6 +506,7 @@
       path: /Audio/Effects/Lightning/lightningshock.ogg
       params:
         variation: 0.2
+  - type: GunneryTrackable
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -462,11 +525,11 @@
           tags:
             - PowerCage
   - type: BatteryAmmoProvider
-    proto: TeslaGunBullet
+    proto: TeslaGunBulletOrion # Sunrise-Edit
     fireCost: 400
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: TeslaGunBullet
+    - proto: TeslaGunBulletOrion # Sunrise-Edit
       fireCost: 400
     - proto: BulletEMPMedium
       fireCost: 500
@@ -482,7 +545,7 @@
   parent: [ ShuttleGunBase, ConstructibleMachine]
   name: TSL-300c "Hyperion"
   description: Hi-tech stationary energy unit based on the principle of an experimental Tesla engine.. Effective against electronics. Uses the power cage to fire tesla or ion bolt.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/tesla_2.rsi
@@ -514,6 +577,7 @@
       path: /Audio/Effects/Lightning/lightningshock.ogg
       params:
         variation: 0.2
+  - type: GunneryTrackable
   - type: MagazineVisuals
     magState: mag
     steps: 5

@@ -14,7 +14,8 @@ using Robust.Shared.Input;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using System.Linq;
-using Content.Client._Sunrise.UserInterface.CustomControls;
+using Content.Client._Sunrise.Messenger;
+using Content.Shared._Sunrise.Messenger;
 using Robust.Client.UserInterface.RichText;
 using static Robust.Client.UserInterface.Controls.LineEdit;
 
@@ -24,33 +25,6 @@ namespace Content.Client.UserInterface.Systems.Chat.Widgets;
 [Virtual]
 public partial class ChatBox : UIWidget
 {
-    // Sunrise-Start
-    // По умолчаюнию разрешены только RichTextEntry.DefaultTags.
-    // Теги ниже нужны для корректного отображения иконок в чате
-    private static readonly Type[] TagsAllowed =
-    [
-        typeof(BoldItalicTag),
-        typeof(BoldTag),
-        typeof(BulletTag),
-        typeof(ColorTag),
-        typeof(HeadingTag),
-        typeof(ItalicTag),
-        typeof(Client._Sunrise.UserInterface.RichText.RadioIconTag),
-        typeof(_Sunrise.Messenger.EmojiTag),
-    ];
-
-    private static readonly Type[] TagsAllowedNoEmoji =
-    [
-        typeof(BoldItalicTag),
-        typeof(BoldTag),
-        typeof(BulletTag),
-        typeof(ColorTag),
-        typeof(HeadingTag),
-        typeof(ItalicTag),
-        typeof(Client._Sunrise.UserInterface.RichText.RadioIconTag),
-    ];
-    // Sunrise-End
-
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly ILogManager _log = default!;
 
@@ -82,44 +56,6 @@ public partial class ChatBox : UIWidget
         _controller.HighlightsUpdated += OnHighlightsUpdated;
         _controller.RegisterChat(this);
     }
-
-    // Sunrise-Start
-    public void SetChatOpacity()
-    {
-        _controller.SetChatWindowOpacity(_configurationManager.GetCVar(CCVars.ChatWindowOpacity));
-    }
-
-    private EmojiPickerWindow? _emojiPicker;
-
-    private bool _emojiButtonSubscribed;
-
-    public void ToggleEmojiButton(bool visible)
-    {
-        ChatInput.ToggleEmojiButton(visible);
-        if (ChatInput.EmojiButton != null && !_emojiButtonSubscribed)
-        {
-            _emojiButtonSubscribed = true;
-            ChatInput.EmojiButton.OnPressed += _ =>
-            {
-                if (_emojiPicker != null && _emojiPicker.IsOpen)
-                {
-                    _emojiPicker.Close();
-                    return;
-                }
-
-                _emojiPicker = new EmojiPickerWindow();
-                _emojiPicker.OnEmojiSelected += emojiCode =>
-                {
-                    ChatInput.Input.Text += emojiCode;
-                    ChatInput.Input.CursorPosition = ChatInput.Input.Text.Length;
-                    ChatInput.Input.GrabKeyboardFocus();
-                };
-                _emojiPicker.OnClose += () => _emojiPicker = null;
-                _emojiPicker.OpenCentered();
-            };
-        }
-    }
-    // Sunrise-End
 
     private void OnTextEntered(LineEditEventArgs args)
     {
@@ -184,39 +120,23 @@ public partial class ChatBox : UIWidget
         _controller.UpdateHighlights(highlighs);
     }
 
-    // Sunrise-Start
-    private void ClearChatContents()
-    {
-        Contents.Clear();
-
-        foreach (var child in Contents.Children.ToArray())
-        {
-            if (child.Name != "_v_scroll")
-            {
-                Contents.RemoveChild(child);
-            }
-        }
-    }
-    // Sunrise-End
-
     public void AddLine(string message, Color color, ChatChannel channel = ChatChannel.None)
     {
         // Sunrise-Start
-        var allowEmoji = channel == ChatChannel.None ||
-                         (channel & (ChatChannel.OOC | ChatChannel.LOOC | ChatChannel.Dead | ChatChannel.AdminRelated | ChatChannel.Server)) != 0;
+        var allowEmoji = SharedEmojiSystem.IsEmojiAllowedInChannel(channel);
+        _emoji ??= _entManager.System<EmojiSystem>();
 
-        if (allowEmoji && _entManager.TrySystem<Client._Sunrise.Messenger.ClientEmojiSystem>(out var emojiSystem))
-        {
-            message = emojiSystem.ParseEmojis(message);
-        }
+        if (allowEmoji && SharedEmojiSystem.IsContainsAnyEmoji(message))
+            message = _emoji.ParseEmojis(message);
+
+        var tags = GetAllowedTags(channel, allowEmoji);
         // Sunrise-End
 
         var formatted = new FormattedMessage(3);
         formatted.PushColor(color);
         formatted.AddMarkupOrThrow(message);
         formatted.Pop();
-        Contents.AddMessage(formatted);
-        Contents.SetMessage(^1, formatted, allowEmoji ? TagsAllowed : TagsAllowedNoEmoji); // Sunrise-Edit
+        Contents.AddMessage(formatted, tags);
     }
 
     public void Focus(ChatSelectChannel? channel = null)

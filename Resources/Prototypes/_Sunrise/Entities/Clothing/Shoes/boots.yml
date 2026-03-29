@@ -74,3 +74,25 @@
     sprite: _Sunrise/Clothing/Shoes/metaton.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Shoes/metaton.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsArbiter
+  name: arbiter shoes
+  description: Heavy shoes with gold hardware. They pinch a little at the sides, testing your composure, but the sole is a true pocket of warmth. In them you can stand for hours on the icy floor of an archive without fearing a chill.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/Boots/arbiter_shoes.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/Boots/arbiter_shoes.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsRedMist
+  name: red mist boots
+  description: Field boots in a dark finish with reinforced shaping. Meant for long movement and short conversations.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/Boots/redmist_shoes.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/Boots/redmist_shoes.rsi

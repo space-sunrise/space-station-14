@@ -76,6 +76,10 @@
     - Ammonia
     - NitrousOxide
     - Frezon
+    #Sunrise - Start
+    - Electrovae
+    - ChargedElectrovae
+    #Sunrise - End
     #- Helium3 TODO: fusion
     # remove everything except oxygen to maintain oxygen ratio
     overflowGases:

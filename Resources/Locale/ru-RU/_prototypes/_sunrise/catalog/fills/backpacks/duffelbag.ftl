@@ -67,3 +67,5 @@ ent-ClothingBackpackDuffelWeaponRifleAsh12 = Набор АШ-12
 
 ent-ClothingBackpackDuffelMilitaryBundlePirateEva = пиратский EVA набор
     .desc = Содержит старый пиратский EVA костюм.
+ent-ClothingBackpackDuffelMilitaryBundleScaf = набор Scaf
+    .desc = Содержит старый боевой EVA костюм.

@@ -6,6 +6,13 @@
   - type: Clothing
     slots:
       - PANTS
+  - type: Item
+    size: Tiny
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
   - type: Sprite
     state: icon
 
@@ -27,7 +34,7 @@
   components:
   - type: Storage
     grid:
-    - 0,0,1,1
+    - 0,0,0,0
     maxItemSize: Tiny
   - type: ContainerContainer
     containers:

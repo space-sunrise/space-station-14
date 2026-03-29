@@ -17,7 +17,8 @@ public sealed partial class AdminLogManager
     {
         _jsonOptions = new JsonSerializerOptions
         {
-            PropertyNamingPolicy = NamingPolicy
+            PropertyNamingPolicy = NamingPolicy,
+            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
         };
 
         var interfaces = new ValueList<IAdminLogConverter>();

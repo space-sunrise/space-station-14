@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: GasCanister
   id: BZCanister
   name: BZ Canister
@@ -17,7 +17,7 @@
       - 0 # CO2
       - 0 # Plasma
       - 0 # Tritium
-      - 0 #  Water vapor
+      - 0 # Water vapor
       - 0 # Miasma
       - 0 # N2O
       - 0 # Frezon
@@ -73,6 +73,9 @@
       - 0 # N2O
       - 0 # Frezon
       - 0 # BZ
+      - 0 # Pluoxium
+      - 0 # Hydrogen
+      - 0 # Nitrium
       - 1871.71051 # Healium
       temperature: 293.15
   - type: Destructible
@@ -125,7 +128,8 @@
       - 0 # N2O
       - 0 # Frezon
       - 0 # BZ
-      - 0 # Healium
+      - 0 # Pluoxium
+      - 0 # Hydrogen
       - 1871.71051 # Nitrium
       temperature: 293.15
   - type: Destructible
@@ -154,6 +158,616 @@
   - type: Lock
     locked: true
 
+- type: entity
+  parent: GasCanister
+  id: PluoxiumCanister
+  name: Pluoxium Canister
+  description: A canister that can contain any type of gas. This one presumably contains Pluoxium. Can be attached to a connector port using a wrench.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    layers:
+    - state: pluoxium
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 #  Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 1871.71051 # Pluoxium
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PluoxiumCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: HydrogenCanister
+  name: Hydrogen Canister
+  description: A canister that can contain any type of gas. This one presumably contains Hydrogen. Can be attached to a connector port using a wrench.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    layers:
+    - state: h2
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 #  Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 0 # Pluoxium
+      - 1871.71051 # Hydrogen
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          HydrogenCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: HyperNobliumCanister
+  name: Hyper-Noblium Canister
+  description: A canister that can contain any type of gas. This one presumably contains Hyper-Noblium. Can be attached to a connector port using a wrench.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    layers:
+    - state: nob
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 #  Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 0 # Pluoxium
+      - 0 # Hydrogen
+      - 0 # Nitrium
+      - 0 # Healium
+      - 1871.71051 # Hyper-Noblium
+      - 0 # Proto-Nitrate
+      - 0 # Zauker
+      - 0 # Halon
+      - 0 # Helium
+      - 0 # Anti-Noblium
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          HyperNobliumCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: ProtoNitrateCanister
+  name: Proto-Nitrate Canister
+  description: A canister that can contain any type of gas. This one presumably contains Proto-Nitrate. Can be attached to a connector port using a wrench.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    layers:
+    - state: proto_nitrate
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 #  Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 0 # Pluoxium
+      - 0 # Hydrogen
+      - 0 # Nitrium
+      - 0 # Healium
+      - 0 # Hyper-Noblium
+      - 1871.71051 # Proto-Nitrate
+      - 0 # Zauker
+      - 0 # Halon
+      - 0 # Helium
+      - 0 # Anti-Noblium
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ProtoNitrateCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: ZaukerCanister
+  name: Zauker Canister
+  description: A canister that can contain any type of gas. This one presumably contains Zauker. Can be attached to a connector port using a wrench.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    layers:
+    - state: zauker
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 #  Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 0 # Pluoxium
+      - 0 # Hydrogen
+      - 0 # Nitrium
+      - 0 # Healium
+      - 0 # Hyper-Noblium
+      - 0 # Proto-Nitrate
+      - 1871.71051 # Zauker
+      - 0 # Halon
+      - 0 # Helium
+      - 0 # Anti-Noblium
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ZaukerCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: HalonCanister
+  name: Halon Canister
+  description: A canister that can contain any type of gas. This one presumably contains Halon. Can be attached to a connector port using a wrench.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    layers:
+    - state: halon
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 #  Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 0 # Pluoxium
+      - 0 # Hydrogen
+      - 0 # Nitrium
+      - 0 # Healium
+      - 0 # Hyper-Noblium
+      - 0 # Proto-Nitrate
+      - 0 # Zauker
+      - 1871.71051 # Halon
+      - 0 # Helium
+      - 0 # Anti-Noblium
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          HalonCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: HeliumCanister
+  name: Helium Canister
+  description: A canister that can contain any type of gas. This one presumably contains Helium. Can be attached to a connector port using a wrench.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    layers:
+    - state: helium
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 #  Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 0 # Pluoxium
+      - 0 # Hydrogen
+      - 0 # Nitrium
+      - 0 # Healium
+      - 0 # Hyper-Noblium
+      - 0 # Proto-Nitrate
+      - 0 # Zauker
+      - 0 # Halon
+      - 1871.71051 # Helium
+      - 0 # Anti-Noblium
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          HeliumCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: AntiNobliumCanister
+  name: Anti-Noblium Canister
+  description: A canister that can contain any type of gas. This one presumably contains Anti-Noblium. Can be attached to a connector port using a wrench.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    layers:
+    - state: antinob
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 #  Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 0 # Pluoxium
+      - 0 # Hydrogen
+      - 0 # Nitrium
+      - 0 # Healium
+      - 0 # Hyper-Noblium
+      - 0 # Proto-Nitrate
+      - 0 # Zauker
+      - 0 # Halon
+      - 0 # Helium
+      - 1871.71051 # Anti-Noblium
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          AntiNobliumCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  id: LiquidPlasmaCanisterSunrise
+  parent: PlasmaCanister
+  name: liquid plasma canister
+  description: A canister that can contain any type of gas. This one is supposed to contain liquid plasma. It can be attached to connector ports using a wrench.
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+      moles:
+        Plasma: 18710.71051 # plasma
+      temperature: 72
+  - type: AccessReader
+    access: [["Atmospherics"]]
+
+- type: entity
+  parent: GasCanister
+  id: ElectrovaeCanister
+  name: electrovae canister
+  description: A canister that can contain any type of gas. This one is supposed to contain electrovae. It can be attached to connector ports using a wrench.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    layers:
+    - state: electrovae
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 #  Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 0 # Pluoxium
+      - 0 # Hydrogen
+      - 0 # Nitrium
+      - 0 # Healium
+      - 0 # Hyper-Noblium
+      - 0 # Proto-Nitrate
+      - 0 # Zauker
+      - 0 # Halon
+      - 0 # Helium
+      - 0 # Anti-Noblium
+      - 2769.36 # Electrovae
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ElectrovaeCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: ChargedElectrovaeCanister
+  name: charged electrovae canister
+  description: A canister that can contain any type of gas. This one is supposed to contain charged electrovae. It can be attached to connector ports using a wrench.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    layers:
+    - state: chargedelectrovae
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 #  Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 0 # Pluoxium
+      - 0 # Hydrogen
+      - 0 # Nitrium
+      - 0 # Healium
+      - 0 # Hyper-Noblium
+      - 0 # Proto-Nitrate
+      - 0 # Zauker
+      - 0 # Halon
+      - 0 # Helium
+      - 0 # Anti-Noblium
+      - 0 # Electrovae
+      - 2769.36 # ChargedElectrovae
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ChargedElectrovaeCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -181,3 +795,93 @@
   - type: Sprite
     sprite: _Sunrise/Structures/Storage/canister.rsi
     state: nitrium-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: PluoxiumCanisterBroken
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    state: pluoxium-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: HydrogenCanisterBroken
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    state: h2-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: HyperNobliumCanisterBroken
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    state: nob-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: ProtoNitrateCanisterBroken
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    state: proto_nitrate-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: ZaukerCanisterBroken
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    state: zauker-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: HalonCanisterBroken
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    state: halon-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: HeliumCanisterBroken
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    state: helium-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: AntiNobliumCanisterBroken
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    state: antinob-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: ElectrovaeCanisterBroken
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    state: electrovae-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: ChargedElectrovaeCanisterBroken
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    state: chargedelectrovae-1

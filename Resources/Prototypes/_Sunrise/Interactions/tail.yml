@@ -14,4 +14,9 @@
     checkTarget: true
     checkInitiator: false
     layer: Tail
+  - !type:InteractionNotCondition
+    condition: !type:SpeciesCondition
+      checkInitiator: false
+      checkTarget: true
+      allowedSpecies: [ Moth, Milira ]
   cooldown: 3

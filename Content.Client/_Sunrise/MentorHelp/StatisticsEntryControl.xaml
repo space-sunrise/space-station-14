@@ -14,7 +14,7 @@
                    StyleClasses="LabelSubText"
                    ClipText="True" />
 
-            <Label Name="TicketsClaimedLabel" Access="Public"
+            <Label Name="TicketsClosedLabel" Access="Public"
                    SizeFlagsStretchRatio="2"
                    HorizontalExpand="True"
                    StyleClasses="LabelSubText"

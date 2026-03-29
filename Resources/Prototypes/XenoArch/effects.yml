@@ -127,6 +127,10 @@
       weight: 4.0
     - id: XenoArtifactEffectCreationGasCarbonDioxide
       weight: 4.0
+    #SunRise-Start
+    - id: XenoArtifactEffectCreationGasElectrovae
+      weight: 1.0
+    #SunRise-End
 
 - type: entityTable
   id: XenoArtifactEffectsHandheldOnlyTable

@@ -7,3 +7,4 @@ advertisement-nanomed-6 = Don't you want some?
 advertisement-nanomed-7 = Ping!
 advertisement-nanomed-8 = Make sure not to overdose people!
 advertisement-nanomed-9 = Go overdose people!
+advertisement-nanomed-10 = I'm civilian! I'm civilian!!

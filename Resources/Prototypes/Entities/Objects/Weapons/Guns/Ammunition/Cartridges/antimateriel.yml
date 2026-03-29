@@ -11,6 +11,7 @@
     proto: AntiMaterielBulletTrace
   - type: Sprite
   # sunrise-start
+    scale: 0.75,0.75
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/12.7x99.rsi
     layers:
     - state: base
@@ -35,15 +36,16 @@
     - Cartridge
     - CartridgeAntiMateriel
   - type: CartridgeAmmo
-    proto: BulletAntiMateriel
+    proto: BulletAntiMaterielTracked
   - type: Sprite
+    scale: 0.75,0.75
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/12.7x99.rsi
     layers:
     - state: base
       map: [ "enum.AmmoVisualLayers.Base" ]
     - state: tip
       map: [ "enum.AmmoVisualLayers.Tip" ]
-      color: "#7f009b50"
+      color: "#B68F0E"
   - type: Appearance
   - type: SpentAmmoVisuals
   - type: StaticPrice

@@ -8,6 +8,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Server.Chat.Managers;
+using Content.Server.GameTicking;  // Sunrise-Edit
 using Content.Server.Gravity;
 using Content.Server.Parallax;
 using Content.Server.Procedural;
@@ -31,6 +32,7 @@ namespace Content.Server.Salvage
         [Dependency] private readonly IMapManager _mapManager = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private readonly GameTicker _gameTicker = default!; // Sunrise-Edit: needed for timed salvage difficulty unlocks.
         [Dependency] private readonly AnchorableSystem _anchorable = default!;
         [Dependency] private readonly BiomeSystem _biome = default!;
         [Dependency] private readonly DungeonSystem _dungeon = default!;

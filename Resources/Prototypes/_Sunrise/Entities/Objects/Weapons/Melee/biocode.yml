@@ -6,12 +6,14 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
+    - Pirate
   - type: Construction
     graph: EnergySwordDoubleGraph
     node: double
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
 
 - type: entity
   parent: EnergySword
@@ -21,6 +23,7 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
+    - Pirate
   - type: Tag
     tags:
     - EnergySword
@@ -30,6 +33,7 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
 
 - type: entity
   parent: FireAxeFlaming
@@ -39,9 +43,11 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
+    - Pirate
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
 
 - type: entity
   parent: EnergyDagger
@@ -51,9 +57,11 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
+    - Pirate
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
 
 - type: entity
   parent: SyndicateRapier
@@ -63,6 +71,8 @@
   - type: FactionWeaponBlocker
     factions:
     - Syndicate
+    - Pirate
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate

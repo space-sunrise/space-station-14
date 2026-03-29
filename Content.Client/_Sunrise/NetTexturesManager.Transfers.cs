@@ -164,6 +164,8 @@ public sealed partial class NetTexturesManager
             using (stream)
             {
                 var (fileCount, totalSize) = ReadTransferStream(stream, generation);
+                if (fileCount > 0)
+                    _taskManager.RunOnMainThread(() => ProcessPendingTransferBatches(0f));
 
                 var totalTime = (DateTime.UtcNow - startTime).TotalMilliseconds;
                 _sawmill.Info($"[NetTextures] Received {fileCount} files ({ByteHelpers.FormatBytes(totalSize)}) via transfer in {totalTime:F0}ms");

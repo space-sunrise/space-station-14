@@ -201630,6 +201630,36 @@ entities:
     - type: Transform
       pos: 38.5,-57.5
       parent: 2
+- proto: SMESSuperExtended
+  entities:
+  - uid: 28188
+    components:
+    - type: MetaData
+      name: Гипер-СМЭС - Массив
+    - type: Transform
+      pos: -12.5,-75.5
+      parent: 2
+  - uid: 28189
+    components:
+    - type: MetaData
+      name: Гипер-СМЭС - Массив
+    - type: Transform
+      pos: -12.5,-73.5
+      parent: 2
+  - uid: 28190
+    components:
+    - type: MetaData
+      name: Гипер-СМЭС - Массив
+    - type: Transform
+      pos: -12.5,-74.5
+      parent: 2
+  - uid: 36527
+    components:
+    - type: MetaData
+      name: Гипер-СМЭС - Массив
+    - type: Transform
+      pos: -12.5,-76.5
+      parent: 2
 - proto: SMESExtended
   entities:
   - uid: 8232
@@ -201650,27 +201680,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5,-41.5
-      parent: 2
-  - uid: 28188
-    components:
-    - type: MetaData
-      name: СМЭС - Массив
-    - type: Transform
-      pos: -12.5,-75.5
-      parent: 2
-  - uid: 28189
-    components:
-    - type: MetaData
-      name: СМЭС - Массив
-    - type: Transform
-      pos: -12.5,-73.5
-      parent: 2
-  - uid: 28190
-    components:
-    - type: MetaData
-      name: СМЭС - Массив
-    - type: Transform
-      pos: -12.5,-74.5
       parent: 2
   - uid: 28191
     components:
@@ -201732,13 +201741,6 @@ entities:
       name: СМЭС - Служба безопасности
     - type: Transform
       pos: 26.5,29.5
-      parent: 2
-  - uid: 36527
-    components:
-    - type: MetaData
-      name: СМЭС - Массив
-    - type: Transform
-      pos: -12.5,-76.5
       parent: 2
   - uid: 36533
     components:
@@ -208559,7 +208561,7 @@ entities:
     - type: Transform
       pos: 23.5,-70.5
       parent: 2
-- proto: StorageCanisterBase
+- proto: StorageCanister
   entities:
   - uid: 29373
     components:
