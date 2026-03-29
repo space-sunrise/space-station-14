@@ -201,7 +201,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineDressCloset
-  name: Dress Closet
+  name: dress closet
   description: To be perfect.
   components:
   - type: VendingMachine
