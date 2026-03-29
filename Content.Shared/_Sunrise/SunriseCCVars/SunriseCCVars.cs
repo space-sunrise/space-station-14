@@ -530,4 +530,42 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<string> LoadoutPool =
         CVarDef.Create("custom_loadout.pool", "SunriseLoadout", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 
+    /*
+     * Trusted Proxy (UDP Relay)
+     */
+
+    /// <summary>
+    /// Включает поддержку доверенных прокси-серверов (UDP relay).
+    /// При включении сервер будет polling relay API для получения маппингов IP-адресов.
+    /// </summary>
+    public static readonly CVarDef<bool> TrustedProxyEnabled =
+        CVarDef.Create("trusted_proxy.enabled", false, CVar.SERVERONLY);
+
+    /// <summary>
+    /// URL(s) relay API для polling маппингов, через запятую.
+    /// Пример: "http://10.0.0.1:18080" или "http://relay1.example.com:18080,http://relay2.example.com:18080"
+    /// </summary>
+    public static readonly CVarDef<string> TrustedProxyRelayApiUrl =
+        CVarDef.Create("trusted_proxy.relay_api_url", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    /// <summary>
+    /// API ключ для аутентификации при polling relay API.
+    /// </summary>
+    public static readonly CVarDef<string> TrustedProxyRelayApiKey =
+        CVarDef.Create("trusted_proxy.relay_api_key", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    /// <summary>
+    /// Список IP-адресов доверенных прокси-серверов, через запятую.
+    /// Подключения с этих IP будут проходить трансляцию endpoint'ов.
+    /// Пример: "1.2.3.4,5.6.7.8"
+    /// </summary>
+    public static readonly CVarDef<string> TrustedProxyIPs =
+        CVarDef.Create("trusted_proxy.ips", "", CVar.SERVERONLY);
+
+    /// <summary>
+    /// Интервал polling relay API в миллисекундах.
+    /// </summary>
+    public static readonly CVarDef<int> TrustedProxyPollIntervalMs =
+        CVarDef.Create("trusted_proxy.poll_interval_ms", 2000, CVar.SERVERONLY);
+
 }

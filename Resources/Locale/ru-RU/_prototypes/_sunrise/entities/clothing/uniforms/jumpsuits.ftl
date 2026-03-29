@@ -103,3 +103,5 @@ ent-ClothingUniformJumpsuitRedMist = костюм Красного Тумана
     
 ent-ClothingUniformUndershirt = нижняя майка
     .desc = Обычная повседневная вещь.
+ent-ClothingUniformJumpsuitMilirUniform = облегающий комбинезон милир
+    .desc = Простой облегающий бодик, адаптированный под анатомию милиров.

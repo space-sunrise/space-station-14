@@ -76,6 +76,17 @@
     sprite: _Sunrise/Clothing/Shoes/metaton.rsi
 
 - type: entity
+  parent: ClothingShoesBootsCombat
+  id: ClothingShoesBootsAbductor
+  name: abductor boots
+  description: The boots of the abductors, made from a strange material. They are also very comfortable to wear, making them a popular choice among abductors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Abductor/Clothing/Shoes/Boots/abductor.rsi
+  - type: Clothing
+    sprite: _Sunrise/Abductor/Clothing/Shoes/Boots/abductor.rsi
+
+- type: entity
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesBootsArbiter
   name: arbiter shoes

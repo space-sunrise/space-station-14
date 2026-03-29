@@ -94,6 +94,7 @@ namespace Content.Server.Entry
         [Dependency] private readonly NetTexturesManager _netTexturesManager = default!; // Sunrise-Edit
         [Dependency] private readonly DiscordWebhook _discord = default!; // Sunrise-Edit
         [Dependency] private readonly IIPBlockingSystem _ipBlockingSystem = default!;
+        [Dependency] private readonly ITrustedProxyService _trustedProxyService = default!;
         private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
         public override void PreInit()
@@ -153,6 +154,7 @@ namespace Content.Server.Entry
             _ttsManager.Initialize();
             _netTexturesManager.Initialize();
             _ipBlockingSystem.Initialize();
+            _trustedProxyService.Initialize();
             SunriseServerEntry.Init();
             IoCManager.Instance!.TryResolveType(out _sponsorsManager);
             _discord.SetupClient();
@@ -232,6 +234,7 @@ namespace Content.Server.Entry
                     _contributorsManager.Update();
                     _sponsorsManager?.Update();
                     _ipBlockingSystem.Update();
+                    _trustedProxyService.Update();
                     // Sunrise-End
                     break;
             }

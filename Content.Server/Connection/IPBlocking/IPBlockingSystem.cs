@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using System.Net;
+using Content.Server.Ani;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
@@ -38,6 +39,10 @@ public sealed class IPBlockingSystem : IIPBlockingSystem
         if (!_enabled)
             return false;
 
+        // Никогда не блокируем доверенные прокси
+        if (TrustedProxyRegistry.IsTrustedProxy(ip))
+            return false;
+
         if (!_blockedIPs.TryGetValue(ip, out var unblockTime))
             return false;
 
@@ -54,6 +59,13 @@ public sealed class IPBlockingSystem : IIPBlockingSystem
     {
         if (!_enabled)
             return;
+
+        // Не блокируем доверенные прокси
+        if (TrustedProxyRegistry.IsTrustedProxy(ip))
+        {
+            _sawmill.Debug($"Пропускаем блокировку доверенного прокси {ip}. Причина: {reason}");
+            return;
+        }
 
         var unblockTime = DateTime.UtcNow + duration;
         _blockedIPs.AddOrUpdate(ip, unblockTime, (_, _) => unblockTime);

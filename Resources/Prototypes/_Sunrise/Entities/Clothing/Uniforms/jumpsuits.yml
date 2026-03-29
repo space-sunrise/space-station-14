@@ -508,3 +508,14 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/undershirt.rsi
     equippedState: equipped-INNERCLOTHING
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMilirUniform
+  name: millir bodysuit
+  description: A simple, form-fitting bodysuit tailored for Milir anatomy.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/milirs_unifrom.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/milirs_unifrom.rsi
