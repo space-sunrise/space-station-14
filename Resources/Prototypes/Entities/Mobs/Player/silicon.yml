@@ -36,6 +36,7 @@
   - type: ActionGrant
     actions:
     - ActionJumpToCore
+    - ActionVisitCore
     - ActionSurvCameraLights
     - ActionAIViewLaws
   - type: UserInterface
@@ -195,7 +196,7 @@
   components:
   - type: Anchorable
     flags:
-    - Anchorable
+    - None
   - type: Rotatable
   - type: WarpPoint
     blacklist:
@@ -287,7 +288,19 @@
     - state: ai_unpowered
       map: ["enum.PowerDeviceVisualLayers.Powered"]
       visible: false
+    - state: base_high
+      sprite: Mobs/Silicon/leggy.rsi
+      map: ["enum.StationAiVisualLayers.CoreStanding"]
+      offset: "0.0,0.5"
+      visible: false
+    - state: ai_high
+      sprite: Mobs/Silicon/leggy.rsi
+      shader: unshaded
+      map: ["enum.StationAiVisualLayers.ScreenStanding"]
+      offset: "0.0,0.5"
+      visible: false
   - type: Appearance
+  - type: AnimationPlayer
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.Powered:
@@ -298,6 +311,11 @@
         enum.StationAiVisualLayers.Base:
           False: { state: ai_empty }
           True: { state: ai_error }
+  - type: ActionGrant
+    actions:
+    - ActionUnVisitCore
+  - type: Physics
+    bodyType: Static
   - type: InteractionPopup
     interactSuccessString: petting-success-station-ai
     interactFailureString: petting-failure-station-ai

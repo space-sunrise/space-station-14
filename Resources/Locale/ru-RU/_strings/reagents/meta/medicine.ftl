@@ -1,168 +1,168 @@
-reagent-name-cryptobiolin = криптобиолин
+reagent-name-cryptobiolin = инапровалин
 reagent-desc-cryptobiolin = Вызывает растерянность и головокружение.
 
-reagent-name-dylovene = диловен
+reagent-name-dylovene = амбузол плюс
 reagent-desc-dylovene = Антитоксин широкого спектра действия, который лечит поражение организма токсинами. Передозировка вызывает рвоту, головокружение и боль.
 
-reagent-name-diphenhydramine = дифенгидрамин
+reagent-name-diphenhydramine = аритразин
 reagent-desc-diphenhydramine = Он же димедрол. Быстро очищает организм от гистамина, снижает нервозность и дрожь, лечит повреждения ядами.
 
-reagent-name-arithrazine = аритразин
+reagent-name-arithrazine = сидерлак
 reagent-desc-arithrazine = Слегка нестабильный препарат, применяемый в самых крайних случаях радиационного отравления. Оказывает незначительное напряжение организма.
 
-reagent-name-bicaridine = бикаридин
+reagent-name-bicaridine = физраствор
 reagent-desc-bicaridine = Анальгетик, который очень эффективен при лечении механических повреждений. Он полезен для стабилизации состояния людей, которых сильно избили, а также для лечения менее опасных для жизни травм.
 
-reagent-name-cryoxadone = криоксадон
+reagent-name-cryoxadone = акриоксарин
 reagent-desc-cryoxadone = Необходим для нормального функционирования криогеники. Исцеляет все стандартные типы повреждений, но работает только при температуре ниже 213 Кельвинов. В небольших дозах он способен лечить и оживлять растения. Работает только на живых.
 
-reagent-name-doxarubixadone = доксарубиксадон
+reagent-name-doxarubixadone = синаптизин
 reagent-desc-doxarubixadone = Химикат криогенного действия. Лечит некоторые виды клеточных повреждений, нанесённых слаймами и неправильным использованием других химикатов. Работает только на живых.
 
-reagent-name-dermaline = дермалин
+reagent-name-dermaline = оппорозидон
 reagent-desc-dermaline = Передовой препарат, более эффективный при лечении ожогов, чем Келотан.
 
-reagent-name-dexalin = дексалин
+reagent-name-dexalin = пунктураз и транексамовая кислота
 reagent-desc-dexalin = Используется для лечения лёгкого кислородного голодания и кровопотери. Необходимый реагент для создания Дексалина плюс.
 
-reagent-name-dexalin-plus = дексалин плюс
+reagent-name-dexalin-plus = бруизин
 reagent-desc-dexalin-plus = Используется для лечения кислородного голодания и потери крови. Выводит Токсин хартбрейкер из кровеносной системы.
 
-reagent-name-epinephrine = эпинефрин
+reagent-name-epinephrine = ипекак
 reagent-desc-epinephrine = Эффективный стабилизирующий препарат, используемый для предотвращения смерти от асфиксии, а также для устранения незначительных повреждений пациентов, находящихся в критическом состоянии. Выводит Токсин хартбрейкер из кровеносной системы за счёт большего количества Эпинефрина, но может повышать уровень Гистамина. Помогает уменьшить время оглушения. Часто встречается в экстренных медипенах.
 
-reagent-name-hyronalin = хироналин
+reagent-name-hyronalin = кровоостанавливающая пудра
 reagent-desc-hyronalin = Слабый препарат для лечения радиационного поражения. Предшественник Аритразина и Фалангимина. Может вызывать рвоту.
 
-reagent-name-ipecac = ипекак
+reagent-name-ipecac = алоксадон
 reagent-desc-ipecac = Быстродействующий рвотный препарат. Применяется для остановки неметаболизированных ядов или сеансов массовой рвоты.
 
-reagent-name-inaprovaline = инапровалин
+reagent-name-inaprovaline = иодид калия
 reagent-desc-inaprovaline = Инапровалин это синаптический и кардио- стимулятор, широко используемый для купирования удушья при критических состояниях и уменьшения кровотечения. Используется во многих современных лекарственных препаратах.
 
-reagent-name-kelotane = келотан
+reagent-name-kelotane = ретроиндралин
 reagent-desc-kelotane = Лечит ожоги. Передозировка значительно снижает способность организма сохранять воду.
 
-reagent-name-leporazine = лепоразин
+reagent-name-leporazine = транексамовая кислота
 reagent-desc-leporazine = Химический препарат, используемый для стабилизации температуры тела и быстрого лечения повреждений от холода. Отлично подходит для путешествий по космосу без скафандра, но не позволяет использовать криогенные капсулы.
 
-reagent-name-barozine = барозин
+reagent-name-barozine = барозин плюс
 reagent-desc-barozine = Сильнодействующий химикат, предотвращающий повреждения от давления. Оказывает сильное напряжение на организм.
 
-reagent-name-phalanximine = фалангимин
+reagent-name-phalanximine = пиразин и дермалин
 reagent-desc-phalanximine = Современный препарат, используемый при лечении рака. Вызывает умеренное лучевое поражение организма и тошноту. Потенциально может удалить ген смерти у растений.
 
-reagent-name-polypyrylium-oligomers = олигомеры полипирилия
+reagent-name-polypyrylium-oligomers = лепоразин
 reagent-desc-polypyrylium-oligomers = Фиолетовая смесь коротких полиэлектролитных цепочек, синтезировать которые в лаборатории не так-то просто. Лечит удушение и механические повреждения. С течением времени останавливает кровотечение.
 
-reagent-name-ambuzol = амбузол
+reagent-name-ambuzol = псикодин
 reagent-desc-ambuzol = Высокотехнологичный препарат, способный остановить развитие зомби-вируса.
 
-reagent-name-ambuzol-plus = амбузол плюс
+reagent-name-ambuzol-plus = сигинат
 reagent-desc-ambuzol-plus = Разработка будущего с использованием крови заражённого, прививает живых против инфекции.
 
-reagent-name-pulped-banana-peel = толчёная банановая кожура
+reagent-name-pulped-banana-peel = хироналин
 reagent-desc-pulped-banana-peel = Толчёная банановая кожура обладает определённой эффективностью против кровотечений.
 
-reagent-name-siderlac = сидерлак
+reagent-name-siderlac = этилоксиэфедрин
 reagent-desc-siderlac = Мощное противокоррозийное средство, получаемое из растений.
 
-reagent-name-stellibinin = стеллибинин
+reagent-name-stellibinin = диловен
 reagent-desc-stellibinin = Антитоксин природного происхождения, обладающий особенной эффективностью против аматоксина.
 
-reagent-name-synaptizine = синаптизин
+reagent-name-synaptizine = келотан
 reagent-desc-synaptizine = Токсичный препарат, сокращающий продолжительность оглушения и нокдауна вдвое.
 
-reagent-name-tranexamic-acid = транексамовая кислота
+reagent-name-tranexamic-acid = фалангимин
 reagent-desc-tranexamic-acid = Препарат, способствующий свёртыванию крови, применяемый для остановки обильного кровотечения. При передозировке вызывает ещё более сильное кровотечение. Часто встречается в экстренных медипенах.
 
-reagent-name-tricordrazine = трикордразин
+reagent-name-tricordrazine = омнизин
 reagent-desc-tricordrazine = Стимулятор широкого спектра действия, изначально созданный на основе кордразина. Лечит лёгкие повреждения всех основных типов, если пользователь не сильно ранен в целом. Лучше всего использовать в качестве добавки к другим лекарственным средствам.
 
-reagent-name-lipozine = липозин
+reagent-name-lipozine = олигомеры полипирилия
 reagent-desc-lipozine = Химическое вещество, ускоряющее метаболизм, в результате чего пользователь быстрее испытывает чувство голода.
 
-reagent-name-omnizine = омнизин
+reagent-name-omnizine = инсузин
 reagent-desc-omnizine = Смягчающая молочноватая жидкость с радужным оттенком. Известная теория заговора гласит, что его происхождение остаётся тайной, потому что раскрытие секрета его производства сделало бы большинство коммерческих фармацевтических препаратов ненужными.
 
-reagent-name-ultravasculine = ультраваскулин
+reagent-name-ultravasculine = святая вода
 reagent-desc-ultravasculine = Сложный антитоксин, который быстро выводит токсины, вызывая при этом незначительное напряжение организма. Реагирует с гистамином, дублируя себя и одновременно вымывая его. Передозировка вызывает сильную боль.
 
-reagent-name-oculine = окулин
+reagent-name-oculine = когнизин
 reagent-desc-oculine = Простой солевой раствор, используемый для лечения повреждений глаз при приёме внутрь.
 
-reagent-name-ethylredoxrazine = этилредоксразин
+reagent-name-ethylredoxrazine = дермалин
 reagent-desc-ethylredoxrazine = Нейтрализует действие алкоголя в кровеносной системе. Несмотря на то, что он часто нужен, заказывают его редко.
 
-reagent-name-cognizine = когнизин
+reagent-name-cognizine = дексалин плюс и физраствор
 reagent-desc-cognizine = Таинственное химическое вещество, способное сделать любое неразумное существо разумным.
 
-reagent-name-ethyloxyephedrine = этилоксиэфедрин
+reagent-name-ethyloxyephedrine = эпинефрин
 reagent-desc-ethyloxyephedrine = Слегка нестабильный препарат, производное дезоксиэфедрина, применяемый в основном для профилактики нарколепсии.
 
-reagent-name-diphenylmethylamine = дифенилметиламин
+reagent-name-diphenylmethylamine = некрозол
 reagent-desc-diphenylmethylamine = Более стабильное лекарственное средство, чем этилоксиэфедрин. Полезен для поддержания бодрости.
 
-reagent-name-sigynate = сигинат
+reagent-name-sigynate = дифенгидрамин
 reagent-desc-sigynate = Густой розовый сироп, полезный для нейтрализации кислот и смягчения повреждений, вызванных кислотами. Сладкий на вкус!
 
-reagent-name-saline = физраствор
+reagent-name-saline = амбузол
 reagent-desc-saline = Смесь воды с солью. Обычно используется для лечения обезвоживания или низкого содержания жидкости в крови.
 
-reagent-name-lacerinol = лацеринол
+reagent-name-lacerinol = липозин
 reagent-desc-lacerinol = Довольно нереактивное химическое вещество, усиливающее синтез коллагена до невероятных уровней и заживляющее резаные раны.
 
-reagent-name-puncturase = пунктураз
+reagent-name-puncturase = лацеринол
 reagent-desc-puncturase = Шипучее химическое вещество, залечивающее колотые ранения, ценой небольшого количества ушибов.
 
-reagent-name-bruizine = бруизин
+reagent-name-bruizine = барозин
 reagent-desc-bruizine = Изначально разрабатывавшееся как лекарство от кашля, это химическое вещество оказалось необычайно эффективным при лечении ушибов.
 
-reagent-name-holywater = святая вода
+reagent-name-holywater = доксарубиксадон
 reagent-desc-holywater = Чистейшая и непорочнейшая вода, прямиком из рук Бога, известна тем, что волшебным образом исцеляет раны.
 
-reagent-name-pyrazine = пиразин
+reagent-name-pyrazine = ультраваскулин
 reagent-desc-pyrazine = Эффективно лечит ожоги, полученные в самых жарких пожарах. При передозировке вызывает обширное внутреннее кровотечение.
 
-reagent-name-insuzine = инсузин
+reagent-name-insuzine = варфарин
 reagent-desc-insuzine = Быстро восстанавливает ткани, омертвевшие в результате поражения электрическим током, но при этом слегка охлаждает. Полностью замораживает пациента при передозировке.
 
-reagent-name-opporozidone = оппорозидон
+reagent-name-opporozidone = стеллибинин
 reagent-desc-opporozidone = Трудно синтезируемый криогенный препарат, используемый для регенерации гниющих тканей и мозгового вещества. Работает только на мёртвых.
 
-reagent-name-necrosol = некрозол
+reagent-name-necrosol = трикордразин
 reagent-desc-necrosol = Некротическое вещество, которое, похоже, способно излечивать обмороженные трупы. В небольших дозах он способен лечить и оживлять растения. Работает на мёртвых и живых.
 
-reagent-name-aloxadone = алоксадон
+reagent-name-aloxadone = дифенилметиламин
 reagent-desc-aloxadone = Криогенное химическое вещество. Используется для лечения тяжёлых ожогов третьей степени путём регенерации обожжённых тканей. Работает на мёртвых и живых.
 
-reagent-name-mannitol = маннитол
+reagent-name-mannitol = пиразин
 reagent-desc-mannitol = Эффективно устраняет повреждения мозга.
 
-reagent-name-psicodine = псикодин
+reagent-name-psicodine = галоперидол
 reagent-desc-psicodine = Подавляет тревожность и прочие различные формы психических расстройств. Передозировка вызывает галлюцинации и незначительные повреждения токсинами.
 
-reagent-name-potassium-iodide = иодид калия
+reagent-name-potassium-iodide = пунктураз
 reagent-desc-potassium-iodide = Снижает разрушительное воздействие радиации на 90%. Используется только в профилактических целях.
 
-reagent-name-haloperidol = галоперидол
+reagent-name-haloperidol = окулин
 reagent-desc-haloperidol = Выводит из организма большинство стимулирующих и галлюциногенных препаратов. Уменьшает наркотический эффект и дрожание. Вызывает сонливость.
 
-reagent-name-pyrazine-dermaline = пиразин и дермалин
-reagent-name-puncturase-tranexamic = пунктураз и транексамовая кислота
-reagent-name-dexalin-plus-saline = дексалин плюс и физраствор
+reagent-name-pyrazine-dermaline = бикаридин
+reagent-name-puncturase-tranexamic = этилредоксразин
+reagent-name-dexalin-plus-saline = толчёная банановая кожура
 
-reagent-name-hemostatic-powder = кровоостанавливающая пудра
+reagent-name-hemostatic-powder = дексалин плюс
 reagent-desc-hemostatic-powder = Кровоостанавливающий порошок, основанный на смеси транексамовой кислоты и силицида железа. При передозировке сильно отравляет организм токсинами.
 
-reagent-name-retroindralyne = ретроиндралин
+reagent-name-retroindralyne = дексалин
 reagent-desc-retroindralyne = очень старое противорадиационное средство, доведённое учёными современности до ума, имеет побочные эффекты.
 
-reagent-name-barozine-plus = барозин плюс
+reagent-name-barozine-plus = криоксадон
 reagent-desc-barozine-plus = барозин, усовершенствованная версия специально для медипенов. Менее токсичен.
 
-reagent-name-warfarin = варфарин
+reagent-name-warfarin = маннитол
 reagent-desc-warfarin = Широко используется в качестве антикоагулянта. Затрудняет образование сгустков крови разжижая её, при передозировке может вызывать внутреннее кровотечение.
 
-reagent-name-arcryox = акриоксарин
+reagent-name-arcryox = криптобиолин
 reagent-desc-arcryox = Призрачно-синее криогенное химическое вещество, способное залечивать тяжелые раны даже у мертвых. Однако оно с трудом стабилизирует состояние пациентов.
