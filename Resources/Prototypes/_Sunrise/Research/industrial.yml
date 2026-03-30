@@ -25,35 +25,6 @@
   - CargoSuit
   - BluespaceBox
 
-- type: technology
-  id: BorgBaseCargoModules
-  name: research-technology-borg-base-cargo-modules
-  icon:
-    sprite: Objects/Specific/Robotics/borgmodule.rsi
-    state: cargo
-  discipline: Industrial
-  tier: 1
-  cost: 2500
-  recipeUnlocks:
-  - BorgModuleJetpack
-  - BorgModuleAppraisal
-  - BorgModuleMining
-  - BorgModuleTraversal
-  - BorgModuleMiningCombat
-
-- type: technology
-  id: BorgBaseEngineersModules
-  name: research-technology-borg-base-engineers-modules
-  icon:
-    sprite: Objects/Specific/Robotics/borgmodule.rsi
-    state: engineering
-  discipline: Industrial
-  tier: 1
-  cost: 2500
-  recipeUnlocks:
-  - BorgModuleRCD
-  - BorgModuleConstruction
-
 # Tier 2
 
 - type: technology

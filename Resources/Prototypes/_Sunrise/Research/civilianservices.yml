@@ -9,26 +9,3 @@
   cost: 5000
   recipeUnlocks:
     - SlopDispenserMachineCircuitboard
-
-- type: technology
-  id: BorgBaseServiceModules
-  name: research-technology-borg-base-service-modules
-  icon:
-    sprite: Objects/Specific/Robotics/borgmodule.rsi
-    state: service
-  discipline: CivilianServices
-  tier: 1
-  cost: 2500
-  recipeUnlocks:
-  - BorgModuleStandart
-  - BorgModuleCustodial
-  - BorgModuleCleaning
-  - BorgModuleClowning
-  - BorgModuleMusique
-  - BorgModuleService
-  - BorgModuleGardening
-  - BorgModuleHarvesting
-  - BorgModulePaperwork
-  - BorgModuleBartender
-  - BorgModuleCooking
-  - BorgModuleExtensiveGardening

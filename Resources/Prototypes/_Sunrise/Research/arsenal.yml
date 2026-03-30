@@ -1,20 +1,4 @@
 - type: technology
-  id: BorgBaseArsenalModules
-  name: research-technology-borg-base-security-modules
-  icon:
-    sprite: Objects/Specific/Robotics/borgmodule.rsi
-    state: security
-  discipline: Arsenal
-  tier: 1
-  cost: 2500
-  recipeUnlocks:
-  - BorgModulePeace
-  - BorgModuleStun
-  - BorgModuleCombat
-  radioChannels:
-  - Security
-
-- type: technology
   id: EnergyBarriers
   name: research-technology-energy_barriers
   icon:
