@@ -192,10 +192,11 @@
       tags:
       - SovietDungeon
     presets:
-    - Bucket
-    - Wow
-    - SpaceShip
-    - Tall
+    - SovietBucket
+    - SovietWow
+    - SovietSpaceShip
+    - SovietTall
+    - SovietAnyChance
 
   - !type:CorridorDunGen
     width: 5

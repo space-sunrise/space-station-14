@@ -328,8 +328,6 @@
     radius: 6
     energy: 4.5
     color: "#88ff00"
-  - type: TimerTrigger
-    delay: 11
   - type: WarpPoint
     follow: true
     location: 240mm TACTICAL NUKE

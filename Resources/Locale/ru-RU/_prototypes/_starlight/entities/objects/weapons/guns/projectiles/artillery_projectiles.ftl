@@ -19,9 +19,6 @@ ent-BulletLeviathan240mmNukeSelfExplode = ядерный снаряд 240мм
 ent-BulletLeviathan240mmClusterSelfExplode = кассетный снаряд 240мм
     .desc = Сущность аварийного самоподрыва, рассеивающая кассетные суббоеприпасы.
 
-ent-BulletSyndieMiniBomb = мини-бомба синдиката (снаряд)
-    .desc = Компактный взрывной суббоеприпас из кассетной боевой части синдиката.
-
 ent-BulletSyndyClusterGrenade = кассетный снаряд синдиката
     .desc = Кассетный суббоеприпас, распадающийся на мини-бомбы при срабатывании.
 

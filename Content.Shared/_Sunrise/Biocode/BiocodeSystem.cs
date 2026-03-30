@@ -1,6 +1,5 @@
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Prototypes;
-using Content.Shared.Item;
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
 
@@ -14,7 +13,6 @@ public sealed class BiocodeSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<BiocodeComponent, AttemptThrowBiocodeEvent>(OnAttemptThrowBiocode);
-        SubscribeLocalEvent<BiocodeComponent, GettingPickedUpAttemptEvent>(OnGettingPickedUpAttempt);
     }
 
     public bool CanUse(EntityUid user, HashSet<ProtoId<NpcFactionPrototype>> factions)
@@ -43,14 +41,4 @@ public sealed class BiocodeSystem : EntitySystem
         args.Cancelled = true;
     }
 
-    private void OnGettingPickedUpAttempt(EntityUid uid, BiocodeComponent component, ref GettingPickedUpAttemptEvent args)
-    {
-        if (CanUse(args.User, component.Factions))
-            return;
-
-        if (args.ShowPopup && !string.IsNullOrEmpty(component.AlertText))
-            _popup.PopupEntity(Loc.GetString(component.AlertText), args.User, args.User);
-
-        args.Cancel();
-    }
 }

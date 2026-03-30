@@ -28,12 +28,6 @@ public sealed partial class EnergyDomeGeneratorComponent : Component
     public bool CanInteractUse = true;
 
     /// <summary>
-    /// If true, standard interactions can toggle the dome only while the item is equipped in an inventory slot.
-    /// </summary>
-    [DataField]
-    public bool RequireEquippedToUse = false;
-
-    /// <summary>
     /// Can the NetworkDevice system activate and deactivate the barrier?
     /// </summary>
     [DataField]

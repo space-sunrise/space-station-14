@@ -20,7 +20,6 @@ using Robust.Server.Containers;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Inventory;
 
 namespace Content.Server.EnergyDome;
 
@@ -36,7 +35,6 @@ public sealed partial class EnergyDomeSystem : EntitySystem
     [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
     [Dependency] private readonly ContainerSystem _containerSystem = default!;
     [Dependency] private readonly BiocodeSystem _biocodeSystem = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
 
     public override void Initialize()
     {
@@ -96,19 +94,6 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
     private void OnAfterInteract(Entity<EnergyDomeGeneratorComponent> generator, ref AfterInteractEvent args)
     {
-        if (!_containerSystem.ContainsEntity(args.User, generator.Owner))
-            return;
-
-        if (generator.Comp.RequireEquippedToUse &&
-            !_inventory.TryGetContainingSlot((generator.Owner, Transform(generator.Owner), MetaData(generator.Owner)), out _))
-            return;
-
-        if (TryComp<BiocodeComponent>(generator.Owner, out var biocodedComponent))
-        {
-            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
-                return;
-        }
-
         if (generator.Comp.CanInteractUse)
             AttemptToggle(generator, !generator.Comp.Enabled);
     }
@@ -117,10 +102,6 @@ public sealed partial class EnergyDomeSystem : EntitySystem
     {
         // Sunrise-Start
         if (!_containerSystem.ContainsEntity(args.User, generator.Owner))
-            return;
-
-        if (generator.Comp.RequireEquippedToUse &&
-            !_inventory.TryGetContainingSlot((generator.Owner, Transform(generator.Owner), MetaData(generator.Owner)), out _))
             return;
 
         if (TryComp<BiocodeComponent>(generator.Owner, out var biocodedComponent))
@@ -152,10 +133,6 @@ public sealed partial class EnergyDomeSystem : EntitySystem
         if (!_containerSystem.ContainsEntity(args.User, generator.Owner))
             return;
 
-        if (generator.Comp.RequireEquippedToUse &&
-            !_inventory.TryGetContainingSlot((generator.Owner, Transform(generator.Owner), MetaData(generator.Owner)), out _))
-            return;
-
         if (TryComp<BiocodeComponent>(generator.Owner, out var biocodedComponent))
         {
             if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
@@ -184,10 +161,6 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             return;
 
         if (!_containerSystem.ContainsEntity(args.Performer, generator.Owner))
-            return;
-
-        if (generator.Comp.RequireEquippedToUse &&
-            !_inventory.TryGetContainingSlot((generator.Owner, Transform(generator.Owner), MetaData(generator.Owner)), out _))
             return;
 
         if (TryComp<BiocodeComponent>(generator.Owner, out var biocodedComponent))
@@ -417,4 +390,3 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             : entity;
     }
 }
-

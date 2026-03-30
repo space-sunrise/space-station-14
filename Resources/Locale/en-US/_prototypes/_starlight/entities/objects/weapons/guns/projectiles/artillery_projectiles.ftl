@@ -19,9 +19,6 @@ ent-BulletLeviathan240mmNukeSelfExplode = 240mm nuclear shell
 ent-BulletLeviathan240mmClusterSelfExplode = 240mm cluster shell
     .desc = A self-detonating fallback entity that disperses cluster submunitions.
 
-ent-BulletSyndieMiniBomb = syndicate mini-bomb projectile
-    .desc = A compact explosive submunition used in syndicate cluster payloads.
-
 ent-BulletSyndyClusterGrenade = syndicate cluster projectile
     .desc = A cluster submunition that fragments into mini-bombs on trigger.
 
