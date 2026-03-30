@@ -145869,7 +145869,7 @@ entities:
       parent: 2
     - type: Paper
       content: >2
-                                         
+
 
 
 
@@ -179313,10 +179313,10 @@ entities:
       parent: 2
 - proto: VendingMachinePride
   entities:
-  - uid: 27689
+  - uid: 1405
     components:
     - type: Transform
-      pos: -43.5,19.5
+      pos: -18.5,-4.5
       parent: 2
 - proto: VendingMachineRoboDrobe
   entities:
@@ -179378,10 +179378,10 @@ entities:
       parent: 2
 - proto: VendingMachineSecDrobe
   entities:
-  - uid: 1405
+  - uid: 27689
     components:
     - type: Transform
-      pos: -18.5,-4.5
+      pos: -43.5,19.5
       parent: 2
 - proto: VendingMachineSeeds
   entities:

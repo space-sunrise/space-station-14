@@ -99616,13 +99616,13 @@ entities:
     - type: Transform
       pos: -50.5,124.5
       parent: 2
-  - uid: 14025
+  - uid: 14033
     components:
     - type: MetaData
       desc: Для настоящей мужской дружбы.
       name: Пидормат
     - type: Transform
-      pos: -50.5,56.5
+      pos: -59.5,50.5
       parent: 2
 - proto: VendingMachineRestockBooze
   entities:
@@ -99671,10 +99671,10 @@ entities:
       parent: 2
 - proto: VendingMachineSec
   entities:
-  - uid: 14033
+  - uid: 14025
     components:
     - type: Transform
-      pos: -59.5,50.5
+      pos: -50.5,56.5
       parent: 2
 - proto: VendingMachineSecDrobe
   entities:
