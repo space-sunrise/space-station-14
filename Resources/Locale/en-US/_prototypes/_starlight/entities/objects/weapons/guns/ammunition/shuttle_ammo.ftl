@@ -29,25 +29,25 @@ ent-CartridgeLeviathan240mmHE = LVT-240 240mm HE artillery shell
     .desc = A massive 240mm high-explosive artillery shell for the Leviathan siege cannon. The sheer concussive force of detonation can level structures and devastate entire sections of a ship. Requires manual chamber loading.
 
 ent-CartridgeLeviathan240mmHEDamaged75 = damaged LVT-240 240mm HE artillery shell
-    .desc = A damaged 240mm HE shell with partially degraded internals. Estimated combat effectiveness: 75%.
+    .desc = A damaged 240mm HE shell with partially degraded internals.
 
 ent-CartridgeLeviathan240mmHEDamaged50 = heavily damaged LVT-240 240mm HE artillery shell
-    .desc = A critically damaged 240mm HE shell. One more hard impact may trigger catastrophic failure. Estimated combat effectiveness: 50%.
+    .desc = A critically damaged 240mm HE shell. One more hard impact may trigger catastrophic failure.
 
 ent-CartridgeLeviathan240mmNuke = LVT-240N 240mm nuclear artillery shell
     .desc = A strategic 240mm shell with a compact nuclear payload for the Leviathan siege cannon. On impact, it produces a detonation equivalent to a nuclear grenade and disperses irradiated shrapnel. Requires manual chamber loading.
 
 ent-CartridgeLeviathan240mmNukeDamaged75 = damaged LVT-240N 240mm nuclear artillery shell
-    .desc = A damaged nuclear 240mm shell with compromised casing and degraded internals. Estimated combat effectiveness: 75%.
+    .desc = A damaged nuclear 240mm shell with compromised casing and degraded internals.
 
 ent-CartridgeLeviathan240mmNukeDamaged50 = heavily damaged LVT-240N 240mm nuclear artillery shell
-    .desc = A critically damaged nuclear shell. One more hard impact may trigger catastrophic rupture. Estimated combat effectiveness: 50%.
+    .desc = A critically damaged nuclear shell. One more hard impact may trigger catastrophic rupture.
 
 ent-CartridgeLeviathan240mmCluster = LVT-240C 240mm cluster artillery shell
     .desc = A 240mm cluster shell for the Leviathan siege cannon. On impact, it disperses a payload of syndicate cluster grenades over the target area. Requires manual chamber loading.
 
 ent-CartridgeLeviathan240mmClusterDamaged75 = damaged LVT-240C 240mm cluster artillery shell
-    .desc = A damaged 240mm cluster shell with unstable dispersal internals. Estimated combat effectiveness: 75%.
+    .desc = A damaged 240mm cluster shell with unstable dispersal internals.
 
 ent-CartridgeLeviathan240mmClusterDamaged50 = heavily damaged LVT-240C 240mm cluster artillery shell
-    .desc = A critically damaged cluster shell. One more hard impact may trigger an uncontrolled payload rupture. Estimated combat effectiveness: 50%.
+    .desc = A critically damaged cluster shell. One more hard impact may trigger an uncontrolled payload rupture.

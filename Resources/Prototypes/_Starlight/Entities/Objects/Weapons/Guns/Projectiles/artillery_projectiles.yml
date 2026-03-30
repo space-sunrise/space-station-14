@@ -37,7 +37,7 @@
 
 # --- AK570 90mm HE ---
 - type: entity
-  id: BulletAK570_90mmHE
+  id: BulletAK57090mmHE
   name: AK-90 90mm HE shell
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -81,7 +81,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
       - state: blast240mm
-    scale: 1.5, 1.5
+    scale: 1.2, 1.2
   - type: Projectile
     angle: 180
   - type: ExplodeOnTrigger
@@ -101,6 +101,11 @@
     scale: 2.0
     shape: Triangle
     requireInSpace: true
+  - type: WarpPoint
+    follow: true
+    location: 240mm HE Payload
+  - type: TimedDespawn
+    lifetime: 15
 
 - type: entity
   id: BulletLeviathan240mmNuke
@@ -112,13 +117,17 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
       - state: nuke240mm
-    scale: 1.5, 1.5
+    scale: 1.2, 1.2
   - type: Projectile
     angle: 180
+  - type: TimedDespawn
+    lifetime: 8
+  - type: SpawnOnDespawn
+    prototype: BulletLeviathan240mmNukeSelfExplode
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 20000
+    totalIntensity: 15000 # 20000 Критмасса
     intensitySlope: 5
     maxIntensity: 50
   - type: ContainerContainer
@@ -141,6 +150,9 @@
     scale: 2.3
     shape: Triangle
     requireInSpace: true
+  - type: WarpPoint
+    follow: true
+    location: 240mm TACTICAL NUKE
 
 - type: entity
   id: BulletLeviathan240mmCluster
@@ -152,9 +164,13 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
       - state: cluster240mm
-    scale: 1.5, 1.5
+    scale: 1.2, 1.2
   - type: Projectile
     angle: 180
+  - type: TimedDespawn
+    lifetime: 8
+  - type: SpawnOnDespawn
+    prototype: BulletLeviathan240mmClusterSelfExplode
   - type: ContainerContainer
     containers:
       cluster-payload: !type:Container
@@ -164,7 +180,7 @@
     capacity: 12
     randomAngle: true
     minVelocity: 1
-    maxVelocity: 3
+    maxVelocity: 2
   - type: PointLight
     enabled: true
     radius: 6
@@ -175,6 +191,65 @@
     scale: 2.0
     shape: Triangle
     requireInSpace: true
+  - type: WarpPoint
+    follow: true
+    location: 240mm Cluster Payload
+
+- type: entity
+  id: BulletLeviathan240mmNukeSelfExplode
+  name: 240mm nuclear shell
+  suffix: self-explode, NOW
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+      - state: nuke240mm
+    scale: 1.2, 1.2
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 15000
+    intensitySlope: 5
+    maxIntensity: 50
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterSubnuclearShrapnel
+    capacity: 90
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: TimedDespawn
+    lifetime: 0.25
+
+- type: entity
+  id: BulletLeviathan240mmClusterSelfExplode
+  name: 240mm cluster shell
+  suffix: self-explode, NOW
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+      - state: cluster240mm
+    scale: 1.2, 1.2
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletSyndyClusterGrenade
+    capacity: 12
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 2
+  - type: TimedDespawn
+    lifetime: 0.25
 
 - type: entity
   id: LeviathanHERupture25
@@ -255,6 +330,9 @@
     color: "#88ff00"
   - type: TimerTrigger
     delay: 11
+  - type: WarpPoint
+    follow: true
+    location: 240mm TACTICAL NUKE
 
 - type: entity
   id: LeviathanClusterRupture25
@@ -269,7 +347,7 @@
     anchored: false
   - type: TriggerOnSpawn
   - type: TimerTrigger
-    delay: 0
+    delay: 1
     keyOut: timer
   - type: ContainerContainer
     containers:
@@ -300,6 +378,8 @@
     layers:
       - state: grenade
     scale: 1.2, 1.2
+  - type: SpawnOnDespawn
+    prototype: BulletSyndieMiniBombFailsafe
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Minibomb
@@ -311,6 +391,13 @@
     radius: 2.5
     energy: 2.2
     color: "#ff4444"
+  - type: RadarBlip
+    color: "#FF6655"
+    scale: 0.3
+    shape: Circle
+    requireInSpace: false
+  - type: TimedDespawn
+    lifetime: 3
 
 - type: entity
   id: BulletSyndyClusterGrenade
@@ -323,6 +410,8 @@
     layers:
       - state: grenade
     scale: 1.6, 1.6
+  - type: SpawnOnDespawn
+    prototype: BulletSyndyClusterGrenadeFailsafe
   - type: ContainerContainer
     containers:
       cluster-payload: !type:Container
@@ -338,7 +427,49 @@
     radius: 3
     energy: 2.8
     color: "#ff6655"
+  - type: RadarBlip
+    color: "#FF6655"
+    scale: 0.75
+    shape: Circle
+    requireInSpace: false
+  - type: TimedDespawn
+    lifetime: 3
 
+- type: entity
+  id: BulletSyndieMiniBombFailsafe
+  name: syndicate mini-bomb projectile (failsafe)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Minibomb
+    totalIntensity: 200
+    intensitySlope: 30
+    maxIntensity: 60
+  - type: TimedDespawn
+    lifetime: 0.2
+
+- type: entity
+  id: BulletSyndyClusterGrenadeFailsafe
+  name: syndicate cluster projectile (failsafe)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletSyndieMiniBomb
+    capacity: 3
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: TimedDespawn
+    lifetime: 0.2
 
 # --- CYERXA 120mm ---
 
@@ -662,6 +793,11 @@
     radius: 3
     energy: 2.2
     color: "#55ff55"
+  - type: RadarBlip
+    color: "#55FF55"
+    scale: 0.1
+    shape: triangle
+    requireInSpace: false
   - type: RadiationSource
     intensity: 0.8
     slope: 0.1
