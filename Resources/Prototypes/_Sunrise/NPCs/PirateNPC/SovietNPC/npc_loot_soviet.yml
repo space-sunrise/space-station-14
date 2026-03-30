@@ -640,10 +640,10 @@
     # Cash
     - id: PirateCashSpawner03
     # Weapons
-    - id: WeaponRevolverMateba
-      prob: 0.9
-    - id: WeaponRevolverMateba
-      prob: 0.3
+    - id: WeaponRevolverPython
+      prob: 0.75
+    - id: WeaponRevolverPythonAP
+      prob: 0.25
     # Armor
     - id: ClothingOuterCoatDetective
       prob: 0.4
