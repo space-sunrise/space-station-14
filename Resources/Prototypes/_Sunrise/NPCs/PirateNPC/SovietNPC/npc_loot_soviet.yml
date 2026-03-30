@@ -557,15 +557,15 @@
     state: icon
   - type: SpawnItemsOnUse
     items:
-    - id: MagazineBoxLightRifleFMJ
+    - id: MagazineBoxRifleMachineFMJ
       prob: 0.4
-    - id: SpeedLoaderLightRifle
+    - id: SpeedLoaderHeavyRifleRFMJ
       prob: 0.9
-    - id: SpeedLoaderLightRifle
+    - id: SpeedLoaderHeavyRifleRFMJ
       prob: 0.9
-    - id: SpeedLoaderLightRifle
+    - id: SpeedLoaderHeavyRifleRFMJ
       prob: 0.2
-    - id: MagazineBoxLightRifleBig
+    - id: MagazineBoxRifleMachineBig
       prob: 0.1
     - id: SovietSmokingSpawner
     sound:
@@ -721,7 +721,7 @@
       orGroup: Weapons
     # Armor
     - id: ClothingOuterHeavyHardsuitUSSP
-      prob: 0.3
+      prob: 0.25
       orGroup: Weapons
     - id: PirateMedSpawner01
     # Bonus Loot T2
@@ -795,6 +795,8 @@
     - id: MagazineBoxPistolSP
       prob: 0.7
     # Items
+    - id: ClothingOuterLightHardsuitUSSP
+      prob: 0.25
     - id: ClothingBeltMedicalFilled
       prob: 0.85
     # Bonus Loot T3
@@ -907,7 +909,7 @@
       prob: 0.05
     # Armor
     - id: ClothingOuterLightHardsuitUSSP
-      prob: 0.2
+      prob: 0.25
     - id: ClothingMaskGasMerc
       prob: 0.3
     # Items
@@ -941,13 +943,13 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: MagazineRifleFMJ
+    - id: MagazineLightRifleFMJ
       amount: 2
       prob: 0.6
-    - id: MagazineRifleFMJ
+    - id: MagazineLightRifleFMJ
       amount: 2
       prob: 0.5
-    - id: MagazineRifleAP
+    - id: MagazineLightRifleAP
       amount: 2
       prob: 0.2
     - id: MagazineBoxLightRifleFMJ

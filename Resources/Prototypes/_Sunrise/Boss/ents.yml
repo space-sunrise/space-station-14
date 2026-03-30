@@ -283,6 +283,20 @@
   - type: BlockedTool
 
 - type: entity
+  name: boss battle altar spawner
+  id: SpawnComputerBossTravel
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Structures/Furniture/Altars/Cults/fangs.rsi
+      state: icon
+  - type: ConditionalSpawner
+    prototypes:
+    - ComputerBossTravel
+
+- type: entity
   id: HellSpawnCultist
   parent: MobHuman
   # categories: [ HideSpawnMenu ]

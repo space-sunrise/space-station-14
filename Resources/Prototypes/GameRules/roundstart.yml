@@ -278,8 +278,8 @@
   - type: GameRule
     minPlayers: 5
     delay:
-      min: 600 # Sunrise-Edit
-      max: 900 # Sunrise-Edit
+      min: 300 # Sunrise-Edit
+      max: 600 # Sunrise-Edit
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
     definitions:

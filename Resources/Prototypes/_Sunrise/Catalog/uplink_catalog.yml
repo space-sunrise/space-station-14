@@ -2881,28 +2881,6 @@
       - AssaultOpsUplink
 
 - type: listing
-  id: UplinkDefibrillatorSyndicate
-  name: uplink-interdyne-defibrillator-name
-  description: uplink-interdyne-defibrillator-desc
-  productEntity: DefibrillatorSyndicateBiocode
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 4
-  cost:
-    Telecrystal: 8
-  categories:
-  - UplinkChemicals
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-      - AssaultOpsUplink
-
-- type: listing
   id: UplinkClothingHeadHelmetSwatSyndicate
   name: uplink-swat-helmet-syndicate-name
   description: uplink-swat-helmet-syndicate-desc

@@ -189,3 +189,12 @@
         Quantity: 3
       - ReagentId: Protein
         Quantity: 4
+
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantTSF
+  name: TSF death rattle implant
+  description: This implant will inform the TSF radio channel should the user fall into critical condition or die.
+  components:
+  - type: RattleOnTrigger
+    radioChannel: TSF

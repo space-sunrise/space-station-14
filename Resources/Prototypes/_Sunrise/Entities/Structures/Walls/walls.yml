@@ -1,5 +1,39 @@
 #shuttle walls
 - type: entity
+  abstract: true
+  parent: BaseStructureWall
+  id: WallDiagonalBaseSunrise
+  suffix: Diagonal
+  components:
+  - type: Tag
+    tags:
+    - Wall
+    - Diagonal
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+    - South
+    - East
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+          vertices:
+          - "0.5,-0.5"
+          - "-0.5,-0.5"
+          - "-0.5,0.1"
+          - "0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+
+- type: entity
   id: WallAbductorDiagonal
   name: shuttle wall
   suffix: Diagonal

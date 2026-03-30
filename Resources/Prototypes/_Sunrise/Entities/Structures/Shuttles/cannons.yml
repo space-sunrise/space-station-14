@@ -409,8 +409,8 @@
 - type: entity
   id: ShuttleGunBeamstormMachineGun
   parent: [ ShuttleGunBase, ConstructibleMachine]
-  name: LSE-800c "Beamstorm machine gun"
-  description: Advance stationary laser unit. Effective against live targets and electronics. Uses the power cage to fire, and has an extremely high rate of fire.
+  name: LSE-800e "Beamstorm machine gun"
+  description: Advanced stationary laser unit. Effective against live targets and electronics. Draws directly from the ship's APC grid, and has an extremely high rate of fire.
   #categories: [ DoNotMap ]
   components:
   - type: Sprite
@@ -451,18 +451,20 @@
     board: ShuttleGunBeamstormMachineGunCircuitboard
   - type: PowerCellSlot
     cellSlotId: cell_slot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: Magazine
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-        whitelist:
-          tags:
-            - PowerCage
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+    netsync: false
+  - type: ApcPowerReceiverBattery
+    idleLoad: 500
+    batteryRechargeRate: 100    # recharge full in ~20s at full draw
+    batteryRechargeEfficiency: 1.0
+  - type: ApcPowerReceiver
+    powerLoad: 5000
+  - type: ExtensionCableReceiver
   - type: BatteryAmmoProvider
     proto: RedShuttleMediumLaser
-    fireCost: 20
+    fireCost: 25
   - type: RadarLaserTracker
     laserColor: "#FF44FF"
     traceDuration: 0.5

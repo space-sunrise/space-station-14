@@ -86,3 +86,4 @@ JobNtrGuard = оперативник ИСН
 JobNtrLeadGuard = командир ИСН
 JobNtrOfficer = офицер ИСН
 JobMailCarrier = почтальон
+job-name-TSF = Trans-Solar Federation
