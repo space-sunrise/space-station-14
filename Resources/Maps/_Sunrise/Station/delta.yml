@@ -33860,7 +33860,7 @@ entities:
   - uid: 12827
     components:
     - type: MetaData
-      name: СВТ - Детектив
+      name: СВТ - Ищейка
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 35.5,12.5
@@ -41721,7 +41721,7 @@ entities:
   - uid: 1124
     components:
     - type: MetaData
-      name: ЛКП - Офицер Синий Щит
+      name: ЛКП - Пес Синий Щит
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 12.5,-12.5
@@ -41958,7 +41958,7 @@ entities:
   - uid: 29384
     components:
     - type: MetaData
-      name: ЛКП - Детектив
+      name: ЛКП - Ищейка
     - type: Transform
       pos: 33.5,10.5
       parent: 2
@@ -130798,9 +130798,9 @@ entities:
       pos: 34.5,11.5
       parent: 2
     - type: NavMapBeacon
-      text: Детектив
+      text: Ищейка
     - type: WarpPoint
-      location: Детектив
+      location: Ищейка
 - proto: DefaultStationBeaconDisposals
   entities:
   - uid: 18182
@@ -131052,9 +131052,9 @@ entities:
       pos: 54.5,6.5
       parent: 2
     - type: NavMapBeacon
-      text: Служба безопасности
+      text: Собака безопасности
     - type: WarpPoint
-      location: Служба безопасности
+      location: Собака безопасности
 - proto: DefaultStationBeaconSecurityCheckpoint
   entities:
   - uid: 18208
@@ -144602,7 +144602,7 @@ entities:
       pos: 80.5,1.5
       parent: 2
     - type: FaxMachine
-      name: Глава Службы Безопасности
+      name: Глава Собаки безопасности
   - uid: 20324
     components:
     - type: Transform
@@ -214216,7 +214216,7 @@ entities:
         Три часа. Всего три часа, а ощущение, что прожил неделю. Заступил в 20 минут. Грузчиком, как обычно. Разгружал, таскал, выполнял запросы.
 
 
-        Понесся к Главе персонала за ручками для очередного запроса... и тут эти двое. Детективы. Схватили, пальцы измазали, отпечатки сняли. Как преступника какого! Я в ярости был. Побежал в СБ - жалобу писать, а их, конечно, уже и след простыл. Говорят, «на досье каждому нужно».
+        Понесся к Главе персонала за ручками для очередного запроса... и тут эти двое. Ищейки. Схватили, пальцы измазали, отпечатки сняли. Как преступника какого! Я в ярости был. Побежал в СБ - жалобу писать, а их, конечно, уже и след простыл. Говорят, «на досье каждому нужно».
 
         Ну да... Бюрократия, черт бы ее побрал...
 
@@ -249416,7 +249416,7 @@ entities:
   - uid: 34817
     components:
     - type: MetaData
-      name: Подстанция - Служба безопасности [Ю]
+      name: Подстанция - Собака безопасности [Ю]
     - type: Transform
       pos: 70.5,14.5
       parent: 2
@@ -249458,7 +249458,7 @@ entities:
   - uid: 34092
     components:
     - type: MetaData
-      name: Подстанция - Служба безопасности [С]
+      name: Подстанция - Собака безопасности [С]
     - type: Transform
       pos: 72.5,16.5
       parent: 2
@@ -256526,7 +256526,7 @@ entities:
   - uid: 17274
     components:
     - type: MetaData
-      desc: Свисток Инструктора СБ, нужен чтобы заставить кадетов сделать ещё 5 отжиманий!
+      desc: Свисток Гончей СБ, нужен чтобы заставить щенков сделать ещё 5 отжиманий!
     - type: Transform
       parent: 17269
     - type: Clothing

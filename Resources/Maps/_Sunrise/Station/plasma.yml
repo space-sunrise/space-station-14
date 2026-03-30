@@ -17933,7 +17933,7 @@ entities:
   - uid: 741
     components:
     - type: MetaData
-      name: Детектив ЛКП
+      name: Ищейка ЛКП
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -94.5,-37.5
@@ -72009,7 +72009,7 @@ entities:
       pos: -97.5,-39.5
       parent: 2
     - type: WarpPoint
-      location: Кабинет детектива
+      location: Кабинет ищейки
 - proto: DefaultStationBeaconDorms
   entities:
   - uid: 11004
@@ -82582,12 +82582,12 @@ entities:
   - uid: 12795
     components:
     - type: MetaData
-      name: факс дальнего действия (Детектив)
+      name: факс дальнего действия (Ищейка)
     - type: Transform
       pos: -100.5,-37.5
       parent: 2
     - type: FaxMachine
-      name: Детектив
+      name: Ищейка
     - type: Label
   - uid: 12796
     components:

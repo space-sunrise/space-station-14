@@ -1,4 +1,4 @@
-ent-ClothingHeadHelmetBlueshieldModsuit = шлем Р.И.Г-а офицера «Синий щит»
+ent-ClothingHeadHelmetBlueshieldModsuit = шлем Р.И.Г-а пса «Синий щит»
     .desc = Синий
 ent-ClothingHeadHelmetRepresentativeModsuit = шлем Р.И.Г-а представителя корпорации
     .desc = Шлем, призванный своим видом являть величие и значимость представителя корпорации.

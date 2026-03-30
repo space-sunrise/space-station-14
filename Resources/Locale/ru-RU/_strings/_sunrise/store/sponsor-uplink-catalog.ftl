@@ -139,16 +139,16 @@ uplink-sunrise-plushie-thirty-eight-name = Дань Хэн Пожиратель 
 uplink-sunrise-clothing-mask-gas-swat-name = Противогаз спецназа
 uplink-sunrise-clothing-hands-gloves-leather-hos-name = Кожаные перчатки
 uplink-sunrise-clothing-outer-coat-hos-overcoat-black-name = Бронированная шинель
-uplink-sunrise-clothing-backpack-satchel-hos-name = Сумка главы службы безопасности
+uplink-sunrise-clothing-backpack-satchel-hos-name = Сумка главы собаки безопасности
 uplink-sunrise-clothing-shoes-black-name = Кожаные ботинки СССП
 uplink-sunrise-clothing-outer-coat-hos-overcoat-name = Бронированная шинель
 uplink-sunrise-clothing-outer-coat-ussp-overcoat-black-name = Бронированная шинель СССП
-uplink-sunrise-clothing-uniform-jumpsuit-hos-old-name = Старый комбинезон главы службы безопасности
+uplink-sunrise-clothing-uniform-jumpsuit-hos-old-name = Старый комбинезон главы собаки безопасности
 uplink-sunrise-clothing-uniform-jumpsuit-black-name = Старый комбинезон СССП
-uplink-sunrise-clothing-belt-hos-name = Пояс службы безопасности
+uplink-sunrise-clothing-belt-hos-name = Пояс собаки безопасности
 uplink-sunrise-clothing-head-hat-cap-black-name = Старая кожаная фуражка СССП
-uplink-sunrise-clothing-head-hat-cap-leather-hos-name = Кожаная фуражка главы службы безопасности
-uplink-sunrise-clothing-neck-cloak-hos-cloak-name = Плащ главы службы безопасности
+uplink-sunrise-clothing-head-hat-cap-leather-hos-name = Кожаная фуражка главы собаки безопасности
+uplink-sunrise-clothing-neck-cloak-hos-cloak-name = Плащ главы собаки безопасности
 uplink-sunrise-tactical-hos-uniform-name = Тактическая форма ГСБ
 
 ## Research Director
@@ -186,7 +186,7 @@ uplink-sunrise-holographic-paper-name = Голо-планшет
 
 uplink-sunrise-telescopic-shield-name = Телескопический щит
 uplink-sunrise-clothing-mask-iaa2-name = Элитный противогаз
-uplink-sunrise-clothing-neck-cloak-black-sec-name = Плащ службы безопасности
+uplink-sunrise-clothing-neck-cloak-black-sec-name = Плащ собаки безопасности
 uplink-sunrise-weapon-disabler-name = Станнер
 uplink-sunrise-clothing-outer-armor-bulletproof-name = Пуленепробиваемый жилет
 uplink-sunrise-medkit-filled-name = Аптечка первой помощи

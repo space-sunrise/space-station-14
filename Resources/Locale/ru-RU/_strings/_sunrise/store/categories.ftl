@@ -17,7 +17,7 @@ store-category-medical = Медицинский отдел
 store-category-science = Научный отдел
 store-category-engineering = Инженерный отдел
 store-category-cargo = Отдел снабжения
-store-category-security = Служба Безопасности
+store-category-security = Собака безопасности
 store-category-paint = Краска
 # disease
 shop-disease-category-infect = Передача

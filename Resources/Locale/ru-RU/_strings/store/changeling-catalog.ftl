@@ -22,7 +22,7 @@ evolutionmenu-combat-shield-desc =
 evolutionmenu-combat-shriek-dissonant-name = Диссонирующий визг
 evolutionmenu-combat-shriek-dissonant-desc =
     Вы излучаете EMP-импульс, который отключает технологии в окружающей области, включая радиогарнитуры.
-        Хорошо для побега от киборгов и службы безопасности.
+        Хорошо для побега от киборгов и собаки безопасности.
         Стоимость: 30 химических веществ.
 evolutionmenu-combat-shriek-resonant-name = Резонансный визг
 evolutionmenu-combat-shriek-resonant-desc =

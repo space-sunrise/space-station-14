@@ -53083,7 +53083,7 @@ entities:
       pos: -55.5,58.5
       parent: 2
     - type: FaxMachine
-      name: Служба Безопасности
+      name: Собака безопасности
   - uid: 7102
     components:
     - type: Transform

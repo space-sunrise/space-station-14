@@ -16,13 +16,13 @@ Lawyer-loadout = Снаряжение юриста
 Magistrate-loadout = Снаряжение магистрата
 OfficerNTR-loadout = Снаряжение ИСН
 # Blueshield
-Blueshield-loadout = Снаряжение офицера «Синий щит»
+Blueshield-loadout = Снаряжение пса «Синий щит»
 # Security
 Brigmedic-loadout = Снаряжение бригмедика
-Detective-loadout = Снаряжение детектива
-SecurityCadet-loadout = Снаряжение кадета СБ
-SecurityOfficer-loadout = Снаряжение офицера СБ
-SeniorOfficer-loadout = Снаряжение инструктора СБ
+Detective-loadout = Снаряжение ищейки
+SecurityCadet-loadout = Снаряжение щенка СБ
+SecurityOfficer-loadout = Снаряжение пса СБ
+SeniorOfficer-loadout = Снаряжение гончей СБ
 Warden-loadout = Снаряжение смотрителя
 # Engineering
 AtmosphericTechnician-loadout = Снаряжение атмосферного техника

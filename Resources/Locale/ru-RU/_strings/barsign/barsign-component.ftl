@@ -8,7 +8,7 @@ barsign-ui-set-label = Выбрать вывеску:
 ## The Harmbaton
 
 barsign-prototype-name-harmbaton = Хармбатон
-barsign-prototype-description-harmbaton = Отличные обеды как для сотрудников службы безопасности, так и для ассистентов.
+barsign-prototype-description-harmbaton = Отличные обеды как для сотрудников собаки безопасности, так и для ассистентов.
 
 ## The Singulo
 
@@ -22,7 +22,7 @@ barsign-prototype-description-drunk-carp = Не пейте плавая.
 
 ## Officer Beersky
 
-barsign-prototype-name-officer-beersky = Офицер Пивски
+barsign-prototype-name-officer-beersky = Пес Пивски
 barsign-prototype-description-officer-beersky = Мужик, эти напитки великолепны.
 
 ## The Outer Spess

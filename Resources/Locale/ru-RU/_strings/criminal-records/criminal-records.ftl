@@ -40,7 +40,7 @@ criminal-records-console-released = { $name } ({ $job }) был(а) освобо
 criminal-records-console-not-wanted = Сотрудник { $officer } снял(а) статус розыска с { $name } ({ $job }).
 criminal-records-console-paroled = { $name } ({ $job }) был(а) освобождён(а) УДО сотрудником { $officer }.
 criminal-records-console-not-parole = Сотрудник { $officer } снял(а) статус УДО с { $name } ({ $job }).
-criminal-records-console-unknown-officer = <неизвестный офицер>
+criminal-records-console-unknown-officer = <неизвестный пес>
 
 ## Filters
 

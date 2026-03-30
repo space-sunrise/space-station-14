@@ -13,7 +13,7 @@ spray-painter-style-airlockdoubleglass-maintenance = Технический
 spray-painter-style-airlockdoubleglass-medical = Медицинский
 spray-painter-style-airlockdoubleglass-salvage = Утилизация
 spray-painter-style-airlockdoubleglass-science = Научный
-spray-painter-style-airlockdoubleglass-security = Служба безопасности
+spray-painter-style-airlockdoubleglass-security = Собака безопасности
 spray-painter-style-airlockdoubleglass-virology = Вирусология
 spray-painter-style-airlockdoubleglass-centralcommand = Центральное командование
 
@@ -28,6 +28,6 @@ spray-painter-style-airlocktripleglass-maintenance = Технический
 spray-painter-style-airlocktripleglass-medical = Медицинский
 spray-painter-style-airlocktripleglass-salvage = Утилизация
 spray-painter-style-airlocktripleglass-science = Научный
-spray-painter-style-airlocktripleglass-security = Служба безопасности
+spray-painter-style-airlocktripleglass-security = Собака безопасности
 spray-painter-style-airlocktripleglass-virology = Вирусология
 spray-painter-style-airlocktripleglass-centralcommand = Центральное командование

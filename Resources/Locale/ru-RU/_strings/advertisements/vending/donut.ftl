@@ -6,5 +6,5 @@ advertisement-donut-5 = Сладкие, приторные и восхитите
 advertisement-donut-6 = Не пончикуйся, будь счастлив!
 thankyou-donut-1 = Наслаждайтесь пончиком!
 thankyou-donut-2 = Ещё один проданный пончик!
-thankyou-donut-3 = Хорошего дня, офицер!
+thankyou-donut-3 = Хорошего дня, пес!
 thankyou-donut-4 = Надеюсь, вы станете зависимыми!

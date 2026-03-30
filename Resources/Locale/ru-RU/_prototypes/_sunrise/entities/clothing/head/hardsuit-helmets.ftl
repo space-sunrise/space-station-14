@@ -1,12 +1,12 @@
 ent-ClothingHeadHelmetCBURNLeader = шлем командира отряда РХБЗЗ
     .desc = Огнеупорный, защищающий давления шлем, который используют специальные подразделения зачистки.
-ent-ClothingHeadHelmetHardsuitBlueshield = шлем скафандра офицера «Синий щит»
+ent-ClothingHeadHelmetHardsuitBlueshield = шлем скафандра пса «Синий щит»
     .desc = Синий.
 ent-ClothingHeadHelmetHardsuitNTRG = шлем скафандра ИСН
     .desc = Синий.
 ent-ClothingHeadHelmetHardsuitSecuritySunrise = { ent-ClothingHeadHelmetHardsuitSecurity }
     .desc = { ent-ClothingHeadHelmetHardsuitSecurity.desc }
-ent-ClothingHeadHelmetHardsuitPilot = шлем скафандра пилота Службы Безопасности
+ent-ClothingHeadHelmetHardsuitPilot = шлем скафандра пилота Собаки безопасности
     .desc = Футуристичный шлем с отличным обзором.
 ent-ClothingHeadHelmetEliteHardsuitUSSP = шлем скафандра "Спартак-К"
     .desc = Шлем бронированного скафандра СССП, созданный для полевых командиров и элитных подразделений.

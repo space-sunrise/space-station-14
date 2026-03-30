@@ -1,7 +1,7 @@
 ent-MobHumanUSSP = Экипаж СССП
     .suffix = СССП
     .desc = { ent-MobHuman.desc }
-ent-MobHumanUSSPOfficer = Офицер СССП
+ent-MobHumanUSSPOfficer = Пес СССП
     .suffix = СССП
     .desc = { ent-MobHuman.desc }
 ent-MobHumanUSSPOfficerSoldier = USSP Officer Soldier

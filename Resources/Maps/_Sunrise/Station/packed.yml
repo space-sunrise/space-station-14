@@ -47064,7 +47064,7 @@ entities:
       pos: 36.5,25.5
       parent: 2
     - type: FaxMachine
-      name: Служба Безопасности
+      name: Собака безопасности
   - uid: 7314
     components:
     - type: Transform
@@ -47127,7 +47127,7 @@ entities:
       pos: 32.5,37.5
       parent: 2
     - type: FaxMachine
-      name: Офицер «Синий щит»
+      name: Пес «Синий щит»
 - proto: FaxMachineCaptain
   entities:
   - uid: 7323

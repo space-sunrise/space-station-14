@@ -9,7 +9,7 @@
     - BlueShieldOfficer
   - type: StealCondition
     stealGroup: WeaponEnergyGunMultiphase
-    owner: офицер «Синий щит»
+    owner: пес «Синий щит»
 
 - type: entity
   parent: BaseCMOStealObjective

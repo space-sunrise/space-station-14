@@ -3,13 +3,13 @@ highlights-captain = Капитан, "Кеп", Мостик, Командный
 highlights-head-of-personnel = Глава персонала, "ГП", "ХОП", "НОК", Сервис, Мостик, Командный
 highlights-chief-engineer = Старший инженер, "СЕ", "CИ", Инженерный, Инженер, "Инж", Мостик, Командный
 highlights-chief-medical-officer = Главный врач, "ГВ", Медблок, "Мед", Мостик, Командный
-highlights-head-of-security = Начальник службы безопасности, Глава СБ, "ГСБ", "ХОС", "НСБ", Безопасность, "СБ", Мостик, Командный
+highlights-head-of-security = Начальник собаки безопасности, Глава СБ, "ГСБ", "ХОС", "НСБ", Безопасность, "СБ", Мостик, Командный
 highlights-quartermaster = Квартирмейстер, "КМ", Груз, Мостик, Командный
 highlights-research-director = Научный руководитель, "НР", Наука, "Науч", Мостик, Командный
 # Security
-highlights-detective = Детектив, "Дек", Безопасность, "СБ"
-highlights-security-cadet = Кадет, СБ, Курсант, Безопасность, "СБ"
-highlights-security-officer = Офицер безопасности, СБ, Офицер, Безопасность, "СБ"
+highlights-detective = Ищейка, "Дек", Безопасность, "СБ"
+highlights-security-cadet = Щенок, СБ, Безопасность, "СБ"
+highlights-security-officer = Пес безопасности, СБ, Пес, Безопасность, "СБ"
 highlights-warden = Смотритель, "Варден", "Вард", Безопасность, "СБ"
 # Cargo
 highlights-cargo-technician = Грузчик, Карго

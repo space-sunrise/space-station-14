@@ -870,12 +870,12 @@
     accent-formal-words-102: accent-formal-words-replace-102 # адик -> адъютант
     accent-formal-words-106: accent-formal-words-replace-106 # гп -> глава персонала
     accent-formal-words-107: accent-formal-words-replace-107 # хоп -> глава персонала
-    accent-formal-words-108: accent-formal-words-replace-108 # гсб -> глава службы безопасности
-    accent-formal-words-109: accent-formal-words-replace-109 # хос -> глава службы безопасности
+    accent-formal-words-108: accent-formal-words-replace-108 # гсб -> глава собаки безопасности
+    accent-formal-words-109: accent-formal-words-replace-109 # хос -> глава собаки безопасности
     accent-formal-words-110: accent-formal-words-replace-110 # гв -> главный врач
     accent-formal-words-111: accent-formal-words-replace-111 # смо -> главный врач
     accent-formal-words-112: accent-formal-words-replace-112 # хопа -> главы персонала
-    accent-formal-words-113: accent-formal-words-replace-113 # хоса -> главы службы безопасности
+    accent-formal-words-113: accent-formal-words-replace-113 # хоса -> главы собаки безопасности
     accent-formal-words-114: accent-formal-words-replace-114 # дек -> детектив
     accent-formal-words-115: accent-formal-words-replace-115 # дет -> детектив
     accent-formal-words-116: accent-formal-words-replace-116 # дэк -> детектив
@@ -898,7 +898,7 @@
     accent-formal-words-133: accent-formal-words-replace-133 # осщ -> офицер синего щита
     accent-formal-words-134: accent-formal-words-replace-134 # осо -> офицер спецопераций
     accent-formal-words-135: accent-formal-words-replace-135 # оцк -> офицер центрального командования
-    accent-formal-words-136: accent-formal-words-replace-136 # исны -> офицеры исполнительной судебно-надзорной службы
+    accent-formal-words-136: accent-formal-words-replace-136 # исны -> псы исполнительной судебно-надзорной службы
     accent-formal-words-137: accent-formal-words-replace-137 # пнт -> представитель NanoTrasen
     accent-formal-words-139: accent-formal-words-replace-139 # рнд -> нио
     accent-formal-words-140: accent-formal-words-replace-140 # варденом -> смотрителем

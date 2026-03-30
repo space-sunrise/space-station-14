@@ -15931,12 +15931,12 @@ entities:
   - uid: 2237
     components:
     - type: MetaData
-      name: печать Офицера
+      name: печать Пса
     - type: Transform
       pos: -0.11923662,-38.17333
       parent: 2
     - type: Stamp
-      stampedName: Офицер Спец Операций
+      stampedName: Пес Спец Операций
 - proto: RubberStampQm
   entities:
   - uid: 2238

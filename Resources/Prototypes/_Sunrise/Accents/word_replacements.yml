@@ -1,4 +1,4 @@
-﻿# For the chat sanitization system
+# For the chat sanitization system
 - type: accent
   id: chatsanitize_sunrise
   wordReplacements:
@@ -285,6 +285,59 @@
     russian-chatsan-word-292: russian-chatsan-replacement-292
     russian-chatsan-word-294: russian-chatsan-replacement-294
     russian-chatsan-word-295: russian-chatsan-replacement-295
+    # memes, the dna of the soul
+    russian-chatsan-word-296: russian-chatsan-replacement-296
+    russian-chatsan-word-297: russian-chatsan-replacement-297
+    russian-chatsan-word-298: russian-chatsan-replacement-298
+    russian-chatsan-word-299: russian-chatsan-replacement-299
+    russian-chatsan-word-300: russian-chatsan-replacement-300
+    russian-chatsan-word-301: russian-chatsan-replacement-301
+    russian-chatsan-word-302: russian-chatsan-replacement-302
+    russian-chatsan-word-303: russian-chatsan-replacement-303
+    russian-chatsan-word-304: russian-chatsan-replacement-304
+    russian-chatsan-word-305: russian-chatsan-replacement-305
+    russian-chatsan-word-306: russian-chatsan-replacement-306
+    russian-chatsan-word-307: russian-chatsan-replacement-307
+    russian-chatsan-word-308: russian-chatsan-replacement-308
+    russian-chatsan-word-309: russian-chatsan-replacement-309
+    russian-chatsan-word-310: russian-chatsan-replacement-310
+    russian-chatsan-word-311: russian-chatsan-replacement-311
+    russian-chatsan-word-312: russian-chatsan-replacement-312
+    russian-chatsan-word-313: russian-chatsan-replacement-313
+    russian-chatsan-word-314: russian-chatsan-replacement-314
+    russian-chatsan-word-315: russian-chatsan-replacement-315
+    russian-chatsan-word-316: russian-chatsan-replacement-316
+    russian-chatsan-word-317: russian-chatsan-replacement-317
+    russian-chatsan-word-318: russian-chatsan-replacement-318
+    russian-chatsan-word-319: russian-chatsan-replacement-319
+    russian-chatsan-word-320: russian-chatsan-replacement-320
+    russian-chatsan-word-321: russian-chatsan-replacement-321
+    russian-chatsan-word-322: russian-chatsan-replacement-322
+    russian-chatsan-word-323: russian-chatsan-replacement-323
+    russian-chatsan-word-324: russian-chatsan-replacement-324
+    russian-chatsan-word-325: russian-chatsan-replacement-325
+    russian-chatsan-word-326: russian-chatsan-replacement-326
+    russian-chatsan-word-327: russian-chatsan-replacement-327
+    russian-chatsan-word-328: russian-chatsan-replacement-328
+    russian-chatsan-word-329: russian-chatsan-replacement-329
+    russian-chatsan-word-330: russian-chatsan-replacement-330
+    russian-chatsan-word-331: russian-chatsan-replacement-331
+    russian-chatsan-word-332: russian-chatsan-replacement-332
+    russian-chatsan-word-333: russian-chatsan-replacement-333
+    russian-chatsan-word-334: russian-chatsan-replacement-334
+    russian-chatsan-word-335: russian-chatsan-replacement-335
+    russian-chatsan-word-336: russian-chatsan-replacement-336
+    russian-chatsan-word-337: russian-chatsan-replacement-337
+    russian-chatsan-word-338: russian-chatsan-replacement-338
+    russian-chatsan-word-339: russian-chatsan-replacement-339
+    russian-chatsan-word-340: russian-chatsan-replacement-340
+    russian-chatsan-word-341: russian-chatsan-replacement-341
+    russian-chatsan-word-342: russian-chatsan-replacement-342
+    russian-chatsan-word-343: russian-chatsan-replacement-343
+    russian-chatsan-word-344: russian-chatsan-replacement-344
+    russian-chatsan-word-345: russian-chatsan-replacement-345
+    russian-chatsan-word-346: russian-chatsan-replacement-346
+    russian-chatsan-word-347: russian-chatsan-replacement-347
 
 - type: accent
   id: ss13
