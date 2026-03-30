@@ -1,10 +1,18 @@
-﻿- type: entity
-  parent: SimpleSpaceMobBase
+- type: entity
+  # parent: SimpleSpaceMobBase
+  parent:
+  - BaseSimpleMob
+  - MobAtmosExposed
+  - MobCombat
+  - MobBloodstream
   id: BaseMobFleshCult
   name: flesh mob
   description: A shambling mass of flesh, animated through anomalous energy.
   abstract: true
   components:
+    - type: Body
+      prototype: Animal
+    - type: Climbing 
     - type: Reactive
       groups:
         Flammable: [Touch]
@@ -205,13 +213,15 @@
           Quantity: 500
     - type: InputMover
     - type: MobMover
+    - type: Physics
+      bodyType: KinematicController
     - type: MovementSpeedModifier
-      baseWalkSpeed: 3.5
-      baseSprintSpeed: 4.5
+      baseWalkSpeed: 3
+      baseSprintSpeed: 4
     - type: MobThresholds
       thresholds:
         0: Alive
-        250: Dead
+        200: Dead
     - type: MobState
       allowedStates:
         - Alive
@@ -226,7 +236,7 @@
         types:
           Slash: 15
           Blunt: 25
-          Structural: 300
+          Structural: 30
     - type: GhostRole
       allowMovement: true
       allowSpeech: true
@@ -444,6 +454,8 @@
       equippedPrefix: fleshhugger
       slots:
         - MASK
+    - type: Physics
+      bodyType: KinematicController
     - type: Fixtures
       fixtures:
         fix1:
@@ -518,6 +530,8 @@
     - type: Vocal
       sounds:
         Unsexed: FleshWormEmote
+    - type: Physics
+      bodyType: KinematicController
     - type: Fixtures
       fixtures:
         fix1:
@@ -611,3 +625,14 @@
               max: 1
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
+
+- type: entity
+  id: MobFleshCultistPreview
+  name: flesh cultist
+  suffix: DO NOT MAP
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Interface/Misc/antag_preview.rsi
+    state: flesh_cultist
+    scale: 2, 2
+

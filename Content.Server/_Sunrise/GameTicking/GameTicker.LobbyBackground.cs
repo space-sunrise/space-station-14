@@ -43,7 +43,18 @@ public sealed partial class GameTicker
 
     private void InitializeLobbyBackground()
     {
-        Subs.CVar(_cfg, SunriseCCVars.LobbyBackgroundPreset, x => LobbyBackgroundPreset = x, true);
+        Subs.CVar(_cfg, SunriseCCVars.LobbyBackgroundPreset, OnLobbyBackgroundPresetChanged, true);
+    }
+
+    private void OnLobbyBackgroundPresetChanged(string presetId)
+    {
+        LobbyBackgroundPreset = presetId;
+        RebuildLobbyBackgroundWhitelist();
+        SendStatusToAll();
+    }
+
+    private void RebuildLobbyBackgroundWhitelist()
+    {
         var preset = _prototypeManager.Index(LobbyBackgroundPreset);
 
         _lobbyArts = _prototypeManager.EnumeratePrototypes<LobbyArtPrototype>()
@@ -95,8 +106,24 @@ public sealed partial class GameTicker
 
     private void RandomizeLobbyBackgroundType()
     {
-        var values = Enum.GetValues<LobbyBackgroundType>();
-        LobbyType = values[_robustRandom.Next(values.Length)].ToString();
+        var availableTypes = new List<LobbyBackgroundType>();
+
+        if (_lobbyAnimations is { Count: > 0 })
+            availableTypes.Add(LobbyBackgroundType.Animation);
+
+        if (_lobbyParallaxes is { Count: > 0 })
+            availableTypes.Add(LobbyBackgroundType.Parallax);
+
+        if (_lobbyArts is { Count: > 0 })
+            availableTypes.Add(LobbyBackgroundType.Art);
+
+        if (availableTypes.Count == 0)
+        {
+            LobbyType = null;
+            return;
+        }
+
+        LobbyType = _robustRandom.Pick(availableTypes).ToString();
     }
 
     #endregion

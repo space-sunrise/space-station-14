@@ -19,24 +19,24 @@
           HeadOfPrison: [ 1, 1 ]
           PrisonInspector: [ 1, 1 ]
           PrisonWorker: [ 3, 3 ]
-          PrisonEngineer: [ 2, 2 ]
-          PrisonScientist: [ 2, 2 ]
-          PrisonDoctor: [ 1, 1 ]
+          PrisonEngineer: [ 4, 4 ]
+          PrisonScientist: [ 3, 3 ]
+          PrisonDoctor: [ 2, 2 ]
           PrisonChef: [ 1, 1 ]
-          PrisonTrainee: [ 3, 3 ]
-          PlanetPrisoner: [ 3, 3 ]
+          PrisonTrainee: [ 5, 5 ]
+          PlanetPrisoner: [ 10, 10 ]
       - type: RelativeJobsCount
         jobs:
         - targetJob: PlanetPrisoner
           dependency:
-            HeadOfPrison: 2
-            PrisonInspector: 2
-            PrisonDoctor: 2
-            PrisonChef: 2
-            PrisonEngineer: 2
-            PrisonScientist: 2
-            PrisonWorker: 2
-            PrisonTrainee: 2
+            HeadOfPrison: 1
+            PrisonInspector: 1
+            PrisonDoctor: 1
+            PrisonChef: 1
+            PrisonEngineer: 1
+            PrisonScientist: 1
+            PrisonWorker: 1
+            PrisonTrainee: 1
           maxSlots: -1
         - targetJob: PrisonTrainee
           dependency:

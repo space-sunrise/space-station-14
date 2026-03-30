@@ -303,7 +303,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitUegParatrooper
 
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: ClothingHardsuitUegParatrooper
   id: ClothingHardsuitUegCap
   name: spacesuit of the commander of space marines
   description: As you look at it, you can imagine the pain, suffering and labor that a paratrooper endured to achieve the honor of wearing this suit. It represents the fear and horror before your eyes. If you have seen the wearer of this suit in person, you should thank him for the freedom and democracy he has given you, glory to the United Government of Earth!
@@ -312,28 +312,6 @@
     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ueg_captain.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ueg_captain.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.02
-    lowPressureMultiplier: 1000
-  - type: TemperatureProtection
-    heatingCoefficient: 0.001
-  - type: FireProtection
-    reduction: 0.3
-  - type: ExplosionResistance
-    damageCoefficient: 0.5
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.2
-        Slash: 0.2
-        Piercing: 0.2
-        Heat: 0.2
-        Radiation: 0.2
-        Caustic: 0.2
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitUegCap
 
@@ -482,6 +460,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitPrivateer
   - type: StaticPrice
     price: 0
+
 ## Pirate end
 
 - type: entity
@@ -502,6 +481,7 @@
     - type: Biocode
       factions:
       - Syndicate
+      - Pirate
       - Thief
     - type: ChameleonClothing
       slot: [outerClothing]
@@ -851,3 +831,40 @@
         Caustic: 0.4
   - type: ExplosionResistance
     damageCoefficient: 0.5
+
+- type: entity
+  parent: [ BaseTSFContraband, ClothingOuterHardsuitBase ]
+  id: ClothingOuterHardsuitTSF
+  name: MARSOC hardsuit
+  description: A suit worn by marines of the Trans-Solar Federation's Marine Special Operations Command. Armored, space ready, and fireproof.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/tsf.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/tsf.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.5
+  - type: FireProtection
+    reduction: 1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.3
+        Heat: 0.5
+        Caustic: 0
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: EmitSoundOnWearerMove
+    sound:
+      collection: FootstepHeavy
+      params:
+        volume: -6
+        variation: 0.09
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitTSF

@@ -16,6 +16,7 @@
   description: A stylish cross that symbolizes your dedication to the atmosphere.
   components:
   - type: Sprite
+    scale: 0.75, 0.75
     sprite: _Sunrise/Clothing/Neck/Misc/atmos_cross.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Neck/Misc/atmos_cross.rsi

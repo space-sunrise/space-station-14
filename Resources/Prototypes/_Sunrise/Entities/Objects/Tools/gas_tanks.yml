@@ -11,7 +11,7 @@
   - type: GasTank
     outputPressure: 21.3
     air:
-      volume: 20
+      volume: 10
       temperature: 293.15
 
 - type: entity
@@ -30,5 +30,5 @@
   - type: GasTank
     outputPressure: 21.3
     air:
-      volume: 10
+      volume: 5
       temperature: 293.15

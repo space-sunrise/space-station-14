@@ -16,3 +16,6 @@ ent-ClothingBackpackMessengerPirate = pirate messenger bag
     .desc = A robust messenger bag for war crimes. Yarr.
 ent-ClothingBackpackMessengerPirateBundleSKM24Scrap = SKM-24 scrap bundle
     .desc = Contains the cheapest assault rifle.
+
+ent-ClothingBackpackMessengerMercenaryBundleARG = ARG bundle
+    .desc = Contains the standard assault rifle.

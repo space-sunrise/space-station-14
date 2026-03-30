@@ -205,7 +205,7 @@
     - state: icon-mining
   - type: ItemBorgModule
     hands:
-    - item: JetpackVoidFilled
+    - item: JetpackBorg
   - type: BorgModuleIcon
     icon: { sprite: Objects/Tanks/Jetpacks/void.rsi, state: icon }
 
@@ -319,3 +319,238 @@
     - item: XenoborgLaserMinigun
   - type: BorgModuleIcon
     icon: { sprite: _Sunrise/Interface/Actions/actions_borg.rsi, state: xenoborg-laser3-module }
+
+- type: entity
+  id: BorgModulePaperwork
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: paperwork cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-pen
+  - type: ItemBorgModule
+    hands:
+    - item: Pen
+    - item: HandLabeler
+    - item: RubberStampApproved
+    - item: RubberStampDenied
+    - item: BooksBag
+      hand:
+        emptyLabel: borg-slot-documents-empty
+        emptyRepresentative: BookBase
+        whitelist:
+          tags:
+          - Book
+          - Dice
+          - Document
+          - Figurine
+          - TabletopBoard
+          - Write
+    - item: Paper
+      hand:
+        emptyLabel: borg-slot-documents-empty
+        emptyRepresentative: Paper
+        whitelist:
+          tags:
+          - Book
+          - Dice
+          - Document
+          - Figurine
+          - TabletopBoard
+          - Write
+    - item: null
+      hand:
+        emptyLabel: borg-slot-documents-empty
+        emptyRepresentative: Paper
+        whitelist:
+          tags:
+          - Book
+          - Dice
+          - Document
+          - Figurine
+          - TabletopBoard
+          - Write
+    - item: null
+      hand:
+        emptyLabel: borg-slot-documents-empty
+        emptyRepresentative: Paper
+        whitelist:
+          tags:
+          - Book
+          - Dice
+          - Document
+          - Figurine
+          - TabletopBoard
+          - Write
+  - type: BorgModuleIcon
+    icon:
+      sprite: _Sunrise/Interface/Actions/actions_borg.rsi
+      state: paperwork-module
+
+- type: entity
+  id: BorgModuleBartender
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: bartender cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-bartender
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    hands:
+    - item: BorgSodaDispenser
+    - item: BorgBoozeDispenser
+    - item: DrinkShaker
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: DrinkShaker
+        whitelist:
+          components:
+          - FitsInDispenser
+    - item: DrinkShaker
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: DrinkShaker
+        whitelist:
+          components:
+          - FitsInDispenser
+    - item: DrinkGlass
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: DrinkGlass
+        whitelist:
+          components:
+          - FitsInDispenser
+    - item: DrinkGlass
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: DrinkGlass
+        whitelist:
+          components:
+          - FitsInDispenser
+    - item: BarSpoon
+    - item: BorgDropper
+  - type: BorgModuleIcon
+    icon:
+      sprite: Interface/Actions/actions_borg.rsi
+      state: service-module
+
+- type: entity
+  id: BorgModuleCooking
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: cooking cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-cook
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    hands:
+    - item: KitchenKnife
+    - item: RollingPin
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+    - item: null
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+    - item: ReagentContainerFlour
+      hand:
+        emptyLabel: borg-slot-food-empty
+        emptyRepresentative: FoodBreadPlain
+        whitelist:
+          components:
+          - Edible
+    - item: FoodCondimentBottleEnzyme
+      hand:
+        emptyLabel: borg-slot-food-empty
+        emptyRepresentative: FoodBreadPlain
+        whitelist:
+          components:
+          - Edible
+    - item: null
+      hand:
+        emptyLabel: borg-slot-food-empty
+        emptyRepresentative: FoodBreadPlain
+        whitelist:
+          components:
+          - Edible
+    - item: null
+      hand:
+        emptyLabel: borg-slot-food-empty
+        emptyRepresentative: FoodBreadPlain
+        whitelist:
+          components:
+          - Edible
+    - item: null
+      hand:
+        emptyLabel: borg-slot-food-empty
+        emptyRepresentative: FoodBreadPlain
+        whitelist:
+          components:
+          - Edible
+    - item: null
+      hand:
+        emptyLabel: borg-slot-food-empty
+        emptyRepresentative: FoodBreadPlain
+        whitelist:
+          components:
+          - Edible
+  - type: BorgModuleIcon
+    icon:
+      sprite: _Sunrise/Interface/Actions/actions_borg.rsi
+      state: cooking-module
+
+- type: entity
+  id: BorgModuleExtensiveGardening
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: gardening cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-gardening
+  - type: ItemBorgModule
+    hands:
+    - item: HydroponicsToolMiniHoe
+    - item: HydroponicsToolSpade
+    - item: HydroponicsToolClippers
+    - item: HydroponicsToolHatchet
+    - item: Bucket
+    - item: PlantBag
+    - item: null
+      hand:
+        emptyLabel: borg-slot-food-empty
+        emptyRepresentative: FoodApple
+        whitelist:
+          components:
+          - Edible
+    - item: null
+      hand:
+        emptyLabel: borg-slot-seeds-empty
+        emptyRepresentative: AppleSeeds
+        whitelist:
+          components:
+          - Seed
+    - item: null
+      hand:
+        emptyLabel: borg-slot-seeds-empty
+        emptyRepresentative: AppleSeeds
+        whitelist:
+          components:
+          - Seed
+  - type: BorgModuleIcon
+    icon:
+      sprite: Interface/Actions/actions_borg.rsi
+      state: gardening-module

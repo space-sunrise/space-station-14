@@ -1,19 +1,46 @@
 <DefaultWindow xmlns="https://spacestation14.io"
                xmlns:controls="clr-namespace:Content.Client.Administration.UI.CustomControls"
-               SetSize="600 400"
+               SetSize="700 450"
                Title="{Loc 'mentor-help-statistics-title'}"
                Resizable="False">
-    <BoxContainer Orientation="Vertical" SeparationOverride="10">
+    <TabContainer Name="StatisticsTabContainer" Access="Public" VerticalExpand="True" HorizontalExpand="True">
+        <BoxContainer Orientation="Vertical" SeparationOverride="10">
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="5 0 15 0">
+                <Label Text="{Loc 'mentor-help-statistics-column-mentor'}" SizeFlagsStretchRatio="3" HorizontalExpand="True" HorizontalAlignment="Center" StyleClasses="LabelSubText"/>
+                <Label Text="{Loc 'mentor-help-statistics-column-tickets'}" SizeFlagsStretchRatio="2" HorizontalExpand="True" HorizontalAlignment="Center" StyleClasses="LabelSubText"/>
+                <Label Text="{Loc 'mentor-help-statistics-column-messages'}" SizeFlagsStretchRatio="2" HorizontalExpand="True" HorizontalAlignment="Center" StyleClasses="LabelSubText"/>
+            </BoxContainer>
+            <controls:HSeparator/>
 
-        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="5 0 15 0">
-            <Label Text="{Loc 'mentor-help-statistics-column-mentor'}" SizeFlagsStretchRatio="3" HorizontalExpand="True" HorizontalAlignment="Center" StyleClasses="LabelSubText"/>
-            <Label Text="{Loc 'mentor-help-statistics-column-tickets'}" SizeFlagsStretchRatio="2" HorizontalExpand="True" HorizontalAlignment="Center" StyleClasses="LabelSubText"/>
-            <Label Text="{Loc 'mentor-help-statistics-column-messages'}" SizeFlagsStretchRatio="2" HorizontalExpand="True" HorizontalAlignment="Center" StyleClasses="LabelSubText"/>
+            <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer Name="WeekStatisticsContainer" Access="Public" Orientation="Vertical" />
+            </ScrollContainer>
         </BoxContainer>
-        <controls:HSeparator/>
 
-        <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
-            <BoxContainer Name="StatisticsContainer" Access="Public" Orientation="Vertical" />
-        </ScrollContainer>
-    </BoxContainer>
+        <BoxContainer Orientation="Vertical" SeparationOverride="10">
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="5 0 15 0">
+                <Label Text="{Loc 'mentor-help-statistics-column-mentor'}" SizeFlagsStretchRatio="3" HorizontalExpand="True" HorizontalAlignment="Center" StyleClasses="LabelSubText"/>
+                <Label Text="{Loc 'mentor-help-statistics-column-tickets'}" SizeFlagsStretchRatio="2" HorizontalExpand="True" HorizontalAlignment="Center" StyleClasses="LabelSubText"/>
+                <Label Text="{Loc 'mentor-help-statistics-column-messages'}" SizeFlagsStretchRatio="2" HorizontalExpand="True" HorizontalAlignment="Center" StyleClasses="LabelSubText"/>
+            </BoxContainer>
+            <controls:HSeparator/>
+
+            <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer Name="MonthStatisticsContainer" Access="Public" Orientation="Vertical" />
+            </ScrollContainer>
+        </BoxContainer>
+
+        <BoxContainer Orientation="Vertical" SeparationOverride="10">
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="5 0 15 0">
+                <Label Text="{Loc 'mentor-help-statistics-column-mentor'}" SizeFlagsStretchRatio="3" HorizontalExpand="True" HorizontalAlignment="Center" StyleClasses="LabelSubText"/>
+                <Label Text="{Loc 'mentor-help-statistics-column-tickets'}" SizeFlagsStretchRatio="2" HorizontalExpand="True" HorizontalAlignment="Center" StyleClasses="LabelSubText"/>
+                <Label Text="{Loc 'mentor-help-statistics-column-messages'}" SizeFlagsStretchRatio="2" HorizontalExpand="True" HorizontalAlignment="Center" StyleClasses="LabelSubText"/>
+            </BoxContainer>
+            <controls:HSeparator/>
+
+            <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer Name="AllTimeStatisticsContainer" Access="Public" Orientation="Vertical" />
+            </ScrollContainer>
+        </BoxContainer>
+    </TabContainer>
 </DefaultWindow>

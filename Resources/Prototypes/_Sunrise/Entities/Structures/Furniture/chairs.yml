@@ -16,7 +16,7 @@
 
 - type: entity
   name: comfy brown chair
-  id: ComfyBrownChair
+  id: ComfyChairBrown
   parent: ChairBase
   description: It looks comfy.
   components:

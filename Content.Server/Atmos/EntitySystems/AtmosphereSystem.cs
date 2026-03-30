@@ -69,6 +69,7 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
         InitializeCVars();
         InitializeGridAtmosphere();
         InitializeMap();
+        InitializeChargedElectrovaeSunrise(); // Sunrise-add
 
         _atmosQuery = GetEntityQuery<GridAtmosphereComponent>();
         _mapAtmosQuery = GetEntityQuery<MapAtmosphereComponent>();
@@ -79,6 +80,8 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
 
         CacheDecals();
+
+        InitSunriseAtmosCVars(); // Sunrise edit - Atmos CVars
     }
 
     public override void Shutdown()
@@ -86,6 +89,8 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
         base.Shutdown();
 
         ShutdownCommands();
+
+        ShutdownSunriseAtmosCVars(); // Sunrise edit - Atmos CVars
     }
 
     private void OnTileChanged(ref TileChangedEvent ev)

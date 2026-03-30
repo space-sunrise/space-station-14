@@ -39,7 +39,7 @@ namespace Content.Client._Sunrise.MentorHelp
         public void UpdateData(MentorHelpStatisticsData data)
         {
             MentorNameLabel.Text = data.MentorName;
-            TicketsClaimedLabel.Text = data.TicketsClaimed.ToString();
+            TicketsClosedLabel.Text = data.TicketsClosed.ToString();
             MessagesCountLabel.Text = data.MessagesCount.ToString();
         }
     }

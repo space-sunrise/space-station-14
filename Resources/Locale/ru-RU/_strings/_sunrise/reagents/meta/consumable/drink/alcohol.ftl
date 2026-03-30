@@ -102,3 +102,9 @@ reagent-desc-paloma = Сверху ковбои. Снизу маракасы. Ч
 
 reagent-name-boyarsky = боярский
 reagent-desc-boyarsky = Что делать, если ты устал от жизни? СМЕШИВАТЬ ВОДКУ!
+
+reagent-name-vodkizine = водкизин
+reagent-desc-vodkizine = Лечебное средство на основе водки, рецепт которого строго засекречен.
+
+
+

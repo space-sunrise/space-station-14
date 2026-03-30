@@ -1,4 +1,4 @@
-# Most of these have DO NOT MAP, since stations are completely unequipped to deal with ship combat + these are basically placeholder.
+﻿# Most of these have DO NOT MAP, since stations are completely unequipped to deal with ship combat + these are basically placeholder.
 
 - type: entity
   id: ShuttleGunBase
@@ -43,7 +43,7 @@
   parent: [ ShuttleGunBase, ConstructibleMachine]
   name: LSE-400c "Svalinn machine gun"
   description: Basic stationary laser unit. Effective against live targets and electronics. Uses regular power cells to fire, and has an extremely high rate of fire.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ] # Sunrise-Edit
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
@@ -94,13 +94,20 @@
   - type: BatteryAmmoProvider
     proto: RedShuttleMediumLaser #RedLightLaser
     fireCost: 20 # Sunrise-edit
+    # Sunrise-Start
+  - type: RadarLaserTracker
+    laserColor: "#FF44FF"
+    traceDuration: 0.5
+    maxRange: 40
+  - type: GunneryTrackable
+    # Sunrise-End
 
 - type: entity
   id: ShuttleGunPerforator
   parent: [ ShuttleGunBase, ConstructibleMachine]
   name: LSE-1200c "Perforator"
   description: Advanced stationary laser unit. Annihilates electronics and is extremely dangerous to health! Uses the power cage to fire.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ] # Sunrise-Edit
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
@@ -150,6 +157,13 @@
   - type: BatteryAmmoProvider
     proto: RedShuttleLaser
     fireCost: 150
+    # Sunrise-Start
+  - type: RadarLaserTracker
+    laserColor: "#FF44FF"
+    traceDuration: 0.75
+    maxRange: 60
+  - type: GunneryTrackable
+    # Sunrise-End
 
 # ---- Launchers ----
 # naming: EXP (Explosion) + conventional power + suffix (g for Grenade, c for RPG Cartridge) + Name
@@ -160,7 +174,7 @@
   parent: [ShuttleGunBase, ConstructibleMachine]
   name: EXP-320g "Friendship"
   description: A small stationary grenade launcher that holds 2 grenades.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ] # Sunrise-Edit
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
@@ -214,7 +228,7 @@
   parent: [ShuttleGunBase, ConstructibleMachine]
   name: EXP-2100g "Duster"
   description: A powerful stationary grenade launcher. A cartridge is required for use.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ] # Sunrise-Edit
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
@@ -312,7 +326,7 @@
   parent: [ ShuttleGunBase, ConstructibleMachine]
   name: PTK-800 "Matter Dematerializer"
   description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ] # Sunrise-Edit
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/kinetic.rsi
@@ -359,6 +373,7 @@
     count: 5
   - type: Machine
     board: ShuttleGunKineticCircuitboard
+  - type: GunneryTrackable # Sunrise-Add
 
 - type: entity
   parent: ShuttleGunBase
@@ -408,3 +423,4 @@
   - type: DeviceLinkSink
     ports:
     - Trigger
+  - type: GunneryTrackable # Sunrise-Add

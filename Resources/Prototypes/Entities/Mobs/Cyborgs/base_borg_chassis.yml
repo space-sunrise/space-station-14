@@ -87,7 +87,7 @@
   - type: EmagSiliconLaw
     stunTime: 5
   - type: SiliconLawProvider
-    laws: NTDefault # Sunrise-Edit
+    laws: Crewsimov
   - type: Inventory
     templateId: borg
   - type: Hands

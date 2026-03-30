@@ -3,3 +3,7 @@ construction-graph-tag-white-wraps-desc = { ent-ClothingWraps.desc }
 construction-graph-tag-white-high-wraps = { ent-ClothingWrapsHigh }
 construction-graph-tag-white-high-wraps-desc = { ent-ClothingWrapsHigh.desc }
 construction-graph-tag-firebomb = fire bomb
+construction-graph-tag-white-lily-crown = { ent-WhiteLilyCrown }
+construction-graph-tag-white-lily-crown-desc = { ent-WhiteLilyCrown.desc }
+construction-graph-tag-white-lily = { ent-FoodWhiteLily }
+construction-graph-tag-white-lily-desc = { ent-FoodWhiteLily.desc }

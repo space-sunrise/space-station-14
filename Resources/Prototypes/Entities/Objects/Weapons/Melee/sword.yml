@@ -185,6 +185,14 @@
     spread: 90
     slotFlags:
     - NONE
+  # Sunrise start
+  - type: Tool
+    qualities:
+    - Slicing
+    - Prying
+  - type: ToolTileCompatible
+  - type: Prying
+  # Sunrise end
 
 #Greatswords
 - type: entity

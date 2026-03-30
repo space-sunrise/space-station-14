@@ -257,6 +257,7 @@
   id: WeaponPistolHIB88M4
   components:
   - type: Sprite
+    scale: 0.8, 0.8
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/hi_browning/big.rsi
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/hi_browning/tiny.rsi

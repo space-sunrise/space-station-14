@@ -86,3 +86,11 @@
   components:
   - type: Implanter
     implant: ReviverImplant
+
+- type: entity
+  id: DeathRattleImplanterTSF
+  name: TSF death rattle implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: DeathRattleImplantTSF

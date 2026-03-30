@@ -6,6 +6,7 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
   - type: FactionClothingBlocker
 
 - type: entity
@@ -16,6 +17,7 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
   - type: FactionClothingBlocker
 
 - type: entity
@@ -26,6 +28,7 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
   - type: FactionClothingBlocker
 
 - type: entity
@@ -36,6 +39,7 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
   - type: FactionClothingBlocker
 
 - type: entity
@@ -46,6 +50,7 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
   - type: FactionClothingBlocker
 
 - type: entity
@@ -56,6 +61,7 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
   - type: FactionClothingBlocker
 
 - type: entity
@@ -66,6 +72,7 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
   - type: FactionClothingBlocker
 
 - type: entity
@@ -76,6 +83,7 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
   - type: FactionClothingBlocker
 
 - type: entity
@@ -86,6 +94,7 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
   - type: FactionClothingBlocker
 
 - type: entity
@@ -96,6 +105,7 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
   - type: FactionClothingBlocker
 
 - type: entity
@@ -106,6 +116,7 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
   - type: FactionClothingBlocker
 
 - type: entity
@@ -116,6 +127,7 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
   - type: FactionClothingBlocker
 
 - type: entity
@@ -126,6 +138,7 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
   - type: FactionClothingBlocker
 
 - type: entity
@@ -136,4 +149,5 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
   - type: FactionClothingBlocker
