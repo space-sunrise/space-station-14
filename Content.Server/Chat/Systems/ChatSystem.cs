@@ -946,9 +946,9 @@ public sealed partial class ChatSystem : SharedChatSystem
             // Проверка на наличие прямой видимости для эмоутов
             if (channel == ChatChannel.Emotes)
             {
-                var ev = new VisibilityCheckEvent(source, session.AttachedEntity, VoiceRange);
-                RaiseLocalEvent(ev);
-                if (ev.Cancelled)
+                var ev = new EmoteVisibilityCheckEvent(source, session.AttachedEntity, VoiceRange);
+                RaiseLocalEvent(ref ev);
+                if (!ev.Visible)
                     continue;
             }
             // Sunrise-end

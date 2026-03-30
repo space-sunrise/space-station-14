@@ -1,15 +1,18 @@
+using NetCord;
 namespace Content.Server._Sunrise.Chat;
 
-public sealed class VisibilityCheckEvent : CancellableEntityEventArgs
+[ByRefEvent]
+public struct EmoteVisibilityCheckEvent(EntityUid source, EntityUid? target, float range)
 {
-    public EntityUid Source { get; }
-    public EntityUid? Target { get; }
-    public float Range { get; }
+    [DataField]
+    public EntityUid Source { get; } = source;
 
-    public VisibilityCheckEvent(EntityUid source, EntityUid? target, float range)
-    {
-        Source = source;
-        Target = target;
-        Range = range;
-    }
+    [DataField]
+    public EntityUid? Target { get; } = target;
+
+    [DataField]
+    public float Range { get; } = range;
+
+    [DataField]
+    public bool Visible { get; set; } = true;
 }
