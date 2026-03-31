@@ -1,6 +1,6 @@
 - type: gameMap
   id: SunriseBagel
-  mapName: 'Bagel'
+  mapName: 'Delte'
   mapPath: /Maps/_Sunrise/Station/bagel.yml
   minPlayers: 0
   maxPlayers: 90

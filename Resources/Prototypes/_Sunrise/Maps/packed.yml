@@ -1,8 +1,9 @@
 - type: gameMap
   id: SunrisePacked
-  mapName: 'Packed'
+  mapName: 'Delt'
   mapPath: /Maps/_Sunrise/Station/packed.yml
   minPlayers: 0
+  maxPlayers: 80
   stations:
     Packed:
       stationProto: StandardNanotrasenStation
