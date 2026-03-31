@@ -84,11 +84,11 @@
     - type: GhostRole
       name: ghost-role-information-Death-Squad-name
       description: ghost-role-information-Death-Squad-description
-      rules: ghost-role-information-Death-Squad-rules
+      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
       raffle:
         settings: short
-      mindRoles:
-      - MindRoleGhostRoleFamiliar
+      mindRoles: # Sunrise-edit
+      - MindRoleGhostCorporateAligned
       job: DeathSquad
     - type: Loadout
       prototypes: [ DeathSquadGear ]
@@ -146,9 +146,11 @@
     - type: GhostRole
       name: ghost-role-information-ert-leader-name
       description: ghost-role-information-ert-leader-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
       raffle:
         settings: short
+      mindRoles: # Sunrise-edit
+      - MindRoleGhostCorporateAligned
       job: ERTLeader
     - type: Loadout
       prototypes: [ ERTLeaderGear ]
@@ -195,9 +197,11 @@
     - type: GhostRole
       name: ghost-role-information-ert-leader-name
       description: ghost-role-information-ert-leader-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
       raffle:
         settings: short
+      mindRoles: # Sunrise-edit
+      - MindRoleGhostCorporateAligned
       job: ERTLeader
     - type: Loadout
       prototypes: [ ERTLeaderGearEVA ]
@@ -235,9 +239,11 @@
     - type: GhostRole
       name: ghost-role-information-ert-leader-name
       description: ghost-role-information-ert-leader-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
       raffle:
         settings: short
+      mindRoles: # Sunrise-edit
+      - MindRoleGhostCorporateAligned
       job: ERTLeaderVeteran
     - type: Loadout
       prototypes: [ ERTLeaderGearEVALecter ]
@@ -287,9 +293,11 @@
     - type: GhostRole
       name: ghost-role-information-ert-chaplain-name
       description: ghost-role-information-ert-chaplain-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
       raffle:
         settings: short
+      mindRoles: # Sunrise-edit
+      - MindRoleGhostCorporateAligned
       job: ERTChaplain
     - type: RandomMetadata
       nameSegments:
@@ -336,9 +344,11 @@
     - type: GhostRole
       name: ghost-role-information-ert-chaplain-name
       description: ghost-role-information-ert-chaplain-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
       raffle:
         settings: short
+      mindRoles: # Sunrise-edit
+      - MindRoleGhostCorporateAligned
       job: ERTChaplain
     - type: Loadout
       prototypes: [ ERTChaplainGearEVA ]
@@ -388,9 +398,11 @@
     - type: GhostRole
       name: ghost-role-information-ert-janitor-name
       description: ghost-role-information-ert-janitor-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
       raffle:
         settings: short
+      mindRoles: # Sunrise-edit
+      - MindRoleGhostCorporateAligned
       job: ERTJanitor
     - type: RandomMetadata
       nameSegments:
@@ -437,9 +449,11 @@
     - type: GhostRole
       name: ghost-role-information-ert-janitor-name
       description: ghost-role-information-ert-janitor-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
       raffle:
         settings: short
+      mindRoles: # Sunrise-edit
+      - MindRoleGhostCorporateAligned
       job: ERTJanitor
     - type: Loadout
       prototypes: [ ERTJanitorGearEVA ]
@@ -488,9 +502,11 @@
     - type: GhostRole
       name: ghost-role-information-ert-engineer-name
       description: ghost-role-information-ert-engineer-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
       raffle:
         settings: short
+      mindRoles: # Sunrise-edit
+      - MindRoleGhostCorporateAligned
       job: ERTEngineer
     - type: RandomMetadata
       nameSegments:
@@ -537,9 +553,11 @@
     - type: GhostRole
       name: ghost-role-information-ert-engineer-name
       description: ghost-role-information-ert-engineer-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
       raffle:
         settings: short
+      mindRoles: # Sunrise-edit
+      - MindRoleGhostCorporateAligned
       job: ERTEngineer
     - type: Loadout
       prototypes: [ ERTEngineerGearEVA ]
@@ -588,9 +606,11 @@
     - type: GhostRole
       name: ghost-role-information-ert-security-name
       description: ghost-role-information-ert-security-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
       raffle:
         settings: short
+      mindRoles: # Sunrise-edit
+      - MindRoleGhostCorporateAligned
       job: ERTSecurity
     - type: RandomMetadata
       nameSegments:
@@ -637,9 +657,11 @@
     - type: GhostRole
       name: ghost-role-information-ert-security-name
       description: ghost-role-information-ert-security-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
       raffle:
         settings: short
+      mindRoles: # Sunrise-edit
+      - MindRoleGhostCorporateAligned
       job: ERTSecurity
     - type: Loadout
       prototypes: [ ERTSecurityGearEVA ]
@@ -677,9 +699,11 @@
     - type: GhostRole
       name: ghost-role-information-ert-security-name
       description: ghost-role-information-ert-security-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
       raffle:
         settings: short
+      mindRoles: # Sunrise-edit
+      - MindRoleGhostCorporateAligned
       job: ERTSecurity
     - type: Loadout
       prototypes: [ ERTSecurityGearEVALecter ]
@@ -728,9 +752,11 @@
     - type: GhostRole
       name: ghost-role-information-ert-medical-name
       description: ghost-role-information-ert-medical-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
       raffle:
         settings: short
+      mindRoles: # Sunrise-edit
+      - MindRoleGhostCorporateAligned
       job: ERTMedical
     - type: RandomMetadata
       nameSegments:
@@ -777,9 +803,11 @@
     - type: GhostRole
       name: ghost-role-information-ert-medical-name
       description: ghost-role-information-ert-medical-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
       raffle:
         settings: short
+      mindRoles: # Sunrise-edit
+      - MindRoleGhostCorporateAligned
       job: ERTMedical
     - type: Loadout
       prototypes: [ ERTMedicalGearEVA ]
@@ -825,9 +853,11 @@
     - type: GhostRole
       name: ghost-role-information-cburn-agent-name
       description: ghost-role-information-cburn-agent-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
       raffle:
         settings: short
+      mindRoles: # Sunrise-edit
+      - MindRoleGhostCorporateAligned
       job: CBURN
     - type: RandomMetadata
       nameSegments:
@@ -863,9 +893,11 @@
     - type: GhostRole
       name: ghost-role-information-centcom-official-name
       description: ghost-role-information-centcom-official-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
       raffle:
         settings: default
+      mindRoles: # Sunrise-edit
+      - MindRoleGhostCorporateAligned
       job: CentralCommandOfficial
     - type: Loadout
       prototypes: [ CentCommOfficialGear ] # Sunrise-Edit

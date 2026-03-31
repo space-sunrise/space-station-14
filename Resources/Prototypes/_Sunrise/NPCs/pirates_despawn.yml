@@ -84,7 +84,6 @@
       - MobPirateT2ShotgunGlass
       - MobPirateT2Musket
       - MobPirateT2MusketEMP
-      - MobPirateT2MusketBlast
       - MobPirateT2MusketFrag
       - MobPirateT2MusketPenetrator
       - MobPirateT2MachineCannon
@@ -477,7 +476,6 @@
     - MobPirateT2ShotgunGlass
     - MobPirateT2Musket
     - MobPirateT2MusketEMP
-    - MobPirateT2MusketBlast
     - MobPirateT2MusketFrag
     - MobPirateT2MusketPenetrator
     - MobPirateT2MachineCannon
@@ -663,16 +661,16 @@
   table: !type:AllSelector
     children:
     - !type:EntSelector
-      id: MobPirateT2MusketBlast
+      id: MobPirateT2MusketFrag
       prob: 1
     - !type:EntSelector
       id: MobPirateT2MachineCannon
       prob: 1
     - !type:EntSelector
-      id: MobPirateT2DoubleFlintlock
+      id: MobPirateT2ECutlass
       prob: 1
     - !type:EntSelector
-      id: MobPirateT2ShotgunGlass
+      id: MobPirateT2Musket
       prob: 1
     - !type:EntSelector
       id: MobPirateT2Medic

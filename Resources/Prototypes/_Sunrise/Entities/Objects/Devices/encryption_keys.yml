@@ -104,6 +104,22 @@
     price: 4500
 
 - type: entity
+  parent: [ EncryptionKey, BaseTSFContraband ]
+  id: EncryptionKeyTSF
+  name: TSF encryption key
+  components:
+  - type: EncryptionKey
+    channels:
+    - TSF
+    defaultChannel: TSF
+  - type: Sprite
+    layers:
+    - sprite: Objects/Devices/encryption_keys.rsi
+      state: crypt_blue
+    - sprite: Objects/Devices/encryption_keys.rsi
+      state: com_label
+
+- type: entity
   parent: [ EncryptionKey, BaseCentcommContraband ]
   id: EncryptionKeyDeathSquad
   name: death squad encryption key

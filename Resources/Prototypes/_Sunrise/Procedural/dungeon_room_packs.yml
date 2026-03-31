@@ -96,6 +96,6 @@
 
 - type: dungeonRoomPack
   id: SovietWEH12x6
-  size: 12,6
+  size: 11,5
   rooms:
-    - 0,0,12,6
+    - 0,0,11,5

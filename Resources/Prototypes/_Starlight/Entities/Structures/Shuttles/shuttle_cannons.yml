@@ -295,12 +295,12 @@
     projectileSpeed: 150    # railgun slug velocity
     fireRate: 100           # instant fire when loaded - delay is the manual reload
     burstCooldown: 180      # Starlight: 3-minute cooldown after firing
-    selectedMode: SemiAuto
+    selectedMode: Burst
     angleDecay: 90
     minAngle: 0
     maxAngle: 0             # perfect accuracy
     availableModes:
-    - SemiAuto
+    - Burst
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Shuttleguns/leviathan_fire.ogg
       params:
@@ -820,12 +820,13 @@
   - type: Gun
     projectileSpeed: 180
     fireRate: 100
-    selectedMode: SemiAuto
+    burstCooldown: 120
+    selectedMode: Burst
     angleDecay: 90
     minAngle: 0
     maxAngle: 0
     availableModes:
-    - SemiAuto
+    - Burst
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Shuttleguns/uaf_cyrexa_452.ogg
       params:
@@ -869,11 +870,11 @@
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/Scylla.rsi
     granularLayersRendering: true
     layers:
-    - sprite: Structures/Machines/station_anchor.rsi
-      state: station_anchor
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: support
       renderingStrategy: NoRotation
-    - sprite: Structures/Machines/station_anchor.rsi
-      state: station_anchor_unlit
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_open
       renderingStrategy: NoRotation
     - state: space_artillery
   - type: ContainerContainer

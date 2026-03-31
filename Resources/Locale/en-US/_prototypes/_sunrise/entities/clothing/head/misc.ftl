@@ -12,4 +12,6 @@ ent-ClothingHeadBowRed = red bow
     .desc = { ent-ClothingHeadBowWhite.desc }
 ent-ClothingHeadBowBlack = black bow
     .desc = { ent-ClothingHeadBowWhite.desc }
+ent-WhiteLilyCrown = white lily crown
+    .desc = Charming white crown, that adds grace to the wearer.
 

@@ -204,6 +204,7 @@
 - type: latheRecipePack
   id: SecurityDynamicSunrise
   recipes:
+    - ComputerGunneryCircuitboard
     - WeaponEnergyGun
     - WeaponMiniEnergyGun
     - WeaponEnergyGunPistol
