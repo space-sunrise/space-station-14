@@ -10,6 +10,7 @@
     revertOnDeath: true
     revertOnDelete: false
     allowRepeatedMorphs: true
+    transferDamage: false
 
 - type: polymorph
   id: ZombieVirusPermanentlyVulpkanin
@@ -23,3 +24,4 @@
     revertOnDeath: true
     revertOnDelete: false
     allowRepeatedMorphs: true
+    transferDamage: false

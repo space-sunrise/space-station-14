@@ -314,14 +314,6 @@ namespace Content.Server.Zombies
 
         private void OnMobState(EntityUid uid, ZombieComponent component, MobStateChangedEvent args)
         {
-            if (args.NewMobState != MobState.Dead)
-                return;
-
-            if (TryComp<PolymorphedEntityComponent>(uid, out var polymorphed)
-                && !polymorphed.Reverted)
-            {
-                _polymorph.Revert((uid, polymorphed));
-            }
         }
 
         private float GetZombieInfectionChance(EntityUid uid, ZombieComponent zombieComponent)
