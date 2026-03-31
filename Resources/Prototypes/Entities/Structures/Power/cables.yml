@@ -70,7 +70,6 @@
     state: hvcable_0
     drawdepth: ThickWire
   - type: Icon
-    color: Green
     sprite: Structures/Power/Cables/hv_cable.rsi
     state: hvcable_4
   - type: NodeContainer
@@ -131,7 +130,6 @@
       color: Green
     - state: mvstripes_0
   - type: Icon
-    color: Green
     sprite: Structures/Power/Cables/mv_cable.rsi
     state: mvcable_4
   - type: NodeContainer
