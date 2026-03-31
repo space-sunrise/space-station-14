@@ -165,25 +165,21 @@ public sealed partial class ZombieSystem
         }
 
         var originalTarget = target;
-        HumanoidAppearanceComponent? originalHumanoidAppearance = null;
-        string? furryZombieSpecies = null;
+        TryComp<HumanoidAppearanceComponent>(target, out var originalHumanoidAppearance);
+        var furryZombieSpecies = originalHumanoidAppearance != null
+            ? PickFurryZombieSpecies(originalHumanoidAppearance.Species)
+            : PickFurryZombieSpecies();
 
-        if (TryComp<HumanoidAppearanceComponent>(target, out var sourceHumanoidAppearance))
+        if (_polymorph.PolymorphEntity(target, GetFurryZombiePolymorph(furryZombieSpecies)) is not { } polymorphedTarget)
         {
-            originalHumanoidAppearance = sourceHumanoidAppearance;
-            furryZombieSpecies = PickFurryZombieSpecies(originalHumanoidAppearance.Species);
-
-            if (_polymorph.PolymorphEntity(target, GetFurryZombiePolymorph(furryZombieSpecies)) is not { } polymorphedTarget)
-            {
-                Log.Error($"Failed to polymorph {ToPrettyString(target)} into furry zombie species {furryZombieSpecies}.");
-                return;
-            }
-
-            target = polymorphedTarget;
-
-            RemCompDeferred<PendingZombieComponent>(originalTarget);
-            RemCompDeferred<ZombifyOnDeathComponent>(originalTarget);
+            Log.Error($"Failed to polymorph {ToPrettyString(target)} into furry zombie species {furryZombieSpecies}.");
+            return;
         }
+
+        target = polymorphedTarget;
+
+        RemCompDeferred<PendingZombieComponent>(originalTarget);
+        RemCompDeferred<ZombifyOnDeathComponent>(originalTarget);
 
         //you're a real zombie now, son.
         var zombiecomp = AddComp<ZombieComponent>(target);
@@ -200,9 +196,8 @@ public sealed partial class ZombieSystem
         RemComp<ComplexInteractionComponent>(target);
         RemComp<SentienceTargetComponent>(target);
 
-        // Sunrise edit start - furry virus uses OwO accent instead of zombie speech replacement
+        // Sunrise edit start - no full speech replacement for furry-virus
         RemComp<ReplacementAccentComponent>(target);
-        EnsureComp<OwOAccentComponent>(target);
         // Sunrise edit end
 
         //This is needed for stupid entities that fuck up combat mode component
@@ -244,13 +239,11 @@ public sealed partial class ZombieSystem
             collectiveMindComponent.Minds.Add("Zombie");
         // Sunrise-End
 
-        //We have specific stuff for humanoid zombies because they matter more
+        // At this point every zombie should already be in a humanoid furry body.
         if (TryComp<HumanoidAppearanceComponent>(target, out var huApComp)) //huapcomp
         {
-            if (furryZombieSpecies != null && originalHumanoidAppearance != null)
-                ApplyFurryZombieAppearance(originalTarget, target, zombiecomp, furryZombieSpecies, huApComp, originalHumanoidAppearance);
+            ApplyFurryZombieAppearance(originalTarget, target, zombiecomp, furryZombieSpecies, huApComp, originalHumanoidAppearance);
 
-            //This is done here because non-humanoids shouldn't get baller damage
             melee.Damage = zombiecomp.DamageOnBite;
 
             // humanoid zombies get to pry open doors and shit
@@ -360,6 +353,13 @@ public sealed partial class ZombieSystem
         _tag.AddTag(target, CannotSuicideTag);
     }
 
+    private string PickFurryZombieSpecies()
+    {
+        return _random.NextDouble() < 0.5
+            ? FurryZombieVulpkaninSpecies
+            : FurryZombieTajaranSpecies;
+    }
+
     private string PickFurryZombieSpecies(ProtoId<SpeciesPrototype> originalSpecies)
     {
         if (originalSpecies == FurryZombieVulpkaninSpecies)
@@ -368,9 +368,7 @@ public sealed partial class ZombieSystem
         if (originalSpecies == FurryZombieTajaranSpecies)
             return FurryZombieVulpkaninSpecies;
 
-        return _random.NextDouble() < 0.5
-            ? FurryZombieVulpkaninSpecies
-            : FurryZombieTajaranSpecies;
+        return PickFurryZombieSpecies();
     }
 
     private string GetFurryZombieBodyType(string infectedSpecies, ProtoId<BodyTypePrototype> originalBodyType)
@@ -404,18 +402,22 @@ public sealed partial class ZombieSystem
     }
 
     private void ApplyFurryZombieAppearance(EntityUid originalTarget, EntityUid target, ZombieComponent zombiecomp,
-        string infectedSpecies, HumanoidAppearanceComponent humanoid, HumanoidAppearanceComponent originalHumanoid)
+        string infectedSpecies, HumanoidAppearanceComponent humanoid, HumanoidAppearanceComponent? originalHumanoid)
     {
-        _humanoidAppearance.SetSex(target, originalHumanoid.Sex, false, humanoid);
-        _humanoidAppearance.SetGender((target, humanoid), originalHumanoid.Gender);
-        humanoid.Age = originalHumanoid.Age;
-        humanoid.Width = originalHumanoid.Width;
-        humanoid.Height = originalHumanoid.Height;
+        if (originalHumanoid != null)
+        {
+            _humanoidAppearance.SetSex(target, originalHumanoid.Sex, false, humanoid);
+            _humanoidAppearance.SetGender((target, humanoid), originalHumanoid.Gender);
+            humanoid.Age = originalHumanoid.Age;
+            humanoid.Width = originalHumanoid.Width;
+            humanoid.Height = originalHumanoid.Height;
 
-        _humanoidAppearance.SetBodyType(target,
-            GetFurryZombieBodyType(infectedSpecies, originalHumanoid.BodyType),
-            false,
-            humanoid);
+            _humanoidAppearance.SetBodyType(target,
+                GetFurryZombieBodyType(infectedSpecies, originalHumanoid.BodyType),
+                false,
+                humanoid);
+        }
+
         _humanoidAppearance.SetSkinColor(target, zombiecomp.SkinColor, verify: false, humanoid: humanoid);
         humanoid.EyeColor = zombiecomp.EyeColor;
 
