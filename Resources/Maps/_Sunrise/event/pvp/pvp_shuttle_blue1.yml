@@ -3235,7 +3235,7 @@ entities:
     paused: true
     components:
     - type: MetaData
-      name: ID карта  (пес «Синий щит»)
+      name: ID карта (пес «Синий щит»)
     - type: Transform
       rot: 0.0001947765122167766 rad
       pos: 5.6054015,13.73579
@@ -3269,7 +3269,7 @@ entities:
       jobDepartments:
       - BlueShield
       jobIcon: JobIconBlueShield
-      _jobTitle: пес ний щит»
+      _jobTitle: пес «Синий щит»
     - type: EmitSoundOnCollide
       nextSound: -23678.3771141
   - uid: 440
@@ -3277,7 +3277,7 @@ entities:
     paused: true
     components:
     - type: MetaData
-      name: ID карта  (пес ний щит»)
+      name: ID карта  (пес «Синий щит»)
     - type: Transform
       pos: 5.605544,13.61692
       parent: 1
@@ -3310,7 +3310,7 @@ entities:
       jobDepartments:
       - BlueShield
       jobIcon: JobIconBlueShield
-      _jobTitle: пес  щит»
+      _jobTitle: пес «Синий щит»
     - type: EmitSoundOnCollide
       nextSound: -23678.3771141
     - type: Physics
@@ -3320,7 +3320,7 @@ entities:
     paused: true
     components:
     - type: MetaData
-      name: ID карта  (пес т»)
+      name: ID карта  (пес «Синий щит»)
     - type: Transform
       pos: 5.074294,13.726295
       parent: 1
