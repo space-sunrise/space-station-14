@@ -156,6 +156,37 @@
     energy: 1.6
     color: "#4b93ad"
 
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineSlop
+  name: Slop-O-Mat
+  description: Dispenses nothing but tha slop.
+  components:
+  - type: VendingMachine
+    pack: VendingMachineSlopInventory
+    offState: icon
+    brokenState: icon
+    normalState: unlit
+    ejectState: inserting
+    denyState: building
+    ejectDelay: 0.4
+    denyDelay: 0.4
+    initialStockQuality: 1.0
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/slop_machine.rsi
+    layers:
+    - state: "icon"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "unlit"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#86c063"
+
 # wallmount
 - type: entity
   parent: VendingMachineWallmount
