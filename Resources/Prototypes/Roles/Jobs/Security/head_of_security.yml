@@ -20,7 +20,7 @@
   startingGear: HoSGear
   icon: "JobIconHeadOfSecurity"
   supervisors: job-supervisors-captain
-  canBeAntag: false
+  canBeAntag: true
   radioBold: true # Sunrise-Edit
   displayWeight: 80 # Sunrise-Edit
   access:

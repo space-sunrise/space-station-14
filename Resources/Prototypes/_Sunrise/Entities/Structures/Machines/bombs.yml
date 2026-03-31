@@ -71,3 +71,7 @@
       intensitySlope: 10
       maxIntensity: 10
       canCreateVacuum: false
+
+- type: entity
+  parent: Pizzabomb
+  id: PizzaBomb

@@ -10,7 +10,7 @@
         children:
         - id: FoodBoxPizzaFilled
           amount: 3
-        - id: FoodBoxPizzaCotton
+        - id: PizzaBomb
         - id: LidSalami
           prob: 0.01
 

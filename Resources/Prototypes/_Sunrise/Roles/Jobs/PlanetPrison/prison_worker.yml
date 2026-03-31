@@ -25,7 +25,7 @@
   supervisors: job-supervisors-head-of-prison
   weight: 4
   alwaysUseSpawner: true
-  canBeAntag: false
+  canBeAntag: true
   displayWeight: 80
   access:
    - Security

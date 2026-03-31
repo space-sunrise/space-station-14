@@ -176,7 +176,7 @@ public sealed class NewLifeSystem : SharedNewLifeSystem
 
         CloseEui(player);
         _prefsManager.GetPreferences(player.UserId).SetProfile(selectedCharacterId);
-        _gameTicker.MakeJoinGame(player, stationUid, roleProto, canBeAntag: false);
+        _gameTicker.MakeJoinGame(player, stationUid, roleProto, canBeAntag: true);
     }
 
     public bool TryGetEuiState(ICommonSession session, [NotNullWhen(true)] out NewLifeEuiState? state)

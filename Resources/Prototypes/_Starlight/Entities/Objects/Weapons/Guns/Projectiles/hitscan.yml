@@ -1601,8 +1601,9 @@
         Structural: 100
   - type: HitscanBasicRaycast
     collisionMask: BulletImpassable
+    maxDistance: 128
   - type: HitscanReflect
-    reflectiveType: Energy
+    reflectiveType: None
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -1667,6 +1668,7 @@
     reflectiveType: None
   - type: HitscanBasicRaycast
     collisionMask: BulletImpassable
+    maxDistance: 128
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi

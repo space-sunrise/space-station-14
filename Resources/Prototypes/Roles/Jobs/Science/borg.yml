@@ -10,7 +10,7 @@
     role: JobBorg
     time: 5h
   weight: 10
-  canBeAntag: false
+  canBeAntag: true
   icon: JobIconStationAi
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-rd
@@ -27,7 +27,7 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10h
-  canBeAntag: false
+  canBeAntag: true
   displayWeight: -10  # Sunrise
   icon: JobIconBorg
   overrideConsoleVisibility: false # Sunrise added

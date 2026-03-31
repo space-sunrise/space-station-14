@@ -8,7 +8,7 @@
   icon: "JobIconDeathsquad" # Sunrise-edit
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   accessGroups:
   - AllAccess
   access:

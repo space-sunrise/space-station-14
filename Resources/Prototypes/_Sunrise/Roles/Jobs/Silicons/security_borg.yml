@@ -11,7 +11,7 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 18000 #5 hrs # Sunrise-RoleTime
-  canBeAntag: false
+  canBeAntag: true
   displayWeight: -10  # Sunrise
   jobEntity: PlayerBorgSecurityBattery
   overrideConsoleVisibility: false

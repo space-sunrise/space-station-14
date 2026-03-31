@@ -219,8 +219,8 @@
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
   - type: ClothingSpeedModifier
-    walkModifier: 1.0
-    sprintModifier: 1.0
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -229,7 +229,7 @@
         Blunt: 0.7
         Slash: 0.7
         Piercing: 0.6
-        Heat: 0.3
+        Heat: 0.5
         Radiation: 0.1
   - type: ExplosionResistance
     damageCoefficient: 0.2
@@ -259,7 +259,7 @@
           tags:
           - FitsHardsuit #Sunrise-End
   - type: EnergyDomeGenerator
-    damageEnergyDraw: 6
+    damageEnergyDraw: 25
     domePrototype: EnergyDomeSmallPink
   - type: PowerCellDraw
     drawRate: 0

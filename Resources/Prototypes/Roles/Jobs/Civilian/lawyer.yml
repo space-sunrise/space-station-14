@@ -8,7 +8,7 @@
       time: 2.5h
   startingGear: LawyerGear
   icon: "JobIconLawyer"
-  canBeAntag: false
+  canBeAntag: true
   supervisors: job-supervisors-magistrate
   access:
   - Service

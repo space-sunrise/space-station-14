@@ -27,12 +27,12 @@
     - state: red
     - sprite: Structures/Power/Cables/mv_cable.rsi
       state: mvcable_3
-      color: Yellow
+      color: Green
     - sprite: Structures/Power/Cables/mv_cable.rsi
       state: mvstripes_3
     - sprite: Structures/Power/Cables/mv_cable.rsi
       state: mvcable_12
-      color: Yellow
+      color: Green
     - sprite: Structures/Power/Cables/mv_cable.rsi
       state: mvstripes_12
   - type: RandomSpawner

@@ -15,7 +15,7 @@
   joinNotifyCrew: true
   radioBold: true
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   access:
     - Cryogenics
     - Lawyer

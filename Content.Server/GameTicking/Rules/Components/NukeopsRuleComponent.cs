@@ -64,7 +64,7 @@ public sealed partial class NukeopsRuleComponent : Component
     ///     This amount of TC will be given to each nukie
     /// </summary>
     [DataField]
-    public FixedPoint2 WarTcAmountPerNukie = 45; // Sunrise-edit
+    public FixedPoint2 WarTcAmountPerNukie = 50; // Sunrise-edit
 
     // Sunrise-Start
     [DataField]
@@ -89,7 +89,7 @@ public sealed partial class NukeopsRuleComponent : Component
     ///     Minimal operatives count for war declaration
     /// </summary>
     [DataField]
-    public int WarDeclarationMinOps = 4;
+    public int WarDeclarationMinOps = 2;
 
     [DataField]
     public WinType WinType = WinType.Neutral;

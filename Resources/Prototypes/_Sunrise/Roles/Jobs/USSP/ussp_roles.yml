@@ -9,7 +9,7 @@
   icon: "JobIconUSSPCrew"
   overrideConsoleVisibility: false
   supervisors: job-supervisors-usspcommand
-  canBeAntag: false
+  canBeAntag: true
   access:
   - Maintenance
 
@@ -80,7 +80,7 @@
   icon: "JobIconUSSPOfficer"
   overrideConsoleVisibility: false
   supervisors: job-supervisors-usspcommand
-  canBeAntag: false
+  canBeAntag: true
   access:
   - NuclearOperative
   - SyndicateAgent
@@ -124,7 +124,7 @@
   icon: "JobIconUSSPOfficerAlt"
   overrideConsoleVisibility: false
   supervisors: job-supervisors-usspcommand
-  canBeAntag: false
+  canBeAntag: true
   access:
   - NuclearOperative
   - SyndicateAgent
@@ -169,7 +169,7 @@
   icon: "JobIconUSSPSoldier"
   overrideConsoleVisibility: false
   supervisors: job-supervisors-usspcommand
-  canBeAntag: false
+  canBeAntag: true
   access:
   - NuclearOperative
   - SyndicateAgent
@@ -213,7 +213,7 @@
   icon: "JobIconUSSPCaptain"
   overrideConsoleVisibility: false
   supervisors: job-supervisors-usspcommand
-  canBeAntag: false
+  canBeAntag: true
   accessGroups:
   - AllAccess
   access:

@@ -15,7 +15,7 @@
       time: 7200 # 2 hrs
   weight: 6
   alwaysUseSpawner: true
-  canBeAntag: false
+  canBeAntag: true
   startingGear: PrisonDoctorGear
   icon: "JobIconPrisonDoctor"
   overrideConsoleVisibility: false

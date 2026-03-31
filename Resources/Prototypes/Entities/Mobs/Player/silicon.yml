@@ -573,6 +573,8 @@
     containers:
       borg_brain:
         - Boris # Sunrise-Edit
+      head:
+      - ClothingHeadHatCone # Sillycones!
   - type: ItemSlots
     slots:
       cell_slot:

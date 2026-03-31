@@ -7,7 +7,7 @@
   startingGear: CBURNGear
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security

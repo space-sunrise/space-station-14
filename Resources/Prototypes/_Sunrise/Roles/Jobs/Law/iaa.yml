@@ -13,7 +13,7 @@
   startingGear: IAAGear
   icon: "JobIconIAA"
   supervisors: job-supervisors-magistrate
-  canBeAntag: false
+  canBeAntag: true
   displayWeight: 40
   access:
   - Command
@@ -36,7 +36,7 @@
     pocket2: HyperLinkBookCorporateLaw
   inhand:
     - BriefcaseIAAFilled
-  
+
 - type: chameleonOutfit
   id: IAAChameleonOutfit
   job: IAA
