@@ -451,6 +451,15 @@
     board: ShuttleGunBeamstormMachineGunCircuitboard
   - type: PowerCellSlot
     cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCage
   - type: Battery
     maxCharge: 2000
     startingCharge: 2000

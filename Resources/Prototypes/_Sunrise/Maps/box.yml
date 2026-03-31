@@ -20,12 +20,6 @@
             priorityTag: DockMining
           - gridPath: /Maps/_Sunrise/Shuttles/Security/security.yml
             priorityTag: DockSecurity
-          - gridPath: /Maps/_Sunrise/Shuttles/personal.yml
-            priorityTag: DockPersonal
-          - gridPath: /Maps/_Sunrise/Shuttles/personal.yml
-            priorityTag: DockPersonal
-          - gridPath: /Maps/_Sunrise/Shuttles/personal.yml
-            priorityTag: DockPersonal
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_Sunrise/Shuttles/Evac/emergency-centipede.yml
         - type: StationJobs

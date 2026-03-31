@@ -3,7 +3,7 @@
   mapName: 'Bagel'
   mapPath: /Maps/_Sunrise/Station/bagel.yml
   minPlayers: 0
-  maxPlayers: 75
+  maxPlayers: 90
   maxRandomOffset: 0
   randomRotation: false
   stations:
