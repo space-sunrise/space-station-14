@@ -13,7 +13,7 @@
   parent: ClothingUniformBase
   id: UniformDressMaidLong
   name: long maid dress
-  description:  For connoisseurs of classic sundresses and practicality.
+  description: For connoisseurs of classic sundresses and practicality.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Dresses/maid_long.rsi
