@@ -305,9 +305,36 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3
+  # Sunrise-start
+  - type: CombatMode
+  - type: FactionException
+  - type: MeleeWeapon
+    attackRate: 1.2
+    damage:
+      types:
+        Blunt: 0
+    animation: WeaponArcFist
+  - type: Reflect
+    reflectProb: 1
+    reflects:
+    - Energy
+    - NonEnergy
+  - type: CleanBot
+    wantedVisionRange: 8
+    chaseLoseRange: 12
+    retaliationTime: 20
+  - type: CleanBotDetainOnHit
+    handcuffPrototype: Zipties
+    duration: 1.5
   - type: HTN
     rootTask:
-      task: CleanbotCompound
+      task: SunriseCleanbotCompound
+    blackboard:
+      VisionRadius: !type:Single
+        8
+      AggroVisionRadius: !type:Single
+        12
+    # Sunrise-end
   - type: DrainableSolution
     solution: drainBuffer
   - type: InteractionPopup

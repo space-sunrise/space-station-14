@@ -1,0 +1,12 @@
+- type: htnCompound
+  id: SunriseCleanbotCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: BufferNearbyPuddlesCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
