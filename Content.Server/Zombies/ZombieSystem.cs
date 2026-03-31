@@ -1,4 +1,5 @@
 using Content.Shared.NPC.Prototypes;
+using NetCord;
 using System.Text.RegularExpressions;
 using Content.Server.Actions;
 using Content.Server.Body.Systems;
@@ -7,12 +8,14 @@ using Content.Server.Chat.Systems;
 using Content.Server.Emoting.Systems;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Pinpointer;
+using Content.Server.Polymorph.Components;
 using Content.Server.Speech.EntitySystems;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Armor;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cloning.Events;
 using Content.Shared.Chat;
+using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
@@ -71,8 +74,10 @@ namespace Content.Server.Zombies
             base.Initialize();
 
             SubscribeLocalEvent<ZombieComponent, ComponentStartup>(OnStartup);
-            SubscribeLocalEvent<ZombieComponent, EmoteEvent>(OnEmote, before:
-                new[] { typeof(VocalSystem), typeof(BodyEmotesSystem) });
+            // Sunrise edit start - furry virus should not override manual emotes
+            // SubscribeLocalEvent<ZombieComponent, EmoteEvent>(OnEmote, before:
+            //     new[] { typeof(VocalSystem), typeof(BodyEmotesSystem) });
+            // Sunrise edit end
 
             SubscribeLocalEvent<ZombieComponent, MeleeHitEvent>(OnMeleeHit);
             SubscribeLocalEvent<ZombieComponent, MobStateChangedEvent>(OnMobState);
@@ -195,7 +200,6 @@ namespace Content.Server.Zombies
             }
 
             _throwing.TryThrow(uid, direction, 7F, uid, 10F);
-            _chat.TryEmoteWithChat(uid, "ZombieGroan");
         }
         // Sunnrise-End
 
@@ -310,24 +314,6 @@ namespace Content.Server.Zombies
 
         private void OnMobState(EntityUid uid, ZombieComponent component, MobStateChangedEvent args)
         {
-            if (args.NewMobState == MobState.Alive)
-            {
-                // Groaning when damaged
-                EnsureComp<EmoteOnDamageComponent>(uid);
-                _emoteOnDamage.AddEmote(uid, "Scream");
-
-                // Random groaning
-                EnsureComp<AutoEmoteComponent>(uid);
-                _autoEmote.AddEmote(uid, "ZombieGroan");
-            }
-            else
-            {
-                // Stop groaning when damaged
-                _emoteOnDamage.RemoveEmote(uid, "Scream");
-
-                // Stop random groaning
-                _autoEmote.RemoveEmote(uid, "ZombieGroan");
-            }
         }
 
         private float GetZombieInfectionChance(EntityUid uid, ZombieComponent zombieComponent)
@@ -417,29 +403,21 @@ namespace Content.Server.Zombies
         ///     this currently only restore the skin/eye color from before zombified
         ///     TODO: completely rethink how zombies are done to allow reversal.
         /// </remarks>
-        public bool UnZombify(EntityUid source, EntityUid target, ZombieComponent? zombiecomp)
+        public bool UnZombify(EntityUid source, EntityUid target)
         {
-            if (!Resolve(source, ref zombiecomp))
+            if (!TryComp<PolymorphedEntityComponent>(source, out var polymorphed)
+                || polymorphed.Parent is not { } parent
+                || Deleted(parent))
+            {
                 return false;
-
-            foreach (var (layer, info) in zombiecomp.BeforeZombifiedCustomBaseLayers)
-            {
-                _humanoidAppearance.SetBaseLayerColor(target, layer, info.Color);
-                _humanoidAppearance.SetBaseLayerId(target, layer, info.Id);
             }
-            if (TryComp<HumanoidAppearanceComponent>(target, out var appcomp))
-            {
-                appcomp.EyeColor = zombiecomp.BeforeZombifiedEyeColor;
-            }
-            _humanoidAppearance.SetSkinColor(target, zombiecomp.BeforeZombifiedSkinColor, false);
-            _bloodstream.ChangeBloodReagents(target, zombiecomp.BeforeZombifiedBloodReagents);
 
-            return true;
+            return TryRestorePreZombifiedPolymorphState(source, target);
         }
 
         private void OnZombieCloning(Entity<ZombieComponent> ent, ref CloningEvent args)
         {
-            UnZombify(ent.Owner, args.CloneUid, ent.Comp);
+            UnZombify(ent.Owner, args.CloneUid);
         }
 
         // Make sure players that enter a zombie (for example via a ghost role or the mind swap spell) count as an antagonist.

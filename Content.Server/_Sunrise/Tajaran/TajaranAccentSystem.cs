@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using System.Linq;
 using Content.Server.Speech.Components;
 using Content.Shared.Speech;
 using Robust.Shared.Random;
@@ -7,48 +8,61 @@ namespace Content.Server.Speech.EntitySystems
 {
     public sealed class TajaranAccentSystem : EntitySystem
     {
+        private static readonly Regex FirstWordAllCapsRegex = new(@"^(\S+)");
+        private static readonly Regex LowerLatinRRegex = new("r+");
+        private static readonly Regex UpperLatinRRegex = new("R+");
+        private static readonly Regex LowerCyrillicRRegex = new("р+");
+        private static readonly Regex UpperCyrillicRRegex = new("Р+");
+        private static readonly IReadOnlyList<string> TajaranWords =
+        [
+            "Мрр...",
+            "Мяу...",
+            "Нья...",
+            "Пурр...",
+            "Ррр...",
+        ];
+
         [Dependency] private readonly IRobustRandom _random = default!;
 
         public override void Initialize()
         {
             base.Initialize();
-            SubscribeLocalEvent<TajaranAccentComponent, AccentGetEvent>(OnAccent);
+            SubscribeLocalEvent<TajaranAccentComponent, AccentGetEvent>(OnAccent, after: [typeof(OwOAccentSystem)]);
         }
 
-        private void OnAccent(EntityUid uid, TajaranAccentComponent component, AccentGetEvent args)
+        public string Accentuate(string message)
         {
-            var message = args.Message;
+            if (string.IsNullOrWhiteSpace(message))
+                return _random.Pick(TajaranWords).Trim();
 
             // r => rrr
-            message = Regex.Replace(
-                message,
-                "r+",
-                _random.Pick(new List<string> { "rr", "rrr" })
-            );
+            message = LowerLatinRRegex.Replace(message, _random.Pick(new List<string> { "rr", "rrr" }));
             // R => RRR
-            message = Regex.Replace(
-                message,
-                "R+",
-                _random.Pick(new List<string> { "RR", "RRR" })
-            );
+            message = UpperLatinRRegex.Replace(message, _random.Pick(new List<string> { "RR", "RRR" }));
 
             // р => ррр
-            message = Regex.Replace(
-                message,
-                "р+",
-                _random.Pick(new List<string> { "рр", "ррр" })
-            );
+            message = LowerCyrillicRRegex.Replace(message, _random.Pick(new List<string> { "рр", "ррр" }));
             // Р => РРР
-            message = Regex.Replace(
-                message,
-                "Р+",
-                _random.Pick(new List<string> { "РР", "РРР" })
-            );
+            message = UpperCyrillicRRegex.Replace(message, _random.Pick(new List<string> { "РР", "РРР" }));
 
             // Вставка апострофов
             message = AddApostrophes(message);
 
-            args.Message = message;
+
+            var firstWordAllCaps = !FirstWordAllCapsRegex.Match(message).Value.Any(char.IsLower);
+            var tajaranWord = _random.Pick(TajaranWords);
+
+            if (!firstWordAllCaps)
+                message = message[0].ToString().ToUpperInvariant() + message[1..];
+            else
+                tajaranWord = tajaranWord.ToUpperInvariant();
+
+            return tajaranWord + " " + message;
+        }
+
+        private void OnAccent(EntityUid uid, TajaranAccentComponent component, AccentGetEvent args)
+        {
+            args.Message = Accentuate(args.Message);
         }
 
         private string AddApostrophes(string message)

@@ -1,0 +1,23 @@
+- type: polymorph
+  id: ZombieVirusPermanentlyTajaran
+  configuration:
+    entity: MobTajaranRandomization
+    forced: true
+    blockIfHasMind: false
+    transferName: true
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true
+
+- type: polymorph
+  id: ZombieVirusPermanentlyVulpkanin
+  configuration:
+    entity: MobVulpkaninRandomization
+    forced: true
+    blockIfHasMind: false
+    transferName: true
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true
