@@ -7,7 +7,8 @@
     transferName: true
     inventory: Transfer
     revertOnCrit: false
-    revertOnDeath: false
+    revertOnDeath: true
+    revertOnDelete: false
     allowRepeatedMorphs: true
 
 - type: polymorph
@@ -19,5 +20,6 @@
     transferName: true
     inventory: Transfer
     revertOnCrit: false
-    revertOnDeath: false
+    revertOnDeath: true
+    revertOnDelete: false
     allowRepeatedMorphs: true
