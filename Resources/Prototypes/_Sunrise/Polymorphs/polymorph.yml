@@ -1,4 +1,15 @@
 - type: polymorph
+  id: DieOfFateMonkeySmite
+  configuration:
+    entity: MobMonkey
+    forced: true
+    inventory: Transfer
+    ignoreAllowRepeatedMorphs: true
+    revertOnDelete: false
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: polymorph
   id: PermanentlyMonkey
   configuration:
     entity: MobMonkey

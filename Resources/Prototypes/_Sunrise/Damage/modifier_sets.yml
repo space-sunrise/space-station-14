@@ -1,4 +1,14 @@
 - type: damageModifierSet
+  id: DieOfFateArmor
+  coefficients:
+    Blunt: 0.7
+    Slash: 0.7
+    Piercing: 0.7
+    Heat: 0.8
+    Shock: 0.8
+    Cold: 0.8
+
+- type: damageModifierSet
   id: Felinid
   coefficients:
     Blunt: 1.1

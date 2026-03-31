@@ -1,0 +1,25 @@
+- type: entity
+  parent: d20Dice
+  id: DieOfFate
+  name: die of fate
+  description: A die with twenty sides. You can feel unearthly energies radiating from it. Using this might be VERY risky.
+  components:
+  - type: DieOfFate
+  - type: Dice
+    sides: 20
+    currentValue: 20
+  - type: Sprite
+    sprite: Objects/Fun/dice.rsi
+    state: d20_20
+    color: "#9b30ff"
+
+- type: randomHumanoidSettings
+  id: DieOfFateFamiliar
+  parent: EventHumanoid
+  randomizeName: true
+  components:
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: GhostTakeoverAvailable
+    - type: Loadout
+      prototypes: [ServiceWorkerGear]
