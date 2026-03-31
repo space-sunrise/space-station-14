@@ -78,3 +78,30 @@
         doAfter: 6
   - node: SunflowerCrown
     entity: SunflowerCrown
+
+- type: constructionGraph
+  id: WhiteLilyCrown
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WhiteLilyCrown
+      steps:
+      - tag: WhiteLily
+        name: construction-graph-tag-white-lily
+        icon:
+          sprite: _Sunrise/Objects/Specific/Hydroponics/white_lily.rsi
+          state: produce
+      - tag: WhiteLily
+        name: construction-graph-tag-white-lily
+        icon:
+          sprite: _Sunrise/Objects/Specific/Hydroponics/white_lily.rsi
+          state: produce
+      - tag: WhiteLily
+        name: construction-graph-tag-white-lily
+        icon:
+          sprite: _Sunrise/Objects/Specific/Hydroponics/white_lily.rsi
+          state: produce
+        doAfter: 6
+  - node: WhiteLilyCrown
+    entity: WhiteLilyCrown

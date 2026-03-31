@@ -34,6 +34,26 @@
   name: 120mm blast grenade
   description: A devastating 120mm blast grenade designed for the CYERXA cannon system. Three times more powerful than standard blast grenades.
   components:
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Grenade120mmBlastRupture:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: CartridgeAmmo
     proto: BulletGrenade120mmBlast
     deleteOnSpawn: true # SR

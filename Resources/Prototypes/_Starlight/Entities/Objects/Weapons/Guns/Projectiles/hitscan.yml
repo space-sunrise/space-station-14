@@ -102,12 +102,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
-    armorPenetration: -0.13
+    armorPenetration: -0.15
     damage:
       types:
         Piercing: 35
   - type: HitscanStaminaDamage
-    staminaDamage: 4
+    staminaDamage: 15
   - type: HitscanPierce
     chance: 0.40
     deviation: 0.05
@@ -145,7 +145,7 @@
   - type: HitscanRicochet
     chance: 0.30
   - type: HitscanStaminaDamage
-    staminaDamage: 5
+    staminaDamage: 12
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -172,7 +172,7 @@
       types:
         Piercing: 45 # +30%
   - type: HitscanStaminaDamage
-    staminaDamage: 10
+    staminaDamage: 22
   - type: HitscanPierce
     chance: 0.03
     deviation: 0.05
@@ -189,6 +189,8 @@
     damage:
       types:
         Piercing: 25 #- 30%
+  - type: HitscanStaminaDamage
+    staminaDamage: 6
   - type: HitscanPierce
     chance: 0.69
     deviation: 0.05
@@ -340,12 +342,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
-    armorPenetration: -0.13
+    armorPenetration: -0.15
     damage:
       types:
         Piercing: 16
   - type: HitscanStaminaDamage
-    staminaDamage: 2
+    staminaDamage: 3
   - type: HitscanPierce
     chance: 0.40
     deviation: 0.2
@@ -369,7 +371,7 @@
         Piercing: 7
         Blunt: 7
   - type: HitscanStaminaDamage
-    staminaDamage: 3
+    staminaDamage: 5
   - type: HitscanPierce
     chance: 0.25
     deviation: 0.2
@@ -392,7 +394,7 @@
       types:
         Piercing: 21 # +30%
   - type: HitscanStaminaDamage
-    staminaDamage: 5
+    staminaDamage: 8
   - type: HitscanPierce
     chance: 0.03
     deviation: 0.2
@@ -408,7 +410,7 @@
     armorPenetration: 0.25
     damage:
       types:
-        Piercing: 11 #- 30%
+        Piercing: 10 #- 40%
   - type: HitscanPierce
     chance: 0.69
     deviation: 0.2
@@ -494,7 +496,7 @@
     armorPenetration: 0.69
     damage:
       types:
-        Piercing: 11 #- 30%
+        Piercing: 10 #- 40%
   - type: HitscanPierce
     chance: 0.81
     deviation: 0.2
@@ -518,7 +520,7 @@
       types:
         Piercing: 20
   - type: HitscanStaminaDamage
-    staminaDamage: 15
+    staminaDamage: 16
   - type: HitscanPierce
     chance: 0.30
     deviation: 0.15
@@ -541,7 +543,7 @@
       types:
         Piercing: 26 # +30%
   - type: HitscanStaminaDamage
-    staminaDamage: 20
+    staminaDamage: 22
   - type: HitscanPierce
     chance: 0.02
     deviation: 0.15
@@ -562,9 +564,9 @@
     armorPenetration: 0.15
     damage:
       types:
-        Piercing: 16
+        Piercing: 13 #- 35%
   - type: HitscanStaminaDamage
-    staminaDamage: 13
+    staminaDamage: 8
   - type: HitscanPierce
     chance: 0.55
     deviation: 0.15
@@ -586,9 +588,9 @@
     armorPenetration: 0.50
     damage:
       types:
-        Piercing: 14
+        Piercing: 13 #- 35%
   - type: HitscanStaminaDamage
-    staminaDamage: 10
+    staminaDamage: 8
   - type: HitscanPierce
     chance: 0.63
     deviation: 0.15
@@ -662,12 +664,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
-    armorPenetration: -0.13
+    armorPenetration: -0.15
     damage:
       types:
         Piercing: 19
   - type: HitscanStaminaDamage
-    staminaDamage: 2
+    staminaDamage: 6
   - type: HitscanPierce
     chance: 0.40
     deviation: 0.05
@@ -692,7 +694,7 @@
         Piercing: 13
         Blunt: 6
   - type: HitscanStaminaDamage
-    staminaDamage: 4
+    staminaDamage: 8
   - type: HitscanPierce
     chance: 0.20
     deviation: 0.05
@@ -716,7 +718,7 @@
       types:
         Piercing: 25 # +30%
   - type: HitscanStaminaDamage
-    staminaDamage: 6
+    staminaDamage: 12
   - type: HitscanPierce
     chance: 0.03
     deviation: 0.05
@@ -733,7 +735,7 @@
     armorPenetration: 0.25
     damage:
       types:
-        Piercing: 13 #- 40%
+        Piercing: 12 #- 35%
   - type: HitscanPierce
     chance: 0.69
     deviation: 0.05
@@ -755,7 +757,7 @@
     armorPenetration: 0.69
     damage:
       types:
-        Piercing: 13 #- 40%
+        Piercing: 12 #- 35%
   - type: HitscanPierce
     chance: 0.81
     deviation: 0.05
@@ -840,12 +842,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
-    armorPenetration: -0.13
+    armorPenetration: -0.15
     damage:
       types:
         Piercing: 17
   - type: HitscanStaminaDamage
-    staminaDamage: 2
+    staminaDamage: 4
   - type: HitscanPierce
     chance: 0.40
     pierceLevel: Wood
@@ -868,7 +870,7 @@
       types:
         Piercing: 23 # +30%
   - type: HitscanStaminaDamage
-    staminaDamage: 5
+    staminaDamage: 8
   - type: HitscanPierce
     chance: 0.03
   - type: HitscanRicochet
@@ -883,7 +885,7 @@
     armorPenetration: 0.25
     damage:
       types:
-        Piercing: 12 #- 30%
+        Piercing: 11 #- 35%
   - type: HitscanPierce
     chance: 0.69
     pierceLevel: Metal
@@ -904,7 +906,7 @@
     armorPenetration: 0.69
     damage:
       types:
-        Piercing: 12 #- 30%
+        Piercing: 11 #- 35%
   - type: HitscanPierce
     chance: 0.81
     pierceLevel: HardenedMetal
@@ -1042,7 +1044,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
-    armorPenetration: -0.15 # Sunrise-edit
+    armorPenetration: -0.2 # Sunrise-edit
     damage:
       types:
         Piercing: 5

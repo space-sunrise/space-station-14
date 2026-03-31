@@ -4,3 +4,15 @@
   parent: BaseGoldBorgModuleRecipe
   id: BorgModuleAdvancedCombat
   result: BorgModuleAdvancedCombat
+
+# Cargo Modules
+
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
+  id: BorgModuleJetpack
+  result: BorgModuleJetpack
+
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
+  id: BorgModuleMiningCombat
+  result: BorgModuleMiningCombat

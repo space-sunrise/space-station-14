@@ -44,13 +44,13 @@
   id: SovietChatterNPC
   values:
     prefix: advertisement-soviethumanoid-
-    count: 66
+    count: 68
 
 - type: localizedDataset
   id: SovietChatterNPCVeteran
   values:
     prefix: advertisement-soviethumanoid-veteran-
-    count: 16
+    count: 24
 
 - type: localizedDataset
   id: PirateUplinkChatter

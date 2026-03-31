@@ -33,6 +33,57 @@
     - -60,10,-10,60
 
 - type: dungeonPreset
+  id: SovietBucket
+  roomPacks:
+    - 0,0,17,17
+    - 20,0,37,17
+    - 20,20,37,37
+    - -20,0,-3,17
+    - -20,20,-3,37
+
+- type: dungeonPreset
+  id: SovietSpaceShip
+  roomPacks:
+    - 0,10,17,27
+    - 20,0,37,17
+    - 20,20,37,37
+    - -20,0,-3,17
+    - -20,20,-3,37
+
+- type: dungeonPreset
+  id: SovietTall
+  roomPacks:
+    - 0,0,17,17
+    - 0,20,17,37
+    - 20,37,37,54
+    - 0,54,17,71
+    - 0,74,17,91
+
+- type: dungeonPreset
+  id: SovietWow
+  roomPacks:
+    - 0,20,17,37
+    - 20,0,37,17
+    - 40,20,57,37
+    - -20,0,-3,17
+    - -40,20,-23,37
+
+- type: dungeonPreset
+  id: SovietAnyChance
+  roomPacks:
+    - 0,0,17,5
+    - 20,0,31,5
+    - 35,0,46,5
+    - 48,0,59,3
+    - 0,10,17,27
+    - 20,10,27,17
+    - 30,10,37,15
+    - 40,10,47,13
+    - 50,10,55,15
+    - 58,10,61,15
+    - 0,30,13,33
+
+- type: dungeonPreset
   id: SovietWEHBucket
   roomPacks:
     - 0,0,17,17
@@ -71,8 +122,8 @@
 - type: dungeonPreset
   id: SovietWEHAnyChance
   roomPacks:
-    - 0,0,17,6
-    - 20,0,32,6
+    - 0,0,17,5
+    - 20,0,31,5
     - 35,0,46,5
     - 48,0,59,3
     - 0,10,17,25

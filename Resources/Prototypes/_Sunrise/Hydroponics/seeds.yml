@@ -367,3 +367,33 @@
       Min: 1
       Max: 10
       PotencyDivisor: 10
+
+- type: seed
+  id: WhiteLily
+  name: white-lily-name
+  noun: seeds-noun-seeds
+  displayName: seeds-white-lily-display-name
+  plantRsi: _Sunrise/Objects/Specific/Hydroponics/white_lily.rsi
+  packetPrototype: WhiteLilySeeds
+  productPrototypes:
+  - FoodWhiteLily
+  harvestRepeat: Repeat
+  lifespan: 25
+  maturation: 6
+  production: 4
+  yield: 3
+  potency: 10
+  growthStages: 3
+  idealLight: 7
+  waterConsumption: 0.40
+  nutrientConsumption: 0.30
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 10

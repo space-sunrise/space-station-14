@@ -7,6 +7,7 @@ using Content.Shared.Procedural; // Sunrise-Edit
 using Content.Shared.Random.Helpers; // Sunrise-Edit
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Shuttles.Components;
+using Content.Server.GameTicking; // Sunrise-Edit
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.GameStates;
@@ -20,7 +21,7 @@ public sealed partial class SalvageSystem
      * Handles setup / teardown of salvage expeditions.
      */
 
-    private const int MissionLimit = 4; // Sunrise-Edit
+    private const int MissionLimit = 5; // Sunrise-Edit
 
     private readonly JobQueue _salvageQueue = new();
     private readonly List<(SpawnSalvageMissionJob Job, CancellationTokenSource CancelToken)> _salvageJobs = new();
@@ -104,6 +105,11 @@ public sealed partial class SalvageSystem
 
     private void UpdateExpeditions()
     {
+        // Sunrise-Start
+        if (_gameTicker.RunLevel != GameRunLevel.InRound)
+            return;
+        // Sunrise-End
+
         var currentTime = _timing.CurTime;
         _salvageQueue.Process();
 
@@ -144,13 +150,14 @@ public sealed partial class SalvageSystem
     private void GenerateMissions(SalvageExpeditionDataComponent component)
     {
         component.Missions.Clear();
-        // Sunrise-Start: weighted difficulty generation with round-time gates.
-        var roundDuration = _gameTicker.RoundDuration();
+        // Sunrise-Start
+        var roundDuration = _gameTicker.RunLevel == GameRunLevel.InRound
+            ? _gameTicker.RoundDuration()
+            : TimeSpan.Zero;
         var difficulties = _prototypeManager
             .EnumeratePrototypes<SalvageDifficultyPrototype>()
             .Where(d => d.Delay <= roundDuration && d.Probability > 0f)
-            .Select(d => d.ID)
-            .ToList();
+            .ToDictionary(d => d.ID, d => d.Probability); 
 
         if (difficulties.Count == 0)
             return;

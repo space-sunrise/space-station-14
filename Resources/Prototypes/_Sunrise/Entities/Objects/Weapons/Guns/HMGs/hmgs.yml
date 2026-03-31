@@ -180,7 +180,7 @@
       tags:
       - CartridgeLightRifle
     proto: CartridgeLightRifleFMJ
-    capacity: 1200
+    capacity: 900
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
