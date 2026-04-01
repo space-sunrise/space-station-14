@@ -78,7 +78,6 @@
   components:
   - type: Tag
     tags:
-    - Grenade120mm
     - 120mmRocket
   - type: CartridgeAmmo
     proto: BulletRocket120mmMetla
