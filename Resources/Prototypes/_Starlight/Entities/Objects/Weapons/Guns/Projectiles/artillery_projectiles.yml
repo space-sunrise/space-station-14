@@ -148,7 +148,7 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
-      - state: blast240mm
+      - state: blast240mmcrit
     scale: 1.2, 1.2
   - type: Projectile
     angle: 180
@@ -184,7 +184,7 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
-      - state: nuke240mm
+      - state: nuke240mmcrit
     scale: 1.2, 1.2
   - type: Projectile
     angle: 180
@@ -231,7 +231,7 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
-      - state: cluster240mm
+      - state: cluster240mmcrit
     scale: 1.2, 1.2
   - type: Projectile
     angle: 180
@@ -359,7 +359,7 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
-      - state: nuke240mm
+      - state: nuke240mmcrit
   - type: Transform
     anchored: false
   - type: TriggerOnSpawn
