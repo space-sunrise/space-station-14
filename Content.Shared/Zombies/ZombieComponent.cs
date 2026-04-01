@@ -156,16 +156,16 @@ public sealed partial class ZombieComponent : Component
     public Solution NewBloodReagents = new([new("ZombieBlood", 1)]);
 
     [DataField]
-    public ProtoId<TTSVoicePrototype> VulpkaninMaleVoice = "HearthstoneZverolovTavish";
+    public ProtoId<TTSVoicePrototype> VulpkaninMaleVoice = "PlayBoyzTV";
 
     [DataField]
-    public ProtoId<TTSVoicePrototype> VulpkaninFemaleVoice = "HearthstoneValiraSangvinar";
+    public ProtoId<TTSVoicePrototype> VulpkaninFemaleVoice = "tts-voice-name-neco";
 
     [DataField]
-    public ProtoId<TTSVoicePrototype> TajaranMaleVoice = "Dota2Riki";
+    public ProtoId<TTSVoicePrototype> TajaranMaleVoice = "PlayBoyzTV";
 
     [DataField]
-    public ProtoId<TTSVoicePrototype> TajaranFemaleVoice = "HearthstoneElisa";
+    public ProtoId<TTSVoicePrototype> TajaranFemaleVoice = "tts-voice-name-mita";
 
     // Sunrise-Start
     [DataField("actionJumpId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
