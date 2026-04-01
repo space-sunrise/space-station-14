@@ -245,3 +245,14 @@
     Piercing: 1.10
     Heat: 1.15
     Cold: 0.7
+
+- type: damageModifierSet
+  id: FurryZombie
+  coefficients:
+    Blunt: 0.7
+    Slash: 1.0
+    Piercing: 0.8
+    Cold: 0.3
+    Heat: 2.0
+    Poison: 0.0
+    Radiation: 0.0

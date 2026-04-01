@@ -258,7 +258,7 @@ public sealed partial class ZombieSystem
         Dirty(target, melee);
 
         //The zombie gets the assigned damage weaknesses and strengths
-        _damageable.SetDamageModifierSetId(target, "Zombie");
+        _damageable.SetDamageModifierSetId(target, "FurryZombie"); // Sunrise-edit
 
         //This makes it so the zombie doesn't take bloodloss damage.
         //NOTE: they are supposed to bleed, just not take damage
@@ -267,9 +267,9 @@ public sealed partial class ZombieSystem
         _bloodstream.ChangeBloodReagents(target, zombiecomp.NewBloodReagents);
 
         //This is specifically here to combat insuls, because frying zombies on grilles is funny as shit.
-        _inventory.TryUnequip(target, "gloves", true, true);
+        //_inventory.TryUnequip(target, "gloves", true, true); // Sunrise-remove
         //Should prevent instances of zombies using comms for information they shouldnt be able to have.
-        _inventory.TryUnequip(target, "ears", true, true);
+        // _inventory.TryUnequip(target, "ears", true, true); // Sunrise-remove
 
         //popup
         _popup.PopupEntity(Loc.GetString("zombie-transform", ("target", target)), target, PopupType.LargeCaution);
@@ -327,15 +327,17 @@ public sealed partial class ZombieSystem
             ghostRole.MindRoles.Add(MindRoleZombie);
         }
 
-        if (TryComp<HandsComponent>(target, out var handsComp))
-        {
-            _hands.RemoveHands(target);
-            RemComp(target, handsComp);
-        }
+        // Sunrise-start
+        // if (TryComp<HandsComponent>(target, out var handsComp))
+        // {
+        //     _hands.RemoveHands(target);
+        //     RemComp(target, handsComp);
+        // }
+        // Sunrise-end
 
         // Sloth: What the fuck?
         // How long until compregistry lmao.
-        RemComp<PullerComponent>(target);
+        // RemComp<PullerComponent>(target); // Sunrise-remove
 
         // No longer waiting to become a zombie:
         // Requires deferral because this is (probably) the event which called ZombifyEntity in the first place.

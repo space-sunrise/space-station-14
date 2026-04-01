@@ -50,13 +50,13 @@ public sealed partial class ZombieComponent : Component
     /// The skin color of the zombie
     /// </summary>
     [DataField("skinColor")]
-    public Color SkinColor = new(1f, 0.733f, 0.765f);
+    public Color SkinColor = new(1f, 0.733f, 0.765f); // Sunrise-Edit
 
     /// <summary>
     /// The eye color of the zombie
     /// </summary>
     [DataField("eyeColor")]
-    public Color EyeColor = new(0.96f, 0.13f, 0.24f);
+    public Color EyeColor = new(0.96f, 0.13f, 0.75f); // Sunrise-Edit
 
     /// <summary>
     /// The base layer to apply to any 'external' humanoid layers upon zombification.
@@ -155,6 +155,7 @@ public sealed partial class ZombieComponent : Component
     [DataField("newBloodReagents")]
     public Solution NewBloodReagents = new([new("ZombieBlood", 1)]);
 
+    // Sunrise-start
     [DataField]
     public ProtoId<TTSVoicePrototype> VulpkaninMaleVoice = "PlayBoyzTV";
 
@@ -167,7 +168,6 @@ public sealed partial class ZombieComponent : Component
     [DataField]
     public ProtoId<TTSVoicePrototype> TajaranFemaleVoice = "tts-voice-name-mita";
 
-    // Sunrise-Start
     [DataField("actionJumpId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string ActionJumpId = "ZombieJump";
 
