@@ -1,5 +1,5 @@
 - type: polymorph
-  id: ZombieVirusPermanentlyTajaran
+  id: ZombieVirusTajaran
   configuration:
     entity: MobTajaranRandomization
     forced: true
@@ -10,10 +10,10 @@
     revertOnDeath: true
     revertOnDelete: false
     allowRepeatedMorphs: true
-    transferDamage: false
+    transferDamage: true
 
 - type: polymorph
-  id: ZombieVirusPermanentlyVulpkanin
+  id: ZombieVirusVulpkanin
   configuration:
     entity: MobVulpkaninRandomization
     forced: true
@@ -24,4 +24,4 @@
     revertOnDeath: true
     revertOnDelete: false
     allowRepeatedMorphs: true
-    transferDamage: false
+    transferDamage: true

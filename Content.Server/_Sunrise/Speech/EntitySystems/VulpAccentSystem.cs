@@ -7,7 +7,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.Speech.EntitySystems;
 
-public sealed class VulpaAccentSystem : EntitySystem
+public sealed class VulpAccentSystem : EntitySystem
 {
     private static readonly Regex FirstWordAllCapsRegex = new(@"^(\S+)");
     private static readonly Regex LowerLatinRRegex = new("r+");

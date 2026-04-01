@@ -1,5 +1,6 @@
 using Content.Shared.NPC.Prototypes;
 using NetCord;
+using System.Numerics; // Sunrise-add
 using System.Text.RegularExpressions;
 using Content.Server.Actions;
 using Content.Server.Body.Systems;
@@ -33,10 +34,13 @@ using Content.Shared.Throwing;
 using Content.Shared.Damage;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared.Weapons.Ranged.Systems; // Sunrise-add
 using Content.Shared.Zombies;
+using Robust.Shared.Map; // Sunrise-add
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Server._Sunrise.Zombies; // Sunrise-add
 
 namespace Content.Server.Zombies
 {
@@ -58,6 +62,9 @@ namespace Content.Server.Zombies
         [Dependency] private readonly SharedStunSystem _stun = default!;
         [Dependency] private readonly NavMapSystem _navMap = default!; // Sunrise-Zombies
         [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly IComponentFactory _componentFactory = default!;
+        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+        [Dependency] private readonly SharedGunSystem _gun = default!;
 
         public readonly ProtoId<NpcFactionPrototype> Faction = "Zombie";
 
@@ -76,10 +83,10 @@ namespace Content.Server.Zombies
             base.Initialize();
 
             SubscribeLocalEvent<ZombieComponent, ComponentStartup>(OnStartup);
-            // Sunrise edit start - furry virus should not override manual emotes
+            // Sunrise-start
             // SubscribeLocalEvent<ZombieComponent, EmoteEvent>(OnEmote, before:
             //     new[] { typeof(VocalSystem), typeof(BodyEmotesSystem) });
-            // Sunrise edit end
+            // Sunrise-end
 
             SubscribeLocalEvent<ZombieComponent, MeleeHitEvent>(OnMeleeHit);
             SubscribeLocalEvent<ZombieComponent, MobStateChangedEvent>(OnMobState);
@@ -97,30 +104,48 @@ namespace Content.Server.Zombies
 
             SubscribeLocalEvent<ZombifyOnDeathComponent, MobStateChangedEvent>(OnDamageChanged);
 
-            // Sunnrise-Start
+            // Sunnrise-start
             SubscribeLocalEvent<ZombieComponent, ZombieJumpActionEvent>(OnJump);
             SubscribeLocalEvent<ZombieComponent, ZombieFlairActionEvent>(OnFlair);
             SubscribeLocalEvent<ZombieComponent, ThrowDoHitEvent>(OnThrowDoHit);
-            // Sunnrise-End
-
-            // Sunrise: zombies fumble with ranged weapons and shoot themselves
             SubscribeLocalEvent<ZombieComponent, SelfBeforeGunShotEvent>(OnZombieBeforeGunShot);
+            // Sunrise-end
         }
 
-        // Sunrise: zombies fumble with ranged weapons and wound themselves instead
-        private static readonly DamageSpecifier ZombieGunFumbleDamage = new()
+        // Sunrise-start
+        private void OnZombieBeforeGunShot(Entity<ZombieComponent> ent, ref SelfBeforeGunShotEvent args)
         {
-            DamageDict = new() { { "Piercing", 15 } }
-        };
+            // Redirect the shot to hit the zombie itself.
+            // SetTarget uses the gun system's access to modify GunComponent.Targets for hitscan targeting.
+            _gun.SetTarget(args.Gun.Comp, ent.Owner);
 
-        private void OnZombieBeforeGunShot(Entity<ZombieComponent> ent, SelfBeforeGunShotEvent args)
-        {
-            _damageable.TryChangeDamage(ent, ZombieGunFumbleDamage, origin: ent);
-            _popup.PopupEntity(Loc.GetString("zombie-gun-fumble"), ent, PopupType.SmallCaution);
+            var zombieCoords = Transform(ent.Owner).Coordinates;
+            var zombieMap = _transform.ToMapCoordinates(zombieCoords);
+
+            // Nudge toCoordinates slightly toward where the zombie was aiming
+            // to avoid a zero-length direction vector which crashes the gun system.
+            // Compute the nudge in map space, then convert back to coordinates.
+            var nudge = new Vector2(0.0f, 0.01f);
+            if (args.Gun.Comp.ShootCoordinates is { } shootCoords)
+            {
+                var shootMap = _transform.ToMapCoordinates(shootCoords);
+                var dir = shootMap.Position - zombieMap.Position;
+                if (dir.LengthSquared() > 0)
+                    nudge = dir.Normalized();
+            }
+
+            var nudgeAngle = new Angle((0.5d - Random.Shared.NextDouble()) * Math.PI);
+            nudge = nudgeAngle.RotateVec(in nudge);
+            var toCoords = _transform.ToCoordinates(new MapCoordinates(zombieMap.Position + nudge, zombieMap.MapId));
+
+            // user: null prevents recursive SelfBeforeGunShotEvent
+            // and avoids the projectile ignoring the zombie as its shooter
+            _gun.Shoot(args.Gun, args.Gun.Comp, args.Ammo, zombieCoords, toCoords, out _);
+
+            _popup.PopupEntity(Loc.GetString("zombie-gun-fumble"), ent.Owner, PopupType.SmallCaution);
             args.Cancel();
         }
 
-        // Sunnrise-Start
         private void OnThrowDoHit(EntityUid uid, ZombieComponent component, ThrowDoHitEvent args)
         {
             if (_mobState.IsDead(uid))
@@ -228,6 +253,16 @@ namespace Content.Server.Zombies
 
             if (HasComp<ZombieComponent>(uid) || HasComp<ZombieImmuneComponent>(uid))
                 return;
+
+            // Sunrise-start
+            // Временный иммунитет
+            if (TryComp<ZombieTemporaryImmuneComponent>(uid, out var tempImmuneComp))
+            {
+                if (tempImmuneComp.ExpiryTime > _timing.CurTime)
+                    return;
+                RemComp<ZombieTemporaryImmuneComponent>(uid);
+            }
+            // Sunrise-end
 
             EnsureComp<PendingZombieComponent>(uid, out PendingZombieComponent pendingComp);
 

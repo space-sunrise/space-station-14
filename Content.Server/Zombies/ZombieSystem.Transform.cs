@@ -56,6 +56,8 @@ using Robust.Shared.Prototypes;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.Roles;
 using Content.Shared.Temperature.Components;
+using Content.Shared._Sunrise.InteractionsPanel.Data.Components; // Sunrise-add
+using Content.Server._Sunrise.Zombies; // Sunrise-add
 
 namespace Content.Server.Zombies;
 
@@ -90,8 +92,8 @@ public sealed partial class ZombieSystem
     private static readonly ProtoId<NpcFactionPrototype> ZombieFaction = "Zombie";
     private const string FurryZombieVulpkaninSpecies = "Vulpkanin";
     private const string FurryZombieTajaranSpecies = "Tajaran";
-    private static readonly ProtoId<PolymorphPrototype> FurryZombieVulpkaninPolymorph = "ZombieVirusPermanentlyVulpkanin";
-    private static readonly ProtoId<PolymorphPrototype> FurryZombieTajaranPolymorph = "ZombieVirusPermanentlyTajaran";
+    private static readonly ProtoId<PolymorphPrototype> FurryZombieVulpkaninPolymorph = "ZombieVirusVulpkanin";
+    private static readonly ProtoId<PolymorphPrototype> FurryZombieTajaranPolymorph = "ZombieVirusTajaran";
     private static readonly ProtoId<SpeechVerbPrototype> FurryZombieVulpkaninSpeechVerb = "Vulpkanin";
     private static readonly ProtoId<SpeechVerbPrototype> FurryZombieTajaranSpeechVerb = "Felinid";
     private static readonly ProtoId<SpeechSoundsPrototype> FurryZombieVulpkaninSpeechSounds = "Vulpkanin";
@@ -146,6 +148,16 @@ public sealed partial class ZombieSystem
         if (!Resolve(target, ref mobState, logMissing: false))
             return;
 
+        // Sunrise-start
+        // Проверяем временный имунитет, удаляем его компонент если время истекло
+        if (TryComp<ZombieTemporaryImmuneComponent>(target, out var tempImmune))
+        {
+            if (tempImmune.ExpiryTime > _timing.CurTime)
+                return;
+            RemComp<ZombieTemporaryImmuneComponent>(target);
+        }
+        // Sunrise-end
+
         // Detach role-banned players before zombification
         if (TryComp<ActorComponent>(target, out var actor) && _ban.IsRoleBanned(actor.PlayerSession, BannableZombiePrototypes))
         {
@@ -196,9 +208,11 @@ public sealed partial class ZombieSystem
         // RemComp<ComplexInteractionComponent>(target); // Sunrise-remove
         RemComp<SentienceTargetComponent>(target);
 
-        // Sunrise edit start - no full speech replacement for furry-virus
+        // Sunrise-start
         RemComp<ReplacementAccentComponent>(target);
-        // Sunrise edit end
+        RemComp<InteractionsComponent>(target);
+        _tag.AddTag(target, "CannotSuicide");
+        // Sunrise-end
 
         //This is needed for stupid entities that fuck up combat mode component
         //in an attempt to make an entity not attack. This is the easiest way to do it.
@@ -239,10 +253,9 @@ public sealed partial class ZombieSystem
             collectiveMindComponent.Minds.Add("Zombie");
         // Sunrise-End
 
-        // At this point every zombie should already be in a humanoid furry body.
         if (TryComp<HumanoidAppearanceComponent>(target, out var huApComp)) //huapcomp
         {
-            ApplyFurryZombieAppearance(originalTarget, target, zombiecomp, furryZombieSpecies, huApComp, originalHumanoidAppearance);
+            ApplyFurryZombieAppearance(originalTarget, target, zombiecomp, furryZombieSpecies, huApComp, originalHumanoidAppearance); // Sunrise-edit
 
             melee.Damage = zombiecomp.DamageOnBite;
 
@@ -473,6 +486,8 @@ public sealed partial class ZombieSystem
             return false;
         }
 
+        AddTemporaryImmunity(parent);
+
         if (TryComp<HumanoidAppearanceComponent>(parent, out var parentHumanoid)
             && TryComp<HumanoidAppearanceComponent>(target, out var targetHumanoid))
         {
@@ -507,6 +522,15 @@ public sealed partial class ZombieSystem
         }
 
         return true;
+    }
+
+    private void AddTemporaryImmunity(EntityUid uid)
+    {
+        if (TryComp<ZombieImmuneComponent>(uid, out _))
+            return;
+
+        var comp = EnsureComp<ZombieTemporaryImmuneComponent>(uid);
+        comp.ExpiryTime = _timing.CurTime + TimeSpan.FromMinutes(5);
     }
 
     private void SyncPreZombifiedAccentComponents(EntityUid source, EntityUid target)
