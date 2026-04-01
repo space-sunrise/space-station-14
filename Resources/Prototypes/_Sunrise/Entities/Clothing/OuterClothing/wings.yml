@@ -1,0 +1,21 @@
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterWingsBlack
+  name: black wings
+  description: Wings for black succubus dress.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Wings/succubus_dress_black.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Wings/succubus_dress_black.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterWingsWhite
+  name: white wings
+  description: Wings for white succubus dress.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Wings/succubus_dress_white.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Wings/succubus_dress_white.rsi

@@ -91,7 +91,7 @@
     explosionType: Default
     maxIntensity: 3.4
     intensitySlope: 3
-    totalIntensity: 20
+    totalIntensity: 10
     canCreateVacuum: false
   - type: DeleteOnTrigger
   - type: AnimationPlayer

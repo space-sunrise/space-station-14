@@ -118,3 +118,6 @@ loadout-group-prison-security-loot = { loadout-group-storage }
 
 loadout-group-prison-jumpsuit = { loadout-group-jumpsuit }
 
+loadout-group-prison-jumpsuit = Prison Jumpsuit
+
+loadout-group-funny-pills = Funny Pills

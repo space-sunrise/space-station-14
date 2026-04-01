@@ -1,0 +1,41 @@
+- type: entity
+  parent: BaseAction
+  id: ActionClownSpawnStatue
+  name: action-clown-spawn-statue-name
+  description: action-clown-spawn-statue-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 60
+    itemIconStyle: BigAction
+    icon:
+      sprite: Structures/Decoration/statues.rsi
+      state: bananium_clown
+  - type: TargetAction
+    range: 3
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: StatueBananiumClown
+      lifetime: 20
+      offset: 0, 0
+  - type: SpeakOnAction
+    sentence: action-clown-spawn-statue-speech
+
+- type: entity
+  parent: BaseAction
+  id: ActionClownStandToggle
+  name: action-clown-stand-toggle-name
+  description: action-clown-stand-toggle-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 3
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Sunrise/Mobs/Aliens/hulk.rsi
+      state: Champion_of_Honk
+  - type: InstantAction
+    event: !type:GuardianToggleActionEvent
+  - type: SpeakOnAction
+    sentence: action-clown-stand-toggle-speech

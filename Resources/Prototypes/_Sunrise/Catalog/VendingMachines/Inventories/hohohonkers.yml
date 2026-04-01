@@ -1,7 +1,7 @@
 - type: vendingMachineInventory
   id: HohohonkersInventory
   startingInventory:
-    FakeGrenade: 2
+    GrenadeShrapnel: 2
     ClownFakeNukewest: 1
     ClothingBeltMilitaryWebbingFake: 1
     ToySwordDoubled: 2

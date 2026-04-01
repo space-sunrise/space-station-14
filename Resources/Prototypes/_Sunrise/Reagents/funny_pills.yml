@@ -1,0 +1,473 @@
+# =====================
+# FUNNY PILL REAGENTS
+# =====================
+
+# 1 - Смехотерон (смех)
+- type: reagent
+  id: FunnyPillLaughter
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#FFD700"
+  metabolisms:
+    Medicine:
+      metabolismRate: 1
+      effects:
+      - !type:Emote
+        emote: Laugh
+        showInChat: true
+        force: true
+        probability: 0.6
+
+# 2 - Хонкозин (HONK + дёрганье)
+- type: reagent
+  id: FunnyPillHonk
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#FF4500"
+  metabolisms:
+    Medicine:
+      metabolismRate: 1
+      effects:
+      - !type:Emote
+        emote: Honk
+        showInChat: true
+        force: true
+        probability: 0.7
+      - !type:Jitter
+
+# 3 - Вертихвостин (скорость x2)
+- type: reagent
+  id: FunnyPillFast
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#00FF7F"
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.5
+      effects:
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 2.0
+        sprintSpeedModifier: 2.0
+
+# 4 - Черепашка (скорость x0.2)
+- type: reagent
+  id: FunnyPillSlow
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#8B4513"
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.5
+      effects:
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 0.2
+        sprintSpeedModifier: 0.2
+
+# 5 - Плакса (плач)
+- type: reagent
+  id: FunnyPillCry
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#4169E1"
+  metabolisms:
+    Medicine:
+      metabolismRate: 1
+      effects:
+      - !type:Emote
+        emote: Crying
+        showInChat: true
+        force: true
+        probability: 0.6
+
+# 6 - Храп (отключает)
+- type: reagent
+  id: FunnyPillSleep
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#9370DB"
+  metabolisms:
+    Medicine:
+      metabolismRate: 2
+      effects:
+      - !type:ModifyKnockdown
+        time: 5
+        type: Add
+
+# 7 - Корги-морфин (превращение в корги)
+- type: reagent
+  id: FunnyPillCorgi
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#DEB887"
+  metabolisms:
+    Poison:
+      metabolismRate: 9
+      effects:
+      - !type:Polymorph
+        prototype: SmartCorgiMorph
+        conditions:
+        - !type:ReagentCondition
+          reagent: FunnyPillCorgi
+          min: 5
+
+# 8 - Хлебозин (превращение в хлеб)
+- type: reagent
+  id: FunnyPillBread
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#F5DEB3"
+  metabolisms:
+    Poison:
+      metabolismRate: 9
+      effects:
+      - !type:Polymorph
+        prototype: BreadMorph
+        conditions:
+        - !type:ReagentCondition
+          reagent: FunnyPillBread
+          min: 5
+
+# 9 - Дерево-пилюля (превращение в дерево)
+- type: reagent
+  id: FunnyPillTree
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#228B22"
+  metabolisms:
+    Poison:
+      metabolismRate: 9
+      effects:
+      - !type:Polymorph
+        prototype: TreeMorph
+        conditions:
+        - !type:ReagentCondition
+          reagent: FunnyPillTree
+          min: 5
+
+# 10 - Мышин (превращение в мышь)
+- type: reagent
+  id: FunnyPillMouse
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#C0C0C0"
+  metabolisms:
+    Poison:
+      metabolismRate: 9
+      effects:
+      - !type:Polymorph
+        prototype: Mouse
+        conditions:
+        - !type:ReagentCondition
+          reagent: FunnyPillMouse
+          min: 5
+
+# 11 - Радуга (галлюцинации)
+- type: reagent
+  id: FunnyPillRainbow
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#FF69B4"
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.5
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectSeeingRainbow
+        time: 15
+        type: Add
+
+# 12 - Пьяный капитан (опьянение)
+- type: reagent
+  id: FunnyPillDrunk
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#DAA520"
+  metabolisms:
+    Alcohol:
+      metabolismRate: 0.5
+      effects:
+      - !type:Drunk
+        boozePower: 8
+
+# 13 - Вопилка (крик)
+- type: reagent
+  id: FunnyPillScream
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#DC143C"
+  metabolisms:
+    Medicine:
+      metabolismRate: 1
+      effects:
+      - !type:Emote
+        emote: Scream
+        showInChat: true
+        force: true
+
+# 14 - Электровитамин (удар током)
+- type: reagent
+  id: FunnyPillElectro
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#FFFF00"
+  metabolisms:
+    Medicine:
+      metabolismRate: 3
+      effects:
+      - !type:Electrocute
+        electrocuteTime: 1
+        siemensCoefficient: 0.3
+
+# 15 - Рвотное
+- type: reagent
+  id: FunnyPillVomit
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#6B8E23"
+  metabolisms:
+    Medicine:
+      metabolismRate: 1
+      effects:
+      - !type:Vomit
+
+# 16 - Свисток
+- type: reagent
+  id: FunnyPillWhistle
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#40E0D0"
+  metabolisms:
+    Medicine:
+      metabolismRate: 1
+      effects:
+      - !type:Emote
+        emote: Whistle
+        showInChat: true
+        force: true
+        probability: 0.6
+
+# 17 - Хлопушка
+- type: reagent
+  id: FunnyPillClap
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#FF8C00"
+  metabolisms:
+    Medicine:
+      metabolismRate: 1
+      effects:
+      - !type:Emote
+        emote: Clap
+        showInChat: true
+        force: true
+        probability: 0.6
+
+# 18 - Вздыхин
+- type: reagent
+  id: FunnyPillSigh
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#B0C4DE"
+  metabolisms:
+    Medicine:
+      metabolismRate: 1
+      effects:
+      - !type:Emote
+        emote: Sigh
+        showInChat: true
+        force: true
+        probability: 0.6
+
+# 19 - Попкорн (сообщение)
+- type: reagent
+  id: FunnyPillPopup
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#FF6347"
+  metabolisms:
+    Medicine:
+      metabolismRate: 1
+      effects:
+      - !type:PopupMessage
+        type: Pvs
+        visualType: LargeCaution
+        messages: [ "funny-pill-popup-message" ]
+
+# 20 - Смена пола
+- type: reagent
+  id: FunnyPillSexChange
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#FF1493"
+  metabolisms:
+    Medicine:
+      metabolismRate: 10
+      effects:
+      - !type:RandomSexChange
+
+# 21 - Смена расы
+- type: reagent
+  id: FunnyPillSpeciesChange
+  name: reagent-name-funny-unknown
+  group: Special
+  desc: reagent-desc-funny-unknown
+  physicalDesc: reagent-physical-desc-funny
+  flavor: funny
+  color: "#7B68EE"
+  metabolisms:
+    Medicine:
+      metabolismRate: 10
+      effects:
+      - !type:RandomSpeciesChange
+
+# =====================
+# RANDOM FILL TABLE
+# =====================
+
+- type: weightedRandomFillSolution
+  id: RandomFillFunnyPill
+  fills:
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillLaughter
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillHonk
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillFast
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillSlow
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillCry
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillSleep
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillCorgi
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillBread
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillTree
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillMouse
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillRainbow
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillDrunk
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillScream
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillElectro
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillVomit
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillWhistle
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillClap
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillSigh
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillPopup
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillSexChange
+  - quantity: 10
+    weight: 1
+    reagents:
+    - FunnyPillSpeciesChange

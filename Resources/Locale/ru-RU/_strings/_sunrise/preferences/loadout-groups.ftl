@@ -125,3 +125,6 @@ loadout-group-prison-security-loot = { loadout-group-storage }
 loadout-group-prison-jumpsuit = { loadout-group-jumpsuit }
 
 loadout-group-medical-glasses = { loadout-group-glasses }
+loadout-group-prison-jumpsuit = Рабочая униформа
+
+loadout-group-funny-pills = Загадочные таблетки

@@ -183248,6 +183248,22 @@ entities:
       parent: 2
 - proto: RandomVendingDrinks
   entities:
+  - uid: 5768
+    components:
+    - type: Transform
+      pos: -63.5,17.5
+      parent: 2
+  - uid: 6087
+    components:
+    - type: Transform
+      pos: -63.5,29.5
+      parent: 2
+  - uid: 6923
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -80.5,-11.5
+      parent: 2
   - uid: 26576
     components:
     - type: Transform
@@ -217916,6 +217932,13 @@ entities:
     components:
     - type: Transform
       pos: 20.5,11.5
+      parent: 2
+- proto: VendingMachinePwrGame
+  entities:
+  - uid: 6922
+    components:
+    - type: Transform
+      pos: -80.5,8.5
       parent: 2
 - proto: VendingMachineRestockBooze
   entities:

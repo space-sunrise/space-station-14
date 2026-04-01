@@ -1,1 +1,1 @@
-objective-terminate-title = Уничтожить { $targetName }, { CAPITALIZE($job) }
+objective-terminate-title = Обнять { $targetName }, { CAPITALIZE($job) }

@@ -663,6 +663,10 @@
 - type: Tag
   id: SmoothGloves
 
+# добавляет вещь в чёрный список ксеноморфов
+- type: Tag
+  id: NoXeno
+
 # head
 # Закрыто только сверху (шлюяпы, кепки)
 - type: Tag

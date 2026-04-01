@@ -1,0 +1,46 @@
+# =====================
+# FUNNY PILLS - Entities
+# =====================
+
+- type: entity
+  name: funny-pill-name
+  description: funny-pill-desc
+  parent: Pill
+  id: FunnyPill
+  components:
+  - type: Pill
+    pillType: 7
+  - type: Sprite
+    state: pill7
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+  - type: RandomFillSolution
+    solution: food
+    weightedRandomId: RandomFillFunnyPill
+
+# =====================
+# FUNNY PILL CANISTER
+# =====================
+
+- type: entity
+  name: funny-pill-canister-name
+  id: PillCanisterFunny
+  parent: PillCanister
+  suffix: Funny Pills
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Chemistry/pills_canister.rsi
+    state: pill_canister
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: FunnyPill
+        - id: FunnyPill
+        - id: FunnyPill
+        - id: FunnyPill
+        - id: FunnyPill
+        - id: FunnyPill
+        - id: FunnyPill

@@ -27,11 +27,16 @@
   equipment:
     gloves: ClothingHandsGlovesColorWhite
     shoes: ClothingShoesColorWhite
-    id: MimePDA
+    eyes: ClothingEyesGlassesSecurity
+    id: DetectivePDA
     pocket1: CrayonMime
-    ears: ClothingHeadsetService
+    ears: ClothingHeadsetSecurity
+    belt: ClothingBeltHolsterFilled
   storage:
     back:
+    - Flash
+    - ForensicPad
+    - ForensicScanner
     - RubberStampMime
 
 - type: entity
