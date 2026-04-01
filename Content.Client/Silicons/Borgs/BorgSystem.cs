@@ -1,4 +1,5 @@
-﻿using Content.Shared.Alert;
+﻿using Content.Shared._Sunrise.SiliconStanding;
+using Content.Shared.Alert;
 using Content.Shared.Mobs;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell;
@@ -8,6 +9,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+
 
 namespace Content.Client.Silicons.Borgs;
 
@@ -88,6 +90,12 @@ public sealed partial class BorgSystem : SharedBorgSystem
 
         _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light, ent.Comp1.BrainEntity != null || hasPlayer);
         _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Light, hasPlayer ? ent.Comp1.HasMindState : ent.Comp1.NoMindState);
+        //Sunrise start
+        if (_appearance.TryGetData<bool>(ent.Owner, SiliconStandingVisuals.Resting, out var resting) && resting)
+            {
+                _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Body, "_rest");
+            }
+        //Sunrise end
     }
 
     private void OnMMIAppearanceChanged(EntityUid uid, MMIComponent component, ref AppearanceChangeEvent args)

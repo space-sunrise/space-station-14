@@ -4,13 +4,15 @@ using Content.Shared.Throwing;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
 using Robust.Client.GameObjects;
+using Content.Shared.Appearance;
+using Content.Shared._Sunrise.SiliconStanding;
 using Content.Shared._Sunrise.SiliconStanding;
 
 namespace Content.Shared._Sunrise.SiliconStanding;
 
 public sealed class SiliconStandingSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -54,6 +56,8 @@ public sealed class SiliconStandingSystem : EntitySystem
 
         comp.Active = !comp.Active;
         Dirty(uid, comp);
+
+        _appearance.SetData(uid, SiliconStandingVisuals.Resting, comp.Active);
 
         if (comp.Active)
             RaiseLocalEvent(uid, new SiliconRestStartEvent());
