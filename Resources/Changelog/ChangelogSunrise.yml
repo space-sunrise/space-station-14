@@ -4220,3 +4220,14 @@
   id: 1756
   time: '2026-03-31T15:20:05.0000000+00:00'
   url: https://github.com/space-sunrise/sunrise-station/pull/4040
+- author: Fynex-x
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E 4 \u043D\u043E\
+      \u0432\u044B\u0445 \u0438\u043C\u043F\u043B\u0430\u043D\u0442\u0430 \u0434\u043B\
+      \u044F \u041E\u0411\u0420 \u0438 \u042D\u0421 \u0447\u0442\u043E \u0430\u0432\
+      \u0442\u043E\u0438\u043C\u043F\u043B\u0430\u043D\u0442\u0438\u0440\u043E\u0432\
+      \u0430\u043D\u044B."
+    type: Add
+  id: 1757
+  time: '2026-04-01T13:09:03.0000000+00:00'
+  url: https://github.com/space-sunrise/sunrise-station/pull/4111
