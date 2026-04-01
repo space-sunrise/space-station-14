@@ -186,14 +186,14 @@ public sealed partial class ZombieSystem
 
         //we need to basically remove all of these because zombies shouldn't
         //get diseases, breath, be thirst, be hungry, die in space, get double sentience, have offspring or be paraplegic.
-        RemComp<RespiratorComponent>(target);
-        RemComp<BarotraumaComponent>(target);
-        RemComp<HungerComponent>(target);
-        RemComp<ThirstComponent>(target);
+        // RemComp<RespiratorComponent>(target); // Sunrise-remove
+        // RemComp<BarotraumaComponent>(target); // Sunrise-remove
+        // RemComp<HungerComponent>(target); // Sunrise-remove
+        // RemComp<ThirstComponent>(target); // Sunrise-remove
         RemComp<ReproductiveComponent>(target);
         RemComp<ReproductivePartnerComponent>(target);
         RemComp<LegsParalyzedComponent>(target);
-        RemComp<ComplexInteractionComponent>(target);
+        // RemComp<ComplexInteractionComponent>(target); // Sunrise-remove
         RemComp<SentienceTargetComponent>(target);
 
         // Sunrise edit start - no full speech replacement for furry-virus
@@ -294,7 +294,7 @@ public sealed partial class ZombieSystem
         _identity.QueueIdentityUpdate(target);
 
         var htn = EnsureComp<HTNComponent>(target);
-        htn.RootTask = new HTNCompoundTask() { Task = "SimpleHostileCompound" };
+        htn.RootTask = new HTNCompoundTask() { Task = "ZombieHostileCompound" }; // Sunrise: zombies don't pick up weapons
         htn.Blackboard.SetValue(NPCBlackboard.Owner, target);
         _npc.SleepNPC(target, htn);
 

@@ -250,9 +250,9 @@
   id: FurryZombie
   coefficients:
     Blunt: 0.7
-    Slash: 1.0
+    Slash: 0.8
     Piercing: 0.8
-    Cold: 0.3
-    Heat: 2.0
+    Cold: 0.1
+    Heat: 2.5
     Poison: 0.0
     Radiation: 0.0

@@ -30,7 +30,9 @@ using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
+using Content.Shared.Damage;
 using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Zombies;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -100,6 +102,22 @@ namespace Content.Server.Zombies
             SubscribeLocalEvent<ZombieComponent, ZombieFlairActionEvent>(OnFlair);
             SubscribeLocalEvent<ZombieComponent, ThrowDoHitEvent>(OnThrowDoHit);
             // Sunnrise-End
+
+            // Sunrise: zombies fumble with ranged weapons and shoot themselves
+            SubscribeLocalEvent<ZombieComponent, SelfBeforeGunShotEvent>(OnZombieBeforeGunShot);
+        }
+
+        // Sunrise: zombies fumble with ranged weapons and wound themselves instead
+        private static readonly DamageSpecifier ZombieGunFumbleDamage = new()
+        {
+            DamageDict = new() { { "Piercing", 15 } }
+        };
+
+        private void OnZombieBeforeGunShot(Entity<ZombieComponent> ent, SelfBeforeGunShotEvent args)
+        {
+            _damageable.TryChangeDamage(ent, ZombieGunFumbleDamage, origin: ent);
+            _popup.PopupEntity(Loc.GetString("zombie-gun-fumble"), ent, PopupType.SmallCaution);
+            args.Cancel();
         }
 
         // Sunnrise-Start

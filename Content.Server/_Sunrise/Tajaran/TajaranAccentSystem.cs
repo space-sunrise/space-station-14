@@ -15,11 +15,11 @@ namespace Content.Server.Speech.EntitySystems
         private static readonly Regex UpperCyrillicRRegex = new("Р+");
         private static readonly IReadOnlyList<string> TajaranWords =
         [
-            "Мрр...",
-            "Мяу...",
-            "Нья...",
-            "Пурр...",
-            "Ррр...",
+            "Мрр",
+            "Мяу",
+            "Нья",
+            "Пурр",
+            "Ррр",
         ];
 
         [Dependency] private readonly IRobustRandom _random = default!;
@@ -54,10 +54,8 @@ namespace Content.Server.Speech.EntitySystems
 
             if (!firstWordAllCaps)
                 message = message[0].ToString().ToUpperInvariant() + message[1..];
-            else
-                tajaranWord = tajaranWord.ToUpperInvariant();
 
-            return tajaranWord + " " + message;
+            return tajaranWord + "... " + message;
         }
 
         private void OnAccent(EntityUid uid, TajaranAccentComponent component, AccentGetEvent args)

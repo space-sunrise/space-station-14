@@ -16,11 +16,11 @@ public sealed class VulpaAccentSystem : EntitySystem
     private static readonly Regex UpperCyrillicRRegex = new("Р+");
     private static readonly IReadOnlyList<string> VulpaWords =
     [
-        "Гав...",
-        "Вуф...",
-        "Арф...",
-        "Гррф...",
-        "Авоо...",
+        "Гав",
+        "Вуф",
+        "Арф",
+        "Гррф",
+        "Авоо",
     ];
 
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -45,11 +45,9 @@ public sealed class VulpaAccentSystem : EntitySystem
         var vulpaWord = _random.Pick(VulpaWords);
 
         if (!firstWordAllCaps)
-            message = message[0].ToString().ToLowerInvariant() + message[1..];
-        else
-            vulpaWord = vulpaWord.ToUpperInvariant();
+            message = message[0].ToString().ToUpperInvariant() + message[1..];
 
-        return vulpaWord + " " + message;
+        return vulpaWord + "... " + message;
     }
 
     private void OnAccent(EntityUid uid, VulpaAccentComponent component, AccentGetEvent args)

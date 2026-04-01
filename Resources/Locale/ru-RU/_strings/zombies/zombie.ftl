@@ -1,4 +1,5 @@
 zombie-transform = { CAPITALIZE($target) } теперь фурри!
+zombie-gun-fumble = Вы неловко обращаетесь с оружием и стреляете в себя!
 zombie-infection-greeting = Вы стали фурри. Ваша задача - искать и заражать живых. Работайте сообща со своими фурри коллегами, чтобы одолеть оставшихся членов экипажа.
 zombie-generic = фурри
 # Russian-Zombies

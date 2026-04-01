@@ -1,0 +1,54 @@
+# Zombie-specific NPC behavior.
+# Unlike SimpleHostileCompound/MeleeCombatCompound, zombies skip the weapon-pickup
+# step entirely — they bite, they don't arm themselves.
+
+- type: htnCompound
+  id: ZombieBeforeMeleeAttackTargetCompound
+  branches:
+    - preconditions:
+        - !type:BuckledPrecondition
+          isBuckled: true
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UnbuckleOperator
+            shutdownState: TaskFinished
+
+    - preconditions:
+        - !type:PulledPrecondition
+          isPulled: true
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UnPullOperator
+            shutdownState: TaskFinished
+
+    - preconditions:
+        - !type:InContainerPrecondition
+          isInContainer: true
+      tasks:
+        - !type:HTNCompoundTask
+          task: EscapeCompound
+
+    # Go straight to melee — no weapon pickup for zombies.
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeAttackTargetCompound
+
+- type: htnCompound
+  id: ZombieMeleeCombatCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyMeleeTargets
+        - !type:HTNCompoundTask
+          task: ZombieBeforeMeleeAttackTargetCompound
+
+- type: htnCompound
+  id: ZombieHostileCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: ZombieMeleeCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
