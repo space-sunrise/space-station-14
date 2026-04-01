@@ -66,6 +66,14 @@
         "directions": 4
         },
         {
+        "name": "rocket120-inhand-left",
+        "directions": 4
+        },
+        {
+        "name": "rocket120-inhand-right",
+        "directions": 4
+        },
+        {
             "name": "blast120mm"
         },
         {
