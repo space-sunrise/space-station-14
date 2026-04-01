@@ -364,7 +364,7 @@
     anchored: false
   - type: TriggerOnSpawn
   - type: TimerTrigger
-    delay: 10
+    delay: 13
     beepSound:
       path: /Audio/Machines/Nuke/nuke_alarm.ogg
       params:
@@ -387,7 +387,7 @@
   - type: ProjectileGrenade
     triggerKey: timer
     fillPrototype: PelletClusterSubnuclearShrapnel
-    capacity: 90
+    capacity: 130
     randomAngle: true
     minVelocity: 1
     maxVelocity: 3
