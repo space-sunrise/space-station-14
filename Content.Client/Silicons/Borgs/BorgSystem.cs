@@ -93,7 +93,10 @@ public sealed partial class BorgSystem : SharedBorgSystem
         //Sunrise start
         if (_appearance.TryGetData<bool>(ent.Owner, SiliconStandingVisuals.Resting, out var resting) && resting)
             {
-                _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Body, "_rest");
+                var baseState = ent.Comp1.HasMindState;
+                var restState = baseState.Replace("_e", "").Replace("_r", "") + "_rest";
+
+                _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Body, restState);
             }
         //Sunrise end
     }

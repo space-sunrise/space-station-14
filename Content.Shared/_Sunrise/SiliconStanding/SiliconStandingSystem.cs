@@ -3,9 +3,7 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Throwing;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
-using Robust.Client.GameObjects;
-using Content.Shared.Appearance;
-using Content.Shared._Sunrise.SiliconStanding;
+using Robust.Shared.GameObjects;
 using Content.Shared._Sunrise.SiliconStanding;
 
 namespace Content.Shared._Sunrise.SiliconStanding;
@@ -21,22 +19,6 @@ public sealed class SiliconStandingSystem : EntitySystem
             .Bind(ContentKeyFunctions.ToggleStanding,
                 InputCmdHandler.FromDelegate(HandleToggle, handle: false))
             .Register<SiliconStandingSystem>();
-
-        SubscribeLocalEvent<SiliconStandingComponent, UpdateCanMoveEvent>(OnMove);
-        SubscribeLocalEvent<SiliconStandingComponent, SiliconRestStartEvent>(OnRestStart);
-        SubscribeLocalEvent<SiliconStandingComponent, SiliconRestEndEvent>(OnRestEnd);
-    }
-
-    private void OnRestStart(Entity<SiliconStandingComponent> ent, ref SiliconRestStartEvent args)
-    {
-        if (TryComp<SpriteComponent>(ent, out var sprite))
-            _sprite.LayerSetState((ent, sprite), "robot_rest");
-    }
-
-    private void OnRestEnd(Entity<SiliconStandingComponent> ent, ref SiliconRestEndEvent args)
-    {
-        if (TryComp<SpriteComponent>(ent, out var sprite))
-            _sprite.LayerSetState((ent, sprite), "robot");
     }
 
     private void HandleToggle(ICommonSession? session)
@@ -58,11 +40,6 @@ public sealed class SiliconStandingSystem : EntitySystem
         Dirty(uid, comp);
 
         _appearance.SetData(uid, SiliconStandingVisuals.Resting, comp.Active);
-
-        if (comp.Active)
-            RaiseLocalEvent(uid, new SiliconRestStartEvent());
-        else
-            RaiseLocalEvent(uid, new SiliconRestEndEvent());
     }
 
     private void OnMove(Entity<SiliconStandingComponent> ent, ref UpdateCanMoveEvent args)
