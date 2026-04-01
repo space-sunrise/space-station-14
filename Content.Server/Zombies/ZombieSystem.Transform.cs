@@ -486,8 +486,6 @@ public sealed partial class ZombieSystem
             return false;
         }
 
-        AddTemporaryImmunity(parent);
-
         if (TryComp<HumanoidAppearanceComponent>(parent, out var parentHumanoid)
             && TryComp<HumanoidAppearanceComponent>(target, out var targetHumanoid))
         {
@@ -522,15 +520,6 @@ public sealed partial class ZombieSystem
         }
 
         return true;
-    }
-
-    private void AddTemporaryImmunity(EntityUid uid)
-    {
-        if (TryComp<ZombieImmuneComponent>(uid, out _))
-            return;
-
-        var comp = EnsureComp<ZombieTemporaryImmuneComponent>(uid);
-        comp.ExpiryTime = _timing.CurTime + TimeSpan.FromMinutes(5);
     }
 
     private void SyncPreZombifiedAccentComponents(EntityUid source, EntityUid target)

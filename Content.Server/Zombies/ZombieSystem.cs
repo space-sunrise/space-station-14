@@ -26,6 +26,7 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Polymorph; // Sunrise-add
 using Content.Shared.Popups;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
@@ -109,6 +110,7 @@ namespace Content.Server.Zombies
             SubscribeLocalEvent<ZombieComponent, ZombieFlairActionEvent>(OnFlair);
             SubscribeLocalEvent<ZombieComponent, ThrowDoHitEvent>(OnThrowDoHit);
             SubscribeLocalEvent<ZombieComponent, SelfBeforeGunShotEvent>(OnZombieBeforeGunShot);
+            SubscribeLocalEvent<ZombieComponent, PolymorphedEvent>(OnPolymorphed);
             // Sunrise-end
         }
 
@@ -145,6 +147,13 @@ namespace Content.Server.Zombies
             _popup.PopupEntity(Loc.GetString("zombie-gun-fumble"), ent.Owner, PopupType.SmallCaution);
             args.Cancel();
         }
+
+        private void OnPolymorphed(Entity<ZombieComponent> ent, ref PolymorphedEvent args)
+        {
+            var comp = EnsureComp<ZombieTemporaryImmuneComponent>(args.NewEntity);
+            comp.ExpiryTime = _timing.CurTime + TimeSpan.FromMinutes(5);
+        }
+        // Sunrise-end
 
         private void OnThrowDoHit(EntityUid uid, ZombieComponent component, ThrowDoHitEvent args)
         {
