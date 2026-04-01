@@ -1521,7 +1521,7 @@
     fuelCost: 25
     doAfterDelay: 10
   - type: BatteryAmmoProvider
-    proto: CartridgeHeavyRifleRSP
+    proto: CartridgeHeavyRifleRFMJ
     fireCost: 1
   - type: BatterySelfRecharger
     autoRechargePauseTime: 5
