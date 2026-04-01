@@ -19,7 +19,6 @@ public sealed class SiliconStandingSystem : EntitySystem
             .Register<SiliconStandingSystem>();
 
         SubscribeLocalEvent<SiliconStandingComponent, UpdateCanMoveEvent>(OnMove);
-        SubscribeLocalEvent<SiliconStandingComponent, JumpAttemptEvent>(OnJump);
     }
 
     private void HandleToggle(ICommonSession? session)
@@ -47,14 +46,6 @@ public sealed class SiliconStandingSystem : EntitySystem
     }
 
     private void OnMove(Entity<SiliconStandingComponent> ent, ref UpdateCanMoveEvent args)
-    {
-        if (!ent.Comp.Active)
-            return;
-
-        args.Cancel();
-    }
-
-    private void OnJump(Entity<SiliconStandingComponent> ent, ref JumpAttemptEvent args)
     {
         if (!ent.Comp.Active)
             return;
