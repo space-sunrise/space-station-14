@@ -7,8 +7,8 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: acid
   color: "#44944A"
-  boilingPoint: 165
-  meltingPoint: -87
+  boilingPoint: 78.2
+  meltingPoint: -19.4
   reactiveEffects:
     Acidic:
       methods: [ Touch ]

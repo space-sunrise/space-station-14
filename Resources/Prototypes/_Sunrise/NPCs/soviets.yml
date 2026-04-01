@@ -20,6 +20,22 @@
     - MobsExpeditionGuideSoviets
   - type: Damageable
     damageModifierSet: MobPirateT1
+<<<<<<< HEAD
+=======
+  - type: ExplosionResistance
+    damageCoefficient: 0.25
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+>>>>>>> 2d5439f5b4036c796ce6a3748970e2cca3103fd2
   - type: NpcFactionMember
     factions:
     - Soviet
@@ -33,10 +49,28 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
+<<<<<<< HEAD
+=======
+  - type: TimedDespawn
+    lifetime: 3600
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: Reflect
+>>>>>>> 2d5439f5b4036c796ce6a3748970e2cca3103fd2
   - type: AddComponentsOnTrigger
     triggerOnce: true
     removeExisting: true
     components:
+<<<<<<< HEAD
+=======
+    - type: TimedDespawn
+      lifetime: 600
+>>>>>>> 2d5439f5b4036c796ce6a3748970e2cca3103fd2
     - type: Strippable
   - type: Destructible
     thresholds:
@@ -130,7 +164,7 @@
     makeSentient: true
     name: ghost-role-information-expedition-soviet-name
     description: ghost-role-information-expedition-soviet-description
-    rules: ghost-role-information-expedition-soviet-rules
+    rules: ghost-role-information-rules-expedition-soviet-antagonist
     raffle:
       settings: short
   - type: GhostTakeoverAvailable
@@ -182,6 +216,20 @@
 
 - type: entity
   abstract: true
+<<<<<<< HEAD
+=======
+  parent: MobSovietBase
+  id: MobSovietVeteranChatterBase
+  components:
+  - type: DatasetVocalizer
+    dataset: SovietChatterNPCVeteran
+    minVocalizeInterval: 45s
+    maxVocalizeInterval: 90s
+    hideChat: true
+
+- type: entity
+  abstract: true
+>>>>>>> 2d5439f5b4036c796ce6a3748970e2cca3103fd2
   name: Serzhant
   parent: SovietSoldierBase
   id: SovietSerzhantBase
@@ -216,9 +264,12 @@
     - NamesMilitaryFirstGamma
     - NamesLast
     nameFormat: name-format-ert
+<<<<<<< HEAD
   - type: ActionGun
     action: ActionSovietSerzhantGrenade
     gunProto: GunSovietSerzhantGrenade
+=======
+>>>>>>> 2d5439f5b4036c796ce6a3748970e2cca3103fd2
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionScream
@@ -455,6 +506,7 @@
       0: Alive
       90: Critical
       100: Dead
+  - type: ShowHealthBars
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -476,16 +528,45 @@
       state: equipped-HAND
       color: "#3CB57C"
   - type: AoEHeal
+<<<<<<< HEAD
+=======
+    healSelf: false
+    range: 5
+>>>>>>> 2d5439f5b4036c796ce6a3748970e2cca3103fd2
     threshold: 0.9
     damage:
       groups:
-        Brute: -20
+        Brute: -15
         Burn: -10
         Airloss: -5
         Toxin: -5
     whitelist:
       components:
       - NpcVeteranFollower
+<<<<<<< HEAD
+=======
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: AoEHeal
+      healSelf: false
+      range: 5
+      threshold: 0.9
+      aliveTargets: false
+      damage:
+        groups:
+          Brute: -15
+          Burn: -10
+          Airloss: -10
+          Toxin: -10
+      whitelist:
+        components:
+        - NpcVeteranFollower
+>>>>>>> 2d5439f5b4036c796ce6a3748970e2cca3103fd2
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -518,9 +599,12 @@
   - type: Loadout
     prototypes:
     - MobSovietGearPPSH
+<<<<<<< HEAD
   - type: ActionGun
     action: ActionSovietSerzhantGrenade
     gunProto: GunSovietSerzhantGrenade
+=======
+>>>>>>> 2d5439f5b4036c796ce6a3748970e2cca3103fd2
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionScream
@@ -651,9 +735,9 @@
     showExamineText: false
     fireRate: 7.5
     minAngle: 5
-    maxAngle: 60
-    angleIncrease: 4
-    angleDecay: 20
+    maxAngle: 50
+    angleIncrease: 3
+    angleDecay: 25
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -753,14 +837,16 @@
     showExamineText: false
     fireRate: 5
     selectedMode: FullAuto
-    minAngle: 2
+    minAngle: 6
     maxAngle: 25
-    angleIncrease: 2
-    angleDecay: 7
+    angleIncrease: 1
+    angleDecay: 10
     availableModes:
     - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/smg.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
 
 - type: entity
   name: soldier
@@ -1005,6 +1091,7 @@
       0: Alive
       90: Critical
       100: Dead
+  - type: ShowHealthBars
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1045,6 +1132,7 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: AoEHeal
+<<<<<<< HEAD
     threshold: 0.9
     damage:
       groups:
@@ -1058,6 +1146,40 @@
   - type: ActionGun
     action: ActionSovietT3SmokeGrenade
     gunProto: GunSovietT3SmokeGrenade
+=======
+    healSelf: false
+    range: 7
+    threshold: 0.9
+    damage:
+      groups:
+        Brute: -20
+        Burn: -15
+        Airloss: -15
+        Toxin: -15
+    whitelist:
+      components:
+      - NpcVeteranFollower
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: AoEHeal
+      healSelf: false
+      range: 7
+      threshold: 0.9
+      damage:
+        groups:
+          Brute: -20
+          Burn: -15
+          Airloss: -15
+          Toxin: -15
+      whitelist:
+        components:
+        - NpcVeteranFollower
+>>>>>>> 2d5439f5b4036c796ce6a3748970e2cca3103fd2
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionGravityJumpQuick
@@ -1066,7 +1188,14 @@
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
+<<<<<<< HEAD
     - actionId: ActionSovietT3SmokeGrenade
+=======
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 5
+      maxRange: 12
+    - actionId: ActionGunGrenadeExplosiveShrapnelSpell
+>>>>>>> 2d5439f5b4036c796ce6a3748970e2cca3103fd2
       minRange: 5
       maxRange: 12
 
@@ -1120,9 +1249,12 @@
       collection: xm1014
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
+<<<<<<< HEAD
   - type: ActionGun
     action: ActionSovietT3SmokeGrenade
     gunProto: GunSovietT3SmokeGrenade
+=======
+>>>>>>> 2d5439f5b4036c796ce6a3748970e2cca3103fd2
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionGravityJumpQuick
@@ -1131,7 +1263,14 @@
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
+<<<<<<< HEAD
     - actionId: ActionSovietT3SmokeGrenade
+=======
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 5
+      maxRange: 12
+    - actionId: ActionGunGrenadeExplosiveShrapnelSpell
+>>>>>>> 2d5439f5b4036c796ce6a3748970e2cca3103fd2
       minRange: 5
       maxRange: 12
 
@@ -1192,15 +1331,28 @@
     availableModes:
     - FullAuto
     soundGunshot: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_shot.ogg
+<<<<<<< HEAD
   - type: ActionGun
     action: ActionSovietT3SmokeGrenade
     gunProto: GunSovietT3SmokeGrenade
+=======
+>>>>>>> 2d5439f5b4036c796ce6a3748970e2cca3103fd2
   - type: NPCUseActionWhenTargetInRange
     actions:
+    - actionId: ActionGravityJumpQuick
+      minRange: 4
+      maxRange: 0
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
+<<<<<<< HEAD
     - actionId: ActionSovietT3SmokeGrenade
+=======
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 5
+      maxRange: 12
+    - actionId: ActionGunGrenadeExplosiveShrapnelSpell
+>>>>>>> 2d5439f5b4036c796ce6a3748970e2cca3103fd2
       minRange: 5
       maxRange: 12
 
@@ -1333,7 +1485,6 @@
     - CanPilot
     - Pickaxe
     - NpcBoss
-  - type: Magboots
   - type: HellSpawnRush
     blacklist:
       tags:
@@ -1506,7 +1657,6 @@
   - type: EyeCursorOffset
     maxOffset: 5
     pvsIncrease: 0.6
-  - type: Magboots
   - type: AutoImplant
     implants:
     - SmokeScreenImplant
@@ -2098,3 +2248,5 @@
 - type: entity
   parent: MobSovietT1MosinAlt
   id: MobSovietMosinAlt
+
+

@@ -1,6 +1,7 @@
 using Content.Server._Sunrise;
 using Content.Server._Sunrise.Contributors;
 using Content.Server._Sunrise.Entry;
+using Content.Server._Sunrise.MapperSync;
 using Content.Server._Sunrise.PlayerCache;
 using Content.Server._Sunrise.ServersHub;
 using Content.Server._Sunrise.TTS;
@@ -93,7 +94,13 @@ namespace Content.Server.Entry
         [Dependency] private readonly TTSManager _ttsManager = default!; // Sunrise-Edit
         [Dependency] private readonly NetTexturesManager _netTexturesManager = default!; // Sunrise-Edit
         [Dependency] private readonly DiscordWebhook _discord = default!; // Sunrise-Edit
+<<<<<<< HEAD
         [Dependency] private readonly IIPBlockingSystem _ipBlockingSystem = default!;
+=======
+        [Dependency] private readonly MapperSyncManager _mapperSyncManager = default!; // Sunrise-Edit
+        private IIPBlockingSystem? _ipBlockingSystem;
+        private ITrustedProxyService? _trustedProxyService;
+>>>>>>> 2d5439f5b4036c796ce6a3748970e2cca3103fd2
         private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
         public override void PreInit()
@@ -198,6 +205,7 @@ namespace Content.Server.Entry
             _multiServerKick.Initialize();
             _cvarCtrl.Initialize();
             _contributorsManager.Initialize(); // Sunrise-Edit
+            _mapperSyncManager.Initialize(); // Sunrise-Edit
             _serversHubManager.Initialize(); // Sunrise-Edit
             _playerCacheManager.Initialize(); // Sunrise-Edit
 
@@ -227,6 +235,7 @@ namespace Content.Server.Entry
                     // Sunrise-Start
                     _serversHubManager.Update();
                     _contributorsManager.Update();
+                    _mapperSyncManager.Update();
                     _sponsorsManager?.Update();
                     _ipBlockingSystem.Update();
                     // Sunrise-End

@@ -1,0 +1,16 @@
+ent-UniformDressMaidBlue = blue maid dress
+    .desc = Feel yourself like a character from anime!
+ent-UniformDressMaidLong = long maid dress
+    .desc = For connoisseurs of classic sundresses and practicality.
+ent-UniformDressMaidPink = pink maid dress
+    .desc = Feel yourself like a character from anime!
+ent-UniformDressSexy = sexy dress
+    .desc = A centimeter of fabric slipping and you're arrested by the Security!
+ent-UniformDressSuccubusBlack = black winged succubus dress
+    .desc = This dress exudes an infernal magic...wings as a gift!
+ent-UniformDressSuccubusWhite = white succubus dress
+    .desc = This dress exudes an infernal magic...wings as a gift!
+ent-UniformDressTango = tango dress
+    .desc = Feel the rythm, twirling to the "La cumparsita"!
+ent-UniformDressXeno = xeno dress
+    .desc = Elegance and horror in one.

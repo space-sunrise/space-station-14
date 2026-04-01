@@ -191,10 +191,11 @@
       tags:
       - SovietDungeon
     presets:
-    - Bucket
-    - Wow
-    - SpaceShip
-    - Tall
+    - SovietBucket
+    - SovietWow
+    - SovietSpaceShip
+    - SovietTall
+    - SovietAnyChance
 
   - !type:CorridorDunGen
     width: 5
@@ -228,68 +229,9 @@
   - !type:CornerClutterDunGen
     contents: BaseClutter
 
-  - !type:CorridorDecalSkirtingDunGen
-    cardinalDecals:
-      South: BrickTileWhiteLineS
-      East: BrickTileWhiteLineE
-      North: BrickTileWhiteLineN
-      West: BrickTileWhiteLineW
-    cornerDecals:
-      SouthEast: BrickTileWhiteCornerSe
-      SouthWest: BrickTileWhiteCornerSw
-      NorthEast: BrickTileWhiteCornerNe
-      NorthWest: BrickTileWhiteCornerNw
-    pocketDecals:
-      SouthWest: BrickTileWhiteInnerSw
-      SouthEast: BrickTileWhiteInnerSe
-      NorthWest: BrickTileWhiteInnerNw
-      NorthEast: BrickTileWhiteInnerNe
-
-# Sunrise: Soviet ruined expedition
-- type: dungeonConfig
-  id: SovietDungeonRuine
-  layers:
-  - !type:PrefabDunGen
-    roomWhitelist:
-      tags:
-      - SovietDungeonRuine
-    presets:
-    - Bucket
-    - Wow
-    - SpaceShip
-    - Tall
-
-  - !type:CorridorDunGen
-    width: 5
-    tile: FloorConcreteMono
-
-  - !type:DungeonEntranceDunGen
-    count: 5
-    tile: FloorConcreteMono
-    contents: SovietDungeonEntrance
-
-  - !type:RoomEntranceDunGen
-    tile: FloorConcreteMono
-    contents: SovietDungeonRoomEntrance
-
-  - !type:EntranceFlankDunGen
-    tile: FloorConcreteMono
-    contents: SovietDungeonWindow
-
-  - !type:WallMountDunGen
-    tile: FloorConcreteMono
-    contents: SovietDungeonWalls
-
-  - !type:BoundaryWallDunGen
-    tile: FloorConcreteMono
-    wall: WallBrick
-    cornerWall: WallBrick
-
-  - !type:AutoCablingDunGen
-    entity: CableApcExtension
-
-  - !type:CornerClutterDunGen
-    contents: BaseClutter
+  - !type:CorridorClutterDunGen
+    contents: SovietFloorLights
+    chance: 0.05
 
   - !type:CorridorDecalSkirtingDunGen
     cardinalDecals:
@@ -309,6 +251,7 @@
       NorthEast: BrickTileWhiteInnerNe
 
 #========================================================================
+
 - type: dungeonConfig
   id: SovietDungeonWEH
   layers:
@@ -427,7 +370,7 @@
     - id: MobTick
       weight: 8
     - id: GenericTank
-      weight: 3.2
+      weight: 3
     - id: ClosetRadiationSuitFilled
     - id: ClosetRadiationSuit
     - id: DecalSpawnerDirtWide
@@ -437,7 +380,7 @@
     - id: RandomSpawner
       weight: 15
     - id: OreBox
-      weight: 14.4
+      weight: 12
     - id: Barricade
       weight: 10
     - id: MaintenancePlantSpawner
@@ -450,15 +393,15 @@
       weight: 0.25
     - id: RandomArtifactSpawner20
     - id: SpawnMobOreCrab
-      weight: 8
+      weight: 3
     - id: MobQuartzCrab
-      weight: 3
+      weight: 1
     - id: MobSaltCrab
-      weight: 3
+      weight: 1
     - id: MobPlasmaCrab
-      weight: 3
+      weight: 1
     - id: MobIronCrab
-      weight: 3
+      weight: 1
     - id: LootSpawnerMedicalMinor
     - id: LootSpawnerMaterialsSupplementary
     - id: SalvageCanisterSpawner
@@ -573,6 +516,10 @@
   - !type:CornerClutterDunGen
     contents: BaseClutter
 
+  - !type:CorridorClutterDunGen
+    contents: SovietFloorLights
+    chance: 0.05
+
   - !type:CorridorDecalSkirtingDunGen
     cardinalDecals:
       South: BrickTileWhiteLineS
@@ -629,5 +576,13 @@
       weight: 2
     - id: PoweredWarmSmallLight
       weight: 0.7
+    - id: AlwaysPoweredStrobeDimLight
+      weight: 0.35
     - id: PoweredlightEmpty
       weight: 0.6
+
+- type: entityTable
+  id: SovietFloorLights
+  table: !type:GroupSelector
+    children:
+    - id: PoweredFloorlight

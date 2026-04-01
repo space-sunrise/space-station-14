@@ -611,3 +611,18 @@
               max: 1
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
+<<<<<<< HEAD
+=======
+
+- type: entity
+  id: MobFleshCultistPreview
+  categories: [ HideSpawnMenu ]
+  name: flesh cultist
+  suffix: DO NOT MAP
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Interface/Misc/antag_preview.rsi
+    state: flesh_cultist
+    scale: 2, 2
+
+>>>>>>> 2d5439f5b4036c796ce6a3748970e2cca3103fd2

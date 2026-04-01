@@ -615,12 +615,6 @@
   id: SovietDungeonWEH
 
 - type: Tag
-  id: SovietDungeonRuine
-
-- type: Tag
-  id: SovietRuineDungeon
-
-- type: Tag
   id: SovietWarehouse
 
 ### INTERACTION TAGS ###
@@ -662,6 +656,10 @@
 # Гладкие перчатки (например медицинские)
 - type: Tag
   id: SmoothGloves
+
+# добавляет вещь в чёрный список ксеноморфов
+- type: Tag
+  id: NoXeno
 
 # head
 # Закрыто только сверху (шлюяпы, кепки)

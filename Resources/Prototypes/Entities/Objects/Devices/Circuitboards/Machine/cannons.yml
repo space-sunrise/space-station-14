@@ -193,8 +193,8 @@
 - type: entity
   id: ShuttleGunBeamstormMachineGunCircuitboard
   parent: BaseMachineCircuitboard
-  name: LSE-800c "Beamstorm machine gun" machine board
-  description: A machine printed circuit board for an LSE-800c "Beamstorm machine gun".
+  name: LSE-800e "Beamstorm machine gun" machine board
+  description: A machine printed circuit board for an LSE-800e "Beamstorm machine gun".
   suffix: DO NOT MAP, Machine Board
   categories: [ DoNotMap ]
   components:
