@@ -30,17 +30,15 @@ public sealed class SiliconStandingSystem : EntitySystem
     }
 
     public void Toggle(EntityUid uid)
-    {
-        if (!HasComp<SiliconStandingComponent>(uid))
-            return;
+        {
+            if (!TryComp<SiliconStandingComponent>(uid, out var comp))
+                return;
 
-        var comp = Comp<SiliconStandingComponent>(uid);
+            comp.Active = !comp.Active;
+            Dirty(uid, comp);
 
-        comp.Active = !comp.Active;
-        Dirty(uid, comp);
-
-        _appearance.SetData(uid, SiliconStandingVisuals.Resting, comp.Active);
-    }
+            _appearance.SetData(uid, SiliconStandingVisuals.Resting, comp.Active);
+        }
 
     private void OnMove(Entity<SiliconStandingComponent> ent, ref UpdateCanMoveEvent args)
     {

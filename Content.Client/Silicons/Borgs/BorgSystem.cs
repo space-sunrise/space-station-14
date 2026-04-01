@@ -97,6 +97,8 @@ public sealed partial class BorgSystem : SharedBorgSystem
                 var restState = baseState.Replace("_e", "").Replace("_r", "") + "_rest";
 
                 _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Body, restState);
+                _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light, false);
+                return;
             }
         //Sunrise end
     }
