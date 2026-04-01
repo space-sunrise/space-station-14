@@ -32,6 +32,7 @@
     board: ComputerGunneryCircuitboard
   - type: ActivatableUI
     key: enum.GunneryConsoleUiKey.Key
+    singleUser: true
   - type: UserInterface
     interfaces:
       enum.GunneryConsoleUiKey.Key:
