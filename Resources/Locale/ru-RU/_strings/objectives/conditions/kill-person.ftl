@@ -1,1 +1,1 @@
-objective-condition-kill-person-title = Убить или не дать покинуть станцию { $targetName }, должность: { CAPITALIZE($job) }.
+objective-condition-kill-person-title = Обнять { $targetName }, должность: { CAPITALIZE($job) }.

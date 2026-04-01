@@ -925,6 +925,48 @@
     scale: 0.3
     shape: Triangle
     requireInSpace: true
+
+- type: entity
+  id: BulletArtilleryShapnel
+  name: bullet
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 40
+        Structural: 40
+  - type: StaminaDamageOnCollide
+    damage: 50
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.1
+    shape: Triangle
+    requireInSpace: true
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  id: BulletArtilleryShapnelShort
+  name: bullet
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 40
+        Structural: 40
+  - type: StaminaDamageOnCollide
+    damage: 50
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.1
+    shape: Triangle
+    requireInSpace: true
+  - type: TimedDespawn
+    lifetime: 0.5
 # endregion Timed Utility Grenades
 
 # region Anti-Materiel Grenade Bullets

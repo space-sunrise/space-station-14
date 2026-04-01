@@ -1,0 +1,5 @@
+- type: startingGear
+  id: FunnyPillsStartingGear
+  storage:
+    back:
+    - PillCanisterFunny

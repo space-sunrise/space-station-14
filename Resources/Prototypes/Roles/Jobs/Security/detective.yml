@@ -29,10 +29,13 @@
 - type: startingGear
   id: DetectiveGear
   equipment:
+    mask: ClothingMaskMime
+    gloves: ClothingHandsGlovesColorWhite
     eyes: ClothingEyesGlassesSecurity
-    id: DetectivePDA
+    id: MimePDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltHolsterFilled
+    pocket1: CrayonMime
   storage:
     back:
     - Flash

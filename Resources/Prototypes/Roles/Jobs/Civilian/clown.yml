@@ -17,7 +17,12 @@
     components:
     # Sunrise added start
     - type: ArtifactFunnyTarget
+    - type: ClownStatue
+    - type: ClownStand
     # Sunrise added end
+    - type: Slippery
+    - type: StepTrigger
+      requiredTriggeredSpeed: 1
     - type: Clumsy
       gunShootFailDamage:
         types: #literally just picked semi random valus. i tested this once and tweaked it.
@@ -37,16 +42,19 @@
   id: ClownGear
   equipment:
     mask: ClothingMaskClown
+    eyes: ClothingEyesGlassesSecurity
     pocket1: BikeHorn
     pocket2: ClownRecorder
-    id: ClownPDA
-    ears: ClothingHeadsetService
+    id: HoSPDA
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetAltSecurity
   inhand:
   - FoolboxFilled
+  - CrateMechHonker
   storage:
     back:
+    - Flash
     - RubberStampClown
-    - CrayonRainbow
 
 - type: chameleonOutfit
   id: ClownChameleonOutfit

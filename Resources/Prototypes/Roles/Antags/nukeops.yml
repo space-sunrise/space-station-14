@@ -76,17 +76,32 @@
 #Nuclear Operative Gear
 - type: startingGear
   id: SyndicateOperativeGearFull
-  #parent: SyndicateOperativeGearFullNoUplink
   equipment:
-    jumpsuit: ClothingUniformJumpsuitOperative
-    back: ClothingBackpackDuffelSyndicate
-    shoes: ClothingShoesBootsCombatFilled
-    id: SyndiOperativePDA
+    jumpsuit: ClothingUniformJumpsuitERTSecurity
+    back: ClothingBackpackERTSecurity
+    shoes: ClothingShoesBootsMagERT
+    head: ClothingHeadHatBeretSecurity
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesNVDSec
+    outerClothing: ClothingOuterHardsuitERTSecurity
+    id: ERTSecurityPDA
+    ears: ClothingHeadsetAltSyndicate
+    belt: ClothingBeltSecurityWebbingFilled
+    pocket1: SpeedLoaderMagnumSP
+    pocket2: SpeedLoaderMagnumSP
+  inhand:
+  - WeaponRevolverSpearhead
   storage:
     back:
-    - WeaponPistolViper
     - PinpointerSyndicateNuclear
     - DeathAcidifierImplanter
+    - SyndiOperativeIDCard
+    - C4
+    - C4
+    - CrowbarRed
+    - MedkitCombatFilled
+    - SmokeGrenade
+    - ClothingHandsPowerGlovesUplinkNTERTGamma
 
 - type: chameleonOutfit
   id: NukeopsOutfit
@@ -102,13 +117,19 @@
   id: SyndicateCommanderGearFull
   parent: SyndicateOperativeGearFull
   equipment:
-    id: SyndiCommanderPDA
+    id: ERTLeaderPDA
     neck: SyndicateWhistle
-    #outerClothing: ClothingOuterHardsuitSyndieCommanderBiocode # Sunrise-Edit
-    pocket1: BaseUplinkRadio0TC
+    outerClothing: ClothingOuterHardsuitERTLeader
+    head: ClothingHeadHatERTLeaderBeret
+    pocket1: UplinkNTERTGamma
   inhand:
   - NukeOpsDeclarationOfWar
   - RemoteNukeOpShuttleController # Sunrise-Edit
+  storage:
+    back:
+    - SyndiCommanderIDCard
+    - PinpointerSyndicateNuclear
+    - DeathAcidifierImplanter
 
 - type: chameleonOutfit
   id: NukeopsCommanderOutfit
@@ -124,22 +145,25 @@
   id: SyndicateOperativeMedicFull
   parent: SyndicateOperativeGearFull
   equipment:
-    eyes: ClothingEyesHudSyndicateMedic # Sunrise-Edit
-    #outerClothing: ClothingOuterHardsuitSyndieMedicBiocode # Sunrise-Edit
-    #shoes: ClothingShoesBootsMagSyndie # Sunrise-Edit
-    id: SyndiCorpsmanPDA
-    belt: ClothingBeltMilitaryWebbingMedSunriseFilled # Sunrise-Edit
+    eyes: ClothingEyesNVDMedSec
+    outerClothing: ClothingOuterHardsuitERTMedical
+    id: ERTMedicPDA
+    belt: ClothingBeltMedicalElite
+    pocket1: MedipenCombatInjector
+  inhand:
+  - MedkitCombatFilled
+  - AdvancedDefibrillator
   storage:
     back:
+    - PinpointerSyndicateNuclear
+    - DeathAcidifierImplanter
+    - SyndiCorpsmanIDCard
     - SyndiHypo
     - SawAdvanced
     - Cautery
-    - CombatKnife
-    - WeaponPistolViper
-    - PinpointerSyndicateNuclear
     - HandheldHealthAnalyzer
     - CombatMedipen
-    - DeathAcidifierImplanter
+    - SmokeGrenade
 
 - type: chameleonOutfit
   id: NukeopsMedicOutfit

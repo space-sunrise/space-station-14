@@ -1,4 +1,17 @@
 ﻿- type: entity
+  id: CrateMechHonker
+  name: H.O.N.K. mech crate
+  description: Contains a fully equipped H.O.N.K. exosuit. HONK!
+  parent: CrateLivestock
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MechHonkerFilled
+
+- type: entity
   id: CrateFunSprayPaints
   name: spray paint crate
   description: a crate filled with spray paint.

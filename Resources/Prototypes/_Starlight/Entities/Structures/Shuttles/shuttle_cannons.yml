@@ -140,7 +140,7 @@
   - type: RadarLaserTracker
     laserColor: "#FF44FF"
     traceDuration: 0.75
-    maxRange: 35.0
+    maxRange: 128.0
   - type: RadarBlip
     color: "#FF44FF"
     scale: 1.4
@@ -724,14 +724,14 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 18   # halved range
-    fireRate: 1.5
-    burstFireRate: 3
+    projectileSpeed: 25   # halved range
+    fireRate: 1.25
+    burstFireRate: 2.5
     burstCooldown: 2
     shotsPerBurst: 4
     selectedMode: Burst
     angleDecay: 20
-    minAngle: 1
+    minAngle: 2
     maxAngle: 15
     angleIncrease: 3
     availableModes:
@@ -1015,7 +1015,7 @@
   - type: RadarLaserTracker
     laserColor: "#FF44FF"
     traceDuration: 0.75
-    maxRange: 35.0
+    maxRange: 128.0
   - type: RadarBlip
     color: "#FF44FF"
     scale: 1.6

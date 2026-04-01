@@ -32,9 +32,9 @@
     container: storagebase
   - type: PneumaticCannon
   - type: Storage
-    maxItemSize: Normal
+    maxItemSize: Huge
     grid:
-    - 0,0,1,1
+    - 0,0,4,3
   - type: Appearance
   - type: ItemMapper
     containerWhitelist: [gas_tank]
@@ -43,6 +43,8 @@
         whitelist:
           components:
           - GasTank
+          tags:
+          - Felinid
   - type: Construction
     graph: PneumaticCannon
     node: cannon
