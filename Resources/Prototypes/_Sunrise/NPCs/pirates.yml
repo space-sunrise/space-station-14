@@ -129,6 +129,19 @@
     priority: 45
   - type: Damageable
     damageModifierSet: MobPirateT1
+  - type: ExplosionResistance
+    damageCoefficient: 0.25
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: NpcFactionMember
     factions:
     - Pirate
@@ -145,6 +158,8 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
+  - type: TimedDespawn
+    lifetime: 3600
   - type: RemoveComponentsOnTrigger
     triggerOnce: true
     components:
@@ -160,7 +175,7 @@
     removeExisting: true
     components:
     - type: TimedDespawn
-      lifetime: 180
+      lifetime: 600
     - type: Strippable
     - type: Pullable
   - type: TimedRemoveComponents
@@ -315,6 +330,17 @@
 - type: entity
   abstract: true
   parent: MobPirateBase
+  id: MobPirateVeteranChatterBase
+  components:
+  - type: DatasetVocalizer
+    dataset: PirateChatterNPCVeteran
+    minVocalizeInterval: 30s
+    maxVocalizeInterval: 90s
+    hideChat: true
+
+- type: entity
+  abstract: true
+  parent: MobPirateBase
   id: MobPirateBaseT2
   components:
   - type: Damageable
@@ -346,6 +372,17 @@
 
 - type: entity
   abstract: true
+  parent: MobPirateBaseT2
+  id: MobPirateVeteranChatterBaseT2
+  components:
+  - type: DatasetVocalizer
+    dataset: PirateChatterNPCVeteran
+    minVocalizeInterval: 45s
+    maxVocalizeInterval: 120s
+    hideChat: true
+
+- type: entity
+  abstract: true
   parent:
   - MobPirateBaseT2
   - MobHumanoidHostileAISimpleRanged
@@ -371,6 +408,45 @@
   - MobPirateBaseT3
   - MobHumanoidHostileAISimpleMelee
   id: MobPirateBaseT3Melee
+
+- type: entity
+  abstract: true
+  parent:
+  - MobPirateBaseT2
+  - MobHumanoidHostileAISimpleRanged
+  id: MobPirateVeteranChatterBaseT2Ranged
+  components:
+  - type: DatasetVocalizer
+    dataset: PirateChatterNPCVeteran
+    minVocalizeInterval: 45s
+    maxVocalizeInterval: 120s
+    hideChat: true
+
+- type: entity
+  abstract: true
+  parent:
+  - MobPirateBaseT2
+  - MobHumanoidHostileAISimpleMelee
+  id: MobPirateVeteranChatterBaseT2Melee
+  components:
+  - type: DatasetVocalizer
+    dataset: PirateChatterNPCVeteran
+    minVocalizeInterval: 45s
+    maxVocalizeInterval: 120s
+    hideChat: true
+
+- type: entity
+  abstract: true
+  parent:
+  - MobPirateBaseT3
+  - MobHumanoidHostileAISimpleRanged
+  id: MobPirateVeteranChatterBaseT3Ranged
+  components:
+  - type: DatasetVocalizer
+    dataset: PirateChatterNPCVeteran
+    minVocalizeInterval: 45s
+    maxVocalizeInterval: 120s
+    hideChat: true
 
 - type: entity
   abstract: true
@@ -454,7 +530,6 @@
       - MobPirateT1Knife
       - MobPirateT1KnifeTearGas
       - MobPirateT1KnifeStinger
-      - MobPirateT1KnifeFirebomb
       - MobPirateT1KnifeBola
       - MobPirateT1KnifeEMP
       - MobPirateT1MonkeyKnuckleDusters
@@ -509,8 +584,6 @@
       - MobPirateT2ECutlassTearGas
       - MobPirateT2ECutlassStinger
       - MobPirateT2ECutlassFirebomb
-      - MobPirateT2ECutlassBola
-      - MobPirateT2ECutlassFuzeCannonBall
       - MobPirateT2Sledgehammer
       - MobPirateT2GauntletDrill
 
@@ -519,7 +592,6 @@
       - MobPirateT2ShotgunGlass
       - MobPirateT2Musket
       - MobPirateT2MusketEMP
-      - MobPirateT2MusketBlast
       - MobPirateT2MusketFrag
       - MobPirateT2MusketPenetrator
       - MobPirateT2MachineCannon
@@ -849,6 +921,11 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Effects/drop.ogg
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGunGrenadeFireBomb
+      minRange: 6
+      maxRange: 12
 
 - type: entity
   parent: MobPirateT1Knife
@@ -865,15 +942,6 @@
   components:
   - type: BasicEntityAmmoProvider
     proto: BulletGrenadeStinger
-    capacity: 1
-    count: 1
-
-- type: entity
-  parent: MobPirateT1Knife
-  id: MobPirateT1KnifeFirebomb
-  components:
-  - type: BasicEntityAmmoProvider
-    proto: BulletImprovisedGrenadeFirebomb
     capacity: 1
     count: 1
 
@@ -898,7 +966,7 @@
 - type: entity
   name: Scrap boarder
   description: Swings with the characteristic Vshuuu Vshuuu sound of an energy sword, constantly showing off just how awesome these Eeeee-blades are.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBase]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateVeteranChatterBase]
   id: MobPirateT1ECutlass
   components:
   - type: Loadout
@@ -925,10 +993,18 @@
     - DoorBumpOpener
     - CannotSuicide
     - NpcVeteranLeader
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGunGrenadeFireBomb
+      minRange: 6
+      maxRange: 12
+    - actionId: ActionGunGrenadeGlassShrapnel
+      minRange: 6
+      maxRange: 12
 
 - type: entity
   name: Scrap miner
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBase]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateVeteranChatterBase]
   id: MobPirateT1EPickaxe
   description: A looter that scavenged enough coins to afford some decent equipment.
   components:
@@ -956,6 +1032,14 @@
     - DoorBumpOpener
     - CannotSuicide
     - NpcVeteranLeader
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGunGrenadeFireBomb
+      minRange: 6
+      maxRange: 12
+    - actionId: ActionGunGrenadeGlassShrapnel
+      minRange: 6
+      maxRange: 12
 
 - type: entity
   name: Scrap miner
@@ -1003,7 +1087,7 @@
 
 - type: entity
   name: goliath hunter
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2Melee]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateVeteranChatterBaseT2Melee]
   id: MobPirateT1Hunter
   description: Veteran scrappers, these salvagers are wealthy enough to explore abandoned ruins for the adrenaline rush and adventure alone.
   components:
@@ -1073,7 +1157,7 @@
 
 - type: entity
   name: goliath smasher
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2Melee]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateVeteranChatterBaseT2Melee]
   id: MobPirateT1HunterSmash
   description: Veteran scrappers, these salvagers are bulky enough to use heavy crusher-axe.
   components:
@@ -1153,7 +1237,7 @@
 - type: entity
   name: Scrap salvager
   description: A seasoned pirate-salvager. With a plasma cutter, capable of slicing through shuttle hulls and clearing a path for the boarding team.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2Ranged]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateVeteranChatterBaseT2Ranged]
   id: MobPirateT1PlasmaCutter
   components:
   - type: Loadout
@@ -1325,6 +1409,7 @@
       0: Alive
       80: Critical
       100: Dead
+  - type: ShowHealthBars
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1345,8 +1430,10 @@
     capacity: 7
     count: 7
   - type: AoEHeal
+    healSelf: false
     range: 4
     threshold: 0.9
+    aliveTargets: false
     damage:
       groups:
         Brute: -20
@@ -1363,8 +1450,10 @@
     triggerOnce: true
     components:
     - type: AoEHeal
+      healSelf: false
       range: 4
       threshold: 0.9
+      aliveTargets: false
       damage:
         groups:
           Brute: -20
@@ -1391,6 +1480,7 @@
       0: Alive
       80: Critical
       100: Dead
+  - type: ShowHealthBars
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1426,8 +1516,10 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: AoEHeal
-    range: 4
+    healSelf: false
+    range: 5
     threshold: 0.9
+    aliveTargets: false
     damage:
       groups:
         Brute: -20
@@ -1444,8 +1536,10 @@
     triggerOnce: true
     components:
     - type: AoEHeal
-      range: 4
+      healSelf: false
+      range: 5
       threshold: 0.9
+      aliveTargets: false
       damage:
         groups:
           Brute: -20
@@ -1472,6 +1566,7 @@
       0: Alive
       80: Critical
       100: Dead
+  - type: ShowHealthBars
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1514,8 +1609,10 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: AoEHeal
-    range: 4
+    healSelf: false
+    range: 6
     threshold: 0.9
+    aliveTargets: false
     damage:
       groups:
         Brute: -30
@@ -1532,8 +1629,10 @@
     triggerOnce: true
     components:
     - type: AoEHeal
-      range: 4
+      healSelf: false
+      range: 6
       threshold: 0.9
+      aliveTargets: false
       damage:
         groups:
           Brute: -30
@@ -1584,7 +1683,7 @@
 
 - type: entity
   name: Scrap raider
-  description: Loves guns. Has built as many weapons with his own hands as heï¿½s blown up. Armed with an improvised SMG.
+  description: Loves guns. Has built as many weapons with his own hands as he's blown up. Armed with an improvised SMG.
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
   id: MobPirateT1ScrapSMG
   components:
@@ -1627,7 +1726,7 @@
   name: Scrap Automatic
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
   id: MobPirateT1ScrapRifle
-  description: In a team where everyone is armed with whatever they could grab, he picked up a rifle ï¿½ at least it used to be oneï¿½
+  description: In a team where everyone is armed with whatever they could grab, he picked up a rifle - at least it used to be one.
   components:
   - type: Loadout
     prototypes:
@@ -1674,9 +1773,9 @@
 
 - type: entity
   name: Scrap raider
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateVeteranChatterBase]
   id: MobPirateT1SMG
-  description: In a team where everyone is armed with whatever they could grab, he picked up a rifle ï¿½ at least it used to be oneï¿½
+  description: In a team where everyone is armed with whatever they could grab, he picked up an SMG - and somehow made it work.  
   components:
   - type: Tag
     tags:
@@ -1733,7 +1832,7 @@
 - type: entity
   name: Scrap gunner
   description: A hardened scrapper veteran who keeps a cheap SMK-24.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateVeteranChatterBase]
   id: MobPirateT1RifleAlt
   components:
   - type: Loadout
@@ -1785,7 +1884,7 @@
 - type: entity
   name: Scrap veteran gunner
   description: A hardened scrapper veteran who keeps a PPSH close and a bandolier closer.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBase]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateVeteranChatterBase]
   id: MobPirateT1Rifle
   components:
   - type: Tag
@@ -2186,7 +2285,7 @@
 - type: entity
   name: pirate boarder
   description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
-  parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2Melee]
+  parent: [MobMovementSpeedModifierEVAMelee, MobPirateVeteranChatterBaseT2Melee]
   id: MobPirateT2ECutlass
   components:
   - type: Loadout
@@ -2203,7 +2302,7 @@
       state: equipped-HELMET-unshaded
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: BolaSecurity
+    proto: Bola
     capacity: 1
     count: 1
   - type: RechargeBasicEntityAmmo
@@ -2223,6 +2322,14 @@
     - DoorBumpOpener
     - CannotSuicide
     - NpcVeteranLeader
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGunGrenadeFuzeBall
+      minRange: 6
+      maxRange: 12
+    - actionId: ActionGunGrenadeGlassShrapnel
+      minRange: 6
+      maxRange: 12
 
 - type: entity
   name: pirate boarder
@@ -2258,30 +2365,8 @@
     count: 1
 
 - type: entity
-  name: pirate boarder
-  description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
-  parent: MobPirateT2ECutlass
-  id: MobPirateT2ECutlassBola
-  components:
-  - type: BasicEntityAmmoProvider
-    proto: BolaSecurity
-    capacity: 1
-    count: 1
-
-- type: entity
-  name: pirate boarder
-  description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
-  parent: MobPirateT2ECutlass
-  id: MobPirateT2ECutlassFuzeCannonBall
-  components:
-  - type: BasicEntityAmmoProvider
-    proto: BulletFuzeCannonBall
-    capacity: 1
-    count: 1
-
-- type: entity
   name: pirate breacher
-  description: A boarding team member armed with a sledgehammer, capable of breaking through an airlock ï¿½ or someoneï¿½s skull.
+  description: A boarding team member armed with a sledgehammer, capable of breaking through an airlock - or someone's skull.
   parent: [MobMovementSpeedModifierEVAMelee, MobPirateBaseT2Melee]
   id: MobPirateT2Sledgehammer
   components:
@@ -2322,6 +2407,11 @@
       50: 1.15
       75: 1.25
       80: 1.3
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGunGrenadeFuzeBall
+      minRange: 6
+      maxRange: 12
 
 - type: entity
   name: pirate breacher
@@ -2367,6 +2457,11 @@
     - DoorBumpOpener
     - FootstepSound
     - Pickaxe
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGunGrenadeFuzeBall
+      minRange: 6
+      maxRange: 12
 
 - type: entity
   name: Big Yarrke
@@ -2410,8 +2505,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      340: Critical
-      350: Dead
+      330: Critical
+      331: Dead
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
@@ -2683,7 +2778,7 @@
 - type: entity
   name: Pirate bootsman
   description: A battle-hardened pirate boatsman. Combines the skill of a sharpshooter with the ferocity of a boarder. Prefers to shoot first and finish off what remains.
-  parent: MobPirateBaseT2
+  parent: MobPirateVeteranChatterBaseT2
   id: MobPirateT2RevolverCutlass
   components:
   - type: Loadout
@@ -2726,7 +2821,7 @@
 
 - type: entity
   name: Shrap'nel Thunder
-  description: Turns everything into cheese with holes. Claims that ï¿½shrapnel is just another form of art.
+  description: Turns everything into cheese with holes. Claims that 'shrapnel is just another form of art.'
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT2Ranged]
   id: MobPirateT2Grapeshot
   components:
@@ -3028,16 +3123,6 @@
 
 - type: entity
   name: pirate musketeer
-  description: Armed with an antique large-caliber musket. Color of tip on ammo in his bandolier was brown.
-  parent: MobPirateT2Musket
-  id: MobPirateT2MusketBlast
-  suffix: Blast
-  components:
-  - type: BasicEntityAmmoProvider
-    proto: CartridgeAntiMaterielBlast
-
-- type: entity
-  name: pirate musketeer
   description: Armed with an antique large-caliber musket. Color of tip on ammo in his bandolier was green.
   parent: MobPirateT2Musket
   id: MobPirateT2MusketFrag
@@ -3129,20 +3214,17 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
-  - type: BasicEntityAmmoProvider
-    proto: BolaSyndicateDespawn
-    capacity: 1
-    count: 1
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 5
-  - type: Gun
-    projectileSpeed: 13
-    showExamineText: false
-    fireRate: 0.2
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot: /Audio/Weapons/bolathrow.ogg
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGunGrenadeStinger
+      minRange: 6
+      maxRange: 12
+    - actionId: ActionGunGrenadeIncendiary
+      minRange: 6
+      maxRange: 12
+    - actionId: ActionGunGrenadeShrapnel
+      minRange: 6
+      maxRange: 12
 
 - type: entity
   name: Privateer hunter
@@ -3165,20 +3247,17 @@
       shader: unshaded
     - sprite: Objects/Tanks/oxygen.rsi
       state: equipped-SUITSTORAGE
-  - type: BasicEntityAmmoProvider
-    proto: BulletGrenadeStinger
-    capacity: 1
-    count: 1
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 10
-  - type: Gun
-    projectileSpeed: 10
-    showExamineText: false
-    fireRate: 1
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot: /Audio/Effects/countdown.ogg
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGunGrenadeStinger
+      minRange: 6
+      maxRange: 12
+    - actionId: ActionGunGrenadeIncendiary
+      minRange: 6
+      maxRange: 12
+    - actionId: ActionGunGrenadeShrapnel
+      minRange: 6
+      maxRange: 12
   - type: Reflect
     reflectProb: 0.9
     spread: 360
@@ -3228,6 +3307,17 @@
     useKey: true
     soundGunshot:
       collection: m1984
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGunGrenadeStinger
+      minRange: 6
+      maxRange: 12
+    - actionId: ActionGunGrenadeIncendiary
+      minRange: 6
+      maxRange: 12
+    - actionId: ActionGunGrenadeShrapnel
+      minRange: 6
+      maxRange: 12
 
 - type: entity
   name: Privateer boarder
@@ -3270,6 +3360,17 @@
     - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/scorpion/scorpion_shot.ogg
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGunGrenadeStinger
+      minRange: 6
+      maxRange: 12
+    - actionId: ActionGunGrenadeIncendiary
+      minRange: 6
+      maxRange: 12
+    - actionId: ActionGunGrenadeShrapnel
+      minRange: 6
+      maxRange: 12
 
 - type: entity
   name: Privateer sharpshooter
@@ -3327,6 +3428,11 @@
   - type: StealthOnMove
     passiveVisibilityRate: -0.05
     movementVisibilityRate: 0.9
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 6
+      maxRange: 14
 
 - type: entity
   name: Tachanka
@@ -3382,10 +3488,15 @@
 
 - type: entity
   name: Scrapshade
-  description: Boo! Scared? Donï¿½t worry, I wonï¿½t hurt you.
+  description: Boo! Scared? Don't worry, I won't hurt you.
   parent: MobPirateT3DMR
   id: MobPirateT3Infiltrator
   components:
+  - type: DatasetVocalizer
+    dataset: PirateChatterNPCVeteran
+    minVocalizeInterval: 45s
+    maxVocalizeInterval: 120s
+    hideChat: true
   - type: Loadout
     prototypes:
     - MobPirateGearRangedT4Alt
@@ -3437,6 +3548,11 @@
   - type: EyeCursorOffset
     maxOffset: 7
     pvsIncrease: 0.7
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 6
+      maxRange: 14
   - type: Tag
     tags:
     - CanPilot
@@ -3498,6 +3614,11 @@
   parent: MobPirateT3Rifle
   id: MobPirateT3Rifle2
   components:
+  - type: DatasetVocalizer
+    dataset: PirateChatterNPCVeteran
+    minVocalizeInterval: 45s
+    maxVocalizeInterval: 120s
+    hideChat: true
   - type: Loadout
     prototypes:
     - MobPirateT3Rifle2Gear
@@ -3534,7 +3655,7 @@
 - type: entity
   name: Privateer machinegunner
   description: A pirate who has found sponsors, well-armed and suitably dangerous.
-  parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3Ranged]
+  parent: [MobMovementSpeedModifierEVARanged, MobPirateVeteranChatterBaseT3Ranged]
   id: MobPirateT3L6
   components:
   - type: Tag
@@ -3669,6 +3790,11 @@
   - type: EyeCursorOffset
     maxOffset: 11
     pvsIncrease: 1.1
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 6
+      maxRange: 14
 
 - type: entity
   name: Privateer machinegunner
@@ -3806,7 +3932,7 @@
 
 - type: entity
   name: Privateer grenadier
-  description: Covered in fireworks and explosives. Hasnï¿½t heard of safety regulations or just ignores them loudly.
+  description: Covered in fireworks and explosives. Hasn't heard of safety regulations or just ignores them loudly.
   parent: [MobMovementSpeedModifierEVARanged, MobPirateBaseT3Ranged]
   id: MobPirateT3Grenadier
   components:
@@ -3826,7 +3952,7 @@
       state: on-equipped-HELMET
       shader: unshaded
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 7
+    rechargeCooldown: 8
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: BasicEntityAmmoProvider
@@ -3834,13 +3960,24 @@
     capacity: 1
     count: 1
   - type: Gun
-    projectileSpeed: 15
+    projectileSpeed: 14
     showExamineText: false
     fireRate: 1
     selectedMode: FullAuto
     availableModes:
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGunGrenadeStinger
+      minRange: 6
+      maxRange: 12
+    - actionId: ActionGunGrenadeIncendiary
+      minRange: 6
+      maxRange: 12
+    - actionId: ActionGunGrenadeShrapnel
+      minRange: 6
+      maxRange: 12
 
 - type: entity
   name: bounty hunter
@@ -3889,8 +4026,8 @@
 # region Tier 1-3 Boss
 - type: entity
   name: Captain Rustfist
-  description: An old salvage veteran, more metal than man. His fists creak, his armorï¿½s held together by bolts and faith, and if he swings at you, itï¿½s best to play dead and hope he buys it.
-  parent: [MobHostileBossBase, MobPirateBase, MobPirateSparkEffectBase]
+  description: An old salvage veteran, more metal than man. His fists creak, his armor's held together by bolts and faith, and if he swings at you, it's best to play dead and hope he buys it.
+  parent: [MobHostileBossBase, MobPirateVeteranChatterBase, MobPirateSparkEffectBase]
   id: MobPirateT1Boss
   components:
   - type: Loadout
@@ -3966,7 +4103,7 @@
 - type: entity
   name: Captain Gold Bolt
   description: Space legend, feared and drunk in equal measure.
-  parent: [MobHostileBossBase, MobPirateBaseT2Ranged]
+  parent: [MobHostileBossBase, MobPirateVeteranChatterBaseT2Ranged]
   id: MobPirateT2Boss
   components:
   - type: Loadout
@@ -4026,7 +4163,7 @@
 - type: entity
   name: Skull House
   description: The Heavy Mech USSP, a communist variant of the Durand, features stronger armor and a powerful machine gun.
-  parent: [MobHostileBossBase, MobPirateBaseT3Ranged, MobPirateSparkEffectBase]
+  parent: [MobHostileBossBase, MobPirateVeteranChatterBaseT3Ranged, MobPirateSparkEffectBase]
   id: MobPirateT3Boss
   components:
   - type: NPCUseActionWhenTargetInRange
@@ -4162,7 +4299,6 @@
   - type: EyeCursorOffset
     maxOffset: 5
     pvsIncrease: 0.6
-  - type: Magboots
   - type: HellSpawnInvincibility
   - type: HellSpawnSpiral
   - type: AutoImplant
@@ -4171,3 +4307,5 @@
   - type: GhostRole
     prob: 0.35
     makeSentient: true
+
+

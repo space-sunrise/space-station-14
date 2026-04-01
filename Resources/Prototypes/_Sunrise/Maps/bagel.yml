@@ -3,7 +3,7 @@
   mapName: 'Bagel'
   mapPath: /Maps/_Sunrise/Station/bagel.yml
   minPlayers: 0
-  maxPlayers: 75
+  maxPlayers: 90
   maxRandomOffset: 0
   randomRotation: false
   stations:
@@ -16,7 +16,7 @@
           !type:NanotrasenNameGenerator
           prefixCreator: '14'
       - type: StationEmergencyShuttle
-        emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency.yml
+        emergencyShuttlePath: /Maps/_Sunrise/Shuttles/Evac/emergency-centipede.yml
       - type: StationJobs
         availableJobs:
           #command

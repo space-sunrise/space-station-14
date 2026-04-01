@@ -390,6 +390,13 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("vigers_ray.victims", "", CVar.SERVERONLY);
 
     /// <summary>
+    /// List of usernames that cannot be kicked by kick or ghostkick commands.
+    /// Usernames are comma-separated.
+    /// </summary>
+    public static readonly CVarDef<string> ProtectedKickUsernames =
+        CVarDef.Create("admin.protected_kick_usernames", "", CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
     ///     Flavor Profile
     /// </summary>
     public static readonly CVarDef<bool> FlavorTextSponsorOnly =
@@ -461,22 +468,6 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> ArtifactRandomTransformationEnabled =
         CVarDef.Create("artifact.random_transformation.enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
 
-    /*
-     * AntiSpam params
-     */
-    public static readonly CVarDef<bool> AntiSpamEnable =
-        CVarDef.Create("anti_spam.enable", false, CVar.SERVER | CVar.ARCHIVE);
-    public static readonly CVarDef<int> AntiSpamCounterShort =
-        CVarDef.Create("anti_spam.counter_short", 1, CVar.SERVER | CVar.ARCHIVE);
-    public static readonly CVarDef<int> AntiSpamCounterLong =
-        CVarDef.Create("anti_spam.counter_long", 2, CVar.SERVER | CVar.ARCHIVE);
-    public static readonly CVarDef<float> AntiSpamMuteDuration =
-        CVarDef.Create("anti_spam.mute_duration", 10f, CVar.SERVER | CVar.ARCHIVE);
-    public static readonly CVarDef<float> AntiSpamTimeShort =
-        CVarDef.Create("anti_spam.time_short", 1.5f, CVar.SERVER | CVar.ARCHIVE);
-    public static readonly CVarDef<float> AntiSpamTimeLong =
-        CVarDef.Create("anti_spam.time_long", 5f, CVar.SERVER | CVar.ARCHIVE);
-
     /// <summary>
     /// Вроде все очевидно
     /// </summary>
@@ -524,5 +515,64 @@ public sealed partial class SunriseCCVars : CVars
 
     public static readonly CVarDef<int> GameIPBlockingUnhandledMessageRateLimit =
         CVarDef.Create("game.ipblocking_unhandled_message_rate_limit", 10, CVar.SERVERONLY);
+
+
+    /*
+    LOADOUTS
+    */
+
+    /// <summary>
+    /// Включает кастомный пул loadout
+    /// Если выключено, используется стандартный пул из loadout-прототипов
+    /// Имя пула задаётся в custom_loadout.pool
+    /// </summary>
+    public static readonly CVarDef<bool> CustomLoadoutEnabled =
+        CVarDef.Create("custom_loadout.enabled", true, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Имя кастомного пула loadout
+    /// Используется только если custom_loadout.enabled = true
+    /// Варианты: "SunriseLoadout"
+    /// </summary>
+    public static readonly CVarDef<string> LoadoutPool =
+        CVarDef.Create("custom_loadout.pool", "SunriseLoadout", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    /*
+     * Trusted Proxy (UDP Relay)
+     */
+
+    /// <summary>
+    /// Включает поддержку доверенных прокси-серверов (UDP relay).
+    /// При включении сервер будет polling relay API для получения маппингов IP-адресов.
+    /// </summary>
+    public static readonly CVarDef<bool> TrustedProxyEnabled =
+        CVarDef.Create("trusted_proxy.enabled", false, CVar.SERVERONLY);
+
+    /// <summary>
+    /// URL(s) relay API для polling маппингов, через запятую.
+    /// Пример: "http://10.0.0.1:18080" или "http://relay1.example.com:18080,http://relay2.example.com:18080"
+    /// </summary>
+    public static readonly CVarDef<string> TrustedProxyRelayApiUrl =
+        CVarDef.Create("trusted_proxy.relay_api_url", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    /// <summary>
+    /// API ключ для аутентификации при polling relay API.
+    /// </summary>
+    public static readonly CVarDef<string> TrustedProxyRelayApiKey =
+        CVarDef.Create("trusted_proxy.relay_api_key", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    /// <summary>
+    /// Список IP-адресов доверенных прокси-серверов, через запятую.
+    /// Подключения с этих IP будут проходить трансляцию endpoint'ов.
+    /// Пример: "1.2.3.4,5.6.7.8"
+    /// </summary>
+    public static readonly CVarDef<string> TrustedProxyIPs =
+        CVarDef.Create("trusted_proxy.ips", "", CVar.SERVERONLY);
+
+    /// <summary>
+    /// Интервал polling relay API в миллисекундах.
+    /// </summary>
+    public static readonly CVarDef<int> TrustedProxyPollIntervalMs =
+        CVarDef.Create("trusted_proxy.poll_interval_ms", 2000, CVar.SERVERONLY);
 
 }

@@ -1,0 +1,7 @@
+- type: loadoutPool
+  id: BaseLoadoutPoolWildcards
+  abstract: true
+  roleLoadouts:
+    JobReporter: SunriseJobReporter
+    JobPsychologist: SunriseJobPsychologist
+

@@ -12,3 +12,7 @@ construction-graph-tag-naval-jacket-desc = { ent-ClothingNavalJacket.desc }
 construction-graph-tag-naval-boots-desc = { ent-ClothingNavalBoots.desc }
 construction-graph-tag-firebomb = { ent-FireBomb }
 construction-graph-tag-firebomb-desc = { ent-FireBomb.desc }
+construction-graph-tag-white-lily-crown = { ent-WhiteLilyCrown }
+construction-graph-tag-white-lily-crown-desc = { ent-WhiteLilyCrown.desc }
+construction-graph-tag-white-lily = { ent-FoodWhiteLily }
+construction-graph-tag-white-lily-desc = { ent-FoodWhiteLily.desc }

@@ -33,6 +33,30 @@
     - id: ClothingBackpackMessengerMercenary
       prob: 0.05
 
+- type: entityTable
+  id: SovietSmokingTable
+  table: !type:AllSelector
+    children:
+    - id: CigaretteSoviet
+      prob: 0.1
+    - id: CigPackSoviet
+      prob: 0.05
+    - id: MysteryLighterBox
+      prob: 0.02
+    - id: UplinkLighterBox
+      prob: 0.02
+
+- type: entity
+  id: SovietSmokingSpawner
+  name: soviet smoking spawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: SovietSmokingTable
+    offset: 0
+    deleteSpawnerAfterSpawn: true
+
 # MERCENARY NPC LOOT
 - type: entity
   parent: MercenaryWebbingBox
@@ -128,6 +152,7 @@
       prob: 0.1
     - id: ExShrapnelGrenade
       prob: 0.05
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -157,6 +182,7 @@
       prob: 0.2
     - id: ExShrapnelGrenade
       prob: 0.05
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 ###
@@ -180,6 +206,7 @@
       prob: 0.2
     - id: MagazineLightRifleAP
       prob: 0.01
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -227,6 +254,7 @@
       prob: 0.25
     - id: NukeOpsMedkitSpawner
       prob: 0.25
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -255,6 +283,7 @@
       prob: 0.1
     - id: NukeOpsMedkitSpawner
       prob: 0.1
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -278,6 +307,7 @@
       prob: 0.9
     - id: PirateCashSpawner03
       prob: 0.7
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -299,6 +329,7 @@
       prob: 0.4
     - id: MagazineBoxPistolFMJ
       prob: 0.3
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -334,6 +365,7 @@
       prob: 0.7
     - id: LootSpawnerIndustrial
       prob: 0.7
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -377,6 +409,7 @@
       prob: 0.7
     - id: LootSpawnerIndustrial
       prob: 0.7
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -397,6 +430,7 @@
       prob: 0.1
     - id: MagazineLightMachineGunMG60
       prob: 0.1
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -432,6 +466,7 @@
       prob: 0.7
     - id: LootSpawnerIndustrial
       prob: 0.7
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -453,6 +488,7 @@
       prob: 0.1
     - id: MagazineLightRifleMaxim
       prob: 0.1
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -474,6 +510,7 @@
       prob: 0.25
     - id: MagazineLightRifleBeltBoxFMJ
       prob: 0.15
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -506,6 +543,7 @@
       prob: 0.7
     - id: LootSpawnerIndustrial
       prob: 0.3
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -519,16 +557,17 @@
     state: icon
   - type: SpawnItemsOnUse
     items:
-    - id: MagazineBoxLightRifleFMJ
+    - id: MagazineBoxRifleMachineFMJ
       prob: 0.4
-    - id: SpeedLoaderLightRifle
+    - id: SpeedLoaderHeavyRifleRFMJ
       prob: 0.9
-    - id: SpeedLoaderLightRifle
+    - id: SpeedLoaderHeavyRifleRFMJ
       prob: 0.9
-    - id: SpeedLoaderLightRifle
+    - id: SpeedLoaderHeavyRifleRFMJ
       prob: 0.2
-    - id: MagazineBoxLightRifleBig
+    - id: MagazineBoxRifleMachineBig
       prob: 0.1
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -587,6 +626,7 @@
     - id: JugDexPlusSaline
       prob: 0.15
     - id: PirateMedSpawner01
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -600,10 +640,10 @@
     # Cash
     - id: PirateCashSpawner03
     # Weapons
-    - id: WeaponRevolverMateba
-      prob: 0.9
-    - id: WeaponRevolverMateba
-      prob: 0.3
+    - id: WeaponRevolverPython
+      prob: 0.75
+    - id: WeaponRevolverPythonAP
+      prob: 0.25
     # Armor
     - id: ClothingOuterCoatDetective
       prob: 0.4
@@ -625,6 +665,7 @@
       prob: 0.7
     - id: LootSpawnerIndustrial
       prob: 0.3
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -648,6 +689,7 @@
       prob: 0.9
     - id: MagazineBoxPistolFMJ
       prob: 0.2
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -679,7 +721,7 @@
       orGroup: Weapons
     # Armor
     - id: ClothingOuterHeavyHardsuitUSSP
-      prob: 0.3
+      prob: 0.25
       orGroup: Weapons
     - id: PirateMedSpawner01
     # Bonus Loot T2
@@ -698,6 +740,7 @@
       prob: 0.5
     - id: LootSpawnerIndustrial
       prob: 0.3
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -726,6 +769,7 @@
       prob: 0.1
     - id: MagazineShotgunIncendiary
       prob: 0.1
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -751,6 +795,8 @@
     - id: MagazineBoxPistolSP
       prob: 0.7
     # Items
+    - id: ClothingOuterLightHardsuitUSSP
+      prob: 0.25
     - id: ClothingBeltMedicalFilled
       prob: 0.85
     # Bonus Loot T3
@@ -766,6 +812,7 @@
       prob: 0.5
     - id: NukeOpsMedkitSpawner
       prob: 0.5
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -805,6 +852,7 @@
       prob: 0.15
     - id: NukeOpsMedkitSpawner
       prob: 0.15
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -833,6 +881,7 @@
       prob: 0.4
     - id: EmergencyMedipen
       prob: 0.2
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -860,7 +909,7 @@
       prob: 0.05
     # Armor
     - id: ClothingOuterLightHardsuitUSSP
-      prob: 0.2
+      prob: 0.25
     - id: ClothingMaskGasMerc
       prob: 0.3
     # Items
@@ -883,6 +932,7 @@
       prob: 0.5
     - id: LootSpawnerIndustrial
       prob: 0.4
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -893,13 +943,13 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: MagazineRifleFMJ
+    - id: MagazineLightRifleFMJ
       amount: 2
       prob: 0.6
-    - id: MagazineRifleFMJ
+    - id: MagazineLightRifleFMJ
       amount: 2
       prob: 0.5
-    - id: MagazineRifleAP
+    - id: MagazineLightRifleAP
       amount: 2
       prob: 0.2
     - id: MagazineBoxLightRifleFMJ
@@ -914,6 +964,7 @@
       prob: 0.35
     - id: SmokeGrenade
       prob: 0.35
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -960,6 +1011,7 @@
       prob: 0.7
     - id: LootSpawnerArmoryGunsOnly
       prob: 0.3
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -1066,5 +1118,6 @@
       prob: 0.7
     - id: LootSpawnerMaterialsHighValueConstruction
       prob: 0.5
+    - id: SovietSmokingSpawner
     sound:
       path: /Audio/Effects/closetopen.ogg

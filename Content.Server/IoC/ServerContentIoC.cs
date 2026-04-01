@@ -1,6 +1,7 @@
 using Content.Server._Sunrise;
 using Content.Server._Sunrise.Contributors;
 using Content.Server._Sunrise.IoC;
+using Content.Server._Sunrise.MapperSync;
 using Content.Server._Sunrise.PlayerCache;
 using Content.Server._Sunrise.ServersHub;
 using Content.Server._Sunrise.TTS;
@@ -11,8 +12,6 @@ using Content.Server.Administration.Notes;
 using Content.Server.Afk;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection;
-using Content.Server.Connection.IPBlocking;
-using Content.Shared.Connection.IPBlocking;
 using Content.Server.Database;
 using Content.Server.Discord;
 using Content.Server.Discord.DiscordLink;
@@ -92,10 +91,10 @@ internal static class ServerContentIoC
         // Sunrise-Start
         deps.Register<ServersHubManager>();
         deps.Register<ContributorsManager>();
+        deps.Register<MapperSyncManager>();
         deps.Register<PlayerCacheManager>();
         deps.Register<TTSManager>();
         deps.Register<NetTexturesManager>();
-        deps.Register<IIPBlockingSystem, IPBlockingSystem>();
         SunriseServerContentIoC.Register();
         // Sunrise-End
     }

@@ -27,6 +27,9 @@
     TriggerThrow: 1
     TriggerDeath: 1
     TriggerMagnet: 1
+    #SunRise-Start
+    TriggerElectrovae: 0.1
+    #SunRise-End
 
 - type: xenoArchTrigger
   id: TriggerMusic

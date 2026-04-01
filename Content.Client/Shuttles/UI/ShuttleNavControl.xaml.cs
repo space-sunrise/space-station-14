@@ -1,4 +1,4 @@
-using System.Numerics;
+﻿using System.Numerics;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
@@ -37,6 +37,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     private Angle? _rotation;
 
     private Dictionary<NetEntity, List<DockingPortState>> _docks = new();
+    private List<RadarBlipData> _blips = new(); // Sunrise-Edit
+    private List<RadarLaserData> _lasers = new(); // Sunrise-Edit
 
     public bool ShowIFF { get; set; } = true;
     public bool ShowDocks { get; set; } = true;
@@ -123,6 +125,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         RotateWithEntity = state.RotateWithEntity;
 
         _docks = state.Docks;
+        _blips = state.Blips; // Sunrise-Edit
+        _lasers = state.Lasers; // Sunrise-Edit
     }
 
     protected override void Draw(DrawingHandleScreen handle)
@@ -276,6 +280,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             DrawGrid(handle, curGridToView, grid, labelColor);
             DrawDocks(handle, gUid, curGridToView);
         }
+
+        DrawSunriseRadarOverlays(handle, mapPos, worldToShuttle, shuttleToView); // Sunrise-Edit - radar blips / laser overlays are implemented in Sunrise partial.
 
         // If we've set the controlling console, and it's on a different grid
         // to the shuttle itself, then draw an additional marker to help the

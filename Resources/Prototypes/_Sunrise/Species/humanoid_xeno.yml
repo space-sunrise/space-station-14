@@ -25,6 +25,8 @@
   buttScan:
     sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
     state: human
+  sexes:
+  - Unsexed
 
 - type: bodyType
   id: HumanoidXenoNormal

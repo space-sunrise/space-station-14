@@ -220,3 +220,200 @@
         messages: ["Вы чувствуете как ваше тело наполняется энергией", "Вы чувствуете как начинают болеть ваши мышцы"]
         type: Local
         probability: 0.05
+
+- type: reagent
+  id: Pluoxium
+  name: reagent-name-pluoxium
+  desc: reagent-desc-pluoxium
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#0054AA"
+  boilingPoint: -183.0
+  meltingPoint: -218.4
+  metabolisms:
+    Gas:
+      effects:
+      - !type:Oxygenate
+        factor: 8
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Human ]
+      - !type:Oxygenate
+        factor: 8
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Animal ]
+      - !type:Oxygenate
+        factor: 8
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Rat ]
+      - !type:Oxygenate
+        factor: 8
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plant ]
+      - !type:ModifyLungGas
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Vox ]
+        ratios:
+          CarbonDioxide: 1.0
+          Pluoxium: -1.0
+
+- type: reagent
+  id: Hyper-Noblium
+  name: reagent-name-hyper-nob
+  desc: reagent-desc-hyper-nob
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#33cccc"
+  boilingPoint: -253.0
+  meltingPoint: -259.2
+
+- type: reagent
+  id: Proto-Nitrate
+  name: reagent-name-proto-nitrate
+  desc: reagent-desc-proto-nitrate
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#009933"
+  boilingPoint: -253.0
+  meltingPoint: -259.2
+
+- type: reagent
+  id: Zauker
+  name: reagent-name-zauker
+  desc: reagent-desc-zauker
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#1c1a1a"
+  boilingPoint: -253.0
+  meltingPoint: -259.2
+  metabolisms:
+    Gas:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Zauker
+          min: 0.25
+          max: 8
+        ignoreResistances: true
+        damage:
+          types:
+            Slash: 0.75
+            Heat: 0.25
+            Poison: 0.25
+            Bloodloss: 0.25
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Zauker
+          min: 8
+        ignoreResistances: true
+        damage:
+          types:
+            Slash: 0.15
+            Heat: 0.05
+            Poison: 0.05
+            Bloodloss: 0.05
+
+- type: reagent
+  id: Halon
+  name: reagent-name-halon
+  desc: reagent-desc-halon
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#e3574d"
+  boilingPoint: -253.0
+  meltingPoint: -259.2
+
+- type: reagent
+  id: Helium
+  name: reagent-name-helium
+  desc: reagent-desc-helium
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#005959"
+  boilingPoint: -253.0
+  meltingPoint: -259.2
+
+- type: reagent
+  id: Anti-Noblium
+  name: reagent-name-anti-nob
+  desc: reagent-desc-anti-nob
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#525151"
+  boilingPoint: -253.0
+  meltingPoint: -259.2
+
+- type: reagent
+  id: Electrovae
+  name: reagent-name-electrovae
+  desc: reagent-desc-electrovae
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#0022FF"
+  recognizable: true
+  boilingPoint: -116.1
+  meltingPoint: -149.9
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.5
+    Gas:
+      effects:
+      - !type:HealthChange
+        scaling: true
+        ignoreResistances: true
+        damage:
+          types:
+            Poison:
+              0.1
+      - !type:AdjustAlert
+        alertType: Toxins
+        minScale: 3
+        clear: True
+        time: 5
+
+- type: reagent
+  id: ChargedElectrovae
+  name: reagent-name-charged-electrovae
+  desc: reagent-desc-charged-electrovae
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: metallic
+  color: "#ddff00"
+  recognizable: true
+  boilingPoint: -114.3
+  meltingPoint: -142.8
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1.0
+    Gas:
+      effects:
+      - !type:HealthChange
+        scaling: true
+        ignoreResistances: true
+        damage:
+          types:
+            Poison:
+              0.15
+      - !type:AdjustAlert
+        alertType: Toxins
+        minScale: 3
+        clear: True
+        time: 5
+  reactiveEffects:
+    Flammable:
+      methods: [ Touch ]
+      effects:
+      - !type:Flammable

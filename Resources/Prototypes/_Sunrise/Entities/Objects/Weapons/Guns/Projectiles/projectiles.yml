@@ -1,4 +1,4 @@
-# region Base Bullets
+# region Base Projectiles
 - type: entity
   id: BaseBulletGrenade
   parent: BaseItem
@@ -32,8 +32,9 @@
         - ItemMask
         restitution: 0.05
         friction: 0.5
-# region end
+# endregion Base Projectiles
 
+# region Sunrise ION
 - type: entity
   id: BulletAcid2
   name: acid spit
@@ -51,7 +52,6 @@
     - type: Ammo
       muzzleFlash: null
 
-# Sunrise-ION
 - type: entity
   name: EMP impulse
   parent: BaseBulletTrigger
@@ -102,6 +102,11 @@
     radius: 3.5
     color: blue
     energy: 0.75
+  - type: RadarBlip
+    color: "#55B8FF"
+    scale: 1.1
+    shape: Circle # Sunrise-Edit
+    requireInSpace: true
 
 - type: entity
   name: EMP impulse
@@ -128,6 +133,11 @@
     radius: 4
     color: blue
     energy: 1
+  - type: RadarBlip
+    color: "#339CFF"
+    scale: 1.35
+    shape: Circle # Sunrise-Edit
+    requireInSpace: true
   - type: ContainerContainer
     containers:
       cluster-payload: !type:Container
@@ -180,6 +190,19 @@
       path: /Audio/Effects/tesla.ogg
     range: 15
     volume: -5
+  - type: RadarBlip
+    color: "#2F8BFF"
+    scale: 1.25
+    shape: Circle # Sunrise-Edit
+    requireInSpace: true
+
+- type: entity
+  id: TeslaGunBulletOrion # Sunrise-Add
+  parent: TeslaGunBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    shape: Circle
 
 - type: entity
   parent: BaseBullet
@@ -219,7 +242,9 @@
     reflective:
     - Energy
 
-# Mechs
+# endregion Sunrise ION
+
+# region Mech Projectiles
 - type: entity
   id: BulletfragRocket
   name: frag rocket
@@ -255,7 +280,9 @@
     sound:
       path: /Audio/Effects/Grenades/Supermatter/supermatter_loop.ogg
 
-# Shells that used for friendship and duster
+# endregion Mech Projectiles
+
+# region Utility Shells
 
 - type: entity
   id: BulletShellBatonArtillery
@@ -315,7 +342,9 @@
     color: blue
     energy: 0.5
 
-# Grenades Handheld
+# endregion Utility Shells
+
+# region Hand Grenades
 - type: entity
   id: BulletGrenadeExplosive
   name: explosive grenade
@@ -562,7 +591,9 @@
     sound:
       path: /Audio/Effects/countdown.ogg
 
-# Grenades Handheld  Pellet
+# endregion Hand Grenades
+
+# region Pellet Grenades
 - type: entity
   id: BulletGrenadeIncendiary
   name: incendiary grenade
@@ -593,7 +624,7 @@
       params:
         volume: 5
   - type: TimedDespawn
-    lifetime: 3.55
+    lifetime: 2
 
 - type: entity
   id: BulletGrenadeShrapnel
@@ -622,6 +653,10 @@
   - type: ProjectileGrenade
     fillPrototype: PelletClusterRubber
     capacity: 30
+
+# endregion Pellet Grenades
+
+# region Timed Grenades & Artillery
 
 - type: entity
   id: BulletFireBomb
@@ -759,8 +794,64 @@
     - Structural
   - type: StaminaDamageOnCollide
     damage: 80
+# endregion Timed Grenades And Artillery
 
-# This is supposed to spawn shrapnel and stuff so uhh... TODO?
+- type: entity
+  id: BulletCannonBallTracked
+  parent: BulletCannonBall
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FFDD00"
+    scale: 1
+    shape: Circle
+    requireInSpace: true
+
+- type: entity
+  id: BulletEMPCannonBallTracked
+  parent: BulletEMP
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#44B7FF"
+    scale: 1
+    shape: Circle
+    requireInSpace: true
+
+- type: entity
+  id: BulletFuzeCannonBallTracked
+  parent: BulletFuzeCannonBall
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FFDD00"
+    scale: 1
+    shape: Circle
+    requireInSpace: true
+
+- type: entity
+  id: BulletAntiMaterielCannonBallTracked
+  parent: BulletAntiMaterielCannonBall
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FF6666"
+    scale: 1
+    shape: Circle
+    requireInSpace: true
+
+- type: entity
+  id: PelletGrapeshotSpreadTracked
+  parent: PelletGrapeshotSpread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FF6666"
+    scale: 0.5
+    shape: Circle
+    requireInSpace: true
+
+# region Timed Utility Grenades
 - type: entity
   id: BulletGrenadeFragTimer
   name: frag grenade
@@ -829,8 +920,56 @@
         Structural: 15
   - type: StaminaDamageOnCollide
     damage: 5
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.3
+    shape: Triangle
+    requireInSpace: true
 
-# .60 small grenade (1/3 power of China Lake)
+- type: entity
+  id: BulletArtilleryShapnel
+  name: bullet
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 40
+        Structural: 40
+  - type: StaminaDamageOnCollide
+    damage: 50
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.1
+    shape: Triangle
+    requireInSpace: true
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  id: BulletArtilleryShapnelShort
+  name: bullet
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 40
+        Structural: 40
+  - type: StaminaDamageOnCollide
+    damage: 50
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.1
+    shape: Triangle
+    requireInSpace: true
+  - type: TimedDespawn
+    lifetime: 0.5
+# endregion Timed Utility Grenades
+
+# region Anti-Materiel Grenade Bullets
 - type: entity
   id: BulletAntiMaterielFrag
   name: frag bullet
@@ -856,6 +995,11 @@
     triggerKey: trigger
     fillPrototype: PelletClusterLessLethal
     capacity: 10
+  - type: RadarBlip
+    color: "#9ACD32"
+    scale: 0.3
+    shape: Square
+    requireInSpace: true
 
 - type: entity
   id: BulletAntiMaterielBlast
@@ -875,6 +1019,11 @@
     intensitySlope: 4
     maxIntensity: 10
     canCreateVacuum: false
+  - type: RadarBlip
+    color: "#FFAA33"
+    scale: 0.3
+    shape: Square
+    requireInSpace: true
 
 - type: entity
   id: BulletAntiMaterielEMP
@@ -902,6 +1051,81 @@
     damage:
       types:
         Shock: 15
+  - type: RadarBlip
+    color: "#4DB8FF"
+    scale: 0.3
+    shape: Square
+    requireInSpace: true
+
+- type: entity
+  id: BulletAntiMaterielTracked
+  parent: BulletAntiMateriel
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.3
+    shape: Triangle
+    requireInSpace: true
+
+- type: entity
+  id: BulletGrenadeFragArtillery
+  parent: BulletGrenadeFrag
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#9ACD32"
+    scale: 0.75
+    shape: Square
+    requireInSpace: true
+
+- type: entity
+  id: BulletGrenadeBatonArtillery
+  parent: BulletGrenadeBaton
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.75
+    shape: Square
+    requireInSpace: true
+
+- type: entity
+  id: BulletGrenadeBlastArtillery
+  parent: BulletGrenadeBlast
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FFAA33"
+    scale: 0.75
+    shape: Square
+    requireInSpace: true
+
+- type: entity
+  id: BulletGrenadeFlashArtillery
+  parent: BulletGrenadeFlash
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.75
+    shape: Square
+    requireInSpace: true
+
+- type: entity
+  id: BulletGrenadeEMPArtillery
+  parent: BulletGrenadeEMP
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#4DB8FF"
+    scale: 0.75
+    shape: Square
+    requireInSpace: true
+
+# endregion Anti-Materiel Grenade Bullets
+
+# region Energy Projectiles
 
 - type: entity
   id: BulletPlasma
@@ -943,6 +1167,10 @@
     proto: BulletPlasma
     count: 3
     spread: 25
+
+# endregion Energy Projectiles
+
+# region Improvised Grenade Projectiles
 
 - type: entity
   id: BulletImprovisedGrenadeFirebomb
@@ -1032,6 +1260,24 @@
     capacity: 16
 
 - type: entity
+  id: BulletImprovisedGrenadeGlassShrapnel
+  name: glass shrapnel grenade
+  parent: BulletGrenadeShrapnel
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/explosives.rsi
+    layers:
+      - state: glass
+  - type: ProjectileGrenade
+    fillPrototype: PelletClusterLessLethal
+    capacity: 16
+
+# endregion Improvised Grenade Projectiles
+
+# region Special Utility Projectiles
+
+- type: entity
   parent: BaseBullet
   id: EnergyCrossbowBoltLarge
   categories: [ HideSpawnMenu ]
@@ -1074,6 +1320,10 @@
     transferAmount: 3
     solution: bolt
 
+# endregion Special Utility Projectiles
+
+# region Rubber Bullets
+
 - type: entity
   parent: BaseBulletRubber
   id: BulletMagnumProjectileRubber
@@ -1099,3 +1349,5 @@
         Blunt: 3
   - type: StaminaDamageOnCollide
     damage: 9
+
+# endregion Rubber Bullets

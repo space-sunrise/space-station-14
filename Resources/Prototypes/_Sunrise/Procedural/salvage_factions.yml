@@ -4,54 +4,51 @@
   entries:
     # melee
     - proto: MobPirateT1Knife
-      cost: 2
+      cost: 3
       prob: 0.05
     - proto: MobPirateT1KnifeTearGas
       cost: 3
-      prob: 0.1
+      prob: 0.05
     - proto: MobPirateT1KnifeStinger
-      cost: 4
-      prob: 0.15
-    - proto: MobPirateT1KnifeFirebomb
-      cost: 4
-      prob: 0.1
+      cost: 3
+      prob: 0.05
     - proto: MobPirateT1KnifeBola
-      cost: 4
-      prob: 0.15
+      cost: 3
+      prob: 0.05
     - proto: MobPirateT1KnifeEMP
-      cost: 5
-      prob: 0.15
+      cost: 3
+      prob: 0.05
     - proto: MobPirateT1MonkeyKnuckleDusters
-      cost: 5
-      prob: 0.2
+      cost: 6
+      prob: 0.1
     - proto: MobPirateT1Pickaxe
       cost: 2
       prob: 0.2
     - proto: MobPirateT1MonkeyEDagger
-      cost: 5
-      prob: 0.05
-    - proto: MobPirateT1ECutlass
-      cost: 7
-      prob: 0.05
-    - proto: MobPirateT1EPickaxe
       cost: 6
       prob: 0.05
+    - proto: MobPirateT1ECutlass
+      cost: 8
+      prob: 0.05
     - proto: MobPirateT1Hunter
-      cost: 7
+      cost: 6
       prob: 0.08
+    - proto: MobPirateT1EPickaxe
+      cost: 8
+      prob: 0.05
     - proto: MobPirateT1HunterSmash
-      cost: 9
+      cost: 8
       prob: 0.08
     # range
     - proto: MobPirateT1Pistol
-      cost: 3
+      cost: 4
       prob: 0.25
     - proto: MobPirateT1Mosin
-      cost: 4
+      cost: 5
       prob: 0.15
     - proto: MobPirateT1Medic
-      cost: 4
-      prob: 0.1
+      cost: 3
+      prob: 0.05
     - proto: MobPirateT1PKA
       cost: 2
       prob: 0.2
@@ -62,34 +59,22 @@
       cost: 2
       prob: 0.08
     - proto: MobPirateT1MonkeyFlareGunIncendiary
-      cost: 2
+      cost: 3
       prob: 0.05
     - proto: MobPirateT1MonkeyFlareGunUranium
-      cost: 2
+      cost: 3
       prob: 0.03
     - proto: MobPirateT1ScrapSMG
       cost: 8
       prob: 0.1
-    - proto: MobPirateT1SMG
-      cost: 10
-      prob: 0.1
     - proto: MobPirateT1MonkeyFireBomb
-      cost: 8
+      cost: 6
       prob: 0.1
-    - proto: MobPirateT1BombardierFire
-      cost: 10
-      prob: 0.03
-    - proto: MobPirateT1BombardierGlass
-      cost: 12
-      prob: 0.03
-    - proto: MobPirateT1BombardierPipe
-      cost: 12
-      prob: 0.04
     - proto: MobPirateT1Flintlock
-      cost: 3
+      cost: 4
       prob: 0.15
     - proto: MobPirateT1PlasmaCutter
-      cost: 7
+      cost: 6
       prob: 0.1
     - proto: MobPirateT1ScrapRifle
       cost: 6
@@ -101,40 +86,52 @@
       cost: 10
       prob: 0.1
     - proto: MobPirateT1LCG
-      cost: 9
+      cost: 10
       prob: 0.1
+    - proto: MobPirateT1SMG
+      cost: 10
+      prob: 0.1
+    - proto: MobPirateT1BombardierFire
+      cost: 10
+      prob: 0.03
+    - proto: MobPirateT1BombardierGlass
+      cost: 11
+      prob: 0.03
+    - proto: MobPirateT1BombardierPipe
+      cost: 12
+      prob: 0.04
     # squad spawners
     - proto: PirateSquadT1LMG
       cost: 30
-      prob: 0.15
+      prob: 0.05
     - proto: PirateSquadT1Breach
       cost: 30
-      prob: 0.15
+      prob: 0.05
     - proto: PirateSquadT1Assault
       cost: 30
-      prob: 0.15
+      prob: 0.05
     - proto: PirateSquadT1Heavy
       cost: 30
-      prob: 0.1
+      prob: 0.05
     - proto: PirateSquadT1Infiltrator
       cost: 30
-      prob: 0.15
+      prob: 0.05
     - proto: PirateSquadT1Monkey
       cost: 20
-      prob: 0.15
+      prob: 0.1
     - proto: PirateSquadT1Random
-      cost: 20
-      prob: 0.02
+      cost: 25
+      prob: 0.15
     # borgs
     - proto: MobPirateT1BorgAssault
-      cost: 4
+      cost: 5
       prob: 0.05
     - proto: MobPirateT1BorgMining
-      cost: 4
+      cost: 3
       prob: 0.1
     - proto: MobPirateT1BorgDerelict
-      cost: 5
-      prob: 0.15
+      cost: 3
+      prob: 0.1
     - proto: MobPirateT1Boss
       cost: 50
       prob: 0.03
@@ -163,23 +160,17 @@
       cost: 4
       prob: 0.05
     - proto: MobPirateT2ECutlass
-      cost: 4
-      prob: 0.05
+      cost: 7
+      prob: 0.02
     - proto: MobPirateT2ECutlassTearGas
-      cost: 4
-      prob: 0.05
+      cost: 7
+      prob: 0.02
     - proto: MobPirateT2ECutlassStinger
-      cost: 5
-      prob: 0.05
+      cost: 7
+      prob: 0.02
     - proto: MobPirateT2ECutlassFirebomb
-      cost: 5
-      prob: 0.05
-    - proto: MobPirateT2ECutlassBola
-      cost: 5
-      prob: 0.05
-    - proto: MobPirateT2ECutlassFuzeCannonBall
-      cost: 8
-      prob: 0.05
+      cost: 7
+      prob: 0.02
     # range
     - proto: MobPirateT2Shotgun
       cost: 6
@@ -196,11 +187,8 @@
     - proto: MobPirateT2MusketEMP
       cost: 2
       prob: 0.03
-    - proto: MobPirateT2MusketBlast
-      cost: 6
-      prob: 0.03
     - proto: MobPirateT2MusketFrag
-      cost: 7
+      cost: 6
       prob: 0.03
     - proto: MobPirateT2MusketPenetrator
       cost: 6
@@ -460,40 +448,40 @@
       cost: 4
       prob: 0.04
     - proto: MobSovietT1Pistol
-      cost: 6
+      cost: 4
       prob: 0.06
     - proto: MobSovietT1Mosin
-      cost: 7
+      cost: 5
       prob: 0.06
     - proto: MobSovietT1SMGAlt
       cost: 7
       prob: 0.05
     - proto: MobSovietT1MosinAlt
-      cost: 7
+      cost: 5
       prob: 0.04
     - proto: MobSovietT2Bottle
-      cost: 7
+      cost: 5
       prob: 0.04
     - proto: MobSovietT2Finka
-      cost: 7
+      cost: 5
       prob: 0.04
     - proto: MobSovietT2Revolver
-      cost: 9
+      cost: 8
       prob: 0.03
     - proto: MobSovietT2Rifle
-      cost: 9
+      cost: 8
       prob: 0.04
     - proto: MobSovietT2RifleW
-      cost: 9
+      cost: 8
       prob: 0.03
     - proto: MobSovietT3Shotgun
-      cost: 12
+      cost: 18
       prob: 0.03
     - proto: MobSovietT3ShotgunIncendiary
-      cost: 14
+      cost: 20
       prob: 0.02
     - proto: MobSovietT3Rifle
-      cost: 12
+      cost: 15
       prob: 0.04
     - proto: MobSovietT2Raider
       cost: 10
@@ -502,28 +490,28 @@
       cost: 15
       prob: 0.2
     - proto: SovietSquadInfantry
-      cost: 35
+      cost: 40
       prob: 0.15
     - proto: SovietSquadInfantry2
-      cost: 40
+      cost: 45
       prob: 0.1
     - proto: SovietSquadSmg
-      cost: 35
-      prob: 0.1
-    - proto: SovietSquadAssault
       cost: 40
       prob: 0.1
+    - proto: SovietSquadAssault
+      cost: 45
+      prob: 0.1
     - proto: SovietSquadLmg
-      cost: 20
+      cost: 25
       prob: 0.15
     - proto: SovietSquadMmg
-      cost: 25
+      cost: 30
       prob: 0.12
     - proto: SovietSquadLightMechanized
-      cost: 80
+      cost: 100
       prob: 0.1
     - proto: SovietSquadHeavyMechanized
-      cost: 120
+      cost: 150
       prob: 0.05
     - proto: MobSovietBear
       cost: 10
@@ -532,11 +520,11 @@
       cost: 10
       prob: 0.02
     - proto: MobSovietSpaceBear
-      cost: 12
+      cost: 10
       prob: 0.02
     - proto: MobSovietCaptain
-      cost: 30
-      prob: 0.03
+      cost: 50
+      prob: 0.05
   difficulties:
     - Moderate
     - Challenging

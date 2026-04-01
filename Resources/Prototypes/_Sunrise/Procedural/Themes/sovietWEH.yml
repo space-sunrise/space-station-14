@@ -1,8 +1,8 @@
 # Rooms
-# - 17x6
+# - 17x5
 - type: dungeonRoom
-  id: SovietDungeon17x6aWEH
-  size: 17,6
+  id: SovietDungeon17x5aWEH
+  size: 17,5
   atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
   offset: 0,0
   tags:
@@ -248,10 +248,10 @@
   offset: 24,38
   tags:
     - SovietDungeonWEH
-# - 12x6
+# - 11x5
 - type: dungeonRoom
-  id: SovietDungeon12x6z
-  size: 12, 6
+  id: SovietDungeon11x5z
+  size: 11, 5
   atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
   offset: 18,0
   tags:

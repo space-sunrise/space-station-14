@@ -61,8 +61,8 @@
       tags:
         - CartridgeAntiMateriel
     proto: CartridgeAntiMateriel
-    capacity: 30
-    fillDelay: 0.15
+    capacity: 50
+    fillDelay: 0.1
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -88,6 +88,9 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
+  - type: Tag
+    tags:
+    - HeavyAmmoBelt127
 
 - type: entity
   id: MagazineBoxBelt127Empty

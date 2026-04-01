@@ -17,6 +17,7 @@
   - SheetPlasteel1Lathe
   - ClothingMaskWeldingGas
   - ClothingShoesBootsJump
+  - BorgModuleJetpack # Sunrise-add
 
 - type: technology
   id: SpaceScanning

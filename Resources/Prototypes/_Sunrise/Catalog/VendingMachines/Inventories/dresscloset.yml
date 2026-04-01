@@ -1,0 +1,11 @@
+- type: vendingMachineInventory
+  id: DressClosetInventory
+  startingInventory:
+    UniformDressMaidBlue: 5
+    UniformDressMaidLong: 5
+    UniformDressMaidPink: 5
+    UniformDressSexy: 5
+    UniformDressSuccubusBlack: 5
+    UniformDressSuccubusWhite: 5
+    UniformDressTango: 5
+    UniformDressXeno: 5
