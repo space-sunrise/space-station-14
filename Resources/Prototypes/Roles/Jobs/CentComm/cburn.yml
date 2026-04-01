@@ -18,7 +18,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: startingGear
   id: CBURNGear

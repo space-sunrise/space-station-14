@@ -1,5 +1,37 @@
 ﻿#NanoTrasen implanters
 
+- type: entity
+  id: RadioImplanterERT
+  name: ert radio implanter
+  parent: BaseImplantOnlyImplanter
+  components:
+  - type: Implanter
+    implant: RadioImplantERT
+
+- type: entity
+  id: DeathRattleImplanterERT
+  name: ert death rattle implanter
+  parent: BaseImplantOnlyImplanter
+  components:
+  - type: Implanter
+    implant: DeathRattleImplantERT
+
+- type: entity
+  id: RadioImplanterDeathSquad
+  name: death squad radio implanter
+  parent: BaseImplantOnlyImplanter
+  components:
+  - type: Implanter
+    implant: RadioImplantDeathSquad
+
+- type: entity
+  id: DeathRattleImplanterDeathSquad
+  name: death squad death rattle implanter
+  parent: BaseImplantOnlyImplanter
+  components:
+  - type: Implanter
+    implant: DeathRattleImplantDeathSquad
+
 #Syndie implanters   #PR Wiz #31782
 - type: entity
   id: SmokeScreenImplanter

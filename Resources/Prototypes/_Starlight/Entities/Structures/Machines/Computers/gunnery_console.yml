@@ -19,6 +19,15 @@
       state: generic_panel_open
   - type: RadarConsole
     maxRange: 512
+  - type: GunneryConsole
+    maxRange: 512
+  - type: Anchorable
+    delay: 30
+  - type: RadarBlip
+    color: "#00ffee"
+    scale: 1.0
+    shape: Square
+    requireInSpace: False
   - type: Computer
     board: ComputerGunneryCircuitboard
   - type: ActivatableUI

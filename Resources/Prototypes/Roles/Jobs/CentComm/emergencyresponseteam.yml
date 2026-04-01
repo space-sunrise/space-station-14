@@ -29,7 +29,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: startingGear
   id: ERTLeaderGear
@@ -134,7 +134,7 @@
     components:
     - type: BibleUser #Lets them heal with bibles
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: startingGear
   id: ERTChaplainGear
@@ -233,7 +233,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: startingGear
   id: ERTEngineerGear
@@ -321,7 +321,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: startingGear
   id: ERTSecurityGear
@@ -430,7 +430,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: startingGear
   id: ERTMedicalGear
@@ -506,7 +506,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: startingGear
   id: ERTJanitorGear
@@ -593,7 +593,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: job
   id: ERTChaplainVeteran
@@ -619,7 +619,7 @@
     components:
     - type: BibleUser #Lets them heal with bibles
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: job
   id: ERTEngineerVeteran
@@ -645,7 +645,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: job
   id: ERTSecurityVeteran
@@ -668,7 +668,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: job
   id: ERTMedicalVeteran
@@ -694,7 +694,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: job
   id: ERTJanitorVeteran
@@ -717,7 +717,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: job
   id: CBURNVeteran
@@ -742,6 +742,6 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 # Sunrise end
 

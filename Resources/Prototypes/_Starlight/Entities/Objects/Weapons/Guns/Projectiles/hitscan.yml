@@ -1602,7 +1602,6 @@
         Heat: 250
         Structural: 100
   - type: HitscanBasicRaycast
-    collisionMask: BulletImpassable
     maxDistance: 128
   - type: HitscanReflect
     reflectiveType: None
@@ -1669,7 +1668,6 @@
   - type: HitscanReflect
     reflectiveType: None
   - type: HitscanBasicRaycast
-    collisionMask: BulletImpassable
     maxDistance: 128
   - type: HitscanBasicVisuals
     muzzleFlash:
