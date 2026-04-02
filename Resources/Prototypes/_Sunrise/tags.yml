@@ -663,6 +663,10 @@
 - type: Tag
   id: SmoothGloves
 
+# добавляет вещь в чёрный список ксеноморфов
+- type: Tag
+  id: NoXeno
+
 # head
 # Закрыто только сверху (шлюяпы, кепки)
 - type: Tag
@@ -686,3 +690,7 @@
 # Medicine
 - type: Tag
   id: AutoMender  # Используется для whitelist у ClothingBeltMedical =3
+
+# shuttles
+- type: Tag
+  id: 120mmRocket

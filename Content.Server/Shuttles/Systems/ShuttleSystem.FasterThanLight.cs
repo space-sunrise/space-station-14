@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
+using Content.Server._Sunrise.Shuttles.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
@@ -100,6 +101,17 @@ public sealed partial class ShuttleSystem
     {
         QueueDel(ent.Comp.VisualizerEntity);
         ent.Comp.VisualizerEntity = null;
+
+        // Sunrise-Start
+        if (TryComp<SunriseArrivalsShuttleComponent>(ent, out var arrivals))
+        {
+            foreach (var dock in arrivals.ReservedDocks)
+            {
+                RemCompDeferred<FtlReservationComponent>(dock);
+            }
+            arrivals.ReservedDocks.Clear();
+        }
+        // Sunrise-End
     }
 
     private void OnStationPostInit(ref StationPostInitEvent ev)
@@ -331,6 +343,18 @@ public sealed partial class ShuttleSystem
         {
             hyperspace.TargetCoordinates = config.Coordinates;
             hyperspace.TargetAngle = config.Angle;
+
+            // Sunrise-Start
+            if (TryComp<SunriseArrivalsShuttleComponent>(shuttleUid, out var arrivals))
+            {
+                foreach (var docks in config.Docks)
+                {
+                    var reservation = EnsureComp<FtlReservationComponent>(docks.DockBUid);
+                    reservation.ReservedBy = shuttleUid;
+                    arrivals.ReservedDocks.Add(docks.DockBUid);
+                }
+            }
+            // Sunrise-End
         }
         else if (TryGetFTLProximity(shuttleUid, new EntityCoordinates(target, Vector2.Zero), out var coords, out var targAngle))
         {

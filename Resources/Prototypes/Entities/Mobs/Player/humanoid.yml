@@ -39,6 +39,27 @@
     - DeathRattleImplantCentcomm
     - RadioImplantCentcomm
     - FreedomImplant
+
+- type: randomHumanoidSettings
+  id: EventHumanoidERTSunrise
+  parent: EventHumanoidMindShielded
+  randomizeName: false
+  components:
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - DeathRattleImplantERT
+
+- type: randomHumanoidSettings
+  id: EventHumanoidDeathSquadSunrise
+  parent: EventHumanoidMindShielded
+  randomizeName: false
+  components:
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - DeathRattleImplantDeathSquad
+    - FreedomImplant
 # Sunrise-end
 
 ## Death Squad
@@ -61,7 +82,7 @@
 
 - type: randomHumanoidSettings
   id: DeathSquad
-  parent: EventHumanoidCentcomm
+  parent: EventHumanoidDeathSquadSunrise # Sunrise-edit
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
@@ -123,7 +144,7 @@
 
 - type: randomHumanoidSettings
   id: ERTLeader
-  parent: EventHumanoidCentcomm
+  parent: EventHumanoidERTSunrise # Sunrise-edit
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
@@ -828,7 +849,7 @@
 
 - type: randomHumanoidSettings
   id: CBURNAgent
-  parent: EventHumanoidCentcomm
+  parent: EventHumanoidERTSunrise # Sunrise-edit
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox

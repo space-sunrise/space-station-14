@@ -27,7 +27,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.3
+          radius: 0.2
         density: 50
         mask:
         - MobMask
@@ -257,6 +257,9 @@
     - NamesMilitaryFirstGamma
     - NamesLast
     nameFormat: name-format-ert
+  - type: ActionGun
+    action: ActionGunGrenadeExplosiveShrapnel
+    gunProto: GunGrenadeExplosiveShrapnel
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionScream
@@ -445,8 +448,8 @@
     aliveTargets: false
     damage:
       groups:
-        Brute: -15
-        Burn: -10
+        Brute: -10
+        Burn: -8
         Airloss: -10
         Toxin: -10
     whitelist:
@@ -466,8 +469,8 @@
       aliveTargets: false
       damage:
         groups:
-          Brute: -15
-          Burn: -10
+          Brute: -10
+          Burn: -8
           Airloss: -10
           Toxin: -10
       whitelist:
@@ -1082,7 +1085,7 @@
     threshold: 0.9
     damage:
       groups:
-        Brute: -20
+        Brute: -15
         Burn: -15
         Airloss: -15
         Toxin: -15
@@ -1102,7 +1105,7 @@
       threshold: 0.9
       damage:
         groups:
-          Brute: -20
+          Brute: -15
           Burn: -15
           Airloss: -15
           Toxin: -15
@@ -1518,7 +1521,7 @@
     fuelCost: 25
     doAfterDelay: 10
   - type: BatteryAmmoProvider
-    proto: CartridgeHeavyRifleRSP
+    proto: CartridgeHeavyRifleRFMJ
     fireCost: 1
   - type: BatterySelfRecharger
     autoRechargePauseTime: 5

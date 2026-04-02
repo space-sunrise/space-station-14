@@ -140,7 +140,7 @@
   - type: RadarLaserTracker
     laserColor: "#FF44FF"
     traceDuration: 0.75
-    maxRange: 35.0
+    maxRange: 128.0
   - type: RadarBlip
     color: "#FF44FF"
     scale: 1.4
@@ -170,7 +170,7 @@
       renderingStrategy: NoRotation
     - state: space_artillery
       map: ["enum.GunVisualLayers.Base"]
-    - state: space_artillery
+    - state: mag-8
       map: ["enum.GunVisualLayers.Mag"]
   - type: ContainerContainer
     containers:
@@ -203,13 +203,15 @@
           acts: ["Destruction"]
   - type: Gun
     projectileSpeed: 40
-    fireRate: 0.5
-    selectedMode: SemiAuto
+    selectedMode: Burst
+    burstCooldown: 13
+    shotsPerBurst: 1
+    burstFireRate: 0.3
     angleDecay: 20
     minAngle: 0
     maxAngle: 8
     availableModes:
-    - SemiAuto
+    - Burst
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
       params:
@@ -218,6 +220,10 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 9
+    zeroVisible: false
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -417,7 +423,7 @@
 
 # ADMP-27 VESPERA 50mm Rapid-Fire Missile Rack
 - type: entity
-  id: WeaponTurretVespera50mm
+  id: ShuttleGunVespera50mm
   parent: ShuttleGunBase
   name: ADMP-27 VESPERA 50mm Rapid-Fire Missile Rack
   description: A rapid-fire swarm missile rack. Saturates targets with guided warheads to overwhelm defenses.
@@ -431,7 +437,7 @@
       renderingStrategy: NoRotation
     - state: space_artillery
       map: ["enum.GunVisualLayers.Base"]
-    - state: space_artillery
+    - state: mag-8
       map: ["enum.GunVisualLayers.Mag"]
   - type: ContainerContainer
     containers:
@@ -467,12 +473,12 @@
     burstCooldown: 20
     burstFireRate: 13
     fireRate: 16
-    selectedMode: Burst
+    selectedMode: FullAuto
     angleDecay: 20
-    minAngle: 4
-    maxAngle: 35
+    minAngle: 15
+    maxAngle: 40
     availableModes:
-    - Burst
+    - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
       params:
@@ -481,6 +487,10 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 9
+    zeroVisible: true
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -724,14 +734,14 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 18   # halved range
-    fireRate: 1.5
-    burstFireRate: 3
+    projectileSpeed: 25   # halved range
+    fireRate: 1.25
+    burstFireRate: 2.5
     burstCooldown: 2
     shotsPerBurst: 4
     selectedMode: Burst
     angleDecay: 20
-    minAngle: 1
+    minAngle: 2
     maxAngle: 15
     angleIncrease: 3
     availableModes:
@@ -1015,7 +1025,7 @@
   - type: RadarLaserTracker
     laserColor: "#FF44FF"
     traceDuration: 0.75
-    maxRange: 35.0
+    maxRange: 128.0
   - type: RadarBlip
     color: "#FF44FF"
     scale: 1.6

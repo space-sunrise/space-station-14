@@ -1,6 +1,7 @@
 using Content.Server._Sunrise;
 using Content.Server._Sunrise.Contributors;
 using Content.Server._Sunrise.IoC;
+using Content.Server._Sunrise.MapperSync;
 using Content.Server._Sunrise.PlayerCache;
 using Content.Server._Sunrise.ServersHub;
 using Content.Server._Sunrise.TTS;
@@ -90,6 +91,7 @@ internal static class ServerContentIoC
         // Sunrise-Start
         deps.Register<ServersHubManager>();
         deps.Register<ContributorsManager>();
+        deps.Register<MapperSyncManager>();
         deps.Register<PlayerCacheManager>();
         deps.Register<TTSManager>();
         deps.Register<NetTexturesManager>();

@@ -69,6 +69,33 @@
   - type: StaticPrice
     price: 500
 
+# 120mm Rocket (Metla)
+- type: entity
+  parent: Base120mmGrenade
+  id: Rocket120mmMetla
+  name: 120mm rocket
+  description: A heavy 120mm rocket designed for the RCT-120 Metla launcher.
+  components:
+  - type: Tag
+    tags:
+    - 120mmRocket
+  - type: CartridgeAmmo
+    proto: BulletRocket120mmMetla
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives_x48.rsi
+    state: rocket120mm
+  - type: Item
+    inhandVisuals:
+      left:
+      - sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+        state: rocket120-inhand-left
+      right:
+      - sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+        state: rocket120-inhand-right
+  - type: StaticPrice
+    price: 650
+
 # 20-Round Magazine for 120mm Blast Grenades
 - type: entity
   parent: BaseMagazineGrenade
@@ -133,13 +160,60 @@
   id: Bullet60mmRocketStarlight
   categories: [ HideSpawnMenu ]
   components:
+  - type: SpawnOnDespawn
+    prototype: Bullet60mmRocketStarlightSelfExplode
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletArtilleryShapnelShort
+    capacity: 6
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 2
   - type: RadarBlip
     color: "#44FFAA"
-    scale: 1.1
+    scale: 1
     shape: Circle
     requireInSpace: true
+  - type: WarpPoint
+    follow: true
+    location: 60mm Rocket Payload
   - type: GuidedProjectile
     turnRate: 180
+  - type: TimedDespawn
+    lifetime: 15
+
+- type: entity
+  id: Bullet60mmRocketStarlightSelfExplode
+  name: 60mm rocket
+  suffix: self-explode, NOW
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: ExplodeOnTrigger
+    keysIn:
+    - trigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 20
+    intensitySlope: 3
+    totalIntensity: 100
+    maxTileBreak: 1
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletArtilleryShapnelShort
+    capacity: 6
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 2
+  - type: TimedDespawn
+    lifetime: 0.25
 
 # 60mm Rocket Cartridge
 - type: entity
@@ -225,16 +299,60 @@
   id: Bullet50mmRocketStarlight
   categories: [ HideSpawnMenu ]
   components:
+  - type: SpawnOnDespawn
+    prototype: Bullet50mmRocketStarlightSelfExplode
   - type: Sprite
     scale: 1.5,1.25
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
       - state: smallfrag
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletArtilleryShapnelShort
+    capacity: 10
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
   - type: RadarBlip
     color: "#44FFAA"
     scale: 1
     shape: Circle
     requireInSpace: true
+  - type: TimedDespawn
+    lifetime: 11
+
+- type: entity
+  id: Bullet50mmRocketStarlightSelfExplode
+  name: 50mm rocket
+  suffix: self-explode, NOW
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: ExplodeOnTrigger
+    keysIn:
+    - trigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 2
+    intensitySlope: 1
+    totalIntensity: 4
+    maxTileBreak: 1
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletArtilleryShapnelShort
+    capacity: 4
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 2
+  - type: TimedDespawn
+    lifetime: 0.25
 
 # 50mm Rocket Cartridge
 - type: entity

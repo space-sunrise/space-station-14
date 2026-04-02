@@ -53,11 +53,6 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 
     private string[] _burntDecals = [];
 
-    private readonly Stopwatch _frameStopwatch = new();
-    private float _lastFrameTime;
-    private float _averageFrameTime;
-    private int _frameCount;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -109,24 +104,10 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 
     public override void Update(float frameTime)
     {
-        _frameStopwatch.Restart();
-
         base.Update(frameTime);
 
         UpdateProcessing(frameTime);
         UpdateHighPressure(frameTime);
-
-        _frameStopwatch.Stop();
-        _lastFrameTime = (float)_frameStopwatch.Elapsed.TotalMilliseconds;
-        _averageFrameTime = (_averageFrameTime * _frameCount + _lastFrameTime) / (_frameCount + 1);
-        _frameCount++;
-
-#if DEBUG
-        if (_frameCount % 100 == 0)
-        {
-            Log.Debug($"AtmosphereSystem: Last frame time: {_lastFrameTime:F2}ms, Average frame time: {_averageFrameTime:F2}ms"); // Sunrise-edit
-        }
-#endif
 
         _exposedTimer += frameTime;
 

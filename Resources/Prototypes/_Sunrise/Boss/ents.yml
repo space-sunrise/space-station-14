@@ -291,7 +291,7 @@
     layers:
     - state: green
     - sprite: Structures/Furniture/Altars/Cults/fangs.rsi
-      state: icon
+      state: full
   - type: ConditionalSpawner
     prototypes:
     - ComputerBossTravel

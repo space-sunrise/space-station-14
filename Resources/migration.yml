@@ -993,5 +993,6 @@ CartridgeRifle: CartridgeRifleSP
 MagazinePistolHighCapacity: MagazinePistolHighCapacitySP
 StorageCanisterBase: StorageCanister
 BulletAK570_90mmHE: BulletAK57090mmHE
+WeaponTurretVespera50mm: ShuttleGunVespera50mm
 # region Sunrise-End
 

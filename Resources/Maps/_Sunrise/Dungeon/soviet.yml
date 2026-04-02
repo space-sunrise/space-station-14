@@ -4,8 +4,8 @@ meta:
   engineVersion: 271.1.0
   forkId: ""
   forkVersion: ""
-  time: 03/30/2026 14:40:02
-  entityCount: 2056
+  time: 04/01/2026 13:27:50
+  entityCount: 2050
 maps:
 - 1
 grids:
@@ -5445,56 +5445,6 @@ entities:
     - type: Transform
       pos: 28.5,18.5
       parent: 1
-- proto: CartridgeDravon75mmHE
-  entities:
-  - uid: 1262
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.44815767,40.333736
-      parent: 1
-  - uid: 1265
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.4476303,40.3311
-      parent: 1
-  - uid: 1266
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.52192855,40.52567
-      parent: 1
-  - uid: 1729
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.4581099,40.71027
-      parent: 1
-  - uid: 1730
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.52192855,40.83685
-      parent: 1
-  - uid: 2010
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5293125,40.523033
-      parent: 1
-  - uid: 2011
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.521401,40.8263
-      parent: 1
-  - uid: 2015
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.45072603,40.731365
-      parent: 1
 - proto: CartridgeLeviathan240mmNuke
   entities:
   - uid: 2020
@@ -8516,14 +8466,12 @@ entities:
   - uid: 2012
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.5020175,38.7867
+      pos: 0.48675656,38.50172
       parent: 1
   - uid: 2013
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.517313,38.802525
+      pos: 1.5260875,38.44492
       parent: 1
 - proto: MagazineBoxLightRifleSP
   entities:
@@ -10751,6 +10699,18 @@ entities:
       rot: 3.141592653589793 rad
       pos: 29.5,38.5
       parent: 1
+- proto: Rocket120mmMetla
+  entities:
+  - uid: 1262
+    components:
+    - type: Transform
+      pos: 0.9127121,40.750988
+      parent: 1
+  - uid: 1265
+    components:
+    - type: Transform
+      pos: 1.1455677,40.52947
+      parent: 1
 - proto: SalvageLootSpawner
   entities:
   - uid: 1301
@@ -10859,12 +10819,31 @@ entities:
     - type: Transform
       pos: 25.5,25.5
       parent: 1
-- proto: ShuttleGunDravon
+- proto: ShuttleGunRocketMetla120mm
   entities:
-  - uid: 1760
+  - uid: 1266
     components:
     - type: Transform
       pos: 29.5,26.5
+      parent: 1
+    - type: ContainerContainer
+      containers:
+        gun_magazine: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        ballistic-ammo: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+    - type: Physics
+      bodyType: Static
+- proto: ShuttleGunVespera50mm
+  entities:
+  - uid: 1790
+    components:
+    - type: Transform
+      pos: 2.5,40.5
       parent: 1
     - type: Physics
       bodyType: Static
@@ -12107,15 +12086,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 7.5,19.5
       parent: 1
-- proto: WeaponTurretVespera50mm
-  entities:
-  - uid: 1790
-    components:
-    - type: Transform
-      pos: 2.5,40.5
-      parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: WindoorSecure
   entities:
   - uid: 47

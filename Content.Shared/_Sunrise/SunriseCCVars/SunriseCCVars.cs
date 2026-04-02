@@ -575,4 +575,23 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<int> TrustedProxyPollIntervalMs =
         CVarDef.Create("trusted_proxy.poll_interval_ms", 2000, CVar.SERVERONLY);
 
+    /// <summary>
+    ///     Whether each late-joining player should arrive on their own small shuttle.
+    ///     This is an alternative to the large rolling arrivals shuttle.
+    /// </summary>
+    public static readonly CVarDef<bool> ArrivalsSingleShuttle =
+        CVarDef.Create("shuttle.arrivals_single_shuttle", true, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     The map to use for the single-person arrivals shuttle.
+    /// </summary>
+    public static readonly CVarDef<string> ArrivalsSingleShuttlePath =
+        CVarDef.Create("shuttle.arrivals_single_shuttle_path", "/Maps/_Sunrise/Shuttles/depart.yml", CVar.SERVERONLY);
+
+    /// <summary>
+    ///     The time it takes for the single-person arrivals shuttle to arrive at the station.
+    /// </summary>
+    public static readonly CVarDef<float> ArrivalsShuttleFTLTime =
+        CVarDef.Create("shuttle.arrivals_ftl_time", 15.0f, CVar.SERVERONLY);
+
 }

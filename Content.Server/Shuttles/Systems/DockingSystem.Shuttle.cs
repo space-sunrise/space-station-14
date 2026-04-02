@@ -9,6 +9,7 @@ using Robust.Shared.Physics.Components;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using System.Threading;
+using Content.Server._Sunrise.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -66,6 +67,14 @@ public sealed partial class DockingSystem
             if (!ignored)
                 return false;
         }
+
+        // Sunrise-Start
+        if (TryComp<FtlReservationComponent>(gridDockXform.Owner, out var reservation))
+        {
+            if (reservation.ReservedBy != shuttleDockXform.GridUid && !ignored)
+                return false;
+        }
+        // Sunrise-End
 
         // First, get the station dock's position relative to the shuttle, this is where we rotate it around
         var stationDockPos = shuttleDockXform.LocalPosition +

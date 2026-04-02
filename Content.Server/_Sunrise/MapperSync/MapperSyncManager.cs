@@ -7,40 +7,57 @@ using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Server.ServerStatus;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.MapperSync;
 
-public sealed class MapperSyncSystem : EntitySystem
+public sealed class MapperSyncManager
 {
     [Dependency] private readonly IStatusHost _statusHost = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IResourceManager _res = default!;
+    [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     // Client state
     private readonly HttpClient _httpClient = new();
     private List<string> _cachedRemoteMaps = new();
     private DateTime _lastFetchTime = DateTime.MinValue;
+    private bool _isFetching = false;
+    private ISawmill _sawmill = default!;
 
-    public override void Initialize()
+    private TimeSpan _nextUpdate = TimeSpan.Zero;
+    private readonly TimeSpan _updateRate = TimeSpan.FromMinutes(1);
+
+    public void Initialize()
     {
-        base.Initialize();
+        _sawmill = _logManager.GetSawmill("mappersync");
 
         _statusHost.AddHandler(HandleMapRequest);
+
+        // Initial fetch on start
+        _ = FetchMapsAsync();
     }
 
+    public void Update()
+    {
+        if (_nextUpdate > _timing.CurTime)
+            return;
+
+        _nextUpdate = _timing.CurTime + _updateRate;
+        _ = FetchMapsAsync();
+    }
+
+    public IReadOnlyList<string> CachedRemoteMaps => _cachedRemoteMaps;
+    public DateTime LastFetchTime => _lastFetchTime;
+    public bool IsFetching => _isFetching;
+
     /// <summary>
-    /// Gets the list of available remote maps. Refreshes the cache if older than 1 minute.
+    /// Gets the list of available remote maps.
     /// </summary>
     public IReadOnlyList<string> GetRemoteMaps()
     {
-        // Fire and forget fetch if we need a refresh
-        if (DateTime.UtcNow - _lastFetchTime > TimeSpan.FromMinutes(1))
-        {
-            _lastFetchTime = DateTime.UtcNow; // Prevent spamming
-            _ = FetchMapsAsync();
-        }
-
         return _cachedRemoteMaps;
     }
 
@@ -49,11 +66,17 @@ public sealed class MapperSyncSystem : EntitySystem
     /// </summary>
     public async Task<bool> FetchMapsAsync()
     {
+        if (_isFetching) return false;
+        _isFetching = true;
+
         var url = _cfg.GetCVar(SunriseCCVars.MapperSyncServerUrl);
         var token = _cfg.GetCVar(SunriseCCVars.MapperSyncApiToken);
 
         if (string.IsNullOrWhiteSpace(url))
+        {
+            _isFetching = false;
             return false;
+        }
 
         try
         {
@@ -62,7 +85,7 @@ public sealed class MapperSyncSystem : EntitySystem
                 req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var res = await _httpClient.SendAsync(req);
-
+            
             if (res.IsSuccessStatusCode)
             {
                 var json = await res.Content.ReadAsStringAsync();
@@ -70,19 +93,23 @@ public sealed class MapperSyncSystem : EntitySystem
                 if (list != null)
                 {
                     _cachedRemoteMaps = list;
+                    _lastFetchTime = DateTime.UtcNow;
+                    _isFetching = false;
+                    _sawmill.Debug($"MapperSync: Background fetch successful. Found {list.Count} maps.");
                     return true;
                 }
             }
             else
             {
-                Log.Warning($"Failed to fetch remote maps. Status Code: {res.StatusCode}");
+                _sawmill.Warning($"Failed to fetch remote maps in background. URL: {url}, StatusCode: {res.StatusCode}");
             }
         }
         catch (Exception ex)
         {
-            Log.Error($"Exception while fetching remote maps: {ex}");
+            _sawmill.Error($"Exception while fetching remote maps in background from {url}: {ex}");
         }
 
+        _isFetching = false;
         return false;
     }
 
@@ -105,47 +132,48 @@ public sealed class MapperSyncSystem : EntitySystem
                 req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var res = await _httpClient.SendAsync(req);
-
+            
             if (res.IsSuccessStatusCode)
             {
                 var contentBytes = await res.Content.ReadAsByteArrayAsync();
-
+                
                 // Ensure it ends with .yml
                 if (!mapPath.EndsWith(".yml", StringComparison.OrdinalIgnoreCase))
                     mapPath += ".yml";
-
+                
                 // Construct target respath
                 var targetPath = new ResPath(mapPath);
-
+                
                 // Needs to be rooted to /Maps/
                 if (!targetPath.ToString().StartsWith("/Maps/", StringComparison.OrdinalIgnoreCase))
                 {
                     targetPath = new ResPath("/Maps") / targetPath;
                 }
-
+                
                 // Ensure directory exists
                 var dir = targetPath.Directory;
                 _res.UserData.CreateDir(dir);
-
-                // Write file
+                
+                // Write file (Overwrite)
                 using var stream = _res.UserData.OpenWrite(targetPath);
+                stream.SetLength(0); // Ensure clean overwrite
                 await stream.WriteAsync(contentBytes, 0, contentBytes.Length);
                 await stream.FlushAsync();
-
+                
                 return (true, string.Empty);
             }
-
+            
             return (false, $"HTTP Error: {res.StatusCode}");
         }
         catch (Exception ex)
         {
-            Log.Error($"Exception while downloading remote map: {ex}");
+            _sawmill.Error($"Exception while downloading remote map: {ex}");
             return (false, $"Exception: {ex.Message}");
         }
     }
 
     // --- SERVER SIDE HANDLERS ---
-
+    
     private async Task<bool> HandleMapRequest(IStatusHandlerContext context)
     {
         if (!context.Url.AbsolutePath.StartsWith("/mappersync/"))
@@ -165,7 +193,7 @@ public sealed class MapperSyncSystem : EntitySystem
             authValues.Count == 0 ||
             authValues[0] != $"Bearer {token}")
         {
-            Log.Warning($"Unauthorized mappersync request from {context.RemoteEndPoint}");
+            _sawmill.Warning($"Unauthorized mappersync request from {context.RemoteEndPoint}");
             await context.RespondErrorAsync(HttpStatusCode.Unauthorized);
             return true;
         }
@@ -175,7 +203,7 @@ public sealed class MapperSyncSystem : EntitySystem
             await HandleList(context);
             return true;
         }
-
+        
         if (context.Url.AbsolutePath == "/mappersync/download" && context.IsGetLike)
         {
             await HandleDownload(context);
@@ -187,37 +215,51 @@ public sealed class MapperSyncSystem : EntitySystem
 
     private async Task HandleList(IStatusHandlerContext context)
     {
-        var mapDir = new ResPath("/Maps/");
         var maps = new List<string>();
 
-        if (_res.UserData.Exists(mapDir))
-        {
-            // Recursively find .yml files
-            FindMaps(_res.UserData, mapDir, maps);
-        }
+        _sawmill.Debug("MapperSync: Starting scan for maps in UserData root (ResPath.Root)...");
+        FindMaps(_res.UserData, ResPath.Root, maps);
+        
+        _sawmill.Info($"MapperSync: Scanned UserData, found {maps.Count} maps.");
 
         await context.RespondJsonAsync(maps);
     }
 
+    private static readonly string[] IgnoredDirectories = { "logs", "bin", "replays", "config", "preferences", "crash_reports", "SQLite" };
+
     private void FindMaps(IWritableDirProvider dirProvider, ResPath currentPath, List<string> maps)
     {
         if (!dirProvider.Exists(currentPath))
+        {
+            _sawmill.Debug($"MapperSync: Path does not exist: {currentPath}");
             return;
+        }
 
         foreach (var filename in dirProvider.DirectoryEntries(currentPath))
         {
+            _sawmill.Debug($"MapperSync: Found entry '{filename}' in {currentPath}");
+
+            // Skip common large non-map directories
+            if (IgnoredDirectories.Contains(filename))
+                continue;
+
             var path = currentPath / filename;
-            if (dirProvider.IsDir(path))
+            try
             {
-                FindMaps(dirProvider, path, maps);
+                if (dirProvider.IsDir(path))
+                {
+                    // Recursive scan
+                    FindMaps(dirProvider, path, maps);
+                }
+                else if (filename.EndsWith(".yml", StringComparison.OrdinalIgnoreCase))
+                {
+                    _sawmill.Debug($"MapperSync: Adding map: {path}");
+                    maps.Add(path.ToRootedPath().ToString());
+                }
             }
-            else if (filename.EndsWith(".yml", StringComparison.OrdinalIgnoreCase))
+            catch (Exception ex)
             {
-                // Remove leading / to make it e.g. "Maps/test.yml"
-                var strPath = path.ToString();
-                if (strPath.StartsWith("/"))
-                    strPath = strPath.Substring(1);
-                maps.Add(strPath);
+                _sawmill.Error($"MapperSync: Error processing path {path}: {ex.Message}");
             }
         }
     }
@@ -254,34 +296,43 @@ public sealed class MapperSyncSystem : EntitySystem
             return;
         }
 
-        var resPath = new ResPath(mapPathStr).ToRootedPath();
+        var resPath = new ResPath(mapPathStr);
+        if (!resPath.IsRooted)
+            resPath = new ResPath("/") / resPath;
 
-        // Extra check: must start with /Maps/
-        if (!resPath.ToString().StartsWith("/Maps/", StringComparison.OrdinalIgnoreCase))
+        // Final safety check: must be a .yml and no directory traversal
+        var finalPath = resPath.Clean().ToRootedPath();
+        if (!finalPath.ToString().EndsWith(".yml", StringComparison.OrdinalIgnoreCase) || finalPath.ToString().Contains(".."))
         {
             await context.RespondErrorAsync(HttpStatusCode.Forbidden);
             return;
         }
 
-        if (!_res.UserData.Exists(resPath))
+        if (!_res.UserData.Exists(finalPath))
         {
+            _sawmill.Warning($"Requested map not found in UserData: {finalPath}");
             await context.RespondErrorAsync(HttpStatusCode.NotFound);
             return;
         }
 
         try
         {
-            // Read fully into memory to avoid blocking stream reading if necessary,
-            // or just use respond stream. Note: RespondStreamAsync is better.
-            using var fileStream = _res.UserData.OpenRead(resPath);
-            var responseStream = await context.RespondStreamAsync(HttpStatusCode.OK);
-            await fileStream.CopyToAsync(responseStream);
-            await responseStream.FlushAsync();
+            using var fileStream = _res.UserData.OpenRead(finalPath);
+            _sawmill.Debug($"MapperSync: Sending file {finalPath} ({fileStream.Length} bytes)...");
+
+            using (var responseStream = await context.RespondStreamAsync(HttpStatusCode.OK))
+            {
+                await fileStream.CopyToAsync(responseStream);
+                await responseStream.FlushAsync();
+            }
+
+            _sawmill.Debug($"MapperSync: Finished sending {finalPath}.");
         }
         catch (Exception ex)
         {
-            Log.Error($"Error downloading map {resPath}: {ex}");
-            await context.RespondErrorAsync(HttpStatusCode.InternalServerError);
+            _sawmill.Error($"Error downloading map {finalPath}: {ex}");
+            // Context might already be closed/responded if we fail after RespondStreamAsync
+            try { await context.RespondErrorAsync(HttpStatusCode.InternalServerError); } catch { /* ignore */ }
         }
     }
 }

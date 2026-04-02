@@ -24,6 +24,8 @@
     intensitySlope: 6
     maxIntensity: 20
     canCreateVacuum: true
+  - type: SpawnOnDespawn
+    prototype: BulletDravon75mmHESelfExplode
   - type: PointLight
     enabled: true
     radius: 2.5
@@ -31,9 +33,11 @@
     color: "#ff6600"
   - type: RadarBlip
     color: "#FFB300"
-    scale: 0.9
+    scale: 0.75
     shape: Square
     requireInSpace: true
+  - type: TimedDespawn
+    lifetime: 15
 
 # --- AK570 90mm HE ---
 - type: entity
@@ -59,6 +63,8 @@
     intensitySlope: 7
     maxIntensity: 24
     canCreateVacuum: true
+  - type: SpawnOnDespawn
+    prototype: BulletAK57090mmHESelfExplode
   - type: PointLight
     enabled: true
     radius: 3
@@ -66,9 +72,71 @@
     color: "#ff8800"
   - type: RadarBlip
     color: "#FF9900"
-    scale: 1.0
+    scale: 0.85
     shape: Square
     requireInSpace: true
+  - type: TimedDespawn
+    lifetime: 15
+
+- type: entity
+  id: BulletDravon75mmHESelfExplode
+  name: DVN-75 75mm HE shell
+  suffix: self-explode, NOW
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: ExplodeOnTrigger
+    keysIn:
+    - trigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 180
+    intensitySlope: 6
+    maxIntensity: 20
+    canCreateVacuum: true
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletArtilleryShapnel
+    capacity: 8
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: TimedDespawn
+    lifetime: 0.25
+
+- type: entity
+  id: BulletAK57090mmHESelfExplode
+  name: AK-90 90mm HE shell
+  suffix: self-explode, NOW
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: ExplodeOnTrigger
+    keysIn:
+    - trigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 260
+    intensitySlope: 7
+    maxIntensity: 24
+    canCreateVacuum: true
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletArtilleryShapnel
+    capacity: 16
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: TimedDespawn
+    lifetime: 0.25
 
 # --- LEVIATHAN 240mm HE (single-shot, devastating) ---
 - type: entity
@@ -80,7 +148,7 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
-      - state: blast240mm
+      - state: blast240mmcrit
     scale: 1.2, 1.2
   - type: Projectile
     angle: 180
@@ -116,7 +184,7 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
-      - state: nuke240mm
+      - state: nuke240mmcrit
     scale: 1.2, 1.2
   - type: Projectile
     angle: 180
@@ -163,7 +231,7 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
-      - state: cluster240mm
+      - state: cluster240mmcrit
     scale: 1.2, 1.2
   - type: Projectile
     angle: 180
@@ -291,12 +359,12 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
-      - state: nuke240mm
+      - state: nuke240mmcrit
   - type: Transform
     anchored: false
   - type: TriggerOnSpawn
   - type: TimerTrigger
-    delay: 10
+    delay: 13
     beepSound:
       path: /Audio/Machines/Nuke/nuke_alarm.ogg
       params:
@@ -319,7 +387,7 @@
   - type: ProjectileGrenade
     triggerKey: timer
     fillPrototype: PelletClusterSubnuclearShrapnel
-    capacity: 90
+    capacity: 130
     randomAngle: true
     minVelocity: 1
     maxVelocity: 3
@@ -489,13 +557,15 @@
     intensitySlope: 8
     maxIntensity: 30
     canCreateVacuum: true
+  - type: SpawnOnDespawn
+    prototype: BulletGrenade120mmBlastSelfExplode
   - type: ContainerContainer
     containers:
       cluster-payload: !type:Container
   - type: ProjectileGrenade
     triggerKey: trigger
-    fillPrototype: PelletClusterLethal
-    capacity: 30
+    fillPrototype: BulletArtilleryShapnelShort
+    capacity: 28
     randomAngle: true
     minVelocity: 1
     maxVelocity: 3
@@ -509,6 +579,64 @@
     scale: 1.0
     shape: Square
     requireInSpace: true
+  - type: TimedDespawn
+    lifetime: 15
+
+- type: entity
+  id: BulletRocket120mmMetla
+  name: 120mm rocket
+  parent: BulletGrenade120mmBlast
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives_x48.rsi
+    layers:
+      - state: rocket120mm
+    scale: 1.6, 1.6
+  - type: Projectile
+    angle: -90
+  - type: RadarBlip
+    color: "#44FFAA"
+    scale: 1.3
+    shape: Circle
+    requireInSpace: true
+  - type: WarpPoint
+    follow: true
+    location: 120mm Rocket Payload
+  - type: GuidedProjectile
+    turnRate: 120
+  - type: TimedDespawn
+    lifetime: 30
+
+- type: entity
+  id: BulletGrenade120mmBlastSelfExplode
+  name: 120mm blast grenade
+  suffix: self-explode, NOW
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: ExplodeOnTrigger
+    keysIn:
+    - trigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 450
+    intensitySlope: 8
+    maxIntensity: 30
+    canCreateVacuum: true
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletArtilleryShapnelShort
+    capacity: 30
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: TimedDespawn
+    lifetime: 0.25
 
 - type: entity
   id: Grenade120mmBlastRupture
@@ -535,7 +663,7 @@
       cluster-payload: !type:Container
   - type: ProjectileGrenade
     triggerKey: timer
-    fillPrototype: PelletClusterLethal
+    fillPrototype: BulletArtilleryShapnelShort
     capacity: 30
     randomAngle: true
     minVelocity: 1
