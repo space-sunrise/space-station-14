@@ -11,45 +11,45 @@ public sealed partial class CrewMonitoringFilterComponent : Component
     [DataField("allowedDepartmentIds")]
     public List<string> AllowedDepartmentIds = new();
 
-    /// <summary>
+    /// </summary>
     /// Будут ли отображаться трекеры (импланты).
     /// </summary>
     [DataField("includeTrackers")]
     public bool IncludeTrackers;
 
-    ///<summary>
+    /// </summary>
     /// Показывать здоровых (урон 0% – 13.2%)
-    /// <summary>
+    /// </summary>
     [DataField("showHealthy")]
     public bool ShowHealthy;
-    ///<summary>
+    /// </summary>
     ///Показывать состояние "хорошо" (урон 13.2% – 36%)
-    ///<summary>
+    /// </summary>
     [DataField("showGood")]
     public bool ShowGood;
-    ///<summary>
+    /// </summary>
     ///Показывать состояние "не очень" (урон 36% – 60%)
-    ///<summary>
+    /// </summary>
     [DataField("showNotGreat")]
     public bool ShowNotGreat;
-    ///<summary>
+    /// </summary>
     ///Показывать состояние "плохо" (урон 60% – 83%)
-    ///<summary>
+    /// </summary>
     [DataField("showBad")]
     public bool ShowBad;
-    ///<summary>
+    /// </summary>
     ///Показывать состояние "ужасно" (урон 83% – 100%)
-    ///<summary>
+    /// </summary>
     [DataField("showTerrible")]
     public bool ShowTerrible;
-    ///<summary>
+    /// </summary>
     ///Показывать критическое состояние (урон >= 100%)
-    ///<summary>
+    /// </summary>
     [DataField("showCritical")]
     public bool ShowCritical;
-    ///<summary>
+    /// </summary>
     ///Показывать мёртвых
-    ///<summary>
+    /// </summary>
     [DataField("showDead")]
     public bool ShowDead;
 }

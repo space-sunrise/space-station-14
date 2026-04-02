@@ -229,29 +229,33 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
             statusContainer.AddChild(suitCoordsIndicator);
 
             // Specify texture for the user status icon
-            var specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), "alive");
+// Specify texture for the user status icon
+var specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), "alive");
 
-            if (!sensor.IsAlive)
-            {
-                specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), "dead");
-            }
-            else if (sensor.DamagePercentage != null)
-            {
-                float damage = sensor.DamagePercentage.Value;
-                string healthState;
+if (!sensor.IsAlive)
+{
+    specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), "dead");
+}
+else if (sensor.DamagePercentage != null)
+{
+    float damage = sensor.DamagePercentage.Value;
+    string healthState;
 
-                if (damage >= 1.0f)
-                    healthState = "critical";
-                else if (damage >= 0.83f)
-                    healthState = "VeryBad";
-                else if (damage >= 0.6f)
-                    healthState = "Bad";
-                else if (damage >= 0.36f)
-                    healthState = "NotGood";
-                else if (damage >= 0.132f)
-                    healthState = "Good";
-                else
-                    healthState = "Healthy";
+    if (damage >= 1.0f)
+        healthState = "critical";
+    else if (damage >= 0.83f)
+        healthState = "health4";
+    else if (damage >= 0.6f)
+        healthState = "health3";
+    else if (damage >= 0.36f)
+        healthState = "health2";
+    else if (damage >= 0.132f)
+        healthState = "health1";
+    else
+        healthState = "health0";
+
+    specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), healthState);
+}
 
                 specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), healthState);
             }
