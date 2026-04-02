@@ -1,9 +1,9 @@
-using Content.Shared.Chat.Prototypes;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
-using Content.Shared.Humanoid;
+using Content.Shared._Sunrise.TTS;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
@@ -35,7 +35,7 @@ public sealed partial class ZombieComponent : Component
     /// </summary>
     public DamageSpecifier ResistanceEffectiveness = new()
     {
-        DamageDict = new ()
+        DamageDict = new()
         {
             {"Slash", 0.5},
             {"Piercing", 0.3},
@@ -50,13 +50,13 @@ public sealed partial class ZombieComponent : Component
     /// The skin color of the zombie
     /// </summary>
     [DataField("skinColor")]
-    public Color SkinColor = new(0.45f, 0.51f, 0.29f);
+    public Color SkinColor = new(1f, 0.733f, 0.765f); // Sunrise-Edit
 
     /// <summary>
     /// The eye color of the zombie
     /// </summary>
     [DataField("eyeColor")]
-    public Color EyeColor = new(0.96f, 0.13f, 0.24f);
+    public Color EyeColor = new(0.96f, 0.13f, 0.75f); // Sunrise-Edit
 
     /// <summary>
     /// The base layer to apply to any 'external' humanoid layers upon zombification.
@@ -75,24 +75,6 @@ public sealed partial class ZombieComponent : Component
     /// </summary>
     [DataField("zombieRoleId", customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
     public string ZombieRoleId = "Zombie";
-
-    /// <summary>
-    /// The CustomBaseLayers of the humanoid to restore in case of cloning
-    /// </summary>
-    [DataField("beforeZombifiedCustomBaseLayers")]
-    public Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo> BeforeZombifiedCustomBaseLayers = new ();
-
-    /// <summary>
-    /// The skin color of the humanoid to restore in case of cloning
-    /// </summary>
-    [DataField("beforeZombifiedSkinColor")]
-    public Color BeforeZombifiedSkinColor;
-
-    /// <summary>
-    /// The eye color of the humanoid to restore in case of cloning
-    /// </summary>
-    [DataField("beforeZombifiedEyeColor")]
-    public Color BeforeZombifiedEyeColor;
 
     [DataField("emoteId")]
     public ProtoId<EmoteSoundsPrototype>? EmoteSoundsId = "Zombie";
@@ -168,18 +150,24 @@ public sealed partial class ZombieComponent : Component
     public SoundSpecifier BiteSound = new SoundPathSpecifier("/Audio/Effects/bite.ogg");
 
     /// <summary>
-    /// The blood reagents of the humanoid to restore in case of cloning
-    /// </summary>
-    [DataField("beforeZombifiedBloodReagents")]
-    public Solution BeforeZombifiedBloodReagents = new();
-
-    /// <summary>
     /// The blood reagents to give the zombie. In case you want zombies that bleed milk, or something.
     /// </summary>
     [DataField("newBloodReagents")]
     public Solution NewBloodReagents = new([new("ZombieBlood", 1)]);
 
-    // Sunrise-Start
+    // Sunrise-start
+    [DataField]
+    public ProtoId<TTSVoicePrototype> VulpkaninMaleVoice = "PlayBoyzTV";
+
+    [DataField]
+    public ProtoId<TTSVoicePrototype> VulpkaninFemaleVoice = "tts-voice-name-neco";
+
+    [DataField]
+    public ProtoId<TTSVoicePrototype> TajaranMaleVoice = "PlayBoyzTV";
+
+    [DataField]
+    public ProtoId<TTSVoicePrototype> TajaranFemaleVoice = "tts-voice-name-mita";
+
     [DataField("actionJumpId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string ActionJumpId = "ZombieJump";
 

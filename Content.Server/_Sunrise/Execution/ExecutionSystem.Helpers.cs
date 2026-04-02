@@ -14,6 +14,7 @@ using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Containers;
+using Content.Shared.Zombies;
 
 namespace Content.Server._Sunrise.Execution;
 
@@ -65,6 +66,10 @@ public sealed partial class ExecutionSystem
 
         // The victim must be incapacitated to be executed
         if (victim != attacker && _actionBlockerSystem.CanInteract(victim, null))
+            return false;
+
+        // Furry zombies can't execute themselves (no fun allowed, part 2, find other way to kys)
+        if (victim == attacker && HasComp<ZombieComponent>(victim))
             return false;
 
         return true;

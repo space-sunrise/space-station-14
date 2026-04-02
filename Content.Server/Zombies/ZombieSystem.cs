@@ -1,4 +1,6 @@
 using Content.Shared.NPC.Prototypes;
+using NetCord;
+using System.Numerics; // Sunrise-add
 using System.Text.RegularExpressions;
 using Content.Server.Actions;
 using Content.Server.Body.Systems;
@@ -7,12 +9,14 @@ using Content.Server.Chat.Systems;
 using Content.Server.Emoting.Systems;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Pinpointer;
+using Content.Server.Polymorph.Components;
 using Content.Server.Speech.EntitySystems;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Armor;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cloning.Events;
 using Content.Shared.Chat;
+using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
@@ -22,16 +26,22 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Polymorph; // Sunrise-add
 using Content.Shared.Popups;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
+using Content.Shared.Damage;
 using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared.Weapons.Ranged.Systems; // Sunrise-add
 using Content.Shared.Zombies;
+using Robust.Shared.Map; // Sunrise-add
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Server._Sunrise.Zombies; // Sunrise-add
 
 namespace Content.Server.Zombies
 {
@@ -53,6 +63,9 @@ namespace Content.Server.Zombies
         [Dependency] private readonly SharedStunSystem _stun = default!;
         [Dependency] private readonly NavMapSystem _navMap = default!; // Sunrise-Zombies
         [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly IComponentFactory _componentFactory = default!;
+        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+        [Dependency] private readonly SharedGunSystem _gun = default!;
 
         public readonly ProtoId<NpcFactionPrototype> Faction = "Zombie";
 
@@ -71,8 +84,10 @@ namespace Content.Server.Zombies
             base.Initialize();
 
             SubscribeLocalEvent<ZombieComponent, ComponentStartup>(OnStartup);
-            SubscribeLocalEvent<ZombieComponent, EmoteEvent>(OnEmote, before:
-                new[] { typeof(VocalSystem), typeof(BodyEmotesSystem) });
+            // Sunrise-start
+            // SubscribeLocalEvent<ZombieComponent, EmoteEvent>(OnEmote, before:
+            //     new[] { typeof(VocalSystem), typeof(BodyEmotesSystem) });
+            // Sunrise-end
 
             SubscribeLocalEvent<ZombieComponent, MeleeHitEvent>(OnMeleeHit);
             SubscribeLocalEvent<ZombieComponent, MobStateChangedEvent>(OnMobState);
@@ -90,14 +105,56 @@ namespace Content.Server.Zombies
 
             SubscribeLocalEvent<ZombifyOnDeathComponent, MobStateChangedEvent>(OnDamageChanged);
 
-            // Sunnrise-Start
+            // Sunnrise-start
             SubscribeLocalEvent<ZombieComponent, ZombieJumpActionEvent>(OnJump);
             SubscribeLocalEvent<ZombieComponent, ZombieFlairActionEvent>(OnFlair);
             SubscribeLocalEvent<ZombieComponent, ThrowDoHitEvent>(OnThrowDoHit);
-            // Sunnrise-End
+            SubscribeLocalEvent<ZombieComponent, SelfBeforeGunShotEvent>(OnZombieBeforeGunShot);
+            SubscribeLocalEvent<ZombieComponent, PolymorphedEvent>(OnPolymorphed);
+            // Sunrise-end
         }
 
-        // Sunnrise-Start
+        // Sunrise-start
+        private void OnZombieBeforeGunShot(Entity<ZombieComponent> ent, ref SelfBeforeGunShotEvent args)
+        {
+            // Redirect the shot to hit the zombie itself.
+            // SetTarget uses the gun system's access to modify GunComponent.Targets for hitscan targeting.
+            _gun.SetTarget(args.Gun.Comp, ent.Owner);
+
+            var zombieCoords = Transform(ent.Owner).Coordinates;
+            var zombieMap = _transform.ToMapCoordinates(zombieCoords);
+
+            // Nudge toCoordinates slightly toward where the zombie was aiming
+            // to avoid a zero-length direction vector which crashes the gun system.
+            // Compute the nudge in map space, then convert back to coordinates.
+            var nudge = new Vector2(0.0f, 0.01f);
+            if (args.Gun.Comp.ShootCoordinates is { } shootCoords)
+            {
+                var shootMap = _transform.ToMapCoordinates(shootCoords);
+                var dir = shootMap.Position - zombieMap.Position;
+                if (dir.LengthSquared() > 0)
+                    nudge = dir.Normalized();
+            }
+
+            var nudgeAngle = new Angle((0.5d - Random.Shared.NextDouble()) * Math.PI);
+            nudge = nudgeAngle.RotateVec(in nudge);
+            var toCoords = _transform.ToCoordinates(new MapCoordinates(zombieMap.Position + nudge, zombieMap.MapId));
+
+            // user: null prevents recursive SelfBeforeGunShotEvent
+            // and avoids the projectile ignoring the zombie as its shooter
+            _gun.Shoot(args.Gun, args.Gun.Comp, args.Ammo, zombieCoords, toCoords, out _);
+
+            _popup.PopupEntity(Loc.GetString("zombie-gun-fumble"), ent.Owner, PopupType.SmallCaution);
+            args.Cancel();
+        }
+
+        private void OnPolymorphed(Entity<ZombieComponent> ent, ref PolymorphedEvent args)
+        {
+            var comp = EnsureComp<ZombieTemporaryImmuneComponent>(args.NewEntity);
+            comp.ExpiryTime = _timing.CurTime + TimeSpan.FromMinutes(5);
+        }
+        // Sunrise-end
+
         private void OnThrowDoHit(EntityUid uid, ZombieComponent component, ThrowDoHitEvent args)
         {
             if (_mobState.IsDead(uid))
@@ -195,7 +252,6 @@ namespace Content.Server.Zombies
             }
 
             _throwing.TryThrow(uid, direction, 7F, uid, 10F);
-            _chat.TryEmoteWithChat(uid, "ZombieGroan");
         }
         // Sunnrise-End
 
@@ -206,6 +262,16 @@ namespace Content.Server.Zombies
 
             if (HasComp<ZombieComponent>(uid) || HasComp<ZombieImmuneComponent>(uid))
                 return;
+
+            // Sunrise-start
+            // Временный иммунитет
+            if (TryComp<ZombieTemporaryImmuneComponent>(uid, out var tempImmuneComp))
+            {
+                if (tempImmuneComp.ExpiryTime > _timing.CurTime)
+                    return;
+                RemComp<ZombieTemporaryImmuneComponent>(uid);
+            }
+            // Sunrise-end
 
             EnsureComp<PendingZombieComponent>(uid, out PendingZombieComponent pendingComp);
 
@@ -310,24 +376,6 @@ namespace Content.Server.Zombies
 
         private void OnMobState(EntityUid uid, ZombieComponent component, MobStateChangedEvent args)
         {
-            if (args.NewMobState == MobState.Alive)
-            {
-                // Groaning when damaged
-                EnsureComp<EmoteOnDamageComponent>(uid);
-                _emoteOnDamage.AddEmote(uid, "Scream");
-
-                // Random groaning
-                EnsureComp<AutoEmoteComponent>(uid);
-                _autoEmote.AddEmote(uid, "ZombieGroan");
-            }
-            else
-            {
-                // Stop groaning when damaged
-                _emoteOnDamage.RemoveEmote(uid, "Scream");
-
-                // Stop random groaning
-                _autoEmote.RemoveEmote(uid, "ZombieGroan");
-            }
         }
 
         private float GetZombieInfectionChance(EntityUid uid, ZombieComponent zombieComponent)
@@ -417,29 +465,21 @@ namespace Content.Server.Zombies
         ///     this currently only restore the skin/eye color from before zombified
         ///     TODO: completely rethink how zombies are done to allow reversal.
         /// </remarks>
-        public bool UnZombify(EntityUid source, EntityUid target, ZombieComponent? zombiecomp)
+        public bool UnZombify(EntityUid source, EntityUid target)
         {
-            if (!Resolve(source, ref zombiecomp))
+            if (!TryComp<PolymorphedEntityComponent>(source, out var polymorphed)
+                || polymorphed.Parent is not { } parent
+                || Deleted(parent))
+            {
                 return false;
-
-            foreach (var (layer, info) in zombiecomp.BeforeZombifiedCustomBaseLayers)
-            {
-                _humanoidAppearance.SetBaseLayerColor(target, layer, info.Color);
-                _humanoidAppearance.SetBaseLayerId(target, layer, info.Id);
             }
-            if (TryComp<HumanoidAppearanceComponent>(target, out var appcomp))
-            {
-                appcomp.EyeColor = zombiecomp.BeforeZombifiedEyeColor;
-            }
-            _humanoidAppearance.SetSkinColor(target, zombiecomp.BeforeZombifiedSkinColor, false);
-            _bloodstream.ChangeBloodReagents(target, zombiecomp.BeforeZombifiedBloodReagents);
 
-            return true;
+            return TryRestorePreZombifiedPolymorphState(source, target);
         }
 
         private void OnZombieCloning(Entity<ZombieComponent> ent, ref CloningEvent args)
         {
-            UnZombify(ent.Owner, args.CloneUid, ent.Comp);
+            UnZombify(ent.Owner, args.CloneUid);
         }
 
         // Make sure players that enter a zombie (for example via a ghost role or the mind swap spell) count as an antagonist.

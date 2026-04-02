@@ -5,7 +5,6 @@ using Content.Server.Chat;
 using Content.Server.Chat.Managers;
 using Content.Server.Ghost;
 using Content.Server.GameTicking;
-using Content.Server.Ghost;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Humanoid;
 using Content.Server.Inventory;
@@ -13,10 +12,16 @@ using Content.Server.Mind;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
+using Content.Server.Polymorph.Components;
+using Content.Server.Polymorph.Systems;
 using Content.Server.StationEvents.Components;
+using Content.Server._Sunrise.Speech.Components;
 using Content.Server.Speech.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Chat;
+using Content.Shared.Chat.Prototypes;
+using Content.Shared._Sunrise;
+using Content.Shared._Sunrise.TTS;
 using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.CombatMode;
 using Content.Shared.CombatMode.Pacification;
@@ -24,6 +29,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -34,9 +40,12 @@ using Content.Shared.NPC.Systems;
 using Content.Shared.Nutrition.AnimalHusbandry;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
+using Content.Shared.Polymorph;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Zombies;
 using Content.Shared.Prying.Components;
+using Content.Shared.Speech;
+using Content.Shared.Speech.Components;
 using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Ghost.Roles.Components;
@@ -47,6 +56,8 @@ using Robust.Shared.Prototypes;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.Roles;
 using Content.Shared.Temperature.Components;
+using Content.Shared._Sunrise.InteractionsPanel.Data.Components; // Sunrise-add
+using Content.Server._Sunrise.Zombies; // Sunrise-add
 
 namespace Content.Server.Zombies;
 
@@ -72,12 +83,35 @@ public sealed partial class ZombieSystem
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly NameModifierSystem _nameMod = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
+    [Dependency] private readonly PolymorphSystem _polymorph = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
     private static readonly ProtoId<TagPrototype> CannotSuicideTag = "CannotSuicide";
     private static readonly ProtoId<NpcFactionPrototype> ZombieFaction = "Zombie";
+    private const string FurryZombieVulpkaninSpecies = "Vulpkanin";
+    private const string FurryZombieTajaranSpecies = "Tajaran";
+    private static readonly ProtoId<PolymorphPrototype> FurryZombieVulpkaninPolymorph = "ZombieVirusVulpkanin";
+    private static readonly ProtoId<PolymorphPrototype> FurryZombieTajaranPolymorph = "ZombieVirusTajaran";
+    private static readonly ProtoId<SpeechVerbPrototype> FurryZombieVulpkaninSpeechVerb = "Vulpkanin";
+    private static readonly ProtoId<SpeechVerbPrototype> FurryZombieTajaranSpeechVerb = "Felinid";
+    private static readonly ProtoId<SpeechSoundsPrototype> FurryZombieVulpkaninSpeechSounds = "Vulpkanin";
+    private static readonly ProtoId<SpeechSoundsPrototype> FurryZombieTajaranSpeechSounds = "Alto";
+    private static readonly ProtoId<EmotePrototype>[] FurryZombieVulpkaninAllowedEmotes = ["Bark", "Snarl", "Whine", "Howl", "Growl"];
+    private static readonly ProtoId<EmotePrototype>[] FurryZombieTajaranAllowedEmotes = ["Mew", "Meow", "Hisses", "Purr", "Growl"];
+    private static readonly Dictionary<Sex, ProtoId<EmoteSoundsPrototype>> FurryZombieVulpkaninVocal = new()
+    {
+        { Sex.Male, "MaleVulpkanin" },
+        { Sex.Female, "FemaleVulpkanin" },
+        { Sex.Unsexed, "MaleVulpkanin" },
+    };
+    private static readonly Dictionary<Sex, ProtoId<EmoteSoundsPrototype>> FurryZombieTajaranVocal = new()
+    {
+        { Sex.Male, "MaleTajaran" },
+        { Sex.Female, "FemaleTajaran" },
+        { Sex.Unsexed, "MaleTajaran" },
+    };
     private static readonly string MindRoleZombie = "MindRoleZombie";
     private static readonly List<ProtoId<AntagPrototype>> BannableZombiePrototypes = ["Zombie"];
 
@@ -114,6 +148,16 @@ public sealed partial class ZombieSystem
         if (!Resolve(target, ref mobState, logMissing: false))
             return;
 
+        // Sunrise-start
+        // Проверяем временный имунитет, удаляем его компонент если время истекло
+        if (TryComp<ZombieTemporaryImmuneComponent>(target, out var tempImmune))
+        {
+            if (tempImmune.ExpiryTime > _timing.CurTime)
+                return;
+            RemComp<ZombieTemporaryImmuneComponent>(target);
+        }
+        // Sunrise-end
+
         // Detach role-banned players before zombification
         if (TryComp<ActorComponent>(target, out var actor) && _ban.IsRoleBanned(actor.PlayerSession, BannableZombiePrototypes))
         {
@@ -132,27 +176,43 @@ public sealed partial class ZombieSystem
                 Log.Error($"Mind for session '{sess}' could not be found");
         }
 
+        var originalTarget = target;
+        TryComp<HumanoidAppearanceComponent>(target, out var originalHumanoidAppearance);
+        var furryZombieSpecies = originalHumanoidAppearance != null
+            ? PickFurryZombieSpecies(originalHumanoidAppearance.Species)
+            : PickFurryZombieSpecies();
+
+        if (_polymorph.PolymorphEntity(target, GetFurryZombiePolymorph(furryZombieSpecies)) is not { } polymorphedTarget)
+        {
+            Log.Error($"Failed to polymorph {ToPrettyString(target)} into furry zombie species {furryZombieSpecies}.");
+            return;
+        }
+
+        target = polymorphedTarget;
+
+        RemCompDeferred<PendingZombieComponent>(originalTarget);
+        RemCompDeferred<ZombifyOnDeathComponent>(originalTarget);
+
         //you're a real zombie now, son.
         var zombiecomp = AddComp<ZombieComponent>(target);
 
         //we need to basically remove all of these because zombies shouldn't
         //get diseases, breath, be thirst, be hungry, die in space, get double sentience, have offspring or be paraplegic.
-        RemComp<RespiratorComponent>(target);
-        RemComp<BarotraumaComponent>(target);
-        RemComp<HungerComponent>(target);
-        RemComp<ThirstComponent>(target);
+        // RemComp<RespiratorComponent>(target); // Sunrise-remove
+        // RemComp<BarotraumaComponent>(target); // Sunrise-remove
+        // RemComp<HungerComponent>(target); // Sunrise-remove
+        // RemComp<ThirstComponent>(target); // Sunrise-remove
         RemComp<ReproductiveComponent>(target);
         RemComp<ReproductivePartnerComponent>(target);
         RemComp<LegsParalyzedComponent>(target);
-        RemComp<ComplexInteractionComponent>(target);
+        // RemComp<ComplexInteractionComponent>(target); // Sunrise-remove
         RemComp<SentienceTargetComponent>(target);
 
-        //funny voice
-        var accentType = "zombie";
-        if (TryComp<ZombieAccentOverrideComponent>(target, out var accent))
-            accentType = accent.Accent;
-
-        EnsureComp<ReplacementAccentComponent>(target).Accent = accentType;
+        // Sunrise-start
+        RemComp<ReplacementAccentComponent>(target);
+        RemComp<InteractionsComponent>(target);
+        _tag.AddTag(target, "CannotSuicide");
+        // Sunrise-end
 
         //This is needed for stupid entities that fuck up combat mode component
         //in an attempt to make an entity not attack. This is the easiest way to do it.
@@ -193,39 +253,10 @@ public sealed partial class ZombieSystem
             collectiveMindComponent.Minds.Add("Zombie");
         // Sunrise-End
 
-        if (mobState.CurrentState == MobState.Alive)
-        {
-            // Groaning when damaged
-            EnsureComp<EmoteOnDamageComponent>(target);
-            _emoteOnDamage.AddEmote(target, "Scream");
-
-            // Random groaning
-            EnsureComp<AutoEmoteComponent>(target);
-            _autoEmote.AddEmote(target, "ZombieGroan");
-        }
-
-        //We have specific stuff for humanoid zombies because they matter more
         if (TryComp<HumanoidAppearanceComponent>(target, out var huApComp)) //huapcomp
         {
-            //store some values before changing them in case the humanoid get cloned later
-            zombiecomp.BeforeZombifiedSkinColor = huApComp.SkinColor;
-            zombiecomp.BeforeZombifiedEyeColor = huApComp.EyeColor;
-            zombiecomp.BeforeZombifiedCustomBaseLayers = new(huApComp.CustomBaseLayers);
-            if (TryComp<BloodstreamComponent>(target, out var stream) && stream.BloodReferenceSolution is { } reagents)
-                zombiecomp.BeforeZombifiedBloodReagents = reagents.Clone();
+            ApplyFurryZombieAppearance(originalTarget, target, zombiecomp, furryZombieSpecies, huApComp, originalHumanoidAppearance); // Sunrise-edit
 
-            _humanoidAppearance.SetSkinColor(target, zombiecomp.SkinColor, verify: false, humanoid: huApComp);
-
-            // Messing with the eye layer made it vanish upon cloning, and also it didn't even appear right
-            huApComp.EyeColor = zombiecomp.EyeColor;
-
-            // this might not resync on clone?
-            _humanoidAppearance.SetBaseLayerId(target, HumanoidVisualLayers.Tail, zombiecomp.BaseLayerExternal, humanoid: huApComp);
-            _humanoidAppearance.SetBaseLayerId(target, HumanoidVisualLayers.HeadSide, zombiecomp.BaseLayerExternal, humanoid: huApComp);
-            _humanoidAppearance.SetBaseLayerId(target, HumanoidVisualLayers.HeadTop, zombiecomp.BaseLayerExternal, humanoid: huApComp);
-            _humanoidAppearance.SetBaseLayerId(target, HumanoidVisualLayers.Snout, zombiecomp.BaseLayerExternal, humanoid: huApComp);
-
-            //This is done here because non-humanoids shouldn't get baller damage
             melee.Damage = zombiecomp.DamageOnBite;
 
             // humanoid zombies get to pry open doors and shit
@@ -240,7 +271,7 @@ public sealed partial class ZombieSystem
         Dirty(target, melee);
 
         //The zombie gets the assigned damage weaknesses and strengths
-        _damageable.SetDamageModifierSetId(target, "Zombie");
+        _damageable.SetDamageModifierSetId(target, "FurryZombie"); // Sunrise-edit
 
         //This makes it so the zombie doesn't take bloodloss damage.
         //NOTE: they are supposed to bleed, just not take damage
@@ -249,9 +280,9 @@ public sealed partial class ZombieSystem
         _bloodstream.ChangeBloodReagents(target, zombiecomp.NewBloodReagents);
 
         //This is specifically here to combat insuls, because frying zombies on grilles is funny as shit.
-        _inventory.TryUnequip(target, "gloves", true, true);
+        //_inventory.TryUnequip(target, "gloves", true, true); // Sunrise-remove
         //Should prevent instances of zombies using comms for information they shouldnt be able to have.
-        _inventory.TryUnequip(target, "ears", true, true);
+        // _inventory.TryUnequip(target, "ears", true, true); // Sunrise-remove
 
         //popup
         _popup.PopupEntity(Loc.GetString("zombie-transform", ("target", target)), target, PopupType.LargeCaution);
@@ -276,7 +307,7 @@ public sealed partial class ZombieSystem
         _identity.QueueIdentityUpdate(target);
 
         var htn = EnsureComp<HTNComponent>(target);
-        htn.RootTask = new HTNCompoundTask() { Task = "SimpleHostileCompound" };
+        htn.RootTask = new HTNCompoundTask() { Task = "ZombieHostileCompound" }; // Sunrise: zombies don't pick up weapons
         htn.Blackboard.SetValue(NPCBlackboard.Owner, target);
         _npc.SleepNPC(target, htn);
 
@@ -309,15 +340,17 @@ public sealed partial class ZombieSystem
             ghostRole.MindRoles.Add(MindRoleZombie);
         }
 
-        if (TryComp<HandsComponent>(target, out var handsComp))
-        {
-            _hands.RemoveHands(target);
-            RemComp(target, handsComp);
-        }
+        // Sunrise-start
+        // if (TryComp<HandsComponent>(target, out var handsComp))
+        // {
+        //     _hands.RemoveHands(target);
+        //     RemComp(target, handsComp);
+        // }
+        // Sunrise-end
 
         // Sloth: What the fuck?
         // How long until compregistry lmao.
-        RemComp<PullerComponent>(target);
+        // RemComp<PullerComponent>(target); // Sunrise-remove
 
         // No longer waiting to become a zombie:
         // Requires deferral because this is (probably) the event which called ZombifyEntity in the first place.
@@ -333,5 +366,248 @@ public sealed partial class ZombieSystem
         // Also prevents them from becoming a Survivor. They're undead.
         _tag.AddTag(target, InvalidForGlobalSpawnSpellTag);
         _tag.AddTag(target, CannotSuicideTag);
+    }
+
+    private string PickFurryZombieSpecies()
+    {
+        return _random.NextDouble() < 0.5
+            ? FurryZombieVulpkaninSpecies
+            : FurryZombieTajaranSpecies;
+    }
+
+    private string PickFurryZombieSpecies(ProtoId<SpeciesPrototype> originalSpecies)
+    {
+        if (originalSpecies == FurryZombieVulpkaninSpecies)
+            return FurryZombieTajaranSpecies;
+
+        if (originalSpecies == FurryZombieTajaranSpecies)
+            return FurryZombieVulpkaninSpecies;
+
+        return PickFurryZombieSpecies();
+    }
+
+    private string GetFurryZombieBodyType(string infectedSpecies, ProtoId<BodyTypePrototype> originalBodyType)
+    {
+        var originalBodyTypeId = originalBodyType.ToString();
+
+        if (infectedSpecies == FurryZombieTajaranSpecies)
+        {
+            return originalBodyTypeId.Contains("Curved", StringComparison.OrdinalIgnoreCase)
+                ? "TajaranCurved"
+                : "TajaranNormal";
+        }
+
+        var isStraight = originalBodyTypeId.Contains("Straight", StringComparison.OrdinalIgnoreCase);
+        var isBigMuzzle = originalBodyTypeId.Contains("Big", StringComparison.OrdinalIgnoreCase);
+
+        return (isStraight, isBigMuzzle) switch
+        {
+            (true, true) => "VulpkaninStraightBigMuzzle",
+            (true, false) => "VulpkaninStraightSmallMuzzle",
+            (false, true) => "VulpkaninCurvedBigMuzzle",
+            _ => "VulpkaninNormal",
+        };
+    }
+
+    private ProtoId<PolymorphPrototype> GetFurryZombiePolymorph(string infectedSpecies)
+    {
+        return infectedSpecies == FurryZombieTajaranSpecies
+            ? FurryZombieTajaranPolymorph
+            : FurryZombieVulpkaninPolymorph;
+    }
+
+    private void ApplyFurryZombieAppearance(EntityUid originalTarget, EntityUid target, ZombieComponent zombiecomp,
+        string infectedSpecies, HumanoidAppearanceComponent humanoid, HumanoidAppearanceComponent? originalHumanoid)
+    {
+        if (originalHumanoid != null)
+        {
+            _humanoidAppearance.SetSex(target, originalHumanoid.Sex, false, humanoid);
+            _humanoidAppearance.SetGender((target, humanoid), originalHumanoid.Gender);
+            humanoid.Age = originalHumanoid.Age;
+            humanoid.Width = originalHumanoid.Width;
+            humanoid.Height = originalHumanoid.Height;
+
+            _humanoidAppearance.SetBodyType(target,
+                GetFurryZombieBodyType(infectedSpecies, originalHumanoid.BodyType),
+                false,
+                humanoid);
+        }
+
+        _humanoidAppearance.SetSkinColor(target, zombiecomp.SkinColor, verify: false, humanoid: humanoid);
+        humanoid.EyeColor = zombiecomp.EyeColor;
+
+        EnsureFurryZombieMarkings(humanoid);
+        ForceFurryZombieMarkingColors(humanoid);
+        ApplyFurryZombieSpeech(originalTarget, target, zombiecomp, infectedSpecies, humanoid);
+        ApplyFurryZombieAccent(target, infectedSpecies);
+
+        Dirty(target, humanoid);
+    }
+
+    private void ApplyFurryZombieAccent(EntityUid target, string infectedSpecies)
+    {
+        RemComp<TajaranAccentComponent>(target);
+        RemComp<VulpaAccentComponent>(target);
+
+        if (infectedSpecies == FurryZombieTajaranSpecies)
+            EnsureComp<TajaranAccentComponent>(target);
+        else
+            EnsureComp<VulpaAccentComponent>(target);
+    }
+
+    private static void EnsureFurryZombieMarkings(HumanoidAppearanceComponent humanoid)
+    {
+        humanoid.MarkingSet.EnsureSpecies(humanoid.Species, humanoid.SkinColor);
+        humanoid.MarkingSet.EnsureSexes(humanoid.Sex);
+        humanoid.MarkingSet.EnsureDefault(humanoid.SkinColor, humanoid.EyeColor);
+    }
+
+    private static void ForceFurryZombieMarkingColors(HumanoidAppearanceComponent humanoid)
+    {
+        foreach (var markings in humanoid.MarkingSet.Markings.Values)
+        {
+            foreach (var marking in markings)
+            {
+                for (var colorIndex = 0; colorIndex < marking.MarkingColors.Count; colorIndex++)
+                {
+                    var alpha = marking.MarkingColors[colorIndex].A;
+                    marking.SetColor(colorIndex, humanoid.SkinColor.WithAlpha(alpha));
+                }
+            }
+        }
+    }
+
+    private bool TryRestorePreZombifiedPolymorphState(EntityUid source, EntityUid target)
+    {
+        if (!TryComp<PolymorphedEntityComponent>(source, out var polymorphed)
+            || polymorphed.Parent is not { } parent
+            || Deleted(parent))
+        {
+            return false;
+        }
+
+        if (TryComp<HumanoidAppearanceComponent>(parent, out var parentHumanoid)
+            && TryComp<HumanoidAppearanceComponent>(target, out var targetHumanoid))
+        {
+            _humanoidAppearance.CloneAppearance(parent, target, parentHumanoid, targetHumanoid);
+        }
+
+        SyncPreZombifiedAccentComponents(parent, target);
+
+        if (TryComp<SpeechComponent>(parent, out var sourceSpeech))
+        {
+            var targetSpeech = EnsureComp<SpeechComponent>(target);
+            targetSpeech.SpeechSounds = sourceSpeech.SpeechSounds;
+            targetSpeech.SpeechVerb = sourceSpeech.SpeechVerb;
+            targetSpeech.AllowedEmotes = new(sourceSpeech.AllowedEmotes);
+            Dirty(target, targetSpeech);
+        }
+
+        if (TryComp<VocalComponent>(parent, out var sourceVocal))
+        {
+            var targetVocal = EnsureComp<VocalComponent>(target);
+            targetVocal.Sounds = sourceVocal.Sounds == null
+                ? null
+                : new Dictionary<Sex, ProtoId<EmoteSoundsPrototype>>(sourceVocal.Sounds);
+            targetVocal.EmoteSounds = sourceVocal.EmoteSounds;
+            Dirty(target, targetVocal);
+        }
+
+        if (TryComp<BloodstreamComponent>(parent, out var stream)
+            && stream.BloodReferenceSolution is { } reagents)
+        {
+            _bloodstream.ChangeBloodReagents(target, reagents.Clone());
+        }
+
+        return true;
+    }
+
+    private void SyncPreZombifiedAccentComponents(EntityUid source, EntityUid target)
+    {
+        if (HasComp<OwOAccentComponent>(source))
+            EnsureComp<OwOAccentComponent>(target);
+        else
+            RemComp<OwOAccentComponent>(target);
+
+        if (HasComp<TajaranAccentComponent>(source))
+            EnsureComp<TajaranAccentComponent>(target);
+        else
+            RemComp<TajaranAccentComponent>(target);
+
+        if (HasComp<VulpaAccentComponent>(source))
+            EnsureComp<VulpaAccentComponent>(target);
+        else
+            RemComp<VulpaAccentComponent>(target);
+    }
+
+    private void ApplyFurryZombieSpeech(EntityUid originalTarget, EntityUid target, ZombieComponent zombiecomp,
+        string infectedSpecies, HumanoidAppearanceComponent humanoid)
+    {
+        if (TryComp<SpeechComponent>(target, out var speechComp))
+        {
+            speechComp.SpeechVerb = infectedSpecies == FurryZombieTajaranSpecies
+                ? FurryZombieTajaranSpeechVerb
+                : FurryZombieVulpkaninSpeechVerb;
+            speechComp.SpeechSounds = infectedSpecies == FurryZombieTajaranSpecies
+                ? FurryZombieTajaranSpeechSounds
+                : FurryZombieVulpkaninSpeechSounds;
+
+            var allowedEmotes = TryComp<SpeechComponent>(originalTarget, out var originalSpeechComp)
+                ? new List<ProtoId<EmotePrototype>>(originalSpeechComp.AllowedEmotes)
+                : [];
+            var furryEmotes = infectedSpecies == FurryZombieTajaranSpecies
+                ? FurryZombieTajaranAllowedEmotes
+                : FurryZombieVulpkaninAllowedEmotes;
+
+            foreach (var emote in furryEmotes)
+            {
+                if (!allowedEmotes.Contains(emote))
+                    allowedEmotes.Add(emote);
+            }
+
+            speechComp.AllowedEmotes = allowedEmotes;
+            Dirty(target, speechComp);
+        }
+
+        if (TryComp<VocalComponent>(target, out var vocalComp))
+        {
+            var vocal = infectedSpecies == FurryZombieTajaranSpecies
+                ? FurryZombieTajaranVocal
+                : FurryZombieVulpkaninVocal;
+
+            vocalComp.Sounds = new Dictionary<Sex, ProtoId<EmoteSoundsPrototype>>(vocal);
+            if (!vocalComp.Sounds.TryGetValue(humanoid.Sex, out var emoteSoundsId))
+                emoteSoundsId = vocalComp.Sounds[Sex.Unsexed];
+
+            vocalComp.EmoteSounds = emoteSoundsId;
+            Dirty(target, vocalComp);
+        }
+
+        var voiceId = GetFurryZombieVoice(zombiecomp, infectedSpecies, humanoid.Sex);
+        humanoid.Voice = voiceId;
+
+        if (TryComp<TTSComponent>(target, out var ttsComp))
+        {
+            ttsComp.VoicePrototypeId = voiceId;
+            Dirty(target, ttsComp);
+        }
+    }
+
+    private ProtoId<TTSVoicePrototype> GetFurryZombieVoice(ZombieComponent zombiecomp, string infectedSpecies, Sex sex)
+    {
+        var resolvedSex = sex == Sex.Female
+            ? Sex.Female
+            : Sex.Male;
+
+        if (infectedSpecies == FurryZombieTajaranSpecies)
+        {
+            return resolvedSex == Sex.Female
+                ? zombiecomp.TajaranFemaleVoice
+                : zombiecomp.TajaranMaleVoice;
+        }
+
+        return resolvedSex == Sex.Female
+            ? zombiecomp.VulpkaninFemaleVoice
+            : zombiecomp.VulpkaninMaleVoice;
     }
 }
