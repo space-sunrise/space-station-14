@@ -18,7 +18,10 @@
         type: SunriseCrewMonitoringBoundUserInterface
   - type: CrewMonitoringConsole
   - type: CrewMonitoringFilter
-    onlyShowWoundedOrDead: true
+    showBad: true
+    showTerrible: true
+    showCritical: true
+    showDead: true
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
