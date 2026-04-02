@@ -320,7 +320,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
             else if (castSensor.SuitSensorUid == currTrackedEntity)
                 castSensor.AddStyleClass(StyleClass.Positive);
 
-            if (castSensor?.Coordinates == null)
+            if (castSensor.Coordinates == null)
                 continue;
 
             if (NavMap.TrackedEntities.TryGetValue(castSensor.SuitSensorUid, out var data))
