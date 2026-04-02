@@ -351,7 +351,6 @@ else if (sensor.DamagePercentage != null)
                 };
             }
         }
-    }
 
     private void SetTrackedEntityFromNavMap(NetEntity? netEntity)
     {
