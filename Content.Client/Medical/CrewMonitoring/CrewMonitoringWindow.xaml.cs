@@ -235,17 +235,27 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
             {
                 specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), "dead");
             }
-
             else if (sensor.DamagePercentage != null)
             {
-                var index = MathF.Round(4f * sensor.DamagePercentage.Value);
+                float damage = sensor.DamagePercentage.Value;
+                string healthState;
 
-                if (index >= 5)
-                    specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), "critical");
-
+                if (damage >= 1.0f)
+                    healthState = "critical";
+                else if (damage >= 0.83f)
+                    healthState = "VeryBad";
+                else if (damage >= 0.6f)
+                    healthState = "Bad";
+                else if (damage >= 0.36f)
+                    healthState = "NotGood";
+                else if (damage >= 0.132f)
+                    healthState = "Good";
                 else
-                    specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), "health" + index);
+                    healthState = "Healthy";
+
+                specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), healthState);
             }
+            // ============================================================
 
             // Status icon
             var statusIcon = new AnimatedTextureRect
