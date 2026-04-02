@@ -7,3 +7,44 @@
   id: SecurityPilotJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtPilot
+
+- type: loadout
+  id: Binoculars
+  startingGear: Binoculars
+
+- type: startingGear
+  id: Binoculars
+  storage:
+    back:
+    - Binoculars
+
+- type: loadout
+  id: HandHeldMassScanner
+  startingGear: HandHeldMassScanner
+
+- type: startingGear
+  id: HandHeldMassScanner
+  storage:
+    back:
+    - HandHeldMassScanner
+
+- type: loadout
+  id: DoubleEmergencyNitrogenTankFilled
+  startingGear: DoubleEmergencyNitrogenTankFilled
+
+- type: startingGear
+  id: DoubleEmergencyNitrogenTankFilled
+  storage:
+    back:
+    - DoubleEmergencyNitrogenTankFilled
+
+- type: loadout
+  id: DoubleEmergencyOxygenTankFilled
+  startingGear: DoubleEmergencyOxygenTankFilled
+
+- type: startingGear
+  id: DoubleEmergencyOxygenTankFilled
+  storage:
+    back:
+    - DoubleEmergencyOxygenTankFilled
+

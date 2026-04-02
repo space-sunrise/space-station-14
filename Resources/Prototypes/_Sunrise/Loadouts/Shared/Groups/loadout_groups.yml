@@ -402,6 +402,7 @@
   - WeaponDominator
   - WeaponDisabler
   - WeaponTaser
+  - WeaponEarthGovLaserPistol
 
 - type: loadoutGroup
   id: SecurityGlasses
@@ -482,6 +483,18 @@
   - HeadofSecurityWeapon50h2
   - HeadofSecurityWeapon100h
   - HeadofSecurityWeapon100h2
+
+# Security Pilot
+- type: loadoutGroup
+  id: SecurityTrinketsPilot
+  name: loadout-group-security-pilot-trinkets
+  minLimit: 0
+  maxLimit: 2
+  loadouts:
+  - Binoculars
+  - HandHeldMassScanner
+  - DoubleEmergencyNitrogenTankFilled
+  - DoubleEmergencyOxygenTankFilled
 
 # Medical
 - type: loadoutGroup
