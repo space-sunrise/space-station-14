@@ -1,0 +1,4 @@
+- type: vendingMachineInventory
+  id: VendingMachineSlopInventory
+  startingInventory:
+    FoodThaSlop: 13

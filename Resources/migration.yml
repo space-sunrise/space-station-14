@@ -993,6 +993,38 @@ CartridgeRifle: CartridgeRifleSP
 MagazinePistolHighCapacity: MagazinePistolHighCapacitySP
 StorageCanisterBase: StorageCanister
 BulletAK570_90mmHE: BulletAK57090mmHE
+# 2026-03-31
+VendingMachineChang: VendingMachineSlop
+VendingMachineDiscount: VendingMachineSlop
+VendingMachineDonut: VendingMachineSlop
+VendingMachineDonutMigrateKinko: VendingMachineSlop
+VendingMachineHappyHonk: VendingMachineSlop
+VendingMachineSnack: VendingMachineSlop
+VendingMachineSnackBlue: VendingMachineSlop
+VendingMachineSnackGreen: VendingMachineSlop
+VendingMachineSnackOrange: VendingMachineSlop
+VendingMachineSnackTeal: VendingMachineSlop
+VendingMachineSustenance: VendingMachineSlop
+RandomVendingSnacks: VendingMachineSlop
+# Sunrise-start
+VendingMachineBooze: VendingMachineSovietSoda
+VendingMachineBoozeSyndicate: VendingMachineSovietSoda
+VendingMachineCoffee: VendingMachineSovietSoda
+VendingMachineCoffeeMigrateUnderwear: VendingMachineSovietSoda
+VendingMachineCola: VendingMachineSovietSoda
+VendingMachineColaBlack: VendingMachineSovietSoda
+VendingMachineColaRed: VendingMachineSovietSoda
+VendingMachineDrGibb: VendingMachineSovietSoda
+VendingMachinePwrGame: VendingMachineSovietSoda
+VendingMachineShamblersJuice: VendingMachineSovietSoda
+VendingMachineSmite: VendingMachineSovietSoda
+VendingMachineSoda: VendingMachineSovietSoda
+VendingMachineSpaceUp: VendingMachineSovietSoda
+VendingMachineStarkist: VendingMachineSovietSoda
+RandomVendingDrinks: VendingMachineSovietSoda
+# Sunrise-end
+# Sunrise-edit
+FoodBoxDonut: FoodThaSlop
 # region Sunrise-End
 
 
