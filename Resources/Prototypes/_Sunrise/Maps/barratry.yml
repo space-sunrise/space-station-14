@@ -1,6 +1,6 @@
 - type: gameMap
   id: SunriseBarratry
-  mapName: 'Barratry'
+  mapName: 'delta'
   mapPath: /Maps/_Sunrise/Station/barratry.yml
   maxRandomOffset: 0
   minPlayers: 0

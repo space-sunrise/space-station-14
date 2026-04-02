@@ -1,6 +1,6 @@
 - type: gameMap
   id: SunriseBox
-  mapName: 'Box'
+  mapName: 'Delto'
   mapPath: /Maps/_Sunrise/Station/box.yml
   maxRandomOffset: 0
   minPlayers: 0

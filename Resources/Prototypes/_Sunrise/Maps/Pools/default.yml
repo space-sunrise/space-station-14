@@ -4,11 +4,13 @@
   - SunriseDelta
   - SunriseBox
   - SunriseBagel
+  - SunriseDeltaOld
+  - SunriseBoxOld
   #- SunrisePlasma
-  #- SunriseBarratry
+  - SunriseBarratry
   #- SunriseFland
-  #- SunriseMarathon
-  #- SunrisePacked
+  - SunriseMarathon
+  - SunrisePacked
   #- SunriseOasis
   #- SunriseReach
   #- SunriseRelic
