@@ -9,6 +9,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using Robust.Shared.Log;
 
 
 namespace Content.Client.Silicons.Borgs;
@@ -87,20 +88,29 @@ public sealed partial class BorgSystem : SharedBorgSystem
 
         if (!_appearance.TryGetData<bool>(ent.Owner, BorgVisuals.HasPlayer, out var hasPlayer, ent.Comp2))
             hasPlayer = false;
+        // Sunrise edit start
+        var baseState = hasPlayer ? ent.Comp1.HasMindState : ent.Comp1.NoMindState;
+        var normalState = baseState.Replace("_e", "").Replace("_r", "");
 
+        _appearance.TryGetData<bool>(ent.Owner, SiliconStandingVisuals.Resting, out var isResting, ent.Comp2);
+
+        if (isResting)
+        {
+            var restState = normalState + "_rest";
+
+            if (ent.Comp3.BaseRSI?.TryGetState(restState, out _) == true)
+            {
+                _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Body, restState);
+            }
+
+            _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light, false);
+            return;
+        }
+        // Sunrise edit end
+
+        _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Body, normalState);
         _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light, ent.Comp1.BrainEntity != null || hasPlayer);
         _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Light, hasPlayer ? ent.Comp1.HasMindState : ent.Comp1.NoMindState);
-        //Sunrise start
-        if (_appearance.TryGetData<bool>(ent.Owner, SiliconStandingVisuals.Resting, out var resting) && resting)
-            {
-                var baseState = ent.Comp1.HasMindState;
-                var restState = baseState.Replace("_e", "").Replace("_r", "") + "_rest";
-
-                _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Body, restState);
-                _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light, false);
-                return;
-            }
-        //Sunrise end
     }
 
     private void OnMMIAppearanceChanged(EntityUid uid, MMIComponent component, ref AppearanceChangeEvent args)

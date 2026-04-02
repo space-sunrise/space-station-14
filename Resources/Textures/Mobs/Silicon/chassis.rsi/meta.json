@@ -802,6 +802,10 @@
         {
             "name": "sec_l",
             "directions": 4
+        },
+        {
+            "name": "sec_rest",
+            "directions": 4
         }
     ]
 }

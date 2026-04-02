@@ -2,7 +2,7 @@
   id: BorgChassisSelectable
   parent: BaseBorgChassisNT
   components:
-  - type: SiliconStanding
+  - type: Appearance # Sunrise edit
   - type: Sprite
     layers:
     - state: robot
