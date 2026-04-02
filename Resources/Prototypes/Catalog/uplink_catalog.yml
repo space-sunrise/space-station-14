@@ -56,7 +56,7 @@
     Telecrystal: 4
   productEntity: EnergySwordBiocode # Sunrise-edit
   cost:
-    Telecrystal: 8
+    Telecrystal: 25
   categories:
   - UplinkWeaponry
   #Sunrise-start
@@ -91,10 +91,10 @@
   description: uplink-energycrossbow-desc
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 1
   productEntity: WeaponEnergyCrossbow
   cost:
-    Telecrystal: 5
+    Telecrystal: 2
   categories:
   - UplinkWeaponry
   conditions:
@@ -111,7 +111,7 @@
   discountDownTo:
     Telecrystal: 3
   cost:
-    Telecrystal: 5 # Sunrise-Edit
+    Telecrystal: 2 # Sunrise-Edit
   categories:
     - UplinkWeaponry
 
@@ -124,7 +124,7 @@
   discountDownTo:
     Telecrystal: 4
   cost:
-    Telecrystal: 7 # Sunrise-Edit
+    Telecrystal: 4 # Sunrise-Edit
   categories:
   - UplinkWeaponry
 
@@ -134,11 +134,8 @@
   description: uplink-gloves-knuckleduster-desc
   icon: { sprite: Clothing/Hands/Gloves/KnuckleDusters/syndicateknuckleduster.rsi, state: syndicateknuckleduster }
   productEntity: ClothingHandsKnuckleDustersSyndicate
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 2
   cost:
-    Telecrystal: 4
+    Telecrystal: 1
   categories:
   - UplinkWeaponry
 
@@ -152,7 +149,7 @@
   discountDownTo:
     Telecrystal: 4
   cost:
-    Telecrystal: 8
+    Telecrystal: 10
   categories:
   - UplinkWeaponry
   conditions:
@@ -186,7 +183,7 @@
   discountDownTo:
     Telecrystal: 6
   cost:
-    Telecrystal: 10
+    Telecrystal: 5
   categories:
   - UplinkWeaponry
   #Sunrise-start
@@ -207,7 +204,7 @@
   discountDownTo:
     Telecrystal: 6 # Sunrise-Edit
   cost:
-    Telecrystal: 8 # Sunrise-Edit
+    Telecrystal: 4 # Sunrise-Edit
   categories:
   - UplinkWeaponry
 
@@ -219,9 +216,9 @@
   productEntity: BriefcaseWeaponC20Filled
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 8 # Sunrise-Edit
+    Telecrystal: 6 # Sunrise-Edit
   cost:
-    Telecrystal: 10 # Sunrise-Edit
+    Telecrystal: 8 # Sunrise-Edit
   categories:
   - UplinkWeaponry
   conditions:
@@ -240,7 +237,7 @@
   discountDownTo:
     Telecrystal: 10
   cost:
-    Telecrystal: 17
+    Telecrystal: 15
   categories:
   - UplinkWeaponry
   conditions:
@@ -298,9 +295,9 @@
   productEntity: BriefcaseWeaponDMRFilled
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 9  # Sunrise-Edit
+    Telecrystal: 5  # Sunrise-Edit
   cost:
-    Telecrystal: 11 # Sunrise-Edit
+    Telecrystal: 8 # Sunrise-Edit
   categories:
   - UplinkWeaponry
   conditions:
@@ -377,7 +374,7 @@
   discountDownTo:
     Telecrystal: 18 # Sunrise-Edit
   cost:
-    Telecrystal: 25 # Sunrise-Edit
+    Telecrystal: 22 # Sunrise-Edit
   categories:
   - UplinkWeaponry
 #Sunrise-start
@@ -486,7 +483,7 @@
   discountDownTo:
     Telecrystal: 6
   cost:
-    Telecrystal: 12
+    Telecrystal: 15
   categories:
   - UplinkExplosives
   conditions:
@@ -632,7 +629,7 @@
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
   productEntity: MagazinePistolSubMachineGunSP # Sunrise-Edit
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
   - UplinkAmmo
   #Sunrise-start
@@ -651,7 +648,7 @@
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: pellets }
   productEntity: MagazineShotgun
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
   - UplinkAmmo
 
@@ -662,7 +659,7 @@
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: slug }
   productEntity: MagazineShotgunSlug
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
   - UplinkAmmo
 
@@ -714,7 +711,7 @@
   description: uplink-sniper-ammo-desc
   productEntity: MagazineBoxAntiMateriel
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
   - UplinkAmmo
   #Sunrise-start
@@ -731,7 +728,7 @@
   description: uplink-ammo-bundle-desc
   productEntity: ClothingBackpackDuffelSyndicateAmmoFilled
   cost:
-    Telecrystal: 15
+    Telecrystal: 10
   categories:
   - UplinkAmmo
   conditions:
@@ -796,7 +793,7 @@
   icon: { sprite: /Textures/Structures/Wallmounts/signs.rsi, state: bio }
   productEntity: ClothingBackpackDuffelZombieBundle
   cost:
-    Telecrystal: 40
+    Telecrystal: 50
   categories:
   - UplinkChemicals
   conditions:
@@ -813,9 +810,9 @@
   productEntity: ChemistryBottleNocturine
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1
   cost:
-    Telecrystal: 4
+    Telecrystal: 2
   categories:
   - UplinkChemicals
 
@@ -826,9 +823,9 @@
   productEntity: MedkitCombatFilled
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - UplinkChemicals
 
@@ -839,9 +836,9 @@
   productEntity: CombatMedipen
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - UplinkChemicals
 
@@ -850,11 +847,8 @@
   name: uplink-stimpack-name
   description: uplink-stimpack-desc
   productEntity: Stimpack
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 1
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
   - UplinkChemicals
 
@@ -865,9 +859,9 @@
   productEntity: StimkitFilled
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 1
   cost:
-    Telecrystal: 5
+    Telecrystal: 3
   categories:
   - UplinkChemicals
 
@@ -944,9 +938,9 @@
   productEntity: ChameleonProjector
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 3 # Sunrise-Edit
+    Telecrystal: 1 # Sunrise-Edit
   cost:
-    Telecrystal: 6 # Sunrise-Edit
+    Telecrystal: 2 # Sunrise-Edit
   categories:
   - UplinkDeception
 
@@ -1027,7 +1021,7 @@
   discountDownTo:
     Telecrystal: 1
   cost:
-    Telecrystal: 4
+    Telecrystal: 2
   categories:
   - UplinkDeception
   #Sunrise-Start
@@ -1047,9 +1041,9 @@
   productEntity: AccessBreaker
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1
   cost:
-    Telecrystal: 4
+    Telecrystal: 2
   categories:
   - UplinkDisruption
 
@@ -1060,9 +1054,9 @@
   productEntity: Emag
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 1
   cost:
-    Telecrystal: 5
+    Telecrystal: 2
   categories:
   - UplinkDisruption
 
@@ -1071,11 +1065,8 @@
   name: uplink-radio-jammer-name
   description: uplink-radio-jammer-desc
   productEntity: RadioJammerBox # Sunrise-edit
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 2
   cost:
-    Telecrystal: 3
+    Telecrystal: 1
   categories:
   - UplinkDisruption
 
@@ -1099,9 +1090,9 @@
   productEntity: ToolboxElectricalTurretFilled
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1
   cost:
-    Telecrystal: 4
+    Telecrystal: 2
   categories:
   - UplinkDisruption
   conditions:
@@ -1205,9 +1196,9 @@
   productEntity: SyndimovCircuitBoard
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 6
+    Telecrystal: 1
   cost:
-    Telecrystal: 8
+    Telecrystal: 2
   categories:
   - UplinkDisruption
   conditions:
@@ -1262,7 +1253,7 @@
   description: uplink-starter-kit-desc
   productEntity: ClothingBackpackDuffelSyndicateFilledStarterKit
   cost:
-    Telecrystal: 40
+    Telecrystal: 25
   categories:
   - UplinkDisruption
   conditions:
@@ -1340,9 +1331,9 @@
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-urist }
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 8
+    Telecrystal: 1
   cost:
-    Telecrystal: 11
+    Telecrystal: 5
   categories:
   - UplinkAllies
   conditions:
@@ -1392,9 +1383,9 @@
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-ancestor }
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 6
+    Telecrystal: 1
   cost:
-    Telecrystal: 8
+    Telecrystal: 2
   categories:
   - UplinkAllies
   conditions:
@@ -1487,9 +1478,9 @@
   productEntity: StorageImplanter
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 4
+    Telecrystal: 1
   cost:
-    Telecrystal: 8
+    Telecrystal: 3
   categories:
     - UplinkImplants
   conditions:
@@ -1505,11 +1496,8 @@
   description: uplink-freedom-implanter-desc
   icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: freedom }
   productEntity: FreedomImplanter
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 1
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
     - UplinkImplants
 
@@ -1583,7 +1571,7 @@
   icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
   productEntity: MicroBombImplanter
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
   - UplinkImplants
   conditions:
@@ -1600,7 +1588,7 @@
   icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
   productEntity: MacroBombImplanter
   cost:
-    Telecrystal: 7 # Sunrise-Edit #Be gay do crime!
+    Telecrystal: 4 # Sunrise-Edit #Be gay do crime!
   categories:
     - UplinkImplants
   conditions:
@@ -1617,7 +1605,7 @@
   icon: { sprite: /Textures/Objects/Magic/magicactions.rsi, state: gib }
   productEntity: DeathAcidifierImplanter
   cost:
-    Telecrystal: 4
+    Telecrystal: 2
   categories:
     - UplinkImplants
   conditions:
@@ -1652,7 +1640,7 @@
   description: uplink-deathrattle-implant-desc
   productEntity: BoxDeathRattleImplants
   cost:
-    Telecrystal: 4
+    Telecrystal: 1
   categories:
   - UplinkImplants
   conditions:
@@ -1668,9 +1656,9 @@
   icon: { sprite: Interface/Actions/actions_fakemindshield.rsi, state: icon-on }
   productEntity: FakeMindShieldImplanter
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1
   cost:
-    Telecrystal: 3 # Sunrise-Edit
+    Telecrystal: 2
   categories:
   - UplinkImplants
 
@@ -1718,9 +1706,9 @@
   icon: { sprite: /Textures/Clothing/Uniforms/Jumpsuit/rainbow.rsi, state: icon }
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1
   cost:
-    Telecrystal: 4
+    Telecrystal: 2
   categories:
     - UplinkWearables
 
@@ -1795,9 +1783,9 @@
   productEntity: ClothingOuterHardsuitCarp
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - UplinkWearables
 
@@ -1811,7 +1799,7 @@
   discountDownTo:
     Telecrystal: 4
   cost:
-    Telecrystal: 7
+    Telecrystal: 5
   categories:
   - UplinkWearables
   #Sunrise-start
@@ -1830,15 +1818,9 @@
   icon: { sprite: /Textures/Clothing/OuterClothing/Armor/syndie-raid.rsi, state: icon }
   productEntity: ClothingBackpackSyndicateRaidBundle
   cost:
-    Telecrystal: 8
+    Telecrystal: 6
   categories:
   - UplinkWearables
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkHardsuitSyndieElite
@@ -1847,7 +1829,7 @@
   icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndieelite.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateEliteHardsuitBundle
   cost:
-    Telecrystal: 12
+    Telecrystal: 9
   categories:
   - UplinkWearables
   conditions:
@@ -1864,7 +1846,7 @@
   icon: { sprite: /Textures/Structures/Storage/Crates/syndicate.rsi, state: icon }
   productEntity: CrateCybersunJuggernautBundle
   cost:
-    Telecrystal: 18 #Sunrise-edit
+    Telecrystal: 40
   categories:
   - UplinkWearables
   conditions:

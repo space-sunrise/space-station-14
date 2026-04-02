@@ -16,7 +16,7 @@
   overrideConsoleVisibility: false
   requireAdminNotify: true
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   alwaysUseSpawner: true
   radioBold: true
   displayWeight: 100

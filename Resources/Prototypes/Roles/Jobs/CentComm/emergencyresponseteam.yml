@@ -9,7 +9,7 @@
   icon: "JobIconNanotrasen"
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -29,7 +29,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: startingGear
   id: ERTLeaderGear
@@ -124,7 +124,7 @@
   icon: "JobIconNanotrasen"
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   accessGroups:
   - AllAccess
   access:
@@ -134,7 +134,7 @@
     components:
     - type: BibleUser #Lets them heal with bibles
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: startingGear
   id: ERTChaplainGear
@@ -219,7 +219,7 @@
   icon: "JobIconNanotrasen"
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -233,7 +233,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: startingGear
   id: ERTEngineerGear
@@ -310,7 +310,7 @@
   icon: "JobIconNanotrasen"
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -321,7 +321,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: startingGear
   id: ERTSecurityGear
@@ -416,7 +416,7 @@
   icon: "JobIconNanotrasen"
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -430,7 +430,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: startingGear
   id: ERTMedicalGear
@@ -499,14 +499,14 @@
   icon: "JobIconNanotrasen"
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   accessGroups:
   - AllAccess
   access:
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: startingGear
   id: ERTJanitorGear
@@ -573,7 +573,7 @@
   icon: "JobIconNanotrasen"
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -593,7 +593,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: job
   id: ERTChaplainVeteran
@@ -605,7 +605,7 @@
   icon: "JobIconNanotrasen"
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   requirements:
     - !type:DepartmentTimeRequirement
       department: Civilian
@@ -619,7 +619,7 @@
     components:
     - type: BibleUser #Lets them heal with bibles
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: job
   id: ERTEngineerVeteran
@@ -631,7 +631,7 @@
   icon: "JobIconNanotrasen"
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -645,7 +645,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: job
   id: ERTSecurityVeteran
@@ -657,7 +657,7 @@
   icon: "JobIconNanotrasen"
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -668,7 +668,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: job
   id: ERTMedicalVeteran
@@ -680,7 +680,7 @@
   icon: "JobIconNanotrasen"
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -694,7 +694,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: job
   id: ERTJanitorVeteran
@@ -706,7 +706,7 @@
   icon: "JobIconNanotrasen"
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   requirements:
     - !type:DepartmentTimeRequirement
       department: Civilian
@@ -717,7 +717,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 
 - type: job
   id: CBURNVeteran
@@ -728,7 +728,7 @@
   startingGear: CBURNGear
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -742,6 +742,6 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantERT ] #Sunrise-Edit
 # Sunrise end
 

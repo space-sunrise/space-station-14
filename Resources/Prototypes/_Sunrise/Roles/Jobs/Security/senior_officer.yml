@@ -19,7 +19,7 @@
   startingGear: SeniorOfficerGear
   icon: "JobIconSeniorOfficer"
   supervisors: job-supervisors-hos
-  canBeAntag: false
+  canBeAntag: true
   displayWeight: 60
   access:
   - Security

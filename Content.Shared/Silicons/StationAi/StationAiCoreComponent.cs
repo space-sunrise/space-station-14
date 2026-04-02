@@ -47,6 +47,18 @@ public sealed partial class StationAiCoreComponent : Component
     /// Name of the container slot that holds the 'brain' used to construct the AI core
     /// </summary>
     public const string BrainContainer = "station_ai_brain_slot";
+
+    /// <summary>
+    /// The key used to index the leggy animation.
+    /// </summary>
+    [ViewVariables]
+    public const string AnimationKey = "leggy_animation";
+
+    /// <summary>
+    /// The current visual state of the core.
+    /// </summary>
+    [ViewVariables]
+    public StationAiState CurrentState = StationAiState.Empty;
 }
 
 /// <summary>

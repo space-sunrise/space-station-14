@@ -1604,7 +1604,7 @@
   - type: HitscanBasicRaycast
     maxDistance: 128
   - type: HitscanReflect
-    reflectiveType: Energy
+    reflectiveType: None
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi

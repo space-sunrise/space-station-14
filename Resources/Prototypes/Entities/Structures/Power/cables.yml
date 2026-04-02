@@ -62,9 +62,10 @@
   parent: CableBase
   id: CableHV
   name: HV power cable
-  description: An orange high voltage power cable.
+  description: A green high voltage power cable.
   components:
   - type: Sprite
+    color: Green
     sprite: Structures/Power/Cables/hv_cable.rsi
     state: hvcable_0
     drawdepth: ThickWire
@@ -126,7 +127,7 @@
     sprite: Structures/Power/Cables/mv_cable.rsi
     layers:
     - state: mvcable_0
-      color: Yellow
+      color: Green
     - state: mvstripes_0
   - type: Icon
     sprite: Structures/Power/Cables/mv_cable.rsi

@@ -12,7 +12,7 @@
       time: 7200 # 2 hrs
   weight: 8
   alwaysUseSpawner: true
-  canBeAntag: false
+  canBeAntag: true
   startingGear: PrisonInspectorGear
   icon: "JobIconPrisonInspector"
   overrideConsoleVisibility: false

@@ -4,7 +4,7 @@
     children:
     - id: OxygenTankFilled
     - id: ClothingShoesBootsMag
-    - id: ClothingOuterHardsuitSpatio
+    - id: ClothingOuterHardsuitMaxim
     - id: ClothingMaskGasExplorer
 
 - type: entityTable
@@ -17,6 +17,9 @@
     - id: RadioHandheld
     - id: AppraisalTool
     - id: FireExtinguisher
+    - id: PKAUpgradeDamage
+    - id: PKAUpgradeFireRate
+    - id: PKAUpgradeRange
     - id: Flare
       prob: 0.3
       rolls: !type:ConstantNumberSelector

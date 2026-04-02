@@ -8,14 +8,14 @@
   icon: "JobIconDeathsquad" # Sunrise-edit
   overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   accessGroups:
   - AllAccess
   access:
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantDeathSquad ] # Sunrise-edit
 
 - type: startingGear
   id: DeathSquadGear

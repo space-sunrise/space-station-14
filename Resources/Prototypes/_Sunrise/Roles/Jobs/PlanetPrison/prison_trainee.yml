@@ -8,7 +8,7 @@
       time: 36000 # 10h общего времени
   weight: 2
   alwaysUseSpawner: true
-  canBeAntag: false
+  canBeAntag: true
   startingGear: PrisonTraineeGear
   icon: "JobIconPrisonTrainee"
   overrideConsoleVisibility: false

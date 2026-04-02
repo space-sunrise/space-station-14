@@ -36,6 +36,7 @@
   - type: ActionGrant
     actions:
     - ActionJumpToCore
+    - ActionVisitCore
     - ActionSurvCameraLights
     - ActionAIViewLaws
   - type: UserInterface
@@ -189,13 +190,16 @@
   name: AI core
   description: The latest in Artificial Intelligences.
   parent:
+  - BaseMob
   - BaseStructure
   - AiHolder
   suffix: Empty
   components:
   - type: Anchorable
     flags:
-    - Anchorable
+    - None
+  - type: Physics
+    bodyType: KinematicController
   - type: Rotatable
   - type: WarpPoint
     blacklist:
@@ -277,17 +281,26 @@
     sprite: Mobs/Silicon/station_ai.rsi
     layers:
     - state: base
+      map: ["enum.StationAiVisualLayers.Core"]
     - state: ai_empty
-      map: ["enum.StationAiVisualLayers.Base"]
+      map: ["enum.StationAiVisualLayers.Screen"]
       shader: unshaded
-    - state: ai
-      map: ["enum.StationAiVisualLayers.Icon"]
-      shader: unshaded
-      visible: false
     - state: ai_unpowered
       map: ["enum.PowerDeviceVisualLayers.Powered"]
       visible: false
+    - state: base_high
+      sprite: Mobs/Silicon/leggy.rsi
+      map: ["enum.StationAiVisualLayers.CoreStanding"]
+      offset: "0.0,0.5"
+      visible: false
+    - state: ai_high
+      sprite: Mobs/Silicon/leggy.rsi
+      shader: unshaded
+      map: ["enum.StationAiVisualLayers.ScreenStanding"]
+      offset: "0.0,0.5"
+      visible: false
   - type: Appearance
+  - type: AnimationPlayer
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.Powered:
@@ -295,9 +308,20 @@
           False: { visible: true }
           True: { visible: false }
       enum.StationAiVisuals.Broken:
-        enum.StationAiVisualLayers.Base:
+        enum.StationAiVisualLayers.Screen:
           False: { state: ai_empty }
           True: { state: ai_error }
+  - type: ActionGrant
+    actions:
+    - ActionUnVisitCore
+  - type: Tag
+    tags:
+    - Structure
+    - FootstepSound
+    - DoorBumpOpener
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepBorg
   - type: InteractionPopup
     interactSuccessString: petting-success-station-ai
     interactFailureString: petting-failure-station-ai
@@ -549,6 +573,8 @@
     containers:
       borg_brain:
         - Boris # Sunrise-Edit
+      head:
+      - ClothingHeadHatCone # Sillycones!
   - type: ItemSlots
     slots:
       cell_slot:

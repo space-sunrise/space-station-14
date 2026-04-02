@@ -18,7 +18,7 @@
   startingGear: NtrLeaderGear
   icon: JobIconNtrLeader
   supervisors: job-supervisors-ntrg
-  canBeAntag: false
+  canBeAntag: true
   access:
     - Command
     - Bar
@@ -93,7 +93,7 @@
   startingGear: NtrLeaderGear
   icon: JobIconNtrGuard
   supervisors: job-supervisors-ntrg
-  canBeAntag: false
+  canBeAntag: true
   access:
     - Command
     - Bar

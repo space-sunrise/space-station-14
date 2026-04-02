@@ -24,7 +24,7 @@
   icon: "JobIconCaptain"
   joinNotifyCrew: true
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   displayWeight: 100 # Sunrise-Edit
   radioBold: true # Sunrise-Edit
   accessGroups:

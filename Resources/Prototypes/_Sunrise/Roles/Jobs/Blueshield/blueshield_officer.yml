@@ -12,7 +12,7 @@
   startingGear: BlueShieldOfficerGear
   icon: JobIconBlueShield
   supervisors: job-supervisors-centcom
-  canBeAntag: false
+  canBeAntag: true
   access:
     - Command
     - Bar
@@ -65,4 +65,4 @@
     eyes: ClothingEyesGlassesBlueShield
     outerClothing: ClothingOuterArmorBlueShield
     gloves: ClothingHandsGlovesCombat
-    
+
