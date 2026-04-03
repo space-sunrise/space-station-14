@@ -52,6 +52,10 @@ public sealed class SharedExecutionSystem : EntitySystem
         var weapon = args.Using.Value;
         var victim = args.Target;
 
+        // Sunrise-start оно нам не нужно, есть готовый суицид, который работает по тому же принципу
+        if (attacker == victim)
+            return;
+        // Sunrise-end
         if (!CanBeExecuted(victim, attacker))
             return;
 
