@@ -17,6 +17,11 @@
   - type: CrewMonitoringFilter
     allowedDepartmentIds:
     - Command
+    showBad: true
+    showTerrible: true
+    showCritical: true
+    showDead: true
+    showUnknown: true
     includeTrackers: true
   - type: DeviceNetwork
     deviceNetId: Wireless

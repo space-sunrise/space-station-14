@@ -58,5 +58,10 @@ public sealed partial class CrewMonitoringFilterComponent : Component
     /// </summary>
     [DataField("showDead")]
     public bool ShowDead;
-}
 
+    /// <summary>
+    /// Показывать существ с выключенными датчиками (Unknown, Binary)
+    /// </summary>
+    [DataField("showUnknown")]
+    public bool ShowUnknown;
+}

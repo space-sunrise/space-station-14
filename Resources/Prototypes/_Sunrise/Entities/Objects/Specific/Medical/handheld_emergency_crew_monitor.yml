@@ -22,6 +22,7 @@
     showTerrible: true
     showCritical: true
     showDead: true
+    showUnknown: true
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor

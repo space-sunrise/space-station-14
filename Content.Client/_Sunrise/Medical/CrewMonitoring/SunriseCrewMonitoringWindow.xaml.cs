@@ -141,11 +141,7 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
 
             if (SensorsTable.ChildCount > 0)
             {
-                var spacer = new Control()
-                {
-                    SetHeight = 20,
-                };
-
+                var spacer = new Control() { SetHeight = 20 };
                 SensorsTable.AddChild(spacer);
             }
 
@@ -167,11 +163,7 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
 
         if (remainingSensors.Any())
         {
-            var spacer = new Control()
-            {
-                SetHeight = 20,
-            };
-
+            var spacer = new Control() { SetHeight = 20 };
             SensorsTable.AddChild(spacer);
 
             var deparmentLabel = new RichTextLabel()
@@ -253,7 +245,6 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
                 Orientation = LayoutOrientation.Horizontal,
                 HorizontalExpand = true,
             };
-
             sensorButton.AddChild(mainContainer);
 
             var statusContainer = new BoxContainer()
@@ -262,7 +253,6 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
                 Orientation = LayoutOrientation.Horizontal,
                 HorizontalExpand = true,
             };
-
             mainContainer.AddChild(statusContainer);
 
             var suitCoordsIndicator = new TextureRect()
@@ -273,24 +263,32 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
                 HorizontalAlignment = HAlignment.Center,
                 VerticalAlignment = VAlignment.Center,
             };
-
             statusContainer.AddChild(suitCoordsIndicator);
 
+            // ---------- НОВАЯ ЛОГИКА ВЫБОРА ИКОНКИ ----------
             var specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), "alive");
 
             if (!sensor.IsAlive)
-                specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), "dead");
-
-            else if (sensor.DamagePercentage != null)
             {
-                var index = MathF.Round(4f * sensor.DamagePercentage.Value);
-
-                if (index >= 5)
-                    specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), "critical");
-
-                else
-                    specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), "health" + index);
+                specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), "dead");
             }
+            else
+            {
+                var healthState = HealthStateHelper.GetHealthState(sensor.DamagePercentage, sensor.IsAlive);
+                string rsiState = healthState switch
+                {
+                    HealthState.Healthy => "health0",
+                    HealthState.Good => "health1",
+                    HealthState.NotGreat => "health2",
+                    HealthState.Bad => "health3",
+                    HealthState.Terrible => "health4",
+                    HealthState.Critical => "critical",
+                    HealthState.Unknown => "alive",   // датчики выключены
+                    _ => "alive"
+                };
+                specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), rsiState);
+            }
+            // --------------------------------------------
 
             var statusIcon = new AnimatedTextureRect
             {
@@ -298,10 +296,8 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
                 VerticalAlignment = VAlignment.Center,
                 Margin = new Thickness(0, 1, 3, 0),
             };
-
             statusIcon.SetFromSpriteSpecifier(specifier);
             statusIcon.DisplayRect.TextureScale = new Vector2(2f, 2f);
-
             statusContainer.AddChild(statusIcon);
 
             var nameLabel = new Label()
@@ -310,7 +306,6 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
                 HorizontalExpand = true,
                 ClipText = true,
             };
-
             statusContainer.AddChild(nameLabel);
 
             var jobContainer = new BoxContainer()
@@ -318,7 +313,6 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
                 Orientation = LayoutOrientation.Horizontal,
                 HorizontalExpand = true,
             };
-
             mainContainer.AddChild(jobContainer);
 
             if (_prototypeManager.TryIndex<JobIconPrototype>(sensor.JobIcon, out var proto))
@@ -330,7 +324,6 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
                     Texture = _spriteSystem.Frame0(proto.Icon),
                     Margin = new Thickness(5, 0, 5, 0),
                 };
-
                 jobContainer.AddChild(jobIcon);
             }
 
@@ -340,7 +333,6 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
                 HorizontalExpand = true,
                 ClipText = true,
             };
-
             jobContainer.AddChild(jobLabel);
 
             if (coordinates != null && NavMap.Visible && _blipTexture != null)
@@ -360,7 +352,6 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
 
                     if (_trackedEntity == sensor.SuitSensorUid)
                         _trackedEntity = null;
-
                     else
                     {
                         _trackedEntity = sensor.SuitSensorUid;
@@ -368,7 +359,6 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
                     }
 
                     NavMap.Focus = _trackedEntity;
-
                     UpdateSensorsTable(_trackedEntity, prevTrackedEntity);
                 };
             }
