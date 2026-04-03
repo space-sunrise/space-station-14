@@ -15,6 +15,7 @@ public sealed class SiliconStandingSystem : EntitySystem
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    private const string ToggleSound = "/Audio/Effects/Footsteps/borgwalk1.ogg";
 
     public override void Initialize()
     {
@@ -54,7 +55,7 @@ public sealed class SiliconStandingSystem : EntitySystem
         {
             BreakOnMove = true,
             Broadcast = true,
-            DuplicateCondition = DuplicateCondition.Block
+            BlockDuplicate = true
         };
 
         if (!_doAfter.TryStartDoAfter(doAfter))
@@ -75,8 +76,6 @@ public sealed class SiliconStandingSystem : EntitySystem
             RemComp<SiliconRestingComponent>(uid);
             _appearance.SetData(uid, SiliconStandingVisuals.Resting, false);
         }
-
-        _actionBlocker.UpdateCanMove(uid);
     }
 
     private void Toggle(EntityUid uid)
@@ -99,7 +98,7 @@ public sealed class SiliconStandingSystem : EntitySystem
 
         Toggle(uid);
 
-        _audio.PlayPvs("/Audio/Effects/Footsteps/borgwalk1.ogg", uid);
+        _audio.PlayPvs(ToggleSound, uid);
     }
 
     private void OnRestEnd(EntityUid uid, SiliconRestingComponent component, ComponentShutdown args)

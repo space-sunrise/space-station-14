@@ -22,7 +22,7 @@ public sealed class SiliconStandingSystem : EntitySystem
                 InputCmdHandler.FromDelegate(SendToggleEvent, handle: true))
             .Register<SiliconStandingSystem>();
     }
-    private void SendToggleEvent(ICommonSession? session)
+    private void SendToggleEvent(ICommonSession? _)
     {
         if (!_net.IsConnected)
             return;

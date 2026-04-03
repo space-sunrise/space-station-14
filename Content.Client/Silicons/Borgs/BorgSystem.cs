@@ -9,8 +9,6 @@ using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
-using Robust.Shared.Log;
-
 
 namespace Content.Client.Silicons.Borgs;
 
