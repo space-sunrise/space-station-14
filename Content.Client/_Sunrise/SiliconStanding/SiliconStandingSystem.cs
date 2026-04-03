@@ -6,6 +6,8 @@ using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
 using Robust.Shared.Network;
 
+namespace Content.Client._Sunrise.SiliconStanding;
+
 public sealed class SiliconStandingSystem : EntitySystem
 {
     [Dependency] private readonly IClientNetManager _net = default!;
@@ -31,5 +33,11 @@ public sealed class SiliconStandingSystem : EntitySystem
             return;
 
         RaiseNetworkEvent(new ToggleStandingEvent());
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+        CommandBinds.Unregister<SiliconStandingSystem>();
     }
 }

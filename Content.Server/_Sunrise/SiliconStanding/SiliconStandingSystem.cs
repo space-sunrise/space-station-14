@@ -7,6 +7,8 @@ using Content.Server.DoAfter;
 using Robust.Shared.Audio.Systems;
 using Robust.Server.GameObjects;
 
+namespace Content.Server._Sunrise.SiliconStanding;
+
 public sealed class SiliconStandingSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
@@ -33,8 +35,11 @@ public sealed class SiliconStandingSystem : EntitySystem
         if (!HasComp<BorgChassisComponent>(uid))
             return;
 
-        var isStandingUp = HasComp<SiliconRestingComponent>(uid);
-        var delay = isStandingUp ? 0.5f : 1.0f;
+        if (HasComp<SiliconRestingDoAfterComponent>(uid))
+            return;
+            
+        var isResting  = HasComp<SiliconRestingComponent>(uid);
+        var delay = isResting  ? 0.5f : 1.0f;
 
         EnsureComp<SiliconRestingDoAfterComponent>(uid);
 
@@ -48,8 +53,8 @@ public sealed class SiliconStandingSystem : EntitySystem
         )
         {
             BreakOnMove = true,
-            BreakOnDamage = false,
-            Broadcast = true
+            Broadcast = true,
+            DuplicateCondition = DuplicateCondition.Block
         };
 
         if (!_doAfter.TryStartDoAfter(doAfter))
@@ -61,7 +66,7 @@ public sealed class SiliconStandingSystem : EntitySystem
     private void SetResting(EntityUid uid, bool resting)
     {
         if (resting)
-        {
+        {   
             EnsureComp<SiliconRestingComponent>(uid);
             _appearance.SetData(uid, SiliconStandingVisuals.Resting, true);
         }
