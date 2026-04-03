@@ -1,22 +1,15 @@
 using Content.Shared._Sunrise.SiliconStanding;
-using Robust.Server.GameObjects;
 using Content.Shared.Movement.Events;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Movement.Components;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.ActionBlocker;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Systems;
 using Content.Server.DoAfter;
-using Robust.Shared.Log;
-using System.Numerics;
+using Robust.Server.GameObjects;
 
 public sealed class SiliconStandingSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
 
     public override void Initialize()
@@ -63,36 +56,39 @@ public sealed class SiliconStandingSystem : EntitySystem
         }
     }
 
-    private void Toggle(EntityUid uid)
+    private void SetResting(EntityUid uid, bool resting)
     {
-        Log.Info($"[TOGGLE SENT] uid={uid}");
-        if (HasComp<SiliconRestingComponent>(uid))
-        {
-            RemComp<SiliconRestingComponent>(uid);
-            _appearance.SetData(uid, SiliconStandingVisuals.Resting, false);
-            _actionBlocker.UpdateCanMove(uid);
-        }
-        else
+        if (resting)
         {
             EnsureComp<SiliconRestingComponent>(uid);
             _appearance.SetData(uid, SiliconStandingVisuals.Resting, true);
         }
+        else
+        {
+            RemComp<SiliconRestingComponent>(uid);
+            _appearance.SetData(uid, SiliconStandingVisuals.Resting, false);
+        }
+
+        _actionBlocker.UpdateCanMove(uid);
     }
+
+    private void Toggle(EntityUid uid)
+    {
+        var resting = !HasComp<SiliconRestingComponent>(uid);
+        SetResting(uid, resting);
+    }
+
     private void OnCanMove(EntityUid uid, SiliconRestingComponent component, ref UpdateCanMoveEvent args)
     {
-        if (HasComp<SiliconRestingComponent>(uid))
-            args.Cancel();
+        args.Cancel();
     }
 
     private void OnDoAfter(EntityUid uid, SiliconRestingDoAfterComponent comp, SiliconRestingDoAfterEvent ev)
     {
         RemComp<SiliconRestingDoAfterComponent>(uid);
 
-        ev.Success = !ev.Cancelled;
-
         if (ev.Cancelled)
         {
-            Log.Info($"[DOAFTER RESULT] uid={uid} cancelled={ev.Cancelled}");
             return;
         }
 
