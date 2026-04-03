@@ -141,7 +141,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         _shuttleQueue.Add(shuttleGrid.Value);
 
         var shuttleComp = Comp<ShuttleComponent>(shuttleGrid.Value);
-        _shuttle.FTLToCoordinates(shuttleGrid.Value, shuttleComp, _transform.GetMoverCoordinates(shuttleGrid.Value), Angle.Zero, hyperspaceTime: 3600f);
+        _shuttle.FTLToCoordinates(shuttleGrid.Value, shuttleComp, Transform(shuttleGrid.Value).Coordinates, Angle.Zero, hyperspaceTime: 3600f);
 
         var attendant = FindAttendant(shuttleGrid.Value);
         arrivals.Attendant = attendant;
@@ -179,7 +179,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
 
             // Immediately FTL back to holding target to stay in "hyperspace"
             var shuttleComp = Comp<ShuttleComponent>(uid);
-            _shuttle.FTLToCoordinates(uid, shuttleComp, _transform.GetMoverCoordinates(uid), Angle.Zero, hyperspaceTime: 3600f);
+            _shuttle.FTLToCoordinates(uid, shuttleComp, Transform(uid).Coordinates, Angle.Zero, hyperspaceTime: 3600f);
         }
     }
 
