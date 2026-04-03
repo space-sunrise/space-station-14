@@ -32,6 +32,10 @@ public sealed class SiliconStandingSystem : EntitySystem
                 }))
             .Register<SiliconStandingSystem>();
     }
+
+/// <summary>
+/// Sends a toggle request to the server if the player controls a borg.
+/// </summary>
     private void SendToggleEvent()
     {
         if (!_net.IsConnected)
