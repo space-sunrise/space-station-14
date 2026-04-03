@@ -146,9 +146,6 @@ public sealed partial class BorgChassisComponent : Component
     /// </summary>
     [DataField]
     public bool CanOpenSelfUi;
-
-    public TimeSpan LastVisualChange; // Sunrise edit - for rest position issue --> UpdateBorgAppearance
-    public string? LastBodyState; // Sunrise edit - for rest position issue --> UpdateBorgAppearance
 }
 
 [Serializable, NetSerializable]
