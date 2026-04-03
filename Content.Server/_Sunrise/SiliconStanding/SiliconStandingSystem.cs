@@ -30,10 +30,10 @@ public sealed class SiliconStandingSystem : EntitySystem
         SubscribeLocalEvent<SiliconRestingComponent, UpdateCanMoveEvent>(OnCanMove);
     }
 
-/// <summary>
-/// Handles client request to toggle borg resting state.
-/// Starts a DoAfter action with delay depending on current state.
-/// </summary>
+    /// <summary>
+    /// Handles client request to toggle borg resting state.
+    /// Starts a DoAfter action with delay depending on current state.
+    /// </summary>
     private void OnToggle(ToggleStandingEvent ev, EntitySessionEventArgs args)
     {
         if (args.SenderSession.AttachedEntity is not { Valid: true } uid)
@@ -70,10 +70,10 @@ public sealed class SiliconStandingSystem : EntitySystem
         }
     }
 
-/// <summary>
-/// Applies resting or standing state to the borg.
-/// Updates appearance and recalculates movement permissions.
-/// </summary>
+    /// <summary>
+    /// Applies resting or standing state to the borg.
+    /// Updates appearance and recalculates movement permissions.
+    /// </summary>
     private void SetResting(EntityUid uid, bool resting)
     {
         if (resting)
@@ -90,28 +90,28 @@ public sealed class SiliconStandingSystem : EntitySystem
         _actionBlocker.UpdateCanMove(uid);
     }
 
-/// <summary>
-/// Toggles borg between resting and standing states.
-/// </summary>
+    /// <summary>
+    /// Toggles borg between resting and standing states.
+    /// </summary>
     private void Toggle(EntityUid uid)
     {
         var resting = !HasComp<SiliconRestingComponent>(uid);
         SetResting(uid, resting);
     }
 
-/// <summary>
-/// Called when DoAfter completes.
-/// Applies the new state and plays the toggle sound.
-/// </summary>
+    /// <summary>
+    /// Called when DoAfter completes.
+    /// Applies the new state and plays the toggle sound.
+    /// </summary>
     private void OnCanMove(EntityUid uid, SiliconRestingComponent component, ref UpdateCanMoveEvent args)
     {
         args.Cancel();
     }
 
-/// <summary>
-/// Called when DoAfter completes.
-/// Applies the new state and plays the toggle sound.
-/// </summary>
+    /// <summary>
+    /// Called when DoAfter completes.
+    /// Applies the new state and plays the toggle sound.
+    /// </summary>
     private void OnDoAfter(EntityUid uid, SiliconRestingDoAfterComponent comp, SiliconRestingDoAfterEvent ev)
     {
         RemComp<SiliconRestingDoAfterComponent>(uid);
