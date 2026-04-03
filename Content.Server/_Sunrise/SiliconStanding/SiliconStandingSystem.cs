@@ -4,6 +4,7 @@ using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.ActionBlocker;
 using Content.Server.DoAfter;
+using Robust.Shared.Audio.Systems;
 using Robust.Server.GameObjects;
 
 public sealed class SiliconStandingSystem : EntitySystem
@@ -11,6 +12,7 @@ public sealed class SiliconStandingSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {
@@ -88,12 +90,13 @@ public sealed class SiliconStandingSystem : EntitySystem
         RemComp<SiliconRestingDoAfterComponent>(uid);
 
         if (ev.Cancelled)
-        {
             return;
-        }
 
         Toggle(uid);
+
+        _audio.PlayPvs("/Audio/Effects/Footsteps/borgwalk1.ogg", uid);
     }
+
     private void OnRestEnd(EntityUid uid, SiliconRestingComponent component, ComponentShutdown args)
     {
         _actionBlocker.UpdateCanMove(uid);
