@@ -7,4 +7,5 @@ namespace Content.Shared._Sunrise.SiliconStanding;
 [Serializable, NetSerializable]
 public sealed partial class SiliconRestingDoAfterEvent : SimpleDoAfterEvent
 {
+    public bool Success;
 }

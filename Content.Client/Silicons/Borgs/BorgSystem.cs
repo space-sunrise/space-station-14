@@ -94,23 +94,31 @@ public sealed partial class BorgSystem : SharedBorgSystem
 
         _appearance.TryGetData<bool>(ent.Owner, SiliconStandingVisuals.Resting, out var isResting, ent.Comp2);
 
+        var finalState = normalState;
+
         if (isResting)
         {
             var restState = normalState + "_rest";
 
             if (ent.Comp3.BaseRSI?.TryGetState(restState, out _) == true)
-            {
-                _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Body, restState);
-            }
+                finalState = restState;
 
             _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light, false);
-            return;
         }
-        // Sunrise edit end
+        else
+        {
+            _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light,
+                ent.Comp1.BrainEntity != null || hasPlayer);
+        }
 
-        _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Body, normalState);
-        _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light, ent.Comp1.BrainEntity != null || hasPlayer);
-        _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Light, hasPlayer ? ent.Comp1.HasMindState : ent.Comp1.NoMindState);
+        if (_sprite.LayerMapTryGet((ent.Owner, ent.Comp3), BorgVisualLayers.Body, out var layer, false))
+        {
+            _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), layer, finalState);
+        }
+
+        _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Light,
+            hasPlayer ? ent.Comp1.HasMindState : ent.Comp1.NoMindState);
+        // Sunrise edit end
     }
 
     private void OnMMIAppearanceChanged(EntityUid uid, MMIComponent component, ref AppearanceChangeEvent args)

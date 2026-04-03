@@ -14,24 +14,24 @@ using Robust.Shared.Log;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
 using Robust.Shared.Network;
-
-namespace Content.Client._Sunrise.SiliconStanding;
+using Robust.Shared.Physics.Components;
 
 public sealed class SiliconStandingSystem : EntitySystem
 {
     [Dependency] private readonly IClientNetManager _net = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
+
+
     public override void Initialize()
     {
         base.Initialize();
 
         CommandBinds.Builder
-            .Bind(ContentKeyFunctions.ToggleStanding, InputCmdHandler.FromDelegate(SendToggleEvent, handle: true)).Register<SiliconStandingSystem>();
-        SubscribeLocalEvent<SiliconRestingComponent, ComponentStartup>(OnRestSync);
-        SubscribeLocalEvent<SiliconRestingComponent, ComponentShutdown>(OnRestSyncRemove);
+            .Bind(ContentKeyFunctions.ToggleStanding,
+                InputCmdHandler.FromDelegate(SendToggleEvent, handle: true))
+            .Register<SiliconStandingSystem>();
+        SubscribeNetworkEvent<SiliconRestingDoAfterEvent>(OnDoAfterResult);
     }
-    private HashSet<EntityUid> _predictedRest = new();
-
     private void SendToggleEvent(ICommonSession? session)
     {
         if (!_net.IsConnected)
@@ -42,36 +42,13 @@ public sealed class SiliconStandingSystem : EntitySystem
         if (player?.AttachedEntity is not { Valid: true } uid)
             return;
 
-        if (TryComp<InputMoverComponent>(uid, out var mover))
-        {
-            mover.WishDir = Vector2.Zero;
-            mover.CurTickWalkMovement = Vector2.Zero;
-            mover.CurTickSprintMovement = Vector2.Zero;
-        }
-
-        _predictedRest.Add(uid);
-
         RaiseNetworkEvent(new ToggleStandingEvent());
     }
-
-    public override void Update(float frameTime)
+    private void OnDoAfterResult(SiliconRestingDoAfterEvent ev)
     {
-        base.Update(frameTime);
+        var player = _player.LocalSession;
 
-        var query = EntityQueryEnumerator<InputMoverComponent>();
-
-        while (query.MoveNext(out var uid, out var mover))
-            if (HasComp<SiliconRestingComponent>(uid) || _predictedRest.Contains(uid))
-                mover.WishDir = Vector2.Zero;
-    }
-
-    private void OnRestSync(EntityUid uid, SiliconRestingComponent comp, ComponentStartup args)
-    {
-        _predictedRest.Remove(uid);
-    }
-
-    private void OnRestSyncRemove(EntityUid uid, SiliconRestingComponent comp, ComponentShutdown args)
-    {
-        _predictedRest.Remove(uid);
+        if (player?.AttachedEntity is not { Valid: true } uid)
+            return;
     }
 }

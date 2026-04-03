@@ -5,24 +5,29 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.DoAfter;
+using Content.Shared.ActionBlocker;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
 using Content.Server.DoAfter;
+using Robust.Shared.Log;
+using System.Numerics;
 
 public sealed class SiliconStandingSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeNetworkEvent<ToggleStandingEvent>(OnToggle);
-        SubscribeLocalEvent<SiliconRestingComponent, UpdateCanMoveEvent>(OnCanMove);
         SubscribeLocalEvent<SiliconRestingDoAfterComponent, SiliconRestingDoAfterEvent>(OnDoAfter);
-        SubscribeLocalEvent<SiliconRestingDoAfterComponent, UpdateCanMoveEvent>(OnDoAfterMoveBlock);
         SubscribeLocalEvent<SiliconRestingComponent, ComponentStartup>(OnRestStart);
         SubscribeLocalEvent<SiliconRestingComponent, ComponentShutdown>(OnRestEnd);
+        SubscribeLocalEvent<SiliconRestingComponent, UpdateCanMoveEvent>(OnCanMove);
     }
 
     private void OnToggle(ToggleStandingEvent ev, EntitySessionEventArgs args)
@@ -33,16 +38,10 @@ public sealed class SiliconStandingSystem : EntitySystem
         if (!HasComp<BorgChassisComponent>(uid))
             return;
 
-        if (HasComp<SiliconRestingDoAfterComponent>(uid))
-        {
-            RemComp<SiliconRestingDoAfterComponent>(uid);
-        }
-
-        var comp = EnsureComp<SiliconRestingDoAfterComponent>(uid);
-
         var isStandingUp = HasComp<SiliconRestingComponent>(uid);
-
         var delay = isStandingUp ? 0.5f : 1.0f;
+
+        EnsureComp<SiliconRestingDoAfterComponent>(uid);
 
         var doAfter = new DoAfterArgs(
             EntityManager,
@@ -66,10 +65,12 @@ public sealed class SiliconStandingSystem : EntitySystem
 
     private void Toggle(EntityUid uid)
     {
+        Log.Info($"[TOGGLE SENT] uid={uid}");
         if (HasComp<SiliconRestingComponent>(uid))
         {
             RemComp<SiliconRestingComponent>(uid);
             _appearance.SetData(uid, SiliconStandingVisuals.Resting, false);
+            _actionBlocker.UpdateCanMove(uid);
         }
         else
         {
@@ -79,32 +80,31 @@ public sealed class SiliconStandingSystem : EntitySystem
     }
     private void OnCanMove(EntityUid uid, SiliconRestingComponent component, ref UpdateCanMoveEvent args)
     {
-        args.Cancel();
+        if (HasComp<SiliconRestingComponent>(uid))
+            args.Cancel();
     }
 
     private void OnDoAfter(EntityUid uid, SiliconRestingDoAfterComponent comp, SiliconRestingDoAfterEvent ev)
     {
         RemComp<SiliconRestingDoAfterComponent>(uid);
 
+        ev.Success = !ev.Cancelled;
+
         if (ev.Cancelled)
+        {
+            Log.Info($"[DOAFTER RESULT] uid={uid} cancelled={ev.Cancelled}");
             return;
+        }
 
         Toggle(uid);
     }
-    private void OnDoAfterMoveBlock(EntityUid uid, SiliconRestingDoAfterComponent comp, ref UpdateCanMoveEvent args)
+    private void OnRestEnd(EntityUid uid, SiliconRestingComponent component, ComponentShutdown args)
     {
-        args.Cancel();
+        _actionBlocker.UpdateCanMove(uid);
     }
 
-    private void OnRestStart(EntityUid uid, SiliconRestingComponent comp, ComponentStartup args)
+    private void OnRestStart(EntityUid uid, SiliconRestingComponent component, ComponentStartup args)
     {
-        if (TryComp<InputMoverComponent>(uid, out var mover))
-            mover.CanMove = false;
-    }
-
-    private void OnRestEnd(EntityUid uid, SiliconRestingComponent comp, ComponentShutdown args)
-    {
-        if (TryComp<InputMoverComponent>(uid, out var mover))
-            mover.CanMove = true;
+        _actionBlocker.UpdateCanMove(uid);
     }
 }
