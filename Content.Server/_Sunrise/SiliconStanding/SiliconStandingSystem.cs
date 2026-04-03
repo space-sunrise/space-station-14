@@ -99,10 +99,6 @@ public sealed class SiliconStandingSystem : EntitySystem
         SetResting(uid, resting);
     }
 
-    /// <summary>
-    /// Called when DoAfter completes.
-    /// Applies the new state and plays the toggle sound.
-    /// </summary>
     private void OnCanMove(EntityUid uid, SiliconRestingComponent component, ref UpdateCanMoveEvent args)
     {
         args.Cancel();
