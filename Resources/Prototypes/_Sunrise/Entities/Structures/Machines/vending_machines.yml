@@ -94,3 +94,143 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PlayerCountDependentStock
+
+- type: entity
+  id: BaseTicketVendingMachine
+  parent: BaseMachinePowered
+  name: vending machine
+  description: Just add capitalism!
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/VendingMachines/mining.rsi
+    snapCardinals: true
+    layers:
+    - state: off
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: normal-unshaded
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+  - type: StationAiWhitelist
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -9
+    range: 3
+    enabled: false
+    sound:
+      path: /Audio/Ambience/Objects/vending_machine_hum.ogg
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.16,0.3,0.40"
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        density: 190
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+  - type: Repairable
+    doAfterDelay: 8
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: WiresPanel
+  - type: Wires
+    layoutId: Vending
+  - type: Anchorable
+  - type: Electrified
+    enabled: false
+    usesApcPower: true
+  - type: PointLight
+    enabled: false
+    castShadows: false
+    radius: 1.5
+  - type: LitOnPowered
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: StaticPrice
+    price: 100
+  - type: Appearance
+  - type: WiresVisuals
+  - type: Store
+    name: store-preset-name-spellbook
+    categories: []
+    currencyWhitelist:
+    - NTCredit
+
+- type: entity
+  parent: BaseTicketVendingMachine
+  id: VendingMachineSalvageTicket
+  name: salvage ticket machine
+  components:
+  - type: AccessReader
+    access: [["Salvage"]]
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/VendingMachines/salvage.rsi
+    snapCardinals: true
+    layers:
+    - state: off
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: normal-unshaded
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+  - type: Store
+    name: vendor-salvage-ticket-machine
+    categories:
+    - SalvageEquipment
+    - SalvageWeapons
+    - SalvageConsumeables
+    currencyWhitelist:
+    - SalvageTicket
+
+- type: entity
+  parent: BaseTicketVendingMachine
+  id: VendingMachineMiningTicket
+  name: mining ticket machine
+  components:
+  - type: AccessReader
+    access: [["Mining"]]
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/VendingMachines/mining.rsi
+    snapCardinals: true
+    layers:
+    - state: off
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: normal-unshaded
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+  - type: Store
+    name: vendor-mining-ticket-machine
+    categories:
+    - MiningEquipment
+    - MiningConsumeables
+    currencyWhitelist:
+    - SalvageTicket
