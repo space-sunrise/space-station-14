@@ -11,7 +11,6 @@ public sealed class SiliconStandingSystem : EntitySystem
     [Dependency] private readonly IClientNetManager _net = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
 
-
     public override void Initialize()
     {
         base.Initialize();
