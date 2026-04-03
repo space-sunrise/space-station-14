@@ -1,4 +1,6 @@
 ﻿stack-ticket = {$amount ->
-    [1] тикет
-    *[other] тикеты
+    [one] тикет
+    [few] тикета
+    [many] тикетов
+    *[other] тикета
 }

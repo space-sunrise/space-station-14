@@ -12,7 +12,7 @@
   abstract: true
   components:
   - type: Contraband
-    allowedJobs: [ SalvageSpecialist, SalvageLead ]
+    allowedJobs: [ SalvageSpecialist ]
 
 - type: entity
   id: BaseMiningContraband
@@ -28,7 +28,7 @@
   abstract: true
   components:
   - type: Contraband
-    allowedJobs: [ SalvageSpecialist, SalvageLead, MiningSpecialist ]
+    allowedJobs: [ SalvageSpecialist, MiningSpecialist ]
 
 - type: entity
   id: BaseSovietContraband
