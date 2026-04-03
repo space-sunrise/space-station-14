@@ -66,6 +66,7 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction ResetZoom = "ResetZoom";
 
         // Sunrise-Start
+        public static readonly BoundKeyFunction ToggleBorgRest = "ToggleBorgRest";
         public static readonly BoundKeyFunction FocusCollectiveMindChat = "FocusCollectiveMindChatWindow";
         public static readonly BoundKeyFunction CockGun = "CockGun";
         public static readonly BoundKeyFunction MeleeGunAttack = "MeleeGunAttack";

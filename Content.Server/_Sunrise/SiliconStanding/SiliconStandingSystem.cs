@@ -23,8 +23,6 @@ public sealed class SiliconStandingSystem : EntitySystem
 
         SubscribeNetworkEvent<ToggleStandingEvent>(OnToggle);
         SubscribeLocalEvent<SiliconRestingDoAfterComponent, SiliconRestingDoAfterEvent>(OnDoAfter);
-        SubscribeLocalEvent<SiliconRestingComponent, ComponentStartup>(OnRestStart);
-        SubscribeLocalEvent<SiliconRestingComponent, ComponentShutdown>(OnRestEnd);
         SubscribeLocalEvent<SiliconRestingComponent, UpdateCanMoveEvent>(OnCanMove);
     }
 
@@ -76,6 +74,8 @@ public sealed class SiliconStandingSystem : EntitySystem
             RemComp<SiliconRestingComponent>(uid);
             _appearance.SetData(uid, SiliconStandingVisuals.Resting, false);
         }
+
+        _actionBlocker.UpdateCanMove(uid);
     }
 
     private void Toggle(EntityUid uid)
@@ -99,15 +99,5 @@ public sealed class SiliconStandingSystem : EntitySystem
         Toggle(uid);
 
         _audio.PlayPvs(ToggleSound, uid);
-    }
-
-    private void OnRestEnd(EntityUid uid, SiliconRestingComponent component, ComponentShutdown args)
-    {
-        _actionBlocker.UpdateCanMove(uid);
-    }
-
-    private void OnRestStart(EntityUid uid, SiliconRestingComponent component, ComponentStartup args)
-    {
-        _actionBlocker.UpdateCanMove(uid);
     }
 }

@@ -1,6 +1,8 @@
 using Content.Shared._Sunrise.SiliconStanding;
 using Content.Shared.Input;
+using Content.Shared.Silicons.Borgs.Components;
 using Robust.Client.Player;
+using Robust.Client.Input;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
@@ -17,12 +19,20 @@ public sealed class SiliconStandingSystem : EntitySystem
     {
         base.Initialize();
 
+        var input = IoCManager.Resolve<IInputManager>();
+        var context = input.Contexts.GetContext("common");
+        context.AddFunction(ContentKeyFunctions.ToggleBorgRest);
+
         CommandBinds.Builder
-            .Bind(ContentKeyFunctions.ToggleStanding,
-                InputCmdHandler.FromDelegate(SendToggleEvent, handle: true))
+            .Bind(ContentKeyFunctions.ToggleBorgRest,
+                new PointerInputCmdHandler((session, coords, uid) =>
+                {
+                    SendToggleEvent();
+                    return true;
+                }))
             .Register<SiliconStandingSystem>();
     }
-    private void SendToggleEvent(ICommonSession? _)
+    private void SendToggleEvent()
     {
         if (!_net.IsConnected)
             return;
@@ -32,12 +42,20 @@ public sealed class SiliconStandingSystem : EntitySystem
         if (player?.AttachedEntity is not { Valid: true } uid)
             return;
 
+        if (!EntityManager.HasComponent<BorgChassisComponent>(uid))
+            return;
+
         RaiseNetworkEvent(new ToggleStandingEvent());
     }
 
     public override void Shutdown()
     {
         base.Shutdown();
+
+        var input = IoCManager.Resolve<IInputManager>();
+        var context = input.Contexts.GetContext("common");
+        context.RemoveFunction(ContentKeyFunctions.ToggleBorgRest);
+
         CommandBinds.Unregister<SiliconStandingSystem>();
     }
 }
