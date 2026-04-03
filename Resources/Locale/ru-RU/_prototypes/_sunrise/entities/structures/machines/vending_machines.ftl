@@ -7,7 +7,7 @@ ent-VendingMachinePrisonDrobe = ТюремШкаф
 ent-VendingMachineEVASuitDispenser = раздатчик скафандров EVA
     .desc = Автомат по выдаче скафандров и шлемов EVA для использования в аварийных ситуациях.
 
-ent-VendingMachineSalvageTicket = тикет-автомат утилизаторов
+ent-VendingMachineSalvageTicket = тикет-вендомат утилизаторов
     .desc = Обменивает тикеты утилизаторов на снаряжение.
-ent-VendingMachineMiningTicket = тикет-автомат шахтёров
+ent-VendingMachineMiningTicket = тикет-вендомат шахтёров
     .desc = Обменивает тикеты шахтёров на снаряжение.
