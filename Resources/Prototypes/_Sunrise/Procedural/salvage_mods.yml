@@ -27,7 +27,6 @@
     - Impossible
   factions:
     - Soviets
-    - PiratesT1
 
 - type: salvageDungeonMod
   id: SovietStrongholdClassic
