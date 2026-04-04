@@ -1,0 +1,142 @@
+- type: loadout
+  id: StraplessBra
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraStrapless
+
+- type: loadout
+  id: WhiteNekoBra
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraNekoWhite
+
+- type: loadout
+  id: BlackNekoBra
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraNekoBlack
+
+- type: loadout
+  id: AssblastusaBra
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraAssblastusa
+
+- type: loadout
+  id: BikiniBra
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraBikini
+
+- type: loadout
+  id: BraletteBra
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraBralette
+
+- type: loadout
+  id: CommieBra
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraCommie
+
+- type: loadout
+  id: KinkyBra
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraKinky
+
+- type: loadout
+  id: LaceBra
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraLace
+
+- type: loadout
+  id: SportBra
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraSport
+
+- type: loadout
+  id: ThongBra
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraThong
+
+- type: loadout
+  id: UkBra
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraUk
+
+- type: loadout
+  id: PinkBra
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraPink
+
+- type: loadout
+  id: PurpleBra
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraPurple
+
+- type: loadout
+  id: BlackBra
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraBlack
+
+- type: loadout
+  id: ChristmasBra
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraChristmas

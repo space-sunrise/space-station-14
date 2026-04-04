@@ -228,11 +228,13 @@
     - id: Musket
     - id: Flash
     - id: ImplanterExtractor
+    - id: PinpointerSmugglerRevolutionaryStash
 
 - type: entityTable
   id: SmugglerSunriseImprovisedAmmoCompactTable
   table: !type:GroupSelector
     children:
+    - id: PinpointerSmugglerRevolutionaryStash
     - id: ShellShotgunImprovisedEmpty
     - id: ShellShotgunImprovisedIncendiary
     - id: ShellShotgunImprovisedUranium
@@ -272,11 +274,10 @@
     - id: ImprovisedGrenadePipebomb
     - id: ImprovisedGrenadeGlass
     - id: PipeBomb
-    - id: PipeBombCable
+    - id: PinpointerSmugglerRevolutionaryStash
       weight: 0.75
     - id: FireBomb
-    - id: FireBombEmpty
-    - id: FireBombFuel
+    - id: PinpointerSmugglerRevolutionaryStash
     - id: CleanerGrenadeAcidBox
     - id: TearGasGrenade
     - id: GrenadeStinger

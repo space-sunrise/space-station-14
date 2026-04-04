@@ -26,8 +26,6 @@
   weight: 4
   alwaysUseSpawner: true
   canBeAntag: false
-  alternativeTitles:
-  - job-alt-title-penal-laborer
   displayWeight: 80
   access:
    - Security

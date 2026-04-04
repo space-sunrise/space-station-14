@@ -26,6 +26,9 @@
   - type: Temperature
     currentTemperature: 310.15
   - type: TemperatureDamage
+    coldDamage:
+      types:
+        Cold: 0
     heatDamage:
       types:
         Heat: 3
@@ -160,7 +163,7 @@
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: shoes
-      socks:
+      socks-body-curved-small-muzzle:
         sizeMaps:
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi

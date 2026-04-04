@@ -390,6 +390,13 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("vigers_ray.victims", "", CVar.SERVERONLY);
 
     /// <summary>
+    /// List of usernames that cannot be kicked by kick or ghostkick commands.
+    /// Usernames are comma-separated.
+    /// </summary>
+    public static readonly CVarDef<string> ProtectedKickUsernames =
+        CVarDef.Create("admin.protected_kick_usernames", "", CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
     ///     Flavor Profile
     /// </summary>
     public static readonly CVarDef<bool> FlavorTextSponsorOnly =
@@ -508,5 +515,83 @@ public sealed partial class SunriseCCVars : CVars
 
     public static readonly CVarDef<int> GameIPBlockingUnhandledMessageRateLimit =
         CVarDef.Create("game.ipblocking_unhandled_message_rate_limit", 10, CVar.SERVERONLY);
+
+
+    /*
+    LOADOUTS
+    */
+
+    /// <summary>
+    /// Включает кастомный пул loadout
+    /// Если выключено, используется стандартный пул из loadout-прототипов
+    /// Имя пула задаётся в custom_loadout.pool
+    /// </summary>
+    public static readonly CVarDef<bool> CustomLoadoutEnabled =
+        CVarDef.Create("custom_loadout.enabled", true, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Имя кастомного пула loadout
+    /// Используется только если custom_loadout.enabled = true
+    /// Варианты: "SunriseLoadout"
+    /// </summary>
+    public static readonly CVarDef<string> LoadoutPool =
+        CVarDef.Create("custom_loadout.pool", "SunriseLoadout", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    /*
+     * Trusted Proxy (UDP Relay)
+     */
+
+    /// <summary>
+    /// Включает поддержку доверенных прокси-серверов (UDP relay).
+    /// При включении сервер будет polling relay API для получения маппингов IP-адресов.
+    /// </summary>
+    public static readonly CVarDef<bool> TrustedProxyEnabled =
+        CVarDef.Create("trusted_proxy.enabled", false, CVar.SERVERONLY);
+
+    /// <summary>
+    /// URL(s) relay API для polling маппингов, через запятую.
+    /// Пример: "http://10.0.0.1:18080" или "http://relay1.example.com:18080,http://relay2.example.com:18080"
+    /// </summary>
+    public static readonly CVarDef<string> TrustedProxyRelayApiUrl =
+        CVarDef.Create("trusted_proxy.relay_api_url", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    /// <summary>
+    /// API ключ для аутентификации при polling relay API.
+    /// </summary>
+    public static readonly CVarDef<string> TrustedProxyRelayApiKey =
+        CVarDef.Create("trusted_proxy.relay_api_key", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    /// <summary>
+    /// Список IP-адресов доверенных прокси-серверов, через запятую.
+    /// Подключения с этих IP будут проходить трансляцию endpoint'ов.
+    /// Пример: "1.2.3.4,5.6.7.8"
+    /// </summary>
+    public static readonly CVarDef<string> TrustedProxyIPs =
+        CVarDef.Create("trusted_proxy.ips", "", CVar.SERVERONLY);
+
+    /// <summary>
+    /// Интервал polling relay API в миллисекундах.
+    /// </summary>
+    public static readonly CVarDef<int> TrustedProxyPollIntervalMs =
+        CVarDef.Create("trusted_proxy.poll_interval_ms", 2000, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Whether each late-joining player should arrive on their own small shuttle.
+    ///     This is an alternative to the large rolling arrivals shuttle.
+    /// </summary>
+    public static readonly CVarDef<bool> ArrivalsSingleShuttle =
+        CVarDef.Create("shuttle.arrivals_single_shuttle", true, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     The map to use for the single-person arrivals shuttle.
+    /// </summary>
+    public static readonly CVarDef<string> ArrivalsSingleShuttlePath =
+        CVarDef.Create("shuttle.arrivals_single_shuttle_path", "/Maps/_Sunrise/Shuttles/depart.yml", CVar.SERVERONLY);
+
+    /// <summary>
+    ///     The time it takes for the single-person arrivals shuttle to arrive at the station.
+    /// </summary>
+    public static readonly CVarDef<float> ArrivalsShuttleFTLTime =
+        CVarDef.Create("shuttle.arrivals_ftl_time", 15.0f, CVar.SERVERONLY);
 
 }

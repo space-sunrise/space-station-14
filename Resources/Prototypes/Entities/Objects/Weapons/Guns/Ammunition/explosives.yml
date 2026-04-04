@@ -179,7 +179,7 @@
   parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
-    proto: BulletCannonBall
+    proto: BulletCannonBallTracked
     deleteOnSpawn: true
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi # Sunrise-Edit
@@ -192,7 +192,7 @@
   parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
-    proto: PelletGrapeshotSpread
+    proto: PelletGrapeshotSpreadTracked
     deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi

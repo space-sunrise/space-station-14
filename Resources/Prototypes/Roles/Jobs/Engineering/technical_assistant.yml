@@ -15,11 +15,6 @@
   supervisors: job-supervisors-engineering
   canBeAntag: false
   displayWeight: 0 # Sunrise-Edit
-  # Sunrise-Start
-  alternativeTitles:
-  - job-alt-title-engineering-intern
-  - job-alt-title-technician-intern
-  # Sunrise-End
   access:
   - Maintenance
   - Engineering

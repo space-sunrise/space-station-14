@@ -20,6 +20,19 @@
     - MobsExpeditionGuideSoviets
   - type: Damageable
     damageModifierSet: MobPirateT1
+  - type: ExplosionResistance
+    damageCoefficient: 0.25
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: NpcFactionMember
     factions:
     - Soviet
@@ -33,6 +46,8 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
+  - type: TimedDespawn
+    lifetime: 3600
   - type: RemoveComponentsOnTrigger
     triggerOnce: true
     components:
@@ -46,7 +61,7 @@
     removeExisting: true
     components:
     - type: TimedDespawn
-      lifetime: 180
+      lifetime: 600
     - type: Strippable
     - type: Pullable
   - type: TimedRemoveComponents
@@ -145,7 +160,7 @@
     makeSentient: true
     name: ghost-role-information-expedition-soviet-name
     description: ghost-role-information-expedition-soviet-description
-    rules: ghost-role-information-expedition-soviet-rules
+    rules: ghost-role-information-rules-expedition-soviet-antagonist
     raffle:
       settings: short
   - type: GhostTakeoverAvailable
@@ -197,6 +212,17 @@
 
 - type: entity
   abstract: true
+  parent: MobSovietBase
+  id: MobSovietVeteranChatterBase
+  components:
+  - type: DatasetVocalizer
+    dataset: SovietChatterNPCVeteran
+    minVocalizeInterval: 45s
+    maxVocalizeInterval: 90s
+    hideChat: true
+
+- type: entity
+  abstract: true
   name: Serzhant
   parent: SovietSoldierBase
   id: SovietSerzhantBase
@@ -205,7 +231,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      115: Critical
+      110: Critical
       130: Dead
   - type: Sprite
     drawdepth: Mobs
@@ -232,92 +258,16 @@
     - NamesLast
     nameFormat: name-format-ert
   - type: ActionGun
-    action: ActionSovietSerzhantGrenade
-    gunProto: GunSovietSerzhantGrenade
+    action: ActionGunGrenadeExplosiveShrapnel
+    gunProto: GunGrenadeExplosiveShrapnel
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
-    - actionId: ActionSovietSerzhantGrenade
+    - actionId: ActionGunGrenadeExplosiveShrapnel
       minRange: 4
       maxRange: 12
-
-- type: entity
-  id: GunSovietSerzhantGrenade
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 60
-    rechargeSound:
-      path: /Audio/_Sunrise/Effects/silence.ogg
-  - type: BasicEntityAmmoProvider
-    proto: BulletGrenadeExplosiveShrapnel
-    capacity: 1
-    count: 1
-  - type: Gun
-    fireRate: 1
-    projectileSpeed: 10
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
-
-- type: entity
-  id: ActionSovietSerzhantGrenade
-  parent: BaseAction
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    useDelay: 60
-    checkCanInteract: false
-    icon:
-      sprite: Objects/Weapons/Grenades/grenade.rsi
-      state: icon
-    itemIconStyle: NoItem
-  - type: TargetAction
-    checkCanAccess: false
-    range: 0
-  - type: WorldTargetAction
-    event: !type:ActionGunShootEvent
-  - type: SpeakOnAction
-    sentence: action-speech-soviet-grenade
-
-- type: entity
-  id: GunSovietT3SmokeGrenade
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 30
-    rechargeSound:
-      path: /Audio/_Sunrise/Effects/silence.ogg
-  - type: BasicEntityAmmoProvider
-    proto: BulletSmokeGrenadeQuick
-    capacity: 1
-    count: 1
-  - type: Gun
-    fireRate: 1
-    projectileSpeed: 5
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
-
-- type: entity
-  id: ActionSovietT3SmokeGrenade
-  parent: BaseAction
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    useDelay: 30
-    checkCanInteract: false
-    icon:
-      sprite: Objects/Weapons/Grenades/smoke.rsi
-      state: icon
-    itemIconStyle: NoItem
-  - type: TargetAction
-    checkCanAccess: false
-    range: 0
-  - type: WorldTargetAction
-    event: !type:ActionGunShootEvent
-  - type: SpeakOnAction
-    sentence: action-speech-soviet-smoke
 
 # T2 Marine features
 - type: entity
@@ -374,7 +324,7 @@
   name: serzhant rifle
   parent:
   - MobMovementSpeedModifierRanged
-  - MobSovietBase
+  - MobSovietVeteranChatterBase
   - SovietSerzhantBase
   id: MobSovietT1SLRifle
   components:
@@ -412,7 +362,7 @@
   name: serzhant smg
   parent:
   - MobMovementSpeedModifierRanged
-  - MobSovietBase
+  - MobSovietVeteranChatterBase
   - SovietSerzhantBase
   id: MobSovietT1SerzhantSMG
   components:
@@ -470,6 +420,7 @@
       0: Alive
       90: Critical
       100: Dead
+  - type: ShowHealthBars
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -491,12 +442,14 @@
       state: equipped-HAND
       color: "#3CB57C"
   - type: AoEHeal
+    healSelf: false
     range: 5
     threshold: 0.9
+    aliveTargets: false
     damage:
       groups:
-        Brute: -20
-        Burn: -10
+        Brute: -10
+        Burn: -8
         Airloss: -10
         Toxin: -10
     whitelist:
@@ -510,12 +463,14 @@
     triggerOnce: true
     components:
     - type: AoEHeal
+      healSelf: false
       range: 5
       threshold: 0.9
+      aliveTargets: false
       damage:
         groups:
-          Brute: -20
-          Burn: -10
+          Brute: -10
+          Burn: -8
           Airloss: -10
           Toxin: -10
       whitelist:
@@ -553,15 +508,12 @@
   - type: Loadout
     prototypes:
     - MobSovietGearPPSH
-  - type: ActionGun
-    action: ActionSovietSerzhantGrenade
-    gunProto: GunSovietSerzhantGrenade
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
-    - actionId: ActionSovietSerzhantGrenade
+    - actionId: ActionGunGrenadeExplosiveShrapnel
       minRange: 9
       maxRange: 12
   - type: Tag
@@ -731,9 +683,9 @@
     showExamineText: false
     fireRate: 7.5
     minAngle: 5
-    maxAngle: 60
-    angleIncrease: 4
-    angleDecay: 20
+    maxAngle: 50
+    angleIncrease: 3
+    angleDecay: 25
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -833,14 +785,16 @@
     showExamineText: false
     fireRate: 5
     selectedMode: FullAuto
-    minAngle: 2
+    minAngle: 6
     maxAngle: 25
-    angleIncrease: 2
-    angleDecay: 7
+    angleIncrease: 1
+    angleDecay: 10
     availableModes:
     - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/smg.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
 
 - type: entity
   name: soldier
@@ -1085,6 +1039,7 @@
       0: Alive
       90: Critical
       100: Dead
+  - type: ShowHealthBars
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1125,14 +1080,15 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: AoEHeal
-    range: 5
+    healSelf: false
+    range: 7
     threshold: 0.9
     damage:
       groups:
-        Brute: -30
-        Burn: -20
-        Airloss: -20
-        Toxin: -20
+        Brute: -15
+        Burn: -15
+        Airloss: -15
+        Toxin: -15
     whitelist:
       components:
       - NpcVeteranFollower
@@ -1144,20 +1100,18 @@
     triggerOnce: true
     components:
     - type: AoEHeal
-      range: 5
+      healSelf: false
+      range: 7
       threshold: 0.9
       damage:
         groups:
-          Brute: -30
-          Burn: -20
-          Airloss: -20
-          Toxin: -20
+          Brute: -15
+          Burn: -15
+          Airloss: -15
+          Toxin: -15
       whitelist:
         components:
         - NpcVeteranFollower
-  - type: ActionGun
-    action: ActionSovietT3SmokeGrenade
-    gunProto: GunSovietT3SmokeGrenade
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionGravityJumpQuick
@@ -1166,7 +1120,10 @@
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
-    - actionId: ActionSovietT3SmokeGrenade
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 5
+      maxRange: 12
+    - actionId: ActionGunGrenadeExplosiveShrapnelSpell
       minRange: 5
       maxRange: 12
 
@@ -1208,7 +1165,7 @@
     rechargeSound:
       path: /Audio/_Sunrise/Effects/silence.ogg
   - type: BasicEntityAmmoProvider
-    proto: ShellShotgun
+    proto: ShellShotgunFlechette
     capacity: 8
     count: 8
   - type: Gun
@@ -1220,9 +1177,6 @@
       collection: xm1014
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: ActionGun
-    action: ActionSovietT3SmokeGrenade
-    gunProto: GunSovietT3SmokeGrenade
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionGravityJumpQuick
@@ -1231,7 +1185,10 @@
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
-    - actionId: ActionSovietT3SmokeGrenade
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 5
+      maxRange: 12
+    - actionId: ActionGunGrenadeExplosiveShrapnelSpell
       minRange: 5
       maxRange: 12
 
@@ -1249,7 +1206,7 @@
   name: marine ranger
   parent:
   - MobMovementSpeedModifierRanged
-  - MobSovietBase
+  - MobSovietVeteranChatterBase
   id: MobSovietT3Rifle
   components:
   - type: Tag
@@ -1292,22 +1249,25 @@
     availableModes:
     - FullAuto
     soundGunshot: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_shot.ogg
-  - type: ActionGun
-    action: ActionSovietT3SmokeGrenade
-    gunProto: GunSovietT3SmokeGrenade
   - type: NPCUseActionWhenTargetInRange
     actions:
+    - actionId: ActionGravityJumpQuick
+      minRange: 4
+      maxRange: 0
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
-    - actionId: ActionSovietT3SmokeGrenade
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 5
+      maxRange: 12
+    - actionId: ActionGunGrenadeExplosiveShrapnelSpell
       minRange: 5
       maxRange: 12
 
 - type: entity
   name: Molot
   description: The Light Mech USSP, a communist variant of the Gygax, features light armor and a powerful auto-shotgun gun.
-  parent: [MobHostileBossBase, MobSovietBase, MobPirateSparkEffectBase]
+  parent: [MobHostileBossBase, MobSovietVeteranChatterBase, MobPirateSparkEffectBase]
   id: MobSovietT2Mech
   components:
   - type: Loadout
@@ -1391,7 +1351,7 @@
     fuelCost: 25
     doAfterDelay: 10
   - type: BatteryAmmoProvider
-    proto: ShellShotgunFlechette
+    proto: ShellShotgun
     fireCost: 1
   - type: BatterySelfRecharger
     autoRechargePauseTime: 2
@@ -1433,7 +1393,6 @@
     - CanPilot
     - Pickaxe
     - NpcBoss
-  - type: Magboots
   - type: HellSpawnRush
     blacklist:
       tags:
@@ -1454,7 +1413,7 @@
 - type: entity
   name: Doll House
   description: The Heavy Mech USSP, a communist variant of the Durand, features stronger armor and a powerful machine gun.
-  parent: [MobHostileBossBase, MobSovietBase, MobPirateSparkEffectBase]
+  parent: [MobHostileBossBase, MobSovietVeteranChatterBase, MobPirateSparkEffectBase]
   id: MobSovietT3Mech
   components:
   - type: NPCUseActionWhenTargetInRange
@@ -1562,7 +1521,7 @@
     fuelCost: 25
     doAfterDelay: 10
   - type: BatteryAmmoProvider
-    proto: CartridgeHeavyRifleRSP
+    proto: CartridgeHeavyRifleRFMJ
     fireCost: 1
   - type: BatterySelfRecharger
     autoRechargePauseTime: 5
@@ -1606,7 +1565,6 @@
   - type: EyeCursorOffset
     maxOffset: 5
     pvsIncrease: 0.6
-  - type: Magboots
   - type: AutoImplant
     implants:
     - SmokeScreenImplant
@@ -1616,7 +1574,7 @@
   name: comrade captain
   parent:
    - MobHostileBossBase
-   - MobSovietBase
+   - MobSovietVeteranChatterBase
   id: MobSovietCaptain
   description: The leaders of these bands of brigands, a mercenary captain is both cruel and lethally effective. Exercise caution.
   components:
@@ -1695,46 +1653,6 @@
     - actionId: ActionSideArmFan
       minRange: 0
       maxRange: 2
-
-- type: entity
-  id: GunSideArmFan
-  name: trusty Lucky 45
-  description: Shoots bullets.
-  components:
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 5
-    rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
-  - type: BasicEntityAmmoProvider
-    proto: CartridgeMagnumIncendiary
-    capacity: 5
-    count: 5
-  - type: Gun
-    minAngle: 3
-    maxAngle: 9
-    fireRate: 3
-    selectedMode: FullAuto
-    availableModes:
-      - FullAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/revolver.ogg
-    soundEmpty: null
-    projectileSpeed: 20
-
-- type: entity
-  id: ActionSideArmFan
-  parent: BaseAction
-  name: "[color=yellow]Lucky 45[/color]"
-  description: "Luck always beats skill, ya weasel. [color=yellow]5 second between ammo recharges.[/color]"
-  components:
-  - type: Action
-    icon: { sprite : Objects/Weapons/Guns/Revolvers/python.rsi, state: icon }
-    priority: 2
-    itemIconStyle: BigAction
-  - type: TargetAction
-    checkCanAccess: false
-    range: 0
-  - type: WorldTargetAction
-    event: !type:ActionGunShootEvent
 
 # region Mini-boss
 - type: entity
@@ -2226,3 +2144,5 @@
 - type: entity
   parent: MobSovietT1MosinAlt
   id: MobSovietMosinAlt
+
+

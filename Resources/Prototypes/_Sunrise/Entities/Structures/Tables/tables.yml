@@ -11,3 +11,12 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepFloor
+
+- type: entity
+  id: TableArtifact
+  parent: Table
+  suffix: artifact
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Construction
+    deconstructionTarget: null

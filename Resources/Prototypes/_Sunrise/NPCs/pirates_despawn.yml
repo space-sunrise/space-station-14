@@ -16,7 +16,6 @@
       - MobPirateT1Knife
       - MobPirateT1KnifeTearGas
       - MobPirateT1KnifeStinger
-      - MobPirateT1KnifeFirebomb
       - MobPirateT1KnifeBola
       - MobPirateT1KnifeEMP
       - MobPirateT1MonkeyKnuckleDusters
@@ -77,8 +76,6 @@
       - MobPirateT2ECutlassTearGas
       - MobPirateT2ECutlassStinger
       - MobPirateT2ECutlassFirebomb
-      - MobPirateT2ECutlassBola
-      - MobPirateT2ECutlassFuzeCannonBall
       - MobPirateT2Sledgehammer
       - MobPirateT2GauntletDrill
 
@@ -87,7 +84,6 @@
       - MobPirateT2ShotgunGlass
       - MobPirateT2Musket
       - MobPirateT2MusketEMP
-      - MobPirateT2MusketBlast
       - MobPirateT2MusketFrag
       - MobPirateT2MusketPenetrator
       - MobPirateT2MachineCannon
@@ -414,7 +410,6 @@
     - MobPirateT1Knife
     - MobPirateT1KnifeTearGas
     - MobPirateT1KnifeStinger
-    - MobPirateT1KnifeFirebomb
     - MobPirateT1KnifeBola
     - MobPirateT1KnifeEMP
     - MobPirateT1Pickaxe
@@ -473,7 +468,6 @@
   - type: RandomSpawner
     prototypes:
     - MobPirateT2Cutlass
-    - MobPirateT2ECutlassBola
     - MobPirateT2ECutlassStinger
     - MobPirateT2Sledgehammer
     - MobPirateT2GauntletDrill
@@ -482,7 +476,6 @@
     - MobPirateT2ShotgunGlass
     - MobPirateT2Musket
     - MobPirateT2MusketEMP
-    - MobPirateT2MusketBlast
     - MobPirateT2MusketFrag
     - MobPirateT2MusketPenetrator
     - MobPirateT2MachineCannon
@@ -637,9 +630,6 @@
       id: MobPirateT2Cutlass
       prob: 1
     - !type:EntSelector
-      id: MobPirateT2ECutlassBola
-      prob: 1
-    - !type:EntSelector
       id: MobPirateT2Shotgun
       prob: 1
     - !type:EntSelector
@@ -671,16 +661,16 @@
   table: !type:AllSelector
     children:
     - !type:EntSelector
-      id: MobPirateT2MusketBlast
+      id: MobPirateT2MusketFrag
       prob: 1
     - !type:EntSelector
       id: MobPirateT2MachineCannon
       prob: 1
     - !type:EntSelector
-      id: MobPirateT2DoubleFlintlock
+      id: MobPirateT2ECutlass
       prob: 1
     - !type:EntSelector
-      id: MobPirateT2ShotgunGlass
+      id: MobPirateT2Musket
       prob: 1
     - !type:EntSelector
       id: MobPirateT2Medic
@@ -793,10 +783,6 @@
     - !type:EntSelector
       id: MobPirateT2DoubleFlintlock
       prob: 1
-    - !type:EntSelector
-      id: MobPirateT2ECutlassBola
-      prob: 1
-
 - type: entity
   name: pirate T2 control squad spawner
   id: PirateSquadT2Control
@@ -903,7 +889,7 @@
       id: MobPirateT3Bola
       prob: 1
     - !type:EntSelector
-      id: MobPirateT3Grenadier
+      id: MobPirateT3Medic
       prob: 1
     - !type:EntSelector
       id: MobPirateT3LaserSMG
@@ -974,13 +960,13 @@
       id: MobPirateT3RPD
       prob: 1
     - !type:EntSelector
+      id: MobPirateT3RPD
+      prob: 1
+    - !type:EntSelector
       id: MobPirateT3Tachanka
       prob: 1
     - !type:EntSelector
-      id: MobPirateT3LaserCannon
-      prob: 1
-    - !type:EntSelector
-      id: MobPirateT3Grenadier
+      id: MobPirateT3Medic
       prob: 1
 
 - type: entity
@@ -1088,7 +1074,7 @@
       id: MobPirateT3RPD
       prob: 1
     - !type:EntSelector
-      id: MobPirateT3Grenadier
+      id: MobPirateT3Medic
       prob: 1
     - !type:EntSelector
       id: MobPirateT3ShieldSMG
@@ -1122,7 +1108,7 @@
       id: MobPirateT3LaserSMG
       prob: 1
     - !type:EntSelector
-      id: MobPirateT3Grenadier
+      id: MobPirateT3Medic
       prob: 1
     - !type:EntSelector
       id: MobPirateT3Shield1984

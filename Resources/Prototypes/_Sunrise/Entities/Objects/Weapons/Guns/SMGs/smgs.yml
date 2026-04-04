@@ -351,7 +351,7 @@
 #PPSH
 - type: entity
   name: PPSH 59 SMG
-  parent: [BaseWeaponSubMachineGun, BaseMajorContraband, BaseSovietContraband]
+  parent: [BaseWeaponSubMachineGun, BaseSovietContraband]
   id: WeaponSubMachineGunPPSH
   description: Beloved by USSP veterans and feared by friendly fire protocols everywhere. Uses .35 ammo.
   components:
@@ -369,7 +369,7 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -9
+    minAngle: -11
     maxAngle: -9
   - type: Gun
     minAngle: 21

@@ -471,7 +471,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        #- id: DefibrillatorSyndicate
+        - id: DefibrillatorSyndicate
         - id: MedkitCombatFilled
           amount: 4
         - id: Tourniquet

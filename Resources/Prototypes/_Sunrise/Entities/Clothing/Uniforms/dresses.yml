@@ -1,0 +1,101 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: UniformDressMaidBlue
+  name: blue maid dress
+  description: Feel yourself like a character from anime!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/maid_blue.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/maid_blue.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: UniformDressMaidLong
+  name: long maid dress
+  description: For connoisseurs of classic sundresses and practicality.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/maid_long.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/maid_long.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: UniformDressMaidPink
+  name: pink maid dress
+  description: Feel yourself like a character from anime!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/maid_pink.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/maid_pink.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: UniformDressSexy
+  name: sexy dress
+  description: A centimeter of fabric slipping and you're arrested by the Security!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/sexy_dress.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/sexy_dress.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: UniformDressSuccubusBlack
+  name: black succubus dress
+  description: This dress exudes an infernal magic...wings as a gift!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/succubus_black.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/succubus_black.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterWingsBlack
+    requiredSlot: innerClothing
+    slot: outerClothing
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+
+- type: entity
+  parent: ClothingUniformBase
+  id: UniformDressSuccubusWhite
+  name: white succubus dress
+  description: This dress exudes an infernal magic...wings as a gift!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/succubus_white.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/succubus_white.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterWingsWhite
+    requiredSlot: innerClothing
+    slot: outerClothing
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+
+- type: entity
+  parent: ClothingUniformBase
+  id: UniformDressTango
+  name: tango dress
+  description: Feel the rythm, twirling to the "La cumparsita"!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/tango_dress.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/tango_dress.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: UniformDressXeno
+  name: xeno dress
+  description: Elegance and horror in one.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/xeno_dress.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Dresses/xeno_dress.rsi
