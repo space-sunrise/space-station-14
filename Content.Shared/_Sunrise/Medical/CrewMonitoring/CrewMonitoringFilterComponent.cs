@@ -8,7 +8,7 @@ public sealed partial class CrewMonitoringFilterComponent : Component
     /// <summary>
     /// Разрешенные отделы. Если пусто – все доступны.
     /// </summary>
-    [DataField("allowedDepartmentIds")]
+    [DataField]
     public List<string> AllowedDepartmentIds = new();
 
     /// <summary>
