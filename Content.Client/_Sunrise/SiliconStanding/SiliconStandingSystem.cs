@@ -14,13 +14,13 @@ public sealed class SiliconStandingSystem : EntitySystem
 {
     [Dependency] private readonly IClientNetManager _net = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IInputManager _input = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        var input = IoCManager.Resolve<IInputManager>();
-        var context = input.Contexts.GetContext("common");
+        var context = _input.Contexts.GetContext("common");
         context.AddFunction(ContentKeyFunctions.ToggleBorgRest);
 
         CommandBinds.Builder
@@ -56,8 +56,7 @@ public sealed class SiliconStandingSystem : EntitySystem
     {
         base.Shutdown();
 
-        var input = IoCManager.Resolve<IInputManager>();
-        var context = input.Contexts.GetContext("common");
+        var context = _input.Contexts.GetContext("common");
         context.RemoveFunction(ContentKeyFunctions.ToggleBorgRest);
 
         CommandBinds.Unregister<SiliconStandingSystem>();
