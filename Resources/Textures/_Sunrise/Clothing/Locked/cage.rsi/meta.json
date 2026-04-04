@@ -8,7 +8,7 @@
   },
   "states": [
     {
-      "name": "icon-closed"
+      "name": "icon_locked"
     },
     {
       "name": "icon"

@@ -1,12 +1,11 @@
-
 - type: entity
-  parent: BaseItem
   id: LockableEquipmentTest
-  name: Lockable Equipment Test
-  description: Lockable Equipment Test.
+  parent: BaseItem
   components:
+  - type: Item
+    size: Small
+
   - type: LockableEquipment
-    keyPrototype: KeyBasic
   - type: Sprite
     sprite: _Sunrise/Clothing/Locked/cage.rsi
     state: icon

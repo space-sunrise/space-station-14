@@ -1,14 +1,28 @@
 - type: entity
   id: LockableKitBox
-  parent: BaseItem
+  parent: BaseStorageItem
   name: lockable kit
   components:
-- type: ContainerContainer
-  containers:
-    kit: !type:Container
-      ents: []
-- type: LockableKit
-- type: StorageFill
-  contents:
-  - id: KeyBasic
-  - id: LockableEquipmentTest
+
+  - type: Sprite
+    sprite: Objects/Storage/boxes.rsi
+    state: box
+
+  - type: Item
+    size: Normal
+
+  - type: Storage
+    grid:
+    - 0,0,4,4
+    maxItemSize: Huge
+
+  - type: ContainerContainer
+    containers:
+      kit: !type:ContainerSlot
+
+  - type: LockableKit
+
+  - type: StorageFill
+    contents:
+    - id: KeyBasic
+    - id: LockableEquipmentTest
