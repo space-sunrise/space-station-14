@@ -39,13 +39,11 @@ public sealed class SiliconStandingSystem : EntitySystem
     private void SendToggleEvent()
     {
         var uid = _player.LocalEntity;
+
         if (uid == null)
             return;
 
-        if (player?.AttachedEntity is not { Valid: true } uid)
-            return;
-
-        if (!HasComp<BorgChassisComponent>(uid))
+        if (!HasComp<BorgChassisComponent>(uid.Value))
             return;
 
         RaiseNetworkEvent(new ToggleStandingEvent());

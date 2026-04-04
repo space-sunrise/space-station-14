@@ -1,26 +1,25 @@
 using Content.Shared._Sunrise.SiliconStanding;
 using Content.Shared.Movement.Events;
+using Content.Shared.Movement.Components;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.ActionBlocker;
 using Content.Server.DoAfter;
-using Robust.Shared.Audio.Systems;
+using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 
 namespace Content.Server._Sunrise.SiliconStanding;
 
 /// <summary>
 /// Handles borg resting/standing state transitions using DoAfter.
-/// Manages movement blocking, appearance updates, and input handling.
+/// Manages movement blocking and appearance updates.
 /// </summary>
 public sealed class SiliconStandingSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    private const string ToggleSound = "/Audio/Effects/Footsteps/borgwalk1.ogg";
-
+    [Dependency] private readonly AudioSystem _audio = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -45,7 +44,7 @@ public sealed class SiliconStandingSystem : EntitySystem
         if (HasComp<SiliconRestingDoAfterComponent>(uid))
             return;
             
-        var isResting  = HasComp<SiliconRestingComponent>(uid);
+        var isResting = HasComp<SiliconRestingComponent>(uid);
         var delay = isResting  ? 0.5f : 1.0f;
 
         EnsureComp<SiliconRestingDoAfterComponent>(uid);
@@ -65,9 +64,8 @@ public sealed class SiliconStandingSystem : EntitySystem
         };
 
         if (!_doAfter.TryStartDoAfter(doAfter))
-        {
             RemComp<SiliconRestingDoAfterComponent>(uid);
-        }
+
     }
 
     /// <summary>
@@ -108,7 +106,7 @@ public sealed class SiliconStandingSystem : EntitySystem
     /// Called when DoAfter completes.
     /// Applies the new state and plays the toggle sound.
     /// </summary>
-    private void OnDoAfter(EntityUid uid, SiliconRestingDoAfterComponent comp, SiliconRestingDoAfterEvent ev)
+    private void OnDoAfter(EntityUid uid, SiliconRestingDoAfterComponent doAfterComp, SiliconRestingDoAfterEvent ev)
     {
         RemComp<SiliconRestingDoAfterComponent>(uid);
 
@@ -117,6 +115,7 @@ public sealed class SiliconStandingSystem : EntitySystem
 
         Toggle(uid);
 
-        _audio.PlayPvs(ToggleSound, uid);
+        if (TryComp<FootstepModifierComponent>(uid, out var footsteps))
+            _audio.PlayPvs(footsteps.FootstepSoundCollection, uid);
     }
 }
