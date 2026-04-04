@@ -23,6 +23,7 @@ public sealed class LockableEquipmentSystem : EntitySystem
 
             SubscribeLocalEvent<LockableEquipmentComponent, UseKeyOnLockEvent>(OnUseKey);
             SubscribeLocalEvent<LockableEquipmentComponent, GotEquippedEvent>(OnEquipped);
+            SubscribeLocalEvent<LockableEquipmentComponent, BeingUnequippedAttemptEvent>(OnAttemptUnequip);
         }
     private void OnUseKey(Entity<LockableEquipmentComponent> ent, ref UseKeyOnLockEvent args)
         {
@@ -87,6 +88,18 @@ public sealed class LockableEquipmentSystem : EntitySystem
             Log.Info("TryPickupAnyHand");
 
             Dirty(ent);
+        }
+        private void OnAttemptUnequip(Entity<LockableEquipmentComponent> ent, ref BeingUnequippedAttemptEvent args)
+        {
+            if (!ent.Comp.Locked)
+                return;
+
+            args.Cancel();
+
+            if (args.UnEquipTarget != null)
+            {
+                _popup.PopupEntity("Снять невозможно — замок закрыт", args.UnEquipTarget, args.UnEquipTarget);
+            }
         }
     }
 }
