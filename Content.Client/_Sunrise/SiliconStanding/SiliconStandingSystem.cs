@@ -20,9 +20,6 @@ public sealed class SiliconStandingSystem : EntitySystem
     {
         base.Initialize();
 
-        var context = _input.Contexts.GetContext("common");
-        context.AddFunction(ContentKeyFunctions.ToggleBorgRest);
-
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.ToggleStanding,
                 new PointerInputCmdHandler((session, coords, uid) =>
