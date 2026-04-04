@@ -1,7 +1,7 @@
 - type: entity
-  name: PulseGuard XR
-  categories: [DoNotMap]
-  parent: [BaseHandheldComputer]
+  name: PulseGuard™ XR
+  categories: [ DoNotMap ]
+  parent: [ BaseHandheldComputer ]
   id: HandheldEmergencyCrewMonitor
   description: A hand-held crew monitor displaying the status of suit sensors of injured crew.
   components:
