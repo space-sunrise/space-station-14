@@ -1,15 +1,16 @@
-using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 
-namespace Content.Shared._Sunrise.LocableEquipment;
+namespace Content.Shared._Sunrise.LockableEquipment;
 
+[Serializable, NetSerializable]
 public sealed class LockableEquipmentComponentState : ComponentState
 {
-    public string Slot;
-    public bool Enabled;
+    public bool Locked { get; }
+    public string? LockId { get; }
 
-    public LockableEquipmentComponentState(string slot, bool enabled)
+    public LockableEquipmentComponentState(bool locked, string? lockId)
     {
-        Slot = slot;
-        Enabled = enabled;
+        Locked = locked;
+        LockId = lockId;
     }
 }
