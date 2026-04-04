@@ -141,7 +141,8 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
 
             if (SensorsTable.ChildCount > 0)
             {
-                var spacer = new Control() { SetHeight = 20 };
+                var spacer = new Control();
+                spacer.SetHeight = 20;
                 SensorsTable.AddChild(spacer);
             }
 
@@ -163,7 +164,8 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
 
         if (remainingSensors.Any())
         {
-            var spacer = new Control() { SetHeight = 20 };
+            var spacer = new Control();
+            spacer.SetHeight = 20;
             SensorsTable.AddChild(spacer);
 
             var deparmentLabel = new RichTextLabel()
@@ -212,6 +214,27 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
             _lastStateUpdateTime = TimeSpan.Zero;
             UpdateNoServerLabelText();
         }
+    }
+
+    private SpriteSpecifier.Rsi GetIconSpecifier(SuitSensorStatus sensor)
+    {
+        if (!sensor.IsAlive)
+            return new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), "dead");
+
+        var healthState = HealthStateHelper.GetHealthState(sensor.DamagePercentage, sensor.IsAlive);
+        string rsiState = healthState switch
+        {
+            HealthState.Healthy => "health0",
+            HealthState.Good => "health1",
+            HealthState.NotGreat => "health2",
+            HealthState.Bad => "health3",
+            HealthState.Terrible => "health4",
+            HealthState.Critical => "critical",
+            HealthState.Unknown => "alive",
+            _ => "alive"
+        };
+
+        return new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), rsiState);
     }
 
     private void PopulateDepartmentList(IEnumerable<SuitSensorStatus> departmentSensors)
@@ -265,30 +288,7 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
             };
             statusContainer.AddChild(suitCoordsIndicator);
 
-            // ---------- НОВАЯ ЛОГИКА ВЫБОРА ИКОНКИ ----------
-            var specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), "alive");
-
-            if (!sensor.IsAlive)
-            {
-                specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), "dead");
-            }
-            else
-            {
-                var healthState = HealthStateHelper.GetHealthState(sensor.DamagePercentage, sensor.IsAlive);
-                string rsiState = healthState switch
-                {
-                    HealthState.Healthy => "health0",
-                    HealthState.Good => "health1",
-                    HealthState.NotGreat => "health2",
-                    HealthState.Bad => "health3",
-                    HealthState.Terrible => "health4",
-                    HealthState.Critical => "critical",
-                    HealthState.Unknown => "alive",   // датчики выключены
-                    _ => "alive"
-                };
-                specifier = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), rsiState);
-            }
-            // --------------------------------------------
+            var specifier = GetIconSpecifier(sensor);
 
             var statusIcon = new AnimatedTextureRect
             {
