@@ -6,8 +6,6 @@
   - type: Sprite
     sprite: _Sunrise/Clothing/Locked/key.rsi
     state: icon
-
   - type: Item
     size: Small
-
   - type: Key

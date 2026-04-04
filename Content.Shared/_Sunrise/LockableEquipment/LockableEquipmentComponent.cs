@@ -13,9 +13,6 @@ public sealed partial class LockableEquipmentComponent : Component
     public string? LockId;
 
     [DataField]
-    public bool GenerateKeyOnEquip = true;
-
-    [DataField]
     public EntProtoId? KeyPrototype;
 
 }

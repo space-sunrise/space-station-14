@@ -1,15 +1,12 @@
 
 - type: entity
-  parent: ClothingPantsBase
+  parent: BaseItem
   id: LockableEquipmentTest
   name: Lockable Equipment Test
   description: Lockable Equipment Test.
   components:
   - type: LockableEquipment
-    generateKeyOnEquip: true
     keyPrototype: KeyBasic
   - type: Sprite
     sprite: _Sunrise/Clothing/Locked/cage.rsi
     state: icon
-  - type: Clothing
-    sprite: _Sunrise/Clothing/Locked/cage.rsi

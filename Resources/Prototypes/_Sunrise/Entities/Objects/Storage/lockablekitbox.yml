@@ -1,0 +1,14 @@
+- type: entity
+  id: LockableKitBox
+  parent: BaseItem
+  name: lockable kit
+  components:
+- type: ContainerContainer
+  containers:
+    kit: !type:Container
+      ents: []
+- type: LockableKit
+- type: StorageFill
+  contents:
+  - id: KeyBasic
+  - id: LockableEquipmentTest
