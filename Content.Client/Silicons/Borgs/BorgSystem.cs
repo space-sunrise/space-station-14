@@ -86,37 +86,17 @@ public sealed partial class BorgSystem : SharedBorgSystem
 
         if (!_appearance.TryGetData<bool>(ent.Owner, BorgVisuals.HasPlayer, out var hasPlayer, ent.Comp2))
             hasPlayer = false;
+
+        /// <summary>
+        /// Ensures the borg light is hidden while resting to match "_rest" body states. See -> SiliconRestVisualsSystem.OnAppearance for the visuals side of this.
+        /// </summary>
         // Sunrise edit start
-        var baseState = hasPlayer ? ent.Comp1.HasMindState : ent.Comp1.NoMindState;
-        var normalState = baseState.Replace("_e", "").Replace("_r", "");
-
         _appearance.TryGetData<bool>(ent.Owner, SiliconStandingVisuals.Resting, out var isResting, ent.Comp2);
-
-        var finalState = normalState;
-
-        if (isResting)
-        {
-            var restState = normalState + "_rest";
-
-            if (ent.Comp3.BaseRSI?.TryGetState(restState, out _) == true)
-                finalState = restState;
-
-            _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light, false);
-        }
-        else
-        {
-            _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light,
-                ent.Comp1.BrainEntity != null || hasPlayer);
-        }
-
-        if (_sprite.LayerMapTryGet((ent.Owner, ent.Comp3), BorgVisualLayers.Body, out var layer, false))
-        {
-            _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), layer, finalState);
-        }
-
-        _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Light,
-            hasPlayer ? ent.Comp1.HasMindState : ent.Comp1.NoMindState);
+        var lightVisible = !isResting && (ent.Comp1.BrainEntity != null || hasPlayer);
+        _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light, lightVisible);
         // Sunrise edit end
+    
+        _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Light, hasPlayer ? ent.Comp1.HasMindState : ent.Comp1.NoMindState);
     }
 
     private void OnMMIAppearanceChanged(EntityUid uid, MMIComponent component, ref AppearanceChangeEvent args)
