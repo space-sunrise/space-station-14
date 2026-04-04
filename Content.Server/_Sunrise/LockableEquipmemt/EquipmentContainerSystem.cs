@@ -5,7 +5,7 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.GameStates;
 using Robust.Server.Containers;
 
-namespace Content.Server._Sunrise.LockableEquipment.EquipmentContainer
+namespace Content.Server._Sunrise.LockableEquipment
 {
     public sealed class EquipmentContainerSystem : EntitySystem
     {

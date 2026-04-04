@@ -1,8 +1,9 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Server.Containers;
+using Content.Shared._Sunrise.LockableEquipment;
 
-namespace Content.Server._Sunrise.LockableEquipment.LockableKit
+namespace Content.Server._Sunrise.LockableEquipment
 {
     public sealed class LockableKitSystem : EntitySystem
     {
@@ -43,13 +44,16 @@ namespace Content.Server._Sunrise.LockableEquipment.LockableKit
             var id = Guid.NewGuid().ToString();
 
             if (TryComp<KeyComponent>(key, out var keyComp))
+            {
                 keyComp.LockId = id;
+                Dirty(key, keyComp);
+            }
 
             if (TryComp<LockableEquipmentComponent>(device, out var lockComp))
+            {
                 lockComp.LockId = id;
-
-            Dirty(key);
-            Dirty(device);
+                Dirty(device, lockComp);
+            }
         }
     }
 }

@@ -1,4 +1,3 @@
-using Content.Server._Sunrise.LockableEquipment;
 using Content.Shared._Sunrise.LockableEquipment;
 using System.Linq;
 using Robust.Shared.Prototypes;
