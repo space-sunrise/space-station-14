@@ -10,19 +10,10 @@ public sealed class LockableEquipmentSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<LockableEquipmentComponent, ComponentGetState>(OnGetState);
-        SubscribeLocalEvent<LockableEquipmentComponent, ComponentHandleState>(OnHandleState);
     }
 
     private void OnGetState(Entity<LockableEquipmentComponent> ent, ref ComponentGetState args)
     {
         args.State = new LockableEquipmentComponentState(ent.Comp.Locked, ent.Comp.LockId);
-    }
-
-    private void OnHandleState(Entity<LockableEquipmentComponent> ent, ref ComponentHandleState args)
-    {
-        if (args.Current is not LockableEquipmentComponentState state)
-            return;        
-        ent.Comp.Locked = state.Locked;
-        ent.Comp.LockId = state.LockId;
     }
 }

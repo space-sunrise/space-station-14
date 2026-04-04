@@ -19,6 +19,8 @@ public sealed class LockableEquipmentSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+
     public override void Initialize()
         {
             base.Initialize();
@@ -69,7 +71,9 @@ public sealed class LockableEquipmentSystem : EntitySystem
             if (!ent.Comp.Locked)
                 return false;
 
-            if (args.User == ent.Owner)
+            var parent = Transform(ent).ParentUid;
+
+            if (_inventory.TryGetContainingSlot(ent.Owner, out var slot) && slot.Owner == args.User)
             {
                 _popup.PopupEntity("Вы не можете сломать замок на себе", args.User, args.User);
                 return true;
