@@ -24,11 +24,18 @@ public sealed class SiliconStandingSystem : EntitySystem
         context.AddFunction(ContentKeyFunctions.ToggleBorgRest);
 
         CommandBinds.Builder
-            .Bind(ContentKeyFunctions.ToggleBorgRest,
+            .Bind(ContentKeyFunctions.ToggleStanding,
                 new PointerInputCmdHandler((session, coords, uid) =>
                 {
-                    SendToggleEvent();
-                    return true;
+                    var ent = _player.LocalEntity;
+
+                    if (ent != null && HasComp<BorgChassisComponent>(ent.Value))
+                    {
+                        SendToggleEvent();
+                        return true;
+                    }
+
+                    return false;
                 }))
             .Register<SiliconStandingSystem>();
     }
@@ -52,9 +59,6 @@ public sealed class SiliconStandingSystem : EntitySystem
     public override void Shutdown()
     {
         base.Shutdown();
-
-        var context = _input.Contexts.GetContext("common");
-        context.RemoveFunction(ContentKeyFunctions.ToggleBorgRest);
 
         CommandBinds.Unregister<SiliconStandingSystem>();
     }

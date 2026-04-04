@@ -660,9 +660,6 @@ binds:
 - function: ToggleStanding
   type: State
   key: R
-- function: ToggleBorgRest
-  key: R
-  mod1: Shift
 - function: Jump
   type: State
   key: Space
