@@ -8,7 +8,14 @@
   },
   "states": [
     {
+      "name": "icon-closed"
+    },
+    {
       "name": "icon"
+    },
+    {
+      "name": "equipped-PANTS",
+      "directions": 4
     },
     {
       "name": "inhand-left",

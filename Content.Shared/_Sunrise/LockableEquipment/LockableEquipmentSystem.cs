@@ -11,7 +11,6 @@ public sealed class LockableEquipmentSystem : EntitySystem
     {
         SubscribeLocalEvent<LockableEquipmentComponent, ComponentGetState>(OnGetState);
         SubscribeLocalEvent<LockableEquipmentComponent, ComponentHandleState>(OnHandleState);
-        SubscribeLocalEvent<LockableEquipmentComponent, InteractUsingEvent>(OnInteractUsing);
     }
 
     private void OnGetState(Entity<LockableEquipmentComponent> ent, ref ComponentGetState args)
@@ -25,10 +24,5 @@ public sealed class LockableEquipmentSystem : EntitySystem
             return;        
         ent.Comp.Locked = state.Locked;
         ent.Comp.LockId = state.LockId;
-    }
-
-    private void OnInteractUsing(Entity<LockableEquipmentComponent> ent, ref InteractUsingEvent args)
-    {
-        RaiseLocalEvent(ent.Owner, new UseKeyOnLockEvent(args.User, args.Used));
     }
 }
