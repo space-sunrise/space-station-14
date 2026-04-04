@@ -287,6 +287,11 @@
       - type: AutoImplant
         implants:
         - DeathAcidifierImplant
+        # Sunrise-Start
+        - StimpackImplant
+        - ReviverImplant
+        - NutrimentImplant
+        # Sunrise-End
       - type: RandomMetadata
         nameSegments:
         - NamesNinjaTitle

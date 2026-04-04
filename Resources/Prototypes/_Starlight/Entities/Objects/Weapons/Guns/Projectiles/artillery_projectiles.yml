@@ -609,6 +609,15 @@
     lifetime: 30
 
 - type: entity
+  id: BulletRocket120mmMetlaLongFlight
+  name: 120mm long-flight rocket
+  parent: BulletRocket120mmMetla
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 60
+
+- type: entity
   id: BulletGrenade120mmBlastSelfExplode
   name: 120mm blast grenade
   suffix: self-explode, NOW
