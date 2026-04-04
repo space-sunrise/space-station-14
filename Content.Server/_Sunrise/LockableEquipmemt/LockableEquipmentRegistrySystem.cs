@@ -1,5 +1,6 @@
 using Content.Server._Sunrise.LockableEquipment;
 using Content.Shared._Sunrise.LockableEquipment;
+using System.Linq;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;

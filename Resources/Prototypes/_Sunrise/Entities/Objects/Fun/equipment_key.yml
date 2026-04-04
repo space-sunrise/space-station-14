@@ -1,0 +1,10 @@
+- type: entity
+  id: KeyBasic
+  name: Key
+  components:
+  - type: Sprite
+    sprite: Sunrise/Clothing/Locked/key.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: Key

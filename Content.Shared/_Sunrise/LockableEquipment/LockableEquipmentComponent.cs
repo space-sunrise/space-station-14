@@ -1,9 +1,10 @@
-using Robust.Shared.GameObjects;
+using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.LockableEquipment;
 
-[RegisterComponent]
-public sealed class LockableEquipmentComponent : Component
+[RegisterComponent, NetworkedComponent]
+public sealed partial class LockableEquipmentComponent : Component
 {
     [DataField]
     public bool Locked = false;

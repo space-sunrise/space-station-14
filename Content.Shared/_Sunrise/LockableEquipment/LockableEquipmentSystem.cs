@@ -1,12 +1,12 @@
 using Content.Shared.Interaction;
-using Robust.Client.GameObjects;
 using Robust.Shared.GameStates;
+using Robust.Shared.GameObjects;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.LockableEquipment;
 
 public sealed class LockableEquipmentSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<LockableEquipmentComponent, ComponentGetState>(OnGetState);
@@ -21,7 +21,8 @@ public sealed class LockableEquipmentSystem : EntitySystem
 
     private void OnHandleState(Entity<LockableEquipmentComponent> ent, ref ComponentHandleState args)
     {
-        var state = (LockableEquipmentComponentState)args.Current;
+        if (args.Current is not LockableEquipmentComponentState state)
+            return;        
         ent.Comp.Locked = state.Locked;
         ent.Comp.LockId = state.LockId;
     }
