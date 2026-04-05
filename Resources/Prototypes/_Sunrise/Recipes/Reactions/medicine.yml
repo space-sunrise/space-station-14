@@ -74,9 +74,9 @@
       amount: 1
     Epinephrine:
       amount: 1
-  products:
     Dylovene:
       amount: 1
+  products:
     Antidon: 3
 
 - type: reaction
