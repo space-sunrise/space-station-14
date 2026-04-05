@@ -651,7 +651,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-      - PositronicBrain
+      - Boris # Sunrise-Edit
       borg_module:
       - BorgModuleTool
       - BorgModuleFireExtinguisher
@@ -689,7 +689,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-        - PositronicBrain
+        - Boris # Sunrise-Edit
       borg_module:
         - BorgModuleTool
         - BorgModuleFireExtinguisher
@@ -724,7 +724,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-      - PositronicBrain
+      - Boris # Sunrise-Edit
       borg_module:
       - BorgModuleTool
       - BorgModuleFireExtinguisher
@@ -761,7 +761,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-      - PositronicBrain
+      - Boris # Sunrise-Edit
       borg_module:
       - BorgModuleTool
       - BorgModuleFireExtinguisher
@@ -799,7 +799,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-      - PositronicBrain
+      - Boris # Sunrise-Edit
       borg_module:
       - BorgModuleTool #No fire extinguisher, traversal is better
       - BorgModuleMining

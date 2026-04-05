@@ -118,6 +118,12 @@ public partial struct AntagSelectionDefinition()
 
     [DataField]
     public bool IgnoreCanBeAntag;
+
+    /// <summary>
+    /// If true, antag preference checkboxes are ignored for this definition.
+    /// </summary>
+    [DataField]
+    public bool IgnorePrefCheck;
     // Sunrise-End
 
     /// <summary>

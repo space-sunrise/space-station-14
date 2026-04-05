@@ -327,7 +327,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-      - PositronicBrain
+      - Sofia # Sunrise-Edit
       borg_module:
       - BorgModuleSyndicateGeneric
   - type: ItemSlots
@@ -359,7 +359,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-      - PositronicBrain
+      - Sofia # Sunrise-Edit
       borg_module:
       - BorgModuleSyndicateGeneric
       - BorgScoutModuleSyndicateTool
@@ -392,7 +392,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-      - PositronicBrain
+      - Sofia # Sunrise-Edit
       borg_module:
       - BorgModuleSyndicateGeneric
       - BorgModuleSyndicateMedical
