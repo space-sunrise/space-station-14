@@ -133,24 +133,17 @@
         amount: 3.0
       - !type:Vomit
         probability: 0.02
+      # НОВЫЕ ВЕРОЯТНОСТИ ЭМОЦИЙ:
       - !type:Emote
         emote: Yawn
-        probability: 0.03
+        probability: 0.05
         showInChat: true
       - !type:Emote
         emote: Scream
-        probability: 0.20
+        probability: 0.25
         showInChat: true
       - !type:Emote
         emote: Laugh
-        probability: 0.10
-        showInChat: true
-      - !type:Emote
-        emote: Cry
-        probability: 0.15
-        showInChat: true
-      - !type:Emote
-        emote: Giggle
         probability: 0.15
         showInChat: true
       - !type:Emote
@@ -159,11 +152,11 @@
         showInChat: true
       - !type:Emote
         emote: Whine
-        probability: 0.02
+        probability: 0.03
         showInChat: true
       - !type:Emote
         emote: Bark
-        probability: 0.09
+        probability: 0.12
         showInChat: true
       - !type:Emote
         emote: Sigh
@@ -179,7 +172,7 @@
         showInChat: true
       - !type:Emote
         emote: Salute
-        probability: 0.20
+        probability: 0.01
         showInChat: true
       - !type:Emote
         emote: Cough
@@ -191,7 +184,7 @@
         showInChat: true
       - !type:Emote
         emote: Gasp
-        probability: 0.01
+        probability: 0.03
         showInChat: true
       - !type:PopupMessage
         type: Local
