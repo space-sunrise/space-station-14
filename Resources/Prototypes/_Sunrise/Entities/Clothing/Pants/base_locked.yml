@@ -1,11 +1,15 @@
 - type: entity
   id: LockableEquipmentTest
+  name: lockable device
   parent: BaseItem
   components:
   - type: Item
     size: Small
 
-  - type: LockableEquipment
   - type: Sprite
     sprite: _Sunrise/Clothing/Locked/cage.rsi
     state: icon
+
+  - type: LockableEquipment
+    overlayLayer: underpants
+    overlaySprite: _Sunrise/Clothing/Locked/cage.rsi

@@ -8,6 +8,6 @@ namespace Content.Shared._Sunrise.LockableEquipment
     public sealed partial class EquipmentContainerComponent : Component
     {
         [DataField]
-        public string ContainerId = "belt";
+        public string ContainerId = "locked-equipment";
     }
 }

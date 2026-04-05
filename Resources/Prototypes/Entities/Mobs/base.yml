@@ -40,6 +40,7 @@
     active: False
   - type: StunVisuals
   # Sunrise-Start
+  - type: EquipmentContainer
   - type: TTS
   - type: DamageOverlay
   - type: EmoteAnimation
