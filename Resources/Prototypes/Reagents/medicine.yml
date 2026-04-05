@@ -200,13 +200,14 @@
   metabolisms:
     Medicine:
       effects:
-        - !type:EvenHealthChange
+        - !type:HealthChange
           conditions:
           - !type:TemperatureCondition
             max: 213.0
           damage:
-            Asphyxiation: -2 # sunrise-edit
-            Bloodloss: -2 # sunrise-edit
+            types:
+              Asphyxiation: -2 #sunrise-edit
+              Bloodloss: -2 #sunrise-edit
 
 - type: reagent
   id: Doxarubixadone
