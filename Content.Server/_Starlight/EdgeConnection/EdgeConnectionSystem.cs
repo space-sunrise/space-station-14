@@ -13,6 +13,10 @@ public sealed class EdgeConnectionSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
 
+    private const float MinimumMovementDistance = 0.005f;
+
+    private EntityQuery<EdgeConnectionComponent> _edgeQuery;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -20,8 +24,9 @@ public sealed class EdgeConnectionSystem : EntitySystem
         SubscribeLocalEvent<EdgeConnectionComponent, AnchorStateChangedEvent>(OnAnchorChanged);
         SubscribeLocalEvent<EdgeConnectionComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<EdgeConnectionComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<EdgeConnectionComponent, EntityTerminatingEvent>(OnTerminating);
         SubscribeLocalEvent<EdgeConnectionComponent, MoveEvent>(OnMove);
+
+        _edgeQuery = GetEntityQuery<EdgeConnectionComponent>();
     }
 
     private void OnInit(Entity<EdgeConnectionComponent> ent, ref ComponentInit args)
@@ -38,19 +43,19 @@ public sealed class EdgeConnectionSystem : EntitySystem
 
     private void OnShutdown(Entity<EdgeConnectionComponent> ent, ref ComponentShutdown args)
     {
+        _appearance.SetData(ent, EdgeConnectionVisuals.ConnectionMask, EdgeConnectionFlags.None);
         // Update neighbors when this entity is removed
-        UpdateNeighbors(ent);
-    }
-
-    private void OnTerminating(Entity<EdgeConnectionComponent> ent, ref EntityTerminatingEvent args)
-    {
-        // Update neighbors when entity is completely destroyed or deleted
         UpdateNeighbors(ent);
     }
 
     private void OnMove(Entity<EdgeConnectionComponent> ent, ref MoveEvent args)
     {
-        if (args.NewRotation == args.OldRotation)
+        var rotationChanged = !args.OldRotation.EqualsApprox(args.NewRotation);
+        var positionChanged = args.NewPosition.EntityId != args.OldPosition.EntityId ||
+                              (args.NewPosition.Position - args.OldPosition.Position).LengthSquared() >=
+                              MinimumMovementDistance * MinimumMovementDistance;
+
+        if (!rotationChanged && !positionChanged)
             return;
 
         UpdateConnections(ent);
@@ -70,81 +75,122 @@ public sealed class EdgeConnectionSystem : EntitySystem
         var mask = EdgeConnectionFlags.None;
         var tile = _map.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
         var allowed = ent.Comp.AllowedDirections;
+        var rotation = xform.LocalRotation;
 
-        TrySetConnectionLocal(ent, ref mask, allowed, EdgeConnectionFlags.East, tile, xform.GridUid.Value, grid, xform.LocalRotation);
-        TrySetConnectionLocal(ent, ref mask, allowed, EdgeConnectionFlags.West, tile, xform.GridUid.Value, grid, xform.LocalRotation);
-        TrySetConnectionLocal(ent, ref mask, allowed, EdgeConnectionFlags.North, tile, xform.GridUid.Value, grid, xform.LocalRotation);
-        TrySetConnectionLocal(ent, ref mask, allowed, EdgeConnectionFlags.South, tile, xform.GridUid.Value, grid, xform.LocalRotation);
+        var worldAllowed = RotateDirections(allowed, rotation);
 
-        _appearance.SetData(ent, EdgeConnectionVisuals.ConnectionMask, mask);
-    }
-
-    private void TrySetConnectionLocal(
-        Entity<EdgeConnectionComponent> ent,
-        ref EdgeConnectionFlags mask,
-        EdgeConnectionFlags allowedLocal,
-        EdgeConnectionFlags localDirection,
-        Vector2i tile,
-        EntityUid gridUid,
-        MapGridComponent grid,
-        Angle localRotation)
-    {
-        if ((allowedLocal & localDirection) == 0)
-            return;
-
-        var worldDirection = LocalToWorldDirection(localDirection, localRotation);
-        var offset = DirectionToOffset(worldDirection);
-        var neighborTile = tile + offset;
-
-        if (!HasMatchingNeighbor(ent, gridUid, grid, neighborTile, ent.Comp.ConnectionKey))
-            return;
-
-        mask |= localDirection;
-    }
-
-    private static Direction LocalToWorldDirection(EdgeConnectionFlags localDirection, Angle localRotation)
-    {
-        var localDir = localDirection switch
+        if ((worldAllowed & EdgeConnectionFlags.East) != 0)
         {
-            EdgeConnectionFlags.East => Direction.East,
-            EdgeConnectionFlags.West => Direction.West,
-            EdgeConnectionFlags.North => Direction.North,
-            EdgeConnectionFlags.South => Direction.South,
-            _ => Direction.Invalid,
-        };
+            if (HasMatchingNeighbor(ent, xform.GridUid.Value, grid, tile + new Vector2i(1, 0), ent.Comp.ConnectionKey, EdgeConnectionFlags.West))
+                mask |= EdgeConnectionFlags.East;
+        }
 
-        if (localDir == Direction.Invalid)
-            return Direction.Invalid;
-
-        return localRotation.RotateDir(localDir);
-    }
-
-    private static Vector2i DirectionToOffset(Direction direction)
-    {
-        return direction switch
+        if ((worldAllowed & EdgeConnectionFlags.West) != 0)
         {
-            Direction.East => new Vector2i(1, 0),
-            Direction.West => new Vector2i(-1, 0),
-            Direction.North => new Vector2i(0, 1),
-            Direction.South => new Vector2i(0, -1),
-            _ => Vector2i.Zero
-        };
+            if (HasMatchingNeighbor(ent, xform.GridUid.Value, grid, tile + new Vector2i(-1, 0), ent.Comp.ConnectionKey, EdgeConnectionFlags.East))
+                mask |= EdgeConnectionFlags.West;
+        }
+
+        if ((worldAllowed & EdgeConnectionFlags.North) != 0)
+        {
+            if (HasMatchingNeighbor(ent, xform.GridUid.Value, grid, tile + new Vector2i(0, 1), ent.Comp.ConnectionKey, EdgeConnectionFlags.South))
+                mask |= EdgeConnectionFlags.North;
+        }
+
+        if ((worldAllowed & EdgeConnectionFlags.South) != 0)
+        {
+            if (HasMatchingNeighbor(ent, xform.GridUid.Value, grid, tile + new Vector2i(0, -1), ent.Comp.ConnectionKey, EdgeConnectionFlags.North))
+                mask |= EdgeConnectionFlags.South;
+        }
+
+        var localMask = RotateDirectionsInverse(mask, rotation);
+
+        _appearance.SetData(ent, EdgeConnectionVisuals.ConnectionMask, localMask);
     }
 
-    private bool HasMatchingNeighbor(EntityUid entity, EntityUid gridUid, MapGridComponent grid, Vector2i tile, string key)
+    private EdgeConnectionFlags RotateDirections(EdgeConnectionFlags flags, Angle rotation)
+    {
+        return RotateDirectionsImpl(flags, rotation, clockwise: true);
+    }
+
+    private EdgeConnectionFlags RotateDirectionsInverse(EdgeConnectionFlags flags, Angle rotation)
+    {
+        return RotateDirectionsImpl(flags, rotation, clockwise: false);
+    }
+
+    private EdgeConnectionFlags RotateDirectionsImpl(EdgeConnectionFlags flags, Angle rotation, bool clockwise)
+    {
+        var degrees = (int)Math.Round(rotation.Degrees) % 360;
+        if (degrees < 0)
+            degrees += 360;
+
+        var quarterTurns = (int)Math.Round(degrees / 90.0) % 4;
+
+        if (!clockwise)
+            quarterTurns = (4 - quarterTurns) % 4;
+
+        if (quarterTurns == 0)
+            return flags;
+
+        for (var i = 0; i < quarterTurns; i++)
+        {
+            var rotated = EdgeConnectionFlags.None;
+
+            if (clockwise)
+            {
+                if ((flags & EdgeConnectionFlags.North) != 0)
+                    rotated |= EdgeConnectionFlags.East;
+                if ((flags & EdgeConnectionFlags.East) != 0)
+                    rotated |= EdgeConnectionFlags.South;
+                if ((flags & EdgeConnectionFlags.South) != 0)
+                    rotated |= EdgeConnectionFlags.West;
+                if ((flags & EdgeConnectionFlags.West) != 0)
+                    rotated |= EdgeConnectionFlags.North;
+            }
+            else
+            {
+                if ((flags & EdgeConnectionFlags.North) != 0)
+                    rotated |= EdgeConnectionFlags.West;
+                if ((flags & EdgeConnectionFlags.West) != 0)
+                    rotated |= EdgeConnectionFlags.South;
+                if ((flags & EdgeConnectionFlags.South) != 0)
+                    rotated |= EdgeConnectionFlags.East;
+                if ((flags & EdgeConnectionFlags.East) != 0)
+                    rotated |= EdgeConnectionFlags.North;
+            }
+
+            flags = rotated;
+        }
+
+        return flags;
+    }
+
+    private bool HasMatchingNeighbor(EntityUid entity, EntityUid gridUid, MapGridComponent grid, Vector2i tile, string key, EdgeConnectionFlags requiredDirection)
     {
         var anchored = _map.GetAnchoredEntitiesEnumerator(gridUid, grid, tile);
+        var entityXform = Transform(entity);
 
         while (anchored.MoveNext(out var other))
         {
             if (other == entity)
                 continue;
 
-            if (TryComp<EdgeConnectionComponent>(other, out var comp) &&
-                comp.ConnectionKey == key)
-            {
+            if (!_edgeQuery.TryComp(other, out var comp) || comp.ConnectionKey != key)
+                continue;
+
+            var otherXform = Transform(other.Value);
+            if (!otherXform.Anchored)
+                continue;
+
+            var otherWorldAllowed = RotateDirections(comp.AllowedDirections, otherXform.LocalRotation);
+            if ((otherWorldAllowed & requiredDirection) == 0)
+                continue;
+
+            var entityDegrees = ((int)Math.Round(entityXform.LocalRotation.Degrees) % 360 + 360) % 360;
+            var otherDegrees = ((int)Math.Round(otherXform.LocalRotation.Degrees) % 360 + 360) % 360;
+
+            if (entityDegrees == otherDegrees)
                 return true;
-            }
         }
 
         return false;
@@ -172,10 +218,10 @@ public sealed class EdgeConnectionSystem : EntitySystem
 
         while (anchored.MoveNext(out var other))
         {
-            if (TryComp<EdgeConnectionComponent>(other, out var comp))
-            {
-                UpdateConnections((other.Value, comp));
-            }
+            if (!_edgeQuery.TryComp(other, out var comp))
+                continue;
+
+            UpdateConnections((other.Value, comp));
         }
     }
 }

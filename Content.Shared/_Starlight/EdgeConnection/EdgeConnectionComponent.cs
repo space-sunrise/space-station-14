@@ -19,8 +19,9 @@ public sealed partial class EdgeConnectionComponent : Component
 
     /// <summary>
     /// Which directions are allowed to form connections.
-    /// Default is East|West for horizontal-only connections.
+    /// Must be set explicitly - defaults to None (no connections).
+    /// Entities will only connect if they have matching rotations.
     /// </summary>
     [DataField]
-    public EdgeConnectionFlags AllowedDirections = EdgeConnectionFlags.East | EdgeConnectionFlags.West;
+    public EdgeConnectionFlags AllowedDirections = EdgeConnectionFlags.None;
 }

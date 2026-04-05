@@ -286,8 +286,10 @@
         - SpiderClan
       - type: AutoImplant
         implants:
-        - DeathAcidifierImplant
         # Sunrise-Start
+        #- DeathAcidifierImplant
+        - RedspaceImplant
+        - MicroBombImplant
         - StimpackImplant
         - ReviverImplant
         - NutrimentImplant
