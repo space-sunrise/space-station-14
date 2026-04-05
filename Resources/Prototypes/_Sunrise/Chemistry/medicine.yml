@@ -111,8 +111,8 @@
       - !type:HealthChange
         damage:
           types:
-            Bloodloss: -5.25
-            Mangleness: 0.25
+            Bloodloss: -3
+            Mangleness: 0.5
       - !type:ModifyBleed
         amount: -1.5
       - !type:ModifyBloodLevel
@@ -123,10 +123,10 @@
         conditions:
         - !type:ReagentCondition
           reagent: Artiplasm
-          min: 11
+          min: 10.1
         damage:
           types:
-            Slash: 3.5
+            Slash: 4
 
 - type: reagent
   id: Genocillin
@@ -142,8 +142,8 @@
       - !type:HealthChange
         damage:
           types:
-            Cellular: -2
-            Mangleness: -2
+            Cellular: -1.5
+            Mangleness: -1.5
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -151,7 +151,7 @@
           min: 15.1
         damage:
           types:
-            Cellular: 4
+            Cellular: 3
             Poison: 2
 
 - type: reagent
@@ -168,7 +168,7 @@
       - !type:HealthChange
         damage:
           types:
-            Asphyxiation: -5.25
+            Asphyxiation: -3.5
             Mangleness: 0.5
       - !type:ModifyBleed
         amount: -1.5
@@ -192,7 +192,7 @@
           min: 15
         damage:
           types:
-            Asphyxiation: 2
+            Asphyxiation: 2.5
             Bloodloss: 2.5
 
 - type: reagent
@@ -220,7 +220,7 @@
           min: 25
         damage:
           groups:
-            Brute: -9
+            Brute: -6
       - !type:HealthChange
         conditions:
         - !type:TotalDamageCondition
@@ -251,20 +251,20 @@
           min: 25
         damage:
           groups:
-            Burn: 8
+            Burn: 6
       - !type:HealthChange
         conditions:
         - !type:TotalDamageCondition
           min: 25
         damage:
           groups:
-            Burn: -8
+            Burn: -6
       - !type:HealthChange
         conditions:
         - !type:TotalDamageCondition
           max: 25
         damage:
           groups:
-            Burn: -4
+            Burn: -3
 
 
