@@ -205,7 +205,7 @@
           - !type:TemperatureCondition
             max: 213.0
           damage:
-            Airloss: -2 # sunrise-edit
+            Asphyxiation: -2 # sunrise-edit
             Bloodloss: -2 # sunrise-edit
 
 - type: reagent
