@@ -14,7 +14,7 @@ public sealed class LockableEquipmentRegistrySystem : EntitySystem
     private readonly Dictionary<EntityUid, HashSet<EntityUid>> _registeredKeys = new();
 
     public override void Initialize()
-    {
+    {   
         base.Initialize();
         SubscribeLocalEvent<LockableEquipmentComponent, ComponentInit>(OnInit);
     }

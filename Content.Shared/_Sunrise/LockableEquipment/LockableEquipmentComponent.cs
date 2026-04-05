@@ -17,10 +17,7 @@ public sealed partial class LockableEquipmentComponent : Component
     public EntProtoId? KeyPrototype;
 
     [DataField]
-    public EquipmentVisualLayer Layer = EquipmentVisualLayer.UnderPants;
-    
-    [DataField]
-    public string OverlayLayer = "underpants";
+    public string OverlayLayer = "belt";
 
     [DataField]
     public string OverlaySprite = "_Sunrise/Clothing/Locked/cage.rsi";
@@ -33,16 +30,6 @@ public sealed partial class LockableEquipmentComponent : Component
 
     [DataField]
     public string RequiredToolTag = "Wirecutter";
-
-    [DataField]
-    public string? CustomName;
-    public enum EquipmentVisualLayer
-    {
-        Underwear,
-        UnderPants,
-        OverPants,
-        Belt
-    }
     public enum BreakMode
     {
         None,               // Can't be broken, prayed and etc.

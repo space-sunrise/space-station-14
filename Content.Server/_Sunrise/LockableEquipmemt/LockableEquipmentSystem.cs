@@ -83,14 +83,15 @@ namespace Content.Server._Sunrise.LockableEquipment
                 key.LockId = id;
                 lockComp.LockId = id;
 
-                _popup.PopupEntity($"{keyName} привязан к {name}'", user, user);
+                _popup.PopupEntity($"{keyName} привязан к {name}", user, user);
 
                 Dirty(keyUid, key);
                 Dirty(device, lockComp);
             }
+
             if (key.LockId != lockComp.LockId)
             {
-                _popup.PopupEntity($"{keyName} не подходит", user, user);
+                _popup.PopupEntity($"{keyName} не подходит к {name}", user, user);
                 return true;
             }
 
@@ -144,9 +145,7 @@ namespace Content.Server._Sunrise.LockableEquipment
 
                 case LockableEquipmentComponent.BreakMode.Destroyable:
                     _popup.PopupEntity($"{name} уничтожен", user, user);
-                    _containerSystem.TryRemoveEquipment(user, user);
                     QueueDel(device);
-
                     break;
             }
 
@@ -209,14 +208,15 @@ namespace Content.Server._Sunrise.LockableEquipment
         private bool IsInUser(EntityUid device, EntityUid user)
         {
             var parent = Transform(device).ParentUid;
-            
+
             while (parent != EntityUid.Invalid)
             {
                 if (parent == user)
                     return true;
+
                 parent = Transform(parent).ParentUid;
             }
-            
+
             return false;
         }
     }

@@ -14,6 +14,7 @@ namespace Content.Server._Sunrise.LockableEquipment
     {
         [Dependency] private readonly ContainerSystem _container = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
+        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
         public override void Initialize()
         {
@@ -32,30 +33,39 @@ namespace Content.Server._Sunrise.LockableEquipment
 
             TryComp(args.User, out HandsComponent? hands);
 
-            args.Target = equipment.Value;
-            RaiseLocalEvent(equipment.Value, ref args);
+            var ev = new GetVerbsEvent<InteractionVerb>(
+                args.User,
+                equipment.Value,
+                args.Using,
+                hands,
+                args.CanInteract,
+                args.CanInteract,
+                args.CanAccess,
+                new List<VerbCategory>()
+            );
+
+            RaiseLocalEvent(equipment.Value, ev);
+            args.Verbs.UnionWith(ev.Verbs);
         }
 
         private void OnInteractUsing(Entity<EquipmentContainerComponent> ent, ref InteractUsingEvent args)
         {
-            // 👉 надеваем устройство
-            if (args.Used != EntityUid.Invalid && HasComp<LockableEquipmentComponent>(args.Used))
-            {
-                if (TryInsertEquipment(ent, args.User, args.Used))
-                    args.Handled = true;
-
+            if (!HasComp<LockableEquipmentComponent>(args.Used))
                 return;
-            }
+
+            if (TryInsert(ent, args.User, args.Used))
+                args.Handled = true;
         }
 
-        private bool TryInsertEquipment(Entity<EquipmentContainerComponent> ent, EntityUid user, EntityUid used)
+        private bool TryInsert(Entity<EquipmentContainerComponent> ent, EntityUid user, EntityUid used)
         {
-            if (!HasComp<LockableEquipmentComponent>(used))
+            if (!TryComp(used, out LockableEquipmentComponent? device))
                 return false;
 
             if (GetEquipment(ent.Owner, ent.Comp) != null)
             {
-                _popup.PopupEntity("Уже есть устройство", user, user);
+                var name = MetaData(used).EntityName;
+                _popup.PopupClient($"Уже есть {name}", user, user);
                 return true;
             }
 
@@ -67,57 +77,48 @@ namespace Content.Server._Sunrise.LockableEquipment
             if (!_container.Insert(used, container))
                 return false;
 
-            _popup.PopupEntity("Устройство надето", user, user);
+            ApplyAppearance(ent.Owner, device);
 
-            ApplyOverlay(ent.Owner, used);
+            var deviceName = MetaData(used).EntityName;
+            _popup.PopupClient($"{deviceName} надето", user, user);
 
             return true;
         }
 
-        public void TryRemoveEquipment(EntityUid target, EntityUid user)
+        public void TryRemove(EntityUid target, EntityUid user)
         {
             if (!TryComp(target, out EquipmentContainerComponent? comp))
                 return;
 
-            var container = _container.EnsureContainer<Container>(
-                target,
-                comp.ContainerId
-            );
-
+            var container = _container.EnsureContainer<Container>(target, comp.ContainerId);
             var device = FindDevice(container);
+
             if (device == null)
                 return;
 
             _container.Remove(device.Value, container);
 
-            RemoveOverlay(target);
+            RemoveAppearance(target);
 
-            _popup.PopupEntity("Устройство снято", user, user);
+            var name = MetaData(device.Value).EntityName;
+            _popup.PopupClient($"{name} снято", user, user);
         }
 
-        // 🔧 overlay добавить
-        private void ApplyOverlay(EntityUid target, EntityUid device)
+        private void ApplyAppearance(EntityUid target, LockableEquipmentComponent device)
         {
-            if (!TryComp(device, out LockableEquipmentComponent? comp))
-                return;
+            var appearance = EnsureComp<AppearanceComponent>(target);
 
-            var overlay = EnsureComp<EquipmentOverlayComponent>(target);
-
-            overlay.Layer = comp.OverlayLayer;
-            overlay.SpritePath = comp.OverlaySprite;
-            overlay.State = "equipped";
-            overlay.Visible = true;
-
-            Dirty(target, overlay);
+            _appearance.SetData(target, EquipmentVisuals.Visible, true, appearance);
+            _appearance.SetData(target, EquipmentVisuals.Layer, device.OverlayLayer, appearance);
         }
 
-        private void RemoveOverlay(EntityUid target)
+        private void RemoveAppearance(EntityUid target)
         {
-            if (!TryComp(target, out EquipmentOverlayComponent? overlay))
+            if (!TryComp(target, out AppearanceComponent? appearance))
                 return;
 
-            overlay.Visible = false;
-            Dirty(target, overlay);
+            _appearance.SetData(target, EquipmentVisuals.Visible, false, appearance);
+            _appearance.RemoveData(target, EquipmentVisuals.Layer, appearance);
         }
 
         private EntityUid? GetEquipment(EntityUid uid, EquipmentContainerComponent comp)
