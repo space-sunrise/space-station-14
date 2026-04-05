@@ -20,11 +20,7 @@
   - type: CrewMonitoringFilter
     allowedDepartmentIds:
     - Security
-    showBad: true
-    showTerrible: true
-    showCritical: true
-    showDead: true
-    showUnknown: true
+    mode: Casualties
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor

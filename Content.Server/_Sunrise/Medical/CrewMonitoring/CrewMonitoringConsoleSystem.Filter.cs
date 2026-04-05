@@ -20,24 +20,47 @@ public sealed partial class CrewMonitoringConsoleSystem
 
         var activeStates = new HashSet<HealthState>();
 
-        if (filter.ShowHealthy)
-            activeStates.Add(HealthState.Healthy);
-        if (filter.ShowGood)
-            activeStates.Add(HealthState.Good);
-        if (filter.ShowNotGreat)
-            activeStates.Add(HealthState.NotGreat);
-        if (filter.ShowBad)
-            activeStates.Add(HealthState.Bad);
-        if (filter.ShowTerrible)
-            activeStates.Add(HealthState.Terrible);
-        if (filter.ShowCritical)
-            activeStates.Add(HealthState.Critical);
-        if (filter.ShowDead)
-            activeStates.Add(HealthState.Dead);
-        if (filter.ShowUnknown)
-            activeStates.Add(HealthState.Unknown);
+        switch (filter.Mode)
+        {
+            case CrewMonitoringFilterMode.All:
+                break;
 
-        if (activeStates.Count == 0 && !filterByDepartment)
+            case CrewMonitoringFilterMode.HealthyOnly:
+                activeStates.Add(HealthState.Healthy);
+                break;
+
+            case CrewMonitoringFilterMode.GoodAndNotGreat:
+                activeStates.Add(HealthState.Good);
+                activeStates.Add(HealthState.NotGreat);
+                break;
+
+            case CrewMonitoringFilterMode.BadAndTerrible:
+                activeStates.Add(HealthState.Bad);
+                activeStates.Add(HealthState.Terrible);
+                break;
+
+            case CrewMonitoringFilterMode.DeadAndCritical:
+                activeStates.Add(HealthState.Dead);
+                activeStates.Add(HealthState.Critical);
+                break;
+
+            case CrewMonitoringFilterMode.Wounded:
+                activeStates.Add(HealthState.Good);
+                activeStates.Add(HealthState.NotGreat);
+                activeStates.Add(HealthState.Bad);
+                activeStates.Add(HealthState.Terrible);
+                activeStates.Add(HealthState.Critical);
+                break;
+
+            case CrewMonitoringFilterMode.Casualties:
+                activeStates.Add(HealthState.Bad);
+                activeStates.Add(HealthState.Terrible);
+                activeStates.Add(HealthState.Critical);
+                activeStates.Add(HealthState.Dead);
+                break;
+        }
+
+        if (filter.Mode == CrewMonitoringFilterMode.All && !filterByDepartment)
             return;
 
         HashSet<string>? allowedDepartmentNames = null;

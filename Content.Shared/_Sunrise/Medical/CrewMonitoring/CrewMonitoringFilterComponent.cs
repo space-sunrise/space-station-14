@@ -2,13 +2,60 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Medical.CrewMonitoring;
 
+/// <summary>
+/// Режимы фильтрации мониторинга экипажа.
+/// </summary>
+public enum CrewMonitoringFilterMode
+{
+    /// <summary>
+    /// Показывать всех (без фильтрации).
+    /// </summary>
+    All,
+
+    /// <summary>
+    /// Только здоровые (урон 0% – 13.2%).
+    /// </summary>
+    HealthyOnly,
+
+    /// <summary>
+    /// Только состояния "хорошо" и "не очень" (урон 13.2% – 60%).
+    /// </summary>
+    GoodAndNotGreat,
+
+    /// <summary>
+    /// Только состояния "плохо" и "ужасно" (урон 60% – 100%).
+    /// </summary>
+    BadAndTerrible,
+
+    /// <summary>
+    /// Только мёртвые и критические (урон >= 100% + мёртвые).
+    /// </summary>
+    DeadAndCritical,
+
+    /// <summary>
+    /// Все раненые (Good, NotGreat, Bad, Terrible, Critical) – без здоровых и мёртвых.
+    /// </summary>
+    Wounded,
+
+    /// <summary>
+    /// Все пострадавшие (Bad, Terrible, Critical, Dead) – для медиков.
+    /// </summary>
+    Casualties
+}
+
 [RegisterComponent]
 public sealed partial class CrewMonitoringFilterComponent : Component
 {
     /// <summary>
+    /// Режим фильтрации отображаемых существ.
+    /// </summary>
+    [DataField("mode")]
+    public CrewMonitoringFilterMode Mode = CrewMonitoringFilterMode.All;
+
+    /// <summary>
     /// Разрешенные отделы. Если пусто – все доступны.
     /// </summary>
-    [DataField]
+    [DataField("allowedDepartmentIds")]
     public List<string> AllowedDepartmentIds = new();
 
     /// <summary>
@@ -16,52 +63,4 @@ public sealed partial class CrewMonitoringFilterComponent : Component
     /// </summary>
     [DataField("includeTrackers")]
     public bool IncludeTrackers;
-
-    /// <summary>
-    /// Показывать здоровых (урон 0% – 13.2%)
-    /// </summary>
-    [DataField("showHealthy")]
-    public bool ShowHealthy;
-
-    /// <summary>
-    /// Показывать состояние "хорошо" (урон 13.2% – 36%)
-    /// </summary>
-    [DataField("showGood")]
-    public bool ShowGood;
-
-    /// <summary>
-    /// Показывать состояние "не очень" (урон 36% – 60%)
-    /// </summary>
-    [DataField("showNotGreat")]
-    public bool ShowNotGreat;
-
-    /// <summary>
-    /// Показывать состояние "плохо" (урон 60% – 83%)
-    /// </summary>
-    [DataField("showBad")]
-    public bool ShowBad;
-
-    /// <summary>
-    /// Показывать состояние "ужасно" (урон 83% – 100%)
-    /// </summary>
-    [DataField("showTerrible")]
-    public bool ShowTerrible;
-
-    /// <summary>
-    /// Показывать критическое состояние (урон >= 100%)
-    /// </summary>
-    [DataField("showCritical")]
-    public bool ShowCritical;
-
-    /// <summary>
-    /// Показывать мёртвых
-    /// </summary>
-    [DataField("showDead")]
-    public bool ShowDead;
-
-    /// <summary>
-    /// Показывать существ с выключенными датчиками (Unknown, Binary)
-    /// </summary>
-    [DataField("showUnknown")]
-    public bool ShowUnknown;
 }
