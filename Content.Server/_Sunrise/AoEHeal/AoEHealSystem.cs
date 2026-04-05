@@ -42,6 +42,9 @@ public sealed class AoEHealSystem : EntitySystem
                          // Если нам важно, то жива ли цель?
                          .Where(target => !aoEHealComponent.AliveTargets || _mobState.IsAlive(target)))
             {
+                if (!aoEHealComponent.HealSelf && target.Owner == uid)
+                    continue;
+
                 if (aoEHealComponent.Threshold != null && // AoE компоненту важно хилить до какого-то уровня от макс здоровья
                     _mobThreshold.TryGetDeadThreshold(target, out var threshold) &&
                     target.Comp.Damage.GetTotal() < threshold * (1f - aoEHealComponent.Threshold)) // Не лечим если урона мало

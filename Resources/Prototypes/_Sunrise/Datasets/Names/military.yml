@@ -33,7 +33,7 @@
   id: NamesMilitaryFirstGamma
   values:
     prefix: names-military-troopergamma-first-dataset-
-    count: 3
+    count: 2
 
 # Specialist Names
 - type: localizedDataset
@@ -53,3 +53,10 @@
   values:
     prefix: names-military-specialistgamma-first-dataset-
     count: 3
+
+# Soviet Names
+- type: localizedDataset
+  id: NamesMilitaryFirstSovietLow
+  values:
+    prefix: names-military-sovietlow-first-dataset-
+    count: 2

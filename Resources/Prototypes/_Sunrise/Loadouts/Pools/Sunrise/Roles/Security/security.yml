@@ -1,0 +1,98 @@
+- type: roleLoadout
+  id: SunriseJobHeadOfSecurity
+  groups:
+  - SunriseHeadofSecurityHead
+  - SunriseHeadofSecurityNeck
+  - SunriseHeadofSecurityJumpsuit
+  - SecurityBackpack
+  - SecurityBelt
+  - SunriseHeadofSecurityOuterClothing
+  - SecurityShoes
+  - SunriseSurvivalSecurity
+  - SunriseTrinkets
+  - HeadofSecurityJobTrinkets
+  - SunriseGroupSpeciesBreathToolSecurity
+  - SecurityTrinkets
+  - SunriseSecurityGunHos
+  - SunriseHeadofSecurityBra
+  - SunriseHeadofSecurityPants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobWarden
+  groups:
+  - SunriseWardenHead
+  - WardenJumpsuit
+  - SecurityBackpack
+  - SecurityBelt
+  - SunriseWardenOuterClothing
+  - SecurityShoes
+  - SunriseSurvivalSecurity
+  - SunriseTrinkets
+  - WardenJobTrinkets
+  - SunriseGroupSpeciesBreathToolSecurity
+  - SecurityTrinkets
+  - SunriseWardenGun
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobSecurityOfficer
+  groups:
+  - SecurityHead
+  - SecurityJumpsuit
+  - SecurityBackpack
+  - SecurityGlasses
+  - SecurityOuterClothing
+  - SecurityShoes
+  - SecurityPDA
+  - SecurityBelt
+  - SunriseSurvivalSecurity
+  - SunriseTrinkets
+  - SecurityJobTrinkets
+  - SunriseGroupSpeciesBreathToolSecurity
+  - SecurityTrinkets
+  - SunriseSecurityGun
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobDetective
+  groups:
+  - DetectiveHead
+  - SunriseDetectiveNeck
+  - DetectiveJumpsuit
+  - SecurityBackpack
+  - SunriseDetectiveOuterClothing
+  - SecurityShoes
+  - SunriseSurvivalSecurity
+  - SunriseTrinkets
+  - DetectiveJobTrinkets
+  - SunriseGroupSpeciesBreathToolSecurity
+  - SecurityTrinkets
+  - SunriseWeaponDetective
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobSecurityCadet
+  groups:
+  - SecurityCadetJumpsuit
+  - SecurityBackpack
+  - SunriseSurvivalSecurity
+  - SunriseTrinkets
+  - SecurityCadetJobTrinkets
+  - SunriseGroupSpeciesBreathToolSecurity
+  - SecurityTrinkets
+  - SunriseWeaponCadet
+  - Bra
+  - Pants
+  - Socks
+  - Contributors

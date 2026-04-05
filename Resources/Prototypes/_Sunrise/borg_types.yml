@@ -21,7 +21,9 @@
 
   radioChannels:
   - Science
-  - Security
+  - Binary
+  - Common
+
 
   addComponents:
   - type: ShowCriminalRecordIcons

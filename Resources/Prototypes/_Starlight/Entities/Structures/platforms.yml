@@ -1,0 +1,428 @@
+- type: entity
+  abstract: true
+  id: PlatformBase
+  name: platform
+  description: A raised surface. Wait, thats illegal!
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+  - type: InteractionOutline
+  - type: Clickable
+  - type: RCDDeconstructable
+    cost: 5
+    delay: 7
+    fx: EffectRCDDeconstruct8
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 175
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  parent: PlatformBase
+  id: Platform
+  suffix: Steel
+  description: A raised surface. Wait, thats illegal!
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.36"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform
+    drawdepth: HighFloorObjects
+  - type: Climbable
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatform
+
+- type: entity
+  parent: PlatformBase
+  id: PlatformCorner
+  suffix: Steel, Corner
+  description: A raised surface. Wait, thats illegal!
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.36"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.36,-0.49,0.49,0.49" # Sunrise-Edit
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_corner
+    drawdepth: HighFloorObjects
+  - type: Climbable
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformCorner
+
+- type: entity
+  parent: PlatformBase
+  id: PlatformCornerSmall
+  suffix: Steel, Corner Small
+  description: A raised surface. Wait, thats illegal!
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.36,-0.36,0.49"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_deco
+    drawdepth: HighFloorObjects
+  - type: Climbable
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformCornerSmall
+
+- type: entity
+  parent: Platform
+  id: PlatformStairRight
+  suffix: Steel, Stairs, Right
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_stair
+    drawdepth: HighFloorObjects
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformStairRight
+
+- type: entity
+  parent: Platform
+  id: PlatformStairLeft
+  suffix: Steel, Stairs, Left
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_stair_alt
+    drawdepth: HighFloorObjects
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformStairLeft
+
+# New Dark
+
+- type: entity
+  parent: PlatformBase
+  id: PlatformDark
+  suffix: Dark
+  description: A raised surface. Wait, thats illegal!
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.36"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_dark
+    drawdepth: HighFloorObjects
+  - type: Climbable
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformDark
+
+- type: entity
+  parent: PlatformBase
+  id: PlatformCornerDark
+  suffix: Dark, Corner
+  description: A raised surface. Wait, thats illegal!
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.36"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.36,-0.49,0.49,0.49" # Sunrise-Edit
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_corner_dark
+    drawdepth: HighFloorObjects
+  - type: Climbable
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformCornerDark
+
+- type: entity
+  parent: PlatformBase
+  id: PlatformCornerSmallDark
+  suffix: Dark, Corner Small
+  description: A raised surface. Wait, thats illegal!
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.36,-0.36,0.49"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_deco_dark
+    drawdepth: HighFloorObjects
+  - type: Climbable
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformCornerSmallDark
+
+- type: entity
+  parent: Platform
+  id: PlatformStairRightDark
+  suffix: Dark, Stairs, Right
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_stair_dark
+    drawdepth: HighFloorObjects
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformStairRightDark
+
+- type: entity
+  parent: Platform
+  id: PlatformStairLeftDark
+  suffix: Dark, Stairs, Left
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_stair_dark_alt
+    drawdepth: HighFloorObjects
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformStairLeftDark
+
+# New Wood
+
+- type: entity
+  parent: PlatformBase
+  id: PlatformWood
+  suffix: Wood
+  description: A raised surface. Wait, thats illegal!
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.36"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_wood
+    drawdepth: HighFloorObjects
+  - type: Climbable
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformWood
+
+- type: entity
+  parent: PlatformBase
+  id: PlatformCornerWood
+  suffix: Wood, Corner
+  description: A raised surface. Wait, thats illegal!
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.36"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.36,-0.49,0.49,0.49" # Sunrise-Edit
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_corner_wood
+    drawdepth: HighFloorObjects
+  - type: Climbable
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformCornerWood
+
+- type: entity
+  parent: PlatformBase
+  id: PlatformCornerSmallWood
+  suffix: Wood, Corner Small
+  description: A raised surface. Wait, thats illegal!
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.36,-0.36,0.49"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_deco_wood
+    drawdepth: HighFloorObjects
+  - type: Climbable
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformCornerSmallWood
+
+- type: entity
+  parent: Platform
+  id: PlatformStairRightWood
+  suffix: Wood, Stairs, Right
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_stair_wood
+    drawdepth: HighFloorObjects
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformStairRightWood
+
+- type: entity
+  parent: Platform
+  id: PlatformStairLeftWood
+  suffix: Wood, Stairs, Left
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_stair_wood_alt
+    drawdepth: HighFloorObjects
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformStairLeftWood
+

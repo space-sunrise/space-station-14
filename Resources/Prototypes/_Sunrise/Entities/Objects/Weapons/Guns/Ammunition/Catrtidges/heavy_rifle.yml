@@ -55,7 +55,7 @@
       - Cartridge
       - CartridgeHeavyRifle
   - type: CartridgeAmmo
-    proto: BulletLightRifle
+    proto: BulletHeavyRifleArtillery
     deleteOnSpawn: true
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/7.62x51.rsi
@@ -287,6 +287,9 @@
   name: "speed loader (7.62mmR FMJ)"
   parent: [ BaseItem, BaseMinorContraband ]
   components:
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 30
   - type: Tag
     tags:
       - SpeedLoaderRifle
@@ -321,6 +324,9 @@
   name: "speed loader (7.62mmR AP)"
   parent: [ BaseItem, BaseMinorContraband ]
   components:
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 30
   - type: Tag
     tags:
       - SpeedLoaderRifle
@@ -355,6 +361,9 @@
   name: "speed loader (7.62mmR incendiary)"
   parent: [ BaseItem, BaseMinorContraband ]
   components:
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 30
   - type: Tag
     tags:
       - SpeedLoaderRifle

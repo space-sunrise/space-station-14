@@ -121,23 +121,21 @@
       doAfterDuration: 0.25
       zapHeal:
         types:
-          Asphyxiation: -75
-          Cellular: -10
+          Asphyxiation: -100
+          Cellular: -25
       allowUseOnAlive: true
       reagents:
-        Omnizine: 10
-        Epinephrine: 10
-        BarozinePlus: 5
-        Inaprovaline: 5
-        DexalinPlus: 5
-        Saline: 5
-        Dermaline: 5
-        Rororium: 5
-        Necrosol: 5
-        Opporozidone: 5
-        Doxarubixadone: 5
-        JuiceThatMakesYouWeh: 1
-        Laughter: 1
+        Omnizine: 3
+        Epinephrine: 3
+        BarozinePlus: 3
+        Saline: 3
+        Dermaline: 3
+        Rororium: 3
+        Necrosol: 3
+        Opporozidone: 3
+        Doxarubixadone: 3
+        JuiceThatMakesYouWeh: 2
+        Laughter: 2
         Tazinide: 3
     - type: ItemSlots
       slots:

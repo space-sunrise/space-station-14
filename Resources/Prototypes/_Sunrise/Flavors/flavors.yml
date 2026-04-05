@@ -27,3 +27,8 @@
   id: butterscotch
   flavorType: Complex
   description: flavor-complex-butter-scotch
+
+- type: flavor
+  id: thaslop
+  flavorType: Complex
+  description: flavor-complex-tha-slop

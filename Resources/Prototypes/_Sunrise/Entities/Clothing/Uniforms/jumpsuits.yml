@@ -463,3 +463,92 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/punksuit.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/punksuit.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseTSFContraband]
+  id: ClothingUniformJumpsuitTSF
+  name: TSF marine uniform
+  description: A comfortable and durable combat uniform worn by the forces of the Trans-Solar Marine Corps.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/tsf.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/tsf.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseTSFContraband]
+  id: ClothingUniformJumpsuitTSFRep
+  name: TSF representative's uniform
+  description: A formal uniform worn by the diplomatic representatives of the Trans-Solar Federation.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/tsfrep.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/tsfrep.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseTSFContraband]
+  id: ClothingUniformJumpsuitTSFElite
+  name: MARSOC uniform
+  description: A comfortable and durable combat uniform worn by marines of the Trans-Solar Federation's Marine Special Operations Command.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/tsfelite.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/tsfelite.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitOperative
+  id: ClothingUniformJumpsuitSoviet
+  name: Soviet Jumpsuit
+  description: A standard jumpsuit worn by Soviet military personnel.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitArbiter
+  name: arbiter uniform
+  description: A black tunic with gold stitching. It is cut so tight that your posture goes straight as the spine of a new book. The main trouble is that it is almost impossible to breathe in it or bend for a dropped pen without risking the seams.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/arbiter_uniform.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/arbiter_uniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitRedMist
+  name: red mist suit
+  description: A fitted combat garment in dark cloth with pale metal accents. Built for movement, not reassurance.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/redmist_uniform.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/redmist_uniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformUndershirt
+  name: undershirt
+  description: Plain daily wear.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/undershirt.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/undershirt.rsi
+    equippedState: equipped-INNERCLOTHING
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMilirUniform
+  name: millir bodysuit
+  description: A simple, form-fitting bodysuit tailored for Milir anatomy.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/milirs_uniform.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/milirs_uniform.rsi

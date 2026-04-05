@@ -353,3 +353,13 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/celegacy.rsi
+
+- type: entity
+  parent: ClothingCloakBase
+  id: ClothingNeckCloakArbiter
+  name: arbiter cloak
+  description: A dense mantle with gold edging. When drawn around you it makes a distinctly "expensive" rustle, creating a pocket of protection from damage and noise. The main danger in this cozy cocoon is dozing off in the middle of a dull meeting.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/arbiter_cloak.rsi
+    state: icon

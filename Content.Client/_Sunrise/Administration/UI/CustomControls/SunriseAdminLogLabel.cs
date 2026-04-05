@@ -1,4 +1,4 @@
-﻿using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 using Content.Client.Administration.UI.CustomControls;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
@@ -31,6 +31,13 @@ public sealed class SunriseAdminLogLabel : RichTextLabel
         RegexOptions.Compiled
     );
 
+    private static readonly Regex LogHighlightRegex = new(
+        @"(\bEntId=\d+\b|(?<=\()(\b\d+/[^\)]+|\bn\d+\b)(?=\)))|\b(dropped|picked up|inserted|removed|equipped|unequipped|thrown|wielded|unwielded|loaded|unloaded|spawned|deleted|shot|attacked|damaged|hit|exploded|fired|clicked|knocked down|activated|interacted|opened|closed|locked|unlocked|anchored|unanchored|welded|unwelded|bolted|unbolted|connected|disconnected|joined|left|banned|kicked|suicided|died|revived|cloned|respawned|joined|left|refilled|drained|poured|ingested|vomited|collapsed|unconscious|rejuvenated|mounted|dismounted)\b",
+        RegexOptions.Compiled | RegexOptions.IgnoreCase
+    );
+
+    private const string VerbColor = "#36A3D9"; // Cyan-ish
+
     public SunriseAdminLogLabel(ref SharedAdminLog log, HSeparator separator)
     {
         Log = log;
@@ -58,7 +65,16 @@ public sealed class SunriseAdminLogLabel : RichTextLabel
     private static string GetFormattedLogMessage(ref SharedAdminLog log)
     {
         var strippedMessage = StripTagsAndBrackets(log.Message);
-        return AddColorTagsToParentheses(strippedMessage);
+        
+        return LogHighlightRegex.Replace(strippedMessage, m =>
+        {
+            // If it's an ID (contains digit/slash or EntId)
+            if (m.Value.Contains('(') || m.Value.Contains('=') || (m.Value.Length > 0 && char.IsDigit(m.Value[0])))
+                return $"[color={InfoColor}]{m.Value}[/color]";
+
+            // Otherwise it's a verb
+            return $"[color={VerbColor}]{m.Value}[/color]";
+        });
     }
 
     private static string GenerateImpactMarker(ref SharedAdminLog log)
@@ -72,21 +88,13 @@ public sealed class SunriseAdminLogLabel : RichTextLabel
     private static string GetTypeSpecificColor(LogImpact type) => type switch
     {
         LogImpact.Extreme => "red",
-        LogImpact.High => "orange",
+        LogImpact.High => "#FFA500", // Orange hex to be safe
         LogImpact.Medium => "yellow",
         LogImpact.Low => "green",
 
         _ => "blue",
     };
 
-    private static string AddColorTagsToParentheses(string inputText)
-    {
-        if (string.IsNullOrEmpty(inputText))
-            return inputText;
-
-        return inputText.Replace("(", $"[color={InfoColor}](")
-            .Replace(")", ")[/color]");
-    }
 
     private static string StripTagsAndBrackets(string input)
     {

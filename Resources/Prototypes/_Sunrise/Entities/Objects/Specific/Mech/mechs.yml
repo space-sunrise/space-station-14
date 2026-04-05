@@ -15,6 +15,11 @@
   save: false
   abstract: true
   components:
+  - type: RadarBlip
+    color: "#FFD700FF"
+    scale: 1.1
+    shape: Triangle
+    requireInSpace: false
   - type: NoSlip
   - type: CanMoveInAir
   - type: Reactive
@@ -213,6 +218,11 @@
       - PowerCageMedium
   - type: AccessReader
     access: [["Security"]]
+  - type: RadarBlip
+    color: "#ff1500"
+    scale: 1.25
+    shape: Triangle
+    requireInSpace: false
 
 - type: entity
   id: MechMiningPod
@@ -307,6 +317,11 @@
     speechSounds: Borg
   - type: TTS
     voice: Glados
+  - type: RadarBlip
+    color: "#4800ff"
+    scale: 1.1
+    shape: Triangle
+    requireInSpace: false
 
 # region Ripley
 # Ripley Mk-I Hauler
@@ -335,6 +350,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener # No paint unique ripley
+    - FootstepSound
 
 # Ripley MK-II "Death"
 - type: entity

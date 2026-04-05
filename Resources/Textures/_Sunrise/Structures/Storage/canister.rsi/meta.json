@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Discord: odlieerr",
+  "copyright": "Discord: odlieerr and Nrd-K",
   "size": {
     "x": 32,
     "y": 32
@@ -24,6 +24,66 @@
     },
     {
       "name": "nitrium-1"
+    },
+    {
+      "name": "pluoxium"
+    },
+    {
+      "name": "pluoxium-1"
+    },
+        {
+      "name": "helium"
+    },
+    {
+      "name": "helium-1"
+    },
+    {
+      "name": "nob"
+    },
+    {
+      "name": "nob-1"
+    },
+        {
+      "name": "proto_nitrate"
+    },
+    {
+      "name": "proto_nitrate-1"
+    },
+    {
+      "name": "halon"
+    },
+    {
+      "name": "halon-1"
+    },
+        {
+      "name": "antinob"
+    },
+    {
+      "name": "antinob-1"
+    },
+    {
+      "name": "h2"
+    },
+    {
+      "name": "h2-1"
+    },
+    {
+      "name": "zauker"
+    },
+    {
+      "name": "zauker-1"
+    },
+    {
+      "name": "electrovae"
+    },
+    {
+      "name": "electrovae-1"
+    },
+        {
+      "name": "chargedelectrovae"
+    },
+    {
+      "name": "chargedelectrovae-1"
     },
     {
       "name": "can-connector"

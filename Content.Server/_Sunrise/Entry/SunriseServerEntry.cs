@@ -24,8 +24,6 @@ public sealed class SunriseServerEntry
 
     public static void PostInit()
     {
-#if SUNRISE_PRIVATE
-        IoCManager.Resolve<IServerJoinQueueManager>().PostInitialize();
-#endif
+
     }
 }

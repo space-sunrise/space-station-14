@@ -298,3 +298,22 @@ ghost-role-information-rules-expedition-pirate-antagonist =
     Вам [color=red][bold]НЕЛЬЗЯ[/bold][/color] покинуть экспедицию на шаттле.
     Помните, что вы как [color=red][bold]NPC-пират[/bold][/color] [bold]ограничены[/bold] временем: через [color=red][bold]20 минут[/bold][/color] вас автоматически переместят в наблюдателя.
     Вы не помните ничего из своей предыдущей жизни и не помните ничего из того, что узнали, будучи призраком.
+ghost-role-information-expedition-soviet-name = Солдат из Бункера
+ghost-role-information-expedition-soviet-description = Смирно, солдат! Не позволяйте годам службы и алкоголизму сломить вас. Вы — боец вооружённых сил СССП. Выполните приказ и защитите аванпост.
+ghost-role-information-rules-expedition-soviet-antagonist =
+    Вы — [color=red][bold]NPC-солдат[/bold][/color]. Ваши намерения вредят станции и её экипажу.
+    Вы должны [bold]защищать[/bold] свою территорию и сотрудничать с другими NPC.
+    Вам [color=green][bold]можно[/bold][/color] покинуть экспедицию на шаттле, но [color=red][bold]только[/bold][/color] если [color=orange][bold]утилизаторы[/bold][/color] (живые или мёртвые) находятся на шаттле.
+    Помните, что вы как [color=red][bold]NPC-пират[/bold][/color] [bold]ограничены[/bold] временем: через [color=red][bold]20 минут[/bold][/color] вас автоматически переместят в наблюдателя.
+    Вы не помните ничего из своей предыдущей жизни и не помните ничего из того, что узнали, будучи призраком.
+ghost-role-information-corporate-aligned-rules =
+    Вы [color={role-type-corporate-aligned-alternate-color}][bold]{role-type-corporate-aligned-name}[/bold][/color].
+    Вы должны служить интересам NanoTrasen и Центрального Командования, даже если они расходятся с интересами станции.
+    Помните: вы [color=red]НЕ[/color] служите экипажу.
+    Вы не помните ничего из своей прошлой жизни и ничего из того, что узнали, будучи призраком.
+
+ghost-role-information-tsf-aligned-rules =
+    Вы [color={role-type-tsf-aligned-color}][bold]{role-type-tsf-aligned-name}[/bold][/color].
+    Вы должны служить интересам Транс-Солнечной Федерации.
+    Помните: вы [color=red]НЕ[/color] служите экипажу.
+    Вы не помните ничего из своей прошлой жизни и ничего из того, что узнали, будучи призраком.
