@@ -148,14 +148,6 @@
         probability: 0.15
         showInChat: true
       - !type:Emote
-        emote: Cry
-        probability: 0.15
-        showInChat: true
-      - !type:Emote
-        emote: Giggle
-        probability: 0.07
-        showInChat: true
-      - !type:Emote
         emote: Howl
         probability: 0.07
         showInChat: true
@@ -199,14 +191,6 @@
         emote: Gasp
         probability: 0.07
         showInChat: true
-      - !type:Emote
-        emote: Weep
-        probability: 0.07
-        showInChat: true
-      - !type:Emote
-        emote: Choke
-        probability: 0.07
-        showInChat: true
       - !type:PopupMessage
         type: Local
         visualType: MediumCaution
@@ -248,6 +232,7 @@
         messages: ["generic-reagent-effect-burning-insides"]
         probability: 0.1
     Medicine:
+      metabolismRate: 0.05
       effects:
       - !type:CauseZombieInfection
         probability: 0.01

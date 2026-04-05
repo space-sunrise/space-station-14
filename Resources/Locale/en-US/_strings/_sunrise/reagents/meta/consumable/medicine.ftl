@@ -32,7 +32,7 @@ reagent-name-thyreostate = thyreostate
 reagent-desc-thyreostate = Synthetic metabolic depressant. Seriously treats asphyxiation but slows movement. Overdose over 15 units causes respiratory paralysis.
 
 reagent-name-salicylicacid = salicylic acid
-reagent-desc-salicylicacid = Powerful healing agent that restores bruises, cuts, and punctures. Effective against extensive mechanical damage (over 35 units), but cannot heal people with weaker injuries due to the nature of its work.
+reagent-desc-salicylicacid = Powerful healing agent that restores bruises, cuts, and punctures. Effective against extensive mechanical damage, but cannot heal people with weaker injuries due to the nature of its work.
 
 reagent-name-oxanderm = oxanderm
-reagent-desc-oxanderm = Powerful healing agent that restores bruises, cuts, and punctures. Effective against extensive physical damage, including acid damage (over 35 units), but cannot heal people with weaker injuries due to the nature of its work.
+reagent-desc-oxanderm = Powerful healing agent that restores bruises, cuts, and punctures. Effective against extensive physical damage, including acid damage, but cannot heal people with weaker injuries due to the nature of its work.
