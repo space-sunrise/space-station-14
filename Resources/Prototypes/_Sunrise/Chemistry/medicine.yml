@@ -10,11 +10,11 @@
     Medicine:
       effects:
       - !type:ModifyBleed
-        amount: -4.2
+        amount: -3
       - !type:HealthChange
         damage:
           groups:
-            Brute: -3.2
+            Brute: -2
       - !type:HealthChange
         damage:
           types:
@@ -26,7 +26,7 @@
           min: 10.1
         damage:
           types:
-            Poison: 6
+            Poison: 3
 
 - type: reagent
   id: Retroindralyne
@@ -69,18 +69,18 @@
             Heat: 0.4
       - !type:HealthChange
         conditions:
-          - !type:ReagentCondition
-            reagent: BarozinePlus
-            min: 50
+        - !type:ReagentCondition
+          reagent: BarozinePlus
+          min: 50
         damage:
           types:
             Poison: 1
       - !type:Vomit
         probability: 0.1
         conditions:
-          - !type:ReagentCondition
-            reagent: BarozinePlus
-            min: 30
+        - !type:ReagentCondition
+          reagent: BarozinePlus
+          min: 30
       - !type:GenericStatusEffect
         key: PressureImmunity
         component: PressureImmunity
@@ -96,3 +96,175 @@
         visualType: Large
         messages: [ "barozine-effect-skin-burning", "barozine-effect-muscle-contract" ]
         probability: 0.1
+
+- type: reagent
+  id: Artiplasm
+  name: reagent-name-artiplasm
+  group: Medicine
+  desc: reagent-desc-artiplasm
+  physicalDesc: reagent-physical-desc-artiplasm
+  flavor: medicine
+  color: "#E8EEF2"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Bloodloss: -5.25
+            Mangleness: 0.25
+      - !type:ModifyBleed
+        amount: -1.5
+      - !type:ModifyBloodLevel
+        amount: 4
+      - !type:SatiateThirst
+        factor: 4
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Artiplasm
+          min: 11
+        damage:
+          types:
+            Slash: 3.5
+
+- type: reagent
+  id: Genocillin
+  name: reagent-name-genocillin
+  group: Medicine
+  desc: reagent-desc-genocillin
+  physicalDesc: reagent-physical-desc-genocillin
+  flavor: medicine
+  color: "#CCFF00"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: -2
+            Mangleness: -2
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Genocillin
+          min: 15.1
+        damage:
+          types:
+            Cellular: 4
+            Poison: 2
+
+- type: reagent
+  id: Thyreostate
+  name: reagent-name-thyreostate
+  group: Medicine
+  desc: reagent-desc-thyreostate
+  physicalDesc: reagent-physical-desc-thyreostate
+  flavor: medicine
+  color: "#FFF2E0"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Asphyxiation: -5.25
+            Mangleness: 0.5
+      - !type:ModifyBleed
+        amount: -1.5
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 0.75
+        sprintSpeedModifier: 0.75
+      - !type:Electrocute
+        electrocuteTime: 4
+        probability: 0.2
+      - !type:MovementSpeedModifier
+        conditions:
+        - !type:ReagentCondition
+          reagent: Thyreostate
+          min: 15
+        walkSpeedModifier: 0.4
+        sprintSpeedModifier: 0.4
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Thyreostate
+          min: 15
+        damage:
+          types:
+            Asphyxiation: 2
+            Bloodloss: 2.5
+
+- type: reagent
+  id: SalicylicAcid
+  name: reagent-name-salicylicacid
+  group: Medicine
+  desc: reagent-desc-salicylicacid
+  physicalDesc: reagent-physical-desc-salicylicacid
+  flavor: medicine
+  color: "#E0E0E0"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: SalicylicAcid
+          min: 25
+        damage:
+          groups:
+            Brute: 6
+      - !type:HealthChange
+        conditions:
+        - !type:TotalDamageCondition
+          min: 25
+        damage:
+          groups:
+            Brute: -9
+      - !type:HealthChange
+        conditions:
+        - !type:TotalDamageCondition
+          max: 25
+        damage:
+          groups:
+            Brute: -3
+      - !type:HealthChange
+        damage:
+          types:
+            Mangleness: 0.5
+
+- type: reagent
+  id: Oxanderm
+  name: reagent-name-oxanderm
+  group: Medicine
+  desc: reagent-desc-oxanderm
+  physicalDesc: reagent-physical-desc-oxanderm
+  flavor: medicine
+  color: "#E0E0E0"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Oxanderm
+          min: 25
+        damage:
+          groups:
+            Burn: 8
+      - !type:HealthChange
+        conditions:
+        - !type:TotalDamageCondition
+          min: 25
+        damage:
+          groups:
+            Burn: -8
+      - !type:HealthChange
+        conditions:
+        - !type:TotalDamageCondition
+          max: 25
+        damage:
+          groups:
+            Burn: -4
+
+

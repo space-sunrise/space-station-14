@@ -1,15 +1,4 @@
 - type: reaction
-  id: Powderbicardine
-  impact: Medium
-  reactants:
-    HemostaticPowder:
-      amount: 1
-    Bicaridine:
-      amount: 1
-  products:
-    Razorium: 1
-
-- type: reaction
   id: PowderLacerinol
   impact: Medium
   reactants:
@@ -86,3 +75,84 @@
       amount: 1
   products:
     Retroindralyne: 3
+
+- type: reaction
+  id: Artiplasm
+  impact: Medium
+  minTemp: 320
+  reactants:
+    Saline:
+      amount: 3
+    HemostaticPowder:
+      amount: 2
+    TranexamicAcid:
+      amount: 1
+    Iron:
+      amount: 2
+    Copper:
+      amount: 2
+  products:
+    Artiplasm: 10
+
+- type: reaction
+  id: Genocillin
+  impact: Medium
+  reactants:
+    Phalanximine:
+      amount: 2
+    Saline:
+      amount: 2
+    UnstableMutagen:
+      amount: 2
+    Benzene:
+      amount: 2
+    Sugar:
+      amount: 2
+  products:
+    Genocillin: 10
+
+- type: reaction
+  id: Thyreostate
+  impact: Medium
+  reactants:
+    Acetone:
+      amount: 2
+    DexalinPlus:
+      amount: 2
+    SulfuricAcid:
+      amount: 2
+  products:
+    Thyreostate: 6
+
+- type: reaction
+  id: SalicylicAcid
+  impact: Medium
+  minTemp: 370
+  reactants:
+    HemostaticPowder:
+      amount: 1
+    SodiumHydroxide:
+      amount: 1
+    Fluorine:
+      amount: 1
+    Bicaridine:
+      amount: 1
+  products:
+    SalicylicAcid: 4
+
+- type: reaction
+  id: Oxanderm
+  impact: Medium
+  reactants:
+    SodiumCarbonate:
+      amount: 1
+    Dermaline:
+      amount: 1
+    Phenol:
+      amount: 1
+    Leporazine:
+      amount: 1
+  products:
+    Oxanderm: 4
+
+

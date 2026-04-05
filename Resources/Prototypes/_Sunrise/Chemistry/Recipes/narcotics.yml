@@ -1,0 +1,20 @@
+- type: reaction
+  id: Fentanyl
+  impact: Medium
+  minTemp: 419
+  maxTemp: 420
+  reactants:
+    TableSalt:
+      amount: 2
+    Sugar:
+      amount: 1
+    Desoxyephedrine:
+      amount: 1
+    TranexamicAcid:
+      amount: 2
+    Phenol:
+      amount: 2
+    Retroindralyne:
+      amount: 2
+  products:
+    Fentanyl: 4
