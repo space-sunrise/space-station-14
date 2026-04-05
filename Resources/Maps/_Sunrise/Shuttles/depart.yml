@@ -68,6 +68,8 @@ entities:
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
+    - type: GravityShake
+      shakeTimes: 10
     - type: DecalGrid
       chunkCollection:
         version: 2
