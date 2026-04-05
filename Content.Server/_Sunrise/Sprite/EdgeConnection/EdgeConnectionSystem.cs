@@ -1,8 +1,8 @@
-using Content.Shared._Starlight.EdgeConnection;
+using Content.Shared._Sunrise.Sprite.EdgeConnection;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
 
-namespace Content.Server._Starlight.EdgeConnection;
+namespace Content.Server._Sunrise.Sprite.EdgeConnection;
 
 /// <summary>
 /// Handles visual edge connections between entities placed adjacent to each other.

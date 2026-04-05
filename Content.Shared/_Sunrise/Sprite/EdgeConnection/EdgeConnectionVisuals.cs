@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Starlight.EdgeConnection;
+namespace Content.Shared._Sunrise.Sprite.EdgeConnection;
 
 [Serializable, NetSerializable]
 public enum EdgeConnectionVisuals

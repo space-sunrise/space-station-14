@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._Starlight.EdgeConnection;
+namespace Content.Shared._Sunrise.Sprite.EdgeConnection;
 
 /// <summary>
 /// Enables visual edge connections between entities when placed adjacent to each other.
