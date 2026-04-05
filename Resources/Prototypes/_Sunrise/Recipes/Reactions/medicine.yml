@@ -68,13 +68,15 @@
 - type: reaction
   id: Antidon
   reactants:
-    Ultravasculine:
+    Diphenhydramine:
       amount: 1
     Cryoxadone:
       amount: 1
     Epinephrine:
       amount: 1
   products:
+    Dylovene:
+      amount: 1
     Antidon: 3
 
 - type: reaction
@@ -90,7 +92,7 @@
       amount: 1
       catalyst: true
   products:
-    Brutedon: 1
+    Brutedon: 3
 
 - type: reaction
   id: Nutricryokomp
@@ -101,7 +103,7 @@
       amount: 1
     Iodine:
       amount: 1
-    Nutriment: 
+    Tricordrazine:
       amount: 1
     Saline:
       amount: 1
