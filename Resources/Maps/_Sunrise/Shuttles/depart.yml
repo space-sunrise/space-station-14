@@ -4,8 +4,8 @@ meta:
   engineVersion: 271.1.0
   forkId: ""
   forkVersion: ""
-  time: 04/05/2026 22:43:46
-  entityCount: 47
+  time: 04/05/2026 23:35:33
+  entityCount: 52
 maps: []
 grids:
 - 1
@@ -142,6 +142,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-0.5
       parent: 1
+- proto: BaseSubstationWall
+  entities:
+  - uid: 99
+    components:
+    - type: Transform
+      pos: 0.5,-2.5
+      parent: 1
 - proto: CableApcExtension
   entities:
   - uid: 2
@@ -178,6 +185,20 @@ entities:
     components:
     - type: Transform
       pos: 0.5,1.5
+      parent: 1
+- proto: CableHV
+  entities:
+  - uid: 102
+    components:
+    - type: Transform
+      pos: 0.5,-2.5
+      parent: 1
+- proto: CableMV
+  entities:
+  - uid: 101
+    components:
+    - type: Transform
+      pos: 0.5,-2.5
       parent: 1
 - proto: CartridgeLeviathan240mmNuke
   entities:
@@ -219,6 +240,22 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
+  - uid: 104
+    components:
+    - type: Transform
+      pos: 0.5,-2.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+- proto: GeneratorWallmountAPU
+  entities:
+  - uid: 103
+    components:
+    - type: Transform
+      pos: 0.5,-2.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: GravityGeneratorMini
   entities:
   - uid: 31
@@ -226,6 +263,8 @@ entities:
     - type: Transform
       pos: -0.5,-2.5
       parent: 1
+    - type: ApcPowerReceiver
+      needsPower: False
 - proto: Grille
   entities:
   - uid: 10
@@ -245,7 +284,9 @@ entities:
     - type: Transform
       pos: 0.5,1.5
       parent: 1
-- proto: PoweredFloorlight
+    - type: ApcPowerReceiver
+      needsPower: False
+- proto: PoweredFloorlightAlwaysPowered
   entities:
   - uid: 3
     components:
