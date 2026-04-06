@@ -1,6 +1,6 @@
 ---
 name: ss14-upstream-maintenance
-description: Руководство по работе с форками Space Station 14 с project-folder паттерном (`_Sunrise`, `_Scp`, `_Fish`, `_Lust`) для минимизации конфликтов слияния с апстримом. Использовать при модификации ванильного кода или прототипов.
+description: Guide to working with Space Station 14 forks with project-folder pattern (`_Sunrise`, `_Scp`, `_Fish`, `_Lust`) to minimize merge conflicts with the upstream. Use when modifying vanilla code or prototypes.
 ---
 
 # Cursor Bridge

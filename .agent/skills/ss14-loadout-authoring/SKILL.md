@@ -1,170 +1,170 @@
 ---
 name: ss14-loadout-authoring
-description: Создание, копирование, переименование, миграция и ревью SS14 loadout-прототипов (`roleLoadout`, `loadoutGroup`, `loadout`) в форк-папках вроде `_Scp`: нейминг, изоляция от ванили, перенос обязательной экипировки из `startingGear`, синхронизация `startingGear` и обработка скрытых jobs/departments. Используй при изменении job-прототипов и любых файлов loadout-системы.
+description: Creation, copying, renaming, migration and review of SS14 loadout prototypes (`roleLoadout`, `loadoutGroup`, `loadout`) in fork folders like `_Scp`: naming, isolation from vanilla, transfer of mandatory equipment from `startingGear`, `startingGear` synchronization and processing of hidden jobs/departments. Use when changing job prototypes and any loadout system files.
 ---
 
 # SS14 Loadout Authoring
 
-Используй этот skill как рабочий стандарт для job-loadout системы в SS14 🙂
-Цель: держать экипировку ролей в одном предсказуемом графе `job -> roleLoadout -> loadoutGroup -> loadout`, без внешних ссылок и без рассинхрона со `startingGear`.
+Use this skill as a working standard for the job-loadout system in SS14 :)
+Goal: keep role equipment in one predictable graph `job -> roleLoadout -> loadoutGroup -> loadout`, without external references and without being out of sync with `startingGear`.
 
-## Область ответственности
+## Area of ​​responsibility
 
-1. Этот skill покрывает `roleLoadout`, `loadoutGroup`, `loadout`, `startingGear` и job-прототипы, которые выдают экипировку.
-2. Этот skill не покрывает нейминг всего проекта целиком. Для общих naming-правил сверяйся с `ss14-naming-conventions`.
-3. Этот skill не заменяет `ss14-upstream-maintenance`: при копировании ванильных прототипов в форк всё равно держи изменения изолированными внутри `_ProjectName`.
+1. This skill covers `roleLoadout`, `loadoutGroup`, `loadout`, `startingGear` and job prototypes that issue equipment.
+2. This skill does not cover the naming of the entire project. For general naming rules, check `ss14-naming-conventions`.
+3. This skill does not replace `ss14-upstream-maintenance`: when copying vanilla prototypes to a fork, still keep the changes isolated inside `_ProjectName`.
 
-## Источник истины
+## Source of truth
 
-1. Источник истины для видимых ролей - текущий граф loadout-прототипов форка.
-2. Источник истины для скрытых ролей по умолчанию - существующий `startingGear`, если пользователь явно не просил мигрировать и их тоже.
-3. Источник истины для видимости в преференсах - текущая логика UI:
-   - job скрыта, если `setPreference: false`;
-   - department скрыт, если `editorHidden: true`;
-   - department также не показывается в редакторе персонажа, если в нем нет ни одной роли с `setPreference: true`.
-4. Не считай loadout-копию завершенной, пока все ссылки из ролей форка не замкнуты на локальные прототипы форка.
+1. The source of truth for visible roles is the current loadout prototype graph of the fork.
+2. The default source of truth for hidden roles is the existing `startingGear`, unless the user has explicitly asked to migrate them too.
+3. The source of truth for visibility in preferences is the current UI logic:
+   - job is hidden if `setPreference: false`;
+   - department is hidden if `editorHidden: true`;
+   - department is also not shown in the character editor if there is no role in it with `setPreference: true`.
+4. Do not consider the loadout copy complete until all links from the fork roles are closed to local fork prototypes.
 
-## Ментальная модель
+## Mental model
 
-1. `loadout` - один конкретный вариант предмета в конкретный слот.
-2. `loadoutGroup` - набор вариантов для одного слота или общего концепта; именно тут задается обязательность через `minLimit`.
-3. `roleLoadout` - список групп, доступных конкретной роли.
-4. `startingGear` - либо legacy-слой для скрытых ролей, либо синхронизированный дефолтный снимок loadout-системы.
-5. Для видимых ролей не держи обязательную экипировку одновременно и в `startingGear`, и в активном `roleLoadout`: это быстро приводит к дублям и рассинхрону.
+1. `loadout` - one specific variant of an item in a specific slot.
+2. `loadoutGroup` - a set of options for one slot or general concept; This is where mandatory is set via `minLimit`.
+3. `roleLoadout` - list of groups available to a specific role.
+4. `startingGear` - either a legacy layer for hidden roles, or a synchronized default snapshot of the loadout system.
+5. For visible roles, do not keep the required equipment in both `startingGear` and the active `roleLoadout` at the same time: this quickly leads to duplicates and out of sync.
 
 ## Decision Tree
 
-1. Роль или department скрыты в преференсах?
-   - Да: не создавай новую loadout-обвязку по умолчанию; оставляй или восстанавливай `startingGear`.
-   - Нет: считай loadout-систему целевым источником истины.
-2. Роль форка ссылается на ванильный или чужой `loadoutGroup`?
-   - Да: копируй его локально в форк и переписывай ссылку.
-3. Локальный `loadoutGroup` ссылается на ванильный или чужой `loadout`?
-   - Да: копируй локальный `loadout` и переписывай ссылку в группе.
-4. Обязательный предмет сидит только в `startingGear`?
-   - Да: переноси его в loadout-систему.
-5. У роли уже есть группа на этот слот?
-   - Да: требуй взять один предмет из группы, а не форси старый предмет из `startingGear`.
-   - Нет: создавай hidden/required группу под слот и добавляй ее в `roleLoadout`.
-6. `startingGear` нужен только как дефолтная совместимость?
-   - Да: синхронизируй его с loadout-слотами.
-   - Нет: отвязывай `startingGear` от job после завершенной миграции.
+1. Is the role or department hidden in the preferences?
+   - Yes: do not create a new default loadout binding; leave or restore `startingGear`.
+   - No: consider the loadout system as the target source of truth.
+2. Does the fork role refer to vanilla or someone else's `loadoutGroup`?
+   - Yes: copy it locally to the fork and rewrite the link.
+3. Does local `loadoutGroup` refer to vanilla or foreign `loadout`?
+   - Yes: copy local `loadout` and rewrite the link in the group.
+4. Is the required item only in `startingGear`?
+   - Yes: transfer it to the loadout system.
+5. Does the role already have a group for this slot?
+   - Yes: demand to take one item from the group, and not force the old item from `startingGear`.
+   - No: create a hidden/required group for the slot and add it to `roleLoadout`.
+6. Is `startingGear` needed only as default compatibility?
+   - Yes: synchronize it with loadout slots.
+   - No: unbind `startingGear` from job after completed migration.
 
-## Нейминг
+## Naming
 
 ### Prototype ID
 
 1. `loadout`: `ScpLoadout` + `ItemPrototypeId`.
-2. `loadoutGroup`: `<ForkName(Sunrise, Scp или другой)>LoadoutGroup` + имя слота или обобщенное имя группы.
+2. `loadoutGroup`: `<ForkName(Sunrise, Scp, or another)>LoadoutGroup` + slot name or generic group name.
 3. `roleLoadout`: `Job<RoleId>`.
-4. Если один и тот же `ItemPrototypeId` нужен в двух разных контекстах и без суффикса будет коллизия, добавляй короткий контекстный хвост: `ScpLoadoutFlashlightLanternCargo`, `ScpLoadoutFlashlightLanternEngineering`.
-5. Не оставляй новые локальные ID без форк-префикса.
+4. If the same `ItemPrototypeId` is needed in two different contexts and without the suffix there will be a collision, add a short context tail: `ScpLoadoutFlashlightLanternCargo`, `ScpLoadoutFlashlightLanternEngineering`.
+5. Do not leave new local IDs without a fork prefix.
 
 ### Group naming
 
-1. Предпочитай общие имена групп, не привязанные к должности, если группа реально переиспользуема между ролями.
-2. Используй job-specific имя группы только если:
-   - у роли уникальный набор вариантов;
-   - у роли другая обязательность (`minLimit`);
-   - группе нужен role-specific semantic.
-3. Не называй общую группу по ванильной должности, если в форке роль уже переименована.
+1. Prefer generic group names that are not tied to a position if the group is actually reusable between roles.
+2. Use job-specific group name only if:
+   - the role has a unique set of options;
+   - the role has another obligation (`minLimit`);
+   - the group needs role-specific semantic.
+3. Do not name the general group by the vanilla position if the role has already been renamed in the fork.
 
 ### File naming and placement
 
-1. Имена файлов - `snake_case`.
-2. Локальный путь должен зеркалить путь оригинала внутри форк-папки.
-3. Не складывай копии в технические свалки вроде `Imports/Sunrise`, если можно положить их в нормальный зеркальный путь.
-4. Если файл относится к конкретной роли или отделу форка, используй имя роли и отдела форка, а не ванильное имя.
+1. File names are `snake_case`.
+2. The local path must mirror the original path inside the fork folder.
+3. Don't put copies in technical dumps like `Imports/Sunrise` if you can put them in a normal mirror path.
+4. If the file refers to a specific role or fork department, use the name of the role and fork department, not the vanilla name.
 
 ## Workflow
 
-### 1) Зафиксировать область миграции
+### 1) Fix the migration area
 
-1. Найди все `_Project` job-прототипы, которых касается задача.
-2. Раздели их на две группы:
-   - видимые в преференсах;
-   - скрытые (`setPreference: false`, `editorHidden: true`, department без видимых ролей).
-3. Для скрытых ролей не создавай новую loadout-обвязку без явного запроса пользователя.
+1. Find all `_Project` job prototypes that the task concerns.
+2. Divide them into two groups:
+   - visible in preferences;
+   - hidden (`setPreference: false`, `editorHidden: true`, department without visible roles).
+3. For hidden roles, do not create a new loadout binding without an explicit user request.
 
-### 2) Изолировать граф loadout-ссылок
+### 2) Isolate the graph of loadout links
 
-1. Собери все `roleLoadout`, на которые ссылаются роли форка.
-2. Проверь каждую `loadoutGroup`, на которую ссылается `roleLoadout`.
-3. Если группа не локальна для форка, создай копию в форке и перепиши ссылку у роли.
-4. Проверь все `loadout` внутри группы.
-5. Если `loadout` не локален для форка, создай копию в форке и перепиши ссылку в группе.
-6. Повторяй, пока у ролей форка не останется ссылок на ванильные или чужие fork-прототипы.
+1. Collect all `roleLoadout` referenced by fork roles.
+2. Check each `loadoutGroup` referenced by `roleLoadout`.
+3. If the group is not local to the fork, create a copy in the fork and overwrite the role’s link.
+4. Check all `loadout` within the group.
+5. If `loadout` is not local to the fork, create a copy in the fork and rewrite the link in the group.
+6. Repeat until the fork roles have no references to vanilla or other fork prototypes.
 
-### 3) Перенести обязательную экипировку из `startingGear`
+### 3) Transfer mandatory equipment from `startingGear`
 
-1. Для видимых ролей считай loadout-систему приоритетной.
-2. Пройди все `equipment` и нужные контейнерные предметы из `startingGear`.
-3. Если предмет уже покрыт существующей группой для того же слота, не создавай новый точечный loadout только ради старого дефолта.
-4. Если слот уже покрыт группой, но у роли он должен быть обязательным, добейся обязательности через группу (`minLimit` на самой группе или role-specific override группы).
-5. Если слот не покрыт ни одной группой, создай hidden-группу с обязательным выбором и одним локальным `loadout`.
-6. Если изменение обязательности нужно только одной роли, не ломай shared-группу для всех: создай role-specific override.
-7. После полной миграции отвяжи `startingGear:` от job, чтобы не дублировать выдачу.
+1. For visible roles, consider the loadout system to be a priority.
+2. Complete all `equipment` and the required container items from `startingGear`.
+3. If an item is already covered by an existing group for the same slot, don't create a new point loadout just for the sake of the old default.
+4. If a slot is already covered by a group, but the role must have it mandatory, make it mandatory through the group (`minLimit` on the group itself or role-specific override of the group).
+5. If the slot is not covered by any groups, create a hidden group with a mandatory selection and one local `loadout`.
+6. If only one role needs to change the requirement, do not break the shared group for everyone: create a role-specific override.
+7. After complete migration, unlink `startingGear:` from job so as not to duplicate the output.
 
-### 4) Поддерживать синхронизацию `startingGear`
+### 4) Maintain synchronization `startingGear`
 
-Используй этот шаг, когда проект еще держит hybrid-состояние или пользователь явно просит синхронизировать дефолтный spawn.
+Use this step when the project is still in hybrid state or the user explicitly asks to synchronize the default spawn.
 
-1. У каждого значимого equipment-слота, который есть в `roleLoadout`, должен быть совместимый дефолт в `startingGear`, если `startingGear` у роли остается.
-2. Если в `startingGear` уже стоит предмет из соответствующей группы, оставь его.
-3. Если слот пустой, а группа есть, выбирай дефолт так:
-   - сначала старый предмет из `HEAD startingGear`, если он входит в текущую группу;
-   - иначе самый нейтральный, простой и недекоративный предмет из группы;
-   - если на один слот есть и hidden-техническая группа, и обычная видимая группа, для `startingGear` предпочитай обычную рольную одежду, а не технический предмет;
-   - не заполняй personal/cosmetic-группы вроде `trinkets`, `bra`, `pants`, `socks`, если нет отдельной политики проекта.
-4. `storage` и `inhand` синхронизируй только когда задача явно требует именно их.
+1. Each significant equipment slot that is in `roleLoadout` must have a compatible default in `startingGear` if the role retains `startingGear`.
+2. If `startingGear` already contains an item from the corresponding group, leave it.
+3. If the slot is empty, but there is a group, select default like this:
+   - first the old item from `HEAD startingGear`, if it is part of the current group;
+   - otherwise the most neutral, simple and undecorative item from the group;
+   - if there is both a hidden technical group and a regular visible group for one slot, for `startingGear` prefer regular role-playing clothing rather than a technical item;
+   - do not fill in personal/cosmetic groups like `trinkets`, `bra`, `pants`, `socks`, unless there is a separate project policy.
+4. Synchronize `storage` and `inhand` only when the task clearly requires them.
 
-### 5) Работа со скрытыми roles/departments
+### 5) Working with hidden roles/departments
 
-1. Для jobs с `setPreference: false` по умолчанию оставляй `startingGear`.
-2. Для departments с `editorHidden: true` по умолчанию не создавай новые `roleLoadout`.
-3. Если department не hidden, но UI скрывает его, потому что в нем нет ни одной роли с `setPreference: true`, обращайся с ним так же, как со скрытым.
-4. Если кто-то уже успел создать loadout-обвязку для скрытых ролей, а задача этого не требует, удаляй лишние `roleLoadout` и возвращай `startingGear`.
-5. Не плодить новые per-role loadout-файлы для скрытых ролей только ради механического копирования старого `startingGear`.
+1. For jobs with `setPreference: false` by default, leave `startingGear`.
+2. For departments with `editorHidden: true` by default, do not create new `roleLoadout`.
+3. If department is not hidden, but the UI hides it because it doesn't have any roles with `setPreference: true`, treat it the same as hidden.
+4. If someone has already created a loadout binding for hidden roles, and the task does not require this, delete the extra `roleLoadout` and return `startingGear`.
+5. Do not create new per-role loadout files for hidden roles just for the sake of mechanically copying the old `startingGear`.
 
-### 6) Проверка перед завершением
+### 6) Check before completion
 
-1. Убедись, что все `_Project roleLoadout -> loadoutGroup -> loadout` ссылки локальны.
-2. Убедись, что нет missing `loadoutGroup`.
-3. Убедись, что нет missing `loadout`.
-4. Убедись, что для скрытых ролей случайно не появились новые `roleLoadout`, если их не просили мигрировать.
-5. Если роль оставляет `startingGear`, проверь, что ключевые equipment-слоты больше не пустые при наличии loadout-групп на эти слоты.
-6. Прогони YAML linter.
+1. Make sure that all `_Project roleLoadout -> loadoutGroup -> loadout` links are local.
+2. Make sure there is no missing `loadoutGroup`.
+3. Make sure there is no missing `loadout`.
+4. Make sure that new `roleLoadout` are not accidentally created for hidden roles unless they were asked to migrate.
+5. If the role leaves `startingGear`, check that the key equipment slots are no longer empty if there are loadout groups on these slots.
+6. Run YAML linter.
 
-## Паттерны ✅
+## Patterns ✅
 
-1. Копировать внешний `loadoutGroup` в локальный форк-путь и сразу переписывать ссылку у роли.
-2. Копировать внешний `loadout` вслед за группой, пока граф не станет полностью локальным.
-3. Давать `loadout` ID в формате `ScpLoadout<ItemPrototypeId>`.
-4. Давать `loadoutGroup` ID в формате `ScpLoadoutGroup<SlotOrConcept>`, а не по историческому источнику копии.
-5. Переиспользовать общие группы между ролями, если слот и семантика реально совпадают.
-6. Делать role-specific override группы, если только одна роль требует другой `minLimit` или другого набора вариантов.
-7. Переносить обязательные предметы из `startingGear` в hidden required-группы и после этого снимать `startingGear` с job.
-8. Синхронизировать `startingGear` через уже существующие группы, а не через новые одноразовые копии предметов.
-9. При выборе дефолта для пустого слота брать наиболее нейтральный и наименее декоративный вариант.
-10. При споре между техническим hidden-предметом и обычной одеждой на один слот выбирать для `startingGear` обычную одежду роли.
+1. Copy the external `loadoutGroup` to the local fork path and immediately rewrite the role’s link.
+2. Copy the outer `loadout` after the group until the graph becomes completely local.
+3. Give `loadout` ID in the format `ScpLoadout<ItemPrototypeId>`.
+4. Give `loadoutGroup` ID in the format `ScpLoadoutGroup<SlotOrConcept>`, and not according to the historical copy source.
+5. Reuse common groups between roles if the slot and semantics really match.
+6. Do role-specific override groups if only one role requires a different `minLimit` or another set of options.
+7. Transfer required items from `startingGear` to hidden required groups and then remove `startingGear` from the job.
+8. Synchronize `startingGear` through existing groups, and not through new one-time copies of items.
+9. When choosing a default for an empty slot, choose the most neutral and least decorative option.
+10. In case of a dispute between a technical hidden item and regular clothing for one slot, choose the regular clothing of the role for `startingGear`.
 
-## Анти-паттерны ❌
+## Anti-patterns ❌
 
-1. Оставлять `_ForkName`-роль ссылаться на ванильный или `_Sunrise` `loadoutGroup`.
-2. Копировать loadout-файлы в `Imports/...` вместо зеркального локального пути.
-3. Давать новым локальным ID ванильные имена без форк-префикса.
-4. Называть файлы и прототипы по ванильной должности, если в форке роль уже переименована.
-5. Делать новый single-item group на слот, который уже покрыт нормальной shared-группой.
-6. Менять shared-группу ради одной роли и случайно ломать остальные роли.
-7. Держать обязательный предмет одновременно в активном `roleLoadout` и в `startingGear`, если роль уже полностью мигрирована.
-8. Автоматически мигрировать скрытые jobs/departments в loadout-систему без явного запроса.
-9. Синхронизировать `startingGear` косметикой просто потому, что у роли есть такие группы.
-10. Считать миграцию завершенной без проверки полного графа ссылок и YAML linter.
-11. Забывать мигрировать белье из Loadout в `startingGear`
+1. Leave the `_ForkName` role to refer to the vanilla one or `_Sunrise` `loadoutGroup`.
+2. Copy loadout files to `Imports/...` instead of the mirror local path.
+3. Give new local IDs vanilla names without a fork prefix.
+4. Name files and prototypes by vanilla position, if the role has already been renamed in the fork.
+5. Create a new single-item group for a slot that is already covered by a normal shared group.
+6. Change the shared group for the sake of one role and accidentally break the remaining roles.
+7. Keep the required item simultaneously in the active `roleLoadout` and in `startingGear` if the role has already been completely migrated.
+8. Automatically migrate hidden jobs/departments to the loadout system without an explicit request.
+9. Synchronize `startingGear` with cosmetics simply because the role has such groups.
+10. Consider the migration complete without checking the full link graph and YAML linter.
+11. Forgetting to migrate linen from Loadout to `startingGear`
 
-## Примеры
+## Examples
 
-### Пример 1: Перенос обязательного слота
+### Example 1: Required slot transfer
 
 ```yaml
 - type: loadout
@@ -185,9 +185,9 @@ description: Создание, копирование, переименован�
   - ScpLoadoutGroupIdKeyCardMedicalSpecialist
 ```
 
-Комментарий: обязательная ID-карта переезжает из `startingGear` в hidden required-группу и становится частью loadout-графа.
+Comment: The required ID card moves from `startingGear` to the hidden required group and becomes part of the loadout graph.
 
-### Пример 2: слот уже покрыт группой, не форси старый предмет
+### Example 2: the slot is already covered by the group, do not force the old item
 
 ```yaml
 - type: loadoutGroup
@@ -203,9 +203,9 @@ description: Создание, копирование, переименован�
     shoes: ClothingShoesColorWhite
 ```
 
-Комментарий: если у роли уже есть обувная группа, в `startingGear` просто ставь совместимый дефолт. Не создавай отдельную hidden-группу только ради старых белых ботинок.
+Comment: if the role already has a shoe group, just set `startingGear` to a compatible default. Don't create a separate hidden group just for old white shoes.
 
-### Пример 3: hidden role не мигрируй без запроса
+### Example 3: hidden role do not migrate without request
 
 ```yaml
 - type: job
@@ -214,9 +214,9 @@ description: Создание, копирование, переименован�
   startingGear: JudicialInspectorGear
 ```
 
-Комментарий: такая роль по умолчанию остается на `startingGear`. Новый `roleLoadout` для нее не нужен, пока задача явно не просит обратное.
+Comment: This default role remains at `startingGear`. A new `roleLoadout` is not needed for it unless the task explicitly requests otherwise.
 
-### Пример 4: общая группа должна оставаться общей
+### Example 4: a shared group should remain shared
 
 ```yaml
 - type: loadoutGroup
@@ -228,20 +228,20 @@ description: Создание, копирование, переименован�
   - ScpLoadoutClothingBackpackDuffelSecurity
 ```
 
-Комментарий: если набор одинаковый у нескольких security-ролей, не дублируй группу под каждую должность. Новую группу делай только если одной роли нужен другой набор или другая обязательность.
+Comment: if the set is the same for several security roles, do not duplicate the group for each position. Make a new group only if one role needs a different set or another requirement.
 
-## Чеклист перед PR
+## Checklist before PR
 
-1. Все новые ID соответствуют схеме `ScpLoadout*` / `ScpLoadoutGroup*` / `Job<RoleId>`.
-2. Все новые файлы лежат в зеркальном локальном пути и названы в `snake_case`.
-3. У ролей форка нет ссылок на ванильные или чужие fork-loadout-прототипы.
-4. Для видимых ролей обязательная экипировка не осталась только в `startingGear`.
-5. Для скрытых ролей по умолчанию не создана лишняя loadout-обвязка.
-6. Если `startingGear` оставлен, его equipment-слоты синхронизированы с loadout-группами.
-7. YAML linter проходит.
+1. All new IDs correspond to the scheme `ScpLoadout*` / `ScpLoadoutGroup*` / `Job<RoleId>`.
+2. All new files are located in the mirror local path and are named in `snake_case`.
+3. Fork roles do not have references to vanilla or other fork-loadout prototypes.
+4. For visible roles, mandatory equipment is not left only in `startingGear`.
+5. By default, no extra loadout binding is created for hidden roles.
+6. If `startingGear` is left, its equipment slots are synchronized with loadout groups.
+7. YAML linter passes.
 
-## Правило расширения
+## Extension rule
 
-1. Добавляй в этот skill только то, что относится именно к authoring loadout-графа.
-2. Если накопится большая отдельная тема вроде UI loadout-окна, effect-based loadouts или автоматических скриптов валидации, выноси ее в отдельный skill или `references/`.
-3. При изменении локальных naming-правил обновляй этот skill и `ss14-naming-conventions` согласованно.
+1. Add to this skill only what relates specifically to authoring the loadout graph.
+2. If there is a large separate topic like UI loadout window, effect-based loadouts or automatic validation scripts, move it to a separate skill or `references/`.
+3. When changing local naming rules, update this skill and `ss14-naming-conventions` in a consistent manner.

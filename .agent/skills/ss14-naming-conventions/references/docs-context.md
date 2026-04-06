@@ -1,33 +1,33 @@
 # Docs Context (Naming)
 
-## Роль документации
+## The role of documentation
 
-1. Документация помогает формализовать термины и общий intent.
-2. Норматив по неймингу фиксируется по текущему коду, а не по историческим примерам в статьях.
-3. При конфликте docs и кода приоритет у кода.
+1. Documentation helps to formalize the terms and general intent.
+2. The naming standard is fixed according to the current code, and not according to historical examples in articles.
+3. If there is a conflict between docs and code, the code takes precedence.
 
-## Какие документы учитывать
+## What documents to consider
 
-1. `conventions` (обновлено 2026-01-19).
-Что брать: договоренности по `PascalCase/camelCase/kebab-case`, YAML-конвенции, базовые правила локализации.
-Ограничение: часть разделов отражает смешанное legacy-состояние.
+1. `conventions` (updated 2026-01-19).
+What to take: agreements on `PascalCase/camelCase/kebab-case`, YAML conventions, basic localization rules.
+Limitation: some partitions reflect a mixed legacy state.
 
 2. `fluent-and-localization`.
-Что брать: синтаксис FTL, структура `ent-*`, атрибуты `.desc`/`.suffix`.
-Ограничение: не покрывает форк-ужесточения по IC/OOC-контенту и лимитам длины.
+What to take: FTL syntax, `ent-*` structure, `.desc`/`.suffix` attributes.
+Limitation: does not cover fork tightening on IC/OOC content and length limits.
 
 3. `basic-networking-and-you`.
-Что брать: контекст shared/server/client контрактов и важность стабильных имен.
-Ограничение: это не специализированный naming-справочник.
+What to take: the context of shared/server/client contracts and the importance of stable names.
+Limitation: this is not a specialized naming directory.
 
-## Практика применения docs
+## Practice using docs
 
-1. Сначала верифицируй правило по свежему коду.
-2. Потом проверяй docs для уточнения формулировки.
-3. Если docs дают менее строгую норму, сохраняй более строгую, подтвержденную кодом.
+1. First, verify the rule using the latest code.
+2. Then check the docs to clarify the wording.
+3. If the docs give a less strict standard, keep a more strict one, confirmed by the code.
 
-## Что не переносить в рабочие правила
+## What not to transfer to working rules
 
-1. Устаревшие примеры старше cutoff без свежего подтверждения.
-2. Фрагменты с TODO/HACK/FIXME по теме нейминга.
-3. Привязку к конкретному расположению исходников.
+1. Outdated examples older than cutoff without recent confirmation.
+2. Fragments from TODO/HACK/FIXME on the topic of naming.
+3. Linking to a specific source location.

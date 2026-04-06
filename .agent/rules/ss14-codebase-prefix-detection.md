@@ -2,63 +2,63 @@
 trigger: always_on
 ---
 
-# Правило: Определение префикса кодбазы, project folder и edit-маркеров
+# Rule: Defining the codebase prefix, project folder and edit markers
 
-Это правило обязательно для любой задачи в форках SS14 семейства Sunrise/Fire/Fish/Lust.
+This rule is mandatory for any task in the SS14 forks of the Sunrise/Fire/Fish/Lust family.
 
-## 1. Что нужно определить до начала работы
+## 1. What you need to determine before starting work
 
-Перед анализом, планированием путей и внесением правок всегда зафиксируй три значения:
+Before analyzing, planning paths and making changes, always fix three values:
 
-1. Активный префикс кодбазы (`Sunrise`, `Fire`, `Fish`, `Lust`).
-2. Форковую project folder (`_Sunrise`, `_Scp`, `_Fish`, `_Lust`).
-3. Текст edit-маркера, который должен использоваться в комментариях.
+1. Active codebase prefix (`Sunrise`, `Fire`, `Fish`, `Lust`).
+2. Forked project folder (`_Sunrise`, `_Scp`, `_Fish`, `_Lust`).
+3. The text of the edit marker that should be used in comments.
 
-Не начинай правки в ванильных файлах, пока эти три значения не определены.
+Don't start editing vanilla files until these three values ​​are defined.
 
-## 2. Порядок определения текущего форка
+## 2. How to determine the current fork
 
-Определяй форк в таком порядке:
+Define a fork in this order:
 
-1. Сначала смотри git remote slug (`origin`, затем `upstream`, затем остальные remote).
-2. Затем смотри имя корневой папки репозитория и путь рабочей директории.
-3. Затем смотри, какая форковая project folder реально присутствует в кодовой базе (`_Sunrise`, `_Scp`, `_Fish`, `_Lust`).
-4. Затем смотри ближайшие уже существующие edit-маркеры в соседнем коде.
+1. First look at git remote slug (`origin`, then `upstream`, then the rest remote).
+2. Then look at the name of the repository root folder and the path of the working directory.
+3. Then look at which forked project folder is actually present in the code base (`_Sunrise`, `_Scp`, `_Fish`, `_Lust`).
+4. Then look at the nearest existing edit markers in the adjacent code.
 
-Если сигналы расходятся:
+If the signals diverge:
 
-1. Приоритет у git remote и реально существующей project folder.
-2. Если remote указывает на алиас/зеркало, но folder и существующие маркеры однозначны, используй фактический локальный форк.
-3. Не смешивай маркеры разных форков в рамках одной задачи.
+1. Priority goes to git remote and the actual project folder.
+2. If remote points to an alias/mirror, but folder and existing tokens are unambiguous, use an actual local fork.
+3. Do not mix markers from different forks within the same task.
 
-## 3. Карта соответствий
+## 3. Correspondence map
 
-Выбери первую строку, которая совпала по `repo slug`, имени корневой папки, alias или реально существующей fork-папке:
+Select the first line that matches `repo slug`, the name of the root folder, alias, or an actual fork folder:
 
 | Match | Prefix | Project folder | Single-line marker | Block markers | Note |
 | --- | --- | --- | --- | --- | --- |
-| `sunrise-station/space-station-14`, `space-sunrise/sunrise-station`, `sunrise-station`, `_Sunrise` | `Sunrise` | `_Sunrise` | `Sunrise-Edit` | `Sunrise edit start/end`, `Sunrise added start/end` | Для новых одиночных пометок по умолчанию используй `Sunrise-Edit`. |
-| `fire-station/project-fire`, `project-fire`, `fire-station`, `_Scp` | `Fire` | `_Scp` | `Fire edit`, `Fire added` | `Fire edit start/end`, `Fire added start/end` | Для Fire одиночные edit/add пометки различаются. |
-| `fish-station`, `_Fish` | `Fish` | `_Fish` | `FIsh edit` | Используй локальный стиль файла | Не нормализуй legacy-регистр маркера автоматически. |
-| `lust-lustation`, `_Lust` | `Lust` | `_Lust` | `Lust edit` | Используй локальный стиль файла | Если рядом уже есть block-style внутри Lust, следуй ему. |
+| `sunrise-station/space-station-14`, `space-sunrise/sunrise-station`, `sunrise-station`, `_Sunrise` | `Sunrise` | `_Sunrise` | `Sunrise-Edit` | `Sunrise edit start/end`, `Sunrise added start/end` | For new single placemarks, default to `Sunrise-Edit`. |
+| `fire-station/project-fire`, `project-fire`, `fire-station`, `_Scp` | `Fire` | `_Scp` | `Fire edit`, `Fire added` | `Fire edit start/end`, `Fire added start/end` | For Fire, single edit/add marks are different. |
+| `fish-station`, `_Fish` | `Fish` | `_Fish` | `FIsh edit` | Use local file style | Don't automatically normalize the legacy token case. |
+| `lust-lustation`, `_Lust` | `Lust` | `_Lust` | `Lust edit` | Use local file style | If there is already a block-style nearby inside Lust, follow it. |
 
-## 4. Как применять маркер в конкретном файле
+## 4. How to apply a marker in a specific file
 
-Для любого форка действуют одни и те же общие правила:
+The same general rules apply for any fork:
 
-1. Используй `Prefix`, `Project folder` и `marker` из выбранной строки таблицы.
-2. Текст маркера не меняй, только адаптируй синтаксис комментария под язык файла.
-3. Если файл уже использует локальный стиль того же форка, продолжай его. Не переоформляй старые маркеры только ради косметики.
+1. Use `Prefix`, `Project folder` and `marker` from the selected table row.
+2. Do not change the marker text, just adapt the comment syntax to the file language.
+3. If the file already uses a local style of the same fork, continue with it. Don't repurpose old markers just for cosmetics.
 
-Синтаксис комментария подбирай под язык файла:
+Select the comment syntax to match the file language:
 
 - C#, C++, Java: `// Sunrise-Edit`, `// Fire added start - reason`
 - YAML, FTL, Python, Shell: `# Sunrise-Edit`, `# Fire added start - reason`
-- XML, HTML: `<!-- Sunrise-Edit -->`, только если комментарии в этом формате допустимы и действительно нужны
+- XML, HTML: `<!-- Sunrise-Edit -->`, only if comments in this format are allowed and really needed
 
-## 5. Как это влияет на структуру правок
+## 5. How does this affect the structure of edits?
 
-1. Новые форковые файлы размещай в соответствующей project folder текущего форка.
-2. Минимальные хуки в ванильных файлах помечай edit-маркером текущего форка.
-3. Не клади код Sunrise в `_Scp` и не используй `Fire edit` в `_Sunrise`.
-4. Если проект уже смешивает исторические варианты маркеров внутри одного форка, для новых правок следуй ближайшему локальному стилю этого форка, но не переходи на маркеры другого форка.
+1. Place new forked files in the corresponding project folder of the current fork.
+2. Mark minimal hooks in vanilla files with the edit marker of the current fork.
+3. Don't put the Sunrise code in `_Scp` and don't use `Fire edit` in `_Sunrise`.
+4. If a project is already mixing historical marker variants within one fork, for new edits follow the closest local style of that fork, but do not switch to markers from another fork.
