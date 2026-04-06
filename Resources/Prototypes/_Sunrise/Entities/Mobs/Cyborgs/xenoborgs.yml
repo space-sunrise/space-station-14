@@ -37,7 +37,6 @@
       - MMIFilled
       borg_module:
       - XenoborgModuleBasic
-      - XenoborgModuleTool
   - type: Inventory
     templateId: FishXenoborgReaper
   - type: InventorySlots
