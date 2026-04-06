@@ -6,6 +6,6 @@ description: Gives a practical catalog of the AudioSystem API in Space Station 1
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-audio-system-api/SKILL.md.
+../../../.agent/skills/ss14-audio-system-api/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

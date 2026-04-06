@@ -6,6 +6,6 @@ description: A guide to using events in Space Station 14 - strict taxonomy, subs
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-events/SKILL.md.
+../../../.agent/skills/ss14-events/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

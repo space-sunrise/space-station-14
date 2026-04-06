@@ -6,6 +6,6 @@ description: Deep practical guide to PhysicsSystem in Space Station 14: simulati
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-physics-system-core/SKILL.md.
+../../../.agent/skills/ss14-physics-system-core/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

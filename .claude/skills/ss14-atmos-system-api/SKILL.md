@@ -6,6 +6,6 @@ description: Gives a complete practical analysis of the AtmosSystem API in Space
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-atmos-system-api/SKILL.md.
+../../../.agent/skills/ss14-atmos-system-api/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

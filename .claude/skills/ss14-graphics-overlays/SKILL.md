@@ -6,6 +6,6 @@ description: An in-depth practical guide to the SS14 overlay architecture: Overl
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-graphics-overlays/SKILL.md.
+../../../.agent/skills/ss14-graphics-overlays/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

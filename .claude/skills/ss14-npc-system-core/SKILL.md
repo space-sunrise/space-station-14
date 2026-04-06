@@ -6,6 +6,6 @@ description: Deep dive into the NPC system in SS14/Sunrise: HTN planning, utilit
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-npc-system-core/SKILL.md.
+../../../.agent/skills/ss14-npc-system-core/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

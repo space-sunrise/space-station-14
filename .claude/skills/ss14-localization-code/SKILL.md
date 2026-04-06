@@ -6,6 +6,6 @@ description: A guide to using localization in Space Station 14 C# code. Describe
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-localization-code/SKILL.md.
+../../../.agent/skills/ss14-localization-code/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

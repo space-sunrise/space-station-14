@@ -2552,7 +2552,7 @@
   id: uplinkWeaponPistolDeagle
   name: uplink-deagle-name
   description: uplink-deagle-desc
-  productEntity: WeaponPistolDeagleBiocode
+  productEntity: WeaponPistolDeagle
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 4
@@ -2560,6 +2560,34 @@
     Telecrystal: 5
   categories:
   - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+      - AssaultOpsUplink
+
+- type: listing
+  id: uplinkWeaponPistolDeagleBundle
+  name: uplink-deagle-bundle-name
+  description: uplink-deagle-bundle-desc
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle/big.rsi, state: icon }
+  productEntity: BriefcaseWeaponDeagleFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 7
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkGrenadeLauncherM79

@@ -6,6 +6,6 @@ description: Guide to working with Space Station 14 forks with project-folder pa
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-upstream-maintenance/SKILL.md.
+../../../.agent/skills/ss14-upstream-maintenance/SKILL.md
 
 Use that file as the entrypoint and follow its source mapping.

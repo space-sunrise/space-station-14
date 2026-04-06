@@ -6,6 +6,6 @@ description: Parses the AtmosSystem architecture in Space Station 14 at the serv
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-atmos-system-core/SKILL.md.
+../../../.agent/skills/ss14-atmos-system-core/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

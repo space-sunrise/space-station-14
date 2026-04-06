@@ -6,6 +6,6 @@ description: Practical workflow for writing your own unit/integration tests in t
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-tests-authoring/SKILL.md.
+../../../.agent/skills/ss14-tests-authoring/SKILL.md
 
 Use that file as the entrypoint and follow its source mapping.
