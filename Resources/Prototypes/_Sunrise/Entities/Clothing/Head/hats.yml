@@ -517,9 +517,8 @@
     foldedHeldPrefix: up
 
 #маски животных
-
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadEVAHelmetBase
   id: ClothingHeadHatTony
   name: Tony
   description: 'Man, this party sucks, I fucking hate these people'
@@ -529,22 +528,34 @@
     scale: 0.63, 0.63
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/tonytiger.rsi
+    equipDelay: 0.5
+    unequipDelay: 0.5
+    equipSound: /Audio/Misc/zip.ogg
+    unequipSound: /Audio/Misc/zip.ogg
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: Tag
     tags:
     - WhitelistChameleon
     - ClothMade
-    - FullCovered # INTERACTIONS
+    - FullCovered
   - type: HideLayerClothing
     slots:
     - Hair
     - HeadTop
     - HeadSide
     - FacialHair
+  - type: FlashImmunity
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.9
+        Heat: 0.9
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadEVAHelmetBase
   id: ClothingHeadHatBear
   name: Mark
   description: 'Say your prayers, son. You are already dead in this world.'
@@ -554,22 +565,34 @@
     scale: 0.63, 0.63
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/markbear.rsi
+    equipDelay: 0.5
+    unequipDelay: 0.5
+    equipSound: /Audio/Misc/zip.ogg
+    unequipSound: /Audio/Misc/zip.ogg
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: Tag
     tags:
     - WhitelistChameleon
     - ClothMade
-    - FullCovered # INTERACTIONS
+    - FullCovered
   - type: HideLayerClothing
     slots:
     - Hair
     - HeadTop
     - HeadSide
     - FacialHair
+  - type: FlashImmunity
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadEVAHelmetBase
   id: ClothingHeadHatBiker
   name: Biker
   description: 'I WAS BORN IN USA.'
@@ -579,22 +602,34 @@
     scale: 0.63, 0.63
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/biker.rsi
+    equipDelay: 0.5
+    unequipDelay: 0.5
+    equipSound: /Audio/Misc/zip.ogg
+    unequipSound: /Audio/Misc/zip.ogg
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: Tag
     tags:
     - WhitelistChameleon
     - ClothMade
-    - FullCovered # INTERACTIONS
+    - FullCovered
   - type: HideLayerClothing
     slots:
     - Hair
     - HeadTop
     - HeadSide
     - FacialHair
+  - type: FlashImmunity
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadEVAHelmetBase
   id: ClothingHeadHatZebra
   name: Corey
   description: 'Fuck You!'
@@ -604,22 +639,34 @@
     scale: 0.63, 0.63
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/zebra.rsi
+    equipDelay: 0.5
+    unequipDelay: 0.5
+    equipSound: /Audio/Misc/zip.ogg
+    unequipSound: /Audio/Misc/zip.ogg
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: Tag
     tags:
     - WhitelistChameleon
     - ClothMade
-    - FullCovered # INTERACTIONS
+    - FullCovered
   - type: HideLayerClothing
     slots:
     - Hair
     - HeadTop
     - HeadSide
     - FacialHair
+  - type: FlashImmunity
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.8
+        Piercing: 0.9
+        Heat: 0.9
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadEVAHelmetBase
   id: ClothingHeadHatSwanTwo
   name: Esh
   description: 'We are all going to die here.'
@@ -629,22 +676,34 @@
     scale: 0.63, 0.63
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/swantwo.rsi
+    equipDelay: 0.5
+    unequipDelay: 0.5
+    equipSound: /Audio/Misc/zip.ogg
+    unequipSound: /Audio/Misc/zip.ogg
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: Tag
     tags:
     - WhitelistChameleon
     - ClothMade
-    - FullCovered # INTERACTIONS
+    - FullCovered
   - type: HideLayerClothing
     slots:
     - Hair
     - HeadTop
     - HeadSide
     - FacialHair
+  - type: FlashImmunity
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.85
+        Heat: 0.85
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadEVAHelmetBase
   id: ClothingHeadHatSwanOne
   name: Alex
   description: 'Ha-ha-ha...We had a nice walk.'
@@ -654,19 +713,31 @@
     scale: 0.63, 0.63
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/swanone.rsi
+    equipDelay: 0.5
+    unequipDelay: 0.5
+    equipSound: /Audio/Misc/zip.ogg
+    unequipSound: /Audio/Misc/zip.ogg
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: Tag
     tags:
     - WhitelistChameleon
     - ClothMade
-    - FullCovered # INTERACTIONS
+    - FullCovered
   - type: HideLayerClothing
     slots:
     - Hair
     - HeadTop
     - HeadSide
     - FacialHair
+  - type: FlashImmunity
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.85
+        Heat: 0.85
 
 - type: entity
   parent: ClothingHeadBase
