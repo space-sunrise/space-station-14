@@ -552,3 +552,24 @@
   - type: Tag
     tags:
     - WingToggleAllowed
+
+- type: entity
+  parent: [ BaseTSFContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitTSF
+  name: MARSOC helmet
+  description: A helmet worn by marines of the Trans-Solar Federation's Marine Special Operations Command. Armored, space ready, and fireproof.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/tsf.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/tsf.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        shader: unshaded
+  - type: PointLight
+    color: "#0bb06e"
+    energy: 2
+    radius: 7

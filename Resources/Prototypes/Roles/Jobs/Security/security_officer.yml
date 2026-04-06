@@ -13,11 +13,6 @@
   supervisors: job-supervisors-hos
   canBeAntag: false
   displayWeight: 10
-  # Sunrise-Start
-  alternativeTitles:
-  - job-alt-title-law-enforcer
-  - job-alt-title-security-specialist
-  # Sunrise-End
   access:
   - Security
   - Brig

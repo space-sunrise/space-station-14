@@ -6,12 +6,6 @@
   startingGear: BotanistGear
   icon: "JobIconBotanist"
   supervisors: job-supervisors-hop
-  # Sunrise-Start
-  alternativeTitles:
-  - job-alt-title-gardener
-  - job-alt-title-agronomist
-  - job-alt-title-hydroponics-operator
-  # Sunrise-End
   access:
   - Service
   - Maintenance

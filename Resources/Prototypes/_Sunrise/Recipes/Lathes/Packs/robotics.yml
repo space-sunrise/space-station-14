@@ -62,3 +62,10 @@
   - PaintClarkeOrangey
   - Nanopaste
   - HandheldRoboAnalyzer
+
+- type: latheRecipePack
+  id: BorgModulesSunrise
+  recipes:
+  - BorgModuleJetpack
+  - BorgModuleMiningCombat
+  - BorgModuleAdvancedCombat

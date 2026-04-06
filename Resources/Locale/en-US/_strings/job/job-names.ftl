@@ -114,3 +114,7 @@ JobStationEngineer = Station Engineer
 JobTechnicalAssistant = Technical Assistant
 JobVisitor = Visitor
 JobWarden = Warden
+job-title-tsf-trader = TSF Trader
+job-title-tsf-marine = TSF Marine
+job-title-tsf-marine-leader = TSF Team Leader
+job-title-tsf-MARSOC = MARSOC Marine

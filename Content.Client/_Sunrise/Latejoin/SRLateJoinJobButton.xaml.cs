@@ -15,16 +15,14 @@ public sealed partial class SRLateJoinJobButton : Button
     private readonly ClientGameTicker _gameTicker;
     private readonly NetEntity _station;
     private readonly string _jobId;
-    private readonly string? _alternativeTitle;
 
-    public SRLateJoinJobButton(NetEntity station, string jobId, ClientGameTicker gameTicker, IPrototypeManager prototypeManager, string? alternativeTitle = null)
+    public SRLateJoinJobButton(NetEntity station, string jobId, ClientGameTicker gameTicker, IPrototypeManager prototypeManager)
     {
         RobustXamlLoader.Load(this);
         _prototypeManager = prototypeManager;
         _gameTicker = gameTicker;
         _station = station;
         _jobId = jobId;
-        _alternativeTitle = alternativeTitle;
 
         _gameTicker.LobbyJobsAvailableUpdated += UpdateButton;
         UpdateButton(_gameTicker.JobsAvailable);
@@ -49,8 +47,7 @@ public sealed partial class SRLateJoinJobButton : Button
         var jobIcon = _prototypeManager.Index(prototype.Icon);
         JobIcon.Texture = jobIcon.Icon.Frame0();
 
-        var displayName = _alternativeTitle ?? prototype.LocalizedName;
-        JobText.Text = $"{displayName} ({obj[_station][_jobId]?.ToString() ?? "Unlimited"})";
+        JobText.Text = $"{prototype.LocalizedName} ({obj[_station][_jobId]?.ToString() ?? "Unlimited"})";
 
         Disabled = obj[_station][_jobId] == 0;
     }

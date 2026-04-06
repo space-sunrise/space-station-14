@@ -20,6 +20,19 @@
     - MobsExpeditionGuideSoviets
   - type: Damageable
     damageModifierSet: MobPirateT1
+  - type: ExplosionResistance
+    damageCoefficient: 0.25
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: NpcFactionMember
     factions:
     - Soviet
@@ -33,6 +46,8 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
+  - type: TimedDespawn
+    lifetime: 3600
   - type: RemoveComponentsOnTrigger
     triggerOnce: true
     components:
@@ -46,7 +61,7 @@
     removeExisting: true
     components:
     - type: TimedDespawn
-      lifetime: 180
+      lifetime: 600
     - type: Strippable
     - type: Pullable
   - type: TimedRemoveComponents
@@ -145,7 +160,7 @@
     makeSentient: true
     name: ghost-role-information-expedition-soviet-name
     description: ghost-role-information-expedition-soviet-description
-    rules: ghost-role-information-expedition-soviet-rules
+    rules: ghost-role-information-rules-expedition-soviet-antagonist
     raffle:
       settings: short
   - type: GhostTakeoverAvailable
@@ -202,8 +217,8 @@
   components:
   - type: DatasetVocalizer
     dataset: SovietChatterNPCVeteran
-    minVocalizeInterval: 30s
-    maxVocalizeInterval: 60s
+    minVocalizeInterval: 45s
+    maxVocalizeInterval: 90s
     hideChat: true
 
 - type: entity
@@ -405,6 +420,7 @@
       0: Alive
       90: Critical
       100: Dead
+  - type: ShowHealthBars
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -426,12 +442,14 @@
       state: equipped-HAND
       color: "#3CB57C"
   - type: AoEHeal
+    healSelf: false
     range: 5
     threshold: 0.9
+    aliveTargets: false
     damage:
       groups:
-        Brute: -20
-        Burn: -10
+        Brute: -10
+        Burn: -8
         Airloss: -10
         Toxin: -10
     whitelist:
@@ -445,12 +463,14 @@
     triggerOnce: true
     components:
     - type: AoEHeal
+      healSelf: false
       range: 5
       threshold: 0.9
+      aliveTargets: false
       damage:
         groups:
-          Brute: -20
-          Burn: -10
+          Brute: -10
+          Burn: -8
           Airloss: -10
           Toxin: -10
       whitelist:
@@ -488,9 +508,6 @@
   - type: Loadout
     prototypes:
     - MobSovietGearPPSH
-  - type: ActionGun
-    action: ActionGunGrenadeExplosiveShrapnel
-    gunProto: GunGrenadeExplosiveShrapnel
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionScream
@@ -666,9 +683,9 @@
     showExamineText: false
     fireRate: 7.5
     minAngle: 5
-    maxAngle: 60
-    angleIncrease: 4
-    angleDecay: 20
+    maxAngle: 50
+    angleIncrease: 3
+    angleDecay: 25
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -768,14 +785,16 @@
     showExamineText: false
     fireRate: 5
     selectedMode: FullAuto
-    minAngle: 2
+    minAngle: 6
     maxAngle: 25
-    angleIncrease: 2
-    angleDecay: 7
+    angleIncrease: 1
+    angleDecay: 10
     availableModes:
     - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/smg.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
 
 - type: entity
   name: soldier
@@ -1020,6 +1039,7 @@
       0: Alive
       90: Critical
       100: Dead
+  - type: ShowHealthBars
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1060,14 +1080,15 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: AoEHeal
-    range: 5
+    healSelf: false
+    range: 7
     threshold: 0.9
     damage:
       groups:
-        Brute: -30
-        Burn: -20
-        Airloss: -20
-        Toxin: -20
+        Brute: -15
+        Burn: -15
+        Airloss: -15
+        Toxin: -15
     whitelist:
       components:
       - NpcVeteranFollower
@@ -1079,20 +1100,18 @@
     triggerOnce: true
     components:
     - type: AoEHeal
-      range: 5
+      healSelf: false
+      range: 7
       threshold: 0.9
       damage:
         groups:
-          Brute: -30
-          Burn: -20
-          Airloss: -20
-          Toxin: -20
+          Brute: -15
+          Burn: -15
+          Airloss: -15
+          Toxin: -15
       whitelist:
         components:
         - NpcVeteranFollower
-  - type: ActionGun
-    action: ActionGunGrenadeSmoke
-    gunProto: GunGrenadeSmoke
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionGravityJumpQuick
@@ -1101,7 +1120,10 @@
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
-    - actionId: ActionGunGrenadeSmoke
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 5
+      maxRange: 12
+    - actionId: ActionGunGrenadeExplosiveShrapnelSpell
       minRange: 5
       maxRange: 12
 
@@ -1155,9 +1177,6 @@
       collection: xm1014
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: ActionGun
-    action: ActionGunGrenadeSmoke
-    gunProto: GunGrenadeSmoke
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionGravityJumpQuick
@@ -1166,7 +1185,10 @@
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
-    - actionId: ActionGunGrenadeSmoke
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 5
+      maxRange: 12
+    - actionId: ActionGunGrenadeExplosiveShrapnelSpell
       minRange: 5
       maxRange: 12
 
@@ -1227,15 +1249,18 @@
     availableModes:
     - FullAuto
     soundGunshot: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_shot.ogg
-  - type: ActionGun
-    action: ActionGunGrenadeSmoke
-    gunProto: GunGrenadeSmoke
   - type: NPCUseActionWhenTargetInRange
     actions:
+    - actionId: ActionGravityJumpQuick
+      minRange: 4
+      maxRange: 0
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
-    - actionId: ActionGunGrenadeSmoke
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 5
+      maxRange: 12
+    - actionId: ActionGunGrenadeExplosiveShrapnelSpell
       minRange: 5
       maxRange: 12
 
@@ -1368,7 +1393,6 @@
     - CanPilot
     - Pickaxe
     - NpcBoss
-  - type: Magboots
   - type: HellSpawnRush
     blacklist:
       tags:
@@ -1497,7 +1521,7 @@
     fuelCost: 25
     doAfterDelay: 10
   - type: BatteryAmmoProvider
-    proto: CartridgeHeavyRifleRSP
+    proto: CartridgeHeavyRifleRFMJ
     fireCost: 1
   - type: BatterySelfRecharger
     autoRechargePauseTime: 5
@@ -1541,7 +1565,6 @@
   - type: EyeCursorOffset
     maxOffset: 5
     pvsIncrease: 0.6
-  - type: Magboots
   - type: AutoImplant
     implants:
     - SmokeScreenImplant
@@ -2121,3 +2144,5 @@
 - type: entity
   parent: MobSovietT1MosinAlt
   id: MobSovietMosinAlt
+
+

@@ -15,8 +15,6 @@
   supervisors: job-supervisors-hos
   canBeAntag: false
   displayWeight: 15
-  alternativeTitles:
-  - job-alt-title-orderly
   access:
   - Medical
   - Security

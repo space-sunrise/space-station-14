@@ -7,10 +7,6 @@
   icon: "JobIconCargoTechnician"
   supervisors: job-supervisors-qm
   displayWeight: 0  # Sunrise
-  # Sunrise-Start
-  alternativeTitles:
-  - job-alt-title-handyman
-  # Sunrise-End
   access:
   - Cargo
   - Maintenance

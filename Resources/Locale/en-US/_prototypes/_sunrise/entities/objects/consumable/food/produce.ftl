@@ -24,3 +24,5 @@ ent-FoodWhiterose = white rose
     .desc = The classic fleur d'amour - flower of love. Watch for its thorns!
 ent-FoodSunflower = Sunflower
     .desc = It's beautiful! A certain person might beat you to death if you trample these.
+ent-FoodWhiteLily = white lily
+    .desc = Graceful delicate flower. How could it even grow up in deep space?

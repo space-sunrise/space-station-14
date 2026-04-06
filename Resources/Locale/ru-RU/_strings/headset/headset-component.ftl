@@ -20,3 +20,4 @@ chat-radio-xenoborg = Ксеноборг
 chat-radio-mothership = Материнский корабль
 # Sunrise-Edit
 chat-radio-no-id = Без ID
+chat-radio-tsf = ТСФ

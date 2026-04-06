@@ -1,0 +1,697 @@
+- type: entity
+  id: BaseDrinkBorg
+  components:
+  - type: Unremoveable
+    deleteOnDrop: true
+
+- type: entity
+  id: DrinkCoconutWaterJugBorg
+  parent: [ DrinkCoconutWaterJug, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: CoconutWater
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: CoconutWater
+        Quantity: 3
+
+- type: entity
+  id: DrinkCoffeeJugBorg
+  parent: [ DrinkCoffeeJug, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Coffee
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Coffee
+        Quantity: 3
+
+- type: entity
+  id: DrinkColaBottleFullBorg
+  parent: [ DrinkColaBottleFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Cola
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Cola
+        Quantity: 3
+
+- type: entity
+  id: DrinkCreamCartonXLBorg
+  parent: [ DrinkCreamCartonXL, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Cream
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Cream
+        Quantity: 3
+
+- type: entity
+  id: DrinkDrGibbJugBorg
+  parent: [ DrinkDrGibbJug, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: DrGibb
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: DrGibb
+        Quantity: 3
+
+- type: entity
+  id: DrinkEnergyDrinkJugBorg
+  parent: [ DrinkEnergyDrinkJug, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: EnergyDrink
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: EnergyDrink
+        Quantity: 3
+
+- type: entity
+  id: DrinkGreenTeaJugBorg
+  parent: [ DrinkGreenTeaJug, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: GreenTea
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: GreenTea
+        Quantity: 3
+
+- type: entity
+  id: DrinkIceJugBorg
+  parent: [ DrinkIceJug, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Ice
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Ice
+        Quantity: 3
+
+- type: entity
+  id: DrinkJuiceLemonBottleFullBorg
+  parent: [ DrinkBottlePlasticBaseFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: JuiceLemon
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: JuiceLemon
+        Quantity: 3
+  - type: Label
+    currentLabel: reagent-name-juice-lemon
+
+- type: entity
+  id: DrinkJuiceLimeCartonXLBorg
+  parent: [ DrinkJuiceLimeCartonXL, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: JuiceLime
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: JuiceLime
+        Quantity: 3
+
+- type: entity
+  id: DrinkJuiceOrangeCartonXLBorg
+  parent: [ DrinkJuiceOrangeCartonXL, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: JuiceOrange
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: JuiceOrange
+        Quantity: 3
+
+- type: entity
+  id: DrinkLemonLimeJugBorg
+  parent: [ DrinkLemonLimeJug, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: LemonLime
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: LemonLime
+        Quantity: 3
+
+- type: entity
+  id: DrinkMilkBottleFullBorg
+  parent: [ DrinkBottlePlasticBaseFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Milk
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Milk
+        Quantity: 3
+  - type: Label
+    currentLabel: reagent-name-milk
+
+- type: entity
+  id: DrinkRootBeerJugBorg
+  parent: [ DrinkRootBeerJug, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: RootBeer
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: RootBeer
+        Quantity: 3
+
+- type: entity
+  id: DrinkSodaWaterBottleFullBorg
+  parent: [ DrinkSodaWaterBottleFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: SodaWater
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: SodaWater
+        Quantity: 3
+
+- type: entity
+  id: DrinkSpaceMountainWindBottleFullBorg
+  parent: [ DrinkSpaceMountainWindBottleFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: SpaceMountainWind
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: SpaceMountainWind
+        Quantity: 3
+
+- type: entity
+  id: DrinkSolDryBottleFullBorg
+  parent: [ DrinkBottlePlasticBaseFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: SolDry
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: SolDry
+        Quantity: 3
+  - type: Label
+    currentLabel: reagent-name-sol-dry
+
+- type: entity
+  id: DrinkSpaceUpBottleFullBorg
+  parent: [ DrinkSpaceUpBottleFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: SpaceUp
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: SpaceUp
+        Quantity: 3
+
+- type: entity
+  id: DrinkSugarJugBorg
+  parent: [ DrinkSugarJug, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Sugar
+        Quantity: 3
+
+- type: entity
+  id: DrinkTeaJugBorg
+  parent: [ DrinkTeaJug, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Tea
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Tea
+        Quantity: 3
+
+- type: entity
+  id: DrinkTonicWaterBottleFullBorg
+  parent: [ DrinkTonicWaterBottleFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: TonicWater
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: TonicWater
+        Quantity: 3
+
+- type: entity
+  id: DrinkWaterMelonJuiceJugBorg
+  parent: [ DrinkWaterMelonJuiceJug, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: JuiceWatermelon
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: JuiceWatermelon
+        Quantity: 3
+
+# Booze (alcohol)
+
+- type: entity
+  id: DrinkAbsintheBottleFullBorg
+  parent: [ DrinkAbsintheBottleFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Absinthe
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Absinthe
+        Quantity: 2
+
+- type: entity
+  id: DrinkAleBottleFullGrowlerBorg
+  parent: [ DrinkAleBottleFullGrowler, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Ale
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Ale
+        Quantity: 2
+
+- type: entity
+  id: DrinkBeerGrowlerBorg
+  parent: [ DrinkBeerGrowler, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Beer
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Beer
+        Quantity: 2
+
+- type: entity
+  id: DrinkBlueCuracaoBottleFullBorg
+  parent: [ DrinkBlueCuracaoBottleFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: BlueCuracao
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: BlueCuracao
+        Quantity: 2
+
+- type: entity
+  id: DrinkChampagneBottleFullBorg
+  parent: [ DrinkChampagneBottleFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Champagne
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Champagne
+        Quantity: 2
+
+- type: entity
+  id: DrinkCoffeeLiqueurBottleFullBorg
+  parent: [ DrinkCoffeeLiqueurBottleFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: CoffeeLiqueur
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: CoffeeLiqueur
+        Quantity: 2
+
+- type: entity
+  id: DrinkCognacBottleFullBorg
+  parent: [ DrinkCognacBottleFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Cognac
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Cognac
+        Quantity: 2
+
+- type: entity
+  id: DrinkGrenadineBottleFullBorg
+  parent: [ DrinkGrenadineBottleFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Grenadine
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Grenadine
+        Quantity: 2
+
+- type: entity
+  id: DrinkGinBottleFullBorg
+  parent: [ DrinkGinBottleFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Gin
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Gin
+        Quantity: 2
+
+- type: entity
+  id: DrinkMeadJugBorg
+  parent: [ DrinkMeadJug, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Mead
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Mead
+        Quantity: 2
+
+- type: entity
+  id: DrinkRumBottleFullBorg
+  parent: [ DrinkRumBottleFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Rum
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Rum
+        Quantity: 2
+
+- type: entity
+  id: DrinkTequilaBottleFullBorg
+  parent: [ DrinkTequilaBottleFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Tequila
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Tequila
+        Quantity: 2
+
+- type: entity
+  id: DrinkVermouthBottleFullBorg
+  parent: [ DrinkVermouthBottleFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Vermouth
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Vermouth
+        Quantity: 2
+
+- type: entity
+  id: DrinkVodkaBottleFullBorg
+  parent: [ DrinkVodkaBottleFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Vodka
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Vodka
+        Quantity: 2
+
+- type: entity
+  id: DrinkWhiskeyBottleFullBorg
+  parent: [ DrinkWhiskeyBottleFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Whiskey
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Whiskey
+        Quantity: 2
+
+- type: entity
+  id: DrinkWineBottleFullBorg
+  parent: [ DrinkWineBottleFull, BaseDrinkBorg ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Wine
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Wine
+        Quantity: 2

@@ -68,12 +68,6 @@ namespace Content.Server.Database
                 .HasIndex(p => new {HumanoidProfileId = p.ProfileId, p.TraitName})
                 .IsUnique();
 
-            // Sunrise-Start
-            modelBuilder.Entity<JobAlternativeTitle>()
-                .HasIndex(j => new { j.ProfileId, j.JobName })
-                .IsUnique();
-            // Sunrise-End
-
             modelBuilder.Entity<ProfileRoleLoadout>()
                 .HasOne(e => e.Profile)
                 .WithMany(e => e.Loadouts)
@@ -440,7 +434,6 @@ namespace Content.Server.Database
         public List<Job> Jobs { get; } = new();
         public List<Antag> Antags { get; } = new();
         public List<Trait> Traits { get; } = new();
-        public List<JobAlternativeTitle> JobAlternativeTitles { get; } = new(); // Sunrise
 
         public List<ProfileRoleLoadout> Loadouts { get; } = new();
 
@@ -486,21 +479,6 @@ namespace Content.Server.Database
 
         public string TraitName { get; set; } = null!;
     }
-
-    // Sunrise-Start
-    public class JobAlternativeTitle
-    {
-        public int Id { get; set; }
-        public Profile Profile { get; set; } = null!;
-        public int ProfileId { get; set; }
-
-        [MaxLength(100)]
-        public string JobName { get; set; } = null!;
-
-        [MaxLength(100)]
-        public string Title { get; set; } = null!;
-    }
-    // Sunrise-End
 
     #region Loadouts
 

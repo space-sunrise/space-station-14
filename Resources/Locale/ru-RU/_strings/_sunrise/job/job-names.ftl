@@ -89,3 +89,4 @@ JobClownBorg = клоун киборг
 JobBarber = парикмахер
 JobAdjutant = адъютант
 JobMailCarrier = почтальон
+job-name-TSF = Транс-Солнечная Федерация

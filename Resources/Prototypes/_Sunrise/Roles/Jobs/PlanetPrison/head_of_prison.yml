@@ -19,8 +19,6 @@
   canBeAntag: false
   alwaysUseSpawner: true
   radioBold: true
-  alternativeTitles:
-  - job-alt-title-colony-warden
   displayWeight: 100
   accessGroups:
     - AllAccess

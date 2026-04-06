@@ -10,8 +10,6 @@
   startingGear: PathologistGear
   icon: "JobIconPathologist"
   supervisors: job-supervisors-cmo
-  alternativeTitles:
-  - job-alt-title-forensic-examiner
   access:
   - Medical
   - Maintenance
@@ -22,7 +20,7 @@
     id: PathologistPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
-
+    
 - type: jobIcon
   parent: JobIcon
   id: JobIconPathologist

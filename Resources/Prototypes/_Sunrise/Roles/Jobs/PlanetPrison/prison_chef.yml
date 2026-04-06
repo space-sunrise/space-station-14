@@ -18,8 +18,6 @@
   alwaysUseSpawner: true
   canBeAntag: false
   displayWeight: 40
-  alternativeTitles:
-  - job-alt-title-prison-cook
   access:
   - Security
   - Brig

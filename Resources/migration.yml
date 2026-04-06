@@ -992,5 +992,10 @@ ComfyBrownChair: ComfyChairBrown
 CartridgeRifle: CartridgeRifleSP
 MagazinePistolHighCapacity: MagazinePistolHighCapacitySP
 StorageCanisterBase: StorageCanister
+BulletAK570_90mmHE: BulletAK57090mmHE
+WeaponTurretVespera50mm: ShuttleGunVespera50mm
+#2026-04-06
+AirlockExternalGlassShuttleArrivalsLocked: AirlockExternalGlassShuttleArrivalsLockedCentComm
+AirlockExternalGlassShuttleEmergencyLocked: AirlockExternalGlassShuttleEmergencyLockedCentComm
 # region Sunrise-End
 

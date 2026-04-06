@@ -11,13 +11,6 @@
   icon: "JobIconScientist"
   supervisors: job-supervisors-rd
   displayWeight: 10  # Sunrise
-  # Sunrise-Start
-  alternativeTitles:
-  - job-alt-title-researcher
-  - job-alt-title-xenoarchaeologist
-  - job-alt-title-anomalist
-  - job-alt-title-xenobiologist
-  # Sunrise-End
   access:
   - Research
   - Maintenance

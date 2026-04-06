@@ -111,3 +111,16 @@
         children:
         - id: WeaponShotgunMinotaurBiocode
         - id: MagazineShotgunXL
+
+- type: entity
+  id: BriefcaseWeaponDeagleFilled
+  parent: BriefcaseWeaponSmall
+  name: secure Deagle case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolDeagle
+        - id: MagazineMagnumAP
+        - id: MagazineMagnumAP

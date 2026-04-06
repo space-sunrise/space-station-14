@@ -206,6 +206,9 @@
 
 # Magazines
 - type: Tag
+  id: HeavyAmmoBelt127
+
+- type: Tag
   id: MagazineACP14
 
 - type: Tag
@@ -590,6 +593,9 @@
   id: Sunflower
 
 - type: Tag
+  id: WhiteLily
+
+- type: Tag
   id: Table
 
 - type: Tag
@@ -613,12 +619,6 @@
 
 - type: Tag
   id: SovietDungeonWEH
-
-- type: Tag
-  id: SovietDungeonRuine
-
-- type: Tag
-  id: SovietRuineDungeon
 
 - type: Tag
   id: SovietWarehouse
@@ -663,6 +663,10 @@
 - type: Tag
   id: SmoothGloves
 
+# добавляет вещь в чёрный список ксеноморфов
+- type: Tag
+  id: NoXeno
+
 # head
 # Закрыто только сверху (шлюяпы, кепки)
 - type: Tag
@@ -682,3 +686,11 @@
 # Используется для whitelist у ScurretDeathgasp и blacklist у DefaultDeathgasp.
 - type: Tag
   id: ScurretDeathgasp
+
+# Medicine
+- type: Tag
+  id: AutoMender  # Используется для whitelist у ClothingBeltMedical =3
+
+# shuttles
+- type: Tag
+  id: 120mmRocket
