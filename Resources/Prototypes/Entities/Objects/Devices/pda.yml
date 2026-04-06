@@ -90,6 +90,7 @@
       - NavigatorCartridge
       - MessengerCartridge
       - PhotoCartridge
+      - CorporateLawCartridge # Sunrise-Edit
     # Sunrise-End
     cartridgeSlot:
       priority: -1

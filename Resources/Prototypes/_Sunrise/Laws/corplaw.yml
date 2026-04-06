@@ -1,0 +1,391 @@
+# Corporate Law Prototypes
+
+# Laws: 1xx
+- type: corporateLaw
+  id: Law101
+  lawIdentifier: "101"
+  title: corplaw-art101-title
+  description: corplaw-art101-desc
+
+- type: corporateLaw
+  id: Law103
+  lawIdentifier: "103"
+  title: corplaw-art103-title
+  description: corplaw-art103-desc
+
+- type: corporateLaw
+  id: Law104
+  lawIdentifier: "104"
+  title: corplaw-art104-title
+  description: corplaw-art104-desc
+
+- type: corporateLaw
+  id: Law105
+  lawIdentifier: "105"
+  title: corplaw-art105-title
+  description: corplaw-art105-desc
+
+- type: corporateLaw
+  id: Law106
+  lawIdentifier: "106"
+  title: corplaw-art106-title
+  description: corplaw-art106-desc
+
+- type: corporateLaw
+  id: Law107
+  lawIdentifier: "107"
+  title: corplaw-art107-title
+  description: corplaw-art107-desc
+
+- type: corporateLaw
+  id: Law108
+  lawIdentifier: "108"
+  title: corplaw-art108-title
+  description: corplaw-art108-desc
+
+- type: corporateLaw
+  id: Law109
+  lawIdentifier: "109"
+  title: corplaw-art109-title
+  description: corplaw-art109-desc
+
+# Laws: 2xx
+- type: corporateLaw
+  id: Law201
+  lawIdentifier: "201"
+  title: corplaw-art201-title
+  description: corplaw-art201-desc
+
+- type: corporateLaw
+  id: Law202
+  lawIdentifier: "202"
+  title: corplaw-art202-title
+  description: corplaw-art202-desc
+
+- type: corporateLaw
+  id: Law203
+  lawIdentifier: "203"
+  title: corplaw-art203-title
+  description: corplaw-art203-desc
+
+- type: corporateLaw
+  id: Law204
+  lawIdentifier: "204"
+  title: corplaw-art204-title
+  description: corplaw-art204-desc
+
+- type: corporateLaw
+  id: Law205
+  lawIdentifier: "205"
+  title: corplaw-art205-title
+  description: corplaw-art205-desc
+
+- type: corporateLaw
+  id: Law206
+  lawIdentifier: "206"
+  title: corplaw-art206-title
+  description: corplaw-art206-desc
+
+- type: corporateLaw
+  id: Law207
+  lawIdentifier: "207"
+  title: corplaw-art207-title
+  description: corplaw-art207-desc
+
+- type: corporateLaw
+  id: Law208
+  lawIdentifier: "208"
+  title: corplaw-art208-title
+  description: corplaw-art208-desc
+
+- type: corporateLaw
+  id: Law209
+  lawIdentifier: "209"
+  title: corplaw-art209-title
+  description: corplaw-art209-desc
+
+# Laws: 3xx
+- type: corporateLaw
+  id: Law301
+  lawIdentifier: "301"
+  title: corplaw-art301-title
+  description: corplaw-art301-desc
+
+- type: corporateLaw
+  id: Law302
+  lawIdentifier: "302"
+  title: corplaw-art302-title
+  description: corplaw-art302-desc
+
+- type: corporateLaw
+  id: Law303
+  lawIdentifier: "303"
+  title: corplaw-art303-title
+  description: corplaw-art303-desc
+
+- type: corporateLaw
+  id: Law304
+  lawIdentifier: "304"
+  title: corplaw-art304-title
+  description: corplaw-art304-desc
+
+- type: corporateLaw
+  id: Law305
+  lawIdentifier: "305"
+  title: corplaw-art305-title
+  description: corplaw-art305-desc
+
+- type: corporateLaw
+  id: Law306
+  lawIdentifier: "306"
+  title: corplaw-art306-title
+  description: corplaw-art306-desc
+
+- type: corporateLaw
+  id: Law308
+  lawIdentifier: "308"
+  title: corplaw-art308-title
+  description: corplaw-art308-desc
+
+- type: corporateLaw
+  id: Law309
+  lawIdentifier: "309"
+  title: corplaw-art309-title
+  description: corplaw-art309-desc
+
+# Laws: 4xx
+- type: corporateLaw
+  id: Law401
+  lawIdentifier: "401"
+  title: corplaw-art401-title
+  description: corplaw-art401-desc
+
+- type: corporateLaw
+  id: Law402
+  lawIdentifier: "402"
+  title: corplaw-art402-title
+  description: corplaw-art402-desc
+
+- type: corporateLaw
+  id: Law403
+  lawIdentifier: "403"
+  title: corplaw-art403-title
+  description: corplaw-art403-desc
+
+- type: corporateLaw
+  id: Law404
+  lawIdentifier: "404"
+  title: corplaw-art404-title
+  description: corplaw-art404-desc
+
+- type: corporateLaw
+  id: Law405
+  lawIdentifier: "405"
+  title: corplaw-art405-title
+  description: corplaw-art405-desc
+
+- type: corporateLaw
+  id: Law406
+  lawIdentifier: "406"
+  title: corplaw-art406-title
+  description: corplaw-art406-desc
+
+- type: corporateLaw
+  id: Law407
+  lawIdentifier: "407"
+  title: corplaw-art407-title
+  description: corplaw-art407-desc
+
+- type: corporateLaw
+  id: Law408
+  lawIdentifier: "408"
+  title: corplaw-art408-title
+  description: corplaw-art408-desc
+
+- type: corporateLaw
+  id: Law409
+  lawIdentifier: "409"
+  title: corplaw-art409-title
+  description: corplaw-art409-desc
+
+# Laws: 5xx
+- type: corporateLaw
+  id: Law502
+  lawIdentifier: "502"
+  title: corplaw-art502-title
+  description: corplaw-art502-desc
+
+- type: corporateLaw
+  id: Law503
+  lawIdentifier: "503"
+  title: corplaw-art503-title
+  description: corplaw-art503-desc
+
+- type: corporateLaw
+  id: Law504
+  lawIdentifier: "504"
+  title: corplaw-art504-title
+  description: corplaw-art504-desc
+
+- type: corporateLaw
+  id: Law506
+  lawIdentifier: "506"
+  title: corplaw-art506-title
+  description: corplaw-art506-desc
+
+- type: corporateLaw
+  id: Law507
+  lawIdentifier: "507"
+  title: corplaw-art507-title
+  description: corplaw-art507-desc
+
+- type: corporateLaw
+  id: Law508
+  lawIdentifier: "508"
+  title: corplaw-art508-title
+  description: corplaw-art508-desc
+
+- type: corporateLaw
+  id: Law509
+  lawIdentifier: "509"
+  title: corplaw-art509-title
+  description: corplaw-art509-desc
+
+# Laws: 6xx
+- type: corporateLaw
+  id: Law601
+  lawIdentifier: "601"
+  title: corplaw-art601-title
+  description: corplaw-art601-desc
+
+- type: corporateLaw
+  id: Law602
+  lawIdentifier: "602"
+  title: corplaw-art602-title
+  description: corplaw-art602-desc
+
+- type: corporateLaw
+  id: Law603
+  lawIdentifier: "603"
+  title: corplaw-art603-title
+  description: corplaw-art603-desc
+
+- type: corporateLaw
+  id: Law604
+  lawIdentifier: "604"
+  title: corplaw-art604-title
+  description: corplaw-art604-desc
+
+- type: corporateLaw
+  id: Law605
+  lawIdentifier: "605"
+  title: corplaw-art605-title
+  description: corplaw-art605-desc
+
+- type: corporateLaw
+  id: Law606
+  lawIdentifier: "606"
+  title: corplaw-art606-title
+  description: corplaw-art606-desc
+
+- type: corporateLaw
+  id: Law607
+  lawIdentifier: "607"
+  title: corplaw-art607-title
+  description: corplaw-art607-desc
+
+- type: corporateLaw
+  id: Law608
+  lawIdentifier: "608"
+  title: corplaw-art608-title
+  description: corplaw-art608-desc
+
+- type: corporateLaw
+  id: Law609
+  lawIdentifier: "609"
+  title: corplaw-art609-title
+  description: corplaw-art609-desc
+
+- type: corporateLaw
+  id: Law610
+  lawIdentifier: "610"
+  title: corplaw-art610-title
+  description: corplaw-art610-desc
+
+# General Provisions
+- type: corporateLaw
+  id: ProvisionOPRS
+  title: corplaw-oprs-title
+  description: corplaw-oprs-desc
+
+- type: corporateLaw
+  id: ProvisionOPRA
+  title: corplaw-opra-title
+  description: corplaw-opra-desc
+
+- type: corporateLaw
+  id: ProvisionSentences
+  title: corplaw-sentences-title
+  description: corplaw-sentences-desc
+
+- type: corporateLaw
+  id: ProvisionMitigating
+  title: corplaw-mitigating-title
+  description: corplaw-mitigating-desc
+
+- type: corporateLaw
+  id: ProvisionAggravating
+  title: corplaw-aggravating-title
+  description: corplaw-aggravating-desc
+
+# Sections
+- type: corporateLawSection
+  id: SectionGeneral
+  title: corplaw-section-general
+  entries:
+  - ProvisionOPRS
+  - ProvisionOPRA
+  - ProvisionSentences
+  - ProvisionMitigating
+  - ProvisionAggravating
+
+- type: corporateLawSection
+  id: Section1xx
+  title: corplaw-section-1xx
+  color: "#30d158"
+  entries: [Law101, Law103, Law104, Law105, Law106, Law107, Law108, Law109]
+
+- type: corporateLawSection
+  id: Section2xx
+  title: corplaw-section-2xx
+  color: "#ffd60a"
+  entries: [Law201, Law202, Law203, Law204, Law205, Law206, Law207, Law208, Law209]
+
+- type: corporateLawSection
+  id: Section3xx
+  title: corplaw-section-3xx
+  color: "#ff9f0a"
+  entries: [Law301, Law302, Law303, Law304, Law305, Law306, Law308, Law309]
+
+- type: corporateLawSection
+  id: Section4xx
+  title: corplaw-section-4xx
+  color: "#ff453a"
+  entries: [Law401, Law402, Law403, Law404, Law405, Law406, Law407, Law408, Law409]
+
+- type: corporateLawSection
+  id: Section5xx
+  title: corplaw-section-5xx
+  color: "#bf5af2"
+  entries: [Law502, Law503, Law504, Law506, Law507, Law508, Law509]
+
+- type: corporateLawSection
+  id: Section6xx
+  title: corplaw-section-6xx
+  color: "#ff375f"
+  entries: [Law601, Law602, Law603, Law604, Law605, Law606, Law607, Law608, Law609, Law610]
+
+# Lawsets
+- type: corporateLawset
+  id: StandardCorporateLaw
+  sections: [SectionGeneral, Section1xx, Section2xx, Section3xx, Section4xx, Section5xx, Section6xx]
