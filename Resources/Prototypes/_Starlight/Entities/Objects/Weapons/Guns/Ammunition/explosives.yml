@@ -172,6 +172,9 @@
   id: Bullet60mmRocketStarlight
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: rocket60mm
   - type: SpawnOnDespawn
     prototype: Bullet60mmRocketStarlightSelfExplode
   - type: ContainerContainer
@@ -251,8 +254,8 @@
     proto: Bullet60mmRocketStarlight
     deleteOnSpawn: true
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    state: rpg
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: rocket60mm
   - type: StaticPrice
     price: 15
 
@@ -265,9 +268,6 @@
   - type: CartridgeAmmo
     proto: Bullet60mmRocketStarlightLongFlight
     deleteOnSpawn: true
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    state: rocket60mm
   - type: StaticPrice
     price: 30
 
