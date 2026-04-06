@@ -591,3 +591,43 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+
+- type: entity
+  name: stechkin APS
+  parent: [WeaponPistolMk58, BaseSovietContraband]
+  id: WeaponPistolAPS
+  description: A high quality firearm issued to SNKVD elites and high ranking officials. It's half pistol, half closing argument. Uses .40 ammo.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Guns/Pistols/aps.rsi
+    - type: Clothing
+      sprite: _Starlight/Objects/Weapons/Guns/Pistols/aps.rsi
+    - type: Gun
+      selectedMode: Burst
+      shotsPerBurst: 3
+      availableModes:
+        - Burst
+        - SemiAuto
+      soundGunshot:
+        path: /Audio/_Starlight/Weapons/Guns/Gunshots/1suppres.ogg
+    - type: Contraband
+      severity: Soviet
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          startingItem: MagazinePistol40SP
+          insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+          ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+          priority: 2
+          whitelist:
+            tags:
+              - MagazinePistolDP
+          whitelistFailPopup: gun-magazine-whitelist-fail
+        gun_chamber:
+          name: Chamber
+          startingItem: CartridgePistol40SP
+          priority: 1
+          whitelist:
+            tags:
+              - CartridgePistolDP

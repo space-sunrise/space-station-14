@@ -372,6 +372,12 @@
   id: WeaponPistolTec9
 
 - type: Tag
+  id: WeaponSubMachineGunUzi
+
+- type: Tag
+  id: WeaponPistolAPS
+
+- type: Tag
   id: WrappedWeapon
 
 # Clothing / gear

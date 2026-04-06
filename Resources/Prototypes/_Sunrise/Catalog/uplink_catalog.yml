@@ -2943,6 +2943,32 @@
   - UplinkWeaponry
 
 - type: listing
+  id: uplinkWeaponUzi
+  name: uplink-uzi-name
+  description: uplink-uzi-desc
+  productEntity: WeaponSubMachineGunUzi
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 10
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkWeaponry
+
+- type: listing
+  id: uplinkWeaponStechkinAPS
+  name: uplink-stechkin-aps-name
+  description: uplink-stechkin-aps-desc
+  productEntity: WeaponPistolAPS
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkWeaponry
+
+- type: listing
   id: UplinkPizzaBomb
   name: uplink-pizza-bomb-name
   description: uplink-pizza-bomb-desc
