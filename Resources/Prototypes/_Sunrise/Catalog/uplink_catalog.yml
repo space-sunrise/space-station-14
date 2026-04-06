@@ -2930,7 +2930,7 @@
   - UplinkPointless
 
 - type: listing
-  id: uplinkWeaponPistolTec9
+  id: UplinkWeaponPistolTec9
   name: uplink-pistoltec9-name
   description: uplink-pistoltec9-desc
   productEntity: WeaponPistolTec9
@@ -2943,10 +2943,10 @@
   - UplinkWeaponry
 
 - type: listing
-  id: uplinkWeaponUzi
+  id: UplinkWeaponUzi
   name: uplink-uzi-name
   description: uplink-uzi-desc
-  productEntity: WeaponSubMachineGunUzi
+  productEntity: SunriseWeaponSubMachineGunUzi
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 10
@@ -2956,10 +2956,10 @@
   - UplinkWeaponry
 
 - type: listing
-  id: uplinkWeaponStechkinAPS
+  id: UplinkWeaponStechkinAPS
   name: uplink-stechkin-aps-name
   description: uplink-stechkin-aps-desc
-  productEntity: WeaponPistolAPS
+  productEntity: SunriseWeaponPistolAPS
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 3

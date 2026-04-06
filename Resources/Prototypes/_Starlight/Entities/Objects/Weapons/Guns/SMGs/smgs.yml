@@ -35,7 +35,7 @@
 - type: entity
   name: Type U3 Uzi
   parent: [BaseWeaponSubMachineGun, BaseMajorContraband]
-  id: WeaponSubMachineGunUzi
+  id: SunriseWeaponSubMachineGunUzi
   description: Lightweight submachine gun with a 32-round magazine that has single or 4 round firing modes.
   components:
   - type: Item

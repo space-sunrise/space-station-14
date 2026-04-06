@@ -1832,13 +1832,12 @@
   cost:
     Telecrystal: 8
   categories:
-  - UplinkWearables
+  - UplinkWearables #Sunrise-edit
   conditions:
   - !type:StoreWhitelistCondition
-    whitelist:
+    blacklist::
       tags:
-      - NukeOpsUplink
-      - LoneOpsUplink # Sunrise-Edit
+      - AssaultOpsUplink #Sunrise-edit
 
 - type: listing
   id: UplinkHardsuitSyndieElite

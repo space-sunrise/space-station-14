@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingBackpackSyndicate
+  parent: ClothingBackpackSyndie
   id: ClothingBackpackSyndicateBundle
   abstract: true
   components:
@@ -19,4 +19,7 @@
         - id: ClothingOuterArmorRaidBiocode # Sunrise-Edit
         - id: ClothingHeadHelmetRaid
         - id: ClothingMaskGasSyndicate
-        - id: ClothingHandsGlovesCombat
+        - id: ClothingHandsGlovesCombatCQC
+        - id: AmpulaBica
+        - id: AmpulaDerm
+
