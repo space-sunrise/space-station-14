@@ -1,5 +1,5 @@
 - type: inventoryTemplate
-  id: XenoborgReaper
+  id: FishXenoborgReaper
   slots:
     - name: head
       slotTexture: head

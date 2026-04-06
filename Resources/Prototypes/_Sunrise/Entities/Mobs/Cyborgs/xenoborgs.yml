@@ -39,7 +39,7 @@
       - XenoborgModuleBasic
       - XenoborgModuleTool
   - type: Inventory
-    templateId: XenoborgReaper
+    templateId: FishXenoborgReaper
   - type: InventorySlots
   - type: Body
     prototype: Reaper
