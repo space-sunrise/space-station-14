@@ -1,6 +1,6 @@
 ---
 name: ss14-tests-poolmanager
-description: Глубокий гайд по инфраструктуре интеграционных тестов SS14: PoolManager, жизненный цикл TestPair, синхронизация server/client, эмуляция действий и подводные камни.
+description: An in-depth guide to the SS14 integration test framework: PoolManager, TestPair lifecycle, server/client synchronization, action emulation and pitfalls.
 ---
 
 # Claude Bridge

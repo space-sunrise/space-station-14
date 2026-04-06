@@ -28034,7 +28034,7 @@ entities:
     - type: Transform
       pos: -72.5,3.5
       parent: 2
-- proto: AirlockExternalGlassShuttleEmergencyLocked
+- proto: AirlockExternalGlassShuttleEmergencyLockedCentComm
   entities:
   - uid: 449
     components:
@@ -172269,7 +172269,7 @@ entities:
       parent: 2
     - type: Paper
       content: >2
-                                         
+
 
 
 

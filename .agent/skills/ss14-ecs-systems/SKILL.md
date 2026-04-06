@@ -3,19 +3,19 @@ name: SS14 ECS Systems
 description: Architecture guide for EntitySystem in Space Station 14 — lifecycle, events, queries, networking, prediction, and partial class decomposition patterns
 ---
 
-# EntitySystem — системы в ECS
+# EntitySystem - systems in ECS
 
-## Граница ответственности
+## Limit of responsibility
 
-Этот skill покрывает устройство систем, lifecycle, события, query и предикцию.
-Строгие naming-нормативы (суффикс `System`, парность имен `Component/System`, стиль dependency-алиасов, соглашения по именам файлов) ведутся в `ss14-naming-conventions`.
-Если пример здесь конфликтует с `ss14-naming-conventions`, применяй `ss14-naming-conventions`.
+This skill covers systems design, lifecycle, events, query and prediction.
+Strict naming standards (suffix `System`, name pairing `Component/System`, style of dependency aliases, file naming conventions) are maintained in `ss14-naming-conventions`.
+If the example here conflicts with `ss14-naming-conventions`, use `ss14-naming-conventions`.
 
-## Что такое EntitySystem
+## What is EntitySystem
 
-EntitySystem — это синглтон-класс, который содержит **всю логику и поведение** для сущностей. В ECS-архитектуре компоненты хранят только данные, а системы оперируют этими данными. Системы автоматически создаются и управляются движком — не нужно их вручную регистрировать.
+EntitySystem is a singleton class that contains **all the logic and behavior** for entities. In the ECS architecture, components store only data, and systems operate on this data. Systems are automatically created and managed by the engine - no need to manually register them.
 
-## Базовый жизненный цикл
+## Basic lifecycle
 
 ```csharp
 public sealed class MySystem : EntitySystem
@@ -23,30 +23,30 @@ public sealed class MySystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        // Подписки на события, кеширование EntityQuery
+        // Event Subscriptions, EntityQuery Caching
     }
 
     public override void Shutdown()
     {
         base.Shutdown();
-        // Очистка ресурсов (особенно важно на клиенте)
+        // Cleaning up resources (especially important on the client)
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        // Логика, выполняемая каждый тик
+        // Logic executed every tick
     }
 }
 ```
 
-- `Initialize()` — вызывается один раз при создании системы. Здесь подписываемся на события и кешируем запросы.
-- `Shutdown()` — вызывается при уничтожении системы. На сервере — при завершении программы. На клиенте — при отключении от сервера, поэтому на клиенте крайне важно корректно очищать ресурсы.
-- `Update(float frameTime)` — вызывается каждый тик. Используется для периодической логики (таймеры, итерация по сущностям).
+- `Initialize()` - called once when creating the system. Here we subscribe to events and cache requests.
+- `Shutdown()` - called when the system is destroyed. On the server - when the program ends. On the client - when disconnecting from the server, so it is extremely important to clean up resources correctly on the client.
+- `Update(float frameTime)` — called every tick. Used for periodic logic (timers, iteration over entities).
 
 ## Dependency Injection
 
-Системы получают зависимости через атрибут `[Dependency]`. Это работает как для других систем, так и для IoC-менеджеров:
+Systems receive dependencies through the `[Dependency]` attribute. This works for both other systems and IoC managers:
 
 ```csharp
 public sealed class MySystem : EntitySystem
@@ -59,25 +59,25 @@ public sealed class MySystem : EntitySystem
 }
 ```
 
-Зависимости разрешаются автоматически до вызова `Initialize()`. Всегда используйте `= default!` для подавления предупреждений компилятора.
+Dependencies are resolved automatically before `Initialize()` is called. Always use `= default!` to suppress compiler warnings.
 
-## Порядок членов системы (обязательный)
+## Order of system members (mandatory)
 
-Держи стабильный порядок блоков в каждом `*System`, чтобы код читался быстро и одинаково во всех подсистемах 🙂
+Keep a stable order of blocks in each `*System` so that the code is read quickly and equally in all subsystems :)
 
-1. Зависимости (`[Dependency]` поля).
-2. Константы + `static readonly` поля.
-3. Runtime-кэшированные поля и долгоживущие поля состояния.
+1. Dependencies (`[Dependency]` fields).
+2. Constants + `static readonly` fields.
+3. Runtime-cached fields and long-lived status fields.
 4. `Initialize()`, `Shutdown()`.
-5. Event handlers (`On...`, `Handle...`, сетевые и компонентные события).
-6. Main logic (публичный/защищенный API системы).
-7. Other code (override/специализированные методы, не helper-блок).
-8. Helpers (маленькие private-методы для обслуживания логики).
-9. Private nested classes / records / enums / прочее.
+5. Event handlers (`On...`, `Handle...`, network and component events).
+6. Main logic (public/protected API of the system).
+7. Other code (override/specialized methods, not helper block).
+8. Helpers (small private methods for servicing logic).
+9. Private nested classes / records / enums / other.
 
-Не смешивай блоки между собой: helpers не поднимай выше event handlers, runtime-кэш не размазывай по файлу, private nested-типы держи внизу.
+Don’t mix blocks with each other: don’t raise helpers above event handlers, don’t spread the runtime cache across the file, keep private nested types at the bottom.
 
-Пример:
+Example:
 
 ```csharp
 public sealed class ExampleSystem : EntitySystem
@@ -129,11 +129,11 @@ public sealed class ExampleSystem : EntitySystem
 }
 ```
 
-## Подписка на события
+## Subscribe to events
 
-### Directed Events (направленные)
+### Directed Events
 
-Привязаны к конкретной сущности. Вызываются только если у сущности есть указанный компонент:
+Tied to a specific entity. Called only if the entity has the specified component:
 
 ```csharp
 public override void Initialize()
@@ -145,48 +145,48 @@ public override void Initialize()
 
 private void OnInteractUsing(Entity<MyComponent> ent, ref InteractUsingEvent args)
 {
-    // ent.Owner — EntityUid сущности
+    // ent.Owner — EntityUid of the entity
     // ent.Comp — MyComponent
-    // args — данные события
+    // args — event data
 }
 ```
 
-### Broadcast Events (широковещательные)
+### Broadcast Events
 
-Не привязаны к конкретной сущности. Вызываются для всех подписчиков:
+Not tied to a specific entity. Called for all subscribers:
 
 ```csharp
 SubscribeLocalEvent<MyBroadcastEvent>(OnMyBroadcast);
 
 private void OnMyBroadcast(MyBroadcastEvent args)
 {
-    // Обработка события
+    // Event Handling
 }
 ```
 
-### Сортированные подписки
+### Sorted Subscriptions
 
-Можно указать порядок обработки события между системами:
+You can specify the order in which an event is processed between systems:
 
 ```csharp
 SubscribeLocalEvent<MyComponent, SomeEvent>(OnEvent, before: [typeof(OtherSystem)], after: [typeof(AnotherSystem)]);
 ```
 
-### Lifestage Events (события жизненного цикла компонентов)
+### Lifestage Events
 
-Наиболее частые подписки — на создание и удаление компонентов:
+The most common subscriptions are for creating and deleting components:
 
-- `ComponentInit` — компонент инициализирован
-- `ComponentStartup` — компонент запущен
-- `ComponentShutdown` — компонент выключен
-- `ComponentRemove` — компонент удаляется
+- `ComponentInit` — the component is initialized
+- `ComponentStartup` — component is running
+- `ComponentShutdown` — component is disabled
+- `ComponentRemove` — the component is removed
 
 ```csharp
 SubscribeLocalEvent<MyComponent, ComponentStartup>(OnStartup);
 SubscribeLocalEvent<MyComponent, ComponentShutdown>(OnShutdown);
 ```
 
-## Создание и вызов событий
+## Creating and calling events
 
 ### Directed Event
 
@@ -208,9 +208,9 @@ RaiseLocalEvent(ev);
 RaiseLocalEvent(uid, ref ev, broadcast: true);
 ```
 
-## EntityQuery — эффективный доступ к компонентам
+## EntityQuery - efficient access to components
 
-### Кеширование в Initialize
+### Caching in Initialize
 
 ```csharp
 private EntityQuery<TransformComponent> _xformQuery;
@@ -223,28 +223,28 @@ public override void Initialize()
 }
 ```
 
-### Использование
+### Usage
 
 ```csharp
-// Безопасное получение
+// Secure Receipt
 if (_xformQuery.TryComp(uid, out var xform))
 {
-    // работаем с xform
+    // working with xform
 }
 
-// Гарантированное получение (выбросит исключение если нет)
+// Guaranteed receipt (will throw an exception if not)
 var xform = _xformQuery.Comp(uid);
 
-// Проверка наличия
+// Availability check
 if (_xformQuery.HasComp(uid))
 {
     // ...
 }
 ```
 
-### EntityQueryEnumerator — итерация в Update
+### EntityQueryEnumerator - iteration in Update
 
-Когда нужно пройтись по всем сущностям с определённым набором компонентов:
+When you need to go through all entities with a certain set of components:
 
 ```csharp
 public override void Update(float frameTime)
@@ -252,84 +252,84 @@ public override void Update(float frameTime)
     var query = EntityQueryEnumerator<MyComponent, TransformComponent>();
     while (query.MoveNext(out var uid, out var myComp, out var xform))
     {
-        // Логика для каждой сущности
+        // Logic for each entity
     }
 }
 ```
 
-Можно итерировать по одному, двум или трём компонентам одновременно.
+You can iterate over one, two, or three components at a time.
 
-## Предикция (Prediction)
+## Prediction
 
-Многие системы работают одновременно на клиенте и сервере для плавного отображения. Важные проверки:
+Many systems run simultaneously on the client and server for smooth display. Important checks:
 
 ```csharp
-// Выполнить код только при первом предсказании (не при повторных)
+// Execute the code only on the first prediction (not on repeated ones)
 if (!_timing.IsFirstTimePredicted)
     return;
 
-// Не выполнять при применении серверного состояния
+// Do not execute when applying server state
 if (_timing.ApplyingState)
     return;
 
-// Проверка, клиентская ли сущность
+// Checking if an entity is a client entity
 if (IsClientSide(uid))
     return;
 ```
 
-## Сервер vs Клиент
+## Server vs Client
 
 ```csharp
-// Проверка стороны
+// Side check
 if (_net.IsServer)
 {
-    // Серверная логика
+    // Server logic
 }
 
 if (_net.IsClient)
 {
-    // Клиентская логика
+    // Client logic
 }
 ```
 
-## Dirty-механизм — сетевая синхронизация
+## Dirty mechanism - network synchronization
 
-Когда изменяется компонент с `[AutoNetworkedField]`, нужно сообщить движку о необходимости синхронизации:
+When a component with `[AutoNetworkedField]` changes, you need to inform the engine about the need for synchronization:
 
 ```csharp
-// Пометить компонент как "грязный" для отправки по сети
+// Mark a component as "dirty" for sending over the network
 Dirty(uid, component);
 
-// Или через Entity<T>
+// Or via Entity<T>
 Dirty(ent);
 ```
 
-## Паттерн Shared/Server/Client
+## Shared/Server/Client pattern
 
-### Абстрактный Shared-класс
+### Abstract Shared Class
 
-Общая логика размещается в `Content.Shared`:
+The general logic is placed in `Content.Shared`:
 
 ```csharp
 // Content.Shared
 public abstract partial class SharedMySystem : EntitySystem
 {
-    // Общая логика, работающая и на сервере, и на клиенте
+    // Common logic running on both server and client
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<MyComponent, SomeEvent>(OnSomeEvent);
     }
 
-    // Виртуальный метод для переопределения
+    // Virtual method to override
     protected virtual void OnSpecificAction(EntityUid uid, MyComponent comp)
     {
-        // Базовая реализация
+        // Basic implementation
     }
 }
 ```
 
-### Серверная реализация
+### Server implementation
 
 ```csharp
 // Content.Server
@@ -338,19 +338,19 @@ public sealed partial class MySystem : SharedMySystem
     public override void Initialize()
     {
         base.Initialize();
-        // Серверные подписки: БД, PVS, спавн
+        // Server subscriptions: DB, PVS, spawn
         SubscribeLocalEvent<MyComponent, PlayerAttachedEvent>(OnPlayerAttached);
     }
 
     protected override void OnSpecificAction(EntityUid uid, MyComponent comp)
     {
         base.OnSpecificAction(uid, comp);
-        // Серверная логика: PVS overrides, spawn entities
+        // Server logic: PVS overrides, spawn entities
     }
 }
 ```
 
-### Клиентская реализация
+### Client implementation
 
 ```csharp
 // Content.Client
@@ -359,24 +359,24 @@ public sealed partial class MySystem : SharedMySystem
     public override void Initialize()
     {
         base.Initialize();
-        // Клиентские подписки: UI, визуалы, звуки
+        // Client subscriptions: UI, visuals, sounds
     }
 }
 ```
 
-## Partial-класс декомпозиция
+## Partial class decomposition
 
-Для сложных систем логика разбивается на несколько файлов через `partial class`. Каждый файл отвечает за свою подсистему:
+For complex systems, the logic is divided into several files via `partial class`. Each file is responsible for its own subsystem:
 
 ```text
-SharedMySystem.cs            — Initialize, базовые подписки, DI
-SharedMySystem.Actions.cs    — способности и действия
-SharedMySystem.Target.cs     — управление целями
-SharedMySystem.State.cs      — переходы между состояниями
-SharedMySystem.Appearance.cs — визуалы и анимации
+SharedMySystem.cs            — Initialize, base subscriptions, DI
+SharedMySystem.Actions.cs    — abilities and actions
+SharedMySystem.Target.cs     — target management
+SharedMySystem.State.cs      — state transitions
+SharedMySystem.Appearance.cs — visuals and animations
 ```
 
-Пример структуры:
+Example structure:
 
 ```csharp
 // SharedMySystem.cs
@@ -389,13 +389,13 @@ public abstract partial class SharedMySystem : EntitySystem
     public override void Initialize()
     {
         _query = GetEntityQuery<MyComponent>();
-        InitializeActions();     // из Actions.cs
-        InitializeTargets();     // из Target.cs
+        InitializeActions();     // from Actions.cs
+        InitializeTargets();     // from Target.cs
     }
 
     public override void Update(float frameTime)
     {
-        UpdateState(frameTime);  // из State.cs
+        UpdateState(frameTime);  // from State.cs
     }
 }
 
@@ -409,12 +409,12 @@ public abstract partial class SharedMySystem
 }
 ```
 
-## Паттерн generic-систем
+## Pattern of generic systems
 
-Для обобщённых систем используется generic-подход:
+For generalized systems, a generic approach is used:
 
 ```csharp
-// Базовый обработчик для всех эффектов определённого типа
+// Basic handler for all effects of a certain type
 public abstract class EntityEffectSystem<T, TEffect> : EntitySystem
     where T : unmanaged
     where TEffect : EntityEffectBase<TEffect>
@@ -428,9 +428,9 @@ public abstract class EntityEffectSystem<T, TEffect> : EntitySystem
 }
 ```
 
-## Интерфейсы для систем
+## Interfaces for systems
 
-Системы могут реализовывать интерфейсы для стандартизации поведения:
+Systems can implement interfaces to standardize behavior:
 
 ```csharp
 public interface IEntityEffectRaiser
@@ -447,9 +447,9 @@ public sealed partial class MyEffectsSystem : EntitySystem, IEntityEffectRaiser
 }
 ```
 
-## Публичные методы системы (API)
+## Public methods of the system (API)
 
-Системы предоставляют публичные методы для взаимодействия других систем:
+Systems provide public methods for interaction between other systems:
 
 ```csharp
 public void SetSpeed(Entity<MyComponent?> ent, float speed)
@@ -460,19 +460,19 @@ public void SetSpeed(Entity<MyComponent?> ent, float speed)
     ent.Comp.Speed = speed;
     Dirty(ent);
 
-    // Дополнительная логика: обновить движение, отправить событие
+    // Additional logic: update motion, send event
     RaiseLocalEvent(ent, new SpeedChangedEvent(speed));
 }
 ```
 
-Паттерн `Entity<T?>` с `Resolve` позволяет вызывающему коду необязательно передавать компонент — система сама его получит.
+The `Entity<T?>` pattern with `Resolve` allows the calling code to optionally pass a component - the system will receive it itself.
 
-## Логирование
+## Logging
 
-Логи должны быть **только на английском языке** и содержать достаточно информации для разбора **после окончания раунда** (EntityUid уже не будут доступны, поэтому обязательно включайте прототип, имя и другие идентификаторы):
+Logs should be **English only** and contain enough information to be parsed **after the round ends** (EntityUids will no longer be available, so be sure to include the prototype, name and other identifiers):
 
 ```csharp
-// ✅ Правильно — английский, прототип, имя, контекст
+// ✅ Correct - English, prototype, name, context
 Log.Warning("Failed to apply effect on {Entity} (proto: {Proto})",
     ToPrettyString(uid), Prototype(uid)?.ID ?? "unknown");
 
@@ -484,53 +484,53 @@ Log.Error("Target {Target} (proto: {Proto}) is out of range for {Source} (proto:
 Log.Debug("State transition: {Entity} (proto: {Proto}) entered rage, targets: {Count}",
     ToPrettyString(uid), Prototype(uid)?.ID ?? "unknown", targets.Count);
 
-// ❌ Неправильно — русский язык, недостаточно контекста
-Log.Debug("Отладочное сообщение");
-Log.Warning("Ошибка: {Entity}", ToPrettyString(uid));  // нет прототипа, нет контекста
+// ❌ Incorrect - Russian language, not enough context
+Log.Debug("Debug message");
+Log.Warning("Error: {Entity}", ToPrettyString(uid));  // no prototype, no context
 ```
 
-## Типы событий
+## Event types
 
-### Cancellable (отменяемые)
+### Cancellable
 
 ```csharp
 public sealed class MyAttemptEvent : CancellableEntityEventArgs
 {
-    // Другие системы могут вызвать args.Cancel() чтобы отменить действие
+    // Other systems may call args.Cancel() to cancel the action
 }
 ```
 
-### Handled (обрабатываемые)
+### Handled
 
 ```csharp
 public sealed class MyHandledEvent : HandledEntityEventArgs
 {
-    // args.Handled = true; — помечает событие как обработанное
+    // args.Handled = true; — marks the event as processed
 }
 ```
 
-### By-ref struct (производительные)
+### By-ref struct (performance)
 
 ```csharp
 [ByRefEvent]
 public record struct MyPerformantEvent(EntityUid Target, float Value);
 ```
 
-`[ByRefEvent]` передаёт структуру по ссылке вместо копирования — используется для часто вызываемых событий. При использовании `[ByRefEvent]` в подписке параметр события должен быть с `ref`.
+`[ByRefEvent]` passes the structure by reference instead of copying it - used for frequently called events. When using `[ByRefEvent]` in a subscription, the event parameter must be with `ref`.
 
-### Именование событий
+### Event Naming
 
-- Имена всегда заканчиваются на `Event`: `InteractUsingEvent`, `DamageChangedEvent`
-- Попытки: `AttemptEvent` / `Attempt`: `PickupAttemptEvent`
-- Уведомления: описательное имя: `MobStateChangedEvent`, `StackCountChangedEvent`
+- Names always end with `Event`: `InteractUsingEvent`, `DamageChangedEvent`
+- Attempts: `AttemptEvent` / `Attempt`: `PickupAttemptEvent`
+- Notifications: descriptive name: `MobStateChangedEvent`, `StackCountChangedEvent`
 
-## Оптимизации hot-path (дополнение)
+## Hot-path optimizations (addition)
 
-### 1) Предвычисляй инварианты до вложенных циклов
+### 1) Precompute invariants before nested loops
 
 ```csharp
 var fastPath = false;
-var itemShape = ItemSystem.GetItemShape(itemEnt); // Получаем форму один раз.
+var itemShape = ItemSystem.GetItemShape(itemEnt); // We receive the form once.
 var fastAngles = itemShape.Count == 1;
 
 if (itemShape.Count == 1 && itemShape[0].Contains(Vector2i.Zero))
@@ -540,7 +540,7 @@ var angles = new ValueList<Angle>();
 if (!fastAngles)
 {
     for (var angle = startAngle; angle <= Angle.FromDegrees(360 - startAngle); angle += Math.PI / 2f)
-        angles.Add(angle); // Подготовили набор углов один раз.
+        angles.Add(angle); // We prepared a set of corners once.
 }
 else
 {
@@ -557,20 +557,20 @@ while (chunkEnumerator.MoveNext(out var storageChunk))
         {
             foreach (var angle in angles)
             {
-                // Основная тяжёлая проверка использует уже предвычисленные значения.
+                // The main heavy check uses already precomputed values.
             }
         }
     }
 }
 ```
 
-### 1.1) Храни агрегат (`TargetCount`/`BurstShotsCount`) как состояние
+### 1.1) Store the aggregate (`TargetCount`/`BurstShotsCount`) as a state
 
 ```csharp
-// Вместо пересчёта "сколько выстрелов уже сделано в burst" на каждом шаге:
+// Instead of recalculating “how many shots have already been fired in burst” at each step:
 if (gun.BurstActivated)
 {
-    gun.BurstShotsCount += shots; // Инкрементальный счётчик.
+    gun.BurstShotsCount += shots; // Incremental counter.
     if (gun.BurstShotsCount >= gun.ShotsPerBurstModified)
     {
         gun.BurstActivated = false;
@@ -579,10 +579,10 @@ if (gun.BurstActivated)
 }
 ```
 
-### 2) Не используй LINQ в горячих циклах
+### 2) Don't use LINQ in hot loops
 
 ```csharp
-// ✅ Для hot-path: явный цикл и ранний выход.
+// ✅ For hot-path: explicit loop and early exit.
 for (var i = 0; i < entities.Count; i++)
 {
     var uid = entities[i];
@@ -591,18 +591,18 @@ for (var i = 0; i < entities.Count; i++)
     Process(uid, comp);
 }
 
-// ❌ Избегай в hot-path:
+// ❌ Avoid in hot-path:
 // entities.Where(...).Select(...).ToList();
 ```
 
-### 3) Порядок компонентов в `EntityQueryEnumerator`
+### 3) Component order in `EntityQueryEnumerator`
 
-Ставь первым более редкий компонент, чтобы сократить пересечение множеств:
+Put the rarer component first to reduce the intersection of sets:
 
 ```csharp
 var query = EntityQueryEnumerator<ActiveTimerTriggerComponent, TimerTriggerComponent>();
 ```
 
-### 4) Ранние `continue/return` обязательны для дешёвых фильтров
+### 4) Early `continue/return` are required for cheap filters
 
-Сначала дешёвые проверки, потом дорогие вычисления/события. Это снижает среднюю цену итерации и уменьшает шум профайлера.
+First cheap checks, then expensive calculations/events. This reduces the average iteration cost and reduces profiler noise.

@@ -1,6 +1,6 @@
 ---
 name: ss14-physics-system-api
-description: Полный справочник публичного API SharedPhysicsSystem в Space Station 14: все семейства методов, перегрузки, ограничения, редкие методы и практические примеры использования на сервере и клиенте. Используй, когда нужно точно выбрать метод PhysicsSystem и не сломать контакты/коллизии/предикцию.
+description: A complete reference to the SharedPhysicsSystem public API in Space Station 14: all method families, overloads, limitations, rare methods and practical examples of use on the server and client. Use it when you need to accurately select the PhysicsSystem method and not break contacts/collisions/prediction.
 ---
 
 # Claude Bridge

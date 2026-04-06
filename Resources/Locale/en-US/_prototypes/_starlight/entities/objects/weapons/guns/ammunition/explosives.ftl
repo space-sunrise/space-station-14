@@ -16,6 +16,9 @@ ent-Magazine120mmGrenadeBlastEmpty = 120mm blast grenade magazine (empty)
 ent-Cartridge60mmRocket = 60mm rocket
     .desc = A 60mm rocket cartridge designed for the Vanyk-MK2 shuttle cannon system. Smaller and lighter than standard RPG rounds but still packs a punch.
 
+ent-Cartridge60mmRocketLongFlight = 60mm long-flight rocket
+    .desc = A 60mm rocket cartridge with extended powered flight time for longer range engagements.
+
 ent-Magazine60mmRocket = 60mm rocket magazine
     .desc = A high-capacity 16-round magazine loaded with 60mm rockets for the Vanyk-MK2 shuttle cannon system.
 
