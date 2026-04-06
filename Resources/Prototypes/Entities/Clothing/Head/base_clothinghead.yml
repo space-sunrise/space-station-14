@@ -339,6 +339,6 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-    zombificationResistanceCoefficient: 0.5
-
+  - type: ZombificationResistance
+    coefficient: 0.5
 # Sunrise-End
