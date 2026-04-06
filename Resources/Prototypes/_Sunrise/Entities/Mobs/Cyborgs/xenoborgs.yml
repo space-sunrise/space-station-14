@@ -38,9 +38,6 @@
       borg_module:
       - XenoborgModuleBasic
       - XenoborgModuleTool
-      - XenoborgModuleSword
-      - XenoborgModuleAccessBreaker
-      - XenoborgModuleJammer
   - type: Inventory
     templateId: XenoborgReaper
   - type: InventorySlots
@@ -63,7 +60,12 @@
     footstepSoundCollection:
       collection: Footstep2CyborgLegs
       params:
-        volume: -15
+        volume: 5
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHighPrinted
 
 - type: entity
   parent: XenoReaper
@@ -77,9 +79,6 @@
       borg_module:
       - XenoborgModuleBasic
       - XenoborgModuleTool
-      - XenoborgModuleSword
-      - XenoborgModuleAccessBreaker
-      - XenoborgModuleJammer
   - type: ItemSlots
     slots:
       cell_slot:

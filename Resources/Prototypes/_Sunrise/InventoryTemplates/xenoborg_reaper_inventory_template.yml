@@ -7,12 +7,6 @@
       uiWindowPos: 1,0
       strippingWindowPos: 1,0
       displayName: Head
-    - name: neck
-      slotTexture: neck
-      slotFlags: NECK
-      uiWindowPos: 0,1
-      strippingWindowPos: 0,1
-      displayName: Neck
     - name: outerClothing
       slotTexture: suit
       slotFlags: OUTERCLOTHING

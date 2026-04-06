@@ -159,6 +159,8 @@
     name: ghost-panel-antagonist-mothership-core-name
     description: ghost-panel-antagonist-mothership-core-description
     priority: 15
+  - type: TTS
+    voice: PortalGlados # it is THE mother core
   # Sunrise-End
   - type: MothershipCore
   - type: Tag
