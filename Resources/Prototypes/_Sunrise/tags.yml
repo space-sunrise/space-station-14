@@ -372,10 +372,10 @@
   id: WeaponPistolTec9
 
 - type: Tag
-  id: WeaponSubMachineGunUzi
+  id: SunriseWeaponSubMachineGunUzi
 
 - type: Tag
-  id: WeaponPistolAPS
+  id: SunriseWeaponPistolAPS
 
 - type: Tag
   id: WrappedWeapon

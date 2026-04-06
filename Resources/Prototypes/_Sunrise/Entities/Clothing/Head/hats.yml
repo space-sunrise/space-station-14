@@ -589,8 +589,6 @@
     scale: 0.63, 0.63
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/swanone.rsi
-  - type: Tag
-    tags:
 
 - type: entity
   parent: ClothingHeadBase

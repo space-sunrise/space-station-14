@@ -1835,7 +1835,7 @@
   - UplinkWearables #Sunrise-edit
   conditions:
   - !type:StoreWhitelistCondition
-    blacklist::
+    blacklist:
       tags:
       - AssaultOpsUplink #Sunrise-edit
 
