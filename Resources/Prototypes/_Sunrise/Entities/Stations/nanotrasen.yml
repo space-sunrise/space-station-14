@@ -3,6 +3,7 @@
   parent:
   - BaseStation
   - BaseStationNews
+  - BaseStationCargo
   - BaseStationJobsSpawning
   - BaseStationRecords
   - BaseStationNanotrasen
