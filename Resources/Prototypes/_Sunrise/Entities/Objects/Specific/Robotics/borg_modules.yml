@@ -333,7 +333,7 @@
     - state: icon-syndicate
   - type: ItemBorgModule
     hands:
-    - item: WeaponPistolViperBorgChassisSyndicateSpider
+    - item: WeaponPistolEchis
     - item: CyberMantisBlade
 
 - type: entity

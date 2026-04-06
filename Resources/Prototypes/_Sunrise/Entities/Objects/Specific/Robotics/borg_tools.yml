@@ -1021,46 +1021,6 @@
 # region BorgChassisSyndicateSpider
 
 - type: entity
-  name: Viper
-  parent: BaseItem
-  id: WeaponPistolViperBorgChassisSyndicateSpider
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Pistols/viper.rsi
-    layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-0
-        map: ["enum.GunVisualLayers.Mag"]
-  - type: Gun
-    minAngle: 2
-    maxAngle: 50
-    angleIncrease: 1.75
-    angleDecay: 15
-    fireRate: 5
-    selectedMode: SemiAuto
-    availableModes:
-      - SemiAuto
-      - FullAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - CartridgeRifle
-    capacity: 16
-    proto: CartridgeRifleSP
-    cycleable: false
-  - type: BallisticAmmoSelfRefiller
-    autoRefillRate: 2s
-    affectedByEmp: true
-  - type: AmmoCounter
-
-- type: entity
   parent: HypoBorgStandard
   id: HypoSyndicateBorgExtended
   name: robot hypospray
