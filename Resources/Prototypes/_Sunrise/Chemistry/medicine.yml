@@ -250,6 +250,14 @@
           reagent: Oxanderm
           min: 25
         damage:
+          types:
+            Mangleness: 0.5
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Oxanderm
+          min: 25
+        damage:
           groups:
             Burn: 6
       - !type:HealthChange

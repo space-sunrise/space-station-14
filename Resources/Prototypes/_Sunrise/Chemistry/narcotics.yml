@@ -133,7 +133,6 @@
         amount: 3.0
       - !type:Vomit
         probability: 0.02
-      # НОВЫЕ ВЕРОЯТНОСТИ ЭМОЦИЙ:
       - !type:Emote
         emote: Yawn
         probability: 0.05
