@@ -1,4 +1,5 @@
 using Content.Shared._Sunrise.Sprite.EdgeConnection;
+using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
 
@@ -58,6 +59,8 @@ public sealed class EdgeConnectionSystem : EntitySystem
         if (!rotationChanged && !positionChanged)
             return;
 
+        // If entity moved between tiles / grids, old neighbors also need a refresh.
+        UpdateNeighborsAtCoordinates(args.OldPosition);
         UpdateConnections(ent);
         UpdateNeighbors(ent);
     }
@@ -205,11 +208,25 @@ public sealed class EdgeConnectionSystem : EntitySystem
 
         var tile = _map.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
 
+        UpdateNeighborsAtTileNeighborhood(xform.GridUid.Value, grid, tile);
+    }
+
+    private void UpdateNeighborsAtCoordinates(EntityCoordinates coordinates)
+    {
+        if (!TryComp<MapGridComponent>(coordinates.EntityId, out var grid))
+            return;
+
+        var tile = _map.TileIndicesFor(coordinates.EntityId, grid, coordinates);
+        UpdateNeighborsAtTileNeighborhood(coordinates.EntityId, grid, tile);
+    }
+
+    private void UpdateNeighborsAtTileNeighborhood(EntityUid gridUid, MapGridComponent grid, Vector2i tile)
+    {
         // Update all potentially affected neighbors
-        UpdateNeighborsAtTile(xform.GridUid.Value, grid, tile + new Vector2i(1, 0));
-        UpdateNeighborsAtTile(xform.GridUid.Value, grid, tile + new Vector2i(-1, 0));
-        UpdateNeighborsAtTile(xform.GridUid.Value, grid, tile + new Vector2i(0, 1));
-        UpdateNeighborsAtTile(xform.GridUid.Value, grid, tile + new Vector2i(0, -1));
+        UpdateNeighborsAtTile(gridUid, grid, tile + new Vector2i(1, 0));
+        UpdateNeighborsAtTile(gridUid, grid, tile + new Vector2i(-1, 0));
+        UpdateNeighborsAtTile(gridUid, grid, tile + new Vector2i(0, 1));
+        UpdateNeighborsAtTile(gridUid, grid, tile + new Vector2i(0, -1));
     }
 
     private void UpdateNeighborsAtTile(EntityUid gridUid, MapGridComponent grid, Vector2i tile)
