@@ -17,6 +17,7 @@ knowledge_base:
       - "**/.agents/skills/*/SKILL.md"
 
 reviews:
+  profile: assertive
   path_instructions:
     - path: "**/*"
       instructions: |
@@ -53,6 +54,70 @@ reviews:
       instructions: |
         Treat `.agents/` as the Codex bridge layer for repository rules and skills.
         Ensure every bridge still points back to the correct `.agent/` source and stays synchronized with canonical content and trigger metadata.
+  pre_merge_checks:
+    override_requested_reviewers_only: true
+    custom_checks:
+      - mode: error
+        name: "SS14 bridge sync"
+        instructions: |
+          Fail if this PR changes any canonical rule or skill under `.agent/rules/` or `.agent/skills/` without updating every required bridge in `.agents/`, `.claude/`, `.cursor/`, and `.github/` in the same PR.
+          Required rule bridges:
+          - `.agents/rules/<same-file>.md`
+          - `.claude/rules/<same-file>.md`
+          - `.cursor/rules/<same-file>.md`
+          - `.github/rules/<same-file>.md`
+          Required skill bridges:
+          - `.agents/skills/<skill-name>/SKILL.md`
+          - `.claude/skills/<skill-name>/SKILL.md`
+          - `.cursor/skills/<skill-name>/SKILL.md`
+          - `.github/skills/<skill-name>/SKILL.md`
+          Also fail if a changed bridge points to the wrong `.agent` source path or if synchronized trigger/name/description metadata diverges from the canonical source.
+          Pass only if all changed canonical files and bridge files remain synchronized.
+      - mode: error
+        name: "SS14 C# rules"
+        instructions: |
+          Run this check only when the PR changes `.cs` files.
+          Treat `AGENTS.md`, `.agent/rules/*.md`, and the following skills as mandatory review criteria for changed C# code:
+          - `ss14-naming-conventions`
+          - `ss14-ecs-prototypes`
+          - `ss14-upstream-maintenance`
+          - `ss14-ecs-components`
+          - `ss14-ecs-entities`
+          - `ss14-ecs-systems`
+          - `ss14-events`
+          - `ss14-prediction`
+          Fail if changed C# files violate these repo rules. Deterministic failing examples include:
+          - a `[RegisterComponent]` class name not ending with `Component`
+          - an `EntitySystem` subclass name not ending with `System`
+          - a private `[Dependency]` field in `_Sunrise` code that does not start with `_`
+          - newly added interaction or action logic that breaks the required `OnEvent -> TryDo -> CanDo -> Do` flow
+          - substantial new fork logic added directly in vanilla files instead of `_Sunrise` or partial classes, unless it is only a minimal hook
+          - new vanilla-file fork edits missing `Sunrise-Edit` / `Sunrise edit start/end` / `Sunrise added start/end` markers where markers are needed
+          Pass only if none of these problems appear in the changed `.cs` files.
+      - mode: error
+        name: "SS14 YAML/FTL rules"
+        instructions: |
+          Run this check only when the PR changes `.yml`, `.yaml`, or `.ftl` files.
+          Treat `AGENTS.md`, `.agent/rules/*.md`, and the following skills as mandatory review criteria for changed content files:
+          - `ss14-naming-conventions`
+          - `ss14-ecs-prototypes`
+          - `ss14-upstream-maintenance`
+          - `ss14-localization-strings`
+          Fail if changed content files violate these repo rules. Deterministic failing examples include:
+          - any YAML component entry written as `- type: SomethingComponent`
+          - prototype IDs that are not `CamelCase`
+          - fork-only prototype IDs missing a `Sunrise` prefix when they are unique fork content or forked copies of vanilla entities
+          - non-English YAML fallback `name` / `description`, including Cyrillic fallback text
+          - FTL entity keys not starting with `ent-`
+          - non-entity FTL keys not using `kebab-case`
+          - broad direct rewrites of vanilla prototypes where a parent-based `_Sunrise` override plus `Resources/migration.yml` is the expected upstream-friendly pattern
+          Pass only if none of these problems appear in the changed `.yml`, `.yaml`, or `.ftl` files.
+  tools:
+    ast-grep:
+      enabled: true
+      essential_rules: false
+      rule_dirs:
+        - ".coderabbit/ast-grep/rules"
   auto_apply_labels: true
   allow_label_editing: true
   labeling_instructions:
