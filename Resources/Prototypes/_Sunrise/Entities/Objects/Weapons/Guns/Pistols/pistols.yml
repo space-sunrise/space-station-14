@@ -381,11 +381,11 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle/tiny.rsi
   - type: Gun
-    minAngle: 1
-    maxAngle: 20
-    angleIncrease: 7
+    minAngle: 3
+    maxAngle: 35
+    angleIncrease: 5
     angleDecay: 10
-    fireRate: 4 # 140 dps - 105 for mateba
+    fireRate: 3.5 # 122 dps - 105 for mateba
     availableModes:
     - SemiAuto
     soundGunshot:
