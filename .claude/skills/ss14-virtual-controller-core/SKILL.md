@@ -6,6 +6,6 @@ description: Parses the VirtualController architecture in Space Station 14: the 
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-virtual-controller-core/SKILL.md.
+../../../.agent/skills/ss14-virtual-controller-core/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

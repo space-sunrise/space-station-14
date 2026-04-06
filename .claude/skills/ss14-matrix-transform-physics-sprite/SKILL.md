@@ -6,6 +6,6 @@ description: Highly specialized skill in matrix transformations in SS14: world/g
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-matrix-transform-physics-sprite/SKILL.md.
+../../../.agent/skills/ss14-matrix-transform-physics-sprite/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

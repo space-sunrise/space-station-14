@@ -6,6 +6,6 @@ description: Working with entities in Space Station 14 — EntityUid, Entity<T>,
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-ecs-entities/SKILL.md.
+../../../.agent/skills/ss14-ecs-entities/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

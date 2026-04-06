@@ -1,7 +1,7 @@
-ent-XenoReaper = Ксеноборг-Жнец
+ent-FishXenoReaper = Ксеноборг-Жнец
     .desc = Гибрид человека и машины, стремящийся к самовоспроизведению. Они обожают извлекать мозги и вставлять их в новые ксеноборговые шасси, чтобы наращивать свою армию. Это новая модель "Жнец" и она в чем то напоминает людей, явно не уступая им в жестокости
     .suffix = с мозгом
 
-ent-XenoReaperPrinted = { ent-XenoReaper }
+ent-FishXenoReaperPrinted = { ent-FishXenoReaper }
     .suffix = без мозга
-    .desc = { ent-XenoReaper.desc }
+    .desc = { ent-FishXenoReaper.desc }

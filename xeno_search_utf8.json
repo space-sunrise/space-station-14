@@ -1,0 +1,57 @@
+﻿[
+    {
+        "LineNumber":  1,
+        "Line":  "ent-XenoReaper = reaper xenoborg",
+        "Path":  "C:\\Users\\Alexm\\Documents\\GitHub\\sunrise-station\\Resources\\Locale\\en-US\\_prototypes\\_sunrise\\entities\\mobs\\cyborgs\\xenoborgs.ftl"
+    },
+    {
+        "LineNumber":  5,
+        "Line":  "ent-XenoReaperPrinted = { ent-XenoReaper }",
+        "Path":  "C:\\Users\\Alexm\\Documents\\GitHub\\sunrise-station\\Resources\\Locale\\en-US\\_prototypes\\_sunrise\\entities\\mobs\\cyborgs\\xenoborgs.ftl"
+    },
+    {
+        "LineNumber":  7,
+        "Line":  "    .desc = { ent-XenoReaper.desc }",
+        "Path":  "C:\\Users\\Alexm\\Documents\\GitHub\\sunrise-station\\Resources\\Locale\\en-US\\_prototypes\\_sunrise\\entities\\mobs\\cyborgs\\xenoborgs.ftl"
+    },
+    {
+        "LineNumber":  1,
+        "Line":  "ent-XenoReaper = Ксеноборг-Жнец",
+        "Path":  "C:\\Users\\Alexm\\Documents\\GitHub\\sunrise-station\\Resources\\Locale\\ru-RU\\_prototypes\\_sunrise\\entities\\mobs\\cyborgs\\xenoborgs.ftl"
+    },
+    {
+        "LineNumber":  5,
+        "Line":  "ent-XenoReaperPrinted = { ent-XenoReaper }",
+        "Path":  "C:\\Users\\Alexm\\Documents\\GitHub\\sunrise-station\\Resources\\Locale\\ru-RU\\_prototypes\\_sunrise\\entities\\mobs\\cyborgs\\xenoborgs.ftl"
+    },
+    {
+        "LineNumber":  7,
+        "Line":  "    .desc = { ent-XenoReaper.desc }",
+        "Path":  "C:\\Users\\Alexm\\Documents\\GitHub\\sunrise-station\\Resources\\Locale\\ru-RU\\_prototypes\\_sunrise\\entities\\mobs\\cyborgs\\xenoborgs.ftl"
+    },
+    {
+        "LineNumber":  3,
+        "Line":  "  id: XenoReaper",
+        "Path":  "C:\\Users\\Alexm\\Documents\\GitHub\\sunrise-station\\Resources\\Prototypes\\_Sunrise\\Entities\\Mobs\\Cyborgs\\xenoborgs.yml"
+    },
+    {
+        "LineNumber":  11,
+        "Line":  "      sprite: _Sunrise/Mobs/Silicon/xenoreaper.rsi",
+        "Path":  "C:\\Users\\Alexm\\Documents\\GitHub\\sunrise-station\\Resources\\Prototypes\\_Sunrise\\Entities\\Mobs\\Cyborgs\\xenoborgs.yml"
+    },
+    {
+        "LineNumber":  14,
+        "Line":  "    sprite: _Sunrise/Mobs/Silicon/xenoreaper.rsi",
+        "Path":  "C:\\Users\\Alexm\\Documents\\GitHub\\sunrise-station\\Resources\\Prototypes\\_Sunrise\\Entities\\Mobs\\Cyborgs\\xenoborgs.yml"
+    },
+    {
+        "LineNumber":  71,
+        "Line":  "  parent: XenoReaper",
+        "Path":  "C:\\Users\\Alexm\\Documents\\GitHub\\sunrise-station\\Resources\\Prototypes\\_Sunrise\\Entities\\Mobs\\Cyborgs\\xenoborgs.yml"
+    },
+    {
+        "LineNumber":  72,
+        "Line":  "  id: XenoReaperPrinted",
+        "Path":  "C:\\Users\\Alexm\\Documents\\GitHub\\sunrise-station\\Resources\\Prototypes\\_Sunrise\\Entities\\Mobs\\Cyborgs\\xenoborgs.yml"
+    }
+]

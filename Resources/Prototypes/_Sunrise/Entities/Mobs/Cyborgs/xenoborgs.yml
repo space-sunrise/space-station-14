@@ -1,6 +1,6 @@
 - type: entity
   parent: [ BaseXenoborgChassis, BaseXenoborgTransponder ]
-  id: XenoReaper
+  id: FishXenoReaper
   name: reaper xenoborg
   suffix: with brain, FISH
   description: A man-machine hybrid that aims to replicate itself. They love extracting brains to insert into fresh Xenoborg chassis to grow their army. This is a reaper type, a stealthy infiltration unit designed for sabotage and assassination.
@@ -53,9 +53,6 @@
         Base: xeno_reaper_critical
       Dead:
         Base: xeno_reaper_dead
-  - type: Vocal
-    sounds:
-      Unsexed: Reaper
   - type: FootstepModifier
     footstepSoundCollection:
       collection: Footstep2CyborgLegs
@@ -68,8 +65,8 @@
         startingItem: PowerCellXenoborgSmallPrinted
 
 - type: entity
-  parent: XenoReaper
-  id: XenoReaperPrinted
+  parent: FishXenoReaper
+  id: FishXenoReaperPrinted
   suffix: no brain, FISH
   components:
   - type: ContainerFill
@@ -79,8 +76,3 @@
       borg_module:
       - XenoborgModuleBasic
       - XenoborgModuleTool
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellXenoborgSmallPrinted

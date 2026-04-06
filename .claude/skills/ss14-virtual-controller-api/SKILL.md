@@ -6,6 +6,6 @@ description: Gives a practical catalog of APIs around the VirtualController in S
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-virtual-controller-api/SKILL.md.
+../../../.agent/skills/ss14-virtual-controller-api/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

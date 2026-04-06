@@ -6,6 +6,6 @@ description: A deep practical guide to entity animations using the AnimationPlay
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-graphics-animation-player/SKILL.md.
+../../../.agent/skills/ss14-graphics-animation-player/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.
