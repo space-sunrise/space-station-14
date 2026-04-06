@@ -190,7 +190,7 @@
   physicalDesc: reagent-physical-desc-fizzy
   flavor: medicine
   color: "#0091ff"
-  worksOnTheDead: true # sunrise-edit
+  worksOnTheDead: true #Sunrise-Edit
   plantMetabolism:
   - !type:PlantAdjustToxins
     amount: -5
@@ -206,8 +206,8 @@
             max: 213.0
           damage:
             types:
-              Asphyxiation: -2 #sunrise-edit
-              Bloodloss: -2 #sunrise-edit
+              Asphyxiation: -2 #Sunrise-Edit
+              Bloodloss: -2 #Sunrise-Edit
 
 - type: reagent
   id: Doxarubixadone
@@ -1412,7 +1412,7 @@
         - !type:TemperatureCondition
           max: 213.0
         - !type:TotalDamageCondition
-          min: 80 #sunrise-edit
+          min: 80 #Sunrise-Edit
         damage:
           Brute: -2
           Burn: -2
@@ -1421,7 +1421,7 @@
         - !type:TemperatureCondition
           max: 213.0
         - !type:TotalDamageCondition
-          min: 200 #sunrise-edit
+          min: 200 #Sunrise-Edit
         damage:
           Brute: -4
           Burn: -4
@@ -1457,7 +1457,7 @@
             max: 213.0
           damage:
             types:
-              Poison: -4 # Sunrise-Edit
+              Poison: -4 #Sunrise-Edit
               Mangleness: -5 #Sunrise-Edit
 
 - type: reagent
