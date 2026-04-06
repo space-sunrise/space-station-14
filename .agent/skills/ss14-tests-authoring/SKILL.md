@@ -1,64 +1,64 @@
 ---
 name: SS14 Tests Authoring
-description: Практический workflow написания собственных unit/integration тестов в архитектуре Space Station 14: от выбора стратегии до стабильных assertions и обслуживания тестов.
+description: Practical workflow for writing your own unit/integration tests in the Space Station 14 architecture: from choosing a strategy to stable assertions and test maintenance.
 ---
 
-# Написание своих тестов в SS14
+# Writing your own tests in SS14
 
-## Когда использовать
+## When to use
 
-Используй этот skill, когда нужно:
-- спроектировать новый тестовый сценарий с нуля;
-- выбрать тип теста (unit, server-only integration, server+client integration);
-- оформить тест так, чтобы он был стабильным и не ломал пул;
-- быстро ревьюить тест на anti-patterns до запуска CI.
+Use this skill when needed:
+- design a new test script from scratch;
+- select the test type (unit, server-only integration, server+client integration);
+- design the test so that it is stable and does not break the pool;
+- quickly review the test for anti-patterns before launching CI.
 
-Внутреннее устройство `PoolManager/TestPair` подробно разбирается в `ss14-tests-poolmanager`. Здесь упор на авторский workflow и качество тестов как артефакта.
+The internals of `PoolManager/TestPair` are discussed in detail in `ss14-tests-poolmanager`. Here the emphasis is on the author's workflow and the quality of tests as an artifact.
 
-## Короткое дерево решений
+## Short decision tree
 
-1. Проверяешь чистую логику без сети/тика/IoC?
-- Да: unit-тест.
-- Нет: integration-тест.
+1. Are you testing pure logic without network/tick/IoC?
+- Yes: unit test.
+- No: integration test.
 
-2. Нужна реальная синхронизация client↔server, UI/BUI, предикция или ввод?
-- Да: server+client integration.
-- Нет: server-only integration может быть проще и быстрее.
+2. Do you need real synchronization client↔server, UI/BUI, prediction or input?
+- Yes: server+client integration.
+- No: server-only integration may be simpler and faster.
 
-3. Тест меняет глобальное состояние, которое плохо переживает reuse?
-- Да: `Dirty = true` или точечно `Pool = false` для изоляции.
-- Нет: оставляй reuse, это сильно ускоряет ран.
+3. Does the test change the global state, which does not survive reuse well?
+- Yes: `Dirty = true` or dotted `Pool = false` for isolation.
+- No: leave reuse, it greatly speeds up the wound.
 
-## Базовый workflow автора 🧪
+## Basic workflow of the author 🧪
 
-1. Зафиксируй инварианты:
-- что должно измениться;
-- что не должно измениться;
-- на какой стороне (server/client) проверяется каждое условие.
+1. Fix the invariants:
+- what needs to change;
+- what should not change;
+- on which side (server/client) each condition is checked.
 
-2. Выбери минимальные настройки окружения:
-- `Connected`, если нужен живой клиент;
-- `DummyTicker = false`, если нужен реальный round-flow;
-- `InLobby = true`, если проверяется логика лобби;
-- `Dirty = true`, только если тест реально портит reuse-состояние.
+2. Select minimal environment settings:
+- `Connected`, if you need a live client;
+- `DummyTicker = false`, if you need real round-flow;
+- `InLobby = true`, if the lobby logic is checked;
+- `Dirty = true`, only if the test really spoils the reuse state.
 
 3. Arrange:
-- создай карту/сущности/компоненты в `WaitPost(...)`;
-- при необходимости подключи тестовые прототипы (`[TestPrototypes]` или `ExtraPrototypes`).
+- create a map/entities/components in `WaitPost(...)`;
+- if necessary, connect test prototypes (`[TestPrototypes]` or `ExtraPrototypes`).
 
 4. Act:
-- выполняй действие через систему/ввод/UI;
-- после action дай нужные тики для обработки.
+- perform an action through the system/input/UI;
+- after the action, give the necessary ticks for processing.
 
 5. Assert:
-- проверяй в `WaitAssertion(...)` или вне callback после синхронизации;
-- для server+client всегда учитывай дельту тиков.
+- check in `WaitAssertion(...)` or outside the callback after synchronization;
+- for server+client always take into account the tick delta.
 
 6. Cleanup:
-- всегда `CleanReturnAsync()` для пар из пула;
-- если поднимал отдельные server/client инстансы, корректно disconnect/shutdown.
+- always `CleanReturnAsync()` for pairs from the pool;
+- if you raised separate server/client instances, disconnect/shutdown correctly.
 
-## Шаблон 1: стандартный контентный integration-тест
+## Pattern 1: standard content integration test
 
 ```csharp
 [Test]
@@ -75,7 +75,7 @@ public async Task MyScenario_Works()
 
     await server.WaitPost(() =>
     {
-        // Arrange: создаем тестовую сущность.
+        // Arrange: create a test entity.
         subject = server.EntMan.SpawnEntity("MobHuman", MapCoordinates.Nullspace);
     });
 
@@ -84,7 +84,7 @@ public async Task MyScenario_Works()
 
     await server.WaitAssertion(() =>
     {
-        // Assert: проверка после стабилизации.
+        // Assert: check after stabilization.
         Assert.That(server.EntMan.EntityExists(subject), Is.True);
     });
 
@@ -92,7 +92,7 @@ public async Task MyScenario_Works()
 }
 ```
 
-## Шаблон 2: inline-прототипы внутри теста
+## Pattern 2: inline prototypes inside a test
 
 ```csharp
 [TestPrototypes]
@@ -117,9 +117,9 @@ public async Task UsesInlinePrototype()
 }
 ```
 
-## Шаблон 3: изолированный спецкейс без пула
+## Pattern 3: isolated special case without a pool
 
-Используй, когда кейс затрагивает глобальные регистрации/глубокую изоляцию.
+Use when the case involves global registrations/deep isolation.
 
 ```csharp
 var server = StartServer(new ServerIntegrationOptions
@@ -138,32 +138,32 @@ Assert.DoesNotThrow(() => client.SetConnectTarget(server));
 await client.WaitPost(() => client.ResolveDependency<IClientNetManager>().ClientConnect(null!, 0, null!));
 ```
 
-## Паттерны хороших тестов 🙂
+## Good test patterns :)
 
-- Каждый тест проверяет 1 поведенческий контракт (а не «все сразу»).
-- Arrange/Act/Assert визуально разделены.
-- Все мутации обернуты в `WaitPost`, все проверки в `WaitAssertion`.
-- Есть явная синхронизация тиков до cross-side assertions.
-- Сложные сценарии опираются на helper-методы (ввод, do-after, UI) вместо копипасты.
-- Название теста описывает наблюдаемое поведение (`X_WhenY_ShouldZ` или эквивалент).
+- Each test checks 1 behavioral contract (not “all at once”).
+- Arrange/Act/Assert are visually separated.
+- All mutations are wrapped in `WaitPost`, all checks are wrapped in `WaitAssertion`.
+- There is an explicit synchronization of ticks before cross-side assertions.
+- Complex scripts rely on helper methods (input, do-after, UI) instead of copy-paste.
+- The test name describes the observed behavior (`X_WhenY_ShouldZ` or equivalent).
 
-## Анти-паттерны
+## Anti-patterns
 
-- «Гигантский» тест с десятком независимых целей.
-- Магические `RunTicks(123)` без объяснения, почему именно столько.
-- `Dirty = true` и `Pool = false` по умолчанию без причины.
-- Ассерты в `Post(...)` и мутации в `WaitAssertion(...)`.
-- Опора на документацию вразрез с текущим кодом.
-- Игнорирование cleanup и надежда на автоматический dispose 😬
+- “Giant” test with dozens of independent goals.
+- Magical `RunTicks(123)` without explanation why exactly so much.
+- `Dirty = true` and `Pool = false` default for no reason.
+- Assertions in `Post(...)` and mutations in `WaitAssertion(...)`.
+- Reliance on documentation contrary to current code.
+- Ignoring cleanup and hoping for automatic dispose 😬
 
-## Примеры из актуального кода
+## Examples from actual code
 
-### Пример A: сценарий, где нужны lobby/in-round переходы
+### Example A: scenario where lobby/in-round transitions are needed
 
 ```csharp
 await using var pair = await PoolManager.GetServerClient(new PoolSettings
 {
-    Dirty = true,       // тест меняет фазу игры
+    Dirty = true,       // the test changes the phase of the game
     DummyTicker = false,
     Connected = true,
     InLobby = true,
@@ -176,28 +176,28 @@ await pair.Server.WaitAssertion(() =>
 });
 ```
 
-### Пример B: проверка интеракции через системный вызов
+### Example B: Testing Interaction via System Call
 
 ```csharp
 await server.WaitPost(() =>
 {
-    // Act: серверная интеракция пользователя с целью.
+    // Act: server-side user interaction with the target.
     interactionSystem.UserInteraction(user, server.Transform(target).Coordinates, target);
 });
 
 await server.WaitAssertion(() =>
 {
-    // Assert: ожидаемый обработчик действительно сработал.
+    // Assert: the expected handler actually worked.
     Assert.That(interactHand, Is.True);
 });
 ```
 
-### Пример C: UI/BUI шаги с учетом сетевого RTT
+### Example C: UI/BUI steps considering network RTT
 
 ```csharp
 await client.WaitPost(() => bui.SendMessage(message));
 
-// Даем время на client->server->client обработку.
+// We give time for client->server->client processing.
 await pair.RunTicksSync(15);
 
 await client.WaitAssertion(() =>
@@ -206,17 +206,17 @@ await client.WaitAssertion(() =>
 });
 ```
 
-## Мини-чеклист перед PR
+## Mini checklist before PR
 
-- Тест проходит локально минимум 3 прогона подряд.
-- Нет прямой зависимости от порядка выполнения других тестов.
-- Нет скрытой мутации глобального состояния без отката.
-- Cleanup явный и корректный.
-- Параметры окружения минимальны (ничего лишнего).
+- The test runs locally for at least 3 runs in a row.
+- There is no direct dependence on the order in which other tests are performed.
+- No hidden mutation of global state without rollback.
+- Cleanup is explicit and correct.
+- The environment parameters are minimal (nothing extra).
 
-## Практические заметки из docs
+## Practical notes from docs
 
-- `COMPlus_gcServer=1` обычно ускоряет integration-раны.
-- User data в integration-режиме in-memory и не сохраняется между запусками.
+- `COMPlus_gcServer=1` usually speeds up integration wounds.
+- User data is in in-memory integration mode and is not saved between runs.
 
-Используй это как operational note, но финальное решение всегда сверяй по актуальной реализации кода.
+Use this as an operational note, but always check the final decision against the current implementation of the code.

@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using Content.Server._Sunrise.Shuttles.Components;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
@@ -478,7 +479,12 @@ public sealed partial class ShuttleSystem
         comp.StateTime = StartEndTime.FromCurTime(_gameTiming, comp.TravelTime - DefaultArrivalTime);
 
         Enable(uid, component: body);
-        _physics.SetLinearVelocity(uid, new Vector2(0f, 20f), body: body);
+
+        // Sunrise-Start
+        var ftlSpeed = _cfg.GetCVar(SunriseCCVars.FTLSpeed);
+        _physics.SetLinearVelocity(uid, new Vector2(0f, ftlSpeed), body: body);
+        // Sunrise-End
+
         _physics.SetAngularVelocity(uid, 0f, body: body);
 
         _dockSystem.SetDockBolts(uid, true);
@@ -698,14 +704,12 @@ public sealed partial class ShuttleSystem
         {
             foreach (var child in toKnock)
             {
+                // Only stun mobs/entities with status effects
                 _stuns.TryUpdateParalyzeDuration(child, _hyperspaceKnockdownTime);
 
-                // Sunrise-Start
+                // Sunrise-Start: Throw ALL dynamic entities in the list (including items and structures)
                 if (_physicsQuery.TryGetComponent(child, out var physics))
                 {
-                    if ((physics.BodyType & BodyType.Static) != 0)
-                        continue;
-
                     _throwing.TryThrow(child,
                         throwDirection * _ftlThrowForce,
                         physics,
@@ -716,7 +720,7 @@ public sealed partial class ShuttleSystem
                 }
                 // Sunrise-End
 
-                // If the guy we knocked down is on a spaced tile, throw them too
+                // If the dynamic object is on a spaced tile (lattice/space), throw them too
                 if (grid != null)
                     TossIfSpaced((xform.GridUid.Value, grid, shuttleBody), child);
             }
@@ -750,14 +754,17 @@ public sealed partial class ShuttleSystem
 
     private void KnockOverKids(TransformComponent xform, ref ValueList<EntityUid> toKnock)
     {
-        // Not recursive because probably not necessary? If we need it to be that's why this method is separate.
         var childEnumerator = xform.ChildEnumerator;
         while (childEnumerator.MoveNext(out var child))
         {
-            if (!_buckleQuery.TryGetComponent(child, out var buckle) || buckle.Buckled)
+            // Sunrise-Start: Include items (Dynamic) and players (KinematicController)
+            if (!_physicsQuery.TryGetComponent(child, out var physics) || (physics.BodyType != BodyType.Dynamic && physics.BodyType != BodyType.KinematicController))
                 continue;
 
-            // Sunrise-Start
+            // If it can buckle, it must be unbuckled
+            if (_buckleQuery.TryGetComponent(child, out var buckle) && buckle.Buckled)
+                continue;
+
             if (_movedByPressureQuery.TryComp(child, out var moved) && !moved.Enabled)
                 continue;
             // Sunrise-End

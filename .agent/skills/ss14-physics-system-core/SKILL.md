@@ -1,102 +1,102 @@
 ---
 name: SS14 Physics System Core
-description: Глубокий практический гайд по PhysicsSystem в Space Station 14: устройство симуляции (broadphase, contacts, islands, solver), связь с Transform/Container/Anchoring, клиентская prediction-часть и рабочие паттерны применения. Используй, когда нужно понять как физика реально работает и где безопасно встраивать игровую логику.
+description: Deep practical guide to PhysicsSystem in Space Station 14: simulation device (broadphase, contacts, islands, solver), connection with Transform/Container/Anchoring, client prediction part and working application patterns. Use it when you need to understand how physics actually works and where it is safe to embed game logic.
 ---
 
 # PhysicsSystem: Core
 
-Этот skill покрывает архитектуру и ментальную модель PhysicsSystem 🙂
-Полный каталог публичного API смотри в отдельном skill `SS14 Physics System API`.
+This skill covers the architecture and mental model of PhysicsSystem :)
+For the full directory of the public API, see the separate skill `SS14 Physics System API`.
 
-## Ментальная модель
+## Mental model
 
-Physics в SS14 удобно мыслить как конвейер из 6 слоёв:
+Physics in SS14 is convenient to think of as a pipeline of 6 layers:
 
 1. `PhysicsComponent`
-- Состояние тела: `BodyType`, `CanCollide`, скорости, демпфинг, масса, сон и т.д.
+- Body state: `BodyType`, `CanCollide`, speed, damping, mass, sleep, etc.
 
 2. `FixturesComponent`
-- Набор физ. фигур тела (хитбоксы/сенсоры), их `layer/mask/hard`, material-параметры.
+- Set of physical body shapes (hitboxes/sensors), their `layer/mask/hard`, material parameters.
 
 3. Broadphase
-- Деревья прокси по картам/гридам, быстрый поиск потенциальных пар.
+- Proxy trees on maps/grids, quick search for potential pairs.
 
 4. Contacts
-- Узлы пар fixture-vs-fixture, lifecycle `Start/Touching/End`.
+- Nodes of fixture-vs-fixture pairs, lifecycle `Start/Touching/End`.
 
 5. Islands + Solver
-- Графы боди/контактов/джоинтов, решаемые пакетно и частично параллельно.
+- Body/contact/joint graphs, solved in batches and partially in parallel.
 
-6. Синхронизация с Transform
-- После solve позиция/ротация кладутся обратно в transform-дерево.
+6. Sync with Transform
+- After solve, the position/rotation is put back into the transform tree.
 
-Ключевая идея:
-- Игровая логика почти всегда должна менять физику через системные методы (`Set*`, `Apply*`, `RegenerateContacts`, `WakeBody`), а не прямыми полями компонента ✅
+Key idea:
+- Game logic should almost always change physics through system methods (`Set*`, `Apply*`, `RegenerateContacts`, `WakeBody`), and not through direct component fields ✅
 
-## Как реально идёт тик физики
+## How the tick of physics really works
 
-Типичный шаг (с учётом substeps):
+Typical step (including substeps):
 
 1. `PhysicsUpdateBeforeSolveEvent`.
-2. Поиск новых потенциальных пар (`FindNewContacts`).
-3. Обновление контактов (`CollideContacts`) и событий `Start/EndCollide`.
-4. Solve islands (`Step` -> интеграция скоростей -> constraints -> позиции).
+2. Search for new potential pairs (`FindNewContacts`).
+3. Update contacts (`CollideContacts`) and events `Start/EndCollide`.
+4. Solve islands (`Step` -> integration of speeds -> constraints -> positions).
 5. `PhysicsUpdateAfterSolveEvent`.
-6. Финализация/lerp-данных на последнем substep.
+6. Finalization/lerp data on the last substep.
 
-Практический вывод:
-- Всё, что должно подействовать "в этом же физическом шаге", нужно ставить до solve (обычно в системах-контроллерах или событиях before-solve).
+Practical conclusion:
+- Everything that should act “in the same physical step” must be placed before solve (usually in controller systems or before-solve events).
 
-## Связь с Transform, Anchoring и Containers
+## Connection with Transform, Anchoring and Containers
 
-PhysicsSystem плотно связан с transform-иерархией:
+PhysicsSystem is tightly connected to the transform hierarchy:
 
-- При parent-change пересчитывается поведение тела и сохраняется map-скорость.
-- Anchor/unanchor меняет не только transform-статус, но и физический режим (через системный flow).
-- В контейнере тело обычно переводится в `CanCollide = false`, скорости обнуляются.
+- When parent-change occurs, the behavior of the body is recalculated and the map speed is saved.
+- Anchor/unanchor changes not only the transform status, but also the physical mode (through the system flow).
+- In a container, the body is usually transferred to `CanCollide = false`, the speeds are reset to zero.
 
-Следствие:
-- Любые операции "вставил в контейнер", "перекинул parent", "заанкорил/разанкорил" нельзя считать только визуальными; это полноценный физический transition ⚠️
+Consequence:
+- Any operations “inserted into container”, “dropped parent”, “anchored/unanchored” cannot be considered only visual; this is a full-fledged physical transition ⚠️
 
-## Клиент и сервер
+## Client and server
 
-Общее:
-- И сервер, и клиент используют общий физический слой и одинаковые ключевые инварианты.
+General:
+- Both the server and the client use a common physical layer and the same key invariants.
 
-Различия:
-- Сервер авторитетен.
-- Клиент дополнительно управляет prediction-флагом сущностей и аккуратно пересчитывает touching-состояние контактов при ресете состояния, чтобы уменьшить mispredict-эффекты.
+Differences:
+- The server is authoritative.
+- The client additionally controls the prediction flag of entities and carefully recalculates the touching state of contacts when resetting the state in order to reduce mispredict effects.
 
-## Короткое дерево решений
+## Short decision tree
 
-1. Нужен разовый толчок/рывок?
+1. Need a one-time push/jerk?
 - `ApplyLinearImpulse` / `ApplyAngularImpulse`.
 
-2. Нужна постоянная тяга/момент?
+2. Do you need constant thrust/torque?
 - `ApplyForce` / `ApplyTorque`.
 
-3. Нужно переключить физический режим объекта?
-- `SetBodyType` (+ при необходимости `SetCanCollide`, `SetFixedRotation`, `SetSleepingAllowed`).
+3. Do you need to switch the physical mode of an object?
+- `SetBodyType` (+ if necessary `SetCanCollide`, `SetFixedRotation`, `SetSleepingAllowed`).
 
-4. Нужно поменять коллизионное поведение без смены типа тела?
-- `SetCanCollide` или fixture-API (`SetCollisionMask/Layer`, `SetHard`).
+4. Do you need to change collision behavior without changing your body type?
+- `SetCanCollide` or fixture-API (`SetCollisionMask/Layer`, `SetHard`).
 
-5. Нужна пересборка актуальных контактов после резкой смены коллизии/фикстур?
+5. Do you need to reassemble the current contacts after a sudden change of collision/fixtures?
 - `RegenerateContacts`.
 
-6. Нужна геометрия и дистанции по реальным хитбоксам?
+6. Do you need geometry and distances based on real hitboxes?
 - `TryGetNearest*`, `GetWorldAABB`, `GetHardAABB`, ray/intersection query API.
 
-## Оптимизация при использовании PhysicsSystem 🙂
+## Optimization when using PhysicsSystem :)
 
-### 1) Компонентные оптимизации (самые дешевые и эффективные)
+### 1) Component optimizations (the cheapest and most effective)
 
-- `CollisionWake`: автоматически выключает `CanCollide` для спящих тел на гриде (если нет джоинтов/критических контактов), и включает обратно при пробуждении.
-- `CollideOnAnchor`: привязывает `CanCollide` к состоянию anchor/unanchor.
-- Эти два подхода обычно лучше ручного "дергания" `SetCanCollide` в 100 местах.
+- `CollisionWake`: automatically turns off `CanCollide` for sleeping bodies on the grid (if there are no joints/critical contacts), and turns it back on when waking up.
+- `CollideOnAnchor`: Binds `CanCollide` to the anchor/unanchor state.
+- These two approaches are usually better than manually "pulling" `SetCanCollide` in 100 places.
 
 ```yaml
-# Подпольная/трубная сущность: коллизия автоматически синхронизируется с anchoring.
+# Underground/pipe entity: collision is automatically synchronized with anchoring.
 components:
 - type: Physics
   canCollide: false
@@ -104,54 +104,54 @@ components:
 ```
 
 ```yaml
-# Массовые мелкие предметы: collision wake экономит апдейты на гриде.
+# Massive small items: collision wake saves updates on the grid.
 components:
 - type: Physics
 - type: CollisionWake
 ```
 
-### 2) Сон/пробуждение и частые апдейты скорости
+### 2) Sleep/wake and frequent speed updates
 
-- Для объектов с частыми velocity-апдейтами используй `SetLinearVelocity(..., wakeBody: false)`, если не нужно принудительное пробуждение каждый тик.
-- Включай `SetSleepingAllowed(true)` там, где тело может стабильно "уснуть".
-- Зови `WakeBody` только перед реальным действием (толчок, резкий маневр, включение механизма).
+- For objects with frequent velocity updates, use `SetLinearVelocity(..., wakeBody: false)`, if you don’t need to force wake up every tick.
+- Turn on `SetSleepingAllowed(true)` where the body can consistently “fall asleep”.
+- Call `WakeBody` only before a real action (push, sharp maneuver, turning on a mechanism).
 
 ```csharp
-// Контроллер обновляет velocity каждый тик, но лишний wake на каждом шаге не нужен.
+// The controller updates velocity every tick, but an extra wake at every step is not needed.
 PhysicsSystem.SetAngularVelocity(uid, angularVelocity);
 PhysicsSystem.SetLinearVelocity(uid, velocity, wakeBody: false);
 ```
 
-### 3) Дешевые query/контакт-паттерны
+### 3) Cheap query/contact patterns
 
-- Для контактной логики используй `GetContacts`/`ContactEnumerator` (минимум аллокаций).
-- Для проверок пересечений, где не нужна идеальная точность, используй `approximate = true`.
-- Ray/query фильтруй через маску заранее, а не пост-фильтрацией огромного результата.
+- For contact logic, use `GetContacts`/`ContactEnumerator` (minimum allocations).
+- For intersection checks where perfect accuracy is not needed, use `approximate = true`.
+- Ray/query filter through a mask in advance, rather than post-filtering a huge result.
 
 ```csharp
-// Быстрый broadphase-скрининг: где подходит, оставляй approximate = true.
+// Quick broadphase screening: where appropriate, leave approximate = true.
 var touching = _physics.GetEntitiesIntersectingBody(uid, collisionMask, approximate: true);
 ```
 
-### 4) Изменения фикстур и коллизии делай пачкой
+### 4) Make changes to fixtures and collisions in batches
 
-- Плохо: менять `layer/mask/hard` в цикле и после каждого изменения пересобирать контакты.
-- Хорошо: применить пачку изменений и сделать один re-sync.
+- Bad: change `layer/mask/hard` in a loop and rebuild the contacts after each change.
+- Good: apply a bunch of changes and do one re-sync.
 
 ```csharp
-// После серии правок collision-профиля делаем один пересчет контактов.
+// After a series of edits to the collision profile, we perform one recalculation of contacts.
 _physics.SetCollisionMask(uid, id, fixture, newMask, manager: fixtures, body: body);
 _physics.SetCollisionLayer(uid, id, fixture, newLayer, manager: fixtures, body: body);
 _broadphase.RegenerateContacts((uid, body, fixtures, xform));
 ```
 
-### 5) Используй `hard: false` для триггерных механик
+### 5) Use `hard: false` for trigger mechanics
 
-- Лужи, ловушки, "ауры", сенсоры: оставляй contact-события, но не добавляй solver-нагрузку hard-столкновений.
-- Смысл: логика срабатывает, но физический "упор" не считается.
+- Puddles, traps, “auras”, sensors: leave contact events, but do not add the solver load of hard collisions.
+- Meaning: the logic works, but the physical “emphasis” does not count.
 
 ```yaml
-# Триггерная фикстура: contact есть, hard-столкновения нет.
+# Trigger fixture: contact is present, there is no hard collision.
 fixtures:
   sensor:
     hard: false
@@ -159,25 +159,25 @@ fixtures:
     layer: [SlipLayer]
 ```
 
-### Паттерны оптимизации
+### Optimization patterns
 
-- Включать `CollisionWake` для массовых динамических предметов.
-- Использовать `CollideOnAnchor` для подполов/труб/якорных систем.
-- На частом апдейте скоростей избегать лишнего `WakeBody`.
-- Держать маски узкими (без лишних битов), чтобы резать число потенциальных пар в broadphase.
-- Использовать `hard: false` для чисто триггерных collision-слоев.
+- Enable `CollisionWake` for bulk dynamic items.
+- Use `CollideOnAnchor` for subfloors/pipes/anchor systems.
+- When updating speeds frequently, avoid unnecessary `WakeBody`.
+- Keep masks narrow (no extra bits) to reduce the number of potential pairs in the broadphase.
+- Use `hard: false` for pure trigger collision layers.
 
-### Анти-паттерны оптимизации
+### Anti-optimization patterns
 
-- Глобально отключать sleep или массово держать тела принудительно awake без причины.
-- Давать слишком широкие `mask` (или `AllMask`) обычным сущностям.
-- Постоянно менять collision-профиль тела в апдейте контроллера.
-- Использовать только точные/дорогие query там, где хватает approximate-проверки.
-- Делать вручную то, что уже покрывается `CollisionWake`/`CollideOnAnchor`.
+- Globally disable sleep or massively keep bodies forced awake for no reason.
+- Give too wide `mask` (or `AllMask`) to regular entities.
+- Constantly change the collision profile of the body in the controller update.
+- Use only precise/expensive queries where approximate checks are sufficient.
+- Do manually what is already covered by `CollisionWake`/`CollideOnAnchor`.
 
-## Примеры из кода
+## Code examples
 
-### Пример 1: физический шаг (до solve -> contacts -> solve -> после solve)
+### Example 1: physical step (before solve -> contacts -> solve -> after solve)
 
 ```csharp
 var updateBeforeSolve = new PhysicsUpdateBeforeSolveEvent(prediction, frameTime);
@@ -191,16 +191,16 @@ var updateAfterSolve = new PhysicsUpdateAfterSolveEvent(prediction, frameTime);
 RaiseLocalEvent(ref updateAfterSolve);
 ```
 
-### Пример 2: корректный перевод сущности в контейнерный режим
+### Example 2: correct transfer of an entity to container mode
 
 ```csharp
-// При вставке в контейнер гасим динамику и выключаем столкновения.
+// When inserted into a container, we dampen the dynamics and turn off collisions.
 _physics.SetLinearVelocity(entity, Vector2.Zero, false, body: physics);
 _physics.SetAngularVelocity(entity, 0, false, body: physics);
 _physics.SetCanCollide(entity, false, false, body: physics);
 ```
 
-### Пример 3: conveyor-контроллер через контактный итератор
+### Example 3: conveyor controller via contact iterator
 
 ```csharp
 var contacts = PhysicsSystem.GetContacts(conveyorUid);
@@ -212,15 +212,15 @@ while (contacts.MoveNext(out var contact))
 }
 ```
 
-### Пример 4: предсказуемая кинематика без лишнего "разбуживания"
+### Example 4: predictable kinematics without unnecessary “waking up”
 
 ```csharp
-// Для conveyor-движения не всегда нужно будить тело на каждом апдейте.
+// For conveyor movement, it is not always necessary to wake up the body at every update.
 PhysicsSystem.SetAngularVelocity(uid, angularVelocity);
 PhysicsSystem.SetLinearVelocity(uid, velocity, wakeBody: false);
 ```
 
-### Пример 5: re-sync контактов после изменения физического режима
+### Example 5: re-sync contacts after changing physical mode
 
 ```csharp
 _physics.SetBodyType(uid, BodyType.Dynamic, fixtures, body, xform);
@@ -228,7 +228,7 @@ _physics.SetCanCollide(uid, true, manager: fixtures, body: body);
 _broadphase.RegenerateContacts((uid, body, fixtures, xform));
 ```
 
-### Пример 6: range-check по реальным хитбоксам
+### Example 6: range-check on real hitboxes
 
 ```csharp
 var xfA = new Transform(worldPosA, worldRotA);
@@ -241,7 +241,7 @@ if (_physics.TryGetNearest(origin, other, out _, out _, out var distance, xfA, x
 }
 ```
 
-### Пример 7: runtime переключение "летает/не летает" через статус+сон
+### Example 7: runtime switching between "flying/not flying" via status+sleep
 
 ```csharp
 _physics.SetBodyStatus(target, targetPhysics, BodyStatus.InAir, false);
@@ -249,28 +249,28 @@ _physics.SetSleepingAllowed(target, targetPhysics, false);
 _physics.WakeBody(target, body: targetPhysics);
 ```
 
-## Паттерны 🙂
+## Patterns 🙂
 
-- Думай связкой `BodyType + CanCollide + Fixtures`, а не одним флагом.
-- После существенной смены fixture/collision-параметров выполняй `RegenerateContacts`.
-- Для сложной геометрии используй `TryGetNearest*`, а не дистанцию между центрами.
-- Для контактной логики используй `GetContacts`/`GetContactingEntities`, а не ручной обход чужих структур.
-- Учитывай parent/container/anchor как физические операции, а не только transform-операции.
-- На клиенте управляем prediction через `UpdateIsPredicted` flow, не через ручное дергание полей.
+- Think in terms of `BodyType + CanCollide + Fixtures`, not just one flag.
+- After a significant change in fixture/collision parameters, execute `RegenerateContacts`.
+- For complex geometry, use `TryGetNearest*` rather than distance between centers.
+- For contact logic, use `GetContacts`/`GetContactingEntities`, rather than manually traversing other people's structures.
+- Treat parent/container/anchor as physical operations, not just transform operations.
+- On the client we manage prediction through `UpdateIsPredicted` flow, not through manually tugging fields.
 
-## Анти-паттерны
+## Anti-patterns
 
-- Прямо мутировать поля `PhysicsComponent`/`Fixture` в игровом коде.
-- Ожидать, что `SetBodyStatus` сам изменит solver-поведение как `SetBodyType`.
-- Менять `layer/mask/hard` и забывать про пересинхронизацию контактов.
-- Применять "центр-центр" distance для объектов со сложными фикстурами.
-- Держать объект в контейнере с включённой коллизией и ненулевой скоростью.
+- Directly mutate the `PhysicsComponent`/`Fixture` fields in the game code.
+- Expect that `SetBodyStatus` itself will change the solver behavior like `SetBodyType`.
+- Change `layer/mask/hard` and forget about resynchronizing contacts.
+- Use "center-to-center" distance for objects with complex fixtures.
+- Keep the object in a container with collision enabled and non-zero speed.
 
-## Мини-чеклист перед изменениями
+## Mini-checklist before changes
 
-- Изменение действительно должно идти через `SharedPhysicsSystem` API?
-- Нужен ли `WakeBody` после изменения?
-- Нужно ли после правки fixture/collision сделать `RegenerateContacts`?
-- Не перепутаны ли `BodyType` и `BodyStatus`?
-- Не ломается ли поведение в контейнерах/при reparent/при anchor-state смене?
-- Для клиентского кейса учтён prediction-flow?
+- Does the change really have to go through the `SharedPhysicsSystem` API?
+- Is `WakeBody` needed after the change?
+- Is it necessary to make `RegenerateContacts` after editing fixture/collision?
+- Are `BodyType` and `BodyStatus` confused?
+- Doesn’t the behavior break in containers/when reparent/when the anchor-state changes?
+- Is prediction-flow taken into account for the client case?

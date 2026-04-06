@@ -44,11 +44,17 @@
     noRot: false
   - type: Pullable
   - type: DamageExaminable
+  # Sunrise start
   - type: TTS
-    voice: Portal2FactCore # Sunrise-TTS
+    voice: Portal2FactCore
   - type: StaticPrice
-    price: 0 # Sunrise-TTS
-  - type: SurgeryTarget # Sunrise added
+    price: 0
+  - type: SurgeryTarget
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 2.5
+  # Sunrise end
 
 - type: entity
   name: "storage item"

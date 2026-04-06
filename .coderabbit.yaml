@@ -1,6 +1,123 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 language: ru-RU
 
+knowledge_base:
+  learnings:
+    scope: local
+  issues:
+    scope: local
+  pull_requests:
+    scope: local
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      - "**/.agent/rules/*.md"
+      - "**/.agent/skills/*/SKILL.md"
+      - "**/.agents/rules/*.md"
+      - "**/.agents/skills/*/SKILL.md"
+
 reviews:
+  profile: assertive
+  path_instructions:
+    - path: "**/*"
+      instructions: |
+        Treat the repository instruction stack as the source of truth for this codebase.
+        Always apply the root `AGENTS.md` first, because it defines how repository rules and skills must be selected for each task.
+        Use `.agents/rules/*.md` and `.agents/skills/*/SKILL.md` as the Codex-facing review knowledge base.
+        When a bridge file points to `.agent/rules/*` or `.agent/skills/*/SKILL.md`, prefer the canonical `.agent` source if the bridge wording ever diverges.
+        Prefer repository-specific rules and skills over generic framework advice or web-derived guidance when they conflict.
+        This repository is the Sunrise fork: use the `Sunrise` prefix, the `_Sunrise` project folder, and `Sunrise-Edit` / `Sunrise edit start/end` markers for unavoidable upstream edits.
+    - path: "**/*.cs"
+      instructions: |
+        For C# changes, activate the skills required by `AGENTS.md`:
+        - Always apply `ss14-naming-conventions`, `ss14-ecs-prototypes`, and `ss14-upstream-maintenance`.
+        - Also apply `ss14-ecs-components`, `ss14-ecs-entities`, `ss14-ecs-systems`, `ss14-events`, and `ss14-prediction`.
+        - Apply `ss14-documentation-writing` for large C# changes and `ss14-standard-optimizations` when hot paths, `Update()`, or frequently raised events are touched.
+        Enforce the interaction rule from `.agent/rules/ss14-interaction-flow.md`: `OnEvent -> TryDo -> CanDo -> Do`.
+        Prefer minimal hooks in vanilla files and keep new logic in `_Sunrise` files or partial classes when possible.
+    - path: "**/*.{yml,yaml}"
+      instructions: |
+        For YAML changes, always apply `ss14-naming-conventions`, `ss14-ecs-prototypes`, and `ss14-upstream-maintenance`.
+        Treat prototype IDs, inheritance, English fallback strings, and localization key expectations as strict requirements, not suggestions.
+        Prefer parent-based replacement entities plus `Resources/migration.yml` over broad direct edits to vanilla prototypes when feasible.
+        If the change touches prototypes or FTL-linked content, verify that YAML linter coverage remains appropriate for the change.
+    - path: "**/*.ftl"
+      instructions: |
+        For localization changes, apply `ss14-naming-conventions` and `ss14-localization-strings`.
+        Keep entity keys in `ent-*`, regular strings in `kebab-case`, and keep YAML fallback strings aligned with the English localization intent.
+    - path: ".agent/**"
+      instructions: |
+        Treat `.agent/` as the canonical source tree for repository rules and skills.
+        If rules or skills change here, matching bridges in `.agents/`, `.claude/`, `.cursor/`, and `.github/` must stay synchronized per the authoring policies.
+        Flag missing bridge updates and suggest running `pwsh ./.agents/rules/check-rule-bridges.ps1` and `pwsh ./.agents/skills/check-skill-bridges.ps1` when these files change.
+    - path: ".agents/**"
+      instructions: |
+        Treat `.agents/` as the Codex bridge layer for repository rules and skills.
+        Ensure every bridge still points back to the correct `.agent/` source and stays synchronized with canonical content and trigger metadata.
+  pre_merge_checks:
+    override_requested_reviewers_only: true
+    custom_checks:
+      - mode: error
+        name: "SS14 bridge sync"
+        instructions: |
+          Fail if this PR changes any canonical rule or skill under `.agent/rules/` or `.agent/skills/` without updating every required bridge in `.agents/`, `.claude/`, `.cursor/`, and `.github/` in the same PR.
+          Required rule bridges:
+          - `.agents/rules/<same-file>.md`
+          - `.claude/rules/<same-file>.md`
+          - `.cursor/rules/<same-file>.md`
+          - `.github/rules/<same-file>.md`
+          Required skill bridges:
+          - `.agents/skills/<skill-name>/SKILL.md`
+          - `.claude/skills/<skill-name>/SKILL.md`
+          - `.cursor/skills/<skill-name>/SKILL.md`
+          - `.github/skills/<skill-name>/SKILL.md`
+          Also fail if a changed bridge points to the wrong `.agent` source path or if synchronized trigger/name/description metadata diverges from the canonical source.
+          Pass only if all changed canonical files and bridge files remain synchronized.
+      - mode: error
+        name: "SS14 C# rules"
+        instructions: |
+          Run this check only when the PR changes `.cs` files.
+          Treat `AGENTS.md`, `.agent/rules/*.md`, and the following skills as mandatory review criteria for changed C# code:
+          - `ss14-naming-conventions`
+          - `ss14-ecs-prototypes`
+          - `ss14-upstream-maintenance`
+          - `ss14-ecs-components`
+          - `ss14-ecs-entities`
+          - `ss14-ecs-systems`
+          - `ss14-events`
+          - `ss14-prediction`
+          Fail if changed C# files violate these repo rules. Deterministic failing examples include:
+          - a `[RegisterComponent]` class name not ending with `Component`
+          - an `EntitySystem` subclass name not ending with `System`
+          - a private `[Dependency]` field in `_Sunrise` code that does not start with `_`
+          - newly added interaction or action logic that breaks the required `OnEvent -> TryDo -> CanDo -> Do` flow
+          - substantial new fork logic added directly in vanilla files instead of `_Sunrise` or partial classes, unless it is only a minimal hook
+          - new vanilla-file fork edits missing `Sunrise-Edit` / `Sunrise edit start/end` / `Sunrise added start/end` markers where markers are needed
+          Pass only if none of these problems appear in the changed `.cs` files.
+      - mode: error
+        name: "SS14 YAML/FTL rules"
+        instructions: |
+          Run this check only when the PR changes `.yml`, `.yaml`, or `.ftl` files.
+          Treat `AGENTS.md`, `.agent/rules/*.md`, and the following skills as mandatory review criteria for changed content files:
+          - `ss14-naming-conventions`
+          - `ss14-ecs-prototypes`
+          - `ss14-upstream-maintenance`
+          - `ss14-localization-strings`
+          Fail if changed content files violate these repo rules. Deterministic failing examples include:
+          - any YAML component entry written as `- type: SomethingComponent`
+          - prototype IDs that are not `CamelCase`
+          - fork-only prototype IDs missing a `Sunrise` prefix when they are unique fork content or forked copies of vanilla entities
+          - non-English YAML fallback `name` / `description`, including Cyrillic fallback text
+          - FTL entity keys not starting with `ent-`
+          - non-entity FTL keys not using `kebab-case`
+          - broad direct rewrites of vanilla prototypes where a parent-based `_Sunrise` override plus `Resources/migration.yml` is the expected upstream-friendly pattern
+          Pass only if none of these problems appear in the changed `.yml`, `.yaml`, or `.ftl` files.
+  tools:
+    ast-grep:
+      enabled: true
+      essential_rules: false
+      rule_dirs:
+        - ".coderabbit/ast-grep/rules"
   auto_apply_labels: true
   allow_label_editing: true
   labeling_instructions:

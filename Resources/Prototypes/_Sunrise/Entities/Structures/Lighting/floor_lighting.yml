@@ -32,3 +32,11 @@
   - type: Sprite
     sprite: _Sunrise/Structures/Lighting/floor_lighting.rsi
     drawdepth: FloorObjects
+
+- type: entity
+  id: PoweredFloorlightAlwaysPowered
+  suffix: Always powered
+  parent: PoweredFloorlight
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false

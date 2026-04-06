@@ -195,7 +195,7 @@ public sealed partial class DockingSystem
 
             if (filteredGridDocks.Count == 0)
             {
-                _logger!.Info($"No docks found with priority tag {priorityTag}, falling back to regular docks");
+                _logger!.Debug($"No docks found with priority tag {priorityTag}, falling back to regular docks");
             }
             else
             {
@@ -360,7 +360,7 @@ public sealed partial class DockingSystem
         }
 
         stopwatch.Stop();
-        _logger!.Info($"GetDockingConfigs completed in {stopwatch.ElapsedMilliseconds}ms. Total iterations: {totalIterations}, Valid iterations: {validIterations}, Priority tag: {priorityTag}");
+        _logger!.Debug($"GetDockingConfigs completed in {stopwatch.ElapsedMilliseconds}ms. Total iterations: {totalIterations}, Valid iterations: {validIterations}, Priority tag: {priorityTag}");
 
         return validDockConfigs.ToList();
     }

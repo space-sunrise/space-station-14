@@ -1,150 +1,150 @@
 ---
 name: ss14-naming-conventions
-description: Строгий норматив по неймингу в Space Station 14 для C#, YAML prototypes и FTL: имена компонентов/систем/зависимостей, prototype IDs, локализационные ключи, переменные и файлы. Используй при создании или ревью нового кода, прототипов и локализации, когда нужно проверить соответствие naming-стандарту.
+description: Strict naming standards in Space Station 14 for C#, YAML prototypes and FTL: names of components/systems/dependencies, prototype IDs, localization keys, variables and files. Use it when creating or reviewing new code, prototypes and localization, when you need to check compliance with the naming standard.
 ---
 
 # SS14 Naming Conventions
 
-Этот skill задает единый строгий стандарт нейминга для SS14-кода, прототипов и локализации 🙂
-Используй его как норматив: если новый код/контент не соответствует правилам ниже, это ошибка, а не «вариант стиля».
+This skill sets a single strict naming standard for SS14 code, prototypes and localization :)
+Use it as a guideline: if new code/content doesn't follow the rules below, it's a bug, not a "style variation."
 
-## Порядок чтения
+## Reading order
 
-1. Сначала прочитай `references/fresh-pattern-catalog.md`.
-2. Затем прочитай `references/rejected-snippets.md`.
-3. В конце сверяй терминологию и границы docs в `references/docs-context.md`.
+1. Read `references/fresh-pattern-catalog.md` first.
+2. Then read `references/rejected-snippets.md`.
+3. At the end, check the terminology and boundaries of the docs in `references/docs-context.md`.
 
-## Источник истины
+## Source of truth
 
-1. Источник истины для правил — текущая кодовая база.
-2. Документация нужна для intent, терминов и пояснений, но не перезаписывает поведение живого кода.
-3. Примеры старше cutoff `2024-02-20` и фрагменты с TODO/HACK/FIXME по теме нейминга не использовать как эталон.
+1. The source of truth for the rules is the current code base.
+2. Documentation is needed for intent, terms and explanations, but does not overwrite the behavior of live code.
+3. Examples older than cutoff `2024-02-20` and fragments with TODO/HACK/FIXME on the topic of naming should not be used as a standard.
 
-## Ментальная модель
+## Mental model
 
-1. Имена в SS14 — это контракт между C#, YAML и FTL.
-2. Базовая цель имени: быстро передать роль сущности/типа/ключа, не открывая реализацию.
-3. Хороший нейминг минимизирует переименования при расширении функционала.
-4. Новый код обязан быть англоязычным в идентификаторах и fallback-полях прототипов.
+1. Names in SS14 are a contract between C#, YAML and FTL.
+2. Basic purpose of a name: quickly convey the role of an entity/type/key without exposing the implementation.
+3. Good naming minimizes renaming when expanding functionality.
+4. The new code must be in English in the identifiers and fallback fields of the prototypes.
 
-## Строгие правила (MUST/SHOULD)
+## Strict rules (MUST/SHOULD)
 
-### 1) Компоненты
+### 1) Components
 
-1. MUST: имя компонента заканчивать на `Component`.
-2. MUST: формат имени — `CamelCase`.
-3. MUST: имя отражает выдаваемое поведение в 1-3 словах.
-4. SHOULD: отдавать приоритет формам с прилагательным, например `ClickableComponent`.
-5. MUST: если есть парная система, базовая часть имени системы и компонента совпадает.
-6. MUST: в YAML-прототипе у `- type:` не писать суффикс `Component`.
+1. MUST: the component name ends with `Component`.
+2. MUST: name format is `CamelCase`.
+3. MUST: the name reflects the behavior in 1-3 words.
+4. SHOULD: give priority to forms with an adjective, for example `ClickableComponent`.
+5. MUST: if there is a paired system, the base part of the system and component name is the same.
+6. MUST: do not write the suffix `Component` in the YAML prototype of `- type:`.
 
-### 2) Системы
+### 2) Systems
 
-1. MUST: имя системы заканчивать на `System`.
-2. MUST: формат имени — `CamelCase`.
-3. MUST: при наличии целевого компонента использовать ту же базовую часть (`XxxComponent` <-> `XxxSystem`).
-4. MUST: если целевого компонента нет, имя системы описывает действие в 1-3 словах.
+1. MUST: the system name ends with `System`.
+2. MUST: name format is `CamelCase`.
+3. MUST: if there is a target component, use the same base part (`XxxComponent` <-> `XxxSystem`).
+4. MUST: if there is no target component, the system name describes the action in 1-3 words.
 
-### 3) Dependency-поля
+### 3) Dependency fields
 
-1. MUST: приватные зависимости начинать с `_`.
-2. MUST: имя зависимости строить из базовой части типа без `System/Manager`.
+1. MUST: private dependencies start with `_`.
+2. MUST: build the dependency name from the base part of the type without `System/Manager`.
 3. MUST: `TransformSystem` -> `_transform`, `IPlayerManager` -> `_player`.
-4. MUST: придерживаться каноничных коротких форм: `IGameTiming` -> `_timing`, `IRobustRandom` -> `_random`, `EntityWhitelistSystem` -> `_whitelist`.
-5. SHOULD: избегать шумных вариантов вроде `_transformSystem`/`_playerManager`, если есть устоявшийся короткий алиас.
+4. MUST: adhere to the canonical short forms: `IGameTiming` -> `_timing`, `IRobustRandom` -> `_random`, `EntityWhitelistSystem` -> `_whitelist`.
+5. SHOULD: avoid noisy options like `_transformSystem`/`_playerManager` if there is an established short alias.
 
 ### 4) Prototype ID
 
-1. MUST: формат ID — `CamelCase`.
-2. MUST: при наследовании от `BaseXxx` базовое имя в дочернем ID писать без префикса `Base`.
-3. MUST: при развитии цепочки наследования наращивать суффиксы справа (`Meat` -> `MeatCat`).
-4. MUST: если сущность уникальна для форка и особенно если это форк-копия ванильной сущности, добавлять префикс форка (`ScpXxx`, `SunriseXxx`).
-5. MUST NOT: использовать snake_case, kebab-case или lowercase ID для нового production-кода.
+1. MUST: ID format - `CamelCase`.
+2. MUST: when inheriting from `BaseXxx`, write the base name in the child ID without the prefix `Base`.
+3. MUST: when developing the inheritance chain, increase suffixes on the right (`Meat` -> `MeatCat`).
+4. MUST: if the entity is unique to the fork and especially if it is a forked copy of the vanilla entity, add the fork prefix (`ScpXxx`, `SunriseXxx`).
+5. MUST NOT: use snake_case, kebab-case or lowercase ID for new production code.
 
-### 5) Name/Description в прототипах и локализации
+### 5) Name/Description in prototypes and localization
 
-1. MUST: `name` и `description` fallback в YAML писать на английском.
-2. MUST: fallback-содержимое в YAML совпадает по смыслу с английской локализацией.
-3. MUST: название сущности в локализации — с маленькой буквы, максимум 3 слова.
-4. MUST: описание сущности — с заглавной буквы, максимум 3 предложения.
-5. SHOULD: не использовать кавычки, кроме случаев обязательного экранирования.
+1. MUST: `name` and `description` fallback in YAML be written in English.
+2. MUST: fallback content in YAML matches the meaning of the English localization.
+3. MUST: the name of the entity in localization is in lower case, maximum 3 words.
+4. MUST: description of the entity - with a capital letter, maximum 3 sentences.
+5. SHOULD: do not use quotes unless escaping is required.
 
 ### 6) Localization keys
 
-1. MUST: обычные ключи локализации — `kebab-case` (`word1-word2-word3`).
-2. MUST: для сущностей использовать формат `ent-MyEntity`, `.desc`, `.suffix`.
-3. MUST: обычный ключ отражает смысл действия/состояния (`item-pick-up-start`).
-4. SHOULD: новые вариации строить добавлением суффиксов к существующему ключу, а не созданием несвязанного нового дерева.
+1. MUST: regular localization keys - `kebab-case` (`word1-word2-word3`).
+2. MUST: for entities use the format `ent-MyEntity`, `.desc`, `.suffix`.
+3. MUST: a regular key reflects the meaning of the action/state (`item-pick-up-start`).
+4. SHOULD: build new variations by adding suffixes to an existing key, rather than creating an unrelated new tree.
 
 ### 7) Localization content
 
-1. MUST: содержимое пишется на языке конкретной локали.
-2. MUST: name/desc сущностей писать в IC-стиле как внешнее наблюдаемое описание.
-3. MUST: OOC-текст явно маркировать префиксом `OOC:`.
-4. MUST NOT: смешивать внутриигровое описание с OOC-инструкциями без маркера.
+1. MUST: content is written in the language of a specific locale.
+2. MUST: write the name/desc of entities in IC style as an external observable description.
+3. MUST: Explicitly mark OOC text with the prefix `OOC:`.
+4. MUST NOT: Mix in-game descriptions with OOC instructions without a marker.
 
-### 8) Переменные в коде
+### 8) Variables in the code
 
-1. MUST: формат — `camelCase` для локальных/параметров, приватные поля с `_`.
-2. MUST: имя отражает суть данных.
-3. MUST: если переменная хранит компонент, использовать базовую часть имени компонента (`ActiveScp096RageComponent` -> `scp096Rage`).
-4. MUST NOT: использовать бессмысленные имена (`data`, `value2`, `tmp`) вне микро-области.
+1. MUST: format - `camelCase` for local/parameters, private fields with `_`.
+2. MUST: the name reflects the essence of the data.
+3. MUST: if the variable stores a component, use the base part of the component name (`ActiveScp096RageComponent` -> `scp096Rage`).
+4. MUST NOT: use meaningless names (`data`, `value2`, `tmp`) outside the micro-area.
 
-### 9) Имена файлов
+### 9) File names
 
 1. MUST: `yml/ftl/swsl` — `snake_case`.
-2. SHOULD: максимум 2 слова, если контекст уже выражен папками.
-3. MUST: C# файл в `CamelCase`, имя совпадает с ключевым классом.
-4. SHOULD: если в файле несколько классов/partial-частей, имя файла описывает подсекцию максимум в 2 слова.
+2. SHOULD: maximum 2 words if the context is already expressed by folders.
+3. MUST: C# file in `CamelCase`, the name matches the key class.
+4. SHOULD: if there are several classes/partial parts in the file, the file name describes the subsection in a maximum of 2 words.
 
 ## Decision Tree
 
-1. Нужен новый ECS data-контейнер?
-   Выбери базовое действие/свойство -> оформи `XxxComponent`.
-2. Нужна логика к компоненту?
-   Используй ту же базу -> `XxxSystem`.
-3. Добавляешь компонент в прототип?
-   Пиши `- type: Xxx` без `Component`.
-4. Выбираешь алиас зависимости?
-   Убери `System/Manager` -> сократи до каноничной формы (`_timing`, `_random`, `_transform`, `_player`, `_whitelist`).
-5. Создаешь fork-only или fork-копию ванили?
-   Добавь префикс форка в ID (`Scp*`, `Sunrise*`).
-6. Создаешь локализационный ключ?
-   Сущность: `ent-MyEntity`; обычная строка: `kebab-case`.
+1. Do you need a new ECS data container?
+   Select a basic action/property -> create `XxxComponent`.
+2. Do you need logic for the component?
+   Use the same database -> `XxxSystem`.
+3. Are you adding a component to the prototype?
+   Write `- type: Xxx` without `Component`.
+4. Selecting a dependency alias?
+   Remove `System/Manager` -> reduce to canonical form (`_timing`, `_random`, `_transform`, `_player`, `_whitelist`).
+5. Are you creating a fork-only or fork copy of vanilla?
+   Add a fork prefix to the ID (`Scp*`, `Sunrise*`).
+6. Are you creating a localization key?
+   Entity: `ent-MyEntity`; regular string: `kebab-case`.
 
-## Паттерны ✅
+## Patterns ✅
 
-1. `ClickableComponent` + `ClickableSystem` с общей базовой частью.
-2. `- type: Clickable` в YAML вместо `ClickableComponent`.
-3. Алиас `IGameTiming` как `_timing`.
-4. Алиас `IRobustRandom` как `_random`.
-5. Алиас `TransformSystem` как `_transform`.
-6. Алиас `IPlayerManager` как `_player`.
-7. Алиас `EntityWhitelistSystem` как `_whitelist`.
-8. ID в стиле `Scp096CryOut` с понятным доменным префиксом.
-9. Форк-ID с префиксом `Sunrise*` для уникального контента форка.
-10. `ent-BasePart = body part` как короткое внешнее имя сущности.
-11. `armable-examine-armed` как обычный `kebab-case` ключ не-сущностной строки.
-12. Приватное поле-компонент `scp096Rage` по базовой части типа.
+1. `ClickableComponent` + `ClickableSystem` with a common base part.
+2. `- type: Clickable` in YAML instead of `ClickableComponent`.
+3. Alias ​​`IGameTiming` as `_timing`.
+4. Alias ​​`IRobustRandom` as `_random`.
+5. Alias ​​`TransformSystem` as `_transform`.
+6. Alias ​​`IPlayerManager` as `_player`.
+7. Alias ​​`EntityWhitelistSystem` as `_whitelist`.
+8. ID in the style `Scp096CryOut` with a clear domain prefix.
+9. Fork ID with the prefix `Sunrise*` for unique fork content.
+10. `ent-BasePart = body part` as a short external name of the entity.
+11. `armable-examine-armed` is like a regular `kebab-case` non-entity string key.
+12. Private component field `scp096Rage` according to the basic part of the type.
 
-## Анти-паттерны ❌
+## Anti-patterns ❌
 
-1. `Clickable` как имя C#-компонента без суффикса `Component`.
-2. `ClickableComponentSystem` вместо `ClickableSystem`.
-3. `- type: ClickableComponent` в YAML.
-4. `TransformSystem` -> `_transformSystem` в коде при наличии каноничного `_transform`.
-5. `IPlayerManager` -> `_playerManager` в геймплей-системе при возможности `_player`.
-6. Новый prototype ID в snake_case или kebab-case.
-7. Fork-копия ванильной сущности без форк-префикса.
-8. Неанглийский `name/description` fallback в YAML.
-9. Обычный локализационный ключ в `PascalCase` или с `_`.
-10. OOC-подсказка в `.desc` без маркера `OOC:`.
-11. Описание длиннее 3 предложений или имя длиннее 3 слов.
-12. Приватные поля без `_` (кроме констант).
+1. `Clickable` as the name of a C# component without the `Component` suffix.
+2. `ClickableComponentSystem` instead of `ClickableSystem`.
+3. `- type: ClickableComponent` in YAML.
+4. `TransformSystem` -> `_transformSystem` in the code if there is a canonical `_transform`.
+5. `IPlayerManager` -> `_playerManager` in the gameplay system if `_player` is possible.
+6. New prototype ID in snake_case or kebab-case.
+7. Fork copy of the vanilla entity without the fork prefix.
+8. Non-English `name/description` fallback in YAML.
+9. Regular localization key in `PascalCase` or with `_`.
+10. OOC hint in `.desc` without the `OOC:` marker.
+11. Description longer than 3 sentences or name longer than 3 words.
+12. Private fields without `_` (except constants).
 
-## Примеры из кода
+## Code examples
 
-### Пример 1: парный нейминг компонента и системы
+### Example 1: paired naming of a component and a system
 
 ```csharp
 [RegisterComponent]
@@ -158,9 +158,9 @@ public sealed class ClickableSystem : EntitySystem
 }
 ```
 
-Комментарий: базовая часть `Clickable` совпадает у пары `Component/System`; это каноничный связанный нейминг.
+Comment: the base part `Clickable` is the same for the pair `Component/System`; This is a canon related naming.
 
-### Пример 2: корректный dependency alias для whitelist
+### Example 2: correct dependency alias for whitelist
 
 ```csharp
 public sealed partial class ChangeNameInContainerSystem : EntitySystem
@@ -169,9 +169,9 @@ public sealed partial class ChangeNameInContainerSystem : EntitySystem
 }
 ```
 
-Комментарий: используется короткий каноничный алиас `_whitelist`, а не `_whitelistSystem`.
+Comment: The short canonical alias `_whitelist` is used, not `_whitelistSystem`.
 
-### Пример 3: корректный dependency alias для transform
+### Example 3: correct dependency alias for transform
 
 ```csharp
 public sealed class EntityPickupAnimationSystem : EntitySystem
@@ -180,9 +180,9 @@ public sealed class EntityPickupAnimationSystem : EntitySystem
 }
 ```
 
-Комментарий: база типа `Transform` переносится в `_transform`.
+Comment: the base of type `Transform` is moved to `_transform`.
 
-### Пример 4: корректный dependency alias для random/player
+### Example 4: correct dependency alias for random/player
 
 ```csharp
 public sealed class DrugOverlaySystem : EntitySystem
@@ -192,9 +192,9 @@ public sealed class DrugOverlaySystem : EntitySystem
 }
 ```
 
-Комментарий: `Manager`/`Random` нормализованы до устойчивых коротких имен.
+Comment: `Manager`/`Random` have been normalized to stable short names.
 
-### Пример 5: компонент в YAML без суффикса Component
+### Example 5: YAML component without Component suffix
 
 ```yaml
 - type: entity
@@ -203,9 +203,9 @@ public sealed class DrugOverlaySystem : EntitySystem
   - type: Clickable
 ```
 
-Комментарий: в YAML используется базовая часть имени компонента.
+Comment: YAML uses the base part of the component name.
 
-### Пример 6: fork-префикс + CamelCase для prototype ID
+### Example 6: fork prefix + CamelCase for prototype ID
 
 ```yaml
 - type: entity
@@ -213,9 +213,9 @@ public sealed class DrugOverlaySystem : EntitySystem
   name: emit mournful scream
 ```
 
-Комментарий: `Scp`-префикс и `CamelCase` соблюдены; имя действия на английском.
+Comment: `Scp` prefix and `CamelCase` are respected; action name in English.
 
-### Пример 7: Sunrise-префикс в форк-контенте
+### Example 7: Sunrise prefix in fork content
 
 ```yaml
 - type: guideEntry
@@ -223,39 +223,39 @@ public sealed class DrugOverlaySystem : EntitySystem
   name: guide-entry-ammunition
 ```
 
-Комментарий: форк-идентификатор явно отделен от ванильного пространства имен.
+Comment: The fork identifier is clearly separate from the vanilla namespace.
 
-### Пример 8: `ent-*` ключи сущностей и lowercase имя
+### Example 8: `ent-*` entity keys and lowercase name
 
 ```ftl
 ent-BasePart = body part
     .desc = { ent-BaseItem.desc }
 ```
 
-Комментарий: имя сущности короткое и lowercase; описание задается отдельно через `.desc`.
+Comment: entity name is short and lowercase; the description is specified separately via `.desc`.
 
-### Пример 9: обычные ключи в kebab-case
+### Example 9: regular keys in kebab-case
 
 ```ftl
 armable-examine-armed = {CAPITALIZE(THE($name))} is [color=red]armed[/color].
 armable-examine-not-armed = {CAPITALIZE(THE($name))} needs to be armed.
 ```
 
-Комментарий: не-сущностные ключи идут в `kebab-case`.
+Comment: Non-entity keys go to `kebab-case`.
 
-## Чеклист перед PR
+## Checklist before PR
 
-1. Все новые C# типы и поля названы по правилам выше.
-2. В YAML нет `...Component` после `- type:`.
-3. Prototype ID в `CamelCase`, форк-контент имеет корректный префикс.
-4. FTL-ключи разделены на `ent-*` и `kebab-case` по назначению.
-5. `name/description` fallback в YAML — на английском и согласованы с английской локалью.
-6. Нет OOC-текста без `OOC:` маркера.
+1. All new C# types and fields are named according to the rules above.
+2. In YAML there is no `...Component` after `- type:`.
+3. Prototype ID in `CamelCase`, fork content has the correct prefix.
+4. FTL keys are divided into `ent-*` and `kebab-case` according to their purpose.
+5. `name/description` fallback in YAML - in English and consistent with the English locale.
+6. There is no OOC text without a `OOC:` marker.
 
-## Правило расширения
+## Extension rule
 
-1. Добавляй новый паттерн только если он подтвержден свежим кодом и не конфликтует с текущим MUST-стандартом.
-2. Любое исключение сначала фиксируй как анти-паттерн/legacy в `references/rejected-snippets.md`.
-3. Если появляется отдельная большая тема (например, только naming UI/XAML), выноси ее в отдельный skill и оставляй тут только кросс-ссылку.
+1. Add a new pattern only if it is confirmed by fresh code and does not conflict with the current MUST standard.
+2. First register any exception as an anti-pattern/legacy in `references/rejected-snippets.md`.
+3. If a separate large topic appears (for example, only naming UI/XAML), move it to a separate skill and leave only a cross-link here.
 
-Держи нейминг предсказуемым и однообразным: так ревью быстрее, а регрессий меньше 🚀
+Keep naming predictable and uniform: this way reviews are faster and there are fewer regressions 🚀

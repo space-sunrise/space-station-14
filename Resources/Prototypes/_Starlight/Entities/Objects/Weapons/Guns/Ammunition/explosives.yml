@@ -96,6 +96,18 @@
   - type: StaticPrice
     price: 650
 
+- type: entity
+  parent: Rocket120mmMetla
+  id: Rocket120mmMetlaLongFlight
+  name: 120mm long-flight rocket
+  description: A heavy 120mm rocket for the RCT-120 Metla launcher with extended powered flight time.
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocket120mmMetlaLongFlight
+    deleteOnSpawn: true
+  - type: StaticPrice
+    price: 800
+
 # 20-Round Magazine for 120mm Blast Grenades
 - type: entity
   parent: BaseMagazineGrenade
@@ -186,6 +198,14 @@
     lifetime: 15
 
 - type: entity
+  parent: Bullet60mmRocketStarlight
+  id: Bullet60mmRocketStarlightLongFlight
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+
+- type: entity
   id: Bullet60mmRocketStarlightSelfExplode
   name: 60mm rocket
   suffix: self-explode, NOW
@@ -235,6 +255,21 @@
     state: rpg
   - type: StaticPrice
     price: 15
+
+- type: entity
+  parent: Cartridge60mmRocket
+  id: Cartridge60mmRocketLongFlight
+  name: 60mm long-flight rocket
+  description: A 60mm rocket cartridge with extended powered flight time for longer range engagements.
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet60mmRocketStarlightLongFlight
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: rocket60mm
+  - type: StaticPrice
+    price: 30
 
 # 30-Round Magazine for 60mm Rockets
 - type: entity
