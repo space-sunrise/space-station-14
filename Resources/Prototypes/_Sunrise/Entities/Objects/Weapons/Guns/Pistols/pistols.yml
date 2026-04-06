@@ -595,7 +595,7 @@
 - type: entity
   name: stechkin APS
   parent: [WeaponPistolMk58, BaseSovietContraband]
-  id: WeaponPistolAPS
+  id: SunriseWeaponPistolAPS
   description: A high quality firearm issued to SNKVD elites and high ranking officials. It's half pistol, half closing argument. Uses .40 ammo.
   components:
     - type: Sprite
