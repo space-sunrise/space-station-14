@@ -20,4 +20,5 @@ ent-MagazineChainGun250 = { ent-MagazineChainGun }
     .suffix = 250
     .desc = { ent-MagazineChainGun.desc }
 ent-WeaponLightMachineGunMG60Empty = { ent-WeaponLightMachineGunMG60 }
+    .suffix = Пустой
     .desc = { ent-WeaponLightMachineGunMG60.desc }

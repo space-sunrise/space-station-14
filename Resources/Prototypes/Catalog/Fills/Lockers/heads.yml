@@ -340,7 +340,7 @@
     - id: ClothingBeltSecurityFilled
     - id: ClothingEyesGlassesSecurity
     - id: ClothingHeadsetAltSecurity
-    - id: ClothingOuterCoatHoSTrench
+    #- id: ClothingOuterCoatHoSTrench  # Sunrise-Edit
     - id: ClothingShoesBootsJack
     - id: FlashlightSeclite
     - id: DoorRemoteSecurity
