@@ -1,0 +1,42 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBattleMasksBase
+  abstract: true
+  components:
+  - type: BreathMask
+  - type: Item
+    size: Normal
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.2
+    coolingCoefficient: 0.2
+  - type: IngestionBlocker
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+    - FacialHair
+  - type: IdentityBlocker
+  - type: Clothing
+    equipDelay: 0.5
+    unequipDelay: 0.5
+    equipSound: /Audio/Misc/zip.ogg
+    unequipSound: /Audio/Misc/zip.ogg
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+    - FullCovered
+    - HelmetEVA
+  - type: FlashImmunity
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
