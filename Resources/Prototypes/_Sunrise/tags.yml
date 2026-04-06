@@ -690,3 +690,7 @@
 # Medicine
 - type: Tag
   id: AutoMender  # Используется для whitelist у ClothingBeltMedical =3
+
+# shuttles
+- type: Tag
+  id: 120mmRocket

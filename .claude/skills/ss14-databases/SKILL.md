@@ -1,6 +1,6 @@
 ---
 name: ss14-databases
-description: Руководство по работе с системой баз данных SS14 (PostgreSQL и SQLite)
+description: SS14 Database System Guide (PostgreSQL and SQLite)
 ---
 
 # Claude Bridge

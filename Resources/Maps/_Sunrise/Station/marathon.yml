@@ -25015,7 +25015,7 @@ entities:
     - type: Transform
       pos: 0.5,-10.5
       parent: 9864
-- proto: AirlockExternalGlassShuttleArrivalsLocked
+- proto: AirlockExternalGlassShuttleArrivalsLockedCentComm
   entities:
   - uid: 243
     components:
@@ -25027,8 +25027,6 @@ entities:
     - type: Transform
       pos: -59.5,2.5
       parent: 2
-- proto: AirlockExternalGlassShuttleArrivalsLockedCentComm
-  entities:
   - uid: 23073
     components:
     - type: Transform
@@ -25041,7 +25039,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -52.5,-7.5
       parent: 2
-- proto: AirlockExternalGlassShuttleEmergencyLocked
+- proto: AirlockExternalGlassShuttleEmergencyLockedCentComm
   entities:
   - uid: 26194
     components:

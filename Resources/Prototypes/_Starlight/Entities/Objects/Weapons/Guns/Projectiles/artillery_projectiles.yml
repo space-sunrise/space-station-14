@@ -148,7 +148,7 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
-      - state: blast240mm
+      - state: blast240mmcrit
     scale: 1.2, 1.2
   - type: Projectile
     angle: 180
@@ -184,7 +184,7 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
-      - state: nuke240mm
+      - state: nuke240mmcrit
     scale: 1.2, 1.2
   - type: Projectile
     angle: 180
@@ -231,7 +231,7 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
-      - state: cluster240mm
+      - state: cluster240mmcrit
     scale: 1.2, 1.2
   - type: Projectile
     angle: 180
@@ -359,12 +359,12 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
-      - state: nuke240mm
+      - state: nuke240mmcrit
   - type: Transform
     anchored: false
   - type: TriggerOnSpawn
   - type: TimerTrigger
-    delay: 10
+    delay: 13
     beepSound:
       path: /Audio/Machines/Nuke/nuke_alarm.ogg
       params:
@@ -387,7 +387,7 @@
   - type: ProjectileGrenade
     triggerKey: timer
     fillPrototype: PelletClusterSubnuclearShrapnel
-    capacity: 90
+    capacity: 130
     randomAngle: true
     minVelocity: 1
     maxVelocity: 3
@@ -581,6 +581,41 @@
     requireInSpace: true
   - type: TimedDespawn
     lifetime: 15
+
+- type: entity
+  id: BulletRocket120mmMetla
+  name: 120mm rocket
+  parent: BulletGrenade120mmBlast
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives_x48.rsi
+    layers:
+      - state: rocket120mm
+    scale: 1.6, 1.6
+  - type: Projectile
+    angle: -90
+  - type: RadarBlip
+    color: "#44FFAA"
+    scale: 1.3
+    shape: Circle
+    requireInSpace: true
+  - type: WarpPoint
+    follow: true
+    location: 120mm Rocket Payload
+  - type: GuidedProjectile
+    turnRate: 120
+  - type: TimedDespawn
+    lifetime: 30
+
+- type: entity
+  id: BulletRocket120mmMetlaLongFlight
+  name: 120mm long-flight rocket
+  parent: BulletRocket120mmMetla
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 60
 
 - type: entity
   id: BulletGrenade120mmBlastSelfExplode

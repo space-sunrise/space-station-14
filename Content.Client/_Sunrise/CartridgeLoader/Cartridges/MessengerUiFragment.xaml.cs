@@ -152,7 +152,7 @@ public sealed partial class MessengerUiFragment : BoxContainer
         MessageInput.Editable = canInteract && hasChatSelected;
         SendButton.Disabled = !canInteract || !hasChatSelected;
         EmojiButton.Disabled = !canInteract || !hasChatSelected;
-        PhotoButton.Disabled = !canInteract || !hasChatSelected;
+        PhotoButton.Disabled = !canInteract || !hasChatSelected || !state.PhotoSendingEnabled;
 
         if (state.PhotoGallery != null && state.PhotoGallery.Count > 0)
         {

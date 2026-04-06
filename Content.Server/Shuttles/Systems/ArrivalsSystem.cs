@@ -14,6 +14,7 @@ using Content.Server.Spawners.Components;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.UnbuildableGrid;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -82,6 +83,11 @@ public sealed class ArrivalsSystem : EntitySystem
     public bool ArrivalsGodmode { get; private set; }
 
     /// <summary>
+    /// Flags if each late-joining player should arrive on their own small shuttle.
+    /// </summary>
+    public bool ArrivalsSingleShuttle { get; private set; }
+
+    /// <summary>
     ///     The first arrival is a little early, to save everyone 10s
     /// </summary>
     private const float RoundStartFTLDuration = 10f;
@@ -117,9 +123,11 @@ public sealed class ArrivalsSystem : EntitySystem
         // Don't invoke immediately as it will get set in the natural course of things.
         Enabled = _cfgManager.GetCVar(CCVars.ArrivalsShuttles);
         ArrivalsGodmode = _cfgManager.GetCVar(CCVars.GodmodeArrivals);
+        ArrivalsSingleShuttle = _cfgManager.GetCVar(SunriseCCVars.ArrivalsSingleShuttle);
 
         _cfgManager.OnValueChanged(CCVars.ArrivalsShuttles, SetArrivals);
         _cfgManager.OnValueChanged(CCVars.GodmodeArrivals, b => ArrivalsGodmode = b);
+        _cfgManager.OnValueChanged(SunriseCCVars.ArrivalsSingleShuttle, b => ArrivalsSingleShuttle = b, true);
 
         // Command so admins can set these for funsies
         _console.RegisterCommand("arrivals", ArrivalsCommand, ArrivalsCompletion);
@@ -350,7 +358,7 @@ public sealed class ArrivalsSystem : EntitySystem
         // We use arrivals as the default spawn so don't check for job prio.
 
         // Only works on latejoin even if enabled.
-        if (!Enabled || _ticker.RunLevel != GameRunLevel.InRound)
+        if (!Enabled || ArrivalsSingleShuttle || _ticker.RunLevel != GameRunLevel.InRound)
             return;
 
         if (!HasComp<StationArrivalsComponent>(ev.Station))
@@ -578,7 +586,7 @@ public sealed class ArrivalsSystem : EntitySystem
 
     private void OnStationPostInit(EntityUid uid, StationArrivalsComponent component, ref StationPostInitEvent args)
     {
-        if (!Enabled)
+        if (!Enabled || ArrivalsSingleShuttle)
             return;
 
         // If it's a latespawn station then this will fail but that's okey

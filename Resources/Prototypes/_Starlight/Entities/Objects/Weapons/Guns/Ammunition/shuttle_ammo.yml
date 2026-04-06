@@ -445,6 +445,12 @@
     layers:
     - state: blast240mm
       map: ["enum.AmmoVisualLayers.Base"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: blast240-inhand-left
+      right:
+      - state: blast240-inhand-right
   - type: Appearance
   - type: SpentAmmoVisuals
     state: blast
@@ -486,6 +492,11 @@
   - type: CartridgeAmmo
     proto: BulletLeviathan240mmHE
     deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: blast240mmdamaged
+      map: ["enum.AmmoVisualLayers.Base"]
   - type: DamageOnLand
     ignoreResistances: true
     damage:
@@ -520,6 +531,11 @@
   - type: CartridgeAmmo
     proto: BulletLeviathan240mmHE
     deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: blast240mmcrit
+      map: ["enum.AmmoVisualLayers.Base"]
   - type: DamageOnLand
     ignoreResistances: true
     damage:
@@ -539,6 +555,11 @@
     Requires manual chamber loading.
   suffix: Nuclear
   components:
+  - type: Construction
+    graph: LeviathanNukeShellDisassembly
+    node: nuke
+    defaultTarget: terminal
+    deconstructionTarget: terminal
   - type: Destructible
     thresholds:
     - trigger:
@@ -560,6 +581,12 @@
     layers:
     - state: nuke240mm
       map: ["enum.AmmoVisualLayers.Base"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: nuke240-inhand-left
+      right:
+      - state: nuke240-inhand-right
   - type: Appearance
   - type: MultiHandedItem
   - type: HeldSpeedModifier
@@ -577,6 +604,11 @@
     A damaged nuclear 240mm shell with compromised casing and degraded internals.
   suffix: Nuclear, Damaged 75%
   components:
+  - type: Construction
+    graph: LeviathanNukeShellDisassembly
+    node: damaged75
+    defaultTarget: terminal
+    deconstructionTarget: terminal
   - type: Destructible
     thresholds:
     - trigger:
@@ -598,6 +630,11 @@
   - type: CartridgeAmmo
     proto: BulletLeviathan240mmNuke
     deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: nuke240mmdamaged
+      map: ["enum.AmmoVisualLayers.Base"]
   - type: PointLight
     enabled: true
     radius: 2
@@ -621,6 +658,11 @@
     Estimated combat effectiveness: 50%.
   suffix: Nuclear, Damaged 50%
   components:
+  - type: Construction
+    graph: LeviathanNukeShellDisassembly
+    node: damaged50
+    defaultTarget: terminal
+    deconstructionTarget: terminal
   - type: Destructible
     thresholds:
     - trigger:
@@ -642,6 +684,11 @@
   - type: CartridgeAmmo
     proto: BulletLeviathan240mmNuke
     deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: nuke240mmcrit
+      map: ["enum.AmmoVisualLayers.Base"]
   - type: PointLight
     enabled: true
     radius: 2
@@ -657,6 +704,74 @@
         Blunt: 100
   - type: StaticPrice
     price: -99999
+
+# Outcome spawners for Leviathan nuke shell disassembly graph.
+- type: entity
+  id: LeviathanNukeShellStep1OutcomeSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: SpawnEntityTableOnTrigger
+    keysIn: [trigger]
+    useMapCoords: true
+    table: !type:GroupSelector
+      children:
+      - id: CartridgeLeviathan240mmNukeDamaged75
+        weight: 75
+      - id: LeviathanNukeRupture25
+        weight: 25
+  - type: DeleteOnTrigger
+    keysIn: [trigger]
+
+- type: entity
+  id: LeviathanNukeShellStep2OutcomeSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: SpawnEntityTableOnTrigger
+    keysIn: [trigger]
+    useMapCoords: true
+    table: !type:GroupSelector
+      children:
+      - !type:AllSelector
+        weight: 50
+        children:
+        - id: SheetUranium
+          amount: 1
+        - id: CartridgeLeviathan240mmNukeDamaged50
+      - id: LeviathanNukeRupture25
+        weight: 50
+  - type: DeleteOnTrigger
+    keysIn: [trigger]
+
+- type: entity
+  id: LeviathanNukeShellStep3OutcomeSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: SpawnEntityTableOnTrigger
+    keysIn: [trigger]
+    useMapCoords: true
+    table: !type:GroupSelector
+      children:
+      - !type:AllSelector
+        weight: 25
+        children:
+        - id: ExplosionEffectSmoke
+          amount: 1
+        - id: SheetUranium
+          amount: 2
+        - id: SheetPlasteel10
+          amount: 2
+        - id: SheetSteel
+          amount: 2
+      - id: LeviathanNukeRupture25
+        weight: 75
+  - type: DeleteOnTrigger
+    keysIn: [trigger]
 
 # Leviathan 240mm Cluster Shell
 - type: entity
@@ -690,6 +805,12 @@
     layers:
     - state: cluster240mm
       map: ["enum.AmmoVisualLayers.Base"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: cluster240-inhand-left
+      right:
+      - state: cluster240-inhand-right
   - type: Appearance
   - type: SpentAmmoVisuals
     state: blast
@@ -726,6 +847,11 @@
   - type: CartridgeAmmo
     proto: BulletLeviathan240mmCluster
     deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: cluster240mmdamaged
+      map: ["enum.AmmoVisualLayers.Base"]
   - type: DamageOnLand
     ignoreResistances: true
     damage:
@@ -760,6 +886,11 @@
   - type: CartridgeAmmo
     proto: BulletLeviathan240mmCluster
     deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: cluster240mmcrit
+      map: ["enum.AmmoVisualLayers.Base"]
   - type: DamageOnLand
     ignoreResistances: true
     damage:

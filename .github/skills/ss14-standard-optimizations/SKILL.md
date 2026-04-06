@@ -1,6 +1,6 @@
 ---
 name: ss14-standard-optimizations
-description: Практический skill по стандартным оптимизациям Space Station 14: кеширование, снижение аллокаций, отказ от LINQ в hot-path, ActiveComponent-подход, EntityQuery, порядок компонентов в EntityQueryEnumerator, ByRef события, DirtyField, ранние выходы и чистка лишних компонентов. Используй при проектировании, ревью и оптимизации ECS-кода в server/shared/client.
+description: Practical skill in standard optimizations of Space Station 14: caching, reduction of allocations, abandonment of LINQ in hot-path, ActiveComponent approach, EntityQuery, order of components in EntityQueryEnumerator, ByRef events, DirtyField, early exits and cleaning of unnecessary components. Use it when designing, reviewing and optimizing ECS ​​code in server/shared/client.
 metadata:
   source_skill: "../../../.agent/skills/ss14-standard-optimizations/SKILL.md"
 ---

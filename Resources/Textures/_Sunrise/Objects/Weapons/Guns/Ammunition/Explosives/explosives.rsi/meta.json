@@ -5,7 +5,7 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "https://github.com/discordia-space/CEV-Eris/raw/e1d495c3faf4642b6ec1c4be8acc7cd5bc51d785/icons/obj/ammo.dmi,  all state resprited by KaiserMaus",
+    "copyright": "https://github.com/discordia-space/CEV-Eris/raw/e1d495c3faf4642b6ec1c4be8acc7cd5bc51d785/icons/obj/ammo.dmi,  all state-icons resprited by KaiserMaus, inhand 240mm sprited by seraphimttt (discord)",
     "states": [
         {
             "name": "fuzeball"
@@ -66,6 +66,14 @@
         "directions": 4
         },
         {
+        "name": "rocket120-inhand-left",
+        "directions": 4
+        },
+        {
+        "name": "rocket120-inhand-right",
+        "directions": 4
+        },
+        {
             "name": "blast120mm"
         },
         {
@@ -76,6 +84,51 @@
         },
         {
             "name": "cluster240mm"
+        },
+        {
+            "name": "nuke240mmdamaged"
+        },
+        {
+            "name": "blast240mmdamaged"
+        },
+        {
+            "name": "cluster240mmdamaged"
+        },
+        {
+            "name": "nuke240mmcrit"
+        },
+        {
+            "name": "blast240mmcrit"
+        },
+        {
+            "name": "cluster240mmcrit"
+        },
+        {
+        "name": "blast240-inhand-left",
+        "directions": 4
+        },
+        {
+        "name": "blast240-inhand-right",
+        "directions": 4
+        },
+        {
+        "name": "cluster240-inhand-left",
+        "directions": 4
+        },
+        {
+        "name": "cluster240-inhand-right",
+        "directions": 4
+        },
+        {
+        "name": "nuke240-inhand-left",
+        "directions": 4
+        },
+        {
+        "name": "nuke240-inhand-right",
+        "directions": 4
+        },
+        {
+            "name": "rocket60mm"
         }
     ]
 }

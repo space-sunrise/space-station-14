@@ -633,3 +633,95 @@
       path: /Audio/Effects/tesla.ogg
     range: 5
     volume: -8
+
+# Rockets
+# Vanyk-MK2 60mm Rocket Launcher - Multi-rocket burst fire system
+- type: entity
+  id: ShuttleGunRocketMetla120mm
+  parent: ShuttleGunBase
+  name: RCT-120 "Metla"
+  description: A 120mm rocket launcher system with two rails for rockets. Accurate and reliable, well suited for precision strikes against individual targets. Rockets must be loaded manually.
+  components:
+  - type: Sprite
+    scale: 1.1,1.1
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/Metla.rsi
+    granularLayersRendering: true
+    layers:
+    - sprite: _Starlight/Objects/Weapons/Guns/Turrets/pointdefense.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - state: space_artillery
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-2
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Anchorable
+    delay: 90
+  - type: Pullable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 700
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 80
+    selectedMode: Burst
+    burstCooldown: 25
+    shotsPerBurst: 1
+    burstFireRate: 0.3
+    angleDecay: 20
+    minAngle: 0
+    maxAngle: 1
+    availableModes:
+    - Burst
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+      params:
+        variation: 0.08
+        volume: 6
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - 120mmRocket
+    capacity: 2
+    proto: Rocket120mmMetla
+    soundInsert:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: false
+  - type: Appearance
+  - type: RadarBlip
+    color: "#44FF88"
+    scale: 1.5
+    shape: Circle
+    requireInSpace: true
+  - type: GunneryTrackable
+  - type: StaticPrice
+    price: 9000

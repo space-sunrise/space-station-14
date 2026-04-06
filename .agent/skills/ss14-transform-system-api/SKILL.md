@@ -1,101 +1,101 @@
 ---
 name: SS14 Transform System API
-description: Полный справочник API SharedTransformSystem в Space Station 14: разбор всех публичных семейств методов, выбор перегрузок, ограничения и практические паттерны применения на сервере и клиенте. Используй, когда нужно точно выбрать метод TransformSystem и избежать ошибок пространства координат.
+description: A complete reference book for the SharedTransformSystem API in Space Station 14: analysis of all public families of methods, selection of overloads, restrictions and practical application patterns on the server and client. Use when you need to accurately select the TransformSystem method and avoid coordinate space errors.
 ---
 
 # TransformSystem: API
 
-Этот skill — полный каталог публичного API `SharedTransformSystem` 🙂
-Для общей архитектуры и схемы работы сначала прочитай `SS14 Transform System Core`.
+This skill is the full directory of the public API `SharedTransformSystem` :)
+For the general architecture and operation scheme, first read `SS14 Transform System Core`.
 
-## Как читать этот каталог
+## How to read this directory
 
-- Для каждого семейства сначала выбрать пространство (`EntityCoordinates` или `MapCoordinates`).
-- Затем выбрать перегрузку: `uid`-перегрузка или перегрузка с уже резолвленным `TransformComponent`.
-- Для bulk-циклов отдавать приоритет перегрузкам, куда можно передать уже имеющиеся компоненты/queries.
+- For each family, first select a space (`EntityCoordinates` or `MapCoordinates`).
+- Then select an overload: `uid`-overload or overload with already resolved `TransformComponent`.
+- For bulk cycles, give priority to overloads, where you can transfer existing components/queries.
 
-## 1) Lifecycle и события
+## 1) Lifecycle and events
 
 - `Initialize()`
-Инициализация системных подписок Transform.
+Initializing Transform system subscriptions.
 
 - `MoveEventHandler` + `OnGlobalMoveEvent`
-Глобальный C#-event на движение после локального `MoveEvent`.
+Global C# event for movement after local `MoveEvent`.
 
 - `TransformStartupEvent`
-Событие старта transform-компонента.
+Transform component start event.
 
 - `ActivateLerp(EntityUid uid, TransformComponent xform)`
-Virtual hook для интерполяции на клиенте. Для контент-кода обычно не нужен.
+Virtual hook for interpolation on the client. Usually not needed for content code.
 
-## 2) Координатные преобразования и расстояния
+## 2) Coordinate transformations and distances
 
 - `IsValid(EntityCoordinates coordinates)`
-Проверка валидности координат.
+Checking the validity of coordinates.
 
 - `WithEntityId(EntityCoordinates coordinates, EntityUid entity)`
-Перевод координат в пространство другой сущности.
+Translation of coordinates into the space of another entity.
 
 - `ToMapCoordinates(...)`
-Перегрузки:
+Overload:
 `ToMapCoordinates(EntityCoordinates coordinates, bool logError = true)`
 `ToMapCoordinates(NetCoordinates coordinates)`
 
 - `ToWorldPosition(...)`
-Перегрузки:
+Overload:
 `ToWorldPosition(EntityCoordinates coordinates, bool logError = true)`
 `ToWorldPosition(NetCoordinates coordinates)`
 
 - `ToCoordinates(...)`
-Перегрузки:
+Overload:
 `ToCoordinates(Entity<TransformComponent?> entity, MapCoordinates coordinates)`
 `ToCoordinates(MapCoordinates coordinates)`
 
 - `GetGrid(...)`
-Перегрузки:
+Overload:
 `GetGrid(EntityCoordinates coordinates)`
 `GetGrid(Entity<TransformComponent?> entity)`
 
 - `GetMapId(...)`
-Перегрузки:
+Overload:
 `GetMapId(EntityCoordinates coordinates)`
 `GetMapId(Entity<TransformComponent?> entity)`
 
 - `GetMap(...)`
-Перегрузки:
+Overload:
 `GetMap(EntityCoordinates coordinates)`
 `GetMap(Entity<TransformComponent?> entity)`
 
 - `InRange(...)`
-Перегрузки:
+Overload:
 `InRange(EntityCoordinates coordA, EntityCoordinates coordB, float range)`
 `InRange(Entity<TransformComponent?> entA, Entity<TransformComponent?> entB, float range)`
 
-## 3) Mover и tile helper API
+## 3) Mover and tile helper API
 
 - `GetMoverCoordinates(...)`
-Перегрузки:
+Overload:
 `GetMoverCoordinates(EntityUid uid)`
 `GetMoverCoordinates(EntityUid uid, TransformComponent xform)`
 `GetMoverCoordinates(EntityCoordinates coordinates, EntityQuery<TransformComponent> xformQuery)`
 `GetMoverCoordinates(EntityCoordinates coordinates)`
 
 - `GetMoverCoordinateRotation(EntityUid uid, TransformComponent xform)`
-Mover-координаты + world rotation.
+Mover coordinates + world rotation.
 
 - `GetGridOrMapTilePosition(EntityUid uid, TransformComponent? xform = null)`
-Tile-позиция на гриде или карте.
+Tile position on a grid or map.
 
 - `GetGridTilePositionOrDefault(Entity<TransformComponent?> entity, MapGridComponent? grid = null)`
-Tile-позиция на гриде, либо `Vector2i.Zero`.
+Tile position on the grid, or `Vector2i.Zero`.
 
 - `TryGetGridTilePosition(Entity<TransformComponent?> entity, out Vector2i indices, MapGridComponent? grid = null)`
-Безопасный `Try`-вариант.
+Safe `Try` option.
 
-## 4) Иерархия, parent, anchoring
+## 4) Hierarchy, parent, anchoring
 
 - `AnchorEntity(...)`
-Перегрузки:
+Overload:
 `AnchorEntity(EntityUid uid, TransformComponent xform, EntityUid gridUid, MapGridComponent grid, Vector2i tileIndices)` (obsolete)
 `AnchorEntity(Entity<TransformComponent> entity, Entity<MapGridComponent> grid, Vector2i tileIndices)`
 `AnchorEntity(EntityUid uid, TransformComponent xform, MapGridComponent grid)` (obsolete)
@@ -104,254 +104,254 @@ Tile-позиция на гриде, либо `Vector2i.Zero`.
 `AnchorEntity(Entity<TransformComponent> entity, Entity<MapGridComponent>? grid = null)`
 
 - `Unanchor(...)`
-Перегрузки:
+Overload:
 `Unanchor(EntityUid uid)`
 `Unanchor(EntityUid uid, TransformComponent xform, bool setPhysics = true)`
 
 - `ContainsEntity(EntityUid parent, Entity<TransformComponent?> child)`
-Проверка вложенности в transform-дереве.
+Checking nesting in the transform tree.
 
 - `IsParentOf(TransformComponent parent, EntityUid child)`
-Быстрая проверка родителя по children-набору.
+Quickly check the parent of a children set.
 
 - `SetGridId(...)`
-Перегрузки:
+Overload:
 `SetGridId(EntityUid uid, TransformComponent xform, EntityUid? gridId, EntityQuery<TransformComponent>? xformQuery = null)`
 `SetGridId(Entity<TransformComponent, MetaDataComponent?> ent, EntityUid? gridId)`
-Низкоуровневый API; обычно не использовать в контент-коде.
+Low-level API; usually not used in content code.
 
 - `ReparentChildren(...)`
-Перегрузки:
+Overload:
 `ReparentChildren(EntityUid oldUid, EntityUid uid)`
 `ReparentChildren(EntityUid oldUid, EntityUid uid, EntityQuery<TransformComponent> xformQuery)`
 
 - `GetParent(...)`
-Перегрузки:
+Overload:
 `GetParent(EntityUid uid)`
 `GetParent(TransformComponent xform)`
 
 - `GetParentUid(EntityUid uid)`
 
 - `SetParent(...)`
-Перегрузки:
+Overload:
 `SetParent(EntityUid uid, EntityUid parent)`
 `SetParent(EntityUid uid, TransformComponent xform, EntityUid parent, TransformComponent? parentXform = null)`
 `SetParent(EntityUid uid, TransformComponent xform, EntityUid parent, EntityQuery<TransformComponent> xformQuery, TransformComponent? parentXform = null)`
 
-## 5) Локальные мутации
+## 5) Local mutations
 
 - `SetLocalPosition(...)`
-Перегрузки:
+Overload:
 `SetLocalPosition(TransformComponent xform, Vector2 value)` (obsolete)
 `SetLocalPosition(EntityUid uid, Vector2 value, TransformComponent? xform = null)`
 
 - `SetLocalPositionNoLerp(...)`
-Перегрузки:
+Overload:
 `SetLocalPositionNoLerp(TransformComponent xform, Vector2 value)` (obsolete)
 `SetLocalPositionNoLerp(EntityUid uid, Vector2 value, TransformComponent? xform = null)`
 
 - `SetLocalRotationNoLerp(EntityUid uid, Angle value, TransformComponent? xform = null)`
 
 - `SetLocalRotation(...)`
-Перегрузки:
+Overload:
 `SetLocalRotation(EntityUid uid, Angle value, TransformComponent? xform = null)`
 `SetLocalRotation(TransformComponent xform, Angle value)` (obsolete)
 
 - `SetCoordinates(...)`
-Перегрузки:
+Overload:
 `SetCoordinates(EntityUid uid, EntityCoordinates value)`
 `SetCoordinates(Entity<TransformComponent, MetaDataComponent> entity, EntityCoordinates value, Angle? rotation = null, bool unanchor = true, TransformComponent? newParent = null, TransformComponent? oldParent = null)`
 `SetCoordinates(EntityUid uid, TransformComponent xform, EntityCoordinates value, Angle? rotation = null, bool unanchor = true, TransformComponent? newParent = null, TransformComponent? oldParent = null)`
 
 - `SetLocalPositionRotation(...)`
-Перегрузки:
+Overload:
 `SetLocalPositionRotation(TransformComponent xform, Vector2 pos, Angle rot)` (obsolete)
 `SetLocalPositionRotation(EntityUid uid, Vector2 pos, Angle rot, TransformComponent? xform = null)`
 
-## 6) World-позиция, ротация, map-координаты
+## 6) World position, rotation, map coordinates
 
 - `GetWorldMatrix(...)`
-Перегрузки: uid / component / uid+query / component+query.
+Overloads: uid / component / uid+query / component+query.
 
 - `GetWorldPosition(...)`
-Перегрузки: uid / component / uid+query / component+query.
+Overloads: uid / component / uid+query / component+query.
 
 - `GetMapCoordinates(...)`
-Перегрузки:
+Overload:
 `GetMapCoordinates(EntityUid entity, TransformComponent? xform = null)`
 `GetMapCoordinates(TransformComponent xform)`
 `GetMapCoordinates(Entity<TransformComponent> entity)`
 
 - `SetMapCoordinates(...)`
-Перегрузки:
+Overload:
 `SetMapCoordinates(EntityUid entity, MapCoordinates coordinates)`
 `SetMapCoordinates(Entity<TransformComponent> entity, MapCoordinates coordinates)`
 
 - `GetWorldPositionRotation(...)`
-Перегрузки: uid / component / component+query.
+Overloads: uid / component / component+query.
 
 - `GetRelativePositionRotation(...)`
-Перегрузки:
+Overload:
 `GetRelativePositionRotation(TransformComponent component, EntityUid relative, EntityQuery<TransformComponent> query)` (obsolete)
 `GetRelativePositionRotation(TransformComponent component, EntityUid relative)`
 
 - `GetRelativePosition(...)`
-Перегрузки:
+Overload:
 `GetRelativePosition(TransformComponent component, EntityUid relative, EntityQuery<TransformComponent> query)` (obsolete)
 `GetRelativePosition(TransformComponent component, EntityUid relative)`
 
 - `SetWorldPosition(...)`
-Перегрузки:
+Overload:
 `SetWorldPosition(EntityUid uid, Vector2 worldPos)`
 `SetWorldPosition(TransformComponent component, Vector2 worldPos)` (obsolete)
 `SetWorldPosition(Entity<TransformComponent> entity, Vector2 worldPos)`
 
 - `GetWorldRotation(...)`
-Перегрузки: uid / component / uid+query / component+query.
+Overloads: uid / component / uid+query / component+query.
 
 - `SetWorldRotationNoLerp(Entity<TransformComponent?> entity, Angle angle)`
 
 - `SetWorldRotation(...)`
-Перегрузки: uid / component / uid+query / component+query.
+Overloads: uid / component / uid+query / component+query.
 
 - `SetWorldPositionRotation(EntityUid uid, Vector2 worldPos, Angle worldRot, TransformComponent? component = null)`
 
-## 7) Batch-математика и matrix bundle API
+## 7) Batch mathematics and matrix bundle API
 
 - `GetInvWorldMatrix(...)`
-Перегрузки: uid / component / uid+query / component+query.
+Overloads: uid / component / uid+query / component+query.
 
 - `GetWorldPositionRotationMatrix(...)`
-Перегрузки: uid / component / uid+query / component+query.
+Overloads: uid / component / uid+query / component+query.
 
 - `GetWorldPositionRotationInvMatrix(...)`
-Перегрузки: uid / component / uid+query / component+query.
+Overloads: uid / component / uid+query / component+query.
 
 - `GetWorldPositionRotationMatrixWithInv(...)`
-Перегрузки: uid / component / uid+query / component+query.
+Overloads: uid / component / uid+query / component+query.
 
-Использовать эти методы, когда нужно сразу несколько производных (`pos+rot+matrix`) без лишнего повторного прохода по иерархии.
+Use these methods when you need several derivatives at once (`pos+rot+matrix`) without unnecessary repeated passes through the hierarchy.
 
-## 8) Attach/Detach и "размещение рядом"
+## 8) Attach/Detach and "placement nearby"
 
 - `AttachToGridOrMap(EntityUid uid, TransformComponent? xform = null)`
-Нормализация parent к фактическому гриду или карте.
+Normalization of parent to the actual grid or map.
 
 - `TryGetMapOrGridCoordinates(EntityUid uid, out EntityCoordinates? coordinates, TransformComponent? xform = null)`
-Безопасное получение текущих grid/map-координат.
+Securely obtain current grid/map coordinates.
 
 - `DetachParentToNull(EntityUid uid, TransformComponent xform)` (obsolete alias)
 
 - `DetachEntity(...)`
-Перегрузки:
+Overload:
 `DetachEntity(EntityUid uid, TransformComponent? xform = null)`
 `DetachEntity(Entity<TransformComponent?> ent)`
 `DetachEntity(EntityUid uid, TransformComponent xform, MetaDataComponent meta, TransformComponent? oldXform, bool terminating = false)`
 
 - `DropNextTo(Entity<TransformComponent?> entity, Entity<TransformComponent?> target)`
-С учётом контейнеров, иначе рядом в мире.
+Taking into account containers, otherwise nearby in the world.
 
 - `PlaceNextTo(Entity<TransformComponent?> entity, Entity<TransformComponent?> target)`
-С тем же parent или контейнером цели.
+With the same parent or target container.
 
 - `SwapPositions(Entity<TransformComponent?> entity1, Entity<TransformComponent?> entity2)`
-Свап позиций/контейнеров с защитой от некорректного parent-loop.
+Swap positions/containers with protection from incorrect parent-loop.
 
-## 9) Legacy и ограничения
+## 9) Legacy and restrictions
 
-- Перегрузки с пометкой `obsolete` оставлены для совместимости: в новом коде предпочитать uid/entity-варианты.
-- `SetGridId` и `ActivateLerp` считать low-level API.
-- Прямые устаревшие property-setter'ы на `TransformComponent` не использовать для новой логики.
+- Overloads marked `obsolete` are left for compatibility: in the new code, prefer uid/entity options.
+- `SetGridId` and `ActivateLerp` are considered low-level APIs.
+- Direct legacy property-setters on `TransformComponent` should not be used for new logic.
 
-## Паттерны
+## Patterns
 
-- В горячих циклах резолвить `TransformComponent` один раз и передавать в перегрузки.
-- Для одновременного изменения позиции и угла использовать `SetLocalPositionRotation`.
-- Для рендера и spatial-culling использовать bundle-методы матриц.
-- После перемещений из контейнеров и сложных parent-операций выполнять `AttachToGridOrMap`, если требуется нормализация.
-- Для дропа/спавна рядом использовать `DropNextTo` вместо ручного `SetParent` + `SetCoordinates`.
+- In hot loops, resolve `TransformComponent` once and pass it to overloads.
+- To change position and angle at the same time, use `SetLocalPositionRotation`.
+- For rendering and spatial-culling, use bundle matrix methods.
+- After moves from containers and complex parent operations, execute `AttachToGridOrMap` if normalization is required.
+- For drop/spawn nearby, use `DropNextTo` instead of manual `SetParent` + `SetCoordinates`.
 
-## Анти-паттерны
+## Anti-patterns
 
-- Игнорировать `Try`-результат (`TryGetMapOrGridCoordinates`, `TryGetGridTilePosition`).
-- Миксовать локальные и мировые координаты без `ToMapCoordinates`/`ToCoordinates`.
-- Использовать `SetGridId` как "обычный" способ перемещения.
-- Пытаться вручную поддерживать иерархию контейнеров вместо `DropNextTo/PlaceNextTo`.
+- Ignore `Try`-result (`TryGetMapOrGridCoordinates`, `TryGetGridTilePosition`).
+- Mix local and world coordinates without `ToMapCoordinates`/`ToCoordinates`.
+- Use `SetGridId` as the "normal" way to move.
+- Try to manually maintain container hierarchy instead of `DropNextTo/PlaceNextTo`.
 
-## Примеры из кода
+## Code examples
 
-### Пример 1: телепорт с корректным выбором parent (grid или map)
+### Example 1: teleport with the correct choice of parent (grid or map)
 
 ```csharp
 _transform.AttachToGridOrMap(entity, transform);
 
 if (_map.TryFindGridAt(mapId, position, out var gridUid, out _))
 {
-    // Переводим world -> local grid и ставим в grid-space.
+    // We translate world -> local grid and put it in grid-space.
     var gridPos = Vector2.Transform(position, _transform.GetInvWorldMatrix(gridUid));
     _transform.SetCoordinates(entity, transform, new EntityCoordinates(gridUid, gridPos));
 }
 else
 {
-    // Фоллбек в map-space.
+    // Fallback in map-space.
     _transform.SetWorldPosition((entity, transform), position);
     _transform.SetParent(entity, transform, mapEntity);
 }
 ```
 
-### Пример 2: spawn fallback через DropNextTo
+### Example 2: spawn fallback via DropNextTo
 
 ```csharp
 var uid = Spawn(protoName, overrides, doMapInit);
 
-// Если контейнерный insert не удался, безопасно "уронить" рядом.
+// If a container insert fails, it is safe to "drop" nearby.
 _xforms.DropNextTo(uid, target);
 ```
 
-### Пример 3: tile-safe проверка через TryGetGridTilePosition
+### Example 3: tile-safe check via TryGetGridTilePosition
 
 ```csharp
 if (args.Grid is {} grid
     && _transform.TryGetGridTilePosition(uid, out var tile)
     && _atmosphere.IsTileAirBlockedCached(grid, tile))
 {
-    return; // Устройство стоит в заблокированной tile.
+    return; // The device is in a locked tile.
 }
 ```
 
-### Пример 4: GetGridTilePositionOrDefault для атмосферных расчётов
+### Example 4: GetGridTilePositionOrDefault for atmospheric calculations
 
 ```csharp
 var indices = _transform.GetGridTilePositionOrDefault((uid, transform));
 var tileMix = _atmosphere.GetTileMixture(transform.GridUid, null, indices, true);
 ```
 
-### Пример 5: смена пространства через WithEntityId
+### Example 5: changing space via WithEntityId
 
 ```csharp
-// Конвертируем координаты в grid-space, снапим и возвращаем обратно.
+// We convert the coordinates to grid-space, snap it and return it back.
 var localPos = _transform.WithEntityId(coords, gridUid).Position;
 var snappedGrid = new EntityCoordinates(gridUid, snappedLocalPos);
 var backToOriginal = _transform.WithEntityId(snappedGrid, coords.EntityId);
 ```
 
-### Пример 6: обмен позициями сущностей
+### Example 6: Exchange Entity Positions
 
 ```csharp
-// Возвращает false, если swap невозможен (например, parent-loop риск).
+// Returns false if swap is not possible (e.g. parent-loop risk).
 if (!_transform.SwapPositions(first, second))
     return;
 ```
 
-## Мини-чеклист выбора метода
+## Mini-checklist for choosing a method
 
-- Нужен перевод между пространствами?
+- Do you need translation between spaces?
 `ToMapCoordinates` / `ToCoordinates` / `WithEntityId`.
-- Нужна локальная правка?
+- Need local editing?
 `SetLocal*`.
-- Нужна world/map правка?
-`SetWorld*` или `SetMapCoordinates`.
-- Нужна смена parent/иерархии?
+- Do you need a world/map edit?
+`SetWorld*` or `SetMapCoordinates`.
+- Do you need to change parent/hierarchy?
 `SetParent` / `SetCoordinates` / `AttachToGridOrMap`.
-- Нужен контейнерно-безопасный drop/place/swap?
+- Need a container-safe drop/place/swap?
 `DropNextTo` / `PlaceNextTo` / `SwapPositions` ✅
