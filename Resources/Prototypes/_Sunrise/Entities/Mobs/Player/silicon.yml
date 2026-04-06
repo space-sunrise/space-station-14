@@ -416,3 +416,30 @@
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
+
+# region BorgChassisSyndicateSpider
+
+- type: entity
+  id: PlayerBorgChassisSyndicateSpiderBattery
+  parent: BorgChassisSyndicateSpider
+  suffix: Battery, Module
+  components:
+  - type: NukeOperative
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - Sofia
+      borg_module:
+      - BorgModuleSyndicateCombatAdvanced
+      - BorgModuleSyndicateHypoAdvanced
+      - BorgModuleSyndicatePenetration
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSyndicate
+  - type: AutoImplant
+    implants:
+    - SmokeScreenImplant
+
+# region end
