@@ -1552,9 +1552,9 @@
   productEntity: FireAxeFlaming
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 5
+    Telecrystal: 6
   cost:
-    Telecrystal: 9
+    Telecrystal: 8
   categories:
   - UplinkWeaponry
 
@@ -3042,5 +3042,18 @@
     Telecrystal: 3
   cost:
     Telecrystal: 4
+  categories:
+  - UplinkWeaponry
+
+- type: listing
+  id: UplinkWeaponBreachingHammer
+  name: uplink-SyndieBreachingHammer-name
+  description: uplink-SyndieBreachingHammer-desc
+  productEntity: SyndieBreachingHammer
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 7
   categories:
   - UplinkWeaponry
