@@ -11,5 +11,4 @@
     state: icon
 
   - type: LockableEquipment
-    overlayLayer: underpants
-    overlaySprite: _Sunrise/Clothing/Locked/cage.rsi
+    layer: lockable_under

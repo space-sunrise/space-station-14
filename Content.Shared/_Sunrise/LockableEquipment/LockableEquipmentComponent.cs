@@ -17,10 +17,10 @@ public sealed partial class LockableEquipmentComponent : Component
     public EntProtoId? KeyPrototype;
 
     [DataField]
-    public string OverlayLayer = "belt";
+    public string Layer = "lockable_under";
 
-    [DataField]
-    public string OverlaySprite = "_Sunrise/Clothing/Locked/cage.rsi";
+    [DataField("sprite")]
+    public string rsiPath = "_Sunrise/Clothing/Locked/cage.rsi";
 
     [DataField]
     public string? RequiredFreeSlot;

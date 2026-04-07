@@ -8,6 +8,6 @@ namespace Content.Shared._Sunrise.LockableEquipment;
 public enum EquipmentVisuals
 {
     Visible,
-    Sprite,
-    Layer
+    Layer,
+    Sprite
 }
