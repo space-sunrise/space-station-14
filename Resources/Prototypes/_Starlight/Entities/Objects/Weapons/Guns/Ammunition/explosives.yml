@@ -175,6 +175,16 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     state: rocket60mm
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: SpawnOnDespawn
     prototype: Bullet60mmRocketStarlightSelfExplode
   - type: ContainerContainer
@@ -334,6 +344,16 @@
   id: Bullet50mmRocketStarlight
   categories: [ HideSpawnMenu ]
   components:
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: SpawnOnDespawn
     prototype: Bullet50mmRocketStarlightSelfExplode
   - type: Sprite
