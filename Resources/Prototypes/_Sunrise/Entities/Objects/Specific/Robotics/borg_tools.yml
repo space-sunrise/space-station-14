@@ -701,13 +701,15 @@
   - type: SolutionContainerManager
     solutions:
       hypospray:
-        maxVol: 20
+        maxVol: 15
   - type: SolutionRegeneration
     solution: hypospray
     generated:
       reagents:
       - ReagentId: Nocturine
-        Quantity: 0.2
+        Quantity: 0.5
+      - ReagentId: MuteToxin
+        Quantity: 0.1
   - type: ExaminableSolution
     solution: hypospray
   - type: Injector
@@ -1079,3 +1081,26 @@
         - id: DrinkWineBottleFullBorg
   - type: ApcPowerReceiver
     needsPower: false
+
+- type: entity
+  parent: [BaseJammer, BaseXenoborgContraband]
+  id: RadioJammerSyndicateBorg
+  name: syndicate cyborg radio jammer
+  suffix: Syndicate
+  description: Syndicate cyborg radio jammer.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadioJammer
+    settings:
+    - wattage: 2
+      range: 4
+      message: radio-jammer-component-set-message-low
+      name: radio-jammer-component-setting-low
+    - wattage: 4
+      range: 6
+      message: radio-jammer-component-set-message-high
+      name: radio-jammer-component-setting-high
+    frequenciesExcluded:
+    - 1213 # syndicate frequency
+
+# region end

@@ -94,7 +94,7 @@
   - type: ItemBorgModule
     hands:
     - item: RadioJammerBorg
-    - item: JetpackVoidFilled
+    - item: JetpackXenoborg
     - item: trayScanner
     - item: WelderExperimental
     - item: Multitool
@@ -554,3 +554,52 @@
     icon:
       sprite: Interface/Actions/actions_borg.rsi
       state: gardening-module
+
+# region BorgChassisSyndicateSpider
+
+- type: entity
+  id: BorgModuleSyndicateCombatAdvanced
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  name: advanced combat syndicate cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate
+  - type: ItemBorgModule
+    hands:
+    - item: WeaponPistolEchis
+    - item: CyberMantisBlade
+
+- type: entity
+  id: BorgModuleSyndicateHypoAdvanced
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  name: advanced hypo syndicate cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate
+  - type: ItemBorgModule
+    hands:
+    - item: HypoBorgSaboteurSyndicate
+    - item: CloakingDevice
+    - item: RadioJammerSyndicateBorg
+    - item: ChameleonProjector
+
+- type: entity
+  id: BorgModuleSyndicatePenetration
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  name: syndicate penetration cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate
+  - type: ItemBorgModule
+    hands:
+    - item: SyndicateJawsOfLife
+    - item: Emag
+    - item: PinpointerIcarus
+
+# region end

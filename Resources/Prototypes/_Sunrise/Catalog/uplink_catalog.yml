@@ -3037,3 +3037,27 @@
     Telecrystal: 7
   categories:
   - UplinkWeaponry
+
+  id: UplinkReinforcementRadioSyndicateCyborgChassisSpider
+  name: uplink-reinforcement-radio-syndicate-cyborg-infiltrator-name
+  description: uplink-reinforcement-radio-syndicate-cyborg-infiltrator-desc
+  productEntity: ReinforcementRadioSyndicateCyborgChassisSpider
+  icon: { sprite: Mobs/Silicon/chassis.rsi, state: synd_sec }
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 30
+  cost:
+    Telecrystal: 40
+  categories:
+  - UplinkAllies
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle

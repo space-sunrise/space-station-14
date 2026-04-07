@@ -279,3 +279,7 @@ uplink-syndicate-teleporter-desc = Экспериментальное устро
 
 uplink-cleaner-kit-name = Набор уборщика
 uplink-cleaner-kit-desc = Уберите любые улики. Содержит пару космо-очистителей, две гранаты и кусочек мыла. К сожалению без вилки..
+
+# OTHER
+uplink-reinforcement-radio-syndicate-cyborg-infiltrator-name = Телепорт подкрепления киборга Инфильтратора
+uplink-reinforcement-radio-syndicate-cyborg-infiltrator-desc = Отправляет вам в поддержку борга синдиката.
