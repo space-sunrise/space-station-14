@@ -150,16 +150,6 @@
     minPlayers: 50
   - type: LoadMapRule
     mapPath: /Maps/_Sunrise/Nonstations/nukieplanet.yml
-  # # Sunrise-start
-  # # Pick exactly one nukie base map to load. # Sunrise-todo: Commend type: LoadMapRule and un commend that
-  # - type: SubRule
-  #   table: !type:GroupSelector
-  #     children:
-  #     - id: NukiePlanetSpawn
-  #     - id: NukiePlanetSpawnWestern
-  #     - id: NukiePlanetSpawnOldScool
-  #     - id: NukiePlanetSpawnGeiger
-  # # Sunrise-end
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
     definitions:
