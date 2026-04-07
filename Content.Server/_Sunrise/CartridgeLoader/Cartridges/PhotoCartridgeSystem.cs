@@ -142,7 +142,7 @@ public sealed class PhotoCartridgeSystem : EntitySystem
 
         if (_lastCaptureTimes.TryGetValue(session, out var lastCapture))
         {
-            var timeSinceLastCapture = _gameTiming.CurTime - lastCapture;
+            var timeSinceLastCapture = _messengerServer.GetStationTime() - lastCapture;
             if (timeSinceLastCapture.TotalSeconds < MinTimeBetweenCapturesSeconds)
             {
                 _sawmill.Debug($"Photo capture rejected: cooldown active ({timeSinceLastCapture.TotalSeconds:F2}s < {MinTimeBetweenCapturesSeconds}s)");
@@ -194,7 +194,7 @@ public sealed class PhotoCartridgeSystem : EntitySystem
 
         _netTexturesManager.RegisterDynamicResource(imagePath, msg.ImageData);
 
-        var timestamp = _gameTiming.CurTime;
+        var timestamp = _messengerServer.GetStationTime();
         var metadata = new PhotoMetadata(photoId, imagePath, timestamp);
         photoComponent.PhotoGallery[photoId] = metadata;
 
@@ -236,7 +236,7 @@ public sealed class PhotoCartridgeSystem : EntitySystem
         if (string.IsNullOrEmpty(userId))
             return;
 
-        var timestamp = _gameTiming.CurTime;
+        var timestamp = _messengerServer.GetStationTime();
         var content = Loc.GetString("photo-cartridge-photo-text");
 
         if (!string.IsNullOrWhiteSpace(groupId))
