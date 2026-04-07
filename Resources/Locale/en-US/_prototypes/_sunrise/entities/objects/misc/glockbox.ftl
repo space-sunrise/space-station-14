@@ -8,3 +8,5 @@ ent-MK58GoldBox = Gold MK58 box
     .desc = It contains a Gold MK58 and a rubber magazine for it. Ave Security!
 ent-SnubRevolverBox = Snub revolver box
     .desc = It contains a snub-nosed revolver and a rubber speedloader. Old-school firepower, ready at hand.
+ent-VP78Box = VP78 box
+    .desc = It contains a VP78 and an ammo pouch for it. Did you want something else?

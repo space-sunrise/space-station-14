@@ -8,7 +8,7 @@ namespace Content.Server._Sunrise.CartridgeLoader.Cartridges;
 /// </summary>
 public sealed partial class MessengerCartridgeSystem
 {
-    private void UpdateUiState(EntityUid uid, EntityUid loaderUid, MessengerCartridgeComponent? component)
+    private void UpdateUiState(EntityUid uid, EntityUid loaderUid, MessengerCartridgeComponent? component, Dictionary<string, PhotoMetadata>? photoGallery = null)
     {
         if (!Resolve(uid, ref component))
             return;
@@ -18,7 +18,7 @@ public sealed partial class MessengerCartridgeSystem
         {
             foreach (var (chatId, messages) in component.MessageHistory)
             {
-                if (messages == null || messages.Count == 0)
+                if (messages.Count == 0)
                     continue;
 
                 if (chatId.StartsWith("personal_"))
@@ -55,7 +55,11 @@ public sealed partial class MessengerCartridgeSystem
             component.MessageHistory,
             component.MutedPersonalChats,
             component.MutedGroupChats,
-            unreadCounts
+            unreadCounts,
+            component.ActiveInvites,
+            component.PinnedChats,
+            photoGallery,
+            _photoUploadEnabled
         );
 
         _cartridgeLoader.UpdateCartridgeUiState(loaderUid, state);
@@ -79,6 +83,17 @@ public sealed partial class MessengerCartridgeSystem
             else
                 component.MutedPersonalChats.Remove(chatId);
         }
+
+        if (component.LoaderUid.HasValue)
+            UpdateUiState(uid, component.LoaderUid.Value, component);
+    }
+
+    private void TogglePin(EntityUid uid, MessengerCartridgeComponent component, string chatId)
+    {
+        if (component.PinnedChats.Contains(chatId))
+            component.PinnedChats.Remove(chatId);
+        else
+            component.PinnedChats.Add(chatId);
 
         if (component.LoaderUid.HasValue)
             UpdateUiState(uid, component.LoaderUid.Value, component);

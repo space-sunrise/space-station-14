@@ -247,8 +247,6 @@ entities:
     - pos: -0.5,-5.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 80
@@ -256,8 +254,6 @@ entities:
     - pos: -0.5,-6.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 81
@@ -293,8 +289,6 @@ entities:
     - pos: 0.5,-5.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 86
@@ -302,8 +296,6 @@ entities:
     - pos: 1.5,-5.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 87
@@ -311,8 +303,6 @@ entities:
     - pos: -0.5,-4.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 88
@@ -327,8 +317,6 @@ entities:
     - pos: -0.5,-2.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 90
@@ -336,8 +324,6 @@ entities:
     - pos: -0.5,-1.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 91
@@ -352,8 +338,6 @@ entities:
     - pos: 1.5,-1.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 93
@@ -361,8 +345,6 @@ entities:
     - pos: -1.5,-1.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 94
@@ -370,8 +352,6 @@ entities:
     - pos: -2.5,-1.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 95
@@ -414,8 +394,6 @@ entities:
     - pos: 0.5,-3.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 101
@@ -430,8 +408,6 @@ entities:
     - pos: -2.5,-5.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 103
@@ -462,8 +438,6 @@ entities:
     - pos: -1.5,-6.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 76
@@ -471,8 +445,6 @@ entities:
     - pos: -1.5,-5.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
 - proto: CableMV
@@ -482,8 +454,6 @@ entities:
     - pos: -1.5,-5.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
   - uid: 78
@@ -491,8 +461,6 @@ entities:
     - pos: -0.5,-5.5
       parent: 62
       type: Transform
-    - enabled: True
-      type: AmbientSound
     - fixtures: {}
       type: Fixtures
 - proto: Catwalk
@@ -615,8 +583,6 @@ entities:
       type: Transform
     - enabled: True
       type: PointLight
-    - enabled: True
-      type: AmbientSound
     - type: ActiveEmergencyLight
   - uid: 143
     components:
@@ -626,8 +592,6 @@ entities:
       type: Transform
     - enabled: True
       type: PointLight
-    - enabled: True
-      type: AmbientSound
     - type: ActiveEmergencyLight
   - uid: 144
     components:
@@ -637,8 +601,6 @@ entities:
       type: Transform
     - enabled: True
       type: PointLight
-    - enabled: True
-      type: AmbientSound
     - type: ActiveEmergencyLight
 - proto: GasPipeStraight
   entities:
@@ -650,8 +612,6 @@ entities:
       type: Transform
     - color: '#0000FFFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 108
     components:
     - rot: 3.141592653589793 rad
@@ -660,8 +620,6 @@ entities:
       type: Transform
     - color: '#0000FFFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 109
     components:
     - pos: 0.5,-4.5
@@ -669,8 +627,6 @@ entities:
       type: Transform
     - color: '#0000FFFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 111
     components:
     - rot: 3.141592653589793 rad
@@ -679,8 +635,6 @@ entities:
       type: Transform
     - color: '#0000FFFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 112
     components:
     - rot: 3.141592653589793 rad
@@ -707,8 +661,6 @@ entities:
       type: Transform
     - color: '#0000FFFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 114
     components:
     - rot: 1.5707963267948966 rad
@@ -717,8 +669,6 @@ entities:
       type: Transform
     - color: '#0000FFFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
 - proto: GasPort
   entities:
   - uid: 105
@@ -737,8 +687,6 @@ entities:
       pos: -1.5,-3.5
       parent: 62
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#0000FFFF'
       type: AtmosPipeColor
   - uid: 116
@@ -746,8 +694,6 @@ entities:
     - pos: 0.5,-0.5
       parent: 62
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#0000FFFF'
       type: AtmosPipeColor
   - uid: 135
@@ -756,8 +702,6 @@ entities:
       pos: 1.5,-6.5
       parent: 62
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#0000FFFF'
       type: AtmosPipeColor
 - proto: GeneratorBasic15kW

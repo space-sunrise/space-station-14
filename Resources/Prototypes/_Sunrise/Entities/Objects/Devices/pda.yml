@@ -183,10 +183,11 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
-      - NavigatorCartridge
       - WantedListCartridge
       - AstroNavCartridge
+      - NavigatorCartridge
       - MessengerCartridge
+      - PhotoCartridge
 
 - type: entity
   parent: CaptainPDA
@@ -423,7 +424,9 @@
     - NotekeeperCartridge
     - NewsReaderCartridge
     - AstroNavCartridge
+    - NavigatorCartridge
     - MessengerCartridge
+    - PhotoCartridge
 
 - type: entity
   parent: BasePDA

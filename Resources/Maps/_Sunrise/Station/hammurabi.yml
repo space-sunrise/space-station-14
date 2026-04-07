@@ -13848,12 +13848,10 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
-    - type: PhysicsMap
     - type: Broadphase
     - type: OccluderTree
     - type: LoadedMap
     - type: GridTree
-    - type: MovedGrids
 - proto: AirAlarm
   entities:
   - uid: 35
@@ -152592,14 +152590,6 @@ entities:
   - uid: 12150
     components:
     - pos: -61.5,-50.5
-      parent: 1
-      type: Transform
-- proto: HandheldCrewMonitor
-  entities:
-  - uid: 11954
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -31.605204,-34.422535
       parent: 1
       type: Transform
 - proto: HandheldGPSBasic

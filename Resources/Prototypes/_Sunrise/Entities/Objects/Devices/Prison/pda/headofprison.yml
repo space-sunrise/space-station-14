@@ -25,7 +25,9 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
+      - NavigatorCartridge
       - MessengerCartridge
+      - PhotoCartridge
 
 - type: entity
   parent: SecurityMetusPDA

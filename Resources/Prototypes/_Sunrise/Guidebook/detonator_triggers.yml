@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: SunriseDetonatorTriggers
+  name: guide-entry-detonator-triggers
+  text: "/ServerInfo/Guidebook/_Sunrise/DetonatorTriggers.xml"
+  priority: 6

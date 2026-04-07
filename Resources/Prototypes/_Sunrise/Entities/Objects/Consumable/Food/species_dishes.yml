@@ -1,0 +1,313 @@
+- type: entity
+  abstract: true
+  parent: FoodMealBase
+  id: FoodSpeciesDishBase
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Food/species_dishes.rsi
+
+- type: entity
+  abstract: true
+  parent: FoodBowlBase
+  id: FoodSpeciesBowlDishBase
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Food/species_dishes.rsi
+
+- type: entity
+  parent: FoodSpeciesBowlDishBase
+  id: FoodNianRamenBowl
+  name: nian ramen
+  description: A bowl of noodles that whispers \"exotic\" in lowercase.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - salty
+    - spicy
+  - type: Sprite
+    state: nian_ramen
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Protein
+          Quantity: 10
+        - ReagentId: Water
+          Quantity: 8
+
+- type: entity
+  parent: FoodSpeciesDishBase
+  id: FoodSaladDiona
+  name: diona salad
+  description: Vegan-approved. Probably. The roots looked at you funny.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - salty
+  - type: Sprite
+    state: diona_salad
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 16
+        - ReagentId: Vitamin
+          Quantity: 10
+
+- type: entity
+  parent: FoodSpeciesBowlDishBase
+  id: FoodSoupRoyalXeno
+  name: royal xeno soup
+  description: An ominous broth with a crown of bad decisions.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - spicy
+  - type: Sprite
+    state: royal_xeno_soup
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Protein
+          Quantity: 12
+        - ReagentId: Water
+          Quantity: 4
+        - ReagentId: Vinegar
+          Quantity: 1
+        - ReagentId: Kelotane
+          Quantity: 1
+
+- type: entity
+  parent: FoodSpeciesBowlDishBase
+  id: FoodSoupFacehugger
+  name: facehugger soup
+  description: Smiles back at you. Not with a mouth, though.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - salty
+  - type: Sprite
+    state: facehugger_soup
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 10
+        - ReagentId: Water
+          Quantity: 10
+
+- type: entity
+  parent: FoodSpeciesBowlDishBase
+  id: FoodDemonHellChiliBowl
+  name: hell chili
+  description: The canteen calls it \"spicy\". The chaplain calls it \"exorcism\".
+  components:
+  - type: FlavorProfile
+    flavors:
+    - spicy
+    - meaty
+  - type: Sprite
+    state: demon_hell_chili
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Protein
+          Quantity: 12
+        - ReagentId: Water
+          Quantity: 6
+
+- type: entity
+  parent: FoodSpeciesDishBase
+  id: FoodMealBakedResomi
+  name: baked resomi
+  description: Comfort food for holidays and awkward family reunions.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - salty
+  - type: Sprite
+    state: baked_resomi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 16
+        - ReagentId: Protein
+          Quantity: 10
+
+- type: entity
+  parent: FoodSpeciesDishBase
+  id: FoodMealMiliraWingsBarbecue
+  name: milira wings in holy sauce
+  description: Crispy enough to summon a choir. Greasy enough to dismiss it.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - spicy
+    - sweet
+  - type: Sprite
+    state: milir_wings_barbecue
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 16
+        - ReagentId: Protein
+          Quantity: 10
+        - ReagentId: Holywater
+          Quantity: 2
+
+- type: entity
+  parent: FoodSpeciesDishBase
+  id: FoodSlimeBun
+  name: slime bun
+  description: Sweet, squishy, and still trying to escape the plate.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - slimy
+  - type: Sprite
+    state: slime_bun
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Sugar
+          Quantity: 5
+
+- type: entity
+  parent: FoodSpeciesDishBase
+  id: FoodMealUnathCarpNachos
+  name: unath-style nachos
+  description: Crunchy, spicy, and legally questionable in three sectors.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - spicy
+    - salty
+  - type: Sprite
+    state: lizard_carp_nachos
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 16
+        - ReagentId: Protein
+          Quantity: 8
+
+- type: entity
+  parent: FoodSpeciesBowlDishBase
+  id: FoodRagoutLeTrottinBowl
+  name: le'trottin ragout
+  description: Could've been aspic. Could've been lard. You chose chaos.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - salty
+  - type: Sprite
+    state: swine_stew
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Protein
+          Quantity: 12
+        - ReagentId: Water
+          Quantity: 6
+
+- type: entity
+  parent: FoodSpeciesDishBase
+  id: FoodTajawarma
+  name: tajawarma
+  description: A wrap so good it makes you purr. Even if you don't purr.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - spicy
+  - type: Sprite
+    state: tajawarma
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 16
+        - ReagentId: Protein
+          Quantity: 10
+
+- type: entity
+  parent: FoodSpeciesBowlDishBase
+  id: FoodFelmeniBowl
+  name: felmeni
+  description: Dumplings with a faint aftertaste of \"meow\".
+  components:
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - cheesy
+  - type: Sprite
+    state: felmeni
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Protein
+          Quantity: 12
+        - ReagentId: Water
+          Quantity: 6
+
+- type: entity
+  parent: FoodSpeciesDishBase
+  id: FoodVulpLoaf
+  name: vulp loaf
+  description: The chef insists it's \"traditional\". No one can name the tradition.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - salty
+  - type: Sprite
+    state: vulp_loaf
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 16
+        - ReagentId: Protein
+          Quantity: 10

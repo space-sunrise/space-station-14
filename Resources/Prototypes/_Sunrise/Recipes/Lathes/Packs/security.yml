@@ -190,6 +190,10 @@
     - SpeedLoaderShotgunEmpty
     - SpeedLoaderShotgunSlug
     - SpeedLoaderShotgunBeanbag
+    # Pirate cannon
+    - CannonBallMini
+    - CannonBallGrapeshotMini
+    - MagazineCannonBallMini
     # Medical
     - Gauze
     - Brutepack
@@ -200,9 +204,11 @@
 - type: latheRecipePack
   id: SecurityDynamicSunrise
   recipes:
+    - ComputerGunneryCircuitboard
     - WeaponEnergyGun
     - WeaponMiniEnergyGun
     - WeaponEnergyGunPistol
+    - WeaponIonCarbine
     - WeaponGunLaserCarbineAutomatic
     - MagazineBatteryLr30
     - FlareGunSecurityUpgrade
@@ -220,16 +226,18 @@
     - ShellBlastArtillery
     - ShellEMPArtillery
     - ShellFlashArtillery
+    - ShellFragArtillery
     - MagazineBauer127
+#    - MagazineBauer127Penetrator
     - RifleHeavyMagazineArtillery
     - MagazineBoxBelt127Artillery
-    - MagazineBauer127Blast
+#    - MagazineBauer127Blast
     - MagazineBauer127Frag
     - MagazineBauer127Emp
     - MagazineBoxBelt127Empty
-    - MagazineBoxBelt127
+#    - MagazineBoxBelt127
     - MagazineBoxBelt127Artillery
-    - MagazineBoxBelt127Blast
+#    - MagazineBoxBelt127Blast
     - MagazineBoxBelt127Frag
     - MagazineBoxBelt127Emp
     #
@@ -308,6 +316,9 @@
     - MagazineRifleHeavyIncendiary
     - MagazineRifleHeavyAP
     - MagazineRifleHeavyUranium
+    - RifleHeavyMagazineFMJ
+    - RifleHeavyMagazineHP
+    - RifleHeavyMagazineSP
   # Shotgun
     - SpeedLoaderShotgunIncendiary
     - SpeedLoaderShotgunUranium
@@ -333,6 +344,7 @@
     - ClothingOuterArmorMiliraLight
     - ClothingOuterArmorMiliraHeavy
     - ClothingOuterHardsuitMilira
+    - ClothingHeadHelmetEVAMilira
     - ClothingEyesHudMilira
 
 - type: latheRecipePack

@@ -6,14 +6,15 @@
   components:
   - type: Storage
     grid:
-    - 0,0,7,5
+    - 0,0,5,5
+    maxItemSize: Ginormous
     whitelist:
       tags:
         - BluespaceBox
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/Suits/cargo-suit.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Suits/cargo_suit.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/Suits/cargo-suit.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Suits/cargo_suit.rsi
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1

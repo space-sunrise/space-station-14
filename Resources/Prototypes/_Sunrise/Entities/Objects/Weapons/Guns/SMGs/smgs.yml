@@ -351,7 +351,7 @@
 #PPSH
 - type: entity
   name: PPSH 59 SMG
-  parent: [BaseWeaponSubMachineGun, BaseMajorContraband] #, BaseSovietContraband
+  parent: [BaseWeaponSubMachineGun, BaseSovietContraband]
   id: WeaponSubMachineGunPPSH
   description: Beloved by USSP veterans and feared by friendly fire protocols everywhere. Uses .35 ammo.
   components:
@@ -369,7 +369,7 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -9
+    minAngle: -11
     maxAngle: -9
   - type: Gun
     minAngle: 21
@@ -419,14 +419,14 @@
     shape:
     - 0,0,4,2
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/MS-42.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ms_42.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/MS-42.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ms_42.rsi
   - type: Gun
     minAngle: 10
     maxAngle: 35
@@ -477,25 +477,25 @@
     shape:
     - 0,0,3,1
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/aj_100.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/aj_100.rsi
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -2.5
+    minAngle: -3
     maxAngle: -25
   - type: Gun
-    minAngle: 5.5
+    minAngle: 6
     maxAngle: 45
-    angleIncrease: 2.75
-    angleDecay: 20
-    fireRate: 7
+    angleIncrease: 2.5
+    angleDecay: 18
+    fireRate: 6
     selectedMode: FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
@@ -521,6 +521,7 @@
           - MagazineRifle
           - MagazineLightRifle
           - MagazinePistolDPSubMachineGun
+          - MagazinePistolDP
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistolSP
@@ -549,14 +550,14 @@
     shape:
     - 0,0,3,1
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/iar_52.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/iar_52.rsi
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus

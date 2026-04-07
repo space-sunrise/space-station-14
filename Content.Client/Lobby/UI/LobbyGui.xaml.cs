@@ -154,6 +154,7 @@ namespace Content.Client.Lobby.UI
             _configurationManager.OnValueChanged(SunriseCCVars.ServerName, OnServerNameChanged, true);
 
             Chat.SetChatOpacity();
+            Chat.ToggleEmojiButton(true); // Sunrise-Add
 
             ServerName.Text = Loc.GetString("ui-lobby-welcome", ("name", _serverName));
             LoadIcons();

@@ -172,6 +172,7 @@
     intersectRatio: 0.04
   - type: TriggerOnStepTrigger
   - type: Item
+    size: Tiny # Sunrise-Add
     heldPrefix: syndie
   - type: Fixtures
     fixtures:

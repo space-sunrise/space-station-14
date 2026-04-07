@@ -18584,13 +18584,6 @@ entities:
       nextSound: -618.5905876
     - type: Physics
       canCollide: False
-- proto: RubberStampSyndicate
-  entities:
-  - uid: 2834
-    components:
-    - type: Transform
-      pos: 0.83051443,3.6227193
-      parent: 2
 - proto: RubberStampTrader
   entities:
   - uid: 2835

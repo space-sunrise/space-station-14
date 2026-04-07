@@ -15,6 +15,11 @@
   save: false
   abstract: true
   components:
+  - type: RadarBlip
+    color: "#FFD700FF"
+    scale: 1.1
+    shape: Triangle
+    requireInSpace: false
   - type: NoSlip
   - type: CanMoveInAir
   - type: Reactive
@@ -145,6 +150,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener
+    - FootstepSound
 
 # region Mech Pod
 - type: entity
@@ -212,6 +218,11 @@
       - PowerCageMedium
   - type: AccessReader
     access: [["Security"]]
+  - type: RadarBlip
+    color: "#ff1500"
+    scale: 1.25
+    shape: Triangle
+    requireInSpace: false
 
 - type: entity
   id: MechMiningPod
@@ -306,6 +317,11 @@
     speechSounds: Borg
   - type: TTS
     voice: Glados
+  - type: RadarBlip
+    color: "#4800ff"
+    scale: 1.1
+    shape: Triangle
+    requireInSpace: false
 
 # region Ripley
 # Ripley Mk-I Hauler
@@ -331,6 +347,10 @@
     containers:
       mech-battery-slot:
       - PowerCageMedium
+  - type: Tag
+    tags:
+    - DoorBumpOpener # No paint unique ripley
+    - FootstepSound
 
 # Ripley MK-II "Death"
 - type: entity
@@ -359,6 +379,10 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    equipmentWhitelist:
+      tags:
+      - IndustrialMech
+      - CombatMech
   - type: MeleeThrowOnHit
     distance: 1
     speed: 8
@@ -626,10 +650,8 @@
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
-  # Sunrise-Start
   - type: Loadout
     prototypes: [ MechArmorMediumNTLoadout ]
-  # Sunrise-End
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Tag

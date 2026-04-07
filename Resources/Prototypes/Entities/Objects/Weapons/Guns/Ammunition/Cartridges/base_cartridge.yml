@@ -40,3 +40,12 @@
         volume: -1
   - type: StaticPrice
     price: 1
+  # Sunrise-Start
+  - type: GuideHelp
+    guides:
+    - SunriseAmmunition
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 0
+  # Sunrise-End

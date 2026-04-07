@@ -34,13 +34,19 @@ public sealed partial class MessengerServerComponent : Component
     /// </summary>
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public int MaxMessageHistory = 5000;
+    public int MaxMessageHistory = 2000;
 
     /// <summary>
     /// Счетчик для генерации уникальных ID групп
     /// </summary>
     [ViewVariables]
     public int GroupIdCounter = 0;
+
+    /// <summary>
+    /// Счетчик для генерации уникальных ID сообщений
+    /// </summary>
+    [ViewVariables]
+    public long MessageIdCounter = 0;
 
     /// <summary>
     /// Количество непрочитанных сообщений по пользователям и чатам.
@@ -60,4 +66,22 @@ public sealed partial class MessengerServerComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<DeviceFrequencyPrototype> PdaFrequencyId = "PDA";
+
+    /// <summary>
+    /// Активные приглашения в группы. Ключ - ID получателя, значение - список приглашений
+    /// </summary>
+    [ViewVariables]
+    public readonly Dictionary<string, List<MessengerGroupInvite>> ActiveInvites = new();
+
+    /// <summary>
+    /// Время последней отправки сообщения пользователем (userId -> время)
+    /// </summary>
+    [ViewVariables]
+    public readonly Dictionary<string, TimeSpan> LastMessageTime = new();
+
+    /// <summary>
+    /// Задержка между сообщениями для предотвращения спама
+    /// </summary>
+    [DataField]
+    public TimeSpan MessageCooldown = TimeSpan.FromSeconds(0.5);
 }

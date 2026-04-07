@@ -25,7 +25,12 @@ public partial class AtmosphereSystem
         float maxComponent = 0; // moles of the dominant gas
         for (var i = 0; i < Atmospherics.TotalNumberOfGases; i++)
         {
-            basePrice += mixture.Moles[i] * GetGas(i).PricePerMole;
+            // Sunrise edit start - gas price CVar modifiers
+            var gas = GetGas(i);
+            var modifier = GetModifier(gas.ID);
+            basePrice += mixture.Moles[i] * gas.PricePerMole * modifier;
+            // Sunrise edit end
+
             totalMoles += mixture.Moles[i];
             maxComponent = Math.Max(maxComponent, mixture.Moles[i]);
         }

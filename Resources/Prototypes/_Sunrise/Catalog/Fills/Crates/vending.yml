@@ -4,7 +4,9 @@
   name: PaintVend restock crate
   description: Contains restock box for PaintVend vending machine.
   components:
-  - type: StorageFill
-    contents:
-      - id: VendingMachineRestockPaintVend
-        amount: 1
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockPaintVend
+          amount: 1

@@ -17,6 +17,7 @@
   - SheetPlasteel1Lathe
   - ClothingMaskWeldingGas
   - ClothingShoesBootsJump
+  - BorgModuleJetpack # Sunrise-add
 
 - type: technology
   id: SpaceScanning
@@ -154,6 +155,7 @@
   - HellfireFreezerMachineCircuitBoard
   - PortableScrubberMachineCircuitBoard
   - HolofanProjector
+  - FireExtinguisherBluespace # Sunrise-add
   technologyPrerequisites:
   - AtmosphericTech
 

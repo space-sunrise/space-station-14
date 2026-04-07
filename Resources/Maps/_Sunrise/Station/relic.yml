@@ -47,9 +47,7 @@ entities:
     - type: Transform
     - type: Map
       mapPaused: True
-    - type: PhysicsMap
     - type: GridTree
-    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
   - uid: 2
@@ -2607,7 +2605,7 @@ entities:
         - DockStatus: InputB
     - type: DeviceLinkSink
       invokeCounter: 1
-- proto: AirlockExternalGlassShuttleEmergencyLocked
+- proto: AirlockExternalGlassShuttleEmergencyLockedCentComm
   entities:
   - uid: 1838
     components:

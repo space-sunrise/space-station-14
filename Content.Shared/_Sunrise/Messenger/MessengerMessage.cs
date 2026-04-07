@@ -1,3 +1,5 @@
+using Content.Shared.StatusIcon;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.Messenger;
@@ -43,7 +45,33 @@ public sealed class MessengerMessage
     /// </summary>
     public bool IsRead { get; set; }
 
-    public MessengerMessage(string senderId, string senderName, string content, TimeSpan timestamp, string? groupId = null, string? recipientId = null, bool isRead = false)
+    /// <summary>
+    /// Уникальный идентификатор сообщения
+    /// </summary>
+    public long MessageId { get; set; }
+
+    /// <summary>
+    /// ID иконки роли отправителя (опционально)
+    /// </summary>
+    public ProtoId<JobIconPrototype>? SenderJobIconId { get; set; }
+
+    /// <summary>
+    /// Путь к сетевому изображению, если сообщение содержит картинку.
+    /// Например: "/NetTextures/Messenger/photo_123.png"
+    /// </summary>
+    public string? ImagePath { get; set; }
+
+    public MessengerMessage(
+        string senderId,
+        string senderName,
+        string content,
+        TimeSpan timestamp,
+        string? groupId = null,
+        string? recipientId = null,
+        bool isRead = false,
+        long messageId = 0,
+        ProtoId<JobIconPrototype>? senderJobIconId = null,
+        string? imagePath = null)
     {
         SenderId = senderId;
         SenderName = senderName;
@@ -52,5 +80,8 @@ public sealed class MessengerMessage
         GroupId = groupId;
         RecipientId = recipientId;
         IsRead = isRead;
+        MessageId = messageId;
+        SenderJobIconId = senderJobIconId;
+        ImagePath = imagePath;
     }
 }

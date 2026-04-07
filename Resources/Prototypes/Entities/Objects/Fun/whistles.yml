@@ -21,6 +21,14 @@
       collection: BaseWhistle
   - type: Whistle
     distance: 3
+  - type: ItemToggle #  Sunrise Edit Start
+    onUse: false
+    soundActivate:
+      collection: BaseWhistle
+    soundDeactivate:
+      collection: BaseWhistle
+  - type: ToggleClothing
+    action: ActionWhistle # Sunrise Edit End
 
 - type: entity
   parent: BaseWhistle
@@ -56,3 +64,13 @@
       collection: TrenchWhistle
   - type: Whistle
     distance: 15 # Let your enemies hear the sound of death approaching
+# Sunrise Edit Start
+  - type: ItemToggle
+    soundActivate:
+      collection: TrenchWhistle
+    soundDeactivate:
+      collection: TrenchWhistle
+  - type: ToggleClothing
+    action: ActionWhistle
+# Sunrise Edit End
+

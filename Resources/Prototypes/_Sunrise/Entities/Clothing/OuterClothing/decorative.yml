@@ -5,9 +5,9 @@
   description: This suit makes you want to eat bamboo
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/Suits/kigurumi-panda.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Suits/kigurumi_panda.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/Suits/kigurumi-panda.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Suits/kigurumi_panda.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadKigurumiPanda
     slot: head

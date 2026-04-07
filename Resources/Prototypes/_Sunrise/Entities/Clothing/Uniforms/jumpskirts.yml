@@ -120,7 +120,6 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/adjutant.rsi
 
-#Sunrise-OLD
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformSkirtMailCarrier

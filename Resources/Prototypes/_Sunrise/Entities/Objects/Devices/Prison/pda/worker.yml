@@ -24,7 +24,9 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - AstroNavCartridge
+      - NavigatorCartridge
       - MessengerCartridge
+      - PhotoCartridge
   - type: PdaAnimationVisuals
     animatedState: pda-space-prison-worker
     idInsertedLayerState: id_inserted-space-prison

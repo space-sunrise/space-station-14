@@ -250,7 +250,5 @@ russian-chatsan-word-125 = пкм
 russian-chatsan-replacement-125 = правая рука
 russian-chatsan-word-126 = гойда
 russian-chatsan-replacement-126 = ура
-russian-chatsan-word-127 = нио
-russian-chatsan-replacement-127 = рнд
 russian-chatsan-word-128 = крс
 russian-chatsan-replacement-128 = ссд

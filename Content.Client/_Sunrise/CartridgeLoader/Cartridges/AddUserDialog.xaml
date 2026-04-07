@@ -24,10 +24,5 @@
                 Orientation="Vertical"
                 HorizontalExpand="True" />
         </ScrollContainer>
-        <Button
-            Name="CloseButton"
-            Text="{Loc 'messenger-add-user-cancel'}"
-            HorizontalExpand="True"
-            Margin="0,4,0,0" />
     </BoxContainer>
 </DefaultWindow>

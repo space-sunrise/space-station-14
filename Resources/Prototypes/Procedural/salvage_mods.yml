@@ -13,6 +13,11 @@
 - type: salvageBiomeMod
   id: Grasslands
   desc: salvage-biome-mod-grasslands
+  difficulties:
+    - Easy
+    - Moderate
+    - Challenging
+    - Difficult
   biome: Grasslands
 
 - type: salvageBiomeMod
@@ -233,6 +238,15 @@
   biomes:
     #- LowDesert
     - Grasslands
+  # Sunrise-Start
+  difficulties:
+    - Easy
+    - Moderate
+    - Challenging
+  factions:
+    - Carps
+    - Xenos
+  # Sunrise-End
 
 - type: salvageDungeonMod
   id: LavaBrig
@@ -240,6 +254,18 @@
   proto: LavaBrig
   biomes:
     - Lava
+  # Sunrise-Start
+  difficulties:
+    - Easy
+    - Moderate
+    - Challenging
+  factions:
+    - Carps
+    - Xenos
+    - PiratesT1
+    - PiratesT2
+    - PiratesT3
+  # Sunrise-End
 
 - type: salvageDungeonMod
   id: Mineshaft
@@ -247,6 +273,17 @@
   proto: Mineshaft
   biomes:
     - Caves
+  # Sunrise-Start
+  difficulties:
+    - Easy
+    - Moderate
+    - Challenging
+  factions:
+    - Carps
+    - PiratesT1
+    - PiratesT2
+    - PiratesT3
+  # Sunrise-End
 
 - type: salvageDungeonMod
   id: SnowyLabs
@@ -254,6 +291,15 @@
   proto: SnowyLabs
   biomes:
     - Snow
+  # Sunrise-Start
+  difficulties:
+    - Easy
+    - Moderate
+    - Challenging
+  factions:
+    - Carps
+    - Xenos
+  # Sunrise-End
 
 - type: salvageDungeonMod
   id: Haunted
@@ -261,10 +307,13 @@
   proto: Haunted
   biomes:
     - Caves
-
-- type: salvageDungeonMod
-  id: SyndicateBase
-  desc: salvage-dungeon-mod-syndicate-base
-  proto: SyndicateBase
-  biomes:
-    - Snow
+  # Sunrise-Start
+  difficulties:
+    - Easy
+    - Moderate
+    - Challenging
+  factions:
+    - Carps
+    - Xenos
+    - PiratesT1
+  # Sunrise-End

@@ -294,8 +294,8 @@
         Heat: 0.8
         Caustic: 0.7
   - type: ClothingSpeedModifier
-    walkModifier: 0.80
-    sprintModifier: 0.80
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurity
@@ -641,6 +641,7 @@
     - MonkeyWearable
     - Hardsuit
     - FullBodyOuter # SUNRISE EDIT
+    - NoPaint # Sunrise-Add
     - WhitelistChameleon
     - CorgiWearable
     - ScurretWearable
@@ -732,6 +733,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - NoPaint # Sunrise-Add
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -773,7 +775,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
-
+    - NoPaint # Sunrise-Add
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
@@ -829,6 +831,7 @@
     - CorgiWearable
     - Hardsuit
     - FullBodyOuter # SUNRISE EDIT
+    - NoPaint # Sunrise-Add
     - WhitelistChameleon
 
 #Wizard Hardsuit

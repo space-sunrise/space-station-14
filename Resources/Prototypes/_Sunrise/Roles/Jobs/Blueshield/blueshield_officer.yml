@@ -33,9 +33,12 @@
     - Brig
     - Cargo
     - Atmospherics
-    - Cargo
     - Medical
     - BlueShield
+    - Cryogenics
+    - Lawyer
+    - Barber
+    - Mining
   special:
     - !type:AddImplantSpecial
       implants: [ MindShieldImplant ]
@@ -62,3 +65,4 @@
     eyes: ClothingEyesGlassesBlueShield
     outerClothing: ClothingOuterArmorBlueShield
     gloves: ClothingHandsGlovesCombat
+    

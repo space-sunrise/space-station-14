@@ -76,6 +76,10 @@
     - Ammonia
     - NitrousOxide
     - Frezon
+    #Sunrise - Start
+    - Electrovae
+    - ChargedElectrovae
+    #Sunrise - End
     #- Helium3 TODO: fusion
     # remove everything except oxygen to maintain oxygen ratio
     overflowGases:
@@ -181,6 +185,11 @@
   - type: InventorySlots
   - type: Loadout
     prototypes: [ MechArmorLightLoadout ]
+  - type: RadarBlip
+    color: "#FFD700FF"
+    scale: 1.1
+    shape: Triangle
+    requireInSpace: true
   # Sunrise-End
   - type: Damageable
     damageContainer: Mech
@@ -235,6 +244,7 @@
   name: Ripley APLU
   description: Versatile and lightly armored, the Ripley is useful for almost any heavy work scenario. The "APLU" stands for Autonomous Power Loading Unit.
   components:
+  - type: FootprintEmitter # Sunrise-Add
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -292,6 +302,7 @@
   name: Ripley APLU MK-II
   description: The "MK-II" has a pressurized cabin for space operations, but the added weight has slowed it down.
   components:
+  - type: FootprintEmitter # Sunrise-Add
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -421,6 +432,7 @@
   name: H.O.N.K.
   description: "Produced by \"Tyranny of Honk, INC\", this exosuit is designed as heavy clown-support. Used to spread the fun and joy of life. HONK!"
   components:
+  - type: FootprintEmitter # Sunrise-Add
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -478,6 +490,7 @@
   name: HAMTR
   description: "An experimental mech which uses a brain–computer interface to connect directly to a hamsters brain."
   components:
+  - type: FootprintEmitter # Sunrise-Add
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -534,6 +547,7 @@
   name: Vim
   description: A miniature exosuit from Nanotrasen, developed to let the irreplaceable station pets live a little longer.
   components:
+  - type: FootprintEmitter # Sunrise-Add
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -623,6 +637,7 @@
   name: Gygax
   description: While lightly armored, the Gygax has incredible mobility thanks to its ability that lets it smash through walls at high speeds.
   components:
+  - type: FootprintEmitter # Sunrise-Add
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -690,6 +705,7 @@
   name: Durand
   description: A slow but beefy combat exosuit that is extra scary in confined spaces due to its punches. Xenos hate it!
   components:
+  - type: FootprintEmitter # Sunrise-Add
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -765,6 +781,7 @@
   name: Marauder
   description: Looks like we're all saved. # ERT mech
   components:
+  - type: FootprintEmitter # Sunrise-Add
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -854,6 +871,7 @@
   name: Seraph
   description: That's the last thing you'll see.
   components:
+  - type: FootprintEmitter # Sunrise-Add
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -946,6 +964,7 @@
   name: Dark Gygax
   description: A modified Gygax used for nefarious purposes. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:
+  - type: FootprintEmitter # Sunrise-Add
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -1037,6 +1056,7 @@
   name: Mauler
   description: A modified Marauder used by the Syndicate that's not as maneuverable as the Dark Gygax, but it makes up for that in armor and sheer firepower. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:
+  - type: FootprintEmitter # Sunrise-Add
   - type: Sprite
     drawdepth: Mobs
     noRot: true

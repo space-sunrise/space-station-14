@@ -10,7 +10,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         private void InitializeConstructs()
         {
             SubscribeLocalEvent<ConstructShellComponent, ContainerIsInsertingAttemptEvent>(OnShardInsertAttempt);
-            SubscribeLocalEvent<ConstructShellComponent, ComponentInit>(OnShellInit);
+            SubscribeLocalEvent<ConstructShellComponent, MapInitEvent>(OnShellInit);
             SubscribeLocalEvent<ConstructShellComponent, ComponentRemove>(OnShellRemove);
             SubscribeLocalEvent<ConstructShellComponent, ConstructFormSelectedEvent>(OnShellSelected);
         }
@@ -33,7 +33,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             }
         }
 
-        private void OnShellInit(EntityUid uid, ConstructShellComponent component, ComponentInit args)
+        private void OnShellInit(EntityUid uid, ConstructShellComponent component, MapInitEvent args)
         {
             _slotsSystem.AddItemSlot(uid, component.ShardSlotId, component.ShardSlot);
         }

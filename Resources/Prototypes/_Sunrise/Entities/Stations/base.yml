@@ -35,7 +35,7 @@
   abstract: true
   components:
   - type: StationTransitHub
-    map: /Maps/_Sunrise/Nonstations/transit_hub.yml
+    map: /Maps/_Sunrise/Nonstations/transit_hub_big.yml # Временно, пока не домапят
     biomes:
     - PlainGrasslands
     - PlainLowDesert
@@ -105,3 +105,9 @@
   abstract: true
   components:
   - type: StationRandomXenoArtifact
+
+- type: entity
+  id: BaseStationSpam
+  abstract: true
+  components:
+  - type: StationMessengerSpam

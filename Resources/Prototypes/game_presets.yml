@@ -51,42 +51,42 @@
 #    - AssaultOps
 #    - SubGamemodesRule
 #    - Xenoborgs
-    - KesslerSyndromeScheduler
+#    - KesslerSyndromeScheduler
 #    - RampingStationEventScheduler
 #    - SpaceTrafficControlEventScheduler
 #    - BasicRoundstartVariation
 
-#- type: gamePreset
-#  id: AllerAtOnce
-#  alias:
-#  - allall
-#  - aller
-#  - badidea
-#  - punishment
-#  name: aller-at-once-title
-#  description: aller-at-once-description
-#  showInVote: false #Please god dont do this
-#  hide: false # Sunrise-Edit
-#  minPlayers: 20 # Sunrise-Edit: 20 players for NUKEOPS
-#  rules:
-#    - Nukeops
-#    - Traitor
-#    - Revolutionary
-#    - Zombie
-#    - Wizard
+- type: gamePreset
+  id: AllerAtOnce
+  alias:
+  - allall
+  - aller
+  - badidea
+  - punishment
+  name: aller-at-once-title
+  description: aller-at-once-description
+  showInVote: false #Please god dont do this
+  hide: false # Sunrise-Edit
+  minPlayers: 20 # Sunrise-Edit: 20 players for NUKEOPS
+  rules:
+    - Nukeops
+    - Traitor
+    - Revolutionary
+    - Zombie
+    - Wizard
     - Xenoborgs
-#    - FleshCult
-#    - BloodCult
-#    - AssaultOps
-#    - SubGamemodesRule
-#    - BasicStationEventScheduler
-#    - KesslerSyndromeScheduler
-#    - MeteorSwarmMildScheduler
-#    - MeteorSwarmScheduler
-#    - RampingStationEventScheduler
-#    - SpaceTrafficControlEventScheduler
-#    - SpaceTrafficControlFriendlyEventScheduler
-#    - BasicRoundstartVariation
+    - FleshCult
+    - BloodCult
+    - AssaultOps
+    - SubGamemodesRule
+    - BasicStationEventScheduler
+    - KesslerSyndromeScheduler
+    - MeteorSwarmMildScheduler
+    - MeteorSwarmScheduler
+    - RampingStationEventScheduler
+    - SpaceTrafficControlEventScheduler
+    - SpaceTrafficControlFriendlyEventScheduler
+    - BasicRoundstartVariation
 
 # Sunrise-Edit: Replace by Extra
 #- type: gamePreset
@@ -277,20 +277,20 @@
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
 
-#- type: gamePreset
-#  id: Zombieteors
-#  alias:
-#  - zombieteors
-#  - zombombies
-#  - meteombies
-#  name: zombieteors-title
-#  description: zombieteors-description
-#  showInVote: true # Sunrise-Edit
-#  hide: true # Sunrise-Edit
-#  minPlayers: 20 # Sunrise-Edit: 20 players for ZOMBIES
-#  rules:
-#  - Zombie
-#  - BasicStationEventScheduler
-#  - KesslerSyndromeScheduler
-#  - SpaceTrafficControlEventScheduler
-#  - BasicRoundstartVariation
+- type: gamePreset
+  id: Zombieteors
+  alias:
+  - zombieteors
+  - zombombies
+  - meteombies
+  name: zombieteors-title
+  description: zombieteors-description
+  showInVote: true # Sunrise-Edit
+  hide: true # Sunrise-Edit
+  minPlayers: 20 # Sunrise-Edit: 20 players for ZOMBIES
+  rules:
+  - Zombie
+  - BasicStationEventScheduler
+  - KesslerSyndromeScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation

@@ -26,7 +26,8 @@ public sealed partial class MessengerServerSystem
                 ["user_id"] = user.UserId,
                 ["user_name"] = user.Name,
                 ["job_title"] = user.JobTitle ?? string.Empty,
-                ["department_id"] = user.DepartmentId ?? string.Empty
+                ["department_id"] = user.DepartmentId ?? string.Empty,
+                ["job_icon_id"] = user.JobIconId?.Id ?? string.Empty
             });
         }
 
@@ -189,10 +190,7 @@ public sealed partial class MessengerServerSystem
 
                 foreach (var senderId in updatedSenders)
                 {
-                    var sortedChatMessages = chatMessages.OrderBy(m => m.Timestamp)
-                        .ThenBy(m => m.SenderId)
-                        .ThenBy(m => m.Content)
-                        .ToList();
+                    var sortedChatMessages = chatMessages.OrderBy(m => m.MessageId).ToList();
 
                     var senderMessagesData = new List<Dictionary<string, object>>();
                     foreach (var msg in sortedChatMessages)
@@ -207,7 +205,10 @@ public sealed partial class MessengerServerSystem
                                 ["timestamp"] = msg.Timestamp.TotalSeconds,
                                 ["group_id"] = msg.GroupId ?? string.Empty,
                                 ["recipient_id"] = msg.RecipientId ?? string.Empty,
-                                ["is_read"] = msg.IsRead
+                                ["is_read"] = msg.IsRead,
+                                ["message_id"] = msg.MessageId,
+                                ["sender_job_icon_id"] = msg.SenderJobIconId?.Id ?? string.Empty,
+                                ["image_path"] = msg.ImagePath ?? string.Empty
                             });
                         }
                     }
@@ -232,10 +233,7 @@ public sealed partial class MessengerServerSystem
 
             if (hasUpdates)
             {
-                var sortedChatMessages = chatMessages.OrderBy(m => m.Timestamp)
-                    .ThenBy(m => m.SenderId)
-                    .ThenBy(m => m.Content)
-                    .ToList();
+                var sortedChatMessages = chatMessages.OrderBy(m => m.MessageId).ToList();
 
                 var recipientMessagesData = new List<Dictionary<string, object>>();
                 foreach (var msg in sortedChatMessages)
@@ -248,7 +246,10 @@ public sealed partial class MessengerServerSystem
                         ["timestamp"] = msg.Timestamp.TotalSeconds,
                         ["group_id"] = msg.GroupId ?? string.Empty,
                         ["recipient_id"] = msg.RecipientId ?? string.Empty,
-                        ["is_read"] = msg.IsRead
+                        ["is_read"] = msg.IsRead,
+                        ["message_id"] = msg.MessageId,
+                        ["sender_job_icon_id"] = msg.SenderJobIconId?.Id ?? string.Empty,
+                        ["image_path"] = msg.ImagePath ?? string.Empty
                     });
                 }
 
@@ -279,10 +280,7 @@ public sealed partial class MessengerServerSystem
         if (!component.MessageHistory.TryGetValue(chatId, out var messages))
             messages = new List<MessengerMessage>();
 
-        var sortedMessages = messages.OrderBy(m => m.Timestamp)
-            .ThenBy(m => m.SenderId)
-            .ThenBy(m => m.Content)
-            .ToList();
+        var sortedMessages = messages.OrderBy(m => m.MessageId).ToList();
 
         var messagesData = new List<Dictionary<string, object>>();
         foreach (var message in sortedMessages)
@@ -295,7 +293,10 @@ public sealed partial class MessengerServerSystem
                 ["timestamp"] = message.Timestamp.TotalSeconds,
                 ["group_id"] = message.GroupId ?? string.Empty,
                 ["recipient_id"] = message.RecipientId ?? string.Empty,
-                ["is_read"] = message.IsRead
+                ["is_read"] = message.IsRead,
+                ["message_id"] = message.MessageId,
+                ["sender_job_icon_id"] = message.SenderJobIconId?.Id ?? string.Empty,
+                ["image_path"] = message.ImagePath ?? string.Empty
             });
         }
 

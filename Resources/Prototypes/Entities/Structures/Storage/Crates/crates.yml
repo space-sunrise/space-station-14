@@ -343,6 +343,9 @@
     sprite: Structures/Storage/Crates/weapon.rsi
   - type: AccessReader
     access: [["Armory"]]
+  - type: Pierceable # Sunrise-edit - прострел ящиков
+    level: Metal
+
 
 - type: entity
   parent: [ CrateBaseSecure, BaseSecurityContraband ]

@@ -17,6 +17,7 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/energycrossbow_shoot.ogg
+    bigTrigger: true # Sunrise-Edit
   - type: AmmoCounter
   - type: Appearance
   - type: GenericVisualizer

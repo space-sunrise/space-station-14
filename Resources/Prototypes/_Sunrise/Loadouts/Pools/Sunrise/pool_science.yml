@@ -1,0 +1,8 @@
+- type: loadoutPool
+  id: BaseLoadoutPoolScience
+  abstract: true
+  roleLoadouts:
+    JobResearchDirector: SunriseJobResearchDirector
+    JobScientist: SunriseJobScientist
+    JobResearchAssistant: SunriseJobResearchAssistant
+

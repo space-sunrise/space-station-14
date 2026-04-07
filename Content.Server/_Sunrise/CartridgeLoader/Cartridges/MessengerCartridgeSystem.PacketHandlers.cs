@@ -1,13 +1,13 @@
 using System.Linq;
 using Content.Server._Sunrise.Messenger;
 using Content.Server.CartridgeLoader;
-using Content.Server.PDA.Ringer;
-using Content.Shared._Sunrise.CartridgeLoader.Cartridges;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Events;
 using Content.Shared._Sunrise.Messenger;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.PDA.Ringer;
+using Content.Shared.StatusIcon;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.CartridgeLoader.Cartridges;
 
@@ -54,6 +54,21 @@ public sealed partial class MessengerCartridgeSystem
                 break;
             case MessengerCommands.CmdUserAddedToGroup:
                 HandleUserAddedToGroup(uid, component, packet, loaderUid);
+                break;
+            case MessengerCommands.CmdInviteReceived:
+                HandleInviteReceived(uid, component, packet, loaderUid);
+                break;
+            case MessengerCommands.CmdInvitesList:
+                HandleInvitesList(uid, component, packet, loaderUid);
+                break;
+            case MessengerCommands.CmdUserLeftGroup:
+                HandleUserLeftGroup(uid, component, packet, loaderUid);
+                break;
+            case MessengerCommands.CmdGroupDeleted:
+                HandleGroupDeleted(uid, component, packet, loaderUid);
+                break;
+            case MessengerCommands.CmdMessageDeleted:
+                HandleMessageDeleted(uid, component, packet, loaderUid);
                 break;
             default:
                 Sawmill.Warning($"Unknown command received: {command}");
@@ -103,11 +118,33 @@ public sealed partial class MessengerCartridgeSystem
 
             userData.TryGetValue("job_title", out object? jobTitleObj);
             userData.TryGetValue("department_id", out object? departmentIdObj);
+            userData.TryGetValue("department_ids", out object? departmentIdsObj);
+            userData.TryGetValue("job_icon_id", out object? jobIconIdObj);
 
             var jobTitle = jobTitleObj?.ToString();
             var departmentId = departmentIdObj?.ToString();
+            var departmentIds = new List<string>();
+            if (departmentIdsObj is List<object> deptList)
+            {
+                departmentIds.AddRange(deptList.Select(d => d.ToString() ?? string.Empty).Where(s => !string.IsNullOrWhiteSpace(s)));
+            }
+            else if (departmentIdsObj is List<string> deptStringList)
+            {
+                departmentIds.AddRange(deptStringList.Where(s => !string.IsNullOrWhiteSpace(s)));
+            }
 
-            users.Add(new MessengerUser(userId, userName, jobTitle, departmentId));
+            if (departmentIds.Count == 0 && departmentId != null && !string.IsNullOrWhiteSpace(departmentId))
+            {
+                departmentIds.Add(departmentId);
+            }
+
+            ProtoId<JobIconPrototype>? jobIconId = null;
+            if (jobIconIdObj != null && !string.Empty.Equals(jobIconIdObj.ToString()))
+            {
+                jobIconId = new ProtoId<JobIconPrototype>(jobIconIdObj.ToString()!);
+            }
+
+            users.Add(new MessengerUser(userId, userName, jobTitle, departmentIds, jobIconId));
         }
 
         component.Users = users;
@@ -248,6 +285,9 @@ public sealed partial class MessengerCartridgeSystem
             messageData.TryGetValue("group_id", out object? groupIdObj);
             messageData.TryGetValue("recipient_id", out object? recipientIdObj);
             messageData.TryGetValue("is_read", out object? isReadObj);
+            messageData.TryGetValue("message_id", out object? messageIdObj);
+            messageData.TryGetValue("sender_job_icon_id", out object? senderJobIconIdObj);
+            messageData.TryGetValue("image_path", out object? imagePathObj);
 
             var groupId = groupIdObj?.ToString();
             var recipientId = recipientIdObj?.ToString();
@@ -258,57 +298,100 @@ public sealed partial class MessengerCartridgeSystem
                 isRead = isReadValue;
             }
 
+            var messageId = 0L;
+            if (messageIdObj != null && long.TryParse(messageIdObj.ToString(), out var messageIdValue))
+            {
+                messageId = messageIdValue;
+            }
+
+            ProtoId<JobIconPrototype>? senderJobIconId = null;
+            if (senderJobIconIdObj != null && !string.IsNullOrEmpty(senderJobIconIdObj.ToString()))
+            {
+                senderJobIconId = new ProtoId<JobIconPrototype>(senderJobIconIdObj.ToString()!);
+            }
+
+            var imagePath = imagePathObj?.ToString();
+            if (string.IsNullOrWhiteSpace(imagePath))
+                imagePath = null;
+
             var timestamp = TimeSpan.FromSeconds(timestampSeconds);
-            messages.Add(new MessengerMessage(senderId, senderName, content, timestamp, groupId, recipientId, isRead));
+            messages.Add(new MessengerMessage(senderId, senderName, content, timestamp, groupId, recipientId, isRead, messageId, senderJobIconId, imagePath));
         }
 
         if (!string.IsNullOrEmpty(chatId) && messages.Count >= 0)
         {
             if (component.MessageHistory.TryGetValue(chatId, out var existingMessages))
             {
-                var existingDict = new Dictionary<string, MessengerMessage>();
-                for (int i = 0; i < existingMessages.Count; i++)
-                {
-                    var msg = existingMessages[i];
-                    var key = $"{msg.SenderId}_{msg.Timestamp.TotalSeconds}_{msg.Content}_{i}";
+                var existingDict = existingMessages
+                    .GroupBy(m => m.MessageId)
+                    .ToDictionary(g => g.Key, g => g.ToList());
 
-                    if (existingDict.ContainsKey(key))
-                    {
-                        key = $"{msg.SenderId}_{msg.Timestamp.TotalSeconds}_{msg.Content.GetHashCode()}_{i}";
-                    }
-                    existingDict[key] = msg;
-                }
-
-                var hasStatusUpdate = false;
                 foreach (var newMessage in messages)
                 {
-                    var matchingMessage = existingMessages.FirstOrDefault(m =>
-                        m.SenderId == newMessage.SenderId &&
-                        Math.Abs(m.Timestamp.TotalSeconds - newMessage.Timestamp.TotalSeconds) < 0.001 &&
-                        m.Content == newMessage.Content);
-
-                    if (matchingMessage != null)
+                    if (newMessage.MessageId > 0 && existingDict.TryGetValue(newMessage.MessageId, out var matchingList))
                     {
-                        if (matchingMessage.IsRead != newMessage.IsRead)
+                        var matchingMessage = matchingList.FirstOrDefault();
+                        if (matchingMessage != null)
                         {
-                            matchingMessage.IsRead = newMessage.IsRead;
-                            hasStatusUpdate = true;
+                            if (matchingMessage.IsRead != newMessage.IsRead)
+                            {
+                                matchingMessage.IsRead = newMessage.IsRead;
+                            }
+                        }
+                    }
+                    else if (newMessage.MessageId == 0)
+                    {
+                        var matchingMessage = existingMessages.FirstOrDefault(m =>
+                            m.MessageId == 0 &&
+                            Math.Abs(m.Timestamp.TotalSeconds - newMessage.Timestamp.TotalSeconds) < 0.001 &&
+                            m.SenderId == newMessage.SenderId &&
+                            m.Content == newMessage.Content &&
+                            m.GroupId == newMessage.GroupId &&
+                            m.RecipientId == newMessage.RecipientId);
+
+                        if (matchingMessage != null)
+                        {
+                            if (matchingMessage.IsRead != newMessage.IsRead)
+                            {
+                                matchingMessage.IsRead = newMessage.IsRead;
+                            }
                         }
                     }
                 }
 
-                var newMessages = messages.Where(newMsg =>
+                var newMessages = new List<MessengerMessage>();
+                foreach (var newMsg in messages)
                 {
-                    return !existingMessages.Any(existingMsg =>
-                        existingMsg.SenderId == newMsg.SenderId &&
-                        Math.Abs(existingMsg.Timestamp.TotalSeconds - newMsg.Timestamp.TotalSeconds) < 0.001 &&
-                        existingMsg.Content == newMsg.Content);
-                }).ToList();
+                    bool isDuplicate = false;
+
+                    if (newMsg.MessageId > 0)
+                    {
+                        if (existingDict.TryGetValue(newMsg.MessageId, out var msgList) && msgList.Count > 0)
+                        {
+                            isDuplicate = true;
+                        }
+                    }
+                    else
+                    {
+                        isDuplicate = existingMessages.Any(m =>
+                            m.MessageId == 0 &&
+                            Math.Abs(m.Timestamp.TotalSeconds - newMsg.Timestamp.TotalSeconds) < 0.001 &&
+                            m.SenderId == newMsg.SenderId &&
+                            m.Content == newMsg.Content &&
+                            m.GroupId == newMsg.GroupId &&
+                            m.RecipientId == newMsg.RecipientId);
+                    }
+
+                    if (!isDuplicate)
+                    {
+                        newMessages.Add(newMsg);
+                    }
+                }
 
                 if (newMessages.Count > 0)
                 {
                     existingMessages.AddRange(newMessages);
-                    existingMessages = existingMessages.OrderBy(m => m.Timestamp)
+                    existingMessages = existingMessages.OrderBy(m => m.MessageId)
                         .ThenBy(m => m.SenderId)
                         .ThenBy(m => m.Content)
                         .ToList();
@@ -316,7 +399,7 @@ public sealed partial class MessengerCartridgeSystem
                 component.MessageHistory[chatId] = existingMessages;
             }
             else
-                component.MessageHistory[chatId] = messages.OrderBy(m => m.Timestamp).ToList();
+                component.MessageHistory[chatId] = messages.OrderBy(m => m.MessageId).ThenBy(m => m.SenderId).ThenBy(m => m.Content).ToList();
         }
 
         UpdateUiState(uid, loaderUid, component);
@@ -343,6 +426,9 @@ public sealed partial class MessengerCartridgeSystem
         packet.Data.TryGetValue("group_id", out object? groupIdObj);
         packet.Data.TryGetValue("recipient_id", out object? recipientIdObj);
         packet.Data.TryGetValue("is_read", out object? isReadObj);
+        packet.Data.TryGetValue("message_id", out object? messageIdObj);
+        packet.Data.TryGetValue("sender_job_icon_id", out object? senderJobIconIdObj);
+        packet.Data.TryGetValue("image_path", out object? imagePathObj);
 
         var groupId = groupIdObj?.ToString();
         var recipientId = recipientIdObj?.ToString();
@@ -353,8 +439,24 @@ public sealed partial class MessengerCartridgeSystem
             isRead = isReadValue;
         }
 
+        var messageId = 0L;
+        if (messageIdObj != null && long.TryParse(messageIdObj.ToString(), out var messageIdValue))
+        {
+            messageId = messageIdValue;
+        }
+
+        ProtoId<JobIconPrototype>? senderJobIconId = null;
+        if (senderJobIconIdObj != null && !string.IsNullOrEmpty(senderJobIconIdObj.ToString()))
+        {
+            senderJobIconId = new ProtoId<JobIconPrototype>(senderJobIconIdObj.ToString()!);
+        }
+
+        var imagePath = imagePathObj?.ToString();
+        if (string.IsNullOrWhiteSpace(imagePath))
+            imagePath = null;
+
         var timestamp = TimeSpan.FromSeconds(timestampSeconds);
-        var message = new MessengerMessage(senderId, senderName, content, timestamp, groupId, recipientId, isRead);
+        var message = new MessengerMessage(senderId, senderName, content, timestamp, groupId, recipientId, isRead, messageId, senderJobIconId, imagePath);
 
         string chatId;
         if (!string.IsNullOrEmpty(groupId))
@@ -394,15 +496,27 @@ public sealed partial class MessengerCartridgeSystem
             component.MessageHistory[chatId] = history;
         }
 
-        var messageExists = history.Any(m =>
-            m.SenderId == message.SenderId &&
-            Math.Abs(m.Timestamp.TotalSeconds - message.Timestamp.TotalSeconds) < 0.001 &&
-            m.Content == message.Content);
+        MessengerMessage? existingMessage = null;
 
-        if (!messageExists)
+        if (message.MessageId > 0)
+        {
+            existingMessage = history.FirstOrDefault(m => m.MessageId == message.MessageId);
+        }
+        else
+        {
+            existingMessage = history.FirstOrDefault(m =>
+                m.MessageId == 0 &&
+                Math.Abs(m.Timestamp.TotalSeconds - message.Timestamp.TotalSeconds) < 0.001 &&
+                m.SenderId == message.SenderId &&
+                m.Content == message.Content &&
+                m.GroupId == message.GroupId &&
+                m.RecipientId == message.RecipientId);
+        }
+
+        if (existingMessage == null)
         {
             history.Add(message);
-            history = history.OrderBy(m => m.Timestamp)
+            history = history.OrderBy(m => m.MessageId)
                 .ThenBy(m => m.SenderId)
                 .ThenBy(m => m.Content)
                 .ToList();
@@ -410,15 +524,7 @@ public sealed partial class MessengerCartridgeSystem
         }
         else
         {
-            var existingMessage = history.FirstOrDefault(m =>
-                m.SenderId == message.SenderId &&
-                Math.Abs(m.Timestamp.TotalSeconds - message.Timestamp.TotalSeconds) < 0.001 &&
-                m.Content == message.Content);
-
-            if (existingMessage != null)
-            {
-                existingMessage.IsRead = message.IsRead;
-            }
+            existingMessage.IsRead = message.IsRead;
         }
 
         var isGroupChat = chatId == "common" || chatId.StartsWith("dept_") || chatId.StartsWith("group_");
@@ -435,9 +541,23 @@ public sealed partial class MessengerCartridgeSystem
             component.ServerUnreadCounts[chatId] = currentCount + 1;
         }
 
-        if (!isMuted && !isSender && TryComp<RingerComponent>(loaderUid, out var ringer))
+        if (!isMuted && !isSender)
         {
-            _ringer.RingerPlayRingtone(loaderUid);
+            if (TryComp<RingerComponent>(loaderUid, out var ringer))
+                _ringer.RingerPlayRingtone(loaderUid);
+
+            string notificationMessage;
+            if (isGroupChat)
+            {
+                var groupName = component.Groups.FirstOrDefault(g => g.GroupId == chatId)?.Name ?? chatId ?? string.Empty;
+                notificationMessage = Loc.GetString("messenger-group-notification-message", ("name", groupName));
+            }
+            else
+            {
+                notificationMessage = Loc.GetString("messenger-notification-message", ("name", senderName ?? string.Empty));
+            }
+
+            _cartridgeLoader.SendNotification(loaderUid, Loc.GetString("messenger-program-name"), notificationMessage);
         }
 
         UpdateUiState(uid, loaderUid, component);
@@ -447,6 +567,77 @@ public sealed partial class MessengerCartridgeSystem
             RequestUsers(uid, component, loaderUid, deviceNetwork);
             RequestGroups(uid, component, loaderUid, deviceNetwork);
         }
+    }
+
+    private void HandleInviteReceived(EntityUid uid, MessengerCartridgeComponent component, DeviceNetworkPacketEvent packet, EntityUid loaderUid)
+    {
+        if (!packet.Data.TryGetValue("group_id", out object? groupIdObj) ||
+            !packet.Data.TryGetValue("group_name", out object? groupNameObj) ||
+            !packet.Data.TryGetValue("inviter_id", out object? inviterIdObj) ||
+            !packet.Data.TryGetValue("inviter_name", out object? inviterNameObj) ||
+            !packet.Data.TryGetValue("created_at", out object? createdAtObj))
+            return;
+
+        var groupId = groupIdObj?.ToString();
+        var groupName = groupNameObj?.ToString();
+        var inviterId = inviterIdObj?.ToString();
+        var inviterName = inviterNameObj?.ToString();
+
+        if (groupId == null || groupName == null || inviterId == null || inviterName == null)
+            return;
+
+        if (!double.TryParse(createdAtObj?.ToString(), out var createdAtSeconds))
+            return;
+
+        var createdAt = TimeSpan.FromSeconds(createdAtSeconds);
+
+        var invite = new MessengerGroupInvite(groupId, groupName, inviterId, inviterName, component.UserId ?? string.Empty, createdAt);
+
+        var isNewInvite = !component.ActiveInvites.Any(inv => inv.GroupId == groupId && inv.InviterId == inviterId);
+
+        if (isNewInvite)
+        {
+            component.ActiveInvites.Add(invite);
+            _cartridgeLoader.SendNotification(loaderUid, Loc.GetString("messenger-program-name"), Loc.GetString("messenger-invite-notification-message", ("name", groupName ?? string.Empty)));
+        }
+
+        UpdateUiState(uid, loaderUid, component);
+    }
+
+    private void HandleInvitesList(EntityUid uid, MessengerCartridgeComponent component, DeviceNetworkPacketEvent packet, EntityUid loaderUid)
+    {
+        if (!packet.Data.TryGetValue("invites", out List<Dictionary<string, object>>? invitesData))
+            return;
+
+        component.ActiveInvites.Clear();
+
+        foreach (var inviteData in invitesData)
+        {
+            if (!inviteData.TryGetValue("group_id", out object? groupIdObj) ||
+                !inviteData.TryGetValue("group_name", out object? groupNameObj) ||
+                !inviteData.TryGetValue("inviter_id", out object? inviterIdObj) ||
+                !inviteData.TryGetValue("inviter_name", out object? inviterNameObj) ||
+                !inviteData.TryGetValue("created_at", out object? createdAtObj))
+                continue;
+
+            var groupId = groupIdObj?.ToString();
+            var groupName = groupNameObj?.ToString();
+            var inviterId = inviterIdObj?.ToString();
+            var inviterName = inviterNameObj?.ToString();
+
+            if (groupId == null || groupName == null || inviterId == null || inviterName == null)
+                continue;
+
+            if (!double.TryParse(createdAtObj?.ToString(), out var createdAtSeconds))
+                continue;
+
+            var createdAt = TimeSpan.FromSeconds(createdAtSeconds);
+
+            var invite = new MessengerGroupInvite(groupId, groupName, inviterId, inviterName, component.UserId ?? string.Empty, createdAt);
+            component.ActiveInvites.Add(invite);
+        }
+
+        UpdateUiState(uid, loaderUid, component);
     }
 
     private void HandleGroupCreated(EntityUid uid, MessengerCartridgeComponent component, DeviceNetworkPacketEvent packet, EntityUid loaderUid)
@@ -466,13 +657,93 @@ public sealed partial class MessengerCartridgeSystem
 
         if (addedUserId == component.UserId && !string.IsNullOrEmpty(groupId))
         {
-            if (TryComp<RingerComponent>(loaderUid, out var ringer))
+            var group = component.Groups.FirstOrDefault(g => g.GroupId == groupId);
+            if (group != null)
             {
-                _ringer.RingerPlayRingtone(loaderUid);
+                _cartridgeLoader.SendNotification(loaderUid, Loc.GetString("messenger-program-name"), Loc.GetString("messenger-invite-notification-message", ("name", group.Name)));
             }
         }
 
         if (TryComp<DeviceNetworkComponent>(loaderUid, out var deviceNetwork))
             RequestGroups(uid, component, loaderUid, deviceNetwork);
+    }
+
+    private void HandleUserLeftGroup(EntityUid uid, MessengerCartridgeComponent component, DeviceNetworkPacketEvent packet, EntityUid loaderUid)
+    {
+        if (!packet.Data.TryGetValue("group_id", out object? groupIdObj) ||
+            !packet.Data.TryGetValue("user_id", out object? userIdObj))
+            return;
+
+        var groupId = groupIdObj?.ToString();
+        var userId = userIdObj?.ToString();
+
+        if (string.IsNullOrEmpty(groupId))
+            return;
+
+        if (userId == component.UserId)
+        {
+            component.Groups.RemoveAll(g => g.GroupId == groupId);
+            component.MessageHistory.Remove(groupId);
+            component.MutedGroupChats.Remove(groupId);
+            component.ServerUnreadCounts.Remove(groupId);
+        }
+        else
+        {
+            var group = component.Groups.FirstOrDefault(g => g.GroupId == groupId);
+            if (group != null && !string.IsNullOrEmpty(userId))
+            {
+                group.Members.Remove(userId);
+            }
+        }
+
+        if (TryComp<DeviceNetworkComponent>(loaderUid, out var deviceNetwork))
+            RequestGroups(uid, component, loaderUid, deviceNetwork);
+
+        UpdateUiState(uid, loaderUid, component);
+    }
+
+    private void HandleGroupDeleted(EntityUid uid, MessengerCartridgeComponent component, DeviceNetworkPacketEvent packet, EntityUid loaderUid)
+    {
+        if (!packet.Data.TryGetValue("group_id", out object? groupIdObj))
+            return;
+
+        var groupId = groupIdObj?.ToString();
+        if (string.IsNullOrEmpty(groupId))
+            return;
+
+        component.Groups.RemoveAll(g => g.GroupId == groupId);
+        component.MessageHistory.Remove(groupId);
+        component.MutedGroupChats.Remove(groupId);
+        component.ServerUnreadCounts.Remove(groupId);
+
+        component.ActiveInvites.RemoveAll(inv => inv.GroupId == groupId);
+
+        if (TryComp<DeviceNetworkComponent>(loaderUid, out var deviceNetwork))
+            RequestGroups(uid, component, loaderUid, deviceNetwork);
+
+        UpdateUiState(uid, loaderUid, component);
+    }
+
+    private void HandleMessageDeleted(EntityUid uid, MessengerCartridgeComponent component, DeviceNetworkPacketEvent packet, EntityUid loaderUid)
+    {
+        if (!packet.Data.TryGetValue("message_id", out object? messageIdObj) ||
+            !packet.Data.TryGetValue("chat_id", out object? chatIdObj))
+            return;
+
+        if (!long.TryParse(messageIdObj?.ToString(), out var messageId))
+            return;
+
+        var chatId = chatIdObj?.ToString();
+        if (string.IsNullOrEmpty(chatId))
+            return;
+
+        if (component.MessageHistory.TryGetValue(chatId, out var history))
+        {
+            history.RemoveAll(m => m.MessageId == messageId);
+            if (history.Count == 0)
+                component.MessageHistory.Remove(chatId);
+        }
+
+        UpdateUiState(uid, loaderUid, component);
     }
 }

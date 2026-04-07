@@ -669,7 +669,7 @@
     - Recyclable
     - HamsterWearable
     - WhitelistChameleon
-    - TopCovered # Sunrise-Edit
+    - FullCovered # Sunrise-Edit
   - type: HideLayerClothing
     layers:
       Hair: HEAD
@@ -771,6 +771,9 @@
     - ClothMade
     - WhitelistChameleon
     - FullCovered
+  - type: TemperatureProtection
+    heatingCoefficient: 1.025
+    coolingCoefficient: 0.65
   # Sunrise-End
 
 - type: entity
@@ -958,7 +961,7 @@
     tags:
     - ClothMade
     - WhitelistChameleon
-    - FullCovered
+    - TopCovered
   # Sunrise-End
 
 - type: entity
@@ -1217,7 +1220,7 @@
     tags:
     - ClothMade
     - WhitelistChameleon
-    - FullCovered
+    - TopCovered
   # Sunrise-End
 
 - type: entity
@@ -1236,6 +1239,9 @@
     modifiers:
       coefficients:
         Blunt: 0.95
+  - type: Tag
+    tags:
+    - Helmet
 
 - type: entity
   parent: ClothingHeadBase
@@ -1737,3 +1743,4 @@
     tags:
     - PetWearable
     - CorgiWearable
+    - FullCovered

@@ -153,6 +153,10 @@
     ammoSlots: [ null, null, null ]
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      revolver-ammo: !type:Container
   - type: KnockbackByUserTag
     doestContain:
       Resomi:
@@ -243,7 +247,7 @@
 
 - type: entity
   name: makeshift shotgun
-  parent: [WeaponFlareGunSecurity, BaseMinorContraband]
+  parent: [WeaponFlareGunSecurity, BaseMinorContraband, BaseGunShotgunSound] # Sunrise edit - shotgun handling sounds
   id: WeaponShotgunMakeshift
   description: A small hand-cannon that fires .50 shotgun shells. Has no cloth to hold it together, so it has a high chance of falling apart with every shot.
   components:

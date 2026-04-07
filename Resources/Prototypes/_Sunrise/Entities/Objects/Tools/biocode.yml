@@ -6,6 +6,7 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
   - type: FactionClothingBlocker
   - type: StaticPrice
     price: 3000
@@ -18,6 +19,7 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate
   - type: FactionClothingBlocker
   - type: StaticPrice
     price: 4000
@@ -30,3 +32,4 @@
   - type: Biocode
     factions:
     - Syndicate
+    - Pirate

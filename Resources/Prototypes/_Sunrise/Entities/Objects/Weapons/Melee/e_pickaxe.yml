@@ -16,7 +16,7 @@
         types:
           Heat: 8
           Piercing: 2
-          Structural: 30
+          Structural: 25
     deactivatedSecret: true
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Melee/energy_pickaxe.rsi
@@ -48,8 +48,8 @@
         shader: unshaded
   - type: Reflect
     reflectProb: 0.1
-  - type: Tag
-    tags:
-    - Pickaxe
+  # - type: Tag
+  #   tags:
+  #   - Pickaxe
   - type: StaticPrice
     price: 1200

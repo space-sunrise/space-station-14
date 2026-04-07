@@ -10132,14 +10132,12 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
-    - type: PhysicsMap
     - type: Broadphase
     - type: OccluderTree
     - parallax: KettleStation
       type: Parallax
     - type: LoadedMap
     - type: GridTree
-    - type: MovedGrids
 - proto: AccordionInstrument
   entities:
   - uid: 21533
@@ -116455,14 +116453,6 @@ entities:
     - pos: 39.884926,34.580906
       parent: 82
       type: Transform
-- proto: HandheldCrewMonitor
-  entities:
-  - uid: 2546
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: -43.63529,-37.29914
-      parent: 82
-      type: Transform
 - proto: HandheldGPSBasic
   entities:
   - uid: 19406
@@ -134848,15 +134838,6 @@ entities:
     - pos: 60.709972,-8.613329
       parent: 82
       type: Transform
-- proto: RubberStampClown
-  entities:
-  - uid: 21648
-    components:
-    - pos: -8.755251,-48.022705
-      parent: 82
-      type: Transform
-    - tags: []
-      type: Tag
 - proto: RubberStampDenied
   entities:
   - uid: 1102
@@ -134872,20 +134853,6 @@ entities:
   - uid: 22192
     components:
     - pos: 60.40058,-8.604193
-      parent: 82
-      type: Transform
-- proto: RubberStampHop
-  entities:
-  - uid: 10834
-    components:
-    - pos: -6.5865464,1.3825479
-      parent: 82
-      type: Transform
-- proto: RubberStampSyndicate
-  entities:
-  - uid: 8619
-    components:
-    - pos: -63.2649,-19.79454
       parent: 82
       type: Transform
 - proto: SalvageMagnet

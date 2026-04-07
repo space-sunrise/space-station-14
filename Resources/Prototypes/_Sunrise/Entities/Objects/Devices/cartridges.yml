@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: BaseItem
   id: PlantAnalyzerCartridge
   name: PlantAnalyzerCartridge
@@ -52,5 +52,22 @@
     programName: messenger-program-name
     icon:
       sprite: _Sunrise/Interface/Misc/program_icons.rsi
-      state: max_logo2
+      state: robust_chat
   - type: MessengerCartridge
+
+- type: entity
+  parent: BasePDACartridge
+  id: PhotoCartridge
+  name: photo cartridge
+  description: A program for taking photos and managing a photo gallery.
+  components:
+  - type: Sprite
+    state: cart-y
+  - type: UIFragment
+    ui: !type:PhotoUi
+  - type: Cartridge
+    programName: photo-program-name
+    icon:
+      sprite: _Sunrise/Interface/Misc/program_icons.rsi
+      state: flash_snap
+  - type: PhotoCartridge

@@ -90,8 +90,8 @@
 - type: entity
   id: ShuttleGunLongbowCircuitboard
   parent: BaseMachineCircuitboard
-  name: BAL-127 "Longbow" machine board
-  description: A machine printed circuit board for an BAL-127 "Longbow".
+  name: BAL-15 "Longbow" machine board
+  description: A machine printed circuit board for an BAL-15 "Longbow".
   suffix: DO NOT MAP, Machine Board
   categories: [ DoNotMap ]
   components:
@@ -107,8 +107,8 @@
 - type: entity
   id: ShuttleGunVympelCircuitboard
   parent: BaseMachineCircuitboard
-  name: BAL-127-2 "Vympel" machine board
-  description: A machine printed circuit board for an BAL-127-2 "Vympel".
+  name: BAL-15-2 "Vympel" machine board
+  description: A machine printed circuit board for an BAL-15-2 "Vympel".
   suffix: DO NOT MAP, Machine Board
   categories: [ DoNotMap ]
   components:
@@ -141,8 +141,8 @@
 - type: entity
   id: ShuttleGunQuadlingCircuitboard
   parent: BaseMachineCircuitboard
-  name: BAL-127-4 "Quadling" machine board
-  description: A machine printed circuit board for an BAL-127-4 "Quadling".
+  name: BAL-15-4 "Quadling" machine board
+  description: A machine printed circuit board for an BAL-15-4 "Quadling".
   suffix: DO NOT MAP, Machine Board
   categories: [ DoNotMap ]
   components:
@@ -193,8 +193,8 @@
 - type: entity
   id: ShuttleGunBeamstormMachineGunCircuitboard
   parent: BaseMachineCircuitboard
-  name: LSE-800c "Beamstorm machine gun" machine board
-  description: A machine printed circuit board for an LSE-800c "Beamstorm machine gun".
+  name: LSE-800e "Beamstorm machine gun" machine board
+  description: A machine printed circuit board for an LSE-800e "Beamstorm machine gun".
   suffix: DO NOT MAP, Machine Board
   categories: [ DoNotMap ]
   components:

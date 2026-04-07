@@ -42,6 +42,25 @@
         density: 80
         mask:
         - ItemMask
+  # Sunrise added start - let body bags be destroyed to stop shooting-abuse from inside
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger: # Excess damage, don't do anything
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  # Sunrise added end
   - type: EntityStorage
     capacity: 1
     isCollidableWhenOpen: true

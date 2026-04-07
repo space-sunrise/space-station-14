@@ -10,6 +10,10 @@
     {
       "name": "mech-wield",
       "directions": 4
+    },
+    {
+      "name": "mech-wield-2",
+      "directions": 4
     }
   ]
 }

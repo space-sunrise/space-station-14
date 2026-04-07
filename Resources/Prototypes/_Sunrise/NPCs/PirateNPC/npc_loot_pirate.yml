@@ -1,4 +1,4 @@
-#region BASE
+﻿#region BASE
 
 - type: entity
   id: NpcLootBase
@@ -23,16 +23,32 @@
     slots:
     - back
     sprite: Clothing/Back/Backpacks/merc.rsi
-    clothingVisuals:
-      back:
-      - state: equipped-BACKPACK
   - type: Item
     size: Huge
+
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: DuffelSyndicateMedicalGiftBox
+  name: syndicate medical gear bundle
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    state: icon-med
+  - type: Item
+    heldPrefix: med
     inhandVisuals:
       left:
-      - state: inhand-left
+      - state: med-inhand-left
       right:
-      - state: inhand-right
+      - state: med-inhand-right
+  - type: Clothing
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    equippedPrefix: med
+    clothingVisuals:
+      back:
+      - state: med-equipped-BACKPACK
 
 - type: entity
   parent: MercenaryDuffelGiftBox
@@ -83,6 +99,8 @@
   - type: Sprite
     sprite: Clothing/Back/Duffels/leather.rsi
     state: icon
+  - type: Clothing
+    sprite: Clothing/Back/Duffels/leather.rsi
 
 - type: entity
   parent: MercenaryDuffelGiftBox
@@ -94,6 +112,8 @@
   - type: Sprite
     sprite: Clothing/Back/Duffels/syndicate.rsi
     state: icon
+  - type: Clothing
+    sprite: Clothing/Back/Duffels/syndicate.rsi
 
 - type: entity
   parent: MercenaryDuffelGiftBox
@@ -105,6 +125,8 @@
   - type: Sprite
     sprite: Clothing/Back/Duffels/salvage.rsi
     state: icon
+  - type: Clothing
+    sprite: Clothing/Back/Duffels/salvage.rsi
 
 ## BELT - for ammo and mags
 - type: entity
@@ -134,6 +156,8 @@
   - type: Sprite
     sprite: Clothing/Belt/militarywebbing.rsi
     state: icon
+  - type: Clothing
+    sprite: Clothing/Belt/militarywebbing.rsi
 
 - type: entity
   parent: MercenaryWebbingBox
@@ -145,6 +169,8 @@
   - type: Sprite
     sprite: Clothing/Belt/assault.rsi
     state: icon
+  - type: Clothing
+    sprite: Clothing/Belt/assault.rsi
 
 - type: entity
   parent: [NpcLootBase, ClothingBeltSyndieWebbing]
@@ -154,8 +180,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Belt/syndieRPS.rsi
+    sprite: _Sunrise/Clothing/Belt/syndie_rps.rsi
     state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/syndie_rps.rsi
 
 - type: entity
   parent: MercenaryWebbingBox
@@ -167,6 +195,8 @@
   - type: Sprite
     sprite: Clothing/Belt/salvagewebbing.rsi
     state: icon
+  - type: Clothing
+    sprite: Clothing/Belt/salvagewebbing.rsi
 
 - type: entity
   parent: MercenaryWebbingBox
@@ -178,6 +208,8 @@
   - type: Sprite
     sprite: Clothing/Belt/bandolier.rsi
     state: icon
+  - type: Clothing
+    sprite: Clothing/Belt/bandolier.rsi
 
 - type: entity
   parent: MercenaryWebbingBox
@@ -189,6 +221,8 @@
     sprite: Clothing/Belt/waistbag_leather.rsi
     layers:
     - state: icon
+  - type: Clothing
+    sprite: Clothing/Belt/waistbag_leather.rsi
   - type: Item
     size: Huge
 
@@ -238,6 +272,72 @@
     - AmpulaDexa
     - AmpulaHyro
     chance: 0.25
+    offset: 0.2
+    deleteSpawnerAfterSpawn: true
+
+# Grenade pools (new grenade-action NPCs)
+- type: entity
+  id: PirateGrenadeSpawnerT1FB
+  name: pirate grenade spawner t1 firebomb
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - ImprovisedGrenadeFirebomb
+    chance: 1
+    offset: 0.2
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  id: PirateGrenadeSpawnerT1Veteran
+  name: pirate grenade spawner t1 veteran
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - ImprovisedGrenadeFirebomb
+    - ImprovisedGrenadeGlass
+    chance: 1
+    offset: 0.2
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  id: PirateGrenadeSpawnerT2Veteran
+  name: pirate grenade spawner t2 veteran
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - CannonBallFuze
+    - ImprovisedGrenadeFirebomb
+    - ImprovisedGrenadeGlass
+    chance: 1
+    offset: 0.2
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  id: PirateGrenadeSpawnerT3
+  name: pirate grenade spawner t3 grenadier set
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - GrenadeStinger
+    - GrenadeIncendiary
+    - GrenadeShrapnel
+    chance: 1
+    offset: 0.2
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  id: PirateGrenadeSpawnerSmoke
+  name: pirate grenade spawner smoke
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - SmokeGrenade
+    chance: 1
     offset: 0.2
     deleteSpawnerAfterSpawn: true
 
@@ -771,8 +871,138 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
+
 - type: entity
-  parent: MercenaryWebbingBox
+  parent: DuffelSyndicateMedicalGiftBox
+  id: ClothingBackDuffelMercenaryTier1Medic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponGrapplingGun
+    # Cash
+    - id: SpaceCash100
+      prob: 0.9
+    - id: SpaceCash500
+      prob: 0.65
+    - id: SpaceCash500
+      prob: 0.45
+    # Weapons
+    - id: WeaponPistolMk58
+      prob: 0.8
+      orGroup: PistolT1Pool
+    - id: WeaponPistolViper
+      prob: 0.15
+      orGroup: PistolT1Pool
+    - id: WeaponPistolM1984
+      prob: 0.05
+      orGroup: PistolT1Pool
+    - id: MagazineBoxPistolSP
+      prob: 0.3
+    # Items
+    - id: ClothingBeltWebbingMercenaryTier1Pistol
+      prob: 0.75
+    # Bonus Loot T1
+    - id: Doubloon1
+      prob: 0.05
+    - id: PirateCashSpawner03
+    - id: PirateMedSpawner01
+    - id: PirateMedSpawner01
+      prob: 0.8
+    - id: PirateMedSpawner01
+      prob: 0.5
+    - id: NukeOpsMedkitBruteSpawner
+      prob: 0.8
+    - id: NukeOpsMedkitBruteSpawner
+      prob: 0.25
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: DuffelSyndicateMedicalGiftBox
+  id: ClothingBackDuffelMercenaryTier2Medic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponGrapplingGun
+    # Cash
+    - id: SpaceCash500
+      prob: 0.9
+    - id: SpaceCash500
+      prob: 0.7
+    - id: SpaceCash1000
+      prob: 0.4
+    # Weapons
+    - id: WeaponPistolViper
+      prob: 0.7
+      orGroup: PistolT2Pool
+    - id: WeaponPistolM1984
+      prob: 0.3
+      orGroup: PistolT2Pool
+    - id: MagazineBoxPistolSP
+      prob: 0.5
+    # Items
+    - id: ClothingBeltMedicalFilled
+      prob: 0.75
+    # Bonus Loot T2
+    - id: PirateCashSpawner03
+    - id: PirateMedSpawner02
+    - id: PirateMedSpawner02
+      prob: 0.8
+    - id: PirateMedSpawner01
+      prob: 0.6
+    - id: NukeOpsMedkitBruteSpawner
+      prob: 0.8
+    - id: NukeOpsMedkitSpawner
+      prob: 0.55
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: DuffelSyndicateMedicalGiftBox
+  id: ClothingBackDuffelMercenaryTier3Medic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponGrapplingGun
+    # Cash
+    - id: PirateCashSpawner06
+    - id: PirateCashSpawner07
+      prob: 0.5
+    # Weapons
+    - id: WeaponPistolM1984
+      prob: 0.85
+      orGroup: PistolT3Pool
+    - id: WeaponPistolViper
+      prob: 0.15
+      orGroup: PistolT3Pool
+    - id: MagazineBoxPistolSP
+      prob: 0.7
+    # Items
+    - id: ClothingBeltMedicalFilled
+      prob: 0.85
+    # Bonus Loot T3
+    - id: PirateAmpulaSpawnerT3
+    - id: PirateMedSpawner03
+    - id: PirateMedSpawner03
+      prob: 0.8
+    - id: PirateMedSpawner02
+      prob: 0.6
+    - id: NukeOpsMedkitSpawner
+      prob: 0.6
+    - id: NukeOpsMedkitBruteSpawner
+      prob: 0.5
+    - id: NukeOpsMedkitSpawner
+      prob: 0.5
+    - id: Doubloon5
+      prob: 0.1
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: SovietLightWebbingBox
   id: ClothingBeltWebbingMercenaryTier1Pistol
   categories: [ HideSpawnMenu ]
   components:
@@ -815,6 +1045,10 @@
       prob: 0.5
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
+    - id: PirateGrenadeSpawnerT1FB
+      prob: 0.05
+    - id: PirateGrenadeSpawnerT1FB
+      prob: 0.15
     - id: Doubloon1
       prob: 0.05
     - id: PirateCashSpawner01
@@ -987,6 +1221,57 @@
       prob: 0.4
     - id: LootSpawnerMaterialsHighValueConstruction
       prob: 0.2
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: BeltAssaultBox
+  id: ClothingBeltAssaultT1LCG
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: PirateCashSpawner01
+    - id: PirateCashSpawner03
+    # Weapons
+    - id: WeaponMachineGunLCGEmpty
+      prob: 0.25
+    # Items
+    - id: WeaponMachineGunLCGEmpty
+      orGroup: AmmoMGPool
+    - id: WeaponMachineGunLCG
+      orGroup: AmmoMGPool
+    - id: MagazineChainGun
+      orGroup: AmmoMGPool
+    - id: MagazineChainGun100
+      orGroup: AmmoMGPool
+    - id: MagazineChainGun200
+      orGroup: AmmoMGPool
+    - id: MagazineChainGun250
+      orGroup: AmmoMGPool
+    - id: LootSpawnerMaterialsSurplus
+      prob: 0.9
+      amount: 8
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.6
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.4
+    - id: ClothingOuterEVASuitPirateArmoredAlt
+      prob: 0.05
+    # Bonus Loot T1
+    - id: PirateAmpulaSpawnerT3
+    - id: Doubloon5
+      prob: 0.1
+    - id: Doubloon5
+      prob: 0.1
+    - id: PirateMedSpawner02
+    - id: PirateCashSpawner01
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.5
+    - id: LootSpawnerMaterialsHighValueConstruction
+      prob: 0.25
+    - id: PirateMedSpawner01
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -1716,6 +2001,11 @@
   id: ClothingBackOreCrateTier1Mech
   categories: [ HideSpawnMenu ]
   components:
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - feet
+    sprite: /Textures/Structures/Storage/orebox.rsi
   - type: Sprite
     noRot: true
     sprite: /Textures/Structures/Storage/orebox.rsi
@@ -1730,11 +2020,6 @@
     sprintModifier: 0.5
   - type: Item
     size: Ginormous
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
   - type: SpawnItemsOnUse
     items:
     - id: WeaponGrapplingGun
@@ -1815,6 +2100,11 @@
   id: ClothingBackOreCrateTier1Cyborg
   categories: [ HideSpawnMenu ]
   components:
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - feet
+    sprite: /Textures/Structures/Storage/orebox.rsi
   - type: Sprite
     noRot: true
     sprite: /Textures/Structures/Storage/orebox.rsi
@@ -1829,11 +2119,6 @@
     sprintModifier: 0.5
   - type: Item
     size: Ginormous
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
   - type: SpawnItemsOnUse
     items:
     - id: WeaponGrapplingGun
@@ -1904,6 +2189,11 @@
   id: ClothingBackOreCrateTier2Cyborg
   categories: [ HideSpawnMenu ]
   components:
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - feet
+    sprite: /Textures/Structures/Storage/orebox.rsi
   - type: Sprite
     noRot: true
     sprite: /Textures/Structures/Storage/orebox.rsi
@@ -1918,11 +2208,6 @@
     sprintModifier: 0.5
   - type: Item
     size: Ginormous
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
   - type: SpawnItemsOnUse
     items:
     - id: WeaponGrapplingGun
@@ -2006,6 +2291,11 @@
   id: ClothingBackOreCrateTier3Mech
   categories: [ HideSpawnMenu ]
   components:
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - feet
+    sprite: /Textures/Structures/Storage/orebox.rsi
   - type: Sprite
     noRot: true
     sprite: /Textures/Structures/Storage/orebox.rsi
@@ -2020,11 +2310,6 @@
     sprintModifier: 0.5
   - type: Item
     size: Ginormous
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
   - type: SpawnItemsOnUse
     items:
     - id: WeaponGrapplingGun
@@ -2086,6 +2371,10 @@
       prob: 0.1
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
+    - id: PirateGrenadeSpawnerSmoke
+      prob: 0.05
+    - id: PirateGrenadeSpawnerSmoke
+      prob: 0.15
     - id: Doubloon5
       prob: 0.1
     - id: Doubloon5
@@ -2118,11 +2407,17 @@
     - id: CombatKnife
       prob: 0.15
     - id: WeaponLauncherM79
-      prob: 0.6
-    - id:  PouchExplosive
-      prob: 0.9
-    - id:  PouchExplosiveFilled
-      prob: 0.25
+      prob: 0.3
+      orGroup: Grenadier
+    - id: WeaponLauncherM79Biocode
+      prob: 0.5
+      orGroup: Grenadier
+    - id: BriefcaseWeaponM79Filled
+      prob: 0.20
+      orGroup: Grenadier
+    - id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncherM79
+      prob: 0.2
+      orGroup: Grenadier
     # Items
     - id: GrenadeBlastTimer
       amount: 2
@@ -2181,7 +2476,7 @@
       prob: 0.6
       orGroup: dragunovPool
     # Items
-    - id: MagazineDragunov
+    - id: MagazineDragunovSP
       amount: 2
       prob: 0.3
       orGroup: dragunovAmmoPool
@@ -2315,6 +2610,10 @@
       orGroup: PirateHardPool
     # Bonus Loot T2
     - id: PirateAmpulaSpawnerT2
+    - id: PirateGrenadeSpawnerT2Veteran
+      prob: 0.05
+    - id: PirateGrenadeSpawnerT2Veteran
+      prob: 0.15
     - id: Doubloon1
       prob: 0.05
     - id: Doubloon5
@@ -2353,9 +2652,9 @@
     sprite: _Starlight/Objects/Weapons/Melee/forged_buckler_shield.rsi
     inhandVisuals:
       left:
-      - state: inhand-left
+      - state: base
       right:
-      - state: inhand-right
+      - state: base
   - type: SpawnItemsOnUse
     items:
     # Cash
@@ -2442,6 +2741,10 @@
       prob: 0.05
       orGroup: SalvHardPool2
     # Bonus Loot
+    - id: PirateGrenadeSpawnerT1Veteran
+      prob: 0.05
+    - id: PirateGrenadeSpawnerT1Veteran
+      prob: 0.15
     - id: Doubloon1
       prob: 0.05
     - id: PirateCashSpawner01
@@ -2518,6 +2821,10 @@
       prob: 0.2
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
+    - id: PirateGrenadeSpawnerT1Veteran
+      prob: 0.05
+    - id: PirateGrenadeSpawnerT1Veteran
+      prob: 0.15
     - id: Doubloon1
       prob: 0.05
     - id: PirateCashSpawner01
@@ -2565,6 +2872,10 @@
       prob: 0.05
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
+    - id: PirateGrenadeSpawnerT3
+      prob: 0.05
+    - id: PirateGrenadeSpawnerT3
+      prob: 0.15
     - id: Doubloon5
       prob: 0.1
     - id: Doubloon5
@@ -2608,6 +2919,10 @@
       prob: 0.05
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
+    - id: PirateGrenadeSpawnerT3
+      prob: 0.05
+    - id: PirateGrenadeSpawnerT3
+      prob: 0.15
     - id: Doubloon5
       prob: 0.1
     - id: Doubloon5
@@ -2767,6 +3082,10 @@
       orGroup: ScafPool
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
+    - id: PirateGrenadeSpawnerT3
+      prob: 0.05
+    - id: PirateGrenadeSpawnerT3
+      prob: 0.15
     - id: Doubloon5
       prob: 0.1
     - id: Doubloon5
@@ -2902,8 +3221,8 @@
     - id: PirateCashSpawner01
     - id: LootSpawnerMedicalMinor
       prob: 0.7
-    - id: Catwalk
-      prob: 0.5
+    - id: ReviverImplant
+      prob: 0.3
     - id: JugDexPlusSaline
       prob: 0.15
     - id: PirateMedSpawner01
@@ -2949,6 +3268,10 @@
       prob: 0.05
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
+    - id: PirateGrenadeSpawnerT3
+      prob: 0.05
+    - id: PirateGrenadeSpawnerT3
+      prob: 0.15
     - id: Doubloon5
       prob: 0.1
     - id: Doubloon5
@@ -3593,6 +3916,10 @@
     - id: ClothingOuterHardsuitPrivateer
       prob: 0.05
     # Bonus Loot T4
+    - id: PirateGrenadeSpawnerSmoke
+      prob: 0.05
+    - id: PirateGrenadeSpawnerSmoke
+      prob: 0.15
     - id: Doubloon5
       prob: 0.1
     - id: Doubloon5
@@ -3695,6 +4022,11 @@
   id: ClothingBackOreCrateBoss
   categories: [ HideSpawnMenu ]
   components:
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - feet
+    sprite: /Textures/Structures/Storage/orebox.rsi
   - type: Sprite
     noRot: true
     sprite: /Textures/Structures/Storage/orebox.rsi
@@ -3709,11 +4041,6 @@
     sprintModifier: 0.5
   - type: Item
     size: Ginormous
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
   - type: SpawnItemsOnUse
     items:
     - id: WeaponGrapplingGun

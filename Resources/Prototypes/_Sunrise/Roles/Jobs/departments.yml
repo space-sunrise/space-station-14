@@ -59,6 +59,7 @@
   # - PrisonPilot
   editorHidden: true
   manifestHidden: true
+  primary: false
 
 - type: department
   id: CentralCommand
@@ -84,4 +85,13 @@
   - ERTSecurity
   - ERTEngineer
   - DeathSquad
+  editorHidden: true
+
+- type: department
+  id: TSF
+  name: department-TSF
+  description: department-TSF-description
+  color: "#22a7ff"
+  roles:
+  - TSFMarine
   editorHidden: true

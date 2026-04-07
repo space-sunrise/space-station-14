@@ -1,10 +1,13 @@
+using System.Linq;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.CartridgeLoader;
 using Content.Server.PDA.Ringer;
 using Content.Server.Station.Systems;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
+using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 using Robust.Shared.Prototypes;
 
@@ -24,15 +27,19 @@ public sealed partial class MessengerCartridgeSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly RingerSystem _ringer = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private ISawmill Sawmill { get; set; } = default!;
     private const string MessengerFrequencyId = "Messenger";
+    private bool _photoUploadEnabled = true;
 
     public override void Initialize()
     {
         base.Initialize();
 
         Sawmill = _logManager.GetSawmill("messenger.cartridge");
+
+        _cfg.OnValueChanged(SunriseCCVars.PhotoUploadEnabled, value => _photoUploadEnabled = value, true);
 
         SubscribeLocalEvent<MessengerCartridgeComponent, CartridgeMessageEvent>(OnUiMessage);
         SubscribeLocalEvent<MessengerCartridgeComponent, CartridgeUiReadyEvent>(OnUiReady);
@@ -51,6 +58,15 @@ public sealed partial class MessengerCartridgeSystem : EntitySystem
         while (query.MoveNext(out var uid, out var component))
         {
             if (component.LoaderUid == null)
+                continue;
+
+            if (!TryComp<CartridgeLoaderComponent>(component.LoaderUid.Value, out var loader))
+                continue;
+
+            var isActive = loader.ActiveProgram == uid;
+            var isBackground = loader.BackgroundPrograms.Contains(uid);
+
+            if (!isActive && !isBackground)
                 continue;
 
             if (component.LastStatusCheck.HasValue)
@@ -119,5 +135,26 @@ public sealed partial class MessengerCartridgeSystem : EntitySystem
         {
             _deviceNetwork.SetTransmitFrequency(loaderUid, originalFrequency.Value, deviceNetwork);
         }
+    }
+
+    /// <summary>
+    /// Пытается найти станцию для КПК. Если КПК не на станции, ищет любую станцию на той же карте.
+    /// </summary>
+    private EntityUid? GetBestStation(EntityUid pdaUid)
+    {
+        var station = _stationSystem.GetOwningStation(pdaUid);
+        if (station != null)
+            return station;
+
+        var xform = Transform(pdaUid);
+        var mapId = xform.MapID;
+
+        foreach (var s in _stationSystem.GetStations())
+        {
+            if (Transform(s).MapID == mapId)
+                return s;
+        }
+
+        return _stationSystem.GetStations().FirstOrDefault();
     }
 }

@@ -1,0 +1,12 @@
+- type: entity
+  id: SunriseArrivalsAttendant
+  parent: Intercom
+  components:
+  - type: TTS
+    voice: IgnatiaFlootravel
+  - type: SunriseArrivalsAttendant
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: Intercom
+    supportedChannels:
+    - Service

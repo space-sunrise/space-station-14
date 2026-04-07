@@ -15,4 +15,27 @@ public sealed partial class DatasetVocalizerComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<LocalizedDatasetPrototype> Dataset;
+
+    // Sunrise-Start
+    /// <summary>
+    /// Optional override for <see cref="VocalizerComponent.MinVocalizeInterval"/>.
+    /// If null, the existing value is kept.
+    /// </summary>
+    [DataField]
+    public TimeSpan? MinVocalizeInterval;
+
+    /// <summary>
+    /// Optional override for <see cref="VocalizerComponent.MaxVocalizeInterval"/>.
+    /// If null, the existing value is kept.
+    /// </summary>
+    [DataField]
+    public TimeSpan? MaxVocalizeInterval;
+
+    /// <summary>
+    /// Optional override for <see cref="VocalizerComponent.HideChat"/>.
+    /// If null, the existing value is kept.
+    /// </summary>
+    [DataField]
+    public bool? HideChat;
+    // Sunrise-End
 }

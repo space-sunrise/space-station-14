@@ -51,3 +51,7 @@ ent-ClothingBackpackDuffelWeaponSubMachineGunWt550Filled = Bundle WT550
     .desc = WT550 with 3 raspy magazines.
 ent-ClothingBackpackDuffelWeaponLightMachineGunMG42 = Bundle mg342
     .desc = MG-342 with 2 raspy magazines.
+ent-ClothingBackpackDuffelMilitaryBundlePirateEva = Pirate EVA bundle
+    .desc = Contains the old pirate EVA suit.
+ent-ClothingBackpackDuffelMilitaryBundleScaf = Scaf bundle
+    .desc = Contains the old combat EVA suit.

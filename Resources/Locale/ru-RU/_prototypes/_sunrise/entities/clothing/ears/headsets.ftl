@@ -30,3 +30,10 @@ ent-ClothingHeadsetFreelanceNoKey = { ent-ClothingHeadsetFreelance }
 ent-ClothingHeadsetAltSyndicateNoKey = { ent-ClothingHeadsetAltSyndicate }
     .suffix = Без ключей
     .desc = { ent-ClothingHeadsetAltSyndicate.desc }
+ent-ClothingHeadsetAltDeathSquad = полноразмерная гарнитура ЭС
+    .desc = Гарнитура, принадлежащая неизвестному отряду, при одном взгляде на неё кровь застывает в жилах, а сердце замирает от страха.
+ent-ClothingHeadsetAltERT = полноразмерная гарнитура ОБР
+    .desc = Гарнитура, разработанная для бойцов Отряда Быстрого Реагирования, позволяет чётко слышать приказы товарищей, не отвлекаясь от боя.
+ent-ClothingHeadsetAltSpecOpsOfficer = полноразмерная гарнитура ОСО
+    .desc = Гарнитура для офицера специальных операций предназначена для управления и координации спецопераций в секторе, вам лучше не знать, о чём говорят по этой рации.
+

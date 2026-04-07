@@ -9,7 +9,7 @@
         VerticalExpand="True">
         <BoxContainer
             Orientation="Vertical"
-            SetWidth="200"
+            SetWidth="220"
             VerticalExpand="True">
             <BoxContainer
                 HorizontalExpand="True"
@@ -30,16 +30,27 @@
                 PlaceHolder="{Loc 'messenger-search-placeholder'}" />
             <BoxContainer
                 HorizontalExpand="True"
-                Orientation="Horizontal"
+                Orientation="Vertical"
                 Margin="4,2">
-                <Button
-                    Name="PersonalChatsTab"
-                    Text="{Loc 'messenger-tab-personal'}"
+                <BoxContainer
                     HorizontalExpand="True"
-                    ToggleMode="True" />
+                    Orientation="Horizontal">
+                    <Button
+                        Name="PersonalChatsTab"
+                        Text="{Loc 'messenger-tab-personal'}"
+                        HorizontalExpand="True"
+                        SizeFlagsStretchRatio="1"
+                        ToggleMode="True" />
+                    <Button
+                        Name="GroupChatsTab"
+                        Text="{Loc 'messenger-tab-groups'}"
+                        HorizontalExpand="True"
+                        SizeFlagsStretchRatio="1"
+                        ToggleMode="True" />
+                </BoxContainer>
                 <Button
-                    Name="GroupChatsTab"
-                    Text="{Loc 'messenger-tab-groups'}"
+                    Name="InvitesTab"
+                    Text="{Loc 'messenger-tab-invites'}"
                     HorizontalExpand="True"
                     ToggleMode="True" />
             </BoxContainer>
@@ -103,16 +114,28 @@
                         Orientation="Vertical" />
                 </ScrollContainer>
                 <PanelContainer StyleClasses="LowDivider" SetWidth="2" VerticalExpand="True" />
-                <ScrollContainer
+                <BoxContainer
                     HorizontalExpand="True"
                     Name="MembersContainer"
+                    Orientation="Vertical"
                     VerticalExpand="True"
                     Visible="False">
-                    <BoxContainer
+                    <ScrollContainer
                         HorizontalExpand="True"
-                        Name="MembersList"
-                        Orientation="Vertical" />
-                </ScrollContainer>
+                        VerticalExpand="True">
+                        <BoxContainer
+                            HorizontalExpand="True"
+                            Name="MembersList"
+                            Orientation="Vertical" />
+                    </ScrollContainer>
+                    <Button
+                        Disabled="True"
+                        HorizontalExpand="True"
+                        Margin="2,4,2,2"
+                        Name="AddMemberButton"
+                        Text="{Loc 'messenger-add-member-button'}"
+                        Visible="False" />
+                </BoxContainer>
             </BoxContainer>
             <PanelContainer StyleClasses="LowDivider" Margin="4 2" />
             <BoxContainer
@@ -126,6 +149,12 @@
                     HorizontalExpand="True"
                     Name="MessageInput"
                     PlaceHolder="{Loc 'messenger-message-placeholder'}" />
+                <Button
+                    Name="PhotoButton"
+                    Text="▣"
+                    SetWidth="30"
+                    Margin="4,0,0,0"
+                    ToolTip="{Loc 'messenger-photo-button-tooltip'}" />
                 <Button
                     Name="EmojiButton"
                     Text="☻"

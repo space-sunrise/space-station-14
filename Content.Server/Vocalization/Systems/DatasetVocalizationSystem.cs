@@ -6,7 +6,7 @@ using Robust.Shared.Random;
 namespace Content.Server.Vocalization.Systems;
 
 /// <inheritdoc cref="DatasetVocalizerComponent"/>
-public sealed class DatasetVocalizationSystem : EntitySystem
+public sealed partial class DatasetVocalizationSystem : EntitySystem    // Sunrise-Edit
 {
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -16,6 +16,10 @@ public sealed class DatasetVocalizationSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<DatasetVocalizerComponent, TryVocalizeEvent>(OnTryVocalize);
+
+        // Sunrise-Start
+        InitializeSunrise();
+        // Sunrise-End
     }
 
     private void OnTryVocalize(Entity<DatasetVocalizerComponent> ent, ref TryVocalizeEvent args)

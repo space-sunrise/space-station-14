@@ -1,0 +1,167 @@
+- type: localizedDataset
+  id: MessengerSpamCasinoSenders
+  values:
+    prefix: messenger-spam-casino-sender-
+    count: 4
+
+- type: localizedDataset
+  id: MessengerSpamCasinoMessages
+  values:
+    prefix: messenger-spam-casino-message-
+    count: 7
+
+- type: localizedDataset
+  id: MessengerSpamDatingSenders
+  values:
+    prefix: messenger-spam-dating-sender-
+    count: 7
+
+- type: localizedDataset
+  id: MessengerSpamDatingMessages
+  values:
+    prefix: messenger-spam-dating-message-
+    count: 19
+
+- type: localizedDataset
+  id: MessengerSpamFinanceSenders
+  values:
+    prefix: messenger-spam-finance-sender-
+    count: 5
+
+- type: localizedDataset
+  id: MessengerSpamFinanceMessages
+  values:
+    prefix: messenger-spam-finance-message-
+    count: 6
+
+- type: localizedDataset
+  id: MessengerSpamMedicineSenders
+  values:
+    prefix: messenger-spam-medicine-sender-
+    count: 3
+
+- type: localizedDataset
+  id: MessengerSpamMedicineMessages
+  values:
+    prefix: messenger-spam-medicine-message-
+    count: 4
+
+- type: localizedDataset
+  id: MessengerSpamPrinceSenders
+  values:
+    prefix: messenger-spam-prince-sender-
+    count: 5
+
+- type: localizedDataset
+  id: MessengerSpamPrinceNames
+  values:
+    prefix: messenger-spam-prince-name-
+    count: 6
+
+- type: localizedDataset
+  id: MessengerSpamPrinceSurnames
+  values:
+    prefix: messenger-spam-prince-surname-
+    count: 6
+
+- type: localizedDataset
+  id: MessengerSpamPrinceMessages
+  values:
+    prefix: messenger-spam-prince-message-
+    count: 5
+
+- type: localizedDataset
+  id: MessengerSpamAdultSenders
+  values:
+    prefix: messenger-spam-adult-sender-
+    count: 4
+
+- type: localizedDataset
+  id: MessengerSpamAdultMessages
+  values:
+    prefix: messenger-spam-adult-message-
+    count: 4
+
+- type: localizedDataset
+  id: MessengerSpamLotterySenders
+  values:
+    prefix: messenger-spam-lottery-sender-
+    count: 4
+
+- type: localizedDataset
+  id: MessengerSpamLotteryMessages
+  values:
+    prefix: messenger-spam-lottery-message-
+    count: 20
+
+- type: localizedDataset
+  id: MessengerSpamEventsSenders
+  values:
+    prefix: messenger-spam-events-sender-
+    count: 4
+
+- type: localizedDataset
+  id: MessengerSpamEventsMessages
+  values:
+    prefix: messenger-spam-events-message-
+    count: 5
+
+- type: localizedDataset
+  id: MessengerSpamEmergencySenders
+  values:
+    prefix: messenger-spam-emergency-sender-
+    count: 4
+
+- type: localizedDataset
+  id: MessengerSpamEmergencyMessages
+  values:
+    prefix: messenger-spam-emergency-message-
+    count: 4
+
+- type: localizedDataset
+  id: MessengerSpamCultSenders
+  values:
+    prefix: messenger-spam-cult-sender-
+    count: 5
+
+- type: localizedDataset
+  id: MessengerSpamCultMessages
+  values:
+    prefix: messenger-spam-cult-message-
+    count: 7
+
+- type: localizedDataset
+  id: MessengerSpamPetsSenders
+  values:
+    prefix: messenger-spam-pets-sender-
+    count: 4
+
+- type: localizedDataset
+  id: MessengerSpamPetsMessages
+  values:
+    prefix: messenger-spam-pets-message-
+    count: 6
+
+- type: localizedDataset
+  id: MessengerSpamWeaponsSenders
+  values:
+    prefix: messenger-spam-weapons-sender-
+    count: 5
+
+- type: localizedDataset
+  id: MessengerSpamWeaponsMessages
+  values:
+    prefix: messenger-spam-weapons-message-
+    count: 5
+
+- type: localizedDataset
+  id: MessengerSpamErrorSenders
+  values:
+    prefix: messenger-spam-error-sender-
+    count: 4
+
+- type: localizedDataset
+  id: MessengerSpamErrorMessages
+  values:
+    prefix: messenger-spam-error-message-
+    count: 6

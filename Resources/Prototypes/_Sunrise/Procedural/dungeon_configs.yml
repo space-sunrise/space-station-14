@@ -7,10 +7,15 @@
       tags:
       - SalvageSyndicateBase
     presets:
-    - SyndicateBaseLarge
+    - SyndicateBaseAnyChanceSmall
+    - SyndicateBaseMedium
+    - SpaceShip
+    - Bucket
+    - Wow
+    - Tall
 
   - !type:CorridorDunGen
-    width: 3
+    width: 5
     tile: FloorDark
 
   - !type:DungeonEntranceDunGen
@@ -45,7 +50,7 @@
     contents: SyndicateBaseAirlock
 
   - !type:JunctionDunGen
-    width: 3
+    width: 5
     tile: FloorDark
     contents: SyndicateBaseAirlock
 
@@ -177,3 +182,409 @@
       weight: 0.5
     - id: VendingMachineWallMedical
       weight: 0.5
+
+# Sunrise: Soviet expedition
+- type: dungeonConfig
+  id: SovietDungeon
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - SovietDungeon
+    presets:
+    - SovietBucket
+    - SovietWow
+    - SovietSpaceShip
+    - SovietTall
+    - SovietAnyChance
+
+  - !type:CorridorDunGen
+    width: 5
+    tile: FloorConcreteMono
+
+  - !type:DungeonEntranceDunGen
+    count: 5
+    tile: FloorConcreteMono
+    contents: SovietDungeonEntrance
+
+  - !type:RoomEntranceDunGen
+    tile: FloorConcreteMono
+    contents: SovietDungeonRoomEntrance
+
+  - !type:EntranceFlankDunGen
+    tile: FloorConcreteMono
+    contents: SovietDungeonWindow
+
+  - !type:WallMountDunGen
+    tile: FloorConcreteMono
+    contents: SovietDungeonWalls
+
+  - !type:BoundaryWallDunGen
+    tile: FloorConcreteMono
+    wall: WallBrick
+    cornerWall: WallBrick
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
+  - !type:CornerClutterDunGen
+    contents: BaseClutter
+
+  - !type:CorridorClutterDunGen
+    contents: SovietFloorLights
+    chance: 0.05
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+
+#========================================================================
+
+- type: dungeonConfig
+  id: SovietDungeonWEH
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - SovietDungeonWEH
+    presets:
+    - SovietWEHBucket
+    - SovietWEHWow
+    - SovietWEHSpaceShip
+    - SovietWEHTall
+    - SovietWEHAnyChance
+
+  - !type:CorridorDunGen
+    width: 4
+    tile: FloorConcrete
+
+  - !type:DungeonEntranceDunGen
+    count: 5
+    tile: FloorOldConcreteMono
+    contents: SovietDungeonEntrance
+
+  - !type:RoomEntranceDunGen
+    tile: FloorOldConcrete
+    contents: SovietDungeonRoomEntrance
+
+  - !type:EntranceFlankDunGen
+    tile: FloorOldConcrete
+    contents: SovietDungeonWindow
+
+  - !type:WallMountDunGen
+    tile: FloorOldConcrete
+    contents: SovietDungeonWalls
+
+  - !type:BoundaryWallDunGen
+    tile: FloorGrayConcrete
+    wall: WallReinforcedRust
+    cornerWall: WallReinforced
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
+  - !type:CornerClutterDunGen
+    contents: BaseClutter
+
+  - !type:CorridorClutterDunGen
+    contents: SovietCorridorsWeh
+    chance: 0.55
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: OldConcreteTrimLineS
+      East: OldConcreteTrimLineE
+      North: OldConcreteTrimLineN
+      West: OldConcreteTrimLineW
+    cornerDecals:
+      SouthEast: OldConcreteTrimCornerSe
+      SouthWest: OldConcreteTrimCornerSw
+      NorthEast: OldConcreteTrimCornerNe
+      NorthWest: OldConcreteTrimCornerNw
+    pocketDecals:
+      SouthWest: OldConcreteTrimInnerSw
+      SouthEast: OldConcreteTrimInnerSe
+      NorthWest: OldConcreteTrimInnerNw
+      NorthEast: OldConcreteTrimInnerNe
+
+- type: entityTable
+  id: SovietDungeonEntranceWeh
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: AirlockHatch
+
+- type: entityTable
+  id: SovietDungeonRoomEntranceWeh
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: AirlockHatch
+
+- type: entityTable
+  id: SovietDungeonWindowWeh
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: WallSolidRust
+    - id: PoweredSmallLight
+
+- type: entityTable
+  id: SovietDungeonWallsWeh
+  table: !type:GroupSelector
+    children:
+    # Posters
+    - id: PosterContrabandCommunistState
+    - id: PosterContrabandPunchShit
+    - id: PosterContrabandRevolt
+    - id: PosterContrabandRise
+    - id: PosterLegitWorkForAFuture
+
+- type: entityTable
+  id: SovietCorridorsWeh
+  table: !type:GroupSelector
+    children:
+    # Posters
+    - id: VendingMachineSovietSoda
+    - id: MachineFrameDestroyed
+    - id: Rack
+      weight: 4
+    - id: PoweredLightPostSmall
+      weight: 4
+    - id: Table
+      weight: 4
+    - id: BannerSovietRegular
+    - id: DecalSpawnerBloodSplatters
+      weight: 6
+    - id: MobTick
+      weight: 8
+    - id: GenericTank
+      weight: 3
+    - id: ClosetRadiationSuitFilled
+    - id: ClosetRadiationSuit
+    - id: DecalSpawnerDirtWide
+      weight: 15
+    - id: DecalSpawnerGraffiti
+      weight: 15
+    - id: RandomSpawner
+      weight: 15
+    - id: OreBox
+      weight: 12
+    - id: Barricade
+      weight: 10
+    - id: MaintenancePlantSpawner
+      weight: 6
+    - id: MaintenanceWeaponSpawner
+    - id: MaintenanceToolSpawner
+      weight: 6
+    - id: RandomMercenaryCorpseSpawner
+    - id: RandomSovietCorpseSpawner
+      weight: 0.25
+    - id: RandomArtifactSpawner20
+    - id: SpawnMobOreCrab
+      weight: 3
+    - id: MobQuartzCrab
+      weight: 1
+    - id: MobSaltCrab
+      weight: 1
+    - id: MobPlasmaCrab
+      weight: 1
+    - id: MobIronCrab
+      weight: 1
+    - id: LootSpawnerMedicalMinor
+    - id: LootSpawnerMaterialsSupplementary
+    - id: SalvageCanisterSpawner
+      weight: 0.8
+    - id: OxygenCanister
+      weight: 0.8
+    - id: NitrogenCanister
+      weight: 0.8
+    - id: PlasmaCanister
+      weight: 0.8
+    - id: SalvageSpawnerScrapCommon
+    - id: SalvageSpawnerScrapValuable
+    - id: SalvageSpawnerTreasure
+    - id: SalvageLootSpawner
+    - id: BaseBarrelChemRadioactiveFilledUranium
+      weight: 0.8
+    - id: Bonfire
+      weight: 7
+    - id: BarrelFlaming
+      weight: 3
+    - id: AcousticGuitarInstrument
+    - id: SpawnerCrateUSSP
+      weight: 0.35
+    - id: LandMineExplosive
+    - id: PuddleBlood
+    - id: PuddleVomit
+    - id: BarrelChemFilledLube
+      weight: 0.8
+    - id: BarrelChemEmpty
+      weight: 0.8
+    - id: BarrelChemFilledPhosphorus
+      weight: 0.8
+    - id: BarrelChemFilledChlorine
+      weight: 0.8
+    - id: ClothingOuterArmorSovietPlateRandomSpawner
+      weight: 0.3
+    - id: SovietSquadPatrol
+      weight: 0.005
+    - id: MobSovietT2Finka
+      weight: 0.1
+    - id: MobSovietT2Bottle
+      weight: 0.1
+    - id: MobSovietBearAlt
+      weight: 0.08
+    - id: MobSovietT1MosinAlt
+      weight: 0.03
+    - id: MobSovietT1Mosin
+      weight: 0.03
+    - id: MobSovietT1SMGAlt
+      weight: 0.01
+    - id: MobSovietT2Rifle
+      weight: 0.005
+    - id: MobRandomSovietUSSPCorpse
+      weight: 0.005
+#========================================================================
+
+# Sunrise: Ship wreck expedition
+- type: dungeonConfig
+  id: ShipWreckDungeon
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - ShipWreck
+    presets:
+    - Bucket
+    - Wow
+    - SpaceShip
+    - Tall
+
+#========================================================================
+
+- type: dungeonConfig
+  id: SovietStrategicResourcesWarehouseDungeon
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - SovietWarehouse
+    presets:
+    - Arena
+
+  - !type:CorridorDunGen
+    width: 5
+    tile: FloorConcreteMono
+
+  - !type:DungeonEntranceDunGen
+    count: 5
+    tile: FloorConcreteMono
+    contents: SovietDungeonEntrance
+
+  - !type:RoomEntranceDunGen
+    tile: FloorConcreteMono
+    contents: SovietDungeonRoomEntrance
+
+  - !type:EntranceFlankDunGen
+    tile: FloorConcreteMono
+    contents: SovietDungeonWindow
+
+  - !type:WallMountDunGen
+    tile: FloorConcreteMono
+    contents: SovietDungeonWalls
+
+  - !type:BoundaryWallDunGen
+    tile: FloorConcreteMono
+    wall: WallBrick
+    cornerWall: WallBrick
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
+  - !type:CornerClutterDunGen
+    contents: BaseClutter
+
+  - !type:CorridorClutterDunGen
+    contents: SovietFloorLights
+    chance: 0.05
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+
+- type: entityTable
+  id: SovietDungeonRoomEntrance
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: ScrapAirlock1
+
+- type: entityTable
+  id: SovietDungeonWindow
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: WallBrick
+    - id: Grille
+    - id: MiningWindow
+
+- type: entityTable
+  id: SovietDungeonEntrance
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: ScrapAirlock1
+    - id: LandMineModular
+      prob: 0.03
+
+- type: entityTable
+  id: SovietDungeonWalls
+  table: !type:GroupSelector
+    children:
+    - id: IntercomConstructed
+      weight: 0.2
+    - id: StationMapBroken
+      weight: 0.15
+    - id: PosterBroken
+      weight: 2
+    - id: RandomPosterContraband
+      weight: 2
+    - id: PoweredWarmSmallLight
+      weight: 0.7
+    - id: AlwaysPoweredStrobeDimLight
+      weight: 0.35
+    - id: PoweredlightEmpty
+      weight: 0.6
+
+- type: entityTable
+  id: SovietFloorLights
+  table: !type:GroupSelector
+    children:
+    - id: PoweredFloorlight

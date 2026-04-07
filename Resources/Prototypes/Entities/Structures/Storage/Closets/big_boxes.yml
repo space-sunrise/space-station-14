@@ -68,11 +68,11 @@
     - type: CardboardBox
       quiet: true
     - type: Stealth
-      mirage: false # Sunrise-Edit
+      mirage: true # Sunrise-Edit
       hadOutline: true
       examineThreshold: 0.9 # Sunrise-Edit
     - type: StealthOnMove
-      passiveVisibilityRate: -1 # very useful for going around the station concealed, if you start jitterstrafing you get seen  # Sunrise-Edit
+      passiveVisibilityRate: -1 # very useful for going around the station concealed, if you start jitterstrafing you get seen
       movementVisibilityRate: 0.20
 
 - type: entity

@@ -2,6 +2,7 @@ using Content.Server._Sunrise.Messenger;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.PDA;
 
 namespace Content.Server._Sunrise.CartridgeLoader.Cartridges;
 
@@ -10,48 +11,80 @@ namespace Content.Server._Sunrise.CartridgeLoader.Cartridges;
 /// </summary>
 public sealed partial class MessengerCartridgeSystem
 {
-    private void CheckServerStatus(EntityUid uid, MessengerCartridgeComponent component, EntityUid loaderUid)
+    private void CheckServerStatus(EntityUid uid, MessengerCartridgeComponent component, EntityUid loaderUid, bool updateUi = true)
     {
         if (!TryGetPdaAndDeviceNetwork(loaderUid, out var pdaUid, out _))
+        {
+            if (updateUi)
+                UpdateUiState(uid, loaderUid, component);
             return;
+        }
 
-        var station = _stationSystem.GetOwningStation(pdaUid);
+        var station = GetBestStation(pdaUid);
         if (station == null)
         {
             component.ServerAddress = null;
             component.IsRegistered = false;
+            component.UserId = null;
             component.LastRegistrationAttempt = null;
-            UpdateUiState(uid, loaderUid, component);
+            component.Users.Clear();
+            component.Groups.Clear();
+            component.MessageHistory.Clear();
+            component.ServerUnreadCounts.Clear();
+            if (updateUi)
+                UpdateUiState(uid, loaderUid, component);
             return;
         }
 
         if (!_singletonServer.TryGetActiveServerAddress<MessengerServerComponent>(station.Value, out var serverAddress))
         {
-            component.ServerAddress = null;
-            component.IsRegistered = false;
-            component.LastRegistrationAttempt = null;
-            UpdateUiState(uid, loaderUid, component);
+            if (component.ServerAddress != null || component.IsRegistered)
+            {
+                component.ServerAddress = null;
+                component.IsRegistered = false;
+                component.UserId = null;
+                component.LastRegistrationAttempt = null;
+                component.Users.Clear();
+                component.Groups.Clear();
+                component.MessageHistory.Clear();
+                component.ServerUnreadCounts.Clear();
+                if (updateUi)
+                    UpdateUiState(uid, loaderUid, component);
+            }
             return;
         }
 
         if (component.ServerAddress != serverAddress)
         {
+            var wasNull = component.ServerAddress == null;
+            var wasDifferent = !wasNull && component.ServerAddress != serverAddress;
+
             component.ServerAddress = serverAddress;
             component.IsRegistered = false;
             component.UserId = null;
             component.LastRegistrationAttempt = null;
-            if (TryGetPdaAndDeviceNetwork(loaderUid, out _, out var deviceNetwork))
+
+            if (wasDifferent)
+            {
+                component.Users.Clear();
+                component.Groups.Clear();
+                component.MessageHistory.Clear();
+                component.ServerUnreadCounts.Clear();
+            }
+
+            if (wasNull && TryGetPdaAndDeviceNetwork(loaderUid, out _, out var deviceNetwork))
+            {
+                component.LastUsersUpdate = null;
+                RequestUsers(uid, component, loaderUid, deviceNetwork);
+                RequestGroups(uid, component, loaderUid, deviceNetwork);
+            }
+
+            if (TryGetPdaAndDeviceNetwork(loaderUid, out _, out _))
             {
                 TryConnectToServer(uid, component, loaderUid);
             }
-            UpdateUiState(uid, loaderUid, component);
-        }
-        else if (component.ServerAddress == null)
-        {
-            component.IsRegistered = false;
-            component.UserId = null;
-            component.LastRegistrationAttempt = null;
-            UpdateUiState(uid, loaderUid, component);
+            if (updateUi)
+                UpdateUiState(uid, loaderUid, component);
         }
         else if (!component.IsRegistered)
         {
@@ -59,48 +92,77 @@ public sealed partial class MessengerCartridgeSystem
             {
                 TryConnectToServer(uid, component, loaderUid);
             }
-            UpdateUiState(uid, loaderUid, component);
+            if (updateUi)
+                UpdateUiState(uid, loaderUid, component);
         }
         else
         {
-            var currentTime = _gameTiming.CurTime;
-            if (!component.LastUsersUpdate.HasValue ||
-                (currentTime - component.LastUsersUpdate.Value).TotalSeconds >= 10.0)
-            {
-                component.LastUsersUpdate = currentTime;
-                if (TryGetPdaAndDeviceNetwork(loaderUid, out _, out var deviceNetwork))
-                {
-                    RequestUsers(uid, component, loaderUid, deviceNetwork);
-                    RequestGroups(uid, component, loaderUid, deviceNetwork);
-                }
-            }
-            UpdateUiState(uid, loaderUid, component);
+            if (updateUi)
+                UpdateUiState(uid, loaderUid, component);
         }
     }
 
     private void OnCartridgeActivated(EntityUid uid, MessengerCartridgeComponent component, CartridgeActivatedEvent args)
     {
-        TryConnectToServer(uid, component, args.Loader);
+        if (component.LoaderUid == null)
+        {
+            component.LoaderUid = args.Loader;
+        }
+
+        CheckServerStatus(uid, component, args.Loader, updateUi: true);
+
+        if (!component.IsRegistered && component.ServerAddress != null)
+        {
+            if (TryGetPdaAndDeviceNetwork(args.Loader, out var pdaUid, out var deviceNetwork))
+            {
+                RegisterUser(uid, component, args.Loader, deviceNetwork, pdaUid, allowWithoutOwner: true);
+            }
+        }
     }
 
     private void OnCartridgeAdded(EntityUid uid, MessengerCartridgeComponent component, CartridgeAddedEvent args)
     {
         component.LoaderUid = args.Loader;
+        component.LastStatusCheck = null;
+
+        if (!TryGetPdaAndDeviceNetwork(args.Loader, out var pdaUid, out _))
+        {
+            return;
+        }
+
+        if (!TryComp<PdaComponent>(pdaUid, out var pda) || pda.PdaOwner == null)
+        {
+            Sawmill.Debug($"PDA {ToPrettyString(pdaUid)} has no owner, skipping background program registration");
+            return;
+        }
+
         TryConnectToServer(uid, component, args.Loader);
 
         _cartridgeLoader.RegisterBackgroundProgram(args.Loader, uid);
+
+        CheckServerStatus(uid, component, args.Loader);
     }
 
     private void OnUiReady(EntityUid uid, MessengerCartridgeComponent component, CartridgeUiReadyEvent args)
     {
-        if (!component.IsRegistered && component.ServerAddress == null)
+        if (component.LoaderUid == null)
         {
-            TryConnectToServer(uid, component, args.Loader);
+            component.LoaderUid = args.Loader;
         }
-        else
+
+        if (component.IsRegistered && component.ServerAddress != null)
         {
-            UpdateUiState(uid, args.Loader, component);
+            if (TryGetPdaAndDeviceNetwork(args.Loader, out _, out var deviceNetwork))
+            {
+                if (component.Users.Count == 0 || component.Groups.Count == 0)
+                {
+                    RequestUsers(uid, component, args.Loader, deviceNetwork);
+                    RequestGroups(uid, component, args.Loader, deviceNetwork);
+                }
+            }
         }
+
+        UpdateUiState(uid, args.Loader, component);
     }
 
     private void TryConnectToServer(EntityUid uid, MessengerCartridgeComponent component, EntityUid loaderUid)
@@ -113,7 +175,7 @@ public sealed partial class MessengerCartridgeSystem
 
         component.LoaderUid = loaderUid;
 
-        var station = _stationSystem.GetOwningStation(pdaUid);
+        var station = GetBestStation(pdaUid);
         if (station == null)
         {
             Sawmill.Warning($"No station found for PDA: {ToPrettyString(pdaUid)}");
@@ -160,12 +222,29 @@ public sealed partial class MessengerCartridgeSystem
 
         if (!component.IsRegistered)
         {
-            RegisterUser(uid, component, loaderUid, deviceNetwork, pdaUid);
+            if (TryComp<PdaComponent>(pdaUid, out var pda) && pda.PdaOwner != null)
+            {
+                RegisterUser(uid, component, loaderUid, deviceNetwork, pdaUid);
+            }
+            else
+            {
+                Sawmill.Debug($"PDA {ToPrettyString(pdaUid)} has no owner, skipping automatic registration");
+                UpdateUiState(uid, loaderUid, component);
+            }
         }
     }
 
-    private void RegisterUser(EntityUid uid, MessengerCartridgeComponent component, EntityUid loaderUid, DeviceNetworkComponent deviceNetwork, EntityUid pdaUid)
+    private void RegisterUser(EntityUid uid, MessengerCartridgeComponent component, EntityUid loaderUid, DeviceNetworkComponent deviceNetwork, EntityUid pdaUid, bool allowWithoutOwner = false)
     {
+        if (!allowWithoutOwner)
+        {
+            if (!TryComp<PdaComponent>(pdaUid, out var pda) || pda.PdaOwner == null)
+            {
+                Sawmill.Debug($"PDA {ToPrettyString(pdaUid)} has no owner, skipping automatic registration");
+                return;
+            }
+        }
+
         if (component.ServerAddress == null)
         {
             Sawmill.Warning($"Cannot register: ServerAddress is null");

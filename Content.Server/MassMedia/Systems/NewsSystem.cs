@@ -28,6 +28,8 @@ using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using Content.Shared._Sunrise.CartridgeLoader.Cartridges;
+using Content.Shared._Sunrise.SunriseCCVars;
 
 namespace Content.Server.MassMedia.Systems;
 
@@ -46,10 +48,12 @@ public sealed class NewsSystem : SharedNewsSystem
     [Dependency] private readonly DiscordWebhook _discord = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IBaseServer _baseServer = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private WebhookIdentifier? _webhookId = null;
     private Color _webhookEmbedColor;
     private bool _webhookSendDuringRound;
+    private bool _photoUploadEnabled = true;
 
     public override void Initialize()
     {
@@ -71,6 +75,7 @@ public sealed class NewsSystem : SharedNewsSystem
             }, true);
 
         _cfg.OnValueChanged(CCVars.DiscordNewsWebhookSendDuringRound, value => _webhookSendDuringRound = value, true);
+        _cfg.OnValueChanged(SunriseCCVars.PhotoUploadEnabled, value => _photoUploadEnabled = value, true);
         SubscribeLocalEvent<RoundEndMessageEvent>(OnRoundEndMessageEvent);
 
         // News writer
@@ -84,6 +89,7 @@ public sealed class NewsSystem : SharedNewsSystem
             subs.Event<NewsWriterPublishMessage>(OnWriteUiPublishMessage);
             subs.Event<NewsWriterSaveDraftMessage>(OnNewsWriterDraftUpdatedMessage);
             subs.Event<NewsWriterRequestDraftMessage>(OnRequestArticleDraftMessage);
+            subs.Event<NewsWriterRequestPhotosMessage>(OnRequestPhotosMessage);
         });
 
         // News reader
@@ -165,7 +171,11 @@ public sealed class NewsSystem : SharedNewsSystem
             return;
 
         if (!CanUse(msg.Actor, ent.Owner))
+        {
+            _popup.PopupEntity(Loc.GetString("news-write-no-access-popup"), ent, msg.Actor, PopupType.SmallCaution);
+            _audio.PlayPvs(ent.Comp.NoAccessSound, ent);
             return;
+        }
 
         ent.Comp.PublishEnabled = false;
         ent.Comp.NextPublish = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.PublishCooldown);
@@ -176,8 +186,9 @@ public sealed class NewsSystem : SharedNewsSystem
 
         var title = msg.Title.Trim();
         var content = msg.Content.Trim();
+        var photoPaths = _photoUploadEnabled ? msg.PhotoPaths : null;
 
-        if (TryAddNews(ent, title, content, out var article, authorName, msg.Actor))
+        if (TryAddNews(ent, title, content, out var article, authorName, msg.Actor, photoPaths))
         {
             _audio.PlayPvs(ent.Comp.ConfirmSound, ent);
 
@@ -197,7 +208,7 @@ public sealed class NewsSystem : SharedNewsSystem
     /// <param name="content">Content of the news article.</param>
     /// <param name="author">Author of the news article.</param>
     /// <param name="actor">Entity which caused the news article to publish. Used for admin logs.</param>
-    public bool TryAddNews(EntityUid uid, string title, string content, [NotNullWhen(true)] out NewsArticle? article, string? author = null, EntityUid? actor = null)
+    public bool TryAddNews(EntityUid uid, string title, string content, [NotNullWhen(true)] out NewsArticle? article, string? author = null, EntityUid? actor = null, List<string>? photoPaths = null)
     {
         if (!TryGetArticles(uid, out var articles))
         {
@@ -210,7 +221,8 @@ public sealed class NewsSystem : SharedNewsSystem
             Title = title.Length <= MaxTitleLength ? title : $"{title[..MaxTitleLength]}...",
             Content = content.Length <= MaxContentLength ? content : $"{content[..MaxContentLength]}...",
             Author = author,
-            ShareTime = _ticker.RoundDuration()
+            ShareTime = _ticker.RoundDuration(),
+            PhotoPaths = photoPaths?.Take(10).ToList()
         };
 
         articles.Add(article.Value);
@@ -327,7 +339,7 @@ public sealed class NewsSystem : SharedNewsSystem
         if (!TryGetArticles(ent, out var articles))
             return;
 
-        var state = new NewsWriterBoundUserInterfaceState(articles.ToArray(), ent.Comp.PublishEnabled, ent.Comp.NextPublish, ent.Comp.DraftTitle, ent.Comp.DraftContent);
+        var state = new NewsWriterBoundUserInterfaceState(articles.ToArray(), ent.Comp.PublishEnabled, ent.Comp.NextPublish, ent.Comp.DraftTitle, ent.Comp.DraftContent, ent.Comp.DraftPhotoPaths, _photoUploadEnabled);
         _ui.SetUiState(ent.Owner, NewsWriterUiKey.Key, state);
     }
 
@@ -390,11 +402,39 @@ public sealed class NewsSystem : SharedNewsSystem
     {
         ent.Comp.DraftTitle = args.DraftTitle;
         ent.Comp.DraftContent = args.DraftContent;
+        ent.Comp.DraftPhotoPaths = args.DraftPhotoPaths;
     }
 
     private void OnRequestArticleDraftMessage(Entity<NewsWriterComponent> ent, ref NewsWriterRequestDraftMessage msg)
     {
         UpdateWriterUi(ent);
+    }
+
+    private void OnRequestPhotosMessage(Entity<NewsWriterComponent> ent, ref NewsWriterRequestPhotosMessage msg)
+    {
+        var photos = new List<PhotoMetadata>();
+
+        if (!_photoUploadEnabled)
+        {
+            var emptyPhotosMsg = new NewsWriterPhotosMessage(photos);
+            _ui.ServerSendUiMessage(ent.Owner, NewsWriterUiKey.Key, emptyPhotosMsg, msg.Actor);
+            _popup.PopupEntity(Loc.GetString("news-write-upload-disabled"), ent, msg.Actor, PopupType.SmallCaution);
+            return;
+        }
+
+        // Find all PDAs or cartridges with photos on the actor
+        var query = EntityQueryEnumerator<PhotoCartridgeComponent>();
+        while (query.MoveNext(out var uid, out var photoComp))
+        {
+            // Check if this entity is child of the actor (in inventory, hands, etc.)
+            if (_transform.ContainsEntity(msg.Actor, uid))
+            {
+                photos.AddRange(photoComp.PhotoGallery.Values);
+            }
+        }
+
+        var photosMsg = new NewsWriterPhotosMessage(photos);
+        _ui.ServerSendUiMessage(ent.Owner, NewsWriterUiKey.Key, photosMsg, msg.Actor);
     }
 
     #region Discord Hook
