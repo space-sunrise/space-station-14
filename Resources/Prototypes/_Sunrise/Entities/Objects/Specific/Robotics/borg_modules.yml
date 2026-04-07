@@ -94,7 +94,7 @@
   - type: ItemBorgModule
     hands:
     - item: RadioJammerBorg
-    - item: JetpackVoidFilled
+    - item: JetpackXenoborg
     - item: trayScanner
     - item: WelderExperimental
     - item: Multitool
@@ -582,7 +582,7 @@
     - state: icon-syndicate
   - type: ItemBorgModule
     hands:
-    - item: HypoSyndicateBorgExtended
+    - item: HypoBorgSaboteurSyndicate
     - item: CloakingDevice
     - item: RadioJammerSyndicateBorg
     - item: ChameleonProjector

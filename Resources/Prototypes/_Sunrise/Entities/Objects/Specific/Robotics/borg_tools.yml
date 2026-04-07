@@ -701,13 +701,15 @@
   - type: SolutionContainerManager
     solutions:
       hypospray:
-        maxVol: 20
+        maxVol: 15
   - type: SolutionRegeneration
     solution: hypospray
     generated:
       reagents:
       - ReagentId: Nocturine
-        Quantity: 0.2
+        Quantity: 0.5
+      - ReagentId: MuteToxin
+        Quantity: 0.1
   - type: ExaminableSolution
     solution: hypospray
   - type: Injector
@@ -1079,36 +1081,6 @@
         - id: DrinkWineBottleFullBorg
   - type: ApcPowerReceiver
     needsPower: false
-
-# region BorgChassisSyndicateSpider
-
-- type: entity
-  parent: HypoBorgStandard
-  id: HypoSyndicateBorgExtended
-  name: robot hypospray
-  description: A hypospray that can switch through several reagents.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      hypospray:
-        maxVol: 10
-  - type: SolutionRegeneration
-    solution: hypospray
-    generated:
-      reagents:
-      - ReagentId: Nocturine
-        Quantity: 0.25
-  - type: SolutionRegenerationSwitcher
-    options:
-    - ReagentId: Nocturine
-      Quantity: 0.25
-    - ReagentId: Ephedrine
-      Quantity: 0.25
-    - ReagentId: Epinephrine
-      Quantity: 0.25
-    keepSolution: false
-  - type: BorgHypospray
 
 - type: entity
   parent: [BaseJammer, BaseXenoborgContraband]
