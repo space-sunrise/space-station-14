@@ -20,7 +20,6 @@
   - type: CrewMonitoringFilter
     allowedDepartmentIds:
     - Security
-    mode: Casualties
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
