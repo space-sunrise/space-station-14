@@ -45,6 +45,17 @@
 
 - type: entity
   parent: BaseMindRoleAntag
+  id: MindRoleThrall
+  name: Thrall Role
+  components:
+  - type: MindRole
+    antagPrototype: Thrall
+    roleType: TeamAntagonist
+    subtype: role-subtype-thrall
+  - type: VampireThrall
+
+- type: entity
+  parent: BaseMindRoleAntag
   id: MindRoleLoneAbductor
   name: Lone Abductor Role
   components:
