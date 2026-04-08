@@ -85,7 +85,22 @@ public sealed class LokiQueryTests
         await Pagination_UsesCursorAndDoesNotRepeat(DateOrder.Descending);
     }
 
-    private async Task Pagination_UsesCursorAndDoesNotRepeat(DateOrder order)
+    // Sunrise added start - cover global Loki cursor paging without round filters
+    [Test]
+    public async Task GlobalPagination_UsesCursorAndDoesNotRepeatAscending()
+    {
+        await Pagination_UsesCursorAndDoesNotRepeat(DateOrder.Ascending, roundScoped: false);
+    }
+
+    [Test]
+    public async Task GlobalPagination_UsesCursorAndDoesNotRepeatDescending()
+    {
+        await Pagination_UsesCursorAndDoesNotRepeat(DateOrder.Descending, roundScoped: false);
+    }
+    // Sunrise added end
+
+    // Sunrise edit start - exercise cursor pagination for round-scoped and global Loki queries
+    private async Task Pagination_UsesCursorAndDoesNotRepeat(DateOrder order, bool roundScoped = true)
     {
         await using var fakeLoki = new FakeLokiServer(request =>
         {
@@ -103,7 +118,10 @@ public sealed class LokiQueryTests
 
         await using var pair = await PoolManager.GetServerClient(LokiTestSettings);
         var server = pair.Server;
-        var roundId = await CreateRoundAsync(server, $"loki-pagination-{order}");
+        int? roundId = null;
+        if (roundScoped)
+            roundId = await CreateRoundAsync(server, $"loki-pagination-{order}");
+
         await ConfigureLokiAsync(server, fakeLoki.Url);
 
         var adminLogs = server.ResolveDependency<IAdminLogManager>();
@@ -132,9 +150,24 @@ public sealed class LokiQueryTests
 
         await pair.CleanReturnAsync();
     }
+    // Sunrise edit end
 
     [Test]
     public async Task AnyPlayersFilter_FetchesAdditionalPagesUntilBatchIsFilled()
+    {
+        await AnyPlayersFilter_FetchesAdditionalPagesUntilBatchIsFilled(roundScoped: true);
+    }
+
+    // Sunrise added start - cover additional Loki paging without round filters
+    [Test]
+    public async Task AnyPlayersFilter_WithoutRound_FetchesAdditionalPagesUntilBatchIsFilled()
+    {
+        await AnyPlayersFilter_FetchesAdditionalPagesUntilBatchIsFilled(roundScoped: false);
+    }
+    // Sunrise added end
+
+    // Sunrise edit start - allow additional page fetching for both round and global Loki queries
+    private async Task AnyPlayersFilter_FetchesAdditionalPagesUntilBatchIsFilled(bool roundScoped)
     {
         var targetPlayer = Guid.NewGuid();
         var otherPlayer = Guid.NewGuid();
@@ -148,7 +181,10 @@ public sealed class LokiQueryTests
 
         await using var pair = await PoolManager.GetServerClient(LokiTestSettings);
         var server = pair.Server;
-        var roundId = await CreateRoundAsync(server, "loki-player-fill");
+        int? roundId = null;
+        if (roundScoped)
+            roundId = await CreateRoundAsync(server, "loki-player-fill");
+
         await ConfigureLokiAsync(server, fakeLoki.Url);
 
         var adminLogs = server.ResolveDependency<IAdminLogManager>();
@@ -166,6 +202,54 @@ public sealed class LokiQueryTests
 
         await pair.CleanReturnAsync();
     }
+    // Sunrise edit end
+
+    // Sunrise added start - malformed Loki rows should not abort valid records in the same batch
+    [Test]
+    public async Task MalformedLokiEntry_DoesNotAbortBatch()
+    {
+        await using var fakeLoki = new FakeLokiServer(_ => CreateRawLokiResponse(
+            new[] { "300", "{bad json" },
+            new[]
+            {
+                "200",
+                JsonSerializer.Serialize(new
+                {
+                    id = 2,
+                    type = (int) LogType.Unknown,
+                    impact = (int) LogImpact.Medium,
+                    date = DateTimeOffset.UnixEpoch.AddSeconds(2).UtcDateTime.ToString("O"),
+                    message = "log-2",
+                    playerIds = Array.Empty<string>()
+                })
+            },
+            new[]
+            {
+                "100",
+                JsonSerializer.Serialize(new
+                {
+                    id = 1,
+                    type = (int) LogType.Unknown,
+                    impact = (int) LogImpact.Medium,
+                    date = DateTimeOffset.UnixEpoch.AddSeconds(1).UtcDateTime.ToString("O"),
+                    message = "log-1",
+                    playerIds = Array.Empty<string>()
+                })
+            }));
+
+        await using var pair = await PoolManager.GetServerClient(LokiTestSettings);
+        var server = pair.Server;
+        await ConfigureLokiAsync(server, fakeLoki.Url);
+
+        var adminLogs = server.ResolveDependency<IAdminLogManager>();
+        var logs = await adminLogs.All(new LogFilter { Limit = 10 });
+
+        Assert.That(logs.Select(log => log.Id).ToArray(), Is.EqualTo(new[] { 2, 1 }));
+        Assert.That(fakeLoki.Requests.Count, Is.EqualTo(1));
+
+        await pair.CleanReturnAsync();
+    }
+    // Sunrise added end
 
     [Test]
     public async Task PlayerFilterFlags_MatchDatabaseSemantics()
@@ -308,6 +392,34 @@ public sealed class LokiQueryTests
             }
         });
     }
+
+    // Sunrise added start - allow malformed Loki payload coverage in regression tests
+    private static string CreateRawLokiResponse(params string[][] values)
+    {
+        return JsonSerializer.Serialize(new
+        {
+            status = "success",
+            data = new
+            {
+                resultType = "streams",
+                result = values.Length == 0
+                    ? Array.Empty<object>()
+                    : new object[]
+                    {
+                        new
+                        {
+                            stream = new Dictionary<string, string>
+                            {
+                                { "app", "test-loki" },
+                                { "category", "admin_log" }
+                            },
+                            values
+                        }
+                    }
+            }
+        });
+    }
+    // Sunrise added end
 
     private static LokiEntry CreateEntry(long timestamp, int id, params Guid[] players)
     {

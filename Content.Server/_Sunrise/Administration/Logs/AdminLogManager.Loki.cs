@@ -16,6 +16,7 @@ namespace Content.Server.Administration.Logs;
 
 public sealed partial class AdminLogManager
 {
+    // Loki-specific logging and integration for AdminLogManager.
     private static readonly Regex LogHighlightRegex = new(
         @"(\bEntId=\d+\b|(?<=\()(\b\d+/[^\)]+|\bn\d+\b)(?=\)))|\b(dropped|picked up|inserted|removed|equipped|unequipped|thrown|wielded|unwielded|loaded|unloaded|spawned|deleted|shot|attacked|damaged|hit|exploded|fired|clicked|knocked down|activated|interacted|opened|closed|locked|unlocked|anchored|unanchored|welded|unwelded|bolted|unbolted|connected|disconnected|joined|left|banned|kicked|suicided|died|revived|cloned|respawned|joined|left|refilled|drained|poured|ingested|vomited|collapsed|unconscious|rejuvenated|mounted|dismounted)\b",
         RegexOptions.Compiled | RegexOptions.IgnoreCase);
@@ -282,7 +283,7 @@ public sealed partial class AdminLogManager
 
     private static bool CanUseLokiCursorInQuery(LogFilter? filter)
     {
-        return filter?.Round != null;
+        return filter != null;
     }
 
     private static bool RequiresAdditionalLokiPages(LogFilter? filter)
@@ -317,18 +318,41 @@ public sealed partial class AdminLogManager
         if (value.Length < 2)
             return false;
 
-        using var document = JsonDocument.Parse(value[1]);
-        var token = document.RootElement;
+        try
+        {
+            using var document = JsonDocument.Parse(value[1]);
+            var token = document.RootElement;
 
-        var id = token.GetProperty("id").GetInt32();
-        var type = (LogType) token.GetProperty("type").GetInt32();
-        var impact = (LogImpact) token.GetProperty("impact").GetInt32();
-        var date = token.GetProperty("date").GetDateTime();
-        var message = token.GetProperty("message").GetString() ?? string.Empty;
-        var players = ParseLokiPlayers(token);
+            var id = token.GetProperty("id").GetInt32();
+            var type = (LogType) token.GetProperty("type").GetInt32();
+            var impact = (LogImpact) token.GetProperty("impact").GetInt32();
+            var date = token.GetProperty("date").GetDateTime();
+            var message = token.GetProperty("message").GetString() ?? string.Empty;
+            var players = ParseLokiPlayers(token);
 
-        parsed = new ParsedLokiLog(new SharedAdminLog(id, type, impact, date, message, players), players);
-        return true;
+            parsed = new ParsedLokiLog(new SharedAdminLog(id, type, impact, date, message, players), players);
+            return true;
+        }
+        catch (JsonException)
+        {
+            parsed = default;
+            return false;
+        }
+        catch (FormatException)
+        {
+            parsed = default;
+            return false;
+        }
+        catch (InvalidOperationException)
+        {
+            parsed = default;
+            return false;
+        }
+        catch (Exception)
+        {
+            parsed = default;
+            return false;
+        }
     }
 
     private static Guid[] ParseLokiPlayers(JsonElement token)
