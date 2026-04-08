@@ -41,3 +41,6 @@ role-type-corporate-aligned-color = #134975
 role-type-corporate-aligned-alternate-color = #1b67a5
 role-type-tsf-aligned-name = Trans-Solar Federation Aligned
 role-type-tsf-aligned-color = #22a7ff
+role-subtype-vampire = Vampire
+role-subtype-thrall = Thrall
+role-subtype-ratking = Rat King
