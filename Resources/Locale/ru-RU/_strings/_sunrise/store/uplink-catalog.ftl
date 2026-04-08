@@ -103,6 +103,10 @@ uplink-clothing-chameleon-thieving-gloves-name = Воровские перчат
 uplink-clothing-chameleon-thieving-gloves-desc = Незаметно обчищайте карманы и повышайте свой навык воровства с помощью этих новых модных перчаток, которые могут менять свой облик! Учтите что волокна остануться уникальные для этих перчаток.
 uplink-50blessing-name = Подарочный набор 50 благословений
 uplink-50blessing-desc = Для агентов, которые хотят скрыть свою личность стильно, с любовью от Егора Семёнова
+uplink-clothing-murder-socks-name = чулочки убийцы
+uplink-clothing-murder-socks-desc = для агента что по настоящему шарит за стиль
+uplink-syndie-maid-raid-name = рейдерка горничной
+uplink-syndie-maid-raid-desc = синдикат разработал это специально для агентов женского пола, но носят это почему-то одни мужики
 ## Weapon
 uplink-swat-helmet-syndicate-name = Шлем Спецназа
 uplink-swat-helmet-syndicate-desc = Прочный шлем, созданный специально для тех, кто ценит целостность своей головы и конфиденциальность своих коварных замыслов. Окрашен в фирменные цвета спецназа Синдиката.

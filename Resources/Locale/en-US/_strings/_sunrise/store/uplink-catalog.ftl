@@ -40,6 +40,10 @@ uplink-hardsuit-syndie-medic-name = скафандр Медика Синдика
 uplink-hardsuit-syndie-medic-desc = Скафандр предназначеный для боевых врачей отрядов Горлекса.
 uplink-50blessing-name = Подарочный набор 50 благословений
 uplink-50blessing-desc = Для агентов, которые хотят скрыть свою личность стильно, с любовью от Егора Семёнова
+uplink-clothing-murder-socks-name = чулочки убийцы
+uplink-clothing-murder-socks-desc = для агента что по настоящему шарит за стиль
+uplink-syndie-maid-raid-name = рейдерка горничной
+uplink-syndie-maid-raid-desc = синдикат разработал это специально для агентов женского пола, но носят это почему-то одни мужики
 ## Weapon
 
 uplink-clothing-backpack-syndie-aj100-name = Набор ПП AJ-100

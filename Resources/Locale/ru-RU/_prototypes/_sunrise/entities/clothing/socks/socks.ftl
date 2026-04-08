@@ -80,3 +80,5 @@ ent-ClothingStockingsBlackSheer = чёрные полупрозрачные чу
     .desc = Полупрозрачный чёрный цвет.
 ent-ClothingStockingsGarter = чулки с подвязками
     .desc = С подвязками.
+ent-ClothingUnderSocksMurder = чулочки убийцы
+    .desc = для агентов женского пола, надеюсь

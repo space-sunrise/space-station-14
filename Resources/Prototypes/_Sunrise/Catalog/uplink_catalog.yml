@@ -3038,6 +3038,33 @@
   categories:
   - UplinkWeaponry
 
+- type: listing
+  id: UplinkClothingMurderShocks
+  name: uplink-clothing-murder-socks-name
+  description: uplink-clothing-murder-socks-desc
+  productEntity: ClothingUnderSocksMurder
+  cost:
+    Telecrystal: 1
+  categories:
+    - UplinkWearables
+
+- type: listing
+  id: UplinkClothingOuterElegantArmorRaid
+  name: uplink-syndie-maid-raid-name
+  description: uplink-syndie-maid-raid-desc
+  icon: { sprite: _Starlight/Clothing/OuterClothing/Armor/elegant-raid-suit.rsi, state: icon }
+  productEntity: ClothingBackpackSyndicateElegantRaidBundle
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkWearables #Sunrise-edit
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink #Sunrise-edit
+
+- type: listing
   id: UplinkReinforcementRadioSyndicateCyborgChassisSpider
   name: uplink-reinforcement-radio-syndicate-cyborg-infiltrator-name
   description: uplink-reinforcement-radio-syndicate-cyborg-infiltrator-desc
@@ -3061,3 +3088,4 @@
     blacklist:
       components:
       - SurplusBundle
+

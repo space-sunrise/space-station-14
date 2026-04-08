@@ -22,4 +22,25 @@
         - id: ClothingHandsGlovesCombatCQC
         - id: AmpulaBica
         - id: AmpulaDerm
+        - id: ClothingShoesChameleonNoSlipsBiocode
+        - id: FoodMeatBearCooked
 
+#sunrise-start
+- type: entity
+  parent: ClothingBackpackSyndicateBundle
+  id: ClothingBackpackSyndicateElegantRaidBundle
+  name: syndicate elegant raid suit bundle
+  description: "Contains the Syndicate's durable raid armor suit, now more elegant."
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: ClothingOuterMaidArmorRaid
+            - id: ClothingHeadHelmetRaid
+            - id: ClothingHandsGlovesCombatCQC
+            - id: ClothingUnderSocksMurder
+            - id: AmpulaBica
+            - id: AmpulaDerm
+            - id: FoodBakedMuffinCherry
+#sunrise-end
