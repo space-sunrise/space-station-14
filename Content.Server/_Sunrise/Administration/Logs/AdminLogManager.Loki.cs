@@ -100,7 +100,13 @@ public sealed partial class AdminLogManager
 
                 var colorizedMessage = LogHighlightRegex.Replace(log.Message, match =>
                 {
-                    if (match.Value.Contains('(') || match.Value.Contains('=') || (match.Value.Length > 0 && char.IsDigit(match.Value[0])))
+                    var isNumericToken = match.Value.Length > 0 &&
+                        (char.IsDigit(match.Value[0]) ||
+                         (char.ToLowerInvariant(match.Value[0]) == 'n' &&
+                          match.Value.Length > 1 &&
+                          char.IsDigit(match.Value[1])));
+
+                    if (match.Value.Contains('=') || isNumericToken)
                         return $"{Gray}{match.Value}{White}";
 
                     return $"{Cyan}{match.Value}{White}";

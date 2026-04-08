@@ -16,7 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Robust.Shared.Configuration;
 using Robust.UnitTesting;
 
-namespace Content.IntegrationTests.Tests.Administration.Logs;
+namespace Content.IntegrationTests.Tests._Sunrise.Administration.Logs;
 
 [TestFixture]
 [TestOf(typeof(AdminLogSystem))]
@@ -85,7 +85,6 @@ public sealed class LokiQueryTests
         await Pagination_UsesCursorAndDoesNotRepeat(DateOrder.Descending);
     }
 
-    // Sunrise added start - cover global Loki cursor paging without round filters
     [Test]
     public async Task GlobalPagination_UsesCursorAndDoesNotRepeatAscending()
     {
@@ -97,9 +96,7 @@ public sealed class LokiQueryTests
     {
         await Pagination_UsesCursorAndDoesNotRepeat(DateOrder.Descending, roundScoped: false);
     }
-    // Sunrise added end
 
-    // Sunrise edit start - exercise cursor pagination for round-scoped and global Loki queries
     private async Task Pagination_UsesCursorAndDoesNotRepeat(DateOrder order, bool roundScoped = true)
     {
         await using var fakeLoki = new FakeLokiServer(request =>
@@ -150,7 +147,6 @@ public sealed class LokiQueryTests
 
         await pair.CleanReturnAsync();
     }
-    // Sunrise edit end
 
     [Test]
     public async Task AnyPlayersFilter_FetchesAdditionalPagesUntilBatchIsFilled()
@@ -158,15 +154,12 @@ public sealed class LokiQueryTests
         await AnyPlayersFilter_FetchesAdditionalPagesUntilBatchIsFilled(roundScoped: true);
     }
 
-    // Sunrise added start - cover additional Loki paging without round filters
     [Test]
     public async Task AnyPlayersFilter_WithoutRound_FetchesAdditionalPagesUntilBatchIsFilled()
     {
         await AnyPlayersFilter_FetchesAdditionalPagesUntilBatchIsFilled(roundScoped: false);
     }
-    // Sunrise added end
 
-    // Sunrise edit start - allow additional page fetching for both round and global Loki queries
     private async Task AnyPlayersFilter_FetchesAdditionalPagesUntilBatchIsFilled(bool roundScoped)
     {
         var targetPlayer = Guid.NewGuid();
@@ -202,9 +195,7 @@ public sealed class LokiQueryTests
 
         await pair.CleanReturnAsync();
     }
-    // Sunrise edit end
 
-    // Sunrise added start - malformed Loki rows should not abort valid records in the same batch
     [Test]
     public async Task MalformedLokiEntry_DoesNotAbortBatch()
     {
@@ -249,7 +240,6 @@ public sealed class LokiQueryTests
 
         await pair.CleanReturnAsync();
     }
-    // Sunrise added end
 
     [Test]
     public async Task PlayerFilterFlags_MatchDatabaseSemantics()
@@ -330,7 +320,8 @@ public sealed class LokiQueryTests
 
     private static SqliteServerDbContext CreateServerDbContext(RobustIntegrationTest.ServerIntegrationInstance server)
     {
-        // Sunrise-Edit: This test helper intentionally reflects private SQLite fields because the production DB API does not expose a stable test context factory.
+        // This test helper intentionally reflects private SQLite fields because the production DB API
+        // does not expose a stable test context factory.
         var manager = (ServerDbManager) server.ResolveDependency<IServerDbManager>();
         var dbField = typeof(ServerDbManager).GetField("_db", BindingFlags.Instance | BindingFlags.NonPublic)!;
         var sqliteDb = (ServerDbSqlite) dbField.GetValue(manager)!;
@@ -394,7 +385,6 @@ public sealed class LokiQueryTests
         });
     }
 
-    // Sunrise added start - allow malformed Loki payload coverage in regression tests
     private static string CreateRawLokiResponse(params string[][] values)
     {
         return JsonSerializer.Serialize(new
@@ -416,11 +406,10 @@ public sealed class LokiQueryTests
                             },
                             values
                         }
-                    }
+                }
             }
         });
     }
-    // Sunrise added end
 
     private static LokiEntry CreateEntry(long timestamp, int id, params Guid[] players)
     {
@@ -447,8 +436,19 @@ public sealed class LokiQueryTests
             var port = GetFreePort();
             Url = $"http://127.0.0.1:{port}";
             _listener.Prefixes.Add($"{Url}/");
-            _listener.Start();
-            _serveTask = Task.Run(ServeAsync);
+            try
+            {
+                _listener.Start();
+                _serveTask = Task.Run(ServeAsync);
+            }
+            catch
+            {
+                if (_listener.IsListening)
+                    _listener.Stop();
+
+                _listener.Close();
+                throw;
+            }
         }
 
         public async ValueTask DisposeAsync()
@@ -497,7 +497,6 @@ public sealed class LokiQueryTests
             var requestUrl = request.Url?.ToString() ?? "<unknown>";
             var query = HttpUtility.ParseQueryString(request.Url?.Query ?? string.Empty);
 
-            // Sunrise edit start - surface malformed query values with request context in fake Loki diagnostics
             return new LokiRequestSnapshot(
                 query["query"] ?? string.Empty,
                 ParseIntQueryValue("limit"),
@@ -524,7 +523,6 @@ public sealed class LokiQueryTests
                 throw new InvalidOperationException(
                     $"Fake Loki request '{requestUrl}' contained invalid '{key}' query value '{rawValue ?? "<null>"}'.");
             }
-            // Sunrise edit end
         }
 
         private static int GetFreePort()

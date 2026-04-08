@@ -63,7 +63,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         "Number of times the log queue cap has been reached in a round.");
 
     private static readonly Gauge PreRoundQueueCapReached = Metrics.CreateGauge(
-        "admin_logs_queue_cap_reached",
+        "admin_logs_pre_round_queue_cap_reached",
         "Number of times the pre-round log queue cap has been reached in a round.");
 
     private static readonly Gauge LogsSent = Metrics.CreateGauge(
@@ -113,9 +113,9 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
             value => _queueMax = value, true);
         _configuration.OnValueChanged(CCVars.AdminLogsPreRoundQueueMax,
             value => _preRoundQueueMax = value, true);
-        // Sunrise added start - keep Loki configuration in fork partial
+        // Sunrise edit start - keep Loki configuration in fork partial
         InitializeLokiConfiguration();
-        // Sunrise added end
+        // Sunrise edit end
         _configuration.OnValueChanged(CCVars.AdminLogsDropThreshold,
             value => _dropThreshold = value, true);
         _configuration.OnValueChanged(CCVars.AdminLogsHighLogPlaytime,
@@ -146,9 +146,9 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         }
         finally
         {
-            // Sunrise added start - release fork Loki resources during admin log shutdown
+            // Sunrise edit start - release fork Loki resources during admin log shutdown
             ShutdownLoki();
-            // Sunrise added end
+            // Sunrise edit end
         }
     }
 
@@ -261,7 +261,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         _preRoundLogQueue.Clear();
         PreRoundQueue.Set(0);
 
-        // Sunrise-Start
+        // Sunrise edit start - choose Loki or database admin log persistence
         Task task;
         if (_lokiEnabled)
         {
@@ -273,7 +273,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
             task = _db.AddAdminLogs(copy);
             _sawmill.Debug($"Saving {copy.Count} admin logs.");
         }
-        // Sunrise-End
+        // Sunrise edit end
 
         if (_metricsEnabled)
         {
@@ -588,13 +588,13 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
             list = new List<SharedAdminLog>(initialSize);
         }
 
-        // Sunrise-Start
+        // Sunrise edit start - read admin logs from Loki when enabled
         if (_lokiEnabled)
         {
             await GetAdminLogsFromLoki(filter, list);
             return list;
         }
-        // Sunrise-End
+        // Sunrise edit end
 
         await foreach (var log in _db.GetAdminLogs(filter).WithCancellation(filter?.CancellationToken ?? default))
         {
@@ -604,6 +604,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         return list;
     }
 
+    // Sunrise edit start - route log message reads through Loki-aware query paths
     public async IAsyncEnumerable<string> AllMessages(LogFilter? filter = null)
     {
         if (_lokiEnabled)
@@ -629,7 +630,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
             await foreach (var json in _db.GetAdminLogsJson(filter)) yield return json;
         }
     }
-    // Sunrise-End
+    // Sunrise edit end
 
     public Task<Round> Round(int roundId)
     {
@@ -662,12 +663,12 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         return Round(_currentRoundId);
     }
 
-    // Sunrise-Start
+    // Sunrise edit start - provide a Loki-backed fallback count when database storage is bypassed
     public async Task<int> CountLogs(int round)
     {
         var count = await _db.CountAdminLogs(round);
         if (_lokiEnabled && count == 0) return 1000;
         return count;
     }
-    // Sunrise-End
+    // Sunrise edit end
 }
