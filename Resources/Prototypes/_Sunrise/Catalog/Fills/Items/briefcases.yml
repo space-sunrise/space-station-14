@@ -20,8 +20,21 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponSubMachineGunC40rBiocode
+        - id: WeaponSubMachineGunC40r
         - id: MagazineBoxPistol40SP
+
+- type: entity
+  id: BriefcaseWeaponUziFilled
+  parent: BriefcaseWeaponSmall
+  name: secure Uzi case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SunriseWeaponSubMachineGunUzi
+        - id: MagazinePistolSubMachineGun
+          amount: 2
 
 - type: entity
   id: BriefcaseWeaponSIAR52Filled
@@ -109,7 +122,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponShotgunMinotaurBiocode
+        - id: WeaponShotgunMinotaur
         - id: MagazineShotgunXL
 
 - type: entity

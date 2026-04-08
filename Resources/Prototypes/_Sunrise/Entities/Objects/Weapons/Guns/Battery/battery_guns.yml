@@ -826,11 +826,11 @@
     shape:
     - 0,0,5,2
   - type: Gun
-    minAngle: 5
-    maxAngle: 10
-    angleIncrease: 2
-    angleDecay: 8
-    fireRate: 5
+    minAngle: 2
+    maxAngle: 12
+    angleIncrease: 1
+    angleDecay: 10
+    fireRate: 8
     selectedMode: FullAuto
     soundGunshot:
       collection: syndi_plasma
@@ -839,12 +839,12 @@
     availableModes:
     - FullAuto
   - type: BatteryAmmoProvider
-    proto: RedLaserBeam # Sunrise-TODO: Нужен товый прототип для данной пушки
-    fireCost: 25
+    proto: IgnitionRedLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
+    fireCost: 20
   - type: MultiHandedItem
   - type: Battery
-    maxCharge: 7500
-    startingCharge: 7500
+    maxCharge: 10000
+    startingCharge: 10000
   - type: EmpImmune
   - type: StaticPrice
     price: 9000

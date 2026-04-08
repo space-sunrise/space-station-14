@@ -19,11 +19,9 @@
         - id: ClothingOuterArmorRaidBiocode # Sunrise-Edit
         - id: ClothingHeadHelmetRaid
         - id: ClothingMaskGasSyndicate
-        - id: ClothingHandsGlovesCombatCQC
+        - id: ClothingHandsGlovesCombat
         - id: AmpulaBica
         - id: AmpulaDerm
-        - id: ClothingShoesChameleonNoSlipsBiocode
-        - id: FoodMeatBearCooked
 
 #sunrise-start
 - type: entity
@@ -38,9 +36,9 @@
           children:
             - id: ClothingOuterMaidArmorRaid
             - id: ClothingHeadHelmetRaid
-            - id: ClothingHandsGlovesCombatCQC
+            - id: ClothingHandsTacticalMaidGloves
             - id: ClothingUnderSocksMurder
+            - id: ClothingUniformJumpskirtTacticalMaid
             - id: AmpulaBica
             - id: AmpulaDerm
-            - id: FoodBakedMuffinCherry
 #sunrise-end
