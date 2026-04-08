@@ -34,7 +34,8 @@ public sealed partial class AdminLogManager
     private readonly HttpClient _httpClient = new();
 
     private readonly record struct LokiTimeRange(DateTimeOffset Start, DateTimeOffset End, bool RoundStartKnown);
-    private readonly record struct ParsedLokiLog(SharedAdminLog Log, Guid[] Players);
+    private readonly record struct ParsedLokiLog(SharedAdminLog Log, Guid[] Players, long Timestamp, int RoundId);
+    private readonly record struct LokiCursor(long Timestamp, int RoundId, int LogId);
 
     private void InitializeLokiConfiguration()
     {
@@ -152,13 +153,20 @@ public sealed partial class AdminLogManager
         var timeRange = await ResolveLokiTimeRange(filter);
         var canUseCursorInQuery = CanUseLokiCursorInQuery(filter);
         var requiresAdditionalPages = RequiresAdditionalLokiPages(filter);
-        var cursorLogId = filter?.LastLogId;
+        var cursor = CanUseLokiCursorInQuery(filter) && TryParseLokiCursor(filter?.LastLogCursor, out var startCursor)
+            ? startCursor
+            : (LokiCursor?)null;
+        if (filter != null)
+            filter.LastLogCursor = cursor.HasValue ? FormatLokiCursor(cursor.Value) : null;
+        if (cursor != null && canUseCursorInQuery)
+            timeRange = MoveTimeRangeCursorForward(timeRange, cursor.Value, ascending);
+
         var firstQuery = true;
 
         while (list.Count < requestedLimit)
         {
             var batchLimit = requestedLimit - list.Count;
-            var query = BuildLokiQuery(filter, ascending, canUseCursorInQuery ? cursorLogId : null);
+            var query = BuildLokiQuery(filter, ascending);
             var url = BuildLokiQueryUrl(query, batchLimit, timeRange, ascending);
 
             try
@@ -177,19 +185,23 @@ public sealed partial class AdminLogManager
 
                 if (rawValues.Count == 0)
                 {
-                    LogLokiZeroResult(filter, timeRange, query, ascending, batchLimit, cursorLogId, firstQuery, list.Count);
+                    LogLokiZeroResult(filter, timeRange, query, ascending, batchLimit, cursor, firstQuery, list.Count);
                     return;
                 }
 
-                var nextCursor = cursorLogId;
+                var nextCursor = cursor;
                 foreach (var value in rawValues)
                 {
-                    if (!TryParseLokiLog(value, out var parsed))
+                    var timestamp = ParseLokiTimestamp(value[0]);
+                    if (!timestamp.HasValue)
                         continue;
 
-                    nextCursor = parsed.Log.Id;
+                    if (!TryParseLokiLog(value, timestamp.Value, out var parsed))
+                        continue;
 
-                    if (filter != null && !MatchesLokiPostFilter(filter, parsed, canUseCursorInQuery))
+                    nextCursor = new LokiCursor(timestamp.Value, parsed.RoundId, parsed.Log.Id);
+
+                    if (filter != null && !MatchesLokiPostFilter(filter, parsed, cursor, ascending))
                         continue;
 
                     list.Add(parsed.Log);
@@ -197,13 +209,19 @@ public sealed partial class AdminLogManager
                         break;
                 }
 
+                if (filter != null && nextCursor != null)
+                    filter.LastLogCursor = FormatLokiCursor(nextCursor.Value);
+
                 if (!requiresAdditionalPages || !canUseCursorInQuery)
                     return;
 
-                if (nextCursor == cursorLogId || rawValues.Count < batchLimit)
+                if (!nextCursor.HasValue || nextCursor == cursor || rawValues.Count < batchLimit)
                     return;
 
-                cursorLogId = nextCursor;
+                cursor = nextCursor;
+                if (filter != null)
+                    filter.LastLogCursor = FormatLokiCursor(cursor.Value);
+                timeRange = MoveTimeRangeCursorForward(timeRange, cursor.Value, ascending);
                 firstQuery = false;
             }
             catch (OperationCanceledException)
@@ -253,7 +271,7 @@ public sealed partial class AdminLogManager
         return new LokiTimeRange(DateTimeOffset.UnixEpoch, now, false);
     }
 
-    private string BuildLokiQuery(LogFilter? filter, bool ascending, int? cursorLogId)
+    private string BuildLokiQuery(LogFilter? filter, bool ascending)
     {
         var query = $"{{app=\"{_lokiName}\", category=\"admin_log\"}} | json";
 
@@ -274,9 +292,6 @@ public sealed partial class AdminLogManager
                 query += $" | impact=~\"{impacts}\"";
             }
         }
-
-        if (cursorLogId != null)
-            query += ascending ? $" | id > {cursorLogId.Value}" : $" | id < {cursorLogId.Value}";
 
         if (!string.IsNullOrEmpty(filter?.Search))
             query += $" |~ \"(?i){Regex.Escape(filter.Search)}\"";
@@ -313,9 +328,19 @@ public sealed partial class AdminLogManager
             values.AddRange(stream.Values);
         }
 
-        values.Sort((left, right) => ascending
-            ? string.CompareOrdinal(left[0], right[0])
-            : string.CompareOrdinal(right[0], left[0]));
+        values.Sort((left, right) =>
+        {
+            var leftTimestamp = ParseLokiTimestamp(left[0]);
+            var rightTimestamp = ParseLokiTimestamp(right[0]);
+            var compare = ascending
+                ? leftTimestamp.GetValueOrDefault().CompareTo(rightTimestamp.GetValueOrDefault())
+                : rightTimestamp.GetValueOrDefault().CompareTo(leftTimestamp.GetValueOrDefault());
+
+            if (compare != 0)
+                return compare;
+
+            return string.CompareOrdinal(left[0], right[0]);
+        });
 
         if (values.Count > limit)
             values.RemoveRange(limit, values.Count - limit);
@@ -323,7 +348,7 @@ public sealed partial class AdminLogManager
         return values;
     }
 
-    private static bool TryParseLokiLog(string[] value, out ParsedLokiLog parsed)
+    private static bool TryParseLokiLog(string[] value, long timestamp, out ParsedLokiLog parsed)
     {
         parsed = default;
         if (value.Length < 2)
@@ -335,13 +360,16 @@ public sealed partial class AdminLogManager
             var token = document.RootElement;
 
             var id = token.GetProperty("id").GetInt32();
+            var roundId = token.TryGetProperty("roundId", out var roundIdToken) && roundIdToken.TryGetInt32(out var parsedRoundId)
+                ? parsedRoundId
+                : 0;
             var type = (LogType) token.GetProperty("type").GetInt32();
             var impact = (LogImpact) token.GetProperty("impact").GetInt32();
             var date = token.GetProperty("date").GetDateTime();
             var message = token.GetProperty("message").GetString() ?? string.Empty;
             var players = ParseLokiPlayers(token);
 
-            parsed = new ParsedLokiLog(new SharedAdminLog(id, type, impact, date, message, players), players);
+            parsed = new ParsedLokiLog(new SharedAdminLog(id, type, impact, date, message, players), players, timestamp, roundId);
             return true;
         }
         catch (JsonException)
@@ -392,11 +420,18 @@ public sealed partial class AdminLogManager
         return players.ToArray();
     }
 
-    private static bool MatchesLokiPostFilter(LogFilter filter, ParsedLokiLog log, bool cursorAppliedInQuery)
+    private static bool MatchesLokiPostFilter(LogFilter filter, ParsedLokiLog log, LokiCursor? cursor, bool ascending)
     {
-        if (!cursorAppliedInQuery && filter.LastLogId != null)
+        if (cursor != null)
         {
-            var ascending = filter.DateOrder == DateOrder.Ascending;
+            if (ascending && !IsCursorBefore(log, cursor.Value))
+                return false;
+
+            if (!ascending && !IsCursorAfter(log, cursor.Value))
+                return false;
+        }
+        else if (filter.LastLogId != null)
+        {
             if (ascending && log.Log.Id <= filter.LastLogId.Value)
                 return false;
 
@@ -405,6 +440,83 @@ public sealed partial class AdminLogManager
         }
 
         return MatchesLokiPlayerFilters(filter, log.Players);
+    }
+
+    private static long? ParseLokiTimestamp(string? value)
+    {
+        if (string.IsNullOrEmpty(value))
+            return null;
+
+        if (long.TryParse(value, out var timestamp))
+            return timestamp;
+
+        return null;
+    }
+
+    private static bool IsCursorBefore(ParsedLokiLog log, LokiCursor cursor)
+    {
+        if (log.Timestamp != cursor.Timestamp)
+            return log.Timestamp > cursor.Timestamp;
+
+        if (log.RoundId != cursor.RoundId)
+            return log.RoundId > cursor.RoundId;
+
+        return log.Log.Id > cursor.LogId;
+    }
+
+    private static bool IsCursorAfter(ParsedLokiLog log, LokiCursor cursor)
+    {
+        if (log.Timestamp != cursor.Timestamp)
+            return log.Timestamp < cursor.Timestamp;
+
+        if (log.RoundId != cursor.RoundId)
+            return log.RoundId < cursor.RoundId;
+
+        return log.Log.Id < cursor.LogId;
+    }
+
+    private static bool TryParseLokiCursor(string? cursor, out LokiCursor parsedCursor)
+    {
+        parsedCursor = default;
+        if (string.IsNullOrEmpty(cursor))
+            return false;
+
+        var parts = cursor.Split('|');
+        if (parts.Length != 3)
+            return false;
+
+        if (!long.TryParse(parts[0], out var timestamp))
+            return false;
+
+        if (!int.TryParse(parts[1], out var roundId))
+            return false;
+
+        if (!int.TryParse(parts[2], out var logId))
+            return false;
+
+        parsedCursor = new LokiCursor(timestamp, roundId, logId);
+        return true;
+    }
+
+    private static string FormatLokiCursor(LokiCursor cursor)
+    {
+        return $"{cursor.Timestamp}|{cursor.RoundId}|{cursor.LogId}";
+    }
+
+    private static LokiTimeRange MoveTimeRangeCursorForward(LokiTimeRange timeRange, LokiCursor cursor, bool ascending)
+    {
+        var cursorTime = FromUnixTimeNanoseconds(cursor.Timestamp);
+
+        return ascending
+            ? timeRange with { Start = cursorTime }
+            : timeRange with { End = cursorTime };
+    }
+
+    private static DateTimeOffset FromUnixTimeNanoseconds(long timestamp)
+    {
+        var timeInMilliseconds = timestamp / 1_000_000;
+        var ticks = (timestamp % 1_000_000) / 100;
+        return DateTimeOffset.FromUnixTimeMilliseconds(timeInMilliseconds).AddTicks(ticks);
     }
 
     private static bool MatchesLokiPlayerFilters(LogFilter filter, Guid[] players)
@@ -435,13 +547,13 @@ public sealed partial class AdminLogManager
         string query,
         bool ascending,
         int limit,
-        int? cursorLogId,
+        LokiCursor? cursor,
         bool firstQuery,
         int visibleLogs)
     {
         var direction = ascending ? "forward" : "backward";
         _sawmill.Debug(
-            $"Loki query returned 0 admin logs. round={filter?.Round?.ToString() ?? "null"} direction={direction} limit={limit} cursor={cursorLogId?.ToString() ?? "null"} roundStartKnown={timeRange.RoundStartKnown} firstQuery={firstQuery} visible={visibleLogs} start={timeRange.Start:O} end={timeRange.End:O} query={query}");
+            $"Loki query returned 0 admin logs. round={filter?.Round?.ToString() ?? "null"} direction={direction} limit={limit} cursor={cursor?.ToString() ?? "null"} roundStartKnown={timeRange.RoundStartKnown} firstQuery={firstQuery} visible={visibleLogs} start={timeRange.Start:O} end={timeRange.End:O} query={query}");
     }
 
     private static DateTime AssumeUtc(DateTime value)

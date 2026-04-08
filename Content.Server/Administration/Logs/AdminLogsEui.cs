@@ -123,6 +123,7 @@ public sealed class AdminLogsEui : BaseEui
                     AllPlayers = request.AllPlayers,
                     IncludeNonPlayers = request.IncludeNonPlayers,
                     LastLogId = null,
+                    LastLogCursor = null,
                     Limit = _clientBatchSize + 1
                 };
 

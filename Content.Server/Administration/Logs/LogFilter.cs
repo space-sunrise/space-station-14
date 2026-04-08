@@ -30,6 +30,8 @@ public sealed class LogFilter
 
     public int? LastLogId { get; set; }
 
+    public string? LastLogCursor { get; set; }
+
     public int LogsSent { get; set; }
 
     public int? Limit { get; set; }
