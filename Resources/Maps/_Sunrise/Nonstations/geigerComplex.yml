@@ -2,10 +2,10 @@ meta:
   format: 7
   category: Map
   engineVersion: 271.1.0
-  forkId: "Sunrise"
-  forkVersion: "Sunrise"
-  time: 01/27/2026 00:42:36
-  entityCount: 8809
+  forkId: ""
+  forkVersion: ""
+  time: 04/08/2026 10:13:43
+  entityCount: 8820
 maps:
 - 1
 grids:
@@ -67,7 +67,7 @@ entities:
   - uid: 2
     components:
     - type: MetaData
-      name: grid
+      name: Ядерный оперативный аванпост "Комплекс Гейгера"
     - type: Transform
       pos: -0.9923513,-0.44010204
       parent: 1
@@ -5967,7 +5967,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -44.5,1.5
       parent: 2
-- proto: AirlockExternalGlassShuttleNukeopLocked
+- proto: AirlockGlassShuttleSyndicate
   entities:
   - uid: 30
     components:
@@ -5975,6 +5975,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -44.5,3.5
       parent: 2
+    - type: GridFill
+      addComponents:
+      - type: NukeOpsShuttle
+      path: /Maps/_Sunrise/Shuttles/Antag/infiltrator.yml
 - proto: AirlockSyndicateNukeopGlassLocked
   entities:
   - uid: 31
@@ -6303,7 +6307,7 @@ entities:
     - type: Transform
       pos: 39.97857,-30.89197
       parent: 2
-- proto: AtmosDeviceFanTinyDev
+- proto: AtmosDeviceFanTiny
   entities:
   - uid: 83
     components:
@@ -14886,19 +14890,24 @@ entities:
     - type: Transform
       pos: -18.970686,-22.780962
       parent: 2
+- proto: ClothingBeltLightSovietMarineWebbing
+  entities:
+  - uid: 4051
+    components:
+    - type: Transform
+      pos: 24.377695,10.350859
+      parent: 2
+  - uid: 4053
+    components:
+    - type: Transform
+      pos: 24.655987,10.538298
+      parent: 2
 - proto: ClothingBeltMercWebbing
   entities:
   - uid: 1777
     components:
     - type: Transform
       pos: 21.987404,64.64976
-      parent: 2
-- proto: ClothingBeltMilitaryWebbingMedRaidFilled
-  entities:
-  - uid: 1705
-    components:
-    - type: Transform
-      pos: 23.762232,7.3778524
       parent: 2
 - proto: ClothingBeltReaperWebbing
   entities:
@@ -14907,6 +14916,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 21.424904,64.545586
+      parent: 2
+- proto: ClothingBeltSovietMarineWebbingFilled
+  entities:
+  - uid: 1705
+    components:
+    - type: Transform
+      pos: 23.66777,7.3972726
       parent: 2
 - proto: ClothingBeltUtilityFilled
   entities:
@@ -15138,6 +15154,27 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 22.445738,64.670586
       parent: 2
+  - uid: 8819
+    components:
+    - type: Transform
+      pos: 25.459341,10.592108
+      parent: 2
+  - uid: 8820
+    components:
+    - type: Transform
+      pos: 25.629723,10.796587
+      parent: 2
+- proto: ClothingHeadHelmetRaid
+  entities:
+  - uid: 3713
+    components:
+    - type: Transform
+      parent: 1714
+    - type: Clothing
+      inSlot: head
+      inSlotFlag: HEAD
+    - type: Physics
+      canCollide: False
 - proto: ClothingHeadHelmetSwatSyndicate
   entities:
   - uid: 1760
@@ -15200,17 +15237,17 @@ entities:
     - type: Transform
       pos: 35.54582,-41.214024
       parent: 2
-- proto: ClothingOuterCoatHOSOvercoatBlack
+- proto: ClothingOuterArmorSovietPlateRandomSpawner
   entities:
-  - uid: 1773
+  - uid: 4524
     components:
     - type: Transform
-      pos: 24.64675,10.710062
+      pos: 24.377695,10.447418
       parent: 2
-  - uid: 1774
+  - uid: 4534
     components:
     - type: Transform
-      pos: 24.38749,10.524877
+      pos: 24.667345,10.629178
       parent: 2
 - proto: ClothingOuterHardsuitClown
   entities:
@@ -15268,6 +15305,11 @@ entities:
       parent: 2
 - proto: ClothingOuterVestWebMerc
   entities:
+  - uid: 106
+    components:
+    - type: Transform
+      pos: 24.391611,10.463362
+      parent: 2
   - uid: 1766
     components:
     - type: Transform
@@ -15276,6 +15318,11 @@ entities:
       canCollide: False
     - type: InsideEntityStorage
       storage: 1765
+  - uid: 1773
+    components:
+    - type: Transform
+      pos: 24.675583,10.675414
+      parent: 2
 - proto: ClothingOuterWizard
   entities:
   - uid: 1778
@@ -15552,13 +15599,6 @@ entities:
     - type: Transform
       pos: -19.5,0.5
       parent: 2
-- proto: CrateAmmunitionSmallLightRifle
-  entities:
-  - uid: 106
-    components:
-    - type: Transform
-      pos: 22.5,8.5
-      parent: 2
 - proto: CrateEmergencyRadiation
   entities:
   - uid: 1825
@@ -15599,48 +15639,6 @@ entities:
     - type: Transform
       pos: 10.5,-41.5
       parent: 2
-- proto: CrateShelfMosin
-  entities:
-  - uid: 4534
-    components:
-    - type: Transform
-      pos: 23.5,10.5
-      parent: 2
-    - type: ContainerContainer
-      containers:
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-    - type: ItemSlots
-  - uid: 4535
-    components:
-    - type: Transform
-      pos: 22.5,10.5
-      parent: 2
-    - type: ContainerContainer
-      containers:
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-    - type: ItemSlots
 - proto: CrateTrashCart
   entities:
   - uid: 1765
@@ -25622,7 +25620,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 15.5,52.5
       parent: 2
-- proto: JetpackMiniFilled
+- proto: JetpackSSFMarineFilled
   entities:
   - uid: 14
     components:
@@ -25639,7 +25637,6 @@ entities:
         actions: !type:Container
           ents:
           - 16
-          - invalid
           - 15
     - type: CMExplosionEffect
   - uid: 3701
@@ -26292,13 +26289,6 @@ entities:
     - type: Transform
       pos: 6.5765276,12.673281
       parent: 2
-- proto: MagazineLightRifleMaxim
-  entities:
-  - uid: 3713
-    components:
-    - type: Transform
-      pos: 7.264041,47.637367
-      parent: 2
 - proto: MagazinePistolSubMachineGunPPSH
   entities:
   - uid: 3785
@@ -26358,7 +26348,7 @@ entities:
         head: !type:ContainerSlot
           showEnts: False
           occludes: False
-          ent: null
+          ent: 3713
         suitstorage: !type:ContainerSlot
           showEnts: False
           occludes: False
@@ -26505,6 +26495,11 @@ entities:
     - type: Transform
       pos: 5.5,47.5
       parent: 2
+  - uid: 4455
+    components:
+    - type: Transform
+      pos: 5.5,47.5
+      parent: 2
 - proto: NukeOpsLootSpawner
   entities:
   - uid: 3814
@@ -26512,9 +26507,19 @@ entities:
     - type: Transform
       pos: 7.5,45.5
       parent: 2
+  - uid: 4056
+    components:
+    - type: Transform
+      pos: 7.5,45.5
+      parent: 2
 - proto: NukeOpsWeaponSpawner
   entities:
   - uid: 3815
+    components:
+    - type: Transform
+      pos: 5.5,45.5
+      parent: 2
+  - uid: 4454
     components:
     - type: Transform
       pos: 5.5,45.5
@@ -30291,6 +30296,13 @@ entities:
     - type: Transform
       pos: -19.5,58.5
       parent: 2
+- proto: RandomImplantCaseSpawner
+  entities:
+  - uid: 4474
+    components:
+    - type: Transform
+      pos: -4.5,45.5
+      parent: 2
 - proto: RandomSoakedCigarette
   entities:
   - uid: 4425
@@ -31066,6 +31078,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 26.5,9.5
       parent: 2
+- proto: SovietDeskFlag
+  entities:
+  - uid: 4535
+    components:
+    - type: Transform
+      pos: 22.492132,10.16342
+      parent: 2
 - proto: SpaceCash
   entities:
   - uid: 4536
@@ -31134,6 +31153,23 @@ entities:
     components:
     - type: Transform
       pos: 40.61366,-31.229933
+      parent: 2
+- proto: SpawnerCrateUSSP
+  entities:
+  - uid: 1774
+    components:
+    - type: Transform
+      pos: 22.5,8.5
+      parent: 2
+  - uid: 4888
+    components:
+    - type: Transform
+      pos: 22.5,10.5
+      parent: 2
+  - uid: 4889
+    components:
+    - type: Transform
+      pos: 23.5,10.5
       parent: 2
 - proto: SpawnMobBear
   entities:
@@ -31407,10 +31443,6 @@ entities:
     - type: Transform
       pos: 1.3624003,1.6144578
       parent: 2
-    - type: ContainerContainer
-      containers:
-        innate_items: !type:Container
-          ents: []
 - proto: SyndieFlag
   entities:
   - uid: 4591
