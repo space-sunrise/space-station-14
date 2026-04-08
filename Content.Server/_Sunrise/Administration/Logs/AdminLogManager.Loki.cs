@@ -64,8 +64,13 @@ public sealed partial class AdminLogManager
         if (string.IsNullOrEmpty(_lokiUsername) || string.IsNullOrEmpty(_lokiPassword))
             return;
 
-        var authString = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{_lokiUsername}:{_lokiPassword}"));
+        var authString = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{_lokiUsername}:{_lokiPassword}"));
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authString);
+    }
+
+    private void ShutdownLoki()
+    {
+        _httpClient.Dispose();
     }
 
     private async Task SaveLogsToLoki(List<AdminLog> logs)
@@ -234,9 +239,9 @@ public sealed partial class AdminLogManager
                 return new LokiTimeRange(roundStart.AddHours(-1), now, true);
             }
         }
-        catch
+        catch (Exception ex)
         {
-            // Round metadata might be missing in DB, fall back to an unbounded lower cursor.
+            _sawmill.Warning($"Failed loading round metadata for Loki query window for round {filter.Round.Value}: {ex}");
         }
 
         return new LokiTimeRange(DateTimeOffset.UnixEpoch, now, false);

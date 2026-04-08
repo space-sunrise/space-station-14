@@ -137,9 +137,18 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
 
     public async Task Shutdown()
     {
-        if (!_logQueue.IsEmpty)
+        try
         {
-            await SaveLogs();
+            if (!_logQueue.IsEmpty)
+            {
+                await SaveLogs();
+            }
+        }
+        finally
+        {
+            // Sunrise added start - release fork Loki resources during admin log shutdown
+            ShutdownLoki();
+            // Sunrise added end
         }
     }
 

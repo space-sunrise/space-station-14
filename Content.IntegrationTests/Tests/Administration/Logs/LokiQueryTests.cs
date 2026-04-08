@@ -330,6 +330,7 @@ public sealed class LokiQueryTests
 
     private static SqliteServerDbContext CreateServerDbContext(RobustIntegrationTest.ServerIntegrationInstance server)
     {
+        // Sunrise-Edit: This test helper intentionally reflects private SQLite fields because the production DB API does not expose a stable test context factory.
         var manager = (ServerDbManager) server.ResolveDependency<IServerDbManager>();
         var dbField = typeof(ServerDbManager).GetField("_db", BindingFlags.Instance | BindingFlags.NonPublic)!;
         var sqliteDb = (ServerDbSqlite) dbField.GetValue(manager)!;
@@ -493,13 +494,37 @@ public sealed class LokiQueryTests
 
         private static LokiRequestSnapshot CreateSnapshot(HttpListenerRequest request)
         {
-            var query = HttpUtility.ParseQueryString(request.Url!.Query);
+            var requestUrl = request.Url?.ToString() ?? "<unknown>";
+            var query = HttpUtility.ParseQueryString(request.Url?.Query ?? string.Empty);
+
+            // Sunrise edit start - surface malformed query values with request context in fake Loki diagnostics
             return new LokiRequestSnapshot(
                 query["query"] ?? string.Empty,
-                int.Parse(query["limit"] ?? "0"),
-                long.Parse(query["start"] ?? "0"),
-                long.Parse(query["end"] ?? "0"),
+                ParseIntQueryValue("limit"),
+                ParseLongQueryValue("start"),
+                ParseLongQueryValue("end"),
                 query["direction"] ?? string.Empty);
+
+            int ParseIntQueryValue(string key)
+            {
+                var rawValue = query[key];
+                if (int.TryParse(rawValue, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var value))
+                    return value;
+
+                throw new InvalidOperationException(
+                    $"Fake Loki request '{requestUrl}' contained invalid '{key}' query value '{rawValue ?? "<null>"}'.");
+            }
+
+            long ParseLongQueryValue(string key)
+            {
+                var rawValue = query[key];
+                if (long.TryParse(rawValue, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var value))
+                    return value;
+
+                throw new InvalidOperationException(
+                    $"Fake Loki request '{requestUrl}' contained invalid '{key}' query value '{rawValue ?? "<null>"}'.");
+            }
+            // Sunrise edit end
         }
 
         private static int GetFreePort()
