@@ -28,4 +28,3 @@ loadout-group-prison-trinkets = Безделушки ПТ
 loadout-group-jobtrinkets = Плюшки
 loadout-group-bodycam = Бодикамеры
 loadout-group-pepper-spray = Перцовый баллончик
-loadout-group-security-pilot-trinkets = Безделушки Пилота

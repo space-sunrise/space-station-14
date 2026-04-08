@@ -487,10 +487,18 @@
 # Security Pilot
 - type: loadoutGroup
   id: SecurityTrinketsPilot
-  name: loadout-group-security-pilot-trinkets
+  name: loadout-group-security-trinkets
   minLimit: 0
-  maxLimit: 2
+  maxLimit: 3
   loadouts:
+  - SecurityBodycam
+  - SecurityPepperspray
+  - SecurityWhistle
+  - SecurityRadioHandheld
+  - SecurityTourniquet
+  - SecurityWeaponMeleeNeedle
+  - SecurityHoloprojector
+  - SecurityMasterBodycam
   - Binoculars
   - HandHeldMassScanner
   - DoubleEmergencyNitrogenTankFilled
