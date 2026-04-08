@@ -1,0 +1,7 @@
+- type: entity
+  id: ClosetCursedSameGrid
+  parent: ClosetCursed
+  suffix: cursed, same grid
+  components:
+  - type: CursedEntityStorage
+    sameGridOnly: true

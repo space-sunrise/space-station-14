@@ -1,4 +1,5 @@
 using Content.Server.Storage.Components;
+using Content.Server.Station.Systems; // Sunrise-Edit
 using Content.Shared.Storage.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -13,6 +14,7 @@ public sealed class CursedEntityStorageSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly StationSystem _station = default!; // Sunrise-Edit
 
     public override void Initialize()
     {
@@ -30,9 +32,20 @@ public sealed class CursedEntityStorageSystem : EntitySystem
             return;
 
         var lockers = new List<Entity<EntityStorageComponent>>();
+        // Sunrise-Start
+        var sourceGrid = component.SameGridOnly ? Transform(uid).GridUid : null;
+        var sourceStation = component.SameGridOnly ? _station.GetOwningStation(uid) : null;
+        // Sunrise-End
         var query = EntityQueryEnumerator<EntityStorageComponent>();
         while (query.MoveNext(out var storageUid, out var storageComp))
         {
+            // Sunrise-Start
+            if (component.SameGridOnly && Transform(storageUid).GridUid != sourceGrid)
+                continue;
+
+            if (component.SameGridOnly && _station.GetOwningStation(storageUid) != sourceStation)
+                continue;
+            // Sunrise-End
             lockers.Add((storageUid, storageComp));
         }
 
