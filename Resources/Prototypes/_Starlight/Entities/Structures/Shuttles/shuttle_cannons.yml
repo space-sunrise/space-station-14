@@ -644,7 +644,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 37   # halved range
+    projectileSpeed: 40   # halved range
     fireRate: 1
     selectedMode: FullAuto
     angleDecay: 30
@@ -734,16 +734,16 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 25   # halved range
+    projectileSpeed: 30   # halved range
     fireRate: 1.25
     burstFireRate: 2.5
     burstCooldown: 2
     shotsPerBurst: 4
     selectedMode: Burst
-    angleDecay: 20
+    angleDecay: 15
     minAngle: 2
-    maxAngle: 15
-    angleIncrease: 3
+    maxAngle: 20
+    angleIncrease: 4
     availableModes:
     - Burst
     - FullAuto
