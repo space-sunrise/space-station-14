@@ -3,6 +3,7 @@
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Construction.Commands;
+using Content.Server.Decals;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Maps;
 using Robust.Shared.Console;
@@ -28,6 +29,7 @@ public sealed class MappingAutoSaveSystem : EntitySystem
     [Dependency] private readonly TileSystem _tile = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private readonly WalledDecalRemovalSystem _walledDecalRemoval = default!;
 
     private PendingAutoSaveConsoleContext? _pendingAutoSaveConsoleContext;
 
@@ -96,9 +98,10 @@ public sealed class MappingAutoSaveSystem : EntitySystem
     {
         var runFixGridAtmos = _cfg.GetCVar(SunriseCCVars.MappingAutoFixGridAtmos);
         var runTileWalls = _cfg.GetCVar(SunriseCCVars.MappingAutoTileWalls);
+        var runRemoveWalledDecals = _cfg.GetCVar(SunriseCCVars.MappingAutoRemoveWalledDecals);
         var runVariantize = _cfg.GetCVar(SunriseCCVars.MappingAutoVariantize);
 
-        if (!runFixGridAtmos && !runTileWalls && !runVariantize)
+        if (!runFixGridAtmos && !runTileWalls && !runRemoveWalledDecals && !runVariantize)
             return;
 
         foreach (var grid in _mapManager.GetAllGrids(map.MapId))
@@ -108,6 +111,9 @@ public sealed class MappingAutoSaveSystem : EntitySystem
 
             if (runTileWalls)
                 RunMapSaveAutoTileWalls(grid);
+
+            if (runRemoveWalledDecals)
+                _walledDecalRemoval.RemoveWalledDecals(grid.Owner, grid.Comp);
 
             if (runVariantize)
                 RunMapSaveAutoVariantize(grid);
@@ -120,6 +126,7 @@ public sealed class MappingAutoSaveSystem : EntitySystem
 
         AddEnabledCommand(SunriseCCVars.MappingAutoFixGridAtmos, "fixgridatmos");
         AddEnabledCommand(SunriseCCVars.MappingAutoTileWalls, "tilewalls");
+        AddEnabledCommand(SunriseCCVars.MappingAutoRemoveWalledDecals, "removewalleddecals");
         AddEnabledCommand(SunriseCCVars.MappingAutoVariantize, "variantize");
 
         return executedCommands is null

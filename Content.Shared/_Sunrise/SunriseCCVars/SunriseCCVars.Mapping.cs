@@ -17,6 +17,12 @@ public sealed partial class SunriseCCVars
         CVarDef.Create("mapping.auto_tile_walls", true, CVar.SERVERONLY);
 
     /// <summary>
+    /// Run the equivalent of <c>removewalleddecals</c> on every grid before mapper save serialization.
+    /// </summary>
+    public static readonly CVarDef<bool> MappingAutoRemoveWalledDecals =
+        CVarDef.Create("mapping.auto_remove_walled_decals", true, CVar.SERVERONLY);
+
+    /// <summary>
     /// Run the equivalent of <c>variantize</c> on every grid before mapper save serialization.
     /// </summary>
     public static readonly CVarDef<bool> MappingAutoVariantize =
