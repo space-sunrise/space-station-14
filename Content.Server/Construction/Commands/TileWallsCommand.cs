@@ -24,6 +24,9 @@ public sealed class TileWallsCommand : IConsoleCommand
     public static readonly ProtoId<ContentTileDefinition> TilePrototypeId = "Plating";
     public static readonly ProtoId<TagPrototype> WallTag = "Wall";
     public static readonly ProtoId<TagPrototype> DiagonalTag = "Diagonal";
+    // Sunrise added start - allow prototypes to opt out from tilewalls underplating
+    public static readonly ProtoId<TagPrototype> ForceNoTileWallsTag = "ForceNoTileWalls";
+    // Sunrise added end
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
@@ -83,6 +86,13 @@ public sealed class TileWallsCommand : IConsoleCommand
             {
                 continue;
             }
+
+            // Sunrise added start - allow prototypes to opt out from tilewalls underplating
+            if (tagSystem.HasTag(child, ForceNoTileWallsTag))
+            {
+                continue;
+            }
+            // Sunrise added end
 
             if (tagSystem.HasTag(child, DiagonalTag))
             {
