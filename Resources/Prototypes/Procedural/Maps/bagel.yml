@@ -34,7 +34,8 @@
       tags:
       - TheaterBagel
   - type: Sprite
-    offset: 0, 0.5
+    offset: 0, -0.5 # Sunrise Edit
+    noRot: true # Sunrise Add
     layers:
       - state: red
       # max size
