@@ -542,15 +542,15 @@
 - type: entity
   parent: Ampula
   name: Ampula
-  id: AmpulaHolyWater
-  suffix: HolyWater (20u)
+  id: AmpulaHolywater
+  suffix: Holywater (20u)
   components:
   - type: SolutionContainerManager
     solutions:
       beaker:
         maxVol: 20
         reagents:
-        - ReagentId: HolyWater
+        - ReagentId: Holywater
           Quantity: 20
 
 - type: entity
