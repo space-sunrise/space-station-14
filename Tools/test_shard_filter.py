@@ -26,6 +26,13 @@ import sys
 # But this is a temporary solution. Once multithreading in the engine is fixed, all of this will be reverted.
 # How do you use it? Run the test, take the one that finished the fastest and decrease its weight, then increase the weight of the slowest one until they balance out.
 WEIGHT_OVERRIDES = {
+    # Sunrise-Edit
+    "DisconnectFromLobbyClearsLoadedTextureAndAllowsReload": 2.0,
+    "IncompleteFallbackAssemblyDoesNotSurviveLobbyReconnect": 2.0,
+    "LargeStillTextureLoadsAcrossMultipleUploadTiles": 2.0,
+    "LateTransferBatchFromPreviousSessionIsIgnoredAfterLobbyReconnect": 2.0,
+    "PartialRsiRequiresAllStateImagesBeforeReady": 2.0,
+    # Sunrise-Edit
     "AbsorbentOnRefillableTest": 0.125,
     "AbsorbentOnSmallRefillableTest": 0.125,
     "AddListRemoveObjectiveTest": 0.125,
