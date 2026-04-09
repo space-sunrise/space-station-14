@@ -173,7 +173,7 @@
 - type: listing
   id: UplinlkMagazinePistol40FMJ
   description: uplink-pistol-stechkin-desc
-  icon: { sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/40.rsi, state: fmj }
+  icon: { sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/40.rsi, state: fmj}
   productEntity: MagazinePistol40FMJ
   cost:
     Telecrystal: 1
@@ -183,7 +183,7 @@
 - type: listing
   id: UplinlkMagazinePistol40SP
   description: uplink-pistol-stechkin-desc
-  icon: { sprite:_Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/40.rsi, state: sp }
+  icon: { sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/40.rsi, state: sp }
   productEntity: MagazinePistol40SP
   cost:
     Telecrystal: 1
