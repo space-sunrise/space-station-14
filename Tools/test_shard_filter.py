@@ -308,7 +308,14 @@ def cmd_generate():
         print(f"Usage: {sys.argv[0]} generate <total-shards> <output-dir>", file=sys.stderr)
         sys.exit(1)
 
-    total = int(sys.argv[2])
+    try:
+        total = int(sys.argv[2])
+    except ValueError:
+        print("Error: total-shards must be a positive integer", file=sys.stderr)
+        sys.exit(1)
+    if total <= 0:
+        print("Error: total-shards must be a positive integer", file=sys.stderr)
+        sys.exit(1)
     output_dir = sys.argv[3]
 
     lines = sys.stdin.read().splitlines()
