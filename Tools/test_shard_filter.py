@@ -267,8 +267,13 @@ def parse_tests(lines):
         if "The following Tests are available:" in stripped:
             in_list = True
             continue
-        if in_list and stripped:
-            tests.append(stripped)
+        if not in_list:
+            continue
+        if not stripped:
+            continue
+        if not line[:1].isspace():
+            break
+        tests.append(stripped)
     return tests
 
 
