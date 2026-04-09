@@ -13,7 +13,6 @@ using Content.Shared.Examine;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Hands.Components;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Input;
 using Content.Shared.Mech.Components;
 using Content.Shared.Popups;
@@ -28,6 +27,9 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Whitelist;
 using Content.Shared.Starlight.Utility;
+// Sunrise-Edit start | DualWield import
+using Content.Shared._Sunrise.Weapons.DualWield;
+// Sunrise-Edit end
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -179,8 +181,11 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (!TryGetGun(user.Value, out var ent, out var gun))
             return;
 
-        if (ent != GetEntity(msg.Gun))
+        // Sunrise-Edit start | Dual Wield: skip gun-ID match check in dual-wield mode
+        var isDualWield = TryComp<DualWieldComponent>(user.Value, out var dualWield) && dualWield.Active;
+        if (!isDualWield && ent != GetEntity(msg.Gun))
             return;
+        // Sunrise-Edit end
 
         gun.ShootCoordinates = GetCoordinates(msg.Coordinates);
         // Sunrise-Start
@@ -194,7 +199,15 @@ public abstract partial class SharedGunSystem : EntitySystem
             }
         }
         // Sunrise-End
-        AttemptShoot(user.Value, ent, gun);
+        var fired = AttemptShoot(user.Value, ent, gun);
+
+        // Sunrise-Edit start | Dual Wield: only alternate after an actual shot
+        if (isDualWield && fired)
+        {
+            dualWield!.NextIsLeft = !dualWield.NextIsLeft;
+            Dirty(user.Value, dualWield);
+        }
+        // Sunrise-Edit end
     }
 
     private void OnStopShootRequest(RequestStopShootEvent ev, EntitySessionEventArgs args)
@@ -242,6 +255,22 @@ public abstract partial class SharedGunSystem : EntitySystem
     {
         gunEntity = default;
         gunComp = null;
+
+        // Sunrise-Edit start | Dual Wield: return the alternating gun instead of the active-hand gun
+        if (TryComp<DualWieldComponent>(entity, out var dualWieldComp) && dualWieldComp.Active)
+        {
+            var dwGunUid = dualWieldComp.NextIsLeft ? dualWieldComp.LeftGun : dualWieldComp.RightGun;
+            if (TryComp<GunComponent>(dwGunUid, out var dwGunComp))
+            {
+                gunEntity = dwGunUid;
+                gunComp = dwGunComp;
+                return true;
+            }
+            // Gun no longer valid — disable dual-wield and fall through
+            dualWieldComp.Active = false;
+            Dirty(entity, dualWieldComp);
+        }
+        // Sunrise-Edit end
 
         if (TryComp<MechComponent>(entity, out var mech)
             && mech.CurrentSelectedEquipment.HasValue
