@@ -1,6 +1,7 @@
 - type: entity
   id: LockableEquipmentTest
   name: lockable device
+  description: A test device to demonstrate lockable equipment functionality.
   parent: BaseItem
   components:
   - type: Item
@@ -12,3 +13,40 @@
 
   - type: LockableEquipment
     layer: lockable_under
+    
+  - type: LayerBlocking
+    coversLayers:
+      - lockable_under
+    accessPriority: 1
+  
+
+
+- type: entity
+  id: BaseLockableEquipment
+  abstract: true
+  parent: BaseItem
+  name: lockable device
+  components:
+  - type: Item
+    size: Small
+
+  - type: LockableEquipment
+    layer: lockable_under
+    accessPriority: 1
+    mode: Breakable
+
+  - type: LayerBlocking
+    coversLayers:
+      - lockable_under
+    accessPriority: 1
+
+- type: entity
+  id: LockableEquipmentTest
+  parent: BaseLockableEquipment
+  name: lockable device
+  description: A test device to demonstrate lockable equipment functionality.
+
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Locked/cage.rsi
+    state: icon

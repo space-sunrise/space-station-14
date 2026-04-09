@@ -1,19 +1,13 @@
 - type: entity
-  id: BaseKey
-  abstract: true
+  id: EquipmentKey
+  name: equipment key
   parent: BaseItem
-  name: key
   components:
   - type: Item
-    size: Small
+    size: Tiny
 
   - type: Sprite
     sprite: _Sunrise/Clothing/Locked/key.rsi
-    state: icon
+    state: key
 
   - type: Key
-
-- type: entity
-  id: KeyBasic
-  parent: BaseKey
-  name: basic key

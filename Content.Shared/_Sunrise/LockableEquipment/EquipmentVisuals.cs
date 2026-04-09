@@ -7,7 +7,5 @@ namespace Content.Shared._Sunrise.LockableEquipment;
 [Serializable, NetSerializable]
 public enum EquipmentVisuals
 {
-    Visible,
-    Layer,
-    Sprite
+    VisualData
 }

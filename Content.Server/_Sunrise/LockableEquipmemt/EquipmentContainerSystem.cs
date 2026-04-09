@@ -1,195 +1,408 @@
-using Content.Shared.Interaction;
 using Content.Shared._Sunrise.LockableEquipment;
-using Content.Shared.Verbs;
+using Content.Shared.Containers;
+using Content.Shared.DoAfter;
 using Content.Shared.Hands.Components;
-
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Interaction;
+using Content.Shared.Inventory;
+using Content.Shared.Popups;
+using Content.Shared.Verbs;
 using Robust.Server.Containers;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Containers;
-using Content.Server.Hands.Systems;
+using Robust.Shared.GameObjects;
 using Content.Server.Popups;
 
-namespace Content.Server._Sunrise.LockableEquipment
-{
-    public sealed class EquipmentContainerSystem : EntitySystem
-    {
-        [Dependency] private readonly ContainerSystem _container = default!;
-        [Dependency] private readonly PopupSystem _popup = default!;
-        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-        [Dependency] private readonly LockableEquipmentSystem _lockable = default!;
-        [Dependency] private readonly HandsSystem _hands = default!;
+namespace Content.Server._Sunrise.LockableEquipment;
 
-        public override void Initialize()
+public sealed class EquipmentContainerSystem : EntitySystem
+{
+    [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly LockableEquipmentSystem _lockable = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly LayerAccessSystem _layerAccess = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+
+    public override void Initialize()
+    {
+        SubscribeLocalEvent<EquipmentContainerComponent, InteractUsingEvent>(OnInteractUsing);
+        SubscribeLocalEvent<EquipmentContainerComponent, GetVerbsEvent<InteractionVerb>>(OnGetVerbs);
+        SubscribeLocalEvent<EquipmentContainerComponent, EquipmentDoAfterEvent>(OnDoAfter);
+        SubscribeLocalEvent<EquipmentContainerComponent, EntInsertedIntoContainerMessage>(OnContainerInserted);
+        SubscribeLocalEvent<EquipmentContainerComponent, EntRemovedFromContainerMessage>(OnContainerRemoved);
+    }
+
+    private void OnInteractUsing(Entity<EquipmentContainerComponent> ent, ref InteractUsingEvent args)
+    {
+        var container = _container.EnsureContainer<Container>(ent.Owner, ent.Comp.ContainerId);
+        var installedDevice = FindDevice(container);
+
+        if (installedDevice != null &&
+            TryComp(installedDevice.Value, out LockableEquipmentComponent? installedComp))
         {
-            SubscribeLocalEvent<EquipmentContainerComponent, InteractUsingEvent>(OnInteractUsing);
-            SubscribeLocalEvent<EquipmentContainerComponent, GetVerbsEvent<InteractionVerb>>(OnGetVerbs);
+            if (!CanAccess(ent.Owner, installedComp.Layer, args.User, installedComp))
+            {
+                _popup.PopupClient(
+                    Loc.GetString("lockable-equipment-blocked"),
+                    args.User,
+                    args.User);
+                return;
+            }
+
+            if (HasComp<KeyComponent>(args.Used))
+            {
+                args.Handled = _lockable.TryUseKey(installedDevice.Value, args.Used, args.User);
+                return;
+            }
+
+            if (_lockable.CanBreakWithTool(installedDevice.Value, args.Used))
+            {
+                args.Handled = _lockable.TryBreak(installedDevice.Value, args.Used, args.User);
+                return;
+            }
         }
 
-        private void OnGetVerbs(Entity<EquipmentContainerComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
+        if (!TryComp(args.Used, out LockableEquipmentComponent? device))
+            return;
+
+        if (!CanAccess(ent.Owner, device.Layer, args.User, device))
         {
-            if (!args.CanInteract || !args.CanAccess)
-                return;
+            _popup.PopupClient(
+                Loc.GetString("lockable-equipment-blocked"),
+                args.User,
+                args.User);
+            return;
+        }
 
-            var user = args.User;
+        if (FindDevice(container) != null)
+        {
+            _popup.PopupClient(
+                Loc.GetString("lockable-equipment-already"),
+                args.User,
+                args.User);
+            return;
+        }
 
-            var device = GetEquipment(ent.Owner, ent.Comp);
-            if (device == null)
-                return;
+        var doAfter = new DoAfterArgs(
+            EntityManager,
+            args.User,
+            1.5f,
+            new EquipmentDoAfterEvent(EquipmentActionType.Attach),
+            ent.Owner,
+            target: ent.Owner,
+            used: args.Used)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            NeedHand = true,
+            BreakOnHandChange = true,
+            DuplicateCondition = DuplicateConditions.SameTarget | DuplicateConditions.SameEvent
+        };
 
-            if (!TryComp(device.Value, out LockableEquipmentComponent? comp))
-                return;
+        _doAfter.TryStartDoAfter(doAfter);
+    }
 
+    public void TryRemove(EntityUid target, EntityUid user)
+    {
+        if (!TryComp(target, out EquipmentContainerComponent? comp))
+            return;
+
+        var container = _container.EnsureContainer<Container>(target, comp.ContainerId);
+        var device = FindDevice(container);
+
+        if (device == null)
+        {
+            ResetAppearance(target);
+            return;
+        }
+
+        if (!TryComp(device.Value, out LockableEquipmentComponent? dev))
+            return;
+
+        if (!CanAccess(target, dev.Layer, user, dev))
+        {
+            _popup.PopupClient(
+                Loc.GetString("lockable-equipment-blocked"),
+                user,
+                user);
+            return;
+        }
+
+        if (dev.Locked)
+        {
             var name = MetaData(device.Value).EntityName;
 
-            var canAccessLayer = IsLayerAccessible(comp);
+            _popup.PopupClient(
+                Loc.GetString("lockable-equipment-locked", ("name", name)),
+                user,
+                user);
+            return;
+        }
 
-            TryComp(user, out HandsComponent? hands);
+        var doAfter = new DoAfterArgs(
+            EntityManager,
+            user,
+            1.5f,
+            new EquipmentDoAfterEvent(EquipmentActionType.Detach),
+            target,
+            target: target)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            NeedHand = true,
+            BreakOnHandChange = true,
+            DuplicateCondition = DuplicateConditions.SameTarget | DuplicateConditions.SameEvent
+        };
 
-            if (hands != null)
+        _doAfter.TryStartDoAfter(doAfter);
+    }
+
+    private void OnDoAfter(Entity<EquipmentContainerComponent> ent, ref EquipmentDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled)
+            return;
+
+        var container = _container.EnsureContainer<Container>(ent.Owner, ent.Comp.ContainerId);
+
+        switch (args.Action)
+        {
+            case EquipmentActionType.Attach:
             {
-                foreach (var hand in _hands.EnumerateHands(user))
+                if (args.Used is not { } used || !TryComp(used, out LockableEquipmentComponent? device))
+                    return;
+
+                if (FindDevice(container) != null)
+                    return;
+
+                if (!CanAccess(ent.Owner, device.Layer, args.User, device))
+                    return;
+
+                if (!_container.Insert(used, container))
+                    return;
+
+                UpdateAppearance(ent.Owner, device);
+
+                var name = MetaData(used).EntityName;
+                _popup.PopupClient(
+                Loc.GetString("lockable-equipment-equipped", ("name", name)),
+                args.User,
+                args.User);
+                break;
+            }
+
+            case EquipmentActionType.Detach:
+            {
+                var device = FindDevice(container);
+
+                if (device == null)
                 {
-                    if (!_hands.TryGetHeldItem(user, hand, out var held))
-                        continue;
+                    ResetAppearance(ent.Owner);
+                    break;
+                }
 
-                    if (HasComp<KeyComponent>(held.Value))
+                if (!TryComp(device.Value, out LockableEquipmentComponent? dev))
+                    return;
+
+                if (!CanAccess(ent.Owner, dev.Layer, args.User, dev))
+                {
+                    _popup.PopupClient(
+                        Loc.GetString("lockable-equipment-blocked"),
+                        args.User,
+                        args.User);
+                }
+
+                if (dev.Locked)
+                    return;
+
+                if (!_container.Remove(device.Value, container))
+                    return;
+
+                ResetAppearance(ent.Owner, dev);
+
+                if (!_hands.TryPickup(args.User, device.Value, checkActionBlocker: false))
+                    _transform.DropNextTo(device.Value, args.User);
+
+                var name = MetaData(device.Value).EntityName;
+                _popup.PopupClient(
+                    Loc.GetString("lockable-equipment-removed", ("name", name)),
+                    args.User,
+                    args.User);
+                break;
+            }
+        }
+
+        args.Handled = true;
+    }
+
+    private void OnGetVerbs(Entity<EquipmentContainerComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
+    {
+        if (!args.CanInteract || !args.CanAccess)
+            return;
+
+        var device = GetEquipment(ent.Owner, ent.Comp);
+        if (device == null)
+            return;
+
+        if (!TryComp(device.Value, out LockableEquipmentComponent? comp))
+            return;
+
+        var name = MetaData(device.Value).EntityName;
+
+        if (!CanAccess(ent.Owner, comp.Layer, args.User, comp))
+            return;
+
+        TryComp(args.User, out HandsComponent? hands);
+
+        if (hands != null)
+        {
+            foreach (var hand in _hands.EnumerateHands(args.User))
+            {
+                if (!_hands.TryGetHeldItem(args.User, hand, out var held))
+                    continue;
+
+                if (HasComp<KeyComponent>(held.Value))
+                {
+                    var user = args.User;
+
+                    args.Verbs.Add(new InteractionVerb
                     {
-                        var localUser = user;
+                        Text = comp.Locked ? $"Unlock {name}" : $"Lock {name}",
+                        Priority = 200,
+                        Act = () => _lockable.TryUseKey(device.Value, held.Value, user)
+                    });
+                }
 
+                if (comp.Locked && _lockable.CanBreakWithTool(device.Value, held.Value))
+                {
+                    var user = args.User;
+                    var breakText = GetBreakVerbText(name, comp.Mode);
+
+                    if (breakText != null)
+                    {
                         args.Verbs.Add(new InteractionVerb
                         {
-                            Text = comp.Locked ? $"Открыть {name}" : $"Закрыть {name}",
-                            Priority = 200,
-                            Act = () => _lockable.TryUseKey(device.Value, held.Value, localUser)
+                            Text = breakText,
+                            Priority = 150,
+                            Act = () => _lockable.TryBreak(device.Value, held.Value, user)
                         });
-
-                        break;
                     }
                 }
             }
+        }
 
-            if (canAccessLayer && !comp.Locked)
+        if (!comp.Locked)
+        {
+            var user = args.User;
+
+            args.Verbs.Add(new InteractionVerb
             {
-                var localUser = user;
-
-                args.Verbs.Add(new InteractionVerb
-                {
-                    Text = $"Снять {name}",
-                    Priority = 100,
-                    Act = () => TryRemove(ent.Owner, localUser)
-                });
-            }
+                Text = $"Remove {name}",
+                Priority = 100,
+                Act = () => TryRemove(ent.Owner, user)
+            });
         }
-        private void OnInteractUsing(Entity<EquipmentContainerComponent> ent, ref InteractUsingEvent args)
-        {
-            if (!HasComp<LockableEquipmentComponent>(args.Used))
-                return;
+    }
 
-            if (TryInsert(ent.Owner, args.User, args.Used))
-                args.Handled = true;
+    //Helpers
+    private void UpdateAppearance(EntityUid uid, LockableEquipmentComponent device)
+    {
+        var appearance = EnsureComp<AppearanceComponent>(uid);
+        var visualData = CreateVisualData(device, visible: true);
+
+        _appearance.SetData(uid, EquipmentVisuals.VisualData, visualData, appearance);
+
+        Dirty(uid, appearance);
+    }
+
+    private void ResetAppearance(EntityUid uid, LockableEquipmentComponent? previousDevice = null)
+    {
+        var appearance = EnsureComp<AppearanceComponent>(uid);
+        EquipmentVisualData? visualData = null;
+
+        if (previousDevice != null)
+        {
+            visualData = CreateVisualData(previousDevice, visible: false);
         }
-
-        private bool TryInsert(EntityUid target, EntityUid user, EntityUid used)
+        else
         {
-            if (!TryComp(used, out LockableEquipmentComponent? device))
-                return false;
-
-            if (GetEquipment(target, Comp<EquipmentContainerComponent>(target)) != null)
-            {
-                _popup.PopupClient("Уже есть устройство", user, user);
-                return true;
-            }
-
-            var container = _container.EnsureContainer<Container>(
-                target,
-                Comp<EquipmentContainerComponent>(target).ContainerId
-            );
-
-            if (!_container.Insert(used, container))
-                return false;
-
-            var appearance = EnsureComp<AppearanceComponent>(target);
-
-            _appearance.SetData(target, EquipmentVisuals.Visible, true, appearance);
-            _appearance.SetData(target, EquipmentVisuals.Sprite, device.rsiPath, appearance);
-            _appearance.SetData(target, EquipmentVisuals.Layer, device.Layer, appearance);
-
-            var name = MetaData(used).EntityName;
-            _popup.PopupClient($"{name} надето", user, user);
-
-            return true;
+            _appearance.TryGetData(uid, EquipmentVisuals.VisualData, out visualData, appearance);
+            if (visualData != null)
+                visualData = new EquipmentVisualData(false, visualData.Layer, visualData.RsiPath, visualData.State);
         }
 
-        public void TryRemove(EntityUid target, EntityUid user)
+        if (visualData != null)
+            _appearance.SetData(uid, EquipmentVisuals.VisualData, visualData, appearance);
+
+        Dirty(uid, appearance);
+    }
+
+    private EntityUid? FindDevice(BaseContainer container)
+    {
+        foreach (var ent in container.ContainedEntities)
         {
-            if (!TryComp(target, out EquipmentContainerComponent? comp))
-                return;
-
-            var container = _container.EnsureContainer<Container>(target, comp.ContainerId);
-            var device = FindDevice(container);
-
-            if (device == null)
-                return;
-
-            if (TryComp(device.Value, out LockableEquipmentComponent? devComp) && devComp.Locked)
-            {
-                _popup.PopupClient("Нельзя снять — устройство закрыто", user, user);return;
-            }
-
-            var appearance = EnsureComp<AppearanceComponent>(target);
-
-            _container.Remove(device.Value, container);
-
-            _appearance.SetData(target, EquipmentVisuals.Visible, false, appearance);
-            _appearance.RemoveData(target, EquipmentVisuals.Sprite, appearance);
-            _appearance.RemoveData(target, EquipmentVisuals.Layer, appearance);
-
-            var name = MetaData(device.Value).EntityName;
-            _popup.PopupClient($"{name} снято", user, user);
+            if (HasComp<LockableEquipmentComponent>(ent))
+                return ent;
         }
 
-        private void Toggle(EntityUid device, EntityUid user)
-        {
-            if (!TryComp(device, out LockableEquipmentComponent? comp))
-                return;
+        return null;
+    }
 
-            comp.Locked = !comp.Locked;
-
-            var name = MetaData(device).EntityName;
-
-            _popup.PopupClient(
-                comp.Locked ? $"{name} закрыто" : $"{name} открыто",
-                user,
-                user
-            );
-        }
-
-        private bool IsLayerAccessible(LockableEquipmentComponent comp)
-        {
-            return comp.Layer switch
-            {
-                "lockable_under" => false,
-                _ => true
-            };
-        }
-
-        private EntityUid? GetEquipment(EntityUid uid, EquipmentContainerComponent comp)
-        {
-            if (!_container.TryGetContainer(uid, comp.ContainerId, out var container))
-                return null;
-
-            return FindDevice(container);
-        }
-
-        private EntityUid? FindDevice(BaseContainer container)
-        {
-            foreach (var ent in container.ContainedEntities)
-            {
-                if (HasComp<LockableEquipmentComponent>(ent))
-                    return ent;
-            }
-
+    private EntityUid? GetEquipment(EntityUid uid, EquipmentContainerComponent comp)
+    {
+        if (!_container.TryGetContainer(uid, comp.ContainerId, out var container))
             return null;
-        }
+
+        return FindDevice(container);
+    }
+
+    private bool CanAccess(EntityUid owner, string layer, EntityUid user, LockableEquipmentComponent device)
+    {
+        return _layerAccess.IsLayerAccessible(owner, layer, user, device);
+    }
+
+    private void OnContainerInserted(Entity<EquipmentContainerComponent> ent, ref EntInsertedIntoContainerMessage args)
+    {
+        if (args.Container.ID != ent.Comp.ContainerId)
+            return;
+
+        if (TryComp(args.Entity, out LockableEquipmentComponent? device))
+            UpdateAppearance(ent.Owner, device);
+    }
+
+    private void OnContainerRemoved(Entity<EquipmentContainerComponent> ent, ref EntRemovedFromContainerMessage args)
+    {
+        if (args.Container.ID != ent.Comp.ContainerId)
+            return;
+
+        if (TryComp(args.Entity, out LockableEquipmentComponent? device))
+            ResetAppearance(ent.Owner, device);
+    }
+
+    private string? GetBreakVerbText(string name, LockableEquipmentComponent.BreakMode mode)
+    {
+        return mode switch
+        {
+            LockableEquipmentComponent.BreakMode.ForceOpen =>
+                Loc.GetString("lockable-equipment-verb-force-open", ("name", name)),
+
+            LockableEquipmentComponent.BreakMode.Breakable =>
+                Loc.GetString("lockable-equipment-verb-break", ("name", name)),
+
+            LockableEquipmentComponent.BreakMode.Destroyable =>
+                Loc.GetString("lockable-equipment-verb-destroy", ("name", name)),
+
+            _ => null
+        };
+    }
+
+    private static EquipmentVisualData CreateVisualData(LockableEquipmentComponent device, bool visible)
+    {
+        return new EquipmentVisualData(
+            visible,
+            device.Layer,
+            device.rsiPath,
+            device.SpriteState);
     }
 }

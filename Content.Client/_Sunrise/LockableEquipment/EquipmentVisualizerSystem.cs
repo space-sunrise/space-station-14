@@ -1,10 +1,7 @@
-using Content.Shared.Humanoid;
 using Content.Shared._Sunrise.LockableEquipment;
 using Robust.Client.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Utility;
-using Robust.Shared.Log;
-
 
 namespace Content.Client._Sunrise.LockableEquipment
 {
@@ -25,37 +22,29 @@ namespace Content.Client._Sunrise.LockableEquipment
 
             var sprite = args.Sprite;
 
-            if (!_appearance.TryGetData(uid, EquipmentVisuals.Visible, out bool visible))
+            if (!_appearance.TryGetData(uid, EquipmentVisuals.VisualData, out EquipmentVisualData? visualData))
                 return;
 
-            if (!_appearance.TryGetData(uid, EquipmentVisuals.Layer, out string layerKey))
+            if (visualData == null || string.IsNullOrEmpty(visualData.Layer))
                 return;
 
-            if (string.IsNullOrEmpty(layerKey))
-                return;
+            var layer = _sprite.LayerMapReserve((uid, sprite), visualData.Layer);
 
-            var layer = _sprite.LayerMapReserve((uid, sprite), layerKey);
-
-            if (!visible)
+            if (!visualData.Visible)
             {
-                _sprite.LayerSetVisible(uid, layer, false);
+                _sprite.LayerSetVisible((uid, sprite), layer, false);
                 return;
             }
 
-            if (!_appearance.TryGetData(uid, EquipmentVisuals.Sprite, out string rsiPath))
-                return;
-
-            if (string.IsNullOrEmpty(rsiPath))
+            if (string.IsNullOrEmpty(visualData.RsiPath) || string.IsNullOrEmpty(visualData.State))
             {
-                _sprite.LayerSetVisible(uid, layer, false);
+                _sprite.LayerSetVisible((uid, sprite), layer, false);
                 return;
             }
 
-            _sprite.LayerSetRsi((uid, sprite), layer, new ResPath(rsiPath));
-            _sprite.LayerSetRsiState(uid, layer, "equipped");
-            _sprite.LayerSetVisible(uid, layer, true);
-            Log.Info($"[layer] uid = {uid} visible={visible}");
-
+            _sprite.LayerSetRsi((uid, sprite), layer, new ResPath(visualData.RsiPath));
+            _sprite.LayerSetRsiState((uid, sprite), layer, visualData.State);
+            _sprite.LayerSetVisible((uid, sprite), layer, true);
         }
     }
 }
