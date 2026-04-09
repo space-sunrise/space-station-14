@@ -27,6 +27,66 @@
     - FitsHardsuit
 
 - type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaMini
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 10
+  - type: Sprite
+    scale: 0.25,0.25
+    sprite: _Sunrise/HardsuitInjection/ampula.rsi
+    layers:
+      - state: beaker
+      - state: beaker1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    sprite: _Sunrise/HardsuitInjection/ampula.rsi
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaMedium
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 15
+  - type: Sprite
+    scale: 0.50,0.50
+    sprite: _Sunrise/HardsuitInjection/ampula.rsi
+    layers:
+      - state: beaker
+      - state: beaker1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    sprite: _Sunrise/HardsuitInjection/ampula.rsi
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaBig
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 30
+  - type: Sprite
+    scale: 1,1 
+    sprite: _Sunrise/HardsuitInjection/ampula.rsi
+    layers:
+      - state: beaker
+      - state: beaker1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    sprite: _Sunrise/HardsuitInjection/ampula.rsi
+      
+- type: entity
   id: ActionToggleInjection
   name: toggle the EC
   description: Toggles EC
@@ -143,3 +203,423 @@
         reagents:
         - ReagentId: Hyronalin
           Quantity: 20
+
+# 20u (Ampula) – смеси двух реагентов по 10u каждый
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaBloodloseAspxyxia
+  suffix: artiplasm, thyreostate
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 20
+        reagents:
+        - ReagentId: Artiplasm
+          Quantity: 10
+        - ReagentId: Thyreostate
+          Quantity: 10
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaMecha
+  suffix: SalicylicAcid, Bicaridine
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 20
+        reagents:
+        - ReagentId: SalicylicAcid
+          Quantity: 10
+        - ReagentId: Bicaridine
+          Quantity: 10
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaPhysical
+  suffix: Oxanderm, Dermaline
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 20
+        reagents:
+        - ReagentId: Oxanderm
+          Quantity: 10
+        - ReagentId: Dermaline
+          Quantity: 10
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaCellMang
+  suffix: Omnizine, Genocillin
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 20
+        reagents:
+        - ReagentId: Genocillin
+          Quantity: 10
+        - ReagentId: Omnizine
+          Quantity: 10
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaRadiatonPoison
+  suffix: Diphenhydramine, Retroindralyne
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 20
+        reagents:
+        - ReagentId: Diphenhydramine
+          Quantity: 10
+        - ReagentId: Retroindralyne
+          Quantity: 10
+
+# 10u (AmpulaMini) – одиночные реагенты
+- type: entity
+  parent: AmpulaMini
+  name: Ampula mini
+  id: AmpulaDiphenhydramine
+  suffix: Diphenhydramine (10u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 10
+        reagents:
+        - ReagentId: Diphenhydramine
+          Quantity: 10
+
+- type: entity
+  parent: AmpulaMini
+  name: Ampula mini
+  id: AmpulaRetroindralyne
+  suffix: Retroindralyne (10u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 10
+        reagents:
+        - ReagentId: Retroindralyne
+          Quantity: 10
+
+- type: entity
+  parent: AmpulaMini
+  name: Ampula mini
+  id: AmpulaPuncturase
+  suffix: Puncturase (10u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 10
+        reagents:
+        - ReagentId: Puncturase
+          Quantity: 10
+
+- type: entity
+  parent: AmpulaMini
+  name: Ampula mini
+  id: AmpulaLacerinol
+  suffix: Lacerinol (10u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 10
+        reagents:
+        - ReagentId: Lacerinol
+          Quantity: 10
+
+- type: entity
+  parent: AmpulaMini
+  name: Ampula mini
+  id: AmpulaBruizine
+  suffix: Bruizine (10u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 10
+        reagents:
+        - ReagentId: Bruizine
+          Quantity: 10
+
+- type: entity
+  parent: AmpulaMini
+  name: Ampula mini
+  id: AmpulaInsuzine
+  suffix: Insuzine (10u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 10
+        reagents:
+        - ReagentId: Insuzine
+          Quantity: 10
+
+- type: entity
+  parent: AmpulaMini
+  name: Ampula mini
+  id: AmpulaPyrazine
+  suffix: Pyrazine (10u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 10
+        reagents:
+        - ReagentId: Pyrazine
+          Quantity: 10
+
+- type: entity
+  parent: AmpulaMini
+  name: Ampula mini
+  id: AmpulaLeporazine
+  suffix: Leporazine (10u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 10
+        reagents:
+        - ReagentId: Leporazine
+          Quantity: 10
+
+- type: entity
+  parent: AmpulaMini
+  name: Ampula mini
+  id: AmpulaSigynate
+  suffix: Sigynate (10u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 10
+        reagents:
+        - ReagentId: Sigynate
+          Quantity: 10
+
+- type: entity
+  parent: AmpulaMini
+  name: Ampula mini
+  id: AmpulaPhalanximine
+  suffix: Phalanximine (10u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 10
+        reagents:
+        - ReagentId: Phalanximine
+          Quantity: 10
+
+# 20u (Ampula) – одиночные реагенты
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaDexalinPlus
+  suffix: DexalinPlus (20u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 20
+        reagents:
+        - ReagentId: DexalinPlus
+          Quantity: 20
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaBarozinePlus
+  suffix: BarozinePlus (20u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 20
+        reagents:
+        - ReagentId: BarozinePlus
+          Quantity: 20
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaPotassiumIodide
+  suffix: Potassium Iodide (20u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 20
+        reagents:
+        - ReagentId: PotassiumIodide
+          Quantity: 20
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaEthylredoxrazine
+  suffix: Ethylredoxrazine (20u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 20
+        reagents:
+        - ReagentId: Ethylredoxrazine
+          Quantity: 20
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaOculine
+  suffix: Oculine (20u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 20
+        reagents:
+        - ReagentId: Oculine
+          Quantity: 20
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaUltravasculine
+  suffix: Ultravasculine (20u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 20
+        reagents:
+        - ReagentId: Ultravasculine
+          Quantity: 20
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaOmnizine
+  suffix: Omnizine (20u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 20
+        reagents:
+        - ReagentId: Omnizine
+          Quantity: 20
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaSaline
+  suffix: Saline (20u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 20
+        reagents:
+        - ReagentId: Saline
+          Quantity: 20
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaHolyWater
+  suffix: HolyWater (20u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 20
+        reagents:
+        - ReagentId: HolyWater
+          Quantity: 20
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaSiderlac
+  suffix: Siderlac (20u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 20
+        reagents:
+        - ReagentId: Siderlac
+          Quantity: 20
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaHaloperidol
+  suffix: Haloperidol (20u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 20
+        reagents:
+        - ReagentId: Haloperidol
+          Quantity: 20
+
+# 15u (AmpulaMedium) – одиночные реагенты
+- type: entity
+  parent: AmpulaMedium
+  name: Ampula
+  id: AmpulaEpinephrine
+  suffix: Epinephrine (15u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 15
+        reagents:
+        - ReagentId: Epinephrine
+          Quantity: 15
+
+- type: entity
+  parent: AmpulaMedium
+  name: Ampula
+  id: AmpulaArithrazine
+  suffix: Arithrazine (15u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 15
+        reagents:
+        - ReagentId: Arithrazine
+          Quantity: 15
+
+- type: entity
+  parent: AmpulaMedium
+  name: Ampula
+  id: AmpulaGenocillin
+  suffix: Genocillin (15u)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 15
+        reagents:
+        - ReagentId: Genocillin
+          Quantity: 15

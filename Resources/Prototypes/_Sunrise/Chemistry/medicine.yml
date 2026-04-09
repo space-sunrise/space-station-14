@@ -111,12 +111,12 @@
       - !type:HealthChange
         damage:
           types:
-            Bloodloss: -3
-            Mangleness: 0.5
+            Bloodloss: -3.5
+            Mangleness: 0.25
       - !type:ModifyBleed
         amount: -1.5
       - !type:ModifyBloodLevel
-        amount: 4
+        amount: 8
       - !type:SatiateThirst
         factor: 4
       - !type:HealthChange
@@ -169,15 +169,15 @@
         damage:
           types:
             Asphyxiation: -3.5
-            Mangleness: 0.5
+            Mangleness: 0.25
       - !type:ModifyBleed
-        amount: -1.5
+        amount: -2
       - !type:MovementSpeedModifier
         walkSpeedModifier: 0.75
         sprintSpeedModifier: 0.75
       - !type:Electrocute
-        electrocuteTime: 4
-        probability: 0.2
+        electrocuteTime: 2
+        probability: 0.02
       - !type:MovementSpeedModifier
         conditions:
         - !type:ReagentCondition
@@ -259,20 +259,20 @@
           min: 25
         damage:
           groups:
-            Burn: 6
+            Burn: 4
       - !type:HealthChange
         conditions:
         - !type:TotalDamageCondition
           min: 25
         damage:
           groups:
-            Burn: -6
+            Burn: -8
       - !type:HealthChange
         conditions:
         - !type:TotalDamageCondition
           max: 25
         damage:
           groups:
-            Burn: -3
+            Burn: -4
 
 
