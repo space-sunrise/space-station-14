@@ -33,6 +33,7 @@
     roomWhitelist:
       tags:
       - TheaterBagel
+  # Sunrise Start
   - type: Sprite
     offset: 0, -0.5 # Sunrise Edit
     noRot: true # Sunrise Add
@@ -45,3 +46,4 @@
       - sprite: Markers/Outlines/11x8.rsi
         state: label
         color: red
+  # Sunrise End

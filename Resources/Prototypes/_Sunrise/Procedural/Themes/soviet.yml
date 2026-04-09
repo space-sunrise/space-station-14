@@ -264,7 +264,7 @@
   name: soviet dungeon room marker
   components:
   - type: RoomFill
-    minSize: 3,5
+    minSize: 3,3
     maxSize: 17,7
     roomWhitelist:
       tags:

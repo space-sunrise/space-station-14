@@ -133,6 +133,7 @@
     roomWhitelist:
       tags:
       - VGRoidInterior
+  # Sunrise Start
   - type: Sprite
     layers:
       - state: red
@@ -143,3 +144,4 @@
       - sprite: Markers/Outlines/5x5.rsi
         state: label
         color: red
+  # Sunrise End
