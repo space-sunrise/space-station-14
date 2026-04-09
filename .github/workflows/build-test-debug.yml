@@ -78,11 +78,20 @@ jobs:
       run: dotnet restore Content.Tests/Content.Tests.csproj
 
     - name: Run Content.Tests
+      id: content-tests-retry
       uses: nick-fields/retry@v3
       with:
         timeout_minutes: 15
         max_attempts: 2
         command: dotnet test --no-build --no-restore --configuration DebugOpt Content.Tests/Content.Tests.csproj --logger "trx;LogFileName=results.trx" --results-directory /tmp/test-results
+
+    # Sunrise-Edit
+    - name: Mark Content.Tests flake
+      if: success() && steps.content-tests-retry.outputs.total_attempts != '1'
+      run: |
+        echo "::warning title=Flaky Content.Tests::Content.Tests passed on retry after ${{ steps.content-tests-retry.outputs.total_attempts }} attempts."
+        echo "## :warning: Flaky Content.Tests" >> "$GITHUB_STEP_SUMMARY"
+        echo "Passed on retry after ${{ steps.content-tests-retry.outputs.total_attempts }} attempts." >> "$GITHUB_STEP_SUMMARY"
 
     - name: Test results
       continue-on-error: true
@@ -118,6 +127,7 @@ jobs:
       run: dotnet restore Content.IntegrationTests/Content.IntegrationTests.csproj
 
     - name: Run Content.IntegrationTests
+      id: integration-tests-retry
       uses: nick-fields/retry@v3
       env:
         DOTNET_gcServer: "1"
@@ -133,6 +143,14 @@ jobs:
           fi
           timeout --signal=TERM --kill-after=2m 15m \
             dotnet test --no-build --no-restore --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min -- NUnit.MapWarningTo=Failed NUnit.Where="$FILTER"
+
+    # Sunrise-Edit
+    - name: Mark integration shard flake
+      if: success() && steps.integration-tests-retry.outputs.total_attempts != '1'
+      run: |
+        echo "::warning title=Flaky integration shard::Shard ${{ matrix.shard }} passed on retry after ${{ steps.integration-tests-retry.outputs.total_attempts }} attempts."
+        echo "## :warning: Flaky integration shard ${{ matrix.shard }}" >> "$GITHUB_STEP_SUMMARY"
+        echo "Passed on retry after ${{ steps.integration-tests-retry.outputs.total_attempts }} attempts." >> "$GITHUB_STEP_SUMMARY"
 
     - name: Test results
       continue-on-error: true
