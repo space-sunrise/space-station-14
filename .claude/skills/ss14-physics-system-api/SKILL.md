@@ -6,6 +6,6 @@ description: A complete reference to the SharedPhysicsSystem public API in Space
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-physics-system-api/SKILL.md.
+../../../.agent/skills/ss14-physics-system-api/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

@@ -1728,7 +1728,7 @@
   id: UplinkClothingNoSlipsShoes
   name: uplink-clothing-no-slips-shoes-name
   description: uplink-clothing-no-slips-shoes-desc
-  productEntity: ClothingShoesChameleonNoSlipsBiocode # Sunrise-edit
+  productEntity: ClothingShoesChameleonNoSlips
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 1
@@ -1741,7 +1741,7 @@
   id: UplinkClothingOuterVestWeb
   name: uplink-clothing-outer-vest-web-name
   description: uplink-clothing-outer-vest-web-desc
-  productEntity: ClothingOuterVestWebBiocode
+  productEntity: ClothingOuterVestWeb
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 3
@@ -1754,7 +1754,7 @@
   id: UplinkClothingOuterVestWebElite
   name: uplink-clothing-outer-vest-web-elite-name
   description: uplink-clothing-outer-vest-web-elite-desc
-  productEntity: ClothingOuterVestWebEliteBiocode
+  productEntity: ClothingOuterVestWebElite
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 3
@@ -1767,7 +1767,7 @@
   id: UplinkClothingShoesBootsMagSyndie
   name: uplink-clothing-shoes-boots-mag-syndie-name
   description: uplink-clothing-shoes-boots-mag-syndie-desc
-  productEntity: ClothingShoesBootsMagSyndieBiocode
+  productEntity: ClothingShoesBootsMagSyndie
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 1
@@ -1832,13 +1832,12 @@
   cost:
     Telecrystal: 8
   categories:
-  - UplinkWearables
+  - UplinkWearables #Sunrise-edit
   conditions:
   - !type:StoreWhitelistCondition
-    whitelist:
+    blacklist:
       tags:
-      - NukeOpsUplink
-      - LoneOpsUplink # Sunrise-Edit
+      - AssaultOpsUplink #Sunrise-edit
 
 - type: listing
   id: UplinkHardsuitSyndieElite

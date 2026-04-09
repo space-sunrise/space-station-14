@@ -6,6 +6,6 @@ description: A practical and architectural guide to the combination of Appearanc
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-graphics-generic-visualizer-appearance/SKILL.md.
+../../../.agent/skills/ss14-graphics-generic-visualizer-appearance/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

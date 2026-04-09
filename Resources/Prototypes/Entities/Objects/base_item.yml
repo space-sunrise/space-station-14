@@ -53,7 +53,7 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Blunt: 2.5
+        Blunt: 2
   # Sunrise end
 
 - type: entity

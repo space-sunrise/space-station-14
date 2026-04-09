@@ -21,7 +21,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Reflection;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -64,7 +63,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         "Number of times the log queue cap has been reached in a round.");
 
     private static readonly Gauge PreRoundQueueCapReached = Metrics.CreateGauge(
-        "admin_logs_queue_cap_reached",
+        "admin_logs_pre_round_queue_cap_reached",
         "Number of times the pre-round log queue cap has been reached in a round.");
 
     private static readonly Gauge LogsSent = Metrics.CreateGauge(
@@ -76,23 +75,12 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
 
     // CVars
     private bool _metricsEnabled;
-    // Sunrise-Start
-    private bool _lokiEnabled;
-    private string _lokiUrl = string.Empty;
-    private string _lokiUsername = string.Empty;
-    private string _lokiPassword = string.Empty;
-    private string _lokiName = "unknown";
-    // Sunrise-End
 
     private TimeSpan _queueSendDelay;
     private int _queueMax;
     private int _preRoundQueueMax;
     private int _dropThreshold;
     private int _highImpactLogPlaytime;
-
-    // Sunrise-Start
-    private readonly System.Net.Http.HttpClient _httpClient = new();
-    // Sunrise-End
 
     // Per update
     private TimeSpan _nextUpdateTime;
@@ -125,26 +113,9 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
             value => _queueMax = value, true);
         _configuration.OnValueChanged(CCVars.AdminLogsPreRoundQueueMax,
             value => _preRoundQueueMax = value, true);
-        // Sunrise-Start
-        _configuration.OnValueChanged(CCVars.AdminLogsToLoki,
-            value => _lokiEnabled = value, true);
-        _configuration.OnValueChanged(CCVars.AdminLogsLokiUrl,
-            value => _lokiUrl = value, true);
-        _configuration.OnValueChanged(CCVars.AdminLogsLokiUsername,
-            value =>
-            {
-                _lokiUsername = value;
-                SetLokiAuth();
-            }, true);
-        _configuration.OnValueChanged(CCVars.AdminLogsLokiPassword,
-            value =>
-            {
-                _lokiPassword = value;
-                SetLokiAuth();
-            }, true);
-        _configuration.OnValueChanged(CCVars.AdminLogsLokiName,
-            value => _lokiName = value, true);
-        // Sunrise-End
+        // Sunrise edit start - keep Loki configuration in fork partial
+        InitializeLokiConfiguration();
+        // Sunrise edit end
         _configuration.OnValueChanged(CCVars.AdminLogsDropThreshold,
             value => _dropThreshold = value, true);
         _configuration.OnValueChanged(CCVars.AdminLogsHighLogPlaytime,
@@ -164,23 +135,20 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         return NamingPolicy.ConvertName(name);
     }
 
-    // Sunrise-Start
-    private void SetLokiAuth()
-    {
-        _httpClient.DefaultRequestHeaders.Authorization = null;
-        if (!string.IsNullOrEmpty(_lokiUsername) && !string.IsNullOrEmpty(_lokiPassword))
-        {
-            var authString = Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"{_lokiUsername}:{_lokiPassword}"));
-            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", authString);
-        }
-    }
-    // Sunrise-End
-
     public async Task Shutdown()
     {
-        if (!_logQueue.IsEmpty)
+        try
         {
-            await SaveLogs();
+            if (!_logQueue.IsEmpty)
+            {
+                await SaveLogs();
+            }
+        }
+        finally
+        {
+            // Sunrise edit start - release fork Loki resources during admin log shutdown
+            ShutdownLoki();
+            // Sunrise edit end
         }
     }
 
@@ -293,7 +261,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         _preRoundLogQueue.Clear();
         PreRoundQueue.Set(0);
 
-        // Sunrise-Start
+        // Sunrise edit start - choose Loki or database admin log persistence
         Task task;
         if (_lokiEnabled)
         {
@@ -305,7 +273,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
             task = _db.AddAdminLogs(copy);
             _sawmill.Debug($"Saving {copy.Count} admin logs.");
         }
-        // Sunrise-End
+        // Sunrise edit end
 
         if (_metricsEnabled)
         {
@@ -620,13 +588,13 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
             list = new List<SharedAdminLog>(initialSize);
         }
 
-        // Sunrise-Start
+        // Sunrise edit start - read admin logs from Loki when enabled
         if (_lokiEnabled)
         {
             await GetAdminLogsFromLoki(filter, list);
             return list;
         }
-        // Sunrise-End
+        // Sunrise edit end
 
         await foreach (var log in _db.GetAdminLogs(filter).WithCancellation(filter?.CancellationToken ?? default))
         {
@@ -636,217 +604,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         return list;
     }
 
-    // Sunrise-Start
-    private static readonly Regex LogHighlightRegex = new Regex(@"(\bEntId=\d+\b|(?<=\()(\b\d+/[^\)]+|\bn\d+\b)(?=\)))|\b(dropped|picked up|inserted|removed|equipped|unequipped|thrown|wielded|unwielded|loaded|unloaded|spawned|deleted|shot|attacked|damaged|hit|exploded|fired|clicked|knocked down|activated|interacted|opened|closed|locked|unlocked|anchored|unanchored|welded|unwelded|bolted|unbolted|connected|disconnected|joined|left|banned|kicked|suicided|died|revived|cloned|respawned|joined|left|refilled|drained|poured|ingested|vomited|collapsed|unconscious|rejuvenated|mounted|dismounted)\b", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-    private const string Gray = "\u001b[90m";
-    private const string Cyan = "\u001b[36m";
-    private const string Reset = "\u001b[0m";
-    private const string White = "\u001b[37m";
-
-    private async Task SaveLogsToLoki(List<AdminLog> logs)
-    {
-        if (logs.Count == 0 || string.IsNullOrEmpty(_lokiUrl)) return;
-        try
-        {
-            var stream = new LokiStream
-            {
-                Labels = new Dictionary<string, string>
-                {
-                    { "app", _lokiName },
-                    { "category", "admin_log" }
-                }
-            };
-
-            long lastNano = 0;
-            foreach (var log in logs)
-            {
-                var nanoTime = new DateTimeOffset(log.Date).ToUnixTimeMilliseconds() * 1000000;
-                if (nanoTime <= lastNano)
-                    nanoTime = lastNano + 1;
-                lastNano = nanoTime;
-
-                // Create a formatted version for display: IDs in gray, actions in cyan, rest in white
-                var colorizedMessage = LogHighlightRegex.Replace(log.Message, m =>
-                {
-                    if (m.Value.Contains('(') || m.Value.Contains('=') || (m.Value.Length > 0 && char.IsDigit(m.Value[0])))
-                        return $"{Gray}{m.Value}{White}";
-
-                    return $"{Cyan}{m.Value}{White}";
-                });
-                var formattedMessage = $"{White}{colorizedMessage}{Reset}";
-
-                // Fast manual serialization of the AdminLog POCO to avoid IoC/reflection overhead
-                // We send both 'message' (clean for search) and 'message_fmt' (colored for display)
-                var playerIds = log.Players.Select(p => p.PlayerUserId.ToString()).ToArray();
-                var playerIdsJson = JsonSerializer.Serialize(playerIds);
-                var jsonLine = $"{{\"id\":{log.Id},\"roundId\":{log.RoundId},\"type\":{(int)log.Type},\"impact\":{(int)log.Impact},\"date\":\"{log.Date:O}\",\"message\":{JsonSerializer.Serialize(log.Message)},\"message_fmt\":{JsonSerializer.Serialize(formattedMessage)},\"json\":{log.Json.RootElement.GetRawText()},\"playerIds\":{playerIdsJson}}}";
-
-                stream.Values.Add(new[] { nanoTime.ToString(), jsonLine });
-            }
-
-            var req = new LokiPushRequest();
-            req.Streams.Add(stream);
-
-            var content = new System.Net.Http.StringContent(JsonSerializer.Serialize(req), System.Text.Encoding.UTF8, "application/json");
-            var resp = await _httpClient.PostAsync($"{_lokiUrl}/loki/api/v1/push", content);
-            if (!resp.IsSuccessStatusCode)
-            {
-                var err = await resp.Content.ReadAsStringAsync();
-                _sawmill.Error($"Failed to push admin logs to Loki: {resp.StatusCode} {err}");
-            }
-        }
-        catch (Exception e)
-        {
-            _sawmill.Error($"Exception pushing admin logs to Loki: {e}");
-        }
-    }
-
-    private async Task GetAdminLogsFromLoki(LogFilter? filter, List<SharedAdminLog> list)
-    {
-        var limit = filter?.Limit ?? 1000;
-        if (string.IsNullOrEmpty(_lokiUrl)) return;
-
-        var query = $"{{app=\"{_lokiName}\", category=\"admin_log\"}} | json";
-        if (filter != null)
-        {
-            var filters = new List<string>();
-            if (filter.Round != null) filters.Add($"roundId=\"{filter.Round.Value}\"");
-            if (filter.Types != null && filter.Types.Count > 0)
-            {
-                var types = string.Join("|", filter.Types.Select(t => (int)t));
-                filters.Add($"type=~\"{types}\"");
-            }
-            if (filter.Impacts != null && filter.Impacts.Count > 0)
-            {
-                var impacts = string.Join("|", filter.Impacts.Select(i => (int)i));
-                filters.Add($"impact=~\"{impacts}\"");
-            }
-            if (filters.Count > 0)
-                query += " | " + string.Join(" | ", filters);
-
-            if (!string.IsNullOrEmpty(filter.Search))
-            {
-                query += $" |~ \"(?i){Regex.Escape(filter.Search)}\"";
-            }
-        }
-
-        var start = filter?.After != null ? new DateTimeOffset(filter.After.Value).ToUnixTimeMilliseconds() * 1000000 : DateTimeOffset.UtcNow.AddDays(-30).ToUnixTimeMilliseconds() * 1000000;
-        var end = filter?.Before != null ? new DateTimeOffset(filter.Before.Value).ToUnixTimeMilliseconds() * 1000000 : DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() * 1000000;
-
-        if (filter?.Round != null && filter.After == null && filter.Before == null)
-        {
-            try
-            {
-                var round = await _db.GetRound(filter.Round.Value);
-                if (round.StartDate != null)
-                {
-                    // Precise 49-hour window around the start of the round
-                    start = new DateTimeOffset(round.StartDate.Value).AddHours(-1).ToUnixTimeMilliseconds() * 1000000;
-                    end = new DateTimeOffset(round.StartDate.Value).AddHours(48).ToUnixTimeMilliseconds() * 1000000;
-
-                    var now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() * 1000000;
-                    if (end > now) end = now;
-                }
-            }
-            catch
-            {
-                // Round metadata might be missing in DB, fallback to default range
-            }
-        }
-
-        var dir = (filter?.DateOrder ?? DateOrder.Descending) == DateOrder.Ascending ? "FORWARD" : "BACKWARD";
-        var url = $"{_lokiUrl}/loki/api/v1/query_range?query={Uri.EscapeDataString(query)}&limit={limit}&start={start}&end={end}&direction={dir}";
-
-        var cancel = filter?.CancellationToken ?? default;
-        try
-        {
-            var resp = await _httpClient.GetAsync(url, cancel);
-            if (!resp.IsSuccessStatusCode)
-            {
-                _sawmill.Error($"Loki query failed: {resp.StatusCode}");
-                return;
-            }
-
-            var content = await resp.Content.ReadAsStringAsync(cancel);
-            var lokiResp = JsonSerializer.Deserialize<LokiQueryResponse>(content);
-            if (lokiResp?.Data?.Result != null)
-            {
-                var allValues = new List<string[]>();
-                foreach (var stream in lokiResp.Data.Result)
-                {
-                    allValues.AddRange(stream.Values);
-                }
-
-                if (dir == "FORWARD")
-                    allValues.Sort((a, b) => string.CompareOrdinal(a[0], b[0]));
-                else
-                    allValues.Sort((a, b) => string.CompareOrdinal(b[0], a[0]));
-
-                if (allValues.Count > limit)
-                    allValues = allValues.GetRange(0, limit);
-
-                foreach (var val in allValues)
-                {
-                    var token = JsonDocument.Parse(val[1]).RootElement;
-                    var id = token.GetProperty("id").GetInt32();
-                    var type = (LogType)token.GetProperty("type").GetInt32();
-                    var impact = (LogImpact)token.GetProperty("impact").GetInt32();
-                    var date = token.GetProperty("date").GetDateTime();
-                    var message = token.GetProperty("message").GetString() ?? "";
-
-                    var playersList = new List<Guid>();
-                    if (token.TryGetProperty("playerIds", out var playersProp) && playersProp.ValueKind == JsonValueKind.Array)
-                    {
-                        foreach (var p in playersProp.EnumerateArray())
-                        {
-                            if (Guid.TryParse(p.GetString(), out var guid))
-                            {
-                                playersList.Add(guid);
-                            }
-                        }
-                    }
-                    else if (token.TryGetProperty("Players", out var oldPlayersProp) && oldPlayersProp.ValueKind == JsonValueKind.Array)
-                    {
-                        // Fallback for older logs if they existed
-                        foreach (var p in oldPlayersProp.EnumerateArray())
-                        {
-                            if (p.TryGetProperty("PlayerUserId", out var puid) && Guid.TryParse(puid.GetString(), out var guid))
-                            {
-                                playersList.Add(guid);
-                            }
-                        }
-                    }
-
-                    if (filter != null)
-                    {
-                        if (filter.LastLogId != null)
-                        {
-                            if (dir == "FORWARD" && id <= filter.LastLogId.Value) continue;
-                            if (dir == "BACKWARD" && id >= filter.LastLogId.Value) continue;
-                        }
-
-                        if (filter.AnyPlayers != null && filter.AnyPlayers.Length > 0)
-                        {
-                            if (!playersList.Any(p => filter.AnyPlayers.Contains(p))) continue;
-                        }
-                        if (filter.AllPlayers != null && filter.AllPlayers.Length > 0)
-                        {
-                            if (!filter.AllPlayers.All(p => playersList.Contains(p))) continue;
-                        }
-                    }
-
-                    var shared = new SharedAdminLog(id, type, impact, date, message, playersList.ToArray());
-                    list.Add(shared);
-                }
-            }
-        }
-        catch (OperationCanceledException) { }
-        catch (Exception ex)
-        {
-            _sawmill.Error($"Error querying logs from Loki: {ex}");
-        }
-    }
-
+    // Sunrise edit start - route log message reads through Loki-aware query paths
     public async IAsyncEnumerable<string> AllMessages(LogFilter? filter = null)
     {
         if (_lokiEnabled)
@@ -872,7 +630,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
             await foreach (var json in _db.GetAdminLogsJson(filter)) yield return json;
         }
     }
-    // Sunrise-End
+    // Sunrise edit end
 
     public Task<Round> Round(int roundId)
     {
@@ -905,12 +663,12 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         return Round(_currentRoundId);
     }
 
-    // Sunrise-Start
+    // Sunrise edit start - provide a Loki-backed fallback count when database storage is bypassed
     public async Task<int> CountLogs(int round)
     {
         var count = await _db.CountAdminLogs(round);
         if (_lokiEnabled && count == 0) return 1000;
         return count;
     }
-    // Sunrise-End
+    // Sunrise edit end
 }

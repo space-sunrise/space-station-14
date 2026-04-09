@@ -44,4 +44,8 @@
   - type: GuideHelp
     guides:
     - SunriseAmmunition
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 0
   # Sunrise-End

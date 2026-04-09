@@ -6,6 +6,6 @@ description: Creating and updating skills for sunrise-station/SS14: decomposing 
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-skill-authoring/SKILL.md.
+../../../.agent/skills/ss14-skill-authoring/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

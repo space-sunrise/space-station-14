@@ -34,3 +34,10 @@ ent-WeaponPistolDeagleGolden = Golden Desert Eagle
 
 ent-WeaponPistolTec9 = Tac-Tec
     .desc = Very cheap to produce and very easy to use, as reliable as the SKM-24.
+
+ent-WeaponSubMachineGunUzi = Uzi submachine gun
+    .desc = Lightweight and iconic submachine gun with a large magazine and high rate of fire.
+
+ent-WeaponPistolAPS = Stechkin APS
+    .desc = High-quality firearm chambered in a powerful caliber, made for truly special agents.
+

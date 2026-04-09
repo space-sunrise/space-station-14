@@ -6,6 +6,6 @@ description: Practical skill in standard optimizations of Space Station 14: cach
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-standard-optimizations/SKILL.md.
+../../../.agent/skills/ss14-standard-optimizations/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

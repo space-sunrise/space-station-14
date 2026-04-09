@@ -194,9 +194,9 @@ public sealed partial class MessengerServerSystem : EntitySystem
     /// <summary>
     /// Получает время станции (обычное время, как в КПК)
     /// </summary>
-    private TimeSpan GetStationTime()
+    public TimeSpan GetStationTime()
     {
-        return (DateTime.UtcNow + TimeSpan.FromHours(3)).TimeOfDay;
+        return (DateTime.UtcNow + TimeSpan.FromHours(3)) - new DateTime(2024, 1, 1);
     }
 
     /// <summary>
