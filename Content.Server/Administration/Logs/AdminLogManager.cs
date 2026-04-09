@@ -663,7 +663,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         return Round(_currentRoundId);
     }
 
-    // Sunrise edit start - provide a Loki-backed fallback count when database storage is bypassed
+    // Sunrise edit start - prefer Loki count and report zero if Loki is unavailable
     public async Task<int> CountLogs(int round)
     {
         if (_lokiEnabled)
@@ -675,6 +675,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
             catch (Exception ex)
             {
                 _sawmill.Warning($"Failed to fetch Loki log count for round {round}: {ex}");
+                return 0;
             }
         }
 
@@ -707,25 +708,19 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
 
             var content = await response.Content.ReadAsStringAsync();
             var lokiResponse = JsonSerializer.Deserialize<LokiQueryResponse>(content);
+            var rawValueCount = CountLokiValues(lokiResponse);
             var rawValues = FlattenLokiValues(lokiResponse, ascending, batchLimit);
             if (rawValues.Count == 0)
                 return count;
 
             var nextCursor = cursor;
-            foreach (var value in rawValues)
+            foreach (var parsed in rawValues)
             {
-                var timestamp = ParseLokiTimestamp(value[0]);
-                if (!timestamp.HasValue)
-                    continue;
-
-                if (!TryParseLokiLog(value, timestamp.Value, out var parsed))
-                    continue;
-
                 if (cursor != null && !IsCursorBefore(parsed, cursor.Value))
                     continue;
 
                 count++;
-                nextCursor = new LokiCursor(timestamp.Value, parsed.RoundId, parsed.Log.Id);
+                nextCursor = ToLokiCursor(parsed);
             }
 
             if (nextCursor == null || nextCursor == cursor)
@@ -733,7 +728,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
 
             cursor = nextCursor;
             timeRange = MoveTimeRangeCursorForward(timeRange, cursor.Value, ascending);
-            requiresMore = rawValues.Count >= batchLimit;
+            requiresMore = rawValueCount >= batchLimit;
         }
 
         return count;

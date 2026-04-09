@@ -32,6 +32,10 @@ public sealed class LogFilter
 
     public string? LastLogCursor { get; set; }
 
+    // Sunrise edit start - indicate overfetch count used for page-level cursor updates
+    public int LokiCursorOverfetch { get; set; }
+    // Sunrise edit end
+
     public int LogsSent { get; set; }
 
     public int? Limit { get; set; }
