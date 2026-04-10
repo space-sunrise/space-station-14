@@ -6,6 +6,6 @@ description: YAML prototypes in Space Station 14 — entity definitions, field i
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-ecs-prototypes/SKILL.md.
+../../../.agent/skills/ss14-ecs-prototypes/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

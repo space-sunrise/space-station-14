@@ -1,6 +1,6 @@
 ---
 name: ss14-events
-description: Руководство по использованию событий в Space Station 14 — строгая таксономия, подписки, приоритизация ссылочных (by-ref) событий и паттерны сетевого взаимодействия.
+description: A guide to using events in Space Station 14 - strict taxonomy, subscriptions, by-ref event prioritization, and networking patterns.
 ---
 
 # Cursor Bridge

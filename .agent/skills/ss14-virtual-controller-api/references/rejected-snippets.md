@@ -1,14 +1,14 @@
 # Rejected Snippets (VirtualController API)
 
-| Зона | Что найдено | Почему не брать как эталон | Сигнал |
+| Zone | What's found | Why not take it as a standard | Signal |
 |---|---|---|---|
-| `PullController` | Внутренние комментарии о "slop" и необходимости другого подхода | Реализация функционирует, но содержит признанный технический долг | TODO + warning-комментарии |
-| `RandomWalkController` | Неясность по semantics `prediction` в документации метода | Нельзя использовать как reference по контракту prediction | TODO `Document this` |
-| `SharedPhysicsSystem.Solver.GetInvMass` | Специальная ветка `KinematicController` с негативным комментарием | Важный внутренний контекст, но плохой API-шаблон для gameplay | Комментарий о хрупкости + TODO |
-| `SharedPhysicsSystem.Contacts.UpdateContact` | Временные оговорки по контактам и удалению | Не копировать как «чистый API-подход» | `temporary`/TODO markers |
-| Прямой `RemComp<RelayInputMoverComponent>` в gameplay | Обход `RemoveRelay` lifecycle-метода | Риск оставлять несогласованные relay-target состояния | Manual component surgery |
-| Пустой клиентский `ConveyorController` | Только network/prediction presence без бизнес-логики | Нельзя брать как API-референс conveyor поведения | Базовая дата 2023-02-13 (старше cutoff) |
-| `ExitContainerOnMoveSystem` | Старый container-exit flow через climb | Полезен исторически, но не как свежий эталон | Дата 2024-01-14 (старше cutoff) |
-| NPC obstacle climbing блок | Набор TODO и workaround-условий вокруг препятствий | Низкая переносимость, высокий риск регрессий | TODO-heavy комментарии |
-| Чрезмерное использование `BodyStatus.InAir` | Часто выглядит как quick-fix вне спец-механики | Может маскировать реальную проблему в физике/контактах | Semantic misuse |
-| Docs `physics` page | Устаревший контент и неполный coverage по событиям | Нельзя полагаться как на актуальное API-руководство | TODO marker + старая дата |
+| `PullController` | Internal comments about "slop" and the need for a different approach | Implementation works, but contains recognized technical debt | TODO + warning comments |
+| `RandomWalkController` | Ambiguity on semantics `prediction` in the method documentation | Cannot be used as a reference under the prediction contract | TODO `Document this` |
+| `SharedPhysicsSystem.Solver.GetInvMass` | Special thread `KinematicController` with negative comment | Important internal context, but poor API pattern for gameplay | Comment on fragility + TODO |
+| `SharedPhysicsSystem.Contacts.UpdateContact` | Temporary contact and deletion clauses | Don't copy as a "pure API approach" | `temporary`/TODO markers |
+| Direct `RemComp<RelayInputMoverComponent>` in gameplay | Bypass `RemoveRelay` lifecycle method | Risk of leaving inconsistent relay-target states | Manual component surgery |
+| Empty client `ConveyorController` | Only network/prediction presence without business logic | Cannot be used as an API reference for conveyor behavior | Base date 2023-02-13 (older than cutoff) |
+| `ExitContainerOnMoveSystem` | Old container-exit flow via climb | Useful historically, but not as a fresh reference | Date 2024-01-14 (older than cutoff) |
+| NPC obstacle climbing block | Set of TODO and workaround conditions around obstacles | Low tolerance, high risk of regressions | TODO-heavy comments |
+| Excessive use of `BodyStatus.InAir` | Often looks like a quick-fix outside of special mechanics | May mask a real problem in physics/contacts | Semantic misuse |
+| Docs `physics` page | Outdated content and incomplete event coverage | The current API manual should not be relied upon | TODO marker + old date |

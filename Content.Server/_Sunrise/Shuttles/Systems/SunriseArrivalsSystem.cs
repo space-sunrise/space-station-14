@@ -1,15 +1,17 @@
 using System.Numerics;
 using Content.Server.Chat.Systems;
+using Content.Shared.Tag;
+using Content.Shared.Timing;
 using Content.Server.GameTicking;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
+using Content.Shared.CCVar;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
-using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Server._Sunrise.Shuttles.Components;
 using Content.Shared._Sunrise.SunriseCCVars;
@@ -19,9 +21,10 @@ using Content.Server.Spawners.Components;
 using Content.Shared.Chat;
 using Content.Shared.Bed.Cryostorage;
 using Content.Server.Chat.Managers;
+using Content.Server.Spawners.EntitySystems;
+using Content.Shared.Roles;
 using Content.Shared.Shuttles.Systems;
 using Content.Shared.Tiles;
-using Content.Shared.Timing;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
@@ -47,30 +50,97 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     [Dependency] private readonly DockingSystem _docking = default!;
 
     private bool _enabled;
+    private bool _arrivalsEnabled;
     private string _shuttlePath = string.Empty;
-    private float _ftlTime = 15f;
-    private readonly List<EntityUid> _shuttleQueue = new();
 
-    private const float DockWaitTime = 30f;
-    private const float QueueWaitTime = 30f;
-    private const float FTLRetryTime = 10f;
-    private const float ExitTime = 30f;
+    /// <summary>
+    /// Time the shuttle waits at the station dock before forced departure.
+    /// </summary>
+    private const float DockWaitTime = 15f;
+
+    /// <summary>
+    /// FTL travel time for leaving departure (short, shuttle gets deleted after).
+    /// </summary>
+    private const float DepartFtlTime = 5f;
+
+    /// <summary>
+    /// FTL travel time when dispatching from queue to dock.
+    /// </summary>
+    private const float DispatchFtlTime = 5f;
+
+    /// <summary>
+    /// Initial FTL travel time for the first arrival flight.
+    /// </summary>
+    private const float InitialFtlTime = 15f;
+
+    /// <summary>
+    /// Delay after FTL completion before deleting the leaving shuttle.
+    /// </summary>
+    private const float DeleteDelayTime = 2f;
+
+    /// <summary>
+    /// Maximum time a shuttle can exist before failsafe kicks in.
+    /// </summary>
+    private static readonly TimeSpan FailsafeTimeout = TimeSpan.FromMinutes(2);
+
+    /// <summary>
+    /// Buffer space between shuttles on the pool map.
+    /// </summary>
+    private const float PoolBuffer = 10f;
+
+    /// <summary>
+    /// Grace period after the player leaves the shuttle before it departs.
+    /// Gives them time to clear the airlock.
+    /// </summary>
+    private static readonly TimeSpan ExitGracePeriod = TimeSpan.FromSeconds(3);
+
+    /// <summary>
+    /// Delay before greeting the player after spawn.
+    /// </summary>
+    private static readonly TimeSpan GreetDelay = TimeSpan.FromSeconds(2);
+
+    /// <summary>
+    /// Time after docking before issuing the evac warning.
+    /// </summary>
+    private static readonly TimeSpan WarnDelay = TimeSpan.FromSeconds(8);
+
+    /// <summary>
+    /// Wait time before warning the player that station docks are blocked.
+    /// </summary>
+    private static readonly TimeSpan BlockedWarnDelay = TimeSpan.FromSeconds(20);
+
+    /// <summary>
+    /// Interval between CC station announcements about blocked arrivals.
+    /// </summary>
+    private static readonly TimeSpan StationWarnInterval = TimeSpan.FromMinutes(1);
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawning, before: new[] { typeof(ArrivalsSystem) });
+        SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawning, after: new []{ typeof(ContainerSpawnPointSystem) }, before: new []{ typeof(SpawnPointSystem) });
         SubscribeLocalEvent<SunriseArrivalsShuttleComponent, FTLCompletedEvent>(OnFTLCompleted);
+        SubscribeLocalEvent<SunriseArrivalsShuttleComponent, ComponentShutdown>(OnShuttleShutdown);
 
         _cfg.OnValueChanged(SunriseCCVars.ArrivalsSingleShuttle, b => _enabled = b, true);
         _cfg.OnValueChanged(SunriseCCVars.ArrivalsSingleShuttlePath, s => _shuttlePath = s, true);
-        _cfg.OnValueChanged(SunriseCCVars.ArrivalsShuttleFTLTime, f => _ftlTime = f, true);
+        _cfg.OnValueChanged(CCVars.ArrivalsShuttles, b => _arrivalsEnabled = b, true);
     }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+
+        _cfg.UnsubValueChanged(SunriseCCVars.ArrivalsSingleShuttle, b => _enabled = b);
+        _cfg.UnsubValueChanged(SunriseCCVars.ArrivalsSingleShuttlePath, s => _shuttlePath = s);
+        _cfg.UnsubValueChanged(CCVars.ArrivalsShuttles, b => _arrivalsEnabled = b);
+    }
+
+    #region Event Handlers
 
     private void OnPlayerSpawning(PlayerSpawningEvent ev)
     {
-        if (!_enabled || ev.SpawnResult != null || _ticker.RunLevel != GameRunLevel.InRound)
+        if (!_enabled || !_arrivalsEnabled || ev.SpawnResult != null || _ticker.RunLevel != GameRunLevel.InRound)
             return;
 
         if (ev.DesiredSpawnPointType == SpawnPointType.Job)
@@ -81,73 +151,56 @@ public sealed class SunriseArrivalsSystem : EntitySystem
 
         var station = ev.Station.Value;
 
-        // Spawn a temporary map for the shuttle
-        var dummyMap = _mapSystem.CreateMap(out var dummyMapId);
-
-        // Load the shuttle grid
-        if (!_loader.TryLoadGrid(dummyMapId, new ResPath(_shuttlePath), out var shuttleGrid))
+        try
         {
-            Log.Error($"Failed to load single-shuttle grid at {_shuttlePath}");
-            QueueDel(dummyMap);
-            return;
-        }
-
-        EnsureComp<ProtectedGridComponent>(shuttleGrid.Value);
-        EnsureComp<UnbuildableGridComponent>(shuttleGrid.Value);
-        EnsureComp<ImmortalGridComponent>(shuttleGrid.Value);
-        EnsureComp<PreventPilotComponent>(shuttleGrid.Value);
-
-        // Find a spawn point on the shuttle
-        var spawnPoints = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-        EntityCoordinates? spawnLoc = null;
-        while (spawnPoints.MoveNext(out _, out var spawnPoint, out var xform))
-        {
-            if (xform.GridUid == shuttleGrid.Value && spawnPoint.SpawnType == SpawnPointType.LateJoin)
+            var shuttleUid = SpawnShuttle(station);
+            if (shuttleUid == null)
             {
-                spawnLoc = xform.Coordinates;
-                break;
+                Log.Error("Failed to spawn arrivals shuttle, falling back to station spawn");
+                return; // Let vanilla system handle it
             }
+
+            var spawnLoc = FindShuttleSpawnPoint(shuttleUid.Value);
+            ev.SpawnResult = _stationSpawning.SpawnPlayerMob(
+                spawnLoc,
+                ev.Job,
+                ev.HumanoidCharacterProfile,
+                station);
+
+            if (ev.SpawnResult == null)
+            {
+                Log.Error($"Failed to spawn player mob on arrivals shuttle {ToPrettyString(shuttleUid.Value)}");
+                CleanupShuttle(shuttleUid.Value);
+                return;
+            }
+
+            var arrivals = EnsureComp<SunriseArrivalsShuttleComponent>(shuttleUid.Value);
+            arrivals.Station = station;
+            arrivals.Player = ev.SpawnResult.Value;
+            arrivals.SpawnTime = _timing.CurTime;
+            arrivals.State = SunriseArrivalsShuttleState.Queued;
+            arrivals.Attendant = FindAttendant(shuttleUid.Value);
+            arrivals.PlayerName = ev.HumanoidCharacterProfile?.Name ?? "Unknown";
+            arrivals.PlayerJob = ev.Job != null
+                ? _prototypeManager.Index(ev.Job.Value).LocalizedName
+                : Loc.GetString("job-name-unknown");
+            arrivals.Greeted = false;
+
+            EnqueueShuttle(shuttleUid.Value);
+
+            // Put shuttle in infinite FTL so it appears to be in hyperspace
+            var shuttleComp = Comp<ShuttleComponent>(shuttleUid.Value);
+            _shuttle.FTLToCoordinates(shuttleUid.Value, shuttleComp,
+                Transform(shuttleUid.Value).Coordinates, Angle.Zero, hyperspaceTime: 3600f);
+
+            Log.Info($"Arrivals shuttle {ToPrettyString(shuttleUid.Value)} spawned for player " +
+                     $"'{arrivals.PlayerName}' heading to {ToPrettyString(station)}");
         }
-
-        // Fallback to center if no spawn point found
-        spawnLoc ??= new EntityCoordinates(shuttleGrid.Value, 0, 0);
-
-        ev.SpawnResult = _stationSpawning.SpawnPlayerMob(
-            spawnLoc.Value,
-            ev.Job,
-            ev.HumanoidCharacterProfile,
-            station);
-
-        if (ev.SpawnResult == null)
+        catch (Exception e)
         {
-            QueueDel(shuttleGrid.Value);
-            QueueDel(dummyMap);
-            return;
+            Log.Error($"Exception in arrivals shuttle spawn: {e}");
+            // Don't set ev.SpawnResult — let vanilla system handle fallback
         }
-
-        // Track the shuttle
-        var arrivals = EnsureComp<SunriseArrivalsShuttleComponent>(shuttleGrid.Value);
-        arrivals.Station = station;
-        arrivals.Player = ev.SpawnResult.Value;
-
-        // Start in queued state with infinite FTL to Nullspace
-        arrivals.Station = station;
-        arrivals.Player = ev.SpawnResult.Value;
-        arrivals.QueuedStartTime = _timing.CurTime;
-        arrivals.State = SunriseArrivalsShuttleState.Queued;
-        arrivals.NextRetry = _timing.CurTime + TimeSpan.FromSeconds(FTLRetryTime);
-        arrivals.NextAnnouncement = _timing.CurTime + TimeSpan.FromSeconds(30);
-
-        _shuttleQueue.Add(shuttleGrid.Value);
-
-        var shuttleComp = Comp<ShuttleComponent>(shuttleGrid.Value);
-        _shuttle.FTLToCoordinates(shuttleGrid.Value, shuttleComp, Transform(shuttleGrid.Value).Coordinates, Angle.Zero, hyperspaceTime: 3600f);
-
-        var attendant = FindAttendant(shuttleGrid.Value);
-        arrivals.Attendant = attendant;
-        arrivals.PlayerName = ev.HumanoidCharacterProfile?.Name ?? "Unknown";
-        arrivals.PlayerJob = ev.Job != null ? _prototypeManager.Index(ev.Job.Value).LocalizedName : Loc.GetString("job-name-unknown");
-        arrivals.Greeted = false;
     }
 
     private void OnFTLCompleted(EntityUid uid, SunriseArrivalsShuttleComponent component, ref FTLCompletedEvent args)
@@ -158,8 +211,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         if (IsDocked(uid))
         {
             component.State = SunriseArrivalsShuttleState.Docked;
-            component.DockedStartTime = _timing.CurTime;
-            component.NextAnnouncement = _timing.CurTime + TimeSpan.FromSeconds(DockWaitTime);
+            component.DockTime = _timing.CurTime;
             component.Warned = false;
 
             if (component.Attendant != null)
@@ -170,19 +222,538 @@ public sealed class SunriseArrivalsSystem : EntitySystem
                 var msg = Loc.GetString("sunrise-arrivals-attendant-arrival", ("station", stationName));
                 _chat.TrySendInGameICMessage(component.Attendant.Value, msg, InGameICChatType.Speak, hideChat: false);
             }
+
+            Log.Debug($"Arrivals shuttle {ToPrettyString(uid)} docked at station");
         }
         else
         {
-            // If we're not docked (arrived in space), go back to waiting instead of staying in space
-            component.State = SunriseArrivalsShuttleState.Waiting;
-            component.NextRetry = _timing.CurTime + TimeSpan.FromSeconds(FTLRetryTime);
+            // Failed to dock — re-enqueue so it retries on next dispatch cycle
+            Log.Warning($"Arrivals shuttle {ToPrettyString(uid)} completed FTL but not docked, re-enqueueing");
+            component.State = SunriseArrivalsShuttleState.Queued;
+            EnqueueShuttle(uid);
 
-            // Immediately FTL back to holding target to stay in "hyperspace"
+            // Put back into infinite FTL
             var shuttleComp = Comp<ShuttleComponent>(uid);
-            _shuttle.FTLToCoordinates(uid, shuttleComp, Transform(uid).Coordinates, Angle.Zero, hyperspaceTime: 3600f);
+            _shuttle.FTLToCoordinates(uid, shuttleComp,
+                Transform(uid).Coordinates, Angle.Zero, hyperspaceTime: 3600f);
         }
     }
 
+    private void OnShuttleShutdown(EntityUid uid, SunriseArrivalsShuttleComponent component, ComponentShutdown args)
+    {
+        // Clean up dock reservations
+        foreach (var dock in component.ReservedDocks)
+        {
+            RemCompDeferred<FtlReservationComponent>(dock);
+        }
+        component.ReservedDocks.Clear();
+
+        // Remove from queue if present
+        var poolQuery = EntityQueryEnumerator<SunriseArrivalsPoolComponent>();
+        while (poolQuery.MoveNext(out _, out var pool))
+        {
+            pool.Queue.Remove(uid);
+        }
+    }
+
+    #endregion
+
+    #region Update Loop
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        if (!_enabled || !_arrivalsEnabled)
+            return;
+
+        var curTime = _timing.CurTime;
+
+        TryDispatchFromQueue(curTime);
+
+        var query = EntityQueryEnumerator<SunriseArrivalsShuttleComponent>();
+        while (query.MoveNext(out var uid, out var arrivals))
+        {
+            ProcessGreeting(uid, arrivals, curTime);
+            ProcessFailsafe(uid, arrivals, curTime);
+
+            switch (arrivals.State)
+            {
+                case SunriseArrivalsShuttleState.Queued:
+                    // Handled by TryDispatchFromQueue
+                    break;
+                case SunriseArrivalsShuttleState.Travelling:
+                    // Handled by OnFTLCompleted / failsafe
+                    break;
+                case SunriseArrivalsShuttleState.Docked:
+                    ProcessDocked(uid, arrivals, curTime);
+                    break;
+                case SunriseArrivalsShuttleState.Leaving:
+                    ProcessLeaving(uid, arrivals, curTime);
+                    break;
+            }
+
+            if (arrivals.State == SunriseArrivalsShuttleState.Queued)
+                ProcessBlockedDock(uid, arrivals, curTime);
+        }
+    }
+
+    /// <summary>
+    /// Warns the player if their shuttle is stuck in orbit due to blocked docks.
+    /// </summary>
+    private void ProcessBlockedDock(EntityUid uid, SunriseArrivalsShuttleComponent arrivals, TimeSpan curTime)
+    {
+        if (arrivals.DockBlockedWarned || arrivals.Attendant == null)
+            return;
+
+        // Start counting from SpawnTime or first attempt
+        if (curTime < arrivals.SpawnTime + BlockedWarnDelay)
+            return;
+
+        // Only warn if they aren't even travelling yet
+        var msg = Loc.GetString("sunrise-arrivals-attendant-blocked", ("station", Name(arrivals.Station)));
+        _chat.TrySendInGameICMessage(arrivals.Attendant.Value, msg, InGameICChatType.Speak, hideChat: false);
+        arrivals.DockBlockedWarned = true;
+
+        Log.Warning($"Arrivals shuttle {ToPrettyString(uid)} is stuck in queue - docks blocked at {ToPrettyString(arrivals.Station)}");
+
+        // Station-wide CC announcement (throttled per station/globally)
+        var poolQuery = EntityQueryEnumerator<SunriseArrivalsPoolComponent>();
+        while (poolQuery.MoveNext(out _, out var pool))
+        {
+            if (curTime < pool.LastAlertTime + StationWarnInterval)
+                continue;
+
+            var stationMsg = Loc.GetString("sunrise-arrivals-shuttle-docking-blocked");
+            var sender = Loc.GetString("sunrise-arrivals-shuttle-cc-sender");
+            _chat.DispatchStationAnnouncement(arrivals.Station, stationMsg, sender, colorOverride: Color.Gold);
+            pool.LastAlertTime = curTime;
+        }
+    }
+
+    /// <summary>
+    /// Tries to dispatch shuttles from the queue to free docks.
+    /// Dispatches one shuttle per free dock per tick.
+    /// </summary>
+    private void TryDispatchFromQueue(TimeSpan curTime)
+    {
+        var poolQuery = EntityQueryEnumerator<SunriseArrivalsPoolComponent>();
+        while (poolQuery.MoveNext(out _, out var pool))
+        {
+            if (pool.Queue.Count == 0)
+                continue;
+
+            // Process queue — try to dispatch as many as we have free docks
+            for (var i = 0; i < pool.Queue.Count; i++)
+            {
+                var shuttleUid = pool.Queue[i];
+
+                if (!TryComp<SunriseArrivalsShuttleComponent>(shuttleUid, out var arrivals))
+                {
+                    pool.Queue.RemoveAt(i);
+                    i--;
+                    continue;
+                }
+
+                if (arrivals.State != SunriseArrivalsShuttleState.Queued)
+                {
+                    pool.Queue.RemoveAt(i);
+                    i--;
+                    continue;
+                }
+
+                if (!TryDispatchShuttle(shuttleUid, arrivals))
+                    break; // No free docks — stop trying
+
+                pool.Queue.RemoveAt(i);
+                i--;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Attempts to dispatch a queued shuttle to the station dock.
+    /// Returns true if the shuttle was dispatched, false if no dock available.
+    /// </summary>
+    private bool TryDispatchShuttle(EntityUid uid, SunriseArrivalsShuttleComponent arrivals)
+    {
+        var station = arrivals.Station;
+        var targetGrid = _station.GetLargestGrid(station) ?? station;
+
+        var config = _docking.GetDockingConfig(uid, targetGrid, "DockArrivals", false);
+        if (config == null)
+            return false;
+
+        if (!TryComp<FTLComponent>(uid, out var ftl) || ftl.State != FTLState.Travelling)
+            return false;
+
+        // Redirect the existing infinite FTL to the dock
+        ftl.TargetCoordinates = config.Coordinates;
+        ftl.TargetAngle = config.Angle;
+        ftl.PriorityTag = new ProtoId<TagPrototype>("DockArrivals");
+        ftl.TravelTime = DispatchFtlTime;
+        ftl.StateTime = StartEndTime.FromCurTime(_timing, DispatchFtlTime);
+
+        // Reserve the docks
+        foreach (var docks in config.Docks)
+        {
+            var reservation = EnsureComp<FtlReservationComponent>(docks.DockBUid);
+            reservation.ReservedBy = uid;
+            arrivals.ReservedDocks.Add(docks.DockBUid);
+        }
+
+        arrivals.State = SunriseArrivalsShuttleState.Travelling;
+
+        Log.Debug($"Dispatched arrivals shuttle {ToPrettyString(uid)} to dock");
+        return true;
+    }
+
+    /// <summary>
+    /// Processes greeting logic — delayed welcome message from attendant.
+    /// </summary>
+    private void ProcessGreeting(EntityUid uid, SunriseArrivalsShuttleComponent arrivals, TimeSpan curTime)
+    {
+        if (arrivals.Greeted || arrivals.Attendant == null)
+            return;
+
+        if (!TryComp<ActorComponent>(arrivals.Player, out _))
+            return;
+
+        if (arrivals.GreetTime == null)
+        {
+            arrivals.GreetTime = curTime + GreetDelay;
+            return;
+        }
+
+        if (curTime < arrivals.GreetTime)
+            return;
+
+        var msg = Loc.GetString("sunrise-arrivals-attendant-welcome",
+            ("name", arrivals.PlayerName),
+            ("job", arrivals.PlayerJob),
+            ("station", Name(arrivals.Station)),
+            ("eta", (int)InitialFtlTime));
+        _chat.TrySendInGameICMessage(arrivals.Attendant.Value, msg, InGameICChatType.Speak, hideChat: false);
+        arrivals.Greeted = true;
+    }
+
+    /// <summary>
+    /// Failsafe: if a shuttle has existed for more than 2 minutes, teleport the player and delete it.
+    /// </summary>
+    private void ProcessFailsafe(EntityUid uid, SunriseArrivalsShuttleComponent arrivals, TimeSpan curTime)
+    {
+        if (arrivals.State == SunriseArrivalsShuttleState.Leaving)
+            return;
+
+        if (curTime <= arrivals.SpawnTime + FailsafeTimeout)
+            return;
+
+        Log.Warning($"Failsafe triggered for arrivals shuttle {ToPrettyString(uid)}, " +
+                     $"player: '{arrivals.PlayerName}', state: {arrivals.State}");
+
+        TryTeleportPlayer(uid, arrivals);
+
+        if (arrivals.Attendant != null)
+        {
+            var msg = Loc.GetString("sunrise-arrivals-failsafe-teleport");
+            if (arrivals.Player != null && TryComp<ActorComponent>(arrivals.Player.Value, out var actor))
+            {
+                _chatManager.ChatMessageToOne(ChatChannel.Server, msg, msg,
+                    EntityUid.Invalid, false, actor.PlayerSession.Channel);
+            }
+        }
+
+        CleanupShuttle(uid);
+    }
+
+    /// <summary>
+    /// Processes docked state: warn, force evac, depart.
+    /// </summary>
+    private void ProcessDocked(EntityUid uid, SunriseArrivalsShuttleComponent arrivals, TimeSpan curTime)
+    {
+        var playerOnShuttle = IsPlayerOnShuttle(uid);
+
+        if (!playerOnShuttle)
+        {
+            // Player left — start the grace timer
+            arrivals.PlayerExitTime ??= curTime;
+
+            // Depart after grace period so the airlock doesn't crush the player
+            if (curTime >= arrivals.PlayerExitTime + ExitGracePeriod)
+            {
+                StartDeparture(uid, arrivals);
+                return;
+            }
+        }
+        else
+        {
+            // Player came back — reset the exit timer
+            arrivals.PlayerExitTime = null;
+        }
+
+        var dockTime = arrivals.DockTime ?? curTime;
+
+        // Warning ~8 seconds after docking
+        if (!arrivals.Warned && curTime >= dockTime + WarnDelay)
+        {
+            if (arrivals.Attendant != null)
+            {
+                var msg = Loc.GetString("sunrise-arrivals-attendant-evac");
+                _chat.TrySendInGameICMessage(arrivals.Attendant.Value, msg, InGameICChatType.Speak, hideChat: false);
+            }
+            arrivals.Warned = true;
+        }
+
+        // Forced departure after DockWaitTime
+        if (curTime >= dockTime + TimeSpan.FromSeconds(DockWaitTime))
+        {
+            TryTeleportPlayer(uid, arrivals);
+            StartDeparture(uid, arrivals);
+        }
+    }
+
+    /// <summary>
+    /// Processes leaving state: wait for FTL to finish, then delete.
+    /// </summary>
+    private void ProcessLeaving(EntityUid uid, SunriseArrivalsShuttleComponent arrivals, TimeSpan curTime)
+    {
+        if (HasComp<FTLComponent>(uid))
+            return; // Still in FTL
+
+        if (arrivals.LeaveStartTime == null)
+        {
+            arrivals.LeaveStartTime = curTime;
+            return;
+        }
+
+        if (curTime >= arrivals.LeaveStartTime + TimeSpan.FromSeconds(DeleteDelayTime))
+        {
+            CleanupShuttle(uid);
+        }
+    }
+
+    #endregion
+
+    #region Main Logic
+
+    /// <summary>
+    /// Initiates shuttle departure from the station dock.
+    /// Immediately frees dock reservations so queued shuttles can dispatch.
+    /// </summary>
+    private void StartDeparture(EntityUid uid, SunriseArrivalsShuttleComponent component)
+    {
+        if (component.State == SunriseArrivalsShuttleState.Leaving)
+            return;
+
+        component.State = SunriseArrivalsShuttleState.Leaving;
+        component.LeaveStartTime = null;
+
+        // Clear dock reservations immediately so queued shuttles can dispatch on next tick
+        foreach (var dock in component.ReservedDocks)
+        {
+            RemCompDeferred<FtlReservationComponent>(dock);
+        }
+        component.ReservedDocks.Clear();
+
+        // Remove any existing FTL component (e.g. arrival cooldown) that would
+        // block TrySetupFTL. Without this, FTLToCoordinates silently fails and
+        // the shuttle stays docked for the entire 10s FTL cooldown.
+        RemComp<FTLComponent>(uid);
+
+        Log.Debug($"Arrivals shuttle {ToPrettyString(uid)} departing");
+
+        if (TryComp<ShuttleComponent>(uid, out var shuttleComp))
+        {
+            _shuttle.FTLToCoordinates(uid, shuttleComp,
+                new EntityCoordinates(uid, Vector2.Zero), Angle.Zero,
+                startupTime: 0f,
+                hyperspaceTime: DepartFtlTime);
+        }
+    }
+
+    /// <summary>
+    /// Teleports the player from the shuttle to a station spawn point.
+    /// </summary>
+    private void TryTeleportPlayer(EntityUid gridUid, SunriseArrivalsShuttleComponent arrivals)
+    {
+        if (!IsPlayerOnShuttle(gridUid))
+            return;
+
+        var station = arrivals.Station;
+        if (!station.IsValid())
+            return;
+
+        var target = FindStationSpawnPoint(station);
+
+        if (target != null && arrivals.Player != null)
+        {
+            _transform.SetCoordinates(arrivals.Player.Value, target.Value);
+            if (TryComp<ActorComponent>(arrivals.Player.Value, out var actor))
+            {
+                _chatManager.ChatMessageToOne(ChatChannel.Server,
+                    Loc.GetString("sunrise-arrivals-forced-evac"),
+                    Loc.GetString("sunrise-arrivals-forced-evac"),
+                    EntityUid.Invalid, false, actor.PlayerSession.Channel);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Spawns a shuttle grid on the pool map.
+    /// </summary>
+    private EntityUid? SpawnShuttle(EntityUid station)
+    {
+        var (poolMapUid, poolMapId, pool) = EnsurePoolMap();
+
+        if (!_loader.TryLoadGrid(poolMapId, new ResPath(_shuttlePath), out var shuttleGrid))
+        {
+            Log.Error($"Failed to load arrivals shuttle grid at {_shuttlePath}");
+            return null;
+        }
+
+        // Offset the shuttle on the pool map
+        if (TryComp<MapGridComponent>(shuttleGrid.Value, out var grid))
+        {
+            var width = grid.LocalAABB.Width;
+            var offset = new Vector2(pool.NextOffset + width / 2f, 0f);
+            _transform.SetLocalPosition(shuttleGrid.Value, offset);
+            pool.NextOffset += width + PoolBuffer;
+        }
+
+        EnsureComp<ProtectedGridComponent>(shuttleGrid.Value);
+        EnsureComp<UnbuildableGridComponent>(shuttleGrid.Value);
+        EnsureComp<ImmortalGridComponent>(shuttleGrid.Value);
+        EnsureComp<PreventPilotComponent>(shuttleGrid.Value);
+
+        return shuttleGrid.Value;
+    }
+
+    /// <summary>
+    /// Cleans up a shuttle: teleport any remaining player, delete the entity.
+    /// </summary>
+    private void CleanupShuttle(EntityUid uid)
+    {
+        if (TryComp<SunriseArrivalsShuttleComponent>(uid, out var arrivals))
+        {
+            // Safety: teleport player if still on shuttle
+            if (arrivals.Player != null && IsPlayerOnShuttle(uid))
+            {
+                TryTeleportPlayer(uid, arrivals);
+            }
+        }
+
+        QueueDel(uid);
+        Log.Debug($"Cleaned up arrivals shuttle {ToPrettyString(uid)}");
+    }
+
+    #endregion
+
+    #region Helpers
+
+    /// <summary>
+    /// Gets or creates the shared pool map for arrivals shuttles.
+    /// </summary>
+    private (EntityUid MapUid, MapId MapId, SunriseArrivalsPoolComponent Pool) EnsurePoolMap()
+    {
+        var poolQuery = EntityQueryEnumerator<SunriseArrivalsPoolComponent>();
+        while (poolQuery.MoveNext(out var uid, out var pool))
+        {
+            var mapComp = Comp<MapComponent>(uid);
+            return (uid, mapComp.MapId, pool);
+        }
+
+        // Create new pool map
+        var mapUid = _mapSystem.CreateMap(out var mapId);
+        var newPool = AddComp<SunriseArrivalsPoolComponent>(mapUid);
+        return (mapUid, mapId, newPool);
+    }
+
+    /// <summary>
+    /// Adds a shuttle to the dispatch queue.
+    /// </summary>
+    private void EnqueueShuttle(EntityUid shuttleUid)
+    {
+        var (_, _, pool) = EnsurePoolMap();
+        if (!pool.Queue.Contains(shuttleUid))
+            pool.Queue.Add(shuttleUid);
+    }
+
+    /// <summary>
+    /// Finds a late-join spawn point on the shuttle grid.
+    /// </summary>
+    private EntityCoordinates FindShuttleSpawnPoint(EntityUid shuttleGrid)
+    {
+        var spawnPoints = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+        while (spawnPoints.MoveNext(out _, out var spawnPoint, out var xform))
+        {
+            if (xform.GridUid == shuttleGrid && spawnPoint.SpawnType == SpawnPointType.LateJoin)
+                return xform.Coordinates;
+        }
+
+        return new EntityCoordinates(shuttleGrid, 0, 0);
+    }
+
+    /// <summary>
+    /// Finds a spawn point on the station for emergency teleportation.
+    /// </summary>
+    private EntityCoordinates? FindStationSpawnPoint(EntityUid station)
+    {
+        // 1. Late-join spawn points
+        var spawnQuery = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+        while (spawnQuery.MoveNext(out var spawnUid, out var spawn, out var xform))
+        {
+            if (spawn.SpawnType == SpawnPointType.LateJoin && _station.GetOwningStation(spawnUid) == station)
+                return xform.Coordinates;
+        }
+
+        // 2. Cryopods as fallback
+        var cryoQuery = EntityQueryEnumerator<CryostorageComponent, TransformComponent>();
+        while (cryoQuery.MoveNext(out var cryoUid, out _, out var xform))
+        {
+            if (_station.GetOwningStation(cryoUid) == station)
+                return xform.Coordinates;
+        }
+
+        // 3. Grid center as last resort
+        var targetGrid = _station.GetLargestGrid(station);
+        if (targetGrid != null && TryComp<MapGridComponent>(targetGrid, out var grid))
+            return new EntityCoordinates(targetGrid.Value, grid.LocalAABB.Center);
+
+        return null;
+    }
+
+    /// <summary>
+    /// Finds the attendant NPC entity on the shuttle grid.
+    /// </summary>
+    private EntityUid? FindAttendant(EntityUid gridUid)
+    {
+        var query = EntityQueryEnumerator<SunriseArrivalsAttendantComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out _, out var xform))
+        {
+            if (xform.GridUid == gridUid)
+                return uid;
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Checks if any player (actor) is currently on the shuttle grid.
+    /// </summary>
+    private bool IsPlayerOnShuttle(EntityUid gridUid)
+    {
+        var query = EntityQueryEnumerator<ActorComponent, TransformComponent>();
+        while (query.MoveNext(out _, out _, out var playerXform))
+        {
+            if (playerXform.GridUid == gridUid)
+                return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Checks if the shuttle is docked to any dock.
+    /// </summary>
     private bool IsDocked(EntityUid uid)
     {
         var query = EntityQueryEnumerator<DockingComponent, TransformComponent>();
@@ -194,366 +765,5 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         return false;
     }
 
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        var curTime = _timing.CurTime;
-
-        var query = EntityQueryEnumerator<SunriseArrivalsShuttleComponent, ShuttleComponent>();
-        while (query.MoveNext(out var uid, out var arrivals, out var shuttle))
-        {
-            // Delayed greeting logic
-            if (!arrivals.Greeted && arrivals.Attendant != null && TryComp<ActorComponent>(arrivals.Player, out var actor))
-            {
-                if (arrivals.GreetTime == null)
-                {
-                    arrivals.GreetTime = curTime + TimeSpan.FromSeconds(2);
-                }
-                else if (curTime >= arrivals.GreetTime)
-                {
-                    var msg = Loc.GetString("sunrise-arrivals-attendant-welcome",
-                        ("name", arrivals.PlayerName),
-                        ("job", arrivals.PlayerJob),
-                        ("station", Name(arrivals.Station)),
-                        ("eta", (int)QueueWaitTime));
-                    _chat.TrySendInGameICMessage(arrivals.Attendant.Value, msg, InGameICChatType.Speak, hideChat: false);
-                    arrivals.Greeted = true;
-                }
-            }
-
-            switch (arrivals.State)
-            {
-                case SunriseArrivalsShuttleState.Queued:
-                    if (_shuttleQueue.Count > 0 && _shuttleQueue[0] == uid)
-                    {
-                        if (arrivals.NextRetry != null && curTime >= arrivals.NextRetry)
-                        {
-                            var station = arrivals.Station;
-                            var targetGrid = _station.GetLargestGrid(station) ?? station;
-                            var config = _docking.GetDockingConfig(uid, targetGrid, "DockArrivals", false);
-
-                            if (config != null && TryComp<FTLComponent>(uid, out var ftl) && ftl.State == FTLState.Travelling)
-                            {
-                                 var mapCoords = config.Coordinates.ToMap(EntityManager, _transform);
-                                 var worldAngle = _transform.GetWorldRotation(targetGrid) + config.Angle;
-
-                                 if (IsArrivalZoneClear(uid, mapCoords, worldAngle))
-                                {
-                                    // Redirect the shuttle to the dock
-                                    ftl.TargetCoordinates = config.Coordinates;
-                                    ftl.TargetAngle = config.Angle;
-                                    ftl.PriorityTag = "DockArrivals";
-
-                                    // Shorten the arrival time to CVar seconds
-                                    ftl.TravelTime = _ftlTime;
-                                    ftl.StateTime = StartEndTime.FromCurTime(_timing, _ftlTime);
-
-                                    // Reserve the docks manually
-                                    foreach (var docks in config.Docks)
-                                    {
-                                        var reservation = EnsureComp<FtlReservationComponent>(docks.DockBUid);
-                                        reservation.ReservedBy = uid;
-                                        arrivals.ReservedDocks.Add(docks.DockBUid);
-                                    }
-
-                                    arrivals.State = SunriseArrivalsShuttleState.Travelling;
-                                    arrivals.NextRetry = null;
-                                    arrivals.NextAnnouncement = null;
-                                    _shuttleQueue.RemoveAt(0);
-                                }
-                                else
-                                {
-                                    // Zone blocked by another arrival shuttle, retry later and postpone announcement
-                                    arrivals.NextRetry = curTime + TimeSpan.FromSeconds(FTLRetryTime);
-                                    arrivals.NextAnnouncement = curTime + TimeSpan.FromSeconds(30);
-                                }
-                            }
-                            else
-                            {
-                                // No dock found. Check if it's because arrivals shuttles are already docked there.
-                                if (IsDocksOccupiedByArrivals(targetGrid))
-                                {
-                                    arrivals.NextAnnouncement = curTime + TimeSpan.FromSeconds(30);
-                                }
-
-                                arrivals.NextRetry = curTime + TimeSpan.FromSeconds(FTLRetryTime);
-                            }
-                        }
-
-                        if (arrivals.NextAnnouncement != null && arrivals.NextAnnouncement < curTime)
-                        {
-                            AnnounceDockingBlocked(arrivals.Station);
-                            arrivals.NextAnnouncement = null;
-                        }
-                    }
-                    break;
-
-                case SunriseArrivalsShuttleState.Travelling:
-                    // Handled by FTLCompletedEvent
-                    break;
-
-                case SunriseArrivalsShuttleState.Waiting:
-                    if (HasComp<FTLComponent>(uid))
-                        continue;
-
-                    if (arrivals.NextRetry != null && arrivals.NextRetry < curTime)
-                    {
-                        // Try to dock again
-                        var targetGrid = _station.GetLargestGrid(arrivals.Station) ?? arrivals.Station;
-                        _shuttle.FTLToDock(uid, shuttle, targetGrid, priorityTag: "DockArrivals");
-                        arrivals.State = SunriseArrivalsShuttleState.Travelling;
-                        arrivals.NextRetry = null;
-                    }
-
-                    if (arrivals.NextAnnouncement != null && arrivals.NextAnnouncement < curTime)
-                    {
-                        AnnounceDockingBlocked(arrivals.Station);
-                        arrivals.NextAnnouncement = null;
-                    }
-                    break;
-
-                case SunriseArrivalsShuttleState.Docked:
-                    if (!IsPlayerOnShuttle(uid))
-                    {
-                        StartDeparture(uid, arrivals);
-                        continue;
-                    }
-
-                    // Single warning 15s after docking
-                    if (!arrivals.Warned && arrivals.DockedStartTime != null && curTime >= arrivals.DockedStartTime + TimeSpan.FromSeconds(15))
-                    {
-                        if (arrivals.Attendant != null)
-                        {
-                            var msg = Loc.GetString("sunrise-arrivals-attendant-evac");
-                            _chat.TrySendInGameICMessage(arrivals.Attendant.Value, msg, InGameICChatType.Speak, hideChat: false);
-                        }
-                        arrivals.Warned = true;
-                    }
-
-                    // Departure 30s after docking
-                    if (arrivals.NextAnnouncement != null && arrivals.NextAnnouncement < curTime)
-                    {
-                        TryTeleportPlayer(uid, arrivals);
-                        StartDeparture(uid, arrivals);
-                    }
-                    break;
-
-                case SunriseArrivalsShuttleState.Leaving:
-                    if (!HasComp<FTLComponent>(uid))
-                    {
-                        if (arrivals.NextAnnouncement == null)
-                        {
-                            // Use NextAnnouncement field to store deletion timer. 5 seconds for FTL sound.
-                            arrivals.NextAnnouncement = curTime + TimeSpan.FromSeconds(5);
-                        }
-                        else if (curTime >= arrivals.NextAnnouncement)
-                        {
-                            // Delete the shuttle after a 5 second delay to let sounds finish
-                            QueueDel(uid);
-                        }
-                    }
-                    break;
-            }
-        }
-    }
-
-    private void StartDeparture(EntityUid uid, SunriseArrivalsShuttleComponent component)
-    {
-        if (component.State == SunriseArrivalsShuttleState.Leaving)
-            return;
-
-        component.State = SunriseArrivalsShuttleState.Leaving;
-        _shuttle.FTLToCoordinates(uid, Comp<ShuttleComponent>(uid), new EntityCoordinates(uid, Vector2.Zero), Angle.Zero, hyperspaceTime: ExitTime);
-    }
-
-    private void TryTeleportPlayer(EntityUid gridUid, SunriseArrivalsShuttleComponent arrivals)
-    {
-        if (!IsPlayerOnShuttle(gridUid))
-            return;
-
-        var station = arrivals.Station;
-        if (!station.IsValid())
-            return;
-
-        // Find a late join spawn point on the station
-        var spawnQuery = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-        EntityCoordinates? target = null;
-
-        while (spawnQuery.MoveNext(out var spawnUid, out var spawn, out var xform))
-        {
-            if (spawn.SpawnType == SpawnPointType.LateJoin && _station.GetOwningStation(spawnUid) == station)
-            {
-                target = xform.Coordinates;
-                break;
-            }
-        }
-
-        // Fallback to station grid center
-        if (target == null)
-        {
-            // Search for cryopods as a fallback
-            var cryoQuery = EntityQueryEnumerator<CryostorageComponent, TransformComponent>();
-            while (cryoQuery.MoveNext(out var cryoUid, out _, out var xform))
-            {
-                if (_station.GetOwningStation(cryoUid) == station)
-                {
-                    target = xform.Coordinates;
-                    break;
-                }
-            }
-
-            if (target == null)
-            {
-                var targetGrid = _station.GetLargestGrid(station);
-                if (targetGrid != null && TryComp<MapGridComponent>(targetGrid, out var grid))
-                    target = new EntityCoordinates(targetGrid.Value, grid.LocalAABB.Center);
-            }
-        }
-
-        if (target != null && arrivals.Player != null)
-        {
-            _transform.SetCoordinates(arrivals.Player.Value, target.Value);
-            if (TryComp<ActorComponent>(arrivals.Player.Value, out var actor))
-            {
-                _chatManager.ChatMessageToOne(ChatChannel.Server, Loc.GetString("sunrise-arrivals-forced-evac"), Loc.GetString("sunrise-arrivals-forced-evac"), EntityUid.Invalid, false, actor.PlayerSession.Channel);
-            }
-        }
-    }
-
-    private EntityUid? FindAttendant(EntityUid gridUid)
-    {
-        var query = EntityQueryEnumerator<SunriseArrivalsAttendantComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out _, out var childXform))
-        {
-            if (childXform.GridUid == gridUid)
-                return uid;
-        }
-
-        return null;
-    }
-
-    private bool IsPlayerOnShuttle(EntityUid uid)
-    {
-        var xform = Transform(uid);
-        var query = EntityQueryEnumerator<ActorComponent, TransformComponent>();
-        while (query.MoveNext(out var playerUid, out _, out var playerXform))
-        {
-            if (playerXform.GridUid == uid)
-                return true;
-        }
-        return false;
-    }
-
-    private bool IsArrivalZoneClear(EntityUid shuttleUid, MapCoordinates target, Angle worldAngle)
-    {
-        if (!TryComp<MapGridComponent>(shuttleUid, out var grid))
-            return true;
-
-        // Wide buffer removed to allow adjacent dock arrivals. 0.01m to prevent literal overlap.
-        var localBounds = grid.LocalAABB.Enlarged(0.01f);
-        var myTargetBox = GetArrivalBox(localBounds, target.Position, worldAngle);
-
-        var query = EntityQueryEnumerator<SunriseArrivalsShuttleComponent>();
-        while (query.MoveNext(out var otherUid, out var otherArrivals))
-        {
-            if (otherUid == shuttleUid)
-                continue;
-
-            // Check if other shuttle is in FTL or already docked
-            if (otherArrivals.State is SunriseArrivalsShuttleState.Travelling or SunriseArrivalsShuttleState.Waiting or SunriseArrivalsShuttleState.Docked)
-            {
-                Box2 otherTargetBox;
-
-                if (otherArrivals.State == SunriseArrivalsShuttleState.Docked)
-                {
-                    // Already docked, check its current world position
-                    var otherXform = Transform(otherUid);
-                    if (otherXform.MapID != target.MapId)
-                        continue;
-
-                    var (pos, rot) = _transform.GetWorldPositionRotation(otherUid);
-                    if (!TryComp<MapGridComponent>(otherUid, out var otherGrid))
-                        continue;
-
-                    var otherBounds = otherGrid.LocalAABB.Enlarged(0.01f);
-                    otherTargetBox = GetArrivalBox(otherBounds, pos, rot);
-                }
-                else
-                {
-                    // In FTL, check its target zone
-                    if (!TryComp<FTLComponent>(otherUid, out var otherFtl))
-                        continue;
-
-                    var otherTargetMap = otherFtl.TargetCoordinates.ToMap(EntityManager, _transform);
-                    if (otherTargetMap.MapId != target.MapId)
-                        continue;
-
-                    if (!TryComp<MapGridComponent>(otherUid, out var otherGrid))
-                        continue;
-
-                    var otherTargetWorldAngle = _transform.GetWorldRotation(otherFtl.TargetCoordinates.EntityId) + otherFtl.TargetAngle;
-                    var otherBounds = otherGrid.LocalAABB.Enlarged(0.01f);
-                    otherTargetBox = GetArrivalBox(otherBounds, otherTargetMap.Position, otherTargetWorldAngle);
-                }
-
-                if (myTargetBox.Intersects(otherTargetBox))
-                    return false;
-            }
-        }
-
-        return true;
-    }
-
-    private Box2 GetArrivalBox(Box2 localBounds, Vector2 position, Angle angle)
-    {
-        var corners = new[]
-        {
-            new Vector2(localBounds.Left, localBounds.Top),
-            new Vector2(localBounds.Right, localBounds.Top),
-            new Vector2(localBounds.Right, localBounds.Bottom),
-            new Vector2(localBounds.Left, localBounds.Bottom)
-        };
-
-        var minX = float.MaxValue;
-        var minY = float.MaxValue;
-        var maxX = float.MinValue;
-        var maxY = float.MinValue;
-
-        foreach (var corner in corners)
-        {
-            var rotated = angle.RotateVec(corner) + position;
-            minX = MathF.Min(minX, rotated.X);
-            minY = MathF.Min(minY, rotated.Y);
-            maxX = MathF.Max(maxX, rotated.X);
-            maxY = MathF.Max(maxY, rotated.Y);
-        }
-
-        return new Box2(minX, minY, maxX, maxY);
-    }
-
-    private void AnnounceDockingBlocked(EntityUid station)
-    {
-        var message = Loc.GetString("sunrise-arrivals-shuttle-docking-blocked");
-        var sender = Loc.GetString("sunrise-arrivals-shuttle-cc-sender");
-        _chat.DispatchStationAnnouncement(station, message, sender, colorOverride: Color.Gold);
-    }
-
-    private bool IsDocksOccupiedByArrivals(EntityUid targetGrid)
-    {
-        var docks = _docking.GetDocks(targetGrid);
-        foreach (var dock in docks)
-        {
-            if (!TryComp<PriorityDockComponent>(dock.Owner, out var priority) || priority.Tag != "DockArrivals")
-                continue;
-
-            if (dock.Comp.DockedWith != null)
-            {
-                var otherGrid = Transform(dock.Comp.DockedWith.Value).GridUid;
-                if (HasComp<SunriseArrivalsShuttleComponent>(otherGrid))
-                    return true;
-            }
-        }
-        return false;
-    }
+    #endregion
 }

@@ -126,6 +126,9 @@
         {
         "name": "nuke240-inhand-right",
         "directions": 4
+        },
+        {
+            "name": "rocket60mm"
         }
     ]
 }

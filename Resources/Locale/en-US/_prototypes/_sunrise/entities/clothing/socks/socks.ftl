@@ -80,3 +80,5 @@ ent-ClothingStockingsBlackSheer = black sheer stockings
     .desc = Sheer black.
 ent-ClothingStockingsGarter = garter stockings
     .desc = With garters.
+ent-ClothingUnderSocksMurder = killer stockings
+    .desc = for female agents, I hope
