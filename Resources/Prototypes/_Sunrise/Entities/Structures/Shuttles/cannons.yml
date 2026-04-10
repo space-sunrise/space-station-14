@@ -65,7 +65,7 @@
       renderingStrategy: NoRotation
     - state: bal-127
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-6
+    - state: mag-5
       map: ["enum.GunVisualLayers.Mag"]
   - type: ContainerContainer
     containers:
