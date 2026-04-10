@@ -1,3 +1,4 @@
+using System;
 using Content.Client.Administration.Managers;
 using Robust.Client.GameObjects;
 using Content.Client.UserInterface.Systems.Sandbox;
@@ -21,8 +22,11 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
 
     private MappingAccessOverlay _overlay = default!;
 
+    public event Action? StateChanged;
+
     public bool Enabled { get; private set; }
     public bool CanEnable => _admin.HasFlag(AdminFlags.Mapping);
+    public MappingAccessBodyFilter BodyFilter { get; private set; } = MappingAccessBodyFilter.Both;
 
     public override void Initialize()
     {
@@ -30,6 +34,7 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
 
         _admin.AdminStatusUpdated += OnAdminStatusUpdated;
         _overlay = new(EntityManager, _entityLookup, _spriteSystem, _prototypeManager, Loc, _resourceCache, _uiManager);
+        _overlay.BodyFilter = BodyFilter;
         UpdateUi();
     }
 
@@ -48,7 +53,10 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
         if (Enabled && !CanSetEnabled(true))
             SetEnabled(false);
         else
+        {
             UpdateUi();
+            StateChanged?.Invoke();
+        }
     }
 
     public bool TrySetEnabled(bool enabled)
@@ -68,6 +76,16 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
         return !enabled || CanEnable;
     }
 
+    public void SetBodyFilter(MappingAccessBodyFilter filter)
+    {
+        if (BodyFilter == filter)
+            return;
+
+        BodyFilter = filter;
+        _overlay.BodyFilter = filter;
+        StateChanged?.Invoke();
+    }
+
     private void SetEnabled(bool enabled)
     {
         Enabled = enabled;
@@ -83,6 +101,7 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
         }
 
         UpdateUi();
+        StateChanged?.Invoke();
     }
 
     private void UpdateUi()
