@@ -43,5 +43,5 @@ ent-WeaponPistolTec9 = Tac-Tec
 ent-WeaponSubMachineGunUzi = пистолет-пулемёт Узи
     .desc = Лёгкий и культовый пистолет-пулемёт с большим магазином и скорострельностью.
 
-ent-WeaponPistolAPS = Стечкин АПС
+ent-SunriseWeaponPistolAPS = Стечкин АПС
     .desc = Высококачественное огнестрельное оружие на мощном калибре, созданное для по-настоящему особенных агентов.

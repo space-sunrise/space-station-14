@@ -167,7 +167,7 @@ public sealed partial class AdminLogManager
         while (list.Count < requestedLimit)
         {
             var batchLimit = requestedLimit - list.Count;
-            var query = BuildLokiQuery(filter, ascending);
+            var query = BuildLokiQuery(filter, ascending, cursor);
             var url = BuildLokiQueryUrl(query, batchLimit, timeRange, ascending);
 
             try
@@ -265,7 +265,7 @@ public sealed partial class AdminLogManager
         return new LokiTimeRange(DateTimeOffset.UnixEpoch, now, false);
     }
 
-    private string BuildLokiQuery(LogFilter? filter, bool ascending)
+    private string BuildLokiQuery(LogFilter? filter, bool ascending, LokiCursor? cursor = null)
     {
         var query = $"{{app=\"{_lokiName}\", category=\"admin_log\"}} | json";
 
@@ -287,6 +287,9 @@ public sealed partial class AdminLogManager
             }
         }
 
+        if (GetLokiQueryCursorLogId(filter, cursor) is {} cursorLogId)
+            query += ascending ? $" | id > {cursorLogId}" : $" | id < {cursorLogId}";
+
         if (!string.IsNullOrEmpty(filter?.Search))
             query += $" |~ \"(?i){Regex.Escape(filter.Search)}\"";
 
@@ -304,6 +307,14 @@ public sealed partial class AdminLogManager
     private static bool CanUseLokiCursorInQuery(LogFilter? filter)
     {
         return filter != null;
+    }
+
+    private static int? GetLokiQueryCursorLogId(LogFilter? filter, LokiCursor? cursor)
+    {
+        if (cursor != null)
+            return cursor.Value.LogId;
+
+        return filter?.LastLogId;
     }
 
     private static bool RequiresAdditionalLokiPages(LogFilter? filter)
