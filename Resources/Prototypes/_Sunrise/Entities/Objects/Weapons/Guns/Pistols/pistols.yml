@@ -381,11 +381,11 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle/tiny.rsi
   - type: Gun
-    minAngle: 1
-    maxAngle: 20
-    angleIncrease: 7
+    minAngle: 3
+    maxAngle: 35
+    angleIncrease: 5
     angleDecay: 10
-    fireRate: 4 # 140 dps - 105 for mateba
+    fireRate: 3.5 # 122 dps - 105 for mateba
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -591,3 +591,43 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+
+- type: entity
+  name: stechkin APS
+  parent: [WeaponPistolMk58, BaseSovietContraband]
+  id: SunriseWeaponPistolAPS
+  description: A high quality firearm issued to SNKVD elites and high ranking officials. It's half pistol, half closing argument. Uses .40 ammo.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Guns/Pistols/aps.rsi
+    - type: Clothing
+      sprite: _Starlight/Objects/Weapons/Guns/Pistols/aps.rsi
+    - type: Gun
+      selectedMode: Burst
+      shotsPerBurst: 3
+      availableModes:
+        - Burst
+        - SemiAuto
+      soundGunshot:
+        path: /Audio/_Starlight/Weapons/Guns/Gunshots/1suppres.ogg
+    - type: Contraband
+      severity: Soviet
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          startingItem: MagazinePistol40SP
+          insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+          ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+          priority: 2
+          whitelist:
+            tags:
+              - MagazinePistolDP
+          whitelistFailPopup: gun-magazine-whitelist-fail
+        gun_chamber:
+          name: Chamber
+          startingItem: CartridgePistol40SP
+          priority: 1
+          whitelist:
+            tags:
+              - CartridgePistolDP

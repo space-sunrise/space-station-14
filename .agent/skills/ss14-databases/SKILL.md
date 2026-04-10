@@ -1,126 +1,126 @@
 ---
 name: ss14-databases
-description: Руководство по работе с системой баз данных SS14 (PostgreSQL и SQLite)
+description: SS14 Database System Guide (PostgreSQL and SQLite)
 ---
 
-# 🗄️ Базы Данных SS14 (Databases)
+# 🗄️ Databases SS14 (Databases)
 
-Этот навык описывает архитектуру баз данных в Space Station 14, включая поддержку двух движков (PostgreSQL и SQLite), наследование `DbContext` и лучшие практики для моделей данных.
+This skill describes the database architecture in Space Station 14, including dual engine support (PostgreSQL and SQLite), `DbContext` inheritance, and best practices for data models.
 
-## 🎯 Когда использовать этот навык
-- При создании новых таблиц или сущностей базы данных.
-- При изменении существующих моделей данных.
-- При написании запросов для получения или сохранения данных игроков, банов или логов.
-- При решении проблем, связанных с типами данных (IP-адреса, JSON и т.д.).
+## 🎯 When to use this skill
+- When creating new tables or database entities.
+- When changing existing data models.
+- When writing requests to obtain or save player data, bans or logs.
+- When solving problems related to data types (IP addresses, JSON, etc.).
 
-## 🏗️ Обзор Архитектуры
+## 🏗️ Architecture Review
 
-SS14 использует **Entity Framework Core** с архитектурой двойного движка для поддержки как **PostgreSQL** (продакшн), так и **SQLite** (разработка/тесты).
+SS14 uses **Entity Framework Core** with a dual engine architecture to support both **PostgreSQL** (production) and **SQLite** (dev/test).
 
-### Ключевые Компоненты
-1.  **`IServerDbManager`**: Основной интерфейс для операций с БД (`Content.Server/Database/ServerDbManager.cs`).
-2.  **`ServerDbBase`**: Абстрактный базовый класс, содержащий общую логику для обоих движков.
-3.  **`ServerDbSqlite` и `ServerDbPostgres`**: Конкретные реализации для специфичных движков.
-4.  **`ServerDbContext`**: Абстрактный контекст EF Core, определяющий `DbSet`'ы.
-5.  **`SqliteServerDbContext` и `PostgresServerDbContext`**: Специфичные контексты, управляющие конфигурацией (например, Value Converters).
+### Key Components
+1. **`IServerDbManager`**: The main interface for database operations (`Content.Server/Database/ServerDbManager.cs`).
+2. **`ServerDbBase`**: Abstract base class containing common logic for both engines.
+3. **`ServerDbSqlite` and `ServerDbPostgres`**: Specific implementations for specific engines.
+4. **`ServerDbContext`**: An abstract EF Core context that defines `DbSet`'s.
+5. **`SqliteServerDbContext` and `PostgresServerDbContext`**: Specific contexts that manage configuration (for example, Value Converters).
 
-### Логика БД vs Модели
--   **Логика**: Находится в `Content.Server/Database`. Содержит `ServerDbManager`, `ServerDbBase` и т.д.
--   **Модели**: Находятся в `Content.Server.Database`. Содержит `Model.cs` (таблицы), миграции и определения контекста.
+### Database Logic vs Models
+- **Logic**: Located in `Content.Server/Database`. Contains `ServerDbManager`, `ServerDbBase`, etc.
+- **Models**: Found in `Content.Server.Database`. Contains `Model.cs` (tables), migrations, and context definitions.
 
-## 📝 Работа с Моделями Данных
+## 📝 Working with Data Models
 
-### Определение Сущностей
-Сущности определяются в `Content.Server.Database/Model.cs` (или в отдельных файлах в этом пространстве имен).
+### Defining Entities
+Entities are defined in `Content.Server.Database/Model.cs` (or in separate files in that namespace).
 
 ```csharp
 public class MyNewEntity
 {
-    [Key] // Первичный ключ
+    [Key] // Primary key
     public int Id { get; set; }
 
-    [Required] // Поле обязательно для заполнения
+    [Required] // This field is required
     public string Name { get; set; } = default!;
 
-    // Внешний ключ или просто ID пользователя
+    // Foreign key or just user ID
     public Guid PlayerUserId { get; set; }
 }
 ```
 
-### Добавление в Контекст
-Добавьте `DbSet` в абстрактный `ServerDbContext` в `Content.Server.Database/Model.cs`:
+### Adding to Context
+Add `DbSet` to the abstract `ServerDbContext` to `Content.Server.Database/Model.cs`:
 
 ```csharp
 public abstract class ServerDbContext : DbContext
 {
-    // ... существующие наборы
+    // ... existing sets
     public DbSet<MyNewEntity> MyNewEntities { get; set; } = default!;
 }
 ```
 
-## ⚠️ Ограничения Движков и Типы Данных
+## ⚠️ Engine Limitations and Data Types
 
-Поскольку SQLite и PostgreSQL поддерживают разные функции, нужно аккуратно работать с типами.
+Since SQLite and PostgreSQL support different functions, you need to be careful with types.
 
-### 1. IP-адреса 🌐
--   **Postgres**: Имеет нативный тип `inet` (`NpgsqlInet`).
--   **SQLite**: **Не** поддерживает IP. Должны храниться как `TEXT`.
--   **Решение**: Использовать `ValueConverter` в `SqliteServerDbContext.OnModelCreating`.
+### 1. IP addresses 🌐
+- **Postgres**: Has native type `inet` (`NpgsqlInet`).
+- **SQLite**: **Doesn't** support IP. Must be stored as `TEXT`.
+- **Solution**: Use `ValueConverter` in `SqliteServerDbContext.OnModelCreating`.
 
-### 2. JSON Данные 📜
--   **Postgres**: Имеет нативный тип `jsonb`.
--   **SQLite**: Должны храниться как `TEXT` или `BLOB`.
--   **Решение**: Использовать раздельные вызовы `db.PgDbContext.Add()` и `db.SqliteDbContext.Add()`, если используются сложные типы, или ValueConverters для общей логики.
+### 2. JSON Data 📜
+- **Postgres**: Has the native type `jsonb`.
+- **SQLite**: Must be stored as `TEXT` or `BLOB`.
+- **Solution**: Use separate calls to `db.PgDbContext.Add()` and `db.SqliteDbContext.Add()` if complex types are used, or ValueConverters for shared logic.
 
-### 3. Массивы/Списки 📚
--   **Postgres**: Поддерживает примитивные массивы (например, `List<string>` мапится в `text[]`).
--   **SQLite**: **Не** поддерживает массивы.
--   **Решение**:
-    -   **Предпочтительно**: Использовать отдельную таблицу со связью 1:N.
-    -   **Альтернатива**: Сериализовать в JSON строку (если не нужен поиск внутри списка).
+### 3. Arrays/Lists 📚
+- **Postgres**: Supports primitive arrays (for example, `List<string>` maps to `text[]`).
+- **SQLite**: **Does** not support arrays.
+-   **Solution**:
+    - **Preferred**: Use a separate table with a 1:N relationship.
+    - **Alternative**: Serialize the string to JSON (if you don't need to search inside the list).
 
-## 💡 Примеры Использования
+## 💡 Usage Examples
 
-### 1. Сохранение Данных (Обработка Различий)
-При сохранении данных, использующих специфичные типы (как IP), может потребоваться переопределить метод в `ServerDbSqlite` и `ServerDbPostgres`.
+### 1. Data Saving (Difference Handling)
+When saving data that uses specific types (like IP), you may need to override the method in `ServerDbSqlite` and `ServerDbPostgres`.
 
-**Абстрактная База (`ServerDbBase.cs`)**:
+**Abstract Base (`ServerDbBase.cs`)**:
 ```csharp
 public abstract Task AddServerBanAsync(ServerBanDef serverBan);
 ```
 
-**Реализация Postgres (`ServerDbPostgres.cs`)**:
+**Postgres implementation (`ServerDbPostgres.cs`)**:
 ```csharp
 public override async Task AddServerBanAsync(ServerBanDef serverBan)
 {
     await using var db = await GetDbImpl();
-    // Postgres поддерживает NpgsqlInet напрямую, конвертация не нужна
+    // Postgres supports NpgsqlInet directly, no conversion needed
     db.PgDbContext.Ban.Add(new ServerBan
     {
         Address = serverBan.Address.ToNpgsqlInet(),
-        // ... другие поля
+        // ... other fields
     });
     await db.PgDbContext.SaveChangesAsync();
 }
 ```
 
-**Реализация SQLite (`ServerDbSqlite.cs`)**:
+**SQLite implementation (`ServerDbSqlite.cs`)**:
 ```csharp
 public override async Task AddServerBanAsync(ServerBanDef serverBan)
 {
     await using var db = await GetDbImpl();
-    // SQLite требует конвертации, которая обрабатывается ValueConverter'ом в контексте
+    // SQLite requires a conversion, which is handled by the ValueConverter in context
     db.SqliteDbContext.Ban.Add(new ServerBan
     {
         Address = serverBan.Address.ToNpgsqlInet(),
-        // ... другие поля
+        // ... other fields
     });
     await db.SqliteDbContext.SaveChangesAsync();
 }
 ```
 
-### 2. Загрузка Данных (Общая Логика)
-Чтение данных часто идентично для обоих движков и может быть реализовано в `ServerDbBase`.
+### 2. Data Loading (General Logic)
+Reading data is often identical for both engines and can be implemented in `ServerDbBase`.
 
 ```csharp
 // Content.Server/Database/ServerDbBase.cs
@@ -128,64 +128,64 @@ public async Task<PlayerPreferences?> GetPlayerPreferencesAsync(NetUserId userId
 {
     await using var db = await GetDb(cancel);
 
-    // Используем .Include() для "жадной" загрузки связанных данных
+    // Using .Include() to greedily load related data
     var prefs = await db.DbContext
         .Preference
         .Include(p => p.Profiles)
-        .ThenInclude(h => h.Jobs) // Загружаем вложенные связи (Профили -> Работы)
-        .AsSplitQuery() // Оптимизация: Избегает "взрыва" декартова произведения при множественных include
+        .ThenInclude(h => h.Jobs) // Loading nested links (Profiles -> Jobs)
+        .AsSplitQuery() // Optimization: Avoids "explosion" of the Cartesian product with multiple include
         .SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
 
     if (prefs is null) return null;
 
-    // Конвертируем модель БД в Shared модель (логика игры)
+    // Converting the database model into a Shared model (game logic)
     return new PlayerPreferences(...);
 }
 ```
 
-### 3. Запросы с Поиском 🔍
-Для текстового поиска используйте `EF.Functions` для поддержки фич конкретного движка, где это возможно, или фоллбек на стандартный LINQ.
+### 3. Queries with Search 🔍
+For text search, use `EF.Functions` to support engine-specific features where possible, or a fallback to standard LINQ.
 
 ```csharp
-// ServerDbContext.cs (Абстрактный метод)
+// ServerDbContext.cs (Abstract Method)
 public virtual IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)
 {
-    // По умолчанию/SQLite: Простой LIKE
+    // Default/SQLite: Simple LIKE
     return query.Where(log => EF.Functions.Like(log.Message, "%" + searchText + "%"));
 }
 
-// PostgresServerDbContext.cs (Переопределение)
+// PostgresServerDbContext.cs (Override)
 public override IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)
 {
-    // Postgres: Полнотекстовый поиск используя ToTsVector
+    // Postgres: Full text search using ToTsVector
     return query.Where(log => EF.Functions.ToTsVector("english", log.Message).Matches(searchText));
 }
 ```
 
-## 🚫 Антипаттерны (Чего НЕ делать)
+## 🚫 Antipatterns (What NOT to do)
 
-### ❌ 1. Использование специфичных для Postgres типов в общей логике
-**Плохо**: Пытаться сохранить `NpgsqlInet` или массив строк прямо в `ServerDbBase` без проверки движка.
-**Почему**: Это сломает SQLite, так как он не знает этих типов.
-**Как надо**: Использовать абстрактные методы или ValueConverter'ы.
+### ❌ 1. Using Postgres-specific types in general logic
+**Bad**: Trying to store `NpgsqlInet` or an array of strings directly into `ServerDbBase` without checking the engine.
+**Why**: This will break SQLite since it doesn't know these types.
+**How ​​to**: Use abstract methods or ValueConverters.
 
-### ❌ 2. Синхронные вызовы БД (`.Result`, `.Wait()`)
-**Плохо**: `db.DbContext.SaveChangeAsync().Result;`
-**Почему**: Это блокирует основной поток сервера, вызывая лаги (фризы) у игроков.
-**Как надо**: Всегда используйте `await` и асинхронные методы (`ToListAsync`, `FirstOrDefaultAsync`).
+### ❌ 2. Synchronous database calls (`.Result`, `.Wait()`)
+**Bad**: `db.DbContext.SaveChangeAsync().Result;`
+**Why**: This blocks the main server thread, causing lags (freezes) for players.
+**Do it**: Always use `await` and asynchronous methods (`ToListAsync`, `FirstOrDefaultAsync`).
 
-### ❌ 3. Загрузка всей таблицы в память
-**Плохо**: `var allUsers = db.Player.ToList();` затем фильтрация `allUsers.Where(...)`.
-**Почему**: Таблица может содержать десятки тысяч записей. Это убьет память и CPU.
-**Как надо**: Фильтруйте **до** материализации запроса: `db.Player.Where(...).ToListAsync();`.
+### ❌ 3. Loading the entire table into memory
+**Bad**: `var allUsers = db.Player.ToList();` then filtering `allUsers.Where(...)`.
+**Why**: A table can contain tens of thousands of records. This will kill memory and CPU.
+**How ​​to**: Filter **before** request materialization: `db.Player.Where(...).ToListAsync();`.
 
-### ❌ 4. Отсутствие индексов для частых запросов
-**Плохо**: Искать игрока по `LastSeenUserName` без индекса на этом поле.
-**Почему**: Полное сканирование таблицы (Full Table Scan) на каждом входе игрока создаст нагрузку.
-**Как надо**: Добавьте индексацию в `OnModelCreating`.
+### ❌ 4. Lack of indexes for frequent queries
+**Bad**: Search for player by `LastSeenUserName` without index on this field.
+**Why**: Full Table Scan on every player input will create load.
+**Do it**: Add indexing to `OnModelCreating`.
 
-## ✅ Лучшие Практики
-1.  **Всегда поддерживайте оба движка**: Никогда не пишите код, который работает только на Postgres. SQLite обязателен для локальной разработки.
-2.  **Используйте `CCVars`**: Конфигурация БД (хост, порт, движок) управляется через `CCVars.Database*`.
-3.  **Валидация**: Используйте атрибуты `[Required]`, `[MaxLength]` и `[Key]` в моделях.
-4.  **Метрики**: Используйте `DbReadOpsMetric.Inc()` и `DbWriteOpsMetric.Inc()` в `ServerDbManager` для отслеживания активности.
+## ✅ Best Practices
+1. **Always support both engines**: Never write code that only works on Postgres. SQLite is required for local development.
+2. **Use `CCVars`**: The database configuration (host, port, engine) is managed through `CCVars.Database*`.
+3. **Validation**: Use the `[Required]`, `[MaxLength]` and `[Key]` attributes in models.
+4. **Metrics**: Use `DbReadOpsMetric.Inc()` and `DbWriteOpsMetric.Inc()` in `ServerDbManager` to track activity.

@@ -48,7 +48,10 @@ public sealed class AdminLogsEui : BaseEui
         _filter = new LogFilter
         {
             CancellationToken = _logSendCancellation.Token,
-            Limit = _clientBatchSize
+            // Sunrise edit start - request one extra record and keep cursor on visible page edge
+            LokiCursorOverfetch = 1,
+            Limit = _clientBatchSize + 1
+            // Sunrise edit end
         };
     }
 
@@ -123,7 +126,11 @@ public sealed class AdminLogsEui : BaseEui
                     AllPlayers = request.AllPlayers,
                     IncludeNonPlayers = request.IncludeNonPlayers,
                     LastLogId = null,
-                    Limit = _clientBatchSize
+                    LastLogCursor = null,
+                    // Sunrise edit start - request one extra record and keep cursor on visible page edge
+                    LokiCursorOverfetch = 1,
+                    Limit = _clientBatchSize + 1
+                    // Sunrise edit end
                 };
 
                 var roundId = _filter.Round ??= CurrentRoundId;
@@ -160,21 +167,17 @@ public sealed class AdminLogsEui : BaseEui
         var logs = await Task.Run(async () => await _adminLogs.All(_filter, _adminLogListPool.Get),
             _filter.CancellationToken);
 
+        var hasNext = logs.Count > _clientBatchSize;
+        if (hasNext)
+            logs.RemoveRange(_clientBatchSize, logs.Count - _clientBatchSize);
+
         if (logs.Count > 0)
         {
             _filter.LogsSent += logs.Count;
-
-            var largestId = _filter.DateOrder switch
-            {
-                DateOrder.Ascending => 0,
-                DateOrder.Descending => ^1,
-                _ => throw new ArgumentOutOfRangeException(nameof(_filter.DateOrder), _filter.DateOrder, null)
-            };
-
-            _filter.LastLogId = logs[largestId].Id;
+            _filter.LastLogId = logs[^1].Id;
         }
 
-        var message = new NewLogs(logs, replace, logs.Count >= _filter.Limit);
+        var message = new NewLogs(logs, replace, hasNext);
 
         SendMessage(message);
 

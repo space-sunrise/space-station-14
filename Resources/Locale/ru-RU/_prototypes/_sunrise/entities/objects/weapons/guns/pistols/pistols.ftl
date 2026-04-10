@@ -39,3 +39,9 @@ ent-WeaponPistolDeagleGoldenBiocode = { ent-WeaponPistolDeagleGolden }
     .desc = { ent-WeaponPistolDeagleGolden.desc }
 ent-WeaponPistolTec9 = Tac-Tec
     .desc = Очень дешёвый в производстве и очень простой в использовании, надёжный как СКМ-24.
+
+ent-WeaponSubMachineGunUzi = пистолет-пулемёт Узи
+    .desc = Лёгкий и культовый пистолет-пулемёт с большим магазином и скорострельностью.
+
+ent-WeaponPistolAPS = Стечкин АПС
+    .desc = Высококачественное огнестрельное оружие на мощном калибре, созданное для по-настоящему особенных агентов.

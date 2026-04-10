@@ -1161,7 +1161,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 28.5,-7.5
       parent: 1
-- proto: AirlockExternalGlassShuttleEmergencyLocked
+- proto: AirlockExternalGlassShuttleEmergencyLockedCentComm
   entities:
   - uid: 15
     components:
