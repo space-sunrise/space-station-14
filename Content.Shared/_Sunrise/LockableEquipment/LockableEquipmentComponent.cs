@@ -1,47 +1,57 @@
-using System.Security.Cryptography.X509Certificates;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Content.Shared.Stacks;
 
 namespace Content.Shared._Sunrise.LockableEquipment;
 
+/// <summary>
+/// Stores lock, break and visual configuration for a lockable device.
+/// </summary>
 [RegisterComponent, NetworkedComponent]
 public sealed partial class LockableEquipmentComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]
     public bool Locked { get; set; } = false;
 
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
+    public bool Broken { get; set; } = false;
+
     [DataField]
     public string? LockId;
 
-    [DataField]
-    public EntProtoId? KeyPrototype;
-
     [DataField("layer")]
-    public string Layer = "lockable_under"; // Use standard layer names
+    public string Layer = "lockable_under";
 
     [DataField("rsiPath")]
-    public string rsiPath = "_Sunrise/Clothing/Locked/cage.rsi";
-
-    [DataField]
-    public string? RequiredFreeSlot;
+    public string RsiPath = "_Sunrise/Clothing/Locked/cage.rsi";
 
     [DataField]
     public BreakMode Mode = BreakMode.Breakable;
 
     [DataField]
     public string RequiredToolTag = "Wirecutter";
+
+    [DataField]
+    public ProtoId<StackPrototype>? RepairMaterial;
+
+    [DataField]
+    public int RepairAmount = 1;
     
     [DataField("accessPriority")]
     public int AccessPriority = 1;
     
     [DataField("spriteState")]
-    public string SpriteState = "equipped"; // Allow configurable sprite state
+    public string SpriteState = "equipped";
     
+    /// <summary>
+    /// Defines what happens when the device is forced open.
+    /// </summary>
     public enum BreakMode
     {
-        None,               // Can't be broken, prayed and etc.
-        Breakable,          // Breaks and can be fixed.
-        Destroyable,        // Destroyed on force.
-        ForceOpen           // Opens without break.
+        None,
+        Breakable,
+        Destroyable,
+        ForceOpen
     }
 }

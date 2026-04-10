@@ -1,27 +1,4 @@
 - type: entity
-  id: LockableEquipmentTest
-  name: lockable device
-  description: A test device to demonstrate lockable equipment functionality.
-  parent: BaseItem
-  components:
-  - type: Item
-    size: Small
-
-  - type: Sprite
-    sprite: _Sunrise/Clothing/Locked/cage.rsi
-    state: icon
-
-  - type: LockableEquipment
-    layer: lockable_under
-    
-  - type: LayerBlocking
-    coversLayers:
-      - lockable_under
-    accessPriority: 1
-  
-
-
-- type: entity
   id: BaseLockableEquipment
   abstract: true
   parent: BaseItem
@@ -29,12 +6,12 @@
   components:
   - type: Item
     size: Small
-
   - type: LockableEquipment
     layer: lockable_under
     accessPriority: 1
     mode: Breakable
-
+    repairMaterial: Steel
+    repairAmount: 1
   - type: LayerBlocking
     coversLayers:
       - lockable_under
@@ -43,10 +20,46 @@
 - type: entity
   id: LockableEquipmentTest
   parent: BaseLockableEquipment
-  name: lockable device
-  description: A test device to demonstrate lockable equipment functionality.
-
+  name: lockable device test (breakable steel)
+  description: A test lockable device that breaks and is repaired with steel.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Locked/cage.rsi
     state: icon
+
+- type: entity
+  id: LockableEquipmentTestGlass
+  parent: BaseLockableEquipment
+  name: lockable device test (breakable glass)
+  description: A test lockable device that breaks and is repaired with glass.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Locked/cage.rsi
+    state: icon
+  - type: LockableEquipment
+    repairMaterial: Glass
+    repairAmount: 1
+
+- type: entity
+  id: LockableEquipmentTestForceOpen
+  parent: BaseLockableEquipment
+  name: lockable device test (force open)
+  description: A test lockable device that can be forced open without breaking.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Locked/cage.rsi
+    state: icon
+  - type: LockableEquipment
+    mode: ForceOpen
+
+- type: entity
+  id: LockableEquipmentTestDestroyable
+  parent: BaseLockableEquipment
+  name: lockable device test (destroyable)
+  description: A test lockable device that is destroyed when forced.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Locked/cage.rsi
+    state: icon
+  - type: LockableEquipment
+    mode: Destroyable

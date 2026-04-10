@@ -36,18 +36,27 @@ public sealed class EquipmentContainerSystem : EntitySystem
 
     private void OnInteractUsing(Entity<EquipmentContainerComponent> ent, ref InteractUsingEvent args)
     {
+        if (args.Handled)
+            return;
+
         var container = _container.EnsureContainer<Container>(ent.Owner, ent.Comp.ContainerId);
         var installedDevice = FindDevice(container);
 
         if (installedDevice != null &&
             TryComp(installedDevice.Value, out LockableEquipmentComponent? installedComp))
         {
-            if (!CanAccess(ent.Owner, installedComp.Layer, args.User, installedComp))
+            if (!CanAccess(ent.Owner, installedComp.Layer, installedComp))
             {
                 _popup.PopupClient(
                     Loc.GetString("lockable-equipment-blocked"),
                     args.User,
                     args.User);
+                return;
+            }
+
+            if (_lockable.CanRepairWithMaterial(installedDevice.Value, args.Used, installedComp))
+            {
+                args.Handled = _lockable.TryRepair(installedDevice.Value, args.Used, args.User);
                 return;
             }
 
@@ -59,7 +68,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
 
             if (_lockable.CanBreakWithTool(installedDevice.Value, args.Used))
             {
-                args.Handled = _lockable.TryBreak(installedDevice.Value, args.Used, args.User);
+                args.Handled = _lockable.TryStartBreakDoAfter(installedDevice.Value, args.Used, args.User);
                 return;
             }
         }
@@ -67,7 +76,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
         if (!TryComp(args.Used, out LockableEquipmentComponent? device))
             return;
 
-        if (!CanAccess(ent.Owner, device.Layer, args.User, device))
+        if (!CanAccess(ent.Owner, device.Layer, device))
         {
             _popup.PopupClient(
                 Loc.GetString("lockable-equipment-blocked"),
@@ -121,7 +130,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
         if (!TryComp(device.Value, out LockableEquipmentComponent? dev))
             return;
 
-        if (!CanAccess(target, dev.Layer, user, dev))
+        if (!CanAccess(target, dev.Layer, dev))
         {
             _popup.PopupClient(
                 Loc.GetString("lockable-equipment-blocked"),
@@ -176,7 +185,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
                 if (FindDevice(container) != null)
                     return;
 
-                if (!CanAccess(ent.Owner, device.Layer, args.User, device))
+                if (!CanAccess(ent.Owner, device.Layer, device))
                     return;
 
                 if (!_container.Insert(used, container))
@@ -205,12 +214,13 @@ public sealed class EquipmentContainerSystem : EntitySystem
                 if (!TryComp(device.Value, out LockableEquipmentComponent? dev))
                     return;
 
-                if (!CanAccess(ent.Owner, dev.Layer, args.User, dev))
+                if (!CanAccess(ent.Owner, dev.Layer, dev))
                 {
                     _popup.PopupClient(
                         Loc.GetString("lockable-equipment-blocked"),
                         args.User,
                         args.User);
+                    return;
                 }
 
                 if (dev.Locked)
@@ -250,7 +260,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
 
         var name = MetaData(device.Value).EntityName;
 
-        if (!CanAccess(ent.Owner, comp.Layer, args.User, comp))
+        if (!CanAccess(ent.Owner, comp.Layer, comp))
             return;
 
         TryComp(args.User, out HandsComponent? hands);
@@ -268,7 +278,9 @@ public sealed class EquipmentContainerSystem : EntitySystem
 
                     args.Verbs.Add(new InteractionVerb
                     {
-                        Text = comp.Locked ? $"Unlock {name}" : $"Lock {name}",
+                        Text = comp.Locked
+                            ? Loc.GetString("lockable-equipment-verb-unlock", ("name", name))
+                            : Loc.GetString("lockable-equipment-verb-lock", ("name", name)),
                         Priority = 200,
                         Act = () => _lockable.TryUseKey(device.Value, held.Value, user)
                     });
@@ -285,7 +297,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
                         {
                             Text = breakText,
                             Priority = 150,
-                            Act = () => _lockable.TryBreak(device.Value, held.Value, user)
+                            Act = () => _lockable.TryStartBreakDoAfter(device.Value, held.Value, user)
                         });
                     }
                 }
@@ -298,7 +310,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
 
             args.Verbs.Add(new InteractionVerb
             {
-                Text = $"Remove {name}",
+                Text = Loc.GetString("lockable-equipment-verb-remove", ("name", name)),
                 Priority = 100,
                 Act = () => TryRemove(ent.Owner, user)
             });
@@ -357,9 +369,9 @@ public sealed class EquipmentContainerSystem : EntitySystem
         return FindDevice(container);
     }
 
-    private bool CanAccess(EntityUid owner, string layer, EntityUid user, LockableEquipmentComponent device)
+    private bool CanAccess(EntityUid owner, string layer, LockableEquipmentComponent device)
     {
-        return _layerAccess.IsLayerAccessible(owner, layer, user, device);
+        return _layerAccess.IsLayerAccessible(owner, layer, device);
     }
 
     private void OnContainerInserted(Entity<EquipmentContainerComponent> ent, ref EntInsertedIntoContainerMessage args)
@@ -402,7 +414,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
         return new EquipmentVisualData(
             visible,
             device.Layer,
-            device.rsiPath,
+            device.RsiPath,
             device.SpriteState);
     }
 }

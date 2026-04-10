@@ -3,63 +3,43 @@ using Content.Shared.Inventory;
 namespace Content.Server._Sunrise.LockableEquipment;
 
 /// <summary>
-/// Fallback mapping used when clothing has no explicit <see cref="LayerBlockingComponent"/>.
-/// Keep this conservative and prefer explicit prototype data where possible.
+/// Fallback slot-based blocking rules used when clothing has no explicit layer metadata.
 /// </summary>
 public static class SlotLayerMapping
 {
     /// <summary>
-    /// Maps slot flags to the equipment layers they block
+    /// Fallback rules checked when no explicit <see cref="LayerBlockingComponent"/> is present.
     /// </summary>
-    public static readonly Dictionary<SlotFlags, HashSet<string>> SlotBlocksLayers = new()
+    public static readonly SlotBlockRule[] Rules =
     {
-        // Outer clothing blocks access to everything underneath
-        { SlotFlags.OUTERCLOTHING, new HashSet<string> { "lockable_over", "lockable_chest", "lockable_under", "lockable_underpants" } },
-        
-        
-        // Head gear blocks head-related layers
-        { SlotFlags.HEAD, new HashSet<string> { "lockable_head" } },
-        
-        // Eyes block eye-related layers
-        { SlotFlags.EYES, new HashSet<string> { "lockable_eyes" } },
-        
-        // Mask blocks face-related layers
-        { SlotFlags.MASK, new HashSet<string> { "lockable_face" } },
-        
-        // Neck blocks neck-related layers
-        { SlotFlags.NECK, new HashSet<string> { "lockable_neck" } },
-        
-        // Backpack blocks back-related layers
-        { SlotFlags.BACK, new HashSet<string> { "lockable_back" } },
-        
-        // Belt blocks belt-related layers
-        { SlotFlags.BELT, new HashSet<string> { "lockable_belt" } },
-        
-        // Pants block leg-related layers
-        { SlotFlags.PANTS, new HashSet<string> { "lockable_under", "lockable_underpants" } },
-        
-        // Inner clothing blocks under layers
-        { SlotFlags.INNERCLOTHING, new HashSet<string> { "lockable_under", "lockable_underpants" } },
-        
-        // Footwear blocks foot-related layers
-        { SlotFlags.FEET, new HashSet<string> { "lockable_feet" } },
-        
-        // Hands block hand-related layers
-        { SlotFlags.GLOVES, new HashSet<string> { "lockable_hands" } },
-        
-        // Ears block ear-related layers
-        { SlotFlags.EARS, new HashSet<string> { "lockable_ears" } },
+        new(SlotFlags.OUTERCLOTHING, 5, "lockable_over", "lockable_chest", "lockable_under", "lockable_underpants"),
+        new(SlotFlags.INNERCLOTHING, 3, "lockable_under", "lockable_underpants"),
+        new(SlotFlags.PANTS, 2, "lockable_under", "lockable_underpants"),
+        new(SlotFlags.HEAD, 1, "lockable_head"),
+        new(SlotFlags.EYES, 1, "lockable_eyes"),
+        new(SlotFlags.MASK, 1, "lockable_face"),
+        new(SlotFlags.NECK, 1, "lockable_neck"),
+        new(SlotFlags.BACK, 1, "lockable_back"),
+        new(SlotFlags.BELT, 1, "lockable_belt"),
+        new(SlotFlags.FEET, 1, "lockable_feet"),
+        new(SlotFlags.GLOVES, 1, "lockable_hands"),
+        new(SlotFlags.EARS, 1, "lockable_ears"),
     };
 
     /// <summary>
-    /// Defines the priority of slots - higher priority slots block access to lower priority slots
+    /// Describes what layers a slot hides and with what fallback priority.
     /// </summary>
-    public static readonly Dictionary<SlotFlags, int> SlotPriorities = new()
+    public readonly struct SlotBlockRule
     {
-        { SlotFlags.OUTERCLOTHING, 5 },
-        { SlotFlags.INNERCLOTHING, 3 },
-        { SlotFlags.PANTS, 2 },
-        { SlotFlags.NONE, 1 }, // Default lowest priority
-        // Add other slot priorities as needed
-    };
+        public readonly SlotFlags Flags;
+        public readonly int Priority;
+        public readonly string[] Layers;
+
+        public SlotBlockRule(SlotFlags flags, int priority, params string[] layers)
+        {
+            Flags = flags;
+            Priority = priority;
+            Layers = layers;
+        }
+    }
 }

@@ -22,6 +22,12 @@ namespace Content.Client._Sunrise.LockableEquipment
 
             var sprite = args.Sprite;
 
+            if (_appearance.TryGetData(uid, EquipmentVisuals.IconState, out string? iconState) &&
+                !string.IsNullOrEmpty(iconState))
+            {
+                _sprite.LayerSetRsiState((uid, sprite), 0, iconState);
+            }
+
             if (!_appearance.TryGetData(uid, EquipmentVisuals.VisualData, out EquipmentVisualData? visualData))
                 return;
 

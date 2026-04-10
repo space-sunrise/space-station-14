@@ -7,16 +7,16 @@ using Content.Shared.Inventory;
 namespace Content.Server._Sunrise.LockableEquipment;
 
 /// <summary>
-/// System that determines whether equipment layers are accessible based on blocking clothing.
-/// This system is purely data-driven and relies solely on the LayerBlockingComponent.
-/// Any clothing item that should block access to equipment layers must explicitly include a
-/// LayerBlockingComponent with the appropriate CoversLayers entries.
+/// Checks whether a lockable layer can be interacted with on the current wearer.
 /// </summary>
 public sealed class LayerAccessSystem : EntitySystem
 {
     [Dependency] private readonly InventorySystem _inventory = default!;
 
-    public bool IsLayerAccessible(EntityUid target, string equipmentLayer, EntityUid? user = null, LockableEquipmentComponent? targetEquipment = null)
+    /// <summary>
+    /// Returns false when worn clothing blocks the target lockable layer.
+    /// </summary>
+    public bool IsLayerAccessible(EntityUid target, string equipmentLayer, LockableEquipmentComponent? targetEquipment = null)
     {
         var wearer = ResolveWearer(target);
         if (wearer == EntityUid.Invalid)
@@ -25,22 +25,12 @@ public sealed class LayerAccessSystem : EntitySystem
         if (!TryComp(wearer, out InventoryComponent? inventory))
             return true;
 
-        var targetPriority = GetAccessPriority(target, targetEquipment);
-
-        foreach (var blocker in EnumerateBlockers((wearer, inventory)))
-        {
-            if (!IsBlockedBy(blocker, equipmentLayer, targetPriority))
-                continue;
-
-            if (user.HasValue && CanBypassClothingRestrictions(user.Value, wearer, blocker.Entity))
-                continue;
-
-            return false;
-        }
-
-        return true;
+        return !IsBlocked((wearer, inventory), equipmentLayer, GetAccessPriority(target, targetEquipment));
     }
 
+    /// <summary>
+    /// Returns the effective priority of the target device.
+    /// </summary>
     private int GetAccessPriority(EntityUid target, LockableEquipmentComponent? targetEquipment)
     {
         if (targetEquipment != null)
@@ -51,6 +41,25 @@ public sealed class LayerAccessSystem : EntitySystem
             : 0;
     }
 
+    /// <summary>
+    /// Returns true when any worn item blocks the requested layer.
+    /// </summary>
+    private bool IsBlocked(Entity<InventoryComponent> wearer, string targetLayer, int targetPriority)
+    {
+        foreach (var blocker in EnumerateBlockers(wearer))
+        {
+            if (!IsBlockedBy(blocker, targetLayer, targetPriority))
+                continue;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Enumerates explicit and fallback blockers from currently equipped clothing.
+    /// </summary>
     private IEnumerable<LayerAccessBlocker> EnumerateBlockers(Entity<InventoryComponent> wearer)
     {
         foreach (var slot in wearer.Comp.Slots)
@@ -61,54 +70,47 @@ public sealed class LayerAccessSystem : EntitySystem
             if (TryComp(blockerEntity, out LayerBlockingComponent? layerBlocking))
             {
                 yield return new LayerAccessBlocker(
-                    blockerEntity,
                     layerBlocking.CoversLayers,
                     layerBlocking.AccessPriority);
             }
 
-            if (TryGetSlotFallbackBlocker(slot.SlotFlags, out var fallback))
+            if (TryGetFallbackRule(slot.SlotFlags, out var fallback))
             {
-                fallback.Entity = blockerEntity;
-                yield return fallback;
+                yield return new LayerAccessBlocker(fallback.Layers, fallback.Priority);
             }
         }
     }
 
+    /// <summary>
+    /// Applies the shared blocking rule: matching layer and sufficient priority.
+    /// </summary>
     private bool IsBlockedBy(LayerAccessBlocker blocker, string targetLayer, int targetPriority)
     {
-        if (!blocker.CoversLayers.Contains(targetLayer))
-            return false;
-
-        return blocker.AccessPriority >= targetPriority;
+        return blocker.AccessPriority >= targetPriority &&
+               blocker.CoversLayers.Contains(targetLayer);
     }
 
-    private bool TryGetSlotFallbackBlocker(SlotFlags slotFlags, out LayerAccessBlocker blocker)
+    /// <summary>
+    /// Returns the first fallback slot rule matching the current slot flags.
+    /// </summary>
+    private bool TryGetFallbackRule(SlotFlags slotFlags, out SlotLayerMapping.SlotBlockRule rule)
     {
-        foreach (var entry in SlotLayerMapping.SlotBlocksLayers)
+        foreach (var candidate in SlotLayerMapping.Rules)
         {
-            var flags = entry.Key;
-            var layers = entry.Value;
-
-            if ((slotFlags & flags) == 0)
+            if ((slotFlags & candidate.Flags) == 0)
                 continue;
 
-            blocker = new LayerAccessBlocker(
-                EntityUid.Invalid,
-                layers,
-                SlotLayerMapping.SlotPriorities.GetValueOrDefault(flags, 0));
+            rule = candidate;
             return true;
         }
 
-        blocker = new LayerAccessBlocker(EntityUid.Invalid, Array.Empty<string>(), 0);
+        rule = default;
         return false;
     }
 
-    private bool CanBypassClothingRestrictions(EntityUid user, EntityUid target, EntityUid clothing)
-    {
-        // Add logic for special access permissions (admin, tools, etc.)
-        return false;
-    }
-    
+    /// <summary>
+    /// Resolves the inventory owner that ultimately wears or contains the device.
+    /// </summary>
     private EntityUid ResolveWearer(EntityUid item)
     {
         if (HasComp<InventoryComponent>(item))
@@ -136,13 +138,11 @@ public sealed class LayerAccessSystem : EntitySystem
 
     private sealed class LayerAccessBlocker
     {
-        public EntityUid Entity;
-        public readonly IEnumerable<string> CoversLayers;
+        public readonly IReadOnlyCollection<string> CoversLayers;
         public readonly int AccessPriority;
 
-        public LayerAccessBlocker(EntityUid entity, IEnumerable<string> coversLayers, int accessPriority)
+        public LayerAccessBlocker(IReadOnlyCollection<string> coversLayers, int accessPriority)
         {
-            Entity = entity;
             CoversLayers = coversLayers;
             AccessPriority = accessPriority;
         }

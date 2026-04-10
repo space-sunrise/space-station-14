@@ -1,12 +1,9 @@
-using Robust.Shared.GameStates;
+using Content.Shared.DoAfter;
 using Robust.Shared.Serialization;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.LockableEquipment;
 
 [Serializable, NetSerializable]
-public enum EquipmentVisuals
+public sealed partial class LockableEquipmentBreakDoAfterEvent : SimpleDoAfterEvent
 {
-    VisualData,
-    IconState
 }

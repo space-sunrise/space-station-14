@@ -21,6 +21,6 @@ public sealed class EquipmentVisualData : ICloneable
 
     public object Clone()
     {
-        return this;
+        return new EquipmentVisualData(Visible, Layer, RsiPath, State);
     }
 }
