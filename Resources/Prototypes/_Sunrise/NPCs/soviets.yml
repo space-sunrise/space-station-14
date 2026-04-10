@@ -283,6 +283,7 @@
       25: 1.15
       75: 1.25
   - type: JumpAbility
+    action: ActionGravityJumpQuick
     jumpDistance: 3
     jumpSound: /Audio/_Sunrise/Effects/silence.ogg
   - type: NPCUseActionWhenTargetInRange
@@ -1225,6 +1226,7 @@
       state: on-equipped-HELMET
       shader: unshaded
   - type: JumpAbility
+    action: ActionGravityJumpQuick
     jumpDistance: 3
     jumpSound: /Audio/_Sunrise/Effects/silence.ogg
   - type: BatteryAmmoProvider

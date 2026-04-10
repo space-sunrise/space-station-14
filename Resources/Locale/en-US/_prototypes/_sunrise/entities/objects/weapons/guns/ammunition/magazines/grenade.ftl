@@ -1,0 +1,14 @@
+ent-BaseMagazineGrenadeExtended = grenade extended cartridge
+    .desc = A large grenade cartridge with increased payload.
+ent-MagazineGrenadeEmptyExtended = grenade extended cartridge
+    .desc = { ent-BaseMagazineGrenadeExtended.desc }
+ent-MagazineGrenadeFragExtended = frag grenade extended cartridge
+    .desc = { ent-BaseMagazineGrenadeExtended.desc }
+ent-MagazineGrenadeEMPExtended = EMP grenade extended cartridge
+    .desc = { ent-BaseMagazineGrenadeExtended.desc }
+ent-MagazineGrenadeFlashExtended = flash grenade extended cartridge
+    .desc = { ent-BaseMagazineGrenadeExtended.desc }
+ent-MagazineGrenadeBlastExtended = blast grenade extended cartridge
+    .desc = { ent-BaseMagazineGrenadeExtended.desc }
+ent-MagazineGrenadeBatonExtended = baton grenade extended cartridge
+    .desc = { ent-BaseMagazineGrenadeExtended.desc }

@@ -54,7 +54,7 @@
   description: A powerful 40mm stationary automatic grenade launcher. A cartridge is required for use.
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_127.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/exp_3600.rsi
     granularLayersRendering: true
     layers:
     - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
@@ -65,7 +65,7 @@
       renderingStrategy: NoRotation
     - state: bal-127
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-7
+    - state: mag-6
       map: ["enum.GunVisualLayers.Mag"]
   - type: ContainerContainer
     containers:
@@ -112,8 +112,8 @@
   - type: MagazineAmmoProvider
   - type: MagazineVisuals
     magState: mag
-    steps: 8
-    zeroVisible: false
+    steps: 6
+    zeroVisible: true
   - type: ItemSlots
     slots:
       gun_magazine:
