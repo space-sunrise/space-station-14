@@ -35,6 +35,7 @@ job-alt-title-attendant = обслуга
 job-alt-title-waiter = официант
 job-alt-title-stylist = стилист
 job-alt-title-hr-manager = кадровик
+job-alt-title-head-of-service = глава сервиса
 job-alt-title-secretary = секретарь командования
 job-alt-title-butler = дворецкий
 job-alt-title-valet = камердинер

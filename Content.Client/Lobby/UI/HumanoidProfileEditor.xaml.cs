@@ -532,6 +532,20 @@ namespace Content.Client.Lobby.UI
             RefreshAntags();
             RefreshJobs();
 
+            // Sunrise-Start
+            if (JobList.Parent is ScrollContainer jobScrollContainer)
+            {
+                jobScrollContainer.OnScrolled += () =>
+                {
+                    foreach (var child in UserInterfaceManager.ModalRoot.Children.ToArray())
+                    {
+                        if (child is Popup popup)
+                            popup.Close();
+                    }
+                };
+            }
+            // Sunrise-End
+
             #endregion Jobs
 
             TabContainer.SetTabTitle(2, Loc.GetString("humanoid-profile-editor-antags-tab"));

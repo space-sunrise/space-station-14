@@ -35,6 +35,7 @@ job-alt-title-attendant = Attendant
 job-alt-title-waiter = Waiter
 job-alt-title-stylist = Stylist
 job-alt-title-hr-manager = HR Manager
+job-alt-title-head-of-service = Head of Service
 job-alt-title-secretary = Secretary of the Command
 job-alt-title-butler = Butler
 job-alt-title-valet = Valet
