@@ -14,6 +14,9 @@
         <Button Name="ToggleFovButton" Access="Public" Text="{Loc sandbox-window-toggle-fov-button}" ToggleMode="True"/>
         <Button Name="ToggleShadowsButton" Access="Public" Text="{Loc sandbox-window-toggle-shadows-button}" ToggleMode="True"/>
         <Button Name="ToggleSubfloorButton" Access="Public" Text="{Loc sandbox-window-toggle-subfloor-button}" ToggleMode="True"/>
+        <!-- Sunrise added start - mapper access sandbox control -->
+        <Button Name="ToggleMappingAccessButton" Access="Public" Text="{Loc sandbox-window-toggle-mapping-access-button}" ToggleMode="True"/>
+        <!-- Sunrise added end -->
         <!-- Sunrise added start - mapper transparency sandbox control -->
         <Button Name="ToggleMappingTransparencyButton" Access="Public" Text="{Loc sandbox-window-toggle-mapping-transparency-button}" ToggleMode="True"/>
         <!-- Sunrise added end -->
