@@ -148,6 +148,13 @@ namespace Content.Client.Sandbox
             _consoleHost.ExecuteCommand("showsubfloor");
         }
 
+        // Sunrise added start - mapper transparency toggle
+        public void ToggleMappingTransparency()
+        {
+            _consoleHost.ExecuteCommand("showmappingtransparency");
+        }
+        // Sunrise added end
+
         public void ShowMarkers()
         {
             _consoleHost.ExecuteCommand("showmarkers");
