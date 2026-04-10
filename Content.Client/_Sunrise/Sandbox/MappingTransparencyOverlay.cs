@@ -7,8 +7,6 @@ namespace Content.Client._Sunrise.Sandbox;
 
 public sealed class MappingTransparencyOverlay : Overlay
 {
-    private const float TransparencyMultiplier = 0.3f;
-
     [Dependency] private readonly IEntityManager _ent = default!;
 
     private readonly SpriteSystem _sprite;
@@ -16,6 +14,7 @@ public sealed class MappingTransparencyOverlay : Overlay
     private readonly List<(Entity<SpriteComponent> ent, float BaseAlpha)> _cachedBaseAlphas = new(256);
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
+    public int TransparencyPercent { get; set; } = MappingTransparencySystem.DefaultTransparencyPercent;
 
     public MappingTransparencyOverlay()
     {
@@ -67,7 +66,7 @@ public sealed class MappingTransparencyOverlay : Overlay
 
     private void ApplyTransparency(Entity<SpriteComponent> ent)
     {
-        var targetAlpha = ent.Comp.Color.A * TransparencyMultiplier;
+        var targetAlpha = ent.Comp.Color.A * (1f - TransparencyPercent / 100f);
         if (MathHelper.CloseTo(ent.Comp.Color.A, targetAlpha))
             return;
 

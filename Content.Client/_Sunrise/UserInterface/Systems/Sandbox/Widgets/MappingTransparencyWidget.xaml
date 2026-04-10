@@ -1,0 +1,19 @@
+<widgets:MappingTransparencyWidget
+    xmlns="https://spacestation14.io"
+    xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:widgets="clr-namespace:Content.Client._Sunrise.UserInterface.Systems.Sandbox.Widgets"
+    Orientation="Vertical"
+    MinSize="190 0">
+    <PanelContainer>
+        <PanelContainer.PanelOverride>
+            <graphics:StyleBoxFlat BackgroundColor="#10141CCC" />
+        </PanelContainer.PanelOverride>
+        <BoxContainer Orientation="Vertical" SeparationOverride="4" Margin="6 5">
+            <Label Name="TitleLabel" Text="{Loc mapping-transparency-widget-title}" />
+            <BoxContainer Orientation="Vertical" SeparationOverride="2">
+                <Label Name="TransparencyValueLabel" />
+                <Slider Name="TransparencySlider" HorizontalExpand="True" />
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
+</widgets:MappingTransparencyWidget>
