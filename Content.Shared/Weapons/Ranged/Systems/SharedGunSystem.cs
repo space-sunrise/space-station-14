@@ -4,6 +4,7 @@ using Content.Shared._Starlight.Weapon.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Alert;
 using Content.Shared.Audio;
 using Content.Shared.CombatMode;
 using Content.Shared.Containers.ItemSlots;
@@ -75,6 +76,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected readonly ThrowingSystem ThrowingSystem = default!;
     [Dependency] private   readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!;
 
     /// <summary>
     /// Default projectile speed
@@ -193,11 +195,7 @@ public abstract partial class SharedGunSystem : EntitySystem
                 gun.Targets.Add(targetUid);
         }
 
-        // Применяем штрафы Dual Wield перед выстрелом
-        if (isDualWield && dualWield != null)
-        {
-            ApplyDualWieldPenalties(ent, gun, dualWield);
-        }
+        // Dual-wield penalties are applied via GunRefreshModifiersEvent
 
         var fired = AttemptShoot(user.Value, ent, gun);
 
@@ -264,9 +262,10 @@ public abstract partial class SharedGunSystem : EntitySystem
                 gunComp = dwGunComp;
                 return true;
             }
-            // Gun no longer valid — disable dual-wield and fall through
+            // Gun no longer valid — disable dual-wield
             dualWield.Active = false;
             Dirty(entity, dualWield);
+            // Alert will be cleared by SharedDualWieldSystem when component is disabled
         }
 
         if (TryComp<MechComponent>(entity, out var mech)
@@ -804,48 +803,11 @@ public abstract partial class SharedGunSystem : EntitySystem
         return ammoEv.Capacity;
     }
 
-    // --- Dual Wield Penalty Helpers ---
-    private readonly Dictionary<EntityUid, (Angle angleIncrease, float fireRate)> _originalGunStats = new();
-    private readonly HashSet<EntityUid> _pendingReset = new();
-
-    private void ApplyDualWieldPenalties(EntityUid gunUid, GunComponent gun, DualWieldComponent dualWield)
-    {
-        var currentGunUid = dualWield.NextIsLeft ? dualWield.LeftGun : dualWield.RightGun;
-        if (currentGunUid == null || !TryComp<CanDualWieldComponent>(currentGunUid, out var penalties))
-            return;
-
-        if (!_originalGunStats.TryGetValue(gunUid, out _))
-        {
-            _originalGunStats[gunUid] = (gun.AngleIncreaseModified, gun.FireRateModified);
-        }
-
-        gun.AngleIncreaseModified *= (1f + penalties.DualWieldInaccuracyPenalty);
-        gun.FireRateModified *= (1f - penalties.DualWieldFireRatePenalty);
-
-        _pendingReset.Add(gunUid);
-    }
-
-    private void ResetDualWieldPenalties(EntityUid gunUid, GunComponent gun)
-    {
-        if (_originalGunStats.Remove(gunUid, out var original))
-        {
-            gun.AngleIncreaseModified = original.angleIncrease;
-            gun.FireRateModified = original.fireRate;
-            Dirty(gunUid, gun);
-        }
-    }
-
     public override void Update(float frameTime)
     {
         UpdateBattery(frameTime);
         UpdateBallistic(frameTime);
-
-        foreach (var gunUid in _pendingReset)
-        {
-            if (TryComp<GunComponent>(gunUid, out var gun))
-                ResetDualWieldPenalties(gunUid, gun);
-        }
-        _pendingReset.Clear();
+        // Dual-wield penalties are applied via GunRefreshModifiersEvent, no reset needed here
     }
 }
 
@@ -870,7 +832,6 @@ public record struct GunShotEvent(EntityUid User, List<(EntityUid? Uid, IShootab
 
 [ByRefEvent]
 public record struct OnNonEmptyGunShotEvent(EntityUid User, List<(EntityUid? Uid, IShootable Shootable)> Ammo);
-
 
 /// <summary>
 /// Raised on an entity after firing a gun to see if any components or systems would allow this entity to be pushed
