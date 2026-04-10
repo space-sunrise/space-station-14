@@ -27,6 +27,11 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
 
+    private const string AdminBountyKillObjectiveProto = "AdminBountyKillObjective";
+
+    private static readonly SpriteSpecifier BountyVerbIcon =
+        new SpriteSpecifier.Rsi(new("/Textures/Interface/Misc/job_icons.rsi"), "Syndicate");
+
     private void AddBountySmiteVerb(GetVerbsEvent<Verb> args)
     {
         if (!TryComp<ActorComponent>(args.User, out var actor))
@@ -37,18 +42,16 @@ public sealed partial class AdminVerbSystem
         if (!_adminManager.HasAdminFlag(player, AdminFlags.Fun))
             return;
 
-        if (!HasComp<MindContainerComponent>(args.Target))
-            return;
-
         var bountyName = Loc.GetString("admin-smite-traitor-bounty-name");
+        var target = args.Target;
         Verb bounty = new()
         {
             Text = bountyName,
             Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/Interface/Misc/job_icons.rsi"), "Syndicate"),
+            Icon = BountyVerbIcon,
             Act = () =>
             {
-                AssignTraitorBounty(args.Target, player);
+                AssignTraitorBounty(target, player);
             },
             Impact = LogImpact.Extreme,
             Message = string.Join(": ", bountyName, Loc.GetString("admin-smite-traitor-bounty-description")),
@@ -59,7 +62,13 @@ public sealed partial class AdminVerbSystem
     private void AssignTraitorBounty(EntityUid target, ICommonSession admin)
     {
         if (!_mindSystem.TryGetMind(target, out var targetMindId, out var targetMind))
-            return;
+        {
+            _mindSystem.MakeSentient(target);
+            var newMind = _mindSystem.CreateMind(null, Name(target));
+            _mindSystem.TransferTo(newMind, target);
+            targetMindId = newMind;
+            targetMind = Comp<MindComponent>(newMind);
+        }
 
         var targetName = targetMind.CharacterName ?? Name(target);
         var jobName = _jobSystem.MindTryGetJobName(targetMindId);
@@ -84,7 +93,7 @@ public sealed partial class AdminVerbSystem
                     continue;
 
                 // Create the objective through the objective system (validates ObjectiveComponent, runs assignment hooks)
-                if (_objectivesSystem.TryCreateObjective(mind.Owner, mind.Comp, "AdminBountyKillObjective") is not { } objectiveUid)
+                if (_objectivesSystem.TryCreateObjective(mind.Owner, mind.Comp, AdminBountyKillObjectiveProto) is not { } objectiveUid)
                     continue;
 
                 // Set the target on the objective (must be done after creation since it's a runtime value)
@@ -126,12 +135,14 @@ public sealed partial class AdminVerbSystem
     {
         foreach (var objective in mind.Objectives)
         {
-            if (TryComp<KillPersonConditionComponent>(objective, out _) &&
-                TryComp<TargetObjectiveComponent>(objective, out var targetObj) &&
-                targetObj.Target == targetMindId)
-            {
+            if (!TryComp<KillPersonConditionComponent>(objective, out _))
+                continue;
+
+            if (!TryComp<TargetObjectiveComponent>(objective, out var targetObj))
+                continue;
+
+            if (targetObj.Target == targetMindId)
                 return true;
-            }
         }
 
         return false;
