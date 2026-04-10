@@ -15,45 +15,45 @@ public sealed partial class PersonalStoragePrioritySystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeNetworkEvent<StorageToggleItemPriorityEvent>(OnToggleItemPriority);
+        // SubscribeNetworkEvent<StorageToggleItemPriorityEvent>(OnToggleItemPriority);
     }
 
-    private void OnToggleItemPriority(StorageToggleItemPriorityEvent msg, EntitySessionEventArgs args)
-    {
-        var playerSession = args.SenderSession;
-        if (playerSession == null)
-            return;
+    // private void OnToggleItemPriority(StorageToggleItemPriorityEvent msg, EntitySessionEventArgs args)
+    // {
+    //     var playerSession = args.SenderSession;
+    //     if (playerSession == null)
+    //         return;
 
-        if (!playerSession.AttachedEntity.HasValue)
-            return;
+    //     if (!playerSession.AttachedEntity.HasValue)
+    //         return;
 
-        if (!TryGetEntity(msg.Storage, out var storageUid) || !storageUid.HasValue || !HasComp<StorageComponent>(storageUid))
-            return;
+    //     if (!TryGetEntity(msg.Storage, out var storageUid) || !storageUid.HasValue || !HasComp<StorageComponent>(storageUid))
+    //         return;
 
-        if (!TryGetEntity(msg.Item, out var itemUid) || !itemUid.HasValue)
-            return;
+    //     if (!TryGetEntity(msg.Item, out var itemUid) || !itemUid.HasValue)
+    //         return;
 
-        if (!TryComp<StorageComponent>(storageUid, out var storageComponent))
-            return;
+    //     if (!TryComp<StorageComponent>(storageUid, out var storageComponent))
+    //         return;
 
-        if (!storageComponent.Container.Contains(itemUid.Value))
-            return;
+    //     if (!storageComponent.Container.Contains(itemUid.Value))
+    //         return;
 
-        if (!storageComponent.StoredItems.ContainsKey(itemUid.Value))
-            return;
+    //     if (!storageComponent.StoredItems.ContainsKey(itemUid.Value))
+    //         return;
 
-        var playerUid = playerSession.AttachedEntity.Value;
-        var priorityComp = EnsureComp<PersonalStoragePriorityComponent>(playerUid);
+    //     var playerUid = playerSession.AttachedEntity.Value;
+    //     var priorityComp = EnsureComp<PersonalStoragePriorityComponent>(playerUid);
 
-        if (priorityComp.Priorities.TryGetValue(storageUid.Value, out var current) && current == itemUid.Value)
-        {
-            priorityComp.Priorities.Remove(storageUid.Value);
-        }
-        else
-        {
-            priorityComp.Priorities[storageUid.Value] = itemUid.Value;
-        }
+    //     if (priorityComp.Priorities.TryGetValue(storageUid.Value, out var current) && current == itemUid.Value)
+    //     {
+    //         priorityComp.Priorities.Remove(storageUid.Value);
+    //     }
+    //     else
+    //     {
+    //         priorityComp.Priorities[storageUid.Value] = itemUid.Value;
+    //     }
 
-        Dirty(playerUid, priorityComp);
-    }
+    //     Dirty(playerUid, priorityComp);
+    // }
 }

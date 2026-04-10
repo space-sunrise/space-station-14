@@ -2,8 +2,10 @@ using System.Numerics;
 using Content.Client.Items.Systems;
 using Content.Shared.Item;
 using Content.Shared.Storage;
+using Content.Shared._Sunrise.Inventory.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
+using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.CustomControls;
 
@@ -46,6 +48,12 @@ public sealed class ItemGridPiece : Control, IEntityControl
     private Texture? _markedFirstTexture;
     private readonly string _markedSecondTexturePath = "Storage/marked_second";
     private Texture? _markedSecondTexture;
+
+    // Sunrise-Start
+    private readonly string _markedPriorityTexturePath = "Storage/marked_priority";
+    private Texture? _markedPriorityTexture;
+    // Sunrise-End
+
     #endregion
 
     public ItemGridPiece(Entity<ItemComponent> entity, ItemStorageLocation location,  IEntityManager entityManager)
@@ -92,6 +100,11 @@ public sealed class ItemGridPiece : Control, IEntityControl
         _bottomRightTexture = Theme.ResolveTextureOrNull(_bottomRightTexturePath)?.Texture;
         _markedFirstTexture = Theme.ResolveTextureOrNull(_markedFirstTexturePath)?.Texture;
         _markedSecondTexture = Theme.ResolveTextureOrNull(_markedSecondTexturePath)?.Texture;
+
+        // Sunrise-Start
+        _markedPriorityTexture = Theme.ResolveTextureOrNull(_markedPriorityTexturePath)?.Texture;
+        // Sunrise-End
+
     }
 
     protected override void Draw(DrawingHandleScreen handle)
@@ -205,6 +218,11 @@ public sealed class ItemGridPiece : Control, IEntityControl
             {
                 ItemGridPieceMarks.First => _markedFirstTexture,
                 ItemGridPieceMarks.Second => _markedSecondTexture,
+
+                // Sunrise-Edit-Start
+                ItemGridPieceMarks.Priority => _markedPriorityTexture,
+                // Sunrise-Edit-End
+
                 _ => null,
             };
 
@@ -302,4 +320,10 @@ public enum ItemGridPieceMarks
 {
     First,
     Second,
+
+    // Sunrise-Edit-Start
+    Priority,
+
+    // Sunrise-Edit-End
+
 }

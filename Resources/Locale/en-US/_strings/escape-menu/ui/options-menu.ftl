@@ -49,6 +49,7 @@ ui-options-scp-echo-strong-preset-preferred = Use enhanced echo effect
 ui-options-scp-echo-strong-preset-preferred-tooltip =
     Determines whether a strong echo effect will be used.
     In the enhanced effect, sounds will have a longer tail.
+ui-options-function-toggle-item-priority = Toggle Item Priority
 # Sunrise-End
 
 ## Graphics menu

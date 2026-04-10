@@ -11,6 +11,7 @@ using Content.Shared.Item;
 using Content.Shared.Storage;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
+using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
@@ -24,6 +25,11 @@ namespace Content.Client.UserInterface.Systems.Storage.Controls;
 public sealed class StorageWindow : BaseWindow
 {
     [Dependency] private readonly IEntityManager _entity = default!;
+
+    // Sunrise-Start
+    [Dependency] private readonly Robust.Client.Player.IPlayerManager _playerManager = default!;
+    // Sunrise-End
+
     private readonly StorageUIController _storageController;
 
     public EntityUid? StorageEntity;
@@ -498,6 +504,18 @@ public sealed class StorageWindow : BaseWindow
 
     private ItemGridPieceMarks? IsMarked(EntityUid uid)
     {
+        // Sunrise-Start
+        // Check if this item is set as priority item for current storage
+        if (StorageEntity != null &&
+            _playerManager.LocalEntity is { } localPlayer &&
+            _entity.TryGetComponent<Content.Shared._Sunrise.Inventory.Components.PersonalStoragePriorityComponent>(localPlayer, out var priorityComp) &&
+            priorityComp.Priorities.TryGetValue(StorageEntity.Value, out var priorityItem) &&
+            priorityItem == uid)
+        {
+            return ItemGridPieceMarks.Priority;
+        }
+        // Sunrise-End
+
         return _contained.IndexOf(uid) switch
         {
             0 => ItemGridPieceMarks.First,

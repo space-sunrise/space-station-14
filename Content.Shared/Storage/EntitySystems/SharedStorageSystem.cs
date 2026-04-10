@@ -26,6 +26,8 @@ using Content.Shared.Storage.Components;
 using Content.Shared.Tag;
 using Content.Shared.Timing;
 using Content.Shared.Storage.Events;
+using Content.Shared._Sunrise.Inventory.Events;
+using Content.Shared._Sunrise.Inventory.Components;
 using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
@@ -165,6 +167,10 @@ public abstract class SharedStorageSystem : EntitySystem
         SubscribeAllEvent<StorageSetItemLocationEvent>(OnSetItemLocation);
         SubscribeAllEvent<StorageInsertItemIntoLocationEvent>(OnInsertItemIntoLocation);
         SubscribeAllEvent<StorageSaveItemLocationEvent>(OnSaveItemLocation);
+
+        // Sunrise-Start
+        SubscribeAllEvent<StorageToggleItemPriorityEvent>(OnToggleItemPriority);
+        // Sunrise-End
 
         SubscribeLocalEvent<ItemSizeChangedEvent>(OnItemSizeChanged);
 
@@ -856,6 +862,41 @@ public abstract class SharedStorageSystem : EntitySystem
 
         SaveItemLocation(storage!, item.Owner);
     }
+
+
+// Sunrise-Start
+    private void OnToggleItemPriority(StorageToggleItemPriorityEvent msg, EntitySessionEventArgs args)
+    {
+        if (!ValidateInput(args, msg.Storage, msg.Item, out var player, out var storage, out var item))
+        {
+            return;
+        }
+
+        if (!storage.Comp.Container.Contains(item.Owner))
+        {
+            return;
+        }
+
+        if (!storage.Comp.StoredItems.ContainsKey(item.Owner))
+        {
+            return;
+        }
+
+        var priorityComp = EnsureComp<PersonalStoragePriorityComponent>(player.Owner);
+
+        if (priorityComp.Priorities.TryGetValue(storage.Owner, out var current) && current == item.Owner)
+        {
+            priorityComp.Priorities.Remove(storage.Owner);
+        }
+        else
+        {
+            priorityComp.Priorities[storage.Owner] = item.Owner;
+        }
+
+        Dirty(player.Owner, priorityComp);
+        UpdateUI(storage!);
+    }
+    // Sunrise-End
 
     private void OnBoundUIOpen(Entity<StorageComponent> ent, ref BoundUIOpenedEvent args)
     {
