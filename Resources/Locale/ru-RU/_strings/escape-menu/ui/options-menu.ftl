@@ -47,6 +47,7 @@ ui-options-scp-echo-strong-preset-preferred = Использовать усил�
 ui-options-scp-echo-strong-preset-preferred-tooltip =
     Определяет, будет ли использован сильный эффект эха.
     В усиленном эффекте звуки будут иметь более долгий хвост.
+ui-options-function-toggle-item-priority = Переключить приоритет предмета
 # Sunrise-End
 
 ## Graphics menu

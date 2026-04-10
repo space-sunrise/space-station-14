@@ -153,7 +153,30 @@ public sealed class SmartEquipSystem : EntitySystem
                     _popup.PopupClient(emptyEquipmentSlotString, uid, uid);
                     return;
                 case null:
-                    var removing = storage.Container.ContainedEntities[^1];
+
+                    // Sunrise-Edit-Start
+                    // var removing = storage.Container.ContainedEntities[^1];
+
+                    // We determine which item to take IMMEDIATELY, before any operations with the container
+                    EntityUid removing;
+
+                    // The priority item is checked first
+                    if (TryComp<Content.Shared._Sunrise.Inventory.Components.PersonalStoragePriorityComponent>(uid, out var priorityComp) &&
+                        priorityComp.Priorities.TryGetValue(slotItem, out var priority) &&
+                        storage.Container.Contains(priority))
+                    {
+                        removing = priority;
+                        // We don’t clear the priority, it remains until the user disables it
+                    }
+                    else
+                    {
+                        // Fallback to the last added item
+                        removing = storage.Container.ContainedEntities[^1];
+                    }
+
+                    // We delete and pick up atomically after we have determined exactly what to take
+                    //Sunrise-Edit-End
+
                     _container.RemoveEntity(slotItem, removing);
                     _hands.TryPickup(uid, removing, handsComp: hands);
                     return;

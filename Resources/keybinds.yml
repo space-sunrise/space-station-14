@@ -675,4 +675,10 @@ binds:
 - function: OpenHelpChoice
   type: State
   key: F1
+- function: ToggleItemPriority
+  type: State
+  key: MouseMiddle
+  mod1: Control
+  canFocus: true
+  priority: 10
 # Sunrise-End

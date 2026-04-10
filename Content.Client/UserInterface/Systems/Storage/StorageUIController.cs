@@ -25,7 +25,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Client.UserInterface.Systems.Storage;
 
-public sealed class StorageUIController : UIController, IOnSystemChanged<StorageSystem>
+// Sunrise-Edit-Start
+// public sealed class StorageUIController : UIController, IOnSystemChanged<StorageSystem>
+public sealed partial class StorageUIController : UIController, IOnSystemChanged<StorageSystem>
+// Sunrise-Edit-End
 {
     /*
      * Things are a bit over the shop but essentially
@@ -283,6 +286,10 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
             args.Handle();
         }
 
+        // Sunrise-Start
+        OnPiecePressedPriority(args, window, control);
+        // Sunrise-End
+
         window.FlagDirty();
     }
 
@@ -433,6 +440,10 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
 
         DraggingRotation = Angle.Zero;
     }
+
+    // Sunrise-Start
+    partial void OnPiecePressedPriority(GUIBoundKeyEventArgs args, StorageWindow window, ItemGridPiece control);
+    // Sunrise-End
 
     public override void FrameUpdate(FrameEventArgs args)
     {

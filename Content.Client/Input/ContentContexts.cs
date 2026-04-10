@@ -34,6 +34,10 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.MoveStoredItem);
             common.AddFunction(ContentKeyFunctions.RotateStoredItem);
             common.AddFunction(ContentKeyFunctions.SaveItemLocation);
+            
+            // Sunrise-Start
+            common.AddFunction(ContentKeyFunctions.ToggleItemPriority);
+            // Sunrise-End
             common.AddFunction(ContentKeyFunctions.Point);
             common.AddFunction(ContentKeyFunctions.ZoomOut);
             common.AddFunction(ContentKeyFunctions.ZoomIn);
