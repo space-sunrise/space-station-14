@@ -4633,3 +4633,11 @@
   id: 1779
   time: '2026-04-09T08:06:09.0000000+00:00'
   url: https://github.com/space-sunrise/sunrise-station/pull/4190
+- author: kanopus7
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u043D\u043E\u0432\
+      \u0430\u044F \u043B\u043E\u0431\u0431\u0438 \u043C\u0443\u0437\u044B\u043A\u0430"
+    type: Add
+  id: 1780
+  time: '2026-04-10T18:04:07.0000000+00:00'
+  url: https://github.com/space-sunrise/sunrise-station/pull/4187
