@@ -1,11 +1,11 @@
 ---
 name: ss14-localization-strings
-description: Руководство по работе с файлами локализации (.ftl) и строками в Space Station 14. Используй этот навык при добавлении или изменении игровых текстов, описаний предметов и интерфейса.
+description: A guide to working with localization files (.ftl) and strings in Space Station 14. Use this skill when adding or changing game text, item descriptions and interface.
 ---
 
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-localization-strings/SKILL.md.
+../../../.agent/skills/ss14-localization-strings/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

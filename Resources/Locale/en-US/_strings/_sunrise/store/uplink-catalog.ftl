@@ -40,6 +40,10 @@ uplink-hardsuit-syndie-medic-name = скафандр Медика Синдика
 uplink-hardsuit-syndie-medic-desc = Скафандр предназначеный для боевых врачей отрядов Горлекса.
 uplink-50blessing-name = Подарочный набор 50 благословений
 uplink-50blessing-desc = Для агентов, которые хотят скрыть свою личность стильно, с любовью от Егора Семёнова
+uplink-clothing-murder-socks-name = чулочки убийцы
+uplink-clothing-murder-socks-desc = для агента что по настоящему шарит за стиль
+uplink-syndie-maid-raid-name = рейдерка горничной
+uplink-syndie-maid-raid-desc = синдикат разработал это специально для агентов женского пола, но носят это почему-то одни мужики
 ## Weapon
 
 uplink-clothing-backpack-syndie-aj100-name = Набор ПП AJ-100
@@ -55,7 +59,12 @@ uplink-deagle-name = пистолет «Desert Eagle»
 uplink-deagle-desc = Cерьёзный аргумент в споре. Выгравировано: Мир благодаря превосходящей огневой мощи".
 uplink-pistoltec9-name = Tac-Tec
 uplink-pistoltec9-desc = Очень дешёвый в производстве и очень простой в использовании, надёжный как SKM-24.
-
+uplink-uzi-name = пистолет-пулемёт Узи
+uplink-uzi-desc = Лёгкий и культовый пистолет-пулемёт с большим магазином и скорострельностью.
+uplink-stechkin-aps-name = Стечкин АПС
+uplink-stechkin-aps-desc = Высококачественное огнестрельное оружие на мощном калибре, созданное для по-настоящему особенных агентов.
+uplink-SyndieBreachingHammer-name = breaching hammer
+uplink-SyndieBreachingHammer-desc = A big, heavy hammer with a long handle. For rocks, skulls, walls, bones — no difference. The last thing you'll hear is a crunch or a grind. Opens airlocks better than SB's ram. Competitors have crash tests and certificates. We have a low-budget snuff parody of American Psycho.
 uplink-goldendeagle-name = Золотой Десерт Игл
 uplink-goldendeagle-desc = "Использует патрон "магнум" 45-го калибра, Выгравировано: Все, что у меня осталось от него в памяти — это два позолоченных Desert Eagle 45-го калибра"
 uplink-cornivoregloves-name = Перчатки алой жатвы корниворы
@@ -163,4 +172,6 @@ uplink-energy-dome-desc = A personal shield generator that protects the wearer f
 uplink-syndicate-teleporter-name = Hand syndicate teleporter
 uplink-syndicate-teleporter-desc = An experimental hand teleporting device. Teleports its owner forward in a small area. Be careful not to end up in the wall.
 
-
+# OTHER
+uplink-reinforcement-radio-syndicate-cyborg-infiltrator-name = Cyborg Infiltrator Reinforcement Teleport
+uplink-reinforcement-radio-syndicate-cyborg-infiltrator-desc = Sends you support for the syndicate's borg.

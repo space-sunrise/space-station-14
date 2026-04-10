@@ -2605,7 +2605,7 @@ entities:
         - DockStatus: InputB
     - type: DeviceLinkSink
       invokeCounter: 1
-- proto: AirlockExternalGlassShuttleEmergencyLocked
+- proto: AirlockExternalGlassShuttleEmergencyLockedCentComm
   entities:
   - uid: 1838
     components:

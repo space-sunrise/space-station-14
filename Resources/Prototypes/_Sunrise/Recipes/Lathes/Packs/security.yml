@@ -228,16 +228,16 @@
     - ShellFlashArtillery
     - ShellFragArtillery
     - MagazineBauer127
-    - MagazineBauer127Penetrator
+#    - MagazineBauer127Penetrator
     - RifleHeavyMagazineArtillery
     - MagazineBoxBelt127Artillery
-    - MagazineBauer127Blast
+#    - MagazineBauer127Blast
     - MagazineBauer127Frag
     - MagazineBauer127Emp
     - MagazineBoxBelt127Empty
-    - MagazineBoxBelt127
+#    - MagazineBoxBelt127
     - MagazineBoxBelt127Artillery
-    - MagazineBoxBelt127Blast
+#    - MagazineBoxBelt127Blast
     - MagazineBoxBelt127Frag
     - MagazineBoxBelt127Emp
     #

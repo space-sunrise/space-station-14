@@ -1,92 +1,92 @@
 ---
 name: ss14-eventbus
-description: Архитектурный гайд по EventBus в Space Station 14 — строгая таксономия событий, хранение подписок, логика диспетчеризации и внутренние механизмы оптимизации.
+description: Architectural guide to EventBus in Space Station 14 - strict event taxonomy, subscription storage, dispatch logic and internal optimization mechanisms.
 ---
 
-# 🚌 Архитектура EventBus в SS14
+# 🚌 EventBus architecture in SS14
 
-EventBus (Шина Событий) — это центральная нервная система движка Space Station 14 (RobustToolbox). Она оркестрирует коммуникацию между системами и сущностями, реализуя высокооптимизированный механизм диспетчеризации без лишних аллокаций. 🧠
+EventBus is the central nervous system of the Space Station 14 (RobustToolbox) engine. It orchestrates communication between systems and entities, implementing a highly optimized dispatch mechanism without unnecessary allocations. 🧠
 
-## 🏗️ Основная Архитектура
+## 🏗️ Basic Architecture
 
-EventBus реализован через интерфейс `IEventBus` и объединяет две различные парадигмы событий:
-1.  **Broadcast Events (Широковещательные)**: Глобальные события, отправляемые всем подписчикам определенного типа. 🌍
-2.  **Directed Events (Направленные)**: События, нацеленные на конкретную сущность, отправляются только компонентам на этой сущности. 🎯
+EventBus is implemented through the `IEventBus` interface and combines two different event paradigms:
+1. **Broadcast Events**: Global events sent to all subscribers of a certain type. 🌍
+2. **Directed Events**: Events targeting a specific entity are sent only to components on that entity. 🎯
 
-### 💾 Внутреннее Хранение
+### 💾 Internal Storage
 
-Для достижения высокой производительности EventBus поддерживает несколько специализированных структур данных:
+To achieve high performance, EventBus supports several specialized data structures:
 
 *   **Broadcast Subscriptions (`_eventData`)**:
-    *   Словарь `Type` -> `EventData`.
-    *   Хранит список всех глобальных подписчиков для каждого типа события.
-    *   Используется для широковещательных событий и системных уведомлений.
+    * Dictionary `Type` -> `EventData`.
+    * Stores a list of all global subscribers for each event type.
+    * Used for broadcast events and system notifications.
 
-*   **Directed Subscriptions (`_eventSubs` и `_compEventSubs`)**:
-    *   Структура массива массивов (jagged array), индексируемая по `CompIdx` (Индекс Компонента).
-    *   `_eventSubs[CompIdx]`: Отображает `EventType` -> `Handler`.
-    *   Позволяет выполнять поиск обработчиков компонента для конкретного события за O(1). ⚡
-    *   Разделено на общие события и оптимизированные Component Events (см. ниже).
+* **Directed Subscriptions (`_eventSubs` and `_compEventSubs`)**:
+    * Array structure of arrays (jagged array), indexed by `CompIdx` (Component Index).
+    * `_eventSubs[CompIdx]`: Maps `EventType` -> `Handler`.
+    * Allows you to search for component handlers for a specific event in O(1). ⚡
+    * Divided into general events and optimized Component Events (see below).
 
 *   **Entity Event Tables (`_entEventTables`)**:
-    *   Словарь, хранящийся для каждой активной `EntityUid`.
-    *   Отображает `EventType` -> `LinkedList<CompIdx>`.
-    *   Отслеживает, какие компоненты *на конкретной сущности* слушают определенное событие.
-    *   Это предотвращает итерацию по всем компонентам сущности для поиска слушателей. 🚫🔄
+    * Dictionary stored for each active `EntityUid`.
+    * Displays `EventType` -> `LinkedList<CompIdx>`.
+    * Keeps track of which components *on a specific entity* are listening to a specific event.
+    * This prevents iterating through all entity components to find listeners. 🚫🔄
 
-## 🎭 Парадигмы Событий
+## 🎭 Event Paradigms
 
 ### 1. Broadcast Events (`RaiseEvent`) 📢
-*   **Цель**: Нет конкретной сущности. Глобальная область видимости.
-*   **Применение**: Коммуникация между системами, глобальные изменения состояния игры (например, `GameRunLevelChangedEvent`), уведомления раунда.
-*   **Диспетчеризация**:
-    *   Ищет `EventData` для типа события.
-    *   Итерируется по всем зарегистрированным `IEntityEventSubscriber` (в основном EntitySystems).
-    *   Поддерживает события `ByRef` для производительности с нулевыми аллокациями.
+* **Target**: No specific entity. Global scope.
+* **Uses**: Communication between systems, global game state changes (for example, `GameRunLevelChangedEvent`), round notifications.
+* **Dispatching**:
+    * Looks up `EventData` for the event type.
+    * Iterates over all registered `IEntityEventSubscriber` (mostly EntitySystems).
+    * Supports `ByRef` events for performance with zero allocations.
 
 ### 2. Directed Events (`RaiseLocalEvent`) 🎯
-*   **Цель**: Конкретная `EntityUid`.
-*   **Применение**: Взаимодействия, урон, клики UI, все, что происходит *с* сущностью.
-*   **Диспетчеризация**:
-    1.  Находит `EventTable` для целевой сущности.
-    2.  Находит список индексов компонентов (`CompIdx`), подписанных на этот тип события.
-    3.  Получает актуальные экземпляры компонентов из `EntityManager`.
-    4.  Вызывает кэшированный делегат обработчика для каждого компонента.
-*   **Производительность**: Высоко оптимизирована. Использует `ref` структуры и `Unsafe.As` для избежания боксинга (boxing) `struct` событий. 🚀
+* **Target**: Specific `EntityUid`.
+* **Usage**: Interactions, damage, UI clicks, anything that happens *to* the entity.
+* **Dispatching**:
+    1. Finds `EventTable` for the target entity.
+    2. Finds a list of component indices (`CompIdx`) subscribed to this event type.
+    3. Gets the actual component instances from `EntityManager`.
+    4. Calls the cached handler delegate for each component.
+* **Performance**: Highly optimized. Uses `ref` structures and `Unsafe.As` to avoid boxing `struct` events. 🚀
 
 ### 3. Component Events (`RaiseComponentEvent`) 🧩
-*   **Цель**: Конкретный экземпляр `IComponent` на сущности.
-*   **Применение**: Сетевая обработка, специализированные обновления компонентов.
-*   **Оптимизация**:
-    *   Обходит поиск в `EventTable` сущности.
-    *   Напрямую вызывает обработчик для конкретного экземпляра компонента.
-    *   Используется внутри движка для `HandleComponentState` и сетевой репликации для минимизации накладных расходов.
+* **Target**: A specific instance of `IComponent` on an entity.
+* **Application**: Network processing, specialized component updates.
+* **Optimization**:
+    * Bypasses the search in the `EventTable` entity.
+    * Directly calls a handler for a specific component instance.
+    * Used internally for `HandleComponentState` and network replication to minimize overhead.
 
-## 🔗 Механика Подписок
+## 🔗 Mechanics of Subscriptions
 
-### Регистрация 📝
-Подписки обычно регистрируются во время `EntitySystem.Initialize()`:
+### Registration 📝
+Subscriptions are usually registered during `EntitySystem.Initialize()`:
 
-1.  **Directed**: `SubscribeLocalEvent<TComp, TEvent>(Handler)` -> Регистрирует `Handler` в `_eventSubs` для `TComp`.
-2.  **Broadcast**: `SubscribeEvent<TEvent>(Handler)` -> Регистрирует `Handler` в `_eventData`.
+1. **Directed**: `SubscribeLocalEvent<TComp, TEvent>(Handler)` -> Registers `Handler` in `_eventSubs` for `TComp`.
+2. **Broadcast**: `SubscribeEvent<TEvent>(Handler)` -> Registers `Handler` to `_eventData`.
 
-### Упорядочивание (Ordering) 🔢
-События/Подписки поддерживают явное упорядочивание с использованием типов `before` и `after`.
-*   EventBus топологически сортирует обработчики на основе этих ограничений.
-*   Это гарантирует детерминированный порядок выполнения (например, система брони обрабатывает урон *перед* системой здоровья).
-*   **⚠️ Предупреждение**: Циклические зависимости в порядке вызовут исключение при инициализации.
+###Ordering 🔢
+Events/Subscriptions support explicit ordering using the `before` and `after` types.
+* EventBus topologically sorts handlers based on these constraints.
+* This ensures a deterministic order of execution (e.g. the armor system handles damage *before* the health system).
+* **⚠️ Warning**: Circular dependencies in order will throw an exception on initialization.
 
-## 🛠️ Техники Оптимизации
+## 🛠️ Optimization Techniques
 
-EventBus использует агрессивную оптимизацию для поддержки тысяч событий за тик:
+EventBus uses aggressive optimization to support thousands of events per tick:
 
-*   **Ref Events (`ByRefEventAttribute`)**: События могут быть помечены для передачи по ссылке. Это избегает копирования больших структур. 📦➡️
-*   **Unit Structs**: Внутри шина использует указатели `ref Unit` и `Unsafe.As` для стирания типов аргументов событий без их боксинга в `object`. 🧙‍♂️
-*   **Frozen Collections**: После инициализации словари подписок "замораживаются" (`FrozenDictionary`) для оптимизации производительности чтения. ❄️
-*   **Struct Events**: Большинство событий являются структурами (`struct`), а не классами (`class`), чтобы исключить давление на сборщик мусора (GC). 🗑️
+* **Ref Events (`ByRefEventAttribute`)**: Events can be marked for passing by reference. This avoids copying large structures. 📦➡️
+* **Unit Structs**: Internally, the bus uses the `ref Unit` and `Unsafe.As` pointers to erase event argument types without boxing them into `object`. 🧙‍♂️
+* **Frozen Collections**: After initialization, subscription dictionaries are "frozen" (`FrozenDictionary`) to optimize read performance. ❄️
+* **Struct Events**: Most events are structures (`struct`) rather than classes (`class`) to eliminate pressure on the garbage collector (GC). 🗑️
 
-## ⛔ Критические Ограничения
+## ⛔ Critical Limitations
 
-1.  **Блокировка Подписок**: Вы не можете подписываться/отписываться во время диспетчеризации событий (если не используете варианты с `Queue`). Шина блокируется во время итерации. 🔒
-2.  **Накладные расходы Дженериков**: Шина минимизирует использование дженериков в "горячих" путях, чтобы избежать накладных расходов JIT для каждого типа события.
-3.  **Потокобезопасность**: EventBus **не** является потокобезопасным. Все события должны вызываться в основном потоке. 🧵
+1. **Lock Subscriptions**: You cannot subscribe/unsubscribe while dispatching events (unless you use options with `Queue`). The bus is blocked during iteration. 🔒
+2. **Overhead of Generics**: The bus minimizes the use of generics in hot paths to avoid JIT overhead for each event type.
+3. **Thread Safety**: EventBus **is not** thread safe. All events must be raised on the main thread. 🧵

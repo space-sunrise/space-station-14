@@ -25,9 +25,9 @@
     delay: 30
   - type: RadarBlip
     color: "#00ffee"
-    scale: 1.0
+    scale: 0.5
     shape: Square
-    requireInSpace: False
+    requireInSpace: true
   - type: Computer
     board: ComputerGunneryCircuitboard
   - type: ActivatableUI

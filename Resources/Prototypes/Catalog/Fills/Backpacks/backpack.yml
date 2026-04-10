@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingBackpackSyndicate
+  parent: ClothingBackpackSyndie
   id: ClothingBackpackSyndicateBundle
   abstract: true
   components:
@@ -20,3 +20,25 @@
         - id: ClothingHeadHelmetRaid
         - id: ClothingMaskGasSyndicate
         - id: ClothingHandsGlovesCombat
+        - id: AmpulaBica
+        - id: AmpulaDerm
+
+#sunrise-start
+- type: entity
+  parent: ClothingBackpackSyndicateBundle
+  id: ClothingBackpackSyndicateElegantRaidBundle
+  name: syndicate elegant raid suit bundle
+  description: "Contains the Syndicate's durable raid armor suit, now more elegant."
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: ClothingOuterMaidArmorRaid
+            - id: ClothingHeadHelmetRaid
+            - id: ClothingHandsTacticalMaidGloves
+            - id: ClothingUnderSocksMurder
+            - id: ClothingUniformJumpskirtTacticalMaid
+            - id: AmpulaBica
+            - id: AmpulaDerm
+#sunrise-end

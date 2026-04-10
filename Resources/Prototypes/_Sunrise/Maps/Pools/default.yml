@@ -4,14 +4,15 @@
   - SunriseDelta
   - SunriseBox
   - SunriseBagel
-  #- SunrisePlasma
-  #- SunriseBarratry
-  #- SunriseFland
-  #- SunriseMarathon
-  #- SunrisePacked
-  #- SunriseOasis
-  #- SunriseReach
-  #- SunriseRelic
+# НЕ ДОБАВЛЯТЬ НОВЫЕ КАРТЫ В ПУЛЛ БЕЗ РЕВЬЮ ОТ SPLIKZERYS!!!
+#  - SunrisePlasma
+#  - SunriseBarratry
+#  - SunriseFland
+#  - SunriseMarathon
+#  - SunrisePacked
+#  - SunriseOasis
+#  - SunriseReach
+#  - SunriseRelic
   # SUNRISE-TODO: Старые-новые карты
   #- Glacier
   #- Shoukou

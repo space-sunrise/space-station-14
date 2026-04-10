@@ -12,6 +12,8 @@ using Robust.Shared.Prototypes;
 using Content.Server.CartridgeLoader;
 using Content.Server.DeviceNetwork.Components;
 using Robust.Shared.Random;
+using Robust.Shared.Configuration;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Messenger;
 
@@ -29,7 +31,11 @@ public sealed partial class MessengerServerSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+
     private ISawmill Sawmill { get; set; } = default!;
+    private bool _photoUploadEnabled = true;
 
     /// <summary>
     /// Находит GroupId для указанного радиоканала
@@ -51,6 +57,8 @@ public sealed partial class MessengerServerSystem : EntitySystem
 
         Sawmill = _logManager.GetSawmill("messenger.server");
 
+        _cfg.OnValueChanged(Content.Shared._Sunrise.SunriseCCVars.SunriseCCVars.PhotoUploadEnabled, value => _photoUploadEnabled = value, true);
+
         SubscribeLocalEvent<MessengerServerComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
         SubscribeLocalEvent<MessengerServerComponent, DeviceNetServerConnectedEvent>(OnServerConnected);
         SubscribeLocalEvent<MessengerServerComponent, DeviceNetServerDisconnectedEvent>(OnServerDisconnected);
@@ -71,6 +79,7 @@ public sealed partial class MessengerServerSystem : EntitySystem
         component.Users.Clear();
         component.Groups.Clear();
         component.MessageHistory.Clear();
+        component.LastMessageTime.Clear();
         component.GroupIdCounter = 0;
         component.MessageIdCounter = 0;
     }
@@ -185,9 +194,9 @@ public sealed partial class MessengerServerSystem : EntitySystem
     /// <summary>
     /// Получает время станции (обычное время, как в КПК)
     /// </summary>
-    private TimeSpan GetStationTime()
+    public TimeSpan GetStationTime()
     {
-        return (DateTime.UtcNow + TimeSpan.FromHours(3)).TimeOfDay;
+        return (DateTime.UtcNow + TimeSpan.FromHours(3)) - new DateTime(2024, 1, 1);
     }
 
     /// <summary>

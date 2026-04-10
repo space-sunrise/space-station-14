@@ -588,6 +588,29 @@
   parent: BulletGrenade120mmBlast
   categories: [ HideSpawnMenu ]
   components:
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.5
+        density: 2
+        hard: true
+        layer:
+        - LargeMobLayer
+        mask:
+        - Impassable
+        - BulletImpassable
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives_x48.rsi
     layers:
@@ -607,6 +630,15 @@
     turnRate: 120
   - type: TimedDespawn
     lifetime: 30
+
+- type: entity
+  id: BulletRocket120mmMetlaLongFlight
+  name: 120mm long-flight rocket
+  parent: BulletRocket120mmMetla
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 60
 
 - type: entity
   id: BulletGrenade120mmBlastSelfExplode

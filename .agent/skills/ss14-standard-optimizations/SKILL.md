@@ -1,69 +1,69 @@
 ---
 name: ss14-standard-optimizations
-description: Практический skill по стандартным оптимизациям Space Station 14: кеширование, снижение аллокаций, отказ от LINQ в hot-path, ActiveComponent-подход, EntityQuery, порядок компонентов в EntityQueryEnumerator, ByRef события, DirtyField, ранние выходы и чистка лишних компонентов. Используй при проектировании, ревью и оптимизации ECS-кода в server/shared/client.
+description: Practical skill in standard optimizations of Space Station 14: caching, reduction of allocations, abandonment of LINQ in hot-path, ActiveComponent approach, EntityQuery, order of components in EntityQueryEnumerator, ByRef events, DirtyField, early exits and cleaning of unnecessary components. Use it when designing, reviewing and optimizing ECS ​​code in server/shared/client.
 ---
 
 # SS14 Standard Optimizations
 
-Цель skill: быстро выбирать корректную оптимизацию для ECS-кода без деградации читаемости и без устаревших приёмов 🙂  
-Основной ориентир: текущее поведение кода. Документация — вспомогательный слой.
+The goal of the skill: quickly select the correct optimization for ECS code without degradation of readability and without outdated techniques :)  
+The main reference: the current behavior of the code. Documentation is an auxiliary layer.
 
-## Когда применять
+## When to use
 
-1. Оптимизируешь `Update`, обработчики частых событий, визуальные оверлеи, массовые проверки.
-2. Делаешь код-ревью и видишь частые `TryComp/HasComp`, LINQ в hot-path, лишние компоненты-состояния.
-3. Ищешь источник лагов/GC spikes в server/shared/client.
+1. Optimize `Update`, frequent event handlers, visual overlays, mass checks.
+2. You do a code review and see frequent `TryComp/HasComp`, LINQ in the hot-path, and unnecessary state components.
+3. Looking for the source of lags/GC spikes in server/shared/client.
 
-## Когда не применять
+## When not to use
 
-1. Код выполняется редко и не находится в горячем пути.
-2. Оптимизация усложняет код сильнее, чем даёт выигрыш.
-3. Нет измеримого симптома (время кадра, GC, размер сетевых дельт).
+1. The code is rarely executed and is not in the hot path.
+2. Optimization complicates the code more than it provides benefits.
+3. No measurable symptom (frame time, GC, network delta size).
 
-## Порядок чтения ресурсов
+## Reading order of resources
 
-1. Открой `references/optimization-patterns.md` — быстрая матрица выбора.
-2. Открой `references/annotated-code-examples.md` — живые примеры с комментариями.
-3. Открой `references/docs-reconciliation.md` — сверка docs и фактического кода.
+1. Open `references/optimization-patterns.md` - quick selection matrix.
+2. Open `references/annotated-code-examples.md` - live examples with comments.
+3. Open `references/docs-reconciliation.md` - comparison of docs and actual code.
 
-## Источник правды и границы доверия
+## Source of truth and boundaries of trust
 
-1. Истина — актуальный код подсистем.
-2. Docs используй как контекст намерений и терминов.
-3. При конфликте docs и кода выбирай код и явно фиксируй это в reasoning.
-4. Не опирайся на старые фрагменты без проверки свежести и без контекста изменений.
+1. True - actual code of subsystems.
+2. Use Docs as a context for intentions and terms.
+3. If there is a conflict between docs and code, choose the code and explicitly record this in the reasoning.
+4. Don't rely on old pieces without checking for freshness and without the context of the changes.
 
-## Workflow оптимизации
+## Workflow optimization
 
-1. Найди hot-path и зафиксируй симптом.
-2. Выбери минимальный приём из карточек ниже.
-3. Сравни до/после: число итераций, аллокации, сетевые дельты, поведение.
-4. Добавь в PR короткое объяснение: «что ускорили» и «почему безопасно».
+1. Find the hot-path and record the symptom.
+2. Choose the minimum technique from the cards below.
+3. Compare before/after: number of iterations, allocations, network deltas, behavior.
+4. Add a short explanation to your PR: “what was accelerated” and “why it’s safe.”
 
-## Карточки оптимизаций
+## Optimization cards
 
-### 1) Кеширование инвариантов и агрегатов перед hot-loop ⏱️
+### 1) Caching invariants and aggregates before hot-loop ⏱️
 
-**Паттерн**
-1. Вычисляй дорогие инварианты до вложенных циклов (формы, набор углов, флаги fast-path).
-2. Поддерживай агрегаты инкрементально (например, `TargetCount`, `BurstShotsCount`), а не пересчитывай коллекции каждый тик.
-3. Для частых компонентных проверок дополнительно кешируй `EntityQuery<T>`.
+**Pattern**
+1. Compute expensive invariants before nested loops (shapes, set of angles, fast-path flags).
+2. Maintain aggregates incrementally (for example, `TargetCount`, `BurstShotsCount`), rather than recalculating collections every tick.
+3. For frequent component checks, additionally cache `EntityQuery<T>`.
 
-**Анти-паттерн**
-1. Вызывать дорогое вычисление внутри внутреннего цикла.
-2. Каждый раз заново считать «сколько уже есть/сделано», обходя коллекции.
-3. Получать query/accessor заново в каждом hot-path вызове.
+**Anti-pattern**
+1. Call an expensive computation inside the inner loop.
+2. Each time, re-calculate “how much is already there/made”, going through the collections.
+3. Receive query/accessor in every hot-path call.
 
-**Пример кода**
+**Code example**
 ```csharp
-var itemShape = ItemSystem.GetItemShape(itemEnt); // Один расчёт формы до циклов.
+var itemShape = ItemSystem.GetItemShape(itemEnt); // One shape calculation before cycles.
 var fastAngles = itemShape.Count == 1;
 var angles = new ValueList<Angle>();
 
 if (!fastAngles)
 {
     for (var angle = startAngle; angle <= Angle.FromDegrees(360 - startAngle); angle += Math.PI / 2f)
-        angles.Add(angle); // Предвычислили допустимые углы один раз.
+        angles.Add(angle); // We precalculated the allowable angles once.
 }
 else
 {
@@ -72,13 +72,13 @@ else
         angles.Add(startAngle + Angle.FromDegrees(90));
 }
 
-// Во внутреннем цикле используем только подготовленные данные.
+// In the inner loop we use only prepared data.
 foreach (var angle in angles)
 {
-    // Тяжёлая проверка размещения/коллизии.
+    // Heavy placement/collision checking.
 }
 
-// Инкрементальный агрегат вместо пересчёта набора:
+// Incremental aggregate instead of set recalculation:
 if (gun.BurstActivated)
 {
     gun.BurstShotsCount += shots;
@@ -90,35 +90,35 @@ if (gun.BurstActivated)
 }
 ```
 
-**Почему это быстрее**
-1. Сильно сокращается количество повторных вычислений в глубоком цикле.
-2. Снижается количество обходов коллекций ради одного агрегата.
-3. Горячий путь работает на уже подготовленных данных.
+**Why is it faster**
+1. The number of repeated calculations in a deep loop is greatly reduced.
+2. The number of traversals of collections for the sake of one aggregate is reduced.
+3. The hot path works on already prepared data.
 
-**Границы применимости**
-1. Наибольший эффект в алгоритмах с 2+ уровнями циклов.
-2. Для редкого кода выбирай простоту, а не микрооптимизацию.
+**Limits of applicability**
+1. The greatest effect is in algorithms with 2+ levels of cycles.
+2. For rare code, choose simplicity over micro-optimization.
 
-### 2) Снижение аллокаций ♻️
+### 2) Reduced allocations ♻️
 
-**Паттерн**
-1. Создавай рабочие коллекции один раз как поля системы/UI и очищай через `Clear()`.
-2. Передавай существующие списки/спаны в метод вместо создания новых.
-3. Для временных буферов в hot-path используй пул (`ArrayPool<T>`) и гарантированный `Return`.
+**Pattern**
+1. Create working collections once as system/UI fields and clear them via `Clear()`.
+2. Pass existing lists/spans to the method instead of creating new ones.
+3. For temporary buffers in the hot-path, use a pool (`ArrayPool<T>`) and a guaranteed `Return`.
 
-**Анти-паттерн**
-1. `new List<T>()` на каждый кадр/каждый вызов.
-2. Копирование больших коллекций ради одной итерации.
-3. Игнорирование пула при повторяющихся краткоживущих буферах.
+**Anti-pattern**
+1. `new List<T>()` per frame/each call.
+2. Copying large collections for one iteration.
+3. Ignoring the pool for repeated short-lived buffers.
 
-**Пример кода**
+**Code example**
 ```csharp
 private ValueList<EntityUid> _toRemove = new();
 
 public override void Update(float frameTime)
 {
     var query = AllEntityQuery<ColorFlashEffectComponent>();
-    _toRemove.Clear(); // Переиспользуем без новой аллокации.
+    _toRemove.Clear(); // We will reuse without new allocation.
 
     while (query.MoveNext(out var uid, out _))
     {
@@ -133,27 +133,27 @@ public override void Update(float frameTime)
 }
 ```
 
-**Почему это быстрее**
-1. Снижается давление на GC.
-2. Уходит jitter из-за частых короткоживущих объектов.
+**Why is it faster**
+1. The pressure on the GC is reduced.
+2. Jitter disappears due to frequent short-lived objects.
 
-**Границы применимости**
-1. Следи за очисткой коллекций перед повторным использованием.
-2. У пула всегда должен быть симметричный возврат.
+**Limits of applicability**
+1. Ensure collections are cleaned before reuse.
+2. The pool should always have a symmetrical return.
 
-### 3) Отказ от LINQ в hot-path 🚫
+### 3) Refusal of LINQ in hot-path 🚫
 
-**Паттерн**
-1. В горячих местах используй `for/foreach` и явные ранние выходы.
-2. Оставляй LINQ для редких/офлайн операций, где важнее компактность.
+**Pattern**
+1. In hot spots, use `for/foreach` and explicit early exits.
+2. Leave LINQ for rare/offline operations where compactness is more important.
 
-**Анти-паттерн**
-1. `Where/Select/Any/Count` в `Update` и частых обработчиках.
-2. LINQ-цепочки для простых фильтров в циклах.
+**Anti-pattern**
+1. `Where/Select/Any/Count` in `Update` and frequent handlers.
+2. LINQ chains for simple filters in loops.
 
-**Пример кода**
+**Code example**
 ```csharp
-// ✅ Hot-path: обычный цикл без лишних перечислителей/замыканий.
+// ✅ Hot-path: a regular loop without unnecessary enumerators/closures.
 for (var i = 0; i < entities.Count; i++)
 {
     var uid = entities[i];
@@ -163,60 +163,60 @@ for (var i = 0; i < entities.Count; i++)
     Process(uid, comp);
 }
 
-// ❌ Не делай так в hot-path:
+// ❌ Don't do this in hot-path:
 // entities.Where(HasComp<MyComponent>).Select(...).ToList();
 ```
 
-**Почему это быстрее**
-1. Меньше промежуточных объектов и делегатов.
-2. Проще контролировать ветвления и ранние выходы.
+**Why is it faster**
+1. Fewer intermediate objects and delegates.
+2. It is easier to control branches and early exits.
 
-**Границы применимости**
-1. Не превращай код в «микрооптимизированный шум».
-2. Если участок не горячий, читаемость может быть важнее.
+**Limits of applicability**
+1. Don't turn your code into "micro-optimized noise."
+2. If the area is not hot, readability may be more important.
 
-### 4) Паттерн Component + ActiveComponent 🔋
+### 4) Pattern Component + ActiveComponent 🔋
 
-**Паттерн**
-1. Базовый компонент хранит конфигурацию.
-2. Отдельный `Active...Component` помечает «сейчас активно».
-3. `Update` проходит только по активным сущностям.
+**Pattern**
+1. The base component stores the configuration.
+2. A separate `Active...Component` marks “currently active”.
+3. `Update` passes only through active entities.
 
-**Анти-паттерн**
-1. Один огромный список всех сущностей + `if (!IsActive) continue`.
-2. Флаги активности только внутри базового компонента без отдельного маркера.
+**Anti-pattern**
+1. One huge list of all entities + `if (!IsActive) continue`.
+2. Activity flags only inside the base component without a separate marker.
 
-**Пример кода**
+**Code example**
 ```csharp
-// Активация таймера: добавили активный маркер.
+// Activating the timer: added an active marker.
 EnsureComp<ActiveTimerTriggerComponent>(uid);
 
-// Деактивация: удалили маркер, сущность исчезла из целевого query.
+// Deactivation: the marker was removed, the entity disappeared from the target query.
 RemComp<ActiveTimerTriggerComponent>(uid);
 
-// Итерация только по активным таймерам.
+// Iterate over active timers only.
 var query = EntityQueryEnumerator<ActiveTimerTriggerComponent, TimerTriggerComponent>();
 ```
 
-**Почему это быстрее**
-1. Сильно уменьшается размер выборки.
-2. Меньше проверок «активен/не активен» внутри цикла.
+**Why is it faster**
+1. The sample size is greatly reduced.
+2. Fewer active/inactive checks within the loop.
 
-**Границы применимости**
-1. Нужна дисциплина переходов состояний (добавление/удаление маркера).
-2. Логика должна оставаться консистентной при shutdown/remove.
+**Limits of applicability**
+1. We need discipline for state transitions (adding/removing a marker).
+2. The logic must remain consistent during shutdown/remove.
 
-### 5) EntityQuery для `TryComp/HasComp/Resolve` 🔎
+### 5) EntityQuery for `TryComp/HasComp/Resolve` 🔎
 
-**Паттерн**
-1. Для повторных проверок компонента кешируй `EntityQuery<T>`.
-2. Используй `_query.TryComp/_query.HasComp/_query.Comp` вместо частых общих вызовов.
+**Pattern**
+1. For repeated checks of the component, cache `EntityQuery<T>`.
+2. Use `_query.TryComp/_query.HasComp/_query.Comp` instead of frequent general calls.
 
-**Анти-паттерн**
-1. Во многих местах подряд вызывать некешированные проверки.
-2. Игнорировать типизированный query в системах с большим числом обращений.
+**Anti-pattern**
+1. Call uncached checks in many places in a row.
+2. Ignore typed query in systems with a large number of hits.
 
-**Пример кода**
+**Code example**
 ```csharp
 private EntityQuery<TagComponent> _tagQuery;
 
@@ -232,80 +232,80 @@ public bool HasTag(EntityUid uid, ProtoId<TagPrototype> tag)
 }
 ```
 
-**Почему это быстрее**
-1. Более прямой путь к компонентному хранилищу.
-2. Меньше избыточных операций при массовых проверках.
+**Why is it faster**
+1. A more direct path to component storage.
+2. Fewer redundant operations during mass checks.
 
-**Границы применимости**
-1. Выигрыш заметен при частых вызовах, а не в единичных местах.
+**Limits of applicability**
+1. The gain is noticeable with frequent calls, and not in isolated places.
 
-### 6) Порядок компонентов в `EntityQueryEnumerator()` 📉
+### 6) Component order in `EntityQueryEnumerator()` 📉
 
-**Паттерн**
-1. Ставь первым самый редкий компонент.
-2. Вторым — менее редкий, и так далее.
+**Pattern**
+1. Place the rarest component first.
+2. The second is less rare, and so on.
 
-**Анти-паттерн**
-1. Первым ставить самый массовый компонент и пересекать огромный набор.
-2. Выбирать порядок «как в голову пришло».
+**Anti-pattern**
+1. Place the most massive component first and cross the huge set.
+2. Choose the order “as it came to mind.”
 
-**Пример кода**
+**Code example**
 ```csharp
-// ✅ Обычно лучше так: Active* встречается реже.
+// ✅ Usually it’s better this way: Active* is less common.
 var query = EntityQueryEnumerator<ActiveTimerTriggerComponent, TimerTriggerComponent>();
 
-// ❌ Хуже в большинстве случаев:
+// ❌ Worse in most cases:
 // var query = EntityQueryEnumerator<TimerTriggerComponent, ActiveTimerTriggerComponent>();
 ```
 
-**Почему это быстрее**
-1. Меньше кандидатов при построении пересечения компонент.
-2. Ниже стоимость каждого `MoveNext`.
+**Why is it faster**
+1. Fewer candidates when constructing the intersection of components.
+2. Lower cost of each `MoveNext`.
 
-**Границы применимости**
-1. Оцени реальную кардинальность в своей подсистеме.
-2. Проверяй после изменений геймплейных данных/прототипов.
+**Limits of applicability**
+1. Assess the real cardinality in your subsystem.
+2. Check after changes to gameplay data/prototypes.
 
-### 7) `ByRef record struct` для событий ⚡
+### 7) `ByRef record struct` for events ⚡
 
-**Паттерн**
-1. Для частых событий используй `[ByRefEvent] public record struct ...`.
-2. Передавай такие события через `ref`.
+**Pattern**
+1. For frequent events, use `[ByRefEvent] public record struct ...`.
+2. Pass such events through `ref`.
 
-**Анти-паттерн**
-1. Использовать ссылочные классы для высокочастотных локальных событий без необходимости.
-2. Забывать `ref` при обработке/вызове by-ref события.
+**Anti-pattern**
+1. Use reference classes for high frequency local events unnecessarily.
+2. Forget `ref` when processing/calling a by-ref event.
 
-**Пример кода**
+**Code example**
 ```csharp
 [ByRefEvent] public record struct ChargedMachineActivatedEvent;
 
 private void NotifyActivated(EntityUid uid)
 {
     var ev = new ChargedMachineActivatedEvent();
-    RaiseLocalEvent(uid, ref ev); // Передача по ссылке.
+    RaiseLocalEvent(uid, ref ev); // Transfer by reference.
 }
 ```
 
-**Почему это быстрее**
-1. Меньше копирований данных события.
-2. Меньше лишних аллокаций в частом потоке событий.
+**Why is it faster**
+1. Less copying of event data.
+2. Fewer unnecessary allocations in a frequent flow of events.
 
-**Границы применимости**
-1. Для редких событий выигрыш может быть незначительным.
-2. Соблюдай единый стиль сигнатур, чтобы не ломать API обработчиков.
+**Limits of applicability**
+1. For rare events, the gain may be negligible.
+2. Maintain a uniform signature style so as not to break the handler API.
 
-### 8) `DirtyField` вместо `Dirty` для больших сетевых компонентов 📡
+### 8) `DirtyField` instead of `Dirty` for large network components 📡
 
-**Паттерн**
-1. Для компонентов с множеством `AutoNetworkedField` и включёнными field deltas — грязни только изменённые поля.
-2. Вызывай `DirtyField(uid, comp, nameof(...))` при точечных изменениях.
+**Pattern**
+1. For components with the set `AutoNetworkedField` and field deltas enabled, only the changed fields are dirty.
+2. Call `DirtyField(uid, comp, nameof(...))` for point changes.
 
-**Анти-паттерн**
-1. Вызывать `Dirty(uid, comp)` на каждый мелкий апдейт большого компонента.
-2. Передавать полный state, когда изменилось одно поле.
+**Anti-pattern**
+1. Call `Dirty(uid, comp)` for every small update of a large component.
+2. Transmit the full state when one field has changed.
 
-**Пример кода**
+**Code example**
 ```csharp
 [AutoGenerateComponentState(fieldDeltas: true)]
 public sealed partial class ProximityDetectorComponent : Component
@@ -318,30 +318,30 @@ component.NextUpdate += component.UpdateCooldown;
 DirtyField(uid, component, nameof(ProximityDetectorComponent.NextUpdate));
 ```
 
-**Почему это быстрее**
-1. Меньше размер сетевых дельт.
-2. Ниже нагрузка на сериализацию и отправку состояния.
+**Why is it faster**
+1. Smaller size of network deltas.
+2. Lower load on serialization and sending state.
 
-**Границы применимости**
-1. Если меняется почти всё состояние сразу, полный `Dirty` может быть нормальным.
+**Limits of applicability**
+1. If almost the entire state changes at once, the full `Dirty` may be normal.
 
-### 9) Уменьшение перебора и ранние выходы 🚪
+### 9) Reducing busting and early exits 🚪
 
-**Паттерн**
-1. Ставь дешёвые фильтры первыми.
-2. Используй ранние `return/continue`.
-3. Прерывай работу сразу при невалидном контексте.
+**Pattern**
+1. Put cheap filters first.
+2. Use early `return/continue`.
+3. Stop working immediately if the context is invalid.
 
-**Анти-паттерн**
-1. Вычислять дорогое до простых проверок.
-2. Глубокая вложенность вместо прямых фильтров.
+**Anti-pattern**
+1. Calculate expensive things before simple checks.
+2. Deep nesting instead of direct filters.
 
-**Пример кода**
+**Code example**
 ```csharp
 while (query.MoveNext(out var uid, out var comp))
 {
     if (comp.NextUpdate > curTime)
-        continue; // Дешёвый фильтр первым.
+        continue; // Cheap filter first.
 
     if (!_toggle.IsActivated(uid))
         continue;
@@ -350,50 +350,50 @@ while (query.MoveNext(out var uid, out var comp))
 }
 ```
 
-**Почему это быстрее**
-1. Дорогое выполняется только для «дошедших» сущностей.
-2. Снижается средняя стоимость одной итерации.
+**Why is it faster**
+1. Expensive is performed only for “reached” entities.
+2. The average cost of one iteration is reduced.
 
-**Границы применимости**
-1. Не ломай читаемость: фильтры должны быть предсказуемыми.
+**Limits of applicability**
+1. Don't break readability: filters should be predictable.
 
-### 10) Удаление лишних компонентов у сущности 🧹
+### 10) Removing unnecessary components from an entity 🧹
 
-**Паттерн**
-1. После завершения состояния удаляй временные/активные компоненты.
-2. Держи сущность минимальной по факту текущей роли.
+**Pattern**
+1. After the state is completed, remove temporary/active components.
+2. Keep the entity minimal in terms of its current role.
 
-**Анти-паттерн**
-1. Оставлять временные компоненты «на всякий случай».
-2. Накапливать маркеры, которые больше не участвуют в логике.
+**Anti-pattern**
+1. Leave temporary components “just in case.”
+2. Accumulate markers that are no longer involved in logic.
 
-**Пример кода**
+**Code example**
 ```csharp
 if (timer.NextTrigger <= curTime)
 {
     Trigger(uid, timer.User, timer.KeyOut);
-    RemComp<ActiveTimerTriggerComponent>(uid); // Убираем лишний компонент сразу.
+    RemComp<ActiveTimerTriggerComponent>(uid); // We remove the excess component immediately.
 }
 ```
 
-**Почему это быстрее**
-1. Меньше сущностей попадает в будущие query.
-2. Меньше лишних проверок и сетевой нагрузки.
+**Why is it faster**
+1. Fewer entities are included in future queries.
+2. Less unnecessary checks and network load.
 
-**Границы применимости**
-1. Удаление не должно ломать ожидаемые подписки/визуальные переходы.
+**Limits of applicability**
+1. Removal should not break expected subscriptions/visual transitions.
 
-## Чеклист перед PR
+## Checklist before PR
 
-1. Все изменения привязаны к измеримому hot-path.
-2. Нет LINQ в горячем цикле без осознанного обоснования.
-3. Query-порядок проверен: от редкого к массовому.
-4. Для больших сетевых компонентов использован `DirtyField`, где это уместно.
-5. Временные компоненты удаляются после завершения состояния.
-6. В тексте и комментариях нет привязки к конкретным путям кода.
+1. All changes are tied to a measurable hot-path.
+2. No LINQ in hot loop without conscious rationale.
+3. Query order is checked: from rare to massive.
+4. For large network components, `DirtyField` is used where appropriate.
+5. Temporary components are removed after the state is completed.
+6. The text and comments are not tied to specific code paths.
 
-## Правило расширения этого skill
+## Rule for extending this skill
 
-1. Добавляй только общеархитектурные оптимизации, повторяющиеся в нескольких подсистемах.
-2. Узкие темы (например, prediction-специфика или атмос-специфика) выноси в профильные skills.
-3. Любой новый паттерн добавляй вместе с анти-паттерном и кодовым примером.
+1. Add only architecture-wide optimizations that are repeated in several subsystems.
+2. Narrow topics (for example, prediction-specific or atmos-specific) should be included in specialized skills.
+3. Add any new pattern along with an anti-pattern and a code example.
