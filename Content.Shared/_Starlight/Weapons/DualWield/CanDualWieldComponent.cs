@@ -1,17 +1,35 @@
-namespace Content.Shared._Sunrise.Weapons.DualWield;
+using Robust.Shared.GameStates;
+
+namespace Content.Shared._Starlight.Weapons.DualWield;
 
 /// <summary>
-/// Маркер для оружия, разрешающий использование в режиме "стрельбы по македонски".
-/// Добавляйте это на пистолеты и ПП. Без этого компонента режим будет недоступен.
+///     Indicates that a weapon can be used in dual-wielding mode.
+///     Defines the penalties applied when dual-wielding is active.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class CanDualWieldComponent : Component
 {
     /// <summary>
-    /// Дополнительный разброс (в градусах) при активном режиме двойной стрельбы.
-    /// Добавляется к MinAngle и MaxAngle обоих пистолетов.
-    /// Используйте высокие значения (20-45°) для маломощного оружия.
+    ///     Multiplier applied to the weapon's angle increase per shot when dual-wielding.
     /// </summary>
-    [DataField]
-    public float DualWieldInaccuracyPenalty = 15f;
+    [DataField, AutoNetworkedField]
+    public float DualWieldInaccuracyPenalty = 0.25f;
+
+    /// <summary>
+    ///     Multiplier applied to damage dealt when dual-wielding.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float DualWieldDamagePenalty = 0.25f;
+
+    /// <summary>
+    ///     Multiplier applied to fire rate when dual-wielding.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float DualWieldFireRatePenalty = 0.25f;
+
+    /// <summary>
+    ///     Multiplier applied to recoil when dual-wielding.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float DualWieldRecoilPenalty = 0.25f;
 }

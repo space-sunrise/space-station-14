@@ -1,36 +1,35 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._Sunrise.Weapons.DualWield;
+namespace Content.Shared._Starlight.Weapons.DualWield;
 
 /// <summary>
-/// Добавляется на персонажа при активации режима "стрельбы по македонски".
-/// Отслеживает активность режима и чередование выстрелов (левый/правый пистолет).
+///     Marks an entity as currently dual-wielding two weapons.
+///     Holds runtime state about which guns are in which hand and the next shot side.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class DualWieldComponent : Component
 {
     /// <summary>
-    /// Активен ли режим двойной стрельбы
+    ///     Is dual-wielding currently active.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool Active;
+    public bool Active = false;
 
     /// <summary>
-    /// Пистолет в левой руке
+    ///     The entity UID of the weapon in the left hand.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public EntityUid LeftGun;
+    [AutoNetworkedField]
+    public EntityUid? LeftGun;
 
     /// <summary>
-    /// Пистолет в правой руке
+    ///     The entity UID of the weapon in the right hand.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public EntityUid RightGun;
+    [AutoNetworkedField]
+    public EntityUid? RightGun;
 
     /// <summary>
-    /// Если true, следующий выстрел из левого пистолета, иначе из правого.
-    /// Чередуется после каждого выстрела.
+    ///     Indicates whether the next shot should be fired from the left gun.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool NextIsLeft;
+    [AutoNetworkedField]
+    public bool NextIsLeft = true;
 }

@@ -27,9 +27,6 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Whitelist;
 using Content.Shared.Starlight.Utility;
-// Sunrise-Edit start | DualWield import
-using Content.Shared._Sunrise.Weapons.DualWield;
-// Sunrise-Edit end
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -45,6 +42,8 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Weapons.Hitscan.Events;
+// DualWield import
+using Content.Shared._Starlight.Weapons.DualWield;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -181,33 +180,32 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (!TryGetGun(user.Value, out var ent, out var gun))
             return;
 
-        // Sunrise-Edit start | Dual Wield: skip gun-ID match check in dual-wield mode
         var isDualWield = TryComp<DualWieldComponent>(user.Value, out var dualWield) && dualWield.Active;
         if (!isDualWield && ent != GetEntity(msg.Gun))
             return;
-        // Sunrise-Edit end
 
         gun.ShootCoordinates = GetCoordinates(msg.Coordinates);
-        // Sunrise-Start
         gun.Targets.Clear();
         foreach (var target in msg.Targets)
         {
             var targetUid = GetEntity(target);
             if (targetUid != EntityUid.Invalid)
-            {
                 gun.Targets.Add(targetUid);
-            }
         }
-        // Sunrise-End
+
+        // Применяем штрафы Dual Wield перед выстрелом
+        if (isDualWield && dualWield != null)
+        {
+            ApplyDualWieldPenalties(ent, gun, dualWield);
+        }
+
         var fired = AttemptShoot(user.Value, ent, gun);
 
-        // Sunrise-Edit start | Dual Wield: only alternate after an actual shot
-        if (isDualWield && fired)
+        if (isDualWield && fired && dualWield != null)
         {
-            dualWield!.NextIsLeft = !dualWield.NextIsLeft;
+            dualWield.NextIsLeft = !dualWield.NextIsLeft;
             Dirty(user.Value, dualWield);
         }
-        // Sunrise-Edit end
     }
 
     private void OnStopShootRequest(RequestStopShootEvent ev, EntitySessionEventArgs args)
@@ -256,21 +254,20 @@ public abstract partial class SharedGunSystem : EntitySystem
         gunEntity = default;
         gunComp = null;
 
-        // Sunrise-Edit start | Dual Wield: return the alternating gun instead of the active-hand gun
-        if (TryComp<DualWieldComponent>(entity, out var dualWieldComp) && dualWieldComp.Active)
+        // Dual Wield logic: return the alternating gun
+        if (TryComp<DualWieldComponent>(entity, out var dualWield) && dualWield.Active)
         {
-            var dwGunUid = dualWieldComp.NextIsLeft ? dualWieldComp.LeftGun : dualWieldComp.RightGun;
-            if (TryComp<GunComponent>(dwGunUid, out var dwGunComp))
+            var dwGunUid = dualWield.NextIsLeft ? dualWield.LeftGun : dualWield.RightGun;
+            if (dwGunUid != null && TryComp<GunComponent>(dwGunUid, out var dwGunComp))
             {
-                gunEntity = dwGunUid;
+                gunEntity = dwGunUid.Value;
                 gunComp = dwGunComp;
                 return true;
             }
             // Gun no longer valid — disable dual-wield and fall through
-            dualWieldComp.Active = false;
-            Dirty(entity, dualWieldComp);
+            dualWield.Active = false;
+            Dirty(entity, dualWield);
         }
-        // Sunrise-Edit end
 
         if (TryComp<MechComponent>(entity, out var mech)
             && mech.CurrentSelectedEquipment.HasValue
@@ -807,10 +804,48 @@ public abstract partial class SharedGunSystem : EntitySystem
         return ammoEv.Capacity;
     }
 
+    // --- Dual Wield Penalty Helpers ---
+    private readonly Dictionary<EntityUid, (Angle angleIncrease, float fireRate)> _originalGunStats = new();
+    private readonly HashSet<EntityUid> _pendingReset = new();
+
+    private void ApplyDualWieldPenalties(EntityUid gunUid, GunComponent gun, DualWieldComponent dualWield)
+    {
+        var currentGunUid = dualWield.NextIsLeft ? dualWield.LeftGun : dualWield.RightGun;
+        if (currentGunUid == null || !TryComp<CanDualWieldComponent>(currentGunUid, out var penalties))
+            return;
+
+        if (!_originalGunStats.TryGetValue(gunUid, out _))
+        {
+            _originalGunStats[gunUid] = (gun.AngleIncreaseModified, gun.FireRateModified);
+        }
+
+        gun.AngleIncreaseModified *= (1f + penalties.DualWieldInaccuracyPenalty);
+        gun.FireRateModified *= (1f - penalties.DualWieldFireRatePenalty);
+
+        _pendingReset.Add(gunUid);
+    }
+
+    private void ResetDualWieldPenalties(EntityUid gunUid, GunComponent gun)
+    {
+        if (_originalGunStats.Remove(gunUid, out var original))
+        {
+            gun.AngleIncreaseModified = original.angleIncrease;
+            gun.FireRateModified = original.fireRate;
+            Dirty(gunUid, gun);
+        }
+    }
+
     public override void Update(float frameTime)
     {
         UpdateBattery(frameTime);
         UpdateBallistic(frameTime);
+
+        foreach (var gunUid in _pendingReset)
+        {
+            if (TryComp<GunComponent>(gunUid, out var gun))
+                ResetDualWieldPenalties(gunUid, gun);
+        }
+        _pendingReset.Clear();
     }
 }
 

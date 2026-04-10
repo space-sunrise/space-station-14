@@ -1,208 +1,100 @@
-using Content.Shared.Hands;
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Popups;
-using Content.Shared.Weapons.Ranged.Components;
-using Content.Shared.Weapons.Ranged.Events;
-using Content.Shared.Weapons.Ranged.Systems;
+using Content.Shared.Alert;
+using Robust.Shared.GameStates;
+using Robust.Shared.Timing;
+using Content.Shared.Hands;
 
-namespace Content.Shared._Sunrise.Weapons.DualWield;
+namespace Content.Shared._Starlight.Weapons.DualWield;
 
-/// <summary>
-/// Sunrise-Edit: Управляет режимом "стрельбы по македонски" (двойная стрельба).
-///
-/// Автоматически активирует режим когда в руках находятся 2 пистолета с CanDualWieldComponent.
-/// Автоматически деактивирует режим когда оружие выпадает или берется только одно.
-///
-/// Обрабатывает:
-/// - Переключение режима
-/// - Штрафы к точности
-/// - Отключение при выпадении оружия
-/// - Автоматическую активацию/деактивацию
-/// </summary>
-public sealed class SharedDualWieldSystem : EntitySystem
+public abstract class SharedDualWieldSystem : EntitySystem
 {
     [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedGunSystem _gun = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+
+    private const string DualWieldAlertKey = "DualWieldActive";
 
     public override void Initialize()
     {
         base.Initialize();
-
-        // Sunrise-Edit: Режим стрельбы по македонски — штраф точности
-        SubscribeLocalEvent<CanDualWieldComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers);
-        // Sunrise-Edit: Режим стрельбы по македонски — отключение при выпадении оружия
-        SubscribeLocalEvent<GunComponent, GotUnequippedHandEvent>(OnGunUnequipped);
+        SubscribeLocalEvent<HandsComponent, GotEquippedHandEvent>(OnHandEquipped);
+        SubscribeLocalEvent<HandsComponent, GotUnequippedHandEvent>(OnHandUnequipped);
     }
 
-    /// <summary>
-    /// OnEvent: Применяет штраф точности при активном режиме двойной стрельбы.
-    /// </summary>
-    private void OnGunRefreshModifiers(Entity<CanDualWieldComponent> gun, ref GunRefreshModifiersEvent args)
+    private void OnHandEquipped(EntityUid uid, HandsComponent component, GotEquippedHandEvent args)
     {
-        if (gun.Comp.DualWieldInaccuracyPenalty <= 0f)
-            return;
-
-        // Пистолет находится в ContainerSlot, родитель которого - держатель оружия
-        var holder = Transform(gun).ParentUid;
-        if (!TryComp<DualWieldComponent>(holder, out var dw) || !dw.Active)
-            return;
-
-        // Проверяем, что пистолет принадлежит активному режиму
-        if (dw.LeftGun != gun.Owner && dw.RightGun != gun.Owner)
-            return;
-
-        // Применяем штраф к углам разброса
-        var penalty = Angle.FromDegrees(gun.Comp.DualWieldInaccuracyPenalty);
-        args.MinAngle += penalty;
-        args.MaxAngle += penalty;
+        if (_timing.ApplyingState) return;
+        CheckAndUpdateDualWield(uid);
     }
 
-    /// <summary>
-    /// OnEvent: Отключает режим при выпадении одного из пистолетов.
-    /// </summary>
-    private void OnGunUnequipped(Entity<GunComponent> gun, ref GotUnequippedHandEvent args)
+    private void OnHandUnequipped(EntityUid uid, HandsComponent component, GotUnequippedHandEvent args)
     {
-        if (!TryComp<DualWieldComponent>(args.User, out var dw) || !dw.Active)
-            return;
-
-        // Проверяем, что выпал один из наших пистолетов
-        if (dw.LeftGun != gun.Owner && dw.RightGun != gun.Owner)
-            return;
-
-        // Отключаем режим
-        DisableDualWield(args.User, dw);
-        _popup.PopupClient(Loc.GetString("dual-wield-interrupted"), args.User, args.User);
+        if (_timing.ApplyingState) return;
+        CheckAndUpdateDualWield(uid);
     }
 
-    /// <summary>
-    /// Update: Проверяет наличие двух пистолетов в руках для автоматической активации/деактивации режима.
-    /// Sunrise-Edit: Автоматическое управление режимом двойной стрельбы
-    /// </summary>
-    public override void Update(float frameTime)
+    private void CheckAndUpdateDualWield(EntityUid uid)
     {
-        base.Update(frameTime);
-
-        // Ищем все персонажей с компонентом рук
-        var query = EntityQueryEnumerator<HandsComponent>();
-        while (query.MoveNext(out var uid, out var handsComp))
+        if (!TryGetBothDualWieldGuns(uid, out var leftGun, out var rightGun))
         {
-            // Проверяем есть ли у него уже активный режим
-            if (!TryComp<DualWieldComponent>(uid, out var dw))
-            {
-                // Нет режима - проверяем можно ли активировать
-                if (TryGetBothDualWieldGuns(uid, handsComp, out var gun1, out var gun2))
-                {
-                    dw = EnsureComp<DualWieldComponent>(uid);
-                    EnableDualWield(uid, dw, gun1, gun2);
-                    _popup.PopupClient(Loc.GetString("dual-wield-enabled"), uid, uid);
-                }
-            }
-            else if (dw.Active)
-            {
-                // Режим активен - проверяем нужно ли его отключить
-                if (!TryGetBothDualWieldGuns(uid, handsComp, out _, out _))
-                {
-                    DisableDualWield(uid, dw);
-                    _popup.PopupClient(Loc.GetString("dual-wield-interrupted"), uid, uid);
-                }
-            }
+            DisableDualWield(uid);
+            return;
         }
+
+        EnableDualWield(uid, leftGun!.Value, rightGun!.Value);
     }
 
-    /// <summary>
-    /// EnableDualWield: Включает режим с двумя пистолетами.
-    /// Sunrise-Edit: Активация режима двойной стрельбы
-    /// </summary>
-    private void EnableDualWield(EntityUid user, DualWieldComponent dw, EntityUid gun1, EntityUid gun2)
+    private bool TryGetBothDualWieldGuns(EntityUid uid, [NotNullWhen(true)] out EntityUid? leftGun, [NotNullWhen(true)] out EntityUid? rightGun)
     {
-        dw.Active = true;
-        dw.LeftGun = gun1;
-        dw.RightGun = gun2;
+        leftGun = null;
+        rightGun = null;
 
-        // Начинаем со стрельбы из активной руки
-        var activeItem = _hands.GetActiveItem((user, default));
-        dw.NextIsLeft = activeItem == gun1;
+        if (!TryComp<HandsComponent>(uid, out var handsComp))
+            return false;
 
-        Dirty(user, dw);
-        _gun.RefreshModifiers((gun1, default!));
-        _gun.RefreshModifiers((gun2, default!));
-    }
+        var entity = new Entity<HandsComponent?>(uid, handsComp);
 
-    /// <summary>
-    /// DisableDualWield: Отключает режим и снимает штрафы точности.
-    /// Sunrise-Edit: Деактивация режима двойной стрельбы
-    /// </summary>
-    private void DisableDualWield(EntityUid user, DualWieldComponent dw)
-    {
-        dw.Active = false;
-        Dirty(user, dw);
-        _gun.RefreshModifiers((dw.LeftGun, default!));
-        _gun.RefreshModifiers((dw.RightGun, default!));
-    }
-
-    /// <summary>
-    /// TryGetBothDualWieldGuns: Проверяет наличие 2-х пистолетов с CanDualWieldComponent в руках.
-    /// gun1 - пистолет из активной руки;
-    /// gun2 - пистолет из другой руки.
-    /// Sunrise-Edit: Проверка наличия двух пистолетов
-    /// </summary>
-    private bool TryGetBothDualWieldGuns(
-        EntityUid user,
-        HandsComponent handsComp,
-        out EntityUid gun1,
-        out EntityUid gun2)
-    {
-        gun1 = EntityUid.Invalid;
-        gun2 = EntityUid.Invalid;
-
-        // EnumerateHeld начинает с активной руки — gun1 получается автоматически
-        foreach (var held in _hands.EnumerateHeld((user, handsComp)))
+        foreach (var handName in _hands.EnumerateHands(entity))
         {
-            if (!HasComp<GunComponent>(held) || !HasComp<CanDualWieldComponent>(held))
+            var held = _hands.GetHeldItem(entity, handName);
+            if (held == null)
                 continue;
 
-            if (gun1 == EntityUid.Invalid)
-                gun1 = held;
-            else if (gun2 == EntityUid.Invalid)
-            {
-                gun2 = held;
-                break;
-            }
-        }
-
-        return gun1 != EntityUid.Invalid && gun2 != EntityUid.Invalid;
-    }
-
-    /// <summary>
-    /// TryGetBothGuns: Возвращает оба пистолета из рук (без проверки CanDualWieldComponent).
-    /// Используется для возможного manual toggle в будущем.
-    /// Sunrise-Edit: Получение обоих пистолетов
-    /// </summary>
-    public bool TryGetBothGuns(
-        EntityUid user,
-        HandsComponent handsComp,
-        out EntityUid gun1,
-        out EntityUid gun2)
-    {
-        gun1 = EntityUid.Invalid;
-        gun2 = EntityUid.Invalid;
-
-        foreach (var held in _hands.EnumerateHeld((user, handsComp)))
-        {
-            if (!HasComp<GunComponent>(held))
+            if (!HasComp<CanDualWieldComponent>(held.Value))
                 continue;
 
-            if (gun1 == EntityUid.Invalid)
-                gun1 = held;
-            else if (gun2 == EntityUid.Invalid)
-            {
-                gun2 = held;
-                break;
-            }
+            if (handName == "left")
+                leftGun = held;
+            else if (handName == "right")
+                rightGun = held;
         }
 
-        return gun1 != EntityUid.Invalid && gun2 != EntityUid.Invalid;
+        return leftGun != null && rightGun != null;
+    }
+
+    private void EnableDualWield(EntityUid uid, EntityUid leftGun, EntityUid rightGun)
+    {
+        var dualWield = EnsureComp<DualWieldComponent>(uid);
+        dualWield.Active = true;
+        dualWield.LeftGun = leftGun;
+        dualWield.RightGun = rightGun;
+        dualWield.NextIsLeft = true;
+        Dirty(uid, dualWield);
+
+        _alerts.ShowAlert(uid, DualWieldAlertKey);
+    }
+
+    private void DisableDualWield(EntityUid uid)
+    {
+        if (!TryComp<DualWieldComponent>(uid, out var dualWield))
+            return;
+
+        dualWield.Active = false;
+        dualWield.LeftGun = dualWield.RightGun = null;
+        Dirty(uid, dualWield);
+
+        _alerts.ClearAlert(uid, DualWieldAlertKey);
     }
 }
