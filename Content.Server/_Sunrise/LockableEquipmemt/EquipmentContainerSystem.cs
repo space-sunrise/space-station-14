@@ -51,6 +51,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
                     Loc.GetString("lockable-equipment-blocked"),
                     args.User,
                     args.User);
+                args.Handled = true;
                 return;
             }
 
