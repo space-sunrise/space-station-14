@@ -100,4 +100,6 @@ ss14-audio-system-core - слишком продвинуто, не нужно в
 5. Локальный запуск клиента: `dotnet run --project Content.Client/Content.Client.csproj` или `dotnet run --project Content.Client/Content.Client.csproj --configuration Tools`
 6. Сборка publish-артефактов при необходимости: `dotnet publish Content.Packaging/Content.Packaging.csproj --configuration Release -r win-x64` или `dotnet publish Content.Packaging/Content.Packaging.csproj --configuration Release -p:PublishProfile=<ProfileName>`
 
+Никогда не запускай больше двух тестов одновременно, чтобы не привести к лагам на компьютере пользователя. Идеально - по одному тесту за раз.
+
 После обязательно завершить начатый процесс в системе!
