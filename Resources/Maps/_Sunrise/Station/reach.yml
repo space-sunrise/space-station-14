@@ -2082,7 +2082,7 @@ entities:
       linkedPorts:
         30:
         - DoorStatus: DoorBolt
-- proto: AirlockExternalGlassShuttleArrivalsLocked
+- proto: AirlockExternalGlassShuttleArrivalsLockedCentComm
   entities:
   - uid: 402
     components:
@@ -2104,8 +2104,6 @@ entities:
     - type: Transform
       pos: -4.5,-17.5
       parent: 2
-- proto: AirlockExternalGlassShuttleArrivalsLockedCentComm
-  entities:
   - uid: 447
     components:
     - type: Transform

@@ -1,82 +1,82 @@
 ---
 name: ss14-audio-system-core
-description: Объясняет архитектуру AudioSystem в Space Station 14 на уровнях shared/server/client и OpenAL: жизненный цикл аудио-сущности, фильтрация через PVS, окклюзия, стриминг и EFX-цепочка. Используй, когда нужно понять внутреннюю схему системы перед расширением или отладкой.
+description: Explains the AudioSystem architecture in Space Station 14 at the shared/server/client and OpenAL levels: audio entity lifecycle, PVS filtering, occlusion, streaming and EFX chain. Use when you need to understand the internal design of a system before expanding or debugging.
 ---
 
-# AudioSystem: Архитектура и Внутренности
+# AudioSystem: Architecture and Internals
 
-Используй этот skill как архитектурный playbook по AudioSystem 🙂
-Держи фокус на свежем коде и проверяй актуальность через `git blame` (cutoff: `2024-02-19`).
+Use this skill as an architectural playbook for AudioSystem :)
+Keep your focus on fresh code and check its relevance through `git blame` (cutoff: `2024-02-19`).
 
-## Что загружать в первую очередь
+## What to download first
 
-1. `references/fresh-pattern-catalog.md` — подтвержденные свежие паттерны ✅
-2. `references/rejected-snippets.md` — старые и рискованные зоны, которые нельзя копировать ⚠️
-3. `references/docs-context.md` — что брать из docs и где docs могут устаревать
+1. `references/fresh-pattern-catalog.md` - confirmed fresh patterns ✅
+2. `references/rejected-snippets.md` - old and risky zones that cannot be copied ⚠️
+3. `references/docs-context.md` - what to take from docs and where docs can become outdated
 
-## Источник правды
+## Source of truth
 
-1. Кодовая база — основной источник истины.
-2. Документация — вторичная: для терминов, intent и проверки гипотез.
-3. Любой участок старше двух лет или с явными TODO/проблемными комментариями — не поднимать в правила как «эталон».
+1. The codebase is the primary source of truth.
+2. Documentation - secondary: for terms, intent and hypothesis testing.
+3. Any site older than two years or with obvious TODO/problematic comments should not be included in the rules as a “standard”.
 
-## Ментальная модель AudioSystem
+## AudioSystem mental model
 
-1. `SharedAudioSystem` задает контракт: создание/остановка, состояние, позиционирование, маршрутизация по аудитории.
-2. `AudioComponent` — сетевое состояние потока звука (state + params + фильтрация + привязка к auxiliary).
-3. Сервер создает аудио-сущности и решает, кому их реплицировать (filter/PVS/override), но не воспроизводит реальный звук.
-4. Клиент создает реальный `IAudioSource`, применяет `AudioParams`, обновляет позицию/окклюзию и управляет playback.
-5. Для positional-звука ключевой цикл: вычислить позицию -> проверить дистанцию -> оценить окклюзию -> обновить gain/velocity.
-6. Эффекты идут отдельной цепочкой: `AudioSource -> Auxiliary Slot -> AudioEffect (EAX Reverb)`.
-7. При включенном EFX окклюзия работает через lowpass-фильтр; без EFX — через fallback по gain.
-8. Для стримов важен «мгновенный процессинг после старта», чтобы звук не жил один тик с неверной позицией/окклюзией.
+1. `SharedAudioSystem` specifies the contract: creation/stopping, state, positioning, audience routing.
+2. `AudioComponent` — network state of the audio stream (state + params + filtering + binding to auxiliary).
+3. The server creates audio entities and decides who to replicate them to (filter/PVS/override), but does not play the actual audio.
+4. The client creates a real `IAudioSource`, applies `AudioParams`, updates the position/occlusion and manages the playback.
+5. For positional sound, the key loop is: calculate position -> check distance -> evaluate occlusion -> update gain/velocity.
+6. Effects come in a separate chain: `AudioSource -> Auxiliary Slot -> AudioEffect (EAX Reverb)`.
+7. When EFX is enabled, occlusion works through a lowpass filter; without EFX - through fallback by gain.
+8. For streams, “instant processing after start” is important so that the sound does not live for one tick with an incorrect position/occlusion.
 
-## Схема слоев
+## Layer scheme
 
-1. Shared слой:
+1. Shared layer:
 `ResolveSound`, `SetupAudio`, `SetState`, `SetPlaybackPosition`, `SetMapAudio`, `SetGridAudio`, `Stop`.
-2. Server слой:
-выбор recipients, `PlayPvs/PlayEntity/PlayStatic/PlayGlobal`, PVS override для map/grid audio.
-3. Client слой:
+2. Server layer:
+selection of recipients, `PlayPvs/PlayEntity/PlayStatic/PlayGlobal`, PVS override for map/grid audio.
+3. Client layer:
 `FrameUpdate`, `ProcessStream`, `GetOcclusion`, audio-limit, stream playback.
-4. OpenAL слой:
+4. OpenAL layer:
 `AudioManager`, `BaseAudioSource`, `AudioEffect`, `AuxiliaryAudio`.
 
-## Паттерны
+## Patterns
 
-1. Для локально-предсказанных интеракций используй `PlayPredicted(..., user)` вместо «чистого» `PlayPvs`.
-2. Для map/grid-спецзвуков применяй `SetMapAudio`/`SetGridAudio`, а не ручную эмуляцию через random filters.
-3. Для стримов, запущенных посреди тика, сразу пересчитывай spatial-состояние (позиция/окклюзия/velocity).
-4. Для сложной кастомной акустики подключай `ProcessStreamOverride`/`GetOcclusionOverride` с одним подписчиком.
-5. Для OpenAL-эффектов собирай связку: `CreateEffect -> CreateAuxiliary -> SetEffect -> SetAuxiliary`.
-6. Для повторяющихся коротких SFX учитывай limit concurrent sound, иначе можно «съесть» source budget.
-7. Для long-running музыки/ивент-звука храни stream `EntityUid?` и управляй состоянием через `SetState`/`Stop`.
-8. Для глобальной станционной/карточной музыки формируй аудиторию через серверный фильтр, а не на клиенте.
+1. For locally predicted interactions, use `PlayPredicted(..., user)` instead of “pure” `PlayPvs`.
+2. For map/grid special sounds, use `SetMapAudio`/`SetGridAudio`, and not manual emulation through random filters.
+3. For streams launched in the middle of a tick, immediately recalculate the spatial state (position/occlusion/velocity).
+4. For complex custom acoustics, connect `ProcessStreamOverride`/`GetOcclusionOverride` with one subscriber.
+5. For OpenAL effects, assemble a bunch: `CreateEffect -> CreateAuxiliary -> SetEffect -> SetAuxiliary`.
+6. For repeated short SFX, consider the limit concurrent sound, otherwise you can “eat” the source budget.
+7. For long-running music/event sound, store stream `EntityUid?` and manage the state via `SetState`/`Stop`.
+8. For global station/card music, create an audience through a server filter, not on the client.
 
-## Анти-паттерны
+## Anti-patterns
 
-1. Опираться на участки `LoadStream` в server-реализации как на рабочий API-путь.
-2. Копировать старые зоны с TODO про range/PVS/Transform как шаблон новой логики.
-3. Навешивать эффект через race-таймер без гарантий жизненного цикла source (хрупкая гонка 😬).
-4. Мутировать громкость/gain в tight loop без guard-проверок и без понимания EFX fallback поведения.
-5. Использовать одну и ту же реализацию для predicted и non-predicted кейсов без explicit user.
-6. Считать docs «истиной поведения» там, где код уже ушел вперед.
+1. Rely on the `LoadStream` sections in the server implementation as a working API path.
+2. Copy old zones with TODO about range/PVS/Transform as a template for new logic.
+3. Attach an effect through a race timer without source life cycle guarantees (fragile race 😬).
+4. Mutate the volume/gain into a tight loop without guard checks and without understanding EFX fallback behavior.
+5. Use the same implementation for predicted and non-predicted cases without explicit user.
+6. Consider docs as the “truth of behavior” where the code has already gone ahead.
 
-## OpenAL/EFX: что важно понимать
+## OpenAL/EFX: what is important to understand
 
-1. `AudioManager` открывает девайс/контекст OpenAL и определяет поддержку `ALC_EXT_EFX`.
-2. `AudioSource` управляет источником AL (`Gain`, `Pitch`, `Position`, `Velocity`, `SecOffset`).
-3. `AuxiliaryAudio` — effect slot, в который цепляется `AudioEffect`.
-4. `AudioEffect` маппит reverb-поля (`Density`, `Decay*`, `Echo*`, `Modulation*`, `HF/LF references`) в EFX параметры.
-5. При EFX-окклюзии используется lowpass (`LowpassGain`, `LowpassGainHF`), иначе gain-фоллбек.
+1. `AudioManager` opens the OpenAL device/context and defines support for `ALC_EXT_EFX`.
+2. `AudioSource` controls the AL source (`Gain`, `Pitch`, `Position`, `Velocity`, `SecOffset`).
+3. `AuxiliaryAudio` — effect slot into which `AudioEffect` is attached.
+4. `AudioEffect` maps reverb fields (`Density`, `Decay*`, `Echo*`, `Modulation*`, `HF/LF references`) in EFX parameters.
+5. For EFX occlusion, lowpass (`LowpassGain`, `LowpassGainHF`) is used, otherwise gain-fallback.
 
-## Примеры из кода
+## Code examples
 
-### 1) Стрим + немедленный spatial-пересчет
+### 1) Stream + immediate spatial recalculation
 
 ```csharp
-// После старта stream в середине тика сразу пересчитываем spatial,
-// иначе один тик можно услышать звук в неверной позиции.
+// After the start of the stream in the middle of a tick, we immediately recalculate spatial,
+// otherwise one tick you can hear the sound in the wrong position.
 var playing = CreateAndStartPlayingStream(audioParams, specifier, stream);
 SetCoordinates(playing.Entity, new EntityCoordinates(sourceEntity, Vector2.Zero));
 
@@ -87,26 +87,26 @@ ProcessStream(
     GetListenerCoordinates());
 ```
 
-### 2) Grid-аудио для больших подвижных объектов
+### 2) Grid audio for large moving objects
 
 ```csharp
-// Помечаем звук как grid-audio: центр по сетке + расширенная дальность + без окклюзии.
+// We mark the sound as grid-audio: grid center + extended range + no occlusion.
 var stream = PlayPvs(startupSound, shuttleUid);
 SetGridAudio(stream);
 ```
 
-### 3) Ping-компенсация позиции воспроизведения
+### 3) Ping compensation for playback position
 
 ```csharp
-// Для синхрона музыкального потока учитываем сетевую задержку сессии.
+// To synchronize the music stream, we take into account the network delay of the session.
 var offset = session.Channel.Ping * 1.5f / 1000f;
 SetPlaybackPosition(jukeboxStream, requestedSongTime + offset);
 ```
 
-### 4) EFX-цепочка эффекта реверберации
+### 4) EFX reverb chain
 
 ```csharp
-// Создаем effect + auxiliary, применяем preset и подключаем к источнику.
+// Create an effect + auxiliary, apply a preset and connect to the source.
 var effect = CreateEffect();
 var aux = CreateAuxiliary();
 
@@ -115,21 +115,21 @@ SetEffect(aux.Entity, aux.Component, effect.Entity);
 SetAuxiliary(audioUid, audioComp, aux.Entity);
 ```
 
-### 5) Серверный predicted-flow без дублей для инициатора
+### 5) Server predicted-flow without duplicates for the initiator
 
 ```csharp
-// Сервер шлет звук по PVS, но исключает инициатора,
-// потому что инициатор уже предсказал локально.
+// The server sends audio via PVS, but excludes the initiator,
+// because the initiator has already predicted locally.
 var audio = PlayPvs(ResolveSound(sound), sourceUid, audioParams);
 if (audio != null)
     audio.Value.Component.ExcludedEntity = user;
 ```
 
-## Правило расширения
+## Extension rule
 
-1. Новую механику сначала строй на свежих точках входа (`stream overloads`, `SetGridAudio/SetMapAudio`, override hooks).
-2. Если вынужден трогать legacy-зону, сначала зафиксируй риск в `references/rejected-snippets.md`.
-3. Любую аудио-оптимизацию подтверждай профилированием и прослушиванием в реальном раунде.
-4. Для эффектов сначала проверяй поддержку EFX, потом проектируй fallback-поведение.
+1. First build new mechanics on fresh entry points (`stream overloads`, `SetGridAudio/SetMapAudio`, override hooks).
+2. If you have to touch the legacy zone, first record the risk in `references/rejected-snippets.md`.
+3. Confirm any audio optimization by profiling and listening in a real round.
+4. For effects, first check EFX support, then design fallback behavior.
 
-Думай об AudioSystem как о сетевом контракте + клиентском DSP-пайплайне, а не как о «проиграть файл» 🎧
+Think of AudioSystem as a network contract + client DSP pipeline, not as a “play file” 🎧

@@ -149,7 +149,7 @@
   - type: GameRule
     minPlayers: 50
   - type: LoadMapRule
-    mapPath: /Maps/_Sunrise/Nonstations/nukieplanet.yml
+    mapPath: /Maps/_Sunrise/Nonstations/geigerComplex.yml #/Maps/_Sunrise/Nonstations/nukieplanet.yml # Sunrise-Edit
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
     definitions:
@@ -361,8 +361,8 @@
     minPlayers: 45 # Sunrise-Edit
     # Sunrise-Start
     delay:
-      min: 300
-      max: 600
+      min: 180
+      max: 300
     # Sunrise-End
   - type: RevolutionaryRule
   - type: AntagSelection
@@ -385,8 +385,12 @@
     # Sunrise-Start
     - prefRoles: [ Rev ]
       fallbackRoles: [ HeadRev ]
-      max: 40 # Sunrise-Edit
-      playerRatio: 3
+      max: 40
+      playerRatio: 2
+      ignorePrefCheck: true
+      blacklist:
+        components:
+        - CommandStaff
       briefing:
         text: rev-role-greeting
         color: CornflowerBlue
@@ -398,8 +402,8 @@
   - type: SubGamemodes
     rules:
     - id: RevolutionarySmugglerStashSpawn
-      amount: 8
-      maxAmount: 16
+      amount: 9
+      maxAmount: 18
     # Sunrise-End
   - type: DynamicRuleCost
     cost: 200

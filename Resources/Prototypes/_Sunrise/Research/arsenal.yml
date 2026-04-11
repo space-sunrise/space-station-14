@@ -259,6 +259,7 @@
   recipeUnlocks:
   - ShuttleGunTeslaHyperionCircuitboard
   - ShuttleGunQuadlingCircuitboard
+  - ShuttleGunBullfrogCircuitboard
   technologyPrerequisites:
   - AdvancedShuttleWeapon
   radioChannels: # Sunrise-Add

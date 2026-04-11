@@ -96,3 +96,5 @@ ent-ClothingUniformJumpsuitSoviet = Soviet jumpsuit
     .desc = A standard jumpsuit worn by Soviet military personnel.
 ent-ClothingUniformUndershirt = undershirt
     .desc = Plain daily wear.
+ent-CamoUniformSuit = camo jumpsuit
+    .desc = You'd blend in if this was a forest.

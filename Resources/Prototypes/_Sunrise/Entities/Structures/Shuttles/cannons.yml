@@ -34,6 +34,106 @@
     - type: AutoLinkTransmitter
       channel: Squall
 
+- type: entity
+  id: SignalButtonUlan
+  parent: SignalButton
+  name: Ulan Fire Button
+  suffix: Autolink
+  components:
+    - type: AutoLinkTransmitter
+      channel: Ulan
+
+# region---- Launchers ----
+# naming: EXP (Explosion) + conventional power + suffix (g for Grenade, c for RPG Cartridge) + Name
+# example: EXP-100c "Poppy"
+
+- type: entity
+  id: ShuttleGunBullfrog
+  parent: [ShuttleGunBase, ConstructibleMachine]
+  name: EXP-3600g "Bullfrog"
+  description: A powerful 40mm stationary automatic grenade launcher. A cartridge is required for use.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/exp_3600.rsi
+    granularLayersRendering: true
+    layers:
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_open
+      renderingStrategy: NoRotation
+    - state: bal-127
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-5
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      gun_magazine: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 999
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Fixtures # Sunrise-Add
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.5
+        density: 500
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Gun
+    projectileSpeed: 66
+    fireRate: 1.25
+    maxAngle: 15
+    minAngle: 1
+    angleIncrease: 3
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
+      params:
+        variation: 0.05
+        pitch: 0.85
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: Machine
+    board: ShuttleGunBullfrogCircuitboard
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineGrenade
+        insertSound:
+          path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+          params:
+            pitch: 2
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: GunneryTrackable
+  - type: AutoLoader
+    container: gun_magazine
+    whitelist:
+      tags:
+      - MagazineGrenade
+
 # region ---- Autocannon ----
 # naming: BAL (Ballistic) + calliber + Name
 # example: BAL-152 "Molot"
@@ -48,7 +148,6 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_127.rsi
     granularLayersRendering: true
-    #scale: 1.1, 1.1
     layers:
     - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
       state: support
@@ -219,6 +318,11 @@
         layer:
         - MidImpassable
         - LowImpassable
+  - type: AutoLoader
+    container: gun_magazine
+    whitelist:
+      tags:
+      - HeavyAmmoBelt127
   - type: AutoLinkReceiver
     channel: Vympel
 
@@ -404,6 +508,11 @@
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
   - type: AutoLinkReceiver
     channel: Squall
+  - type: AutoLoader
+    container: gun_magazine
+    whitelist:
+      tags:
+      - MagazineMachineGunHeavyRifle
 
 # region ---- Lasers ----
 - type: entity
@@ -634,7 +743,60 @@
     range: 5
     volume: -8
 
-# Rockets
+# Scylla Laser Railgun - Grid-powered, cyan beam, extreme 1.2km range
+- type: entity
+  id: ShuttleGunUlan
+  parent: ShuttleGunScylla
+  name: LSE-13000e "Ulan"
+  description: An experimental grid-powered laser railgun that focuses ship power into a devastating 2-width electromagnetic melting beam. Draws directly from the ship's APC grid — no power cages required, but it will tax your reactor. Range exceeds 1 kilometer. The long recharge cycle after each shot is the only thing preventing total battlefield dominance.
+  components:
+  - type: Sprite
+    scale: 1.15,1.15
+    sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/Scylla.rsi
+    granularLayersRendering: true
+    layers:
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_open
+      renderingStrategy: NoRotation
+    - state: space_artillery
+  - type: Gun
+    fireRate: 100
+    burstFireRate: 100
+    shotsPerBurst: 5
+    burstCooldown: 60     # 60-second recharge after each shot
+    minAngle: 1
+    maxAngle: 1
+    angleIncrease: 0
+    selectedMode: Burst
+    availableModes:
+    - Burst
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+      params:
+        variation: 0.03
+        volume: 15
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: Battery
+    maxCharge: 10000
+    startingCharge: 10000
+    netsync: false
+  - type: ApcPowerReceiverBattery
+    idleLoad: 2000
+    batteryRechargeRate: 167     # recharge full in ~60s at full draw
+    batteryRechargeEfficiency: 1.0
+  - type: ApcPowerReceiver
+    powerLoad: 7500
+  - type: BatteryAmmoProvider
+    proto: ScyllaWideLaser
+    fireCost: 2000
+  - type: AutoLinkReceiver
+    channel: Ulan
+
+# region Rockets
 # Vanyk-MK2 60mm Rocket Launcher - Multi-rocket burst fire system
 - type: entity
   id: ShuttleGunRocketMetla120mm
@@ -664,7 +826,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.45
+          radius: 0.2
         density: 500
         mask:
         - MachineMask

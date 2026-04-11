@@ -1,32 +1,32 @@
 # Docs Context (Audio Core)
 
-## Роль документации
+## The role of documentation
 
-1. Docs используй для терминов, intent и сетевого контекста.
-2. Реальное поведение подтверждай по коду.
-3. Если docs и код расходятся, выбирай код.
+1. Use Docs for terms, intent and network context.
+2. Confirm real behavior using code.
+3. If docs and code disagree, choose code.
 
-## Полезные страницы docs
+## Useful docs pages
 
 1. `prediction-guide` — `2026-02-05`.
-Покрывает predicted API и ограничения для аудио (`PlayPredicted`, user-context, first-time prediction).
+Covers predicted API and restrictions for audio (`PlayPredicted`, user-context, first-time prediction).
 
 2. `codebase conventions` — `2026-01-19`.
-Фиксирует общие правила по `SoundSpecifier`, API-стилю и работе с сетевым состоянием.
+Fixes general rules for `SoundSpecifier`, API style and working with network state.
 
 3. `basic-networking-and-you` — `2024-05-31`.
-Хорошо объясняет component states и репликацию, что напрямую важно для `AudioComponent` и ambient state.
+Well explains component states and replication, which is directly important for `AudioComponent` and ambient state.
 
 4. `robust-toolbox/midi` — `2024-02-24`.
-Полезно как фон по buffered-аудио и поведению OpenAL при недокорме буферов.
+Useful as a background on buffered audio and OpenAL behavior when buffers are underfilled.
 
-## Страницы с ограничениями
+## Pages with restrictions
 
-1. `adding-a-simple-bikehorn` — в файле есть явная пометка `outdated`.
-Можно использовать только как исторический туториал, не как источник современных аудио-практик.
+1. `adding-a-simple-bikehorn` - the file has an explicit mark `outdated`.
+Can only be used as a historical tutorial, not as a source of modern audio practices.
 
-## Практика применения docs
+## Practice using docs
 
-1. Сначала проверяй свежие методы в коде (`blame >= 2024-02-19`).
-2. Потом используй docs для объяснения «почему так», а не «как устроено точно сейчас».
-3. Если материал из docs ведет в старую API-модель, фиксируй это в `rejected-snippets.md`.
+1. First, check the latest methods in the code (`blame >= 2024-02-19`).
+2. Then use docs to explain “why this is so,” and not “how it works exactly now.”
+3. If material from the docs leads to the old API model, record it in `rejected-snippets.md`.
