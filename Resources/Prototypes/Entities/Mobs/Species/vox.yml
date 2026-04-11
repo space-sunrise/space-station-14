@@ -121,10 +121,12 @@
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LFoot" ]
     - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+    - map: [ "lockable_under" ]
     - map: [ "enum.HumanoidVisualLayers.LHand" ]
     - map: [ "enum.HumanoidVisualLayers.RHand" ]
     # Sunrise-start
     - map: ["jumpsuit"]
+    - map: ["lockable_normal"]
     # Sunrise-end
     - map: [ "gloves" ]
     - map: [ "shoes" ]
@@ -141,6 +143,7 @@
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
     - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: ["lockable_over"]
     - map: [ "enum.HumanoidVisualLayers.Tail" ]
     - map: [ "mask" ]
     - map: [ "head" ]

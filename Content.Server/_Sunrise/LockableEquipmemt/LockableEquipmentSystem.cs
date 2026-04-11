@@ -146,6 +146,15 @@ namespace Content.Server._Sunrise.LockableEquipment
             if (!EnsureAccessible(device, user, comp))
                 return true;
 
+            if (comp.Mode == LockableEquipmentComponent.BreakMode.None)
+            {
+                _popup.PopupEntity(
+                    Loc.GetString("lockable-equipment-cannot-be-forced-opened", ("name", MetaData(device).EntityName)),
+                    user,
+                    user);
+                return true;
+            }
+
             if (!CanBreakWithTool(device, tool, comp))
                 return false;
 

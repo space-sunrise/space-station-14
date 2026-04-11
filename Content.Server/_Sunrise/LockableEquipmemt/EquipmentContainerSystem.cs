@@ -139,8 +139,25 @@ public sealed class EquipmentContainerSystem : EntitySystem
     {
         container ??= _container.EnsureContainer<Container>(ent.Owner, ent.Comp.ContainerId);
 
-        if (!CanAttachDevice(ent.Owner, user, device, container))
+        if (!CanAttachDevice(ent.Owner, device, container))
+        {
+            if (!CanAccess(ent.Owner, device.Layer, device))
+            {
+                _popup.PopupClient(
+                    Loc.GetString("lockable-equipment-blocked"),
+                    user,
+                    user);
+            }
+            else if (FindDevice(container) != null)
+            {
+                _popup.PopupClient(
+                    Loc.GetString("lockable-equipment-already"),
+                    user,
+                    user);
+            }
+
             return false;
+        }
 
         var doAfter = new DoAfterArgs(
             EntityManager,
@@ -419,27 +436,9 @@ public sealed class EquipmentContainerSystem : EntitySystem
             device.SpriteState);
     }
 
-    private bool CanAttachDevice(EntityUid owner, EntityUid user, LockableEquipmentComponent device, BaseContainer container)
+    private bool CanAttachDevice(EntityUid owner, LockableEquipmentComponent device, BaseContainer container)
     {
-        if (!CanAccess(owner, device.Layer, device))
-        {
-            _popup.PopupClient(
-                Loc.GetString("lockable-equipment-blocked"),
-                user,
-                user);
-            return false;
-        }
-
-        if (FindDevice(container) != null)
-        {
-            _popup.PopupClient(
-                Loc.GetString("lockable-equipment-already"),
-                user,
-                user);
-            return false;
-        }
-
-        return true;
+        return CanAccess(owner, device.Layer, device) && FindDevice(container) == null;
     }
 
     private bool TryUseHeldKey(Entity<EquipmentContainerComponent> ent, EntityUid user)

@@ -6,6 +6,7 @@
   components:
   - type: Item
     size: Small
+  - type: Appearance
   - type: LockableEquipment
     layer: lockable_under
     accessPriority: 1
