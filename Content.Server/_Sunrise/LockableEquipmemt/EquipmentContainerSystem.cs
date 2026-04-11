@@ -14,6 +14,9 @@ using Content.Server.Popups;
 
 namespace Content.Server._Sunrise.LockableEquipment;
 
+/// <summary>
+/// Handles installing and removing lockable devices from an entity-owned container.
+/// </summary>
 public sealed class EquipmentContainerSystem : EntitySystem
 {
     [Dependency] private readonly ContainerSystem _container = default!;
@@ -80,42 +83,17 @@ public sealed class EquipmentContainerSystem : EntitySystem
         args.Handled = TryAttachDevice(ent, args.User, args.Used, device, container);
     }
 
+    /// <summary>
+    /// Attempts to remove the currently installed device from the target.
+    /// </summary>
     public void TryRemove(EntityUid target, EntityUid user)
     {
         if (!TryComp(target, out EquipmentContainerComponent? comp))
             return;
 
         var container = _container.EnsureContainer<Container>(target, comp.ContainerId);
-        var device = FindDevice(container);
-
-        if (device == null)
-        {
-            ResetAppearance(target);
+        if (!CanRemove(target, user, container))
             return;
-        }
-
-        if (!TryComp(device.Value, out LockableEquipmentComponent? dev))
-            return;
-
-        if (!CanAccess(target, dev.Layer, dev))
-        {
-            _popup.PopupClient(
-                Loc.GetString("lockable-equipment-blocked"),
-                user,
-                user);
-            return;
-        }
-
-        if (dev.Locked)
-        {
-            var name = MetaData(device.Value).EntityName;
-
-            _popup.PopupClient(
-                Loc.GetString("lockable-equipment-locked", ("name", name)),
-                user,
-                user);
-            return;
-        }
 
         var doAfter = new DoAfterArgs(
             EntityManager,
@@ -135,6 +113,9 @@ public sealed class EquipmentContainerSystem : EntitySystem
         _doAfter.TryStartDoAfter(doAfter);
     }
 
+    /// <summary>
+    /// Attempts to start the attach flow for a device held by the user.
+    /// </summary>
     public bool TryAttachDevice(Entity<EquipmentContainerComponent> ent, EntityUid user, EntityUid deviceUid, LockableEquipmentComponent device, BaseContainer? container = null)
     {
         container ??= _container.EnsureContainer<Container>(ent.Owner, ent.Comp.ContainerId);
@@ -201,8 +182,6 @@ public sealed class EquipmentContainerSystem : EntitySystem
                 if (!_container.Insert(used, container))
                     return;
 
-                UpdateAppearance(ent.Owner, device);
-
                 var name = MetaData(used).EntityName;
                 _popup.PopupClient(
                 Loc.GetString("lockable-equipment-equipped", ("name", name)),
@@ -224,22 +203,11 @@ public sealed class EquipmentContainerSystem : EntitySystem
                 if (!TryComp(device.Value, out LockableEquipmentComponent? dev))
                     return;
 
-                if (!CanAccess(ent.Owner, dev.Layer, dev))
-                {
-                    _popup.PopupClient(
-                        Loc.GetString("lockable-equipment-blocked"),
-                        args.User,
-                        args.User);
-                    return;
-                }
-
-                if (dev.Locked)
+                if (!CanRemove(ent.Owner, args.User, container, quiet: true))
                     return;
 
                 if (!_container.Remove(device.Value, container))
                     return;
-
-                ResetAppearance(ent.Owner, dev);
 
                 if (!_hands.TryPickup(args.User, device.Value, checkActionBlocker: false))
                     _transform.DropNextTo(device.Value, args.User);
@@ -467,15 +435,6 @@ public sealed class EquipmentContainerSystem : EntitySystem
         if (device == null || !TryComp(device.Value, out LockableEquipmentComponent? comp))
             return false;
 
-        if (!CanAccess(ent.Owner, comp.Layer, comp))
-        {
-            _popup.PopupClient(
-                Loc.GetString("lockable-equipment-blocked"),
-                user,
-                user);
-            return true;
-        }
-
         foreach (var hand in _hands.EnumerateHands(user))
         {
             if (!_hands.TryGetHeldItem(user, hand, out var held))
@@ -488,5 +447,44 @@ public sealed class EquipmentContainerSystem : EntitySystem
         }
 
         return false;
+    }
+
+    private bool CanRemove(EntityUid target, EntityUid user, BaseContainer container, bool quiet = false)
+    {
+        var device = FindDevice(container);
+        if (device == null)
+            return false;
+
+        if (!TryComp(device.Value, out LockableEquipmentComponent? dev))
+            return false;
+
+        if (!CanAccess(target, dev.Layer, dev))
+        {
+            if (!quiet)
+            {
+                _popup.PopupClient(
+                    Loc.GetString("lockable-equipment-blocked"),
+                    user,
+                    user);
+            }
+
+            return false;
+        }
+
+        if (dev.Locked)
+        {
+            if (!quiet)
+            {
+                var name = MetaData(device.Value).EntityName;
+                _popup.PopupClient(
+                    Loc.GetString("lockable-equipment-locked", ("name", name)),
+                    user,
+                    user);
+            }
+
+            return false;
+        }
+
+        return true;
     }
 }
