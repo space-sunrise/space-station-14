@@ -7,3 +7,6 @@ ent-BigBox = { ent-BaseBigBox }
     .desc = { ent-BaseBigBox.desc }
 ent-GhostBox = ghost box
     .desc = Beware!
+ent-BigBoxSyndicateBundle = { ent-BaseBigBox }
+    .desc = { ent-BaseBigBox.desc }
+    .suffix = Syndicate, Filled

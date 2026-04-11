@@ -3214,7 +3214,7 @@
   id: SyndicateShuttleBundle
   name: uplink-shuttle-bundle-name
   description: uplink-shuttle-bundle-desc
-  productEntity: CrateNameSyndicateShuttleBundle
+  productEntity: CrateSyndicateShuttleBundle
   icon: { sprite: Structures/Shuttles/thruster.rsi, state: base }
   discountCategory: usualDiscounts
   discountDownTo:
@@ -3228,7 +3228,7 @@
   id: SyndicateFriendshipBundle
   name: uplink-friendship-bundle-name
   description: uplink-friendship-bundle-desc
-  productEntity: CrateNameSyndicateFriendshipBundle
+  productEntity: CrateSyndicateFriendshipBundle
   icon: { sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi, state: exp-320g }
   discountCategory: rareDiscounts
   discountDownTo:
@@ -3242,7 +3242,7 @@
   id: SyndicateBullfrogBundle
   name: uplink-bullfrog-bundle-name
   description: uplink-bullfrog-bundle-desc
-  productEntity: CrateNameSyndicateBullfrogBundle
+  productEntity: CrateSyndicateBullfrogBundle
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/exp_3600.rsi, state: bal-127 }
   discountCategory: veryRareDiscounts
   discountDownTo:
@@ -3256,7 +3256,7 @@
   id: SyndicateLongbowBundle
   name: uplink-longbow-bundle-name
   description: uplink-longbow-bundle-desc
-  productEntity: CrateNameSyndicateLongbowBundle
+  productEntity: CrateSyndicateLongbowBundle
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_127.rsi, state: bal-127 }
   discountCategory: veryRareDiscounts
   discountDownTo:
@@ -3270,7 +3270,7 @@
   id: SyndicateQuadlingBundle
   name: uplink-quadling-bundle-name
   description: uplink-quadling-bundle-desc
-  productEntity: CrateNameSyndicateQuadlingBundle
+  productEntity: CrateSyndicateQuadlingBundle
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_127_4.rsi, state: bal-127 }
   discountCategory: veryRareDiscounts
   discountDownTo:

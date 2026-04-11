@@ -1,6 +1,6 @@
 - type: entity
   parent: CrateSyndicate
-  id: CrateNameSyndicateShuttleBundle
+  id: CrateSyndicateShuttleBundle
   name: shuttle bundle crate
   description: Everything but the shuttle board. It's a shuttle in a crate* (Some assembly required)
   components:
@@ -29,7 +29,7 @@
 
 - type: entity
   parent: CrateSyndicate
-  id: CrateNameSyndicateFriendshipBundle
+  id: CrateSyndicateFriendshipBundle
   name: friendship bundle crate
   description: Friendship in a crate*. (Some assembly required)
   components:
@@ -53,7 +53,7 @@
 
 - type: entity
   parent: CrateSyndicate
-  id: CrateNameSyndicateBullfrogBundle
+  id: CrateSyndicateBullfrogBundle
   name: bullfrog bundle crate
   description: Bullfrog in a crate*. (Some assembly required)
   components:
@@ -77,7 +77,7 @@
 
 - type: entity
   parent: CrateSyndicate
-  id: CrateNameSyndicateLongbowBundle
+  id: CrateSyndicateLongbowBundle
   name: longbow bundle crate
   description: Longbow in a crate*. (Some assembly required)
   components:
@@ -101,7 +101,7 @@
 
 - type: entity
   parent: CrateSyndicate
-  id: CrateNameSyndicateQuadlingBundle
+  id: CrateSyndicateQuadlingBundle
   name: quadling bundle crate
   description: Quadling in a crate*. (Some assembly required)
   components:

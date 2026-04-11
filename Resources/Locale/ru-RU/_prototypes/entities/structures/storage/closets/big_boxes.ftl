@@ -9,3 +9,4 @@ ent-GhostBox = призрачная коробка
     .desc = Остерегайтесь
 ent-BigBoxSyndicateBundle = { ent-BaseBigBox }
     .desc = { ent-BaseBigBox.desc }
+    .suffix = Синдикат, Заполненный
