@@ -115,7 +115,7 @@ public sealed partial class MappingAccessOverlay : Overlay
         var verticalMargin = VerticalMargin * uiScale;
         _occupiedRects.Clear();
 
-        if (ElectronicsOnly)
+        if (ElectronicsOnly && _accessReaderLookupDirty)
             RebuildAccessReaderLookup();
 
         var query = _ent.AllEntityQueryEnumerator<AccessReaderComponent, SpriteComponent, TransformComponent, MetaDataComponent>();

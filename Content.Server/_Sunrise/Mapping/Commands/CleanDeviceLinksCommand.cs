@@ -1,6 +1,8 @@
 using Content.Server.Administration;
 using Content.Server.DeviceLinking.Systems;
 using Content.Shared.Administration;
+using Content.Shared.DeviceLinking;
+using Robust.Server.GameObjects;
 using Robust.Shared.Console;
 using Robust.Shared.Map;
 
@@ -13,7 +15,7 @@ namespace Content.Server._Sunrise.Mapping.Commands;
 public sealed class CleanDeviceLinksCommand : LocalizedEntityCommands
 {
     [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly MapSystem _map = default!;
 
     public override string Command => "cleandevicelinks";
 
@@ -22,7 +24,25 @@ public sealed class CleanDeviceLinksCommand : LocalizedEntityCommands
     /// </summary>
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        MapId mapId;
+        if (!TryParseMapId(shell, args, out var mapId))
+            return;
+
+        if (!CanCleanupDeviceLinksForMap(shell, mapId))
+            return;
+
+        var result = DoCleanupDeviceLinksForMap(mapId);
+        shell.WriteLine(Loc.GetString(
+            "cmd-cleandevicelinks-cleaned",
+            ("mapId", mapId),
+            ("removedSinkEntries", result.RemovedSinkEntries),
+            ("removedLinkPairs", result.RemovedLinkPairs),
+            ("affectedSources", result.AffectedSources)));
+    }
+
+    private bool TryParseMapId(IConsoleShell shell, string[] args, out MapId mapId)
+    {
+        mapId = MapId.Nullspace;
+
         switch (args.Length)
         {
             case 0:
@@ -30,44 +50,46 @@ public sealed class CleanDeviceLinksCommand : LocalizedEntityCommands
                 if (player == null)
                 {
                     shell.WriteError(Loc.GetString("shell-only-players-can-run-this-command"));
-                    return;
+                    return false;
                 }
 
                 if (player.AttachedEntity is not { Valid: true } playerEntity)
                 {
                     shell.WriteError(Loc.GetString("shell-must-be-attached-to-entity"));
-                    return;
+                    return false;
                 }
 
                 mapId = EntityManager.GetComponent<TransformComponent>(playerEntity).MapID;
-                break;
+                return true;
             case 1:
                 if (!int.TryParse(args[0], out var intMapId))
                 {
                     shell.WriteError(Loc.GetString("cmd-parse-failure-mapid", ("arg", args[0])));
-                    return;
+                    return false;
                 }
 
                 mapId = new MapId(intMapId);
-                break;
+                return true;
             default:
                 shell.WriteLine(Help);
-                return;
+                return false;
         }
+    }
 
+    private bool CanCleanupDeviceLinksForMap(IConsoleShell shell, MapId mapId)
+    {
         if (mapId == MapId.Nullspace || !_map.MapExists(mapId))
         {
             shell.WriteError(Loc.GetString("cmd-cleandevicelinks-map-missing", ("mapId", mapId)));
-            return;
+            return false;
         }
 
-        var result = _deviceLink.CleanupLinksForMapSave(mapId);
-        shell.WriteLine(Loc.GetString(
-            "cmd-cleandevicelinks-cleaned",
-            ("mapId", mapId),
-            ("removedSinkEntries", result.RemovedSinkEntries),
-            ("removedLinkPairs", result.RemovedLinkPairs),
-            ("affectedSources", result.AffectedSources)));
+        return true;
+    }
+
+    private DeviceLinkSaveCleanupResult DoCleanupDeviceLinksForMap(MapId mapId)
+    {
+        return _deviceLink.CleanupLinksForMapSave(mapId);
     }
 
     /// <summary>

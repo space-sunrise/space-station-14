@@ -14,6 +14,28 @@ public sealed partial class MappingAccessOverlay
     private readonly StringBuilder _accessBuffer = new();
     private readonly Dictionary<EntityUid, AccessReaderComponent> _accessReaderLookup = new();
     private readonly Dictionary<string, AccessReaderComponent?> _prototypeAccessReaderLookup = new();
+    private bool _accessReaderLookupDirty = true;
+
+    public void MarkAccessReaderLookupDirty()
+    {
+        _accessReaderLookupDirty = true;
+    }
+
+    public void SyncAccessReaderLookup(EntityUid uid, AccessReaderComponent accessReader)
+    {
+        if (!accessReader.Enabled || accessReader.AccessLists.Count == 0)
+        {
+            _accessReaderLookup.Remove(uid);
+            return;
+        }
+
+        _accessReaderLookup[uid] = accessReader;
+    }
+
+    public void RemoveAccessReaderLookup(EntityUid uid)
+    {
+        _accessReaderLookup.Remove(uid);
+    }
 
     private bool TryGetDisplayedAccessReader(
         EntityUid uid,
@@ -55,16 +77,23 @@ public sealed partial class MappingAccessOverlay
             return false;
         }
 
+        var foundReader = false;
+        var selectedUid = EntityUid.Invalid;
+
         foreach (var containedUid in container.ContainedEntities)
         {
             if (!_accessReaderLookup.TryGetValue(containedUid, out var containedReader))
                 continue;
 
+            if (foundReader && containedUid.Id >= selectedUid.Id)
+                continue;
+
+            foundReader = true;
+            selectedUid = containedUid;
             electronicsReader = containedReader;
-            return true;
         }
 
-        return false;
+        return foundReader;
     }
 
     private bool TryGetPrototypeElectronicsAccessReader(
@@ -135,6 +164,8 @@ public sealed partial class MappingAccessOverlay
 
             _accessReaderLookup[uid] = accessReader;
         }
+
+        _accessReaderLookupDirty = false;
     }
 
     private void BuildAccessLines(AccessReaderComponent reader, string orText)
@@ -197,6 +228,6 @@ public sealed partial class MappingAccessOverlay
 
     private static int CompareAccessText(string? left, string? right)
     {
-        return string.Compare(left, right, StringComparison.CurrentCultureIgnoreCase);
+        return string.Compare(left, right, StringComparison.InvariantCultureIgnoreCase);
     }
 }

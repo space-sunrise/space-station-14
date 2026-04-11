@@ -27,6 +27,7 @@ public sealed partial class MappingAccessWidget : UIWidget
     public MappingAccessWidget()
     {
         RobustXamlLoader.Load(this);
+        IoCManager.InjectDependencies(this);
         Visible = false;
 
         TitleLabel.FontColorOverride = Color.Aquamarine;

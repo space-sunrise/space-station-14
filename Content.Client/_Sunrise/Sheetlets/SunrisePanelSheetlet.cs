@@ -12,10 +12,7 @@ public sealed class SunrisePanelSheetlet<T> : Sheetlet<T> where T : PalettedStyl
 {
     public override StyleRule[] GetRules(T sheet, object config)
     {
-        var mappingWidgetPanel = new StyleBoxFlat
-        {
-            BackgroundColor = new Color(16, 20, 28).WithAlpha(0.8f),
-        };
+        var mappingWidgetPanel = new StyleBoxFlat(sheet.SecondaryPalette.BackgroundDark.WithAlpha(0.8f));
 
         return
         [

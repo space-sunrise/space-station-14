@@ -1,7 +1,5 @@
-#pragma warning disable IDE0130
-
+using Content.Server._Sunrise.Decals;
 using Content.Server.Administration;
-using Content.Server.Decals;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 using Robust.Shared.Map.Components;
@@ -24,7 +22,18 @@ public sealed class RemoveWalledDecalsCommand : LocalizedEntityCommands
     /// </summary>
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        EntityUid? gridId;
+        if (!TryParseGridArg(shell, args, out var gridId))
+            return;
+
+        if (!CanRemoveWalledDecals(shell, gridId, out var grid))
+            return;
+
+        DoRemoveWalledDecals(shell, grid);
+    }
+
+    private bool TryParseGridArg(IConsoleShell shell, string[] args, out EntityUid? gridId)
+    {
+        gridId = null;
 
         switch (args.Length)
         {
@@ -33,50 +42,64 @@ public sealed class RemoveWalledDecalsCommand : LocalizedEntityCommands
                 if (player == null)
                 {
                     shell.WriteError(Loc.GetString("shell-only-players-can-run-this-command"));
-                    return;
+                    return false;
                 }
 
                 if (player.AttachedEntity is not { Valid: true } playerEntity)
                 {
                     shell.WriteError(Loc.GetString("shell-must-be-attached-to-entity"));
-                    return;
+                    return false;
                 }
 
                 gridId = EntityManager.GetComponent<TransformComponent>(playerEntity).GridUid;
-                break;
+                return true;
             case 1:
                 if (!NetEntity.TryParse(args[0], out var idNet))
                 {
                     shell.WriteError(Loc.GetString("cmd-parse-failure-uid", ("arg", args[0])));
-                    return;
+                    return false;
                 }
 
                 if (!EntityManager.TryGetEntity(idNet, out var id))
                 {
                     shell.WriteError(Loc.GetString("cmd-parse-failure-entity-exist", ("arg", args[0])));
-                    return;
+                    return false;
                 }
 
                 gridId = id;
-                break;
+                return true;
             default:
                 shell.WriteLine(Help);
-                return;
+                return false;
         }
+    }
+
+    private bool CanRemoveWalledDecals(
+        IConsoleShell shell,
+        EntityUid? gridId,
+        out Entity<MapGridComponent> grid)
+    {
+        grid = default;
 
         if (!EntityManager.EntityExists(gridId))
         {
-            shell.WriteError(Loc.GetString("cmd-removewalleddecals-missing-grid-entity", ("grid", "null")));
-            return;
+            shell.WriteError(Loc.GetString("cmd-removewalleddecals-missing-grid-entity"));
+            return false;
         }
 
-        if (!EntityManager.TryGetComponent(gridId, out MapGridComponent? grid))
+        if (!EntityManager.TryGetComponent(gridId, out MapGridComponent? gridComponent))
         {
-            shell.WriteError(Loc.GetString("cmd-removewalleddecals-no-grid"));
-            return;
+            shell.WriteError(Loc.GetString("cmd-removewalleddecals-no-grid", ("grid", gridId?.ToString() ?? "null")));
+            return false;
         }
 
-        var removed = EntityManager.System<WalledDecalRemovalSystem>().RemoveWalledDecals(gridId.Value, grid);
+        grid = (gridId!.Value, gridComponent);
+        return true;
+    }
+
+    private void DoRemoveWalledDecals(IConsoleShell shell, Entity<MapGridComponent> grid)
+    {
+        var removed = EntityManager.System<WalledDecalRemovalSystem>().RemoveWalledDecals(grid);
         shell.WriteLine(Loc.GetString("cmd-removewalleddecals-removed", ("count", removed)));
     }
 }

@@ -1,7 +1,7 @@
-using System;
 using Content.Client.Administration.Managers;
 using Robust.Client.GameObjects;
 using Content.Client.UserInterface.Systems.Sandbox;
+using Content.Shared.Access.Components;
 using Content.Shared.Administration;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
@@ -59,8 +59,14 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
 
         _admin.AdminStatusUpdated += OnAdminStatusUpdated;
         _overlay = new(EntityManager, _entityLookup, _spriteSystem, _prototypeManager, Loc, _resourceCache, _uiManager);
+        _overlay.MarkAccessReaderLookupDirty();
         _overlay.BodyFilter = BodyFilter;
         _overlay.ElectronicsOnly = ElectronicsOnly;
+
+        SubscribeLocalEvent<AccessReaderComponent, ComponentStartup>(OnAccessReaderStartup);
+        SubscribeLocalEvent<AccessReaderComponent, ComponentShutdown>(OnAccessReaderShutdown);
+        SubscribeLocalEvent<AccessReaderComponent, ComponentRemove>(OnAccessReaderRemove);
+        SubscribeLocalEvent<AccessReaderComponent, AccessReaderConfigurationChangedEvent>(OnAccessReaderChanged);
         UpdateUi();
     }
 
@@ -136,7 +142,31 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
 
         ElectronicsOnly = electronicsOnly;
         _overlay.ElectronicsOnly = electronicsOnly;
+
+        if (electronicsOnly)
+            _overlay.MarkAccessReaderLookupDirty();
+
         StateChanged?.Invoke();
+    }
+
+    private void OnAccessReaderStartup(Entity<AccessReaderComponent> ent, ref ComponentStartup args)
+    {
+        _overlay.SyncAccessReaderLookup(ent.Owner, ent.Comp);
+    }
+
+    private void OnAccessReaderShutdown(Entity<AccessReaderComponent> ent, ref ComponentShutdown args)
+    {
+        _overlay.RemoveAccessReaderLookup(ent.Owner);
+    }
+
+    private void OnAccessReaderRemove(Entity<AccessReaderComponent> ent, ref ComponentRemove args)
+    {
+        _overlay.RemoveAccessReaderLookup(ent.Owner);
+    }
+
+    private void OnAccessReaderChanged(Entity<AccessReaderComponent> ent, ref AccessReaderConfigurationChangedEvent args)
+    {
+        _overlay.SyncAccessReaderLookup(ent.Owner, ent.Comp);
     }
 
     private void SetEnabled(bool enabled)

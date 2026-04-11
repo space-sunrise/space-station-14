@@ -1,13 +1,11 @@
-#pragma warning disable IDE0130
-
-using System.Numerics;
-using Content.Server.Construction.Commands;
+using Content.Server._Sunrise.Mapping;
+using Content.Server.Decals;
 using Content.Shared.Decals;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
 
-namespace Content.Server.Decals;
+namespace Content.Server._Sunrise.Decals;
 
 /// <summary>
 /// Removes decals that now overlap wall tiles on a grid.
@@ -43,16 +41,7 @@ public sealed class WalledDecalRemovalSystem : EntitySystem
 
         while (childEnumerator.MoveNext(out var child))
         {
-            if (!Exists(child) ||
-                !_tag.HasTag(child, TileWallsCommand.WallTag) ||
-                _tag.HasTag(child, TileWallsCommand.ForceNoTileWallsTag) ||
-                _tag.HasTag(child, TileWallsCommand.DiagonalTag))
-            {
-                continue;
-            }
-
-            var childTransform = Transform(child);
-            if (!childTransform.Anchored)
+            if (!TileWallProcessingHelper.IsEligibleWall(EntityManager, _tag, child, out var childTransform))
                 continue;
 
             wallTiles.Add(_map.GetTileRef(grid.Owner, grid.Comp, childTransform.Coordinates).GridIndices);

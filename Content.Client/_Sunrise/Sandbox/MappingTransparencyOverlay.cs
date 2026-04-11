@@ -11,7 +11,9 @@ namespace Content.Client._Sunrise.Sandbox;
 public sealed class MappingTransparencyOverlay : Overlay
 {
     [Dependency] private readonly IEntityManager _ent = default!;
+    [Dependency] private readonly IEyeManager _eye = default!;
 
+    private readonly EntityLookupSystem _entityLookup;
     private readonly SpriteSystem _sprite;
 
     private readonly List<(Entity<SpriteComponent> ent, float BaseAlpha)> _cachedBaseAlphas = new(256);
@@ -30,6 +32,7 @@ public sealed class MappingTransparencyOverlay : Overlay
     public MappingTransparencyOverlay()
     {
         IoCManager.InjectDependencies(this);
+        _entityLookup = _ent.System<EntityLookupSystem>();
         _sprite = _ent.System<SpriteSystem>();
     }
 
@@ -58,10 +61,15 @@ public sealed class MappingTransparencyOverlay : Overlay
 
     private void RefreshTransparency()
     {
+        var currentMapId = _eye.CurrentEye.Position.MapId;
+        var worldViewport = _eye.GetWorldViewport();
         var query = _ent.AllEntityQueryEnumerator<SpriteComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var sprite, out var xform))
         {
-            if (!xform.Anchored)
+            if (!xform.Anchored || xform.MapID != currentMapId)
+                continue;
+
+            if (!_entityLookup.GetWorldAABB(uid, xform).Intersects(worldViewport))
                 continue;
 
             ApplyTransparency((uid, sprite));

@@ -1,7 +1,7 @@
+using Content.Server._Sunrise.Decals;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Construction.Commands;
-using Content.Server.Decals;
 using Content.Server.DeviceLinking.Systems;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Maps;
@@ -194,16 +194,7 @@ public sealed class MappingAutoSaveSystem : EntitySystem
 
         while (childEnumerator.MoveNext(out var child))
         {
-            if (!Exists(child) ||
-                !_tag.HasTag(child, TileWallsCommand.WallTag) ||
-                _tag.HasTag(child, TileWallsCommand.ForceNoTileWallsTag) ||
-                _tag.HasTag(child, TileWallsCommand.DiagonalTag))
-            {
-                continue;
-            }
-
-            var childTransform = Transform(child);
-            if (!childTransform.Anchored)
+            if (!TileWallProcessingHelper.IsEligibleWall(EntityManager, _tag, child, out var childTransform))
                 continue;
 
             var tile = _map.GetTileRef(grid.Owner, grid.Comp, childTransform.Coordinates);
