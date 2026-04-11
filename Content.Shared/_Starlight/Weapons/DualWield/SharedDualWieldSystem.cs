@@ -77,7 +77,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
             if (!_hands.TryGetHand(entity, handName, out var hand))
                 continue;
 
-            switch (hand.Location)
+            switch (hand.Value.Location)
             {
                 case HandLocation.Left:
                     leftGun = held;
@@ -133,11 +133,11 @@ public sealed class SharedDualWieldSystem : EntitySystem
     /// </summary>
     private void OnGunRefreshModifiers(Entity<CanDualWieldComponent> ent, ref GunRefreshModifiersEvent args)
     {
-        var holder = Transform(ent).ParentUid;
-        if (holder == EntityUid.Invalid)
+        var gunHolder = Transform(ent).ParentUid;
+        if (gunHolder == EntityUid.Invalid)
             return;
 
-        if (!TryComp<DualWieldComponent>(holder, out var dualWield) || !dualWield.Active)
+        if (!TryComp<DualWieldComponent>(gunHolder, out var dualWield) || !dualWield.Active)
             return;
 
         if (dualWield.LeftGun != ent.Owner && dualWield.RightGun != ent.Owner)
