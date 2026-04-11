@@ -22,8 +22,8 @@ public sealed partial class CanDualWieldComponent : Component
     public float DualWieldDamagePenalty = 0.35f;
 
     /// <summary>
-    ///     Fraction of the base fire rate removed while dual-wielding.
-    ///     <c>0f</c> keeps the base fire rate, while <c>1f</c> would remove it entirely.
+    ///     Fraction subtracted from the dual-wield fire-rate multiplier as <c>1f - penalty</c>.
+    ///     <c>0f</c> keeps the base fire rate, while <c>1f</c> would reduce it to zero.
     /// </summary>
     [DataField, AutoNetworkedField]
     public float DualWieldFireRatePenalty = 0f;
