@@ -28,7 +28,8 @@ public sealed partial class DualWieldComponent : Component
     public EntityUid? RightGun;
 
     /// <summary>
-    ///     Legacy flag retained for network compatibility.
+    ///     Legacy flag from the older alternating-shot implementation.
+    ///     Kept for network compatibility so existing serialized state remains valid.
     /// </summary>
     [AutoNetworkedField]
     public bool NextIsLeft = true;
