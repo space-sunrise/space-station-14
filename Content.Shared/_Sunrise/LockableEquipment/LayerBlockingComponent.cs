@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Robust.Shared.GameStates;
 
 
 namespace Content.Shared._Sunrise.LockableEquipment;
@@ -8,7 +7,7 @@ namespace Content.Shared._Sunrise.LockableEquipment;
 /// Component that defines what layers this entity blocks when worn/equipped,
 /// and the priority level of access to those layers.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent]
 public sealed partial class LayerBlockingComponent : Component
 {
     /// <summary>

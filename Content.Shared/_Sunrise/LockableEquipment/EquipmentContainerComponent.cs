@@ -2,12 +2,17 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Serialization.Manager.Attributes;
 using Robust.Shared.ViewVariables;
 
-namespace Content.Shared._Sunrise.LockableEquipment
+namespace Content.Shared._Sunrise.LockableEquipment;
+
+/// <summary>
+/// Stores the internal container used for installed lockable devices.
+/// </summary>
+[RegisterComponent]
+public sealed partial class EquipmentContainerComponent : Component
 {
-    [RegisterComponent]
-    public sealed partial class EquipmentContainerComponent : Component
-    {
-        [DataField]
-        public string ContainerId = "locked-equipment";
-    }
+    /// <summary>
+    /// Container identifier holding the currently installed device.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public string ContainerId = "locked-equipment";
 }

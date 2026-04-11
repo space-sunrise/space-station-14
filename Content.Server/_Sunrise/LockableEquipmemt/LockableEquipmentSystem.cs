@@ -6,7 +6,6 @@ using Content.Shared.Interaction;
 using Content.Shared.Stacks;
 
 using Robust.Shared.GameObjects;
-using Robust.Shared.GameStates;
 
 namespace Content.Server._Sunrise.LockableEquipment
 {
@@ -16,11 +15,11 @@ namespace Content.Server._Sunrise.LockableEquipment
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedStackSystem _stack = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+        [Dependency] private readonly LayerAccessSystem _layerAccess = default!;
 
         public override void Initialize()
         {
             SubscribeLocalEvent<LockableEquipmentComponent, InteractUsingEvent>(OnInteractUsing);
-            SubscribeLocalEvent<LockableEquipmentComponent, ComponentGetState>(OnGetState);
             SubscribeLocalEvent<LockableEquipmentComponent, ComponentStartup>(OnStartup);
             SubscribeLocalEvent<LockableEquipmentComponent, LockableEquipmentBreakDoAfterEvent>(OnBreakDoAfter);
         }
@@ -28,18 +27,6 @@ namespace Content.Server._Sunrise.LockableEquipment
         private void OnStartup(Entity<LockableEquipmentComponent> ent, ref ComponentStartup args)
         {
             UpdateIconState(ent.Owner, ent.Comp);
-        }
-
-        private void OnGetState(EntityUid uid, LockableEquipmentComponent component, ref ComponentGetState args)
-        {
-            args.State = new LockableEquipmentComponentState(
-                component.Locked,
-                component.Broken,
-                component.LockId,
-                component.Layer,
-                component.RsiPath,
-                component.SpriteState
-            );
         }
 
         private void OnInteractUsing(Entity<LockableEquipmentComponent> ent, ref InteractUsingEvent args)
@@ -87,6 +74,9 @@ namespace Content.Server._Sunrise.LockableEquipment
 
             if (!TryComp<LockableEquipmentComponent>(device, out var lockComp))
                 return false;
+
+            if (!EnsureAccessible(device, user, lockComp))
+                return true;
 
             var keyName = MetaData(keyUid).EntityName;
             var name = MetaData(device).EntityName;
@@ -145,12 +135,15 @@ namespace Content.Server._Sunrise.LockableEquipment
         /// <summary>
         /// Starts a delayed forced-open action using a matching tool.
         /// </summary>
-        public bool TryStartBreakDoAfter(EntityUid device, EntityUid tool, EntityUid user)
+        public bool TryStartBreakDoAfter(EntityUid device, EntityUid tool, EntityUid user, EntityUid? interactionTarget = null)
         {
-            if (!CanBreakWithTool(device, tool))
+            if (!TryComp<LockableEquipmentComponent>(device, out var comp))
                 return false;
 
-            if (!TryComp<LockableEquipmentComponent>(device, out var comp))
+            if (!EnsureAccessible(device, user, comp))
+                return true;
+
+            if (!CanBreakWithTool(device, tool, comp))
                 return false;
 
             if (comp.Broken || !comp.Locked)
@@ -162,7 +155,7 @@ namespace Content.Server._Sunrise.LockableEquipment
                 1.5f,
                 new LockableEquipmentBreakDoAfterEvent(),
                 device,
-                target: device,
+                target: interactionTarget ?? device,
                 used: tool)
             {
                 BreakOnMove = true,
@@ -182,6 +175,9 @@ namespace Content.Server._Sunrise.LockableEquipment
         {
             if (!TryComp<LockableEquipmentComponent>(device, out var comp))
                 return false;
+
+            if (!EnsureAccessible(device, user, comp))
+                return true;
 
             if (!CanBreakWithTool(device, tool, comp))
                 return false;
@@ -251,6 +247,9 @@ namespace Content.Server._Sunrise.LockableEquipment
             if (!TryComp<LockableEquipmentComponent>(device, out var comp))
                 return false;
 
+            if (!EnsureAccessible(device, user, comp))
+                return true;
+
             if (!CanRepairWithMaterial(device, material, comp))
                 return false;
 
@@ -280,9 +279,6 @@ namespace Content.Server._Sunrise.LockableEquipment
         public bool CanBreakWithTool(EntityUid device, EntityUid tool, LockableEquipmentComponent? comp = null)
         {
             if (!Resolve(device, ref comp, false))
-                return false;
-
-            if (comp.Mode == LockableEquipmentComponent.BreakMode.None)
                 return false;
 
             return TryComp<TagComponent>(tool, out var tag) && tag.Tags.Contains(comp.RequiredToolTag);
@@ -334,6 +330,18 @@ namespace Content.Server._Sunrise.LockableEquipment
 
             _appearance.SetData(uid, EquipmentVisuals.IconState, state, appearance);
             Dirty(uid, appearance);
+        }
+
+        private bool EnsureAccessible(EntityUid device, EntityUid user, LockableEquipmentComponent comp)
+        {
+            if (_layerAccess.IsLayerAccessible(device, comp.Layer, comp))
+                return true;
+
+            _popup.PopupEntity(
+                Loc.GetString("lockable-equipment-blocked"),
+                user,
+                user);
+            return false;
         }
     }
 }

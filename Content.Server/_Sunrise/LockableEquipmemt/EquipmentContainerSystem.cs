@@ -68,7 +68,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
 
             if (_lockable.CanBreakWithTool(installedDevice.Value, args.Used))
             {
-                args.Handled = _lockable.TryStartBreakDoAfter(installedDevice.Value, args.Used, args.User);
+                args.Handled = _lockable.TryStartBreakDoAfter(installedDevice.Value, args.Used, args.User, ent.Owner);
                 return;
             }
         }
@@ -267,8 +267,6 @@ public sealed class EquipmentContainerSystem : EntitySystem
                 if (HasComp<KeyComponent>(held.Value))
                 {
                     var user = args.User;
-                    var targetDevice = device.Value;
-                    var key = held.Value;
 
                     args.Verbs.Add(new InteractionVerb
                     {
@@ -276,15 +274,13 @@ public sealed class EquipmentContainerSystem : EntitySystem
                             ? Loc.GetString("lockable-equipment-verb-unlock", ("name", name))
                             : Loc.GetString("lockable-equipment-verb-lock", ("name", name)),
                         Priority = 200,
-                        Act = () => _lockable.TryUseKey(targetDevice, key, user)
+                        Act = () => TryUseHeldKey(ent, user)
                     });
                 }
 
                 if (comp.Locked && _lockable.CanBreakWithTool(device.Value, held.Value))
                 {
                     var user = args.User;
-                    var targetDevice = device.Value;
-                    var tool = held.Value;
                     var breakText = GetBreakVerbText(name, comp.Mode);
 
                     if (breakText != null)
@@ -293,7 +289,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
                         {
                             Text = breakText,
                             Priority = 150,
-                            Act = () => _lockable.TryStartBreakDoAfter(targetDevice, tool, user)
+                            Act = () => TryBreakWithHeldTool(ent, user)
                         });
                     }
                 }
@@ -392,6 +388,9 @@ public sealed class EquipmentContainerSystem : EntitySystem
     {
         return mode switch
         {
+            LockableEquipmentComponent.BreakMode.None =>
+                Loc.GetString("lockable-equipment-verb-force-open", ("name", name)),
+
             LockableEquipmentComponent.BreakMode.ForceOpen =>
                 Loc.GetString("lockable-equipment-verb-force-open", ("name", name)),
 
@@ -435,5 +434,54 @@ public sealed class EquipmentContainerSystem : EntitySystem
         }
 
         return true;
+    }
+
+    private bool TryUseHeldKey(Entity<EquipmentContainerComponent> ent, EntityUid user)
+    {
+        var device = GetEquipment(ent.Owner, ent.Comp);
+        if (device == null)
+            return false;
+
+        foreach (var hand in _hands.EnumerateHands(user))
+        {
+            if (!_hands.TryGetHeldItem(user, hand, out var held))
+                continue;
+
+            if (!HasComp<KeyComponent>(held.Value))
+                continue;
+
+            return _lockable.TryUseKey(device.Value, held.Value, user);
+        }
+
+        return false;
+    }
+
+    private bool TryBreakWithHeldTool(Entity<EquipmentContainerComponent> ent, EntityUid user)
+    {
+        var device = GetEquipment(ent.Owner, ent.Comp);
+        if (device == null || !TryComp(device.Value, out LockableEquipmentComponent? comp))
+            return false;
+
+        if (!CanAccess(ent.Owner, comp.Layer, comp))
+        {
+            _popup.PopupClient(
+                Loc.GetString("lockable-equipment-blocked"),
+                user,
+                user);
+            return true;
+        }
+
+        foreach (var hand in _hands.EnumerateHands(user))
+        {
+            if (!_hands.TryGetHeldItem(user, hand, out var held))
+                continue;
+
+            if (!_lockable.CanBreakWithTool(device.Value, held.Value, comp))
+                continue;
+
+            return _lockable.TryStartBreakDoAfter(device.Value, held.Value, user, ent.Owner);
+        }
+
+        return false;
     }
 }
