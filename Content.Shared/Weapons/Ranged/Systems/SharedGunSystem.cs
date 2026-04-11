@@ -354,9 +354,6 @@ public abstract partial class SharedGunSystem : EntitySystem
             return (shootCoordinates, shootCoordinates);
 
         var lateral = new Vector2(-direction.Y, direction.X);
-        if (lateral == Vector2.Zero)
-            return (shootCoordinates, shootCoordinates);
-
         lateral = Vector2.Normalize(lateral) * DualWieldTargetSeparation;
         var mapUid = MapManager.GetMapEntityId(targetMap.MapId);
 

@@ -3,7 +3,6 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Alert;
 using Content.Shared.Popups;
-using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.GameStates;
@@ -33,7 +32,6 @@ public sealed class SharedDualWieldSystem : EntitySystem
         SubscribeLocalEvent<HandsComponent, DidEquipHandEvent>(OnHandEquipped);
         SubscribeLocalEvent<HandsComponent, DidUnequipHandEvent>(OnHandUnequipped);
         SubscribeLocalEvent<CanDualWieldComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers);
-        SubscribeLocalEvent<CanDualWieldComponent, GunShotEvent>(OnGunShot);
     }
 
     private void OnHandEquipped(EntityUid uid, HandsComponent component, DidEquipHandEvent args)
@@ -156,27 +154,5 @@ public sealed class SharedDualWieldSystem : EntitySystem
         args.AngleIncrease *= (1f + ent.Comp.DualWieldInaccuracyPenalty);
         args.FireRate *= (1f - ent.Comp.DualWieldFireRatePenalty);
         args.CameraRecoilScalar *= (1f + ent.Comp.DualWieldRecoilPenalty);
-    }
-
-    private void OnGunShot(Entity<CanDualWieldComponent> ent, ref GunShotEvent args)
-    {
-        var wielder = Transform(ent).ParentUid;
-        if (wielder == EntityUid.Invalid)
-            return;
-
-        if (!TryComp<DualWieldComponent>(wielder, out var dualWield) || !dualWield.Active)
-            return;
-
-        if (dualWield.LeftGun != ent.Owner && dualWield.RightGun != ent.Owner)
-            return;
-
-        var damageMultiplier = 1f - ent.Comp.DualWieldDamagePenalty;
-        foreach (var (ammoUid, _) in args.Ammo)
-        {
-            if (ammoUid is not { } uid || !TryComp<ProjectileComponent>(uid, out var projectile))
-                continue;
-
-            projectile.Damage *= damageMultiplier;
-        }
     }
 }
