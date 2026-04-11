@@ -94,10 +94,10 @@ public sealed class WeaponTests : InteractionTest
 
         Assert.Multiple(() =>
         {
-            var leftGun = Comp<GunComponent>(leftGunNet);
-            var rightGun = Comp<GunComponent>(rightGunNet);
-            var leftDualWield = Comp<CanDualWieldComponent>(leftGunNet);
-            var rightDualWield = Comp<CanDualWieldComponent>(rightGunNet);
+            var leftGun = SEntMan.GetComponent<GunComponent>(leftGunUid);
+            var rightGun = SEntMan.GetComponent<GunComponent>(rightGunUid);
+            var leftDualWield = SEntMan.GetComponent<CanDualWieldComponent>(leftGunUid);
+            var rightDualWield = SEntMan.GetComponent<CanDualWieldComponent>(rightGunUid);
 
             var expectedLeftFireRate = leftDualWield.DualWieldMaxFireRate > 0f
                 ? MathF.Min(leftGun.FireRate * leftDualWield.DualWieldFireRateMultiplier, leftDualWield.DualWieldMaxFireRate)
@@ -116,6 +116,10 @@ public sealed class WeaponTests : InteractionTest
         var secondGunUid = dualWield.NextIsLeft ? rightGunUid : leftGunUid;
         var firstGunNet = dualWield.NextIsLeft ? leftGunNet : rightGunNet;
         var secondGunNet = dualWield.NextIsLeft ? rightGunNet : leftGunNet;
+        var expectedFirstAmmoAfterFirstShot = (firstGunUid == leftGunUid ? leftAmmo : rightAmmo) - 1;
+        var expectedSecondAmmoAfterFirstShot = secondGunUid == leftGunUid ? leftAmmo : rightAmmo;
+        var expectedFirstAmmoAfterSecondShot = (firstGunUid == leftGunUid ? leftAmmo : rightAmmo) - 1;
+        var expectedSecondAmmoAfterSecondShot = (secondGunUid == leftGunUid ? leftAmmo : rightAmmo) - 1;
 
         await SetCombatMode(true);
 
@@ -123,28 +127,28 @@ public sealed class WeaponTests : InteractionTest
 
         Assert.Multiple(() =>
         {
-            Assert.That(SGun.GetAmmoCount(firstGunUid), Is.EqualTo((firstGunUid == leftGunUid ? leftAmmo : rightAmmo) - 1));
-            Assert.That(SGun.GetAmmoCount(secondGunUid), Is.EqualTo(secondGunUid == leftGunUid ? leftAmmo : rightAmmo));
-            Assert.That(Comp<GunComponent>(firstGunNet).ShotCounter, Is.EqualTo(1));
-            Assert.That(Comp<GunComponent>(secondGunNet).ShotCounter, Is.EqualTo(0));
+            Assert.That(SGun.GetAmmoCount(firstGunUid), Is.EqualTo(expectedFirstAmmoAfterFirstShot));
+            Assert.That(SGun.GetAmmoCount(secondGunUid), Is.EqualTo(expectedSecondAmmoAfterFirstShot));
+            Assert.That(SEntMan.GetComponent<GunComponent>(firstGunUid).ShotCounter, Is.EqualTo(1));
+            Assert.That(SEntMan.GetComponent<GunComponent>(secondGunUid).ShotCounter, Is.EqualTo(0));
         });
 
         await StopShootingFromClient(firstGunNet);
 
         Assert.Multiple(() =>
         {
-            Assert.That(Comp<GunComponent>(leftGunNet).ShotCounter, Is.EqualTo(0));
-            Assert.That(Comp<GunComponent>(rightGunNet).ShotCounter, Is.EqualTo(0));
+            Assert.That(SEntMan.GetComponent<GunComponent>(leftGunUid).ShotCounter, Is.EqualTo(0));
+            Assert.That(SEntMan.GetComponent<GunComponent>(rightGunUid).ShotCounter, Is.EqualTo(0));
         });
 
         await ShootFromClient(secondGunNet);
 
         Assert.Multiple(() =>
         {
-            Assert.That(SGun.GetAmmoCount(firstGunUid), Is.EqualTo((firstGunUid == leftGunUid ? leftAmmo : rightAmmo) - 1));
-            Assert.That(SGun.GetAmmoCount(secondGunUid), Is.EqualTo((secondGunUid == leftGunUid ? leftAmmo : rightAmmo) - 1));
-            Assert.That(Comp<GunComponent>(firstGunNet).ShotCounter, Is.EqualTo(0));
-            Assert.That(Comp<GunComponent>(secondGunNet).ShotCounter, Is.EqualTo(1));
+            Assert.That(SGun.GetAmmoCount(firstGunUid), Is.EqualTo(expectedFirstAmmoAfterSecondShot));
+            Assert.That(SGun.GetAmmoCount(secondGunUid), Is.EqualTo(expectedSecondAmmoAfterSecondShot));
+            Assert.That(SEntMan.GetComponent<GunComponent>(firstGunUid).ShotCounter, Is.EqualTo(0));
+            Assert.That(SEntMan.GetComponent<GunComponent>(secondGunUid).ShotCounter, Is.EqualTo(1));
         });
     }
 
