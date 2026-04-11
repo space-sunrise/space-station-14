@@ -7,11 +7,17 @@ using Robust.Client.UserInterface.Controls;
 
 namespace Content.Client._Sunrise.UserInterface.Systems.Sandbox;
 
+/// <summary>
+/// Positions mapping helper widgets so they remain visible without covering the chat window.
+/// </summary>
 public static class MappingOverlayWidgetPlacementHelper
 {
     private const float WidgetMargin = 10f;
     private const float ChatMargin = 8f;
 
+    /// <summary>
+    /// Repositions a mapping helper widget within the active gameplay viewport.
+    /// </summary>
     public static void UpdateWidgetPlacement(InGameScreen screen, Control widget)
     {
         if (!widget.Visible)

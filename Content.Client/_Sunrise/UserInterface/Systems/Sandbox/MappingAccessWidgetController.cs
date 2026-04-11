@@ -8,12 +8,18 @@ using Robust.Client.UserInterface.Controllers;
 
 namespace Content.Client._Sunrise.UserInterface.Systems.Sandbox;
 
+/// <summary>
+/// Owns the on-screen mapping access widget and synchronizes it with the overlay system.
+/// </summary>
 public sealed class MappingAccessWidgetController : UIController, IOnSystemChanged<MappingAccessOverlaySystem>
 {
     private MappingAccessOverlaySystem? _mappingAccess;
     private InGameScreen? _screen;
     private MappingAccessWidget? _widget;
 
+    /// <summary>
+    /// Hooks the controller into gameplay screen load events.
+    /// </summary>
     public override void Initialize()
     {
         base.Initialize();
@@ -23,6 +29,9 @@ public sealed class MappingAccessWidgetController : UIController, IOnSystemChang
         gameplayStateLoad.OnScreenUnload += OnScreenUnload;
     }
 
+    /// <summary>
+    /// Starts mirroring state from the mapping access overlay system.
+    /// </summary>
     public void OnSystemLoaded(MappingAccessOverlaySystem system)
     {
         _mappingAccess = system;
@@ -30,6 +39,9 @@ public sealed class MappingAccessWidgetController : UIController, IOnSystemChang
         SyncWidgetState();
     }
 
+    /// <summary>
+    /// Stops mirroring state from the mapping access overlay system.
+    /// </summary>
     public void OnSystemUnloaded(MappingAccessOverlaySystem system)
     {
         system.StateChanged -= SyncWidgetState;

@@ -8,12 +8,18 @@ using Robust.Client.UserInterface.Controllers;
 
 namespace Content.Client._Sunrise.UserInterface.Systems.Sandbox;
 
+/// <summary>
+/// Owns the on-screen transparency widget and synchronizes it with the overlay system.
+/// </summary>
 public sealed class MappingTransparencyWidgetController : UIController, IOnSystemChanged<MappingTransparencySystem>
 {
     private MappingTransparencySystem? _mappingTransparency;
     private InGameScreen? _screen;
     private MappingTransparencyWidget? _widget;
 
+    /// <summary>
+    /// Hooks the controller into gameplay screen load events.
+    /// </summary>
     public override void Initialize()
     {
         base.Initialize();
@@ -23,6 +29,9 @@ public sealed class MappingTransparencyWidgetController : UIController, IOnSyste
         gameplayStateLoad.OnScreenUnload += OnScreenUnload;
     }
 
+    /// <summary>
+    /// Starts mirroring state from the mapping transparency system.
+    /// </summary>
     public void OnSystemLoaded(MappingTransparencySystem system)
     {
         _mappingTransparency = system;
@@ -30,6 +39,9 @@ public sealed class MappingTransparencyWidgetController : UIController, IOnSyste
         SyncWidgetState();
     }
 
+    /// <summary>
+    /// Stops mirroring state from the mapping transparency system.
+    /// </summary>
     public void OnSystemUnloaded(MappingTransparencySystem system)
     {
         system.StateChanged -= SyncWidgetState;

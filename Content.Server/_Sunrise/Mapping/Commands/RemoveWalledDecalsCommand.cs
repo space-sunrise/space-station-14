@@ -8,11 +8,20 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Server._Sunrise.Mapping.Commands;
 
+/// <summary>
+/// Removes decals that overlap wall tiles on the selected grid.
+/// </summary>
 [AdminCommand(AdminFlags.Mapping)]
 public sealed class RemoveWalledDecalsCommand : LocalizedEntityCommands
 {
+    /// <summary>
+    /// Gets the console verb used to remove walled decals.
+    /// </summary>
     public override string Command => "removewalleddecals";
 
+    /// <summary>
+    /// Removes walled decals from the player grid or from the grid specified in the command arguments.
+    /// </summary>
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         EntityUid? gridId;

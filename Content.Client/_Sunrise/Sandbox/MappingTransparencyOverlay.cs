@@ -5,6 +5,9 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._Sunrise.Sandbox;
 
+/// <summary>
+/// Applies temporary transparency to anchored sprites while mapper transparency mode is active.
+/// </summary>
 public sealed class MappingTransparencyOverlay : Overlay
 {
     [Dependency] private readonly IEntityManager _ent = default!;
@@ -13,15 +16,26 @@ public sealed class MappingTransparencyOverlay : Overlay
 
     private readonly List<(Entity<SpriteComponent> ent, float BaseAlpha)> _cachedBaseAlphas = new(256);
 
+    /// <inheritdoc />
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
+
+    /// <summary>
+    /// Gets or sets the opacity reduction percentage applied to anchored sprites.
+    /// </summary>
     public int TransparencyPercent { get; set; } = MappingTransparencySystem.DefaultTransparencyPercent;
 
+    /// <summary>
+    /// Creates the overlay and resolves the sprite system it mutates each frame.
+    /// </summary>
     public MappingTransparencyOverlay()
     {
         IoCManager.InjectDependencies(this);
         _sprite = _ent.System<SpriteSystem>();
     }
 
+    /// <summary>
+    /// Restores the original alpha values for any sprites changed by the overlay.
+    /// </summary>
     public void ResetTransparency()
     {
         RestoreCachedTransparency();

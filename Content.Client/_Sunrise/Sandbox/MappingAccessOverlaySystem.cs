@@ -10,6 +10,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.Sandbox;
 
+/// <summary>
+/// Manages the mapping access overlay and exposes its current UI-facing state.
+/// </summary>
 public sealed class MappingAccessOverlaySystem : EntitySystem
 {
     [Dependency] private readonly IClientAdminManager _admin = default!;
@@ -22,13 +25,34 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
 
     private MappingAccessOverlay _overlay = default!;
 
+    /// <summary>
+    /// Raised after the overlay state or filter settings change.
+    /// </summary>
     public event Action? StateChanged;
 
+    /// <summary>
+    /// Indicates whether the overlay is currently active.
+    /// </summary>
     public bool Enabled { get; private set; }
+
+    /// <summary>
+    /// Indicates whether the current user may enable the overlay.
+    /// </summary>
     public bool CanEnable => _admin.HasFlag(AdminFlags.Mapping);
+
+    /// <summary>
+    /// Gets the active body filter used by the overlay.
+    /// </summary>
     public MappingAccessBodyFilter BodyFilter { get; private set; } = MappingAccessBodyFilter.Both;
+
+    /// <summary>
+    /// Indicates whether only contained electronics should provide displayed access.
+    /// </summary>
     public bool ElectronicsOnly { get; private set; }
 
+    /// <summary>
+    /// Creates the overlay instance and starts tracking admin permission changes.
+    /// </summary>
     public override void Initialize()
     {
         base.Initialize();
@@ -40,10 +64,15 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
         UpdateUi();
     }
 
+    /// <summary>
+    /// Removes the overlay and detaches admin-status listeners.
+    /// </summary>
     public override void Shutdown()
     {
         if (_overlayManager.HasOverlay<MappingAccessOverlay>())
             _overlayManager.RemoveOverlay(_overlay);
+
+        _overlay.Dispose();
 
         base.Shutdown();
 
@@ -61,6 +90,9 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Attempts to enable or disable the overlay.
+    /// </summary>
     public bool TrySetEnabled(bool enabled)
     {
         if (Enabled == enabled)
@@ -73,11 +105,17 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Returns whether the requested enabled state is currently allowed.
+    /// </summary>
     public bool CanSetEnabled(bool enabled)
     {
         return !enabled || CanEnable;
     }
 
+    /// <summary>
+    /// Updates which body types receive access labels.
+    /// </summary>
     public void SetBodyFilter(MappingAccessBodyFilter filter)
     {
         if (BodyFilter == filter)
@@ -88,6 +126,9 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
         StateChanged?.Invoke();
     }
 
+    /// <summary>
+    /// Toggles whether displayed access should come only from contained electronics.
+    /// </summary>
     public void SetElectronicsOnly(bool electronicsOnly)
     {
         if (ElectronicsOnly == electronicsOnly)

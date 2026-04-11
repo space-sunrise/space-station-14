@@ -20,8 +20,6 @@
   - type: Fixtures
   - type: CollideOnAnchor
   - type: Appearance
-  - type: PlacementReplacement # Sunrise-Edit
-    key: power_cables
 
 - type: entity
   abstract: true
@@ -59,6 +57,8 @@
     cost: 2
     delay: 0
     fx: EffectRCDConstruct0
+  - type: PlacementReplacement # Sunrise-Edit
+    key: power_cables
 
 - type: entity
   parent: CableBase

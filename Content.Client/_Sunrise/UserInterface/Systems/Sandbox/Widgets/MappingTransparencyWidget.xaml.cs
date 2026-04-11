@@ -6,11 +6,20 @@ using Robust.Shared.Localization;
 
 namespace Content.Client._Sunrise.UserInterface.Systems.Sandbox.Widgets;
 
+/// <summary>
+/// Widget that exposes mapping transparency controls to the user.
+/// </summary>
 [GenerateTypedNameReferences]
 public sealed partial class MappingTransparencyWidget : UIWidget
 {
+    /// <summary>
+    /// Raised after the transparency slider value changes.
+    /// </summary>
     public event Action<int>? TransparencyChanged;
 
+    /// <summary>
+    /// Creates the widget and initializes its slider bounds.
+    /// </summary>
     public MappingTransparencyWidget()
     {
         RobustXamlLoader.Load(this);
@@ -25,6 +34,9 @@ public sealed partial class MappingTransparencyWidget : UIWidget
         SetTransparencyPercent(MappingTransparencySystem.DefaultTransparencyPercent);
     }
 
+    /// <summary>
+    /// Updates the slider value and label without raising widget events.
+    /// </summary>
     public void SetTransparencyPercent(int percent)
     {
         TransparencySlider.SetValueWithoutEvent(percent);

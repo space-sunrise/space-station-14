@@ -4,6 +4,9 @@ namespace Content.Client._Sunrise.Sandbox;
 
 public sealed partial class MappingAccessOverlay
 {
+    /*
+     * Placement helpers that keep labels inside the viewport and avoid overlaps.
+     */
     private bool TryGetBackgroundRect(
         UIBox2 outlineRect,
         Vector2 backgroundSize,

@@ -16,6 +16,9 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Mapping;
 
+/// <summary>
+/// Runs mapper cleanup commands automatically right before maps are serialized.
+/// </summary>
 public sealed class MappingAutoSaveSystem : EntitySystem
 {
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
@@ -33,6 +36,9 @@ public sealed class MappingAutoSaveSystem : EntitySystem
 
     private PendingAutoSaveConsoleContext? _pendingAutoSaveConsoleContext;
 
+    /// <summary>
+    /// Hooks the system into save-command tracking and pre-serialization events.
+    /// </summary>
     public override void Initialize()
     {
         base.Initialize();
@@ -41,6 +47,9 @@ public sealed class MappingAutoSaveSystem : EntitySystem
         SubscribeLocalEvent<BeforeSerializationEvent>(OnBeforeSerialization);
     }
 
+    /// <summary>
+    /// Detaches save-command tracking listeners.
+    /// </summary>
     public override void Shutdown()
     {
         base.Shutdown();
@@ -48,6 +57,9 @@ public sealed class MappingAutoSaveSystem : EntitySystem
         _console.AnyCommandExecuted -= OnAnyCommandExecuted;
     }
 
+    /// <summary>
+    /// Returns a comma-separated list of auto-save commands that will run for the specified map.
+    /// </summary>
     public string? GetMapSaveAutoCommandsSummary(EntityUid mapUid)
     {
         if (!HasComp<MapComponent>(mapUid))

@@ -5,12 +5,25 @@ using Robust.Client.UserInterface.XAML;
 
 namespace Content.Client._Sunrise.UserInterface.Systems.Sandbox.Widgets;
 
+/// <summary>
+/// Widget that exposes mapping access overlay filters to the user.
+/// </summary>
 [GenerateTypedNameReferences]
 public sealed partial class MappingAccessWidget : UIWidget
 {
+    /// <summary>
+    /// Raised after the selected body filter changes.
+    /// </summary>
     public event Action<MappingAccessBodyFilter>? FilterChanged;
+
+    /// <summary>
+    /// Raised after the electronics-only toggle changes.
+    /// </summary>
     public event Action<bool>? ElectronicsOnlyChanged;
 
+    /// <summary>
+    /// Creates the widget and initializes its filter controls.
+    /// </summary>
     public MappingAccessWidget()
     {
         RobustXamlLoader.Load(this);
@@ -26,11 +39,17 @@ public sealed partial class MappingAccessWidget : UIWidget
         BodyFilterOptionButton.SelectId((int) MappingAccessBodyFilter.Both);
     }
 
+    /// <summary>
+    /// Updates the selected body filter without raising widget events.
+    /// </summary>
     public void SetBodyFilter(MappingAccessBodyFilter filter)
     {
         BodyFilterOptionButton.SelectId((int) filter);
     }
 
+    /// <summary>
+    /// Updates the electronics-only toggle without raising widget events.
+    /// </summary>
     public void SetElectronicsOnly(bool electronicsOnly)
     {
         ElectronicsOnlyCheckBox.Pressed = electronicsOnly;

@@ -13,8 +13,14 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.Sandbox;
 
+/// <summary>
+/// Draws screen-space access labels for visible access readers while mapping helpers are enabled.
+/// </summary>
 public sealed partial class MappingAccessOverlay : Overlay
 {
+    /*
+     * Main overlay rendering and shared state.
+     */
     private const string OrLocKey = "mapping-access-overlay-or";
     private const float HorizontalMargin = 6f;
     private const float VerticalMargin = 4f;
@@ -45,11 +51,22 @@ public sealed partial class MappingAccessOverlay : Overlay
     private readonly List<string> _accessLines = new(8);
     private readonly List<UIBox2> _occupiedRects = new(16);
 
+    /// <summary>
+    /// Filters which reader body types receive labels.
+    /// </summary>
     public MappingAccessBodyFilter BodyFilter { get; set; } = MappingAccessBodyFilter.Both;
+
+    /// <summary>
+    /// Restricts labels to access readers provided by contained electronics.
+    /// </summary>
     public bool ElectronicsOnly { get; set; }
 
+    /// <inheritdoc />
     public override OverlaySpace Space => OverlaySpace.ScreenSpace;
 
+    /// <summary>
+    /// Creates a mapping overlay that renders access requirements for visible access readers.
+    /// </summary>
     public MappingAccessOverlay(
         IEntityManager entityManager,
         EntityLookupSystem entityLookup,
@@ -71,7 +88,15 @@ public sealed partial class MappingAccessOverlay : Overlay
         _uiManager = uiManager;
         _font = resourceCache.NotoStack();
         _fontBold = resourceCache.NotoStack(variation: "Bold");
+        _prototypeManager.PrototypesReloaded += OnPrototypesReloaded;
         ZIndex = 210;
+    }
+
+    protected override void DisposeBehavior()
+    {
+        _prototypeManager.PrototypesReloaded -= OnPrototypesReloaded;
+
+        base.DisposeBehavior();
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -117,6 +142,14 @@ public sealed partial class MappingAccessOverlay : Overlay
             if (!aabb.Intersects(in args.WorldAABB))
                 continue;
 
+            var topLeft = args.ViewportControl.WorldToScreen(aabb.TopLeft);
+            var topRight = args.ViewportControl.WorldToScreen(aabb.TopRight);
+            var bottomLeft = args.ViewportControl.WorldToScreen(aabb.BottomLeft);
+            var bottomRight = args.ViewportControl.WorldToScreen(aabb.BottomRight);
+
+            if (!IntersectsViewport(args.Viewport.Size, topLeft, topRight, bottomLeft, bottomRight))
+                continue;
+
             BuildAccessLines(displayedReader, orText);
             if (_accessLines.Count == 0)
                 continue;
@@ -135,13 +168,6 @@ public sealed partial class MappingAccessOverlay : Overlay
             }
 
             var blockHeight = lineHeight * (_accessLines.Count + 1);
-            var topLeft = args.ViewportControl.WorldToScreen(aabb.TopLeft);
-            var topRight = args.ViewportControl.WorldToScreen(aabb.TopRight);
-            var bottomLeft = args.ViewportControl.WorldToScreen(aabb.BottomLeft);
-            var bottomRight = args.ViewportControl.WorldToScreen(aabb.BottomRight);
-
-            if (!IntersectsViewport(args.Viewport.Size, topLeft, topRight, bottomLeft, bottomRight))
-                continue;
 
             var minX = MathF.Min(MathF.Min(topLeft.X, topRight.X), MathF.Min(bottomLeft.X, bottomRight.X));
             var maxX = MathF.Max(MathF.Max(topLeft.X, topRight.X), MathF.Max(bottomLeft.X, bottomRight.X));

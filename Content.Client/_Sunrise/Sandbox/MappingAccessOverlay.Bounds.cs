@@ -8,6 +8,9 @@ namespace Content.Client._Sunrise.Sandbox;
 
 public sealed partial class MappingAccessOverlay
 {
+    /*
+     * World-bounds and body-filter helpers used by the overlay renderer.
+     */
     private Box2 GetWorldBounds(
         EntityUid uid,
         SpriteComponent sprite,

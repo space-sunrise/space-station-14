@@ -9,12 +9,18 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Server.Decals;
 
+/// <summary>
+/// Removes decals that now overlap wall tiles on a grid.
+/// </summary>
 public sealed class WalledDecalRemovalSystem : EntitySystem
 {
     [Dependency] private readonly DecalSystem _decal = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly TagSystem _tag = default!;
 
+    /// <summary>
+    /// Removes decals that overlap wall tiles on the specified grid.
+    /// </summary>
     public int RemoveWalledDecals(EntityUid gridUid, MapGridComponent? grid = null)
     {
         if (!Resolve(gridUid, ref grid))
@@ -23,6 +29,9 @@ public sealed class WalledDecalRemovalSystem : EntitySystem
         return RemoveWalledDecals((gridUid, grid));
     }
 
+    /// <summary>
+    /// Removes decals that overlap wall tiles on the specified grid.
+    /// </summary>
     public int RemoveWalledDecals(Entity<MapGridComponent> grid)
     {
         if (!TryComp<DecalGridComponent>(grid.Owner, out var decalGrid))

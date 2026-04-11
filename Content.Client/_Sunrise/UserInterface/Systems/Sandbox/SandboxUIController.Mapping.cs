@@ -6,6 +6,9 @@ namespace Content.Client.UserInterface.Systems.Sandbox;
 
 public sealed partial class SandboxUIController
 {
+    /*
+     * Mapping-specific sandbox button wiring and visibility helpers.
+     */
     [UISystemDependency] private readonly MappingAccessOverlaySystem _mappingAccess = default!;
     [UISystemDependency] private readonly MappingTransparencySystem _mappingTransparency = default!;
 
@@ -23,6 +26,9 @@ public sealed partial class SandboxUIController
         _window.ToggleMappingTransparencyButton.OnPressed += _ => _sandbox.ToggleMappingTransparency();
     }
 
+    /// <summary>
+    /// Updates the mapping-access toggle button state without triggering its callbacks.
+    /// </summary>
     public void SetToggleMappingAccess(bool value)
     {
         if (_window == null)
@@ -31,6 +37,9 @@ public sealed partial class SandboxUIController
         _window.ToggleMappingAccessButton.Pressed = value;
     }
 
+    /// <summary>
+    /// Shows or hides the mapping-access toggle button.
+    /// </summary>
     public void SetMappingAccessVisible(bool value)
     {
         if (_window == null)
@@ -39,6 +48,9 @@ public sealed partial class SandboxUIController
         _window.ToggleMappingAccessButton.Visible = value;
     }
 
+    /// <summary>
+    /// Updates the mapping-transparency toggle button state without triggering its callbacks.
+    /// </summary>
     public void SetToggleMappingTransparency(bool value)
     {
         if (_window == null)
@@ -47,6 +59,9 @@ public sealed partial class SandboxUIController
         _window.ToggleMappingTransparencyButton.Pressed = value;
     }
 
+    /// <summary>
+    /// Shows or hides the mapping-transparency toggle button.
+    /// </summary>
     public void SetMappingTransparencyVisible(bool value)
     {
         if (_window == null)

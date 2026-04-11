@@ -7,6 +7,9 @@ namespace Content.Client._Sunrise.Sandbox;
 
 public sealed partial class MappingAccessOverlay
 {
+    /*
+     * Access-reader lookup and access text formatting helpers.
+     */
     private readonly List<string> _groupAccessNames = new(8);
     private readonly StringBuilder _accessBuffer = new();
     private readonly Dictionary<EntityUid, AccessReaderComponent> _accessReaderLookup = new();
@@ -113,6 +116,11 @@ public sealed partial class MappingAccessOverlay
         _prototypeAccessReaderLookup[prototypeId] = prototypeReader;
         accessReader = prototypeReader;
         return true;
+    }
+
+    private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
+    {
+        _prototypeAccessReaderLookup.Clear();
     }
 
     private void RebuildAccessReaderLookup()

@@ -7,24 +7,55 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client._Sunrise.Sandbox;
 
+/// <summary>
+/// Controls the mapping transparency overlay and its UI-facing settings.
+/// </summary>
 public sealed class MappingTransparencySystem : EntitySystem
 {
     [Dependency] private readonly IClientAdminManager _admin = default!;
     [Dependency] private readonly IOverlayManager _overlayMan = default!;
     [Dependency] private readonly IUserInterfaceManager _ui = default!;
 
+    /// <summary>
+    /// Lowest transparency percentage accepted by the overlay controls.
+    /// </summary>
     public const int MinTransparencyPercent = 5;
+
+    /// <summary>
+    /// Highest transparency percentage accepted by the overlay controls.
+    /// </summary>
     public const int MaxTransparencyPercent = 90;
+
+    /// <summary>
+    /// Default transparency percentage used when the overlay is first enabled.
+    /// </summary>
     public const int DefaultTransparencyPercent = 70;
 
     private MappingTransparencyOverlay _overlay = default!;
 
+    /// <summary>
+    /// Raised after the overlay state or transparency settings change.
+    /// </summary>
     public event Action? StateChanged;
 
+    /// <summary>
+    /// Indicates whether the overlay is currently active.
+    /// </summary>
     public bool Enabled { get; private set; }
+
+    /// <summary>
+    /// Indicates whether the current user may enable the overlay.
+    /// </summary>
     public bool CanEnable => _admin.HasFlag(AdminFlags.Mapping);
+
+    /// <summary>
+    /// Gets the current transparency percentage applied by the overlay.
+    /// </summary>
     public int TransparencyPercent { get; private set; } = DefaultTransparencyPercent;
 
+    /// <summary>
+    /// Creates the overlay instance and starts tracking admin permission changes.
+    /// </summary>
     public override void Initialize()
     {
         base.Initialize();
@@ -35,6 +66,9 @@ public sealed class MappingTransparencySystem : EntitySystem
         UpdateUi();
     }
 
+    /// <summary>
+    /// Removes the overlay, restores any cached transparency, and detaches listeners.
+    /// </summary>
     public override void Shutdown()
     {
         if (_overlayMan.HasOverlay<MappingTransparencyOverlay>())
@@ -59,6 +93,9 @@ public sealed class MappingTransparencySystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Attempts to enable or disable the overlay.
+    /// </summary>
     public bool TrySetEnabled(bool enabled)
     {
         if (Enabled == enabled)
@@ -71,11 +108,17 @@ public sealed class MappingTransparencySystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Returns whether the requested enabled state is currently allowed.
+    /// </summary>
     public bool CanSetEnabled(bool enabled)
     {
         return !enabled || CanEnable;
     }
 
+    /// <summary>
+    /// Updates the overlay transparency percentage after clamping it to the supported range.
+    /// </summary>
     public void SetTransparencyPercent(int percent)
     {
         var clamped = Math.Clamp(percent, MinTransparencyPercent, MaxTransparencyPercent);

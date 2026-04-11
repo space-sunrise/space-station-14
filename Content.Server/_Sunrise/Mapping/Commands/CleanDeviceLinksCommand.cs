@@ -1,41 +1,50 @@
 using Content.Server.Administration;
 using Content.Server.DeviceLinking.Systems;
 using Content.Shared.Administration;
-using Robust.Server.GameObjects;
 using Robust.Shared.Console;
 using Robust.Shared.Map;
 
 namespace Content.Server._Sunrise.Mapping.Commands;
 
+/// <summary>
+/// Removes invalid saved device-link references from a map before it is exported or fixed manually.
+/// </summary>
 [AdminCommand(AdminFlags.Mapping)]
-public sealed class CleanDeviceLinksCommand : IConsoleCommand
+public sealed class CleanDeviceLinksCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly IEntityManager _ent = default!;
+    [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
 
-    public string Command => "cleandevicelinks";
+    public override string Command => "cleandevicelinks";
 
-    public string Description => "Removes invalid saved device link references from a map.";
-
-    public string Help => $"Usage: {Command} [mapId]";
-
-    public void Execute(IConsoleShell shell, string argStr, string[] args)
+    /// <summary>
+    /// Cleans invalid saved device-link references for the requested map.
+    /// </summary>
+    public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         MapId mapId;
         switch (args.Length)
         {
             case 0:
-                if (shell.Player?.AttachedEntity is not { Valid: true } playerEntity)
+                var player = shell.Player;
+                if (player == null)
                 {
-                    shell.WriteError("Only an attached player can run this command without a map id.");
+                    shell.WriteError(Loc.GetString("shell-only-players-can-run-this-command"));
                     return;
                 }
 
-                mapId = _ent.GetComponent<TransformComponent>(playerEntity).MapID;
+                if (player.AttachedEntity is not { Valid: true } playerEntity)
+                {
+                    shell.WriteError(Loc.GetString("shell-must-be-attached-to-entity"));
+                    return;
+                }
+
+                mapId = EntityManager.GetComponent<TransformComponent>(playerEntity).MapID;
                 break;
             case 1:
                 if (!int.TryParse(args[0], out var intMapId))
                 {
-                    shell.WriteError($"{args[0]} is not a valid map id.");
+                    shell.WriteError(Loc.GetString("cmd-parse-failure-mapid", ("arg", args[0])));
                     return;
                 }
 
@@ -46,21 +55,30 @@ public sealed class CleanDeviceLinksCommand : IConsoleCommand
                 return;
         }
 
-        if (mapId == MapId.Nullspace || !_ent.System<MapSystem>().MapExists(mapId))
+        if (mapId == MapId.Nullspace || !_map.MapExists(mapId))
         {
-            shell.WriteError($"Map {mapId} does not exist.");
+            shell.WriteError(Loc.GetString("cmd-cleandevicelinks-map-missing", ("mapId", mapId)));
             return;
         }
 
-        var result = _ent.System<DeviceLinkSystem>().CleanupLinksForMapSave(mapId);
-        shell.WriteLine(
-            $"Cleaned device links on map {mapId}: removed {result.RemovedSinkEntries} sink references and {result.RemovedLinkPairs} invalid link pairs across {result.AffectedSources} source entities.");
+        var result = _deviceLink.CleanupLinksForMapSave(mapId);
+        shell.WriteLine(Loc.GetString(
+            "cmd-cleandevicelinks-cleaned",
+            ("mapId", mapId),
+            ("removedSinkEntries", result.RemovedSinkEntries),
+            ("removedLinkPairs", result.RemovedLinkPairs),
+            ("affectedSources", result.AffectedSources)));
     }
 
-    public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
+    /// <summary>
+    /// Provides map-id completion for the command.
+    /// </summary>
+    public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {
         return args.Length == 1
-            ? CompletionResult.FromHintOptions(CompletionHelper.MapIds(_ent), "mapId")
+            ? CompletionResult.FromHintOptions(
+                CompletionHelper.MapIds(EntityManager),
+                Loc.GetString("cmd-cleandevicelinks-hint-map"))
             : CompletionResult.Empty;
     }
 }

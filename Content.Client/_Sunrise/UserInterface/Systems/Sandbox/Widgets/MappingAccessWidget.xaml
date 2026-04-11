@@ -1,13 +1,10 @@
 <widgets:MappingAccessWidget
     xmlns="https://spacestation14.io"
-    xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:widgets="clr-namespace:Content.Client._Sunrise.UserInterface.Systems.Sandbox.Widgets"
     Orientation="Vertical"
     MinSize="190 0">
-    <PanelContainer>
-        <PanelContainer.PanelOverride>
-            <graphics:StyleBoxFlat BackgroundColor="#10141CCC" />
-        </PanelContainer.PanelOverride>
+    <PanelContainer StyleClasses="SunriseMappingWidgetPanel">
         <BoxContainer Orientation="Vertical" SeparationOverride="4" Margin="6 5">
             <Label Name="TitleLabel" Text="{Loc mapping-access-widget-title}" />
             <CheckBox Name="ElectronicsOnlyCheckBox" Text="{Loc mapping-access-widget-electronics-only}" />

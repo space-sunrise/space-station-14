@@ -149,6 +149,9 @@ namespace Content.Client.Sandbox
         }
 
         // Sunrise added start - mapper transparency toggle
+        /// <summary>
+        /// Toggles the mapper transparency overlay command.
+        /// </summary>
         public void ToggleMappingTransparency()
         {
             _consoleHost.ExecuteCommand("showmappingtransparency");

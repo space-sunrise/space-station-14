@@ -7,9 +7,13 @@ namespace Content.Shared.DeviceLinking;
 
 public abstract partial class SharedDeviceLinkSystem
 {
+    /*
+     * Save-cleanup helpers for device links before map serialization.
+     */
     /// <summary>
     /// Removes invalid or unsaveable device-link references from a map before map serialization.
     /// </summary>
+    /// <param name="mapId">The single map that is about to be serialized.</param>
     public DeviceLinkSaveCleanupResult CleanupLinksForMapSave(MapId mapId)
     {
         return CleanupLinksForMapSave(new HashSet<MapId> { mapId });
@@ -18,6 +22,7 @@ public abstract partial class SharedDeviceLinkSystem
     /// <summary>
     /// Removes invalid or unsaveable device-link references from the provided saved map set.
     /// </summary>
+    /// <param name="mapIds">The maps included in the pending save operation.</param>
     public DeviceLinkSaveCleanupResult CleanupLinksForMapSave(HashSet<MapId> mapIds)
     {
         var result = new DeviceLinkSaveCleanupResult();
@@ -117,6 +122,12 @@ public abstract partial class SharedDeviceLinkSystem
     }
 }
 
+/// <summary>
+/// Describes how many saved device-link references were removed during cleanup.
+/// </summary>
+/// <param name="AffectedSources">How many source entities needed any cleanup.</param>
+/// <param name="RemovedSinkEntries">How many sink references were removed from source link tables.</param>
+/// <param name="RemovedLinkPairs">How many invalid source-port to sink-port pairs were removed.</param>
 public readonly record struct DeviceLinkSaveCleanupResult(
     int AffectedSources,
     int RemovedSinkEntries,
