@@ -74,7 +74,7 @@ public sealed class WeaponTests : InteractionTest
             "Mosin was fired but urist sustained no damage!");
     }
 
-    // Sunrise-start
+    // Sunrise edit start - cover dual-wield shoot-stop behavior
     [Test]
     public async Task DualWieldShootStopShootTest()
     {
@@ -204,5 +204,5 @@ public sealed class WeaponTests : InteractionTest
 
         await RunTicks(5);
     }
-    // Sunrise-end
+    // Sunrise edit end
 }

@@ -358,7 +358,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             new EntityCoordinates(mapUid, targetMap.Position - lateral));
     }
 
-    // Sunrise added start - share dual-wield aware stop logic between requests and tests
+    // Sunrise edit start - share dual-wield aware stop logic between requests and tests
     /// <summary>
     ///     Stops shooting for the requested gun, or both guns if the user is actively dual-wielding that pair.
     /// </summary>
@@ -399,7 +399,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         gun.Targets.Clear();
         DirtyField(uid, gun, nameof(GunComponent.ShotCounter));
     }
-    // Sunrise added end
+    // Sunrise edit end
 
     public void SetTarget(GunComponent gun, EntityUid target)
     {
