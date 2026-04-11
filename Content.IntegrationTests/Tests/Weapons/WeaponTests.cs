@@ -116,10 +116,12 @@ public sealed class WeaponTests : InteractionTest
         var secondGunUid = dualWield.NextIsLeft ? rightGunUid : leftGunUid;
         var firstGunNet = dualWield.NextIsLeft ? leftGunNet : rightGunNet;
         var secondGunNet = dualWield.NextIsLeft ? rightGunNet : leftGunNet;
-        var expectedFirstAmmoAfterFirstShot = (firstGunUid == leftGunUid ? leftAmmo : rightAmmo) - 1;
-        var expectedSecondAmmoAfterFirstShot = secondGunUid == leftGunUid ? leftAmmo : rightAmmo;
-        var expectedFirstAmmoAfterSecondShot = (firstGunUid == leftGunUid ? leftAmmo : rightAmmo) - 1;
-        var expectedSecondAmmoAfterSecondShot = (secondGunUid == leftGunUid ? leftAmmo : rightAmmo) - 1;
+        var firstGunStartAmmo = firstGunUid == leftGunUid ? leftAmmo : rightAmmo;
+        var secondGunStartAmmo = secondGunUid == leftGunUid ? leftAmmo : rightAmmo;
+        var expectedFirstAmmoAfterFirstShot = firstGunStartAmmo - 1;
+        var expectedSecondAmmoAfterFirstShot = secondGunStartAmmo;
+        var expectedFirstAmmoAfterSecondShot = firstGunStartAmmo - 1;
+        var expectedSecondAmmoAfterSecondShot = secondGunStartAmmo - 1;
 
         await SetCombatMode(true);
 
