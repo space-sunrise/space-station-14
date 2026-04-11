@@ -19,10 +19,10 @@ public sealed partial class LockableEquipmentComponent : Component
     [DataField, AutoNetworkedField]
     public string? LockId;
 
-    [DataField("layer"), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public string Layer = "lockable_under";
 
-    [DataField("rsiPath"), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public string RsiPath = "_Sunrise/Clothing/Locked/cage.rsi";
 
     [DataField]
@@ -32,15 +32,18 @@ public sealed partial class LockableEquipmentComponent : Component
     public string RequiredToolTag = "Wirecutter";
 
     [DataField]
+    public float BreakDoAfter = 1.5f;
+
+    [DataField]
     public ProtoId<StackPrototype>? RepairMaterial;
 
     [DataField]
     public int RepairAmount = 1;
     
-    [DataField("accessPriority")]
+    [DataField]
     public int AccessPriority = 1;
     
-    [DataField("spriteState"), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public string SpriteState = "equipped";
     
     /// <summary>

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Content.Shared._Sunrise.LockableEquipment;
@@ -25,7 +24,7 @@ public sealed class LayerAccessSystem : EntitySystem
         if (!TryComp(wearer, out InventoryComponent? inventory))
             return true;
 
-        return !IsBlocked((wearer, inventory), equipmentLayer, GetAccessPriority(target, targetEquipment));
+        return !IsBlocked((wearer, inventory), target, equipmentLayer, GetAccessPriority(target, targetEquipment));
     }
 
     /// <summary>
@@ -44,9 +43,9 @@ public sealed class LayerAccessSystem : EntitySystem
     /// <summary>
     /// Returns true when any worn item blocks the requested layer.
     /// </summary>
-    private bool IsBlocked(Entity<InventoryComponent> wearer, string targetLayer, int targetPriority)
+    private bool IsBlocked(Entity<InventoryComponent> wearer, EntityUid target, string targetLayer, int targetPriority)
     {
-        foreach (var blocker in EnumerateBlockers(wearer))
+        foreach (var blocker in EnumerateBlockers(wearer, target))
         {
             if (!IsBlockedBy(blocker, targetLayer, targetPriority))
                 continue;
@@ -60,11 +59,14 @@ public sealed class LayerAccessSystem : EntitySystem
     /// <summary>
     /// Enumerates blockers from currently equipped clothing, preferring explicit metadata over fallback rules.
     /// </summary>
-    private IEnumerable<LayerAccessBlocker> EnumerateBlockers(Entity<InventoryComponent> wearer)
+    private IEnumerable<LayerAccessBlocker> EnumerateBlockers(Entity<InventoryComponent> wearer, EntityUid target)
     {
         foreach (var slot in wearer.Comp.Slots)
         {
             if (!_inventory.TryGetSlotEntity(wearer.Owner, slot.Name, out var entity) || entity is not { } blockerEntity)
+                continue;
+
+            if (blockerEntity == target)
                 continue;
 
             if (TryComp(blockerEntity, out LayerBlockingComponent? layerBlocking))

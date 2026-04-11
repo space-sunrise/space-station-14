@@ -259,14 +259,18 @@ public sealed class EquipmentContainerSystem : EntitySystem
 
         if (hands != null)
         {
+            var addedKeyVerb = false;
+            var addedBreakVerb = false;
+
             foreach (var hand in _hands.EnumerateHands(args.User))
             {
                 if (!_hands.TryGetHeldItem(args.User, hand, out var held))
                     continue;
 
-                if (HasComp<KeyComponent>(held.Value))
+                if (!addedKeyVerb && HasComp<KeyComponent>(held.Value))
                 {
                     var user = args.User;
+                    addedKeyVerb = true;
 
                     args.Verbs.Add(new InteractionVerb
                     {
@@ -278,13 +282,14 @@ public sealed class EquipmentContainerSystem : EntitySystem
                     });
                 }
 
-                if (comp.Locked && _lockable.CanBreakWithTool(device.Value, held.Value))
+                if (!addedBreakVerb && comp.Locked && _lockable.CanBreakWithTool(device.Value, held.Value))
                 {
                     var user = args.User;
                     var breakText = GetBreakVerbText(name, comp.Mode);
 
                     if (breakText != null)
                     {
+                        addedBreakVerb = true;
                         args.Verbs.Add(new InteractionVerb
                         {
                             Text = breakText,

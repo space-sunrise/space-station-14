@@ -16,6 +16,7 @@ namespace Content.Server._Sunrise.LockableEquipment
         [Dependency] private readonly SharedStackSystem _stack = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly LayerAccessSystem _layerAccess = default!;
+        [Dependency] private readonly TagSystem _tag = default!;
 
         public override void Initialize()
         {
@@ -65,7 +66,8 @@ namespace Content.Server._Sunrise.LockableEquipment
         }
 
         /// <summary>
-        /// Toggles the device lock state when a matching key is used.
+        /// Handles key interaction for the device and returns true when the interaction was processed,
+        /// including blocked or rejected attempts that already displayed feedback.
         /// </summary>
         public bool TryUseKey(EntityUid device, EntityUid keyUid, EntityUid user)
         {
@@ -133,7 +135,8 @@ namespace Content.Server._Sunrise.LockableEquipment
         }
 
         /// <summary>
-        /// Starts a delayed forced-open action using a matching tool.
+        /// Handles a forced-open attempt and returns true when the interaction was processed,
+        /// including blocked attempts that already displayed feedback.
         /// </summary>
         public bool TryStartBreakDoAfter(EntityUid device, EntityUid tool, EntityUid user, EntityUid? interactionTarget = null)
         {
@@ -152,7 +155,7 @@ namespace Content.Server._Sunrise.LockableEquipment
             var doAfter = new DoAfterArgs(
                 EntityManager,
                 user,
-                1.5f,
+                comp.BreakDoAfter,
                 new LockableEquipmentBreakDoAfterEvent(),
                 device,
                 target: interactionTarget ?? device,
@@ -169,7 +172,8 @@ namespace Content.Server._Sunrise.LockableEquipment
         }
 
         /// <summary>
-        /// Applies the configured forced-open behavior using a matching tool.
+        /// Resolves the configured forced-open behavior and returns true when the interaction was processed,
+        /// including blocked attempts that already displayed feedback.
         /// </summary>
         public bool TryBreak(EntityUid device, EntityUid tool, EntityUid user)
         {
@@ -240,7 +244,8 @@ namespace Content.Server._Sunrise.LockableEquipment
         }
 
         /// <summary>
-        /// Repairs a broken device by consuming the required material stack.
+        /// Attempts to repair a broken device and returns true when the interaction was processed,
+        /// including blocked attempts that already displayed feedback.
         /// </summary>
         public bool TryRepair(EntityUid device, EntityUid material, EntityUid user)
         {
@@ -281,7 +286,7 @@ namespace Content.Server._Sunrise.LockableEquipment
             if (!Resolve(device, ref comp, false))
                 return false;
 
-            return TryComp<TagComponent>(tool, out var tag) && tag.Tags.Contains(comp.RequiredToolTag);
+            return _tag.HasTag(tool, comp.RequiredToolTag);
         }
 
         /// <summary>
@@ -334,7 +339,7 @@ namespace Content.Server._Sunrise.LockableEquipment
 
         private bool EnsureAccessible(EntityUid device, EntityUid user, LockableEquipmentComponent comp)
         {
-            if (_layerAccess.IsLayerAccessible(device, comp.Layer, comp))
+            if (_layerAccess.IsLayerAccessible(ResolveAccessTarget(device), comp.Layer, comp))
                 return true;
 
             _popup.PopupEntity(
@@ -342,6 +347,26 @@ namespace Content.Server._Sunrise.LockableEquipment
                 user,
                 user);
             return false;
+        }
+
+        private EntityUid ResolveAccessTarget(EntityUid device)
+        {
+            if (HasComp<EquipmentContainerComponent>(device))
+                return device;
+
+            var current = Transform(device).ParentUid;
+            while (current != EntityUid.Invalid)
+            {
+                if (HasComp<EquipmentContainerComponent>(current))
+                    return current;
+
+                if (!TryComp(current, out TransformComponent? xform))
+                    break;
+
+                current = xform.ParentUid;
+            }
+
+            return device;
         }
     }
 }
