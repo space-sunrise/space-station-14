@@ -83,10 +83,11 @@ public sealed class WeaponTests : InteractionTest
         var leftGunUid = ToServer(leftGunNet);
         var rightGunUid = ToServer(rightGunNet);
         var dualWieldSystem = SEntMan.System<SharedDualWieldSystem>();
+        const bool isDualWieldActive = false;
 
         await Pair.RunSeconds(2f);
 
-        await Server.WaitPost(() => dualWieldSystem.ToggleDualWield(SPlayer, leftGunUid, rightGunUid, false));
+        await Server.WaitPost(() => dualWieldSystem.ToggleDualWield(SPlayer, leftGunUid, rightGunUid, isDualWieldActive));
         await RunTicks(5);
 
         Assert.That(SEntMan.TryGetComponent(SPlayer, out DualWieldComponent? dualWield) && dualWield.Active,
@@ -99,12 +100,8 @@ public sealed class WeaponTests : InteractionTest
             var leftDualWield = SEntMan.GetComponent<CanDualWieldComponent>(leftGunUid);
             var rightDualWield = SEntMan.GetComponent<CanDualWieldComponent>(rightGunUid);
 
-            var expectedLeftFireRate = leftDualWield.DualWieldMaxFireRate > 0f
-                ? MathF.Min(leftGun.FireRate * leftDualWield.DualWieldFireRateMultiplier, leftDualWield.DualWieldMaxFireRate)
-                : leftGun.FireRate * leftDualWield.DualWieldFireRateMultiplier;
-            var expectedRightFireRate = rightDualWield.DualWieldMaxFireRate > 0f
-                ? MathF.Min(rightGun.FireRate * rightDualWield.DualWieldFireRateMultiplier, rightDualWield.DualWieldMaxFireRate)
-                : rightGun.FireRate * rightDualWield.DualWieldFireRateMultiplier;
+            var expectedLeftFireRate = GetExpectedDualWieldFireRate(leftGun, leftDualWield);
+            var expectedRightFireRate = GetExpectedDualWieldFireRate(rightGun, rightDualWield);
 
             Assert.That(leftGun.FireRateModified, Is.EqualTo(expectedLeftFireRate).Within(0.001f));
             Assert.That(rightGun.FireRateModified, Is.EqualTo(expectedRightFireRate).Within(0.001f));
@@ -152,6 +149,14 @@ public sealed class WeaponTests : InteractionTest
             Assert.That(SEntMan.GetComponent<GunComponent>(firstGunUid).ShotCounter, Is.EqualTo(0));
             Assert.That(SEntMan.GetComponent<GunComponent>(secondGunUid).ShotCounter, Is.EqualTo(1));
         });
+    }
+
+    private static float GetExpectedDualWieldFireRate(GunComponent gun, CanDualWieldComponent dualWield)
+    {
+        if (dualWield.DualWieldMaxFireRate > 0f)
+            return MathF.Min(gun.FireRate * dualWield.DualWieldFireRateMultiplier, dualWield.DualWieldMaxFireRate);
+
+        return gun.FireRate * dualWield.DualWieldFireRateMultiplier;
     }
 
     /// <summary>
