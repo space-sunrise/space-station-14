@@ -5,60 +5,16 @@ namespace Content.Client._Sunrise.Sandbox;
 public sealed partial class MappingAccessOverlay
 {
     private bool TryGetBackgroundRect(
-        EntityUid uid,
         UIBox2 outlineRect,
         Vector2 backgroundSize,
         Vector2 viewportSize,
         float screenPadding,
         float horizontalMargin,
         float verticalMargin,
-        out UIBox2 backgroundRect)
+        out UIBox2 backgroundRect,
+        out LabelPlacement placement)
     {
-        var placement = _placementCache.GetValueOrDefault(uid, LabelPlacement.Below);
         if (TryResolvePlacement(
-                outlineRect,
-                backgroundSize,
-                viewportSize,
-                screenPadding,
-                horizontalMargin,
-                verticalMargin,
-                placement,
-                checkOverlap: true,
-                out backgroundRect))
-        {
-            return true;
-        }
-
-        if (TryResolveFallbackPlacement(
-                uid,
-                outlineRect,
-                backgroundSize,
-                viewportSize,
-                screenPadding,
-                horizontalMargin,
-                verticalMargin,
-                placement,
-                out backgroundRect))
-        {
-            return true;
-        }
-
-        if (TryResolvePlacement(
-                outlineRect,
-                backgroundSize,
-                viewportSize,
-                screenPadding,
-                horizontalMargin,
-                verticalMargin,
-                placement,
-                checkOverlap: false,
-                out backgroundRect))
-        {
-            return true;
-        }
-
-        if (placement != LabelPlacement.Below &&
-            TryResolvePlacement(
                 outlineRect,
                 backgroundSize,
                 viewportSize,
@@ -66,111 +22,112 @@ public sealed partial class MappingAccessOverlay
                 horizontalMargin,
                 verticalMargin,
                 LabelPlacement.Below,
-                checkOverlap: false,
+                checkOverlap: true,
                 out backgroundRect))
         {
-            _placementCache[uid] = LabelPlacement.Below;
+            placement = LabelPlacement.Below;
             return true;
         }
 
-        return false;
+        if (TryResolveFallbackPlacement(
+                outlineRect,
+                backgroundSize,
+                viewportSize,
+                screenPadding,
+                horizontalMargin,
+                verticalMargin,
+                checkOverlap: true,
+                out backgroundRect,
+                out placement))
+        {
+            return true;
+        }
+
+        return TryResolveFallbackPlacement(
+            outlineRect,
+            backgroundSize,
+            viewportSize,
+            screenPadding,
+            horizontalMargin,
+            verticalMargin,
+            checkOverlap: false,
+            out backgroundRect,
+            out placement);
     }
 
     private bool TryResolveFallbackPlacement(
-        EntityUid uid,
         UIBox2 outlineRect,
         Vector2 backgroundSize,
         Vector2 viewportSize,
         float screenPadding,
         float horizontalMargin,
         float verticalMargin,
-        LabelPlacement placement,
-        out UIBox2 backgroundRect)
+        bool checkOverlap,
+        out UIBox2 backgroundRect,
+        out LabelPlacement placement)
     {
-        switch (placement)
+        if (TryResolvePlacement(
+                outlineRect,
+                backgroundSize,
+                viewportSize,
+                screenPadding,
+                horizontalMargin,
+                verticalMargin,
+                LabelPlacement.Above,
+                checkOverlap,
+                out backgroundRect))
         {
-            case LabelPlacement.Below:
-                if (TryResolvePlacement(outlineRect, backgroundSize, viewportSize, screenPadding, horizontalMargin, verticalMargin, LabelPlacement.Above, true, out backgroundRect))
-                {
-                    _placementCache[uid] = LabelPlacement.Above;
-                    return true;
-                }
+            placement = LabelPlacement.Above;
+            return true;
+        }
 
-                if (TryResolvePlacement(outlineRect, backgroundSize, viewportSize, screenPadding, horizontalMargin, verticalMargin, LabelPlacement.Right, true, out backgroundRect))
-                {
-                    _placementCache[uid] = LabelPlacement.Right;
-                    return true;
-                }
+        if (TryResolvePlacement(
+                outlineRect,
+                backgroundSize,
+                viewportSize,
+                screenPadding,
+                horizontalMargin,
+                verticalMargin,
+                LabelPlacement.Right,
+                checkOverlap,
+                out backgroundRect))
+        {
+            placement = LabelPlacement.Right;
+            return true;
+        }
 
-                if (TryResolvePlacement(outlineRect, backgroundSize, viewportSize, screenPadding, horizontalMargin, verticalMargin, LabelPlacement.Left, true, out backgroundRect))
-                {
-                    _placementCache[uid] = LabelPlacement.Left;
-                    return true;
-                }
-                break;
+        if (TryResolvePlacement(
+                outlineRect,
+                backgroundSize,
+                viewportSize,
+                screenPadding,
+                horizontalMargin,
+                verticalMargin,
+                LabelPlacement.Left,
+                checkOverlap,
+                out backgroundRect))
+        {
+            placement = LabelPlacement.Left;
+            return true;
+        }
 
-            case LabelPlacement.Above:
-                if (TryResolvePlacement(outlineRect, backgroundSize, viewportSize, screenPadding, horizontalMargin, verticalMargin, LabelPlacement.Right, true, out backgroundRect))
-                {
-                    _placementCache[uid] = LabelPlacement.Right;
-                    return true;
-                }
-
-                if (TryResolvePlacement(outlineRect, backgroundSize, viewportSize, screenPadding, horizontalMargin, verticalMargin, LabelPlacement.Left, true, out backgroundRect))
-                {
-                    _placementCache[uid] = LabelPlacement.Left;
-                    return true;
-                }
-
-                if (TryResolvePlacement(outlineRect, backgroundSize, viewportSize, screenPadding, horizontalMargin, verticalMargin, LabelPlacement.Below, true, out backgroundRect))
-                {
-                    _placementCache[uid] = LabelPlacement.Below;
-                    return true;
-                }
-                break;
-
-            case LabelPlacement.Right:
-                if (TryResolvePlacement(outlineRect, backgroundSize, viewportSize, screenPadding, horizontalMargin, verticalMargin, LabelPlacement.Left, true, out backgroundRect))
-                {
-                    _placementCache[uid] = LabelPlacement.Left;
-                    return true;
-                }
-
-                if (TryResolvePlacement(outlineRect, backgroundSize, viewportSize, screenPadding, horizontalMargin, verticalMargin, LabelPlacement.Below, true, out backgroundRect))
-                {
-                    _placementCache[uid] = LabelPlacement.Below;
-                    return true;
-                }
-
-                if (TryResolvePlacement(outlineRect, backgroundSize, viewportSize, screenPadding, horizontalMargin, verticalMargin, LabelPlacement.Above, true, out backgroundRect))
-                {
-                    _placementCache[uid] = LabelPlacement.Above;
-                    return true;
-                }
-                break;
-
-            case LabelPlacement.Left:
-                if (TryResolvePlacement(outlineRect, backgroundSize, viewportSize, screenPadding, horizontalMargin, verticalMargin, LabelPlacement.Below, true, out backgroundRect))
-                {
-                    _placementCache[uid] = LabelPlacement.Below;
-                    return true;
-                }
-
-                if (TryResolvePlacement(outlineRect, backgroundSize, viewportSize, screenPadding, horizontalMargin, verticalMargin, LabelPlacement.Above, true, out backgroundRect))
-                {
-                    _placementCache[uid] = LabelPlacement.Above;
-                    return true;
-                }
-
-                if (TryResolvePlacement(outlineRect, backgroundSize, viewportSize, screenPadding, horizontalMargin, verticalMargin, LabelPlacement.Right, true, out backgroundRect))
-                {
-                    _placementCache[uid] = LabelPlacement.Right;
-                    return true;
-                }
-                break;
+        if (TryResolvePlacement(
+                outlineRect,
+                backgroundSize,
+                viewportSize,
+                screenPadding,
+                horizontalMargin,
+                verticalMargin,
+                LabelPlacement.Below,
+                checkOverlap,
+                out backgroundRect))
+        {
+            placement = LabelPlacement.Below;
+            return true;
         }
 
         backgroundRect = default;
+        placement = LabelPlacement.Below;
         return false;
     }
 

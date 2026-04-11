@@ -9,7 +9,7 @@ public sealed partial class SandboxUIController
     [UISystemDependency] private readonly MappingAccessOverlaySystem _mappingAccess = default!;
     [UISystemDependency] private readonly MappingTransparencySystem _mappingTransparency = default!;
 
-    partial void InitializeSunriseWindow()
+    private void InitializeSunriseWindow()
     {
         if (_window == null)
             return;

@@ -223,9 +223,6 @@ public sealed partial class SandboxUIController : UIController, IOnStateChanged<
         }
     }
 
-    // Sunrise-Edit
-    partial void InitializeSunriseWindow();
-
     #region Buttons
 
     public void SetToggleSubfloors(bool value)

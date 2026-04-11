@@ -1,7 +1,6 @@
 using System.Numerics;
 using Robust.Client.GameObjects;
 using Content.Client.Stylesheets;
-using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
@@ -19,6 +18,8 @@ public sealed partial class MappingAccessOverlay : Overlay
     private const float VerticalMargin = 4f;
     private const float ScreenPadding = 4f;
     private const float OutlinePadding = 1f;
+    private const float ConnectorArrowLength = 10f;
+    private const float ConnectorArrowHalfWidth = 4f;
 
     private static readonly Vector2 BackgroundPadding = new(4f, 3f);
     private static readonly Color TitleColor = Color.Aquamarine;
@@ -39,7 +40,6 @@ public sealed partial class MappingAccessOverlay : Overlay
 
     private readonly List<string> _accessLines = new(8);
     private readonly List<UIBox2> _occupiedRects = new(16);
-    private readonly Dictionary<EntityUid, LabelPlacement> _placementCache = new();
 
     public MappingAccessBodyFilter BodyFilter { get; set; } = MappingAccessBodyFilter.Both;
 
@@ -140,17 +140,56 @@ public sealed partial class MappingAccessOverlay : Overlay
             var contentSize = new Vector2(blockWidth, blockHeight);
             var backgroundSize = contentSize + scaledBackgroundPadding * 2f;
             if (!TryGetBackgroundRect(
-                    uid,
                     outlineRect,
                     backgroundSize,
                     args.Viewport.Size,
                     screenPadding,
                     horizontalMargin,
                     verticalMargin,
-                    out var backgroundRect))
+                    out var backgroundRect,
+                    out var placement))
                 continue;
 
             args.ScreenHandle.DrawRect(backgroundRect, BackgroundColor);
+
+            var arrowLength = ConnectorArrowLength * uiScale;
+            var arrowHalfWidth = ConnectorArrowHalfWidth * uiScale;
+            Vector2 connectorStart;
+            Vector2 connectorEnd;
+            Vector2 arrowLeft;
+            Vector2 arrowRight;
+
+            switch (placement)
+            {
+                case LabelPlacement.Above:
+                    connectorStart = new Vector2(backgroundRect.Center.X, backgroundRect.Bottom);
+                    connectorEnd = new Vector2(outlineRect.Center.X, outlineRect.Top);
+                    arrowLeft = connectorEnd + new Vector2(-arrowHalfWidth, arrowLength);
+                    arrowRight = connectorEnd + new Vector2(arrowHalfWidth, arrowLength);
+                    break;
+                case LabelPlacement.Right:
+                    connectorStart = new Vector2(backgroundRect.Left, backgroundRect.Center.Y);
+                    connectorEnd = new Vector2(outlineRect.Right, outlineRect.Center.Y);
+                    arrowLeft = connectorEnd + new Vector2(-arrowLength, -arrowHalfWidth);
+                    arrowRight = connectorEnd + new Vector2(-arrowLength, arrowHalfWidth);
+                    break;
+                case LabelPlacement.Left:
+                    connectorStart = new Vector2(backgroundRect.Right, backgroundRect.Center.Y);
+                    connectorEnd = new Vector2(outlineRect.Left, outlineRect.Center.Y);
+                    arrowLeft = connectorEnd + new Vector2(arrowLength, -arrowHalfWidth);
+                    arrowRight = connectorEnd + new Vector2(arrowLength, arrowHalfWidth);
+                    break;
+                default:
+                    connectorStart = new Vector2(backgroundRect.Center.X, backgroundRect.Top);
+                    connectorEnd = new Vector2(outlineRect.Center.X, outlineRect.Bottom);
+                    arrowLeft = connectorEnd + new Vector2(-arrowHalfWidth, -arrowLength);
+                    arrowRight = connectorEnd + new Vector2(arrowHalfWidth, -arrowLength);
+                    break;
+            }
+
+            args.ScreenHandle.DrawLine(connectorStart, connectorEnd, OutlineColor);
+            args.ScreenHandle.DrawLine(connectorEnd, arrowLeft, OutlineColor);
+            args.ScreenHandle.DrawLine(connectorEnd, arrowRight, OutlineColor);
             _occupiedRects.Add(backgroundRect);
 
             var startPos = backgroundRect.TopLeft + scaledBackgroundPadding;
