@@ -9,9 +9,13 @@ rule:
   all:
     - kind: method_declaration
     - not:
-        regex: '(?s).*\boverride\b.*'
+        has:
+          kind: modifier
+          regex: '^override$'
     - not:
-        regex: '(?s).*\bISerializationHooks\.(?:AfterDeserialization|BeforeSerialization)\b.*'
+        has:
+          field: name
+          regex: '^(?:AfterDeserialization|BeforeSerialization)$'
     - inside:
         all:
           - kind: class_declaration

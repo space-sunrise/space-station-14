@@ -88,10 +88,16 @@ ss14-audio-system-core - слишком продвинуто, не нужно в
 
 В конце работы над кодом провести тестирование
 
-Если код затрагивает прототипы(YAML/FTL) -> Запускать YAML LINTER проект
+Если код затрагивает прототипы(YAML/FTL) -> запускать проект `Content.YAMLLinter` командой `dotnet run --project Content.YAMLLinter/Content.YAMLLinter.csproj --no-build`; если линтер ещё не собран, сначала `dotnet build Content.YAMLLinter/Content.YAMLLinter.csproj --configuration Release --no-restore /m`
 Если код затрагивает C# -> билдить измененный проект
-Если код затрагивает клиент - запускать сам клиент, чтобы проверить runtime ошибки и IL verification.
+Если код затрагивает клиент - запускать клиент командой `dotnet run --project Content.Client/Content.Client.csproj` или `dotnet run --project Content.Client/Content.Client.csproj --configuration Tools`, чтобы проверить runtime ошибки и IL verification.
 
-Использовать dotnet
+Использовать `dotnet` по конкретному сценарию:
+1. Компиляция изменённого проекта: `dotnet build <relative/path/to/project.csproj> --configuration Debug`; для CI/жёсткой проверки использовать `dotnet build <relative/path/to/project.csproj> --configuration Release --no-restore /m`
+2. Запуск всех тестов решения: `dotnet test SpaceStation14.slnx --configuration DebugOpt --no-build`
+3. Запуск конкретного test project: `dotnet test Content.Tests/Content.Tests.csproj --configuration DebugOpt --no-build` или `dotnet test Content.IntegrationTests/Content.IntegrationTests.csproj --configuration DebugOpt --no-build`
+4. Запуск конкретного теста: `dotnet test Content.IntegrationTests/Content.IntegrationTests.csproj --configuration DebugOpt --no-build --filter "FullyQualifiedName~GravityGridTest"`
+5. Локальный запуск клиента: `dotnet run --project Content.Client/Content.Client.csproj` или `dotnet run --project Content.Client/Content.Client.csproj --configuration Tools`
+6. Сборка publish-артефактов при необходимости: `dotnet publish Content.Packaging/Content.Packaging.csproj --configuration Release -r win-x64` или `dotnet publish Content.Packaging/Content.Packaging.csproj --configuration Release -p:PublishProfile=<ProfileName>`
 
 После обязательно завершить начатый процесс в системе!

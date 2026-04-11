@@ -15,5 +15,7 @@ rule:
           - all:
               - kind: method_declaration
               - not:
-                  regex: '(?s).*\bInitialize\s*\('
+                  has:
+                    field: name
+                    regex: '^Initialize$'
         stopBy: end

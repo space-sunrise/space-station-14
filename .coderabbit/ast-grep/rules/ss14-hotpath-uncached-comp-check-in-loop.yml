@@ -8,7 +8,7 @@ files:
 rule:
   all:
     - kind: invocation_expression
-    - regex: '^(?:this\.)?(?:TryComp|HasComp)(?:<|\().*$'
+    - regex: '^(?:[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)*\.)?(?:TryComp|HasComp)(?:<|\().*$'
     - inside:
         any:
           - kind: for_statement
