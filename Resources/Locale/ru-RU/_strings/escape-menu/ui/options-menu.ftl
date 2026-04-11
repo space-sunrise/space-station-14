@@ -163,9 +163,9 @@ ui-options-function-move-stored-item = Переместить хранящийс
 ui-options-function-rotate-stored-item = Повернуть хранящийся объект
 ui-options-function-save-item-location = Сохранить расположение объекта
 
-// Sunrise-Start
+# Sunrise-Start
 ui-options-function-toggle-item-priority = Переключить приоритет предмета
-// Sunrise-End
+# Sunrise-End
 
 
 ui-options-static-storage-ui = Закрепить интерфейс хранилища на хотбаре

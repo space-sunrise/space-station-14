@@ -174,9 +174,9 @@ ui-options-function-move-stored-item = Move stored item
 ui-options-function-rotate-stored-item = Rotate stored item
 ui-options-function-save-item-location = Save item location
 
-// Sunrise-Start
+# Sunrise-Start
 ui-options-function-toggle-item-priority = Toggle Item Priority
-// Sunrise-End
+# Sunrise-End
 
 ui-options-static-storage-ui = Lock storage window to hotbar
 

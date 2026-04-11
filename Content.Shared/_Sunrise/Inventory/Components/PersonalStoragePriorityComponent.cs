@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._Sunrise.Inventory.Components;
 
 /// <summary>
-///Tracks personal storage priorities for a player.
+/// Tracks personal storage priorities for a player.
 /// Maps storage entity to priority item entity.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]

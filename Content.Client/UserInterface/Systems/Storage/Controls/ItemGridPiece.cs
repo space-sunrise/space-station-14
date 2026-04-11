@@ -2,7 +2,6 @@ using System.Numerics;
 using Content.Client.Items.Systems;
 using Content.Shared.Item;
 using Content.Shared.Storage;
-using Content.Shared._Sunrise.Inventory.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
