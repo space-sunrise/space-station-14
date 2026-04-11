@@ -179,17 +179,25 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (!TryGetGun(user.Value, out var ent, out var gun))
             return;
 
+        // Sunrise-Start - dual-wield support
+        var dualWieldSystem = EntitySystem.Get<SharedDualWieldSystem>();
         var isDualWield = TryComp<DualWieldComponent>(user.Value, out var dualWield) && dualWield.Active;
         if (isDualWield && ent != dualWield!.LeftGun && ent != dualWield.RightGun)
         {
-            dualWield.Active = false;
-            Dirty(user.Value, dualWield);
-            PopupSystem.PopupClient(Loc.GetString("dual-wield-interrupted"), user.Value, user.Value);
+            dualWieldSystem.DisableDualWield(user.Value, dualWield, "dual-wield-interrupted");
             return;
+        }
+
+        if (isDualWield)
+        {
+            var requestedGun = GetEntity(msg.Gun);
+            if (requestedGun != dualWield!.LeftGun && requestedGun != dualWield.RightGun)
+                return;
         }
 
         if (!isDualWield && ent != GetEntity(msg.Gun))
             return;
+        // Sunrise-End
 
         gun.ShootCoordinates = GetCoordinates(msg.Coordinates);
         // Sunrise-Start
@@ -227,6 +235,9 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         if (TryComp<DualWieldComponent>(user.Value, out var dualWield) && dualWield.Active)
         {
+            if (gunUid != dualWield.LeftGun && gunUid != dualWield.RightGun)
+                return;
+
             StopDualWield(dualWield);
             return;
         }
@@ -276,9 +287,7 @@ public abstract partial class SharedGunSystem : EntitySystem
                 return true;
             }
 
-            dualWield.Active = false;
-            Dirty(entity, dualWield);
-            PopupSystem.PopupClient(Loc.GetString("dual-wield-interrupted"), entity, entity);
+            EntitySystem.Get<SharedDualWieldSystem>().DisableDualWield(entity, dualWield, "dual-wield-interrupted");
         }
 
         if (TryComp<MechComponent>(entity, out var mech)

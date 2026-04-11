@@ -2,6 +2,7 @@ using Content.IntegrationTests.Tests.Interaction;
 using Content.Shared._Starlight.Weapons.DualWield;
 using Content.Shared.Damage.Components;
 using Content.Shared.Hands;
+using Content.Shared.Hands.Components;
 using Content.Shared.Input;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Components;
