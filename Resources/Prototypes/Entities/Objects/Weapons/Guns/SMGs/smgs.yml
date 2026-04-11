@@ -36,6 +36,11 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/smg.ogg
     defaultDirection: 1, 0
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 36
+    dualWieldFireRateMultiplier: 1.25
+    dualWieldMaxFireRate: 10
+    dualWieldShotDelay: 0.05
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
@@ -93,6 +98,8 @@
     fireRate: 10
     soundGunshot:
       collection: ump45 # Sunrise-Edit
+  - type: CanDualWield
+    enabled: false
   - type: MagazineVisuals
     magState: mag
     steps: 1

@@ -141,6 +141,11 @@
     slots:
     - Belt
     - suitStorage
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 18
+    dualWieldFireRateMultiplier: 1.5
+    dualWieldMaxFireRate: 7.5
+    dualWieldShotDelay: 0.08
 
 - type: entity
   id: BaseWeaponPowerCellSmall
@@ -157,6 +162,11 @@
     quickEquip: false
     slots:
     - Belt
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 18
+    dualWieldFireRateMultiplier: 1.8
+    dualWieldMaxFireRate: 8.5
+    dualWieldShotDelay: 0.07
 
 - type: entity
   name: svalinn laser pistol
@@ -205,6 +215,10 @@
     storedOffset: 0,-5
   - type: Gun
     bigTrigger: true # Sunrise-Edit
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 24
+    dualWieldFireRateMultiplier: 1.5
+    dualWieldMaxFireRate: 6
   - type: BatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 62.5
@@ -241,6 +255,10 @@
   - type: Appearance
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/makeshift.rsi
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 16
+    dualWieldFireRateMultiplier: 1.8
+    dualWieldMaxFireRate: 8.5
   - type: BatteryAmmoProvider
     proto: RedLaser
     fireCost: 62.5
@@ -554,6 +572,10 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
     bigTrigger: true # Sunrise-Edit
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 16
+    dualWieldFireRateMultiplier: 1.5
+    dualWieldMaxFireRate: 4
   - type: BatteryAmmoProvider
     proto: BulletDisablerPractice
     fireCost: 62.5
@@ -625,6 +647,11 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 32
+    dualWieldFireRateMultiplier: 1.25
+    dualWieldMaxFireRate: 5.625
+    dualWieldShotDelay: 0.05
   - type: BatteryAmmoProvider
     proto: BulletDisablerSmg
     fireCost: 25
@@ -666,6 +693,10 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser.ogg
     projectileSpeed: 25
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 18
+    dualWieldFireRateMultiplier: 1.5
+    dualWieldMaxFireRate: 1
   - type: BatteryAmmoProvider
     proto: BulletTaser
     fireCost: 200
@@ -689,6 +720,10 @@
       path: /Audio/Effects/tesla_collapse.ogg # The wrath of god...
       params:
         volume: -6
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 22
+    dualWieldFireRateMultiplier: 1.35
+    dualWieldMaxFireRate: 0.75
   - type: BatteryAmmoProvider
     proto: BulletTaserSuper
     fireCost: 200
@@ -713,6 +748,10 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     bigTrigger: true # Sunrise-Edit
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 22
+    dualWieldFireRateMultiplier: 1.6
+    dualWieldMaxFireRate: 6.5
   # Sunrise-start
   - type: Item
     size: Normal
@@ -767,6 +806,10 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 26
+    dualWieldFireRateMultiplier: 1.4
+    dualWieldMaxFireRate: 5.5
   - type: BatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 100
@@ -814,6 +857,11 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
     bigTrigger: true # Sunrise-Edit
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 30
+    dualWieldFireRateMultiplier: 1.35
+    dualWieldMaxFireRate: 3
+    dualWieldShotDelay: 0.09
   - type: BatteryAmmoProvider
     proto: AnomalousParticleDeltaStrong
     fireCost: 100
