@@ -8,9 +8,9 @@
   productEntity: WeaponPistolViper
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1 # Sunrise-Edit
   cost:
-    Telecrystal: 3
+    Telecrystal: 2 # Sunrise-Edit
   categories:
   - UplinkWeaponry
 
@@ -91,10 +91,10 @@
   description: uplink-energycrossbow-desc
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 2 # Sunrise-edit
   productEntity: WeaponEnergyCrossbow
   cost:
-    Telecrystal: 5
+    Telecrystal: 3 # Sunrise-edit
   categories:
   - UplinkWeaponry
   conditions:
@@ -134,11 +134,11 @@
   description: uplink-gloves-knuckleduster-desc
   icon: { sprite: Clothing/Hands/Gloves/KnuckleDusters/syndicateknuckleduster.rsi, state: syndicateknuckleduster }
   productEntity: ClothingHandsKnuckleDustersSyndicate
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 2
+  # discountCategory: veryRareDiscounts # Sunrise-edit
+  # discountDownTo:
+  #   Telecrystal: 2
   cost:
-    Telecrystal: 4
+    Telecrystal: 1  # Starlight-edit
   categories:
   - UplinkWeaponry
 

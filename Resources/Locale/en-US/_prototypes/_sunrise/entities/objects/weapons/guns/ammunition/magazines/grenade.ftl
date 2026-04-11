@@ -12,3 +12,7 @@ ent-MagazineGrenadeBlastExtended = blast grenade extended cartridge
     .desc = { ent-BaseMagazineGrenadeExtended.desc }
 ent-MagazineGrenadeBatonExtended = baton grenade extended cartridge
     .desc = { ent-BaseMagazineGrenadeExtended.desc }
+ent-MagazineGrenadeFragTimer = timer frag grenade cartridge
+    .desc = A grenade cartridge loaded with timer frag grenades.
+ent-MagazineGrenadeEMPTimer = timer EMP grenade cartridge
+    .desc = A grenade cartridge loaded with timer EMP grenades.

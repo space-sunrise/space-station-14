@@ -105,3 +105,5 @@ ent-ClothingUniformUndershirt = нижняя майка
     .desc = Обычная повседневная вещь.
 ent-ClothingUniformJumpsuitMilirUniform = облегающий комбинезон милир
     .desc = Простой облегающий бодик, адаптированный под анатомию милиров.
+ent-CamoUniformSuit = камуфляжный комбинезон
+    .desc = Вы бы слились с местностью, будь это лес.

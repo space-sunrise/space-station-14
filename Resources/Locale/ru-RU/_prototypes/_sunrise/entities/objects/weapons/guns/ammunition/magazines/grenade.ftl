@@ -12,3 +12,7 @@ ent-MagazineGrenadeBlastExtended = увеличенный картридж фу�
     .desc = { ent-BaseMagazineGrenadeExtended.desc }
 ent-MagazineGrenadeBatonExtended = увеличенный картридж шоковых гранат
     .desc = { ent-BaseMagazineGrenadeExtended.desc }
+ent-MagazineGrenadeFragTimer = картридж осколочных гранат с таймером
+    .desc = Картридж гранат, снаряженный осколочными гранатами с таймером.
+ent-MagazineGrenadeEMPTimer = картридж ЭМИ-гранат с таймером
+    .desc = Картридж гранат, снаряженный ЭМИ-гранатами с таймером.
