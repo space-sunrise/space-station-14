@@ -545,6 +545,8 @@
   id: WeaponSIAR52
   description: A high rate of fire weapon, equipped with integrated silencer.
   components:
+  - type: CanDualWield
+    enabled: false
   - type: Item
     size: Large
     shape:

@@ -39,6 +39,11 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 20
+    dualWieldFireRateMultiplier: 2
+    dualWieldMaxFireRate: 9
+    dualWieldShotDelay: 0.07
   - type: MeleeWeapon
     wideAnimationRotation: 0
     range: 0.95
@@ -69,6 +74,10 @@
       path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_shot.ogg
     soundEmpty:
       path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_empty.ogg
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 28
+    dualWieldFireRateMultiplier: 2
+    dualWieldMaxFireRate: 9
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -219,6 +228,10 @@
     - FullAuto
     soundGunshot:
       collection: glock22
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 22
+    dualWieldFireRateMultiplier: 2
+    dualWieldMaxFireRate: 9
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -321,6 +334,10 @@
       path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_DE50.ogg
     soundEmpty:
       path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_empty.ogg
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 28
+    dualWieldFireRateMultiplier: 2
+    dualWieldMaxFireRate: 9
   - type: ChamberMagazineAmmoProvider
   - type: ItemSlots
     slots:
@@ -367,6 +384,11 @@
     fireRate: 3
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 32
+    dualWieldFireRateMultiplier: 1.5
+    dualWieldMaxFireRate: 5
+    dualWieldShotDelay: 0.09
   - type: StealTarget
     stealGroup: OfficerHandgun
 
@@ -394,6 +416,11 @@
         volume: 100
     soundEmpty:
       path: /Audio/_Sunrise/Weapons/Guns/Pistols/deagle/deagle_empty.ogg
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 36
+    dualWieldFireRateMultiplier: 1.5
+    dualWieldMaxFireRate: 6
+    dualWieldShotDelay: 0.09
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -463,6 +490,11 @@
   - type: GunWieldBonus
     minAngle: -2.7
     maxAngle: -10
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 34
+    dualWieldFireRateMultiplier: 1.5
+    dualWieldMaxFireRate: 4.5
+    dualWieldShotDelay: 0.09
   - type: Gun
     selectedMode: FullAuto
     minAngle: 5
@@ -512,6 +544,10 @@
   - type: GunWieldBonus
     minAngle: -3.5
     maxAngle: -10
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 20
+    dualWieldFireRateMultiplier: 2
+    dualWieldMaxFireRate: 9
   - type: Gun
     selectedMode: SemiAuto
     minAngle: 4.7
@@ -564,6 +600,11 @@
       path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
     availableModes:
     - SemiAuto
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 12
+    dualWieldFireRateMultiplier: 1.5
+    dualWieldMaxFireRate: 7
+    dualWieldShotDelay: 0.08
   - type: ItemSlots
     slots:
       gun_magazine:

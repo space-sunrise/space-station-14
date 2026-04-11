@@ -184,6 +184,11 @@
       name: energy-gun-lethal
       visualState: lethal
       heldPrefix: lethal
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 34
+    dualWieldFireRateMultiplier: 1.25
+    dualWieldMaxFireRate: 2.5
+    dualWieldShotDelay: 0.09
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -315,6 +320,10 @@
       name: energy-gun-lethal
       visualState: lethal
       heldPrefix: lethal
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 22
+    dualWieldFireRateMultiplier: 1.6
+    dualWieldMaxFireRate: 6
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -367,6 +376,10 @@
       name: energy-gun-lethal
       visualState: lethal
       heldPrefix: lethal
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 22
+    dualWieldFireRateMultiplier: 1.6
+    dualWieldMaxFireRate: 6
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -439,6 +452,10 @@
   parent: BaseWeaponBatterySmall
   id: WeaponEarthGovLaserPistol
   components:
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 18
+    dualWieldFireRateMultiplier: 1.8
+    dualWieldMaxFireRate: 8.5
   - type: Gun
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_Pistol.ogg
@@ -793,6 +810,10 @@
     availableModes:
       - SemiAuto
       - FullAuto
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 28
+    dualWieldFireRateMultiplier: 1.35
+    dualWieldMaxFireRate: 5.4
   - type: BatteryAmmoProvider
     proto: RedLaserBeam # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 50
@@ -854,6 +875,10 @@
   id: WeaponAlien
   name: alien pistol
   components:
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 22
+    dualWieldFireRateMultiplier: 1.6
+    dualWieldMaxFireRate: 6
   - type: RestrictByUserTag
     contains:
     - Abductor
@@ -923,6 +948,11 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 34
+    dualWieldFireRateMultiplier: 1.25
+    dualWieldMaxFireRate: 4
+    dualWieldShotDelay: 0.09
   - type: BatteryAmmoProvider
     proto: TaserBolt
     fireCost: 1500
