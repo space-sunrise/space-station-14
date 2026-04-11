@@ -86,6 +86,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     private const float InteractNextFire = 0.3f;
     private const double SafetyNextFire = 0.5;
     private const float EjectOffset = 0.4f;
+    private const float DualWieldTargetSeparation = 0.2f;
     protected const string AmmoExamineColor = "yellow";
     protected const string FireRateExamineColor = "yellow";
     public const string ModeExamineColor = "cyan";
@@ -184,24 +185,32 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (!isDualWield && ent != GetEntity(msg.Gun))
             return;
 
-        gun.ShootCoordinates = GetCoordinates(msg.Coordinates);
-        gun.Targets.Clear();
+        var shootCoordinates = GetCoordinates(msg.Coordinates);
+        var targets = new List<EntityUid>();
         foreach (var target in msg.Targets)
         {
             var targetUid = GetEntity(target);
             if (targetUid != EntityUid.Invalid)
-                gun.Targets.Add(targetUid);
+                targets.Add(targetUid);
         }
 
-        // Dual-wield penalties are applied via GunRefreshModifiersEvent
-
-        var fired = AttemptShoot(user.Value, ent, gun);
-
-        if (isDualWield && fired && dualWield != null)
+        // Sunrise-Edit
+        if (isDualWield &&
+            dualWield != null &&
+            TryGetDualWieldGuns(user.Value, dualWield, out var leftGunUid, out var leftGun, out var rightGunUid, out var rightGun))
         {
-            dualWield.NextIsLeft = !dualWield.NextIsLeft;
-            Dirty(user.Value, dualWield);
+            var (leftCoordinates, rightCoordinates) = GetDualWieldShootCoordinates(user.Value, shootCoordinates);
+
+            UpdateShootRequest(leftGun, leftCoordinates, targets);
+            UpdateShootRequest(rightGun, rightCoordinates, targets);
+
+            AttemptShoot(user.Value, leftGunUid, leftGun);
+            AttemptShoot(user.Value, rightGunUid, rightGun);
+            return;
         }
+
+        UpdateShootRequest(gun, shootCoordinates, targets);
+        AttemptShoot(user.Value, ent, gun);
     }
 
     private void OnStopShootRequest(RequestStopShootEvent ev, EntitySessionEventArgs args)
@@ -292,6 +301,68 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
 
         return false;
+    }
+
+    private void UpdateShootRequest(GunComponent gun, EntityCoordinates shootCoordinates, List<EntityUid> targets)
+    {
+        gun.ShootCoordinates = shootCoordinates;
+        gun.Targets.Clear();
+
+        foreach (var target in targets)
+        {
+            gun.Targets.Add(target);
+        }
+    }
+
+    // Sunrise-Edit
+    private bool TryGetDualWieldGuns(
+        EntityUid user,
+        DualWieldComponent dualWield,
+        out EntityUid leftGunUid,
+        [NotNullWhen(true)] out GunComponent? leftGun,
+        out EntityUid rightGunUid,
+        [NotNullWhen(true)] out GunComponent? rightGun)
+    {
+        leftGunUid = EntityUid.Invalid;
+        rightGunUid = EntityUid.Invalid;
+        leftGun = null;
+        rightGun = null;
+
+        if (dualWield.LeftGun is not { } leftUid ||
+            dualWield.RightGun is not { } rightUid ||
+            leftUid == rightUid ||
+            !TryComp(leftUid, out leftGun) ||
+            !TryComp(rightUid, out rightGun))
+        {
+            dualWield.Active = false;
+            Dirty(user, dualWield);
+            return false;
+        }
+
+        leftGunUid = leftUid;
+        rightGunUid = rightUid;
+        return true;
+    }
+
+    private (EntityCoordinates Left, EntityCoordinates Right) GetDualWieldShootCoordinates(EntityUid user, EntityCoordinates shootCoordinates)
+    {
+        var userMap = TransformSystem.GetMapCoordinates(user);
+        var targetMap = TransformSystem.ToMapCoordinates(shootCoordinates);
+        var direction = targetMap.Position - userMap.Position;
+
+        if (direction == Vector2.Zero)
+            return (shootCoordinates, shootCoordinates);
+
+        var lateral = new Vector2(-direction.Y, direction.X);
+        if (lateral == Vector2.Zero)
+            return (shootCoordinates, shootCoordinates);
+
+        lateral = Vector2.Normalize(lateral) * DualWieldTargetSeparation;
+        var mapUid = MapManager.GetMapEntityId(targetMap.MapId);
+
+        return (
+            new EntityCoordinates(mapUid, targetMap.Position + lateral),
+            new EntityCoordinates(mapUid, targetMap.Position - lateral));
     }
 
     private void StopShooting(EntityUid uid, GunComponent gun)

@@ -13,23 +13,23 @@ public sealed partial class CanDualWieldComponent : Component
     ///     Multiplier applied to the weapon's angle increase per shot when dual-wielding.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float DualWieldInaccuracyPenalty = 0.25f;
+    public float DualWieldInaccuracyPenalty = 1f;
 
     /// <summary>
     ///     Multiplier applied to damage dealt when dual-wielding.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float DualWieldDamagePenalty = 0.25f;
+    public float DualWieldDamagePenalty = 0.35f;
 
     /// <summary>
     ///     Multiplier applied to fire rate when dual-wielding.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float DualWieldFireRatePenalty = 0.25f;
+    public float DualWieldFireRatePenalty = 0.4f;
 
     /// <summary>
     ///     Multiplier applied to recoil when dual-wielding.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float DualWieldRecoilPenalty = 0.25f;
+    public float DualWieldRecoilPenalty = 0.75f;
 }

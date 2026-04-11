@@ -2,6 +2,8 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Alert;
+using Content.Shared.Popups;
+using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.GameStates;
@@ -21,6 +23,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedGunSystem _gunSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private static readonly ProtoId<AlertPrototype> DualWieldAlertKey = "DualWieldActive";
 
@@ -30,6 +33,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         SubscribeLocalEvent<HandsComponent, DidEquipHandEvent>(OnHandEquipped);
         SubscribeLocalEvent<HandsComponent, DidUnequipHandEvent>(OnHandUnequipped);
         SubscribeLocalEvent<CanDualWieldComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers);
+        SubscribeLocalEvent<CanDualWieldComponent, GunShotEvent>(OnGunShot);
     }
 
     private void OnHandEquipped(EntityUid uid, HandsComponent component, DidEquipHandEvent args)
@@ -46,13 +50,15 @@ public sealed class SharedDualWieldSystem : EntitySystem
 
     private void CheckAndUpdateDualWield(EntityUid uid)
     {
+        var wasActive = TryComp<DualWieldComponent>(uid, out var dualWield) && dualWield.Active;
+
         if (!TryGetBothDualWieldGuns(uid, out var leftGun, out var rightGun))
         {
-            DisableDualWield(uid);
+            DisableDualWield(uid, wasActive);
             return;
         }
 
-        EnableDualWield(uid, leftGun!.Value, rightGun!.Value);
+        EnableDualWield(uid, leftGun!.Value, rightGun!.Value, !wasActive);
     }
 
     private bool TryGetBothDualWieldGuns(EntityUid uid, [NotNullWhen(true)] out EntityUid? leftGun, [NotNullWhen(true)] out EntityUid? rightGun)
@@ -91,7 +97,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         return leftGun != null && rightGun != null;
     }
 
-    private void EnableDualWield(EntityUid uid, EntityUid leftGun, EntityUid rightGun)
+    private void EnableDualWield(EntityUid uid, EntityUid leftGun, EntityUid rightGun, bool showPopup)
     {
         var dualWield = EnsureComp<DualWieldComponent>(uid);
         dualWield.Active = true;
@@ -101,13 +107,15 @@ public sealed class SharedDualWieldSystem : EntitySystem
         Dirty(uid, dualWield);
 
         _alerts.ShowAlert(uid, DualWieldAlertKey, severity: 0);
+        if (showPopup)
+            _popup.PopupClient(Loc.GetString("dual-wield-popup-available"), uid, uid);
 
         // Force refresh modifiers for both guns to apply penalties immediately
         _gunSystem.RefreshModifiers(leftGun);
         _gunSystem.RefreshModifiers(rightGun);
     }
 
-    private void DisableDualWield(EntityUid uid)
+    private void DisableDualWield(EntityUid uid, bool showPopup = false)
     {
         if (!TryComp<DualWieldComponent>(uid, out var dualWield))
             return;
@@ -120,6 +128,8 @@ public sealed class SharedDualWieldSystem : EntitySystem
         Dirty(uid, dualWield);
 
         _alerts.ClearAlert(uid, DualWieldAlertKey);
+        if (showPopup)
+            _popup.PopupClient(Loc.GetString("dual-wield-popup-unavailable"), uid, uid);
 
         // Refresh modifiers to remove penalties
         if (leftGun != null)
@@ -146,5 +156,27 @@ public sealed class SharedDualWieldSystem : EntitySystem
         args.AngleIncrease *= (1f + ent.Comp.DualWieldInaccuracyPenalty);
         args.FireRate *= (1f - ent.Comp.DualWieldFireRatePenalty);
         args.CameraRecoilScalar *= (1f + ent.Comp.DualWieldRecoilPenalty);
+    }
+
+    private void OnGunShot(Entity<CanDualWieldComponent> ent, ref GunShotEvent args)
+    {
+        var wielder = Transform(ent).ParentUid;
+        if (wielder == EntityUid.Invalid)
+            return;
+
+        if (!TryComp<DualWieldComponent>(wielder, out var dualWield) || !dualWield.Active)
+            return;
+
+        if (dualWield.LeftGun != ent.Owner && dualWield.RightGun != ent.Owner)
+            return;
+
+        var damageMultiplier = 1f - ent.Comp.DualWieldDamagePenalty;
+        foreach (var (ammoUid, _) in args.Ammo)
+        {
+            if (ammoUid is not { } uid || !TryComp<ProjectileComponent>(uid, out var projectile))
+                continue;
+
+            projectile.Damage *= damageMultiplier;
+        }
     }
 }

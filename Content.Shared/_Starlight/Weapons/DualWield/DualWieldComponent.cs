@@ -28,7 +28,7 @@ public sealed partial class DualWieldComponent : Component
     public EntityUid? RightGun;
 
     /// <summary>
-    ///     Indicates whether the next shot should be fired from the left gun.
+    ///     Legacy flag retained for network compatibility.
     /// </summary>
     [AutoNetworkedField]
     public bool NextIsLeft = true;
