@@ -20,6 +20,8 @@
   - type: Fixtures
   - type: CollideOnAnchor
   - type: Appearance
+  - type: PlacementReplacement # Sunrise-Edit
+    key: power_cables
 
 - type: entity
   abstract: true
