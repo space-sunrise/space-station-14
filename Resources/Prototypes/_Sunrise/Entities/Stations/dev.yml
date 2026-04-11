@@ -1,0 +1,34 @@
+﻿- type: entity
+  categories: [ HideSpawnMenu ]
+  id: SunriseStandardEmptyStation
+  parent:
+  - BaseStation
+  - BaseStationJobsSpawning
+  components:
+  - type: Transform
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: SunriseStandardDevStation
+  parent:
+  - BaseStation
+  - BaseStationNews
+  - BaseStationCargo
+  - BaseStationJobsSpawning
+  - BaseStationRecords
+  - BaseStationArrivals
+  - BaseStationGateway
+  - BaseStationAlertLevels
+  - BaseStationMagnet
+  - BaseStationExpeditions
+  - BaseStationSalvageJobs
+  - BaseStationSiliconLawCrewsimov
+  - BaseStationAllEventsEligible
+  - BaseStationNanotrasen
+  - BaseStationGoal
+  - BaseStationAntagsTargets
+  - BaseStationCryoTeleport
+  - BaseStationMeteorSwarmTarget
+  - BaseStationRandomXenoArtifact
+  components:
+  - type: Transform
