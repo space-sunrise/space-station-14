@@ -127,6 +127,11 @@ public sealed class WeaponTests : InteractionTest
         });
     }
 
+    /// <summary>
+    ///     Spawns and equips two guns of the specified prototype into the player's left and right hands.
+    /// </summary>
+    /// <param name="prototype">The gun prototype to spawn in both hands.</param>
+    /// <returns>The network entities of the left-hand and right-hand guns.</returns>
     private async Task<(NetEntity LeftGun, NetEntity RightGun)> EquipDualWieldGuns(EntProtoId prototype)
     {
         NetEntity leftGun = default;
@@ -172,6 +177,9 @@ public sealed class WeaponTests : InteractionTest
         return (leftGun, rightGun);
     }
 
+    /// <summary>
+    ///     Raises a client-side shoot request for the specified gun.
+    /// </summary>
     private async Task ShootFromClient(NetEntity gun)
     {
         await Client.WaitPost(() => CEntMan.RaisePredictiveEvent(new RequestShootEvent
@@ -183,6 +191,9 @@ public sealed class WeaponTests : InteractionTest
         await RunTicks(5);
     }
 
+    /// <summary>
+    ///     Raises a client-side stop shooting request for the specified gun.
+    /// </summary>
     private async Task StopShootingFromClient(NetEntity gun)
     {
         await Client.WaitPost(() => CEntMan.RaisePredictiveEvent(new RequestStopShootEvent

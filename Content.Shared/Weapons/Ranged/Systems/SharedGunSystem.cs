@@ -359,6 +359,15 @@ public abstract partial class SharedGunSystem : EntitySystem
     }
 
     // Sunrise added start - share dual-wield aware stop logic between requests and tests
+    /// <summary>
+    ///     Stops shooting for the requested gun, or both guns if the user is actively dual-wielding that pair.
+    /// </summary>
+    /// <param name="user">The entity that is currently holding the gun or dual-wield pair.</param>
+    /// <param name="requestedGunUid">The gun that initiated the stop request.</param>
+    /// <returns>
+    ///     <see langword="true"/> if the stop request matched an active gun and the shooting state was cleared;
+    ///     otherwise, <see langword="false"/>.
+    /// </returns>
     public bool TryStopShooting(EntityUid user, EntityUid requestedGunUid)
     {
         if (TryComp<DualWieldComponent>(user, out var dualWield) &&
