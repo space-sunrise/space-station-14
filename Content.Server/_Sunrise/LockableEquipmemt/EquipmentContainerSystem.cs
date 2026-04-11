@@ -98,7 +98,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
         var doAfter = new DoAfterArgs(
             EntityManager,
             user,
-            1.5f,
+            comp.DetachDoAfter,
             new EquipmentDoAfterEvent(EquipmentActionType.Detach),
             target,
             target: target)
@@ -143,7 +143,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
         var doAfter = new DoAfterArgs(
             EntityManager,
             user,
-            1.5f,
+            ent.Comp.AttachDoAfter,
             new EquipmentDoAfterEvent(EquipmentActionType.Attach),
             ent.Owner,
             target: ent.Owner,
@@ -303,17 +303,21 @@ public sealed class EquipmentContainerSystem : EntitySystem
     //Helpers
     private void UpdateAppearance(EntityUid uid, LockableEquipmentComponent device)
     {
-        var appearance = EnsureComp<AppearanceComponent>(uid);
+        var appearance = CompOrNull<AppearanceComponent>(uid);
+        if (appearance == null)
+            return;
+
         var visualData = CreateVisualData(device, visible: true);
 
         _appearance.SetData(uid, EquipmentVisuals.VisualData, visualData, appearance);
-
-        Dirty(uid, appearance);
     }
 
     private void ResetAppearance(EntityUid uid, LockableEquipmentComponent? previousDevice = null)
     {
-        var appearance = EnsureComp<AppearanceComponent>(uid);
+        var appearance = CompOrNull<AppearanceComponent>(uid);
+        if (appearance == null)
+            return;
+
         EquipmentVisualData? visualData = null;
 
         if (previousDevice != null)
@@ -329,8 +333,6 @@ public sealed class EquipmentContainerSystem : EntitySystem
 
         if (visualData != null)
             _appearance.SetData(uid, EquipmentVisuals.VisualData, visualData, appearance);
-
-        Dirty(uid, appearance);
     }
 
     private EntityUid? FindDevice(BaseContainer container)

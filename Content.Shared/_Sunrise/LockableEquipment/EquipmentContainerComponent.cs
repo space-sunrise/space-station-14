@@ -15,4 +15,16 @@ public sealed partial class EquipmentContainerComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public string ContainerId = "locked-equipment";
+
+    /// <summary>
+    /// Delay before attaching a device completes.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float AttachDoAfter = 1.5f;
+
+    /// <summary>
+    /// Delay before removing a device completes.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float DetachDoAfter = 1.5f;
 }
