@@ -2,9 +2,11 @@ using System.Numerics;
 using Robust.Client.GameObjects;
 using Content.Client.Stylesheets;
 using Content.Shared.Access.Components;
+using Content.Shared.Containers;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
+using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
@@ -27,10 +29,12 @@ public sealed partial class MappingAccessOverlay : Overlay
     private static readonly Color BackgroundColor = new Color(10, 12, 16).WithAlpha(0.72f);
     private static readonly Color OutlineColor = TitleColor.WithAlpha(0.85f);
 
-    private readonly IEntityManager _entityManager;
+    private readonly IEntityManager _ent;
     private readonly EntityLookupSystem _entityLookup;
+    private readonly EntityQuery<ContainerFillComponent> _containerFillQuery;
     private readonly EntityQuery<PhysicsComponent> _physicsQuery;
     private readonly SpriteSystem _spriteSystem;
+    private readonly SharedContainerSystem _containerSystem;
     private readonly SharedTransformSystem _transformSystem;
     private readonly IPrototypeManager _prototypeManager;
     private readonly ILocalizationManager _loc;
@@ -42,6 +46,7 @@ public sealed partial class MappingAccessOverlay : Overlay
     private readonly List<UIBox2> _occupiedRects = new(16);
 
     public MappingAccessBodyFilter BodyFilter { get; set; } = MappingAccessBodyFilter.Both;
+    public bool ElectronicsOnly { get; set; }
 
     public override OverlaySpace Space => OverlaySpace.ScreenSpace;
 
@@ -54,11 +59,13 @@ public sealed partial class MappingAccessOverlay : Overlay
         IResourceCache resourceCache,
         IUserInterfaceManager uiManager)
     {
-        _entityManager = entityManager;
+        _ent = entityManager;
         _entityLookup = entityLookup;
-        _physicsQuery = _entityManager.GetEntityQuery<PhysicsComponent>();
+        _containerFillQuery = _ent.GetEntityQuery<ContainerFillComponent>();
+        _physicsQuery = _ent.GetEntityQuery<PhysicsComponent>();
         _spriteSystem = spriteSystem;
-        _transformSystem = _entityManager.System<SharedTransformSystem>();
+        _containerSystem = _ent.System<SharedContainerSystem>();
+        _transformSystem = _ent.System<SharedTransformSystem>();
         _prototypeManager = prototypeManager;
         _loc = loc;
         _uiManager = uiManager;
@@ -82,13 +89,23 @@ public sealed partial class MappingAccessOverlay : Overlay
         var horizontalMargin = HorizontalMargin * uiScale;
         var verticalMargin = VerticalMargin * uiScale;
         _occupiedRects.Clear();
-        var query = _entityManager.AllEntityQueryEnumerator<AccessReaderComponent, SpriteComponent, TransformComponent, MetaDataComponent>();
+
+        if (ElectronicsOnly)
+            RebuildAccessReaderLookup();
+
+        var query = _ent.AllEntityQueryEnumerator<AccessReaderComponent, SpriteComponent, TransformComponent, MetaDataComponent>();
 
         while (query.MoveNext(out var uid, out var accessReader, out var sprite, out var transform, out var meta))
         {
             if (transform.MapID != args.MapId ||
-                !accessReader.Enabled ||
-                accessReader.AccessLists.Count == 0)
+                !accessReader.Enabled)
+            {
+                continue;
+            }
+
+            if (!TryGetDisplayedAccessReader(uid, accessReader, out var displayedReader) ||
+                !displayedReader.Enabled ||
+                displayedReader.AccessLists.Count == 0)
             {
                 continue;
             }
@@ -100,7 +117,7 @@ public sealed partial class MappingAccessOverlay : Overlay
             if (!aabb.Intersects(in args.WorldAABB))
                 continue;
 
-            BuildAccessLines(accessReader, orText);
+            BuildAccessLines(displayedReader, orText);
             if (_accessLines.Count == 0)
                 continue;
 

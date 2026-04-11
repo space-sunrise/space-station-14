@@ -49,6 +49,7 @@ public sealed class MappingAccessWidgetController : UIController, IOnSystemChang
 
         _screen = screen;
         _widget = screen.GetOrAddWidget<MappingAccessWidget>();
+        _widget.ElectronicsOnlyChanged += OnWidgetElectronicsOnlyChanged;
         _widget.FilterChanged += OnWidgetFilterChanged;
         _widget.OnResized += UpdateWidgetPlacement;
         LayoutContainer.SetAnchorPreset(_widget, LayoutContainer.LayoutPreset.TopLeft);
@@ -70,6 +71,7 @@ public sealed class MappingAccessWidgetController : UIController, IOnSystemChang
 
         if (_widget != null)
         {
+            _widget.ElectronicsOnlyChanged -= OnWidgetElectronicsOnlyChanged;
             _widget.FilterChanged -= OnWidgetFilterChanged;
             _widget.OnResized -= UpdateWidgetPlacement;
         }
@@ -88,6 +90,11 @@ public sealed class MappingAccessWidgetController : UIController, IOnSystemChang
         _mappingAccess?.SetBodyFilter(filter);
     }
 
+    private void OnWidgetElectronicsOnlyChanged(bool electronicsOnly)
+    {
+        _mappingAccess?.SetElectronicsOnly(electronicsOnly);
+    }
+
     private void SyncWidgetState()
     {
         if (_widget == null)
@@ -101,6 +108,7 @@ public sealed class MappingAccessWidgetController : UIController, IOnSystemChang
 
         _widget.Visible = _mappingAccess.Enabled && _mappingAccess.CanEnable;
         _widget.SetBodyFilter(_mappingAccess.BodyFilter);
+        _widget.SetElectronicsOnly(_mappingAccess.ElectronicsOnly);
         UpdateWidgetPlacement();
     }
 

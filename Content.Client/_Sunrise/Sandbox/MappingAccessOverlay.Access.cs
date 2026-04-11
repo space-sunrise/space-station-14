@@ -9,6 +9,125 @@ public sealed partial class MappingAccessOverlay
 {
     private readonly List<string> _groupAccessNames = new(8);
     private readonly StringBuilder _accessBuffer = new();
+    private readonly Dictionary<EntityUid, AccessReaderComponent> _accessReaderLookup = new();
+    private readonly Dictionary<string, AccessReaderComponent?> _prototypeAccessReaderLookup = new();
+
+    private bool TryGetDisplayedAccessReader(
+        EntityUid uid,
+        AccessReaderComponent accessReader,
+        out AccessReaderComponent displayedReader)
+    {
+        if (ElectronicsOnly)
+            return TryGetElectronicsAccessReader(uid, accessReader, out displayedReader);
+
+        displayedReader = accessReader;
+        return accessReader.ContainerAccessProvider == null;
+    }
+
+    private bool TryGetElectronicsAccessReader(
+        EntityUid uid,
+        AccessReaderComponent accessReader,
+        out AccessReaderComponent electronicsReader)
+    {
+        electronicsReader = default!;
+
+        if (accessReader.ContainerAccessProvider is not { } containerId)
+            return false;
+
+        if (TryGetContainedAccessReader(uid, containerId, out electronicsReader))
+            return true;
+
+        return TryGetPrototypeElectronicsAccessReader(uid, containerId, out electronicsReader);
+    }
+
+    private bool TryGetContainedAccessReader(
+        EntityUid uid,
+        string containerId,
+        out AccessReaderComponent electronicsReader)
+    {
+        electronicsReader = default!;
+
+        if (!_containerSystem.TryGetContainer(uid, containerId, out var container))
+        {
+            return false;
+        }
+
+        foreach (var containedUid in container.ContainedEntities)
+        {
+            if (!_accessReaderLookup.TryGetValue(containedUid, out var containedReader))
+                continue;
+
+            electronicsReader = containedReader;
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool TryGetPrototypeElectronicsAccessReader(
+        EntityUid uid,
+        string containerId,
+        out AccessReaderComponent electronicsReader)
+    {
+        electronicsReader = default!;
+
+        if (!_containerFillQuery.TryComp(uid, out var containerFill) ||
+            !containerFill.Containers.TryGetValue(containerId, out var prototypes))
+        {
+            return false;
+        }
+
+        foreach (var prototypeId in prototypes)
+        {
+            if (!TryGetPrototypeAccessReader(prototypeId, out electronicsReader))
+                continue;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool TryGetPrototypeAccessReader(string prototypeId, out AccessReaderComponent accessReader)
+    {
+        accessReader = default!;
+
+        if (_prototypeAccessReaderLookup.TryGetValue(prototypeId, out var cachedReader))
+        {
+            if (cachedReader == null)
+                return false;
+
+            accessReader = cachedReader;
+            return true;
+        }
+
+        if (!_prototypeManager.TryIndex<EntityPrototype>(prototypeId, out var prototype) ||
+            !prototype.TryGetComponent<AccessReaderComponent>(out var prototypeReader, _ent.ComponentFactory) ||
+            !prototypeReader.Enabled ||
+            prototypeReader.AccessLists.Count == 0)
+        {
+            _prototypeAccessReaderLookup[prototypeId] = null;
+            return false;
+        }
+
+        _prototypeAccessReaderLookup[prototypeId] = prototypeReader;
+        accessReader = prototypeReader;
+        return true;
+    }
+
+    private void RebuildAccessReaderLookup()
+    {
+        _accessReaderLookup.Clear();
+
+        var query = _ent.AllEntityQueryEnumerator<AccessReaderComponent>();
+        while (query.MoveNext(out var uid, out var accessReader))
+        {
+            if (!accessReader.Enabled || accessReader.AccessLists.Count == 0)
+                continue;
+
+            _accessReaderLookup[uid] = accessReader;
+        }
+    }
 
     private void BuildAccessLines(AccessReaderComponent reader, string orText)
     {

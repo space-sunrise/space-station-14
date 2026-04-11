@@ -27,6 +27,7 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
     public bool Enabled { get; private set; }
     public bool CanEnable => _admin.HasFlag(AdminFlags.Mapping);
     public MappingAccessBodyFilter BodyFilter { get; private set; } = MappingAccessBodyFilter.Both;
+    public bool ElectronicsOnly { get; private set; }
 
     public override void Initialize()
     {
@@ -35,6 +36,7 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
         _admin.AdminStatusUpdated += OnAdminStatusUpdated;
         _overlay = new(EntityManager, _entityLookup, _spriteSystem, _prototypeManager, Loc, _resourceCache, _uiManager);
         _overlay.BodyFilter = BodyFilter;
+        _overlay.ElectronicsOnly = ElectronicsOnly;
         UpdateUi();
     }
 
@@ -83,6 +85,16 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
 
         BodyFilter = filter;
         _overlay.BodyFilter = filter;
+        StateChanged?.Invoke();
+    }
+
+    public void SetElectronicsOnly(bool electronicsOnly)
+    {
+        if (ElectronicsOnly == electronicsOnly)
+            return;
+
+        ElectronicsOnly = electronicsOnly;
+        _overlay.ElectronicsOnly = electronicsOnly;
         StateChanged?.Invoke();
     }
 
