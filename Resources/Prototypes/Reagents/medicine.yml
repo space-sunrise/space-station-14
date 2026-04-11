@@ -210,7 +210,7 @@
             Brute: -2
             Burn: -2
             Toxin: -2
-        #Sunrise-End
+        #Sunrise-Start
         - !type:HealthChange
           conditions:
           - !type:TemperatureCondition
