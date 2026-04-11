@@ -34,6 +34,7 @@ namespace Content.Server._Sunrise.LockableEquipment
         {
             args.State = new LockableEquipmentComponentState(
                 component.Locked,
+                component.Broken,
                 component.LockId,
                 component.Layer,
                 component.RsiPath,

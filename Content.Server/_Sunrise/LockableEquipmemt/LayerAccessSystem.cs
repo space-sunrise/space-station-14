@@ -58,7 +58,7 @@ public sealed class LayerAccessSystem : EntitySystem
     }
 
     /// <summary>
-    /// Enumerates explicit and fallback blockers from currently equipped clothing.
+    /// Enumerates blockers from currently equipped clothing, preferring explicit metadata over fallback rules.
     /// </summary>
     private IEnumerable<LayerAccessBlocker> EnumerateBlockers(Entity<InventoryComponent> wearer)
     {
@@ -72,6 +72,8 @@ public sealed class LayerAccessSystem : EntitySystem
                 yield return new LayerAccessBlocker(
                     layerBlocking.CoversLayers,
                     layerBlocking.AccessPriority);
+
+                continue;
             }
 
             if (TryGetFallbackRule(slot.SlotFlags, out var fallback))

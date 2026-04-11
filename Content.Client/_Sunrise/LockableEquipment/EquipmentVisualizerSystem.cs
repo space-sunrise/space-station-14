@@ -15,42 +15,42 @@ namespace Content.Client._Sunrise.LockableEquipment
             SubscribeLocalEvent<AppearanceComponent, AppearanceChangeEvent>(OnAppearanceChange);
         }
 
-        private void OnAppearanceChange(EntityUid uid, AppearanceComponent appearance, ref AppearanceChangeEvent args)
+        private void OnAppearanceChange(Entity<AppearanceComponent> ent, ref AppearanceChangeEvent args)
         {
             if (args.Sprite == null)
                 return;
 
             var sprite = args.Sprite;
 
-            if (_appearance.TryGetData(uid, EquipmentVisuals.IconState, out string? iconState) &&
+            if (_appearance.TryGetData(ent, EquipmentVisuals.IconState, out string? iconState) &&
                 !string.IsNullOrEmpty(iconState))
             {
-                _sprite.LayerSetRsiState((uid, sprite), 0, iconState);
+                _sprite.LayerSetRsiState((ent, sprite), 0, iconState);
             }
 
-            if (!_appearance.TryGetData(uid, EquipmentVisuals.VisualData, out EquipmentVisualData? visualData))
+            if (!_appearance.TryGetData(ent, EquipmentVisuals.VisualData, out EquipmentVisualData? visualData))
                 return;
 
             if (visualData == null || string.IsNullOrEmpty(visualData.Layer))
                 return;
 
-            var layer = _sprite.LayerMapReserve((uid, sprite), visualData.Layer);
+            var layer = _sprite.LayerMapReserve((ent, sprite), visualData.Layer);
 
             if (!visualData.Visible)
             {
-                _sprite.LayerSetVisible((uid, sprite), layer, false);
+                _sprite.LayerSetVisible((ent, sprite), layer, false);
                 return;
             }
 
             if (string.IsNullOrEmpty(visualData.RsiPath) || string.IsNullOrEmpty(visualData.State))
             {
-                _sprite.LayerSetVisible((uid, sprite), layer, false);
+                _sprite.LayerSetVisible((ent, sprite), layer, false);
                 return;
             }
 
-            _sprite.LayerSetRsi((uid, sprite), layer, new ResPath(visualData.RsiPath));
-            _sprite.LayerSetRsiState((uid, sprite), layer, visualData.State);
-            _sprite.LayerSetVisible((uid, sprite), layer, true);
+            _sprite.LayerSetRsi((ent, sprite), layer, new ResPath(visualData.RsiPath));
+            _sprite.LayerSetRsiState((ent, sprite), layer, visualData.State);
+            _sprite.LayerSetVisible((ent, sprite), layer, true);
         }
     }
 }

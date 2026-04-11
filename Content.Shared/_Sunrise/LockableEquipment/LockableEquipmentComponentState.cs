@@ -7,14 +7,16 @@ namespace Content.Shared._Sunrise.LockableEquipment;
 public sealed class LockableEquipmentComponentState : ComponentState
 {
     public readonly bool Locked;
+    public readonly bool Broken;
     public readonly string? LockId;
     public readonly string Layer;
     public readonly string RsiPath;
     public readonly string SpriteState;
 
-    public LockableEquipmentComponentState(bool locked, string? lockId, string layer, string rsiPath, string spriteState = "equipped")
+    public LockableEquipmentComponentState(bool locked, bool broken, string? lockId, string layer, string rsiPath, string spriteState = "equipped")
     {
         Locked = locked;
+        Broken = broken;
         LockId = lockId;
         Layer = layer;
         RsiPath = rsiPath;

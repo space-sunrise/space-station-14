@@ -76,41 +76,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
         if (!TryComp(args.Used, out LockableEquipmentComponent? device))
             return;
 
-        if (!CanAccess(ent.Owner, device.Layer, device))
-        {
-            _popup.PopupClient(
-                Loc.GetString("lockable-equipment-blocked"),
-                args.User,
-                args.User);
-            return;
-        }
-
-        if (FindDevice(container) != null)
-        {
-            _popup.PopupClient(
-                Loc.GetString("lockable-equipment-already"),
-                args.User,
-                args.User);
-            return;
-        }
-
-        var doAfter = new DoAfterArgs(
-            EntityManager,
-            args.User,
-            1.5f,
-            new EquipmentDoAfterEvent(EquipmentActionType.Attach),
-            ent.Owner,
-            target: ent.Owner,
-            used: args.Used)
-        {
-            BreakOnMove = true,
-            BreakOnDamage = true,
-            NeedHand = true,
-            BreakOnHandChange = true,
-            DuplicateCondition = DuplicateConditions.SameTarget | DuplicateConditions.SameEvent
-        };
-
-        _doAfter.TryStartDoAfter(doAfter);
+        args.Handled = TryAttachDevice(ent, args.User, args.Used, device, container);
     }
 
     public void TryRemove(EntityUid target, EntityUid user)
@@ -166,6 +132,32 @@ public sealed class EquipmentContainerSystem : EntitySystem
         };
 
         _doAfter.TryStartDoAfter(doAfter);
+    }
+
+    public bool TryAttachDevice(Entity<EquipmentContainerComponent> ent, EntityUid user, EntityUid deviceUid, LockableEquipmentComponent device, BaseContainer? container = null)
+    {
+        container ??= _container.EnsureContainer<Container>(ent.Owner, ent.Comp.ContainerId);
+
+        if (!CanAttachDevice(ent.Owner, user, device, container))
+            return false;
+
+        var doAfter = new DoAfterArgs(
+            EntityManager,
+            user,
+            1.5f,
+            new EquipmentDoAfterEvent(EquipmentActionType.Attach),
+            ent.Owner,
+            target: ent.Owner,
+            used: deviceUid)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            NeedHand = true,
+            BreakOnHandChange = true,
+            DuplicateCondition = DuplicateConditions.SameTarget | DuplicateConditions.SameEvent
+        };
+
+        return _doAfter.TryStartDoAfter(doAfter);
     }
 
     private void OnDoAfter(Entity<EquipmentContainerComponent> ent, ref EquipmentDoAfterEvent args)
@@ -275,6 +267,8 @@ public sealed class EquipmentContainerSystem : EntitySystem
                 if (HasComp<KeyComponent>(held.Value))
                 {
                     var user = args.User;
+                    var targetDevice = device.Value;
+                    var key = held.Value;
 
                     args.Verbs.Add(new InteractionVerb
                     {
@@ -282,13 +276,15 @@ public sealed class EquipmentContainerSystem : EntitySystem
                             ? Loc.GetString("lockable-equipment-verb-unlock", ("name", name))
                             : Loc.GetString("lockable-equipment-verb-lock", ("name", name)),
                         Priority = 200,
-                        Act = () => _lockable.TryUseKey(device.Value, held.Value, user)
+                        Act = () => _lockable.TryUseKey(targetDevice, key, user)
                     });
                 }
 
                 if (comp.Locked && _lockable.CanBreakWithTool(device.Value, held.Value))
                 {
                     var user = args.User;
+                    var targetDevice = device.Value;
+                    var tool = held.Value;
                     var breakText = GetBreakVerbText(name, comp.Mode);
 
                     if (breakText != null)
@@ -297,7 +293,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
                         {
                             Text = breakText,
                             Priority = 150,
-                            Act = () => _lockable.TryStartBreakDoAfter(device.Value, held.Value, user)
+                            Act = () => _lockable.TryStartBreakDoAfter(targetDevice, tool, user)
                         });
                     }
                 }
@@ -416,5 +412,28 @@ public sealed class EquipmentContainerSystem : EntitySystem
             device.Layer,
             device.RsiPath,
             device.SpriteState);
+    }
+
+    private bool CanAttachDevice(EntityUid owner, EntityUid user, LockableEquipmentComponent device, BaseContainer container)
+    {
+        if (!CanAccess(owner, device.Layer, device))
+        {
+            _popup.PopupClient(
+                Loc.GetString("lockable-equipment-blocked"),
+                user,
+                user);
+            return false;
+        }
+
+        if (FindDevice(container) != null)
+        {
+            _popup.PopupClient(
+                Loc.GetString("lockable-equipment-already"),
+                user,
+                user);
+            return false;
+        }
+
+        return true;
     }
 }

@@ -12,7 +12,7 @@ public static class SlotLayerMapping
     /// </summary>
     public static readonly SlotBlockRule[] Rules =
     {
-        new(SlotFlags.OUTERCLOTHING, 5, "lockable_over", "lockable_chest", "lockable_under", "lockable_underpants"),
+        new(SlotFlags.OUTERCLOTHING, 5, "lockable_over", "lockable_normal", "lockable_chest", "lockable_under", "lockable_underpants"),
         new(SlotFlags.INNERCLOTHING, 3, "lockable_under", "lockable_underpants"),
         new(SlotFlags.PANTS, 2, "lockable_under", "lockable_underpants"),
         new(SlotFlags.HEAD, 1, "lockable_head"),
