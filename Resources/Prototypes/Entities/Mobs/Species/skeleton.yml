@@ -103,6 +103,10 @@
     alternateState: Standing
   - type: FlashImmunity
     showInExamine: false
+  # Sunrise-Start
+  - type: ToggleableNightVision
+    effect: EffectNightVisionPirate
+  # Sunrise-End
   - type: Inventory
     femaleDisplacements:
       jumpsuit:

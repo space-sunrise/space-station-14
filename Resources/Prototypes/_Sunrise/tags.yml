@@ -20,6 +20,9 @@
 - type: Tag
   id: ShowWires
 
+- type: Tag
+  id: ForceNoTileWalls
+
 # region Uplinks
 - type: Tag
   id: BlueShield

@@ -585,15 +585,15 @@
 - type: entity
   id: BulletRocket120mmMetla
   name: 120mm rocket
-  parent: BulletGrenade120mmBlast
+  parent: BulletAK57090mmHE
   categories: [ HideSpawnMenu ]
   components:
   - type: Fixtures
     fixtures:
       projectile:
         shape:
-          !type:PhysShapeCircle
-          radius: 0.5
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.85,0.05"
         density: 2
         hard: true
         layer:
@@ -607,7 +607,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 75
+        damage: 60
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -627,7 +627,7 @@
     follow: true
     location: 120mm Rocket Payload
   - type: GuidedProjectile
-    turnRate: 120
+    turnRate: 100
   - type: TimedDespawn
     lifetime: 30
 
