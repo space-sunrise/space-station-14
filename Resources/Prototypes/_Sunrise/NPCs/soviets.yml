@@ -38,6 +38,9 @@
     - Soviet
   - type: NpcVeteranFollower
   - type: FootprintEmitter
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHeavy
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -276,6 +279,7 @@
   id: MobSovietMarineMelee
   abstract: true
   components:
+  - type: NoSlip
   - type: MovementSpeedModifier
     baseSprintSpeed: 4.5
   - type: SlowOnDamage
@@ -1205,6 +1209,7 @@
   - MobSovietVeteranChatterBase
   id: MobSovietT3Rifle
   components:
+  - type: NoSlip
   - type: Tag
     tags:
     - NpcVeteranLeader
@@ -1270,6 +1275,7 @@
   parent: [MobHostileBossBase, MobSovietVeteranChatterBase, MobPirateSparkEffectBase]
   id: MobSovietT2Mech
   components:
+  - type: NoSlip
   - type: Loadout
     prototypes:
     - MobSovietGearT2Mech
@@ -1416,6 +1422,7 @@
   parent: [MobHostileBossBase, MobSovietVeteranChatterBase, MobPirateSparkEffectBase]
   id: MobSovietT3Mech
   components:
+  - type: NoSlip
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionActivateSmokeGrenadeImplant

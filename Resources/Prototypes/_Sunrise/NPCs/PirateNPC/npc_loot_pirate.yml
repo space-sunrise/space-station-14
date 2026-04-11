@@ -1235,13 +1235,11 @@
     - id: PirateCashSpawner01
     - id: PirateCashSpawner03
     # Weapons
-    - id: WeaponMachineGunLCGEmpty
-      prob: 0.25
-    # Items
-    - id: WeaponMachineGunLCGEmpty
-      orGroup: AmmoMGPool
     - id: WeaponMachineGunLCG
-      orGroup: AmmoMGPool
+      orGroup: MGPool
+    - id: WeaponMachineGunLCGEmpty
+      orGroup: MGPool
+    # Items
     - id: MagazineChainGun
       orGroup: AmmoMGPool
     - id: MagazineChainGun100
