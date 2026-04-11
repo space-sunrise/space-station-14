@@ -1,9 +1,8 @@
-#pragma warning disable IDE0130
-
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Construction.Commands;
 using Content.Server.Decals;
+using Content.Server.DeviceLinking.Systems;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Maps;
 using Robust.Shared.Console;
@@ -15,21 +14,22 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Map.Events;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Mapping;
+namespace Content.Server._Sunrise.Mapping;
 
 public sealed class MappingAutoSaveSystem : EntitySystem
 {
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IConsoleHost _console = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly TileSystem _tile = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly WalledDecalRemovalSystem _walledDecalRemoval = default!;
+    [Dependency] private readonly WalledDecalRemovalSystem _walledDecal = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly ITileDefinitionManager _tileDefinition = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IConsoleHost _console = default!;
 
     private PendingAutoSaveConsoleContext? _pendingAutoSaveConsoleContext;
 
@@ -96,13 +96,17 @@ public sealed class MappingAutoSaveSystem : EntitySystem
 
     private void RunMapSaveAutoCommands(MapComponent map)
     {
+        var runCleanDeviceLinks = _cfg.GetCVar(SunriseCCVars.MappingAutoCleanDeviceLinks);
         var runFixGridAtmos = _cfg.GetCVar(SunriseCCVars.MappingAutoFixGridAtmos);
         var runTileWalls = _cfg.GetCVar(SunriseCCVars.MappingAutoTileWalls);
         var runRemoveWalledDecals = _cfg.GetCVar(SunriseCCVars.MappingAutoRemoveWalledDecals);
         var runVariantize = _cfg.GetCVar(SunriseCCVars.MappingAutoVariantize);
 
-        if (!runFixGridAtmos && !runTileWalls && !runRemoveWalledDecals && !runVariantize)
+        if (!runCleanDeviceLinks && !runFixGridAtmos && !runTileWalls && !runRemoveWalledDecals && !runVariantize)
             return;
+
+        if (runCleanDeviceLinks)
+            _deviceLink.CleanupLinksForMapSave(map.MapId);
 
         foreach (var grid in _mapManager.GetAllGrids(map.MapId))
         {
@@ -113,7 +117,7 @@ public sealed class MappingAutoSaveSystem : EntitySystem
                 RunMapSaveAutoTileWalls(grid);
 
             if (runRemoveWalledDecals)
-                _walledDecalRemoval.RemoveWalledDecals(grid.Owner, grid.Comp);
+                _walledDecal.RemoveWalledDecals(grid.Owner, grid.Comp);
 
             if (runVariantize)
                 RunMapSaveAutoVariantize(grid);
@@ -124,6 +128,7 @@ public sealed class MappingAutoSaveSystem : EntitySystem
     {
         List<string>? executedCommands = null;
 
+        AddEnabledCommand(SunriseCCVars.MappingAutoCleanDeviceLinks, "cleandevicelinks");
         AddEnabledCommand(SunriseCCVars.MappingAutoFixGridAtmos, "fixgridatmos");
         AddEnabledCommand(SunriseCCVars.MappingAutoTileWalls, "tilewalls");
         AddEnabledCommand(SunriseCCVars.MappingAutoRemoveWalledDecals, "removewalleddecals");
@@ -171,7 +176,7 @@ public sealed class MappingAutoSaveSystem : EntitySystem
 
     private void RunMapSaveAutoTileWalls(Entity<MapGridComponent> grid)
     {
-        var underplating = _tileDefinitionManager[TileWallsCommand.TilePrototypeId];
+        var underplating = _tileDefinition[TileWallsCommand.TilePrototypeId];
         var underplatingTile = new Tile(underplating.TileId);
         var childEnumerator = Transform(grid.Owner).ChildEnumerator;
 
@@ -190,7 +195,7 @@ public sealed class MappingAutoSaveSystem : EntitySystem
                 continue;
 
             var tile = _map.GetTileRef(grid.Owner, grid.Comp, childTransform.Coordinates);
-            var tileDefinition = (ContentTileDefinition) _tileDefinitionManager[tile.Tile.TypeId];
+            var tileDefinition = (ContentTileDefinition) _tileDefinition[tile.Tile.TypeId];
 
             if (tileDefinition.ID == TileWallsCommand.TilePrototypeId)
                 continue;

@@ -1,11 +1,12 @@
 #pragma warning disable IDE0130
 
 using Content.Server.Administration;
+using Content.Server.Decals;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 using Robust.Shared.Map.Components;
 
-namespace Content.Server.Decals.Commands;
+namespace Content.Server._Sunrise.Mapping.Commands;
 
 [AdminCommand(AdminFlags.Mapping)]
 public sealed class RemoveWalledDecalsCommand : LocalizedEntityCommands
