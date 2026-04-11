@@ -130,6 +130,7 @@ public sealed class WeaponTests : InteractionTest
 
     /// <summary>
     ///     Spawns and equips two guns of the specified prototype into the player's left and right hands.
+    ///     Asserts that the test player has separate left and right hands before equipping them.
     /// </summary>
     /// <param name="prototype">The gun prototype to spawn in both hands.</param>
     /// <returns>The network entities of the left-hand and right-hand guns.</returns>
