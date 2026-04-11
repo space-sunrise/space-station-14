@@ -100,7 +100,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         dualWield.NextIsLeft = true;
         Dirty(uid, dualWield);
 
-        _alerts.ShowAlert(uid, DualWieldAlertKey);
+        _alerts.ShowAlert(uid, DualWieldAlertKey, severity: 0);
 
         // Force refresh modifiers for both guns to apply penalties immediately
         _gunSystem.RefreshModifiers(leftGun);
