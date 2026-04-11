@@ -142,9 +142,9 @@
     - Belt
     - suitStorage
   - type: CanDualWield
-    dualWieldInaccuracyPenalty: 18
-    dualWieldFireRateMultiplier: 1.5
-    dualWieldMaxFireRate: 7.5
+    dualWieldInaccuracyPenalty: 24
+    dualWieldFireRateMultiplier: 1.35
+    dualWieldMaxFireRate: 6
     dualWieldShotDelay: 0.08
 
 - type: entity
@@ -163,10 +163,10 @@
     slots:
     - Belt
   - type: CanDualWield
-    dualWieldInaccuracyPenalty: 18
-    dualWieldFireRateMultiplier: 1.8
-    dualWieldMaxFireRate: 8.5
-    dualWieldShotDelay: 0.07
+    dualWieldInaccuracyPenalty: 24
+    dualWieldFireRateMultiplier: 1.35
+    dualWieldMaxFireRate: 6
+    dualWieldShotDelay: 0.08
 
 - type: entity
   name: svalinn laser pistol
@@ -217,8 +217,8 @@
     bigTrigger: true # Sunrise-Edit
   - type: CanDualWield
     dualWieldInaccuracyPenalty: 24
-    dualWieldFireRateMultiplier: 1.5
-    dualWieldMaxFireRate: 6
+    dualWieldFireRateMultiplier: 1.35
+    dualWieldMaxFireRate: 5.5
   - type: BatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 62.5
@@ -256,9 +256,9 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/makeshift.rsi
   - type: CanDualWield
-    dualWieldInaccuracyPenalty: 16
-    dualWieldFireRateMultiplier: 1.8
-    dualWieldMaxFireRate: 8.5
+    dualWieldInaccuracyPenalty: 24
+    dualWieldFireRateMultiplier: 1.35
+    dualWieldMaxFireRate: 6
   - type: BatteryAmmoProvider
     proto: RedLaser
     fireCost: 62.5
@@ -573,8 +573,8 @@
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
     bigTrigger: true # Sunrise-Edit
   - type: CanDualWield
-    dualWieldInaccuracyPenalty: 16
-    dualWieldFireRateMultiplier: 1.5
+    dualWieldInaccuracyPenalty: 22
+    dualWieldFireRateMultiplier: 1.35
     dualWieldMaxFireRate: 4
   - type: BatteryAmmoProvider
     proto: BulletDisablerPractice
@@ -648,10 +648,10 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: CanDualWield
-    dualWieldInaccuracyPenalty: 32
-    dualWieldFireRateMultiplier: 1.25
-    dualWieldMaxFireRate: 5.625
-    dualWieldShotDelay: 0.05
+    dualWieldInaccuracyPenalty: 40
+    dualWieldFireRateMultiplier: 1.1
+    dualWieldMaxFireRate: 5.5
+    dualWieldShotDelay: 0.12
   - type: BatteryAmmoProvider
     proto: BulletDisablerSmg
     fireCost: 25
@@ -694,9 +694,9 @@
       path: /Audio/Weapons/Guns/Gunshots/taser.ogg
     projectileSpeed: 25
   - type: CanDualWield
-    dualWieldInaccuracyPenalty: 18
-    dualWieldFireRateMultiplier: 1.5
-    dualWieldMaxFireRate: 1
+    dualWieldInaccuracyPenalty: 22
+    dualWieldFireRateMultiplier: 1.3
+    dualWieldMaxFireRate: 0.8
   - type: BatteryAmmoProvider
     proto: BulletTaser
     fireCost: 200
@@ -721,8 +721,8 @@
       params:
         volume: -6
   - type: CanDualWield
-    dualWieldInaccuracyPenalty: 22
-    dualWieldFireRateMultiplier: 1.35
+    dualWieldInaccuracyPenalty: 24
+    dualWieldFireRateMultiplier: 1.25
     dualWieldMaxFireRate: 0.75
   - type: BatteryAmmoProvider
     proto: BulletTaserSuper
@@ -749,9 +749,9 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     bigTrigger: true # Sunrise-Edit
   - type: CanDualWield
-    dualWieldInaccuracyPenalty: 22
-    dualWieldFireRateMultiplier: 1.6
-    dualWieldMaxFireRate: 6.5
+    dualWieldInaccuracyPenalty: 24
+    dualWieldFireRateMultiplier: 1.35
+    dualWieldMaxFireRate: 5.5
   # Sunrise-start
   - type: Item
     size: Normal
@@ -807,8 +807,8 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: CanDualWield
-    dualWieldInaccuracyPenalty: 26
-    dualWieldFireRateMultiplier: 1.4
+    dualWieldInaccuracyPenalty: 24
+    dualWieldFireRateMultiplier: 1.35
     dualWieldMaxFireRate: 5.5
   - type: BatteryAmmoProvider
     proto: RedMediumLaser

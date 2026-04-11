@@ -1,6 +1,8 @@
 - type: alert
   id: DualWieldActive
-  icons: [ /Textures/_Sunrise/Interface/DualWield.rsi/fire_icon.png ]
+  icons:
+  - sprite: /Textures/_Sunrise/Interface/DualWield.rsi
+    state: fire_icon
   name: dual-wield-alert-name
   description: dual-wield-alert-desc
   minSeverity: 0
