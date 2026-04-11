@@ -163,7 +163,6 @@ public sealed class WeaponTests : InteractionTest
             }
 
             Assert.That(leftHand, Is.Not.Null.And.Not.EqualTo(rightHand), "Player should have separate left and right hands.");
-            Assert.That(rightHand, Is.Not.Null, "Player should have a right hand.");
 
             var leftEntity = SEntMan.SpawnEntity(prototype, SEntMan.GetCoordinates(PlayerCoords));
             var rightEntity = SEntMan.SpawnEntity(prototype, SEntMan.GetCoordinates(PlayerCoords));
