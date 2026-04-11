@@ -8,7 +8,7 @@ files:
 rule:
   all:
     - kind: invocation_expression
-    - regex: '^(?:this\.)?(?:TryComp|HasComp)<.*$'
+    - regex: '^(?:this\.)?(?:TryComp|HasComp)(?:<|\().*$'
     - inside:
         any:
           - kind: for_statement
@@ -23,5 +23,5 @@ rule:
               - regex: '(?s).*\bUpdate\s*\(\s*float\s+\w+\s*\).*'
           - all:
               - kind: method_declaration
-              - regex: '(?s).*\b(?:On|Handle)\w*\s*\(.*Event\s+\w+.*\).*'
+              - regex: '(?s).*\b(?:On|Handle)\w*\s*\(.*(?:Event|Message)\s+\w+.*\).*'
         stopBy: end

@@ -8,7 +8,7 @@ files:
 rule:
   all:
     - kind: invocation_expression
-    - regex: '(?s)^.*\.(?:Where|Select|SelectMany|Any|All|Count|First|FirstOrDefault|Single|SingleOrDefault|Last|LastOrDefault|OrderBy|OrderByDescending|ThenBy|ThenByDescending|ToList|ToArray|Sum|Min|Max)\(.*$'
+    - regex: '(?s)^.*\.(?:Where|Select|SelectMany|Any|All|Count|First|FirstOrDefault|Single|SingleOrDefault|Last|LastOrDefault|OrderBy|OrderByDescending|ThenBy|ThenByDescending|ToList|ToArray|Sum|Min|Max|Aggregate|GroupBy|Join|Distinct|Union|Intersect|Except|Concat|Skip|Take|SkipWhile|TakeWhile|ElementAt|ToDictionary|ToHashSet|Zip)\(.*$'
     - inside:
         any:
           - all:

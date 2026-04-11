@@ -8,4 +8,4 @@ files:
 rule:
   all:
     - kind: method_declaration
-    - regex: '(?s).*\b(?:On|Handle)\w*\s*\(\s*EntityUid\s+\w+\s*,\s*[\w.]+Component\s+\w+\s*,\s*(?:ref\s+)?[\w.]+Event\s+\w+.*\)\s*.*'
+    - regex: '(?s).*\b(?:On|Handle)\w*\s*\(\s*EntityUid\s+\w+\s*,\s*[\w.]+Component\s+\w+\s*,\s*(?:ref\s+)?[\w.]+(?:Event|Message|Args)\s+\w+.*\)\s*.*'

@@ -10,4 +10,4 @@ rule:
     - kind: class_declaration
     - regex: '(?s).*\bclass\s+\w+\s*:\s*(?:EntityEventArgs|HandledEntityEventArgs|CancellableEntityEventArgs)\b.*'
     - not:
-        regex: '(?s).*\bclass\s+\w*Event\s*:\s*(?:EntityEventArgs|HandledEntityEventArgs|CancellableEntityEventArgs)\b.*'
+        regex: '(?s).*\bclass\s+\w*(?:Event|Message)\s*:\s*(?:EntityEventArgs|HandledEntityEventArgs|CancellableEntityEventArgs)\b.*'
