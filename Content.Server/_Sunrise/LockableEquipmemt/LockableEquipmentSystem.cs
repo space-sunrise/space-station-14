@@ -161,6 +161,15 @@ namespace Content.Server._Sunrise.LockableEquipment
             if (comp.Broken || !comp.Locked)
                 return false;
 
+            if (IsInUser(device, user))
+            {
+                _popup.PopupEntity(
+                    Loc.GetString("lockable-equipment-self-action"),
+                    user,
+                    user);
+                return true;
+            }
+
             var doAfter = new DoAfterArgs(
                 EntityManager,
                 user,
@@ -200,15 +209,6 @@ namespace Content.Server._Sunrise.LockableEquipment
 
             if (!comp.Locked)
                 return false;
-
-            if (IsInUser(device, user))
-            {
-                _popup.PopupEntity(
-                    Loc.GetString("lockable-equipment-self-action"),
-                    user,
-                    user);
-                return true;
-            }
 
             var name = MetaData(device).EntityName;
 

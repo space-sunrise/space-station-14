@@ -42,7 +42,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
         if (args.Handled)
             return;
 
-        var container = _container.EnsureContainer<Container>(ent.Owner, ent.Comp.ContainerId);
+        var container = _container.EnsureContainer<ContainerSlot>(ent.Owner, ent.Comp.ContainerId);
         var installedDevice = FindDevice(container);
 
         if (installedDevice != null &&
@@ -91,7 +91,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
         if (!TryComp(target, out EquipmentContainerComponent? comp))
             return;
 
-        var container = _container.EnsureContainer<Container>(target, comp.ContainerId);
+        var container = _container.EnsureContainer<ContainerSlot>(target, comp.ContainerId);
         if (!CanRemove(target, user, container))
             return;
 
@@ -118,7 +118,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
     /// </summary>
     public bool TryAttachDevice(Entity<EquipmentContainerComponent> ent, EntityUid user, EntityUid deviceUid, LockableEquipmentComponent device, BaseContainer? container = null)
     {
-        container ??= _container.EnsureContainer<Container>(ent.Owner, ent.Comp.ContainerId);
+        container ??= _container.EnsureContainer<ContainerSlot>(ent.Owner, ent.Comp.ContainerId);
 
         if (!CanAttachDevice(ent.Owner, device, container))
         {
@@ -164,7 +164,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
         if (args.Cancelled || args.Handled)
             return;
 
-        var container = _container.EnsureContainer<Container>(ent.Owner, ent.Comp.ContainerId);
+        var container = _container.EnsureContainer<ContainerSlot>(ent.Owner, ent.Comp.ContainerId);
 
         switch (args.Action)
         {
