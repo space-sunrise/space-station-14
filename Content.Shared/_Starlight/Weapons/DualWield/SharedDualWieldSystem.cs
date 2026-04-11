@@ -133,11 +133,11 @@ public sealed class SharedDualWieldSystem : EntitySystem
     /// </summary>
     private void OnGunRefreshModifiers(Entity<CanDualWieldComponent> ent, ref GunRefreshModifiersEvent args)
     {
-        var gunHolder = Transform(ent).ParentUid;
-        if (gunHolder == EntityUid.Invalid)
+        var wielder = Transform(ent).ParentUid;
+        if (wielder == EntityUid.Invalid)
             return;
 
-        if (!TryComp<DualWieldComponent>(gunHolder, out var dualWield) || !dualWield.Active)
+        if (!TryComp<DualWieldComponent>(wielder, out var dualWield) || !dualWield.Active)
             return;
 
         if (dualWield.LeftGun != ent.Owner && dualWield.RightGun != ent.Owner)
