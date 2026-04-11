@@ -225,13 +225,9 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (TryComp<MechPilotComponent>(user.Value, out var mechPilot))
             user = mechPilot.Mech;
 
-        if (!TryGetGun(user.Value, out var ent, out var gun))
-            return;
-
-        if (ent != gunUid)
-            return;
-
-        StopShooting(gunUid, gun);
+        // Sunrise edit start - stop both dual-wield guns from a single stop request
+        TryStopShooting(user.Value, gunUid);
+        // Sunrise edit end
     }
 
     public bool CanShoot(GunComponent component)
@@ -362,6 +358,28 @@ public abstract partial class SharedGunSystem : EntitySystem
             new EntityCoordinates(mapUid, targetMap.Position - lateral));
     }
 
+    // Sunrise added start - share dual-wield aware stop logic between requests and tests
+    public bool TryStopShooting(EntityUid user, EntityUid requestedGunUid)
+    {
+        if (TryComp<DualWieldComponent>(user, out var dualWield) &&
+            dualWield.Active &&
+            TryGetDualWieldGuns(user, dualWield, out var leftGunUid, out var leftGun, out var rightGunUid, out var rightGun))
+        {
+            if (requestedGunUid != leftGunUid && requestedGunUid != rightGunUid)
+                return false;
+
+            StopShooting(leftGunUid, leftGun);
+            StopShooting(rightGunUid, rightGun);
+            return true;
+        }
+
+        if (!TryGetGun(user, out var gunUid, out var gun) || gunUid != requestedGunUid)
+            return false;
+
+        StopShooting(gunUid, gun);
+        return true;
+    }
+
     private void StopShooting(EntityUid uid, GunComponent gun)
     {
         if (gun.ShotCounter == 0)
@@ -372,6 +390,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         gun.Targets.Clear();
         DirtyField(uid, gun, nameof(GunComponent.ShotCounter));
     }
+    // Sunrise added end
 
     public void SetTarget(GunComponent gun, EntityUid target)
     {

@@ -22,10 +22,10 @@ public sealed partial class CanDualWieldComponent : Component
     public float DualWieldDamagePenalty = 0.35f;
 
     /// <summary>
-    ///     Multiplier applied to fire rate when dual-wielding.
+    ///     Penalty applied to fire rate when dual-wielding.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float DualWieldFireRatePenalty = 0.4f;
+    public float DualWieldFireRatePenalty = 0f;
 
     /// <summary>
     ///     Multiplier applied to recoil when dual-wielding.

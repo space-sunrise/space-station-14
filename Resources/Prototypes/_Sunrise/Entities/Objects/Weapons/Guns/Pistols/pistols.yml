@@ -594,7 +594,7 @@
   - type: CanDualWield
     dualWieldInaccuracyPenalty: 1.0
     dualWieldDamagePenalty: 0.35
-    dualWieldFireRatePenalty: 0.4
+    dualWieldFireRatePenalty: 0.0
     dualWieldRecoilPenalty: 0.75
 
 - type: entity
