@@ -82,50 +82,81 @@ public sealed class WeaponTests : InteractionTest
         var (leftGunNet, rightGunNet) = await EquipDualWieldGuns(WeaponPistolTec9);
         var leftGunUid = ToServer(leftGunNet);
         var rightGunUid = ToServer(rightGunNet);
+        var dualWieldSystem = SEntMan.System<SharedDualWieldSystem>();
+        const bool isDualWieldActive = false;
 
         await Pair.RunSeconds(2f);
 
-        Assert.That(TryComp<DualWieldComponent>(SPlayer, out var dualWield) && dualWield.Active,
+        await Server.WaitPost(() => dualWieldSystem.ToggleDualWield(SPlayer, leftGunUid, rightGunUid, isDualWieldActive));
+        await RunTicks(5);
+
+        Assert.That(SEntMan.TryGetComponent(SPlayer, out DualWieldComponent? dualWield) && dualWield.Active,
             "Dual wield should become active after equipping two compatible pistols.");
 
         Assert.Multiple(() =>
         {
-            var leftGun = Comp<GunComponent>(leftGunUid);
-            var rightGun = Comp<GunComponent>(rightGunUid);
-            Assert.That(leftGun.FireRateModified, Is.EqualTo(leftGun.FireRate).Within(0.001f));
-            Assert.That(rightGun.FireRateModified, Is.EqualTo(rightGun.FireRate).Within(0.001f));
+            var leftGun = SEntMan.GetComponent<GunComponent>(leftGunUid);
+            var rightGun = SEntMan.GetComponent<GunComponent>(rightGunUid);
+            var leftDualWield = SEntMan.GetComponent<CanDualWieldComponent>(leftGunUid);
+            var rightDualWield = SEntMan.GetComponent<CanDualWieldComponent>(rightGunUid);
+
+            var expectedLeftFireRate = GetExpectedDualWieldFireRate(leftGun, leftDualWield);
+            var expectedRightFireRate = GetExpectedDualWieldFireRate(rightGun, rightDualWield);
+
+            Assert.That(leftGun.FireRateModified, Is.EqualTo(expectedLeftFireRate).Within(0.001f));
+            Assert.That(rightGun.FireRateModified, Is.EqualTo(expectedRightFireRate).Within(0.001f));
         });
 
         var leftAmmo = SGun.GetAmmoCount(leftGunUid);
         var rightAmmo = SGun.GetAmmoCount(rightGunUid);
+        var firstGunUid = dualWield.NextIsLeft ? leftGunUid : rightGunUid;
+        var secondGunUid = dualWield.NextIsLeft ? rightGunUid : leftGunUid;
+        var firstGunNet = dualWield.NextIsLeft ? leftGunNet : rightGunNet;
+        var secondGunNet = dualWield.NextIsLeft ? rightGunNet : leftGunNet;
+        var firstGunStartAmmo = firstGunUid == leftGunUid ? leftAmmo : rightAmmo;
+        var secondGunStartAmmo = secondGunUid == leftGunUid ? leftAmmo : rightAmmo;
+        var expectedFirstAmmoAfterFirstShot = firstGunStartAmmo - 1;
+        var expectedSecondAmmoAfterFirstShot = secondGunStartAmmo;
+        var expectedFirstAmmoAfterSecondShot = firstGunStartAmmo - 1;
+        var expectedSecondAmmoAfterSecondShot = secondGunStartAmmo - 1;
 
         await SetCombatMode(true);
 
-        await ShootFromClient(leftGunNet);
+        await ShootFromClient(firstGunNet);
 
         Assert.Multiple(() =>
         {
-            Assert.That(SGun.GetAmmoCount(leftGunUid), Is.EqualTo(leftAmmo - 1));
-            Assert.That(SGun.GetAmmoCount(rightGunUid), Is.EqualTo(rightAmmo - 1));
-            Assert.That(Comp<GunComponent>(leftGunUid).ShotCounter, Is.EqualTo(1));
-            Assert.That(Comp<GunComponent>(rightGunUid).ShotCounter, Is.EqualTo(1));
+            Assert.That(SGun.GetAmmoCount(firstGunUid), Is.EqualTo(expectedFirstAmmoAfterFirstShot));
+            Assert.That(SGun.GetAmmoCount(secondGunUid), Is.EqualTo(expectedSecondAmmoAfterFirstShot));
+            Assert.That(SEntMan.GetComponent<GunComponent>(firstGunUid).ShotCounter, Is.EqualTo(1));
+            Assert.That(SEntMan.GetComponent<GunComponent>(secondGunUid).ShotCounter, Is.EqualTo(0));
         });
 
-        await StopShootingFromClient(leftGunNet);
+        await StopShootingFromClient(firstGunNet);
 
         Assert.Multiple(() =>
         {
-            Assert.That(Comp<GunComponent>(leftGunUid).ShotCounter, Is.EqualTo(0));
-            Assert.That(Comp<GunComponent>(rightGunUid).ShotCounter, Is.EqualTo(0));
+            Assert.That(SEntMan.GetComponent<GunComponent>(leftGunUid).ShotCounter, Is.EqualTo(0));
+            Assert.That(SEntMan.GetComponent<GunComponent>(rightGunUid).ShotCounter, Is.EqualTo(0));
         });
 
-        await ShootFromClient(leftGunNet);
+        await ShootFromClient(secondGunNet);
 
         Assert.Multiple(() =>
         {
-            Assert.That(SGun.GetAmmoCount(leftGunUid), Is.EqualTo(leftAmmo - 2));
-            Assert.That(SGun.GetAmmoCount(rightGunUid), Is.EqualTo(rightAmmo - 2));
+            Assert.That(SGun.GetAmmoCount(firstGunUid), Is.EqualTo(expectedFirstAmmoAfterSecondShot));
+            Assert.That(SGun.GetAmmoCount(secondGunUid), Is.EqualTo(expectedSecondAmmoAfterSecondShot));
+            Assert.That(SEntMan.GetComponent<GunComponent>(firstGunUid).ShotCounter, Is.EqualTo(0));
+            Assert.That(SEntMan.GetComponent<GunComponent>(secondGunUid).ShotCounter, Is.EqualTo(1));
         });
+    }
+
+    private static float GetExpectedDualWieldFireRate(GunComponent gun, CanDualWieldComponent dualWield)
+    {
+        if (dualWield.DualWieldMaxFireRate > 0f)
+            return MathF.Min(gun.FireRate * dualWield.DualWieldFireRateMultiplier, dualWield.DualWieldMaxFireRate);
+
+        return gun.FireRate * dualWield.DualWieldFireRateMultiplier;
     }
 
     /// <summary>
@@ -151,7 +182,7 @@ public sealed class WeaponTests : InteractionTest
                 if (!HandSys.TryGetHand((SPlayer, Hands), handId, out var hand))
                     continue;
 
-                switch (hand.Location)
+                switch (hand.Value.Location)
                 {
                     case HandLocation.Left:
                         leftHand = handId;
@@ -169,6 +200,9 @@ public sealed class WeaponTests : InteractionTest
 
             Assert.That(HandSys.TryPickup(SPlayer, leftEntity, leftHand, false, false, false, Hands));
             Assert.That(HandSys.TryPickup(SPlayer, rightEntity, rightHand, false, false, false, Hands));
+
+            if (Hands.ActiveHandId != leftHand)
+                Assert.That(HandSys.TrySetActiveHand((SPlayer, Hands), leftHand));
 
             leftGun = SEntMan.GetNetEntity(leftEntity);
             rightGun = SEntMan.GetNetEntity(rightEntity);
