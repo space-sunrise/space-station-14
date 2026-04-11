@@ -73,16 +73,24 @@ ss14-audio-system-core - слишком продвинуто, не нужно в
 Порядок предпочтения:
 1. Поиск и навигация: search_symbol, search_text, search_regex, search_file, list_directory_tree.
 2. Чтение и анализ: read_file, get_symbol_info, get_file_problems.
-3. Структура solution: get_project_modules, get_project_dependencies, get_run_configurations.
-4. Правки: replace_text_in_file, rename_refactoring, reformat_file.
-5. Проверка: build_project в конце своей работы после C# изменений; execute_run_configuration для клиента, тестов и runtime-проверок.
+3. Правки: replace_text_in_file, rename_refactoring, reformat_file.
+
+Запрещено использовать:
+- execute_terminal_command
+- execute_run_configuration
+- get_run_configurations
+- get_project_modules
+- get_project_dependencies
 
 ВСЕГДА ИСПОЛЬЗУЙ RIDER MCP ДЛЯ РАБОТЫ СО ВСЕМ, ЕСЛИ ОН ЕСТЬ. НИКОГДА НЕ ИСПОЛЬЗУЙ SHELL И ЕГО КОМАНДЫ ПРИ НАЛИЧИИ RIDER MCP КОМАНД АНАЛОГОВ!!!
 
 ## ТЕСТИРОВАНИЕ
+В конце работы над кодом провести тестирование
 
-Если код затрагивает прототипы(YAML/FTL) ->Запускать YAML LINTER проект
+Если код затрагивает прототипы(YAML/FTL) -> Запускать YAML LINTER проект
 Если код затрагивает C# -> билдить измененный проект
 Если код затрагивает клиент - запускать сам клиент, чтобы проверить runtime ошибки и IL verification.
+
+Использовать dotnet
 
 После обязательно завершить начатый процесс в системе!
