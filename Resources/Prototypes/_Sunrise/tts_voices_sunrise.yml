@@ -1,5 +1,5 @@
-# ОЧЕНЬ ВАЖНО ДЛЯ LUST STATION АДАПТИРОВАТЬ ПРОТОТИПЫ ГОЛОСОВ ПРИ МЕРЖЕ
-# ТАКЖЕ ТУТ ЕСТЬ ОПЕЧАТКИ В speaker: которые лучше не исправлять
+# VERY IMPORTANT: adapt these voice prototypes when merging into LUST station.
+# There are also typos in speaker: fields here, and they should be left unchanged.
 
 - type: ttsVoice
   id: BaseSunriseTtsVoiceSunrise

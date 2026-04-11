@@ -1267,7 +1267,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: PokerCardClassicFiveDiamondFlipped
+    - id: PokerCardClassicSixDiamondFlipped
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/Cards/poker_cards_classic.rsi
     scale: 0.5,0.5
@@ -1296,7 +1296,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: PokerCardClassicFiveDiamondFlipped
+    - id: PokerCardClassicSixDiamondFlipped
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/Cards/poker_cards_classic.rsi
     scale: 0.5,0.5
