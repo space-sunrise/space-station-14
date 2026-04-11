@@ -60,6 +60,8 @@
   - type: ContainerContainer
     containers:
       DisposalTube: !type:Container
+  - type: PlacementReplacement # Sunrise-Edit
+    key: disposal_pipes
   - type: StaticPrice
     price: 30
 
