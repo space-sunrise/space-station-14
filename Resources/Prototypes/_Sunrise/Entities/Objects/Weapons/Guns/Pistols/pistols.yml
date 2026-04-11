@@ -592,10 +592,10 @@
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
   - type: CanDualWield
-    dualWieldInaccuracyPenalty: 0.25
-    dualWieldDamagePenalty: 0.25
-    dualWieldFireRatePenalty: 0.25
-    dualWieldRecoilPenalty: 0.25
+    dualWieldInaccuracyPenalty: 1.0
+    dualWieldDamagePenalty: 0.35
+    dualWieldFireRatePenalty: 0.4
+    dualWieldRecoilPenalty: 0.75
 
 - type: entity
   name: stechkin APS
