@@ -9,6 +9,7 @@
     tags:
     - Wall
     - Diagonal
+    - ForceNoTileWalls
   - type: IconSmooth
     mode: Diagonal
     key: walls
@@ -49,6 +50,7 @@
   - type: Tag
     tags:
     - Wall
+    - ForceNoTileWalls
   - type: Sprite
     drawdepth: Walls
     sprite: _Sunrise/Abductor/Structures/Walls/abductor_diagonal.rsi
