@@ -330,11 +330,13 @@ namespace Content.Server._Sunrise.LockableEquipment
 
         private void UpdateIconState(EntityUid uid, LockableEquipmentComponent comp)
         {
-            var appearance = EnsureComp<AppearanceComponent>(uid);
+            var appearance = CompOrNull<AppearanceComponent>(uid);
+            if (appearance == null)
+                return;
+
             var state = comp.Locked && !comp.Broken ? "icon_locked" : "icon";
 
             _appearance.SetData(uid, EquipmentVisuals.IconState, state, appearance);
-            Dirty(uid, appearance);
         }
 
         private bool EnsureAccessible(EntityUid device, EntityUid user, LockableEquipmentComponent comp)

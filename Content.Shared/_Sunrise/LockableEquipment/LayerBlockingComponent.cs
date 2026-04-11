@@ -13,13 +13,13 @@ public sealed partial class LayerBlockingComponent : Component
     /// <summary>
     /// Layers that this item blocks when worn/equipped
     /// </summary>
-    [DataField("coversLayers")]
+    [DataField]
     public HashSet<string> CoversLayers = new();
     
     /// <summary>
     /// Priority level for accessing layers - lower values mean less access
     /// Higher priority items block access to lower priority items
     /// </summary>
-    [DataField("accessPriority")] 
+    [DataField] 
     public int AccessPriority = 0;
 }
