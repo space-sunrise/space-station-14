@@ -14,6 +14,7 @@ namespace Content.IntegrationTests.Tests.Weapons;
 
 public sealed class WeaponTests : InteractionTest
 {
+    // MobHuman is required here because the dual-wield test needs separate left and right hands.
     protected override string PlayerPrototype => "MobHuman";
     private static readonly EntProtoId MobHuman = "MobHuman";
     private static readonly EntProtoId SniperMosin = "WeaponSniperMosin";
