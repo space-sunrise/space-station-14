@@ -27,18 +27,18 @@ public sealed class SharedDualWieldSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<HandsComponent, GotEquippedHandEvent>(OnHandEquipped);
-        SubscribeLocalEvent<HandsComponent, GotUnequippedHandEvent>(OnHandUnequipped);
+        SubscribeLocalEvent<HandsComponent, DidEquipHandEvent>(OnHandEquipped);
+        SubscribeLocalEvent<HandsComponent, DidUnequipHandEvent>(OnHandUnequipped);
         SubscribeLocalEvent<CanDualWieldComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers);
     }
 
-    private void OnHandEquipped(EntityUid uid, HandsComponent component, GotEquippedHandEvent args)
+    private void OnHandEquipped(EntityUid uid, HandsComponent component, DidEquipHandEvent args)
     {
         if (_timing.ApplyingState) return;
         CheckAndUpdateDualWield(uid);
     }
 
-    private void OnHandUnequipped(EntityUid uid, HandsComponent component, GotUnequippedHandEvent args)
+    private void OnHandUnequipped(EntityUid uid, HandsComponent component, DidUnequipHandEvent args)
     {
         if (_timing.ApplyingState) return;
         CheckAndUpdateDualWield(uid);
@@ -74,10 +74,18 @@ public sealed class SharedDualWieldSystem : EntitySystem
             if (!HasComp<CanDualWieldComponent>(held.Value))
                 continue;
 
-            if (handName == "left")
-                leftGun = held;
-            else if (handName == "right")
-                rightGun = held;
+            if (!_hands.TryGetHand(entity, handName, out var hand))
+                continue;
+
+            switch (hand.Location)
+            {
+                case HandLocation.Left:
+                    leftGun = held;
+                    break;
+                case HandLocation.Right:
+                    rightGun = held;
+                    break;
+            }
         }
 
         return leftGun != null && rightGun != null;
@@ -86,7 +94,6 @@ public sealed class SharedDualWieldSystem : EntitySystem
     private void EnableDualWield(EntityUid uid, EntityUid leftGun, EntityUid rightGun)
     {
         var dualWield = EnsureComp<DualWieldComponent>(uid);
-        var wasActive = dualWield.Active;
         dualWield.Active = true;
         dualWield.LeftGun = leftGun;
         dualWield.RightGun = rightGun;
@@ -126,8 +133,14 @@ public sealed class SharedDualWieldSystem : EntitySystem
     /// </summary>
     private void OnGunRefreshModifiers(Entity<CanDualWieldComponent> ent, ref GunRefreshModifiersEvent args)
     {
-        // The owner of the gun is the wielder (player)
-        if (!TryComp<DualWieldComponent>(args.Gun.Owner, out var dualWield) || !dualWield.Active)
+        var holder = Transform(ent).ParentUid;
+        if (holder == EntityUid.Invalid)
+            return;
+
+        if (!TryComp<DualWieldComponent>(holder, out var dualWield) || !dualWield.Active)
+            return;
+
+        if (dualWield.LeftGun != ent.Owner && dualWield.RightGun != ent.Owner)
             return;
 
         args.AngleIncrease *= (1f + ent.Comp.DualWieldInaccuracyPenalty);
