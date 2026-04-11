@@ -1,0 +1,15 @@
+id: ss14-registered-component-must-not-declare-methods
+language: CSharp
+severity: error
+message: "Registered components must stay as data containers. Move logic methods out of `[RegisterComponent]` classes into a system."
+note: "Per `ss14-ecs-components`, behavior should live in systems. Rare engine hooks inside a component should stay exceptional and clearly justified."
+files:
+  - "Content.*/**/*.cs"
+rule:
+  all:
+    - kind: method_declaration
+    - inside:
+        all:
+          - kind: class_declaration
+          - regex: '(?s).*\[RegisterComponent(?:[^\]]*)\].*:\s*Component\b.*'
+        stopBy: end
