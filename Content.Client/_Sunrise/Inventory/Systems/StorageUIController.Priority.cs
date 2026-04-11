@@ -18,7 +18,7 @@ public sealed partial class StorageUIController
                 return;
 
             EntityManager.RaisePredictiveEvent(new StorageToggleItemPriorityEvent(
-                 EntityManager.GetNetEntity(control.Entity),
+                EntityManager.GetNetEntity(control.Entity),
                 EntityManager.GetNetEntity(storage)));
             args.Handle();
         }

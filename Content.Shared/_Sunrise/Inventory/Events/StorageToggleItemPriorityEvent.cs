@@ -4,7 +4,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Sunrise.Inventory.Events;
 
 /// <summary>
-/// Вызывается, когда запрашивается переключение приоритета элемента для контейнера хранения.
+/// Raised when toggling item priority for a storage container is requested.
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class StorageToggleItemPriorityEvent : EntityEventArgs

@@ -27,7 +27,7 @@ public sealed class StorageWindow : BaseWindow
     [Dependency] private readonly IEntityManager _entity = default!;
 
     // Sunrise-Start
-    [Dependency] private readonly Robust.Client.Player.IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
     // Sunrise-End
 
     private readonly StorageUIController _storageController;

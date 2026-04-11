@@ -5,7 +5,6 @@ using Content.Shared.Storage;
 using Content.Shared._Sunrise.Inventory.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.CustomControls;
 

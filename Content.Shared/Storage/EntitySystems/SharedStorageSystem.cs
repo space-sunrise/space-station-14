@@ -28,6 +28,7 @@ using Content.Shared.Timing;
 using Content.Shared.Storage.Events;
 using Content.Shared._Sunrise.Inventory.Events;
 using Content.Shared._Sunrise.Inventory.Components;
+using Robust.Shared.GameObjects;
 using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
@@ -170,6 +171,7 @@ public abstract class SharedStorageSystem : EntitySystem
 
         // Sunrise-Start
         SubscribeAllEvent<StorageToggleItemPriorityEvent>(OnToggleItemPriority);
+        SubscribeLocalEvent<EntityTerminatingEvent>(OnEntityDeleted);
         // Sunrise-End
 
         SubscribeLocalEvent<ItemSizeChangedEvent>(OnItemSizeChanged);
@@ -895,6 +897,45 @@ public abstract class SharedStorageSystem : EntitySystem
 
         Dirty(player.Owner, priorityComp);
         UpdateUI(storage!);
+    }
+
+    private void OnEntityDeleted(ref EntityTerminatingEvent ev)
+    {
+        var deletedUid = ev.Entity;
+        var priorityQuery = AllEntityQuery<PersonalStoragePriorityComponent>();
+
+        while (priorityQuery.MoveNext(out var playerUid, out var priorityComp))
+        {
+            var modified = false;
+
+            // Delete if the deleted entity is used as a key (storage)
+            if (priorityComp.Priorities.Remove(deletedUid))
+            {
+                modified = true;
+            }
+
+            // We delete all records where the deleted entity is used as a value (subject)
+            var keysToRemove = new List<EntityUid>();
+
+            foreach (var (storageUid, itemUid) in priorityComp.Priorities)
+            {
+                if (itemUid.Equals(deletedUid))
+                {
+                    keysToRemove.Add(storageUid);
+                }
+            }
+
+            foreach (var key in keysToRemove)
+            {
+                priorityComp.Priorities.Remove(key);
+                modified = true;
+            }
+
+            if (modified)
+            {
+                Dirty(playerUid, priorityComp);
+            }
+        }
     }
     // Sunrise-End
 

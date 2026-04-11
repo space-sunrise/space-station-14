@@ -3,15 +3,15 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._Sunrise.Inventory.Components;
 
 /// <summary>
-/// Отслеживает приоритеты личного хранилища для игрока.
-/// Сопоставляет объект хранения с приоритетным объектом элемента.
+///Tracks personal storage priorities for a player.
+/// Maps storage entity to priority item entity.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class PersonalStoragePriorityComponent : Component
 {
     /// <summary>
-    /// Словарь объекта хранения для объекта приоритетного элемента.
+    /// Dictionary mapping storage entity to priority item entity.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public Dictionary<EntityUid, EntityUid> Priorities = new();
 }
