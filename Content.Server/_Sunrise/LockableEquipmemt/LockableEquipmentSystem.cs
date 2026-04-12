@@ -219,7 +219,7 @@ namespace Content.Server._Sunrise.LockableEquipment
                         Loc.GetString("lockable-equipment-cannot-be-forced-opened", ("name", name)),
                         user,
                         user);
-                    break;
+                    return true;
 
                 case LockableEquipmentComponent.BreakMode.ForceOpen:
                     comp.Locked = false;

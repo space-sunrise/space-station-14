@@ -42,8 +42,14 @@ public sealed class EquipmentContainerSystem : EntitySystem
         if (args.Handled)
             return;
 
-        var container = _container.EnsureContainer<ContainerSlot>(ent.Owner, ent.Comp.ContainerId);
-        var installedDevice = FindDevice(container);
+        BaseContainer? container = null;
+        EntityUid? installedDevice = null;
+
+        if (_container.TryGetContainer(ent.Owner, ent.Comp.ContainerId, out var existingContainer))
+        {
+            container = existingContainer;
+            installedDevice = FindDevice(existingContainer);
+        }
 
         if (installedDevice != null &&
             TryComp(installedDevice.Value, out LockableEquipmentComponent? installedComp))
@@ -80,6 +86,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
         if (!TryComp(args.Used, out LockableEquipmentComponent? device))
             return;
 
+        container ??= _container.EnsureContainer<ContainerSlot>(ent.Owner, ent.Comp.ContainerId);
         args.Handled = TryAttachDevice(ent, args.User, args.Used, device, container);
     }
 
@@ -381,9 +388,6 @@ public sealed class EquipmentContainerSystem : EntitySystem
     {
         return mode switch
         {
-            LockableEquipmentComponent.BreakMode.None =>
-                Loc.GetString("lockable-equipment-verb-force-open", ("name", name)),
-
             LockableEquipmentComponent.BreakMode.ForceOpen =>
                 Loc.GetString("lockable-equipment-verb-force-open", ("name", name)),
 
