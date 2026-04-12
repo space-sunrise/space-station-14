@@ -1,11 +1,19 @@
 using Content.Shared._Sunrise.Inventory.Components;
 using Content.Shared._Sunrise.Inventory.Events;
+using Content.Shared.Hands.Components;
+using Content.Shared.Item;
+using Content.Shared.Storage.Components;
 using Robust.Shared.GameObjects;
 
 namespace Content.Shared.Storage.EntitySystems;
 
 public abstract partial class SharedStorageSystem
 {
+    private readonly List<EntityUid> _keysToRemove = new();
+
+    /// <summary>
+    /// Priority item selection logic for storage containers
+    /// </summary>
     partial void InitializePriority()
     {
         SubscribeAllEvent<StorageToggleItemPriorityEvent>(OnToggleItemPriority);
@@ -14,34 +22,42 @@ public abstract partial class SharedStorageSystem
 
     private void OnToggleItemPriority(StorageToggleItemPriorityEvent msg, EntitySessionEventArgs args)
     {
-        if (!ValidateInput(args, msg.Storage, msg.Item, out var player, out var storage, out var item))
-        {
-            return;
-        }
+        TryToggleItemPriority(msg, args);
+    }
 
-        if (!storage.Comp.Container.Contains(item.Owner))
-        {
-            return;
-        }
+    private bool TryToggleItemPriority(StorageToggleItemPriorityEvent msg, EntitySessionEventArgs args)
+    {
+        if (!CanToggleItemPriority(msg, args, out var player, out var storage, out var item))
+            return false;
 
-        if (!storage.Comp.StoredItems.ContainsKey(item.Owner))
-        {
-            return;
-        }
+        DoToggleItemPriority(player.Owner, storage.Owner, item.Owner);
+        UpdateUI(storage.AsNullable());
+        return true;
+    }
 
-        var priorityComp = EnsureComp<PersonalStoragePriorityComponent>(player.Owner);
+    private bool CanToggleItemPriority(
+        StorageToggleItemPriorityEvent msg,
+        EntitySessionEventArgs args,
+        out Entity<HandsComponent> player,
+        out Entity<StorageComponent> storage,
+        out Entity<ItemComponent> item)
+    {
+        if (!ValidateInput(args, msg.Storage, msg.Item, out player, out storage, out item))
+            return false;
 
-        if (priorityComp.Priorities.TryGetValue(storage.Owner, out var current) && current == item.Owner)
-        {
-            priorityComp.Priorities.Remove(storage.Owner);
-        }
+        return storage.Comp.Container.Contains(item.Owner) &&
+               storage.Comp.StoredItems.ContainsKey(item.Owner);
+    }
+
+    private void DoToggleItemPriority(EntityUid playerUid, EntityUid storageUid, EntityUid itemUid)
+    {
+        var priorityComp = EnsureComp<PersonalStoragePriorityComponent>(playerUid);
+        if (priorityComp.Priorities.TryGetValue(storageUid, out var current) && current == itemUid)
+            priorityComp.Priorities.Remove(storageUid);
         else
-        {
-            priorityComp.Priorities[storage.Owner] = item.Owner;
-        }
+            priorityComp.Priorities[storageUid] = itemUid;
 
-        Dirty(player.Owner, priorityComp);
-        UpdateUI(storage!);
+        Dirty(playerUid, priorityComp);
     }
 
     private void OnEntityDeleted(ref EntityTerminatingEvent ev)
@@ -60,21 +76,23 @@ public abstract partial class SharedStorageSystem
             }
 
             // We delete all records where the deleted entity is used as a value (subject)
-            var keysToRemove = new List<EntityUid>();
+            _keysToRemove.Clear();
 
             foreach (var (storageUid, itemUid) in priorityComp.Priorities)
             {
                 if (itemUid.Equals(deletedUid))
                 {
-                    keysToRemove.Add(storageUid);
+                    _keysToRemove.Add(storageUid);
                 }
             }
 
-            foreach (var key in keysToRemove)
+            foreach (var key in _keysToRemove)
             {
                 priorityComp.Priorities.Remove(key);
                 modified = true;
             }
+
+            _keysToRemove.Clear();
 
             if (modified)
             {

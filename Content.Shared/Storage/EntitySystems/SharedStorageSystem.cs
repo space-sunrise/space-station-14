@@ -52,6 +52,9 @@ namespace Content.Shared.Storage.EntitySystems;
 
 public abstract partial class SharedStorageSystem : EntitySystem // Sunrise-Edit
 {
+    /// <summary>
+    /// Partial: handles shared storage-related event handlers and server-side logic
+    /// </summary>
     [Dependency] private   readonly IConfigurationManager _cfg = default!;
     [Dependency] private   readonly IPrototypeManager _prototype = default!;
     [Dependency] protected readonly IRobustRandom Random = default!;
