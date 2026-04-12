@@ -1,9 +1,7 @@
 using Content.Server.Popups;
 using Content.Shared._Sunrise.Weapons.Melee.Components;
 using Content.Shared._Sunrise.Weapons.Melee.Systems;
-using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Random;
-using Content.Shared.Damage;
 namespace Content.Server._Sunrise.Weapons.Melee.Systems;
 
 public sealed class BackstabOnHitSystem : SharedBackstabOnHitSystem
@@ -11,25 +9,12 @@ public sealed class BackstabOnHitSystem : SharedBackstabOnHitSystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
-    public override void Initialize()
+    protected override void OnBackstabBonusApplied(Entity<BackstabOnHitComponent> ent, EntityUid target)
     {
-        base.Initialize();
-
-        SubscribeLocalEvent<BackstabOnHitComponent, GetMeleeHitBonusDamageEvent>(OnGetMeleeHitBonusDamagePopup);
-    }
-
-    private void OnGetMeleeHitBonusDamagePopup(Entity<BackstabOnHitComponent> ent, ref GetMeleeHitBonusDamageEvent args)
-    {
-        if (args.IsWideAttack)
-            return;
-
-        if (!CanApplyBackstabBonus(args.Target, args.User))
-            return;
-
         if (ent.Comp.PopupMessages.Count == 0)
             return;
 
-        _popup.PopupEntity(Loc.GetString(PickPopup(ent.Comp)), args.Target);
+        _popup.PopupEntity(Loc.GetString(PickPopup(ent.Comp)), target);
     }
 
     private LocId PickPopup(BackstabOnHitComponent component)

@@ -24,7 +24,10 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
         if (args.IsWideAttack)
             return;
 
-        TryApplyBackstabBonus(ent.AsNullable(), args.Target, args.User, ref args.BonusDamage);
+        if (!TryApplyBackstabBonus(ent.AsNullable(), args.Target, args.User, ref args.BonusDamage))
+            return;
+
+        OnBackstabBonusApplied(ent, args.Target);
     }
 
     protected bool TryApplyBackstabBonus(Entity<BackstabOnHitComponent?> ent, EntityUid target, EntityUid user, ref DamageSpecifier bonusDamage)
@@ -62,5 +65,13 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
     protected void ApplyBackstabBonus(Entity<BackstabOnHitComponent> ent, ref DamageSpecifier bonusDamage)
     {
         bonusDamage += ent.Comp.BonusDamage;
+    }
+
+    /// <summary>
+    /// Runs after a non-wide melee hit successfully receives the backstab bonus.
+    /// Derived systems can override this to add side effects such as popups without registering another event subscription.
+    /// </summary>
+    protected virtual void OnBackstabBonusApplied(Entity<BackstabOnHitComponent> ent, EntityUid target)
+    {
     }
 }
