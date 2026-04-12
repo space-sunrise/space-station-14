@@ -50,7 +50,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!TryTeleport(ent.AsNullable(), args.User))
+        if (!TryTeleport(ent.AsNullable(), args.User, quiet: false))
             return;
 
         args.Handled = true;
@@ -61,13 +61,13 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        var canTeleport = CanTeleport(ent.AsNullable(), args.User, true, out var disabledMessage);
+        var canTeleport = CanTeleport(ent.AsNullable(), args.User, quiet: true, out var disabledMessage);
         var verb = new AlternativeVerb
         {
             Text = Loc.GetString("syndicate-teleporter-verb"),
             Disabled = !canTeleport,
             Message = disabledMessage,
-            Act = () => TryTeleport(ent.AsNullable(), args.User, true)
+            Act = () => TryTeleport(ent.AsNullable(), args.User, quiet: true)
         };
 
         args.Verbs.Add(verb);
