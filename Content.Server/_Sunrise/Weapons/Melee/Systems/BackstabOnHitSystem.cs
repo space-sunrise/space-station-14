@@ -12,7 +12,8 @@ public sealed class BackstabOnHitSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
-    private const float BackstabDotProductThreshold = 0f;
+    // Targets count as backstabbed when the attacker is anywhere in the rear hemisphere.
+    private const float BackstabRearHemisphereDotThreshold = 0f;
 
     public override void Initialize()
     {
@@ -40,7 +41,7 @@ public sealed class BackstabOnHitSystem : EntitySystem
         if (!CanApplyBackstabBonus(target, user))
             return false;
 
-        bonusDamage += ent.Comp.Damage;
+        bonusDamage += ent.Comp.BonusDamage;
         return true;
     }
 
@@ -56,6 +57,6 @@ public sealed class BackstabOnHitSystem : EntitySystem
         var targetForward = _transform.GetWorldRotation(target).ToWorldVec();
         var targetToUser = toUser.Normalized();
 
-        return Vector2.Dot(targetForward, targetToUser) <= BackstabDotProductThreshold;
+        return Vector2.Dot(targetForward, targetToUser) <= BackstabRearHemisphereDotThreshold;
     }
 }

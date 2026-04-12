@@ -37,7 +37,7 @@
       sound: /Audio/Weapons/star_hit.ogg
       offset: -0.15,0.0
     - type: BackstabOnHit
-      damage:
+      bonusDamage:
         types:
           Slash: 30
       popupMessages:
