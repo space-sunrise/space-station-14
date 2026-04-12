@@ -100,12 +100,12 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
             !_entManager.TryGetComponent<PhysicsComponent>(owner, out var body))
             return (false, null);
 
-        // Starlight edit Start
+        // Sunrise edit Start
         // check if we or target are offgrid or on different grids
         var doDirectMove = !_entManager.TryGetComponent<MapGridComponent>(xform.GridUid, out var ownerGrid) ||
                       !_entManager.TryGetComponent<MapGridComponent>(_transform.GetGrid(targetCoordinates), out var targetGrid) ||
                       ownerGrid != targetGrid;
-        // Starlight edit End
+        // Sunrise edit End
 
         var range = blackboard.GetValueOrDefault<float>(RangeKey, _entManager);
 
@@ -126,7 +126,7 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
             });
         }
 
-        // Starlight edit Start
+        // Sunrise edit Start
         if (!doDirectMove)
         {
             var path = await _pathfind.GetPath(
@@ -157,7 +157,7 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
                 {DirectMoveTargetKey, true}
             });
         }
-    // Starlight edit End
+    // Sunrise edit End
     }
 
     // Given steering is complicated we'll hand it off to a dedicated system rather than this singleton operator.
@@ -180,7 +180,7 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
             comp.Range = range;
         }
 
-        // Starlight edit Start
+        // Sunrise edit Start
         // see if we want to just move directly first
         if (blackboard.TryGetValue<bool>(DirectMoveTargetKey, out var doDirectMove, _entManager) && doDirectMove)
         {
@@ -188,9 +188,9 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
             comp.DirectMove = true;
         }
         else if (blackboard.TryGetValue<PathResultEvent>(PathfindKey, out var result, _entManager))
-        // Starlight edit End
+        // Sunrise edit End
         {
-            comp.DirectMove = false; // Starlight: i'm not sure whether this being needed is a good sign - if you know a better solution, tell
+            comp.DirectMove = false; // Sunrise: i'm not sure whether this being needed is a good sign - if you know a better solution, tell
 
             if (blackboard.TryGetValue<EntityCoordinates>(NPCBlackboard.OwnerCoordinates, out var coordinates, _entManager))
             {
@@ -200,7 +200,7 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
 
             comp.CurrentPath = new Queue<PathPoly>(result.Path);
         }
-        comp.InRangeMaxSpeed = BrakeMaxVelocity; // Starlight
+        comp.InRangeMaxSpeed = BrakeMaxVelocity; // Sunrise
     }
 
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
@@ -236,7 +236,7 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
 
         // OwnerCoordinates is only used in planning so dump it.
         blackboard.Remove<PathResultEvent>(PathfindKey);
-        blackboard.Remove<bool>(DirectMoveTargetKey); // Starlight: Also clear DirectMove
+        blackboard.Remove<bool>(DirectMoveTargetKey); // Sunrise: Also clear DirectMove
 
         if (RemoveKeyOnFinish)
         {
