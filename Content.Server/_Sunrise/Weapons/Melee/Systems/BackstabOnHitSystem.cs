@@ -17,7 +17,7 @@ public sealed class BackstabOnHitSystem : SharedBackstabOnHitSystem
         if (ent.Comp.PopupMessages.Count == 0)
             return;
 
-        // Retained for the shared override signature.
+        // Retained because the shared virtual hook includes the victim for other implementations that may need it.
         _ = target;
         var popup = Loc.GetString(PickPopup(ent.Comp));
         _popup.PopupCursor(popup, Filter.Broadcast(), RecordBackstabPopupInReplay, PopupType.LargeCaution);
