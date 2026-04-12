@@ -13,6 +13,7 @@ using Content.Shared.Timing;
 using Content.Shared.Verbs;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.SyndicateTeleporter;
