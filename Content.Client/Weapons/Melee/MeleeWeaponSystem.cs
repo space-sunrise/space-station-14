@@ -7,7 +7,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Input;
 using Content.Shared.Mobs.Components;
 using Content.Shared.StatusEffect;
-using Content.Shared._Sunrise.Weapons.Melee.Components;
+using Content.Shared._Sunrise.SyndicateTeleporter;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
@@ -147,7 +147,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         if (altDown == BoundKeyState.Down)
         {
             // Sunrise-Edit
-            if (HasComp<DisableMeleeWideAttackComponent>(weaponUid))
+            if (HasComp<SyndicateTeleporterComponent>(weaponUid))
             {
                 // Prevent duplicate alt-interact requests while RMB is still held.
                 if (_lastAltInteractWeaponUid == weaponUid)
