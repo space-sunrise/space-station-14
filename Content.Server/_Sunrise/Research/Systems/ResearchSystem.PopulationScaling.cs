@@ -1,7 +1,9 @@
 using System;
 using Content.Shared.Ghost;
+using Content.Shared.Research.Components;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
 
 namespace Content.Server.Research.Systems;
@@ -11,10 +13,21 @@ public sealed partial class ResearchSystem
     [Dependency] private readonly IPlayerManager _player = default!;
 
     private const int TargetPopulation = 45;
-    private const int PopulationDeadzone = 4;
+    private const int PopulationDeadzone = 4; // чтобы не обновлять при колебании онлайна
     private const float PopulationExponent = 0.5f;
     private const float MinPopulationModifier = 0.6f;
     private const float MaxPopulationModifier = 1.5f;
+
+    public void ModifyServerResearchPoints(EntityUid uid, int points, ResearchServerComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+
+        if (points > 0)
+            points = AdjustServerPointGainByPopulation(uid, points);
+
+        ModifyServerPoints(uid, points, component);
+    }
 
     private int AdjustServerPointGainByPopulation(EntityUid uid, int points)
     {
@@ -27,7 +40,10 @@ public sealed partial class ResearchSystem
 
     private float GetServerPointGainModifier(EntityUid uid)
     {
-        var population = CountResearchPopulation(uid);
+        if (!TryGetPopulationMap(uid, out var mapUid))
+            return 1f;
+
+        var population = CountResearchPopulation(mapUid);
         if (Math.Abs(population - TargetPopulation) <= PopulationDeadzone)
             return 1f;
 
@@ -36,23 +52,22 @@ public sealed partial class ResearchSystem
         return Math.Clamp(modifier, MinPopulationModifier, MaxPopulationModifier);
     }
 
-    private int CountResearchPopulation(EntityUid uid)
+    private int CountResearchPopulation(EntityUid mapUid)
     {
-        var station = _stationSystem.GetOwningStation(uid);
         var population = 0;
 
         foreach (var session in _player.NetworkedSessions)
         {
-            if (!IsResearchPopulationMember(session, station))
+            if (!IsResearchPopulationMember(session, mapUid))
                 continue;
 
             population++;
         }
 
-        return Math.Max(population, 1);
+        return population;
     }
 
-    private bool IsResearchPopulationMember(ICommonSession session, EntityUid? station)
+    private bool IsResearchPopulationMember(ICommonSession session, EntityUid mapUid)
     {
         if (session.Status != SessionStatus.InGame)
             return false;
@@ -63,6 +78,24 @@ public sealed partial class ResearchSystem
         if (HasComp<GhostComponent>(attached))
             return false;
 
-        return station == null || _stationSystem.GetOwningStation(attached) == station;
+        if (!TryComp<TransformComponent>(attached, out var xform))
+            return false;
+
+        return xform.MapUid == mapUid;
+    }
+
+    // Подсчёт по карте, ибо 30 игроков могут быть на ивенте. 
+    private bool TryGetPopulationMap(EntityUid uid, out EntityUid mapUid)
+    {
+        mapUid = EntityUid.Invalid;
+
+        if (!TryComp<TransformComponent>(uid, out var xform))
+            return false;
+
+        if (xform.MapUid is not { } populationMap)
+            return false;
+
+        mapUid = populationMap;
+        return mapUid != EntityUid.Invalid;
     }
 }
