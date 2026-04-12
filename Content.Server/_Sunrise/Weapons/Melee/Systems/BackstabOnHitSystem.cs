@@ -23,10 +23,8 @@ public sealed class BackstabOnHitSystem : EntitySystem
 
     private void OnGetMeleeHitBonusDamage(Entity<BackstabOnHitComponent> ent, ref GetMeleeHitBonusDamageEvent args)
     {
-        if (!TryApplyBackstabBonus(ent, args.Target, args.User))
+        if (!TryApplyBackstabBonus(ent, args.Target, args.User, ref args.BonusDamage))
             return;
-
-        args.BonusDamage += ent.Comp.Damage;
 
         if (ent.Comp.PopupMessages.Count == 0)
             return;
@@ -34,7 +32,7 @@ public sealed class BackstabOnHitSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString(_random.Pick(ent.Comp.PopupMessages)), args.Target);
     }
 
-    public bool TryApplyBackstabBonus(Entity<BackstabOnHitComponent?> ent, EntityUid target, EntityUid user)
+    public bool TryApplyBackstabBonus(Entity<BackstabOnHitComponent?> ent, EntityUid target, EntityUid user, ref DamageSpecifier bonusDamage)
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
@@ -42,6 +40,7 @@ public sealed class BackstabOnHitSystem : EntitySystem
         if (!CanApplyBackstabBonus(target, user))
             return false;
 
+        bonusDamage += ent.Comp.Damage;
         return true;
     }
 
@@ -54,7 +53,7 @@ public sealed class BackstabOnHitSystem : EntitySystem
         if (toUser.LengthSquared() <= 0f)
             return false;
 
-        var targetForward = _transform.GetWorldRotation(target).ToWorldVec().Normalized();
+        var targetForward = _transform.GetWorldRotation(target).ToWorldVec();
         var targetToUser = toUser.Normalized();
 
         return Vector2.Dot(targetForward, targetToUser) <= BackstabDotThreshold;
