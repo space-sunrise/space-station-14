@@ -13,7 +13,6 @@ using Content.Shared.Timing;
 using Content.Shared.Verbs;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.SyndicateTeleporter;
@@ -28,7 +27,6 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly BiocodeSystem _biocode = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
 
     private const string SourceEffectPrototype = "TeleportEffectSource";
     private const string TargetEffectPrototype = "TeleportEffectTarget";
@@ -48,13 +46,14 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        var canTeleport = CanTeleport(ent.AsNullable(), args.User, out var disabledMessage, quiet: true);
+        var user = args.User;
+        var canTeleport = CanTeleport(ent.AsNullable(), user, out var disabledMessage, quiet: true);
         var verb = new ActivationVerb
         {
             Text = Loc.GetString("syndicate-teleporter-verb"),
             Disabled = !canTeleport,
             Message = disabledMessage,
-            Act = () => TryTeleport(ent.AsNullable(), args.User, quiet: false)
+            Act = () => TryTeleport(ent.AsNullable(), user, quiet: false)
         };
 
         args.Verbs.Add(verb);
@@ -100,7 +99,8 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
             return false;
         }
 
-        if (TryComp<UseDelayComponent>(ent.Owner, out var useDelay) && _useDelay.IsDelayed((ent.Owner, useDelay), TeleportDelayId))
+        if (TryComp<UseDelayComponent>(ent.Owner, out var useDelay) &&
+            _useDelay.IsDelayed((ent.Owner, useDelay), GetTeleportDelayId(useDelay)))
         {
             disabledMessage = Loc.GetString("syndicate-teleporter-on-cooldown");
             if (!quiet)
@@ -115,15 +115,15 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
     private void DoTeleport(Entity<SyndicateTeleporterComponent> ent, EntityUid user)
     {
         if (TryComp<UseDelayComponent>(ent.Owner, out var useDelay))
-            _useDelay.TryResetDelay((ent.Owner, useDelay), true, TeleportDelayId);
+            _useDelay.TryResetDelay((ent.Owner, useDelay), true, GetTeleportDelayId(useDelay));
 
         if (TryComp<LimitedChargesComponent>(ent.Owner, out var charges))
             _charges.TryUseCharge((ent.Owner, charges));
 
-        Teleport(ent.Owner, user, ent.Comp);
+        Teleport(user, ent.Comp);
     }
 
-    private void Teleport(EntityUid device, EntityUid user, SyndicateTeleporterComponent comp)
+    private void Teleport(EntityUid user, SyndicateTeleporterComponent comp)
     {
         var pre = Transform(user).Coordinates;
 
@@ -134,7 +134,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
 
         Spawn(SourceEffectPrototype, _transform.ToMapCoordinates(pre));
 
-        if (Transform(user).MapID != target.GetMapId(EntityManager))
+        if (_transform.GetMapId(user) != _transform.GetMapId(target))
             return;
 
         // Свободно - нет урона
@@ -165,21 +165,19 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
 
     private bool IsSpotFree(EntityUid user, EntityCoordinates coords)
     {
-        if (Transform(user).MapID != coords.GetMapId(EntityManager))
+        if (_transform.GetMapId(user) != _transform.GetMapId(coords))
             return false;
 
         var tile = _turf.GetTileRef(coords);
         if (tile is null || _turf.IsTileBlocked(tile.Value, CollisionGroup.Impassable))
             return false;
 
-        var bodies = _physics.GetEntitiesIntersectingBody(user, (int)CollisionGroup.Impassable);
-
-        foreach (var body in bodies)
+        foreach (var body in _turf.GetEntitiesInTile(coords, LookupFlags.Static | LookupFlags.Dynamic))
         {
             if (body == user)
                 continue;
 
-            if (!Transform(body).Anchored)
+            if (!IsBlockingEntity(body))
                 continue;
 
             return false;
@@ -190,7 +188,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
 
     private bool TryFindSafeTile(EntityUid user, EntityCoordinates origin, out EntityCoordinates? result)
     {
-        var mapId = Transform(user).MapID;
+        var mapId = _transform.GetMapId(user);
 
         foreach (var cand in EnumerateCandidates(origin, mapId, MaxCorrectionRadius))
         {
@@ -218,7 +216,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
                 var step = angle.ToWorldVec() * new Vector2(radius, radius);
                 var target = origin.Offset(step);
 
-                if (mapId != target.GetMapId(EntityManager))
+                if (mapId != _transform.GetMapId(target))
                     continue;
 
                 yield return target;
@@ -226,9 +224,39 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Resolves the teleporter cooldown entry, falling back to the default use delay when no custom teleport delay is configured.
+    /// </summary>
+    /// <param name="component">The use delay component attached to the teleporter item.</param>
+    /// <returns>The configured teleport delay ID, or the default use delay ID when <see cref="TeleportDelayId"/> is absent from the delay dictionary.</returns>
+    private static string GetTeleportDelayId(UseDelayComponent component)
+    {
+        return component.Delays?.ContainsKey(TeleportDelayId) == true
+            ? TeleportDelayId
+            : UseDelaySystem.DefaultId;
+    }
+
     private void ApplyLanding(EntityUid user, EntityCoordinates where)
     {
         _transform.SetCoordinates(user, where);
         Spawn(TargetEffectPrototype, _transform.ToMapCoordinates(where));
+    }
+
+    /// <summary>
+    /// Determines whether an entity should block teleport landing by checking for hard impassable physics and an anchored transform.
+    /// </summary>
+    /// <param name="uid">The entity to evaluate.</param>
+    /// <returns>True if the entity is anchored and has hard impassable collision; otherwise false.</returns>
+    private bool IsBlockingEntity(EntityUid uid)
+    {
+        if (!TryComp<PhysicsComponent>(uid, out var physics) ||
+            !physics.CanCollide ||
+            !physics.Hard ||
+            (physics.CollisionLayer & (int) CollisionGroup.Impassable) == 0)
+        {
+            return false;
+        }
+
+        return Transform(uid).Anchored;
     }
 }
