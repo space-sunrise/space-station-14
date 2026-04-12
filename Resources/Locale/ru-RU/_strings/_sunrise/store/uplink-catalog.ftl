@@ -296,8 +296,8 @@ uplink-reinforcement-radio-syndicate-cyborg-infiltrator-desc = Отправля�
 
 uplink-stechkin-bundle-name = Набор матёрого оперативника
 uplink-stechkin-bundle-desc = Загадочная картонная коробка, набитая снаряжением только для самых матёрых оперативников.
-uplink-switchblade-name = Выкидной нож
-uplink-switchblade-desc = Дешёвый нож, который быстро переключает людей из состояния «жив» в состояние «не очень».
+uplink-switchblade-name = раскладной нож предателя
+uplink-switchblade-desc = небольшой пластсталевый раскладной нож, способный очень больно ранить в спину.
 uplink-x4-name = Взрывчатка X-4
 uplink-x4-desc = Используется, чтобы проделывать еще более большие дыры там, где вы это очень хотите.
 uplink-x4-bundle-name = Набор X-4

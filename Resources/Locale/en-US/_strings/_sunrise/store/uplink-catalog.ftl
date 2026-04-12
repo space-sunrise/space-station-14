@@ -202,8 +202,8 @@ uplink-reinforcement-radio-syndicate-cyborg-infiltrator-desc = Sends you support
 
 uplink-stechkin-bundle-name = Solid Operative Bundle
 uplink-stechkin-bundle-desc = A mysterious cardboard box containing a slew of equipment for only the most solid of operatives.
-uplink-switchblade-name = Switchblade
-uplink-switchblade-desc = A cheap blade that switches people from being alive to not.
+uplink-switchblade-name = Traitor switchblade
+uplink-switchblade-desc = A small folding knife with a lightweight handle, capable of delivering a very painful wound to the back, gives the concept of "traitor" a new meaning.
 uplink-x4-name = Composition X-4
 uplink-x4-desc = Used to put even bigger holes in areas you really hate.
 uplink-x4-bundle-name = X-4 Bundle
