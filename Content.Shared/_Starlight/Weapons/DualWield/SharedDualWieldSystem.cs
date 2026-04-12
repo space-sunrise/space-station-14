@@ -166,6 +166,12 @@ public sealed class SharedDualWieldSystem : EntitySystem
         var leftGun = dualWield.LeftGun;
         var rightGun = dualWield.RightGun;
 
+        if (leftGun != EntityUid.Invalid)
+            StopGun(leftGun);
+
+        if (rightGun != EntityUid.Invalid && rightGun != leftGun)
+            StopGun(rightGun);
+
         dualWield.Active = false;
         dualWield.LeftGun = EntityUid.Invalid;
         dualWield.RightGun = EntityUid.Invalid;
@@ -182,5 +188,14 @@ public sealed class SharedDualWieldSystem : EntitySystem
 
         if (popupLocId != null)
             _popup.PopupClient(Loc.GetString(popupLocId), user, user);
+    }
+
+    /// <summary>
+    /// Resets the firing state for a dual-wielded gun.
+    /// </summary>
+    /// <param name="gun">The gun entity to reset.</param>
+    private void StopGun(EntityUid gun)
+    {
+        _gun.ResetFireState(gun);
     }
 }
