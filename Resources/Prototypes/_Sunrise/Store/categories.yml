@@ -118,7 +118,6 @@
   id: DiseaseInfectionCategory
   name: shop-disease-category-infection
 
-
 - type: currency
   id: DiseasePoints
   displayName: shop-disease-currency
@@ -139,6 +138,11 @@
   id: UplinkLootBoxes
   name: store-category-lootbox
   priority: 11
+
+- type: storeCategory
+  id: UplinkShuttle
+  name: store-category-shuttle
+  priority: 13
 
 #ERTuplink categoires
 - type: storeCategory
