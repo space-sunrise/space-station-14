@@ -10,7 +10,7 @@ public sealed class BackstabOnHitSystem : SharedBackstabOnHitSystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
-    protected override void OnBackstabBonusApplied(Entity<BackstabOnHitComponent> ent, EntityUid target)
+    protected override void OnBackstabBonusApplied(Entity<BackstabOnHitComponent> ent, EntityUid _)
     {
         if (ent.Comp.PopupMessages.Count == 0)
             return;
