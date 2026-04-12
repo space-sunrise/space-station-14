@@ -19,7 +19,7 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
         SubscribeLocalEvent<BackstabOnHitComponent, GetMeleeHitBonusDamageEvent>(OnGetMeleeHitBonusDamage);
     }
 
-    private void OnGetMeleeHitBonusDamage(Entity<BackstabOnHitComponent> ent, ref GetMeleeHitBonusDamageEvent args)
+    protected virtual void OnGetMeleeHitBonusDamage(Entity<BackstabOnHitComponent> ent, ref GetMeleeHitBonusDamageEvent args)
     {
         if (args.IsWideAttack)
             return;

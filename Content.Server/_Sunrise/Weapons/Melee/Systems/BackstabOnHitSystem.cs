@@ -11,19 +11,12 @@ public sealed class BackstabOnHitSystem : SharedBackstabOnHitSystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<BackstabOnHitComponent, GetMeleeHitBonusDamageEvent>(OnGetMeleeHitBonusDamagePopup);
-    }
-
-    private void OnGetMeleeHitBonusDamagePopup(Entity<BackstabOnHitComponent> ent, ref GetMeleeHitBonusDamageEvent args)
+    protected override void OnGetMeleeHitBonusDamage(Entity<BackstabOnHitComponent> ent, ref GetMeleeHitBonusDamageEvent args)
     {
         if (args.IsWideAttack)
             return;
 
-        if (!CanApplyBackstabBonus(args.Target, args.User))
+        if (!TryApplyBackstabBonus(ent.AsNullable(), args.Target, args.User, ref args.BonusDamage))
             return;
 
         if (ent.Comp.PopupMessages.Count == 0)
