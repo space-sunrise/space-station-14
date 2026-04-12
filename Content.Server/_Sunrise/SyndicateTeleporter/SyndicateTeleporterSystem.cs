@@ -172,7 +172,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         if (tile is null || _turf.IsTileBlocked(tile.Value, CollisionGroup.Impassable))
             return false;
 
-        foreach (var body in _turf.GetEntitiesInTile(coords, LookupFlags.Static))
+        foreach (var body in _turf.GetEntitiesInTile(coords, LookupFlags.Static | LookupFlags.Dynamic))
         {
             if (body == user)
                 continue;
@@ -228,7 +228,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
     /// Resolves the teleporter cooldown entry, falling back to the default use delay when no custom teleport delay is configured.
     /// </summary>
     /// <param name="component">The use delay component attached to the teleporter item.</param>
-    /// <returns>The configured teleport delay ID, or the default use delay ID when no named teleport delay exists.</returns>
+    /// <returns>The configured teleport delay ID, or the default use delay ID when <see cref="TeleportDelayId"/> is absent from the delay dictionary.</returns>
     private static string GetTeleportDelayId(UseDelayComponent component)
     {
         return component.Delays?.ContainsKey(TeleportDelayId) == true
