@@ -65,6 +65,9 @@ public sealed class BackstabOnHitSystem : EntitySystem
 
     private LocId PickPopup(BackstabOnHitComponent component)
     {
+        if (component.PopupMessages.Count == 0)
+            return string.Empty;
+
         if (component.PopupWeights.Count != component.PopupMessages.Count || component.PopupWeights.Count == 0)
             return _random.Pick(component.PopupMessages);
 

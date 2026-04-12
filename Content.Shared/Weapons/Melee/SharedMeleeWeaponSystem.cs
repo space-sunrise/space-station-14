@@ -543,7 +543,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         RaiseLocalEvent(target.Value, attackedEvent);
 
         // Sunrise-Edit
-        var targetBonusEvent = new GetMeleeHitBonusDamageEvent(meleeUid, user, target.Value, new DamageSpecifier(), false);
+        var targetBonusDamage = new DamageSpecifier();
+        var targetBonusEvent = new GetMeleeHitBonusDamageEvent(meleeUid, user, target.Value, targetBonusDamage, false);
         RaiseLocalEvent(meleeUid, ref targetBonusEvent);
 
         var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage + targetBonusEvent.BonusDamage, hitEvent.ModifiersList);
@@ -710,7 +711,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             RaiseLocalEvent(entity, attackedEvent);
 
             // Sunrise-Edit
-            var targetBonusEvent = new GetMeleeHitBonusDamageEvent(meleeUid, user, entity, new DamageSpecifier(), true);
+            var targetBonusDamage = new DamageSpecifier();
+            var targetBonusEvent = new GetMeleeHitBonusDamageEvent(meleeUid, user, entity, targetBonusDamage, true);
             RaiseLocalEvent(meleeUid, ref targetBonusEvent);
 
             var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage + targetBonusEvent.BonusDamage, hitEvent.ModifiersList);
