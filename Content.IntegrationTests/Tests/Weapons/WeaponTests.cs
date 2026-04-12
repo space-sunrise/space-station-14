@@ -177,8 +177,8 @@ public sealed class WeaponTests : InteractionTest
     public async Task DualWieldUnavailableVerbMessageTest()
     {
         await AddAtmosphere();
-        var (leftGunNet, _) = await EquipGuns(WeaponPistolTec9, SniperMosin);
-        var leftGunUid = ToServer(leftGunNet);
+        var guns = await EquipGuns(WeaponPistolTec9, SniperMosin);
+        var leftGunUid = ToServer(guns.LeftGun);
 
         await Pair.RunSeconds(2f);
 
@@ -186,9 +186,9 @@ public sealed class WeaponTests : InteractionTest
         {
             var verbSystem = SEntMan.System<VerbSystem>();
             var verbs = verbSystem.GetLocalVerbs(leftGunUid, SPlayer, typeof(AlternativeVerb));
-            var enableText = Loc.GetString("dual-wield-enable");
             var dualWieldVerb = verbs.OfType<AlternativeVerb>()
-                .FirstOrDefault(verb => verb.Text == enableText);
+                .FirstOrDefault(verb => verb.Disabled &&
+                                        verb.Message == Loc.GetString("dual-wield-popup-unavailable"));
 
             Assert.That(dualWieldVerb, Is.Not.Null, "Expected a dual-wield verb when holding two guns.");
             Assert.That(dualWieldVerb!.Disabled, Is.True, "Dual-wield verb should be disabled for unsupported gun pairs.");
