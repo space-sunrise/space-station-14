@@ -229,7 +229,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
     /// </summary>
     private static string GetTeleportDelayId(UseDelayComponent component)
     {
-        return component.Delays.ContainsKey(TeleportDelayId)
+        return component.Delays is not null && component.Delays.ContainsKey(TeleportDelayId)
             ? TeleportDelayId
             : UseDelaySystem.DefaultId;
     }
@@ -242,10 +242,14 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
 
     private bool IsBlockingEntity(EntityUid uid)
     {
-        return Transform(uid).Anchored &&
-               TryComp<PhysicsComponent>(uid, out var physics) &&
-               physics.CanCollide &&
-               physics.Hard &&
-               (physics.CollisionLayer & (int) CollisionGroup.Impassable) != 0;
+        if (!TryComp<PhysicsComponent>(uid, out var physics) ||
+            !physics.CanCollide ||
+            !physics.Hard ||
+            (physics.CollisionLayer & (int) CollisionGroup.Impassable) == 0)
+        {
+            return false;
+        }
+
+        return Transform(uid).Anchored;
     }
 }
