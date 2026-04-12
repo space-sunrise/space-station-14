@@ -12,7 +12,7 @@ public sealed class BackstabOnHitSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
-    private const float BackstabDotThreshold = 0f;
+    private const float BackstabDotProductThreshold = 0f;
 
     public override void Initialize()
     {
@@ -56,6 +56,6 @@ public sealed class BackstabOnHitSystem : EntitySystem
         var targetForward = _transform.GetWorldRotation(target).ToWorldVec();
         var targetToUser = toUser.Normalized();
 
-        return Vector2.Dot(targetForward, targetToUser) <= BackstabDotThreshold;
+        return Vector2.Dot(targetForward, targetToUser) <= BackstabDotProductThreshold;
     }
 }

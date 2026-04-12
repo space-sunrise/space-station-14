@@ -10,5 +10,5 @@ public sealed partial class BackstabOnHitComponent : Component
     public DamageSpecifier Damage = default!;
 
     [DataField]
-    public List<LocId> PopupMessages = new List<LocId>();
+    public List<LocId> PopupMessages = [];
 }
