@@ -7,7 +7,6 @@ using Content.Shared.Charges.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Timing;
@@ -41,28 +40,16 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<SyndicateTeleporterComponent, UseInHandEvent>(OnUse);
-        SubscribeLocalEvent<SyndicateTeleporterComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerb);
+        SubscribeLocalEvent<SyndicateTeleporterComponent, GetVerbsEvent<ActivationVerb>>(OnGetActivationVerb);
     }
 
-    private void OnUse(Entity<SyndicateTeleporterComponent> ent, ref UseInHandEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        if (!TryTeleport(ent.AsNullable(), args.User, quiet: false))
-            return;
-
-        args.Handled = true;
-    }
-
-    private void OnGetAlternativeVerb(Entity<SyndicateTeleporterComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+    private void OnGetActivationVerb(Entity<SyndicateTeleporterComponent> ent, ref GetVerbsEvent<ActivationVerb> args)
     {
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        var canTeleport = CanTeleport(ent.AsNullable(), args.User, quiet: true, out var disabledMessage);
-        var verb = new AlternativeVerb
+        var canTeleport = CanTeleport(ent.AsNullable(), args.User, out var disabledMessage, quiet: true);
+        var verb = new ActivationVerb
         {
             Text = Loc.GetString("syndicate-teleporter-verb"),
             Disabled = !canTeleport,
@@ -75,7 +62,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
 
     public bool TryTeleport(Entity<SyndicateTeleporterComponent?> ent, EntityUid user, bool quiet = false)
     {
-        if (!CanTeleport(ent, user, quiet, out _))
+        if (!CanTeleport(ent, user, out _, quiet))
             return false;
 
         if (!Resolve(ent, ref ent.Comp, false))
@@ -85,7 +72,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         return true;
     }
 
-    public bool CanTeleport(Entity<SyndicateTeleporterComponent?> ent, EntityUid user, bool quiet = false, out string? disabledMessage)
+    public bool CanTeleport(Entity<SyndicateTeleporterComponent?> ent, EntityUid user, out string? disabledMessage, bool quiet = false)
     {
         disabledMessage = null;
 
