@@ -156,6 +156,11 @@ public sealed partial class ResearchSystem
     /// <param name="component"></param>
     public void ModifyServerPoints(EntityUid uid, int points, ResearchServerComponent? component = null)
     {
+        // Sunrise - add
+        if (points > 0)
+            points = AdjustServerPointGainByPopulation(uid, points);
+        // Sunrise - end
+
         if (points == 0)
             return;
 
