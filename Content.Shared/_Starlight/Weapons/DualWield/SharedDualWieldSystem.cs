@@ -189,6 +189,10 @@ public sealed class SharedDualWieldSystem : EntitySystem
             _popup.PopupClient(Loc.GetString(popupLocId), user, user);
     }
 
+    /// <summary>
+    /// Resets the firing state for a dual-wielded gun.
+    /// </summary>
+    /// <param name="gun">The gun entity to reset.</param>
     private void StopGun(EntityUid gun)
     {
         if (!TryComp<GunComponent>(gun, out var gunComp))
