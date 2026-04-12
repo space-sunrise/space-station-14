@@ -78,7 +78,10 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         if (!CanTeleport(ent, user, quiet, out _))
             return false;
 
-        DoTeleport((ent.Owner, ent.Comp!), user);
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        DoTeleport((ent.Owner, ent.Comp), user);
         return true;
     }
 
