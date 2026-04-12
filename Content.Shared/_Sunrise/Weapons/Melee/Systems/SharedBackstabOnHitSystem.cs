@@ -23,10 +23,8 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
             return;
 
         var bonusDamage = args.BonusDamage;
-        if (!TryApplyBackstabBonus(ent, args.Target, args.User, ref bonusDamage))
-            return;
-
-        args.BonusDamage = bonusDamage;
+        if (TryApplyBackstabBonus(ent, args.Target, args.User, ref bonusDamage))
+            args.BonusDamage = bonusDamage;
     }
 
     public bool TryApplyBackstabBonus(Entity<BackstabOnHitComponent?> ent, EntityUid target, EntityUid user, ref DamageSpecifier bonusDamage)
