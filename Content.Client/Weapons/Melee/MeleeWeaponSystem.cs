@@ -2,10 +2,12 @@ using System.Linq;
 using Content.Client.Gameplay;
 using Content.Shared.CombatMode;
 using Content.Shared.Effects;
+using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Input;
 using Content.Shared.Mobs.Components;
 using Content.Shared.StatusEffect;
+using Content.Shared._Sunrise.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
@@ -34,6 +36,8 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
+    // Sunrise-Edit: Tracks the last RMB alt-interact weapon so holding the key does not spam requests every frame.
+    private EntityUid? _lastAltInteractWeaponUid;
 
     private const string MeleeLungeKey = "melee-lunge";
 
@@ -80,6 +84,10 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
         if (weapon.AutoAttack || useDown != BoundKeyState.Down && altDown != BoundKeyState.Down)
         {
+            // Sunrise-Edit: Clear the RMB debounce once the secondary-use key is released.
+            if (altDown != BoundKeyState.Down)
+                _lastAltInteractWeaponUid = null;
+
             if (weapon.Attacking)
             {
                 RaisePredictiveEvent(new StopAttackEvent(GetNetEntity(weaponUid)));
@@ -138,6 +146,22 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         // Heavy attack.
         if (altDown == BoundKeyState.Down)
         {
+            // Sunrise-Edit
+            if (HasComp<DisableMeleeWideAttackComponent>(weaponUid))
+            {
+                // Prevent duplicate alt-interact requests while RMB is still held.
+                if (_lastAltInteractWeaponUid == weaponUid)
+                    return;
+
+                if (TryComp<HandsComponent>(entity, out var hands) && hands.ActiveHandId != null)
+                {
+                    RaisePredictiveEvent(new RequestHandAltInteractEvent(hands.ActiveHandId));
+                    _lastAltInteractWeaponUid = weaponUid;
+                }
+
+                return;
+            }
+
             // If it's an unarmed attack then do a disarm
             if (weapon.AltDisarm && weaponUid == entity)
             {
