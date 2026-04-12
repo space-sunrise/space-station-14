@@ -19,6 +19,7 @@ using Robust.Client.State;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
+using RequestHandAltInteractEvent = Content.Shared.Hands.RequestHandAltInteractEvent;
 
 namespace Content.Client.Weapons.Melee;
 
@@ -144,7 +145,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
             {
                 if (TryComp<HandsComponent>(entity, out var hands) && hands.ActiveHandId != null)
                 {
-                    RaisePredictiveEvent(new Content.Shared.Hands.RequestHandAltInteractEvent(hands.ActiveHandId));
+                    RaisePredictiveEvent(new RequestHandAltInteractEvent(hands.ActiveHandId));
                     weapon.Attacking = true;
                     DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.Attacking));
                 }

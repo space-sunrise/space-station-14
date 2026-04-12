@@ -47,17 +47,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        var user = args.User;
-        var canTeleport = CanTeleport(ent, user, out var disabledMessage, quiet: true);
-        var verb = new AlternativeVerb
-        {
-            Text = Loc.GetString("syndicate-teleporter-verb"),
-            Disabled = !canTeleport,
-            Message = disabledMessage,
-            Act = () => TryTeleport(ent, user, quiet: false)
-        };
-
-        args.Verbs.Add(verb);
+        args.Verbs.Add(CreateTeleportVerb<AlternativeVerb>(ent, args.User));
     }
 
     private void OnGetActivationVerb(Entity<SyndicateTeleporterComponent> ent, ref GetVerbsEvent<ActivationVerb> args)
@@ -65,17 +55,19 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        var user = args.User;
+        args.Verbs.Add(CreateTeleportVerb<ActivationVerb>(ent, args.User));
+    }
+
+    private T CreateTeleportVerb<T>(Entity<SyndicateTeleporterComponent> ent, EntityUid user) where T : Verb, new()
+    {
         var canTeleport = CanTeleport(ent, user, out var disabledMessage, quiet: true);
-        var verb = new ActivationVerb
+        return new T
         {
             Text = Loc.GetString("syndicate-teleporter-verb"),
             Disabled = !canTeleport,
             Message = disabledMessage,
             Act = () => TryTeleport(ent, user, quiet: false)
         };
-
-        args.Verbs.Add(verb);
     }
 
     public bool TryTeleport(Entity<SyndicateTeleporterComponent> ent, EntityUid user, bool quiet = false)
