@@ -1832,12 +1832,14 @@
   cost:
     Telecrystal: 8
   categories:
-  - UplinkWearables #Sunrise-edit
+  - UplinkWearables
   conditions:
   - !type:StoreWhitelistCondition
-    blacklist:
+    whitelist:
       tags:
-      - AssaultOpsUplink #Sunrise-edit
+      - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Edit
+      - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkHardsuitSyndieElite
@@ -1846,7 +1848,7 @@
   icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndieelite.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateEliteHardsuitBundle
   cost:
-    Telecrystal: 12
+    Telecrystal: 9 # Sunrise-Edit
   categories:
   - UplinkWearables
   conditions:
@@ -1855,6 +1857,7 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink # Sunrise-Edit
+      - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkClothingOuterHardsuitJuggernaut
@@ -1863,7 +1866,7 @@
   icon: { sprite: /Textures/Structures/Storage/Crates/syndicate.rsi, state: icon }
   productEntity: CrateCybersunJuggernautBundle
   cost:
-    Telecrystal: 18 #Sunrise-edit
+    Telecrystal: 13 #Sunrise-edit
   categories:
   - UplinkWearables
   conditions:

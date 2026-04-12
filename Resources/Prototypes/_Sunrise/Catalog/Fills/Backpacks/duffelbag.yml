@@ -472,7 +472,7 @@
         - id: LeftHandCyber
 
 - type: entity
-  parent: ClothingBackpackDuffelSyndicateBundle
+  parent: ClothingBackpackSyndie # Sunrise-Edit
   id: ClothingBackpackDuffelSyndicateFilledInfiltration
   name: infiltration hardsuit bundle
   description: Contains the latest in Syndicate chameleon technology, the infiltration hardsuit.

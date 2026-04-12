@@ -534,34 +534,28 @@
         Radiation: 0.6
         Caustic: 0.6
   - type: StaminaResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.4
   - type: ExplosionResistance
     damageCoefficient: 0.5
-  # - type: ItemToggle
-  #   canActivateInhand: false
-  # - type: ComponentToggler
-  #   parent: true
-  #   components:
-  #   - type: Stealth
-  #     mirage: false # Sunrise-Edit
-  #     hadOutline: true
-  #     examineThreshold: 0.9 # Sunrise-Edit
-  #   - type: StealthOnMove
-  #     passiveVisibilityRate: -1
-  #     movementVisibilityRate: 0.3
   - type: ToggleClothing
     action: ActionTogglePhaseCloak
     disableOnUnequip: true
     targetSlot: outerClothing
+  - type: BreakDisguiseOnAction
+  - type: ItemToggle
+    canActivateInhand: false
   - type: ComponentToggler
     parent: true
     components:
       - type: Stealth
-        minVisibility: 0.07
-        maxVisibility: 0.07
-        lastVisibility: 0.07
+        mirage: false
+        hadOutline: true
+        examineThreshold: 0.9
+      - type: StealthOnMove
+        passiveVisibilityRate: -1.25
+        movementVisibilityRate: 0.3
   - type: PowerCellDraw
-    drawRate: 14 # roughly 200 seconds on the default cell
+    drawRate: 7 # 500 seconds on PowerCellSyndicate
   - type: ToggleCellDraw
   - type: PowerCellSlot
     cellSlotId: cell_slot
