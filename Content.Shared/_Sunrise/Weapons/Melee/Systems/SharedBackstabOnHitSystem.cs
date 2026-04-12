@@ -22,7 +22,7 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
         if (args.IsWideAttack)
             return;
 
-        TryApplyBackstabBonus(ent, args.Target, args.User, ref args.BonusDamage);
+        TryApplyBackstabBonus(ent.AsNullable(), args.Target, args.User, ref args.BonusDamage);
     }
 
     protected bool TryApplyBackstabBonus(Entity<BackstabOnHitComponent?> ent, EntityUid target, EntityUid user, ref DamageSpecifier bonusDamage)
@@ -33,7 +33,7 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
         if (!CanApplyBackstabBonus(target, user))
             return false;
 
-        ApplyBackstabBonus((ent, ent.Comp!), ref bonusDamage);
+        ApplyBackstabBonus((ent.Owner, ent.Comp!), ref bonusDamage);
         return true;
     }
 
@@ -44,15 +44,15 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
     {
         var targetTransform = Transform(target);
         var userTransform = Transform(user);
-        var targetPosition = targetTransform.WorldPosition;
-        var userPosition = userTransform.WorldPosition;
+        var targetPosition = TransformSystem.GetWorldPosition(targetTransform);
+        var userPosition = TransformSystem.GetWorldPosition(userTransform);
         var toUser = userPosition - targetPosition;
         var lengthSquared = toUser.LengthSquared();
 
         if (lengthSquared <= 0f)
             return false;
 
-        var targetForward = targetTransform.WorldRotation.ToWorldVec();
+        var targetForward = TransformSystem.GetWorldRotation(targetTransform).ToWorldVec();
         var targetToUser = toUser / MathF.Sqrt(lengthSquared);
         return Vector2.Dot(targetForward, targetToUser) <= BackstabRearHemisphereDotThreshold;
     }
