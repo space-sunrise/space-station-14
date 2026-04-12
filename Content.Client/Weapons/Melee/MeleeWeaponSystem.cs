@@ -36,6 +36,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
+    // Sunrise-Edit: Tracks the last RMB alt-interact weapon so holding the key does not spam requests every frame.
     private EntityUid? _lastAltInteractWeaponUid;
 
     private const string MeleeLungeKey = "melee-lunge";
@@ -83,6 +84,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
         if (weapon.AutoAttack || useDown != BoundKeyState.Down && altDown != BoundKeyState.Down)
         {
+            // Sunrise-Edit: Clear the RMB debounce once the secondary-use key is released.
             if (altDown != BoundKeyState.Down)
                 _lastAltInteractWeaponUid = null;
 

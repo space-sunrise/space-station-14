@@ -59,7 +59,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
     }
 
     /// <summary>
-    /// Creates a syndicate teleporter verb of type <typeparamref name="T"/> with shared cooldown, charge and biocode checks.
+    /// Creates a syndicate teleporter verb of type <typeparamref name="T"/> that uses the shared cooldown, charge and biocode checks.
     /// </summary>
     private T CreateTeleportVerb<T>(Entity<SyndicateTeleporterComponent> ent, EntityUid user) where T : Verb, new()
     {
@@ -73,7 +73,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         };
     }
 
-    public bool TryTeleport(Entity<SyndicateTeleporterComponent> ent, EntityUid user, bool quiet = false)
+    private bool TryTeleport(Entity<SyndicateTeleporterComponent> ent, EntityUid user, bool quiet = false)
     {
         if (!CanTeleport(ent, user, out _, quiet))
             return false;
@@ -82,7 +82,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         return true;
     }
 
-    public bool CanTeleport(Entity<SyndicateTeleporterComponent> ent, EntityUid user, out string? disabledMessage, bool quiet = false)
+    private bool CanTeleport(Entity<SyndicateTeleporterComponent> ent, EntityUid user, out string? disabledMessage, bool quiet = false)
     {
         disabledMessage = null;
 
