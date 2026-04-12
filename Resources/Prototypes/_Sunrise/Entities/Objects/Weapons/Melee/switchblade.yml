@@ -62,6 +62,19 @@
         enum.ToggleableVisuals.Layer:
           True: { state: icon }
           False: { state: switchblade }
-  - type: UseDelay # bug fix to prevent spamming use to reset the swing delay
+  # Prevents spamming use to reset the swing delay.
+  # Also provides the teleporter cooldown via the TeleportDelay entry.
+  - type: UseDelay
+    delays:
+      TeleportDelay:
+        length: 10 # seconds
+  - type: SyndicateTeleporter
+    randomDistanceValue: 4
+    teleportationValue: 4
+    damageOnBlocked:
+      types:
+        Cellular: 10
+  - type: LimitedCharges
+    maxCharges: 2
   - type: ThrowingAngle
     angle: 180
