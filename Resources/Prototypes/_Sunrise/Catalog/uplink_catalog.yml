@@ -1510,7 +1510,7 @@
   - UplinkChemicals
   conditions:
   - !type:StoreWhitelistCondition
-    blaklist:
+    blacklist:
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
