@@ -22,7 +22,7 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
         if (args.IsWideAttack)
             return;
 
-        TryApplyBackstabBonus(ent, args.Target, args.User, ref args.BonusDamage);
+        TryApplyBackstabBonus(ent.AsNullable(), args.Target, args.User, ref args.BonusDamage);
     }
 
     protected bool TryApplyBackstabBonus(Entity<BackstabOnHitComponent?> ent, EntityUid target, EntityUid user, ref DamageSpecifier bonusDamage)
@@ -30,10 +30,14 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
+        var component = ent.Comp;
+        if (component == null)
+            return false;
+
         if (!CanApplyBackstabBonus(target, user))
             return false;
 
-        ApplyBackstabBonus((ent, ent.Comp!), ref bonusDamage);
+        ApplyBackstabBonus((ent.Owner, component), ref bonusDamage);
         return true;
     }
 
