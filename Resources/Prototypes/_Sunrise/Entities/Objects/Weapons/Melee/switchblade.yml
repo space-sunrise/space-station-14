@@ -19,7 +19,7 @@
   - type: ItemToggleMeleeWeapon
     activatedDamage:
       types:
-        Slash: 15
+        Slash: 13
   - type: MeleeWeapon
     wideAnimationRotation: -135
     attackRate: 2.2
@@ -39,7 +39,7 @@
     - type: BackstabOnHit
       bonusDamage:
         types:
-          Slash: 30
+          Slash: 13
       popupMessages:
         - backstab-popup-message-1
         - backstab-popup-message-2
@@ -64,17 +64,15 @@
           False: { state: switchblade }
   # Prevents spamming use to reset the swing delay.
   # Also provides the teleporter cooldown via the TeleportDelay entry.
-  - type: UseDelay
-    delays:
-      TeleportDelay:
-        length: 10 # seconds
   - type: SyndicateTeleporter
-    randomDistanceValue: 4
-    teleportationValue: 4
+    randomDistanceValue: 1
+    teleportationValue: 6
     disableMeleeWideAttack: true
     damageOnBlocked:
       types:
-        Cellular: 10
+        Cellular: 1
+  - type: AutoRecharge
+    rechargeDuration: 10
   - type: LimitedCharges
     maxCharges: 2
   - type: ThrowingAngle
