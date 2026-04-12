@@ -63,5 +63,16 @@
           True: { state: icon }
           False: { state: switchblade }
   - type: UseDelay # bug fix to prevent spamming use to reset the swing delay
+    delays:
+      TeleportDelay:
+        length: 10
+  - type: SyndicateTeleporter
+    randomDistanceValue: 4
+    teleportationValue: 4
+    damageOnBlocked:
+      types:
+        Cellular: 10
+  - type: LimitedCharges
+    maxCharges: 2
   - type: ThrowingAngle
     angle: 180
