@@ -26,6 +26,14 @@ namespace Content.Server.Popups
             RaiseNetworkEvent(new PopupCursorEvent(message, type), recipient);
         }
 
+        public void PopupCursor(string? message, Filter filter, bool recordReplay, PopupType type = PopupType.Small)
+        {
+            if (message == null)
+                return;
+
+            RaiseNetworkEvent(new PopupCursorEvent(message, type), filter, recordReplay);
+        }
+
         public override void PopupCursor(string? message, EntityUid recipient, PopupType type = PopupType.Small)
         {
             if (message == null)
