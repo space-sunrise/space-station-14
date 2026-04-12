@@ -184,11 +184,6 @@
       name: energy-gun-lethal
       visualState: lethal
       heldPrefix: lethal
-  - type: CanDualWield
-    dualWieldInaccuracyPenalty: 28
-    dualWieldFireRateMultiplier: 1.25
-    dualWieldMaxFireRate: 2.5
-    dualWieldShotDelay: 0.09
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -320,11 +315,6 @@
       name: energy-gun-lethal
       visualState: lethal
       heldPrefix: lethal
-  - type: CanDualWield
-    dualWieldInaccuracyPenalty: 24
-    dualWieldFireRateMultiplier: 1.35
-    dualWieldMaxFireRate: 5.5
-    dualWieldShotDelay: 0.08
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -377,11 +367,6 @@
       name: energy-gun-lethal
       visualState: lethal
       heldPrefix: lethal
-  - type: CanDualWield
-    dualWieldInaccuracyPenalty: 24
-    dualWieldFireRateMultiplier: 1.35
-    dualWieldMaxFireRate: 5.5
-    dualWieldShotDelay: 0.08
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -424,11 +409,6 @@
     fireRate: 3
     availableModes:
         - FullAuto
-  - type: CanDualWield
-    dualWieldInaccuracyPenalty: 40
-    dualWieldFireRateMultiplier: 1.1
-    dualWieldMaxFireRate: 5.5
-    dualWieldShotDelay: 0.12
   - type: Battery
     maxCharge: 1000
     startingCharge: 1000
@@ -459,11 +439,6 @@
   parent: BaseWeaponBatterySmall
   id: WeaponEarthGovLaserPistol
   components:
-  - type: CanDualWield
-    dualWieldInaccuracyPenalty: 24
-    dualWieldFireRateMultiplier: 1.35
-    dualWieldMaxFireRate: 6
-    dualWieldShotDelay: 0.08
   - type: Gun
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_Pistol.ogg
@@ -818,11 +793,6 @@
     availableModes:
       - SemiAuto
       - FullAuto
-  - type: CanDualWield
-    dualWieldInaccuracyPenalty: 26
-    dualWieldFireRateMultiplier: 1.3
-    dualWieldMaxFireRate: 5
-    dualWieldShotDelay: 0.08
   - type: BatteryAmmoProvider
     proto: RedLaserBeam # Sunrise-TODO: Нужен товый прототип для данной пушки
     fireCost: 50
@@ -884,11 +854,6 @@
   id: WeaponAlien
   name: alien pistol
   components:
-  - type: CanDualWield
-    dualWieldInaccuracyPenalty: 24
-    dualWieldFireRateMultiplier: 1.35
-    dualWieldMaxFireRate: 5.5
-    dualWieldShotDelay: 0.08
   - type: RestrictByUserTag
     contains:
     - Abductor
@@ -958,11 +923,6 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: CanDualWield
-    dualWieldInaccuracyPenalty: 26
-    dualWieldFireRateMultiplier: 1.25
-    dualWieldMaxFireRate: 4.5
-    dualWieldShotDelay: 0.09
   - type: BatteryAmmoProvider
     proto: TaserBolt
     fireCost: 1500

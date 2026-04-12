@@ -35,10 +35,9 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: CanDualWield
-    dualWieldInaccuracyPenalty: 20
-    dualWieldFireRateMultiplier: 2
-    dualWieldMaxFireRate: 9
-    dualWieldShotDelay: 0.07
+    dualWieldInaccuracyPenalty: 0.25
+    dualWieldFireRatePenalty: 0.25
+    dualWieldRecoilPenalty: 0.25
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
@@ -179,11 +178,6 @@
       collection: usp # Sunrise-Edit
     availableModes:
     - SemiAuto
-  - type: CanDualWield
-    dualWieldInaccuracyPenalty: 12
-    dualWieldFireRateMultiplier: 1.5
-    dualWieldMaxFireRate: 6
-    dualWieldShotDelay: 0.08
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -260,11 +254,6 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
-  - type: CanDualWield
-    dualWieldInaccuracyPenalty: 34
-    dualWieldFireRateMultiplier: 1.5
-    dualWieldMaxFireRate: 6
-    dualWieldShotDelay: 0.09
   - type: ItemSlots
     slots:
       gun_magazine:

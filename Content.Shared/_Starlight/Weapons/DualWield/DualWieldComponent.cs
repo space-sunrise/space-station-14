@@ -3,35 +3,33 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._Starlight.Weapons.DualWield;
 
 /// <summary>
-/// Хранит состояние активной стрельбы по-македонски на владельце оружия.
+///     Marks an entity as currently dual-wielding two weapons.
+///     Holds runtime state about which guns are in which hand and the next shot side.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class DualWieldComponent : Component
 {
     /// <summary>
-    /// Активна ли стрельба по-македонски прямо сейчас.
+    ///     Is dual-wielding currently active.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool Active;
+    public bool Active = false;
 
     /// <summary>
-    /// Оружие, которое считается первым при стрельбе.
-    /// Обычно это оружие из активной руки в момент включения режима.
+    ///     The entity UID of the weapon in the left hand.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public EntityUid LeftGun;
+    [AutoNetworkedField]
+    public EntityUid? LeftGun;
 
     /// <summary>
-    /// Оружие из второй руки.
+    ///     The entity UID of the weapon in the right hand.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public EntityUid RightGun;
+    [AutoNetworkedField]
+    public EntityUid? RightGun;
 
     /// <summary>
-    /// Если true — следующим выстрелит LeftGun.
-    /// Если false — следующим выстрелит RightGun.
-    /// После каждого успешного выстрела значение переключается.
+    ///     Indicates whether the next shot should be fired from the left gun.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool NextIsLeft;
+    [AutoNetworkedField]
+    public bool NextIsLeft = true;
 }
