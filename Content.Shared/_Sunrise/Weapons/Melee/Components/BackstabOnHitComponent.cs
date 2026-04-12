@@ -1,9 +1,9 @@
-using Content.Server._Sunrise.Weapons.Melee.Systems;
 using Content.Shared.Damage;
+using Content.Shared._Sunrise.Weapons.Melee.Systems;
 
-namespace Content.Server._Sunrise.Weapons.Melee.Components;
+namespace Content.Shared._Sunrise.Weapons.Melee.Components;
 
-[RegisterComponent, Access(typeof(BackstabOnHitSystem))]
+[RegisterComponent, Access(typeof(SharedBackstabOnHitSystem))]
 public sealed partial class BackstabOnHitComponent : Component
 {
     [DataField(required: true)]
