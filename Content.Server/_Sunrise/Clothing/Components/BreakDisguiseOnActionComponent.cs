@@ -10,7 +10,7 @@ public sealed partial class BreakDisguiseOnActionComponent : Component
     /// How long the disguise stays unavailable after being forcibly broken.
     /// </summary>
     [DataField]
-    public TimeSpan Cooldown = TimeSpan.FromSeconds(10);
+    public TimeSpan Cooldown = TimeSpan.FromSeconds(3);
 
     /// <summary>
     /// Break the disguise when the wearer is hit by a melee attack.

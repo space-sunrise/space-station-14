@@ -534,7 +534,7 @@
         Radiation: 0.6
         Caustic: 0.6
   - type: StaminaResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.4
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: ToggleClothing
@@ -552,10 +552,10 @@
         hadOutline: true
         examineThreshold: 0.9
       - type: StealthOnMove
-        passiveVisibilityRate: -1
+        passiveVisibilityRate: -1.25
         movementVisibilityRate: 0.3
   - type: PowerCellDraw
-    drawRate: 7.2 # 500 seconds on PowerCellSyndicate
+    drawRate: 7 # 500 seconds on PowerCellSyndicate
   - type: ToggleCellDraw
   - type: PowerCellSlot
     cellSlotId: cell_slot
