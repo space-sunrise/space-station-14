@@ -48,13 +48,13 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
             return;
 
         var user = args.User;
-        var canTeleport = CanTeleport(ent.AsNullable(), user, out var disabledMessage, quiet: true);
+        var canTeleport = CanTeleport(ent, user, out var disabledMessage, quiet: true);
         var verb = new AlternativeVerb
         {
             Text = Loc.GetString("syndicate-teleporter-verb"),
             Disabled = !canTeleport,
             Message = disabledMessage,
-            Act = () => TryTeleport(ent.AsNullable(), user, quiet: false)
+            Act = () => TryTeleport(ent, user, quiet: false)
         };
 
         args.Verbs.Add(verb);
@@ -66,36 +66,30 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
             return;
 
         var user = args.User;
-        var canTeleport = CanTeleport(ent.AsNullable(), user, out var disabledMessage, quiet: true);
+        var canTeleport = CanTeleport(ent, user, out var disabledMessage, quiet: true);
         var verb = new ActivationVerb
         {
             Text = Loc.GetString("syndicate-teleporter-verb"),
             Disabled = !canTeleport,
             Message = disabledMessage,
-            Act = () => TryTeleport(ent.AsNullable(), user, quiet: false)
+            Act = () => TryTeleport(ent, user, quiet: false)
         };
 
         args.Verbs.Add(verb);
     }
 
-    public bool TryTeleport(Entity<SyndicateTeleporterComponent?> ent, EntityUid user, bool quiet = false)
+    public bool TryTeleport(Entity<SyndicateTeleporterComponent> ent, EntityUid user, bool quiet = false)
     {
         if (!CanTeleport(ent, user, out _, quiet))
-            return false;
-
-        if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
         DoTeleport((ent.Owner, ent.Comp), user);
         return true;
     }
 
-    public bool CanTeleport(Entity<SyndicateTeleporterComponent?> ent, EntityUid user, out string? disabledMessage, bool quiet = false)
+    public bool CanTeleport(Entity<SyndicateTeleporterComponent> ent, EntityUid user, out string? disabledMessage, bool quiet = false)
     {
         disabledMessage = null;
-
-        if (!Resolve(ent, ref ent.Comp, false))
-            return false;
 
         if (TryComp<BiocodeComponent>(ent.Owner, out var biocode) && !_biocode.CanUse(user, biocode.Factions))
         {

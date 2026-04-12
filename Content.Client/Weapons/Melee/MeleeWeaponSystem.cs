@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Client.Gameplay;
-using Content.Shared.Hands;
 using Content.Shared.CombatMode;
 using Content.Shared.Effects;
 using Content.Shared.Hands.Components;
@@ -145,7 +144,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
             {
                 if (TryComp<HandsComponent>(entity, out var hands) && hands.ActiveHandId != null)
                 {
-                    RaisePredictiveEvent(new RequestHandAltInteractEvent(hands.ActiveHandId));
+                    RaisePredictiveEvent(new Content.Shared.Hands.RequestHandAltInteractEvent(hands.ActiveHandId));
                     weapon.Attacking = true;
                     DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.Attacking));
                 }
