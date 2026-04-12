@@ -26,6 +26,7 @@ using Content.Shared.Mech.Components;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffect;
+using Content.Shared._Sunrise.SyndicateTeleporter;
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
@@ -34,7 +35,6 @@ using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Tag; //Sunrise-edit
-using Content.Shared._Sunrise.Weapons.Melee.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
@@ -230,7 +230,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             return;
 
         // Sunrise-Edit
-        if (HasComp<DisableMeleeWideAttackComponent>(weaponUid))
+        if (TryComp<SyndicateTeleporterComponent>(weaponUid, out var teleporter) &&
+            teleporter.DisableMeleeWideAttack)
             return;
 
         AttemptAttack(args.SenderSession.AttachedEntity.Value, weaponUid, weapon, msg, args.SenderSession);
