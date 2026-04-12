@@ -770,6 +770,41 @@
     - id: SpawnerSafeLethal
       weight: 5
 
+# Superweapon Spawner
+- type: entity
+  name: Armory Safe Spawner
+  id: SpawnerSafeSuperweapon
+  parent: MarkerBase
+  suffix: Spawner Safe Superweapon
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: _Sunrise/Structures/Storage/Gunsafes/super.rsi
+          state: base
+        - sprite: _Sunrise/Structures/Storage/Gunsafes/super.rsi
+          state: smartgun
+    - type: EntityTableSpawner
+      table: !type:NestedSelector
+        tableId: SuperweaponSafes
+
+- type: entityTable
+  id: SuperweaponSafes
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 80
+      children:
+      - id: GunSafeSuperweaponLWAP
+      - id: GunSafeSuperweaponSmartGun
+      - id: GunSafeSuperweaponRocketLauncher
+    - !type:GroupSelector
+      weight: 20
+      children:
+      - id: GunSafeSuperDMR
+      - id: GunSafeRifleM52
+      - id: GunSafeSuperDMRElite
+
 # Laser/energy Spawner
 - type: entity
   name: Armory Safe Spawner
