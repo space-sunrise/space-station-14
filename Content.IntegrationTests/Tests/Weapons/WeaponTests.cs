@@ -98,7 +98,6 @@ public sealed class WeaponTests : InteractionTest
         Assert.That(SEntMan.TryGetComponent(SPlayer, out DualWieldComponent? dualWield) && dualWield.Active,
             "Dual wield should become active after equipping two compatible pistols.");
         Assert.That(SEntMan.System<AlertsSystem>().IsShowingAlert(SPlayer, SharedDualWieldSystem.DualWieldAlert),
-            Is.True,
             "Dual wield should show the alert icon while active.");
 
         Assert.Multiple(() =>
@@ -187,8 +186,9 @@ public sealed class WeaponTests : InteractionTest
         {
             var verbSystem = SEntMan.System<VerbSystem>();
             var verbs = verbSystem.GetLocalVerbs(leftGunUid, SPlayer, typeof(AlternativeVerb));
+            var enableText = Loc.GetString("dual-wield-enable");
             var dualWieldVerb = verbs.OfType<AlternativeVerb>()
-                .FirstOrDefault(verb => verb.Text == Loc.GetString("dual-wield-enable"));
+                .FirstOrDefault(verb => verb.Text == enableText);
 
             Assert.That(dualWieldVerb, Is.Not.Null, "Expected a dual-wield verb when holding two guns.");
             Assert.That(dualWieldVerb!.Disabled, Is.True, "Dual-wield verb should be disabled for unsupported gun pairs.");
