@@ -1,4 +1,3 @@
-using System;
 using System.Numerics;
 using Content.Shared.Damage;
 using Content.Shared._Sunrise.Weapons.Melee.Components;
