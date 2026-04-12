@@ -1,4 +1,5 @@
 using Content.Server.Popups;
+using Content.Shared.Popups;
 using Content.Shared._Sunrise.Weapons.Melee.Components;
 using Content.Shared._Sunrise.Weapons.Melee.Systems;
 using Robust.Shared.Player;
