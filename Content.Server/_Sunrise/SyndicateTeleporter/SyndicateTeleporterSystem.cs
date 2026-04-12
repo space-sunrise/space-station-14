@@ -172,7 +172,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         if (tile is null || _turf.IsTileBlocked(tile.Value, CollisionGroup.Impassable))
             return false;
 
-        foreach (var body in _turf.GetEntitiesInTile(coords, LookupFlags.Dynamic | LookupFlags.Static))
+        foreach (var body in _turf.GetEntitiesInTile(coords, LookupFlags.Static))
         {
             if (body == user)
                 continue;
@@ -231,7 +231,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
     /// <returns>The configured teleport delay ID, or the default use delay ID when no named teleport delay exists.</returns>
     private static string GetTeleportDelayId(UseDelayComponent component)
     {
-        return component.Delays is not null && component.Delays.ContainsKey(TeleportDelayId)
+        return component.Delays?.ContainsKey(TeleportDelayId) == true
             ? TeleportDelayId
             : UseDelaySystem.DefaultId;
     }
