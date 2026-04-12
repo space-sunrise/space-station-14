@@ -82,6 +82,10 @@ public sealed class MeleeHitEvent : HandledEntityEventArgs
 [ByRefEvent]
 public record struct GetMeleeDamageEvent(EntityUid Weapon, DamageSpecifier Damage, List<DamageModifierSet> Modifiers, EntityUid User, bool ResistanceBypass = false);
 
+// Sunrise-Edit
+[ByRefEvent]
+public record struct GetMeleeHitBonusDamageEvent(EntityUid Weapon, EntityUid User, EntityUid Target, DamageSpecifier BonusDamage);
+
 /// <summary>
 /// Raised on a melee weapon to calculate the attack rate.
 /// </summary>

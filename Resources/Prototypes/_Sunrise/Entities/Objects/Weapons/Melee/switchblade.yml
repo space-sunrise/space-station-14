@@ -53,3 +53,11 @@
   - type: UseDelay # bug fix to prevent spamming use to reset the swing delay
   - type: ThrowingAngle
     angle: 180
+  - type: BackstabOnHit
+    damage:
+      types:
+        Slash: 30
+    popupMessages:
+    - backstab-popup-message-1
+    - backstab-popup-message-2
+    - backstab-popup-message-3
