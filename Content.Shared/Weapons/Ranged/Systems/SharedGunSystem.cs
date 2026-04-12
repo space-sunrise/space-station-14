@@ -238,7 +238,9 @@ public abstract partial class SharedGunSystem : EntitySystem
             if (gunUid != dualWield.LeftGun && gunUid != dualWield.RightGun)
                 return;
 
-            StopDualWield(dualWield);
+            if (TryComp<GunComponent>(gunUid, out var dualGun))
+                StopShooting(gunUid, dualGun);
+
             return;
         }
 

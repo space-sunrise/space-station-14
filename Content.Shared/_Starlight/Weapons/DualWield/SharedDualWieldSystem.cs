@@ -29,6 +29,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<CanDualWieldComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers);
+        SubscribeLocalEvent<GunComponent, GotEquippedHandEvent>(OnGunEquipped);
         SubscribeLocalEvent<GunComponent, GotUnequippedHandEvent>(OnGunUnequipped);
     }
 
@@ -71,12 +72,25 @@ public sealed class SharedDualWieldSystem : EntitySystem
 
         if (!CanEnableDualWield(user, firstGun, secondGun))
         {
-            _popup.PopupClient(Loc.GetString("dual-wield-too-heavy"), user, user);
+            _popup.PopupClient(Loc.GetString("dual-wield-popup-unavailable"), user, user);
             return false;
         }
 
         EnableDualWield(user, firstGun, secondGun);
         return true;
+    }
+
+    private void OnGunEquipped(Entity<GunComponent> gun, ref GotEquippedHandEvent args)
+    {
+        if (TryComp<DualWieldComponent>(args.User, out var dualWield) && dualWield.Active)
+            return;
+
+        if (!TryGetBothGuns(args.User, out var firstGun, out var secondGun) ||
+            (gun.Owner != firstGun && gun.Owner != secondGun) ||
+            !CanEnableDualWield(args.User, firstGun, secondGun))
+            return;
+
+        _popup.PopupClient(Loc.GetString("dual-wield-popup-available"), args.User, args.User);
     }
 
     private void OnGunUnequipped(Entity<GunComponent> gun, ref GotUnequippedHandEvent args)
