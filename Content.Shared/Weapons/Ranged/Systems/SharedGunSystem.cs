@@ -243,6 +243,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
 
         entity.Comp.NextFire = Timing.CurTime + delay;
+        DirtyField(entity, entity.Comp, nameof(GunComponent.NextFire));
     }
 
     public bool TryGetGun(EntityUid entity, out EntityUid gunEntity, [NotNullWhen(true)] out GunComponent? gunComp)
