@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Server._Sunrise.Weapons.Melee.Components;
 using Content.Server.Popups;
+using Content.Shared.Damage;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Random;
 
