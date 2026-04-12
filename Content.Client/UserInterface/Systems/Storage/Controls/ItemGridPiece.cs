@@ -47,10 +47,10 @@ public sealed class ItemGridPiece : Control, IEntityControl
     private readonly string _markedSecondTexturePath = "Storage/marked_second";
     private Texture? _markedSecondTexture;
 
-    // Sunrise-Start
+    // Sunrise edit start - priority mark texture for storage items
     private readonly string _markedPriorityTexturePath = "Storage/marked_priority";
     private Texture? _markedPriorityTexture;
-    // Sunrise-End
+    // Sunrise edit end
 
     #endregion
 
@@ -99,9 +99,9 @@ public sealed class ItemGridPiece : Control, IEntityControl
         _markedFirstTexture = Theme.ResolveTextureOrNull(_markedFirstTexturePath)?.Texture;
         _markedSecondTexture = Theme.ResolveTextureOrNull(_markedSecondTexturePath)?.Texture;
 
-        // Sunrise-Start
+        // Sunrise edit start - load priority marker texture
         _markedPriorityTexture = Theme.ResolveTextureOrNull(_markedPriorityTexturePath)?.Texture;
-        // Sunrise-End
+        // Sunrise edit end
 
     }
 
@@ -217,9 +217,9 @@ public sealed class ItemGridPiece : Control, IEntityControl
                 ItemGridPieceMarks.First => _markedFirstTexture,
                 ItemGridPieceMarks.Second => _markedSecondTexture,
 
-                // Sunrise-Edit-Start
+                // Sunrise edit start - draw priority marker
                 ItemGridPieceMarks.Priority => _markedPriorityTexture,
-                // Sunrise-Edit-End
+                // Sunrise edit end
 
                 _ => null,
             };
@@ -319,9 +319,8 @@ public enum ItemGridPieceMarks
     First,
     Second,
 
-    // Sunrise-Edit-Start
+    // Sunrise edit start - priority mark enum value
     Priority,
-
-    // Sunrise-Edit-End
+    // Sunrise edit end
 
 }
