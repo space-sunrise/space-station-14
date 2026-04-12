@@ -57,7 +57,7 @@
     eyes: ClothingEyesSunGlassesHudSkill
     head: ClothingHeadHatCapNtrep
     id: NanoTrasenRepresentativePDA
-    ears: ClothingHeadsetAltCommand
+    ears: ClothingHeadsetAltRepresentativeNT
     pocket1: FlippoEngravedLighter
     pocket2: PenCentcom
   storage:
