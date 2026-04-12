@@ -32,7 +32,6 @@
       path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
   - type: CanDualWield
     dualWieldInaccuracyPenalty: 0.25
-    dualWieldDamagePenalty: 0.25
     dualWieldFireRatePenalty: 0.25
     dualWieldRecoilPenalty: 0.25
   - type: UseDelay

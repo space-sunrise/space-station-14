@@ -143,7 +143,6 @@
     - suitStorage
   - type: CanDualWield
     dualWieldInaccuracyPenalty: 0.25
-    dualWieldDamagePenalty: 0.25
     dualWieldFireRatePenalty: 0.25
     dualWieldRecoilPenalty: 0.25
 
@@ -164,7 +163,6 @@
     - Belt
   - type: CanDualWield
     dualWieldInaccuracyPenalty: 0.25
-    dualWieldDamagePenalty: 0.25
     dualWieldFireRatePenalty: 0.25
     dualWieldRecoilPenalty: 0.25
 

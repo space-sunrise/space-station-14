@@ -16,12 +16,6 @@ public sealed partial class CanDualWieldComponent : Component
     public float DualWieldInaccuracyPenalty = 0.25f;
 
     /// <summary>
-    ///     Multiplier applied to damage dealt when dual-wielding.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public float DualWieldDamagePenalty = 0.25f;
-
-    /// <summary>
     ///     Multiplier applied to fire rate when dual-wielding.
     /// </summary>
     [DataField, AutoNetworkedField]
