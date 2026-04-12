@@ -13,10 +13,10 @@ public sealed class BackstabOnHitSystem : SharedBackstabOnHitSystem
 
     protected override void OnGetMeleeHitBonusDamage(Entity<BackstabOnHitComponent> ent, ref GetMeleeHitBonusDamageEvent args)
     {
-        if (args.IsWideAttack)
-            return;
+        var previousBonus = new DamageSpecifier(args.BonusDamage);
+        base.OnGetMeleeHitBonusDamage(ent, ref args);
 
-        if (!TryApplyBackstabBonus(ent.AsNullable(), args.Target, args.User, ref args.BonusDamage))
+        if (args.BonusDamage.Equals(previousBonus))
             return;
 
         if (ent.Comp.PopupMessages.Count == 0)
