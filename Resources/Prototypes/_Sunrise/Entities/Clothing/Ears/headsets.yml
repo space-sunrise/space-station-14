@@ -256,6 +256,100 @@
   - type: EncryptionKeyHolder
     keySlots: 5
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/syndicate.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/syndicate.rsi
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/syndicate.rsi
+    sprite: _Sunrise/Clothing/Ears/Headsets/syndicate.rsi
+
+- type: entity
+  parent: [ClothingHeadset, BaseTSFContraband]
+  id: ClothingHeadsetTSFTrader
+  name: Trans-Solar Trader's headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyTSF
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Ears/Headsets/cargo.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Ears/Headsets/cargo.rsi
+
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseTSFContraband]
+  id: ClothingHeadsetAltTSF
+  name: Trans-Solar Marine Corps bowman headset
+  description: An ergonomic combat headset used by the TSMC. Protects against loud noises.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyTSF
+      - EncryptionKeyCommand
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Ears/Headsets/command.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Ears/Headsets/command.rsi
+
+- type: entity
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltERT
+  name: ert over-ear headset
+  description: The ERT headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyERT
+      - EncryptionKeyStationMaster
+      - EncryptionKeyLaw
+      - EncryptionKeyBlueShield
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Ears/Headsets/ert.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Ears/Headsets/ert.rsi
+  - type: EncryptionKeyHolder
+
+- type: entity
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltDeathSquad
+  name: death squad over-ear headset
+  description: A headset for an unknown squad.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyDeathSquad
+      - EncryptionKeyERT
+      - EncryptionKeyStationMaster
+      - EncryptionKeyLaw
+      - EncryptionKeyBlueShield
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Ears/Headsets/deathsquad.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Ears/Headsets/deathsquad.rsi
+  - type: EncryptionKeyHolder
+    keySlots: 5
+
+- type: entity
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltSpecOpsOfficer
+  name: special operations officer over-ear headset
+  description: Headset of a special operations officer.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCentCom
+      - EncryptionKeyDeathSquad
+      - EncryptionKeyERT
+      - EncryptionKeyStationMaster
+      - EncryptionKeyLaw
+      - EncryptionKeyBlueShield
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Ears/Headsets/specopsofficer.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Ears/Headsets/specopsofficer.rsi
+  - type: EncryptionKeyHolder
+    keySlots: 6

@@ -153,9 +153,29 @@
   description: ent-ImprovisedGrenadeCasingEmpty.desc
 
 - type: construction
+  name: construction-graph-tag-white-lily-crown
+  id: WhiteLilyCrown
+  graph: WhiteLilyCrown
+  startNode: start
+  targetNode: WhiteLilyCrown
+  category: construction-category-misc
+  objectType: Item
+  description: construction-graph-tag-white-lily-crown-desc
+
+- type: construction
   id: bombaga
   graph: bombaga
   startNode: start
   targetNode: bombarda
   category: construction-category-weapons
   objectType: Item
+
+- type: construction
+  id: JetpackImprovised
+  graph: JetpackImprovisedGraph
+  startNode: start
+  targetNode: jetpack
+  category: construction-category-tools
+  objectType: Item
+  name: ent-JetpackImprovised
+  description: ent-JetpackImprovised.desc

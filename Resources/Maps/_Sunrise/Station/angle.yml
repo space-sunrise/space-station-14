@@ -6016,7 +6016,7 @@ entities:
       pos: 47.5,19.5
       parent: 9
       type: Transform
-- proto: AirlockExternalGlassShuttleEmergencyLocked
+- proto: AirlockExternalGlassShuttleEmergencyLockedCentComm
   entities:
   - uid: 2047
     components:

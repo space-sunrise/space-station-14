@@ -295,6 +295,14 @@
     - SupermatterCrystal
     - TeslaEnergyBall
     - TeslaMiniEnergyBall
+    prototypeIdBlacklistSubstrings:
+    - Debug
+    - Admin
+    - Admeme
+    prototypeSuffixBlacklistSubstrings:
+    - Debug
+    - Admin
+    - Admeme
     componentBlacklist:
     - MapGrid
     - SurgeryStep

@@ -76,6 +76,10 @@
     - Ammonia
     - NitrousOxide
     - Frezon
+    #Sunrise - Start
+    - Electrovae
+    - ChargedElectrovae
+    #Sunrise - End
     #- Helium3 TODO: fusion
     # remove everything except oxygen to maintain oxygen ratio
     overflowGases:
@@ -181,6 +185,11 @@
   - type: InventorySlots
   - type: Loadout
     prototypes: [ MechArmorLightLoadout ]
+  - type: RadarBlip
+    color: "#FFD700FF"
+    scale: 1.1
+    shape: Triangle
+    requireInSpace: true
   # Sunrise-End
   - type: Damageable
     damageContainer: Mech

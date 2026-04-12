@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from vgstation at commit https://github.com/vgstation-coders/vgstation13/commit/cdbcb1e858b11f083994a7a269ed67ef5b452ce9, xenoborg actions laser and laser2 by Samuka-C (github) laser3-4 by KaiserMaus(github)",
+    "copyright": "Taken from vgstation at commit https://github.com/vgstation-coders/vgstation13/commit/cdbcb1e858b11f083994a7a269ed67ef5b452ce9, xenoborg actions laser and laser2 by Samuka-C (github) laser3-4 by KaiserMaus(github) cooking and paperwork modules by crestoedge(github)",
     "size": {
         "x": 32,
         "y": 32
@@ -18,6 +18,12 @@
         },
         {
             "name":"xenoborg-laser4-module"
+        },
+        {
+            "name":"cooking-module"
+        },
+        {
+            "name":"paperwork-module"
         }
     ]
 }

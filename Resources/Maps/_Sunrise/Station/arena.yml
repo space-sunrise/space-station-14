@@ -12198,7 +12198,7 @@ entities:
       pos: 82.5,-36.5
       parent: 6747
       type: Transform
-- proto: AirlockExternalGlassShuttleEmergencyLocked
+- proto: AirlockExternalGlassShuttleEmergencyLockedCentComm
   entities:
   - uid: 6081
     components:

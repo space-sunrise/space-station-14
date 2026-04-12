@@ -1,6 +1,6 @@
 - type: entity
   name: finka
-  parent: CombatKnife #, BaseSovietContraband]
+  parent: [BaseSovietContraband, CombatKnife]
   id: Finka
   description: Legendary SNKVD dagger, an excellent melee weapon, and it's said there was a secret technique for throwing this knife.
   components:
@@ -25,12 +25,15 @@
         Piercing: 15
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Melee/finka.rsi
+    storedSprite:
+      state: storage
+      sprite: _Sunrise/Objects/Weapons/Melee/finka.rsi
   - type: StaticPrice
     price: 1250
 
 - type: entity
   name: ForceableFollow finka
-  parent: Finka #, BaseSovietContraband]
+  parent: [BaseSovietContraband, Finka]
   id: FinkaAdmeme
   suffix: Admeme
   description: Legendary SNKVD dagger, an excellent melee weapon, and it's said there was a secret technique for throwing this knife.
@@ -45,5 +48,41 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Melee/finka_admeme.rsi
     state: icon
+  - type: ThrowingAngle
+    angle: 90
+
+- type: entity
+  name: tactical axe
+  parent: [CombatKnife]
+  id: TacticalAxe
+  description: Tactical axe issued to special units. Designed for breaching and brutal close-quarters combat.
+  components:
+  - type: Tag
+    tags:
+    - CombatKnife
+    - Knife
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Melee/tactical_axe.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.17
+    damage:
+      types:
+        Slash: 12
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 10
+        Structural: 6
+  - type: Tool
+    qualities:
+    - Prying
+    - Slicing
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Melee/tactical_axe.rsi
+    storedSprite:
+      state: storage
+      sprite: _Sunrise/Objects/Weapons/Melee/tactical_axe.rsi
   - type: ThrowingAngle
     angle: 90

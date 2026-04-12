@@ -519,7 +519,7 @@
 #маски животных
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: SunriseClothingHeadHatBattleMasksBase
   id: ClothingHeadHatTony
   name: Tony
   description: 'Man, this party sucks, I fucking hate these people'
@@ -529,22 +529,9 @@
     scale: 0.63, 0.63
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/tonytiger.rsi
-  - type: IngestionBlocker
-  - type: IdentityBlocker
-  - type: Tag
-    tags:
-    - WhitelistChameleon
-    - ClothMade
-    - FullCovered # INTERACTIONS
-  - type: HideLayerClothing
-    slots:
-    - Hair
-    - HeadTop
-    - HeadSide
-    - FacialHair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: SunriseClothingHeadHatBattleMasksBase
   id: ClothingHeadHatBear
   name: Mark
   description: 'Say your prayers, son. You are already dead in this world.'
@@ -554,22 +541,9 @@
     scale: 0.63, 0.63
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/markbear.rsi
-  - type: IngestionBlocker
-  - type: IdentityBlocker
-  - type: Tag
-    tags:
-    - WhitelistChameleon
-    - ClothMade
-    - FullCovered # INTERACTIONS
-  - type: HideLayerClothing
-    slots:
-    - Hair
-    - HeadTop
-    - HeadSide
-    - FacialHair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: SunriseClothingHeadHatBattleMasksBase
   id: ClothingHeadHatBiker
   name: Biker
   description: 'I WAS BORN IN USA.'
@@ -579,22 +553,9 @@
     scale: 0.63, 0.63
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/biker.rsi
-  - type: IngestionBlocker
-  - type: IdentityBlocker
-  - type: Tag
-    tags:
-    - WhitelistChameleon
-    - ClothMade
-    - FullCovered # INTERACTIONS
-  - type: HideLayerClothing
-    slots:
-    - Hair
-    - HeadTop
-    - HeadSide
-    - FacialHair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: SunriseClothingHeadHatBattleMasksBase
   id: ClothingHeadHatZebra
   name: Corey
   description: 'Fuck You!'
@@ -604,22 +565,9 @@
     scale: 0.63, 0.63
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/zebra.rsi
-  - type: IngestionBlocker
-  - type: IdentityBlocker
-  - type: Tag
-    tags:
-    - WhitelistChameleon
-    - ClothMade
-    - FullCovered # INTERACTIONS
-  - type: HideLayerClothing
-    slots:
-    - Hair
-    - HeadTop
-    - HeadSide
-    - FacialHair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: SunriseClothingHeadHatBattleMasksBase
   id: ClothingHeadHatSwanTwo
   name: Esh
   description: 'We are all going to die here.'
@@ -629,22 +577,9 @@
     scale: 0.63, 0.63
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/swantwo.rsi
-  - type: IngestionBlocker
-  - type: IdentityBlocker
-  - type: Tag
-    tags:
-    - WhitelistChameleon
-    - ClothMade
-    - FullCovered # INTERACTIONS
-  - type: HideLayerClothing
-    slots:
-    - Hair
-    - HeadTop
-    - HeadSide
-    - FacialHair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: SunriseClothingHeadHatBattleMasksBase
   id: ClothingHeadHatSwanOne
   name: Alex
   description: 'Ha-ha-ha...We had a nice walk.'
@@ -654,19 +589,6 @@
     scale: 0.63, 0.63
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/swanone.rsi
-  - type: IngestionBlocker
-  - type: IdentityBlocker
-  - type: Tag
-    tags:
-    - WhitelistChameleon
-    - ClothMade
-    - FullCovered # INTERACTIONS
-  - type: HideLayerClothing
-    slots:
-    - Hair
-    - HeadTop
-    - HeadSide
-    - FacialHair
 
 - type: entity
   parent: ClothingHeadBase
@@ -699,6 +621,28 @@
     - ClothMade
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingHeadBase, BaseTSFContraband]
+  id: ClothingHeadHatBeretTSF
+  name: TSF beret
+  description: A dark beret worn by marines of the Trans-Solar Federation.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/beret_tsf.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/beret_tsf.rsi
+
+- type: entity
+  parent: [ClothingHeadBase, BaseTSFContraband]
+  id: ClothingHeadHatBeretTSFElite
+  name: MARSOC beret
+  description: A beret worn by marines of the Trans-Solar Federation's Marine Special Operations Command.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/beret_tsfelite.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/beret_tsfelite.rsi
 
 - type: entity
   parent: ClothingHeadHatUshanka

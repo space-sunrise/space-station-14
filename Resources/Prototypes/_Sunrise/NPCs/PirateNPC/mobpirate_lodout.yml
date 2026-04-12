@@ -477,6 +477,8 @@
   equipment:
     gloves: ClothingHandsBlackM79
     back: ClothingBackDuffelMercenaryTier3Grenade
+    pocket1: PouchExplosiveFilled
+    pocket2: PouchExplosiveFilled
     shoes: ClothingShoesBootsMagCombat
 
 - type: startingGear

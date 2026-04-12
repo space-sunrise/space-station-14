@@ -14,7 +14,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'SC'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency.yml
+          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/Evac/emergency.yml
         - type: StationJobs
           availableJobs:
             SalvageSpecialist: [ 1, 1 ]

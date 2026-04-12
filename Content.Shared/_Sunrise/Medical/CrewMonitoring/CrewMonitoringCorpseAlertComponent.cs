@@ -16,6 +16,12 @@ public sealed partial class CrewMonitoringCorpseAlertComponent : Component
     public bool DoCorpseAlert = false;
 
     /// <summary>
+    ///     Определяет, отображается ли verb для переключения оповещения.
+    /// </summary>
+    [DataField]
+    public bool ShowToggleVerb = true;
+
+    /// <summary>
     ///     Следующее время, когда можно проигрывать оповещение о падших с сенсорами.
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]

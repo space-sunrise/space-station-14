@@ -1,4 +1,21 @@
 - type: entity
+  id: RandomFleshAnomalySpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Specific/anomaly.rsi
+      state: anom5
+  - type: RandomSpawner
+    prototypes:
+    - AnomalyFlesh
+    rarePrototypes:
+    - AnomalyClown
+    rareChance: 0.20
+    offset: 0.15
+
+- type: entity
   id: MetusRandomAnomalySpawner
   parent: RandomAnomalySpawner
   name: random anomaly spawner (without shadow)
@@ -10,7 +27,7 @@
     - AnomalyPyroclastic
     - AnomalyGravity
     - AnomalyElectricity
-    - AnomalyFlesh
+    - RandomFleshAnomalySpawner
     - AnomalyBluespace
     - AnomalyIce
     - RandomRockAnomalySpawner

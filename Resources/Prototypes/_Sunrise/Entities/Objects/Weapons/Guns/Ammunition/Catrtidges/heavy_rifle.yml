@@ -55,7 +55,7 @@
       - Cartridge
       - CartridgeHeavyRifle
   - type: CartridgeAmmo
-    proto: BulletLightRifle
+    proto: BulletHeavyRifleArtillery
     deleteOnSpawn: true
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/7.62x51.rsi

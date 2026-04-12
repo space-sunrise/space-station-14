@@ -25,6 +25,7 @@
     - Moderate
     - Challenging
     - Difficult
+    - Impossible
   factions:
     - Soviets
     - PiratesT1
@@ -39,25 +40,24 @@
     - Caves
     - Snow
   difficulties:
-    - Challenging
     - Difficult
     - Impossible
   factions:
     - Soviets
 
-- type: salvageDungeonMod
-  id: SovietStrategicResourcesWarehouse
-  desc: salvage-dungeon-mod-soviet-warehouse
-  proto: SovietStrategicResourcesWarehouseDungeon
-  biomes:
-    - Snow
-  difficulties:
-    - Challenging
-    - Difficult
-    - Impossible
-  factions:
-    - Soviets
-    - PiratesT3
+# - type: salvageDungeonMod
+#   id: SovietStrategicResourcesWarehouse
+#   desc: salvage-dungeon-mod-soviet-warehouse
+#   proto: SovietStrategicResourcesWarehouseDungeon
+#   biomes:
+#     - Snow
+#   difficulties:
+#     - Challenging
+#     - Difficult
+#     - Impossible
+#   factions:
+#     - Soviets
+#     - PiratesT3
 
 - type: salvageDungeonMod
   id: SyndicateBase
@@ -70,23 +70,5 @@
     - Impossible
   factions:
     - PiratesT1
-    - PiratesT2
-    - PiratesT3
-
-- type: salvageDungeonMod
-  id: SovietRuineStronghold
-  desc: salvage-dungeon-mod-soviet-stronghold
-  proto: SovietDungeonRuine
-  biomes:
-    - Lava
-    - Grasslands
-    - Caves
-    - Snow
-  difficulties:
-    - Challenging
-    - Difficult
-    - Impossible
-  factions:
-    - Soviets
     - PiratesT2
     - PiratesT3

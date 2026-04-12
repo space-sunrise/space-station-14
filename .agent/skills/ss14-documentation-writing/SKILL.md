@@ -1,103 +1,103 @@
 ---
 name: ss14-documentation-writing
-description: Практический стандарт документирования в Space Station 14 для C#, SWSL, YAML и FTL: как писать `<summary>`, когда добавлять поясняющие комментарии, как документировать partial-системы и как избегать шумной документации. Используй при написании, рефакторинге и ревью документации в коде, прототипах и локализации.
+description: A practical documentation standard in Space Station 14 for C#, SWSL, YAML and FTL: how to write `<summary>`, when to add explanatory comments, how to document partial systems, and how to avoid noisy documentation. Use it when writing, refactoring and reviewing documentation in code, prototypes and localization.
 ---
 
 # SS14 Documentation Writing
 
-Используй этот skill как строгий рабочий стандарт по документации в SS14 ✍️
-Цель: оставлять только полезную документацию, которая ускоряет ревью и снижает риск неправильного расширения системы.
+Use this skill as a strict working standard for documentation in SS14 ✍️
+Goal: leave only useful documentation that speeds up reviews and reduces the risk of incorrect system expansion.
 
-## Порядок чтения
+## Reading order
 
-1. Сначала прочитай `references/fresh-pattern-catalog.md`.
-2. Затем прочитай `references/rejected-snippets.md`.
-3. В конце сверь контекст в `references/docs-context.md`.
+1. Read `references/fresh-pattern-catalog.md` first.
+2. Then read `references/rejected-snippets.md`.
+3. At the end, check the context in `references/docs-context.md`.
 
-## Источник истины
+## Source of truth
 
-1. Источник истины для правил документирования - текущий код.
-2. Документация из `docs` обязательна к прочтению, но используется как вторичный слой (термины, intent, ограничения), потому что может отставать.
-3. Для любой целевой подсистемы всегда смотри не только саму систему, но и ее использование в `server/shared/client`, особенно необычные вызовы и нестандартные флаги.
-4. Отсекай примеры старше cutoff `2024-02-20`.
-5. Не используй как эталон фрагменты с `TODO`/`HACK`/`FIXME`, если они затрагивают саму документацию или показывают спорное поведение.
+1. The source of truth for documentation rules is the current code.
+2. Documentation from `docs` is required reading, but is used as a secondary layer (terms, intent, restrictions) because it may lag.
+3. For any target subsystem, always look not only at the system itself, but also at its usage in `server/shared/client`, especially unusual calls and non-standard flags.
+4. Cut off examples older than cutoff `2024-02-20`.
+5. Do not use fragments with `TODO`/`HACK`/`FIXME` as a reference if they affect the documentation itself or show controversial behavior.
 
-## Базовые правила
+## Basic rules
 
-### Язык
+### Language
 
-1. Документацию пиши на английском языке.
-2. Идентификаторы и XML-теги не искажай и не смешивай языки в одном doc-блоке.
+1. Write documentation in English.
+2. Do not distort identifiers and XML tags and do not mix languages ​​in one doc block.
 
-### C# и SWSL
+### C# and SWSL
 
-1. Используй `/// <summary>` как основной формат документации в коде.
-2. Документируй публичные методы, публичные API-точки и DataField-контракты через `summary`.
-3. Для partial-классов добавляй короткое описание роли конкретной части сразу под объявлением класса и перед блоком зависимостей.
-4. Для сложной математики, нестандартных переходов состояния, предикшн-нюансов и workaround-логики добавляй короткий комментарий над блоком логики, даже если у метода уже есть `summary`.
-5. Не комментируй каждую строку и каждый очевидный `if` "ради комментарирования".
-6. Проверяй валидность XML-доков: корректные теги и регистр (`</summary>`, не `</summarY>`).
+1. Use `/// <summary>` as the main documentation format in your code.
+2. Document public methods, public API points and DataField contracts via `summary`.
+3. For partial classes, add a short description of the role of the specific part immediately below the class declaration and before the dependency block.
+4. For complex mathematics, non-standard state transitions, prediction nuances and workaround logic, add a short comment above the logic block, even if the method already has `summary`.
+5. Don't comment out every line and every obvious `if` "for the sake of commenting."
+6. Check the validity of XML documents: correct tags and case (`</summary>`, not `</summarY>`).
 
-### YAML прототипы
+### YAML prototypes
 
-1. Разделяй группы прототипов комментариями.
-2. Если комментарий описывает поведение прототипа, ограничивайся одним предложением.
-3. Не превращай прототипы в "простыню" из многострочных объяснений.
-4. Не используй edit-маркеры как "документацию" (`Start/End`-блоки без смысла для поведения).
+1. Separate groups of prototypes with comments.
+2. If the comment describes the behavior of the prototype, limit it to one sentence.
+3. Don’t turn prototypes into “sheets” of multi-line explanations.
+4. Do not use edit markers as “documentation” (`Start/End` blocks without meaning for behavior).
 
 ### FTL
 
-1. Комментарии в FTL используй только для редкого разделения на группы.
-2. Всегда ставь пробел между `##` и названием группы: `## Group Name`.
-3. Не используй сломанные заголовки вида `##bombs`.
-4. Не спамь заголовками перед каждым несколькими ключами.
+1. Use comments in FTL only for rare divisions into groups.
+2. Always put a space between `##` and the group name: `## Group Name`.
+3. Do not use broken headers like `##bombs`.
+4. Don't spam headers before every few keys.
 
-## Workflow для документирования подсистемы
+## Workflow for documenting the subsystem
 
-1. Найди основной контракт подсистемы: что обязаны знать внешние вызовы.
-2. Просмотри все основные callsite в `server/shared/client`.
-3. Отметь нестандартные вызовы (дополнительные флаги, special-case пути, обход стандартных проверок).
-4. Зафиксируй эти места в `summary` и коротких точечных комментариях "почему так".
-5. Удали шум: любые комментарии, которые просто пересказывают строку кода.
+1. Find the main contract of the subsystem: what external calls are required to know.
+2. View all main callsite in `server/shared/client`.
+3. Mark non-standard calls (additional flags, special-case paths, bypassing standard checks).
+4. Record these places in `summary` and short point-by-point comments “why is this so”.
+5. Remove noise: any comments that simply paraphrase a line of code.
 
 ## Decision Tree
 
-1. Это публичный контракт/метод/тип?
-   Пиши `summary`.
-2. Это сложный, неочевидный блок (математика, предикшн, workaround)?
-   Пиши короткий комментарий над блоком + оставляй `summary` на уровне метода.
-3. Это очевидный локальный код?
-   Не комментируй.
-4. Это partial-часть большой системы?
-   Добавь заголовок роли части и смысл блока зависимостей.
-5. Это YAML/FTL группировка?
-   Дай краткий разделитель, без длинного описания.
+1. Is this a public contract/method/type?
+   Write `summary`.
+2. Is this a complex, non-obvious block (mathematics, prediction, workaround)?
+   Write a short comment above the block + leave `summary` at the method level.
+3. Is this obvious local code?
+   Don't comment.
+4. Is this a partial part of a larger system?
+   Add the title of the part role and the meaning of the dependency block.
+5. Is this a YAML/FTL grouping?
+   Give a short separator, without a long description.
 
-## Паттерны ✅
+## Patterns ✅
 
-1. `ClickableSystem` и `CheckClick(...)` используют `summary` для контракта и точечные комментарии в местах со сложными преобразованиями координат.
-2. `MimePowersSystem.OnInvisibleWall(...)` документирован `summary`, а комментарии оставлены только на критичных проверках.
-3. В `AccessOverriderSystem` публичные методы сочетают `summary` и `remarks`, когда нужно зафиксировать инвариант поведения.
-4. `BaseContainer` и `SharedContainerSystem.Remove(...)` показывают стабильный стиль API-документации: `summary` + `remarks` + описанные параметры.
-5. В `SharedScp096System` логика декомпозирована на partial-части с отдельными блоками ответственности и зависимостей.
-6. `Scp096PhotoSystem` и `ArtifactScp096MadnessSystem` показывают, что документация должна учитывать нестандартные флаги вызова (`TryAddTarget(..., true, true)`), а не только default-путь.
-7. В YAML-каталогах разделители уровня `# Rank 2` / `# Rank 3` делают большие списки читаемыми без перегруза.
-8. В FTL корректный разделитель группы имеет вид `## Strings for the battery ...` и не ломает парсинг.
+1. `ClickableSystem` and `CheckClick(...)` use `summary` for the contract and point comments in places with complex coordinate transformations.
+2. `MimePowersSystem.OnInvisibleWall(...)` is documented by `summary`, and comments are left only on critical checks.
+3. In `AccessOverriderSystem` public methods combine `summary` and `remarks` when you need to capture a behavior invariant.
+4. `BaseContainer` and `SharedContainerSystem.Remove(...)` show a stable API documentation style: `summary` + `remarks` + described parameters.
+5. In `SharedScp096System` the logic is decomposed into partial parts with separate blocks of responsibilities and dependencies.
+6. `Scp096PhotoSystem` and `ArtifactScp096MadnessSystem` show that the documentation should take into account non-standard call flags (`TryAddTarget(..., true, true)`), and not just the default path.
+7. In YAML directories, level separators `# Rank 2` / `# Rank 3` make large lists readable without overload.
+8. In FTL, the correct group separator is `## Strings for the battery ...` and does not break parsing.
 
-## Анти-паттерны ❌
+## Anti-patterns ❌
 
-1. Невалидные XML-теги в доках (`</summarY>` и другие опечатки).
-2. Русскоязычные и смешанные по языку doc-комментарии в коде.
-3. Комментарии-очевидности, которые просто дублируют строку кода.
-4. Использование `TODO/HACK/FIXME` как "документации поведения" вместо исправления или нормального пояснения.
-5. Многострочные объяснения в YAML там, где достаточно одной фразы.
-6. Edit-маркеры (`Sunrise-Start/End`, `Fire added start/end`) вместо поведенческого описания.
-7. FTL-заголовки без пробела после `##` (`##bombs`).
-8. Частые или декоративные FTL-разделители (`##########`), которые не помогают навигации.
+1. Invalid XML tags in docks (`</summarY>` and other typos).
+2. Russian-language and mixed-language doc comments in the code.
+3. Obvious comments that simply duplicate a line of code.
+4. Using `TODO/HACK/FIXME` as "documentation of behavior" instead of a correction or normal explanation.
+5. Multi-line explanations in YAML where one phrase is enough.
+6. Edit markers (`Sunrise-Start/End`, `Fire added start/end`) instead of behavioral description.
+7. FTL headers without space after `##` (`##bombs`).
+8. Frequent or decorative FTL separators (`##########`) that do not help navigation.
 
-## Примеры из кода
+## Code examples
 
-### Пример 1: `summary` + точечные комментарии на сложной логике
+### Example 1: `summary` + dot comments on complex logic
 
 ```csharp
 /// <summary>
@@ -118,9 +118,9 @@ public sealed class ClickableSystem : EntitySystem
 }
 ```
 
-Комментарий: `summary` держит API-контракт, а inline-комментарии остаются только у неочевидных шагов.
+Comment: `summary` holds the API contract, and inline comments remain only for non-obvious steps.
 
-### Пример 2: короткие комментарии только на реально важных проверках
+### Example 2: short comments only on really important checks
 
 ```csharp
 /// <summary>
@@ -137,9 +137,9 @@ private void OnInvisibleWall(Entity<MimePowersComponent> ent, ref InvisibleWallA
 }
 ```
 
-Комментарий: комментарии не засоряют метод, а поясняют только проверки и последствия.
+Comment: Comments do not clutter the method, but only clarify the checks and consequences.
 
-### Пример 3: `summary` + `remarks` для инвариантов
+### Example 3: `summary` + `remarks` for invariants
 
 ```csharp
 /// <summary>
@@ -154,9 +154,9 @@ private bool PrivilegedIdIsAuthorized(...)
 }
 ```
 
-Комментарий: `remarks` фиксирует инвариант, который иначе легко нарушить при рефакторе.
+Comment: `remarks` fixes an invariant that is otherwise easy to break with a refactor.
 
-### Пример 4: partial-декомпозиция + анализ нестандартных вызовов
+### Example 4: partial decomposition + analysis of non-standard calls
 
 ```csharp
 public abstract partial class SharedScp096System
@@ -172,9 +172,9 @@ if (!_scp096.TryAddTarget((uid, scp096), args.Examiner, true, true))
     continue;
 ```
 
-Комментарий: для таких систем документируй не только "что делает часть", но и зачем callsite включает нестандартные флаги.
+Comment: For such systems, document not only “what the part does”, but also why the callsite includes non-standard flags.
 
-### Пример 5: YAML-группировка без перегруза
+### Example 5: YAML grouping without overloading
 
 ```yaml
 # Rank 2
@@ -186,9 +186,9 @@ if (!_scp096.TryAddTarget((uid, scp096), args.Examiner, true, true))
   id: CargoFulton
 ```
 
-Комментарий: короткий разделитель ускоряет чтение и не превращается в дополнительный "документ внутри прототипа".
+Comment: A short delimiter speeds up reading and does not turn into an additional "document inside the prototype".
 
-### Пример 6: FTL-разделители
+### Example 6: FTL delimiters
 
 ```ftl
 ## Strings for the battery (SMES/substation) menu
@@ -198,22 +198,22 @@ battery-menu-out = OUT
 uplink-pizza-bomb-name = Nefarious Pizza bomb
 ```
 
-Комментарий: первый заголовок корректный, второй - сломанный из-за отсутствия пробела после `##`.
+Comment: the first header is correct, the second is broken due to the lack of a space after `##`.
 
-## Чеклист перед PR
+## Checklist before PR
 
-1. Все новые doc-комментарии в коде на английском.
-2. Для публичных и межсистемных контрактов добавлен `summary`.
-3. В partial-системах есть краткое описание роли части.
-4. Сложные блоки получили короткое пояснение "почему".
-5. В YAML комментарии короткие и только по делу.
-6. В FTL групповые комментарии редкие и только в формате `## Group Name`.
-7. Нет невалидных XML-тегов и сломанных FTL-заголовков.
+1. All new doc comments in the code are in English.
+2. Added `summary` for public and intersystem contracts.
+3. In partial systems there is a brief description of the role of the part.
+4. Complex blocks received a short explanation "why".
+5. In YAML, comments are short and only to the point.
+6. In FTL, group comments are rare and only in the format `## Group Name`.
+7. There are no invalid XML tags or broken FTL headers.
 
-## Правило расширения
+## Extension rule
 
-1. Добавляй новые правила только после подтверждения свежим кодом и просмотром callsite.
-2. Спорные или legacy-примеры сначала фиксируй как анти-паттерны.
-3. Если тема разрастается (например, только guidebook XML или только UI-локализация), выноси в отдельный специализированный skill.
+1. Add new rules only after confirmation with fresh code and viewing callsite.
+2. First fix controversial or legacy examples as anti-patterns.
+3. If the topic grows (for example, only guidebook XML or only UI localization), move it to a separate specialized skill.
 
-Документируй так, чтобы следующий разработчик понял контракт без археологии кода 🙂
+Document so that the next developer understands the contract without archeology of the code :)

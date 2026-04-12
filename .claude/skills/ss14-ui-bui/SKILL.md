@@ -1,11 +1,11 @@
 ---
 name: ss14-ui-bui
-description: Практический гайд по Bound User Interface (BUI) в SS14: архитектура, сетевые сообщения, валидация ввода, предикция через component state, lifecycle окна и рабочие паттерны сервер-клиент. Используй при разработке и рефакторинге entity-bound интерфейсов.
+description: A practical guide to Bound User Interface (BUI) in SS14: architecture, network messages, input validation, prediction through component state, lifecycle windows and server-client working patterns. Use it when developing and refactoring entity-bound interfaces.
 ---
 
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-ui-bui/SKILL.md.
+../../../.agent/skills/ss14-ui-bui/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

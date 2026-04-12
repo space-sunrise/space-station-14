@@ -14,9 +14,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Fail if not on master branch
-      if: ${{GITHUB.REF_NAME != 'master'}}
-      run: exit 1
+#    - name: Fail if not on master branch
+#      if: ${{GITHUB.REF_NAME != 'master'}}
+#      run: exit 1
 
     - name: Set up Python
       uses: actions/setup-python@v2

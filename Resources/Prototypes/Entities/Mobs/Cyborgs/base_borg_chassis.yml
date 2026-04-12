@@ -87,7 +87,7 @@
   - type: EmagSiliconLaw
     stunTime: 5
   - type: SiliconLawProvider
-    laws: NTDefault # Sunrise-Edit
+    laws: Crewsimov
   - type: Inventory
     templateId: borg
   - type: Hands
@@ -261,6 +261,7 @@
     - CanPilot
     - SiliconEmotes
     - Unimplantable
+    - NoPaint # Sunrise-Add
   - type: Emoting
   - type: GuideHelp
     guides:
@@ -445,6 +446,7 @@
     - DoorBumpOpener
     - CanPilot
     - FootstepSound
+    - NoPaint # Sunrise-Add
   - type: BlockLawChange
   - type: Loadout
     prototypes: [ BorgArmorSiliconLoadoutMk2 ]

@@ -27,20 +27,6 @@
 
 - type: entity
   parent: BaseGameRule
-  id: FugitiveSpawn
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: StationEvent
-    weight: 15
-    earliestStart: 10
-    minimumPlayers: 10
-    reoccurrenceDelay: 20
-    duration: null
-  - type: LateJoinSpawnRule
-    prototype: SpawnPointGhostFugitive
-
-- type: entity
-  parent: BaseGameRule
   id: TerminatorSpawn
   categories: [ HideSpawnMenu ]
   components:

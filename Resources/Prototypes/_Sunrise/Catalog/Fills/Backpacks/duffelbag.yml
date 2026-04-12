@@ -23,6 +23,21 @@
         - id: ClothingEyesGlassesSniperThermalSyndie
 
 - type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateX4tBundle
+  name: syndicate X-4 bundle
+  description: Contains a lot of X-4 charges.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: X4
+          amount: 8
+        - id: NetworkConfigurator
+        - id: RemoteSignaller
+
+- type: entity
   parent: ClothingBackpackDuffelSyndicateAmmo
   id: ClothingBackpackDuffelSyndicateSuperAmmoFilled
   name: ammo bundle
