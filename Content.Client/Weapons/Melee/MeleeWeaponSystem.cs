@@ -36,7 +36,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
-    private EntityUid? _lastAltInteractWeapon;
+    private EntityUid? _lastAltInteractWeaponUid;
 
     private const string MeleeLungeKey = "melee-lunge";
 
@@ -81,11 +81,11 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         var altDown = _inputSystem.CmdStates.GetState(EngineKeyFunctions.UseSecondary);
         var meleeGunAttack = _inputSystem.CmdStates.GetState(ContentKeyFunctions.MeleeGunAttack); // Sunrise-Edit
 
-        if (altDown != BoundKeyState.Down)
-            _lastAltInteractWeapon = null;
-
         if (weapon.AutoAttack || useDown != BoundKeyState.Down && altDown != BoundKeyState.Down)
         {
+            if (altDown != BoundKeyState.Down)
+                _lastAltInteractWeaponUid = null;
+
             if (weapon.Attacking)
             {
                 RaisePredictiveEvent(new StopAttackEvent(GetNetEntity(weaponUid)));
@@ -147,13 +147,14 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
             // Sunrise-Edit
             if (HasComp<DisableMeleeWideAttackComponent>(weaponUid))
             {
-                if (_lastAltInteractWeapon == weaponUid)
+                // Prevent duplicate alt-interact requests while RMB is still held.
+                if (_lastAltInteractWeaponUid == weaponUid)
                     return;
 
                 if (TryComp<HandsComponent>(entity, out var hands) && hands.ActiveHandId != null)
                 {
                     RaisePredictiveEvent(new RequestHandAltInteractEvent(hands.ActiveHandId));
-                    _lastAltInteractWeapon = weaponUid;
+                    _lastAltInteractWeaponUid = weaponUid;
                 }
 
                 return;

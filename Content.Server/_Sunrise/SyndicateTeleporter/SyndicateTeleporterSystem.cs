@@ -59,7 +59,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
     }
 
     /// <summary>
-    /// Creates a syndicate teleporter verb with the shared cooldown, charge and biocode checks for the requested verb type.
+    /// Creates a syndicate teleporter verb of type <typeparamref name="T"/> with shared cooldown, charge and biocode checks.
     /// </summary>
     private T CreateTeleportVerb<T>(Entity<SyndicateTeleporterComponent> ent, EntityUid user) where T : Verb, new()
     {
