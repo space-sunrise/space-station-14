@@ -177,11 +177,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
             if (body == user)
                 continue;
 
-            if (!Transform(body).Anchored ||
-                !TryComp<PhysicsComponent>(body, out var physics) ||
-                !physics.CanCollide ||
-                !physics.Hard ||
-                (physics.CollisionLayer & (int) CollisionGroup.Impassable) == 0)
+            if (!IsBlockingEntity(body))
                 continue;
 
             return false;
@@ -228,6 +224,9 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Resolves the teleporter cooldown entry, falling back to the default use delay when no custom teleport delay is configured.
+    /// </summary>
     private static string GetTeleportDelayId(UseDelayComponent component)
     {
         return component.Delays.ContainsKey(TeleportDelayId)
@@ -239,5 +238,14 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
     {
         _transform.SetCoordinates(user, where);
         Spawn(TargetEffectPrototype, _transform.ToMapCoordinates(where));
+    }
+
+    private bool IsBlockingEntity(EntityUid uid)
+    {
+        return Transform(uid).Anchored &&
+               TryComp<PhysicsComponent>(uid, out var physics) &&
+               physics.CanCollide &&
+               physics.Hard &&
+               (physics.CollisionLayer & (int) CollisionGroup.Impassable) != 0;
     }
 }
