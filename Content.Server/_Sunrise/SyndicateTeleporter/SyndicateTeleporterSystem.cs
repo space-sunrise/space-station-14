@@ -38,7 +38,26 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<SyndicateTeleporterComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerb);
         SubscribeLocalEvent<SyndicateTeleporterComponent, GetVerbsEvent<ActivationVerb>>(OnGetActivationVerb);
+    }
+
+    private void OnGetAlternativeVerb(Entity<SyndicateTeleporterComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanInteract || !args.CanAccess)
+            return;
+
+        var user = args.User;
+        var canTeleport = CanTeleport(ent.AsNullable(), user, out var disabledMessage, quiet: true);
+        var verb = new AlternativeVerb
+        {
+            Text = Loc.GetString("syndicate-teleporter-verb"),
+            Disabled = !canTeleport,
+            Message = disabledMessage,
+            Act = () => TryTeleport(ent.AsNullable(), user, quiet: false)
+        };
+
+        args.Verbs.Add(verb);
     }
 
     private void OnGetActivationVerb(Entity<SyndicateTeleporterComponent> ent, ref GetVerbsEvent<ActivationVerb> args)

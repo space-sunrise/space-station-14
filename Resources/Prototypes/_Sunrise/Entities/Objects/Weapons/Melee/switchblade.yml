@@ -74,6 +74,7 @@
     damageOnBlocked:
       types:
         Cellular: 10
+  - type: DisableMeleeWideAttack
   - type: LimitedCharges
     maxCharges: 2
   - type: ThrowingAngle

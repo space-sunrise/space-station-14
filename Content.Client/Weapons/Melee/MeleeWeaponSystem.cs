@@ -1,11 +1,13 @@
 using System.Linq;
 using Content.Client.Gameplay;
+using Content.Shared.Hands;
 using Content.Shared.CombatMode;
 using Content.Shared.Effects;
 using Content.Shared.Hands.Components;
 using Content.Shared.Input;
 using Content.Shared.Mobs.Components;
 using Content.Shared.StatusEffect;
+using Content.Shared._Sunrise.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
@@ -138,6 +140,19 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         // Heavy attack.
         if (altDown == BoundKeyState.Down)
         {
+            // Sunrise-Edit
+            if (HasComp<DisableMeleeWideAttackComponent>(weaponUid))
+            {
+                if (TryComp<HandsComponent>(entity, out var hands) && hands.ActiveHandId != null)
+                {
+                    RaisePredictiveEvent(new RequestHandAltInteractEvent(hands.ActiveHandId));
+                    weapon.Attacking = true;
+                    DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.Attacking));
+                }
+
+                return;
+            }
+
             // If it's an unarmed attack then do a disarm
             if (weapon.AltDisarm && weaponUid == entity)
             {

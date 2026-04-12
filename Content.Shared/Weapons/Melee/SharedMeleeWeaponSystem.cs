@@ -34,6 +34,7 @@ using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Tag; //Sunrise-edit
+using Content.Shared._Sunrise.Weapons.Melee.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
@@ -226,6 +227,10 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             || HasComp<MechPilotComponent>(args.SenderSession.AttachedEntity)
             || !TryGetWeapon(args.SenderSession.AttachedEntity.Value, out var weaponUid, out var weapon)
             || weaponUid != GetEntity(msg.Weapon))
+            return;
+
+        // Sunrise-Edit
+        if (HasComp<DisableMeleeWideAttackComponent>(weaponUid))
             return;
 
         AttemptAttack(args.SenderSession.AttachedEntity.Value, weaponUid, weapon, msg, args.SenderSession);
