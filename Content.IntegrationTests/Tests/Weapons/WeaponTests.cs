@@ -158,7 +158,7 @@ public sealed class WeaponTests : InteractionTest
 
         await Server.WaitPost(() =>
         {
-            if (!SEntMan.TryGetComponent(SPlayer, out DualWieldComponent? state) || state == null)
+            if (!SEntMan.TryGetComponent(SPlayer, out DualWieldComponent state))
                 Assert.Fail("Expected dual-wield state before disabling it.");
 
             Assert.That(state.Active, "Dual wield should still be active before the explicit disable call.");
