@@ -7,16 +7,19 @@ namespace Content.Server._Sunrise.Weapons.Melee.Systems;
 
 public sealed class BackstabOnHitSystem : SharedBackstabOnHitSystem
 {
+    private const bool RecordBackstabPopupInReplay = true;
+
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
-    protected override void OnBackstabBonusApplied(Entity<BackstabOnHitComponent> ent, EntityUid _)
+    protected override void OnBackstabBonusApplied(Entity<BackstabOnHitComponent> ent, EntityUid target)
     {
         if (ent.Comp.PopupMessages.Count == 0)
             return;
 
+        _ = target;
         var popup = Loc.GetString(PickPopup(ent.Comp));
-        _popup.PopupCursor(popup, Filter.Broadcast(), true, PopupType.LargeCaution);
+        _popup.PopupCursor(popup, Filter.Broadcast(), RecordBackstabPopupInReplay, PopupType.LargeCaution);
     }
 
     private LocId PickPopup(BackstabOnHitComponent component)
