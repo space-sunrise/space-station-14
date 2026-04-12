@@ -37,10 +37,10 @@
       path: /Audio/Weapons/Guns/Gunshots/smg.ogg
     defaultDirection: 1, 0
   - type: CanDualWield
-    dualWieldInaccuracyPenalty: 40
-    dualWieldFireRateMultiplier: 1.1
-    dualWieldMaxFireRate: 6
-    dualWieldShotDelay: 0.12
+    dualWieldInaccuracyPenalty: 0.25
+    dualWieldDamagePenalty: 0.25
+    dualWieldFireRatePenalty: 0.25
+    dualWieldRecoilPenalty: 0.25
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/smg_cock.ogg

@@ -1,4 +1,3 @@
-using Content.Shared._Starlight.Weapons.DualWield;
 using Content.Shared.Actions;
 using Content.Shared.Examine;
 using Content.Shared.Hands;
@@ -31,30 +30,7 @@ public abstract partial class SharedGunSystem
 
     private void OnAltVerb(EntityUid uid, GunComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract || !args.CanComplexInteract || args.Hands == null)
-            return;
-
-        var dualWield = EntitySystem.Get<SharedDualWieldSystem>();
-        if (dualWield.TryGetBothGuns(args.User, out var firstGun, out var secondGun)
-            && (uid == firstGun || uid == secondGun))
-        {
-            var isActive = TryComp<DualWieldComponent>(args.User, out var dualWieldState) && dualWieldState.Active;
-            var firstCanDualWield = TryComp<CanDualWieldComponent>(firstGun, out var firstDualWield) && firstDualWield.Enabled;
-            var secondCanDualWield = TryComp<CanDualWieldComponent>(secondGun, out var secondDualWield) && secondDualWield.Enabled;
-            var canDualWield = firstCanDualWield && secondCanDualWield;
-
-            args.Verbs.Add(new AlternativeVerb
-            {
-                Text = Loc.GetString(isActive ? "dual-wield-disable" : "dual-wield-enable"),
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/fold.svg.192dpi.png")),
-                Priority = 2,
-                Disabled = !canDualWield && !isActive,
-                Message = !canDualWield && !isActive ? Loc.GetString("dual-wield-popup-unavailable") : null,
-                Act = () => dualWield.ToggleDualWield(args.User, firstGun, secondGun, isActive),
-            });
-        }
-
-        if (component.SelectedMode == component.AvailableModes)
+        if (!args.CanAccess || !args.CanInteract || !args.CanComplexInteract || args.Hands == null || component.SelectedMode == component.AvailableModes)
             return;
 
         var nextMode = GetNextMode(component);

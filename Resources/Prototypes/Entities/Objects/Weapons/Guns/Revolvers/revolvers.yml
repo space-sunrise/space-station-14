@@ -31,10 +31,10 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
   - type: CanDualWield
-    dualWieldInaccuracyPenalty: 30
-    dualWieldFireRateMultiplier: 1.5
-    dualWieldMaxFireRate: 8
-    dualWieldShotDelay: 0.09
+    dualWieldInaccuracyPenalty: 0.25
+    dualWieldDamagePenalty: 0.25
+    dualWieldFireRatePenalty: 0.25
+    dualWieldRecoilPenalty: 0.25
   - type: UseDelay
     delay: 0.66
   - type: ContainerContainer
