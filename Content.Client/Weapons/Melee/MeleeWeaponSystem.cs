@@ -19,7 +19,6 @@ using Robust.Client.State;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
-using RequestHandAltInteractEvent = Content.Shared.Hands.RequestHandAltInteractEvent;
 
 namespace Content.Client.Weapons.Melee;
 
@@ -36,6 +35,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
+    private EntityUid? _altInteractHeldWeapon;
 
     private const string MeleeLungeKey = "melee-lunge";
 
@@ -79,6 +79,9 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         var useDown = _inputSystem.CmdStates.GetState(EngineKeyFunctions.Use);
         var altDown = _inputSystem.CmdStates.GetState(EngineKeyFunctions.UseSecondary);
         var meleeGunAttack = _inputSystem.CmdStates.GetState(ContentKeyFunctions.MeleeGunAttack); // Sunrise-Edit
+
+        if (altDown != BoundKeyState.Down)
+            _altInteractHeldWeapon = null;
 
         if (weapon.AutoAttack || useDown != BoundKeyState.Down && altDown != BoundKeyState.Down)
         {
@@ -143,11 +146,13 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
             // Sunrise-Edit
             if (HasComp<DisableMeleeWideAttackComponent>(weaponUid))
             {
+                if (_altInteractHeldWeapon == weaponUid)
+                    return;
+
                 if (TryComp<HandsComponent>(entity, out var hands) && hands.ActiveHandId != null)
                 {
-                    RaisePredictiveEvent(new RequestHandAltInteractEvent(hands.ActiveHandId));
-                    weapon.Attacking = true;
-                    DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.Attacking));
+                    RaisePredictiveEvent(new Content.Shared.Hands.RequestHandAltInteractEvent(hands.ActiveHandId));
+                    _altInteractHeldWeapon = weaponUid;
                 }
 
                 return;
