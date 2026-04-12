@@ -19,10 +19,10 @@
   - type: ItemToggleMeleeWeapon
     activatedDamage:
       types:
-        Slash: 13
+        Slash: 10
   - type: MeleeWeapon
     wideAnimationRotation: -135
-    attackRate: 2.2
+    attackRate: 2
     damage:
       types:
         Blunt: 2
@@ -32,14 +32,14 @@
     - type: DamageOtherOnHit
       damage:
         types:
-          Slash: 20
+          Slash: 12
     - type: EmbeddableProjectile
       sound: /Audio/Weapons/star_hit.ogg
       offset: -0.15,0.0
     - type: BackstabOnHit
       bonusDamage:
         types:
-          Slash: 13
+          Slash: 10
       popupMessages:
         - backstab-popup-message-1
         - backstab-popup-message-2
@@ -66,13 +66,13 @@
   # Also provides the teleporter cooldown via the TeleportDelay entry.
   - type: SyndicateTeleporter
     randomDistanceValue: 1
-    teleportationValue: 6
+    teleportationValue: 4
     disableMeleeWideAttack: true
     damageOnBlocked:
       types:
         Cellular: 1
   - type: AutoRecharge
-    rechargeDuration: 10
+    rechargeDuration: 15
   - type: LimitedCharges
     maxCharges: 2
   - type: ThrowingAngle
