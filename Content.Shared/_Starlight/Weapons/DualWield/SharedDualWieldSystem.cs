@@ -191,7 +191,10 @@ public sealed class SharedDualWieldSystem : EntitySystem
 
     private void StopGun(EntityUid gun)
     {
-        if (!TryComp<GunComponent>(gun, out var gunComp) || gunComp.ShotCounter == 0)
+        if (!TryComp<GunComponent>(gun, out var gunComp))
+            return;
+
+        if (gunComp.ShotCounter == 0)
             return;
 
         gunComp.ShotCounter = 0;
