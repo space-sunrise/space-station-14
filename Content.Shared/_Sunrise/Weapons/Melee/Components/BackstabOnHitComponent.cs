@@ -7,7 +7,7 @@ namespace Content.Shared._Sunrise.Weapons.Melee.Components;
 public sealed partial class BackstabOnHitComponent : Component
 {
     [DataField(required: true)]
-    public DamageSpecifier BonusDamage = default!;
+    public DamageSpecifier BonusDamage = new();
 
     [DataField]
     public List<LocId> PopupMessages = [];

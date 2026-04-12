@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 using Content.Shared.Damage;
 using Content.Shared._Sunrise.Weapons.Melee.Components;
@@ -50,7 +51,7 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
             return false;
 
         var targetForward = targetTransform.WorldRotation.ToWorldVec();
-        var targetToUser = toUser.Normalized();
+        var targetToUser = toUser / MathF.Sqrt(lengthSquared);
         return Vector2.Dot(targetForward, targetToUser) <= BackstabRearHemisphereDotThreshold;
     }
 }
