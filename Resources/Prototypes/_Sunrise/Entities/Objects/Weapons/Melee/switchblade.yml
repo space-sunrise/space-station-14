@@ -44,6 +44,10 @@
       - backstab-popup-message-1
       - backstab-popup-message-2
       - backstab-popup-message-3
+      popupWeights:
+      - 0.9
+      - 0.075
+      - 0.025
   - type: ItemToggleSize
     activatedSize: Small
     activatedShape:

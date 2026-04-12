@@ -11,4 +11,7 @@ public sealed partial class BackstabOnHitComponent : Component
 
     [DataField]
     public List<LocId> PopupMessages = [];
+
+    [DataField]
+    public List<float> PopupWeights = [];
 }

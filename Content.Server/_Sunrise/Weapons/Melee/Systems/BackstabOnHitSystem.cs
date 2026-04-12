@@ -24,13 +24,16 @@ public sealed class BackstabOnHitSystem : EntitySystem
 
     private void OnGetMeleeHitBonusDamage(Entity<BackstabOnHitComponent> ent, ref GetMeleeHitBonusDamageEvent args)
     {
+        if (args.IsWideAttack)
+            return;
+
         if (!TryApplyBackstabBonus(ent, args.Target, args.User, ref args.BonusDamage))
             return;
 
         if (ent.Comp.PopupMessages.Count == 0)
             return;
 
-        _popup.PopupEntity(Loc.GetString(_random.Pick(ent.Comp.PopupMessages)), args.Target);
+        _popup.PopupEntity(Loc.GetString(PickPopup(ent.Comp)), args.Target);
     }
 
     public bool TryApplyBackstabBonus(Entity<BackstabOnHitComponent?> ent, EntityUid target, EntityUid user, ref DamageSpecifier bonusDamage)
@@ -58,5 +61,36 @@ public sealed class BackstabOnHitSystem : EntitySystem
         var targetToUser = toUser.Normalized();
 
         return Vector2.Dot(targetForward, targetToUser) <= BackstabRearHemisphereDotThreshold;
+    }
+
+    private LocId PickPopup(BackstabOnHitComponent component)
+    {
+        if (component.PopupWeights.Count != component.PopupMessages.Count || component.PopupWeights.Count == 0)
+            return _random.Pick(component.PopupMessages);
+
+        var totalWeight = 0f;
+        foreach (var weight in component.PopupWeights)
+        {
+            if (weight > 0f)
+                totalWeight += weight;
+        }
+
+        if (totalWeight <= 0f)
+            return _random.Pick(component.PopupMessages);
+
+        var roll = _random.NextFloat() * totalWeight;
+        for (var i = 0; i < component.PopupMessages.Count; i++)
+        {
+            var weight = component.PopupWeights[i];
+            if (weight <= 0f)
+                continue;
+
+            if (roll < weight)
+                return component.PopupMessages[i];
+
+            roll -= weight;
+        }
+
+        return component.PopupMessages[^1];
     }
 }

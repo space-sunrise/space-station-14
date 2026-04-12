@@ -84,7 +84,7 @@ public record struct GetMeleeDamageEvent(EntityUid Weapon, DamageSpecifier Damag
 
 // Sunrise-Edit
 [ByRefEvent]
-public record struct GetMeleeHitBonusDamageEvent(EntityUid Weapon, EntityUid User, EntityUid Target, DamageSpecifier BonusDamage);
+public record struct GetMeleeHitBonusDamageEvent(EntityUid Weapon, EntityUid User, EntityUid Target, DamageSpecifier BonusDamage, bool IsWideAttack);
 
 /// <summary>
 /// Raised on a melee weapon to calculate the attack rate.
