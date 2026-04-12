@@ -227,6 +227,8 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
     /// <summary>
     /// Resolves the teleporter cooldown entry, falling back to the default use delay when no custom teleport delay is configured.
     /// </summary>
+    /// <param name="component">The use delay component attached to the teleporter item.</param>
+    /// <returns>The configured teleport delay ID, or the default use delay ID when no named teleport delay exists.</returns>
     private static string GetTeleportDelayId(UseDelayComponent component)
     {
         return component.Delays is not null && component.Delays.ContainsKey(TeleportDelayId)
@@ -240,6 +242,11 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         Spawn(TargetEffectPrototype, _transform.ToMapCoordinates(where));
     }
 
+    /// <summary>
+    /// Determines whether an entity should block teleport landing by checking for hard impassable physics and an anchored transform.
+    /// </summary>
+    /// <param name="uid">The entity to evaluate.</param>
+    /// <returns>True if the entity is anchored and has hard impassable collision; otherwise false.</returns>
     private bool IsBlockingEntity(EntityUid uid)
     {
         if (!TryComp<PhysicsComponent>(uid, out var physics) ||
