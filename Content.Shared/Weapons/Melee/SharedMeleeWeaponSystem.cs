@@ -542,7 +542,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         var attackedEvent = new AttackedEvent(meleeUid, user, targetXform.Coordinates);
         RaiseLocalEvent(target.Value, attackedEvent);
 
-        var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
+        // Sunrise-Edit
+        var targetBonusDamage = new DamageSpecifier();
+        var targetBonusEvent = new GetMeleeHitBonusDamageEvent(meleeUid, user, target.Value, targetBonusDamage, false);
+        RaiseLocalEvent(meleeUid, ref targetBonusEvent);
+
+        var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage + targetBonusEvent.BonusDamage, hitEvent.ModifiersList);
 
         if (Damageable.TryChangeDamage(target.Value, modifiedDamage, out var damageResult, origin:user, ignoreResistances:resistanceBypass))
         {
@@ -704,7 +709,13 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
             var attackedEvent = new AttackedEvent(meleeUid, user, GetCoordinates(ev.Coordinates));
             RaiseLocalEvent(entity, attackedEvent);
-            var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
+
+            // Sunrise-Edit
+            var targetBonusDamage = new DamageSpecifier();
+            var targetBonusEvent = new GetMeleeHitBonusDamageEvent(meleeUid, user, entity, targetBonusDamage, true);
+            RaiseLocalEvent(meleeUid, ref targetBonusEvent);
+
+            var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage + targetBonusEvent.BonusDamage, hitEvent.ModifiersList);
 
             var damageResult = Damageable.ChangeDamage(entity, modifiedDamage, origin: user, ignoreResistances: resistanceBypass);
 

@@ -19,10 +19,10 @@
   - type: ItemToggleMeleeWeapon
     activatedDamage:
       types:
-        Slash: 10
+        Slash: 15
   - type: MeleeWeapon
     wideAnimationRotation: -135
-    attackRate: 1
+    attackRate: 2.2
     damage:
       types:
         Blunt: 2
@@ -32,10 +32,22 @@
     - type: DamageOtherOnHit
       damage:
         types:
-          Slash: 8
+          Slash: 20
     - type: EmbeddableProjectile
       sound: /Audio/Weapons/star_hit.ogg
       offset: -0.15,0.0
+    - type: BackstabOnHit
+      bonusDamage:
+        types:
+          Slash: 30
+      popupMessages:
+        - backstab-popup-message-1
+        - backstab-popup-message-2
+        - backstab-popup-message-3
+      popupWeights:
+        - 0.9
+        - 0.075
+        - 0.025
   - type: ItemToggleSize
     activatedSize: Small
     activatedShape:
