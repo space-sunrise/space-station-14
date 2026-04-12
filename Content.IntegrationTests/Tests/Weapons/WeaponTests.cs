@@ -186,13 +186,13 @@ public sealed class WeaponTests : InteractionTest
         {
             var verbSystem = SEntMan.System<VerbSystem>();
             var verbs = verbSystem.GetLocalVerbs(leftGunUid, SPlayer, typeof(AlternativeVerb));
+            var enableText = Loc.GetString("dual-wield-enable");
+            var unavailableMessage = Loc.GetString("dual-wield-popup-unavailable");
             var dualWieldVerb = verbs.OfType<AlternativeVerb>()
-                .FirstOrDefault(verb => verb.Disabled &&
-                                        verb.Message == Loc.GetString("dual-wield-popup-unavailable"));
+                .FirstOrDefault(verb => verb.Text == enableText && verb.Message == unavailableMessage);
 
             Assert.That(dualWieldVerb, Is.Not.Null, "Expected a dual-wield verb when holding two guns.");
             Assert.That(dualWieldVerb!.Disabled, Is.True, "Dual-wield verb should be disabled for unsupported gun pairs.");
-            Assert.That(dualWieldVerb.Message, Is.EqualTo(Loc.GetString("dual-wield-popup-unavailable")));
         });
     }
 
