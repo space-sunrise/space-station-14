@@ -1,2 +1,2 @@
 ent-WeaponMeleeSwitchblade = switchblade
-    .desc = SCHINK! So cool.
+    .desc = A small folding knife made of high-quality steel with a lightweight handle.

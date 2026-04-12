@@ -1,2 +1,2 @@
-ent-WeaponMeleeSwitchblade = выкидной нож
-    .desc = ЩЕЛК! И как же это круто.
+ent-WeaponMeleeSwitchblade = раскладной нож
+    .desc = Небольшой раскладной нож из качественной стали с облегчённой рукоятью.
