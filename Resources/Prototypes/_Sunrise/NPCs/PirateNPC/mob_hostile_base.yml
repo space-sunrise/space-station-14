@@ -97,9 +97,8 @@
   id: MobEnhancedMovement
   abstract: true
   components:
-  - type: MovementAlwaysTouching
-  - type: MovementIgnoreGravity
-  - type: NoSlip
+  #- type: MovementAlwaysTouching
+  #- type: MovementIgnoreGravity
   - type: ProtectedFromStepTriggers
   - type: Climbing
   - type: Tool

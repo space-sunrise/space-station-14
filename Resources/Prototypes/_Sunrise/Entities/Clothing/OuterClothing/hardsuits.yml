@@ -529,36 +529,39 @@
       coefficients:
         Blunt: 0.6
         Slash: 0.6
-        Piercing: 0.5
-        Heat: 0.5
-        Radiation: 0.5
-        Caustic: 0.5
+        Piercing: 0.6
+        Heat: 0.6
+        Radiation: 0.6
+        Caustic: 0.6
   - type: StaminaResistance
-    damageCoefficient: 0.75
+    damageCoefficient: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.5
+  # - type: ItemToggle
+  #   canActivateInhand: false
+  # - type: ComponentToggler
+  #   parent: true
+  #   components:
+  #   - type: Stealth
+  #     mirage: false # Sunrise-Edit
+  #     hadOutline: true
+  #     examineThreshold: 0.9 # Sunrise-Edit
+  #   - type: StealthOnMove
+  #     passiveVisibilityRate: -1
+  #     movementVisibilityRate: 0.3
   - type: ToggleClothing
     action: ActionTogglePhaseCloak
     disableOnUnequip: true
     targetSlot: outerClothing
-  - type: ItemToggle
-    canActivateInhand: false
   - type: ComponentToggler
     parent: true
     components:
-    # - type: Stealth
-    #   minVisibility: 0.3
-    #   maxVisibility: 0.3
-    #   lastVisibility: 0.3
-    - type: Stealth
-      mirage: false # Sunrise-Edit
-      hadOutline: true
-      examineThreshold: 0.9 # Sunrise-Edit
-    - type: StealthOnMove
-      passiveVisibilityRate: -1
-      movementVisibilityRate: 0.3
+      - type: Stealth
+        minVisibility: 0.07
+        maxVisibility: 0.07
+        lastVisibility: 0.07
   - type: PowerCellDraw
-    drawRate: 2 # 900 seconds on the default cell
+    drawRate: 14 # roughly 200 seconds on the default cell
   - type: ToggleCellDraw
   - type: PowerCellSlot
     cellSlotId: cell_slot
@@ -580,8 +583,8 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitInfiltration
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 1
+    sprintModifier: 1
     requireActivated: false
   - type: HeldSpeedModifier
   - type: Tag
