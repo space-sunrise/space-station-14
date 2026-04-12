@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Shared.Damage;
+using Content.Shared.Mobs.Systems;
 using Content.Shared._Sunrise.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
 
@@ -7,6 +8,7 @@ namespace Content.Shared._Sunrise.Weapons.Melee.Systems;
 
 public abstract class SharedBackstabOnHitSystem : EntitySystem
 {
+    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     // Targets count as backstabbed when the attacker is anywhere in the rear hemisphere.
@@ -47,6 +49,9 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
     /// </summary>
     protected bool CanApplyBackstabBonus(EntityUid target, EntityUid user)
     {
+        if (!_mobState.IsAlive(target))
+            return false;
+
         var targetTransform = Transform(target);
         var userTransform = Transform(user);
         var targetPosition = _transform.GetWorldPosition(targetTransform);
