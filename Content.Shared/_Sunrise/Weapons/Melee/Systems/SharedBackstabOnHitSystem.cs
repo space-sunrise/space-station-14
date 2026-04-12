@@ -25,7 +25,7 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
         TryApplyBackstabBonus(ent, args.Target, args.User, ref args.BonusDamage);
     }
 
-    private bool TryApplyBackstabBonus(Entity<BackstabOnHitComponent?> ent, EntityUid target, EntityUid user, ref DamageSpecifier bonusDamage)
+    protected bool TryApplyBackstabBonus(Entity<BackstabOnHitComponent?> ent, EntityUid target, EntityUid user, ref DamageSpecifier bonusDamage)
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
@@ -33,7 +33,7 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
         if (!CanApplyBackstabBonus(target, user))
             return false;
 
-        bonusDamage += ent.Comp.BonusDamage;
+        ApplyBackstabBonus((ent, ent.Comp!), ref bonusDamage);
         return true;
     }
 
@@ -55,5 +55,10 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
         var targetForward = targetTransform.WorldRotation.ToWorldVec();
         var targetToUser = toUser / MathF.Sqrt(lengthSquared);
         return Vector2.Dot(targetForward, targetToUser) <= BackstabRearHemisphereDotThreshold;
+    }
+
+    protected void ApplyBackstabBonus(Entity<BackstabOnHitComponent> ent, ref DamageSpecifier bonusDamage)
+    {
+        bonusDamage += ent.Comp.BonusDamage;
     }
 }
