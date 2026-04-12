@@ -1,6 +1,7 @@
 using Content.Server.Popups;
 using Content.Shared._Sunrise.Weapons.Melee.Components;
 using Content.Shared._Sunrise.Weapons.Melee.Systems;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 namespace Content.Server._Sunrise.Weapons.Melee.Systems;
 
@@ -14,7 +15,8 @@ public sealed class BackstabOnHitSystem : SharedBackstabOnHitSystem
         if (ent.Comp.PopupMessages.Count == 0)
             return;
 
-        _popup.PopupEntity(Loc.GetString(PickPopup(ent.Comp)), target);
+        var popup = Loc.GetString(PickPopup(ent.Comp));
+        _popup.PopupCursor(popup, Filter.Broadcast(), true, PopupType.LargeCaution);
     }
 
     private LocId PickPopup(BackstabOnHitComponent component)

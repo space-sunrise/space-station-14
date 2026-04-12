@@ -15,7 +15,7 @@ public sealed partial class BackstabOnHitComponent : Component
 
     /// <summary>
     /// Optional localized popup identifiers loaded from the <c>popupMessages</c> <see cref="DataFieldAttribute"/>.
-    /// The server shows one of these messages to the struck target after a successful non-wide backstab.
+    /// The server shows one of these messages to every connected player after a successful non-wide backstab.
     /// </summary>
     [DataField]
     public List<LocId> PopupMessages = [];
