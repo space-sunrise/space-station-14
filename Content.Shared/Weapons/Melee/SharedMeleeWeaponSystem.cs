@@ -230,7 +230,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             return;
 
         // Sunrise-Edit
-        if (HasComp<SyndicateTeleporterComponent>(weaponUid))
+        if (TryComp<SyndicateTeleporterComponent>(weaponUid, out var teleporter) &&
+            teleporter.DisableMeleeWideAttack)
             return;
 
         AttemptAttack(args.SenderSession.AttachedEntity.Value, weaponUid, weapon, msg, args.SenderSession);

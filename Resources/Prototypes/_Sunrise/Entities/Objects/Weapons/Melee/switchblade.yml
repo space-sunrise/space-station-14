@@ -71,6 +71,7 @@
   - type: SyndicateTeleporter
     randomDistanceValue: 4
     teleportationValue: 4
+    disableMeleeWideAttack: true
     damageOnBlocked:
       types:
         Cellular: 10

@@ -147,7 +147,8 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         if (altDown == BoundKeyState.Down)
         {
             // Sunrise-Edit
-            if (HasComp<SyndicateTeleporterComponent>(weaponUid))
+            if (TryComp<SyndicateTeleporterComponent>(weaponUid, out var teleporter) &&
+                teleporter.DisableMeleeWideAttack)
             {
                 // Prevent duplicate alt-interact requests while RMB is still held.
                 if (_lastAltInteractWeaponUid == weaponUid)
