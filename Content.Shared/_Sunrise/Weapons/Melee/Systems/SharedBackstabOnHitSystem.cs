@@ -19,7 +19,7 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
         SubscribeLocalEvent<BackstabOnHitComponent, GetMeleeHitBonusDamageEvent>(OnGetMeleeHitBonusDamage);
     }
 
-    protected virtual void OnGetMeleeHitBonusDamage(Entity<BackstabOnHitComponent> ent, ref GetMeleeHitBonusDamageEvent args)
+    private void OnGetMeleeHitBonusDamage(Entity<BackstabOnHitComponent> ent, ref GetMeleeHitBonusDamageEvent args)
     {
         if (args.IsWideAttack)
             return;
@@ -67,6 +67,10 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
         bonusDamage += ent.Comp.BonusDamage;
     }
 
+    /// <summary>
+    /// Runs after a non-wide melee hit successfully receives the backstab bonus.
+    /// Derived systems can override this to add side effects such as popups without registering another event subscription.
+    /// </summary>
     protected virtual void OnBackstabBonusApplied(Entity<BackstabOnHitComponent> ent, EntityUid target)
     {
     }
