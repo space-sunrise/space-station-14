@@ -85,9 +85,9 @@
   productEntity: ThievingGloves
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - UplinkWearables
 
@@ -98,9 +98,9 @@
   productEntity: ClothingHandsChameleonThief
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 4
+    Telecrystal: 3
   cost:
-    Telecrystal: 5
+    Telecrystal: 4
   categories:
   - UplinkWearables
 
@@ -1286,6 +1286,7 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkHardsuitSyndieMedic
@@ -1509,7 +1510,7 @@
   - UplinkChemicals
   conditions:
   - !type:StoreWhitelistCondition
-    whitelist:
+    blacklist:
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
@@ -1522,9 +1523,9 @@
   productEntity: CoalpenKitFilled
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 1
   cost:
-    Telecrystal: 5
+    Telecrystal: 3
   categories:
   - UplinkChemicals
   conditions:
@@ -2176,7 +2177,7 @@
   icon: { sprite: _Sunrise/Objects/Specific/Medical/medipen.rsi, state: stimpen }
   productEntity: AdrenalImplanter
   cost:
-    Telecrystal: 7
+    Telecrystal: 6
   categories:
   - UplinkImplants
 
@@ -2187,7 +2188,7 @@
   icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: stimpen }
   productEntity: StimpackImplanter
   cost:
-    Telecrystal: 9
+    Telecrystal: 8
   categories:
   - UplinkImplants
 
@@ -2198,7 +2199,18 @@
   icon: { sprite: Objects/Consumable/Food/burger.rsi, state: bigbite }
   productEntity: NutrimentImplanter
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
+  categories:
+  - UplinkImplants
+
+- type: listing
+  id: UplinkReviverImplanter
+  name: uplink-reviver-implanter-name
+  description: uplink-reviver-implanter-desc
+  icon: { sprite: _Sunrise/Entities/Objects/Implants/implants.rsi, state: reviver_implant }
+  productEntity: ReviverImplanter
+  cost:
+    Telecrystal: 1
   categories:
   - UplinkImplants
 # Jobs
@@ -2721,7 +2733,7 @@
   discountDownTo:
     Telecrystal: 1
   cost:
-    Telecrystal: 3
+    Telecrystal: 4
   categories:
   - UplinkCybernetics
 
@@ -2736,9 +2748,9 @@
     }
   productEntity: CyberEyeThermalBox
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 4
   cost:
-    Telecrystal: 6
+    Telecrystal: 8
   categories:
   - UplinkCybernetics
 
@@ -3105,6 +3117,12 @@
     Telecrystal: 1
   categories:
     - UplinkPointless
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - LoneOpsUplink
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkClothingMurderShocksNuke
@@ -3119,7 +3137,6 @@
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
-      - AssaultOpsUplink
       - LoneOpsUplink
       - NukeOpsUplink
 
@@ -3196,7 +3213,7 @@
   cost:
     Telecrystal: 2
   categories:
-  - UplinkDisruption
+  - UplinkShuttle
 
 - type: listing
   id: SyndicateGunneryBoard
@@ -3208,7 +3225,7 @@
   cost:
     Telecrystal: 2
   categories:
-  - UplinkDisruption
+  - UplinkShuttle
 
 - type: listing
   id: SyndicateShuttleBundle
@@ -3222,7 +3239,7 @@
   cost:
     Telecrystal: 5
   categories:
-  - UplinkDisruption
+  - UplinkShuttle
 
 - type: listing
   id: SyndicateFriendshipBundle
@@ -3236,7 +3253,7 @@
   cost:
     Telecrystal: 10
   categories:
-  - UplinkWeaponry
+  - UplinkShuttle
 
 - type: listing
   id: SyndicateBullfrogBundle
@@ -3246,11 +3263,11 @@
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/exp_3600.rsi, state: bal-127 }
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 8
+    Telecrystal: 7
   cost:
-    Telecrystal: 15
+    Telecrystal: 14
   categories:
-  - UplinkWeaponry
+  - UplinkShuttle
 
 - type: listing
   id: SyndicateLongbowBundle
@@ -3262,9 +3279,9 @@
   discountDownTo:
     Telecrystal: 6
   cost:
-    Telecrystal: 12
+    Telecrystal: 11
   categories:
-  - UplinkWeaponry
+  - UplinkShuttle
 
 - type: listing
   id: SyndicateQuadlingBundle
@@ -3276,7 +3293,7 @@
   discountDownTo:
     Telecrystal: 7
   cost:
-    Telecrystal: 14
+    Telecrystal: 13
   categories:
-  - UplinkWeaponry
+  - UplinkShuttle
 
