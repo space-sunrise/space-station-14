@@ -67,7 +67,7 @@
   - type: UseDelay
     delays:
       TeleportDelay:
-        length: 10
+        length: 10 # seconds
   - type: SyndicateTeleporter
     randomDistanceValue: 4
     teleportationValue: 4
