@@ -1,3 +1,4 @@
+#pragma warning disable IDE0130
 using Content.Shared._Sunrise.Inventory.Components;
 using Content.Shared._Sunrise.Inventory.Events;
 using Content.Shared.Hands.Components;
@@ -9,6 +10,9 @@ namespace Content.Shared.Storage.EntitySystems;
 
 public abstract partial class SharedStorageSystem
 {
+    /// <summary>
+    /// Priority-related logic for shared storage handling
+    /// </summary>
     private readonly List<EntityUid> _keysToRemove = new();
 
     /// <summary>
