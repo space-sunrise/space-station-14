@@ -4805,3 +4805,13 @@
   id: 1790
   time: '2026-04-12T19:27:33.0000000+00:00'
   url: https://github.com/space-sunrise/sunrise-station/pull/4156
+- author: Rinary1, KaiserMaus
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u0442\u0438\u043A\u0435\
+      \u0442-\u0432\u0435\u043D\u0434\u043E\u0440 \u0434\u043B\u044F \u0443\u0442\u0438\
+      \u043B\u0438\u0437\u0430\u0442\u043E\u0440\u043E\u0432 \u0438 \u0448\u0430\u0445\
+      \u0442\u0451\u0440\u043E\u0432."
+    type: Add
+  id: 1791
+  time: '2026-04-12T20:55:12.0000000+00:00'
+  url: https://github.com/space-sunrise/sunrise-station/pull/4150
