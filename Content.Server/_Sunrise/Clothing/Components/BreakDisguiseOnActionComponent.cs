@@ -11,4 +11,22 @@ public sealed partial class BreakDisguiseOnActionComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan Cooldown = TimeSpan.FromSeconds(10);
+
+    /// <summary>
+    /// Break the disguise when the wearer is hit by a melee attack.
+    /// </summary>
+    [DataField]
+    public bool BreakOnAttacked = true;
+
+    /// <summary>
+    /// Break the disguise when the wearer performs a melee attack.
+    /// </summary>
+    [DataField]
+    public bool BreakOnMeleeAttack = true;
+
+    /// <summary>
+    /// Break the disguise when the wearer fires a gun.
+    /// </summary>
+    [DataField]
+    public bool BreakOnGunShot = true;
 }

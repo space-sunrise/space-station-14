@@ -1,71 +1,74 @@
-using Content.Shared.Actions;
 using Content.Shared.Clothing.Components;
-using Content.Shared.Damage.Systems;
 using Content.Shared.Inventory;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Weapons.Melee.Events;
-using Content.Shared.Weapons.Ranged.Components;
-using Content.Shared.Weapons.Ranged.Systems;
+using Content.Shared.Weapons.Ranged.Events;
 using Content.Server.Actions;
 using Content.Server._Sunrise.Clothing.Components;
 
 namespace Content.Server._Sunrise.Clothing.EntitySystems;
 
 /// <summary>
-/// Deactivates equipped disguising clothing when the wearer takes damage, attacks, or shoots.
+/// Deactivates disguising clothing when its wearer is revealed by configured combat actions.
 /// </summary>
 public sealed class BreakDisguiseOnActionSystem : EntitySystem
 {
     [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly ItemToggleSystem _toggle = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<InventoryComponent, DamageChangedEvent>(OnDamageTaken);
-        SubscribeLocalEvent<InventoryComponent, MeleeAttackEvent>(OnMeleeAttack);
-        SubscribeLocalEvent<GunComponent, OnNonEmptyGunShotEvent>(OnShoot);
+        SubscribeLocalEvent<BreakDisguiseOnActionComponent, InventoryRelayedEvent<AttackedEvent>>(OnAttacked);
+        SubscribeLocalEvent<BreakDisguiseOnActionComponent, InventoryRelayedEvent<MeleeAttackEvent>>(OnMeleeAttack);
+        SubscribeLocalEvent<BreakDisguiseOnActionComponent, InventoryRelayedEvent<SelfBeforeGunShotEvent>>(OnBeforeGunShot);
     }
 
-    private void OnDamageTaken(Entity<InventoryComponent> ent, ref DamageChangedEvent args)
+    private void OnAttacked(Entity<BreakDisguiseOnActionComponent> ent, ref InventoryRelayedEvent<AttackedEvent> args)
     {
-        if (!args.DamageIncreased)
+        if (!ent.Comp.BreakOnAttacked)
             return;
 
-        BreakWornDisguises(ent);
+        TryBreakDisguise(ent, args.Owner);
     }
 
-    private void OnMeleeAttack(Entity<InventoryComponent> ent, ref MeleeAttackEvent args)
+    private void OnMeleeAttack(Entity<BreakDisguiseOnActionComponent> ent, ref InventoryRelayedEvent<MeleeAttackEvent> args)
     {
-        BreakWornDisguises(ent);
-    }
-
-    private void OnShoot(Entity<GunComponent> ent, ref OnNonEmptyGunShotEvent args)
-    {
-        if (!TryComp<InventoryComponent>(args.User, out var inventory))
+        if (!ent.Comp.BreakOnMeleeAttack)
             return;
 
-        BreakWornDisguises((args.User, inventory));
+        TryBreakDisguise(ent, args.Owner);
     }
 
-    private void BreakWornDisguises(Entity<InventoryComponent> ent)
+    private void OnBeforeGunShot(Entity<BreakDisguiseOnActionComponent> ent, ref InventoryRelayedEvent<SelfBeforeGunShotEvent> args)
     {
-        var enumerator = _inventory.GetSlotEnumerator((ent.Owner, ent.Comp));
-        while (enumerator.NextItem(out var item))
-        {
-            if (!TryComp<BreakDisguiseOnActionComponent>(item, out var disguise))
-                continue;
+        if (!ent.Comp.BreakOnGunShot || args.Args.Cancelled)
+            return;
 
-            if (!_toggle.IsActivated(item))
-                continue;
+        TryBreakDisguise(ent, args.Owner);
+    }
 
-            if (!_toggle.TryDeactivate(item, ent.Owner, predicted: false))
-                continue;
+    private bool TryBreakDisguise(Entity<BreakDisguiseOnActionComponent> ent, EntityUid wearer)
+    {
+        if (!CanBreakDisguise(ent))
+            return false;
 
-            StartCooldown((item, disguise));
-        }
+        return BreakDisguise(ent, wearer);
+    }
+
+    private bool CanBreakDisguise(Entity<BreakDisguiseOnActionComponent> ent)
+    {
+        return _toggle.IsActivated(ent.Owner);
+    }
+
+    private bool BreakDisguise(Entity<BreakDisguiseOnActionComponent> ent, EntityUid wearer)
+    {
+        if (!_toggle.TryDeactivate(ent.Owner, wearer, predicted: false))
+            return false;
+
+        StartCooldown(ent);
+        return true;
     }
 
     private void StartCooldown(Entity<BreakDisguiseOnActionComponent> ent)
@@ -73,7 +76,7 @@ public sealed class BreakDisguiseOnActionSystem : EntitySystem
         if (ent.Comp.Cooldown <= TimeSpan.Zero)
             return;
 
-        if (!TryComp<ToggleClothingComponent>(ent, out var toggleClothing) || toggleClothing.ActionEntity == null)
+        if (!TryComp<ToggleClothingComponent>(ent.Owner, out var toggleClothing) || toggleClothing.ActionEntity == null)
             return;
 
         _actions.SetIfBiggerCooldown(toggleClothing.ActionEntity.Value, ent.Comp.Cooldown);
