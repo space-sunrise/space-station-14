@@ -97,8 +97,7 @@ public sealed class WeaponTests : InteractionTest
 
         Assert.That(SEntMan.TryGetComponent(SPlayer, out DualWieldComponent? dualWield) && dualWield.Active,
             "Dual wield should become active after equipping two compatible pistols.");
-        Assert.That(SEntMan.System<AlertsSystem>().IsShowingAlert(SPlayer, SharedDualWieldSystem.DualWieldAlert),
-            "Dual wield should show the alert icon while active.");
+        Assert.That(SEntMan.System<AlertsSystem>().IsShowingAlert(SPlayer, SharedDualWieldSystem.DualWieldAlert), "Dual wield should show the alert icon while active.");
 
         Assert.Multiple(() =>
         {
@@ -159,7 +158,8 @@ public sealed class WeaponTests : InteractionTest
 
         await Server.WaitPost(() =>
         {
-            Assert.That(SEntMan.TryGetComponent(SPlayer, out DualWieldComponent? state) && state.Active);
+            Assert.That(SEntMan.TryGetComponent(SPlayer, out DualWieldComponent? state), "Expected dual-wield state before disabling it.");
+            Assert.That(state!.Active, "Dual wield should still be active before the explicit disable call.");
             dualWieldSystem.DisableDualWield(SPlayer, state!, "dual-wield-disabled");
         });
         await RunTicks(5);

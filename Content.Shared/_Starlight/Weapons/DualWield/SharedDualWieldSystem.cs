@@ -166,7 +166,10 @@ public sealed class SharedDualWieldSystem : EntitySystem
         var leftGun = dualWield.LeftGun;
         var rightGun = dualWield.RightGun;
 
-        _gun.StopDualWield(dualWield);
+        StopGun(leftGun);
+
+        if (rightGun != leftGun)
+            StopGun(rightGun);
 
         dualWield.Active = false;
         dualWield.LeftGun = EntityUid.Invalid;
@@ -184,5 +187,16 @@ public sealed class SharedDualWieldSystem : EntitySystem
 
         if (popupLocId != null)
             _popup.PopupClient(Loc.GetString(popupLocId), user, user);
+    }
+
+    private void StopGun(EntityUid gun)
+    {
+        if (!TryComp<GunComponent>(gun, out var gunComp) || gunComp.ShotCounter == 0)
+            return;
+
+        gunComp.ShotCounter = 0;
+        gunComp.ShootCoordinates = null;
+        gunComp.Targets.Clear();
+        DirtyField(gun, gunComp, nameof(GunComponent.ShotCounter));
     }
 }

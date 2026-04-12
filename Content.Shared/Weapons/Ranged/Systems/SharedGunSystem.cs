@@ -340,15 +340,6 @@ public abstract partial class SharedGunSystem : EntitySystem
         DirtyField(otherGun, otherGunComp, nameof(GunComponent.NextFire));
     }
 
-    public void StopDualWield(DualWieldComponent dualWield)
-    {
-        if (TryComp<GunComponent>(dualWield.LeftGun, out var leftGun))
-            StopShooting(dualWield.LeftGun, leftGun);
-
-        if (TryComp<GunComponent>(dualWield.RightGun, out var rightGun))
-            StopShooting(dualWield.RightGun, rightGun);
-    }
-
     private void StopShooting(EntityUid uid, GunComponent gun)
     {
         if (gun.ShotCounter == 0)
