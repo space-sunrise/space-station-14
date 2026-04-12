@@ -44,15 +44,15 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
     {
         var targetTransform = Transform(target);
         var userTransform = Transform(user);
-        var targetPosition = targetTransform.WorldPosition;
-        var userPosition = userTransform.WorldPosition;
+        var targetPosition = TransformSystem.GetWorldPosition(targetTransform);
+        var userPosition = TransformSystem.GetWorldPosition(userTransform);
         var toUser = userPosition - targetPosition;
         var lengthSquared = toUser.LengthSquared();
 
         if (lengthSquared <= 0f)
             return false;
 
-        var targetForward = targetTransform.WorldRotation.ToWorldVec();
+        var targetForward = TransformSystem.GetWorldRotation(targetTransform).ToWorldVec();
         var targetToUser = toUser / MathF.Sqrt(lengthSquared);
         return Vector2.Dot(targetForward, targetToUser) <= BackstabRearHemisphereDotThreshold;
     }
