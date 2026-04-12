@@ -58,6 +58,9 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         args.Verbs.Add(CreateTeleportVerb<ActivationVerb>(ent, args.User));
     }
 
+    /// <summary>
+    /// Creates a syndicate teleporter verb with the shared cooldown, charge and biocode checks for the requested verb type.
+    /// </summary>
     private T CreateTeleportVerb<T>(Entity<SyndicateTeleporterComponent> ent, EntityUid user) where T : Verb, new()
     {
         var canTeleport = CanTeleport(ent, user, out var disabledMessage, quiet: true);
