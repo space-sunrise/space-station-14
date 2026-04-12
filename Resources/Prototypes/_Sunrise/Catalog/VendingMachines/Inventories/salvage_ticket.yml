@@ -106,6 +106,39 @@
   - SalvageEquipment
 
 - type: listing
+  id: VendorSalvagePKAUpgradeDamage
+  productEntity: PKAUpgradeDamage
+  cost:
+    SalvageTicket: 300
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+
+- type: listing
+  id: VendorSalvagePKAUpgradeRange
+  productEntity: PKAUpgradeRange
+  cost:
+    SalvageTicket: 300
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+
+- type: listing
+  id: VendorSalvagePKAUpgradeFireRate
+  productEntity: PKAUpgradeFireRate
+  cost:
+    SalvageTicket: 300
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+
+- type: listing
   id: VendorSalvageWeaponMechMeleeDrill
   productEntity: WeaponMechMelleDrill
   cost:
@@ -169,8 +202,8 @@
   - SalvageWeapons
 
 - type: listing
-  id: VendorSalvageWeaponLaserImmolator
-  productEntity: WeaponLaserImmolator
+  id: VendorSalvageWeaponGunLaserCarbineSemi
+  productEntity: WeaponGunLaserCarbineSemi
   cost:
     SalvageTicket: 500
   categories:
@@ -178,6 +211,7 @@
 
 - type: listing
   id: VendorSalvageCrateShelfMosin
+  icon: { sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_mosin.rsi, state: icon }
   productEntity: CrateShelfMosin
   cost:
     SalvageTicket: 200
@@ -243,6 +277,7 @@
 
 - type: listing
   id: VendorSalvageCrateAmmunitionSmallLightRifle
+  icon: { sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_small.rsi, state: icon }
   productEntity: CrateAmmunitionSmallLightRifle
   cost:
     SalvageTicket: 125
@@ -251,6 +286,7 @@
 
 - type: listing
   id: VendorSalvageCrateAmmunitionSmallLightRifleIncendiary
+  icon: { sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_small.rsi, state: icon }
   productEntity: CrateAmmunitionSmallLightRifleIncendiary
   cost:
     SalvageTicket: 250

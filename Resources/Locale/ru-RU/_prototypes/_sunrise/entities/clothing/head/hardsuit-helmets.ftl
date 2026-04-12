@@ -28,8 +28,6 @@ ent-ClothingHeadHelmetHardsuitInfiltration = шлем скафандра для 
 ent-ClothingHeadHelmetHardsuitSalvageGoliath = шлем скафандра «Голиаф»
     .desc = Прочный шлем, украшенный глазами голиафа а так же его хитиновым панцирем. похоже фонарик шлема заменен на ПНВ.
 
-ent-ClothingHeadHelmetHardsuitTSF = шлем MARSOC
-    .desc = Шлем морпехов MARSOC Транс-Солнечной Федерации. Бронированный, герметичный и огнестойкий.
 ent-ClothingHeadHelmetHardsuitSpaceHazard = шлем шахтёрской опасной среды
     .desc = Защищает от агрессивной и холодной космической среды.
 ent-ClothingHeadHelmetHardsuitAdvancedMining = шлем продвинутого шахтёрского скафандра

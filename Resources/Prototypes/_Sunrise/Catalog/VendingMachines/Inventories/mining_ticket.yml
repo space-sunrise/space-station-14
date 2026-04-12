@@ -41,6 +41,17 @@
     stock: 1
 
 - type: listing
+  id: VendorMiningMechMiningPod
+  productEntity: MechMiningPod
+  cost:
+    SalvageTicket: 800
+  categories:
+  - MiningEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: VendorMiningClothingOuterHardsuitAdvancedMining
   productEntity: ClothingOuterHardsuitAdvancedMining
   cost:
