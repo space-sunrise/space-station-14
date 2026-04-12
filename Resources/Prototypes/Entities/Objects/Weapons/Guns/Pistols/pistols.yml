@@ -35,7 +35,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: CanDualWield
-    dualWieldInaccuracyPenalty: 3
+    dualWieldInaccuracyPenalty: 2
     dualWieldFireRatePenalty: 0.25
     dualWieldRecoilPenalty: 0.25
   - type: ChamberMagazineAmmoProvider
