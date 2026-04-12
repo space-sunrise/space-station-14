@@ -67,7 +67,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
             Text = Loc.GetString("syndicate-teleporter-verb"),
             Disabled = !canTeleport,
             Message = disabledMessage,
-            Act = () => TryTeleport(ent.AsNullable(), args.User, quiet: true)
+            Act = () => TryTeleport(ent.AsNullable(), args.User, quiet: false)
         };
 
         args.Verbs.Add(verb);
@@ -104,18 +104,18 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
             return false;
         }
 
-        if (TryComp<UseDelayComponent>(ent.Owner, out var useDelay) && _useDelay.IsDelayed((ent.Owner, useDelay), TeleportDelayId))
+        if (TryComp<LimitedChargesComponent>(ent.Owner, out var charges) && _charges.IsEmpty((ent.Owner, charges)))
         {
-            disabledMessage = Loc.GetString("syndicate-teleporter-on-cooldown");
+            disabledMessage = Loc.GetString("syndicate-teleporter-no-charges");
             if (!quiet)
                 _popup.PopupEntity(disabledMessage, user, user);
 
             return false;
         }
 
-        if (TryComp<LimitedChargesComponent>(ent.Owner, out var charges) && _charges.IsEmpty((ent.Owner, charges)))
+        if (TryComp<UseDelayComponent>(ent.Owner, out var useDelay) && _useDelay.IsDelayed((ent.Owner, useDelay), TeleportDelayId))
         {
-            disabledMessage = Loc.GetString("syndicate-teleporter-no-charges");
+            disabledMessage = Loc.GetString("syndicate-teleporter-on-cooldown");
             if (!quiet)
                 _popup.PopupEntity(disabledMessage, user, user);
 
