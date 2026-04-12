@@ -8,6 +8,8 @@
   components:
   - type: AtmosPipeLayers
     pipeLayer: 1
+  - type: PlacementReplacement # Sunrise-Edit
+    key: atmos_pipes_secondary
 
 # Layer 2
 - type: entity
@@ -16,10 +18,12 @@
   components:
   - type: AtmosPipeLayers
     pipeLayer: 2
+  - type: PlacementReplacement # Sunrise-Edit
+    key: atmos_pipes_tertiary
 
 # GasPipeStraight
 - type: entity
-  parent: [GasPipeLayerAlt1, GasPipeStraight]
+  parent: [GasPipeStraight, GasPipeLayerAlt1] # Sunrise-Edit
   id: GasPipeStraightAlt1
   categories: [ HideSpawnMenu ]
   components:
@@ -30,7 +34,7 @@
     node: straightAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasPipeStraight]
+  parent: [GasPipeStraight, GasPipeLayerAlt2] # Sunrise-Edit
   id: GasPipeStraightAlt2
   categories: [ HideSpawnMenu ]
   components:
@@ -42,7 +46,7 @@
 
 # GasPipeHalf
 - type: entity
-  parent: [GasPipeLayerAlt1, GasPipeHalf]
+  parent: [GasPipeHalf, GasPipeLayerAlt1] # Sunrise-Edit
   id: GasPipeHalfAlt1
   categories: [ HideSpawnMenu ]
   components:
@@ -53,7 +57,7 @@
     node: halfAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasPipeHalf]
+  parent: [GasPipeHalf, GasPipeLayerAlt2] # Sunrise-Edit
   id: GasPipeHalfAlt2
   categories: [ HideSpawnMenu ]
   components:
@@ -65,7 +69,7 @@
 
 # GasPipeBend
 - type: entity
-  parent: [GasPipeLayerAlt1, GasPipeBend]
+  parent: [GasPipeBend, GasPipeLayerAlt1] # Sunrise-Edit
   id: GasPipeBendAlt1
   categories: [ HideSpawnMenu ]
   components:
@@ -76,7 +80,7 @@
     node: bendAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasPipeBend]
+  parent: [GasPipeBend, GasPipeLayerAlt2] # Sunrise-Edit
   id: GasPipeBendAlt2
   categories: [ HideSpawnMenu ]
   components:
@@ -88,7 +92,7 @@
 
 # GasPipeTJunction
 - type: entity
-  parent: [GasPipeLayerAlt1, GasPipeTJunction]
+  parent: [GasPipeTJunction, GasPipeLayerAlt1] # Sunrise-Edit
   id: GasPipeTJunctionAlt1
   categories: [ HideSpawnMenu ]
   components:
@@ -99,7 +103,7 @@
     node: tjunctionAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasPipeTJunction]
+  parent: [GasPipeTJunction, GasPipeLayerAlt2] # Sunrise-Edit
   id: GasPipeTJunctionAlt2
   categories: [ HideSpawnMenu ]
   components:
@@ -111,7 +115,7 @@
 
 # GasPipeFourway
 - type: entity
-  parent: [GasPipeLayerAlt1, GasPipeFourway]
+  parent: [GasPipeFourway, GasPipeLayerAlt1] # Sunrise-Edit
   id: GasPipeFourwayAlt1
   categories: [ HideSpawnMenu ]
   components:
@@ -122,7 +126,7 @@
     node: fourwayAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasPipeFourway]
+  parent: [GasPipeFourway, GasPipeLayerAlt2] # Sunrise-Edit
   id: GasPipeFourwayAlt2
   categories: [ HideSpawnMenu ]
   components:
@@ -135,7 +139,7 @@
 # GasPressurePump
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasPressurePump]
+  parent: [GasPressurePump, GasPipeLayerAlt1] # Sunrise-Edit
   id: GasPressurePumpAlt1
   categories: [ HideSpawnMenu ]
   components:
@@ -151,7 +155,7 @@
     node: pressurepumpAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasPressurePump]
+  parent: [GasPressurePump, GasPipeLayerAlt2] # Sunrise-Edit
   id: GasPressurePumpAlt2
   categories: [ HideSpawnMenu ]
   components:
@@ -169,7 +173,7 @@
 # GasVolumePump
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasVolumePump]
+  parent: [GasVolumePump, GasPipeLayerAlt1] # Sunrise-Edit
   id: GasVolumePumpAlt1
   categories: [ HideSpawnMenu ]
   components:
@@ -185,7 +189,7 @@
     node: volumepumpAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasVolumePump]
+  parent: [GasVolumePump, GasPipeLayerAlt2] # Sunrise-Edit
   id: GasVolumePumpAlt2
   categories: [ HideSpawnMenu ]
   components:
@@ -203,7 +207,7 @@
 # GasPassiveGate
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasPassiveGate]
+  parent: [GasPassiveGate, GasPipeLayerAlt1] # Sunrise-Edit
   id: GasPassiveGateAlt1
   categories: [ HideSpawnMenu ]
   components:
@@ -219,7 +223,7 @@
     node: passivegateAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasPassiveGate]
+  parent: [GasPassiveGate, GasPipeLayerAlt2] # Sunrise-Edit
   id: GasPassiveGateAlt2
   categories: [ HideSpawnMenu ]
   components:
@@ -237,7 +241,7 @@
 # GasValve
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasValve]
+  parent: [GasValve, GasPipeLayerAlt1] # Sunrise-Edit
   id: GasValveAlt1
   categories: [ HideSpawnMenu ]
   components:
@@ -253,7 +257,7 @@
     node: valveAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasValve]
+  parent: [GasValve, GasPipeLayerAlt2] # Sunrise-Edit
   id: GasValveAlt2
   categories: [ HideSpawnMenu ]
   components:
@@ -271,7 +275,7 @@
 # SignalControlledValve
 
 - type: entity
-  parent: [GasPipeLayerAlt1, SignalControlledValve]
+  parent: [SignalControlledValve, GasPipeLayerAlt1] # Sunrise-Edit
   id: SignalControlledValveAlt1
   categories: [ HideSpawnMenu ]
   components:
@@ -287,7 +291,7 @@
     node: signalvalveAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, SignalControlledValve]
+  parent: [SignalControlledValve, GasPipeLayerAlt2] # Sunrise-Edit
   id: SignalControlledValveAlt2
   categories: [ HideSpawnMenu ]
   components:
@@ -305,7 +309,7 @@
 # GasPipeSensor
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasPipeSensor]
+  parent: [GasPipeSensor, GasPipeLayerAlt1] # Sunrise-Edit
   id: GasPipeSensorAlt1
   categories: [ HideSpawnMenu ]
   components:
@@ -324,7 +328,7 @@
     node: sensorAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasPipeSensor]
+  parent: [GasPipeSensor, GasPipeLayerAlt2] # Sunrise-Edit
   id: GasPipeSensorAlt2
   categories: [ HideSpawnMenu ]
   components:
@@ -345,7 +349,7 @@
 # GasPipeSensorDistribution
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasPipeSensorDistribution]
+  parent: [GasPipeSensorDistribution, GasPipeLayerAlt1] # Sunrise-Edit
   id: GasPipeSensorDistributionAlt1
   categories: [ HideSpawnMenu ]
   components:
@@ -362,7 +366,7 @@
       shader: unshaded
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasPipeSensorDistribution]
+  parent: [GasPipeSensorDistribution, GasPipeLayerAlt2] # Sunrise-Edit
   id: GasPipeSensorDistributionAlt2
   categories: [ HideSpawnMenu ]
   components:
@@ -381,7 +385,7 @@
 # GasPipeSensorWaste
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasPipeSensorWaste]
+  parent: [GasPipeSensorWaste, GasPipeLayerAlt1] # Sunrise-Edit
   id: GasPipeSensorWasteAlt1
   categories: [ HideSpawnMenu ]
   components:
@@ -398,7 +402,7 @@
       shader: unshaded
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasPipeSensorWaste]
+  parent: [GasPipeSensorWaste, GasPipeLayerAlt2] # Sunrise-Edit
   id: GasPipeSensorWasteAlt2
   categories: [ HideSpawnMenu ]
   components:
@@ -417,7 +421,7 @@
 # GasPipeSensorMixedAir
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasPipeSensorMixedAir]
+  parent: [GasPipeSensorMixedAir, GasPipeLayerAlt1] # Sunrise-Edit
   id: GasPipeSensorMixedAirAlt1
   categories: [ HideSpawnMenu ]
   components:
@@ -434,7 +438,7 @@
       shader: unshaded
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasPipeSensorMixedAir]
+  parent: [GasPipeSensorMixedAir, GasPipeLayerAlt2] # Sunrise-Edit
   id: GasPipeSensorMixedAirAlt2
   categories: [ HideSpawnMenu ]
   components:
@@ -453,7 +457,7 @@
 # GasPipeSensorTEGHot
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasPipeSensorTEGHot]
+  parent: [GasPipeSensorTEGHot, GasPipeLayerAlt1] # Sunrise-Edit
   id: GasPipeSensorTEGHotAlt1
   categories: [ HideSpawnMenu ]
   components:
@@ -470,7 +474,7 @@
       shader: unshaded
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasPipeSensorTEGHot]
+  parent: [GasPipeSensorTEGHot, GasPipeLayerAlt2] # Sunrise-Edit
   id: GasPipeSensorTEGHotAlt2
   categories: [ HideSpawnMenu ]
   components:
@@ -489,7 +493,7 @@
 # GasPipeTEGCold
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasPipeSensorTEGCold]
+  parent: [GasPipeSensorTEGCold, GasPipeLayerAlt1] # Sunrise-Edit
   id: GasPipeSensorTEGColdAlt1
   categories: [ HideSpawnMenu ]
   components:
@@ -506,7 +510,7 @@
       shader: unshaded
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasPipeSensorTEGCold]
+  parent: [GasPipeSensorTEGCold, GasPipeLayerAlt2] # Sunrise-Edit
   id: GasPipeSensorTEGColdAlt2
   categories: [ HideSpawnMenu ]
   components:
@@ -525,7 +529,7 @@
 # GasPressureRegulator
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasPressureRegulator]
+  parent: [GasPressureRegulator, GasPipeLayerAlt1] # Sunrise-Edit
   id: GasPressureRegulatorAlt1
   categories: [ HideSpawnMenu ]
   components:
@@ -541,7 +545,7 @@
     node: pressureregulatorAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasPressureRegulator]
+  parent: [GasPressureRegulator, GasPipeLayerAlt2] # Sunrise-Edit
   id: GasPressureRegulatorAlt2
   categories: [ HideSpawnMenu ]
   components:

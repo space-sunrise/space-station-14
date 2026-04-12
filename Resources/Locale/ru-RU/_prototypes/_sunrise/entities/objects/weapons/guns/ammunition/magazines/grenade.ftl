@@ -1,0 +1,14 @@
+ent-BaseMagazineGrenadeExtended = увеличенный картридж гранат
+    .desc = Увеличенный картридж гранат с повышенной вместимостью.
+ent-MagazineGrenadeEmptyExtended = увеличенный картридж гранат
+    .desc = { ent-BaseMagazineGrenadeExtended.desc }
+ent-MagazineGrenadeFragExtended = увеличенный картридж осколочных гранат
+    .desc = { ent-BaseMagazineGrenadeExtended.desc }
+ent-MagazineGrenadeEMPExtended = увеличенный картридж ЭМИ гранат
+    .desc = { ent-BaseMagazineGrenadeExtended.desc }
+ent-MagazineGrenadeFlashExtended = увеличенный картридж светошумовых гранат
+    .desc = { ent-BaseMagazineGrenadeExtended.desc }
+ent-MagazineGrenadeBlastExtended = увеличенный картридж фугасных гранат
+    .desc = { ent-BaseMagazineGrenadeExtended.desc }
+ent-MagazineGrenadeBatonExtended = увеличенный картридж шоковых гранат
+    .desc = { ent-BaseMagazineGrenadeExtended.desc }

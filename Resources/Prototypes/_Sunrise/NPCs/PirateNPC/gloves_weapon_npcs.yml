@@ -1141,9 +1141,22 @@
       coefficients:
         Blunt: 0.85
         Slash: 0.85
-        Piercing: 0.55
+        Piercing: 0.6
         Heat: 0.6
         Radiation: 0.9
+
+- type: entity
+  abstract: true
+  id: SovietArmorMerc
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.8
 
 - type: entity
   abstract: true
@@ -1216,7 +1229,7 @@
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsBlackPistol, SovietArmorFlak, SovietMeleeNoArc]
+  parent: [SovietArmorFlak, ClothingHandsBlackPistol, SovietMeleeNoArc]
   id: ClothingHandsBlackPistolSovietFlak
   categories: [ HideSpawnMenu ]
 
@@ -1236,12 +1249,12 @@
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsMercMosin, SovietArmorNoArmor, SovietMeleeNoArc]
+  parent: [SovietArmorNoArmor, ClothingHandsMercMosin, SovietMeleeNoArc]
   id: ClothingHandsMercMosinSovietNoOuter
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsMp38, SovietArmorNoArmor, SovietMeleeNoArc]
+  parent: [SovietArmorNoArmor, ClothingHandsMp38, SovietMeleeNoArc]
   id: ClothingHandsMp38SovietNoOuter
   categories: [ HideSpawnMenu ]
 
@@ -1251,12 +1264,12 @@
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsSKM24G, SovietArmorNoArmor, SovietMeleeNoArc]
+  parent: [SovietArmorNoArmor, ClothingHandsSKM24G, SovietMeleeNoArc]
   id: ClothingHandsSKM24GSovietNoOuter
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsSKM24G, SovietArmorUSSPLight, SovietMeleeNoArc]
+  parent: [SovietArmorUSSPLight, ClothingHandsSKM24G, SovietMeleeNoArc]
   id: ClothingHandsSKM24GSovietUSSPLight
   categories: [ HideSpawnMenu ]
 
@@ -1266,22 +1279,27 @@
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsSKM24B, SovietArmorFlak, SovietMeleeNoArc]
+  parent: [SovietArmorFlak, ClothingHandsSKM24B, SovietMeleeNoArc]
   id: ClothingHandsSKM24BSovietFlak
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsSKM24B, SovietArmorNoArmor, SovietMeleeNoArc]
+  parent: [SovietArmorMerc, ClothingHandsSKM24B, SovietMeleeNoArc]
+  id: ClothingHandsSKM24BMerc
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [SovietArmorNoArmor, ClothingHandsSKM24B, SovietMeleeNoArc]
   id: ClothingHandsSKM24BSovietWinter
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsMercRevolvers, SovietArmorHoSTrench, SovietMeleeNoArc]
+  parent: [SovietArmorHoSTrench, ClothingHandsMercRevolvers, SovietMeleeNoArc]
   id: ClothingHandsMercRevolversSovietHoSTrench
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsBlackShotgunSoviet, SovietArmorUSSPHeavy, SovietMeleeNoArc]
+  parent: [SovietArmorUSSPHeavy, ClothingHandsBlackShotgunSoviet, SovietMeleeNoArc]
   id: ClothingHandsBlackShotgunSovietUSSPHeavy
   categories: [ HideSpawnMenu ]
 
@@ -1291,17 +1309,22 @@
   categories: [ HideSpawnMenu ]
 
 - type: entity
+  parent: [ClothingHandsPPSHSoviet, SovietArmorMerc, SovietMeleeNoArc]
+  id: ClothingHandsPPSHMerc
+  categories: [ HideSpawnMenu ]
+
+- type: entity
   parent: [ClothingHandsPPSHSoviet, SovietArmorNoArmor, SovietMeleeNoArc]
   id: ClothingHandsPPSHSovietNoOuter
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsDragunov, SovietArmorUSSPHeavy, SovietMeleeNoArc]
+  parent: [SovietArmorUSSPHeavy, ClothingHandsDragunov, SovietMeleeNoArc]
   id: ClothingHandsDragunovSovietUSSPHeavy
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ClothingHandsType88, SovietArmorUSSPHeavy, SovietMeleeNoArc]
+  parent: [SovietArmorUSSPHeavy, ClothingHandsType88, SovietMeleeNoArc]
   id: ClothingHandsType88SovietUSSPHeavy
   categories: [ HideSpawnMenu ]
 

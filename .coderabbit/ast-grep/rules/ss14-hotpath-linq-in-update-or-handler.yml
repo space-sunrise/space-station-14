@@ -1,0 +1,20 @@
+id: ss14-hotpath-linq-in-update-or-handler
+language: CSharp
+severity: warning
+message: "Avoid LINQ-style chains in `Update()` and frequently raised handlers on hot paths."
+note: "Per `ss14-standard-optimizations`, prefer explicit loops, early exits, and cache-friendly code in hot ECS paths."
+files:
+  - "Content.*/**/*System*.cs"
+rule:
+  all:
+    - kind: invocation_expression
+    - regex: '(?s)^.*\.(?:Where|Select|SelectMany|Any|All|Count|First|FirstOrDefault|Single|SingleOrDefault|Last|LastOrDefault|OrderBy|OrderByDescending|ThenBy|ThenByDescending|ToList|ToArray|Sum|Min|Max|Aggregate|GroupBy|Join|Distinct|Union|Intersect|Except|Concat|Skip|Take|SkipWhile|TakeWhile|ElementAt|ToDictionary|ToHashSet|Zip)\(.*$'
+    - inside:
+        any:
+          - all:
+              - kind: method_declaration
+              - regex: '(?s).*\bUpdate\s*\(\s*float\s+\w+\s*\).*'
+          - all:
+              - kind: method_declaration
+              - regex: '(?s).*\b(?:On|Handle)\w*\s*\(.*(?:Event|Message)\s+\w+.*\).*'
+        stopBy: end

@@ -228,11 +228,6 @@
   id: SovietSerzhantBase
   description: A Soviet sergeant who leads nearby fighters and coordinates the squad.
   components:
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      110: Critical
-      130: Dead
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -240,7 +235,7 @@
       state: human
     - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
       state: equipped-INNERCLOTHING
-    - sprite: _Starlight/Objects/Clothing/OuterClothing/Armor/sovietflak.rsi
+    - sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
       state: equipped-OUTERCLOTHING
     - sprite: Clothing/Mask/merc.rsi
       state: equipped-MASK
@@ -288,6 +283,7 @@
       25: 1.15
       75: 1.25
   - type: JumpAbility
+    action: ActionGravityJumpQuick
     jumpDistance: 3
     jumpSound: /Audio/_Sunrise/Effects/silence.ogg
   - type: NPCUseActionWhenTargetInRange
@@ -1229,6 +1225,10 @@
     - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_light.rsi
       state: on-equipped-HELMET
       shader: unshaded
+  - type: JumpAbility
+    action: ActionGravityJumpQuick
+    jumpDistance: 3
+    jumpSound: /Audio/_Sunrise/Effects/silence.ogg
   - type: BatteryAmmoProvider
     proto: CartridgeLightRifleFMJ
     fireCost: 1
@@ -1610,18 +1610,18 @@
     proto: CartridgeAntiMateriel
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 15
+    autoRechargePauseTime: 9
     autoRechargeRate: 999
   - type: Battery
-    maxCharge: 7
-    startingCharge: 7
+    maxCharge: 8
+    startingCharge: 8
   - type: Gun
     showExamineText: false
-    fireRate: 0.7
+    fireRate: 1
     minAngle: 3
     maxAngle: 25
     angleIncrease: 3
-    angleDecay: 5
+    angleDecay: 10
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -1633,7 +1633,7 @@
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/empty.ogg
   - type: EyeCursorOffset
     maxOffset: 5
-    pvsIncrease: 1
+    pvsIncrease: 1.5
   # Ghost role stuff
   - type: GhostRole
     allowMovement: true
