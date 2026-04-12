@@ -49,8 +49,6 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
             return false;
 
         var targetForward = targetTransform.WorldRotation.ToWorldVec();
-        var targetToUser = toUser.Normalized();
-
-        return Vector2.Dot(targetForward, targetToUser) <= BackstabRearHemisphereDotThreshold;
+        return Vector2.Dot(targetForward, toUser) <= BackstabRearHemisphereDotThreshold;
     }
 }
