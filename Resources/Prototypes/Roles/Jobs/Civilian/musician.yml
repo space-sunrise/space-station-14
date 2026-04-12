@@ -6,6 +6,10 @@
   startingGear: MusicianGear
   icon: "JobIconMusician"
   supervisors: job-supervisors-hop
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-bard
+  # Sunrise-End
   access:
   - Maintenance
   - Theatre
