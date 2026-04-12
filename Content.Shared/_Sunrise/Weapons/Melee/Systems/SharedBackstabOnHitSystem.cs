@@ -22,12 +22,10 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
         if (args.IsWideAttack)
             return;
 
-        var bonusDamage = args.BonusDamage;
-        if (TryApplyBackstabBonus(ent, args.Target, args.User, ref bonusDamage))
-            args.BonusDamage = bonusDamage;
+        TryApplyBackstabBonus(ent, args.Target, args.User, ref args.BonusDamage);
     }
 
-    public bool TryApplyBackstabBonus(Entity<BackstabOnHitComponent?> ent, EntityUid target, EntityUid user, ref DamageSpecifier bonusDamage)
+    private bool TryApplyBackstabBonus(Entity<BackstabOnHitComponent?> ent, EntityUid target, EntityUid user, ref DamageSpecifier bonusDamage)
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
@@ -39,7 +37,10 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
         return true;
     }
 
-    public bool CanApplyBackstabBonus(EntityUid target, EntityUid user)
+    /// <summary>
+    /// Checks whether the attacker is inside the target's rear hemisphere and therefore qualifies for a backstab bonus.
+    /// </summary>
+    protected bool CanApplyBackstabBonus(EntityUid target, EntityUid user)
     {
         var targetTransform = Transform(target);
         var userTransform = Transform(user);
