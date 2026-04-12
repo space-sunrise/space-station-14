@@ -3,7 +3,7 @@ using Content.Server._Sunrise.Weapons.Melee.Components;
 using Content.Server.Popups;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Random;
-
+using Content.Shared.Damage;
 namespace Content.Server._Sunrise.Weapons.Melee.Systems;
 
 public sealed class BackstabOnHitSystem : EntitySystem
