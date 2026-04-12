@@ -1,9 +1,13 @@
+using System.Linq;
+using Content.Server.Verbs;
+using Content.Shared.Alert;
 using Content.IntegrationTests.Tests.Interaction;
 using Content.Shared._Starlight.Weapons.DualWield;
 using Content.Shared.Damage.Components;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Input;
+using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
@@ -93,6 +97,9 @@ public sealed class WeaponTests : InteractionTest
 
         Assert.That(SEntMan.TryGetComponent(SPlayer, out DualWieldComponent? dualWield) && dualWield.Active,
             "Dual wield should become active after equipping two compatible pistols.");
+        Assert.That(SEntMan.System<AlertsSystem>().IsShowingAlert(SPlayer, SharedDualWieldSystem.DualWieldAlert),
+            Is.True,
+            "Dual wield should show the alert icon while active.");
 
         Assert.Multiple(() =>
         {
@@ -150,6 +157,43 @@ public sealed class WeaponTests : InteractionTest
             Assert.That(SEntMan.GetComponent<GunComponent>(firstGunUid).ShotCounter, Is.EqualTo(0));
             Assert.That(SEntMan.GetComponent<GunComponent>(secondGunUid).ShotCounter, Is.EqualTo(1));
         });
+
+        await Server.WaitPost(() =>
+        {
+            Assert.That(SEntMan.TryGetComponent(SPlayer, out DualWieldComponent? state) && state.Active);
+            dualWieldSystem.DisableDualWield(SPlayer, state!, "dual-wield-disabled");
+        });
+        await RunTicks(5);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(SEntMan.TryGetComponent(SPlayer, out DualWieldComponent? state) && state.Active, Is.False);
+            Assert.That(SEntMan.GetComponent<GunComponent>(leftGunUid).ShotCounter, Is.EqualTo(0));
+            Assert.That(SEntMan.GetComponent<GunComponent>(rightGunUid).ShotCounter, Is.EqualTo(0));
+            Assert.That(SEntMan.System<AlertsSystem>().IsShowingAlert(SPlayer, SharedDualWieldSystem.DualWieldAlert), Is.False);
+        });
+    }
+
+    [Test]
+    public async Task DualWieldUnavailableVerbMessageTest()
+    {
+        await AddAtmosphere();
+        var (leftGunNet, _) = await EquipGuns(WeaponPistolTec9, SniperMosin);
+        var leftGunUid = ToServer(leftGunNet);
+
+        await Pair.RunSeconds(2f);
+
+        await Server.WaitPost(() =>
+        {
+            var verbSystem = SEntMan.System<VerbSystem>();
+            var verbs = verbSystem.GetLocalVerbs(leftGunUid, SPlayer, typeof(AlternativeVerb));
+            var dualWieldVerb = verbs.OfType<AlternativeVerb>()
+                .FirstOrDefault(verb => verb.Text == Loc.GetString("dual-wield-enable"));
+
+            Assert.That(dualWieldVerb, Is.Not.Null, "Expected a dual-wield verb when holding two guns.");
+            Assert.That(dualWieldVerb!.Disabled, Is.True, "Dual-wield verb should be disabled for unsupported gun pairs.");
+            Assert.That(dualWieldVerb.Message, Is.EqualTo(Loc.GetString("dual-wield-popup-unavailable")));
+        });
     }
 
     private static float GetExpectedDualWieldFireRate(GunComponent gun, CanDualWieldComponent dualWield)
@@ -167,6 +211,14 @@ public sealed class WeaponTests : InteractionTest
     /// <param name="prototype">The gun prototype to spawn in both hands.</param>
     /// <returns>The network entities of the left-hand and right-hand guns.</returns>
     private async Task<(NetEntity LeftGun, NetEntity RightGun)> EquipDualWieldGuns(EntProtoId prototype)
+    {
+        return await EquipGuns(prototype, prototype);
+    }
+
+    /// <summary>
+    ///     Spawns and equips one gun into each hand.
+    /// </summary>
+    private async Task<(NetEntity LeftGun, NetEntity RightGun)> EquipGuns(EntProtoId leftPrototype, EntProtoId rightPrototype)
     {
         NetEntity leftGun = default;
         NetEntity rightGun = default;
@@ -196,8 +248,8 @@ public sealed class WeaponTests : InteractionTest
 
             Assert.That(leftHand, Is.Not.Null.And.Not.EqualTo(rightHand), "Player should have separate left and right hands.");
 
-            var leftEntity = SEntMan.SpawnEntity(prototype, SEntMan.GetCoordinates(PlayerCoords));
-            var rightEntity = SEntMan.SpawnEntity(prototype, SEntMan.GetCoordinates(PlayerCoords));
+            var leftEntity = SEntMan.SpawnEntity(leftPrototype, SEntMan.GetCoordinates(PlayerCoords));
+            var rightEntity = SEntMan.SpawnEntity(rightPrototype, SEntMan.GetCoordinates(PlayerCoords));
 
             Assert.That(HandSys.TryPickup(SPlayer, leftEntity, leftHand, false, false, false, Hands));
             Assert.That(HandSys.TryPickup(SPlayer, rightEntity, rightHand, false, false, false, Hands));

@@ -166,6 +166,8 @@ public sealed class SharedDualWieldSystem : EntitySystem
         var leftGun = dualWield.LeftGun;
         var rightGun = dualWield.RightGun;
 
+        _gun.StopDualWield(dualWield);
+
         dualWield.Active = false;
         dualWield.LeftGun = EntityUid.Invalid;
         dualWield.RightGun = EntityUid.Invalid;

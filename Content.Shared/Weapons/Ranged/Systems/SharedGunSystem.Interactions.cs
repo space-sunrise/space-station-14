@@ -49,7 +49,7 @@ public abstract partial class SharedGunSystem
                 Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/fold.svg.192dpi.png")),
                 Priority = 2,
                 Disabled = !canDualWield && !isActive,
-                Message = !canDualWield && !isActive ? Loc.GetString("dual-wield-too-heavy") : null,
+                Message = !canDualWield && !isActive ? Loc.GetString("dual-wield-popup-unavailable") : null,
                 Act = () => dualWield.ToggleDualWield(args.User, firstGun, secondGun, isActive),
             });
         }
