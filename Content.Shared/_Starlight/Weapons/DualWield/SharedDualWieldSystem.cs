@@ -196,15 +196,6 @@ public sealed class SharedDualWieldSystem : EntitySystem
     /// <param name="gun">The gun entity to reset.</param>
     private void StopGun(EntityUid gun)
     {
-        if (!TryComp<GunComponent>(gun, out var gunComp))
-            return;
-
-        if (gunComp.ShotCounter == 0)
-            return;
-
-        gunComp.ShotCounter = 0;
-        gunComp.ShootCoordinates = null;
-        gunComp.Targets.Clear();
-        DirtyField(gun, gunComp, nameof(GunComponent.ShotCounter));
+        _gun.ResetFireState(gun);
     }
 }

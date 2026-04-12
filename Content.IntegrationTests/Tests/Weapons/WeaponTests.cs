@@ -176,7 +176,7 @@ public sealed class WeaponTests : InteractionTest
     }
 
     [Test]
-    public async Task DualWieldUnavailableVerbMessageTest()
+    public async Task DualWieldUnavailableVerbMessage()
     {
         await AddAtmosphere();
         var guns = await EquipGuns(WeaponPistolTec9, SniperMosin);

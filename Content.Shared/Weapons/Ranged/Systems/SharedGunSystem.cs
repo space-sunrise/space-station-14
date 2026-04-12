@@ -340,6 +340,14 @@ public abstract partial class SharedGunSystem : EntitySystem
         DirtyField(otherGun, otherGunComp, nameof(GunComponent.NextFire));
     }
 
+    public void ResetFireState(Entity<GunComponent?> gun)
+    {
+        if (!Resolve(gun, ref gun.Comp, logMissing: false))
+            return;
+
+        StopShooting(gun, gun.Comp);
+    }
+
     private void StopShooting(EntityUid uid, GunComponent gun)
     {
         if (gun.ShotCounter == 0)
