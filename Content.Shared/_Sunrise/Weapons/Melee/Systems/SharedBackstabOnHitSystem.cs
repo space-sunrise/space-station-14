@@ -30,12 +30,10 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
-        var component = ent.Comp!;
-
         if (!CanApplyBackstabBonus(target, user))
             return false;
 
-        ApplyBackstabBonus((ent.Owner, component), ref bonusDamage);
+        ApplyBackstabBonus((ent.Owner, ent.Comp!), ref bonusDamage);
         return true;
     }
 
