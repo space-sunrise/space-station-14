@@ -13,12 +13,6 @@ public sealed class EquipmentVisualizerSystem : VisualizerSystem<EquipmentContai
 
         var sprite = args.Sprite;
 
-        if (AppearanceSystem.TryGetData<string>(uid, EquipmentVisuals.IconState, out var iconState, args.Component) &&
-            !string.IsNullOrEmpty(iconState))
-        {
-            SpriteSystem.LayerSetRsiState((uid, sprite), 0, iconState);
-        }
-
         if (!AppearanceSystem.TryGetData<EquipmentVisualData>(uid, EquipmentVisuals.VisualData, out var visualData, args.Component) ||
             visualData == null ||
             string.IsNullOrEmpty(visualData.Layer))

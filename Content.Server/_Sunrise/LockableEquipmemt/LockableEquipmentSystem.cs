@@ -1,4 +1,5 @@
 using Content.Server.DoAfter;
+using Robust.Server.Containers;
 using Content.Server.Popups;
 using Content.Server.Stack;
 using Content.Shared._Sunrise.LockableEquipment;
@@ -14,6 +15,7 @@ namespace Content.Server._Sunrise.LockableEquipment;
 public sealed class LockableEquipmentSystem : EntitySystem
 {
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
+    [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
@@ -349,7 +351,11 @@ public sealed class LockableEquipmentSystem : EntitySystem
 
     private bool EnsureAccessible(EntityUid device, EntityUid user, LockableEquipmentComponent comp)
     {
-        if (_layerAccess.IsLayerAccessible(ResolveAccessTarget(device), comp.Layer, comp))
+        var accessTarget = ResolveAccessTarget(device);
+        if (accessTarget == device)
+            return true;
+
+        if (_layerAccess.IsLayerAccessible(accessTarget, comp.Layer, comp))
             return true;
 
         _popup.PopupEntity(
@@ -361,19 +367,11 @@ public sealed class LockableEquipmentSystem : EntitySystem
 
     private EntityUid ResolveAccessTarget(EntityUid device)
     {
-        if (HasComp<EquipmentContainerComponent>(device))
-            return device;
-
-        var current = Transform(device).ParentUid;
-        while (current != EntityUid.Invalid)
+        if (_container.TryGetContainingContainer(device, out var container) &&
+            TryComp(container.Owner, out EquipmentContainerComponent? equipmentContainer) &&
+            container.ID == equipmentContainer.ContainerId)
         {
-            if (HasComp<EquipmentContainerComponent>(current))
-                return current;
-
-            if (!TryComp(current, out TransformComponent? xform))
-                break;
-
-            current = xform.ParentUid;
+            return container.Owner;
         }
 
         return device;
