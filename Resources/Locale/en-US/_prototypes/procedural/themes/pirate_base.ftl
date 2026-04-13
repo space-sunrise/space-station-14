@@ -1,2 +1,17 @@
 ent-SyndicateBaseRoomMarker = syndicate base room marker
     .desc = { ent-BaseRoomMarker.desc }
+
+ent-SyndicateBaseRoomMarker11x5 = { ent-SyndicateBaseRoomMarker }
+    .desc = { ent-SyndicateBaseRoomMarker.desc }
+
+ent-SyndicateBaseRoomMarker7x7 = { ent-SyndicateBaseRoomMarker }
+    .desc = { ent-SyndicateBaseRoomMarker.desc }
+
+ent-SyndicateBaseRoomMarker5x5 = { ent-SyndicateBaseRoomMarker }
+    .desc = { ent-SyndicateBaseRoomMarker.desc }
+
+ent-SyndicateBaseRoomMarker3x5 = { ent-SyndicateBaseRoomMarker }
+    .desc = { ent-SyndicateBaseRoomMarker.desc }
+
+ent-SyndicateBaseRoomMarker7x3 = { ent-SyndicateBaseRoomMarker }
+    .desc = { ent-SyndicateBaseRoomMarker.desc }

@@ -10,6 +10,11 @@
   startingGear: ServiceWorkerGear
   icon: "JobIconServiceWorker"
   supervisors: job-supervisors-service
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-attendant
+  - job-alt-title-waiter
+  # Sunrise-End
   access:
   - Service
   - Maintenance

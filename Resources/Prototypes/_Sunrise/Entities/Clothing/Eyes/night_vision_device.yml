@@ -5,6 +5,7 @@
   parent: [BaseItem]
   components:
   - type: Item
+    size: Normal
   - type: Sprite
   - type: Clothing
     slots: [ Eyes ]

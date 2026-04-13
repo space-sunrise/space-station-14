@@ -639,7 +639,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/tiny.rsi
   - type: WeaponDismantleOnShoot
     dismantleDistance: 4
-    dismantleChance: 0.005 # Примерно 150-200 патронов
+    dismantleChance: 0.004 # Примерно 150-200 патронов
     selfDamage:
       types:
         Blunt: 5
