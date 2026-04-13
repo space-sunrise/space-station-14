@@ -216,6 +216,26 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (TryComp<MechPilotComponent>(user.Value, out var mechPilot))
             user = mechPilot.Mech;
 
+        // Sunrise-Start
+        // In dual-wield mode, stop both tracked guns to avoid ShotCounter desync when client/server alternate state diverges.
+        if (TryComp<DualWieldComponent>(user.Value, out var dualWield) && dualWield.Active)
+        {
+            if (dualWield.LeftGun is { } leftGunUid &&
+                TryComp<GunComponent>(leftGunUid, out var leftGun))
+            {
+                StopShooting(leftGunUid, leftGun);
+            }
+
+            if (dualWield.RightGun is { } rightGunUid &&
+                TryComp<GunComponent>(rightGunUid, out var rightGun))
+            {
+                StopShooting(rightGunUid, rightGun);
+            }
+
+            return;
+        }
+        // Sunrise-End
+
         if (!TryGetGun(user.Value, out var ent, out var gun))
             return;
 
