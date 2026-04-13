@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using Content.Shared._Sunrise.LockableEquipment;
 using Content.Shared.Inventory;
 
-namespace Content.Server._Sunrise.LockableEquipment;
+namespace Content.Shared._Sunrise.LockableEquipment;
 
 /// <summary>
 /// Checks whether a lockable layer can be interacted with on the current wearer.
@@ -27,9 +26,6 @@ public sealed class LayerAccessSystem : EntitySystem
         return !IsBlocked((wearer, inventory), target, equipmentLayer, GetAccessPriority(target, targetEquipment));
     }
 
-    /// <summary>
-    /// Returns the effective priority of the target device.
-    /// </summary>
     private int GetAccessPriority(EntityUid target, LockableEquipmentComponent? targetEquipment)
     {
         if (targetEquipment != null)
@@ -40,9 +36,6 @@ public sealed class LayerAccessSystem : EntitySystem
             : 0;
     }
 
-    /// <summary>
-    /// Returns true when any worn item blocks the requested layer.
-    /// </summary>
     private bool IsBlocked(Entity<InventoryComponent> wearer, EntityUid target, string targetLayer, int targetPriority)
     {
         foreach (var blocker in EnumerateBlockers(wearer, target))
@@ -56,9 +49,6 @@ public sealed class LayerAccessSystem : EntitySystem
         return false;
     }
 
-    /// <summary>
-    /// Enumerates blockers from currently equipped clothing, preferring explicit metadata over fallback rules.
-    /// </summary>
     private IEnumerable<LayerAccessBlocker> EnumerateBlockers(Entity<InventoryComponent> wearer, EntityUid target)
     {
         foreach (var slot in wearer.Comp.Slots)
@@ -85,18 +75,12 @@ public sealed class LayerAccessSystem : EntitySystem
         }
     }
 
-    /// <summary>
-    /// Applies the shared blocking rule: matching layer and sufficient priority.
-    /// </summary>
     private bool IsBlockedBy(LayerAccessBlocker blocker, string targetLayer, int targetPriority)
     {
         return blocker.AccessPriority >= targetPriority &&
                blocker.CoversLayers.Contains(targetLayer);
     }
 
-    /// <summary>
-    /// Returns the first fallback slot rule matching the current slot flags.
-    /// </summary>
     private bool TryGetFallbackRule(SlotFlags slotFlags, out SlotLayerMapping.SlotBlockRule rule)
     {
         foreach (var candidate in SlotLayerMapping.Rules)
@@ -112,9 +96,6 @@ public sealed class LayerAccessSystem : EntitySystem
         return false;
     }
 
-    /// <summary>
-    /// Resolves the inventory owner that ultimately wears or contains the device.
-    /// </summary>
     private EntityUid ResolveWearer(EntityUid item)
     {
         if (HasComp<InventoryComponent>(item))
@@ -122,9 +103,8 @@ public sealed class LayerAccessSystem : EntitySystem
 
         var xform = Transform(item);
         var current = xform.ParentUid;
-        
-        // Walk up the parent chain to find the root owner
         var depth = 0;
+
         while (current != EntityUid.Invalid && depth < 10)
         {
             depth++;

@@ -31,10 +31,12 @@ public sealed class EquipmentContainerSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<EquipmentContainerComponent, InteractUsingEvent>(OnInteractUsing);
-        SubscribeLocalEvent<EquipmentContainerComponent, GetVerbsEvent<InteractionVerb>>(OnGetVerbs);
         SubscribeLocalEvent<EquipmentContainerComponent, EquipmentDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<EquipmentContainerComponent, EntInsertedIntoContainerMessage>(OnContainerInserted);
         SubscribeLocalEvent<EquipmentContainerComponent, EntRemovedFromContainerMessage>(OnContainerRemoved);
+        SubscribeLocalEvent<EquipmentContainerComponent, EquipmentContainerUseHeldKeyVerbEvent>(OnUseHeldKeyVerb);
+        SubscribeLocalEvent<EquipmentContainerComponent, EquipmentContainerBreakWithHeldToolVerbEvent>(OnBreakWithHeldToolVerb);
+        SubscribeLocalEvent<EquipmentContainerComponent, EquipmentContainerRemoveVerbEvent>(OnRemoveVerb);
     }
 
     private void OnInteractUsing(Entity<EquipmentContainerComponent> ent, ref InteractUsingEvent args)
@@ -231,82 +233,6 @@ public sealed class EquipmentContainerSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnGetVerbs(Entity<EquipmentContainerComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
-    {
-        if (!args.CanInteract || !args.CanAccess)
-            return;
-
-        var device = GetEquipment(ent.Owner, ent.Comp);
-        if (device == null)
-            return;
-
-        if (!TryComp(device.Value, out LockableEquipmentComponent? comp))
-            return;
-
-        var name = MetaData(device.Value).EntityName;
-
-        if (!CanAccess(ent.Owner, comp.Layer, comp))
-            return;
-
-        TryComp(args.User, out HandsComponent? hands);
-
-        if (hands != null)
-        {
-            var addedKeyVerb = false;
-            var addedBreakVerb = false;
-
-            foreach (var hand in _hands.EnumerateHands(args.User))
-            {
-                if (!_hands.TryGetHeldItem(args.User, hand, out var held))
-                    continue;
-
-                if (!addedKeyVerb && HasComp<KeyComponent>(held.Value))
-                {
-                    var user = args.User;
-                    addedKeyVerb = true;
-
-                    args.Verbs.Add(new InteractionVerb
-                    {
-                        Text = comp.Locked
-                            ? Loc.GetString("lockable-equipment-verb-unlock", ("name", name))
-                            : Loc.GetString("lockable-equipment-verb-lock", ("name", name)),
-                        Priority = 200,
-                        Act = () => TryUseHeldKey(ent, user)
-                    });
-                }
-
-                if (!addedBreakVerb && comp.Locked && _lockable.CanBreakWithTool(device.Value, held.Value))
-                {
-                    var user = args.User;
-                    var breakText = GetBreakVerbText(name, comp.Mode);
-
-                    if (breakText != null)
-                    {
-                        addedBreakVerb = true;
-                        args.Verbs.Add(new InteractionVerb
-                        {
-                            Text = breakText,
-                            Priority = 150,
-                            Act = () => TryBreakWithHeldTool(ent, user)
-                        });
-                    }
-                }
-            }
-        }
-
-        if (!comp.Locked)
-        {
-            var user = args.User;
-
-            args.Verbs.Add(new InteractionVerb
-            {
-                Text = Loc.GetString("lockable-equipment-verb-remove", ("name", name)),
-                Priority = 100,
-                Act = () => TryRemove(ent.Owner, user)
-            });
-        }
-    }
-
     //Helpers
     private void UpdateAppearance(EntityUid uid, LockableEquipmentComponent device)
     {
@@ -384,23 +310,6 @@ public sealed class EquipmentContainerSystem : EntitySystem
             ResetAppearance(ent.Owner, device);
     }
 
-    private string? GetBreakVerbText(string name, LockableEquipmentComponent.BreakMode mode)
-    {
-        return mode switch
-        {
-            LockableEquipmentComponent.BreakMode.ForceOpen =>
-                Loc.GetString("lockable-equipment-verb-force-open", ("name", name)),
-
-            LockableEquipmentComponent.BreakMode.Breakable =>
-                Loc.GetString("lockable-equipment-verb-break", ("name", name)),
-
-            LockableEquipmentComponent.BreakMode.Destroyable =>
-                Loc.GetString("lockable-equipment-verb-destroy", ("name", name)),
-
-            _ => null
-        };
-    }
-
     private static EquipmentVisualData CreateVisualData(LockableEquipmentComponent device, bool visible)
     {
         return new EquipmentVisualData(
@@ -413,6 +322,21 @@ public sealed class EquipmentContainerSystem : EntitySystem
     private bool CanAttachDevice(EntityUid owner, LockableEquipmentComponent device, BaseContainer container)
     {
         return CanAccess(owner, device.Layer, device) && FindDevice(container) == null;
+    }
+
+    private void OnUseHeldKeyVerb(Entity<EquipmentContainerComponent> ent, ref EquipmentContainerUseHeldKeyVerbEvent args)
+    {
+        TryUseHeldKey(ent, args.User);
+    }
+
+    private void OnBreakWithHeldToolVerb(Entity<EquipmentContainerComponent> ent, ref EquipmentContainerBreakWithHeldToolVerbEvent args)
+    {
+        TryBreakWithHeldTool(ent, args.User);
+    }
+
+    private void OnRemoveVerb(Entity<EquipmentContainerComponent> ent, ref EquipmentContainerRemoveVerbEvent args)
+    {
+        TryRemove(ent.Owner, args.User);
     }
 
     private bool TryUseHeldKey(Entity<EquipmentContainerComponent> ent, EntityUid user)

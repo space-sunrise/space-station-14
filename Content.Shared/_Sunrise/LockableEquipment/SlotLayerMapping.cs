@@ -1,6 +1,6 @@
 using Content.Shared.Inventory;
 
-namespace Content.Server._Sunrise.LockableEquipment;
+namespace Content.Shared._Sunrise.LockableEquipment;
 
 /// <summary>
 /// Fallback slot-based blocking rules used when clothing has no explicit layer metadata.
