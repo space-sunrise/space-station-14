@@ -12,9 +12,7 @@ namespace Content.Client._Sunrise.SiliconStanding;
 
 public sealed class SiliconStandingSystem : EntitySystem
 {
-    [Dependency] private readonly IClientNetManager _net = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IInputManager _input = default!;
 
     public override void Initialize()
     {

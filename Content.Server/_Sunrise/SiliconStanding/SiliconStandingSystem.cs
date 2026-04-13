@@ -20,13 +20,16 @@ public sealed class SiliconStandingSystem : EntitySystem
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeNetworkEvent<ToggleStandingEvent>(OnToggle);
-        SubscribeLocalEvent<SiliconRestingDoAfterComponent, SiliconRestingDoAfterEvent>(OnDoAfter);
+        SubscribeLocalEvent<BorgChassisComponent, SiliconRestingDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<SiliconRestingComponent, UpdateCanMoveEvent>(OnCanMove);
+        SubscribeLocalEvent<SiliconRestingComponent, ComponentStartup>(OnRestingStartup);
+        SubscribeLocalEvent<SiliconRestingComponent, ComponentShutdown>(OnRestingShutdown);
     }
 
     /// <summary>
@@ -41,13 +44,7 @@ public sealed class SiliconStandingSystem : EntitySystem
         if (!HasComp<BorgChassisComponent>(uid))
             return;
 
-        if (HasComp<SiliconRestingDoAfterComponent>(uid))
-            return;
-            
-        var isResting = HasComp<SiliconRestingComponent>(uid);
-        var delay = isResting  ? 0.5f : 1.0f;
-
-        EnsureComp<SiliconRestingDoAfterComponent>(uid);
+        var delay = HasComp<SiliconRestingComponent>(uid) ? 0.5f : 1.0f;
 
         var doAfter = new DoAfterArgs(
             EntityManager,
@@ -55,7 +52,7 @@ public sealed class SiliconStandingSystem : EntitySystem
             delay,
             new SiliconRestingDoAfterEvent(),
             uid,
-            null
+            uid
         )
         {
             BreakOnMove = true,
@@ -63,59 +60,50 @@ public sealed class SiliconStandingSystem : EntitySystem
             BlockDuplicate = true
         };
 
-        if (!_doAfter.TryStartDoAfter(doAfter))
-            RemComp<SiliconRestingDoAfterComponent>(uid);
-
+        _doAfter.TryStartDoAfter(doAfter);
     }
 
-    /// <summary>
-    /// Applies resting or standing state to the borg.
-    /// Updates appearance and recalculates movement permissions.
-    /// </summary>
     private void SetResting(EntityUid uid, bool resting)
     {
         if (resting)
-        {   
             EnsureComp<SiliconRestingComponent>(uid);
-            _appearance.SetData(uid, SiliconStandingVisuals.Resting, true);
-        }
         else
-        {
             RemComp<SiliconRestingComponent>(uid);
-            _appearance.SetData(uid, SiliconStandingVisuals.Resting, false);
-        }
-
-        _actionBlocker.UpdateCanMove(uid);
     }
 
-    /// <summary>
-    /// Toggles borg between resting and standing states.
-    /// </summary>
     private void Toggle(EntityUid uid)
     {
-        var resting = !HasComp<SiliconRestingComponent>(uid);
-        SetResting(uid, resting);
+        SetResting(uid, !HasComp<SiliconRestingComponent>(uid));
     }
 
-    private void OnCanMove(EntityUid uid, SiliconRestingComponent component, ref UpdateCanMoveEvent args)
+    private void OnCanMove(Entity<SiliconRestingComponent> ent, ref UpdateCanMoveEvent args)
     {
         args.Cancel();
     }
 
-    /// <summary>
-    /// Called when DoAfter completes.
-    /// Applies the new state and plays the toggle sound.
-    /// </summary>
-    private void OnDoAfter(EntityUid uid, SiliconRestingDoAfterComponent doAfterComp, SiliconRestingDoAfterEvent ev)
+    private void OnRestingStartup(Entity<SiliconRestingComponent> ent, ref ComponentStartup args)
     {
-        RemComp<SiliconRestingDoAfterComponent>(uid);
+        var appearance = EnsureComp<AppearanceComponent>(ent);
+        _appearance.SetData(ent.Owner, SiliconStandingVisuals.Resting, true, appearance);
+        _actionBlocker.UpdateCanMove(ent);
+    }
 
+    private void OnRestingShutdown(Entity<SiliconRestingComponent> ent, ref ComponentShutdown args)
+    {
+        if (TryComp<AppearanceComponent>(ent, out var appearance))
+            _appearance.RemoveData(ent.Owner, SiliconStandingVisuals.Resting, appearance);
+
+        _actionBlocker.UpdateCanMove(ent);
+    }
+
+    private void OnDoAfter(Entity<BorgChassisComponent> ent, ref SiliconRestingDoAfterEvent ev)
+    {
         if (ev.Cancelled)
             return;
 
-        Toggle(uid);
+        Toggle(ent);
 
-        if (TryComp<FootstepModifierComponent>(uid, out var footsteps))
-            _audio.PlayPvs(footsteps.FootstepSoundCollection, uid);
+        if (TryComp<FootstepModifierComponent>(ent, out var footsteps))
+            _audio.PlayPvs(footsteps.FootstepSoundCollection, ent);
     }
 }

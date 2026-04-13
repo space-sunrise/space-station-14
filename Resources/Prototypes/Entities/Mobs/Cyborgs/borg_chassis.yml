@@ -3,7 +3,6 @@
   parent: BaseBorgChassisNT
   components:
   - type: Appearance # Sunrise edit
-  - type: SiliconRestVisuals # Sunrise edit
   - type: Sprite
     layers:
     - state: robot
