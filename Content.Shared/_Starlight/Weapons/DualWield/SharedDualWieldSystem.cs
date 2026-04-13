@@ -144,7 +144,6 @@ public sealed class SharedDualWieldSystem : EntitySystem
             return;
 
         args.AngleIncrease *= (1f + ent.Comp.DualWieldInaccuracyPenalty);
-        args.FireRate *= (1f - ent.Comp.DualWieldFireRatePenalty);
         args.CameraRecoilScalar *= (1f + ent.Comp.DualWieldRecoilPenalty);
     }
 }
