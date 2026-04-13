@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._Starlight.Weapons.DualWield;
+namespace Content.Shared._Sunrise.Weapons.DualWield;
 
 /// <summary>
 ///     Indicates that a weapon can be used in dual-wielding mode.

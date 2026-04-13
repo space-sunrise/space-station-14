@@ -9,7 +9,7 @@ using Robust.Shared.Timing;
 using Content.Shared.Hands;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.Weapons.DualWield;
+namespace Content.Shared._Sunrise.Weapons.DualWield;
 
 /// <summary>
 ///     Manages activation and deactivation of dual-wielding based on equipped weapons.
