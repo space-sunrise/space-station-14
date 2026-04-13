@@ -134,7 +134,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
         borg.Comp.NoMindState = noMindState;
     }
 
-    private void UpdateBorgBodyState(Entity<SpriteComponent?> ent, bool isResting)
+    private void UpdateBorgBodyState(Entity<SpriteComponent?> ent, bool isResting)  
     {
         if (!Resolve(ent, ref ent.Comp))
             return;

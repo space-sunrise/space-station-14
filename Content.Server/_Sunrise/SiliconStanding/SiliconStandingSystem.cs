@@ -16,6 +16,9 @@ namespace Content.Server._Sunrise.SiliconStanding;
 /// </summary>
 public sealed class SiliconStandingSystem : EntitySystem
 {
+    private const float LieDownDelay = 1.0f;
+    private const float StandUpDelay = 0.5f;
+
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
@@ -29,7 +32,7 @@ public sealed class SiliconStandingSystem : EntitySystem
         SubscribeLocalEvent<BorgChassisComponent, SiliconRestingDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<SiliconRestingComponent, UpdateCanMoveEvent>(OnCanMove);
         SubscribeLocalEvent<SiliconRestingComponent, ComponentStartup>(OnRestingStartup);
-        SubscribeLocalEvent<SiliconRestingComponent, ComponentShutdown>(OnRestingShutdown);
+        SubscribeLocalEvent<SiliconRestingComponent, ComponentRemove>(OnRestingRemove);
     }
 
     /// <summary>
@@ -41,15 +44,43 @@ public sealed class SiliconStandingSystem : EntitySystem
         if (args.SenderSession.AttachedEntity is not { Valid: true } uid)
             return;
 
-        if (!HasComp<BorgChassisComponent>(uid))
-            return;
+        TryToggleResting(uid);
+    }
 
-        var delay = HasComp<SiliconRestingComponent>(uid) ? 0.5f : 1.0f;
+    public bool IsResting(EntityUid uid)
+    {
+        return HasComp<SiliconRestingComponent>(uid);
+    }
+
+    public void SetResting(EntityUid uid, bool resting)
+    {
+        if (resting)
+            EnsureComp<SiliconRestingComponent>(uid);
+        else
+            RemComp<SiliconRestingComponent>(uid);
+
+        _actionBlocker.UpdateCanMove(uid);
+    }
+
+    public bool TryToggleResting(EntityUid uid)
+    {
+        if (!HasComp<BorgChassisComponent>(uid))
+            return false;
+
+        var resting = !IsResting(uid);
+        var attempt = new SiliconRestToggleAttemptEvent(resting);
+        RaiseLocalEvent(uid, ref attempt);
+
+        if (attempt.Cancelled)
+            return false;
+
+        var delayEv = new GetSiliconRestDelayEvent(resting, resting ? LieDownDelay : StandUpDelay);
+        RaiseLocalEvent(uid, ref delayEv);
 
         var doAfter = new DoAfterArgs(
             EntityManager,
             uid,
-            delay,
+            delayEv.Delay,
             new SiliconRestingDoAfterEvent(),
             uid,
             uid
@@ -60,20 +91,7 @@ public sealed class SiliconStandingSystem : EntitySystem
             BlockDuplicate = true
         };
 
-        _doAfter.TryStartDoAfter(doAfter);
-    }
-
-    private void SetResting(EntityUid uid, bool resting)
-    {
-        if (resting)
-            EnsureComp<SiliconRestingComponent>(uid);
-        else
-            RemComp<SiliconRestingComponent>(uid);
-    }
-
-    private void Toggle(EntityUid uid)
-    {
-        SetResting(uid, !HasComp<SiliconRestingComponent>(uid));
+        return _doAfter.TryStartDoAfter(doAfter);
     }
 
     private void OnCanMove(Entity<SiliconRestingComponent> ent, ref UpdateCanMoveEvent args)
@@ -85,15 +103,12 @@ public sealed class SiliconStandingSystem : EntitySystem
     {
         var appearance = EnsureComp<AppearanceComponent>(ent);
         _appearance.SetData(ent.Owner, SiliconStandingVisuals.Resting, true, appearance);
-        _actionBlocker.UpdateCanMove(ent);
     }
 
-    private void OnRestingShutdown(Entity<SiliconRestingComponent> ent, ref ComponentShutdown args)
+    private void OnRestingRemove(Entity<SiliconRestingComponent> ent, ref ComponentRemove args)
     {
         if (TryComp<AppearanceComponent>(ent, out var appearance))
             _appearance.RemoveData(ent.Owner, SiliconStandingVisuals.Resting, appearance);
-
-        _actionBlocker.UpdateCanMove(ent);
     }
 
     private void OnDoAfter(Entity<BorgChassisComponent> ent, ref SiliconRestingDoAfterEvent ev)
@@ -101,7 +116,7 @@ public sealed class SiliconStandingSystem : EntitySystem
         if (ev.Cancelled)
             return;
 
-        Toggle(ent);
+        SetResting(ent, !IsResting(ent));
 
         if (TryComp<FootstepModifierComponent>(ent, out var footsteps))
             _audio.PlayPvs(footsteps.FootstepSoundCollection, ent);
