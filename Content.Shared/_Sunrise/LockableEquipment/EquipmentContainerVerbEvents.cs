@@ -1,10 +1,33 @@
+using Robust.Shared.GameObjects;
+
 namespace Content.Shared._Sunrise.LockableEquipment;
 
-[ByRefEvent]
-public record struct EquipmentContainerUseHeldKeyVerbEvent(EntityUid User);
+public sealed class EquipmentContainerUseHeldKeyVerbEvent : EntityEventArgs
+{
+    public EntityUid User;
 
-[ByRefEvent]
-public record struct EquipmentContainerBreakWithHeldToolVerbEvent(EntityUid User);
+    public EquipmentContainerUseHeldKeyVerbEvent(EntityUid user)
+    {
+        User = user;
+    }
+}
 
-[ByRefEvent]
-public record struct EquipmentContainerRemoveVerbEvent(EntityUid User);
+public sealed class EquipmentContainerBreakWithHeldToolVerbEvent : EntityEventArgs
+{
+    public EntityUid User;
+
+    public EquipmentContainerBreakWithHeldToolVerbEvent(EntityUid user)
+    {
+        User = user;
+    }
+}
+
+public sealed class EquipmentContainerRemoveVerbEvent : EntityEventArgs
+{
+    public EntityUid User;
+
+    public EquipmentContainerRemoveVerbEvent(EntityUid user)
+    {
+        User = user;
+    }
+}

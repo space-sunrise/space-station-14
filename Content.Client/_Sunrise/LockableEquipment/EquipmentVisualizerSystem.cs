@@ -1,56 +1,43 @@
 using Content.Shared._Sunrise.LockableEquipment;
 using Robust.Client.GameObjects;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Utility;
 
-namespace Content.Client._Sunrise.LockableEquipment
+namespace Content.Client._Sunrise.LockableEquipment;
+
+public sealed class EquipmentVisualizerSystem : VisualizerSystem<EquipmentContainerComponent>
 {
-    public sealed class EquipmentVisualizerSystem : EntitySystem
+    protected override void OnAppearanceChange(EntityUid uid, EquipmentContainerComponent comp, ref AppearanceChangeEvent args)
     {
-        [Dependency] private readonly AppearanceSystem _appearance = default!;
-        [Dependency] private readonly SpriteSystem _sprite = default!;
+        if (args.Sprite == null)
+            return;
 
-        public override void Initialize()
+        var sprite = args.Sprite;
+
+        if (AppearanceSystem.TryGetData<string>(uid, EquipmentVisuals.IconState, out var iconState, args.Component) &&
+            !string.IsNullOrEmpty(iconState))
         {
-            SubscribeLocalEvent<AppearanceComponent, AppearanceChangeEvent>(OnAppearanceChange);
+            SpriteSystem.LayerSetRsiState((uid, sprite), 0, iconState);
         }
 
-        private void OnAppearanceChange(Entity<AppearanceComponent> ent, ref AppearanceChangeEvent args)
+        if (!AppearanceSystem.TryGetData<EquipmentVisualData>(uid, EquipmentVisuals.VisualData, out var visualData, args.Component) ||
+            visualData == null ||
+            string.IsNullOrEmpty(visualData.Layer))
         {
-            if (args.Sprite == null)
-                return;
-
-            var sprite = args.Sprite;
-
-            if (_appearance.TryGetData(ent, EquipmentVisuals.IconState, out string? iconState) &&
-                !string.IsNullOrEmpty(iconState))
-            {
-                _sprite.LayerSetRsiState((ent, sprite), 0, iconState);
-            }
-
-            if (!_appearance.TryGetData(ent, EquipmentVisuals.VisualData, out EquipmentVisualData? visualData))
-                return;
-
-            if (visualData == null || string.IsNullOrEmpty(visualData.Layer))
-                return;
-
-            var layer = _sprite.LayerMapReserve((ent, sprite), visualData.Layer);
-
-            if (!visualData.Visible)
-            {
-                _sprite.LayerSetVisible((ent, sprite), layer, false);
-                return;
-            }
-
-            if (string.IsNullOrEmpty(visualData.RsiPath) || string.IsNullOrEmpty(visualData.State))
-            {
-                _sprite.LayerSetVisible((ent, sprite), layer, false);
-                return;
-            }
-
-            _sprite.LayerSetRsi((ent, sprite), layer, new ResPath(visualData.RsiPath));
-            _sprite.LayerSetRsiState((ent, sprite), layer, visualData.State);
-            _sprite.LayerSetVisible((ent, sprite), layer, true);
+            return;
         }
+
+        var layer = SpriteSystem.LayerMapReserve((uid, sprite), visualData.Layer);
+
+        if (!visualData.Visible ||
+            string.IsNullOrEmpty(visualData.RsiPath) ||
+            string.IsNullOrEmpty(visualData.State))
+        {
+            SpriteSystem.LayerSetVisible((uid, sprite), layer, false);
+            return;
+        }
+
+        SpriteSystem.LayerSetRsi((uid, sprite), layer, new ResPath(visualData.RsiPath));
+        SpriteSystem.LayerSetRsiState((uid, sprite), layer, visualData.State);
+        SpriteSystem.LayerSetVisible((uid, sprite), layer, true);
     }
 }

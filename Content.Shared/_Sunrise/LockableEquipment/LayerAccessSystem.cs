@@ -9,6 +9,8 @@ namespace Content.Shared._Sunrise.LockableEquipment;
 /// </summary>
 public sealed class LayerAccessSystem : EntitySystem
 {
+    private const int WearerResolveDepthLimit = 10;
+
     [Dependency] private readonly InventorySystem _inventory = default!;
 
     /// <summary>
@@ -101,7 +103,7 @@ public sealed class LayerAccessSystem : EntitySystem
         var current = xform.ParentUid;
         var depth = 0;
 
-        while (current != EntityUid.Invalid && depth < 10)
+        while (current != EntityUid.Invalid && depth < WearerResolveDepthLimit)
         {
             depth++;
             if (HasComp<InventoryComponent>(current))
@@ -116,15 +118,7 @@ public sealed class LayerAccessSystem : EntitySystem
         return EntityUid.Invalid;
     }
 
-    private sealed class LayerAccessBlocker
-    {
-        public readonly IReadOnlyCollection<string> CoversLayers;
-        public readonly int AccessPriority;
-
-        public LayerAccessBlocker(IReadOnlyCollection<string> coversLayers, int accessPriority)
-        {
-            CoversLayers = coversLayers;
-            AccessPriority = accessPriority;
-        }
-    }
+    private readonly record struct LayerAccessBlocker(
+        IReadOnlyCollection<string> CoversLayers,
+        int AccessPriority);
 }

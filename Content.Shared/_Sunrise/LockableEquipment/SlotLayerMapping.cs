@@ -29,17 +29,10 @@ public static class SlotLayerMapping
     /// <summary>
     /// Describes what layers a slot hides and with what fallback priority.
     /// </summary>
-    public readonly struct SlotBlockRule
+    public readonly struct SlotBlockRule(SlotFlags flags, int priority, params string[] layers)
     {
-        public readonly SlotFlags Flags;
-        public readonly int Priority;
-        public readonly string[] Layers;
-
-        public SlotBlockRule(SlotFlags flags, int priority, params string[] layers)
-        {
-            Flags = flags;
-            Priority = priority;
-            Layers = layers;
-        }
+        public readonly SlotFlags Flags = flags;
+        public readonly int Priority = priority;
+        public readonly string[] Layers = layers;
     }
 }

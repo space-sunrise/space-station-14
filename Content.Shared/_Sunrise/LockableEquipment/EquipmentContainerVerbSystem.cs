@@ -4,13 +4,14 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
+using Robust.Shared.Log;
 
 namespace Content.Shared._Sunrise.LockableEquipment;
 
 /// <summary>
 /// Builds locally available lockable-equipment interaction verbs from replicated state.
 /// </summary>
-public sealed class SharedEquipmentContainerSystem : EntitySystem
+public sealed class EquipmentContainerVerbSystem : EntitySystem
 {
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
@@ -29,13 +30,22 @@ public sealed class SharedEquipmentContainerSystem : EntitySystem
 
         var device = GetEquipment(ent.Owner, ent.Comp);
         if (device == null)
+        {
+            Log.Info($"lockable-verbs: no installed device for {ToPrettyString(ent.Owner)}.");
             return;
+        }
 
         if (!TryComp(device.Value, out LockableEquipmentComponent? comp))
+        {
+            Log.Info($"lockable-verbs: missing lockable component on {ToPrettyString(device.Value)}.");
             return;
+        }
 
         if (!CanAccess(ent.Owner, comp.Layer, comp))
+        {
+            Log.Info($"lockable-verbs: access blocked for {ToPrettyString(ent.Owner)} layer={comp.Layer}.");
             return;
+        }
 
         var name = MetaData(device.Value).EntityName;
         TryComp(args.User, out HandsComponent? hands);
@@ -59,8 +69,7 @@ public sealed class SharedEquipmentContainerSystem : EntitySystem
                         Text = comp.Locked
                             ? Loc.GetString("lockable-equipment-verb-unlock", ("name", name))
                             : Loc.GetString("lockable-equipment-verb-lock", ("name", name)),
-                        Priority = 200,
-                        EventTarget = ent.Owner,
+                        EventTarget = ent,
                         ExecutionEventArgs = new EquipmentContainerUseHeldKeyVerbEvent(args.User)
                     });
                 }
@@ -75,8 +84,7 @@ public sealed class SharedEquipmentContainerSystem : EntitySystem
                     args.Verbs.Add(new InteractionVerb
                     {
                         Text = breakText,
-                        Priority = 150,
-                        EventTarget = ent.Owner,
+                        EventTarget = ent,
                         ExecutionEventArgs = new EquipmentContainerBreakWithHeldToolVerbEvent(args.User)
                     });
                 }
@@ -88,11 +96,12 @@ public sealed class SharedEquipmentContainerSystem : EntitySystem
             args.Verbs.Add(new InteractionVerb
             {
                 Text = Loc.GetString("lockable-equipment-verb-remove", ("name", name)),
-                Priority = 100,
-                EventTarget = ent.Owner,
+                EventTarget = ent,
                 ExecutionEventArgs = new EquipmentContainerRemoveVerbEvent(args.User)
             });
         }
+
+        Log.Info($"lockable-verbs: built verbs for {ToPrettyString(ent.Owner)} device={ToPrettyString(device.Value)} user={ToPrettyString(args.User)}.");
     }
 
     private EntityUid? GetEquipment(EntityUid uid, EquipmentContainerComponent comp)

@@ -1,4 +1,4 @@
-﻿lockable-equipment-locked = { $name } закрыт
+lockable-equipment-locked = { $name } закрыт
 lockable-equipment-unlocked = { $name } открыт
 
 lockable-equipment-paired = { $key } привязан к { $device }
@@ -24,3 +24,10 @@ lockable-equipment-verb-remove = Снять { $name }
 lockable-equipment-verb-force-open = Вскрыть { $name }
 lockable-equipment-verb-break = Сломать { $name }
 lockable-equipment-verb-destroy = Уничтожить { $name }
+
+lockable-equipment-verb-lock-generic = Закрыть
+lockable-equipment-verb-unlock-generic = Открыть
+lockable-equipment-verb-remove-generic = Снять
+lockable-equipment-verb-force-open-generic = Вскрыть
+lockable-equipment-verb-break-generic = Сломать
+lockable-equipment-verb-destroy-generic = Уничтожить

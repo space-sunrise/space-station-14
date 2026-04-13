@@ -4,20 +4,12 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Sunrise.LockableEquipment;
 
 [Serializable, NetSerializable]
-public sealed class EquipmentVisualData : ICloneable
+public sealed class EquipmentVisualData(bool visible, string? layer, string? rsiPath, string? state) : ICloneable
 {
-    public readonly bool Visible;
-    public readonly string? Layer;
-    public readonly string? RsiPath;
-    public readonly string? State;
-
-    public EquipmentVisualData(bool visible, string? layer, string? rsiPath, string? state)
-    {
-        Visible = visible;
-        Layer = layer;
-        RsiPath = rsiPath;
-        State = state;
-    }
+    public readonly bool Visible = visible;
+    public readonly string? Layer = layer;
+    public readonly string? RsiPath = rsiPath;
+    public readonly string? State = state;
 
     public object Clone()
     {

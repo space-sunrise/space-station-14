@@ -24,3 +24,10 @@ lockable-equipment-verb-remove = Remove { $name }
 lockable-equipment-verb-force-open = Force open { $name }
 lockable-equipment-verb-break = Break { $name }
 lockable-equipment-verb-destroy = Destroy { $name }
+
+lockable-equipment-verb-lock-generic = Lock
+lockable-equipment-verb-unlock-generic = Unlock
+lockable-equipment-verb-remove-generic = Remove
+lockable-equipment-verb-force-open-generic = Force open
+lockable-equipment-verb-break-generic = Break
+lockable-equipment-verb-destroy-generic = Destroy
