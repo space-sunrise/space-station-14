@@ -217,22 +217,12 @@ public abstract partial class SharedGunSystem : EntitySystem
             user = mechPilot.Mech;
 
         // Sunrise-Start
-        // In dual-wield mode, stop both tracked guns to avoid ShotCounter desync when client/server alternate state diverges.
+        // In dual-wield mode, the client and server may disagree on the currently selected side for alternating fire.
+        // Stopping both tracked guns keeps ShotCounter state consistent and prevents one side from getting "stuck" for semi-auto.
         if (TryComp<DualWieldComponent>(user.Value, out var dualWield) && dualWield.Active)
         {
-            if (dualWield.LeftGun is { } leftGunUid &&
-                TryComp<GunComponent>(leftGunUid, out var leftGun))
-            {
-                StopShooting(leftGunUid, leftGun);
-            }
-
-            if (dualWield.RightGun is { } rightGunUid &&
-                TryComp<GunComponent>(rightGunUid, out var rightGun))
-            {
-                StopShooting(rightGunUid, rightGun);
-            }
-
-            return;
+            StopDualWieldGun(dualWield.LeftGun);
+            StopDualWieldGun(dualWield.RightGun);
         }
         // Sunrise-End
 
@@ -324,6 +314,14 @@ public abstract partial class SharedGunSystem : EntitySystem
         gun.ShootCoordinates = null;
         gun.Targets.Clear();
         DirtyField(uid, gun, nameof(GunComponent.ShotCounter));
+    }
+
+    private void StopDualWieldGun(EntityUid? gunUid)
+    {
+        if (gunUid is not { } uid || !TryComp<GunComponent>(uid, out var gun))
+            return;
+
+        StopShooting(uid, gun);
     }
 
     public void SetTarget(GunComponent gun, EntityUid target)
