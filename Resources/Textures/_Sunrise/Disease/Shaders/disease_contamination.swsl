@@ -13,7 +13,7 @@ void fragment()
     const highp float blockSize = 4.0;
     // Визуальный потолок: максимум 90% блоков окрашиваются, чтобы оставались
     // чистые участки спрайта и эффект выглядел как отдельные пиксели, а не заливка.
-    const highp float maxVisualAmount = 0.90;
+    const highp float maxVisualAmount = 0.82;
 
     if (baseColor.a <= alphaCutoff)
     {
@@ -23,7 +23,9 @@ void fragment()
 
     highp vec2 pixelUv = floor(UV / TEXTURE_PIXEL_SIZE);
     highp vec2 blockUv = floor(pixelUv / blockSize);
-    highp float noise = hash(blockUv);
+    highp float blockNoise = hash(blockUv);
+    highp float pixelNoise = hash(pixelUv + blockUv * 17.0);
+    highp float noise = mix(blockNoise, pixelNoise, 0.55);
 
     highp float visualAmount = (1 - contaminationAmount) * maxVisualAmount;
 
