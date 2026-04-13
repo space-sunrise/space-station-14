@@ -68,7 +68,7 @@ public sealed class LayerAccessSystem : EntitySystem
                 continue;
             }
 
-            if (TryGetFallbackRule(slot.SlotFlags, out var fallback))
+            foreach (var fallback in EnumerateFallbackRules(slot.SlotFlags))
             {
                 yield return new LayerAccessBlocker(fallback.Layers, fallback.Priority);
             }
@@ -81,19 +81,15 @@ public sealed class LayerAccessSystem : EntitySystem
                blocker.CoversLayers.Contains(targetLayer);
     }
 
-    private bool TryGetFallbackRule(SlotFlags slotFlags, out SlotLayerMapping.SlotBlockRule rule)
+    private IEnumerable<SlotLayerMapping.SlotBlockRule> EnumerateFallbackRules(SlotFlags slotFlags)
     {
         foreach (var candidate in SlotLayerMapping.Rules)
         {
             if ((slotFlags & candidate.Flags) == 0)
                 continue;
 
-            rule = candidate;
-            return true;
+            yield return candidate;
         }
-
-        rule = default;
-        return false;
     }
 
     private EntityUid ResolveWearer(EntityUid item)

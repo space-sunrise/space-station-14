@@ -15,7 +15,7 @@ public sealed partial class LayerBlockingComponent : Component
     /// Layers that this item blocks when worn/equipped
     /// </summary>
     [DataField, AutoNetworkedField]
-    public HashSet<string> CoversLayers = new();
+    public List<string> CoversLayers = new();
     
     /// <summary>
     /// Priority level for accessing layers - lower values mean less access
