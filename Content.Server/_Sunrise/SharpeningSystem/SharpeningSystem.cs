@@ -40,7 +40,7 @@ public sealed class SharpeningSystem : EntitySystem
             _popupSystem.PopupEntity(Loc.GetString("sharpening-failed"), target, args.User);
             return;
         }
-        /// Sunrise - Edit
+        /// Sunrise-Edit
         if (!meleeWeaponComponent.Damage.DamageDict.ContainsKey("Slash") && !meleeWeaponComponent.Damage.DamageDict.ContainsKey("Piercing"))
         {
             _popupSystem.PopupEntity(Loc.GetString("sharpening-failed-blade"), target, args.User);
@@ -59,7 +59,7 @@ public sealed class SharpeningSystem : EntitySystem
             return;
         }
 
-        /// Sunrise - Edit
+        /// Sunrise-Edit
         var damageBonus = new DamageSpecifier();
 
         if (meleeWeaponComponent.Damage.DamageDict.ContainsKey("Piercing"))
