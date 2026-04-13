@@ -65,6 +65,13 @@
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 20
+        - id: SubXenoborgs
+          prob: 0.05
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 30
         # Sunrise-End
       # Midround rules
       - !type:GroupSelector
