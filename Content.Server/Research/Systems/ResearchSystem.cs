@@ -34,6 +34,7 @@ namespace Content.Server.Research.Systems
             InitializeConsole();
             InitializeSource();
             InitializeServer();
+            InitializePopulationScaling(); // Sunrise-Edit
 
             SubscribeLocalEvent<TechnologyDatabaseComponent, ResearchRegistrationChangedEvent>(OnDatabaseRegistrationChanged);
         }

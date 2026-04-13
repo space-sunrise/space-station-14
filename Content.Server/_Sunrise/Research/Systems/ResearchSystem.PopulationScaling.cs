@@ -1,22 +1,34 @@
 using System;
-using Content.Shared.Ghost;
+using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared.Humanoid;
 using Content.Shared.Research.Components;
 using Robust.Server.Player;
+using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
 
 namespace Content.Server.Research.Systems;
 
+/// <summary>
+/// Модификатор получения РНД очков исходя от количества игроков. 
+/// </summary>
 public sealed partial class ResearchSystem
 {
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
 
-    private const int TargetPopulation = 45;
-    private const int PopulationDeadzone = 4; // чтобы не обновлять при колебании онлайна
-    private const float PopulationExponent = 0.5f;
+    private const int TargetPopulation = 44;
+    private const int PopulationDeadzone = 4;
     private const float MinPopulationModifier = 0.6f;
     private const float MaxPopulationModifier = 1.5f;
+
+    private float _researchPointScalingMultiplier = SunriseCCVars.ResearchPointScalingMultiplier.DefaultValue;
+
+    private void InitializePopulationScaling()
+    {
+        _researchPointScalingMultiplier = _cfg.GetCVar(SunriseCCVars.ResearchPointScalingMultiplier);
+    }
 
     public void ModifyServerResearchPoints(EntityUid uid, int points, ResearchServerComponent? component = null)
     {
@@ -24,37 +36,38 @@ public sealed partial class ResearchSystem
             return;
 
         if (points > 0)
-            points = AdjustServerPointGainByPopulation(uid, points);
+        {
+            var modifier = GetServerPointGainModifier(uid);
+
+            if (modifier != 1f)
+                points = (int) MathF.Round(points * modifier, MidpointRounding.AwayFromZero);
+        }
 
         ModifyServerPoints(uid, points, component);
     }
 
-    private int AdjustServerPointGainByPopulation(EntityUid uid, int points)
-    {
-        var modifier = GetServerPointGainModifier(uid);
-        if (modifier == 1f)
-            return points;
-
-        return Math.Max(0, (int) MathF.Round(points * modifier, MidpointRounding.AwayFromZero));
-    }
-
     private float GetServerPointGainModifier(EntityUid uid)
     {
-        if (!TryGetPopulationMap(uid, out var mapUid))
+        if (_researchPointScalingMultiplier <= 0f)
+            return 1f;
+
+        if (Transform(uid).MapUid is not { } mapUid)
             return 1f;
 
         var population = CountResearchPopulation(mapUid);
+
         if (Math.Abs(population - TargetPopulation) <= PopulationDeadzone)
             return 1f;
 
-        var ratio = TargetPopulation / (float) Math.Max(population, 1);
-        var modifier = MathF.Pow(ratio, PopulationExponent);
+        var ratio = TargetPopulation / (float)Math.Max(population, 1);
+        var baseModifier = MathF.Sqrt(ratio);
+        var modifier = 1f + (baseModifier - 1f) * _researchPointScalingMultiplier;
+
         return Math.Clamp(modifier, MinPopulationModifier, MaxPopulationModifier);
     }
-
     private int CountResearchPopulation(EntityUid mapUid)
     {
-        var population = 0;
+        int population = 0;
 
         foreach (var session in _player.NetworkedSessions)
         {
@@ -75,27 +88,14 @@ public sealed partial class ResearchSystem
         if (session.AttachedEntity is not { Valid: true } attached)
             return false;
 
-        if (HasComp<GhostComponent>(attached))
+        // Проверка игрока и сервера на одной карте
+        if (Transform(attached).MapUid != mapUid)
             return false;
 
-        if (!TryComp<TransformComponent>(attached, out var xform))
+        // Не считаем игроков мышек, тараканов и т.д.
+        if (!HasComp<HumanoidAppearanceComponent>(attached))
             return false;
 
-        return xform.MapUid == mapUid;
-    }
-
-    // Подсчёт по карте, ибо 30 игроков могут быть на ивенте. 
-    private bool TryGetPopulationMap(EntityUid uid, out EntityUid mapUid)
-    {
-        mapUid = EntityUid.Invalid;
-
-        if (!TryComp<TransformComponent>(uid, out var xform))
-            return false;
-
-        if (xform.MapUid is not { } populationMap)
-            return false;
-
-        mapUid = populationMap;
-        return mapUid != EntityUid.Invalid;
+        return true;
     }
 }
