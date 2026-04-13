@@ -79913,7 +79913,7 @@ entities:
     - type: Transform
       pos: -54.496407,-5.055279
       parent: 2
-- proto: LandMineExplosive
+- proto: SunriseMineSpawner
   entities:
   - uid: 10983
     components:
