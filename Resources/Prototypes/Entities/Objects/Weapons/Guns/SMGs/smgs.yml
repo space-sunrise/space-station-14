@@ -36,7 +36,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/smg.ogg
     defaultDirection: 1, 0
-  - type: CanDualWield
+  - type: CanDualWield # Sunrise-Edit
     dualWieldInaccuracyPenalty: 0.25
     dualWieldFireRatePenalty: 0.25
     dualWieldRecoilPenalty: 0.25

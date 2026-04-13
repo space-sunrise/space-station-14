@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._Starlight.Weapons.DualWield;
+namespace Content.Shared._Sunrise.Weapons.DualWield;
 
 /// <summary>
 ///     Marks an entity as currently dual-wielding two weapons.
