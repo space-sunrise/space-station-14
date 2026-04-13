@@ -215,6 +215,15 @@ public sealed class LockableEquipmentSystem : EntitySystem
         if (comp.Broken || !comp.Locked)
             return false;
 
+        if (IsInUser(device, user))
+        {
+            _popup.PopupEntity(
+                Loc.GetString("lockable-equipment-self-action"),
+                user,
+                user);
+            return true;
+        }
+
         var name = MetaData(device).EntityName;
 
         switch (comp.Mode)

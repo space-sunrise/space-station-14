@@ -60,7 +60,7 @@ public sealed class EquipmentContainerVerbSystem : EntitySystem
                 if (!_hands.TryGetHeldItem(args.User, hand, out var held))
                     continue;
 
-                if (!addedKeyVerb && HasComp<KeyComponent>(held.Value))
+                if (!addedKeyVerb && !comp.Broken && HasComp<KeyComponent>(held.Value))
                 {
                     addedKeyVerb = true;
 
