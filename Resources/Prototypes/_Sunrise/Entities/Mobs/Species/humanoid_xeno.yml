@@ -160,7 +160,7 @@
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: shoes
-      socks-body-curved-big-muzzle:
+      socks-body-curved-small-muzzle:
         sizeMaps:
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
