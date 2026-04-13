@@ -6,7 +6,7 @@ namespace Content.Server._Sunrise.SharpeningSystem;
 public sealed partial class SharpenerComponent : Component
 {
     /// <summary>
-    /// Sunrise - Edit
+    /// Sunrise-Edit
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]

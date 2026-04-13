@@ -448,7 +448,7 @@
     containers:
       storagebase:
         id: PillDylovene
-        amount: 10 # Sunrise - Edit
+        amount: 10 # Sunrise-Edit
 
 - type: entity
   name: pill
@@ -482,7 +482,7 @@
     containers:
       storagebase:
         id: PillHyronalin
-        amount: 10 # Sunrise - Edit
+        amount: 10 # Sunrise-Edit
 
 - type: entity
   name: pill
@@ -516,7 +516,7 @@
     containers:
       storagebase:
         id: PillPotassiumIodide
-        amount: 10 # Sunrise - Edit
+        amount: 10 # Sunrise-Edit
 
 - type: entity
   name: pill
@@ -570,7 +570,7 @@
     containers:
       storagebase:
         id: PillIron
-        amount: 10 # Sunrise - Edit
+        amount: 10 # Sunrise-Edit
 
 - type: entity
   name: pill canister
@@ -584,7 +584,7 @@
     containers:
       storagebase:
         id: PillCopper
-        amount: 10 # Sunrise - Edit
+        amount: 10 # Sunrise-Edit
 
 - type: entity
   name: pill
@@ -618,7 +618,7 @@
     containers:
       storagebase:
         id: PillKelotane
-        amount: 10 # Sunrise - Edit
+        amount: 10 # Sunrise-Edit
 
 - type: entity
   name: pill
@@ -652,7 +652,7 @@
     containers:
       storagebase:
         id: PillDermaline
-        amount: 10 # Sunrise - Edit
+        amount: 10 # Sunrise-Edit
 
 - type: entity
   name: space mirage
@@ -699,7 +699,7 @@
     containers:
       storagebase:
         id: PillTricordrazine
-        amount: 10 # Sunrise - Edit
+        amount: 10 # Sunrise-Edit
 
 - type: entity
   name: pill
@@ -733,7 +733,7 @@
     containers:
       storagebase:
         id: PillBicaridine
-        amount: 10 # Sunrise - Edit
+        amount: 10 # Sunrise-Edit
 
 - type: entity
   name: pill
