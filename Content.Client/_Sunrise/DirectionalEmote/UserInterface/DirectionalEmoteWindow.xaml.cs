@@ -21,7 +21,8 @@ public sealed partial class DirectionalEmoteWindow : FancyWindow
         "bullet",
         "color",
         "heading",
-        "mono"
+        "mono",
+        "head"
     };
 
     private static readonly Regex TagRegex = new(@"\[(/?)([^]]+)\]", RegexOptions.Compiled);

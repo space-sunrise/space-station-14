@@ -1,10 +1,8 @@
-using Content.Client.RichText;
 using Content.Shared._Sunrise.DirectionalEmote;
 using Content.Shared.IdentityManagement;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
-using Robust.Client.UserInterface.RichText;
 
 namespace Content.Client._Sunrise.DirectionalEmote.UserInterface;
 
@@ -13,7 +11,6 @@ public sealed class DirectionalEmoteUIController : UIController
 {
     [UISystemDependency] private readonly DirectionalEmoteSystem _directionalEmoteSystem = default!;
     [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly MarkupTagManager _tagManager = default!;
 
     private DirectionalEmoteWindow _emoteWindow = default!;
 
