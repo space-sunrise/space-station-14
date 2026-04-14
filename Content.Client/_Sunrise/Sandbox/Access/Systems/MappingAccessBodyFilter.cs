@@ -1,4 +1,4 @@
-namespace Content.Client._Sunrise.Sandbox;
+namespace Content.Client._Sunrise.Sandbox.Access.Systems;
 
 /// <summary>
 /// Filters mapping access labels by the body types they should be drawn for.

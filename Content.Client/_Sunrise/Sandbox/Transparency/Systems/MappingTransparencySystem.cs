@@ -1,11 +1,11 @@
-using System;
+using Content.Client._Sunrise.Sandbox.Transparency.Overlays;
 using Content.Client.Administration.Managers;
 using Content.Client.UserInterface.Systems.Sandbox;
 using Content.Shared.Administration;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 
-namespace Content.Client._Sunrise.Sandbox;
+namespace Content.Client._Sunrise.Sandbox.Transparency.Systems;
 
 /// <summary>
 /// Controls the mapping transparency overlay and its UI-facing settings.

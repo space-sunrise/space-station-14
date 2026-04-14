@@ -1,3 +1,5 @@
+using Content.Client.Clickable;
+using Content.Client._Sunrise.Sandbox.Access.Overlays;
 using Content.Client.Administration.Managers;
 using Robust.Client.GameObjects;
 using Content.Client.UserInterface.Systems.Sandbox;
@@ -8,22 +10,26 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client._Sunrise.Sandbox;
-
+namespace Content.Client._Sunrise.Sandbox.Access.Systems;
 /// <summary>
 /// Manages the mapping access overlay and exposes its current UI-facing state.
 /// </summary>
 public sealed class MappingAccessOverlaySystem : EntitySystem
 {
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly IClientAdminManager _admin = default!;
+    [Dependency] private readonly IClickMapManager _clickMap = default!;
+    [Dependency] private readonly IClyde _clyde = default!;
     [Dependency] private readonly IOverlayManager _overlayManager = default!;
-    [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
+    [Dependency] private readonly IUserInterfaceManager _ui = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IResourceCache _resource = default!;
 
     private MappingAccessOverlay _overlay = default!;
+    private MappingAccessOutlineOverlay _outlineOverlay = default!;
+    private MappingAccessReaderResolver _readerResolver = default!;
+    private MappingAccessTightBounds _tightBounds = default!;
 
     /// <summary>
     /// Raised after the overlay state or filter settings change.
@@ -58,10 +64,15 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
         base.Initialize();
 
         _admin.AdminStatusUpdated += OnAdminStatusUpdated;
-        _overlay = new(EntityManager, _entityLookup, _spriteSystem, _prototypeManager, Loc, _resourceCache, _uiManager);
-        _overlay.MarkAccessReaderLookupDirty();
+        _readerResolver = new(EntityManager, _prototype);
+        _readerResolver.MarkAccessReaderLookupDirty();
+        _tightBounds = new(_clickMap);
+        _overlay = new(EntityManager, _lookup, _sprite, _prototype, Loc, _resource, _ui, _readerResolver, _tightBounds);
+        _outlineOverlay = new(EntityManager, _sprite, _prototype, _clyde, _readerResolver, _tightBounds);
         _overlay.BodyFilter = BodyFilter;
         _overlay.ElectronicsOnly = ElectronicsOnly;
+        _outlineOverlay.BodyFilter = BodyFilter;
+        _outlineOverlay.ElectronicsOnly = ElectronicsOnly;
 
         SubscribeLocalEvent<AccessReaderComponent, ComponentStartup>(OnAccessReaderStartup);
         SubscribeLocalEvent<AccessReaderComponent, ComponentShutdown>(OnAccessReaderShutdown);
@@ -78,7 +89,13 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
         if (_overlayManager.HasOverlay<MappingAccessOverlay>())
             _overlayManager.RemoveOverlay(_overlay);
 
+        if (_overlayManager.HasOverlay<MappingAccessOutlineOverlay>())
+            _overlayManager.RemoveOverlay(_outlineOverlay);
+
         _overlay.Dispose();
+        _outlineOverlay.Dispose();
+        _readerResolver.Dispose();
+        _tightBounds.ClearCache();
 
         base.Shutdown();
 
@@ -129,6 +146,7 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
 
         BodyFilter = filter;
         _overlay.BodyFilter = filter;
+        _outlineOverlay.BodyFilter = filter;
         StateChanged?.Invoke();
     }
 
@@ -142,31 +160,32 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
 
         ElectronicsOnly = electronicsOnly;
         _overlay.ElectronicsOnly = electronicsOnly;
+        _outlineOverlay.ElectronicsOnly = electronicsOnly;
 
         if (electronicsOnly)
-            _overlay.MarkAccessReaderLookupDirty();
+            _readerResolver.MarkAccessReaderLookupDirty();
 
         StateChanged?.Invoke();
     }
 
     private void OnAccessReaderStartup(Entity<AccessReaderComponent> ent, ref ComponentStartup args)
     {
-        _overlay.SyncAccessReaderLookup(ent.Owner, ent.Comp);
+        _readerResolver.SyncAccessReaderLookup(ent.Owner, ent.Comp);
     }
 
     private void OnAccessReaderShutdown(Entity<AccessReaderComponent> ent, ref ComponentShutdown args)
     {
-        _overlay.RemoveAccessReaderLookup(ent.Owner);
+        _readerResolver.RemoveAccessReaderLookup(ent.Owner);
     }
 
     private void OnAccessReaderRemove(Entity<AccessReaderComponent> ent, ref ComponentRemove args)
     {
-        _overlay.RemoveAccessReaderLookup(ent.Owner);
+        _readerResolver.RemoveAccessReaderLookup(ent.Owner);
     }
 
     private void OnAccessReaderChanged(Entity<AccessReaderComponent> ent, ref AccessReaderConfigurationChangedEvent args)
     {
-        _overlay.SyncAccessReaderLookup(ent.Owner, ent.Comp);
+        _readerResolver.SyncAccessReaderLookup(ent.Owner, ent.Comp);
     }
 
     private void SetEnabled(bool enabled)
@@ -177,10 +196,14 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
         {
             if (!_overlayManager.HasOverlay<MappingAccessOverlay>())
                 _overlayManager.AddOverlay(_overlay);
+
+            if (!_overlayManager.HasOverlay<MappingAccessOutlineOverlay>())
+                _overlayManager.AddOverlay(_outlineOverlay);
         }
         else
         {
             _overlayManager.RemoveOverlay(_overlay);
+            _overlayManager.RemoveOverlay(_outlineOverlay);
         }
 
         UpdateUi();
@@ -189,7 +212,7 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
 
     private void UpdateUi()
     {
-        var controller = _uiManager.GetUIController<SandboxUIController>();
+        var controller = _ui.GetUIController<SandboxUIController>();
         controller.SetMappingAccessVisible(CanEnable);
         controller.SetToggleMappingAccess(Enabled);
     }

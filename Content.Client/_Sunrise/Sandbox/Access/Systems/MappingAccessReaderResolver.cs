@@ -1,20 +1,38 @@
-using System.Text;
-using Content.Shared.Access;
 using Content.Shared.Access.Components;
+using Content.Shared.Containers;
+using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client._Sunrise.Sandbox;
+namespace Content.Client._Sunrise.Sandbox.Access.Systems;
 
-public sealed partial class MappingAccessOverlay
+/// <summary>
+/// Resolves which access reader data should be displayed for mapping access overlays.
+/// </summary>
+public sealed class MappingAccessReaderResolver : IDisposable
 {
-    /*
-     * Access-reader lookup and access text formatting helpers.
-     */
-    private readonly List<string> _groupAccessNames = new(8);
-    private readonly StringBuilder _accessBuffer = new();
+    private readonly IEntityManager _ent;
+    private readonly EntityQuery<ContainerFillComponent> _containerFillQuery;
+    private readonly SharedContainerSystem _containerSystem;
+    private readonly IPrototypeManager _prototypeManager;
+
     private readonly Dictionary<EntityUid, AccessReaderComponent> _accessReaderLookup = new();
     private readonly Dictionary<string, AccessReaderComponent?> _prototypeAccessReaderLookup = new();
+
     private bool _accessReaderLookupDirty = true;
+
+    public MappingAccessReaderResolver(IEntityManager entityManager, IPrototypeManager prototypeManager)
+    {
+        _ent = entityManager;
+        _containerFillQuery = _ent.GetEntityQuery<ContainerFillComponent>();
+        _containerSystem = _ent.System<SharedContainerSystem>();
+        _prototypeManager = prototypeManager;
+        _prototypeManager.PrototypesReloaded += OnPrototypesReloaded;
+    }
+
+    public void Dispose()
+    {
+        _prototypeManager.PrototypesReloaded -= OnPrototypesReloaded;
+    }
 
     public void MarkAccessReaderLookupDirty()
     {
@@ -37,16 +55,22 @@ public sealed partial class MappingAccessOverlay
         _accessReaderLookup.Remove(uid);
     }
 
-    private bool TryGetDisplayedAccessReader(
+    public bool TryGetDisplayedAccessReader(
         EntityUid uid,
         AccessReaderComponent accessReader,
+        bool electronicsOnly,
         out AccessReaderComponent displayedReader)
     {
-        if (ElectronicsOnly)
-            return TryGetElectronicsAccessReader(uid, accessReader, out displayedReader);
+        if (!electronicsOnly)
+        {
+            displayedReader = accessReader;
+            return accessReader.Enabled && accessReader.AccessLists.Count > 0;
+        }
 
-        displayedReader = accessReader;
-        return accessReader.ContainerAccessProvider == null;
+        if (_accessReaderLookupDirty)
+            RebuildAccessReaderLookup();
+
+        return TryGetElectronicsAccessReader(uid, accessReader, out displayedReader);
     }
 
     private bool TryGetElectronicsAccessReader(
@@ -73,9 +97,7 @@ public sealed partial class MappingAccessOverlay
         electronicsReader = default!;
 
         if (!_containerSystem.TryGetContainer(uid, containerId, out var container))
-        {
             return false;
-        }
 
         var foundReader = false;
         var selectedUid = EntityUid.Invalid;
@@ -166,68 +188,5 @@ public sealed partial class MappingAccessOverlay
         }
 
         _accessReaderLookupDirty = false;
-    }
-
-    private void BuildAccessLines(AccessReaderComponent reader, string orText)
-    {
-        _accessLines.Clear();
-
-        foreach (var accessGroup in reader.AccessLists)
-        {
-            if (accessGroup.Count == 0)
-                continue;
-
-            _groupAccessNames.Clear();
-            foreach (var access in accessGroup)
-            {
-                _groupAccessNames.Add(GetAccessName(access));
-            }
-
-            _groupAccessNames.Sort(CompareAccessText);
-            _accessBuffer.Clear();
-
-            for (var i = 0; i < _groupAccessNames.Count; i++)
-            {
-                if (i > 0)
-                    _accessBuffer.Append(" + ");
-
-                _accessBuffer.Append(_groupAccessNames[i]);
-            }
-
-            _accessLines.Add(_accessBuffer.ToString());
-        }
-
-        _accessLines.Sort(CompareAccessText);
-
-        if (_accessLines.Count <= 1)
-            return;
-
-        _accessBuffer.Clear();
-        for (var i = 0; i < _accessLines.Count; i++)
-        {
-            if (i > 0)
-                _accessBuffer.Append(' ').Append(orText).Append(' ');
-
-            _accessBuffer.Append(_accessLines[i]);
-        }
-
-        _accessLines.Clear();
-        _accessLines.Add(_accessBuffer.ToString());
-    }
-
-    private string GetAccessName(ProtoId<AccessLevelPrototype> access)
-    {
-        if (_prototypeManager.Resolve(access, out var accessPrototype) &&
-            !string.IsNullOrWhiteSpace(accessPrototype.Name))
-        {
-            return _loc.GetString(accessPrototype.Name);
-        }
-
-        return access.Id;
-    }
-
-    private static int CompareAccessText(string? left, string? right)
-    {
-        return string.Compare(left, right, StringComparison.InvariantCultureIgnoreCase);
     }
 }
