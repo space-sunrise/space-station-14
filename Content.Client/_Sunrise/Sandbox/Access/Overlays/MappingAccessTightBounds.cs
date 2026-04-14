@@ -1,4 +1,5 @@
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using Content.Client.Clickable;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -10,8 +11,24 @@ namespace Content.Client._Sunrise.Sandbox.Access.Overlays;
 
 internal sealed class MappingAccessTightBounds(IClickMapManager clickMapManager)
 {
-    private readonly Dictionary<Texture, CachedLocalBounds> _textureBounds = new();
-    private readonly Dictionary<RsiFrameCacheKey, CachedLocalBounds> _rsiBounds = new();
+    private const int MaxCacheSize = 2048;
+
+    private const int TrimCacheSize = MaxCacheSize - (MaxCacheSize / 4);
+
+    private readonly BoundedCache<Texture> _textureBounds = new(MaxCacheSize);
+    private readonly BoundedCache<RsiFrameCacheKey> _rsiBounds = new(MaxCacheSize);
+
+    public void ClearCache()
+    {
+        _textureBounds.Clear();
+        _rsiBounds.Clear();
+    }
+
+    public void TrimCache()
+    {
+        _textureBounds.TrimCache(TrimCacheSize);
+        _rsiBounds.TrimCache(TrimCacheSize);
+    }
 
     public bool TryGetSpriteWorldAabb(
         Entity<SpriteComponent> sprite,
@@ -184,7 +201,8 @@ internal sealed class MappingAccessTightBounds(IClickMapManager clickMapManager)
 
         var source = new TextureOpaquePixelSource(clickMapManager, texture);
         var hasBounds = TryGetOpaqueLocalBounds(source, out localBounds);
-        _textureBounds[texture] = new CachedLocalBounds(hasBounds, localBounds);
+        EnsureCapacity(_textureBounds);
+        _textureBounds.Set(texture, new CachedLocalBounds(hasBounds, localBounds), TrimCacheSize);
         return hasBounds;
     }
 
@@ -204,8 +222,15 @@ internal sealed class MappingAccessTightBounds(IClickMapManager clickMapManager)
 
         var source = new RsiOpaquePixelSource(clickMapManager, rsi, stateId, direction, animationFrame);
         var hasBounds = TryGetOpaqueLocalBounds(source, out localBounds);
-        _rsiBounds[key] = new CachedLocalBounds(hasBounds, localBounds);
+        EnsureCapacity(_rsiBounds);
+        _rsiBounds.Set(key, new CachedLocalBounds(hasBounds, localBounds), TrimCacheSize);
         return hasBounds;
+    }
+
+    private static void EnsureCapacity<TKey>(BoundedCache<TKey> cache)
+        where TKey : notnull
+    {
+        cache.EnsureCapacity(TrimCacheSize);
     }
 
     private static bool TryGetOpaqueLocalBounds<TSource>(TSource source, out Box2 localBounds)
@@ -301,33 +326,18 @@ internal sealed class MappingAccessTightBounds(IClickMapManager clickMapManager)
         }
     }
 
-    private readonly struct RsiOpaquePixelSource : IOpaquePixelSource
+    private readonly struct RsiOpaquePixelSource(
+        IClickMapManager clickMapManager,
+        RSI rsi,
+        RSI.StateId stateId,
+        RsiDirection direction,
+        int animationFrame) : IOpaquePixelSource
     {
-        private readonly int _animationFrame;
-        private readonly IClickMapManager _clickMapManager;
-        private readonly RsiDirection _direction;
-        private readonly RSI _rsi;
-        private readonly RSI.StateId _stateId;
-
-        public RsiOpaquePixelSource(
-            IClickMapManager clickMapManager,
-            RSI rsi,
-            RSI.StateId stateId,
-            RsiDirection direction,
-            int animationFrame)
-        {
-            _clickMapManager = clickMapManager;
-            _rsi = rsi;
-            _stateId = stateId;
-            _direction = direction;
-            _animationFrame = animationFrame;
-        }
-
-        public Vector2i Size => _rsi.Size;
+        public Vector2i Size => rsi.Size;
 
         public bool IsOpaque(Vector2i pixel)
         {
-            return _clickMapManager.IsOccluding(_rsi, _stateId, _direction, _animationFrame, pixel);
+            return clickMapManager.IsOccluding(rsi, stateId, direction, animationFrame, pixel);
         }
     }
 
@@ -335,7 +345,122 @@ internal sealed class MappingAccessTightBounds(IClickMapManager clickMapManager)
         RSI Rsi,
         RSI.StateId StateId,
         RsiDirection Direction,
-        int AnimationFrame);
+        int AnimationFrame)
+    {
+        public bool Equals(RsiFrameCacheKey other)
+        {
+            return ReferenceEquals(Rsi, other.Rsi) &&
+                   StateId.Equals(other.StateId) &&
+                   Direction == other.Direction &&
+                   AnimationFrame == other.AnimationFrame;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(
+                RuntimeHelpers.GetHashCode(Rsi),
+                StateId,
+                (int) Direction,
+                AnimationFrame);
+        }
+    }
 
     private readonly record struct CachedLocalBounds(bool HasBounds, Box2 LocalBounds);
+
+    private sealed class BoundedCache<TKey>(int maxSize) where TKey : notnull
+    {
+        private readonly Dictionary<TKey, CacheEntry> _entries = new();
+        private readonly object _lock = new();
+        private readonly LinkedList<TKey> _usageOrder = [];
+
+        public void Clear()
+        {
+            lock (_lock)
+            {
+                _entries.Clear();
+                _usageOrder.Clear();
+            }
+        }
+
+        public void EnsureCapacity(int trimToSize)
+        {
+            lock (_lock)
+            {
+                if (_entries.Count < maxSize)
+                    return;
+
+                TrimCacheNoLock(trimToSize);
+            }
+        }
+
+        public void TrimCache(int trimToSize)
+        {
+            lock (_lock)
+            {
+                TrimCacheNoLock(trimToSize);
+            }
+        }
+
+        public bool TryGetValue(TKey key, out CachedLocalBounds value)
+        {
+            lock (_lock)
+            {
+                if (!_entries.TryGetValue(key, out var entry))
+                {
+                    value = default;
+                    return false;
+                }
+
+                TouchNoLock(entry);
+                value = entry.Value;
+                return true;
+            }
+        }
+
+        public void Set(TKey key, CachedLocalBounds value, int trimToSize)
+        {
+            lock (_lock)
+            {
+                if (_entries.TryGetValue(key, out var existing))
+                {
+                    existing.Value = value;
+                    TouchNoLock(existing);
+                    return;
+                }
+
+                if (_entries.Count >= maxSize)
+                    TrimCacheNoLock(trimToSize);
+
+                var node = _usageOrder.AddLast(key);
+                _entries[key] = new CacheEntry(node, value);
+            }
+        }
+
+        private void TouchNoLock(CacheEntry entry)
+        {
+            if (entry.Node == _usageOrder.Last)
+                return;
+
+            _usageOrder.Remove(entry.Node);
+            _usageOrder.AddLast(entry.Node);
+        }
+
+        private void TrimCacheNoLock(int trimToSize)
+        {
+            trimToSize = Math.Clamp(trimToSize, 0, maxSize);
+
+            while (_entries.Count > trimToSize &&
+                   _usageOrder.First is { } oldest)
+            {
+                _usageOrder.RemoveFirst();
+                _entries.Remove(oldest.Value);
+            }
+        }
+
+        private sealed class CacheEntry(LinkedListNode<TKey> node, CachedLocalBounds value)
+        {
+            public LinkedListNode<TKey> Node { get; } = node;
+            public CachedLocalBounds Value { get; set; } = value;
+        }
+    }
 }

@@ -61,7 +61,7 @@ public sealed class DeviceLinkOverlaySystem : EntitySystem
         if (Enabled == enabled)
             return true;
 
-        if (!CanEnable)
+        if (enabled && !CanEnable)
             return false;
 
         _console.ExecuteCommand(ToggleCommand);

@@ -30,7 +30,7 @@ public sealed class DeviceLinkingVisualizationSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeNetworkEvent<DeviceLinkOverlayData>(OnDebugOverlayData);
+        SubscribeNetworkEvent<DeviceLinkOverlayDataEvent>(OnDebugOverlayData);
         SubscribeNetworkEvent<DeviceLinkOverlayToggledEvent>(OnOverlayToggled);
     }
 
@@ -57,7 +57,7 @@ public sealed class DeviceLinkingVisualizationSystem : EntitySystem
         _overlayMan.RemoveOverlay<DeviceLinkDebugOverlay>();
     }
 
-    private void OnDebugOverlayData(DeviceLinkOverlayData args)
+    private void OnDebugOverlayData(DeviceLinkOverlayDataEvent args)
     {
         if (!_overlayMan.HasOverlay<DeviceLinkDebugOverlay>())
             return;

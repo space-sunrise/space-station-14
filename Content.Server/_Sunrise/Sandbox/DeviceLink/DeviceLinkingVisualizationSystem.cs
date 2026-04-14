@@ -46,7 +46,7 @@ public sealed class DeviceLinkingVisualizationSystem : EntitySystem
     }
 
     /// <summary>
-    ///     Переключает отображение подключённых сетей.
+    ///     Toggles the display of connected networks.
     /// </summary>
     public void ToggleDebugView(ICommonSession session)
     {
@@ -102,7 +102,7 @@ public sealed class DeviceLinkingVisualizationSystem : EntitySystem
 
         foreach (var session in _debugSessions)
         {
-            RaiseNetworkEvent(new DeviceLinkOverlayData(rays), session);
+            RaiseNetworkEvent(new DeviceLinkOverlayDataEvent(rays), session);
         }
     }
 }

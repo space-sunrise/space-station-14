@@ -95,6 +95,7 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
         _overlay.Dispose();
         _outlineOverlay.Dispose();
         _readerResolver.Dispose();
+        _tightBounds.ClearCache();
 
         base.Shutdown();
 

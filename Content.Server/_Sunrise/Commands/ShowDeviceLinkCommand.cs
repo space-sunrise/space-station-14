@@ -6,7 +6,7 @@ using Robust.Shared.Console;
 namespace Content.Server._Sunrise.Commands;
 
 /// <summary>
-///     Переключает отображение связку подключенных устройств.
+///     Toggles the display of connected device links.
 /// </summary>
 [AdminCommand(AdminFlags.Admin)]
 public sealed class ShowDeviceLinkCommand : LocalizedEntityCommands

@@ -9,7 +9,7 @@ public sealed class DeviceLinkOverlayToggledEvent(bool isEnabled) : EntityEventA
 }
 
 [Serializable, NetSerializable]
-public sealed class DeviceLinkOverlayData(List<DebugEntityConnectionData> rays) : EntityEventArgs
+public sealed class DeviceLinkOverlayDataEvent(List<DebugEntityConnectionData> rays) : EntityEventArgs
 {
     public readonly List<DebugEntityConnectionData> Rays = rays;
 }
