@@ -39,6 +39,7 @@ public sealed partial class MappingAccessOverlay : Overlay
     private readonly EntityQuery<PhysicsComponent> _physicsQuery;
     private readonly MappingAccessReaderResolver _readerResolver;
     private readonly SpriteSystem _spriteSystem;
+    private readonly MappingAccessTightBounds _tightBounds;
     private readonly SharedTransformSystem _transformSystem;
     private readonly IPrototypeManager _prototypeManager;
     private readonly ILocalizationManager _loc;
@@ -65,7 +66,7 @@ public sealed partial class MappingAccessOverlay : Overlay
     /// <summary>
     /// Creates a mapping overlay that renders access requirements for visible access readers.
     /// </summary>
-    public MappingAccessOverlay(
+    internal MappingAccessOverlay(
         IEntityManager entityManager,
         EntityLookupSystem entityLookup,
         SpriteSystem spriteSystem,
@@ -73,13 +74,15 @@ public sealed partial class MappingAccessOverlay : Overlay
         ILocalizationManager loc,
         IResourceCache resourceCache,
         IUserInterfaceManager uiManager,
-        MappingAccessReaderResolver readerResolver)
+        MappingAccessReaderResolver readerResolver,
+        MappingAccessTightBounds tightBounds)
     {
         _ent = entityManager;
         _entityLookup = entityLookup;
         _physicsQuery = _ent.GetEntityQuery<PhysicsComponent>();
         _readerResolver = readerResolver;
         _spriteSystem = spriteSystem;
+        _tightBounds = tightBounds;
         _transformSystem = _ent.System<SharedTransformSystem>();
         _prototypeManager = prototypeManager;
         _loc = loc;

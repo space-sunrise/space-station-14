@@ -20,8 +20,12 @@ public sealed partial class MappingAccessOverlay
         if (sprite.Visible)
         {
             var (worldPos, worldRot) = _transformSystem.GetWorldPositionRotation(transform);
-            return _spriteSystem.CalculateBounds((uid, sprite), worldPos, worldRot, args.Viewport.Eye?.Rotation ?? Angle.Zero)
-                .CalcBoundingBox();
+            var eyeRotation = args.Viewport.Eye?.Rotation ?? Angle.Zero;
+
+            if (_tightBounds.TryGetSpriteWorldAabb((uid, sprite), worldPos, worldRot, eyeRotation, out var tightBounds))
+                return tightBounds;
+
+            return _spriteSystem.CalculateBounds((uid, sprite), worldPos, worldRot, eyeRotation).CalcBoundingBox();
         }
 
         return _entityLookup.GetWorldAABB(uid);

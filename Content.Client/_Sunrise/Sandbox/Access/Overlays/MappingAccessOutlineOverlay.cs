@@ -22,7 +22,7 @@ public sealed class MappingAccessOutlineOverlay : Overlay
     private static readonly ProtoId<ShaderPrototype> OutlineShaderPrototype = "SunriseMappingAccessOutline";
     private static readonly ProtoId<ShaderPrototype> UnshadedShaderPrototype = "unshaded";
 
-    private const float OutlineWidth = 1f;
+    private const float OutlineWidth = 3.5f;
 
     private static readonly Color OutlineColor = Color.Aquamarine.WithAlpha(0.85f);
 
@@ -32,6 +32,7 @@ public sealed class MappingAccessOutlineOverlay : Overlay
     private readonly OverlayResourceCache<CachedResources> _resources = new();
     private readonly MappingAccessReaderResolver _readerResolver;
     private readonly SpriteSystem _spriteSystem;
+    private readonly MappingAccessTightBounds _tightBounds;
     private readonly SharedTransformSystem _transform;
     private readonly ShaderInstance _outlineShader;
     private readonly ShaderInstance _unshadedShader;
@@ -41,18 +42,20 @@ public sealed class MappingAccessOutlineOverlay : Overlay
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
 
-    public MappingAccessOutlineOverlay(
+    internal MappingAccessOutlineOverlay(
         IEntityManager entityManager,
         SpriteSystem spriteSystem,
         IPrototypeManager prototypeManager,
         IClyde clyde,
-        MappingAccessReaderResolver readerResolver)
+        MappingAccessReaderResolver readerResolver,
+        MappingAccessTightBounds tightBounds)
     {
         _clyde = clyde;
         _ent = entityManager;
         _physicsQuery = _ent.GetEntityQuery<PhysicsComponent>();
         _readerResolver = readerResolver;
         _spriteSystem = spriteSystem;
+        _tightBounds = tightBounds;
         _transform = _ent.System<SharedTransformSystem>();
         _outlineShader = prototypeManager.Index(OutlineShaderPrototype).InstanceUnique();
         _unshadedShader = prototypeManager.Index(UnshadedShaderPrototype).InstanceUnique();
@@ -163,7 +166,9 @@ public sealed class MappingAccessOutlineOverlay : Overlay
         }
 
         (worldPos, worldRot) = _transform.GetWorldPositionRotation(transform);
-        var worldBounds = _spriteSystem.CalculateBounds((uid, sprite), worldPos, worldRot, eyeRotation).CalcBoundingBox();
+        var worldBounds = _tightBounds.TryGetSpriteWorldAabb((uid, sprite), worldPos, worldRot, eyeRotation, out var tightBounds)
+            ? tightBounds
+            : _spriteSystem.CalculateBounds((uid, sprite), worldPos, worldRot, eyeRotation).CalcBoundingBox();
 
         return worldBounds.Intersects(in worldAabb);
     }

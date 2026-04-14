@@ -1,3 +1,4 @@
+using Content.Client.Clickable;
 using Content.Client._Sunrise.Sandbox.Access.Overlays;
 using Content.Client.Administration.Managers;
 using Robust.Client.GameObjects;
@@ -18,6 +19,7 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly IClientAdminManager _admin = default!;
+    [Dependency] private readonly IClickMapManager _clickMap = default!;
     [Dependency] private readonly IClyde _clyde = default!;
     [Dependency] private readonly IOverlayManager _overlayManager = default!;
     [Dependency] private readonly IUserInterfaceManager _ui = default!;
@@ -27,6 +29,7 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
     private MappingAccessOverlay _overlay = default!;
     private MappingAccessOutlineOverlay _outlineOverlay = default!;
     private MappingAccessReaderResolver _readerResolver = default!;
+    private MappingAccessTightBounds _tightBounds = default!;
 
     /// <summary>
     /// Raised after the overlay state or filter settings change.
@@ -63,8 +66,9 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
         _admin.AdminStatusUpdated += OnAdminStatusUpdated;
         _readerResolver = new(EntityManager, _prototype);
         _readerResolver.MarkAccessReaderLookupDirty();
-        _overlay = new(EntityManager, _lookup, _sprite, _prototype, Loc, _resource, _ui, _readerResolver);
-        _outlineOverlay = new(EntityManager, _sprite, _prototype, _clyde, _readerResolver);
+        _tightBounds = new(_clickMap);
+        _overlay = new(EntityManager, _lookup, _sprite, _prototype, Loc, _resource, _ui, _readerResolver, _tightBounds);
+        _outlineOverlay = new(EntityManager, _sprite, _prototype, _clyde, _readerResolver, _tightBounds);
         _overlay.BodyFilter = BodyFilter;
         _overlay.ElectronicsOnly = ElectronicsOnly;
         _outlineOverlay.BodyFilter = BodyFilter;
