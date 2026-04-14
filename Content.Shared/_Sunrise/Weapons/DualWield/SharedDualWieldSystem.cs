@@ -198,12 +198,16 @@ public sealed class SharedDualWieldSystem : EntitySystem
 
     private void ClearDualWieldAlerts(EntityUid uid, EntityUid? leftGun, EntityUid? rightGun)
     {
-        CanDualWieldComponent? leftDualWield = null;
+        CanDualWieldComponent? leftDualWield;
 
         if (leftGun.HasValue &&
             TryComp<CanDualWieldComponent>(leftGun.Value, out leftDualWield))
         {
             _alerts.ClearAlert(uid, leftDualWield.DualWieldAlert);
+        }
+        else
+        {
+            leftDualWield = null;
         }
 
         if (rightGun.HasValue &&
