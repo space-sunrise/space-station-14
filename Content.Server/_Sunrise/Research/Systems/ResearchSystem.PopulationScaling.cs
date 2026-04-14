@@ -1,12 +1,17 @@
 using System;
+using Content.Server._Sunrise.Research.Components;
+using Content.Server.Spawners.EntitySystems;
+using Content.Server.Station.Systems;
+using Content.Shared.Ghost;
 using Content.Shared._Sunrise.SunriseCCVars;
-using Content.Shared.Humanoid;
+using Content.Shared._Sunrise.Research.Prototypes;
 using Content.Shared.Research.Components;
-using Robust.Server.Player;
+using Content.Shared.Roles;
+using Content.Shared.SSDIndicator;
 using Robust.Shared.Configuration;
-using Robust.Shared.Enums;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Research.Systems;
 
@@ -16,18 +21,29 @@ namespace Content.Server.Research.Systems;
 public sealed partial class ResearchSystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
 
-    private const int TargetPopulation = 44;
     private const int PopulationDeadzone = 4;
-    private const float MinPopulationModifier = 0.6f;
-    private const float MaxPopulationModifier = 1.5f;
+    private static readonly ProtoId<ResearchPopulationWeightsPrototype> PopulationWeightsPrototypeId = "SunriseResearchPopulationWeights";
 
+    private int _targetPopulation = SunriseCCVars.ResearchPointScalingTargetPopulation.DefaultValue;
+    private float _minPopulationModifier = SunriseCCVars.ResearchPointScalingMinModifier.DefaultValue;
+    private float _maxPopulationModifier = SunriseCCVars.ResearchPointScalingMaxModifier.DefaultValue;
     private float _researchPointScalingMultiplier = SunriseCCVars.ResearchPointScalingMultiplier.DefaultValue;
+    private EntityQuery<GhostComponent> _ghostQuery;
+    private EntityQuery<SSDIndicatorComponent> _ssdIndicatorQuery;
 
     private void InitializePopulationScaling()
     {
-        _researchPointScalingMultiplier = _cfg.GetCVar(SunriseCCVars.ResearchPointScalingMultiplier);
+        _cfg.OnValueChanged(SunriseCCVars.ResearchPointScalingTargetPopulation, value => _targetPopulation = value, true);
+        _cfg.OnValueChanged(SunriseCCVars.ResearchPointScalingMinModifier, value => _minPopulationModifier = value, true);
+        _cfg.OnValueChanged(SunriseCCVars.ResearchPointScalingMaxModifier, value => _maxPopulationModifier = value, true);
+        _cfg.OnValueChanged(SunriseCCVars.ResearchPointScalingMultiplier, value => _researchPointScalingMultiplier = value, true);
+
+        _ghostQuery = GetEntityQuery<GhostComponent>();
+        _ssdIndicatorQuery = GetEntityQuery<SSDIndicatorComponent>();
+
+        SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawning, after: [typeof(SpawnPointSystem)]);
     }
 
     public void ModifyServerResearchPoints(EntityUid uid, int points, ResearchServerComponent? component = null)
@@ -56,46 +72,73 @@ public sealed partial class ResearchSystem
 
         var population = CountResearchPopulation(mapUid);
 
-        if (Math.Abs(population - TargetPopulation) <= PopulationDeadzone)
+        if (MathF.Abs(population - _targetPopulation) <= PopulationDeadzone)
             return 1f;
 
-        var ratio = TargetPopulation / (float)Math.Max(population, 1);
+        var ratio = _targetPopulation / MathF.Max(population, 1f);
         var baseModifier = MathF.Sqrt(ratio);
         var modifier = 1f + (baseModifier - 1f) * _researchPointScalingMultiplier;
 
-        return Math.Clamp(modifier, MinPopulationModifier, MaxPopulationModifier);
+        return Math.Clamp(modifier, _minPopulationModifier, _maxPopulationModifier);
     }
-    private int CountResearchPopulation(EntityUid mapUid)
-    {
-        int population = 0;
 
-        foreach (var session in _player.NetworkedSessions)
+    private void OnPlayerSpawning(PlayerSpawningEvent ev)
+    {
+        if (ev.SpawnResult is not { } mob)
+            return;
+
+        TrySetResearchPopulation((mob, null), ev.Job);
+    }
+
+    private void TrySetResearchPopulation(Entity<ResearchPopulationComponent?> ent, ProtoId<JobPrototype>? jobId)
+    {
+        if (jobId == null || _ghostQuery.HasComp(ent))
         {
-            if (!IsResearchPopulationMember(session, mapUid))
+            RemComp<ResearchPopulationComponent>(ent);
+            return;
+        }
+
+        var weight = GetResearchPopulationWeight(jobId);
+
+        if (weight <= 0f)
+        {
+            RemComp<ResearchPopulationComponent>(ent);
+            return;
+        }
+
+        EnsureComp<ResearchPopulationComponent>(ent).Weight = weight;
+    }
+
+    private float CountResearchPopulation(EntityUid mapUid)
+    {
+        var population = 0f;
+
+        var query = EntityQueryEnumerator<ResearchPopulationComponent, ActorComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var researchPopulation, out _, out var xform))
+        {
+            if (xform.MapUid != mapUid)
                 continue;
 
-            population++;
+            if (_ghostQuery.HasComp(uid))
+                continue;
+
+            if (_ssdIndicatorQuery.TryComp(uid, out var ssdIndicator) && ssdIndicator.IsSSD)
+                continue;
+
+            population += researchPopulation.Weight;
         }
 
         return population;
     }
 
-    private bool IsResearchPopulationMember(ICommonSession session, EntityUid mapUid)
+    private float GetResearchPopulationWeight(ProtoId<JobPrototype>? jobId)
     {
-        if (session.Status != SessionStatus.InGame)
-            return false;
+        if (jobId == null)
+            return 1f;
 
-        if (session.AttachedEntity is not { Valid: true } attached)
-            return false;
+        if (!_prototype.TryIndex(PopulationWeightsPrototypeId, out var prototype))
+            return 1f;
 
-        // Проверка игрока и сервера на одной карте
-        if (Transform(attached).MapUid != mapUid)
-            return false;
-
-        // Не считаем игроков мышек, тараканов и т.д.
-        if (!HasComp<HumanoidAppearanceComponent>(attached))
-            return false;
-
-        return true;
+        return prototype.Weights.GetValueOrDefault(jobId.Value, 1f);
     }
 }

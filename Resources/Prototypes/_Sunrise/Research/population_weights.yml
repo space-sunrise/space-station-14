@@ -1,0 +1,68 @@
+- type: researchPopulationWeights
+  id: SunriseResearchPopulationWeights
+  weights:
+    # Civilian
+    Passenger: 0.20
+    Visitor: 0.10
+    Clown: 0.25
+    Mime: 0.35
+    Musician: 0.40
+    Librarian: 0.40
+    Barber: 0.40
+    Chaplain: 0.45
+    Lawyer: 0.45
+    Bartender: 0.50
+    Chef: 0.50
+    Janitor: 0.50
+    ServiceWorker: 0.55
+    Reporter: 0.55
+    Botanist: 0.60
+    Psychologist: 0.60
+
+    # Cargo
+    MailCarrier: 0.65
+    CargoTechnician: 0.70
+    SalvageSpecialist: 0.75
+    MiningSpecialist: 0.80
+    Quartermaster: 0.85
+
+    # Engineering
+    TechnicalAssistant: 0.65
+    StationEngineer: 0.85
+    AtmosphericTechnician: 0.85
+    SeniorEngineer: 0.90
+    ChiefEngineer: 0.95
+
+    # Medical
+    MedicalIntern: 0.65
+    Chemist: 0.75
+    Paramedic: 0.75
+    MedicalDoctor: 0.85
+    SeniorPhysician: 0.90
+    ChiefMedicalOfficer: 0.90
+
+    # Science
+    ResearchAssistant: 1.20
+    Roboticist: 1.50
+    Scientist: 1.70
+    SeniorResearcher: 1.90
+    ResearchDirector: 2.10
+
+    # Security
+    SecurityCadet: 0.65
+    Detective: 0.70
+    Brigmedic: 0.80
+    SecurityPilot: 0.80
+    SecurityOfficer: 0.85
+    BlueShieldEnsign: 0.85
+    SeniorOfficer: 0.90
+    Warden: 0.90
+    HeadOfSecurity: 0.95
+    BlueShieldOfficer: 0.95
+
+    # Command and legal
+    Adjutant: 0.75
+    IAA: 0.75
+    HeadOfPersonnel: 0.80
+    NanoTrasenRepresentative: 0.85
+    Captain: 0.90
