@@ -35,6 +35,14 @@ public sealed partial class DirectionalEmoteSystem : EntitySystem
         SubscribeLocalEvent<DirectionalEmoteComponent, GetVerbsEvent<Verb>>(OnGetVerbs);
     }
 
+    public override void Shutdown()
+    {
+        base.Shutdown();
+        _cfg.UnsubValueChanged(SunriseCCVars.DirectionalEmoteEnabled, value => _isEnabled = value);
+        _cfg.UnsubValueChanged(SunriseCCVars.DirectionalEmoteMaxLength, value => _maxEmoteLength = value);
+        _cfg.UnsubValueChanged(SunriseCCVars.DirectionalEmoteMaxDistance, value => _maxEmoteDistance = value);
+    }
+
     public void TrySendEmote(NetEntity source, NetEntity target, string message, bool hideName = false)
     {
         if (!TryComp<DirectionalEmoteComponent>(GetEntity(source), out var sourceEmote))

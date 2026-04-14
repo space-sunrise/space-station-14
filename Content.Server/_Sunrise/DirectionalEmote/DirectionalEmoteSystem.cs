@@ -50,6 +50,14 @@ public sealed partial class DirectionalEmoteSystem : EntitySystem
         SubscribeNetworkEvent<DirectionalEmoteAttemptEvent>(HandleDirectionalEmoteAttemptEvent);
     }
 
+    public override void Shutdown()
+    {
+        base.Shutdown();
+        _cfg.UnsubValueChanged(SunriseCCVars.DirectionalEmoteEnabled, value => _isEnabled = value);
+        _cfg.UnsubValueChanged(SunriseCCVars.DirectionalEmoteMaxLength, value => _maxEmoteLength = value);
+        _cfg.UnsubValueChanged(SunriseCCVars.DirectionalEmoteMaxDistance, value => _maxEmoteDistance = value);
+    }
+
     private void HandleDirectionalEmoteAttemptEvent(DirectionalEmoteAttemptEvent args, EntitySessionEventArgs eventArgs)
     {
         if (!_isEnabled)
