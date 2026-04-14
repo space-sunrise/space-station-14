@@ -10,7 +10,7 @@ namespace Content.Client.UserInterface.Systems.Storage;
 // Sunrise: Storage priority extension
 public sealed partial class StorageUIController
 {
-    partial void OnPiecePressedPriority(GUIBoundKeyEventArgs args, StorageWindow window, ItemGridPiece control)
+    public void OnPiecePressedPriority(GUIBoundKeyEventArgs args, StorageWindow window, ItemGridPiece control)
     {
         if (args.Function == ContentKeyFunctions.ToggleItemPriority)
         {

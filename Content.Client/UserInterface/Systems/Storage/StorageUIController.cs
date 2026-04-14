@@ -441,10 +441,6 @@ public sealed partial class StorageUIController : UIController, IOnSystemChanged
         DraggingRotation = Angle.Zero;
     }
 
-    // Sunrise-Start
-    partial void OnPiecePressedPriority(GUIBoundKeyEventArgs args, StorageWindow window, ItemGridPiece control);
-    // Sunrise-End
-
     public override void FrameUpdate(FrameEventArgs args)
     {
         base.FrameUpdate(args);

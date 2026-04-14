@@ -170,6 +170,8 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.LookUp);
             AddButton(ContentKeyFunctions.OpenMentorHelp);
             AddButton(ContentKeyFunctions.OpenHelpChoice);
+            // Sunrise-Edit
+            AddButton(ContentKeyFunctions.ToggleItemPriority);
             AddCheckBox("ui-options-function-hold-look-up", _cfg.GetCVar(SunriseCCVars.HoldLookUp), HandleHoldLookUp);
             // Sunrise-End
 
@@ -208,10 +210,6 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.MoveStoredItem);
             AddButton(ContentKeyFunctions.RotateStoredItem);
             AddButton(ContentKeyFunctions.SaveItemLocation);
-
-            // Sunrise-Start
-            AddButton(ContentKeyFunctions.ToggleItemPriority);
-            // Sunrise-End
 
             AddHeader("ui-options-header-interaction-adv");
             AddButton(ContentKeyFunctions.SmartEquipBackpack);

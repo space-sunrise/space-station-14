@@ -34,10 +34,7 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.MoveStoredItem);
             common.AddFunction(ContentKeyFunctions.RotateStoredItem);
             common.AddFunction(ContentKeyFunctions.SaveItemLocation);
-            
-            // Sunrise-Start
-            common.AddFunction(ContentKeyFunctions.ToggleItemPriority);
-            // Sunrise-End
+
             common.AddFunction(ContentKeyFunctions.Point);
             common.AddFunction(ContentKeyFunctions.ZoomOut);
             common.AddFunction(ContentKeyFunctions.ZoomIn);
@@ -59,6 +56,8 @@ namespace Content.Client.Input
             // Sunrise-Start
             common.AddFunction(ContentKeyFunctions.OpenMentorHelp);
             common.AddFunction(ContentKeyFunctions.OpenHelpChoice);
+            // Sunrise-Edit
+            common.AddFunction(ContentKeyFunctions.ToggleItemPriority);
             // Sunrise-End
 
             var human = contexts.GetContext("human");

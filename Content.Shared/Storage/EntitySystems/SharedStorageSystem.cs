@@ -866,9 +866,6 @@ public abstract partial class SharedStorageSystem : EntitySystem // Sunrise-Edit
         SaveItemLocation(storage!, item.Owner);
     }
 
-
-    partial void InitializePriority(); // Sunrise-Edit
-
     private void OnBoundUIOpen(Entity<StorageComponent> ent, ref BoundUIOpenedEvent args)
     {
         UpdateAppearance((ent.Owner, ent.Comp, null));

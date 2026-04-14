@@ -7,15 +7,8 @@ namespace Content.Shared._Sunrise.Inventory.Events;
 /// Raised when toggling item priority for a storage container is requested.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class StorageToggleItemPriorityEvent : EntityEventArgs
+public sealed class StorageToggleItemPriorityEvent(NetEntity item, NetEntity storage) : EntityEventArgs
 {
-    public readonly NetEntity Item;
-
-    public readonly NetEntity Storage;
-
-    public StorageToggleItemPriorityEvent(NetEntity item, NetEntity storage)
-    {
-        Item = item;
-        Storage = storage;
-    }
+    public readonly NetEntity Item = item;
+    public readonly NetEntity Storage = storage;
 }

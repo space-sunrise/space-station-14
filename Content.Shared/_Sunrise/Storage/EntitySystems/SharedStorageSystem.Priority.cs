@@ -18,7 +18,7 @@ public abstract partial class SharedStorageSystem
     /// <summary>
     /// Priority item selection logic for storage containers
     /// </summary>
-    partial void InitializePriority()
+    public void InitializePriority()
     {
         SubscribeAllEvent<StorageToggleItemPriorityEvent>(OnToggleItemPriority);
         SubscribeLocalEvent<EntityTerminatingEvent>(OnEntityDeleted);

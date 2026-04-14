@@ -9,6 +9,7 @@ using Content.Shared.Stacks;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Whitelist;
+using Content.Shared._Sunrise.Inventory.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
@@ -155,13 +156,9 @@ public sealed class SmartEquipSystem : EntitySystem
                 case null:
 
                     // Sunrise-Edit-Start
-                    // var removing = storage.Container.ContainedEntities[^1];
+                     var removing = EntityUid.Invalid;
 
-                    // We determine which item to take IMMEDIATELY, before any operations with the container
-                    EntityUid removing;
-
-                    // The priority item is checked first
-                    if (TryComp<Content.Shared._Sunrise.Inventory.Components.PersonalStoragePriorityComponent>(uid, out var priorityComp) &&
+                    if (TryComp<PersonalStoragePriorityComponent>(uid, out var priorityComp) &&
                         priorityComp.Priorities.TryGetValue(slotItem, out var priority) &&
                         storage.Container.Contains(priority))
                     {

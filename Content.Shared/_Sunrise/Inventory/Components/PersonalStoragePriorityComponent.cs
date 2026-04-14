@@ -6,7 +6,7 @@ namespace Content.Shared._Sunrise.Inventory.Components;
 /// Tracks personal storage priorities for a player.
 /// Maps storage entity to priority item entity.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class PersonalStoragePriorityComponent : Component
 {
     /// <summary>
