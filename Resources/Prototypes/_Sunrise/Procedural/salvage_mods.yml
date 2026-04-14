@@ -20,7 +20,6 @@
     - Lava
     - Grasslands
     - Caves
-    - Snow
   difficulties:
     - Moderate
     - Challenging
@@ -28,7 +27,6 @@
     - Impossible
   factions:
     - Soviets
-    - PiratesT1
 
 - type: salvageDungeonMod
   id: SovietStrongholdClassic
@@ -38,7 +36,6 @@
     - Lava
     - Grasslands
     - Caves
-    - Snow
   difficulties:
     - Difficult
     - Impossible
@@ -69,6 +66,5 @@
     - Difficult
     - Impossible
   factions:
-    - PiratesT1
     - PiratesT2
     - PiratesT3

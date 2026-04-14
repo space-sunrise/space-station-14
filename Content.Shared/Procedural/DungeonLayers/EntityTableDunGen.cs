@@ -24,4 +24,11 @@ public sealed partial class EntityTableDunGen : IDunGenLayer
     /// </summary>
     [DataField]
     public bool PerDungeon;
+    // Sunrise-Start WZ port
+    /// <summary>
+    /// Should the spawner ignore reserved tiles.
+    /// </summary>
+    [DataField]
+    public bool IgnoreReserved;
+    // Sunrise-End
 }
