@@ -36,7 +36,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        CheckAndUpdateDualWield(ent.AsNullable());
+        CheckAndUpdateDualWield(ent);
     }
 
     private void OnHandUnequipped(Entity<HandsComponent> ent, ref DidUnequipHandEvent args)
@@ -44,7 +44,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        CheckAndUpdateDualWield(ent.AsNullable());
+        CheckAndUpdateDualWield(ent);
     }
 
     private void OnHandCountChanged(Entity<HandsComponent> ent, ref HandCountChangedEvent args)
@@ -52,7 +52,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        CheckAndUpdateDualWield(ent.AsNullable());
+        CheckAndUpdateDualWield(ent);
     }
 
     private void OnDualWieldShutdown(Entity<DualWieldComponent> ent, ref ComponentShutdown args)
@@ -180,7 +180,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
 
         if (rightGun is { } rightGunUid &&
             TryComp<CanDualWieldComponent>(rightGunUid, out var rightDualWield) &&
-            (leftGun == null || leftDualWield == null || leftDualWield.DualWieldAlert != rightDualWield.DualWieldAlert))
+            leftDualWield?.DualWieldAlert != rightDualWield.DualWieldAlert)
         {
             _alerts.ClearAlert(uid, rightDualWield.DualWieldAlert);
         }
