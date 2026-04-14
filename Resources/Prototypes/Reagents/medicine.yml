@@ -1220,10 +1220,10 @@
       effects:
       # Sunrise-Start
       - !type:SatiateThirst
-        factor: 4
+        factor: 1.6
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.06
+        amount: 0.024
       - !type:DeconvertCultist
         conditions:
         - !type:ReagentCondition
