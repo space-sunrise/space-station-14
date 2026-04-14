@@ -42,7 +42,6 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Weapons.Hitscan.Events;
-// DualWield import
 using Content.Shared._Sunrise.Weapons.DualWield;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
@@ -180,10 +179,9 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (!TryGetGun(user.Value, out var ent, out var gun))
             return;
 
-        var isDualWield = TryComp<DualWieldComponent>(user.Value, out var dualWield) && dualWield.Active;
-        if (!isDualWield && ent != GetEntity(msg.Gun))
-            return;
+        var isDualWield = TryComp<DualWieldComponent>(user.Value, out var dualWield);
 
+        // Sunrise-Start
         gun.ShootCoordinates = GetCoordinates(msg.Coordinates);
         gun.Targets.Clear();
         foreach (var target in msg.Targets)
@@ -192,8 +190,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             if (targetUid != EntityUid.Invalid)
                 gun.Targets.Add(targetUid);
         }
-
-        // Dual-wield penalties are applied via GunRefreshModifiersEvent
+        // Sunrise-End
 
         var fired = AttemptShoot(user.Value, ent, gun);
 
@@ -217,7 +214,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             user = mechPilot.Mech;
 
         // Sunrise added start - keep dual-wield shot counters in sync
-        if (TryComp<DualWieldComponent>(user.Value, out var dualWield) && dualWield.Active)
+        if (TryComp<DualWieldComponent>(user.Value, out var dualWield))
         {
             StopDualWieldGun(dualWield.LeftGun);
             StopDualWieldGun(dualWield.RightGun);
@@ -244,23 +241,13 @@ public abstract partial class SharedGunSystem : EntitySystem
     public bool IsChamberClosed(EntityUid gunEntity)
         => Appearance.TryGetData(gunEntity, AmmoVisuals.BoltClosed, out bool boltClosed) && boltClosed;
 
-    // 🌟Starlight🌟
-    public void DelayFire(Entity<GunComponent?> entity, TimeSpan delay)
-    {
-        if (!Resolve(entity, ref entity.Comp, logMissing: false))
-            return;
-
-        entity.Comp.NextFire = Timing.CurTime + delay;
-        DirtyField(entity, entity.Comp, nameof(GunComponent.NextFire));
-    }
-
     public bool TryGetGun(EntityUid entity, out EntityUid gunEntity, [NotNullWhen(true)] out GunComponent? gunComp)
     {
         gunEntity = default;
         gunComp = null;
 
         // Dual Wield logic: return the alternating gun
-        if (TryComp<DualWieldComponent>(entity, out var dualWield) && dualWield.Active)
+        if (TryComp<DualWieldComponent>(entity, out var dualWield))
         {
             var dwGunUid = dualWield.NextIsLeft ? dualWield.LeftGun : dualWield.RightGun;
             if (dwGunUid != null && TryComp<GunComponent>(dwGunUid, out var dwGunComp))
@@ -269,10 +256,8 @@ public abstract partial class SharedGunSystem : EntitySystem
                 gunComp = dwGunComp;
                 return true;
             }
-            // Gun no longer valid — disable dual-wield
-            dualWield.Active = false;
-            Dirty(entity, dualWield);
-            // Alert will be cleared by SharedDualWieldSystem when component is disabled
+
+            RemComp<DualWieldComponent>(entity);
         }
 
         if (TryComp<MechComponent>(entity, out var mech)
@@ -814,7 +799,6 @@ public abstract partial class SharedGunSystem : EntitySystem
     {
         UpdateBattery(frameTime);
         UpdateBallistic(frameTime);
-        // Dual-wield penalties are applied via GunRefreshModifiersEvent, no reset needed here
     }
 }
 

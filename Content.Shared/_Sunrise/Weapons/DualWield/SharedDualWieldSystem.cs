@@ -1,13 +1,13 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Alert;
+using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Alert;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.GameStates;
-using Robust.Shared.Timing;
-using Content.Shared.Hands;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._Sunrise.Weapons.DualWield;
 
@@ -17,64 +17,85 @@ namespace Content.Shared._Sunrise.Weapons.DualWield;
 /// </summary>
 public sealed class SharedDualWieldSystem : EntitySystem
 {
+    private const int DualWieldHandsRequired = 2;
+
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedGunSystem _gunSystem = default!;
-
-    private static readonly ProtoId<AlertPrototype> DualWieldAlertKey = "DualWieldActive";
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<HandsComponent, DidEquipHandEvent>(OnHandEquipped);
         SubscribeLocalEvent<HandsComponent, DidUnequipHandEvent>(OnHandUnequipped);
+        SubscribeLocalEvent<HandsComponent, HandCountChangedEvent>(OnHandCountChanged);
+        SubscribeLocalEvent<DualWieldComponent, ComponentShutdown>(OnDualWieldShutdown);
         SubscribeLocalEvent<CanDualWieldComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers);
     }
 
-    private void OnHandEquipped(EntityUid uid, HandsComponent component, DidEquipHandEvent args)
+    private void OnHandEquipped(Entity<HandsComponent> ent, ref DidEquipHandEvent args)
     {
-        if (_timing.ApplyingState) return;
-        CheckAndUpdateDualWield(uid);
+        if (_timing.ApplyingState)
+            return;
+
+        CheckAndUpdateDualWield(ent);
     }
 
-    private void OnHandUnequipped(EntityUid uid, HandsComponent component, DidUnequipHandEvent args)
+    private void OnHandUnequipped(Entity<HandsComponent> ent, ref DidUnequipHandEvent args)
     {
-        if (_timing.ApplyingState) return;
-        CheckAndUpdateDualWield(uid);
+        if (_timing.ApplyingState)
+            return;
+
+        CheckAndUpdateDualWield(ent);
     }
 
-    private void CheckAndUpdateDualWield(EntityUid uid)
+    private void OnHandCountChanged(Entity<HandsComponent> ent, ref HandCountChangedEvent args)
     {
-        if (!TryGetBothDualWieldGuns(uid, out var leftGun, out var rightGun))
+        if (_timing.ApplyingState)
+            return;
+
+        CheckAndUpdateDualWield(ent);
+    }
+
+    private void OnDualWieldShutdown(Entity<DualWieldComponent> ent, ref ComponentShutdown args)
+    {
+        ClearDualWieldAlerts(ent.Owner, ent.Comp.LeftGun, ent.Comp.RightGun);
+        RefreshDualWieldGuns(ent.Comp.LeftGun, ent.Comp.RightGun);
+    }
+
+    private void CheckAndUpdateDualWield(Entity<HandsComponent?> ent)
+    {
+        if (!TryGetBothDualWieldGuns(ent, out var leftGun, out var rightGun))
         {
-            DisableDualWield(uid);
+            DisableDualWield(ent.Owner);
             return;
         }
 
-        EnableDualWield(uid, leftGun!.Value, rightGun!.Value);
+        EnableDualWield(ent, leftGun, rightGun);
     }
 
-    private bool TryGetBothDualWieldGuns(EntityUid uid, [NotNullWhen(true)] out EntityUid? leftGun, [NotNullWhen(true)] out EntityUid? rightGun)
+    private bool TryGetBothDualWieldGuns(Entity<HandsComponent?> ent, [NotNullWhen(true)] out EntityUid? leftGun, [NotNullWhen(true)] out EntityUid? rightGun)
     {
         leftGun = null;
         rightGun = null;
 
-        if (!TryComp<HandsComponent>(uid, out var handsComp))
+        if (!Resolve(ent, ref ent.Comp))
             return false;
 
-        var entity = new Entity<HandsComponent?>(uid, handsComp);
+        if (ent.Comp.Count != DualWieldHandsRequired)
+            return false;
 
-        foreach (var handName in _hands.EnumerateHands(entity))
+        foreach (var handName in _hands.EnumerateHands(ent))
         {
-            var held = _hands.GetHeldItem(entity, handName);
+            var held = _hands.GetHeldItem(ent, handName);
             if (held == null)
                 continue;
 
             if (!HasComp<CanDualWieldComponent>(held.Value))
                 continue;
 
-            if (!_hands.TryGetHand(entity, handName, out var hand))
+            if (!_hands.TryGetHand(ent, handName, out var hand))
                 continue;
 
             switch (hand.Value.Location)
@@ -91,41 +112,34 @@ public sealed class SharedDualWieldSystem : EntitySystem
         return leftGun != null && rightGun != null;
     }
 
-    private void EnableDualWield(EntityUid uid, EntityUid leftGun, EntityUid rightGun)
+    private void EnableDualWield(Entity<HandsComponent?> ent, EntityUid? leftGun, EntityUid? rightGun)
     {
-        var dualWield = EnsureComp<DualWieldComponent>(uid);
-        dualWield.Active = true;
-        dualWield.LeftGun = leftGun;
-        dualWield.RightGun = rightGun;
+        if (leftGun == null || rightGun == null)
+        {
+            DisableDualWield(ent.Owner);
+            return;
+        }
+
+        if (TryComp<DualWieldComponent>(ent.Owner, out var existingDualWield) &&
+            existingDualWield.LeftGun == leftGun &&
+            existingDualWield.RightGun == rightGun)
+            return;
+
+        DisableDualWield(ent.Owner);
+
+        var dualWield = EnsureComp<DualWieldComponent>(ent.Owner);
+        dualWield.LeftGun = leftGun.Value;
+        dualWield.RightGun = rightGun.Value;
         dualWield.NextIsLeft = true;
-        Dirty(uid, dualWield);
+        Dirty(ent.Owner, dualWield);
 
-        _alerts.ShowAlert(uid, DualWieldAlertKey, severity: 0);
-
-        // Force refresh modifiers for both guns to apply penalties immediately
-        _gunSystem.RefreshModifiers(leftGun);
-        _gunSystem.RefreshModifiers(rightGun);
+        ShowDualWieldAlert(ent.Owner, leftGun.Value, rightGun.Value);
+        RefreshDualWieldGuns(leftGun, rightGun);
     }
 
     private void DisableDualWield(EntityUid uid)
     {
-        if (!TryComp<DualWieldComponent>(uid, out var dualWield))
-            return;
-
-        var leftGun = dualWield.LeftGun;
-        var rightGun = dualWield.RightGun;
-
-        dualWield.Active = false;
-        dualWield.LeftGun = dualWield.RightGun = null;
-        Dirty(uid, dualWield);
-
-        _alerts.ClearAlert(uid, DualWieldAlertKey);
-
-        // Refresh modifiers to remove penalties
-        if (leftGun != null)
-            _gunSystem.RefreshModifiers(leftGun.Value);
-        if (rightGun != null)
-            _gunSystem.RefreshModifiers(rightGun.Value);
+        RemComp<DualWieldComponent>(uid);
     }
 
     /// <summary>
@@ -137,7 +151,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (wielder == EntityUid.Invalid)
             return;
 
-        if (!TryComp<DualWieldComponent>(wielder, out var dualWield) || !dualWield.Active)
+        if (!TryComp<DualWieldComponent>(wielder, out var dualWield))
             return;
 
         if (dualWield.LeftGun != ent.Owner && dualWield.RightGun != ent.Owner)
@@ -145,5 +159,69 @@ public sealed class SharedDualWieldSystem : EntitySystem
 
         args.AngleIncrease *= (1f + ent.Comp.DualWieldInaccuracyPenalty);
         args.CameraRecoilScalar *= (1f + ent.Comp.DualWieldRecoilPenalty);
+    }
+
+    private void ShowDualWieldAlert(EntityUid uid, EntityUid leftGun, EntityUid rightGun)
+    {
+        if (TryGetDualWieldAlert(leftGun, rightGun, out var alert))
+            _alerts.ShowAlert(uid, alert.Value, severity: 0);
+    }
+
+    private bool TryGetDualWieldAlert(EntityUid leftGun, EntityUid rightGun, out ProtoId<AlertPrototype>? alert)
+    {
+        alert = null;
+
+        TryComp<CanDualWieldComponent>(leftGun, out var leftDualWield);
+        TryComp<CanDualWieldComponent>(rightGun, out var rightDualWield);
+
+        if (leftDualWield != null && rightDualWield != null)
+        {
+            if (leftDualWield.DualWieldAlert != rightDualWield.DualWieldAlert)
+                return false;
+
+            alert = leftDualWield.DualWieldAlert;
+            return true;
+        }
+
+        if (leftDualWield != null)
+        {
+            alert = leftDualWield.DualWieldAlert;
+            return true;
+        }
+
+        if (rightDualWield == null)
+            return false;
+
+        alert = rightDualWield.DualWieldAlert;
+        return true;
+    }
+
+    private void ClearDualWieldAlerts(EntityUid uid, EntityUid? leftGun, EntityUid? rightGun)
+    {
+        var leftDualWield = leftGun.HasValue &&
+                            TryComp<CanDualWieldComponent>(leftGun.Value, out var leftDualWieldComp)
+            ? leftDualWieldComp
+            : null;
+
+        if (leftDualWield != null)
+        {
+            _alerts.ClearAlert(uid, leftDualWield.DualWieldAlert);
+        }
+
+        if (rightGun.HasValue &&
+            TryComp<CanDualWieldComponent>(rightGun.Value, out var rightDualWield) &&
+            leftDualWield?.DualWieldAlert != rightDualWield.DualWieldAlert)
+        {
+            _alerts.ClearAlert(uid, rightDualWield.DualWieldAlert);
+        }
+    }
+
+    private void RefreshDualWieldGuns(EntityUid? leftGun, EntityUid? rightGun)
+    {
+        if (leftGun != null)
+            _gunSystem.RefreshModifiers(leftGun.Value);
+
+        if (rightGun != null)
+            _gunSystem.RefreshModifiers(rightGun.Value);
     }
 }

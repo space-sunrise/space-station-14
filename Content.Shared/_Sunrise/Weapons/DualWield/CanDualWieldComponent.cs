@@ -1,3 +1,5 @@
+using Content.Shared.Alert;
+using Robust.Shared.Prototypes;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._Sunrise.Weapons.DualWield;
@@ -9,6 +11,12 @@ namespace Content.Shared._Sunrise.Weapons.DualWield;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class CanDualWieldComponent : Component
 {
+    /// <summary>
+    ///     The alert shown while this weapon is being dual-wielded.
+    /// </summary>
+    [DataField]
+    public ProtoId<AlertPrototype> DualWieldAlert = "DualWieldActive";
+
     /// <summary>
     ///     Multiplier applied to the weapon's angle increase per shot when dual-wielding.
     /// </summary>
