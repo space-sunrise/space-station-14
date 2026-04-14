@@ -64,7 +64,7 @@ public sealed class MappingAccessReaderResolver : IDisposable
         if (!electronicsOnly)
         {
             displayedReader = accessReader;
-            return accessReader.ContainerAccessProvider == null;
+            return accessReader.Enabled && accessReader.AccessLists.Count > 0;
         }
 
         if (_accessReaderLookupDirty)
