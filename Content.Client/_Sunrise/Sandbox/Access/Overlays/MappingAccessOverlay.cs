@@ -1,17 +1,16 @@
 using System.Numerics;
+using Content.Client._Sunrise.Sandbox.Access.Systems;
 using Robust.Client.GameObjects;
 using Content.Client.Stylesheets;
 using Content.Shared.Access.Components;
-using Content.Shared.Containers;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
-using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client._Sunrise.Sandbox;
+namespace Content.Client._Sunrise.Sandbox.Access.Overlays;
 
 /// <summary>
 /// Draws screen-space access labels for visible access readers while mapping helpers are enabled.
@@ -37,10 +36,9 @@ public sealed partial class MappingAccessOverlay : Overlay
 
     private readonly IEntityManager _ent;
     private readonly EntityLookupSystem _entityLookup;
-    private readonly EntityQuery<ContainerFillComponent> _containerFillQuery;
     private readonly EntityQuery<PhysicsComponent> _physicsQuery;
+    private readonly MappingAccessReaderResolver _readerResolver;
     private readonly SpriteSystem _spriteSystem;
-    private readonly SharedContainerSystem _containerSystem;
     private readonly SharedTransformSystem _transformSystem;
     private readonly IPrototypeManager _prototypeManager;
     private readonly ILocalizationManager _loc;
@@ -74,29 +72,21 @@ public sealed partial class MappingAccessOverlay : Overlay
         IPrototypeManager prototypeManager,
         ILocalizationManager loc,
         IResourceCache resourceCache,
-        IUserInterfaceManager uiManager)
+        IUserInterfaceManager uiManager,
+        MappingAccessReaderResolver readerResolver)
     {
         _ent = entityManager;
         _entityLookup = entityLookup;
-        _containerFillQuery = _ent.GetEntityQuery<ContainerFillComponent>();
         _physicsQuery = _ent.GetEntityQuery<PhysicsComponent>();
+        _readerResolver = readerResolver;
         _spriteSystem = spriteSystem;
-        _containerSystem = _ent.System<SharedContainerSystem>();
         _transformSystem = _ent.System<SharedTransformSystem>();
         _prototypeManager = prototypeManager;
         _loc = loc;
         _uiManager = uiManager;
         _font = resourceCache.NotoStack();
         _fontBold = resourceCache.NotoStack(variation: "Bold");
-        _prototypeManager.PrototypesReloaded += OnPrototypesReloaded;
         ZIndex = 210;
-    }
-
-    protected override void DisposeBehavior()
-    {
-        _prototypeManager.PrototypesReloaded -= OnPrototypesReloaded;
-
-        base.DisposeBehavior();
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -114,9 +104,6 @@ public sealed partial class MappingAccessOverlay : Overlay
         var horizontalMargin = HorizontalMargin * uiScale;
         var verticalMargin = VerticalMargin * uiScale;
         _occupiedRects.Clear();
-
-        if (ElectronicsOnly && _accessReaderLookupDirty)
-            RebuildAccessReaderLookup();
 
         var query = _ent.AllEntityQueryEnumerator<AccessReaderComponent, SpriteComponent, TransformComponent, MetaDataComponent>();
 
@@ -177,7 +164,6 @@ public sealed partial class MappingAccessOverlay : Overlay
             var outlineRect = UIBox2.FromDimensions(
                 new Vector2(minX - outlinePadding, minY - outlinePadding),
                 new Vector2(maxX - minX, maxY - minY) + Vector2.One * (outlinePadding * 2f));
-            args.ScreenHandle.DrawRect(outlineRect, OutlineColor, false);
 
             var scaledBackgroundPadding = BackgroundPadding * uiScale;
             var contentSize = new Vector2(blockWidth, blockHeight);

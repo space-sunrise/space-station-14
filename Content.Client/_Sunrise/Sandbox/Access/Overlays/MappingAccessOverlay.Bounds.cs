@@ -1,10 +1,10 @@
 using System.Numerics;
+using Content.Client._Sunrise.Sandbox.Access.Systems;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Shared.Enums;
 using Robust.Shared.Physics;
 
-namespace Content.Client._Sunrise.Sandbox;
+namespace Content.Client._Sunrise.Sandbox.Access.Overlays;
 
 public sealed partial class MappingAccessOverlay
 {

@@ -1,8 +1,9 @@
+using Content.Server._Sunrise.Sandbox.DeviceLink;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 
-namespace Content.Server._Scp.DeviceLinking.Commands;
+namespace Content.Server._Sunrise.Commands;
 
 /// <summary>
 ///     Переключает отображение связку подключенных устройств.

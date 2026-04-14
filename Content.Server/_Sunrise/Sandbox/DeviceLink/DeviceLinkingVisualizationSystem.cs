@@ -1,11 +1,11 @@
-using Content.Shared._Scp.DeviceLinking;
+using Content.Shared._Sunrise.Sandbox;
 using Content.Shared.DeviceLinking;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
-namespace Content.Server._Scp.DeviceLinking;
+namespace Content.Server._Sunrise.Sandbox.DeviceLink;
 
 public sealed class DeviceLinkingVisualizationSystem : EntitySystem
 {
@@ -13,9 +13,9 @@ public sealed class DeviceLinkingVisualizationSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _player = default!;
 
     private TimeSpan _nextOverlayUpdate = TimeSpan.Zero;
-    private TimeSpan _overlayUpdateInterval = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan UpdateInterval = TimeSpan.FromSeconds(1);
 
-    private readonly HashSet<ICommonSession> _debugSessions = new();
+    private readonly HashSet<ICommonSession> _debugSessions = [];
 
     public override void Initialize()
     {
@@ -40,7 +40,7 @@ public sealed class DeviceLinkingVisualizationSystem : EntitySystem
         if (_debugSessions.Count == 0 || _timing.CurTime < _nextOverlayUpdate)
             return;
 
-        _nextOverlayUpdate = _timing.CurTime + _overlayUpdateInterval;
+        _nextOverlayUpdate = _timing.CurTime + UpdateInterval;
 
         UpdateOverlay();
     }
@@ -52,7 +52,9 @@ public sealed class DeviceLinkingVisualizationSystem : EntitySystem
     {
         bool isEnabled;
         if (_debugSessions.Add(session))
+        {
             isEnabled = true;
+        }
         else
         {
             _debugSessions.Remove(session);
@@ -79,7 +81,7 @@ public sealed class DeviceLinkingVisualizationSystem : EntitySystem
         if (_debugSessions.Count == 0)
             return;
 
-        List<DebugEntityConnectionData> rays = new();
+        List<DebugEntityConnectionData> rays = [];
 
         var query = EntityQueryEnumerator<DeviceLinkSourceComponent>();
         while (query.MoveNext(out var uid, out var source))
@@ -88,15 +90,19 @@ public sealed class DeviceLinkingVisualizationSystem : EntitySystem
                 continue;
 
             var netUid = GetNetEntity(uid);
-            List<NetEntity> entities = new();
+            List<NetEntity> entities = [];
 
             foreach (var output in source.LinkedPorts)
+            {
                 entities.Add(GetNetEntity(output.Key));
+            }
 
             rays.Add(new DebugEntityConnectionData(netUid, entities));
         }
 
         foreach (var session in _debugSessions)
+        {
             RaiseNetworkEvent(new DeviceLinkOverlayData(rays), session);
+        }
     }
 }

@@ -1,6 +1,6 @@
 using System.Numerics;
 
-namespace Content.Client._Sunrise.Sandbox;
+namespace Content.Client._Sunrise.Sandbox.Access.Overlays;
 
 public sealed partial class MappingAccessOverlay
 {

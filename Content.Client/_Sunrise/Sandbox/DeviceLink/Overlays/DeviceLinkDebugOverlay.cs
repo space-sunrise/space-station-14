@@ -1,12 +1,13 @@
+using Content.Client._Sunrise.Sandbox.DeviceLink.Systems;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
 
-namespace Content.Client._Scp.DeviceLinking.Overlays;
+namespace Content.Client._Sunrise.Sandbox.DeviceLink.Overlays;
 
 public sealed class DeviceLinkDebugOverlay : Overlay
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IEntityManager _ent = default!;
 
     private readonly DeviceLinkingVisualizationSystem _deviceLinking;
     private readonly TransformSystem _transform;
@@ -17,14 +18,14 @@ public sealed class DeviceLinkDebugOverlay : Overlay
     {
         IoCManager.InjectDependencies(this);
 
-        _deviceLinking = _entityManager.System<DeviceLinkingVisualizationSystem>();
-        _transform = _entityManager.System<TransformSystem>();
+        _deviceLinking = _ent.System<DeviceLinkingVisualizationSystem>();
+        _transform = _ent.System<TransformSystem>();
     }
 
     protected override void Draw(in OverlayDrawArgs args)
     {
         var rays = _deviceLinking.Rays;
-        if (rays == null || rays.Count == 0)
+        if (rays.Count == 0)
             return;
 
         var colors = _deviceLinking.SourceColors;
@@ -34,7 +35,7 @@ public sealed class DeviceLinkDebugOverlay : Overlay
             if (args.Space != OverlaySpace.WorldSpace)
                 continue;
 
-            if (!_entityManager.TryGetComponent<TransformComponent>(ray.Key, out var sourceTransform)
+            if (!_ent.TryGetComponent<TransformComponent>(ray.Key, out var sourceTransform)
                 || !sourceTransform.MapUid.HasValue)
                 continue;
 
@@ -49,7 +50,7 @@ public sealed class DeviceLinkDebugOverlay : Overlay
 
             foreach (var connection in ray.Value)
             {
-                if (!_entityManager.TryGetComponent<TransformComponent>(connection, out var destinationTransform)
+                if (!_ent.TryGetComponent<TransformComponent>(connection, out var destinationTransform)
                     || !destinationTransform.MapUid.HasValue)
                     continue;
 

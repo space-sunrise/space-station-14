@@ -1,9 +1,10 @@
+using Content.Client._Sunrise.Sandbox.Transparency.Systems;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
 using Robust.Shared.Timing;
 
-namespace Content.Client._Sunrise.Sandbox;
+namespace Content.Client._Sunrise.Sandbox.Transparency.Overlays;
 
 /// <summary>
 /// Applies temporary transparency to anchored sprites while mapper transparency mode is active.

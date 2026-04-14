@@ -1,9 +1,9 @@
-using Content.Client._Scp.DeviceLinking.Overlays;
-using Content.Shared._Scp.DeviceLinking;
+using Content.Client._Sunrise.Sandbox.DeviceLink.Overlays;
+using Content.Shared._Sunrise.Sandbox;
 using Robust.Client.Graphics;
 using Robust.Shared.Random;
 
-namespace Content.Client._Scp.DeviceLinking;
+namespace Content.Client._Sunrise.Sandbox.DeviceLink.Systems;
 
 public sealed class DeviceLinkingVisualizationSystem : EntitySystem
 {
@@ -13,7 +13,17 @@ public sealed class DeviceLinkingVisualizationSystem : EntitySystem
     public Dictionary<EntityUid, List<EntityUid>> Rays { get; } = new();
     public Dictionary<EntityUid, Color> SourceColors { get; } = new();
 
-    private Color[] _randomRayColors = { Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.LightBlue, Color.Blue, Color.Purple, Color.Pink };
+    private static readonly Color[] RayColors =
+    [
+        Color.Red,
+        Color.Orange,
+        Color.Yellow,
+        Color.Green,
+        Color.LightBlue,
+        Color.Blue,
+        Color.Purple,
+        Color.Pink
+    ];
 
     public override void Initialize()
     {
@@ -48,14 +58,14 @@ public sealed class DeviceLinkingVisualizationSystem : EntitySystem
 
     private void OnDebugOverlayData(DeviceLinkOverlayData args)
     {
-        if (!_overlayMan.TryGetOverlay(out DeviceLinkDebugOverlay? overlay))
+        if (!_overlayMan.HasOverlay<DeviceLinkDebugOverlay>())
             return;
 
         Rays.Clear();
 
         foreach (var ray in args.Rays)
         {
-            List<EntityUid> entities = new();
+            List<EntityUid> entities = [];
 
             var source = GetEntity(ray.Source);
 
@@ -75,11 +85,10 @@ public sealed class DeviceLinkingVisualizationSystem : EntitySystem
             if (entities.Count == 0)
                 continue;
 
-            if (!Rays.ContainsKey(source))
-                Rays.Add(source, entities);
+            Rays.TryAdd(source, entities);
 
             if (!SourceColors.ContainsKey(source))
-                SourceColors.Add(source, _random.Pick(_randomRayColors));
+                SourceColors.Add(source, _random.Pick(RayColors));
         }
     }
 }

@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Scp.DeviceLinking;
+namespace Content.Shared._Sunrise.Sandbox;
 
 [Serializable, NetSerializable]
 public sealed class DeviceLinkOverlayToggledEvent(bool isEnabled) : EntityEventArgs
@@ -15,4 +15,4 @@ public sealed class DeviceLinkOverlayData(List<DebugEntityConnectionData> rays) 
 }
 
 [Serializable, NetSerializable]
-public readonly record struct DebugEntityConnectionData(NetEntity Source, List<NetEntity> Connections) { };
+public readonly record struct DebugEntityConnectionData(NetEntity Source, List<NetEntity> Connections);
