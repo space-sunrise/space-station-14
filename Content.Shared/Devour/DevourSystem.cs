@@ -7,6 +7,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
+using Content.Shared.Tag; //Sunrise-Edit
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -104,13 +105,19 @@ public sealed class DevourSystem : EntitySystem
             return;
 
         var ichorInjection = new Solution(ent.Comp.Chemical, ent.Comp.HealRate);
+        var ichorInjectionMinor = new Solution(ent.Comp.Chemical, ent.Comp.HealRate/5); //Sunrise-Edit
 
         // Grant ichor if the devoured thing meets the dragon's food preference
         if (args.Args.Target != null && _whitelistSystem.IsWhitelistPassOrNull(ent.Comp.FoodPreferenceWhitelist, (EntityUid)args.Args.Target))
         {
             _bloodstreamSystem.TryAddToBloodstream(ent.Owner, ichorInjection);
         }
-
+        //Sunrise-Start
+        if (args.Args.Target != null && TryComp(args.Args.Target, out TagComponent? targetTags) && targetTags.Tags.Contains("Carp"))
+        {
+            _bloodstreamSystem.TryAddToBloodstream(ent.Owner, ichorInjectionMinor);
+        }
+        //Sunrise-End
         // If the devoured thing meets the stomach whitelist criteria, add it to the stomach
         if (args.Args.Target != null && _whitelistSystem.IsWhitelistPass(ent.Comp.StomachStorageWhitelist, (EntityUid)args.Args.Target))
         {
