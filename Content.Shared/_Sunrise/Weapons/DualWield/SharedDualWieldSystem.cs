@@ -169,10 +169,10 @@ public sealed class SharedDualWieldSystem : EntitySystem
     {
         alert = null;
 
-        var hasLeftAlert = TryComp<CanDualWieldComponent>(leftGun, out var leftDualWield);
-        var hasRightAlert = TryComp<CanDualWieldComponent>(rightGun, out var rightDualWield);
+        TryComp<CanDualWieldComponent>(leftGun, out CanDualWieldComponent? leftDualWield);
+        TryComp<CanDualWieldComponent>(rightGun, out CanDualWieldComponent? rightDualWield);
 
-        if (hasLeftAlert && hasRightAlert)
+        if (leftDualWield != null && rightDualWield != null)
         {
             if (leftDualWield.DualWieldAlert != rightDualWield.DualWieldAlert)
                 return false;
@@ -181,13 +181,13 @@ public sealed class SharedDualWieldSystem : EntitySystem
             return true;
         }
 
-        if (hasLeftAlert)
+        if (leftDualWield != null)
         {
             alert = leftDualWield.DualWieldAlert;
             return true;
         }
 
-        if (!hasRightAlert)
+        if (rightDualWield == null)
             return false;
 
         alert = rightDualWield.DualWieldAlert;
