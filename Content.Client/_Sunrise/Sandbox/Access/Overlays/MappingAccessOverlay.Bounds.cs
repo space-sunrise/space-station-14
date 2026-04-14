@@ -1,10 +1,10 @@
 using System.Numerics;
+using Content.Client._Sunrise.Sandbox.Access.Systems;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Shared.Enums;
 using Robust.Shared.Physics;
 
-namespace Content.Client._Sunrise.Sandbox;
+namespace Content.Client._Sunrise.Sandbox.Access.Overlays;
 
 public sealed partial class MappingAccessOverlay
 {
@@ -20,8 +20,12 @@ public sealed partial class MappingAccessOverlay
         if (sprite.Visible)
         {
             var (worldPos, worldRot) = _transformSystem.GetWorldPositionRotation(transform);
-            return _spriteSystem.CalculateBounds((uid, sprite), worldPos, worldRot, args.Viewport.Eye?.Rotation ?? Angle.Zero)
-                .CalcBoundingBox();
+            var eyeRotation = args.Viewport.Eye?.Rotation ?? Angle.Zero;
+
+            if (_tightBounds.TryGetSpriteWorldAabb((uid, sprite), worldPos, worldRot, eyeRotation, out var tightBounds))
+                return tightBounds;
+
+            return _spriteSystem.CalculateBounds((uid, sprite), worldPos, worldRot, eyeRotation).CalcBoundingBox();
         }
 
         return _entityLookup.GetWorldAABB(uid);
