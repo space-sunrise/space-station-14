@@ -20,6 +20,7 @@ public sealed partial class DirectionalEmoteSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
 
+    private bool _isEnabled;
     private int _maxEmoteLength;
     private float _maxEmoteDistance;
 
@@ -27,6 +28,7 @@ public sealed partial class DirectionalEmoteSystem : EntitySystem
     {
         base.Initialize();
 
+        _cfg.OnValueChanged(SunriseCCVars.DirectionalEmoteEnabled, value => _isEnabled = value, true);
         _cfg.OnValueChanged(SunriseCCVars.DirectionalEmoteMaxLength, value => _maxEmoteLength = value, true);
         _cfg.OnValueChanged(SunriseCCVars.DirectionalEmoteMaxDistance, value => _maxEmoteDistance = value, true);
 
@@ -60,6 +62,9 @@ public sealed partial class DirectionalEmoteSystem : EntitySystem
 
     private void OnGetVerbs(EntityUid uid, DirectionalEmoteComponent component, GetVerbsEvent<Verb> args)
     {
+        if (!_isEnabled)
+            return;
+
         if (!_examineSystem.InRangeUnOccluded(args.User, args.Target, _maxEmoteDistance) || args.User == uid)
             return;
 

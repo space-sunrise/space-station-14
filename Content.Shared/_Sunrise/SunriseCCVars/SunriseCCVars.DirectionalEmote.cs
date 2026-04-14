@@ -5,6 +5,12 @@ namespace Content.Shared._Sunrise.SunriseCCVars;
 public sealed partial class SunriseCCVars
 {
     /// <summary>
+    /// Enabled/Disabled directional emotes.
+    /// </summary>
+    public static readonly CVarDef<bool> DirectionalEmoteEnabled =
+        CVarDef.Create("directional_emote.enabled", false, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
     /// Maximum length of directional emotes.
     /// </summary>
     public static readonly CVarDef<int> DirectionalEmoteMaxLength =

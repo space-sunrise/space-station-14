@@ -35,6 +35,7 @@ public sealed partial class DirectionalEmoteSystem : EntitySystem
 
     private static readonly Regex TagRegex = new(@"\[(/?)([^]]+)\]", RegexOptions.Compiled);
 
+    private bool _isEnabled;
     private int _maxEmoteLength;
     private float _maxEmoteDistance;
 
@@ -42,6 +43,7 @@ public sealed partial class DirectionalEmoteSystem : EntitySystem
     {
         base.Initialize();
 
+        _cfg.OnValueChanged(SunriseCCVars.DirectionalEmoteEnabled, value => _isEnabled = value, true);
         _cfg.OnValueChanged(SunriseCCVars.DirectionalEmoteMaxLength, value => _maxEmoteLength = value, true);
         _cfg.OnValueChanged(SunriseCCVars.DirectionalEmoteMaxDistance, value => _maxEmoteDistance = value, true);
 
@@ -50,6 +52,9 @@ public sealed partial class DirectionalEmoteSystem : EntitySystem
 
     private void HandleDirectionalEmoteAttemptEvent(DirectionalEmoteAttemptEvent args, EntitySessionEventArgs eventArgs)
     {
+        if (!_isEnabled)
+            return;
+
         if (eventArgs.SenderSession.AttachedEntity == null)
             return;
 
