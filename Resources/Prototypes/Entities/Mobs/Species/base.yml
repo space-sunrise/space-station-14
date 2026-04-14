@@ -250,6 +250,7 @@
   - type: CanJump
     isOnlyEmotion: false
   - type: CanFall
+  - type: DirectionalEmote
   # Sunrise-End
 
 - type: entity

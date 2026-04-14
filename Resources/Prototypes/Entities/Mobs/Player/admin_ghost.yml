@@ -118,6 +118,10 @@
   - type: BypassInteractionChecks
   - type: ExplosionResistance
     damageCoefficient: 0
+  # Sunrise-Start
+  - type: DirectionalEmote
+    canHideName: true
+  # Sunrise-End
 
 - type: entity
   abstract: true

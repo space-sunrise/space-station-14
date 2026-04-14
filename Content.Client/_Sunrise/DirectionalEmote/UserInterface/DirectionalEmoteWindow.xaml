@@ -1,0 +1,31 @@
+<ui:FancyWindow xmlns="https://spacestation14.io"
+                xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
+                VerticalExpand="True"
+                HorizontalExpand="True"
+                Title="{Loc directional-emote-title}"
+                MinSize="600 300">
+    <PanelContainer Margin="10" StyleClasses="PanelDark">
+        <PanelContainer Margin="5" StyleClasses="BackgroundPanel" HorizontalExpand="True" VerticalExpand="True">
+            <TextEdit Name="MessageInput"
+                Margin="0 10 0 40"
+                VerticalExpand="True"
+                HorizontalExpand="True"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"/>
+            <CheckBox Name="HideNameCheckBox" Margin="0 8"
+                Text="{Loc directional-emote-hide-name}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Visible="False" />
+            <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5">
+                <Button Name="LastEmoteButton"
+                        Text="{Loc 'directional-last-emote-button'}"
+                        HorizontalAlignment="Center"
+                        Margin="0 0 5 0"/>
+                <Button Name="AcceptButton"
+                        Text="{Loc 'directional-emote-button'}"
+                        HorizontalAlignment="Center"/>
+            </BoxContainer>
+        </PanelContainer>
+    </PanelContainer>
+</ui:FancyWindow>
