@@ -118,7 +118,7 @@ reagent-desc-puncturase = Шипучее химическое вещество, 
 reagent-name-bruizine = бруизин
 reagent-desc-bruizine = Изначально разрабатывавшееся как лекарство от кашля, это химическое вещество оказалось необычайно эффективным при лечении ушибов.
 
-reagent-name-holywater = святая вода
+reagent-name-holywater = святое вино
 reagent-desc-holywater = Чистейшая и непорочнейшая вода, прямиком из рук Бога, известна тем, что волшебным образом исцеляет раны.
 
 reagent-name-pyrazine = пиразин

@@ -1213,12 +1213,17 @@
   evaporationSpeed: 0.3
   physicalDesc: reagent-physical-desc-holy
   flavor: holy
-  color: "#91C3F7"
+  color: "#C9787C"
   metabolisms:
     Drink:
       metabolismRate: 0.2 # Sunrise-Edit Для нормального деконверта
       effects:
       # Sunrise-Start
+      - !type:SatiateThirst
+        factor: 4
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.06
       - !type:DeconvertCultist
         conditions:
         - !type:ReagentCondition
