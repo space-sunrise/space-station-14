@@ -208,6 +208,16 @@
   - type: InnateItem
     instantActions:
     - HandHeldMassScannerBorg
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 650
+    damage:
+      groups:
+        Brute: -0.0
+        Burn: -0.0
+        Toxin: -0.0
   # Sunrise-End
 
 - type: entity

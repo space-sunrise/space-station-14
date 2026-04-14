@@ -2,6 +2,7 @@ using Content.Shared.Actions;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Damage.Components; //Sunrise-Edit
 using Content.Shared.Devour.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Mobs;
@@ -104,12 +105,17 @@ public sealed class DevourSystem : EntitySystem
         if (args.Handled || args.Cancelled)
             return;
 
+        if (!TryComp(ent.Owner, out PassiveDamageComponent? regenComp))
+            return;
+
         var ichorInjection = new Solution(ent.Comp.Chemical, ent.Comp.HealRate);
         var ichorInjectionMinor = new Solution(ent.Comp.Chemical, ent.Comp.HealRate/5); //Sunrise-Edit
 
         // Grant ichor if the devoured thing meets the dragon's food preference
         if (args.Args.Target != null && _whitelistSystem.IsWhitelistPassOrNull(ent.Comp.FoodPreferenceWhitelist, (EntityUid)args.Args.Target))
         {
+            foreach (var (key, _) in regenComp.Damage.DamageDict)
+                regenComp.Damage.DamageDict[key] -= 0.05;
             _bloodstreamSystem.TryAddToBloodstream(ent.Owner, ichorInjection);
         }
         //Sunrise-Start
