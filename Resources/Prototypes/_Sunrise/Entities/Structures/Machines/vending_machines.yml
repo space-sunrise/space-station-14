@@ -202,6 +202,11 @@
     - state: normal-unshaded
       map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
       shader: unshaded
+  - type: PointLight
+    radius: 1.2
+    energy: 0.6
+    castShadows: false
+    color: "#e592e7"
   - type: Store
     name: vendor-salvage-ticket-machine
     categories:
@@ -227,6 +232,11 @@
     - state: normal-unshaded
       map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
       shader: unshaded
+  - type: PointLight
+    radius: 1.2
+    energy: 0.6
+    castShadows: false
+    color: "#9be792"
   - type: Store
     name: vendor-mining-ticket-machine
     categories:
