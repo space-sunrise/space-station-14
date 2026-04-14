@@ -80,7 +80,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
-        if (ent.Comp.Count > 2)
+        if (ent.Comp.Count != 2)
             return false;
 
         foreach (var handName in _hands.EnumerateHands(ent))
@@ -172,8 +172,10 @@ public sealed class SharedDualWieldSystem : EntitySystem
 
     private void ClearDualWieldAlerts(EntityUid uid, EntityUid? leftGun, EntityUid? rightGun)
     {
+        CanDualWieldComponent? leftDualWield = null;
+
         if (leftGun is { } leftGunUid &&
-            TryComp<CanDualWieldComponent>(leftGunUid, out var leftDualWield))
+            TryComp<CanDualWieldComponent>(leftGunUid, out leftDualWield))
         {
             _alerts.ClearAlert(uid, leftDualWield.DualWieldAlert);
         }
