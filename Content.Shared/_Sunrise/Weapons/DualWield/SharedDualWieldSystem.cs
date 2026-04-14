@@ -6,6 +6,7 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Sunrise.Weapons.DualWield;
@@ -160,28 +161,51 @@ public sealed class SharedDualWieldSystem : EntitySystem
 
     private void ShowDualWieldAlert(EntityUid uid, EntityUid leftGun, EntityUid rightGun)
     {
-        if (TryComp<CanDualWieldComponent>(leftGun, out var leftDualWield))
+        if (TryGetDualWieldAlert(leftGun, rightGun, out var alert))
+            _alerts.ShowAlert(uid, alert.Value, severity: 0);
+    }
+
+    private bool TryGetDualWieldAlert(EntityUid leftGun, EntityUid rightGun, out ProtoId<AlertPrototype>? alert)
+    {
+        alert = null;
+
+        var hasLeftAlert = TryComp<CanDualWieldComponent>(leftGun, out var leftDualWield);
+        var hasRightAlert = TryComp<CanDualWieldComponent>(rightGun, out var rightDualWield);
+
+        if (hasLeftAlert && hasRightAlert)
         {
-            _alerts.ShowAlert(uid, leftDualWield.DualWieldAlert, severity: 0);
-            return;
+            if (leftDualWield.DualWieldAlert != rightDualWield.DualWieldAlert)
+                return false;
+
+            alert = leftDualWield.DualWieldAlert;
+            return true;
         }
 
-        if (TryComp<CanDualWieldComponent>(rightGun, out var rightDualWield))
-            _alerts.ShowAlert(uid, rightDualWield.DualWieldAlert, severity: 0);
+        if (hasLeftAlert)
+        {
+            alert = leftDualWield.DualWieldAlert;
+            return true;
+        }
+
+        if (!hasRightAlert)
+            return false;
+
+        alert = rightDualWield.DualWieldAlert;
+        return true;
     }
 
     private void ClearDualWieldAlerts(EntityUid uid, EntityUid? leftGun, EntityUid? rightGun)
     {
         CanDualWieldComponent? leftDualWield = null;
 
-        if (leftGun is { } leftGunUid &&
-            TryComp<CanDualWieldComponent>(leftGunUid, out leftDualWield))
+        if (leftGun.HasValue &&
+            TryComp<CanDualWieldComponent>(leftGun.Value, out leftDualWield))
         {
             _alerts.ClearAlert(uid, leftDualWield.DualWieldAlert);
         }
 
-        if (rightGun is { } rightGunUid &&
-            TryComp<CanDualWieldComponent>(rightGunUid, out var rightDualWield) &&
+        if (rightGun.HasValue &&
+            TryComp<CanDualWieldComponent>(rightGun.Value, out var rightDualWield) &&
             leftDualWield?.DualWieldAlert != rightDualWield.DualWieldAlert)
         {
             _alerts.ClearAlert(uid, rightDualWield.DualWieldAlert);
