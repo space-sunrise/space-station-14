@@ -61,21 +61,6 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
     [DataField("stopOnLineOfSight")]
     public bool StopOnLineOfSight;
 
-    // Sunrise Start
-    /// <summary>
-    /// Velocity below which we count as successfully braked.
-    /// Don't care about velocity if null.
-    /// </summary>
-    [DataField]
-    public float? BrakeMaxVelocity = 0.03f;
-
-    /// <summary>
-    /// If either we or the target are offgrid, gets assigned to make us just move directly to target without pathfinding.
-    /// </summary>
-    [DataField]
-    public string DirectMoveTargetKey = "DirectMoveTarget";
-    // Sunrise End
-
     private const string MovementCancelToken = "MovementCancelToken";
 
     public override void Initialize(IEntitySystemManager sysManager)
@@ -100,12 +85,11 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
             !_entManager.TryGetComponent<PhysicsComponent>(owner, out var body))
             return (false, null);
 
-        // Sunrise edit Start
-        // check if we or target are offgrid or on different grids
+        // Sunrise edit start - check if we or target are offgrid or on different grids
         var doDirectMove = !_entManager.TryGetComponent<MapGridComponent>(xform.GridUid, out var ownerGrid) ||
                       !_entManager.TryGetComponent<MapGridComponent>(_transform.GetGrid(targetCoordinates), out var targetGrid) ||
                       ownerGrid != targetGrid;
-        // Sunrise edit End
+        // Sunrise edit end
 
         var range = blackboard.GetValueOrDefault<float>(RangeKey, _entManager);
 
@@ -126,7 +110,7 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
             });
         }
 
-        // Sunrise edit Start
+        // Sunrise edit start - if not offgrid, use normal pathfinding; else direct move
         if (!doDirectMove)
         {
             var path = await _pathfind.GetPath(
@@ -157,7 +141,7 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
                 {DirectMoveTargetKey, true}
             });
         }
-    // Sunrise edit End
+    // Sunrise edit end
     }
 
     // Given steering is complicated we'll hand it off to a dedicated system rather than this singleton operator.
@@ -180,17 +164,16 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
             comp.Range = range;
         }
 
-        // Sunrise edit Start
-        // see if we want to just move directly first
+        // Sunrise edit start - handle direct move vs pathfinding
         if (blackboard.TryGetValue<bool>(DirectMoveTargetKey, out var doDirectMove, _entManager) && doDirectMove)
         {
             comp.Coordinates = targetCoordinates;
             comp.DirectMove = true;
         }
         else if (blackboard.TryGetValue<PathResultEvent>(PathfindKey, out var result, _entManager))
-        // Sunrise edit End
+        // Sunrise edit end
         {
-            comp.DirectMove = false; // Sunrise: i'm not sure whether this being needed is a good sign - if you know a better solution, tell
+            comp.DirectMove = false; // Sunrise-Edit
 
             if (blackboard.TryGetValue<EntityCoordinates>(NPCBlackboard.OwnerCoordinates, out var coordinates, _entManager))
             {
@@ -200,7 +183,7 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
 
             comp.CurrentPath = new Queue<PathPoly>(result.Path);
         }
-        comp.InRangeMaxSpeed = BrakeMaxVelocity; // Sunrise
+        comp.InRangeMaxSpeed = BrakeMaxVelocity; // Sunrise-Edit
     }
 
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
@@ -236,7 +219,7 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
 
         // OwnerCoordinates is only used in planning so dump it.
         blackboard.Remove<PathResultEvent>(PathfindKey);
-        blackboard.Remove<bool>(DirectMoveTargetKey); // Sunrise: Also clear DirectMove
+        blackboard.Remove<bool>(DirectMoveTargetKey); // Sunrise-Edit
 
         if (RemoveKeyOnFinish)
         {

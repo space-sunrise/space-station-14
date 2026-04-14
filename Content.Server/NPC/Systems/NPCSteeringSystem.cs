@@ -31,9 +31,6 @@ using Robust.Shared.Utility;
 using Content.Shared.Prying.Systems;
 using Microsoft.Extensions.ObjectPool;
 using Prometheus;
-// Sunrise Start
-using Content.Server.Gravity;
-// Sunrise End
 
 namespace Content.Server.NPC.Systems;
 
@@ -70,9 +67,6 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedCombatModeSystem _combat = default!;
-    // Sunrise Start
-    [Dependency] private readonly GravitySystem _gravity = default!;
-    // Sunrise End
 
     private EntityQuery<FixturesComponent> _fixturesQuery;
     private EntityQuery<MovementSpeedModifierComponent> _modifierQuery;
@@ -348,17 +342,14 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
 
         // Use rotation relative to parent to rotate our context vectors by.
         var offsetRot = -_mover.GetParentGridAngle(mover);
-        // Sunrise Start
+        // Sunrise edit start - need body/acceleration/friction for braking logic
         _modifierQuery.TryGetComponent(uid, out var modifier);
         var body = _physicsQuery.GetComponent(uid);
         var weightless = _gravity.IsWeightless(uid);
-        // Sunrise End
         var moveSpeed = GetSprintSpeed(uid, modifier);
-        // var body = _physicsQuery.GetComponent(uid); // Sunrise Edit: Removed
-        // Sunrise Start
         var acceleration = GetAcceleration((uid, modifier), weightless);
         var friction = GetFriction((uid, modifier), weightless);
-        // Sunrise End
+        // Sunrise edit end
 
         var dangerPoints = steering.DangerPoints;
         dangerPoints.Clear();
@@ -372,9 +363,9 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
         RaiseLocalEvent(uid, ref ev);
         // If seek has arrived at the target node for example then immediately re-steer.
         var forceSteer = true;
-        var moveMultiplier = 1f; // Sunrise: Multiplier to acceleration we should actually move with
+        var moveMultiplier = 1f; // Sunrise-Edit
 
-        if (steering.CanSeek && !TrySeek(uid, mover, steering, body, xform, offsetRot, moveSpeed, acceleration, friction, interest, frameTime, ref forceSteer, ref moveMultiplier)) // Sunrise Edit: Added ``acceleration`` ``friction`` ``ref moveMultiplier``
+        if (steering.CanSeek && !TrySeek(uid, mover, steering, body, xform, offsetRot, moveSpeed, acceleration, friction, interest, frameTime, ref forceSteer, ref moveMultiplier)) // Sunrise-Edit
         {
             SetDirection(uid, mover, steering, Vector2.Zero);
             return;
@@ -421,7 +412,7 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
 
         if (desiredDirection != -1)
         {
-            resultDirection = new Angle(desiredDirection * InterestRadians).ToVec() * moveMultiplier; // Sunrise Edit: Added ``* moveMultiplier``
+            resultDirection = new Angle(desiredDirection * InterestRadians).ToVec() * moveMultiplier; // Sunrise-Edit
         }
 
         steering.LastSteerDirection = resultDirection;
@@ -507,22 +498,4 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
 
         return modifier.CurrentSprintSpeed;
     }
-
-    // Sunrise Start
-    private float GetAcceleration(Entity<MovementSpeedModifierComponent?> ent, bool weightless)
-    {
-        if (!Resolve(ent, ref ent.Comp, false))
-            return weightless ? MovementSpeedModifierComponent.DefaultWeightlessAcceleration : MovementSpeedModifierComponent.DefaultAcceleration;
-
-        return weightless ? ent.Comp.WeightlessAcceleration : ent.Comp.Acceleration;
-    }
-
-    private float GetFriction(Entity<MovementSpeedModifierComponent?> ent, bool weightless)
-    {
-        if (!Resolve(ent, ref ent.Comp, false))
-            return weightless ? MovementSpeedModifierComponent.DefaultWeightlessFriction : MovementSpeedModifierComponent.DefaultFriction;
-
-        return weightless ? ent.Comp.WeightlessFriction : ent.Comp.Friction;
-    }
-    // Sunrise End
 }
