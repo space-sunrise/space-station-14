@@ -10,12 +10,6 @@ namespace Content.Shared._Sunrise.Weapons.DualWield;
 public sealed partial class DualWieldComponent : Component
 {
     /// <summary>
-    ///     Is dual-wielding currently active.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool Active = false;
-
-    /// <summary>
     ///     The entity UID of the weapon in the left hand.
     /// </summary>
     [AutoNetworkedField]
