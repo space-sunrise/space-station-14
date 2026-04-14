@@ -17,6 +17,8 @@ namespace Content.Shared._Sunrise.Weapons.DualWield;
 /// </summary>
 public sealed class SharedDualWieldSystem : EntitySystem
 {
+    private const int DualWieldHandsRequired = 2;
+
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -81,7 +83,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
-        if (ent.Comp.Count != 2)
+        if (ent.Comp.Count != DualWieldHandsRequired)
             return false;
 
         foreach (var handName in _hands.EnumerateHands(ent))
@@ -169,8 +171,8 @@ public sealed class SharedDualWieldSystem : EntitySystem
     {
         alert = null;
 
-        TryComp<CanDualWieldComponent>(leftGun, out CanDualWieldComponent? leftDualWield);
-        TryComp<CanDualWieldComponent>(rightGun, out CanDualWieldComponent? rightDualWield);
+        TryComp<CanDualWieldComponent>(leftGun, out var leftDualWield);
+        TryComp<CanDualWieldComponent>(rightGun, out var rightDualWield);
 
         if (leftDualWield != null && rightDualWield != null)
         {
