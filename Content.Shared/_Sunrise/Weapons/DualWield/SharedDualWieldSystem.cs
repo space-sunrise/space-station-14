@@ -80,7 +80,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         leftGun = null;
         rightGun = null;
 
-        if (!Resolve(ent, ref ent.Comp, false))
+        if (!Resolve(ent, ref ent.Comp))
             return false;
 
         if (ent.Comp.Count != DualWieldHandsRequired)
@@ -198,16 +198,14 @@ public sealed class SharedDualWieldSystem : EntitySystem
 
     private void ClearDualWieldAlerts(EntityUid uid, EntityUid? leftGun, EntityUid? rightGun)
     {
-        CanDualWieldComponent? leftDualWield;
+        var leftDualWield = leftGun.HasValue &&
+                            TryComp<CanDualWieldComponent>(leftGun.Value, out var leftDualWieldComp)
+            ? leftDualWieldComp
+            : null;
 
-        if (leftGun.HasValue &&
-            TryComp<CanDualWieldComponent>(leftGun.Value, out leftDualWield))
+        if (leftDualWield != null)
         {
             _alerts.ClearAlert(uid, leftDualWield.DualWieldAlert);
-        }
-        else
-        {
-            leftDualWield = null;
         }
 
         if (rightGun.HasValue &&
