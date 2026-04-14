@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Shared._Sunrise.DirectionalEmote;
@@ -19,6 +21,20 @@ public sealed partial class DirectionalEmoteSystem : EntitySystem
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
+    private static readonly HashSet<string> AllowedTags = new()
+    {
+        "bold",
+        "italic",
+        "bolditalic",
+        "bullet",
+        "color",
+        "heading",
+        "mono",
+        "head"
+    };
+
+    private static readonly Regex TagRegex = new(@"\[(/?)([^]]+)\]", RegexOptions.Compiled);
+
     private int _maxEmoteLength;
     private float _maxEmoteDistance;
 
@@ -39,13 +55,14 @@ public sealed partial class DirectionalEmoteSystem : EntitySystem
 
         var source = eventArgs.SenderSession.AttachedEntity.Value;
         var target = GetEntity(args.Target);
+        var filteredText = FilterTags(args.Text);
 
-        if (!IsValid(args, source, target))
+        if (!IsValid(filteredText, source, target, args.HideName))
             return;
 
         var wrappedMessage = args.HideName
-            ? args.Text
-            : Loc.GetString("directional-emote-wrap-message", ("source", MetaData(source).EntityName), ("message", args.Text));
+            ? filteredText
+            : Loc.GetString("directional-emote-wrap-message", ("source", MetaData(source).EntityName), ("message", filteredText));
 
         if (!TryComp<ActorComponent>(source, out var sourceActor) || !TryComp<ActorComponent>(target, out var targetActor))
             return;
@@ -53,15 +70,15 @@ public sealed partial class DirectionalEmoteSystem : EntitySystem
         if (!TryComp<DirectionalEmoteComponent>(source, out var sourceEmote) || !TryComp<DirectionalEmoteComponent>(target, out var targetEmote))
             return;
 
-        _chatManager.ChatMessageToMany(ChatChannel.Emotes, args.Text, wrappedMessage, source, false, true, [targetActor.PlayerSession.Channel, sourceActor.PlayerSession.Channel]);
-        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(source):source} send directional emote to {ToPrettyString(target):target}: {args.Text}");
+        _chatManager.ChatMessageToMany(ChatChannel.Emotes, filteredText, wrappedMessage, source, false, true, [targetActor.PlayerSession.Channel, sourceActor.PlayerSession.Channel]);
+        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(source):source} send directional emote to {ToPrettyString(target):target}: {filteredText}");
 
         sourceEmote.LastSendAt = _timing.CurTime;
-        sourceEmote.LastEmote = args.Text;
+        sourceEmote.LastEmote = filteredText;
         Dirty(source, sourceEmote);
     }
 
-    private bool IsValid(DirectionalEmoteAttemptEvent args, EntityUid source, EntityUid target)
+    private bool IsValid(string text, EntityUid source, EntityUid target, bool hideName)
     {
         if (!TryComp<DirectionalEmoteComponent>(source, out var sourceEmote) ||
             !TryComp<DirectionalEmoteComponent>(target, out var targetEmote))
@@ -70,7 +87,7 @@ public sealed partial class DirectionalEmoteSystem : EntitySystem
         if (!sourceEmote.CanSendEmotes || !targetEmote.CanReceiveEmotes)
             return false;
 
-        if (args.HideName && !sourceEmote.CanHideName)
+        if (hideName && !sourceEmote.CanHideName)
             return false;
 
         if (sourceEmote.LastSendAt + sourceEmote.Cooldown > _timing.CurTime)
@@ -79,9 +96,25 @@ public sealed partial class DirectionalEmoteSystem : EntitySystem
         if (!_examineSystem.InRangeUnOccluded(source, target, _maxEmoteDistance))
             return false;
 
-        if (args.Text.Length > _maxEmoteLength || string.IsNullOrWhiteSpace(args.Text))
+        if (text.Length > _maxEmoteLength || string.IsNullOrWhiteSpace(text))
             return false;
 
         return true;
+    }
+
+    private static string FilterTags(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+        {
+            return text;
+        }
+
+        return TagRegex.Replace(text, match =>
+        {
+            var rawTag = match.Groups[2].Value;
+            var tagName = rawTag.Split(new[] { ' ', '=' }, 2)[0].ToLowerInvariant();
+
+            return AllowedTags.Contains(tagName) ? match.Value : string.Empty;
+        });
     }
 }

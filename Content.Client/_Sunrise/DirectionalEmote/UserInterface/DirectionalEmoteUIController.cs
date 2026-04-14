@@ -42,8 +42,7 @@ public sealed class DirectionalEmoteUIController : UIController
 
         _emoteWindow.AcceptPressed += () =>
         {
-            var filteredText = _emoteWindow.GetFilteredText();
-            _directionalEmoteSystem.TrySendEmote(_emoteWindow.Source, _emoteWindow.Target, filteredText, _emoteWindow.HideName);
+            _directionalEmoteSystem.TrySendEmote(_emoteWindow.Source, _emoteWindow.Target, _emoteWindow.Text, _emoteWindow.HideName);
 
             _emoteWindow.Close();
             _emoteWindow.SetText(string.Empty);
