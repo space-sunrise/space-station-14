@@ -18,11 +18,12 @@ public sealed class DeviceLinkingVisualizationSystem : EntitySystem
         Color.Red,
         Color.Orange,
         Color.Yellow,
-        Color.Green,
+        Color.YellowGreen,
+        Color.LimeGreen,
         Color.LightBlue,
         Color.Blue,
-        Color.Purple,
-        Color.Pink
+        Color.HotPink,
+        Color.BlueViolet,
     ];
 
     public override void Initialize()

@@ -83,7 +83,7 @@ public sealed class DeviceLinkingVisualizationSystem : EntitySystem
 
         List<DebugEntityConnectionData> rays = [];
 
-        var query = EntityQueryEnumerator<DeviceLinkSourceComponent>();
+        var query = AllEntityQuery<DeviceLinkSourceComponent>();
         while (query.MoveNext(out var uid, out var source))
         {
             if (source.LinkedPorts.Count == 0)
