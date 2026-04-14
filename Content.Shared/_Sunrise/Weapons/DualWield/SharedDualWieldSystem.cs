@@ -164,12 +164,12 @@ public sealed class SharedDualWieldSystem : EntitySystem
     private void ShowDualWieldAlert(EntityUid uid, EntityUid leftGun, EntityUid rightGun)
     {
         if (TryGetDualWieldAlert(leftGun, rightGun, out var alert))
-            _alerts.ShowAlert(uid, alert.Value, severity: 0);
+            _alerts.ShowAlert(uid, alert, severity: 0);
     }
 
-    private bool TryGetDualWieldAlert(EntityUid leftGun, EntityUid rightGun, out ProtoId<AlertPrototype>? alert)
+    private bool TryGetDualWieldAlert(EntityUid leftGun, EntityUid rightGun, out ProtoId<AlertPrototype> alert)
     {
-        alert = null;
+        alert = default;
 
         TryComp<CanDualWieldComponent>(leftGun, out var leftDualWield);
         TryComp<CanDualWieldComponent>(rightGun, out var rightDualWield);
