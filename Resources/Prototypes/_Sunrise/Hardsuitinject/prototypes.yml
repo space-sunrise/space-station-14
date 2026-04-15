@@ -542,7 +542,7 @@
 - type: entity
   parent: Ampula
   name: Ampula
-  id: AmpulaHolywater
+  id: AmpulaHolyWater
   suffix: Holywater (20u)
   components:
   - type: SolutionContainerManager
