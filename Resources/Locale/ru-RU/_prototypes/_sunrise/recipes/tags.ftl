@@ -16,3 +16,4 @@ construction-graph-tag-white-lily-crown = { ent-WhiteLilyCrown }
 construction-graph-tag-white-lily-crown-desc = { ent-WhiteLilyCrown.desc }
 construction-graph-tag-white-lily = { ent-FoodWhiteLily }
 construction-graph-tag-white-lily-desc = { ent-FoodWhiteLily.desc }
+construction-graph-tag-welding-mask = { ent-ClothingHeadHatWelding.desc }
