@@ -14,7 +14,7 @@ public sealed partial class LockableEquipmentComponent : Component
     /// Whether the device is currently locked.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public bool Locked { get; set; } = false;
+    public bool Locked { get; set; };
 
     /// <summary>
     /// Whether the device is currently broken and must be repaired.
