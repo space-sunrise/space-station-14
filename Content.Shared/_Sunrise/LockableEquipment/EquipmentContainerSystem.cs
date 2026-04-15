@@ -8,7 +8,6 @@ using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
-using Robust.Shared.Log;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Sunrise.LockableEquipment;
@@ -43,8 +42,6 @@ public sealed class EquipmentContainerSystem : EntitySystem
     {
         if (args.Handled)
             return;
-
-        Log.Info($"lockable-shared: interact using target={ToPrettyString(ent.Owner)} user={ToPrettyString(args.User)} used={ToPrettyString(args.Used)}");
 
         BaseContainer? container = null;
         EntityUid? installedDevice = null;
@@ -92,8 +89,6 @@ public sealed class EquipmentContainerSystem : EntitySystem
         if (user == EntityUid.Invalid || Deleted(user))
             return;
 
-        Log.Info($"lockable-shared: try remove target={ToPrettyString(target)} user={ToPrettyString(user)}");
-
         if (!TryComp(target, out EquipmentContainerComponent? comp))
             return;
 
@@ -128,8 +123,6 @@ public sealed class EquipmentContainerSystem : EntitySystem
     {
         if (user == EntityUid.Invalid || Deleted(user))
             return false;
-
-        Log.Info($"lockable-shared: try attach target={ToPrettyString(ent.Owner)} user={ToPrettyString(user)} device={ToPrettyString(deviceUid)}");
 
         container ??= _container.EnsureContainer<ContainerSlot>(ent.Owner, ent.Comp.ContainerId);
 
@@ -177,8 +170,6 @@ public sealed class EquipmentContainerSystem : EntitySystem
         if (args.Cancelled || args.Handled)
             return;
 
-        Log.Info($"lockable-shared: equipment doafter action={args.Action} target={ToPrettyString(ent.Owner)} user={ToPrettyString(args.User)} cancelled={args.Cancelled}");
-
         var container = _container.EnsureContainer<ContainerSlot>(ent.Owner, ent.Comp.ContainerId);
 
         switch (args.Action)
@@ -200,7 +191,6 @@ public sealed class EquipmentContainerSystem : EntitySystem
                 if (!_container.Insert(used, container))
                     return;
 
-                Log.Info($"lockable-shared: attach completed target={ToPrettyString(ent.Owner)} device={ToPrettyString(used)}");
                 PopupEquipmentEquipped(used, args.User);
                 break;
             }
@@ -227,7 +217,6 @@ public sealed class EquipmentContainerSystem : EntitySystem
                 if (!_hands.TryPickup(args.User, device.Value, checkActionBlocker: false))
                     _transform.DropNextTo(device.Value, args.User);
 
-                Log.Info($"lockable-shared: detach completed target={ToPrettyString(ent.Owner)} device={ToPrettyString(device.Value)}");
                 PopupEquipmentRemoved(device.Value, args.User);
                 break;
             }
@@ -342,7 +331,6 @@ public sealed class EquipmentContainerSystem : EntitySystem
         if (args.User == EntityUid.Invalid || Deleted(args.User))
             return;
 
-        Log.Info($"lockable-verbs: UseKey verb on {ToPrettyString(ent.Owner)} by {ToPrettyString(args.User)}.");
         TryUseHeldKey(ent, args.User);
     }
 
@@ -351,7 +339,6 @@ public sealed class EquipmentContainerSystem : EntitySystem
         if (args.User == EntityUid.Invalid || Deleted(args.User))
             return;
 
-        Log.Info($"lockable-verbs: Break verb on {ToPrettyString(ent.Owner)} by {ToPrettyString(args.User)}.");
         TryBreakWithHeldTool(ent, args.User);
     }
 
@@ -360,7 +347,6 @@ public sealed class EquipmentContainerSystem : EntitySystem
         if (args.User == EntityUid.Invalid || Deleted(args.User))
             return;
 
-        Log.Info($"lockable-verbs: Remove verb on {ToPrettyString(ent.Owner)} by {ToPrettyString(args.User)}.");
         TryRemove(ent.Owner, args.User);
     }
 

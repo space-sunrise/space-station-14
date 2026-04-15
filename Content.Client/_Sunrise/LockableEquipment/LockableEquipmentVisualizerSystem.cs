@@ -1,5 +1,6 @@
 using Content.Shared._Sunrise.LockableEquipment;
 using Robust.Client.GameObjects;
+using System.Linq;
 
 namespace Content.Client._Sunrise.LockableEquipment;
 
@@ -15,6 +16,9 @@ public sealed class LockableEquipmentVisualizerSystem : VisualizerSystem<Lockabl
         {
             return;
         }
+
+        if (!args.Sprite.AllLayers.Any())
+            return;
 
         SpriteSystem.LayerSetRsiState((uid, args.Sprite), 0, iconState);
     }

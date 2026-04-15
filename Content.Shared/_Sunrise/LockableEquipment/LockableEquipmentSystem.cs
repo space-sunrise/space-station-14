@@ -6,13 +6,14 @@ using Content.Shared.Stacks;
 using Content.Shared.Tag;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Containers;
-using Robust.Shared.Log;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Sunrise.LockableEquipment;
 
 public sealed class LockableEquipmentSystem : EntitySystem
 {
+    private const int UserResolveDepthLimit = 10;
+
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -65,8 +66,6 @@ public sealed class LockableEquipmentSystem : EntitySystem
     /// </summary>
     public bool TryUseKey(EntityUid device, EntityUid keyUid, EntityUid user)
     {
-        Log.Info($"lockable-shared: try use key device={ToPrettyString(device)} key={ToPrettyString(keyUid)} user={ToPrettyString(user)}");
-
         if (!TryComp<KeyComponent>(keyUid, out var key))
             return false;
 
@@ -101,7 +100,6 @@ public sealed class LockableEquipmentSystem : EntitySystem
 
             Dirty(keyUid, key);
             Dirty(device, lockComp);
-            Log.Info($"lockable-shared: paired key device={ToPrettyString(device)} key={ToPrettyString(keyUid)} id={id}");
             return true;
         }
 
@@ -125,7 +123,6 @@ public sealed class LockableEquipmentSystem : EntitySystem
 
         UpdateIconState((device, lockComp));
         Dirty(device, lockComp);
-        Log.Info($"lockable-shared: toggled lock device={ToPrettyString(device)} locked={lockComp.Locked}");
         return true;
     }
 
@@ -144,8 +141,6 @@ public sealed class LockableEquipmentSystem : EntitySystem
     /// </summary>
     public bool TryStartBreakDoAfter(EntityUid device, EntityUid tool, EntityUid user, EntityUid? interactionTarget = null)
     {
-        Log.Info($"lockable-shared: try start break doafter device={ToPrettyString(device)} tool={ToPrettyString(tool)} user={ToPrettyString(user)} target={ToPrettyString(interactionTarget ?? device)}");
-
         if (user == EntityUid.Invalid || Deleted(user))
             return false;
 
@@ -204,8 +199,6 @@ public sealed class LockableEquipmentSystem : EntitySystem
     /// </summary>
     public bool TryBreak(EntityUid device, EntityUid tool, EntityUid user)
     {
-        Log.Info($"lockable-shared: try break device={ToPrettyString(device)} tool={ToPrettyString(tool)} user={ToPrettyString(user)}");
-
         if (!TryComp<LockableEquipmentComponent>(device, out var comp))
             return false;
 
@@ -257,19 +250,14 @@ public sealed class LockableEquipmentSystem : EntitySystem
                     user);
 
                 if (_timing.InPrediction)
-                {
-                    Log.Info($"lockable-shared: skipping predicted destroy device={ToPrettyString(device)}");
                     return true;
-                }
 
                 QueueDel(device);
-                Log.Info($"lockable-shared: destroyed device={ToPrettyString(device)}");
                 return true;
         }
 
         UpdateIconState((device, comp));
         Dirty(device, comp);
-        Log.Info($"lockable-shared: break resolved device={ToPrettyString(device)} locked={comp.Locked} broken={comp.Broken}");
         return true;
     }
 
@@ -279,8 +267,6 @@ public sealed class LockableEquipmentSystem : EntitySystem
     /// </summary>
     public bool TryRepair(EntityUid device, EntityUid material, EntityUid user)
     {
-        Log.Info($"lockable-shared: try repair device={ToPrettyString(device)} material={ToPrettyString(material)} user={ToPrettyString(user)}");
-
         if (!TryComp<LockableEquipmentComponent>(device, out var comp))
             return false;
 
@@ -306,7 +292,6 @@ public sealed class LockableEquipmentSystem : EntitySystem
 
         UpdateIconState((device, comp));
         Dirty(device, comp);
-        Log.Info($"lockable-shared: repaired device={ToPrettyString(device)}");
         return true;
     }
 
@@ -344,8 +329,11 @@ public sealed class LockableEquipmentSystem : EntitySystem
             return false;
 
         var current = deviceXform.ParentUid;
-        while (current != EntityUid.Invalid)
+        var depth = 0;
+
+        while (current != EntityUid.Invalid && depth < UserResolveDepthLimit)
         {
+            depth++;
             if (current == user)
                 return true;
 

@@ -4,7 +4,6 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
-using Robust.Shared.Log;
 
 namespace Content.Shared._Sunrise.LockableEquipment;
 
@@ -30,22 +29,15 @@ public sealed class EquipmentContainerVerbSystem : EntitySystem
 
         var device = GetEquipment(ent.Owner, ent.Comp);
         if (device == null)
-        {
-            Log.Info($"lockable-verbs: no installed device for {ToPrettyString(ent.Owner)}.");
             return;
-        }
+
 
         if (!TryComp(device.Value, out LockableEquipmentComponent? comp))
-        {
-            Log.Info($"lockable-verbs: missing lockable component on {ToPrettyString(device.Value)}.");
             return;
-        }
+
 
         if (!CanAccess(ent.Owner, comp.Layer, comp))
-        {
-            Log.Info($"lockable-verbs: access blocked for {ToPrettyString(ent.Owner)} layer={comp.Layer}.");
             return;
-        }
 
         var name = MetaData(device.Value).EntityName;
         TryComp(args.User, out HandsComponent? hands);
@@ -100,8 +92,6 @@ public sealed class EquipmentContainerVerbSystem : EntitySystem
                 ExecutionEventArgs = new EquipmentContainerRemoveVerbEvent(args.User)
             });
         }
-
-        Log.Info($"lockable-verbs: built verbs for {ToPrettyString(ent.Owner)} device={ToPrettyString(device.Value)} user={ToPrettyString(args.User)}.");
     }
 
     private EntityUid? GetEquipment(EntityUid uid, EquipmentContainerComponent comp)
