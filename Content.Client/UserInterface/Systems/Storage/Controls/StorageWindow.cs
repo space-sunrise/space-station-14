@@ -508,7 +508,7 @@ public sealed class StorageWindow : BaseWindow
         // Check if this item is set as priority item for current storage
         if (StorageEntity != null &&
             _playerManager.LocalEntity is { } localPlayer &&
-            _entity.TryGetComponent<Content.Shared._Sunrise.Inventory.Components.PersonalStoragePriorityComponent>(localPlayer, out var priorityComp) &&
+            _entity.TryGetComponent<PersonalStoragePriorityComponent>(localPlayer, out var priorityComp) &&
             priorityComp.Priorities.TryGetValue(StorageEntity.Value, out var priorityItem) &&
             priorityItem == uid)
         {
