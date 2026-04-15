@@ -1,4 +1,3 @@
-using Content.Shared._Sunrise.Weapons.DualWield;
 using Content.Shared.Weapons.Ranged.Components;
 
 #pragma warning disable IDE0130
