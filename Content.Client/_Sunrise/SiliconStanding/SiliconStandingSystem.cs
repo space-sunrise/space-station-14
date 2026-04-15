@@ -7,25 +7,19 @@ using Content.Shared.Silicons.Borgs.Components;
 using Robust.Client.Player;
 using Robust.Client.Input;
 using Robust.Shared.GameStates;
-using Robust.Shared.Map;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
-using Robust.Shared.Player;
-using Robust.Shared.Network;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 
 namespace Content.Client._Sunrise.SiliconStanding;
 
 public sealed class SiliconStandingSystem : EntitySystem
 {
-    private const float TransitionMovementThreshold = 0.3f;
-
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SiliconRestingVisualizerSystem _visualizer = default!;
-
-    private readonly Dictionary<EntityUid, PredictedTransition> _predictedTransitions = new();
 
     public override void Initialize()
     {
@@ -35,6 +29,7 @@ public sealed class SiliconStandingSystem : EntitySystem
         SubscribeLocalEvent<SiliconStandingTransitionComponent, ComponentStartup>(OnTransitionState);
         SubscribeLocalEvent<SiliconStandingTransitionComponent, AfterAutoHandleStateEvent>(OnTransitionStateHandled);
         SubscribeLocalEvent<SiliconStandingTransitionComponent, ComponentShutdown>(OnTransitionShutdown);
+        SubscribeLocalEvent<PhysicsUpdateBeforeSolveEvent>(OnPhysicsBeforeSolve, before: [typeof(Content.Shared.Movement.Systems.SharedMoverController)]);
 
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.ToggleStanding,
@@ -75,65 +70,10 @@ public sealed class SiliconStandingSystem : EntitySystem
 
     public bool GetEffectiveResting(EntityUid uid)
     {
-        if (_predictedTransitions.TryGetValue(uid, out var transition) && transition.Completed)
+        if (TryComp<SiliconStandingTransitionComponent>(uid, out var transition) && transition.Completed)
             return transition.TargetResting;
 
         return HasComp<SiliconRestingComponent>(uid);
-    }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        if (_predictedTransitions.Count == 0)
-            return;
-
-        var completed = new List<EntityUid>();
-        var cancelled = new List<EntityUid>();
-
-        foreach (var (uid, transition) in _predictedTransitions)
-        {
-            if (!Exists(uid))
-            {
-                cancelled.Add(uid);
-                continue;
-            }
-
-            if (transition.Completed &&
-                !HasComp<SiliconStandingTransitionComponent>(uid) &&
-                HasComp<SiliconRestingComponent>(uid) == transition.TargetResting)
-            {
-                cancelled.Add(uid);
-                continue;
-            }
-
-            if (!transition.Completed &&
-                transition.TargetResting &&
-                !_timing.ApplyingState &&
-                Transform(uid).Coordinates.TryDistance(EntityManager, transition.StartCoordinates, out var distance) &&
-                distance > TransitionMovementThreshold)
-            {
-                cancelled.Add(uid);
-                continue;
-            }
-
-            if (!transition.Completed && _timing.CurTime >= transition.EndTime)
-                completed.Add(uid);
-        }
-
-        foreach (var uid in cancelled)
-        {
-            _predictedTransitions.Remove(uid);
-            RefreshPredictedState(uid);
-        }
-
-        foreach (var uid in completed)
-        {
-            var transition = _predictedTransitions[uid];
-            transition.Completed = true;
-            _predictedTransitions[uid] = transition;
-            RefreshPredictedState(uid);
-        }
     }
 
     public override void Shutdown()
@@ -151,30 +91,18 @@ public sealed class SiliconStandingSystem : EntitySystem
 
     private void OnTransitionState(Entity<SiliconStandingTransitionComponent> ent, ref ComponentStartup args)
     {
-        ConfirmPredictedTransition(ent);
+        RefreshPredictedState(ent.Owner);
     }
 
     private void OnTransitionStateHandled(Entity<SiliconStandingTransitionComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        ConfirmPredictedTransition(ent);
+        RefreshPredictedState(ent.Owner);
     }
 
     private void OnTransitionShutdown(Entity<SiliconStandingTransitionComponent> ent, ref ComponentShutdown args)
     {
-        if (!_predictedTransitions.TryGetValue(ent.Owner, out var predicted))
-        {
-            if (!_timing.ApplyingState)
-                RefreshPredictedState(ent.Owner);
-            return;
-        }
-
-        if (!predicted.Completed)
-        {
-            _predictedTransitions.Remove(ent.Owner);
-
-            if (!_timing.ApplyingState)
-                RefreshPredictedState(ent.Owner);
-        }
+        if (!_timing.ApplyingState)
+            RefreshPredictedState(ent.Owner);
     }
 
     private void StartPredictedTransition(EntityUid uid)
@@ -182,36 +110,34 @@ public sealed class SiliconStandingSystem : EntitySystem
         if (!TryComp<SiliconStandingComponent>(uid, out var standing))
             return;
 
-        if (_predictedTransitions.ContainsKey(uid))
+        if (TryComp<SiliconStandingTransitionComponent>(uid, out _))
             return;
 
         var resting = HasComp<SiliconRestingComponent>(uid);
         var targetResting = !resting;
         var delay = TimeSpan.FromSeconds(targetResting ? standing.LieDownDelay : standing.StandUpDelay);
-
-        _predictedTransitions[uid] = new PredictedTransition(
-            targetResting,
-            _timing.CurTime + delay,
-            Transform(uid).Coordinates,
-            false);
+        var transition = EnsureComp<SiliconStandingTransitionComponent>(uid);
+        transition.TargetResting = targetResting;
+        transition.EndTime = _timing.CurTime + delay;
+        transition.Completed = false;
+        Dirty(uid, transition);
+        RefreshPredictedState(uid);
     }
 
-    private void ConfirmPredictedTransition(Entity<SiliconStandingTransitionComponent> ent)
+    private void OnPhysicsBeforeSolve(ref PhysicsUpdateBeforeSolveEvent args)
     {
-        if (_player.LocalEntity != ent.Owner)
+        if (_player.LocalEntity is not { Valid: true } uid)
             return;
 
-        if (_predictedTransitions.TryGetValue(ent.Owner, out var predicted))
-        {
-            _predictedTransitions[ent.Owner] = predicted;
+        if (!TryComp<SiliconStandingTransitionComponent>(uid, out var transition))
             return;
-        }
 
-        _predictedTransitions[ent.Owner] = new PredictedTransition(
-            ent.Comp.TargetResting,
-            ent.Comp.EndTime,
-            Transform(ent.Owner).Coordinates,
-            false);
+        if (transition.Completed || _timing.CurTime < transition.EndTime)
+            return;
+
+        transition.Completed = true;
+        Dirty(uid, transition);
+        RefreshPredictedState(uid);
     }
 
     private void RefreshPredictedState(EntityUid uid)
@@ -219,10 +145,4 @@ public sealed class SiliconStandingSystem : EntitySystem
         _actionBlocker.UpdateCanMove(uid);
         _visualizer.Refresh(uid);
     }
-
-    private record struct PredictedTransition(
-        bool TargetResting,
-        TimeSpan EndTime,
-        EntityCoordinates StartCoordinates,
-        bool Completed);
 }

@@ -12,4 +12,7 @@ public sealed partial class SiliconStandingTransitionComponent : Component
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField]
     public TimeSpan EndTime;
+
+    [DataField, AutoNetworkedField]
+    public bool Completed;
 }

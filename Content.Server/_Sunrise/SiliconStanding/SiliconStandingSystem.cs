@@ -98,12 +98,16 @@ public sealed class SiliconStandingSystem : EntitySystem
 
     private void OnDoAfter(Entity<BorgChassisComponent> ent, ref SiliconRestingDoAfterEvent ev)
     {
+        var targetResting = TryComp<SiliconStandingTransitionComponent>(ent, out var transition)
+            ? transition.TargetResting
+            : !IsResting(ent);
+
         RemComp<SiliconStandingTransitionComponent>(ent);
 
         if (ev.Cancelled)
             return;
 
-        SetResting(ent, !IsResting(ent));
+        SetResting(ent, targetResting);
 
         if (TryComp<FootstepModifierComponent>(ent, out var footsteps))
             _audio.PlayPvs(footsteps.FootstepSoundCollection, ent);
@@ -114,6 +118,7 @@ public sealed class SiliconStandingSystem : EntitySystem
         var transition = EnsureComp<SiliconStandingTransitionComponent>(uid);
         transition.TargetResting = targetResting;
         transition.EndTime = _timing.CurTime + duration;
+        transition.Completed = false;
         Dirty(uid, transition);
     }
 }
