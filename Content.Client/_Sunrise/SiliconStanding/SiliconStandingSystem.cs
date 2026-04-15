@@ -32,8 +32,6 @@ public sealed class SiliconStandingSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<BorgChassisComponent, UpdateCanMoveEvent>(OnCanMove);
-        SubscribeLocalEvent<SiliconRestingComponent, ComponentStartup>(OnRestingStartup);
-        SubscribeLocalEvent<SiliconRestingComponent, ComponentShutdown>(OnRestingShutdown);
         SubscribeLocalEvent<SiliconStandingTransitionComponent, ComponentStartup>(OnTransitionState);
         SubscribeLocalEvent<SiliconStandingTransitionComponent, AfterAutoHandleStateEvent>(OnTransitionStateHandled);
         SubscribeLocalEvent<SiliconStandingTransitionComponent, ComponentShutdown>(OnTransitionShutdown);
@@ -149,26 +147,6 @@ public sealed class SiliconStandingSystem : EntitySystem
     {
         if (GetEffectiveResting(ent.Owner))
             args.Cancel();
-    }
-
-    private void OnRestingStartup(Entity<SiliconRestingComponent> ent, ref ComponentStartup args)
-    {
-        if (_predictedTransitions.TryGetValue(ent.Owner, out var transition) &&
-            transition.Completed &&
-            transition.TargetResting)
-            _predictedTransitions.Remove(ent.Owner);
-
-        RefreshPredictedState(ent.Owner);
-    }
-
-    private void OnRestingShutdown(Entity<SiliconRestingComponent> ent, ref ComponentShutdown args)
-    {
-        if (_predictedTransitions.TryGetValue(ent.Owner, out var transition) &&
-            transition.Completed &&
-            !transition.TargetResting)
-            _predictedTransitions.Remove(ent.Owner);
-
-        RefreshPredictedState(ent.Owner);
     }
 
     private void OnTransitionState(Entity<SiliconStandingTransitionComponent> ent, ref ComponentStartup args)

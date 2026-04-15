@@ -1,4 +1,3 @@
-using Content.Client.Silicons.Borgs;
 using Content.Shared._Sunrise.SiliconStanding;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
@@ -16,17 +15,8 @@ public sealed class SiliconRestingVisualizerSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SiliconRestingComponent, AppearanceChangeEvent>(OnAppearanceChange, after: [typeof(BorgSystem)]);
         SubscribeLocalEvent<SiliconRestingComponent, ComponentStartup>(OnRestingStartup);
         SubscribeLocalEvent<SiliconRestingComponent, ComponentShutdown>(OnRestingShutdown);
-    }
-
-    private void OnAppearanceChange(Entity<SiliconRestingComponent> ent, ref AppearanceChangeEvent args)
-    {
-        if (args.Sprite == null)
-            return;
-
-        Refresh(ent.Owner, args.Sprite);
     }
 
     private void OnRestingStartup(Entity<SiliconRestingComponent> ent, ref ComponentStartup args)

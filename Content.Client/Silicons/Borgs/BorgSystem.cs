@@ -4,6 +4,7 @@ using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
+using Content.Client._Sunrise.SiliconStanding;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Containers;
@@ -22,6 +23,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly SiliconRestingVisualizerSystem _restingVisualizer = default!;
 
     public override void Initialize()
     {
@@ -89,6 +91,9 @@ public sealed partial class BorgSystem : SharedBorgSystem
         var lightVisible = ent.Comp1.BrainEntity != null || hasPlayer;
         _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light, lightVisible);
         _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Light, hasPlayer ? ent.Comp1.HasMindState : ent.Comp1.NoMindState);
+
+        // Re-apply resting visuals after the normal borg appearance pass.
+        _restingVisualizer.Refresh(ent.Owner, ent.Comp3);
     }
 
     private void OnMMIAppearanceChanged(EntityUid uid, MMIComponent component, ref AppearanceChangeEvent args)
