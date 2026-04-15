@@ -1,7 +1,9 @@
 using Robust.Shared.GameObjects;
+using Robust.Shared.GameStates;
+
 namespace Content.Shared._Sunrise.SiliconStanding;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class SiliconRestingComponent : Component
 {
 }

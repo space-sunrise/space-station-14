@@ -127,6 +127,7 @@
     prototypes: [ BorgArmorSiliconLoadout ]
   # Sunrise-End
   - type: BorgChassis
+  - type: SiliconStanding # Sunrise edit
   - type: BorgVoice # Sunrise-TTS: Allow cyborgs to change their voice
   - type: LockingWhitelist
     blacklist:

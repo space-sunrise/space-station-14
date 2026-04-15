@@ -6,7 +6,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.ActionBlocker;
 using Content.Server.DoAfter;
 using Robust.Server.Audio;
-using Robust.Server.GameObjects;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.SiliconStanding;
 
@@ -16,13 +16,10 @@ namespace Content.Server._Sunrise.SiliconStanding;
 /// </summary>
 public sealed class SiliconStandingSystem : EntitySystem
 {
-    private const float LieDownDelay = 1.0f;
-    private const float StandUpDelay = 0.5f;
-
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -31,8 +28,6 @@ public sealed class SiliconStandingSystem : EntitySystem
         SubscribeNetworkEvent<ToggleStandingEvent>(OnToggle);
         SubscribeLocalEvent<BorgChassisComponent, SiliconRestingDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<SiliconRestingComponent, UpdateCanMoveEvent>(OnCanMove);
-        SubscribeLocalEvent<SiliconRestingComponent, ComponentStartup>(OnRestingStartup);
-        SubscribeLocalEvent<SiliconRestingComponent, ComponentRemove>(OnRestingRemove);
     }
 
     /// <summary>
@@ -64,23 +59,20 @@ public sealed class SiliconStandingSystem : EntitySystem
 
     public bool TryToggleResting(EntityUid uid)
     {
+        if (!TryComp<SiliconStandingComponent>(uid, out var standing))
+            return false;
+
         if (!HasComp<BorgChassisComponent>(uid))
             return false;
 
         var resting = !IsResting(uid);
-        var attempt = new SiliconRestToggleAttemptEvent(resting);
-        RaiseLocalEvent(uid, ref attempt);
-
-        if (attempt.Cancelled)
-            return false;
-
-        var delayEv = new GetSiliconRestDelayEvent(resting, resting ? LieDownDelay : StandUpDelay);
-        RaiseLocalEvent(uid, ref delayEv);
+        var delay = resting ? standing.LieDownDelay : standing.StandUpDelay;
+        SetTransition(uid, resting, TimeSpan.FromSeconds(delay));
 
         var doAfter = new DoAfterArgs(
             EntityManager,
             uid,
-            delayEv.Delay,
+            delay,
             new SiliconRestingDoAfterEvent(),
             uid,
             uid
@@ -91,7 +83,12 @@ public sealed class SiliconStandingSystem : EntitySystem
             BlockDuplicate = true
         };
 
-        return _doAfter.TryStartDoAfter(doAfter);
+        var started = _doAfter.TryStartDoAfter(doAfter);
+
+        if (!started)
+            RemComp<SiliconStandingTransitionComponent>(uid);
+
+        return started;
     }
 
     private void OnCanMove(Entity<SiliconRestingComponent> ent, ref UpdateCanMoveEvent args)
@@ -99,20 +96,10 @@ public sealed class SiliconStandingSystem : EntitySystem
         args.Cancel();
     }
 
-    private void OnRestingStartup(Entity<SiliconRestingComponent> ent, ref ComponentStartup args)
-    {
-        var appearance = EnsureComp<AppearanceComponent>(ent);
-        _appearance.SetData(ent.Owner, SiliconStandingVisuals.Resting, true, appearance);
-    }
-
-    private void OnRestingRemove(Entity<SiliconRestingComponent> ent, ref ComponentRemove args)
-    {
-        if (TryComp<AppearanceComponent>(ent, out var appearance))
-            _appearance.RemoveData(ent.Owner, SiliconStandingVisuals.Resting, appearance);
-    }
-
     private void OnDoAfter(Entity<BorgChassisComponent> ent, ref SiliconRestingDoAfterEvent ev)
     {
+        RemComp<SiliconStandingTransitionComponent>(ent);
+
         if (ev.Cancelled)
             return;
 
@@ -120,5 +107,13 @@ public sealed class SiliconStandingSystem : EntitySystem
 
         if (TryComp<FootstepModifierComponent>(ent, out var footsteps))
             _audio.PlayPvs(footsteps.FootstepSoundCollection, ent);
+    }
+
+    private void SetTransition(EntityUid uid, bool targetResting, TimeSpan duration)
+    {
+        var transition = EnsureComp<SiliconStandingTransitionComponent>(uid);
+        transition.TargetResting = targetResting;
+        transition.EndTime = _timing.CurTime + duration;
+        Dirty(uid, transition);
     }
 }

@@ -6,9 +6,3 @@ namespace Content.Shared._Sunrise.SiliconStanding;
 public sealed class ToggleStandingEvent : EntityEventArgs
 {
 }
-
-[ByRefEvent]
-public record struct SiliconRestToggleAttemptEvent(bool Resting, bool Cancelled = false);
-
-[ByRefEvent]
-public record struct GetSiliconRestDelayEvent(bool Resting, float Delay);

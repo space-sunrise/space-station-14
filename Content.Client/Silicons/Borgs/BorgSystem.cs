@@ -1,4 +1,3 @@
-﻿using Content.Shared._Sunrise.SiliconStanding;
 using Content.Shared.Alert;
 using Content.Shared.Mobs;
 using Content.Shared.Power.EntitySystems;
@@ -87,10 +86,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
         if (!_appearance.TryGetData<bool>(ent.Owner, BorgVisuals.HasPlayer, out var hasPlayer, ent.Comp2))
             hasPlayer = false;
 
-        _appearance.TryGetData<bool>(ent.Owner, SiliconStandingVisuals.Resting, out var isResting, ent.Comp2);
-        UpdateBorgBodyState((ent.Owner, ent.Comp3), isResting);
-
-        var lightVisible = !isResting && (ent.Comp1.BrainEntity != null || hasPlayer);
+        var lightVisible = ent.Comp1.BrainEntity != null || hasPlayer;
         _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light, lightVisible);
         _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Light, hasPlayer ? ent.Comp1.HasMindState : ent.Comp1.NoMindState);
     }
@@ -132,27 +128,6 @@ public sealed partial class BorgSystem : SharedBorgSystem
     {
         borg.Comp.HasMindState = hasMindState;
         borg.Comp.NoMindState = noMindState;
-    }
-
-    private void UpdateBorgBodyState(Entity<SpriteComponent?> ent, bool isResting)  
-    {
-        if (!Resolve(ent, ref ent.Comp))
-            return;
-
-        if (!_sprite.LayerMapTryGet(ent, BorgVisualLayers.Body, out var layer, false))
-            return;
-
-        var currentState = _sprite.LayerGetRsiState(ent, layer).Name;
-        var baseState = currentState != null && currentState.EndsWith("_rest")
-            ? currentState[..^"_rest".Length]
-            : currentState ?? string.Empty;
-        var restingState = $"{baseState}_rest";
-        var finalState = baseState;
-
-        if (isResting && ent.Comp.BaseRSI?.TryGetState(restingState, out _) == true)
-            finalState = restingState;
-
-        _sprite.LayerSetRsiState(ent, layer, finalState);
     }
 
     public override void Update(float frameTime)
