@@ -1,26 +1,26 @@
-using Content.Server.DoAfter;
-using Robust.Server.Containers;
-using Content.Server.Popups;
-using Content.Server.Stack;
 using Content.Shared._Sunrise.LockableEquipment;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
+using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Content.Shared.Tag;
-using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Containers;
+using Robust.Shared.Log;
+using Robust.Shared.Timing;
 
-namespace Content.Server._Sunrise.LockableEquipment;
+namespace Content.Shared._Sunrise.LockableEquipment;
 
 public sealed class LockableEquipmentSystem : EntitySystem
 {
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly StackSystem _stack = default!;
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedStackSystem _stack = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly LayerAccessSystem _layerAccess = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
 
@@ -65,6 +65,8 @@ public sealed class LockableEquipmentSystem : EntitySystem
     /// </summary>
     public bool TryUseKey(EntityUid device, EntityUid keyUid, EntityUid user)
     {
+        Log.Info($"lockable-shared: try use key device={ToPrettyString(device)} key={ToPrettyString(keyUid)} user={ToPrettyString(user)}");
+
         if (!TryComp<KeyComponent>(keyUid, out var key))
             return false;
 
@@ -79,9 +81,8 @@ public sealed class LockableEquipmentSystem : EntitySystem
 
         if (lockComp.Broken)
         {
-            _popup.PopupEntity(
+            _popup.PopupClient(
                 Loc.GetString("lockable-equipment-is-broken", ("name", name)),
-                user,
                 user);
             return true;
         }
@@ -92,25 +93,24 @@ public sealed class LockableEquipmentSystem : EntitySystem
             key.LockId = id;
             lockComp.LockId = id;
 
-            _popup.PopupEntity(
+            _popup.PopupClient(
                 Loc.GetString("lockable-equipment-paired",
                     ("key", keyName),
                     ("device", name)),
-                user,
                 user);
 
             Dirty(keyUid, key);
             Dirty(device, lockComp);
+            Log.Info($"lockable-shared: paired key device={ToPrettyString(device)} key={ToPrettyString(keyUid)} id={id}");
             return true;
         }
 
         if (key.LockId != lockComp.LockId)
         {
-            _popup.PopupEntity(
+            _popup.PopupClient(
                 Loc.GetString("lockable-equipment-wrong-key",
                     ("key", keyName),
                     ("device", name)),
-                user,
                 user);
             return true;
         }
@@ -121,10 +121,11 @@ public sealed class LockableEquipmentSystem : EntitySystem
             ? Loc.GetString("lockable-equipment-locked", ("name", name))
             : Loc.GetString("lockable-equipment-unlocked", ("name", name));
 
-        _popup.PopupEntity(msg, user, user);
+        _popup.PopupClient(msg, user, user);
 
         UpdateIconState((device, lockComp));
         Dirty(device, lockComp);
+        Log.Info($"lockable-shared: toggled lock device={ToPrettyString(device)} locked={lockComp.Locked}");
         return true;
     }
 
@@ -143,6 +144,8 @@ public sealed class LockableEquipmentSystem : EntitySystem
     /// </summary>
     public bool TryStartBreakDoAfter(EntityUid device, EntityUid tool, EntityUid user, EntityUid? interactionTarget = null)
     {
+        Log.Info($"lockable-shared: try start break doafter device={ToPrettyString(device)} tool={ToPrettyString(tool)} user={ToPrettyString(user)} target={ToPrettyString(interactionTarget ?? device)}");
+
         if (user == EntityUid.Invalid || Deleted(user))
             return false;
 
@@ -154,9 +157,8 @@ public sealed class LockableEquipmentSystem : EntitySystem
 
         if (comp.Mode == LockableEquipmentComponent.BreakMode.None)
         {
-            _popup.PopupEntity(
+            _popup.PopupClient(
                 Loc.GetString("lockable-equipment-cannot-be-forced-opened", ("name", MetaData(device).EntityName)),
-                user,
                 user);
             return true;
         }
@@ -169,9 +171,8 @@ public sealed class LockableEquipmentSystem : EntitySystem
 
         if (IsInUser(device, user))
         {
-            _popup.PopupEntity(
+            _popup.PopupClient(
                 Loc.GetString("lockable-equipment-self-action"),
-                user,
                 user);
             return true;
         }
@@ -203,6 +204,8 @@ public sealed class LockableEquipmentSystem : EntitySystem
     /// </summary>
     public bool TryBreak(EntityUid device, EntityUid tool, EntityUid user)
     {
+        Log.Info($"lockable-shared: try break device={ToPrettyString(device)} tool={ToPrettyString(tool)} user={ToPrettyString(user)}");
+
         if (!TryComp<LockableEquipmentComponent>(device, out var comp))
             return false;
 
@@ -217,9 +220,8 @@ public sealed class LockableEquipmentSystem : EntitySystem
 
         if (IsInUser(device, user))
         {
-            _popup.PopupEntity(
+            _popup.PopupClient(
                 Loc.GetString("lockable-equipment-self-action"),
-                user,
                 user);
             return true;
         }
@@ -229,40 +231,45 @@ public sealed class LockableEquipmentSystem : EntitySystem
         switch (comp.Mode)
         {
             case LockableEquipmentComponent.BreakMode.None:
-                _popup.PopupEntity(
+                _popup.PopupClient(
                     Loc.GetString("lockable-equipment-cannot-be-forced-opened", ("name", name)),
-                    user,
                     user);
                 return true;
 
             case LockableEquipmentComponent.BreakMode.ForceOpen:
                 comp.Locked = false;
-                _popup.PopupEntity(
+                _popup.PopupClient(
                     Loc.GetString("lockable-equipment-force-open", ("name", name)),
-                    user,
                     user);
                 break;
 
             case LockableEquipmentComponent.BreakMode.Breakable:
                 comp.Locked = false;
                 comp.Broken = true;
-                _popup.PopupEntity(
+                _popup.PopupClient(
                     Loc.GetString("lockable-equipment-broken", ("name", name)),
-                    user,
                     user);
                 break;
 
             case LockableEquipmentComponent.BreakMode.Destroyable:
-                _popup.PopupEntity(
+                _popup.PopupClient(
                     Loc.GetString("lockable-equipment-destroyed", ("name", name)),
-                    user,
                     user);
+
+                if (_timing.InPrediction)
+                {
+                    Log.Info($"lockable-shared: skipping predicted destroy device={ToPrettyString(device)}");
+                    return true;
+                }
+
                 QueueDel(device);
+                Log.Info($"lockable-shared: destroyed device={ToPrettyString(device)}");
                 return true;
         }
 
         UpdateIconState((device, comp));
         Dirty(device, comp);
+        Log.Info($"lockable-shared: break resolved device={ToPrettyString(device)} locked={comp.Locked} broken={comp.Broken}");
         return true;
     }
 
@@ -272,6 +279,8 @@ public sealed class LockableEquipmentSystem : EntitySystem
     /// </summary>
     public bool TryRepair(EntityUid device, EntityUid material, EntityUid user)
     {
+        Log.Info($"lockable-shared: try repair device={ToPrettyString(device)} material={ToPrettyString(material)} user={ToPrettyString(user)}");
+
         if (!TryComp<LockableEquipmentComponent>(device, out var comp))
             return false;
 
@@ -291,13 +300,13 @@ public sealed class LockableEquipmentSystem : EntitySystem
         comp.Locked = false;
 
         var name = MetaData(device).EntityName;
-        _popup.PopupEntity(
+        _popup.PopupClient(
             Loc.GetString("lockable-equipment-repaired", ("name", name)),
-            user,
             user);
 
         UpdateIconState((device, comp));
         Dirty(device, comp);
+        Log.Info($"lockable-shared: repaired device={ToPrettyString(device)}");
         return true;
     }
 
@@ -367,9 +376,8 @@ public sealed class LockableEquipmentSystem : EntitySystem
         if (_layerAccess.IsLayerAccessible(accessTarget, comp.Layer, comp))
             return true;
 
-        _popup.PopupEntity(
+        _popup.PopupClient(
             Loc.GetString("lockable-equipment-blocked"),
-            user,
             user);
         return false;
     }
