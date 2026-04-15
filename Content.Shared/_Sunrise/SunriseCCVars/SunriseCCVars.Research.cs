@@ -5,29 +5,24 @@ namespace Content.Shared._Sunrise.SunriseCCVars;
 public sealed partial class SunriseCCVars
 {
     /// <summary>
-    /// Включены ли артефакты-предметы? Переключение этого в моменты игры динамически включает и выключает фичу.
-    /// </summary>
-    public static readonly CVarDef<bool> EnableRandomArtifacts =
-        CVarDef.Create("random_artifacts.enable", false, CVar.SERVER | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Соотношение артефактов-предметов к обычным предметам.
-    /// </summary>
-    public static readonly CVarDef<float> ItemToArtifactRatio =
-        CVarDef.Create("random_artifacts.ratio", 0.55f, CVar.SERVER | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Включён ли узел артефакта, который превращает ближайшие предметы в случайные.
-    /// При отключении уже сгенерированные узлы активируются без эффекта.
-    /// </summary>
-    public static readonly CVarDef<bool> ArtifactRandomTransformationEnabled =
-        CVarDef.Create("artifact.random_transformation.enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
-
-    /// <summary>
     /// Целевая популяция для скейлинга очков исследований.
     /// </summary>
     public static readonly CVarDef<int> ResearchPointScalingTargetPopulation =
         CVarDef.Create("research.point_scaling_target_population", 44, CVar.SERVER | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Задержка в минутах перед фиксацией модификатора скейлинга очков исследований.
+    /// </summary>
+    public static readonly CVarDef<int> ResearchPointScalingDelayMinutes =
+        CVarDef.Create("research.point_scaling_delay_minutes", 3, CVar.SERVER | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Сила скейлинга очков исследований от онлайна.
+    /// 0 -> отключает модификатор, стандарт.
+    /// Чем выше значение, тем сильнее бонус при низком онлайне и штраф при высоком.
+    /// </summary>
+    public static readonly CVarDef<float> ResearchPointScalingMultiplier =
+        CVarDef.Create("research.point_scaling_multiplier", 1.15f, CVar.SERVER | CVar.ARCHIVE);
 
     /// <summary>
     /// Минимальный модификатор скейлинга очков исследований по онлайну.
@@ -40,12 +35,4 @@ public sealed partial class SunriseCCVars
     /// </summary>
     public static readonly CVarDef<float> ResearchPointScalingMaxModifier =
         CVarDef.Create("research.point_scaling_max_modifier", 1.5f, CVar.SERVER | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Сила скейлинга очков исследований от онлайна.
-    /// 0 -> отключает модификатор, стандарт.
-    /// Чем выше значение, тем сильнее бонус при низком онлайне и штраф при высоком.
-    /// </summary>
-    public static readonly CVarDef<float> ResearchPointScalingMultiplier =
-        CVarDef.Create("research.point_scaling_multiplier", 1.15f, CVar.SERVER | CVar.ARCHIVE);
 }

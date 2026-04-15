@@ -1,49 +1,78 @@
-using System;
 using Content.Server._Sunrise.Research.Components;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Systems;
+using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
-using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.Research.Prototypes;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Research.Components;
 using Content.Shared.Roles;
 using Content.Shared.SSDIndicator;
+using Robust.Server.Player;
 using Robust.Shared.Configuration;
-using Robust.Shared.GameObjects;
+using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Research.Systems;
 
 /// <summary>
-/// Модификатор получения РНД очков исходя от количества игроков. 
+/// Модификатор получения РНД очков исходя от количества игроков.
 /// </summary>
 public sealed partial class ResearchSystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     private const int PopulationDeadzone = 4;
     private static readonly ProtoId<ResearchPopulationWeightsPrototype> PopulationWeightsPrototypeId = "SunriseResearchPopulationWeights";
 
+    private int _populationScalingDelayMinutes = SunriseCCVars.ResearchPointScalingDelayMinutes.DefaultValue;
     private int _targetPopulation = SunriseCCVars.ResearchPointScalingTargetPopulation.DefaultValue;
-    private float _minPopulationModifier = SunriseCCVars.ResearchPointScalingMinModifier.DefaultValue;
-    private float _maxPopulationModifier = SunriseCCVars.ResearchPointScalingMaxModifier.DefaultValue;
-    private float _researchPointScalingMultiplier = SunriseCCVars.ResearchPointScalingMultiplier.DefaultValue;
+    private float _minimumPopulationModifier = SunriseCCVars.ResearchPointScalingMinModifier.DefaultValue;
+    private float _maximumPopulationModifier = SunriseCCVars.ResearchPointScalingMaxModifier.DefaultValue;
+    private float _populationScalingMultiplier = SunriseCCVars.ResearchPointScalingMultiplier.DefaultValue;
+    private float? _roundPopulationModifier;
+    private TimeSpan? _populationScalingRoundStartedAt;
+    private TimeSpan? _populationModifierCalculateAt;
     private EntityQuery<GhostComponent> _ghostQuery;
     private EntityQuery<SSDIndicatorComponent> _ssdIndicatorQuery;
 
     private void InitializePopulationScaling()
     {
+        _cfg.OnValueChanged(SunriseCCVars.ResearchPointScalingDelayMinutes, OnPopulationScalingDelayChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.ResearchPointScalingTargetPopulation, value => _targetPopulation = value, true);
-        _cfg.OnValueChanged(SunriseCCVars.ResearchPointScalingMinModifier, value => _minPopulationModifier = value, true);
-        _cfg.OnValueChanged(SunriseCCVars.ResearchPointScalingMaxModifier, value => _maxPopulationModifier = value, true);
-        _cfg.OnValueChanged(SunriseCCVars.ResearchPointScalingMultiplier, value => _researchPointScalingMultiplier = value, true);
+        _cfg.OnValueChanged(SunriseCCVars.ResearchPointScalingMinModifier, value => _minimumPopulationModifier = value, true);
+        _cfg.OnValueChanged(SunriseCCVars.ResearchPointScalingMaxModifier, value => _maximumPopulationModifier = value, true);
+        _cfg.OnValueChanged(SunriseCCVars.ResearchPointScalingMultiplier, value => _populationScalingMultiplier = value, true);
 
         _ghostQuery = GetEntityQuery<GhostComponent>();
         _ssdIndicatorQuery = GetEntityQuery<SSDIndicatorComponent>();
 
         SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawning, after: [typeof(SpawnPointSystem)]);
+        SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+
+        ResetPopulationModifierState();
+    }
+
+    private void UpdatePopulationScaling()
+    {
+        if (_roundPopulationModifier != null)
+            return;
+
+        if (_populationModifierCalculateAt is not { } calculateAt || _timing.CurTime < calculateAt)
+            return;
+
+        _roundPopulationModifier = CalculatePopulationModifier(CountResearchPopulation());
+        _populationModifierCalculateAt = null;
+    }
+
+    private void OnPopulationScalingDelayChanged(int value)
+    {
+        _populationScalingDelayMinutes = value;
+        UpdatePopulationModifierCalculateAt();
     }
 
     public void ModifyServerResearchPoints(EntityUid uid, int points, ResearchServerComponent? component = null)
@@ -53,7 +82,7 @@ public sealed partial class ResearchSystem
 
         if (points > 0)
         {
-            var modifier = GetServerPointGainModifier(uid);
+            var modifier = _roundPopulationModifier ?? 1f;
 
             if (modifier != 1f)
                 points = (int) MathF.Round(points * modifier, MidpointRounding.AwayFromZero);
@@ -62,32 +91,24 @@ public sealed partial class ResearchSystem
         ModifyServerPoints(uid, points, component);
     }
 
-    private float GetServerPointGainModifier(EntityUid uid)
-    {
-        if (_researchPointScalingMultiplier <= 0f)
-            return 1f;
-
-        if (Transform(uid).MapUid is not { } mapUid)
-            return 1f;
-
-        var population = CountResearchPopulation(mapUid);
-
-        if (MathF.Abs(population - _targetPopulation) <= PopulationDeadzone)
-            return 1f;
-
-        var ratio = _targetPopulation / MathF.Max(population, 1f);
-        var baseModifier = MathF.Sqrt(ratio);
-        var modifier = 1f + (baseModifier - 1f) * _researchPointScalingMultiplier;
-
-        return Math.Clamp(modifier, _minPopulationModifier, _maxPopulationModifier);
-    }
-
     private void OnPlayerSpawning(PlayerSpawningEvent ev)
     {
         if (ev.SpawnResult is not { } mob)
             return;
 
         TrySetResearchPopulation((mob, null), ev.Job);
+    }
+
+    private void OnRoundStarted(RoundStartedEvent _)
+    {
+        ResetPopulationModifierState();
+        _populationScalingRoundStartedAt = _timing.CurTime;
+        UpdatePopulationModifierCalculateAt();
+    }
+
+    private void OnRoundRestartCleanup(RoundRestartCleanupEvent _)
+    {
+        ResetPopulationModifierState();
     }
 
     private void TrySetResearchPopulation(Entity<ResearchPopulationComponent?> ent, ProtoId<JobPrototype>? jobId)
@@ -109,26 +130,67 @@ public sealed partial class ResearchSystem
         EnsureComp<ResearchPopulationComponent>(ent).Weight = weight;
     }
 
-    private float CountResearchPopulation(EntityUid mapUid)
+    private void ResetPopulationModifierState()
+    {
+        _roundPopulationModifier = null;
+        _populationScalingRoundStartedAt = null;
+        _populationModifierCalculateAt = null;
+    }
+
+    private float CalculatePopulationModifier(float population)
+    {
+        if (_populationScalingMultiplier <= 0f || _targetPopulation <= 0)
+            return 1f;
+
+        if (MathF.Abs(population - _targetPopulation) <= PopulationDeadzone)
+            return 1f;
+
+        var ratio = _targetPopulation / MathF.Max(population, 1f);
+        var baseModifier = MathF.Sqrt(ratio);
+        var modifier = 1f + (baseModifier - 1f) * _populationScalingMultiplier;
+        var minimumModifier = MathF.Min(_minimumPopulationModifier, _maximumPopulationModifier);
+        var maximumModifier = MathF.Max(_minimumPopulationModifier, _maximumPopulationModifier);
+
+        return Math.Clamp(modifier, minimumModifier, maximumModifier);
+    }
+
+    private float CountResearchPopulation()
     {
         var population = 0f;
 
-        var query = EntityQueryEnumerator<ResearchPopulationComponent, ActorComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var researchPopulation, out _, out var xform))
+        foreach (var session in _player.Sessions)
         {
-            if (xform.MapUid != mapUid)
-                continue;
-
-            if (_ghostQuery.HasComp(uid))
-                continue;
-
-            if (_ssdIndicatorQuery.TryComp(uid, out var ssdIndicator) && ssdIndicator.IsSSD)
-                continue;
-
-            population += researchPopulation.Weight;
+            population += GetResearchPopulationContribution(session);
         }
 
         return population;
+    }
+
+    private float GetResearchPopulationContribution(ICommonSession session)
+    {
+        if (session.Status != SessionStatus.InGame)
+            return 0f;
+
+        if (session.AttachedEntity is not { Valid: true } uid || Deleted(uid))
+            return 0f;
+
+        if (_ghostQuery.HasComp(uid))
+            return 0f;
+
+        if (_ssdIndicatorQuery.TryComp(uid, out var ssdIndicator) && ssdIndicator.IsSSD)
+            return 0f;
+
+        return TryComp<ResearchPopulationComponent>(uid, out var researchPopulation)
+            ? researchPopulation.Weight
+            : 1f;
+    }
+
+    private void UpdatePopulationModifierCalculateAt()
+    {
+        if (_roundPopulationModifier != null || _populationScalingRoundStartedAt is not { } roundStartedAt)
+            return;
+
+        _populationModifierCalculateAt = roundStartedAt + TimeSpan.FromMinutes(Math.Max(_populationScalingDelayMinutes, 0));
     }
 
     private float GetResearchPopulationWeight(ProtoId<JobPrototype>? jobId)
