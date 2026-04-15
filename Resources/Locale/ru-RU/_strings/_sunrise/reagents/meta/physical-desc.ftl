@@ -23,7 +23,3 @@ fentanyl-blood = Из вас хлещет кровь!.. А, показалось
 fentanyl-effect-hotline-mask = Вы чувствуете, что на вас чья-то маска. Своя или чужая?
 fentanyl-effect-hotline-loop = Время зациклилось. Вы уже были здесь. Вы уже убивали их.
 fentanyl-effect-hotline-voice = Кто-то говорит с вами о петлях реальности и неизбежности насилия.
-generic-reagent-effect-burning-insides = Ваши внутренности жжёт огнём.
-generic-reagent-effect-sick = Вас тошнит.
-histamine-effect-light-itchiness = Ваша кожа слегка чешется.
-norepinephricacid-effect-eyelids = Ваши веки тяжелеют
