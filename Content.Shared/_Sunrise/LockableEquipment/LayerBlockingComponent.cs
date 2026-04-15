@@ -22,5 +22,5 @@ public sealed partial class LayerBlockingComponent : Component
     /// Higher priority items block access to lower priority items
     /// </summary>
     [DataField, AutoNetworkedField]
-    public int AccessPriority = 0;
+    public int AccessPriority;
 }
