@@ -14,13 +14,13 @@ public sealed partial class LockableEquipmentComponent : Component
     /// Whether the device is currently locked.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public bool Locked { get; set; };
+    public bool Locked { get; set; }
 
     /// <summary>
     /// Whether the device is currently broken and must be repaired.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool Broken { get; set; } = false;
+    public bool Broken { get; set; }
 
     /// <summary>
     /// Shared identifier paired with a matching key.

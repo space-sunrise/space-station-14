@@ -12,7 +12,7 @@ public enum EquipmentActionType
 [Serializable, NetSerializable]
 public sealed partial class EquipmentDoAfterEvent : SimpleDoAfterEvent
 {
-    public EquipmentActionType Action;
+    public EquipmentActionType Action { get; }
 
     public EquipmentDoAfterEvent(EquipmentActionType action)
     {
