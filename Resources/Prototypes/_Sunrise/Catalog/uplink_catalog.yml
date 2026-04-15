@@ -171,46 +171,6 @@
   - UplinkAmmo
 
 - type: listing
-  id: UplinlkMagazinePistol40FMJ
-  description: uplink-pistol-stechkin-desc
-  icon: { sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/40.rsi, state: fmj}
-  productEntity: MagazinePistol40FMJ
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkAmmo
-
-- type: listing
-  id: UplinlkMagazinePistol40SP
-  description: uplink-pistol-stechkin-desc
-  icon: { sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/40.rsi, state: sp }
-  productEntity: MagazinePistol40SP
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkAmmo
-
-- type: listing
-  id: UplinlkMagazinePistol40HP
-  description: uplink-pistol-stechkin-desc
-  icon: { sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/40.rsi, state: red-icon }
-  productEntity: MagazinePistol40HP
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkAmmo
-
-- type: listing
-  id: UplinlkMagazinePistol40AP
-  description: uplink-pistol-stechkin-desc
-  icon: { sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/40.rsi, state: ap }
-  productEntity: MagazinePistol40AP
-  cost:
-    Telecrystal: 2
-  categories:
-  - UplinkAmmo
-
-- type: listing
   id: UplinkMagazinePistolSMGHP
   description: uplink-pistol-magazine-c20r-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }

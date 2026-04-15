@@ -74,7 +74,7 @@ uplink-shrapnel-exgrenade-name = Осколочная-разрывная гра�
 uplink-shrapnel-exgrenade-desc = Граната, ориентированная на поражение личного состава взрывом и фрагментами. Наносит минимальные повреждения стенам и полу. Выпускает серию острых осколков, наносящих умеренный урон по незащищённым целям.
 # Ammo
 uplink-pistol-magazine-name = Пистолетный магазин (.35 авто)
-uplink-pistol-magazine-desc = Пистолетный магазин на 16 патронов. Совместим с "Гадюкой".
+uplink-pistol-magazine-desc = Пистолетный магазин на 10 патронов. Совместим с "Гадюкой".
 uplink-pistol-magazine-c20r-name = Магазин ПП (.35 авто)
 uplink-pistol-magazine-c20r-desc = Магазин ПП на 30 патронов. Совместим с C-20r.
 uplink-pistol-magazine-caseless-name = Пистолетный магазин (.25 безгильзовые)
