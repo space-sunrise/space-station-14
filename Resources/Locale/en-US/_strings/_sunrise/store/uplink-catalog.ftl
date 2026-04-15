@@ -38,6 +38,8 @@ uplink-grenade-launcher-blast-extended-ammo-desc = An extended 15-shell blast ca
 uplink-grenade-launcher-emp-extended-ammo-name = Extended EMP shell cartridge
 uplink-grenade-launcher-emp-extended-ammo-desc = An extended 15-shell EMP cartridge. Compatible only with the stationary "Friendship" and "Duster" cannons.
 uplink-magazine-siar52-name = Магазин ПП (.25 безгильзовый)
+uplink-pistol-stechkin-magazine-name Пистолетный магазин .40
+uplink-pistol-stechkin-magazine-desc= пистолетный магазин на 10 патронов, совместим с пистолетами серии Стечкин.
 uplink-magazine-siar52-desc = Магазин ПП на 30 патронов. Совместим с SIAR-52.
 uplink-magazine-bulldog-uraniumslug-desc = Shotgun magazine with 8 shells filled with uranium slugs. Compatible with the Bulldog.
 uplink-magazine-bulldog-uranium-desc = Shotgun magazine with 8 shells filled with uranium pellet. Compatible with the Bulldog.
