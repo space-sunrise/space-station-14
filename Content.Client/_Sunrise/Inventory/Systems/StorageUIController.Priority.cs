@@ -5,6 +5,7 @@ using Content.Shared.Input;
 using Robust.Client.UserInterface;
 using Robust.Shared.Input;
 
+#pragma warning disable IDE0130
 namespace Content.Client.UserInterface.Systems.Storage;
 
 // Sunrise: Storage priority extension

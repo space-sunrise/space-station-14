@@ -10,18 +10,11 @@ namespace Content.Shared.Storage.EntitySystems;
 
 public abstract partial class SharedStorageSystem
 {
-    /// <summary>
-    /// Priority-related logic for shared storage handling
-    /// </summary>
-    private readonly List<EntityUid> _keysToRemove = new();
-
-    /// <summary>
-    /// Priority item selection logic for storage containers
-    /// </summary>
     public void InitializePriority()
     {
         SubscribeAllEvent<StorageToggleItemPriorityEvent>(OnToggleItemPriority);
-        SubscribeLocalEvent<EntityTerminatingEvent>(OnEntityDeleted);
+        SubscribeLocalEvent<StorageComponent, EntityTerminatingEvent>(OnStorageDeleted);
+        SubscribeLocalEvent<ItemComponent, EntityTerminatingEvent>(OnItemDeleted);
     }
 
     private void OnToggleItemPriority(StorageToggleItemPriorityEvent msg, EntitySessionEventArgs args)
@@ -64,43 +57,31 @@ public abstract partial class SharedStorageSystem
         Dirty(playerUid, priorityComp);
     }
 
-    private void OnEntityDeleted(ref EntityTerminatingEvent ev)
+    private void OnStorageDeleted(Entity<StorageComponent> storage, ref EntityTerminatingEvent ev)
     {
-        var deletedUid = ev.Entity;
-        var priorityQuery = AllEntityQuery<PersonalStoragePriorityComponent>();
-
-        while (priorityQuery.MoveNext(out var playerUid, out var priorityComp))
+        var query = AllEntityQuery<PersonalStoragePriorityComponent>();
+        while (query.MoveNext(out var uid, out var comp))
         {
-            var modified = false;
-
-            // Delete if the deleted entity is used as a key (storage)
-            if (priorityComp.Priorities.Remove(deletedUid))
+            if (comp.Priorities.Remove(storage.Owner))
             {
-                modified = true;
+                Dirty(uid, comp);
             }
+        }
+    }
 
-            // We delete all records where the deleted entity is used as a value (subject)
-            _keysToRemove.Clear();
-
-            foreach (var (storageUid, itemUid) in priorityComp.Priorities)
+    private void OnItemDeleted(Entity<ItemComponent> item, ref EntityTerminatingEvent ev)
+    {
+        var query = AllEntityQuery<PersonalStoragePriorityComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            foreach (var (storage, priorityItem) in comp.Priorities)
             {
-                if (itemUid.Equals(deletedUid))
+                if (priorityItem == item.Owner)
                 {
-                    _keysToRemove.Add(storageUid);
+                    comp.Priorities.Remove(storage);
+                    Dirty(uid, comp);
+                    break;
                 }
-            }
-
-            foreach (var key in _keysToRemove)
-            {
-                priorityComp.Priorities.Remove(key);
-                modified = true;
-            }
-
-            _keysToRemove.Clear();
-
-            if (modified)
-            {
-                Dirty(playerUid, priorityComp);
             }
         }
     }
