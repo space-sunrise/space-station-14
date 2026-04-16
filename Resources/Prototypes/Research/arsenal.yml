@@ -62,6 +62,8 @@
   - WeaponMechCombatFiredartLaser
   - WeaponEnergyGun
   - WeaponMiniEnergyGun
+  - WeaponSunriseLaserPistol
+  - MagazineBatteryLr30
   # Sunrise-End
 
 - type: technology

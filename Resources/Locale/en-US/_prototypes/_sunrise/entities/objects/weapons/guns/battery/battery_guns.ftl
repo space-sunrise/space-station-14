@@ -43,3 +43,5 @@ ent-WeaponSniperPulseCarbine = heavy pulse carbine
     .desc = A high tech heavy carbine. favoured by the NT-ERT operatives.
 ent-WeaponPulseRifle = pulse rifle
     .desc = A weapon that is almost as infamous as its users.
+ent-WeaponSunriseLaserPistol = laser pistol
+    .desc = A compact laser sidearm with an integrated battery.
