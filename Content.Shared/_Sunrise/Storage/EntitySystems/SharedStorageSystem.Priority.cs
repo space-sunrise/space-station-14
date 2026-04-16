@@ -74,19 +74,22 @@ public abstract partial class SharedStorageSystem
         var query = AllEntityQuery<PersonalStoragePriorityComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            EntityUid? storageToRemove = null;
+            var keysToRemove = new List<EntityUid>();
+
             foreach (var (storage, priorityItem) in comp.Priorities)
             {
                 if (priorityItem == item.Owner)
                 {
-                    storageToRemove = storage;
-                    break;
+                    keysToRemove.Add(storage);
                 }
             }
 
-            if (storageToRemove != null)
+            if (keysToRemove.Count > 0)
             {
-                comp.Priorities.Remove(storageToRemove.Value);
+                foreach (var storage in keysToRemove)
+                {
+                    comp.Priorities.Remove(storage);
+                }
                 Dirty(uid, comp);
             }
         }
