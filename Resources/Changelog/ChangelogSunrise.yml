@@ -4850,3 +4850,11 @@
   id: 1794
   time: '2026-04-15T12:18:50.0000000+00:00'
   url: https://github.com/space-sunrise/sunrise-station/pull/4216
+- author: KaiserMaus
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D \u0440\u0435\u0436\
+      \u0438\u043C \u0414\u0438\u043D\u0430\u043C\u0438\u043A."
+    type: Fix
+  id: 1795
+  time: '2026-04-16T16:52:16.0000000+00:00'
+  url: https://github.com/space-sunrise/sunrise-station/pull/4228
