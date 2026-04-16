@@ -17,21 +17,31 @@ public sealed class EquipmentVisualizerSystem : VisualizerSystem<EquipmentContai
             visualData == null ||
             string.IsNullOrEmpty(visualData.Layer))
         {
+            // No data — hide all previously reserved equipment layers
+            // to avoid stale visuals from a prior device installation
+            foreach (var key in sprite.LayerMap.Keys)
+            {
+                if (!key.StartsWith("lockable_"))
+                    continue;
+
+                SpriteSystem.LayerSetVisible((uid, sprite), sprite.LayerMap[key], false);
+            }
+
             return;
         }
 
-        var layer = SpriteSystem.LayerMapReserve((uid, sprite), visualData.Layer);
+        var layerIdx = SpriteSystem.LayerMapReserve((uid, sprite), visualData.Layer);
 
         if (!visualData.Visible ||
             string.IsNullOrEmpty(visualData.RsiPath) ||
             string.IsNullOrEmpty(visualData.State))
         {
-            SpriteSystem.LayerSetVisible((uid, sprite), layer, false);
+            SpriteSystem.LayerSetVisible((uid, sprite), layerIdx, false);
             return;
         }
 
-        SpriteSystem.LayerSetRsi((uid, sprite), layer, new ResPath(visualData.RsiPath));
-        SpriteSystem.LayerSetRsiState((uid, sprite), layer, visualData.State);
-        SpriteSystem.LayerSetVisible((uid, sprite), layer, true);
+        SpriteSystem.LayerSetRsi((uid, sprite), layerIdx, new ResPath(visualData.RsiPath));
+        SpriteSystem.LayerSetRsiState((uid, sprite), layerIdx, visualData.State);
+        SpriteSystem.LayerSetVisible((uid, sprite), layerIdx, true);
     }
 }

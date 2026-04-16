@@ -233,7 +233,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
 
     private void OnUseHeldKeyVerb(Entity<EquipmentContainerComponent> ent, ref EquipmentContainerUseHeldKeyVerbEvent args)
     {
-        if (args.User == EntityUid.Invalid || Deleted(args.User))
+        if (!args.User.IsValid() || Deleted(args.User))
             return;
 
         TryUseHeldKey(ent, args.User);
@@ -241,7 +241,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
 
     private void OnBreakWithHeldToolVerb(Entity<EquipmentContainerComponent> ent, ref EquipmentContainerBreakWithHeldToolVerbEvent args)
     {
-        if (args.User == EntityUid.Invalid || Deleted(args.User))
+        if (!args.User.IsValid() || Deleted(args.User))
             return;
 
         TryBreakWithHeldTool(ent, args.User);
@@ -249,7 +249,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
 
     private void OnRemoveVerb(Entity<EquipmentContainerComponent> ent, ref EquipmentContainerRemoveVerbEvent args)
     {
-        if (args.User == EntityUid.Invalid || Deleted(args.User))
+        if (!args.User.IsValid() || Deleted(args.User))
             return;
 
         TryRemove(ent.Owner, args.User);
@@ -260,7 +260,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
     /// </summary>
     public void TryRemove(EntityUid target, EntityUid user)
     {
-        if (user == EntityUid.Invalid || Deleted(user))
+        if (!user.IsValid() || Deleted(user))
             return;
 
         if (!TryComp(target, out EquipmentContainerComponent? comp))
@@ -300,7 +300,7 @@ public sealed class EquipmentContainerSystem : EntitySystem
         LockableEquipmentComponent device,
         BaseContainer? container = null)
     {
-        if (user == EntityUid.Invalid || Deleted(user))
+        if (!user.IsValid() || Deleted(user))
             return false;
 
         container ??= _container.EnsureContainer<ContainerSlot>(ent.Owner, ent.Comp.ContainerId);

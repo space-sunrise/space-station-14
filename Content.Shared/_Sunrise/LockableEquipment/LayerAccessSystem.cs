@@ -19,13 +19,13 @@ public sealed class LayerAccessSystem : EntitySystem
     public bool IsLayerAccessible(EntityUid target, string equipmentLayer, LockableEquipmentComponent? targetEquipment = null)
     {
         var wearer = ResolveWearer(target);
-        if (wearer == EntityUid.Invalid)
+        if (wearer == null)
             return true;
 
-        if (!TryComp(wearer, out InventoryComponent? inventory))
+        if (!TryComp(wearer.Value, out InventoryComponent? inventory))
             return true;
 
-        return !IsBlocked((wearer, inventory), target, equipmentLayer, GetAccessPriority(target, targetEquipment));
+        return !IsBlocked((wearer.Value, inventory), target, equipmentLayer, GetAccessPriority(target, targetEquipment));
     }
 
     private int GetAccessPriority(EntityUid target, LockableEquipmentComponent? targetEquipment)
@@ -94,7 +94,7 @@ public sealed class LayerAccessSystem : EntitySystem
         }
     }
 
-    private EntityUid ResolveWearer(EntityUid item)
+    private EntityUid? ResolveWearer(EntityUid item)
     {
         if (HasComp<InventoryComponent>(item))
             return item;
@@ -103,7 +103,7 @@ public sealed class LayerAccessSystem : EntitySystem
         var current = xform.ParentUid;
         var depth = 0;
 
-        while (current != EntityUid.Invalid && depth < WearerResolveDepthLimit)
+        while (current.IsValid() && depth < WearerResolveDepthLimit)
         {
             depth++;
             if (HasComp<InventoryComponent>(current))
@@ -115,7 +115,7 @@ public sealed class LayerAccessSystem : EntitySystem
             current = xformComp.ParentUid;
         }
 
-        return EntityUid.Invalid;
+        return null;
     }
 
     private readonly record struct LayerAccessBlocker(

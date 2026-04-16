@@ -1,6 +1,7 @@
+using System;
+using Content.Shared.Stacks;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Content.Shared.Stacks;
 
 namespace Content.Shared._Sunrise.LockableEquipment;
 
@@ -13,7 +14,7 @@ public sealed partial class LockableEquipmentComponent : Component
     /// <summary>
     /// Whether the device is currently locked.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public bool Locked { get; set; }
 
     /// <summary>
@@ -37,8 +38,8 @@ public sealed partial class LockableEquipmentComponent : Component
     /// <summary>
     /// RSI path used for the installed device overlay.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public string RsiPath = "_Sunrise/Clothing/Locked/cage.rsi";
+    [DataField]
+    public string? RsiPath;
 
     /// <summary>
     /// Forced-open behavior used when the device is broken open.
@@ -56,7 +57,7 @@ public sealed partial class LockableEquipmentComponent : Component
     /// Delay before a forced-open attempt completes.
     /// </summary>
     [DataField]
-    public float BreakDoAfter = 1.5f;
+    public TimeSpan BreakDoAfter = TimeSpan.FromSeconds(1.5);
 
     /// <summary>
     /// Stack material required to repair a broken device.
@@ -79,7 +80,7 @@ public sealed partial class LockableEquipmentComponent : Component
     /// <summary>
     /// RSI state used for the installed device overlay.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField]
     public string SpriteState = "equipped";
     
     /// <summary>

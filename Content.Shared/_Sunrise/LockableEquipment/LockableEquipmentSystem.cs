@@ -41,7 +41,7 @@ public sealed class LockableEquipmentSystem : EntitySystem
 
     private void OnInteractUsing(Entity<LockableEquipmentComponent> ent, ref InteractUsingEvent args)
     {
-        if (args.Handled || args.Used == EntityUid.Invalid)
+        if (args.Handled || !args.Used.IsValid())
             return;
 
         if (TryRepair(ent.Owner, args.Used, args.User) ||
@@ -141,7 +141,7 @@ public sealed class LockableEquipmentSystem : EntitySystem
     /// </summary>
     public bool TryStartBreakDoAfter(EntityUid device, EntityUid tool, EntityUid user, EntityUid? interactionTarget = null)
     {
-        if (user == EntityUid.Invalid || Deleted(user))
+        if (!user.IsValid() || Deleted(user))
             return false;
 
         if (!TryComp<LockableEquipmentComponent>(device, out var comp))
@@ -331,7 +331,7 @@ public sealed class LockableEquipmentSystem : EntitySystem
         var current = deviceXform.ParentUid;
         var depth = 0;
 
-        while (current != EntityUid.Invalid && depth < UserResolveDepthLimit)
+        while (current.IsValid() && depth < UserResolveDepthLimit)
         {
             depth++;
             if (current == user)
