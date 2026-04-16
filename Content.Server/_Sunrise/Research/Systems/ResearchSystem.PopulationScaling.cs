@@ -168,6 +168,9 @@ public sealed partial class ResearchSystem
 
     private float GetResearchPopulationContribution(ICommonSession session)
     {
+        if (session.Status == SessionStatus.Connected)
+            return 0.4f;
+
         if (session.Status != SessionStatus.InGame)
             return 0f;
 
