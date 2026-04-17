@@ -1,15 +1,3 @@
-reagent-name-apoptodon = Apoptodon
-reagent-desc-apoptodon = An advanced radioactive solution for regenerating the body in cold conditions. Offsets rotting, but inflicts radiation and cellular damage. Works on both dead and living.
-
-reagent-name-h-32 = H-32
-reagent-desc-h-32 = A cryo-based reagent developed in the field with increased radiation. Works on both dead and living.
-
-reagent-name-antidon = Antidon
-reagent-desc-antidon = A cryo-based specialized poison treatment reagent that effectively neutralizes toxic damage. Works on both dead and living.
-
-reagent-name-brutedon = Brutedon
-reagent-desc-brutedon = A cryo-based advanced brute damage treatment that heals all types of physical trauma. Works on both dead and living.
-
 reagent-name-cryptobiolin = cryptobiolin
 reagent-desc-cryptobiolin = Causes confusion and dizziness.
 
@@ -169,8 +157,14 @@ reagent-desc-haloperidol = Removes most stimulating and hallucinogenic drugs. Re
 reagent-name-warfarin = warfarin
 reagent-desc-warfarin = Commonly used as an anticoagulant medication. Causes blood to have difficulty forming clots. Can cause internal bleeding when overdosed.
 
-reagent-name-vitera = Vitera
-reagent-desc-vitera = A specialized combat medicine that directly treats mangleness damage. Effective for combating exhaustion and metabolic depletion.
+reagent-name-apoptodon = Apoptodon
+reagent-desc-apoptodon = An advanced radioactive solution for regenerating the body in cold conditions. Offsets rotting, but inflicts radiation and cellular damage. Works on both dead and living.
 
-reagent-name-genesis-ultra = Genesis-Ultra
-reagent-desc-genesis-ultra = An advanced mangleness treatment that provides rapid healing, but causes genetic damage as a side effect. Use with caution.
+reagent-name-h-32 = H-32
+reagent-desc-h-32 = A cryo-based reagent developed in the field with increased radiation. Works on both dead and living.
+
+reagent-name-antidon = Antidon
+reagent-desc-antidon = A cryo-based specialized poison treatment reagent that effectively neutralizes toxic damage. Works on both dead and living.
+
+reagent-name-brutedon = Brutedon
+reagent-desc-brutedon = A cryo-based advanced brute damage treatment that heals all types of physical trauma. Works on both dead and living.
