@@ -162,11 +162,11 @@
       - state: on-equipped-EYES
         shader: unshaded
   - type: PowerCellDraw
-    drawRate: 4
-    useCharge: 60
-  - type: IdentityBlocker
+    drawRate: 1.5
+    useCharge: 25
   - type: VisionDarkener
-    strength: 0.5
+    strength: 0.2
+  - type: IdentityBlocker
   - type: ComponentToggler
     parent: true
     components:
@@ -175,10 +175,13 @@
   - type: Tag
     tags:
     - NVDHandcrafted
+  - type: Construction
+    graph: handcraftnvd
+    node: nvdfinished
 
 - type: entity
   name: improvised NVD
-  parent: BaseItem
+  parent: [BaseItem, PowerCellSlotSmallItem]
   id: NVDHandcraftedParts
   description: An welding mask with atached strange parts and threaded with cabling. It looks incomplete.
   components:
