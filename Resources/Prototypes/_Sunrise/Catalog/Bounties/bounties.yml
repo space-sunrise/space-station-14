@@ -5,7 +5,7 @@
   idPrefix: SUN
   entries:
   - name: bounty-item-soviet-pin
-    amount: 12
+    amount: 10
     whitelist:
       tags:
       - SovietPinsExped
