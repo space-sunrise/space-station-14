@@ -21,11 +21,6 @@
   sprite:
     sprite: _Sunrise/Objects/Misc/id_cards.rsi
     state: ussp
-    state: department-side
-    color: *color-ussp-side
-    sprite: *sunrise-icon-rsi
-    offset: *icon-offset
-    state: OfficerAltUSSP
   entries:
   - name: bounty-item-soviet-damaged-officer-id-card
     amount: 3
