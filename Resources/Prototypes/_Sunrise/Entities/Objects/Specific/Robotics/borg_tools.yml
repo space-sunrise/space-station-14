@@ -63,24 +63,8 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
+    proto: RedMediumLaser
     fireCost: 100
-  - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: DisablerBolt
-      fireCost: 50
-    - proto: RedLaserBeam
-      fireCost: 100
-      conditions:
-      - !type:AlertLevelCondition
-        alertLevels:
-        - blue
-        - violet
-        - yellow
-        - red
-        - gamma
-        - delta
-        - epsilon
   - type: BatterySelfRecharger
     autoRechargeRate: 20
   - type: MagazineVisuals
@@ -541,7 +525,7 @@
     availableModes:
     - FullAuto
   - type: BatteryAmmoProvider
-    proto: RedLaser # Sunrise-TODO: ????? ????? ???????? ??? ?????? ?????
+    proto: RedMediumLaser # Sunrise-TODO: ????? ????? ???????? ??? ?????? ?????
     fireCost: 50
   - type: Battery
     maxCharge: 10000
