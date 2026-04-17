@@ -300,7 +300,7 @@ public sealed class HungerSystem : EntitySystem
             if (hunger.CurrentThreshold >= HungerThreshold.Okay)
             {
                 var damage = new DamageSpecifier();
-                damage.DamageDict.Add("Mangleness", -0.03);
+                damage.DamageDict.Add("Mangleness", -0.02);
                 _damageable.TryChangeDamage(uid, damage, true, false);
             }
             else if (hunger.CurrentThreshold == HungerThreshold.Peckish)

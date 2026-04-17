@@ -254,7 +254,7 @@ public sealed class ThirstSystem : EntitySystem
             if (thirst.CurrentThirstThreshold >= ThirstThreshold.Okay)
             {
                 var damage = new DamageSpecifier();
-                damage.DamageDict.Add("Mangleness", -0.03);
+                damage.DamageDict.Add("Mangleness", -0.02);
                 _damageable.TryChangeDamage(uid, damage, true, false);
             }
             else if (thirst.CurrentThirstThreshold == ThirstThreshold.Thirsty)
