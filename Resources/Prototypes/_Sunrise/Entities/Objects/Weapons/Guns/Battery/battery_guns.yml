@@ -314,7 +314,6 @@
       visualState: disable
       heldPrefix: disabler
       pacifismAllowedMode: true
-
     - proto: BulletLaserWindowPiercingMagnum
       fireCost: 62.5
       name: energy-gun-lethal
@@ -1215,7 +1214,7 @@
   - type: MagazineVisuals
     magState: mag
     steps: 5
-    zeroVisible: true
+    zeroVisible: false
   - type: Appearance
   - type: Tag
     tags:
