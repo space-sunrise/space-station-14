@@ -19,7 +19,7 @@
         doAfter: 5
       - component: PowerCell
         name: construction-graph-component-power-cell
-        store: battery-container
+        store: cell_slot
         icon:
           sprite: Objects/Power/power_cells.rsi
           state: small
