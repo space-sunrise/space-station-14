@@ -81,46 +81,6 @@
             types:
              Cellular: -5
              Mangleness: -1.25
-- type: reagent
-  id: Vitera
-  name: reagent-name-vitera
-  group: Medicine
-  desc: reagent-desc-vitera
-  physicalDesc: reagent-physical-desc-viscous
-  flavor: medicine
-  color: "#a0a0ff"
-  metabolisms:
-    Medicine:
-      effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Mangleness: -1
-
-- type: reagent
-  id: GenesisUltra
-  name: reagent-name-genesis-ultra
-  group: Medicine
-  desc: reagent-desc-genesis-ultra
-  physicalDesc: reagent-physical-desc-fizzy
-  flavor: medicine
-  color: "#ff5050"
-  metabolisms:
-    Medicine:
-      effects:
-      - metabolismRate: 0.1
-      - !type:HealthChange
-        damage:
-          types:
-            Cellular: 0.3
-            Mangleness: -0.5
-      - !type:HealthChange
-        conditions:
-        - !type:ReagentThreshold
-          min: 6
-        damage:
-          types:
-            Cellular: 3
 
 - type: reagent
   id: Nutricryokomp
