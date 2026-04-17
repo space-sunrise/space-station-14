@@ -353,7 +353,7 @@ figurines-thief-5 = Хм, я не знал, что эта стена может 
 
 figurines-wizard-1 = EI NATH!!
 figurines-wizard-2 = ONI'SOMA!!
-figurines-wizard-3 = Skidaddle skadoodle!
+figurines-wizard-3 = Скибиди-бабиди-бум!!
 figurines-wizard-4 = Настоящие волшебники поддерживают права трансгендеров.
 figurines-wizard-5 = Кто из вас, ЗАДРОТЫ, готов быть запертым в шкафчике?
 figurines-wizard-6 = Я не волшебник! Я капитан! Меня обменяли разумами!
