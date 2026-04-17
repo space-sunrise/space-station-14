@@ -1,7 +1,7 @@
 # Командование
 
 figurines-captain-1 = Слава NT!
-figurines-captain-2 = Как меня наняли? Да.
+figurines-captain-2 = Экипаж, диск от ядерной бомбы надежно спрятан у меня в заднице.
 figurines-captain-3 = Ядерный диск в безопасности. Где? Где-то.
 figurines-captain-4 = Куда делся мой ID?
 figurines-captain-5 = Всё под контролем.
