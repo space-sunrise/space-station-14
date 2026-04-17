@@ -12,7 +12,7 @@ figurines-captain-8 = Тяжело быть на вершине.
 # Карго
 
 figurines-qm-1 = Кто украл шаттл?
-figurines-qm-2 = Стойте, куда подевалась моя планшет?
+figurines-qm-2 = Стойте, куда подевалался мой планшет?
 figurines-qm-3 = Я не одобрял эту партию оружия!
 figurines-qm-4 = Один ящик игрушек для моего товарища-клоуна!
 figurines-qm-5 = Время поиграть в азартные игры!
@@ -57,7 +57,7 @@ figurines-atmostech-3 = Фрезон...
 figurines-atmostech-4 = Тритий...
 figurines-atmostech-5 = Слава Атмосии!
 figurines-atmostech-6 = Дистро? Это сокращение от «утилизация».
-figurines-atmostech-7 = ТЭГ: Термоэлектро..Где?
+figurines-atmostech-7 = ТЭГ: Термоэлектро...Где?
 figurines-atmostech-8 = Кто-нибудь ещё слышит, как трещит стекло?
 figurines-atmostech-9 = Обещаю, эта сжигающая камера абсолютно безопасна и НЕ взорвётся.
 
