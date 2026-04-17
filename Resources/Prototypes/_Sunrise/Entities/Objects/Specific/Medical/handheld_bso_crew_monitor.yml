@@ -12,8 +12,12 @@
   - type: UserInterface
     interfaces:
       enum.CrewMonitoringUIKey.Key:
-        type: BSOCrewMonitoringBoundUserInterface
+        type: SunriseCrewMonitoringBoundUserInterface
   - type: CrewMonitoringConsole
+  - type: CrewMonitoringFilter
+    allowedDepartmentIds:
+    - Command
+    includeTrackers: true
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor

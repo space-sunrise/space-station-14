@@ -1,7 +1,7 @@
 - type: guideEntry
   id: Cargo
   name: guide-entry-cargo
-  text: "/ServerInfo/Guidebook/Cargo/Cargo.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/Cargo/Cargo.xml"  # Sunrise-Edit
   children:
   - CargoBounties
   - Salvage
@@ -9,9 +9,9 @@
 - type: guideEntry
   id: CargoBounties
   name: guide-entry-cargo-bounties
-  text: "/ServerInfo/Guidebook/Cargo/CargoBounties.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/Cargo/CargoBounties.xml"  # Sunrise-Edit
 
 - type: guideEntry
   id: Salvage
   name: guide-entry-salvage
-  text: "/ServerInfo/Guidebook/Cargo/Salvage.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/Cargo/Salvage.xml"  # Sunrise-Edit

@@ -46,10 +46,6 @@ ent-MiningBorgChassisDerelict = заброшенный киборг-утилиз
 ent-SyndicateAssaultBorgChassisDerelictSunrise = заброшенный штурмовой киборг Синдиката
     .desc = Смертоносная машина с доступом к разнообразным модулям. Этот скорее ржаво-оранжевый, чем кроваво-красный.
 
-ent-PlayerSyndicateAssaultBorgDerelict = { ent-SyndicateAssaultBorgChassisDerelictSunrise }
-    .desc = { ent-SyndicateAssaultBorgChassisDerelictSunrise.desc }
-    .suffix = Батарея, Модуль
-
 ent-SyndicateMedicalBorgChassisDerelictSunrise = заброшенный медицинский киборг Синдиката
     .desc = Медицинская поддержка для полевых операций. Его медицинские протоколы, похоже, деградировали.
 
@@ -82,6 +78,12 @@ ent-CableDet = взрывной шнур
 ent-CableDetStack = взрывной шнур
     .desc = Взрывной шнур, чтобы убрать всё, что стоит на пути.
     .suffix = Полный
+ent-CableDetStack10 = { ent-CableDetStack }
+    .desc = { ent-CableDetStack.desc }
+    .suffix = 10
+ent-CableDetStack1 = { ent-CableDetStack }
+    .desc = { ent-CableDetStack.desc }
+    .suffix = 1
 
 ent-ParcelWrapAdmeme = блюспейс-обёртка
     .desc = Бумага для упаковки предметов при транспортировке. Эта, кажется, способна прятать внутри подозрительно много пространства.
@@ -94,3 +96,6 @@ ent-CartridgeHeavyRifleRFMJMech = { ent-CartridgeHeavyRifleRFMJ }
 ent-CartridgeXrayBeam = патрон (рентген-луч)
     .desc = { ent-BaseCartridge.desc }
 
+
+ent-EmptyDetonator = детонатор
+    .desc = Детонирующий капсюль. Требуются триггер и провод.

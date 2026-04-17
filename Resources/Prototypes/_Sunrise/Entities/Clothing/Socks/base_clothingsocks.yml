@@ -7,6 +7,12 @@
     quickEquip: true
     slots:
       - SOCKS
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
   - type: Sprite
     state: icon
 

@@ -68,3 +68,11 @@
   color: "#d600bd"
   voiceId: Glados
   showAuthor: true
+
+- type: collectiveMind
+  id: Pirate
+  name: collective-mind-pirate
+  keycode: 'ф' # Фриланс
+  color: "#d4af37"
+  voiceId: necrophos_dota_2
+  showAuthor: true

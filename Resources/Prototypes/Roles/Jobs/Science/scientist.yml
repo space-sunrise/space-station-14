@@ -11,10 +11,17 @@
   icon: "JobIconScientist"
   supervisors: job-supervisors-rd
   displayWeight: 10  # Sunrise
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-researcher
+  # Sunrise-End
   access:
   - Research
   - Maintenance
-
+  # Sunrise-Start
+  extendedAccess:
+  - ResearchConsoleAccess
+  # Sunrise-End
 - type: startingGear
   id: ScientistGear
   equipment:

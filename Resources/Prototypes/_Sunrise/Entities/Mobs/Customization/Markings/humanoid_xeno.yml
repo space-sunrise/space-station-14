@@ -117,6 +117,24 @@
     state: crusher_tail
 
 - type: marking
+  id: HumanoidXenoTailsRavager
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/tails.rsi
+    state: ravage_tail
+
+- type: marking
+  id: HumanoidXenoTailsNeomorph
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/tails.rsi
+    state: neo_tail
+
+- type: marking
   id: HumanoidXenoChestPredalien
   bodyPart: Chest
   markingCategory: Chest
@@ -144,6 +162,24 @@
     state: queen_chest
 
 - type: marking
+  id: HumanoidXenoChestNeomorph
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/body.rsi
+    state: neo_body
+
+- type: marking
+  id: HumanoidXenoChestSpitter
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/body.rsi
+    state: spitter_body
+
+- type: marking
   id: HumanoidXenoChestRunner
   bodyPart: Chest
   markingCategory: Chest
@@ -151,6 +187,15 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/body.rsi
     state: runner_chest
+
+- type: marking
+  id: HumanoidXenoChestCougar
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/body.rsi
+    state: cougar_body
 
 - type: marking
   id: HumanoidXenoHeadDefault
@@ -296,3 +341,43 @@
     state: worker_head
   - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
     state: worker_teeth
+
+- type: marking
+  id: HumanoidXenoHeadRavager
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: ravager_head
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: ravager_teeth
+
+- type: marking
+  id: HumanoidXenoHeadNeomorph
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: neo_head
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/head.rsi
+    state: neo_teeth
+
+- type: marking
+  id: HumanoidXenoArmsPredalien
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/arms.rsi
+    state: pred_arms
+
+- type: marking
+  id: HumanoidXenoLegsPredalien
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/HumanoidXeno/legs.rsi
+    state: pred_legs

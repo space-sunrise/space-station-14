@@ -1,4 +1,4 @@
-ent-FleshHuggerJump = flesh-hugger-jump-name
-    .desc = flesh-hugger-jump-description
-ent-FleshHuggerGetOff = flesh-hugger-get-off-name
-    .desc = flesh-hugger-get-off-description
+ent-FleshHuggerJump = Jump
+    .desc = Allows you to jump in the selected direction. If you hit a humanoid without a mask, you latch onto their face.
+ent-FleshHuggerGetOff = Get Off Face
+    .desc = Allows you to get off the face.

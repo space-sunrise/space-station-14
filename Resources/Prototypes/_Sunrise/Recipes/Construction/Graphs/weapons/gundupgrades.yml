@@ -179,3 +179,72 @@
           steps:
             - tool: Prying
               doAfter: 2
+
+# region BlueShit
+- type: constructionGraph
+  id: UpgradeArmorVestBlueshield
+  start: start
+  graph:
+    - node: start
+      entity: ClothingOuterArmorBlueShield
+      edges:
+        - to: plate
+          steps:
+            - tag: UpgradeKitPlate
+              name: construction-graph-tag-pltvest
+              doAfter: 5
+        - to: stab
+          steps:
+            - tag: UpgradeKitStab
+              name: construction-graph-tag-stbvest
+              doAfter: 5
+        - to: heat
+          steps:
+            - tag: UpgradeKitHeat
+              name: construction-graph-tag-absrbvest
+              doAfter: 5
+        - to: webvest
+          steps:
+            - tag: UpgradeWebVest
+              name: construction-graph-tag-webvest
+              doAfter: 15
+    - node: webvest
+      entity: ClothingOuterVestWebBlue
+    - node: plate
+      entity: ClothingOuterArmorPlate
+      edges:
+        - to: bullet
+          steps:
+            - tag: UpgradeKitBullet
+              name: construction-graph-tag-blltvest
+              doAfter: 8
+    - node: bullet
+      entity: ClothingOuterArmorBulletproof
+      edges:
+        - to: bullet_heavy
+          steps:
+            - tag: UpgradeKitBulletHeavy
+              name: construction-graph-tag-hblltvest
+              doAfter: 12
+    - node: bullet_heavy
+      entity: ClothingOuterArmorBulletproofHeavy
+    - node: stab
+      entity: ClothingOuterArmorStab
+      edges:
+        - to: riot
+          steps:
+            - tag: UpgradeKitRiot
+              name: construction-graph-tag-riotvest
+              doAfter: 8
+    - node: riot
+      entity: ClothingOuterArmorRiot
+    - node: heat
+      entity: ClothingOuterArmorHeatAbsorb
+      edges:
+        - to: reflective
+          steps:
+            - tag: UpgradeKitReflective
+              name: construction-graph-tag-rflctvest
+              doAfter: 8
+    - node: reflective
+      entity: ClothingOuterArmorReflective

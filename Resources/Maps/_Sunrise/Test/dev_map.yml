@@ -4,7 +4,7 @@ meta:
   engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/30/2025 22:44:48
+  time: 01/16/2026 21:15:11
   entityCount: 3153
 maps:
 - 23
@@ -1863,7 +1863,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,16.5
       parent: 1
-- proto: AirlockExternalGlassPersonalShuttle
+- proto: AirlockExternalGlassShuttleArrivals
   entities:
   - uid: 457
     components:
@@ -12511,6 +12511,13 @@ entities:
     - type: Transform
       pos: 70.5,41
       parent: 1
+- proto: MessengerServer
+  entities:
+  - uid: 1911
+    components:
+    - type: Transform
+      pos: 46.5,65.5
+      parent: 1
 - proto: MetalFoamGrenade
   entities:
   - uid: 2192
@@ -15821,7 +15828,7 @@ entities:
     - type: Transform
       pos: 45.5,61.5
       parent: 1
-- proto: StationAnchorOff
+- proto: StationAnchor
   entities:
   - uid: 293
     components:
@@ -15834,15 +15841,6 @@ entities:
     components:
     - type: Transform
       pos: 45.5,65.5
-      parent: 1
-    - type: Fixtures
-      fixtures: {}
-- proto: StationMapBroken
-  entities:
-  - uid: 1911
-    components:
-    - type: Transform
-      pos: 46.5,65.5
       parent: 1
     - type: Fixtures
       fixtures: {}

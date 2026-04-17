@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <WarningsAsErrors>RA0032;nullable</WarningsAsErrors>
@@ -14,6 +14,12 @@
     <ProjectReference Include="..\Content.Shared.Database\Content.Shared.Database.csproj" />
     <ProjectReference Include="..\Sunrise\Content.Sunrise.Interfaces.Shared\Content.Sunrise.Interfaces.Shared.csproj" />
   </ItemGroup>
+  <ItemGroup Condition="Exists('..\SunrisePrivate\Content.Shared')">
+    <Compile Include="..\SunrisePrivate\Content.Shared\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+  <PropertyGroup Condition="Exists('..\SunrisePrivate\Content.Shared')">
+    <DefineConstants>$(DefineConstants);SUNRISE_PRIVATE</DefineConstants>
+  </PropertyGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
   <Import Project="..\RobustToolbox\MSBuild\Robust.CompNetworkGenerator.targets" />
 </Project>

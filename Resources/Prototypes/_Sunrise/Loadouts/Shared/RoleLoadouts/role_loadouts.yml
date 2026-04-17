@@ -1,0 +1,554 @@
+- type: roleLoadout
+  id: JobIAA
+  groups:
+  - LawyerNeck
+  - LawyerJumpsuit
+  - CommonBackpack
+  - SunriseTrinkets
+  - SunriseSurvival
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobMagistrat
+  groups:
+  - CommonBackpack
+  - SunriseTrinkets
+  - SunriseSurvival
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobNtrOfficer
+  groups:
+  - UniformNTR
+  - BackNTR
+  - SunriseTrinkets
+  - SecurityTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobBrigmedic
+  groups:
+  - BrigmedicJumpsuit
+  - BrigmedicBackpack
+  - BrigmedicInjectors
+  - SurvivalSecurity
+  - SunriseTrinkets
+  - SecurityTrinkets
+  - GroupSpeciesBreathTool
+  - SunriseSecurityGun
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobCentCommOfficial
+  groups:
+  - CentCommOperatorHats
+  - CentCommOperatorJumpsuit
+  - SunriseTrinkets
+  - SunriseSurvival
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobCentCommOperator
+  groups:
+  - CentCommOperatorHats
+  - CentCommOperatorJumpsuit
+  - SunriseTrinkets
+  - SunriseSurvival
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobBlueShieldEnsign
+  groups:
+  - BlueShieldNeck
+  - BlueShieldJumpsuit
+  - BlueShieldBackpack
+  - BlueShieldBelt
+  - BlueshieldGun
+  - BlueShieldBra
+  - BlueShieldPants
+  - SunriseTrinkets
+  - SurvivalSecurity
+  - GroupSpeciesBreathTool
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobBlueShieldOfficer
+  groups:
+  - BlueShieldNeck
+  - BlueShieldJumpsuit
+  - BlueShieldBackpack
+  - BlueShieldBelt
+  - BlueshieldGun
+  - BlueShieldBra
+  - BlueShieldPants
+  - SunriseTrinkets
+  - SurvivalSecurity
+  - GroupSpeciesBreathTool
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobSeniorOfficer
+  groups:
+  - SeniorOfficerJumpsuit
+  - SecurityOuterClothing
+  - SecurityBackpack
+  - SecurityBelt
+  - SecurityShoes
+  - SunriseSecurityGun
+  - SurvivalSecurity
+  - SunriseTrinkets
+  - SecurityTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobSeniorResearcher
+  groups:
+  - SunriseGlasses
+  - SeniorResearcherJumpsuit
+  - ScientistGloves
+  - ScientistBackpack
+  - ScientistShoes
+  - SunriseSurvival
+  - SunriseTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobSeniorPhysician
+  groups:
+  - SeniorPhysicianHead
+  - SunriseGlasses
+  - SeniorPhysicianMask
+  - SeniorPhysicianNeck
+  - SeniorPhysicianJumpsuit
+  - SeniorPhysicianOuterClothing
+  - SeniorPhysicianGloves
+  - MedicalBackpack
+  - SeniorPhysicianBelt
+  - SeniorPhysicianShoes
+  - SurvivalMedical
+  - SunriseTrinkets
+  - MedicalTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobMedicalPathologist
+  groups:
+  - PathologistHead
+  - SunriseGlasses
+  - PathologistMask
+  - PathologistNeck
+  - MedicalDoctorJumpsuit
+  - PathologistOuterClothing
+  - PathologistGloves
+  - PathologistShoes
+  - MedicalBackpack
+  - GroupTankHarness
+  - SurvivalMedical
+  - SunriseTrinkets
+  - MedicalTrinkets
+  - GroupSpeciesBreathToolMedical
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobSeniorEngineer
+  groups:
+  - SeniorEngineerHead
+  - SeniorEngineerMask
+  - SeniorEngineerNeck
+  - SeniorEngineerJumpsuit
+  - SeniorEngineerOuterClothing
+  - SeniorEngineerGloves
+  - SeniorEngineerShoes
+  - StationSeniorEngineerBackpack
+  - SunriseSurvivalExtended
+  - SunriseTrinkets
+  - TrinketsEngineering
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobRoboticist
+  groups:
+  - RoboticistHead
+  - ScientistNeck
+  - RoboticistJumpsuit
+  - RoboticistOuterClothing
+  - ScientistBackpack
+  - ScientistShoes
+  - SunriseSurvival
+  - SunriseTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobSecurityPilot
+  groups:
+  - SecurityPilotJumpsuit
+  - SecurityBelt
+  - SecurityShoes
+  - SecurityBackpack
+  - SunriseSecurityGun
+  - SurvivalSecurity
+  - SunriseTrinkets
+  - SecurityTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+#- type: roleLoadout
+#  id: JobPrisonGuard
+#  groups:
+#  - PrisonGuardHead
+#  - PrisonGuardJumpsuit
+#  - PrisonGuardBackpack
+#  - SecurityShoes
+#  - SurvivalSecurity
+#  - Trinkets
+#  - SecurityTrinkets
+#  - GroupSpeciesBreathTool
+#  - Bra
+#  - Pants
+#  - Socks
+
+- type: roleLoadout
+  id: JobHeadOfPrison
+  groups:
+  #- PrisonGuardHead
+  - HeadOfPrisonJumpsuit
+  #- PrisonGuardBackpack
+  #- SecurityShoes
+  #- SurvivalSecurity
+  #- Trinkets
+  #- SecurityTrinkets
+  #- GroupSpeciesBreathToolSecurity
+  - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobPrisonInspector
+  groups:
+  - PrisonInspectorHats
+  - PrisonInspectorGlasses
+  #- Trinkets
+  #- Survival
+  #- GroupSpeciesBreathTool
+  - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobPrisonWorker
+  groups:
+  - PrisonWorkerHead
+  - PrisonWorkerJumpsuit
+  - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
+  #- Trinkets
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobPrisonEngineer
+  groups:
+  - PrisonEngineerHead
+  - PrisonEngineerJumpsuit
+  - PrisonEngineerPDA
+  #- TrinketsEngineering
+  #- Trinkets
+  - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobPrisonScientist
+  groups:
+  - PrisonScientistHead
+  - PrisonScientistJumpsuit
+  #- Trinkets
+  - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobPrisonDoctor
+  groups:
+  - PrisonDoctorHead
+  - PrisonDoctorJumpsuit
+  #- Trinkets
+  - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobPrisonTrainee
+  groups:
+  - PrisonTraineeHead
+  - PrisonTraineeJumpsuit
+  - PrisonTraineePDA
+  #- Trinkets
+  - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobPrisonChef
+  groups:
+  - PrisonChefHead
+  - PrisonChefJumpsuit
+  #- Trinkets
+  - TrinketsPlanetPrison
+  - PlanetPrisonSecurityLoot
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobPlanetPrisoner
+  groups:
+  - PrisonerJumpsuit
+  - PlanetPrisonerPDA
+  #- GroupSpeciesBreathTool
+  - TrinketsPlanetPrison
+  - PlanetPrisonerLoot
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+#- type: roleLoadout
+#  id: JobPrisonPilot
+#  groups:
+#  - PrisonGuardHead
+#  - PrisonGuardJumpsuit
+#  - PrisonGuardBackpack
+#  - SecurityShoes
+#  - SurvivalSecurity
+#  - Trinkets
+#  - SecurityTrinkets
+#  - GroupSpeciesBreathTool
+#  - Bra
+#  - Pants
+#  - Socks
+
+- type: roleLoadout
+  id: JobNanoTrasenRepresentative
+  groups:
+  - NanoTrasenRepresentativeJumpsuit
+  - NanoTrasenRepresentativeOuterClothing
+  - NanoTrasenRepresentativeBackpack
+  - SunriseSurvival
+  - SunriseTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobBarber
+  groups:
+  - BarberJumpsuit
+  - CommonBackpack
+  - SunriseSurvival
+  - SunriseTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobAdjutant
+  groups:
+  - AdjutantHead
+  - AdjutantJumpsuit
+  - AdjutantOuterClothing
+  - AdjutantBackpack
+  - AdjutantBra
+  - AdjutantPants
+  - SunriseSurvival
+  - SunriseTrinkets
+  - GroupSpeciesBreathTool
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: JobMailCarrier
+  groups:
+  - SunriseCargoTechNeck
+  - MailCarrierJumpsuit
+  - SunriseCargoTechGloves
+  - CargoTechnicianBackpack
+  - GroupTankHarness
+  - SunriseSurvival
+  - TrinketsCargo
+  - SunriseTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: RoleSurvivalAssaultOps
+  groups:
+  - SunriseSurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupPocketTankDouble
+  - Contributors
+
+- type: roleLoadout
+  id: JobMiningSpecialist
+  groups:
+  - SunriseSalvageHead
+  - SunriseGlasses
+  - SunriseSalvageMask
+  - SunriseSalvageNeck
+  - SunriseSalvageSpecialistOuterClothing
+  - SunriseSalvageGloves
+  - SunriseSalvageSpecialistShoes
+  - SalvageSpecialistBackpack
+  - GroupTankHarness
+  - SunriseSurvival
+  - SunriseTrinkets
+  - TrinketsCargo
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+# Silicons
+
+- type: roleLoadout
+  id: JobPeaceBorg
+  nameDataset: NamesBorg
+  canCustomizeName: true
+
+- type: roleLoadout
+  id: JobJanitorBorg
+  nameDataset: NamesBorg
+  canCustomizeName: true
+
+- type: roleLoadout
+  id: JobMiningBorg
+  nameDataset: NamesBorg
+  canCustomizeName: true
+
+- type: roleLoadout
+  id: JobClownBorg
+  nameDataset: NamesBorg
+  canCustomizeName: true
+
+- type: roleLoadout
+  id: JobEngineerBorg
+  nameDataset: NamesBorg
+  canCustomizeName: true
+
+- type: roleLoadout
+  id: JobServiceBorg
+  nameDataset: NamesBorg
+  canCustomizeName: true
+
+- type: roleLoadout
+  id: JobMedicalBorg
+  nameDataset: NamesBorg
+  canCustomizeName: true
+
+- type: roleLoadout
+  id: JobSecurityBorg
+  nameDataset: NamesBorg
+  canCustomizeName: true
+
+- type: roleLoadout
+  id: JobComMaid
+  groups:
+  - ComMaidHead
+  - ComMaidNeck
+  - ComMaidJumpsuit
+  - ComMaidGloves
+  - ComMaidShoes
+  - ComMaidBackpack
+  - SunriseSurvival
+  - SunriseTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: RoleSurvivalScooner
+  groups:
+  - SunriseSurvivalExtended
+  - GroupSpeciesBreathTool

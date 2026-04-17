@@ -40,7 +40,7 @@
       - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingOuterStorageBase, ClothingOuterVestArmorSec, BaseSecurityContraband]
+  parent: [ClothingOuterVestArmorSec, ClothingOuterStorageBase, BaseSecurityContraband]
   id: ClothingOuterVestWebSec
   name: security web vest
   description: A high-quality Type I armored vest made from a hard synthetic material. It's surprisingly flexible and light, despite formidable armor plating.
@@ -60,4 +60,17 @@
       damageCoefficient: 0.9
     - type: Construction
       graph: UpgradeArmorVest
+      node: webvest
+
+- type: entity
+  parent: ClothingOuterVestWebSec
+  id: ClothingOuterVestWebBlue
+  name: blueshild web vest
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/OuterClothing/Vests/web_armor_blue.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/OuterClothing/Vests/web_armor_blue.rsi
+    - type: Construction
+      graph: UpgradeArmorVestBlueshield
       node: webvest

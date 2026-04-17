@@ -4,3 +4,6 @@ ent-WeaponMechIndustrialKineticAccelerator = протокинетический 
 ent-WeaponMechIndustrialPlasmaCutter = плазменный резак экзокостюма
     .desc = Выстреливает плазменными зарядами на близком расстоянии.
     .suffix = Оружие мехов, Стрелковое, Промышленное, Плазменный резак
+ent-WeaponMechIndustrialPlasmaCutterLight = лёгкий плазменный резак экзокостюма
+    .desc = Выстреливает плазменными зарядами на близком расстоянии.
+    .suffix = Оружие мехов, Стрелковое, Промышленное

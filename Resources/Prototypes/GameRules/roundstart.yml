@@ -132,15 +132,15 @@
   - type: AntagLoadProfileRule
     speciesOverride: Human
     speciesOverrideBlacklist:
-    - Vox
     - Felinid
-    - Diona
-    - HumanoidXeno
-    - Predator
     #Species that do not work with nukies should be included in this list.
     #Once the issues are fixed the species should be removed from this list to be enabled.
     #Balance concerns are not a valid reason to disable a species, except for high-impact Nukie-specific exploits.
-    #- Vox
+    # - Vox
+    # - Felinid
+    # - Diona
+    # - HumanoidXeno
+    # - Predator
 
 - type: entity
   parent: BaseNukeopsRule
@@ -149,7 +149,7 @@
   - type: GameRule
     minPlayers: 50
   - type: LoadMapRule
-    mapPath: /Maps/_Sunrise/Nonstations/nukieplanet.yml
+    mapPath: /Maps/_Sunrise/Nonstations/geigerComplex.yml #/Maps/_Sunrise/Nonstations/nukieplanet.yml # Sunrise-Edit
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
     definitions:
@@ -224,6 +224,33 @@
         - Syndicate
       mindRoles:
       - MindRoleNukeops
+    # Sunrise start
+    # Extra operative above 80 players (keeps 80 players unchanged).
+    - prefRoles: [ Nukeops ]
+      fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
+      spawnerPrototype: SpawnPointNukeopsOperative
+      min: 0
+      max: 1
+      playerRatio: 85
+      startingGear: SyndicateOperativeGearFull
+      roleLoadout:
+      - RoleSurvivalNukie
+      components:
+      - type: GhostPanelAntagonistMarker
+        name: ghost-panel-antagonist-nukeops-name
+        description: ghost-panel-antagonist-nukeops-description
+        priority: 10
+      - type: NukeOperative
+      - type: RandomMetadata
+        nameSegments:
+        - NamesSyndicateNormal
+        nameFormat: name-format-nukie-operator
+      - type: NpcFactionMember
+        factions:
+        - Syndicate
+      mindRoles:
+      - MindRoleNukeops
+    # Sunrise end
   - type: DynamicRuleCost
     cost: 200
 
@@ -238,7 +265,7 @@
   - type: AntagRandomObjectives
     sets:
     - groups: TraitorObjectiveGroups
-    maxDifficulty: 5
+    maxDifficulty: 6 # Sunrise-Edit
   - type: AntagSelection
     agentName: traitor-round-end-agent-name
   - type: DynamicRuleCost
@@ -251,13 +278,13 @@
   - type: GameRule
     minPlayers: 5
     delay:
-      min: 600 # Sunrise-Edit
-      max: 900 # Sunrise-Edit
+      min: 300 # Sunrise-Edit
+      max: 600 # Sunrise-Edit
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Traitor ]
-      max: 8
+      max: 13 # Sunrise-Edit
       playerRatio: 10
       pickCommandStaff: true # Sunrise-Edit
       maxCommandStaff: 1 # Sunrise-Edit
@@ -331,11 +358,11 @@
   parent: BaseGameRule
   components:
   - type: GameRule
-    minPlayers: 15
+    minPlayers: 45 # Sunrise-Edit
     # Sunrise-Start
     delay:
-      min: 900
-      max: 1200
+      min: 180
+      max: 300
     # Sunrise-End
   - type: RevolutionaryRule
   - type: AntagSelection
@@ -358,8 +385,12 @@
     # Sunrise-Start
     - prefRoles: [ Rev ]
       fallbackRoles: [ HeadRev ]
-      max: 30
-      playerRatio: 3
+      max: 40
+      playerRatio: 2
+      ignorePrefCheck: true
+      blacklist:
+        components:
+        - CommandStaff
       briefing:
         text: rev-role-greeting
         color: CornflowerBlue
@@ -368,6 +399,11 @@
       - type: Revolutionary
       mindRoles:
       - MindRoleRevolutionary
+  - type: SubGamemodes
+    rules:
+    - id: RevolutionarySmugglerStashSpawn
+      amount: 9
+      maxAmount: 18
     # Sunrise-End
   - type: DynamicRuleCost
     cost: 200
@@ -545,12 +581,6 @@
   parent: BaseGameRule
   components:
   - type: BasicStationEventScheduler
-    # Sunrise-Start
-    minimumTimeUntilFirstEvent: 600 # 10 mins
-    minMaxEventTiming:
-      min: 600 # 10 mins
-      max: 900 # 15 mins
-    # Sunrise-End
     scheduledGameRules: !type:NestedSelector
       tableId: BasicGameRulesTable
 

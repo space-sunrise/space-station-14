@@ -9,8 +9,8 @@ ent-WeaponPistolG22 = Glock-22
 ent-WeaponPistolG22Auto = Glock-22 auto
     .suffix = Auto
     .desc = { ent-BaseWeaponPistol.desc }
-ent-WeaponPistolG22Metus = Glock-22 Metus
-    .desc = Made to order for the security of the Metus planetary prison. Semi-automatic design. Uses .35 Auto caliber ammunition.
+ent-WeaponPistolG22Prison = Glock-22 Prison
+    .desc = Manufactured by special order for prison complex security. Semi-automatic firearm chambered in .35 Auto.
     .suffix = Sunrise
 ent-WeaponPistolHIB88M4 = HI Browning-88 M4
     .desc = { ent-BaseWeaponPistol.desc }
@@ -28,9 +28,12 @@ ent-WeaponRevolverSpearhead = Spearhead autorevolver
 ent-WeaponRevolverSpearheadBlack = Spearhead autorevolver
     .desc = { ent-WeaponRevolverSpearhead.desc }
 ent-WeaponPistolM1984 = D1984
-    .desc = A compact sidearm developed under Nanotrasen’s internal order directive “N1984.” A personal weapon of control, discipline, and precise response. Issued to distinguished detectives for reliability during field investigations. Fires .35 Auto.
+    .desc = A compact sidearm developed under Nanotrasen’s internal order directive “N1984.” A personal weapon of control, discipline, and precise response. Issued to distinguished detectives for reliability during field investigations. Fires .40.
 ent-WeaponPistolDeagleGolden = Golden Desert Eagle
     .desc = Fires a .45 magnum cartridge. Engraved: All I remember of him are two gold-plated .45 Desert Eagles.
 
 ent-WeaponPistolTec9 = Tac-Tec
     .desc = Very cheap to produce and very easy to use, as reliable as the SKM-24.
+
+ent-SunriseWeaponSubMachineGunUzi = Type U3 Uzi
+    .desc = Lightweight and iconic submachine gun with a large magazine and high rate of fire.

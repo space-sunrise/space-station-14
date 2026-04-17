@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: SunriseImprovisedGrenadeCasing
+  name: guide-entry-improvised-grenade-casing
+  text: "/ServerInfo/Guidebook/_Sunrise/ImprovisedGrenadeCasing.xml"
+  priority: 6

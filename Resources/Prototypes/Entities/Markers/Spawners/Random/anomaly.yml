@@ -14,7 +14,7 @@
     - AnomalyPyroclastic
     - AnomalyGravity
     - AnomalyElectricity
-    - AnomalyFlesh
+    - RandomFleshAnomalySpawner # Sunrise edit
     - AnomalyBluespace
     - AnomalyIce
     - RandomRockAnomalySpawner
@@ -22,7 +22,7 @@
     - AnomalyFlora
     - AnomalyShadow
     - AnomalyTech
-    - AnomalySanta
+    # - AnomalySanta # Sunrise-Edit: До следуюшего Рождества
     - AnomalyBanana
     rareChance: 0.3
     rarePrototypes:

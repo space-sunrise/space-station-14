@@ -40,7 +40,7 @@ public sealed class GridDockSystem : EntitySystem
 
         if (target == null)
         {
-            Log.Error($"GridDockSystem: No target grid found for {ToPrettyString(uid)}");
+            Log.Warning($"GridDockSystem: No target grid found for {ToPrettyString(uid)}");
             return;
         }
 

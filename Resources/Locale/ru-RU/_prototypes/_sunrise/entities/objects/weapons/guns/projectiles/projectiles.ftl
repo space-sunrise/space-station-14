@@ -1,7 +1,5 @@
 ent-BulletAcid2 = кислотный плевок
     .desc = { ent-BaseBullet.desc }
-ent-BulletTaserSunrise = тазерный болт
-    .desc = { ent-BaseBullet.desc }
 ent-BulletEMP = импульс ЭМИ
     .desc = { ent-BaseBulletTrigger.desc }
 ent-RadiationBullet = поток радиоактивных частиц

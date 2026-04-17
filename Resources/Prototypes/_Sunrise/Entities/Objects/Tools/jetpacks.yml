@@ -1,0 +1,154 @@
+- type: entity
+  id: JetpackImprovised
+  parent: [BaseJetpack, BaseMinorContraband]
+  components:
+  - type: Item
+    sprite: _Sunrise/Objects/Tanks/Jetpacks/improvised.rsi
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tanks/Jetpacks/improvised.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Tanks/Jetpacks/improvised.rsi
+    slots:
+    - Back
+    - suitStorage
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      volume: 1.5
+  - type: Tag
+    tags:
+    - CorgiWearable
+  - type: Construction
+    graph: JetpackImprovisedGraph
+    node: jetpack
+
+- type: entity
+  id: JetpackImprovisedFilled
+  parent: JetpackImprovised
+  components:
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      volume: 1.5
+      temperature: 293.15
+      moles:
+        Oxygen: 0.307706858
+        Nitrogen: 0.307706858
+
+- type: entity
+  id: JetpackVoidEngineer
+  parent: [BaseJetpack, BaseGrandTheftContraband]
+  components:
+  - type: Item
+    sprite: _Sunrise/Objects/Tanks/Jetpacks/ce_void.rsi
+    size: Normal
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tanks/Jetpacks/ce_void.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Tanks/Jetpacks/ce_void.rsi
+    slots:
+    - Back
+    - suitStorage
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+    requireActivated: false
+  - type: HeldSpeedModifier
+  - type: Tag
+    tags:
+    - HighRiskItem
+  - type: StealTarget
+    stealGroup: JetpackChiefEngineerFilled
+  - type: GasRegeneration
+    airRegenerate:
+      volume: 5
+      temperature: 293.15
+      moles:
+      - 0.0005
+
+- type: entity
+  id: JetpackVoidEngineerFilled
+  parent: JetpackVoidEngineer
+  components:
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      volume: 5
+      temperature: 293.15
+      moles:
+        Oxygen: 1.025689525
+        Nitrogen: 1.025689525
+
+# Sunrise port SSF marine jetpack from Starlight
+- type: entity
+  id: JetpackSSFMarine
+  parent: [BaseJetpack, BaseSovietContraband]
+  name: SSF marine jetpack
+  suffix: Empty
+  description: Standard issued soviet-made jetpack for the kosmos.
+  components:
+    - type: Item
+      sprite: _Sunrise/Objects/Tanks/Jetpacks/marine_jetpack.rsi
+    - type: Sprite
+      sprite: _Sunrise/Objects/Tanks/Jetpacks/marine_jetpack.rsi
+    - type: Clothing
+      sprite: _Sunrise/Objects/Tanks/Jetpacks/marine_jetpack.rsi
+      slots:
+        - Back
+        - suitStorage
+        - Belt
+    - type: ClothingSpeedModifier
+      walkModifier: 1.0
+      sprintModifier: 1.0
+    - type: HeldSpeedModifier
+    - type: RadarBlip
+      scale: 0
+      requireInSpace: true
+
+- type: entity
+  id: JetpackSSFMarineFilled
+  parent: [JetpackSSFMarine, BaseSovietContraband]
+  name: SSF marine jetpack
+  description: Standard issued soviet-made jetpack for the kosmos.
+  components:
+    - type: Item
+      sprite: _Sunrise/Objects/Tanks/Jetpacks/marine_jetpack.rsi
+    - type: Sprite
+      sprite: _Sunrise/Objects/Tanks/Jetpacks/marine_jetpack.rsi
+    - type: Clothing
+      sprite: _Sunrise/Objects/Tanks/Jetpacks/marine_jetpack.rsi
+      slots:
+        - Back
+        - suitStorage
+        - Belt
+    - type: GasTank
+      outputPressure: 42.6
+      air:
+        volume: 5
+        temperature: 293.15
+        moles:
+          - 1.025689525 # oxygen
+          - 1.025689525 # nitrogen
+
+- type: entity
+  id: JetpackBorg
+  parent: BaseJetpack
+  name: borg jetpack
+  suffix: Infinite
+  components:
+  - type: Item
+    sprite: Objects/Tanks/Jetpacks/void.rsi
+  - type: Sprite
+    sprite: Objects/Tanks/Jetpacks/void.rsi
+  - type: Clothing
+    sprite: Objects/Tanks/Jetpacks/void.rsi
+    slots:
+      - Back
+      - suitStorage
+      - Belt
+  - type: GasRegeneration
+    airRegenerate:
+      volume: 1
+      temperature: 293.15
+      moles:
+      - 0.0008

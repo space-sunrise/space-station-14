@@ -1,0 +1,66 @@
+# Head
+
+- type: loadout
+  id: PrisonDoctorCap
+  equipment:
+    head: ClothingHeadCapPrisonDoctor
+
+- type: loadout
+  id: PrisonDoctorBeret
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonDoctor
+      time: 25200 # 7 часов
+  equipment:
+    head: ClothingHeadHatBeretPrisonDoctor
+
+- type: loadout
+  id: PrisonDoctorHat
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonDoctor
+      time: 54000 # 15 часов
+  equipment:
+    head: ClothingHeadHatCapPrisonDoctor
+
+# Рабочая униформа
+
+- type: loadout
+  id: PrisonDoctorJumpsuit
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonDoctor
+
+- type: loadout
+  id: PrisonDoctorJumpskirt
+  groupBy: "prison_regular"
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonDoctor
+
+- type: loadout
+  id: PrisonDoctorJumpsuitVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonDoctor
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonDoctorVeteran
+
+- type: loadout
+  id: PrisonDoctorJumpskirtVeteran
+  groupBy: "prison_veteran"
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPrisonDoctor
+      time: 28800 # 8 часов
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPrisonDoctorVeteran

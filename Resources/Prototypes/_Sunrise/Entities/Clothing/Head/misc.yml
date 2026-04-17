@@ -61,3 +61,53 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Misc/rabbithat.rsi
     quickEquip: true
+
+- type: entity
+  parent: ClothingHeadBase
+  id: WhiteLilyCrown
+  name: white lily crown
+  description: Charming white crown, that adds grace to the wearer.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Misc/white_lily_crown.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Misc/white_lily_crown.rsi
+    slots:
+    - HEAD
+  - type: Construction
+    graph: WhiteLilyCrown
+    node: WhiteLilyCrown
+
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  categories: [ HideSpawnMenu ]
+  id: ClothingHeadMantleGoliathAliveHelmet
+  name: Toothed helmet
+  description: It's no different from any other spacesuit top, except for the bunch of teeth and eyes.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Mantles/goliathalivemantle.rsi
+    state: hood-icon
+  - type: Clothing
+    equipSound: /Audio/Effects/rustle1.ogg
+    unequipSound: /Audio/Effects/rustle2.ogg
+    sprite: _Sunrise/Clothing/Neck/Mantles/goliathalivemantle.rsi
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: hood
+      - state: hood-light
+        shader: unshaded
+        map: [ "light" ]
+  - type: Tag
+    tags:
+    - FullCovered
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+    - FacialHair
+  - type: BreathMask

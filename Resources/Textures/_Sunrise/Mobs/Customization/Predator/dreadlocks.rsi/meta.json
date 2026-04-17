@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "licence": "CC-BY-SA-4.0",
+    "copyright": "made by bulbo44key (Discord)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "dreadlocks_1",
+            "directions": 4
+        },
+        {
+            "name": "dreadlocks_2",
+            "directions": 4
+        },
+        {
+            "name": "dreadlocks_3",
+            "directions": 4
+        },
+        {
+            "name": "dreadlocks_4",
+            "directions": 4
+        },
+        {
+            "name": "dreadlocks_5",
+            "directions": 4
+        },
+        {
+            "name": "dreadlocks_6",
+            "directions": 4
+        }
+    ]
+}

@@ -17,7 +17,7 @@
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/HMGs/minigun_shot.ogg
   - type: BatteryAmmoProvider
-    proto: CartridgeRifleSP
+    proto: CartridgeRifleFMJ
     fireCost: 5
   - type: Appearance
   - type: AmmoCounter
@@ -117,12 +117,12 @@
 - type: entity
   id: WeaponMechCombatPirateMachineCannon
   name: Mounted Pirate Machine Cannon
-  description: An ancient heavy gun given new life as a mech-mounted gun
+  description: A unique strange gun given new life as a mech-mounted gun
   suffix: Mech Weapon, Gun, Combat, Pirate
   parent: [ BaseMechWeaponRange, CombatMechEquipment ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Specific/Mech/mecha_piratecannon.rsi
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_piratecannon_auto.rsi
     state: mecha_piratecannon
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/piratecannon_inhands_64x.rsi
@@ -258,11 +258,11 @@
     sprite: _Sunrise/Objects/Specific/Mech/mecha_uvm31.rsi
     state: mecha_uvm31
   - type: Gun
-    minAngle: 5
-    maxAngle: 10
-    angleIncrease: 4
-    angleDecay: 16
-    fireRate: 5
+    minAngle: 1
+    maxAngle: 12
+    angleIncrease: 1
+    angleDecay: 15
+    fireRate: 12
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -271,8 +271,8 @@
       params:
         volume: -1
   - type: BatteryAmmoProvider
-    proto: RedLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
-    fireCost: 25
+    proto: IgnitionRedLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
+    fireCost: 15
   - type: Appearance
   - type: AmmoCounter
   - type: StaticPrice

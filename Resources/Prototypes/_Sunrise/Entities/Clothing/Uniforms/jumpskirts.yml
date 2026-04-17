@@ -67,17 +67,6 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformJumpskirtPrisonerGrey
-  name: prisoner's jumpskirt
-  description: Why isn't it orange?
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisoner.rsi
-  - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisoner.rsi
-
-- type: entity
-  parent: ClothingUniformBase
   id: ClothingUniformJumpskirtGuard
   name: prison guard's jumpskirt
   description: Why isn't it red?
@@ -131,7 +120,6 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/adjutant.rsi
 
-#Sunrise-OLD
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformSkirtMailCarrier

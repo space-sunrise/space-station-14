@@ -1,0 +1,13 @@
+marking-PredatorDreadlocksShort1 = Short dreadlocks
+marking-PredatorDreadlocksShort2 = Short dreadlocks (dlt)
+marking-PredatorDreadlocksShoulderLength = Shoulder-length dreadlocks
+marking-PredatorDreadLong = Long dreadlocks
+marking-PredatorDreadlocksTailDown = Down tail
+marking-PredatorDreadlocksTailUp = Up tail
+marking-PredatorBodySpots = Spots
+marking-PredatorBodyStripes = Stripes
+marking-PredatorArmsSpots = Spots
+marking-PredatorArmsStripes = Stripes
+marking-PredatorLegsStripes = Stripes
+marking-PredatorRings1 = Rings
+marking-PredatorRings2 = Rings (alt)

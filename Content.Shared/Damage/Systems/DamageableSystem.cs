@@ -1,14 +1,13 @@
 using System.Linq;
+using Content.Shared._Sunrise.Random;
 using Content.Shared.Chemistry;
 using Content.Shared.Damage.Components;
 using Content.Shared.Explosion.EntitySystems;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Random;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Damage.Systems;
@@ -17,12 +16,13 @@ public sealed partial class DamageableSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly IRobustRandom _random = default!; // Sunrise
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly SharedChemistryGuideDataSystem _chemistryGuideData = default!;
     [Dependency] private readonly SharedExplosionSystem _explosion = default!;
+
+    [Dependency] private readonly RandomPredictedSystem _random = default!; // Sunrise
 
     private EntityQuery<AppearanceComponent> _appearanceQuery;
     private EntityQuery<DamageableComponent> _damageableQuery;

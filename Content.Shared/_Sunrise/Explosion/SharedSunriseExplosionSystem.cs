@@ -13,10 +13,10 @@ public sealed class SharedSunriseExplosionSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ExplosiveComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<ExplosiveComponent, MapInitEvent>(OnInit);
     }
 
-    private void OnInit(Entity<ExplosiveComponent> ent, ref ComponentInit args)
+    private void OnInit(Entity<ExplosiveComponent> ent, ref MapInitEvent args)
     {
         TryAddExplosionEffect(ent, ent.Comp.ExplosionType);
     }

@@ -14,6 +14,8 @@
   overrideConsoleVisibility: false
   supervisors: job-supervisors-head-of-prison
   displayWeight: 15
+  alternativeTitles:
+  - job-alt-title-prison-rookie
   access:
     - Security
     - Medical
@@ -24,7 +26,6 @@
 - type: startingGear
   id: PrisonTraineeGear
   equipment:
-    jumpsuit: UniformPrisonTraineeMetus
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
@@ -32,15 +33,15 @@
     belt: ClothingBeltPrisonTraineeMetus
     back: ClothingBackpackSatchelPrisonTraineeMetus
     shoes: ClothingShoesBootsJack
-    pocket1: WeaponPistolG22Metus
+    pocket1: WeaponPistolG22Prison
     pocket2: SecurityWhistle
 
 - type: chameleonOutfit
   id: PrisonTraineeChameleonOutfit
   job: PrisonTrainee
   equipment:
-    jumpsuit: UniformPrisonTraineeMetus
-    head: ClothingHeadHatBeretPrisonTraineeMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonTrainee
+    head: ClothingHeadHatBeretPrisonTrainee
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat

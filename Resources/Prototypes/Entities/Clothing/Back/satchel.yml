@@ -175,7 +175,7 @@
   description: A satchel that opens into a localized pocket of bluespace.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Satchels/holding.rsi
+    sprite: _Sunrise/Clothing/Back/Satchels/holding.rsi # Sunrise-Edit
     state: icon
     layers:
     - state: icon
@@ -183,11 +183,29 @@
       shader: unshaded
   - type: Item
     size: Ginormous
+    # Sunrise-Start
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-unlit
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - state: inhand-right-unlit
+        shader: unshaded
+    # Sunrise-End
   - type: Storage
     maxItemSize: Huge
     grid:
-    - 0,0,19,9
+    - 0,0,17,7 # Sunrise-Edit
   # Sunrise-start
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Back/Satchels/holding.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK
+      - state: equipped-BACKPACK-unlit
+        shader: unshaded
   - type: StaticPrice
     price: 700
   - type: PhysicalComposition

@@ -14,6 +14,9 @@
     - Vampire
     - Thief
     - BloodCult
+    - Pirate
+    - Soviet
+    - SpiderClan
 
 - type: npcFaction
   id: FleshHuman

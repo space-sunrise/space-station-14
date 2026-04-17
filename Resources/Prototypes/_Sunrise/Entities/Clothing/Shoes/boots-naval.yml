@@ -5,8 +5,8 @@
   description: Black boots with deep blue suspenders. Practical and warm.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Shoes/Boots/naval-boots.rsi
+    sprite: _Sunrise/Clothing/Shoes/Boots/naval_boots.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Shoes/Boots/naval-boots.rsi
+    sprite: _Sunrise/Clothing/Shoes/Boots/naval_boots.rsi
   - type: Item
-    sprite: _Sunrise/Clothing/Shoes/Boots/naval-boots.rsi
+    sprite: _Sunrise/Clothing/Shoes/Boots/naval_boots.rsi

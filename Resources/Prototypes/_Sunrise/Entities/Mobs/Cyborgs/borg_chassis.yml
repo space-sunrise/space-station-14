@@ -5,6 +5,16 @@
   components:
   - type: BorgSwitchableType
     selectedBorgType: security
+  - type: Loadout
+    prototypes: [ BorgArmorSiliconLoadout ]
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+    - SiliconEmotes
+    - Unimplantable
+    - NoPaint
 
 - type: entity
   id: BorgChassisPeace
@@ -82,7 +92,7 @@
       Dead:
         Base: syndi_reaper_dead
   - type: PointLight
-    color: green
+    color: "#dd200b"
     radius: 6
     energy: 3
   - type: Inventory
@@ -174,7 +184,7 @@
     - Common
     - Science
     - Command
-    - CentCom
+    - ERT
   - type: ActiveRadio
     channels:
     - Security
@@ -182,7 +192,7 @@
     - Common
     - Science
     - Command
-    - CentCom
+    - ERT
   - type: AccessReader
     access: [["Security"], ["Command"], ["Research"]]
   - type: SiliconLawProvider
@@ -207,11 +217,12 @@
     - CanPilot
     - FootstepSound
     - EmagImmune
+    - NoPaint
   - type: InnateItem
     instantActions:
     - PortableSurveillanceCameraMonitorUnpowered
     - HandheldStationMapUnpowered
-    - HandheldCrewMonitorBorg
+    - HandheldEmergencyCrewMonitorBorg
     - HandHeldMassScannerBorg
   - type: MobThresholds
     thresholds:
@@ -265,7 +276,7 @@
   - type: TriggerOnMobstateChange
     preventSuicide: true
     mobState:
-    - Critical
+    - Dead
   - type: TimerTrigger
     delay: 3
     initialBeepDelay: 0
@@ -286,7 +297,7 @@
       500: Critical
       600: Dead
   - type: PointLight
-    color: "#f51e0f"
+    color: "#dd200b"
     radius: 9
     energy: 6
   - type: TTS
@@ -376,7 +387,7 @@
   - type: TriggerOnMobstateChange
     preventSuicide: true
     mobState:
-    - Critical
+    - Dead
   - type: TimerTrigger
     delay: 3
     initialBeepDelay: 0
@@ -397,7 +408,7 @@
       100: Critical
       200: Dead
   - type: PointLight
-    color: "#f51e0f"
+    color: "#dd200b"
     radius: 2
     energy: 2
   - type: TTS
@@ -453,15 +464,6 @@
     channels:
     - Common
     - Binary
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      200: Critical
-      300: Dead
-  - type: PointLight
-    color: "#ffffff"
-    radius: 4
-    energy: 2
   - type: TTS
     voice: Sentrybot
   - type: MovementSpeedModifier
@@ -513,17 +515,6 @@
     channels:
     - Common
     - Binary
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      200: Critical
-      300: Dead
-  - type: PointLight
-    color: "#00ff00"
-    radius: 4
-    energy: 2
-  - type: TTS
-    voice: Sentrybot
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 5
@@ -574,17 +565,6 @@
     channels:
     - Common
     - Binary
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      200: Critical
-      300: Dead
-  - type: PointLight
-    color: "#00ff00"
-    radius: 4
-    energy: 2
-  - type: TTS
-    voice: Sentrybot
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 5
@@ -593,6 +573,10 @@
     - AccessBreaker
   - type: Construction
     node: derelictcyborg
+
+- type: entity
+  id: SyndicateSaboteurBorgChassisDerelict
+  parent: SyndicateSaboteurBorgChassisDerelictSunrise
 
 - type: entity
   parent: BaseBorgChassisSyndicateDerelict
@@ -634,17 +618,6 @@
     channels:
     - Common
     - Binary
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      200: Critical
-      300: Dead
-  - type: PointLight
-    color: "#00ff00"
-    radius: 4
-    energy: 2
-  - type: TTS
-    voice: Sentrybot
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 5

@@ -6,6 +6,9 @@
   components:
   - type: Label
     currentLabel: holopad-salvage-shuttle
+  - type: AccessReader
+    access: [[ "Salvage" ]]
+    examinationText: access-reader-examination-functionality-restricted
 
 - type: entity
   parent: HolopadLongRange
@@ -14,3 +17,6 @@
   components:
   - type: Label
     currentLabel: holopad-security-shuttle
+  - type: AccessReader
+    access: [[ "Security" ]]
+    examinationText: access-reader-examination-functionality-restricted

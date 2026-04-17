@@ -1,0 +1,52 @@
+# Loot
+
+- type: loadout
+  id: PresentRandomPrisoner
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPlanetPrisoner
+      time: 198000 # 55 hrs
+  inhand:
+  - PresentRandomPrisoner
+
+# PDA
+
+- type: loadout
+  id: PlanetPrisonerPDAScreenH
+  equipment:
+    id: PlanetPrisonerPDAScreenH
+
+- type: loadout
+  id: PlanetPrisonerPDAScreenHCracked
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPlanetPrisoner
+      time: 36000 # 10 часов
+  equipment:
+    id: PlanetPrisonerPDAScreenHCracked
+
+- type: loadout
+  id: PlanetPrisonerPDAScreenX
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPlanetPrisoner
+      time: 72000 # 20 часов
+  equipment:
+    id: PlanetPrisonerPDAScreenX
+
+- type: loadout
+  id: PlanetPrisonerPDAScreenXCracked
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPlanetPrisoner
+      time: 108000 # 30 часов
+  equipment:
+    id: PlanetPrisonerPDAScreenXCracked

@@ -32,6 +32,8 @@ ent-ActionActivateSmokeGrenadeImplant = Активировать дымовую 
     .desc = Создаёт небольшое облако дыма вокруг вас.
 ent-ActionActivateScramImplant = УДРАТЬ!
     .desc = Случайным образом телепортирует вас на большое расстояние.
+ent-ActionActivateScramImplantProto = { ent-ActionActivateScramImplant }
+    .desc = { ent-ActionActivateScramImplant.desc }
 ent-ActionActivateDnaScramblerImplant = Перемешать ДНК
     .desc = Меняет ваше имя и внешность случайным образом.
 ent-ActionToggleSuitPiece = Переключить элементы костюма
@@ -58,6 +60,14 @@ ent-ActionActivateHonkImplant = Хонк!
     .desc = Активирует ваш хонк-имплант, который будет издавать фирменный звук клоуна.
 ent-ActionActivateBorgLaughImplant = [color=red]Жуткий Смех[/color]
     .desc = Активирует ваш имплант зловещего смеха, издающий фирменный звук синдикатовского киборга.
+ent-ActionActivateProtoAdrenalImplant = Активировать [color=blue]прото-адренал[/color]
+    .desc = Вводит малую дозу эфедрина и эпинефрина.
+ent-ActionActivateAdrenalImplant = Активировать [color=blue]адренал[/color]
+    .desc = Вводит сильную дозу эфедрина и эпинефрина.
+ent-ActionActivateStimpackImplant = Активировать [color=red]стимпак[/color]
+    .desc = Вводит большую дозу стимуляторов.
+ent-ActionActivateNutrimentImplant = Активировать [color=orange]насыщатель[/color]
+    .desc = Вводит комплекс питательных веществ.
 ent-ActionFireStarter = Поджечь
     .desc = Поджигает противников в радиусе вокруг вас.
 ent-ActionToggleEyes = Открыть/закрыть глаза
@@ -74,3 +84,7 @@ ent-ActionToggleRootable = Укорениться
     .desc = Начать или перестать быть прикреплённым к полу.
 ent-ActionChameleonController = Измените свою одежду
     .desc = Быстро измените свою одежду
+ent-ActionActivateReviverImplant = Активировать [color=cyan]реаниматор[/color]
+    .desc = Имплант стимулирует выброс адреналина точечным разрядом в сердце и коктейлем реагентов.
+ent-ActionWhistle = Свистнуть
+    .desc = СТОЙ ГДЕ СТОИШЬ!

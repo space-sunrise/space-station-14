@@ -1,315 +1,151 @@
 using System.IO;
-using System.Text.RegularExpressions;
+using System.Threading;
+using Content.Shared._Sunrise.CartridgeLoader.Cartridges;
 using Content.Shared._Sunrise.NetTextures;
-using Robust.Client.ResourceManagement;
-using Robust.Client.Upload;
+using Robust.Client;
+using Robust.Client.Graphics;
+using Robust.Shared.Asynchronous;
 using Robust.Shared.ContentPack;
-using Robust.Shared.Log;
 using Robust.Shared.Network;
-using Robust.Shared.Timing;
+using Robust.Shared.Network.Transfer;
+using Robust.Shared.Upload;
 using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise;
 
 /// <summary>
-/// Manager that handles dynamic loading of network textures from server.
-/// Textures are loaded into MemoryContentRoot on the client.
+/// Coordinates client-side loading of server-provided textures and RSI resources.
 /// </summary>
-public sealed class NetTexturesManager
+public sealed partial class NetTexturesManager
 {
+    #region Constants
+    private const string TransferKeyNetTextures = "TransferKeyNetTextures";
+    private const string UploadedPrefix = "/Uploaded";
+    private const int MinTransferPublishBudgetBytes = 512 * 1024;
+    private const int MaxTransferPublishBudgetBytes = 8 * 1024 * 1024;
+    private const int TransferPublishBytesPerSecond = 64 * 1024 * 1024;
+    #endregion
+
+    #region Dependencies
     [Dependency] private readonly IClientNetManager _netManager = default!;
     [Dependency] private readonly IResourceManager _resourceManager = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly NetworkResourceManager _networkResourceManager = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private readonly IBaseClient _baseClient = default!;
+    [Dependency] private readonly ITransferManager _transferManager = default!;
+    [Dependency] private readonly ITaskManager _taskManager = default!;
+    [Dependency] private readonly IClyde _clyde = default!;
+    #endregion
 
-        private ISawmill _sawmill = default!;
+    #region State
+    private readonly MemoryContentRoot _netTexturesContentRoot = new();
+    private readonly HashSet<string> _requestedResources = new();
+    private readonly Dictionary<string, ResPath> _pendingResources = new();
+    private readonly HashSet<string> _preparingResources = new();
+    private readonly HashSet<string> _failedResources = new();
+    private readonly Dictionary<string, LoadedTextureEntry> _loadedTextures = new();
+    private readonly Dictionary<string, LoadedRsiEntry> _loadedRsis = new();
+    private readonly Queue<PreparedUploadJob> _preparedUploads = new();
+    private readonly Queue<TransferPublishBatch> _pendingTransferBatches = new();
+    private readonly Dictionary<ResPath, FallbackChunkAssembly> _fallbackChunkAssemblies = new();
+    private readonly Queue<PreparationRequest> _prepareRequests = new();
+    private readonly List<(string ResourceKey, ResPath ResPath)> _resourcesReadyToPrepare = new();
+    private readonly Dictionary<ResPath, RsiCompletenessEntry> _rsiCompleteness = new();
 
-        private const string UploadedPrefix = "/Uploaded";
-        private readonly HashSet<string> _requestedResources = new();
-        private readonly Dictionary<string, ResPath> _pendingResources = new(); // resourcePath -> ResPath
+    private CancellationTokenSource _sessionCts = new();
+    private int _sessionGeneration;
+    private int _activePrepareRequestId;
+    private int _nextPrepareRequestId;
+    private bool _prepareWorkerRunning;
+    private bool _initialized;
+    private ISawmill _sawmill = default!;
+    #endregion
 
-        /// <summary>
-        /// Event fired when a network texture becomes available.
-        /// </summary>
-        public event Action<string>? ResourceLoaded; // resourcePath
-
-        public void Initialize()
-        {
-            _sawmill = _logManager.GetSawmill("network.textures");
-            // NetworkResourceUploadMessage is already registered by SharedNetworkResourceManager
-            // We'll check for loaded resources in Update() method very frequently
-        }
-
-    public void Update(float frameTime)
+    #region Helpers
+    /// <summary>
+    /// Reads the current session generation with interlocked semantics for background-worker handoff.
+    /// </summary>
+    private int ReadSessionGeneration()
     {
-        // If there are no pending resources, skip checking
-        if (_pendingResources.Count == 0)
-            return;
-
-        // Check for loaded resources every frame when there are pending resources
-        // This ensures we catch resources as soon as they're loaded
-        var completedResources = new List<string>();
-        foreach (var (resourcePath, resPath) in _pendingResources)
-        {
-            // Check if resource is available
-            // MemoryContentRoot stores paths relative to /Uploaded prefix
-            var relativePath = resPath.ToRelativePath();
-
-            bool exists = false;
-            ResPath checkPath;
-
-            // For RSI directories, check if all files are present
-            // This ensures all PNG files are present, not just meta.json
-            // Check if path ends with .rsi (more reliable than Extension property)
-            var pathStr = relativePath.ToString();
-            if (pathStr.EndsWith(".rsi") || pathStr.EndsWith(".rsi/"))
-            {
-                // Check if all RSI files are present by reading meta.json and verifying all PNG files exist
-                exists = CheckRsiFilesComplete(relativePath);
-            }
-            else
-            {
-                // Single file
-                checkPath = relativePath;
-                exists = _networkResourceManager.FileExists(checkPath);
-            }
-
-            if (exists)
-            {
-                _requestedResources.Add(resourcePath);
-                completedResources.Add(resourcePath);
-                ResourceLoaded?.Invoke(resourcePath);
-            }
-        }
-
-        foreach (var resourcePath in completedResources)
-        {
-            _pendingResources.Remove(resourcePath);
-        }
+        return Interlocked.CompareExchange(ref _sessionGeneration, 0, 0);
     }
 
     /// <summary>
-    /// Checks if a network texture is available, and requests it if not.
+    /// Advances the reconnect generation and returns the new value.
     /// </summary>
-    /// <param name="resourcePath">Path to the resource (as specified in prototype, e.g., "/NetTextures/Lobby/Animations/bar.rsi")</param>
-    /// <returns>True if the resource is available, false if it's being requested</returns>
-    public bool EnsureResource(string resourcePath)
+    private int AdvanceSessionGeneration()
     {
-        // Normalize the path
-        ResPath resPath;
-        if (resourcePath.StartsWith("/"))
+        return Interlocked.Increment(ref _sessionGeneration);
+    }
+
+    /// <summary>
+    /// Returns whether an exception is an expected RSI metadata parse failure without hard-linking banned types.
+    /// </summary>
+    private static bool IsHandledRsiMetadataException(Exception ex)
+    {
+        for (var type = ex.GetType(); type != null; type = type.BaseType)
         {
-            resPath = new ResPath(resourcePath);
+            if (type == typeof(InvalidDataException))
+                return true;
+
+            if (type.FullName
+                is "YamlDotNet.Core.YamlException"
+                or "System.FormatException"
+                or "System.OverflowException")
+            {
+                return true;
+            }
         }
-        else
-        {
-            var rootPath = new ResPath("/");
-            resPath = rootPath / resourcePath;
-        }
-
-        // Check if the resource is actually available
-        var relativePath = resPath.ToRelativePath();
-        var uploadedPath = (new ResPath(UploadedPrefix) / relativePath).ToRootedPath();
-
-        bool isAvailable = false;
-
-        // For RSI directories, check for meta.json
-        // Check if path ends with .rsi (more reliable than Extension property)
-        var pathStr = relativePath.ToString();
-        if (pathStr.EndsWith(".rsi") || pathStr.EndsWith(".rsi/"))
-        {
-            var metaPath = relativePath / "meta.json";
-            var metaUploadedPath = (new ResPath(UploadedPrefix) / metaPath).ToRootedPath();
-            isAvailable = _networkResourceManager.FileExists(metaPath) || _resourceManager.ContentFileExists(metaUploadedPath);
-        }
-        else
-        {
-            // Single file
-            isAvailable = _networkResourceManager.FileExists(relativePath) || _resourceManager.ContentFileExists(uploadedPath);
-        }
-
-        if (isAvailable)
-        {
-            // Resource is available
-            if (!_requestedResources.Contains(resourcePath))
-                _requestedResources.Add(resourcePath);
-            // Remove from pending if it was there
-            _pendingResources.Remove(resourcePath);
-            return true;
-        }
-
-        // Resource is not available yet
-        // If it's already in pending, we're already tracking it
-        if (_pendingResources.ContainsKey(resourcePath))
-        {
-            return false;
-        }
-
-        // If it was requested before but not in pending, add it to pending to track it
-        if (_requestedResources.Contains(resourcePath))
-        {
-            _pendingResources[resourcePath] = resPath;
-            return false;
-        }
-
-        // Request the resource for the first time
-        RequestResource(resourcePath);
-        _pendingResources[resourcePath] = resPath;
-
-        // Immediately check if the resource is already available (might be cached or loaded very fast)
-        // This helps catch resources that load synchronously
-        CheckResourceImmediately(resourcePath, resPath);
 
         return false;
     }
+    #endregion
 
-    private void RequestResource(string resourcePath)
+    #region Events
+    /// <summary>
+    /// Raised after a network resource becomes ready for consumer use.
+    /// </summary>
+    public event Action<string>? ResourceLoaded;
+    #endregion
+
+    #region Lifecycle
+    /// <summary>
+    /// Registers transfer handlers and mounts the in-memory uploaded resource root.
+    /// </summary>
+    public void Initialize()
     {
-        if (_requestedResources.Contains(resourcePath))
+        if (_initialized)
             return;
 
-        // Check if client is connected to server before trying to send message
-        if (!_netManager.IsConnected)
-        {
-            _sawmill.Debug($"Cannot request resource {resourcePath}: client not connected to server");
-            return;
-        }
+        _initialized = true;
+        _sawmill = _logManager.GetSawmill("network.textures");
 
-        _requestedResources.Add(resourcePath);
-
-        var msg = new RequestNetworkResourceMessage
-        {
-            ResourcePath = resourcePath
-        };
-
-        _netManager.ClientSendMessage(msg);
+        _resourceManager.AddRoot(new ResPath(UploadedPrefix), _netTexturesContentRoot);
+        _transferManager.RegisterTransferMessage(TransferKeyNetTextures, ReceiveNetTexturesTransfer);
+        _netManager.RegisterNetMessage<PdaPhotoCaptureMessage>(accept: NetMessageAccept.Server);
+        _netManager.RegisterNetMessage<NetTextureResourceChunkMessage>(ReceiveFallbackChunk, accept: NetMessageAccept.Server);
+#pragma warning disable CS0618
+        _netManager.RegisterNetMessage<NetworkResourceUploadMessage>(ReceiveFallbackUpload, accept: NetMessageAccept.Server);
+#pragma warning restore CS0618
+        _baseClient.RunLevelChanged += OnRunLevelChanged;
     }
 
     /// <summary>
-    /// Immediately checks if a resource is available and fires the event if it is.
-    /// This helps catch resources that load very quickly.
+    /// Advances pending resource preparation and staged GPU upload work.
     /// </summary>
-    private void CheckResourceImmediately(string resourcePath, ResPath resPath)
+    /// <param name="frameTime">The elapsed frame time in seconds.</param>
+    public void Update(float frameTime)
     {
-        var relativePath = resPath.ToRelativePath();
-        bool exists = false;
-
-        // For RSI directories, check if all files are present
-        // Check if path ends with .rsi (more reliable than Extension property)
-        var pathStr = relativePath.ToString();
-        if (pathStr.EndsWith(".rsi") || pathStr.EndsWith(".rsi/"))
+        lock (_pendingTransferBatches)
         {
-            // Check if all RSI files are present by reading meta.json and verifying all PNG files exist
-            exists = CheckRsiFilesComplete(relativePath);
-        }
-        else
-        {
-            // Single file
-            exists = _networkResourceManager.FileExists(relativePath);
+            if (_pendingTransferBatches.Count != 0)
+                ProcessPendingTransferBatches(frameTime);
         }
 
-        if (exists)
-        {
-            if (!_requestedResources.Contains(resourcePath))
-                _requestedResources.Add(resourcePath);
-            _pendingResources.Remove(resourcePath);
-            ResourceLoaded?.Invoke(resourcePath);
-        }
+        if (_pendingResources.Count != 0)
+            UpdatePendingResources();
+
+        if (_preparedUploads.Count != 0)
+            ProcessPreparedUploads(frameTime);
     }
-
-    /// <summary>
-    /// Gets the uploaded path for a network texture.
-    /// </summary>
-    /// <param name="resourcePath">Original resource path from prototype</param>
-    /// <returns>Rooted path to the resource in MemoryContentRoot</returns>
-    public ResPath GetUploadedPath(string resourcePath)
-    {
-        ResPath resPath;
-        if (resourcePath.StartsWith("/"))
-        {
-            resPath = new ResPath(resourcePath);
-        }
-        else
-        {
-            resPath = new ResPath("/") / resourcePath;
-        }
-
-        var relativePath = resPath.ToRelativePath();
-        var path = new ResPath(UploadedPrefix) / relativePath;
-        return path.ToRootedPath(); // Ensure it's always rooted
-    }
-
-    /// <summary>
-    /// Checks if all RSI files are present by reading meta.json and verifying all PNG files exist.
-    /// Uses simple string parsing instead of JsonDocument to avoid sandbox restrictions.
-    /// </summary>
-    private bool CheckRsiFilesComplete(ResPath relativePath)
-    {
-        try
-        {
-            // Check if meta.json exists
-            var metaRelativePath = relativePath / "meta.json";
-            if (!_networkResourceManager.FileExists(metaRelativePath))
-            {
-                return false;
-            }
-
-            // Read meta.json from uploaded path
-            var uploadedPath = (new ResPath(UploadedPrefix) / relativePath).ToRootedPath();
-            var metaUploadedPath = (new ResPath(UploadedPrefix) / metaRelativePath).ToRootedPath();
-            
-            if (!_resourceManager.TryContentFileRead(metaUploadedPath, out var metaStream))
-            {
-                return false;
-            }
-
-            using (metaStream)
-            {
-                // Read JSON text
-                using var reader = new StreamReader(metaStream);
-                var jsonText = reader.ReadToEnd();
-
-                // Simple regex to extract state names from JSON
-                // Matches "name": "statename" patterns
-                var namePattern = new Regex(@"""name""\s*:\s*""([^""]+)""", RegexOptions.Compiled);
-                var matches = namePattern.Matches(jsonText);
-
-                if (matches.Count == 0)
-                {
-                    // No states found, might be invalid JSON or empty states array
-                    return false;
-                }
-
-                // Check if all PNG files for each state exist
-                foreach (Match match in matches)
-                {
-                    if (match.Groups.Count < 2)
-                        continue;
-
-                    var stateName = match.Groups[1].Value;
-                    if (string.IsNullOrEmpty(stateName))
-                    {
-                        continue;
-                    }
-
-                    // Check if PNG file exists for this state
-                    var pngRelativePath = relativePath / $"{stateName}.png";
-                    if (!_networkResourceManager.FileExists(pngRelativePath))
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
-        }
-        catch (Exception ex)
-        {
-            _sawmill.Debug($"Error checking RSI files completeness: {ex.Message}");
-            return false;
-        }
-    }
+    #endregion
 }
-

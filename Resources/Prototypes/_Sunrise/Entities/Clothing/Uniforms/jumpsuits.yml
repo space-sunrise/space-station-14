@@ -99,17 +99,6 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformJumpsuitPrisonerGrey
-  name: prisoner's suit
-  description: Why isn't it orange?
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/prisoner.rsi
-  - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/prisoner.rsi
-
-- type: entity
-  parent: ClothingUniformBase
   id: ClothingUniformJumpsuitPrisonGuard
   name: prison guard's suit
   description: Why isn't it red?
@@ -203,9 +192,9 @@
   description: Greatly tailored set of pants, t-shirt and windbreaker. Features a distinctive two stripe, name print "Red Sickle".
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-black.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas_black.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-black.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas_black.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -214,9 +203,9 @@
   description: White version of the popular USSP Olympians sports uniform, has two black stripes on each part of the set. Fashionable, stylish and bright!
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-white.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas_white.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-white.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas_white.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -335,6 +324,10 @@
     sprite: Clothing/Uniforms/Jumpsuit/lawyerblack.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/lawyerblack.rsi
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,1
   - type: Tag
     tags:
       - Vest
@@ -345,9 +338,9 @@
   name: blueshield's jumpsuit
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/blueshield-js.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/blueshield_js.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/blueshield-js.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/blueshield_js.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -380,13 +373,11 @@
     sprite: Clothing/Uniforms/Shorts/Color/red.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Shorts/Color/red.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - ClownSuit
     - NudeTop # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingUniformBase
@@ -439,156 +430,6 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/metatontishka.rsi
 
-- type: entity
-  parent: ClothingUniformBase
-  id: UniformPrisonGuardMetus
-  name: prison guard uniform
-  description: The fabric is partly faded and darkened, with stains from medical fluids on the sleeves, as if the material absorbed heavy operations.
-  suffix: Metus
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/prisonguard_metus.rsi
-    layers:
-    - state: icon
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
-  - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/prisonguard_metus.rsi
-    clothingVisuals:
-      jumpsuit:
-      - state: equipped-INNERCLOTHING
-
-- type: entity
-  parent: UniformPrisonGuardMetus
-  id: UniformPrisonDoctorMetus
-  name: prison doctor uniform
-  description: The fabric is soaked with grease and soot, with stains from constant contact with stoves and pots, slightly worn where the habit of order is stronger than fatigue.
-  components:
-  - type: Sprite
-    layers:
-    - state: icon
-    - state: overlay-icon
-      color: "#99D2FF"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      - state: overlay-inhand-left
-        color: "#99D2FF"
-      right:
-      - state: inhand-right
-      - state: overlay-inhand-right
-        color: "#99D2FF"
-  - type: Clothing
-    clothingVisuals:
-      jumpsuit:
-      - state: equipped-INNERCLOTHING
-      - state: overlay-equipped
-        color: "#99D2FF"
-
-- type: entity
-  parent: UniformPrisonGuardMetus
-  id: UniformPrisonChefMetus
-  name: prison chef uniform
-  description: The material is dense and slightly worn on the elbows and knees, with dark stains of unknown origin, as if it absorbed the scents of abandoned prison places.
-  components:
-  - type: Sprite
-    layers:
-    - state: icon
-    - state: overlay-icon
-      color: "#ffffff"
-  - type: Clothing
-    clothingVisuals:
-      jumpsuit:
-      - state: equipped-INNERCLOTHING
-      - state: overlay-equipped
-        color: "#ffffff"
-
-- type: entity
-  parent: UniformPrisonGuardMetus
-  id: UniformPrisonEngineerMetus
-  name: prison engineer uniform
-  description: Dark streaks from reagents on the shoulders and chest, small spots of chemical mixes, the fabric seems to preserve the memory of experiments best left unsaid.
-  components:
-  - type: Sprite
-    layers:
-    - state: icon
-    - state: overlay-icon
-      color: "#ffd900"
-  - type: Clothing
-    clothingVisuals:
-      jumpsuit:
-      - state: equipped-INNERCLOTHING
-      - state: overlay-equipped
-        color: "#ffd900"
-
-- type: entity
-  parent: UniformPrisonGuardMetus
-  id: UniformPrisonScientistMetus
-  name: prison scientist uniform
-  description: The fabric is wounded by ore dust and fine scratches, elbows and knees are slightly rubbed, it smells of metal and damp mines, as if it holds encounters with the unknown.
-  components:
-  - type: Sprite
-    layers:
-    - state: icon
-    - state: overlay-icon
-      color: "#9d1edd"
-  - type: Clothing
-    clothingVisuals:
-      jumpsuit:
-      - state: equipped-INNERCLOTHING
-      - state: overlay-equipped
-        color: "#9d1edd"
-
-- type: entity
-  parent: UniformPrisonGuardMetus
-  id: UniformPrisonWorkerMetus
-  name: prison worker uniform
-  description: The fabric is wounded by ore dust and fine scratches, elbows and knees are slightly rubbed, it smells of metal and damp mines, as if it holds encounters with the unknown.
-  components:
-  - type: Sprite
-    layers:
-    - state: icon
-    - state: overlay-icon
-      color: "#df0400"
-  - type: Clothing
-    clothingVisuals:
-      jumpsuit:
-      - state: equipped-INNERCLOTHING
-      - state: overlay-equipped
-        color: "#df0400"
-
-- type: entity
-  parent: UniformPrisonGuardMetus
-  id: UniformPrisonTraineeMetus
-  name: prison trainee uniform
-  description: Fresh fabric, still bearing the marks of training, with a hint of orange that marks the path of a future guard.
-  components:
-  - type: Sprite
-    layers:
-    - state: icon
-    - state: overlay-icon
-      color: "#ff8c00"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      - state: overlay-inhand-left
-        color: "#ff8c00"
-      right:
-      - state: inhand-right
-      - state: overlay-inhand-right
-        color: "#ff8c00"
-  - type: Clothing
-    clothingVisuals:
-      jumpsuit:
-      - state: equipped-INNERCLOTHING
-      - state: overlay-equipped
-        color: "#ff8c00"
 
 - type: entity
   parent: ClothingUniformBase
@@ -622,3 +463,111 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/punksuit.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/punksuit.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseTSFContraband]
+  id: ClothingUniformJumpsuitTSF
+  name: TSF marine uniform
+  description: A comfortable and durable combat uniform worn by the forces of the Trans-Solar Marine Corps.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/tsf.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/tsf.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseTSFContraband]
+  id: ClothingUniformJumpsuitTSFRep
+  name: TSF representative's uniform
+  description: A formal uniform worn by the diplomatic representatives of the Trans-Solar Federation.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/tsfrep.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/tsfrep.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseTSFContraband]
+  id: ClothingUniformJumpsuitTSFElite
+  name: MARSOC uniform
+  description: A comfortable and durable combat uniform worn by marines of the Trans-Solar Federation's Marine Special Operations Command.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/tsfelite.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/tsfelite.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitOperative
+  id: ClothingUniformJumpsuitSoviet
+  name: Soviet Jumpsuit
+  description: A standard jumpsuit worn by Soviet military personnel.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitArbiter
+  name: arbiter uniform
+  description: A black tunic with gold stitching. It is cut so tight that your posture goes straight as the spine of a new book. The main trouble is that it is almost impossible to breathe in it or bend for a dropped pen without risking the seams.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/arbiter_uniform.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/arbiter_uniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitRedMist
+  name: red mist suit
+  description: A fitted combat garment in dark cloth with pale metal accents. Built for movement, not reassurance.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/redmist_uniform.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/redmist_uniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformUndershirt
+  name: undershirt
+  description: Plain daily wear.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/undershirt.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/undershirt.rsi
+    equippedState: equipped-INNERCLOTHING
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMilirUniform
+  name: millir bodysuit
+  description: A simple, form-fitting bodysuit tailored for Milir anatomy.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/milirs_uniform.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/milirs_uniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: CamoUniformSuit
+  name: camo jumpsuit
+  description: Youd blend in if this was a forest.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Clothing/Uniforms/camo_jumpsuit.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Clothing/Uniforms/camo_jumpsuit.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.9
+        Piercing: 0.95
+        Heat: 0.95
+  - type: StaminaResistance
+    damageCoefficient: 0.9

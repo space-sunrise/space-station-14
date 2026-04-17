@@ -285,7 +285,7 @@
     state: e_dagger
   - type: SpawnItemsOnUse
     items:
-    - id: EnergyDaggerBiocode # Sunrise-Edit
+    - id: EnergyDagger
     sound:
       path: /Audio/Effects/unwrap.ogg
 

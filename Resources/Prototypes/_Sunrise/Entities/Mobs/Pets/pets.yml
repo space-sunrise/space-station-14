@@ -67,9 +67,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 # Заготовленные ентити питомцев
 
@@ -109,9 +106,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -144,9 +138,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -179,9 +170,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -222,9 +210,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -257,9 +242,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -282,9 +264,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMobCorgiIan
@@ -305,9 +284,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMcGriff
@@ -328,9 +304,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMobSlimesPet
@@ -351,9 +324,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -376,9 +346,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -401,9 +368,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -426,9 +390,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -451,9 +412,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMobCrabAtmos
@@ -474,9 +432,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMobPossumMorty
@@ -497,9 +452,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMobPossumPoppy
@@ -520,9 +472,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMobPaperwork
@@ -543,9 +492,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMobCorgiIanOld
@@ -566,9 +512,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMobGoose
@@ -589,9 +532,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
 
 - type: entity
   id: PetMobClownGoblin
@@ -612,9 +552,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: meepo_dota_2
   - type: VentCrawler
@@ -736,9 +673,6 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile
   - type: TTS
     voice: NecoArcTwo
 
@@ -761,6 +695,3 @@
         1.0
       FollowRange: !type:Single
         1.5
-  - type: NpcFactionMember
-    factions:
-    - AllHostile

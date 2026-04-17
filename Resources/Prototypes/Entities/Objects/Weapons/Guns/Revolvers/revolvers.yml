@@ -92,6 +92,10 @@
   - type: Appearance
   - type: StaticPrice
     price: 1500
+  # Sunrise - Start
+  - type: StealTarget
+    stealGroup: OfficerHandgun
+  # Sunrise - End
 
 - type: entity
   name: Inspector

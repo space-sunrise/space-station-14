@@ -41,6 +41,10 @@ gun-chamber-rack = Rack
 
 # MagazineAmmoProvider
 gun-magazine-examine = It has [color={$color}]{$count}[/color] shots remaining.
+# 🌟Starlight - Start🌟
+gun-magazine-ammo-type = It contains [color={$color}]{$type}[/color].
+gun-magazine-empty = Magazine is empty.
+# 🌟Starlight - End🌟
 
 # RevolverAmmoProvider
 gun-revolver-empty = Empty revolver
@@ -53,3 +57,4 @@ gun-speedloader-empty = Speedloader empty
 # GunSpreadModifier
 examine-gun-spread-modifier-reduction = The spread has been reduced by [color=yellow]{$percentage}%[/color].
 examine-gun-spread-modifier-increase = The spread has been increased by [color=yellow]{$percentage}%[/color].
+examine-weapon-dismantle-on-shoot = This weapon may fall apart when fired ([color=yellow]{$chance}%[/color]).

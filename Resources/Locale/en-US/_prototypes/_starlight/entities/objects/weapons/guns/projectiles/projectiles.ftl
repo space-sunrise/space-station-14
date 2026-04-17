@@ -8,3 +8,5 @@ ent-BulletEnergyCrossbow = { ent-BaseBullet }
     .desc = { ent-BaseBullet.desc }
 ent-BulletMiniEnergyCrossbow = { ent-BulletEnergyCrossbow }
     .desc = { ent-BulletEnergyCrossbow.desc }
+ent-BulletGrenadeCleanadeSyndicate = evil cleanade grenade round
+    .desc = A syndicate-grade cleanade round filled with aggressive cleaning foam.

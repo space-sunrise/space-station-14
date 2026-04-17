@@ -64,6 +64,13 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.06
+  #Sunrise start
+      - !type:SatiateThirst
+        factor: 2
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+  #Sunrise end
   reactiveEffects:
     Flammable:
       methods: [ Touch ]

@@ -75,7 +75,7 @@ public sealed partial class NinjaSuitComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan EmpDuration = TimeSpan.FromSeconds(60);
-
+    // Sunrise-Start
     /// <summary>
     /// The action id for creating a smoke grenade
     /// </summary>
@@ -104,7 +104,8 @@ public sealed partial class NinjaSuitComponent : Component
     /// Battery charge used to create a flashbang grenade.
     /// </summary>
     [DataField]
-    public float FlashbangGrenadeCharge = 120f;
+    public float FlashbangGrenadeCharge = 30;
+    // Sunrise-End
 }
 
 public sealed partial class RecallKatanaEvent : InstantActionEvent;

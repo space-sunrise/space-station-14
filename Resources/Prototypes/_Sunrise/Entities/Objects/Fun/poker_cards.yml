@@ -1,8 +1,9 @@
 - type: entity
   name: playable card
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
+  suffix: Base
   parent: BaseItem
   id: BasePokerCard
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its two of clubs
   components:
   - type: SpawnItemsOnUse
@@ -22,9 +23,10 @@
     - state: cover
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
+  suffix: Base
   parent: BasePokerCard
   id: BasePokerCardFlipped
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play.
   components:
   - type: SpawnItemsOnUse
@@ -39,9 +41,10 @@
     - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Club ,Two
+  suffix: Club ,Two
   parent: BasePokerCard
   id: PokerCardTwoClub
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its two of clubs
   components:
   - type: SpawnItemsOnUse
@@ -57,26 +60,20 @@
     - state: black_two
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardTwoClubFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardTwoClub
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Club ,Three
+  suffix: Club ,Three
   parent: BasePokerCard
   id: PokerCardThreeClub
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its three of clubs
   components:
   - type: SpawnItemsOnUse
@@ -92,26 +89,20 @@
     - state: black_three
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardThreeClubFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardThreeClub
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Club ,Four
+  suffix: Club ,Four
   parent: BasePokerCard
   id: PokerCardFourClub
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its four of clubs
   components:
   - type: SpawnItemsOnUse
@@ -127,26 +118,20 @@
     - state: black_four
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardFourClubFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardFourClub
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Club ,Five
+  suffix: Club ,Five
   parent: BasePokerCard
   id: PokerCardFiveClub
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its five of clubs
   components:
   - type: SpawnItemsOnUse
@@ -162,26 +147,20 @@
     - state: black_five
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardFiveClubFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardFiveClub
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Club ,Six
+  suffix: Club ,Six
   parent: BasePokerCard
   id: PokerCardSixClub
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its six of clubs
   components:
   - type: SpawnItemsOnUse
@@ -197,26 +176,20 @@
     - state: black_six
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardSixClubFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardSixClub
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Club ,Seven
+  suffix: Club ,Seven
   parent: BasePokerCard
   id: PokerCardSevenClub
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its seven of clubs
   components:
   - type: SpawnItemsOnUse
@@ -232,26 +205,20 @@
     - state: black_seven
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardSevenClubFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardSevenClub
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Club ,Eight
+  suffix: Club ,Eight
   parent: BasePokerCard
   id: PokerCardEightClub
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its eight of clubs
   components:
   - type: SpawnItemsOnUse
@@ -267,26 +234,20 @@
     - state: black_eight
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardEightClubFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardEightClub
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Club ,Nine
+  suffix: Club ,Nine
   parent: BasePokerCard
   id: PokerCardNineClub
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its nine of clubs
   components:
   - type: SpawnItemsOnUse
@@ -302,26 +263,20 @@
     - state: black_nine
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardNineClubFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardNineClub
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Club ,Ten
+  suffix: Club ,Ten
   parent: BasePokerCard
   id: PokerCardTenClub
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its ten of clubs
   components:
   - type: SpawnItemsOnUse
@@ -337,26 +292,20 @@
     - state: black_ten
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardTenClubFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardTenClub
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Club ,Jack
+  suffix: Club ,Jack
   parent: BasePokerCard
   id: PokerCardJackClub
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its jack of clubs
   components:
   - type: SpawnItemsOnUse
@@ -372,26 +321,20 @@
     - state: black_jack
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardJackClubFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardJackClub
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Club ,Queen
+  suffix: Club ,Queen
   parent: BasePokerCard
   id: PokerCardQueenClub
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its queen of clubs
   components:
   - type: SpawnItemsOnUse
@@ -407,26 +350,20 @@
     - state: black_queen
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardQueenClubFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardQueenClub
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Club ,King
+  suffix: Club ,King
   parent: BasePokerCard
   id: PokerCardKingClub
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its king of clubs
   components:
   - type: SpawnItemsOnUse
@@ -442,26 +379,20 @@
     - state: black_king
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardKingClubFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardKingClub
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Club ,Ace
+  suffix: Club ,Ace
   parent: BasePokerCard
   id: PokerCardAceClub
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its ace of clubs
   components:
   - type: SpawnItemsOnUse
@@ -477,26 +408,20 @@
     - state: black_ace
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardAceClubFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardAceClub
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Spade ,Two
+  suffix: Spade ,Two
   parent: BasePokerCard
   id: PokerCardTwoSpade
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its two of spades
   components:
   - type: SpawnItemsOnUse
@@ -512,26 +437,20 @@
     - state: black_two
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardTwoSpadeFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardTwoSpade
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Spade ,Three
+  suffix: Spade ,Three
   parent: BasePokerCard
   id: PokerCardThreeSpade
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its three of spades
   components:
   - type: SpawnItemsOnUse
@@ -547,26 +466,20 @@
     - state: black_three
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardThreeSpadeFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardThreeSpade
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Spade ,Four
+  suffix: Spade ,Four
   parent: BasePokerCard
   id: PokerCardFourSpade
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its four of spades
   components:
   - type: SpawnItemsOnUse
@@ -582,26 +495,20 @@
     - state: black_four
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardFourSpadeFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardFourSpade
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Spade ,Five
+  suffix: Spade ,Five
   parent: BasePokerCard
   id: PokerCardFiveSpade
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its five of spades
   components:
   - type: SpawnItemsOnUse
@@ -617,26 +524,20 @@
     - state: black_five
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardFiveSpadeFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardFiveSpade
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Spade ,Six
+  suffix: Spade ,Six
   parent: BasePokerCard
   id: PokerCardSixSpade
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its six of spades
   components:
   - type: SpawnItemsOnUse
@@ -652,26 +553,20 @@
     - state: black_six
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardSixSpadeFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardSixSpade
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Spade ,Seven
+  suffix: Spade ,Seven
   parent: BasePokerCard
   id: PokerCardSevenSpade
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its seven of spades
   components:
   - type: SpawnItemsOnUse
@@ -687,26 +582,20 @@
     - state: black_seven
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardSevenSpadeFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardSevenSpade
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Spade ,Eight
+  suffix: Spade ,Eight
   parent: BasePokerCard
   id: PokerCardEightSpade
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its eight of spades
   components:
   - type: SpawnItemsOnUse
@@ -722,26 +611,20 @@
     - state: black_eight
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardEightSpadeFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardEightSpade
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Spade ,Nine
+  suffix: Spade ,Nine
   parent: BasePokerCard
   id: PokerCardNineSpade
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its nine of spades
   components:
   - type: SpawnItemsOnUse
@@ -757,26 +640,20 @@
     - state: black_nine
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardNineSpadeFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardNineSpade
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Spade ,Ten
+  suffix: Spade ,Ten
   parent: BasePokerCard
   id: PokerCardTenSpade
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its ten of spades
   components:
   - type: SpawnItemsOnUse
@@ -792,26 +669,20 @@
     - state: black_ten
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardTenSpadeFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardTenSpade
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Spade ,Jack
+  suffix: Spade ,Jack
   parent: BasePokerCard
   id: PokerCardJackSpade
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its jack of spades
   components:
   - type: SpawnItemsOnUse
@@ -827,26 +698,20 @@
     - state: black_jack
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardJackSpadeFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardJackSpade
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Spade ,Queen
+  suffix: Spade ,Queen
   parent: BasePokerCard
   id: PokerCardQueenSpade
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its queen of spades
   components:
   - type: SpawnItemsOnUse
@@ -862,26 +727,20 @@
     - state: black_queen
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardQueenSpadeFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardQueenSpade
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Spade ,King
+  suffix: Spade ,King
   parent: BasePokerCard
   id: PokerCardKingSpade
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its king of spades
   components:
   - type: SpawnItemsOnUse
@@ -897,26 +756,20 @@
     - state: black_king
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardKingSpadeFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardKingSpade
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Spade ,Ace
+  suffix: Spade ,Ace
   parent: BasePokerCard
   id: PokerCardAceSpade
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its ace of spades
   components:
   - type: SpawnItemsOnUse
@@ -932,26 +785,20 @@
     - state: black_ace
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardAceSpadeFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardAceSpade
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Heart ,Two
+  suffix: Heart ,Two
   parent: BasePokerCard
   id: PokerCardTwoHeart
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its two of hearts
   components:
   - type: SpawnItemsOnUse
@@ -967,26 +814,20 @@
     - state: red_two
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardTwoHeartFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardTwoHeart
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Heart ,Three
+  suffix: Heart ,Three
   parent: BasePokerCard
   id: PokerCardThreeHeart
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its three of hearts
   components:
   - type: SpawnItemsOnUse
@@ -1002,26 +843,20 @@
     - state: red_three
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardThreeHeartFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardThreeHeart
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Heart ,Four
+  suffix: Heart ,Four
   parent: BasePokerCard
   id: PokerCardFourHeart
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its four of hearts
   components:
   - type: SpawnItemsOnUse
@@ -1037,26 +872,20 @@
     - state: red_four
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardFourHeartFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardFourHeart
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Heart ,Five
+  suffix: Heart ,Five
   parent: BasePokerCard
   id: PokerCardFiveHeart
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its five of hearts
   components:
   - type: SpawnItemsOnUse
@@ -1072,26 +901,20 @@
     - state: red_five
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardFiveHeartFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardFiveHeart
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Heart ,Six
+  suffix: Heart ,Six
   parent: BasePokerCard
   id: PokerCardSixHeart
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its six of hearts
   components:
   - type: SpawnItemsOnUse
@@ -1107,26 +930,20 @@
     - state: red_six
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardSixHeartFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardSixHeart
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Heart ,Seven
+  suffix: Heart ,Seven
   parent: BasePokerCard
   id: PokerCardSevenHeart
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its seven of hearts
   components:
   - type: SpawnItemsOnUse
@@ -1142,26 +959,20 @@
     - state: red_seven
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardSevenHeartFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardSevenHeart
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Heart ,Eight
+  suffix: Heart ,Eight
   parent: BasePokerCard
   id: PokerCardEightHeart
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its eight of hearts
   components:
   - type: SpawnItemsOnUse
@@ -1177,26 +988,20 @@
     - state: red_eight
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardEightHeartFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardEightHeart
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Heart ,Nine
+  suffix: Heart ,Nine
   parent: BasePokerCard
   id: PokerCardNineHeart
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its nine of hearts
   components:
   - type: SpawnItemsOnUse
@@ -1212,26 +1017,20 @@
     - state: red_nine
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardNineHeartFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardNineHeart
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Heart ,Ten
+  suffix: Heart ,Ten
   parent: BasePokerCard
   id: PokerCardTenHeart
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its ten of hearts
   components:
   - type: SpawnItemsOnUse
@@ -1247,26 +1046,20 @@
     - state: red_ten
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardTenHeartFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardTenHeart
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Heart ,Jack
+  suffix: Heart ,Jack
   parent: BasePokerCard
   id: PokerCardJackHeart
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its jack of hearts
   components:
   - type: SpawnItemsOnUse
@@ -1282,26 +1075,20 @@
     - state: red_jack
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardJackHeartFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardJackHeart
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Heart ,Queen
+  suffix: Heart ,Queen
   parent: BasePokerCard
   id: PokerCardQueenHeart
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its queen of hearts
   components:
   - type: SpawnItemsOnUse
@@ -1317,26 +1104,20 @@
     - state: red_queen
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardQueenHeartFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardQueenHeart
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Heart ,King
+  suffix: Heart ,King
   parent: BasePokerCard
   id: PokerCardKingHeart
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its king of hearts
   components:
   - type: SpawnItemsOnUse
@@ -1352,26 +1133,20 @@
     - state: red_king
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardKingHeartFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardKingHeart
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Heart ,Ace
+  suffix: Heart ,Ace
   parent: BasePokerCard
   id: PokerCardAceHeart
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its ace of hearts
   components:
   - type: SpawnItemsOnUse
@@ -1387,26 +1162,20 @@
     - state: red_ace
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardAceHeartFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardAceHeart
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Diamond ,Two
+  suffix: Diamond ,Two
   parent: BasePokerCard
   id: PokerCardTwoDiamond
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its two of diamonds
   components:
   - type: SpawnItemsOnUse
@@ -1422,26 +1191,20 @@
     - state: red_two
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardTwoDiamondFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardTwoDiamond
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Diamond ,Three
+  suffix: Diamond ,Three
   parent: BasePokerCard
   id: PokerCardThreeDiamond
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its three of diamonds
   components:
   - type: SpawnItemsOnUse
@@ -1457,26 +1220,20 @@
     - state: red_three
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardThreeDiamondFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardThreeDiamond
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Diamond ,Four
+  suffix: Diamond ,Four
   parent: BasePokerCard
   id: PokerCardFourDiamond
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its four of diamonds
   components:
   - type: SpawnItemsOnUse
@@ -1492,26 +1249,20 @@
     - state: red_four
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardFourDiamondFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardFourDiamond
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Diamond ,Five
+  suffix: Diamond ,Five
   parent: BasePokerCard
   id: PokerCardFiveDiamond
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its five of diamonds
   components:
   - type: SpawnItemsOnUse
@@ -1527,26 +1278,20 @@
     - state: red_five
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardFiveDiamondFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardFiveDiamond
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Diamond ,Six
+  suffix: Diamond ,Six
   parent: BasePokerCard
   id: PokerCardSixDiamond
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its six of diamonds
   components:
   - type: SpawnItemsOnUse
@@ -1562,26 +1307,20 @@
     - state: red_six
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardSixDiamondFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardSixDiamond
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Diamond ,Seven
+  suffix: Diamond ,Seven
   parent: BasePokerCard
   id: PokerCardSevenDiamond
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its seven of diamonds
   components:
   - type: SpawnItemsOnUse
@@ -1597,26 +1336,20 @@
     - state: red_seven
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardSevenDiamondFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardSevenDiamond
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Diamond ,Eight
+  suffix: Diamond ,Eight
   parent: BasePokerCard
   id: PokerCardEightDiamond
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its eight of diamonds
   components:
   - type: SpawnItemsOnUse
@@ -1632,26 +1365,20 @@
     - state: red_eight
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardEightDiamondFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardEightDiamond
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Diamond ,Nine
+  suffix: Diamond ,Nine
   parent: BasePokerCard
   id: PokerCardNineDiamond
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its nine of diamonds
   components:
   - type: SpawnItemsOnUse
@@ -1667,26 +1394,20 @@
     - state: red_nine
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardNineDiamondFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardNineDiamond
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Diamond ,Ten
+  suffix: Diamond ,Ten
   parent: BasePokerCard
   id: PokerCardTenDiamond
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its ten of diamonds
   components:
   - type: SpawnItemsOnUse
@@ -1702,26 +1423,20 @@
     - state: red_ten
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardTenDiamondFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardTenDiamond
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Diamond ,Jack
+  suffix: Diamond ,Jack
   parent: BasePokerCard
   id: PokerCardJackDiamond
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its jack of diamonds
   components:
   - type: SpawnItemsOnUse
@@ -1737,26 +1452,20 @@
     - state: red_jack
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardJackDiamondFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardJackDiamond
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Diamond ,Queen
+  suffix: Diamond ,Queen
   parent: BasePokerCard
   id: PokerCardQueenDiamond
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its queen of diamonds
   components:
   - type: SpawnItemsOnUse
@@ -1772,26 +1481,20 @@
     - state: red_queen
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardQueenDiamondFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardQueenDiamond
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Diamond ,King
+  suffix: Diamond ,King
   parent: BasePokerCard
   id: PokerCardKingDiamond
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its king of diamonds
   components:
   - type: SpawnItemsOnUse
@@ -1807,26 +1510,20 @@
     - state: red_king
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardKingDiamondFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardKingDiamond
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Diamond ,Ace
+  suffix: Diamond ,Ace
   parent: BasePokerCard
   id: PokerCardAceDiamond
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its ace of diamonds
   components:
   - type: SpawnItemsOnUse
@@ -1842,26 +1539,20 @@
     - state: red_ace
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardAceDiamondFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardAceDiamond
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Red Joker
+  suffix: Red Joker
   parent: BasePokerCard
   id: PokerCardRedJoker
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its red joker
   components:
   - type: SpawnItemsOnUse
@@ -1876,26 +1567,20 @@
     - state: joker_red
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardRedJokerFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardRedJoker
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Black Joker
+  suffix: Black Joker
   parent: BasePokerCard
   id: PokerCardBlackJoker
+  categories: [ HideSpawnMenu ]
   description: A poker card with you can play. Its black joker
   components:
   - type: SpawnItemsOnUse
@@ -1910,27 +1595,20 @@
     - state: joker_black
 
 - type: entity
-  suffix: Sergeev_Vladimer ,PlayableCards ,Base
-  parent: BasePokerCard
+  suffix: Base
+  parent: BasePokerCardFlipped
   id: PokerCardBlackJokerFlipped
-  description: A poker card with you can play.
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnItemsOnUse
     items:
     - id: PokerCardBlackJoker
-  - type: Sprite
-    sprite: _Sunrise/Objects/Fun/Cards/poker_cards.rsi
-    scale: 0.5,0.5
-    layers:
-    - state: background
-    - state: cover
-    - state: logo
 
 - type: entity
   id: PokerCardBox
   parent: [ BaseStorageItem, BaseBagOpenClose ]
   name: card bin
-  suffix: Sergeev_Vladimer ,PlayableCards ,CardBox ,Empty
+  suffix: CardBox ,Empty
   description: Its bin for poker cards .What secrets lie at the bottom of its endless stack?
   components:
   - type: Sprite
@@ -1986,61 +1664,63 @@
 - type: entity
   id: PokerCardBoxFilled
   parent: PokerCardBox
-  suffix: Sergeev_Vladimer ,PlayableCards ,CardBox ,Filled ,54
+  suffix: CardBox ,Filled ,54
   components:
-  - type: StorageFill
-    contents:
-    - id: PokerCardTwoClubFlipped
-    - id: PokerCardTwoSpadeFlipped
-    - id: PokerCardTwoHeartFlipped
-    - id: PokerCardTwoDiamondFlipped
-    - id: PokerCardThreeClubFlipped
-    - id: PokerCardThreeSpadeFlipped
-    - id: PokerCardThreeHeartFlipped
-    - id: PokerCardThreeDiamondFlipped
-    - id: PokerCardFourClubFlipped
-    - id: PokerCardFourSpadeFlipped
-    - id: PokerCardFourHeartFlipped
-    - id: PokerCardFourDiamondFlipped
-    - id: PokerCardFiveClubFlipped
-    - id: PokerCardFiveSpadeFlipped
-    - id: PokerCardFiveHeartFlipped
-    - id: PokerCardFiveDiamondFlipped
-    - id: PokerCardSixClubFlipped
-    - id: PokerCardSixSpadeFlipped
-    - id: PokerCardSixHeartFlipped
-    - id: PokerCardSixDiamondFlipped
-    - id: PokerCardSevenClubFlipped
-    - id: PokerCardSevenSpadeFlipped
-    - id: PokerCardSevenHeartFlipped
-    - id: PokerCardSevenDiamondFlipped
-    - id: PokerCardEightClubFlipped
-    - id: PokerCardEightSpadeFlipped
-    - id: PokerCardEightHeartFlipped
-    - id: PokerCardEightDiamondFlipped
-    - id: PokerCardNineClubFlipped
-    - id: PokerCardNineSpadeFlipped
-    - id: PokerCardNineHeartFlipped
-    - id: PokerCardNineDiamondFlipped
-    - id: PokerCardTenClubFlipped
-    - id: PokerCardTenSpadeFlipped
-    - id: PokerCardTenHeartFlipped
-    - id: PokerCardTenDiamondFlipped
-    - id: PokerCardJackClubFlipped
-    - id: PokerCardJackSpadeFlipped
-    - id: PokerCardJackHeartFlipped
-    - id: PokerCardJackDiamondFlipped
-    - id: PokerCardQueenClubFlipped
-    - id: PokerCardQueenSpadeFlipped
-    - id: PokerCardQueenHeartFlipped
-    - id: PokerCardQueenDiamondFlipped
-    - id: PokerCardKingClubFlipped
-    - id: PokerCardKingSpadeFlipped
-    - id: PokerCardKingHeartFlipped
-    - id: PokerCardKingDiamondFlipped
-    - id: PokerCardAceClubFlipped
-    - id: PokerCardAceSpadeFlipped
-    - id: PokerCardAceHeartFlipped
-    - id: PokerCardAceDiamondFlipped
-    - id: PokerCardBlackJokerFlipped
-    - id: PokerCardRedJokerFlipped
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: PokerCardTwoClubFlipped
+        - id: PokerCardTwoSpadeFlipped
+        - id: PokerCardTwoHeartFlipped
+        - id: PokerCardTwoDiamondFlipped
+        - id: PokerCardThreeClubFlipped
+        - id: PokerCardThreeSpadeFlipped
+        - id: PokerCardThreeHeartFlipped
+        - id: PokerCardThreeDiamondFlipped
+        - id: PokerCardFourClubFlipped
+        - id: PokerCardFourSpadeFlipped
+        - id: PokerCardFourHeartFlipped
+        - id: PokerCardFourDiamondFlipped
+        - id: PokerCardFiveClubFlipped
+        - id: PokerCardFiveSpadeFlipped
+        - id: PokerCardFiveHeartFlipped
+        - id: PokerCardFiveDiamondFlipped
+        - id: PokerCardSixClubFlipped
+        - id: PokerCardSixSpadeFlipped
+        - id: PokerCardSixHeartFlipped
+        - id: PokerCardSixDiamondFlipped
+        - id: PokerCardSevenClubFlipped
+        - id: PokerCardSevenSpadeFlipped
+        - id: PokerCardSevenHeartFlipped
+        - id: PokerCardSevenDiamondFlipped
+        - id: PokerCardEightClubFlipped
+        - id: PokerCardEightSpadeFlipped
+        - id: PokerCardEightHeartFlipped
+        - id: PokerCardEightDiamondFlipped
+        - id: PokerCardNineClubFlipped
+        - id: PokerCardNineSpadeFlipped
+        - id: PokerCardNineHeartFlipped
+        - id: PokerCardNineDiamondFlipped
+        - id: PokerCardTenClubFlipped
+        - id: PokerCardTenSpadeFlipped
+        - id: PokerCardTenHeartFlipped
+        - id: PokerCardTenDiamondFlipped
+        - id: PokerCardJackClubFlipped
+        - id: PokerCardJackSpadeFlipped
+        - id: PokerCardJackHeartFlipped
+        - id: PokerCardJackDiamondFlipped
+        - id: PokerCardQueenClubFlipped
+        - id: PokerCardQueenSpadeFlipped
+        - id: PokerCardQueenHeartFlipped
+        - id: PokerCardQueenDiamondFlipped
+        - id: PokerCardKingClubFlipped
+        - id: PokerCardKingSpadeFlipped
+        - id: PokerCardKingHeartFlipped
+        - id: PokerCardKingDiamondFlipped
+        - id: PokerCardAceClubFlipped
+        - id: PokerCardAceSpadeFlipped
+        - id: PokerCardAceHeartFlipped
+        - id: PokerCardAceDiamondFlipped
+        - id: PokerCardBlackJokerFlipped
+        - id: PokerCardRedJokerFlipped

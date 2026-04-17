@@ -1,6 +1,7 @@
 using Content.Server._Sunrise;
 using Content.Server._Sunrise.Contributors;
 using Content.Server._Sunrise.Entry;
+using Content.Server._Sunrise.MapperSync;
 using Content.Server._Sunrise.PlayerCache;
 using Content.Server._Sunrise.ServersHub;
 using Content.Server._Sunrise.TTS;
@@ -93,7 +94,9 @@ namespace Content.Server.Entry
         [Dependency] private readonly TTSManager _ttsManager = default!; // Sunrise-Edit
         [Dependency] private readonly NetTexturesManager _netTexturesManager = default!; // Sunrise-Edit
         [Dependency] private readonly DiscordWebhook _discord = default!; // Sunrise-Edit
-        [Dependency] private readonly IIPBlockingSystem _ipBlockingSystem = default!;
+        [Dependency] private readonly MapperSyncManager _mapperSyncManager = default!; // Sunrise-Edit
+        private IIPBlockingSystem? _ipBlockingSystem;
+        private ITrustedProxyService? _trustedProxyService;
         private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
         public override void PreInit()
@@ -114,6 +117,9 @@ namespace Content.Server.Entry
             Dependencies.InjectDependencies(this);
 
             PatchManager.Patch(_log);
+
+            // Sunrise-Edit: Отключаем предупреждения Lidgren (спам "Socket threw exception; would block").
+            _cfg.OverrideDefault(Robust.Shared.CVars.NetLidgrenLogWarning, false);
 
             LoadConfigPresets(_cfg, _res, _log.GetSawmill("configpreset"));
 
@@ -149,7 +155,10 @@ namespace Content.Server.Entry
             // Sunrise-Start
             _ttsManager.Initialize();
             _netTexturesManager.Initialize();
-            _ipBlockingSystem.Initialize();
+            IoCManager.Instance!.TryResolveType(out _trustedProxyService);
+            _trustedProxyService?.Initialize();
+            IoCManager.Instance!.TryResolveType(out _ipBlockingSystem);
+            _ipBlockingSystem?.Initialize();
             SunriseServerEntry.Init();
             IoCManager.Instance!.TryResolveType(out _sponsorsManager);
             _discord.SetupClient();
@@ -198,6 +207,7 @@ namespace Content.Server.Entry
             _multiServerKick.Initialize();
             _cvarCtrl.Initialize();
             _contributorsManager.Initialize(); // Sunrise-Edit
+            _mapperSyncManager.Initialize(); // Sunrise-Edit
             _serversHubManager.Initialize(); // Sunrise-Edit
             _playerCacheManager.Initialize(); // Sunrise-Edit
 
@@ -227,8 +237,10 @@ namespace Content.Server.Entry
                     // Sunrise-Start
                     _serversHubManager.Update();
                     _contributorsManager.Update();
+                    _mapperSyncManager.Update();
                     _sponsorsManager?.Update();
-                    _ipBlockingSystem.Update();
+                    _ipBlockingSystem?.Update();
+                    _trustedProxyService?.Update();
                     // Sunrise-End
                     break;
             }

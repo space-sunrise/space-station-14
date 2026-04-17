@@ -1,0 +1,16 @@
+- type: vendingMachineInventory
+  id: MailDrobeInventory
+  startingInventory:
+    MailBag: 2
+    ClothingUniformSkirtMailCarrier: 2
+    ClothingUniformMailCarrier: 2
+    ClothingHeadMailCarrier: 2
+    ClothingBackpackCargo: 2
+    ClothingBackpackSatchelCargo: 2
+    ClothingBackpackDuffelCargo: 2
+    ClothingHeadsetCargo: 2
+    ClothingShoesColorBlack: 2
+    Envelope: 10
+    Paper: 10
+  contrabandInventory:
+    MailSpamLetter: 10

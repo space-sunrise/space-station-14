@@ -46,6 +46,9 @@ namespace Content.Client._Sunrise.TapePlayer
 
         private void OnTapePlayerAfterState(Entity<TapePlayerComponent> ent, ref AfterAutoHandleStateEvent args)
         {
+            if (IsClientSide(ent))
+                return;
+
             if (!_uiSystem.TryGetOpenUi<TapePlayerBoundUserInterface>(ent.Owner, TapePlayerUiKey.Key, out var bui))
                 return;
 

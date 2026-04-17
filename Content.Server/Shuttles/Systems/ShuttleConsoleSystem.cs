@@ -179,6 +179,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             return false;
         }
 
+        // Sunrise-Start
+        if (TryComp<DroneConsoleComponent>(uid, out var droneConsole) && droneConsole.Entity == null)
+            droneConsole.Entity = GetShuttleConsole(uid, droneConsole);
+        // Sunrise-End
+
         var pilotComponent = EnsureComp<PilotComponent>(user);
         var console = pilotComponent.Console;
 

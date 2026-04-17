@@ -11,6 +11,9 @@
   icon: "JobIconParamedic"
   supervisors: job-supervisors-cmo
   displayWeight: 25  # Sunrise
+  # Sunrise-Start
+  # alternativeTitles:
+  # Sunrise-End
   access:
   - Medical
   - Maintenance
@@ -26,7 +29,7 @@
   storage:
     back:
     - EmergencyRollerBedSpawnFolded
-    - HandheldCrewMonitor # Sunrise-Edit
+    - HandheldEmergencyCrewMonitor # Sunrise - edit
 
 - type: chameleonOutfit
   id: ParamedicChameleonOutfit

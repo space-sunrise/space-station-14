@@ -530,6 +530,7 @@ entities:
     - type: OccluderTree
     - type: Shuttle
       dampingModifier: 0.25
+    - type: NukeOpsShuttle
     - type: RadiationGridResistance
     - type: GravityShake
       shakeTimes: 10
@@ -4750,7 +4751,7 @@ entities:
     - type: Transform
       pos: 1.5,-19.5
       parent: 1
-- proto: StationAnchorOff
+- proto: ShuttleAnchorOff
   entities:
   - uid: 604
     components:

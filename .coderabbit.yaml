@@ -1,0 +1,212 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: ru-RU
+
+knowledge_base:
+  learnings:
+    scope: local
+  issues:
+    scope: local
+  pull_requests:
+    scope: local
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      - "**/.agent/rules/*.md"
+      - "**/.agent/skills/*/SKILL.md"
+      - "**/.agents/rules/*.md"
+      - "**/.agents/skills/*/SKILL.md"
+
+reviews:
+  profile: assertive
+  path_instructions:
+    - path: "**/*"
+      instructions: |
+         Treat the repository instruction stack as the source of truth for this codebase.
+         Always apply the root `AGENTS.md` first, because it defines how repository rules and skills must be selected for each task.
+         Use `.agents/rules/*.md` and `.agents/skills/*/SKILL.md` as the Codex-facing review knowledge base.
+         When a bridge file points to `.agent/rules/*` or `.agent/skills/*/SKILL.md`, prefer the canonical `.agent` source if the bridge wording ever diverges.
+         Prefer repository-specific rules and skills over generic framework advice or web-derived guidance when they conflict.
+         When inferring the fork from a git remote slug or GitHub repository identifier, ignore the owner or organization segment and use only the repository name. For example, evaluate `space-sunrise/sunrise-station` by `sunrise-station`, not by `space-sunrise`.
+         This repository's repository name is `sunrise-station`, so use the `Sunrise` prefix, the `_Sunrise` project folder, and `Sunrise-Edit` / `Sunrise edit start/end` markers for unavoidable upstream edits.
+         For a single-line upstream edit, a single-line marker such as `Sunrise-Edit` in the file's native comment syntax is sufficient. Do not require `edit start/end` or `added start/end` blocks unless the fork edit spans multiple lines.
+         Ignore a leading UTF-8 BOM (`U+FEFF`) at the start of a text file. Do not request BOM removal unless the PR is explicitly about file encoding.
+    - path: "**/*.cs"
+      instructions: |
+        For C# changes, activate the skills required by `AGENTS.md`:
+        - Always apply `ss14-naming-conventions`, `ss14-ecs-prototypes`, and `ss14-upstream-maintenance`.
+        - Also apply `ss14-ecs-components`, `ss14-ecs-entities`, `ss14-ecs-systems`, `ss14-events`, and `ss14-prediction`.
+        - Apply `ss14-documentation-writing` for large C# changes and `ss14-standard-optimizations` when hot paths, `Update()`, or frequently raised events are touched.
+        Enforce the interaction rule from `.agent/rules/ss14-interaction-flow.md`: `OnEvent -> TryDo -> CanDo -> Do`.
+        Prefer minimal hooks in vanilla files and keep new logic in `_Sunrise` files or partial classes when possible.
+    - path: "Content.*/**/*System*.cs"
+      instructions: |
+        For `*System*.cs`, apply `ss14-ecs-systems`, `ss14-events`, `ss14-prediction`, `ss14-standard-optimizations`, and `ss14-upstream-maintenance` as mandatory review context.
+        Keep the stable system member order from `ss14-ecs-systems`: dependencies, constants/static readonly, runtime cache/state, `Initialize()` / `Shutdown()`, event handlers, main API, overrides, helpers, private nested types.
+        `SubscribeLocalEvent` and `SubscribeNetworkEvent` belong in `Initialize()` only, not in lifecycle callbacks, startup code, or ad-hoc helper methods.
+        When `Update()` or frequently raised handlers do repeated component access, prefer cached `EntityQuery<T>` and allocation-light loops over repeated uncached `TryComp` / `HasComp`, LINQ, or per-tick collection allocation.
+        In vanilla system files outside `_Sunrise`, only minimal hooks should stay inline. Prefer moving new Sunrise logic into `_Sunrise` partials or adjacent Sunrise-only systems.
+    - path: "**/*.{yml,yaml}"
+      instructions: |
+        For YAML changes, always apply `ss14-naming-conventions`, `ss14-ecs-prototypes`, and `ss14-upstream-maintenance`.
+        Treat prototype IDs, inheritance, English fallback strings, and localization key expectations as strict requirements, not suggestions.
+        Prefer parent-based replacement entities plus `Resources/migration.yml` over broad direct edits to vanilla prototypes when feasible.
+        If the change touches prototypes or FTL-linked content, verify that YAML linter coverage remains appropriate for the change.
+    - path: "**/*.ftl"
+      instructions: |
+        For localization changes, apply `ss14-naming-conventions` and `ss14-localization-strings`.
+        Keep entity keys in `ent-*`, regular strings in `kebab-case`, and keep YAML fallback strings aligned with the English localization intent.
+        FTL comments should match the culture of the file when practical. Russian comments are valid in `ru-RU` files, English comments are valid in `en-US` files, and localized comments must not be flagged only because they are not English.
+    - path: "Resources/Locale/**/*.ftl"
+      instructions: |
+        Apply `ss14-naming-conventions` and `ss14-localization-strings` as strict review criteria for locale files.
+        Require explicit `OOC:` markers for out-of-character hints, controls, or gameplay instructions.
+        If a rendered text line starts with `[`, require proper Fluent escaping for the leading tag instead of treating it as valid unescaped syntax.
+        Use `## Group Name` headers sparingly and only as real FTL comment headers that improve grouping; do not ask for decorative or excessive headers.
+        Flag duplicate keys in touched locale files because Fluent override order is easy to miss in review.
+        Keep comments in the locale of the file when practical, and do not complain about a leading UTF-8 BOM by itself.
+    - path: "Content.IntegrationTests/**"
+      instructions: |
+        Apply `ss14-tests-authoring` as mandatory review context for integration tests.
+        Mutations should normally live in `WaitPost(...)` and assertions in `WaitAssertion(...)`.
+        Pooled server/client pairs should explicitly return through `CleanReturnAsync()`.
+        Flag unexplained magic waits such as `RunTicks(123)` / `WaitRunTicks(123)` when the tick count has no synchronization reason or comment.
+        `Dirty = true` and `Pool = false` should stay minimal and justified, not default cargo-cult settings.
+        For server+client tests, verify that client and server assertions account for synchronization and tick propagation instead of assuming same-tick visibility.
+    - path: ".agent/**"
+      instructions: |
+        Treat `.agent/` as the canonical source tree for repository rules and skills.
+        If rules or skills change here, matching bridges in `.agents/`, `.claude/`, `.cursor/`, and `.github/` must stay synchronized per the authoring policies.
+        Flag missing bridge updates and suggest running `pwsh ./.agents/rules/check-rule-bridges.ps1` and `pwsh ./.agents/skills/check-skill-bridges.ps1` when these files change.
+    - path: ".agents/**"
+      instructions: |
+        Treat `.agents/` as the Codex bridge layer for repository rules and skills.
+        Ensure every bridge still points back to the correct `.agent/` source and stays synchronized with canonical content and trigger metadata.
+  pre_merge_checks:
+    override_requested_reviewers_only: true
+    custom_checks:
+      - mode: error
+        name: "SS14 bridge sync"
+        instructions: |
+          Fail if this PR changes any canonical rule or skill under `.agent/rules/` or `.agent/skills/` without updating every required bridge in `.agents/`, `.claude/`, `.cursor/`, and `.github/` in the same PR.
+          Required rule bridges:
+          - `.agents/rules/<same-file>.md`
+          - `.claude/rules/<same-file>.md`
+          - `.cursor/rules/<same-file>.md`
+          - `.github/rules/<same-file>.md`
+          Required skill bridges:
+          - `.agents/skills/<skill-name>/SKILL.md`
+          - `.claude/skills/<skill-name>/SKILL.md`
+          - `.cursor/skills/<skill-name>/SKILL.md`
+          - `.github/skills/<skill-name>/SKILL.md`
+          Also fail if a changed bridge points to the wrong `.agent` source path or if synchronized trigger/name/description metadata diverges from the canonical source.
+          Pass only if all changed canonical files and bridge files remain synchronized.
+      - mode: error
+        name: "SS14 C# rules"
+        instructions: |
+          Run this check only when the PR changes `.cs` files.
+          Treat `AGENTS.md`, `.agent/rules/*.md`, and the following skills as mandatory review criteria for changed C# code:
+          - `ss14-naming-conventions`
+          - `ss14-ecs-prototypes`
+          - `ss14-upstream-maintenance`
+          - `ss14-ecs-components`
+          - `ss14-ecs-entities`
+          - `ss14-ecs-systems`
+          - `ss14-events`
+          - `ss14-prediction`
+          Fail if changed C# files violate these repo rules. Deterministic failing examples include:
+          - a `[RegisterComponent]` class name not ending with `Component`
+          - an `EntitySystem` subclass name not ending with `System`
+          - a private `[Dependency]` field in `_Sunrise` code that does not start with `_`
+          - newly added interaction or action logic that breaks the required `OnEvent -> TryDo -> CanDo -> Do` flow
+          - substantial new fork logic added directly in vanilla files instead of `_Sunrise` or partial classes, unless it is only a minimal hook
+          - new vanilla-file fork edits missing `Sunrise-Edit` / `Sunrise edit start/end` / `Sunrise added start/end` markers where markers are needed
+          Treat a one-line upstream fork edit marked with single-line `Sunrise-Edit` as valid; do not require block markers for one-line changes.
+          Pass only if none of these problems appear in the changed `.cs` files.
+      - mode: error
+        name: "SS14 YAML/FTL rules"
+        instructions: |
+          Run this check only when the PR changes `.yml`, `.yaml`, or `.ftl` files.
+          Treat `AGENTS.md`, `.agent/rules/*.md`, and the following skills as mandatory review criteria for changed content files:
+          - `ss14-naming-conventions`
+          - `ss14-ecs-prototypes`
+          - `ss14-upstream-maintenance`
+          - `ss14-localization-strings`
+          Fail if changed content files violate these repo rules. Deterministic failing examples include:
+          - any YAML component entry written as `- type: SomethingComponent`
+          - prototype IDs that are not `CamelCase`
+          - fork-only prototype IDs missing a `Sunrise` prefix when they are unique fork content or forked copies of vanilla entities
+          - non-English YAML fallback `name` / `description`, including Cyrillic fallback text
+          - FTL entity keys not starting with `ent-`
+          - non-entity FTL keys not using `kebab-case`
+          - broad direct rewrites of vanilla prototypes where a parent-based `_Sunrise` override plus `Resources/migration.yml` is the expected upstream-friendly pattern
+          Do not fail a PR only because an FTL comment is written in the locale of the file, do not require block edit markers when a single-line `Sunrise-Edit` comment is sufficient for a one-line content change, and do not fail or comment solely because a text file starts with a UTF-8 BOM (`U+FEFF`).
+          Pass only if none of these problems appear in the changed `.yml`, `.yaml`, or `.ftl` files.
+      - mode: error
+        name: "SS14 Prototype ↔ FTL parity"
+        instructions: |
+          Run this check only when the PR changes `Resources/Prototypes/**`, `Resources/migration.yml`, or `Resources/Locale/**/*.ftl`.
+          Apply `ss14-naming-conventions`, `ss14-ecs-prototypes`, `ss14-localization-strings`, and `ss14-upstream-maintenance`.
+          Fail if the PR adds, renames, or meaningfully changes a player-facing entity prototype without keeping the matching FTL entries in sync.
+          Deterministic failing examples include:
+          - a new player-facing prototype ID without a matching `ent-<PrototypeId>` localization entry in the touched locale set
+          - a prototype rename where the old `ent-*` key is left in place but the new `ent-*` key is not added
+          - a changed player-facing prototype `name` / `description` / `suffix` intent without the corresponding `ent-*`, `.desc`, or `.suffix` updates
+          - a `_Sunrise` replacement or migration that changes the user-visible prototype ID but leaves localization parity behind
+          Do not require parity for obviously abstract, hidden, purely technical, or test-only prototypes that are not meant to surface to players.
+          Pass only if changed player-facing prototype IDs and touched FTL entries stay aligned.
+      - mode: error
+        name: "SS14 Prediction Safety"
+        instructions: |
+          Run this check only when the PR changes `Content.Shared/**`, predicted input handling, or shared gameplay paths that can run on both client and server.
+          Apply `ss14-prediction`, `ss14-ecs-systems`, `ss14-events`, `ss14-ecs-entities`, and `ss14-standard-optimizations` as mandatory review context.
+          Fail if changed predicted/shared code introduces deterministic prediction hazards.
+          Deterministic failing examples include:
+          - using `IRobustRandom` / `_random.Next...` in shared predicted logic instead of a deterministic predicted random source or an explicit deterministic seed
+          - adding predicted side effects such as `PlayPvs`, `PopupEntity`, or similar one-shot UX effects without `IsFirstTimePredicted`, `ApplyingState`, or a predicted helper such as `PlayPredicted` / `PopupPredicted`
+          - deleting or queue-deleting a networked server entity from predicted client/shared code instead of using predicted spawn patterns or state-as-component transitions
+          - moving predicted gameplay logic out of `Content.Shared` into a server-only path while the client still needs to simulate it
+          Pass only if the changed shared/predicted code remains deterministic and replay-safe.
+  tools:
+    ast-grep:
+      enabled: true
+      essential_rules: false
+      rule_dirs:
+        - ".coderabbit/ast-grep/rules"
+  auto_apply_labels: true
+  allow_label_editing: true
+  labeling_instructions:
+    - label: "🗺️ Карты 🗺️"
+      instructions: "Применить, когда PR содержит изменения в файлах карт (.yml файлы в папках Resources/Maps/ или Resources/Prototypes/Maps/)"
+
+    - label: "🔊 Аудио 🔊"
+      instructions: "Применить, когда PR содержит изменения в аудио файлах (.ogg, .mp3, .wav и других звуковых форматах)"
+
+    - label: "🧊 Нет C# 🧊"
+      instructions: "Применить, когда PR не содержит изменений в .cs файлах"
+
+    - label: "🛠️ Есть C# 🛠️"
+      instructions: "Применить, когда PR содержит изменения в .cs файлах"
+
+    - label: "📚 Изменения: Локализация 📚"
+      instructions: "Применить, когда PR содержит изменения в .ftl файлах локализации"
+
+    - label: "🖌️ Спрайты 🖌️"
+      instructions: "Применить, когда PR содержит изменения в .png, .jpg, .jpeg, .gif или других графических файлах"
+
+    - label: "📦 YAML | Прототип 📦"
+      instructions: "Применить, когда PR содержит изменения в .yml или .yaml файлах прототипов"
+
+    - label: "🪟 Интерфейс 🪟"
+      instructions: "Применить, когда PR содержит изменения в визуальных элементах интерфейса, которые видны пользователю: кнопки, окна, панели, меню и другие компоненты UI"
+
+chat:
+  auto_reply: true
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Примечания
+# ═══════════════════════════════════════════════════════════════════════════
+# 1. Все метки используют emoji для улучшенной визуализации
+# 2. Старые текстовые метки исключены из автоматического применения
+# 3. CodeRabbit будет применять только релевантные метки на основе содержимого PR
+# 4. Метка "Несортированный" полностью исключена из использования
+# ═══════════════════════════════════════════════════════════════════════════

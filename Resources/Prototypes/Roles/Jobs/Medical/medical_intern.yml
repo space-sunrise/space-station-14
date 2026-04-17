@@ -6,13 +6,17 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 5h
-      #inverted: true # stop playing intern if you're good at med! Sunrise-edit
+      time: 15h # Sunrise-edit
+      inverted: true # stop playing intern if you're good at med!
   startingGear: MedicalInternGear
   icon: "JobIconMedicalIntern"
   supervisors: job-supervisors-medicine
   canBeAntag: false
   displayWeight: 0  # Sunrise-Edit
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-medical-trainee
+  # Sunrise-End
   access:
   - Medical
   - Maintenance

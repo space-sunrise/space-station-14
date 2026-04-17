@@ -1,0 +1,73 @@
+<PanelContainer
+    xmlns="https://spacestation14.io"
+    HorizontalExpand="True"
+    Margin="4,0"
+    Name="MessagePanelContainer">
+    <BoxContainer
+        Orientation="Vertical"
+        HorizontalExpand="True"
+        MinSize="0,30"
+        Name="MessageBox">
+        <BoxContainer
+            Orientation="Horizontal"
+            Margin="0,0,0,4"
+            Name="Header">
+            <TextureRect
+                Name="JobIconRect"
+                SetWidth="20"
+                SetHeight="20"
+                Stretch="Scale"
+                Margin="0,0,4,0"
+                Visible="False" />
+            <Label
+                Name="SenderLabel"
+                Text=""
+                StyleClasses="Bold"
+                HorizontalExpand="True"
+                MaxWidth="240"
+                HorizontalAlignment="Left"
+                Align="Left"
+                RectClipContent="True" />
+            <BoxContainer
+                Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                HorizontalExpand="False"
+                Name="RightContainer">
+                <Label
+                    Name="TimeLabel"
+                    Text=""
+                    HorizontalAlignment="Right"
+                    StyleClasses="LabelSubText" />
+            </BoxContainer>
+        </BoxContainer>
+        <BoxContainer
+            Orientation="Vertical"
+            HorizontalExpand="True"
+            Name="ContentContainer">
+            <RichTextLabel
+                Name="ContentLabel"
+                HorizontalExpand="True" />
+            <ContainerButton
+                Name="ImageButton"
+                HorizontalExpand="True"
+                Visible="False"
+                Margin="0,4,0,0">
+                <PanelContainer Name="ImageBorder" HorizontalExpand="True">
+                    <TextureRect
+                        Name="ImagePreview"
+                        HorizontalExpand="True"
+                        Stretch="KeepAspect" />
+                </PanelContainer>
+            </ContainerButton>
+        </BoxContainer>
+        <TextureRect
+            Name="ReadStatusIcon"
+            SetWidth="16"
+            SetHeight="16"
+            TextureScale="0.5,0.5"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Margin="0,0,2,2"
+            Visible="False" />
+    </BoxContainer>
+</PanelContainer>

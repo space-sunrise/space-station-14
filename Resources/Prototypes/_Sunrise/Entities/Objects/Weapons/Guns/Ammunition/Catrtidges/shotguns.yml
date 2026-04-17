@@ -222,3 +222,48 @@
     - Cartridge
     - ShellShotgun
     - ShellShotgunLight
+
+- type: entity
+  id: ShellShotgunFlechette
+  name: shell (.50 flechette)
+  parent: [ BaseShellShotgun, BaseSyndicateContraband ]
+  components:
+  - type: Sprite
+    layers:
+      - state: slug
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip-long
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#5da0b5"
+      - state: holy
+        color: "#07252eb5"
+      - state: spent-long
+        map: [ "enum.AmmoVisualLayers.Spent" ]
+        visible: false
+  - type: CartridgeAmmo
+    soundEject:
+      collection: ShellEject
+    proto: PelletShotgunFlechetteSpreadTrace
+  - type: Tag
+    tags:
+    - ShellShotgun
+
+- type: entity
+  id: ShellShotgunBreaching
+  name: shell (.50 breaching)
+  parent: [ BaseShellShotgun, BaseSyndicateContraband ]
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#0096FF"
+      - state: spent
+        map: [ "enum.AmmoVisualLayers.Spent" ]
+        visible: false
+  - type: CartridgeAmmo
+    soundEject:
+      collection: ShellEject
+    proto: PelletShotgunBreachSpreadTrace

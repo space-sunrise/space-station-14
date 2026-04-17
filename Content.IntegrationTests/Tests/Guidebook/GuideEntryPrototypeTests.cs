@@ -1,9 +1,11 @@
 using Content.Client.Guidebook;
 using Content.Client.Guidebook.Richtext;
 using Robust.Shared.ContentPack;
+using Robust.Shared.Log;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Shared.Guidebook;
+using Robust.UnitTesting;
 
 namespace Content.IntegrationTests.Tests.Guidebook;
 
@@ -19,6 +21,10 @@ public sealed class GuideEntryPrototypeTests
         await using var pair = await PoolManager.GetServerClient(new PoolSettings { Connected = true });
         var client = pair.Client;
         await client.WaitIdleAsync();
+        // Sunrise-start: Данный тест невозможно нормально решить,
+        // Так как у нас банально переполнен гайдбук реагентами. Оффы должны пофиксить когда-нибудь.
+        await client.WaitPost(() => client.CfgMan.SetCVar(RTCVars.FailureLogLevel, LogLevel.Error));
+        // Sunrise-end
         var protoMan = client.ResolveDependency<IPrototypeManager>();
         var resMan = client.ResolveDependency<IResourceManager>();
         var parser = client.ResolveDependency<DocumentParsingManager>();

@@ -1,6 +1,31 @@
 - type: latheRecipe
-  id: HandheldCrewMonitor
-  result: HandheldCrewMonitorEmpty
+  id: JugBluespace
+  result: JugBluespace
+  parent: BluespaceBeaker # same size, 1:1 recipe
+
+- type: latheRecipe
+  id: VialBluespace
+  result: VialBluespace
+  completetime: 2
+  materials:
+    Steel: 60
+    Plastic: 60
+    Plasma: 15
+    Silver: 15
+    Uranium: 30
+
+- type: latheRecipe
+  id: ImplanterExtractor
+  result: ImplanterExtractor
+  completetime: 1
+  materials:
+    Glass: 500
+    Steel: 500
+    Silver: 100
+
+- type: latheRecipe
+  id: HandheldEmergencyCrewMonitor
+  result: HandheldEmergencyCrewMonitorEmpty
   categories:
   - Tools
   completetime: 4
@@ -9,6 +34,7 @@
     Steel: 250
     Plastic: 400
     Gold: 100
+    Plasma: 50
 
 - type: latheRecipe
   id: DefibrillatorCompact
@@ -21,6 +47,18 @@
     Steel: 250
     Plastic: 50
     Silver: 100
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: DnaInjector
+  result: DnaInjector
+  completetime: 3
+  materials:
+    Steel: 400
+    Glass: 300
+    Plastic: 200
+    Silver: 50
+    Plasma: 50
 
 - type: latheRecipe
   id: AdvancedDefibrillatorCompact

@@ -264,13 +264,67 @@
       - state: inhand-right-mag
 
 - type: entity
-  id: MagazineDragunov
-  name: "magazine Dragunov (7,62mmR)"
+  id: MagazineDragunovSP
+  name: "magazine Dragunov (7,62mmR SP)"
   suffix: Sunrise
   parent: BaseMagazineDragunov
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeHeavyRifleRSP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#575EF5"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#575EF5"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#575EF5"
+
+- type: entity
+  id: MagazineDragunovHP
+  name: "magazine Dragunov (7,62mmR HP)"
+  suffix: Sunrise
+  parent: BaseMagazineDragunov
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyRifleRHP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#F5514C"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#F5514C"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#F5514C"
+
+- type: entity
+  id: MagazineDragunovFMJ
+  name: "magazine Dragunov (7,62mmR FMJ)"
+  suffix: Sunrise
+  parent: BaseMagazineDragunov
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyRifleRFMJ
   - type: Sprite
     layers:
     - state: base
@@ -288,7 +342,7 @@
   id: MagazineDragunovEmpty
   name: "magazine (7,62mmR any)"
   suffix: Sunrise, empty
-  parent: MagazineDragunov
+  parent: MagazineDragunovSP
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -309,7 +363,7 @@
   id: MagazineDragunovIncendiary
   name: "magazine (7,62mmR incendiary)"
   suffix: Sunrise
-  parent: MagazineDragunov
+  parent: MagazineDragunovSP
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeHeavyRifleRIncendiary

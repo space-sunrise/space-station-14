@@ -8,7 +8,7 @@
     WallRockChromite: WallRockChromiteTin
     WallRockSand: WallRockSandTin
     WallRockSnow: WallRockSnowTin
-  maxCount: 30
+  maxCount: 15 #Sunrise-Edit
   minGroupSize: 10
   maxGroupSize: 15
   radius: 4
@@ -21,7 +21,7 @@
     WallRockBasalt: WallRockBasaltQuartz
     WallRockChromite: WallRockChromiteQuartz
     WallRockSnow: WallRockSnowQuartz
-  maxCount: 30
+  maxCount: 15 #Sunrise-Edit
   minGroupSize: 10
   maxGroupSize: 15
   radius: 4
@@ -35,7 +35,7 @@
     WallRockChromite: WallRockChromiteCoal
     WallRockSand: WallRockSandCoal
     WallRockSnow: WallRockSnowCoal
-  maxCount: 30
+  maxCount: 15 #Sunrise-Edit
   minGroupSize: 8
   maxGroupSize: 12
   radius: 4
@@ -49,7 +49,7 @@
     WallRockChromite: WallRockChromiteSalt
     WallRockSand: WallRockSandSalt
     WallRockSnow: WallRockSnowSalt
-  maxCount: 30
+  maxCount: 15 #Sunrise-Edit
   minGroupSize: 8
   maxGroupSize: 12
   radius: 4
@@ -65,7 +65,7 @@
     WallRockChromite: WallRockChromiteGold
     WallRockSand: WallRockSandGold
     WallRockSnow: WallRockSnowGold
-  maxCount: 20
+  maxCount: 10 #Sunrise-Edit
   minGroupSize: 5
   maxGroupSize: 10
   radius: 4
@@ -80,7 +80,7 @@
     WallRockChromite: WallRockChromiteSilver
     WallRockSand: WallRockSandSilver
     WallRockSnow: WallRockSnowSilver
-  maxCount: 20
+  maxCount: 10 #Sunrise-Edit
   minGroupSize: 5
   maxGroupSize: 10
   radius: 4
@@ -96,7 +96,7 @@
     WallRockChromite: WallRockChromitePlasma
     WallRockSand: WallRockSandPlasma
     WallRockSnow: WallRockSnowPlasma
-  maxCount: 12
+  maxCount: 6 #Sunrise-Edit
   minGroupSize: 4
   maxGroupSize: 8
   radius: 4
@@ -111,7 +111,7 @@
     WallRockChromite: WallRockChromiteUranium
     WallRockSand: WallRockSandUranium
     WallRockSnow: WallRockSnowUranium
-  maxCount: 15
+  maxCount: 8 #Sunrise-Edit
   minGroupSize: 4
   maxGroupSize: 8
   radius: 4
@@ -125,7 +125,7 @@
     WallRockChromite: WallRockChromiteDiamond
     WallRockSand: WallRockSandDiamond
     WallRockSnow: WallRockSnowDiamond
-  maxCount: 6
+  maxCount: 3 #Sunrise-Edit
   minGroupSize: 1
   maxGroupSize: 2
   radius: 4

@@ -1,0 +1,33 @@
+# Metus Planet Prison bedsheets packs
+
+- type: latheRecipePack
+  id: BedsheetsPrison
+  recipes:
+    # Single bedsheets (neutral only)
+    - BedsheetBlack
+    - BedsheetBlue
+    - BedsheetBrown
+    - BedsheetGreen
+    - BedsheetGrey
+    - BedsheetOrange
+    - BedsheetPurple
+    - BedsheetRed
+    - BedsheetWhite
+    - BedsheetYellow
+    - BedsheetCosmosPrison
+    - BedsheetCultPrison
+    - BedsheetRainbow
+    # Double bedsheets (neutral only)
+    - DoubleBedsheetBlack
+    - DoubleBedsheetBlue
+    - DoubleBedsheetBrown
+    - DoubleBedsheetGreen
+    - DoubleBedsheetGrey
+    - DoubleBedsheetOrange
+    - DoubleBedsheetPurple
+    - DoubleBedsheetRed
+    - DoubleBedsheetWhite
+    - DoubleBedsheetYellow
+    - DoubleBedsheetCosmosPrison
+    - DoubleBedsheetCultPrison
+    - DoubleBedsheetRainbow

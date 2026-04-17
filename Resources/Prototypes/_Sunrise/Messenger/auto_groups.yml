@@ -1,0 +1,78 @@
+- type: messengerAutoGroup
+  id: CommonChat
+  name: messenger-auto-group-common-name
+  groupId: common
+  addAllUsers: true
+  departments: []
+  radioChannel: Common
+  allowManualMemberManagement: false
+
+- type: messengerAutoGroup
+  id: DepartmentEngineering
+  name: department-engineering
+  groupId: dept_engineering
+  addAllUsers: false
+  departments:
+    - Engineering
+  radioChannel: Engineering
+  allowManualMemberManagement: false
+
+- type: messengerAutoGroup
+  id: DepartmentSecurity
+  name: department-security
+  groupId: dept_security
+  addAllUsers: false
+  departments:
+    - Security
+  radioChannel: Security
+  allowManualMemberManagement: false
+
+- type: messengerAutoGroup
+  id: DepartmentMedical
+  name: department-medical
+  groupId: dept_medical
+  addAllUsers: false
+  departments:
+    - Medical
+  radioChannel: Medical
+  allowManualMemberManagement: false
+
+- type: messengerAutoGroup
+  id: DepartmentScience
+  name: department-science
+  groupId: dept_science
+  addAllUsers: false
+  departments:
+    - Science
+  radioChannel: Science
+  allowManualMemberManagement: false
+
+- type: messengerAutoGroup
+  id: DepartmentCargo
+  name: department-cargo
+  groupId: dept_cargo
+  addAllUsers: false
+  departments:
+    - Cargo
+  radioChannel: Supply
+  allowManualMemberManagement: false
+
+- type: messengerAutoGroup
+  id: DepartmentCivilian
+  name: department-civilian
+  groupId: dept_civilian
+  addAllUsers: false
+  departments:
+    - Civilian
+  radioChannel: Service
+  allowManualMemberManagement: false
+
+- type: messengerAutoGroup
+  id: DepartmentCommand
+  name: department-command
+  groupId: dept_command
+  addAllUsers: false
+  departments:
+    - Command
+  radioChannel: Command
+  allowManualMemberManagement: false

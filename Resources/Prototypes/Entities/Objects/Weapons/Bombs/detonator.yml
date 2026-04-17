@@ -47,6 +47,11 @@
           Unprimed: { state: complete }
   - type: StaticPrice
     price: 25
+  # Sunrise-Start
+  - type: GuideHelp
+    guides:
+    - SunriseDetonatorTriggers
+  # Sunrise-End
 
 - type: entity
   parent: EmptyDetonator

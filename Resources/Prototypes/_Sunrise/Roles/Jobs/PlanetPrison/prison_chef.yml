@@ -18,6 +18,8 @@
   alwaysUseSpawner: true
   canBeAntag: false
   displayWeight: 40
+  alternativeTitles:
+  - job-alt-title-prison-cook
   access:
   - Security
   - Brig
@@ -35,7 +37,6 @@
   id: PrisonChefGear
   equipment:
     id: PrisonChefPDA
-    jumpsuit: UniformPrisonChefMetus
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSunglasses
     mask: ClothingMaskItalianMoustache
@@ -44,14 +45,14 @@
     belt: ClothingBeltPrisonChefMetus
     back: ClothingBackpackSatchelPrisonChefMetus
     shoes: ClothingShoesBootsJack
-    pocket1: WeaponPistolG22Metus
+    pocket1: WeaponPistolG22Prison
     pocket2: SecurityWhistle
 
 - type: chameleonOutfit
   id: PrisonChefChameleonOutfit
   job: PrisonChef
   equipment:
-    jumpsuit: UniformPrisonChefMetus
+    jumpsuit: ClothingUniformJumpsuitPrisonChef
     head: ClothingHeadHatChefBlackToque
     ears: ClothingHeadsetService
     eyes: ClothingEyesGlassesSunglasses

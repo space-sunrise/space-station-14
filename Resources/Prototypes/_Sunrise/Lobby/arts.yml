@@ -127,44 +127,12 @@
   background: /NetTextures/Lobby/Arts/guts-guts.webp
 
 - type: lobbyArt
-  id: NewYearBar
-  background: /NetTextures/Lobby/Arts/new-year-bar.webp
-
-- type: lobbyArt
-  id: NewYearSec
-  background: /NetTextures/Lobby/Arts/new-year-sec.webp
-
-- type: lobbyArt
-  id: NewYearSave
-  background: /NetTextures/Lobby/Arts/new-year-save.webp
-
-- type: lobbyArt
-  id: NewYearComfort
-  background: /NetTextures/Lobby/Arts/new-year-comfort.webp
-
-- type: lobbyArt
-  id: NewYearParty
-  background: /NetTextures/Lobby/Arts/new-year-party.webp
-
-- type: lobbyArt
-  id: NewYearPine
-  background: /NetTextures/Lobby/Arts/new-year-pine.webp
-
-- type: lobbyArt
-  id: NewYearExplosion
-  background: /NetTextures/Lobby/Arts/new-year-explosion.webp
+  id: SecSave
+  background: /NetTextures/Lobby/Arts/sec-save.webp
 
 - type: lobbyArt
   id: SpaceNuke
   background: /NetTextures/Lobby/Arts/space-nuke.webp
-
-- type: lobbyArt
-  id: NewYearPenguins
-  background: /NetTextures/Lobby/Arts/new-year-penguins.webp
-
-- type: lobbyArt
-  id: NewYearNuke
-  background: /NetTextures/Lobby/Arts/new-year-nuke.webp
 
 - type: lobbyArt
   id: ArnoldIntelligence
@@ -173,10 +141,6 @@
 - type: lobbyArt
   id: MimesInTechs
   background: /NetTextures/Lobby/Arts/mimes-in-techs.webp
-
-- type: lobbyArt
-  id: NukieWar
-  background: /NetTextures/Lobby/Arts/nukie-war.webp
 
 - type: lobbyArt
   id: EngineersVsZombies
@@ -189,3 +153,40 @@
 - type: lobbyArt
   id: Prostchitalsanogde
   background: /NetTextures/Lobby/Arts/prostchitalsanogde.webp
+
+- type: lobbyArt
+  id: NukieWar
+  background: /NetTextures/Lobby/Arts/nukie-war.webp
+
+# region New Year
+- type: lobbyArt
+  id: NewYearNuke
+  background: /NetTextures/Lobby/Arts/new-year-nuke.webp
+
+# - type: lobbyArt
+#   id: NewYearPenguins
+#   background: /NetTextures/Lobby/Arts/new-year-penguins.webp
+
+# - type: lobbyArt
+#   id: NewYearBar
+#   background: /NetTextures/Lobby/Arts/new-year-bar.webp
+
+# - type: lobbyArt
+#   id: NewYearSec
+#   background: /NetTextures/Lobby/Arts/new-year-sec.webp
+
+# - type: lobbyArt
+#   id: NewYearComfort
+#   background: /NetTextures/Lobby/Arts/new-year-comfort.webp
+
+# - type: lobbyArt
+#   id: NewYearParty
+#   background: /NetTextures/Lobby/Arts/new-year-party.webp
+
+# - type: lobbyArt
+#   id: NewYearPine
+#   background: /NetTextures/Lobby/Arts/new-year-pine.webp
+
+# - type: lobbyArt
+#   id: NewYearExplosion
+#   background: /NetTextures/Lobby/Arts/new-year-explosion.webp

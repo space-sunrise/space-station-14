@@ -35,7 +35,7 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatHuman
+    - id: FoodMeatMilira
       amount: 5
   - type: HumanoidAppearance
     species: Milira
@@ -67,6 +67,10 @@
   - type: Carriable
   - type: Tag
     tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
     - Milira
 
 - type: entity

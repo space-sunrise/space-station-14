@@ -86,7 +86,7 @@ public partial class MapGridControl : LayoutContainer
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-        MinSize = new Vector2(MathF.Round(SizeFull / 2f), MathF.Round(SizeFull / 2f)); // Sunrise-Edit
+        MinSize = new Vector2(MathF.Round(SizeFull / 2f), SizeFull - 68); // Sunrise-Edit: Я не ебу как это сделать без хардкода
         RectClipContent = true;
         MouseFilter = MouseFilterMode.Stop;
         ActualRadarRange = WorldRange;

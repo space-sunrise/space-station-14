@@ -1,0 +1,1720 @@
+- type: emoji
+  id: BaseSunriseEmojiSmile
+  abstract: true
+  spritePath: _Sunrise/Interface/Misc/smiles.rsi
+
+- type: emoji
+  id: BaseSunriseEmojiBigSmile
+  abstract: true
+  parent: BaseSunriseEmojiSmile
+  spritePath: _Sunrise/Interface/Misc/big_smiles.rsi
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: acute
+  code: ":acute:"
+  spriteState: acute
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: aggressive
+  code: ":aggressive:"
+  spriteState: aggressive
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: agree
+  code: ":agree:"
+  spriteState: agree
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: air_kiss
+  code: ":air_kiss:"
+  spriteState: air_kiss
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: alcoholic
+  code: ":alcoholic:"
+  spriteState: alcoholic
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: angel
+  code: ":angel:"
+  spriteState: angel
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: angry2
+  code: ":angry2:"
+  spriteState: angry2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: assassin
+  code: ":assassin:"
+  spriteState: assassin
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: bad
+  code: ":bad:"
+  spriteState: bad
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: bb
+  code: ":bb:"
+  spriteState: bb
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: bb2
+  code: ":bb2:"
+  spriteState: bb2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: beach
+  code: ":beach:"
+  spriteState: beach
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: beee
+  code: ":beee:"
+  spriteState: beee
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: beta
+  code: ":beta:"
+  spriteState: beta
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: big_boss
+  code: ":big_boss:"
+  spriteState: big_boss
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: biggrin
+  code: ":biggrin:"
+  spriteState: biggrin
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: black_eye
+  code: ":black_eye:"
+  spriteState: black_eye
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: blind
+  code: ":blind:"
+  spriteState: blind
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: blum2
+  code: ":blum2:"
+  spriteState: blum2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: blum3
+  code: ":blum3:"
+  spriteState: blum3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: blush
+  code: ":blush:"
+  spriteState: blush
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: blush2
+  code: ":blush2:"
+  spriteState: blush2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: boast
+  code: ":boast:"
+  spriteState: boast
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: boredom
+  code: ":boredom:"
+  spriteState: boredom
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: brunette
+  code: ":brunette:"
+  spriteState: brunette
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: buba
+  code: ":buba:"
+  spriteState: buba
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: buba_phone
+  code: ":buba_phone:"
+  spriteState: buba_phone
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: butcher
+  code: ":butcher:"
+  spriteState: butcher
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: bye
+  code: ":bye:"
+  spriteState: bye
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: censored
+  code: ":censored:"
+  spriteState: censored
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: clapping
+  code: ":clapping:"
+  spriteState: clapping
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: close_tema
+  code: ":close_tema:"
+  spriteState: close_tema
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: comando
+  code: ":comando:"
+  spriteState: comando
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: cool
+  code: ":cool:"
+  spriteState: cool
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: cray
+  code: ":cray:"
+  spriteState: cray
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: cray2
+  code: ":cray2:"
+  spriteState: cray2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: crazy
+  code: ":crazy:"
+  spriteState: crazy
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: crazy_pilot
+  code: ":crazy_pilot:"
+  spriteState: crazy_pilot
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: curtsey
+  code: ":curtsey:"
+  spriteState: curtsey
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: dance
+  code: ":dance:"
+  spriteState: dance
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: dance2
+  code: ":dance2:"
+  spriteState: dance2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: dance3
+  code: ":dance3:"
+  spriteState: dance3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: dance4
+  code: ":dance4:"
+  spriteState: dance4
+
+- type: emoji
+  parent: BaseSunriseEmojiBigSmile
+  id: dash1
+  code: ":dash1:"
+  spriteState: dash1
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: dash2
+  code: ":dash2:"
+  spriteState: dash2
+
+- type: emoji
+  parent: BaseSunriseEmojiBigSmile
+  id: dash3
+  code: ":dash3:"
+  spriteState: dash3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: declare
+  code: ":declare:"
+  spriteState: declare
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: ded_moroz
+  code: ":ded_moroz:"
+  spriteState: ded_moroz
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: ded_snegurochka
+  code: ":ded_snegurochka:"
+  spriteState: ded_snegurochka
+
+- type: emoji
+  parent: BaseSunriseEmojiBigSmile
+  id: ded_snegurochka2
+  code: ":ded_snegurochka2:"
+  spriteState: ded_snegurochka2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: derisive
+  code: ":derisive:"
+  spriteState: derisive
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: diablo
+  code: ":diablo:"
+  spriteState: diablo
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: dirol
+  code: ":dirol:"
+  spriteState: dirol
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: dntknw
+  code: ":dntknw:"
+  spriteState: dntknw
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: don_t_mention
+  code: ":don_t_mention:"
+  spriteState: don_t_mention
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: download
+  code: ":download:"
+  spriteState: download
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: drag
+  code: ":drag:"
+  spriteState: drag
+
+- type: emoji
+  parent: BaseSunriseEmojiBigSmile
+  id: drinks
+  code: ":drinks:"
+  spriteState: drinks
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: dwarf
+  code: ":dwarf:"
+  spriteState: dwarf
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: elf
+  code: ":elf:"
+  spriteState: elf
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: facepalm
+  code: ":facepalm:"
+  spriteState: facepalm
+
+- type: emoji
+  parent: BaseSunriseEmojiBigSmile
+  id: feminist
+  code: ":feminist:"
+  spriteState: feminist
+
+- type: emoji
+  parent: BaseSunriseEmojiBigSmile
+  id: feminist_en
+  code: ":feminist_en:"
+  spriteState: feminist_en
+
+- type: emoji
+  parent: BaseSunriseEmojiBigSmile
+  id: first_move
+  code: ":first_move:"
+  spriteState: first_move
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: flirt
+  code: ":flirt:"
+  spriteState: flirt
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: focus
+  code: ":focus:"
+  spriteState: focus
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: fool
+  code: ":fool:"
+  spriteState: fool
+
+- type: emoji
+  parent: BaseSunriseEmojiBigSmile
+  id: friends
+  code: ":friends:"
+  spriteState: friends
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: gamer1
+  code: ":gamer1:"
+  spriteState: gamer1
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: gamer2
+  code: ":gamer2:"
+  spriteState: gamer2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: gamer3
+  code: ":gamer3:"
+  spriteState: gamer3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: gamer4
+  code: ":gamer4:"
+  spriteState: gamer4
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_blum
+  code: ":girl_blum:"
+  spriteState: girl_blum
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_blum2
+  code: ":girl_blum2:"
+  spriteState: girl_blum2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_cray
+  code: ":girl_cray:"
+  spriteState: girl_cray
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_cray2
+  code: ":girl_cray2:"
+  spriteState: girl_cray2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_cray3
+  code: ":girl_cray3:"
+  spriteState: girl_cray3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_crazy
+  code: ":girl_crazy:"
+  spriteState: girl_crazy
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_dance
+  code: ":girl_dance:"
+  spriteState: girl_dance
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_devil
+  code: ":girl_devil:"
+  spriteState: girl_devil
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_drink1
+  code: ":girl_drink1:"
+  spriteState: girl_drink1
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_drink2
+  code: ":girl_drink2:"
+  spriteState: girl_drink2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_drink3
+  code: ":girl_drink3:"
+  spriteState: girl_drink3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_drink4
+  code: ":girl_drink4:"
+  spriteState: girl_drink4
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_haha
+  code: ":girl_haha:"
+  spriteState: girl_haha
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_hide
+  code: ":girl_hide:"
+  spriteState: girl_hide
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_hospital
+  code: ":girl_hospital:"
+  spriteState: girl_hospital
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_impossible
+  code: ":girl_impossible:"
+  spriteState: girl_impossible
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_in_love
+  code: ":girl_in_love:"
+  spriteState: girl_in_love
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_mad
+  code: ":girl_mad:"
+  spriteState: girl_mad
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_pinkglassesf
+  code: ":girl_pinkglassesf:"
+  spriteState: girl_pinkglassesf
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_prepare_fish
+  code: ":girl_prepare_fish:"
+  spriteState: girl_prepare_fish
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_sad
+  code: ":girl_sad:"
+  spriteState: girl_sad
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_sigh
+  code: ":girl_sigh:"
+  spriteState: girl_sigh
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_smile
+  code: ":girl_smile:"
+  spriteState: girl_smile
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_to_take_umbrage
+  code: ":girl_to_take_umbrage:"
+  spriteState: girl_to_take_umbrage
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_to_take_umbrage2
+  code: ":girl_to_take_umbrage2:"
+  spriteState: girl_to_take_umbrage2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_wacko
+  code: ":girl_wacko:"
+  spriteState: girl_wacko
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_werewolf
+  code: ":girl_werewolf:"
+  spriteState: girl_werewolf
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_wink
+  code: ":girl_wink:"
+  spriteState: girl_wink
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: girl_witch
+  code: ":girl_witch:"
+  spriteState: girl_witch
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: give_heart
+  code: ":give_heart:"
+  spriteState: give_heart
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: give_rose
+  code: ":give_rose:"
+  spriteState: give_rose
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: good
+  code: ":good:"
+  spriteState: good
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: good2
+  code: ":good2:"
+  spriteState: good2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: good3
+  code: ":good3:"
+  spriteState: good3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: grin
+  code: ":grin:"
+  spriteState: grin
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: haha
+  code: ":haha:"
+  spriteState: haha
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: hang1
+  code: ":hang1:"
+  spriteState: hang1
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: hang2
+  code: ":hang2:"
+  spriteState: hang2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: hang3
+  code: ":hang3:"
+  spriteState: hang3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: heat
+  code: ":heat:"
+  spriteState: heat
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: help
+  code: ":help:"
+  spriteState: help
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: hi
+  code: ":hi:"
+  spriteState: hi
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: hunter
+  code: ":hunter:"
+  spriteState: hunter
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: hysteric
+  code: ":hysteric:"
+  spriteState: hysteric
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: i_m_so_happy
+  code: ":i_m_so_happy:"
+  spriteState: i_m_so_happy
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: ireful1
+  code: ":ireful1:"
+  spriteState: ireful1
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: ireful2
+  code: ":ireful2:"
+  spriteState: ireful2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: ireful3
+  code: ":ireful3:"
+  spriteState: ireful3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: jester
+  code: ":jester:"
+  spriteState: jester
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: king
+  code: ":king:"
+  spriteState: king
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: king2
+  code: ":king2:"
+  spriteState: king2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: kiss2
+  code: ":kiss2:"
+  spriteState: kiss2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: kiss3
+  code: ":kiss3:"
+  spriteState: kiss3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: laugh1
+  code: ":laugh1:"
+  spriteState: laugh1
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: laugh2
+  code: ":laugh2:"
+  spriteState: laugh2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: laugh3
+  code: ":laugh3:"
+  spriteState: laugh3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: lazy
+  code: ":lazy:"
+  spriteState: lazy
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: lazy2
+  code: ":lazy2:"
+  spriteState: lazy2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: lazy3
+  code: ":lazy3:"
+  spriteState: lazy3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: locomotive
+  code: ":locomotive:"
+  spriteState: locomotive
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: lol
+  code: ":lol:"
+  spriteState: lol
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: mad
+  code: ":mad:"
+  spriteState: mad
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: mail1
+  code: ":mail1:"
+  spriteState: mail1
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: man_in_love
+  code: ":man_in_love:"
+  spriteState: man_in_love
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: mda
+  code: ":mda:"
+  spriteState: mda
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: meeting
+  code: ":meeting:"
+  spriteState: meeting
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: meowth
+  code: ":meowth:"
+  spriteState: meowth
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: moil
+  code: ":moil:"
+  spriteState: moil
+
+- type: emoji
+  parent: BaseSunriseEmojiBigSmile
+  id: morpheus
+  code: ":morpheus:"
+  spriteState: morpheus
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: mosking
+  code: ":mosking:"
+  spriteState: mosking
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: music
+  code: ":music:"
+  spriteState: music
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: music2
+  code: ":music2:"
+  spriteState: music2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: nea
+  code: ":nea:"
+  spriteState: nea
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: negative
+  code: ":negative:"
+  spriteState: negative
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: neo
+  code: ":neo:"
+  spriteState: neo
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: new_russian
+  code: ":new_russian:"
+  spriteState: new_russian
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: no
+  code: ":no:"
+  spriteState: no
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: no2
+  code: ":no2:"
+  spriteState: no2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: nono
+  code: ":nono:"
+  spriteState: nono
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: not_i
+  code: ":not_i:"
+  spriteState: not_i
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: nyam
+  code: ":nyam:"
+  spriteState: nyam
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: offtopic
+  code: ":offtopic:"
+  spriteState: offtopic
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: ok
+  code: ":ok:"
+  spriteState: ok
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: on_the_quiet
+  code: ":on_the_quiet:"
+  spriteState: on_the_quiet
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: on_the_quiet2
+  code: ":on_the_quiet2:"
+  spriteState: on_the_quiet2
+
+- type: emoji
+  parent: BaseSunriseEmojiBigSmile
+  id: orc
+  code: ":orc:"
+  spriteState: orc
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: padonak
+  code: ":padonak:"
+  spriteState: padonak
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: paint
+  code: ":paint:"
+  spriteState: paint
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: paint2
+  code: ":paint2:"
+  spriteState: paint2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: paint3
+  code: ":paint3:"
+  spriteState: paint3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: paladin
+  code: ":paladin:"
+  spriteState: paladin
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: pardon
+  code: ":pardon:"
+  spriteState: pardon
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: parting
+  code: ":parting:"
+  spriteState: parting
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: parting2
+  code: ":parting2:"
+  spriteState: parting2
+
+- type: emoji
+  parent: BaseSunriseEmojiBigSmile
+  id: party
+  code: ":party:"
+  spriteState: party
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: patsak
+  code: ":patsak:"
+  spriteState: patsak
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: pig_ball
+  code: ":pig_ball:"
+  spriteState: pig_ball
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: pilot
+  code: ":pilot:"
+  spriteState: pilot
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: pioneer
+  code: ":pioneer:"
+  spriteState: pioneer
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: pioneer_smoke
+  code: ":pioneer_smoke:"
+  spriteState: pioneer_smoke
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: pleasantry
+  code: ":pleasantry:"
+  spriteState: pleasantry
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: pogranichnik
+  code: ":pogranichnik:"
+  spriteState: pogranichnik
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: polling
+  code: ":polling:"
+  spriteState: polling
+
+- type: emoji
+  parent: BaseSunriseEmojiBigSmile
+  id: pooh
+  code: ":pooh:"
+  spriteState: pooh
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: pooh_birth_day
+  code: ":pooh_birth_day:"
+  spriteState: pooh_birth_day
+
+- type: emoji
+  parent: BaseSunriseEmojiBigSmile
+  id: pooh_door
+  code: ":pooh_door:"
+  spriteState: pooh_door
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: pooh_go
+  code: ":pooh_go:"
+  spriteState: pooh_go
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: pooh_honey
+  code: ":pooh_honey:"
+  spriteState: pooh_honey
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: pooh_lol
+  code: ":pooh_lol:"
+  spriteState: pooh_lol
+
+- type: emoji
+  parent: BaseSunriseEmojiBigSmile
+  id: pooh_on_ball
+  code: ":pooh_on_ball:"
+  spriteState: pooh_on_ball
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: popcorm1
+  code: ":popcorm1:"
+  spriteState: popcorm1
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: popcorm2
+  code: ":popcorm2:"
+  spriteState: popcorm2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: prankster
+  code: ":prankster:"
+  spriteState: prankster
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: prankster2
+  code: ":prankster2:"
+  spriteState: prankster2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: preved
+  code: ":preved:"
+  spriteState: preved
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: punish
+  code: ":punish:"
+  spriteState: punish
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: punish2
+  code: ":punish2:"
+  spriteState: punish2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: queen
+  code: ":queen:"
+  spriteState: queen
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: rabbi
+  code: ":rabbi:"
+  spriteState: rabbi
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: rap
+  code: ":rap:"
+  spriteState: rap
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: read
+  code: ":read:"
+  spriteState: read
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: resent
+  code: ":resent:"
+  spriteState: resent
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: rofl
+  code: ":rofl:"
+  spriteState: rofl
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: rtfm
+  code: ":rtfm:"
+  spriteState: rtfm
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: russian
+  code: ":russian:"
+  spriteState: russian
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: russian_roulette
+  code: ":russian_roulette:"
+  spriteState: russian_roulette
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: skull
+  code: ":skull:"
+  spriteState: skull
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: sad
+  code: ":sad:"
+  spriteState: sad
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: santa
+  code: ":santa:"
+  spriteState: santa
+
+- type: emoji
+  parent: BaseSunriseEmojiBigSmile
+  id: santa2
+  code: ":santa2:"
+  spriteState: santa2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: santa3
+  code: ":santa3:"
+  spriteState: santa3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: sarcasm
+  code: ":sarcasm:"
+  spriteState: sarcasm
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: sarcastic
+  code: ":sarcastic:"
+  spriteState: sarcastic
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: sarcastic_blum
+  code: ":sarcastic_blum:"
+  spriteState: sarcastic_blum
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: sarcastic_hand
+  code: ":sarcastic_hand:"
+  spriteState: sarcastic_hand
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: scare
+  code: ":scare:"
+  spriteState: scare
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: scare2
+  code: ":scare2:"
+  spriteState: scare2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: scenic
+  code: ":scenic:"
+  spriteState: scenic
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: sclerosis
+  code: ":sclerosis:"
+  spriteState: sclerosis
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: scout
+  code: ":scout:"
+  spriteState: scout
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: scout_en
+  code: ":scout_en:"
+  spriteState: scout_en
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: scratch_one_s_head
+  code: ":scratch_one_s_head:"
+  spriteState: scratch_one_s_head
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: search
+  code: ":search:"
+  spriteState: search
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: secret
+  code: ":secret:"
+  spriteState: secret
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: shablon_padonak_04
+  code: ":shablon_padonak_04:"
+  spriteState: shablon_padonak_04
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: shablon_padonak_05
+  code: ":shablon_padonak_05:"
+  spriteState: shablon_padonak_05
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: shablon_padonak_06
+  code: ":shablon_padonak_06:"
+  spriteState: shablon_padonak_06
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: shok
+  code: ":shok:"
+  spriteState: shok
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: shout
+  code: ":shout:"
+  spriteState: shout
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: slow
+  code: ":slow:"
+  spriteState: slow
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: slow_en
+  code: ":slow_en:"
+  spriteState: slow_en
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: smile3
+  code: ":smile3:"
+  spriteState: smile3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: smoke
+  code: ":smoke:"
+  spriteState: smoke
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: snegurochka
+  code: ":snegurochka:"
+  spriteState: snegurochka
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: snooks
+  code: ":snooks:"
+  spriteState: snooks
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: sorry
+  code: ":sorry:"
+  spriteState: sorry
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: sorry2
+  code: ":sorry2:"
+  spriteState: sorry2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: spiteful
+  code: ":spiteful:"
+  spriteState: spiteful
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: spruce_up
+  code: ":spruce_up:"
+  spriteState: spruce_up
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: stink
+  code: ":stink:"
+  spriteState: stink
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: stinker
+  code: ":stinker:"
+  spriteState: stinker
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: stop
+  code: ":stop:"
+  spriteState: stop
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: suicide2
+  code: ":suicide2:"
+  spriteState: suicide2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: suicide_fool_edit
+  code: ":suicide_fool_edit:"
+  spriteState: suicide_fool_edit
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: sun_bespectacled
+  code: ":sun_bespectacled:"
+  spriteState: sun_bespectacled
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: superman
+  code: ":superman:"
+  spriteState: superman
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: superman2
+  code: ":superman2:"
+  spriteState: superman2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: superstition
+  code: ":superstition:"
+  spriteState: superstition
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: swoon
+  code: ":swoon:"
+  spriteState: swoon
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: swoon2
+  code: ":swoon2:"
+  spriteState: swoon2
+
+- type: emoji
+  parent: BaseSunriseEmojiBigSmile
+  id: take_example
+  code: ":take_example:"
+  spriteState: take_example
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: taunt
+  code: ":taunt:"
+  spriteState: taunt
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: tease
+  code: ":tease:"
+  spriteState: tease
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: telephone
+  code: ":telephone:"
+  spriteState: telephone
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: tender
+  code: ":tender:"
+  spriteState: tender
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: thank_you
+  code: ":thank_you:"
+  spriteState: thank_you
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: thank_you2
+  code: ":thank_you2:"
+  spriteState: thank_you2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: this
+  code: ":this:"
+  spriteState: this
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: threaten
+  code: ":threaten:"
+  spriteState: threaten
+
+- type: emoji
+  parent: BaseSunriseEmojiBigSmile
+  id: to_babruysk
+  code: ":to_babruysk:"
+  spriteState: to_babruysk
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: to_become_senile
+  code: ":to_become_senile:"
+  spriteState: to_become_senile
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: to_clue
+  code: ":to_clue:"
+  spriteState: to_clue
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: to_keep_order
+  code: ":to_keep_order:"
+  spriteState: to_keep_order
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: to_pick_ones_nose
+  code: ":to_pick_ones_nose:"
+  spriteState: to_pick_ones_nose
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: to_pick_ones_nose2
+  code: ":to_pick_ones_nose2:"
+  spriteState: to_pick_ones_nose2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: to_pick_ones_nose3
+  code: ":to_pick_ones_nose3:"
+  spriteState: to_pick_ones_nose3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: to_pick_ones_nose_eat
+  code: ":to_pick_ones_nose_eat:"
+  spriteState: to_pick_ones_nose_eat
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: to_take_umbrage
+  code: ":to_take_umbrage:"
+  spriteState: to_take_umbrage
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: tomato
+  code: ":tomato:"
+  spriteState: tomato
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: tomato2
+  code: ":tomato2:"
+  spriteState: tomato2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: tommy
+  code: ":tommy:"
+  spriteState: tommy
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: tongue
+  code: ":tongue:"
+  spriteState: tongue
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: triniti
+  code: ":triniti:"
+  spriteState: triniti
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: umnik
+  code: ":umnik:"
+  spriteState: umnik
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: umnik2
+  code: ":umnik2:"
+  spriteState: umnik2
+
+- type: emoji
+  parent: BaseSunriseEmojiBigSmile
+  id: vampire
+  code: ":vampire:"
+  spriteState: vampire
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: victory
+  code: ":victory:"
+  spriteState: victory
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: vinsent
+  code: ":vinsent:"
+  spriteState: vinsent
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: wacko
+  code: ":wacko:"
+  spriteState: wacko
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: wacko2
+  code: ":wacko2:"
+  spriteState: wacko2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: whistle
+  code: ":whistle:"
+  spriteState: whistle
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: whistle2
+  code: ":whistle2:"
+  spriteState: whistle2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: whistle3
+  code: ":whistle3:"
+  spriteState: whistle3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: wild
+  code: ":wild:"
+  spriteState: wild
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: wink
+  code: ":wink:"
+  spriteState: wink
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: wink3
+  code: ":wink3:"
+  spriteState: wink3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: wizard
+  code: ":wizard:"
+  spriteState: wizard
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: yahoo
+  code: ":yahoo:"
+  spriteState: yahoo
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: yes
+  code: ":yes:"
+  spriteState: yes
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: yes2
+  code: ":yes2:"
+  spriteState: yes2
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: yes3
+  code: ":yes3:"
+  spriteState: yes3
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: yes4
+  code: ":yes4:"
+  spriteState: yes4
+
+- type: emoji
+  parent: BaseSunriseEmojiSmile
+  id: yu
+  code: ":yu:"
+  spriteState: yu

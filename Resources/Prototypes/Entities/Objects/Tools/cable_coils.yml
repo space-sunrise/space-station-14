@@ -82,6 +82,20 @@
           Quantity: 2
         - ReagentId: Carbon #steel-reinforced
           Quantity: 1
+  # Sunrise-start
+  - type: Healing
+    delay: 1
+    damageContainers:
+    - Synth
+    - Silicon
+    - Mech
+    damage:
+      types:
+        Heat: -6
+        Shock: -6
+        Caustic: -6
+        Deterioration: -1
+    # #Sunrise-End
 
 - type: entity
   parent: CableHVStack
@@ -138,6 +152,20 @@
           Quantity: 3
         - ReagentId: Copper
           Quantity: 2
+  # Sunrise-start
+  - type: Healing
+    delay: 1
+    damageContainers:
+    - Synth
+    - Silicon
+    - Mech
+    damage:
+      types:
+        Heat: -6
+        Shock: -6
+        Caustic: -6
+        Deterioration: -1
+    # #Sunrise-End
 
 - type: entity
   parent: CableMVStack
@@ -199,12 +227,14 @@
     - Synth #Sunrise-edit
     - Silicon
     - Mech #Sunrise-edit
+    # #Sunrise-Start
     damage:
       types:
         Heat: -6
         Shock: -6
         Caustic: -6
-        Deterioration: 0.5 #Sunrise-edit
+        Deterioration: -1
+    # #Sunrise-End
 
 - type: entity
   parent: CableApcStack

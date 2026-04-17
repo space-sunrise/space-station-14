@@ -30,3 +30,7 @@ ent-ClothingOuterArmorAmberNewJan = { ent-ClothingOuterArmorAmberJan }
     .desc = { ent-ClothingOuterArmorAmberCom.desc }
 ent-ClothingOuterArmorAbductor = agent vest
     .desc = { ent-ClothingOuterArmorBasic.desc }
+ent-ClothingOuterArmorCaptainCarapaceWhite = white captain's carapace
+    .desc = A flexible armored chestpiece with pristine white composite plating, built to protect vital organs without restricting movement.
+ent-ClothingOuterArmorCaptainCarapaceBlack = black captain's carapace
+    .desc = A flexible armored chestpiece with matte-black composite plating, built to protect vital organs without restricting movement.

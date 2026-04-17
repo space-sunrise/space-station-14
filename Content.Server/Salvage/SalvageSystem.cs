@@ -1,4 +1,5 @@
 using Content.Server.Radio.EntitySystems;
+using Content.Server._Sunrise.Messenger;
 using Content.Shared.Radio;
 using Content.Shared.Salvage;
 using Robust.Server.GameObjects;
@@ -7,6 +8,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Server.Chat.Managers;
+using Content.Server.GameTicking;  // Sunrise-Edit
 using Content.Server.Gravity;
 using Content.Server.Parallax;
 using Content.Server.Procedural;
@@ -30,6 +32,7 @@ namespace Content.Server.Salvage
         [Dependency] private readonly IMapManager _mapManager = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private readonly GameTicker _gameTicker = default!; // Sunrise-Edit: needed for timed salvage difficulty unlocks.
         [Dependency] private readonly AnchorableSystem _anchorable = default!;
         [Dependency] private readonly BiomeSystem _biome = default!;
         [Dependency] private readonly DungeonSystem _dungeon = default!;
@@ -45,6 +48,7 @@ namespace Content.Server.Salvage
         [Dependency] private readonly ShuttleConsoleSystem _shuttleConsoles = default!;
         [Dependency] private readonly StationSystem _station = default!;
         [Dependency] private readonly UserInterfaceSystem _ui = default!;
+        [Dependency] private readonly MessengerServerSystem _messenger = default!;
 
         private EntityQuery<MapGridComponent> _gridQuery;
         private EntityQuery<TransformComponent> _xformQuery;
@@ -64,8 +68,14 @@ namespace Content.Server.Salvage
         private void Report(EntityUid source, string channelName, string messageKey, params (string, object)[] args)
         {
             var message = args.Length == 0 ? Loc.GetString(messageKey) : Loc.GetString(messageKey, args);
-            var channel = _prototypeManager.Index<RadioChannelPrototype>(channelName);
-            _radioSystem.SendRadioMessage(source, message, channel, source);
+            // var channel = _prototypeManager.Index<RadioChannelPrototype>(channelName);
+            // _radioSystem.SendRadioMessage(source, message, channel, source);
+
+            if (_messenger.GetServerEntity(_station.GetOwningStation(source)) is var (server, _) &&
+                _messenger.GetGroupIdByRadioChannel(channelName) is { } groupId)
+            {
+                _messenger.SendSystemMessageToGroup(server, groupId, message);
+            }
         }
 
         public override void Update(float frameTime)

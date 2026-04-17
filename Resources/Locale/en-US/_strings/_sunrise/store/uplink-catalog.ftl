@@ -1,9 +1,8 @@
-## Targets
+﻿## Targets
 
 uplink-core-extraction-toolbox-name = Core Extraction Toolbox
 uplink-core-extraction-toolbox-desc = A toolbox containing everything you need to remove a nuclear bomb's plutonium core. Instructions not included.
 uplink-exploding-syndicate-empbomb-desc = A big, anchored EMP bomb that cripples electronics if not defused in time. Adjustable timer with a minimum setting of 180 seconds; perfect for knocking out infrastructure.
-
 ## Magazines
 
 uplink-magazine-shotgun-name = Барабан (.50 дробь).
@@ -14,14 +13,36 @@ uplink-grenade-frag-name = Осколочная граната
 uplink-grenade-frag-desc = Осколочная граната. Совместима с "China-Lake".
 uplink-grenade-blast-name = Фугасная граната
 uplink-grenade-blast-desc = Фугасная граната. Совместима с "China-Lake".
+uplink-grenade-frag-timer-name = Frag timer grenade cartridge
+uplink-grenade-frag-timer-desc = A 5-grenade frag cartridge. Compatible with "China-Lake" and "GL-70". Detonates 2 seconds after launch.
+uplink-grenade-blast-timer-name = Blast timer grenade cartridge
+uplink-grenade-blast-timer-desc = A 5-grenade blast cartridge. Compatible with "China-Lake" and "GL-70". Detonates 2 seconds after launch.
+uplink-grenade-emp-timer-name = EMP timer grenade cartridge
+uplink-grenade-emp-timer-desc = A 5-grenade EMP cartridge. Compatible with "China-Lake" and "GL-70". Detonates 2 seconds after launch.
+uplink-grenade-frag-contact-name = Frag contact grenade cartridge
+uplink-grenade-frag-contact-desc = A 5-grenade frag cartridge. Compatible with "China-Lake" and "GL-70". Detonates on contact.
+uplink-grenade-blast-contact-name = Blast contact grenade cartridge
+uplink-grenade-blast-contact-desc = A 5-grenade blast cartridge. Compatible with "China-Lake" and "GL-70". Detonates on contact.
+uplink-grenade-emp-contact-name = EMP contact grenade cartridge
+uplink-grenade-emp-contact-desc = A 5-grenade EMP cartridge. Compatible with "China-Lake" and "GL-70". Detonates on contact.
+uplink-grenade-launcher-frag-ammo-name = Frag shell cartridge
+uplink-grenade-launcher-frag-ammo-desc = A 5-shell frag cartridge. Compatible only with the stationary "Friendship" and "Duster" cannons.
+uplink-grenade-launcher-blast-ammo-name = Blast shell cartridge
+uplink-grenade-launcher-blast-ammo-desc = A 5-shell blast cartridge. Compatible only with the stationary "Friendship" and "Duster" cannons.
+uplink-grenade-launcher-emp-ammo-name = EMP shell cartridge
+uplink-grenade-launcher-emp-ammo-desc = A 5-shell EMP cartridge. Compatible only with the stationary "Friendship" and "Duster" cannons.
+uplink-grenade-launcher-frag-extended-ammo-name = Extended frag shell cartridge
+uplink-grenade-launcher-frag-extended-ammo-desc = An extended 15-shell frag cartridge. Compatible only with the stationary "Friendship" and "Duster" cannons.
+uplink-grenade-launcher-blast-extended-ammo-name = Extended blast shell cartridge
+uplink-grenade-launcher-blast-extended-ammo-desc = An extended 15-shell blast cartridge. Compatible only with the stationary "Friendship" and "Duster" cannons.
+uplink-grenade-launcher-emp-extended-ammo-name = Extended EMP shell cartridge
+uplink-grenade-launcher-emp-extended-ammo-desc = An extended 15-shell EMP cartridge. Compatible only with the stationary "Friendship" and "Duster" cannons.
 uplink-magazine-siar52-name = Магазин ПП (.25 безгильзовый)
 uplink-magazine-siar52-desc = Магазин ПП на 30 патронов. Совместим с SIAR-52.
 uplink-magazine-bulldog-uraniumslug-desc = Shotgun magazine with 8 shells filled with uranium slugs. Compatible with the Bulldog.
 uplink-magazine-bulldog-uranium-desc = Shotgun magazine with 8 shells filled with uranium pellet. Compatible with the Bulldog.
 uplink-pistol-magnum-magazine-name = Магазин для Deagle
 uplink-pistol-magnum-magazine-desc = 7-зарядный однорядный магазин для пистолета. Содержит патроны SP. Совместим с "Диглом".
-uplink-pistoltec9-magazine-name = магазин Tac-Tec (.20 безгильзовый)
-uplink-pistoltec9-magazine-desc = Кустарный пистолетный магазин на 20 патронов,под калибр, используемый агентами синдиката.
 ## Misc
 
 uplink-music-boombox-name = Музыкальный набор синдиката
@@ -43,6 +64,10 @@ uplink-hardsuit-syndie-medic-name = скафандр Медика Синдика
 uplink-hardsuit-syndie-medic-desc = Скафандр предназначеный для боевых врачей отрядов Горлекса.
 uplink-50blessing-name = Подарочный набор 50 благословений
 uplink-50blessing-desc = Для агентов, которые хотят скрыть свою личность стильно, с любовью от Егора Семёнова
+uplink-clothing-murder-socks-name = чулочки убийцы
+uplink-clothing-murder-socks-desc = для агента что по настоящему шарит за стиль
+uplink-syndie-maid-raid-name = рейдерка горничной
+uplink-syndie-maid-raid-desc = синдикат разработал это специально для агентов женского пола, но носят это почему-то одни мужики
 ## Weapon
 
 uplink-clothing-backpack-syndie-aj100-name = Набор ПП AJ-100
@@ -58,9 +83,18 @@ uplink-deagle-name = пистолет «Desert Eagle»
 uplink-deagle-desc = Cерьёзный аргумент в споре. Выгравировано: Мир благодаря превосходящей огневой мощи".
 uplink-pistoltec9-name = Tac-Tec
 uplink-pistoltec9-desc = Очень дешёвый в производстве и очень простой в использовании, надёжный как SKM-24.
-
+uplink-uzi-name = пистолет-пулемёт Узи
+uplink-uzi-desc = Лёгкий и культовый пистолет-пулемёт с большим магазином и скорострельностью.
+uplink-stechkin-aps-name = Стечкин АПС
+uplink-stechkin-aps-desc = Высококачественное огнестрельное оружие на мощном калибре, созданное для по-настоящему особенных агентов.
+uplink-SyndieBreachingHammer-name = breaching hammer
+uplink-SyndieBreachingHammer-desc = A big, heavy hammer with a long handle. For rocks, skulls, walls, bones — no difference. The last thing you'll hear is a crunch or a grind. Opens airlocks better than SB's ram. Competitors have crash tests and certificates. We have a low-budget snuff parody of American Psycho.
 uplink-goldendeagle-name = Золотой Десерт Игл
 uplink-goldendeagle-desc = "Использует патрон "магнум" 45-го калибра, Выгравировано: Все, что у меня осталось от него в памяти — это два позолоченных Desert Eagle 45-го калибра"
+uplink-cornivoregloves-name = Перчатки алой жатвы корниворы
+uplink-cornivoregloves-desc = Мы не можем сказать, жаждете ли вы крови... но эти перчатки - определённо да. Каждый коготь - это хирургический инструмент для кровопускания, заполняющий свою цель нашим фирменным химическим коктейлем. Ваша жертва будет истекать и истекать и истекать... пока вы обдумываете следующий надрез. Помните: красный - это новый чёрный. И он вечно в моде.
+uplink-pizza-bomb-name = Nefarious Pizza bomb
+uplink-pizza-bomb-desc = Originally developed covertly by DONK Co to dissuade the heretics who prefer their pizza not in pocket form. This pizza box is wired, and explodes within moments of being opened.
 ## Cyborgs
 
 uplink-reinforcement-radio-syndicate-cyborg-assault-name = Телепорт подкрепления боевого борга синдиката
@@ -99,6 +133,14 @@ uplink-creepy-laugh-implanter-name = Creepy Laugh Implanter
 uplink-creepy-laugh-implanter-desc = An audio implant that plays the signature laugh of a Syndicate cyborg. Annoying, intimidating, and undeniably stylish.
 uplink-scram-implanter-proto-name = Scram Implanter Proto
 uplink-scram-implanter-proto-desc = A 1-use scram implant that recharges after 600 seconds. Teleports you within a large radius, tries to place you on an unobstructed tile, and may sometimes fail. Life insurance not included.
+uplink-proto-adrenal-implanter-name = Proto-adrenal Implanter
+uplink-proto-adrenal-implanter-desc = Injects a small dose of ephedrine and epinephrine on activation.
+uplink-adrenal-implanter-name = Adrenal Implanter
+uplink-adrenal-implanter-desc = Injects a strong dose of ephedrine and epinephrine on activation.
+uplink-stimpack-implanter-name = Stimpack Implanter
+uplink-stimpack-implanter-desc = Injects a large dose of stimulants on activation.
+uplink-nutriment-implanter-name = Nutriment Implanter
+uplink-nutriment-implanter-desc = Injects vitamins, saline, and nutriment on activation.
 
 uplink-cluster-mini-bomb-name = Cluster Minibomb
 uplink-cluster-mini-bomb-desc = If you don't care about accuracy, then this choice is for you.
@@ -109,6 +151,11 @@ uplink-mech-teleporter-heavy-desc = Contains Cybersun heavy armored mech with in
 uplink-mech-teleporter-assault-name = Assault Mech teleporter
 uplink-mech-teleporter-assault-desc = Contains Cybersun lightly armored mech with integrated chainsword, LBX AC 10 "Scattershot", SRM-8 Light Missile Rack and P-X Tesla Cannon.
 
+uplink-cleaner-kit-name = Mob Cleaner Kit
+uplink-cleaner-kit-desc = Clean up any evidence, make sure it can't be traced back to you.
+
+uplink-homerun-bat-name = Homerun Bat
+uplink-homerun-bat-desc = Send your enemies flying. Hey batta batta batta SWING batta!
 
 uplink-ammo-crate-ammokit-bundle-name = Syndicate super ammo bundle
 uplink-ammo-crate-ammokit-bundle-desc = Reloading! Reloading! Reloading! Contains various ammo kit except for big gun.
@@ -149,3 +196,27 @@ uplink-energy-dome-desc = A personal shield generator that protects the wearer f
 uplink-syndicate-teleporter-name = Hand syndicate teleporter
 uplink-syndicate-teleporter-desc = An experimental hand teleporting device. Teleports its owner forward in a small area. Be careful not to end up in the wall.
 
+# OTHER
+uplink-reinforcement-radio-syndicate-cyborg-infiltrator-name = Cyborg Infiltrator Reinforcement Teleport
+uplink-reinforcement-radio-syndicate-cyborg-infiltrator-desc = Sends you support for the syndicate's borg.
+
+uplink-stechkin-bundle-name = Solid Operative Bundle
+uplink-stechkin-bundle-desc = A mysterious cardboard box containing a slew of equipment for only the most solid of operatives.
+uplink-switchblade-name = Switchblade
+uplink-switchblade-desc = A cheap blade that switches people from being alive to not.
+uplink-x4-name = Composition X-4
+uplink-x4-desc = Used to put even bigger holes in areas you really hate.
+uplink-x4-bundle-name = X-4 Bundle
+uplink-x4-bundle-desc = A bundle of eight X-4. You must really want to blow the hell out of something.
+uplink-shuttle-board-name = Syndicate shuttle console board
+uplink-shuttle-board-desc = A computer printed circuit board for a syndicate shuttle console.
+uplink-shuttle-bundle-name = Syndicate shuttle crate
+uplink-shuttle-bundle-desc = Everything but the shuttle board. It's a shuttle in a crate* (Some assembly required).
+uplink-friendship-bundle-name = Friendship bundle
+uplink-friendship-bundle-desc = Friendship packaged in a convenient crate*. (Some assembly required).
+uplink-bullfrog-bundle-name = Bullfrog bundle
+uplink-bullfrog-bundle-desc = A bundle crate for assembling the EXP-3600g "Bullfrog" shuttle cannon.
+uplink-longbow-bundle-name = Longbow bundle
+uplink-longbow-bundle-desc = A bundle crate for assembling the BAL-15 "Longbow" shuttle cannon.
+uplink-quadling-bundle-name = Quadling bundle
+uplink-quadling-bundle-desc = A bundle crate for assembling the BAL-15-4 "Quadling" shuttle cannon.

@@ -78,8 +78,8 @@
         knockback: 0.1
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 2
-    pvsIncrease: 0.2
+    maxOffset: 1
+    pvsIncrease: 0.1
   # Sunrise end
 
 - type: entity
@@ -181,14 +181,14 @@
   description: "Popular gas-operated combat rifle used heavily by Nanotrasen and SolGov. Operating in semi or fully automatic, its accuracy, stopping power, and reliability make it excel in all manner of environments.\nFeeds from .20 rifle magazines."
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Rifles/lecter.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/lecter_new.rsi # Sunrise-Edit
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Rifles/lecter.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/lecter_new.rsi # Sunrise-Edit
   - type: Gun
     soundGunshot:
       collection: galil # Sunrise-Edit
