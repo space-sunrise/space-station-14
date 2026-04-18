@@ -25,6 +25,9 @@
     maxFillLevels: 3
     fillBaseName: mender
     solutionName: injector
+  - type: Tag # Sunrise-Add
+    tags:
+      - AutoMender
 
 - type: entity
   id: AutoMenderBrute

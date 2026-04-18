@@ -1,97 +1,97 @@
 ---
 name: ss14-migrations
-description: Руководство по созданию и управлению миграциями баз данных в SS14 (PostgreSQL и SQLite)
+description: Guide to Creating and Managing Database Migrations in SS14 (PostgreSQL and SQLite)
 ---
 
-# 🚀 Миграции Баз Данных SS14 (Database Migrations)
+# 🚀 Database Migrations
 
-Этот навык описывает процесс создания и применения миграций базы данных в Space Station 14. Поскольку SS14 поддерживает и PostgreSQL, и SQLite, **все изменения должны быть мигрированы для обоих движков**.
+This skill describes the process of creating and applying database migrations in Space Station 14. Since SS14 supports both PostgreSQL and SQLite, **all changes must be migrated for both engines**.
 
-## 🎯 Когда использовать этот навык
-- При изменении моделей базы данных (`Model.cs`).
-- При добавлении новых таблиц или столбцов.
-- При переименовании или удалении существующих структур БД.
-- Когда сервер падает при запуске с ошибкой "Applying Migrations".
+## 🎯 When to use this skill
+- When changing database models (`Model.cs`).
+- When adding new tables or columns.
+- When renaming or deleting existing database structures.
+- When the server crashes at startup with the error "Applying Migrations".
 
-## ⚔️ Система Двойной Миграции
+## ⚔️ Double Migration System
 
-SS14 поддерживает **два отдельных набора миграций**:
+SS14 supports **two separate sets of migrations**:
 1.  **SQLite Config**: `Content.Server.Database/Migrations/Sqlite`
 2.  **PostgreSQL Config**: `Content.Server.Database/Migrations/Postgres`
 
-Это необходимо, потому что у движков разные типы данных, фичи и диалекты SQL. Одна миграция обычно не может быть применена к обоим сразу.
+This is necessary because the engines have different data types, features and SQL dialects. One migration usually cannot be applied to both at once.
 
-### 🛠️ Скрипты-помощники
-В репозитории есть скрипты для упрощения добавления миграций сразу в оба контекста:
+### 🛠️ Helper scripts
+The repository has scripts to simplify adding migrations to both contexts at once:
 -   **Windows (PowerShell)**: `Content.Server.Database/add-migration.ps1`
 -   **Linux/Mac (Bash)**: `Content.Server.Database/add-migration.sh`
 
-## 📝 Создание Миграции
+## 📝 Create Migration
 
-### Предварительные требования
--   Запустите базу данных (если используете локальный Postgres).
--   Убедитесь, что ваши изменения в `Model.cs` компилируются.
+### Prerequisites
+- Start the database (if using local Postgres).
+- Make sure your changes to `Model.cs` compile.
 
-### Шаги
-1.  **Перейдите** в директорию проекта базы данных:
+### Steps
+1. **Go** to the database project directory:
     ```powershell
     cd Content.Server.Database
     ```
 
-2.  **Запустите скрипт** с понятным именем (CamelCase):
+2. **Run the script** with a friendly name (CamelCase):
     ```powershell
     ./add-migration.ps1 MyNewFeature
     ```
 
-    *Если скрипт упал или нужен ручной контроль, вот эквивалентные команды `dotnet ef`:*
+    *If the script crashed or manual control is needed, here are the equivalent commands `dotnet ef`:*
     ```powershell
-    # Создание миграции для SQLite
+    # Creating a Migration for SQLite
     dotnet ef migrations add --context SqliteServerDbContext -o Migrations/Sqlite MyNewFeature
 
-    # Создание миграции для Postgres
+    # Creating a migration for Postgres
     dotnet ef migrations add --context PostgresServerDbContext -o Migrations/Postgres MyNewFeature
     ```
 
-3.  **Проверьте Созданные Файлы**:
+3. **Check the Created Files**:
     -   `Migrations/Sqlite/YYYYMMDDHHMMSS_MyNewFeature.cs`
     -   `Migrations/Postgres/YYYYMMDDHHMMSS_MyNewFeature.cs`
 
-### ✅ Чек-лист Проверки
--   **Предупреждения о потере данных**: EF Core предупредил, что данные могут быть потеряны (например, при удалении столбца)?
--   **Совместимость Типов**:
-    -   Убедитесь, что миграции SQLite не пытаются использовать типы Postgres, такие как `inet` или `jsonb`, без конвертации (это должно обрабатываться в `DbContext`).
--   **Raw SQL**: Если вы использовали `migrationBuilder.Sql("...")`, убедитесь, что SQL совместим с конкретным движком этой миграции.
+### ✅ Inspection checklist
+- **Data Loss Warnings**: Has EF Core warned that data might be lost (for example, when a column is deleted)?
+- **Type Compatibility**:
+    - Ensure that SQLite migrations do not attempt to use Postgres types such as `inet` or `jsonb` without conversion (this should be handled in `DbContext`).
+- **Raw SQL**: If you used `migrationBuilder.Sql("...")`, make sure the SQL is compatible with the specific engine for that migration.
 
-## 🚫 Антипаттерны (Чего НЕ делать)
+## 🚫 Antipatterns (What NOT to do)
 
-### ❌ 1. Забыть про один из движков
-**Симптом**: Сервер работает локально (SQLite), но падает на проде (Postgres) или наоборот.
-**Почему**: Рассинхрон схемы БД. EF Core не найдет нужную миграцию.
-**Как надо**: Всегда проверяйте, что в **обеих** папках есть файл миграции с одним таймстампом/именем.
+### ❌ 1. Forget about one of the engines
+**Symptom**: The server works locally (SQLite), but crashes on production (Postgres) or vice versa.
+**Why**: Database schema out of sync. EF Core won't find the migration you need.
+**Do's**: Always make sure that there is a migration file with the same timestamp/name in **both** folders.
 
-### ❌ 2. Сложные изменения схемы в SQLite
-**Проблема**: SQLite имеет ограниченную поддержку `ALTER TABLE` (например, нельзя переименовать столбец или изменить его тип без пересоздания таблицы).
-**Последствия**: EF Core попытается создать временную таблицу, скопировать все данные, удалить старую и переименовать новую. Это **очень медленно** на больших таблицах и опасно.
-**Как надо**: Избегайте сложных изменений (rename column, change column type) для SQLite, если возможно. Лучше добавить новый столбец и пометить старый как устаревший (Obsolete).
+### ❌ 2. Complex schema changes in SQLite
+**Problem**: SQLite has limited support for `ALTER TABLE` (for example, you cannot rename a column or change its type without rebuilding the table).
+**Implications**: EF Core will try to create a temporary table, copy all the data, delete the old one and rename the new one. This is **very slow** on large tables and dangerous.
+**Do it**: Avoid complex changes (rename column, change column type) for SQLite if possible. It's better to add a new column and mark the old one as obsolete (Obsolete).
 
-### ❌ 3. Циклические зависимости при билде
-**Проблема**: Добавление миграции требует сборки проекта, но проект не собирается, так как вы используете новое поле в коде, которого еще нет в БД (или наоборот).
-**Правильный поток**:
-1.  Измените `Model.cs` (добавьте свойство).
-2.  Соберите проект (код компилируется, но БД рассинхронизирована).
-3.  Создайте миграцию.
-4.  Обновите БД (происходит автоматически при старте сервера).
+### ❌ 3. Cyclic dependencies during build
+**Problem**: Adding a migration requires building the project, but the project does not build because you are using a new field in the code that is not already in the database (or vice versa).
+**Correct flow**:
+1. Change `Model.cs` (add a property).
+2. Build the project (the code compiles, but the database is out of sync).
+3. Create a migration.
+4. Update the database (happens automatically when the server starts).
 
-### ❌ 4. Изменение уже влитых миграций
-**Плохо**: Редактировать файл миграции, который уже был влит в `master` и задеплоен.
-**Почему**: Это сломает историю миграций у всех остальных разработчиков и на серверах. `__EFMigrationsHistory` будет содержать хэш старой версии, и EF Core упадет.
-**Как надо**: Если нашли баг в старой миграции — создайте **новую** миграцию, которая исправляет проблему.
+### ❌ 4. Changing already added migrations
+**Bad**: Editing a migration file that has already been merged into `master` and deployed.
+**Why**: This will break the migration history of all other developers and servers. `__EFMigrationsHistory` will contain the hash of the old version and EF Core will crash.
+**How ​​to**: If you find a bug in an old migration, create a **new** migration that fixes the problem.
 
-## 🗑️ Удаление (откат) локальной миграции
-Если вы создали миграцию, но передумали (и еще не закоммитили/не влили её):
+## 🗑️ Deleting (rollback) local migration
+If you created a migration, but changed your mind (and haven’t committed/merged it yet):
 
 ```powershell
-# Удаляет последнюю миграцию из контекста
+# Removes the last migration from the context
 dotnet ef migrations remove --context SqliteServerDbContext
 dotnet ef migrations remove --context PostgresServerDbContext
 ```

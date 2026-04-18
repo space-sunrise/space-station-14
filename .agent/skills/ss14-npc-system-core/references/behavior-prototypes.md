@@ -1,34 +1,34 @@
 # Behavior Prototypes Guide
 
-## Назначение
+## Purpose
 
-Используй этот файл, когда нужно собрать или переработать behavior NPC на уровне YAML без лишнего C#.
+Use this file when you need to assemble or rework NPC behavior at the YAML level without unnecessary C#.
 
-## Содержание
+## Content
 
-1. Где лежат прототипы поведения
-2. Скелет behavior: root compound
-3. Скелет compound с предусловиями и примитивами
-4. Подключение к entity prototype
-5. Рецепт проектирования поведения (от идеи к YAML)
-6. Когда делать новый utilityQuery
-7. Паттерны устойчивых прототипов
-8. Анти-паттерны прототипов
-9. Мини-чеклист перед коммитом
+1. Where do behavioral prototypes lie?
+2. Skeleton behavior: root compound
+3. Skeleton compound with preconditions and primitives
+4. Connecting to entity prototype
+5. Behavior Design Recipe (from Idea to YAML)
+6. When to make a new utilityQuery
+7. Stable Prototyping Patterns
+8. Anti-patterns of prototypes
+9. Mini-checklist before commit
 
-## Где лежат прототипы поведения
+## Where are the behavioral prototypes located?
 
-1. Базовые HTN compounds:
+1. Basic HTN compounds:
 `Resources/Prototypes/NPCs/*.yml`
-2. Бой:
+2. Fight:
 `Resources/Prototypes/NPCs/Combat/*.yml`
-3. Utility-запросы:
+3. Utility requests:
 `Resources/Prototypes/NPCs/utility_queries.yml`
-4. Подключение поведения к сущностям:
+4. Connecting behavior to entities:
 `Resources/Prototypes/Entities/Mobs/NPCs/*.yml`
-и форковые пакеты в `Resources/Prototypes/_Sunrise/**`
+and forked packages in `Resources/Prototypes/_Sunrise/**`
 
-## Скелет behavior: root compound
+## Skeleton behavior: root compound
 
 ```yaml
 - type: htnCompound
@@ -42,10 +42,10 @@
           task: IdleCompound
 ```
 
-Правило:
-ставь более “ценные” ветки выше, fallback-ниже.
+Rule:
+put more “valuable” branches higher, fallback ones lower.
 
-## Скелет compound с предусловиями и примитивами
+## Skeleton compound with preconditions and primitives
 
 ```yaml
 - type: htnCompound
@@ -74,7 +74,7 @@
               key: Target
 ```
 
-## Подключение к entity prototype
+## Connecting to entity prototype
 
 ```yaml
 - type: entity
@@ -96,44 +96,44 @@
         false
 ```
 
-## Рецепт проектирования поведения (от идеи к YAML)
+## Behavior Design Recipe (from Idea to YAML)
 
-1. Сформулируй цель NPC в терминах “выбрать цель -> подойти -> выполнить действие”.
-2. Выдели root compound и 2-4 приоритетные ветки.
-3. Вынеси повторяемые куски в отдельные compounds (например `BeforeAttack`, `PickupWeapon`, `Follow`).
-4. Для динамических целей добавь `UtilityOperator` + `UtilityService`.
-5. Используй preconditions как gate-слой, а не как место для сложной логики.
-6. Добавь fallback-ветку (`IdleCompound`/`NoOperator`) на случай провала остальных.
-7. Подключи rootTask в `HTN` компоненте сущности.
-8. Настрой blackboard-ключи под конкретный archetype NPC.
+1. Formulate the NPC’s goal in terms of “select a target -> approach -> perform an action.”
+2. Select a root compound and 2-4 priority branches.
+3. Move the repeated pieces into separate compounds (for example `BeforeAttack`, `PickupWeapon`, `Follow`).
+4. For dynamic purposes, add `UtilityOperator` + `UtilityService`.
+5. Use preconditions as a gate layer, not as a place for complex logic.
+6. Add a fallback branch (`IdleCompound`/`NoOperator`) in case the others fail.
+7. Connect rootTask in the `HTN` entity component.
+8. Set up blackboard keys for a specific archetype NPC.
 
-## Когда делать новый utilityQuery
+## When to make a new utilityQuery
 
-Создавай новый `utilityQuery`, если одновременно нужны:
-1. новый источник кандидатов (набор query/filter);
-2. новая метрика выбора (consideration/curve);
-3. отдельный reusable профиль ранжирования для нескольких NPC.
+Create a new `utilityQuery` if you simultaneously need:
+1. new source of candidates (query/filter set);
+2. new selection metric (consideration/curve);
+3. Separate reusable ranking profile for multiple NPCs.
 
-## Паттерны устойчивых прототипов
+## Stable Prototyping Patterns
 
-1. Разделяй compound “по обязанностям”, а не по типам мобов.
-2. Держи ветки короткими (обычно 2-5 задач в branch).
-3. Используй services в long-running задачах, где target может устареть.
-4. Используй blackboard range-ключи вместо магических чисел в операторах.
-5. В бою добавляй `MoveToOperator` перед attack, даже если кажется “и так рядом”.
+1. Divide the compound “by responsibilities”, not by types of mobs.
+2. Keep branches short (usually 2-5 issues per branch).
+3. Use services in long-running tasks where the target may become outdated.
+4. Use blackboard range keys instead of magic numbers in operators.
+5. In battle, add `MoveToOperator` before the attack, even if it seems “already close.”
 
-## Анти-паттерны прототипов
+## Anti-prototype patterns
 
-1. Дублировать один и тот же кусок branch в десятках compounds вместо переиспользования.
-2. Пытаться решить все через preconditions без отдельного оператора.
-3. Не указывать fallback и оставлять behavior “без выхода”.
-4. Ставить широкие ветки выше узких и получать случайный перехват плана.
-5. Писать root compound с циклическими ссылками без контроля recursion.
+1. Duplicate the same piece of branch in dozens of compounds instead of reusing.
+2. Try to solve everything through preconditions without a separate operator.
+3. Do not specify fallback and leave the behavior “without exit”.
+4. Place wide branches above narrow ones and accidentally intercept the plan.
+5. Write a root compound with cyclic links without recursion control.
 
-## Мини-чеклист перед коммитом
+## Mini-checklist before commit
 
-1. Все `task:` ID существуют среди `htnCompound`.
-2. Для всех новых `!type:...` есть соответствующий C# data definition.
-3. `HTN` компонент сущности получает корректный `rootTask`.
-4. Blackboard-ключи используют корректные типы (`!type:Single`, `!type:Bool`, ...).
-5. Есть fallback-ветка.
+1. All `task:` IDs exist among `htnCompound`.
+2. For all new `!type:...` there is a corresponding C# data definition.
+3. `HTN` entity component receives the correct `rootTask`.
+4. Blackboard keys use the correct types (`!type:Single`, `!type:Bool`, ...).
+5. There is a fallback branch.

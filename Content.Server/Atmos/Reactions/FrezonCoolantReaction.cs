@@ -1,4 +1,4 @@
-﻿using Content.Server.Atmos.EntitySystems;
+using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Reactions;
 using JetBrains.Annotations;
@@ -13,6 +13,11 @@ public sealed partial class FrezonCoolantReaction : IGasReactionEffect
 {
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
+        ///SunRise start
+        var initialHyperNoblium = mixture.GetMoles(Gas.HyperNoblium);
+        if (initialHyperNoblium >= 5.0f && mixture.Temperature > 20f)
+            return ReactionResult.NoReaction;
+        ///SunRise end
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
         var temperature = mixture.Temperature;
 

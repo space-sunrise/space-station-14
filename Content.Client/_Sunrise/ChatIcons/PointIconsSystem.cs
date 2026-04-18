@@ -41,14 +41,19 @@ public sealed class PointIconsSystem : EntitySystem
 
         SubscribeLocalEvent<MetaDataComponent, EntityPopupedEvent>(OnPopup);
 
-        _cfg.OnValueChanged(SunriseCCVars.ChatPointingVisuals, b => _enabled = b, true);
+        _cfg.OnValueChanged(SunriseCCVars.ChatPointingVisualsEnabled, OnPointingVisualsChanged, true);
     }
 
     public override void Shutdown()
     {
         base.Shutdown();
 
-        _cfg.UnsubValueChanged(SunriseCCVars.ChatPointingVisuals, b => _enabled = b);
+        _cfg.UnsubValueChanged(SunriseCCVars.ChatPointingVisualsEnabled, OnPointingVisualsChanged);
+    }
+
+    private void OnPointingVisualsChanged(bool enabled)
+    {
+        _enabled = enabled;
     }
 
     private void OnPopup(Entity<MetaDataComponent> ent, ref EntityPopupedEvent args)

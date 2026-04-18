@@ -6,10 +6,12 @@ using Content.Server.Station.Systems;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared._Sunrise.CartridgeLoader.Cartridges;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 
 namespace Content.Server._Sunrise.CartridgeLoader.Cartridges;
 
@@ -25,6 +27,7 @@ public sealed class PhotoCartridgeSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -34,6 +37,9 @@ public sealed class PhotoCartridgeSystem : EntitySystem
     private const int MaxPhotoWidth = 512;
     private const int MaxPhotoHeight = 512;
 
+    private bool _photoUploadEnabled = true;
+    private bool _photoCaptureEnabled = true;
+
     private readonly Dictionary<ICommonSession, TimeSpan> _lastCaptureTimes = new();
 
     public override void Initialize()
@@ -41,6 +47,9 @@ public sealed class PhotoCartridgeSystem : EntitySystem
         base.Initialize();
 
         _sawmill = _logManager.GetSawmill("photo.cartridge");
+
+        _cfg.OnValueChanged(SunriseCCVars.PhotoUploadEnabled, value => _photoUploadEnabled = value, true);
+        _cfg.OnValueChanged(SunriseCCVars.PhotoCaptureEnabled, value => _photoCaptureEnabled = value, true);
 
         SubscribeLocalEvent<PhotoCartridgeComponent, CartridgeMessageEvent>(OnUiMessage);
         SubscribeLocalEvent<PhotoCartridgeComponent, CartridgeUiReadyEvent>(OnUiReady);
@@ -98,6 +107,12 @@ public sealed class PhotoCartridgeSystem : EntitySystem
 
     private void HandleCapturePhoto(EntityUid uid, PhotoCartridgeComponent component, EntityUid loaderUid)
     {
+        if (!_photoCaptureEnabled)
+        {
+            UpdateUiState(uid, loaderUid, component, errorMessage: Loc.GetString("photo-cartridge-capture-disabled"));
+            return;
+        }
+
         if (component.PhotoGallery.Count >= MaxPhotosPerUser)
         {
             UpdateUiState(uid, loaderUid, component, errorMessage: Loc.GetString("photo-cartridge-limit-reached"));
@@ -119,12 +134,15 @@ public sealed class PhotoCartridgeSystem : EntitySystem
     /// </summary>
     private void OnPhotoCaptureMessage(PdaPhotoCaptureMessage msg)
     {
+        if (!_photoCaptureEnabled)
+            return;
+
         if (!_playerManager.TryGetSessionByChannel(msg.MsgChannel, out var session))
             return;
 
         if (_lastCaptureTimes.TryGetValue(session, out var lastCapture))
         {
-            var timeSinceLastCapture = _gameTiming.CurTime - lastCapture;
+            var timeSinceLastCapture = _messengerServer.GetStationTime() - lastCapture;
             if (timeSinceLastCapture.TotalSeconds < MinTimeBetweenCapturesSeconds)
             {
                 _sawmill.Debug($"Photo capture rejected: cooldown active ({timeSinceLastCapture.TotalSeconds:F2}s < {MinTimeBetweenCapturesSeconds}s)");
@@ -176,7 +194,7 @@ public sealed class PhotoCartridgeSystem : EntitySystem
 
         _netTexturesManager.RegisterDynamicResource(imagePath, msg.ImageData);
 
-        var timestamp = _gameTiming.CurTime;
+        var timestamp = _messengerServer.GetStationTime();
         var metadata = new PhotoMetadata(photoId, imagePath, timestamp);
         photoComponent.PhotoGallery[photoId] = metadata;
 
@@ -189,6 +207,12 @@ public sealed class PhotoCartridgeSystem : EntitySystem
 
     private void HandleSendPhotoToMessenger(EntityUid uid, PhotoCartridgeComponent component, EntityUid loaderUid, string? photoId, string? recipientId, string? groupId)
     {
+        if (!_photoUploadEnabled)
+        {
+            UpdateUiState(uid, loaderUid, component, errorMessage: Loc.GetString("photo-cartridge-upload-disabled"));
+            return;
+        }
+
         if (string.IsNullOrWhiteSpace(photoId))
             return;
 
@@ -212,7 +236,7 @@ public sealed class PhotoCartridgeSystem : EntitySystem
         if (string.IsNullOrEmpty(userId))
             return;
 
-        var timestamp = _gameTiming.CurTime;
+        var timestamp = _messengerServer.GetStationTime();
         var content = Loc.GetString("photo-cartridge-photo-text");
 
         if (!string.IsNullOrWhiteSpace(groupId))
@@ -273,7 +297,8 @@ public sealed class PhotoCartridgeSystem : EntitySystem
     {
         var state = new PhotoUiState(
             photos: component.PhotoGallery,
-            cameraReady: component.PhotoGallery.Count < MaxPhotosPerUser,
+            cameraReady: _photoCaptureEnabled && component.PhotoGallery.Count < MaxPhotosPerUser,
+            photoSendingEnabled: _photoUploadEnabled,
             flashEnabled: component.FlashEnabled,
             errorMessage: errorMessage
         );

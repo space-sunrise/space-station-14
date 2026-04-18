@@ -19,10 +19,10 @@
   - type: AmmoCounter
   - type: GunWieldBonus # Sunrise-start
     minAngle: -20
-    maxAngle: -45
+    maxAngle: -30
   - type: Gun
-    minAngle: 23
-    maxAngle: 90
+    minAngle: 21
+    maxAngle: 60
     angleIncrease: 1.25
     angleDecay: 20  # Sunrise-end
     fireRate: 5
@@ -78,8 +78,8 @@
         knockback: 0.1
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 2
-    pvsIncrease: 0.2
+    maxOffset: 1
+    pvsIncrease: 0.1
   # Sunrise end
 
 - type: entity

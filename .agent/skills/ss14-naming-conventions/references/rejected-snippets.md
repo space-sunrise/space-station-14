@@ -1,21 +1,21 @@
 # Rejected Snippets (Naming)
 
-| Зона | Что найдено | Почему отклонено | Сигнал |
+| Zone | What's found | Why rejected | Signal |
 |---|---|---|---|
-| Dependencies | Участки с вариациями `_transformSystem`/`_playerManager` в новом коде | Нарушают каноничную короткую форму алиасов для строгого стандарта | Непоследовательность alias-стиля |
-| Systems | Система без очевидной связи по базе имени с основным компонентом | Ухудшает discoverability и связность API | Трудно найти пару component/system |
-| Prototypes | lowercase ID вроде `clientsideclone` для production-сущности | Противоречит строгому `CamelCase` для нового кода | Исторический legacy формат |
-| Prototypes | Новые ID без форк-префикса в fork-only копиях ванили | Ломает пространство имен и усложняет future merge | Потенциальные коллизии ID |
-| YAML names | Неанглийский fallback `name/description` | Нарушает контракт «YAML fallback = english source of truth» | Расхождение с английской локалью |
-| FTL keys | Обычные ключи не в `kebab-case` | Снижает единообразие и поиск строк | Несовместимый формат ключей |
-| FTL content | OOC-инструкции в `.desc` без маркера `OOC:` | Нарушение IC/OOC границы | Контентная неоднозначность |
-| FTL content | Имена сущностей длиннее 3 слов и описания сверх лимита | Ухудшает читаемость и UI-плотность | Непрактичный размер текста |
-| Files | `snake_case` имена YAML/FTL из 3+ слов без веской причины | Размывает структуру и затрудняет навигацию | Переусложненные имена |
-| Examples quality | Фрагменты с TODO/HACK/FIXME по теме | Риск закрепить спорный или временный стиль | Явные маркеры техдолга |
-| Freshness | Примеры старше cutoff без современного подтверждения | Возможна устаревшая практика | Старая дата изменения |
+| Dependencies | Areas with variations `_transformSystem`/`_playerManager` in the new code | Breaks canonical short form aliases for strict standard | Alias ​​style inconsistency |
+| Systems | System without obvious connection by name base with the main component | Degrades discoverability and API connectivity | Hard to find component/system pair |
+| Prototypes | lowercase ID like `clientsideclone` for a production entity | Contradicts strict `CamelCase` for new code | Historical legacy format |
+| Prototypes | New IDs without fork prefix in fork-only copies of vanilla | Breaks the namespace and complicates future merge | Potential ID collisions |
+| YAML names | Non-English fallback `name/description` | Violates the contract "YAML fallback = english source of truth" | Divergence from English locale |
+| FTL keys | Regular keys are not in `kebab-case` | Reduces uniformity and string search | Incompatible key format |
+| FTL content | OOC instructions in `.desc` without marker `OOC:` | Violating the IC/OOC Boundary | Content ambiguity |
+| FTL content | Entity names longer than 3 words and descriptions over limit | Reduces readability and UI density | Impractical text size |
+| Files | `snake_case` 3+ word YAML/FTL names for no good reason | Blurs the structure and makes navigation difficult | Overcomplicated names |
+| Examples quality | Fragments from TODO/HACK/FIXME on the topic | Risk of consolidating a controversial or temporary style | Explicit markers of technical debt |
+| Freshness | Examples older than cutoff without modern confirmation | Possibly outdated practices | Old modification date |
 
-## Как работать с отклонениями
+## How to work with deviations
 
-1. Если фрагмент попал в этот список, не копируй его как эталон в новый код.
-2. Для legacy-мест допускай точечную совместимость, но не распространяй стиль дальше.
-3. В ревью помечай такие места как «legacy exception» и возвращай код к нормативу при ближайшем безопасном рефакторинге.
+1. If a fragment is included in this list, do not copy it as a reference into the new code.
+2. For legacy places, allow point compatibility, but do not extend the style further.
+3. In the review, mark such places as “legacy exception” and return the code to the standard at the next safe refactoring.

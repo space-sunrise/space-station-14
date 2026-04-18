@@ -286,7 +286,14 @@
         - SpiderClan
       - type: AutoImplant
         implants:
-        - DeathAcidifierImplant
+        # Sunrise-Start
+        #- DeathAcidifierImplant
+        - RedspaceImplant
+        - MicroBombImplant
+        - StimpackImplant
+        - ReviverImplant
+        - NutrimentImplant
+        # Sunrise-End
       - type: RandomMetadata
         nameSegments:
         - NamesNinjaTitle

@@ -20,7 +20,7 @@ public sealed partial class MessengerServerSystem
             return;
 
         string? imagePath = null;
-        if (messageData.TryGetValue("image_path", out string? imgPath) && !string.IsNullOrWhiteSpace(imgPath))
+        if (_photoUploadEnabled && messageData.TryGetValue("image_path", out string? imgPath) && !string.IsNullOrWhiteSpace(imgPath))
         {
             imagePath = imgPath;
         }
@@ -31,9 +31,20 @@ public sealed partial class MessengerServerSystem
         if (!component.Users.TryGetValue(args.SenderAddress, out var sender))
             return;
 
+        var currentTime = _timing.CurTime;
+        if (component.LastMessageTime.TryGetValue(sender.UserId, out var lastTime))
+        {
+            if (currentTime - lastTime < component.MessageCooldown)
+            {
+                Sawmill.Debug($"Message from {sender.UserId} rejected due to cooldown");
+                return;
+            }
+        }
+
         UpdateUserInfoFromPda(uid, component, args.SenderAddress, sender);
 
         var timestamp = GetStationTime();
+        component.LastMessageTime[sender.UserId] = currentTime;
 
         if (messageData.TryGetValue("group_id", out string? groupId) && !string.IsNullOrWhiteSpace(groupId))
         {
@@ -229,7 +240,7 @@ public sealed partial class MessengerServerSystem
         if (!component.Users.TryGetValue(senderUserId, out var sender))
             return;
 
-        SendPersonalMessage(uid, component, sender, recipientId, content, timestamp, imagePath);
+        SendPersonalMessage(uid, component, sender, recipientId, content, timestamp, _photoUploadEnabled ? imagePath : null);
     }
 
     /// <summary>
@@ -243,7 +254,7 @@ public sealed partial class MessengerServerSystem
         if (!component.Users.TryGetValue(senderUserId, out var sender))
             return;
 
-        SendGroupMessage(uid, component, sender, groupId, content, timestamp, imagePath);
+        SendGroupMessage(uid, component, sender, groupId, content, timestamp, _photoUploadEnabled ? imagePath : null);
     }
 
     /// <summary>

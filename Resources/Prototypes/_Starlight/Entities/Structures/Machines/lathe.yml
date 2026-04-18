@@ -39,6 +39,8 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Machine
     board: AssortedForgeParts
+  - type: ApcPowerReceiver
+    needsPower: false
   - type: MaterialStorage
     whitelist:
       tags:

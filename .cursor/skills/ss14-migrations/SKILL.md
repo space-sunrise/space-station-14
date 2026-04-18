@@ -1,6 +1,6 @@
 ---
 name: ss14-migrations
-description: Руководство по созданию и управлению миграциями баз данных в SS14 (PostgreSQL и SQLite)
+description: Guide to Creating and Managing Database Migrations in SS14 (PostgreSQL and SQLite)
 ---
 
 # Cursor Bridge

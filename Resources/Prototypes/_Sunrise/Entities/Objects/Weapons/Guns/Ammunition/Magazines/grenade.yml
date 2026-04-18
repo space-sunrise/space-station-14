@@ -1,0 +1,130 @@
+- type: entity
+  abstract: true
+  parent: BaseMagazineGrenade
+  id: BaseMagazineGrenadeExtended
+  name: grenade extended cartridge
+  description: A large grenade cartridge with increased payload.
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 15
+  - type: Sprite
+    scale: 1,1.2
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-4
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazineGrenadeExtended
+  id: MagazineGrenadeEmptyExtended
+  name: grenade extended cartridge
+  components:
+  - type: BallisticAmmoProvider
+
+- type: entity
+  parent: BaseMagazineGrenadeExtended
+  id: MagazineGrenadeFragExtended
+  name: frag grenade extended cartridge
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellFragArtillery
+
+- type: entity
+  parent: BaseMagazineGrenadeExtended
+  id: MagazineGrenadeEMPExtended
+  name: EMP grenade extended cartridge
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellEMPArtillery
+
+- type: entity
+  parent: BaseMagazineGrenadeExtended
+  id: MagazineGrenadeFlashExtended
+  name: flash grenade extended cartridge
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellFlashArtillery
+
+- type: entity
+  parent: BaseMagazineGrenadeExtended
+  id: MagazineGrenadeBlastExtended
+  name: blast grenade extended cartridge
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellBlastArtillery
+
+- type: entity
+  parent: BaseMagazineGrenadeExtended
+  id: MagazineGrenadeBatonExtended
+  name: baton grenade extended cartridge
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellBatonArtillery
+
+- type: entity
+  parent: BaseMagazineGrenade
+  id: MagazineGrenadeFragTimer
+  name: timer frag grenade cartridge
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - Grenade
+    proto: GrenadeFragTimer
+
+- type: entity
+  parent: BaseMagazineGrenade
+  id: MagazineGrenadeEMPTimer
+  name: timer EMP grenade cartridge
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - Grenade
+    proto: GrenadeEMPTimer
+
+- type: entity
+  parent: BaseMagazineGrenade
+  id: MagazineGrenadeBlastTimer
+  name: timer blast grenade cartridge
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - Grenade
+    proto: GrenadeBlastTimer
+
+- type: entity
+  parent: BaseMagazineGrenade
+  id: MagazineGrenadeFragContact
+  name: contact frag grenade cartridge
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - Grenade
+    proto: GrenadeFrag
+
+- type: entity
+  parent: BaseMagazineGrenade
+  id: MagazineGrenadeBlastContact
+  name: contact blast grenade cartridge
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - Grenade
+    proto: GrenadeBlast
+
+- type: entity
+  parent: BaseMagazineGrenade
+  id: MagazineGrenadeEMPContact
+  name: contact EMP grenade cartridge
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - Grenade
+    proto: GrenadeEMP

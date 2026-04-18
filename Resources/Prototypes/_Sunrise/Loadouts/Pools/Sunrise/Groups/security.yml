@@ -1,0 +1,147 @@
+# Sunrise-specific security loadout groups.
+
+- type: loadoutGroup
+  id: SunriseHeadofSecurityHead
+  name: loadout-group-head-of-security-head
+  minLimit: 0
+  loadouts:
+  - HeadofSecurityHead
+  - HeadofSecurityBeret
+  - HeadofSecurityHatCap
+  - HeadofSecurityCapUSSPBlack
+  - HeadofSecurityCapLeather
+
+- type: loadoutGroup
+  id: SunriseHeadofSecurityJumpsuit
+  name: loadout-group-head-of-security-jumpsuit
+  loadouts:
+  - HeadofSecurityJumpsuit
+  - HeadofSecurityJumpskirt
+  - HeadofSecurityTurtleneck
+  - HeadofSecurityTurtleneckSkirt
+  - HeadofSecurityFormalSuit
+  - HeadofSecurityFormalSkirt
+  - HeadofSecurityJumpsuitHoSOld
+  - HeadofSecurityJumpsuitUSSPBlack
+
+- type: loadoutGroup
+  id: SunriseHeadofSecurityNeck
+  name: loadout-group-head-of-security-neck
+  minLimit: 0
+  loadouts:
+  - HeadofSecurityCloak
+  - HeadofSecurityMantle
+  - HeadofSecurityDarthHOSCloak
+  - HeadofSecurityCloakHOSCloak
+  - HeadofSecurityScarf
+
+- type: loadoutGroup
+  id: SunriseHeadofSecurityOuterClothing
+  name: loadout-group-head-of-security-outerclothing
+  loadouts:
+  - HeadofSecurityCoat
+  - HeadofSecurityWinterCoat
+  - HeadofSecurityGreatcoat
+  - HeadofSecurityGreatcoatBlack
+  - HeadofSecurityOvercoat
+  - HeadofSecurityUSSPBlack
+
+- type: loadoutGroup
+  id: SunriseHeadofSecurityBra
+  name: loadout-group-head-of-security-bra
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StraplessBra
+  - WhiteNekoBra
+  - BlackNekoBra
+  - AssblastusaBra
+  - BikiniBra
+  - BraletteBra
+  - CommieBra
+  - KinkyBra
+  - LaceBra
+  - SportBra
+  - ThongBra
+  - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
+  - HeadofSecurityBra
+
+- type: loadoutGroup
+  id: SunriseHeadofSecurityPants
+  name: loadout-group-head-of-security-pants
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StraplessWomanPants
+  - BoxersManPants
+  - AssblastusaManPants
+  - BriefsManPants
+  - CommieManPants
+  - HeartsManPants
+  - KinkyManPants
+  - LongjohnsManPants
+  - MankiniManPants
+  - StripeManPants
+  - UkManPants
+  - NekoWhiteWomanPants
+  - NekoBlackWomanPants
+  - AssblastusaWomanPants
+  - BikiniWomanPants
+  - BraletteWomanPants
+  - CommieWomanPants
+  - KinkyWomanPants
+  - LaceWomanPants
+  - SportWomanPants
+  - ThongWomanPants
+  - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
+  - HeadofSecurityThong
+  - HeadofSecurityBoxers
+
+- type: loadoutGroup
+  id: SunriseWardenHead
+  name: loadout-group-warden-head
+  minLimit: 0
+  loadouts:
+  - WardenHead
+  - WardenBeret
+  - ClothingHeadHatCapWardenAlt
+
+- type: loadoutGroup
+  id: SunriseWardenOuterClothing
+  name: loadout-group-warden-outerclothing
+  loadouts:
+  - WardenCoat
+  - WardenArmoredWinterCoat
+  - ClothingOuterCoatWardenAlt
+
+- type: loadoutGroup
+  id: SunriseDetectiveNeck
+  name: loadout-group-detective-neck
+  minLimit: 0
+  loadouts:
+  - DetectiveTie
+  - DetectiveTieHorrific
+
+- type: loadoutGroup
+  id: SunriseDetectiveOuterClothing
+  name: loadout-group-detective-outerclothing
+  loadouts:
+  - DetectiveArmorVest
+  - DetectiveCoat
+  - DetectiveCoatGrey
+  - DetectiveCoatDark
+
+- type: loadoutGroup
+  id: SunriseGroupSpeciesBreathToolSecurity
+  name: loadout-group-breath-tool
+  minLimit: 1
+  maxLimit: 1
+  hidden: true
+  loadouts:
+  - LoadoutSpeciesBreathToolSecurity

@@ -1,0 +1,7 @@
+- type: loadoutPool
+  id: BaseLoadoutPoolCommand
+  abstract: true
+  roleLoadouts:
+    JobCaptain: SunriseJobCaptain
+    JobHeadOfPersonnel: SunriseJobHeadOfPersonnel
+

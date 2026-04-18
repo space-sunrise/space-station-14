@@ -3,21 +3,21 @@ name: SS14 ECS Components
 description: Architecture guide for Component in Space Station 14 — data containers, attributes, networking, state-as-component pattern, and marker components
 ---
 
-# Component — компоненты в ECS
+# Component - components in ECS
 
-## Граница ответственности
+## Limit of responsibility
 
-Этот skill покрывает архитектуру компонента, атрибуты и паттерны данных.
-Строгие naming-нормативы (суффикс `Component`, связка с `System`, алиасы dependency, правила имен файлов/прототипов/локализации) ведутся в `ss14-naming-conventions`.
-Если локальный пример по именованию расходится с `ss14-naming-conventions`, применяй `ss14-naming-conventions`.
+This skill covers component architecture, attributes, and data patterns.
+Strict naming standards (suffix `Component`, linking with `System`, dependency aliases, file naming/prototype/localization rules) are maintained in `ss14-naming-conventions`.
+If the local naming example differs from `ss14-naming-conventions`, use `ss14-naming-conventions`.
 
-## Что такое Component
+## What is Component
 
-Компонент — это **чистый контейнер данных** без логики. Компоненты прикрепляются к сущностям (Entity) и определяют их свойства. Вся логика работы с данными компонента находится в соответствующей системе (EntitySystem).
+A component is a **pure data container** with no logic. Components are attached to Entities and define their properties. All logic for working with component data is located in the corresponding system (EntitySystem).
 
-**Главное правило: компоненты не содержат методов с логикой.** Они хранят только данные и конфигурацию.
+**The main rule: components do not contain methods with logic.** They only store data and configuration.
 
-## Базовая структура
+## Basic structure
 
 ```csharp
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
@@ -31,66 +31,66 @@ public sealed partial class MyComponent : Component
 }
 ```
 
-## Обязательные атрибуты класса
+## Required class attributes
 
 ### `[RegisterComponent]`
 
-Регистрирует компонент в движке. Обязателен для всех компонентов. Без него компонент не будет доступен для использования.
+Registers a component in the engine. Required for all components. Without it, the component will not be available for use.
 
 ### `[NetworkedComponent]`
 
-Указывает, что компонент синхронизируется по сети между сервером и клиентом. Используется вместе с `[AutoGenerateComponentState]`.
+Indicates that the component is synchronized over the network between the server and client. Used in conjunction with `[AutoGenerateComponentState]`.
 
-### `[AutoGenerateComponentState]` и `[AutoGenerateComponentState(true)]`
+### `[AutoGenerateComponentState]` and `[AutoGenerateComponentState(true)]`
 
-Автоматически генерирует код для сериализации/десериализации состояния компонента при сетевой синхронизации.
+Automatically generates code to serialize/deserialize component state during network synchronization.
 
-Вариант `(true)` дополнительно генерирует метод `AfterAutoHandleState`, который вызывается после применения состояния — полезно для выполнения побочных эффектов после сетевого обновления.
+The `(true)` option additionally generates a `AfterAutoHandleState` method that is called after the state is applied - useful for performing side effects after a network update.
 
 ### `[AutoGenerateComponentPause]`
 
-Генерирует код для автоматической паузы таймерных полей (`TimeSpan`) при паузе карты. Работает в связке с `[AutoPausedField]`.
+Generates code to automatically pause timer fields (`TimeSpan`) when the card is paused. Works in conjunction with `[AutoPausedField]`.
 
-## Атрибуты полей
+## Field attributes
 
 ### `[DataField]`
 
-Маркирует поле для десериализации из YAML прототипов. Имя поля в YAML — это camelCase версия имени в C#:
+Marks a field for deserialization from YAML prototypes. The field name in YAML is the camelCase version of the field name in C#:
 
 ```csharp
 [DataField]
-public float BaseSpeed = 5f;  // → baseSpeed в YAML
+public float BaseSpeed = 5f;  // → baseSpeed ​​in YAML
 
 [DataField(required: true)]
-public EntProtoId EntityId;   // Обязательное, ошибка если не задано
+public EntProtoId EntityId;   // Required, error if not specified
 ```
 
-> **⚠️ Анти-паттерн: строковое имя в DataField (легаси)**
+> **⚠️ Anti-pattern: string name in DataField (legacy)**
 >
-> Не указывайте строковое имя поля в `DataField`. Это устаревший подход. Имя в YAML **всегда** равно имени в C# с маленькой буквы:
+> Do not specify a string field name in `DataField`. This is an outdated approach. The name in YAML is **always** equal to the name in C# with a lower case letter:
 >
 > ```csharp
-> // ❌ Легаси — НЕ делайте так
+> // ❌ Legacy - DO NOT do this
 > [DataField("counter")]
 > public int Counter;
 >
 > [DataField("baseSpeed")]
 > public float BaseSpeed;
 >
-> // ✅ Правильно — имя выводится автоматически
+> // ✅ Correct - the name is displayed automatically
 > [DataField]
-> public int Counter;        // → counter в YAML
+> public int Counter;        // → counter in YAML
 >
 > [DataField]
-> public float BaseSpeed;    // → baseSpeed в YAML
+> public float BaseSpeed;    // → baseSpeed ​​in YAML
 > ```
 
-> **⚠️ Анти-паттерн: DataField на рантайм-полях**
+> **⚠️ Anti-pattern: DataField on runtime fields**
 >
-> `[DataField]` нужен **только** для полей, которые задаются через YAML-прототипы. Поля, которые генерируются в коде во время игры, **не должны** иметь `[DataField]`:
+> `[DataField]` is needed **only** for fields that are specified via YAML prototypes. Fields that are generated in code during the game **should not** have `[DataField]`:
 >
 > ```csharp
-> // ❌ Неправильно — EntityUid генерируется в коде, не в YAML
+> // ❌ Wrong - EntityUid is generated in code, not in YAML
 > [DataField]
 > public EntityUid? CurrentTarget;
 >
@@ -98,9 +98,9 @@ public EntProtoId EntityId;   // Обязательное, ошибка если
 > public HashSet<EntityUid> ActiveTargets = [];
 >
 > [DataField]
-> public TimeSpan? RageStartTime;  // Устанавливается системой, не прототипом
+> public TimeSpan? RageStartTime;  // Set by the system, not by prototype
 >
-> // ✅ Правильно — без DataField, только AutoNetworkedField если нужна синхронизация
+> // ✅ Correct - without DataField, only AutoNetworkedField if synchronization is needed
 > [AutoNetworkedField]
 > public EntityUid? CurrentTarget;
 >
@@ -110,17 +110,17 @@ public EntProtoId EntityId;   // Обязательное, ошибка если
 > [AutoNetworkedField]
 > public TimeSpan? RageStartTime;
 >
-> // ✅ Правильно — DataField только для конфигурации из прототипа
+> // ✅ Correct - DataField is only for the configuration from the prototype
 > [DataField]
-> public float MaxSpeed = 8f;  // Настраивается в YAML
+> public float MaxSpeed ​​= 8f;  // Configured in YAML
 >
 > [DataField]
-> public TimeSpan RageDuration = TimeSpan.FromMinutes(4);  // Настраивается в YAML
+> public TimeSpan RageDuration = TimeSpan.FromMinutes(4);  // Configured in YAML
 > ```
 
 ### `[AutoNetworkedField]`
 
-Маркирует поле для автоматической сетевой синхронизации. Используется только совместно с `[AutoGenerateComponentState]` на классе:
+Marks a field for automatic network synchronization. Only used in conjunction with `[AutoGenerateComponentState]` on the class:
 
 ```csharp
 [DataField, AutoNetworkedField]
@@ -132,7 +132,7 @@ public TimeSpan? StartTime;
 
 ### `[AutoPausedField]`
 
-Маркирует поле типа `TimeSpan` для автоматической паузы при паузе карты. Используется с `[AutoGenerateComponentPause]`:
+Marks a field of type `TimeSpan` to automatically pause when the card is paused. Used with `[AutoGenerateComponentPause]`:
 
 ```csharp
 [AutoNetworkedField, AutoPausedField]
@@ -141,10 +141,10 @@ public TimeSpan? ActivationTime;
 
 ### `[ViewVariables]`
 
-Делает поле видимым в отладочном View Variables панели (VV):
+Makes the field visible in the debug View Variables (VV) panel:
 
 ```csharp
-[ViewVariables] // По умолчанию доступ = (VVAccess.ReadWrite), прописывать снова НЕ нужно!
+[ViewVariables] // By default, access = (VVAccess.ReadWrite), you do NOT need to register it again!
 public float DebugValue;
 
 [ViewVariables(VVAccess.ReadOnly)]
@@ -153,19 +153,19 @@ public int ReadOnlyValue;
 
 ### `[Access]`
 
-Ограничивает доступ к полям/свойствам компонента. Только указанные типы могут писать в поля:
+Restricts access to the fields/properties of the component. Only the specified types can write to fields:
 
 ```csharp
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedMySystem))]
 public sealed partial class MyComponent : Component
 {
-    // Только SharedMySystem и наследники могут изменять поля
+    // Only SharedMySystem and descendants can change fields
 }
 ```
 
 ### `[NonSerialized]`
 
-Исключает поле из сериализации. Используется для рантайм-данных, которые не нужно сохранять и передавать:
+Excludes a field from serialization. Used for runtime data that does not need to be saved and transmitted:
 
 ```csharp
 [NonSerialized]
@@ -175,42 +175,42 @@ public IPlayingAudioStream? SoundStream;
 public EntityUid? CurrentTarget;
 ```
 
-## Типы данных компонентов
+## Component data types
 
-### Основные типы
+### Basic types
 
 ```csharp
-// ID прототипа сущности
+// Entity prototype ID
 [DataField]
 public EntProtoId? SpawnPrototype;
 
-// ID прототипа определённого типа
+// Prototype ID of a specific type
 [DataField]
 public ProtoId<DamageModifierSetPrototype> DamageModifier;
 
-// Звук
+// Sound
 [DataField]
 public SoundSpecifier? Sound = new SoundPathSpecifier("/Audio/path.ogg");
 
 [DataField]
 public SoundSpecifier Sound = new SoundCollectionSpecifier("CollectionName");
 
-// Урон
+// Damage
 [DataField]
 public DamageSpecifier Damage = new();
 
-// Фильтрация сущностей
+// Entity filtering
 [DataField]
 public EntityWhitelist? Whitelist;
 [DataField]
 public EntityWhitelist? Blacklist;
 
-// Временные промежутки
+// Time periods
 [DataField]
 public TimeSpan Duration = TimeSpan.FromSeconds(10);
 ```
 
-### Коллекции
+### Collections
 
 ```csharp
 [DataField]
@@ -223,11 +223,11 @@ public HashSet<EntityUid> Targets = [];
 public Dictionary<string, float> Values = new();
 ```
 
-## Паттерн «состояние как компонент»
+## State as component pattern
 
-Вместо хранения enum-состояний внутри одного компонента, каждое состояние моделируется **отдельным компонентом**. Переход между состояниями = добавление/удаление компонентов.
+Instead of storing enum states inside a single component, each state is modeled as a **separate component**. Transition between states = adding/removing components.
 
-### Основной компонент (хранит конфигурацию):
+### Main component (stores configuration):
 
 ```csharp
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
@@ -241,9 +241,9 @@ public sealed partial class CreatureComponent : Component
 }
 ```
 
-### Состояние «Спокоен» — нет дополнительных компонентов
+### State "Quiet" - no additional components
 
-### Состояние «Нагревается»:
+### "Heating" state:
 
 ```csharp
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
@@ -257,7 +257,7 @@ public sealed partial class ActiveCreatureHeatingUpComponent : Component
 }
 ```
 
-### Состояние «Ярость»:
+### Rage Condition:
 
 ```csharp
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
@@ -274,59 +274,59 @@ public sealed partial class ActiveCreatureRageComponent : Component
 }
 ```
 
-### Переходы между состояниями в системе:
+### Transitions between states in the system:
 
 ```csharp
-// Переход в ярость
+// Going into rage
 private void EnterRage(EntityUid uid, CreatureComponent comp)
 {
-    RemComp<ActiveCreatureHeatingUpComponent>(uid);  // выход из предыдущего
-    var rage = EnsureComp<ActiveCreatureRageComponent>(uid);  // вход в новое
+    RemComp<ActiveCreatureHeatingUpComponent>(uid);  // exit from previous
+    var rage = EnsureComp<ActiveCreatureRageComponent>(uid);  // entrance to the new
     rage.RageStartTime = _timing.CurTime;
     Dirty(uid, rage);
 }
 
-// Выход из ярости
+// Coming out of rage
 private void ExitRage(EntityUid uid, CreatureComponent comp)
 {
     RemComp<ActiveCreatureRageComponent>(uid);
 }
 ```
 
-**Преимущества паттерна:**
-- Системы могут подписываться на `ComponentStartup`/`ComponentShutdown` состояний
-- `EntityQueryEnumerator` итерирует только по сущностям в нужном состоянии
-- Сетевая синхронизация состояний происходит автоматически
-- Легко добавлять новые состояния без модификации основного компонента
+**Advantages of the pattern:**
+- Systems can subscribe to `ComponentStartup`/`ComponentShutdown` states
+- `EntityQueryEnumerator` iterates only over entities in the desired state
+- Network state synchronization occurs automatically
+- Easily add new states without modifying the main component
 
-## Компоненты-маркеры
+## Marker components
 
-Компоненты без полей данных, используемые как «теги» для фильтрации:
+Components without data fields used as "tags" for filtering:
 
 ```csharp
 [RegisterComponent]
 public sealed partial class ProtectedComponent : Component
 {
-    // Нет полей — это просто маркер
+    // No fields - just a marker
 }
 ```
 
-Системы проверяют наличие маркера:
+Systems check for the presence of a token:
 ```csharp
 if (HasComp<ProtectedComponent>(uid))
-    return; // Сущность защищена, пропускаем
+    return; // Entity is protected, let's pass
 ```
 
-## Компонент как целевая метка
+## Component as target label
 
-Компоненты могут добавляться к **другим** сущностям для установления связи:
+Components can be added to **other** entities to establish relationships:
 
 ```csharp
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class TargetMarkerComponent : Component
 {
     /// <summary>
-    /// Ссылка на преследующую сущность
+    /// Link to haunting entity
     /// </summary>
     [AutoNetworkedField]
     public EntityUid? Source;
@@ -339,23 +339,23 @@ public sealed partial class TargetMarkerComponent : Component
 }
 ```
 
-## Правила написания компонентов
+## Rules for writing components
 
-1. **Класс всегда `sealed partial`** — `sealed` предотвращает наследование, `partial` нужен для source generators
-2. **Наследуйтесь от `Component`** — не от других компонентов
-3. **Без логики** — только поля данных. Никаких методов, свойства только для простого доступа
-4. **XML-документация** — каждое публичное поле должно иметь `/// <summary>` комментарий
-5. **Разумные значения по умолчанию** — поля должны иметь дефолтные значения, чтобы прототип мог опускать необязательные поля
-6. **`[NonSerialized]` для рантайм-данных** — звуковые потоки, кешированные ссылки на сущности, временные данные
-7. **Организация полей** — используйте `#region` блоки для группировки связанных полей в больших компонентах
-8. **`[DataField]` только для YAML-конфигурации** — не ставьте на рантайм-поля (`EntityUid`, таймстампы, кеши)
-9. **Не указывайте строковое имя в `[DataField]`** — имя выводится автоматически из имени поля
+1. **The class is always `sealed partial`** — `sealed` prevents inheritance, `partial` is needed for source generators
+2. **Inherit from `Component`** - not from other components
+3. **No logic** - only data fields. No methods, properties just for easy access
+4. **XML documentation** - each public field must have a `/// <summary>` comment
+5. **Reasonable defaults** - fields should have default values ​​so that the prototype can omit optional fields
+6. **`[NonSerialized]` for runtime data** - audio streams, cached links to entities, temporary data
+7. **Organizing Fields** - Use `#region` blocks to group related fields in large components
+8. **`[DataField]` only for YAML configuration** - do not put on runtime fields (`EntityUid`, timestamps, caches)
+9. **Do not specify a string name in `[DataField]`** - the name is derived automatically from the field name
 
-## Оптимизация через Active-компоненты (дополнение)
+## Optimization through Active components (add-on)
 
-### Паттерн: `BaseComponent + ActiveComponent`
+### Pattern: `BaseComponent + ActiveComponent`
 
-Используй базовый компонент для конфигурации и отдельный `Active...Component` для текущей активности:
+Use the base component for configuration and a separate `Active...Component` for the current activity:
 
 ```csharp
 [RegisterComponent]
@@ -369,23 +369,23 @@ public sealed partial class TimerTriggerComponent : Component
 public sealed partial class ActiveTimerTriggerComponent : Component;
 ```
 
-В системе:
+In the system:
 
 ```csharp
-// Активация.
+// Activation.
 EnsureComp<ActiveTimerTriggerComponent>(uid);
 
-// Завершение работы — компонент удаляется.
+// Shutdown—the component is removed.
 RemComp<ActiveTimerTriggerComponent>(uid);
 ```
 
-### Почему это важно
+### Why is this important?
 
-1. В query попадают только активные сущности.
-2. Снижается количество пустых итераций.
-3. Упрощается логика состояния: активность читается по наличию компонента.
+1. Only active entities are included in the query.
+2. The number of empty iterations is reduced.
+3. The state logic is simplified: the activity is read by the presence of a component.
 
-### Анти-паттерн
+### Anti-pattern
 
-1. Держать флаг `IsActive` только в базовом компоненте и перебирать всех подряд.
-2. Не удалять активный компонент после завершения состояния.
+1. Keep the `IsActive` flag only in the base component and iterate through all of them.
+2. Do not delete the active component after the state is complete.

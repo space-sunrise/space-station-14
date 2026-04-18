@@ -96,7 +96,7 @@
     targetName: nuclear authentication disk
   # Sunrise-start
   - type: Clothing
-    quickEquip: true
+    quickEquip: false
     slots:
     - neck
   # Sunrise-end
