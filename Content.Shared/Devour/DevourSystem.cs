@@ -112,11 +112,13 @@ public sealed class DevourSystem : EntitySystem
         // Grant ichor if the devoured thing meets the dragon's food preference
         if (args.Args.Target != null && _whitelistSystem.IsWhitelistPassOrNull(ent.Comp.FoodPreferenceWhitelist, (EntityUid)args.Args.Target))
         {
+            //Sunrise-Start
             if (TryComp<PassiveDamageComponent>(ent, out var regenComp))
             {
                 foreach (var (key, _) in regenComp.Damage.DamageDict)
                     regenComp.Damage.DamageDict[key] -= 0.05;
             }
+            //Sunrise-End
             _bloodstreamSystem.TryAddToBloodstream(ent.Owner, ichorInjection);
         }
         //Sunrise-Start
