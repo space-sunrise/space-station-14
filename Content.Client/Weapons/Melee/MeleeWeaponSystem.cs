@@ -7,7 +7,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Input;
 using Content.Shared.Mobs.Components;
 using Content.Shared.StatusEffect;
-using Content.Shared._Sunrise.SyndicateTeleporter;
+using Content.Shared._Sunrise.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
@@ -36,8 +36,8 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
-    // Sunrise-Edit: Tracks the last RMB alt-interact weapon so holding the key does not spam requests every frame.
-    private EntityUid? _lastAltInteractWeaponUid;
+    // Sunrise-Edit: Tracks the previous frame alt-key state to detect press vs hold.
+    private BoundKeyState _prevAltDown;
 
     private const string MeleeLungeKey = "melee-lunge";
 
@@ -81,13 +81,12 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         var useDown = _inputSystem.CmdStates.GetState(EngineKeyFunctions.Use);
         var altDown = _inputSystem.CmdStates.GetState(EngineKeyFunctions.UseSecondary);
         var meleeGunAttack = _inputSystem.CmdStates.GetState(ContentKeyFunctions.MeleeGunAttack); // Sunrise-Edit
+        // Sunrise-Edit: Detect key press vs hold for alt-interact redirect.
+        var altJustPressed = altDown == BoundKeyState.Down && _prevAltDown != BoundKeyState.Down;
+        _prevAltDown = altDown;
 
         if (weapon.AutoAttack || useDown != BoundKeyState.Down && altDown != BoundKeyState.Down)
         {
-            // Sunrise-Edit: Clear the RMB debounce once the secondary-use key is released.
-            if (altDown != BoundKeyState.Down)
-                _lastAltInteractWeaponUid = null;
-
             if (weapon.Attacking)
             {
                 RaisePredictiveEvent(new StopAttackEvent(GetNetEntity(weaponUid)));
@@ -146,18 +145,12 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         // Heavy attack.
         if (altDown == BoundKeyState.Down)
         {
-            // Sunrise-Edit
-            if (TryComp<SyndicateTeleporterComponent>(weaponUid, out var teleporter) &&
-                teleporter.DisableMeleeWideAttack)
+            // Sunrise-Edit: Redirect RMB to alt-interact for weapons that disable wide attacks.
+            if (HasComp<DisableMeleeWideAttackComponent>(weaponUid))
             {
-                // Prevent duplicate alt-interact requests while RMB is still held.
-                if (_lastAltInteractWeaponUid == weaponUid)
-                    return;
-
-                if (TryComp<HandsComponent>(entity, out var hands) && hands.ActiveHandId != null)
+                if (altJustPressed && TryComp<HandsComponent>(entity, out var hands) && hands.ActiveHandId != null)
                 {
                     RaisePredictiveEvent(new RequestHandAltInteractEvent(hands.ActiveHandId));
-                    _lastAltInteractWeaponUid = weaponUid;
                 }
 
                 return;

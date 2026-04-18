@@ -67,10 +67,11 @@
   - type: SyndicateTeleporter
     randomDistanceValue: 1
     teleportationValue: 4
-    disableMeleeWideAttack: true
+    knockdownDuration: 2
     damageOnBlocked:
       types:
         Cellular: 1
+  - type: DisableMeleeWideAttack
   - type: AutoRecharge
     rechargeDuration: 15
   - type: LimitedCharges

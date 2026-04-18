@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using Robust.Shared.GameObjects;
-using Robust.Shared.Serialization;
 using Content.Shared.Damage;
 
 namespace Content.Shared._Sunrise.SyndicateTeleporter;
@@ -17,6 +15,10 @@ public sealed partial class SyndicateTeleporterComponent : Component
     [DataField]
  	public DamageSpecifier? DamageOnBlocked;
 
+    /// <summary>
+    /// Duration of the knockdown applied to the user after teleportation landing.
+    /// Set to zero or null to disable the knockdown effect.
+    /// </summary>
     [DataField]
-    public bool DisableMeleeWideAttack;
+    public TimeSpan? KnockdownDuration;
 }

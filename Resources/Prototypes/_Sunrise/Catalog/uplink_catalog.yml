@@ -1542,7 +1542,7 @@
   description: uplink-switchblade-desc
   productEntity: WeaponMeleeSwitchblade
   cost:
-    Telecrystal: 6
+    Telecrystal: 7
   categories:
     - UplinkWeaponry
 
