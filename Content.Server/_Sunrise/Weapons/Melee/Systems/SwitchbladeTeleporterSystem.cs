@@ -12,6 +12,7 @@ using Content.Shared.Physics;
 using Content.Shared.Stunnable;
 using Content.Shared.Timing;
 using Content.Shared.Verbs;
+using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
 using Robust.Shared.Physics.Components;
@@ -30,6 +31,7 @@ public sealed class SwitchbladeTeleporterSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly BiocodeSystem _biocode = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
     private const string SourceEffectPrototype = "TeleportEffectSource";
     private const string TargetEffectPrototype = "TeleportEffectTarget";
@@ -89,6 +91,15 @@ public sealed class SwitchbladeTeleporterSystem : EntitySystem
     {
         disabledMessage = null;
 
+        if (!IsCarriedByUser(ent.Owner, user))
+        {
+            disabledMessage = Loc.GetString("syndicate-teleporter-not-on-user");
+            if (!quiet)
+                _popup.PopupEntity(disabledMessage, user, user);
+
+            return false;
+        }
+
         if (TryComp<BiocodeComponent>(ent.Owner, out var biocode) && !_biocode.CanUse(user, biocode.Factions))
         {
             if (!string.IsNullOrEmpty(biocode.AlertText))
@@ -121,6 +132,26 @@ public sealed class SwitchbladeTeleporterSystem : EntitySystem
         }
 
         return true;
+    }
+
+    /// <summary>
+    /// Checks whether the item is carried by the user, either via direct parenting or anywhere in the user's container chain.
+    /// </summary>
+    private bool IsCarriedByUser(EntityUid item, EntityUid user)
+    {
+        if (Transform(item).ParentUid == user)
+            return true;
+
+        var current = item;
+        while (_container.TryGetContainingContainer(current, out var container))
+        {
+            if (container.Owner == user)
+                return true;
+
+            current = container.Owner;
+        }
+
+        return false;
     }
 
     private void DoTeleport(Entity<SwitchbladeTeleporterComponent> ent, EntityUid user)
