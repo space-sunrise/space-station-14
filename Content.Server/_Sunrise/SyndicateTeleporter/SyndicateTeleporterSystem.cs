@@ -267,7 +267,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         {
             var angle = Angle.FromDegrees(_random.Next(0, 360));
             var dist = _random.NextFloat(0f, comp.LandingRandomOffset);
-            var offset = angle.ToWorldVec() * new Vector2(dist, dist);
+            var offset = angle.ToWorldVec() * dist;
             var candidate = where.Offset(offset);
 
             if (IsSpotFree(user, candidate))
