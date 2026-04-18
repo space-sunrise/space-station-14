@@ -17,7 +17,7 @@ public sealed partial class SyndicateTeleporterComponent : Component
 
     /// <summary>
     /// Duration of the knockdown applied to the user after teleportation landing.
-    /// Set to zero or null to disable the knockdown effect.
+    /// Set to null to disable the knockdown effect.
     /// </summary>
     [DataField]
     public TimeSpan? KnockdownDuration;
