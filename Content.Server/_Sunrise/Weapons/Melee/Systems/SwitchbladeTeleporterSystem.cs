@@ -135,7 +135,7 @@ public sealed class SwitchbladeTeleporterSystem : EntitySystem
     }
 
     /// <summary>
-    /// Checks whether the item is directly attached to the user or stored somewhere in the user's container chain.
+    /// Checks whether the item is owned by the user, either via direct parenting or anywhere in the user's container chain.
     /// </summary>
     private bool IsOwnedByUser(EntityUid item, EntityUid user)
     {
