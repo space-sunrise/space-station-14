@@ -64,10 +64,11 @@
           False: { state: switchblade }
   # Prevents spamming use to reset the swing delay.
   # Also provides the teleporter cooldown via the TeleportDelay entry.
-  - type: SyndicateTeleporter
+  - type: SwitchbladeTeleporter
     randomDistanceValue: 1
     teleportationValue: 4
     knockdownDuration: 2
+    landingRandomOffset: 1
     damageOnBlocked:
       types:
         Cellular: 1
