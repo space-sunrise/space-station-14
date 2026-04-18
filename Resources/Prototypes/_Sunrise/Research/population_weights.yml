@@ -43,11 +43,11 @@
     MedicalPathologist: 0.60
 
     # Science
-    ResearchAssistant: 0.85
-    Roboticist: 1.00
-    Scientist: 1.00
-    SeniorResearcher: 1.10
-    ResearchDirector: 1.15
+    ResearchAssistant: 1.20
+    Roboticist: 1.50
+    Scientist: 1.50
+    SeniorResearcher: 1.70
+    ResearchDirector: 1.75
 
     # Security
     SecurityCadet: 0.50

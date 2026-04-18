@@ -161,13 +161,14 @@ public sealed partial class ResearchSystem
         return GetResearchPopulationContribution(uid);
     }
 
+    // Проверка на влияние
     private float GetResearchPopulationContribution(EntityUid uid)
     {
         if (TryComp<ResearchPopulationComponent>(uid, out var researchPopulation))
             return researchPopulation.Weight;
 
         if (!_mind.TryGetMind(uid, out var mindId, out _) || !_jobs.MindTryGetJobId(mindId, out var jobId))
-            return 1f;
+            return 0.4f;
 
         return GetResearchPopulationWeight(jobId);
     }
