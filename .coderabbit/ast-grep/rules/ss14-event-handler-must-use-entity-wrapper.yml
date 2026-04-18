@@ -1,0 +1,11 @@
+id: ss14-event-handler-must-use-entity-wrapper
+language: CSharp
+severity: error
+message: "Directed event handlers should use `Entity<T>` instead of the legacy `(EntityUid uid, Comp comp, args)` signature."
+note: "Per `ss14-events` and `ss14-ecs-entities`, modern handlers keep the UID and component coupled through `Entity<T>`."
+files:
+  - "Content.*/**/*System*.cs"
+rule:
+  all:
+    - kind: method_declaration
+    - regex: '(?s).*\b(?:On|Handle)\w*\s*\(\s*EntityUid\s+\w+\s*,\s*[\w.]+Component\s+\w+\s*,\s*(?:ref\s+)?[\w.]+(?:Event|Message|Args)\s+\w+.*\)\s*.*'

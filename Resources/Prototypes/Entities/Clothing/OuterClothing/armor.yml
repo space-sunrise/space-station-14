@@ -371,6 +371,7 @@
     tags:
     - FullBodyOuter
     - WhitelistChameleon
+    - WingToggleAllowed
   # Sunrise-End
 
 - type: entity
