@@ -1,8 +1,6 @@
 - type: entity
-  name: improved gas analyzer
   parent: GasAnalyzer
   id: SunriseLongRangeGasAnalyzer
-  description: Expensive equipment capable of analyzing atmospheric gases at a distance.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Atmos/lrgasanalyzer.rsi

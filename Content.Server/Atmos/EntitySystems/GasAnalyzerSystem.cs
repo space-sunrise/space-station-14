@@ -83,7 +83,7 @@ public sealed class GasAnalyzerSystem : EntitySystem
         }
         if (entity.Comp.IsLongRanged)
         {
-            entity.Comp.ClickLocation = _interactionSystem.InRangeUnobstructed(args.User, args.ClickLocation, range: range)
+            entity.Comp.ClickLocation = target == null && _interactionSystem.InRangeUnobstructed(args.User, args.ClickLocation, range: range)
                 ? GetNetCoordinates(args.ClickLocation)
                 : null;
             Dirty(entity);
@@ -121,6 +121,7 @@ public sealed class GasAnalyzerSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("gas-analyzer-shutoff"), user.Value, user.Value);
 
         entity.Comp.Enabled = false;
+        entity.Comp.ClickLocation = null;
         Dirty(entity);
         _appearance.SetData(entity.Owner, GasAnalyzerVisuals.Enabled, entity.Comp.Enabled);
         RemCompDeferred<ActiveGasAnalyzerComponent>(entity.Owner);
@@ -176,6 +177,8 @@ public sealed class GasAnalyzerSystem : EntitySystem
                     _popup.PopupEntity(Loc.GetString("gas-analyzer-object-out-of-range"), userId, userId);
 
                 component.Target = null;
+                component.ClickLocation = null;
+                Dirty(uid, component);
             }
         }
         // Sunrise edit end
@@ -192,7 +195,7 @@ public sealed class GasAnalyzerSystem : EntitySystem
         {
             var clickLoc = GetCoordinates(netClickLoc);
 
-            if (!clickLoc.IsValid(EntityManager))
+            if (!clickLoc.IsValid(EntityManager) || !component.User.IsValid() || !_interactionSystem.InRangeUnobstructed(component.User, clickLoc, range: component.RadiusOfScan))
             {
                 if (component.Enabled && component.User.IsValid())
                     _popup.PopupEntity(Loc.GetString("gas-analyzer-object-out-of-range"), component.User, component.User);
@@ -281,6 +284,8 @@ public sealed class GasAnalyzerSystem : EntitySystem
             if (!validTarget)
             {
                 component.Target = null;
+                component.ClickLocation = null;
+                Dirty(uid, component);
             }
         }
 
