@@ -603,8 +603,8 @@
     - type: Clothing
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/aps.rsi
     - type: Gun
-      selectedMode: SemiAuto
-      shotsPerBurst: 2
+      selectedMode: Burst
+      shotsPerBurst: 3
       availableModes:
         - Burst
         - SemiAuto
@@ -616,7 +616,7 @@
       slots:
         gun_magazine:
           name: Magazine
-          startingItem: MagazinePistol40AP
+          startingItem:  CartridgePistol40SP
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
           priority: 2
@@ -626,7 +626,7 @@
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
           name: Chamber
-          startingItem: CartridgePistol40AP
+          startingItem: CartridgePistol40SP
           priority: 1
           whitelist:
             tags:
