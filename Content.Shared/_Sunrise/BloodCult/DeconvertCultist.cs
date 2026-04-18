@@ -49,6 +49,7 @@ public sealed partial class DeconvertCultistEntityEffectSystem : EntityEffectSys
         if (entityManager.HasComponent<CultMemberComponent>(uid))
             entityManager.RemoveComponent<CultMemberComponent>(uid);
         entityManager.System<TagSystem>().RemoveTag(uid, "Cultist");
+        entityManager.System<TagSystem>().AddTag(uid, "DeconvertedCultist");
     }
 }
 
