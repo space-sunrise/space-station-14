@@ -121,11 +121,10 @@ public sealed class GasAnalyzerSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("gas-analyzer-shutoff"), user.Value, user.Value);
 
         entity.Comp.Enabled = false;
-        entity.Comp.ClickLocation = null;
+        entity.Comp.ClickLocation = null; // Sunrise edit
         Dirty(entity);
         _appearance.SetData(entity.Owner, GasAnalyzerVisuals.Enabled, entity.Comp.Enabled);
         RemCompDeferred<ActiveGasAnalyzerComponent>(entity.Owner);
-        entity.Comp.ClickLocation = null; // Sunrise edit
     }
 
     /// <summary>
@@ -204,11 +203,16 @@ public sealed class GasAnalyzerSystem : EntitySystem
                 Dirty(uid, component);
                 return true;
             }
-            if (TryComp<MapGridComponent>(clickLoc.EntityId, out var grid) &&
-                TryComp<TransformComponent>(clickLoc.EntityId, out var gridXform))
+            if (TryComp<MapGridComponent>(clickLoc.EntityId, out var grid)
+                && TryComp<TransformComponent>(clickLoc.EntityId, out var gridXform))
             {
                 var tile = _map.CoordinatesToTile(clickLoc.EntityId, grid, clickLoc);
                 tileMixture = _atmo.GetTileMixture(clickLoc.EntityId, gridXform.MapUid, tile, true);
+            }
+            else
+            {
+                // Clicked coordinates are not on a grid — nothing to sample. Fallback to analyzer's tile.
+                tileMixture = _atmo.GetContainingMixture(uid, true);
             }
         }
         else
@@ -284,8 +288,10 @@ public sealed class GasAnalyzerSystem : EntitySystem
             if (!validTarget)
             {
                 component.Target = null;
+                // Sunrise edit start
                 component.ClickLocation = null;
                 Dirty(uid, component);
+                // Sunrise edit end
             }
         }
 
