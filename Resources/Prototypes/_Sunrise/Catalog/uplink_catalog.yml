@@ -222,6 +222,7 @@
 
 - type: listing
   id: UplinkMagazinePistol40FMJ
+  name: uplink-pistol-stechkin-magazine-name
   description: uplink-pistol-stechkin-magazine-desc
   icon: { sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/40.rsi, state: fmj}
   productEntity: MagazinePistol40FMJ
@@ -232,6 +233,7 @@
 
 - type: listing
   id: UplinkMagazinePistol40SP
+  name: uplink-pistol-stechkin-magazine-name
   description: uplink-pistol-stechkin-magazine-desc
   icon: { sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/40.rsi, state: sp }
   productEntity: MagazinePistol40SP
@@ -242,6 +244,7 @@
 
 - type: listing
   id: UplinkMagazinePistol40HP
+  name: uplink-pistol-stechkin-magazine-name
   description: uplink-pistol-stechkin-magazine-desc
   icon: { sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/40.rsi, state: red }
   productEntity: MagazinePistol40HP
@@ -251,7 +254,8 @@
   - UplinkAmmo
 
 - type: listing
-  id: UplinlkMagazinePistol40AP
+  id: UplinkMagazinePistol40AP
+  name: uplink-pistol-stechkin-magazine-name
   description: uplink-pistol-stechkin-magazine-desc
   icon: { sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/40.rsi, state: ap }
   productEntity: MagazinePistol40AP
