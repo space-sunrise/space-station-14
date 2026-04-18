@@ -1,6 +1,5 @@
-using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
+using System.Diagnostics.CodeAnalysis;
 using Content.Client._Sunrise;
 using Content.Client._Sunrise.Contributors;
 using Content.Client._Sunrise.Latejoin;
@@ -16,8 +15,8 @@ using Content.Shared.CCVar;
 using Content.Shared._Sunrise.Contributors;
 using Robust.Client;
 using Robust.Client.Console;
+using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
-using Robust.Client.Upload;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
@@ -27,6 +26,8 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Numerics;
 using System.Threading.Tasks;
+using Content.Client._Sunrise.Lobby.UI;
+using Content.Client._Sunrise.Options.UI.Tabs;
 using Content.Client.Changelog;
 using Content.Client.Parallax.Managers;
 using Content.Shared._Sunrise.Lobby;
@@ -34,13 +35,19 @@ using Content.Shared._Sunrise.ServersHub;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.GameTicking;
 using Robust.Shared.ContentPack;
+using Robust.Shared.Graphics.RSI;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Serialization.Markdown.Mapping;
+using Robust.Shared.Serialization.TypeSerializers.Implementations;
+using Robust.Shared.Random;
+using Robust.Shared.Input;
 using Content.Shared.GameTicking.Prototypes;
+using ClientRsi = Robust.Client.Graphics.RSI;
 
 namespace Content.Client.Lobby
 {
+    // TODO: Полностью скопировать в папку санрайза, это сбросить до состояния оффов или закоментировать
     public sealed class LobbyState : Robust.Client.State.State
     {
         [Dependency] private readonly IBaseClient _baseClient = default!;
@@ -61,20 +68,32 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly NetTexturesManager _netTexturesManager = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
+        [Dependency] private readonly IRobustRandom _random = default!;
 
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
         private ISawmill _sawmill = default!;
 
-        // Track loaded resources for unloading
-        private ResPath? _currentAnimationPath;
-        private ResPath? _currentArtPath;
+        private NetTexturesManager.NetTextureAnimationState? _currentAnimationState;
+        private ClientRsi.State? _currentLocalAnimationState;
+        private int _currentAnimationFrame;
+        private float _currentAnimationFrameTime;
+        private LobbyBackgroundType? _transientLobbyBackgroundType;
+        private string? _transientLobbyArtId;
+        private string? _transientLobbyAnimationId;
+        private string? _transientLobbyParallaxId;
+        private string? _lastLobbyBackgroundTypeSetting;
+        private string? _lastLobbyArtSetting;
+        private string? _lastLobbyAnimationSetting;
+        private string? _lastLobbyParallaxSetting;
 
         private const string LoadingRsiPath = "/Textures/_Sunrise/loading.rsi";
         private const string LoadingState = "loading";
 
-        protected override Type? LinkedScreenType { get; } = typeof(LobbyGui);
-        public LobbyGui? Lobby;
+        protected override Type? LinkedScreenType { get; } = typeof(SunriseLobbyGui);
+        public SunriseLobbyGui? Lobby;
+        private ChangelogManager.Changelog? _combinedLobbyChangelog;
+        private bool _lobbyChangelogLoaded;
 
         protected override void Startup()
         {
@@ -85,14 +104,15 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            Lobby = (LobbyGui) _userInterfaceManager.ActiveScreen;
+            Lobby = (SunriseLobbyGui) _userInterfaceManager.ActiveScreen;
 
-            var chatController = _userInterfaceManager.GetUIController<ChatUIController>();
+            // Sunrise edit - ФИКС ХОТКЕЕВ. НЕ ТРОГАТЬ ЕПТА
+            // var chatController = _userInterfaceManager.GetUIController<ChatUIController>();
+
             _gameTicker = _entityManager.System<ClientGameTicker>();
             _contentAudioSystem = _entityManager.System<ContentAudioSystem>();
             _contentAudioSystem.LobbySoundtrackChanged += UpdateLobbySoundtrackInfo;
-
-            chatController.SetMainChat(true);
+            Lobby.Chat.Main = true; // Sunrise edit - ФИКС ХОТКЕЕВ. НЕ ТРОГАТЬ ЕПТА
 
             _voteManager.SetPopupContainer(Lobby.VoteContainer);
             LayoutContainer.SetAnchorPreset(Lobby, LayoutContainer.LayoutPreset.Wide);
@@ -121,9 +141,8 @@ namespace Content.Client.Lobby
                 var changelog = _serialization.Read<ChangelogManager.Changelog>(node, notNullableOverride: true);
                 changelogs.Add(changelog);
             }
-            var combinedChangelog = _changelogManager.MergeChangelogs(changelogs);
-
-            Lobby.LocalChangelogBody.PopulateChangelog(combinedChangelog);
+            _combinedLobbyChangelog = _changelogManager.MergeChangelogs(changelogs);
+            _lobbyChangelogLoaded = false;
             Lobby.LobbyAnimation.DisplayRect.Stretch = TextureRect.StretchMode.KeepAspectCovered;
             Lobby.LobbyAnimation.DisplayRect.HorizontalExpand = true;
             Lobby.LobbyAnimation.DisplayRect.VerticalExpand = true;
@@ -134,17 +153,20 @@ namespace Content.Client.Lobby
             Lobby.LoadingAnimation.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(new ResPath(LoadingRsiPath), LoadingState));
             Lobby.LoadingAnimationContainer.Visible = false;
 
-
-            _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundType, OnLobbyBackgroundTypeChanged, true);
-            _cfg.OnValueChanged(SunriseCCVars.LobbyArt, OnLobbyArtChanged, true);
-            _cfg.OnValueChanged(SunriseCCVars.LobbyAnimation, OnLobbyAnimationChanged, true);
-            _cfg.OnValueChanged(SunriseCCVars.LobbyParallax, OnLobbyParallaxChanged, true);
+            // Sunrise edit start - avoid eager startup callbacks from reloading lobby assets several times
+            _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundType, OnLobbyBackgroundTypeChanged, false);
+            _cfg.OnValueChanged(SunriseCCVars.LobbyArt, OnLobbyArtChanged, false);
+            _cfg.OnValueChanged(SunriseCCVars.LobbyAnimation, OnLobbyAnimationChanged, false);
+            _cfg.OnValueChanged(SunriseCCVars.LobbyParallax, OnLobbyParallaxChanged, false);
+            _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundPreset, OnLobbyBackgroundPresetChanged, false);
+            // Sunrise edit end
 
             // Subscribe to resource loaded events
             _netTexturesManager.ResourceLoaded += OnNetworkResourceLoaded;
             // Sunrise-End
 
             Lobby.CharacterPreview.CharacterSetupButton.OnPressed += OnSetupPressed;
+            Lobby.ChangelogHider.OnKeyBindUp += OnChangelogHiderKeyBindUp;
             Lobby.ReadyButton.OnPressed += OnReadyPressed;
             Lobby.ReadyButton.OnToggled += OnReadyToggled;
 
@@ -160,37 +182,15 @@ namespace Content.Client.Lobby
             // Sunrise-Start
             // Explicitly restore lobby background after reconnection
             // This ensures the background is loaded even if CVar events were called before Lobby initialization
-            UpdateLobbyType();
-            var backgroundType = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
-            if (backgroundType == "Random" && _gameTicker.LobbyType != null)
-            {
-                backgroundType = _gameTicker.LobbyType;
-            }
-
-            if (!Enum.TryParse(backgroundType, out LobbyBackgroundType lobbyBackgroundType))
-            {
-                lobbyBackgroundType = LobbyBackgroundType.Parallax; // Default
-            }
-
-            switch (lobbyBackgroundType)
-            {
-                case LobbyBackgroundType.Parallax:
-                    UpdateLobbyParallax();
-                    break;
-                case LobbyBackgroundType.Art:
-                    UpdateLobbyArt();
-                    break;
-                case LobbyBackgroundType.Animation:
-                    UpdateLobbyAnimation();
-                    break;
-            }
+            ApplyConfiguredLobbyBackground();
             // Sunrise-End
         }
 
         protected override void Shutdown()
         {
-            var chatController = _userInterfaceManager.GetUIController<ChatUIController>();
-            chatController.SetMainChat(false);
+            if (Lobby != null)
+                Lobby.Chat.Main = false;
+
             _gameTicker.InfoBlobUpdated -= UpdateLobbyUi;
             _gameTicker.LobbyStatusUpdated -= LobbyStatusUpdated;
             _gameTicker.LobbyLateJoinStatusUpdated -= LobbyLateJoinStatusUpdated;
@@ -199,23 +199,14 @@ namespace Content.Client.Lobby
             _voteManager.ClearPopupContainer();
 
             Lobby!.CharacterPreview.CharacterSetupButton.OnPressed -= OnSetupPressed;
+            Lobby!.ChangelogHider.OnKeyBindUp -= OnChangelogHiderKeyBindUp;
             Lobby!.ReadyButton.OnPressed -= OnReadyPressed;
             Lobby!.ReadyButton.OnToggled -= OnReadyToggled;
 
-            // Unload lobby resources if CVar is enabled
-            if (_cfg.GetCVar(SunriseCCVars.LobbyUnloadResources))
-            {
-                if (_currentAnimationPath.HasValue)
-                {
-                    UnloadResource(_currentAnimationPath.Value);
-                    _currentAnimationPath = null;
-                }
-                if (_currentArtPath.HasValue)
-                {
-                    UnloadResource(_currentArtPath.Value);
-                    _currentArtPath = null;
-                }
-            }
+            ClearLobbyAnimationState();
+            ClearTransientLobbySelections();
+            _combinedLobbyChangelog = null;
+            _lobbyChangelogLoaded = false;
 
             Lobby = null;
 
@@ -224,6 +215,11 @@ namespace Content.Client.Lobby
 
             // Unsubscribe from resource loaded events
             _netTexturesManager.ResourceLoaded -= OnNetworkResourceLoaded;
+            _cfg.UnsubValueChanged(SunriseCCVars.LobbyBackgroundType, OnLobbyBackgroundTypeChanged);
+            _cfg.UnsubValueChanged(SunriseCCVars.LobbyArt, OnLobbyArtChanged);
+            _cfg.UnsubValueChanged(SunriseCCVars.LobbyAnimation, OnLobbyAnimationChanged);
+            _cfg.UnsubValueChanged(SunriseCCVars.LobbyParallax, OnLobbyParallaxChanged);
+            _cfg.UnsubValueChanged(SunriseCCVars.LobbyBackgroundPreset, OnLobbyBackgroundPresetChanged);
         }
 
         private void RefreshServersHubHeader(List<ServerHubEntry> servers)
@@ -238,7 +234,7 @@ namespace Content.Client.Lobby
             Lobby!.ContributorsHeaderLabel.Text = Loc.GetString("contributors-header-count", ("count", contributors.Count));
         }
 
-        public void SwitchState(LobbyGui.LobbyGuiState state)
+        public void SwitchState(SunriseLobbyGui.LobbyGuiState state)
         {
             // Yeah I hate this but LobbyState contains all the badness for now.
             Lobby?.SwitchState(state);
@@ -247,7 +243,24 @@ namespace Content.Client.Lobby
         private void OnSetupPressed(BaseButton.ButtonEventArgs args)
         {
             SetReady(false);
-            Lobby?.SwitchState(LobbyGui.LobbyGuiState.CharacterSetup);
+            Lobby?.SwitchState(SunriseLobbyGui.LobbyGuiState.CharacterSetup);
+        }
+
+        private void OnChangelogHiderKeyBindUp(GUIBoundKeyEventArgs args)
+        {
+            if (args.Function != EngineKeyFunctions.Use)
+                return;
+
+            EnsureLobbyChangelogPopulated();
+        }
+
+        private void EnsureLobbyChangelogPopulated()
+        {
+            if (_lobbyChangelogLoaded || _combinedLobbyChangelog == null || Lobby == null)
+                return;
+
+            Lobby.LocalChangelogBody.PopulateChangelog(_combinedLobbyChangelog);
+            _lobbyChangelogLoaded = true;
         }
 
         private void OnReadyPressed(BaseButton.ButtonEventArgs args)
@@ -267,6 +280,8 @@ namespace Content.Client.Lobby
 
         public override void FrameUpdate(FrameEventArgs e)
         {
+            UpdateLobbyAnimationFrame(e.DeltaSeconds);
+
             if (_gameTicker.IsGameStarted)
             {
                 var roundTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
@@ -309,33 +324,10 @@ namespace Content.Client.Lobby
 
         private void LobbyStatusUpdated()
         {
-            // Sunrise-Start
-            UpdateLobbyType();
-            // Only update the selected background type, not all of them
-            var backgroundType = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
-            if (backgroundType == "Random" && _gameTicker.LobbyType != null)
-            {
-                backgroundType = _gameTicker.LobbyType;
-            }
-
-            if (!Enum.TryParse(backgroundType, out LobbyBackgroundType lobbyBackgroundType))
-            {
-                lobbyBackgroundType = LobbyBackgroundType.Parallax; // Default
-            }
-
-            switch (lobbyBackgroundType)
-            {
-                case LobbyBackgroundType.Parallax:
-                    UpdateLobbyParallax();
-                    break;
-                case LobbyBackgroundType.Art:
-                    UpdateLobbyArt();
-                    break;
-                case LobbyBackgroundType.Animation:
-                    UpdateLobbyAnimation();
-                    break;
-            }
-            // Sunrise-End
+            // Sunrise added start - a new server status must reset transient lobby fallback choices
+            ClearTransientLobbySelections();
+            // Sunrise added end
+            ApplyConfiguredLobbyBackground();
             UpdateLobbyUi();
         }
 
@@ -424,21 +416,27 @@ namespace Content.Client.Lobby
 
         private void OnLobbyBackgroundTypeChanged(string lobbyBackgroundTypeString)
         {
-            if (lobbyBackgroundTypeString == "Random" && _gameTicker.LobbyType != null)
-                SetLobbyBackgroundType(_gameTicker.LobbyType);
-            else
+            if (_lastLobbyBackgroundTypeSetting != null &&
+                !string.Equals(_lastLobbyBackgroundTypeSetting, lobbyBackgroundTypeString, StringComparison.Ordinal))
             {
-                SetLobbyBackgroundType(lobbyBackgroundTypeString);
+                ClearTransientLobbyBackgroundTypeSelection();
             }
+
+            _lastLobbyBackgroundTypeSetting = lobbyBackgroundTypeString;
+            ApplyConfiguredLobbyBackground();
         }
 
         public void SetLobbyBackgroundType(string lobbyBackgroundString)
         {
-            if (!Enum.TryParse(lobbyBackgroundString, out LobbyBackgroundType lobbyBackgroundTypeString))
-            {
-                lobbyBackgroundTypeString = default;
-            }
+            var resolvedBackgroundType = ResolveLobbyBackgroundType(lobbyBackgroundString);
+            if (resolvedBackgroundType == null)
+                return;
 
+            SetLobbyBackgroundType(resolvedBackgroundType.Value);
+        }
+
+        private void SetLobbyBackgroundType(LobbyBackgroundType lobbyBackgroundTypeString)
+        {
             // Lobby may be null during reconnection or before initialization
             // This is normal, just return silently - the background will be set when Lobby is initialized
             if (Lobby == null)
@@ -450,6 +448,7 @@ namespace Content.Client.Lobby
             switch (lobbyBackgroundTypeString)
             {
                 case LobbyBackgroundType.Parallax:
+                    ClearLobbyAnimationState();
                     Lobby!.LobbyAnimation.Visible = false;
                     Lobby!.LobbyArt.Visible = false;
                     Lobby!.ShowParallax = true;
@@ -457,6 +456,7 @@ namespace Content.Client.Lobby
                     UpdateLobbyParallax();
                     break;
                 case LobbyBackgroundType.Art:
+                    ClearLobbyAnimationState();
                     Lobby!.LobbyAnimation.Visible = false;
                     Lobby!.LobbyArt.Visible = true;
                     Lobby!.ShowParallax = false;
@@ -475,340 +475,163 @@ namespace Content.Client.Lobby
 
         private void OnLobbyArtChanged(string lobbyArt)
         {
-            if (lobbyArt == "Random" && _gameTicker.LobbyArt != null)
-                SetLobbyArt(_gameTicker.LobbyArt);
-            else
+            if (_lastLobbyArtSetting != null &&
+                !string.Equals(_lastLobbyArtSetting, lobbyArt, StringComparison.Ordinal))
             {
-                SetLobbyArt(lobbyArt);
+                ClearTransientLobbyPrototypeSelection<LobbyArtPrototype>();
             }
+
+            _lastLobbyArtSetting = lobbyArt;
+            UpdateLobbyArt();
         }
 
         private void OnLobbyAnimationChanged(string lobbyAnimation)
         {
-            if (lobbyAnimation == "Random" && _gameTicker.LobbyAnimation != null)
-                SetLobbyAnimation(_gameTicker.LobbyAnimation);
-            else
+            if (_lastLobbyAnimationSetting != null &&
+                !string.Equals(_lastLobbyAnimationSetting, lobbyAnimation, StringComparison.Ordinal))
             {
-                SetLobbyAnimation(lobbyAnimation);
+                ClearTransientLobbyPrototypeSelection<LobbyAnimationPrototype>();
             }
+
+            _lastLobbyAnimationSetting = lobbyAnimation;
+            UpdateLobbyAnimation();
         }
 
         private void OnLobbyParallaxChanged(string lobbyParallax)
         {
-            if (lobbyParallax == "Random" && _gameTicker.LobbyParallax != null)
-                SetLobbyParallax(_gameTicker.LobbyParallax);
-            else
+            if (_lastLobbyParallaxSetting != null &&
+                !string.Equals(_lastLobbyParallaxSetting, lobbyParallax, StringComparison.Ordinal))
             {
-                SetLobbyParallax(lobbyParallax);
+                ClearTransientLobbyPrototypeSelection<LobbyParallaxPrototype>();
             }
+
+            _lastLobbyParallaxSetting = lobbyParallax;
+            UpdateLobbyParallax();
+        }
+
+        private void OnLobbyBackgroundPresetChanged(string presetId)
+        {
+            ClearTransientLobbySelections();
+            ApplyConfiguredLobbyBackground();
         }
 
         private void SetLobbyAnimation(string lobbyAnimation)
         {
-            // Check if animation background type is currently selected
-            var backgroundType = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
-            if (backgroundType == "Random" && _gameTicker.LobbyType != null)
+            if (ResolveLobbyBackgroundType(GetConfiguredLobbyBackgroundTypeSetting()) !=
+                LobbyBackgroundType.Animation)
             {
-                backgroundType = _gameTicker.LobbyType;
-            }
-
-            if (!Enum.TryParse(backgroundType, out LobbyBackgroundType lobbyBackgroundType) ||
-                lobbyBackgroundType != LobbyBackgroundType.Animation)
-            {
-                // Animation is not the selected background type, don't load it
+                ClearLobbyAnimationState();
                 return;
             }
 
             if (!_protoMan.TryIndex<LobbyAnimationPrototype>(lobbyAnimation, out var lobbyAnimationPrototype))
                 return;
 
-            // Lobby may be null during reconnection or before initialization
-            // This is normal, just return silently - the animation will be set when Lobby is initialized
             if (Lobby == null)
             {
                 _sawmill.Debug("SetLobbyAnimation called before Lobby initialization, skipping");
                 return;
             }
 
-            // Hide old animation and show loading animation immediately (before any resource checks)
             Lobby!.LobbyAnimation.Visible = false;
             ShowLoadingAnimation();
-
-            // Unload previous animation if CVar is enabled
-            if (_cfg.GetCVar(SunriseCCVars.LobbyUnloadResources) && _currentAnimationPath.HasValue)
-            {
-                UnloadResource(_currentAnimationPath.Value);
-            }
+            ClearLobbyAnimationState();
 
             var rsiPath = lobbyAnimationPrototype.Animation;
-
-            // Ensure the path ends with .rsi for RSI resources
             if (!rsiPath.EndsWith(".rsi") && !rsiPath.EndsWith(".rsi/"))
             {
                 _sawmill.Warning($"Invalid RSI path format: {rsiPath}. Expected path ending with .rsi");
+                HideLoadingAnimation();
                 return;
             }
 
-            // Check if resource is available, request if not
-            var isAvailable = _netTexturesManager.EnsureResource(rsiPath);
-
-            ResPath targetPath;
-            if (isAvailable)
+            if (UsesNetworkLobbyResource(rsiPath))
             {
-                // Resource is available, use uploaded path
-                targetPath = _netTexturesManager.GetUploadedPath(rsiPath);
-            }
-            else
-            {
-                // Resource is being requested, try to use uploaded path first
-                var uploadedPath = _netTexturesManager.GetUploadedPath(rsiPath);
-                var metaPath = (uploadedPath / "meta.json").ToRootedPath();
-
-                // Check if uploaded resource exists
-                if (_resource.ContentFileExists(metaPath))
+                // Sunrise added start - do not request lobby animations over NetTextures until a fresh lobby status arrives
+                if (!_gameTicker.HasLobbyStatus)
                 {
-                    targetPath = uploadedPath;
-                }
-                else
-                {
-                    // Resource not available yet, don't try to load it (will cause error)
-                    // The resource will be loaded when it arrives via NetworkResourceUploadMessage
-                    return;
-                }
-            }
-
-            // Try to set the animation, handle errors gracefully
-            try
-            {
-                // Check if meta.json exists (basic check)
-                var metaPath = (targetPath / "meta.json").ToRootedPath();
-                if (!_resource.ContentFileExists(metaPath))
-                {
-                    _sawmill.Debug($"RSI meta.json doesn't exist yet: {metaPath}, waiting for network load");
-                    return;
-                }
-
-                var requiredState = lobbyAnimationPrototype.State;
-
-                // Before attempting to load, verify all required PNG files exist in VFS
-                // This prevents FileNotFoundException when RSI tries to load animation.png
-                try
-                {
-                    if (!_resource.TryContentFileRead(metaPath, out var metaStream))
-                    {
-                        _sawmill.Debug($"Cannot read meta.json: {metaPath}, waiting for network load");
-                        return;
-                    }
-
-                    using (metaStream)
-                    {
-                        using var reader = new StreamReader(metaStream);
-                        var jsonText = reader.ReadToEnd();
-
-                        // Extract state names from JSON to verify PNG files exist
-                        var namePattern = new Regex(@"""name""\s*:\s*""([^""]+)""", RegexOptions.Compiled);
-                        var matches = namePattern.Matches(jsonText);
-
-                        foreach (Match match in matches)
-                        {
-                            if (match.Groups.Count < 2)
-                                continue;
-
-                            var stateName = match.Groups[1].Value;
-                            if (string.IsNullOrEmpty(stateName))
-                                continue;
-
-                            // Verify PNG file exists in VFS before attempting to load RSI
-                            var pngPath = (targetPath / $"{stateName}.png").ToRootedPath();
-                            if (!_resource.ContentFileExists(pngPath))
-                            {
-                                _sawmill.Debug($"RSI PNG file not yet available in VFS: {pngPath}, waiting for network load");
-                                return;
-                            }
-                        }
-                    }
-                }
-                catch (Exception checkEx)
-                {
-                    _sawmill.Debug($"Error verifying RSI files before load: {checkEx.Message}, waiting for network load");
-                    return;
-                }
-
-                // Try to get the resource - this will load it if not cached
-                // We don't check for individual files, just try to load and see if it works
-                RSIResource? rsiResource = null;
-                try
-                {
-                    // First try to get from cache
-                    bool fromCache = _resourceCache.TryGetResource<RSIResource>(targetPath, out rsiResource);
-
-                    if (fromCache && rsiResource != null)
-                    {
-                        _sawmill.Debug($"RSI resource found in cache: {targetPath}");
-
-                        // Verify that cached resource is still valid by checking if the state exists
-                        // This is important after reconnection when files in VFS may have been cleared
-                        if (!rsiResource.RSI.TryGetState(requiredState, out _))
-                        {
-                            _sawmill.Debug($"Cached RSI resource is invalid (state '{requiredState}' not found), attempting to reload: {targetPath}");
-                            // Resource in cache is invalid, try to reload it
-                            fromCache = false;
-                            rsiResource = null;
-                        }
-                    }
-
-                    if (!fromCache)
-                    {
-                        _sawmill.Debug($"RSI resource not in cache or invalid, attempting to load: {targetPath}");
-                        // Use useFallback: false to detect if resource actually loaded or fallback was used
-                        // This prevents us from thinking the resource loaded when it actually failed
-                        rsiResource = _resourceCache.GetResource<RSIResource>(targetPath, useFallback: false);
-                        _sawmill.Debug($"Successfully loaded RSI resource: {targetPath}");
-                    }
-                }
-                catch (FileNotFoundException)
-                {
-                    // Resource file doesn't exist, wait for it to be loaded
-                    // This can happen if meta.json exists but PNG files are still loading
-                    _sawmill.Debug($"RSI resource not found yet: {targetPath}, waiting for network load");
-                    return;
-                }
-                catch (Exception loadEx)
-                {
-                    // If loading failed, wait for resource to be fully loaded
-                    // This can happen if files are partially loaded
-                    _sawmill.Debug($"Failed to load lobby animation RSI: {targetPath}. Error: {loadEx.Message}. Waiting for complete resource.");
-                    return;
-                }
-
-                // Final verification that the resource actually loaded correctly by checking if the state exists
-                if (rsiResource == null || !rsiResource.RSI.TryGetState(requiredState, out _))
-                {
-                    _sawmill.Debug($"RSI state '{requiredState}' not found in loaded resource: {targetPath}, waiting for complete resource");
-                    return;
-                }
-
-                if (rsiResource != null)
-                {
-                    Lobby!.LobbyAnimation.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(targetPath, lobbyAnimationPrototype.State));
-                    Lobby!.LobbyAnimation.DisplayRect.TextureScale = lobbyAnimationPrototype.Scale;
-                    Lobby!.LobbyAnimation.Visible = true;
                     HideLoadingAnimation();
-                    _currentAnimationPath = targetPath;
+                    return;
                 }
-                else
+                // Sunrise added end
+
+                if (!_netTexturesManager.EnsureResource(rsiPath))
+                    return;
+
+                if (!_netTexturesManager.TryGetAnimationState(rsiPath, lobbyAnimationPrototype.State, out var state) || state == null)
                 {
-                    _sawmill.Warning($"Failed to load lobby animation RSI: {targetPath}. Resource not found in cache.");
-                    ShowLoadingAnimation();
+                    _sawmill.Debug($"Lobby animation state '{lobbyAnimationPrototype.State}' is not ready yet for {rsiPath}");
+                    return;
                 }
+
+                ApplyLobbyAnimationState(state, lobbyAnimationPrototype.Scale);
+                return;
             }
-            catch (Exception ex)
+
+            if (!TryGetLocalLobbyAnimationState(rsiPath, lobbyAnimationPrototype.State, out var localState))
             {
-                _sawmill.Warning($"Exception while setting lobby animation {lobbyAnimation}: {ex.Message}");
+                HideLoadingAnimation();
+                return;
             }
+
+            ApplyLobbyAnimationState(localState, lobbyAnimationPrototype.Scale);
         }
 
         private void SetLobbyArt(string lobbyArt)
         {
-            // Check if art background type is currently selected
-            var backgroundType = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
-            if (backgroundType == "Random" && _gameTicker.LobbyType != null)
+            if (ResolveLobbyBackgroundType(GetConfiguredLobbyBackgroundTypeSetting()) !=
+                LobbyBackgroundType.Art)
             {
-                backgroundType = _gameTicker.LobbyType;
-            }
-
-            if (!Enum.TryParse(backgroundType, out LobbyBackgroundType lobbyBackgroundType) ||
-                lobbyBackgroundType != LobbyBackgroundType.Art)
-            {
-                // Art is not the selected background type, don't load it
                 return;
             }
 
             if (!_protoMan.TryIndex<LobbyArtPrototype>(lobbyArt, out var lobbyArtPrototype))
                 return;
 
-            // Lobby may be null during reconnection or before initialization
-            // This is normal, just return silently - the art will be set when Lobby is initialized
             if (Lobby == null)
             {
                 _sawmill.Debug("SetLobbyArt called before Lobby initialization, skipping");
                 return;
             }
 
-            // Hide old art and show loading animation immediately
             Lobby!.LobbyArt.Visible = false;
             ShowLoadingAnimation();
 
-            // Unload previous art if CVar is enabled
-            if (_cfg.GetCVar(SunriseCCVars.LobbyUnloadResources) && _currentArtPath.HasValue)
-            {
-                UnloadResource(_currentArtPath.Value);
-            }
-
             var imagePath = lobbyArtPrototype.Background;
 
-            // Check if resource is available, request if not
-            var isAvailable = _netTexturesManager.EnsureResource(imagePath);
-
-            ResPath targetPath;
-            if (isAvailable)
+            if (UsesNetworkLobbyResource(imagePath))
             {
-                // Resource is available, use uploaded path
-                targetPath = _netTexturesManager.GetUploadedPath(imagePath);
-            }
-            else
-            {
-                // Resource is being requested, try to use uploaded path first
-                var uploadedPath = _netTexturesManager.GetUploadedPath(imagePath);
+                if (!_netTexturesManager.EnsureResource(imagePath))
+                    return;
 
-                // Check if uploaded resource exists
-                if (_resource.ContentFileExists(uploadedPath))
+                if (!_netTexturesManager.TryGetTexture(imagePath, out var texture) || texture == null)
                 {
-                    targetPath = uploadedPath;
-                }
-                else
-                {
-                    // Resource not available yet, show loading animation
-                    // The resource will be loaded when it arrives via NetworkResourceUploadMessage
+                    _sawmill.Debug($"Lobby art texture is not ready yet for {imagePath}");
                     return;
                 }
+
+                Lobby!.LobbyArt.Texture = texture;
+                Lobby!.LobbyArt.Visible = true;
+                HideLoadingAnimation();
+                return;
             }
 
-            // Try to set the art, handle errors gracefully
-            try
+            if (!TryGetLocalLobbyTexture(imagePath, out var localTexture))
             {
-                if (_resourceCache.TryGetResource<TextureResource>(targetPath, out var textureResource))
-                {
-                    Lobby!.LobbyArt.Texture = textureResource.Texture;
-                    Lobby!.LobbyArt.Visible = true;
-                    HideLoadingAnimation();
-                    _currentArtPath = targetPath;
-                }
-                else
-                {
-                    _sawmill.Warning($"Failed to load lobby art texture: {targetPath}");
-                    // Keep loading animation visible
-                }
+                HideLoadingAnimation();
+                return;
             }
-            catch (Exception ex)
-            {
-                _sawmill.Warning($"Exception while setting lobby art {lobbyArt}: {ex.Message}");
-            }
+
+            Lobby!.LobbyArt.Texture = localTexture;
+            Lobby!.LobbyArt.Visible = true;
+            HideLoadingAnimation();
         }
 
         private void SetLobbyParallax(string lobbyParallax)
         {
-            // Check if parallax background type is currently selected
-            var backgroundType = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
-            if (backgroundType == "Random" && _gameTicker.LobbyType != null)
+            if (ResolveLobbyBackgroundType(GetConfiguredLobbyBackgroundTypeSetting()) !=
+                LobbyBackgroundType.Parallax)
             {
-                backgroundType = _gameTicker.LobbyType;
-            }
-
-            if (!Enum.TryParse(backgroundType, out LobbyBackgroundType lobbyBackgroundType) ||
-                lobbyBackgroundType != LobbyBackgroundType.Parallax)
-            {
-                // Parallax is not the selected background type, don't load it
                 return;
             }
 
@@ -852,66 +675,46 @@ namespace Content.Client.Lobby
             Lobby!.LobbyParallax = lobbyParallaxPrototype.Parallax;
         }
 
-        private void UpdateLobbyType()
+        private void ApplyConfiguredLobbyBackground()
         {
-            if (_cfg.GetCVar(SunriseCCVars.LobbyBackgroundType) != "Random")
-                return;
-
-            SetLobbyBackgroundType(_gameTicker.LobbyType!);
+            var configuredType = GetConfiguredLobbyBackgroundTypeSetting();
+            SetLobbyBackgroundType(configuredType);
         }
 
         private void UpdateLobbyAnimation()
         {
             var animationSetting = _cfg.GetCVar(SunriseCCVars.LobbyAnimation);
-            if (animationSetting == "Random")
-            {
-                // For Random, use the game ticker's selected animation
-                if (_gameTicker.LobbyAnimation != null)
-                {
-                    SetLobbyAnimation(_gameTicker.LobbyAnimation);
-                }
-            }
-            else
-            {
-                // For specific animation, use the setting
-                SetLobbyAnimation(animationSetting);
-            }
+            var resolvedAnimation = ResolveLobbyPrototypeId<LobbyAnimationPrototype>(
+                animationSetting,
+                _gameTicker.LobbyAnimation,
+                "animation");
+
+            if (resolvedAnimation != null)
+                SetLobbyAnimation(resolvedAnimation);
         }
 
         private void UpdateLobbyArt()
         {
             var artSetting = _cfg.GetCVar(SunriseCCVars.LobbyArt);
-            if (artSetting == "Random")
-            {
-                // For Random, use the game ticker's selected art
-                if (_gameTicker.LobbyArt != null)
-                {
-                    SetLobbyArt(_gameTicker.LobbyArt);
-                }
-            }
-            else
-            {
-                // For specific art, use the setting
-                SetLobbyArt(artSetting);
-            }
+            var resolvedArt = ResolveLobbyPrototypeId<LobbyArtPrototype>(
+                artSetting,
+                _gameTicker.LobbyArt,
+                "art");
+
+            if (resolvedArt != null)
+                SetLobbyArt(resolvedArt);
         }
 
         private void UpdateLobbyParallax()
         {
             var parallaxSetting = _cfg.GetCVar(SunriseCCVars.LobbyParallax);
-            if (parallaxSetting == "Random")
-            {
-                // For Random, use the game ticker's selected parallax
-                if (_gameTicker.LobbyParallax != null)
-                {
-                    SetLobbyParallax(_gameTicker.LobbyParallax);
-                }
-            }
-            else
-            {
-                // For specific parallax, use the setting
-                SetLobbyParallax(parallaxSetting);
-            }
+            var resolvedParallax = ResolveLobbyPrototypeId<LobbyParallaxPrototype>(
+                parallaxSetting,
+                _gameTicker.LobbyParallax,
+                "parallax");
+
+            if (resolvedParallax != null)
+                SetLobbyParallax(resolvedParallax);
         }
 
         private void OnNetworkResourceLoaded(string resourcePath)
@@ -924,67 +727,444 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            // Only update the resource that matches the current background type
-            var backgroundType = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
-            if (backgroundType == "Random" && _gameTicker.LobbyType != null)
+            ApplyConfiguredLobbyBackground();
+        }
+
+        private string GetConfiguredLobbyBackgroundTypeSetting()
+        {
+            return _lastLobbyBackgroundTypeSetting ?? _cfg.GetCVar(SunriseCCVars.LobbyBackgroundType);
+        }
+
+        private LobbyBackgroundType? ResolveLobbyBackgroundType(string configuredType)
+        {
+            var allowedTypes = GetAllowedLobbyBackgroundTypes();
+
+            if (configuredType == ExtraTab.LobbyBackgroundRandom)
             {
-                backgroundType = _gameTicker.LobbyType;
+                if (_transientLobbyBackgroundType is { } cachedType &&
+                    allowedTypes.Contains(cachedType))
+                {
+                    return cachedType;
+                }
+
+                if (!_gameTicker.HasLobbyStatus)
+                    return null;
+
+                var resolvedRandomType = ResolveServerOrRandomLobbyBackgroundType(allowedTypes);
+                _transientLobbyBackgroundType = resolvedRandomType;
+                return resolvedRandomType;
             }
 
-            if (!Enum.TryParse(backgroundType, out LobbyBackgroundType lobbyBackgroundType))
+            if (Enum.TryParse<LobbyBackgroundType>(configuredType, true, out var resolvedType) &&
+                allowedTypes.Contains(resolvedType))
             {
-                lobbyBackgroundType = LobbyBackgroundType.Parallax; // Default
+                if (!_gameTicker.HasLobbyStatus &&
+                    !CanResolveLobbyBackgroundTypeWithoutStatus(resolvedType))
+                {
+                    return null;
+                }
+
+                return resolvedType;
             }
 
-            // Only load the resource for the currently selected background type
-            switch (lobbyBackgroundType)
+            if (!_gameTicker.HasLobbyStatus)
+                return null;
+
+            var fallbackType = ResolveServerOrRandomLobbyBackgroundType(allowedTypes);
+            _transientLobbyBackgroundType = fallbackType;
+            _sawmill.Debug($"Saved lobby background type '{configuredType}' is invalid or unavailable for the current preset. Using transient fallback '{fallbackType}' for this session.");
+            return fallbackType;
+        }
+
+        private bool CanResolveLobbyBackgroundTypeWithoutStatus(LobbyBackgroundType backgroundType)
+        {
+            return backgroundType switch
             {
-                case LobbyBackgroundType.Animation:
-                    var currentAnimation = _cfg.GetCVar(SunriseCCVars.LobbyAnimation);
-                    if (currentAnimation != null)
-                    {
-                        if (currentAnimation == "Random")
-                        {
-                            // For Random, use the game ticker's selected animation
-                            if (_gameTicker.LobbyAnimation != null)
-                            {
-                                SetLobbyAnimation(_gameTicker.LobbyAnimation);
-                            }
-                        }
-                        else
-                        {
-                            // For specific animation, always try to set it
-                            SetLobbyAnimation(currentAnimation);
-                        }
-                    }
-                    break;
+                LobbyBackgroundType.Animation => ResolveLobbyPrototypeId<LobbyAnimationPrototype>(
+                    _cfg.GetCVar(SunriseCCVars.LobbyAnimation),
+                    _gameTicker.LobbyAnimation,
+                    "animation") != null,
+                LobbyBackgroundType.Parallax => ResolveLobbyPrototypeId<LobbyParallaxPrototype>(
+                    _cfg.GetCVar(SunriseCCVars.LobbyParallax),
+                    _gameTicker.LobbyParallax,
+                    "parallax") != null,
+                LobbyBackgroundType.Art => ResolveLobbyPrototypeId<LobbyArtPrototype>(
+                    _cfg.GetCVar(SunriseCCVars.LobbyArt),
+                    _gameTicker.LobbyArt,
+                    "art") != null,
+                _ => false
+            };
+        }
 
-                case LobbyBackgroundType.Art:
-                    var currentArt = _cfg.GetCVar(SunriseCCVars.LobbyArt);
-                    if (currentArt != null)
-                    {
-                        var artToSet = currentArt == "Random" ? _gameTicker.LobbyArt : currentArt;
-                        if (artToSet != null)
-                        {
-                            SetLobbyArt(artToSet);
-                        }
-                    }
-                    break;
+        private LobbyBackgroundType ResolveServerOrRandomLobbyBackgroundType(IReadOnlyList<LobbyBackgroundType>? allowedTypes = null)
+        {
+            allowedTypes ??= GetAllowedLobbyBackgroundTypes();
 
-                case LobbyBackgroundType.Parallax:
-                    // Parallax doesn't need network resources, it uses local resources
-                    // But we can update it if needed
-                    var currentParallax = _cfg.GetCVar(SunriseCCVars.LobbyParallax);
-                    if (currentParallax != null)
-                    {
-                        var parallaxToSet = currentParallax == "Random" ? _gameTicker.LobbyParallax : currentParallax;
-                        if (parallaxToSet != null)
-                        {
-                            SetLobbyParallax(parallaxToSet);
-                        }
-                    }
+            if (Enum.TryParse<LobbyBackgroundType>(_gameTicker.LobbyType, true, out var serverType) &&
+                allowedTypes.Contains(serverType))
+            {
+                return serverType;
+            }
+
+            if (allowedTypes.Count == 0)
+                return LobbyBackgroundType.Parallax;
+
+            return _random.Pick(allowedTypes);
+        }
+
+        private string? ResolveLobbyPrototypeId<TPrototype>(
+            string configuredId,
+            string? serverFallbackId,
+            string prototypeKind)
+            where TPrototype : class, IPrototype
+        {
+            var allowedIds = GetAllowedLobbyPrototypeIds<TPrototype>();
+
+            if (configuredId == ExtraTab.LobbyBackgroundRandom)
+            {
+                if (TryGetTransientLobbyPrototypeSelection<TPrototype>(allowedIds, out var cachedId))
+                    return cachedId;
+
+                if (!_gameTicker.HasLobbyStatus)
+                    return null;
+
+                var resolvedRandomId = ResolveServerOrRandomLobbyPrototypeId<TPrototype>(serverFallbackId, allowedIds);
+                CacheTransientLobbyPrototypeSelection<TPrototype>(resolvedRandomId);
+                return resolvedRandomId;
+            }
+
+            if (TryResolveLobbyPrototypeId(configuredId, allowedIds, out var resolvedConfiguredId))
+                return resolvedConfiguredId;
+
+            if (!_gameTicker.HasLobbyStatus)
+                return null;
+
+            var fallbackId = ResolveServerOrRandomLobbyPrototypeId<TPrototype>(serverFallbackId, allowedIds);
+            if (fallbackId != null)
+            {
+                CacheTransientLobbyPrototypeSelection<TPrototype>(fallbackId);
+                _sawmill.Debug($"Saved lobby {prototypeKind} '{configuredId}' is invalid or unavailable for the current preset. Using transient fallback '{fallbackId}' for this session.");
+                return fallbackId;
+            }
+
+            _sawmill.Debug($"Saved lobby {prototypeKind} '{configuredId}' is invalid or unavailable for the current preset and no fallback {prototypeKind} is available.");
+            return null;
+        }
+
+        // Sunrise added start - transient lobby fallback cache for random selections and invalid saved ids
+        private void ClearTransientLobbySelections()
+        {
+            _transientLobbyBackgroundType = null;
+            _transientLobbyArtId = null;
+            _transientLobbyAnimationId = null;
+            _transientLobbyParallaxId = null;
+            _lastLobbyBackgroundTypeSetting = null;
+            _lastLobbyArtSetting = null;
+            _lastLobbyAnimationSetting = null;
+            _lastLobbyParallaxSetting = null;
+        }
+
+        private void ClearTransientLobbyBackgroundTypeSelection()
+        {
+            _transientLobbyBackgroundType = null;
+        }
+
+        private void ClearTransientLobbyPrototypeSelection<TPrototype>()
+            where TPrototype : class, IPrototype
+        {
+            switch (typeof(TPrototype))
+            {
+                case var type when type == typeof(LobbyArtPrototype):
+                    _transientLobbyArtId = null;
+                    break;
+                case var type when type == typeof(LobbyAnimationPrototype):
+                    _transientLobbyAnimationId = null;
+                    break;
+                case var type when type == typeof(LobbyParallaxPrototype):
+                    _transientLobbyParallaxId = null;
                     break;
             }
+        }
+
+        private bool TryGetTransientLobbyPrototypeSelection<TPrototype>(
+            HashSet<string> allowedIds,
+            [NotNullWhen(true)] out string? resolvedId)
+            where TPrototype : class, IPrototype
+        {
+            var cachedId = typeof(TPrototype) switch
+            {
+                var type when type == typeof(LobbyArtPrototype) => _transientLobbyArtId,
+                var type when type == typeof(LobbyAnimationPrototype) => _transientLobbyAnimationId,
+                var type when type == typeof(LobbyParallaxPrototype) => _transientLobbyParallaxId,
+                _ => null
+            };
+
+            if (string.IsNullOrWhiteSpace(cachedId) || !allowedIds.Contains(cachedId))
+            {
+                resolvedId = null;
+                return false;
+            }
+
+            resolvedId = cachedId;
+            return true;
+        }
+
+        private void CacheTransientLobbyPrototypeSelection<TPrototype>(string? resolvedId)
+            where TPrototype : class, IPrototype
+        {
+            switch (typeof(TPrototype))
+            {
+                case var type when type == typeof(LobbyArtPrototype):
+                    _transientLobbyArtId = resolvedId;
+                    break;
+                case var type when type == typeof(LobbyAnimationPrototype):
+                    _transientLobbyAnimationId = resolvedId;
+                    break;
+                case var type when type == typeof(LobbyParallaxPrototype):
+                    _transientLobbyParallaxId = resolvedId;
+                    break;
+            }
+        }
+        // Sunrise added end
+
+        private string? ResolveServerOrRandomLobbyPrototypeId<TPrototype>(string? serverFallbackId, HashSet<string> allowedIds)
+            where TPrototype : class, IPrototype
+        {
+            if (TryResolveLobbyPrototypeId(serverFallbackId, allowedIds, out var resolvedServerFallback))
+                return resolvedServerFallback;
+
+            if (allowedIds.Count == 0)
+                return null;
+
+            return _random.Pick(allowedIds.ToArray());
+        }
+
+        private bool TryResolveLobbyPrototypeId(
+            string? candidateId,
+            HashSet<string> allowedIds,
+            [NotNullWhen(true)] out string? resolvedId)
+        {
+            resolvedId = null;
+
+            if (string.IsNullOrWhiteSpace(candidateId) || candidateId == ExtraTab.LobbyBackgroundRandom)
+                return false;
+
+            if (!allowedIds.Contains(candidateId))
+                return false;
+
+            resolvedId = candidateId;
+            return true;
+        }
+
+        private IReadOnlyList<LobbyBackgroundType> GetAllowedLobbyBackgroundTypes()
+        {
+            var availableTypes = new List<LobbyBackgroundType>();
+
+            if (GetAllowedLobbyAnimationIds().Count > 0)
+                availableTypes.Add(LobbyBackgroundType.Animation);
+
+            if (GetAllowedLobbyParallaxIds().Count > 0)
+                availableTypes.Add(LobbyBackgroundType.Parallax);
+
+            if (GetAllowedLobbyArtIds().Count > 0)
+                availableTypes.Add(LobbyBackgroundType.Art);
+
+            if (availableTypes.Count > 0)
+                return availableTypes;
+
+            var fallbackTypes = new List<LobbyBackgroundType>();
+
+            if (_protoMan.EnumeratePrototypes<LobbyAnimationPrototype>().Any())
+                fallbackTypes.Add(LobbyBackgroundType.Animation);
+
+            if (_protoMan.EnumeratePrototypes<LobbyParallaxPrototype>().Any())
+                fallbackTypes.Add(LobbyBackgroundType.Parallax);
+
+            if (_protoMan.EnumeratePrototypes<LobbyArtPrototype>().Any())
+                fallbackTypes.Add(LobbyBackgroundType.Art);
+
+            return fallbackTypes;
+        }
+
+        private HashSet<string> GetAllowedLobbyPrototypeIds<TPrototype>()
+            where TPrototype : class, IPrototype
+        {
+            return typeof(TPrototype) switch
+            {
+                var type when type == typeof(LobbyArtPrototype) => GetAllowedLobbyArtIds(),
+                var type when type == typeof(LobbyAnimationPrototype) => GetAllowedLobbyAnimationIds(),
+                var type when type == typeof(LobbyParallaxPrototype) => GetAllowedLobbyParallaxIds(),
+                _ => _protoMan.EnumeratePrototypes<TPrototype>().Select(x => x.ID).ToHashSet()
+            };
+        }
+
+        private HashSet<string> GetAllowedLobbyArtIds()
+        {
+            var preset = GetCurrentLobbyBackgroundPreset();
+            return _protoMan.EnumeratePrototypes<LobbyArtPrototype>()
+                .Where(x => preset == null || preset.AllArtsAllowed || preset.WhitelistArts.Contains(x.ID))
+                .Select(x => x.ID)
+                .ToHashSet();
+        }
+
+        private HashSet<string> GetAllowedLobbyAnimationIds()
+        {
+            var preset = GetCurrentLobbyBackgroundPreset();
+            return _protoMan.EnumeratePrototypes<LobbyAnimationPrototype>()
+                .Where(x => preset == null || preset.AllAnimationsAllowed || preset.WhitelistAnimations.Contains(x.ID))
+                .Select(x => x.ID)
+                .ToHashSet();
+        }
+
+        private HashSet<string> GetAllowedLobbyParallaxIds()
+        {
+            var preset = GetCurrentLobbyBackgroundPreset();
+            return _protoMan.EnumeratePrototypes<LobbyParallaxPrototype>()
+                .Where(x => preset == null || preset.AllParallaxesAllowed || preset.WhitelistParallaxes.Contains(x.ID))
+                .Select(x => x.ID)
+                .ToHashSet();
+        }
+
+        private LobbyBackgroundPresetPrototype? GetCurrentLobbyBackgroundPreset()
+        {
+            var presetId = _cfg.GetCVar(SunriseCCVars.LobbyBackgroundPreset);
+            if (_protoMan.TryIndex<LobbyBackgroundPresetPrototype>(presetId, out var preset))
+                return preset;
+
+            return null;
+        }
+
+        private void ApplyLobbyAnimationState(NetTexturesManager.NetTextureAnimationState state, Vector2 scale)
+        {
+            if (Lobby == null)
+                return;
+
+            _currentAnimationState = state;
+            _currentLocalAnimationState = null;
+            _currentAnimationFrame = 0;
+            _currentAnimationFrameTime = state.GetDelay(0);
+
+            Lobby.LobbyAnimation.DisplayRect.Texture = state.Frame0;
+            Lobby.LobbyAnimation.DisplayRect.TextureScale = scale;
+            Lobby.LobbyAnimation.Visible = true;
+            HideLoadingAnimation();
+        }
+
+        private void ApplyLobbyAnimationState(ClientRsi.State state, Vector2 scale)
+        {
+            if (Lobby == null)
+                return;
+
+            _currentAnimationState = null;
+            _currentLocalAnimationState = state;
+            _currentAnimationFrame = 0;
+            _currentAnimationFrameTime = state.GetDelay(0);
+
+            Lobby.LobbyAnimation.DisplayRect.Texture = state.Frame0;
+            Lobby.LobbyAnimation.DisplayRect.TextureScale = scale;
+            Lobby.LobbyAnimation.Visible = true;
+            HideLoadingAnimation();
+        }
+
+        private void UpdateLobbyAnimationFrame(float frameTime)
+        {
+            if (Lobby == null)
+                return;
+
+            var oldFrame = _currentAnimationFrame;
+            if (_currentAnimationState != null)
+            {
+                if (!_currentAnimationState.IsAnimated)
+                    return;
+
+                _currentAnimationFrameTime -= frameTime;
+                while (_currentAnimationFrameTime <= 0f)
+                {
+                    _currentAnimationFrame = (_currentAnimationFrame + 1) % _currentAnimationState.FrameCount;
+                    _currentAnimationFrameTime += _currentAnimationState.GetDelay(_currentAnimationFrame);
+                }
+
+                if (_currentAnimationFrame != oldFrame)
+                {
+                    Lobby.LobbyAnimation.DisplayRect.Texture =
+                        _currentAnimationState.GetFrame(RsiDirection.South, _currentAnimationFrame);
+                }
+
+                return;
+            }
+
+            if (_currentLocalAnimationState == null || !_currentLocalAnimationState.IsAnimated)
+                return;
+
+            _currentAnimationFrameTime -= frameTime;
+            while (_currentAnimationFrameTime <= 0f)
+            {
+                _currentAnimationFrame = (_currentAnimationFrame + 1) % _currentLocalAnimationState.DelayCount;
+                _currentAnimationFrameTime += _currentLocalAnimationState.GetDelay(_currentAnimationFrame);
+            }
+
+            if (_currentAnimationFrame != oldFrame)
+            {
+                Lobby.LobbyAnimation.DisplayRect.Texture =
+                    _currentLocalAnimationState.GetFrame(RsiDirection.South, _currentAnimationFrame);
+            }
+        }
+
+        private void ClearLobbyAnimationState()
+        {
+            _currentAnimationState = null;
+            _currentLocalAnimationState = null;
+            _currentAnimationFrame = 0;
+            _currentAnimationFrameTime = 0f;
+        }
+
+        private static bool UsesNetworkLobbyResource(string resourcePath)
+        {
+            return resourcePath.TrimStart('/').StartsWith("NetTextures/", StringComparison.Ordinal);
+        }
+
+        private static ResPath GetLocalLobbyResourcePath(string resourcePath)
+        {
+            if (resourcePath.StartsWith("/", StringComparison.Ordinal))
+                return new ResPath(resourcePath).Clean();
+
+            if (resourcePath.StartsWith("Textures/", StringComparison.Ordinal))
+                return (ResPath.Root / resourcePath).Clean();
+
+            return (SpriteSpecifierSerializer.TextureRoot / resourcePath).Clean();
+        }
+
+        private bool TryGetLocalLobbyTexture(string resourcePath, [NotNullWhen(true)] out Texture? texture)
+        {
+            var localPath = GetLocalLobbyResourcePath(resourcePath);
+
+            if (_resourceCache.TryGetResource<TextureResource>(localPath, out var textureResource))
+            {
+                texture = textureResource.Texture;
+                return true;
+            }
+
+            _sawmill.Warning($"Failed to load local lobby art texture: {localPath}");
+            texture = null;
+            return false;
+        }
+
+        private bool TryGetLocalLobbyAnimationState(string resourcePath, string stateId, [NotNullWhen(true)] out ClientRsi.State? state)
+        {
+            var localPath = GetLocalLobbyResourcePath(resourcePath);
+
+            if (!_resourceCache.TryGetResource<RSIResource>(localPath, out var rsiResource))
+            {
+                _sawmill.Warning($"Failed to load local lobby animation RSI: {localPath}");
+                state = null;
+                return false;
+            }
+
+            if (rsiResource.RSI.TryGetState(stateId, out state))
+                return true;
+
+            _sawmill.Warning($"Failed to find local lobby animation state '{stateId}' in {localPath}");
+            return false;
         }
 
         /// <summary>
@@ -1014,108 +1194,6 @@ namespace Content.Client.Lobby
             if (Lobby != null)
             {
                 Lobby.LoadingAnimationContainer.Visible = false;
-            }
-        }
-
-        /// <summary>
-        /// Checks if all RSI files are present by reading meta.json and verifying all PNG files exist.
-        /// Uses simple string parsing instead of JsonDocument to avoid sandbox restrictions.
-        /// </summary>
-        private bool CheckRsiFilesComplete(ResPath rsiPath, ResPath metaPath)
-        {
-            try
-            {
-                // Read meta.json
-                if (!_resource.TryContentFileRead(metaPath, out var metaStream))
-                {
-                    return false;
-                }
-
-                using (metaStream)
-                {
-                    // Read JSON text
-                    using var reader = new StreamReader(metaStream);
-                    var jsonText = reader.ReadToEnd();
-
-                    // Simple regex to extract state names from JSON
-                    // Matches "name": "statename" patterns
-                    var namePattern = new Regex(@"""name""\s*:\s*""([^""]+)""", RegexOptions.Compiled);
-                    var matches = namePattern.Matches(jsonText);
-
-                    if (matches.Count == 0)
-                    {
-                        // No states found, might be invalid JSON or empty states array
-                        return false;
-                    }
-
-                    // Check if all PNG files for each state exist
-                    foreach (Match match in matches)
-                    {
-                        if (match.Groups.Count < 2)
-                            continue;
-
-                        var stateName = match.Groups[1].Value;
-                        if (string.IsNullOrEmpty(stateName))
-                        {
-                            continue;
-                        }
-
-                        // Check if PNG file exists for this state
-                        var pngPath = (rsiPath / $"{stateName}.png").ToRootedPath();
-                        if (!_resource.ContentFileExists(pngPath))
-                        {
-                            _sawmill.Debug($"RSI file missing: {pngPath}");
-                            return false;
-                        }
-                    }
-                }
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _sawmill.Debug($"Error checking RSI files completeness: {ex.Message}");
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Unloads a resource from video memory by disposing it.
-        /// TODO: Full resource unloading from cache is not currently possible due to sandbox restrictions.
-        /// The ResourceCache does not expose a public API to remove resources from its internal cache.
-        /// Reflection cannot be used in the client sandbox environment.
-        /// This method currently only disposes the resource, but it remains in the cache.
-        /// When the engine provides a proper API for resource cache management, this should be updated.
-        /// </summary>
-        private void UnloadResource(ResPath resourcePath)
-        {
-            try
-            {
-                bool unloaded = false;
-
-                // Try to unload RSI resource
-                if (_resourceCache.TryGetResource<RSIResource>(resourcePath, out var rsiResource))
-                {
-                    rsiResource.Dispose();
-                    unloaded = true;
-                    _sawmill.Debug($"Disposed RSI resource: {resourcePath} (still in cache due to sandbox limitations)");
-                }
-                // Try to unload texture resource
-                else if (_resourceCache.TryGetResource<TextureResource>(resourcePath, out var textureResource))
-                {
-                    textureResource.Dispose();
-                    unloaded = true;
-                    _sawmill.Debug($"Disposed texture resource: {resourcePath} (still in cache due to sandbox limitations)");
-                }
-
-                if (!unloaded)
-                {
-                    _sawmill.Debug($"Resource not found in cache: {resourcePath}");
-                }
-            }
-            catch (Exception ex)
-            {
-                _sawmill.Warning($"Failed to unload resource {resourcePath}: {ex.Message}");
             }
         }
 

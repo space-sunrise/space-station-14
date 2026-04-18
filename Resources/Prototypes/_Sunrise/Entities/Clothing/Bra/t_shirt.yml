@@ -1,0 +1,285 @@
+- type: entity
+  parent: ClothingBraBaseButcherable
+  id: ClothingBraTshirtWhite
+  name: white t-shirt
+  description: T-shirt for hot weather.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    layers:
+    - state: icon
+      color: "#cfcfcf"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    clothingVisuals:
+      bra:
+      - state: equipped-BRA
+        color: "#cfcfcf"
+  - type: Item
+    inhandVisuals:
+      right:
+      - state: inhand-right
+        color: "#cfcfcf"
+      left:
+      - state: inhand-left
+        color: "#cfcfcf"
+
+- type: entity
+  parent: ClothingBraBaseButcherable
+  id: ClothingBraTshirtRed
+  name: red t-shirt
+  description: T-shirt for hot weather.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    layers:
+    - state: icon
+      color: "#bb1515"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    clothingVisuals:
+      bra:
+      - state: equipped-BRA
+        color: "#bb1515"
+  - type: Item
+    inhandVisuals:
+      right:
+      - state: inhand-right
+        color: "#bb1515"
+      left:
+      - state: inhand-left
+        color: "#bb1515"
+
+- type: entity
+  parent: ClothingBraBaseButcherable
+  id: ClothingBraTshirtYellow
+  name: yellow t-shirt
+  description: T-shirt for hot weather.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    layers:
+    - state: icon
+      color: "#d6c617"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    clothingVisuals:
+      bra:
+      - state: equipped-BRA
+        color: "#d6c617"
+  - type: Item
+    inhandVisuals:
+      right:
+      - state: inhand-right
+        color: "#d6c617"
+      left:
+      - state: inhand-left
+        color: "#d6c617"
+
+- type: entity
+  parent: ClothingBraBaseButcherable
+  id: ClothingBraTshirtGreen
+  name: green t-shirt
+  description: T-shirt for hot weather.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    layers:
+    - state: icon
+      color: "#13bc13"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    clothingVisuals:
+      bra:
+      - state: equipped-BRA
+        color: "#13bc13"
+  - type: Item
+    inhandVisuals:
+      right:
+      - state: inhand-right
+        color: "#13bc13"
+      left:
+      - state: inhand-left
+        color: "#13bc13"
+
+- type: entity
+  parent: ClothingBraBaseButcherable
+  id: ClothingBraTshirtBlue
+  name: blue t-shirt
+  description: T-shirt for hot weather.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    layers:
+    - state: icon
+      color: "#322fd3"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    clothingVisuals:
+      bra:
+      - state: equipped-BRA
+        color: "#322fd3"
+  - type: Item
+    inhandVisuals:
+      right:
+      - state: inhand-right
+        color: "#322fd3"
+      left:
+      - state: inhand-left
+        color: "#322fd3"
+
+- type: entity
+  parent: ClothingBraBaseButcherable
+  id: ClothingBraTshirtLightBlue
+  name: light blue t-shirt
+  description: T-shirt for hot weather.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    layers:
+    - state: icon
+      color: "#3ab7e9"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    clothingVisuals:
+      bra:
+      - state: equipped-BRA
+        color: "#3ab7e9"
+  - type: Item
+    inhandVisuals:
+      right:
+      - state: inhand-right
+        color: "#3ab7e9"
+      left:
+      - state: inhand-left
+        color: "#3ab7e9"
+
+- type: entity
+  parent: ClothingBraBaseButcherable
+  id: ClothingBraTshirtBlack
+  name: black t-shirt
+  description: T-shirt for hot weather.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    layers:
+    - state: icon
+      color: "#4a4a4a"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    clothingVisuals:
+      bra:
+      - state: equipped-BRA
+        color: "#4a4a4a"
+  - type: Item
+    inhandVisuals:
+      right:
+      - state: inhand-right
+        color: "#4a4a4a"
+      left:
+      - state: inhand-left
+        color: "#4a4a4a"
+
+- type: entity
+  parent: ClothingBraBaseButcherable
+  id: ClothingBraTshirtGrey
+  name: grey t-shirt
+  description: T-shirt for hot weather.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    layers:
+    - state: icon
+      color: "#a8a8a8"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    clothingVisuals:
+      bra:
+      - state: equipped-BRA
+        color: "#a8a8a8"
+  - type: Item
+    inhandVisuals:
+      right:
+      - state: inhand-right
+        color: "#a8a8a8"
+      left:
+      - state: inhand-left
+        color: "#a8a8a8"
+
+- type: entity
+  parent: ClothingBraBaseButcherable
+  id: ClothingBraTshirtPurple
+  name: purple t-shirt
+  description: T-shirt for hot weather.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    layers:
+    - state: icon
+      color: "#983bc6"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    clothingVisuals:
+      bra:
+      - state: equipped-BRA
+        color: "#983bc6"
+  - type: Item
+    inhandVisuals:
+      right:
+      - state: inhand-right
+        color: "#983bc6"
+      left:
+      - state: inhand-left
+        color: "#983bc6"
+
+- type: entity
+  parent: ClothingBraBaseButcherable
+  id: ClothingBraTshirtBrown
+  name: brown t-shirt
+  description: T-shirt for hot weather.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    layers:
+    - state: icon
+      color: "#946e3f"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    clothingVisuals:
+      bra:
+      - state: equipped-BRA
+        color: "#946e3f"
+  - type: Item
+    inhandVisuals:
+      right:
+      - state: inhand-right
+        color: "#946e3f"
+      left:
+      - state: inhand-left
+        color: "#946e3f"
+
+- type: entity
+  parent: ClothingBraBaseButcherable
+  id: ClothingBraTshirtOrange
+  name: orange t-shirt
+  description: T-shirt for hot weather.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    layers:
+    - state: icon
+      color: "#e37f1b"
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/T-shirt/color.rsi
+    clothingVisuals:
+      bra:
+      - state: equipped-BRA
+        color: "#e37f1b"
+  - type: Item
+    inhandVisuals:
+      right:
+      - state: inhand-right
+        color: "#e37f1b"
+      left:
+      - state: inhand-left
+        color: "#e37f1b"

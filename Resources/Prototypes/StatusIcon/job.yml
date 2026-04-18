@@ -441,6 +441,14 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconTSF
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: TSF
+  jobName: job-name-TSF
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconAdmin
   icon:
     sprite: *icon-rsi

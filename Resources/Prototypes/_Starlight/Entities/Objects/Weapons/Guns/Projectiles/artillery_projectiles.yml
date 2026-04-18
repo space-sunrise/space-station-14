@@ -1,0 +1,966 @@
+# Dravon 75mm & AK570 90mm Projectiles
+
+# --- DRAVON 75mm HE ---
+- type: entity
+  id: BulletDravon75mmHE
+  name: DVN-75 75mm HE shell
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+    scale: 1.2, 1.2
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 60
+        Structural: 80
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 180      # medium-light blast, ~4 tile radius
+    intensitySlope: 6
+    maxIntensity: 20
+    canCreateVacuum: true
+  - type: SpawnOnDespawn
+    prototype: BulletDravon75mmHESelfExplode
+  - type: PointLight
+    enabled: true
+    radius: 2.5
+    energy: 1.5
+    color: "#ff6600"
+  - type: RadarBlip
+    color: "#FFB300"
+    scale: 0.75
+    shape: Square
+    requireInSpace: true
+  - type: TimedDespawn
+    lifetime: 15
+
+# --- AK570 90mm HE ---
+- type: entity
+  id: BulletAK57090mmHE
+  name: AK-90 90mm HE shell
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+    scale: 1.35, 1.35
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 90
+        Structural: 120
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 260      # medium blast, ~4-5 tile radius
+    intensitySlope: 7
+    maxIntensity: 24
+    canCreateVacuum: true
+  - type: SpawnOnDespawn
+    prototype: BulletAK57090mmHESelfExplode
+  - type: PointLight
+    enabled: true
+    radius: 3
+    energy: 2
+    color: "#ff8800"
+  - type: RadarBlip
+    color: "#FF9900"
+    scale: 0.85
+    shape: Square
+    requireInSpace: true
+  - type: TimedDespawn
+    lifetime: 15
+
+- type: entity
+  id: BulletDravon75mmHESelfExplode
+  name: DVN-75 75mm HE shell
+  suffix: self-explode, NOW
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: ExplodeOnTrigger
+    keysIn:
+    - trigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 180
+    intensitySlope: 6
+    maxIntensity: 20
+    canCreateVacuum: true
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletArtilleryShapnel
+    capacity: 8
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: TimedDespawn
+    lifetime: 0.25
+
+- type: entity
+  id: BulletAK57090mmHESelfExplode
+  name: AK-90 90mm HE shell
+  suffix: self-explode, NOW
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: ExplodeOnTrigger
+    keysIn:
+    - trigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 260
+    intensitySlope: 7
+    maxIntensity: 24
+    canCreateVacuum: true
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletArtilleryShapnel
+    capacity: 16
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: TimedDespawn
+    lifetime: 0.25
+
+# --- LEVIATHAN 240mm HE (single-shot, devastating) ---
+- type: entity
+  id: BulletLeviathan240mmHE
+  name: LVT-240 240mm HE shell
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+      - state: blast240mmcrit
+    scale: 1.2, 1.2
+  - type: Projectile
+    angle: 180
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 900      # massive blast, ~8-9 tile radius
+    intensitySlope: 5
+    maxIntensity: 50
+    canCreateVacuum: true
+  - type: PointLight
+    enabled: true
+    radius: 6
+    energy: 5
+    color: "#ff4400"
+  - type: RadarBlip
+    color: "#FF2200"
+    scale: 2.0
+    shape: Triangle
+    requireInSpace: true
+  - type: WarpPoint
+    follow: true
+    location: 240mm HE Payload
+  - type: TimedDespawn
+    lifetime: 15
+
+- type: entity
+  id: BulletLeviathan240mmNuke
+  name: LVT-240N 240mm nuclear shell
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+      - state: nuke240mmcrit
+    scale: 1.2, 1.2
+  - type: Projectile
+    angle: 180
+  - type: TimedDespawn
+    lifetime: 8
+  - type: SpawnOnDespawn
+    prototype: BulletLeviathan240mmNukeSelfExplode
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 15000 # 20000 Критмасса
+    intensitySlope: 5
+    maxIntensity: 50
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterSubnuclearShrapnel
+    capacity: 90
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: PointLight
+    enabled: true
+    radius: 8
+    energy: 6
+    color: "#88ff00"
+  - type: RadarBlip
+    color: "#88FF00"
+    scale: 2.3
+    shape: Triangle
+    requireInSpace: true
+  - type: WarpPoint
+    follow: true
+    location: 240mm TACTICAL NUKE
+
+- type: entity
+  id: BulletLeviathan240mmCluster
+  name: LVT-240C 240mm cluster shell
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+      - state: cluster240mmcrit
+    scale: 1.2, 1.2
+  - type: Projectile
+    angle: 180
+  - type: TimedDespawn
+    lifetime: 8
+  - type: SpawnOnDespawn
+    prototype: BulletLeviathan240mmClusterSelfExplode
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletSyndyClusterGrenade
+    capacity: 12
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 2
+  - type: PointLight
+    enabled: true
+    radius: 6
+    energy: 4
+    color: "#ff8844"
+  - type: RadarBlip
+    color: "#FF8844"
+    scale: 2.0
+    shape: Triangle
+    requireInSpace: true
+  - type: WarpPoint
+    follow: true
+    location: 240mm Cluster Payload
+
+- type: entity
+  id: BulletLeviathan240mmNukeSelfExplode
+  name: 240mm nuclear shell
+  suffix: self-explode, NOW
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+      - state: nuke240mm
+    scale: 1.2, 1.2
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 15000
+    intensitySlope: 5
+    maxIntensity: 50
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterSubnuclearShrapnel
+    capacity: 90
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: TimedDespawn
+    lifetime: 0.25
+
+- type: entity
+  id: BulletLeviathan240mmClusterSelfExplode
+  name: 240mm cluster shell
+  suffix: self-explode, NOW
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+      - state: cluster240mm
+    scale: 1.2, 1.2
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletSyndyClusterGrenade
+    capacity: 12
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 2
+  - type: TimedDespawn
+    lifetime: 0.25
+
+- type: entity
+  id: LeviathanHERupture25
+  name: damaged 240mm HE shell rupture
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+      - state: blast240mm
+  - type: Transform
+    anchored: false
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    delay: 0
+    keyOut: timer
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 225
+    intensitySlope: 5
+    maxIntensity: 12
+    canCreateVacuum: true
+  - type: PointLight
+    enabled: true
+    radius: 4
+    energy: 3
+    color: "#ff6600"
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
+  id: LeviathanNukeRupture25
+  name: damaged 240mm nuclear shell rupture
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+      - state: nuke240mmcrit
+  - type: Transform
+    anchored: false
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    delay: 13
+    beepSound:
+      path: /Audio/Machines/Nuke/nuke_alarm.ogg
+      params:
+        volume: 15
+    initialBeepDelay: 0
+    beepInterval: 10
+    keyOut: timer
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 5000
+    intensitySlope: 5
+    maxIntensity: 25
+    canCreateVacuum: true
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: timer
+    fillPrototype: PelletClusterSubnuclearShrapnel
+    capacity: 130
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: PointLight
+    enabled: true
+    radius: 6
+    energy: 4.5
+    color: "#88ff00"
+  - type: WarpPoint
+    follow: true
+    location: 240mm TACTICAL NUKE
+
+- type: entity
+  id: LeviathanClusterRupture25
+  name: damaged 240mm cluster shell rupture
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+      - state: cluster240mm
+  - type: Transform
+    anchored: false
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    delay: 1
+    keyOut: timer
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: timer
+    fillPrototype: BulletSyndyClusterGrenade
+    capacity: 12
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: PointLight
+    enabled: true
+    radius: 4
+    energy: 2.5
+    color: "#ff8844"
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
+  id: BulletSyndieMiniBomb
+  name: syndicate mini-bomb projectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+    scale: 1.2, 1.2
+  - type: SpawnOnDespawn
+    prototype: BulletSyndieMiniBombFailsafe
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Minibomb
+    totalIntensity: 200
+    intensitySlope: 30
+    maxIntensity: 60
+  - type: PointLight
+    enabled: true
+    radius: 2.5
+    energy: 2.2
+    color: "#ff4444"
+  - type: RadarBlip
+    color: "#FF6655"
+    scale: 0.3
+    shape: Circle
+    requireInSpace: false
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  id: BulletSyndyClusterGrenade
+  name: syndicate cluster projectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+    scale: 1.6, 1.6
+  - type: SpawnOnDespawn
+    prototype: BulletSyndyClusterGrenadeFailsafe
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletSyndieMiniBomb
+    capacity: 3
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: PointLight
+    enabled: true
+    radius: 3
+    energy: 2.8
+    color: "#ff6655"
+  - type: RadarBlip
+    color: "#FF6655"
+    scale: 0.75
+    shape: Circle
+    requireInSpace: false
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  id: BulletSyndieMiniBombFailsafe
+  name: syndicate mini-bomb projectile (failsafe)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Minibomb
+    totalIntensity: 200
+    intensitySlope: 30
+    maxIntensity: 60
+  - type: TimedDespawn
+    lifetime: 0.2
+
+- type: entity
+  id: BulletSyndyClusterGrenadeFailsafe
+  name: syndicate cluster projectile (failsafe)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletSyndieMiniBomb
+    capacity: 3
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: TimedDespawn
+    lifetime: 0.2
+
+# --- CYERXA 120mm ---
+
+- type: entity
+  id: BulletGrenade120mmBlast
+  name: 120mm blast grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+    scale: 1.5, 1.5
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 450 # 3x stronger than normal blast grenade (150 * 3 = 450) - approximately ~6 tile radius
+    intensitySlope: 8
+    maxIntensity: 30
+    canCreateVacuum: true
+  - type: SpawnOnDespawn
+    prototype: BulletGrenade120mmBlastSelfExplode
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletArtilleryShapnelShort
+    capacity: 28
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: PointLight
+    enabled: true
+    radius: 3
+    energy: 2
+    color: "#ff4400"
+  - type: RadarBlip
+    color: "#FFDD00"
+    scale: 1.0
+    shape: Square
+    requireInSpace: true
+  - type: TimedDespawn
+    lifetime: 15
+
+- type: entity
+  id: BulletRocket120mmMetla
+  name: 120mm rocket
+  parent: BulletAK57090mmHE
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.85,0.05"
+        density: 2
+        hard: true
+        layer:
+        - LargeMobLayer
+        mask:
+        - Impassable
+        - BulletImpassable
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives_x48.rsi
+    layers:
+      - state: rocket120mm
+    scale: 1.6, 1.6
+  - type: Projectile
+    angle: -90
+  - type: RadarBlip
+    color: "#44FFAA"
+    scale: 1.3
+    shape: Circle
+    requireInSpace: true
+  - type: WarpPoint
+    follow: true
+    location: 120mm Rocket Payload
+  - type: GuidedProjectile
+    turnRate: 100
+  - type: TimedDespawn
+    lifetime: 30
+
+- type: entity
+  id: BulletRocket120mmMetlaLongFlight
+  name: 120mm long-flight rocket
+  parent: BulletRocket120mmMetla
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 60
+
+- type: entity
+  id: BulletGrenade120mmBlastSelfExplode
+  name: 120mm blast grenade
+  suffix: self-explode, NOW
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: ExplodeOnTrigger
+    keysIn:
+    - trigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 450
+    intensitySlope: 8
+    maxIntensity: 30
+    canCreateVacuum: true
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletArtilleryShapnelShort
+    capacity: 30
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: TimedDespawn
+    lifetime: 0.25
+
+- type: entity
+  id: Grenade120mmBlastRupture
+  name: damaged 120mm grenade rupture
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: false
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    delay: 0
+    keyOut: timer
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 90
+    intensitySlope: 8
+    maxIntensity: 12
+    canCreateVacuum: true
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: timer
+    fillPrototype: BulletArtilleryShapnelShort
+    capacity: 30
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: PointLight
+    enabled: true
+    radius: 2.5
+    energy: 1.8
+    color: "#ff8800"
+  - type: TimedDespawn
+    lifetime: 2
+
+# --- CHARYBDIS 280mm ---
+
+# M381 CHARYBDIS 280mm 26.5kg Slug
+- type: entity
+  id: BulletCharon280mmSlug
+  name: M381 CHARYBDIS 280mm slug
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/ArtilleryAmmo/charon_ammo.rsi # Sunrise-Edit
+    layers:
+      - state: railgun_slug
+    scale:  1.3, 1.3
+  - type: Projectile
+    angle: -90
+    damage:
+      types:
+        Piercing: 500
+        Blunt: 150
+        Structural: 600
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 350
+    intensitySlope: 10
+    maxIntensity: 28
+    canCreateVacuum: true
+  - type: PointLight
+    enabled: true
+    radius: 5
+    energy: 4
+    color: "#ff6600"
+  - type: RadarBlip
+    color: "#FF6600"
+    scale: 1.5
+    shape: Triangle
+    requireInSpace: true
+
+- type: entity
+  id: BulletCharon280mmSlugDamaged75
+  name: M381 CHARYBDIS 280mm slug
+  parent: BulletCharon280mmSlug
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    angle: -90
+    damage:
+      types:
+        Piercing: 375
+        Blunt: 110
+        Structural: 450
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 263
+    intensitySlope: 10
+    maxIntensity: 21
+    canCreateVacuum: true
+  - type: PointLight
+    enabled: true
+    radius: 4
+    energy: 3
+    color: "#ff6600"
+
+# M381 CHARYBDIS 280mm 40kg Subnuclear Slug
+- type: entity
+  id: BulletCharon280mmSubnuclear
+  name: M381 CHARYBDIS 280mm subnuclear slug
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/ArtilleryAmmo/charon_ammo.rsi # Sunrise-Edit
+    layers:
+      - state: subnuclear
+    scale:  1.3, 1.3
+  - type: Projectile
+    angle: -90
+    damage:
+      types:
+        Piercing: 600
+        Blunt: 200
+        Structural: 800
+        Radiation: 100
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 800
+    intensitySlope: 6
+    maxIntensity: 60
+    canCreateVacuum: true
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterSubnuclearShrapnel
+    capacity: 30
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: PointLight
+    enabled: true
+    radius: 8
+    energy: 6
+    color: "#88ff00"
+  - type: RadarBlip
+    color: "#88FF00"
+    scale: 2.0
+    shape: Triangle
+    requireInSpace: true
+
+- type: entity
+  id: BulletCharon280mmSubnuclearDamaged75
+  name: M381 CHARYBDIS 280mm subnuclear slug
+  parent: BulletCharon280mmSubnuclear
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    angle: -90
+    damage:
+      types:
+        Piercing: 450
+        Blunt: 150
+        Structural: 600
+        Radiation: 75
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 600
+    intensitySlope: 6
+    maxIntensity: 45
+    canCreateVacuum: true
+  - type: PointLight
+    enabled: true
+    radius: 6
+    energy: 4.5
+    color: "#88ff00"
+
+- type: entity
+  id: BulletCharon280mmSubnuclearDamaged50
+  name: M381 CHARYBDIS 280mm subnuclear slug
+  parent: BulletCharon280mmSubnuclear
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    angle: -90
+    damage:
+      types:
+        Piercing: 300
+        Blunt: 100
+        Structural: 400
+        Radiation: 50
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 400
+    intensitySlope: 6
+    maxIntensity: 30
+    canCreateVacuum: true
+  - type: PointLight
+    enabled: true
+    radius: 5
+    energy: 3.5
+    color: "#88ff00"
+
+- type: entity
+  id: CharonSubnuclearRupture25
+  name: damaged subnuclear shell rupture
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: false
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    delay: 0
+    keyOut: timer
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 200
+    intensitySlope: 6
+    maxIntensity: 15
+    canCreateVacuum: true
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: timer
+    fillPrototype: PelletClusterSubnuclearShrapnel
+    capacity: 30
+    randomAngle: true
+    minVelocity: 1
+    maxVelocity: 3
+  - type: PointLight
+    enabled: true
+    radius: 4
+    energy: 3
+    color: "#66ff66"
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
+  id: PelletClusterSubnuclearShrapnel
+  name: rad shrapnel
+  categories: [ HideSpawnMenu ]
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: shard
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+    embedOnThrow: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        density: 5
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,-0.1"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Piercing: 25
+        Radiation: 5
+  - type: PointLight
+    enabled: true
+    radius: 3
+    energy: 2.2
+    color: "#55ff55"
+  - type: RadarBlip
+    color: "#55FF55"
+    scale: 0.1
+    shape: triangle
+    requireInSpace: false
+  - type: RadiationSource
+    intensity: 0.8
+    slope: 0.1
+  - type: TimedDespawn
+    lifetime: 90
+  - type: Tag
+    tags:
+    - Arrow

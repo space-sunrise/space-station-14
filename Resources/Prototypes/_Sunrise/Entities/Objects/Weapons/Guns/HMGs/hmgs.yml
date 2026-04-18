@@ -12,10 +12,10 @@
     sprite: _Sunrise/Objects/Weapons/Guns/HMGs/minigun/tiny.rsi
     size: Ginormous
   - type: Gun
-    minAngle: 5
+    minAngle: 10
     maxAngle: 120
-    angleIncrease: 1.15 #3 секунды стрельбы до точности имперского штурмовика =3
-    angleDecay: 25
+    angleIncrease: 1 #3 секунды стрельбы до точности имперского штурмовика =3
+    angleDecay: 40
     fireRate: 12
     selectedMode: FullAuto
     availableModes:
@@ -180,7 +180,7 @@
       tags:
       - CartridgeLightRifle
     proto: CartridgeLightRifleFMJ
-    capacity: 1200
+    capacity: 900
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85

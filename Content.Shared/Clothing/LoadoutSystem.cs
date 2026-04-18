@@ -15,7 +15,7 @@ namespace Content.Shared.Clothing;
 /// <summary>
 /// Assigns a loadout to an entity based on the RoleLoadout prototype
 /// </summary>
-public sealed class LoadoutSystem : EntitySystem
+public sealed partial class LoadoutSystem : EntitySystem // Sunrise-edit Добавлен partial
 {
     // Shared so we can predict it for placement manager.
 
@@ -30,6 +30,8 @@ public sealed class LoadoutSystem : EntitySystem
 
         // Wait until the character has all their organs before we give them their loadout
         SubscribeLocalEvent<LoadoutComponent, MapInitEvent>(OnMapInit, after: [typeof(SharedBodySystem)]);
+
+        InitializeSunrise(); // Sunrise-edit
     }
 
     public static string GetJobPrototype(string? loadout)

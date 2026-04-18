@@ -19,8 +19,9 @@ public sealed class NewsWriterBoundUserInterfaceState : BoundUserInterfaceState
     public readonly string DraftTitle;
     public readonly string DraftContent;
     public readonly List<string>? DraftPhotoPaths;
+    public readonly bool PhotoSendingEnabled;
 
-    public NewsWriterBoundUserInterfaceState(NewsArticle[] articles, bool publishEnabled, TimeSpan nextPublish, string draftTitle, string draftContent, List<string>? draftPhotoPaths = null)
+    public NewsWriterBoundUserInterfaceState(NewsArticle[] articles, bool publishEnabled, TimeSpan nextPublish, string draftTitle, string draftContent, List<string>? draftPhotoPaths = null, bool photoSendingEnabled = true)
     {
         Articles = articles;
         PublishEnabled = publishEnabled;
@@ -28,6 +29,7 @@ public sealed class NewsWriterBoundUserInterfaceState : BoundUserInterfaceState
         DraftTitle = draftTitle;
         DraftContent = draftContent;
         DraftPhotoPaths = draftPhotoPaths;
+        PhotoSendingEnabled = photoSendingEnabled;
     }
 }
 

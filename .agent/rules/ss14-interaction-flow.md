@@ -2,93 +2,93 @@
 trigger: always_on
 ---
 
-# Правило: Архитектурный паттерн OnEvent -> TryDo -> CanDo -> Do
+# Rule: Architectural pattern OnEvent -> TryDo -> CanDo -> Do
 
-Это правило описывает мандаторный архитектурный паттерн для реализации действий и взаимодействий в кодовой базе Space Station 14. Следование этому паттерну обеспечивает предсказуемость, переиспользуемость и чистоту кода.
+This rule describes the mandatory architectural pattern for implementing actions and interactions in the Space Station 14 codebase. Following this pattern ensures predictability, reusability and cleanliness of the code.
 
-Структура: `OnEvent()` -> `TryDoSomething()` -> (проверка) `if (!CanDoSomething()) return` -> `DoSomething()`
+Structure: `OnEvent()` -> `TryDoSomething()` -> (check) `if (!CanDoSomething()) return` -> `DoSomething()`
 
-## 📝 Общая схема
+## 📝 General scheme
 
-Логика разбивается на три уровня ответственности:
+Logic is broken down into three levels of responsibility:
 
-1.  **Event Handler (`OnEvent`)**: Точка входа. Принимает событие, распаковывает данные и вызывает `Try`-метод.
-2.  **Public API (`TryDo`)**: "Публичный интерфейс" действия. Оркестрирует проверку (`CanDo`) и исполнение. Возвращает успех/неудачу.
-3.  **Check (`CanDo`)**: Чистая проверка условий. Определяет, *можно* ли совершить действие, но *не совершает* его.
+1. **Event Handler (`OnEvent`)**: Entry point. Receives the event, unpacks the data and calls the `Try` method.
+2. **Public API (`TryDo`)**: “Public interface” of the action. Orchestrates verification (`CanDo`) and execution. Returns success/failure.
+3. **Check (`CanDo`)**: Pure check of conditions. Determines whether an action *can* be performed, but *does not* perform it.
 
 ---
 
-## 🔍 Компоненты паттерна
+## 🔍 Pattern components
 
-### 1. Обработчик событий (`OnEvent`)
-Метод, подписанный на событие (`SubscribeLocalEvent`).
-*   **Задача**: Перенаправить поток исполнения в публичный API.
-*   **Логика**: Минимальная. Только проверка валидности события (например, `args.Handled`) и вызов `Try...`.
-*   **Название**: `On[EventName]`, `On[Action]`.
+### 1. Event handler (`OnEvent`)
+Method subscribed to the event (`SubscribeLocalEvent`).
+* **Task**: Redirect execution flow to public API.
+* **Logic**: Minimal. Only checking the validity of the event (for example, `args.Handled`) and calling `Try...`.
+* **Name**: `On[EventName]`, `On[Action]`.
 
-### 2. Попытка действия (`TryDoSomething`)
-Публичный метод, доступный для вызова из других систем (API).
-*   **Сигнатура**: `public bool TryAction(Entity<Component?> ent, ...)`
-*   **Задача**:
-    1.  Вызвать `CanDoSomething`. Если вернул `false` — вернуть `false`.
-    2.  Если проверки пройдены — выполнить действие (изменить компонент, вызвать событие, проиграть звук и т.д.).
-    3.  Вернуть `true` при успехе.
-*   **Важно**: Если действие требует специфических аргументов (например, `user`), они должны быть переданы сюда.
+### 2. Action attempt (`TryDoSomething`)
+A public method that can be called from other systems (API).
+* **Signature**: `public bool TryAction(Entity<Component?> ent, ...)`
+*   **Task**:
+    1. Call `CanDoSomething`. If you returned `false`, return `false`.
+    2. If the checks are passed, perform an action (change a component, trigger an event, play a sound, etc.).
+    3. Return `true` on success.
+* **Important**: If the action requires specific arguments (for example, `user`), they must be passed here.
 
-### 3. Проверка возможности (`CanDoSomething`)
-Метод, содержащий условия выполнения.
-*   **Сигнатура**: `public bool CanAction(Entity<Component?> ent, ..., bool quiet = false)`
-*   **Задача**: Проверить все условия (дистанция, наличие инструмента, статус компонента).
+### 3. Feasibility check (`CanDoSomething`)
+A method containing execution conditions.
+* **Signature**: `public bool CanAction(Entity<Component?> ent, ..., bool quiet = false)`
+* **Task**: Check all conditions (distance, tool availability, component status).
 *   **Side Effects**:
-    *   ❌ **ЗАПРЕЩЕНО** менять состояние сущностей (компонентов).
-    *   ✅ **РАЗРЕШЕНО** отправлять сообщения игроку (Popups), если аргумент `quiet` равен `false`.
+    * ❌ **It is PROHIBITED** to change the state of entities (components).
+    * ✅ **ALLOWED** to send messages to the player (Popups) if the argument `quiet` is equal to `false`.
 
 ---
 
-## ✅ Пример (Система взаимодействия с предметами)
+## ✅ Example (System of interaction with objects)
 
-Обрати внимание на четкое разделение ответственности. Этот пример показывает, как система обработки взятия предмета в руки (Wielding) реализует паттерн.
+Pay attention to a clear division of responsibilities. This example shows how the Wielding processing system implements the pattern.
 
 ```csharp
 // 1. Event Handler
-// Получает событие использования предмета в руке.
-// Если событие уже обработано - выход.
-// Иначе вызывает публичный метод попытки действия.
+// Receives the event of using an item in hand.
+// If the event has already been processed, exit.
+// Otherwise, calls the public method of attempting the action.
 private void OnUseInHand(EntityUid uid, WieldableComponent component, UseInHandEvent args)
 {
     if (args.Handled)
         return;
 
-    // Вызов публичного API
-    // Обработчик не знает деталей реализации, он просто "просит" попытаться взять в руки.
+    // Call public API
+    // The handler doesn't know the implementation details, it just "asks" to try to pick it up.
     if (TryWield(uid, component, args.User))
         args.Handled = true;
 }
 
 // 2. Public API (TryDo)
-// Публичный метод, который могут вызвать другие системы (например, магия или админ-панель).
+// A public method that can be called by other systems (for example, magic or the admin panel).
 public bool TryWield(EntityUid used, WieldableComponent component, EntityUid user)
 {
-    // Шаг 1: Проверка (Early Return)
-    // Строго через вызов Can-метода.
+    // Step 1: Check (Early Return)
+    // Strictly through calling the Can method.
     if (!CanWield(used, component, user))
         return false;
 
-    // Шаг 2: Исполнение (Do)
-    // Здесь мы уже уверены, что действие валидно.
+    // Step 2: Execution (Do)
+    // Here we are already sure that the action is valid.
 
-    // Логика изменения состояния (компонент, визуализация)
+    // State change logic (component, visualization)
     SetWielded((used, component), true);
 
-    // Визуальные и звуковые эффекты
+    // Visual and sound effects
     if (component.WieldSound != null)
         _audio.PlayPredicted(component.WieldSound, used, user);
 
-    // События (для реакции других систем)
+    // Events (for reactions of other systems)
     var ev = new ItemWieldedEvent(user);
     RaiseLocalEvent(used, ref ev);
 
-    // Popup об успехе для игрока
+    // Popup about success for the player
     var message = Loc.GetString("wieldable-component-successful-wield", ("item", used));
     _popup.PopupPredicted(message, user, user);
 
@@ -96,19 +96,19 @@ public bool TryWield(EntityUid used, WieldableComponent component, EntityUid use
 }
 
 // 3. Check (CanDo)
-// Чистая функция проверки. Не меняет состояние игры (кроме отправки сообщений при ошибке).
+// Pure verification function. Does not change the game state (except for sending error messages).
 public bool CanWield(EntityUid uid, WieldableComponent component, EntityUid user, bool quiet = false)
 {
-    // Проверка 1: Есть ли руки?
-    // Использует TryComp для безопасного получения зависимостей.
+    // Check 1: Are there any hands?
+    // Uses TryComp to securely obtain dependencies.
     if (!TryComp<HandsComponent>(user, out var hands))
     {
-        if (!quiet) // Popup только если не quiet
+        if (!quiet) // Popup only if not quiet
             _popup.PopupClient(Loc.GetString("wieldable-component-no-hands"), user, user);
         return false;
     }
 
-    // Проверка 2: Предмет в руках?
+    // Check 2: Is the item in your hands?
     if (!_hands.IsHolding((user, hands), uid, out _))
     {
         if (!quiet)
@@ -116,8 +116,8 @@ public bool CanWield(EntityUid uid, WieldableComponent component, EntityUid user
         return false;
     }
 
-    // Проверка 3: Достаточно ли свободных рук?
-    // Логика подсчета слотов.
+    // Check 3: Are there enough free hands?
+    // Slot counting logic.
     if (_hands.CountFreeableHands((user, hands), except: uid) < component.FreeHandsRequired)
     {
         if (!quiet)
@@ -125,52 +125,52 @@ public bool CanWield(EntityUid uid, WieldableComponent component, EntityUid user
         return false;
     }
 
-    // Все проверки пройдены
+    // All checks passed
     return true;
 }
 ```
 
 ---
 
-## ❌ Анти-паттерны (Чего избегать)
+## ❌ Anti-patterns (What to avoid)
 
-### "Толстый" Event Handler
-Вся логика находится внутри `OnEvent`.
-*   **Проблема**: Логику невозможно переиспользовать (например, вызвать из консольной команды или другого события `InteractionVerb`).
-*   **Плохо**:
+### "Fat" Event Handler
+All logic is inside `OnEvent`.
+* **Problem**: The logic cannot be reused (for example, called from a console command or another `InteractionVerb` event).
+*   **Badly**:
     ```csharp
     private void OnUse(EntityUid uid, Comp comp, UseEvent args) {
-        if (!Condition) return; // Проверка смешана с логикой
-        PerformAction();        // Прямое выполнение
+        if (!Condition) return; // Validation mixed with logic
+        PerformAction();        // Direct Execution
     }
     ```
 
-### Side-effects в `CanDo`
-Метод `Can` изменяет данные компонента.
-*   **Проблема**: Вызов проверки "просто чтоб узнать" ломает состояние игры.
-*   **Плохо**:
+### Side-effects in `CanDo`
+The `Can` method modifies the component data.
+* **Problem**: Calling the check "just to find out" breaks the game state.
+*   **Badly**:
     ```csharp
     public bool CanShoot(GunComponent gun) {
-        gun.Ammo--; // ❌ НИКОГДА так не делай в проверке!
+        gun.Ammo--; // ❌ NEVER do this when checking!
         return gun.Ammo >= 0;
     }
     ```
 
-### "Слепой" `TryDo`
-Метод `Try` не вызывает `Can`, а полагается на то, что вызывающий уже всё проверил.
-*   **Проблема**: Нарушение инкапсуляции. API становится небезопасным. `Try` всегда должен гарантировать проверку условий.
+### "Blind" `TryDo`
+The `Try` method does not call `Can`, but relies on the caller to have already checked everything.
+* **Problem**: Encapsulation violation. The API becomes insecure. `Try` must always ensure that conditions are checked.
 
-### Возврат строки вместо bool в `CanDo`
-Возврат кода ошибки или строки вместо `bool`.
-*   **Совет**: Используй `out string? reason`, если нужно вернуть причину отказа, но сам метод должен возвращать `bool` для удобства использования в `if`.
+### Return a string instead of a bool in `CanDo`
+Return an error code or string instead of `bool`.
+* **Tip**: Use `out string? reason` if you need to return the failure reason, but the method itself should return `bool` for ease of use in `if`.
     ```csharp
     public bool CanDoWield(..., [NotNullWhen(false)] out string? reason)
     ```
 
 ---
 
-## 🎯 Преимущества схемы
+## 🎯 Advantages of the scheme
 
-1.  **API для других систем**: `TryWield` можно вызвать откуда угодно (из вербов, из магии, из админки), и он корректно отработает со всеми проверками.
-2.  **Прогностика (Prediction)**: Разделение позволяет клиенту легко спредиктить результат `CanWield` для UI (например, задизейблить кнопку), не вызывая само действие.
-3.  **Читаемость**: `OnEvent` становится тривиальным маршрутизатором, а бизнес-логика четко структурирована.
+1. **API for other systems**: `TryWield` can be called from anywhere (from verbs, from magic, from the admin panel), and it will work correctly with all checks.
+2. **Prediction**: Splitting allows the client to easily predict the result of `CanWield` for the UI (for example, disable a button) without calling the action itself.
+3. **Readability**: `OnEvent` becomes a trivial router, and the business logic is clearly structured.

@@ -1,6 +1,6 @@
 namespace Content.Shared.Salvage.Expeditions.Modifiers;
 
-public interface ISalvageMod
+public partial interface ISalvageMod // Sunrise - edit 
 {
     /// <summary>
     /// Player-friendly version describing this modifier.
@@ -11,4 +11,5 @@ public interface ISalvageMod
     /// Cost for difficulty modifiers.
     /// </summary>
     float Cost { get; }
+
 }

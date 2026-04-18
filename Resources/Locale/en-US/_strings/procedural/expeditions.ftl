@@ -12,9 +12,15 @@ offering-window-claim = Claim
 
 salvage-expedition-window-next = Next offer
 
+# Sunrise-Start
+salvage-expedition-difficulty-Easy = Easy
 salvage-expedition-difficulty-Moderate = Moderate
+salvage-expedition-difficulty-Challenging = Challenging
+salvage-expedition-difficulty-Difficult = Difficult
+salvage-expedition-difficulty-Impossible = Impossible
 salvage-expedition-difficulty-Hazardous = Hazardous
 salvage-expedition-difficulty-Extreme = Extreme
+# Sunrise-End
 
 salvage-expedition-difficulty-players = Recommended salvagers:
 

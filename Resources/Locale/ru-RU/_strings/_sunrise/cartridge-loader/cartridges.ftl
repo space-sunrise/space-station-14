@@ -17,3 +17,5 @@ photo-cartridge-overlay-button = 👁 Оверлей
 photo-cartridge-back-button = Назад
 photo-cartridge-delete-button = Удалить
 photo-cartridge-flash-label = Вспышка
+photo-cartridge-upload-disabled = Отправка фотографий отключена сервером.
+photo-cartridge-capture-disabled = Создание фотографий отключено сервером.

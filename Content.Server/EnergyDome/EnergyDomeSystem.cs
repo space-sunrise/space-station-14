@@ -390,4 +390,3 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             : entity;
     }
 }
-

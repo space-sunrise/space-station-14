@@ -15,6 +15,8 @@
   supervisors: job-supervisors-magistrate
   canBeAntag: false
   displayWeight: 40
+  alternativeTitles:
+  - job-alt-title-inspector
   access:
   - Command
   - Service
@@ -36,7 +38,7 @@
     pocket2: HyperLinkBookCorporateLaw
   inhand:
     - BriefcaseIAAFilled
-  
+
 - type: chameleonOutfit
   id: IAAChameleonOutfit
   job: IAA

@@ -4,6 +4,7 @@ using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Projectiles;
+using Content.Shared.Weapons.Hitscan.Components; // Sunrise-edit
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -63,6 +64,19 @@ public abstract partial class SharedGunSystem
                 return p.Damage * Damageable.UniversalProjectileDamageModifier;
             }
         }
+
+        // Sunrise-start
+        if (entityProto.Components
+            .TryGetValue(Factory.GetComponentName<HitscanBasicDamageComponent>(), out var hitscanProjectile))
+        {
+            var hitscanDamageComp = (HitscanBasicDamageComponent) hitscanProjectile.Component;
+
+            if (!hitscanDamageComp.Damage.Empty)
+            {
+                return hitscanDamageComp.Damage * Damageable.UniversalHitscanDamageModifier;
+            }
+        }
+        // Sunrise-end
 
         return null;
     }

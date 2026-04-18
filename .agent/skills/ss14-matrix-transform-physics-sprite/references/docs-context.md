@@ -1,48 +1,48 @@
-# Docs Context (вторичный слой)
+# Docs Context (secondary layer)
 
-## Важно
+## Important
 
-- `docs` используем как вспомогательный контекст, не как источник истины.
-- Основные страницы по координатам/трансформам/спрайтам обновлялись в районе `2023-09-21`.
-- Страница по освещению/FOV обновлялась `2024-02-25`.
-- Актуальное поведение всегда подтверждай по текущему коду.
+- `docs` is used as an auxiliary context, not as a source of truth.
+- The main pages for coordinates/transforms/sprites were updated in the `2023-09-21` area.
+- Lighting/FOV page updated `2024-02-25`.
+- Always confirm current behavior using the current code.
 
-## Выжимка по темам
+## Squeeze by topic
 
 ### Coordinate Systems
 
-- Зафиксирована базовая декомпозиция пространств: `Map`, `Grid`, `Entity`, `Local/World`.
-- Подсвечено, что ошибки чаще всего возникают на стыке world/grid и при смешении rotation/translation.
-- Практическая поправка по коду: в production-цепочках активно применяются явные матричные переходы и `TransformBox`, а не только координатные обертки.
+- The basic decomposition of spaces has been fixed: `Map`, `Grid`, `Entity`, `Local/World`.
+- It is highlighted that errors most often occur at the junction of world/grid and when mixing rotation/translation.
+- Practical code correction: in production chains, explicit matrix transitions and `TransformBox` are actively used, and not just coordinate wrappers.
 
 ### Transform (Entity Coordinates)
 
-- Подчеркнута идея относительных координат сущности к родителю.
-- Объяснена важность корректного parent-link при перемещениях.
-- Практическая поправка по коду: в матричных задачах берутся системные world/inv-world матрицы и готовые комбинированные методы, чтобы не пересобирать цепочку вручную.
+- The idea of ​​relative entity coordinates to the parent is emphasized.
+- The importance of the correct parent-link when moving is explained.
+- Practical correction to the code: in matrix problems, system world/inv-world matrices and ready-made combined methods are taken so as not to rebuild the chain manually.
 
 ### Transform (Grids)
 
-- Объяснена роль grid как промежуточного пространства между map и entity.
-- Показана зависимость tile/query операций от корректной grid-конверсии.
-- Практическая поправка по коду: для query/culling используются `GetWorldMatrix`/`GetInvWorldMatrix` + `TransformBox` для AABB.
+- The role of grid as an intermediate space between map and entity is explained.
+- Dependence of tile/query operations on correct grid conversion is shown.
+- Practical code correction: for query/culling use `GetWorldMatrix`/`GetInvWorldMatrix` + `TransformBox` for AABB.
 
 ### Transform (Physics)
 
-- Доки описывают идею локальных систем отсчета в физике и необходимость согласованного rotation/position.
-- Практическая поправка по коду: при broadphase/lookup критичен `GetRelativePhysicsTransform(...)`, который возвращает transform уже в нужном reference frame.
+- Docs describe the idea of ​​local reference systems in physics and the need for consistent rotation/position.
+- Practical code correction: with broadphase/lookup, `GetRelativePhysicsTransform(...)` is critical, which returns transform already in the desired reference frame.
 
 ### Rendering (Sprites and Icons)
 
-- Доки дают базовую модель слоев и визуальных трансформаций.
-- Практическая поправка по коду: современный pipeline строится вокруг `SpriteSystem`, где `LocalMatrix` и layer-strategy матрицы считаются централизованно.
+- Docks provide a basic model of layers and visual transformations.
+- Practical code correction: a modern pipeline is built around `SpriteSystem`, where `LocalMatrix` and layer-strategy matrices are calculated centrally.
 
 ### Rendering (Lighting and FOV)
 
-- Описан общий принцип post-process/overlay слоев.
-- Практическая поправка по коду: AO/FOV активно делают world->target-space переходы через матричное умножение и затем рисуют/query в локальном пространстве рендера или component-tree.
+- The general principle of post-process/overlay layers is described.
+- Practical code correction: AO/FOV actively do world->target-space transitions via matrix multiplication and then draw/query in local render space or component-tree.
 
-## Итог для skill
+## Summary for skill
 
-- Документация полезна как теория и терминология.
-- Для правил и примеров используй только свежие фрагменты текущего кода с проверкой `git blame`.
+- Documentation is useful as theory and terminology.
+- For rules and examples, use only fresh fragments of the current code with the `git blame` check.

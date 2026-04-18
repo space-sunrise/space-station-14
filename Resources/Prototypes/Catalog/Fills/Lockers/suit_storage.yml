@@ -133,7 +133,7 @@
   id: FillSuitStorageEVANTSRA
   table: !type:AllSelector
     children:
-    - id: JetpackVoidFilled
+    # - id: JetpackVoidFilled # Sunrise edit
     - id: ClothingOuterHardsuitAncientEVA
     - id: ClothingHeadHelmetAncient
     - id: ClothingMaskBreath

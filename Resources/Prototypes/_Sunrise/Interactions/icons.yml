@@ -82,3 +82,23 @@
   id: FriendlyPatHornsIcon
   name: interaction-icon-name-friendly-pat-horns-icon
   icon: /Textures/_Sunrise/Interactions/horns_pat.png
+
+- type: interactionIcon
+  id: WingPat
+  name: interaction-icon-name-wing-pat
+  icon: /Textures/_Sunrise/Interactions/wing_pat.png
+
+- type: interactionIcon
+  id: WingScratch
+  name: interaction-icon-name-wing-scratch
+  icon: /Textures/_Sunrise/Interactions/wing_scratch.png
+
+- type: interactionIcon
+  id: Wing
+  name: interaction-icon-name-wing
+  icon: /Textures/_Sunrise/Interactions/wing.png  
+
+- type: interactionIcon
+  id: WingPull
+  name: interaction-icon-name-wing-pull
+  icon: /Textures/_Sunrise/Interactions/wing_pull.png

@@ -1,6 +1,6 @@
 ent-ChairCarp = кресло из карпа
     .desc = Роскошное кресло, множество фиолетовых чешуек отражают свет самым приятным образом.
-ent-ComfyBrownChair = коричневое удобное кресло
+ent-ComfyChairBrown = коричневое удобное кресло
     .desc = { ent-ComfyChair.desc }
 ent-ChairOfficeGrey = серое офисное кресло
     .desc = { ent-ChairOfficeLight.desc }

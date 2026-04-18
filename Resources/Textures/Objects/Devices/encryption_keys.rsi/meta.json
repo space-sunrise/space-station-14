@@ -38,6 +38,7 @@
     {"name": "borg_label"},
     {"name": "ai_label"},
     {"name": "crypt_ussp"},
-    {"name": "crypt_red2"}
+    {"name": "crypt_red2"},
+    {"name": "deathsquad_label"}
   ]
 }

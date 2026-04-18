@@ -18976,7 +18976,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 57.5,69.5
       parent: 2
-- proto: AirlockExternalGlassShuttleArrivalsLocked
+- proto: AirlockExternalGlassShuttleArrivalsLockedCentComm
   entities:
   - uid: 377
     components:
@@ -19000,7 +19000,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -37.5,-20.5
       parent: 2
-- proto: AirlockExternalGlassShuttleEmergencyLocked
+- proto: AirlockExternalGlassShuttleEmergencyLockedCentComm
   entities:
   - uid: 381
     components:
@@ -199246,7 +199246,7 @@ entities:
     - type: Transform
       pos: 15.5,-13.5
       parent: 2
-- proto: VendingMachineMayson
+- proto: VendingMachineDiscount
   entities:
   - uid: 30401
     components:
