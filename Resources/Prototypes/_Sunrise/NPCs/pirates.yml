@@ -147,14 +147,12 @@
     - Pirate
   - type: Tag
     tags:
+    - Pirate
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
   - type: NpcVeteranFollower
-  - type: CollectiveMind
-    minds:
-    - Pirate
   - type: FootprintEmitter
   - type: MobThresholds
     thresholds:
@@ -293,6 +291,7 @@
     minVocalizeInterval: 45s
     maxVocalizeInterval: 120s
     hideChat: true
+  - type: CollectiveMind
 
 - type: entity
   abstract: true

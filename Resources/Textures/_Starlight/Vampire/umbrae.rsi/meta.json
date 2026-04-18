@@ -11,6 +11,9 @@
             "name": "cloak_of_darkness"
         },
         {
+            "name": "cloak_of_darkness_on"
+        },
+        {
             "name": "shadow_snare"
         },
         {
@@ -24,6 +27,9 @@
         },
         {
             "name": "eternal_darkness"
+        },
+        {
+            "name": "eternal_darkness_on"
         },
         {
             "name": "dark_passage"

@@ -17,9 +17,10 @@
         - state: vamp_claws_r
           sprite: _Starlight/Objects/Weapons/Melee/vampire_claws.rsi
   - type: MeleeWeapon
+    autoAttack: true # Sunrise-Add
     soundHit:
       collection: AlienClaw
-    attackRate: 1.5
+    attackRate: 3  # Sunrise-Edit
     damage:
       types:
         Slash: 18

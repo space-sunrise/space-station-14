@@ -244,6 +244,9 @@
       icon:
         sprite: _Starlight/Vampire/haemomancer.rsi
         state: blood_rite
+      iconOn:
+        sprite: _Starlight/Vampire/haemomancer.rsi
+        state: blood_rite_on
     - type: InstantAction
       event: !type:VampireBloodBringersRiteActionEvent {}
     - type: VampireAction
@@ -265,6 +268,9 @@
       icon:
         sprite: _Starlight/Vampire/umbrae.rsi
         state: cloak_of_darkness
+      iconOn:
+        sprite: _Starlight/Vampire/umbrae.rsi
+        state: cloak_of_darkness_on
     - type: InstantAction
       event: !type:VampireCloakOfDarknessActionEvent {}
     - type: VampireAction
@@ -302,7 +308,7 @@
   description: First use, place a shadow anchor beacon (lasts 2 min). Second use while it exists instantly return to it and consume the beacon.
   components:
     - type: Action
-      useDelay: 60 # 1min
+      useDelay: 30 # 1min
       itemIconStyle: NoItem
       priority: 20
       icon:
@@ -399,8 +405,11 @@
       itemIconStyle: NoItem
       priority: 19
       icon:
-        sprite: _Starlight/Vampire/umbrae.rsi
+        sprite: _Starlight/Vampire/Dantalion.rsi
         state: eternal_darkness
+      iconOn:
+        sprite: _Starlight/Vampire/Dantalion.rsi
+        state: eternal_darkness_on
     - type: InstantAction
       event: !type:VampireEternalDarknessActionEvent {}
     - type: VampireAction
@@ -547,6 +556,9 @@
       icon:
         sprite: _Starlight/Vampire/Dantalion.rsi
         state: blood_bond
+      iconOn:
+        sprite: _Starlight/Vampire/Dantalion.rsi
+        state: blood_bond_on
     - type: InstantAction
       event: !type:VampireBloodBondActionEvent
     - type: VampireAction
@@ -649,6 +661,9 @@
       icon:
         sprite: _Starlight/Vampire/Gargantua.rsi
         state: overwhelming_force
+      iconOn:
+        sprite: _Starlight/Vampire/Gargantua.rsi
+        state: overwhelming_force_on
     - type: InstantAction
       event: !type:VampireOverwhelmingForceActionEvent {}
     - type: VampireAction

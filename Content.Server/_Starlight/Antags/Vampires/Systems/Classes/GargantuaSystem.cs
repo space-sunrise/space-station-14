@@ -436,7 +436,7 @@ public sealed class GargantuaSystem : EntitySystem
         if (!TryComp<VampireComponent>(uid, out var vampire))
             return;
 
-        const int BloodCost = 15;
+        const int BloodCost = 5; // Cost 5 in description
         var newBlood = Math.Max(0, vampire.DrunkBlood - BloodCost);
         if (newBlood != vampire.DrunkBlood)
         {

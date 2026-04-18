@@ -27,6 +27,9 @@
         },
         {
             "name": "blood_rite"
+        },
+        {
+            "name": "blood_rite_on"
         }
     ]
 }
