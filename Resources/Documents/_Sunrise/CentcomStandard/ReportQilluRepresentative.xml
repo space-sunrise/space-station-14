@@ -8,14 +8,14 @@
 [bold][color=#4D5F80]Время:[/color] [color=#1B2333]{timeString}[/color][/bold]
 [mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
 [color=#1B2333][bold]Составитель[/bold][/color]
-[bold][color=#4D5F80]ФИО:[/color][/bold] [color=#0F5E2B][bold][signature="ФИО"][/bold][/color]
+[bold][color=#4D5F80]Имя и Фамилия:[/color][/bold] [color=#0F5E2B][bold][signature="Имя и Фамилия"][/bold][/color]
 [bold][color=#4D5F80]Должность:[/color][/bold] [color=#7A4A00][bold]Представитель {corpString}[/bold][/color]
 
 [mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
 [color=#1B2333][bold]Отчёт Представителя {corpString}[/bold][/color]
 [mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
 
-[color=#2D3442]Я, [bold][color=#1E4C7A][signature="ФИО"][/color][/bold], в должности Представителя {corpString}, в ходе наблюдений за командованием станции [bold][color=#1B2333]{stationName}[/color][/bold], информирую Центральное Командование о следующем:[/color]
+[color=#2D3442]Я, [bold][color=#1E4C7A][signature="Имя и Фамилия"][/color][/bold], в должности Представителя {corpString}, в ходе наблюдений за командованием станции [bold][color=#1B2333]{stationName}[/color][/bold], информирую Центральное Командование о следующем:[/color]
 [bold][color=#1E4C7A][form="Описание сведений"][/color][/bold]
 
 [color=#2D3442]Прошу оператора или одного из членов Центрального Командования дать ответ по донесённым сведениям и, при необходимости, предоставить дальнейшие инструкции или приказы.[/color]

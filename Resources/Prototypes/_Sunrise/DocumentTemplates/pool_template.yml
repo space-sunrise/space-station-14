@@ -24,6 +24,7 @@
     - EvacuationShuttleRequest
     - ExperimentReport
     - InternalAffairsAgentsReport
+    - InternalAffairsAgentCentcomReport
     - Judgment
     - LetterResignation
     - MarriageCertificate

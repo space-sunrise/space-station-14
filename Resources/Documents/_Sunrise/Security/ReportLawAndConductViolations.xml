@@ -8,7 +8,7 @@
 [bold][color=#4D5F80]Время:[/color] [color=#1B2333]{timeString}[/color][/bold]
 [mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
 [color=#1B2333][bold]Составитель[/bold][/color]
-[bold][color=#4D5F80]ФИО:[/color][/bold] [color=#0F5E2B][bold][signature="ФИО"][/bold][/color]
+[bold][color=#4D5F80]Имя и Фамилия:[/color][/bold] [color=#0F5E2B][bold][signature="Имя и Фамилия"][/bold][/color]
 [bold][color=#4D5F80]Должность:[/color][/bold] [color=#7A4A00][bold][job="Должность"][/bold][/color]
 
 [mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
@@ -17,7 +17,7 @@
 
 [bold]Отчёт:[/bold]
 [mono]
-1) Сотрудник: [form="ФИО"], [form="ДОЛЖНОСТЬ"]
+1) Сотрудник: [form="Имя и Фамилия"], [form="ДОЛЖНОСТЬ"]
    Нарушения: [form="описание"]
    Пункты СРП: [form="номер/пункты"]
    Пункты КЗ: [form="номер/статьи"]
