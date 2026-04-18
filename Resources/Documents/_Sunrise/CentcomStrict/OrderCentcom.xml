@@ -4,7 +4,7 @@
 [color=#4A4F5D][mono]────────────────────────────────────────────[/mono][/color]
 [mono][color=#1E4C7A][bold]{corpString} / ЦК-КОМ[/bold][/color]        [color=#7A4A00][bold]№ [form="Номер приказа"][/bold][/color][/mono]
 [mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
-[bold][color=#4D5F80]Станция:[/color] [color=#1B2333]{stationName}[/color][/bold]
+[bold][color=#4D5F80]Объект назначения:[/color] [color=#1B2333][form="Наименование объекта"][/color][/bold]
 [bold][color=#4D5F80]Время:[/color] [color=#1B2333]{timeString}[/color][/bold]
 [mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
 [color=#1B2333][bold]Составитель[/bold][/color]
@@ -15,7 +15,7 @@
 [color=#1B2333][bold]Приказ Центрального Командования[/bold][/color]
 [mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
 
-[color=#2D3442][bold][color=#1B2333]Уважаемое Командование Станции[/color][/bold] [color=#1B2333][bold][form="Станция"][/bold][/color], [bold][color=#8D1010]доводим до исполнения[/color][/bold] следующий [bold][color=#1E4C7A]приказ Центрального Командования[/color][/bold]:[/color]
+[color=#2D3442][bold][color=#1B2333]Уважаемое Командование[/color][/bold], [bold][color=#8D1010]доводим до исполнения[/color][/bold] следующий [bold][color=#1E4C7A]приказ Центрального Командования[/color][/bold]:[/color]
 
 [bold][color=#7A4A00]Суть приказа:[/color][/bold] [bold][color=#1E4C7A][form="Суть приказа"][/color][/bold]
 [bold][color=#7A4A00]Обязательные распоряжения:[/color][/bold]
@@ -26,9 +26,10 @@
 
 [bold][color=#7A4A00]Срок исполнения:[/color][/bold] [bold][color=#8D1010][form="Время"][/color][/bold]
 [bold][color=#7A4A00]Ответственный за исполнение:[/color][/bold] [bold][color=#1E4C7A][form="Должность ответственного"][/color][/bold]
-[bold][color=#7A4A00]Возможные последствия при неисполнении приказа:[/color][/bold] [bold][color=#8D1010]административные санкции, крупные штрафы, отстранение от должности и увольнение по решению Центрального Командования.[/color][/bold]
+[bold][color=#7A4A00]Возможные последствия при неисполнении приказа:[/color][/bold] [color=#2D3442]административные санкции, крупные штрафы, отстранение от должности и увольнение по решению Центрального Командования.[/color]
 
 [mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                     [italic][color=#5A616F]Место для печатей[/color][/italic]
 
 
 
