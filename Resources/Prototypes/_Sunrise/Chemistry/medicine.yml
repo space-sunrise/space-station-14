@@ -217,14 +217,14 @@
       - !type:HealthChange
         conditions:
         - !type:TotalDamageCondition
-          min: 25
+          min: 25.1
         damage:
           groups:
             Brute: -6
       - !type:HealthChange
         conditions:
         - !type:TotalDamageCondition
-          max: 25
+          max: 24.9
         damage:
           groups:
             Brute: -3
@@ -263,14 +263,14 @@
       - !type:HealthChange
         conditions:
         - !type:TotalDamageCondition
-          min: 25
+          min: 25.1
         damage:
           groups:
             Burn: -8
       - !type:HealthChange
         conditions:
         - !type:TotalDamageCondition
-          max: 25
+          max: 24.9
         damage:
           groups:
             Burn: -4
