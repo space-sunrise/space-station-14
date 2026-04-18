@@ -9,6 +9,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
+using Content.Shared.Stunnable;
 using Content.Shared.Timing;
 using Content.Shared.Verbs;
 using Robust.Shared.Map;
@@ -28,6 +29,7 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly BiocodeSystem _biocode = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
 
     private const string SourceEffectPrototype = "TeleportEffectSource";
     private const string TargetEffectPrototype = "TeleportEffectTarget";
@@ -149,14 +151,14 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
         // Свободно - нет урона
         if (IsSpotFree(user, target))
         {
-            ApplyLanding(user, target);
+            ApplyLanding(user, target, comp);
             return;
         }
 
         // Стенка - урон
         if (TryFindSafeTile(user, target, out var safe))
         {
-            ApplyLanding(user, safe!.Value);
+            ApplyLanding(user, safe!.Value, comp);
             ApplyBlockedDamage(user, comp);
             return;
         }
@@ -245,10 +247,13 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
             : UseDelaySystem.DefaultId;
     }
 
-    private void ApplyLanding(EntityUid user, EntityCoordinates where)
+    private void ApplyLanding(EntityUid user, EntityCoordinates where, SyndicateTeleporterComponent comp)
     {
         _transform.SetCoordinates(user, where);
         Spawn(TargetEffectPrototype, _transform.ToMapCoordinates(where));
+
+        if (comp.KnockdownDuration is { } duration)
+            _stun.TryKnockdown(user, duration);
     }
 
     /// <summary>

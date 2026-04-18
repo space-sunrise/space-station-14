@@ -88,48 +88,12 @@ public record struct GetMeleeDamageEvent(EntityUid Weapon, DamageSpecifier Damag
 /// Handlers should mutate <see cref="BonusDamage"/> additively and may skip their modifier when <see cref="IsWideAttack"/> is true.
 /// </summary>
 [ByRefEvent]
-public struct GetMeleeHitBonusDamageEvent
-{
-    /// <summary>
-    /// The melee weapon entity that raised the event.
-    /// </summary>
-    public EntityUid Weapon;
-
-    /// <summary>
-    /// The attacking entity performing the melee hit.
-    /// </summary>
-    public EntityUid User;
-
-    /// <summary>
-    /// The entity being struck.
-    /// </summary>
-    public EntityUid Target;
-
-    /// <summary>
-    /// Mutable bonus damage applied in addition to the base hit damage.
-    /// Subscribers should add or adjust entries instead of replacing unrelated damage contributions.
-    /// </summary>
-    public DamageSpecifier BonusDamage;
-
-    /// <summary>
-    /// True when the hit came from a wide-sweep attack that can strike multiple nearby targets.
-    /// </summary>
-    public bool IsWideAttack;
-
-    public GetMeleeHitBonusDamageEvent(
-        EntityUid weapon,
-        EntityUid user,
-        EntityUid target,
-        DamageSpecifier bonusDamage,
-        bool isWideAttack)
-    {
-        Weapon = weapon;
-        User = user;
-        Target = target;
-        BonusDamage = bonusDamage;
-        IsWideAttack = isWideAttack;
-    }
-}
+public record struct GetMeleeHitBonusDamageEvent(
+    EntityUid Weapon,
+    EntityUid User,
+    EntityUid Target,
+    DamageSpecifier BonusDamage,
+    bool IsWideAttack);
 
 /// <summary>
 /// Raised on a melee weapon to calculate the attack rate.

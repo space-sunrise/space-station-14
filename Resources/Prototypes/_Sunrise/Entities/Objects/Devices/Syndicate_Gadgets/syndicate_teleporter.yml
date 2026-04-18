@@ -12,6 +12,7 @@
   - type: SyndicateTeleporter
     randomDistanceValue: 4
     teleportationValue: 4
+    knockdownDuration: 2
     damageOnBlocked:
       types:
         Cellular: 10
