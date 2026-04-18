@@ -7,6 +7,6 @@ namespace Content.Server._Sunrise.Research.Components;
 [RegisterComponent, Access(typeof(ResearchSystem))]
 public sealed partial class ResearchPopulationComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public float Weight = 1f;
 }

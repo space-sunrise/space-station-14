@@ -1,12 +1,13 @@
 using Content.Server._Sunrise.Research.Components;
-using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
+using Content.Shared.Mind;
 using Content.Shared._Sunrise.Research.Prototypes;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Research.Components;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Jobs;
 using Content.Shared.SSDIndicator;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -22,6 +23,8 @@ namespace Content.Server.Research.Systems;
 public sealed partial class ResearchSystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly SharedJobSystem _jobs = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
@@ -50,7 +53,6 @@ public sealed partial class ResearchSystem
         _ghostQuery = GetEntityQuery<GhostComponent>();
         _ssdIndicatorQuery = GetEntityQuery<SSDIndicatorComponent>();
 
-        SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawning, after: [typeof(SpawnPointSystem)]);
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
@@ -91,14 +93,6 @@ public sealed partial class ResearchSystem
         ModifyServerPoints(uid, points, component);
     }
 
-    private void OnPlayerSpawning(PlayerSpawningEvent ev)
-    {
-        if (ev.SpawnResult is not { } mob)
-            return;
-
-        TrySetResearchPopulation((mob, null), ev.Job);
-    }
-
     private void OnRoundStarted(RoundStartedEvent _)
     {
         ResetPopulationModifierState();
@@ -109,25 +103,6 @@ public sealed partial class ResearchSystem
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent _)
     {
         ResetPopulationModifierState();
-    }
-
-    private void TrySetResearchPopulation(Entity<ResearchPopulationComponent?> ent, ProtoId<JobPrototype>? jobId)
-    {
-        if (jobId == null || _ghostQuery.HasComp(ent))
-        {
-            RemComp<ResearchPopulationComponent>(ent);
-            return;
-        }
-
-        var weight = GetResearchPopulationWeight(jobId);
-
-        if (weight <= 0f)
-        {
-            RemComp<ResearchPopulationComponent>(ent);
-            return;
-        }
-
-        EnsureComp<ResearchPopulationComponent>(ent).Weight = weight;
     }
 
     private void ResetPopulationModifierState()
@@ -183,9 +158,18 @@ public sealed partial class ResearchSystem
         if (_ssdIndicatorQuery.TryComp(uid, out var ssdIndicator) && ssdIndicator.IsSSD)
             return 0f;
 
-        return TryComp<ResearchPopulationComponent>(uid, out var researchPopulation)
-            ? researchPopulation.Weight
-            : 1f;
+        return GetResearchPopulationContribution(uid);
+    }
+
+    private float GetResearchPopulationContribution(EntityUid uid)
+    {
+        if (TryComp<ResearchPopulationComponent>(uid, out var researchPopulation))
+            return researchPopulation.Weight;
+
+        if (!_mind.TryGetMind(uid, out var mindId, out _) || !_jobs.MindTryGetJobId(mindId, out var jobId))
+            return 1f;
+
+        return GetResearchPopulationWeight(jobId);
     }
 
     private void UpdatePopulationModifierCalculateAt()
