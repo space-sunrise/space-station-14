@@ -91,7 +91,7 @@ public sealed class SwitchbladeTeleporterSystem : EntitySystem
     {
         disabledMessage = null;
 
-        if (!IsOwnedByUser(ent.Owner, user))
+        if (!IsCarriedByUser(ent.Owner, user))
         {
             disabledMessage = Loc.GetString("syndicate-teleporter-not-on-user");
             if (!quiet)
@@ -135,9 +135,9 @@ public sealed class SwitchbladeTeleporterSystem : EntitySystem
     }
 
     /// <summary>
-    /// Checks whether the item is owned by the user, either via direct parenting or anywhere in the user's container chain.
+    /// Checks whether the item is carried by the user, either via direct parenting or anywhere in the user's container chain.
     /// </summary>
-    private bool IsOwnedByUser(EntityUid item, EntityUid user)
+    private bool IsCarriedByUser(EntityUid item, EntityUid user)
     {
         if (Transform(item).ParentUid == user)
             return true;
