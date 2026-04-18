@@ -138,7 +138,7 @@ public abstract partial class SharedExecutionSystem
 
     private bool PrototypeHasLethalEffect(DamageableComponent damageable, EntProtoId ammoPrototype)
     {
-        var proto = _prototypeManager.Index<EntityPrototype>(ammoPrototype);
+        var proto = _prototypeManager.Index(ammoPrototype);
 
         if (proto.TryGetComponent<ExplosiveComponent>(out _, _componentFactory))
             return true;
