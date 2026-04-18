@@ -1,0 +1,12 @@
+- type: vendingMachineInventory
+  id: EVASuitDispenserInventory
+  startingInventory:
+    ClothingOuterHardsuitEVA: 4
+    ClothingHeadHelmetEVA: 4
+    ClothingHeadHelmetEVALarge: 4
+    ClothingOuterSuitEmergency: 6
+  contrabandInventory:
+    ClothingOuterHardsuitEVAPrisoner: 4
+  emaggedInventory:
+    ClothingHeadHelmetSyndicate: 2
+    ClothingOuterEVASuitSyndicate: 2

@@ -411,7 +411,7 @@
   description: A one-of-a-kind prototype of emergency repair module mounted in arm that uses various engi grenade configurations.
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Tools/advanced-rcd.rsi
+    sprite: _Sunrise/Objects/Tools/advanced_rcd.rsi
     state: icon
   - type: Gun
     fireRate: 2

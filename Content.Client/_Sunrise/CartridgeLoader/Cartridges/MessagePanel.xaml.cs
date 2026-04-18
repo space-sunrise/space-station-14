@@ -25,7 +25,7 @@ public sealed partial class MessagePanel : PanelContainer
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly NetTexturesManager _netTexturesManager = default!;
 
-    private ClientEmojiSystem? EmojiSystem => _entitySystemManager.GetEntitySystemOrNull<ClientEmojiSystem>();
+    private EmojiSystem? EmojiSystem => _entitySystemManager.GetEntitySystemOrNull<EmojiSystem>();
     private SpriteSystem GetSpriteSystem() => _entitySystemManager.GetEntitySystem<SpriteSystem>();
 
     /// <summary>
@@ -190,10 +190,9 @@ public sealed partial class MessagePanel : PanelContainer
     {
         try
         {
-            var uploadedPath = _netTexturesManager.GetUploadedPath(imagePath);
-            if (_resourceCache.TryGetResource<TextureResource>(uploadedPath, out var textureResource))
+            if (_netTexturesManager.TryGetTexture(imagePath, out var texture))
             {
-                ImagePreview.Texture = textureResource.Texture;
+                ImagePreview.Texture = texture;
                 ImageButton.Visible = true;
             }
             else

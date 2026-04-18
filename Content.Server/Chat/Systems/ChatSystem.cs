@@ -166,6 +166,9 @@ public sealed partial class ChatSystem : SharedChatSystem
     {
         if (TryComp<AbductorComponent>(source, out var comp))
         {
+            if (!TryProcessSunriseChatMessage(source, ref message, InGameICChatType.CollectiveMind))
+                return;
+
             _prototypeManager.TryIndex<CollectiveMindPrototype>(comp.AbductorCollectiveMindProto, out var channel);
             SendCollectiveMindChat(source, message, channel);
             return;
@@ -196,13 +199,8 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
 
         // Sunrise added start - для санитизации чата
-        var trySendEvent = new TrySendChatMessageEvent(message, desiredType);
-        RaiseLocalEvent(source, trySendEvent);
-
-        if (trySendEvent.Cancelled)
+        if (!TryProcessSunriseChatMessage(source, ref message, desiredType))
             return;
-
-        message = trySendEvent.Message;
         // Sunrise added end
 
         ignoreActionBlocker = CheckIgnoreSpeechBlocker(source, ignoreActionBlocker);
@@ -303,13 +301,8 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
 
         // Sunrise added start - для санитизации чата
-        var trySendEvent = new TrySendChatMessageEvent(message, oocChatType: type);
-        RaiseLocalEvent(source, trySendEvent);
-
-        if (trySendEvent.Cancelled)
+        if (!TryProcessSunriseChatMessage(source, ref message, oocChatType: type))
             return;
-
-        message = trySendEvent.Message;
         // Sunrise added end
 
         message = SanitizeInGameOOCMessage(message);
@@ -501,16 +494,6 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (!sourceCollectiveMindComp.Minds.ContainsKey(collectiveMind))
             return;
-
-        // Sunrise added start - для санитизации чата
-        var trySendEvent = new TrySendChatMessageEvent(message, InGameICChatType.CollectiveMind);
-        RaiseLocalEvent(source, trySendEvent);
-
-        if (trySendEvent.Cancelled)
-            return;
-
-        message = trySendEvent.Message;
-        // Sunrise added end
 
         var clients = Filter.Empty();
         var receivers = new HashSet<EntityUid>();
@@ -963,6 +946,16 @@ public sealed partial class ChatSystem : SharedChatSystem
             var entRange = MessageRangeCheck(session, data, range);
             if (entRange == MessageRangeCheckResult.Disallowed)
                 continue;
+            // Sunrise-start
+            // Проверка на наличие прямой видимости для эмоутов
+            if (channel == ChatChannel.Emotes)
+            {
+                var ev = new EmoteVisibilityCheckEvent(source, session.AttachedEntity, VoiceRange);
+                RaiseLocalEvent(ref ev);
+                if (!ev.Visible)
+                    continue;
+            }
+            // Sunrise-end
             var entHideChat = entRange == MessageRangeCheckResult.HideChat;
             _chatManager.ChatMessageToOne(channel, message, wrappedMessage, source, entHideChat, session.Channel, author: author, colorOverride: color);
         }

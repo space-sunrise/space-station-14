@@ -1,0 +1,21 @@
+id: ss14-subscribelocalevent-only-in-initialize
+language: CSharp
+severity: error
+message: "`SubscribeLocalEvent` belongs in `Initialize()` only."
+note: "Per `ss14-events` and `ss14-ecs-systems`, subscriptions outside `Initialize()` risk duplicate subscriptions and lifecycle bugs."
+files:
+  - "Content.*/**/*System*.cs"
+rule:
+  all:
+    - kind: invocation_expression
+    - regex: '^(?:(?:this|base)\.)?SubscribeLocalEvent\s*(?:<.*>)?\s*\(.*$'
+    - inside:
+        any:
+          - kind: constructor_declaration
+          - all:
+              - kind: method_declaration
+              - not:
+                  has:
+                    field: name
+                    regex: '^Initialize$'
+        stopBy: end

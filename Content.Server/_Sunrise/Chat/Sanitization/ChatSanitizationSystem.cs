@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Text;
 using System.Text.RegularExpressions;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Chat;
@@ -17,20 +19,9 @@ public sealed partial class ChatSanitizationSystem : EntitySystem
     [Dependency] private readonly ISharedChatManager _chat = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
 
+    private ConfigurationMultiSubscriptionBuilder? _cVarSubscriptions;
     private bool _chatSanitizationEnabled;
     private bool _aggressive;
-
-    /// <summary>
-    /// Расширенный паттерн для обнаружения ссылок.
-    /// </summary>
-    private static readonly Regex UrlRegex =
-        new(@"(?<!\d)\b[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z]{2,6}\b(?!\d)", RegexOptions.Compiled);
-
-    /// <summary>
-    /// ASCII-art фильтр: отбрасывает нестандартные символы, но сохраняет все локали и управляемые символы.
-    /// </summary>
-    private static readonly Regex AsciiArtRegex =
-        new("[^\\x09\\x0A\\x0D\\x20-\\x7E\\u0400-\\u04FF\\u2014]", RegexOptions.Compiled);
 
     private const int MaxAdminAlertMessageLength = 20;
 
@@ -38,20 +29,31 @@ public sealed partial class ChatSanitizationSystem : EntitySystem
     {
         base.Initialize();
 
-        _chatSanitizationEnabled = _configuration.GetCVar(SunriseCCVars.ChatSanitizationEnable);
-        _aggressive = _configuration.GetCVar(SunriseCCVars.ChatSanitizationAggressive);
+        var cvarSubscriptions = _configuration.SubscribeMultiple()
+            .OnValueChanged(SunriseCCVars.ChatSanitizationEnabled, val => _chatSanitizationEnabled = val, true)
+            .OnValueChanged(SunriseCCVars.ChatSanitizationAggressive, val => _aggressive = val, true);
 
-        _configuration.OnValueChanged(SunriseCCVars.ChatSanitizationEnable, val => _chatSanitizationEnabled = val);
-        _configuration.OnValueChanged(SunriseCCVars.ChatSanitizationAggressive, val => _aggressive = val);
+        InitializeAntiSpam(cvarSubscriptions);
+        _cVarSubscriptions = cvarSubscriptions;
 
         SubscribeLocalEvent<ActorComponent, TrySendChatMessageEvent>(OnTrySendChatMessage);
-
-        InitializeAntiSpam();
     }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+
+        _cVarSubscriptions?.Dispose();
+        _cVarSubscriptions = null;
+    }
+
+    [GeneratedRegex(@"(?<!\d)\b[-a-z0-9@:%._+~#=]{1,256}\.[a-z]{2,63}\b(?!\d)",
+        RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
+    private static partial Regex UrlRegex();
 
     private void OnTrySendChatMessage(Entity<ActorComponent> ent, ref TrySendChatMessageEvent args)
     {
-        if (args.Cancelled)
+        if (args.Cancelled || !args.ProcessUserInput)
             return;
 
         ApplySanitization(ent, ref args);
@@ -82,26 +84,28 @@ public sealed partial class ChatSanitizationSystem : EntitySystem
             return;
 
         NotifyAdminsAboutBlockedMessage(session, args.Message, reason);
-        args.Cancel();
+        args.Cancelled = true;
     }
 
     private static void HandleSoftSanitization(ref TrySendChatMessageEvent args)
     {
-        args.Message = UrlRegex.Replace(args.Message, string.Empty);
-        args.Message = AsciiArtRegex.Replace(args.Message, string.Empty);
+        args.Message = StripProhibitedCharacters(args.Message);
+
+        if (MightContainUrl(args.Message))
+            args.Message = UrlRegex().Replace(args.Message, string.Empty);
     }
 
     private bool ContainsProhibitedContent(string message, [NotNullWhen(true)] out string? reason)
     {
         reason = null;
 
-        if (UrlRegex.IsMatch(message))
+        if (MightContainUrl(message) && UrlRegex().IsMatch(message))
         {
             reason = Loc.GetString("chatsan-blocked-reason-url");
             return true;
         }
 
-        if (AsciiArtRegex.IsMatch(message))
+        if (ContainsProhibitedCharacters(message))
         {
             reason = Loc.GetString("chatsan-blocked-reason-ascii-art");
             return true;
@@ -122,5 +126,76 @@ public sealed partial class ChatSanitizationSystem : EntitySystem
             ("reason", reason),
             ("message_cropped", cropped)
         ));
+    }
+
+    private static bool MightContainUrl(string message)
+    {
+        return message.Contains('.') || message.Contains("://");
+    }
+
+    private static bool ContainsProhibitedCharacters(string message)
+    {
+        for (var i = 0; i < message.Length; i++)
+        {
+            if (IsProhibitedCharacter(message[i]))
+                return true;
+        }
+
+        return false;
+    }
+
+    private static string StripProhibitedCharacters(string message)
+    {
+        var firstBlockedIndex = -1;
+        for (var i = 0; i < message.Length; i++)
+        {
+            if (!IsProhibitedCharacter(message[i]))
+                continue;
+
+            firstBlockedIndex = i;
+            break;
+        }
+
+        if (firstBlockedIndex < 0)
+            return message;
+
+        var builder = new StringBuilder(message.Length);
+        builder.Append(message, 0, firstBlockedIndex);
+
+        for (var i = firstBlockedIndex + 1; i < message.Length; i++)
+        {
+            var ch = message[i];
+            if (!IsProhibitedCharacter(ch))
+                builder.Append(ch);
+        }
+
+        return builder.ToString();
+    }
+
+    private static bool IsProhibitedCharacter(char ch)
+    {
+        if (ch is '卐' or '卍')
+            return true;
+
+        if (ch is '\t' or '\n' or '\r')
+            return false;
+
+        var category = char.GetUnicodeCategory(ch);
+        if (category is UnicodeCategory.Control
+            or UnicodeCategory.Format
+            or UnicodeCategory.Surrogate
+            or UnicodeCategory.PrivateUse
+            or UnicodeCategory.OtherNotAssigned
+            or UnicodeCategory.NonSpacingMark
+            or UnicodeCategory.SpacingCombiningMark
+            or UnicodeCategory.EnclosingMark)
+        {
+            return true;
+        }
+
+        if (category != UnicodeCategory.OtherSymbol)
+            return false;
+
+        return ch != '№';
     }
 }

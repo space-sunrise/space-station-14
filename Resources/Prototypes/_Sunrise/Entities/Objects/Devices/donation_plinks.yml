@@ -25,6 +25,7 @@
     categories:
       - General
       - SecurityThings
+      - HOSHeadOfDepartment
       - CMOHeadOfDepartment
       - CEHeadOfDepartment
       - RDHeadOfDepartment
@@ -51,7 +52,6 @@
       - SunriseUplink
 
 ##################
-#    SUNRISE     #
 ##################
 
 - type: entity

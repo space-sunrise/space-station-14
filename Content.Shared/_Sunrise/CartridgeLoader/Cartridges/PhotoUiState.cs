@@ -19,6 +19,11 @@ public sealed class PhotoUiState : BoundUserInterfaceState
     public bool CameraReady { get; }
 
     /// <summary>
+    /// Разрешена ли загрузка/отправка фотографий
+    /// </summary>
+    public bool PhotoSendingEnabled { get; }
+
+    /// <summary>
     /// Включена ли вспышка
     /// </summary>
     public bool FlashEnabled { get; }
@@ -31,11 +36,13 @@ public sealed class PhotoUiState : BoundUserInterfaceState
     public PhotoUiState(
         Dictionary<string, PhotoMetadata> photos,
         bool cameraReady,
+        bool photoSendingEnabled,
         bool flashEnabled,
         string? errorMessage = null)
     {
         Photos = photos;
         CameraReady = cameraReady;
+        PhotoSendingEnabled = photoSendingEnabled;
         FlashEnabled = flashEnabled;
         ErrorMessage = errorMessage;
     }

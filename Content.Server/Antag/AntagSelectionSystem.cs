@@ -447,7 +447,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     {
         _adminLogger.Add(LogType.AntagSelection, $"Start trying to make {session} become the antagonist: {ToPrettyString(ent)}");
 
-        if (checkPref && !ValidAntagPreference(session, def.PrefRoles))
+        if (checkPref && !def.IgnorePrefCheck && !ValidAntagPreference(session, def.PrefRoles)) // Sunrise-Edit
             return false;
 
         if (!IsSessionValid(ent, session, def) || !IsEntityValid(session?.AttachedEntity, def))
@@ -606,7 +606,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                 continue;
 
             // Add player to the appropriate antag pool
-            if (ValidAntagPreference(session, def.PrefRoles))
+            if (def.IgnorePrefCheck || ValidAntagPreference(session, def.PrefRoles)) // Sunrise-Edit
             {
                 preferredList.Add(session);
             }

@@ -18,14 +18,6 @@
       path: /Audio/Items/Handcuffs/rope_breakout.ogg
     startBreakoutSound:
       path: /Audio/Items/Handcuffs/rope_takeoff.ogg
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-        color: forestgreen
-      right:
-      - state: inhand-right
-        color: forestgreen
   - type: Sprite
     sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
     state: cuff

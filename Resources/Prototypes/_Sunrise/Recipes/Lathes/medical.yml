@@ -1,4 +1,20 @@
 - type: latheRecipe
+  id: JugBluespace
+  result: JugBluespace
+  parent: BluespaceBeaker # same size, 1:1 recipe
+
+- type: latheRecipe
+  id: VialBluespace
+  result: VialBluespace
+  completetime: 2
+  materials:
+    Steel: 60
+    Plastic: 60
+    Plasma: 15
+    Silver: 15
+    Uranium: 30
+
+- type: latheRecipe
   id: ImplanterExtractor
   result: ImplanterExtractor
   completetime: 1

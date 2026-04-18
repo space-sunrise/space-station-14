@@ -15,7 +15,7 @@
 
 
 - type: entity
-  parent: BaseBullet
+  parent: BaseBulletRubber #sunrise-edit, it just looks better
   id: PelletShotgunBeanbag
   categories: [ HideSpawnMenu ]
   name: beanbag (.50)
@@ -29,7 +29,7 @@
       types:
         Blunt: 10
   - type: StaminaDamageOnCollide
-    damage: 40 # 3 hits to stun
+    damage: 35 #sunrise-edit, 3 hits to stun
 
 - type: entity
   parent: BaseBullet
@@ -326,4 +326,5 @@
     color: "#ffefc7"
     radius: 2.0
     energy: 4.0
+
 # Sunrise-end

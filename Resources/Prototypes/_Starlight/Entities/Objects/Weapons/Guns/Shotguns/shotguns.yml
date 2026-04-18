@@ -88,11 +88,13 @@
   - type: Item
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cycler.rsi
     size: Large
+  - type: GunSpreadModifier # Sunrise-Add
+    spread: 1.2
   - type: Gun
     spread: 24
     fireRate: 2
     burstFireRate: 4
-    burstCooldown: 0.45
+    burstCooldown: 0.5
     selectedMode: Burst
     shotsPerBurst: 2
     availableModes:
@@ -106,7 +108,7 @@
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cycler.rsi
   - type: GunRequiresWield
   - type: BallisticAmmoProvider
-    capacity: 14
+    capacity: 12
 
 - type: entity
   name: Tkach Ya-Sui GA 12 revolver
@@ -153,6 +155,10 @@
     ammoSlots: [ null, null, null ]
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      revolver-ammo: !type:Container
   - type: KnockbackByUserTag
     doestContain:
       Resomi:
@@ -243,7 +249,7 @@
 
 - type: entity
   name: makeshift shotgun
-  parent: [WeaponFlareGunSecurity, BaseMinorContraband]
+  parent: [WeaponFlareGunSecurity, BaseMinorContraband, BaseGunShotgunSound] # Sunrise edit - shotgun handling sounds
   id: WeaponShotgunMakeshift
   description: A small hand-cannon that fires .50 shotgun shells. Has no cloth to hold it together, so it has a high chance of falling apart with every shot.
   components:

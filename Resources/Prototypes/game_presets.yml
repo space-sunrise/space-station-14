@@ -109,6 +109,7 @@
   - director
   name: dynamic-title
   showInVote: true # Sunrise-Edit
+  hide: false # Sunrise-Edit
   description: dynamic-description
   rules:
   - DynamicRule

@@ -1,0 +1,45 @@
+id: ss14-dependency-field-must-start-with-underscore
+language: CSharp
+severity: error
+message: "Private `[Dependency]` fields in `_Sunrise` code must start with `_` per `ss14-naming-conventions`."
+note: "This encodes the low-noise part of the dependency naming rule. Canonical alias selection still needs review context because the repo contains legacy variations."
+files:
+  - "Content.*/_Sunrise/**/*.cs"
+rule:
+  any:
+    - pattern:
+        context: |
+          class Dummy
+          {
+              [Dependency] private readonly $TYPE $NAME = $VALUE;
+          }
+        selector: field_declaration
+    - pattern:
+        context: |
+          class Dummy
+          {
+              [Dependency, $$$REST] private readonly $TYPE $NAME = $VALUE;
+          }
+        selector: field_declaration
+    - pattern:
+        context: |
+          class Dummy
+          {
+              [Dependency]
+              [$$$MORE]
+              private readonly $TYPE $NAME = $VALUE;
+          }
+        selector: field_declaration
+    - pattern:
+        context: |
+          class Dummy
+          {
+              [Dependency, $$$REST]
+              [$$$MORE]
+              private readonly $TYPE $NAME = $VALUE;
+          }
+        selector: field_declaration
+constraints:
+  NAME:
+    not:
+      regex: '^_'

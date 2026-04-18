@@ -10,6 +10,14 @@
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
+  - type: StationEvent
+    weight: 15
+    earliestStart: 10
+    minimumPlayers: 10
+    reoccurrenceDelay: 20
+    duration: null
+  - type: LateJoinSpawnRule
+    prototype: SpawnPointGhostFugitive
   - type: FugitiveRule
   - type: DynamicRuleCost
     cost: 65

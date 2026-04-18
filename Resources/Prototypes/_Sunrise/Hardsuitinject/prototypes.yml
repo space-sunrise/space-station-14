@@ -28,8 +28,8 @@
 
 - type: entity
   id: ActionToggleInjection
-  name: hardsuitinjection-toggle
-  description: hardsuitinjection-toggledescription
+  name: toggle the EC
+  description: Toggles EC
   components:
   - type: Action
     itemIconStyle: NoItem
@@ -42,8 +42,8 @@
 
 - type: entity
   id: ActionInjection
-  name: hardsuitinjection-injection
-  description: hardsuitinjection-injectiondescription
+  name: Injecting from the EC
+  description: Injects substances from an ampoule contained in the emergency compartment
   components:
   - type: Action
     itemIconStyle: NoItem

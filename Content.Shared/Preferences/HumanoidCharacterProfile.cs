@@ -54,6 +54,16 @@ namespace Content.Shared.Preferences
         [DataField]
         private HashSet<ProtoId<TraitPrototype>> _traitPreferences = new();
 
+        // Sunrise-Start
+        /// <summary>
+        /// Выбранные альтернативные названия должностей.
+        /// </summary>
+        public IReadOnlyDictionary<ProtoId<JobPrototype>, LocId> JobAlternativeTitles => _jobAlternativeTitles;
+
+        [DataField]
+        private Dictionary<ProtoId<JobPrototype>, LocId> _jobAlternativeTitles = new();
+        // Sunrise-End
+
         /// <summary>
         /// <see cref="_loadouts"/>
         /// </summary>
@@ -197,6 +207,9 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts))
         {
+            // Sunrise-Start
+            _jobAlternativeTitles = new Dictionary<ProtoId<JobPrototype>, LocId>(other._jobAlternativeTitles);
+            // Sunrise-End
         }
 
         /// <summary>
@@ -397,6 +410,30 @@ namespace Content.Shared.Preferences
             };
         }
 
+        // Sunrise-Start
+        public HumanoidCharacterProfile WithJobAlternativeTitle(ProtoId<JobPrototype> jobId, LocId? alternativeTitle)
+        {
+            var dictionary = new Dictionary<ProtoId<JobPrototype>, LocId>(_jobAlternativeTitles);
+            if (alternativeTitle == null || string.IsNullOrEmpty(alternativeTitle.Value.Id))
+                dictionary.Remove(jobId);
+            else
+                dictionary[jobId] = alternativeTitle.Value;
+
+            return new(this)
+            {
+                _jobAlternativeTitles = dictionary,
+            };
+        }
+
+        public HumanoidCharacterProfile WithJobAlternativeTitles(Dictionary<ProtoId<JobPrototype>, LocId> altTitles)
+        {
+            return new(this)
+            {
+                _jobAlternativeTitles = new Dictionary<ProtoId<JobPrototype>, LocId>(altTitles),
+            };
+        }
+        // Sunrise-End
+
         public HumanoidCharacterProfile WithPreferenceUnavailable(PreferenceUnavailableMode mode)
         {
             return new(this) { PreferenceUnavailable = mode };
@@ -507,6 +544,7 @@ namespace Content.Shared.Preferences
             if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
             if (SpawnPriority != other.SpawnPriority) return false;
             if (!_jobPriorities.SequenceEqual(other._jobPriorities)) return false;
+            if (!_jobAlternativeTitles.SequenceEqual(other._jobAlternativeTitles)) return false; // Sunrise-Edit
             if (!_antagPreferences.SequenceEqual(other._antagPreferences)) return false;
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) return false;
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
@@ -676,6 +714,25 @@ namespace Content.Shared.Preferences
             {
                 _jobPriorities.Add(job, priority);
             }
+
+            // Sunrise-Start
+            // Валидация альтернативных названий: убираем невалидные
+            var validAltTitles = new Dictionary<ProtoId<JobPrototype>, LocId>();
+            foreach (var (jobId, altTitle) in _jobAlternativeTitles)
+            {
+                if (!prototypeManager.TryIndex<JobPrototype>(jobId, out var jobProto))
+                    continue;
+
+                if (jobProto.AlternativeTitles.Contains(altTitle))
+                    validAltTitles[jobId] = altTitle;
+            }
+
+            _jobAlternativeTitles.Clear();
+            foreach (var (jobId, altTitle) in validAltTitles)
+            {
+                _jobAlternativeTitles[jobId] = altTitle;
+            }
+            // Sunrise-End
 
             PreferenceUnavailable = prefsUnavailableMode;
 

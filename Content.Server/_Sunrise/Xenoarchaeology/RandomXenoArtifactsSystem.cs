@@ -2,6 +2,7 @@
 using Content.Server._Sunrise.Helpers;
 using Content.Server.Power.Components;
 using Content.Server.Station.Systems;
+using Content.Shared._Sunrise.Helpers;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
@@ -42,8 +43,6 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
 
     private EntityQuery<StationRandomXenoArtifactComponent> _avaliableStations;
 
-    private ISawmill _sawmill = default!;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -61,9 +60,6 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
         _bodyParts = GetEntityQuery<BodyPartComponent>();
 
         _avaliableStations = GetEntityQuery<StationRandomXenoArtifactComponent>();
-
-
-        _sawmill = Logger.GetSawmill("sunrise.random_artifacts");
     }
 
     private void OnRoundStarted(RoundStartedEvent ev)
@@ -85,25 +81,25 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
     {
         if (!_prototype.TryIndex(BaseParent, out _baseParentPrototype))
         {
-            _sawmill.Error("Error while creating BaseParent for RandomXenoArtifactsSystem");
+            Log.Error("Error while creating BaseParent for RandomXenoArtifactsSystem");
 
             return;
         }
 
         var items = _helpers.GetAll<ItemComponent>()
             .Where(e => IsAppropriate(e.Owner))
-            .ToList();
+            .ToList()
+            .ShuffleRobust(_random)
+            .TakePercentage(_itemToArtifactRatio);
 
-        _random.Shuffle(items);
-
-        var reducedItems = _helpers.GetPercentageOfHashSet(items, _itemToArtifactRatio);
-
-        foreach (var item in reducedItems)
+        var count = 0;
+        foreach (var item in items)
         {
             MakeArtifact(item);
+            count++;
         }
 
-        _sawmill.Debug($"{reducedItems.Count()} made into artifacts");
+        Log.Debug($"{count} items made into artifacts");
     }
 
     /// <summary>

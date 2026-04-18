@@ -7,6 +7,11 @@
     solutions:
       stomach:
         maxVol: 50
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
 
 - type: entity
   id: OrganTajaranEyes

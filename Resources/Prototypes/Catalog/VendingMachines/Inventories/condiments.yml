@@ -1,6 +1,8 @@
 - type: vendingMachineInventory
   id: CondimentInventory
   startingInventory:
+    FoodCondimentPacketSmetana: 5 # Sunrise Edit
+    FoodCondimentPacketHoney: 5 # Sunrise Edit
     FoodCondimentPacketAstrotame: 5
     FoodCondimentPacketBbq: 5
     FoodCondimentPacketColdsauce: 5

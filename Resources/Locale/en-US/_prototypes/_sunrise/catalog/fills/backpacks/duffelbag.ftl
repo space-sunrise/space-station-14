@@ -1,5 +1,7 @@
 ent-ClothingBackpackDuffelSyndicateFilledBauer127 = Elite Sniper Bundle
     .desc = "I've got you in my sights: includes a Bauer SR-127 with three magazines, a 15×115 anti-materiel ammo box, a spread of specialty rounds, and unique thermal goggles."
+ent-ClothingBackpackDuffelSyndicateX4tBundle = Syndicate X-4 bundle
+    .desc = Contains a large amount of X-4 charges.
 ent-ClothingBackpackDuffelSyndicateFilledDragunov = Dragunov bundle
     .desc = The iconic Dragunov magazine rifle with 2 raspy magazines in the set.
 ent-ClothingBackpackDuffelWeaponSubMachineGunMP5Filled = Bundle MP5
@@ -51,3 +53,7 @@ ent-ClothingBackpackDuffelWeaponSubMachineGunWt550Filled = Bundle WT550
     .desc = WT550 with 3 raspy magazines.
 ent-ClothingBackpackDuffelWeaponLightMachineGunMG42 = Bundle mg342
     .desc = MG-342 with 2 raspy magazines.
+ent-ClothingBackpackDuffelMilitaryBundlePirateEva = Pirate EVA bundle
+    .desc = Contains the old pirate EVA suit.
+ent-ClothingBackpackDuffelMilitaryBundleScaf = Scaf bundle
+    .desc = Contains the old combat EVA suit.

@@ -8,9 +8,9 @@
   productEntity: WeaponPistolViper
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1 # Sunrise-Edit
   cost:
-    Telecrystal: 3
+    Telecrystal: 2 # Sunrise-Edit
   categories:
   - UplinkWeaponry
 
@@ -91,10 +91,10 @@
   description: uplink-energycrossbow-desc
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 2 # Sunrise-edit
   productEntity: WeaponEnergyCrossbow
   cost:
-    Telecrystal: 5
+    Telecrystal: 3 # Sunrise-edit
   categories:
   - UplinkWeaponry
   conditions:
@@ -134,11 +134,11 @@
   description: uplink-gloves-knuckleduster-desc
   icon: { sprite: Clothing/Hands/Gloves/KnuckleDusters/syndicateknuckleduster.rsi, state: syndicateknuckleduster }
   productEntity: ClothingHandsKnuckleDustersSyndicate
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 2
+  # discountCategory: veryRareDiscounts # Sunrise-edit
+  # discountDownTo:
+  #   Telecrystal: 2
   cost:
-    Telecrystal: 4
+    Telecrystal: 1  # Starlight-edit
   categories:
   - UplinkWeaponry
 
@@ -888,9 +888,9 @@
   productEntity: ClothingBackpackDuffelSyndicateMedicalBundleFilled
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 12
-  cost:
     Telecrystal: 16
+  cost:
+    Telecrystal: 24
   categories:
   - UplinkChemicals
   conditions:
@@ -898,7 +898,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
-      - LoneOpsUplink # Sunrise-Edit
+      - LoneOpsUplink # Sunrise-Add
 
 # Deception
 - type: listing
@@ -1728,7 +1728,7 @@
   id: UplinkClothingNoSlipsShoes
   name: uplink-clothing-no-slips-shoes-name
   description: uplink-clothing-no-slips-shoes-desc
-  productEntity: ClothingShoesChameleonNoSlipsBiocode # Sunrise-edit
+  productEntity: ClothingShoesChameleonNoSlips
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 1
@@ -1741,7 +1741,7 @@
   id: UplinkClothingOuterVestWeb
   name: uplink-clothing-outer-vest-web-name
   description: uplink-clothing-outer-vest-web-desc
-  productEntity: ClothingOuterVestWebBiocode
+  productEntity: ClothingOuterVestWeb
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 3
@@ -1754,7 +1754,7 @@
   id: UplinkClothingOuterVestWebElite
   name: uplink-clothing-outer-vest-web-elite-name
   description: uplink-clothing-outer-vest-web-elite-desc
-  productEntity: ClothingOuterVestWebEliteBiocode
+  productEntity: ClothingOuterVestWebElite
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 3
@@ -1767,7 +1767,7 @@
   id: UplinkClothingShoesBootsMagSyndie
   name: uplink-clothing-shoes-boots-mag-syndie-name
   description: uplink-clothing-shoes-boots-mag-syndie-desc
-  productEntity: ClothingShoesBootsMagSyndieBiocode
+  productEntity: ClothingShoesBootsMagSyndie
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 1
@@ -1839,6 +1839,7 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink # Sunrise-Edit
+      - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkHardsuitSyndieElite
@@ -1847,7 +1848,7 @@
   icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndieelite.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateEliteHardsuitBundle
   cost:
-    Telecrystal: 12
+    Telecrystal: 9 # Sunrise-Edit
   categories:
   - UplinkWearables
   conditions:
@@ -1856,6 +1857,7 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink # Sunrise-Edit
+      - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkClothingOuterHardsuitJuggernaut
@@ -1864,7 +1866,7 @@
   icon: { sprite: /Textures/Structures/Storage/Crates/syndicate.rsi, state: icon }
   productEntity: CrateCybersunJuggernautBundle
   cost:
-    Telecrystal: 18 #Sunrise-edit
+    Telecrystal: 13 #Sunrise-edit
   categories:
   - UplinkWearables
   conditions:

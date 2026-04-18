@@ -52,6 +52,9 @@
   id: MobResomiMarkingLimits
   onlyWhitelisted: true
   points:
+    FacialHair:
+      points: 0
+      required: false
     Hair:
       points: 1
       required: false

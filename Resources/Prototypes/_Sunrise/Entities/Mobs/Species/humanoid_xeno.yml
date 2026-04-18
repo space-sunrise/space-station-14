@@ -26,6 +26,9 @@
   - type: Temperature
     currentTemperature: 310.15
   - type: TemperatureDamage
+    coldDamage:
+      types:
+        Cold: 0
     heatDamage:
       types:
         Heat: 3
@@ -51,14 +54,19 @@
       reagents:
       - ReagentId: FluorosulfuricAcidHumanoidXeno
         Quantity: 300
+  - type: ProtectedFromStepTriggers
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Xenomorph
+  - type: ToggleableNightVision
+    effect: EffectNightVisionXeno
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
         color: "#44944A"
+  - type: Stamina
+    baseCritThreshold: 125
   - type: Sprite
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -155,7 +163,7 @@
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: shoes
-      socks:
+      socks-body-curved-small-muzzle:
         sizeMaps:
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi

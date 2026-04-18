@@ -59,10 +59,15 @@ public sealed class ProjectileSystem : SharedProjectileSystem
 
         if (_damageableSystem.TryChangeDamage((target, damageableComponent), ev.Damage, out var damage, component.IgnoreResistances, origin: component.Shooter) && Exists(component.Shooter))
         {
+            // Sunrise-Start
+            // Guard against race conditions where collided entities are already losing transform
+            // during this physics tick.
             if (!deleted)
             {
-                _color.RaiseEffect(Color.Red, new List<EntityUid> { target }, Filter.Pvs(target, entityManager: EntityManager));
+                if (TryComp<TransformComponent>(target, out var targetXform))
+                    _color.RaiseEffect(Color.Red, new List<EntityUid> { target }, Filter.Pvs(targetXform.Coordinates, entityMan: EntityManager));
             }
+            // Sunrise-End
 
             _adminLogger.Add(LogType.BulletHit,
                 LogImpact.Medium,
@@ -109,13 +114,15 @@ public sealed class ProjectileSystem : SharedProjectileSystem
             }
         }
 
-        if (!deleted)
+        // Sunrise-Start
+        if (!deleted && HasComp<TransformComponent>(target))
         {
             _guns.PlayImpactSound(target, damage, component.SoundHit, component.ForceSound);
 
             if (!args.OurBody.LinearVelocity.IsLengthZero())
                 _sharedCameraRecoil.KickCamera(target, args.OurBody.LinearVelocity.Normalized());
         }
+        // Sunrise-End
 
         if (component.DeleteOnCollide && component.ProjectileSpent)
             QueueDel(uid);

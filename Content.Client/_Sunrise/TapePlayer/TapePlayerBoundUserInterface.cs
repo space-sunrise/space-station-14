@@ -1,7 +1,5 @@
 using Content.Shared._Sunrise.TapePlayer;
-using Robust.Client.Audio;
 using Robust.Shared.Audio.Components;
-using Robust.Shared.Audio.Systems;
 
 namespace Content.Client._Sunrise.TapePlayer;
 
@@ -60,9 +58,7 @@ public sealed class TapePlayerBoundUserInterface : BoundUserInterface
 
         if (_entityManager.TryGetComponent<MusicTapeComponent>(tapePlayer.InsertedTape, out var musicTapeComponent))
         {
-            var audio = EntMan.System<AudioSystem>();
-            var length = audio.GetAudioLength(audio.ResolveSound(musicTapeComponent.Sound));
-            _menu.SetSelectedSong(musicTapeComponent.SongName, (float) length.TotalSeconds);
+            _menu.SetSelectedSong(musicTapeComponent.SongName, musicTapeComponent.SongLengthSeconds);
         }
         else
         {

@@ -19,6 +19,8 @@
       multiAntagSetting: None
       mindRoles:
       - MindRoleVampire
+  - type: DynamicRuleCost
+    cost: 125
 
 #Subgamemode variant of traitor. There's less of them.
 - type: entity
@@ -74,3 +76,12 @@
     rules:
     - id: Thief
       prob: 0.5
+
+- type: entity
+  parent: Xenoborgs
+  id: SubXenoborgs
+  components:
+  - type: GameRule
+    minPlayers: 30
+  - type: DynamicRuleCost
+    cost: 200

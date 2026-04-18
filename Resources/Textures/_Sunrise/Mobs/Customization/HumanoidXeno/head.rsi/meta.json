@@ -110,6 +110,22 @@
     {
       "name": "worker_teeth",
       "directions": 4
+    },
+    {
+      "name": "neo_teeth",
+      "directions": 4
+    },
+    {
+      "name": "neo_head",
+      "directions": 4
+    },
+    {
+      "name": "ravager_head",
+      "directions": 4
+    },
+    {
+      "name": "ravager_teeth",
+      "directions": 4
     }
   ]
 }

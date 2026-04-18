@@ -96,6 +96,9 @@
       showInHands: true
     - type: Body
       prototype: ConstructJuggernaut
+    - type: ContainerContainer
+      containers:
+        body_root_part: !type:ContainerSlot
     - type: Juggernaut
     - type: TTS
       voice: enigma_dota_2
@@ -154,6 +157,7 @@
     - type: Construct
       actions: [WraithPhase]
     - type: MovementIgnoreGravity
+    - type: GravityAffected
     - type: MeleeWeapon
       hidden: true
       angle: 30

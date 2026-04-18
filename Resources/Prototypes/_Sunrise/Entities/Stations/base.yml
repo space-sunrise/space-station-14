@@ -35,7 +35,7 @@
   abstract: true
   components:
   - type: StationTransitHub
-    map: /Maps/_Sunrise/Nonstations/transit_hub.yml
+    map: /Maps/_Sunrise/Nonstations/transit_hub_big.yml # Временно, пока не домапят
     biomes:
     - PlainGrasslands
     - PlainLowDesert
