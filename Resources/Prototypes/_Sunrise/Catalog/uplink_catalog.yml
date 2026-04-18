@@ -1805,7 +1805,7 @@
   description: uplink-mech-teleporter-medium-desc
   icon: { sprite: Objects/Specific/Mech/durand.rsi, state: darkdurand }
   productEntity: CrateCybersunRoverBundle
-  discountCategory: RareDiscounts
+  discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 50
   cost:
