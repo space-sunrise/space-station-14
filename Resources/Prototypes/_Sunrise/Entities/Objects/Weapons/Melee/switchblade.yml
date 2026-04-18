@@ -39,7 +39,7 @@
     - type: BackstabOnHit
       bonusDamage:
         types:
-          Slash: 10
+          Slash: 12
       popupMessages:
         - backstab-popup-message-1
         - backstab-popup-message-2
