@@ -44,7 +44,7 @@
         - id: WelderExperimental
         - id: Multitool
         - id: HolofanProjector
-        - id: GasAnalyzer
+        - id: SunriseLongRangeGasAnalyzer
         - id: trayScanner
 
 - type: entityTable

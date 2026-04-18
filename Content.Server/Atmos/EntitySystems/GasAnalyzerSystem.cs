@@ -11,6 +11,10 @@ using Content.Shared.NodeContainer;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using static Content.Shared.Atmos.Components.GasAnalyzerComponent;
+// Sunrise edit start
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+// Sunrise edit end
 
 namespace Content.Server.Atmos.EntitySystems;
 
@@ -22,6 +26,9 @@ public sealed class GasAnalyzerSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    // Sunrise edit start
+    [Dependency] private readonly SharedMapSystem _map = default!;
+    // Sunrise edit end
 
     /// <summary>
     /// Minimum moles of a gas to be sent to the client.
@@ -64,14 +71,31 @@ public sealed class GasAnalyzerSystem : EntitySystem
     /// </summary>
     private void OnAfterInteract(Entity<GasAnalyzerComponent> entity, ref AfterInteractEvent args)
     {
+        // Sunrise edit start
+        // Check for long range bool(by default is false). If true uses range in gas analyzer component, if false it uses range of interaction system
         var target = args.Target;
-        if (target != null && !_interactionSystem.InRangeUnobstructed((args.User, null), (target.Value, null)))
+        var range = entity.Comp.IsLongRanged
+            ? entity.Comp.RadiusOfScan
+            : SharedInteractionSystem.InteractionRange;
+        if (target != null && !_interactionSystem.InRangeUnobstructed((args.User, null), (target.Value, null), range: range))
         {
-            target = null; // if the target is out of reach, invalidate it
+            target = null;
         }
-        // always run the analyzer, regardless of weather or not there is a target
-        // since we can always show the local environment.
+        if (entity.Comp.IsLongRanged)
+        {
+            if (_interactionSystem.InRangeUnobstructed(args.User, args.ClickLocation, range: range))
+            {
+                entity.Comp.ClickLocation = args.ClickLocation;
+                Dirty(entity);
+            }
+            else
+            {
+                entity.Comp.ClickLocation = null;
+                Dirty(entity);
+            }
+        }
         ActivateAnalyzer(entity, args.User, target);
+        // Sunrise edit end
         args.Handled = true;
     }
 
@@ -146,7 +170,12 @@ public sealed class GasAnalyzerSystem : EntitySystem
             // Listen! Even if you don't want the Gas Analyzer to work on moving targets, you should use
             // this code to determine if the object is still generally in range so that the check is consistent with the code
             // in OnAfterInteract() and also consistent with interaction code in general.
-            if (!_interactionSystem.InRangeUnobstructed((component.User, null), (component.Target.Value, null)))
+            // Sunrise edit start
+            // Also checks for long ranged in component and applies range that was set in component
+            var range = component.IsLongRanged
+                ? component.RadiusOfScan
+                : SharedInteractionSystem.InteractionRange;
+            if (!_interactionSystem.InRangeUnobstructed((component.User, null), (component.Target.Value, null), range: range))
             {
                 if (component.User is { } userId && component.Enabled)
                     _popup.PopupEntity(Loc.GetString("gas-analyzer-object-out-of-range"), userId, userId);
@@ -154,11 +183,43 @@ public sealed class GasAnalyzerSystem : EntitySystem
                 component.Target = null;
             }
         }
+        // Sunrise edit end
 
         var gasMixList = new List<GasMixEntry>();
-
-        // Fetch the environmental atmosphere around the scanner. This must be the first entry
-        var tileMixture = _atmo.GetContainingMixture(uid, true);
+        // Sunrise edit start
+        GasMixture? tileMixture = null;
+        // For long-ranged scanners resolve a remote tile; otherwise fall back to the analyzer's own tile.
+        if (component.IsLongRanged && component.Target.HasValue)
+        {
+            tileMixture = _atmo.GetContainingMixture(component.Target.Value, true);
+        }
+        else if (component.IsLongRanged
+            && component.ClickLocation is { } clickLoc
+            && clickLoc.IsValid(EntityManager))
+        {
+            if (!_interactionSystem.InRangeUnobstructed(component.User, clickLoc, range: component.RadiusOfScan))
+            {
+                if (component.Enabled)
+                    _popup.PopupEntity(Loc.GetString("gas-analyzer-object-out-of-range"), component.User, component.User);
+                component.ClickLocation = null;
+                Dirty(uid, component);
+            }
+            else
+            {
+                var gridUid = clickLoc.EntityId;
+                if (TryComp<MapGridComponent>(gridUid, out var grid) &&
+                    TryComp<TransformComponent>(gridUid, out var gridXform))
+                {
+                    var tile = _map.CoordinatesToTile(gridUid, grid, clickLoc);
+                    tileMixture = _atmo.GetTileMixture(gridUid, gridXform.MapUid, tile, true);
+                }
+            }
+        }
+        else
+        {
+            tileMixture = _atmo.GetContainingMixture(uid, true);
+        }
+        // Sunrise edit end
         if (tileMixture != null)
         {
             gasMixList.Add(new GasMixEntry(Loc.GetString("gas-analyzer-window-environment-tab-label"), tileMixture.Volume, tileMixture.Pressure, tileMixture.Temperature,

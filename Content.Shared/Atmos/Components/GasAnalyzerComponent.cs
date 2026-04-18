@@ -4,7 +4,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Atmos.Components;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class GasAnalyzerComponent : Component
 {
     [ViewVariables]
@@ -15,6 +15,25 @@ public sealed partial class GasAnalyzerComponent : Component
 
     [DataField("enabled"), ViewVariables(VVAccess.ReadWrite)]
     public bool Enabled;
+    // Sunrise edit start
+    /// <summary>
+    /// If true, the analyzer can scan targets/tiles at a distance bounded by <see cref="RadiusOfScan"/>.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool IsLongRanged;
+
+    /// <summary>
+    /// Maximum scan radius for a long-ranged analyzer, in tiles.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float RadiusOfScan = 6f;
+
+    /// <summary>
+    /// Coordinates of the last click; used to resolve the target tile for remote gas mix analysis.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public EntityCoordinates? ClickLocation;
+    // Sunrise edit end
 
     [Serializable, NetSerializable]
     public enum GasAnalyzerUiKey
