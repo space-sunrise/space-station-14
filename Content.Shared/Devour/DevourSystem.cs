@@ -117,6 +117,7 @@ public sealed class DevourSystem : EntitySystem
             {
                 foreach (var (key, _) in regenComp.Damage.DamageDict)
                     regenComp.Damage.DamageDict[key] -= 0.05;
+                Dirty(ent, regenComp);
             }
             //Sunrise-End
             _bloodstreamSystem.TryAddToBloodstream(ent.Owner, ichorInjection);
