@@ -134,10 +134,13 @@ public sealed class SwitchbladeTeleporterSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Checks whether the item is ultimately stored by the user by walking up the container ownership chain.
+    /// </summary>
     private bool IsOwnedByUser(EntityUid item, EntityUid user)
     {
         var current = item;
-        while (_container.TryGetContainingContainer((current, null, null), out var container))
+        while (_container.TryGetContainingContainer(current, out var container))
         {
             if (container.Owner == user)
                 return true;
