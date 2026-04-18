@@ -35,4 +35,4 @@ reagent-name-salicylicacid = salicylic acid
 reagent-desc-salicylicacid = Powerful healing agent that restores bruises, cuts, and punctures. Effective against extensive mechanical damage, but cannot heal people with weaker injuries due to the nature of its work.
 
 reagent-name-oxanderm = oxanderm
-Preagent-desc-oxanderm = Powerful healing agent that restores thermal, electrical, and cold burns. Effective against extensive burn damage, including acid damage, but cannot heal people with weaker injuries due to the nature of its work
+reagent-desc-oxanderm = Powerful healing agent that restores thermal, electrical, and cold burns. Effective against extensive burn damage, including acid damage, but cannot heal people with weaker injuries due to the nature of its work

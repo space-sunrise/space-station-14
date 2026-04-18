@@ -30,7 +30,3 @@ fentanyl-blood = Blood is gushing out of you! ... Oh, never mind.
 fentanyl-effect-hotline-mask = You feel like you're wearing someone else's mask. Yours or theirs?
 fentanyl-effect-hotline-loop = Time loops. You've been here before. You've killed them before.
 fentanyl-effect-hotline-voice = Someone speaks to you about the cycles of reality and the inevitability of violence.
-generic-reagent-effect-burning-insides = Your insides burn with fire.
-generic-reagent-effect-sick = You feel nauseous.
-histamine-effect-light-itchiness = Your skin feels slightly itchy.
-norepinephricacid-effect-eyelids = Your eyelids grow heavy.

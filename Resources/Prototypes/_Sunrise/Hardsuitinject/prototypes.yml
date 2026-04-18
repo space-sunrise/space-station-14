@@ -76,7 +76,7 @@
       beaker:
         maxVol: 30
   - type: Sprite
-    scale: 1,1 
+    scale: 1,1
     sprite: _Sunrise/HardsuitInjection/ampula.rsi
     layers:
       - state: beaker
@@ -85,7 +85,7 @@
         visible: false
   - type: Item
     sprite: _Sunrise/HardsuitInjection/ampula.rsi
-      
+
 - type: entity
   id: ActionToggleInjection
   name: toggle the EC
@@ -208,7 +208,7 @@
 - type: entity
   parent: Ampula
   name: Ampula
-  id: AmpulaBloodloseAspxyxia
+  id: AmpulaBloodlossAsphyxia
   suffix: artiplasm, thyreostate
   components:
   - type: SolutionContainerManager
@@ -272,7 +272,7 @@
 - type: entity
   parent: Ampula
   name: Ampula
-  id: AmpulaRadiatonPoison
+  id: AmpulaRadiationPoison
   suffix: Diphenhydramine, Retroindralyne
   components:
   - type: SolutionContainerManager
