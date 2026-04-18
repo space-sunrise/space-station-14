@@ -26,9 +26,11 @@ public abstract class SharedBackstabOnHitSystem : EntitySystem
         if (args.IsWideAttack)
             return;
 
-        if (!TryApplyBackstabBonus(ent.AsNullable(), args.Target, args.User, ref args.BonusDamage))
+        var bonusDamage = args.BonusDamage;
+        if (!TryApplyBackstabBonus(ent.AsNullable(), args.Target, args.User, ref bonusDamage))
             return;
 
+        args.BonusDamage = bonusDamage;
         OnBackstabBonusApplied(ent, args.Target);
     }
 
