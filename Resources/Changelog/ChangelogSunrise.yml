@@ -4916,3 +4916,13 @@
   id: 1799
   time: '2026-04-18T07:01:43.0000000+00:00'
   url: https://github.com/space-sunrise/sunrise-station/pull/4234
+- author: Fooksy2304
+  changes:
+  - message: "\u043D\u0435\u0445\u0432\u0430\u0442\u043A\u0430 \u0431\u043E\u0435\u043F\
+      \u0440\u0438\u043F\u0430\u0441\u043E\u0432 \u043D\u0430 \u0441\u0442\u0435\u0447\
+      \u043A\u0438\u043D\u044B \u0438\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D\
+      \u0430."
+    type: Fix
+  id: 1800
+  time: '2026-04-18T07:55:25.0000000+00:00'
+  url: https://github.com/space-sunrise/sunrise-station/pull/4235
