@@ -920,8 +920,8 @@
     heldPrefix: energy
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Battery
-    maxCharge: 960
-    startingCharge: 960
+    maxCharge: 960 # Sunrise-Edit
+    startingCharge: 960 # Sunrise-Edit
 
 - type: entity
   name: energy magnum
