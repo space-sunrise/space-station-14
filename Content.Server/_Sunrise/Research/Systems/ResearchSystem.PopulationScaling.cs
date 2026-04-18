@@ -8,7 +8,6 @@ using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Research.Components;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
-using Content.Shared.SSDIndicator;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -40,7 +39,6 @@ public sealed partial class ResearchSystem
     private TimeSpan? _populationScalingRoundStartedAt;
     private TimeSpan? _populationModifierCalculateAt;
     private EntityQuery<GhostComponent> _ghostQuery;
-    private EntityQuery<SSDIndicatorComponent> _ssdIndicatorQuery;
 
     private void InitializePopulationScaling()
     {
@@ -51,7 +49,6 @@ public sealed partial class ResearchSystem
         _cfg.OnValueChanged(SunriseCCVars.ResearchPointScalingMultiplier, value => _populationScalingMultiplier = value, true);
 
         _ghostQuery = GetEntityQuery<GhostComponent>();
-        _ssdIndicatorQuery = GetEntityQuery<SSDIndicatorComponent>();
 
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
@@ -141,11 +138,25 @@ public sealed partial class ResearchSystem
         return population;
     }
 
+
+    private void UpdatePopulationModifierCalculateAt()
+    {
+        if (_roundPopulationModifier != null || _populationScalingRoundStartedAt is not { } roundStartedAt)
+            return;
+
+        _populationModifierCalculateAt = roundStartedAt + TimeSpan.FromMinutes(Math.Max(_populationScalingDelayMinutes, 0));
+
+
+    }
+
+    // Общая проверка в игре ли персонаж
     private float GetResearchPopulationContribution(ICommonSession session)
     {
+        // Считаем даже тех кто в лобби
         if (session.Status == SessionStatus.Connected)
             return 0.4f;
 
+        // Чтобы не считать игроков которые "подключаются"
         if (session.Status != SessionStatus.InGame)
             return 0f;
 
@@ -153,10 +164,7 @@ public sealed partial class ResearchSystem
             return 0f;
 
         if (_ghostQuery.HasComp(uid))
-            return 0f;
-
-        if (_ssdIndicatorQuery.TryComp(uid, out var ssdIndicator) && ssdIndicator.IsSSD)
-            return 0f;
+            return 0.4f;
 
         return GetResearchPopulationContribution(uid);
     }
@@ -173,22 +181,15 @@ public sealed partial class ResearchSystem
         return GetResearchPopulationWeight(jobId);
     }
 
-    private void UpdatePopulationModifierCalculateAt()
-    {
-        if (_roundPopulationModifier != null || _populationScalingRoundStartedAt is not { } roundStartedAt)
-            return;
-
-        _populationModifierCalculateAt = roundStartedAt + TimeSpan.FromMinutes(Math.Max(_populationScalingDelayMinutes, 0));
-    }
 
     private float GetResearchPopulationWeight(ProtoId<JobPrototype>? jobId)
     {
         if (jobId == null)
-            return 1f;
+            return 0.4f;
 
         if (!_prototype.TryIndex(PopulationWeightsPrototypeId, out var prototype))
-            return 1f;
+            return 0.4f;
 
-        return prototype.Weights.GetValueOrDefault(jobId.Value, 1f);
+        return prototype.Weights.GetValueOrDefault(jobId.Value, 0.4f);
     }
 }
