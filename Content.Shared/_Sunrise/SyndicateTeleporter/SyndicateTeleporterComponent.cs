@@ -16,9 +16,17 @@ public sealed partial class SyndicateTeleporterComponent : Component
  	public DamageSpecifier? DamageOnBlocked;
 
     /// <summary>
-    /// Duration of the knockdown applied to the user after teleportation landing.
+    /// Duration of the knockdown applied to entities at the teleport destination.
     /// Set to null to disable the knockdown effect.
     /// </summary>
     [DataField]
     public TimeSpan? KnockdownDuration;
+
+    /// <summary>
+    /// Random offset in tiles applied to the user's landing position.
+    /// The user lands within this radius of the target point.
+    /// Set to 0 to land exactly at the target.
+    /// </summary>
+    [DataField]
+    public float LandingRandomOffset = 1f;
 }

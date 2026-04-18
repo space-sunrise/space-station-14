@@ -68,6 +68,7 @@
     randomDistanceValue: 1
     teleportationValue: 4
     knockdownDuration: 2
+    landingRandomOffset: 1
     damageOnBlocked:
       types:
         Cellular: 1

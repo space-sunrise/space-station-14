@@ -249,11 +249,33 @@ public sealed class SyndicateTeleporterSystem : EntitySystem
 
     private void ApplyLanding(EntityUid user, EntityCoordinates where, SyndicateTeleporterComponent comp)
     {
-        _transform.SetCoordinates(user, where);
-        Spawn(TargetEffectPrototype, _transform.ToMapCoordinates(where));
-
+        // Knockdown entities at the destination tile before landing
         if (comp.KnockdownDuration is { } duration)
-            _stun.TryKnockdown(user, duration);
+        {
+            foreach (var entity in _turf.GetEntitiesInTile(where, LookupFlags.Dynamic))
+            {
+                if (entity == user)
+                    continue;
+
+                _stun.TryKnockdown(entity, duration);
+            }
+        }
+
+        // Apply random offset to the user's landing position
+        var landing = where;
+        if (comp.LandingRandomOffset > 0f)
+        {
+            var angle = Angle.FromDegrees(_random.Next(0, 360));
+            var dist = _random.NextFloat(0f, comp.LandingRandomOffset);
+            var offset = angle.ToWorldVec() * new Vector2(dist, dist);
+            var candidate = where.Offset(offset);
+
+            if (IsSpotFree(user, candidate))
+                landing = candidate;
+        }
+
+        _transform.SetCoordinates(user, landing);
+        Spawn(TargetEffectPrototype, _transform.ToMapCoordinates(landing));
     }
 
     /// <summary>
