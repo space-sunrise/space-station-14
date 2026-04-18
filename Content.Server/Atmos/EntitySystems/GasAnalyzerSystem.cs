@@ -83,16 +83,10 @@ public sealed class GasAnalyzerSystem : EntitySystem
         }
         if (entity.Comp.IsLongRanged)
         {
-            if (_interactionSystem.InRangeUnobstructed(args.User, args.ClickLocation, range: range))
-            {
-                entity.Comp.ClickLocation = args.ClickLocation;
-                Dirty(entity);
-            }
-            else
-            {
-                entity.Comp.ClickLocation = null;
-                Dirty(entity);
-            }
+            entity.Comp.ClickLocation = _interactionSystem.InRangeUnobstructed(args.User, args.ClickLocation, range: range)
+                ? GetNetCoordinates(args.ClickLocation)
+                : null;
+            Dirty(entity);
         }
         ActivateAnalyzer(entity, args.User, target);
         // Sunrise edit end
@@ -130,6 +124,7 @@ public sealed class GasAnalyzerSystem : EntitySystem
         Dirty(entity);
         _appearance.SetData(entity.Owner, GasAnalyzerVisuals.Enabled, entity.Comp.Enabled);
         RemCompDeferred<ActiveGasAnalyzerComponent>(entity.Owner);
+        entity.Comp.ClickLocation = null; // Sunrise edit
     }
 
     /// <summary>
@@ -193,26 +188,24 @@ public sealed class GasAnalyzerSystem : EntitySystem
         {
             tileMixture = _atmo.GetContainingMixture(component.Target.Value, true);
         }
-        else if (component.IsLongRanged
-            && component.ClickLocation is { } clickLoc
-            && clickLoc.IsValid(EntityManager))
+        else if (component.IsLongRanged && component.ClickLocation is { } netClickLoc)
         {
-            if (!_interactionSystem.InRangeUnobstructed(component.User, clickLoc, range: component.RadiusOfScan))
+            var clickLoc = GetCoordinates(netClickLoc);
+
+            if (!clickLoc.IsValid(EntityManager))
             {
-                if (component.Enabled)
+                if (component.Enabled && component.User.IsValid())
                     _popup.PopupEntity(Loc.GetString("gas-analyzer-object-out-of-range"), component.User, component.User);
+
                 component.ClickLocation = null;
                 Dirty(uid, component);
+                return true;
             }
-            else
+            if (TryComp<MapGridComponent>(clickLoc.EntityId, out var grid) &&
+                TryComp<TransformComponent>(clickLoc.EntityId, out var gridXform))
             {
-                var gridUid = clickLoc.EntityId;
-                if (TryComp<MapGridComponent>(gridUid, out var grid) &&
-                    TryComp<TransformComponent>(gridUid, out var gridXform))
-                {
-                    var tile = _map.CoordinatesToTile(gridUid, grid, clickLoc);
-                    tileMixture = _atmo.GetTileMixture(gridUid, gridXform.MapUid, tile, true);
-                }
+                var tile = _map.CoordinatesToTile(clickLoc.EntityId, grid, clickLoc);
+                tileMixture = _atmo.GetTileMixture(clickLoc.EntityId, gridXform.MapUid, tile, true);
             }
         }
         else

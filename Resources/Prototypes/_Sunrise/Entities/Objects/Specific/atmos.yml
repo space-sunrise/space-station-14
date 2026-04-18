@@ -11,3 +11,5 @@
         map: ["analyzer"]
   - type: GasAnalyzer
     isLongRanged: true
+    radiusOfScan: 6
+

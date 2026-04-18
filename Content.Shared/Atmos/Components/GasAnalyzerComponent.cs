@@ -32,7 +32,7 @@ public sealed partial class GasAnalyzerComponent : Component
     /// Coordinates of the last click; used to resolve the target tile for remote gas mix analysis.
     /// </summary>
     [ViewVariables, AutoNetworkedField]
-    public EntityCoordinates? ClickLocation;
+    public NetCoordinates? ClickLocation;
     // Sunrise edit end
 
     [Serializable, NetSerializable]
