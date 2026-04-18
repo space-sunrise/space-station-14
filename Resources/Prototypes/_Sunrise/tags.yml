@@ -627,6 +627,18 @@
   id: SovietPinsExped
 
 - type: Tag
+  id: SovietDamagedIDCardExped
+
+- type: Tag
+  id: SovietDamagedIDCardsSoldierExped
+
+- type: Tag
+  id: SovietDamagedIDCardsOfficerExped
+
+- type: Tag
+  id: SovietDamagedIDCardsCaptainExped
+
+- type: Tag
   id: SovietWarehouse
 
 - type: Tag

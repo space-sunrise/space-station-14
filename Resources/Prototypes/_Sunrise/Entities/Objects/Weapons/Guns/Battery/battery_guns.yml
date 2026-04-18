@@ -507,7 +507,7 @@
     maxCharge: 3000
     startingCharge: 3000
   - type: BatteryAmmoProvider
-    proto: RedLaser
+    proto: RedMediumLaser
     fireCost: 50
   - type: Wieldable
   - type: UseDelay
@@ -601,7 +601,7 @@
     maxCharge: 8000
     startingCharge: 8000
   - type: BatteryAmmoProvider
-    proto: RedLaser
+    proto: RedMediumLaser
     fireCost: 50
   - type: Wieldable
   - type: UseDelay
