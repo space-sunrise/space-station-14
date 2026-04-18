@@ -162,24 +162,24 @@
           Brute: -1.5
       - !type:HealthChange
         conditions:
-        - !type:ReagentCondition
-          reagent: Bicaridine
-          min: 15
+          - !type:ReagentCondition
+            reagent: Bicaridine
+            min: 15
         damage:
           types:
             Asphyxiation: 0.5
             Poison: 1.5
       - !type:Vomit
         conditions:
-        - !type:ReagentCondition
-          reagent: Bicaridine
-          min: 30
+          - !type:ReagentCondition
+            reagent: Bicaridine
+            min: 30
         probability: 0.02
       - !type:Jitter
         conditions:
-        - !type:ReagentCondition
-          reagent: Bicaridine
-          min: 15
+          - !type:ReagentCondition
+            reagent: Bicaridine
+            min: 15
       - !type:Drunk
 
 - type: reagent
@@ -202,8 +202,8 @@
       effects:
         - !type:HealthChange
           conditions:
-          - !type:TemperatureCondition
-            max: 213.0
+            - !type:TemperatureCondition
+              max: 213.0
           damage:
             types:
               Asphyxiation: -2 #Sunrise-Edit
@@ -222,8 +222,8 @@
       effects:
         - !type:HealthChange
           conditions:
-          - !type:TemperatureCondition
-            max: 213.0
+            - !type:TemperatureCondition
+              max: 213.0
           damage:
             types:
              Cellular: -2
