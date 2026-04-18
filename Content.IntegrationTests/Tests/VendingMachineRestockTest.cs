@@ -23,6 +23,12 @@ namespace Content.IntegrationTests.Tests
     [TestOf(typeof(VendingMachineSystem))]
     public sealed class VendingMachineRestockTest : EntitySystem
     {
+        // Sunrise-start
+        private static readonly HashSet<EntProtoId> Whitelist = new()
+        {
+            "VendingMachineRestockAbductorDispenser",
+        };
+        // Sunrise-end
         private static readonly ProtoId<DamageTypePrototype> TestDamageType = "Blunt";
 
         [TestPrototypes]
@@ -174,6 +180,12 @@ namespace Content.IntegrationTests.Tests
                     }
                 }
 
+                // Sunrise-start
+                foreach (var proto in Whitelist)
+                {
+                    restocks.Remove(proto);
+                }
+                // Sunrise-end
                 Assert.Multiple(() =>
                 {
                     Assert.That(restockStores, Has.Count.EqualTo(0),

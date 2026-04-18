@@ -35,9 +35,17 @@ public sealed class StationPowerTests
         "Reach",
         "Exo",
     ];
+    // Sunrise-start
+    private static readonly string[] SunriseGameMaps =
+    [
+        "SunriseBox",
+        "SunriseDelta",
+        "SunriseBagel",
+    ];
 
+    // Sunrise-start
     [Explicit]
-    [Test, TestCaseSource(nameof(GameMaps))]
+    [Test, TestCaseSource(nameof(SunriseGameMaps))] // Sunrise-edit
     public async Task TestStationStartingPowerWindow(string mapProtoId)
     {
         await using var pair = await PoolManager.GetServerClient(new PoolSettings
@@ -100,7 +108,7 @@ public sealed class StationPowerTests
         await pair.CleanReturnAsync();
     }
 
-    [Test, TestCaseSource(nameof(GameMaps))]
+    [Test, TestCaseSource(nameof(SunriseGameMaps))] // Sunrise-edit
     public async Task TestApcLoad(string mapProtoId)
     {
         await using var pair = await PoolManager.GetServerClient(new PoolSettings

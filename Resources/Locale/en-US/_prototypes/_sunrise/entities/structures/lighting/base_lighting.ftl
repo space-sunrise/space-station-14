@@ -4,3 +4,5 @@ ent-PoweredlightUV = { ent-Poweredlight }
 ent-AlwaysPoweredLightUV = { ent-AlwaysPoweredWallLight }
     .suffix = Always Powered, UV
     .desc = { ent-AlwaysPoweredWallLight.desc }
+ent-AbductorLamp = abductor lamp
+    .desc = It illuminates the ship's corridors and the path to your heart through your chest. It obscures questions of ethics in your mind.

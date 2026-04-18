@@ -46,3 +46,5 @@ ent-UnfinishedClothingHeadHelmetForged = forged helmet parts
     .desc = Some assembly required, and welding too.
 ent-UnfinishedClothingHeadHelmetPaladin = paladin helmet parts
     .desc = No Paladin LARP is good without the helmet! Needs welding.
+ent-AssortedForgeParts = assorted forge parts
+    .desc = A small pile of components for making a forge for an anvil, contains an igniter and valves.

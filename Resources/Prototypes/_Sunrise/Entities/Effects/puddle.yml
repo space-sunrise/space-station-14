@@ -19,6 +19,7 @@
     canSlow: false
     canSlip: false
   - type: Appearance
+  - type: DnaSubstanceTrace
 
 - type: entity
   name: drag mark

@@ -6,6 +6,7 @@
   components:
   - type: Clickable
   - type: MovementIgnoreGravity
+  - type: GravityAffected
   - type: Sprite
     sprite: _Sunrise/AssaultOperatives/sunray.rsi
     drawdepth: Effects

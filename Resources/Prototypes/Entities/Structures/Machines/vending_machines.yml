@@ -2225,6 +2225,7 @@
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/tankdispenser.rsi #TODO add visualiser for remaining tanks as layers
     state: dispenser
+  - type: PlayerCountDependentStock # Sunrise-Edit
 
 - type: entity
   parent: VendingMachine
@@ -2246,6 +2247,7 @@
     layers:
     - state: dispenser
     - state: dispensereng
+  - type: PlayerCountDependentStock # Sunrise-Edit
 
 - type: entity
   parent: VendingMachine

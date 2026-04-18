@@ -1,0 +1,38 @@
+- type: roleLoadout
+  id: SunriseJobReporter
+  groups:
+  - GroupTankHarness
+  - ReporterJumpsuit
+  - SunriseCommonBackpack
+  - SunriseGlasses
+  - SunriseSurvival
+  - SunriseTrinkets
+  - ReporterJobTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobPsychologist
+  groups:
+  - SunrisePsychologistHead
+  - SunrisePsychologistMask
+  - SunrisePsychologistGloves
+  - GroupTankHarness
+  - PsychologistJumpsuit
+  - SunriseCommonBackpack
+  - MedicalBackpack
+  - SunrisePsychologistOuterClothing
+  - SunrisePsychologistNeck
+  - SunrisePsychologistShoes
+  - SunriseGlasses
+  - SunriseSurvival
+  - SunriseTrinkets
+  - PsychologistJobTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors

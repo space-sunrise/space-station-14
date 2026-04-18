@@ -38,6 +38,9 @@
   name: "magazine (laser)"
   parent: BaseMagazineBattery
   components:
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 30
   - type: BallisticAmmoProvider
     proto: CartridgeBattery
   - type: Sprite

@@ -17398,8 +17398,7 @@ entities:
       pos: -0.5,-1.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
     - type: DeviceLinkSource
       linkedPorts:
         2699:

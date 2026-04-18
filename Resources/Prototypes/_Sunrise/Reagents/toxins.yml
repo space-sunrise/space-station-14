@@ -7,8 +7,8 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: acid
   color: "#44944A"
-  boilingPoint: 165
-  meltingPoint: -87
+  boilingPoint: 78.2
+  meltingPoint: -19.4
   reactiveEffects:
     Acidic:
       methods: [ Touch ]
@@ -22,7 +22,7 @@
         ignoreResistances: false
         damage:
           types:
-            Caustic: 0.2
+            Caustic: 1
       - !type:Emote
         conditions:
         - !type:TagCondition
@@ -41,7 +41,7 @@
           inverted: true
         damage:
           types:
-            Caustic: 1
+            Caustic: 7
       - !type:PopupMessage
         conditions:
         - !type:TagCondition

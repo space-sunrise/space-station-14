@@ -7,3 +7,4 @@ advertisement-nanomed-6 = Может сами примете?
 advertisement-nanomed-7 = Пинг!
 advertisement-nanomed-8 = Не допускайте передозировки!
 advertisement-nanomed-9 = Пора допускать передозировку!
+advertisement-nanomed-10 = Я гражданский! Я гражданский!!

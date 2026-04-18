@@ -258,11 +258,11 @@
     sprite: _Sunrise/Objects/Specific/Mech/mecha_uvm31.rsi
     state: mecha_uvm31
   - type: Gun
-    minAngle: 5
-    maxAngle: 10
-    angleIncrease: 4
-    angleDecay: 16
-    fireRate: 5
+    minAngle: 1
+    maxAngle: 12
+    angleIncrease: 1
+    angleDecay: 15
+    fireRate: 12
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -271,8 +271,8 @@
       params:
         volume: -1
   - type: BatteryAmmoProvider
-    proto: RedLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
-    fireCost: 25
+    proto: IgnitionRedLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
+    fireCost: 15
   - type: Appearance
   - type: AmmoCounter
   - type: StaticPrice

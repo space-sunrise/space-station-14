@@ -14,7 +14,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Audio;
 
-public sealed class ContentAudioSystem : SharedContentAudioSystem
+public sealed partial class ContentAudioSystem : SharedContentAudioSystem
 {
     [Dependency] private readonly AudioSystem _serverAudio = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
@@ -55,6 +55,9 @@ public sealed class ContentAudioSystem : SharedContentAudioSystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
         SubscribeLocalEvent<RoundStartingEvent>(OnRoundStart);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnProtoReload);
+        // Sunrise added start - lobby playlist refresh for the fresh post-cleanup lobby.
+        InitializeSunriseRoundFlowAudio();
+        // Sunrise added end
     }
 
     private void OnRoundCleanup(RoundRestartCleanupEvent ev)
@@ -86,12 +89,10 @@ public sealed class ContentAudioSystem : SharedContentAudioSystem
 
     private void OnRoundEnd(RoundEndMessageEvent ev)
     {
-        // The lobby song is set here instead of in RestartRound,
-        // because ShowRoundEndScoreboard triggers the start of the music playing
-        // at the end of a round, and this needs to be set before RestartRound
-        // in order for the lobby song status display to be accurate.
-        _lobbyPlaylist = ShuffleLobbyPlaylist();
-        RaiseNetworkEvent(new LobbyPlaylistChangedEvent(_lobbyPlaylist));
+        // Sunrise edit start - discard the old playlist so PlayerJoinLobby cannot resend stale tracks.
+        // A fresh shuffled playlist is generated after cleanup in the Sunrise round-flow hook.
+        HandleSunriseRoundEndLobbyPlaylist();
+        // Sunrise edit end
     }
 
     private string[] ShuffleLobbyPlaylist()

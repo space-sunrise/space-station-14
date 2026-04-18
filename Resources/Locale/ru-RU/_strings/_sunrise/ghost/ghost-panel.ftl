@@ -38,5 +38,7 @@ ghost-panel-antagonist-unknown-name = Неизвестно
 ghost-panel-antagonist-unknown-description = Подозрительно!!
 ghost-panel-antagonist-pirate-name = Пират
 ghost-panel-antagonist-pirate-description = Враждебный пират или налётчик.
+ghost-panel-antagonist-soviet-name = Солдат СССП
+ghost-panel-antagonist-soviet-description = Солдат вооруженых сил СССП.
 ghost-panel-antagonist-infiltrator-name = Инфильтратор Синдиката
 ghost-panel-antagonist-infiltrator-description = Оперативник Синдиката, готов устроить перестрелку.

@@ -200,7 +200,7 @@
   id: NanoMedAds
   values:
     prefix: advertisement-nanomed-
-    count: 9
+    count: 10 # Sunrise edit 9to10
 
 - type: localizedDataset
   id: NutriMaxAds

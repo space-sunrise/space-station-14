@@ -9,11 +9,12 @@ using Robust.Shared.Timing;
 namespace Content.Client._Sunrise.BloodCult.UI.Altar;
 
 [GenerateTypedNameReferences]
-public partial class AltarWindow : DefaultWindow
+public sealed partial class AltarWindow : DefaultWindow
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly PrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    private readonly SpriteSystem _spriteSystem;
 
     private List<AltarListingControl> _listingControls = new();
     private TimeSpan? _nextTimeUse = null!;
@@ -22,6 +23,8 @@ public partial class AltarWindow : DefaultWindow
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+
+        _spriteSystem = _entityManager.System<SpriteSystem>();
     }
 
 

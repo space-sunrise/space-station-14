@@ -108,6 +108,12 @@
 # Sunrise-start
 - type: latheRecipe
   parent: [ BaseGoldCircuitboardRecipe, BaseMachineRecipeCategory ]
+  id: ShuttleGunBullfrogCircuitboard
+  result: ShuttleGunBullfrogCircuitboard
+  completetime: 10
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseMachineRecipeCategory ]
   id: ShuttleGunLongbowCircuitboard
   result: ShuttleGunLongbowCircuitboard
   completetime: 10

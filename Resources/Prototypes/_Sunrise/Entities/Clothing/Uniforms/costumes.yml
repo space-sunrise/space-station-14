@@ -19,13 +19,11 @@
     sprite: _Sunrise/Clothing/Uniforms/Costume/arc.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Costume/arc.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -48,13 +46,11 @@
     sprite: _Sunrise/Clothing/Uniforms/Costume/nurse.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Costume/nurse.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -66,13 +62,11 @@
     sprite: _Sunrise/Clothing/Uniforms/Costume/maid.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Costume/maid.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingUniformBase
@@ -92,16 +86,14 @@
   description: A turtle skirt with yellow straps and soft fabric.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/Decorskirt.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/decorskirt.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/Decorskirt.rsi
-  # SUNRISE EDIT
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/decorskirt.rsi
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingUniformBase
@@ -153,13 +145,11 @@
     sprite: _Sunrise/Clothing/Uniforms/Costume/Schoolgirl/red.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Costume/Schoolgirl/red.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingUniformSchoolgirlBase
@@ -170,13 +160,11 @@
     sprite: _Sunrise/Clothing/Uniforms/Costume/Schoolgirl/black.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Costume/Schoolgirl/black.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingUniformSchoolgirlBase
@@ -187,13 +175,11 @@
     sprite: _Sunrise/Clothing/Uniforms/Costume/Schoolgirl/blue.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Costume/Schoolgirl/blue.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingUniformSchoolgirlBase
@@ -204,13 +190,11 @@
     sprite: _Sunrise/Clothing/Uniforms/Costume/Schoolgirl/cyan.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Costume/Schoolgirl/cyan.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingUniformSchoolgirlBase
@@ -221,13 +205,11 @@
     sprite: _Sunrise/Clothing/Uniforms/Costume/Schoolgirl/green.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Costume/Schoolgirl/green.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingUniformSchoolgirlBase
@@ -238,13 +220,11 @@
     sprite: _Sunrise/Clothing/Uniforms/Costume/Schoolgirl/orange.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Costume/Schoolgirl/orange.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingUniformSchoolgirlBase
@@ -255,13 +235,11 @@
     sprite: _Sunrise/Clothing/Uniforms/Costume/Schoolgirl/pink.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Costume/Schoolgirl/pink.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingUniformSchoolgirlBase
@@ -272,13 +250,11 @@
     sprite: _Sunrise/Clothing/Uniforms/Costume/Schoolgirl/purple.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Costume/Schoolgirl/purple.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 ## kendo
 
@@ -313,16 +289,14 @@
   description: I'm blue da ba dee da ba da-ee!
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono-blue.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono_blue.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono-blue.rsi
-  # SUNRISE EDIT
+    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono_blue.rsi
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -331,16 +305,14 @@
   description: Pretty in pink, isn't she?
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono-pink.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono_pink.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono-pink.rsi
-  # SUNRISE EDIT
+    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono_pink.rsi
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -349,16 +321,14 @@
   description: You definitely won't look like a maroon in this.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono-purple.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono_purple.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono-purple.rsi
-  # SUNRISE EDIT
+    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono_purple.rsi
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -367,16 +337,14 @@
   description: Reminds you of natsu matsuri.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono-sky.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono_sky.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono-sky.rsi
-  # SUNRISE EDIT
+    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono_sky.rsi
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -385,16 +353,14 @@
   description: Colors and textures reminiscent of seaweed.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono-green.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono_green.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono-green.rsi
-  # SUNRISE EDIT
+    sprite: _Sunrise/Clothing/Uniforms/Costume/kimono_green.rsi
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 ## new school uniforms
 
@@ -416,16 +382,14 @@
   description: Ready for school in modern style. This set comes with a tan blazer.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Costume/SchoolgirlModern/blazer-tan.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Costume/SchoolgirlModern/blazer_tan.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Costume/SchoolgirlModern/blazer-tan.rsi
-  # SUNRISE EDIT
+    sprite: _Sunrise/Clothing/Uniforms/Costume/SchoolgirlModern/blazer_tan.rsi
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 # gakuran
 
@@ -439,10 +403,8 @@
     sprite: _Sunrise/Clothing/Uniforms/Costume/gakuran.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Costume/gakuran.rsi
-  # SUNRISE EDIT
   - type: Tag
     tags:
       - ClothMade
       - NudeBottom # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
