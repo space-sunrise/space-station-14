@@ -38,6 +38,13 @@
           groups:
             Brute: -3
             Burn: -1.25
+      #Sunrise-Start
+      - !type:ModifyBloodLevel
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dragon ]
+        amount: 0.5  
+      #Sunrise-End  
   plantMetabolism:
     - !type:PlantAdjustWater
       amount: 0.5
@@ -183,7 +190,7 @@
           inverted: true
     # Dragon doesn't require airloss healing, so omnizine is still best for humans.
       - !type:ModifyBloodLevel
-        amount: 3
+        amount: 8 # Sunrise-Edit
       - !type:EvenHealthChange
         damage:
           Burn: -3

@@ -25,6 +25,7 @@ public sealed class DevourSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!; //Sunrise-Edit
 
     public override void Initialize()
     {
@@ -105,21 +106,21 @@ public sealed class DevourSystem : EntitySystem
         if (args.Handled || args.Cancelled)
             return;
 
-        if (!TryComp(ent.Owner, out PassiveDamageComponent? regenComp))
-            return;
-
         var ichorInjection = new Solution(ent.Comp.Chemical, ent.Comp.HealRate);
         var ichorInjectionMinor = new Solution(ent.Comp.Chemical, ent.Comp.HealRate/5); //Sunrise-Edit
 
         // Grant ichor if the devoured thing meets the dragon's food preference
         if (args.Args.Target != null && _whitelistSystem.IsWhitelistPassOrNull(ent.Comp.FoodPreferenceWhitelist, (EntityUid)args.Args.Target))
         {
-            foreach (var (key, _) in regenComp.Damage.DamageDict)
-                regenComp.Damage.DamageDict[key] -= 0.05;
+            if (TryComp<PassiveDamageComponent>(ent, out var regenComp))
+            {
+                foreach (var (key, _) in regenComp.Damage.DamageDict)
+                    regenComp.Damage.DamageDict[key] -= 0.05;
+            }
             _bloodstreamSystem.TryAddToBloodstream(ent.Owner, ichorInjection);
         }
         //Sunrise-Start
-        if (args.Args.Target != null && TryComp(args.Args.Target, out TagComponent? targetTags) && targetTags.Tags.Contains("Carp"))
+        if (args.Args.Target != null && _tagSystem.HasTag(args.Args.Target.Value, "Carp"))
         {
             _bloodstreamSystem.TryAddToBloodstream(ent.Owner, ichorInjectionMinor);
         }

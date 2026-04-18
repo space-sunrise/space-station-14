@@ -166,6 +166,8 @@
     useSound:
       path: /Audio/Items/crowbar.ogg
   # Sunrise-Start
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
   - type: CollectiveMind
     minds:
     - Carp

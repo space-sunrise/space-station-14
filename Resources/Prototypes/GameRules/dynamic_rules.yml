@@ -86,7 +86,7 @@
           - !type:MaxRuleOccurenceCondition
           # Sunrise-start #надеюсь Визы починят свои приколы
           - !type:PlayerCountCondition
-            min: 20
+            min: 40
           # Sunrise-end
           - !type:RoundDurationCondition
             min: 900 # 15 minutes
