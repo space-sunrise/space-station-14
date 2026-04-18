@@ -31,7 +31,6 @@
     - OrderDeprivationAccess
     - OrderDismissal
     - OrderEncouragement
-    - OrderingSpecialEquipment
     - OrderMedicalIntervention
     - OrderParolePrisoner
     - OrderPurchaseResourcesEquipment
@@ -53,8 +52,11 @@
     - ReportOnTheChaptersMeeting
     - ReportStation
     - ResponseProvideCCReport
-    - ResponseHeadsPresence
+    - ReportDecreeHeadsPresence
     - ReportStudyObject
+    - ReportStudyObjectEngineering
+    - ReportStudyObjectMedical
+    - ReportStudyObjectService
     - RequestCallMembersCentralCommitteeDSO
     - RequestChangeSalary
     - RequestConstructionWork
@@ -79,7 +81,9 @@
     - ApplicationChangePosition
     - ApplicationPetRegistration
     - ReportQilluRepresentative
+    - TrustedStaffDeathNotice
     - OrderingSpecialEquipmentCentcomStandard
+    - StationGoal
     - ExplanatoryNote
     - ReportCrewAccessChange
     - RequestLegalProtection

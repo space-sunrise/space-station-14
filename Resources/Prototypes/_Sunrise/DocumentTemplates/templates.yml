@@ -263,6 +263,7 @@
   content: /Documents/_Sunrise/Command/OrderEncouragement.xml
 
 - type: docTemplate
+<<<<<<< HEAD
   parent: BaseSunriseDocTemplateGeneral
   id: OrderingSpecialEquipment
   name: doc-template-ordering-special-equipment-name
@@ -270,6 +271,8 @@
 
 - type: docTemplate
   parent: BaseSunriseDocTemplateMedical
+=======
+>>>>>>> 4e065783cd (Новые документы)
   id: OrderMedicalIntervention
   name: doc-template-order-medical-intervention-name
   content: /Documents/_Sunrise/Medical/OrderMedicalIntervention.xml
@@ -413,9 +416,9 @@
     state: nanotrasen_form_header_cmd
 
 - type: docTemplate
-  id: ResponseHeadsPresence
-  name: doc-template-response-heads-presence-name
-  content: /Documents/_Sunrise/Command/ResponseHeadsPresence.xml
+  id: ReportDecreeHeadsPresence
+  name: doc-template-report-decree-heads-presence-name
+  content: /Documents/_Sunrise/Command/ReportDecreeHeadsPresence.xml
   component: CentcomStandard
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
@@ -428,7 +431,37 @@
   content: /Documents/_Sunrise/Science/ReportStudyObject.xml
 
 - type: docTemplate
+<<<<<<< HEAD
   parent: BaseSunriseDocTemplateCommand
+=======
+  id: ReportStudyObjectEngineering
+  name: doc-template-report-study-object-engineering-name
+  content: /Documents/_Sunrise/Engineering/ReportStudyObject.xml
+  component: Engineering
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header_eng
+
+- type: docTemplate
+  id: ReportStudyObjectMedical
+  name: doc-template-report-study-object-medical-name
+  content: /Documents/_Sunrise/Medical/ReportStudyObject.xml
+  component: Medical
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header_med
+
+- type: docTemplate
+  id: ReportStudyObjectService
+  name: doc-template-report-study-object-service-name
+  content: /Documents/_Sunrise/Service/ReportStudyObject.xml
+  component: Service
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header_serv
+
+- type: docTemplate
+>>>>>>> 4e065783cd (Новые документы)
   id: RequestCallMembersCentralCommitteeDSO
   name: doc-template-request-call-members-central-committee-dso-name
   content: /Documents/_Sunrise/Command/RequestCallMembersCentralCommitteeDSO.xml
@@ -589,6 +622,15 @@
     state: nanotrasen_form_header_cmd
 
 - type: docTemplate
+  id: TrustedStaffDeathNotice
+  name: doc-template-trusted-staff-death-notice-name
+  content: /Documents/_Sunrise/CentcomStandard/TrustedStaffDeathNotice.xml
+  component: CentcomStandard
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header_cmd
+
+- type: docTemplate
   id: OrderingSpecialEquipmentCentcomStandard
   name: doc-template-ordering-special-equipment-centcom-standard-name
   content: /Documents/_Sunrise/CentcomStandard/OrderingSpecialEquipment.xml
@@ -598,7 +640,19 @@
     state: nanotrasen_form_header_cmd
 
 - type: docTemplate
+<<<<<<< HEAD
   parent: BaseSunriseDocTemplateGeneral
+=======
+  id: StationGoal
+  name: doc-template-station-goal-name
+  content: /Documents/_Sunrise/CentcomStrict/StationGoal.xml
+  component: CentcomStrict
+  header:
+    sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
+    state: nanotrasen_form_header_cmd
+
+- type: docTemplate
+>>>>>>> 4e065783cd (Новые документы)
   id: ExplanatoryNote
   name: doc-template-explanatory-note-name
   content: /Documents/_Sunrise/General/ExplanatoryNote.xml
