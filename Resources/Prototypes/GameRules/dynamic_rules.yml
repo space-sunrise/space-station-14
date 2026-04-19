@@ -91,7 +91,7 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-          # Sunrise-start #надеюсь Визы починят свои приколы
+          # Sunrise-start
           - !type:PlayerCountCondition
             min: 40
           # Sunrise-end
