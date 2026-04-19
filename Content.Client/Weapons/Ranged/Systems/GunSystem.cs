@@ -399,7 +399,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     || !TryComp<GunComponent>(otherGunUid.Value, out var otherGun)
                     || otherGun.NextFire > Timing.CurTime)
                 {
-                    return; // Both guns on cooldown – wait
+                    return; // Other gun unavailable or also on cooldown – wait
                 }
 
                 // Other gun is ready – fall through so the shared handler
