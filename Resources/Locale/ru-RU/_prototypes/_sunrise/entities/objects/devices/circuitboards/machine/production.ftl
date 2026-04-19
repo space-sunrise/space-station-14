@@ -16,3 +16,7 @@ ent-PirateTechFabCircuitboard = плата пиратского фабрикат
     .desc = { ent-BaseMachineCircuitboard.desc }
 ent-SlopDispenserMachineCircuitboard = плата раздатчика питательной пасты
     .desc = Машинная печатная плата для раздатчика питательной пасты.
+ent-SMESExtendedMachineCircuitboard = расширенный СМЭС (машинная плата)
+    .desc = Машинная печатная плата для расширенного СМЭС.
+ent-SMESSuperExtendedMachineCircuitboard = суперрасширенный СМЭС (машинная плата)
+    .desc = Машинная печатная плата для суперрасширенного СМЭС.

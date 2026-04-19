@@ -55,6 +55,8 @@ uplink-pistol-magnum-magazine-name = Магазин (.45 магнум SP)
 uplink-pistol-magnum-magazine-desc = 7-зарядный однорядный магазин для пистолета. Содержит патроны SP. Совместим с "Диглом".
 uplink-pistol-magnum-magazine-ap-name = Магазин (.45 магнум бронебойные)
 uplink-pistol-magnum-magazine-ap-desc = 7-зарядный однорядный магазин для пистолета. Содержит бронебойные патроны. Совместим с "Диглом".
+uplink-pistol-stechkin-magazine-name = пистолетный магазин .40
+uplink-pistol-stechkin-magazine-desc = Пистолетный магазин на 10 патронов, совместим с пистолетами серии Стечкин.
 uplink-pistol-magazine-c40r-desc = Магазин ПП на 24 патрона. Совместим с C-40r.
 uplink-skm28-ammo-desc = Винтовочный магазин на 20 патронов. Совместим с SKM-28.
 uplink-skm24-ammo-desc = Винтовочный магазин на 30 патронов 7,62x39. Совместим с SKM-24.
@@ -246,7 +248,8 @@ uplink-stimpack-implanter-name = Имплантер Стимпак
 uplink-stimpack-implanter-desc = Двухзарядный имплант с мощным стимулятором. Перезарядка зарядов 4 минуты.
 uplink-nutriment-implanter-name = Имплантер Питания
 uplink-nutriment-implanter-desc = Одноразовый имплант для быстрого восстановления: витамины, физраствор и питательные вещества. Перезарядка 3 минуты. Ты не ты, когда голоден. Подкрепись!
-
+uplink-reviver-implanter-name = Имплантер Реаниматор
+uplink-reviver-implanter-desc = Стимулирует выброс адреналина точечным разрядом в сердце и коктейлем реагентов. При входе в критическое состояние вводится автоматически. Теоретически вы не умрёте, на практике вас добьют.
 ## Ammo Kits and Bundle
 
 uplink-ammo-crate-ammokit-bundle-name = ящик супер набора боеприпасов синдиката

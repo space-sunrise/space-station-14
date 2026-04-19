@@ -1219,6 +1219,8 @@
       metabolismRate: 0.2 # Sunrise-Edit Для нормального деконверта
       effects:
       # Sunrise-Start
+      - !type:SatiateThirst
+        factor: 1.6
       - !type:DeconvertCultist
         conditions:
         - !type:ReagentCondition

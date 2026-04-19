@@ -21,6 +21,8 @@
   overrideConsoleVisibility: false
   supervisors: job-supervisors-head-of-prison
   displayWeight: 50
+  alternativeTitles:
+  - job-alt-title-prison-medic
   access:
   - Security
   - Brig
