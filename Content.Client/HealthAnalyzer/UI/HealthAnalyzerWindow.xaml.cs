@@ -206,7 +206,7 @@ namespace Content.Client.HealthAnalyzer.UI
 
         private Texture GetTexture(string texture)
         {
-            var rsiPath = new ResPath("/Textures/Objects/Devices/health_analyzer.rsi");
+            var rsiPath = new ResPath("/Textures/_Sunrise/Objects/Devices/health_analyzer.rsi"); //Sunrise-edit
             var rsiSprite = new SpriteSpecifier.Rsi(rsiPath, texture);
 
             var rsi = _cache.GetResource<RSIResource>(rsiSprite.RsiPath).RSI;
