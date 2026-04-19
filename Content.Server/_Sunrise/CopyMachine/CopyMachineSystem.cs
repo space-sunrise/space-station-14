@@ -216,7 +216,7 @@ public sealed partial class CopyMachineSystem : EntitySystem
             _pendingUIUpdateQueue.Enqueue(copyMachineUid);
     }
 
-    private void QueueUIUpdate(Entity<CopyMachineComponent> ent) => QueueUIUpdate(ent);
+    private void QueueUIUpdate(Entity<CopyMachineComponent> ent) => QueueUIUpdate(ent.Owner);
 
     private void FlushUIUpdates()
     {
