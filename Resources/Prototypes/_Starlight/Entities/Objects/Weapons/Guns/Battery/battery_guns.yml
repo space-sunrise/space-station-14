@@ -347,6 +347,7 @@
       fireCost: 100
       magState: destroy
       heldPrefix: destroy
+
 - type: entity
   name: PDW-9 taser pistol
   parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]

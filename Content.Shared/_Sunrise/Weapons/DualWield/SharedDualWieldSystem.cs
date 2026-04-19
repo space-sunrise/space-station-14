@@ -83,7 +83,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return false;
 
-        if (ent.Comp.Count != DualWieldHandsRequired)
+        if (ent.Comp.Count < DualWieldHandsRequired)
             return false;
 
         foreach (var handName in _hands.EnumerateHands(ent))
@@ -158,6 +158,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
             return;
 
         args.AngleIncrease *= (1f + ent.Comp.DualWieldInaccuracyPenalty);
+        args.FireRate *= (1f - ent.Comp.DualWieldFireRatePenalty);
         args.CameraRecoilScalar *= (1f + ent.Comp.DualWieldRecoilPenalty);
     }
 
