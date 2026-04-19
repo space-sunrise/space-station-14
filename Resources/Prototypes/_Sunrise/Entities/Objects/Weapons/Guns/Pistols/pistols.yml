@@ -636,7 +636,7 @@
         - Burst
         - SemiAuto
       soundGunshot:
-        path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+        path: /Audio/_Starlight/Weapons/Guns/Gunshots/1suppres.ogg
     - type: Contraband
       severity: Soviet
     - type: ItemSlots
