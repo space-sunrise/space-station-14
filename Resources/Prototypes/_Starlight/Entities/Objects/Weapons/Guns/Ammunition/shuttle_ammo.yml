@@ -557,7 +557,7 @@
   components:
   - type: Construction
     graph: LeviathanNukeShellDisassembly
-    node: nuke
+    node: start
     defaultTarget: terminal
     deconstructionTarget: terminal
   - type: Destructible

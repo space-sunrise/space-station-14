@@ -226,7 +226,7 @@
 
 - type: entity
   id: MechMiningPod
-  parent: [ BaseMechPod, BaseSalvageSpecialistContraband ]
+  parent: [ BaseMechPod, BaseSalvageContraband ]
   name: Mining Pod
   description: Despite its size, the Mining Pod has incredible survability in space.
   suffix: Filled

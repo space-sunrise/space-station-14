@@ -343,6 +343,7 @@
   parent: MobPirateBase
   id: MobPirateBaseT2
   components:
+  - type: NoSlip
   - type: Damageable
     damageModifierSet: MobPirateT2
   - type: GhostRole
@@ -359,6 +360,7 @@
   parent: MobPirateBase
   id: MobPirateBaseT3
   components:
+  - type: NoSlip
   - type: Damageable
     damageModifierSet: MobPirateT3
   - type: GhostRole

@@ -8,6 +8,7 @@
   offset: 20,50
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBaseGeneral
 
 # Large
 #19x11
@@ -18,6 +19,7 @@
   offset: 0,58
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBaseGeneral
 
 # 11x7
 - type: dungeonRoom
@@ -27,6 +29,7 @@
   offset: 0,50
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBaseGeneral
 
 # - 17x5
 - type: dungeonRoom
@@ -36,6 +39,7 @@
   offset: 0,0
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBaseGeneral
 
 - type: dungeonRoom
   id: SyndicateBase17x5b
@@ -44,6 +48,7 @@
   offset: 18,0
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBaseGeneral
 
 # - 18x5
 - type: dungeonRoom
@@ -53,6 +58,7 @@
   offset: 36,0
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBaseGeneral
 
 # - 7x7
 - type: dungeonRoom
@@ -62,6 +68,7 @@
   offset: 0,42
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase7x7
 
 - type: dungeonRoom
   id: SyndicateBase7x7b
@@ -70,6 +77,7 @@
   offset: 8,42
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase7x7
 
 - type: dungeonRoom
   id: SyndicateBase7x7c
@@ -78,6 +86,7 @@
   offset: 16,42
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase7x7
 
 - type: dungeonRoom
   id: SyndicateBase7x7d
@@ -86,6 +95,7 @@
   offset: 24,42
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase7x7
 
 # Medium
 # - 11x5
@@ -96,6 +106,7 @@
   offset: 0,6
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase11x5
 
 - type: dungeonRoom
   id: SyndicateBase11x5b #o2 + defib/extinguisher hallway; 2junction, 3junction, 4junction
@@ -104,6 +115,7 @@
   offset: 12,6
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase11x5
 
 - type: dungeonRoom
   id: SyndicateBase11x5c #double turret checkpoint; 2junction, 3junction, 4junction
@@ -112,6 +124,7 @@
   offset: 24,6
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase11x5
 
 # - 7x5
 - type: dungeonRoom
@@ -121,6 +134,7 @@
   offset: 0,12
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBaseGeneral
 
 - type: dungeonRoom
   id: SyndicateBase7x5b
@@ -129,6 +143,7 @@
   offset: 8,12
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBaseGeneral
 
 - type: dungeonRoom
   id: SyndicateBase7x5c #4junction
@@ -137,6 +152,7 @@
   offset: 16,12
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBaseGeneral
 
 - type: dungeonRoom
   id: SyndicateBase7x5d
@@ -145,6 +161,7 @@
   offset: 24,12
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBaseGeneral
 
 - type: dungeonRoom
   id: SyndicateBase7x5e
@@ -153,6 +170,7 @@
   offset: 32,12
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBaseGeneral
 
 - type: dungeonRoom
   id: SyndicateBase7x5f
@@ -161,6 +179,7 @@
   offset: 40,12
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBaseGeneral
 
 # - 13x3
 - type: dungeonRoom
@@ -170,6 +189,7 @@
   offset: 0,30
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBaseGeneral
 
 - type: dungeonRoom
   id: SyndicateBase13x3b
@@ -178,6 +198,7 @@
   offset: 14,30
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBaseGeneral
 
 - type: dungeonRoom
   id: SyndicateBase13x3c
@@ -186,6 +207,7 @@
   offset: 28,30
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBaseGeneral
 
 # - 11x3
 - type: dungeonRoom
@@ -195,6 +217,7 @@
   offset: 0,34
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBaseGeneral
 
 - type: dungeonRoom
   id: SyndicateBase11x3b #landmine trap; 2junction, 3junction, 4junction
@@ -203,6 +226,7 @@
   offset: 12,34
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBaseGeneral
 
 - type: dungeonRoom
   id: SyndicateBase11x3c
@@ -211,6 +235,7 @@
   offset: 24,34
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBaseGeneral
 
 # - 7x3
 - type: dungeonRoom
@@ -220,6 +245,7 @@
   offset: 0,38
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase7x3
 
 - type: dungeonRoom
   id: SyndicateBase7x3b #small turret checkpoint; 2junction, 3junction, 4junction
@@ -228,6 +254,7 @@
   offset: 8,38
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase7x3
 
 - type: dungeonRoom
   id: SyndicateBase7x3c
@@ -236,6 +263,7 @@
   offset: 16,38
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase7x3
 
 - type: dungeonRoom
   id: SyndicateBase7x3d
@@ -244,6 +272,7 @@
   offset: 24,38
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase7x3
 
 - type: dungeonRoom
   id: SyndicateBase7x3e
@@ -252,6 +281,7 @@
   offset: 32,38
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase7x3
 
 - type: dungeonRoom
   id: SyndicateBase7x3f
@@ -260,6 +290,7 @@
   offset: 40,38
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase7x3
 
 # Small
 # - 5x5
@@ -270,6 +301,7 @@
   offset: 0,18
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase5x5
 
 - type: dungeonRoom
   id: SyndicateBase5x5b
@@ -278,6 +310,7 @@
   offset: 6,18
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase5x5
 
 - type: dungeonRoom
   id: SyndicateBase5x5c
@@ -286,6 +319,7 @@
   offset: 12,18
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase5x5
 
 - type: dungeonRoom
   id: SyndicateBase5x5d
@@ -294,6 +328,7 @@
   offset: 18,18
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase5x5
 
 - type: dungeonRoom
   id: SyndicateBase5x5e
@@ -302,6 +337,7 @@
   offset: 24,18
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase5x5
 
 - type: dungeonRoom
   id: SyndicateBase5x5f
@@ -310,6 +346,7 @@
   offset: 30,18
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase5x5
 
 # - 3x5
 - type: dungeonRoom
@@ -319,6 +356,7 @@
   offset: 0,24
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase3x5
 
 - type: dungeonRoom
   id: SyndicateBase3x5b
@@ -327,6 +365,7 @@
   offset: 4,24
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase3x5
 
 - type: dungeonRoom
   id: SyndicateBase3x5c
@@ -335,6 +374,7 @@
   offset: 8,24
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase3x5
 
 - type: dungeonRoom
   id: SyndicateBase3x5d
@@ -343,6 +383,7 @@
   offset: 12,24
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase3x5
 
 - type: dungeonRoom
   id: SyndicateBase3x5e
@@ -351,6 +392,7 @@
   offset: 16,24
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase3x5
 
 - type: dungeonRoom
   id: SyndicateBase3x5f
@@ -359,6 +401,7 @@
   offset: 20,24
   tags:
     - SalvageSyndicateBase
+    - SunriseSyndicateBase3x5
 
 - type: entity
   id: SyndicateBaseRoomMarker
@@ -370,5 +413,120 @@
     maxSize: 21,19
     roomWhitelist:
       tags:
-      - SalvageSyndicateBase
+      - SunriseSyndicateBaseGeneral
+
+- type: entity
+  id: SyndicateBaseRoomMarker11x5
+  parent: BaseRoomMarker
+  name: syndicate base room marker
+  suffix: 11x5
+  components:
+  - type: RoomFill
+    minSize: 11,5
+    maxSize: 11,5
+    roomWhitelist:
+      tags:
+      - SunriseSyndicateBase11x5
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: Markers/Outlines/11x5.rsi
+        state: rect
+        color: red
+      - sprite: Markers/Outlines/11x5.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: SyndicateBaseRoomMarker7x7
+  parent: BaseRoomMarker
+  name: syndicate base room marker
+  suffix: 7x7
+  components:
+  - type: RoomFill
+    minSize: 7,7
+    maxSize: 7,7
+    roomWhitelist:
+      tags:
+      - SunriseSyndicateBase7x7
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: Markers/Outlines/7x7.rsi
+        state: rect
+        color: red
+      - sprite: Markers/Outlines/7x7.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: SyndicateBaseRoomMarker5x5
+  parent: BaseRoomMarker
+  name: syndicate base room marker
+  suffix: 5x5
+  components:
+  - type: RoomFill
+    minSize: 5,5
+    maxSize: 5,5
+    roomWhitelist:
+      tags:
+      - SunriseSyndicateBase5x5
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: Markers/Outlines/5x5.rsi
+        state: rect
+        color: red
+      - sprite: Markers/Outlines/5x5.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: SyndicateBaseRoomMarker3x5
+  parent: BaseRoomMarker
+  name: syndicate base room marker
+  suffix: 3x5
+  components:
+  - type: RoomFill
+    minSize: 3,5
+    maxSize: 3,5
+    roomWhitelist:
+      tags:
+      - SunriseSyndicateBase3x5
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: _Sunrise/Markers/Outlines/3x5.rsi
+        state: rect
+        color: red
+      - sprite: _Sunrise/Markers/Outlines/3x5.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: SyndicateBaseRoomMarker7x3
+  parent: BaseRoomMarker
+  name: syndicate base room marker
+  suffix: 7x3
+  components:
+  - type: RoomFill
+    minSize: 7,3
+    maxSize: 7,3
+    roomWhitelist:
+      tags:
+      - SunriseSyndicateBase7x3
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: _Sunrise/Markers/Outlines/7x3.rsi
+        state: rect
+        color: red
+      - sprite: _Sunrise/Markers/Outlines/7x3.rsi
+        state: label
+        color: red
 

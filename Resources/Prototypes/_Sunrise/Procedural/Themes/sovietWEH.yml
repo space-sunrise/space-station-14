@@ -7,6 +7,7 @@
   offset: 0,0
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEHGeneral
 
 # - 11x5
 - type: dungeonRoom
@@ -16,6 +17,7 @@
   offset: 0,6
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH11x5
 
 - type: dungeonRoom
   id: SovietDungeon11x5bWEH
@@ -24,6 +26,7 @@
   offset: 12,6
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH11x5
 # - 7x5
 - type: dungeonRoom
   id: SovietDungeon7x5aWEH
@@ -32,6 +35,7 @@
   offset: 0,12
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEHGeneral
 
 - type: dungeonRoom
   id: SovietDungeon7x5bWEH
@@ -40,6 +44,7 @@
   offset: 8,12
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEHGeneral
 
 - type: dungeonRoom
   id: SovietDungeon7x5cWEH
@@ -48,6 +53,7 @@
   offset: 16,12
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEHGeneral
 
 # - 5x5
 - type: dungeonRoom
@@ -57,6 +63,7 @@
   offset: 0,18
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH5x5
 
 - type: dungeonRoom
   id: SovietDungeon5x5bWEH
@@ -65,6 +72,7 @@
   offset: 6,18
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH5x5
 
 - type: dungeonRoom
   id: SovietDungeon5x5cWEH
@@ -73,6 +81,7 @@
   offset: 12,18
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH5x5
 
 - type: dungeonRoom
   id: SovietDungeon5x5dWEH
@@ -81,6 +90,7 @@
   offset: 18,18
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH5x5
 
 - type: dungeonRoom
   id: SovietDungeon5x5eWEH
@@ -89,6 +99,7 @@
   offset: 24,18
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH5x5
 
 # - 7x7
 - type: dungeonRoom
@@ -98,6 +109,7 @@
   offset: 0,42
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH7x7
 
 - type: dungeonRoom
   id: SovietDungeon7x7bWEH
@@ -106,6 +118,7 @@
   offset: 8,42
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH7x7
 
 - type: dungeonRoom
   id: SovietDungeon7x7cWEH
@@ -114,6 +127,7 @@
   offset: 16,42
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH7x7
 
 
 
@@ -125,6 +139,7 @@
   offset: 0,24
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH3x5
 
 - type: dungeonRoom
   id: SovietDungeon3x5bWEH
@@ -133,6 +148,7 @@
   offset: 4,24
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH3x5
 
 - type: dungeonRoom
   id: SovietDungeon3x5cWEH
@@ -141,6 +157,7 @@
   offset: 8,24
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH3x5
 
 - type: dungeonRoom
   id: SovietDungeon3x5dWEH
@@ -149,6 +166,7 @@
   offset: 12,24
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH3x5
 
 - type: dungeonRoom
   id: SovietDungeon3x5eWEH
@@ -157,6 +175,7 @@
   offset: 16,24
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH3x5
 
 - type: dungeonRoom
   id: SovietDungeon3x5fWEH
@@ -165,6 +184,7 @@
   offset: 20,24
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH3x5
 
 - type: dungeonRoom
   id: SovietDungeon3x5gWEH
@@ -173,6 +193,7 @@
   offset: 24,24
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH3x5
 
 - type: dungeonRoom
   id: SovietDungeon3x5hWEH
@@ -181,6 +202,7 @@
   offset: 28,24
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH3x5
 
 # - 13x3
 - type: dungeonRoom
@@ -190,6 +212,7 @@
   offset: 0,30
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEHGeneral
 
 - type: dungeonRoom
   id: SovietDungeon13x3bWEH
@@ -198,6 +221,7 @@
   offset: 14,30
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEHGeneral
 
 # - 11x3
 - type: dungeonRoom
@@ -207,6 +231,7 @@
   offset: 0,34
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEHGeneral
 
 - type: dungeonRoom
   id: SovietDungeon11x3bWEH
@@ -215,6 +240,7 @@
   offset: 12,34
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEHGeneral
 
 # - 7x3
 - type: dungeonRoom
@@ -224,6 +250,7 @@
   offset: 0,38
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH7x3
 
 - type: dungeonRoom
   id: SovietDungeon7x3bWEH
@@ -232,6 +259,7 @@
   offset: 8,38
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH7x3
 
 - type: dungeonRoom
   id: SovietDungeon7x3cWEH
@@ -240,6 +268,7 @@
   offset: 16,38
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH7x3
 
 - type: dungeonRoom
   id: SovietDungeon7x3dWEH
@@ -248,6 +277,7 @@
   offset: 24,38
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH7x3
 # - 11x5
 - type: dungeonRoom
   id: SovietDungeon11x5z
@@ -256,6 +286,7 @@
   offset: 18,0
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEH11x5
 # - LargeSovietNukeRoom17x15
 - type: dungeonRoom
   id: NewSovietDungeon17x15
@@ -264,3 +295,131 @@
   offset: 32,34
   tags:
     - SovietDungeonWEH
+    - SunriseSovietDungeonWEHGeneral
+
+- type: entity
+  id: SovietDungeonWEHRoomMarker
+  parent: BaseRoomMarker
+  name: soviet dungeon weh room marker
+  components:
+  - type: RoomFill
+    minSize: 3,3
+    maxSize: 17,15
+    roomWhitelist:
+      tags:
+      - SunriseSovietDungeonWEHGeneral
+
+- type: entity
+  id: SovietDungeonWEHRoomMarker11x5
+  parent: BaseRoomMarker
+  name: soviet dungeon weh room marker
+  suffix: 11x5
+  components:
+  - type: RoomFill
+    minSize: 11,5
+    maxSize: 11,5
+    roomWhitelist:
+      tags:
+      - SunriseSovietDungeonWEH11x5
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: Markers/Outlines/11x5.rsi
+        state: rect
+        color: red
+      - sprite: Markers/Outlines/11x5.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: SovietDungeonWEHRoomMarker7x7
+  parent: BaseRoomMarker
+  name: soviet dungeon weh room marker
+  suffix: 7x7
+  components:
+  - type: RoomFill
+    minSize: 7,7
+    maxSize: 7,7
+    roomWhitelist:
+      tags:
+      - SunriseSovietDungeonWEH7x7
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: Markers/Outlines/7x7.rsi
+        state: rect
+        color: red
+      - sprite: Markers/Outlines/7x7.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: SovietDungeonWEHRoomMarker5x5
+  parent: BaseRoomMarker
+  name: soviet dungeon weh room marker
+  suffix: 5x5
+  components:
+  - type: RoomFill
+    minSize: 5,5
+    maxSize: 5,5
+    roomWhitelist:
+      tags:
+      - SunriseSovietDungeonWEH5x5
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: Markers/Outlines/5x5.rsi
+        state: rect
+        color: red
+      - sprite: Markers/Outlines/5x5.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: SovietDungeonWEHRoomMarker3x5
+  parent: BaseRoomMarker
+  name: soviet dungeon weh room marker
+  suffix: 3x5
+  components:
+  - type: RoomFill
+    minSize: 3,5
+    maxSize: 3,5
+    roomWhitelist:
+      tags:
+      - SunriseSovietDungeonWEH3x5
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: _Sunrise/Markers/Outlines/3x5.rsi
+        state: rect
+        color: red
+      - sprite: _Sunrise/Markers/Outlines/3x5.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: SovietDungeonWEHRoomMarker7x3
+  parent: BaseRoomMarker
+  name: soviet dungeon weh room marker
+  suffix: 7x3
+  components:
+  - type: RoomFill
+    minSize: 7,3
+    maxSize: 7,3
+    roomWhitelist:
+      tags:
+      - SunriseSovietDungeonWEH7x3
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: _Sunrise/Markers/Outlines/7x3.rsi
+        state: rect
+        color: red
+      - sprite: _Sunrise/Markers/Outlines/7x3.rsi
+        state: label
+        color: red

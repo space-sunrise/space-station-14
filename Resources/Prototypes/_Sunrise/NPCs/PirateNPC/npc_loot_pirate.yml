@@ -1,10 +1,26 @@
-﻿#region BASE
+#region BASE
 
 - type: entity
   id: NpcLootBase
   description: Loot boxes? Here?
   categories: [ HideSpawnMenu ]
   suffix: NPC Loot
+
+- type: entity
+  abstract: true
+  id: BaseSunriseNpcLootEquipSound
+  components:
+  - type: SpawnItemsOnUse
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  abstract: true
+  id: BaseSunriseNpcLootClosetOpenSound
+  components:
+  - type: SpawnItemsOnUse
+    sound:
+      path: /Audio/Effects/closetopen.ogg
 
 ## BACK - for gear and cash
 - type: entity
@@ -645,7 +661,7 @@
       orGroup: KnuckleDuster
 
 - type: entity
-  parent: PiratePouchGiftBox
+  parent: [PiratePouchGiftBox, BaseSunriseNpcLootEquipSound]
   id: PiratePouchTier1FlareGun
   categories: [ HideSpawnMenu ]
   components:
@@ -695,11 +711,9 @@
       prob: 0.15
       amount: 3
       orGroup: ShotgunAmmoPool
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: PiratePouchGiftBox
+  parent: [PiratePouchGiftBox, BaseSunriseNpcLootEquipSound]
   id: PiratePouchTier1FireBomb
   categories: [ HideSpawnMenu ]
   components:
@@ -732,12 +746,10 @@
       prob: 0.05
       amount: 3
       orGroup: ShotgunAmmoPool
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 
 - type: entity
-  parent: WaistbagBox
+  parent: [WaistbagBox, BaseSunriseNpcLootEquipSound]
   id: WaistbagBoxTier1Grenade
   categories: [ HideSpawnMenu ]
   components:
@@ -791,12 +803,10 @@
     - id: ImprovisedGrenadeGlass
       prob: 0.15
       orGroup: GrenadePool
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 # MERCENARY NPC LOOT
 - type: entity
-  parent: MercenaryDuffelGiftBox
+  parent: [MercenaryDuffelGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackDuffelMercenaryTier1Flintlock
   categories: [ HideSpawnMenu ]
   components:
@@ -829,11 +839,9 @@
     - id: PirateCashSpawner03
     - id: LootSpawnerMedicalMinor
       prob: 0.7
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: MercenaryDuffelGiftBox
+  parent: [MercenaryDuffelGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackDuffelMercenaryTier1Pistol
   categories: [ HideSpawnMenu ]
   components:
@@ -868,12 +876,10 @@
     - id: PirateCashSpawner03
     - id: LootSpawnerMedicalMinor
       prob: 0.7
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 
 - type: entity
-  parent: DuffelSyndicateMedicalGiftBox
+  parent: [DuffelSyndicateMedicalGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackDuffelMercenaryTier1Medic
   categories: [ HideSpawnMenu ]
   components:
@@ -915,11 +921,9 @@
       prob: 0.8
     - id: NukeOpsMedkitBruteSpawner
       prob: 0.25
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: DuffelSyndicateMedicalGiftBox
+  parent: [DuffelSyndicateMedicalGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackDuffelMercenaryTier2Medic
   categories: [ HideSpawnMenu ]
   components:
@@ -956,11 +960,9 @@
       prob: 0.8
     - id: NukeOpsMedkitSpawner
       prob: 0.55
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: DuffelSyndicateMedicalGiftBox
+  parent: [DuffelSyndicateMedicalGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackDuffelMercenaryTier3Medic
   categories: [ HideSpawnMenu ]
   components:
@@ -998,11 +1000,9 @@
       prob: 0.5
     - id: Doubloon5
       prob: 0.1
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: SovietLightWebbingBox
+  parent: [SovietLightWebbingBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltWebbingMercenaryTier1Pistol
   categories: [ HideSpawnMenu ]
   components:
@@ -1017,11 +1017,9 @@
       prob: 0.4
     - id: LootSpawnerMedicalMinor
       prob: 0.5
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: MercenaryWebbingBox
+  parent: [MercenaryWebbingBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltUtilityPirateT1
   name: utility belt bundle
   categories: [ HideSpawnMenu ]
@@ -1061,11 +1059,9 @@
     - id: LootSpawnerMedicalMinor
       prob: 0.7
     - id: PirateMedSpawner01
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: SalvageWebbingBox
+  parent: [SalvageWebbingBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltSalvageWebbingTier1Flintlock
   categories: [ HideSpawnMenu ]
   components:
@@ -1097,11 +1093,9 @@
     - id: LootSpawnerMedicalMinor
       prob: 0.7
     - id: PirateMedSpawner01
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: SalvageWebbingBox
+  parent: [SalvageWebbingBox, BaseSunriseNpcLootEquipSound]
   id: ClothingSalvageWebbingTier1Mosin
   categories: [ HideSpawnMenu ]
   components:
@@ -1135,11 +1129,9 @@
     - id: PirateCashSpawner03
     - id: LootSpawnerMedicalMinor
       prob: 0.7
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: ScrapperDuffelGiftBox
+  parent: [ScrapperDuffelGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackScrapperMeleeT1
   categories: [ HideSpawnMenu ]
   components:
@@ -1163,11 +1155,9 @@
       prob: 0.4
     - id: LootSpawnerMaterialsHighValueConstruction
       prob: 0.2
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: ScrapperDuffelGiftBox
+  parent: [ScrapperDuffelGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackScrapperRangedT1
   categories: [ HideSpawnMenu ]
   components:
@@ -1221,11 +1211,9 @@
       prob: 0.4
     - id: LootSpawnerMaterialsHighValueConstruction
       prob: 0.2
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: BeltAssaultBox
+  parent: [BeltAssaultBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltAssaultT1LCG
   categories: [ HideSpawnMenu ]
   components:
@@ -1235,13 +1223,11 @@
     - id: PirateCashSpawner01
     - id: PirateCashSpawner03
     # Weapons
-    - id: WeaponMachineGunLCGEmpty
-      prob: 0.25
-    # Items
-    - id: WeaponMachineGunLCGEmpty
-      orGroup: AmmoMGPool
     - id: WeaponMachineGunLCG
-      orGroup: AmmoMGPool
+      orGroup: MGPool
+    - id: WeaponMachineGunLCGEmpty
+      orGroup: MGPool
+    # Items
     - id: MagazineChainGun
       orGroup: AmmoMGPool
     - id: MagazineChainGun100
@@ -1272,12 +1258,10 @@
     - id: LootSpawnerMaterialsHighValueConstruction
       prob: 0.25
     - id: PirateMedSpawner01
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 #region TIER 2
 - type: entity
-  parent: ScrapperDuffelGiftBox
+  parent: [ScrapperDuffelGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackScrapperT1PlasmaCutter
   categories: [ HideSpawnMenu ]
   components:
@@ -1343,11 +1327,9 @@
       prob: 0.5
     - id: LootSpawnerMaterialsHighValue
       prob: 0.25
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: PirateMessengerGiftBox
+  parent: [PirateMessengerGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackPirateMessengerT2Shotgun
   categories: [ HideSpawnMenu ]
   components:
@@ -1401,11 +1383,9 @@
       prob: 0.5
     - id: LootSpawnerMaterialsHighValue
       prob: 0.25
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: BandolierBox
+  parent: [BandolierBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltAmmoT2Shotgun
   categories: [ HideSpawnMenu ]
   components:
@@ -1454,11 +1434,9 @@
       prob: 0.15
       amount: 3
       orGroup: BlunderBussPool
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: PirateMessengerGiftBox
+  parent: [PirateMessengerGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackPirateMessengerT2MG
   categories: [ HideSpawnMenu ]
   components:
@@ -1504,11 +1482,9 @@
       prob: 0.5
     - id: LootSpawnerMaterialsHighValue
       prob: 0.25
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: BandolierBox
+  parent: [BandolierBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltAmmoT2MG
   categories: [ HideSpawnMenu ]
   components:
@@ -1537,11 +1513,9 @@
       orGroup: CannonPool
     - id: MagazineCannonBallMini
       prob: 0.3
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: BandolierBox
+  parent: [BandolierBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltAmmoT2Musket
   categories: [ HideSpawnMenu ]
   components:
@@ -1603,11 +1577,9 @@
       prob: 0.5
     - id: LootSpawnerMaterialsHighValue
       prob: 0.25
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: BandolierBox
+  parent: [BandolierBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltWebbingMercenaryTier2Revolver
   categories: [ HideSpawnMenu ]
   components:
@@ -1659,11 +1631,9 @@
       prob: 0.5
     - id: LootSpawnerMaterialsHighValue
       prob: 0.25
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: BandolierBox
+  parent: [BandolierBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltWebbingMercenaryTier2Flintlock
   categories: [ HideSpawnMenu ]
   components:
@@ -1713,11 +1683,9 @@
       prob: 0.5
     - id: LootSpawnerMaterialsHighValue
       prob: 0.25
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: BandolierBox
+  parent: [BandolierBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltWebbingMercenaryTier2RevolverAlt
   categories: [ HideSpawnMenu ]
   components:
@@ -1767,11 +1735,9 @@
       prob: 0.5
     - id: LootSpawnerMaterialsHighValue
       prob: 0.25
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: ScrapperDuffelGiftBox
+  parent: [ScrapperDuffelGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackScrapperT1Hunter
   categories: [ HideSpawnMenu ]
   components:
@@ -1828,11 +1794,9 @@
       prob: 0.5
     - id: LootSpawnerMaterialsSurplus
       prob: 0.3
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: PirateMessengerGiftBox
+  parent: [PirateMessengerGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackScrapperT1Smasher
   categories: [ HideSpawnMenu ]
   components:
@@ -1890,11 +1854,9 @@
       prob: 0.3
     - id: LootSpawnerMaterialsHighValue
       prob: 0.25
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: PirateMessengerGiftBox
+  parent: [PirateMessengerGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackScrapperRangedT2
   categories: [ HideSpawnMenu ]
   components:
@@ -1968,8 +1930,6 @@
       prob: 0.3
     - id: LootSpawnerMaterialsHighValue
       prob: 0.25
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 #region TIER 3
 - type: entity
@@ -1997,7 +1957,7 @@
     - id: PirateCashSpawner01
 
 - type: entity
-  parent: MercenaryDuffelGiftBox
+  parent: [MercenaryDuffelGiftBox, BaseSunriseNpcLootClosetOpenSound]
   id: ClothingBackOreCrateTier1Mech
   categories: [ HideSpawnMenu ]
   components:
@@ -2092,11 +2052,9 @@
       prob: 0.7
     - id: LootSpawnerMaterialsHighValueConstruction
       prob: 0.5
-    sound:
-      path: /Audio/Effects/closetopen.ogg
 
 - type: entity
-  parent: MercenaryDuffelGiftBox
+  parent: [MercenaryDuffelGiftBox, BaseSunriseNpcLootClosetOpenSound]
   id: ClothingBackOreCrateTier1Cyborg
   categories: [ HideSpawnMenu ]
   components:
@@ -2181,11 +2139,9 @@
     - id: PirateCashSpawner03
     - id: LootSpawnerMedicalMinor
       prob: 0.7
-    sound:
-      path: /Audio/Effects/closetopen.ogg
 
 - type: entity
-  parent: MercenaryDuffelGiftBox
+  parent: [MercenaryDuffelGiftBox, BaseSunriseNpcLootClosetOpenSound]
   id: ClothingBackOreCrateTier2Cyborg
   categories: [ HideSpawnMenu ]
   components:
@@ -2283,11 +2239,9 @@
       prob: 0.5
     - id: LootSpawnerMaterialsHighValue
       prob: 0.25
-    sound:
-      path: /Audio/Effects/closetopen.ogg
 
 - type: entity
-  parent: MercenaryDuffelGiftBox
+  parent: [MercenaryDuffelGiftBox, BaseSunriseNpcLootClosetOpenSound]
   id: ClothingBackOreCrateTier3Mech
   categories: [ HideSpawnMenu ]
   components:
@@ -2390,11 +2344,9 @@
       prob: 0.7
     - id: LootSpawnerMaterialsHighValueConstruction
       prob: 0.5
-    sound:
-      path: /Audio/Effects/closetopen.ogg
 
 - type: entity
-  parent: MercenaryDuffelGiftBox
+  parent: [MercenaryDuffelGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackDuffelMercenaryTier3Grenade
   categories: [ HideSpawnMenu ]
   components:
@@ -2452,11 +2404,9 @@
     - id: PirateTechFabCircuitboard
       prob: 0.001
     - id: PirateMedSpawner01
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: MercenaryDuffelGiftBox
+  parent: [MercenaryDuffelGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackDuffelMercenaryTier3Sniper
   categories: [ HideSpawnMenu ]
   components:
@@ -2512,11 +2462,9 @@
     - id: PirateTechFabCircuitboard
       prob: 0.001
     - id: PirateMedSpawner01
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: BandolierBox
+  parent: [BandolierBox, BaseSunriseNpcLootEquipSound]
   id: ClothingAmmoBeltGrapeShot
   categories: [ HideSpawnMenu ]
   components:
@@ -2579,11 +2527,9 @@
     - id: PirateTechFabCircuitboard
       prob: 0.001
     - id: PirateMedSpawner01
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: PirateMessengerGiftBox
+  parent: [PirateMessengerGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackpackMessengerMeleeT2
   categories: [ HideSpawnMenu ]
   components:
@@ -2635,12 +2581,10 @@
     - id: PirateMedSpawner01
     - id: ClothingBackpackMessengerPirate
       prob: 0.15
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 
 - type: entity
-  parent: PirateMessengerGiftBox
+  parent: [PirateMessengerGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltShieldBucklerMeleeT2
   categories: [ HideSpawnMenu ]
   components:
@@ -2698,11 +2642,9 @@
     - id: PirateMedSpawner01
     - id: ClothingBackpackMessengerPirate
       prob: 0.15
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: PirateMessengerGiftBox
+  parent: [PirateMessengerGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackPirateMessengerT1ECutlass
   categories: [ HideSpawnMenu ]
   components:
@@ -2755,11 +2697,9 @@
     - id: PirateMedSpawner01
     - id: ClothingBackpackMessengerPirate
       prob: 0.1
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: PirateMessengerGiftBox
+  parent: [PirateMessengerGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackPirateMessengerT1EPickaxe
   categories: [ HideSpawnMenu ]
   components:
@@ -2831,11 +2771,9 @@
     - id: PirateMedSpawner01
     - id: ClothingBackpackMessengerPirate
       prob: 0.15
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: PirateMessengerGiftBox
+  parent: [PirateMessengerGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackPirateMessengerT3SKM24
   categories: [ HideSpawnMenu ]
   components:
@@ -2893,11 +2831,9 @@
     - id: PirateMedSpawner01
     - id: ClothingBackpackMessengerPirate
       prob: 0.15
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: MilitaryWebbingBox
+  parent: [MilitaryWebbingBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltMilitaryWebbingT3Rifle
   categories: [ HideSpawnMenu ]
   components:
@@ -2940,13 +2876,11 @@
     - id: PirateMedSpawner01
     - id: ClothingBeltMilitaryWebbing
       prob: 0.15
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 
 
 - type: entity
-  parent: PirateMessengerGiftBox
+  parent: [PirateMessengerGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackPirateMessengerT1SKM24
   categories: [ HideSpawnMenu ]
   components:
@@ -3025,11 +2959,9 @@
       prob: 0.01
     - id: ClothingBackpackMessengerPirate
       prob: 0.05
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: MercenaryWebbingBox
+  parent: [MercenaryWebbingBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltMercenaryWebbingRangedT3
   categories: [ HideSpawnMenu ]
   components:
@@ -3101,11 +3033,9 @@
     - id: PirateTechFabCircuitboard
       prob: 0.001
     - id: PirateMedSpawner01
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: PirateMessengerGiftBox
+  parent: [PirateMessengerGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackPirateMessengerT1SMG
   categories: [ HideSpawnMenu ]
   components:
@@ -3165,11 +3095,9 @@
     - id: PirateMedSpawner01
     - id: ClothingBackpackMessengerPirate
       prob: 0.15
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: BandolierBox
+  parent: [BandolierBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltBandolierT1Rifle
   categories: [ HideSpawnMenu ]
   components:
@@ -3228,11 +3156,9 @@
     - id: PirateMedSpawner01
     - id: ClothingBackpackMessengerPirate
       prob: 0.25
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: MilitaryWebbingBox
+  parent: [MilitaryWebbingBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltMilitaryWebbingTier3Pistol
   categories: [ HideSpawnMenu ]
   components:
@@ -3289,11 +3215,9 @@
     - id: LootSpawnerMedicalMinor
       prob: 0.7
     - id: PirateMedSpawner01
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: MilitaryWebbingBox
+  parent: [MilitaryWebbingBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltMilitaryWebbingTier3Scorpion
   categories: [ HideSpawnMenu ]
   components:
@@ -3339,11 +3263,9 @@
     - id: LootSpawnerMedicalMinor
       prob: 0.7
     - id: PirateMedSpawner01
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: SyndieWebbingBox
+  parent: [SyndieWebbingBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltSyndieWebbingTier3Bola
   categories: [ HideSpawnMenu ]
   components:
@@ -3397,11 +3319,9 @@
     - id: LootSpawnerMedicalMinor
       prob: 0.7
     - id: PirateMedSpawner01
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: SyndieWebbingBox
+  parent: [SyndieWebbingBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltSyndieWebbingTier3Stun
   categories: [ HideSpawnMenu ]
   components:
@@ -3461,11 +3381,9 @@
     - id: LootSpawnerMedicalMinor
       prob: 0.7
     - id: PirateMedSpawner01
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: BeltAssaultBox
+  parent: [BeltAssaultBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltAssaultT3MG
   categories: [ HideSpawnMenu ]
   components:
@@ -3528,11 +3446,9 @@
     - id: PirateTechFabCircuitboard
       prob: 0.001
     - id: PirateMedSpawner01
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: BeltAssaultBox
+  parent: [BeltAssaultBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltAssaultT3RPD
   categories: [ HideSpawnMenu ]
   components:
@@ -3587,11 +3503,9 @@
     - id: PirateTechFabCircuitboard
       prob: 0.001
     - id: PirateMedSpawner01
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: SyndieWebbingBox
+  parent: [SyndieWebbingBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltSyndieWebbingTier3Cannon
   categories: [ HideSpawnMenu ]
   components:
@@ -3644,11 +3558,9 @@
       prob: 0.3
     - id: LootSpawnerMaterialsHighValue
       prob: 0.25
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: SyndieWebbingBox
+  parent: [SyndieWebbingBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltSyndieWebbingTier3SMG
   categories: [ HideSpawnMenu ]
   components:
@@ -3698,12 +3610,10 @@
       prob: 0.3
     - id: LootSpawnerMaterialsHighValue
       prob: 0.25
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 
 - type: entity
-  parent: BandolierBox
+  parent: [BandolierBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltBandolierT4LMG
   categories: [ HideSpawnMenu ]
   components:
@@ -3767,11 +3677,9 @@
       prob: 0.3
     - id: LootSpawnerMaterialsHighValue
       prob: 0.25
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: SyndieWebbingBox
+  parent: [SyndieWebbingBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltSyndieWebbingTier3SMGLaser
   categories: [ HideSpawnMenu ]
   components:
@@ -3829,12 +3737,10 @@
       prob: 0.3
     - id: LootSpawnerMaterialsHighValue
       prob: 0.25
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 #region TIER 4
 - type: entity
-  parent: SalvageWebbingBox
+  parent: [SalvageWebbingBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltSalvageWebbingTier4Captain
   categories: [ HideSpawnMenu ]
   components:
@@ -3876,11 +3782,9 @@
     - id: PirateCashSpawner03
     - id: PirateCashSpawner08
     - id: PirateMedSpawner04
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: SalvageWebbingBox
+  parent: [SalvageWebbingBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBeltSalvageWebbingTier4Ranged
   categories: [ HideSpawnMenu ]
   components:
@@ -3934,12 +3838,10 @@
     - id: PirateCashSpawner03
     - id: PirateCashSpawner08
     - id: PirateMedSpawner04
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 
 - type: entity
-  parent: SyndiBaglGiftBox
+  parent: [SyndiBaglGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackSyndiBagTier4Ranged
   categories: [ HideSpawnMenu ]
   components:
@@ -4014,11 +3916,9 @@
     - id: PirateCashSpawner03
     - id: PirateCashSpawner08
     - id: PirateMedSpawner04
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 - type: entity
-  parent: MercenaryDuffelGiftBox
+  parent: [MercenaryDuffelGiftBox, BaseSunriseNpcLootClosetOpenSound]
   id: ClothingBackOreCrateBoss
   categories: [ HideSpawnMenu ]
   components:
@@ -4085,11 +3985,9 @@
     - id: PirateTechFabCircuitboard
       prob: 0.001
     - id: PirateMedSpawner01
-    sound:
-      path: /Audio/Effects/closetopen.ogg
 
 - type: entity
-  parent: PirateMessengerGiftBox
+  parent: [PirateMessengerGiftBox, BaseSunriseNpcLootEquipSound]
   id: ClothingBackScrapperBoss
   categories: [ HideSpawnMenu ]
   components:
@@ -4131,6 +4029,5 @@
       prob: 0.6
     - id: LootSpawnerMaterialsHighValueConstruction
       prob: 0.4
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
+
 
