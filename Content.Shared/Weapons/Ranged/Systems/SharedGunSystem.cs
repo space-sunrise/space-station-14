@@ -257,14 +257,21 @@ public abstract partial class SharedGunSystem : EntitySystem
         // Sunrise edit start - dual-wield alternating gun selection via queue
         if (TryComp<DualWieldComponent>(entity, out var dualWield))
         {
-            if (dualWield.GunQueue.Count > 0
-                && TryComp<GunComponent>(dualWield.GunQueue[0], out var dwGunComp))
+            for (var i = 0; i < dualWield.GunQueue.Count; i++)
             {
-                gunEntity = dualWield.GunQueue[0];
-                gunComp = dwGunComp;
-                return true;
+                if (TryComp<GunComponent>(dualWield.GunQueue[i], out var dwGunComp))
+                {
+                    gunEntity = dualWield.GunQueue[i];
+                    gunComp = dwGunComp;
+                    return true;
+                }
+
+                // Stale entity – remove from queue
+                dualWield.GunQueue.RemoveAt(i);
+                i--;
             }
 
+            // Queue is empty – dual-wield is no longer valid
             RemComp<DualWieldComponent>(entity);
         }
         // Sunrise edit end
