@@ -496,7 +496,7 @@
     sprite: _Sunrise/Clothing/Belt/lightsovietwebbing.rsi
 
 - type: entity
-  parent: [BaseSovietContraband, ClothingBeltStorageBase]
+  parent: [BaseSalvageContraband, ClothingBeltStorageBase]
   id: ClothingBeltSalvageMercWebbing
   name: scrapper webbing
   description: Ideal for storing everything from tools, ammo, and salvage.

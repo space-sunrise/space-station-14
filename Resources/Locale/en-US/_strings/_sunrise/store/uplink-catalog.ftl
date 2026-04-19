@@ -1,18 +1,17 @@
-﻿## Targets
-
-uplink-core-extraction-toolbox-name = Core Extraction Toolbox
+﻿uplink-core-extraction-toolbox-name = Core Extraction Toolbox
 uplink-core-extraction-toolbox-desc = A toolbox containing everything you need to remove a nuclear bomb's plutonium core. Instructions not included.
 uplink-exploding-syndicate-empbomb-desc = A big, anchored EMP bomb that cripples electronics if not defused in time. Adjustable timer with a minimum setting of 180 seconds; perfect for knocking out infrastructure.
+
 ## Magazines
 
-uplink-magazine-shotgun-name = Барабан (.50 дробь).
-uplink-magazine-shotgun-desc = Барабан на 8 выстрелов для дробовика. Совместим с "Бульдогом".
-uplink-magazine-lmg-name = Коробка патронов (.30 винтовочные)
-uplink-magazine-lmg-desc = Коробка патронов на 100 выстрелов. Совместим с "L6-SAW".
-uplink-grenade-frag-name = Осколочная граната
-uplink-grenade-frag-desc = Осколочная граната. Совместима с "China-Lake".
-uplink-grenade-blast-name = Фугасная граната
-uplink-grenade-blast-desc = Фугасная граната. Совместима с "China-Lake".
+uplink-magazine-shotgun-name = Drum Magazine (.50 pellet)
+uplink-magazine-shotgun-desc = An 8-round drum magazine for shotguns. Compatible with the Bulldog.
+uplink-magazine-lmg-name = Ammo Box (.30 rifle)
+uplink-magazine-lmg-desc = A 100-round ammo box. Compatible with the L6-SAW.
+uplink-grenade-frag-name = Frag Grenade
+uplink-grenade-frag-desc = A frag grenade. Compatible with the China-Lake.
+uplink-grenade-blast-name = Blast Grenade
+uplink-grenade-blast-desc = A blast grenade. Compatible with the China-Lake.
 uplink-grenade-frag-timer-name = Frag timer grenade cartridge
 uplink-grenade-frag-timer-desc = A 5-grenade frag cartridge. Compatible with "China-Lake" and "GL-70". Detonates 2 seconds after launch.
 uplink-grenade-blast-timer-name = Blast timer grenade cartridge
@@ -37,83 +36,88 @@ uplink-grenade-launcher-blast-extended-ammo-name = Extended blast shell cartridg
 uplink-grenade-launcher-blast-extended-ammo-desc = An extended 15-shell blast cartridge. Compatible only with the stationary "Friendship" and "Duster" cannons.
 uplink-grenade-launcher-emp-extended-ammo-name = Extended EMP shell cartridge
 uplink-grenade-launcher-emp-extended-ammo-desc = An extended 15-shell EMP cartridge. Compatible only with the stationary "Friendship" and "Duster" cannons.
-uplink-magazine-siar52-name = Магазин ПП (.25 безгильзовый)
-uplink-magazine-siar52-desc = Магазин ПП на 30 патронов. Совместим с SIAR-52.
+uplink-magazine-siar52-name = SMG Magazine (.25 caseless)
+uplink-pistol-stechkin-magazine-name = Pistol Magazine .40
+uplink-pistol-stechkin-magazine-desc = A 10-round pistol magazine, compatible with Stechkin series pistols.
+uplink-magazine-siar52-desc = A 30-round SMG magazine. Compatible with SIAR-52.
 uplink-magazine-bulldog-uraniumslug-desc = Shotgun magazine with 8 shells filled with uranium slugs. Compatible with the Bulldog.
 uplink-magazine-bulldog-uranium-desc = Shotgun magazine with 8 shells filled with uranium pellet. Compatible with the Bulldog.
-uplink-pistol-magnum-magazine-name = Магазин для Deagle
-uplink-pistol-magnum-magazine-desc = 7-зарядный однорядный магазин для пистолета. Содержит патроны SP. Совместим с "Диглом".
+uplink-pistol-magnum-magazine-name = Deagle Magazine
+uplink-pistol-magnum-magazine-desc = A 7-round single-stack pistol magazine loaded with SP rounds. Compatible with the Deagle.
+
 ## Misc
 
-uplink-music-boombox-name = Музыкальный набор синдиката
-uplink-music-boombox-desc = Содержит бумбокс синдиката и несколько кассет к нему.
-uplink-mechpaint-mauler-name = балончик краски "МЯУЛЕР"
-uplink-mechpaint-mauler-desc = Содержит краску для Маулера. Превратите огромного МЕХа в милого котика!.
+uplink-music-boombox-name = Syndicate Music Kit
+uplink-music-boombox-desc = Contains a Syndicate boombox and several cassette tapes for it.
+uplink-mechpaint-mauler-name = "MEOWLER" Spray Can
+uplink-mechpaint-mauler-desc = Contains paint for the Mauler. Turn that hulking mech into a cute kitty!
 
 ## Clothing
 
-uplink-syndie-nvd-name = ПНВ Синдиката
-uplink-syndie-nvd-desc = Качественно исполненый прибор ночного видения, производства компании "Горлакс секьюрити", использует красные линзы для улучшения видимости в условиях низкой освещенности.
-uplink-syndie-thermal-name = оптический термальный Визор
-uplink-syndie-thermal-desc = Компактный термальный сканер. Его визор оборудован системой свой-чужой. Идеально подходит для выявления и уничтожения сотрудников NanoTrasen.
-uplink-thermal-desc = Компактный термальный сканер. Идеально подходит для выявления секретов сотрудников NanoTrasen за стенами.
-uplink-clothing-backpack-syndie-name = Рюкзак Синдиката
-uplink-hardsuit-syndie-commander-name = скафандр Командира Синдиката
-uplink-hardsuit-syndie-commander-desc = Скафандр предназначеный для командиров отрядов Горлекса.
-uplink-hardsuit-syndie-medic-name = скафандр Медика Синдиката
-uplink-hardsuit-syndie-medic-desc = Скафандр предназначеный для боевых врачей отрядов Горлекса.
-uplink-50blessing-name = Подарочный набор 50 благословений
-uplink-50blessing-desc = Для агентов, которые хотят скрыть свою личность стильно, с любовью от Егора Семёнова
-uplink-clothing-murder-socks-name = чулочки убийцы
-uplink-clothing-murder-socks-desc = для агента что по настоящему шарит за стиль
-uplink-syndie-maid-raid-name = рейдерка горничной
-uplink-syndie-maid-raid-desc = синдикат разработал это специально для агентов женского пола, но носят это почему-то одни мужики
+uplink-syndie-nvd-name = Syndicate NVGs
+uplink-syndie-nvd-desc = A high-quality night vision device manufactured by Gorlax Security, utilizing red lenses to improve visibility in low-light conditions.
+uplink-syndie-thermal-name = Optical Thermal Visor
+uplink-syndie-thermal-desc = A compact thermal scanner with an IFF-equipped visor. Perfect for identifying and eliminating NanoTrasen personnel.
+uplink-thermal-desc = A compact thermal scanner. Ideal for discovering NanoTrasen personnel's secrets from behind walls.
+uplink-clothing-backpack-syndie-name = Syndicate Backpack
+uplink-hardsuit-syndie-commander-name = Syndicate Commander Hardsuit
+uplink-hardsuit-syndie-commander-desc = A hardsuit designed for Gorlax squad commanders.
+uplink-hardsuit-syndie-medic-name = Syndicate Medic Hardsuit
+uplink-hardsuit-syndie-medic-desc = A hardsuit designed for Gorlax combat medics.
+uplink-50blessing-name = 50 Blessings Gift Set
+uplink-50blessing-desc = For agents who want to conceal their identity in style, with love from Egor Semenov.
+uplink-clothing-murder-socks-name = Murder Socks
+uplink-clothing-murder-socks-desc = For the agent who truly understands style.
+uplink-syndie-maid-raid-name = Maid Raider
+uplink-syndie-maid-raid-desc = Syndicate developed this specifically for female agents, yet for some reason only men ever wear it.
+
 ## Weapon
 
-uplink-clothing-backpack-syndie-aj100-name = Набор ПП AJ-100
-uplink-clothing-backpack-syndie-aj100-desc = Включает в себя пистолет-пулемёт AJ-100 и два магазина патрон.
+uplink-clothing-backpack-syndie-aj100-name = AJ-100 SMG Kit
+uplink-clothing-backpack-syndie-aj100-desc = Includes an AJ-100 submachine gun and two magazines.
 uplink-weapon-syndie-laser-pistol-name = SAM-300
-uplink-clothing-backpack-syndie-dl6902-name = Набор DL6902
-uplink-clothing-backpack-syndie-dl6902-desc = Включает в себя пулемёт DL6902 и один магазин патрон.
-uplink-clothing-backpack-syndie-siar52-name = Набор SIAR-52
-uplink-clothing-backpack-syndie-siar52-desc = Включает в себя пулемёт SIAR-52 и два магазина патрон.
-uplink-weapon-syndie-laser-minigun-name = UVL-21 «Виверна»
-uplink-weapon-syndie-laser-gun-name = S-13 «Чёрная мамба»
-uplink-deagle-name = пистолет «Desert Eagle»
-uplink-deagle-desc = Cерьёзный аргумент в споре. Выгравировано: Мир благодаря превосходящей огневой мощи".
+uplink-clothing-backpack-syndie-dl6902-name = DL6902 Kit
+uplink-clothing-backpack-syndie-dl6902-desc = Includes a DL6902 machine gun and one magazine.
+uplink-clothing-backpack-syndie-siar52-name = SIAR-52 Kit
+uplink-clothing-backpack-syndie-siar52-desc = Includes a SIAR-52 machine gun and two magazines.
+uplink-weapon-syndie-laser-minigun-name = UVL-21 "Wyvern"
+uplink-weapon-syndie-laser-gun-name = S-13 "Black Mamba"
+uplink-deagle-name = Desert Eagle Pistol
+uplink-deagle-desc = A serious argument in any dispute. Engraved: "Peace through superior firepower."
 uplink-pistoltec9-name = Tac-Tec
-uplink-pistoltec9-desc = Очень дешёвый в производстве и очень простой в использовании, надёжный как SKM-24.
-uplink-uzi-name = пистолет-пулемёт Узи
-uplink-uzi-desc = Лёгкий и культовый пистолет-пулемёт с большим магазином и скорострельностью.
-uplink-stechkin-aps-name = Стечкин АПС
-uplink-stechkin-aps-desc = Высококачественное огнестрельное оружие на мощном калибре, созданное для по-настоящему особенных агентов.
+uplink-pistoltec9-desc = Very cheap to manufacture and extremely easy to use, reliable as an SKM-24.
+uplink-uzi-name = Uzi Submachine Gun
+uplink-uzi-desc = A lightweight and iconic submachine gun with a large magazine and high rate of fire.
+uplink-stechkin-aps-name = Stechkin APS
+uplink-stechkin-aps-desc = A high-quality firearm in a powerful caliber, created for truly special agents.
 uplink-SyndieBreachingHammer-name = breaching hammer
 uplink-SyndieBreachingHammer-desc = A big, heavy hammer with a long handle. For rocks, skulls, walls, bones — no difference. The last thing you'll hear is a crunch or a grind. Opens airlocks better than SB's ram. Competitors have crash tests and certificates. We have a low-budget snuff parody of American Psycho.
-uplink-goldendeagle-name = Золотой Десерт Игл
-uplink-goldendeagle-desc = "Использует патрон "магнум" 45-го калибра, Выгравировано: Все, что у меня осталось от него в памяти — это два позолоченных Desert Eagle 45-го калибра"
-uplink-cornivoregloves-name = Перчатки алой жатвы корниворы
-uplink-cornivoregloves-desc = Мы не можем сказать, жаждете ли вы крови... но эти перчатки - определённо да. Каждый коготь - это хирургический инструмент для кровопускания, заполняющий свою цель нашим фирменным химическим коктейлем. Ваша жертва будет истекать и истекать и истекать... пока вы обдумываете следующий надрез. Помните: красный - это новый чёрный. И он вечно в моде.
+uplink-goldendeagle-name = Golden Desert Eagle
+uplink-goldendeagle-desc = Uses .45 magnum rounds. Engraved: "All I have left of him in my memory are two gold-plated Desert Eagle .45s."
+uplink-cornivoregloves-name = Cornivore Crimson Harvest Gloves
+uplink-cornivoregloves-desc = We can't say if you thirst for blood... but these gloves certainly do. Each claw is a surgical tool for bloodletting, filling its target with our signature chemical cocktail. Your victim will bleed and bleed and bleed... while you contemplate the next incision. Remember: red is the new black. And it's always in fashion.
 uplink-pizza-bomb-name = Nefarious Pizza bomb
 uplink-pizza-bomb-desc = Originally developed covertly by DONK Co to dissuade the heretics who prefer their pizza not in pocket form. This pizza box is wired, and explodes within moments of being opened.
+
 ## Cyborgs
 
-uplink-reinforcement-radio-syndicate-cyborg-assault-name = Телепорт подкрепления боевого борга синдиката
-uplink-reinforcement-radio-syndicate-cyborg-assault-desc = Отправляет вам в поддержку борга синдиката.
-uplink-reinforcement-radio-syndicate-cyborg-heavy-name = Телепорт подкрепления тяжелого боевого борга синдиката
-uplink-reinforcement-radio-syndicate-cyborg-heavy-desc = Отправляет вам в поддержку борга синдиката.
-uplink-reinforcement-radio-syndicate-cyborg-spider-name = Телепорт подкрепления диверсионного боевого борга синдиката
-uplink-reinforcement-radio-syndicate-cyborg-spider-desc = Отправляет вам в поддержку борга синдиката.
-uplink-reinforcement-radio-syndicate-cyborg-medical-name = Телепорт подкрепления медицинского борга синдиката
-uplink-reinforcement-radio-syndicate-cyborg-medical-desc = Отправляет вам в поддержку борга синдиката.
-uplink-reinforcement-radio-syndicate-cyborg-reaper-name = Телепорт подкрепления борга синдиката "Жнец"
-uplink-reinforcement-radio-syndicate-cyborg-reaper-desc = Отправляет вам в поддержку борга синдиката.
+uplink-reinforcement-radio-syndicate-cyborg-assault-name = Syndicate Assault Borg Reinforcement Teleporter
+uplink-reinforcement-radio-syndicate-cyborg-assault-desc = Sends a Syndicate borg to support you.
+uplink-reinforcement-radio-syndicate-cyborg-heavy-name = Syndicate Heavy Borg Reinforcement Teleporter
+uplink-reinforcement-radio-syndicate-cyborg-heavy-desc = Sends a Syndicate borg to support you.
+uplink-reinforcement-radio-syndicate-cyborg-spider-name = Syndicate Sabotage Borg Reinforcement Teleporter
+uplink-reinforcement-radio-syndicate-cyborg-spider-desc = Sends a Syndicate borg to support you.
+uplink-reinforcement-radio-syndicate-cyborg-medical-name = Syndicate Medical Borg Reinforcement Teleporter
+uplink-reinforcement-radio-syndicate-cyborg-medical-desc = Sends a Syndicate borg to support you.
+uplink-reinforcement-radio-syndicate-cyborg-reaper-name = Syndicate "Reaper" Borg Reinforcement Teleporter
+uplink-reinforcement-radio-syndicate-cyborg-reaper-desc = Sends a Syndicate borg to support you.
 
 ## Equipment
 
-uplink-hypo-name = Горлекс гипоспрей
-uplink-hypo-desc = Химический гипоспрей, произвёденный синдикатом, способный мгновенно впрыснуть до 20 ед. реагентов. Изначально пуст.
-uplink-polytrinic-acid-chemistry-bottle-name = Политриновая кислота
-uplink-polytrinic-acid-chemistry-bottle-desc = Чрезвычайно едкое химическое вещество. Сильно обжигает всех, кто вступит с ней в непосредственный контакт.
+uplink-hypo-name = Gorlax Hypospray
+uplink-hypo-desc = A chemical hypospray manufactured by the Syndicate, capable of instantly injecting up to 20u of reagents. Starts empty.
+uplink-polytrinic-acid-chemistry-bottle-name = Polytrinic Acid
+uplink-polytrinic-acid-chemistry-bottle-desc = An extremely corrosive chemical substance. Severely burns anyone who comes into direct contact with it.
 uplink-clothing-glasses-nvg-name = NVG Sun Glasses
 uplink-clothing-glasses-nvg-desc = Quality made sunglasses, manufactured by Gorlax Security. Uses modular parts to improve visibility in low light conditions. Warning: The glasses will not protect your eyes from direct flashes.
 uplink-anomaly-auto-injector-name = Anomaly Auto-Injector
@@ -125,7 +129,8 @@ uplink-anomaly-auto-injector-popup-infected = Skin resists injection!
 uplink-xeno-artifact-throwing-auto-injector-name = Artifact throwing Auto-Injector
 uplink-xeno-artifact-throwing-auto-injector-desc = A single-use, throwable folding device. Upon striking a living target, it embeds and injects artifact particles. Ineffective against synthetics.
 
-## Implats
+## Implants
+
 uplink-smoke-screen-implanter-name = Smoke Screen Implanter
 uplink-smoke-screen-implanter-desc = Creates a small cloud of smoke for you to slip away in. Can be used up to three times before you run out of gas.
 

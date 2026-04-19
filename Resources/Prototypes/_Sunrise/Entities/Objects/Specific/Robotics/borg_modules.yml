@@ -160,7 +160,7 @@
     - state: icon-combat
   - type: ItemBorgModule
     hands:
-    - item: CombatKnife
+    - item: CyberMantisBladeMaxGuard
     - item: WeaponLaserBorg
     - item: HoloprojectorSecurityBorg
 

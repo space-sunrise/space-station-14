@@ -1,3 +1,4 @@
+using Content.Client._Sunrise.Sandbox.Transparency.Systems;
 using Robust.Shared.Console;
 
 namespace Content.Client._Sunrise.Sandbox;

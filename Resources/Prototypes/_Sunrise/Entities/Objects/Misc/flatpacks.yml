@@ -15,3 +15,12 @@
   components:
   - type: Flatpack
     entity: ComputerShuttleSecurity
+
+- type: entity
+  parent: BaseFlatpack
+  id: ShuttleGunKineticFlatpack
+  name: PTK-800 "Matter Dematerializer" Flatpack
+  description: A flatpack used for constructing a PTK-800 "Matter Dematerializer".
+  components:
+  - type: Flatpack
+    entity: ShuttleGunKinetic
