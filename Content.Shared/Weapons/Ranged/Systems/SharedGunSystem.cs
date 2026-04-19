@@ -196,12 +196,14 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         AttemptShoot(user.Value, ent, gun);
 
-        // Sunrise added start - toggle dual-wield hand after each attempt
-        // Always toggle regardless of shot success so alternation doesn't get stuck
+        // Sunrise added start - rotate dual-wield queue after each attempt
+        // Always rotate regardless of shot success so alternation doesn't get stuck
         // on an empty or cooldown-locked gun.
-        if (isDualWield && dualWield != null)
+        if (isDualWield && dualWield != null && dualWield.GunQueue.Count > 1)
         {
-            dualWield.NextIsLeft = !dualWield.NextIsLeft;
+            var front = dualWield.GunQueue[0];
+            dualWield.GunQueue.RemoveAt(0);
+            dualWield.GunQueue.Add(front);
             Dirty(user.Value, dualWield);
         }
         // Sunrise added end
@@ -252,17 +254,24 @@ public abstract partial class SharedGunSystem : EntitySystem
         gunEntity = default;
         gunComp = null;
 
-        // Sunrise edit start - dual-wield alternating gun selection
+        // Sunrise edit start - dual-wield alternating gun selection via queue
         if (TryComp<DualWieldComponent>(entity, out var dualWield))
         {
-            var dwGunUid = dualWield.NextIsLeft ? dualWield.LeftGun : dualWield.RightGun;
-            if (dwGunUid != null && TryComp<GunComponent>(dwGunUid, out var dwGunComp))
+            for (var i = 0; i < dualWield.GunQueue.Count; i++)
             {
-                gunEntity = dwGunUid.Value;
-                gunComp = dwGunComp;
-                return true;
+                if (TryComp<GunComponent>(dualWield.GunQueue[i], out var dwGunComp))
+                {
+                    gunEntity = dualWield.GunQueue[i];
+                    gunComp = dwGunComp;
+                    return true;
+                }
+
+                // Stale entity – remove from queue
+                dualWield.GunQueue.RemoveAt(i);
+                i--;
             }
 
+            // Queue is empty – dual-wield is no longer valid
             RemComp<DualWieldComponent>(entity);
         }
         // Sunrise edit end

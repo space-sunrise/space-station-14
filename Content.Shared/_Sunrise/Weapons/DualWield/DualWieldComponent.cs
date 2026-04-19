@@ -4,7 +4,7 @@ namespace Content.Shared._Sunrise.Weapons.DualWield;
 
 /// <summary>
 ///     Marks an entity as currently dual-wielding two weapons.
-///     Holds runtime state about which guns are in which hand and the next shot side.
+///     Holds runtime state about which guns are in which hand and the firing queue.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class DualWieldComponent : Component
@@ -22,8 +22,9 @@ public sealed partial class DualWieldComponent : Component
     public EntityUid? RightGun;
 
     /// <summary>
-    ///     Indicates whether the next shot should be fired from the left gun.
+    ///     Ordered queue of gun entity UIDs. The gun at index 0 fires next.
+    ///     After each shot attempt the front gun is moved to the back.
     /// </summary>
     [AutoNetworkedField]
-    public bool NextIsLeft = true;
+    public List<EntityUid> GunQueue = new();
 }
