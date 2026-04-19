@@ -130,7 +130,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         var dualWield = EnsureComp<DualWieldComponent>(ent.Owner);
         dualWield.LeftGun = leftGun.Value;
         dualWield.RightGun = rightGun.Value;
-        dualWield.NextIsLeft = true;
+        dualWield.GunQueue = new List<EntityUid> { leftGun.Value, rightGun.Value };
         Dirty(ent.Owner, dualWield);
 
         ShowDualWieldAlert(ent.Owner, leftGun.Value, rightGun.Value);

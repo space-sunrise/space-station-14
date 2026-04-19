@@ -196,12 +196,14 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         AttemptShoot(user.Value, ent, gun);
 
-        // Sunrise added start - toggle dual-wield hand after each attempt
-        // Always toggle regardless of shot success so alternation doesn't get stuck
+        // Sunrise added start - rotate dual-wield queue after each attempt
+        // Always rotate regardless of shot success so alternation doesn't get stuck
         // on an empty or cooldown-locked gun.
-        if (isDualWield && dualWield != null)
+        if (isDualWield && dualWield != null && dualWield.GunQueue.Count > 1)
         {
-            dualWield.NextIsLeft = !dualWield.NextIsLeft;
+            var front = dualWield.GunQueue[0];
+            dualWield.GunQueue.RemoveAt(0);
+            dualWield.GunQueue.Add(front);
             Dirty(user.Value, dualWield);
         }
         // Sunrise added end
@@ -252,13 +254,13 @@ public abstract partial class SharedGunSystem : EntitySystem
         gunEntity = default;
         gunComp = null;
 
-        // Sunrise edit start - dual-wield alternating gun selection
+        // Sunrise edit start - dual-wield alternating gun selection via queue
         if (TryComp<DualWieldComponent>(entity, out var dualWield))
         {
-            var dwGunUid = dualWield.NextIsLeft ? dualWield.LeftGun : dualWield.RightGun;
-            if (dwGunUid != null && TryComp<GunComponent>(dwGunUid, out var dwGunComp))
+            if (dualWield.GunQueue.Count > 0
+                && TryComp<GunComponent>(dualWield.GunQueue[0], out var dwGunComp))
             {
-                gunEntity = dwGunUid.Value;
+                gunEntity = dualWield.GunQueue[0];
                 gunComp = dwGunComp;
                 return true;
             }
