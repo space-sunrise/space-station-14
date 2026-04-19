@@ -25,6 +25,37 @@
     price: 20000
 
 - type: entity
+  id: WeaponMechCombatChaingun
+  name: Mounted Chaingun
+  suffix: Mech Weapon, Gun, Combat
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_chaingun.rsi
+    state: mecha_chaingun
+  - type: Gun
+    minAngle: 1
+    maxAngle: 45
+    angleIncrease: 0.5
+    angleDecay: 30
+    fireRate: 15
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      collection: L6
+      params:
+        volume: -5
+        pitch: 1.03
+  - type: BatteryAmmoProvider
+    proto: CartridgeMinigun
+    fireCost: 1
+  - type: Appearance
+  - type: AmmoCounter
+  - type: StaticPrice
+    price: 20000
+
+- type: entity
   id: WeaponMechCombatMaxim
   name: Mounted Kardashev-Maxim
   description: An ancient heavy machine gun given new life as a mech-mounted gun
@@ -300,3 +331,17 @@
     fireCost: 250
   - type: Appearance
   - type: AmmoCounter
+
+- type: entity
+  id: WeaponMechCombatMissileRack8Frag
+  name: BRM-50 Missile Rack
+  description: Tubes must be reloaded from the outside.
+  suffix: Mech Weapon, Gun, Combat, Missile
+  parent: WeaponMechCombatMissileRack8
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_missilerack
+  - type: BatteryAmmoProvider
+    proto: Cartridge50mmRocket
+    fireCost: 100
