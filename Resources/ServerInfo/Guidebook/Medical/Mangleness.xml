@@ -26,15 +26,14 @@
 
 [bold][color=#99ccff]Питание и гидратация[/color][/bold]: [color=#dddddd]Организм потребляет ресурсы голода и жажды для восстановления. Скорость зависит от сытости:[/color]
 
-  -  [bold][color=#aaddff]Переедание / Напившийся[/color][/bold]: [color=#dddddd]Восстанавливает [bold][color=#99ff99]0.03[/color][/bold] ед/сек. Голод/жажда падают в [bold][color=#ff9999]4[/color][/bold] раза быстрее.[/color]
-  -  [bold][color=#aaddff]Сыт / Напившийся[/color][/bold]: [color=#dddddd]Восстанавливает [bold][color=#99ff99]0.03[/color][/bold] ед/сек. Голод/жажда падают в [bold][color=#ff9999]4[/color][/bold] раза быстрее.[/color]
-  -  [bold][color=#88ccff]Проголодался / Хочет пить[/color][/bold]: [color=#dddddd]Восстанавливает [bold][color=#99ff99]0.01[/color][/bold] ед/сек. Голод/жажда падают в [bold][color=#ff9999]2[/color][/bold] раза быстрее.[/color]
-  -  [bold][color=#ff9999]Голодает / Обезвожен[/color][/bold]: [color=#dddddd]Не восстанавливает истощение. Наносит [bold][color=#ff0000]0.5[/color][/bold] ед. урона истощением в секунду.[/color]
+  -  [bold][color=#aaddff]Сытость[/color][/bold]: [color=#dddddd]Восстанавливает [bold][color=#99ff99]0.03[/color][/bold] ед/сек. Голод/жажда падают в [bold][color=#ff9999]4[/color][/bold] раза быстрее.[/color]
+  -  [bold][color=#88ccff]Голод[/color][/bold]: [color=#dddddd]Восстанавливает [bold][color=#99ff99]0.01[/color][/bold] ед/сек. Голод/жажда падают в [bold][color=#ff9999]2[/color][/bold] раза быстрее.[/color]
+  -  [bold][color=#ff9999]Пустой желудок[/color][/bold]: [color=#dddddd]Не восстанавливает истощение. Наносит [bold][color=#ff0000]0.5[/color][/bold] ед. урона истощением в секунду.[/color]
 
 [bold][color=#99ccff]Отдых на кровати[/color][/bold]: [color=#dddddd]Лежание на кровати является эффективным способом восстановления истощения.[/color]
 
-  -  [bold][color=#aaddff]Обычная кровать[/color][/bold]: [color=#dddddd]Восстанавливает [bold][color=#99ff99]0.5[/color][/bold] единиц истощения в секунду. При сне на кровати скорость восстановления удваивается до [bold][color=#99ff99]1[/color][/bold] единиц в секунду.[/color]
-  -  [bold][color=#88ccff]Медицинская кровать[/color][/bold]: [color=#dddddd]Восстанавливает [bold][color=#99ff99]1[/color][/bold] единицу истощения в секунду. При сне на медицинской кровати скорость восстановления удваивается до [bold][color=#99ff99]2[/color][/bold] единиц в секунду.[/color]
+  -  [bold][color=#aaddff]Обычная кровать[/color][/bold]: [color=#dddddd]Восстанавливает [bold][color=#99ff99]0.2[/color][/bold] единиц истощения в секунду.
+  -  [bold][color=#88ccff]Медицинская кровать[/color][/bold]: [color=#dddddd]Восстанавливает [bold][color=#99ff99]0.4[/color][/bold] единиц истощения в секунду. При сне на медицинской кровати скорость восстановления удваивается.
 
 <Box>
 <GuideEntityEmbed Entity="Bed" Caption="обычная кровать"/>

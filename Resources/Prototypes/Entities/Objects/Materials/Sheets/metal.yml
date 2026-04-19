@@ -82,7 +82,6 @@
     - Silicon
     - Synth
     - Mech
-    healingSound: "/Audio/Items/ratchet.ogg"
     damage:
       groups:
         Brute: -5

@@ -69,8 +69,8 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
             bleeding = bloodstream.BleedAmount > 0;
         }
         // Collect hunger and thirst data as percentages
-        float hungerLevel = -1;
-        float thirstLevel = -1;
+        float? hungerLevel = null; //Sunrise-edit
+        float? thirstLevel = null; //Sunrise-edit
 
         if (TryComp<HungerComponent>(target, out var hunger))
         {
@@ -85,7 +85,7 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
         }
 
         // Sunrise edit start - новый триггер
-        RaiseLocalEvent(target, new EntityAnalyzedEvent ());
+        RaiseLocalEvent(target, new EntityAnalyzedEvent());
         // Sunrise edit end
 
         if (TryComp<UnrevivableComponent>(target, out var unrevivableComp) && unrevivableComp.Analyzable)
