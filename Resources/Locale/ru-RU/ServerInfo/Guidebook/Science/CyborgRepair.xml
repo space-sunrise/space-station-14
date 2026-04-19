@@ -6,23 +6,23 @@
   ## Методы ремонта
 
   - <Box>
-  <GuideEntityEmbed entity="Welder" caption=""/>
-  **Сварочный аппарат**: чинит <Color name="red">Механические</Color> повреждения (-15), но наносит **2** <Color name="purple">Износа</Color> при каждом применении.
+  <GuideEntityEmbed Entity="Welder" Caption=""/>
+  **Сварочный аппарат**: чинит [color=red]Механические[/color] повреждения (-15), но наносит **2** [color=purple]Износа[/color] при каждом применении.
   </Box>
 
   - <Box>
-  <GuideEntityEmbed entity="CableHVStack" caption=""/>
-  **Провода**: чинят <Color name="orange">Ожоги</Color> (-6) и **1** <Color name="purple">Износа</Color>.
+  <GuideEntityEmbed Entity="CableHVStack" Caption=""/>
+  **Провода**: чинят [color=orange]Ожоги[/color] (-6) и **1** [color=purple]Износа[/color].
   </Box>
 
   - <Box>
-  <GuideEntityEmbed entity="Nanopaste" caption=""/>
+  <GuideEntityEmbed Entity="Nanopaste" Caption=""/>
   **Нанопаста**: чинит **10** (все типы), включая **Износ**.
   </Box>
 
   - <Box>
-  <GuideEntityEmbed entity="SheetSteel1" caption=""/>
-  **Листы стали**: чинят **5** <Color name="red">Механических</Color> и **5** <Color name="purple">Износа</Color>.
+  <GuideEntityEmbed Entity="SheetSteel1" Caption=""/>
+  **Листы стали**: чинят **5** [color=red]Механических[/color] и **5** [color=purple]Износа[/color].
   </Box>
 
   ## Износ

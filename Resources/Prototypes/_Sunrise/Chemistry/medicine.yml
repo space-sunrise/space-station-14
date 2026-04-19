@@ -13,8 +13,7 @@
         amount: -4
       - !type:EvenHealthChange
         damage:
-          groups:
-            Brute: -1.75
+          Brute: -1.75
       - !type:HealthChange
         damage:
           types:
