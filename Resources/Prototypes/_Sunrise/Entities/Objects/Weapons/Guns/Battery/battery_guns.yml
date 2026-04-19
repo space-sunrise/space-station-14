@@ -1158,28 +1158,18 @@
 
 - type: entity
   name: xenoborg X-ray cannon
-  parent: [BaseWeaponBattery, BaseXenoborgContraband]
+  parent: [WeaponXrayCannon, BaseXenoborgContraband]
   id: XenoborgXrayGun
   description: Weapon that uses concentrated x-ray energy against its target.
   components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/xray.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-0
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: Gun
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: BatteryAmmoProvider # Sunrise-Edit
-    proto: CartridgeXrayBeam # Sunrise-Edit
-    fireCost: 100
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
-  - type: Appearance
+  - type: BatterySelfRecharger
+    autoRechargeRate: 30
+
+- type: entity
+  name: xenoborg temperature gun
+  parent: [WeaponTemperatureGun, BaseXenoborgContraband]
+  id: XenoborgTemperatureGun
+  description: An advanced gun that shoots body-temperature-changing beams. This one has a self-recharging battery for xenoborg use.
+  components:
   - type: BatterySelfRecharger
     autoRechargeRate: 30
