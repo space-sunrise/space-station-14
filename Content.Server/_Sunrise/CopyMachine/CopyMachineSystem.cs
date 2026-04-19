@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 using Content.Server.Materials;
 using Content.Server._Sunrise.Documents;
 using Content.Shared._Sunrise.CopyMachine;
-using Content.Shared._Sunrise.Paperwork;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -76,35 +75,35 @@ public sealed partial class CopyMachineSystem : EntitySystem
         RebuildDocumentTemplateContentCache();
     }
 
-    private void OnCancelJobRequested(EntityUid uid, CopyMachineComponent component, CopyMachineCancelJobMessage args)
+    private void OnCancelJobRequested(Entity<CopyMachineComponent> ent, ref CopyMachineCancelJobMessage args)
     {
-        if (args.Index < 0 || args.Index >= component.JobQueue.Count)
+        if (args.Index < 0 || args.Index >= ent.Comp.JobQueue.Count)
             return;
 
         var removed = false;
-        var count = component.JobQueue.Count;
+        var count = ent.Comp.JobQueue.Count;
         for (var i = 0; i < count; i++)
         {
-            var job = component.JobQueue.Dequeue();
+            var job = ent.Comp.JobQueue.Dequeue();
             if (i == args.Index)
             {
                 removed = true;
                 continue;
             }
 
-            component.JobQueue.Enqueue(job);
+            ent.Comp.JobQueue.Enqueue(job);
         }
 
         if (removed)
         {
-            RefundInkAndPaper((uid, component));
-            QueueUIUpdate(new Entity<CopyMachineComponent>(uid, component));
+            RefundInkAndPaper(ent);
+            QueueUIUpdate(ent);
         }
     }
 
     private void RefundInkAndPaper(Entity<CopyMachineComponent> ent)
     {
-        _materialStorage.TryChangeMaterialAmount(ent.Owner, ent.Comp.PaperMaterial, ent.Comp.PaperCost);
+        _materialStorage.TryChangeMaterialAmount(ent, ent.Comp.PaperMaterial, ent.Comp.PaperCost);
 
         if (!_solutionContainer.TryGetSolution(ent.Owner, ent.Comp.Solution, out var solutionEntity, out _))
             return;
@@ -154,7 +153,7 @@ public sealed partial class CopyMachineSystem : EntitySystem
     {
         ent.Comp.Templates.Clear();
 
-        var isEmagged = HasComp<EmaggedComponent>(ent.Owner);
+        var isEmagged = HasComp<EmaggedComponent>(ent);
 
         if (!TryGetConfiguredTemplatePool(out var templatePoolPrototype))
             return;
@@ -164,7 +163,7 @@ public sealed partial class CopyMachineSystem : EntitySystem
             if (!_prototypeManager.TryIndex(templateId, out var templatePrototype))
                 continue;
 
-            if (!IsTemplateComponentAllowed(ent, templatePrototype.Component))
+            if (!IsTemplateCategoryAllowed(ent, templatePrototype.Category))
                 continue;
 
             if (templatePrototype.IsPublic || isEmagged)
@@ -174,18 +173,18 @@ public sealed partial class CopyMachineSystem : EntitySystem
         QueueUIUpdate(ent);
     }
 
-    private static bool IsTemplateComponentAllowed(Entity<CopyMachineComponent> ent, string component)
+    private bool IsTemplateCategoryAllowed(Entity<CopyMachineComponent> ent, ProtoId<DocTemplateCategoryPrototype> categoryId)
     {
-        if (ent.Comp.TemplateComponentWhitelist.Count == 0)
+        if (ent.Comp.TemplateCategoryGroupId is not { } groupId)
             return true;
 
-        return ent.Comp.TemplateComponentWhitelist.Contains(component);
+        return _prototypeManager.TryIndex(groupId, out DocTemplateCategoryGroupPrototype? group) &&
+            group.Categories.Contains(categoryId);
     }
 
     private void OnShutdown(Entity<CopyMachineComponent> ent, ref ComponentShutdown args)
     {
-        _cachedBuckledEntityByCopyMachineUid.Remove(ent.Owner);
-        _pendingUIUpdateSet.Remove(ent.Owner);
+        _pendingUIUpdateSet.Remove(ent);
     }
 
     private void OnUiOpened(Entity<CopyMachineComponent> ent, ref BoundUIOpenedEvent args) => UpdateUserInterface(ent);
@@ -217,7 +216,7 @@ public sealed partial class CopyMachineSystem : EntitySystem
             _pendingUIUpdateQueue.Enqueue(copyMachineUid);
     }
 
-    private void QueueUIUpdate(Entity<CopyMachineComponent> ent) => QueueUIUpdate(ent.Owner);
+    private void QueueUIUpdate(Entity<CopyMachineComponent> ent) => QueueUIUpdate(ent);
 
     private void FlushUIUpdates()
     {
@@ -247,8 +246,8 @@ public sealed partial class CopyMachineSystem : EntitySystem
 
     private void OnMapInit(Entity<CopyMachineComponent> ent, ref MapInitEvent args)
     {
-        _itemSlots.AddItemSlot(ent.Owner, CopyMachineComponent.CopySlotId, ent.Comp.CopySlot);
-        UpdateRunningAppearance(ent.Owner, false);
+        _itemSlots.AddItemSlot(ent, CopyMachineComponent.CopySlotId, ent.Comp.CopySlot);
+        UpdateRunningAppearance(ent, false);
 
         UpdateAvailableTemplates(ent);
 
@@ -264,12 +263,15 @@ public sealed partial class CopyMachineSystem : EntitySystem
 
         ent.Comp.Templates.Clear();
 
-        foreach (var templatePrototype in _prototypeManager.EnumeratePrototypes<DocTemplatePrototype>())
+        if (!TryGetConfiguredTemplatePool(out var templatePoolPrototype))
+            return;
+
+        foreach (var templateId in templatePoolPrototype.Templates)
         {
-            if (string.IsNullOrEmpty(templatePrototype.Component))
+            if (!_prototypeManager.TryIndex(templateId, out var templatePrototype))
                 continue;
 
-            if (!IsTemplateComponentAllowed(ent, templatePrototype.Component))
+            if (!IsTemplateCategoryAllowed(ent, templatePrototype.Category))
                 continue;
 
             ent.Comp.Templates.Add(templatePrototype.ID);
@@ -283,6 +285,12 @@ public sealed partial class CopyMachineSystem : EntitySystem
     {
         if (ent.Comp.JobQueue.Count >= ent.Comp.MaxQueueSize)
             return;
+
+        if (jobType == CopyMachineJobType.Print &&
+            (templateId == null || !CanQueuePrintTemplate(ent, templateId)))
+        {
+            return;
+        }
 
         if (!TryConsumeInkAndPaper(ent))
             return;
@@ -308,12 +316,12 @@ public sealed partial class CopyMachineSystem : EntitySystem
     {
         ent.Comp.IsProcessing = true;
         ent.Comp.NextPrintTime = currentTime + TimeSpan.FromSeconds(ent.Comp.JobDuration);
-        UpdateRunningAppearance(ent.Owner, true);
+        UpdateRunningAppearance(ent, true);
 
         ent.Comp.CurrentJobView = new CopyMachineJobView(GetJobDisplayTitle(jobType, templateId), jobType, templateId);
 
         QueueUIUpdate(ent);
-        _audioSystem.PlayPvs(ent.Comp.PrintSound, ent.Owner);
+        _audioSystem.PlayPvs(ent.Comp.PrintSound, ent);
     }
 
     private void CompleteCurrentJob(Entity<CopyMachineComponent> ent)
@@ -334,7 +342,7 @@ public sealed partial class CopyMachineSystem : EntitySystem
         ent.Comp.IsProcessing = false;
         ent.Comp.CurrentJobView = null;
         ent.Comp.NextPrintTime = TimeSpan.Zero;
-        UpdateRunningAppearance(ent.Owner, false);
+        UpdateRunningAppearance(ent, false);
 
         QueueUIUpdate(ent);
     }
@@ -372,7 +380,7 @@ public sealed partial class CopyMachineSystem : EntitySystem
         if (!solution.TryGetReagentQuantity(inkReagentId, out var availableInkVolume) || availableInkVolume < ent.Comp.IncCost)
             return false;
 
-        if (!_materialStorage.TryChangeMaterialAmount(ent.Owner, ent.Comp.PaperMaterial, -ent.Comp.PaperCost))
+        if (!_materialStorage.TryChangeMaterialAmount(ent, ent.Comp.PaperMaterial, -ent.Comp.PaperCost))
             return false;
 
         solution.RemoveReagent(inkReagentId, ent.Comp.IncCost);
@@ -380,22 +388,55 @@ public sealed partial class CopyMachineSystem : EntitySystem
         return true;
     }
 
+    private bool CanQueuePrintTemplate(Entity<CopyMachineComponent> ent, string templateId)
+    {
+        if (!HasAvailableTemplate(ent, templateId))
+            return false;
+
+        if (!_prototypeManager.TryIndex(templateId, out DocTemplatePrototype? templatePrototype))
+            return false;
+
+        if (!IsTemplateCategoryAllowed(ent, templatePrototype.Category))
+            return false;
+
+        if (!templatePrototype.IsPublic && !HasComp<EmaggedComponent>(ent))
+            return false;
+
+        return _documentContentByTemplateId.ContainsKey(templateId);
+    }
+
+    private bool HasAvailableTemplate(Entity<CopyMachineComponent> ent, string templateId)
+    {
+        foreach (var availableTemplateId in ent.Comp.Templates)
+        {
+            if (availableTemplateId == templateId)
+                return true;
+        }
+
+        return false;
+    }
+
     private bool TryPrintFromTemplate(Entity<CopyMachineComponent> ent, string templateId)
     {
-        var paperEntity = Spawn(ent.Comp.PaperProtoId, Transform(ent.Owner).Coordinates);
+        if (!CanQueuePrintTemplate(ent, templateId))
+            return false;
 
-        if (!TryComp<PaperComponent>(paperEntity, out var paperComponent) ||
-            !_documentContentByTemplateId.TryGetValue(templateId, out var templateContent) ||
+        if (!_documentContentByTemplateId.TryGetValue(templateId, out var templateContent) ||
             !_prototypeManager.TryIndex<DocTemplatePrototype>(templateId, out var templatePrototype))
             return false;
 
-        // ЕДИНАЯ система форматирования документов
-        templateContent = _documentFormat.Format(templateContent, ent.Owner);
+        var paperEntity = Spawn(ent.Comp.PaperProtoId, Transform(ent).Coordinates);
 
-        if (PaperInteractiveTagParsing.ContainsInteractiveTags(templateContent))
+        if (!TryComp<PaperComponent>(paperEntity, out var paperComponent))
         {
-            EnsureComp<PaperTemplateFormComponent>(paperEntity);
+            Log.Error($"{ToPrettyString(ent):entity} spawned '{ent.Comp.PaperProtoId}' without a {nameof(PaperComponent)}.");
+            Del(paperEntity);
+            return false;
         }
+
+        // ЕДИНАЯ система форматирования документов
+        templateContent = _documentFormat.Format(templateContent, ent);
+
         _paper.SetContent((paperEntity, paperComponent), templateContent);
 
         if (templatePrototype.Header != null)
@@ -404,6 +445,9 @@ public sealed partial class CopyMachineSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Updates the copy machine UI with the current paper, ink, and queue state.
+    /// </summary>
     public void UpdateUserInterface(Entity<CopyMachineComponent> ent)
     {
         if (!_solutionContainer.TryGetSolution(ent.Owner, ent.Comp.Solution, out _, out var solution))
@@ -411,7 +455,7 @@ public sealed partial class CopyMachineSystem : EntitySystem
 
         var inkReagentId = new ReagentId(ent.Comp.IncReagentProto, null);
         float availableInkVolume = solution.TryGetReagentQuantity(inkReagentId, out var inkQuantity) ? inkQuantity.Value : 0;
-        var availablePaperAmount = _materialStorage.GetMaterialAmount(ent.Owner, ent.Comp.PaperMaterial);
+        var availablePaperAmount = _materialStorage.GetMaterialAmount(ent, ent.Comp.PaperMaterial);
 
         var availableTemplateIds = new List<string>(ent.Comp.Templates.Count);
         foreach (var template in ent.Comp.Templates)
@@ -437,10 +481,13 @@ public sealed partial class CopyMachineSystem : EntitySystem
         _userInterface.SetUiState(ent.Owner, CopyMachineUiKey.Key, state);
     }
 
+    /// <summary>
+    /// Checks whether the machine can create a copy from inserted paper or a buckled humanoid.
+    /// </summary>
     public bool CanCopy(Entity<CopyMachineComponent> ent)
     {
         var hasPaperInCopySlot = ent.Comp.CopySlot.HasItem;
-        var hasStrappedHumanoid = TryGetBuckledHumanoidAppearance(ent.Owner, out _);
+        var hasStrappedHumanoid = TryGetBuckledHumanoidAppearance(ent, out _);
 
         return hasStrappedHumanoid || hasPaperInCopySlot;
     }

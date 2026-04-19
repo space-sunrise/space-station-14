@@ -209,7 +209,7 @@
   id: EvacuationShuttleRequest
   name: doc-template-evacuation-shuttle-request-name
   content: /Documents/_Sunrise/Command/EvacuationShuttleRequest.xml
-  component: CentcomStandard
+  category: CentcomStandard
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_cmd
@@ -341,7 +341,7 @@
   id: ProductManufacturingOrderScience
   name: doc-template-product-manufacturing-order-science-name
   content: /Documents/_Sunrise/Science/ProductManufacturingOrder.xml
-  component: Science
+  category: Science
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_rnd
@@ -350,7 +350,7 @@
   id: ProductManufacturingOrderService
   name: doc-template-product-manufacturing-order-service-name
   content: /Documents/_Sunrise/Service/ProductManufacturingOrder.xml
-  component: Service
+  category: Service
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_serv
@@ -359,7 +359,7 @@
   id: ProductManufacturingOrderMedical
   name: doc-template-product-manufacturing-order-medical-name
   content: /Documents/_Sunrise/Medical/ProductManufacturingOrder.xml
-  component: Medical
+  category: Medical
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_med
@@ -368,7 +368,7 @@
   id: ProductManufacturingOrderEngineering
   name: doc-template-product-manufacturing-order-engineering-name
   content: /Documents/_Sunrise/Engineering/ProductManufacturingOrder.xml
-  component: Engineering
+  category: Engineering
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_eng
@@ -401,7 +401,7 @@
   id: ReportStation
   name: doc-template-report-station-name
   content: /Documents/_Sunrise/Command/ReportStation.xml
-  component: CentcomStandard
+  category: CentcomStandard
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_cmd
@@ -410,7 +410,7 @@
   id: ResponseProvideCCReport
   name: doc-template-response-provide-cc-report-name
   content: /Documents/_Sunrise/Command/ResponseProvideCCReport.xml
-  component: CentcomStandard
+  category: CentcomStandard
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_cmd
@@ -419,7 +419,7 @@
   id: ReportDecreeHeadsPresence
   name: doc-template-report-decree-heads-presence-name
   content: /Documents/_Sunrise/Command/ReportDecreeHeadsPresence.xml
-  component: CentcomStandard
+  category: CentcomStandard
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_cmd
@@ -437,7 +437,7 @@
   id: ReportStudyObjectEngineering
   name: doc-template-report-study-object-engineering-name
   content: /Documents/_Sunrise/Engineering/ReportStudyObject.xml
-  component: Engineering
+  category: Engineering
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_eng
@@ -446,7 +446,7 @@
   id: ReportStudyObjectMedical
   name: doc-template-report-study-object-medical-name
   content: /Documents/_Sunrise/Medical/ReportStudyObject.xml
-  component: Medical
+  category: Medical
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_med
@@ -455,7 +455,7 @@
   id: ReportStudyObjectService
   name: doc-template-report-study-object-service-name
   content: /Documents/_Sunrise/Service/ReportStudyObject.xml
-  component: Service
+  category: Service
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_serv
@@ -465,7 +465,7 @@
   id: RequestCallMembersCentralCommitteeDSO
   name: doc-template-request-call-members-central-committee-dso-name
   content: /Documents/_Sunrise/Command/RequestCallMembersCentralCommitteeDSO.xml
-  component: CentcomStandard
+  category: CentcomStandard
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_cmd
@@ -594,7 +594,7 @@
   id: OrderAnnulmentOfRight
   name: doc-template-order-annulment-of-right-name
   content: /Documents/_Sunrise/CentcomStandard/OrderAnnulmentOfRight.xml
-  component: CentcomStandard
+  category: CentcomStandard
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_cmd
@@ -616,7 +616,7 @@
   id: ReportQilluRepresentative
   name: doc-template-report-qillu-representative-name
   content: /Documents/_Sunrise/CentcomStandard/ReportQilluRepresentative.xml
-  component: CentcomStandard
+  category: CentcomStandard
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_cmd
@@ -625,7 +625,7 @@
   id: TrustedStaffDeathNotice
   name: doc-template-trusted-staff-death-notice-name
   content: /Documents/_Sunrise/CentcomStandard/TrustedStaffDeathNotice.xml
-  component: CentcomStandard
+  category: CentcomStandard
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_cmd
@@ -634,7 +634,7 @@
   id: OrderingSpecialEquipmentCentcomStandard
   name: doc-template-ordering-special-equipment-centcom-standard-name
   content: /Documents/_Sunrise/CentcomStandard/OrderingSpecialEquipment.xml
-  component: CentcomStandard
+  category: CentcomStandard
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_cmd
@@ -646,7 +646,7 @@
   id: StationGoal
   name: doc-template-station-goal-name
   content: /Documents/_Sunrise/CentcomStrict/StationGoal.xml
-  component: CentcomStrict
+  category: CentcomStrict
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_cmd
@@ -662,7 +662,7 @@
   id: ReportCrewAccessChange
   name: doc-template-report-crew-access-change-name
   content: /Documents/_Sunrise/Command/ReportCrewAccessChange.xml
-  component: CentcomStandard
+  category: CentcomStandard
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_cmd
@@ -972,7 +972,7 @@
   id: OrderEvacuation
   name: doc-template-order-evacuation-name
   content: /Documents/_Sunrise/CentcomStrict/OrderEvacuation.xml
-  component: CentcomStrict
+  category: CentcomStrict
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_centcom
@@ -982,7 +982,7 @@
   id: OrderProvideCCReport
   name: doc-template-order-provide-cc-report-name
   content: /Documents/_Sunrise/CentcomStrict/OrderProvideCCReport.xml
-  component: CentcomStrict
+  category: CentcomStrict
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_centcom
@@ -992,7 +992,7 @@
   id: DecreeHeadsPresence
   name: doc-template-decree-heads-presence-name
   content: /Documents/_Sunrise/CentcomStrict/DecreeHeadsPresence.xml
-  component: CentcomStrict
+  category: CentcomStrict
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_centcom
@@ -1001,7 +1001,7 @@
   id: DecreeEnhancedControl
   name: doc-template-decree-enhanced-control-name
   content: /Documents/_Sunrise/CentcomStrict/DecreeEnhancedControl.xml
-  component: CentcomStrict
+  category: CentcomStrict
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_centcom
@@ -1010,7 +1010,7 @@
   id: CentcomResponse
   name: doc-template-centcom-response-name
   content: /Documents/_Sunrise/CentcomStrict/CentcomResponse.xml
-  component: CentcomStrict
+  category: CentcomStrict
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_centcom
@@ -1020,7 +1020,7 @@
   id: OrderCentcom
   name: doc-template-order-centcom-name
   content: /Documents/_Sunrise/CentcomStrict/OrderCentcom.xml
-  component: CentcomStrict
+  category: CentcomStrict
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_centcom
@@ -1030,7 +1030,7 @@
   id: OrderReport
   name: doc-template-order-report-name
   content: /Documents/_Sunrise/CentcomStrict/OrderReport.xml
-  component: CentcomStrict
+  category: CentcomStrict
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_centcom
@@ -1040,7 +1040,7 @@
   id: OrderCentcomTransferStationStaff
   name: doc-template-order-centcom-transfer-station-staff-name
   content: /Documents/_Sunrise/CentcomStrict/OrderCentcomTransferStationStaff.xml
-  component: CentcomStrict
+  category: CentcomStrict
   header:
     sprite: /Textures/_Sunrise/CopyMachine/paper_headers.rsi
     state: nanotrasen_form_header_centcom

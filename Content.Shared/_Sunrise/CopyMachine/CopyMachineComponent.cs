@@ -96,11 +96,10 @@ public sealed partial class CopyMachineComponent : Component
     public List<ProtoId<DocTemplatePrototype>> Templates = new();
 
     /// <summary>
-    /// Ограничивает доступные категории шаблонов  <see cref="DocTemplatePrototype.Component"/>
-    /// Если список пустой - доступны все категории
+    /// Ограничивает доступные категории шаблонов через общий прототип группы.
     /// </summary>
     [DataField]
-    public List<string> TemplateComponentWhitelist = new();
+    public ProtoId<DocTemplateCategoryGroupPrototype>? TemplateCategoryGroupId;
 
     /// <summary>
     /// Время, когда можно начать следующий принт (серверное время)

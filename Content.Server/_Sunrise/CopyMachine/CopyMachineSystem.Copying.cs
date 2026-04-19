@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Shared._Sunrise.CopyMachine;
-using Content.Shared._Sunrise.Paperwork;
 using Content.Shared.Labels.Components;
 using Content.Shared.Paper;
 
@@ -10,21 +9,26 @@ public sealed partial class CopyMachineSystem : EntitySystem
 {
     private bool TryCopyFromSlotOrButtScan(Entity<CopyMachineComponent> ent)
     {
-        var paperEntity = Spawn(ent.Comp.PaperProtoId, Transform(ent.Owner).Coordinates);
+        var paperEntity = Spawn(ent.Comp.PaperProtoId, Transform(ent).Coordinates);
         if (!TryComp<PaperComponent>(paperEntity, out var paperComponent))
+        {
+            Log.Error($"{ToPrettyString(ent):entity} spawned '{ent.Comp.PaperProtoId}' without a {nameof(PaperComponent)}.");
+            Del(paperEntity);
             return false;
+        }
 
-        Entity<PaperComponent> paper = (paperEntity, paperComponent);
+        var paper = (paperEntity, paperComponent);
 
-        if (TryCopyButtScan(ent, paper))
+        if (TryCopyButtScan(ent, paper) || TryCopyFromPaperInCopySlot(ent, paper))
             return true;
 
-        return TryCopyFromPaperInCopySlot(ent, paper);
+        Del(paperEntity);
+        return false;
     }
 
     private bool TryCopyButtScan(Entity<CopyMachineComponent> ent, Entity<PaperComponent> paper)
     {
-        if (!TryGetBuckledHumanoidAppearance(ent.Owner, out var humanoidAppearance))
+        if (!TryGetBuckledHumanoidAppearance(ent, out var humanoidAppearance))
             return false;
 
         if (!_prototypeManager.TryIndex(humanoidAppearance.Species, out var speciesPrototype) || speciesPrototype.ButtScan == null)
@@ -46,19 +50,20 @@ public sealed partial class CopyMachineSystem : EntitySystem
 
         _paper.SetContent(paper, sourcePaperComponent.Content);
 
-        if (HasComp<PaperTemplateFormComponent>(sourcePaperEntity))
-            EnsureComp<PaperTemplateFormComponent>(paper.Owner);
-
-        if (sourcePaperComponent.ImageContent != null)
-            _paper.SetImageContent(paper, sourcePaperComponent.ImageContent, sourcePaperComponent.ImageScale);
+        if (sourcePaperComponent.ImageContent is { } imageContent)
+            _paper.SetImageContent(paper, imageContent, sourcePaperComponent.ImageScale);
 
         paper.Comp.EditingDisabled = sourcePaperComponent.EditingDisabled;
 
-        if (sourcePaperComponent.StampState != null && sourcePaperComponent.StampedBy != null)
+        if (sourcePaperComponent.StampState != null)
         {
             foreach (var stamp in sourcePaperComponent.StampedBy)
             {
-                _paper.TryStamp(paper, stamp, sourcePaperComponent.StampState);
+                if (_paper.TryStamp(paper, stamp, sourcePaperComponent.StampState))
+                    continue;
+
+                Log.Warning(
+                    $"Failed to copy stamp '{stamp.StampedName}' from {ToPrettyString(sourcePaperEntity):entity} to {ToPrettyString(paper.Owner):entity}.");
             }
         }
 

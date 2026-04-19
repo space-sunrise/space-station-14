@@ -32,19 +32,7 @@
     board: CopyMachineMachineCircuitboard
   - type: CopyMachine
     solution: inc
-    templateComponentWhitelist:
-    - CentcomStandard
-    - Command
-    - Engineering
-    - Justice
-    - Medical
-    - Science
-    - Security
-    - Service
-    - Supply
-    - Syndicate
-    - General
-    - Prison
+    templateCategoryGroupId: CopyMachineDefaultCategories
     copySlot:
       insertSound: /Audio/Effects/packetrip.ogg
       ejectSound: /Audio/Effects/packetrip.ogg
@@ -139,9 +127,7 @@
   description: A secure document printer configured for Central Command.
   components:
   - type: CopyMachine
-    templateComponentWhitelist:
-    - CentcomStandard
-    - CentcomStrict
+    templateCategoryGroupId: CopyMachineCentcomCategories
 
 - type: entity
   parent: CopyMachineCentcom

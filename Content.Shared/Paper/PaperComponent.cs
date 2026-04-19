@@ -1,8 +1,6 @@
-using System.Numerics;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
-using Robust.Shared.Utility;
 
 namespace Content.Shared.Paper;
 
@@ -15,11 +13,6 @@ public sealed partial class PaperComponent : Component
 
     [DataField("contentSize")]
     public int ContentSize { get; set; } = 10000;
-
-    // Sunrise start
-    [DataField, AutoNetworkedField]
-    public Color DefaultColor = new(25, 25, 25);
-    // Sunrise-end
 
     [DataField("stampedBy"), AutoNetworkedField]
     public List<StampDisplayInfo> StampedBy { get; set; } = new();
@@ -39,40 +32,6 @@ public sealed partial class PaperComponent : Component
     [DataField("sound")]
     public SoundSpecifier? Sound { get; private set; } = new SoundCollectionSpecifier("PaperScribbles", AudioParams.Default.WithVariation(0.1f));
 
-    // Sunrise-Start
-    [DataField, AutoNetworkedField]
-    public SpriteSpecifier? ImageContent { get; set; }
-    [DataField, AutoNetworkedField]
-    public Vector2? ImageScale { get; set; }
-    // Sunrise-End
-
-    [Serializable, NetSerializable]
-    public sealed class PaperBoundUserInterfaceState : BoundUserInterfaceState
-    {
-        public readonly string Text;
-        public readonly List<StampDisplayInfo> StampedBy;
-        public readonly PaperAction Mode;
-        // Sunrise - Start
-        public readonly Color DefaultColor;
-        public readonly SpriteSpecifier? ImageContent;
-        public readonly Vector2? ImageScale;
-        public readonly bool TemplateFieldsEnabled;
-        // Sunrise - End
-
-        public PaperBoundUserInterfaceState(string text, Color defaultColor, List<StampDisplayInfo> stampedBy, PaperAction mode = PaperAction.Read, SpriteSpecifier? imageContent = null, Vector2? imageScale = null, bool templateFieldsEnabled = false) // Sunrise-edit
-        {
-            Text = text;
-            StampedBy = stampedBy;
-            Mode = mode;
-            // Sunrise - Start
-            DefaultColor = defaultColor;
-            ImageContent = imageContent;
-            ImageScale = imageScale;
-            TemplateFieldsEnabled = templateFieldsEnabled;
-            // Sunrise - End
-        }
-    }
-
     [Serializable, NetSerializable]
     public sealed class PaperInputTextMessage : BoundUserInterfaceMessage
     {
@@ -83,29 +42,6 @@ public sealed partial class PaperComponent : Component
             Text = text;
         }
     }
-
-    // Sunrise - Start
-    [Serializable, NetSerializable]
-    public enum PaperTemplateRequestType : byte
-    {
-        Signature,
-
-        Job
-    }
-
-    [Serializable, NetSerializable]
-    public sealed class PaperTemplateRequestMessage : BoundUserInterfaceMessage
-    {
-        public readonly PaperTemplateRequestType Type;
-        public readonly int Index;
-
-        public PaperTemplateRequestMessage(PaperTemplateRequestType type, int index)
-        {
-            Type = type;
-            Index = index;
-        }
-    }
-    // Sunrise-end
 
     [Serializable, NetSerializable]
     public enum PaperUiKey
