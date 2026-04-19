@@ -42,7 +42,7 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Weapons.Hitscan.Events;
-using Content.Shared._Sunrise.Weapons.DualWield;
+using Content.Shared._Sunrise.Weapons.DualWield; // Sunrise-Edit
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -179,7 +179,9 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (!TryGetGun(user.Value, out var ent, out var gun))
             return;
 
+        // Sunrise edit start - dual-wield shot alternation
         var isDualWield = TryComp<DualWieldComponent>(user.Value, out var dualWield);
+        // Sunrise edit end
 
         // Sunrise-Start
         gun.ShootCoordinates = GetCoordinates(msg.Coordinates);
@@ -194,11 +196,13 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         var fired = AttemptShoot(user.Value, ent, gun);
 
+        // Sunrise added start - toggle dual-wield hand after each shot
         if (isDualWield && fired && dualWield != null)
         {
             dualWield.NextIsLeft = !dualWield.NextIsLeft;
             Dirty(user.Value, dualWield);
         }
+        // Sunrise added end
     }
 
     private void OnStopShootRequest(RequestStopShootEvent ev, EntitySessionEventArgs args)
@@ -246,7 +250,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         gunEntity = default;
         gunComp = null;
 
-        // Dual Wield logic: return the alternating gun
+        // Sunrise edit start - dual-wield alternating gun selection
         if (TryComp<DualWieldComponent>(entity, out var dualWield))
         {
             var dwGunUid = dualWield.NextIsLeft ? dualWield.LeftGun : dualWield.RightGun;
@@ -259,6 +263,7 @@ public abstract partial class SharedGunSystem : EntitySystem
 
             RemComp<DualWieldComponent>(entity);
         }
+        // Sunrise edit end
 
         if (TryComp<MechComponent>(entity, out var mech)
             && mech.CurrentSelectedEquipment.HasValue
@@ -823,6 +828,7 @@ public record struct GunShotEvent(EntityUid User, List<(EntityUid? Uid, IShootab
 
 [ByRefEvent]
 public record struct OnNonEmptyGunShotEvent(EntityUid User, List<(EntityUid? Uid, IShootable Shootable)> Ammo);
+
 
 /// <summary>
 /// Raised on an entity after firing a gun to see if any components or systems would allow this entity to be pushed
