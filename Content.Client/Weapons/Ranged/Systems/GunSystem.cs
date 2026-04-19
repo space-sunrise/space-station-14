@@ -35,6 +35,7 @@ using Robust.Shared.Configuration;
 using Content.Shared.Damage;
 using Robust.Shared.Audio;
 using Content.Shared.Weapons.Hitscan.Events;
+using Content.Shared._Sunrise.Weapons.DualWield; // Sunrise-Edit
 
 namespace Content.Client.Weapons.Ranged.Systems;
 
@@ -388,7 +389,28 @@ public sealed partial class GunSystem : SharedGunSystem
         }
 
         if (gun.NextFire > Timing.CurTime)
-            return;
+        {
+            // Sunrise added start - dual-wield: allow event through if other gun is ready
+            if (TryComp<DualWieldComponent>(entity, out var clientDw))
+            {
+                var otherGunUid = (gunUid == clientDw.LeftGun) ? clientDw.RightGun : clientDw.LeftGun;
+
+                if (otherGunUid == null
+                    || !TryComp<GunComponent>(otherGunUid.Value, out var otherGun)
+                    || otherGun.NextFire > Timing.CurTime)
+                {
+                    return; // Other gun unavailable or also on cooldown – wait
+                }
+
+                // Other gun is ready – fall through so the shared handler
+                // toggles NextIsLeft and fires the other gun next frame.
+            }
+            else
+            {
+                return;
+            }
+            // Sunrise added end
+        }
 
         var mousePos = _eyeManager.PixelToMap(_inputManager.MouseScreenPosition);
 

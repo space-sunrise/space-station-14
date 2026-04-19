@@ -194,10 +194,12 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
         // Sunrise-End
 
-        var fired = AttemptShoot(user.Value, ent, gun);
+        AttemptShoot(user.Value, ent, gun);
 
-        // Sunrise added start - toggle dual-wield hand after each shot
-        if (isDualWield && fired && dualWield != null)
+        // Sunrise added start - toggle dual-wield hand after each attempt
+        // Always toggle regardless of shot success so alternation doesn't get stuck
+        // on an empty or cooldown-locked gun.
+        if (isDualWield && dualWield != null)
         {
             dualWield.NextIsLeft = !dualWield.NextIsLeft;
             Dirty(user.Value, dualWield);
