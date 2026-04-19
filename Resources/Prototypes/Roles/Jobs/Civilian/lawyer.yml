@@ -10,6 +10,10 @@
   icon: "JobIconLawyer"
   canBeAntag: false
   supervisors: job-supervisors-magistrate
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-lawyer
+  # Sunrise-End
   access:
   - Service
   - Lawyer

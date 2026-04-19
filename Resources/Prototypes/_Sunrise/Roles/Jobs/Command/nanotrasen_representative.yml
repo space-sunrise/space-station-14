@@ -16,6 +16,8 @@
   radioBold: true
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  alternativeTitles:
+  - job-alt-title-nt-diplomat
   access:
     - Cryogenics
     - Lawyer
@@ -55,7 +57,7 @@
     eyes: ClothingEyesSunGlassesHudSkill
     head: ClothingHeadHatCapNtrep
     id: NanoTrasenRepresentativePDA
-    ears: ClothingHeadsetAltCommand
+    ears: ClothingHeadsetAltRepresentativeNT
     pocket1: FlippoEngravedLighter
     pocket2: PenCentcom
   storage:

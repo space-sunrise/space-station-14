@@ -663,11 +663,74 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         return Round(_currentRoundId);
     }
 
-    // Sunrise edit start - provide a Loki-backed fallback count when database storage is bypassed
+    // Sunrise edit start - prefer Loki count and report zero if Loki is unavailable
     public async Task<int> CountLogs(int round)
     {
-        var count = await _db.CountAdminLogs(round);
-        if (_lokiEnabled && count == 0) return 1000;
+        if (_lokiEnabled)
+        {
+            try
+            {
+                return await CountLogsFromLoki(round);
+            }
+            catch (Exception ex)
+            {
+                _sawmill.Warning($"Failed to fetch Loki log count for round {round}: {ex}");
+                return 0;
+            }
+        }
+
+        return await _db.CountAdminLogs(round);
+    }
+
+    private async Task<int> CountLogsFromLoki(int round)
+    {
+        if (string.IsNullOrEmpty(_lokiUrl))
+            return 0;
+
+        var filter = new LogFilter { Round = round };
+        var ascending = true;
+        var timeRange = await ResolveLokiTimeRange(filter);
+        var batchLimit = 5000;
+        LokiCursor? cursor = null;
+        var count = 0;
+        var requiresMore = true;
+
+        while (requiresMore)
+        {
+            var query = BuildLokiQuery(filter, ascending, cursor);
+            var url = BuildLokiQueryUrl(query, batchLimit, timeRange, ascending);
+            var response = await _httpClient.GetAsync(url);
+            if (!response.IsSuccessStatusCode)
+            {
+                var body = await response.Content.ReadAsStringAsync();
+                throw new Exception($"Loki count query failed: {response.StatusCode} {body}");
+            }
+
+            var content = await response.Content.ReadAsStringAsync();
+            var lokiResponse = JsonSerializer.Deserialize<LokiQueryResponse>(content);
+            var rawValueCount = CountLokiValues(lokiResponse);
+            var rawValues = FlattenLokiValues(lokiResponse, ascending, batchLimit);
+            if (rawValues.Count == 0)
+                return count;
+
+            var nextCursor = cursor;
+            foreach (var parsed in rawValues)
+            {
+                if (cursor != null && !IsCursorBefore(parsed, cursor.Value))
+                    continue;
+
+                count++;
+                nextCursor = ToLokiCursor(parsed);
+            }
+
+            if (nextCursor == null || nextCursor == cursor)
+                return count;
+
+            cursor = nextCursor;
+            timeRange = MoveTimeRangeCursorForward(timeRange, cursor.Value, ascending);
+            requiresMore = rawValueCount >= batchLimit;
+        }
+
         return count;
     }
     // Sunrise edit end

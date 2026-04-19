@@ -93,7 +93,7 @@
 - type: startingGear
   id: MobSovietGearSKM24SL
   equipment:
-    gloves: ClothingHandsSKM24BSovietFlak
+    gloves: ClothingHandsSKM24BMerc
     pocket1: PouchAmmoFilledLightRifle
     pocket2: MedkitCombatFilled
     belt: ClothingBeltWebbingSovietTier1SKM24SL
@@ -102,8 +102,8 @@
 - type: startingGear
   id: MobSovietGearPPSHSL
   equipment:
-    gloves: ClothingHandsPPSHSovietFlak
-    belt: ClothingBeltWebbingSovietTier1PPSHSL
+    gloves: ClothingHandsPPSHMerc
+    belt: ClothingBeltWebbingSovietTier1PPSHSLSergeant
     pocket1: ChemistryBottleSaline
     pocket2: MedkitCombatFilled
     shoes: ClothingShoesBootsUSSPFilled

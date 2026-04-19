@@ -13,6 +13,10 @@
   supervisors: job-supervisors-science
   canBeAntag: false
   displayWeight: 0 # Sunrise-Edit
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-lab-technician
+  # Sunrise-End
   access:
   - Research
   - Maintenance

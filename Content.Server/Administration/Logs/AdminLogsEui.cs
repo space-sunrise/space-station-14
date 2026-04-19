@@ -48,7 +48,10 @@ public sealed class AdminLogsEui : BaseEui
         _filter = new LogFilter
         {
             CancellationToken = _logSendCancellation.Token,
+            // Sunrise edit start - request one extra record and keep cursor on visible page edge
+            LokiCursorOverfetch = 1,
             Limit = _clientBatchSize + 1
+            // Sunrise edit end
         };
     }
 
@@ -123,7 +126,11 @@ public sealed class AdminLogsEui : BaseEui
                     AllPlayers = request.AllPlayers,
                     IncludeNonPlayers = request.IncludeNonPlayers,
                     LastLogId = null,
+                    LastLogCursor = null,
+                    // Sunrise edit start - request one extra record and keep cursor on visible page edge
+                    LokiCursorOverfetch = 1,
                     Limit = _clientBatchSize + 1
+                    // Sunrise edit end
                 };
 
                 var roundId = _filter.Round ??= CurrentRoundId;

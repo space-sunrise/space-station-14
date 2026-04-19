@@ -223,6 +223,12 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<string> RoadmapId =
         CVarDef.Create("roadmap.id", "SunriseRoadmap");
 
+    /// <summary>
+    /// Roadmap text hashset - to show roadmap to player when we change something.
+    /// </summary>
+    public static readonly CVarDef<string> RoadmapLastSeenHash =
+        CVarDef.Create("roadmap.last_seen_hash", "", CVar.CLIENTONLY | CVar.ARCHIVE);
+
     /**
      * Lobby Changelog
      */
