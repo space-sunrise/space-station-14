@@ -2,10 +2,10 @@ meta:
   format: 7
   category: Grid
   engineVersion: 271.1.0
-  forkId: ""
-  forkVersion: ""
-  time: 04/18/2026 13:08:24
-  entityCount: 799
+  forkId: "Sunrise"
+  forkVersion: "Sunrise"
+  time: 04/19/2026 12:39:29
+  entityCount: 806
 maps: []
 grids:
 - 1
@@ -4808,13 +4808,81 @@ entities:
           - Toggle
     - type: Fixtures
       fixtures: {}
-- proto: SignSpace
+- proto: SignCoreXeno
   entities:
   - uid: 430
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
+      pos: -2.5,-0.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 669
+    components:
+    - type: Transform
+      pos: 3.5,-0.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+- proto: SignDoorsXeno
+  entities:
+  - uid: 672
+    components:
+    - type: Transform
+      pos: 12.5,2.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 673
+    components:
+    - type: Transform
+      pos: -11.5,2.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+- proto: SignPowerXeno
+  entities:
+  - uid: 670
+    components:
+    - type: Transform
+      pos: -0.5,-5.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+- proto: SignSpaceXeno
+  entities:
+  - uid: 137
+    components:
+    - type: Transform
       pos: -4.5,-3.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 671
+    components:
+    - type: Transform
+      pos: -4.5,3.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 674
+    components:
+    - type: Transform
+      pos: 1.5,5.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 675
+    components:
+    - type: Transform
+      pos: 5.5,3.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 676
+    components:
+    - type: Transform
+      pos: 5.5,-3.5
       parent: 1
     - type: Fixtures
       fixtures: {}
