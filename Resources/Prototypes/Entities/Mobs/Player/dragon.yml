@@ -168,6 +168,9 @@
   # Sunrise-Start
   - type: ExplosionResistance
     damageCoefficient: 0.3
+  - type: TemperatureProtection #Нужно только чтобы не всплывало оповещение о переохлаждении.
+    heatingCoefficient: 1
+    coolingCoefficient: 0.01
   - type: CollectiveMind
     minds:
     - Carp
