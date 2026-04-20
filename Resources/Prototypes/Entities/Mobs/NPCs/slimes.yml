@@ -26,7 +26,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      120: Dead
+      60: Dead # Sunrise-Edit
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 4
