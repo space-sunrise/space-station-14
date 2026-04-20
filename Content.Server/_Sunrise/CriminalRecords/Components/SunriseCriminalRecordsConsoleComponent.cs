@@ -13,9 +13,15 @@ public sealed partial class SunriseCriminalRecordsConsoleComponent : Component
     [ViewVariables]
     public StationRecordKey? SelectedKey;
 
+    /// <summary>
+    ///     The current UI state (Listing, Search, etc.)
+    /// </summary>
     [ViewVariables]
     public SunriseCriminalRecordsUIState CurrentUIState = SunriseCriminalRecordsUIState.List;
 
+    /// <summary>
+    ///     The ID of the currently selected criminal case.
+    /// </summary>
     [ViewVariables]
     public uint? SelectedCaseId;
 }

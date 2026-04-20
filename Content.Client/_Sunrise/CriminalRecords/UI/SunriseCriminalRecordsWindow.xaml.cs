@@ -13,7 +13,7 @@ public sealed partial class SunriseCriminalRecordsWindow : DefaultWindow
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-    private readonly SunriseCriminalRecordsConsoleBoundUserInterface _owner;
+    private SunriseCriminalRecordsConsoleBoundUserInterface? _owner;
     private SunriseCriminalRecordsConsoleState? _lastState;
 
     private SunriseCriminalRecordsDetailsControl? _detailsControl;
@@ -21,21 +21,24 @@ public sealed partial class SunriseCriminalRecordsWindow : DefaultWindow
     private SunriseCriminalRecordsCaseEditor? _caseEditor;
 
 
-    public SunriseCriminalRecordsWindow(SunriseCriminalRecordsConsoleBoundUserInterface owner)
+    public SunriseCriminalRecordsWindow()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-        _owner = owner;
 
         SearchInput.OnTextChanged += args => RefreshRecordList(args.Text);
         RecordList.OnItemSelected += args =>
         {
             if (args.ItemList[args.ItemIndex].Metadata is uint recordId)
             {
-                _owner.SelectRecord(recordId);
+                _owner?.SelectRecord(recordId);
             }
         };
+    }
 
+    public void Initialize(SunriseCriminalRecordsConsoleBoundUserInterface owner)
+    {
+        _owner = owner;
     }
 
     public void UpdateState(SunriseCriminalRecordsConsoleState state)
@@ -78,8 +81,8 @@ public sealed partial class SunriseCriminalRecordsWindow : DefaultWindow
         if (_caseList == null)
         {
             _caseList = new SunriseCriminalRecordsCaseList();
-            _caseList.OnCreateCase += () => _owner.CreateCase();
-            _caseList.OnEditCase += c => _owner.SelectCase(c.Id);
+            _caseList.OnCreateCase += () => _owner?.CreateCase();
+            _caseList.OnEditCase += c => _owner?.SelectCase(c.Id);
         }
 
         _caseList.Populate(state.Cases, _prototypeManager);
@@ -91,12 +94,12 @@ public sealed partial class SunriseCriminalRecordsWindow : DefaultWindow
         if (_caseEditor == null)
         {
             _caseEditor = new SunriseCriminalRecordsCaseEditor();
-            _caseEditor.OnBack += () => _owner.SetUIState(SunriseCriminalRecordsUIState.List);
-            _caseEditor.OnSave += (id, laws, circs, notes) => _owner.UpdateCase(id, laws, circs, notes);
+            _caseEditor.OnBack += () => _owner?.SetUIState(SunriseCriminalRecordsUIState.List);
+            _caseEditor.OnSave += (id, laws, circs, notes) => _owner?.UpdateCase(id, laws, circs, notes);
             _caseEditor.OnFinalize += () =>
             {
                 if (_lastState?.Cases.FindLast(c => c.Status == CriminalCaseStatus.Open) is { } lastOpen)
-                    _owner.CloseCase(lastOpen.Id);
+                    _owner?.CloseCase(lastOpen.Id);
             };
 
         }

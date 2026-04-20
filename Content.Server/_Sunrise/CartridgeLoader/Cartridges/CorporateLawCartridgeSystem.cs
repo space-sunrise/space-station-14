@@ -37,19 +37,10 @@ public sealed class CorporateLawCartridgeSystem : EntitySystem
                 if (!_prototype.TryIndex<CorporateLawPrototype>(entryId, out var entry))
                     continue;
 
-                provisionEntries.Add(new LawEntry
-                {
-                    Identifier = entry.LawIdentifier,
-                    Title = Loc.GetString(entry.Title),
-                    Description = Loc.GetString(entry.Description)
-                });
+                provisionEntries.Add(new LawEntry(entry.LawIdentifier, Loc.GetString(entry.Title), Loc.GetString(entry.Description)));
             }
 
-            sections.Add(new LawSection
-            {
-                Title = Loc.GetString("sunrise-records-provisions-header"),
-                Entries = provisionEntries
-            });
+            sections.Add(new LawSection(Loc.GetString("sunrise-records-provisions-header"), null, provisionEntries));
         }
 
         // 2. Legal Articles (Categorized)
@@ -64,20 +55,10 @@ public sealed class CorporateLawCartridgeSystem : EntitySystem
                 if (!_prototype.TryIndex<CorporateLawPrototype>(entryId, out var entry) || entry.Category == LawCategory.Provision)
                     continue;
 
-                entries.Add(new LawEntry
-                {
-                    Identifier = entry.LawIdentifier,
-                    Title = Loc.GetString(entry.Title),
-                    Description = Loc.GetString(entry.Description)
-                });
+                entries.Add(new LawEntry(entry.LawIdentifier, Loc.GetString(entry.Title), Loc.GetString(entry.Description)));
             }
 
-            sections.Add(new LawSection
-            {
-                Title = Loc.GetString(section.Title),
-                Color = section.Color,
-                Entries = entries
-            });
+            sections.Add(new LawSection(Loc.GetString(section.Title), section.Color, entries));
         }
 
         // 3. Modifiers (Circumstances)
@@ -91,12 +72,7 @@ public sealed class CorporateLawCartridgeSystem : EntitySystem
                 if (!_prototype.TryIndex<CorporateLawPrototype>(entryId, out var entry) || entry.Category == LawCategory.Provision)
                     continue;
 
-                var lawEntry = new LawEntry
-                {
-                    Identifier = entry.LawIdentifier,
-                    Title = Loc.GetString(entry.Title),
-                    Description = Loc.GetString(entry.Description)
-                };
+                var lawEntry = new LawEntry(entry.LawIdentifier, Loc.GetString(entry.Title), Loc.GetString(entry.Description));
 
                 if (entry.Category == LawCategory.Mitigating)
                     mitEntries.Add(lawEntry);
@@ -106,22 +82,12 @@ public sealed class CorporateLawCartridgeSystem : EntitySystem
 
             if (mitEntries.Count > 0)
             {
-                sections.Add(new LawSection
-                {
-                    Title = Loc.GetString("sunrise-records-mitigating-circumstances"),
-                    Color = Color.FromHex("#00ff9d"),
-                    Entries = mitEntries
-                });
+                sections.Add(new LawSection(Loc.GetString("sunrise-records-mitigating-circumstances"), Color.FromHex("#00ff9d"), mitEntries));
             }
 
             if (aggEntries.Count > 0)
             {
-                sections.Add(new LawSection
-                {
-                    Title = Loc.GetString("sunrise-records-aggravating-circumstances"),
-                    Color = Color.FromHex("#ff4d4d"),
-                    Entries = aggEntries
-                });
+                sections.Add(new LawSection(Loc.GetString("sunrise-records-aggravating-circumstances"), Color.FromHex("#ff4d4d"), aggEntries));
             }
         }
 

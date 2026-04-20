@@ -156,29 +156,14 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
 
             foreach (var law in selectedLaws)
             {
-                // Find category color
-                Color catColor = Color.White;
-                foreach (var sId in lawset.Articles)
-                {
-                    if (!_proto.TryIndex<CorporateLawSectionPrototype>(sId, out var section) || !section.Entries.Contains(law.ID))
-                        continue;
-
-                    var sidStr = sId.ToString();
-                    if (sidStr.Contains("1")) catColor = Color.FromHex("#70ff70");
-                    else if (sidStr.Contains("2")) catColor = Color.FromHex("#ffff70");
-                    else if (sidStr.Contains("3")) catColor = Color.FromHex("#ffb347");
-                    else if (sidStr.Contains("4")) catColor = Color.FromHex("#ff6961");
-                    else if (sidStr.Contains("5")) catColor = Color.FromHex("#cf1020");
-                    else if (sidStr.Contains("6")) catColor = Color.FromHex("#8b0000");
-                    break;
-                }
+                var catColor = GetSectionColor(law.ID, lawset);
 
                 AddLawEntry(law, ReadOnlyList, _currentLaws, catColor);
             }
         }
         else
         {
-            ReadOnlyList.AddChild(new Label { Text = "(Нет нарушений)", StyleClasses = { "LabelSecondaryColor" }, Margin = new Thickness(12, 0) });
+            ReadOnlyList.AddChild(new Label { Text = Loc.GetString("sunrise-records-no-laws"), StyleClasses = { "LabelSecondaryColor" }, Margin = new Thickness(12, 0) });
         }
 
         // Circumstances
@@ -234,17 +219,7 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
             heading.MinHeight = 24;
             heading.Label.StyleClasses.Add("LabelHeadingBold"); // Force bold
 
-            var sectionIdStr = sectionId.ToString();
-            var catColor = Color.White;
-
-            // PDA-style category colors
-            if (sectionIdStr.Contains("1")) catColor = Color.FromHex("#70ff70"); // Green
-            else if (sectionIdStr.Contains("2")) catColor = Color.FromHex("#ffff70"); // Yellow
-            else if (sectionIdStr.Contains("3")) catColor = Color.FromHex("#ffb347"); // Orange
-            else if (sectionIdStr.Contains("4")) catColor = Color.FromHex("#ff6961"); // Red
-            else if (sectionIdStr.Contains("5")) catColor = Color.FromHex("#cf1020"); // Crimes against station
-            else if (sectionIdStr.Contains("6")) catColor = Color.FromHex("#8b0000"); // High crimes
-
+            var catColor = GetSectionColor(sectionId);
             heading.Label.FontColorOverride = catColor;
 
             var sectionCatStyle = new StyleBoxFlat
@@ -254,7 +229,7 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
                 BorderThickness = new Thickness(1)
             };
 
-            var collapsible = new Collapsible(heading, body) { BodyVisible = anySelected };
+            var collapsible = new Collapsible(heading, body);
 
             var sectionPanel = new PanelContainer { PanelOverride = sectionCatStyle, Margin = new Thickness(0, 0, 0, 1) };
             sectionPanel.AddChild(collapsible);
@@ -266,6 +241,8 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
                 AddLawEntry(law, content, _currentLaws, catColor);
                 if (_currentLaws.Contains(law.ID)) anySelected = true;
             }
+
+            collapsible.BodyVisible = anySelected;
         }
 
         // Populate Mitigating Circumstances in Collapsible
@@ -430,5 +407,26 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
             SentenceLabel.Text = Loc.GetString("sunrise-records-sentence-total", ("total", total));
 
         SentenceLabel.FontColorOverride = total >= lawset.PermanentSentenceThreshold ? Color.Red : Color.White;
+    }
+
+    private Color GetSectionColor(string lawId, CorporateLawsetPrototype lawset)
+    {
+        foreach (var sId in lawset.Articles)
+        {
+            if (!_proto.TryIndex<CorporateLawSectionPrototype>(sId, out var section) || !section.Entries.Contains(lawId))
+                continue;
+
+            return section.Color ?? Color.White;
+        }
+
+        return Color.White;
+    }
+
+    private Color GetSectionColor(string sectionId)
+    {
+        if (_proto.TryIndex<CorporateLawSectionPrototype>(sectionId, out var section))
+            return section.Color ?? Color.White;
+
+        return Color.White;
     }
 }

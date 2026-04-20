@@ -38,7 +38,7 @@ public sealed class PrisonLockerSystem : EntitySystem
             if (TryComp<PrisonLockerComponent>(uid, out var locker))
             {
                 if (!string.IsNullOrEmpty(locker.AccessId))
-                    _accessReader.TryRemoveAccess((uid, reader), locker.AccessId);
+                    _accessReader.TryRemoveAccess((uid, reader), new ProtoId<AccessLevelPrototype>(locker.AccessId));
 
                 var accessProto = new ProtoId<AccessLevelPrototype>(accessId);
                 _accessReader.TryAddAccess((uid, reader), accessProto);

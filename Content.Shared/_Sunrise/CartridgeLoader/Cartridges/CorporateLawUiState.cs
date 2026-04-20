@@ -15,17 +15,31 @@ public sealed class CorporateLawUiState : BoundUserInterfaceState
 }
 
 [Serializable, NetSerializable]
-public struct LawSection
+public sealed class LawSection
 {
-    public string Title;
-    public Color? Color;
-    public List<LawEntry> Entries;
+    public readonly string Title;
+    public readonly Color? Color;
+    public readonly List<LawEntry> Entries;
+
+    public LawSection(string title, Color? color, List<LawEntry> entries)
+    {
+        Title = title;
+        Color = color;
+        Entries = entries;
+    }
 }
 
 [Serializable, NetSerializable]
-public struct LawEntry
+public sealed class LawEntry
 {
-    public string? Identifier;
-    public string Title;
-    public string Description;
+    public readonly string? Identifier;
+    public readonly string Title;
+    public readonly string Description;
+
+    public LawEntry(string? identifier, string title, string description)
+    {
+        Identifier = identifier;
+        Title = title;
+        Description = description;
+    }
 }

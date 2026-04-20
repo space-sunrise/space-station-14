@@ -9,6 +9,6 @@ public sealed partial class PrisonerManagementConsoleComponent : Component
     /// <summary>
     ///     Active incarcerations mapped by cell index (0-9).
     /// </summary>
-    [DataField]
+    [ViewVariables]
     public Dictionary<int, ActiveIncarceration> ActiveIncarcerations = new();
 }

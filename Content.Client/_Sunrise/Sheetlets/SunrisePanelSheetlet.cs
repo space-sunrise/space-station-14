@@ -16,8 +16,8 @@ public sealed class SunrisePanelSheetlet<T> : Sheetlet<T> where T : PalettedStyl
 
         var prisonerRecordPanel = new StyleBoxFlat
         {
-            BackgroundColor = Color.FromHex("#25252a"),
-            BorderColor = Color.FromHex("#353540"),
+            BackgroundColor = sheet.SecondaryPalette.BackgroundDark,
+            BorderColor = sheet.SecondaryPalette.BackgroundLight,
             BorderThickness = new Thickness(1),
             ContentMarginLeftOverride = 8,
             ContentMarginRightOverride = 8,

@@ -43,6 +43,8 @@ public sealed partial class SunriseCriminalRecordsLawControl : PanelContainer
         {
             _normalStyle = null;
             _hoverStyle = null;
+            LateralStrip.PanelOverride = null;
+            LawTitleLabel.FontColorOverride = null;
         }
 
         UpdateStyles();
@@ -75,7 +77,10 @@ public sealed partial class SunriseCriminalRecordsLawControl : PanelContainer
     private void UpdateStyles()
     {
         if (_normalStyle == null || _hoverStyle == null)
+        {
+            BackgroundPanel.PanelOverride = null;
             return;
+        }
 
         BackgroundPanel.PanelOverride = _isHovered ? _hoverStyle : _normalStyle;
     }

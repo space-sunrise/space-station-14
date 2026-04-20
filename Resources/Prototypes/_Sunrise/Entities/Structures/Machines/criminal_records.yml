@@ -40,6 +40,8 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerPrisonerManagement
+  name: prisoner management computer
+  description: A terminal for managing station prisoners.
   components:
   - type: Sprite
     layers:

@@ -30,13 +30,19 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
     [Dependency] private readonly PrisonCellDoorSystem _door = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
+    private const int NumCells = 10;
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<PrisonerManagementConsoleComponent, ComponentInit>(OnComponentInit);
-        SubscribeLocalEvent<PrisonerManagementConsoleComponent, PrisonerManagementStartIncarcerationMessage>(OnStartIncarceration);
         SubscribeLocalEvent<PrisonerManagementConsoleComponent, BoundUIOpenedEvent>(OnOpened);
+
+        Subs.BuiEvents<PrisonerManagementConsoleComponent>(PrisonerManagementConsoleKey.Key, subs =>
+        {
+            subs.Event<PrisonerManagementStartIncarcerationMessage>(OnStartIncarceration);
+        });
     }
 
     private void OnComponentInit(EntityUid uid, PrisonerManagementConsoleComponent component, ComponentInit args)
@@ -44,7 +50,7 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
         var lockPorts = new List<ProtoId<SourcePortPrototype>>();
         var unlockPorts = new List<ProtoId<SourcePortPrototype>>();
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < NumCells; i++)
         {
             lockPorts.Add($"Cell{i + 1}Lock");
             unlockPorts.Add($"Cell{i + 1}Unlock");
@@ -75,6 +81,9 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
             var @case = cases.Find(c => c.Id == msg.CaseId);
 
             if (@case == null || @case.Status != CriminalCaseStatus.Closed)
+                return;
+
+            if (msg.CellIndex is < -1 or >= NumCells)
                 return;
 
             if (msg.CellIndex >= 0 && component.ActiveIncarcerations.ContainsKey(msg.CellIndex))
@@ -241,7 +250,7 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
         var cellOccupied = new Dictionary<int, bool>();
         var cellEquipped = new Dictionary<int, bool>();
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < NumCells; i++)
         {
             cellOccupied[i] = component.ActiveIncarcerations.ContainsKey(i);
 

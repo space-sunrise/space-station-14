@@ -37,11 +37,14 @@ prisoner-management-waiting = Ожидают заключения
 prisoner-management-in-progress = В исполнении
 prisoner-management-finished = Завершено
 prisoner-management-start = Начать заключение
-prisoner-management-waiting-info = Дело #{$case}: {$time} мин.
-prisoner-management-in-progress-info = Дело #{$case}: Камера #{$cell}
-prisoner-management-finished-info = Дело #{$case}: Срок отбыт
-prisoner-management-permanent-info = Дело #{$case}: [color=red]Пожизненно[/color]
-prisoner-management-countdown = Дело #{$case}: Камера #{$cell}: [color=orange]{$time}[/color]
+prisoner-management-waiting-info = {$time} мин.
+prisoner-management-in-progress-info = Камера #{$cell}
+prisoner-management-finished-info = Срок отбыт
+prisoner-management-permanent-info = [color=red]Пожизненно[/color]
+prisoner-management-countdown = [color=orange]{$time}[/color]
+prisoner-management-case-id = Дело #{$case}
+prisoner-management-cell-name = Камера #{$cell}
+prisoner-management-permabrig = Пермабриг
 prisoner-management-select-cell = Выбор камеры
 prisoner-management-cell-index = Камера #{$index}
 prisoner-management-occupied = Занята
@@ -100,3 +103,61 @@ corplaw-circ-officialmisconduct-title = Должностное преступл�
 corplaw-circ-officialmisconduct-desc = Нарушение совершено должностным лицом.
 corplaw-circ-intoxication-title = Состояние опьянения
 corplaw-circ-intoxication-desc = Употребление алкоголя или наркотических средств.
+ 
+sunrise-records-no-laws = (Нет нарушений)
+
+sunrise-records-unknown-name = Неизвестно
+sunrise-records-unknown-job = Неизвестная должность
+sunrise-records-unknown-age = ??
+sunrise-records-unknown-gender = ??
+sunrise-records-none = Нет
+
+signal-port-name-cell-1-lock = Заблокировать камеру 1
+signal-port-description-cell-1-lock = Заблокировать дверь первой камеры.
+signal-port-name-cell-1-unlock = Разблокировать камеру 1
+signal-port-description-cell-1-unlock = Разблокировать дверь первой камеры.
+
+signal-port-name-cell-2-lock = Заблокировать камеру 2
+signal-port-description-cell-2-lock = Заблокировать дверь второй камеры.
+signal-port-name-cell-2-unlock = Разблокировать камеру 2
+signal-port-description-cell-2-unlock = Разблокировать дверь второй камеры.
+
+signal-port-name-cell-3-lock = Заблокировать камеру 3
+signal-port-description-cell-3-lock = Заблокировать дверь третьей камеры.
+signal-port-name-cell-3-unlock = Разблокировать камеру 3
+signal-port-description-cell-3-unlock = Разблокировать дверь третьей камеры.
+
+signal-port-name-cell-4-lock = Заблокировать камеру 4
+signal-port-description-cell-4-lock = Заблокировать дверь четвертой камеры.
+signal-port-name-cell-4-unlock = Разблокировать камеру 4
+signal-port-description-cell-4-unlock = Разблокировать дверь четвертой камеры.
+
+signal-port-name-cell-5-lock = Заблокировать камеру 5
+signal-port-description-cell-5-lock = Заблокировать дверь пятой камеры.
+signal-port-name-cell-5-unlock = Разблокировать камеру 5
+signal-port-description-cell-5-unlock = Разблокировать дверь пятой камеры.
+
+signal-port-name-cell-6-lock = Заблокировать камеру 6
+signal-port-description-cell-6-lock = Заблокировать дверь шестой камеры.
+signal-port-name-cell-6-unlock = Разблокировать камеру 6
+signal-port-description-cell-6-unlock = Разблокировать дверь шестой камеры.
+
+signal-port-name-cell-7-lock = Заблокировать камеру 7
+signal-port-description-cell-7-lock = Заблокировать дверь седьмой камеры.
+signal-port-name-cell-7-unlock = Разблокировать камеру 7
+signal-port-description-cell-7-unlock = Разблокировать дверь седьмой камеры.
+
+signal-port-name-cell-8-lock = Заблокировать камеру 8
+signal-port-description-cell-8-lock = Заблокировать дверь восьмой камеры.
+signal-port-name-cell-8-unlock = Разблокировать камеру 8
+signal-port-description-cell-8-unlock = Разблокировать дверь восьмой камеры.
+
+signal-port-name-cell-9-lock = Заблокировать камеру 9
+signal-port-description-cell-9-lock = Заблокировать дверь девятой камеры.
+signal-port-name-cell-9-unlock = Разблокировать камеру 9
+signal-port-description-cell-9-unlock = Разблокировать дверь девятой камеры.
+
+signal-port-name-cell-10-lock = Заблокировать камеру 10
+signal-port-description-cell-10-lock = Заблокировать дверь десятой камеры.
+signal-port-name-cell-10-unlock = Разблокировать камеру 10
+signal-port-description-cell-10-unlock = Разблокировать дверь десятой камеры.

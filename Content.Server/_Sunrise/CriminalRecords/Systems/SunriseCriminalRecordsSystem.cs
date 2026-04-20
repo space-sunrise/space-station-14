@@ -111,11 +111,19 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
                 ? cases.FindLast(c => c.Status == CriminalCaseStatus.Open)
                 : cases.Find(c => c.Id == component.SelectedCaseId);
 
-            if (@case != null && @case.Status == CriminalCaseStatus.Open)
+            if (@case != null && @case.Status == CriminalCaseStatus.Open && msg.CaseId == component.SelectedCaseId)
             {
-                @case.Laws = msg.Laws;
-                @case.Circumstances = msg.Circumstances;
-                @case.Notes = msg.Notes;
+                // Validate laws and circumstances
+                @case.Laws = msg.Laws
+                    .Where(id => _proto.HasIndex<CorporateLawPrototype>(id))
+                    .Take(20)
+                    .ToList();
+                @case.Circumstances = msg.Circumstances
+                    .Where(id => _proto.HasIndex<CorporateLawPrototype>(id))
+                    .Take(10)
+                    .ToList();
+
+                @case.Notes = msg.Notes?.Length > 2048 ? msg.Notes.Substring(0, 2048) : msg.Notes;
                 @case.CalculatedSentence = CalculateSentence(@case, cases);
                 Dirty(component.SelectedKey.Value.OriginStation, records);
             }
@@ -137,7 +145,7 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
                     ? cases.FindLast(c => c.Status == CriminalCaseStatus.Open)
                     : cases.Find(c => c.Id == component.SelectedCaseId);
 
-                if (@case != null && @case.Status == CriminalCaseStatus.Open)
+                if (@case != null && @case.Status == CriminalCaseStatus.Open && msg.CaseId == component.SelectedCaseId)
                 {
                     @case.Status = CriminalCaseStatus.Closed;
                     @case.CalculatedSentence = CalculateSentence(@case, cases);

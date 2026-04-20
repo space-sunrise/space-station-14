@@ -1,99 +1,99 @@
 - type: sourcePort
   id: Cell1Lock
-  name: Cell 1 Lock
-  description: Lock Cell 1
+  name: signal-port-name-cell-1-lock
+  description: signal-port-description-cell-1-lock
 
 - type: sourcePort
   id: Cell1Unlock
-  name: Cell 1 Unlock
-  description: Unlock Cell 1
+  name: signal-port-name-cell-1-unlock
+  description: signal-port-description-cell-1-unlock
 
 - type: sourcePort
   id: Cell2Lock
-  name: Cell 2 Lock
-  description: Lock Cell 2
+  name: signal-port-name-cell-2-lock
+  description: signal-port-description-cell-2-lock
 
 - type: sourcePort
   id: Cell2Unlock
-  name: Cell 2 Unlock
-  description: Unlock Cell 2
+  name: signal-port-name-cell-2-unlock
+  description: signal-port-description-cell-2-unlock
 
 - type: sourcePort
   id: Cell3Lock
-  name: Cell 3 Lock
-  description: Lock Cell 3
+  name: signal-port-name-cell-3-lock
+  description: signal-port-description-cell-3-lock
 
 - type: sourcePort
   id: Cell3Unlock
-  name: Cell 3 Unlock
-  description: Unlock Cell 3
+  name: signal-port-name-cell-3-unlock
+  description: signal-port-description-cell-3-unlock
 
 - type: sourcePort
   id: Cell4Lock
-  name: Cell 4 Lock
-  description: Lock Cell 4
+  name: signal-port-name-cell-4-lock
+  description: signal-port-description-cell-4-lock
 
 - type: sourcePort
   id: Cell4Unlock
-  name: Cell 4 Unlock
-  description: Unlock Cell 4
+  name: signal-port-name-cell-4-unlock
+  description: signal-port-description-cell-4-unlock
 
 - type: sourcePort
   id: Cell5Lock
-  name: Cell 5 Lock
-  description: Lock Cell 5
+  name: signal-port-name-cell-5-lock
+  description: signal-port-description-cell-5-lock
 
 - type: sourcePort
   id: Cell5Unlock
-  name: Cell 5 Unlock
-  description: Unlock Cell 5
+  name: signal-port-name-cell-5-unlock
+  description: signal-port-description-cell-5-unlock
 
 - type: sourcePort
   id: Cell6Lock
-  name: Cell 6 Lock
-  description: Lock Cell 6
+  name: signal-port-name-cell-6-lock
+  description: signal-port-description-cell-6-lock
 
 - type: sourcePort
   id: Cell6Unlock
-  name: Cell 6 Unlock
-  description: Unlock Cell 6
+  name: signal-port-name-cell-6-unlock
+  description: signal-port-description-cell-6-unlock
 
 - type: sourcePort
   id: Cell7Lock
-  name: Cell 7 Lock
-  description: Lock Cell 7
+  name: signal-port-name-cell-7-lock
+  description: signal-port-description-cell-7-lock
 
 - type: sourcePort
   id: Cell7Unlock
-  name: Cell 7 Unlock
-  description: Unlock Cell 7
+  name: signal-port-name-cell-7-unlock
+  description: signal-port-description-cell-7-unlock
 
 - type: sourcePort
   id: Cell8Lock
-  name: Cell 8 Lock
-  description: Lock Cell 8
+  name: signal-port-name-cell-8-lock
+  description: signal-port-description-cell-8-lock
 
 - type: sourcePort
   id: Cell8Unlock
-  name: Cell 8 Unlock
-  description: Unlock Cell 8
+  name: signal-port-name-cell-8-unlock
+  description: signal-port-description-cell-8-unlock
 
 - type: sourcePort
   id: Cell9Lock
-  name: Cell 9 Lock
-  description: Lock Cell 9
+  name: signal-port-name-cell-9-lock
+  description: signal-port-description-cell-9-lock
 
 - type: sourcePort
   id: Cell9Unlock
-  name: Cell 9 Unlock
-  description: Unlock Cell 9
+  name: signal-port-name-cell-9-unlock
+  description: signal-port-description-cell-9-unlock
 
 - type: sourcePort
   id: Cell10Lock
-  name: Cell 10 Lock
-  description: Lock Cell 10
+  name: signal-port-name-cell-10-lock
+  description: signal-port-description-cell-10-lock
 
 - type: sourcePort
   id: Cell10Unlock
-  name: Cell 10 Unlock
-  description: Unlock Cell 10
+  name: signal-port-name-cell-10-unlock
+  description: signal-port-description-cell-10-unlock

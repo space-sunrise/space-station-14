@@ -38,8 +38,11 @@ public sealed partial class PrisonerRecordControl : Control
     {
         NameLabel.Text = record.Name;
         _caseId = record.CaseId;
-        InfoLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
-            Loc.GetString("prisoner-management-waiting-info", ("time", record.Sentence), ("case", record.CaseId))));
+        CaseLabel.Text = Loc.GetString("prisoner-management-case-id", ("case", record.CaseId));
+        PositionLabel.Visible = false;
+        TimeLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
+            Loc.GetString("prisoner-management-waiting-info", ("time", record.Sentence))));
+        
         ActionButton.Text = Loc.GetString("prisoner-management-start");
         ButtonContainer.Visible = true;
         _startTime = null;
@@ -54,18 +57,22 @@ public sealed partial class PrisonerRecordControl : Control
         _startTime = incar.StartTime;
         _sentenceMinutes = incar.Sentence;
 
+        CaseLabel.Text = Loc.GetString("prisoner-management-case-id", ("case", _caseId ?? 0));
         ButtonContainer.Visible = false;
         _lastSeconds = -1;
         _isCountdownFinished = false;
 
         if (_sentenceMinutes >= PermanentThreshold)
         {
-            InfoLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
-                Loc.GetString("prisoner-management-permanent-info", ("case", _caseId ?? 0))));
+            PositionLabel.Text = Loc.GetString("prisoner-management-permabrig");
+            PositionLabel.Visible = true;
+            TimeLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
+                Loc.GetString("prisoner-management-permanent-info")));
             _startTime = null; // Disable timer updates
         }
         else
         {
+            PositionLabel.Visible = true;
             UpdateCountdown();
         }
     }
@@ -74,8 +81,11 @@ public sealed partial class PrisonerRecordControl : Control
     {
         NameLabel.Text = record.Name;
         _caseId = record.CaseId;
-        InfoLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
-            Loc.GetString("prisoner-management-finished-info", ("case", record.CaseId))));
+        CaseLabel.Text = Loc.GetString("prisoner-management-case-id", ("case", record.CaseId));
+        PositionLabel.Visible = false;
+        TimeLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
+            Loc.GetString("prisoner-management-finished-info")));
+        
         ButtonContainer.Visible = false;
         _startTime = null;
         _lastSeconds = -1;
@@ -101,8 +111,8 @@ public sealed partial class PrisonerRecordControl : Control
         {
             if (!_isCountdownFinished)
             {
-                InfoLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
-                    Loc.GetString("prisoner-management-countdown-finished", ("case", _caseId ?? 0))));
+                TimeLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
+                    Loc.GetString("prisoner-management-countdown-finished")));
                 _isCountdownFinished = true;
                 _lastSeconds = -1;
             }
@@ -110,6 +120,8 @@ public sealed partial class PrisonerRecordControl : Control
         }
 
         var totalSeconds = (int) remaining.TotalSeconds;
+        PositionLabel.Text = Loc.GetString("prisoner-management-cell-name", ("cell", _cellIndex));
+
         if (totalSeconds == _lastSeconds)
             return;
 
@@ -117,11 +129,8 @@ public sealed partial class PrisonerRecordControl : Control
         _isCountdownFinished = false;
 
         string timeStr = $"{((int) remaining.TotalMinutes):D2}:{remaining.Seconds:D2}";
-        InfoLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
-            Loc.GetString("prisoner-management-countdown",
-                ("cell", _cellIndex),
-                ("time", timeStr),
-                ("case", _caseId ?? 0))));
+        TimeLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
+            Loc.GetString("prisoner-management-countdown", ("time", timeStr))));
     }
 
     public void SetCellIndex(int index)

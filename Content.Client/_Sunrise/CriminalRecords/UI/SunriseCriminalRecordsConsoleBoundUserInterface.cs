@@ -1,5 +1,6 @@
 using Content.Shared._Sunrise.CriminalRecords;
 using Robust.Client.GameObjects;
+using Robust.Client.UserInterface;
 
 namespace Content.Client._Sunrise.CriminalRecords.UI;
 
@@ -15,7 +16,8 @@ public sealed class SunriseCriminalRecordsConsoleBoundUserInterface : BoundUserI
     {
         base.Open();
 
-        _window = new SunriseCriminalRecordsWindow(this);
+        _window = this.CreateWindow<SunriseCriminalRecordsWindow>();
+        _window.Initialize(this);
         _window.OnClose += Close;
         _window.OpenCentered();
     }
