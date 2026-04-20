@@ -70,7 +70,7 @@ signal-port-description-prison-timer-set = Запустить отсчет вр�
 signal-port-name-prison-timer-reset = Сбросить таймер
 signal-port-description-prison-timer-reset = Остановить и сбросить таймер.
 
-prison-timer-cell-label = CAM-{$number}
+prison-timer-cell-label = КАМ-{$number}
 prison-timer-free = {$label}\nOPEN
 
 # Circumstances
