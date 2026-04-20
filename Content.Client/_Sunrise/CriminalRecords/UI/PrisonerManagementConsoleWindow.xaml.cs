@@ -48,14 +48,16 @@ public sealed partial class PrisonerManagementConsoleWindow : FancyWindow
 
     private void PopulateWaiting(List<PrisonerRecordInfo> records)
     {
-        var threshold = 50;
-        if (_prototypeManager.TryIndex<CorporateLawsetPrototype>("StandardCorporateLaw", out var lawset))
-            threshold = lawset.PermanentSentenceThreshold;
+        if (_lastState == null)
+            return;
+
+        var threshold = _lastState.PermanentThreshold;
 
         WaitingContainer.DisposeAllChildren();
         foreach (var record in records)
         {
             var control = new PrisonerRecordControl();
+            control.PermanentThreshold = threshold;
             control.SetupWaiting(record);
 
             if (record.Sentence >= threshold)
@@ -69,10 +71,16 @@ public sealed partial class PrisonerManagementConsoleWindow : FancyWindow
 
     private void PopulateInProgress(List<IncarcerationInfo> incars)
     {
+        if (_lastState == null)
+            return;
+
+        var threshold = _lastState.PermanentThreshold;
+
         InProgressContainer.DisposeAllChildren();
         foreach (var incar in incars)
         {
             var control = new PrisonerRecordControl();
+            control.PermanentThreshold = threshold;
             control.SetupInProgress(incar);
             control.SetCellIndex(incar.CellIndex);
             InProgressContainer.AddChild(control);

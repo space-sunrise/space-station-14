@@ -21,6 +21,7 @@ public sealed partial class PrisonerRecordControl : Control
     private int _lastSeconds = -1;
     private bool _isCountdownFinished;
     private int _cellIndex;
+    public int PermanentThreshold = 50;
 
     public Action? OnActionPressed;
 
@@ -57,11 +58,7 @@ public sealed partial class PrisonerRecordControl : Control
         _lastSeconds = -1;
         _isCountdownFinished = false;
 
-        var threshold = 50;
-        if (_prototypeManager.TryIndex<CorporateLawsetPrototype>("StandardCorporateLaw", out var lawset))
-            threshold = lawset.PermanentSentenceThreshold;
-
-        if (_sentenceMinutes >= threshold)
+        if (_sentenceMinutes >= PermanentThreshold)
         {
             InfoLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
                 Loc.GetString("prisoner-management-permanent-info", ("case", _caseId ?? 0))));

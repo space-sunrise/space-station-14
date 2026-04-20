@@ -175,9 +175,7 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
             var changed = false;
             var toRemove = new List<int>();
 
-            var threshold = 50;
-            if (_proto.TryIndex<CorporateLawsetPrototype>("StandardCorporateLaw", out var lawset))
-                threshold = lawset.PermanentSentenceThreshold;
+            var threshold = GetPermanentThreshold();
 
             foreach (var entry in component.ActiveIncarcerations)
             {
@@ -204,6 +202,13 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
             if (changed)
                 UpdateUserInterface(uid, component);
         }
+    }
+
+    private int GetPermanentThreshold()
+    {
+        if (_proto.TryIndex<CorporateLawsetPrototype>("StandardCorporateLaw", out var lawset))
+            return lawset.PermanentSentenceThreshold;
+        return 50;
     }
 
     private void FinishIncarceration(EntityUid uid, PrisonerManagementConsoleComponent component, int cellIndex, ActiveIncarceration incar)
@@ -292,7 +297,7 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
             }
         }
 
-        var state = new PrisonerManagementConsoleState(waiting, inProgress, finished, cellOccupied, cellEquipped);
+        var state = new PrisonerManagementConsoleState(waiting, inProgress, finished, cellOccupied, cellEquipped, GetPermanentThreshold());
         _ui.SetUiState(uid, PrisonerManagementConsoleKey.Key, state);
     }
 }

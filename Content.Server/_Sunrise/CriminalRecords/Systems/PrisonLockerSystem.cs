@@ -60,7 +60,7 @@ public sealed class PrisonLockerSystem : EntitySystem
             if (TryComp<AccessReaderComponent>(uid, out var reader))
                 _accessReader.SetActive((uid, reader), true);
         }
-        else if (args.Port == "PrisonLocker_Unlock")
+        else if (args.Port == "PrisonLockerUnlock")
         {
             // For now, we don't allow remote unlocking of the entire access reader.
             // Security can always open it locally.

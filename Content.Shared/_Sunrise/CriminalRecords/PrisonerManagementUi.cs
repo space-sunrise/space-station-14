@@ -17,19 +17,22 @@ public sealed class PrisonerManagementConsoleState : BoundUserInterfaceState
     public readonly List<PrisonerRecordInfo> Finished;
     public readonly Dictionary<int, bool> CellOccupied;
     public readonly Dictionary<int, bool> CellEquipped;
+    public readonly int PermanentThreshold;
 
     public PrisonerManagementConsoleState(
         List<PrisonerRecordInfo> waiting,
         List<IncarcerationInfo> inProgress,
         List<PrisonerRecordInfo> finished,
         Dictionary<int, bool> cellOccupied,
-        Dictionary<int, bool> cellEquipped)
+        Dictionary<int, bool> cellEquipped,
+        int permanentThreshold)
     {
         Waiting = waiting;
         InProgress = inProgress;
         Finished = finished;
         CellOccupied = cellOccupied;
         CellEquipped = cellEquipped;
+        PermanentThreshold = permanentThreshold;
     }
 }
 
