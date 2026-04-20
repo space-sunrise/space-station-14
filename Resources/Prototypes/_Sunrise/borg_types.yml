@@ -124,8 +124,6 @@
     - SoapNT
     - SoapDeluxe
     - SoapHomemade
-  - type: PieThrower
-    pieProtoId: FoodPieBananaCream
   - type: TTS
     voice: NecoArcTwo
 

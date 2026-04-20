@@ -3,8 +3,10 @@
   parent:
   - BaseStation
   - BaseStationNews
+  - BaseStationCargo
   - BaseStationJobsSpawning
   - BaseStationRecords
+  - BaseStationDeliveries
   - BaseStationNanotrasen
   - BaseStationSiliconLawCrewsimov
   - PrisonStationAlertLevels

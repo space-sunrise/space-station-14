@@ -585,9 +585,32 @@
 - type: entity
   id: BulletRocket120mmMetla
   name: 120mm rocket
-  parent: BulletGrenade120mmBlast
+  parent: BulletAK57090mmHE
   categories: [ HideSpawnMenu ]
   components:
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.85,0.05"
+        density: 2
+        hard: true
+        layer:
+        - LargeMobLayer
+        mask:
+        - Impassable
+        - BulletImpassable
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives_x48.rsi
     layers:
@@ -604,7 +627,7 @@
     follow: true
     location: 120mm Rocket Payload
   - type: GuidedProjectile
-    turnRate: 120
+    turnRate: 100
   - type: TimedDespawn
     lifetime: 30
 

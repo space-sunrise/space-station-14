@@ -1,7 +1,7 @@
 ﻿- type: gameMap
   id: Shoukou
   mapName: 'Shōkō'
-  mapPath: /Maps/_Sunrise/Station/shoukou.yml
+  mapPath: /Maps/_Sunrise/Station/OutPool/shoukou.yml
   minPlayers: 0
   stations:
     Shoukou:

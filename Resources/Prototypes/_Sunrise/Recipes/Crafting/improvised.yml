@@ -179,3 +179,13 @@
   objectType: Item
   name: ent-JetpackImprovised
   description: ent-JetpackImprovised.desc
+
+- type: construction
+  id: HandcraftedNVD
+  graph: handcraftnvd
+  startNode: start
+  targetNode: nvdfinished
+  category: construction-category-clothing
+  objectType: Item
+  name: ent-ClothingEyesNVDHandcrafted
+  description: ent-ClothingEyesNVDHandcrafted.desc

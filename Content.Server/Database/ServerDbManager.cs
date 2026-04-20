@@ -27,7 +27,7 @@ using MSLogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 namespace Content.Server.Database
 {
-    public interface IServerDbManager
+    public partial interface IServerDbManager // Sunrise-Edit
     {
         void Init();
 
@@ -394,6 +394,7 @@ namespace Content.Server.Database
         Task<List<MentorHelpTicket>> GetClosedMentorHelpTicketsAsync();
 
         #endregion
+
         // Sunrise-End
     }
 
@@ -422,7 +423,7 @@ namespace Content.Server.Database
         public string? Payload { get; set; }
     }
 
-    public sealed class ServerDbManager : IServerDbManager
+    public sealed partial class ServerDbManager : IServerDbManager // Sunrise-Edit
     {
         public static readonly Counter DbReadOpsMetric = Metrics.CreateCounter(
             "db_read_ops",
@@ -1170,6 +1171,7 @@ namespace Content.Server.Database
         {
             return RunDbCommand(() => _db.GetClosedMentorHelpTicketsAsync());
         }
+
         // Sunrise-end
 
         public void SubscribeToNotifications(Action<DatabaseNotification> handler)

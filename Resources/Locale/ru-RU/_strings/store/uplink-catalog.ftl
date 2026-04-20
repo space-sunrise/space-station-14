@@ -189,7 +189,7 @@ uplink-contraband-lighter-desc = Таинственная коробка, гар
 # Bundles
 uplink-minotaur-bundle-name = Набор AS-12 'Минотавр'
 uplink-minotaur-bundle-desc = Плавный, мощный, крайне нелегальный. Содержит дробовик Минотавр, 4 барабана дроби.
-uplink-minotaur-name = AS-12 'Минотавр' биокодированный
+uplink-minotaur-name = AS-12 'Минотавр'
 uplink-minotaur-desc = Автоматический дробовик и два XL барабана дроби. Палите безDOOMно во все стороны!
 uplink-observation-kit-name = Набор наблюдателя
 uplink-observation-kit-desc = В комплект входят консольная плата монитора камер наблюдения, и охранный визор, замаскированный под солнцезащитные очки.

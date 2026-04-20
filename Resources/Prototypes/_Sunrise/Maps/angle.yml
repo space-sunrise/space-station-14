@@ -1,7 +1,7 @@
 ﻿- type: gameMap
   id: Angle
   mapName: 'Angle'
-  mapPath: /Maps/_Sunrise/Station/angle.yml
+  mapPath: /Maps/_Sunrise/Station/OutPool/angle.yml
   minPlayers: 0
   stations:
     Angle:

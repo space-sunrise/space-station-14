@@ -1073,9 +1073,11 @@
   parent: BulletGrenadeFrag
   categories: [ HideSpawnMenu ]
   components:
+  - type: SpawnOnDespawn
+    prototype: BulletGrenadeFragArtillerySelfExplode
   - type: RadarBlip
     color: "#9ACD32"
-    scale: 0.75
+    scale: 0.6
     shape: Square
     requireInSpace: true
 
@@ -1086,7 +1088,7 @@
   components:
   - type: RadarBlip
     color: "#FF6A6A"
-    scale: 0.75
+    scale: 0.6
     shape: Square
     requireInSpace: true
 
@@ -1095,11 +1097,60 @@
   parent: BulletGrenadeBlast
   categories: [ HideSpawnMenu ]
   components:
+  - type: SpawnOnDespawn
+    prototype: BulletGrenadeBlastArtillerySelfExplode
   - type: RadarBlip
     color: "#FFAA33"
-    scale: 0.75
+    scale: 0.6
     shape: Square
     requireInSpace: true
+
+- type: entity
+  id: BulletGrenadeFragArtillerySelfExplode
+  name: frag grenade
+  suffix: self-explode, NOW
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: ExplodeOnTrigger
+    keysIn:
+    - trigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 50
+    intensitySlope: 1
+    maxIntensity: 5
+    canCreateVacuum: false
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: BulletArtilleryShapnelShort
+    capacity: 30
+  - type: TimedDespawn
+    lifetime: 0.25
+
+- type: entity
+  id: BulletGrenadeBlastArtillerySelfExplode
+  name: blast grenade
+  suffix: self-explode, NOW
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: ExplodeOnTrigger
+    keysIn:
+    - trigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 150
+    intensitySlope: 5
+    maxIntensity: 10
+    canCreateVacuum: false
+  - type: TimedDespawn
+    lifetime: 0.25
 
 - type: entity
   id: BulletGrenadeFlashArtillery
@@ -1108,7 +1159,7 @@
   components:
   - type: RadarBlip
     color: "#FF6A6A"
-    scale: 0.75
+    scale: 0.6
     shape: Square
     requireInSpace: true
 
@@ -1119,7 +1170,7 @@
   components:
   - type: RadarBlip
     color: "#4DB8FF"
-    scale: 0.75
+    scale: 0.6
     shape: Square
     requireInSpace: true
 

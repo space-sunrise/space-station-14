@@ -131,3 +131,16 @@
   storage:
     back:
     - LegendaryGoldenWeh
+
+# Neck
+
+- type: loadout
+  id: SalvageSpecialistAliveMantle
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSalvageSpecialist
+      time: 2397600 # 666hr
+  equipment:
+    neck: ClothingNeckMantleGoliathAlive
