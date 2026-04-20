@@ -23,7 +23,7 @@ public sealed class PrisonTimerSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, PrisonTimerComponent component, ComponentStartup args)
     {
-        _deviceLink.EnsureSinkPorts(uid, "PrisonTimer_Set", "PrisonTimer_Reset");
+        _deviceLink.EnsureSinkPorts(uid, "PrisonTimerSet", "PrisonTimerReset");
     }
 
     private void OnUse(EntityUid uid, PrisonTimerComponent component, UseInHandEvent args)
@@ -37,11 +37,11 @@ public sealed class PrisonTimerSystem : EntitySystem
 
     private void OnSignalReceived(EntityUid uid, PrisonTimerComponent component, ref SignalReceivedEvent args)
     {
-        if (args.Port == "PrisonTimer_Set")
+        if (args.Port == "PrisonTimerSet")
         {
             component.Locked = true;
         }
-        else if (args.Port == "PrisonTimer_Reset")
+        else if (args.Port == "PrisonTimerReset")
         {
             component.Locked = false;
             ResetTimer(uid);

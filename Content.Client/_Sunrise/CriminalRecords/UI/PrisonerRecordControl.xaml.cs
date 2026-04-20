@@ -20,6 +20,7 @@ public sealed partial class PrisonerRecordControl : Control
 
     private int _lastSeconds = -1;
     private bool _isCountdownFinished;
+    private int _cellIndex;
 
     public Action? OnActionPressed;
 
@@ -36,7 +37,7 @@ public sealed partial class PrisonerRecordControl : Control
     {
         NameLabel.Text = record.Name;
         _caseId = record.CaseId;
-        InfoLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(
+        InfoLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
             Loc.GetString("prisoner-management-waiting-info", ("time", record.Sentence), ("case", record.CaseId))));
         ActionButton.Text = Loc.GetString("prisoner-management-start");
         ButtonContainer.Visible = true;
@@ -51,7 +52,6 @@ public sealed partial class PrisonerRecordControl : Control
         _caseId = incar.CaseId;
         _startTime = incar.StartTime;
         _sentenceMinutes = incar.Sentence;
-        _cellIndex = incar.CellIndex + 1;
 
         ButtonContainer.Visible = false;
         _lastSeconds = -1;
@@ -63,7 +63,7 @@ public sealed partial class PrisonerRecordControl : Control
 
         if (_sentenceMinutes >= threshold)
         {
-            InfoLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(
+            InfoLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
                 Loc.GetString("prisoner-management-permanent-info", ("case", _caseId ?? 0))));
             _startTime = null; // Disable timer updates
         }
@@ -77,7 +77,7 @@ public sealed partial class PrisonerRecordControl : Control
     {
         NameLabel.Text = record.Name;
         _caseId = record.CaseId;
-        InfoLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(
+        InfoLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
             Loc.GetString("prisoner-management-finished-info", ("case", record.CaseId))));
         ButtonContainer.Visible = false;
         _startTime = null;
@@ -104,7 +104,7 @@ public sealed partial class PrisonerRecordControl : Control
         {
             if (!_isCountdownFinished)
             {
-                InfoLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(
+                InfoLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
                     Loc.GetString("prisoner-management-countdown-finished", ("case", _caseId ?? 0))));
                 _isCountdownFinished = true;
                 _lastSeconds = -1;
@@ -120,14 +120,12 @@ public sealed partial class PrisonerRecordControl : Control
         _isCountdownFinished = false;
 
         string timeStr = $"{((int) remaining.TotalMinutes):D2}:{remaining.Seconds:D2}";
-        InfoLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(
+        InfoLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
             Loc.GetString("prisoner-management-countdown",
                 ("cell", _cellIndex),
                 ("time", timeStr),
                 ("case", _caseId ?? 0))));
     }
-
-    private int _cellIndex;
 
     public void SetCellIndex(int index)
     {

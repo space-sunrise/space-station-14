@@ -26,7 +26,7 @@ public sealed class PrisonLockerSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, PrisonLockerComponent component, ComponentStartup args)
     {
-        _deviceLink.EnsureSinkPorts(uid, "PrisonLocker_Lock", "PrisonLocker_Unlock");
+        _deviceLink.EnsureSinkPorts(uid, "PrisonLockerLock", "PrisonLockerUnlock");
     }
 
     public void LockLocker(EntityUid uid, string accessId)
@@ -55,7 +55,7 @@ public sealed class PrisonLockerSystem : EntitySystem
 
     private void OnSignalReceived(EntityUid uid, PrisonLockerComponent component, ref SignalReceivedEvent args)
     {
-        if (args.Port == "PrisonLocker_Lock")
+        if (args.Port == "PrisonLockerLock")
         {
             if (TryComp<AccessReaderComponent>(uid, out var reader))
                 _accessReader.SetActive((uid, reader), true);

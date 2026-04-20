@@ -21,7 +21,7 @@ public sealed class PrisonCellDoorSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, PrisonCellDoorComponent component, ComponentStartup args)
     {
-        _deviceLink.EnsureSinkPorts(uid, "PrisonCellDoor_Lock", "PrisonCellDoor_Unlock");
+        _deviceLink.EnsureSinkPorts(uid, "PrisonCellDoorLock", "PrisonCellDoorUnlock");
     }
 
     public void LockDoor(EntityUid uid)
@@ -44,7 +44,7 @@ public sealed class PrisonCellDoorSystem : EntitySystem
 
     private void OnSignalReceived(EntityUid uid, PrisonCellDoorComponent component, ref SignalReceivedEvent args)
     {
-        if (args.Port == "PrisonCellDoor_Lock")
+        if (args.Port == "PrisonCellDoorLock")
         {
             if (TryComp<AccessReaderComponent>(uid, out var reader))
             {
@@ -52,7 +52,7 @@ public sealed class PrisonCellDoorSystem : EntitySystem
                 _accessReader.TryAddAccess((uid, reader), "Security");
             }
         }
-        else if (args.Port == "PrisonCellDoor_Unlock")
+        else if (args.Port == "PrisonCellDoorUnlock")
         {
             if (TryComp<AccessReaderComponent>(uid, out var reader))
             {

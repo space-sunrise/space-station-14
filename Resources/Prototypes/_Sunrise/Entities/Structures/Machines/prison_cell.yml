@@ -5,8 +5,8 @@
   - type: PrisonCellDoor
   - type: DeviceLinkSink
     ports:
-      - PrisonCellDoor_Lock
-      - PrisonCellDoor_Unlock
+      - PrisonCellDoorLock
+      - PrisonCellDoorUnlock
 
 - type: entity
   parent: Screen
@@ -15,8 +15,8 @@
   - type: PrisonTimer
   - type: DeviceLinkSink
     ports:
-      - PrisonTimer_Set
-      - PrisonTimer_Reset
+      - PrisonTimerSet
+      - PrisonTimerReset
   - type: TextScreenVisuals
     textOffset: 0,3
     rowOffset: 6
@@ -29,7 +29,8 @@
   components:
   - type: PrisonLocker
   - type: AccessReader
+    access: []
   - type: DeviceLinkSink
     ports:
-      - PrisonLocker_Lock
-      - PrisonLocker_Unlock
+      - PrisonLockerLock
+      - PrisonLockerUnlock

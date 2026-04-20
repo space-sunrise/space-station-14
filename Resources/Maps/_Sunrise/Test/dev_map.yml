@@ -9864,49 +9864,49 @@ entities:
       linkedPorts:
         3348:
         - - Cell1Lock
-          - PrisonLocker_Lock
+          - PrisonLockerLock
         - - Cell1Unlock
-          - PrisonLocker_Unlock
+          - PrisonLockerUnlock
         3354:
         - - Cell1Lock
-          - PrisonCellDoor_Lock
+          - PrisonCellDoorLock
         - - Cell1Unlock
-          - PrisonCellDoor_Unlock
+          - PrisonCellDoorUnlock
         3351:
         - - Cell1Lock
-          - PrisonTimer_Set
+          - PrisonTimerSet
         - - Cell1Unlock
-          - PrisonTimer_Reset
+          - PrisonTimerReset
         3349:
         - - Cell2Lock
-          - PrisonLocker_Lock
+          - PrisonLockerLock
         - - Cell2Unlock
-          - PrisonLocker_Unlock
+          - PrisonLockerUnlock
         3355:
         - - Cell2Lock
-          - PrisonCellDoor_Lock
+          - PrisonCellDoorLock
         - - Cell2Unlock
-          - PrisonCellDoor_Unlock
+          - PrisonCellDoorUnlock
         3352:
         - - Cell2Lock
-          - PrisonTimer_Set
+          - PrisonTimerSet
         - - Cell2Unlock
-          - PrisonTimer_Reset
+          - PrisonTimerReset
         3350:
         - - Cell3Lock
-          - PrisonLocker_Lock
+          - PrisonLockerLock
         - - Cell3Unlock
-          - PrisonLocker_Unlock
+          - PrisonLockerUnlock
         3356:
         - - Cell3Lock
-          - PrisonCellDoor_Lock
+          - PrisonCellDoorLock
         - - Cell3Unlock
-          - PrisonCellDoor_Unlock
+          - PrisonCellDoorUnlock
         3353:
         - - Cell3Lock
-          - PrisonTimer_Set
+          - PrisonTimerSet
         - - Cell3Unlock
-          - PrisonTimer_Reset
+          - PrisonTimerReset
 - proto: ComputerRadar
   entities:
   - uid: 1136
@@ -14414,8 +14414,8 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       ports:
-      - PrisonCellDoor_Lock
-      - PrisonCellDoor_Unlock
+      - PrisonCellDoorLock
+      - PrisonCellDoorUnlock
       - Open
       - Close
       - Toggle
@@ -14426,8 +14426,8 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       ports:
-      - PrisonCellDoor_Lock
-      - PrisonCellDoor_Unlock
+      - PrisonCellDoorLock
+      - PrisonCellDoorUnlock
       - Open
       - Close
       - Toggle
@@ -14438,8 +14438,8 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       ports:
-      - PrisonCellDoor_Lock
-      - PrisonCellDoor_Unlock
+      - PrisonCellDoorLock
+      - PrisonCellDoorUnlock
       - Open
       - Close
       - Toggle
@@ -14469,8 +14469,8 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       ports:
-      - PrisonTimer_Set
-      - PrisonTimer_Reset
+      - PrisonTimerSet
+      - PrisonTimerReset
       - Trigger
     - type: Fixtures
       fixtures: {}
@@ -14481,8 +14481,8 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       ports:
-      - PrisonTimer_Set
-      - PrisonTimer_Reset
+      - PrisonTimerSet
+      - PrisonTimerReset
       - Trigger
     - type: Fixtures
       fixtures: {}
@@ -14493,8 +14493,8 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       ports:
-      - PrisonTimer_Set
-      - PrisonTimer_Reset
+      - PrisonTimerSet
+      - PrisonTimerReset
       - Trigger
     - type: Fixtures
       fixtures: {}

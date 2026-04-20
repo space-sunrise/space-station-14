@@ -46,6 +46,7 @@ prisoner-management-select-cell = Выбор камеры
 prisoner-management-cell-index = Камера #{$index}
 prisoner-management-occupied = Занята
 prisoner-management-unequipped = Не оборудована
+prisoner-management-no-cells = Камеры не настроены
 prisoner-management-sentence = Срок: {$sentence} мин.
 prisoner-management-countdown-finished = Дело #{$case}: [color=green]Срок отбыт[/color]
 

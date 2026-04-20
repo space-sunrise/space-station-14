@@ -7,7 +7,6 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 
 namespace Content.Client._Sunrise.CriminalRecords.UI;
 
@@ -17,14 +16,12 @@ public sealed partial class PrisonerManagementConsoleWindow : FancyWindow
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     public Action<uint, uint, int>? OnStartIncarceration;
-    private readonly IGameTiming _timing;
     private Dictionary<int, bool> _cellOccupied = new();
 
     public PrisonerManagementConsoleWindow()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-        _timing = IoCManager.Resolve<IGameTiming>();
 
         var columnStyle = new StyleBoxFlat
         {
@@ -116,12 +113,15 @@ public sealed class CellSelectionDialog : DefaultWindow
     {
         Title = Loc.GetString("prisoner-management-select-cell");
         var grid = new GridContainer { Columns = 2, Margin = new Thickness(8), HSeparationOverride = 8, VSeparationOverride = 8 };
-        for (int i = 0; i < 10; i++)
+        
+        // Dynamic cell count based on the number of configured ports/sinks from the server
+        var cellCount = equipped.Count;
+        for (int i = 0; i < cellCount; i++)
         {
             var btn = new Button { Text = Loc.GetString("prisoner-management-cell-index", ("index", i + 1)), MinWidth = 100 };
 
-            bool isOccupied = occupied.GetValueOrDefault(i);
-            bool isEquipped = equipped.GetValueOrDefault(i, true); // Fallback to true if missing (though it shouldn't be)
+            bool isOccupied = occupied.GetValueOrDefault(i, false);
+            bool isEquipped = equipped.GetValueOrDefault(i, false); // Fail-Closed: must be explicitly true
 
             if (isOccupied)
             {
@@ -140,6 +140,12 @@ public sealed class CellSelectionDialog : DefaultWindow
             }
             grid.AddChild(btn);
         }
+        
+        if (cellCount == 0)
+        {
+            grid.AddChild(new Label { Text = Loc.GetString("prisoner-management-no-cells") });
+        }
+        
         Contents.AddChild(grid);
     }
 }
