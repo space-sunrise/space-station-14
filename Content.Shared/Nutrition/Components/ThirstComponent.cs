@@ -72,6 +72,26 @@ public sealed partial class ThirstComponent : Component
         {ThirstThreshold.Parched, "Parched"},
         {ThirstThreshold.Dead, "Parched"},
     };
+
+    // Sunrise-Start
+    [DataField]
+    public float ManglenessHealingOkay = -0.04f;
+
+    [DataField]
+    public float ManglenessHealingThirsty = -0.02f;
+
+    [DataField]
+    public float ManglenessDecayMultOverhydrated = 4.0f;
+
+    [DataField]
+    public float ManglenessDecayMultOkay = 4.0f;
+
+    [DataField]
+    public float ManglenessDecayMultThirsty = 2.0f;
+
+    [ViewVariables]
+    public bool HadMangleness;
+    // Sunrise-End
 }
 
 [Flags]

@@ -136,6 +136,8 @@
     speechSounds: Xenoborg
     allowedEmotes:
     - Laugh
+  - type: TTS
+    voice: Glados
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconXenoborg
@@ -159,8 +161,6 @@
     name: ghost-panel-antagonist-mothership-core-name
     description: ghost-panel-antagonist-mothership-core-description
     priority: 15
-  - type: TTS # Sunrise-Edit
-    voice: PortalGlados # Sunrise-Edit - it is THE mother core
   # Sunrise-End
   - type: MothershipCore
   - type: Tag

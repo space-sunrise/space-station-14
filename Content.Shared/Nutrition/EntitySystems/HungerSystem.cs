@@ -4,7 +4,10 @@ using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Alert;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
+using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
@@ -175,10 +178,13 @@ public sealed class HungerSystem : EntitySystem
             // Sunrise-Start
             // component.ActualDecayRate = component.BaseDecayRate * modifier;
             var sunriseModifier = modifier;
-            if (component.CurrentThreshold >= HungerThreshold.Okay)
-                sunriseModifier *= 4f;
-            else if (component.CurrentThreshold == HungerThreshold.Peckish)
-                sunriseModifier *= 2f;
+            if (HasMangleness(uid))
+            {
+                if (component.CurrentThreshold >= HungerThreshold.Okay)
+                    sunriseModifier *= component.ManglenessDecayMultOkay;
+                else if (component.CurrentThreshold == HungerThreshold.Peckish)
+                    sunriseModifier *= component.ManglenessDecayMultPeckish;
+            }
 
             component.ActualDecayRate = component.BaseDecayRate * sunriseModifier;
             // Sunrise-End
@@ -202,6 +208,18 @@ public sealed class HungerSystem : EntitySystem
             _damageable.TryChangeDamage(uid, damage, true, false);
         }
     }
+
+    // Sunrise-Start
+    private bool HasMangleness(EntityUid uid)
+    {
+        if (!TryComp<DamageableComponent>(uid, out var damageable))
+            return false;
+
+        var ent = new Entity<DamageableComponent>(uid, damageable);
+        return _damageable.TryGetDamageGreaterThan(ent, FixedPoint2.Zero, out var damage) &&
+               damage.DamageDict.GetValueOrDefault("Mangleness", 0) > 0;
+    }
+    // Sunrise-End
 
     /// <summary>
     /// Gets the hunger threshold for an entity based on the amount of food specified.
@@ -297,17 +315,28 @@ public sealed class HungerSystem : EntitySystem
             DoContinuousHungerEffects(uid, hunger);
 
             // Sunrise-Start
-            if (hunger.CurrentThreshold >= HungerThreshold.Okay)
+            var hasMangleness = HasMangleness(uid);
+
+            if (hasMangleness != hunger.HadMangleness)
             {
-                var damage = new DamageSpecifier();
-                damage.DamageDict.Add("Mangleness", -0.02);
-                _damageable.TryChangeDamage(uid, damage, true, false);
+                hunger.HadMangleness = hasMangleness;
+                DoHungerThresholdEffects(uid, hunger, force: true);
             }
-            else if (hunger.CurrentThreshold == HungerThreshold.Peckish)
+
+            if (hasMangleness)
             {
-                var damage = new DamageSpecifier();
-                damage.DamageDict.Add("Mangleness", -0.01);
-                _damageable.TryChangeDamage(uid, damage, true, false);
+                if (hunger.CurrentThreshold >= HungerThreshold.Okay)
+                {
+                    var heal = new DamageSpecifier();
+                    heal.DamageDict.Add("Mangleness", hunger.ManglenessHealingOkay);
+                    _damageable.TryChangeDamage(uid, heal, true, false);
+                }
+                else if (hunger.CurrentThreshold == HungerThreshold.Peckish)
+                {
+                    var heal = new DamageSpecifier();
+                    heal.DamageDict.Add("Mangleness", hunger.ManglenessHealingPeckish);
+                    _damageable.TryChangeDamage(uid, heal, true, false);
+                }
             }
             // Sunrise-End
         }

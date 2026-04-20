@@ -117,6 +117,23 @@ public sealed partial class HungerComponent : Component
     [DataField("starvationDamage")]
     public DamageSpecifier? StarvationDamage;
 
+    // Sunrise-Start
+    [DataField]
+    public float ManglenessHealingOkay = -0.04f;
+
+    [DataField]
+    public float ManglenessHealingPeckish = -0.02f;
+
+    [DataField]
+    public float ManglenessDecayMultOkay = 4.0f;
+
+    [DataField]
+    public float ManglenessDecayMultPeckish = 2.0f;
+
+    [ViewVariables]
+    public bool HadMangleness;
+    // Sunrise-End
+
     /// <summary>
     /// The time when the hunger threshold will update next.
     /// </summary>

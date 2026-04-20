@@ -15,8 +15,10 @@ using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Damage.Systems;
+using Content.Shared.FixedPoint;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
@@ -169,6 +171,18 @@ public sealed class ThirstSystem : EntitySystem
         }
     }
 
+    // Sunrise-Start
+    private bool HasMangleness(EntityUid uid)
+    {
+        if (!TryComp<DamageableComponent>(uid, out var damageable))
+            return false;
+
+        var ent = new Entity<DamageableComponent>(uid, damageable);
+        return _damageable.TryGetDamageGreaterThan(ent, FixedPoint2.Zero, out var damage) &&
+               damage.DamageDict.GetValueOrDefault("Mangleness", 0) > 0;
+    }
+    // Sunrise-End
+
     private void UpdateEffects(EntityUid uid, ThirstComponent component)
     {
         if (!_config.GetCVar(SunriseCCVars.MoodEnabled)
@@ -194,21 +208,29 @@ public sealed class ThirstSystem : EntitySystem
         var ev = new MoodEffectEvent("Thirst" + component.CurrentThirstThreshold);
         RaiseLocalEvent(uid, ev);
 
+        var hasMangleness = HasMangleness(uid);
+
         switch (component.CurrentThirstThreshold)
         {
             case ThirstThreshold.OverHydrated:
                 component.LastThirstThreshold = component.CurrentThirstThreshold;
                 // Sunrise-Start
-                // component.ActualDecayRate = component.BaseDecayRate * 1.2f;
-                component.ActualDecayRate = component.BaseDecayRate * 1.2f * 4f;
+                var overhydratedMult = 1.0f;
+                if (hasMangleness)
+                    overhydratedMult = component.ManglenessDecayMultOverhydrated;
+
+                component.ActualDecayRate = component.BaseDecayRate * 1.2f * overhydratedMult;
                 // Sunrise-End
                 return;
 
             case ThirstThreshold.Okay:
                 component.LastThirstThreshold = component.CurrentThirstThreshold;
                 // Sunrise-Start
-                // component.ActualDecayRate = component.BaseDecayRate;
-                component.ActualDecayRate = component.BaseDecayRate * 4f;
+                var okayMult = 1.0f;
+                if (hasMangleness)
+                    okayMult = component.ManglenessDecayMultOkay;
+
+                component.ActualDecayRate = component.BaseDecayRate * okayMult;
                 // Sunrise-End
                 return;
 
@@ -216,8 +238,11 @@ public sealed class ThirstSystem : EntitySystem
                 // Same as okay except with UI icon saying drink soon.
                 component.LastThirstThreshold = component.CurrentThirstThreshold;
                 // Sunrise-Start
-                // component.ActualDecayRate = component.BaseDecayRate * 0.8f;
-                component.ActualDecayRate = component.BaseDecayRate * 0.8f * 2f;
+                var thirstyMult = 1.0f;
+                if (hasMangleness)
+                    thirstyMult = component.ManglenessDecayMultThirsty;
+
+                component.ActualDecayRate = component.BaseDecayRate * 0.8f * thirstyMult;
                 // Sunrise-End
                 return;
             case ThirstThreshold.Parched:
@@ -251,17 +276,28 @@ public sealed class ThirstSystem : EntitySystem
             DoContinuousThirstEffects(uid, thirst);
 
             // Sunrise-Start
-            if (thirst.CurrentThirstThreshold >= ThirstThreshold.Okay)
+            var hasMangleness = HasMangleness(uid);
+
+            if (hasMangleness != thirst.HadMangleness)
             {
-                var damage = new DamageSpecifier();
-                damage.DamageDict.Add("Mangleness", -0.02);
-                _damageable.TryChangeDamage(uid, damage, true, false);
+                thirst.HadMangleness = hasMangleness;
+                UpdateEffects(uid, thirst);
             }
-            else if (thirst.CurrentThirstThreshold == ThirstThreshold.Thirsty)
+
+            if (hasMangleness)
             {
-                var damage = new DamageSpecifier();
-                damage.DamageDict.Add("Mangleness", -0.01);
-                _damageable.TryChangeDamage(uid, damage, true, false);
+                if (thirst.CurrentThirstThreshold >= ThirstThreshold.Okay)
+                {
+                    var heal = new DamageSpecifier();
+                    heal.DamageDict.Add("Mangleness", thirst.ManglenessHealingOkay);
+                    _damageable.TryChangeDamage(uid, heal, true, false);
+                }
+                else if (thirst.CurrentThirstThreshold == ThirstThreshold.Thirsty)
+                {
+                    var heal = new DamageSpecifier();
+                    heal.DamageDict.Add("Mangleness", thirst.ManglenessHealingThirsty);
+                    _damageable.TryChangeDamage(uid, heal, true, false);
+                }
             }
             // Sunrise-End
 

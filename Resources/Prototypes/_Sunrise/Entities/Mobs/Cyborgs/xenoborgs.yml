@@ -1,8 +1,8 @@
 - type: entity
   parent: [ BaseXenoborgChassis, BaseXenoborgTransponder ]
-  id: FishXenoReaper
+  id: XenoReaper
   name: reaper xenoborg
-  suffix: with brain, FISH
+  suffix: with brain
   description: A man-machine hybrid that aims to replicate itself. They love extracting brains to insert into fresh Xenoborg chassis to grow their army. This is a reaper type, a stealthy infiltration unit designed for sabotage and assassination.
   components:
   - type: BorgTransponder
@@ -37,13 +37,22 @@
       - MMIFilled
       borg_module:
       - XenoborgModuleBasic
+      - XenoborgModuleTool
+      - XenoborgModuleSword
+      - XenoborgModuleAccessBreaker
+      - XenoborgModuleJammer
   - type: Inventory
-    templateId: FishXenoborgReaper
+    templateId: XenoborgReaper
   - type: InventorySlots
   - type: Body
     prototype: Reaper
   - type: Hands
     showInHands: true
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
   - type: DamageStateVisuals
     states:
       Alive:
@@ -52,21 +61,19 @@
         Base: xeno_reaper_critical
       Dead:
         Base: xeno_reaper_dead
+  - type: Vocal
+    sounds:
+      Unsexed: Reaper
   - type: FootstepModifier
     footstepSoundCollection:
       collection: Footstep2CyborgLegs
       params:
-        volume: 5
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellXenoborgSmallPrinted
+        volume: -15
 
 - type: entity
-  parent: FishXenoReaper
-  id: FishXenoReaperPrinted
-  suffix: no brain, FISH
+  parent: XenoReaper
+  id: XenoReaperPrinted
+  suffix: no brain
   components:
   - type: ContainerFill
     containers:
@@ -75,3 +82,11 @@
       borg_module:
       - XenoborgModuleBasic
       - XenoborgModuleTool
+      - XenoborgModuleSword
+      - XenoborgModuleAccessBreaker
+      - XenoborgModuleJammer
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHighPrinted
