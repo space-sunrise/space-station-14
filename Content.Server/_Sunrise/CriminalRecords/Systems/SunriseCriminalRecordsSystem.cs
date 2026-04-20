@@ -7,6 +7,7 @@ using Content.Server._Sunrise.CriminalRecords.Components;
 using Content.Server.StationRecords.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.Laws;
+using Content.Shared.Access.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 
@@ -19,6 +20,12 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
+    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+
+    private const int MaxLaws = 20;
+    private const int MaxCircumstances = 10;
+    private const int MaxNotesLength = 2048;
+    private const string StandardLawsetId = "StandardCorporateLaw";
 
     public override void Initialize()
     {
@@ -49,13 +56,24 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
 
     private void OnSelectRecord(EntityUid uid, SunriseCriminalRecordsConsoleComponent component, SunriseCriminalRecordsSelectRecordMessage msg)
     {
+        if (!CheckAccess(uid, msg.Actor))
+            return;
+
         if (_station.GetOwningStation(uid) is not { } station)
             return;
 
         if (msg.RecordId == null)
+        {
             component.SelectedKey = null;
+        }
         else
-            component.SelectedKey = new StationRecordKey(msg.RecordId.Value, station);
+        {
+            var key = new StationRecordKey(msg.RecordId.Value, station);
+            if (!_stationRecords.TryGetRecord<GeneralStationRecord>(key, out _))
+                return;
+
+            component.SelectedKey = key;
+        }
 
         component.CurrentUIState = SunriseCriminalRecordsUIState.List;
         component.SelectedCaseId = null;
@@ -64,6 +82,9 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
 
     private void OnSelectCase(EntityUid uid, SunriseCriminalRecordsConsoleComponent component, SunriseCriminalRecordsSelectCaseMessage msg)
     {
+        if (!CheckAccess(uid, msg.Actor))
+            return;
+
         component.SelectedCaseId = msg.CaseId;
         component.CurrentUIState = SunriseCriminalRecordsUIState.Editor;
         UpdateUserInterface(uid, component);
@@ -71,6 +92,9 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
 
     private void OnCreateCase(EntityUid uid, SunriseCriminalRecordsConsoleComponent component, SunriseCriminalRecordsCreateCaseMessage msg)
     {
+        if (!CheckAccess(uid, msg.Actor))
+            return;
+
         if (component.SelectedKey == null)
             return;
 
@@ -95,35 +119,60 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
 
     private void OnSetUIState(EntityUid uid, SunriseCriminalRecordsConsoleComponent component, SunriseCriminalRecordsSetUIStateMessage msg)
     {
+        if (!CheckAccess(uid, msg.Actor))
+            return;
+
         component.CurrentUIState = msg.State;
         UpdateUserInterface(uid, component);
     }
 
     private void OnUpdateCase(EntityUid uid, SunriseCriminalRecordsConsoleComponent component, SunriseCriminalRecordsUpdateCaseMessage msg)
     {
-        if (component.SelectedKey == null)
+        if (!CheckAccess(uid, msg.Actor))
+            return;
+
+        if (component.SelectedKey == null || msg.CaseId != component.SelectedCaseId)
             return;
 
         if (TryComp<StationCriminalRecordsComponent>(component.SelectedKey.Value.OriginStation, out var records))
         {
-            var cases = records.Records.GetValueOrDefault(component.SelectedKey.Value.Id, new List<CriminalCase>());
-            var @case = component.SelectedCaseId == null
-                ? cases.FindLast(c => c.Status == CriminalCaseStatus.Open)
-                : cases.Find(c => c.Id == component.SelectedCaseId);
+            if (!records.Records.TryGetValue(component.SelectedKey.Value.Id, out var cases))
+                return;
 
-            if (@case != null && @case.Status == CriminalCaseStatus.Open && msg.CaseId == component.SelectedCaseId)
+            var @case = cases.Find(c => c.Id == msg.CaseId);
+
+            if (@case != null && @case.Status == CriminalCaseStatus.Open)
             {
-                // Validate laws and circumstances
-                @case.Laws = msg.Laws
-                    .Where(id => _proto.HasIndex<CorporateLawPrototype>(id))
-                    .Take(20)
-                    .ToList();
-                @case.Circumstances = msg.Circumstances
-                    .Where(id => _proto.HasIndex<CorporateLawPrototype>(id))
-                    .Take(10)
-                    .ToList();
+                // Validate limits
+                if (msg.Laws.Count > MaxLaws || msg.Circumstances.Count > MaxCircumstances)
+                    return;
 
-                @case.Notes = msg.Notes?.Length > 2048 ? msg.Notes.Substring(0, 2048) : msg.Notes;
+                if (msg.Notes?.Length > MaxNotesLength)
+                    return;
+
+                // Validate laws and circumstances against lawset
+                if (!_proto.TryIndex<CorporateLawsetPrototype>(StandardLawsetId, out var lawset))
+                    return;
+
+                var validatedLaws = new List<string>();
+                foreach (var lawId in msg.Laws)
+                {
+                    if (!IsLawInLawset(lawId, lawset))
+                        return; // Reject message if any ID is invalid
+                    validatedLaws.Add(lawId);
+                }
+
+                var validatedCircs = new List<string>();
+                foreach (var circId in msg.Circumstances)
+                {
+                    if (!IsCircumstanceInLawset(circId, lawset))
+                        return; // Reject message if any ID is invalid
+                    validatedCircs.Add(circId);
+                }
+
+                @case.Laws = validatedLaws;
+                @case.Circumstances = validatedCircs;
+                @case.Notes = msg.Notes;
                 @case.CalculatedSentence = CalculateSentence(@case, cases);
                 Dirty(component.SelectedKey.Value.OriginStation, records);
             }
@@ -134,18 +183,19 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
 
     private void OnCloseCase(EntityUid uid, SunriseCriminalRecordsConsoleComponent component, SunriseCriminalRecordsCloseCaseMessage msg)
     {
-        if (component.SelectedKey == null)
+        if (!CheckAccess(uid, msg.Actor))
+            return;
+
+        if (component.SelectedKey == null || msg.CaseId != component.SelectedCaseId)
             return;
 
         if (TryComp<StationCriminalRecordsComponent>(component.SelectedKey.Value.OriginStation, out var records))
         {
             if (records.Records.TryGetValue(component.SelectedKey.Value.Id, out var cases))
             {
-                var @case = component.SelectedCaseId == null
-                    ? cases.FindLast(c => c.Status == CriminalCaseStatus.Open)
-                    : cases.Find(c => c.Id == component.SelectedCaseId);
+                var @case = cases.Find(c => c.Id == msg.CaseId);
 
-                if (@case != null && @case.Status == CriminalCaseStatus.Open && msg.CaseId == component.SelectedCaseId)
+                if (@case != null && @case.Status == CriminalCaseStatus.Open)
                 {
                     @case.Status = CriminalCaseStatus.Closed;
                     @case.CalculatedSentence = CalculateSentence(@case, cases);
@@ -157,6 +207,29 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
         component.CurrentUIState = SunriseCriminalRecordsUIState.List;
         component.SelectedCaseId = null;
         UpdateUserInterface(uid, component);
+    }
+
+    private bool CheckAccess(EntityUid console, EntityUid? user)
+    {
+        if (user == null)
+            return false;
+
+        return _accessReader.IsAllowed(user.Value, console);
+    }
+
+    private bool IsLawInLawset(string lawId, CorporateLawsetPrototype lawset)
+    {
+        foreach (var sectionId in lawset.Articles)
+        {
+            if (_proto.TryIndex(sectionId, out var section) && section.Entries.Contains(lawId))
+                return true;
+        }
+        return false;
+    }
+
+    private bool IsCircumstanceInLawset(string circId, CorporateLawsetPrototype lawset)
+    {
+        return lawset.Circumstances.Contains(circId);
     }
 
     private void UpdateUserInterface(EntityUid uid, SunriseCriminalRecordsConsoleComponent component)

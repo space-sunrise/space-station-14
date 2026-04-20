@@ -10,6 +10,7 @@ using Content.Shared.DeviceLinking;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server._Sunrise.CriminalRecords.Components;
 using Content.Shared._Sunrise.Laws;
+using Content.Shared.Access.Systems;
 using Content.Shared.Access;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
@@ -29,6 +30,7 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
     [Dependency] private readonly PrisonTimerSystem _timer = default!;
     [Dependency] private readonly PrisonCellDoorSystem _door = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
 
     private const int NumCells = 10;
 
@@ -68,6 +70,9 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
 
     private void OnStartIncarceration(EntityUid uid, PrisonerManagementConsoleComponent component, PrisonerManagementStartIncarcerationMessage msg)
     {
+        if (!CheckAccess(uid, msg.Actor))
+            return;
+
         if (_station.GetOwningStation(uid) is not { } station)
             return;
 
@@ -237,6 +242,14 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
 
         if (cellIndex >= 0)
             SendCellSignals(uid, cellIndex, false, incar.PrisonerAccessId);
+    }
+
+    private bool CheckAccess(EntityUid console, EntityUid? user)
+    {
+        if (user == null)
+            return false;
+
+        return _accessReader.IsAllowed(user.Value, console);
     }
 
     private void UpdateUserInterface(EntityUid uid, PrisonerManagementConsoleComponent component)
