@@ -181,6 +181,18 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         // Sunrise edit start - dual-wield shot alternation
         var isDualWield = TryComp<DualWieldComponent>(user.Value, out var dualWield);
+
+        // Validate msg.Gun against the actually used weapon to reject stale/incorrect requests
+        var requestedGun = GetEntity(msg.Gun);
+        if (isDualWield && dualWield != null)
+        {
+            if (requestedGun != dualWield.LeftGun && requestedGun != dualWield.RightGun)
+                return;
+        }
+        else if (ent != requestedGun)
+        {
+            return;
+        }
         // Sunrise edit end
 
         // Sunrise-Start
@@ -204,6 +216,22 @@ public abstract partial class SharedGunSystem : EntitySystem
             var front = dualWield.GunQueue[0];
             dualWield.GunQueue.RemoveAt(0);
             dualWield.GunQueue.Add(front);
+
+            // Ensure the next gun in queue cannot fire until at least half a fire interval
+            // has passed. This guarantees strictly alternating shots and prevents both guns
+            // from firing on the same tick.
+            var nextGunUid = dualWield.GunQueue[0];
+            if (TryComp<GunComponent>(nextGunUid, out var nextGun))
+            {
+                var halfInterval = TimeSpan.FromSeconds(0.5 / gun.FireRateModified);
+                var earliest = Timing.CurTime + halfInterval;
+                if (nextGun.NextFire < earliest)
+                {
+                    nextGun.NextFire = earliest;
+                    DirtyField(nextGunUid, nextGun, nameof(GunComponent.NextFire));
+                }
+            }
+
             Dirty(user.Value, dualWield);
         }
         // Sunrise added end
@@ -224,8 +252,11 @@ public abstract partial class SharedGunSystem : EntitySystem
         // Sunrise added start - keep dual-wield shot counters in sync
         if (TryComp<DualWieldComponent>(user.Value, out var dualWield))
         {
-            StopDualWieldGun(dualWield.LeftGun);
-            StopDualWieldGun(dualWield.RightGun);
+            if (dualWield.LeftGun is { } leftUid && TryComp<GunComponent>(leftUid, out var leftGun))
+                StopShooting(leftUid, leftGun);
+
+            if (dualWield.RightGun is { } rightUid && TryComp<GunComponent>(rightUid, out var rightGun))
+                StopShooting(rightUid, rightGun);
         }
         // Sunrise added end
 
