@@ -32,7 +32,6 @@
   abstract: true
   components:
     - type: StationRecords
-    - type: StationCriminalRecords
 
 - type: entity
   id: BaseStationArrivals
