@@ -317,20 +317,38 @@
   description: A backpack that opens into a localized pocket of bluespace.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Backpacks/holding.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/holding.rsi # Sunrise-Edit
     state: holding
     layers:
     - state: holding
     - state: holding-unlit
       shader: unshaded
   - type: Clothing
-    equippedPrefix: holding
+    # Sunrise-Start
+    sprite: _Sunrise/Clothing/Back/Backpacks/holding.rsi
+    clothingVisuals:
+      back:
+      - state: holding-equipped-BACKPACK
+      - state: holding-equipped-BACKPACK-unlit
+        shader: unshaded
+    # Sunrise-End
   - type: Item
     size: Ginormous
+    # Sunrise-Start
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-unlit
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - state: inhand-right-unlit
+        shader: unshaded
+    # Sunrise-End
   - type: Storage
     maxItemSize: Huge
     grid:
-    - 0,0,19,9
+    - 0,0,17,7 # Sunrise-Edit
   # Sunrise-start
   - type: StaticPrice
     price: 700

@@ -900,8 +900,7 @@
     accent-formal-words-135: accent-formal-words-replace-135 # оцк -> офицер центрального командования
     accent-formal-words-136: accent-formal-words-replace-136 # исны -> офицеры исполнительной судебно-надзорной службы
     accent-formal-words-137: accent-formal-words-replace-137 # пнт -> представитель NanoTrasen
-    accent-formal-words-138: accent-formal-words-replace-138 # пункт -> пунктураз
-    accent-formal-words-139: accent-formal-words-replace-139 # нио -> рнд
+    accent-formal-words-139: accent-formal-words-replace-139 # рнд -> нио
     accent-formal-words-140: accent-formal-words-replace-140 # варденом -> смотрителем
     accent-formal-words-141: accent-formal-words-replace-141 # вард -> смотритель
     accent-formal-words-142: accent-formal-words-replace-142 # варден -> смотритель

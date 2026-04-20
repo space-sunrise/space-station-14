@@ -1863,7 +1863,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,16.5
       parent: 1
-- proto: AirlockExternalGlassPersonalShuttle
+- proto: AirlockExternalGlassShuttleArrivals
   entities:
   - uid: 457
     components:
@@ -15828,7 +15828,7 @@ entities:
     - type: Transform
       pos: 45.5,61.5
       parent: 1
-- proto: StationAnchorOff
+- proto: StationAnchor
   entities:
   - uid: 293
     components:

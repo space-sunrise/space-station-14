@@ -8,12 +8,11 @@
       sprite: _Sunrise/Clothing/Head/Helmets/security_medic.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/Head/Helmets/security_medic.rsi
-  # SUNRISE EDIT
     - type: Tag
       tags:
+      - Helmet
       - TopCovered # INTERACTIONS
       - WhitelistChameleon
-  # SUNRISE EDIT
 
 - type: entity
   parent: [HelmetSounds, ClothingHeadBase]
@@ -36,6 +35,7 @@
     - ClothMade
     - FullCovered # INTERACTIONS
     - WhitelistChameleon
+    - Helmet
 
 - type: entity
   parent: [ClothingHeadBase, BaseSecurityContraband, BaseFoldable]
@@ -72,6 +72,7 @@
     - ClothMade
     - FullCovered # INTERACTIONS
     - WhitelistChameleon
+    - Helmet
 
 # region ERT Amber EVA
 - type: entity
@@ -99,6 +100,7 @@
     tags:
     - WhitelistChameleon
     - HelmetEVA
+    - Helmet
   - type: FlashImmunity
   - type: EyeProtection
   - type: HideLayerClothing
@@ -119,6 +121,7 @@
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_OLD/eva_ert_leader.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_OLD/eva_ert_leader.rsi
+
 
 - type: entity
   parent: ClothingHeadEVAHelmetERTBase
@@ -211,6 +214,7 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Helmets/Amber_NEW/eva_ert_security.rsi
 
+
 - type: entity
   parent: ClothingHeadEVAHelmetERTBase
   id: ClothingHeadEVAHelmetERTNewMedic
@@ -291,9 +295,8 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.95
-  # SUNRISE EDIT
   - type: Tag
     tags:
     - TopCovered # INTERACTIONS
     - WhitelistChameleon
-  # SUNRISE EDIT
+    - Helmet

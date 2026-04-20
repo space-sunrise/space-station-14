@@ -2,6 +2,7 @@
 
 uplink-core-extraction-toolbox-name = Набор инструментов для извлечения ядра
 uplink-core-extraction-toolbox-desc = Ящик с инструментами, в котором есть все необходимое для извлечения плутониевого сердечника ядерной бомбы. Инструкции в комплект не входят.
+uplink-exploding-syndicate-empbomb-desc = Большая закреплённая ЭМИ-бомба, которая выводит электронику из строя, если её вовремя не обезвредить. Таймер настраивается, минимальное значение — 180 секунд; идеально подходит для выведения инфраструктуры из строя.
 
 ## Magazines
 
@@ -12,18 +13,28 @@ uplink-breaching-magazine-desc = Барабанный магазин, заряж
 uplink-magazine-bulldog-incendiary-desc = Барабанный магазин на 8 патронов зажигательной дроби, легко превращает гражданских в горящие спички.
 uplink-magazine-lmg-name = Коробка патронов (.30 винтовочные)
 uplink-magazine-lmg-desc = Коробка патронов на 100 выстрелов. Совместим с "L6-SAW".
-uplink-grenade-frag-timer-name = безконтактная Осколочная граната
-uplink-grenade-frag-timer-desc = Осколочная граната. Совместима с "China-Lake" и "GL-70". Взрывается через 2 секунды после выстрела.
-uplink-grenade-blast-timer-name = безконтактная Фугасная граната
-uplink-grenade-blast-timer-desc = Фугасная граната. Совместима с "China-Lake" и "GL-70". Взрывается через 2 секунды после выстрела.
-uplink-grenade-emp-timer-name = безконтактная ЭМИ граната
-uplink-grenade-emp-timer-desc = ЭМИ граната. Совместима с "China-Lake" и "GL-70". Взрывается через 2 секунды после выстрела.
-uplink-grenade-frag-contact-name = контактная Осколочная граната
-uplink-grenade-frag-contact-desc = Осколочная граната. Совместима с "China-Lake" и "GL-70". Взрывается при контакте с целью.
-uplink-grenade-blast-contact-name = контактная Фугасная граната
-uplink-grenade-blast-contact-desc = Фугасная граната. Совместима с "China-Lake" и "GL-70". Взрывается при контакте с целью.
-uplink-grenade-emp-contact-name = контактная ЭМИ граната
-uplink-grenade-emp-contact-desc = ЭМИ граната. Совместима с "China-Lake" и "GL-70". Взрывается при контакте с целью.
+uplink-grenade-frag-timer-name = кассета осколочных гранат с таймером
+uplink-grenade-frag-timer-desc = Кассета на 5 осколочных гранат. Совместима с "China-Lake" и "GL-70". Взрываются через 2 секунды после выстрела.
+uplink-grenade-blast-timer-name = кассета фугасных гранат с таймером
+uplink-grenade-blast-timer-desc = Кассета на 5 фугасных гранат. Совместима с "China-Lake" и "GL-70". Взрываются через 2 секунды после выстрела.
+uplink-grenade-emp-timer-name = кассета ЭМИ-гранат с таймером
+uplink-grenade-emp-timer-desc = Кассета на 5 ЭМИ-гранат. Совместима с "China-Lake" и "GL-70". Взрываются через 2 секунды после выстрела.
+uplink-grenade-frag-contact-name = кассета контактных осколочных гранат
+uplink-grenade-frag-contact-desc = Кассета на 5 осколочных гранат. Совместима с "China-Lake" и "GL-70". Взрываются при контакте с целью.
+uplink-grenade-blast-contact-name = кассета контактных фугасных гранат
+uplink-grenade-blast-contact-desc = Кассета на 5 фугасных гранат. Совместима с "China-Lake" и "GL-70". Взрываются при контакте с целью.
+uplink-grenade-emp-contact-name = кассета контактных ЭМИ-гранат
+uplink-grenade-emp-contact-desc = Кассета на 5 ЭМИ-гранат. Совместима с "China-Lake" и "GL-70". Взрываются при контакте с целью.
+uplink-grenade-frag-name = кассета осколочных гранат
+uplink-grenade-frag-desc = Кассета на 5 осколочных гранат. Совместима с "China-Lake".
+uplink-grenade-blast-name = кассета фугасных гранат
+uplink-grenade-blast-desc = Кассета на 5 фугасных гранат. Совместима с "China-Lake".
+uplink-grenade-launcher-frag-extended-ammo-name = кассета артиллерийских осколочных снарядов
+uplink-grenade-launcher-frag-extended-ammo-desc = Расширенная кассета на 15 осколочных снарядов. Подходит только для стационарных орудий "Дружба" и "Дастер".
+uplink-grenade-launcher-blast-extended-ammo-name = кассета артиллерийских фугасных снарядов
+uplink-grenade-launcher-blast-extended-ammo-desc = Расширенная кассета на 15 фугасных снарядов. Подходит только для стационарных орудий "Дружба" и "Дастер".
+uplink-grenade-launcher-emp-extended-ammo-name = кассета артиллерийских ЭМИ-снарядов
+uplink-grenade-launcher-emp-extended-ammo-desc = Расширенная кассета на 15 ЭМИ-снарядов. Подходит только для стационарных орудий "Дружба" и "Дастер".
 uplink-magazine-siar52-name = Магазин ПП (.25 безгильзовый)
 uplink-magazine-siar52-desc = Магазин ПП на 30 патронов. Совместим с SIAR-52.
 uplink-magazine-bauer127-extended-name = расширенный магазин Bauer127 (15мм антиматериальные)
@@ -44,6 +55,8 @@ uplink-pistol-magnum-magazine-name = Магазин (.45 магнум SP)
 uplink-pistol-magnum-magazine-desc = 7-зарядный однорядный магазин для пистолета. Содержит патроны SP. Совместим с "Диглом".
 uplink-pistol-magnum-magazine-ap-name = Магазин (.45 магнум бронебойные)
 uplink-pistol-magnum-magazine-ap-desc = 7-зарядный однорядный магазин для пистолета. Содержит бронебойные патроны. Совместим с "Диглом".
+uplink-pistol-stechkin-magazine-name = пистолетный магазин .40
+uplink-pistol-stechkin-magazine-desc = Пистолетный магазин на 10 патронов, совместим с пистолетами серии Стечкин.
 uplink-pistol-magazine-c40r-desc = Магазин ПП на 24 патрона. Совместим с C-40r.
 uplink-skm28-ammo-desc = Винтовочный магазин на 20 патронов. Совместим с SKM-28.
 uplink-skm24-ammo-desc = Винтовочный магазин на 30 патронов 7,62x39. Совместим с SKM-24.
@@ -52,13 +65,13 @@ uplink-estoc-ammo-desc = Магазин на 25 патронов. Совмест
 ## Weapon (Sunrise)
 uplink-c40r-bundle-name = Набор "C-40r"
 uplink-c40r-bundle-desc = Более старый: Культовый пистолет-пулемет C-40r в комплекте с тремя магазинами тяжелого калибра.
-uplink-c40r-name = C-40r биокодированный
+uplink-c40r-name = C-40r
 uplink-c40r-desc = Культовый пистолет-пулемет C-40r в комплекте с коробкой стандартных патронов 40-го калибра.
 
-uplink-magazine-127-desc = Магазин Bauer SR-127 на 7 патронов предназначеных для уничтожения мехов, киборгов или стркутур таких как решетки и окна, пары попаданий достаточно для пролома стены.
-uplink-magazine-127pen-desc = Магазин Bauer SR-127 на 7 патронов предназначеных для ликвидации защищенных противников а так же целей за укрытиями и стенами, прекрасно сочетаются с термальным зрением.
-uplink-magazine-127emp-desc = Магазин Bauer SR-127 на 7 патронов предназначеных для вывода из строя электроники, отключения датчиков а так же глушения радио сигнала, наносят повреждения мехам и отключает модули в радиусе 2-х клеток от попадания.
-uplink-magazine-127frag-desc = Магазин Bauer SR-127 на 7 патронов предназначеных для поражения живой силы противника осколками после небольшого взрыва, помните о технике безопасности и носите очки.
+uplink-magazine-15-desc = Магазин Bauer SR-127 на 7 патронов предназначенных для уничтожения мехов, киборгов или структур таких как решетки и окна, пары попаданий достаточно для пролома стены.
+uplink-magazine-127pen-desc = Магазин Bauer SR-127 на 7 патронов предназначенных для ликвидации защищенных противников а так же целей за укрытиями и стенами, прекрасно сочетаются с термальным зрением.
+uplink-magazine-127emp-desc = Магазин Bauer SR-127 на 7 патронов предназначенных для вывода из строя электроники, отключения датчиков а так же глушения радио сигнала, наносят повреждения мехам и отключает модули в радиусе 2-х клеток от попадания.
+uplink-magazine-127frag-desc = Магазин Bauer SR-127 на 7 патронов предназначенных для поражения живой силы противника осколками после небольшого взрыва, помните о технике безопасности и носите очки.
 uplink-magazine-127blast-desc = Магазин Bauer SR-127 на 7 патронов. Удачи, не подорвите сами себя.
 uplink-sniper-ammo-pen-desc = Коробка с 14 патронами для снайперской винтовки Христов или SR-127. Содержит бронебойные патроны.
 uplink-sniper-ammo-emp-desc = Коробка с 14 патронами для снайперской винтовки Христов или SR-127. Содержит ЭМИ патроны.
@@ -98,11 +111,17 @@ uplink-clothing-chameleon-thieving-gloves-name = Воровские перчат
 uplink-clothing-chameleon-thieving-gloves-desc = Незаметно обчищайте карманы и повышайте свой навык воровства с помощью этих новых модных перчаток, которые могут менять свой облик! Учтите что волокна остануться уникальные для этих перчаток.
 uplink-50blessing-name = Подарочный набор 50 благословений
 uplink-50blessing-desc = Для агентов, которые хотят скрыть свою личность стильно, с любовью от Егора Семёнова
+uplink-clothing-murder-socks-name = чулочки убийцы
+uplink-clothing-murder-socks-desc = для агента что по настоящему шарит за стиль
+uplink-syndie-maid-raid-name = рейдерка горничной
+uplink-syndie-maid-raid-desc = синдикат разработал это специально для агентов женского пола, но носят это почему-то одни мужики
 ## Weapon
 uplink-swat-helmet-syndicate-name = Шлем Спецназа
 uplink-swat-helmet-syndicate-desc = Прочный шлем, созданный специально для тех, кто ценит целостность своей головы и конфиденциальность своих коварных замыслов. Окрашен в фирменные цвета спецназа Синдиката.
 uplink-syndicate-rapier-name = Рапира Синдиката
 uplink-syndicate-rapier-desc = Элегантная рапира из пластитана с алмазным остриём, созданная для точечных и смертельных ударов. При умелом использовании способна игнорировать большинство видов индивидуальной защиты. Поставляется в собственных ножнах.
+uplink-homerun-bat-name = Бита «Хоум-ран»
+uplink-homerun-bat-desc = Отправляйте врагов в полёт. Хей, бей, бей, бей, БЕЙ!
 uplink-clothing-backpack-syndie-aj100-name = Набор ПП AJ-100
 uplink-clothing-backpack-syndie-aj100-desc = Включает в себя пистолет-пулемёт AJ-100 что имеет универсальную шахту магазина и может использовать большинство магазинов для ПП и пистолетов и два магазина безгильзовых патронов в наборе.
 uplink-aj100-name = AJ-100
@@ -115,7 +134,7 @@ uplink-weapon-syndie-laser-pistol-name = SAM-300
 uplink-clothing-backpack-syndie-dl6902-name = Набор DL6902
 uplink-clothing-backpack-syndie-dl6902-desc = Включает в себя пулемёт DL6902 и один дополнительный короб.
 uplink-power-backpack-dl6902-name = DL6902 с патронным рюкзаком
-uplink-power-backpack-dl6902-desc = DL6902 переделанный под питание длинной лентой прямиком из рюкзака, рюкзак содержит 1200 патронов 7,62х39мм FMJ.
+uplink-power-backpack-dl6902-desc = DL6902 переделанный под питание длинной лентой прямиком из рюкзака, рюкзак содержит 900 патронов 7,62х39мм FMJ.
 uplink-clothing-backpack-syndie-siar52-name = Набор SIAR-52
 uplink-clothing-backpack-syndie-siar52-desc = Включает в себя SIAR-52 что оборудован интегрированым глушителем. и два магазина безгильзовых патрон.
 uplink-siar52-name = SIAR-52
@@ -126,6 +145,8 @@ uplink-weapon-ussp-dmr-name = Драгунов
 uplink-weapon-ussp-dmr-desc = снайперская винтовка под патроны калибра 7,62x54R. Полностью предназначена для стрельбы на дальние дистанции.
 uplink-deagle-name = пистолет «Desert Eagle»
 uplink-deagle-desc = Cерьёзный аргумент в споре. Выгравировано: Мир благодаря превосходящей огневой мощи".
+uplink-deagle-bundle-name = набор «Desert Eagle»
+uplink-deagle-bundle-desc = Cерьёзный аргумент в споре. содержит пистолет и два бронебойных магазина.
 uplink-goldendeagle-name = Золотой Десерт Игл
 uplink-goldendeagle-desc = Использует патрон «магнум» 45-го калибра. Выгравировано: "Все, что у меня осталось от него в памяти — это два позолоченных Desert Eagle 45-го калибра".
 uplink-mini-energy-crossbow-name = энерго-арбалет биокодированный
@@ -134,6 +155,12 @@ uplink-energy-crossbow-name = большой энерго-арбалет
 uplink-energy-crossbow-desc = Главное оружие оперативника, предпочитающего неподвижные цели. Стреляет регенерирующими токсичными болтами, мгновенно валящими жертву на пол и дополнительно отравляющими цель.
 uplink-pistoltec9-name = Tac-Tec
 uplink-pistoltec9-desc = Очень дешёвый в производстве и очень простой в использовании, надёжный как SKM-24.
+uplink-uzi-name = пистолет-пулемёт Узи
+uplink-uzi-desc = Лёгкий и культовый пистолет-пулемёт с большим магазином и скорострельностью.
+uplink-SyndieBreachingHammer-name = молот
+uplink-SyndieBreachingHammer-desc = Большой, тяжёлый молот с длинной рукоятью: камень, череп, стена или кость для него одинаковы.
+uplink-stechkin-aps-name = Стечкин АПС
+uplink-stechkin-aps-desc = Высококачественное огнестрельное оружие на мощном калибре, созданное для по-настоящему особенных агентов.
 uplink-cornivoregloves-name = Перчатки алой жатвы корниворы
 uplink-cornivoregloves-desc = Мы не можем сказать, жаждете ли вы крови... но эти перчатки - определённо да. Каждый коготь - это хирургический инструмент для кровопускания, заполняющий свою цель нашим фирменным химическим коктейлем. Ваша жертва будет истекать и истекать и истекать... пока вы обдумываете следующий надрез. Помните: красный - это новый чёрный. И он вечно в моде.
 uplink-grenade-launcher-m79-name = М79
@@ -171,6 +198,8 @@ uplink-anomaly-auto-injector-popup-pending = Кожа не поддаётся и
 uplink-anomaly-auto-injector-popup-infected = Кожа не поддаётся инъекции!
 uplink-xeno-artifact-throwing-auto-injector-name = Метательный автоинъектор артефакта
 uplink-xeno-artifact-throwing-auto-injector-desc = Метательно-складное устройство одноразового применения. При попадании в живое существо вонзается и вживляет частицы артефакта. Не действует на синтетиков.
+uplink-roboticist-nuclear-operative-id-card-name = Оперативная ID-карта робототехника
+uplink-roboticist-nuclear-operative-id-card-desc = ID-карта робототехника со штатными доступами профессии и дополнительным доступом Синдиката.
 
 ## Mechs equipment
 
@@ -221,7 +250,8 @@ uplink-stimpack-implanter-name = Имплантер Стимпак
 uplink-stimpack-implanter-desc = Двухзарядный имплант с мощным стимулятором. Перезарядка зарядов 4 минуты.
 uplink-nutriment-implanter-name = Имплантер Питания
 uplink-nutriment-implanter-desc = Одноразовый имплант для быстрого восстановления: витамины, физраствор и питательные вещества. Перезарядка 3 минуты. Ты не ты, когда голоден. Подкрепись!
-
+uplink-reviver-implanter-name = Имплантер Реаниматор
+uplink-reviver-implanter-desc = Стимулирует выброс адреналина точечным разрядом в сердце и коктейлем реагентов. При входе в критическое состояние вводится автоматически. Теоретически вы не умрёте, на практике вас добьют.
 ## Ammo Kits and Bundle
 
 uplink-ammo-crate-ammokit-bundle-name = ящик супер набора боеприпасов синдиката
@@ -262,3 +292,30 @@ uplink-syndicate-teleporter-desc = Экспериментальное устро
 
 ## Disruption
 
+uplink-cleaner-kit-name = Набор уборщика
+uplink-cleaner-kit-desc = Уберите любые улики. Содержит пару космо-очистителей, две гранаты и кусочек мыла. К сожалению без вилки..
+
+# OTHER
+uplink-reinforcement-radio-syndicate-cyborg-infiltrator-name = Телепорт подкрепления киборга Инфильтратора
+uplink-reinforcement-radio-syndicate-cyborg-infiltrator-desc = Отправляет вам в поддержку борга синдиката.
+
+uplink-stechkin-bundle-name = Набор матёрого оперативника
+uplink-stechkin-bundle-desc = Загадочная картонная коробка, набитая снаряжением только для самых матёрых оперативников.
+uplink-switchblade-name = Выкидной нож
+uplink-switchblade-desc = Дешёвый нож, который быстро переключает людей из состояния «жив» в состояние «не очень».
+uplink-x4-name = Взрывчатка X-4
+uplink-x4-desc = Используется, чтобы проделывать еще более большие дыры там, где вы это очень хотите.
+uplink-x4-bundle-name = Набор X-4
+uplink-x4-bundle-desc = Набор из восьми зарядов X-4. Похоже, вы действительно хотите разнести что-то к чертям.
+uplink-shuttle-board-name = плата консоли шаттла синдиката
+uplink-shuttle-board-desc = Печатная плата для консоли шаттла синдиката.
+uplink-shuttle-bundle-name = ящик сборки шаттла
+uplink-shuttle-bundle-desc = Всё, кроме платы шаттла. Шаттл в ящике* (Требуется сборка).
+uplink-friendship-bundle-name = ящик «Дружба»
+uplink-friendship-bundle-desc = Дружба в удобном ящике*. (Требуется сборка).
+uplink-bullfrog-bundle-name = ящик EXP-3600g «Жабык»
+uplink-bullfrog-bundle-desc = Набор с комплектующими для сборки шаттл-пушки EXP-3600g «Жабык».
+uplink-longbow-bundle-name = ящик BAL-15 «Лонгбоу»
+uplink-longbow-bundle-desc = Набор с комплектующими для сборки шаттл-пушки BAL-15 «Лонгбоу».
+uplink-quadling-bundle-name = ящик BAL-15-4 «Квадлинг»
+uplink-quadling-bundle-desc = Набор с комплектующими для сборки шаттл-пушки BAL-15-4 «Квадлинг».

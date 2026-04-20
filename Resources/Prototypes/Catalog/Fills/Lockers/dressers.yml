@@ -29,6 +29,7 @@
         - id: ClothingHeadHatBeretEngineering
         - id: ClothingOuterWinterCE
         - id: ClothingNeckCloakCe
+        - id: ClothingNeckCloakLegacyCe # Sunrise-edit
 
 - type: entity
   id: DresserChiefMedicalOfficerFilled
@@ -116,6 +117,7 @@
         - id: ClothingOuterWinterRD
         - id: ClothingOuterCoatRD
         - id: ClothingNeckCloakRd
+        - id: ClothingNeckCloakLegacyRd # Sunris-edit
 
 - type: entity
   id: DresserWardenFilled

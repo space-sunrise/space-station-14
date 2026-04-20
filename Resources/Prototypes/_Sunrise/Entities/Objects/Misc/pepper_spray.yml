@@ -97,7 +97,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Effects/pepperSpray.rsi
+    sprite: _Sunrise/Effects/pepper_spray.rsi
     layers:
     - state: spray
       map: [ "enum.VaporVisualLayers.Base" ]

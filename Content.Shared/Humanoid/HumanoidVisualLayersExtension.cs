@@ -43,6 +43,10 @@ namespace Content.Shared.Humanoid
                     yield return HumanoidVisualLayers.FacialHair;
                     yield return HumanoidVisualLayers.Snout;
                     yield return HumanoidVisualLayers.SnoutCover;
+                    // Sunrise - Start
+                    yield return HumanoidVisualLayers.Dreadlocks;
+                    yield return HumanoidVisualLayers.Rings;
+                    // Sunrise - End
                     break;
                 case HumanoidVisualLayers.Snout:
                     yield return HumanoidVisualLayers.Snout;
@@ -87,6 +91,12 @@ namespace Content.Shared.Humanoid
                     // use the Sublayers method to hide the rest of the parts,
                     // if that's what you're looking for
                     return HumanoidVisualLayers.Head;
+                // Sunrise - Start
+                case BodyPartType.Dreadlocks:
+                    return HumanoidVisualLayers.Dreadlocks;
+                case BodyPartType.Rings:
+                    return HumanoidVisualLayers.Rings;
+                // Sunrise - End
                 case BodyPartType.Arm:
                     switch (part.Symmetry)
                     {
@@ -133,7 +143,6 @@ namespace Content.Shared.Humanoid
                         case BodyPartSymmetry.Right:
                             return HumanoidVisualLayers.RFoot;
                     }
-
                     break;
             }
 

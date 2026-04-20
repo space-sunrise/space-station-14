@@ -143,7 +143,8 @@ public sealed partial class DungeonJob
 
                 if (groupSize > 0)
                 {
-                    _sawmill.Warning($"Found remaining group size for ore veins of {gen.Replacement ?? "null"}!");
+                    // Sunrise-Edit: Да идите вы нахуй
+                    //_sawmill.Warning($"Found remaining group size for ore veins of {gen.Replacement ?? "null"}!");
                 }
             }
         }

@@ -47,7 +47,7 @@
       effects:
       - !type:Polymorph
         prototype: ChangelingStingHuman
-        probability: 0.083
+        probability: 0.0277
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
@@ -62,7 +62,7 @@
           min: 25
       - !type:Polymorph
         prototype: ChangelingStingReptilian
-        probability: 0.167
+        probability: 0.0557
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
@@ -77,7 +77,7 @@
           min: 25
       - !type:Polymorph
         prototype: ChangelingStingTajaran
-        probability: 0.25
+        probability: 0.0833
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
@@ -92,7 +92,7 @@
           min: 25
       - !type:Polymorph
         prototype: ChangelingStingSlime
-        probability: 0.333
+        probability: 0.111
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
@@ -107,7 +107,7 @@
           min: 25
       - !type:Polymorph
         prototype: ChangelingStingMoth
-        probability: 0.417
+        probability: 0.139
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
@@ -122,7 +122,7 @@
           min: 25
       - !type:Polymorph
         prototype: ChangelingStingSwine
-        probability: 0.5
+        probability: 0.1667
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
@@ -137,7 +137,7 @@
           min: 25
       - !type:Polymorph
         prototype: ChangelingStingResomi
-        probability: 0.583
+        probability: 0.1943
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
@@ -152,7 +152,7 @@
           min: 25
       - !type:Polymorph
         prototype: ChangelingStingVox
-        probability: 0.667
+        probability: 0.2223
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
@@ -167,7 +167,7 @@
           min: 25
       - !type:Polymorph
         prototype: ChangelingStingVulpkanin
-        probability: 0.75
+        probability: 0.25
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
@@ -182,7 +182,7 @@
           min: 25
       - !type:Polymorph
         prototype: ChangelingStingFelinid
-        probability: 0.833
+        probability: 0.2777
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
@@ -197,7 +197,7 @@
           min: 25
       - !type:Polymorph
         prototype: ChangelingStingHumanoidXeno
-        probability: 0.917
+        probability: 0.3057
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise
@@ -212,7 +212,7 @@
           min: 25
       - !type:Polymorph
         prototype: ChangelingStingHumanRename
-        probability: 1
+        probability: 0.3333
         conditions:
         - !type:ReagentCondition
           reagent: ChangelingStingSunrise

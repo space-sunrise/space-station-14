@@ -48,6 +48,8 @@
       visualState: stun
       magState: stun
       heldPrefix: stun4
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 - type: entity
   name: dominator
@@ -105,6 +107,8 @@
     - proto: RedMediumLaser
       fireCost: 125
       magState: lethal
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 - type: entity
   name: X-01 multiphase energy gun
@@ -155,34 +159,15 @@
       visualState: kill-unshaded
       heldPrefix: lethal
     - proto: DestroyBeam
-      fireCost: 300
+      fireCost: 175
       magState: destroy
       visualState: destroy-unshaded
       heldPrefix: destroy
-      conditions:
-      - !type:AlertLevelCondition
-        alertLevels:
-        - violet
-        - yellow
-        - red
-        - gamma
-        - epsilon
-        - delta
     - proto: BulletEMP
       fireCost: 300
       magState: ion
       visualState: ion-unshaded
       heldPrefix: special
-      conditions:
-      - !type:AlertLevelCondition
-        alertLevels:
-        - violet
-        - yellow
-        - red
-        - gamma
-        - epsilon
-        - delta
-        - blue
   - type: Gun
     selectedMode: SemiAuto
     availableModes:

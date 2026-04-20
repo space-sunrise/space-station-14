@@ -225,6 +225,19 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
+  id: ComputerGunneryCircuitboard
+  name: gunnery console board
+  description: A computer printed circuit board for a gunnery console.
+  components:
+  - type: Sprite
+    state: cpu_security
+  - type: ComputerBoard
+    prototype: ComputerGunnery
+  - type: StaticPrice
+    price: 750
+
+- type: entity
+  parent: BaseComputerCircuitboard
   id: FPIATMComputerCircuitboard
   name: FPI ATM board
   description: A computer printed circuit board for a FPI ATM cabinet.

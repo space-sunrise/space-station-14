@@ -186,7 +186,7 @@
     - id: ClothingMaskGasAtmos
     - id: ClothingOuterHardsuitEngineeringWhite
     - id: ClothingShoesBootsMagAdv
-    - id: JetpackVoidFilled
+    - id: JetpackVoidEngineerFilled # Sunrise edit
     - id: OxygenTankFilled
 
 # No hardsuit locker
@@ -340,7 +340,7 @@
     - id: ClothingBeltSecurityFilled
     - id: ClothingEyesGlassesSecurity
     - id: ClothingHeadsetAltSecurity
-    - id: ClothingOuterCoatHoSTrench
+    #- id: ClothingOuterCoatHoSTrench  # Sunrise-Edit
     - id: ClothingShoesBootsJack
     - id: FlashlightSeclite
     - id: DoorRemoteSecurity

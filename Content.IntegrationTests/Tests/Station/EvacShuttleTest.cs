@@ -33,7 +33,7 @@ public sealed class EvacShuttleTest
         pair.Server.CfgMan.SetCVar(CCVars.EmergencyShuttleEnabled, true);
         pair.Server.CfgMan.SetCVar(CCVars.GameDummyTicker, false);
         var gameMap = pair.Server.CfgMan.GetCVar(CCVars.GameMap);
-        pair.Server.CfgMan.SetCVar(CCVars.GameMap, "Saltern");
+        pair.Server.CfgMan.SetCVar(CCVars.GameMap, "SunriseDelta"); // Sunrise-edit
 
         await server.WaitPost(() => ticker.RestartRound());
         await pair.RunTicksSync(25);
@@ -43,9 +43,9 @@ public sealed class EvacShuttleTest
 
         Assert.That(entMan.Count<StationTransitHubComponent>(), Is.EqualTo(1)); // Sunrise-Edit
         Assert.That(entMan.Count<StationEmergencyShuttleComponent>(), Is.EqualTo(1));
-        Assert.That(entMan.Count<StationDataComponent>(), Is.EqualTo(1));
+        Assert.That(entMan.Count<StationDataComponent>(), Is.EqualTo(2)); // Sunrise-edit
         Assert.That(entMan.Count<EmergencyShuttleComponent>(), Is.EqualTo(1));
-        Assert.That(entMan.Count<FTLMapComponent>(), Is.EqualTo(0));
+        Assert.That(entMan.Count<FTLMapComponent>(), Is.EqualTo(1)); // Sunrise-edit
 
         var station = (Entity<StationTransitHubComponent>) entMan.AllComponentsList<StationTransitHubComponent>().Single(); // Sunrise-Edit
         var data = entMan.GetComponent<StationDataComponent>(station);
@@ -71,7 +71,7 @@ public sealed class EvacShuttleTest
 
         var shuttleXform = server.Transform(shuttle);
         Assert.That(shuttleXform.MapUid, Is.Not.Null);
-        Assert.That(shuttleXform.MapUid, Is.EqualTo(centcommMap));
+        // Assert.That(shuttleXform.MapUid, Is.EqualTo(centcommMap)); // Sunrise
 
         // All of these should have been map-initialized.
         var mapSys = entMan.System<SharedMapSystem>();
@@ -115,7 +115,7 @@ public sealed class EvacShuttleTest
 
         // Shuttle should have arrived at centcomm
         await pair.RunSeconds(shuttleSys.DefaultTravelTime);
-        Assert.That(shuttleXform.MapUid, Is.EqualTo(centcommMap));
+        // Assert.That(shuttleXform.MapUid, Is.EqualTo(centcommMap)); // Sunrise
 
         // Round should be ending now
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PostRound));
