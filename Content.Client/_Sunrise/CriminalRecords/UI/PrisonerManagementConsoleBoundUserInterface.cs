@@ -1,5 +1,6 @@
 using Content.Shared._Sunrise.CriminalRecords;
 using Robust.Client.GameObjects;
+using Robust.Client.UserInterface;
 
 namespace Content.Client._Sunrise.CriminalRecords.UI;
 
@@ -14,10 +15,8 @@ public sealed class PrisonerManagementConsoleBoundUserInterface : BoundUserInter
     protected override void Open()
     {
         base.Open();
-
-        _window = new PrisonerManagementConsoleWindow(this);
-        _window.OnClose += Close;
-        _window.OpenCentered();
+        _window = this.CreateWindow<PrisonerManagementConsoleWindow>();
+        _window.OnStartIncarceration += StartIncarceration;
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -35,10 +34,4 @@ public sealed class PrisonerManagementConsoleBoundUserInterface : BoundUserInter
         SendMessage(new PrisonerManagementStartIncarcerationMessage(recordId, caseId, cellIndex));
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-        if (disposing)
-            _window?.Dispose();
-    }
 }

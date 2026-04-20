@@ -536,6 +536,7 @@
 # Lawsets
 - type: corporateLawset
   id: StandardCorporateLaw
+  permanentSentenceThreshold: 50
   provisions: [ProvisionOPRS, ProvisionOPRA, ProvisionSentences]
   circumstances: [ProvisionMitigating, ProvisionAggravating, CircCooperation, CircNoIntent, CircAdmission, CircSelfSurrender, CircNecessity, CircHypnosis, CircSafetyThreat, CircIncompetence, CircRefusal, CircConsequences, CircOfficialMisconduct, CircIntoxication]
   articles: [Section1xx, Section2xx, Section3xx, Section4xx, Section5xx, Section6xx]

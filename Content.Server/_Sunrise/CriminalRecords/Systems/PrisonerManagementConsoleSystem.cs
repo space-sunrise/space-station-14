@@ -9,6 +9,7 @@ using Content.Shared.StationRecords;
 using Content.Shared.DeviceLinking;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server._Sunrise.CriminalRecords.Components;
+using Content.Shared._Sunrise.Laws;
 using Content.Shared.Access;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
@@ -27,6 +28,7 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
     [Dependency] private readonly PrisonLockerSystem _locker = default!;
     [Dependency] private readonly PrisonTimerSystem _timer = default!;
     [Dependency] private readonly PrisonCellDoorSystem _door = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
 
     public override void Initialize()
     {
@@ -44,8 +46,8 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
 
         for (int i = 0; i < 10; i++)
         {
-            lockPorts.Add($"Cell{i + 1}_Lock");
-            unlockPorts.Add($"Cell{i + 1}_Unlock");
+            lockPorts.Add($"Cell{i + 1}Lock");
+            unlockPorts.Add($"Cell{i + 1}Unlock");
         }
 
         _deviceLink.EnsureSourcePorts(uid, lockPorts.ToArray());
@@ -75,7 +77,7 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
             if (@case == null || @case.Status != CriminalCaseStatus.Closed)
                 return;
 
-            if (component.ActiveIncarcerations.ContainsKey(msg.CellIndex))
+            if (msg.CellIndex >= 0 && component.ActiveIncarcerations.ContainsKey(msg.CellIndex))
                 return;
 
             var accessId = "PrisonerAccess_" + Guid.NewGuid().ToString().Substring(0, 8);
@@ -88,7 +90,18 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
                 SentenceMinutes = @case.CalculatedSentence
             };
 
-            component.ActiveIncarcerations[msg.CellIndex] = incarceration;
+            // Use a unique negative index for permanent prisoners to allow multiple at once
+            var cellIndex = msg.CellIndex;
+            if (cellIndex < 0)
+            {
+                cellIndex = -1;
+                while (component.ActiveIncarcerations.ContainsKey(cellIndex))
+                {
+                    cellIndex--;
+                }
+            }
+
+            component.ActiveIncarcerations[cellIndex] = incarceration;
             @case.Status = CriminalCaseStatus.Incarcerated;
             @case.IncarcerationStartTime = _timing.CurTime;
 
@@ -102,8 +115,9 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
             Dirty(idCard, access);
 
 
-            // 2. Send Device Signals
-            SendCellSignals(uid, msg.CellIndex, true, accessId, TimeSpan.FromMinutes(@case.CalculatedSentence));
+            // 2. Send Device Signals (Only if we have a real cell)
+            if (cellIndex >= 0)
+                SendCellSignals(uid, cellIndex, true, accessId, TimeSpan.FromMinutes(@case.CalculatedSentence));
 
             Dirty(station, sunriseRecord);
             UpdateUserInterface(uid, component);
@@ -115,8 +129,8 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
         var cellNumber = cellIndex + 1;
         var cellLabel = Loc.GetString("prison-timer-cell-label", ("number", cellNumber));
 
-        var lockPort = $"Cell{cellNumber}_Lock";
-        var unlockPort = $"Cell{cellNumber}_Unlock";
+        var lockPort = $"Cell{cellNumber}Lock";
+        var unlockPort = $"Cell{cellNumber}Unlock";
 
         _deviceLink.InvokePort(uid, isLock ? lockPort : unlockPort);
 
@@ -161,10 +175,18 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
             var changed = false;
             var toRemove = new List<int>();
 
+            var threshold = 50;
+            if (_proto.TryIndex<CorporateLawsetPrototype>("StandardCorporateLaw", out var lawset))
+                threshold = lawset.PermanentSentenceThreshold;
+
             foreach (var entry in component.ActiveIncarcerations)
             {
                 var cellIdx = entry.Key;
                 var incar = entry.Value;
+
+                // Permanent prisoners (threshold or negative cell index) stay indefinitely
+                if (incar.SentenceMinutes >= threshold || cellIdx < 0)
+                    continue;
 
                 if (curTime >= incar.StartTime + TimeSpan.FromMinutes(incar.SentenceMinutes))
                 {
@@ -199,7 +221,8 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
             }
         }
 
-        SendCellSignals(uid, cellIndex, false, incar.PrisonerAccessId);
+        if (cellIndex >= 0)
+            SendCellSignals(uid, cellIndex, false, incar.PrisonerAccessId);
     }
 
     private void UpdateUserInterface(EntityUid uid, PrisonerManagementConsoleComponent component)
@@ -219,8 +242,8 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
 
             // Check equipment status
             var cellNumber = i + 1;
-            var lockPort = $"Cell{cellNumber}_Lock";
-            var unlockPort = $"Cell{cellNumber}_Unlock";
+            var lockPort = $"Cell{cellNumber}Lock";
+            var unlockPort = $"Cell{cellNumber}Unlock";
 
             bool hasLocker = false;
             bool hasDoor = false;

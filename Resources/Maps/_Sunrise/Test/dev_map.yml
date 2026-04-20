@@ -9863,49 +9863,49 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         3348:
-        - - Cell1_Lock
+        - - Cell1Lock
           - PrisonLocker_Lock
-        - - Cell1_Unlock
+        - - Cell1Unlock
           - PrisonLocker_Unlock
         3354:
-        - - Cell1_Lock
+        - - Cell1Lock
           - PrisonCellDoor_Lock
-        - - Cell1_Unlock
+        - - Cell1Unlock
           - PrisonCellDoor_Unlock
         3351:
-        - - Cell1_Lock
+        - - Cell1Lock
           - PrisonTimer_Set
-        - - Cell1_Unlock
+        - - Cell1Unlock
           - PrisonTimer_Reset
         3349:
-        - - Cell2_Lock
+        - - Cell2Lock
           - PrisonLocker_Lock
-        - - Cell2_Unlock
+        - - Cell2Unlock
           - PrisonLocker_Unlock
         3355:
-        - - Cell2_Lock
+        - - Cell2Lock
           - PrisonCellDoor_Lock
-        - - Cell2_Unlock
+        - - Cell2Unlock
           - PrisonCellDoor_Unlock
         3352:
-        - - Cell2_Lock
+        - - Cell2Lock
           - PrisonTimer_Set
-        - - Cell2_Unlock
+        - - Cell2Unlock
           - PrisonTimer_Reset
         3350:
-        - - Cell3_Lock
+        - - Cell3Lock
           - PrisonLocker_Lock
-        - - Cell3_Unlock
+        - - Cell3Unlock
           - PrisonLocker_Unlock
         3356:
-        - - Cell3_Lock
+        - - Cell3Lock
           - PrisonCellDoor_Lock
-        - - Cell3_Unlock
+        - - Cell3Unlock
           - PrisonCellDoor_Unlock
         3353:
-        - - Cell3_Lock
+        - - Cell3Lock
           - PrisonTimer_Set
-        - - Cell3_Unlock
+        - - Cell3Unlock
           - PrisonTimer_Reset
 - proto: ComputerRadar
   entities:

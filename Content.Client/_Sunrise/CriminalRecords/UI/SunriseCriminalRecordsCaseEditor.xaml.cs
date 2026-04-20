@@ -424,11 +424,11 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
             total = (int) Math.Round(cappedBase * multiplierFactor * (1.0f + multiplierModifier));
         }
 
-        if (total >= 50)
+        if (total >= lawset.PermanentSentenceThreshold)
             SentenceLabel.Text = Loc.GetString("sunrise-records-sentence-life");
         else
             SentenceLabel.Text = Loc.GetString("sunrise-records-sentence-total", ("total", total));
 
-        SentenceLabel.FontColorOverride = total >= 50 ? Color.Red : Color.White;
+        SentenceLabel.FontColorOverride = total >= lawset.PermanentSentenceThreshold ? Color.Red : Color.White;
     }
 }

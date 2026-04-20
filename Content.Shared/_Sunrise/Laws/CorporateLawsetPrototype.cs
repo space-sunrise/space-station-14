@@ -28,4 +28,10 @@ public sealed partial class CorporateLawsetPrototype : IPrototype
     /// </summary>
     [DataField(required: true)]
     public List<ProtoId<CorporateLawSectionPrototype>> Articles = new();
+
+    /// <summary>
+    ///     Threshold at which the sentence becomes permanent/life.
+    /// </summary>
+    [DataField]
+    public int PermanentSentenceThreshold = 50;
 }

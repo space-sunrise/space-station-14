@@ -1,7 +1,7 @@
 <Control xmlns="https://spacestation14.io"
          xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
          Margin="0 4">
-    <PanelContainer Name="MainPanel">
+    <PanelContainer Name="MainPanel" StyleClasses="PrisonerRecordPanel">
         <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="6" HorizontalExpand="True">
             <!-- Header: Name -->
             <Label Name="NameLabel" StyleClasses="LabelBig" ClipText="True" HorizontalExpand="True"/>

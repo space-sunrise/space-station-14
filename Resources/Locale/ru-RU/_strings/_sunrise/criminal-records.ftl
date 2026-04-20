@@ -40,6 +40,7 @@ prisoner-management-start = Начать заключение
 prisoner-management-waiting-info = Дело #{$case}: {$time} мин.
 prisoner-management-in-progress-info = Дело #{$case}: Камера #{$cell}
 prisoner-management-finished-info = Дело #{$case}: Срок отбыт
+prisoner-management-permanent-info = Дело #{$case}: [color=red]Пожизненно[/color]
 prisoner-management-countdown = Дело #{$case}: Камера #{$cell}: [color=orange]{$time}[/color]
 prisoner-management-select-cell = Выбор камеры
 prisoner-management-cell-index = Камера #{$index}
