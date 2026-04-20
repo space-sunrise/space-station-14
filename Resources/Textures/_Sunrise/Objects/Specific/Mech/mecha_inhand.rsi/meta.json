@@ -8,11 +8,107 @@
     },
     "states": [
         {
-            "name": "inhand-left",
+            "name": "amlg90-inhand-left",
             "directions": 4
         },
         {
-            "name": "inhand-right",
+            "name": "amlg90-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "bananamrtr-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "bananamrtr-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "carbine-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "carbine-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "chainsword-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "chainsword-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "ddrill-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "ddrill-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "drill-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "drill-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "exting-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "exting-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "honker-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "honker-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "srm6-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "srm6-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "taser-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "taser-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "uac2-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "uac2-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "weaponbay-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "weaponbay-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "xray-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "xray-inhand-right",
             "directions": 4
         }
     ]
