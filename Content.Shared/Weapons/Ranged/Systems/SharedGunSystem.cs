@@ -184,9 +184,9 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         // Validate msg.Gun against the actually used weapon to reject stale/incorrect requests
         var requestedGun = GetEntity(msg.Gun);
-        if (isDualWield && dualWield != null)
+        if (isDualWield)
         {
-            if (requestedGun != dualWield.LeftGun && requestedGun != dualWield.RightGun)
+            if (requestedGun != dualWield!.LeftGun && requestedGun != dualWield.RightGun)
                 return;
         }
         else if (ent != requestedGun)
@@ -211,7 +211,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         // Sunrise added start - rotate dual-wield queue after each attempt
         // Always rotate regardless of shot success so alternation doesn't get stuck
         // on an empty or cooldown-locked gun.
-        if (isDualWield && dualWield != null && dualWield.GunQueue.Count > 1)
+        if (isDualWield && dualWield!.GunQueue.Count > 1)
         {
             var front = dualWield.GunQueue[0];
             dualWield.GunQueue.RemoveAt(0);
