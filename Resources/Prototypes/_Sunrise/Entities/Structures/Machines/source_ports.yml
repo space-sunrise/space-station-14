@@ -1,0 +1,99 @@
+- type: sourcePort
+  id: Cell1_Lock
+  name: Cell 1 Lock
+  description: Lock Cell 1
+
+- type: sourcePort
+  id: Cell1_Unlock
+  name: Cell 1 Unlock
+  description: Unlock Cell 1
+
+- type: sourcePort
+  id: Cell2_Lock
+  name: Cell 2 Lock
+  description: Lock Cell 2
+
+- type: sourcePort
+  id: Cell2_Unlock
+  name: Cell 2 Unlock
+  description: Unlock Cell 2
+
+- type: sourcePort
+  id: Cell3_Lock
+  name: Cell 3 Lock
+  description: Lock Cell 3
+
+- type: sourcePort
+  id: Cell3_Unlock
+  name: Cell 3 Unlock
+  description: Unlock Cell 3
+
+- type: sourcePort
+  id: Cell4_Lock
+  name: Cell 4 Lock
+  description: Lock Cell 4
+
+- type: sourcePort
+  id: Cell4_Unlock
+  name: Cell 4 Unlock
+  description: Unlock Cell 4
+
+- type: sourcePort
+  id: Cell5_Lock
+  name: Cell 5 Lock
+  description: Lock Cell 5
+
+- type: sourcePort
+  id: Cell5_Unlock
+  name: Cell 5 Unlock
+  description: Unlock Cell 5
+
+- type: sourcePort
+  id: Cell6_Lock
+  name: Cell 6 Lock
+  description: Lock Cell 6
+
+- type: sourcePort
+  id: Cell6_Unlock
+  name: Cell 6 Unlock
+  description: Unlock Cell 6
+
+- type: sourcePort
+  id: Cell7_Lock
+  name: Cell 7 Lock
+  description: Lock Cell 7
+
+- type: sourcePort
+  id: Cell7_Unlock
+  name: Cell 7 Unlock
+  description: Unlock Cell 7
+
+- type: sourcePort
+  id: Cell8_Lock
+  name: Cell 8 Lock
+  description: Lock Cell 8
+
+- type: sourcePort
+  id: Cell8_Unlock
+  name: Cell 8 Unlock
+  description: Unlock Cell 8
+
+- type: sourcePort
+  id: Cell9_Lock
+  name: Cell 9 Lock
+  description: Lock Cell 9
+
+- type: sourcePort
+  id: Cell9_Unlock
+  name: Cell 9 Unlock
+  description: Unlock Cell 9
+
+- type: sourcePort
+  id: Cell10_Lock
+  name: Cell 10 Lock
+  description: Lock Cell 10
+
+- type: sourcePort
+  id: Cell10_Unlock
+  name: Cell 10 Unlock
+  description: Unlock Cell 10

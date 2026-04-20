@@ -1,0 +1,20 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+         Margin="0 4">
+    <PanelContainer Name="MainPanel">
+        <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="6" HorizontalExpand="True">
+            <!-- Header: Name -->
+            <Label Name="NameLabel" StyleClasses="LabelBig" ClipText="True" HorizontalExpand="True"/>
+            
+            <!-- Details: Countdown and Action Info -->
+            <BoxContainer Orientation="Vertical" SeparationOverride="2" HorizontalExpand="True">
+                <RichTextLabel Name="InfoLabel" HorizontalExpand="True"/>
+            </BoxContainer>
+
+            <!-- Action: Button (shown when waiting) -->
+            <BoxContainer Name="ButtonContainer" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 4 0 0">
+                <Button Name="ActionButton" StyleClasses="ButtonSquare" MinWidth="130" MinHeight="32"/>
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
+</Control>

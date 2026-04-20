@@ -28,7 +28,32 @@ public sealed class CorporateLawCartridgeSystem : EntitySystem
 
         var sections = new List<LawSection>();
 
-        foreach (var sectionId in lawset.Sections)
+        // 1. General Provisions
+        if (lawset.Provisions.Count > 0)
+        {
+            var provisionEntries = new List<LawEntry>();
+            foreach (var entryId in lawset.Provisions)
+            {
+                if (!_prototype.TryIndex<CorporateLawPrototype>(entryId, out var entry))
+                    continue;
+
+                provisionEntries.Add(new LawEntry
+                {
+                    Identifier = entry.LawIdentifier,
+                    Title = Loc.GetString(entry.Title),
+                    Description = Loc.GetString(entry.Description)
+                });
+            }
+
+            sections.Add(new LawSection
+            {
+                Title = Loc.GetString("sunrise-records-provisions-header"),
+                Entries = provisionEntries
+            });
+        }
+
+        // 2. Legal Articles (Categorized)
+        foreach (var sectionId in lawset.Articles)
         {
             if (!_prototype.TryIndex<CorporateLawSectionPrototype>(sectionId, out var section))
                 continue;
@@ -36,7 +61,7 @@ public sealed class CorporateLawCartridgeSystem : EntitySystem
             var entries = new List<LawEntry>();
             foreach (var entryId in section.Entries)
             {
-                if (!_prototype.TryIndex<CorporateLawPrototype>(entryId, out var entry))
+                if (!_prototype.TryIndex<CorporateLawPrototype>(entryId, out var entry) || entry.Category == LawCategory.Provision)
                     continue;
 
                 entries.Add(new LawEntry
@@ -53,6 +78,51 @@ public sealed class CorporateLawCartridgeSystem : EntitySystem
                 Color = section.Color,
                 Entries = entries
             });
+        }
+
+        // 3. Modifiers (Circumstances)
+        if (lawset.Circumstances.Count > 0)
+        {
+            var mitEntries = new List<LawEntry>();
+            var aggEntries = new List<LawEntry>();
+
+            foreach (var entryId in lawset.Circumstances)
+            {
+                if (!_prototype.TryIndex<CorporateLawPrototype>(entryId, out var entry) || entry.Category == LawCategory.Provision)
+                    continue;
+
+                var lawEntry = new LawEntry
+                {
+                    Identifier = entry.LawIdentifier,
+                    Title = Loc.GetString(entry.Title),
+                    Description = Loc.GetString(entry.Description)
+                };
+
+                if (entry.Category == LawCategory.Mitigating)
+                    mitEntries.Add(lawEntry);
+                else if (entry.Category == LawCategory.Aggravating)
+                    aggEntries.Add(lawEntry);
+            }
+
+            if (mitEntries.Count > 0)
+            {
+                sections.Add(new LawSection
+                {
+                    Title = Loc.GetString("sunrise-records-mitigating-circumstances"),
+                    Color = Color.FromHex("#00ff9d"),
+                    Entries = mitEntries
+                });
+            }
+
+            if (aggEntries.Count > 0)
+            {
+                sections.Add(new LawSection
+                {
+                    Title = Loc.GetString("sunrise-records-aggravating-circumstances"),
+                    Color = Color.FromHex("#ff4d4d"),
+                    Entries = aggEntries
+                });
+            }
         }
 
         var state = new CorporateLawUiState(sections);

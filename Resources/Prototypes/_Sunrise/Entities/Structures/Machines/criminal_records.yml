@@ -1,0 +1,71 @@
+- type: entity
+  parent: ComputerCriminalRecords
+  id: SunriseComputerCriminalRecords
+  components:
+  - type: CriminalRecordsConsole
+    $remove: true
+  - type: SunriseCriminalRecordsConsole
+  - type: UserInterface
+    interfaces:
+      enum.SunriseCriminalRecordsConsoleKey.Key:
+        type: SunriseCriminalRecordsConsoleBoundUserInterface
+  - type: ActivatableUI
+    key: enum.SunriseCriminalRecordsConsoleKey.Key
+  - type: Computer
+    board: SunriseCriminalRecordsComputerCircuitboard
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerPrisonerManagement
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: security
+    - map: ["computerLayerKeys"]
+      state: security_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#1f8c28"
+  - type: AccessReader
+    access: [["Security"]]
+  - type: PrisonerManagementConsole
+  - type: DeviceLinkSource
+    range: 30
+    ports:
+      - Cell1_Lock
+      - Cell1_Unlock
+      - Cell2_Lock
+      - Cell2_Unlock
+      - Cell3_Lock
+      - Cell3_Unlock
+      - Cell4_Lock
+      - Cell4_Unlock
+      - Cell5_Lock
+      - Cell5_Unlock
+      - Cell6_Lock
+      - Cell6_Unlock
+      - Cell7_Lock
+      - Cell7_Unlock
+      - Cell8_Lock
+      - Cell8_Unlock
+      - Cell9_Lock
+      - Cell9_Unlock
+      - Cell10_Lock
+      - Cell10_Unlock
+  - type: UserInterface
+    interfaces:
+      enum.PrisonerManagementConsoleKey.Key:
+        type: PrisonerManagementConsoleBoundUserInterface
+  - type: ActivatableUI
+    key: enum.PrisonerManagementConsoleKey.Key
+  - type: Computer
+    board: ComputerPrisonerManagementCircuitboard
+

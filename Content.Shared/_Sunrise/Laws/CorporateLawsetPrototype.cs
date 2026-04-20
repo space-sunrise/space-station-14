@@ -12,8 +12,20 @@ public sealed partial class CorporateLawsetPrototype : IPrototype
     public string ID { get; private set; } = default!;
 
     /// <summary>
-    ///     The sections in this lawset.
+    ///     General provisions and rights.
+    /// </summary>
+    [DataField]
+    public List<ProtoId<CorporateLawPrototype>> Provisions = new();
+
+    /// <summary>
+    ///     Sentence-modifying factors.
+    /// </summary>
+    [DataField]
+    public List<ProtoId<CorporateLawPrototype>> Circumstances = new();
+
+    /// <summary>
+    ///     Categorized legal articles (1xx-6xx).
     /// </summary>
     [DataField(required: true)]
-    public List<ProtoId<CorporateLawSectionPrototype>> Sections = new();
+    public List<ProtoId<CorporateLawSectionPrototype>> Articles = new();
 }
