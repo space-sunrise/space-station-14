@@ -90,7 +90,7 @@
       - NavigatorCartridge
       - MessengerCartridge
       - PhotoCartridge
-      - CorporateLawCartridge # Sunrise-Edit
+      - CorporateLawCartridge
     # Sunrise-End
     cartridgeSlot:
       priority: -1
@@ -173,6 +173,7 @@
     - NavigatorCartridge
     - MessengerCartridge
     - PhotoCartridge
+    - CorporateLawCartridge
     # Sunrise-End
 
 - type: entity
@@ -192,6 +193,7 @@
       - NavigatorCartridge
       - MessengerCartridge
       - PhotoCartridge
+      - CorporateLawCartridge
     # Sunrise-End
 
 - type: entity
@@ -368,6 +370,7 @@
       - NavigatorCartridge
       - MessengerCartridge
       - PhotoCartridge
+      - CorporateLawCartridge
 # Sunrise-End
 
 - type: entity
@@ -554,6 +557,7 @@
     - NavigatorCartridge
     - MessengerCartridge
     - PhotoCartridge
+    - CorporateLawCartridge
     # Sunrise-End
 
 - type: entity
@@ -608,6 +612,7 @@
       - NavigatorCartridge
       - MessengerCartridge
       - PhotoCartridge
+      - CorporateLawCartridge
     # Sunrise-End
 
 - type: entity
@@ -1030,6 +1035,7 @@
     - NavigatorCartridge
     - MessengerCartridge
     - PhotoCartridge
+    - CorporateLawCartridge
     # Sunrise-End
 
 - type: entity
@@ -1117,6 +1123,7 @@
       - NavigatorCartridge
       - MessengerCartridge
       - PhotoCartridge
+      - CorporateLawCartridge
     # Sunrise-End
 
 - type: entity
@@ -1419,6 +1426,7 @@
       - NavigatorCartridge
       - MessengerCartridge
       - PhotoCartridge
+      - CorporateLawCartridge
     # Sunrise-End
 
 - type: entity
@@ -1609,6 +1617,7 @@
     - NavigatorCartridge
     - MessengerCartridge
     - PhotoCartridge
+    - CorporateLawCartridge
     # Sunrise-End
 
 - type: entity
@@ -1644,6 +1653,7 @@
     - NavigatorCartridge
     - MessengerCartridge
     - PhotoCartridge
+    - CorporateLawCartridge
     # Sunrise-End
 
 - type: entity
@@ -1812,6 +1822,7 @@
     - AstroNavCartridge
     - MessengerCartridge
     - PhotoCartridge
+    - CorporateLawCartridge
   # Sunrise-end
 
 - type: entity
