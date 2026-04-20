@@ -139,7 +139,7 @@ public sealed class PryingSystem : EntitySystem
         // Sunrise-Start - skip redundant short pry doafters
         var pryDelay = modEv.BaseTime * modEv.PryTimeModifier / toolModifier;
 
-        if (pryDelay < InstantUnpoweredDoorPryThreshold)
+        if (HasComp<PryUnpoweredComponent>(target) && pryDelay < InstantUnpoweredDoorPryThreshold)
             pryDelay = TimeSpan.Zero;
 
         var doAfterArgs = new DoAfterArgs(EntityManager, user, pryDelay, new DoorPryDoAfterEvent(), target, target, tool)
