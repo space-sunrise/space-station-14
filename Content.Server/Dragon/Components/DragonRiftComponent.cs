@@ -38,8 +38,11 @@ public sealed partial class DragonRiftComponent : SharedDragonRiftComponent
 
     [ViewVariables(VVAccess.ReadWrite), DataField("spawn", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string SpawnPrototype = "MobCarpDragon";
-     // Sunrise-Start
-    [ViewVariables(VVAccess.ReadWrite), DataField("spawnPrototypes", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
+    // Sunrise edit start
+    /// <summary>
+    /// Prototypes that can be spawned by this rift.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
     public List<string> SpawnPrototypes = new();
-     // Sunrise-End
+    // Sunrise edit end
 }

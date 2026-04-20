@@ -89,13 +89,13 @@ public sealed class DragonRiftSystem : EntitySystem
 
             if (comp.SpawnAccumulator > comp.SpawnCooldown)
             {
-                // Sunrise-Start
+                // Sunrise edit start - allow random spawn prototype selection from configured list
                 comp.SpawnAccumulator -= comp.SpawnCooldown;
                 var spawnPrototype = comp.SpawnPrototypes.Count > 0
                     ? _random.Pick(comp.SpawnPrototypes)
                     : comp.SpawnPrototype;
                 var ent = Spawn(spawnPrototype, xform.Coordinates);
-                // Sunrise-End
+                // Sunrise edit end
 
                 // Update their look to match the leader.
                 if (TryComp<RandomSpriteComponent>(comp.Dragon, out var randomSprite))
