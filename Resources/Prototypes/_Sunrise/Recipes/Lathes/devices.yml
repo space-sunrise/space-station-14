@@ -1,24 +1,12 @@
 - type: latheRecipe
-  id: HandCraftedNVD
-  result: ClothingEyesNVDHandcrafted
-  completetime: 50
-  materials:
-    Steel: 1000
-    Plastic: 400
-    Plasma: 100
-    Uranium: 200
-    Silver: 100
-
-- type: latheRecipe
   id: BasicNVD
   result: ClothingEyesNVD
-  completetime: 60
+  completetime: 15
   materials:
     Steel: 1000
     Plastic: 400
     Silver: 300
     Gold: 50
-    Uranium: 300
 
 - type: latheRecipe
   id: BasicThermals
