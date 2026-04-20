@@ -18,7 +18,7 @@
           types:
             Poison: 0.55
             Blunt: 0.5
-            Mangleness: 0.2 # Sunrise-edit
+            Mangleness: 0.3 # Sunrise-edit
       # OD
       - !type:HealthChange
         conditions:
@@ -85,7 +85,7 @@
       - !type:HealthChange
         damage:
           types:
-            Mangleness: 0.1
+            Mangleness: 0.2
       # Sunrise-End
       # Main effects
       - !type:MovementSpeedModifier
@@ -147,6 +147,12 @@
   metabolisms:
     Narcotic:
       effects:
+      # Sunrise-Start
+      - !type:HealthChange
+        damage:
+          types:
+            Mangleness: 0.2
+      # Sunrise-End
       # Main effects
       - !type:MovementSpeedModifier
         walkSpeedModifier: 1.25

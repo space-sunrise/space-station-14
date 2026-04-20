@@ -13,11 +13,11 @@
         amount: -4
       - !type:EvenHealthChange
         damage:
-          Brute: -1.75
+          Brute: -2
       - !type:HealthChange
         damage:
           types:
-            Mangleness: 0.2625 # Sunrise-Edit # 15% of 1.75 brute healing (EvenHealthChange)
+            Mangleness: 0.1 # Sunrise-Edit # 15% of 2/3 brute healing (EvenHealthChange)
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition

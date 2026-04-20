@@ -122,7 +122,7 @@
         Shock: -5
         Caustic: -5
         Structural: -10
-        Deterioration: 2
+        Deterioration: 1
   - type: Loadout
     prototypes: [ BorgArmorSiliconLoadout ]
   # Sunrise-End

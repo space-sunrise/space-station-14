@@ -26,8 +26,8 @@
 
 [bold][color=#99ccff]Питание и гидратация[/color][/bold]: [color=#dddddd]Организм потребляет ресурсы голода и жажды для восстановления. Скорость зависит от сытости:[/color]
 
-  -  [bold][color=#aaddff]Сытость[/color][/bold]: [color=#dddddd]Восстанавливает [bold][color=#99ff99]0.03[/color][/bold] ед/сек. Голод/жажда падают в [bold][color=#ff9999]4[/color][/bold] раза быстрее.[/color]
-  -  [bold][color=#88ccff]Голод[/color][/bold]: [color=#dddddd]Восстанавливает [bold][color=#99ff99]0.01[/color][/bold] ед/сек. Голод/жажда падают в [bold][color=#ff9999]2[/color][/bold] раза быстрее.[/color]
+  -  [bold][color=#aaddff]Сытость[/color][/bold]: [color=#dddddd]Восстанавливает [bold][color=#99ff99]0.04[/color][/bold] ед/сек. Голод/жажда расходуются в [bold][color=#ff9999]4[/color][/bold] раза быстрее.[/color]
+  -  [bold][color=#88ccff]Голод[/color][/bold]: [color=#dddddd]Восстанавливает [bold][color=#99ff99]0.02[/color][/bold] ед/сек. Голод/жажда расходуются в [bold][color=#ff9999]2[/color][/bold] раза быстрее.[/color]
   -  [bold][color=#ff9999]Пустой желудок[/color][/bold]: [color=#dddddd]Не восстанавливает истощение. Наносит [bold][color=#ff0000]0.5[/color][/bold] ед. урона истощением в секунду.[/color]
 
 [bold][color=#99ccff]Отдых на кровати[/color][/bold]: [color=#dddddd]Лежание на кровати является эффективным способом восстановления истощения.[/color]
@@ -47,13 +47,10 @@
 [color=#dddddd]Для прямого лечения истощения существуют специализированные препараты:[/color]
 
   <GuideReagentEmbed Reagent="Cryoxadone"/>
-<GuideReagentEmbed Reagent="Vitera"/>
-  <GuideReagentEmbed Reagent="GenesisUltra"/>
-<GuideReagentEmbed Reagent="Omnizine"/>
+  <GuideReagentEmbed Reagent="Omnizine"/>
 
 [head=2][color=#ffaa66]Важные замечания[/color][/head]
 
-  -  [color=#ff9999]Истощение не может быть восстановлено обычными медицинскими инструментами[/color] [color=#dddddd](наборы от ушибов, мазь и т.д.)[/color]
   -  [color=#ff9999]Для эффективного лечения истощения важно обеспечить пациенту достаточное питание, гидратацию и отдых[/color]
   -  [color=#ff9999]Сон на медицинской кровати значительно ускоряет восстановление истощения[/color]
   -  [color=#ff9999]Криомедицина, в частности Криоксадон, способна лечить истощение не хуже сна на медицинской кровати[/color]

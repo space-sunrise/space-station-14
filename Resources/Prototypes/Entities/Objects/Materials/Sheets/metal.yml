@@ -77,16 +77,18 @@
         # Sunrise-end
   # Sunrise-start
   - type: Healing
-    delay: 2.0
+    delay: 4.0
     damageContainers:
     - Silicon
     - Synth
     - Mech
     damage:
       groups:
-        Brute: -5
+        Brute: -10
       types:
         Deterioration: -5
+    healingBeginSound:
+      path: /Audio/Machines/airlock_creaking.ogg
   # Sunrise-end
 
 - type: entity

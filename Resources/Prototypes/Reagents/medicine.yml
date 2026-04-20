@@ -155,7 +155,7 @@
       - !type:HealthChange
         damage:
           types:
-            Mangleness: 0.225 # Sunrise-Edit # 15% of 1.5 brute healing (EvenHealthChange)
+            Mangleness: 0.075 # Sunrise-Edit # 15% of 1.5/3 (it's an even split so 0.5 for one group) brute healing (EvenHealthChange)
         #Sunrise-End
       - !type:EvenHealthChange
         damage:
@@ -852,7 +852,6 @@
             Heat: -0.33
             Shock: -0.33
             Cold: -0.33
-            # Mangleness: -0.05 #Sunrise-Edit
 
 - type: reagent
   id: Lipozine

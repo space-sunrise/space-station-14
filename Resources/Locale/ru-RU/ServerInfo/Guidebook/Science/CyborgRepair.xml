@@ -7,7 +7,7 @@
 
   - <Box>
   <GuideEntityEmbed Entity="Welder" Caption=""/>
-  **Сварочный аппарат**: чинит [color=red]Механические[/color] повреждения (-15), но наносит **2** [color=purple]Износа[/color] при каждом применении.
+  **Сварочный аппарат**: чинит [color=red]Механические[/color] повреждения (5), но наносит **1** [color=purple]Износа[/color] при каждом применении.
   </Box>
 
   - <Box>
@@ -22,7 +22,7 @@
 
   - <Box>
   <GuideEntityEmbed Entity="SheetSteel1" Caption=""/>
-  **Листы стали**: чинят **5** [color=red]Механических[/color] и **5** [color=purple]Износа[/color].
+  **Листы стали**: чинят **10** [color=red]Механических[/color] и **5** [color=purple]Износа[/color], но долги в использовании.
   </Box>
 
   ## Износ

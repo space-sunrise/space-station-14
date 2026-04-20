@@ -33,8 +33,21 @@
         type: Add
         time: 30
       - !type:MovementSpeedModifier
-        walkSpeedModifier: 1.35
-        sprintSpeedModifier: 1.50
+        walkSpeedModifier: 1.20
+        sprintSpeedModifier: 1.20
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDesoxyStamina
+        time: 3
+      - !type:GenericStatusEffect
+        key: Adrenaline
+        component: IgnoreSlowOnDamage
+        time: 3
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectPainNumbness
+        time: 2
       - !type:Jitter
       - !type:ModifyStatusEffect
         effectProto: StatusEffectStunned
