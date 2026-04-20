@@ -16,7 +16,7 @@
     walkModifier: 0.5
     sprintModifier: 0.5
   - type: HeldSpeedModifier
-  # Sunrise-Add
+  # Sunrise-Start
   - type: KnockbackByUserTag
     doestContain:
       Resomi:
@@ -34,4 +34,4 @@
       Predator:
         knockback: 1
         staminaMultiplier: 4
-  #
+  # Sunrise-End

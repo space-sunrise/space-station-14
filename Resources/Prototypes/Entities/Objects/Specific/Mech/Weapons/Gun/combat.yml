@@ -424,7 +424,6 @@
   - type: Item
     sprite: _Sunrise/Objects/Specific/Mech/mecha_inhand.rsi
     heldPrefix: srm6
-  # Sunrise-end
   - type: KnockbackByUserTag
     doestContain:
       Resomi:
@@ -433,6 +432,7 @@
       Felinid:
         knockback: 20
         staminaMultiplier: 8
+  # Sunrise-end
 
 - type: entity
   id: WeaponMechCombatMissileRack6
@@ -464,7 +464,6 @@
   - type: Item
     sprite: _Sunrise/Objects/Specific/Mech/mecha_inhand.rsi
     heldPrefix: srm6
-  # Sunrise-end
   - type: KnockbackByUserTag
     doestContain:
       Resomi:
@@ -473,6 +472,7 @@
       Felinid:
         knockback: 20
         staminaMultiplier: 8
+  # Sunrise-end
 
 - type: entity
   id: WeaponMechCombatFlashbangLauncher
@@ -503,6 +503,7 @@
     - PaddyMech
   - type: Item
     sprite: _Sunrise/Objects/Specific/Mech/mecha_inhand.rsi
+  # Sunrise-Start
   - type: KnockbackByUserTag
     doestContain:
       Resomi:
@@ -511,3 +512,4 @@
       Felinid:
         knockback: 20
         staminaMultiplier: 8
+  # Sunrise-End
