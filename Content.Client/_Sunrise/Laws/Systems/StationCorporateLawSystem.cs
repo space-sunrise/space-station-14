@@ -5,10 +5,14 @@ using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Station.Components;
 using Robust.Shared.Prototypes;
 
+
 namespace Content.Client._Sunrise.Laws.Systems;
 
 public sealed class StationCorporateLawSystem : SharedStationCorporateLawSystem
 {
+    [Dependency] private readonly Robust.Shared.Configuration.IConfigurationManager _config = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+
     public override void Initialize()
     {
         base.Initialize();

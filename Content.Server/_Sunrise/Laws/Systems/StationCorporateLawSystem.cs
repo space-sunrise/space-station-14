@@ -1,10 +1,11 @@
 using Content.Shared._Sunrise.Laws;
 using Content.Shared._Sunrise.Laws.Components;
 using Content.Shared._Sunrise.Laws.Systems;
-using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Server.Station.Systems;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
+
 
 namespace Content.Server._Sunrise.Laws.Systems;
 
@@ -32,9 +33,9 @@ public sealed class StationCorporateLawSystem : SharedStationCorporateLawSystem
 
         var component = EnsureComp<StationCorporateLawComponent>(station);
 
-        component.Provisions = new(prototype.Provisions);
-        component.Circumstances = new(prototype.Circumstances);
-        component.Articles = new(prototype.Articles);
+        component.Provisions = new List<ProtoId<CorporateLawPrototype>>(prototype.Provisions);
+        component.Circumstances = new List<ProtoId<CorporateLawPrototype>>(prototype.Circumstances);
+        component.Articles = new List<ProtoId<CorporateLawSectionPrototype>>(prototype.Articles);
         component.PermanentSentenceThreshold = prototype.PermanentSentenceThreshold;
         component.LawsetPrototype = lawsetId;
 

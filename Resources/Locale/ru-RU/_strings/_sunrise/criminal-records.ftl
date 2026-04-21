@@ -16,7 +16,7 @@ sunrise-records-circumstances-header = Обстоятельства:
 sunrise-records-select-circumstances = Отягчающие и смягчающие обстоятельства:
 sunrise-records-mitigating-circumstances = Смягчающие обстоятельства:
 sunrise-records-mitigating-summary = Смягчающие: -{$percent}%
-sunrise-records-aggravating-summary = Отягощающие: +{$percent}%
+sunrise-records-aggravating-summary = Отягчающие: +{$percent}%
 sunrise-records-aggravating-circumstances = Отягчающие обстоятельства:
 sunrise-records-provisions-header = Общие положения
 sunrise-records-notes = Комментарии к делу:
@@ -108,7 +108,7 @@ corplaw-circ-officialmisconduct-title = Должностное преступл�
 corplaw-circ-officialmisconduct-desc = Нарушение совершено должностным лицом.
 corplaw-circ-intoxication-title = Состояние опьянения
 corplaw-circ-intoxication-desc = Употребление алкоголя или наркотических средств.
- 
+
 sunrise-records-no-laws = (Нет нарушений)
 
 sunrise-records-unknown-name = Неизвестно

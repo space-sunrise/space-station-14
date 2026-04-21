@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Shared._Sunrise.Laws;
-using Content.Shared._Sunrise.Laws.Components;
 using Content.Shared._Sunrise.Laws.Systems;
 using Robust.Shared.Prototypes;
 
@@ -8,14 +7,13 @@ namespace Content.Shared._Sunrise.CriminalRecords.Systems;
 
 public abstract class SharedSunriseCriminalRecordsSystem : EntitySystem
 {
-    [Dependency] private readonly Robust.Shared.Configuration.IConfigurationManager _config = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SharedStationCorporateLawSystem _corporateLawSystem = default!;
 
-    public int CalculateSentence(CriminalCase @case, List<CriminalCase> allCases, StationCorporateLawComponent? lawset = null)
+    public int CalculateSentence(CriminalCase @case, List<CriminalCase> allCases)
     {
         // Use the shared law system for robust resolution with fallbacks
-        var lawSystem = EntityManager.System<SharedStationCorporateLawSystem>();
-        lawSystem.GetEffectiveLawset(@case.OriginStation, out var provisions, out var articles, out var circumstances, out var threshold);
+        _corporateLawSystem.GetEffectiveLawset(@case.OriginStation, out var provisions, out var articles, out var circumstances, out var threshold);
 
         return CalculateSentence(@case, allCases, provisions, circumstances, articles);
     }

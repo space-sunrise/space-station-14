@@ -4,13 +4,14 @@ using Content.Shared.Station;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
+
 namespace Content.Shared._Sunrise.Laws.Systems;
 
 public abstract class SharedStationCorporateLawSystem : EntitySystem
 {
     [Dependency] private readonly SharedStationSystem _station = default!;
-    [Dependency] protected readonly IPrototypeManager _proto = default!;
-    [Dependency] protected readonly IConfigurationManager _config = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
 
     public Entity<StationCorporateLawComponent>? GetStationLawset(EntityUid uid)
     {
@@ -48,8 +49,8 @@ public abstract class SharedStationCorporateLawSystem : EntitySystem
             TryComp(station, out comp);
         }
 
-        // If component exists and has data, use it
-        if (comp != null && (comp.Articles.Count > 0 || comp.Provisions.Count > 0))
+        // If component exists and has been initialized or has custom data, use its values.
+        if (comp != null && (comp.Articles.Count > 0 || comp.Provisions.Count > 0 || comp.Circumstances.Count > 0 || comp.LawsetPrototype != null))
         {
             provisions = comp.Provisions;
             articles = comp.Articles;
@@ -59,7 +60,7 @@ public abstract class SharedStationCorporateLawSystem : EntitySystem
         }
 
         // Fallback to CVar
-        var lawsetId = _config.GetCVar(Content.Shared._Sunrise.SunriseCCVars.SunriseCCVars.CorporateLawSet);
+        var lawsetId = _config.GetCVar(SunriseCCVars.SunriseCCVars.CorporateLawSet);
         if (_proto.TryIndex<CorporateLawsetPrototype>(lawsetId, out var proto))
         {
             provisions = proto.Provisions;
@@ -74,6 +75,28 @@ public abstract class SharedStationCorporateLawSystem : EntitySystem
             circumstances = new();
             permanentThreshold = 50;
         }
+    }
+
+    public bool IsLawInEffectiveLawset(string lawId, EntityUid? station)
+    {
+        GetEffectiveLawset(station, out var provisions, out var sections, out _, out _);
+
+        if (provisions.Any(p => (string) p == lawId))
+            return true;
+
+        foreach (var sId in sections)
+        {
+            if (_proto.TryIndex(sId, out var section) && section.Entries.Contains(lawId))
+                return true;
+        }
+
+        return false;
+    }
+
+    public bool IsCircumstanceInEffectiveLawset(string circId, EntityUid? station)
+    {
+        GetEffectiveLawset(station, out _, out _, out var circumstances, out _);
+        return circumstances.Contains(circId);
     }
 
     public bool IsLawInLawset(string lawId, StationCorporateLawComponent component)

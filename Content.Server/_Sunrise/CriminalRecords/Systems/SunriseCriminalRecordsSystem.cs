@@ -154,14 +154,11 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
                     return;
 
                 // Validate laws and circumstances against lawset
-                var lawset = _stationLaw.GetStationLawset(component.SelectedKey.Value.OriginStation);
-                if (lawset == null)
-                    return;
-
+                var station = component.SelectedKey.Value.OriginStation;
                 var validatedLaws = new List<ProtoId<CorporateLawPrototype>>();
                 foreach (var lawId in msg.Laws)
                 {
-                    if (!_stationLaw.IsLawInLawset(lawId, lawset.Value.Comp))
+                    if (!_stationLaw.IsLawInEffectiveLawset(lawId, station))
                         return; // Reject message if any ID is invalid
                     validatedLaws.Add(lawId);
                 }
@@ -169,7 +166,7 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
                 var validatedCircs = new List<ProtoId<CorporateLawPrototype>>();
                 foreach (var circId in msg.Circumstances)
                 {
-                    if (!_stationLaw.IsCircumstanceInLawset(circId, lawset.Value.Comp))
+                    if (!_stationLaw.IsCircumstanceInEffectiveLawset(circId, station))
                         return; // Reject message if any ID is invalid
                     validatedCircs.Add(circId);
                 }
@@ -177,7 +174,7 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
                 @case.Laws = validatedLaws;
                 @case.Circumstances = validatedCircs;
                 @case.Notes = msg.Notes;
-                @case.CalculatedSentence = CalculateSentence(@case, cases, lawset.Value.Comp);
+                @case.CalculatedSentence = CalculateSentence(@case, cases);
             }
         }
 
@@ -202,7 +199,7 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
                 {
                     @case.Status = CriminalCaseStatus.Closed;
                     var lawset = _stationLaw.GetStationLawset(component.SelectedKey.Value.OriginStation);
-                    @case.CalculatedSentence = CalculateSentence(@case, cases, lawset?.Comp);
+                    @case.CalculatedSentence = CalculateSentence(@case, cases);
                 }
             }
         }
