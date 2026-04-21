@@ -1,0 +1,57 @@
+- type: constructionGraph
+  id: handcraftnvd
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: nvdassembling
+      steps:
+      - tag: WeldingMask
+        icon:
+          sprite: Clothing/Head/Welding/welding.rsi
+          state: icon
+        name: construction-graph-tag-welding-mask
+      - tag: LightBulb
+        name: construction-graph-tag-light-bulb
+        icon:
+          sprite: Objects/Power/light_bulb.rsi
+          state: normal
+        doAfter: 5
+      - component: PowerCell
+        name: construction-graph-component-power-cell
+        store: cell_slot
+        icon:
+          sprite: Objects/Power/power_cells.rsi
+          state: small
+        doAfter: 1
+      - material: Cable
+        amount: 5
+        doAfter: 6
+
+  - node: nvdassembling
+    entity: NVDHandcraftedParts
+    edges:
+    - to: nvdwired
+      steps:
+      - tool: Cutting
+        doAfter: 2
+
+  - node: nvdwired
+    entity: NVDHandcraftedParts
+    edges:
+    - to: nvdglassed
+      steps:
+      - material: Glass
+        amount: 2
+        doAfter: 2
+
+  - node: nvdglassed
+    entity: NVDHandcraftedParts
+    edges:
+    - to: nvdfinished
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: nvdfinished
+    entity: ClothingEyesNVDHandcrafted

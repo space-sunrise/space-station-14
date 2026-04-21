@@ -500,7 +500,7 @@
   parent: BaseWeaponPistolSunrise
   id: WeaponPistolM1984
   name: D1984
-  description: A compact sidearm developed under Nanotrasen’s internal order directive “N1984.” A personal weapon of control, discipline, and precise response. Issued to distinguished detectives for reliability during field investigations. Fires .35 Auto.
+  description: A compact sidearm developed under Nanotrasen’s internal order directive “N1984.” A personal weapon of control, discipline, and precise response. Issued to distinguished detectives for reliability during field investigations. Fires .40 Auto.
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/Guns/Pistols/m1984.rsi
@@ -514,7 +514,7 @@
     maxAngle: -10
   - type: Gun
     selectedMode: SemiAuto
-    minAngle: 4.7
+    minAngle: 5
     maxAngle: 25
     angleIncrease: 2
     angleDecay: 14
@@ -535,6 +535,33 @@
     sprintModifier: 0.99
   - type: StealTarget
     stealGroup: OfficerHandgun
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol40FMJ
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazinePistolDP
+          - MagazineVP78
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol40FMJ # .45 ACP
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistol
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
 
 - type: entity
   name: Golden Desert Eagle
@@ -603,7 +630,7 @@
     - type: Clothing
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/aps.rsi
     - type: Gun
-      selectedMode: Burst
+      selectedMode: SemiAuto
       shotsPerBurst: 3
       availableModes:
         - Burst
@@ -616,7 +643,7 @@
       slots:
         gun_magazine:
           name: Magazine
-          startingItem: MagazinePistol40SP
+          startingItem: MagazinePistol40AP
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
           priority: 2
@@ -626,7 +653,7 @@
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
           name: Chamber
-          startingItem: CartridgePistol40SP
+          startingItem: CartridgePistol40AP
           priority: 1
           whitelist:
             tags:

@@ -226,7 +226,7 @@
 
 - type: entity
   id: MechMiningPod
-  parent: [ BaseMechPod, BaseSalvageSpecialistContraband ]
+  parent: [ BaseMechPod, BaseSalvageContraband ]
   name: Mining Pod
   description: Despite its size, the Mining Pod has incredible survability in space.
   suffix: Filled
@@ -370,6 +370,8 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        pitch: 0.6
   - type: Mech
     baseState: death
     openState: death-open
@@ -617,6 +619,8 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        pitch: 0.8
   - type: Mech
     baseState: ntgygax
     openState: ntgygax-open

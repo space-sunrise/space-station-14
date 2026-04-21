@@ -28,11 +28,6 @@
     - 182,10,189,15
 
 - type: dungeonPreset
-  id: Arena
-  roomPacks:
-    - -60,10,-10,60
-
-- type: dungeonPreset
   id: SovietBucket
   roomPacks:
     - 0,0,17,17
@@ -126,13 +121,15 @@
     - 20,0,31,5
     - 35,0,46,5
     - 48,0,59,3
-    - 0,10,17,25
     - 20,10,27,17
     - 30,10,37,15
     - 40,10,47,13
     - 50,10,55,15
     - 58,10,61,15
     - 0,28,13,31
+    - 36,28,53,45
+    - 56,28,73,45
+    - 76,28,93,45
 
 - type: dungeonPreset
   id: SyndicateBaseAnyChanceSmall

@@ -1,7 +1,7 @@
 - type: gameMap
   id: SunriseRelic
   mapName: 'Relic'
-  mapPath: /Maps/_Sunrise/Station/relic.yml
+  mapPath: /Maps/_Sunrise/Station/OutPool/relic.yml
   minPlayers: 20
   #maxPlayers: 55
   stations:

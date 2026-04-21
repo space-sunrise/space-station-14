@@ -57,8 +57,10 @@
     cost: 2
     delay: 0
     fx: EffectRCDConstruct0
-  - type: PlacementReplacement # Sunrise-Edit
-    key: power_cables
+  # Sunrise edit start - mapping replacement rules
+  - type: MappingReplacement
+    usePrototypeId: true
+  # Sunrise edit end
 
 - type: entity
   parent: CableBase
