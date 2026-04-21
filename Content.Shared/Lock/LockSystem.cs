@@ -190,7 +190,7 @@ public sealed class LockSystem : EntitySystem
         _appearanceSystem.SetData(uid, LockVisuals.Locked, true);
         Dirty(uid, lockComp);
 
-        var ev = new LockToggledEvent(true);
+        var ev = new LockToggledEvent(true, user); // Sunrise-Edit
         RaiseLocalEvent(uid, ref ev, true);
     }
 
@@ -223,7 +223,7 @@ public sealed class LockSystem : EntitySystem
         _appearanceSystem.SetData(uid, LockVisuals.Locked, false);
         Dirty(uid, lockComp);
 
-        var ev = new LockToggledEvent(false);
+        var ev = new LockToggledEvent(false, user); // Sunrise-Edit
         RaiseLocalEvent(uid, ref ev, true);
     }
 
@@ -405,7 +405,7 @@ public sealed class LockSystem : EntitySystem
         _appearanceSystem.SetData(uid, LockVisuals.Locked, false);
         Dirty(uid, component);
 
-        var ev = new LockToggledEvent(false);
+        var ev = new LockToggledEvent(false, args.UserUid); // Sunrise-Edit
         RaiseLocalEvent(uid, ref ev, true);
 
         args.Repeatable = true;

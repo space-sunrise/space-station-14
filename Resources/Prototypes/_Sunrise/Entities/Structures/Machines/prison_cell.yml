@@ -1,0 +1,36 @@
+- type: entity
+  parent: AirlockSecurityGlassLocked
+  id: PrisonCellDoor
+  components:
+  - type: PrisonCellDoor
+  - type: DeviceLinkSink
+    ports:
+      - PrisonCellDoorLock
+      - PrisonCellDoorUnlock
+
+- type: entity
+  parent: Screen
+  id: PrisonCellTimer
+  components:
+  - type: PrisonTimer
+  - type: DeviceLinkSink
+    ports:
+      - PrisonTimerSet
+      - PrisonTimerReset
+  - type: TextScreenVisuals
+    textOffset: 0,3
+    rowOffset: 6
+    rows: 2
+    rowLength: 6
+
+- type: entity
+  parent: LockerSecurity
+  id: PrisonCellLocker
+  components:
+  - type: PrisonLocker
+  - type: AccessReader
+    access: []
+  - type: DeviceLinkSink
+    ports:
+      - PrisonLockerLock
+      - PrisonLockerUnlock

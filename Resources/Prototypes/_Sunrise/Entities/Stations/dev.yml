@@ -29,5 +29,6 @@
   - BaseStationCryoTeleport
   - BaseStationMeteorSwarmTarget
   - BaseStationRandomXenoArtifact
+  - BaseStationCriminalRecords
   components:
   - type: Transform
