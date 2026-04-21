@@ -21,7 +21,7 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeFrag
+    proto: BulletGrenadeFragArtillery
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     scale: 0.8, 1.15
@@ -39,7 +39,7 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeBaton
+    proto: BulletGrenadeBatonArtillery
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     scale: 1.2, 1.4
@@ -57,7 +57,7 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeBlast
+    proto: BulletGrenadeBlastArtillery
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     scale: 0.8, 1.15
@@ -75,7 +75,7 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeFlash
+    proto: BulletGrenadeFlashArtillery
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     scale: 0.8, 1.15
@@ -93,7 +93,7 @@
   parent: BaseArtilleryShell
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeEMP
+    proto: BulletGrenadeEMPArtillery
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     scale: 1.2, 1.4
@@ -122,7 +122,7 @@
     useMapCoords: true
   - type: DeleteOnTrigger
   - type: CartridgeAmmo
-    proto: BulletEMP
+    proto: BulletEMPCannonBallTracked
     deleteOnSpawn: true
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
@@ -135,7 +135,7 @@
   parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
-    proto: BulletFuzeCannonBall
+    proto: BulletFuzeCannonBallTracked
     deleteOnSpawn: true
   - type: TriggerOnUse
   - type: TimerTrigger
@@ -176,11 +176,13 @@
   parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
-    proto: BulletAntiMaterielCannonBall
+    proto: BulletAntiMaterielCannonBallTracked
     deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    state: ball
+    layers:
+    - state: ball
+      color: "#8C8C8C"
 
 - type: entity
   id: CannonBallMini

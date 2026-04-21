@@ -69,6 +69,7 @@
   id: AtmosTools
   recipes:
   - HolofanProjector
+  - FireExtinguisherBluespace # Sunrise-add
 
 - type: latheRecipePack
   id: EngineeringWeapons
@@ -90,4 +91,6 @@
   - EmitterCircuitboard
   - TelecomServerCircuitboard
   - SMESAdvancedMachineCircuitboard
+  - SMESExtendedMachineCircuitboard # Sunrise-Edit
+  - SMESSuperExtendedMachineCircuitboard # Sunrise-Edit
   - HolopadMachineCircuitboard

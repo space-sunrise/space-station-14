@@ -127,6 +127,10 @@
       weight: 4.0
     - id: XenoArtifactEffectCreationGasCarbonDioxide
       weight: 4.0
+    #SunRise-Start
+    - id: XenoArtifactEffectCreationGasElectrovae
+      weight: 1.0
+    #SunRise-End
 
 - type: entityTable
   id: XenoArtifactEffectsHandheldOnlyTable
@@ -230,6 +234,18 @@
   description: Becomes phased
   components:
   - type: XAERemoveCollision
+  # Sunrise-Start
+  - type: XAEApplyComponents
+    components:
+    - type: Clumsy
+      gunShootFailDamage:
+        types:
+          Blunt: 3
+          Piercing: 7
+        groups:
+          Burn: 3
+    - type: ArtifactFunnyTarget
+  # Sunrise-End
 
 - type: entity
   id: XenoArtifactWandering

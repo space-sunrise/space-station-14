@@ -198,4 +198,18 @@
   # - type: GuideHelp # Sunrise-TODO: Добавить в гайды
   #   guides:
   #   - ####
-
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineDressCloset
+  name: dress closet
+  description: To be perfect.
+  components:
+  - type: VendingMachine
+    pack: DressClosetInventory
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/VendingMachines/dresscloset.rsi
+    layers:
+    - state: off
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]

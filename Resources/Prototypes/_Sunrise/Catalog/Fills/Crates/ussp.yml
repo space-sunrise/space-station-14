@@ -318,7 +318,7 @@
   table: !type:GroupSelector
     children:
     - id: CrateAmmunitionSmall
-      weight: 1
+      weight: 0.2
     - id: CrateAmmunitionSmallLightRifle
       weight: 1
     - id: CrateAmmunitionSmallLightRifleAP

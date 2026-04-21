@@ -1,143 +1,143 @@
 ---
 name: SS14 Transform System Core
-description: Глубокий практический гайд по TransformSystem в Space Station 14: координатная модель (EntityCoordinates/MapCoordinates), иерархия parent-grid-map, безопасное перемещение, привязка/отвязка и client/server паттерны. Используй при телепортах, переносе сущностей, контейнерах, якорении и spatial-оптимизациях.
+description: An in-depth practical guide to TransformSystem in Space Station 14: coordinate model (EntityCoordinates/MapCoordinates), parent-grid-map hierarchy, safe movement, anchor/unbind and client/server patterns. Use for teleports, entity transfers, containers, anchoring and spatial optimizations.
 ---
 
 # TransformSystem: Core
 
-Этот skill покрывает именно архитектуру и рабочие приёмы TransformSystem 🙂
-Полный каталог API смотри в отдельном skill `SS14 Transform System API`.
+This skill covers exactly the architecture and working techniques of TransformSystem :)
+For the full API catalog, see the separate skill `SS14 Transform System API`.
 
-## Ментальная модель
+## Mental model
 
-Transform в SS14 = дерево пространств:
+Transform to SS14 = space tree:
 
-1. `ParentUid`: непосредственный родитель в иерархии.
-2. `GridUid`: грид, на котором находится сущность (или `null`).
-3. `MapUid` / `MapID`: карта, на которой находится сущность.
-4. `EntityCoordinates`: локальные координаты относительно `ParentUid`.
-5. `MapCoordinates`: мировые координаты внутри карты.
+1. `ParentUid`: immediate parent in the hierarchy.
+2. `GridUid`: the grid on which the entity is located (or `null`).
+3. `MapUid` / `MapID`: the card where the entity is located.
+4. `EntityCoordinates`: local coordinates relative to `ParentUid`.
+5. `MapCoordinates`: world coordinates inside the map.
 
-Ключевая идея:
-- сначала думай, в каком пространстве находятся текущие координаты;
-- потом выбирай API, которое явно переводит или сохраняет это пространство.
+Key idea:
+- first think about what space the current coordinates are in;
+- then choose an API that explicitly translates or saves this space.
 
-## Схема перемещения
+## Moving pattern
 
-Базовый поток при перемещении через `SetCoordinates(...)`:
+Basic flow when moving through `SetCoordinates(...)`:
 
-1. При необходимости снять anchor (`Unanchor`), если перемещение это допускает.
-2. Обновить локальную позицию/ротацию и, при смене родителя, пересчитать map/grid принадлежность.
-3. Поднять события движения (`MoveEvent`, `EntParentChangedMessage`) и обновить spatial-подсистемы.
-4. Выполнить post-step traversal, чтобы сущность оказалась на корректном grid/map parent.
+1. If necessary, remove the anchor (`Unanchor`), if the movement allows it.
+2. Update the local position/rotation and, when changing the parent, recalculate the map/grid membership.
+3. Raise motion events (`MoveEvent`, `EntParentChangedMessage`) and update spatial subsystems.
+4. Perform post-step traversal so that the entity ends up on the correct grid/map parent.
 
-Практическое следствие:
-- не смешивай прямое мутирование `TransformComponent` и системные методы;
-- системные методы держат инварианты дерева, broadphase и сетевой state ✅
+Practical consequence:
+- do not mix direct mutation `TransformComponent` and system methods;
+- system methods hold tree, broadphase and network state invariants ✅
 
-## Быстрый выбор API
+## Quick API selection
 
-1. Нужно сдвинуть в локальном пространстве без смены parent?
+1. Need to shift in local space without changing parent?
 - `SetLocalPosition`, `SetLocalRotation`, `SetLocalPositionRotation`.
-2. Нужно поставить в мировую точку/угол?
-- `SetWorldPosition`, `SetWorldRotation`, `SetWorldPositionRotation`, либо `SetMapCoordinates`.
-3. Нужно перекинуть между parent-space (контейнер/сущность/грид/карта)?
-- `SetCoordinates`, затем при необходимости `AttachToGridOrMap`.
-4. Нужно "положить рядом" с учётом контейнеров?
-- `DropNextTo` или `PlaceNextTo`.
-5. Нужно корректно сравнить дистанцию между разными parent-space?
-- `InRange`, а не ручное вычитание локальных векторов.
+2. Need to be placed at a world point/angle?
+- `SetWorldPosition`, `SetWorldRotation`, `SetWorldPositionRotation`, or `SetMapCoordinates`.
+3. Do you need to transfer between parent-space (container/entity/grid/map)?
+- `SetCoordinates`, then, if necessary, `AttachToGridOrMap`.
+4. Should I “put it next to it” taking into account the containers?
+- `DropNextTo` or `PlaceNextTo`.
+5. Do you need to correctly compare the distance between different parent-spaces?
+- `InRange` rather than manual subtraction of local vectors.
 
-## Паттерны
+## Patterns
 
-- Делать явную нормализацию после телепорта: `SetCoordinates` -> `AttachToGridOrMap`.
-- Для смены системы координат использовать `ToMapCoordinates`/`ToCoordinates`.
-- Для overlay/визуализации брать пары матриц через `GetWorldPositionRotationMatrixWithInv`.
-- Для tile-логики использовать helper-методы (`GetGridOrMapTilePosition`, `TryGetGridTilePosition`).
-- Для контейнерно-устойчивого дропа использовать `DropNextTo`.
+- Do explicit normalization after teleport: `SetCoordinates` -> `AttachToGridOrMap`.
+- To change the coordinate system, use `ToMapCoordinates`/`ToCoordinates`.
+- For overlay/visualization, take pairs of matrices through `GetWorldPositionRotationMatrixWithInv`.
+- For tile logic, use helper methods (`GetGridOrMapTilePosition`, `TryGetGridTilePosition`).
+- For container-resistant drops, use `DropNextTo`.
 
-## Анти-паттерны
+## Anti-patterns
 
-- Менять transform-поля напрямую, обходя `SharedTransformSystem` ⚠️
-- Сравнивать локальные позиции разных parent-деревьев как будто это одно пространство.
-- Телепортировать через `SetCoordinates` и забывать перепривязку к реальному гриду.
-- Использовать low-level `SetGridId` в игровом коде без строгой причины.
-- Логировать позицию без fallback через `TryGetMapOrGridCoordinates`.
+- Change transform fields directly, bypassing `SharedTransformSystem` ⚠️
+- Compare local positions of different parent trees as if they were one space.
+- Teleport via `SetCoordinates` and forget to rebind to the real grid.
+- Use low-level `SetGridId` in game code without a strict reason.
+- Log the position without fallback via `TryGetMapOrGridCoordinates`.
 
-## Примеры из кода
+## Code examples
 
-### Пример 1: безопасный дэш с нормализацией parent-space
+### Example 1: safe dash with parent-space normalization
 
 ```csharp
-// 1) Переносим сущность в целевые EntityCoordinates (из способности).
+// 1) Transfer the entity to the target EntityCoordinates (from the ability).
 _transform.SetCoordinates(user, xform, args.Target);
 
-// 2) Нормализуем parent к фактическому grid/map в целевой точке.
+// 2) Normalize parent to the actual grid/map at the target point.
 _transform.AttachToGridOrMap(user, xform);
 ```
 
-### Пример 2: "вживление" снаряда через SetParent
+### Example 2: “implanting” a projectile using SetParent
 
 ```csharp
-// Останавливаем физику и делаем снаряд статичным.
+// We stop physics and make the projectile static.
 _physics.SetLinearVelocity(projectile, Vector2.Zero, body: body);
 _physics.SetBodyType(projectile, BodyType.Static, body: body);
 
-// Перепривязываем снаряд к цели.
+// Re-attach the projectile to the target.
 _transform.SetParent(projectile, projectileXform, target);
 
-// Локальный оффсет применяем уже после parent-change.
+// We apply local offset after the parent-change.
 _transform.SetLocalPosition(
     projectile,
     projectileXform.LocalPosition + rotation.RotateVec(embedOffset),
     projectileXform);
 ```
 
-### Пример 3: overlay-рендер через world+inv matrix
+### Example 3: overlay rendering using world+inv matrix
 
 ```csharp
 var (_, _, worldMatrix, invWorldMatrix) =
     _transform.GetWorldPositionRotationMatrixWithInv(gridXform, xforms);
 
-// Переводим bounds камеры в локальные координаты грида.
+// We translate the camera bounds into local grid coordinates.
 var localBounds = invWorldMatrix.TransformBox(worldBounds).Enlarged(grid.TileSize * 2);
 
-// Рисуем в локальном пространстве грида.
+// We draw in the local space of the grid.
 drawHandle.SetTransform(worldMatrix);
 ```
 
-### Пример 4: якорение/разъякорение только системными методами
+### Example 4: anchoring/unanchoring using system methods only
 
 ```csharp
 if (!xform.Anchored)
     _transform.AnchorEntity(uid, xform);
 
-// ...игровая логика...
+// ...game logic...
 
 if (xform.Anchored)
     _transform.Unanchor(uid, xform);
 ```
 
-### Пример 5: направление pop-up через mover-coordinates
+### Example 5: pop-up direction via mover-coordinates
 
 ```csharp
-// MoverCoordinates даёт оперативные координаты в grid/map-терминах.
+// MoverCoordinates gives operational coordinates in grid/map terms.
 var moverCoords = _transform.GetMoverCoordinates(observer);
 
-// На их основе выбираем сторону подписи.
+// Based on them, we select the side of the signature.
 var horizontalDir = moverCoords.X <= popupOrigin.X ? 1f : -1f;
 ```
 
-## Серверные и клиентские usage-ориентиры
+## Server and client usage guidelines
 
-- Серверные паттерны: anchor/unanchor, swap/drop/place, безопасный телепорт, перенос в контейнеры и обратно.
-- Клиентские паттерны: матричные преобразования для overlay, UI-позиционирование через mover coords, tile-проверки через helper-методы.
-- Общий принцип: server-authoritative состояние + клиентское вычисление отображения без нарушения transform-инвариантов.
+- Server patterns: anchor/unanchor, swap/drop/place, safe teleport, transfer to containers and back.
+- Client patterns: matrix transformations for overlay, UI positioning through mover coords, tile checks through helper methods.
+- General principle: server-authoritative state + client mapping calculation without violating transform invariants.
 
-## Мини-чеклист перед изменениями
+## Mini-checklist before changes
 
-- Ясно, в каком пространстве находятся входные координаты.
-- Для смены пространства используются `ToMapCoordinates`/`ToCoordinates`.
-- После телепорта выполнена нормализация `AttachToGridOrMap` (если это нужно по логике).
-- Anchor-логика реализована через `AnchorEntity`/`Unanchor`.
-- Нет прямого мутирования устаревших component-сеттеров.
+- It is clear in which space the input coordinates are located.
+- To change space, use `ToMapCoordinates`/`ToCoordinates`.
+- After the teleport, `AttachToGridOrMap` was normalized (if logically necessary).
+- Anchor logic is implemented via `AnchorEntity`/`Unanchor`.
+- No direct mutation of legacy component setters.

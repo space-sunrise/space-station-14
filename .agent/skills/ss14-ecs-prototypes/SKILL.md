@@ -3,24 +3,24 @@ name: SS14 ECS Prototypes
 description: YAML prototypes in Space Station 14 — entity definitions, field inheritance, prototype classes, YAML linter, naming conventions, and localization
 ---
 
-# Prototypes — прототипы в ECS
+# Prototypes - prototypes in ECS
 
-## Граница ответственности
+## Limit of responsibility
 
-Этот skill покрывает механику прототипов: структуру YAML, наследование, маппинг `DataField`, типы прототипов и валидацию.
-Строгие naming-нормативы (prototype ID, форк-префиксы, английские fallback-поля, `ent-*` и `kebab-case` ключи) ведутся в `ss14-naming-conventions`.
-Если пример по именованию расходится с `ss14-naming-conventions`, применяй `ss14-naming-conventions`.
+This skill covers prototype mechanics: YAML structure, inheritance, `DataField` mapping, prototype types, and validation.
+Strict naming standards (prototype ID, fork prefixes, English fallback fields, `ent-*` and `kebab-case` keys) are maintained in `ss14-naming-conventions`.
+If the naming example differs from `ss14-naming-conventions`, use `ss14-naming-conventions`.
 
-## Что такое Prototype
+## What is Prototype
 
-Прототип — это YAML-определение данных, которое движок загружает при инициализации. Прототипы описывают сущности, рецепты, реагенты и другие игровые объекты. Прототипы сущностей определяют, какие компоненты и с какими значениями будут у сущности при создании.
+A prototype is a YAML data definition that the engine loads upon initialization. Prototypes describe entities, recipes, reagents, and other game objects. Entity prototypes determine what components and with what values ​​the entity will have when created.
 
-## Формат ID — краткая памятка (см. ss14-naming-conventions)
+## ID format - quick reminder (see ss14-naming-conventions)
 
-Все идентификаторы прототипов **обязательно** записываются в CamelCase:
+All prototype identifiers are **mandatory** recorded in CamelCase:
 
 ```yaml
-# Правильно
+# Right
 - type: entity
   id: Scp096
 
@@ -41,153 +41,153 @@ description: YAML prototypes in Space Station 14 — entity definitions, field i
 ```
 
 ```yml
-# Неправильно
+# Wrong
 - type: entity
-  id: scp_096          # подчёркивания
+  id: scp_096          # underscores
 
 - type: entity
-  id: scp-096          # дефисы
+  id: scp-096          # hyphens
 
 - type: entity
-  id: SCP096           # все заглавные
+  id: SCP096           # all uppercase
 
 - type: entity
-  id: scp096           # все строчные
+  id: scp096           # all lowercase
 ```
 
-## Прототип сущности — базовая структура
+## Entity prototype - basic structure
 
 ```yaml
 - type: entity
   id: MyEntity
-  parent: BaseParent        # Наследование от одного родителя
-  suffix: Debug             # Пометка в spawn-панели (необязательно)
+  parent: BaseParent        # Inherits from a single parent
+  suffix: Debug             # Spawn menu marker (optional)
   components:
   - type: Sprite
     sprite: path/to/sprite.rsi
     layers:
     - state: idle
-  - type: MyAction # Оригинальное название MyActionComponent. в Прототипе окончание не пишется!
+  - type: MyAction # Original name is MyActionComponent. The `Component` suffix is omitted in the prototype!
     speed: 5.0
     activationSound:
       path: /Audio/sound.ogg
 ```
 
-## Наследование прототипов
+## Prototype inheritance
 
-### Одиночное наследование
+### Single inheritance
 
 ```yaml
 - type: entity
   id: BaseAnimal
-  abstract: true           # Абстрактный — не создаётся напрямую
+  abstract: true           # Abstract — cannot be spawned directly
   components:
   - type: MobState
   - type: Damageable
 
 - type: entity
   id: Cat
-  parent: BaseAnimal       # Наследует все компоненты BaseAnimal
+  parent: BaseAnimal       # Inherits all components from BaseAnimal
   components:
   - type: Sprite
     sprite: animals/cat.rsi
 ```
 
-### Множественное наследование
+### Multiple inheritance
 
 ```yaml
 - type: entity
   id: Scp096
   parent:
-  - BaseScp                # Наследует от нескольких родителей
+  - BaseScp                # Inherits from multiple parents
   - MobCombat
   - MobBloodstream
   - StripableInventoryBase
-  # Наложение наследований идет СВЕРХУ ВНИЗ!
-  # Самый нижний имеет наиболее высокий приоритет, его компоненты и значения перезапишут остальные, если будет конфликт
+  # The imposition of inheritance goes from the TOP TO THE DOWN!
+  # The bottom one has the highest priority, its components and values ​​will overwrite the others if there is a conflict
   components:
   - type: Scp096
-    # ...специфичные поля
+    # ...specific fields
 ```
 
-Порядок родителей имеет значение — данные применяются в порядке указания.
+The order of the parents matters - the data is applied in the order specified.
 
-## Система наследования полей
+## Field inheritance system
 
-По умолчанию, поле дочернего прототипа **полностью перезаписывает** родительское значение. Это поведение изменяется атрибутами:
+By default, a child prototype field **completely overwrites** the parent value. This behavior is modified by the attributes:
 
-### `[AlwaysPushInheritance]` — мержинг
+### `[AlwaysPushInheritance]` — merging
 
-Вместо перезаписи **объединяет** данные родителя и потомка. Мержинг работает рекурсивно на уровне YAML-маппингов и последовательностей.
+Instead of overwriting, it **merges** the parent and child data. Merging works recursively at the level of YAML mappings and sequences.
 
 ```yaml
-# Родитель
+# Parent
 - type: entity
   id: BaseEntity
   abstract: true
-  components:              # components помечен [AlwaysPushInheritance]
+  components:              # `components` is marked with [AlwaysPushInheritance]
   - type: Sprite
     sprite: base.rsi
 
-# Потомок
+# Descendant
 - type: entity
   id: ChildEntity
   parent: BaseEntity
   components:
-  - type: MyComponent      # ДОБАВЛЯЕТСЯ к родительским компонентам
+  - type: MyComponent      # ADDED to the parent components
     value: 5
 ```
 
-Результат: у `ChildEntity` есть и `Sprite` (от родителя), и `MyComponent` (свой).
+Result: `ChildEntity` has both `Sprite` (from its parent) and `MyComponent` (its own).
 
-Основные применения:
-- **`components`** в `EntityPrototype` — компоненты потомка **мержатся** с родительскими
-- **Списки действий** (`ActionGrantComponent.actions`) — действия потомка **добавляются** к родительским
-- **Списки рецептов** (`LatheRecipePackPrototype`) — рецепты потомка добавляются
+Main Applications:
+- **`components`** in `EntityPrototype` - child components **merge** with parent ones
+- **Action lists** (`ActionGrantComponent.actions`) - child actions are **added** to the parent ones
+- **Recipe lists** (`LatheRecipePackPrototype`) - child recipes are added
 
-### `[NeverPushInheritance]` — блокировка наследования
+### `[NeverPushInheritance]` - inheritance blocking
 
-Значение поля **никогда** не передаётся от родителя к потомку. Потомок получает значение по умолчанию.
+The field value is **never** passed from parent to child. The child receives the default value.
 
 ```csharp
 [NeverPushInheritance]
-public bool Abstract { get; private set; }  // abstract не наследуется
+public bool Abstract { get; private set; }  // abstract is not inherited
 
 [NeverPushInheritance]
-public HashSet<ProtoId<EntityCategoryPrototype>>? Categories;  // категории не наследуются
+public HashSet<ProtoId<EntityCategoryPrototype>>? Categories;  // categories are not inherited
 ```
 
-Используется для:
-- `abstract` — потомок не абстрактный, даже если родитель абстрактный
-- `categories` — категории индивидуальны для каждого прототипа
-- Уникальные идентификаторы — ID, визуальные данные, которые не должны каскадировать
+Used for:
+- `abstract` - the child is not abstract, even if the parent is abstract
+- `categories` — categories are individual for each prototype
+- Unique identifiers - IDs, visual data that should not cascade
 
-### `[AbstractDataField]` — абстрактный прототип
+### `[AbstractDataField]` - abstract prototype
 
-Маркирует поле `abstract` в прототипе. Абстрактные прототипы:
-- Не индексируются через `IPrototypeManager`
-- Не отображаются при перечислении прототипов
-- Служат только источником данных для наследования
+Marks the `abstract` field in the prototype. Abstract prototypes:
+- Not indexed via `IPrototypeManager`
+- Not displayed when listing prototypes
+- Serve only as a source of data for inheritance
 
 ```yaml
 - type: entity
   id: BaseMob
-  abstract: true       # Этот прототип — только шаблон
+  abstract: true       # This prototype is only a template
   components:
   - type: MobState
   - type: Damageable
 ```
 
-### `[ParentDataField]` — поле родителя
+### `[ParentDataField]` - parent field
 
-Маркирует поле, содержащее ссылку на родительские прототипы. В `EntityPrototype` это поле `Parents`.
+Marks a field containing a reference to parent prototypes. In `EntityPrototype` this field is `Parents`.
 
-## Маппинг C# → YAML
+## Mapping C# → YAML
 
-Поля компонентов с `[DataField]` сериализуются в YAML через camelCase:
+Component fields with `[DataField]` are serialized in YAML via camelCase:
 
 ```csharp
-// C# компонент
+// C# component
 [DataField]
 public float BaseSpeed = 5f;
 
@@ -205,13 +205,13 @@ public EntityWhitelist? CryOutWhitelist;
 ```
 
 ```yaml
-# YAML прототип
+# YAML prototype
 - type: entity
   id: MyCreature
   components:
   - type: MyComponent
     baseSpeed: 5.0
-    rageDuration: 240         # секунды (TimeSpan)
+    rageDuration: 240         # seconds (TimeSpan)
     rageSound:
       path: /Audio/scream.ogg
       params:
@@ -226,7 +226,7 @@ public EntityWhitelist? CryOutWhitelist;
       - Window
 ```
 
-### Кастомное имя поля
+### Custom field name
 
 ```csharp
 [DataField("customYamlName")]
@@ -234,17 +234,17 @@ public float SomeCSharpName;
 ```
 
 ```yaml
-  customYamlName: 5.0    # Используется кастомное имя
+  customYamlName: 5.0    # Custom name is used
 ```
 
-## Создание своего типа прототипа
+## Creating your own prototype type
 
-### Интерфейсы
+### Interfaces
 
-- `IPrototype` — базовый, обязательно `string ID`
-- `IInheritingPrototype` — добавляет поддержку наследования (`Parents`, `Abstract`)
+- `IPrototype` — basic, required `string ID`
+- `IInheritingPrototype` — adds support for inheritance (`Parents`, `Abstract`)
 
-### Простой прототип (без наследования)
+### Simple prototype (no inheritance)
 
 ```csharp
 [Prototype]
@@ -273,7 +273,7 @@ public sealed partial class MyTriggerPrototype : IPrototype
     minValue: 500
 ```
 
-### Прототип с наследованием
+### Prototype with inheritance
 
 ```csharp
 [Prototype]
@@ -293,113 +293,113 @@ public sealed partial class MyInheritingPrototype : IPrototype, IInheritingProto
 }
 ```
 
-### Атрибут `[Prototype]`
+### Attribute `[Prototype]`
 
 ```csharp
-[Prototype]                        // Имя типа выводится из имени класса
-[Prototype("customTypeName")]      // Кастомное имя типа для YAML
-[Prototype(loadPriority: -1)]      // Приоритет загрузки
+[Prototype]                        // The type name is derived from the class name
+[Prototype("customTypeName")]      // Custom type name for YAML
+[Prototype(loadPriority: -1)]      // Download priority
 ```
 
-Тип `type` в YAML вычисляется из имени класса: `MyTriggerPrototype` → `MyTrigger` (суффикс `Prototype` отбрасывается).
+The type `type` in YAML is calculated from the class name: `MyTriggerPrototype` → `MyTrigger` (the `Prototype` suffix is ​​discarded).
 
-## Ссылки на прототипы в коде
+## Links to prototypes in code
 
 ```csharp
-// Типизированная ссылка на прототип сущности
+// Typed entity prototype reference
 [DataField]
 public EntProtoId SpawnEntity = "DefaultEntity";
 
-// Типизированная ссылка на произвольный прототип
+// Typed reference to an arbitrary prototype
 [DataField]
 public ProtoId<DamageModifierSetPrototype> DamageModifier = "Default";
 
-// Получение прототипа в системе
+// Getting a prototype in the system
 [Dependency] private readonly IPrototypeManager _proto = default!;
 
 var proto = _proto.Index<MyPrototype>("protoId");
 if (_proto.TryIndex<MyPrototype>("protoId", out var proto))
 {
-    // proto доступен
+    // proto available
 }
 ```
 
-## Именование и локализация (name / description)
+## Naming and localization (name / description)
 
-### Система локализации через FTL
+### Localization system via FTL
 
-Имена и описания задаются **не** в YAML, а через файлы локализации (`.ftl`):
+Names and descriptions are specified **not** in YAML, but through localization files (`.ftl`):
 
 ```text
 Resources/Locale/en-US/_prototypes/.../myentity.ftl
 Resources/Locale/ru-RU/_prototypes/.../myentity.ftl
 ```
 
-Формат FTL:
+FTL format:
 ```ftl
 ent-MyEntityId = entity name
     .desc = Entity description goes here.
     .suffix = Debug variant
 ```
 
-### Правила именования
+### Naming rules
 
-1. **Названия с маленькой буквы**: `ent-Scp096CryOut = emit mournful scream`
-2. **Описания с большой буквы**: `.desc = A strange creature that reacts to being seen.`
-3. **В прототипе YAML — только fallback на английском**: поля `name` и `description` в YAML служат запасным вариантом, если локализация отсутствует
-4. **Имена наследуются от родителя** автоматически через FTL — потомок использует имя родителя, если своё не задано
-5. **`suffix`** — для пометки вариантов в spawn-панели, не видна игрокам
+1. **Names with lowercase letters**: `ent-Scp096CryOut = emit mournful scream`
+2. **Descriptions with a capital letter**: `.desc = A strange creature that reacts to being seen.`
+3. **In the YAML prototype - only fallback in English**: the `name` and `description` fields in YAML serve as a fallback if there is no localization
+4. **Names are inherited from the parent** automatically via FTL - the child uses the parent’s name if its own is not specified
+5. **`suffix`** - for marking options in the spawn panel, not visible to players
 
-### Внутренние сущности
+### Internal Entities
 
 ```yaml
 - type: entity
   id: InternalEntity
-  save: false                    # Не сохраняется на карте
-  categories: [ HideSpawnMenu ] # Не показывается в spawn-панели
+  save: false                    # Not saved on the map
+  categories: [ HideSpawnMenu ] # Not shown in the spawn panel
   components:
   - type: MyComponent
 ```
 
-`save: false` — сущность не попадёт в файл карты при сохранении.
-`categories: [HideSpawnMenu]` — скрывает сущность из панели спавна.
+`save: false` - the entity will not go to the map file when saving.
+`categories: [HideSpawnMenu]` - hides the entity from the spawn panel.
 
 ## Content.YAMLLinter
 
-Отдельный проект `Content.YAMLLinter` — инструмент валидации всех YAML-прототипов.
+A separate project `Content.YAMLLinter` is a tool for validating all YAML prototypes.
 
-### Что проверяет
+### What it checks
 
-1. **Корректность полей** — все `[DataField]` в YAML должны существовать в C# компоненте
-2. **Ссылки на прототипы** — `ProtoId<T>` и `EntProtoId` ссылаются на существующие прототипы
-3. **Клиент-серверная валидация** — проверяет YAML на обеих сторонах, учитывает client-only и server-only типы
-4. **Валидация наследования** — корректность цепочки `parent`
+1. **Correctness of fields** - all `[DataField]` in YAML must exist in the C# component
+2. **Prototype links** - `ProtoId<T>` and `EntProtoId` refer to existing prototypes
+3. **Client-server validation** - checks YAML on both sides, takes into account client-only and server-only types
+4. **Inheritance validation** - correctness of the `parent` chain
 
-### Как работает
+### How it works
 
-- Запускает сервер и клиент через интеграционные тесты
-- Вызывает `IPrototypeManager.ValidateDirectory` для всех директорий с прототипами
-- Вызывает `ValidateStaticFields` для проверки ссылок в коде
-- Объединяет ошибки обеих сторон
+- Runs server and client through integration tests
+- Calls `IPrototypeManager.ValidateDirectory` for all prototype directories
+- Calls `ValidateStaticFields` to check references in code
+- Combines mistakes from both sides
 
-### В CI
+### In CI
 
-YAMLLinter запускается автоматически в CI/CD. Ошибки блокируют мердж. Формат выходных ошибок:
+YAMLLinter runs automatically in CI/CD. Errors block the merge. Error output format:
 ```text
 ::error in Prototypes/file.yml(42,5)  Unknown field 'nonExistentField' for component 'MyComponent'
 ```
 
-## Специальные YAML-конструкции
+## Special YAML constructs
 
-### Типизированные ноды
+### Typed nodes
 
 ```yaml
 containers:
-  my_slot: !type:ContainerSlot     # Конкретный тип контейнера
-  storage: !type:Container          # Обычный контейнер
+  my_slot: !type:ContainerSlot     # Specific container type
+  storage: !type:Container          # Regular container
 ```
 
-### Вложенные маппинги
+### Nested mappings
 
 ```yaml
 - type: entity
@@ -438,7 +438,7 @@ containers:
     - Window
 ```
 
-### Урон (DamageSpecifier)
+### Damage (DamageSpecifier)
 
 ```yaml
   damage:
@@ -448,10 +448,10 @@ containers:
       Bloodloss: 5
 ```
 
-### Звуки
+### Sounds
 
 ```yaml
-  # Путь к файлу
+  # File path
   sound:
     path: /Audio/sound.ogg
     params:
@@ -460,7 +460,7 @@ containers:
 ```
 
 ```yml
-  # Коллекция звуков
+  # Sound collection
   sound:
     collection: GibCollection
     params:

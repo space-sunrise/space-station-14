@@ -46,9 +46,12 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
+        // Sunrise-Start
         public DbSet<AHelpMessage> AHelpMessages { get; set; } = default!;
         public DbSet<MentorHelpTicket> MentorHelpTickets { get; set; } = default!;
         public DbSet<MentorHelpMessage> MentorHelpMessages { get; set; } = default!;
+        public DbSet<UiLike> UiLikes { get; set; } = default!;
+        // Sunrise-End
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -489,17 +492,15 @@ namespace Content.Server.Database
 
     // Sunrise-Start
     public class JobAlternativeTitle
-    {
+{
         public int Id { get; set; }
         public Profile Profile { get; set; } = null!;
         public int ProfileId { get; set; }
-
-        [MaxLength(100)]
+        [MaxLength(128)]
         public string JobName { get; set; } = null!;
-
-        [MaxLength(100)]
+        [MaxLength(128)]
         public string Title { get; set; } = null!;
-    }
+}
     // Sunrise-End
 
     #region Loadouts
@@ -1488,5 +1489,19 @@ namespace Content.Server.Database
         /// Whether this message is only visible to mentors/admins
         /// </summary>
         public bool IsStaffOnly { get; set; } = false;
+    }
+
+    [PrimaryKey(nameof(ScopeId), nameof(ItemId), nameof(PlayerUserId))]
+    [Index(nameof(PlayerUserId), nameof(ScopeId))]
+    public sealed class UiLike
+    {
+        [Required, MaxLength(128)]
+        public string ScopeId { get; set; } = string.Empty;
+
+        [Required, MaxLength(128)]
+        public string ItemId { get; set; } = string.Empty;
+
+        [Required]
+        public Guid PlayerUserId { get; set; }
     }
 }

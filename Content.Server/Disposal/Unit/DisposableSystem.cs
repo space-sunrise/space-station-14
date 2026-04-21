@@ -20,6 +20,7 @@ namespace Content.Server.Disposal.Unit
         [Dependency] private readonly DamageableSystem _damageable = default!;
         [Dependency] private readonly DisposalUnitSystem _disposalUnitSystem = default!;
         [Dependency] private readonly DisposalTubeSystem _disposalTubeSystem = default!;
+        [Dependency] private readonly AutoLoaderSystem _autoLoader = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
         [Dependency] private readonly SharedMapSystem _maps = default!;
@@ -28,6 +29,7 @@ namespace Content.Server.Disposal.Unit
 
         private EntityQuery<DisposalTubeComponent> _disposalTubeQuery;
         private EntityQuery<DisposalUnitComponent> _disposalUnitQuery;
+        private EntityQuery<AutoLoaderComponent> _autoLoaderQuery;
         private EntityQuery<MetaDataComponent> _metaQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
         private EntityQuery<TransformComponent> _xformQuery;
@@ -38,6 +40,7 @@ namespace Content.Server.Disposal.Unit
 
             _disposalTubeQuery = GetEntityQuery<DisposalTubeComponent>();
             _disposalUnitQuery = GetEntityQuery<DisposalUnitComponent>();
+            _autoLoaderQuery = GetEntityQuery<AutoLoaderComponent>();
             _metaQuery = GetEntityQuery<MetaDataComponent>();
             _physicsQuery = GetEntityQuery<PhysicsComponent>();
             _xformQuery = GetEntityQuery<TransformComponent>();
@@ -84,12 +87,14 @@ namespace Content.Server.Disposal.Unit
 
             EntityUid? disposalId = null;
             DisposalUnitComponent? duc = null;
+            AutoLoaderComponent? autoLoader = null;
             var gridUid = holderTransform.GridUid;
             if (TryComp<MapGridComponent>(gridUid, out var grid))
             {
                 foreach (var contentUid in _maps.GetLocal(gridUid.Value, grid, holderTransform.Coordinates))
                 {
-                    if (_disposalUnitQuery.TryGetComponent(contentUid, out duc))
+                    if (_disposalUnitQuery.TryGetComponent(contentUid, out duc) ||
+                        _autoLoaderQuery.TryGetComponent(contentUid, out autoLoader))
                     {
                         disposalId = contentUid;
                         break;
@@ -115,6 +120,11 @@ namespace Content.Server.Disposal.Unit
 
                 if (duc != null)
                     _containerSystem.Insert((entity, xform, meta), duc.Container);
+                else if (autoLoader != null &&
+                         holder.CurrentTube is { } currentTube &&
+                         disposalId is { } autoloaderUid &&
+                         _containerSystem.TryGetContainer(autoloaderUid, autoLoader.Container, out var autoloaderContainer))
+                    _autoLoader.Cycle(entity, (autoloaderUid, autoLoader), autoloaderContainer, currentTube);
                 else
                 {
                     _xformSystem.AttachToGridOrMap(entity, xform);
@@ -207,8 +217,14 @@ namespace Content.Server.Disposal.Unit
 
         public override void Update(float frameTime)
         {
+            var snapshot = new List<(EntityUid Uid, DisposalHolderComponent Holder)>();
             var query = EntityQueryEnumerator<DisposalHolderComponent>();
             while (query.MoveNext(out var uid, out var holder))
+            {
+                snapshot.Add((uid, holder));
+            }
+
+            foreach (var (uid, holder) in snapshot)
             {
                 UpdateComp(uid, holder, frameTime);
             }

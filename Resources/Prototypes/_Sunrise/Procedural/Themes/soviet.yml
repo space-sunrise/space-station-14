@@ -1,13 +1,14 @@
-# Rooms
-# - 50x50
-# - type: dungeonRoom
-#   id: SovietDungeon50x50
-#   size: 50,50
-#   atlas: /Maps/_Sunrise/Dungeon/soviet-warehouse.yml # soviet-warehouse.yml brocken, whait for fix in starlight
-#   offset: 0,0
-#   tags:
-#     - SovietWarehouse
-# - 17x5
+# # Rooms
+# # - 50x50
+# # - type: dungeonRoom
+# #   id: SovietDungeon50x50
+# #   size: 50,50
+# #   atlas: /Maps/_Sunrise/Dungeon/soviet-warehouse.yml # soviet-warehouse.yml brocken, whait for fix in starlight
+# #   offset: 0,0
+# #   tags:
+# #     - SovietWarehouse
+# # - 17x5
+
 - type: dungeonRoom
   id: SovietDungeon17x5a
   size: 17,5
@@ -15,8 +16,8 @@
   offset: 0,0
   tags:
     - SovietDungeon
-
-# - 11x5
+    - SunriseSovietDungeonGeneral
+# # - 11x5
 - type: dungeonRoom
   id: SovietDungeon11x5a
   size: 11,5
@@ -24,7 +25,7 @@
   offset: 0,6
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeon11x5
 - type: dungeonRoom
   id: SovietDungeon11x5b
   size: 11,5
@@ -32,7 +33,8 @@
   offset: 12,6
   tags:
     - SovietDungeon
-# - 7x5
+    - SunriseSovietDungeon11x5
+# # - 7x5
 - type: dungeonRoom
   id: SovietDungeon7x5a
   size: 7,5
@@ -40,7 +42,7 @@
   offset: 0,12
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeonGeneral
 - type: dungeonRoom
   id: SovietDungeon7x5b
   size: 7,5
@@ -48,7 +50,7 @@
   offset: 8,12
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeonGeneral
 - type: dungeonRoom
   id: SovietDungeon7x5c
   size: 7,5
@@ -56,8 +58,8 @@
   offset: 16,12
   tags:
     - SovietDungeon
-
-# - 5x5
+    - SunriseSovietDungeonGeneral
+# # - 5x5
 - type: dungeonRoom
   id: SovietDungeon5x5a
   size: 5,5
@@ -65,7 +67,7 @@
   offset: 0,18
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeon5x5
 - type: dungeonRoom
   id: SovietDungeon5x5b
   size: 5,5
@@ -73,7 +75,7 @@
   offset: 6,18
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeon5x5
 - type: dungeonRoom
   id: SovietDungeon5x5c
   size: 5,5
@@ -81,7 +83,7 @@
   offset: 12,18
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeon5x5
 - type: dungeonRoom
   id: SovietDungeon5x5d
   size: 5,5
@@ -89,7 +91,7 @@
   offset: 18,18
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeon5x5
 - type: dungeonRoom
   id: SovietDungeon5x5e
   size: 5,5
@@ -97,8 +99,8 @@
   offset: 24,18
   tags:
     - SovietDungeon
-
-# - 7x7
+    - SunriseSovietDungeon5x5
+# # - 7x7
 - type: dungeonRoom
   id: SovietDungeon7x7a
   size: 7,7
@@ -106,7 +108,7 @@
   offset: 0,42
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeon7x7
 - type: dungeonRoom
   id: SovietDungeon7x7b
   size: 7,7
@@ -114,7 +116,7 @@
   offset: 8,42
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeon7x7
 - type: dungeonRoom
   id: SovietDungeon7x7c
   size: 7,7
@@ -122,10 +124,8 @@
   offset: 16,42
   tags:
     - SovietDungeon
-
-
-
-# - 3x5
+    - SunriseSovietDungeon7x7
+# # - 3x5
 - type: dungeonRoom
   id: SovietDungeon3x5a
   size: 3,5
@@ -133,7 +133,7 @@
   offset: 0,24
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeon3x5
 - type: dungeonRoom
   id: SovietDungeon3x5b
   size: 3,5
@@ -141,7 +141,7 @@
   offset: 4,24
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeon3x5
 - type: dungeonRoom
   id: SovietDungeon3x5c
   size: 3,5
@@ -149,7 +149,7 @@
   offset: 8,24
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeon3x5
 - type: dungeonRoom
   id: SovietDungeon3x5d
   size: 3,5
@@ -157,7 +157,7 @@
   offset: 12,24
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeon3x5
 - type: dungeonRoom
   id: SovietDungeon3x5e
   size: 3,5
@@ -165,7 +165,7 @@
   offset: 16,24
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeon3x5
 - type: dungeonRoom
   id: SovietDungeon3x5f
   size: 3,5
@@ -173,7 +173,7 @@
   offset: 20,24
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeon3x5
 - type: dungeonRoom
   id: SovietDungeon3x5g
   size: 3,5
@@ -181,7 +181,7 @@
   offset: 24,24
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeon3x5
 - type: dungeonRoom
   id: SovietDungeon3x5h
   size: 3,5
@@ -189,8 +189,8 @@
   offset: 28,24
   tags:
     - SovietDungeon
-
-# - 13x3
+    - SunriseSovietDungeon3x5
+# # - 13x3
 - type: dungeonRoom
   id: SovietDungeon13x3a
   size: 13,3
@@ -198,7 +198,7 @@
   offset: 0,30
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeonGeneral
 - type: dungeonRoom
   id: SovietDungeon13x3b
   size: 13,3
@@ -206,8 +206,8 @@
   offset: 14,30
   tags:
     - SovietDungeon
-
-# - 11x3
+    - SunriseSovietDungeonGeneral
+# # - 11x3
 - type: dungeonRoom
   id: SovietDungeon11x3a
   size: 11,3
@@ -215,7 +215,7 @@
   offset: 0,34
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeonGeneral
 - type: dungeonRoom
   id: SovietDungeon11x3b
   size: 11,3
@@ -223,8 +223,8 @@
   offset: 12,34
   tags:
     - SovietDungeon
-
-# - 7x3
+    - SunriseSovietDungeonGeneral
+# # - 7x3
 - type: dungeonRoom
   id: SovietDungeon7x3a
   size: 7,3
@@ -232,7 +232,7 @@
   offset: 0,38
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeon7x3
 - type: dungeonRoom
   id: SovietDungeon7x3b
   size: 7,3
@@ -240,7 +240,7 @@
   offset: 8,38
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeon7x3
 - type: dungeonRoom
   id: SovietDungeon7x3c
   size: 7,3
@@ -248,7 +248,7 @@
   offset: 16,38
   tags:
     - SovietDungeon
-
+    - SunriseSovietDungeon7x3
 - type: dungeonRoom
   id: SovietDungeon7x3d
   size: 7,3
@@ -256,3 +256,131 @@
   offset: 24,38
   tags:
     - SovietDungeon
+    - SunriseSovietDungeon7x3
+
+- type: entity
+  id: SovietDungeonRoomMarker
+  parent: BaseRoomMarker
+  name: soviet dungeon room marker
+  components:
+  - type: RoomFill
+    minSize: 3,3
+    maxSize: 17,7
+    roomWhitelist:
+      tags:
+      - SunriseSovietDungeonGeneral
+
+- type: entity
+  id: SovietDungeonRoomMarker11x5
+  parent: BaseRoomMarker
+  name: soviet dungeon room marker
+  suffix: 11x5
+  components:
+  - type: RoomFill
+    minSize: 11,5
+    maxSize: 11,5
+    roomWhitelist:
+      tags:
+      - SunriseSovietDungeon11x5
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: Markers/Outlines/11x5.rsi
+        state: rect
+        color: red
+      - sprite: Markers/Outlines/11x5.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: SovietDungeonRoomMarker7x7
+  parent: BaseRoomMarker
+  name: soviet dungeon room marker
+  suffix: 7x7
+  components:
+  - type: RoomFill
+    minSize: 7,7
+    maxSize: 7,7
+    roomWhitelist:
+      tags:
+      - SunriseSovietDungeon7x7
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: Markers/Outlines/7x7.rsi
+        state: rect
+        color: red
+      - sprite: Markers/Outlines/7x7.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: SovietDungeonRoomMarker5x5
+  parent: BaseRoomMarker
+  name: soviet dungeon room marker
+  suffix: 5x5
+  components:
+  - type: RoomFill
+    minSize: 5,5
+    maxSize: 5,5
+    roomWhitelist:
+      tags:
+      - SunriseSovietDungeon5x5
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: Markers/Outlines/5x5.rsi
+        state: rect
+        color: red
+      - sprite: Markers/Outlines/5x5.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: SovietDungeonRoomMarker3x5
+  parent: BaseRoomMarker
+  name: soviet dungeon room marker
+  suffix: 3x5
+  components:
+  - type: RoomFill
+    minSize: 3,5
+    maxSize: 3,5
+    roomWhitelist:
+      tags:
+      - SunriseSovietDungeon3x5
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: _Sunrise/Markers/Outlines/3x5.rsi
+        state: rect
+        color: red
+      - sprite: _Sunrise/Markers/Outlines/3x5.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: SovietDungeonRoomMarker7x3
+  parent: BaseRoomMarker
+  name: soviet dungeon room marker
+  suffix: 7x3
+  components:
+  - type: RoomFill
+    minSize: 7,3
+    maxSize: 7,3
+    roomWhitelist:
+      tags:
+      - SunriseSovietDungeon7x3
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: _Sunrise/Markers/Outlines/7x3.rsi
+        state: rect
+        color: red
+      - sprite: _Sunrise/Markers/Outlines/7x3.rsi
+        state: label
+        color: red

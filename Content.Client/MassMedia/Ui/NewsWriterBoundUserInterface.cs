@@ -40,7 +40,7 @@ public sealed class NewsWriterBoundUserInterface : BoundUserInterface
         // Sunrise-Start
         if (state is NewsWriterBoundUserInterfaceState cast)
         {
-            _menu?.UpdateUI(cast.Articles, cast.PublishEnabled, cast.NextPublish, cast.DraftTitle, cast.DraftContent);
+            _menu?.UpdateUI(cast.Articles, cast.PublishEnabled, cast.NextPublish, cast.DraftTitle, cast.DraftContent, cast.PhotoSendingEnabled);
             if (_menu != null)
             {
                 _menu.ArticleEditorPanel.PhotoPaths = cast.DraftPhotoPaths != null ? new List<string>(cast.DraftPhotoPaths) : new List<string>();

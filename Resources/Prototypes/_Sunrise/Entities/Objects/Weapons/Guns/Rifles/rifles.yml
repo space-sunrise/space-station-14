@@ -362,19 +362,22 @@
     shape:
     - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -20
+    maxAngle: -45
   - type: Gun
-    minAngle: 2
-    maxAngle: 15
-    angleIncrease: 1
-    angleDecay: 15
+    minAngle: 23
+    maxAngle: 90
+    angleIncrease: 1.25
+    angleDecay: 20
     fireRate: 6
-    burstFireRate: 8
-    selectedMode: SemiAuto
+    burstFireRate: 9
+    selectedMode: Burst
     availableModes:
     - Burst
     - SemiAuto
     shotsPerBurst: 3
-    burstCooldown: 0.25
+    burstCooldown: 0.2
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/m16a4/m16a4_shot.ogg
   - type: ItemSlots
@@ -639,7 +642,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/tiny.rsi
   - type: WeaponDismantleOnShoot
     dismantleDistance: 4
-    dismantleChance: 0.005 # Примерно 150-200 патронов
+    dismantleChance: 0.004 # Примерно 150-200 патронов
     selfDamage:
       types:
         Blunt: 5

@@ -27,6 +27,7 @@ shop-disease-category-infection = Заражение
 # Uplink
 store-category-objectives = Цели
 store-category-mechs = Мехи
+store-category-shuttle = Шаттл
 store-category-cybernetics = Кибернетика
 # ntUplink
 store-category-ntautogun = Автоматы

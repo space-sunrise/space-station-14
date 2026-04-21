@@ -1,0 +1,17 @@
+- type: roleLoadout
+  id: SunriseJobCaptain
+  groups:
+  - SunriseCaptainHead
+  - SunriseCaptainNeck
+  - SunriseCaptainJumpsuit
+  - SunriseCaptainBackpack
+  - SunriseCaptainGloves
+  - SunriseCaptainOuterClothing
+  - SunriseCaptainBra
+  - SunriseCaptainPants
+  - SunriseSurvival
+  - SunriseTrinkets
+  - SunriseCaptainJobTrinkets
+  - SunriseGroupSpeciesBreathTool
+  - Socks
+  - Contributors

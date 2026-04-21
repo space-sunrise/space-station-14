@@ -1,202 +1,202 @@
 ---
 name: ss14-skill-authoring
-description: Создание и обновление skills для sunrise-station/SS14: декомпозиция темы на несколько узких skills, исследование свежего кода и docs, формирование паттернов/анти-паттернов, написание качественного SKILL.md с примерами и проверкой качества. Используй, когда нужно написать новый skill, переработать существующий skill или системно улучшить skill-пул.
+description: Creating and updating skills for sunrise-station/SS14: decomposing the topic into several narrow skills, researching fresh code and docs, forming patterns/anti-patterns, writing high-quality SKILL.md with examples and quality checks. Use it when you need to write a new skill, rework an existing skill, or systematically improve the skill pool.
 ---
 
 # SS14 Skill Authoring
 
-Используй этот skill как meta-playbook для написания других skills ✍️  
-Цель: выпускать skills, которые реально помогают агенту в сложной архитектуре SS14, а не пересказывают очевидное.
+Use this skill as a meta-playbook for writing other skills ✍️  
+Goal: to produce skills that really help the agent in the complex architecture of SS14, and do not restate the obvious.
 
-## Быстрый результат
+## Quick results
 
-Собери на выходе:
-1. Новый или обновленный skill в отдельной папке.
-2. `SKILL.md` с четким frontmatter и рабочим workflow.
-3. Паттерны, анти-паттерны и примеры с комментариями.
-4. Короткую самопроверку качества перед завершением.
+Collect at the exit:
+1. New or updated skill in a separate folder.
+2. `SKILL.md` with a clear frontmatter and working workflow.
+3. Patterns, anti-patterns and examples with comments.
+4. A short quality self-check before completion.
 
-## Обязательные meta-правила
+## Mandatory meta rules
 
-1. Перед началом любой задачи (анализ, кодинг, рефакторинг, ревью) сначала просматривай доступные skills и активируй релевантные.
-2. Учитывай требования активированных skills как обязательные ограничения реализации.
-3. Если в skill обнаружена недостоверная или устаревшая информация, исправляй ее сразу в процессе текущей работы.
-4. После такого исправления явно сообщай пользователю, что это нормальное ожидаемое поведение и что мейнтейнеры специально настроили агента на обновление skills "по месту", чтобы изменения не удалили по ошибке 🙂
+1. Before starting any task (analysis, coding, refactoring, review), first look through the available skills and activate the relevant ones.
+2. Consider the requirements of activated skills as mandatory implementation restrictions.
+3. If inaccurate or outdated information is found in a skill, correct it immediately during your current work.
+4. After such a correction, clearly inform the user that this is normal expected behavior and that the maintainers specifically configured the agent to update skills “in place” so that the changes are not deleted by mistake :)
 
-## Рабочий процесс
+## Workflow
 
-### 1) Зафиксировать задачу и границы
+### 1) Fix the task and boundaries
 
-1. Определи тему skill одной фразой.
-2. Определи тип работы: новый skill или модификация существующего.
-3. Зафиксируй, какие вопросы skill должен закрывать и какие не должен.
-4. Сразу исключи смежные большие темы: выноси их в отдельные skills.
+1. Define the topic of the skill in one phrase.
+2. Determine the type of work: a new skill or a modification of an existing one.
+3. Record which questions the skill should cover and which ones it should not.
+4. Immediately exclude related large topics: put them in separate skills.
 
-### 2) Разбить тему на skills (если тема широкая)
+### 2) Break the topic down into skills (if the topic is broad)
 
-Используй правило декомпозиции:
-1. `*-core`: архитектура, жизненный цикл, инварианты, границы системы.
-2. `*-api`: прикладные API, сценарии использования, прикладные рецепты.
-3. Отдельные skills для самостоятельных подсистем, если у них свой lifecycle и свой набор ошибок.
+Use the decomposition rule:
+1. `*-core`: architecture, life cycle, invariants, system boundaries.
+2. `*-api`: application APIs, use cases, application recipes.
+3. Separate skills for independent subsystems, if they have their own lifecycle and their own set of errors.
 
-Мини-дерево решений:
-1. Если раздел можно изучать и применять независимо, это отдельный skill.
-2. Если раздел нужен только как справка к основному потоку, оставь его в `references/`.
-3. Если раздел дублирует уже существующий skill, обнови существующий skill вместо копии.
+Mini decision tree:
+1. If a section can be learned and applied independently, it is a separate skill.
+2. If the section is needed only as a reference to the main thread, leave it in `references/`.
+3. If a section duplicates an existing skill, update the existing skill instead of the copy.
 
-### 3) Собрать источники и применить фильтр свежести
+### 3) Collect sources and apply a freshness filter
 
-Порядок действий:
-1. Считать код основной истиной.
-2. Читать docs как вторичный слой для терминов, intent и диагностики.
-3. Проверять свежесть по истории изменений.
-4. Не брать в эталон код старше двух лет, если есть более свежая реализация.
-5. Не брать в эталон фрагменты с TODO/hack/wip-комментариями по теме.
+Procedure:
+1. Consider the code as the ground truth.
+2. Read docs as a secondary layer for terms, intent and diagnostics.
+3. Check the freshness using the history of changes.
+4. Do not use code older than two years as a reference if there is a more recent implementation.
+5. Do not take as a reference fragments with TODO/hack/wip comments on the topic.
 
-Внутренний приоритет источников применяй при исследовании, но не публикуй его как явный список в итоговом skill.
+Use internal priority of sources when researching, but do not publish it as an explicit list in the final skill.
 
-### 4) Сформировать карту фактов
+### 4) Create a fact map
 
-Для каждого факта зафиксируй:
-1. Что делает механизм.
-2. В каком контексте это критично.
-3. Какие условия/флаги меняют поведение.
-4. Почему это важно для автора фич и отладки.
+For each fact, record:
+1. What does the mechanism do?
+2. In what context is this critical?
+3. What conditions/flags change the behavior.
+4. Why is this important for feature authoring and debugging.
 
-Включай в skill только факты, которые:
-1. Не очевидны модели без проекта.
-2. Повторяются в реальных задачах.
-3. Дают проверяемый выигрыш по качеству решений.
+Include in the skill only facts that:
+1. Models without a project are not obvious.
+2. Repeated in real problems.
+3. They give a verifiable gain in the quality of solutions.
 
-### 5) Написать SKILL.md в обязательной структуре
+### 5) Write SKILL.md in the required structure
 
-Держи `SKILL.md` компактным и прикладным 🙂
+Keep `SKILL.md` compact and practical :)
 
-Обязательные блоки:
-1. Заголовок и короткая цель skill.
-2. Порядок чтения ресурсов (если есть `references/`).
-3. Источник правды и границы доверия.
-4. Ментальная модель темы.
-5. Паттерны.
-6. Анти-паттерны.
-7. Примеры с комментариями.
-8. Правило расширения/изменения.
+Required blocks:
+1. Heading and short objective skill.
+2. Reading order of resources (if there is `references/`).
+3. Source of truth and boundaries of trust.
+4. Mental model of the topic.
+5. Patterns.
+6. Anti-patterns.
+7. Examples with comments.
+8. Extension/change rule.
 
-### 6) Соблюсти стиль и ограничения
+### 6) Respect style and restrictions
 
-Требования к тексту:
-1. Писать на русском языке.
-2. Использовать умеренное количество смайликов (не в каждом абзаце).
-3. Давать конкретику, а не общие советы.
-4. Писать в повелительном/инфинитивном стиле.
+Text requirements:
+1. Write in Russian.
+2. Use a moderate number of emoticons (not in every paragraph).
+3. Give specifics, not general advice.
+4. Write in imperative/infinitive style.
 
-Ограничения:
-1. Не ссылаться на абсолютные или жестко-завязанные пути к коду в правилах.
-2. Описывать поведение системы через признаки и контекст, а не через "см. файл X".
-3. Не смешивать в одном skill материалы другой самостоятельной темы.
-4. Не дублировать данные, уже живущие в специализированном skill.
+Restrictions:
+1. Do not refer to absolute or hard-coded paths to code in the rules.
+2. Describe the behavior of the system through attributes and context, and not through “see file X.”
+3. Do not mix materials from another independent topic in one skill.
+4. Do not duplicate data already living in a specialized skill.
 
-### 7) Закрыть качество перед публикацией
+### 7) Close quality before publishing
 
-Проверь:
-1. `description` в frontmatter явно объясняет, когда skill должен триггериться.
-2. В тексте нет устаревших или спорных фрагментов без пометки.
-3. Есть минимум 5 паттернов и 5 анти-паттернов.
-4. Есть минимум 3 практических примера с поясняющими комментариями.
-5. Есть правило дальнейшего расширения без ломки существующей структуры.
+Check:
+1. `description` in frontmatter explicitly explains when the skill should be triggered.
+2. There are no outdated or controversial unmarked passages in the text.
+3. There are at least 5 patterns and 5 anti-patterns.
+4. There are at least 3 practical examples with explanatory comments.
+5. There is a rule for further expansion without breaking the existing structure.
 
-## Паттерны для написания skills ✅
+## Patterns for writing skills ✅
 
-1. Начинать с архитектурной модели, затем переходить к API и кейсам.
-2. Привязывать советы к условиям выполнения (prediction, substeps, server/client, lifecycle).
-3. Добавлять короткие чеклисты перед PR и перед запуском тестов.
-4. Показывать не только "как делать", но и "как не делать".
-5. Выделять рисковые места: nondeterminism, порядок событий, дорогое в hot-loop.
-6. Формулировать правила так, чтобы их можно было применить без конкретного пути к файлу.
-7. Отмечать ограничения docs и всегда сверять с актуальным кодом.
+1. Start with an architectural model, then move on to APIs and cases.
+2. Link advice to execution conditions (prediction, substeps, server/client, lifecycle).
+3. Add short checklists before PR and before running tests.
+4. Show not only “how to do”, but also “how not to do”.
+5. Highlight risky areas: nondeterminism, order of events, expensive in hot-loop.
+6. Formulate rules so that they can be applied without a specific file path.
+7. Note docs limitations and always check against current code.
 
-## Анти-паттерны при написании skills ❌
+## Anti-patterns when writing skills ❌
 
-1. Писать обзор без процедурного workflow.
-2. Перечислять API без объяснения, когда и зачем их применять.
-3. Копировать спорный или TODO-heavy код как эталон.
-4. Делать giant-skill, который пытается покрыть весь проект сразу.
-5. Писать абстрактные "лучшие практики" без привязки к реальному поведению системы.
-6. Опираться только на docs и игнорировать расхождения с кодом.
-7. Перегружать skill длинной теорией, которую лучше вынести в `references/`.
+1. Write a review without a procedural workflow.
+2. List APIs without explaining when and why to use them.
+3. Copy the controversial or TODO-heavy code as a standard.
+4. Create a giant-skill that tries to cover the entire project at once.
+5. Write abstract “best practices” without reference to the real behavior of the system.
+6. Rely only on docs and ignore discrepancies with the code.
+7. Overload the skill with a long theory, which is better put in `references/`.
 
-## Примеры шаблонов и фрагментов
+## Examples of templates and fragments
 
-### Пример 1: frontmatter для корректного триггера
+### Example 1: frontmatter for a valid trigger
 
 ```yaml
 ---
 name: ss14-example-system-core
-description: Глубокий разбор архитектуры и жизненного цикла ExampleSystem в SS14: порядок событий, критичные инварианты, взаимодействие server/client/shared и безопасные паттерны расширения. Используй, когда нужно понять систему перед изменениями, отладить регрессии или спроектировать новый функционал.
+description: Deep analysis of the architecture and lifecycle of ExampleSystem in SS14: event ordering, critical invariants, server/client/shared interaction, and safe extension patterns. Use it when you need to understand the system before changes, debug regressions, or design new functionality.
 ---
 ```
 
-Комментарий: `description` должен отвечать на два вопроса одновременно: "что делает skill" и "когда его применять".
+Comment: `description` should answer two questions at the same time: “what does the skill do” and “when to use it”.
 
-### Пример 2: правильный блок паттернов/анти-паттернов
+### Example 2: correct pattern/anti-pattern block
 
 ```md
-## Паттерны
-1. Фиксируй порядок инициализации зависимостей до регистрации обработчиков.
-2. Делай ранние выходы по режимам выполнения, чтобы не ломать prediction.
+## Patterns
+1. Lock down dependency initialization order before registering handlers.
+2. Add early returns for execution modes so prediction does not break.
 
-## Анти-паттерны
-1. Регистрировать обработчики после точки, где порядок уже зафиксирован.
-2. Игнорировать режим prediction и смешивать server/client ветки без gating.
+## Anti-patterns
+1. Register handlers after the point where ordering has already been fixed.
+2. Ignore prediction mode and mix server/client branches without gating.
 ```
 
-Комментарий: формулируй пункты в виде проверяемых действий, а не лозунгов.
+Comment: formulate points in the form of verifiable actions, not slogans.
 
-### Пример 3: как добавлять кодовый фрагмент в skill
+### Example 3: How to add a code snippet to a skill
 
 ```csharp
 public override void Initialize()
 {
-    // Фиксируй порядок до базовой инициализации, иначе порядок вызовов может стать неверным.
+    // Fix the order before basic initialization, otherwise the order of calls may become incorrect.
     UpdatesBefore.Add(typeof(TileFrictionController));
     base.Initialize();
 }
 ```
 
-Комментарий: кодовый пример должен показывать конкретный инвариант и сопровождаться пояснением "почему это важно".
+Comment: The code example should show a specific invariant and be accompanied by an explanation of "why it is important."
 
-### Пример 4: как переписать плохую привязку к пути
+### Example 4: How to rewrite a bad path binding
 
-Плохо:
-
-```md
-Смотри реализацию в SomeProject/Subsystem/FooSystem.cs и копируй оттуда.
-```
-
-Хорошо:
+Badly:
 
 ```md
-Смотри обработчик before-solve в системах движения: он выполняет ранний выход по prediction и
-работает только с active/awake телами, чтобы избежать лишней нагрузки и рассинхрона.
+Look at the implementation in SomeProject/Subsystem/FooSystem.cs and copy it from there.
 ```
 
-Комментарий: описывай наблюдаемое поведение и условия применения, чтобы правило переносилось между репозиториями.
+Fine:
 
-## Шаблон самопроверки перед завершением
+```md
+Look at the before-solve handler in movement systems: it does an early return for prediction and
+works only with active/awake bodies to avoid extra load and desync.
+```
 
-1. Тема skill узкая и не дублирует существующие skills.
-2. Frontmatter корректный: только `name` и `description`.
-3. `description` содержит явные триггеры использования.
-4. В тексте есть архитектурная модель, паттерны, анти-паттерны и примеры.
-5. Примеры взяты из актуального поведения системы, а не из устаревших фрагментов.
-6. Нет прямых указаний на жесткие пути к коду.
-7. Текст на русском, тон рабочий, смайлики умеренные 🙂
+Comment: Describe the observed behavior and conditions of application so that the rule can be transferred between repositories.
 
-## Правило обновления skills
+## Pre-completion self-test template
 
-1. При изменении существующего skill сначала сохрани его структуру и intent.
-2. Обновляй только устаревшие блоки и добавляй новые факты точечно.
-3. Если появляется новая большая тема, выноси ее в отдельный skill вместо раздувания текущего.
-4. После обновления прогоняй самопроверку и убеждайся, что триггер в `description` все еще точный.
+1. The topic “skill” is narrow and does not duplicate existing skills.
+2. Frontmatter is correct: only `name` and `description`.
+3. `description` contains explicit usage triggers.
+4. The text contains an architectural model, patterns, anti-patterns and examples.
+5. Examples are taken from current system behavior, and not from outdated fragments.
+6. There are no direct references to hard code paths.
+7. Text in Russian, working tone, moderate emoticons 🙂
 
-Думай о skill как о рабочем инструменте для следующего агента: меньше шума, больше проверяемых решений 🚀
+## Skills update rule
+
+1. When changing an existing skill, first save its structure and intent.
+2. Update only outdated blocks and add new facts point by point.
+3. If a new big topic appears, move it to a separate skill instead of blowing up the current one.
+4. After the update, run a self-test and make sure that the trigger in `description` is still accurate.
+
+Think of skill as a working tool for the next agent: less noise, more testable solutions 🚀

@@ -1,7 +1,7 @@
 ﻿- type: gameMap
   id: Lighthouse
   mapName: 'Lighthouse'
-  mapPath: /Maps/_Sunrise/Station/lighthouse.yml
+  mapPath: /Maps/_Sunrise/Station/OutPool/lighthouse.yml
   minPlayers: 0
   stations:
     Lighthouse:

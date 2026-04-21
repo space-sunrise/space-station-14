@@ -712,6 +712,7 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Property<string>("JobName")
                         .IsRequired()
+                        .HasMaxLength(128)
                         .HasColumnType("TEXT")
                         .HasColumnName("job_name");
 
@@ -721,6 +722,7 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Property<string>("Title")
                         .IsRequired()
+                        .HasMaxLength(128)
                         .HasColumnType("TEXT")
                         .HasColumnName("title");
 
@@ -1518,6 +1520,31 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .IsUnique();
 
                     b.ToTable("trait", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.UiLike", b =>
+                {
+                    b.Property<string>("ScopeId")
+                        .HasMaxLength(128)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("scope_id");
+
+                    b.Property<string>("ItemId")
+                        .HasMaxLength(128)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("item_id");
+
+                    b.Property<Guid>("PlayerUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("player_user_id");
+
+                    b.HasKey("ScopeId", "ItemId", "PlayerUserId")
+                        .HasName("PK_ui_likes");
+
+                    b.HasIndex("PlayerUserId", "ScopeId")
+                        .HasDatabaseName("IX_ui_likes_player_user_id_scope_id");
+
+                    b.ToTable("ui_likes", (string)null);
                 });
 
             modelBuilder.Entity("Content.Server.Database.UploadedResourceLog", b =>

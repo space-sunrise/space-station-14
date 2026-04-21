@@ -52,6 +52,11 @@
     sprintModifier: 0.95
     requireActivated: false
   - type: HeldSpeedModifier
+  - type: RadarBlip
+    color: "#FFD700FF"
+    scale: 0.6
+    shape: Triangle
+    requireInSpace: true
   # Sunrise end
   - type: GasTank
     outputPressure: 21.3
@@ -139,6 +144,9 @@
     sprintModifier: 1.0
     requireActivated: false
   - type: HeldSpeedModifier
+  - type: RadarBlip
+    scale: 0
+    requireInSpace: true
   # Sunrise edit end
   - type: StaticPrice
     price: 1000
@@ -261,6 +269,13 @@
     sprite: Objects/Tanks/Jetpacks/security.rsi
   - type: Clothing
     sprite: Objects/Tanks/Jetpacks/security.rsi
+  # Sunrise-Start
+  - type: RadarBlip
+    color: "#ff2a00"
+    scale: 0.6
+    shape: Triangle
+    requireInSpace: true
+  # Sunrise-End
 
 #Filled security
 - type: entity
@@ -296,14 +311,6 @@
       - Back
       - suitStorage
       - Belt
-  # Sunrise-Start
-  - type: GasRegeneration
-    airRegenerate:
-      volume: 5
-      temperature: 293.15
-      moles:
-      - 0.0008
-  # Sunrise-End
 
 # Filled void
 - type: entity
@@ -340,52 +347,3 @@
     weightlessAcceleration: 1.3
     weightlessFriction: 0.3
     weightlessModifier: 1
-
-# Sunrise start - port SSF marine jetpack from Starlight
-- type: entity
-  id: JetpackSSFMarine
-  parent: [BaseJetpack, BaseSovietContraband]
-  name: SSF marine jetpack
-  suffix: Empty
-  description: Standard issued soviet-made jetpack for the kosmos.
-  components:
-    - type: Item
-      sprite: _Sunrise/Objects/Tanks/Jetpacks/marine_jetpack.rsi
-    - type: Sprite
-      sprite: _Sunrise/Objects/Tanks/Jetpacks/marine_jetpack.rsi
-    - type: Clothing
-      sprite: _Sunrise/Objects/Tanks/Jetpacks/marine_jetpack.rsi
-      slots:
-        - Back
-        - suitStorage
-        - Belt
-    - type: ClothingSpeedModifier
-      walkModifier: 1.0
-      sprintModifier: 1.0
-    - type: HeldSpeedModifier
-
-- type: entity
-  id: JetpackSSFMarineFilled
-  parent: [JetpackSSFMarine, BaseSovietContraband]
-  name: SSF marine jetpack
-  description: Standard issued soviet-made jetpack for the kosmos.
-  components:
-    - type: Item
-      sprite: _Sunrise/Objects/Tanks/Jetpacks/marine_jetpack.rsi
-    - type: Sprite
-      sprite: _Sunrise/Objects/Tanks/Jetpacks/marine_jetpack.rsi
-    - type: Clothing
-      sprite: _Sunrise/Objects/Tanks/Jetpacks/marine_jetpack.rsi
-      slots:
-        - Back
-        - suitStorage
-        - Belt
-    - type: GasTank
-      outputPressure: 42.6
-      air:
-        volume: 5
-        temperature: 293.15
-        moles:
-          - 1.025689525 # oxygen
-          - 1.025689525 # nitrogen
-# Sunrise end

@@ -345,6 +345,7 @@
       - id: WeaponPistolMakeshiftCrafted
       - id: WeaponRevolverMakeshift
       - id: WeaponSniperMakeshift
+      - id: WeaponMeleeSwitchblade
       # Sunrise-end
     # Rare Group
     - !type:GroupSelector
