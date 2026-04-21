@@ -188,6 +188,7 @@
       - NavigatorCartridge
       - MessengerCartridge
       - PhotoCartridge
+      - CorporateLawCartridge
 
 - type: entity
   parent: CaptainPDA
@@ -213,6 +214,18 @@
     accentHColor: "#e6bd45"
   - type: Icon
     state: pda-representative
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - WantedListCartridge
+      - AstroNavCartridge
+      - NavigatorCartridge
+      - MessengerCartridge
+      - PhotoCartridge
+      - CorporateLawCartridge
 
 - type: entity
   parent: BasePDA
@@ -275,6 +288,7 @@
     uiKey: enum.PdaUiKey.Key
     preinstalled:
       - NotekeeperCartridge
+      - CorporateLawCartridge
 
 - type: entity
   parent: USSPPDA
@@ -290,6 +304,7 @@
     preinstalled:
       - NotekeeperCartridge
       - LogProbeCartridge
+      - CorporateLawCartridge
 
 - type: entity
   parent: USSPPDA
@@ -306,6 +321,7 @@
       - NotekeeperCartridge
       - AstroNavCartridge
       - MedTekCartridge
+      - CorporateLawCartridge
 
 - type: entity
   parent: USSPPDA
@@ -322,6 +338,7 @@
       - NotekeeperCartridge
       - AstroNavCartridge
       - MedTekCartridge
+      - CorporateLawCartridge
 
 - type: entity
   parent: USSPPDA
@@ -339,6 +356,7 @@
       - LogProbeCartridge
       - AstroNavCartridge
       - MedTekCartridge
+      - CorporateLawCartridge
 
 - type: entity
   parent: BasePDA
@@ -427,6 +445,7 @@
     - NavigatorCartridge
     - MessengerCartridge
     - PhotoCartridge
+    - CorporateLawCartridge
 
 - type: entity
   parent: BasePDA
