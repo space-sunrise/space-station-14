@@ -121152,8 +121152,6 @@ entities:
       pos: -1.5,-54.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 21
     - type: AtmosPipeColor
@@ -158645,14 +158643,6 @@ entities:
     components:
     - type: Transform
       pos: -25.5,-4.5
-      parent: 2
-- proto: SpawnMechMiningPodFilled
-  entities:
-  - uid: 22349
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 62.5,0.5
       parent: 2
 - proto: SpawnMechPaddyFilled
   entities:

@@ -40,6 +40,9 @@
     sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi
     quickEquip: true
     slots: [ Eyes ]
+    clothingVisuals:
+      eyes:
+      - state: off-equipped-EYES
   - type: PowerCellDraw
     drawRate: 3.5
     useCharge: 20
@@ -145,9 +148,25 @@
         visible: false
         shader: unshaded
         map: [ "light" ]
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Eyes/Glasses/handcrafted_nvd.rsi
+    quickEquip: true
+    slots: [ HEAD ]
+    clothingVisuals:
+      head:
+      - state: off-equipped-EYES
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+      - state: on-equipped-EYES
+        shader: unshaded
   - type: PowerCellDraw
-    drawRate: 5
-    useCharge: 50
+    drawRate: 1.5
+    useCharge: 25
+  - type: VisionDarkener
+    strength: 0.2
+  - type: IdentityBlocker
   - type: ComponentToggler
     parent: true
     components:
@@ -156,3 +175,23 @@
   - type: Tag
     tags:
     - NVDHandcrafted
+  - type: Construction
+    graph: handcraftnvd
+    node: nvdfinished
+
+- type: entity
+  name: improvised NVD
+  parent: [BaseItem, PowerCellSlotSmallItem]
+  id: NVDHandcraftedParts
+  description: An welding mask with atached strange parts and threaded with cabling. It looks incomplete.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/handcrafted_nvd.rsi
+    layers:
+      - state: icon
+  - type: Item
+    size: Small
+    sprite: _Sunrise/Clothing/Eyes/Glasses/handcrafted_nvd.rsi
+  - type: Construction
+    graph: handcraftnvd
+    node: nvdassembling

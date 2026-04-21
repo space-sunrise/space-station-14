@@ -2,16 +2,95 @@
   parent: SMESAdvanced
   id: SMESExtended
   suffix: Hyper, 32MW
+  name: extended SMES
+  description: A hyper-capacity superconducting magnetic energy storage (SMES) unit.
   components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Power/smes.rsi
+    snapCardinals: true
+    layers:
+    - state: smes-blue
+    - state: smes-blue-fan
+    - map: [ "enum.SmesVisualLayers.Charge" ]
+      state: "smes-og1"
+      shader: unshaded
+      visible: false
+    - map: [ "enum.SmesVisualLayers.Input" ]
+      state: "smes-oc0"
+      shader: unshaded
+    - map: [ "enum.SmesVisualLayers.Output" ]
+      state: "smes-op1"
+      shader: unshaded
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: smes-blue-open
+  - type: Machine
+    board: SMESExtendedMachineCircuitboard
   - type: Battery
     maxCharge: 32000000
     startingCharge: 32000000
+  - type: PowerMonitoringDevice
+    group: SMES
+    sourceNode: input
+    loadNode: output
+    collectionName: smes
+    sprite: _Sunrise/Structures/Power/smes.rsi
+    state: smes-blue-static
 
 - type: entity
-  parent: SMESAdvanced
+  parent: SMESExtended
   id: SMESSuperExtended
   suffix: Super-Hyper, 64MW
+  name: super extended SMES
+  description: A top-tier superconducting magnetic energy storage (SMES) unit.
   components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Power/smes.rsi
+    snapCardinals: true
+    layers:
+    - state: smes-black
+    - state: smes-black-fan
+    - map: [ "enum.SmesVisualLayers.Charge" ]
+      state: "smes-og1"
+      shader: unshaded
+      visible: false
+    - map: [ "enum.SmesVisualLayers.Input" ]
+      state: "smes-oc0"
+      shader: unshaded
+    - map: [ "enum.SmesVisualLayers.Output" ]
+      state: "smes-op1"
+      shader: unshaded
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: smes-black-open
+  - type: Machine
+    board: SMESSuperExtendedMachineCircuitboard
+  - type: AtmosDevice
+    joinSystem: true
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerDisabled: false
+    powerLoad: 700
+  - type: GasThermoMachine
+    atmospheric: true
+    targetTemperature: 333 # 60C
+    temperatureTolerance: 0.5
+    heatCapacity: 700
+    coefficientOfPerformance: 1
   - type: Battery
     maxCharge: 64000000
     startingCharge: 64000000
+
+- type: entity
+  parent: SMESExtended
+  id: SMESExtendedEmpty
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0
+
+- type: entity
+  parent: SMESSuperExtended
+  id: SMESSuperExtendedEmpty
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0

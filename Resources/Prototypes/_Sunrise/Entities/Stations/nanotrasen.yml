@@ -10,6 +10,7 @@
   - BaseStationNanotrasen
   - BaseStationSiliconLawCrewsimov
   - PrisonStationAlertLevels
+  - BaseStationCriminalRecords
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform

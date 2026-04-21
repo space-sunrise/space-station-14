@@ -32,6 +32,7 @@
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
   # Sunrise-Start
+  - type: Airtight
   - type: ExaminableDamage
     messages: WindowMessages
   - type: Repairable
