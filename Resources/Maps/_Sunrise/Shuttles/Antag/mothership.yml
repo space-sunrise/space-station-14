@@ -2,9 +2,9 @@ meta:
   format: 7
   category: Grid
   engineVersion: 271.1.0
-  forkId: "Sunrise"
-  forkVersion: "Sunrise"
-  time: 04/19/2026 12:39:29
+  forkId: sunrise_station
+  forkVersion: 1ba309273ad5b7a0ef5c8ad0889bff5d5c4335c3
+  time: 04/21/2026 15:13:50
   entityCount: 806
 maps: []
 grids:
@@ -2537,6 +2537,12 @@ entities:
       parent: 1
 - proto: BlastDoorXenoborg
   entities:
+  - uid: 73
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,0.5
+      parent: 1
   - uid: 223
     components:
     - type: Transform
@@ -2549,12 +2555,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 13.5,0.5
       parent: 1
-  - uid: 355
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -5.5,0.5
-      parent: 1
   - uid: 388
     components:
     - type: Transform
@@ -2564,7 +2564,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 6.5,0.5
+      pos: -5.5,0.5
       parent: 1
   - uid: 710
     components:
@@ -4572,16 +4572,16 @@ entities:
       parent: 1
 - proto: Recycler
   entities:
-  - uid: 73
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 6.5,0.5
-      parent: 1
   - uid: 270
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
+      pos: 6.5,0.5
+      parent: 1
+  - uid: 355
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
       pos: -5.5,0.5
       parent: 1
 - proto: SheetGlass
@@ -4676,10 +4676,13 @@ entities:
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        570:
+        270:
+        - - Pressed
+          - Forward
+        232:
         - - Pressed
           - Toggle
-        232:
+        73:
         - - Pressed
           - Toggle
     - type: Fixtures
@@ -4694,8 +4697,11 @@ entities:
       linkedPorts:
         355:
         - - Pressed
-          - Toggle
+          - Forward
         223:
+        - - Pressed
+          - Toggle
+        570:
         - - Pressed
           - Toggle
     - type: Fixtures
