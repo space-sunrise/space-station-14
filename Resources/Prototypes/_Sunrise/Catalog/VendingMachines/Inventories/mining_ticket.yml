@@ -164,7 +164,7 @@
   id: VendorMiningWeaponMechIndustrialPlasmaCutterLight
   productEntity: WeaponMechIndustrialPlasmaCutterLight
   cost:
-    SalvageTicket: 500
+    SalvageTicket: 400
   categories:
   - MiningEquipment
   conditions:
@@ -206,7 +206,7 @@
   id: VendorMiningEnergyPickaxe
   productEntity: EnergyPickaxe
   cost:
-    SalvageTicket: 600
+    SalvageTicket: 650
   categories:
   - MiningEquipment
 
@@ -214,7 +214,7 @@
   id: VendorMiningFloodlight
   productEntity: Floodlight
   cost:
-    SalvageTicket: 250
+    SalvageTicket: 200
   categories:
   - MiningEquipment
 

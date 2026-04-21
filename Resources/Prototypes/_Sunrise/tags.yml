@@ -140,6 +140,9 @@
   id: PlantAnalyzer
 
 - type: Tag
+  id: SunriseBlueprintXenoborg
+
+- type: Tag
   id: TrayScanner
 
 # region Cores / power
@@ -625,6 +628,18 @@
 
 - type: Tag
   id: SovietPinsExped
+
+- type: Tag
+  id: SovietDamagedIDCardExped
+
+- type: Tag
+  id: SovietDamagedIDCardsSoldierExped
+
+- type: Tag
+  id: SovietDamagedIDCardsOfficerExped
+
+- type: Tag
+  id: SovietDamagedIDCardsCaptainExped
 
 - type: Tag
   id: SovietWarehouse

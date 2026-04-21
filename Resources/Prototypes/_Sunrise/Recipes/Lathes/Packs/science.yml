@@ -38,6 +38,5 @@
 - type: latheRecipePack
   id: NightVisionDevice
   recipes:
-  - HandCraftedNVD
   - BasicNVD
   - BasicThermals
