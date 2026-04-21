@@ -1,0 +1,21 @@
+<Button xmlns="https://spacestation14.io"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        HorizontalExpand="True"
+        MinWidth="400"
+        MinHeight="32"
+        ToggleMode="False"
+        StyleClasses="ButtonSquare">
+    <BoxContainer Orientation="Horizontal" Margin="8 2" SeparationOverride="12" MouseFilter="Ignore">
+        <BoxContainer Orientation="Horizontal" MinWidth="120" SeparationOverride="8" MouseFilter="Ignore">
+            <Label Name="CaseIdLabel" StyleClasses="LabelHeading" VerticalAlignment="Center" MouseFilter="Ignore"/>
+            <Label Name="StatusLabel" StyleClasses="LabelSecondaryColor" VerticalAlignment="Center" MouseFilter="Ignore"/>
+        </BoxContainer>
+
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalAlignment="Center" MouseFilter="Ignore">
+            <Label Name="LawsSummaryLabel" ClipText="True" MouseFilter="Ignore"/>
+            <BoxContainer Name="CircumstancesContainer" Orientation="Vertical" MouseFilter="Ignore"/>
+        </BoxContainer>
+
+        <Label Text="→" VerticalAlignment="Center" Margin="4 0" StyleClasses="LabelSecondaryColor" MouseFilter="Ignore"/>
+    </BoxContainer>
+</Button>

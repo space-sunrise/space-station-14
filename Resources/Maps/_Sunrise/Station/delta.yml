@@ -240174,14 +240174,6 @@ entities:
     - type: Transform
       pos: 10.5,47.5
       parent: 2
-- proto: SpawnMechMiningPodFilled
-  entities:
-  - uid: 26314
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 36.5,48.5
-      parent: 2
 - proto: SpawnMechPaddyFilled
   entities:
   - uid: 43426
