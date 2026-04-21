@@ -33,6 +33,7 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
 
     private const int NumCells = 10;
+    private readonly List<int> _toRemove = new();
 
     public override void Initialize()
     {
@@ -166,9 +167,7 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
             }
             else
             {
-                if (HasComp<PrisonLockerComponent>(sink))
-                    _locker.UnlockLocker(sink, accessId ?? "");
-                else if (HasComp<PrisonCellDoorComponent>(sink))
+                if (HasComp<PrisonCellDoorComponent>(sink))
                     _door.UnlockDoor(sink);
 
                 if (HasComp<PrisonTimerComponent>(sink))
@@ -187,10 +186,8 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
         while (query.MoveNext(out var uid, out var component))
         {
             var changed = false;
-            var toRemove = new List<int>();
-
+            _toRemove.Clear();
             var threshold = GetPermanentThreshold();
-
             foreach (var entry in component.ActiveIncarcerations)
             {
                 var cellIdx = entry.Key;
@@ -203,12 +200,12 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
                 if (curTime >= incar.StartTime + TimeSpan.FromMinutes(incar.SentenceMinutes))
                 {
                     FinishIncarceration(uid, component, cellIdx, incar);
-                    toRemove.Add(cellIdx);
+                    _toRemove.Add(cellIdx);
                     changed = true;
                 }
             }
 
-            foreach (var idx in toRemove)
+            foreach (var idx in _toRemove)
             {
                 component.ActiveIncarcerations.Remove(idx);
             }

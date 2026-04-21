@@ -49,7 +49,11 @@ public sealed partial class SunriseCriminalRecordsWindow : DefaultWindow
 
         if (state.SelectedStationRecord == null)
         {
-            MainContentContainer.RemoveAllChildren();
+            foreach (var child in MainContentContainer.Children.ToArray())
+            {
+                if (child != NoSelectionLabel)
+                    child.Dispose();
+            }
             NoSelectionLabel.Visible = true;
             _detailsControl = null;
             return;
@@ -96,12 +100,6 @@ public sealed partial class SunriseCriminalRecordsWindow : DefaultWindow
             _caseEditor = new SunriseCriminalRecordsCaseEditor();
             _caseEditor.OnBack += () => _owner?.SetUIState(SunriseCriminalRecordsUIState.List);
             _caseEditor.OnSave += (id, laws, circs, notes) => _owner?.UpdateCase(id, laws, circs, notes);
-            _caseEditor.OnFinalize += () =>
-            {
-                if (_lastState?.Cases.FindLast(c => c.Status == CriminalCaseStatus.Open) is { } lastOpen)
-                    _owner?.CloseCase(lastOpen.Id);
-            };
-
         }
 
         // Handle case selection: prioritze user selection, then open case, then last case
@@ -111,6 +109,7 @@ public sealed partial class SunriseCriminalRecordsWindow : DefaultWindow
 
         if (activeCase != null)
         {
+            _caseEditor.OnFinalize = () => _owner?.CloseCase(activeCase.Id);
             _caseEditor.Setup(activeCase, state.Cases);
         }
         else

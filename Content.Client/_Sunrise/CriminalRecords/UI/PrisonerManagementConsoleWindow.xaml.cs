@@ -81,8 +81,8 @@ public sealed partial class PrisonerManagementConsoleWindow : FancyWindow
         {
             var control = new PrisonerRecordControl();
             control.PermanentThreshold = threshold;
-            control.SetupInProgress(incar);
             control.SetCellIndex(incar.CellIndex);
+            control.SetupInProgress(incar);
             InProgressContainer.AddChild(control);
         }
     }

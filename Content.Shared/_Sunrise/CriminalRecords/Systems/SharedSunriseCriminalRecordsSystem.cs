@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._Sunrise.Laws;
 using Robust.Shared.Prototypes;
 
@@ -7,30 +8,64 @@ public abstract class SharedSunriseCriminalRecordsSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-    public int CalculateSentence(CriminalCase @case)
+    public int CalculateSentence(CriminalCase @case, List<CriminalCase> allCases)
     {
-        var baseTotal = 0;
+        if (!_prototypeManager.TryIndex<CorporateLawsetPrototype>("StandardCorporateLaw", out var lawset))
+            return 0;
+
+        // 1. Group articles by section and find maximum for each
+        var sectionMaxes = new Dictionary<string, int>();
+        int heaviestArticleBase = 0;
+
         foreach (var lawId in @case.Laws)
         {
-            if (_prototypeManager.TryIndex<CorporateLawPrototype>(lawId, out var law))
+            if (!_prototypeManager.TryIndex<CorporateLawPrototype>(lawId, out var law))
+                continue;
+
+            heaviestArticleBase = Math.Max(heaviestArticleBase, law.BaseSentence);
+
+            // Find section
+            string sectionId = "unknown";
+            foreach (var s in lawset.Articles)
             {
-                baseTotal += law.BaseSentence;
+                if (!_prototypeManager.TryIndex<CorporateLawSectionPrototype>(s, out var section) || !section.Entries.Contains(lawId))
+                    continue;
+                sectionId = s;
+                break;
             }
+
+            if (!sectionMaxes.TryGetValue(sectionId, out var currentMax) || law.BaseSentence > currentMax)
+                sectionMaxes[sectionId] = law.BaseSentence;
         }
 
-        var multiplier = 1.0f;
+        // 2. Sum up section maxes and apply cap
+        int baseSum = sectionMaxes.Values.Sum();
+        float cap = heaviestArticleBase * 1.5f;
+        int cappedBase = (int) Math.Min(baseSum, cap);
+
+        // 3. Multipliers (Circumstances & Recidivism)
+        float multiplierModifier = 0.0f; // Additive part for recidivism
+        float multiplierFactor = 1.0f;   // Multiplicative part for circumstances
+
+        // Circumstances
         foreach (var circId in @case.Circumstances)
         {
-            if (_prototypeManager.TryIndex<CorporateLawPrototype>(circId, out var circ))
-            {
-                // Multipliers are additive: 1.2 and 0.8 becomes 1.0 (1 + 0.2 - 0.2)
-                multiplier += (circ.SentenceMultiplier - 1.0f);
-            }
+            if (_prototypeManager.TryIndex<CorporateLawPrototype>(circId, out var law))
+                multiplierFactor *= law.SentenceMultiplier;
         }
 
-        // Ensure multiplier doesn't go below 0
-        multiplier = Math.Max(0, multiplier);
+        // Recidivism: +15% per unique repeating article
+        var pastLaws = allCases
+            .Where(c => c.Id != @case.Id)
+            .SelectMany(c => c.Laws)
+            .ToHashSet();
 
-        return (int)Math.Round(baseTotal * multiplier);
+        foreach (var lawId in @case.Laws.Distinct())
+        {
+            if (pastLaws.Contains(lawId))
+                multiplierModifier += 0.15f;
+        }
+
+        return (int) Math.Round(cappedBase * multiplierFactor * (1.0f + multiplierModifier));
     }
 }

@@ -29,6 +29,9 @@ public sealed partial class SunriseCriminalRecordsDetailsControl : Control
 
     public void SetContent(Control control)
     {
+        if (ContentArea.ChildCount > 0 && ContentArea.GetChild(0) == control)
+            return;
+
         ContentArea.RemoveAllChildren();
         ContentArea.AddChild(control);
     }

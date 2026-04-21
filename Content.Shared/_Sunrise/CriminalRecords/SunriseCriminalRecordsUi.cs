@@ -1,13 +1,20 @@
 using Robust.Shared.Serialization;
+using Content.Shared.StationRecords;
 
 namespace Content.Shared._Sunrise.CriminalRecords;
 
+/// <summary>
+///     Key for the criminal records console UI.
+/// </summary>
 [Serializable, NetSerializable]
 public enum SunriseCriminalRecordsConsoleKey : byte
 {
     Key
 }
 
+/// <summary>
+///     The current view/tab of the criminal records console.
+/// </summary>
 [Serializable, NetSerializable]
 public enum SunriseCriminalRecordsUIState : byte
 {
@@ -15,13 +22,35 @@ public enum SunriseCriminalRecordsUIState : byte
     Editor
 }
 
+/// <summary>
+///     The state of a criminal records console, sent to the client.
+/// </summary>
 [Serializable, NetSerializable]
 public sealed class SunriseCriminalRecordsConsoleState : BoundUserInterfaceState
 {
+    /// <summary>
+    ///     List of all station records (Id -> Name).
+    /// </summary>
     public readonly Dictionary<uint, string> Records;
+
+    /// <summary>
+    ///     List of criminal cases for the currently selected record.
+    /// </summary>
     public readonly List<CriminalCase> Cases;
+
+    /// <summary>
+    ///     The currently selected station record ID.
+    /// </summary>
     public readonly uint? SelectedStationRecord;
+
+    /// <summary>
+    ///     The currently selected case ID within the record.
+    /// </summary>
     public readonly uint? SelectedCaseId;
+
+    /// <summary>
+    ///     The current UI sub-state (List or Editor).
+    /// </summary>
     public readonly SunriseCriminalRecordsUIState CurrentUIState;
 
     // Person details
@@ -49,9 +78,9 @@ public sealed class SunriseCriminalRecordsConsoleState : BoundUserInterfaceState
         string? fingerprints = null,
         string? dna = null)
     {
-        Records = records;
+        Records = new Dictionary<uint, string>(records);
         SelectedName = selectedName;
-        Cases = cases;
+        Cases = new List<CriminalCase>(cases);
         SelectedStationRecord = selectedStationRecord;
         SelectedCaseId = selectedCaseId;
         CurrentUIState = currentState;
@@ -66,11 +95,17 @@ public sealed class SunriseCriminalRecordsConsoleState : BoundUserInterfaceState
     }
 }
 
+/// <summary>
+///     BUI message to request creating a new open criminal case.
+/// </summary>
 [Serializable, NetSerializable]
 public sealed class SunriseCriminalRecordsCreateCaseMessage : BoundUserInterfaceMessage
 {
 }
 
+/// <summary>
+///     BUI message to update an existing open criminal case.
+/// </summary>
 [Serializable, NetSerializable]
 public sealed class SunriseCriminalRecordsUpdateCaseMessage : BoundUserInterfaceMessage
 {
@@ -82,12 +117,15 @@ public sealed class SunriseCriminalRecordsUpdateCaseMessage : BoundUserInterface
     public SunriseCriminalRecordsUpdateCaseMessage(uint caseId, List<string> laws, List<string> circumstances, string? notes)
     {
         CaseId = caseId;
-        Laws = laws;
-        Circumstances = circumstances;
+        Laws = new List<string>(laws);
+        Circumstances = new List<string>(circumstances);
         Notes = notes;
     }
 }
 
+/// <summary>
+///     BUI message to close an open criminal case.
+/// </summary>
 [Serializable, NetSerializable]
 public sealed class SunriseCriminalRecordsCloseCaseMessage : BoundUserInterfaceMessage
 {
@@ -99,6 +137,9 @@ public sealed class SunriseCriminalRecordsCloseCaseMessage : BoundUserInterfaceM
     }
 }
 
+/// <summary>
+///     BUI message to change the current UI sub-state.
+/// </summary>
 [Serializable, NetSerializable]
 public sealed class SunriseCriminalRecordsSetUIStateMessage : BoundUserInterfaceMessage
 {
@@ -110,6 +151,9 @@ public sealed class SunriseCriminalRecordsSetUIStateMessage : BoundUserInterface
     }
 }
 
+/// <summary>
+///     BUI message to select a specific case for editing/viewing.
+/// </summary>
 [Serializable, NetSerializable]
 public sealed class SunriseCriminalRecordsSelectCaseMessage : BoundUserInterfaceMessage
 {
@@ -121,6 +165,9 @@ public sealed class SunriseCriminalRecordsSelectCaseMessage : BoundUserInterface
     }
 }
 
+/// <summary>
+///     BUI message to select a person's record to view their cases.
+/// </summary>
 [Serializable, NetSerializable]
 public sealed class SunriseCriminalRecordsSelectRecordMessage : BoundUserInterfaceMessage
 {

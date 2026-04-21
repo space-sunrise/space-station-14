@@ -10,9 +10,9 @@ namespace Content.Server._Sunrise.CartridgeLoader.Cartridges;
 
 public sealed class CorporateLawCartridgeSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _config = null!;
-    [Dependency] private readonly IPrototypeManager _prototype = null!;
-    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = null!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
 
     public override void Initialize()
     {
@@ -20,7 +20,7 @@ public sealed class CorporateLawCartridgeSystem : EntitySystem
         SubscribeLocalEvent<CorporateLawCartridgeComponent, CartridgeUiReadyEvent>(OnUiReady);
     }
 
-    private void OnUiReady(EntityUid uid, CorporateLawCartridgeComponent component, CartridgeUiReadyEvent args)
+    private void OnUiReady(Entity<CorporateLawCartridgeComponent> ent, ref CartridgeUiReadyEvent args)
     {
         var lawsetId = _config.GetCVar(SunriseCCVars.CorporateLawSet);
         if (!_prototype.TryIndex<CorporateLawsetPrototype>(lawsetId, out var lawset))
@@ -34,7 +34,7 @@ public sealed class CorporateLawCartridgeSystem : EntitySystem
             var provisionEntries = new List<LawEntry>();
             foreach (var entryId in lawset.Provisions)
             {
-                if (!_prototype.TryIndex<CorporateLawPrototype>(entryId, out var entry))
+                if (!_prototype.TryIndex(entryId, out var entry))
                     continue;
 
                 provisionEntries.Add(new LawEntry(entry.LawIdentifier, Loc.GetString(entry.Title), Loc.GetString(entry.Description)));
@@ -46,13 +46,13 @@ public sealed class CorporateLawCartridgeSystem : EntitySystem
         // 2. Legal Articles (Categorized)
         foreach (var sectionId in lawset.Articles)
         {
-            if (!_prototype.TryIndex<CorporateLawSectionPrototype>(sectionId, out var section))
+            if (!_prototype.TryIndex(sectionId, out var section))
                 continue;
 
             var entries = new List<LawEntry>();
             foreach (var entryId in section.Entries)
             {
-                if (!_prototype.TryIndex<CorporateLawPrototype>(entryId, out var entry) || entry.Category == LawCategory.Provision)
+                if (!_prototype.TryIndex(entryId, out var entry) || entry.Category == LawCategory.Provision)
                     continue;
 
                 entries.Add(new LawEntry(entry.LawIdentifier, Loc.GetString(entry.Title), Loc.GetString(entry.Description)));
@@ -69,7 +69,7 @@ public sealed class CorporateLawCartridgeSystem : EntitySystem
 
             foreach (var entryId in lawset.Circumstances)
             {
-                if (!_prototype.TryIndex<CorporateLawPrototype>(entryId, out var entry) || entry.Category == LawCategory.Provision)
+                if (!_prototype.TryIndex(entryId, out var entry) || entry.Category == LawCategory.Provision)
                     continue;
 
                 var lawEntry = new LawEntry(entry.LawIdentifier, Loc.GetString(entry.Title), Loc.GetString(entry.Description));

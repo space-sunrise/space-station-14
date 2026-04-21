@@ -21,15 +21,12 @@ public sealed class PrisonTimerSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, PrisonTimerComponent component, ComponentStartup args)
     {
-        _deviceLink.EnsureSinkPorts(uid, "PrisonTimerSet", "PrisonTimerReset");
+        _deviceLink.EnsureSinkPorts(uid, "PrisonTimerReset");
     }
 
     private void OnSignalReceived(EntityUid uid, PrisonTimerComponent component, ref SignalReceivedEvent args)
     {
-        if (args.Port == "PrisonTimerSet")
-        {
-        }
-        else if (args.Port == "PrisonTimerReset")
+        if (args.Port == "PrisonTimerReset")
         {
             ResetTimer(uid);
         }
@@ -60,9 +57,9 @@ public sealed class PrisonTimerSystem : EntitySystem
         // We target RowLength = 6 (as defined in prison_cell.yml)
         const int rowLength = 6;
 
-        var text = line1.PadRight(rowLength);
+        var text = (line1.Length > rowLength ? line1[..rowLength] : line1).PadRight(rowLength);
         if (!string.IsNullOrEmpty(line2))
-            text += line2.PadRight(rowLength);
+            text += (line2.Length > rowLength ? line2[..rowLength] : line2).PadRight(rowLength);
 
         _appearance.SetData(uid, TextScreenVisuals.ScreenText, text);
     }

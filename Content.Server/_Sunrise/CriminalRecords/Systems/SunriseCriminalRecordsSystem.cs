@@ -31,12 +31,16 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SunriseCriminalRecordsConsoleComponent, SunriseCriminalRecordsSelectRecordMessage>(OnSelectRecord);
-        SubscribeLocalEvent<SunriseCriminalRecordsConsoleComponent, SunriseCriminalRecordsCreateCaseMessage>(OnCreateCase);
-        SubscribeLocalEvent<SunriseCriminalRecordsConsoleComponent, SunriseCriminalRecordsUpdateCaseMessage>(OnUpdateCase);
-        SubscribeLocalEvent<SunriseCriminalRecordsConsoleComponent, SunriseCriminalRecordsCloseCaseMessage>(OnCloseCase);
-        SubscribeLocalEvent<SunriseCriminalRecordsConsoleComponent, SunriseCriminalRecordsSelectCaseMessage>(OnSelectCase);
-        SubscribeLocalEvent<SunriseCriminalRecordsConsoleComponent, SunriseCriminalRecordsSetUIStateMessage>(OnSetUIState);
+        Subs.BuiEvents<SunriseCriminalRecordsConsoleComponent>(SunriseCriminalRecordsConsoleKey.Key, subs =>
+        {
+            subs.Event<SunriseCriminalRecordsSelectRecordMessage>(OnSelectRecord);
+            subs.Event<SunriseCriminalRecordsCreateCaseMessage>(OnCreateCase);
+            subs.Event<SunriseCriminalRecordsUpdateCaseMessage>(OnUpdateCase);
+            subs.Event<SunriseCriminalRecordsCloseCaseMessage>(OnCloseCase);
+            subs.Event<SunriseCriminalRecordsSelectCaseMessage>(OnSelectCase);
+            subs.Event<SunriseCriminalRecordsSetUIStateMessage>(OnSetUIState);
+        });
+
         SubscribeLocalEvent<SunriseCriminalRecordsConsoleComponent, BoundUIOpenedEvent>(OnOpened);
 
         SubscribeLocalEvent<SunriseCriminalRecordsConsoleComponent, RecordModifiedEvent>(OnRecordEvent);
@@ -221,7 +225,7 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
     {
         foreach (var sectionId in lawset.Articles)
         {
-            if (_proto.TryIndex(sectionId, out var section) && section.Entries.Contains(lawId))
+            if (_proto.TryIndex<CorporateLawSectionPrototype>(sectionId, out var section) && section.Entries.Contains(lawId))
                 return true;
         }
         return false;
@@ -290,64 +294,4 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
         _ui.SetUiState(uid, SunriseCriminalRecordsConsoleKey.Key, state);
     }
 
-    private int CalculateSentence(CriminalCase @case, List<CriminalCase> allCases)
-    {
-        if (!_proto.TryIndex<CorporateLawsetPrototype>("StandardCorporateLaw", out var lawset))
-            return 0;
-
-        // 1. Group articles by section and find maximum for each
-        var sectionMaxes = new Dictionary<string, int>();
-        int heaviestArticleBase = 0;
-
-        foreach (var lawId in @case.Laws)
-        {
-            if (!_proto.TryIndex<CorporateLawPrototype>(lawId, out var law))
-                continue;
-
-            heaviestArticleBase = Math.Max(heaviestArticleBase, law.BaseSentence);
-
-            // Find section
-            string sectionId = "unknown";
-            foreach (var s in lawset.Articles)
-            {
-                if (!_proto.TryIndex<CorporateLawSectionPrototype>(s, out var section) || !section.Entries.Contains(lawId))
-                    continue;
-                sectionId = s;
-                break;
-            }
-
-            if (!sectionMaxes.TryGetValue(sectionId, out var currentMax) || law.BaseSentence > currentMax)
-                sectionMaxes[sectionId] = law.BaseSentence;
-        }
-
-        // 2. Sum up section maxes and apply cap
-        int baseSum = sectionMaxes.Values.Sum();
-        float cap = heaviestArticleBase * 1.5f;
-        int cappedBase = (int) Math.Min(baseSum, cap);
-
-        // 3. Multipliers (Circumstances & Recidivism)
-        float multiplierModifier = 0.0f; // Additive part for recidivism
-        float multiplierFactor = 1.0f;   // Multiplicative part for circumstances
-
-        // Circumstances
-        foreach (var circId in @case.Circumstances)
-        {
-            if (_proto.TryIndex<CorporateLawPrototype>(circId, out var law))
-                multiplierFactor *= law.SentenceMultiplier;
-        }
-
-        // Recidivism: +15% per unique repeating article
-        var pastLaws = allCases
-            .Where(c => c.Id != @case.Id)
-            .SelectMany(c => c.Laws)
-            .ToHashSet();
-
-        foreach (var lawId in @case.Laws.Distinct())
-        {
-            if (pastLaws.Contains(lawId))
-                multiplierModifier += 0.15f;
-        }
-
-        return (int) Math.Round(cappedBase * multiplierFactor * (1.0f + multiplierModifier));
-    }
 }

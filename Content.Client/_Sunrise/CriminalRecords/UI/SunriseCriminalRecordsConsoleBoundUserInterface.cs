@@ -62,10 +62,4 @@ public sealed class SunriseCriminalRecordsConsoleBoundUserInterface : BoundUserI
         SendMessage(new SunriseCriminalRecordsSetUIStateMessage(state));
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-        if (disposing)
-            _window?.Dispose();
-    }
 }

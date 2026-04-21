@@ -24,9 +24,9 @@ public sealed class PrisonLockerSystem : EntitySystem
         SubscribeLocalEvent<PrisonLockerComponent, LockToggledEvent>(OnLockToggled);
     }
 
-    private void OnStartup(EntityUid uid, PrisonLockerComponent component, ComponentStartup args)
+    private void OnStartup(Entity<PrisonLockerComponent> ent, ref ComponentStartup args)
     {
-        _deviceLink.EnsureSinkPorts(uid, "PrisonLockerLock", "PrisonLockerUnlock");
+        _deviceLink.EnsureSinkPorts(ent, "PrisonLockerLock", "PrisonLockerUnlock");
     }
 
     public void LockLocker(EntityUid uid, string accessId)
@@ -47,18 +47,12 @@ public sealed class PrisonLockerSystem : EntitySystem
         }
     }
 
-    public void UnlockLocker(EntityUid uid, string accessId)
-    {
-        // Sunrise-Edit: Lockers should remain restricted to the prisoner even after sentence ends.
-        // They will be reset by the next LockLocker call when a new prisoner is incarcerated.
-    }
-
-    private void OnSignalReceived(EntityUid uid, PrisonLockerComponent component, ref SignalReceivedEvent args)
+    private void OnSignalReceived(Entity<PrisonLockerComponent> ent, ref SignalReceivedEvent args)
     {
         if (args.Port == "PrisonLockerLock")
         {
-            if (TryComp<AccessReaderComponent>(uid, out var reader))
-                _accessReader.SetActive((uid, reader), true);
+            if (TryComp<AccessReaderComponent>(ent, out var reader))
+                _accessReader.SetActive((ent, reader), true);
         }
         else if (args.Port == "PrisonLockerUnlock")
         {
@@ -67,19 +61,19 @@ public sealed class PrisonLockerSystem : EntitySystem
         }
     }
 
-    private void OnOpenAttempt(EntityUid uid, PrisonLockerComponent component, ref StorageOpenAttemptEvent args)
+    private void OnOpenAttempt(Entity<PrisonLockerComponent> ent, ref StorageOpenAttemptEvent args)
     {
-        component.LastUser = args.User;
+        ent.Comp.LastUser = args.User;
     }
 
-    private void OnLockToggled(EntityUid uid, PrisonLockerComponent component, ref LockToggledEvent args)
+    private void OnLockToggled(Entity<PrisonLockerComponent> ent, ref LockToggledEvent args)
     {
-        if (args.Locked || string.IsNullOrEmpty(component.AccessId) || args.User == null)
+        if (args.Locked || string.IsNullOrEmpty(ent.Comp.AccessId) || args.User == null)
             return;
 
         var user = args.User.Value;
         var items = _accessReader.FindPotentialAccessItems(user);
-        var accessToRemove = new ProtoId<AccessLevelPrototype>(component.AccessId);
+        var accessToRemove = new ProtoId<AccessLevelPrototype>(ent.Comp.AccessId);
 
         foreach (var item in items)
         {

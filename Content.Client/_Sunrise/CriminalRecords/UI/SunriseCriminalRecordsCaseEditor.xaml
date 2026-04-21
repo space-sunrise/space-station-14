@@ -43,7 +43,7 @@
                 <BoxContainer Orientation="Vertical" Margin="12" SeparationOverride="8">
                     <Label Text="{Loc 'sunrise-records-notes'}" StyleClasses="LabelHeading"/>
                     <PanelContainer StyleClasses="LowDivider" MinHeight="1"/>
-                    <LineEdit Name="NotesInput" HorizontalExpand="True" PlaceHolder="{Loc 'sunrise-records-notes-placeholder'}"/>
+                    <TextEdit Name="NotesInput" HorizontalExpand="True" MinHeight="80" VerticalExpand="True"/>
 
                     <Label Name="SentenceLabel" StyleClasses="LabelBig" HorizontalAlignment="Center" Margin="0 8 0 0"/>
                 </BoxContainer>
