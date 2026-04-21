@@ -19,14 +19,15 @@ public sealed class StationCorporateLawSystem : SharedStationCorporateLawSystem
         SubscribeLocalEvent<StationCorporateLawComponent, ComponentStartup>(OnStartup);
     }
 
-    private void OnStartup(EntityUid uid, StationCorporateLawComponent component, ComponentStartup args)
+    private void OnStartup(Entity<StationCorporateLawComponent> ent, ref ComponentStartup args)
     {
-        // If we are on a station and have no articles/provisions, try to initialze from CVar.
+        // If we are on a station and have no articles/provisions, try to initialize from CVar.
         // This acts as a prediction/fallback until the server's state syncs.
+        var component = ent.Comp;
         if (component.Articles.Count > 0 || component.Provisions.Count > 0)
             return;
 
-        if (!HasComp<StationDataComponent>(uid))
+        if (!HasComp<StationDataComponent>(ent.Owner))
             return;
 
         var lawsetId = _config.GetCVar(SunriseCCVars.CorporateLawSet);

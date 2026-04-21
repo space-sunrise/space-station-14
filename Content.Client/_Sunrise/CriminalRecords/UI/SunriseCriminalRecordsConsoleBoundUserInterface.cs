@@ -39,12 +39,12 @@ public sealed class SunriseCriminalRecordsConsoleBoundUserInterface : BoundUserI
         SendMessage(new SunriseCriminalRecordsCreateCaseMessage());
     }
 
-    public void UpdateCase(uint caseId, List<string> laws, List<string> circumstances, string? notes)
+    public void UpdateCase(uint caseId, List<ProtoId<CorporateLawPrototype>> laws, List<ProtoId<CorporateLawPrototype>> circumstances, string? notes)
     {
         SendMessage(new SunriseCriminalRecordsUpdateCaseMessage(
             caseId,
-            laws.Select(l => new ProtoId<CorporateLawPrototype>(l)).ToList(),
-            circumstances.Select(c => new ProtoId<CorporateLawPrototype>(c)).ToList(),
+            laws,
+            circumstances,
             notes));
     }
 

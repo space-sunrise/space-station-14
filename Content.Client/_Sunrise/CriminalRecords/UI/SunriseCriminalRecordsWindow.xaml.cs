@@ -106,7 +106,7 @@ public sealed partial class SunriseCriminalRecordsWindow : DefaultWindow
             _caseEditor = new SunriseCriminalRecordsCaseEditor();
             _caseEditor.ConsoleEntity = _owner?.Owner;
             _caseEditor.OnBack += () => _owner?.SetUIState(SunriseCriminalRecordsUIState.List);
-            _caseEditor.OnSave += (id, laws, circs, notes) => _owner?.UpdateCase(id, laws.Select(l => (string)l).ToList(), circs.Select(c => (string)c).ToList(), notes);
+            _caseEditor.OnSave += (id, laws, circs, notes) => _owner?.UpdateCase(id, laws, circs, notes);
         }
 
         // Handle case selection: prioritze user selection, then open case, then last case
