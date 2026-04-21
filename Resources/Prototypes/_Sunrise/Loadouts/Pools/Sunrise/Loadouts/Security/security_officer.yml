@@ -13,3 +13,13 @@
   id: SecurityEyesEyepatchHud
   equipment:
     eyes: ClothingEyesEyepatchHudSecurity
+
+- type: loadout
+  id: SunriseSecurityArmorVestSec
+  equipment:
+    outerClothing: ClothingOuterVestArmorSec
+
+- type: loadout
+  id: SunriseSecurityJackBootsSec
+  equipment:
+    shoes: ClothingShoesBootsJackSec

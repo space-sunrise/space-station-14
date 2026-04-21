@@ -20,6 +20,9 @@
         <!-- Sunrise added start - mapper transparency sandbox control -->
         <Button Name="ToggleMappingTransparencyButton" Access="Public" Text="{Loc sandbox-window-toggle-mapping-transparency-button}" ToggleMode="True"/>
         <!-- Sunrise added end -->
+        <!-- Sunrise added start - device link sandbox control -->
+        <Button Name="ToggleDeviceLinkButton" Access="Public" Text="{Loc sandbox-window-toggle-device-link-button}" ToggleMode="True"/>
+        <!-- Sunrise added end -->
         <Button Name="AiOverlayButton" Access="Public" Text="{Loc sandbox-window-ai-overlay-button}" ToggleMode="True"/>
         <Button Name="ShowMarkersButton" Access="Public" Text="{Loc sandbox-window-show-spawns-button}" ToggleMode="True"/>
         <Button Name="ShowBbButton" Access="Public" Text="{Loc sandbox-window-show-bb-button}" ToggleMode="True"/>
