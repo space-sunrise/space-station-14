@@ -1,4 +1,4 @@
-﻿ent-LockerBlueShield = шкаф офицера «Синий щит»
+ent-LockerBlueShield = шкаф офицера «Синий щит»
     .desc = { ent-LockerBaseSecure.desc }
 ent-LockerBlueShieldEnsign = шкафчик лейтенанта синего щита
     .desc = { ent-LockerBlueShield.desc }
@@ -72,3 +72,6 @@ ent-LockerRepresentativeEmpty = { ent-LockerRepresentative }
 ent-LockerRepresentativeFilled = { ent-LockerRepresentative }
     .suffix = Заполнен
     .desc = { ent-LockerRepresentative.desc }
+
+ent-PrisonCellLocker = тюремный шкафчик
+    .desc = Сейф для хранения личных вещей заключенного на время отбывания срока.

@@ -602,4 +602,10 @@ public sealed partial class SunriseCCVars : CVars
     /// </summary>
     public static readonly CVarDef<bool> PhotoCaptureEnabled =
         CVarDef.Create("photo.capture_enabled", true, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    /// <summary>
+    /// The ID of the corporate law set prototype to use in the PDA application.
+    /// </summary>
+    public static readonly CVarDef<string> CorporateLawSet =
+        CVarDef.Create("sunrise.corporate_law_set", "StandardCorporateLaw", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 }
