@@ -178,7 +178,7 @@ public sealed class HungerSystem : EntitySystem
             // Sunrise-Start
             // component.ActualDecayRate = component.BaseDecayRate * modifier;
             var sunriseModifier = modifier;
-            if (HasMangleness(uid))
+            if (_damageable.HasMangleness(uid))
             {
                 if (component.CurrentThreshold >= HungerThreshold.Okay)
                     sunriseModifier *= component.ManglenessDecayMultOkay;
@@ -208,18 +208,6 @@ public sealed class HungerSystem : EntitySystem
             _damageable.TryChangeDamage(uid, damage, true, false);
         }
     }
-
-    // Sunrise-Start
-    private bool HasMangleness(EntityUid uid)
-    {
-        if (!TryComp<DamageableComponent>(uid, out var damageable))
-            return false;
-
-        var ent = new Entity<DamageableComponent>(uid, damageable);
-        return _damageable.TryGetDamageGreaterThan(ent, FixedPoint2.Zero, out var damage) &&
-               damage.DamageDict.GetValueOrDefault("Mangleness", 0) > 0;
-    }
-    // Sunrise-End
 
     /// <summary>
     /// Gets the hunger threshold for an entity based on the amount of food specified.
@@ -315,23 +303,24 @@ public sealed class HungerSystem : EntitySystem
             DoContinuousHungerEffects(uid, hunger);
 
             // Sunrise-Start
-            var hasMangleness = HasMangleness(uid);
+            var hasMangleness = _damageable.HasMangleness(uid);
 
             if (hasMangleness != hunger.HadMangleness)
             {
                 hunger.HadMangleness = hasMangleness;
+                DirtyField(uid, hunger, nameof(HungerComponent.HadMangleness));
                 DoHungerThresholdEffects(uid, hunger, force: true);
             }
 
             if (hasMangleness)
             {
-                if (hunger.CurrentThreshold >= HungerThreshold.Okay)
+                if (hunger.CurrentThreshold >= HungerThreshold.Okay && _timing.IsFirstTimePredicted)
                 {
                     var heal = new DamageSpecifier();
                     heal.DamageDict.Add("Mangleness", hunger.ManglenessHealingOkay);
                     _damageable.TryChangeDamage(uid, heal, true, false);
                 }
-                else if (hunger.CurrentThreshold == HungerThreshold.Peckish)
+                else if (hunger.CurrentThreshold == HungerThreshold.Peckish && _timing.IsFirstTimePredicted)
                 {
                     var heal = new DamageSpecifier();
                     heal.DamageDict.Add("Mangleness", hunger.ManglenessHealingPeckish);

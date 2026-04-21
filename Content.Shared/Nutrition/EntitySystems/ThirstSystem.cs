@@ -171,18 +171,6 @@ public sealed class ThirstSystem : EntitySystem
         }
     }
 
-    // Sunrise-Start
-    private bool HasMangleness(EntityUid uid)
-    {
-        if (!TryComp<DamageableComponent>(uid, out var damageable))
-            return false;
-
-        var ent = new Entity<DamageableComponent>(uid, damageable);
-        return _damageable.TryGetDamageGreaterThan(ent, FixedPoint2.Zero, out var damage) &&
-               damage.DamageDict.GetValueOrDefault("Mangleness", 0) > 0;
-    }
-    // Sunrise-End
-
     private void UpdateEffects(EntityUid uid, ThirstComponent component)
     {
         if (!_config.GetCVar(SunriseCCVars.MoodEnabled)
@@ -208,7 +196,7 @@ public sealed class ThirstSystem : EntitySystem
         var ev = new MoodEffectEvent("Thirst" + component.CurrentThirstThreshold);
         RaiseLocalEvent(uid, ev);
 
-        var hasMangleness = HasMangleness(uid);
+        var hasMangleness = _damageable.HasMangleness(uid);
 
         switch (component.CurrentThirstThreshold)
         {
@@ -276,23 +264,24 @@ public sealed class ThirstSystem : EntitySystem
             DoContinuousThirstEffects(uid, thirst);
 
             // Sunrise-Start
-            var hasMangleness = HasMangleness(uid);
+            var hasMangleness = _damageable.HasMangleness(uid);
 
             if (hasMangleness != thirst.HadMangleness)
             {
                 thirst.HadMangleness = hasMangleness;
+                DirtyField(uid, thirst, nameof(ThirstComponent.HadMangleness));
                 UpdateEffects(uid, thirst);
             }
 
             if (hasMangleness)
             {
-                if (thirst.CurrentThirstThreshold >= ThirstThreshold.Okay)
+                if (thirst.CurrentThirstThreshold >= ThirstThreshold.Okay && _timing.IsFirstTimePredicted)
                 {
                     var heal = new DamageSpecifier();
                     heal.DamageDict.Add("Mangleness", thirst.ManglenessHealingOkay);
                     _damageable.TryChangeDamage(uid, heal, true, false);
                 }
-                else if (thirst.CurrentThirstThreshold == ThirstThreshold.Thirsty)
+                else if (thirst.CurrentThirstThreshold == ThirstThreshold.Thirsty && _timing.IsFirstTimePredicted)
                 {
                     var heal = new DamageSpecifier();
                     heal.DamageDict.Add("Mangleness", thirst.ManglenessHealingThirsty);

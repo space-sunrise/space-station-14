@@ -62,7 +62,7 @@
     <GuideEntityEmbed Entity="MedkitBruteFilled" Caption="аптечка для тупого урона"/>
     <GuideEntityEmbed Entity="MedkitRadiationFilled" Caption="аптечка для радиации"/>
     <GuideEntityEmbed Entity="MedkitBurnFilled" Caption="аптечка для ожогов"/>
-    <GuideEntityEmbed Entity="MedkitToxinFilled" Caption="аптечка для токсины"/>
+    <GuideEntityEmbed Entity="MedkitToxinFilled" Caption="аптечка для токсинов"/>
   </Box>
 
   <Box>
@@ -79,9 +79,9 @@
 
   [head=3][color=#88ddff]Критическое состояние[/color][/head]
 
-  [color=#dddddd]Пациенты находятся в критическом состоянии при 100 повреждениях и мертвы при 200. Помните об этом, выбирая способ лечения.[/color]
+  [color=#dddddd]Пациенты находятся в критическом состоянии при 100 повреждениях и мертвы при 200, по крайней мере для стандартных типов гуманойдов. Помните об этом, выбирая способ лечения.[/color]
 
-  - [bold][color=#99ccff]Эпинефрин[/color][/bold]: [color=#dddddd]Незначительно лечит большинство видов повреждений (в т.ч удушье от критического состояния). Работает только при уроне выше 100 единиц.[/color]
+  - [bold][color=#99ccff]Эпинефрин[/color][/bold]: [color=#dddddd]Незначительно лечит большинство видов повреждений (в т.ч удушье от критического состояния). Работает только на пациентах в критическом состоянии (не мертвых!).[/color]
   - [bold][color=#99ccff]Медипены[/color][/bold]: [color=#dddddd]Используются для экстренного лечения критических пациентов[/color]
   - [bold][color=#99ccff]Транексамовая кислота[/color][/bold]: [color=#dddddd]Останавливает кровотечение[/color]
 

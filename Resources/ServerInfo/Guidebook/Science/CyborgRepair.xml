@@ -7,22 +7,22 @@
 
   <Box>
     <GuideEntityEmbed Entity="Welder" Caption="Сварочный аппарат"/>
-    чинит [color=red]Механические[/color] повреждения (5), но наносит 1 [color=purple]Износа[/color] при каждом применении.
+    Чинит 5 ед. [color=red]Механических[/color] повреждений, но наносит 1 ед. [color=purple]Износа[/color] за применение.
   </Box>
 
   <Box>
     <GuideEntityEmbed Entity="CableHVStack" Caption="Провода"/>
-    чинят [color=orange]Ожоги[/color] (6) и 1 [color=purple]Износа[/color].
+    Чинят 6 ед. [color=orange]Ожогов[/color] и наносят 1 ед. [color=purple]Износа[/color] за применение.
   </Box>
 
   <Box>
     <GuideEntityEmbed Entity="Nanopaste" Caption="Нанопаста"/>
-    чинит 10 (все типы), включая Износ.
+    Чинит 10 ед. [color=red]Механических[/color] повреждений, 10 ед. [color=orange]Ожогов[/color] и устраняет 10 ед. [color=purple]Износа[/color] за применение.
   </Box>
 
   <Box>
     <GuideEntityEmbed Entity="SheetSteel1" Caption="Листы стали"/>
-    чинят 10 [color=red]Механических[/color] и 5 [color=purple]Износа[/color], но долги в использовании.
+    Чинят 10 ед. [color=red]Механических[/color] повреждений и устраняют 5 ед. [color=purple]Износа[/color] за применение (длительное действие).
   </Box>
 
   ## Износ

@@ -69,8 +69,10 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
             bleeding = bloodstream.BleedAmount > 0;
         }
         // Collect hunger and thirst data as percentages
-        float? hungerLevel = null; //Sunrise-edit
-        float? thirstLevel = null; //Sunrise-edit
+        // SUNRISE edit start - collect hunger and thirst levels
+        float? hungerLevel = null;
+        float? thirstLevel = null;
+        // SUNRISE edit end
 
         if (TryComp<HungerComponent>(target, out var hunger))
         {

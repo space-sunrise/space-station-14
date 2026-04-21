@@ -466,4 +466,19 @@ public sealed partial class DamageableSystem
 
         Dirty(ent);
     }
+
+    // Sunrise-Start
+    /// <summary>
+    /// Checks if an entity has Mangleness damage greater than zero.
+    /// </summary>
+    /// <param name="uid">The entity to check</param>
+    /// <returns>True if the entity has Mangleness damage greater than zero</returns>
+    public bool HasMangleness(EntityUid uid)
+    {
+        if (!_damageableQuery.TryGetComponent(uid, out var damageable))
+            return false;
+
+        return damageable.Damage.DamageDict.GetValueOrDefault("Mangleness", FixedPoint2.Zero) > FixedPoint2.Zero;
+    }
+    // Sunrise-End
 }
