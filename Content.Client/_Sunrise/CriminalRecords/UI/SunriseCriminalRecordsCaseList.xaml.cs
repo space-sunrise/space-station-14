@@ -23,7 +23,13 @@ public sealed partial class SunriseCriminalRecordsCaseControl : Button
         RobustXamlLoader.Load(this);
     }
 
-    public void Setup(CriminalCase @case, IPrototypeManager proto, StationCorporateLawComponent? lawset)
+    public void Setup(
+        CriminalCase @case,
+        IPrototypeManager proto,
+        List<ProtoId<CorporateLawPrototype>> provisions,
+        List<ProtoId<CorporateLawSectionPrototype>> articles,
+        List<ProtoId<CorporateLawPrototype>> circumstances,
+        int threshold)
     {
         CaseIdLabel.Text = $"#{@case.Id}";
 
@@ -57,15 +63,12 @@ public sealed partial class SunriseCriminalRecordsCaseControl : Button
                 continue;
 
             var color = Color.White;
-            if (lawset != null)
+            foreach (var sectionId in articles)
             {
-                foreach (var sectionId in lawset.Articles)
+                if (proto.TryIndex(sectionId, out CorporateLawSectionPrototype? section) && section.Entries.Contains(id))
                 {
-                    if (proto.TryIndex(sectionId, out CorporateLawSectionPrototype? section) && section.Entries.Contains(id))
-                    {
-                        color = section.Color ?? Color.White;
-                        break;
-                    }
+                    color = section.Color ?? Color.White;
+                    break;
                 }
             }
 
@@ -122,7 +125,6 @@ public sealed partial class SunriseCriminalRecordsCaseControl : Button
 
         // --- Sentence ---
         var total = @case.CalculatedSentence;
-        var threshold = lawset?.PermanentSentenceThreshold ?? 50;
 
         if (total >= threshold)
         {
@@ -157,13 +159,19 @@ public sealed partial class SunriseCriminalRecordsCaseList : Control
         CreateCaseButton.OnPressed += _ => OnCreateCase?.Invoke();
     }
 
-    public void Populate(List<CriminalCase> cases, IPrototypeManager proto, StationCorporateLawComponent? lawset)
+    public void Populate(
+        List<CriminalCase> cases,
+        IPrototypeManager proto,
+        List<ProtoId<CorporateLawPrototype>> provisions,
+        List<ProtoId<CorporateLawSectionPrototype>> articles,
+        List<ProtoId<CorporateLawPrototype>> circumstances,
+        int threshold)
     {
         CasesContainer.DisposeAllChildren();
         foreach (var @case in cases)
         {
             var control = new SunriseCriminalRecordsCaseControl();
-            control.Setup(@case, proto, lawset);
+            control.Setup(@case, proto, provisions, articles, circumstances, threshold);
             control.OnEdit += c => OnEditCase?.Invoke(c);
             CasesContainer.AddChild(control);
         }

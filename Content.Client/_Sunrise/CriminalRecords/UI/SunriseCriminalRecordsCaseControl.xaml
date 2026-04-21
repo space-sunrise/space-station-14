@@ -33,7 +33,7 @@
                      <Label Name="SentenceValueLabel" StyleClasses="LabelHeading" HorizontalAlignment="Right" MouseFilter="Ignore"/>
                 </BoxContainer>
 
-                <Label Text="→" VerticalAlignment="Center" Margin="4 0" StyleClasses="LabelSecondaryColor" MouseFilter="Ignore"/>
+                <Label Text="{Loc 'sunrise-records-case-list-arrow'}" VerticalAlignment="Center" Margin="4 0" StyleClasses="LabelSecondaryColor" MouseFilter="Ignore"/>
             </BoxContainer>
         </BoxContainer>
     </PanelContainer>

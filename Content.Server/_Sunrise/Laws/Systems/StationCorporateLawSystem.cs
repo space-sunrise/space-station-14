@@ -26,11 +26,11 @@ public sealed class StationCorporateLawSystem : SharedStationCorporateLawSystem
 
     private void InitializeLawset(EntityUid station)
     {
-        var component = EnsureComp<StationCorporateLawComponent>(station);
-
         var lawsetId = _cfg.GetCVar(SunriseCCVars.CorporateLawSet);
         if (!_proto.TryIndex<CorporateLawsetPrototype>(lawsetId, out var prototype))
             return;
+
+        var component = EnsureComp<StationCorporateLawComponent>(station);
 
         component.Provisions = new(prototype.Provisions);
         component.Circumstances = new(prototype.Circumstances);

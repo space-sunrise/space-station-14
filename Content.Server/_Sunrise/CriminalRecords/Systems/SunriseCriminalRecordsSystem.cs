@@ -105,7 +105,10 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
             var cases = records.Records.GetValueOrDefault(component.SelectedKey.Value.Id, new List<CriminalCase>());
             var nextId = records.NextCaseIds.GetValueOrDefault(component.SelectedKey.Value.Id, 1u);
 
-            var @case = new CriminalCase(nextId, _timing.CurTime);
+            var @case = new CriminalCase(nextId, _timing.CurTime)
+            {
+                OriginStation = GetNetEntity(component.SelectedKey.Value.OriginStation)
+            };
             cases.Add(@case);
             records.Records[component.SelectedKey.Value.Id] = cases;
             records.NextCaseIds[component.SelectedKey.Value.Id] = nextId + 1;

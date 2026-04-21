@@ -94,8 +94,9 @@ public sealed partial class SunriseCriminalRecordsWindow : DefaultWindow
             _caseList.OnEditCase += c => _owner?.SelectCase(c.Id);
         }
 
-        var lawset = _owner != null ? _stationLaw.GetStationLawset(_owner.Owner)?.Comp : null;
-        _caseList.Populate(state.Cases, _prototypeManager, lawset);
+        _stationLaw.GetEffectiveLawset(_owner?.Owner, out var provisions, out var articles, out var circumstances, out var threshold);
+
+        _caseList.Populate(state.Cases, _prototypeManager, provisions, articles, circumstances, threshold);
         _detailsControl?.SetContent(_caseList);
     }
 

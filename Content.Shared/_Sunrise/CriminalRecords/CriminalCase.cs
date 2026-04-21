@@ -16,8 +16,10 @@ public enum CriminalCaseStatus : byte
 [Serializable, NetSerializable]
 public sealed class CriminalCase
 {
-    [ViewVariables]
     public uint Id;
+
+    [ViewVariables]
+    public NetEntity? OriginStation;
 
     [ViewVariables]
     public List<ProtoId<CorporateLawPrototype>> Laws = new();

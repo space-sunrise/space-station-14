@@ -9,6 +9,7 @@ sunrise-records-view-case = Details
 sunrise-records-save-case = Save
 sunrise-records-finalize-case = Close Case
 sunrise-records-back-to-cases = Back to Cases
+sunrise-records-case-list-arrow = →
 sunrise-records-cancel-edit = Cancel
 sunrise-records-select-laws = Violated Articles:
 sunrise-records-circumstances-header = Circumstances:

@@ -14,6 +14,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.Shared.Timing;
+using Content.Shared.Station;
 
 namespace Content.Client._Sunrise.CriminalRecords.UI;
 
@@ -149,31 +150,17 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
         AggravatingContainer.DisposeAllChildren();
         ReadOnlyList.DisposeAllChildren();
 
-        StationCorporateLawComponent? lawset = null;
-        if (ConsoleEntity != null)
-        {
-            lawset = _stationLaw.GetStationLawset(ConsoleEntity.Value)?.Comp;
-        }
+        List<ProtoId<CorporateLawPrototype>> provisions;
+        List<ProtoId<CorporateLawSectionPrototype>> articles;
+        List<ProtoId<CorporateLawPrototype>> circumstances;
+        int threshold;
 
-        if (lawset == null)
-        {
-            // Fallback to prototype
-            var lawsetId = _config.GetCVar(SunriseCCVars.CorporateLawSet);
-            if (!_proto.TryIndex<CorporateLawsetPrototype>(lawsetId, out var proto))
-                return;
+        _stationLaw.GetEffectiveLawset(ConsoleEntity, out provisions, out articles, out circumstances, out threshold);
 
-            if (_isReadOnly)
-                PopulateReadOnly(proto.Provisions, proto.Circumstances, proto.Articles);
-            else
-                PopulateEditable(proto.Provisions, proto.Circumstances, proto.Articles);
-        }
+        if (_isReadOnly)
+            PopulateReadOnly(provisions, circumstances, articles);
         else
-        {
-            if (_isReadOnly)
-                PopulateReadOnly(lawset.Provisions, lawset.Circumstances, lawset.Articles);
-            else
-                PopulateEditable(lawset.Provisions, lawset.Circumstances, lawset.Articles);
-        }
+            PopulateEditable(provisions, circumstances, articles);
 
         UpdateSentenceDisplay();
     }
@@ -251,6 +238,9 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
         };
 
         NotesPanel.PanelOverride = MainEditorPanel.PanelOverride;
+
+        // Provisions are informative and shouldn't be selectable as 'broken' articles.
+        // We skip populating them here to avoid confusion.
 
         // Populate Articles in Collapsibles
         foreach (var sectionId in articles)
@@ -391,12 +381,6 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
 
     private void UpdateSentenceDisplay()
     {
-        StationCorporateLawComponent? lawset = null;
-        if (ConsoleEntity != null)
-        {
-            lawset = _stationLaw.GetStationLawset(ConsoleEntity.Value)?.Comp;
-        }
-
         int total;
         if (_isReadOnly)
         {
@@ -407,13 +391,15 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
             // Use shared logic for calculation
             var tempCase = new CriminalCase(_lastCaseId ?? 0, TimeSpan.Zero)
             {
+                OriginStation = _ent.GetNetEntity(_ent.System<SharedStationSystem>().GetOwningStation(ConsoleEntity)),
                 Laws = _currentLaws,
                 Circumstances = _currentCircumstances
             };
-            total = _recordsSystem.CalculateSentence(tempCase, _allCases, lawset);
+            total = _recordsSystem.CalculateSentence(tempCase, _allCases);
         }
 
-        var threshold = lawset?.PermanentSentenceThreshold ?? 50;
+        _stationLaw.GetEffectiveLawset(ConsoleEntity, out _, out _, out _, out var threshold);
+
         if (total >= threshold)
             SentenceLabel.Text = Loc.GetString("sunrise-records-sentence-life");
         else

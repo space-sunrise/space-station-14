@@ -9,6 +9,7 @@ sunrise-records-view-case = Детали
 sunrise-records-save-case = Сохранить
 sunrise-records-finalize-case = Закрыть дело
 sunrise-records-back-to-cases = Назад к делам
+sunrise-records-case-list-arrow = →
 sunrise-records-cancel-edit = Отмена
 sunrise-records-select-laws = Нарушенные статьи:
 sunrise-records-circumstances-header = Обстоятельства:
@@ -44,7 +45,7 @@ prisoner-management-start = Начать заключение
 prisoner-management-waiting-info = {$time} мин.
 prisoner-management-in-progress-info = Камера #{$cell}
 prisoner-management-finished-info = Срок отбыт
-prisoner-management-permanent-info = [color=red]Пожизненно[/color]
+prisoner-management-permanent-info = [color=red]ПЕРМА[/color]
 prisoner-management-countdown = [color=orange]{$time}[/color]
 prisoner-management-case-id = Дело #{$case}
 prisoner-management-cell-name = Камера #{$cell}
