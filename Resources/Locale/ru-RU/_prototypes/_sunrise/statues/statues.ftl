@@ -8,3 +8,7 @@ ent-StatueMooniverse = статуя Лунивёрса
     .desc = { ent-BaseStructure.desc }
 ent-StatueRib = статуя Риба
     .desc = { ent-BaseStructure.desc }
+ent-StatueAngel = статуя ангела
+    .desc = { ent-BaseStructure.desc }
+ent-StatueAngelPray = статуя молящегося ангела
+    .desc = { ent-BaseStructure.desc }
