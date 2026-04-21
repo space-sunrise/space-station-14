@@ -58,6 +58,7 @@ public sealed partial class SunriseCriminalRecordsLawControl : PanelContainer
 
         SelectionCheckBox.Pressed = !SelectionCheckBox.Pressed;
         OnToggled?.Invoke(SelectionCheckBox.Pressed);
+        args.Handle();
     }
 
     protected override void MouseEntered()

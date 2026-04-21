@@ -14,6 +14,9 @@ public sealed class CorporateLawCartridgeSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
 
+    private static readonly Color MitigatingColor = Color.FromHex("#00ff9d");
+    private static readonly Color AggravatingColor = Color.FromHex("#ff4d4d");
+
     public override void Initialize()
     {
         base.Initialize();
@@ -82,12 +85,12 @@ public sealed class CorporateLawCartridgeSystem : EntitySystem
 
             if (mitEntries.Count > 0)
             {
-                sections.Add(new LawSection(Loc.GetString("sunrise-records-mitigating-circumstances"), Color.FromHex("#00ff9d"), mitEntries));
+                sections.Add(new LawSection(Loc.GetString("sunrise-records-mitigating-circumstances"), MitigatingColor, mitEntries));
             }
 
             if (aggEntries.Count > 0)
             {
-                sections.Add(new LawSection(Loc.GetString("sunrise-records-aggravating-circumstances"), Color.FromHex("#ff4d4d"), aggEntries));
+                sections.Add(new LawSection(Loc.GetString("sunrise-records-aggravating-circumstances"), AggravatingColor, aggEntries));
             }
         }
 

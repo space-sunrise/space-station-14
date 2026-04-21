@@ -1,4 +1,6 @@
 using Robust.Shared.Serialization;
+using Robust.Shared.Prototypes;
+using Content.Shared._Sunrise.Laws;
 
 namespace Content.Shared._Sunrise.CriminalRecords;
 
@@ -18,10 +20,10 @@ public sealed class CriminalCase
     public uint Id;
 
     [ViewVariables]
-    public List<string> Laws = new();
+    public List<ProtoId<CorporateLawPrototype>> Laws = new();
 
     [ViewVariables]
-    public List<string> Circumstances = new();
+    public List<ProtoId<CorporateLawPrototype>> Circumstances = new();
 
     [ViewVariables]
     public CriminalCaseStatus Status = CriminalCaseStatus.Open;

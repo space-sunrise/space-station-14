@@ -4,11 +4,11 @@ using Content.Server.Station.Systems;
 using Content.Server.StationRecords.Systems;
 using Content.Shared._Sunrise.CriminalRecords;
 using Content.Shared._Sunrise.CriminalRecords.Components;
+using Content.Server._Sunrise.CriminalRecords.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.StationRecords;
 using Content.Shared.DeviceLinking;
 using Content.Server.DeviceLinking.Systems;
-using Content.Server._Sunrise.CriminalRecords.Components;
 using Content.Shared._Sunrise.Laws;
 using Content.Shared.Access.Systems;
 using Content.Shared.Access;
@@ -134,7 +134,6 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
             if (cellIndex >= 0)
                 SendCellSignals(uid, cellIndex, true, accessId, TimeSpan.FromMinutes(@case.CalculatedSentence));
 
-            Dirty(station, sunriseRecord);
             UpdateUserInterface(uid, component);
         }
     }
@@ -232,7 +231,6 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
                 if (@case != null)
                 {
                     @case.Status = CriminalCaseStatus.Finished;
-                    Dirty(incar.RecordKey.OriginStation, sunrise);
                 }
             }
         }

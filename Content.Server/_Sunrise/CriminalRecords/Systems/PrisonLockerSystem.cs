@@ -1,4 +1,5 @@
 using Content.Shared.Access.Components;
+using Content.Server._Sunrise.CriminalRecords.Components;
 using Content.Shared._Sunrise.CriminalRecords.Components;
 using Content.Shared.DeviceLinking.Events;
 using Content.Server.DeviceLinking.Systems;

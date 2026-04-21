@@ -1,11 +1,11 @@
-using Robust.Shared.GameStates;
+using Content.Shared._Sunrise.CriminalRecords;
 
-namespace Content.Shared._Sunrise.CriminalRecords.Components;
+namespace Content.Server._Sunrise.CriminalRecords.Components;
 
 /// <summary>
 ///     Attached to the station entity to store all Criminal Records.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent]
 public sealed partial class StationCriminalRecordsComponent : Component
 {
     /// <summary>

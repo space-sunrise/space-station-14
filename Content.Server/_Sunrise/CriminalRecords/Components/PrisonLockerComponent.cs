@@ -1,15 +1,13 @@
-using Robust.Shared.GameStates;
+namespace Content.Server._Sunrise.CriminalRecords.Components;
 
-namespace Content.Shared._Sunrise.CriminalRecords.Components;
-
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent]
 public sealed partial class PrisonLockerComponent : Component
 {
     /// <summary>
     ///     The specific access ID required to open this locker.
     ///     This ID will be used to identify and consume the prisoner's ID card.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [ViewVariables(VVAccess.ReadWrite)]
     public string? AccessId;
 
     /// <summary>
