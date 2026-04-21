@@ -2678,7 +2678,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      90: Dead
+      50: Dead # Sunrise-Edit
   - type: SolutionContainerManager
     solutions:
       melee:
@@ -2864,7 +2864,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        180: Dead
+        90: Dead # Sunrise-Edit
     - type: Spider
       webPrototype: SpiderWebClown
     - type: MeleeWeapon
@@ -2885,7 +2885,7 @@
               Quantity: 50
     - type: MeleeChemicalInjector
       solution: melee
-      transferAmount: 2
+      transferAmount: 5
     # Sunrise edit end
     - type: FootstepModifier
       footstepSoundCollection:

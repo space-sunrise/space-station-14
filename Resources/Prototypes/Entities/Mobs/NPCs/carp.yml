@@ -29,7 +29,7 @@
         fix1:
           shape:
             !type:PhysShapeCircle
-            radius: 0.40
+            radius: 0.15 # Sunrise-Edit
           density: 80
           mask:
             - FlyingMobMask
@@ -134,7 +134,7 @@
         fix1:
           shape:
             !type:PhysShapeCircle
-            radius: 0.40
+            radius: 0.15 # Sunrise-Edit
           density: 10
           mask:
             - MobMask
@@ -199,9 +199,9 @@
     - type: MeleeWeapon
       damage:
         types:
-          Blunt: 8
+          Blunt: 9
           Slash: 9
-          Structural: 12
+          Structural: 15
     - type: Tag
       tags:
       - Carp
