@@ -166,15 +166,13 @@
     solution: hypospray
     generated:
       reagents:
-      - ReagentId: DexalinPlus
+      - ReagentId: Dexalin
         Quantity: 1
   - type: SolutionRegenerationSwitcher
     options:
-    - ReagentId: DexalinPlus
+    - ReagentId: Dexalin
       Quantity: 1
     - ReagentId: Tricordrazine
-      Quantity: 1
-    - ReagentId: Dylovene
       Quantity: 1
     - ReagentId: Bicaridine
       Quantity: 1
@@ -222,10 +220,8 @@
       Quantity: 1
     - ReagentId: Pyrazine
       Quantity: 1
-    - ReagentId: Diphenhydramine
+    - ReagentId: Dylovene
       Quantity: 1
-    - ReagentId: Ambuzol
-      Quantity: 0.1
     - ReagentId: Oculine
       Quantity: 0.1
     - ReagentId: Saline
