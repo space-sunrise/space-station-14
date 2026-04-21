@@ -686,6 +686,9 @@
     sprintModifier: 0.9
   - type: Item
     size: Huge
+  - type: HideLayerClothing
+    slots:
+    - Tail
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: DamageOnInteractProtection
