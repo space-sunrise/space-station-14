@@ -4,6 +4,9 @@
   parent:
   - BaseStation
   - BaseStationJobsSpawning
+  - BaseStationAllEventsEligible
+  - BaseStationAlertLevels
+  - BaseStationNanotrasen 
   components:
   - type: Transform
 

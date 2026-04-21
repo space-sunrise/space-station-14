@@ -22,11 +22,11 @@ public sealed class PrisonCellDoorSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<PrisonCellDoorComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<PrisonCellDoorComponent, MapInitEvent>(OnInit);
         SubscribeLocalEvent<PrisonCellDoorComponent, SignalReceivedEvent>(OnSignalReceived);
     }
 
-    private void OnStartup(Entity<PrisonCellDoorComponent> ent, ref ComponentStartup args)
+    private void OnInit(Entity<PrisonCellDoorComponent> ent, ref MapInitEvent args)
     {
         _deviceLink.EnsureSinkPorts(ent, "PrisonCellDoorLock", "PrisonCellDoorUnlock");
     }
