@@ -55,6 +55,7 @@ doc-template-marriage-certificate-name = Свидетельство о брак�
 doc-template-order-deprivation-access-name = Приказ: лишение доступа
 doc-template-order-dismissal-name = Приказ: увольнение
 doc-template-order-encouragement-name = Приказ: поощрение
+doc-template-ordering-special-equipment-name = Заказ: специальное снаряжение
 doc-template-order-medical-intervention-name = Приказ: медицинское вмешательство
 doc-template-order-parole-prisoner-name = Приказ: УДО заключённого
 doc-template-order-purchase-resources-equipment-name = Приказ: закупка ресурсов/оборуд.

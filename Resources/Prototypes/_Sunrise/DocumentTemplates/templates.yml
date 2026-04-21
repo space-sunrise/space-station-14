@@ -228,6 +228,12 @@
 
 - type: docTemplate
   parent: BaseSunriseDocTemplateJustice
+  id: InternalAffairsAgentCentcomReport
+  name: doc-template-internal-affairs-agent-centcom-report-name
+  content: /Documents/_Sunrise/Justice/InternalAffairsAgentCentcomReport.xml
+
+- type: docTemplate
+  parent: BaseSunriseDocTemplateJustice
   id: Judgment
   name: doc-template-judgment-name
   content: /Documents/_Sunrise/Justice/Judgment.xml
@@ -266,7 +272,7 @@
   parent: BaseSunriseDocTemplateGeneral
   id: OrderingSpecialEquipment
   name: doc-template-ordering-special-equipment-name
-  content: /Documents/_Sunrise/General/OrderingSpecialEquipment.xml
+  content: /Documents/_Sunrise/CentcomStandard/OrderingSpecialEquipment.xml
 
 - type: docTemplate
   parent: BaseSunriseDocTemplateMedical
