@@ -38,6 +38,7 @@
     - BaseStationCryoTeleport
     - BaseStationMeteorSwarmTarget
     - BaseStationRandomXenoArtifact
+    - BaseStationCriminalRecords
   # Sunrise-End
   components:
     - type: Transform

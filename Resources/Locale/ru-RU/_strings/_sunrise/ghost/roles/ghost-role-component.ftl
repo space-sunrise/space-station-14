@@ -47,3 +47,5 @@ job-rules-corporate-aligned = Вы на стороне {role-type-corporate-alig
 job-rules-tsf-aligned = Вы на стороне {role-type-tsf-aligned-name}.
                         Вы должны служить интересам Транс-Солнечной Федерации.
                         Помните: вы НЕ служите экипажу.
+ghost-role-information-sentient-carpholo-name = Разумный голокарп
+ghost-role-information-sentient-carpshark-name = Разумная карпоакула
