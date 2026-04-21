@@ -26,9 +26,7 @@ public sealed partial class SunriseCriminalRecordsCaseControl : Button
     public void Setup(
         CriminalCase @case,
         IPrototypeManager proto,
-        List<ProtoId<CorporateLawPrototype>> provisions,
         List<ProtoId<CorporateLawSectionPrototype>> articles,
-        List<ProtoId<CorporateLawPrototype>> circumstances,
         int threshold)
     {
         CaseIdLabel.Text = $"#{@case.Id}";
@@ -59,7 +57,7 @@ public sealed partial class SunriseCriminalRecordsCaseControl : Button
         for (var i = 0; i < @case.Laws.Count; i++)
         {
             var id = @case.Laws[i];
-            if (!proto.TryIndex<CorporateLawPrototype>(id, out var law))
+            if (!proto.TryIndex(id, out var law))
                 continue;
 
             var color = Color.White;
@@ -162,16 +160,14 @@ public sealed partial class SunriseCriminalRecordsCaseList : Control
     public void Populate(
         List<CriminalCase> cases,
         IPrototypeManager proto,
-        List<ProtoId<CorporateLawPrototype>> provisions,
         List<ProtoId<CorporateLawSectionPrototype>> articles,
-        List<ProtoId<CorporateLawPrototype>> circumstances,
         int threshold)
     {
         CasesContainer.DisposeAllChildren();
         foreach (var @case in cases)
         {
             var control = new SunriseCriminalRecordsCaseControl();
-            control.Setup(@case, proto, provisions, articles, circumstances, threshold);
+            control.Setup(@case, proto, articles, threshold);
             control.OnEdit += c => OnEditCase?.Invoke(c);
             CasesContainer.AddChild(control);
         }
