@@ -7,6 +7,10 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.XAML;
 using Robust.Client.UserInterface.Controls;
+using Content.Shared._Sunrise.Laws.Components;
+using Content.Shared._Sunrise.Laws.Systems;
+using Content.Shared._Sunrise.SunriseCCVars;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.Shared.Timing;
@@ -16,16 +20,21 @@ namespace Content.Client._Sunrise.CriminalRecords.UI;
 [GenerateTypedNameReferences]
 public sealed partial class SunriseCriminalRecordsCaseEditor : Control
 {
+    [Dependency] private readonly IEntityManager _ent = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
     private readonly SharedSunriseCriminalRecordsSystem _recordsSystem;
+    private readonly SharedStationCorporateLawSystem _stationLaw;
 
-    public Action<uint, List<string>, List<string>, string>? OnSave;
+    public EntityUid? ConsoleEntity;
+
+    public Action<uint, List<ProtoId<CorporateLawPrototype>>, List<ProtoId<CorporateLawPrototype>>, string>? OnSave;
 
     public Action? OnFinalize;
     public Action? OnBack;
 
-    private List<string> _currentLaws = new();
-    private List<string> _currentCircumstances = new();
+    private List<ProtoId<CorporateLawPrototype>> _currentLaws = new();
+    private List<ProtoId<CorporateLawPrototype>> _currentCircumstances = new();
     private bool _isReadOnly;
     private CriminalCaseStatus? _lastStatus;
 
@@ -41,7 +50,8 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-        _recordsSystem = EntitySystem.Get<SharedSunriseCriminalRecordsSystem>();
+        _recordsSystem = _ent.System<SharedSunriseCriminalRecordsSystem>();
+        _stationLaw = _ent.System<SharedStationCorporateLawSystem>();
 
         VerticalExpand = true;
         HorizontalExpand = true;
@@ -86,8 +96,8 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
         }
 
         // Only sync collections if it's a different case or status changed
-        _currentLaws = new List<string>(@case.Laws);
-        _currentCircumstances = new List<string>(@case.Circumstances);
+        _currentLaws = new List<ProtoId<CorporateLawPrototype>>(@case.Laws);
+        _currentCircumstances = new List<ProtoId<CorporateLawPrototype>>(@case.Circumstances);
 
         PopulateLaws();
     }
@@ -112,7 +122,7 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
     {
         if (_isReadOnly || _lastCaseId == null) return;
         var notes = Rope.Collapse(NotesInput.TextRope);
-        OnSave?.Invoke((uint) _lastCaseId.Value, new List<string>(_currentLaws), new List<string>(_currentCircumstances), notes);
+        OnSave?.Invoke((uint) _lastCaseId.Value, new List<ProtoId<CorporateLawPrototype>>(_currentLaws), new List<ProtoId<CorporateLawPrototype>>(_currentCircumstances), notes);
         _dirty = false;
     }
 
@@ -139,22 +149,39 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
         AggravatingContainer.DisposeAllChildren();
         ReadOnlyList.DisposeAllChildren();
 
-        if (!_proto.TryIndex<CorporateLawsetPrototype>("StandardCorporateLaw", out var lawset))
-            return;
-
-        if (_isReadOnly)
+        StationCorporateLawComponent? lawset = null;
+        if (ConsoleEntity != null)
         {
-            PopulateReadOnly(lawset);
+            lawset = _stationLaw.GetStationLawset(ConsoleEntity.Value)?.Comp;
+        }
+
+        if (lawset == null)
+        {
+            // Fallback to prototype
+            var lawsetId = _config.GetCVar(SunriseCCVars.CorporateLawSet);
+            if (!_proto.TryIndex<CorporateLawsetPrototype>(lawsetId, out var proto))
+                return;
+
+            if (_isReadOnly)
+                PopulateReadOnly(proto.Provisions, proto.Circumstances, proto.Articles);
+            else
+                PopulateEditable(proto.Provisions, proto.Circumstances, proto.Articles);
         }
         else
         {
-            PopulateEditable(lawset);
+            if (_isReadOnly)
+                PopulateReadOnly(lawset.Provisions, lawset.Circumstances, lawset.Articles);
+            else
+                PopulateEditable(lawset.Provisions, lawset.Circumstances, lawset.Articles);
         }
 
         UpdateSentenceDisplay();
     }
 
-    private void PopulateReadOnly(CorporateLawsetPrototype lawset)
+    private void PopulateReadOnly(
+        List<ProtoId<CorporateLawPrototype>> provisions,
+        List<ProtoId<CorporateLawPrototype>> circumstances,
+        List<ProtoId<CorporateLawSectionPrototype>> articles)
     {
         ReadOnlyContent.PanelOverride = new StyleBoxFlat
         {
@@ -182,7 +209,7 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
 
             foreach (var law in selectedLaws)
             {
-                var catColor = GetSectionColor(law.ID, lawset);
+                var catColor = GetSectionColor(law.ID, articles);
                 AddLawEntry(law, ReadOnlyList, _currentLaws, catColor);
             }
         }
@@ -207,7 +234,10 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
         }
     }
 
-    private void PopulateEditable(CorporateLawsetPrototype lawset)
+    private void PopulateEditable(
+        List<ProtoId<CorporateLawPrototype>> provisions,
+        List<ProtoId<CorporateLawPrototype>> circumstances,
+        List<ProtoId<CorporateLawSectionPrototype>> articles)
     {
         MainEditorPanel.PanelOverride = new StyleBoxFlat
         {
@@ -223,9 +253,9 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
         NotesPanel.PanelOverride = MainEditorPanel.PanelOverride;
 
         // Populate Articles in Collapsibles
-        foreach (var sectionId in lawset.Articles)
+        foreach (var sectionId in articles)
         {
-            if (!_proto.TryIndex<CorporateLawSectionPrototype>(sectionId, out var section))
+            if (!_proto.TryIndex(sectionId, out var section))
                 continue;
 
             var body = new CollapsibleBody { HorizontalExpand = true };
@@ -261,7 +291,8 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
 
             foreach (var entryId in section.Entries)
             {
-                if (!_proto.TryIndex<CorporateLawPrototype>(entryId, out var law)) continue;
+                if (!_proto.TryIndex(entryId, out var law))
+                    continue;
                 AddLawEntry(law, content, _currentLaws, catColor);
                 if (_currentLaws.Contains(law.ID)) anySelected = true;
             }
@@ -304,9 +335,9 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
         bool anyMitigating = false;
         bool anyAggravating = false;
 
-        foreach (var entryId in lawset.Circumstances)
+        foreach (var entryId in circumstances)
         {
-            if (!_proto.TryIndex<CorporateLawPrototype>(entryId, out var law))
+            if (!_proto.TryIndex(entryId, out var law))
                 continue;
 
             if (law.Category == LawCategory.Provision)
@@ -315,12 +346,14 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
             if (law.Category == LawCategory.Mitigating)
             {
                 AddLawEntry(law, mitigatingContent, _currentCircumstances, mitColor);
-                if (_currentCircumstances.Contains(law.ID)) anyMitigating = true;
+                if (_currentCircumstances.Contains(law.ID))
+                    anyMitigating = true;
             }
             else if (law.Category == LawCategory.Aggravating)
             {
                 AddLawEntry(law, aggravatingContent, _currentCircumstances, aggColor);
-                if (_currentCircumstances.Contains(law.ID)) anyAggravating = true;
+                if (_currentCircumstances.Contains(law.ID))
+                    anyAggravating = true;
             }
         }
 
@@ -331,14 +364,15 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
         AggravatingContainer.AddChild(aggravatingPanel);
     }
 
-    private void AddLawEntry(CorporateLawPrototype law, Control container, List<string> collection, Color? catColor = null)
+    private void AddLawEntry(CorporateLawPrototype law, Control container, List<ProtoId<CorporateLawPrototype>> collection, Color? catColor = null)
     {
         var text = law.LawIdentifier != null ? $"{law.LawIdentifier}: {Loc.GetString(law.Title)}" : Loc.GetString(law.Title);
         var control = new SunriseCriminalRecordsLawControl();
 
         control.Setup(text, collection.Contains(law.ID), _isReadOnly, catColor);
 
-        control.OnToggled += pressed => {
+        control.OnToggled += pressed =>
+        {
             if (pressed)
             {
                 if (!collection.Contains(law.ID))
@@ -346,7 +380,7 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
             }
             else
             {
-                collection.RemoveAll(id => id == law.ID);
+                collection.RemoveAll(id => (string)id == law.ID);
             }
             UpdateSentenceDisplay();
             Save();
@@ -357,8 +391,11 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
 
     private void UpdateSentenceDisplay()
     {
-        if (!_proto.TryIndex<CorporateLawsetPrototype>("StandardCorporateLaw", out var lawset))
-            return;
+        StationCorporateLawComponent? lawset = null;
+        if (ConsoleEntity != null)
+        {
+            lawset = _stationLaw.GetStationLawset(ConsoleEntity.Value)?.Comp;
+        }
 
         int total;
         if (_isReadOnly)
@@ -373,22 +410,23 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
                 Laws = _currentLaws,
                 Circumstances = _currentCircumstances
             };
-            total = _recordsSystem.CalculateSentence(tempCase, _allCases);
+            total = _recordsSystem.CalculateSentence(tempCase, _allCases, lawset);
         }
 
-        if (total >= lawset.PermanentSentenceThreshold)
+        var threshold = lawset?.PermanentSentenceThreshold ?? 50;
+        if (total >= threshold)
             SentenceLabel.Text = Loc.GetString("sunrise-records-sentence-life");
         else
             SentenceLabel.Text = Loc.GetString("sunrise-records-sentence-total", ("total", total));
 
-        SentenceLabel.FontColorOverride = total >= lawset.PermanentSentenceThreshold ? Color.Red : Color.White;
+        SentenceLabel.FontColorOverride = total >= threshold ? Color.Red : Color.White;
     }
 
-    private Color GetSectionColor(string lawId, CorporateLawsetPrototype lawset)
+    private Color GetSectionColor(string lawId, List<ProtoId<CorporateLawSectionPrototype>> articles)
     {
-        foreach (var sId in lawset.Articles)
+        foreach (var sId in articles)
         {
-            if (!_proto.TryIndex<CorporateLawSectionPrototype>(sId, out var section) || !section.Entries.Contains(lawId))
+            if (!_proto.TryIndex(sId, out var section) || !section.Entries.Contains(lawId))
                 continue;
 
             return section.Color ?? Color.White;
