@@ -71,3 +71,21 @@
       sprite: _Sunrise/Interface/Misc/program_icons.rsi
       state: flash_snap
   - type: PhotoCartridge
+
+- type: entity
+  parent: BasePDACartridge
+  id: CorporateLawCartridge
+  name: corporate law cartridge
+  description: A program for viewing corporate laws and guidelines.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-y
+  - type: UIFragment
+    ui: !type:CorporateLawUi
+  - type: Cartridge
+    programName: corplaw-program-name
+    icon:
+      sprite: _Sunrise/Interface/Misc/program_icons.rsi
+      state: documents
+  - type: CorporateLawCartridge

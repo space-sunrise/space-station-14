@@ -223,6 +223,12 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<string> RoadmapId =
         CVarDef.Create("roadmap.id", "SunriseRoadmap");
 
+    /// <summary>
+    /// Roadmap text hashset - to show roadmap to player when we change something.
+    /// </summary>
+    public static readonly CVarDef<string> RoadmapLastSeenHash =
+        CVarDef.Create("roadmap.last_seen_hash", "", CVar.CLIENTONLY | CVar.ARCHIVE);
+
     /**
      * Lobby Changelog
      */
@@ -596,4 +602,10 @@ public sealed partial class SunriseCCVars : CVars
     /// </summary>
     public static readonly CVarDef<bool> PhotoCaptureEnabled =
         CVarDef.Create("photo.capture_enabled", true, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    /// <summary>
+    /// The ID of the corporate law set prototype to use in the PDA application.
+    /// </summary>
+    public static readonly CVarDef<string> CorporateLawSet =
+        CVarDef.Create("sunrise.corporate_law_set", "StandardCorporateLaw", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 }
