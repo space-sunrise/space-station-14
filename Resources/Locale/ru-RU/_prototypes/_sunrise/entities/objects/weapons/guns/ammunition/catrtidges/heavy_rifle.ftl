@@ -34,7 +34,7 @@ ent-SpeedLoaderHeavyRifleRFMJ = клипса (7,62R FMJ)
     .desc = { ent-BaseItem.desc }
 ent-CartridgeRifleHeavyArtillery = патрон (.308 космо)
     .desc = { ent-BaseCartridgeRifleHeavy.desc }
-ent-CartridgeRifleHeavy127mm = патрон (12,7 x 108мм)
+ent-CartridgeRifleHeavy127mm = патрон (12,7)
     .desc = { ent-BaseItem.desc }
 
 ent-SpeedLoaderHeavyRifleRAP = клипса (7,62R AP)
