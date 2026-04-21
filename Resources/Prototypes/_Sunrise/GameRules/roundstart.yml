@@ -55,7 +55,6 @@
 - type: entity
   parent: BaseGameRule
   id: GreenShitStationEventScheduler
-  parent: BaseGameRule
   components:
   - type: BasicStationEventScheduler
     scheduledGameRules: !type:NestedSelector
