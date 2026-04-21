@@ -7,10 +7,7 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.XAML;
 using Robust.Client.UserInterface.Controls;
-using Content.Shared._Sunrise.Laws.Components;
 using Content.Shared._Sunrise.Laws.Systems;
-using Content.Shared._Sunrise.SunriseCCVars;
-using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.Shared.Timing;
@@ -23,7 +20,6 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
 {
     [Dependency] private readonly IEntityManager _ent = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
     private readonly SharedSunriseCriminalRecordsSystem _recordsSystem;
     private readonly SharedStationCorporateLawSystem _stationLaw;
 
@@ -150,24 +146,20 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
         AggravatingContainer.DisposeAllChildren();
         ReadOnlyList.DisposeAllChildren();
 
-        List<ProtoId<CorporateLawPrototype>> provisions;
         List<ProtoId<CorporateLawSectionPrototype>> articles;
         List<ProtoId<CorporateLawPrototype>> circumstances;
-        int threshold;
 
-        _stationLaw.GetEffectiveLawset(ConsoleEntity, out provisions, out articles, out circumstances, out threshold);
+        _stationLaw.GetEffectiveLawset(ConsoleEntity, out _, out articles, out circumstances, out _);
 
         if (_isReadOnly)
-            PopulateReadOnly(provisions, circumstances, articles);
+            PopulateReadOnly(articles);
         else
-            PopulateEditable(provisions, circumstances, articles);
+            PopulateEditable(circumstances, articles);
 
         UpdateSentenceDisplay();
     }
 
     private void PopulateReadOnly(
-        List<ProtoId<CorporateLawPrototype>> provisions,
-        List<ProtoId<CorporateLawPrototype>> circumstances,
         List<ProtoId<CorporateLawSectionPrototype>> articles)
     {
         ReadOnlyContent.PanelOverride = new StyleBoxFlat
@@ -183,7 +175,7 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
 
         // Group laws by category for visual consistency
         var selectedLaws = _currentLaws
-            .Select(id => _proto.TryIndex<CorporateLawPrototype>(id, out var law) ? law : null)
+            .Select(id => _proto.TryIndex(id, out var law) ? law : null)
             .Where(l => l != null)
             .Cast<CorporateLawPrototype>()
             .OrderBy(l => l.LawIdentifier ?? "")
@@ -213,7 +205,7 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
 
             foreach (var circId in _currentCircumstances)
             {
-                if (!_proto.TryIndex<CorporateLawPrototype>(circId, out var law)) continue;
+                if (!_proto.TryIndex(circId, out var law)) continue;
 
                 Color circColor = law.Category == LawCategory.Mitigating ? Color.FromHex("#00ffff") : Color.FromHex("#dc143c");
                 AddLawEntry(law, ReadOnlyList, _currentCircumstances, circColor);
@@ -222,7 +214,6 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
     }
 
     private void PopulateEditable(
-        List<ProtoId<CorporateLawPrototype>> provisions,
         List<ProtoId<CorporateLawPrototype>> circumstances,
         List<ProtoId<CorporateLawSectionPrototype>> articles)
     {
@@ -284,7 +275,8 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
                 if (!_proto.TryIndex(entryId, out var law))
                     continue;
                 AddLawEntry(law, content, _currentLaws, catColor);
-                if (_currentLaws.Contains(law.ID)) anySelected = true;
+                if (_currentLaws.Contains(law.ID))
+                    anySelected = true;
             }
 
             collapsible.BodyVisible = anySelected;
