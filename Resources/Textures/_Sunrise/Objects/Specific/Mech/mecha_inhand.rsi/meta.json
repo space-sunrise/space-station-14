@@ -110,6 +110,14 @@
         {
             "name": "xray-inhand-right",
             "directions": 4
+        },
+        {
+            "name": "lightcutter-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "lightcutter-inhand-right",
+            "directions": 4
         }
     ]
 }
