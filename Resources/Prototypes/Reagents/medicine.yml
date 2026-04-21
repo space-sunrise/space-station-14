@@ -210,6 +210,15 @@
             Brute: -2
             Burn: -2
             Toxin: -2
+        #Sunrise-Start
+        - !type:HealthChange
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0
+          damage:
+            types:
+              Mangleness: -0.5
+        #Sunrise-End
 
 - type: reagent
   id: Doxarubixadone
@@ -620,7 +629,6 @@
             Cellular: -0.3
             Radiation: 0.15
             Caustic: 0.15
-            Mangleness: 0.05 #Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
