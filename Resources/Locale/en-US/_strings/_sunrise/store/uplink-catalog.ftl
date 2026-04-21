@@ -128,6 +128,8 @@ uplink-anomaly-auto-injector-popup-pending = Skin resists injection!
 uplink-anomaly-auto-injector-popup-infected = Skin resists injection!
 uplink-xeno-artifact-throwing-auto-injector-name = Artifact throwing Auto-Injector
 uplink-xeno-artifact-throwing-auto-injector-desc = A single-use, throwable folding device. Upon striking a living target, it embeds and injects artifact particles. Ineffective against synthetics.
+uplink-roboticist-nuclear-operative-id-card-name = Roboticist operative ID card
+uplink-roboticist-nuclear-operative-id-card-desc = A roboticist ID card with standard job access and additional Syndicate access.
 
 ## Implants
 

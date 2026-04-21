@@ -21,6 +21,9 @@
       },
       {
         "name": "flash_snap"
+      },
+      {
+        "name": "documents"
       }
     ]
 }

@@ -1,0 +1,29 @@
+- type: sinkPort
+  id: PrisonLockerLock
+  name: signal-port-name-prison-locker-lock
+  description: signal-port-description-prison-locker-lock
+
+- type: sinkPort
+  id: PrisonLockerUnlock
+  name: signal-port-name-prison-locker-unlock
+  description: signal-port-description-prison-locker-unlock
+
+- type: sinkPort
+  id: PrisonCellDoorLock
+  name: signal-port-name-prison-door-lock
+  description: signal-port-description-prison-door-lock
+
+- type: sinkPort
+  id: PrisonCellDoorUnlock
+  name: signal-port-name-prison-door-unlock
+  description: signal-port-description-prison-door-unlock
+
+- type: sinkPort
+  id: PrisonTimerSet
+  name: signal-port-name-prison-timer-set
+  description: signal-port-description-prison-timer-set
+
+- type: sinkPort
+  id: PrisonTimerReset
+  name: signal-port-name-prison-timer-reset
+  description: signal-port-description-prison-timer-reset

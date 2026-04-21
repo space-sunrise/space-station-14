@@ -352,6 +352,8 @@
     - id: WantedListCartridge
     - id: DrinkHosFlask
     - id: FlippoLighterSunriseHos  # Sunrise-Flippo
+    - id: SunriseCriminalRecordsComputerCircuitboard  # Sunrise-Edit
+    - id: ComputerPrisonerManagementCircuitboard  # Sunrise-Edit
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
