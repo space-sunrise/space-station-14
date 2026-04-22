@@ -389,3 +389,55 @@
     layers:
     - state: green
     - state: security_pilot
+
+## CBURN
+
+- type: entity
+  id: SpawnPointCBURNAgent
+  parent: SpawnPointJobBase
+  name: cburn
+  components:
+  - type: SpawnPoint
+    job_id: CBURN
+  - type: Sprite
+    layers:
+      - state: green
+      - state: cburn
+
+- type: entity
+  id: SpawnPointCBURNAgentEVA
+  parent: SpawnPointJobBase
+  name: cburn eva
+  components:
+  - type: SpawnPoint
+    job_id: CBURNAgentEVA
+  - type: Sprite
+    layers:
+      - state: green
+      - state: cburn
+
+- type: entity
+  id: SpawnPointCBURNLeader
+  parent: SpawnPointJobBase
+  name: cburn leader
+  components:
+  - type: SpawnPoint
+    job_id: CBURNLeader
+  - type: Sprite
+    layers:
+      - state: green
+      - state: cburn
+
+## DEATHSQUAD
+
+- type: entity
+  id: SpawnPointDeathSquad
+  parent: SpawnPointJobBase
+  name: deathsquad
+  components:
+  - type: SpawnPoint
+    job_id: DeathSquad
+  - type: Sprite
+    layers:
+      - state: green
+      - state: deathsquad
