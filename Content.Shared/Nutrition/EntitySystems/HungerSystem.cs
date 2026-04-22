@@ -304,30 +304,7 @@ public sealed class HungerSystem : EntitySystem
             DoContinuousHungerEffects(uid, hunger);
 
             // Sunrise-Start
-            var hasMangleness = _damageable.HasMangleness(uid);
-
-            if (hasMangleness != hunger.HadMangleness)
-            {
-                hunger.HadMangleness = hasMangleness;
-                DirtyField(uid, hunger, nameof(HungerComponent.HadMangleness));
-                DoHungerThresholdEffects(uid, hunger, force: true);
-            }
-
-            if (hasMangleness)
-            {
-                if (hunger.CurrentThreshold >= HungerThreshold.Okay && _timing.IsFirstTimePredicted)
-                {
-                    var heal = new DamageSpecifier();
-                    heal.DamageDict.Add("Mangleness", hunger.ManglenessHealingOkay);
-                    _damageable.TryChangeDamage(uid, heal, true, false);
-                }
-                else if (hunger.CurrentThreshold == HungerThreshold.Peckish && _timing.IsFirstTimePredicted)
-                {
-                    var heal = new DamageSpecifier();
-                    heal.DamageDict.Add("Mangleness", hunger.ManglenessHealingPeckish);
-                    _damageable.TryChangeDamage(uid, heal, true, false);
-                }
-            }
+            TickManglenessRecovery(uid, hunger);
             // Sunrise-End
         }
     }
@@ -345,13 +322,13 @@ public sealed class HungerSystem : EntitySystem
 
         if (hasMangleness)
         {
-            if (hunger.CurrentThreshold >= HungerThreshold.Okay)
+            if (hunger.CurrentThreshold >= HungerThreshold.Okay && _timing.IsFirstTimePredicted)
             {
                 var heal = new DamageSpecifier();
                 heal.DamageDict.Add("Mangleness", hunger.ManglenessHealingOkay);
                 _damageable.TryChangeDamage(uid, heal, true, false);
             }
-            else if (hunger.CurrentThreshold == HungerThreshold.Peckish)
+            else if (hunger.CurrentThreshold == HungerThreshold.Peckish && _timing.IsFirstTimePredicted)
             {
                 var heal = new DamageSpecifier();
                 heal.DamageDict.Add("Mangleness", hunger.ManglenessHealingPeckish);

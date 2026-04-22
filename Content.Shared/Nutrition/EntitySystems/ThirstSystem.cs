@@ -262,10 +262,8 @@ public sealed class ThirstSystem : EntitySystem
 
             ModifyThirst(uid, thirst, -thirst.ActualDecayRate);
             DoContinuousThirstEffects(uid, thirst);
-
-            // Sunrise-Start
-            TickManglenessRecovery(uid, thirst);
-            // Sunrise-End
+            
+            TickManglenessRecovery(uid, thirst); // Sunrise-edit
 
             var calculatedThirstThreshold = GetThirstThreshold(thirst, thirst.CurrentThirst);
 

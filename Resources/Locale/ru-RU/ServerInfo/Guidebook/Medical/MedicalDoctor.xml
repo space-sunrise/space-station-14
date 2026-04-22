@@ -127,8 +127,9 @@
 
   <Box>
     <GuideEntityEmbed Entity="Brutepack"/>
-    <GuideEntityEmbed Entity="Defibrillator"/>
     <GuideEntityEmbed Entity="Ointment"/>
+    <GuideEntityEmbed Entity="Defibrillator"/>
+    <GuideReagentEmbed Reagent="Opporozidone"/>
   </Box>
 
 </Document>
