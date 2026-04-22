@@ -1,5 +1,7 @@
 using Robust.Shared.Serialization;
+using Robust.Shared.Prototypes;
 using Content.Shared.StationRecords;
+using Content.Shared._Sunrise.Laws;
 
 namespace Content.Shared._Sunrise.CriminalRecords;
 
@@ -54,13 +56,21 @@ public sealed class SunriseCriminalRecordsConsoleState : BoundUserInterfaceState
     public readonly SunriseCriminalRecordsUIState CurrentUIState;
 
     // Person details
+    /// <summary>The name of the currently selected person.</summary>
     public readonly string? SelectedName;
+    /// <summary>The job title of the selected person.</summary>
     public readonly string? JobTitle;
+    /// <summary>The job icon of the selected person.</summary>
     public readonly string? JobIcon;
+    /// <summary>The age of the selected person.</summary>
     public readonly int? Age;
+    /// <summary>The gender of the selected person.</summary>
     public readonly string? Gender;
+    /// <summary>The species of the selected person.</summary>
     public readonly string? Species;
+    /// <summary>The fingerprints of the selected person.</summary>
     public readonly string? Fingerprints;
+    /// <summary>The DNA of the selected person.</summary>
     public readonly string? DNA;
 
     public SunriseCriminalRecordsConsoleState(
@@ -109,16 +119,20 @@ public sealed class SunriseCriminalRecordsCreateCaseMessage : BoundUserInterface
 [Serializable, NetSerializable]
 public sealed class SunriseCriminalRecordsUpdateCaseMessage : BoundUserInterfaceMessage
 {
+    /// <summary>The ID of the case to update.</summary>
     public readonly uint CaseId;
-    public readonly List<string> Laws;
-    public readonly List<string> Circumstances;
+    /// <summary>List of law article IDs to assign to the case.</summary>
+    public readonly List<ProtoId<CorporateLawPrototype>> Laws;
+    /// <summary>List of circumstance IDs to assign to the case.</summary>
+    public readonly List<ProtoId<CorporateLawPrototype>> Circumstances;
+    /// <summary>Optional notes/description for the case.</summary>
     public readonly string? Notes;
 
-    public SunriseCriminalRecordsUpdateCaseMessage(uint caseId, List<string> laws, List<string> circumstances, string? notes)
+    public SunriseCriminalRecordsUpdateCaseMessage(uint caseId, List<ProtoId<CorporateLawPrototype>> laws, List<ProtoId<CorporateLawPrototype>> circumstances, string? notes)
     {
         CaseId = caseId;
-        Laws = new List<string>(laws);
-        Circumstances = new List<string>(circumstances);
+        Laws = new List<ProtoId<CorporateLawPrototype>>(laws);
+        Circumstances = new List<ProtoId<CorporateLawPrototype>>(circumstances);
         Notes = notes;
     }
 }
@@ -129,6 +143,7 @@ public sealed class SunriseCriminalRecordsUpdateCaseMessage : BoundUserInterface
 [Serializable, NetSerializable]
 public sealed class SunriseCriminalRecordsCloseCaseMessage : BoundUserInterfaceMessage
 {
+    /// <summary>The ID of the case to close.</summary>
     public readonly uint CaseId;
 
     public SunriseCriminalRecordsCloseCaseMessage(uint caseId)
@@ -143,6 +158,7 @@ public sealed class SunriseCriminalRecordsCloseCaseMessage : BoundUserInterfaceM
 [Serializable, NetSerializable]
 public sealed class SunriseCriminalRecordsSetUIStateMessage : BoundUserInterfaceMessage
 {
+    /// <summary>The new UI state to switch to.</summary>
     public readonly SunriseCriminalRecordsUIState State;
 
     public SunriseCriminalRecordsSetUIStateMessage(SunriseCriminalRecordsUIState state)
@@ -157,6 +173,7 @@ public sealed class SunriseCriminalRecordsSetUIStateMessage : BoundUserInterface
 [Serializable, NetSerializable]
 public sealed class SunriseCriminalRecordsSelectCaseMessage : BoundUserInterfaceMessage
 {
+    /// <summary>The ID of the case to select.</summary>
     public readonly uint CaseId;
 
     public SunriseCriminalRecordsSelectCaseMessage(uint caseId)
@@ -166,11 +183,27 @@ public sealed class SunriseCriminalRecordsSelectCaseMessage : BoundUserInterface
 }
 
 /// <summary>
+///     BUI message to send a full state refresh to a specific client.
+///     Used for per-user UI projection.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class SunriseCriminalRecordsRefreshMessage : BoundUserInterfaceMessage
+{
+    public readonly SunriseCriminalRecordsConsoleState State;
+
+    public SunriseCriminalRecordsRefreshMessage(SunriseCriminalRecordsConsoleState state)
+    {
+        State = state;
+    }
+}
+
+/// <summary>
 ///     BUI message to select a person's record to view their cases.
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class SunriseCriminalRecordsSelectRecordMessage : BoundUserInterfaceMessage
 {
+    /// <summary>The station record ID of the person. If null, deselects the current record.</summary>
     public readonly uint? RecordId;
 
     public SunriseCriminalRecordsSelectRecordMessage(uint? recordId)

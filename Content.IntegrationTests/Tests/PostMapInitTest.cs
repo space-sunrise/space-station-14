@@ -160,6 +160,8 @@ namespace Content.IntegrationTests.Tests
             "/Maps/_Sunrise/Salvage/small-mercsand.yml", // Salvage-карты с преднамеренно размещенными DoNotMap сущностями (баланс/лут/сценарий)
             "/Maps/_Sunrise/Salvage/small-scichunk.yml", // Salvage-карты с преднамеренно размещенными DoNotMap сущностями (баланс/лут/сценарий)
             "/Maps/_Sunrise/Salvage/small-xenochunk.yml", // Salvage-карты с преднамеренно размещенными DoNotMap сущностями (баланс/лут/сценарий)
+            "/Maps/_Sunrise/Nonstations/geigerComplex.yml", // Печать синдиката
+            "/Maps/_Sunrise/Nonstations/nukiewestern.yml", // Печать синдиката
         };
         private static readonly string[] TotalNoSpawnMaps = NoSpawnMaps.Concat(SunriseNoSpawnMaps).ToArray();
         private static readonly string[] TotalGrids = Grids.Concat(SunriseGrids).ToArray();

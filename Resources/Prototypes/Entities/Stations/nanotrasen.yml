@@ -39,6 +39,7 @@
     - BaseStationMeteorSwarmTarget
     - BaseStationRandomXenoArtifact
     - BaseStationCriminalRecords
+    - BaseStationCorporateLaw
   # Sunrise-End
   components:
     - type: Transform

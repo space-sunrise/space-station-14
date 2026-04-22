@@ -11,6 +11,7 @@
   - BaseStationSiliconLawCrewsimov
   - PrisonStationAlertLevels
   - BaseStationCriminalRecords
+  - BaseStationCorporateLaw
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform

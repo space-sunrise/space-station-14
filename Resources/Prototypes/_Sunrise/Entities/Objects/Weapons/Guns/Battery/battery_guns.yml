@@ -128,6 +128,7 @@
       name: energy-gun-disable
       visualState: disable
       heldPrefix: disabler
+      pacifismAllowedMode: true
     - proto: BulletLaserWindowPiercingMagnum
       fireCost: 75
       name: energy-gun-lethal
@@ -179,6 +180,7 @@
       name: energy-gun-disable
       visualState: disable
       heldPrefix: disabler
+      pacifismAllowedMode: true
     - proto: BulletLaserWindowPiercingMagnum
       fireCost: 110
       name: energy-gun-lethal
@@ -220,6 +222,7 @@
     fireModes:
     - proto: BulletDisabler
       fireCost: 100
+      pacifismAllowedMode: true
     - proto: BulletLaserWindowPiercingMagnum
       fireCost: 175
       conditions:
@@ -310,8 +313,9 @@
       name: energy-gun-disable
       visualState: disable
       heldPrefix: disabler
+      pacifismAllowedMode: true
     - proto: BulletLaserWindowPiercingMagnum
-      fireCost: 100
+      fireCost: 62.5
       name: energy-gun-lethal
       visualState: lethal
       heldPrefix: lethal
@@ -362,6 +366,7 @@
       name: energy-gun-disable
       visualState: disable
       heldPrefix: disabler
+      pacifismAllowedMode: true
     - proto: BulletLaserWindowPiercingMagnum
       fireCost: 100
       name: energy-gun-lethal
@@ -422,8 +427,9 @@
       name: energy-gun-disable
       visualState: disable
       heldPrefix: disabler
+      pacifismAllowedMode: true
     - proto: BulletLaserWindowPiercingMagnum
-      fireCost: 50
+      fireCost: 40
       name: energy-gun-lethal
       visualState: lethal
       heldPrefix: lethal
@@ -1173,3 +1179,34 @@
   components:
   - type: BatterySelfRecharger
     autoRechargeRate: 30
+
+- type: entity
+  name: laser pistol
+  parent: BaseWeaponBatterySmall
+  id: WeaponSunriseLaserPistol
+  description: A compact laser sidearm with an integrated battery.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sunrise_laser_pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sunrise_laser_pistol.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sunrise_laser_pistol.rsi
+  - type: BatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 62.5
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+  - type: Tag
+    tags:
+    - Sidearm
+    - LaserWeapon

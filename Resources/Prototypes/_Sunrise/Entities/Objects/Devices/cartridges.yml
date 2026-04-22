@@ -79,7 +79,7 @@
   description: A program for viewing corporate laws and guidelines.
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Devices/cartridge.rsi
+    sprite: Objects/Devices/cartridge.rsi
     state: cart-y
   - type: UIFragment
     ui: !type:CorporateLawUi

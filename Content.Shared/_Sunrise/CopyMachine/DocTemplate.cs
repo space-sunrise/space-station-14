@@ -7,7 +7,8 @@ namespace Content.Shared._Sunrise.CopyMachine;
 [Prototype]
 public sealed partial class DocTemplatePrototype : IPrototype, IInheritingPrototype
 {
-    [IdDataField] public string ID { get; private set; } = default!;
+    [IdDataField]
+    public string ID { get; private set; } = default!;
 
     [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<DocTemplatePrototype>))]
     public string[]? Parents { get; private set; }
@@ -16,13 +17,20 @@ public sealed partial class DocTemplatePrototype : IPrototype, IInheritingProtot
     [AbstractDataField]
     public bool Abstract { get; private set; }
 
-    [DataField] public LocId Name;
 
-    [DataField(required: true)] public ResPath Content;
+    [DataField(required: true)]
+    public ResPath Content;
 
-    [DataField] public SpriteSpecifier? Header;
 
-    [DataField(required: true)] public string Component { get; private set; } = default!;
+    [DataField(required: true)]
+    public ProtoId<DocTemplateCategoryPrototype> Category { get; private set; } = default!;
 
-    [DataField] public bool IsPublic { get; private set; } = true;
+    [DataField]
+    public SpriteSpecifier? Header;
+
+    [DataField]
+    public LocId Name;
+
+    [DataField]
+    public bool IsPublic { get; private set; } = true;
 }

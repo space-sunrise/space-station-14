@@ -1,12 +1,11 @@
-using System.Linq;
 using Content.Shared._Sunrise.CriminalRecords;
-using Content.Shared._Sunrise.CriminalRecords.Components;
+using Content.Shared._Sunrise.Laws;
 using Content.Shared._Sunrise.CriminalRecords.Systems;
 using Content.Shared.StationRecords;
 using Content.Server._Sunrise.CriminalRecords.Components;
 using Content.Server.StationRecords.Systems;
 using Content.Server.Station.Systems;
-using Content.Shared._Sunrise.Laws;
+using Content.Server._Sunrise.Laws.Systems;
 using Content.Shared.Access.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
@@ -18,14 +17,13 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private readonly StationCorporateLawSystem _stationLaw = default!;
 
     private const int MaxLaws = 20;
     private const int MaxCircumstances = 10;
     private const int MaxNotesLength = 2048;
-    private const string StandardLawsetId = "StandardCorporateLaw";
 
     public override void Initialize()
     {
@@ -107,14 +105,15 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
             var cases = records.Records.GetValueOrDefault(component.SelectedKey.Value.Id, new List<CriminalCase>());
             var nextId = records.NextCaseIds.GetValueOrDefault(component.SelectedKey.Value.Id, 1u);
 
-            var @case = new CriminalCase(nextId, _timing.CurTime);
+            var @case = new CriminalCase(nextId, _timing.CurTime)
+            {
+                OriginStation = GetNetEntity(component.SelectedKey.Value.OriginStation)
+            };
             cases.Add(@case);
             records.Records[component.SelectedKey.Value.Id] = cases;
             records.NextCaseIds[component.SelectedKey.Value.Id] = nextId + 1;
 
             component.SelectedCaseId = nextId;
-
-            Dirty(component.SelectedKey.Value.OriginStation, records);
         }
 
         component.CurrentUIState = SunriseCriminalRecordsUIState.Editor;
@@ -155,21 +154,19 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
                     return;
 
                 // Validate laws and circumstances against lawset
-                if (!_proto.TryIndex<CorporateLawsetPrototype>(StandardLawsetId, out var lawset))
-                    return;
-
-                var validatedLaws = new List<string>();
+                var station = component.SelectedKey.Value.OriginStation;
+                var validatedLaws = new List<ProtoId<CorporateLawPrototype>>();
                 foreach (var lawId in msg.Laws)
                 {
-                    if (!IsLawInLawset(lawId, lawset))
+                    if (!_stationLaw.IsLawInEffectiveLawset(lawId, station))
                         return; // Reject message if any ID is invalid
                     validatedLaws.Add(lawId);
                 }
 
-                var validatedCircs = new List<string>();
+                var validatedCircs = new List<ProtoId<CorporateLawPrototype>>();
                 foreach (var circId in msg.Circumstances)
                 {
-                    if (!IsCircumstanceInLawset(circId, lawset))
+                    if (!_stationLaw.IsCircumstanceInEffectiveLawset(circId, station))
                         return; // Reject message if any ID is invalid
                     validatedCircs.Add(circId);
                 }
@@ -178,7 +175,6 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
                 @case.Circumstances = validatedCircs;
                 @case.Notes = msg.Notes;
                 @case.CalculatedSentence = CalculateSentence(@case, cases);
-                Dirty(component.SelectedKey.Value.OriginStation, records);
             }
         }
 
@@ -202,8 +198,8 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
                 if (@case != null && @case.Status == CriminalCaseStatus.Open)
                 {
                     @case.Status = CriminalCaseStatus.Closed;
+                    var lawset = _stationLaw.GetStationLawset(component.SelectedKey.Value.OriginStation);
                     @case.CalculatedSentence = CalculateSentence(@case, cases);
-                    Dirty(component.SelectedKey.Value.OriginStation, records);
                 }
             }
         }
@@ -221,20 +217,6 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
         return _accessReader.IsAllowed(user.Value, console);
     }
 
-    private bool IsLawInLawset(string lawId, CorporateLawsetPrototype lawset)
-    {
-        foreach (var sectionId in lawset.Articles)
-        {
-            if (_proto.TryIndex<CorporateLawSectionPrototype>(sectionId, out var section) && section.Entries.Contains(lawId))
-                return true;
-        }
-        return false;
-    }
-
-    private bool IsCircumstanceInLawset(string circId, CorporateLawsetPrototype lawset)
-    {
-        return lawset.Circumstances.Contains(circId);
-    }
 
     private void UpdateUserInterface(EntityUid uid, SunriseCriminalRecordsConsoleComponent component)
     {

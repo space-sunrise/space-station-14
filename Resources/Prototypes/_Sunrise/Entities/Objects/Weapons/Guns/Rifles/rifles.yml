@@ -362,11 +362,14 @@
     shape:
     - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -20
+    maxAngle: -45
   - type: Gun
-    minAngle: 25
-    maxAngle: 60
-    angleIncrease: 2
-    angleDecay: 25
+    minAngle: 23
+    maxAngle: 90
+    angleIncrease: 1.25
+    angleDecay: 20
     fireRate: 6
     burstFireRate: 9
     selectedMode: Burst

@@ -1008,5 +1008,6 @@ LockerPrisoner7: PrisonCellLocker
 LockerPrisoner8: PrisonCellLocker
 ComputerCriminalRecords: SunriseComputerCriminalRecords
 BrigTimer: PrisonCellTimer
+#2026-04-19
+AtmosDeviceFanDirectionalInvisible: AtmosDeviceFanDirectional
 # region Sunrise-End
-

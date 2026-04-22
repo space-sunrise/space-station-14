@@ -1,0 +1,26 @@
+<Document>
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                                [color=#8D1010]☆★★[/color] [color=#1B2333][bold]ОТВЕТ ЦК[/bold][/color] [color=#8D1010]☆★★[/color]
+[color=#4A4F5D][mono]────────────────────────────────────────────[/mono][/color]
+[mono][color=#1E4C7A][bold]{corpString} / ЦК-КОМ[/bold][/color]        [color=#7A4A00][bold]№ [form="Номер ответа"][/bold][/color][/mono]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[bold][color=#4D5F80]Объект назначения:[/color] [color=#1B2333][form="Наименование объекта"][/color][/bold]
+[bold][color=#4D5F80]Время:[/color] [color=#1B2333]{timeString}[/color][/bold]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Составитель документа[/bold][/color]
+[bold][color=#4D5F80]Имя и Фамилия:[/color][/bold] [color=#0F5E2B][bold][signature="Имя и Фамилия"][/bold][/color]
+[bold][color=#4D5F80]Должность составителя:[/color][/bold] [color=#7A4A00][bold][form="Должность составителя"][/bold][/color]
+
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Ответ Центрального Командования[/bold][/color]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+
+[color=#2D3442][bold][color=#1B2333]Уважаемый(ая) / Уважаемые[/color][/bold] [bold][color=#1E4C7A][form="Адресат(ы)"][/color][/bold], ваше сообщение получено Центральным Командованием и принято к сведению. Информируем вас, что [bold][color=#1E4C7A][form="Текст ответа"][/color][/bold].[/color]
+
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                     [italic][color=#5A616F]Место для печатей[/color][/italic]
+
+
+
+
+</Document>

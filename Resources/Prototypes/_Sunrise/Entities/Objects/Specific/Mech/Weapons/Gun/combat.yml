@@ -331,6 +331,14 @@
     fireCost: 250
   - type: Appearance
   - type: AmmoCounter
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 20
+        staminaMultiplier: 8
+      Felinid:
+        knockback: 20
+        staminaMultiplier: 8
 
 - type: entity
   id: WeaponMechCombatMissileRack8Frag
@@ -345,3 +353,11 @@
   - type: BatteryAmmoProvider
     proto: Cartridge50mmRocket
     fireCost: 100
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 20
+        staminaMultiplier: 8
+      Felinid:
+        knockback: 20
+        staminaMultiplier: 8

@@ -16,17 +16,17 @@ public sealed class PrisonCellDoorSystem : EntitySystem
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
     [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
 
-    private static readonly ProtoId<AccessLevelPrototype> SecurityAccess = "Security";
+
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<PrisonCellDoorComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<PrisonCellDoorComponent, MapInitEvent>(OnInit);
         SubscribeLocalEvent<PrisonCellDoorComponent, SignalReceivedEvent>(OnSignalReceived);
     }
 
-    private void OnStartup(Entity<PrisonCellDoorComponent> ent, ref ComponentStartup args)
+    private void OnInit(Entity<PrisonCellDoorComponent> ent, ref MapInitEvent args)
     {
         _deviceLink.EnsureSinkPorts(ent, "PrisonCellDoorLock", "PrisonCellDoorUnlock");
     }
@@ -83,7 +83,6 @@ public sealed class PrisonCellDoorSystem : EntitySystem
         if (TryComp<AccessReaderComponent>(uid, out var reader))
         {
             _accessReader.SetActive((uid, reader), true);
-            _accessReader.TryAddAccess((uid, reader), SecurityAccess);
         }
     }
 
@@ -92,7 +91,6 @@ public sealed class PrisonCellDoorSystem : EntitySystem
         if (TryComp<AccessReaderComponent>(uid, out var reader))
         {
             _accessReader.SetActive((uid, reader), false);
-            _accessReader.TryRemoveAccess((uid, reader), SecurityAccess);
         }
     }
 }
