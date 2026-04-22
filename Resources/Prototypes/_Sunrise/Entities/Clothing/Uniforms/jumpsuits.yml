@@ -98,7 +98,7 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrg_suit.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, BaseTSFContraband]
   id: ClothingUniformJumpsuitTSFanother
   name: TSF's uniform
   description: On style. On chill

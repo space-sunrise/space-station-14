@@ -290,18 +290,15 @@
     sprite: _Sunrise/Clothing/OuterClothing/Armor/tsfleader.rsi
 
 - type: entity
-  parent: [ClothingOuterArmorBasic, ClothingOuterStorageBase]
+  parent: [ ClothingOuterArmorBasic, ClothingOuterStorageBase, BaseTSFContraband ]
   id: ClothingOuterArmorTSFanother
-  name: heavvy vest
-  description: heavvy vest for NTRG Sqaud
+  name: heavy vest
+  description: heavy vest for TSF Squad
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Coats/tsfarmor.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/tsfarmor.rsi
-  - type: ClothingSpeedModifier
-    walkModifier: 1
-    sprintModifier: 1
   - type: Armor
     modifiers:
       coefficients:
@@ -312,7 +309,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.70
   - type: Item
-    size: Huge
+    size: Normal
   - type: Storage
     maxItemSize: Small
     grid:

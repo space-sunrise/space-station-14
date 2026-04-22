@@ -311,10 +311,10 @@
     sprite: _Sunrise/Clothing/Neck/Cloaks/blueshieldc.rsi
 
 - type: entity
-  parent: ClothingNeckBase
-  id: ClothingClothingNeckCLoakTSF
-  name: tsf overcoat
-  description: Some tsf item
+  parent: [ ClothingNeckBase,BaseTSFContraband ]
+  id: ClothingNeckCLoakTSF
+  name: TSF dress overcoat
+  description: A formal TSF Marine Corps overcoat.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/tsfdetective.rsi
